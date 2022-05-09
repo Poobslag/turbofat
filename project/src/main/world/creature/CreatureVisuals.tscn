@@ -222,6 +222,7 @@ color_ramp = SubResource( 6 )
 
 [sub_resource type="CanvasItemMaterial" id=25]
 resource_local_to_scene = true
+blend_mode = 1
 
 [sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true
@@ -334,7 +335,7 @@ script = ExtResource( 50 )
 texture = ExtResource( 51 )
 frame_data = "res://assets/main/world/creature/1/sprint-z0-packed.json"
 rect_size = Vector2( 512, 512 )
-frame = 6
+frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="TailZ0" type="Node2D" parent="."]
@@ -598,6 +599,7 @@ show_behind_parent = true
 light_mask = 2
 material = SubResource( 19 )
 position = Vector2( 0, 256 )
+rotation = 0.139626
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
@@ -723,7 +725,6 @@ material = SubResource( 3 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
-frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="DnaLoader" type="Node" parent="."]
@@ -732,6 +733,7 @@ script = ExtResource( 8 )
 
 [node name="Animations" type="Node" parent="."]
 script = ExtResource( 5 )
+eye_frame = 1
 creature_visuals_path = NodePath("..")
 
 [node name="IdleTimer" type="Timer" parent="Animations"]
@@ -742,11 +744,8 @@ creature_visuals_path = NodePath("../..")
 [node name="Tween" type="Tween" parent="Animations"]
 
 [node name="EmotePlayer" parent="Animations" instance=ExtResource( 3 )]
-root_node = NodePath("../..")
-creature_visuals_path = NodePath("../..")
 
 [node name="MovementPlayer" parent="Animations" instance=ExtResource( 30 )]
-root_node = NodePath("../..")
 
 [node name="TailPlayer" parent="Animations" instance=ExtResource( 29 )]
 root_node = NodePath("../..")
@@ -803,7 +802,5 @@ one_shot = true
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="idle_animation_started" from="Animations/IdleTimer" to="Animations/EmotePlayer" method="_on_IdleTimer_idle_animation_started"]
-[connection signal="idle_animation_stopped" from="Animations/IdleTimer" to="Animations/EmotePlayer" method="_on_IdleTimer_idle_animation_stopped"]
 
 [editable path="Body"]

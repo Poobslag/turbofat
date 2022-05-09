@@ -1,8 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/world/chat-icon.gd" type="Script" id=2]
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/world/chat-icon-packed.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PackedSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.34, 0.34 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "pulse"
@@ -26,7 +41,7 @@ script = ExtResource( 2 )
 
 [node name="PackedSprite" type="Node2D" parent="."]
 position = Vector2( 59, -57 )
-scale = Vector2( 0.34, 0.34 )
+scale = Vector2( 0.365714, 0.365714 )
 script = ExtResource( 3 )
 texture = ExtResource( 4 )
 frame_data = "res://assets/main/world/chat-icon-packed.json"
@@ -34,6 +49,7 @@ offset = Vector2( 0, -128 )
 
 [node name="PulsePlayer" type="AnimationPlayer" parent="."]
 autoplay = "pulse"
+anims/RESET = SubResource( 2 )
 anims/pulse = SubResource( 1 )
 
 [node name="FocusTween" type="Tween" parent="."]

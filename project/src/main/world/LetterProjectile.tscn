@@ -1,7 +1,46 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/letter-projectile-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/world/letter-projectile.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=2]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Letter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:speed_scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
@@ -58,11 +97,10 @@ tracks/3/keys = {
 }
 
 [node name="LetterProjectile" type="Node2D"]
+scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 2 )
-speed_scale = 0.2
 
 [node name="Letter" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.400002 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -81,4 +119,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade"
+anims/RESET = SubResource( 2 )
 anims/fade = SubResource( 1 )

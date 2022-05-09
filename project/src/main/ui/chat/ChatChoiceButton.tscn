@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/ui/chat/choice-theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/chat/mood-sprite.gd" type="Script" id=2]
@@ -11,6 +11,45 @@
 [ext_resource path="res://src/main/ui/blogger-sans-medium-24.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-12.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=11]
+
+[sub_resource type="Animation" id=5]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "choose"
@@ -132,6 +171,33 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ) ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=4]
 length = 0.3
 step = 0.02
@@ -168,9 +234,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 choice_text = "Are you kidding me? That's not even close to what I said!"
 
 [node name="FontFitLabel" type="Label" parent="."]
@@ -195,12 +258,10 @@ __meta__ = {
 fonts = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ]
 
 [node name="MoodSprite" type="Control" parent="."]
-modulate = Color( 1, 1, 1, 0.894118 )
 margin_left = -11.0
 margin_top = 13.0
 margin_right = 17.0
 margin_bottom = 41.0
-rect_scale = Vector2( 1.5, 1.5 )
 rect_pivot_offset = Vector2( 15, 15 )
 mouse_filter = 2
 script = ExtResource( 2 )
@@ -223,6 +284,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MoodSprite"]
 autoplay = "default"
+anims/RESET = SubResource( 5 )
 anims/choose = SubResource( 1 )
 anims/default = SubResource( 2 )
 anims/focus = SubResource( 3 )
@@ -231,6 +293,7 @@ anims/focus = SubResource( 3 )
 script = ExtResource( 6 )
 
 [node name="PopAnimation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
 anims/choose = SubResource( 4 )
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
