@@ -58,7 +58,7 @@ export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST setget set
 export (Dictionary) var dna: Dictionary setget set_dna
 
 ## how fat the creature looks right now; gradually approaches the 'fatness' property
-export (float) var visual_fatness := 1.0 setget set_visual_fatness
+export (float, 1.0, 10.0) var visual_fatness := 1.0 setget set_visual_fatness
 
 ## how fat the creature will become eventually; visual_fatness gradually approaches this value
 var fatness := 1.0 setget set_fatness, get_fatness

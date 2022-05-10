@@ -5,8 +5,11 @@ extends Node
 ## the scene describing the letters to emit
 export (PackedScene) var LetterProjectileScene: PackedScene
 
-## The approximate direction the letter should move, in radians
-export (float) var letter_angle := 0.0
+## The approximate direction the letter should move, in radians.
+##
+## Note: PI and TAU are not supported in export ranges, see Godot-Proposals #1147
+## (https://github.com/godotengine/godot-proposals/issues/1147)
+export (float, -6.28318530717959, 6.28318530717959) var letter_angle := 0.0
 
 ## The approximate position where the letter should spawn.
 export (Vector2) var letter_position: Vector2

@@ -183,10 +183,6 @@ export (bool) var _autotile: bool setget autotile
 ## tilemap containing obstacles
 onready var _tile_map: TileMap = get_parent()
 
-func _ready() -> void:
-	autotile(true)
-
-
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
