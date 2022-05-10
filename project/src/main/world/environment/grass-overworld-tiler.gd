@@ -18,8 +18,8 @@ const AUTOTILE_COORDS_GOOPY_GRASS := [
 
 export (NodePath) var ground_map_path: NodePath
 
-## A number in the range [0.0, 1.0] describing what percent of cake tiles should have grass
-export (float) var grass_density := 0.03
+## Percent of cake tiles which should have grass
+export (float, 0.0, 1.0) var grass_density := 0.03
 
 ## The ground tilemap's tile ID for goopless blocks
 export (int) var ground_no_goop_tile_index: int

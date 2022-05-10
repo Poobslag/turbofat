@@ -22,10 +22,6 @@ onready var _tile_map: TileMap = get_parent()
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
-func _ready() -> void:
-	autotile(true)
-
-
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()

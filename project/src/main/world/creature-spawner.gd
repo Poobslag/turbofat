@@ -22,7 +22,7 @@ export (String) var spawn_if: String
 
 ## Maximum fatness for a spawned creature.
 ## If a fatter creature spawns here, they will spontaneously and permanently slim down.
-export (float) var max_fatness := 10.0
+export (float, 1.0, 10.0) var max_fatness := 10.0
 
 export (PackedScene) var CreatureScene: PackedScene
 
