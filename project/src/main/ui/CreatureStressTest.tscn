@@ -11,7 +11,7 @@
 script = ExtResource( 2 )
 CreatureScene = ExtResource( 1 )
 
-[node name="Creatures" type="Node2D" parent="."]
+[node name="CreatureContainer" type="Node" parent="."]
 
 [node name="Ui" type="Control" parent="."]
 anchor_right = 1.0
