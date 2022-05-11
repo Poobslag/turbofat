@@ -127,7 +127,7 @@ func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", custo
 		if not chef_id and not customer_id:
 			# no criteria specified; accept all chat key pairs
 			accept_chat_key_pair = true
-		elif customer_id == CareerLevel.ANONYMOUS_CUSTOMER:
+		elif customer_id == CareerLevel.NONQUIRKY_CUSTOMER:
 			# anonymous customer; only accept chat key pairs with no named chefs/customers
 			accept_chat_key_pair = true
 			for chat_key in potential_chat_key_pair.chat_keys():

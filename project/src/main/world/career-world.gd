@@ -81,9 +81,8 @@ func initial_environment_path() -> String:
 ## Refreshes the environment and creatures based on the player's progress through career mode.
 ##
 ## Parameters:
-## 	'pickable_career_levels': An list of CareerLevel instances the player is allowed to select. This affects how
-## 		many level creatures show up.
-func refresh_from_career_data(pickable_career_levels: Array) -> void:
+## 	'level_posses': LevelPosse instances for creatures which should appear for each level.
+func refresh_from_career_data(level_posses: Array) -> void:
 	if EnvironmentScene.resource_path != _career_environment_path():
 		set_environment_scene(load(initial_environment_path()))
 		_fill_environment_scene()
@@ -93,10 +92,10 @@ func refresh_from_career_data(pickable_career_levels: Array) -> void:
 		if creature.is_in_group("customers"):
 			creature.remove_from_group("customers")
 	
-	if PlayerData.career.level_choice_count() == 1:
-		_refresh_single_level_creatures(pickable_career_levels)
+	if level_posses.size() == 1:
+		_refresh_single_level_creatures(level_posses[0])
 	else:
-		_refresh_multi_level_creatures(pickable_career_levels)
+		_refresh_multi_level_creatures(level_posses)
 	
 	_move_camera()
 
@@ -160,21 +159,25 @@ func _career_environment_path() -> String:
 ##
 ## For a boss/intro level, we show the chef and up to two customers. If a boss/intro level has a designed chef, the
 ## chef is in the middle.
-func _refresh_single_level_creatures(pickable_career_levels: Array) -> void:
-	var career_level: CareerLevel = pickable_career_levels[0]
-	var remaining_customers := career_level.customer_ids.duplicate()
+##
+## Parameters:
+## 	'level_posse': Creatures which should appear for this level.
+func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
+	var remaining_customer_ids: Array = level_posse.customer_ids.duplicate()
 	var remaining_creature_indexes := [1, 0, 2]
-	if career_level.chef_id:
+	
+	if level_posse.chef_id:
 		# if there's a chef_id, add the chef to the middle
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
-		creature.creature_id = career_level.chef_id
+		creature.creature_id = level_posse.chef_id
+	
 	while remaining_creature_indexes:
 		# assign/randomize the remaining customer appearances
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.add_to_group("customers")
-		if remaining_customers:
+		if remaining_customer_ids:
 			# assign the next customer
-			creature.creature_id = remaining_customers.pop_front()
+			creature.creature_id = remaining_customer_ids.pop_front()
 		else:
 			# randomize the customer
 			creature.creature_def = CreatureLoader.random_def()
@@ -186,17 +189,21 @@ func _refresh_single_level_creatures(pickable_career_levels: Array) -> void:
 ##
 ## For a non-boss/non-intro level, we show one creature for each of the different levels. We show the chef if the
 ## level has a designated chef, otherwise we show the level's customer.
-func _refresh_multi_level_creatures(pickable_career_levels: Array) -> void:
-	for i in range(pickable_career_levels.size()):
-		var career_level: CareerLevel = pickable_career_levels[i]
+##
+## Parameters:
+## 	'level_posses': LevelPosse instances for creatures which should appear for each level.
+func _refresh_multi_level_creatures(level_posses: Array) -> void:
+	for i in range(level_posses.size()):
+		var chef_id: String = level_posses[i].chef_id
+		var customer_ids: Array = level_posses[i].customer_ids
 		var creature: Creature = _level_creatures[i]
-		if career_level.chef_id:
+		if chef_id:
 			# if there's a chef_id, show the level's chef
-			creature.creature_id = career_level.chef_id
-		elif career_level.customer_ids:
+			creature.creature_id = chef_id
+		elif customer_ids:
 			# if there's a customer_id, show the level's customer
 			creature.add_to_group("customers")
-			creature.creature_id = career_level.customer_ids[0]
+			creature.creature_id = customer_ids[0]
 		else:
 			# randomize the customer
 			creature.add_to_group("customers")

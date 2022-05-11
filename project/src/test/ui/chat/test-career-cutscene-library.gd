@@ -212,7 +212,7 @@ func test_potential_chat_keys_includes_unnamed_customers() -> void:
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
 		"ui/chat/fake_career_2"
-	], "", CareerLevel.ANONYMOUS_CUSTOMER), [
+	], "", CareerLevel.NONQUIRKY_CUSTOMER), [
 		# only return scenes with no named chefs/customers
 		_interlude("ui/chat/fake_career_2/c", ""),
 	])

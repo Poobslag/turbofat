@@ -119,21 +119,24 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	for chat_key_pair in potential_chat_key_pairs:
 		for chat_key in chat_key_pair.chat_keys():
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-			if chat_tree.chef_id:
+			if chat_tree.chef_id and region.has_quirky_chef(chat_tree.chef_id):
+				# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
 				if not chat_tree.chef_id in chef_ids:
 					chef_ids.append(chat_tree.chef_id)
-			elif chat_tree.customer_id:
-				# If a cutscene specifies both a chef AND customer, we ignore the customer. The chef is the only
-				# creature who appears on the map.
+			elif chat_tree.customer_id and region.has_quirky_customer(chat_tree.customer_id):
+				# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
 				if not chat_tree.customer_id in customer_ids:
 					customer_ids.append(chat_tree.customer_id)
 			else:
-				if not CareerLevel.ANONYMOUS_CUSTOMER in customer_ids:
-					customer_ids.append(CareerLevel.ANONYMOUS_CUSTOMER)
+				# If a cutscene uses generic characters or nonquirky characters, it must be accompanied by a level
+				# without quirks.
+				if not CareerLevel.NONQUIRKY_CUSTOMER in customer_ids:
+					customer_ids.append(CareerLevel.NONQUIRKY_CUSTOMER)
 	return {
 		"chef_ids": chef_ids,
 		"customer_ids": customer_ids,
 	}
+
 
 ## Removes levels from a list if they do not include specific creatures in them.
 ##
@@ -143,32 +146,34 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 ## If the specified chef/customer lists are empty, this returns an unfiltered list of all levels.
 ##
 ## Parameters:
-## 	'levels': A list of CareerLevel instances to evaluate
+## 	'region': The region whose CareerLevel instances are being evaluated.
+##
+## 	'levels': A list of CareerLevel instances to evaluate.
 ##
 ## 	'chef_ids': A list of creature ids who must as appear as a chef in the returned cutscenes.
 ##
 ## 	'customer_ids': A list of creature ids who must as appear as customers in the returned cutscenes. This can
-## 		also include ANONYMOUS_CUSTOMER for cutscenes with no named chefs/customers.
+## 		also include NONQUIRKY_CUSTOMER for cutscenes with no named chefs/customers.
 ##
 ## Returns:
 ## 	A filtered list of CareerLevel instances if the input chef/customer lists are populated, or an unfiltered list
 ## 	if the input chef/customer lists are empty.
-func trim_levels_by_characters(levels: Array, chef_ids: Array, customer_ids: Array) -> Array:
+func trim_levels_by_characters(region: CareerRegion, levels: Array, chef_ids: Array, customer_ids: Array) -> Array:
 	var trimmed_levels := []
 	if not chef_ids and not customer_ids:
 		trimmed_levels.append_array(levels)
 	else:
 		for level in levels:
-			if level.chef_id:
+			if level.chef_id and region.has_quirky_chef(level.chef_id):
 				if level.chef_id in chef_ids:
 					trimmed_levels.append(level)
-			elif level.customer_ids:
+			elif level.customer_ids and region.has_quirky_customer(level.customer_ids[0]):
 				if level.customer_ids[0] in customer_ids:
 					# If a level includes multiple customers, we ignore everything but the first customer. The first
 					# customer is the only creature who appears on the map.
 					trimmed_levels.append(level)
 			else:
-				if CareerLevel.ANONYMOUS_CUSTOMER in customer_ids:
+				if CareerLevel.NONQUIRKY_CUSTOMER in customer_ids:
 					trimmed_levels.append(level)
 	return trimmed_levels
 

@@ -5,13 +5,21 @@
       "start": 0,
       "icon": "forest",
       "piece_speed": "0",
-      "boss_level":
-      {
-        "id": "boss_211"
-      },
+      "chefs": [
+        "(quirky) chef_38",
+        "chef_36 25%"
+      ],
+      "customers": [
+        "customer_77 10%",
+        "(quirky) customer_90"
+      ],
       "intro_level":
       {
         "id": "intro_211"
+      },
+      "boss_level":
+      {
+        "id": "boss_211"
       },
       "levels": [
         {
@@ -27,13 +35,13 @@
       "start": 10,
       "icon": "cactus",
       "piece_speed": "0-3",
-      "boss_level":
-      {
-        "id": "boss_311"
-      },
       "intro_level":
       {
         "id": "intro_311"
+      },
+      "boss_level":
+      {
+        "id": "boss_311"
       },
       "levels": [
         {

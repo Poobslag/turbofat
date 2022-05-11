@@ -1,7 +1,7 @@
 extends CanvasLayer
 ## UI elements for the career map's settings menu.
 
-## Alter the player's career mode data to force a cutscene.
+## Alters the player's career mode data to force a cutscene.
 ##
 ## This is triggered by a cheat code.
 ##
@@ -63,7 +63,7 @@ func _find_region_with_boss_level() -> CareerRegion:
 	return result
 
 
-## Alter the player's career mode data to force a boss level.
+## Alters the player's career mode data to force a boss level.
 ##
 ## This is triggered by a cheat code.
 ##
@@ -116,7 +116,7 @@ func _find_region_with_epilogue() -> CareerRegion:
 	return result
 
 
-## Alter the player's career mode data to force an epilogue cutscene to play.
+## Alters the player's career mode data to force an epilogue cutscene to play.
 ##
 ## This is triggered by a cheat code.
 ##
@@ -155,6 +155,14 @@ func _force_epilogue_level() -> bool:
 	return true if new_region else false
 
 
+## Summons new levels, customers and chefs.
+##
+## This works by adjusting the daily earnings which affects the random seed.
+func _cycle_levels() -> void:
+	PlayerData.career.daily_earnings += 1
+	SceneTransition.change_scene()
+
+
 func _on_SettingsButton_pressed() -> void:
 	$SettingsMenu.show()
 
@@ -187,3 +195,6 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		"epilio":
 			var cheat_successful := _force_epilogue_level()
 			detector.play_cheat_sound(cheat_successful)
+		"cyclio":
+			_cycle_levels()
+			detector.play_cheat_sound(true)
