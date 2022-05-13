@@ -5,6 +5,13 @@ extends OverworldUi
 ## then the other creature starts walking after a short pause.
 const WALK_REACTION_DELAY := 0.4
 
+const FREE_ROAM_PATHS_BY_ENVIRONMENT_PATH := {
+	"res://src/main/world/environment/marsh/MarshEnvironment.tscn":
+			"res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn",
+	"res://src/main/world/environment/lemon/LemonEnvironment.tscn":
+			"res://src/main/world/environment/lemon/LemonFreeRoamEnvironment.tscn",
+}
+
 ## Extends the parent class's _apply_chat_event_meta() method to add support for the 'start_walking' and 'stop_walking'
 ## metadata items.
 func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:
@@ -40,6 +47,11 @@ func _push_free_roam_trail() -> void:
 	else:
 		# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
 		PlayerData.free_roam.environment_path = _current_chat_tree.destination_environment_path()
+		
+		if PlayerData.free_roam.environment_path in FREE_ROAM_PATHS_BY_ENVIRONMENT_PATH:
+			# replace non-interactive cutscene environment with interactive free roam environment
+			PlayerData.free_roam.environment_path = \
+					FREE_ROAM_PATHS_BY_ENVIRONMENT_PATH[PlayerData.free_roam.environment_path]
 		
 		if _current_chat_tree.destination_environment_path() == _current_chat_tree.chat_environment_path():
 			# preserve spawn ids from cutscene
