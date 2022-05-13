@@ -163,7 +163,6 @@ mouth_type = 2
 
 [node name="LemonTree5" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2545.66, 1798.39 )
-leaf_type = 0
 
 [node name="LemonTree6" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2966.02, 1913.14 )
@@ -194,7 +193,6 @@ mouth_type = 7
 [node name="LemonTree12" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2614.64, 1297.88 )
 leaf_type = 3
-mouth_type = 0
 
 [node name="LemonTree13" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2782.05, 1363.34 )
@@ -213,12 +211,10 @@ mouth_type = 9
 
 [node name="LemonTree16" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3332.89, 1608.47 )
-leaf_type = 0
 mouth_type = 2
 
 [node name="LemonTree17" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3677.13, 1838.94 )
-leaf_type = 0
 mouth_type = 2
 
 [node name="LemonTree18" parent="Obstacles" instance=ExtResource( 6 )]
@@ -243,7 +239,6 @@ mouth_type = 6
 
 [node name="LemonTree22" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2216.86, 1623.96 )
-leaf_type = 0
 mouth_type = 5
 
 [node name="LemonCookieSmall1" parent="Obstacles" instance=ExtResource( 9 )]
