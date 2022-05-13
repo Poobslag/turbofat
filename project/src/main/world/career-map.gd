@@ -12,6 +12,11 @@ var _pickable_level_settings := []
 ## CareerLevel instances for each level the player can select
 var _pickable_career_levels := []
 
+## ChatKeyPair instances for cutscenes for each level the player can select.
+##
+## If there is no cutscene is shown, an empty ChatKeyPair is stored as a placeholder.
+var _pickable_chat_key_pairs := []
+
 ## PieceSpeed for all levels the player can select.
 var _piece_speed: String
 
@@ -60,6 +65,7 @@ func _refresh_ui() -> void:
 func _load_level_settings() -> void:
 	_pickable_level_settings.clear()
 	_pickable_career_levels.clear()
+	_pickable_chat_key_pairs.clear()
 	
 	var region: CareerRegion = PlayerData.career.current_region()
 	# decide available career levels
@@ -69,6 +75,10 @@ func _load_level_settings() -> void:
 		_pickable_career_levels = [region.intro_level]
 	else:
 		_pickable_career_levels = _random_levels()
+	
+	# decide available cutscenes
+	for i in range(_pickable_career_levels.size()):
+		_pickable_chat_key_pairs.append(_chat_key_pair(_pickable_career_levels[i]))
 	
 	# decide piece speed
 	if PlayerData.career.is_boss_level():
@@ -87,7 +97,10 @@ func _load_level_settings() -> void:
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
 		_pickable_level_settings.append(level_settings)
 	
-	_world.refresh_from_career_data(_pickable_career_levels)
+	var level_posses := []
+	for i in range(_pickable_career_levels.size()):
+		level_posses.append(_level_posse(i))
+	_world.refresh_from_career_data(level_posses)
 
 
 ## Recreates all level select buttons in the scene tree based on the current level settings.
@@ -112,6 +125,7 @@ func _random_levels() -> Array:
 	# mode over and over until they get the exact levels they want to play.
 	var seed_int := 0
 	seed_int += PlayerData.career.daily_earnings
+	seed_int += PlayerData.career.hours_passed
 	if PlayerData.career.prev_daily_earnings:
 		seed_int += PlayerData.career.prev_daily_earnings[0]
 	Utils.seeded_shuffle(levels, seed_int)
@@ -124,7 +138,7 @@ func _random_levels() -> Array:
 		var region := PlayerData.career.current_region()
 		var required_cutscene_characters := CareerLevelLibrary.required_cutscene_characters(region)
 		levels = CareerLevelLibrary.trim_levels_by_characters( \
-				levels, required_cutscene_characters.chef_ids, required_cutscene_characters.customer_ids)
+				region, levels, required_cutscene_characters.chef_ids, required_cutscene_characters.customer_ids)
 		if not levels:
 			push_warning("Can't find any levels for distance=%s, chef_ids=%s, customer_ids=%s" %
 					[PlayerData.career.distance_travelled, required_cutscene_characters.chef_ids,
@@ -207,7 +221,7 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 			chef_id = career_level.chef_id
 			customer_id = career_level.customer_ids[0] if career_level.customer_ids else ""
 		else:
-			customer_id = CareerLevel.ANONYMOUS_CUSTOMER
+			customer_id = CareerLevel.NONQUIRKY_CUSTOMER
 	
 	if region.cutscene_path:
 		# find a region-specific cutscene
@@ -261,23 +275,23 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	_distance_label.suppress_distance_penalty()
 	
 	var level_settings: LevelSettings = _pickable_level_settings[level_index]
-	var career_level: CareerLevel = _pickable_career_levels[level_index]
+	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
 	
 	PlayerData.career.daily_level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.puzzle_environment_name = PlayerData.career.current_region().puzzle_environment_name
 	CurrentLevel.piece_speed = _piece_speed
 	
-	CurrentLevel.customers = career_level.customer_ids.duplicate()
-	CurrentLevel.chef_id = career_level.chef_id
+	var level_posse := _level_posse(level_index)
 	
+	CurrentLevel.customers = level_posse.customer_ids
+	CurrentLevel.chef_id = level_posse.chef_id
+	
+	# enqueue customers/chefs from the overworld if the level doesn't define any
 	if not CurrentLevel.customers:
-		# enqueue customers from the overworld if the CareerLevel doesn't define one
 		for customer in _world.get_visible_customers(level_index):
 			CurrentLevel.customers.append(customer.creature_def)
 		CurrentLevel.customers.shuffle()
-	
-	var chat_key_pair := _chat_key_pair(career_level)
 	
 	var preroll_key: String = chat_key_pair.preroll
 	var postroll_key: String = chat_key_pair.postroll
@@ -310,6 +324,44 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
 	
 	PlayerData.career.push_career_trail()
+
+
+## Calculates which creatures should appear for a career level.
+##
+## This can potentially include creatures which are important to a level, creatures which appear in a cutscene, or
+## creatures which randomly show up sometimes in a region.
+func _level_posse(level_index: int) -> LevelPosse:
+	var career_level: CareerLevel = _pickable_career_levels[level_index]
+	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
+	
+	var level_posse := LevelPosse.new()
+	
+	# add customers/chefs from the cutscene
+	for chat_key in chat_key_pair.chat_keys():
+		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+		if chat_tree.customer_id:
+			level_posse.customer_ids = [chat_tree.customer_id]
+		if chat_tree.chef_id:
+			level_posse.chef_id = chat_tree.chef_id
+	
+	# add customers/chefs from the level if the cutscene doesn't define any
+	if not level_posse.customer_ids:
+		level_posse.customer_ids = career_level.customer_ids.duplicate()
+	if not level_posse.chef_id:
+		level_posse.chef_id = career_level.chef_id
+	
+	# add customers/chefs from the region if the level doesn't define any
+	var region := PlayerData.career.current_region()
+	if not level_posse.customer_ids:
+		var customer: CareerRegion.CreatureAppearance = region.random_customer()
+		if customer:
+			level_posse.customer_ids = [customer.id]
+	if not level_posse.chef_id:
+		var chef: CareerRegion.CreatureAppearance = region.random_chef()
+		if chef:
+			level_posse.chef_id = chef.id
+	
+	return level_posse
 
 
 func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:

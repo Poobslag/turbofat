@@ -272,7 +272,7 @@ quit_type = 3
 layer = 10
 
 [node name="CheatCodeDetector" parent="Ui" instance=ExtResource( 5 )]
-codes = [ "bossio", "cambra", "cutsio", "epilio", "moveme" ]
+codes = [ "bossio", "cambra", "cutsio", "cyclio", "epilio", "moveme" ]
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]

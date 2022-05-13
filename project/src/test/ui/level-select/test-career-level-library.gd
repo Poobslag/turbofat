@@ -13,7 +13,7 @@ func after_each() -> void:
 func test_regions() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	
-	assert_eq(3, CareerLevelLibrary.regions.size())
+	assert_eq(CareerLevelLibrary.regions.size(), 3)
 	
 	var region_1: CareerRegion = CareerLevelLibrary.regions[1]
 	assert_eq(region_1.name, "Even World")
@@ -22,6 +22,36 @@ func test_regions() -> void:
 	assert_eq(region_1.max_piece_speed, "3")
 	assert_eq(region_1.length, 10)
 	assert_eq(region_1.levels.size(), 3)
+
+
+func test_region_chefs() -> void:
+	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	
+	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
+	assert_eq(region_0.chefs.size(), 2)
+	
+	assert_eq(region_0.chefs[0].id, "chef_38")
+	assert_eq(region_0.chefs[0].chance, 0.0)
+	assert_eq(region_0.chefs[0].quirky, true)
+	
+	assert_eq(region_0.chefs[1].id, "chef_36")
+	assert_eq(region_0.chefs[1].chance, 0.25)
+	assert_eq(region_0.chefs[1].quirky, false)
+
+
+func test_region_customers() -> void:
+	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	
+	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
+	assert_eq(region_0.customers.size(), 2)
+	
+	assert_eq(region_0.customers[0].id, "customer_77")
+	assert_eq(region_0.customers[0].chance, 0.10)
+	assert_eq(region_0.customers[0].quirky, false)
+	
+	assert_eq(region_0.customers[1].id, "customer_90")
+	assert_eq(region_0.customers[1].chance, 0.0)
+	assert_eq(region_0.customers[1].quirky, true)
 
 
 ## increasing the weight selects faster speeds
@@ -78,6 +108,10 @@ func test_region_weight_for_distance() -> void:
 
 
 func test_trim_levels_by_characters_customer() -> void:
+	var region := CareerRegion.new()
+	region.customers.append(CareerRegion.CreatureAppearance.new())
+	region.customers.back().from_json_string("(quirky) customer_211")
+	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
@@ -87,18 +121,22 @@ func test_trim_levels_by_characters_customer() -> void:
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
 		"id": "level_212",
+		"customer_ids": ["customer_212"],
 	})
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
 		"id": "level_213",
 	})
-	
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, [], ["customer_211"])
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], ["customer_211"])
 	assert_eq(trimmed_levels.size(), 1)
 	assert_eq(trimmed_levels[0].level_id, "level_211")
 
 
 func test_trim_levels_by_characters_chef() -> void:
+	var region := CareerRegion.new()
+	region.chefs.append(CareerRegion.CreatureAppearance.new())
+	region.chefs.back().from_json_string("(quirky) chef_211")
+	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
@@ -108,18 +146,25 @@ func test_trim_levels_by_characters_chef() -> void:
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
 		"id": "level_212",
+		"chef_id": "chef_212",
 	})
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
 		"id": "level_213",
 	})
 	
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, ["chef_211"], [])
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, ["chef_211"], [])
 	assert_eq(trimmed_levels.size(), 1)
 	assert_eq(trimmed_levels[0].level_id, "level_211")
 
 
 func test_trim_levels_by_characters_anonymous_customer() -> void:
+	var region := CareerRegion.new()
+	region.chefs.append(CareerRegion.CreatureAppearance.new())
+	region.chefs.back().from_json_string("(quirky) chef_211")
+	region.customers.append(CareerRegion.CreatureAppearance.new())
+	region.customers.back().from_json_string("(quirky) customer_212")
+	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
@@ -134,15 +179,28 @@ func test_trim_levels_by_characters_anonymous_customer() -> void:
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
 		"id": "level_213",
+		"chef_id": "chef_213",
+		"customer_ids": ["customer_213"],
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_214",
 	})
 	
 	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(
-			all_levels, [], [CareerLevel.ANONYMOUS_CUSTOMER])
-	assert_eq(trimmed_levels.size(), 1)
+			region, all_levels, [], [CareerLevel.NONQUIRKY_CUSTOMER])
+	assert_eq(trimmed_levels.size(), 2)
 	assert_eq(trimmed_levels[0].level_id, "level_213")
+	assert_eq(trimmed_levels[1].level_id, "level_214")
 
 
 func test_trim_levels_by_characters_all() -> void:
+	var region := CareerRegion.new()
+	region.chefs.append(CareerRegion.CreatureAppearance.new())
+	region.chefs.back().from_json_string("(quirky) chef_211")
+	region.customers.append(CareerRegion.CreatureAppearance.new())
+	region.customers.back().from_json_string("(quirky) customer_212")
+	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
 	all_levels.back().from_json_dict({
@@ -159,7 +217,7 @@ func test_trim_levels_by_characters_all() -> void:
 		"id": "level_213",
 	})
 	
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, [], [])
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], [])
 	assert_eq(trimmed_levels.size(), 3)
 
 

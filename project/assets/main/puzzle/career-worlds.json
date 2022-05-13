@@ -147,6 +147,14 @@
       "overworld_environment": "marsh",
       "piece_speed": "3-7",
       "cutscene_path": "chat/career/marsh",
+      "chefs": [
+        "(quirky) skins",
+        "bones 25%",
+        "shirts 25%"
+      ],
+      "customers": [
+        "rhonk 10%"
+      ],
       "intro_level": {
         "id": "career/curly_queue",
         "chef_id": "skins",
@@ -168,36 +176,28 @@
           "id": "career/cleaning_duty"
         },
         {
-          "id": "career/unfresh_fruits_2",
-          "chef_id": "bones"
+          "id": "career/unfresh_fruits_2"
         },
         {
-          "id": "career/cocoa_canyon",
-          "chef_id": "bones"
+          "id": "career/cocoa_canyon"
         },
         {
-          "id": "career/just_cream",
-          "chef_id": "bones"
+          "id": "career/just_cream"
         },
         {
-          "id": "career/tempting_jellies",
-          "chef_id": "bones"
+          "id": "career/tempting_jellies"
         },
         {
-          "id": "career/90_second_sprint",
-          "chef_id": "shirts"
+          "id": "career/90_second_sprint"
         },
         {
-          "id": "career/strawberry_shortcut",
-          "chef_id": "shirts"
+          "id": "career/strawberry_shortcut"
         },
         {
-          "id": "career/a_little_garbage",
-          "chef_id": "shirts"
+          "id": "career/a_little_garbage"
         },
         {
-          "id": "career/real_meal",
-          "chef_id": "shirts"
+          "id": "career/real_meal"
         },
         {
           "id": "career/curly_queue",
