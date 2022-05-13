@@ -24,6 +24,9 @@ func _on_FreeRoam_pressed() -> void:
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.prologue_chat_key)
 		CutsceneQueue.enqueue_cutscene(chat_tree)
 		CutsceneQueue.push_trail()
+		
+		# after the prologue, drop the player into free roam mode
+		Breadcrumb.trail.push_front(Global.SCENE_FREE_ROAM)
 	else:
 		SceneTransition.push_trail(Global.SCENE_FREE_ROAM)
 
