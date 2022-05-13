@@ -9,10 +9,10 @@ signal focus_changed
 const MAX_INTERACT_DISTANCE := 240.0
 
 ## The player's sprite
-var player: Creature setget set_player
+var player: Creature
 
 ## The sensei's sprite
-var sensei: Creature setget set_sensei
+var sensei: Creature
 
 ## The overworld object which the player will currently interact with if they hit the button
 var focused_chattable: Node2D setget set_focused_chattable
@@ -72,9 +72,9 @@ func refresh_creatures() -> void:
 	for creature_obj in get_tree().get_nodes_in_group("creatures"):
 		var creature: Creature = creature_obj
 		if creature.creature_id == CreatureLibrary.PLAYER_ID:
-			set_player(creature)
+			player = creature
 		if creature.creature_id == CreatureLibrary.SENSEI_ID:
-			set_sensei(creature)
+			sensei = creature
 		register_creature(creature)
 
 
@@ -100,16 +100,6 @@ func load_chat_tree() -> ChatTree:
 		# can't look up chat events without a chat_key; return an empty array
 		push_warning("Chattable %s does not define a 'chat_key' property." % focused_chattable)
 	return chat_tree
-
-
-func set_player(new_player: Creature) -> void:
-	player = new_player
-	unregister_creature(player)
-
-
-func set_sensei(new_sensei: Creature) -> void:
-	sensei = new_sensei
-	unregister_creature(sensei)
 
 
 func set_focused_chattable(new_focused_chattable: Node2D) -> void:
@@ -182,13 +172,6 @@ func focused_chattable_creature_id() -> String:
 func register_creature(creature: Creature) -> void:
 	if creature.creature_id:
 		_creatures_by_id[creature.creature_id] = creature
-
-
-## Removes the specified creature from the '_creatures_by_id' mapping.
-func unregister_creature(creature: Creature) -> void:
-	for key in _creatures_by_id:
-		if _creatures_by_id[key] == creature:
-			_creatures_by_id.erase(key)
 
 
 ## Purges all node instances from the manager.
