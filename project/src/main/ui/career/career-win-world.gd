@@ -14,7 +14,35 @@ const ENVIRONMENT_PATH_BY_NAME := {
 	"marsh": "res://src/main/world/environment/marsh/MarshWinEnvironment.tscn",
 }
 
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
+	if PlayerData.career.current_region().sensei_absent:
+		var sensei := overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
+		sensei.visible = false
+	
+	_refresh_mood()
+
 
 func initial_environment_path() -> String:
 	var environment_name := PlayerData.career.current_region().overworld_environment_name
 	return ENVIRONMENT_PATH_BY_NAME.get(environment_name, DEFAULT_ENVIRONMENT_PATH)
+
+
+## Updates the creature moods based on the player's performance.
+func _refresh_mood() -> void:
+	var player := overworld_environment.find_creature(CreatureLibrary.PLAYER_ID)
+	var sensei := overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
+	if PlayerData.career.daily_steps >= CareerData.DAILY_STEPS_GOOD:
+		player.play_mood(Creatures.Mood.LAUGH0)
+		if sensei:
+			sensei.play_mood(Creatures.Mood.LAUGH0)
+	elif PlayerData.career.daily_steps >= CareerData.DAILY_STEPS_OK:
+		player.play_mood(Creatures.Mood.SMILE0)
+		if sensei:
+			sensei.play_mood(Creatures.Mood.SMILE0)
+	else:
+		player.play_mood(Creatures.Mood.RAGE0)
+		if sensei:
+			sensei.play_mood(Creatures.Mood.RAGE0)

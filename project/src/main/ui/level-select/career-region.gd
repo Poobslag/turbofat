@@ -69,6 +69,13 @@ var puzzle_environment_name: String
 ## If the length is CareerData.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
 var length := 0
 
+## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
+var min_piece_speed := "0"
+var max_piece_speed := "0"
+
+## True if the sensei should not accompany the player on the overworld.
+var sensei_absent := false
+
 ## List of CareerLevel instances which store career-mode-specific information about this region's levels.
 var levels := []
 
@@ -77,10 +84,6 @@ var boss_level: CareerLevel
 
 ## First level which must be cleared before any other levels in this region.
 var intro_level: CareerLevel
-
-## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
-var min_piece_speed := "0"
-var max_piece_speed := "0"
 
 ## CreatureAppearance instances for chefs who randomly show up in levels
 var chefs := []
@@ -105,6 +108,7 @@ func from_json_dict(json: Dictionary) -> void:
 	else:
 		min_piece_speed = piece_speed_string
 		max_piece_speed = piece_speed_string
+	sensei_absent = json.get("sensei_absent", false)
 	for level_json in json.get("levels", []):
 		var level: CareerLevel = CareerLevel.new()
 		level.from_json_dict(level_json)

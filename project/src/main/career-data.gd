@@ -48,6 +48,10 @@ const RANK_MILESTONES := [
 ## The rank milestone to display when the player fails a boss level.
 const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("bababa")}
 
+# Daily step thresholds to trigger positive feedback.
+const DAILY_STEPS_GOOD := 25
+const DAILY_STEPS_OK := 8
+
 ## The number of steps the player couldn't take because they were blocked by a boss/intro level.
 var banked_steps := 0
 
