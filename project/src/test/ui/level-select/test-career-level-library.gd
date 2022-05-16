@@ -54,6 +54,21 @@ func test_region_customers() -> void:
 	assert_eq(region_0.customers[1].quirky, true)
 
 
+func test_region_observers() -> void:
+	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	
+	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
+	assert_eq(region_0.observers.size(), 2)
+	
+	assert_eq(region_0.observers[0].id, "observer_35")
+	assert_eq(region_0.observers[0].chance, 0.30)
+	assert_eq(region_0.observers[0].quirky, false)
+	
+	assert_eq(region_0.observers[1].id, "observer_30")
+	assert_eq(region_0.observers[1].chance, 0.0)
+	assert_eq(region_0.observers[1].quirky, true)
+
+
 ## increasing the weight selects faster speeds
 func test_piece_speed_between_weight() -> void:
 	assert_eq(CareerLevelLibrary.piece_speed_between("0", "4", 0.0, 0.5), "0")
@@ -127,7 +142,7 @@ func test_trim_levels_by_characters_customer() -> void:
 	all_levels.back().from_json_dict({
 		"id": "level_213",
 	})
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], ["customer_211"])
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], ["customer_211"], [])
 	assert_eq(trimmed_levels.size(), 1)
 	assert_eq(trimmed_levels[0].level_id, "level_211")
 
@@ -153,7 +168,33 @@ func test_trim_levels_by_characters_chef() -> void:
 		"id": "level_213",
 	})
 	
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, ["chef_211"], [])
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, ["chef_211"], [], [])
+	assert_eq(trimmed_levels.size(), 1)
+	assert_eq(trimmed_levels[0].level_id, "level_211")
+
+
+func test_trim_levels_by_characters_observer() -> void:
+	var region := CareerRegion.new()
+	region.observers.append(CareerRegion.CreatureAppearance.new())
+	region.observers.back().from_json_string("(quirky) observer_211")
+	
+	var all_levels := []
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_211",
+		"observer_id": "observer_211",
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_212",
+		"observer_id": "observer_212",
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_213",
+	})
+	
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], [], ["observer_211"])
 	assert_eq(trimmed_levels.size(), 1)
 	assert_eq(trimmed_levels[0].level_id, "level_211")
 
@@ -188,7 +229,7 @@ func test_trim_levels_by_characters_anonymous_customer() -> void:
 	})
 	
 	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(
-			region, all_levels, [], [CareerLevel.NONQUIRKY_CUSTOMER])
+			region, all_levels, [], [CareerLevel.NONQUIRKY_CUSTOMER], [])
 	assert_eq(trimmed_levels.size(), 2)
 	assert_eq(trimmed_levels[0].level_id, "level_213")
 	assert_eq(trimmed_levels[1].level_id, "level_214")
@@ -217,7 +258,7 @@ func test_trim_levels_by_characters_all() -> void:
 		"id": "level_213",
 	})
 	
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], [])
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(region, all_levels, [], [], [])
 	assert_eq(trimmed_levels.size(), 3)
 
 

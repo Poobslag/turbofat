@@ -8,7 +8,7 @@ marsh
 
 [characters]
 player, p1, kitchen_3
-sensei, s1, kitchen_5
+(observer) sensei, s1, kitchen_5
 richie, r, kitchen_11
 (chef) skins, s, kitchen_9
 bones, b, kitchen_7

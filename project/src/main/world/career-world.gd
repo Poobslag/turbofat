@@ -167,9 +167,14 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 	var remaining_creature_indexes := [1, 0, 2]
 	
 	if level_posse.chef_id:
-		# if there's a chef_id, add the chef to the middle
+		# if there's a chef_id, add the chef
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.creature_id = level_posse.chef_id
+	
+	if level_posse.observer_id:
+		# if there's an observer_id, add the observer
+		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
+		creature.creature_id = level_posse.observer_id
 	
 	while remaining_creature_indexes:
 		# assign/randomize the remaining customer appearances

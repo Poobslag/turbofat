@@ -137,12 +137,16 @@ func _random_levels() -> Array:
 		# filter the levels based on the required chefs/customers for the possible upcoming interludes
 		var region := PlayerData.career.current_region()
 		var required_cutscene_characters: Dictionary = CareerLevelLibrary.required_cutscene_characters(region)
-		levels = CareerLevelLibrary.trim_levels_by_characters( \
-				region, levels, required_cutscene_characters.chef_ids, required_cutscene_characters.customer_ids)
+		levels = CareerLevelLibrary.trim_levels_by_characters(region, levels,
+				required_cutscene_characters.chef_ids,
+				required_cutscene_characters.customer_ids,
+				required_cutscene_characters.observer_ids)
 		if not levels:
-			push_warning("Can't find any levels for distance=%s, chef_ids=%s, customer_ids=%s" %
-					[PlayerData.career.distance_travelled, required_cutscene_characters.chef_ids,
-					required_cutscene_characters.customer_ids])
+			push_warning("Can't find any levels for distance=%s, chef_ids=%s, customer_ids=%s observer_ids=%s" %
+					[PlayerData.career.distance_travelled,
+					required_cutscene_characters.chef_ids,
+					required_cutscene_characters.customer_ids,
+					required_cutscene_characters.observer_ids])
 	
 	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))
 	var random_level_index := 0
@@ -213,13 +217,15 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	
 	var region := PlayerData.career.current_region()
 	
-	# calculate the chef id/customer ids
+	# calculate the chef id/customer ids/observer id
 	var chef_id: String
 	var customer_id: String
+	var observer_id: String
 	if career_level:
-		if career_level.chef_id or career_level.customer_ids:
+		if career_level.chef_id or career_level.customer_ids or career_level.observer_id:
 			chef_id = career_level.chef_id
 			customer_id = career_level.customer_ids[0] if career_level.customer_ids else ""
+			observer_id = career_level.observer_id
 		else:
 			customer_id = CareerLevel.NONQUIRKY_CUSTOMER
 	
@@ -339,16 +345,20 @@ func _level_posse(level_index: int) -> LevelPosse:
 	# add customers/chefs from the cutscene
 	for chat_key in chat_key_pair.chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-		if chat_tree.customer_ids:
-			level_posse.customer_ids = chat_tree.customer_ids.duplicate()
 		if chat_tree.chef_id:
 			level_posse.chef_id = chat_tree.chef_id
+		if chat_tree.customer_ids:
+			level_posse.customer_ids = chat_tree.customer_ids.duplicate()
+		if chat_tree.observer_id:
+			level_posse.observer_id = chat_tree.observer_id
 	
 	# add customers/chefs from the level if the cutscene doesn't define any
-	if not level_posse.customer_ids:
-		level_posse.customer_ids = career_level.customer_ids.duplicate()
 	if not level_posse.chef_id:
 		level_posse.chef_id = career_level.chef_id
+	if not level_posse.customer_ids:
+		level_posse.customer_ids = career_level.customer_ids.duplicate()
+	if not level_posse.observer_id:
+		level_posse.observer_id = career_level.observer_id
 	
 	# add customers/chefs from the region if the level doesn't define any
 	var region := PlayerData.career.current_region()
@@ -360,6 +370,10 @@ func _level_posse(level_index: int) -> LevelPosse:
 		var chef: CareerRegion.CreatureAppearance = region.random_chef()
 		if chef:
 			level_posse.chef_id = chef.id
+	if not level_posse.observer_id:
+		var observer: CareerRegion.CreatureAppearance = region.random_observer()
+		if observer:
+			level_posse.observer_id = observer.id
 	
 	return level_posse
 

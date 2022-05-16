@@ -65,6 +65,10 @@ var chef_id: String
 ## cutscenes.
 var customer_ids: Array
 
+## The creature who acts as an observer for this cutscene, if any. This ensures levels are paired up with appropriate
+## cutscenes.
+var observer_id: String
+
 ## current position in this chat tree
 var _position := Position.new()
 
