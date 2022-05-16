@@ -81,7 +81,6 @@ corner_radius_bottom_left = 16
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
-overworld_environment_path = NodePath("World/Environment")
 
 [node name="Bg" type="CanvasLayer" parent="."]
 layer = -1

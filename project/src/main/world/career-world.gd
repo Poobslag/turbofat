@@ -123,9 +123,13 @@ func _fill_environment_scene() -> void:
 		var player := overworld_environment.add_creature()
 		player.creature_id = CreatureLibrary.PLAYER_ID
 	
-	if not _find_sensei():
-		var sensei := overworld_environment.add_creature()
-		sensei.creature_id = CreatureLibrary.SENSEI_ID
+	if PlayerData.career.current_region().sensei_absent:
+		# don't add the sensei if they're not present in this region
+		pass
+	else:
+		if not _find_sensei():
+			var sensei := overworld_environment.add_creature()
+			sensei.creature_id = CreatureLibrary.SENSEI_ID
 	
 	_player_path2d = overworld_environment.get_node("PlayerPath")
 	
@@ -299,8 +303,14 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 func _move_player_to_path(percent: float) -> void:
 	var player := _find_player()
 	var player_range := _camera_x_range()
-	player.position.x = lerp(player_range.min_value, player_range.max_value, percent) \
-			+ X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	if PlayerData.career.current_region().sensei_absent:
+		# move player slightly left of the center creature
+		player.position.x = lerp(player_range.min_value, player_range.max_value, percent) \
+				- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	else:
+		# move player slightly right of the center creature
+		player.position.x = lerp(player_range.min_value, player_range.max_value, percent) \
+				+ X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	player.position.y = _player_path2d_y(player.position.x)
 
 
@@ -310,16 +320,19 @@ func _move_player_to_path(percent: float) -> void:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the sensei should be positioned.
 func _move_sensei_to_path(percent: float) -> void:
 	var sensei := _find_sensei()
-	var sensei_range := _camera_x_range()
-	sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent) \
-			- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	sensei.position.y = _player_path2d_y(sensei.position.x)
+	if sensei:
+		var sensei_range := _camera_x_range()
+		sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent) \
+				- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+		sensei.position.y = _player_path2d_y(sensei.position.x)
 
 
 ## Moves the camera so all creatures are visible.
 func _move_camera() -> void:
 	var creatures := []
-	creatures.append(_find_sensei())
+	var sensei := _find_sensei()
+	if sensei:
+		creatures.append(_find_sensei())
 	creatures.append(_find_player())
 	creatures.append_array(_level_creatures)
 	_camera.zoom_in_on_creatures(creatures)
@@ -413,20 +426,58 @@ func _player_path2d_y(path2d_x: float) -> float:
 	return path2d_y
 
 
-## When a new level button is selected, the player/sensei orient towards it.
-func _on_LevelSelect_level_button_focused(button_index: int) -> void:
-	var button_count := PlayerData.career.level_choice_count()
-	
-	var old_focused_level_creature_index := _focused_level_creature_index
-	_focused_level_creature_index = -1
-	if _level_creatures[button_index].visible:
+## Update the '_focused_level_creature_index' value based on the selected level button.
+##
+## Parameters:
+## 	'button_index': The index of the level button the player has selected.
+func _update_focused_level_creature_index(button_index: int) -> void:
+	if PlayerData.career.level_choice_count() == 1:
+		# for boss/intro levels we focus the middle creature
+		_focused_level_creature_index = 1
+	elif _level_creatures[button_index].visible:
+		# for nonboss/intro levels we focus the corresponding creature, if they're visible
 		_focused_level_creature_index = button_index
 	else:
+		# If the level's corresponding creature is invisible, it's because the creature is assigned to multiple
+		## levels. Update _focused_level_creature_index to the visible version of the creature.
+		_focused_level_creature_index = -1
 		for i in range(2):
 			if _level_creatures[i].creature_id == _level_creatures[button_index].creature_id \
 					and _level_creatures[i].visible:
 				_focused_level_creature_index = i
 				break
+
+
+## Turns the player and sensei towards the focused level creature.
+func _turn_towards_level_creature() -> void:
+	var level_creature: Creature = _level_creatures[_focused_level_creature_index]
+	
+	var player := _find_player()
+	player.orientation = Creatures.SOUTHEAST if level_creature.position.x > player.position.x else Creatures.SOUTHWEST
+	var sensei := _find_sensei()
+	if sensei:
+		sensei.orientation = Creatures.SOUTHEAST if level_creature.position.x > sensei.position.x else Creatures.SOUTHWEST
+
+
+## Makes the currently focused level creature emote.
+##
+## When the player highlights a level, the focused creature smiles/laughs/pouts/etc...
+func _make_level_creature_emote() -> void:
+	if PlayerData.career.level_choice_count() == 1:
+		return
+	
+	for i in range(_level_creatures.size()):
+		var creature: Creature = _level_creatures[i]
+		if i == _focused_level_creature_index and creature.has_meta("mood_when_hovered"):
+			creature.play_mood(creature.get_meta("mood_when_hovered"))
+		else:
+			creature.play_mood(Creatures.Mood.DEFAULT)
+
+
+## When a new level button is selected, the player/sensei orient towards it.
+func _on_LevelSelect_level_button_focused(button_index: int) -> void:
+	var old_focused_level_creature_index := _focused_level_creature_index
+	_update_focused_level_creature_index(button_index)
 	
 	if _focused_level_creature_index == -1:
 		# can't find a visible level creature
@@ -436,22 +487,8 @@ func _on_LevelSelect_level_button_focused(button_index: int) -> void:
 		# level creature.
 		pass
 	else:
-		var level_creature_x := inverse_lerp(0, button_count - 1, _focused_level_creature_index)
-		
-		# turn the player and sensei towards the level creature
-		var player := _find_player()
-		player.orientation = Creatures.SOUTHEAST if level_creature_x >= 0.7 else Creatures.SOUTHWEST
-		var sensei := _find_sensei()
-		sensei.orientation = Creatures.SOUTHWEST if level_creature_x <= 0.3 else Creatures.SOUTHEAST
-		
-		# make the level creature emote
-		if PlayerData.career.level_choice_count() > 1:
-			for i in range(_level_creatures.size()):
-				var creature: Creature = _level_creatures[i]
-				if i == _focused_level_creature_index and creature.has_meta("mood_when_hovered"):
-					creature.play_mood(creature.get_meta("mood_when_hovered"))
-				else:
-					creature.play_mood(Creatures.Mood.DEFAULT)
+		_turn_towards_level_creature()
+		_make_level_creature_emote()
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
