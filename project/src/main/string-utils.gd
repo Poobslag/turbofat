@@ -237,8 +237,8 @@ static func underscores_to_hyphens(s: String) -> String:
 	return s.replace("_", "-")
 
 
-## Wraps 'player' and 'sensei' in pound signs so their names will be translated.
-static func unalias(s: String) -> String:
+## Wraps 'player' and 'sensei' in hash symbols so their names will be translated.
+static func hashwrap_constants(s: String) -> String:
 	var result := s
 	if s in ["player", "sensei", "narrator"]:
 		result = "#%s#" % [s]

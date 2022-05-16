@@ -16,9 +16,9 @@ var available_if: String
 
 func from_json_dict(json: Dictionary) -> void:
 	level_id = json.get("id", "")
-	chef_id = StringUtils.unalias(json.get("chef_id", ""))
+	chef_id = StringUtils.hashwrap_constants(json.get("chef_id", ""))
 	customer_ids = json.get("customer_ids", [])
 	for i in range(customer_ids.size()):
-		customer_ids[i] = StringUtils.unalias(customer_ids[i])
-	observer_id = StringUtils.unalias(json.get("observer_id", ""))
+		customer_ids[i] = StringUtils.hashwrap_constants(customer_ids[i])
+	observer_id = StringUtils.hashwrap_constants(json.get("observer_id", ""))
 	available_if = json.get("available_if", "")
