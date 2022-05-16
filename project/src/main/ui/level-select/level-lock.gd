@@ -35,8 +35,8 @@ var level_id: String
 var creature_id: String
 
 ## Some levels involve specific customers or a specific chef.
-var customer_ids: Array
 var chef_id: String
+var customer_ids: Array
 
 ## the requirements to unlock this level
 var unlocked_if_type := ALWAYS_UNLOCKED

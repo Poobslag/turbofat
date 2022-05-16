@@ -118,7 +118,7 @@ func _refresh_level_select_buttons() -> void:
 ## We only select levels appropriate for the current distance, and we exclude levels which have been played in the
 ## current session.
 func _random_levels() -> Array:
-	var levels := CareerLevelLibrary.career_levels_for_distance(PlayerData.career.distance_travelled)
+	var levels: Array = CareerLevelLibrary.career_levels_for_distance(PlayerData.career.distance_travelled)
 	levels = levels.duplicate() # avoid modifying the original list
 	
 	# We use a seeded shuffle which always gives the player the same random levels. Otherwise they can relaunch career
@@ -136,7 +136,7 @@ func _random_levels() -> Array:
 	if _chat_key_pair(null).type == ChatKeyPair.INTERLUDE:
 		# filter the levels based on the required chefs/customers for the possible upcoming interludes
 		var region := PlayerData.career.current_region()
-		var required_cutscene_characters := CareerLevelLibrary.required_cutscene_characters(region)
+		var required_cutscene_characters: Dictionary = CareerLevelLibrary.required_cutscene_characters(region)
 		levels = CareerLevelLibrary.trim_levels_by_characters( \
 				region, levels, required_cutscene_characters.chef_ids, required_cutscene_characters.customer_ids)
 		if not levels:
@@ -339,8 +339,8 @@ func _level_posse(level_index: int) -> LevelPosse:
 	# add customers/chefs from the cutscene
 	for chat_key in chat_key_pair.chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-		if chat_tree.customer_id:
-			level_posse.customer_ids = [chat_tree.customer_id]
+		if chat_tree.customer_ids:
+			level_posse.customer_ids = chat_tree.customer_ids.duplicate()
 		if chat_tree.chef_id:
 			level_posse.chef_id = chat_tree.chef_id
 	
@@ -390,7 +390,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 		search_flags.include_all_numeric_children = true
 		search_flags.excluded_chat_keys = CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
 		search_flags.exclude_chat_key(preroll_key)
-		var remaining_chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path], search_flags)
+		var remaining_chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path], search_flags)
 		
 		if remaining_chat_key_pairs:
 			# this is not the last cutscene; do not play epilogue

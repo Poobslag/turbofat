@@ -61,9 +61,9 @@ var spawn_locations := {}
 ## cutscenes.
 var chef_id: String
 
-## The creature who acts as the customer for the cutscene, if any. This ensures levels are paired up with appropriate
+## The creatures who act as the customers for the cutscene, if any. This ensures levels are paired up with appropriate
 ## cutscenes.
-var customer_id: String
+var customer_ids: Array
 
 ## current position in this chat tree
 var _position := Position.new()

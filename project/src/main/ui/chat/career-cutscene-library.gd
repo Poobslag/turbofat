@@ -132,7 +132,7 @@ func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", custo
 			accept_chat_key_pair = true
 			for chat_key in potential_chat_key_pair.chat_keys():
 				var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-				if chat_tree.chef_id or chat_tree.customer_id:
+				if chat_tree.chef_id or chat_tree.customer_ids:
 					accept_chat_key_pair = false
 		else:
 			# only accept chat key pairs with matching chef/customer
@@ -143,7 +143,7 @@ func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", custo
 					if chat_tree.chef_id == chef_id:
 						accept_chat_key_pair = true
 				elif customer_id:
-					if customer_id == chat_tree.customer_id:
+					if customer_id in chat_tree.customer_ids:
 						accept_chat_key_pair = true
 		
 		if accept_chat_key_pair:
