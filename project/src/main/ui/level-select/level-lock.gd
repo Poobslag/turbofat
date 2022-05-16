@@ -34,9 +34,10 @@ var level_id: String
 ## Some levels activate chat sequences. This field specifies which character's chat should activate.
 var creature_id: String
 
-## Some levels involve specific customers or a specific chef.
+## Some levels involve specific chefs, customers or observers.
 var chef_id: String
 var customer_ids: Array
+var observer_id: String
 
 ## the requirements to unlock this level
 var unlocked_if_type := ALWAYS_UNLOCKED
@@ -64,6 +65,7 @@ func from_json_dict(json: Dictionary) -> void:
 	creature_id = json.get("creature_id", "")
 	chef_id = json.get("chef_id", "")
 	customer_ids = json.get("customer_ids", [])
+	observer_id = json.get("observer_id", "")
 	
 	var unlocked_if_string: String = json.get("unlocked_if", "")
 	if unlocked_if_string:

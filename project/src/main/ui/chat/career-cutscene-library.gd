@@ -116,7 +116,8 @@ func next_interlude_chat_key_pair(chat_key_roots: Array, chef_id: String = "", c
 ##
 ## Returns:
 ## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.
-func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", customer_id: String = "") -> Array:
+func potential_chat_key_pairs(chat_key_roots: Array,
+		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> Array:
 	var exhausted_chat_keys := exhausted_chat_keys(chat_key_roots)
 	var search_flags := CutsceneSearchFlags.new()
 	search_flags.excluded_chat_keys = exhausted_chat_keys
@@ -124,7 +125,7 @@ func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", custo
 	var trimmed_chat_key_pairs := []
 	for potential_chat_key_pair in potential_chat_key_pairs:
 		var accept_chat_key_pair: bool
-		if not chef_id and not customer_id:
+		if not chef_id and not customer_id and not observer_id:
 			# no criteria specified; accept all chat key pairs
 			accept_chat_key_pair = true
 		elif customer_id == CareerLevel.NONQUIRKY_CUSTOMER:
@@ -135,7 +136,7 @@ func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", custo
 				if chat_tree.chef_id or chat_tree.customer_ids:
 					accept_chat_key_pair = false
 		else:
-			# only accept chat key pairs with matching chef/customer
+			# only accept chat key pairs with matching chef/customer/observer
 			accept_chat_key_pair = false
 			for chat_key in potential_chat_key_pair.chat_keys():
 				var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
@@ -144,6 +145,9 @@ func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", custo
 						accept_chat_key_pair = true
 				elif customer_id:
 					if customer_id in chat_tree.customer_ids:
+						accept_chat_key_pair = true
+				elif observer_id:
+					if observer_id == chat_tree.observer_id:
 						accept_chat_key_pair = true
 		
 		if accept_chat_key_pair:

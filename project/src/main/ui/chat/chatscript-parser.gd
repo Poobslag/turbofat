@@ -123,6 +123,7 @@ class CharactersState extends AbstractState:
 	## 	skins, s, !kitchen_9       - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
 	## 	(chef) skins, s            - a character named 'skins' with an alias 's' is the chef for this scene
 	## 	(customer) rhonk           - a character named 'rhonk' is a customer for this scene
+	## 	(observer) bones           - a character named 'bones' is the observer for this scene
 	## 	skins, s                   - a character named 'skins' with an alias 's'
 	## 	skins                      - a character named 'skins'
 	func _parse_character_name(line: String) -> void:
@@ -130,15 +131,14 @@ class CharactersState extends AbstractState:
 		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
 		var character_prefix: String
 		
-		for possible_prefix in ["(chef)", "(customer)"]:
+		for possible_prefix in ["(chef)", "(customer)", "(observer)"]:
 			if character_name.begins_with(possible_prefix):
 				character_name = StringUtils.substring_after(character_name, possible_prefix).strip_edges()
 				character_prefix = possible_prefix
 				break
 		
 		# parse character name
-		if character_name in ["player", "sensei", "narrator"]:
-			character_name = "#%s#" % [character_name]
+		character_name = StringUtils.unalias(character_name)
 		
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
@@ -149,6 +149,12 @@ class CharactersState extends AbstractState:
 		# parse (customer) prefix
 		if character_prefix == "(customer)":
 			chat_tree.customer_ids.append(character_name)
+		
+		# parse (observer) prefix
+		if character_prefix == "(observer)":
+			if chat_tree.observer_id:
+				push_warning("Too many observers: %s" % [character_name])
+			chat_tree.observer_id = character_name
 		
 		# parse spawn location
 		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
@@ -223,7 +229,7 @@ class ChatState extends AbstractState:
 		_event = ChatEvent.new()
 		
 		var who := StringUtils.substring_before(line, ": ")
-		who = _unalias(who)
+		who = StringUtils.unalias(who)
 		if _character_aliases:
 			if not who in _character_aliases and not who in _character_aliases.values():
 				push_warning("Unrecognized character name: %s" % [who])
@@ -311,32 +317,23 @@ class ChatState extends AbstractState:
 		if item.ends_with(" enters"):
 			# spira enters -> creature_enter spira
 			var name := item.trim_suffix(" enters")
-			result = "creature_enter %s" % [_unalias(name)]
+			result = "creature_enter %s" % [StringUtils.unalias(name)]
 		elif item.ends_with(" exits"):
 			# spira exits -> creature_exit spira
 			var name := item.trim_suffix(" exits")
-			result = "creature_exit %s" % [_unalias(name)]
+			result = "creature_exit %s" % [StringUtils.unalias(name)]
 		elif " mood " in item:
 			# spira mood ^_^ -> creature_mood spira 7
 			var name := StringUtils.substring_before(item, " mood ")
-			name = _unalias(name)
+			name = StringUtils.unalias(name)
 			var mood := StringUtils.substring_after(item, " mood ")
 			result = "creature_mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		elif " faces " in item:
 			# spira faces left -> creature_orientation spira 1
 			var name := StringUtils.substring_before(item, " faces ")
-			name = _unalias(name)
+			name = StringUtils.unalias(name)
 			var orientation := StringUtils.substring_after(item, " faces ")
 			result = "creature_orientation %s %s" % [name, ORIENTATION_STRINGS[orientation]]
-		return result
-	
-	
-	## Wraps 'player' and 'sensei' in pound signs so their names will be translated.
-	func _unalias(name: String) -> String:
-		var result := name
-		result = _character_aliases.get(result, result)
-		if result in ["player", "sensei"]:
-			result = "#%s#" % [result]
 		return result
 
 # -----------------------------------------------------------------------------

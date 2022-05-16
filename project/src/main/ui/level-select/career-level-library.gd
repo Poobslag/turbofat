@@ -108,19 +108,23 @@ func set_worlds_path(new_worlds_path: String) -> void:
 ## 	'region': The player's current career region.
 ##
 ## Returns:
-## 	A dictionary with two entries:
+## 	A dictionary with three entries:
 ## 		'chef_ids' lists ids for creatures who acts as the chef for a cutscene.
 ##
 ## 		'customer_ids' lists ids for creatures who act as the main customer for a cutscene.
+##
+## 		'observer_ids' lists ids for creatures who act as the observer for a cutscene.
 func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	var chef_ids := []
 	var customer_ids := []
+	var observer_ids := []
 	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.potential_chat_key_pairs([region.cutscene_path])
 	for chat_key_pair in potential_chat_key_pairs:
 		for chat_key in chat_key_pair.chat_keys():
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 			var has_quirky_chef := false
 			var has_quirky_customer := false
+			var has_quirky_observer := false
 			
 			if chat_tree.chef_id:
 				# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
@@ -137,7 +141,14 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 						if not customer_id in customer_ids:
 							customer_ids.append(customer_id)
 			
-			if not has_quirky_chef and not has_quirky_customer:
+			if chat_tree.observer_id:
+				# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
+				if region.has_quirky_observer(chat_tree.observer_id):
+					has_quirky_observer = true
+					if not chat_tree.observer_id in observer_ids:
+						observer_ids.append(chat_tree.observer_id)
+			
+			if not has_quirky_chef and not has_quirky_customer and not has_quirky_observer:
 				# If a cutscene uses generic characters or nonquirky characters, it must be accompanied by a level
 				# without quirks.
 				if not CareerLevel.NONQUIRKY_CUSTOMER in customer_ids:
@@ -145,6 +156,7 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	return {
 		"chef_ids": chef_ids,
 		"customer_ids": customer_ids,
+		"observer_ids": observer_ids,
 	}
 
 
@@ -168,9 +180,10 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 ## Returns:
 ## 	A filtered list of CareerLevel instances if the input chef/customer lists are populated, or an unfiltered list
 ## 	if the input chef/customer lists are empty.
-func trim_levels_by_characters(region: CareerRegion, levels: Array, chef_ids: Array, customer_ids: Array) -> Array:
+func trim_levels_by_characters(region: CareerRegion, levels: Array,
+		chef_ids: Array, customer_ids: Array, observer_ids: Array) -> Array:
 	var trimmed_levels := []
-	if not chef_ids and not customer_ids:
+	if not chef_ids and not customer_ids and not observer_ids:
 		trimmed_levels.append_array(levels)
 	else:
 		for level in levels:
@@ -181,6 +194,9 @@ func trim_levels_by_characters(region: CareerRegion, levels: Array, chef_ids: Ar
 				if level.customer_ids[0] in customer_ids:
 					# If a level includes multiple customers, we ignore everything but the first customer. The first
 					# customer is the only creature who appears on the map.
+					trimmed_levels.append(level)
+			elif level.observer_id and region.has_quirky_observer(level.observer_id):
+				if level.observer_id in observer_ids:
 					trimmed_levels.append(level)
 			else:
 				if CareerLevel.NONQUIRKY_CUSTOMER in customer_ids:

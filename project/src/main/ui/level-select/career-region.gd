@@ -88,6 +88,9 @@ var chefs := []
 ## CreatureAppearance instances for customers who randomly show up in levels
 var customers := []
 
+## CreatureAppearance instances for observers who randomly show up to watch levels
+var observers := []
+
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
 	cutscene_path = json.get("cutscene_path", "")
@@ -122,7 +125,11 @@ func from_json_dict(json: Dictionary) -> void:
 			var creature_appearance := CreatureAppearance.new()
 			creature_appearance.from_json_string(customer_string)
 			customers.append(creature_appearance)
-
+	if json.has("observers"):
+		for observer_string in json.get("observers"):
+			var creature_appearance := CreatureAppearance.new()
+			creature_appearance.from_json_string(observer_string)
+			observers.append(creature_appearance)
 
 func get_prologue_chat_key() -> String:
 	return "%s/%s" % [cutscene_path, PROLOGUE_CHAT_KEY_NAME] if cutscene_path else ""
@@ -180,6 +187,20 @@ func has_quirky_customer(customer_id: String) -> bool:
 	return result
 
 
+## Returns 'true' if this region has a quirky observer with the specified id.
+##
+## 'Quirky observers' are observers which impose special rules on the player. They show up for their own levels, but
+## they don't show up for random levels.
+func has_quirky_observer(observer_id: String) -> bool:
+	var result := false
+	for observer_obj in observers:
+		var observer: CreatureAppearance = observer_obj
+		if observer.id == observer_id:
+			result = observer.quirky
+			break
+	return result
+
+
 ## Returns a random nonquirky chef from this region's list of chefs.
 ##
 ## Returns null if this region does not define any nonquirky chefs.
@@ -192,6 +213,13 @@ func random_chef() -> CreatureAppearance:
 ## Returns null if this region does not define any nonquirky customers.
 func random_customer() -> CreatureAppearance:
 	return _random_creature(customers)
+
+
+## Returns a random nonquirky observer from this region's list of observers.
+##
+## Returns null if this region does not define any nonquirky observers.
+func random_observer() -> CreatureAppearance:
+	return _random_creature(observers)
 
 
 ## Returns a random nonquirky appearance from the specified list.

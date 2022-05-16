@@ -235,3 +235,11 @@ static func substring_between(s: String, open: String, close: String) -> String:
 ## Filenames use kebab-case.
 static func underscores_to_hyphens(s: String) -> String:
 	return s.replace("_", "-")
+
+
+## Wraps 'player' and 'sensei' in pound signs so their names will be translated.
+static func unalias(s: String) -> String:
+	var result := s
+	if s in ["player", "sensei", "narrator"]:
+		result = "#%s#" % [s]
+	return result

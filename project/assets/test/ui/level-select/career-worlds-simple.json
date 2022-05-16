@@ -13,6 +13,10 @@
         "customer_77 10%",
         "(quirky) customer_90"
       ],
+      "observers": [
+        "observer_35 30%",
+        "(quirky) observer_30"
+      ],
       "intro_level":
       {
         "id": "intro_211"
