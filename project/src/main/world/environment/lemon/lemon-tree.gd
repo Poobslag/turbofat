@@ -107,10 +107,12 @@ func _initialize_onready_variables() -> void:
 
 
 func _leaf_animation_name() -> String:
+	# warning-ignore:integer_division
 	return "default-%s" % [int(leaf_type / 2)]
 
 
 func _mouth_animation_name() -> String:
+	# warning-ignore:integer_division
 	return "default-%s" % [int(mouth_type / 2)]
 
 

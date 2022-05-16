@@ -128,24 +128,27 @@ class CharactersState extends AbstractState:
 	func _parse_character_name(line: String) -> void:
 		var line_parts := line.split(",")
 		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
+		var character_prefix: String
+		
+		for possible_prefix in ["(chef)", "(customer)"]:
+			if character_name.begins_with(possible_prefix):
+				character_name = StringUtils.substring_after(character_name, possible_prefix).strip_edges()
+				character_prefix = possible_prefix
+				break
+		
+		# parse character name
+		if character_name in ["player", "sensei", "narrator"]:
+			character_name = "#%s#" % [character_name]
 		
 		# parse (chef) prefix
-		if character_name.begins_with("(chef)"):
-			character_name = StringUtils.substring_after(character_name, "(chef)").strip_edges()
+		if character_prefix == "(chef)":
 			if chat_tree.chef_id:
 				push_warning("Too many chefs: %s" % [character_name])
 			chat_tree.chef_id = character_name
 		
 		# parse (customer) prefix
-		if character_name.begins_with("(customer)"):
-			character_name = StringUtils.substring_after(character_name, "(customer)").strip_edges()
-			if chat_tree.customer_id:
-				push_warning("Too many customers: %s" % [character_name])
-			chat_tree.customer_id = character_name
-		
-		# parse character name
-		if character_name in ["player", "sensei", "narrator"]:
-			character_name = "#%s#" % [character_name]
+		if character_prefix == "(customer)":
+			chat_tree.customer_ids.append(character_name)
 		
 		# parse spawn location
 		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()

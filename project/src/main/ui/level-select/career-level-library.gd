@@ -119,15 +119,25 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	for chat_key_pair in potential_chat_key_pairs:
 		for chat_key in chat_key_pair.chat_keys():
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-			if chat_tree.chef_id and region.has_quirky_chef(chat_tree.chef_id):
+			var has_quirky_chef := false
+			var has_quirky_customer := false
+			
+			if chat_tree.chef_id:
 				# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
-				if not chat_tree.chef_id in chef_ids:
-					chef_ids.append(chat_tree.chef_id)
-			elif chat_tree.customer_id and region.has_quirky_customer(chat_tree.customer_id):
+				if region.has_quirky_chef(chat_tree.chef_id):
+					has_quirky_chef = true
+					if not chat_tree.chef_id in chef_ids:
+						chef_ids.append(chat_tree.chef_id)
+			
+			if chat_tree.customer_ids:
 				# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
-				if not chat_tree.customer_id in customer_ids:
-					customer_ids.append(chat_tree.customer_id)
-			else:
+				for customer_id in chat_tree.customer_ids:
+					if region.has_quirky_customer(customer_id):
+						has_quirky_customer = true
+						if not customer_id in customer_ids:
+							customer_ids.append(customer_id)
+			
+			if not has_quirky_chef and not has_quirky_customer:
 				# If a cutscene uses generic characters or nonquirky characters, it must be accompanied by a level
 				# without quirks.
 				if not CareerLevel.NONQUIRKY_CUSTOMER in customer_ids:
