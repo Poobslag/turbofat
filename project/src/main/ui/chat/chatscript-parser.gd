@@ -138,7 +138,7 @@ class CharactersState extends AbstractState:
 				break
 		
 		# parse character name
-		character_name = StringUtils.unalias(character_name)
+		character_name = StringUtils.hashwrap_constants(character_name)
 		
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
@@ -229,7 +229,7 @@ class ChatState extends AbstractState:
 		_event = ChatEvent.new()
 		
 		var who := StringUtils.substring_before(line, ": ")
-		who = StringUtils.unalias(who)
+		who = _unalias(who)
 		if _character_aliases:
 			if not who in _character_aliases and not who in _character_aliases.values():
 				push_warning("Unrecognized character name: %s" % [who])
@@ -317,24 +317,43 @@ class ChatState extends AbstractState:
 		if item.ends_with(" enters"):
 			# spira enters -> creature_enter spira
 			var name := item.trim_suffix(" enters")
-			result = "creature_enter %s" % [StringUtils.unalias(name)]
+			result = "creature_enter %s" % [_unalias(name)]
 		elif item.ends_with(" exits"):
 			# spira exits -> creature_exit spira
 			var name := item.trim_suffix(" exits")
-			result = "creature_exit %s" % [StringUtils.unalias(name)]
+			result = "creature_exit %s" % [_unalias(name)]
 		elif " mood " in item:
 			# spira mood ^_^ -> creature_mood spira 7
 			var name := StringUtils.substring_before(item, " mood ")
-			name = StringUtils.unalias(name)
+			name = _unalias(name)
 			var mood := StringUtils.substring_after(item, " mood ")
 			result = "creature_mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		elif " faces " in item:
 			# spira faces left -> creature_orientation spira 1
 			var name := StringUtils.substring_before(item, " faces ")
-			name = StringUtils.unalias(name)
+			name = _unalias(name)
 			var orientation := StringUtils.substring_after(item, " faces ")
 			result = "creature_orientation %s %s" % [name, ORIENTATION_STRINGS[orientation]]
 		return result
+	
+	## Converts aliases like 's' and 'p1' into names like 'skins' and '#player#'.
+	##
+	## _unalias("s")       = "skins"
+	## _unalias("p1")      = "#player#"
+	## _unalias("player")  = "#player#"
+	## _unalias("skins")   = "skins"
+	##
+	## Parameters:
+	## 	'name': A name or alias such as 's', 'p1' or 'skins'.
+	##
+	## Returns:
+	## 	The name or constant corresponding to the specified alias.
+	func _unalias(s: String) -> String:
+		var result := s
+		result = _character_aliases.get(result, result)
+		result = StringUtils.hashwrap_constants(result)
+		return result
+
 
 # -----------------------------------------------------------------------------
 
