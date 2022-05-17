@@ -123,7 +123,7 @@ func _fill_environment_scene() -> void:
 		var player := overworld_environment.add_creature()
 		player.creature_id = CreatureLibrary.PLAYER_ID
 	
-	if PlayerData.career.current_region().sensei_absent:
+	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
 		# don't add the sensei if they're not present in this region
 		pass
 	else:
@@ -303,7 +303,7 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 func _move_player_to_path(percent: float) -> void:
 	var player := _find_player()
 	var player_range := _camera_x_range()
-	if PlayerData.career.current_region().sensei_absent:
+	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
 		# move player slightly left of the center creature
 		player.position.x = lerp(player_range.min_value, player_range.max_value, percent) \
 				- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0

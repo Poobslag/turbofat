@@ -175,6 +175,20 @@ func reset() -> void:
 	_position.reset()
 
 
+## Returns 'true' if this cutscene is set inside the restaurant.
+##
+## This signifies that this cutscene should not be played if the player does not have a restaurant.
+func inside_restaurant() -> bool:
+	return location_id in ["marsh/inside_turbo_fat"]
+
+
+## Returns 'true' if this cutscene features Fat Sensei.
+##
+## This signifies that this cutscene should not be played if Fat Sensei is not following the player.
+func has_sensei() -> bool:
+	return spawn_locations.has(CreatureLibrary.SENSEI_ID)
+
+
 ## Jump to any chat sequences whose 'start_if' conditions are met.
 func _apply_start_if_conditions() -> void:
 	# look for 'start_if' conditions...

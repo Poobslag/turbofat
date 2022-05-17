@@ -68,6 +68,12 @@ var _chat_key_pairs_by_preroll := {}
 ## 	which can be appended to the chat key, along with an appropriate delimeter, to create a new path.
 var _preroll_tree := {}
 
+## List of String chat keys in the 'general' chat key root path featuring fat sensei
+var _general_sensei_chat_keys := []
+
+## List of String chat keys in the 'general' chat key root path featuring the restaurant
+var _general_restaurant_chat_keys := []
+
 func _ready() -> void:
 	_refresh_chat_key_pairs()
 
@@ -118,9 +124,23 @@ func next_interlude_chat_key_pair(chat_key_roots: Array, chef_id: String = "", c
 ## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.
 func potential_chat_key_pairs(chat_key_roots: Array,
 		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> Array:
-	var exhausted_chat_keys := exhausted_chat_keys(chat_key_roots)
+	
 	var search_flags := CutsceneSearchFlags.new()
-	search_flags.excluded_chat_keys = exhausted_chat_keys
+	
+	# exclude cutscenes the player has already seen
+	for chat_key in exhausted_chat_keys(chat_key_roots):
+		search_flags.excluded_chat_keys[chat_key] = true
+	
+	# exclude cutscenes set in the restaurant if the player does not have a restaurant
+	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_RESTAURANT):
+		for chat_key in _general_restaurant_chat_keys:
+			search_flags.excluded_chat_keys[chat_key] = true
+	
+	# exclude cutscenes featuring fat sensei if fat sensei is not in the group
+	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
+		for chat_key in _general_sensei_chat_keys:
+			search_flags.excluded_chat_keys[chat_key] = true
+	
 	var potential_chat_key_pairs := find_chat_key_pairs(chat_key_roots, search_flags)
 	var trimmed_chat_key_pairs := []
 	for potential_chat_key_pair in potential_chat_key_pairs:
@@ -180,6 +200,19 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 				_preroll_tree[prefix] = []
 			if not _preroll_tree[prefix].has(key_part):
 				_preroll_tree[prefix].append(key_part)
+	
+	# populate _general_sensei_chat_keys, _general_restaurant_chat_keys
+	_general_sensei_chat_keys.clear()
+	_general_restaurant_chat_keys.clear()
+	for chat_key_pair in all_chat_key_pairs:
+		for chat_key in chat_key_pair.chat_keys():
+			if not chat_key.begins_with(CareerData.GENERAL_CHAT_KEY_ROOT):
+				continue
+			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+			if chat_tree.has_sensei():
+				_general_sensei_chat_keys.append(chat_key)
+			if chat_tree.inside_restaurant():
+				_general_restaurant_chat_keys.append(chat_key)
 
 
 ## Returns a collection of preroll chat keys for cutscenes the player has already seen.

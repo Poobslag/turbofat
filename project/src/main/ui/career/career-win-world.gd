@@ -18,7 +18,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if PlayerData.career.current_region().sensei_absent:
+	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
 		var sensei := overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
 		sensei.visible = false
 	

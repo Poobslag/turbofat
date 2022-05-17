@@ -1,6 +1,12 @@
 class_name CareerRegion
 ## Stores information about a block of levels for career mode.
 
+## A flag for regions where Fat Sensei is not following the player
+const FLAG_NO_SENSEI := "no_sensei"
+
+## A flag for regions where the player does not operate a restaurant.
+const FLAG_NO_RESTAURANT := "no_restaurant"
+
 ## Chat key containing each region's prologue cutscene, which plays before any other cutscenes/levels
 const PROLOGUE_CHAT_KEY_NAME := "prologue"
 
@@ -73,8 +79,11 @@ var length := 0
 var min_piece_speed := "0"
 var max_piece_speed := "0"
 
-## True if the sensei should not accompany the player on the overworld.
-var sensei_absent := false
+## Returns 'true' if this region has the specified flag.
+##
+## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or
+## where the player does not operate a restaurant.
+var flags: Dictionary = {}
 
 ## List of CareerLevel instances which store career-mode-specific information about this region's levels.
 var levels := []
@@ -108,7 +117,8 @@ func from_json_dict(json: Dictionary) -> void:
 	else:
 		min_piece_speed = piece_speed_string
 		max_piece_speed = piece_speed_string
-	sensei_absent = json.get("sensei_absent", false)
+	for flags_string in json.get("flags", []):
+		flags[flags_string] = true
 	for level_json in json.get("levels", []):
 		var level: CareerLevel = CareerLevel.new()
 		level.from_json_dict(level_json)
@@ -224,6 +234,14 @@ func random_customer() -> CreatureAppearance:
 ## Returns null if this region does not define any nonquirky observers.
 func random_observer() -> CreatureAppearance:
 	return _random_creature(observers)
+
+
+## Returns 'true' if this region has the specified flag.
+##
+## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or
+## where the player does not operate a restaurant.
+func has_flag(key: String) -> bool:
+	return flags.has(key)
 
 
 ## Returns a random nonquirky appearance from the specified list.
