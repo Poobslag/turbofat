@@ -246,12 +246,7 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var next_scene_key := meta_item_split[1]
 			var next_scene_chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(next_scene_key)
 			# insert the chat tree to ensure it happens before any enqueued levels
-			if PlayerData.career.is_career_mode():
-				PlayerData.career.insert_cutscene(0, {
-					"chat_key": next_scene_key
-				})
-			else:
-				CutsceneQueue.insert_cutscene(0, next_scene_chat_tree)
+			CutsceneQueue.insert_cutscene(0, next_scene_chat_tree)
 		"creature_enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
@@ -261,7 +256,8 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			creature.fade_out()
-			creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [creature])
+			if not creature.is_connected("fade_out_finished", self, "_on_Creature_fade_out_finished"):
+				creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [creature])
 		"creature_mood":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
@@ -331,6 +327,8 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 
 
 func _on_Creature_fade_out_finished(_creature: Creature) -> void:
+	if _creature.is_connected("fade_out_finished", self, "_on_Creature_fade_out_finished"):
+		_creature.disconnect("fade_out_finished", self, "_on_Creature_fade_out_finished")
 	emit_signal("visible_chatters_changed")
 
 
