@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "vica",
+  "name": "Vica",
+  "short_name": "Vica",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "3",
+    "body": "2",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "14",
+    "eye": "3",
+    "hair": "0",
+    "head": "3",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "4",
+    "tail": "5",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "411c17",
+    "belly_rgb": "d69e63",
+    "cloth_rgb": "cb1b2e",
+    "glass_rgb": "e7bb76",
+    "plastic_rgb": "442f1c",
+    "hair_rgb": "f1e398",
+    "eye_rgb": "7d4c21 e5cd7d",
+    "horn_rgb": "c9d9bd"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "411c17"
+  },
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}

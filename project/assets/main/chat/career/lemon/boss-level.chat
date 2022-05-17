@@ -1,0 +1,46 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, sensei_house_9
+sensei, s1, !sensei_house_0
+
+p1: (knock knock)
+p1: (knock knock knock knock)
+s1: -_- Do you mind? That's very annoying.
+ (s1 enters)
+p1: /._. Sorry! I'm sorry I knocked so many times, but you didn't answer. You're Turbo?
+s1: /._. Mmm yes, of course. I'm Turbo. And your name is...?
+p1: My name is #player#! This may sound weird, but I had a dream about you.
+p1: ...I think you're supposed to teach me how to be a great chef!
+s1: Yes yes, I see. My name is Turbo and your name is #player#. That's nice. Goodbye.
+s1: (slam!)
+ (s1 exits)
+p1: (knock knock)
+s1: -__- Sorry, I don't have the energy for this today.
+ (s1 enters)
+p1: ._.; Turbo, you were much nicer in my dream.
+s1: First of all, you should address me as Fat Sensei.
+ (s1 faces right)
+s1: Second, I was only nice in your dream because we hadn't met before.
+ (s1 faces left)
+s1: I'll be meaner now that I know how annoying you are.
+s1: (slam!)
+ (s1 exits)
+p1: .__.; Fat Sensei, I need your help! Being a chef is my dream but I'm terrible at it.
+p1: My roommate's the only one who will eat my cooking, but I think they're only doing it to be nice.
+p1: ^N^ Everyone else says I should let my hobby be my hobby.
+p1: Even my close friends are pushing me into office jobs, saying I should cook in my free time.
+p1: My parents won't pay for culinary school because they say I won't make a career from it.
+p1: But cooking's the only thing I've ever been passionate about.
+p1: u_u If I can't pursue my dream of cooking I think I just won't pursue any dreams at all.
+p1: I'll just sit on my butt all day reminiscing of days where I also sat on my butt.
+ (p1 faces left)
+s1: ...
+s1: ... ...
+s1: ._. Well. ...It would be a shame for someone like you to sit on your butt.
+ (s1 enters, p1 faces right)
+s1: (sigh) This is probably a mistake. But why don't you show me what you've learned so far.
+p1: ^__^ Really? Do you mean it?

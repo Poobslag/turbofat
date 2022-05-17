@@ -1,0 +1,54 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, grave_3
+mcgoat, m, !grave_9
+(customer) toat, t, grave_8
+
+p1: ^_^/ Wow. That is one fat squirrel!
+ (toat faces left)
+t: -_- Excuse me? That's very rude.
+ (toat faces right, mcgoat enters)
+p1: ^__^/ Oh -- I didn't see your friend, sorry. Those are umm, two fat squirrels.
+m: ^_^ Thank you.
+ (toat mood ^_^)
+p1: /._. And hmm... why are those sticks stuck in the ground?
+[stolen_fence] Is this a fence post?
+[lawn_darts] Is this a lawn dart?
+[grave] Is this a grave?
+[pigeon] Is this a pigeon?
+
+[grave]
+p1: u_u Oh, you were mourning your little squirrel friend! That's so sad...
+[wrong]
+
+[lawn_darts]
+p1: ^_^ Oh, you were playing lawn darts! And the cup is to keep score.
+[wrong]
+
+[stolen_fence]
+p1: ._.; Oh no, someone stole the rest of your fence!
+p1: This one fence post is all that's left. And they left the cup... as a ransom note!
+[wrong]
+
+[pigeon]
+p1: /._. Oh, it's a giant pigeon! It's buried upside-down, but these two pointy parts are its legs.
+p1: The cup is its umm... tail, and you three are playing a game! Am I close?
+[wrong]
+
+[wrong]
+t: ^n^ What? No no, nothing like that.
+m: Someone comes by and leaves food out for us squirrels once a day!
+m: -o- ...But we snuck over early so we could have it to ourselves. Chitter chitter!
+p1: /._. Oh! Hmm... Is this person short and purple? Goes by Turbo?
+ (say_if not chat_finished chat/career/lemon/boss_level)
+p1: /._. Oh! Hmm... Is this person short and purple? Goes by Fat Sensei?
+ (say_if chat_finished chat/career/lemon/boss_level)
+t: -u- Maaaaaaybe! ...We'll tell you everything we know, if you feed us.
+ (toat faces left)
+p1: Really? You're still hungry!?
+m: ^O^ You've got a lot to learn about squirrels...
+ (toat faces right, toat mood ^O^)

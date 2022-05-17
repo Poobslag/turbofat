@@ -1,0 +1,18 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, forest_3
+(customer) mara, m, forest_9
+
+p1: You again!?
+m: <_< Sorry! Just a quiiiiiick bite.
+p1: /._. What happened to that German restaurant? I thought they had a nice breakfast.
+m: ._.; I like their food, but this morning they had a line out the door!
+p1: ^o^ Ohhh I see. ... ...So you're saying, they're too 'kraut-ed'?
+m: -_- ...
+m: ...Nevermind. I've suddenly lost my appetite.
+ (m faces left)
+p1: >__< Get back here!!!

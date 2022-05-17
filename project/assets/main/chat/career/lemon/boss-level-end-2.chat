@@ -1,0 +1,69 @@
+{"version": "2476"}
+
+[location]
+lemon/walk
+
+[characters]
+player, p1
+sensei, s1
+
+p1: So what should we call our new restaurant?
+s1: Hmm yes. Yes yes well, a name is important. It should reflect our identity and set us apart from our competitors.
+p1: I was thinking something like...
+[caboodles]
+[smack_dab]
+[eaties]
+[fats_of_life]
+[sparky_s]
+[junjorito]
+
+[junjorito]
+p1: /._. Something like... Junjorito?
+ (stop_walking)
+s1: ^N^ What on earth is a junjorito?
+p1: <_< I didn't say we had to call it Junjorito! Just something LIKE Junjorito.
+[end]
+
+[caboodles]
+p1: /._. Something like... Caboodles?
+ (stop_walking)
+s1: ^N^ What on earth is a caboodle?
+p1: ^__^ You know, like kitten caboodles! Or is it kit 'n caboodles? I don't know... It's just a cute nonsense word!
+[end]
+
+[eaties]
+p1: /._. Something like... Eaties?
+ (stop_walking)
+s1: ^N^ What on earth is an eatie?
+p1: ^__^ You know, sort of like foodies... But a friendlier version of it!
+[end]
+
+[fats_of_life]
+p1: /._. Something like... The Fats of Life?
+ (stop_walking)
+s1: ^N^ Really? You want our restaurant's name to pay homage to a sitcom from what... the 20th century?
+p1: ^__^ Yeah! It's sort of plays off of your name you know? Because you're Fat Sensei! The Fats of Life!
+[end]
+
+[sparky_s]
+p1: /._. Something like... Sparky's?
+ (stop_walking)
+s1: ^N^ What on earth is a sparky?
+p1: ^__^ Yeah it's like, a cute little punchy name. Sparky's! Doesn't it sound fun?
+[end]
+
+[smack_dab]
+p1: /._. Something like... Smack Dab?
+ (stop_walking)
+s1: ^N^ What on earth is a smack dab?
+p1: ^__^ Oh like that phrase, smack dab in the middle! We'll be smack dab!
+[end]
+
+[end]
+s1: /._. Hmm hmm, yes. Yes, I see your point, we should give our restaurant a really stupid name.
+s1: There aren't a lot of restaurants with stupid names. A name like that could carve out a niche with stupid customers.
+ (start_walking)
+p1: >_< No, not a STUPID name, just something distinctive...
+s1: ^Y^ No, no -- you had it right the first time! Stupid name it is.
+s1: I'll let you come up with it, it seems you have a talent for this.
+p1: ._.; Th... thank you? I think...

@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "mcgoat",
+  "name": "McGoat",
+  "short_name": "McGoat",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "1",
+    "body": "2",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "6",
+    "eye": "8",
+    "hair": "2",
+    "head": "5",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "1",
+    "tail": "5",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "b1edee",
+    "belly_rgb": "dff2f0",
+    "cloth_rgb": "c1f1f2",
+    "glass_rgb": "5376f1",
+    "plastic_rgb": "e3fbfc",
+    "hair_rgb": "ffffff",
+    "eye_rgb": "c1f1f2 ffffff",
+    "horn_rgb": "e1f9f9"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b1edee"
+  },
+  "fatness": 1.8,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}

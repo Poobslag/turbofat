@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "nest",
+  "name": "Nest",
+  "short_name": "Nest",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "2",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "4",
+    "eye": "4",
+    "hair": "0",
+    "head": "5",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "70843a",
+    "belly_rgb": "fff4b2",
+    "cloth_rgb": "a58900",
+    "glass_rgb": "282514",
+    "plastic_rgb": "a59131",
+    "hair_rgb": "e7b658",
+    "eye_rgb": "a58900 e3d48e",
+    "horn_rgb": "b3b2b5"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "70843a"
+  },
+  "fatness": 1.1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}

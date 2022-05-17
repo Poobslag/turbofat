@@ -1,0 +1,38 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, sensei_house_9
+sensei, s1, sensei_house_0
+
+s1: -_- Well, you were right. You are a terrible chef.
+p1: <_< Thank you.
+s1: /._. However, your butt speech really spoke to me. Maybe I've been sitting on my butt too much lately, too.
+p1: ^_^ Well, it would be a shame for someone like you to sit on a butt!
+s1: I suppose it wouldn't be the worst idea to open a restaurant together.
+s1: ^y^ I could help you with your cooking, and you could help me to not sit on butts.
+[great] That's a great idea
+[no_thanks] That's a terrible idea
+[im_clueless] I'm not sure
+
+[great]
+p1: ^__^ Oh! Oh wow! That would be great.
+p1: But wait -- isn't opening a restaurant risky? I've heard 90 percent of restaurants fail in their first year...
+[end]
+
+[no_thanks]
+p1: ^n^ I don't think that's a very good idea. I've heard 90 percent of restaurants fail in their first year...
+[end]
+
+[im_clueless]
+p1: ._.; Hmm maybe? I don't know the first thing about opening a restaurant.
+p1: Like... Isn't it really risky? I've heard 90 percent of restaurants fail in their first year...
+[end]
+
+[end]
+s1: ^O^ Ahha ha ha! Yes, well. With our concentrated effort and a little luck, maybe we can bring that up to 91 percent.
+p1: ^o^ Yeah! ...Hey wait...
+ (next_scene chat/career/lemon/boss_level_end_2)
+

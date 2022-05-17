@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "cinder",
+  "name": "Cinder",
+  "short_name": "Cinder",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "4",
+    "body": "2",
+    "cheek": "1",
+    "collar": "1",
+    "ear": "4",
+    "eye": "4",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "2",
+    "tail": "2",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "e63f2d",
+    "belly_rgb": "f77429",
+    "cloth_rgb": "f2c12a",
+    "glass_rgb": "fad669",
+    "plastic_rgb": "f28c2a",
+    "hair_rgb": "3b5854",
+    "eye_rgb": "f2c12a ffffa2",
+    "horn_rgb": "486965"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "e63f2d"
+  },
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
