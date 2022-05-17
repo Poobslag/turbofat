@@ -41,4 +41,4 @@ d: >__< You just thought you could randomly come to my restaurant and pitch to m
  (player mood ._.;)
 p1: <__< ...Well!
 d: >___< Go away! Just... get out of here, seriously!
- (next_scene creature/jayton/soliciting-buttercup-customers-2)
+ (next_scene creature/jayton/soliciting_buttercup_customers_2)
