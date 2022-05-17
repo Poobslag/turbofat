@@ -17,19 +17,19 @@ d: u_u ...
 s1: We'll go.
  (sensei exits)
 
-[friendship-1]
+[friendship_1]
 s1: /._. Ah, you fixed your sign! ...How's business?
  (start_if (chat_finished chat/meet_the_competition or chat_finished creature/jayton/soliciting_buttercup_customers) and not chat_finished creature/diota/hard_times)
 d: Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!
 d: A bunch of our customers just... like... stopped showing up all of a sudden?
-[trying-a-few-promotions]
+[trying_a_few_promotions]
 
-[friendship-2]
+[friendship_2]
 p1: /._. Any news?
  (start_if chat_finished creature/diota/hard_times)
-[trying-a-few-promotions]
+[trying_a_few_promotions]
 
-[trying-a-few-promotions]
+[trying_a_few_promotions]
 d: u_u So yeah, I mean... We're trying a few promotions to get people back, but I don't know.
 d: I HATE marketing, and I always sort of hoped word of mouth would be enough for a place like this?
 d: @_@ And I mean for a while things were going great! ... ...I don't really get what changed....

@@ -19,50 +19,50 @@ p1: <_< Wait, you didn't do anything? ...We didn't do anything either! Did we?
 b: Well, you and #sensei# got all these customers to come!
 p1: /._. Maybe? I talked to two or three of them at most! ...Were they all friends?
 k: ^y^ You trained us to cook better! I bet that made a difference too.
-[training-good] You improved a lot
-[training-same] You didn't improve
-[training-bad] You got worse
+[training_good] You improved a lot
+[training_same] You didn't improve
+[training_bad] You got worse
 
-[training-good]
+[training_good]
 p1: ^_^ Yeah! Your cooking's gotten way better. That goes for all of you! I bet that's it.
  (skins mood ^__^, bones mood ^y^)
-[after-training]
+[after_training]
 
-[training-same]
+[training_same]
 p1: ._.; I tried to train you but there's only so much I could teach you in such a short time!
 p1: ^N^ Sorry Skins, I think it was probably something else...
  (skins mood ._.;)
-[after-training]
+[after_training]
 
-[training-bad]
+[training_bad]
 p1: -_- Skins, somehow your cooking actually got worse after our training. Now that you mention it,
 p1: /._. Something brought in even more customers to make up for the ones you drove away.
  (skins mood .__.;)
 k: u_u Mowwr...
-[after-training]
+[after_training]
 
-[after-training]
+[after_training]
 h: /._. I heard the Buttercup Cafe shut down. ...Maybe we just got their leftovers?
-[buttercup-happy] That's great!
-[buttercup-ok] That's interesting
-[buttercup-sad] That's too bad
+[buttercup_happy] That's great!
+[buttercup_ok] That's interesting
+[buttercup_sad] That's too bad
 
-[buttercup-happy]
+[buttercup_happy]
 p1: ^O^ They did? Wow! Good riddens to bad restaurants. Did they finally go out of business?
 r: ^o^ Yeah! They'd been bleeding customers for awhile now.
-[after-buttercup]
+[after_buttercup]
 
-[buttercup-ok]
+[buttercup_ok]
 p1: /._. Oh, I didn't know that. ...Did they just go out of business or what?
 r: ^y^ Yeah! They'd been bleeding customers for awhile now.
-[after-buttercup]
+[after_buttercup]
 
-[buttercup-sad]
+[buttercup_sad]
 p1: u_u They did? Oh no! ...I didn't hear about that. Did something happen? Is Diota okay?
 r: /._. Ehh you didn't know? They'd been bleeding customers for awhile now!
-[after-buttercup]
+[after_buttercup]
 
-[after-buttercup]
+[after_buttercup]
 r: Pretty sure they burned through their savings and couldn't make rent, it's nothing weird.
 r: ^Y^ ...Like I said before, going head to head the garbage food always wins!
 r: ._.; I mean the uhh... the GOURMET food! Our food.

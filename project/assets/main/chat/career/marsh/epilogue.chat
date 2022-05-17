@@ -21,6 +21,7 @@ s1: "I chose the sofa less comfortable, and that has made all the difference."
 
 [i_understand]
 p1: /._. I see... And Merrymellow Marsh is like one of those big squishy beanbag chairs,
+ (stop_walking)
 p1: The kind where you almost pass out in them, and then you have trouble standing up afterwards.
 s1: Yes, something like that.
 [besides_that]
@@ -43,6 +44,7 @@ s1: Hmph.
 
 [besides_that]
 p1: /._. Well, besides that. Did we even do anything while we were there?
+ (start_walking)
 p1: We only finished with a handful of extra customers, and we still don't know why they came.
 p1: <_< They could stop showing up next week, and we'd be back to square one.
  (stop_walking)
@@ -61,3 +63,4 @@ s1: /._. Even the greatest... PESTILENCE begins with a single cough!
 p1: >_< What!? No, we have a NICE restaurant! It's not a pestilence!
 s1: ^O^ Even the greatest MASSACRE begins with...
 p1: @_@ STOP! Augh!
+
