@@ -232,11 +232,11 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	if region.cutscene_path:
 		# find a region-specific cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
-				[region.cutscene_path], chef_id, customer_id)
+				[region.cutscene_path], chef_id, customer_id, observer_id)
 	if result.empty():
 		# no region-specific cutscene available; find a general cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
-				[CareerData.GENERAL_CHAT_KEY_ROOT], chef_id, customer_id)
+				[CareerData.GENERAL_CHAT_KEY_ROOT], chef_id, customer_id, observer_id)
 	if not result.empty():
 		result.type = ChatKeyPair.INTERLUDE
 	

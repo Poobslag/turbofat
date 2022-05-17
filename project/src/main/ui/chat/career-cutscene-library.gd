@@ -34,13 +34,11 @@ extends Node
 ## Default resource path containing career cutscenes.
 const DEFAULT_CAREER_CUTSCENE_ROOT_PATH := "res://assets/main/chat/career"
 
-## List of specially named chat keys which should be excluded when browsing for cutscenes to play
+## List of specially named chat keys which should be excluded when browsing for interludes to play
 const SPECIAL_CHAT_KEY_NAMES := [
 	"prologue",
 	"intro_level",
-	"intro_level_end",
 	"boss_level",
-	"boss_level_end",
 	"epilogue",
 ]
 
@@ -99,11 +97,13 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 ##
 ## 	'customer_id': (Optional) The id of a creature who must appear as a customer in the returned cutscenes.
 ##
+## 	'observer_id': (Optional) The id of a creature who must appear as an observer in the returned cutscenes.
+##
 ## Returns:
 ## 	A ChatKeyPair defining preroll and postroll cutscenes.
-func next_interlude_chat_key_pair(chat_key_roots: Array, chef_id: String = "", customer_id: String = "") \
-		-> ChatKeyPair:
-	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots, chef_id, customer_id)
+func next_interlude_chat_key_pair(chat_key_roots: Array,
+		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> ChatKeyPair:
+	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots, chef_id, customer_id, observer_id)
 	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else ChatKeyPair.new()
 
 
@@ -149,30 +149,71 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 			# no criteria specified; accept all chat key pairs
 			accept_chat_key_pair = true
 		elif customer_id == CareerLevel.NONQUIRKY_CUSTOMER:
-			# anonymous customer; only accept chat key pairs with no named chefs/customers
-			accept_chat_key_pair = true
-			for chat_key in potential_chat_key_pair.chat_keys():
-				var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-				if chat_tree.chef_id or chat_tree.customer_ids:
-					accept_chat_key_pair = false
+			# nonquirky customer; only accept chat key pairs with nonquirky chefs/customers/observers
+			accept_chat_key_pair = _chat_key_pair_is_nonquirky(potential_chat_key_pair)
 		else:
-			# only accept chat key pairs with matching chef/customer/observer
-			accept_chat_key_pair = false
-			for chat_key in potential_chat_key_pair.chat_keys():
-				var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-				if chef_id:
-					if chat_tree.chef_id == chef_id:
-						accept_chat_key_pair = true
-				elif customer_id:
-					if customer_id in chat_tree.customer_ids:
-						accept_chat_key_pair = true
-				elif observer_id:
-					if observer_id == chat_tree.observer_id:
-						accept_chat_key_pair = true
+			# only accept chat key pairs with a matching quirky chef/customer/observer
+			accept_chat_key_pair = _chat_key_pair_has_creatures(potential_chat_key_pair, chef_id, customer_id, observer_id)
 		
 		if accept_chat_key_pair:
 			trimmed_chat_key_pairs.append(potential_chat_key_pair)
 	return trimmed_chat_key_pairs
+
+
+## Returns 'true' if the specified chat key pair does not have a quirky chef, customer or observer.
+func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
+	var quirky := false
+	var region: CareerRegion = PlayerData.career.current_region()
+	
+	for chat_key in chat_key_pair.chat_keys():
+		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+		
+		if not quirky and chat_tree.chef_id:
+			# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
+			if region.has_quirky_chef(chat_tree.chef_id):
+				quirky = true
+		
+		if not quirky and chat_tree.customer_ids:
+			# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
+			for customer_id in chat_tree.customer_ids:
+				if region.has_quirky_customer(customer_id):
+					quirky = true
+		
+		if not quirky and chat_tree.observer_id:
+			# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
+			if region.has_quirky_observer(chat_tree.observer_id):
+				quirky = true
+		
+		if quirky:
+			break
+	
+	return not quirky
+
+
+## Returns 'true' if the specified chat key pair features the specified chef, customer or observer.
+func _chat_key_pair_has_creatures(chat_key_pair: ChatKeyPair,
+		chef_id: String, customer_id: String, observer_id: String) -> bool:
+	var matches := false
+	
+	for chat_key in chat_key_pair.chat_keys():
+		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+		
+		if not matches and chef_id:
+			if chat_tree.chef_id == chef_id:
+				matches = true
+		
+		if not matches and customer_id:
+			if customer_id in chat_tree.customer_ids:
+				matches = true
+		
+		if not matches and observer_id:
+			if observer_id == chat_tree.observer_id:
+				matches = true
+		
+		if matches:
+			break
+	
+	return matches
 
 
 ## Assigns the list of ChatKeyPairs, and regenerates all internal fields such as the preroll tree.
@@ -380,10 +421,14 @@ func _preroll_key_from_chat_key_pair(chat_key_pair: ChatKeyPair) -> String:
 	return preroll_key
 
 
+## Returns 'true' if the specified chat key is not an interlude, and should only play at a special time.
+##
+## This includes reserved chat keys like 'chat/career/marsh/epilogue', but also keys with suffixes like
+## '...marsh/boss_level_end' or '...marsh/intro_level_end_2'
 func _is_special_chat_key(chat_key: String) -> bool:
 	var result := false
 	for special_chat_key_name in SPECIAL_CHAT_KEY_NAMES:
-		if chat_key.ends_with(special_chat_key_name):
+		if ("/%s" % special_chat_key_name) in chat_key:
 			result = true
 			break
 	return result
