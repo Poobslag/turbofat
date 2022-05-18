@@ -1,24 +1,6 @@
 class_name CareerRegion
 ## Stores information about a block of levels for career mode.
 
-## A flag for regions where Fat Sensei is not following the player
-const FLAG_NO_SENSEI := "no_sensei"
-
-## A flag for regions where the player does not operate a restaurant.
-const FLAG_NO_RESTAURANT := "no_restaurant"
-
-## Chat key containing each region's prologue cutscene, which plays before any other cutscenes/levels
-const PROLOGUE_CHAT_KEY_NAME := "prologue"
-
-## Chat key containing each region's intro level cutscene, which plays before/after the intro level
-const INTRO_LEVEL_CHAT_KEY_NAME := "intro_level"
-
-## Chat key containing each region's boss level cutscene, which plays before/after the boss level
-const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
-
-## Chat key containing each region's epilogue cutscene, which plays after all other cutscenes/levels
-const EPILOGUE_CHAT_KEY_NAME := "epilogue"
-
 ## A chef/customer who appears in a career region.
 class CreatureAppearance:
 	## the id of the creature who appears
@@ -49,50 +31,42 @@ class CreatureAppearance:
 		id = json
 
 
+## A flag for regions where Fat Sensei is not following the player
+const FLAG_NO_SENSEI := "no_sensei"
+
+## A flag for regions where the player does not operate a restaurant.
+const FLAG_NO_RESTAURANT := "no_restaurant"
+
+## Chat key containing each region's prologue cutscene, which plays before any other cutscenes/levels
+const PROLOGUE_CHAT_KEY_NAME := "prologue"
+
+## Chat key containing each region's intro level cutscene, which plays before/after the intro level
+const INTRO_LEVEL_CHAT_KEY_NAME := "intro_level"
+
+## Chat key containing each region's boss level cutscene, which plays before/after the boss level
+const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
+
+## Chat key containing each region's epilogue cutscene, which plays after all other cutscenes/levels
+const EPILOGUE_CHAT_KEY_NAME := "epilogue"
+
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
-## A resource chat key prefix for cutscenes for this region, such as 'chat/career/marsh'
-var cutscene_path: String
-
 ## The smallest distance the player must travel to enter this region.
 var start := 0
-
-## The furthest distance the player can travel while remaining within this region.
-var end := 0 setget ,get_end
-
-## A human-readable icon name, such as 'forest' or 'cactus'
-var icon_name: String
-
-## A human-readable environment name, such as 'lemon' or 'marsh' for the overworld environment
-var overworld_environment_name: String
-
-## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
-var puzzle_environment_name: String
 
 ## The smallest distance the player must travel to exit this region.
 ##
 ## If the length is CareerData.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
 var length := 0
 
-## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
-var min_piece_speed := "0"
-var max_piece_speed := "0"
-
-## Returns 'true' if this region has the specified flag.
+## The furthest distance the player can travel while remaining within this region.
 ##
-## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or
-## where the player does not operate a restaurant.
-var flags: Dictionary = {}
-
-## List of CareerLevel instances which store career-mode-specific information about this region's levels.
-var levels := []
+## Immutable value. Calculated by combining 'start' and 'length'
+var end := 0 setget ,get_end
 
 ## Final level which must be cleared to advance past this region.
 var boss_level: CareerLevel
-
-## First level which must be cleared before any other levels in this region.
-var intro_level: CareerLevel
 
 ## CreatureAppearance instances for chefs who randomly show up in levels
 var chefs := []
@@ -100,16 +74,62 @@ var chefs := []
 ## CreatureAppearance instances for customers who randomly show up in levels
 var customers := []
 
+## A resource chat key prefix for cutscenes for this region, such as 'chat/career/marsh'
+var cutscene_path: String
+
+## Returns 'true' if this region has the specified flag.
+##
+## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or
+## where the player does not operate a restaurant.
+var flags: Dictionary = {}
+
+## A human-readable icon name, such as 'forest' or 'cactus'
+var icon_name: String
+
+## First level which must be cleared before any other levels in this region.
+var intro_level: CareerLevel
+
+## List of CareerLevel instances which store career-mode-specific information about this region's levels.
+var levels := []
+
+## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
+var min_piece_speed := "0"
+var max_piece_speed := "0"
+
 ## CreatureAppearance instances for observers who randomly show up to watch levels
 var observers := []
 
+## A human-readable environment name, such as 'lemon' or 'marsh' for the overworld environment
+var overworld_environment_name: String
+
+## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
+var puzzle_environment_name: String
+
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
-	cutscene_path = json.get("cutscene_path", "")
 	start = int(json.get("start", 0))
+	
+	if json.has("boss_level"):
+		boss_level = CareerLevel.new()
+		boss_level.from_json_dict(json.get("boss_level"))
+	if json.has("chefs"):
+		_parse_creature_appearances(json, "chefs")
+	if json.has("customers"):
+		_parse_creature_appearances(json, "customers")
+	cutscene_path = json.get("cutscene_path", "")
+	for flags_string in json.get("flags", []):
+		flags[flags_string] = true
 	icon_name = json.get("icon", "")
+	if json.has("intro_level"):
+		intro_level = CareerLevel.new()
+		intro_level.from_json_dict(json.get("intro_level"))
+	for level_json in json.get("levels", []):
+		var level: CareerLevel = CareerLevel.new()
+		level.from_json_dict(level_json)
+		levels.append(level)
+	if json.has("observers"):
+		_parse_creature_appearances(json, "observers")
 	overworld_environment_name = json.get("overworld_environment", "")
-	puzzle_environment_name = json.get("puzzle_environment", "")
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:
 		min_piece_speed = StringUtils.substring_before(piece_speed_string, "-")
@@ -117,33 +137,8 @@ func from_json_dict(json: Dictionary) -> void:
 	else:
 		min_piece_speed = piece_speed_string
 		max_piece_speed = piece_speed_string
-	for flags_string in json.get("flags", []):
-		flags[flags_string] = true
-	for level_json in json.get("levels", []):
-		var level: CareerLevel = CareerLevel.new()
-		level.from_json_dict(level_json)
-		levels.append(level)
-	if json.has("boss_level"):
-		boss_level = CareerLevel.new()
-		boss_level.from_json_dict(json.get("boss_level"))
-	if json.has("intro_level"):
-		intro_level = CareerLevel.new()
-		intro_level.from_json_dict(json.get("intro_level"))
-	if json.has("chefs"):
-		for chef_string in json.get("chefs"):
-			var creature_appearance := CreatureAppearance.new()
-			creature_appearance.from_json_string(chef_string)
-			chefs.append(creature_appearance)
-	if json.has("customers"):
-		for customer_string in json.get("customers"):
-			var creature_appearance := CreatureAppearance.new()
-			creature_appearance.from_json_string(customer_string)
-			customers.append(creature_appearance)
-	if json.has("observers"):
-		for observer_string in json.get("observers"):
-			var creature_appearance := CreatureAppearance.new()
-			creature_appearance.from_json_string(observer_string)
-			observers.append(creature_appearance)
+	puzzle_environment_name = json.get("puzzle_environment", "")
+
 
 func get_prologue_chat_key() -> String:
 	return "%s/%s" % [cutscene_path, PROLOGUE_CHAT_KEY_NAME] if cutscene_path else ""
@@ -281,3 +276,21 @@ func _random_creature(appearances: Array) -> CreatureAppearance:
 			break
 	
 	return result
+
+
+## Parses an array of 'CreatureAppearance' values from json, storing them in this CareerRegion
+##
+## The specified property name corresponds both to the field name in json, as well as the CareerRegion array property
+## name which stores the CreatureAppearance values.
+##
+## Parameters:
+## 	'json': The json representation of the entire CareerRegion, including CreatureAppearance data as well as other
+## 		unrelated data.
+##
+## 	'property': The json dictionary key for retrieving the data, and also the CareerRegion property name for
+## 		storing the data.
+func _parse_creature_appearances(json: Dictionary, property: String) -> void:
+	for creature_string in json.get(property):
+		var creature_appearance := CreatureAppearance.new()
+		creature_appearance.from_json_string(creature_string)
+		get(property).append(creature_appearance)
