@@ -3,6 +3,7 @@ extends "res://addons/gut/test.gd"
 func before_each() -> void:
 	ChatLibrary.chat_key_root_path = "res://assets/test"
 	PlayerData.chat_history.reset()
+	PlayerData.career.reset()
 
 
 func after_each() -> void:
@@ -204,6 +205,14 @@ func test_potential_chat_keys_includes_customer() -> void:
 
 
 func test_potential_chat_keys_includes_unnamed_customers() -> void:
+	# define some quirky creatures to ignore
+	var rhonk := CareerRegion.CreatureAppearance.new()
+	rhonk.from_json_string("(quirky) rhonk")
+	PlayerData.career.current_region().customers.append(rhonk)
+	var skins := CareerRegion.CreatureAppearance.new()
+	skins.from_json_string("(quirky) skins")
+	PlayerData.career.current_region().chefs.append(skins)
+	
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include a numeric branch with no remaining cutscenes
 		_interlude("ui/chat/fake_career_2/a", ""),
