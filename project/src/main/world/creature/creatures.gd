@@ -1,6 +1,7 @@
 class_name Creatures
 ## Enums, constants and utilities related to creatures.
 
+## Directions a creature can face
 enum Orientation {
 	SOUTHEAST,
 	SOUTHWEST,
@@ -8,6 +9,7 @@ enum Orientation {
 	NORTHEAST,
 }
 
+## Ways a creature can move
 enum MovementMode {
 	IDLE, # not walking/running
 	SPRINT, # quadrapedal run
@@ -16,6 +18,7 @@ enum MovementMode {
 	WIGGLE, # flailing their arms and legs helplessly
 }
 
+## Moods a creature can express
 enum Mood {
 	NONE,
 	DEFAULT, # neutral expression, neither positive nor negative
@@ -47,6 +50,12 @@ enum Mood {
 	WAVE1, # enthusiastic greeting
 	YES0, # nodding once
 	YES1, # nodding a few times
+}
+
+## Different types of creature with their own names and appearances
+enum Type {
+	DEFAULT,
+	SQUIRREL,
 }
 
 const SOUTHEAST = Orientation.SOUTHEAST

@@ -30,7 +30,6 @@ class CreatureAppearance:
 		
 		id = json
 
-
 ## A flag for regions where Fat Sensei is not following the player
 const FLAG_NO_SENSEI := "no_sensei"
 
@@ -77,6 +76,9 @@ var customers := []
 ## A resource chat key prefix for cutscenes for this region, such as 'chat/career/marsh'
 var cutscene_path: String
 
+## Describes creatures in a region
+var demographic_data := DemographicData.new()
+
 ## Returns 'true' if this region has the specified flag.
 ##
 ## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or
@@ -117,6 +119,8 @@ func from_json_dict(json: Dictionary) -> void:
 	if json.has("customers"):
 		_parse_creature_appearances(json, "customers")
 	cutscene_path = json.get("cutscene_path", "")
+	if json.has("demographics"):
+		demographic_data.from_json_array(json.get("demographics"))
 	for flags_string in json.get("flags", []):
 		flags[flags_string] = true
 	icon_name = json.get("icon", "")

@@ -1,7 +1,7 @@
 class_name NameGenerator
-## Markov chain name generation algorithm.
+## Generates names using a markov chain name generation algorithm.
 ##
-## Accepts as input a list of words like 'banana' and 'anabelle', and mixes them into new words like 'banabelle'.
+## Accepts as input a list of words like 'banana' and 'anabelle', and mixes them into names like 'banabelle'.
 
 var markov_model := MarkovModel.new()
 var min_length: int setget set_min_length
@@ -20,17 +20,6 @@ var _seed_paths := []
 
 ## seed names loaded from the resource files
 var _seed_word_lists := []
-
-## Configures the name generator with 'American given names' and 'animals'.
-##
-## This generates names like 'Boala', 'Badgehog' and 'Coyce'.
-func load_american_animals() -> void:
-	add_seed_resource("res://assets/main/editor/creature/animals.txt")
-	add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
-	add_seed_resource("res://assets/main/editor/creature/american-female-given-names.txt")
-	set_order(2.7)
-	set_min_length(4)
-	set_max_length(11)
 
 
 func reset() -> void:

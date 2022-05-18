@@ -12,7 +12,6 @@ func after_each() -> void:
 
 func test_regions() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
-	
 	assert_eq(CareerLevelLibrary.regions.size(), 3)
 	
 	var region_1: CareerRegion = CareerLevelLibrary.regions[1]
@@ -67,6 +66,15 @@ func test_region_observers() -> void:
 	assert_eq(region_0.observers[1].id, "observer_30")
 	assert_eq(region_0.observers[1].chance, 0.0)
 	assert_eq(region_0.observers[1].quirky, true)
+
+
+func test_region_demographics() -> void:
+	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	
+	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
+	assert_eq(region_0.demographic_data.demographics.size(), 1)
+	assert_eq(region_0.demographic_data.demographics[0].type, Creatures.Type.SQUIRREL)
+	assert_eq(region_0.demographic_data.demographics[0].chance, 1.0)
 
 
 ## increasing the weight selects faster speeds

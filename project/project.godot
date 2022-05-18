@@ -265,6 +265,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/cutscene-world.gd"
 }, {
 "base": "Reference",
+"class": "DemographicData",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/demographic-data.gd"
+}, {
+"base": "Reference",
 "class": "DnaAlternatives",
 "language": "GDScript",
 "path": "res://src/main/world/creature/dna-alternatives.gd"
@@ -1071,6 +1076,7 @@ _global_script_class_icons={
 "CutsceneCamera": "",
 "CutsceneSearchFlags": "",
 "CutsceneWorld": "",
+"DemographicData": "",
 "DnaAlternatives": "",
 "DurationCalculator": "",
 "EditorPickups": "",
@@ -1258,6 +1264,7 @@ LevelLibrary="*res://src/main/ui/level-select/level-library.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
+NameGeneratorLibrary="*res://src/main/name-generator-library.gd"
 Pauser="*res://src/main/pauser.gd"
 PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
