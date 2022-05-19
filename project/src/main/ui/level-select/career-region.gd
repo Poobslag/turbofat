@@ -25,7 +25,7 @@ class CreatureAppearance:
 		if " " in json and json.ends_with("%"):
 			var percent_string := StringUtils.substring_after_last(json, " ")
 			# convert a string like '35%' to a number like 0.35
-			chance = float(percent_string.rstrip("%")) / 100
+			chance = float(percent_string.rstrip("%")) / 100.0
 			json = StringUtils.substring_before_last(json, " ")
 		
 		id = json
@@ -252,30 +252,18 @@ func has_flag(key: String) -> bool:
 ## 	A CreatureAppearance from the specified list. Returns 'null' if list has no nonquirky appearances, or if their
 ## 	chance values add up to less than 1.0 and none of the creatures are randomly selected.
 func _random_creature(appearances: Array) -> CreatureAppearance:
-	var result: CreatureAppearance = null
-	
-	# Calculate the sum of the appearances' "chance" values.
-	#
-	# These values *should* add up to less than 1.0, in which case we'll pick a random number in the range [0.0, 1.0]
-	# But if someone mistakenly gave ten creatures a 13% chance of showing up we'll pick a random number in the range
-	# [0.0, 1.3] instead.
+	# Populate a weights map from the appearance values.
+	var weights_map := {}
 	var total_chance := 0.0
 	for appearance in appearances:
+		weights_map[appearance] = appearance.chance
 		total_chance += appearance.chance
-	total_chance = max(1.0, total_chance)
 	
-	# Select a random appearance.
-	#
-	# We pick a random number in the range [0.0, 1.0], decrementing it based on each appearance's 'chance' value until
-	# it drops below 0.0.
-	var remaining_chance := rand_range(0.0, total_chance)
-	for appearance in appearances:
-		remaining_chance -= appearance.chance
-		if remaining_chance <= 0.0:
-			result = appearance
-			break
+	# If the sum of the appearances' "chance" values is less than 1.0 we add a 'null' chance
+	if total_chance < 1.0:
+		weights_map[null] = 1.0 - total_chance
 	
-	return result
+	return Utils.weighted_rand_value(weights_map)
 
 
 ## Parses an array of 'CreatureAppearance' values from json, storing them in this CareerRegion

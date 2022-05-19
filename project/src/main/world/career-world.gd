@@ -252,8 +252,6 @@ func _distance_percent() -> float:
 
 ## Adds a 'level creature', a chef or customer associated with a level.
 func _add_level_creature() -> void:
-	var creature_index := _level_creatures.size()
-	
 	var creature := overworld_environment.add_creature()
 	_level_creatures.append(creature)
 	
@@ -265,13 +263,6 @@ func _add_level_creature() -> void:
 	else:
 		mood = Utils.rand_value(MOODS_RARE)
 	creature.set_meta("mood_when_hovered", mood)
-	
-	if creature_index <= 1:
-		# the two left creatures face right
-		creature.orientation = Creatures.SOUTHEAST
-	else:
-		# the right level creature faces left
-		creature.orientation = Creatures.SOUTHWEST
 
 
 ## Repositions the specified 'level creature', a chef or customer associated with a level.
@@ -294,6 +285,10 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 	else:
 		# the left and right creatures are closer to the path
 		creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
+	
+	# turn creature towards player
+	var player := _find_player()
+	creature.orientation = Creatures.SOUTHEAST if player.position.x > creature.position.x else Creatures.SOUTHWEST
 
 
 ## Moves the player creature to a point along _player_path2d.
