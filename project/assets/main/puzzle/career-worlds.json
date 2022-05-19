@@ -16,6 +16,19 @@
         "id": "career/boss_7k",
         "observer_id": "sensei"
       },
+      "customers": [
+        "chinta 4%",
+        "dusty 4%",
+        "lango 3%",
+        "logana 3%",
+        "mara 2%",
+        "mcgoat 4%",
+        "namory 4%",
+        "nest 3%",
+        "phoena 4%",
+        "rice 4%",
+        "toat 4%",
+      ],
       "levels": [
         {
           "id": "career/90_second_sprint"

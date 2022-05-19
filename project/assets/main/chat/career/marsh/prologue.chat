@@ -11,7 +11,7 @@ player, p1
 sensei, s1
 narrator, n
 
-n: Most of the Turbo Fat locations gradually developed a loyal following of hungry customers, except for the Merrymellow Marsh location where business was unusually slow. #sensei# and #player# were on their way to get to the bottom of this mystery.
+n: Most of the Turbo Fat locations gradually developed a loyal following of hungry customers, except for Merrymellow Marsh where business was unusually slow. #sensei# and #player# were on their way to get to the bottom of this mystery.
 p1: /._. So we're supposed to get more customers to show up? Like, with advertising or specials or something?
 p1: .__.; ...Fat Sensei, I don't know anything about that stuff!
  (stop_walking)
