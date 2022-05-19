@@ -72,12 +72,7 @@ var _fat_sprite_mover_scenes := {
 	"2": preload("res://src/main/world/creature/FatSpriteMover2.tscn"),
 }
 
-var _name_generator := NameGenerator.new()
-
 var _dna_alternatives := DnaAlternatives.new()
-
-func _ready() -> void:
-	_name_generator.load_american_animals()
 
 
 ## Returns a random creature definition.
@@ -85,14 +80,14 @@ func _ready() -> void:
 ## Parameters:
 ## 	'include_secondary_creatures': If 'true' the function has a chance to return a creature from a library of
 ## 		predefined creatures instead of a randomly generated one.
-func random_def(include_secondary_creatures: bool = false) -> CreatureDef:
+func random_def(include_secondary_creatures: bool = false, creature_type: int = Creatures.Type.DEFAULT) -> CreatureDef:
 	var result: CreatureDef
 	if include_secondary_creatures and PlayerData.creature_queue.has_secondary_creature() and randf() < 0.2:
 		result = PlayerData.creature_queue.pop_secondary_creature()
 	else:
 		result = CreatureDef.new()
-		result.dna = DnaUtils.random_dna()
-		result.rename(_name_generator.generate_name())
+		result.dna = DnaUtils.random_dna(creature_type)
+		result.rename(NameGeneratorLibrary.generate_name(creature_type))
 		result.chat_theme_def = chat_theme_def(result.dna)
 		# set the filler ID, but not the fatness. the fatness attribute in the CreatureDef is the creature's natural
 		# fatness -- not their fatness after being stuffed

@@ -8,6 +8,9 @@
       "puzzle_environment": "lemon",
       "piece_speed": "0",
       "cutscene_path": "chat/career/lemon",
+      "demographics": [
+        "squirrel 100%"
+      ],
       "flags": [
         "no_sensei",
         "no_restaurant"

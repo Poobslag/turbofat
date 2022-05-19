@@ -254,13 +254,18 @@ const ALLELE_NAMES := {
 	"tail-7": "Lizard",
 }
 
-## key: alleles
+## key: allele value key, such as 'tail-4'
 ## value: positive numeric weights [0.0-100.0]. high values for common alleles
 var _allele_weights := {}
 
 ## key: allele combo key, such as 'mouth-1-nose-2'
-## value: positive/negative adjustments [-100, 100]. positive for good combos, negative for bad combos
+## value: Positive/negative adjustments [-999, 999]. Positive for good combos, negative for bad combos
 var _allele_combo_adjustments := {}
+
+## key: species adjustment combo key, such as '1-tail-4'
+## value: Positive/negative adjustments [-999, 999]. Positive for attributes which define the species, negative for
+## 	attributes which conflict with the species.
+var _species_adjustments := {}
 
 func _ready() -> void:
 	for mouth in ["1", "2"]:
@@ -323,6 +328,38 @@ func _ready() -> void:
 	_set_allele_weight("head", "1", 6.0)
 	_set_allele_weight("horn", "0", 3.0)
 	_set_allele_weight("tail", "0", 5.0)
+	
+	# squirrel adjustments
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "body", "0", 4)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "body", "1", -999)
+	
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "0", -999)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "4", 4)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "5", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "7", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "8", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "10", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "ear", "13", 2)
+	
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "eye", "5", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "eye", "7", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "eye", "8", 2)
+	
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "horn", "2", -2)
+	
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "mouth", "1", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "mouth", "2", -2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "mouth", "3", 4)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "mouth", "4", -999)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "mouth", "5", 4)
+	
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "nose", "0", 3)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "nose", "2", 3)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "nose", "3", -2)
+	
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "tail", "4", 1)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "tail", "5", 2)
+	_set_species_adjustment(Creatures.Type.SQUIRREL, "tail", "6", 2)
 
 
 ## Returns unique list of line colors for the specified dna.
@@ -352,7 +389,7 @@ func trim_dna(dna: Dictionary) -> Dictionary:
 ## Fill in the creature's missing traits with random values.
 ##
 ## Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
-func fill_dna(dna: Dictionary) -> Dictionary:
+func fill_dna(dna: Dictionary, creature_type: int = Creatures.Type.DEFAULT) -> Dictionary:
 	# duplicate the dna so that we don't modify the original
 	var result := dna.duplicate()
 	
@@ -367,7 +404,7 @@ func fill_dna(dna: Dictionary) -> Dictionary:
 		var alleles := BODY_PART_ALLELES.duplicate()
 		alleles.shuffle()
 		for allele in alleles:
-			Utils.put_if_absent(result, allele, Utils.weighted_rand_value(allele_weights(result, allele)))
+			Utils.put_if_absent(result, allele, Utils.weighted_rand_value(allele_weights(result, allele, creature_type)))
 		Utils.put_if_absent(result, "emote-eye", "0" if result.get("eye", "0") == "0" else "1")
 	return result
 
@@ -375,8 +412,8 @@ func fill_dna(dna: Dictionary) -> Dictionary:
 ## Returns a dna dictionary containing sensible random values.
 ##
 ## This includes an aesthetically pleasing palette and body parts that look good together.
-func random_dna() -> Dictionary:
-	return fill_dna({})
+func random_dna(creature_type: int = Creatures.Type.DEFAULT) -> Dictionary:
+	return fill_dna({}, creature_type)
 
 
 ## Returns a human-readable allele name for use in the editor.
@@ -419,6 +456,22 @@ func random_creature_palette() -> Dictionary:
 	return Utils.rand_value(CREATURE_PALETTES).duplicate()
 
 
+## Determines if the specified allele value would conflict with the creature's appearance.
+##
+## Certain allele combos such as 'beaks with noses' don't look good, so this function is used in editors to prevent
+## the player from selecting them. If the specified allele conflicts with an existing allele in the dna dictionary,
+## this method returns the existing allele causing the conflict.
+##
+## Parameters:
+## 	'dna': The dna dictionary to analyze.
+##
+## 	'property': An allele property.
+##
+## 	'value': An allele value.
+##
+## Returns:
+## 	The existing allele which conflicts with the specified allele, if any. If nothing conflicts, we return an empty
+## 	string.
 func invalid_allele_value(dna: Dictionary, property: String, value: String) -> String:
 	var invalid_property: String
 	for other_property in BODY_PART_ALLELES:
@@ -434,7 +487,7 @@ func invalid_allele_value(dna: Dictionary, property: String, value: String) -> S
 ## Returns a dictionary with weights for the specified allele.
 ##
 ## Some values are more common than others, and some combinations are more common as well.
-func allele_weights(dna: Dictionary, property: String) -> Dictionary:
+func allele_weights(dna: Dictionary, property: String, creature_type: int = Creatures.Type.DEFAULT) -> Dictionary:
 	var result := {}
 	
 	if property in COLOR_ALLELES:
@@ -446,6 +499,7 @@ func allele_weights(dna: Dictionary, property: String) -> Dictionary:
 		var invalid_allele_values := []
 		for allele_value in result:
 			var total_score := 0.0
+			total_score += _get_species_adjustment(creature_type, property, allele_value)
 			for other_property in BODY_PART_ALLELES:
 				if other_property == property:
 					continue
@@ -483,10 +537,26 @@ func _get_allele_combo_adjustment(key1: String, value1: String, key2: String, va
 	return _allele_combo_adjustments.get(combo_key, 0)
 
 
-## A key corresponding to an allele combination, such as 'bird beak with tiny eyes'.
+func _set_species_adjustment(creature_type: int, key: String, value: String, score: int) -> void:
+	_species_adjustments[_species_adjustment_key(creature_type, key, value)] = score
+
+
+func _get_species_adjustment(creature_type: int, key: String, value: String) -> int:
+	return _species_adjustments.get(_species_adjustment_key(creature_type, key, value), 0.0)
+
+
+## A key corresponding to a species combination, such as 'squirrels with stubby tails'.
 ##
-## A combination such as 'bird beak with tiny eyes' gets turned into a string key such as 'mouth-4-eye-2' which is
-## compatible with dictionaries.
+## A combination such as 'squirrels with stubby tails' becomes a string key such as '1-tail-4' which is compatible
+## with dictionaries.
+func _species_adjustment_key(creature_type: int, key: String, value: String) -> String:
+	return("%s-%s-%s" % [creature_type, key, value])
+
+
+## A key corresponding to an allele combination, such as 'big beak with tiny eyes'.
+##
+## A combination such as 'big beak with tiny eyes' becomes a string key such as 'mouth-4-eye-2' which is compatible
+## with dictionaries.
 func _allele_combo_key(key1: String, value1: String, key2: String, value2: String) -> String:
 	var combo_key: String
 	if key1 <= key2:
@@ -496,5 +566,8 @@ func _allele_combo_key(key1: String, value1: String, key2: String, value2: Strin
 	return combo_key
 
 
+## A key corresponding to an allele value, such as 'stubby tails'.
+##
+## A combination such as 'stubby tails' becomes a string key such as 'tail-4' which is compatible with dictionaries.
 func _allele_value_key(key: String, value: String) -> String:
 	return "%s-%s" % [key, value]

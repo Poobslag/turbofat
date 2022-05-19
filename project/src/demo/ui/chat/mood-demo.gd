@@ -24,11 +24,20 @@ extends Node
 ## 	[Shift + E, R]: Yawn
 ## 	[Shift + A, S]: Close eyes
 ## 	[Shift + D, F]: Wiggle ears
+##
+## 	[Ctrl + 0]: Change the creature's demographic to 'default'
+## 	[Ctrl + 1]: Change the creature's demographic to 'squirrel'
+
+var _creature_type: int = Creatures.Type.DEFAULT
 
 onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_SHIFT):
+	if Input.is_key_pressed(KEY_CONTROL):
+		match Utils.key_scancode(event):
+			KEY_0: _change_demographic(Creatures.Type.DEFAULT)
+			KEY_1: _change_demographic(Creatures.Type.SQUIRREL)
+	elif Input.is_key_pressed(KEY_SHIFT):
 		match Utils.key_scancode(event):
 			KEY_Q: _creature_animations.play_idle_animation("idle-look-over-shoulder0")
 			KEY_W: _creature_animations.play_idle_animation("idle-look-over-shoulder1")
@@ -42,7 +51,7 @@ func _input(event: InputEvent) -> void:
 			KEY_SLASH: print(to_json($Creature.dna))
 	else:
 		match Utils.key_scancode(event):
-			KEY_BRACKETLEFT, KEY_BRACKETRIGHT: $Creature.dna = DnaUtils.random_dna()
+			KEY_BRACKETLEFT, KEY_BRACKETRIGHT: $Creature.dna = DnaUtils.random_dna(_creature_type)
 			
 			KEY_1: $Creature.play_mood(Creatures.Mood.DEFAULT)
 			KEY_Q: $Creature.play_mood(Creatures.Mood.AWKWARD0)
@@ -75,3 +84,8 @@ func _input(event: InputEvent) -> void:
 			KEY_COMMA: $Creature.play_mood(Creatures.Mood.YES1)
 			KEY_SPACE: $Creature.feed(Foods.FoodType.BROWN_0)
 			KEY_EQUAL: $Creature.set_fatness(3)
+
+
+func _change_demographic(demographic_type: int) -> void:
+	_creature_type = demographic_type
+	$Creature.dna = DnaUtils.random_dna(_creature_type)

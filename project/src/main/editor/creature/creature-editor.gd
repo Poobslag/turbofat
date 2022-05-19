@@ -22,9 +22,6 @@ var _next_line_color_index := 0
 ## value: values which have been randomly chosen by the 'tweak dna' button
 var _recent_tweaked_allele_values := {}
 
-## generates random names
-var _name_generator: NameGenerator
-
 ## the creature the player is editing
 onready var center_creature: Creature = $World/Creatures/CenterCreature
 
@@ -43,8 +40,6 @@ onready var _mutate_ui := $Ui/TabContainer/Mutate
 onready var _reroll_ui := $Ui/Reroll
 
 func _ready() -> void:
-	_name_generator = NameGenerator.new()
-	_name_generator.load_american_animals()
 	
 	for allele in DnaUtils.BODY_PART_ALLELES:
 		_recent_tweaked_allele_values[allele] = []
@@ -107,7 +102,7 @@ func _mutate_creature(creature: Creature) -> void:
 func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary, property: String) -> void:
 	match property:
 		"name":
-			creature.rename(_name_generator.generate_name())
+			creature.rename(NameGeneratorLibrary.generate_name())
 		"fatness":
 			var new_fatnesses := Global.FATNESSES.duplicate()
 			while new_fatnesses.has(creature.get_visual_fatness()):
@@ -242,7 +237,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	
 	match allele:
 		"name":
-			creature.rename(_name_generator.generate_name())
+			creature.rename(NameGeneratorLibrary.generate_name())
 		"fatness":
 			var new_fatnesses := Global.FATNESSES.duplicate()
 			while new_fatnesses.has(creature.get_visual_fatness()):
