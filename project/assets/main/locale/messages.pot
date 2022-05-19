@@ -5517,7 +5517,7 @@ msgstr ""
 #: project/src/main/ui/chat/NarrationFrame.tscn:46
 msgid ""
 "Most of the Turbo Fat locations gradually developed a loyal following of "
-"hungry customers, except for the Merrymellow Marsh location where "
+"hungry customers, except for Merrymellow Marsh where "
 "business was unusually slow. Fat Sensei and Spira were on their way to "
 "get to the bottom of this mystery."
 msgstr ""
