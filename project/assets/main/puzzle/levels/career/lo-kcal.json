@@ -1,0 +1,39 @@
+{
+  "version": "2cb4",
+  "start_speed": "0",
+  "title": "Lo kCal",
+  "description": "Can you scrape together ¥100 on veggies alone?",
+  "finish_condition": {
+    "type": "score",
+    "value": "100"
+  },
+  "rank": [
+    "box_factor 0.00",
+    "hide_boxes_rank",
+    "master_pickup_score 20"
+  ],
+  "other": [
+    "tile_set veggie"
+  ],
+  "piece_types": [
+    "piece_i",
+    "piece_j",
+    "piece_l",
+    "piece_o",
+    "piece_s",
+    "piece_t",
+    "piece_z"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 11",
+        "pickup": "1"
+      }
+    ]
+  }
+}

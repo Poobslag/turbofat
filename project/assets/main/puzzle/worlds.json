@@ -332,6 +332,51 @@
       ]
     },
     {
+      "id": "lemony_thickets",
+      "name": "Lemony Thickets",
+      "levels": [
+        {
+          "id": "career/200_race"
+        },
+        {
+          "id": "career/bon_appetit"
+        },
+        {
+          "id": "career/chocolate_star"
+        },
+        {
+          "id": "career/cookies"
+        },
+        {
+          "id": "career/donuts"
+        },
+        {
+          "id": "career/fat_stacks"
+        },
+        {
+          "id": "career/just_bread"
+        },
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/just_fruit"
+        },
+        {
+          "id": "career/lo_kcal"
+        },
+        {
+          "id": "career/square_curse"
+        },
+        {
+          "id": "career/tulip"
+        },
+        {
+          "id": "career/wedge"
+        }
+      ]
+    },
+    {
       "id": "experiment",
       "name": "Experimental Levels",
       "levels": [
@@ -414,7 +459,7 @@
           "id": "career/its_tee_time"
         },
         {
-          "id": "career/just_cream"
+          "id": "career/extra_cream"
         },
         {
           "id": "career/leftovers"

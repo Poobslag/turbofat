@@ -1,101 +1,37 @@
 {
   "version": "2cb4",
-  "start_speed": "5",
+  "start_speed": "0",
   "title": "Just Cream",
-  "description": "Too much of a good thing is still a good thing!",
+  "description": "What are these pieces!? LOLOLOL",
   "finish_condition": {
-    "type": "lines",
-    "value": "35"
+    "type": "time_over",
+    "value": "50"
   },
+  "rank": [
+    "box_factor 0.76",
+    "master_pickup_score_per_line 3.84",
+    "show_pickups_rank"
+  ],
   "piece_types": [
     "no_suppress_o_piece",
     "no_suppress_repeat_piece",
-    "piece_o",
-    "piece_o",
     "piece_o",
     "piece_o",
     "piece_v",
     "piece_v",
     "piece_v"
   ],
-  "rank": [
-    "box_factor 0.61",
-    "combo_factor 0.56",
-    "master_pickup_score 140",
-    "preplaced_pieces 2"
+  "blocks_during": [
+    "pickup_type float_regen"
   ],
   "tiles": {
     "start": [
       {
-        "pos": "4 16",
-        "pickup": "3"
-      },
-      {
-        "pos": "5 16",
-        "tile": "2 8 2"
-      },
-      {
-        "pos": "6 16",
-        "tile": "2 16 0"
-      },
-      {
-        "pos": "7 16",
-        "pickup": "3"
-      },
-      {
-        "pos": "0 17",
-        "tile": "1 8 3"
-      },
-      {
-        "pos": "1 17",
-        "tile": "1 12 3"
-      },
-      {
-        "pos": "2 17",
-        "tile": "1 4 3"
-      },
-      {
-        "pos": "3 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "4 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "5 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "6 17",
-        "tile": "2 10 1"
-      },
-      {
-        "pos": "7 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "8 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "0 18",
-        "tile": "1 10 3"
-      },
-      {
         "pos": "1 18",
-        "tile": "1 14 3"
-      },
-      {
-        "pos": "2 18",
-        "tile": "1 6 3"
+        "pickup": "3"
       },
       {
         "pos": "3 18",
-        "tile": "2 4 3"
-      },
-      {
-        "pos": "4 18",
         "pickup": "3"
       },
       {
@@ -103,47 +39,23 @@
         "pickup": "3"
       },
       {
-        "pos": "6 18",
-        "tile": "2 14 2"
-      },
-      {
         "pos": "7 18",
         "pickup": "3"
       },
       {
-        "pos": "8 18",
+        "pos": "0 19",
         "pickup": "3"
       },
       {
-        "pos": "0 19",
-        "tile": "1 9 3"
-      },
-      {
-        "pos": "1 19",
-        "tile": "1 13 3"
-      },
-      {
         "pos": "2 19",
-        "tile": "1 5 3"
-      },
-      {
-        "pos": "3 19",
-        "tile": "2 13 1"
+        "pickup": "3"
       },
       {
         "pos": "4 19",
-        "tile": "2 16 1"
-      },
-      {
-        "pos": "5 19",
         "pickup": "3"
       },
       {
         "pos": "6 19",
-        "tile": "2 0 0"
-      },
-      {
-        "pos": "7 19",
         "pickup": "3"
       },
       {

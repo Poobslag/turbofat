@@ -346,7 +346,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 					tmp_lines += CurrentLevel.settings.rank.preplaced_pieces / 2.0
 			else:
 				# for modes like 'marathon' where you aim for a number of lines, rank scales with endurance
-				tmp_lines = target_lines * pow(RDF_ENDURANCE, tmp_overall_rank) + leftover_lines
+				tmp_lines = target_lines * pow(RDF_ENDURANCE, tmp_overall_rank)
 			
 			# adjust the expected leftover score for this rank
 			if finish_condition.type == Milestone.TIME_OVER:

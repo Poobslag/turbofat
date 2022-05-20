@@ -19,19 +19,24 @@ onready var _open_input := $Input/Open
 onready var _grade_input := $Input/PlayerGrade
 onready var _text_edit := $Input/Output
 onready var _demo_save := $DemoSave
+onready var _calculate_button := $Input/CalculateButton
 
 func _ready() -> void:
 	_load_demo_data()
+	_refresh_level()
+
+
+func _refresh_level() -> void:
+	# load the level settings
+	var level_settings := LevelSettings.new()
+	level_settings.load_from_resource(_open_input.value)
+	CurrentLevel.start_level(level_settings)
+	_calculate_button.disabled = not PlayerData.level_history.has_result(CurrentLevel.level_id)
 
 
 ## Calculates and outputs the necessary level metadata for the player to attain their expected grade.
 func _calculate() -> void:
 	_text_edit.text = ""
-	
-	# load the level settings
-	var level_settings := LevelSettings.new()
-	level_settings.load_from_resource(_open_input.value)
-	CurrentLevel.start_level(level_settings)
 	
 	# peform the calculations
 	_calculate_extra_seconds_per_piece()
@@ -153,6 +158,8 @@ func _on_OpenFileDialog_file_selected(path: String) -> void:
 	else:
 		_error_dialog.dialog_text = "%s doesn't seem like the path to a level file." % [path]
 		_error_dialog.popup_centered()
+	
+	_refresh_level()
 
 
 func _on_OpenButton_pressed() -> void:

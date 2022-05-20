@@ -1,0 +1,10 @@
+{
+  "version": "2cb4",
+  "start_speed": "0",
+  "title": "200¥ Race",
+  "description": "Earn 200¥ as fast as possible. No tricks!",
+  "finish_condition": {
+    "type": "score",
+    "value": "200"
+  }
+}

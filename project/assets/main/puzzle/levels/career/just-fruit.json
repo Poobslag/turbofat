@@ -1,0 +1,22 @@
+{
+  "version": "2cb4",
+  "start_speed": "0",
+  "title": "Just Fruit",
+  "description": "Do we really need a recipe?",
+  "finish_condition": {
+    "type": "score",
+    "value": "100"
+  },
+  "rank": [
+    "box_factor 1.31"
+  ],
+  "piece_types": [
+    "piece_p",
+    "piece_p",
+    "piece_t",
+    "piece_t",
+    "piece_j",
+    "piece_j",
+    "piece_j"
+  ],
+}

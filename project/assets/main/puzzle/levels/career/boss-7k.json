@@ -9,7 +9,7 @@
   "start_speed": "1",
   "finish_condition": {
     "type": "score",
-    "value": "200"
+    "value": "300"
   },
   "rank": [
     "success_bonus 2"

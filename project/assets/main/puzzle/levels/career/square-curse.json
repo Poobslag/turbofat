@@ -1,0 +1,27 @@
+{
+  "version": "2cb4",
+  "start_speed": "0",
+  "title": "Square Curse",
+  "description": "...And they don't stop coming!",
+  "finish_condition": {
+    "type": "lines",
+    "value": "12"
+  },
+  "rank": [
+    "box_factor 0.45"
+  ],
+  "piece_types": [
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o"
+  ]
+}
