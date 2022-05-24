@@ -354,3 +354,7 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 	# raise all star seeds at or above the specified row
 	_shift_rows(y, Vector2.UP)
 	_add_star_seeds_for_boxes(Rect2(0, y, PuzzleTileMap.COL_COUNT, 1))
+
+
+func _on_Playfield_line_filled(y: int, _tiles_key: String, _src_y: int) -> void:
+	_add_star_seeds_for_boxes(Rect2(0, y, PuzzleTileMap.COL_COUNT, 1))

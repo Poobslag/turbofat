@@ -45,4 +45,4 @@ func _init(init_id: String, init_gravity: int, init_appearance_delay: int, init_
 
 ## number of frames to spend clearing the entire playfield during after a top out
 func playfield_clear_delay() -> int:
-	return PieceSpeeds.current_speed.appearance_delay + PieceSpeeds.current_speed.lock_delay
+	return appearance_delay + lock_delay
