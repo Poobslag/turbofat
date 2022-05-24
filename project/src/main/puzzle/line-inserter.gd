@@ -36,9 +36,11 @@ func _ready() -> void:
 ## 	'dest_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
 ## 		bottom of the puzzle tilemap.
 func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
+	if dest_y >= PuzzleTileMap.FIRST_VISIBLE_ROW:
+		_line_insert_sound.play()
+	
 	# shift playfield up
 	_tile_map.insert_row(dest_y)
-	_line_insert_sound.play()
 	
 	var src_y := -1
 	
