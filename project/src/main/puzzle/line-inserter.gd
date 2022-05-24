@@ -1,5 +1,9 @@
+class_name LineInserter
 extends Node
 ## Inserts lines in a puzzle tilemap.
+##
+## Levels which insert lines usually insert them at the bottom of the playfield, but lines can be inserted anywhere.
+## Inserting a line shifts other lines upward to make room.
 ##
 ## Most levels don't insert lines, but this script handles it for the levels that do.
 
@@ -73,12 +77,12 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 func _tiles_src_y(tiles_key: String) -> int:
 	var src_y := -1
 	match CurrentLevel.settings.blocks_during.shuffle_inserted_lines:
-		BlocksDuringRules.ShuffleInsertedLinesType.NONE, BlocksDuringRules.ShuffleInsertedLinesType.SLICE:
+		BlocksDuringRules.ShuffleLinesType.NONE, BlocksDuringRules.ShuffleLinesType.SLICE:
 			src_y = _row_index_by_tiles_key.get(tiles_key, 0)
 			# increment the row index to the next non-empty row
 			_row_index_by_tiles_key[tiles_key] = (src_y + 1) % (_row_count_by_tiles_key.get(tiles_key, 1))
 		
-		BlocksDuringRules.ShuffleInsertedLinesType.BAG:
+		BlocksDuringRules.ShuffleLinesType.BAG:
 			# obtain the row bag
 			var row_bag: Array = _row_bag_by_tiles_key.get(tiles_key, [])
 			if not row_bag:
@@ -106,7 +110,7 @@ func _reset() -> void:
 		_row_count_by_tiles_key[tiles_key] = max_y + 1
 	
 	# initialize _row_index_by_tiles_key
-	if CurrentLevel.settings.blocks_during.shuffle_inserted_lines == BlocksDuringRules.ShuffleInsertedLinesType.SLICE:
+	if CurrentLevel.settings.blocks_during.shuffle_inserted_lines == BlocksDuringRules.ShuffleLinesType.SLICE:
 		for tiles_key in CurrentLevel.settings.tiles.bunches:
 			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
 

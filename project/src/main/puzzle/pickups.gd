@@ -318,3 +318,14 @@ func _on_PickupSfxTimer_timeout() -> void:
 ## When the player pauses, we hide the playfield so they can't cheat.
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
+
+
+func _on_Playfield_line_filled(y: int, tiles_key: String, src_y: int) -> void:
+	# fill in the new gaps with pickups
+	var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
+	for x in range(PuzzleTileMap.COL_COUNT):
+		var src_pos := Vector2(x, src_y)
+		if not block_bunch.pickups.has(src_pos):
+			continue
+		var box_type: int = block_bunch.pickups[src_pos]
+		set_pickup(Vector2(x, y), box_type)

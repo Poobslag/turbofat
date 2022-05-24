@@ -24,6 +24,9 @@ signal line_deleted(y)
 ## emitted when lines are inserted. some levels insert lines, but most do not
 signal line_inserted(y, tiles_key, src_y)
 
+## emitted when lines are filled in from the top. some levels fill in lines, but most do not
+signal line_filled(y, tiles_key, src_y)
+
 ## emitted when a food item should be spawned because the player collects a pickup
 signal food_spawned(cell, remaining_food, food_type)
 
@@ -192,6 +195,10 @@ func _on_GoopGlobs_hit_playfield(glob: Node) -> void:
 func _on_Pauser_paused_changed(value: bool) -> void:
 	$TileMapClip.visible = not value
 	$ShadowTexture.visible = not value
+
+
+func _on_LineFiller_line_filled(y: int, tiles_key: String, src_y: int) -> void:
+	emit_signal("line_filled", y, tiles_key, src_y)
 
 
 func _on_LineInserter_line_inserted(y: int, tiles_key: String, src_y: int) -> void:

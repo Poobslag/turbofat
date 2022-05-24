@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/main/puzzle/Pickup.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/puzzle/pickups.gd" type="Script" id=27]
 [ext_resource path="res://assets/main/puzzle/pickup.wav" type="AudioStream" id=28]
+[ext_resource path="res://src/main/puzzle/line-filler.gd" type="Script" id=29]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
@@ -113,9 +114,6 @@ viewport_path = NodePath("TileMapClip/TileMap/Viewport")
 margin_right = 324.0
 margin_bottom = 544.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BgGlobViewports" parent="." instance=ExtResource( 19 )]
 margin_right = 324.0
@@ -367,6 +365,29 @@ bus = "Sound Bus"
 [node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
 
+[node name="LineFiller" type="Node" parent="."]
+script = ExtResource( 29 )
+playfield_path = NodePath("..")
+
+[node name="LineFillSound1" type="AudioStreamPlayer" parent="LineFiller"]
+stream = ExtResource( 6 )
+volume_db = -12.0
+bus = "Sound Bus"
+
+[node name="LineFillSound2" type="AudioStreamPlayer" parent="LineFiller"]
+stream = ExtResource( 6 )
+volume_db = -15.0
+bus = "Sound Bus"
+
+[node name="LineFillSound3" type="AudioStreamPlayer" parent="LineFiller"]
+stream = ExtResource( 6 )
+volume_db = -17.0
+bus = "Sound Bus"
+
+[node name="LineFillSfxResetTimer" type="Timer" parent="LineFiller"]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
@@ -379,17 +400,22 @@ bus = "Sound Bus"
 [connection signal="line_deleted" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_deleted"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="line_erased" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_erased"]
+[connection signal="line_filled" from="." to="LineClearer" method="_on_Playfield_line_filled"]
+[connection signal="line_filled" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_filled"]
 [connection signal="line_inserted" from="." to="LineClearer" method="_on_Playfield_line_inserted"]
 [connection signal="line_inserted" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_inserted"]
 [connection signal="after_boxes_built" from="BoxBuilder" to="." method="_on_BoxBuilder_after_boxes_built"]
 [connection signal="box_built" from="BoxBuilder" to="." method="_on_BoxBuilder_box_built"]
 [connection signal="box_built" from="BoxBuilder" to="LineClearer" method="_on_BoxBuilder_box_built"]
 [connection signal="after_lines_deleted" from="LineClearer" to="." method="_on_LineClearer_after_lines_deleted"]
+[connection signal="after_lines_deleted" from="LineClearer" to="LineFiller" method="_on_LineClearer_after_lines_deleted"]
 [connection signal="before_line_cleared" from="LineClearer" to="." method="_on_LineClearer_before_line_cleared"]
 [connection signal="line_cleared" from="LineClearer" to="." method="_on_LineClearer_line_cleared"]
 [connection signal="line_clears_scheduled" from="LineClearer" to="." method="_on_LineClearer_line_clears_scheduled"]
 [connection signal="line_deleted" from="LineClearer" to="." method="_on_LineClearer_line_deleted"]
 [connection signal="line_erased" from="LineClearer" to="." method="_on_LineClearer_line_erased"]
+[connection signal="line_filled" from="LineFiller" to="." method="_on_LineFiller_line_filled"]
+[connection signal="timeout" from="LineFiller/LineFillSfxResetTimer" to="LineFiller" method="_on_LineFillSfxResetTimer_timeout"]
 [connection signal="line_inserted" from="LineInserter" to="." method="_on_LineInserter_line_inserted"]
 [connection signal="food_spawned" from="TileMapClip/Pickups" to="." method="_on_Pickups_food_spawned"]
 [connection signal="timeout" from="TileMapClip/Pickups/CollectSfxTimer" to="TileMapClip/Pickups" method="_on_PickupSfxTimer_timeout"]

@@ -774,6 +774,7 @@ script = ExtResource( 19 )
 [connection signal="line_cleared" from="Fg/Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_deleted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_deleted"]
 [connection signal="line_erased" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_erased"]
+[connection signal="line_filled" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_filled"]
 [connection signal="line_inserted" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_line_inserted"]
 [connection signal="line_inserted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_inserted"]
 [connection signal="customer_changed" from="Fg/RestaurantView" to="Fg/FoodItems" method="_on_RestaurantView_customer_changed"]
