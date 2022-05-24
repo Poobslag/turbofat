@@ -46,11 +46,12 @@ func move_piece(piece: ActivePiece) -> bool:
 	var old_piece_pos := piece.pos
 	var old_piece_orientation := piece.orientation
 	
+	# Squish first to avoid bugs when squishing/rotating/moving in the same frame.
+	squisher.attempt_squish(piece)
 	if _states.get_state() == _states.move_piece:
 		rotator.apply_rotate_input(piece)
 		mover.apply_move_input(piece)
 		dropper.apply_hard_drop_input(piece)
-	squisher.attempt_squish(piece)
 	dropper.apply_gravity(piece)
 	
 	var result := false

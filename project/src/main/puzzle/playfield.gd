@@ -76,6 +76,14 @@ func add_misc_delay_frames(frames: int) -> void:
 	_remaining_misc_delay_frames += frames
 
 
+## Schedules the specified lines to be cleared later.
+##
+## Parameters:
+## 	'lines_to_clear': Row indexes to clear from the puzzle tilemap
+##
+## 	'line_clear_delay': Number of frames to spend erasing and deleting lines
+##
+## 	'award_points': 'true' if these line clears should score points
 func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_points: bool = true) -> void:
 	line_clearer.schedule_line_clears(lines_to_clear, line_clear_delay, award_points)
 
