@@ -116,6 +116,13 @@ func schedule_full_row_line_clears() -> void:
 
 
 ## Schedules the specified lines to be cleared later.
+##
+## Parameters:
+## 	'lines_to_clear': Row indexes to clear from the puzzle tilemap
+##
+## 	'line_clear_delay': Number of frames to spend erasing and deleting lines
+##
+## 	'award_points': 'true' if these line clears should score points
 func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_points: bool = true) -> void:
 	var unscheduled_clears := []
 	var unscheduled_erases := []
@@ -350,4 +357,9 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 		if i <= y:
 			_rows_to_preserve_at_end.erase(i)
 			_rows_to_preserve_at_end[i-1] = true
+	_rows_to_preserve_at_end[y] = true
+
+
+## When lines are filled, we mark them so they're preserved at the end.
+func _on_Playfield_line_filled(y: int, _tiles_key: String, _src_y: int) -> void:
 	_rows_to_preserve_at_end[y] = true
