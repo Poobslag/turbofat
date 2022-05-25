@@ -23,9 +23,6 @@ margin_right = 512.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 PuzzleScene = ExtResource( 17 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -171,6 +168,7 @@ __meta__ = {
 }
 playfield_editor_path = NodePath("../../TabContainer/Playfield")
 properties_editor_path = NodePath("../../TabContainer/Properties")
+test_button_path = NodePath("../Test")
 
 [node name="Settings" type="Button" parent="HBoxContainer/SideButtons"]
 margin_top = 534.0
