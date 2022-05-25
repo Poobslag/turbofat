@@ -12,6 +12,9 @@ signal line_filled(y, tiles_key, src_y)
 
 export (NodePath) var playfield_path: NodePath
 
+## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
+var _topping_out := false
+
 ## key: a tiles key for tiles referenced by level rules
 ## value: the next row to fill from the referenced tiles
 var _row_index_by_tiles_key := {}
@@ -24,6 +27,15 @@ var _row_bag_by_tiles_key := {}
 ## value: the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
+## List of frame timings for scheduled line fills.
+var _lines_being_filled := []
+
+## Remaining frame count for scheduled line fills.
+var _remaining_line_fill_frames := 0
+
+## The next line being filled for scheduled line fills.
+var _filled_line_index := 0
+
 ## The index of the next line fill sound to play.
 var _line_fill_sfx_index := 0
 
@@ -34,7 +46,39 @@ onready var _line_fill_sfx_reset_timer := $LineFillSfxResetTimer
 func _ready() -> void:
 	set_physics_process(false)
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+
+
+func _physics_process(_delta: float) -> void:
+	# fill lines from lines_being_filled
+	while _lines_being_filled and _remaining_line_fill_frames <= _lines_being_filled[0]:
+		_fill_line("start", _filled_line_index)
+		_lines_being_filled.pop_front()
+		_filled_line_index -= 1
+
+	_remaining_line_fill_frames -= 1
+	if _remaining_line_fill_frames <= 0:
+		set_physics_process(false)
+
+
+## Schedules the specified lines to be filled later.
+func _schedule_playfield_refill() -> void:
+	set_physics_process(true)
+	
+	_reset()
+	
+	_lines_being_filled.clear()
+	_remaining_line_fill_frames = max(1, PieceSpeeds.current_speed.playfield_refill_delay())
+	_filled_line_index = PuzzleTileMap.ROW_COUNT - 1
+	
+	var visible_row_count := clamp(_row_count_by_tiles_key.get("start", 0),
+			0, PuzzleTileMap.ROW_COUNT - PuzzleTileMap.FIRST_VISIBLE_ROW)
+	var line_fill_timing_window := PieceSpeeds.current_speed.playfield_refill_delay()
+	var per_line_fill_delay := floor(line_fill_timing_window / max(1, visible_row_count))
+	
+	for i in range(_row_count_by_tiles_key.get("start", 0)):
+		_lines_being_filled.append(max(1, (visible_row_count - i) * per_line_fill_delay))
 
 
 ## Immediately fills all empty lines on the playfield.
@@ -130,19 +174,31 @@ func _reset() -> void:
 	
 	# initialize _row_count_by_tiles_key
 	for tiles_key in CurrentLevel.settings.tiles.bunches:
-		var max_y := 0
-		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
-			max_y = int(max(max_y, cell.y))
-		_row_count_by_tiles_key[tiles_key] = max_y + 1
+		if tiles_key == "start":
+			var min_y := PuzzleTileMap.ROW_COUNT - 1
+			for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
+				min_y = int(min(min_y, cell.y))
+			_row_count_by_tiles_key[tiles_key] = PuzzleTileMap.ROW_COUNT - min_y
+		else:
+			var max_y := 0
+			for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
+				max_y = int(max(max_y, cell.y))
+			_row_count_by_tiles_key[tiles_key] = max_y + 1
 	
 	# initialize _row_index_by_tiles_key
 	for tiles_key in CurrentLevel.settings.tiles.bunches:
+		if tiles_key == "start":
+			# 'start' rows are always filled from bottom to top
+			_row_index_by_tiles_key[tiles_key] = PuzzleTileMap.ROW_COUNT - 1
 		if CurrentLevel.settings.blocks_during.shuffle_filled_lines == BlocksDuringRules.ShuffleLinesType.SLICE:
 			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
 
 	# initialize _row_index_by_tiles_key
 	if CurrentLevel.settings.blocks_during.shuffle_filled_lines == BlocksDuringRules.ShuffleLinesType.SLICE:
 		for tiles_key in CurrentLevel.settings.tiles.bunches:
+			if tiles_key == "start":
+				# don't shuffle 'start' rows; those are only filled when refreshing a level
+				continue
 			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
 
 
@@ -152,16 +208,28 @@ func _fill_lines_tiles_key() -> String:
 
 
 func _on_PuzzleState_game_prepared() -> void:
+	_topping_out = false
 	_reset()
 
 
 func _on_Level_settings_changed() -> void:
+	_topping_out = false
 	_reset()
 
 
 func _on_LineClearer_after_lines_deleted() -> void:
-	# fill empty lines after a line clear
-	_fill_empty_lines()
+	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
+		_topping_out = false
+		
+		# schedule line fills after a top out
+		_schedule_playfield_refill()
+	else:
+		# fill empty lines after a line clear
+		_fill_empty_lines()
+
+
+func _on_PuzzleState_topped_out() -> void:
+	_topping_out = true
 
 
 func _on_LineFillSfxResetTimer_timeout() -> void:

@@ -31,6 +31,9 @@ var line_clear_type: int = LineClearType.DEFAULT
 ## whether pickups move with the playfield blocks
 var pickup_type: int = PickupType.DEFAULT
 
+## if true, the entire playfield is refreshed when the player tops out
+var refresh_on_top_out := false
+
 ## whether inserted rows should start from a random row in the source tiles instead of starting from the top
 var shuffle_inserted_lines: int = ShuffleLinesType.NONE
 
@@ -42,11 +45,12 @@ var _rule_parser: RuleParser
 func _init() -> void:
 	_rule_parser = RuleParser.new(self)
 	_rule_parser.add_bool("clear_on_top_out")
+	_rule_parser.add_string("fill_lines")
 	_rule_parser.add_enum("line_clear_type", LineClearType)
 	_rule_parser.add_enum("pickup_type", PickupType)
+	_rule_parser.add_bool("refresh_on_top_out")
 	_rule_parser.add_enum("shuffle_inserted_lines", ShuffleLinesType) \
 			.implied(ShuffleLinesType.BAG)
-	_rule_parser.add_string("fill_lines")
 	_rule_parser.add_enum("shuffle_filled_lines", ShuffleLinesType) \
 			.implied(ShuffleLinesType.BAG)
 
