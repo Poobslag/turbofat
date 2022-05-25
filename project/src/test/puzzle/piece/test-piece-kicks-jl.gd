@@ -1,7 +1,7 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
 ## Tests the j/l piece's kick behavior.
 
-func test_j_lwallkick_cw() -> void:
+func test_j_lwallkick_r2() -> void:
 	from_grid = [
 		"    ",
 		"jj  ",
@@ -19,7 +19,7 @@ func test_j_lwallkick_cw() -> void:
 	assert_kick()
 
 
-func test_j_lwallkick_ccw() -> void:
+func test_j_lwallkick_r0() -> void:
 	from_grid = [
 		"    ",
 		"jj  ",
@@ -37,25 +37,7 @@ func test_j_lwallkick_ccw() -> void:
 	assert_kick()
 
 
-func test_l_lwallkick_cw() -> void:
-	from_grid = [
-		"    ",
-		"l   ",
-		"l   ",
-		"ll  ",
-		"    ",
-	]
-	to_grid = [
-		"    ",
-		"    ",
-		"lll ",
-		"l   ",
-		"    ",
-	]
-	assert_kick()
-
-
-func test_l_lwallkick_ccw() -> void:
+func test_l_lwallkick_r0() -> void:
 	from_grid = [
 		"    ",
 		"l   ",
@@ -73,8 +55,25 @@ func test_l_lwallkick_ccw() -> void:
 	assert_kick()
 
 
+func test_l_lwallkick_r2() -> void:
+	from_grid = [
+		"    ",
+		"l   ",
+		"l   ",
+		"ll  ",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		"    ",
+		"lll ",
+		"l   ",
+		"    ",
+	]
+	assert_kick()
 
-func test_j_rwallkick_cw() -> void:
+
+func test_j_rwallkick_l0() -> void:
 	from_grid = [
 		"    ",
 		"   j",
@@ -92,7 +91,7 @@ func test_j_rwallkick_cw() -> void:
 	assert_kick()
 
 
-func test_j_rwallkick_ccw() -> void:
+func test_j_rwallkick_l2() -> void:
 	from_grid = [
 		"    ",
 		"   j",
@@ -110,7 +109,7 @@ func test_j_rwallkick_ccw() -> void:
 	assert_kick()
 
 
-func test_l_rwallkick_cw() -> void:
+func test_l_rwallkick_l0() -> void:
 	from_grid = [
 		"    ",
 		"  ll",
@@ -128,7 +127,7 @@ func test_l_rwallkick_cw() -> void:
 	assert_kick()
 
 
-func test_l_rwallkick_ccw() -> void:
+func test_l_rwallkick_l2() -> void:
 	from_grid = [
 		"    ",
 		"  ll",
@@ -146,7 +145,7 @@ func test_l_rwallkick_ccw() -> void:
 	assert_kick()
 
 
-func test_j_floorkick_cw() -> void:
+func test_j_floorkick_0r() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -162,7 +161,7 @@ func test_j_floorkick_cw() -> void:
 	assert_kick()
 
 
-func test_j_floorkick_ccw() -> void:
+func test_j_floorkick_0l() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -178,7 +177,7 @@ func test_j_floorkick_ccw() -> void:
 	assert_kick()
 
 
-func test_l_floorkick_cw() -> void:
+func test_l_floorkick_0r() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -194,7 +193,7 @@ func test_l_floorkick_cw() -> void:
 	assert_kick()
 
 
-func test_l_floorkick_ccw() -> void:
+func test_l_floorkick_0l() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -211,7 +210,7 @@ func test_l_floorkick_ccw() -> void:
 
 
 ## A 'vee kick' is when a J/L piece pivots like a V piece to hook its long end into a gap
-func test_j_vee_kick0() -> void:
+func test_j_vee_kick_0l() -> void:
 	from_grid = [
 		"   ::",
 		"   : ",
@@ -228,7 +227,7 @@ func test_j_vee_kick0() -> void:
 
 
 ## It would be nice if this kick worked, but it conflicts with the wall kicks and snack kicks.
-func test_j_vee_kick0_failed() -> void:
+func test_j_vee_kick_0l_failed() -> void:
 	from_grid = [
 		"   ::",
 		"   : ",
@@ -246,7 +245,7 @@ func test_j_vee_kick0_failed() -> void:
 	assert_kick()
 
 
-func test_j_vee_kick1() -> void:
+func test_j_vee_kick_l2() -> void:
 	from_grid = [
 		"     ",
 		"  j  ",
@@ -262,7 +261,7 @@ func test_j_vee_kick1() -> void:
 	assert_kick()
 
 
-func test_j_vee_kick2() -> void:
+func test_j_vee_kick_2r() -> void:
 	from_grid = [
 		":    ",
 		"jjj  ",
@@ -278,7 +277,7 @@ func test_j_vee_kick2() -> void:
 	assert_kick()
 
 
-func test_j_vee_kick3() -> void:
+func test_j_vee_kick_r0() -> void:
 	from_grid = [
 		"     ",
 		"  jj ",
@@ -294,7 +293,7 @@ func test_j_vee_kick3() -> void:
 	assert_kick()
 
 
-func test_l_vee_kick_cw0() -> void:
+func test_l_vee_kick_0r() -> void:
 	from_grid = [
 		"::   ",
 		" :   ",
@@ -311,7 +310,7 @@ func test_l_vee_kick_cw0() -> void:
 
 
 ## It would be nice if this kick worked, but it conflicts with the wall kicks and snack kicks.
-func test_l_vee_kick_cw0_failed() -> void:
+func test_l_vee_kick_0r_failed() -> void:
 	from_grid = [
 		"::   ",
 		" :   ",
@@ -329,7 +328,7 @@ func test_l_vee_kick_cw0_failed() -> void:
 	assert_kick()
 
 
-func test_l_vee_kick1() -> void:
+func test_l_vee_kick_r2() -> void:
 	from_grid = [
 		"     ",
 		"  l  ",
@@ -345,7 +344,7 @@ func test_l_vee_kick1() -> void:
 	assert_kick()
 
 
-func test_l_vee_kick2() -> void:
+func test_l_vee_kick_2l() -> void:
 	from_grid = [
 		"    :",
 		"  lll",
@@ -361,7 +360,7 @@ func test_l_vee_kick2() -> void:
 	assert_kick()
 
 
-func test_l_vee_kick3() -> void:
+func test_l_vee_kick_l0() -> void:
 	from_grid = [
 		"     ",
 		" ll  ",
@@ -378,7 +377,7 @@ func test_l_vee_kick3() -> void:
 
 
 ## A 'gold kick' is when a J/L piece hooks its short end into a small gap
-func test_j_gold_kick0() -> void:
+func test_j_gold_kick_2l() -> void:
 	from_grid = [
 		"  :  ",
 		"     ",
@@ -396,7 +395,7 @@ func test_j_gold_kick0() -> void:
 	assert_kick()
 
 
-func test_j_gold_kick1() -> void:
+func test_j_gold_kick_l0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -414,7 +413,7 @@ func test_j_gold_kick1() -> void:
 	assert_kick()
 
 
-func test_j_gold_kick2() -> void:
+func test_j_gold_kick_0r() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -432,7 +431,7 @@ func test_j_gold_kick2() -> void:
 	assert_kick()
 
 
-func test_j_gold_kick3() -> void:
+func test_j_gold_kick_r2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -450,7 +449,7 @@ func test_j_gold_kick3() -> void:
 	assert_kick()
 
 
-func test_l_gold_kick0() -> void:
+func test_l_gold_kick_2r() -> void:
 	from_grid = [
 		"  :  ",
 		"     ",
@@ -468,7 +467,7 @@ func test_l_gold_kick0() -> void:
 	assert_kick()
 
 
-func test_l_gold_kick1() -> void:
+func test_l_gold_kick_r0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -486,7 +485,7 @@ func test_l_gold_kick1() -> void:
 	assert_kick()
 
 
-func test_l_gold_kick2() -> void:
+func test_l_gold_kick_0l() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -504,7 +503,7 @@ func test_l_gold_kick2() -> void:
 	assert_kick()
 
 
-func test_l_gold_kick3() -> void:
+func test_l_gold_kick_l2() -> void:
 	from_grid = [
 		"     ",
 		"::   ",
@@ -523,7 +522,7 @@ func test_l_gold_kick3() -> void:
 
 
 ## A 'golder kick' is when a J/L piece hooks its short end into a small gap from far away.
-func test_j_golder_kick() -> void:
+func test_j_golder_kick_2l() -> void:
 	from_grid = [
 		"     ",
 		"   ::",
@@ -543,7 +542,7 @@ func test_j_golder_kick() -> void:
 	assert_kick()
 
 
-func test_l_golder_kick() -> void:
+func test_l_golder_kick_2r() -> void:
 	from_grid = [
 		"     ",
 		"::   ",
@@ -810,7 +809,7 @@ func test_l_climb_l2_jlo() -> void:
 
 
 ## A 'hammer kick' is where the J piece pivots around its tip, like swinging a hammer.
-func test_j_hammer_kick0() -> void:
+func test_j_hammer_kick_r2() -> void:
 	from_grid = [
 		"    ",
 		"jj::",
@@ -828,7 +827,7 @@ func test_j_hammer_kick0() -> void:
 	assert_kick()
 
 
-func test_l_hammer_kick() -> void:
+func test_l_hammer_kick_l2() -> void:
 	from_grid = [
 		"    ",
 		"::ll",
@@ -847,7 +846,7 @@ func test_l_hammer_kick() -> void:
 
 
 ## A plant kick is when the j/l piece pivots around its hinge like a t block.
-func test_j_plant_kick0() -> void:
+func test_j_plant_kick_0r() -> void:
 	from_grid = [
 		":: ::",
 		"  j::",
@@ -865,7 +864,7 @@ func test_j_plant_kick0() -> void:
 	assert_kick()
 
 
-func test_j_plant_kick1() -> void:
+func test_j_plant_kick_2l() -> void:
 	from_grid = [
 		":: ::",
 		"   ::",
@@ -883,7 +882,7 @@ func test_j_plant_kick1() -> void:
 	assert_kick()
 
 
-func test_l_plant_kick0() -> void:
+func test_l_plant_kick_0l() -> void:
 	from_grid = [
 		":: ::",
 		"::l  ",
@@ -901,7 +900,7 @@ func test_l_plant_kick0() -> void:
 	assert_kick()
 
 
-func test_l_plant_kick1() -> void:
+func test_l_plant_kick_2r() -> void:
 	from_grid = [
 		":: ::",
 		"::   ",
@@ -919,8 +918,8 @@ func test_l_plant_kick1() -> void:
 	assert_kick()
 
 
-## A 'snack kick' is when a j piece wraps around a p piece to make a snack block.
-func test_j_snack_kick0() -> void:
+## A 'snack kick' is when a j/l piece's hinge slides one square towards its long end.
+func test_j_snack_kick_0r() -> void:
 	from_grid = [
 		"  :::",
 		" j:::",
@@ -938,25 +937,26 @@ func test_j_snack_kick0() -> void:
 	assert_kick()
 
 
-func test_j_snack_kick1() -> void:
+## It would be nice if this kick worked, but it conflicts with vee kicks.
+func test_j_snack_kick_0r_failed() -> void:
 	from_grid = [
-		"   :::",
-		"   :::",
-		" j   :",
-		" jjj::",
-		"  : ::",
+		"     ",
+		" j:::",
+		" jjj:",
+		"   ::",
+		":: ::",
 	]
 	to_grid = [
-		"   :::",
-		"   :::",
-		"   jj:",
-		"   j::",
-		"  :j::",
+		" jj  ",
+		" j:::",
+		" j  :",
+		"   ::",
+		":: ::",
 	]
 	assert_kick()
 
 
-func test_j_snack_kick2() -> void:
+func test_j_snack_kick_r2() -> void:
 	from_grid = [
 		":    ",
 		": jj ",
@@ -974,7 +974,81 @@ func test_j_snack_kick2() -> void:
 	assert_kick()
 
 
-func test_j_snack_kick3() -> void:
+func test_l_snack_kick_0l() -> void:
+	from_grid = [
+		":::  ",
+		":::l ",
+		":lll ",
+		"::   ",
+		":: ::",
+	]
+	to_grid = [
+		":::  ",
+		":::  ",
+		":ll  ",
+		"::l  ",
+		"::l::",
+	]
+	assert_kick()
+
+
+## It would be nice if this kick worked, but it conflicts with vee kicks.
+func test_l_snack_kick_0l_failed() -> void:
+	from_grid = [
+		"     ",
+		":::l ",
+		":lll ",
+		"::   ",
+		":: ::",
+	]
+	to_grid = [
+		"  ll ",
+		":::l ",
+		":  l ",
+		"::   ",
+		":: ::",
+	]
+	assert_kick()
+
+
+func test_l_snack_kick_l2() -> void:
+	from_grid = [
+		"    :",
+		" ll :",
+		"::l  ",
+		"::l::",
+		":::::",
+	]
+	to_grid = [
+		"    :",
+		"    :",
+		"::lll",
+		"::l::",
+		":::::",
+	]
+	assert_kick()
+
+
+func test_j_tip_kick_0r() -> void:
+	from_grid = [
+		"   :::",
+		"   :::",
+		" j   :",
+		" jjj::",
+		"  : ::",
+	]
+	to_grid = [
+		"   :::",
+		"   :::",
+		"   jj:",
+		"   j::",
+		"  :j::",
+	]
+	assert_kick()
+
+
+
+func test_j_tip_kick_r2() -> void:
 	from_grid = [
 		"     ",
 		":jj  ",
@@ -994,25 +1068,7 @@ func test_j_snack_kick3() -> void:
 	assert_kick()
 
 
-func test_l_snack_kick0() -> void:
-	from_grid = [
-		":::  ",
-		":::l ",
-		":lll ",
-		"::   ",
-		":: ::",
-	]
-	to_grid = [
-		":::  ",
-		":::  ",
-		":ll  ",
-		"::l  ",
-		"::l::",
-	]
-	assert_kick()
-
-
-func test_l_snack_kick1() -> void:
+func test_l_tip_kick_0l() -> void:
 	from_grid = [
 		":::   ",
 		":::   ",
@@ -1030,25 +1086,7 @@ func test_l_snack_kick1() -> void:
 	assert_kick()
 
 
-func test_l_snack_kick2() -> void:
-	from_grid = [
-		"    :",
-		" ll :",
-		"::l  ",
-		"::l::",
-		":::::",
-	]
-	to_grid = [
-		"    :",
-		"    :",
-		"::lll",
-		"::l::",
-		":::::",
-	]
-	assert_kick()
-
-
-func test_l_snack_kick3() -> void:
+func test_l_tip_kick_l2() -> void:
 	from_grid = [
 		"     ",
 		"  ll:",
