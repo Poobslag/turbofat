@@ -3,6 +3,13 @@ extends Node
 ## Queue of upcoming randomized pieces.
 ##
 ## This queue stores the upcoming pieces so they can be displayed, and randomizes them according to some complex rules.
+##
+## Most Turbo Fat levels use a nine piece bag with two quirks. The first quirk is the bag includes all eight pieces
+## plus one 'extra piece'. The second quirk is that the bag is shuffled such that no piece neighbors itself.
+##
+## These two quirks are necessary for the game to function and be challenging. An intuitive '8 piece bag' with no
+## extra pieces makes it too easy to play cleanly. And receiving two of the same piece back to back makes it too hard
+## to combo. These two adjustments should hopefully balance out boxes and combos to make them both viable.
 
 ## minimum number of next pieces in the queue, before we add more
 const MIN_SIZE := 50
@@ -110,10 +117,11 @@ func _fill_initial_pieces() -> void:
 		var _other_piece_types := shuffled_piece_types()
 		for piece_type in _other_piece_types:
 			var duplicate_piece := false
-			for piece in pieces:
-				if piece.type == piece_type:
-					duplicate_piece = true
-					break
+			if CurrentLevel.settings.piece_types.suppress_repeat_piece:
+				for piece in pieces:
+					if piece.type == piece_type:
+						duplicate_piece = true
+						break
 			if not duplicate_piece:
 				pieces.push_back(_new_next_piece(piece_type))
 		
@@ -152,7 +160,7 @@ func _fill_remaining_pieces() -> void:
 		for piece_type in new_piece_types:
 			pieces.append(_new_next_piece(piece_type))
 		
-		if new_piece_types.size() >= 3:
+		if CurrentLevel.settings.piece_types.suppress_repeat_piece and new_piece_types.size() >= 3:
 			# for levels with multiple identical pieces in the bag, we shuffle the bag so that those identical pieces
 			# aren't back to back
 			var min_to_index := pieces.size() - new_piece_types.size()
@@ -193,16 +201,6 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	return to_index
 
 
-## Returns 'true' if the specified array has the same piece back-to-back.
-func _has_duplicate_pieces(in_pieces: Array) -> bool:
-	var result := false
-	for i in range(in_pieces.size() - 1):
-		if in_pieces[i].type == in_pieces[i + 1].type:
-			result = true
-			break
-	return result
-
-
 ## Inserts an extra piece into the bag.
 ##
 ## Turbo Fat's pieces fit together too well. We periodically add extra pieces to the bag to ensure the game isn't too
@@ -214,7 +212,7 @@ func _has_duplicate_pieces(in_pieces: Array) -> bool:
 func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	var new_piece_index := int(rand_range(pieces.size() - max_pieces_to_right + 1, pieces.size() + 1))
 	var extra_piece_types: Array = shuffled_piece_types()
-	if extra_piece_types.size() >= 3:
+	if CurrentLevel.settings.piece_types.suppress_repeat_piece and extra_piece_types.size() >= 3:
 		# check the neighboring pieces, and remove those from the pieces we're picking from
 		Utils.remove_all(extra_piece_types, pieces[new_piece_index - 1].type)
 		if new_piece_index < pieces.size():

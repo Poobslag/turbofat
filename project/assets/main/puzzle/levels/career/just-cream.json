@@ -9,6 +9,7 @@
   },
   "piece_types": [
     "no_suppress_o_piece",
+    "no_suppress_repeat_piece",
     "piece_o",
     "piece_o",
     "piece_o",

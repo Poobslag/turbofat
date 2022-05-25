@@ -48,8 +48,12 @@ var start_types := []
 ## list of PieceTypes to choose from. if empty, defaults to the basic 8 types (jlopqtuv)
 var types := []
 
-## if 'true', O pieces are rerolled once if they come up as the extra piece in the shuffling algorithm
+## if 'true', the bag algorithm rerolls the extra piece once if it comes up as an O piece
 var suppress_o_piece: bool = true
+
+## If 'true', the bag algorithm adjusts its shuffling and extra piece generation to avoid generating the same piece
+## consecutively.
+var suppress_repeat_piece: bool = true
 
 var _rule_parser: RuleParser
 
@@ -57,6 +61,7 @@ func _init() -> void:
 	_rule_parser = RuleParser.new(self)
 	_rule_parser.add_bool("ordered_start")
 	_rule_parser.add_bool("suppress_o_piece", "no_suppress_o_piece").default(true)
+	_rule_parser.add_bool("suppress_repeat_piece", "no_suppress_repeat_piece").default(true)
 	_rule_parser.add(PieceTypesPropertyParser.new(self))
 
 
