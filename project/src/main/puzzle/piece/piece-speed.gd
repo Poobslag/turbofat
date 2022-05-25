@@ -46,3 +46,8 @@ func _init(init_id: String, init_gravity: int, init_appearance_delay: int, init_
 ## number of frames to spend clearing the entire playfield during after a top out
 func playfield_clear_delay() -> int:
 	return appearance_delay + lock_delay
+
+
+## number of frames to spend refilling the entire playfield after a top out
+func playfield_refill_delay() -> int:
+	return appearance_delay + lock_delay

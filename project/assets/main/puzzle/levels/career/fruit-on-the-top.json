@@ -8,7 +8,8 @@
     "value": "50"
   },
   "blocks_during": [
-    "fill_lines 0"
+    "fill_lines 0",
+    "refresh_on_top_out"
   ],
   "combo_break": [
     "pieces 0"
