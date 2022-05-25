@@ -1,3 +1,4 @@
+class_name LineFiller
 extends Node
 ## Fills lines in a puzzle tilemap.
 ##
@@ -10,7 +11,10 @@ extends Node
 ## emitted when lines are filled in from the top. some levels fill in lines, but most do not
 signal line_filled(y, tiles_key, src_y)
 
-export (NodePath) var playfield_path: NodePath
+## emitted after a set of lines are filled, either following a topout/refresh or line clear
+signal after_lines_filled
+
+export (NodePath) var tile_map_path: NodePath
 
 ## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
 var _topping_out := false
@@ -39,7 +43,7 @@ var _filled_line_index := 0
 ## The index of the next line fill sound to play.
 var _line_fill_sfx_index := 0
 
-onready var _playfield: Playfield = get_node(playfield_path)
+onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 onready var _line_fill_sounds := [$LineFillSound1, $LineFillSound2, $LineFillSound3]
 onready var _line_fill_sfx_reset_timer := $LineFillSfxResetTimer
 
@@ -60,6 +64,7 @@ func _physics_process(_delta: float) -> void:
 	_remaining_line_fill_frames -= 1
 	if _remaining_line_fill_frames <= 0:
 		set_physics_process(false)
+		emit_signal("after_lines_filled")
 
 
 ## Schedules the specified lines to be filled later.
@@ -89,9 +94,11 @@ func _fill_empty_lines() -> void:
 	# fill the empty rows from bottom to top
 	var y := PuzzleTileMap.ROW_COUNT - 1
 	while y >= 0:
-		if _playfield.tile_map.playfield_row_is_empty(y):
+		if _tile_map.playfield_row_is_empty(y):
 			_fill_line(_fill_lines_tiles_key(), y)
 		y -= 1
+	
+	emit_signal("after_lines_filled")
 
 
 ## Fills a line in the puzzle tilemap.
@@ -110,7 +117,7 @@ func _fill_line(tiles_key: String, dest_y: int) -> void:
 		var src_pos := Vector2(x, src_y)
 		var tile: int = tiles.block_tiles.get(src_pos, -1)
 		var autotile_coord: Vector2 = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
-		_playfield.tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
+		_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
 	
 	emit_signal("line_filled", dest_y, tiles_key, src_y)
 

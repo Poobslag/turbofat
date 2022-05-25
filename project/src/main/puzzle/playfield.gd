@@ -21,11 +21,17 @@ signal line_erased(y, total_lines, remaining_lines, box_ints)
 ## emitted when an erased line is deleted, causing the rows above it to drop down
 signal line_deleted(y)
 
+## emitted after a set of lines is deleted
+signal after_lines_deleted
+
 ## emitted when lines are inserted. some levels insert lines, but most do not
 signal line_inserted(y, tiles_key, src_y)
 
 ## emitted when lines are filled in from the top. some levels fill in lines, but most do not
 signal line_filled(y, tiles_key, src_y)
+
+## emitted after a set of lines are filled, either following a topout/refresh or line clear
+signal after_lines_filled
 
 ## emitted when a food item should be spawned because the player collects a pickup
 signal food_spawned(cell, remaining_food, food_type)
@@ -184,6 +190,7 @@ func _on_LineClearer_line_deleted(y: int) -> void:
 
 
 func _on_LineClearer_after_lines_deleted() -> void:
+	emit_signal("after_lines_deleted")
 	PuzzleState.after_piece_written()
 
 
@@ -199,6 +206,10 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 func _on_LineFiller_line_filled(y: int, tiles_key: String, src_y: int) -> void:
 	emit_signal("line_filled", y, tiles_key, src_y)
+
+
+func _on_LineFiller_after_lines_filled() -> void:
+	emit_signal("after_lines_filled")
 
 
 func _on_LineInserter_line_inserted(y: int, tiles_key: String, src_y: int) -> void:

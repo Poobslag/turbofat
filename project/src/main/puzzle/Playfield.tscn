@@ -367,7 +367,7 @@ bus = "Sound Bus"
 
 [node name="LineFiller" type="Node" parent="."]
 script = ExtResource( 29 )
-playfield_path = NodePath("..")
+tile_map_path = NodePath("../TileMapClip/TileMap")
 
 [node name="LineFillSound1" type="AudioStreamPlayer" parent="LineFiller"]
 stream = ExtResource( 6 )
@@ -414,6 +414,7 @@ one_shot = true
 [connection signal="line_clears_scheduled" from="LineClearer" to="." method="_on_LineClearer_line_clears_scheduled"]
 [connection signal="line_deleted" from="LineClearer" to="." method="_on_LineClearer_line_deleted"]
 [connection signal="line_erased" from="LineClearer" to="." method="_on_LineClearer_line_erased"]
+[connection signal="after_lines_filled" from="LineFiller" to="." method="_on_LineFiller_after_lines_filled"]
 [connection signal="line_filled" from="LineFiller" to="." method="_on_LineFiller_line_filled"]
 [connection signal="timeout" from="LineFiller/LineFillSfxResetTimer" to="LineFiller" method="_on_LineFillSfxResetTimer_timeout"]
 [connection signal="line_inserted" from="LineInserter" to="." method="_on_LineInserter_line_inserted"]

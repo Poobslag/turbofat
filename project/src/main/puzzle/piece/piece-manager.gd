@@ -110,12 +110,23 @@ func write_piece_to_playfield() -> void:
 	_clear_piece()
 
 
-## Called when the player tops out, but doesn't lose.
+## Immobilizes the piece when the player tops out.
 ##
-## Enters a state which waits for the _playfield to make room for the current piece.
-func enter_top_out_state(top_out_frames: int) -> void:
+## When the player tops out but doesn't lose, the playfield deletes some lines to make space. During this time the
+## piece enters a state of immobility. This 'enter_top_out_state' function makes the piece temporarily immobile.
+func enter_top_out_state() -> void:
 	_states.set_state(_states.top_out)
-	piece.spawn_delay = top_out_frames
+	
+	# prevent the piece from spawning until the playfield is ready
+	piece.spawn_delay = 999999
+
+
+## Restores piece mobility after the player finishes topping out.
+##
+## When the player tops out but doesn't lose, the playfield deletes some lines to make space. During this time the
+## piece enters a state of immobility. This 'exit_top_out_state()' function makes the piece mobile again.
+func exit_top_out_state() -> void:
+	piece.spawn_delay = 0
 
 
 ## Spawns a new piece at the top of the _playfield.
@@ -125,8 +136,14 @@ func spawn_piece() -> bool:
 	var next_piece := _piece_queue.pop_next_piece()
 	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_blocked"))
 	piece.orientation = next_piece.orientation
-	var success := _physics.spawn_piece(piece)
+	var success := _physics.initially_move_piece(piece)
 	emit_signal("piece_spawned")
+	emit_signal("piece_disturbed", piece)
+	return success
+
+
+func initially_move_piece() -> bool:
+	var success := _physics.initially_move_piece(piece)
 	emit_signal("piece_disturbed", piece)
 	return success
 
