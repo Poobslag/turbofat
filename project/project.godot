@@ -495,6 +495,11 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/line-clearer.gd"
 }, {
 "base": "Node",
+"class": "LineFiller",
+"language": "GDScript",
+"path": "res://src/main/puzzle/line-filler.gd"
+}, {
+"base": "Node",
 "class": "LineInserter",
 "language": "GDScript",
 "path": "res://src/main/puzzle/line-inserter.gd"
@@ -1127,6 +1132,7 @@ _global_script_class_icons={
 "LevelTriggers": "",
 "Levels": "",
 "LineClearer": "",
+"LineFiller": "",
 "LineInserter": "",
 "LockAlleleButton": "",
 "LoseConditionRules": "",

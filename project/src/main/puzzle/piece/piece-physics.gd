@@ -14,10 +14,10 @@ onready var squisher := $Squisher
 
 onready var _states: PieceStates = get_node(piece_states_path)
 
-## Spawns a new piece at the top of the _playfield.
+## Positions a new piece at the top of the _playfield.
 ##
 ## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
-func spawn_piece(piece: ActivePiece) -> bool:
+func initially_move_piece(piece: ActivePiece) -> bool:
 	rotator.apply_initial_rotate_input(piece)
 	
 	# relocate piece to the top of the playfield
@@ -41,7 +41,7 @@ func spawn_piece(piece: ActivePiece) -> bool:
 ## If any move/rotate keys were pressed, this method will move the block accordingly. Gravity will then be applied.
 ##
 ## Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
-## 	lock reset
+## lock reset
 func move_piece(piece: ActivePiece) -> bool:
 	var old_piece_pos := piece.pos
 	var old_piece_orientation := piece.orientation

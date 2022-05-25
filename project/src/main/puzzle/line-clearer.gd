@@ -19,6 +19,7 @@ signal line_erased(y, total_lines, remaining_lines, box_ints)
 ## emitted when an erased line is deleted, causing the rows above it to drop down
 signal line_deleted(y)
 
+## emitted after a set of lines is deleted
 signal after_lines_deleted
 
 ## percent of the line clear delay which should be spent erasing lines.
