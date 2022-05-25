@@ -81,6 +81,7 @@ func _squish_to(piece: ActivePiece, target_pos: Vector2) -> void:
 	piece.target_pos = target_pos
 	piece.move_to_target()
 	piece.gravity = 0
+	piece.lock = 0
 	emit_signal("squish_moved", piece, old_pos)
 
 
