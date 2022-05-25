@@ -8,6 +8,7 @@ var _json_tree: Dictionary
 
 export (NodePath) var playfield_editor_path: NodePath
 export (NodePath) var properties_editor_path: NodePath
+export (NodePath) var test_button_path: NodePath
 
 var _tile_map: PuzzleTileMap
 var _pickups: EditorPickups
@@ -18,6 +19,7 @@ var _calculated_pickup_score := 0
 
 onready var _playfield_editor: PlayfieldEditorControl = get_node(playfield_editor_path)
 onready var _properties_editor: PropertiesEditorControl = get_node(properties_editor_path)
+onready var _test_button: Button = get_node(test_button_path)
 
 func _ready() -> void:
 	_tile_map = _playfield_editor.get_tile_map()
@@ -30,6 +32,11 @@ func _ready() -> void:
 func can_parse_json() -> bool:
 	var parsed = parse_json(text)
 	_json_tree = parsed if typeof(parsed) == TYPE_DICTIONARY else {}
+	if _json_tree.empty():
+		set("custom_colors/font_color", Color.red)
+	else:
+		set("custom_colors/font_color", null)
+	
 	return not _json_tree.empty()
 
 
@@ -51,8 +58,10 @@ func refresh_playfield_editor() -> void:
 ## Refreshes the properties editor based on our json text.
 func refresh_properties_editor() -> void:
 	if not can_parse_json():
+		_test_button.disabled = true
 		return
 	
+	_test_button.disabled = false
 	if _json_tree.has("rank"):
 		var rank_rules := RankRules.new()
 		rank_rules.from_json_array(_json_tree["rank"])
