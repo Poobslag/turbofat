@@ -18,3 +18,7 @@ func start_presquish_sfx() -> void:
 func stop_presquish_sfx() -> void:
 	sfx_started = false
 	stop()
+	
+	# Workaround for Godot #37148 to stop playback if playback was started in the same frame
+	# https://github.com/godotengine/godot/issues/37148
+	seek(-1)
