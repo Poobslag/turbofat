@@ -76,7 +76,7 @@ func _build_box(y: int) -> void:
 
 
 func _insert_line(tiles_key: String, y: int) -> void:
-	CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_key, y)
+	CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([tiles_key], y)
 
 
 func _clear_line(cleared_line: int) -> void:

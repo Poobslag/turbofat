@@ -74,8 +74,11 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 
 ## Inserts a new line at the bottom of the playfield.
 class InsertLineEffect extends LevelTriggerEffect:
-	## (Optional) a key corresponding to a set of tiles in LevelTiles for the tiles to insert
+	## (Optional) key corresponding to a set of tiles in LevelTiles for the tiles to insert
 	var tiles_key: String
+	
+	## (Optional) keys corresponding to sets of tiles in LevelTiles for the tiles to insert
+	var tiles_keys: Array
 	
 	## Updates the effect's configuration.
 	##
@@ -84,19 +87,31 @@ class InsertLineEffect extends LevelTriggerEffect:
 	## [tiles_key]: (Optional) A key corresponding to a set of tiles in LevelTiles for the tiles to insert.
 	##
 	## Example: ["tiles_key=0"]
+	##
+	## [tiles_keys]: (Optional) A key corresponding to sets of tiles in LevelTiles for the tiles to insert.
+	##
+	## Example: ["tiles_keys=0,1"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		tiles_key = new_config.get("tiles_key", "")
+		tiles_keys = new_config.get("tiles_keys", "").split(",")
 	
 	
 	## Inserts a new line at the bottom of the playfield.
 	func run() -> void:
-		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_key)
+		if tiles_key:
+			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([tiles_key])
+		elif tiles_keys:
+			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys)
+		else:
+			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([])
 	
 	
 	func get_config() -> Dictionary:
 		var result := {}
 		if tiles_key:
 			result["tiles_key"] = tiles_key
+		if tiles_keys:
+			result["tiles_keys"] = tiles_keys
 		return result
 
 

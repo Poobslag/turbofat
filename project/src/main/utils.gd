@@ -159,6 +159,7 @@ static func put_if_absent(dict: Dictionary, key: String, value) -> void:
 	dict[key] = dict.get(key, value)
 
 
+## Removes all occurrences of the specified element from the specified array
 static func remove_all(values: Array, value) -> Array:
 	var index := 0
 	while index < values.size():

@@ -24,6 +24,9 @@ var _row_bag_by_tiles_key := {}
 ## value: the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
+var _prev_tiles_key := ""
+var _prev_tiles_key_insert_count := 0
+
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 onready var _line_insert_sound := $LineInsertSound
 
@@ -35,11 +38,11 @@ func _ready() -> void:
 ## Inserts a line into the puzzle tilemap.
 ##
 ## Parameters:
-## 	'tiles_key': (Optional) a key for the LevelTiles entry for the tiles to insert
+## 	'tiles_keys': (Optional) keys for the LevelTiles entries for the tiles to insert
 ##
 ## 	'dest_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
 ## 		bottom of the puzzle tilemap.
-func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
+func insert_line(tiles_keys: Array = [], dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
 	if dest_y >= PuzzleTileMap.FIRST_VISIBLE_ROW:
 		_line_insert_sound.play()
 	
@@ -47,6 +50,7 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 	_tile_map.insert_row(dest_y)
 	
 	var src_y := -1
+	var tiles_key := _determine_tiles_key(tiles_keys)
 	
 	# fill bottom row
 	if tiles_key:
@@ -67,10 +71,39 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 			_tile_map.set_block(Vector2(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
 		_tile_map.set_block(Vector2(randi() % PuzzleTileMap.COL_COUNT, dest_y), -1)
 	
+	_prev_tiles_key = tiles_key
 	emit_signal("line_inserted", dest_y, tiles_key, src_y)
 
 
+## Determine which tiles key to use when inserting the next row.
+##
+## Levels can insert rows with multiple tiles keys. It will continue inserting from one tiles key until it is
+## exhausted, and then swap to the next.
+func _determine_tiles_key(tiles_keys: Array) -> String:
+	var result: String
+	
+	if not tiles_keys:
+		result = ""
+		_prev_tiles_key_insert_count = 0
+	elif _prev_tiles_key and _prev_tiles_key_insert_count < _row_count_by_tiles_key[_prev_tiles_key]:
+		# the previously used tiles key isn't exhausted, continue using it
+		result = _prev_tiles_key
+		_prev_tiles_key_insert_count += 1
+	else:
+		# the previously used tiles key is exhausted, pick a new tiles key.
+		var possible_tiles_keys := tiles_keys.duplicate()
+		if possible_tiles_keys.size() > 1 and _prev_tiles_key:
+			# avoid picking the same key twice
+			possible_tiles_keys.remove(possible_tiles_keys.find(_prev_tiles_key))
+		result = Utils.rand_value(possible_tiles_keys)
+		_prev_tiles_key_insert_count = 1
+	
+	return result
+
+
 ## Calculate the y position from the source tilemap to be inserted into the target tilemap.
+##
+## Regardless of the 'shuffle lines type', this y position is remembered so that it won't be immediately picked again.
 ##
 ## Parameters:
 ## 	'tiles_key': a key for the LevelTiles entry for the tiles to insert
@@ -97,10 +130,14 @@ func _tiles_src_y(tiles_key: String) -> int:
 			row_bag.remove(row_bag_index)
 	return src_y
 
+
 func _reset() -> void:
 	_row_index_by_tiles_key.clear()
 	_row_bag_by_tiles_key.clear()
 	_row_count_by_tiles_key.clear()
+	
+	_prev_tiles_key = ""
+	_prev_tiles_key_insert_count = 0
 	
 	# initialize _row_count_by_tiles_key
 	for tiles_key in CurrentLevel.settings.tiles.bunches:
