@@ -2,7 +2,14 @@ extends Node
 ## Stores information on the various piece shapes. This includes information on their appearance, how they rotate, and
 ## how they 'kick' when they're blocked from rotating.
 
-const KICKS_JL := [
+const KICKS_I := [
+		[Vector2(-2,  0), Vector2( 1,  0), Vector2(-2,  1), Vector2( 1, -2)],
+		[Vector2(-1,  0), Vector2( 2,  0), Vector2(-1, -2), Vector2( 2,  1)],
+		[Vector2( 2,  0), Vector2(-1,  0), Vector2( 2, -1), Vector2(-1,  2)],
+		[Vector2( 1,  0), Vector2(-2,  0), Vector2( 1,  2), Vector2(-2, -1)],
+]
+
+const KICKS_JLSZ := [
 		[Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],
 		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0, -2), Vector2( 1, -2)],
@@ -79,6 +86,51 @@ const KICKS_NONE := [
 		[],
 	]
 
+var piece_i := PieceType.new("i",
+		# shape data
+		[[Vector2(0, 1), Vector2(1, 1), Vector2(2, 1), Vector2(3, 1)],
+		[Vector2(2, 0), Vector2(2, 1), Vector2(2, 2), Vector2(2, 3)],
+		[Vector2(0, 2), Vector2(1, 2), Vector2(2, 2), Vector2(3, 2)],
+		[Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(1, 3)]],
+		# color data
+		[[Vector2(8, 3), Vector2(12, 3), Vector2(12, 3), Vector2(4, 3)],
+		[Vector2(2, 3), Vector2(3, 3), Vector2(3, 3), Vector2(1, 3)],
+		[Vector2(8, 3), Vector2(12, 3), Vector2(12, 3), Vector2(4, 3)],
+		[Vector2(2, 3), Vector2(3, 3), Vector2(3, 3), Vector2(1, 3)]],
+		KICKS_I,
+		KICKS_NONE
+	)
+	
+var piece_s := PieceType.new("s",
+		# shape data
+		[[Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1)],
+		[Vector2(1, 0), Vector2(1, 1), Vector2(2, 1), Vector2(2, 2)],
+		[Vector2(1, 1), Vector2(2, 1), Vector2(0, 2), Vector2(1, 2)],
+		[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, 2)]],
+		# color data
+		[[Vector2(10, 2), Vector2(4, 2), Vector2(8, 2), Vector2(5, 2)],
+		[Vector2(2, 2), Vector2(9, 2), Vector2(6, 2), Vector2(1, 2)],
+		[Vector2(10, 2), Vector2(4, 2), Vector2(8, 2), Vector2(5, 2)],
+		[Vector2(2, 2), Vector2(9, 2), Vector2(6, 2), Vector2(1, 2)]],
+		KICKS_JLSZ,
+		KICKS_NONE
+	)
+
+var piece_z := PieceType.new("z",
+		# shape data
+		[[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(2, 1)],
+		[Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2)],
+		[Vector2(0, 1), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
+		[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(0, 2)]],
+		# color data
+		[[Vector2(8, 2), Vector2(6, 2), Vector2(9, 2), Vector2(4, 2)],
+		[Vector2(2, 2), Vector2(10, 2), Vector2(5, 2), Vector2(1, 2)],
+		[Vector2(8, 2), Vector2(6, 2), Vector2(9, 2), Vector2(4, 2)],
+		[Vector2(2, 2), Vector2(10, 2), Vector2(5, 2), Vector2(1, 2)]],
+		KICKS_JLSZ,
+		KICKS_NONE
+	)
+
 var piece_j := PieceType.new("j",
 		# shape data
 		[[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
@@ -90,7 +142,7 @@ var piece_j := PieceType.new("j",
 		[Vector2(10, 1), Vector2(4, 1), Vector2(3, 1), Vector2(1, 1)],
 		[Vector2(8, 1), Vector2(12, 1), Vector2(6, 1), Vector2(1, 1)],
 		[Vector2(2, 1), Vector2(3, 1), Vector2(8, 1), Vector2(5, 1)]],
-		KICKS_JL,
+		KICKS_JLSZ,
 		[[Vector2(0, -1)], [Vector2(1, 0)], [Vector2(0, 1)], [Vector2(-1, 0)]]
 	)
 
@@ -105,7 +157,7 @@ var piece_l := PieceType.new("l",
 		[Vector2(2, 0), Vector2(3, 0), Vector2(9, 0), Vector2(4, 0)],
 		[Vector2(10, 0), Vector2(12, 0), Vector2(4, 0), Vector2(1, 0)],
 		[Vector2(8, 0), Vector2(6, 0), Vector2(3, 0), Vector2(1, 0)]],
-		KICKS_JL,
+		KICKS_JLSZ,
 		[[Vector2(0, -1)], [Vector2(1, 0)], [Vector2(0, 1)], [Vector2(-1, 0)]]
 	)
 
@@ -213,14 +265,17 @@ var piece_v := PieceType.new("v",
 	)
 
 var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE, [])
-var all_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
+var default_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
 var pieces_by_string := {
+	"i": piece_i,
 	"j": piece_j,
 	"l": piece_l,
 	"o": piece_o,
 	"p": piece_p,
 	"q": piece_q,
+	"s": piece_s,
+	"z": piece_z,
 	"t": piece_t,
 	"u": piece_u,
 	"v": piece_v

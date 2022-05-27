@@ -20,7 +20,7 @@ const UNLIMITED_PIECES := 999999
 var pieces := []
 
 ## default pieces to pull from if none are provided by the level
-var _default_piece_types := PieceTypes.all_types
+var _default_piece_types := PieceTypes.default_types
 
 var _remaining_piece_count := UNLIMITED_PIECES
 
