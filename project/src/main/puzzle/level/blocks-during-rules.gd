@@ -49,9 +49,9 @@ func _init() -> void:
 	_rule_parser.add_enum("line_clear_type", LineClearType)
 	_rule_parser.add_enum("pickup_type", PickupType)
 	_rule_parser.add_bool("refresh_on_top_out")
-	_rule_parser.add_enum("shuffle_inserted_lines", ShuffleLinesType) \
-			.implied(ShuffleLinesType.BAG)
 	_rule_parser.add_enum("shuffle_filled_lines", ShuffleLinesType) \
+			.implied(ShuffleLinesType.BAG)
+	_rule_parser.add_enum("shuffle_inserted_lines", ShuffleLinesType) \
 			.implied(ShuffleLinesType.BAG)
 
 

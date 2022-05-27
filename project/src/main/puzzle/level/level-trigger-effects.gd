@@ -93,7 +93,7 @@ class InsertLineEffect extends LevelTriggerEffect:
 	## Example: ["tiles_keys=0,1"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		tiles_key = new_config.get("tiles_key", "")
-		tiles_keys = new_config.get("tiles_keys", "").split(",")
+		tiles_keys = new_config["tiles_keys"].split(",") if new_config.has("tiles_keys") else []
 	
 	
 	## Inserts a new line at the bottom of the playfield.
@@ -111,7 +111,7 @@ class InsertLineEffect extends LevelTriggerEffect:
 		if tiles_key:
 			result["tiles_key"] = tiles_key
 		if tiles_keys:
-			result["tiles_keys"] = tiles_keys
+			result["tiles_keys"] = PoolStringArray(tiles_keys).join(",")
 		return result
 
 

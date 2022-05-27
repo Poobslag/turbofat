@@ -14,7 +14,7 @@ func test_rotate_next_pieces_to_json_string() -> void:
 	assert_eq_shallow(effect.get_config(), {"0": "180"})
 
 
-func test_insert_line_to_json_string() -> void:
+func test_insert_line_to_json_string_0() -> void:
 	var effect: LevelTriggerEffects.InsertLineEffect
 	effect = LevelTriggerEffects.InsertLineEffect.new()
 	assert_eq_shallow(effect.get_config(), {})
@@ -22,6 +22,16 @@ func test_insert_line_to_json_string() -> void:
 	effect = LevelTriggerEffects.InsertLineEffect.new()
 	effect.set_config({"tiles_key": "0"})
 	assert_eq_shallow(effect.get_config(), {"tiles_key": "0"})
+
+
+func test_insert_line_to_json_string_1() -> void:
+	var effect: LevelTriggerEffects.InsertLineEffect
+	effect = LevelTriggerEffects.InsertLineEffect.new()
+	assert_eq_shallow(effect.get_config(), {})
+	
+	effect = LevelTriggerEffects.InsertLineEffect.new()
+	effect.set_config({"tiles_keys": "0,1"})
+	assert_eq_shallow(effect.get_config(), {"tiles_keys": "0,1"})
 
 
 func test_effect_key() -> void:
