@@ -1,7 +1,7 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-## Tests the p/q piece's kick behavior.
+## Tests the p and q pieces' kick behavior.
 
-func test_p_floorkick_cw() -> void:
+func test_p_floor_kick_0r() -> void:
 	from_grid = [
 		"     ",
 		" ppp ",
@@ -15,7 +15,7 @@ func test_p_floorkick_cw() -> void:
 	assert_kick()
 
 
-func test_p_floorkick_ccw() -> void:
+func test_p_floor_kick_0l() -> void:
 	from_grid = [
 		"     ",
 		" ppp ",
@@ -29,7 +29,7 @@ func test_p_floorkick_ccw() -> void:
 	assert_kick()
 
 
-func test_q_floorkick_cw() -> void:
+func test_q_floor_kick_0r() -> void:
 	from_grid = [
 		"     ",
 		" qqq ",
@@ -43,7 +43,7 @@ func test_q_floorkick_cw() -> void:
 	assert_kick()
 
 
-func test_q_floorkick_ccw() -> void:
+func test_q_floor_kick_0l() -> void:
 	from_grid = [
 		"     ",
 		" qqq ",
@@ -57,7 +57,7 @@ func test_q_floorkick_ccw() -> void:
 	assert_kick()
 
 
-func test_p_rwallkick_l0() -> void:
+func test_p_wall_kick_l0() -> void:
 	from_grid = [
 		"    ",
 		"  pp",
@@ -75,7 +75,7 @@ func test_p_rwallkick_l0() -> void:
 	assert_kick()
 
 
-func test_p_rwallkick_l2() -> void:
+func test_p_wall_kick_l2() -> void:
 	from_grid = [
 		"    ",
 		"  pp",
@@ -93,7 +93,7 @@ func test_p_rwallkick_l2() -> void:
 	assert_kick()
 
 
-func test_p_lwallkick_r0() -> void:
+func test_p_wall_kick_r0() -> void:
 	from_grid = [
 		"    ",
 		" p  ",
@@ -111,7 +111,7 @@ func test_p_lwallkick_r0() -> void:
 	assert_kick()
 
 
-func test_q_lwallkick_r2() -> void:
+func test_q_wall_kick_r2() -> void:
 	from_grid = [
 		"    ",
 		"qq  ",
@@ -129,7 +129,7 @@ func test_q_lwallkick_r2() -> void:
 	assert_kick()
 
 
-func test_q_rwallkick_l0() -> void:
+func test_q_wall_kick_l0() -> void:
 	from_grid = [
 		"    ",
 		"  q ",
@@ -147,7 +147,7 @@ func test_q_rwallkick_l0() -> void:
 	assert_kick()
 
 
-func test_q_lwallkick_r0() -> void:
+func test_q_wall_kick_r0() -> void:
 	from_grid = [
 		"    ",
 		"qq  ",

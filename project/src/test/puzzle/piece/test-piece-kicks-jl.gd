@@ -1,7 +1,71 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-## Tests the j/l piece's kick behavior.
+## Tests the j and l pieces' kick behavior.
 
-func test_j_lwallkick_r2() -> void:
+func test_j_floor_kick_0r() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		" j   ",
+		" jjj ",
+	]
+	to_grid = [
+		"     ",
+		" jj  ",
+		" j   ",
+		" j   ",
+	]
+	assert_kick()
+
+
+func test_j_floor_kick_0l() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		" j   ",
+		" jjj ",
+	]
+	to_grid = [
+		"     ",
+		"   j ",
+		"   j ",
+		"  jj ",
+	]
+	assert_kick()
+
+
+func test_l_floor_kick_0r() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"   l ",
+		" lll ",
+	]
+	to_grid = [
+		"     ",
+		" l   ",
+		" l   ",
+		" ll  ",
+	]
+	assert_kick()
+
+
+func test_l_floor_kick_0l() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"   l ",
+		" lll ",
+	]
+	to_grid = [
+		"     ",
+		"  ll ",
+		"   l ",
+		"   l ",
+	]
+	assert_kick()
+
+
+func test_j_wall_kick_r2() -> void:
 	from_grid = [
 		"    ",
 		"jj  ",
@@ -19,7 +83,7 @@ func test_j_lwallkick_r2() -> void:
 	assert_kick()
 
 
-func test_j_lwallkick_r0() -> void:
+func test_j_wall_kick_r0() -> void:
 	from_grid = [
 		"    ",
 		"jj  ",
@@ -37,7 +101,7 @@ func test_j_lwallkick_r0() -> void:
 	assert_kick()
 
 
-func test_l_lwallkick_r0() -> void:
+func test_l_wall_kick_r0() -> void:
 	from_grid = [
 		"    ",
 		"l   ",
@@ -55,7 +119,7 @@ func test_l_lwallkick_r0() -> void:
 	assert_kick()
 
 
-func test_l_lwallkick_r2() -> void:
+func test_l_wall_kick_r2() -> void:
 	from_grid = [
 		"    ",
 		"l   ",
@@ -73,7 +137,7 @@ func test_l_lwallkick_r2() -> void:
 	assert_kick()
 
 
-func test_j_rwallkick_l0() -> void:
+func test_j_wall_kick_l0() -> void:
 	from_grid = [
 		"    ",
 		"   j",
@@ -91,7 +155,7 @@ func test_j_rwallkick_l0() -> void:
 	assert_kick()
 
 
-func test_j_rwallkick_l2() -> void:
+func test_j_wall_kick_l2() -> void:
 	from_grid = [
 		"    ",
 		"   j",
@@ -109,7 +173,7 @@ func test_j_rwallkick_l2() -> void:
 	assert_kick()
 
 
-func test_l_rwallkick_l0() -> void:
+func test_l_wall_kick_l0() -> void:
 	from_grid = [
 		"    ",
 		"  ll",
@@ -127,7 +191,7 @@ func test_l_rwallkick_l0() -> void:
 	assert_kick()
 
 
-func test_l_rwallkick_l2() -> void:
+func test_l_wall_kick_l2() -> void:
 	from_grid = [
 		"    ",
 		"  ll",
@@ -141,70 +205,6 @@ func test_l_rwallkick_l2() -> void:
 		" lll",
 		" l  ",
 		"    ",
-	]
-	assert_kick()
-
-
-func test_j_floorkick_0r() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		" j   ",
-		" jjj ",
-	]
-	to_grid = [
-		"     ",
-		" jj  ",
-		" j   ",
-		" j   ",
-	]
-	assert_kick()
-
-
-func test_j_floorkick_0l() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		" j   ",
-		" jjj ",
-	]
-	to_grid = [
-		"     ",
-		"   j ",
-		"   j ",
-		"  jj ",
-	]
-	assert_kick()
-
-
-func test_l_floorkick_0r() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		"   l ",
-		" lll ",
-	]
-	to_grid = [
-		"     ",
-		" l   ",
-		" l   ",
-		" ll  ",
-	]
-	assert_kick()
-
-
-func test_l_floorkick_0l() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		"   l ",
-		" lll ",
-	]
-	to_grid = [
-		"     ",
-		"  ll ",
-		"   l ",
-		"   l ",
 	]
 	assert_kick()
 
