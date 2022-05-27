@@ -18,6 +18,20 @@ const KICKS_JLSZ := [
 		[Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1, -1)],
 	]
 
+const KICKS_P := [
+		[Vector2( 0, -1), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1)],
+		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1)],
+		[Vector2( 0,  1), Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1)],
+		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
+	]
+
+const KICKS_Q := [
+		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0,  1)],
+		[Vector2( 0, -1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1)],
+		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -1)],
+		[Vector2( 0,  1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1)],
+	]
+
 const KICKS_T := [
 		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1)],
 		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2(-1,  0)],
@@ -37,20 +51,6 @@ const KICKS_U := [
 		
 		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2(-1, -1), Vector2( 0,  2)],
 		[Vector2( 0, -1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -2)],
-	]
-
-const KICKS_P := [
-		[Vector2( 0, -1), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1)],
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1)],
-		[Vector2( 0,  1), Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1)],
-		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
-	]
-
-const KICKS_Q := [
-		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0,  1)],
-		[Vector2( 0, -1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1)],
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -1)],
-		[Vector2( 0,  1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1)],
 	]
 
 const KICKS_V := [
@@ -98,36 +98,6 @@ var piece_i := PieceType.new("i",
 		[Vector2(8, 3), Vector2(12, 3), Vector2(12, 3), Vector2(4, 3)],
 		[Vector2(2, 3), Vector2(3, 3), Vector2(3, 3), Vector2(1, 3)]],
 		KICKS_I,
-		KICKS_NONE
-	)
-	
-var piece_s := PieceType.new("s",
-		# shape data
-		[[Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1)],
-		[Vector2(1, 0), Vector2(1, 1), Vector2(2, 1), Vector2(2, 2)],
-		[Vector2(1, 1), Vector2(2, 1), Vector2(0, 2), Vector2(1, 2)],
-		[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, 2)]],
-		# color data
-		[[Vector2(10, 2), Vector2(4, 2), Vector2(8, 2), Vector2(5, 2)],
-		[Vector2(2, 2), Vector2(9, 2), Vector2(6, 2), Vector2(1, 2)],
-		[Vector2(10, 2), Vector2(4, 2), Vector2(8, 2), Vector2(5, 2)],
-		[Vector2(2, 2), Vector2(9, 2), Vector2(6, 2), Vector2(1, 2)]],
-		KICKS_JLSZ,
-		KICKS_NONE
-	)
-
-var piece_z := PieceType.new("z",
-		# shape data
-		[[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(2, 1)],
-		[Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2)],
-		[Vector2(0, 1), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
-		[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(0, 2)]],
-		# color data
-		[[Vector2(8, 2), Vector2(6, 2), Vector2(9, 2), Vector2(4, 2)],
-		[Vector2(2, 2), Vector2(10, 2), Vector2(5, 2), Vector2(1, 2)],
-		[Vector2(8, 2), Vector2(6, 2), Vector2(9, 2), Vector2(4, 2)],
-		[Vector2(2, 2), Vector2(10, 2), Vector2(5, 2), Vector2(1, 2)]],
-		KICKS_JLSZ,
 		KICKS_NONE
 	)
 
@@ -213,6 +183,21 @@ var piece_q := PieceType.new("q",
 		[Vector2(0, 1), Vector2(1, 1)],
 		[Vector2(-1, 0), Vector2(-1, 1)]]
 	)
+	
+var piece_s := PieceType.new("s",
+		# shape data
+		[[Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1)],
+		[Vector2(1, 0), Vector2(1, 1), Vector2(2, 1), Vector2(2, 2)],
+		[Vector2(1, 1), Vector2(2, 1), Vector2(0, 2), Vector2(1, 2)],
+		[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(1, 2)]],
+		# color data
+		[[Vector2(10, 2), Vector2(4, 2), Vector2(8, 2), Vector2(5, 2)],
+		[Vector2(2, 2), Vector2(9, 2), Vector2(6, 2), Vector2(1, 2)],
+		[Vector2(10, 2), Vector2(4, 2), Vector2(8, 2), Vector2(5, 2)],
+		[Vector2(2, 2), Vector2(9, 2), Vector2(6, 2), Vector2(1, 2)]],
+		KICKS_JLSZ,
+		KICKS_NONE
+	)
 
 var piece_t := PieceType.new("t",
 		# shape data
@@ -264,6 +249,21 @@ var piece_v := PieceType.new("v",
 		[[Vector2(0, 0)], [Vector2(0, 0)], [Vector2(0, 0)], [Vector2(0, 0)]]
 	)
 
+var piece_z := PieceType.new("z",
+		# shape data
+		[[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(2, 1)],
+		[Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2)],
+		[Vector2(0, 1), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
+		[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(0, 2)]],
+		# color data
+		[[Vector2(8, 2), Vector2(6, 2), Vector2(9, 2), Vector2(4, 2)],
+		[Vector2(2, 2), Vector2(10, 2), Vector2(5, 2), Vector2(1, 2)],
+		[Vector2(8, 2), Vector2(6, 2), Vector2(9, 2), Vector2(4, 2)],
+		[Vector2(2, 2), Vector2(10, 2), Vector2(5, 2), Vector2(1, 2)]],
+		KICKS_JLSZ,
+		KICKS_NONE
+	)
+
 var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE, [])
 var default_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
@@ -275,8 +275,8 @@ var pieces_by_string := {
 	"p": piece_p,
 	"q": piece_q,
 	"s": piece_s,
-	"z": piece_z,
 	"t": piece_t,
 	"u": piece_u,
-	"v": piece_v
+	"v": piece_v,
+	"z": piece_z,
 }
