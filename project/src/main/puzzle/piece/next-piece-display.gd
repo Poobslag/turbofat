@@ -39,8 +39,13 @@ func _process(_delta: float) -> void:
 						next_piece.type.get_cell_position(next_piece.orientation, i))
 				bounding_box = bounding_box.expand( \
 						next_piece.type.get_cell_position(next_piece.orientation, i) + Vector2(1, 1))
+			
+			# grow to accommodate bigger pieces
+			var bounding_box_longest_dimension := max(bounding_box.size.x, bounding_box.size.y)
+			_tile_map.scale = Vector2(1.5, 1.5) / max(bounding_box_longest_dimension, 3)
+			
 			_tile_map.position = _tile_map.cell_size \
-					* (Vector2(1.5, 1.5) - (bounding_box.position + bounding_box.size / 2.0)) / 2.0
+					* (Vector2(1.5, 1.5) - (bounding_box.position + bounding_box.size * _tile_map.scale)) / 2.0
 		_tile_map.corner_map.dirty = true
 		_displayed_type = next_piece.type
 		_displayed_orientation = next_piece.orientation

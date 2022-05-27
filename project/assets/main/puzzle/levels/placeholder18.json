@@ -1,0 +1,18 @@
+{
+  "version": "2cb4",
+  "start_speed": "0",
+  "title": "Paranormal Tetrominon",
+  "description": "A visit from some familiar friends.",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "180"
+  },
+  "piece_types": [
+    "piece_i",
+    "piece_j",
+    "piece_l",
+    "piece_o",
+    "piece_s",
+    "piece_z"
+  ]
+}

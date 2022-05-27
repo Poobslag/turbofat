@@ -11,6 +11,18 @@ var to_grid := []
 var _from_piece: ActivePiece
 var _to_piece: ActivePiece
 
+## A number [0-3] representing the piece's orientation.
+##
+## For some pieces (such as the O piece) the orientation is ambiguous but some tests might care which one is selected.
+## These fields allow tests to force a specific orientation.
+var from_orientation := -1
+var to_orientation := -1
+
+func before_each() -> void:
+	from_orientation = -1
+	to_orientation = -1
+
+
 ## A test which demonstrates the test framework itself is functioning properly.
 func test_framework() -> void:
 	from_grid = [
@@ -64,10 +76,10 @@ func assert_kick() -> void:
 ## 	3. A non-zero vector if the piece could rotate, but needed to be kicked.
 func _kick_piece() -> Vector2:
 	var result: Vector2
-	_from_piece = _create_active_piece(from_grid)
-	_to_piece = _create_active_piece(to_grid)
+	_from_piece = _create_active_piece(from_grid, from_orientation)
+	_to_piece = _create_active_piece(to_grid, to_orientation)
 	
-	var piece := _create_active_piece(from_grid)
+	var piece := _create_active_piece(from_grid, from_orientation)
 	piece.target_orientation = _to_piece.orientation
 	
 	# if the piece is blocked, kick the piece
@@ -94,7 +106,13 @@ func _is_cell_blocked(pos: Vector2) -> bool:
 ## Create an active piece from an ascii drawing.
 ##
 ## Calculates the piece's type, position and orientation.
-func _create_active_piece(ascii_grid: Array) -> ActivePiece:
+##
+## Parameters:
+## 	'ascii_grid': Array of strings which illustrates a picture of the piece's position and orientation
+##
+## 	'forced_piece_orientation': (Optional) A number [0-3] representing the piece's orientation. For some pieces
+## 		(such as the O piece) the orientation is ambiguous but some tests might care which one is selected.
+func _create_active_piece(ascii_grid: Array, forced_piece_orientation: int = -1) -> ActivePiece:
 	var piece_type := _determine_piece_type(ascii_grid)
 	if not piece_type:
 		push_warning("Could not find piece type in '%s' grid" % ("from" if ascii_grid == from_grid else "to"))
@@ -107,9 +125,14 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 				from_shape_data.append(Vector2(col_index, row_index))
 	
 	var _active_piece: ActivePiece
-	for pos_arr_index in range(piece_type.pos_arr.size()):
-		var shape_data:Array = piece_type.pos_arr[pos_arr_index]
-		var position:Vector2 = from_shape_data[0] - shape_data[0]
+	var possible_orientations: Array
+	if forced_piece_orientation != -1:
+		possible_orientations = [forced_piece_orientation]
+	else:
+		possible_orientations = range(piece_type.pos_arr.size())
+	for pos_arr_index in possible_orientations:
+		var shape_data: Array = piece_type.pos_arr[pos_arr_index]
+		var position: Vector2 = from_shape_data[0] - shape_data[0]
 		var shape_match := true
 		for shape_data_index in range(shape_data.size()):
 			if shape_data[shape_data_index] + position != from_shape_data[shape_data_index]:
@@ -120,10 +143,12 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 			_active_piece.pos = position
 			_active_piece.orientation = pos_arr_index
 			break
-	if not _active_piece:
+	
+	if _active_piece:
+		_active_piece.reset_target()
+	else:
 		push_warning("Could not find piece position/orientation in '%s' grid"\
 				% ("from" if ascii_grid == from_grid else "to"))
-	_active_piece.reset_target()
 	return _active_piece
 
 

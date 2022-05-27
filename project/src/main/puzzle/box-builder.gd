@@ -43,6 +43,26 @@ const BOX_TYPES_BY_INGREDIENTS := {
 	"l013": Foods.BoxType.CAKE_PQV,
 	"l023": Foods.BoxType.CAKE_QUV,
 	"l123": Foods.BoxType.CAKE_PUV,
+	
+	# nonstandard recipes
+	"s01": Foods.BoxType.CAKE_JLO,
+	"s012": Foods.BoxType.CAKE_JLO,
+	"s0123": Foods.BoxType.CAKE_JLO,
+	"s023": Foods.BoxType.CAKE_LTT,
+	"s123": Foods.BoxType.CAKE_JTT,
+	"s23": Foods.BoxType.CAKE_JLO,
+	"l0": Foods.BoxType.BROWN,
+	"l01": Foods.BoxType.CAKE_PQV,
+	"l012": Foods.BoxType.CAKE_PQV,
+	"l0123": Foods.BoxType.CAKE_PQV,
+	"l02": Foods.BoxType.CAKE_QUV,
+	"l03": Foods.BoxType.CAKE_QUV,
+	"l1": Foods.BoxType.PINK,
+	"l12": Foods.BoxType.CAKE_PUV,
+	"l13": Foods.BoxType.CAKE_PUV,
+	"l2": Foods.BoxType.BREAD,
+	"l23": Foods.BoxType.CAKE_PQV,
+	"l3": Foods.BoxType.WHITE,
 }
 
 func _ready() -> void:
