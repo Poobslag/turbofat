@@ -30,35 +30,47 @@
         "nest 3%",
         "phoena 4%",
         "rice 4%",
-        "toat 4%",
+        "toat 4%"
       ],
       "levels": [
         {
-          "id": "career/90_second_sprint"
+          "id": "career/200_race"
         },
         {
-          "id": "career/back_to_back"
+          "id": "career/bon_appetit"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/chocolate_star"
         },
         {
-          "id": "career/muffin_impossible"
+          "id": "career/cookies"
         },
         {
-          "id": "career/teensy_taste"
+          "id": "career/donuts"
         },
         {
-          "id": "career/snack_box_blitz"
+          "id": "career/fat_stacks"
         },
         {
-          "id": "career/cookie_crevice"
+          "id": "career/just_bread"
         },
         {
-          "id": "career/bottomless_pit"
+          "id": "career/just_cream"
         },
         {
-          "id": "career/veggie_haters"
+          "id": "career/just_fruit"
+        },
+        {
+          "id": "career/lo_kcal"
+        },
+        {
+          "id": "career/square_curse"
+        },
+        {
+          "id": "career/tulip"
+        },
+        {
+          "id": "career/wedge"
         }
       ]
     },
@@ -78,13 +90,13 @@
           "id": "career/boxing_day"
         },
         {
-          "id": "career/just_cream"
+          "id": "career/cookie_crevice"
+        },
+        {
+          "id": "career/extra_cream"
         },
         {
           "id": "career/muffin_impossible"
-        },
-        {
-          "id": "career/secret_brownies"
         },
         {
           "id": "career/creeping_crevice"
@@ -96,10 +108,10 @@
           "id": "career/strawberry_shortcut"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/teensy_taste"
         },
         {
-          "id": "career/cleaning_duty"
+          "id": "career/unfresh_fruits"
         },
         {
           "id": "career/bottomless_pit"
@@ -204,7 +216,7 @@
           "id": "career/cocoa_canyon"
         },
         {
-          "id": "career/just_cream"
+          "id": "career/extra_cream"
         },
         {
           "id": "career/tempting_jellies"

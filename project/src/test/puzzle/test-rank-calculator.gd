@@ -476,3 +476,23 @@ func test_target_lines_for_score() -> void:
 	# 20 points per line -- should take a little more than 50 lines because of the time for the combo to ramp up
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1000)
 	assert_eq(53, _rank_calculator.target_lines_for_score(10.0, 9.0))
+
+
+## Duplicating a bug where line-based levels would always award SSS rank instead of M rank
+func test_calculate_rank_lines_m() -> void:
+	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 10)
+	CurrentLevel.settings.rank.master_pickup_score = 100
+	
+	PuzzleState.level_performance.box_score = 200
+	PuzzleState.level_performance.combo_score = 120
+	PuzzleState.level_performance.pickup_score = 100
+	PuzzleState.level_performance.lines = 11
+	PuzzleState.level_performance.leftover_score = 515
+	PuzzleState.level_performance.score = 946
+	
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "M")
+	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "M")
+	assert_eq(RankCalculator.grade(rank.pickup_score_rank), "M")
+	assert_eq(RankCalculator.grade(rank.lines_rank), "M")
+	assert_eq(RankCalculator.grade(rank.score_rank), "M")
