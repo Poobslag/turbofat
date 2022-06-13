@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/main/puzzle/results-hud.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/results-label.gd" type="Script" id=4]
 [ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=5]
-[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/puzzle/money-label-tween.gd" type="Script" id=7]
 [ext_resource path="res://assets/main/ui/cheat-enable.wav" type="AudioStream" id=8]
 
 [node name="ResultsHud" type="Control"]
@@ -17,13 +15,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="MoneyLabel" parent="." instance=ExtResource( 6 )]
-margin_top = -32.0
-margin_bottom = 0.0
-
-[node name="MoneyLabelTween" type="Tween" parent="."]
-script = ExtResource( 7 )
 
 [node name="ResultsLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -48,5 +39,3 @@ bus = "Sound Bus"
 stream = ExtResource( 8 )
 volume_db = -8.0
 bus = "Sound Bus"
-
-[connection signal="text_shown" from="ResultsLabel" to="." method="_on_ResultsLabel_text_shown"]

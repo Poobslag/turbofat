@@ -17,7 +17,7 @@ var _box_type := 0
 var _food_item_index := 0
 var _cake_box_type: int = Foods.BoxType.CAKE_JJO
 
-onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/HudUi/TutorialHud
+onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
 ## a local path to a json level resource to demo
 export (String, FILE, "*.json") var level_path: String
