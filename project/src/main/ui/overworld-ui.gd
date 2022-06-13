@@ -76,7 +76,7 @@ func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	emit_signal("chat_started")
 	
 	# reset state variables
-	$Control/ChatUi.play_chat_tree(_current_chat_tree)
+	$ChatUi.play_chat_tree(_current_chat_tree)
 
 
 func set_show_version(new_show_version: bool) -> void:
@@ -204,8 +204,8 @@ func _assign_nametag_sides(new_chat_tree: ChatTree) -> void:
 
 ## Updates the different UI components to be visible/invisible based on the UI's current state.
 func _update_visible() -> void:
-	$Control/ChatUi.visible = true if chatters else false
-	$Control/Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
+	$ChatUi.visible = true if chatters else false
+	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
 ## Returns the chat tree corresponding to the curently focused chattable.
@@ -348,11 +348,11 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 
 func _on_CellPhoneButton_pressed() -> void:
-	$Control/CellPhoneMenu.show()
+	$CellPhoneMenu.show()
 
 
 func _on_SettingsButton_pressed() -> void:
-	$Control/SettingsMenu.show()
+	$SettingsMenu.show()
 
 
 ## When the player hits the 'talk' button we either launch a level or start a chat.

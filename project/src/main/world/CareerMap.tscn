@@ -115,6 +115,7 @@ __meta__ = {
 }
 
 [node name="Money" parent="Ui/Control/StatusBar" instance=ExtResource( 42 )]
+compact = true
 
 [node name="Distance" type="Control" parent="Ui/Control/StatusBar"]
 anchor_left = 0.5
