@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -75,6 +75,8 @@
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=73]
 [ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
 [ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
+[ext_resource path="res://src/main/puzzle/puzzle-money-hud.gd" type="Script" id=78]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -568,7 +570,7 @@ script = ExtResource( 70 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
-[node name="HudUi" type="Control" parent="Hud"]
+[node name="Center" type="Control" parent="Hud"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -577,17 +579,19 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
-rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 2
 
-[node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
+[node name="TutorialHud" parent="Hud/Center" instance=ExtResource( 2 )]
 visible = false
 puzzle_path = NodePath("../../..")
 hud_flash_path = NodePath("../../HudFlash")
 
-[node name="PuzzleMessages" parent="Hud/HudUi" instance=ExtResource( 62 )]
+[node name="PuzzleMessages" parent="Hud/Center" instance=ExtResource( 62 )]
 mouse_filter = 2
 
-[node name="PuzzleTrace" type="Label" parent="Hud/HudUi"]
+[node name="ResultsHud" parent="Hud/Center" instance=ExtResource( 6 )]
+
+[node name="PuzzleTrace" type="Label" parent="Hud"]
 visible = false
 margin_left = 10.0
 margin_top = 10.0
@@ -599,11 +603,22 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-puzzle_path = NodePath("../../..")
+puzzle_path = NodePath("../..")
 
-[node name="ResultsHud" parent="Hud/HudUi" instance=ExtResource( 6 )]
+[node name="MusicPopup" parent="Hud" instance=ExtResource( 31 )]
 
-[node name="MusicPopup" parent="Hud/HudUi" instance=ExtResource( 31 )]
+[node name="PuzzleMoneyHud" type="Control" parent="Hud"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 78 )
+results_label_path = NodePath("../Center/ResultsHud/ResultsLabel")
+
+[node name="MoneyLabel" parent="Hud/PuzzleMoneyHud" instance=ExtResource( 76 )]
+margin_top = -32.0
+margin_bottom = 0.0
+
+[node name="MoneyLabelTween" type="Tween" parent="Hud/PuzzleMoneyHud"]
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
@@ -624,9 +639,9 @@ __meta__ = {
 
 [node name="FrameDropsLabel" type="Label" parent="Hud/VBoxContainer"]
 visible = false
-margin_top = 227.0
+margin_top = 203.0
 margin_right = 482.0
-margin_bottom = 270.0
+margin_bottom = 246.0
 theme = ExtResource( 68 )
 text = "0 frame drops
 0 step drops"
@@ -754,7 +769,7 @@ script = ExtResource( 19 )
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
 
 [connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="timeout" from="Fg/FoodItems/FoodFlightTimer" to="Fg/FoodItems" method="_on_FoodFlightTimer_timeout"]
@@ -780,9 +795,9 @@ script = ExtResource( 19 )
 [connection signal="customer_changed" from="Fg/RestaurantView" to="Fg/FoodItems" method="_on_RestaurantView_customer_changed"]
 [connection signal="food_spawned" from="Fg/StarSeeds" to="Fg/FoodItems" method="_on_StarSeeds_food_spawned"]
 [connection signal="timeout" from="Fg/StepMeter/RecalculateTimer" to="Fg/StepMeter" method="_on_RecalculateTimer_timeout"]
-[connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
-[connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
-[connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
+[connection signal="back_button_pressed" from="Hud/Center/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
+[connection signal="settings_button_pressed" from="Hud/Center/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
+[connection signal="start_button_pressed" from="Hud/Center/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]

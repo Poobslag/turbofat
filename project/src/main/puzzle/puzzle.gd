@@ -42,7 +42,7 @@ func _exit_tree() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_menu") and not $Hud/HudUi/PuzzleMessages.is_settings_button_visible():
+	if event.is_action_pressed("ui_menu") and not $Hud/Center/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		_settings_menu.show()
 		get_tree().set_input_as_handled()
@@ -61,11 +61,11 @@ func get_piece_queue() -> PieceQueue:
 
 
 func hide_buttons() -> void:
-	$Hud/HudUi/PuzzleMessages.hide_buttons()
+	$Hud/Center/PuzzleMessages.hide_buttons()
 
 
 func show_buttons() -> void:
-	$Hud/HudUi/PuzzleMessages.show_buttons()
+	$Hud/Center/PuzzleMessages.show_buttons()
 
 
 func scroll_to_new_creature() -> void:
@@ -75,10 +75,10 @@ func scroll_to_new_creature() -> void:
 ## Start a countdown when transitioning between levels. Used during tutorials.
 func start_level_countdown() -> void:
 	$Fg/PieceManager.set_physics_process(false)
-	$Hud/HudUi/PuzzleMessages.show_message(tr("Ready?"))
+	$Hud/Center/PuzzleMessages.show_message(tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
 	yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
-	$Hud/HudUi/PuzzleMessages.hide_message()
+	$Hud/Center/PuzzleMessages.hide_message()
 	$Fg/PieceManager.set_physics_process(true)
 	$Fg/PieceManager.skip_prespawn()
 	$StartEndSfx.play_go_sound()

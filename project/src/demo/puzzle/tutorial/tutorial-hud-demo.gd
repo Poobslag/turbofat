@@ -26,7 +26,7 @@ const TEXTS := [
 ## a tutorial level id to demo, like 'tutorial/basic_0'
 export (String) var level_id: String = LevelLibrary.BEGINNER_TUTORIAL
 
-onready var _tutorial_hud: TutorialHud = $Level/Hud/HudUi/TutorialHud
+onready var _tutorial_hud: TutorialHud = $Level/Hud/Center/TutorialHud
 
 func _ready() -> void:
 	var level_settings := LevelSettings.new()

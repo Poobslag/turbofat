@@ -27,7 +27,6 @@ func _ready() -> void:
 
 func hide_results_message() -> void:
 	$ResultsLabel.hide_text()
-	$MoneyLabelTween.hide_money()
 
 
 ## Prepares a game over message to show to the player.
@@ -45,8 +44,6 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 	
 	$ShowResultsSound.play()
 	$ResultsLabel.show_text(text)
-	$MoneyLabelTween.show_money()
-	$MoneyLabel.set_shown_money(PlayerData.money - rank_result.score)
 
 
 func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
@@ -204,9 +201,3 @@ func _on_PuzzleState_after_game_ended() -> void:
 	var finish_condition_type := CurrentLevel.settings.finish_condition.type
 	
 	show_results_message(rank_result, customer_scores, finish_condition_type)
-
-
-func _on_ResultsLabel_text_shown(new_text: String) -> void:
-	if new_text.begins_with(tr("Customer #%s") % [""]):
-		var amount := int(StringUtils.substring_after_last(new_text, "¥").replace(",", ""))
-		$MoneyLabel.set_shown_money($MoneyLabel.shown_money + amount)

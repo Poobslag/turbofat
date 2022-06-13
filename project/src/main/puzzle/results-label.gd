@@ -1,3 +1,4 @@
+class_name ResultsLabel
 extends RichTextLabel
 ## A results label which reveals its contents line by line.
 
