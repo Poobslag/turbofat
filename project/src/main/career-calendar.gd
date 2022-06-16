@@ -68,13 +68,13 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 	elif career_data.distance_travelled + unapplied_distance_earned >= region.end + 1:
 		# The player is trying to cross into the next region
 		var distance_to_next_region := region.end + 1 - career_data.distance_travelled
-		if career_data.is_region_cleared(region):
+		if career_data.is_region_cleared(region) and not career_data.remain_in_region:
 			# The player can cross into the next region. Move them to the start of the next region and allow
 			# movement.
 			newly_travelled_distance = distance_to_next_region
 		else:
-			# The player can't cross into the next region, they haven't cleared the boss level. Move them to the end
-			# of this region and forbid movement.
+			# The player can't cross into the next region, they either haven't cleared the boss level or are choosing
+			# to remain in this region. Move them to the end of this region and forbid movement.
 			newly_banked_steps = unapplied_distance_earned - distance_to_next_region + 1
 	
 	# if the player hit a wall, we bank their steps and don't move them as far this time

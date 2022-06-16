@@ -359,6 +359,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/hookable-level-grade-label.gd"
 }, {
+"base": "Node2D",
+"class": "HookableRegionGradeLabel",
+"language": "GDScript",
+"path": "res://src/main/ui/career/hookable-region-grade-label.gd"
+}, {
 "base": "ColorRect",
 "class": "HudFlash",
 "language": "GDScript",
@@ -824,6 +829,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/rect-fit-label.gd"
 }, {
+"base": "MarginContainer",
+"class": "RegionSelectButton",
+"language": "GDScript",
+"path": "res://src/main/ui/region-select-button.gd"
+}, {
 "base": "Node",
 "class": "RestaurantPuzzleScene",
 "language": "GDScript",
@@ -1110,6 +1120,7 @@ _global_script_class_icons={
 "HeadBobber": "",
 "HighScoreTable": "",
 "HookableLevelGradeLabel": "",
+"HookableRegionGradeLabel": "",
 "HudFlash": "",
 "IdleTimer": "",
 "ImageButton": "",
@@ -1203,6 +1214,7 @@ _global_script_class_icons={
 "RankResult": "",
 "RankRules": "",
 "RectFitLabel": "",
+"RegionSelectButton": "",
 "RestaurantPuzzleScene": "",
 "RestaurantView": "",
 "ResultsLabel": "",

@@ -3,9 +3,11 @@
     {
       "name": "Lemony Thickets",
       "start": 0,
+      "description": "Locate the mysterious Fat Sensei and launch your first successful restaurant. It all starts here!",
       "icon": "forest",
       "overworld_environment": "lemon",
       "puzzle_environment": "lemon",
+      "region_button": "lemon",
       "piece_speed": "0",
       "cutscene_path": "chat/career/lemon",
       "demographics": [
@@ -177,8 +179,10 @@
     {
       "name": "Merrymellow Marsh",
       "start": 40,
+      "description": "Meet the quirky chefs at the Merrymellow Marsh location and help them attract more customers. You can do it!",
       "icon": "skull",
       "overworld_environment": "marsh",
+      "region_button": "marsh",
       "piece_speed": "3-7",
       "cutscene_path": "chat/career/marsh",
       "chefs": [

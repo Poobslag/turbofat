@@ -496,3 +496,12 @@ func test_calculate_rank_lines_m() -> void:
 	assert_eq(RankCalculator.grade(rank.pickup_score_rank), "M")
 	assert_eq(RankCalculator.grade(rank.lines_rank), "M")
 	assert_eq(RankCalculator.grade(rank.score_rank), "M")
+
+
+func test_next_grade() -> void:
+	assert_eq(RankCalculator.next_grade(RankCalculator.NO_GRADE), "B-")
+	assert_eq(RankCalculator.next_grade("B-"), "B")
+	assert_eq(RankCalculator.next_grade("AA+"), "S-")
+	assert_eq(RankCalculator.next_grade("SSS"), "M")
+	assert_eq(RankCalculator.next_grade("M"), "M")
+	assert_eq(RankCalculator.next_grade("crazy-giants"), RankCalculator.NO_GRADE)

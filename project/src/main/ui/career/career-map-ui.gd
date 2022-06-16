@@ -8,7 +8,7 @@ extends CanvasLayer
 ## Returns:
 ## 	'true' if the we successfully forced the player to view a cutscene level, 'false' if we failed
 func _force_cutscene() -> bool:
-	PlayerData.career.hours_passed = CareerData.CAREER_INTERLUDE_HOURS[0]
+	PlayerData.career.hours_passed = PlayerData.career.career_interlude_hours()[0]
 	PlayerData.career.skipped_previous_level = false
 	
 	var region := PlayerData.career.current_region()
@@ -123,7 +123,7 @@ func _find_region_with_epilogue() -> CareerRegion:
 ## Returns:
 ## 	'true' if the we successfully forced an epilogue cutscene to play, 'false' if we failed
 func _force_epilogue_level() -> bool:
-	PlayerData.career.hours_passed = CareerData.CAREER_INTERLUDE_HOURS[0]
+	PlayerData.career.hours_passed = PlayerData.career.career_interlude_hours()[0]
 	PlayerData.career.skipped_previous_level = false
 	
 	var new_region := _find_region_with_epilogue()

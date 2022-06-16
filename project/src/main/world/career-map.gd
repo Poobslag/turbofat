@@ -261,7 +261,7 @@ func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 		result = _boss_chat_key_pair()
 	
 	# if it's the 3rd or 6th level, return any interludes
-	if result.empty() and PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
+	if result.empty() and PlayerData.career.hours_passed in PlayerData.career.career_interlude_hours() \
 			and not PlayerData.career.skipped_previous_level:
 		result = _interlude_chat_key_pair(career_level)
 	

@@ -16,6 +16,9 @@ const SCENE_FREE_ROAM := "res://src/main/world/FreeRoam.tscn"
 ## scene for career mode which shows the player's progress between levels
 const SCENE_CAREER_MAP := "res://src/main/world/CareerMap.tscn"
 
+## scene for career mode's region select menu (chapter select menu)
+const SCENE_CAREER_REGION_SELECT_MENU := "res://src/main/ui/menu/CareerRegionSelectMenu.tscn"
+
 ## puzzle where a player drops pieces into a playfield of blocks.
 const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
 

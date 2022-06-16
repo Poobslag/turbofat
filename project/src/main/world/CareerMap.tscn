@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -7,15 +7,12 @@
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/EmptyEnvironment.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=9]
 [ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=11]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/career/career-distance-label.gd" type="Script" id=13]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=15]
 [ext_resource path="res://src/main/ui/career/career-time-label.gd" type="Script" id=16]
-[ext_resource path="res://src/main/ui/career/career-distance.gd" type="Script" id=17]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
 [ext_resource path="res://src/main/ui/career/career-map-level-select.gd" type="Script" id=28]
@@ -30,9 +27,6 @@
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="StyleBoxFlat" id=21]
-draw_center = false
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -137,9 +131,6 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 8
 size_flags_vertical = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IconSprite" type="Sprite" parent="Ui/Control/StatusBar/Distance/TextureRect"]
 position = Vector2( 16, 16 )
@@ -159,45 +150,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Adjust" type="HBoxContainer" parent="Ui/Control/StatusBar/Distance"]
-margin_left = 124.0
-margin_top = 2.5
-margin_right = 180.0
-margin_bottom = 34.5
-mouse_filter = 2
-theme = ExtResource( 9 )
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Down" type="Button" parent="Ui/Control/StatusBar/Distance/Adjust"]
-margin_right = 26.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 26, 0 )
-theme = ExtResource( 15 )
-custom_fonts/font = ExtResource( 43 )
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 21 )
-custom_styles/focus = SubResource( 21 )
-custom_styles/disabled = SubResource( 21 )
-custom_styles/normal = SubResource( 21 )
-text = "<"
-
-[node name="Up" type="Button" parent="Ui/Control/StatusBar/Distance/Adjust"]
-margin_left = 30.0
-margin_right = 56.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 26, 0 )
-theme = ExtResource( 15 )
-custom_fonts/font = ExtResource( 43 )
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 21 )
-custom_styles/focus = SubResource( 21 )
-custom_styles/disabled = SubResource( 21 )
-custom_styles/normal = SubResource( 21 )
-text = ">"
 
 [node name="Time" type="Control" parent="Ui/Control/StatusBar"]
 anchor_left = 1.0
@@ -280,8 +232,6 @@ codes = [ "bossio", "cambra", "cutsio", "cyclio", "epilio", "moveme" ]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="Ui" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="World" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Down" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Down_pressed"]
-[connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Up" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Up_pressed"]
 [connection signal="hide" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
 [connection signal="other_quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_other_quit_pressed"]

@@ -55,6 +55,7 @@ func _extract_localizables_from_career_regions() -> void:
 	for region_obj in CareerLevelLibrary.regions:
 		var region: CareerRegion = region_obj
 		_localizables.append(region.name)
+		_localizables.append(region.description)
 
 
 ## Extracts localizable strings from worlds/levels and adds them to the in-memory list of localizables.
