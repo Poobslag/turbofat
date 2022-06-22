@@ -3,9 +3,6 @@
 [location]
 marsh/walk
 
-[destination]
-marsh
-
 [characters]
 player, p1
 sensei, s1
