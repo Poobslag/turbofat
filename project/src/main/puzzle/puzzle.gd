@@ -212,9 +212,6 @@ func _should_play_epilogue() -> bool:
 	var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
 	if not world_lock:
 		result = false
-	elif not LevelLibrary.is_world_finished(world_lock.world_id):
-		# player hasn't beaten the world yet; don't play the epilogue
-		result = false
 	elif not world_lock.epilogue_chat_key:
 		# the world has no epilogue assigned; don't play the epilogue
 		result = false
