@@ -343,7 +343,6 @@ func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 	if chat_tree.meta.get("advance_region", false):
 		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
-		remain_in_region = false
 		var old_distance_travelled := distance_travelled
 		distance_travelled = max(distance_travelled, region.end + 1)
 		max_distance_travelled = max(max_distance_travelled, distance_travelled)

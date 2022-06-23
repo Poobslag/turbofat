@@ -29,6 +29,8 @@ func _extract_and_write_localizables() -> void:
 	var old_locale := TranslationServer.get_locale()
 	TranslationServer.set_locale("en")
 	
+	_extract_localizables_from_worlds()
+	_extract_localizables_from_career_regions()
 	_extract_localizables_from_levels()
 	_extract_localizables_from_creatures()
 	_extract_localizables_from_scancode_strings()
@@ -41,7 +43,21 @@ func _extract_and_write_localizables() -> void:
 			OUTPUT_PATH, SCANCODE_OUTPUT_PATH]
 
 
-## Extracts localizable strings from levels and adds them to the in-memory list of localizables.
+## Extracts localizable strings from worlds in story mode.
+func _extract_localizables_from_worlds() -> void:
+	for world_id in LevelLibrary.world_ids:
+		var world_lock: WorldLock = LevelLibrary.world_lock(world_id)
+		_localizables.append(world_lock.world_name)
+
+
+## Extracts localizable strings from regions in career mode.
+func _extract_localizables_from_career_regions() -> void:
+	for region_obj in CareerLevelLibrary.regions:
+		var region: CareerRegion = region_obj
+		_localizables.append(region.name)
+
+
+## Extracts localizable strings from worlds/levels and adds them to the in-memory list of localizables.
 func _extract_localizables_from_levels() -> void:
 	# Create a sorted list of all level IDs
 	var level_id_set := {}
@@ -131,6 +147,9 @@ func _write_localizables(output_path: String, localizables: Array) -> void:
 	f.store_string("# Localizable strings extracted by LocalizationDemo.tscn\n")
 	for localizable_string_obj in localizables:
 		var localizable_string: String = localizable_string_obj
+		if localizable_string.empty():
+			continue
+		
 		var sanitized_string := localizable_string
 		sanitized_string = sanitized_string.replace("\"", "\\\"")
 		sanitized_string = sanitized_string.replace("\n", "\\n")

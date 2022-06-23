@@ -34,9 +34,9 @@ func _update_tutorial_world_text(ranks: Array) -> void:
 	var progress_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 	
 	if progress_pct < 1.00:
-		new_text = "Don't worry about completing all the tutorials right away! You know more than you realize."
+		new_text = tr("Don't worry about completing all the tutorials right away! You know more than you realize.")
 	else:
-		new_text = "Nice, you've completed the tutorials. Now you're ready to play the game!"
+		new_text = tr("Nice, you've completed the tutorials. Now you're ready to play the game!")
 	set_text(new_text)
 
 
@@ -50,12 +50,12 @@ func _update_world_text(ranks: Array) -> void:
 	
 	match RankCalculator.grade(worst_rank):
 		RankCalculator.NO_GRADE:
-			new_text += "Try to get a B- or better on every level. Good luck!"
+			new_text += tr("Try to get a B- or better on every level. Good luck!")
 		RankCalculator.HIGHEST_GRADE:
-			new_text += "You are a master of Turbo Fat!"
+			new_text += tr("You are a master of Turbo Fat!")
 		_:
-			new_text += "Wow, you beat every level! Good job!"
-			new_text += "\n\nImprove your level scores to earn more stars and increase your grade. Good luck!"
+			new_text += tr("Wow, you beat every level! Good job!")
+			new_text += "\n\n" + tr("Improve your level scores to earn more stars and increase your grade. Good luck!")
 	set_text(new_text)
 
 
@@ -69,9 +69,11 @@ func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: Lev
 	var new_text := ""
 	match level_lock.status:
 		LevelLock.STATUS_SOFT_LOCK:
-			var level_count := StringUtils.english_number(level_lock.keys_needed)
-			new_text += "Clear %s more levels to unlock this. You can do it!" % [level_count]
-			new_text = new_text.replace("one more levels", "one more level")
+			if level_lock.keys_needed == 1:
+				new_text += tr("Clear one more level to unlock this. You can do it!")
+			else:
+				var level_count := StringUtils.english_number(level_lock.keys_needed)
+				new_text += tr("Clear %s more levels to unlock this. You can do it!") % [level_count]
 		_:
 			push_warning("Unexpected lock status: %s" % [level_lock.status])
 	
