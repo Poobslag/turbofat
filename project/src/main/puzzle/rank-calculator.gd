@@ -477,6 +477,20 @@ static func grade(rank: float) -> String:
 	return grade
 
 
+## Calculates the next grade better than the specified grade.
+##
+## next_grade("A-")  = "A"
+## next_grade("SSS") = "M"
+## next_grade("M")   = "M"
+## next_grade("-")   = "B-"
+static func next_grade(grade: String) -> String:
+	var result := NO_GRADE
+	for i in range(GRADE_RANKS.size()):
+		if grade == GRADE_RANKS[i][0]:
+			result = GRADE_RANKS[max(0, i - 1)][0]
+	return result
+
+
 ## Converts a letter grade such as 'S+' into a numeric rating such as '12.6'.
 ##
 ## The resulting rating is an average rating for that grade -- not a minimum cutoff.

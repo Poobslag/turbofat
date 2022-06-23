@@ -79,6 +79,9 @@ var cutscene_path: String
 ## Describes creatures in a region
 var demographic_data := DemographicData.new()
 
+## A human-readable tagline describing this career region.
+var description: String
+
 ## Returns 'true' if this region has the specified flag.
 ##
 ## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or
@@ -107,6 +110,9 @@ var overworld_environment_name: String
 ## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
 var puzzle_environment_name: String
 
+## A human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
+var region_button_name: String
+
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
 	start = int(json.get("start", 0))
@@ -121,6 +127,7 @@ func from_json_dict(json: Dictionary) -> void:
 	cutscene_path = json.get("cutscene_path", "")
 	if json.has("demographics"):
 		demographic_data.from_json_array(json.get("demographics"))
+	description = json.get("description", "")
 	for flags_string in json.get("flags", []):
 		flags[flags_string] = true
 	icon_name = json.get("icon", "")
@@ -134,6 +141,7 @@ func from_json_dict(json: Dictionary) -> void:
 	if json.has("observers"):
 		_parse_creature_appearances(json, "observers")
 	overworld_environment_name = json.get("overworld_environment", "")
+	region_button_name = json.get("region_button", "")
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:
 		min_piece_speed = StringUtils.substring_before(piece_speed_string, "-")

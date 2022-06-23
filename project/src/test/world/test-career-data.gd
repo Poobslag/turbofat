@@ -50,6 +50,15 @@ func test_advance_clock_stops_at_boss_level_1() -> void:
 	assert_eq(_data.banked_steps, 2)
 
 
+func test_advance_clock_stops_at_boss_level_2() -> void:
+	_data.max_distance_travelled = 10 # they've cleared the first boss level
+	_data.remain_in_region = true
+	_data.advance_clock(50, true)
+	assert_eq(_data.distance_earned, 50)
+	assert_eq(_data.distance_travelled, 9)
+	assert_eq(_data.banked_steps, 41)
+
+
 ## The player skips one boss level, but gets stopped by the next boss level
 func test_advance_clock_skips_boss_level() -> void:
 	_data.max_distance_travelled = 10 # they've only cleared the first boss level

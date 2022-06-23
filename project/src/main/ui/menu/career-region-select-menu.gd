@@ -1,0 +1,14 @@
+extends Control
+## Scene which lets the player select a career region to play.
+
+func _ready() -> void:
+	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm()
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
+
+
+func _on_BackButton_pressed() -> void:
+	SceneTransition.pop_trail(true)

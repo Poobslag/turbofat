@@ -6,6 +6,55 @@ class_name CareerData
 ## travelled today", as well as historical information like "how many days have they played" and "how much money did
 ## they earn three days ago"
 
+## Data about which parts of a region are complete/incomplete.
+class RegionCompletion:
+	# how many interlude cutscenes the player's viewed in a region
+	var cutscene_completion: int = 0
+	
+	# how many interlude cutscenes the player can potentially view in a region
+	var potential_cutscene_completion: int = 0
+	
+	# how many levels the player has finished in a region
+	var level_completion: int = 0
+	
+	# how many levels the player can potentially finish in a region
+	var potential_level_completion: int = 0
+	
+	## Returns a number in the range [0.0, 1.0] for how close the player is to completing the region.
+	##
+	## This includes how many levels they've cleared and how many interlude cutscenes they've viewed.
+	func completion_percent() -> float:
+		# We combine the raw cutscene count and level count. This means for regions with many cutscenes and few
+		# levels, a player might clear every level and only have 20% completion.
+		var completion := cutscene_completion + level_completion
+		var potential_completion := potential_cutscene_completion + potential_level_completion
+		
+		if potential_completion == 0.0:
+			# avoid divide-by-zero for regions with no levels and no cutscenes
+			return 1.0
+		else:
+			return completion / float(potential_completion)
+	
+	
+	## Returns a number in the range [0.0, 1.0] for how close the player is to viewing all of a region's interlude
+	## cutscenes.
+	func cutscene_completion_percent() -> float:
+		if potential_cutscene_completion == 0.0:
+			# avoid divide-by-zero for regions with no cutscenes
+			return 1.0
+		else:
+			return cutscene_completion / float(potential_cutscene_completion)
+	
+	
+	## Returns a number in the range [0.0, 1.0] for how close the player is to playing all of a region's levels.
+	func level_completion_percent() -> float:
+		if potential_level_completion == 0.0:
+			# avoid divide-by-zero for regions with no levels
+			return 1.0
+		else:
+			return level_completion / float(potential_level_completion)
+
+
 ## Emitted when the player's distance changes, particularly at the start of career mode when they're picking their
 ## starting distance
 signal distance_travelled_changed
@@ -13,9 +62,6 @@ signal distance_travelled_changed
 ## Emitted when the number of levels played in the current career session changes. It's unusual for this to change
 ## mid-scene, and really only happens when using cheat codes.
 signal hours_passed_changed
-
-## The 3rd and 6th levels in career mode include a cutscene interlude.
-const CAREER_INTERLUDE_HOURS := [2, 5]
 
 ## Chat key root for non-region-specific cutscenes
 const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
@@ -91,6 +137,12 @@ var prev_distance_travelled := []
 ## The furthest total distance the player has travelled in a single session.
 var max_distance_travelled := 0
 
+## 'true' if the player should not advance to the next region.
+##
+## This is enabled when replaying regions. It would be tedious to be forced into later regions, because playing
+## earlier regions is necessary to view certain cutscenes and finish the game.
+var remain_in_region := false
+
 ## 'true' if the player skipped or gave up on the previous level, instead of finishing it or topping out.
 var skipped_previous_level := false
 
@@ -128,6 +180,7 @@ func reset() -> void:
 	prev_daily_earnings.clear()
 	prev_distance_travelled.clear()
 	max_distance_travelled = 0
+	remain_in_region = false
 	skipped_previous_level = false
 	emit_signal("distance_travelled_changed")
 
@@ -146,6 +199,7 @@ func from_json_dict(json: Dictionary) -> void:
 	prev_daily_earnings = json.get("prev_daily_earnings", [])
 	prev_distance_travelled = json.get("prev_distance_travelled", [])
 	max_distance_travelled = int(json.get("max_distance_travelled", 0))
+	remain_in_region = bool(json.get("remain_in_region", false))
 	skipped_previous_level = bool(json.get("skipped_previous_level", false))
 	emit_signal("distance_travelled_changed")
 
@@ -165,8 +219,29 @@ func to_json_dict() -> Dictionary:
 	results["prev_daily_earnings"] = prev_daily_earnings
 	results["prev_distance_travelled"] = prev_distance_travelled
 	results["max_distance_travelled"] = max_distance_travelled
+	results["remain_in_region"] = remain_in_region
 	results["skipped_previous_level"] = skipped_previous_level
 	return results
+
+
+## Returns the player's current career interlude hours.
+##
+## When replaying an already-cleared region, more levels include a cutscene interlude. This is because presumably,
+## players in a new region are more focused on playing the new levels, where players replaying a region are focused on
+## finishing its cutscenes.
+##
+## Returns:
+## 	Array of ints for the hours in career mode which should currently include interlude cutscenes, based on the
+## 	player's progress.
+func career_interlude_hours() -> Array:
+	var result: Array
+	if remain_in_region:
+		# When replaying an already-cleared region, the 3rd, 6th and 8th levels include a cutscene
+		result = [2, 5, 7]
+	else:
+		# Normally, the 3rd and 6th levels include a cutscene
+		result = [2, 5]
+	return result
 
 
 ## Returns 'true' if the player has completed the current career mode session.
@@ -182,20 +257,6 @@ func push_career_trail() -> void:
 ## Returns the career region the player is currently in.
 func current_region() -> CareerRegion:
 	return CareerLevelLibrary.region_for_distance(distance_travelled)
-
-
-## Returns the career region before the region the player is currently in, or the first region if the player is still
-## in the first region.
-func prev_region() -> CareerRegion:
-	var current_region := current_region()
-	return CareerLevelLibrary.region_for_distance(current_region.start - 1)
-
-
-## Returns the career region after the region the player is currently in, or the last region if the player is in the
-## last region.
-func next_region() -> CareerRegion:
-	var current_region := current_region()
-	return CareerLevelLibrary.region_for_distance(current_region.end + 1)
 
 
 ## Returns 'true' if the current career region has a prologue the player hasn't seen.
@@ -214,6 +275,11 @@ func is_career_mode() -> bool:
 ## Returns 'true' if the player is current playing a cutscene in career mode
 func is_career_cutscene() -> bool:
 	return Global.SCENE_CAREER_MAP in Breadcrumb.trail
+
+
+## Returns 'true' if the player hasn't reached this region yet
+func is_region_locked(region: CareerRegion) -> bool:
+	return max_distance_travelled < region.start
 
 
 ## Returns 'true' if the player has completed the boss level in the specified region
@@ -343,6 +409,7 @@ func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 	if chat_tree.meta.get("advance_region", false):
 		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
+		remain_in_region = false
 		var old_distance_travelled := distance_travelled
 		distance_travelled = max(distance_travelled, region.end + 1)
 		max_distance_travelled = max(max_distance_travelled, distance_travelled)
@@ -353,6 +420,36 @@ func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
 func _on_DailySecondsPlayedTimer_timeout() -> void:
 	if is_career_mode():
 		daily_seconds_played += PlayerData.SECONDS_PLAYED_INCREMENT
+
+
+## Returns data about which parts of a region are complete/incomplete.
+func region_completion(region: CareerRegion) -> RegionCompletion:
+	var region_completion := RegionCompletion.new()
+	
+	# include the percent of cutscenes which have been viewed
+	if region.cutscene_path:
+		var all_search_flags := CutsceneSearchFlags.new()
+		all_search_flags.include_all_numeric_children = true
+		var all_chat_count: int = CareerCutsceneLibrary.find_chat_key_pairs(
+				[region.cutscene_path], all_search_flags).size()
+		region_completion.potential_cutscene_completion = all_chat_count
+		
+		var unexhausted_search_flags := CutsceneSearchFlags.new()
+		unexhausted_search_flags.include_all_numeric_children = true
+		unexhausted_search_flags.excluded_chat_keys = CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
+		var unexhausted_chat_count: int = CareerCutsceneLibrary.find_chat_key_pairs(
+				[region.cutscene_path], unexhausted_search_flags).size()
+		
+		region_completion.cutscene_completion = all_chat_count - unexhausted_chat_count
+	
+	# include the percent of levels which have been completed
+	region_completion.potential_level_completion = region.levels.size()
+	for level_obj in region.levels:
+		var level: CareerLevel = level_obj
+		if PlayerData.level_history.is_level_finished(level.level_id):
+			region_completion.level_completion += 1.0
+	
+	return region_completion
 
 
 ## Calculates the highest rank milestone the player's reached.
