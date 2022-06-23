@@ -28,7 +28,3 @@ func _refresh_levels_to_include() -> void:
 		return
 	
 	_level_buttons.levels_to_include = levels_to_include
-
-
-func _on_SettingsMenu_quit_pressed() -> void:
-	SceneTransition.pop_trail()

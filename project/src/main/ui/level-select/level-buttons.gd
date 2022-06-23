@@ -109,6 +109,7 @@ func _add_buttons() -> void:
 			
 			# warning-ignore:integer_division
 			if i == (shown_level_ids.size() - 1) / 2:
+				# add world button in the middle of the level buttons
 				last_world_button = _world_button(world_id)
 				_add_button_to_column(last_world_button)
 	
@@ -149,7 +150,7 @@ func _world_button(world_id: String) -> WorldSelectButton:
 	for level_id in world_lock.level_ids:
 		var settings: LevelSettings = LevelLibrary.level_settings(level_id)
 		var best_result := PlayerData.level_history.best_result(settings.id)
-		var rank := 999.0
+		var rank := RankResult.WORST_RANK
 		if best_result:
 			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
 		ranks.append(rank)
@@ -191,6 +192,7 @@ func _lowlight_unrelated_buttons(world_id: String) -> void:
 		else:
 			level_select_button.lowlight = true
 
+
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	CutsceneQueue.reset()
@@ -203,6 +205,7 @@ func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 		"cutscene_force": SystemData.misc_settings.cutscene_force,
 	})
 	CutsceneQueue.push_trail()
+
 
 ## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
