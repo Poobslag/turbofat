@@ -6,7 +6,7 @@ extends Control
 export (PackedScene) var GradeLabelScene: PackedScene
 
 ## key: LevelSelectButton instance
-## value: HookableGradeLabel for the specified button
+## value: HookableLevelGradeLabel for the specified button
 var _labels_by_button: Dictionary
 
 ## Add a grade label for the specified button.
@@ -15,7 +15,7 @@ func add_label(button: LevelSelectButton) -> void:
 		# avoid adding two labels for the same button
 		return
 	
-	var new_label: HookableGradeLabel = GradeLabelScene.instance()
+	var new_label: HookableLevelGradeLabel = GradeLabelScene.instance()
 	add_child(new_label)
 	_labels_by_button[button] = new_label
 	new_label.button = button
