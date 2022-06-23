@@ -234,7 +234,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
-choice_text = "Are you kidding me? That's not even close to what I said!"
 
 [node name="FontFitLabel" type="Label" parent="."]
 anchor_right = 1.0
@@ -252,9 +251,6 @@ valign = 1
 autowrap = true
 max_lines_visible = 1
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 fonts = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ]
 
 [node name="MoodSprite" type="Control" parent="."]
