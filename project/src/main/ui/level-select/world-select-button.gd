@@ -2,7 +2,7 @@ class_name WorldSelectButton
 extends LevelSelectButton
 ## A button on the level select screen which displays world information.
 
-## an array of level ranks. incomplete levels are treated as rank 999
+## An array of level ranks for levels in this world. Incomplete levels are treated as rank 999.
 var ranks: Array
 
 ## Workaround for Godot #21789 to make get_class return class_name

@@ -5,6 +5,9 @@ extends Button
 ## emitted when a level is launched.
 signal level_started
 
+## Emitted when a button is 'lowlighted'.
+##
+## Lowlighted buttons are unrelated to the currently selected world and fade into the background.
 signal lowlight_changed
 
 ## short levels have smaller buttons; long levels have larger buttons
@@ -40,7 +43,7 @@ var level_title: String setget set_level_title
 ## 'true' if this button should be darkened so that it doesn't draw the player's attention.
 var lowlight: bool setget set_lowlight
 
-## 'true' if this button just received focus this frame. a mouse click which grants focus doesn't emit a 'level
+## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'level
 ## started' event
 var _focus_just_entered := false
 
@@ -83,6 +86,9 @@ func set_level_duration(new_level_duration: int) -> void:
 	_refresh_appearance()
 
 
+## Updates the button to be 'lowlighted'.
+##
+## Lowlighted buttons are unrelated to the currently selected world and fade into the background.
 func set_lowlight(new_lowlight: bool) -> void:
 	lowlight = new_lowlight
 	modulate = Color("50ffffff") if lowlight else Color.white

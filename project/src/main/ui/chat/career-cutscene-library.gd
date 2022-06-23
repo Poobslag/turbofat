@@ -45,14 +45,15 @@ const SPECIAL_CHAT_KEY_NAMES := [
 ## Resource path containing career cutscenes. Can be changed for tests.
 var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_career_cutscene_root_path
 
-## Ordered list of ChatKeyPairs, from earliest cutscenes to latest cutscenes
+## Ordered list of interlude ChatKeyPairs, from earliest cutscenes to latest cutscenes
 ##
 ## Each entry in this array is a ChatKeyPair defining preroll and postroll cutscenes.
 ##
 ## This is calculated based on the contents of the filesystem, but can be overridden for tests.
 var all_chat_key_pairs := [] setget set_all_chat_key_pairs
 
-## key: (String) A preroll chat key like 'chat/career/general_00_a'. For the case where a level has a postroll cutscene
+## key: (String) An interlude preroll chat key like 'chat/career/general_00_a'. For the case where a level has a
+## 	postroll cutscene
 ## 	but no preroll cutscene, this chat key may actually correspond to a non-existent preroll cutscene.
 ##
 ## value: (ChatKeyPair) A ChatKeyPair defining preroll and postroll cutscenes.
@@ -60,16 +61,17 @@ var _chat_key_pairs_by_preroll := {}
 
 ## Defines a hierarchy of preroll cutscenes.
 ##
-## key: (String) A preroll chat key like 'chat/career/general_00_a', or a parent path like 'chat/career/general'.
+## key: (String) An interlude preroll chat key like 'chat/career/general_00_a', or a parent path like
+## 	'chat/career/general'.
 ##
 ## value: (Array) A list of child chat key fragments, like ['00', '01', '02']. Each fragment corresponds to a suffix
 ## 	which can be appended to the chat key, along with an appropriate delimeter, to create a new path.
 var _preroll_tree := {}
 
-## List of String chat keys in the 'general' chat key root path featuring fat sensei
+## List of String interlude chat keys in the 'general' chat key root path featuring fat sensei
 var _general_sensei_chat_keys := []
 
-## List of String chat keys in the 'general' chat key root path featuring the restaurant
+## List of String interlude chat keys in the 'general' chat key root path featuring the restaurant
 var _general_restaurant_chat_keys := []
 
 func _ready() -> void:
@@ -84,7 +86,7 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 	_refresh_chat_key_pairs()
 
 
-## Calculates the list of potential ChatKeyPairs, and returns a random one.
+## Calculates the list of potential interlude ChatKeyPairs, and returns a random one.
 ##
 ## The optional 'chef_id' and 'customer_ids' parameters force the responses to feature those creatures as
 ## participants. This ensures levels are paired up with appropriate cutscenes.
@@ -107,7 +109,7 @@ func next_interlude_chat_key_pair(chat_key_roots: Array,
 	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else ChatKeyPair.new()
 
 
-## Calculates the list of potential ChatKeyPairs.
+## Calculates the list of potential interlude ChatKeyPairs.
 ##
 ## The optional 'chef_id' and 'customer_ids' parameters force the responses to feature those creatures as
 ## participants. This ensures levels are paired up with appropriate cutscenes.
@@ -216,7 +218,7 @@ func _chat_key_pair_has_creatures(chat_key_pair: ChatKeyPair,
 	return matches
 
 
-## Assigns the list of ChatKeyPairs, and regenerates all internal fields such as the preroll tree.
+## Assigns the list of interlude ChatKeyPairs, and regenerates all internal fields such as the preroll tree.
 func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	all_chat_key_pairs = new_all_chat_key_pairs
 	
@@ -256,7 +258,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 				_general_restaurant_chat_keys.append(chat_key)
 
 
-## Returns a collection of preroll chat keys for cutscenes the player has already seen.
+## Returns a collection of interlude preroll chat keys for cutscenes the player has already seen.
 ##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
@@ -298,7 +300,7 @@ func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	return excluded_chat_keys
 
 
-## Returns a list of all chat keys in _preroll_tree in preroll order (leaves first.)
+## Returns a list of all interlude chat keys in _preroll_tree in preroll order (leaves first.)
 ##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
@@ -321,7 +323,7 @@ func chat_keys(chat_key_roots: Array) -> Array:
 	return chat_keys
 
 
-## Filters the list of potential ChatKeyPairs, excluding the specified chat keys.
+## Filters the list of potential interlude ChatKeyPairs, excluding the specified chat keys.
 ##
 ## The returned list includes only the earliest numeric keys in each branch, because numeric siblings are always
 ## played in ascending order. However, it includes ALL alphabetic keys in each branch, because alphabetic siblings are
@@ -334,8 +336,8 @@ func chat_keys(chat_key_roots: Array) -> Array:
 ## 	'search_flags': A set of flags defining search behavior.
 ##
 ## Returns:
-## 	A filtered list of ChatKeyPair instances which define chat keys for cutscenes which play before or after a
-## 	level.
+## 	A filtered list of ChatKeyPair instances which define chat keys for interlude cutscenes which play before or
+## 	after a level.
 func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlags) -> Array:
 	var potential_chat_key_pairs := []
 	
@@ -434,7 +436,7 @@ func _is_special_chat_key(chat_key: String) -> bool:
 	return result
 
 
-## Finds all ChatKeyPairs by searching for resources under the career_cutscene_root_path.
+## Finds all interlude ChatKeyPairs by searching for resources under the career_cutscene_root_path.
 ##
 ## Also regenerates all internal fields such as the preroll tree.
 func _refresh_chat_key_pairs() -> void:

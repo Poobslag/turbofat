@@ -140,9 +140,9 @@ static func weighted_rand_value(weights_map: Dictionary):
 
 ## Returns the array index whose contents are closest to a target number.
 ##
-## Utils.find_closest([1.0, 2.0, 4.0, 8.0], 6.0) = 2
-## Utils.find_closest([1.0, 2.0, 4.0, 8.0], 100) = 3
-## Utils.find_closest([], 100)                   = -1
+## find_closest([1.0, 2.0, 4.0, 8.0], 6.0) = 2
+## find_closest([1.0, 2.0, 4.0, 8.0], 100) = 3
+## find_closest([], 100)                   = -1
 static func find_closest(values: Array, target: float) -> int:
 	if not values:
 		return -1
