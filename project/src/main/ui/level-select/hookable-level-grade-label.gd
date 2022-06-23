@@ -1,4 +1,4 @@
-class_name HookableGradeLabel
+class_name HookableLevelGradeLabel
 extends Node2D
 ## Shows a grade label for a specific level.
 ##
