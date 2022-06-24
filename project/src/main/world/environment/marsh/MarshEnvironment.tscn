@@ -269,24 +269,24 @@ target_properties = {
 }
 spawn_if = "chat_finished chat/career/marsh/30_b_end"
 
-[node name="SpawnRestaurant1" parent="Obstacles" instance=ExtResource( 39 )]
+[node name="Restaurant1" parent="Obstacles" instance=ExtResource( 39 )]
 position = Vector2( 271.495, 1072.24 )
 scale = Vector2( 0.539, 0.539 )
 orientation = 1
 id = "restaurant_1"
 
-[node name="SpawnRestaurant4" parent="Obstacles" instance=ExtResource( 39 )]
+[node name="Restaurant4" parent="Obstacles" instance=ExtResource( 39 )]
 position = Vector2( 326.432, 1152.12 )
 scale = Vector2( 0.539, 0.539 )
 orientation = 1
 id = "restaurant_4"
 
-[node name="SpawnRestaurant8" parent="Obstacles" instance=ExtResource( 39 )]
+[node name="Restaurant8" parent="Obstacles" instance=ExtResource( 39 )]
 position = Vector2( 81.5159, 1154.66 )
 scale = Vector2( 0.539, 0.539 )
 id = "restaurant_8"
 
-[node name="SpawnRestaurant11" parent="Obstacles" instance=ExtResource( 39 )]
+[node name="Restaurant11" parent="Obstacles" instance=ExtResource( 39 )]
 position = Vector2( 132.969, 1070.01 )
 scale = Vector2( 0.539, 0.539 )
 id = "restaurant_11"
@@ -415,30 +415,30 @@ spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="Spawns" type="Node2D" parent="."]
 
-[node name="SpawnButtercup1" parent="Spawns" instance=ExtResource( 39 )]
+[node name="Buttercup1" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3806.9, 1125.61 )
 orientation = 1
 id = "buttercup_1"
 
-[node name="SpawnButtercup3" parent="Spawns" instance=ExtResource( 39 )]
+[node name="Buttercup3" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3893.95, 1174.2 )
 orientation = 1
 id = "buttercup_3"
 
-[node name="SpawnButtercup5" parent="Spawns" instance=ExtResource( 39 )]
+[node name="Buttercup5" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3805.07, 1220.75 )
 orientation = 1
 id = "buttercup_5"
 
-[node name="SpawnButtercup6" parent="Spawns" instance=ExtResource( 39 )]
+[node name="Buttercup6" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3704.68, 1253.05 )
 id = "buttercup_6"
 
-[node name="SpawnButtercup9" parent="Spawns" instance=ExtResource( 39 )]
+[node name="Buttercup9" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3561.74, 1189.75 )
 id = "buttercup_9"
 
-[node name="SpawnButtercup11" parent="Spawns" instance=ExtResource( 39 )]
+[node name="Buttercup11" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3633.95, 1137.63 )
 id = "buttercup_11"
 

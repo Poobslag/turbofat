@@ -151,19 +151,19 @@ frame = 1
 
 [node name="Spawns" type="Node2D" parent="."]
 
-[node name="SpawnChef" parent="Spawns" instance=ExtResource( 16 )]
+[node name="Chef" parent="Spawns" instance=ExtResource( 16 )]
 position = Vector2( 780.481, 272.623 )
 orientation = 1
 id = "chef"
 
-[node name="SpawnCustomer1" parent="Spawns" instance=ExtResource( 16 )]
+[node name="Customer1" parent="Spawns" instance=ExtResource( 16 )]
 position = Vector2( 237.44, 435.216 )
 id = "customer_1"
 
-[node name="SpawnCustomer2" parent="Spawns" instance=ExtResource( 16 )]
+[node name="Customer2" parent="Spawns" instance=ExtResource( 16 )]
 position = Vector2( 86.6673, 212.964 )
 id = "customer_2"
 
-[node name="SpawnCustomer3" parent="Spawns" instance=ExtResource( 16 )]
+[node name="Customer3" parent="Spawns" instance=ExtResource( 16 )]
 position = Vector2( 429.888, 185.507 )
 id = "customer_3"
