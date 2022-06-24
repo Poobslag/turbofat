@@ -430,53 +430,53 @@ flip_h = true
 
 [node name="Spawns" type="Node2D" parent="."]
 
-[node name="SpawnForest2" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Forest2" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 2436.9, 1278.65 )
 orientation = 1
 id = "forest_2"
 
-[node name="SpawnForest3" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Forest3" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 2504.62, 1318.8 )
 orientation = 1
 id = "forest_3"
 
-[node name="SpawnForest9" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Forest9" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 2237.33, 1335.77 )
 id = "forest_9"
 
-[node name="SpawnGrave1" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Grave1" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 3309.38, 1887.66 )
 orientation = 1
 id = "grave_1"
 
-[node name="SpawnGrave3" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Grave3" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 3423.31, 1977.03 )
 orientation = 1
 id = "grave_3"
 
-[node name="SpawnGrave8" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Grave8" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 3148.85, 1991.83 )
 id = "grave_8"
 
-[node name="SpawnGrave9" parent="Spawns" instance=ExtResource( 25 )]
+[node name="Grave9" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 3091.91, 1955.12 )
 id = "grave_9"
 
-[node name="SpawnPlayerHouse0" parent="Spawns" instance=ExtResource( 25 )]
+[node name="PlayerHouse0" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 487.22, 1426.19 )
 id = "player_house_0"
 
-[node name="SpawnPlayerHouse4" parent="Spawns" instance=ExtResource( 25 )]
+[node name="PlayerHouse4" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 643.242, 1494.66 )
 orientation = 1
 id = "player_house_4"
 
-[node name="SpawnSenseiHouse0" parent="Spawns" instance=ExtResource( 25 )]
+[node name="SenseiHouse0" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 4507.93, 2444.54 )
 orientation = 1
 id = "sensei_house_0"
 
-[node name="SpawnSenseiHouse9" parent="Spawns" instance=ExtResource( 25 )]
+[node name="SenseiHouse9" parent="Spawns" instance=ExtResource( 25 )]
 position = Vector2( 4363.52, 2453.03 )
 id = "sensei_house_9"
 

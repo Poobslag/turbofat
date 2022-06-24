@@ -742,76 +742,76 @@ position = Vector2( 1383.76, 123.852 )
 
 [node name="Spawns" type="Node2D" parent="."]
 
-[node name="SpawnChef" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Chef" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1512, 255 )
 orientation = 1
 id = "chef"
 
-[node name="SpawnCustomer1" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Customer1" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 592, 35 )
 stool_path = NodePath("../../Obstacles/Stool2")
 id = "customer_1"
 elevation = 140.0
 
-[node name="SpawnCustomer2" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Customer2" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 349, 322 )
 stool_path = NodePath("../../Obstacles/Stool4")
 id = "customer_2"
 elevation = 140.0
 
-[node name="SpawnCustomer3" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Customer3" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 992, 35 )
 stool_path = NodePath("../../Obstacles/Stool8")
 id = "customer_3"
 elevation = 140.0
 
-[node name="SpawnCustomer4" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Customer4" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1313, 220 )
 stool_path = NodePath("../../Obstacles/Stool10")
 id = "customer_4"
 elevation = 140.0
 
-[node name="SpawnEntrance2" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Entrance2" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 342.245, 52.3916 )
 orientation = 1
 id = "entrance_2"
 
-[node name="SpawnEntrance5" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Entrance5" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 394.38, 152.458 )
 orientation = 1
 id = "entrance_5"
 
-[node name="SpawnEntrance7" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Entrance7" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 126.975, 170.117 )
 id = "entrance_7"
 
-[node name="SpawnEntrance10" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Entrance10" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 179.111, 52.3916 )
 id = "entrance_10"
 
-[node name="SpawnKitchen1" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Kitchen1" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1863.6, 75.8002 )
 orientation = 1
 id = "kitchen_1"
 
-[node name="SpawnKitchen3" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Kitchen3" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1910.61, 182.605 )
 orientation = 1
 id = "kitchen_3"
 
-[node name="SpawnKitchen5" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Kitchen5" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1955.82, 282.207 )
 orientation = 1
 id = "kitchen_5"
 
-[node name="SpawnKitchen7" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Kitchen7" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1596.46, 279.091 )
 id = "kitchen_7"
 
-[node name="SpawnKitchen9" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Kitchen9" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1667.9, 173.54 )
 id = "kitchen_9"
 
-[node name="SpawnKitchen11" parent="Spawns" instance=ExtResource( 38 )]
+[node name="Kitchen11" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1740.68, 77.2144 )
 id = "kitchen_11"

@@ -381,88 +381,88 @@ spawn_if = "level_finished marsh/goodbye_skins"
 
 [node name="Spawns" type="Node2D" parent="."]
 
-[node name="SpawnRestaurant1" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Restaurant1" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1665.79, 1022.31 )
 orientation = 1
 id = "restaurant_1"
 
-[node name="SpawnRestaurant4" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Restaurant4" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1715.18, 1110.98 )
 orientation = 1
 id = "restaurant_4"
 
-[node name="SpawnRestaurant8" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Restaurant8" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1488.44, 1124.45 )
 id = "restaurant_8"
 
-[node name="SpawnRestaurant11" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Restaurant11" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1524.36, 1023.43 )
 id = "restaurant_11"
 
-[node name="SpawnRestaurantPlayer" parent="Spawns" instance=ExtResource( 29 )]
+[node name="RestaurantPlayer" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1396.4, 1014.45 )
 orientation = 1
 id = "restaurant_player"
 
-[node name="SpawnRestaurantSensei" parent="Spawns" instance=ExtResource( 29 )]
+[node name="RestaurantSensei" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1569.4, 1042.45 )
 id = "restaurant_sensei"
 
-[node name="SpawnButtercup1" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Buttercup1" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 710.294, 1360.37 )
 orientation = 1
 id = "buttercup_1"
 
-[node name="SpawnButtercup3" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Buttercup3" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 779.594, 1434.7 )
 orientation = 1
 id = "buttercup_3"
 
-[node name="SpawnButtercup6" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Buttercup6" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 635.089, 1495.06 )
 orientation = 1
 id = "buttercup_6"
 
-[node name="SpawnButtercup7" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Buttercup7" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 526.21, 1473.74 )
 id = "buttercup_7"
 
-[node name="SpawnButtercup9" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Buttercup9" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 455.069, 1418.4 )
 id = "buttercup_9"
 
-[node name="SpawnButtercup11" parent="Spawns" instance=ExtResource( 29 )]
+[node name="Buttercup11" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 532.99, 1349.44 )
 id = "buttercup_11"
 
-[node name="SpawnButtercupSeat" parent="Spawns" instance=ExtResource( 29 )]
+[node name="ButtercupSeat" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 339.509, 1583.36 )
 id = "buttercup_seat"
 elevation = 80.0
 
-[node name="SpawnButtercupFence3" parent="Spawns" instance=ExtResource( 29 )]
+[node name="ButtercupFence3" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1114.3, 1323.42 )
 orientation = 1
 id = "buttercup_fence_3"
 
-[node name="SpawnButtercupFence12" parent="Spawns" instance=ExtResource( 29 )]
+[node name="ButtercupFence12" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 987.723, 1271.8 )
 id = "buttercup_fence_12"
 
-[node name="SpawnSePlayer" parent="Spawns" instance=ExtResource( 29 )]
+[node name="SePlayer" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1764.82, 1680.06 )
 orientation = 2
 id = "se_player"
 
-[node name="SpawnSeSensei" parent="Spawns" instance=ExtResource( 29 )]
+[node name="SeSensei" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 1916.18, 1737.24 )
 orientation = 2
 id = "se_sensei"
 
-[node name="SpawnNwPlayer" parent="Spawns" instance=ExtResource( 29 )]
+[node name="NwPlayer" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 932.693, 435.451 )
 id = "nw_player"
 
-[node name="SpawnNwPlayer2" parent="Spawns" instance=ExtResource( 29 )]
+[node name="NwPlayer2" parent="Spawns" instance=ExtResource( 29 )]
 position = Vector2( 826.74, 356.406 )
 id = "nw_sensei"
