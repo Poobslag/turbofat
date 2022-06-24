@@ -65,6 +65,19 @@ func show_buttons() -> void:
 	_back_button.show()
 
 
+## Updates the start button's text after the player finishes the level.
+func _refresh_start_button() -> void:
+	if PlayerData.career.is_career_mode():
+		match CurrentLevel.attempt_count:
+			0: _start_button.text = tr("Start")
+			1: _start_button.text = tr("Practice")
+			_: _start_button.text = tr("Retry")
+	else:
+		match CurrentLevel.attempt_count:
+			0: _start_button.text = tr("Start")
+			_: _start_button.text = tr("Retry")
+
+
 func _on_Start_pressed() -> void:
 	emit_signal("start_button_pressed")
 
@@ -134,24 +147,22 @@ func _on_PuzzleState_after_game_ended() -> void:
 				Breadcrumb.trail.insert(1, Global.SCENE_MAIN_MENU)
 	
 	if PlayerData.career.is_career_mode():
-		# they only have only one chance in career mode, they can't retry
-		_start_button.hide()
 		_back_button.text = tr("Continue")
 	
 	# determine the default button to focus
 	var buttons_to_focus := [_back_button, _start_button]
-	if CurrentLevel.keep_retrying:
+	if PlayerData.career.is_career_mode():
+		# in career mode, the back (continue) button is the default. but after retrying in career mode, the default
+		# is to retry
+		if CurrentLevel.attempt_count >= 2:
+			buttons_to_focus.push_front(_start_button)
+	elif CurrentLevel.keep_retrying:
 		buttons_to_focus.push_front(_start_button)
 	elif not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		buttons_to_focus.push_front(_start_button)
 	
-	# the start button changes its label after the player finishes the level
-	match PuzzleState.end_result():
-		Levels.Result.NONE:
-			# if they abort the level without playing it, the button doesn't change
-			pass
-		_:
-			_start_button.text = tr("Retry")
+	# update the start button's text after the player finishes the level
+	_refresh_start_button()
 	
 	# grab focus so the player can retry or navigate with the keyboard
 	for button_to_focus_obj in buttons_to_focus:
