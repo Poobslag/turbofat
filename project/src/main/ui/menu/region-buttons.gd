@@ -97,9 +97,7 @@ func _region_select_button(button_index: int, region: CareerRegion) -> Node:
 	for career_level_obj in region.levels:
 		var career_level: CareerLevel = career_level_obj
 		var best_result := PlayerData.level_history.best_result(career_level.level_id)
-		var rank := RankResult.WORST_RANK
-		if best_result:
-			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
+		var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
 		ranks.append(rank)
 	region_button.ranks = ranks
 	region_button.completion_percent = PlayerData.career.region_completion(region).completion_percent()
