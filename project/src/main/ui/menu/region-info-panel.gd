@@ -23,6 +23,10 @@ func _refresh_text() -> void:
 
 ## Updates the text box to show the region's information.
 func _update_region_text(region: CareerRegion) -> void:
+	if PlayerData.career.is_region_locked(region):
+		set_text("")
+		return
+	
 	var new_text := ""
 	var region_completion := PlayerData.career.region_completion(region)
 	if region_completion.completion_percent() == 1.0:
