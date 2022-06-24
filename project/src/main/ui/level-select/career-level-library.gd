@@ -128,7 +128,7 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 			
 			if chat_tree.chef_id:
 				# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
-				if region.has_quirky_chef(chat_tree.chef_id):
+				if region.population.has_quirky_chef(chat_tree.chef_id):
 					has_quirky_chef = true
 					if not chat_tree.chef_id in chef_ids:
 						chef_ids.append(chat_tree.chef_id)
@@ -136,14 +136,14 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 			if chat_tree.customer_ids:
 				# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
 				for customer_id in chat_tree.customer_ids:
-					if region.has_quirky_customer(customer_id):
+					if region.population.has_quirky_customer(customer_id):
 						has_quirky_customer = true
 						if not customer_id in customer_ids:
 							customer_ids.append(customer_id)
 			
 			if chat_tree.observer_id:
 				# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
-				if region.has_quirky_observer(chat_tree.observer_id):
+				if region.population.has_quirky_observer(chat_tree.observer_id):
 					has_quirky_observer = true
 					if not chat_tree.observer_id in observer_ids:
 						observer_ids.append(chat_tree.observer_id)
@@ -187,15 +187,15 @@ func trim_levels_by_characters(region: CareerRegion, levels: Array,
 		trimmed_levels.append_array(levels)
 	else:
 		for level in levels:
-			if level.chef_id and region.has_quirky_chef(level.chef_id):
+			if level.chef_id and region.population.has_quirky_chef(level.chef_id):
 				if level.chef_id in chef_ids:
 					trimmed_levels.append(level)
-			elif level.customer_ids and region.has_quirky_customer(level.customer_ids[0]):
+			elif level.customer_ids and region.population.has_quirky_customer(level.customer_ids[0]):
 				if level.customer_ids[0] in customer_ids:
 					# If a level includes multiple customers, we ignore everything but the first customer. The first
 					# customer is the only creature who appears on the map.
 					trimmed_levels.append(level)
-			elif level.observer_id and region.has_quirky_observer(level.observer_id):
+			elif level.observer_id and region.population.has_quirky_observer(level.observer_id):
 				if level.observer_id in observer_ids:
 					trimmed_levels.append(level)
 			else:

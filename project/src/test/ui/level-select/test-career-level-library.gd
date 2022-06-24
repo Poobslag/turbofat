@@ -27,54 +27,54 @@ func test_region_chefs() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
-	assert_eq(region_0.chefs.size(), 2)
+	assert_eq(region_0.population.chefs.size(), 2)
 	
-	assert_eq(region_0.chefs[0].id, "chef_38")
-	assert_eq(region_0.chefs[0].chance, 0.0)
-	assert_eq(region_0.chefs[0].quirky, true)
+	assert_eq(region_0.population.chefs[0].id, "chef_38")
+	assert_eq(region_0.population.chefs[0].chance, 0.0)
+	assert_eq(region_0.population.chefs[0].quirky, true)
 	
-	assert_eq(region_0.chefs[1].id, "chef_36")
-	assert_eq(region_0.chefs[1].chance, 0.25)
-	assert_eq(region_0.chefs[1].quirky, false)
+	assert_eq(region_0.population.chefs[1].id, "chef_36")
+	assert_eq(region_0.population.chefs[1].chance, 0.25)
+	assert_eq(region_0.population.chefs[1].quirky, false)
 
 
 func test_region_customers() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
-	assert_eq(region_0.customers.size(), 2)
+	assert_eq(region_0.population.customers.size(), 2)
 	
-	assert_eq(region_0.customers[0].id, "customer_77")
-	assert_eq(region_0.customers[0].chance, 0.10)
-	assert_eq(region_0.customers[0].quirky, false)
+	assert_eq(region_0.population.customers[0].id, "customer_77")
+	assert_eq(region_0.population.customers[0].chance, 0.10)
+	assert_eq(region_0.population.customers[0].quirky, false)
 	
-	assert_eq(region_0.customers[1].id, "customer_90")
-	assert_eq(region_0.customers[1].chance, 0.0)
-	assert_eq(region_0.customers[1].quirky, true)
+	assert_eq(region_0.population.customers[1].id, "customer_90")
+	assert_eq(region_0.population.customers[1].chance, 0.0)
+	assert_eq(region_0.population.customers[1].quirky, true)
 
 
 func test_region_observers() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
-	assert_eq(region_0.observers.size(), 2)
+	assert_eq(region_0.population.observers.size(), 2)
 	
-	assert_eq(region_0.observers[0].id, "observer_35")
-	assert_eq(region_0.observers[0].chance, 0.30)
-	assert_eq(region_0.observers[0].quirky, false)
+	assert_eq(region_0.population.observers[0].id, "observer_35")
+	assert_eq(region_0.population.observers[0].chance, 0.30)
+	assert_eq(region_0.population.observers[0].quirky, false)
 	
-	assert_eq(region_0.observers[1].id, "observer_30")
-	assert_eq(region_0.observers[1].chance, 0.0)
-	assert_eq(region_0.observers[1].quirky, true)
+	assert_eq(region_0.population.observers[1].id, "observer_30")
+	assert_eq(region_0.population.observers[1].chance, 0.0)
+	assert_eq(region_0.population.observers[1].quirky, true)
 
 
 func test_region_demographics() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
-	assert_eq(region_0.demographic_data.demographics.size(), 1)
-	assert_eq(region_0.demographic_data.demographics[0].type, Creatures.Type.SQUIRREL)
-	assert_eq(region_0.demographic_data.demographics[0].chance, 1.0)
+	assert_eq(region_0.population.demographics.size(), 1)
+	assert_eq(region_0.population.demographics[0].type, Creatures.Type.SQUIRREL)
+	assert_eq(region_0.population.demographics[0].chance, 1.0)
 
 
 ## increasing the weight selects faster speeds
@@ -132,8 +132,8 @@ func test_region_weight_for_distance() -> void:
 
 func test_trim_levels_by_characters_customer() -> void:
 	var region := CareerRegion.new()
-	region.customers.append(CareerRegion.CreatureAppearance.new())
-	region.customers.back().from_json_string("(quirky) customer_211")
+	region.population.customers.append(Population.CreatureAppearance.new())
+	region.population.customers.back().from_json_string("(quirky) customer_211")
 	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
@@ -157,8 +157,8 @@ func test_trim_levels_by_characters_customer() -> void:
 
 func test_trim_levels_by_characters_chef() -> void:
 	var region := CareerRegion.new()
-	region.chefs.append(CareerRegion.CreatureAppearance.new())
-	region.chefs.back().from_json_string("(quirky) chef_211")
+	region.population.chefs.append(Population.CreatureAppearance.new())
+	region.population.chefs.back().from_json_string("(quirky) chef_211")
 	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
@@ -183,8 +183,8 @@ func test_trim_levels_by_characters_chef() -> void:
 
 func test_trim_levels_by_characters_observer() -> void:
 	var region := CareerRegion.new()
-	region.observers.append(CareerRegion.CreatureAppearance.new())
-	region.observers.back().from_json_string("(quirky) observer_211")
+	region.population.observers.append(Population.CreatureAppearance.new())
+	region.population.observers.back().from_json_string("(quirky) observer_211")
 	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
@@ -209,10 +209,10 @@ func test_trim_levels_by_characters_observer() -> void:
 
 func test_trim_levels_by_characters_anonymous_customer() -> void:
 	var region := CareerRegion.new()
-	region.chefs.append(CareerRegion.CreatureAppearance.new())
-	region.chefs.back().from_json_string("(quirky) chef_211")
-	region.customers.append(CareerRegion.CreatureAppearance.new())
-	region.customers.back().from_json_string("(quirky) customer_212")
+	region.population.chefs.append(Population.CreatureAppearance.new())
+	region.population.chefs.back().from_json_string("(quirky) chef_211")
+	region.population.customers.append(Population.CreatureAppearance.new())
+	region.population.customers.back().from_json_string("(quirky) customer_212")
 	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())
@@ -245,10 +245,10 @@ func test_trim_levels_by_characters_anonymous_customer() -> void:
 
 func test_trim_levels_by_characters_all() -> void:
 	var region := CareerRegion.new()
-	region.chefs.append(CareerRegion.CreatureAppearance.new())
-	region.chefs.back().from_json_string("(quirky) chef_211")
-	region.customers.append(CareerRegion.CreatureAppearance.new())
-	region.customers.back().from_json_string("(quirky) customer_212")
+	region.population.chefs.append(Population.CreatureAppearance.new())
+	region.population.chefs.back().from_json_string("(quirky) chef_211")
+	region.population.customers.append(Population.CreatureAppearance.new())
+	region.population.customers.back().from_json_string("(quirky) customer_212")
 	
 	var all_levels := []
 	all_levels.append(CareerLevel.new())

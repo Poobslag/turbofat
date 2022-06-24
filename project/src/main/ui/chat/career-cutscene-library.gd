@@ -172,18 +172,18 @@ func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
 		
 		if not quirky and chat_tree.chef_id:
 			# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
-			if region.has_quirky_chef(chat_tree.chef_id):
+			if region.population.has_quirky_chef(chat_tree.chef_id):
 				quirky = true
 		
 		if not quirky and chat_tree.customer_ids:
 			# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
 			for customer_id in chat_tree.customer_ids:
-				if region.has_quirky_customer(customer_id):
+				if region.population.has_quirky_customer(customer_id):
 					quirky = true
 		
 		if not quirky and chat_tree.observer_id:
 			# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
-			if region.has_quirky_observer(chat_tree.observer_id):
+			if region.population.has_quirky_observer(chat_tree.observer_id):
 				quirky = true
 		
 		if quirky:

@@ -206,12 +206,12 @@ func test_potential_chat_keys_includes_customer() -> void:
 
 func test_potential_chat_keys_includes_unnamed_customers() -> void:
 	# define some quirky creatures to ignore
-	var rhonk := CareerRegion.CreatureAppearance.new()
+	var rhonk := Population.CreatureAppearance.new()
 	rhonk.from_json_string("(quirky) rhonk")
-	PlayerData.career.current_region().customers.append(rhonk)
-	var skins := CareerRegion.CreatureAppearance.new()
+	PlayerData.career.current_region().population.customers.append(rhonk)
+	var skins := Population.CreatureAppearance.new()
 	skins.from_json_string("(quirky) skins")
-	PlayerData.career.current_region().chefs.append(skins)
+	PlayerData.career.current_region().population.chefs.append(skins)
 	
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include a numeric branch with no remaining cutscenes

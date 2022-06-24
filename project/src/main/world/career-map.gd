@@ -363,15 +363,15 @@ func _level_posse(level_index: int) -> LevelPosse:
 	# add customers/chefs from the region if the level doesn't define any
 	var region := PlayerData.career.current_region()
 	if not level_posse.customer_ids:
-		var customer: CareerRegion.CreatureAppearance = region.random_customer()
+		var customer: Population.CreatureAppearance = region.population.random_customer()
 		if customer:
 			level_posse.customer_ids = [customer.id]
 	if not level_posse.chef_id:
-		var chef: CareerRegion.CreatureAppearance = region.random_chef()
+		var chef: Population.CreatureAppearance = region.population.random_chef()
 		if chef:
 			level_posse.chef_id = chef.id
 	if not level_posse.observer_id:
-		var observer: CareerRegion.CreatureAppearance = region.random_observer()
+		var observer: Population.CreatureAppearance = region.population.random_observer()
 		if observer:
 			level_posse.observer_id = observer.id
 	
