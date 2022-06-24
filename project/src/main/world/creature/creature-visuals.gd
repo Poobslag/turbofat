@@ -90,7 +90,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# don't move stuff in the editor
 		return
 	

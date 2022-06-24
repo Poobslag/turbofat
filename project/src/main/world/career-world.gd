@@ -46,7 +46,7 @@ onready var _player_path2d: Path2D
 onready var _camera: Camera2D = $Camera
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	_fill_environment_scene()

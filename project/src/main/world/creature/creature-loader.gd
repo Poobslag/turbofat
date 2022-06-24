@@ -205,7 +205,7 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
 			# but also throws an error.
 			pass
-		elif Engine.is_editor_hint():
+		elif Engine.editor_hint:
 			resource = load(resource_path)
 		else:
 			resource = ResourceCache.get_resource(resource_path)

@@ -19,7 +19,7 @@ func _init() -> void:
 func set_shadow_scale(new_shadow_scale: float) -> void:
 	shadow_scale = new_shadow_scale
 	
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# Avoid metadata edits in the editor for OverworldObstacles that are tool scripts.
 		return
 	
@@ -30,7 +30,7 @@ func set_shadow_scale(new_shadow_scale: float) -> void:
 func set_chat_key(new_chat_key: String) -> void:
 	chat_key = new_chat_key
 	
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# Avoid editor errors related to editing groups for OverworldObstacles that are tool scripts.
 		return
 	

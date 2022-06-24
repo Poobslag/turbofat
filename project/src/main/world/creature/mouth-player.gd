@@ -37,7 +37,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# avoid playing animations in editor
 		return
 	
@@ -123,7 +123,7 @@ func _apply_tool_script_workaround() -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.editor_hint:
 		_mouth.z_index = 0
 		_emote_glow.z_index = 0
 		_play_mouth_ambient_animation()

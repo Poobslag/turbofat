@@ -19,7 +19,7 @@ var customers := []
 var chef: Creature
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	_remove_all_creatures()

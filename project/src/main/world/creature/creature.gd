@@ -108,7 +108,7 @@ onready var _fade_tween: Tween = $FadeTween
 
 func _ready() -> void:
 	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"
-	if not Engine.is_editor_hint() \
+	if not Engine.editor_hint \
 			and SystemData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
 		creature_outline_scene_path = "res://src/main/world/creature/FastCreatureOutline.tscn"
 	var creature_outline_scene: PackedScene = ResourceCache.get_resource(creature_outline_scene_path)
@@ -116,7 +116,7 @@ func _ready() -> void:
 	add_child(_creature_outline)
 	
 	creature_visuals = _creature_outline.creature_visuals
-	if not Engine.is_editor_hint():
+	if not Engine.editor_hint:
 		_chat_icon_hook.creature_visuals = creature_visuals
 		_collision_shape.creature_visuals = creature_visuals
 	creature_visuals.creature_sfx = _creature_sfx
@@ -140,7 +140,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	_apply_friction()

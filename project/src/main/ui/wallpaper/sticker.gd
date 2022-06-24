@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	_total_time += delta
@@ -68,5 +68,5 @@ func _refresh_rotation() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.editor_hint:
 		queue_free()

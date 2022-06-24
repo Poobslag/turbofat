@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# don't trigger animations in editor
 		return
 	
