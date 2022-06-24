@@ -76,8 +76,8 @@ func _force_boss_level() -> bool:
 		# move them to the end of their new region
 		PlayerData.career.distance_travelled = new_region.end
 		
-		# set their max_distance_travelled so that the boss level isn't skipped
-		PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+		# set their best_distance_travelled so that the boss level isn't skipped
+		PlayerData.career.best_distance_travelled = PlayerData.career.distance_travelled
 		
 		# mark the boss cutscenes as unviewed, and the boss level as unplayed
 		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_preroll_chat_key())

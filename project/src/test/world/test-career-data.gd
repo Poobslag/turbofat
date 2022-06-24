@@ -15,7 +15,7 @@ func before_each() -> void:
 	PlayerData.level_history.add_result("intro_211", RankResult.new())
 	PlayerData.level_history.add_result("intro_311", RankResult.new())
 	PlayerData.level_history.add_result("intro_411", RankResult.new())
-	_data.max_distance_travelled = CareerData.MAX_DISTANCE_TRAVELLED
+	_data.best_distance_travelled = CareerData.MAX_DISTANCE_TRAVELLED
 
 
 func after_each() -> void:
@@ -34,7 +34,7 @@ func test_prev_daily_earnings() -> void:
 
 
 func test_advance_clock_stops_at_boss_level_0() -> void:
-	_data.max_distance_travelled = 0
+	_data.best_distance_travelled = 0
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 9)
@@ -42,7 +42,7 @@ func test_advance_clock_stops_at_boss_level_0() -> void:
 
 
 func test_advance_clock_stops_at_boss_level_1() -> void:
-	_data.max_distance_travelled = 0
+	_data.best_distance_travelled = 0
 	_data.distance_travelled = 8 # just before a boss level
 	_data.advance_clock(3, true)
 	assert_eq(_data.distance_earned, 3)
@@ -51,7 +51,7 @@ func test_advance_clock_stops_at_boss_level_1() -> void:
 
 
 func test_advance_clock_stops_at_boss_level_2() -> void:
-	_data.max_distance_travelled = 10 # they've cleared the first boss level
+	_data.best_distance_travelled = 10 # they've cleared the first boss level
 	_data.remain_in_region = true
 	_data.advance_clock(50, true)
 	assert_eq(_data.distance_earned, 50)
@@ -61,7 +61,7 @@ func test_advance_clock_stops_at_boss_level_2() -> void:
 
 ## The player skips one boss level, but gets stopped by the next boss level
 func test_advance_clock_skips_boss_level() -> void:
-	_data.max_distance_travelled = 10 # they've only cleared the first boss level
+	_data.best_distance_travelled = 10 # they've only cleared the first boss level
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 19)
@@ -69,7 +69,7 @@ func test_advance_clock_skips_boss_level() -> void:
 
 
 func test_advance_clock_clears_boss_level() -> void:
-	_data.max_distance_travelled = 0
+	_data.best_distance_travelled = 0
 	_data.distance_travelled = 9 # boss level
 	_data.advance_clock(4, true)
 	assert_eq(_data.distance_earned, 4)
@@ -78,7 +78,7 @@ func test_advance_clock_clears_boss_level() -> void:
 
 
 func test_advance_clock_fails_boss_level() -> void:
-	_data.max_distance_travelled = 0
+	_data.best_distance_travelled = 0
 	_data.distance_travelled = 9 # boss level
 	_data.advance_clock(4, false)
 	assert_true(_data.distance_earned < 0,
@@ -89,7 +89,7 @@ func test_advance_clock_fails_boss_level() -> void:
 
 
 func test_advance_clock_stops_at_intro_level() -> void:
-	_data.max_distance_travelled = 10
+	_data.best_distance_travelled = 10
 	PlayerData.level_history.delete_results("intro_311")
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
@@ -98,7 +98,7 @@ func test_advance_clock_stops_at_intro_level() -> void:
 
 
 func test_advance_clock_banked_steps_for_failed_boss_level() -> void:
-	_data.max_distance_travelled = 0
+	_data.best_distance_travelled = 0
 	_data.banked_steps = 5
 	_data.distance_travelled = 9 # boss level
 	_data.advance_clock(4, false)
@@ -173,7 +173,7 @@ func test_distance_penalties_negative() -> void:
 
 func test_distance_penalties_boss_level() -> void:
 	_data.distance_travelled = 8
-	_data.max_distance_travelled = 0
+	_data.best_distance_travelled = 0
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_penalties(), [0, 0, 0])
 

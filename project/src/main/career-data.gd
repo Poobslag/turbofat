@@ -135,7 +135,7 @@ var prev_daily_earnings := []
 var prev_distance_travelled := []
 
 ## The furthest total distance the player has travelled in a single session.
-var max_distance_travelled := 0
+var best_distance_travelled := 0
 
 ## 'true' if the player should not advance to the next region.
 ##
@@ -179,7 +179,7 @@ func reset() -> void:
 	day = 0
 	prev_daily_earnings.clear()
 	prev_distance_travelled.clear()
-	max_distance_travelled = 0
+	best_distance_travelled = 0
 	remain_in_region = false
 	skipped_previous_level = false
 	emit_signal("distance_travelled_changed")
@@ -198,7 +198,7 @@ func from_json_dict(json: Dictionary) -> void:
 	day = int(json.get("day", 0))
 	prev_daily_earnings = json.get("prev_daily_earnings", [])
 	prev_distance_travelled = json.get("prev_distance_travelled", [])
-	max_distance_travelled = int(json.get("max_distance_travelled", 0))
+	best_distance_travelled = int(json.get("best_distance_travelled", 0))
 	remain_in_region = bool(json.get("remain_in_region", false))
 	skipped_previous_level = bool(json.get("skipped_previous_level", false))
 	emit_signal("distance_travelled_changed")
@@ -218,7 +218,7 @@ func to_json_dict() -> Dictionary:
 	results["day"] = day
 	results["prev_daily_earnings"] = prev_daily_earnings
 	results["prev_distance_travelled"] = prev_distance_travelled
-	results["max_distance_travelled"] = max_distance_travelled
+	results["best_distance_travelled"] = best_distance_travelled
 	results["remain_in_region"] = remain_in_region
 	results["skipped_previous_level"] = skipped_previous_level
 	return results
@@ -279,12 +279,12 @@ func is_career_cutscene() -> bool:
 
 ## Returns 'true' if the player hasn't reached this region yet
 func is_region_locked(region: CareerRegion) -> bool:
-	return max_distance_travelled < region.start
+	return best_distance_travelled < region.start
 
 
 ## Returns 'true' if the player has completed the boss level in the specified region
 func is_region_cleared(region: CareerRegion) -> bool:
-	return max_distance_travelled > region.end
+	return best_distance_travelled > region.end
 
 
 ## Returns 'true' if the current career mode distance corresponds to an uncleared boss level
@@ -412,7 +412,7 @@ func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
 		remain_in_region = false
 		var old_distance_travelled := distance_travelled
 		distance_travelled = max(distance_travelled, region.end + 1)
-		max_distance_travelled = max(max_distance_travelled, distance_travelled)
+		best_distance_travelled = max(best_distance_travelled, distance_travelled)
 		if distance_travelled > old_distance_travelled:
 			distance_earned += (distance_travelled - old_distance_travelled)
 
