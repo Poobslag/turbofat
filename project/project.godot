@@ -57,12 +57,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "CareerData",
 "language": "GDScript",
-"path": "res://src/main/career-data.gd"
+"path": "res://src/main/career/career-data.gd"
 }, {
 "base": "Reference",
 "class": "CareerLevel",
 "language": "GDScript",
-"path": "res://src/main/ui/level-select/career-level.gd"
+"path": "res://src/main/career/career-level.gd"
 }, {
 "base": "CanvasLayer",
 "class": "CareerLevelSelect",
@@ -72,7 +72,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "CareerRegion",
 "language": "GDScript",
-"path": "res://src/main/ui/level-select/career-region.gd"
+"path": "res://src/main/career/career-region.gd"
 }, {
 "base": "Control",
 "class": "ChalkboardMapRow",
@@ -1285,7 +1285,7 @@ LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 Breadcrumb="*res://src/main/breadcrumb.gd"
-CareerLevelLibrary="*res://src/main/ui/level-select/career-level-library.gd"
+CareerLevelLibrary="*res://src/main/career/career-level-library.gd"
 CareerCutsceneLibrary="*res://src/main/ui/chat/career-cutscene-library.gd"
 ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"

@@ -118,8 +118,8 @@ func _ready() -> void:
 	_daily_seconds_played_timer.start()
 	
 	## We avoid circular reference errors by loading these scripts with 'load' instead of 'preload'
-	_career_calendar = load("res://src/main/career-calendar.gd").new(self)
-	_career_flow = load("res://src/main/career-flow.gd").new(self)
+	_career_calendar = load("res://src/main/career/career-calendar.gd").new(self)
+	_career_flow = load("res://src/main/career/career-flow.gd").new(self)
 
 
 func reset() -> void:
