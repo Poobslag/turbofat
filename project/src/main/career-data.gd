@@ -6,54 +6,6 @@ class_name CareerData
 ## travelled today", as well as historical information like "how many days have they played" and "how much money did
 ## they earn three days ago"
 
-## Data about which parts of a region are complete/incomplete.
-class RegionCompletion:
-	# how many interlude cutscenes the player's viewed in a region
-	var cutscene_completion: int = 0
-	
-	# how many interlude cutscenes the player can potentially view in a region
-	var potential_cutscene_completion: int = 0
-	
-	# how many levels the player has finished in a region
-	var level_completion: int = 0
-	
-	# how many levels the player can potentially finish in a region
-	var potential_level_completion: int = 0
-	
-	## Returns a number in the range [0.0, 1.0] for how close the player is to completing the region.
-	##
-	## This includes how many levels they've cleared and how many interlude cutscenes they've viewed.
-	func completion_percent() -> float:
-		# We combine the raw cutscene count and level count. This means for regions with many cutscenes and few
-		# levels, a player might clear every level and only have 20% completion.
-		var completion := cutscene_completion + level_completion
-		var potential_completion := potential_cutscene_completion + potential_level_completion
-		
-		if potential_completion == 0.0:
-			# avoid divide-by-zero for regions with no levels and no cutscenes
-			return 1.0
-		else:
-			return completion / float(potential_completion)
-	
-	
-	## Returns a number in the range [0.0, 1.0] for how close the player is to viewing all of a region's interlude
-	## cutscenes.
-	func cutscene_completion_percent() -> float:
-		if potential_cutscene_completion == 0.0:
-			# avoid divide-by-zero for regions with no cutscenes
-			return 1.0
-		else:
-			return cutscene_completion / float(potential_cutscene_completion)
-	
-	
-	## Returns a number in the range [0.0, 1.0] for how close the player is to playing all of a region's levels.
-	func level_completion_percent() -> float:
-		if potential_level_completion == 0.0:
-			# avoid divide-by-zero for regions with no levels
-			return 1.0
-		else:
-			return level_completion / float(potential_level_completion)
-
 
 ## Emitted when the player's distance changes, particularly at the start of career mode when they're picking their
 ## starting distance
@@ -149,7 +101,11 @@ var skipped_previous_level := false
 ## periodically increments the 'daily_seconds_played' value
 var _daily_seconds_played_timer: Timer
 
+## CareerCalendar instance which advances the calendar and clock in career mode.
 var _career_calendar
+
+## CareerFlow instance which maintains the flow of scenes in career mode. Redirects the player to cutscenes, victory
+## screens and interludes.
 var _career_flow
 
 func _ready() -> void:
@@ -261,19 +217,11 @@ func current_region() -> CareerRegion:
 
 ## Returns 'true' if the current career region has a prologue the player hasn't seen.
 func should_play_prologue() -> bool:
-	var region: CareerRegion = current_region()
-	var prologue_chat_key: String = region.get_prologue_chat_key()
-	return ChatLibrary.chat_exists(prologue_chat_key) \
-			and not PlayerData.chat_history.is_chat_finished(prologue_chat_key)
+	return _career_flow.should_play_prologue()
 
 
 ## Returns 'true' if the player is current playing career mode
 func is_career_mode() -> bool:
-	return Global.SCENE_CAREER_MAP in Breadcrumb.trail
-
-
-## Returns 'true' if the player is current playing a cutscene in career mode
-func is_career_cutscene() -> bool:
 	return Global.SCENE_CAREER_MAP in Breadcrumb.trail
 
 
@@ -397,31 +345,6 @@ func set_hours_passed(new_hours_passed: int) -> void:
 	emit_signal("hours_passed_changed")
 
 
-## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode
-##
-## This is an important gameplay consideration if the player is stuck in a difficult area -- finishing every cutscene
-## lets them see the rest of the game. It's more of a quirk otherwise, and might even frustrate the player if they
-## still want to play a specific region. But it would be confusing and weird if they watched a cutscene saying 'Well,
-## that's enough of that area! Goodbye!' and then they remained there to play more levels.
-func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
-	var region: CareerRegion = current_region()
-	
-	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-	if chat_tree.meta.get("advance_region", false):
-		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
-		remain_in_region = false
-		var old_distance_travelled := distance_travelled
-		distance_travelled = max(distance_travelled, region.end + 1)
-		best_distance_travelled = max(best_distance_travelled, distance_travelled)
-		if distance_travelled > old_distance_travelled:
-			distance_earned += (distance_travelled - old_distance_travelled)
-
-
-func _on_DailySecondsPlayedTimer_timeout() -> void:
-	if is_career_mode():
-		daily_seconds_played += PlayerData.SECONDS_PLAYED_INCREMENT
-
-
 ## Returns data about which parts of a region are complete/incomplete.
 func region_completion(region: CareerRegion) -> RegionCompletion:
 	var region_completion := RegionCompletion.new()
@@ -450,6 +373,31 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 			region_completion.level_completion += 1.0
 	
 	return region_completion
+
+
+## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode
+##
+## This is an important gameplay consideration if the player is stuck in a difficult area -- finishing every cutscene
+## lets them see the rest of the game. It's more of a quirk otherwise, and might even frustrate the player if they
+## still want to play a specific region. But it would be confusing and weird if they watched a cutscene saying 'Well,
+## that's enough of that area! Goodbye!' and then they remained there to play more levels.
+func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
+	var region: CareerRegion = current_region()
+	
+	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+	if chat_tree.meta.get("advance_region", false):
+		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
+		remain_in_region = false
+		var old_distance_travelled := distance_travelled
+		distance_travelled = max(distance_travelled, region.end + 1)
+		best_distance_travelled = max(best_distance_travelled, distance_travelled)
+		if distance_travelled > old_distance_travelled:
+			distance_earned += (distance_travelled - old_distance_travelled)
+
+
+func _on_DailySecondsPlayedTimer_timeout() -> void:
+	if is_career_mode():
+		daily_seconds_played += PlayerData.SECONDS_PLAYED_INCREMENT
 
 
 ## Calculates the highest rank milestone the player's reached.

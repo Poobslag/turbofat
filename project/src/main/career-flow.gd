@@ -24,7 +24,7 @@ func push_career_trail() -> void:
 		CutsceneQueue.push_trail()
 		redirected = true
 	
-	if not redirected and career_data.should_play_prologue():
+	if not redirected and should_play_prologue():
 		# If they haven't seen the region's prologue cutscene, we show it.
 		var region: CareerRegion = career_data.current_region()
 		var prologue_chat_key: String = region.get_prologue_chat_key()
@@ -66,6 +66,14 @@ func process_puzzle_result() -> void:
 	if skip_remaining_cutscenes:
 		# skip career cutscenes if they skip a level, or if they fail a boss level
 		CutsceneQueue.reset()
+
+
+## Returns 'true' if the current career region has a prologue the player hasn't seen.
+func should_play_prologue() -> bool:
+	var region: CareerRegion = career_data.current_region()
+	var prologue_chat_key: String = region.get_prologue_chat_key()
+	return ChatLibrary.chat_exists(prologue_chat_key) \
+			and not PlayerData.chat_history.is_chat_finished(prologue_chat_key)
 
 
 ## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.
