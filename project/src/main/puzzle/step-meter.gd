@@ -67,6 +67,10 @@ func _boss_level_percent() -> float:
 
 ## Recalculates the player's projected rank and update the UI
 func _recalculate() -> void:
+	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count >= 1:
+		# Player has already finished their only career attempt. Leave the meter at its old value.
+		return
+	
 	var boss_level_progress := _boss_level_percent()
 	if boss_level_progress < 1.0:
 		var rank_milestone := CareerData.RANK_MILESTONE_FAIL

@@ -38,6 +38,9 @@ var chef_id: String
 ## Tracks when the player finishes a level.
 var best_result: int = Levels.Result.NONE setget set_best_result
 
+## How many times the player has tried the level in this session.
+var attempt_count := 0
+
 ## Tracks whether or not the player wants to play or skip this level's cutscene.
 var cutscene_force: int = Levels.CutsceneForce.NONE
 
@@ -68,6 +71,7 @@ func set_launched_level(new_level_id: String) -> void:
 		level_lock = LevelLibrary.level_lock(level_id)
 	
 	set_best_result(Levels.Result.NONE)
+	attempt_count = 0
 	cutscene_force = Levels.CutsceneForce.NONE
 	puzzle_environment_name = ""
 	

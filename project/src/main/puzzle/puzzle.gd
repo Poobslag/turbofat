@@ -274,12 +274,13 @@ func _on_PuzzleState_game_ended() -> void:
 	PlayerData.emit_signal("level_history_changed")
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
 	
-	if PlayerData.career.is_career_mode():
+	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 		_update_career_data(rank_result)
 	
 	if not PuzzleState.level_performance.lost and _overall_rank(rank_result) < 24: $ApplauseSound.play()
 	
 	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
+	CurrentLevel.attempt_count += 1
 
 
 func _overall_rank(rank_result: RankResult) -> float:
