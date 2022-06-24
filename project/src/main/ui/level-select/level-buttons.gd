@@ -150,9 +150,7 @@ func _world_button(world_id: String) -> WorldSelectButton:
 	for level_id in world_lock.level_ids:
 		var settings: LevelSettings = LevelLibrary.level_settings(level_id)
 		var best_result := PlayerData.level_history.best_result(settings.id)
-		var rank := RankResult.WORST_RANK
-		if best_result:
-			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
+		var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
 		ranks.append(rank)
 	world_select_button.ranks = ranks
 	return world_select_button

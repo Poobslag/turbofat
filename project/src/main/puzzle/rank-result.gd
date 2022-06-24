@@ -92,26 +92,26 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	box_score = int(json.get("box_score", 0))
 	box_score_per_line = float(json.get("box_score_per_line", 0.0))
-	box_score_per_line_rank = float(json.get("box_score_per_line_rank", 999.0))
+	box_score_per_line_rank = float(json.get("box_score_per_line_rank", WORST_RANK))
 	combo_score = int(json.get("combo_score", 0))
 	combo_score_per_line = float(json.get("combo_score_per_line", 0.0))
-	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", 999.0))
+	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", WORST_RANK))
 	pickup_score = int(json.get("pickup_score", 0))
 	pickup_score_per_line = float(json.get("pickup_score_per_line", 0.0))
-	pickup_score_rank = float(json.get("pickup_score_rank", 999.0))
+	pickup_score_rank = float(json.get("pickup_score_rank", WORST_RANK))
 	compare = json.get("compare", "+score")
 	leftover_score = int(json.get("leftover_score", 0))
 	lines = int(json.get("lines", 0))
-	lines_rank = float(json.get("lines_rank", 999.0))
+	lines_rank = float(json.get("lines_rank", WORST_RANK))
 	pieces = int(json.get("pieces", 0))
-	pieces_rank = float(json.get("pieces_rank", 999.0))
+	pieces_rank = float(json.get("pieces_rank", WORST_RANK))
 	lost = bool(json.get("lost", true))
 	score = int(json.get("score", 0))
-	score_rank = float(json.get("score_rank", 999.0))
+	score_rank = float(json.get("score_rank", WORST_RANK))
 	seconds = float(json.get("seconds", 999999.0))
-	seconds_rank = float(json.get("seconds_rank", 999.0))
+	seconds_rank = float(json.get("seconds_rank", WORST_RANK))
 	speed = float(json.get("speed", 0.0))
-	speed_rank = float(json.get("speed_rank", 999.0))
+	speed_rank = float(json.get("speed_rank", WORST_RANK))
 	success = bool(json.get("success", false))
 	timestamp = json.get("timestamp",
 			{"year": 2020, "month": 5, "day": 9, "weekday": 4, "dst": false, "hour": 17, "minute": 43, "second": 51})
@@ -120,3 +120,11 @@ func from_json_dict(json: Dictionary) -> void:
 
 func topped_out() -> bool:
 	return top_out_count > 0
+
+
+## Returns the rank used to evaluate the player's overall level performance.
+##
+## For timed levels, this is the player's seconds_rank which evaluates how fast they were. For all other levels, this
+## is the player's score_rank which evaluates how high their score was.
+func overall_rank() -> float:
+	return seconds_rank if compare == "-seconds" else score_rank

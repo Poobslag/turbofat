@@ -68,7 +68,7 @@ func _refresh_appearance() -> void:
 			_refresh_status_icon(button.lock_status)
 		else:
 			# cleared levels show a grade
-			_refresh_grade_text(result.seconds_rank if result.compare == "-seconds" else result.score_rank)
+			_refresh_grade_text(result.overall_rank())
 	
 	visible = false if button.lowlight else true
 

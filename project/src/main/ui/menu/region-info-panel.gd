@@ -31,9 +31,7 @@ func _update_region_text(region: CareerRegion) -> void:
 		for level_obj in region.levels:
 			var level: CareerLevel = level_obj
 			var best_result := PlayerData.level_history.best_result(level.level_id)
-			var rank := RankResult.WORST_RANK
-			if best_result:
-				rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
+			var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
 			ranks.append(rank)
 		
 		# calculate the worst rank
