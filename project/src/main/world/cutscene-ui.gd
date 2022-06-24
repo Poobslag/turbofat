@@ -91,7 +91,7 @@ func _on_ChatUi_chat_finished() -> void:
 			and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 		# go back to CutsceneDemo after playing the cutscene
 		SceneTransition.pop_trail()
-	elif PlayerData.career.is_career_cutscene():
+	elif PlayerData.career.is_career_mode():
 		# launch the next scene in career mode after playing the cutscene
 		PlayerData.career.push_career_trail()
 	else:
