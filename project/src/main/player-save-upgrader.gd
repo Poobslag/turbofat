@@ -23,6 +23,7 @@ const PREFIX_REPLACEMENTS_2743 := {
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
+	upgrader.current_version = "36c3"
 	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "36c3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "2743", "2783")
