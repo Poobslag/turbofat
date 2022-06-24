@@ -138,7 +138,7 @@ func _refresh_should_play_sfx() -> void:
 	
 	var old_should_play_sfx := should_play_sfx
 	
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# Skip the sound effects if we're using this as an editor tool
 		should_play_sfx = false
 	elif not _suppress_sfx_timer.is_stopped():

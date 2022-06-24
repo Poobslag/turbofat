@@ -31,7 +31,7 @@ const HEAD_BOB_PIXELS := 2.0
 var _total_seconds := 0.0
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	_total_seconds += delta

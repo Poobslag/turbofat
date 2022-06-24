@@ -152,7 +152,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# don't trigger animations in editor
 		return
 	
@@ -427,7 +427,7 @@ func _post_unemote() -> void:
 		if emote_sprite.material:
 			if emote_sprite.material.get("blend_mode"):
 				emote_sprite.material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
-			if emote_sprite.material.has_method("set_shader_param") and Engine.is_editor_hint():
+			if emote_sprite.material.has_method("set_shader_param") and Engine.editor_hint:
 				# In the editor, we reset shader parameters to known values to avoid unnecessary churn in our scene
 				# files. At runtime, this behavior would be destructive since some of these values are only
 				# initialized when the creature is first loaded.

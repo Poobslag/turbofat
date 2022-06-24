@@ -59,14 +59,14 @@ func _ready() -> void:
 	# randomly increment the total time so items don't spin/pulse in sync
 	_total_time += rand_range(0.0, _spin_period)
 	
-	if not Engine.is_editor_hint():
+	if not Engine.editor_hint:
 		# preserve default position/rotation/scale in the editor
 		_refresh_scale()
 		_refresh_rotation()
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		# preserve default position/rotation/scale in the editor
 		return
 	

@@ -143,5 +143,5 @@ func _refresh_particles() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.editor_hint:
 		queue_free()

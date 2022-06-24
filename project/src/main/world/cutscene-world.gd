@@ -6,7 +6,7 @@ extends OverworldWorld
 onready var _camera: CutsceneCamera = $Camera
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	if CurrentCutscene.chat_tree.meta.has("fixed_zoom"):

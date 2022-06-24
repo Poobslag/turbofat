@@ -9,7 +9,7 @@ export (Resource) var EnvironmentScene: Resource setget set_environment_scene
 onready var overworld_environment: OverworldEnvironment = $Environment
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.editor_hint:
 		return
 	
 	var initial_environment_path := initial_environment_path()
