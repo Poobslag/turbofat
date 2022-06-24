@@ -23,6 +23,9 @@ class UpgradeMethod:
 ## value: a UpgradeMethod corresponding to the method to call
 var _upgrade_methods := {}
 
+## The newest version which everything should upgrade to.
+var current_version := ""
+
 ## Adds a new externally defined method which provides version-specific updates.
 ##
 ## SaveItemUpgrader does not have logic for upgrading specific save data versions. This upgrade logic must be defined
@@ -54,7 +57,7 @@ func add_upgrade_method(object: Object, method: String, old_version: String, new
 func needs_upgrade(json_save_items: Array) -> bool:
 	var result: bool = false
 	var version := _get_version_string(json_save_items)
-	if version == PlayerSave.PLAYER_DATA_VERSION:
+	if version == current_version:
 		result = false
 	elif _upgrade_methods.has(version):
 		result = true

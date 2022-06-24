@@ -16,7 +16,11 @@ class UpgradeMethod:
 ## value: a UpgradeMethod corresponding to the method to call
 var _upgrade_methods := {}
 
+## The newest version which everything should upgrade to.
+var current_version: String
+
 func _init() -> void:
+	current_version = Levels.LEVEL_DATA_VERSION
 	_add_upgrade_method("_upgrade_297a", "297a", "2cb4")
 	_add_upgrade_method("_upgrade_19c5", "19c5", "297a")
 	_add_upgrade_method("_upgrade_1922", "1922", "19c5")
@@ -55,7 +59,7 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 func needs_upgrade(json_settings: Dictionary) -> bool:
 	var result: bool = false
 	var version := _get_version_string(json_settings)
-	if version == Levels.LEVEL_DATA_VERSION:
+	if version == current_version:
 		result = false
 	elif _upgrade_methods.has(version):
 		result = true
