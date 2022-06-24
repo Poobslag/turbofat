@@ -118,7 +118,7 @@ func _on_RegionButton_focus_entered(region: CareerRegion) -> void:
 ## When the player clicks a region button twice, we launch career mode
 func _on_RegionButton_region_started(region: CareerRegion) -> void:
 	PlayerData.career.distance_travelled = region.start
-	PlayerData.career.remain_in_region = region.end < PlayerData.career.max_distance_travelled
+	PlayerData.career.remain_in_region = region.end < PlayerData.career.best_distance_travelled
 	
 	if Breadcrumb.trail.front() == Global.SCENE_CAREER_REGION_SELECT_MENU:
 		Breadcrumb.trail.pop_front()

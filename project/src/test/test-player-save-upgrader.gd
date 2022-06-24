@@ -141,3 +141,10 @@ func test_2783() -> void:
 	# Save data was in one file in 2783, but was then split into system and player data.
 	# Level history is a part of the player data, and should be preserved.
 	assert_true(PlayerData.level_history.finished_levels.has("marsh/hello_everyone"))
+
+
+func test_27bb() -> void:
+	load_legacy_player_data("turbofat-27bb.json")
+	
+	# changed 'max_distance_travelled' to 'best_distance_travelled'
+	assert_eq(PlayerData.career.best_distance_travelled, 167)

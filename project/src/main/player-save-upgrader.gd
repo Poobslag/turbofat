@@ -23,6 +23,7 @@ const PREFIX_REPLACEMENTS_2743 := {
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
+	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "36c3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "2743", "2783")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "252a", "2783")
@@ -36,6 +37,14 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_27bb(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"career":
+			save_item.value["best_distance_travelled"] = save_item.value.get("max_distance_travelled", 0)
+			save_item.value.erase("max_distance_travelled")
+	return save_item
 
 
 func _upgrade_2783(save_item: SaveItem) -> SaveItem:

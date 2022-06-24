@@ -27,8 +27,8 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 	if career_data.is_boss_level():
 		var boss_region: CareerRegion = career_data.current_region()
 		if success:
-			# if they pass a boss level, update max_distance_travelled to mark the region as cleared
-			career_data.max_distance_travelled = boss_region.end + 1
+			# if they pass a boss level, update best_distance_travelled to mark the region as cleared
+			career_data.best_distance_travelled = boss_region.end + 1
 		else:
 			# if they fail a boss level, they lose 1-2 days worth of progress
 			career_data.distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
@@ -94,7 +94,7 @@ func advance_calendar() -> void:
 	if career_data.prev_daily_earnings.size() > CareerData.MAX_DAILY_HISTORY:
 		career_data.prev_daily_earnings = career_data.prev_daily_earnings.slice(0, CareerData.MAX_DAILY_HISTORY - 1)
 	
-	career_data.max_distance_travelled = max(career_data.max_distance_travelled, career_data.distance_travelled)
+	career_data.best_distance_travelled = max(career_data.best_distance_travelled, career_data.distance_travelled)
 	career_data.prev_distance_travelled.push_front(career_data.distance_travelled)
 	if career_data.prev_distance_travelled.size() > CareerData.MAX_DAILY_HISTORY:
 		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, CareerData.MAX_DAILY_HISTORY - 1)
