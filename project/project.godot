@@ -265,11 +265,6 @@ _global_script_classes=[ {
 "path": "res://src/main/world/cutscene-world.gd"
 }, {
 "base": "Reference",
-"class": "DemographicData",
-"language": "GDScript",
-"path": "res://src/main/ui/level-select/demographic-data.gd"
-}, {
-"base": "Reference",
 "class": "DnaAlternatives",
 "language": "GDScript",
 "path": "res://src/main/world/creature/dna-alternatives.gd"
@@ -764,6 +759,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/editor-playfield-nav.gd"
 }, {
+"base": "Reference",
+"class": "Population",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/population.gd"
+}, {
 "base": "AudioStreamPlayer",
 "class": "PresquishSfx",
 "language": "GDScript",
@@ -1106,7 +1106,6 @@ _global_script_class_icons={
 "CutsceneCamera": "",
 "CutsceneSearchFlags": "",
 "CutsceneWorld": "",
-"DemographicData": "",
 "DnaAlternatives": "",
 "DurationCalculator": "",
 "EditorPickups": "",
@@ -1206,6 +1205,7 @@ _global_script_class_icons={
 "Playfield": "",
 "PlayfieldEditorControl": "",
 "PlayfieldNav": "",
+"Population": "",
 "PresquishSfx": "",
 "PropertiesEditorControl": "",
 "Puzzle": "",

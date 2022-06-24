@@ -10,9 +10,24 @@
       "region_button": "lemon",
       "piece_speed": "0",
       "cutscene_path": "chat/career/lemon",
-      "demographics": [
-        "squirrel 100%"
-      ],
+      "population": {
+        "demographics": [
+          "squirrel 100%"
+        ],
+        "customers": [
+          "chinta 4%",
+          "dusty 4%",
+          "lango 3%",
+          "logana 3%",
+          "mara 2%",
+          "mcgoat 4%",
+          "namory 4%",
+          "nest 3%",
+          "phoena 4%",
+          "rice 4%",
+          "toat 4%"
+        ]
+      },
       "flags": [
         "no_sensei",
         "no_restaurant"
@@ -21,19 +36,6 @@
         "id": "career/boss_7k",
         "observer_id": "sensei"
       },
-      "customers": [
-        "chinta 4%",
-        "dusty 4%",
-        "lango 3%",
-        "logana 3%",
-        "mara 2%",
-        "mcgoat 4%",
-        "namory 4%",
-        "nest 3%",
-        "phoena 4%",
-        "rice 4%",
-        "toat 4%"
-      ],
       "levels": [
         {
           "id": "career/200_race"
@@ -185,14 +187,16 @@
       "region_button": "marsh",
       "piece_speed": "3-7",
       "cutscene_path": "chat/career/marsh",
-      "chefs": [
-        "(quirky) skins",
-        "bones 25%",
-        "shirts 25%"
-      ],
-      "customers": [
-        "rhonk 10%"
-      ],
+      "population": {
+        "chefs": [
+          "(quirky) skins",
+          "bones 25%",
+          "shirts 25%"
+        ],
+        "customers": [
+          "rhonk 10%"
+        ]
+      },
       "intro_level": {
         "id": "career/curly_queue",
         "chef_id": "skins",

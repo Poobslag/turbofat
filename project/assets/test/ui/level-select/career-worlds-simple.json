@@ -5,21 +5,23 @@
       "start": 0,
       "icon": "forest",
       "piece_speed": "0",
-      "chefs": [
-        "(quirky) chef_38",
-        "chef_36 25%"
-      ],
-      "customers": [
-        "customer_77 10%",
-        "(quirky) customer_90"
-      ],
-      "observers": [
-        "observer_35 30%",
-        "(quirky) observer_30"
-      ],
-      "demographics": [
-        "squirrel 100%"
-      ],
+      "population": {
+        "demographics": [
+          "squirrel 100%"
+        ],
+        "chefs": [
+          "(quirky) chef_38",
+          "chef_36 25%"
+        ],
+        "customers": [
+          "customer_77 10%",
+          "(quirky) customer_90"
+        ],
+        "observers": [
+          "observer_35 30%",
+          "(quirky) observer_30"
+        ]
+      },
       "intro_level":
       {
         "id": "intro_211"
