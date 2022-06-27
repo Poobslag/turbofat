@@ -14,5 +14,10 @@
     "piece_o",
     "piece_s",
     "piece_z"
+  ],
+  "rank": [
+    "box_factor 0.77",
+    "combo_factor 1.14",
+    "master_pickup_score_per_line 3.14"
   ]
 }
