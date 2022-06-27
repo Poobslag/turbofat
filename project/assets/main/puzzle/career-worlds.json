@@ -119,6 +119,9 @@
         },
         {
           "id": "career/bottomless_pit"
+        },
+        {
+          "id": "career/paranormal_tetrominon"
         }
       ]
     },
@@ -305,6 +308,9 @@
         },
         {
           "id": "career/bottomless_pit_2"
+        },
+        {
+          "id:": "career/checkerboard_vault"
         }
       ]
     },
@@ -322,9 +328,6 @@
         },
         {
           "id": "career/fruit_salad"
-        },
-        {
-          "id": "career/unfresh_fruits_2"
         },
         {
           "id": "career/its_square_to_be_square"
@@ -355,6 +358,9 @@
         },
         {
           "id": "career/wedding_cake_for_one"
+        },
+        {
+          "id": "career/paranormal_tetrominon"
         }
       ]
     },
@@ -396,6 +402,9 @@
         },
         {
           "id": "career/dark/too_fast_to_fast"
+        },
+        {
+          "id": "career/dark/fruit_on_the_top"
         }
       ]
     }
