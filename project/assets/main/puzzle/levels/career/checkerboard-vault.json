@@ -16,6 +16,11 @@
   "combo_break": [
     "veg_row"
   ],
+  "rank": [
+    "box_factor 0.19",
+    "combo_factor 0.68",
+    "master_pickup_score_per_line 4.00"
+  ],
   "triggers": [
     {
       "phases": [
