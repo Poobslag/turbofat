@@ -6,8 +6,8 @@ signal hide
 
 func _ready() -> void:
 	SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
-	for button in [$Buttons/Northeast/BackButton, $Buttons/Northeast/Spacer]:
-		button.connect("resized", self, "_on_Button_resized", [button])
+	for control in [$Buttons/Northeast/BackButton, $Buttons/Northeast/Spacer]:
+		control.connect("resized", self, "_on_Control_resized", [control])
 	yield(get_tree(), "idle_frame")
 	_resize_container($Buttons/Northeast)
 
@@ -39,5 +39,5 @@ func _on_BackButton_pressed() -> void:
 	hide()
 
 
-func _on_Button_resized(button: Button) -> void:
-	_resize_container(button.get_parent())
+func _on_Control_resized(control: Control) -> void:
+	_resize_container(control.get_parent())
