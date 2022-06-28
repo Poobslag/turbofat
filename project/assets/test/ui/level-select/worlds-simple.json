@@ -1,0 +1,132 @@
+{
+  "worlds": [
+    {
+      "id": "tutorial",
+      "name": "Tutorials",
+      "levels": [
+        {
+          "id": "tutorial/basics_0"
+        }
+      ]
+    },
+    {
+      "id": "world0",
+      "name": "Merrymellow Marsh",
+      "last_level": "marsh/goodbye_everyone",
+      "prologue_chat_key": "chat/marsh_prologue",
+      "epilogue_chat_key": "chat/marsh_epilogue",
+      "levels": [
+        {
+          "id": "marsh/hello_everyone",
+          "creature_id": "richie",
+          "groups": "marsh/hello",
+          "chef_id": "skins",
+          "customer_ids": [
+            "rhonk"
+          ]
+        },
+        {
+          "id": "marsh/hello_bones",
+          "creature_id": "bones",
+          "groups": "marsh/hello",
+          "unlocked_if": "level_finished marsh/hello_everyone",
+          "prioritized_if": "not level_finished marsh/pulling_for_everyone",
+          "chef_id": "bones"
+        },
+        {
+          "id": "marsh/hello_shirts",
+          "creature_id": "shirts",
+          "groups": "marsh/hello",
+          "unlocked_if": "level_finished marsh/hello_everyone",
+          "prioritized_if": "not level_finished marsh/pulling_for_everyone",
+          "chef_id": "shirts"
+        },
+        {
+          "id": "marsh/hello_skins",
+          "creature_id": "skins",
+          "groups": "marsh/hello",
+          "unlocked_if": "level_finished marsh/hello_everyone",
+          "prioritized_if": "not level_finished marsh/pulling_for_everyone",
+          "chef_id": "skins"
+        },
+        {
+          "id": "marsh/pulling_for_everyone",
+          "creature_id": "richie",
+          "groups": "marsh/pulling_for",
+          "unlocked_if": "group_finished marsh/hello 1",
+          "chef_id": "bones"
+        },
+        {
+          "id": "marsh/pulling_for_bones",
+          "creature_id": "bones",
+          "groups": "marsh/pulling_for",
+          "unlocked_if": "level_finished marsh/pulling_for_everyone",
+          "prioritized_if": "not level_finished marsh/lets_all_get_merry",
+          "chef_id": "bones"
+        },
+        {
+          "id": "marsh/pulling_for_shirts",
+          "creature_id": "shirts",
+          "groups": "marsh/pulling_for",
+          "unlocked_if": "level_finished marsh/pulling_for_everyone",
+          "prioritized_if": "not level_finished marsh/lets_all_get_merry",
+          "chef_id": "shirts"
+        },
+        {
+          "id": "marsh/pulling_for_skins",
+          "creature_id": "skins",
+          "groups": "marsh/pulling_for",
+          "unlocked_if": "level_finished marsh/pulling_for_everyone",
+          "prioritized_if": "not level_finished marsh/lets_all_get_merry",
+          "chef_id": "skins"
+        },
+        {
+          "id": "marsh/lets_all_get_merry",
+          "creature_id": "richie",
+          "groups": "marsh/goodbye",
+          "unlocked_if": "group_finished marsh/pulling_for 1",
+          "chef_id": "shirts"
+        },
+        {
+          "id": "marsh/goodbye_bones",
+          "creature_id": "bones",
+          "groups": "marsh/goodbye",
+          "unlocked_if": "level_finished marsh/lets_all_get_merry",
+          "prioritized_if": "not level_finished marsh/goodbye_everyone",
+          "chef_id": "bones"
+        },
+        {
+          "id": "marsh/goodbye_shirts",
+          "creature_id": "shirts",
+          "groups": "marsh/goodbye",
+          "unlocked_if": "level_finished marsh/lets_all_get_merry",
+          "prioritized_if": "not level_finished marsh/goodbye_everyone",
+          "chef_id": "shirts"
+        },
+        {
+          "id": "marsh/goodbye_skins",
+          "creature_id": "skins",
+          "groups": "marsh/goodbye",
+          "unlocked_if": "level_finished marsh/lets_all_get_merry",
+          "prioritized_if": "not level_finished marsh/goodbye_everyone",
+          "chef_id": "skins"
+        },
+        {
+          "id": "marsh/goodbye_everyone",
+          "creature_id": "richie",
+          "unlocked_if": "group_finished marsh/goodbye 1"
+        }
+      ]
+    },
+    {
+      "id": "world1",
+      "name": "Chocolava Canyon",
+      "unlocked_if": "world_finished world0",
+      "levels": [
+        {
+          "id": "career/1000_race"
+        }
+      ]
+    }
+  ]
+}
