@@ -299,17 +299,14 @@ pressed_icon = ExtResource( 22 )
 [node name="ShortcutHelper" parent="CellPhoneMenu/Buttons/Northeast/BackButton" instance=ExtResource( 4 )]
 action = "phone"
 
-[node name="Spacer" parent="CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 3 )]
+[node name="Spacer" type="Control" parent="CellPhoneMenu/Buttons/Northeast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
 mouse_filter = 2
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-disabled = true
 
 [node name="MusicPopup" parent="." instance=ExtResource( 17 )]
 

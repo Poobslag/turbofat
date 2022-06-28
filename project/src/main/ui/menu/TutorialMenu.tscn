@@ -22,9 +22,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Wallpaper" parent="." instance=ExtResource( 16 )]
 
@@ -83,14 +80,12 @@ pressed_icon = ExtResource( 5 )
 [node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 1 )]
 action = "phone"
 
-[node name="Spacer" parent="Buttons/Northeast" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Spacer" type="Control" parent="Buttons/Northeast"]
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
 mouse_filter = 2
-disabled = true
 
 [node name="MusicPopup" parent="." instance=ExtResource( 7 )]
 
