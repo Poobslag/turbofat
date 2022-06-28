@@ -11,6 +11,8 @@ const WORLD_NONE := WorldLock.STATUS_NONE
 const WORLD_LOCK := WorldLock.STATUS_LOCK
 
 func before_each() -> void:
+	LevelLibrary.worlds_path = "res://assets/test/ui/level-select/worlds-simple.json"
+	
 	PlayerData.level_history.reset()
 	LevelLibrary.refresh_cleared_levels()
 
