@@ -112,8 +112,10 @@ margin_top = 132.0
 margin_right = 398.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 24, 24 )
+focus_mode = 0
 size_flags_vertical = 4
 theme = ExtResource( 15 )
+enabled_focus_mode = 0
 text = "<"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
@@ -132,8 +134,10 @@ margin_top = 132.0
 margin_right = 530.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 24, 24 )
+focus_mode = 0
 size_flags_vertical = 4
 theme = ExtResource( 15 )
+enabled_focus_mode = 0
 text = ">"
 
 [node name="GradeLabels" type="Control" parent="RegionSelect/VBoxContainer/Top"]
@@ -233,9 +237,6 @@ rect_min_size = Vector2( 100, 100 )
 mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackButton" parent="Buttons/Northeast" instance=ExtResource( 6 )]
 anchor_right = 0.0
@@ -253,14 +254,12 @@ pressed_icon = ExtResource( 9 )
 [node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 1 )]
 action = "phone"
 
-[node name="Spacer" parent="Buttons/Northeast" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Spacer" type="Control" parent="Buttons/Northeast"]
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
 mouse_filter = 2
-disabled = true
 
 [node name="MusicPopup" parent="." instance=ExtResource( 3 )]
 
