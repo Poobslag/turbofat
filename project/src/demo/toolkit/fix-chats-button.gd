@@ -16,6 +16,8 @@ onready var _output_label: Label = get_node(output_label_path)
 
 ## Reports any chats with problems.
 func _report_problems_for_chats() -> void:
+	_problems.clear()
+	
 	var chat_paths := _find_chat_paths()
 	for chat_path in chat_paths:
 		_report_problems_for_chat(chat_path)
@@ -27,6 +29,7 @@ func _report_problems_for_chats() -> void:
 
 
 func _report_problems_for_chat(chat_path: String) -> void:
+	# Report broken chat links
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_from_file(chat_path)
 	for chat_key in chat_tree.events:
 		for event_obj in chat_tree.events[chat_key]:
@@ -36,7 +39,19 @@ func _report_problems_for_chat(chat_path: String) -> void:
 					if not chat_tree.events.has(link):
 						push_warning("%s - The chat branch '%s' references a non-existent link '%s'."
 								% [chat_path, chat_key, link])
-						_problems.append(chat_path)
+						if not _problems.has(chat_path):
+							_problems.append(chat_path)
+	
+	# Report disallowed characters in chat keys. We only allow lowercase letters, numbers and underscores
+	var regex := RegEx.new()
+	regex.compile("[^a-z0-9_]")
+	for chat_key in chat_tree.events:
+		var regex_match: RegExMatch = regex.search(chat_key)
+		if regex_match:
+			push_warning("%s - The chat key '%s' contains an illegal character '%s'."
+					% [chat_path, chat_key, regex_match.get_string()])
+			if not _problems.has(chat_path):
+				_problems.append(chat_path)
 
 
 ## Returns a list of all chat paths within 'CHAT_DIRS', performing a tree traversal.

@@ -180,6 +180,7 @@ func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
 			for customer_id in chat_tree.customer_ids:
 				if region.population.has_quirky_customer(customer_id):
 					quirky = true
+					break
 		
 		if not quirky and chat_tree.observer_id:
 			# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
