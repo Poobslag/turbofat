@@ -189,10 +189,7 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 			creature.creature_id = remaining_customer_ids.pop_front()
 		else:
 			# randomize the customer
-			var creature_type: int = Creatures.Type.DEFAULT
-			if PlayerData.career.is_career_mode():
-				creature_type = PlayerData.career.current_region().population.random_creature_type()
-			creature.creature_def = CreatureLoader.random_def(false, creature_type)
+			creature.creature_def = PlayerData.random_creature_def()
 	
 	_hide_duplicate_creatures()
 
@@ -219,10 +216,7 @@ func _refresh_multi_level_creatures(level_posses: Array) -> void:
 		else:
 			# randomize the customer
 			creature.add_to_group("customers")
-			var creature_type: int = Creatures.Type.DEFAULT
-			if PlayerData.career.is_career_mode():
-				creature_type = PlayerData.career.current_region().population.random_creature_type()
-			creature.creature_def = CreatureLoader.random_def(false, creature_type)
+			creature.creature_def = PlayerData.random_creature_def()
 	
 	_hide_duplicate_creatures()
 
