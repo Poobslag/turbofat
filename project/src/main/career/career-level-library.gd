@@ -109,11 +109,11 @@ func set_worlds_path(new_worlds_path: String) -> void:
 ##
 ## Returns:
 ## 	A dictionary with three entries:
-## 		'chef_ids' lists ids for creatures who acts as the chef for a cutscene.
+## 		'chef_ids' lists ids for quirky creatures who act as the chef for a cutscene.
 ##
-## 		'customer_ids' lists ids for creatures who act as the main customer for a cutscene.
+## 		'customer_ids' lists ids for quirky creatures who act as the main customer for a cutscene.
 ##
-## 		'observer_ids' lists ids for creatures who act as the observer for a cutscene.
+## 		'observer_ids' lists ids for quirky creatures who act as the observer for a cutscene.
 func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	var chef_ids := []
 	var customer_ids := []
