@@ -4,6 +4,12 @@ class_name CreatureQueue
 ## This includes a 'primary queue' of creatures guaranteed to show up at the start of a puzzle, and a 'secondary queue'
 ## of creatures who randomly show up during a puzzle.
 
+## Path to the directory with secondary creatures. Can be changed for tests.
+const DEFAULT_SECONDARY_CREATURES_PATH := "res://assets/main/creatures/secondary"
+
+## Path to the directory with secondary creatures. Can be changed for tests.
+var secondary_creatures_path := DEFAULT_SECONDARY_CREATURES_PATH setget set_secondary_creatures_path
+
 ## Queue of creatures who show up at the start of a puzzle.
 var primary_queue := []
 var primary_index: int
@@ -16,6 +22,13 @@ func _init() -> void:
 	_load_secondary_creatures()
 
 
+func set_secondary_creatures_path(value: String) -> void:
+	secondary_creatures_path = value
+	secondary_queue.clear()
+	secondary_index = 0
+	_load_secondary_creatures()
+
+
 ## Returns 'true' if the primary creature queue has any creatures left.
 func has_primary_creature() -> bool:
 	return primary_index < primary_queue.size()
@@ -25,8 +38,8 @@ func has_primary_creature() -> bool:
 func pop_primary_creature() -> CreatureDef:
 	var creature_def: CreatureDef
 	if has_primary_creature():
-		creature_def = PlayerData.creature_queue.primary_queue[PlayerData.creature_queue.primary_index]
-		PlayerData.creature_queue.primary_index += 1
+		creature_def = primary_queue[primary_index]
+		primary_index += 1
 	return creature_def
 
 
@@ -39,9 +52,9 @@ func has_secondary_creature() -> bool:
 func pop_secondary_creature() -> CreatureDef:
 	var creature_def: CreatureDef
 	if has_secondary_creature():
-		creature_def = PlayerData.creature_queue.secondary_queue[PlayerData.creature_queue.secondary_index]
+		creature_def = secondary_queue[secondary_index]
 		# don't loop back through the queue; we don't want the same customer showing up twice during a puzzle
-		PlayerData.creature_queue.secondary_index += 1
+		secondary_index += 1
 	return creature_def
 
 
@@ -70,8 +83,11 @@ func reset_secondary_creature_queue() -> void:
 
 ## Loads all secondary creature data from a directory of json files.
 func _load_secondary_creatures() -> void:
+	if not secondary_creatures_path:
+		return
+	
 	var dir := Directory.new()
-	dir.open("res://assets/main/creatures/secondary")
+	dir.open(secondary_creatures_path)
 	dir.list_dir_begin(true, true)
 	while true:
 		var file := dir.get_next()
