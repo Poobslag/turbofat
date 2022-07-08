@@ -94,51 +94,6 @@ func _handle_advance_action(event: InputEvent) -> void:
 			_chat_advancer.advance()
 
 
-## Displays the current chat event to the player.
-func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
-	if _chat_advancer.rewinding_text or _chat_choices.is_showing_choices():
-		# if we're asked to rewind or play more chat lines without picking a choice, hide the choices
-		_chat_choices.hide_choices()
-	
-	if chat_event["who"] == CreatureLibrary.NARRATOR_ID:
-		_narration_frame.play_chat_event(chat_event)
-	else:
-		var squished := false
-		
-		if _chat_advancer.should_prompt():
-			# we're going to prompt the player for a response; squish the chat frame to the side
-			squished = true
-		
-		_chat_frame.play_chat_event(chat_event, squished)
-	
-	if _chat_advancer.rewinding_text:
-		# immediately make all text visible when rewinding, so the player can rewind faster
-		if _chat_frame.is_chat_window_showing():
-			_chat_frame.make_all_text_visible()
-		elif _narration_frame.is_narration_window_showing():
-			_narration_frame.make_all_text_visible()
-	else:
-		emit_signal("chat_event_played", chat_event)
-	
-	if chat_event.who == CreatureLibrary.NARRATOR_ID and _chat_frame.is_chat_window_showing():
-		_chat_frame.pop_out()
-	if chat_event.who != CreatureLibrary.NARRATOR_ID and _narration_frame.is_narration_window_showing():
-		_narration_frame.pop_out()
-	
-	if _chat_frame.is_chat_window_showing():
-		_chat_frame.visible = true if chat_event.text else false
-	elif _narration_frame.is_narration_window_showing():
-		_narration_frame.visible = true if chat_event.text else false
-	
-	if not chat_event.text:
-		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
-		# signal introduces complications, so we wait until the next frame
-		yield(get_tree(), "idle_frame")
-		_chat_frame.emit_signal("all_text_shown")
-		if not _chat_advancer.should_prompt():
-			_chat_advancer.advance()
-
-
 ## Extracts the moods for each available choice of a chat event.
 ##
 ## The resulting array excludes any choices whose link_if conditions are unmet.
@@ -185,6 +140,51 @@ func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
 			text = first_event.text
 		texts.append(text)
 	return texts
+
+
+## Displays the current chat event to the player.
+func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
+	if _chat_advancer.rewinding_text or _chat_choices.is_showing_choices():
+		# if we're asked to rewind or play more chat lines without picking a choice, hide the choices
+		_chat_choices.hide_choices()
+	
+	if chat_event["who"] == CreatureLibrary.NARRATOR_ID:
+		_narration_frame.play_chat_event(chat_event)
+	else:
+		var squished := false
+		
+		if _chat_advancer.should_prompt():
+			# we're going to prompt the player for a response; squish the chat frame to the side
+			squished = true
+		
+		_chat_frame.play_chat_event(chat_event, squished)
+	
+	if _chat_advancer.rewinding_text:
+		# immediately make all text visible when rewinding, so the player can rewind faster
+		if _chat_frame.is_chat_window_showing():
+			_chat_frame.make_all_text_visible()
+		elif _narration_frame.is_narration_window_showing():
+			_narration_frame.make_all_text_visible()
+	else:
+		emit_signal("chat_event_played", chat_event)
+	
+	if chat_event.who == CreatureLibrary.NARRATOR_ID and _chat_frame.is_chat_window_showing():
+		_chat_frame.pop_out()
+	if chat_event.who != CreatureLibrary.NARRATOR_ID and _narration_frame.is_narration_window_showing():
+		_narration_frame.pop_out()
+	
+	if _chat_frame.is_chat_window_showing():
+		_chat_frame.visible = true if chat_event.text else false
+	elif _narration_frame.is_narration_window_showing():
+		_narration_frame.visible = true if chat_event.text else false
+	
+	if not chat_event.text:
+		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
+		# signal introduces complications, so we wait until the next frame
+		yield(get_tree(), "idle_frame")
+		_chat_frame.emit_signal("all_text_shown")
+		if not _chat_advancer.should_prompt():
+			_chat_advancer.advance()
 
 
 func _on_ChatFrame_all_text_shown() -> void:

@@ -5,11 +5,6 @@ func _ready() -> void:
 	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
 
 
-func _on_PuzzleState_speed_index_changed(value: int) -> void:
-	if value > 0:
-		$LevelUpSound.play()
-
-
 func _play_move_sfx() -> void:
 	$MoveSound.pitch_scale = 0.94
 	$MoveSound.volume_db = -4.00
@@ -21,6 +16,11 @@ func _play_das_move_sfx() -> void:
 	$MoveSound.pitch_scale = clamp($MoveSound.pitch_scale + 0.08, 0.94, 2.00)
 	$MoveSound.volume_db = clamp($MoveSound.volume_db * 0.92, 0.50, 1.00)
 	$MoveSound.play()
+
+
+func _on_PuzzleState_speed_index_changed(value: int) -> void:
+	if value > 0:
+		$LevelUpSound.play()
 
 ## Movement events ----------------------------------------------------------------
 
