@@ -81,6 +81,33 @@ func reset_secondary_creature_queue() -> void:
 		secondary_index = 0
 
 
+## Shift secondary creatures in the queue so that they will not be summoned soon.
+##
+## This prevents the player from seeing a random secondary creature at an inopportune time, such as picking a level
+## featuring a creature and then having them show up in the restaurant later during that same level.
+##
+## Parameters:
+## 	'creature_ids': The ids of creatures who should be shifted in the queue
+func pop_secondary_creatures(creature_ids: Array) -> void:
+	for creature_id in creature_ids:
+		var creature_index := -1
+		for i in range(secondary_queue.size()):
+			if secondary_queue[i].creature_id == creature_id:
+				creature_index = i
+				break
+		
+		if creature_index == -1:
+			# creature not found
+			pass
+		else:
+			var creature_def: CreatureDef = secondary_queue[creature_index]
+			secondary_queue.remove(creature_index)
+			if creature_index >= secondary_index:
+				# when moving a creature backwards in the queue, we advance secondary_index
+				secondary_index += 1
+			secondary_queue.insert(secondary_index - 1, creature_def)
+
+
 ## Loads all secondary creature data from a directory of json files.
 func _load_secondary_creatures() -> void:
 	if not secondary_creatures_path:

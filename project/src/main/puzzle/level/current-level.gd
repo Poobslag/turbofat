@@ -127,6 +127,28 @@ func set_best_result(new_best_result: int) -> void:
 	emit_signal("best_result_changed")
 
 
+## Returns a list of all creature ids in the level.
+##
+## This includes the creature the player interacted with to launch the level, the chef, and any customers. Empty
+## creature ids are not included.
+func get_creature_ids() -> Array:
+	var result := {}
+	if creature_id:
+		result[creature_id] = true
+	if chef_id:
+		result[chef_id] = true
+	for customer_obj in customers:
+		if customer_obj is String:
+			result[customer_obj] = true
+		elif customer_obj is CreatureDef:
+			result[customer_obj.creature_id] = true
+		else:
+			push_warning("Unrecognized customer: %s" % [customer_obj])
+	if result.has(""):
+		result.erase("")
+	return result.keys()
+
+
 ## Purges all node instances from the singleton.
 ##
 ## Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll
