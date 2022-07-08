@@ -101,10 +101,7 @@ func summon_customer(creature_index: int = -1) -> void:
 	if PlayerData.creature_queue.has_primary_creature():
 		creature_def = PlayerData.creature_queue.pop_primary_creature()
 	else:
-		var creature_type: int = Creatures.Type.DEFAULT
-		if PlayerData.career.is_career_mode():
-			creature_type = PlayerData.career.current_region().population.random_creature_type()
-		creature_def = CreatureLoader.random_def(creature_type == Creatures.Type.DEFAULT, creature_type)
+		creature_def = PlayerData.random_creature_def(true)
 	_restaurant_viewport_scene.summon_customer(creature_def, creature_index)
 	if creature_index == -1 or creature_index == current_creature_index:
 		emit_signal("customer_changed")

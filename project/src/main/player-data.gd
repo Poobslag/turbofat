@@ -62,5 +62,17 @@ func set_money(new_money: int) -> void:
 	emit_signal("money_changed", money)
 
 
+## Returns a random creature definition based on the player's location.
+##
+## Parameters:
+## 	'include_secondary_creatures': If 'true' the function has a chance to return a creature from a library of
+## 		predefined creatures instead of a randomly generated one.
+func random_creature_def(include_secondary_creatures: bool = false) -> CreatureDef:
+	var creature_type: int = Creatures.Type.DEFAULT
+	if PlayerData.career.is_career_mode():
+		creature_type = PlayerData.career.current_region().population.random_creature_type()
+	return CreatureLoader.random_def(include_secondary_creatures, creature_type)
+
+
 func _on_SecondsPlayedTimer_timeout() -> void:
 	seconds_played += SECONDS_PLAYED_INCREMENT
