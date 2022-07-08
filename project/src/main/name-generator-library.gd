@@ -20,9 +20,9 @@ func generate_name(type: int = Creatures.Type.DEFAULT) -> String:
 
 func _default_generator() -> NameGenerator:
 	var result := NameGenerator.new()
-	result.add_seed_resource("res://assets/main/editor/creature/animals.txt")
-	result.add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
-	result.add_seed_resource("res://assets/main/editor/creature/american-female-given-names.txt")
+	result.add_seed_resource("res://assets/main/world/creature/names/animals.txt")
+	result.add_seed_resource("res://assets/main/world/creature/names/american-male-given-names.txt")
+	result.add_seed_resource("res://assets/main/world/creature/names/american-female-given-names.txt")
 	result.order = 2.7
 	result.min_length = 4
 	result.max_length = 11
@@ -31,8 +31,8 @@ func _default_generator() -> NameGenerator:
 
 func _squirrel_generator() -> NameGenerator:
 	var result := NameGenerator.new()
-	result.add_seed_resource("res://assets/main/editor/creature/trees.txt")
-	result.add_seed_resource("res://assets/main/editor/creature/greek-mythological-figures.txt")
+	result.add_seed_resource("res://assets/main/world/creature/names/trees.txt")
+	result.add_seed_resource("res://assets/main/world/creature/names/greek-mythological-figures.txt")
 	result.order = 2.3
 	result.min_length = 6
 	result.max_length = 12
