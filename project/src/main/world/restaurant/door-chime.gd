@@ -3,11 +3,11 @@ extends AudioStreamPlayer2D
 
 ## sounds which get played when a creature shows up
 onready var _chime_sounds := [
-	preload("res://assets/main/world/door-chime0.wav"),
-	preload("res://assets/main/world/door-chime1.wav"),
-	preload("res://assets/main/world/door-chime2.wav"),
-	preload("res://assets/main/world/door-chime3.wav"),
-	preload("res://assets/main/world/door-chime4.wav"),
+	preload("res://assets/main/world/restaurant/door-chime0.wav"),
+	preload("res://assets/main/world/restaurant/door-chime1.wav"),
+	preload("res://assets/main/world/restaurant/door-chime2.wav"),
+	preload("res://assets/main/world/restaurant/door-chime3.wav"),
+	preload("res://assets/main/world/restaurant/door-chime4.wav"),
 ]
 
 onready var _suppress_sfx_timer := $SuppressSfxTimer
