@@ -52,6 +52,8 @@ var ranks := []
 ## A number in the range [0.0, 1.0] for how close the player is to completing the region.
 var completion_percent := 0.0
 
+onready var grade_hook := $Button/GradeHook
+
 onready var _button := $Button
 onready var _button_name_label := $Button/NameLabel
 onready var _button_polygon2d := $Button/Polygon2D

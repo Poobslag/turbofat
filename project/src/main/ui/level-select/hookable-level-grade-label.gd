@@ -5,8 +5,8 @@ extends Node2D
 ## This can be something like 'S' or 'B+' if a level has been cleared, or something like a lock/key icon for levels
 ## which haven't yet been cleared.
 
-## the level button this grade label applies to
-var button: LevelSelectButton setget set_button
+## the LevelSelectButton or WorldSelectButton this grade label applies to
+var button: Button setget set_button
 
 var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")
 var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")
@@ -60,7 +60,7 @@ func _refresh_appearance() -> void:
 			_refresh_grade_text(worst_rank)
 	else:
 		var result := PlayerData.level_history.best_result(button.level_id)
-		if not result:
+		if not result or result.lost:
 			# uncleared levels do not show a grade
 			_refresh_status_icon(button.lock_status)
 		elif button.lock_status == LevelLock.STATUS_CLEARED:
