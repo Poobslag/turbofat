@@ -33,6 +33,23 @@ func _add_palette(palette: Dictionary) -> void:
 	_creature_palettes.append(palette)
 
 
+## Prints a palette to the console.
+##
+## This printed palette is valid GDScript, and can be copy/pasted into the DnaUtils constant.
+func _print_palette(palette: Dictionary) -> void:
+	var result := ""
+	result += "\t{\"line_rgb\": \"%s\", " % palette["line_rgb"]
+	result += "\"body_rgb\": \"%s\", " % palette["body_rgb"]
+	result += "\"belly_rgb\": \"%s\",\n\t\t\t" % palette["belly_rgb"]
+	result += "\"hair_rgb\": \"%s\", " % palette["hair_rgb"]
+	result += "\"eye_rgb\": \"%s\", " % palette["eye_rgb"]
+	result += "\"horn_rgb\": \"%s\",\n\t\t\t" % palette["horn_rgb"]
+	result += "\"cloth_rgb\": \"%s\", " % palette["cloth_rgb"]
+	result += "\"glass_rgb\": \"%s\", " % palette["glass_rgb"]
+	result += "\"plastic_rgb\": \"%s\"}, # ??????" % palette["plastic_rgb"]
+	print(result)
+
+
 ## Updates the creature's colors with the clicked palette.
 ##
 ## Rotates the creature's current color to the outer creatures, so the player can go back if they liked the old colors.
@@ -54,23 +71,6 @@ func _on_PaletteButton_pressed(palette: Dictionary) -> void:
 	
 	# update editor elements which depend on the creature's colors
 	_creature_editor.emit_signal("center_creature_changed")
-
-
-## Prints a palette to the console.
-##
-## This printed palette is valid GDScript, and can be copy/pasted into the DnaUtils constant.
-func _print_palette(palette: Dictionary) -> void:
-	var result := ""
-	result += "\t{\"line_rgb\": \"%s\", " % palette["line_rgb"]
-	result += "\"body_rgb\": \"%s\", " % palette["body_rgb"]
-	result += "\"belly_rgb\": \"%s\",\n\t\t\t" % palette["belly_rgb"]
-	result += "\"hair_rgb\": \"%s\", " % palette["hair_rgb"]
-	result += "\"eye_rgb\": \"%s\", " % palette["eye_rgb"]
-	result += "\"horn_rgb\": \"%s\",\n\t\t\t" % palette["horn_rgb"]
-	result += "\"cloth_rgb\": \"%s\", " % palette["cloth_rgb"]
-	result += "\"glass_rgb\": \"%s\", " % palette["glass_rgb"]
-	result += "\"plastic_rgb\": \"%s\"}, # ??????" % palette["plastic_rgb"]
-	print(result)
 
 
 ## Prints all palettes to the console.

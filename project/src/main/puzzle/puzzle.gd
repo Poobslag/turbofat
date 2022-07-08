@@ -224,6 +224,38 @@ func _should_play_epilogue() -> bool:
 	return result
 
 
+func _overall_rank(rank_result: RankResult) -> float:
+	var result: float
+	match CurrentLevel.settings.finish_condition.type:
+		Milestone.SCORE:
+			result = rank_result.seconds_rank
+		_:
+			result = rank_result.score_rank
+	return result
+
+
+## Records the player's performance for career mode.
+func _update_career_data(rank_result: RankResult) -> void:
+	PlayerData.career.daily_earnings = min(PlayerData.career.daily_earnings + rank_result.score,
+			PlayerData.MAX_MONEY)
+	
+	for customer_score in PuzzleState.customer_scores:
+		if customer_score == 0:
+			# If the player tops out without serving a customer, the customer is not included
+			pass
+		else:
+			PlayerData.career.daily_customers += 1
+	
+	# Calculate the player's distance to travel based on their overall rank
+	var overall_rank := _overall_rank(rank_result)
+	
+	var milestone_index := CareerData.rank_milestone_index(overall_rank)
+	var distance_to_advance: int = CareerData.RANK_MILESTONES[milestone_index].distance
+	
+	PlayerData.career.daily_steps += distance_to_advance
+	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
+
+
 func _on_Hud_start_button_pressed() -> void:
 	_start_puzzle()
 
@@ -281,38 +313,6 @@ func _on_PuzzleState_game_ended() -> void:
 	
 	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
 	CurrentLevel.attempt_count += 1
-
-
-func _overall_rank(rank_result: RankResult) -> float:
-	var result: float
-	match CurrentLevel.settings.finish_condition.type:
-		Milestone.SCORE:
-			result = rank_result.seconds_rank
-		_:
-			result = rank_result.score_rank
-	return result
-
-
-## Records the player's performance for career mode.
-func _update_career_data(rank_result: RankResult) -> void:
-	PlayerData.career.daily_earnings = min(PlayerData.career.daily_earnings + rank_result.score,
-			PlayerData.MAX_MONEY)
-	
-	for customer_score in PuzzleState.customer_scores:
-		if customer_score == 0:
-			# If the player tops out without serving a customer, the customer is not included
-			pass
-		else:
-			PlayerData.career.daily_customers += 1
-	
-	# Calculate the player's distance to travel based on their overall rank
-	var overall_rank := _overall_rank(rank_result)
-	
-	var milestone_index := CareerData.rank_milestone_index(overall_rank)
-	var distance_to_advance: int = CareerData.RANK_MILESTONES[milestone_index].distance
-	
-	PlayerData.career.daily_steps += distance_to_advance
-	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
 
 
 ## Wait until after the game ends to save the player's data.

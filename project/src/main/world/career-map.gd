@@ -268,70 +268,6 @@ func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	return result
 
 
-## When the player clicks a level button twice, we launch the selected level
-func _on_LevelSelectButton_level_started(level_index: int) -> void:
-	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
-		# avoid changing the level button titles when you pick an earlier level
-		PlayerData.career.disconnect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
-	
-	# apply a distance penalty if they select an earlier level
-	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
-	PlayerData.career.distance_travelled -= distance_penalty
-	PlayerData.career.daily_steps -= distance_penalty
-	_distance_label.suppress_distance_penalty()
-	
-	var level_settings: LevelSettings = _pickable_level_settings[level_index]
-	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
-	
-	PlayerData.career.daily_level_ids.append(level_settings.id)
-	CurrentLevel.set_launched_level(level_settings.id)
-	CurrentLevel.puzzle_environment_name = PlayerData.career.current_region().puzzle_environment_name
-	CurrentLevel.piece_speed = _piece_speed
-	
-	var level_posse := _level_posse(level_index)
-	
-	CurrentLevel.customers = level_posse.customer_ids
-	CurrentLevel.chef_id = level_posse.chef_id
-	
-	# enqueue customers/chefs from the overworld if the level doesn't define any
-	if not CurrentLevel.customers:
-		for customer in _world.get_visible_customers(level_index):
-			CurrentLevel.customers.append(customer.creature_def)
-		CurrentLevel.customers.shuffle()
-	
-	var preroll_key: String = chat_key_pair.preroll
-	var postroll_key: String = chat_key_pair.postroll
-	
-	CutsceneQueue.reset()
-	
-	if preroll_key:
-		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
-	
-	CutsceneQueue.enqueue_level({
-		"level_id": level_settings.id,
-		"piece_speed": _piece_speed,
-		"chef_id": CurrentLevel.chef_id,
-		"customers": CurrentLevel.customers,
-		"puzzle_environment_name": CurrentLevel.puzzle_environment_name,
-	})
-	
-	if postroll_key:
-		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
-	
-	if preroll_key or postroll_key:
-		match chat_key_pair.type:
-			ChatKeyPair.INTRO_LEVEL:
-				CutsceneQueue.set_cutscene_flag("intro_level")
-			ChatKeyPair.BOSS_LEVEL:
-				CutsceneQueue.set_cutscene_flag("boss_level")
-	
-	if _should_play_epilogue(chat_key_pair):
-		var region := PlayerData.career.current_region()
-		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
-	
-	PlayerData.career.push_career_trail()
-
-
 ## Calculates which creatures should appear for a career level.
 ##
 ## This can potentially include creatures which are important to a level, creatures which appear in a cutscene, or
@@ -411,6 +347,70 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 			result = false
 	
 	return result
+
+
+## When the player clicks a level button twice, we launch the selected level
+func _on_LevelSelectButton_level_started(level_index: int) -> void:
+	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
+		# avoid changing the level button titles when you pick an earlier level
+		PlayerData.career.disconnect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
+	
+	# apply a distance penalty if they select an earlier level
+	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
+	PlayerData.career.distance_travelled -= distance_penalty
+	PlayerData.career.daily_steps -= distance_penalty
+	_distance_label.suppress_distance_penalty()
+	
+	var level_settings: LevelSettings = _pickable_level_settings[level_index]
+	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
+	
+	PlayerData.career.daily_level_ids.append(level_settings.id)
+	CurrentLevel.set_launched_level(level_settings.id)
+	CurrentLevel.puzzle_environment_name = PlayerData.career.current_region().puzzle_environment_name
+	CurrentLevel.piece_speed = _piece_speed
+	
+	var level_posse := _level_posse(level_index)
+	
+	CurrentLevel.customers = level_posse.customer_ids
+	CurrentLevel.chef_id = level_posse.chef_id
+	
+	# enqueue customers/chefs from the overworld if the level doesn't define any
+	if not CurrentLevel.customers:
+		for customer in _world.get_visible_customers(level_index):
+			CurrentLevel.customers.append(customer.creature_def)
+		CurrentLevel.customers.shuffle()
+	
+	var preroll_key: String = chat_key_pair.preroll
+	var postroll_key: String = chat_key_pair.postroll
+	
+	CutsceneQueue.reset()
+	
+	if preroll_key:
+		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
+	
+	CutsceneQueue.enqueue_level({
+		"level_id": level_settings.id,
+		"piece_speed": _piece_speed,
+		"chef_id": CurrentLevel.chef_id,
+		"customers": CurrentLevel.customers,
+		"puzzle_environment_name": CurrentLevel.puzzle_environment_name,
+	})
+	
+	if postroll_key:
+		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
+	
+	if preroll_key or postroll_key:
+		match chat_key_pair.type:
+			ChatKeyPair.INTRO_LEVEL:
+				CutsceneQueue.set_cutscene_flag("intro_level")
+			ChatKeyPair.BOSS_LEVEL:
+				CutsceneQueue.set_cutscene_flag("boss_level")
+	
+	if _should_play_epilogue(chat_key_pair):
+		var region := PlayerData.career.current_region()
+		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
+	
+	PlayerData.career.push_career_trail()
 
 
 func _on_CareerData_distance_travelled_changed() -> void:
