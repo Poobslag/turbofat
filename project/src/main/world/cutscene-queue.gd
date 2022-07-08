@@ -129,6 +129,7 @@ func _pop_level() -> void:
 		CurrentLevel.cutscene_force = level_properties["cutscene_force"]
 	if level_properties.has("puzzle_environment_name"):
 		CurrentLevel.puzzle_environment_name = level_properties["puzzle_environment_name"]
+	PlayerData.creature_queue.pop_secondary_creatures(CurrentLevel.get_creature_ids())
 
 
 ## Assign the player and sensei spawn IDs based on the specified chat tree.
