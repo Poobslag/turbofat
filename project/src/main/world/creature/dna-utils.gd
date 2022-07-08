@@ -362,6 +362,29 @@ func _ready() -> void:
 	_set_species_adjustment(Creatures.Type.SQUIRREL, "tail", "6", 2)
 
 
+## Returns 'true' if the specified dna matches the specified creature type.
+##
+## If an area is supposed to only have squirrels, we need a way to calculate whether an arbitrary is a squirrel or
+## not. As long as they do not have any 100% mismatching characteristics (beaks, wide bodies) we consider them to be a
+## match.
+##
+## Parameters:
+## 	'dna': A dna dictionary whose alleles should be evaluated
+##
+## 	'creature_type': An enum from Creatures.Type which the alleles should be compare to
+##
+## Returns:
+## 	'true' if the specified dna dictionary conforms to the specified creature type
+func dna_matches_type(dna: Dictionary, creature_type: int) -> bool:
+	var matches := true
+	for allele in dna:
+		var allele_value: String = dna[allele]
+		if _get_species_adjustment(creature_type, allele, allele_value) < -50:
+			matches = false
+			break
+	return matches
+
+
 ## Returns unique list of line colors for the specified dna.
 ##
 ## This includes some fixed brownish/greyish colors, as well as a darker version of the body color.

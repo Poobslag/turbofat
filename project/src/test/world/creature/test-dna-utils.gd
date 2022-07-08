@@ -25,3 +25,13 @@ func test_allele_weights_horn() -> void:
 	# 'no horn' is selected more frequently than other alleles
 	assert_almost_eq(allele_weights["0"], 3.0, 0.01)
 	assert_almost_eq(allele_weights["1"], 1.0, 0.01)
+
+
+func test_dna_matches_type() -> void:
+	# beaks do not match the 'squirrel' type
+	assert_eq(DnaUtils.dna_matches_type({"mouth": "1"}, Creatures.Type.SQUIRREL), true)
+	assert_eq(DnaUtils.dna_matches_type({"mouth": "4"}, Creatures.Type.SQUIRREL), false)
+	
+	# everything should match the 'default' type
+	assert_eq(DnaUtils.dna_matches_type({"mouth": "1"}, Creatures.Type.DEFAULT), true)
+	assert_eq(DnaUtils.dna_matches_type({"mouth": "4"}, Creatures.Type.DEFAULT), true)
