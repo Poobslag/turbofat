@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "cold",
+  "name": "Cold",
+  "short_name": "Cold",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "3",
+    "collar": "0",
+    "ear": "12",
+    "eye": "2",
+    "hair": "2",
+    "head": "1",
+    "horn": "2",
+    "mouth": "6",
+    "nose": "1",
+    "tail": "4",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "23a2e3",
+    "belly_rgb": "35e1e0",
+    "cloth_rgb": "415a73",
+    "glass_rgb": "bf3a3a",
+    "plastic_rgb": "34373a",
+    "hair_rgb": "ffffff",
+    "eye_rgb": "415a73 c8cbd6",
+    "horn_rgb": "ffe7e5"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "23a2e3"
+  },
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
