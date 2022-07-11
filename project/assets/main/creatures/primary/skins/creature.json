@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "skins",
   "name": "Skins",
   "short_name": "Skins",
@@ -28,7 +28,7 @@
     "eye_rgb": "d5c26a ffffff",
     "horn_rgb": "4c5245"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

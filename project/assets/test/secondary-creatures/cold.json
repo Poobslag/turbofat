@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "cold",
   "name": "Cold",
   "short_name": "Cold",
@@ -28,7 +28,7 @@
     "eye_rgb": "415a73 c8cbd6",
     "horn_rgb": "ffe7e5"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

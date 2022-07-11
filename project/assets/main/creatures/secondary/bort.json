@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "bort",
   "name": "Bort",
   "short_name": "Bort",
@@ -22,10 +22,8 @@
     "bellybutton": "0",
     "accessory": "0"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 2.6,
-    "accent_swapped": false,
-    "accent_texture": 0,
     "color": "70843a"
   },
   "fatness": 1.5

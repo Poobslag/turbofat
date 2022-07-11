@@ -1,7 +1,9 @@
 class_name ChatTheme
 ## Stores metadata about the chat window's appearance.
 ##
-## This includes the position, color and texture of the main chat window and nametag.
+## The chat window changes its appearance based on who's talking. For example, one character's speech might be blue
+## with a black background, and giant blue soccer balls in the background. The chat theme defines the chat window's
+## appearance, such as 'blue', 'soccer balls' and 'giant'.
 
 enum NametagSize {
 	OFF, # 0 characters
@@ -19,6 +21,9 @@ enum ChatLineSize {
 	XL # 3 lines at 100% capacity
 }
 
+const DEFAULT_COLOR := Color.gray
+const DEFAULT_ACCENT_SCALE := 8.0
+
 const LINE_SMALL := ChatLineSize.SMALL
 const LINE_MEDIUM := ChatLineSize.MEDIUM
 const LINE_LARGE := ChatLineSize.LARGE
@@ -31,39 +36,81 @@ const NAMETAG_LARGE := NametagSize.LARGE
 const NAMETAG_XL := NametagSize.XL
 const NAMETAG_XXL := NametagSize.XXL
 
-var accent_color: Color
+## The scale of the accent's background texture
 var accent_scale: float
+
+## If 'true', the accent's foreground/background colors will be swapped
 var accent_swapped: bool
+
+## A number in the range [0, 15] referring to a background texture
 var accent_texture_index: int
-var border_color: Color
-var dark: bool
+
+## The color of the chat window
+var color: Color setget set_color
+
+## If 'true', the backgrond will be black instead of white
+var dark: bool setget set_dark
+
 ## virtual property; value is only exposed through getters/setters
 var nametag_font_color setget ,get_nametag_font_color
+var accent_color: Color
+var border_color: Color
 
-## Parses an chat_theme_def into properties used by the chat UI.
-##
-## See ChatEvent.chat_theme_def for a full description of the chat_theme_def properties.
-func _init(chat_theme_def: Dictionary) -> void:
-	accent_color = chat_theme_def.get("color", Color.gray)
-	accent_scale = chat_theme_def.get("accent_scale", 8.0)
-	accent_swapped = chat_theme_def.get("accent_swapped", false)
-	border_color = chat_theme_def.get("color", Color.gray)
-	dark = chat_theme_def.get("dark", false)
-	accent_texture_index = chat_theme_def.get("accent_texture", 0)
-	
+func from_json_dict(dict: Dictionary) -> void:
+	accent_scale = dict.get("accent_scale", DEFAULT_ACCENT_SCALE)
+	accent_swapped = dict.get("accent_swapped", false)
+	accent_texture_index = dict.get("accent_texture", 0)
+	color = dict.get("color", DEFAULT_COLOR)
+	dark = dict.get("dark", false)
+	_refresh_colors()
+
+
+func set_color(new_color: Color) -> void:
+	color = new_color
+	_refresh_colors()
+
+
+func set_dark(new_dark: bool) -> void:
+	dark = new_dark
+	_refresh_colors()
+
+
+func to_json_dict() -> Dictionary:
+	var result := {}
+	if accent_scale != DEFAULT_ACCENT_SCALE:
+		result["accent_scale"] = accent_scale
+	if accent_swapped:
+		result["accent_swapped"] = accent_swapped
+	if accent_texture_index:
+		result["accent_texture"] = accent_texture_index
+	if color != DEFAULT_COLOR:
+		result["color"] = color.to_html(false)
 	if dark:
-		# accent color is a darker version of the input color
-		accent_color.v = lerp(accent_color.v, 0.33, 0.8)
-		# border color is a lighter, more saturated version of the input color
-		border_color.v = lerp(border_color.v, 0.78, 0.8)
-		border_color.s = pow(border_color.s, 0.33)
-	else:
-		# accent color is a lighter, more saturated version of the input color
-		accent_color.v = lerp(accent_color.v, 0.67, 0.8)
-		accent_color.s = pow(accent_color.s, 0.22)
-		# border color is a darker version of the input color
-		border_color.v = lerp(border_color.v, 0.22, 0.8)
+		result["dark"] = dark
+	return result
 
 
 func get_nametag_font_color() -> Color:
 	return Color.black if dark else Color.white
+
+
+func _refresh_colors() -> void:
+	# calculate accent color
+	accent_color = color
+	if dark:
+		# accent color is a darker version of the input color
+		accent_color.v = lerp(accent_color.v, 0.33, 0.8)
+	else:
+		# accent color is a lighter, more saturated version of the input color
+		accent_color.v = lerp(accent_color.v, 0.67, 0.8)
+		accent_color.s = pow(accent_color.s, 0.22)
+	
+	# calculate border color
+	border_color = color
+	if dark:
+		# border color is a lighter, more saturated version of the input color
+		border_color.v = lerp(border_color.v, 0.78, 0.8)
+		border_color.s = pow(border_color.s, 0.33)
+	else:
+		# border color is a darker version of the input color
+		border_color.v = lerp(border_color.v, 0.22, 0.8)

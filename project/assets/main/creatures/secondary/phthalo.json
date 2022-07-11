@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "phthalo",
   "name": "Phthalo",
   "short_name": "Phthalo",
@@ -28,7 +28,7 @@
     "eye_rgb": "473b76 aba4ce",
     "horn_rgb": "fbc8cf"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

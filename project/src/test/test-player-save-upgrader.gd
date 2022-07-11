@@ -148,3 +148,14 @@ func test_27bb() -> void:
 	
 	# changed 'max_distance_travelled' to 'best_distance_travelled'
 	assert_eq(PlayerData.career.best_distance_travelled, 167)
+
+
+func test_36c3() -> void:
+	load_legacy_player_data("turbofat-36c3.json")
+	
+	# changed 'chat_theme_def' to 'chat_theme
+	assert_eq(PlayerData.creature_library.player_def.chat_theme.accent_scale, 1.33)
+	assert_eq(PlayerData.creature_library.player_def.chat_theme.accent_swapped, true)
+	assert_eq(PlayerData.creature_library.player_def.chat_theme.accent_texture_index, 13)
+	assert_eq(PlayerData.creature_library.player_def.chat_theme.color, Color("907027"))
+	assert_eq(PlayerData.creature_library.player_def.chat_theme.dark, false)

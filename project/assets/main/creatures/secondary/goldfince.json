@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "goldfince",
   "name": "Goldfince",
   "short_name": "Goldfince",
@@ -28,7 +28,7 @@
     "eye_rgb": "74a27f fffaff",
     "horn_rgb": "e8a261"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

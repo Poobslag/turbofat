@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "jayton",
   "name": "Jayton",
   "short_name": "Jayton",
@@ -28,7 +28,7 @@
     "eye_rgb": "276127 97ad89",
     "horn_rgb": "9787a2"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

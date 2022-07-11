@@ -23,7 +23,8 @@ const PREFIX_REPLACEMENTS_2743 := {
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "36c3"
+	upgrader.current_version = "375c"
+	upgrader.add_upgrade_method(self, "_upgrade_36c3", "36c3", "375c")
 	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "36c3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "2743", "2783")
@@ -38,6 +39,16 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_36c3(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"creature_library":
+			if save_item.value.has("#player#"):
+				var creature_def := CreatureDef.new()
+				creature_def.from_json_dict(save_item.value["#player#"])
+				save_item.value["#player#"] = creature_def.to_json_dict()
+	return save_item
 
 
 func _upgrade_27bb(save_item: SaveItem) -> SaveItem:

@@ -3,7 +3,7 @@ extends Control
 ## Window which displays a chat line.
 ##
 ## The chat window is decorated with objects in the background called 'accents'. These accents can be injected with the
-## chat_event.chat_theme_def property to configure the chat window's appearance.
+## chat_event.chat_theme property to configure the chat window's appearance.
 
 signal pop_out_completed
 
@@ -59,8 +59,6 @@ func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 			$SquishTween.unsquish()
 		_squished = squished
 	
-	var chat_theme := ChatTheme.new(chat_event.chat_theme_def)
-	
 	# add lull characters
 	var text_with_lulls := ChatLibrary.add_lull_characters(chat_event.text)
 	
@@ -75,10 +73,10 @@ func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	$ChatLinePanel/NametagPanel.set_nametag_text(creature_name)
 	
 	# update the UI's appearance
-	$ChatLineLabel.update_appearance(chat_theme)
-	$ChatLinePanel.update_appearance(chat_theme, chat_line_size)
+	$ChatLineLabel.update_appearance(chat_event.chat_theme)
+	$ChatLinePanel.update_appearance(chat_event.chat_theme, chat_line_size)
 	var nametag_right: bool = chat_event.nametag_side == ChatEvent.NametagSide.RIGHT
-	$ChatLinePanel/NametagPanel.show_label(chat_theme, nametag_right)
+	$ChatLinePanel/NametagPanel.show_label(chat_event.chat_theme, nametag_right)
 
 
 func is_chat_window_showing() -> bool:

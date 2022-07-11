@@ -239,7 +239,7 @@ class ChatState extends AbstractState:
 		_event.text = _event.text.c_unescape() # turn '\n' characters into newlines
 		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(_event.who)
 		if creature_def:
-			_event.chat_theme_def = creature_def.chat_theme_def
+			_event.chat_theme = creature_def.chat_theme
 		var mood_prefix := StringUtils.substring_before(_event.text, " ")
 		if mood_prefix in MOOD_PREFIXES:
 			_event.mood = MOOD_PREFIXES[mood_prefix]
@@ -290,7 +290,7 @@ class ChatState extends AbstractState:
 		_event.text = _event.text.c_unescape() # turn '\n' characters into newlines
 		var creature_def: CreatureDef = PlayerData.creature_library.get_player_def()
 		if creature_def:
-			_event.chat_theme_def = creature_def.chat_theme_def
+			_event.chat_theme = creature_def.chat_theme
 		chat_tree.append(_branch_key, _event)
 	
 	

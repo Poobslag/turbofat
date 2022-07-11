@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "flutter",
   "name": "Flutter",
   "short_name": "Flutter",
@@ -26,7 +26,7 @@
     "horn_rgb": "f4e6db",
     "accessory": "0"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
