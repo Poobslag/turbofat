@@ -80,18 +80,20 @@ func _refresh_puzzle() -> void:
 	_piece_manager = puzzle.get_piece_manager()
 	
 	for signal_name in signal_names:
-		if not signal_name:
-			pass
-		elif signal_name == "line_cleared":
-			_playfield.connect(signal_name, self, "_on_Playfield_line_cleared")
-		elif signal_name == "box_built":
-			_playfield.connect(signal_name, self, "_on_Playfield_box_built")
-		elif signal_name == "squish_moved":
-			_piece_manager.connect(signal_name, self, "_on_PieceManager_squish_moved")
-		elif signal_name in _get_signal_names(_piece_manager):
-			_piece_manager.connect(signal_name, self, "_on_skill_performed")
-		else:
-			push_warning("Could not find sender for signal '%s'" % signal_name)
+		match signal_name:
+			"":
+				pass
+			"line_cleared":
+				_playfield.connect(signal_name, self, "_on_Playfield_line_cleared")
+			"box_built":
+				_playfield.connect(signal_name, self, "_on_Playfield_box_built")
+			"squish_moved":
+				_piece_manager.connect(signal_name, self, "_on_PieceManager_squish_moved")
+			_:
+				if signal_name in _get_signal_names(_piece_manager):
+					_piece_manager.connect(signal_name, self, "_on_skill_performed")
+				else:
+					push_warning("Could not find sender for signal '%s'" % signal_name)
 
 
 ## Blinks the skill tally to catch the player's attention.

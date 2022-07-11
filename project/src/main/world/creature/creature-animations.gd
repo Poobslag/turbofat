@@ -98,12 +98,13 @@ func eat() -> void:
 func play_mood(mood: int) -> void:
 	_idle_timer.stop_idle_animation()
 	
-	if mood == Creatures.Mood.NONE:
-		pass
-	elif mood == Creatures.Mood.DEFAULT:
-		_emote_player.unemote()
-	else:
-		_emote_player.emote(mood)
+	match mood:
+		Creatures.Mood.NONE:
+			pass
+		Creatures.Mood.DEFAULT:
+			_emote_player.unemote()
+		_:
+			_emote_player.emote(mood)
 
 
 ## The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method
@@ -124,19 +125,25 @@ func play_movement_animation(animation_name: String) -> void:
 	var animation_prefix := StringUtils.substring_before_last(animation_name, "-")
 	
 	if _movement_player.current_animation != animation_name:
+		# prevent emotes from conflicting with movement animations
 		if not _emote_player.current_animation.begins_with("ambient") \
 				and not animation_name.begins_with("idle"):
 			# don't unemote during sitting-still animations; only when changing movement stances
 			_emote_player.unemote_immediate()
+		
+		# play the animation
 		if _movement_player.current_animation.begins_with(animation_prefix):
-			var old_position: float = _movement_player.current_animation_position
+			# preserve the position in the animation timeline when changing direction
+			var old_animation_position: float = _movement_player.current_animation_position
 			if creature_sfx:
 				creature_sfx.briefly_suppress_sfx(0.000000001)
 			
 			_movement_player.play(animation_name)
-			_movement_player.advance(old_position)
+			_movement_player.advance(old_animation_position)
 		else:
 			_movement_player.play(animation_name)
+		
+		# update the creature's tail
 		if not animation_name.begins_with("sprint"):
 			_tail_z0.frame = 1 if _creature_visuals.oriented_south() else 2
 			_tail_z1.frame = 1 if _creature_visuals.oriented_south() else 2

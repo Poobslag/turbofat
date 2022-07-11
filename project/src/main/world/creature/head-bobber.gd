@@ -36,16 +36,17 @@ func _process(delta: float) -> void:
 	
 	_total_seconds += delta
 	var head_phase := _total_seconds * PI / head_motion_seconds
-	if head_bob_mode == HeadBobMode.BOB:
-		var bob_amount := head_motion_pixels * sin(2 * head_phase)
-		position.y = -100 + bob_amount
-	elif head_bob_mode == HeadBobMode.BOUNCE:
-		var bounce_amount := head_motion_pixels * (1 - 2 * abs(sin(head_phase)))
-		position.y = -100 + bounce_amount
-	elif head_bob_mode == HeadBobMode.SHUDDER:
-		var shudder_amount := head_motion_pixels * clamp(2 * sin(2 * head_phase), -1.0, 1.0)
-		position.x = shudder_amount
-		position.y = -100
+	match head_bob_mode:
+		HeadBobMode.BOB:
+			var bob_amount := head_motion_pixels * sin(2 * head_phase)
+			position.y = -100 + bob_amount
+		HeadBobMode.BOUNCE:
+			var bounce_amount := head_motion_pixels * (1 - 2 * abs(sin(head_phase)))
+			position.y = -100 + bounce_amount
+		HeadBobMode.SHUDDER:
+			var shudder_amount := head_motion_pixels * clamp(2 * sin(2 * head_phase), -1.0, 1.0)
+			position.x = shudder_amount
+			position.y = -100
 
 
 func reset_head_bob() -> void:
