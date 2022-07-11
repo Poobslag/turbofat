@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "richie",
   "name": "Richie",
   "short_name": "Richie",
@@ -28,7 +28,7 @@
     "eye_rgb": "7c4725 b8ad9f",
     "horn_rgb": "4c5245"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

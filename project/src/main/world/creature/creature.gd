@@ -61,7 +61,7 @@ var chat_selectors: Array setget set_chat_selectors
 
 var creature_name: String setget set_creature_name
 var creature_short_name: String
-var chat_theme_def: Dictionary setget set_chat_theme_def
+var chat_theme := ChatTheme.new() setget set_chat_theme
 var chat_extents: Vector2 setget ,get_chat_extents
 
 ## the direction the creature wants to move, in isometric and non-isometric coordinates
@@ -233,9 +233,9 @@ func set_creature_name(new_creature_name: String) -> void:
 	emit_signal("creature_name_changed")
 
 
-func set_chat_theme_def(new_chat_theme_def: Dictionary) -> void:
-	chat_theme_def = new_chat_theme_def
-	set_meta("chat_theme_def", chat_theme_def)
+func set_chat_theme(new_chat_theme: ChatTheme) -> void:
+	chat_theme = new_chat_theme
+	set_meta("chat_theme", chat_theme)
 
 
 ## Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
@@ -343,7 +343,7 @@ func restart_idle_timer() -> void:
 func set_creature_def(new_creature_def: CreatureDef) -> void:
 	creature_id = new_creature_def.creature_id
 	set_dna(new_creature_def.dna)
-	set_chat_theme_def(new_creature_def.chat_theme_def)
+	set_chat_theme(new_creature_def.chat_theme)
 	set_creature_name(new_creature_def.creature_name)
 	creature_short_name = new_creature_def.creature_short_name
 	set_chat_selectors(new_creature_def.chat_selectors)
@@ -364,7 +364,8 @@ func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
 	result.creature_id = creature_id
 	result.dna = DnaUtils.trim_dna(dna)
-	result.chat_theme_def = chat_theme_def
+	# create a copy to prevent our chat theme from being modified accidentally
+	result.chat_theme.from_json_dict(chat_theme.to_json_dict())
 	result.creature_name = creature_name
 	result.creature_short_name = creature_short_name
 	result.chat_selectors = chat_selectors

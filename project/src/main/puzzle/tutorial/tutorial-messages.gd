@@ -16,14 +16,14 @@ var _normal_font := preload("res://src/main/ui/blogger-sans-medium-30.tres")
 var _message_queue := []
 
 ## theme which affects the color and texture of chat messages
-var _sensei_chat_theme: ChatTheme
+var _sensei_chat_theme := ChatTheme.new()
 
 ## 'true' after pop_in is called, and 'false' after pop_out is called
 var _popped_in: bool
 
 func _ready() -> void:
 	var sensei_creature_def: CreatureDef = CreatureDef.new().from_json_path(Creatures.SENSEI_PATH)
-	_sensei_chat_theme = ChatTheme.new(sensei_creature_def.chat_theme_def)
+	_sensei_chat_theme = sensei_creature_def.chat_theme
 	_hide_message()
 
 

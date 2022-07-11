@@ -83,7 +83,7 @@ func _mutate_creature(creature: Creature) -> void:
 		_mutate_allele(creature, dna, new_palette, allele)
 	
 	creature.dna = dna
-	creature.chat_theme_def = CreatureLoader.chat_theme_def(dna.get("chat_theme_def", {}))
+	creature.chat_theme.from_json_dict(dna.get("chat_theme", {}))
 
 
 ## Mutate a single allele.
@@ -285,7 +285,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 				_recent_tweaked_allele_values[allele].append(dna[allele])
 	
 	creature.dna = dna
-	creature.chat_theme_def = CreatureLoader.chat_theme_def(dna.get("chat_theme_def", {}))
+	creature.chat_theme.from_json_dict(dna.get("chat_theme", {}))
 
 
 ## Randomly calculates a set of alleles to mutate.

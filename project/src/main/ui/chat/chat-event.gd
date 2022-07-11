@@ -35,15 +35,9 @@ var link_moods: Array
 var link_metas: Array
 
 ## The chat window changes its appearance based on who's talking. For example, one character's speech might be blue
-## with a black background, and giant blue soccer balls in the background. The 'chat_theme_def' property defines the
-## chat window's appearance, such as 'blue', 'soccer balls' and 'giant'.
-##
-## 'chat_theme_def/accent_scale': The scale of the accent's background texture
-## 'chat_theme_def/accent_swapped': If 'true', the accent's foreground/background colors will be swapped
-## 'chat_theme_def/accent_texture': A number in the range [0, 15] referring to a background texture
-## 'chat_theme_def/color': The color of the chat window
-## 'chat_theme_def/dark': True/false for whether the chat line window's background should be black/white
-var chat_theme_def: Dictionary
+## with a black background, and giant blue soccer balls in the background. The chat theme defines the chat window's
+## appearance, such as 'blue', 'soccer balls' and 'giant'.
+var chat_theme: ChatTheme = ChatTheme.new()
 
 func add_link(link: String, link_text: String, link_mood: int) -> void:
 	links.append(link)

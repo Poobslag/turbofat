@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "eeeroy",
   "name": "Eeeroy",
   "short_name": "Eeeroy",
@@ -28,7 +28,7 @@
     "eye_rgb": "87b8f6 ffffff",
     "horn_rgb": "ffffff"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

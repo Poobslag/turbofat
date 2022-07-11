@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "name": "Kurtles",
   "short_name": "Kurtles",
   "dna": {
@@ -27,7 +27,7 @@
     "eye_rgb": "374265 eaf2f4",
     "horn_rgb": "c4c4c5"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

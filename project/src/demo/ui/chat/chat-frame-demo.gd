@@ -8,7 +8,7 @@ extends Node
 ## 	Arrows: Change the color and scale
 ## 	[A]: Make the chat window appear/disappear
 ## 	[D]: Toggle 'dark mode' for the accent
-## 	[L]: Toggle between 'left', 'right' and 'no preference' for the nametag position
+## 	[L]: Toggle 'left' and 'right' and 'no preference' for the nametag position
 ## 	[P]: Print the json accent definition
 ## 	[R]: Generate a random accent definition
 ## 	[S]: Swap the accent's colors
@@ -63,11 +63,10 @@ const SCALES := [
 var _name_index := 4
 var _text_index := 4
 
+var _chat_theme := ChatTheme.new()
+
 var _color_index := 0
 var _scale_index := 5
-var _accent_swapped := false
-var _texture_index := 0
-var _dark := false
 
 var _nametag_side: int = ChatEvent.NametagSide.LEFT
 var _squished := false
@@ -90,28 +89,30 @@ func _input(event: InputEvent) -> void:
 			else:
 				_play_chat_event()
 		KEY_D:
-			_dark = not _dark
+			_chat_theme.dark = not _chat_theme.dark
 			_play_chat_event()
 		KEY_L:
 			_nametag_side = (_nametag_side + 1) % 3
 			_play_chat_event()
 		KEY_P:
-			print(to_json(_get_chat_theme_def()))
+			print(_chat_theme.to_json_dict())
 		KEY_R:
 			_color_index = randi() % COLORS.size()
 			_scale_index = randi() % SCALES.size()
-			_accent_swapped = randf() > 0.5
-			_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
-			_dark = randf() > 0.5
+			_chat_theme.accent_swapped = randf() > 0.5
+			_chat_theme.accent_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
+			_chat_theme.dark = randf() > 0.5
 			_play_chat_event()
 		KEY_S:
-			_accent_swapped = not _accent_swapped
+			_chat_theme.accent_swapped = not _chat_theme.accent_swapped
 			_play_chat_event()
 		KEY_BRACKETRIGHT:
-			_texture_index = wrapi(_texture_index + 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
+			_chat_theme.accent_texture_index = \
+					wrapi(_chat_theme.accent_texture_index + 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_BRACKETLEFT:
-			_texture_index = wrapi(_texture_index - 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
+			_chat_theme.accent_texture_index = \
+					wrapi(_chat_theme.accent_texture_index - 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_RIGHT:
 			_color_index = wrapi(_color_index + 1, 0, COLORS.size())
@@ -138,20 +139,12 @@ func _play_chat_event() -> void:
 	creature_def.creature_name = NAMES[_name_index]
 	PlayerData.creature_library.set_creature_def("lorum", creature_def)
 	
+	_chat_theme.color = COLORS[_color_index]
+	_chat_theme.accent_scale = SCALES[_scale_index]
+	
 	var chat_event := ChatEvent.new()
 	chat_event.who = "lorum"
 	chat_event.text = TEXTS[_text_index]
-	chat_event.chat_theme_def = _get_chat_theme_def()
+	chat_event.chat_theme = _chat_theme
 	chat_event.nametag_side = _nametag_side
 	$ChatFrame.play_chat_event(chat_event, _squished)
-
-
-## Generates a new accent definition generated based on the user's input.
-func _get_chat_theme_def() -> Dictionary:
-	return {
-		"accent_texture": _texture_index,
-		"accent_scale": SCALES[clamp(_scale_index, 0, SCALES.size() - 1)],
-		"accent_swapped": _accent_swapped,
-		"color": COLORS[clamp(_color_index, 0, COLORS.size() - 1)],
-		"dark": _dark
-	}

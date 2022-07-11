@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "chinta",
   "name": "Chinta",
   "short_name": "Chinta",
@@ -28,7 +28,7 @@
     "eye_rgb": "f2c12a ffffa2",
     "horn_rgb": "486965"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

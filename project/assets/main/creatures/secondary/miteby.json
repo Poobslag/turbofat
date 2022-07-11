@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "miteby",
   "name": "Miteby",
   "short_name": "Miteby",
@@ -28,7 +28,7 @@
     "eye_rgb": "a6001e ff9c9c",
     "horn_rgb": "63426b"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

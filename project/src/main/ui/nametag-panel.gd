@@ -18,7 +18,7 @@ onready var _labels := {
 
 func refresh_creature(creature: Creature) -> void:
 	set_nametag_text(creature.creature_name)
-	refresh_chat_theme(ChatTheme.new(creature.chat_theme_def))
+	refresh_chat_theme(creature.chat_theme)
 
 
 func refresh_chat_theme(chat_theme: ChatTheme) -> void:

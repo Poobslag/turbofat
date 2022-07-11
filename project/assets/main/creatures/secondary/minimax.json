@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "minimax",
   "name": "Minimax",
   "short_name": "Minimax",
@@ -28,7 +28,7 @@
     "eye_rgb": "b8260b f45e40",
     "horn_rgb": "282828"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

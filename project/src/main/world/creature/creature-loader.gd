@@ -105,7 +105,7 @@ func random_def(include_secondary_creatures: bool = false, creature_type: int = 
 		result = CreatureDef.new()
 		result.dna = DnaUtils.random_dna(creature_type)
 		result.rename(NameGeneratorLibrary.generate_name(creature_type))
-		result.chat_theme_def = chat_theme_def(result.dna)
+		result.chat_theme = chat_theme(result.dna)
 		# set the filler ID, but not the fatness. the fatness attribute in the CreatureDef is the creature's natural
 		# fatness -- not their fatness after being stuffed
 		result.creature_id = PlayerData.creature_library.next_filler_id()
@@ -113,10 +113,11 @@ func random_def(include_secondary_creatures: bool = false, creature_type: int = 
 
 
 ## Returns a chat theme definition for a generated creature.
-func chat_theme_def(dna: Dictionary) -> Dictionary:
-	var new_def: Dictionary = PlayerData.creature_library.player_def.chat_theme_def.duplicate()
-	new_def.color = dna.body_rgb
-	return new_def
+func chat_theme(dna: Dictionary) -> ChatTheme:
+	var new_theme := ChatTheme.new()
+	new_theme.from_json_dict(PlayerData.creature_library.player_def.chat_theme.to_json_dict())
+	new_theme.color = dna.body_rgb
+	return new_theme
 
 
 ## Returns an AnimationPlayer for the specified type type of mouth.

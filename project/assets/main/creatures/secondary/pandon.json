@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "pandon",
   "name": "Pandon",
   "short_name": "Pandon",
@@ -26,7 +26,7 @@
     "bellybutton": "0",
     "accessory": "0"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

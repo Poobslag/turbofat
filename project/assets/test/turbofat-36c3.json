@@ -1,0 +1,51 @@
+[
+  {
+    "type": "version",
+    "value": "36c3"
+  },
+  {
+    "type": "creature_library",
+    "value": {
+      "#player#": {
+        "version": "19dd",
+        "id": "#player#",
+        "name": "Gong",
+        "short_name": "Gong",
+        "dna": {
+          "belly": "0",
+          "bellybutton": "1",
+          "body": "1",
+          "cheek": "4",
+          "collar": "0",
+          "ear": "9",
+          "eye": "8",
+          "hair": "0",
+          "head": "1",
+          "horn": "2",
+          "mouth": "3",
+          "nose": "2",
+          "tail": "7",
+          "accessory": "0",
+          "line_rgb": "41281e",
+          "body_rgb": "907027",
+          "belly_rgb": "e5d6b7",
+          "cloth_rgb": "d5c26a",
+          "glass_rgb": "232221",
+          "plastic_rgb": "d5c26a",
+          "hair_rgb": "544e42",
+          "eye_rgb": "d5c26a ffffff",
+          "horn_rgb": "afa7ae"
+        },
+        "chat_theme_def": {
+          "accent_scale": 1.33,
+          "accent_swapped": true,
+          "accent_texture": 13,
+          "color": "907027"
+        },
+        "fatness": 1,
+        "weight_gain_scale": 1,
+        "metabolism_scale": 1
+      }
+    }
+  }
+]

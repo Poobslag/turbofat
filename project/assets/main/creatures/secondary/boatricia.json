@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "boatricia",
   "name": "Boatricia",
   "short_name": "Boatricia",
@@ -22,7 +22,7 @@
     "bellybutton": "0",
     "accessory": "0"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 0.67,
     "accent_swapped": true,
     "accent_texture": 1,

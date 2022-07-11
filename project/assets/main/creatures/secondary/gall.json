@@ -1,5 +1,5 @@
 {
-  "version": "19dd",
+  "version": "375c",
   "id": "gall",
   "name": "Gall",
   "short_name": "Gall",
@@ -28,7 +28,7 @@
     "eye_rgb": "25291b 606060",
     "horn_rgb": "b9b9b9"
   },
-  "chat_theme_def": {
+  "chat_theme": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,

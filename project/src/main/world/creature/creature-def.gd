@@ -2,7 +2,7 @@ class_name CreatureDef
 ## Stores information about a creature such as their name, appearance, and chat lines.
 
 ## default chat theme when starting a new game
-const DEFAULT_CHAT_THEME_DEF := {
+const DEFAULT_CHAT_THEME_JSON := {
 	"accent_scale": 1.33,
 	"accent_swapped": true,
 	"accent_texture": 13,
@@ -52,7 +52,7 @@ var creature_short_name: String
 var dna: Dictionary
 
 ## defines the chat window's appearance, such as 'blue', 'soccer balls' and 'giant'.
-var chat_theme_def: Dictionary
+var chat_theme := ChatTheme.new()
 
 ## dictionaries containing metadata for which chat sequences should be launched in which order
 var chat_selectors: Array
@@ -70,6 +70,11 @@ func from_json_dict(json: Dictionary) -> void:
 	var version: String = json.get("version")
 	while version != Creatures.CREATURE_DATA_VERSION:
 		match version:
+			"19dd":
+				if json.has("chat_theme_def"):
+					json["chat_theme"] = json["chat_theme_def"]
+					json.erase("chat_theme_def")
+				version = "375c"
 			"19a3":
 				if json.has("dna"):
 					json.get("dna")["accessory"] = "0"
@@ -91,7 +96,7 @@ func from_json_dict(json: Dictionary) -> void:
 	creature_name = json.get("name", "")
 	creature_short_name = json.get("short_name", NameUtils.sanitize_short_name(creature_name))
 	dna = json.get("dna", {})
-	chat_theme_def = json.get("chat_theme_def", {})
+	chat_theme.from_json_dict(json.get("chat_theme", {}))
 	chat_selectors = json.get("chat_selectors", [])
 	min_fatness = json.get("fatness", 1.0)
 	weight_gain_scale = json.get("weight_gain_scale", 1.0)
@@ -105,7 +110,8 @@ func to_json_dict() -> Dictionary:
 	if creature_name: result["name"] = creature_name
 	if creature_short_name: result["short_name"] = creature_short_name
 	if dna: result["dna"] = dna
-	if chat_theme_def: result["chat_theme_def"] = chat_theme_def
+	var chat_theme_json := chat_theme.to_json_dict()
+	if chat_theme_json: result["chat_theme"] = chat_theme_json
 	if chat_selectors: result["chat_selectors"] = chat_selectors
 	if min_fatness != 1.0: result["fatness"] = min_fatness
 	if weight_gain_scale != 1.0: result["weight_gain_scale"] = weight_gain_scale
@@ -136,8 +142,9 @@ func from_json_path(path: String) -> Object:
 			creature_name = DEFAULT_NAME
 		if not creature_short_name:
 			creature_short_name = DEFAULT_NAME
-		if not chat_theme_def:
-			chat_theme_def = DEFAULT_CHAT_THEME_DEF.duplicate()
+		if not parsed.has("chat_theme"):
+			chat_theme = ChatTheme.new()
+			chat_theme.from_json_dict(DEFAULT_CHAT_THEME_JSON)
 	else:
 		result = null
 	return result
