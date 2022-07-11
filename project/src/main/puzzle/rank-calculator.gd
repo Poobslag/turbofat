@@ -164,6 +164,7 @@ func rank_lpm(rank: float) -> float:
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0
 		if i + 1 < CurrentLevel.settings.speed.speed_ups.size():
+			# calculate lines until reaching the next speed up
 			var speed_up: Milestone = CurrentLevel.settings.speed.speed_ups[i + 1]
 			match speed_up.type:
 				Milestone.CUSTOMERS:
@@ -178,14 +179,17 @@ func rank_lpm(rank: float) -> float:
 				Milestone.SCORE:
 					level_lines = speed_up.value / \
 							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
-		elif finish_condition.type == Milestone.LINES:
-			level_lines = finish_condition.value
-		elif finish_condition.type == Milestone.PIECES:
-			# warning-ignore:integer_division
-			level_lines = finish_condition.value / 2
-		elif finish_condition.type == Milestone.SCORE:
-			level_lines = finish_condition.value / \
-					(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
+		else:
+			# calculate lines until reaching the end of the level
+			match finish_condition.type:
+				Milestone.LINES:
+					level_lines = finish_condition.value
+				Milestone.PIECES:
+					# warning-ignore:integer_division
+					level_lines = finish_condition.value / 2
+				Milestone.SCORE:
+					level_lines = finish_condition.value / \
+							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
 		
 		# avoid divide by zero, and round up to the nearest line clear
 		level_lines = ceil(max(level_lines, 1))

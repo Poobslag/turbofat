@@ -52,26 +52,27 @@ func apply_initial_move_input(piece: ActivePiece) -> void:
 		input.set_right_input_as_handled()
 		initial_das_dir += 1
 	
-	if initial_das_dir == -1:
-		# player is holding left; start piece on the left side
-		var old_pos := piece.pos
-		piece.reset_target()
-		piece.kick_piece(SPAWN_LEFT)
-		piece.move_to_target()
-		if old_pos != piece.pos:
-			emit_signal("initial_das_moved_left")
-	elif initial_das_dir == 0:
-		piece.reset_target()
-		piece.kick_piece(SPAWN_CENTER)
-		piece.move_to_target()
-	elif initial_das_dir == 1:
-		# player is holding right; start piece on the right side
-		var old_pos := piece.pos
-		piece.reset_target()
-		piece.kick_piece(SPAWN_RIGHT)
-		piece.move_to_target()
-		if old_pos != piece.pos:
-			emit_signal("initial_das_moved_right")
+	match initial_das_dir:
+		-1:
+			# player is holding left; start piece on the left side
+			var old_pos := piece.pos
+			piece.reset_target()
+			piece.kick_piece(SPAWN_LEFT)
+			piece.move_to_target()
+			if old_pos != piece.pos:
+				emit_signal("initial_das_moved_left")
+		0:
+			piece.reset_target()
+			piece.kick_piece(SPAWN_CENTER)
+			piece.move_to_target()
+		1:
+			# player is holding right; start piece on the right side
+			var old_pos := piece.pos
+			piece.reset_target()
+			piece.kick_piece(SPAWN_RIGHT)
+			piece.move_to_target()
+			if old_pos != piece.pos:
+				emit_signal("initial_das_moved_right")
 
 
 func apply_move_input(piece: ActivePiece) -> void:

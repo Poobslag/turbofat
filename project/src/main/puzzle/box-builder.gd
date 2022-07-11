@@ -119,17 +119,18 @@ func _filled_columns() -> Array:
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
 			var piece_color: int = _tile_map.get_cell(x, y)
-			if piece_color == -1:
-				# empty space
-				db[y][x] = 0
-			elif piece_color == 1:
-				# box
-				db[y][x] = 0
-			elif piece_color == 2:
-				# vegetable
-				db[y][x] = 0
-			else:
-				db[y][x] = 1 if y == 0 else db[y - 1][x] + 1
+			match piece_color:
+				-1:
+					# empty space
+					db[y][x] = 0
+				1:
+					# box
+					db[y][x] = 0
+				2:
+					# vegetable
+					db[y][x] = 0
+				_:
+					db[y][x] = 1 if y == 0 else db[y - 1][x] + 1
 	return db
 
 
