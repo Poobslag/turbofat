@@ -3,7 +3,7 @@ extends Control
 ## Window which displays a chat line.
 ##
 ## The chat window is decorated with objects in the background called 'accents'. These accents can be injected with the
-## set_chat_theme_def function to configure the chat window's appearance.
+## chat_event.chat_theme_def property to configure the chat window's appearance.
 
 signal pop_out_completed
 
