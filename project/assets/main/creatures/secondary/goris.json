@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "goris",
   "name": "Goris",
   "short_name": "Goris",
@@ -22,13 +22,14 @@
     "cloth_rgb": "5ba964",
     "hair_rgb": "f4ffff",
     "eye_rgb": "121011 4d6c6a",
-    "horn_rgb": "f4ffff"
+    "horn_rgb": "f4ffff",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "db2a25"
-  },
-  "fatness": 1
+  }
 }

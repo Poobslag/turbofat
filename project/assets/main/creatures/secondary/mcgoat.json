@@ -34,7 +34,5 @@
     "accent_texture": 13,
     "color": "b1edee"
   },
-  "fatness": 1.8,
-  "weight_gain_scale": 1,
-  "metabolism_scale": 1
+  "fatness": 1.8
 }

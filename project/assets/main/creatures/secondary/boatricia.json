@@ -1,7 +1,8 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "boatricia",
   "name": "Boatricia",
+  "short_name": "Boatricia",
   "dna": {
     "belly": "0",
     "belly_rgb": "eec086",
@@ -17,7 +18,9 @@
     "line_rgb": "41281e",
     "mouth": "1",
     "nose": "2",
-    "tail": "3"
+    "tail": "3",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 0.67,

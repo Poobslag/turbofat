@@ -34,9 +34,6 @@
     "accent_texture": 13,
     "color": "ffbfcb"
   },
-  "fatness": 1.1,
-  "weight_gain_scale": 1,
-  "metabolism_scale": 1,
   "chat_selectors": [
     {
       "chat": "hard_times",
@@ -48,5 +45,6 @@
       "available_if": "level_finished marsh/lets_all_get_merry and not level_finished marsh/goodbye_everyone",
       "repeat": 999999
     }
-  ]
+  ],
+  "fatness": 1.1
 }

@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "wesker",
   "name": "Wesker",
   "short_name": "Wesker",
@@ -22,13 +22,14 @@
     "cloth_rgb": "282828",
     "hair_rgb": "f4351c",
     "eye_rgb": "f9a74c fff6df",
-    "horn_rgb": "4c5245"
+    "horn_rgb": "4c5245",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "f9bb4a"
-  },
-  "fatness": 1
+  }
 }

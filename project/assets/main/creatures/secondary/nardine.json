@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "nardine",
   "name": "Nardine",
   "short_name": "Nardine",
@@ -22,7 +22,9 @@
     "cloth_rgb": "f9a74c",
     "hair_rgb": "b47922",
     "eye_rgb": "7d4c21 e5cd7d",
-    "horn_rgb": "b47922"
+    "horn_rgb": "b47922",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,

@@ -1,5 +1,5 @@
 {
-  "version": "19a3",
+  "version": "19dd",
   "id": "squawkapus",
   "name": "Sir Clarnacle Squawkapus George Rufus Branley VIII",
   "short_name": "Squawkapus",
@@ -23,7 +23,8 @@
     "cloth_rgb": "95c152",
     "hair_rgb": "5a635d",
     "eye_rgb": "74a27f fffaff",
-    "horn_rgb": "caf877"
+    "horn_rgb": "caf877",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,

@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "alexander",
   "name": "Alexander",
   "short_name": "Alexander",
@@ -22,13 +22,14 @@
     "cloth_rgb": "cf9393",
     "hair_rgb": "303030",
     "eye_rgb": "13c39e ffffff",
-    "horn_rgb": "ac4577"
+    "horn_rgb": "ac4577",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "2e2e2e"
-  },
-  "fatness": 1
+  }
 }

@@ -33,8 +33,5 @@
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "70843a"
-  },
-  "fatness": 1,
-  "weight_gain_scale": 1,
-  "metabolism_scale": 1
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "snorz",
   "name": "Snorz",
   "short_name": "Snorz",
@@ -22,7 +22,9 @@
     "cloth_rgb": "bd5757",
     "hair_rgb": "e1dabb",
     "eye_rgb": "ecdf32 fcfcdb",
-    "horn_rgb": "ac4577"
+    "horn_rgb": "ac4577",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
