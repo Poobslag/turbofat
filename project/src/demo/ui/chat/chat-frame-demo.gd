@@ -8,7 +8,7 @@ extends Node
 ## 	Arrows: Change the color and scale
 ## 	[A]: Make the chat window appear/disappear
 ## 	[D]: Toggle 'dark mode' for the accent
-## 	[L]: Toggle 'left' and 'right' for the nametag position
+## 	[L]: Toggle between 'left', 'right' and 'no preference' for the nametag position
 ## 	[P]: Print the json accent definition
 ## 	[R]: Generate a random accent definition
 ## 	[S]: Swap the accent's colors
@@ -69,7 +69,7 @@ var _accent_swapped := false
 var _texture_index := 0
 var _dark := false
 
-var _nametag_right := false
+var _nametag_side: int = ChatEvent.NametagSide.LEFT
 var _squished := false
 
 func _ready() -> void:
@@ -93,7 +93,7 @@ func _input(event: InputEvent) -> void:
 			_dark = not _dark
 			_play_chat_event()
 		KEY_L:
-			_nametag_right = not _nametag_right
+			_nametag_side = (_nametag_side + 1) % 3
 			_play_chat_event()
 		KEY_P:
 			print(to_json(_get_chat_theme_def()))
@@ -142,6 +142,7 @@ func _play_chat_event() -> void:
 	chat_event.who = "lorum"
 	chat_event.text = TEXTS[_text_index]
 	chat_event.chat_theme_def = _get_chat_theme_def()
+	chat_event.nametag_side = _nametag_side
 	$ChatFrame.play_chat_event(chat_event, _squished)
 
 
