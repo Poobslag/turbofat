@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "magpird",
   "name": "Magpird",
   "short_name": "Magpird",
@@ -22,7 +22,9 @@
     "cloth_rgb": "ccd44d",
     "hair_rgb": "959f78",
     "eye_rgb": "ccd44d ffffd9",
-    "horn_rgb": "959f78"
+    "horn_rgb": "959f78",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,

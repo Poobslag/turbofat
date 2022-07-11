@@ -1,8 +1,6 @@
 class_name CreatureDef
 ## Stores information about a creature such as their name, appearance, and chat lines.
 
-const CREATURE_DATA_VERSION := "19dd"
-
 ## default chat theme when starting a new game
 const DEFAULT_CHAT_THEME_DEF := {
 	"accent_scale": 1.33,
@@ -70,7 +68,7 @@ var metabolism_scale := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
 	var version: String = json.get("version")
-	while version != CREATURE_DATA_VERSION:
+	while version != Creatures.CREATURE_DATA_VERSION:
 		match version:
 			"19a3":
 				if json.has("dna"):
@@ -101,21 +99,18 @@ func from_json_dict(json: Dictionary) -> void:
 
 
 func to_json_dict() -> Dictionary:
-	var result := {
-		"version": CREATURE_DATA_VERSION,
-		"id": creature_id,
-		"name": creature_name,
-		"short_name": creature_short_name,
-		"dna": dna,
-		"chat_theme_def": chat_theme_def,
-		"chat_selectors": chat_selectors,
-		"fatness": min_fatness,
-		"weight_gain_scale": weight_gain_scale,
-		"metabolism_scale": metabolism_scale,
-	}
-	if not result.get("chat_selectors"):
-		# avoid exporting empty chat_selectors dictionary
-		result.erase("chat_selectors")
+	var result := {}
+	result["version"] = Creatures.CREATURE_DATA_VERSION
+	if creature_id: result["id"] = creature_id
+	if creature_name: result["name"] = creature_name
+	if creature_short_name: result["short_name"] = creature_short_name
+	if dna: result["dna"] = dna
+	if chat_theme_def: result["chat_theme_def"] = chat_theme_def
+	if chat_selectors: result["chat_selectors"] = chat_selectors
+	if min_fatness != 1.0: result["fatness"] = min_fatness
+	if weight_gain_scale != 1.0: result["weight_gain_scale"] = weight_gain_scale
+	if metabolism_scale != 1.0: result["metabolism_scale"] = metabolism_scale
+	
 	return result
 
 

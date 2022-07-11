@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "mewow",
   "name": "Mewow",
   "short_name": "Mewow",
@@ -22,13 +22,14 @@
     "cloth_rgb": "ccd44d",
     "hair_rgb": "b47922",
     "eye_rgb": "f9a74c fff6df",
-    "horn_rgb": "b47922"
+    "horn_rgb": "b47922",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "f9bb4a"
-  },
-  "fatness": 1
+  }
 }

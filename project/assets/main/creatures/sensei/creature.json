@@ -1,7 +1,8 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "#sensei#",
   "name": "Turbo",
+  "short_name": "Turbo",
   "dna": {
     "sensei": "true",
     "belly": "0",
@@ -21,7 +22,9 @@
     "line_rgb": "6c4331",
     "mouth": "2",
     "nose": "2",
-    "tail": "3"
+    "tail": "3",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.5,
@@ -30,5 +33,5 @@
     "color": "a854cb",
     "dark": false
   },
-  "weight_gain_scale": 0.0
+  "weight_gain_scale": 0
 }

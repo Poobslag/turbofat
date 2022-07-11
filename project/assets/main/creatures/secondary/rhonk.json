@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "rhonk",
   "name": "Rhonk",
   "short_name": "Rhonk",
@@ -22,7 +22,9 @@
     "cloth_rgb": "fcf9f9",
     "hair_rgb": "f50808",
     "eye_rgb": "f92a2a e5cd7d",
-    "horn_rgb": "f1e398"
+    "horn_rgb": "f1e398",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
@@ -30,7 +32,6 @@
     "accent_texture": 13,
     "color": "ffb12c"
   },
-  "fatness": 1,
   "weight_gain_scale": 0.25,
-  "metabolism_scale": 4.0
+  "metabolism_scale": 4
 }

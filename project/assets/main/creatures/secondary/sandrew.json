@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "sandrew",
   "name": "Sandrew",
   "short_name": "Sandrew",
@@ -22,13 +22,14 @@
     "cloth_rgb": "5ba964",
     "hair_rgb": "464a40",
     "eye_rgb": "7c4725 b8ad9f",
-    "horn_rgb": "b47922"
+    "horn_rgb": "b47922",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "b24b10"
-  },
-  "fatness": 1
+  }
 }

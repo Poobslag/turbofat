@@ -1,7 +1,8 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "bort",
   "name": "Bort",
+  "short_name": "Bort",
   "dna": {
     "belly": "2",
     "belly_rgb": "a9aa2f",
@@ -17,13 +18,15 @@
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "3",
-    "tail": "0"
+    "tail": "0",
+    "bellybutton": "0",
+    "accessory": "0"
   },
-  "fatness": 1.5,
   "chat_theme_def": {
     "accent_scale": 2.6,
     "accent_swapped": false,
     "accent_texture": 0,
     "color": "70843a"
-  }
+  },
+  "fatness": 1.5
 }

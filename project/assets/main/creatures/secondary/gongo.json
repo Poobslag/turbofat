@@ -1,6 +1,5 @@
 {
   "version": "19dd",
-  "id": "",
   "name": "Gongo",
   "short_name": "Gongo",
   "dna": {
@@ -33,6 +32,5 @@
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "3b494f"
-  },
-  "fatness": 1
+  }
 }

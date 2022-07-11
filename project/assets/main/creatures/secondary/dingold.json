@@ -1,5 +1,5 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "dingold",
   "name": "Dingold",
   "short_name": "Dingold",
@@ -22,7 +22,9 @@
     "cloth_rgb": "4e8eee",
     "hair_rgb": "e8a261",
     "eye_rgb": "4e8eee f8ffff",
-    "horn_rgb": "c4c4c5"
+    "horn_rgb": "c4c4c5",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,

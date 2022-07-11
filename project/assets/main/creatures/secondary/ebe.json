@@ -1,7 +1,8 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "ebe",
   "name": "Ebe",
+  "short_name": "Ebe",
   "dna": {
     "belly": "1",
     "belly_rgb": "ffeffc",
@@ -19,7 +20,9 @@
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "2",
-    "tail": "4"
+    "tail": "4",
+    "bellybutton": "0",
+    "accessory": "0"
   },
   "chat_theme_def": {
     "accent_scale": 1.75,
