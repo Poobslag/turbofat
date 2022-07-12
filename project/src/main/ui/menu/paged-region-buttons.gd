@@ -64,7 +64,20 @@ func set_regions(new_regions: Array) -> void:
 	# populate _regions_by_page
 	_regions_by_page.clear()
 	for i in range(regions.size()):
-		if i == 0 or _regions_by_page.back().size() >= MAX_REGIONS_PER_PAGE:
+		var same_group := true
+		if i == 0:
+			same_group = false
+		elif regions[i] is CareerRegion and regions[i - 1] is CareerRegion:
+			pass
+		elif regions[i] is OtherRegion and regions[i - 1] is OtherRegion:
+			var curr_region_is_tutorial: bool = regions[i].has_flag(OtherRegion.FLAG_TUTORIAL)
+			var prev_region_is_tutorial: bool = regions[i - 1].has_flag(OtherRegion.FLAG_TUTORIAL)
+			if curr_region_is_tutorial != prev_region_is_tutorial:
+				same_group = false
+		else:
+			same_group = false
+		
+		if not same_group or _regions_by_page.back().size() >= MAX_REGIONS_PER_PAGE:
 			_regions_by_page.append([])
 		_regions_by_page.back().append(regions[i])
 	
@@ -126,29 +139,50 @@ func _max_selectable_page() -> int:
 ## 	'button_index': The index of the button for the current page, 0 being the leftmost button on the page. Used for
 ## 		layout purposes, the buttons follow a vertical zigzag pattern.
 ##
-## 	'region': region whose button should be created
+## 	'region_obj': CareerRegion or OtherRegion instance whose button should be created
 ##
 ## Returns:
 ## 	A new orphaned RegionSelectButton instance for the specified region
-func _region_select_button(button_index: int, region: CareerRegion) -> RegionSelectButton:
+func _region_select_button(button_index: int, region_obj: Object) -> RegionSelectButton:
 	var region_button: RegionSelectButton = RegionButtonScene.instance()
 	region_button.button_index = button_index
 	
-	region_button.name_text = region.name
-	region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
+	if region_obj is CareerRegion:
+		var region: CareerRegion = region_obj
+		region_button.name_text = region.name
+		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
+		
+		var ranks := []
+		for career_level_obj in region.levels:
+			var career_level: CareerLevel = career_level_obj
+			var best_result := PlayerData.level_history.best_result(career_level.level_id)
+			var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
+			ranks.append(rank)
+		region_button.ranks = ranks
+		region_button.completion_percent = PlayerData.career.region_completion(region).completion_percent()
+		region_button.disabled = PlayerData.career.is_region_locked(region)
+	else:
+		var region: OtherRegion = region_obj
+		
+		var level_completion := 0
+		var potential_completion := region.level_ids.size()
+		var ranks := []
+		for level_id in region.level_ids:
+			var best_result := PlayerData.level_history.best_result(level_id)
+			if region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
+				if best_result and best_result.success:
+					level_completion += 1
+			elif best_result and not best_result.lost:
+				level_completion += 1
+			var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
+			ranks.append(rank)
+		region_button.ranks = ranks
+		region_button.completion_percent = level_completion / float(potential_completion)
+		region_button.name_text = region.name
+		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
 	
-	var ranks := []
-	for career_level_obj in region.levels:
-		var career_level: CareerLevel = career_level_obj
-		var best_result := PlayerData.level_history.best_result(career_level.level_id)
-		var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
-		ranks.append(rank)
-	region_button.ranks = ranks
-	region_button.completion_percent = PlayerData.career.region_completion(region).completion_percent()
-	region_button.disabled = PlayerData.career.is_region_locked(region)
-	
-	region_button.connect("focus_entered", self, "_on_RegionButton_focus_entered", [region])
-	region_button.connect("region_started", self, "_on_RegionButton_region_started", [region])
+	region_button.connect("focus_entered", self, "_on_RegionButton_focus_entered", [region_obj])
+	region_button.connect("region_started", self, "_on_RegionButton_region_started", [region_obj])
 	return region_button
 
 

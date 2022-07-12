@@ -1,5 +1,5 @@
 extends Control
-## The level select screen which shows buttons and level info.
+## The level select screen which shows buttons and level info. Used in the story mode.
 
 export (NodePath) var level_buttons_path: NodePath
 
@@ -10,6 +10,7 @@ onready var _level_buttons: LevelButtons = get_node(level_buttons_path)
 
 func _ready() -> void:
 	_level_buttons.levels_to_include = levels_to_include
+
 
 ## Parameters:
 ## 	'new_levels_to_include': An enum in LevelButtons.LevelsToInclude which specifies which allows for hiding or

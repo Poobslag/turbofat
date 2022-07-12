@@ -24,6 +24,7 @@ var creature_queue := CreatureQueue.new()
 
 var free_roam := FreeRoamData.new()
 var career: CareerData
+var practice := PracticeData.new()
 
 var money := 0 setget set_money
 
@@ -51,6 +52,7 @@ func reset() -> void:
 	creature_library.reset()
 	free_roam.reset()
 	career.reset()
+	practice.reset()
 	money = 0
 	seconds_played = 0.0
 	

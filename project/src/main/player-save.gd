@@ -65,6 +65,7 @@ func save_player_data() -> void:
 	save_json.append(_save_item("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
 	save_json.append(_save_item("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
 	save_json.append(_save_item("career", PlayerData.career.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("practice", PlayerData.practice.to_json_dict()).to_json_dict())
 	save_json.append(_save_item("successful_levels",
 			PlayerData.level_history.successful_levels).to_json_dict())
 	save_json.append(_save_item("finished_levels",
@@ -210,5 +211,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"career":
 			var value: Dictionary = json_value
 			PlayerData.career.from_json_dict(value)
+		"practice":
+			var value: Dictionary = json_value
+			PlayerData.practice.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)

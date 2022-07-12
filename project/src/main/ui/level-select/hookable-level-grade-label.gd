@@ -63,8 +63,8 @@ func _refresh_appearance() -> void:
 		if not result or result.lost:
 			# uncleared levels do not show a grade
 			_refresh_status_icon(button.lock_status)
-		elif button.lock_status == LevelLock.STATUS_CLEARED:
-			# tutorial levels do not show a grade; only a check mark
+		elif button.lock_status in [LevelLock.STATUS_CLEARED, LevelLock.STATUS_CROWN]:
+			# some levels do not show a grade; only a check mark/crown for completion
 			_refresh_status_icon(button.lock_status)
 		else:
 			# cleared levels show a grade

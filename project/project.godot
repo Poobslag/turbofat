@@ -422,7 +422,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "LevelButtons",
 "language": "GDScript",
-"path": "res://src/main/ui/level-select/level-buttons.gd"
+"path": "res://src/main/ui/level-select/scrolling-level-buttons.gd"
 }, {
 "base": "Control",
 "class": "LevelEditor",
@@ -620,6 +620,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/obstacle-spawner.gd"
 }, {
 "base": "Reference",
+"class": "OtherRegion",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/other-region.gd"
+}, {
+"base": "Reference",
 "class": "OtherRules",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/other-rules.gd"
@@ -658,6 +663,11 @@ _global_script_classes=[ {
 "class": "PackedSprite",
 "language": "GDScript",
 "path": "res://src/main/packed-sprite.gd"
+}, {
+"base": "HBoxContainer",
+"class": "PagedLevelButtons",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/paged-level-buttons.gd"
 }, {
 "base": "HBoxContainer",
 "class": "PagedRegionButtons",
@@ -773,6 +783,16 @@ _global_script_classes=[ {
 "class": "Population",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/population.gd"
+}, {
+"base": "Reference",
+"class": "PracticeData",
+"language": "GDScript",
+"path": "res://src/main/practice-data.gd"
+}, {
+"base": "VBoxContainer",
+"class": "PracticeSpeedSelector",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/practice-speed-selector.gd"
 }, {
 "base": "AudioStreamPlayer",
 "class": "PresquishSfx",
@@ -1187,6 +1207,7 @@ _global_script_class_icons={
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
 "ObstacleSpawner": "",
+"OtherRegion": "",
 "OtherRules": "",
 "OutdoorShadows": "",
 "OvalShadow": "",
@@ -1195,6 +1216,7 @@ _global_script_class_icons={
 "OverworldUi": "",
 "OverworldWorld": "",
 "PackedSprite": "",
+"PagedLevelButtons": "",
 "PagedRegionButtons": "",
 "PaletteButton": "",
 "PaletteEditorTab": "",
@@ -1218,6 +1240,8 @@ _global_script_class_icons={
 "PlayfieldEditorControl": "",
 "PlayfieldNav": "",
 "Population": "",
+"PracticeData": "",
+"PracticeSpeedSelector": "",
 "PresquishSfx": "",
 "PropertiesEditorControl": "",
 "Puzzle": "",
@@ -1313,6 +1337,7 @@ MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
 NameGeneratorLibrary="*res://src/main/name-generator-library.gd"
+OtherLevelLibrary="*res://src/main/ui/level-select/other-level-library.gd"
 Pauser="*res://src/main/pauser.gd"
 PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"

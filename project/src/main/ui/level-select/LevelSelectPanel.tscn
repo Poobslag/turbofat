@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
-[ext_resource path="res://src/main/ui/level-select/level-buttons.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/level-select/scrolling-level-buttons.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/level-select/level-info-panel.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/level-select/level-description-panel.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/level-select/level-select.gd" type="Script" id=6]
@@ -17,7 +17,7 @@
 [ext_resource path="res://src/main/ui/level-select/level-select-panel-top.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/cutscene-button.gd" type="Script" id=16]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
@@ -40,7 +40,7 @@ margin_left = 50.0
 margin_top = 50.0
 margin_right = -50.0
 margin_bottom = -50.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false

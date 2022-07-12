@@ -8,8 +8,8 @@ extends Control
 export (PackedScene) var PickupScene: PackedScene
 export (NodePath) var _puzzle_tile_map_path: NodePath
 
-## key: Vector2 playfield cell positions
-## value: Pickup node contained within that cell
+## key: (Vector2) playfield cell positions
+## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
