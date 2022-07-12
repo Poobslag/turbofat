@@ -93,14 +93,18 @@ func from_json_dict(json: Dictionary) -> void:
 				break
 	
 	creature_id = json.get("id", "")
-	creature_name = json.get("name", "")
+	creature_name = json.get("name", DEFAULT_NAME)
 	creature_short_name = json.get("short_name", NameUtils.sanitize_short_name(creature_name))
 	dna = json.get("dna", {})
-	chat_theme.from_json_dict(json.get("chat_theme", {}))
+	chat_theme.from_json_dict(json.get("chat_theme", DEFAULT_CHAT_THEME_JSON))
 	chat_selectors = json.get("chat_selectors", [])
 	min_fatness = json.get("fatness", 1.0)
 	weight_gain_scale = json.get("weight_gain_scale", 1.0)
 	metabolism_scale = json.get("metabolism_scale", 1.0)
+	
+	# populate default values when importing incomplete json
+	for allele in DnaUtils.ALLELES:
+		Utils.put_if_absent(dna, allele, DEFAULT_DNA[allele])
 
 
 func to_json_dict() -> Dictionary:
@@ -134,16 +138,6 @@ func from_json_path(path: String) -> Object:
 	if typeof(parsed) == TYPE_DICTIONARY:
 		var json_creature_def: Dictionary = parsed
 		from_json_dict(json_creature_def)
-		
-		# populate default values when importing incomplete json
-		for allele in DnaUtils.ALLELES:
-			Utils.put_if_absent(dna, allele, DEFAULT_DNA[allele])
-		if not creature_name:
-			creature_name = DEFAULT_NAME
-		if not creature_short_name:
-			creature_short_name = DEFAULT_NAME
-		if not parsed.has("chat_theme"):
-			chat_theme.from_json_dict(DEFAULT_CHAT_THEME_JSON)
 	else:
 		result = null
 	return result
