@@ -53,8 +53,12 @@ var dark: bool setget set_dark
 
 ## virtual property; value is only exposed through getters/setters
 var nametag_font_color setget ,get_nametag_font_color
-var accent_color: Color
-var border_color: Color
+
+## virtual property; value is only exposed through getters/setters
+var accent_color: Color setget ,get_accent_color
+
+## virtual property; value is only exposed through getters/setters
+var border_color: Color setget ,get_border_color
 
 func from_json_dict(dict: Dictionary) -> void:
 	accent_scale = dict.get("accent_scale", DEFAULT_ACCENT_SCALE)
@@ -62,17 +66,14 @@ func from_json_dict(dict: Dictionary) -> void:
 	accent_texture_index = dict.get("accent_texture", 0)
 	color = dict.get("color", DEFAULT_COLOR)
 	dark = dict.get("dark", false)
-	_refresh_colors()
 
 
 func set_color(new_color: Color) -> void:
 	color = new_color
-	_refresh_colors()
 
 
 func set_dark(new_dark: bool) -> void:
 	dark = new_dark
-	_refresh_colors()
 
 
 func to_json_dict() -> Dictionary:
@@ -94,23 +95,25 @@ func get_nametag_font_color() -> Color:
 	return Color.black if dark else Color.white
 
 
-func _refresh_colors() -> void:
-	# calculate accent color
-	accent_color = color
+func get_accent_color() -> Color:
+	var result := color
 	if dark:
 		# accent color is a darker version of the input color
-		accent_color.v = lerp(accent_color.v, 0.33, 0.8)
+		result.v = lerp(result.v, 0.33, 0.8)
 	else:
 		# accent color is a lighter, more saturated version of the input color
-		accent_color.v = lerp(accent_color.v, 0.67, 0.8)
-		accent_color.s = pow(accent_color.s, 0.22)
-	
-	# calculate border color
-	border_color = color
+		result.v = lerp(result.v, 0.67, 0.8)
+		result.s = pow(result.s, 0.22)
+	return result
+
+
+func get_border_color() -> Color:
+	var result := color
 	if dark:
 		# border color is a lighter, more saturated version of the input color
-		border_color.v = lerp(border_color.v, 0.78, 0.8)
-		border_color.s = pow(border_color.s, 0.33)
+		result.v = lerp(result.v, 0.78, 0.8)
+		result.s = pow(result.s, 0.33)
 	else:
 		# border color is a darker version of the input color
-		border_color.v = lerp(border_color.v, 0.22, 0.8)
+		result.v = lerp(result.v, 0.22, 0.8)
+	return result
