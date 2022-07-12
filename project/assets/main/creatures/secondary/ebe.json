@@ -25,9 +25,10 @@
     "accessory": "0"
   },
   "chat_theme": {
-    "accent_scale": 1.75,
+    "accent_scale": 2.3,
     "accent_swapped": true,
     "accent_texture": 15,
-    "color": "feceef"
+    "color": "feceef",
+    "dark": true
   }
 }

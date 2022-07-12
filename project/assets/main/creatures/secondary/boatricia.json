@@ -23,7 +23,7 @@
     "accessory": "0"
   },
   "chat_theme": {
-    "accent_scale": 0.67,
+    "accent_scale": 4,
     "accent_swapped": true,
     "accent_texture": 1,
     "color": "0b45a6",

@@ -29,9 +29,9 @@
     "horn_rgb": "f1e398"
   },
   "chat_theme": {
-    "accent_scale": 1.33,
+    "accent_scale": 5.33,
     "accent_swapped": true,
-    "accent_texture": 13,
+    "accent_texture": 12,
     "color": "f3f4eb"
   },
   "fatness": 1.1
