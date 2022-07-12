@@ -23,7 +23,8 @@
     "accessory": "0"
   },
   "chat_theme": {
-    "accent_scale": 2.6,
+    "accent_scale": 0.58,
+    "accent_texture": 1,
     "color": "70843a"
   },
   "fatness": 1.5

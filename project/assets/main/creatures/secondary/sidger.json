@@ -29,10 +29,11 @@
     "horn_rgb": "828863"
   },
   "chat_theme": {
-    "accent_scale": 1.33,
+    "accent_scale": 4,
     "accent_swapped": true,
-    "accent_texture": 13,
-    "color": "48366e"
+    "accent_texture": 12,
+    "color": "48366e",
+    "dark": true
   },
   "fatness": 2
 }
