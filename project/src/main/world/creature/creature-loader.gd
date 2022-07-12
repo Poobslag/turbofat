@@ -115,8 +115,17 @@ func random_def(include_secondary_creatures: bool = false, creature_type: int = 
 ## Returns a chat theme definition for a generated creature.
 func chat_theme(dna: Dictionary) -> ChatTheme:
 	var new_theme := ChatTheme.new()
-	new_theme.from_json_dict(PlayerData.creature_library.player_def.chat_theme.to_json_dict())
+	new_theme.accent_scale = Utils.rand_value([
+			0.50, 0.58, 0.67, 0.75, 0.88,
+			1.00, 1.15, 1.33, 1.50, 1.75,
+			2.00, 2.30, 2.66, 3.00, 3.50,
+			4.00, 4.60, 5.33, 6.00, 7.00,
+			8.00
+	])
+	new_theme.accent_swapped = randf() > 0.5
+	new_theme.accent_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
 	new_theme.color = dna.body_rgb
+	new_theme.dark = randf() > 0.5
 	return new_theme
 
 

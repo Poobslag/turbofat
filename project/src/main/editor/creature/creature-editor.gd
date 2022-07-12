@@ -71,8 +71,9 @@ func mutate_all_creatures() -> void:
 func _mutate_creature(creature: Creature) -> void:
 	var new_palette: Dictionary = _palette()
 	
-	# copy the center creature's dna, name, weight
+	# copy the center creature's dna, name, weight, chat theme
 	creature.creature_def = center_creature.creature_def
+	
 	var dna := {}
 	for allele in DnaUtils.ALLELES:
 		if center_creature.dna.has(allele):
@@ -83,7 +84,7 @@ func _mutate_creature(creature: Creature) -> void:
 		_mutate_allele(creature, dna, new_palette, allele)
 	
 	creature.dna = dna
-	creature.chat_theme.from_json_dict(dna.get("chat_theme", {}))
+	creature.chat_theme = CreatureLoader.chat_theme(dna) # generate a new chat theme
 
 
 ## Mutate a single allele.
@@ -228,8 +229,9 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 		# leave the line color alone
 		palette["line_rgb"] = center_creature.dna["line_rgb"]
 	
-	# copy the center creature's dna, name, weight
+	# copy the center creature's dna, name, weight, chat theme
 	creature.creature_def = center_creature.creature_def
+	
 	var dna := {}
 	for allele in DnaUtils.ALLELES:
 		if center_creature.dna.has(allele):
@@ -285,7 +287,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 				_recent_tweaked_allele_values[allele].append(dna[allele])
 	
 	creature.dna = dna
-	creature.chat_theme.from_json_dict(dna.get("chat_theme", {}))
+	creature.chat_theme = CreatureLoader.chat_theme(dna) # generate a new chat theme
 
 
 ## Randomly calculates a set of alleles to mutate.
