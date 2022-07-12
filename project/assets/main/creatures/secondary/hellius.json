@@ -1,0 +1,36 @@
+{
+  "version": "375c",
+  "id": "hellius",
+  "name": "Hellius",
+  "short_name": "Hellius",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "0",
+    "ear": "4",
+    "eye": "2",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "4",
+    "line_rgb": "41281e",
+    "body_rgb": "1a1a1e",
+    "belly_rgb": "65412e",
+    "cloth_rgb": "b8260b",
+    "glass_rgb": "2d2b2b",
+    "plastic_rgb": "1f1f1f",
+    "hair_rgb": "222222",
+    "eye_rgb": "b8260b f45e40",
+    "horn_rgb": "e8a261"
+  },
+  "chat_theme": {
+    "accent_scale": 0.75,
+    "accent_swapped": true,
+    "color": "1a1a1e"
+  }
+}
