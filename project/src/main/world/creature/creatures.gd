@@ -58,7 +58,7 @@ enum Type {
 	SQUIRREL,
 }
 
-const CREATURE_DATA_VERSION := "19dd"
+const CREATURE_DATA_VERSION := "375c"
 
 const SOUTHEAST = Orientation.SOUTHEAST
 const SOUTHWEST = Orientation.SOUTHWEST
