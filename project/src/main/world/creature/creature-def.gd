@@ -143,7 +143,6 @@ func from_json_path(path: String) -> Object:
 		if not creature_short_name:
 			creature_short_name = DEFAULT_NAME
 		if not parsed.has("chat_theme"):
-			chat_theme = ChatTheme.new()
 			chat_theme.from_json_dict(DEFAULT_CHAT_THEME_JSON)
 	else:
 		result = null
