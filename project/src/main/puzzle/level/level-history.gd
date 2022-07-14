@@ -100,7 +100,7 @@ func add_result(level_id: String, rank_result: RankResult) -> void:
 	rank_results[level_id].push_front(rank_result)
 	if rank_result.success and not successful_levels.has(level_id):
 		successful_levels[level_id] = OS.get_datetime()
-	if not rank_result.lost and not successful_levels.has(level_id):
+	if not rank_result.lost and not finished_levels.has(level_id):
 		finished_levels[level_id] = OS.get_datetime()
 
 

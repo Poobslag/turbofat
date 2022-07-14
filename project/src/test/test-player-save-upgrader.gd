@@ -159,3 +159,10 @@ func test_36c3() -> void:
 	assert_eq(PlayerData.creature_library.player_def.chat_theme.accent_texture_index, 13)
 	assert_eq(PlayerData.creature_library.player_def.chat_theme.color, Color("907027"))
 	assert_eq(PlayerData.creature_library.player_def.chat_theme.dark, false)
+
+
+func test_375c() -> void:
+	load_legacy_player_data("turbofat-375c.json")
+	
+	# added missing 'finished_level' entries -- successful levels weren't recorded as finished
+	assert_eq(PlayerData.level_history.finished_levels.keys(), ["practice/marathon_normal"])
