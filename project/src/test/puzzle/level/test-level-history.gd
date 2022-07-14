@@ -70,3 +70,12 @@ func test_daily_best_no_duplicates() -> void:
 	
 	var best_results := _level_history.best_results("level_895", true)
 	assert_eq(best_results.size(), 2)
+
+
+func test_finished_successful() -> void:
+	var result := rank_result()
+	result.lost = false
+	result.success = true
+	_level_history.add_result("level_895", result)
+	assert_eq(_level_history.finished_levels.keys(), ["level_895"])
+	assert_eq(_level_history.successful_levels.keys(), ["level_895"])

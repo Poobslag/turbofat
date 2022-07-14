@@ -31,9 +31,9 @@ var current_version := ""
 ## SaveItemUpgrader does not have logic for upgrading specific save data versions. This upgrade logic must be defined
 ## on an external object and incorporated via this 'add_upgrade_method' method.
 ##
-## The specified upgrade method should accept a SaveData object and return a modified SaveData object. The upgrade
-## method can also return null, in which case SaveItemUpgrader will omit the SaveData object from the list of upgraded
-## save items.
+## The specified upgrade method should accept an Array of source data and a SaveData object, and return a modified
+## SaveData object. The upgrade method can also return null, in which case SaveItemUpgrader will omit the SaveData
+## object from the list of upgraded save items.
 ##
 ## Parameters:
 ## 	'object': The object containing the method
@@ -87,7 +87,7 @@ func upgrade(json_save_items: Array) -> Array:
 				"version":
 					save_item.value = upgrade_method.new_version
 				_:
-					save_item = upgrade_method.object.call(upgrade_method.method, save_item)
+					save_item = upgrade_method.object.call(upgrade_method.method, old_save_items, save_item)
 			
 			if save_item:
 				new_save_items.append(save_item.to_json_dict())

@@ -23,7 +23,8 @@ const PREFIX_REPLACEMENTS_2743 := {
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "375c"
+	upgrader.current_version = "3776"
+	upgrader.add_upgrade_method(self, "_upgrade_375c", "375c", "3776")
 	upgrader.add_upgrade_method(self, "_upgrade_36c3", "36c3", "375c")
 	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "36c3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
@@ -41,7 +42,25 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	return upgrader
 
 
-func _upgrade_36c3(save_item: SaveItem) -> SaveItem:
+## Save data prior to 375c had a bug where successful levels weren't recorded as finished levels. We locate the
+## successful levels entries and copy them over to the finished levels to fill in the gaps.
+func _upgrade_375c(old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"finished_levels":
+			# locate the successful_levels entries
+			var successful_levels := {}
+			for old_save_item in old_save_items:
+				if old_save_item.get("type", "") == "successful_levels":
+					successful_levels = old_save_item.value
+			
+			# copy over any missing successful_levels entries to finished_levels
+			for key in successful_levels:
+				if not save_item.value.has(key):
+					save_item.value[key] = successful_levels[key]
+	return save_item
+
+
+func _upgrade_36c3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"creature_library":
 			if save_item.value.has("#player#"):
@@ -51,7 +70,7 @@ func _upgrade_36c3(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_27bb(save_item: SaveItem) -> SaveItem:
+func _upgrade_27bb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"career":
 			save_item.value["best_distance_travelled"] = save_item.value.get("max_distance_travelled", 0)
@@ -59,7 +78,7 @@ func _upgrade_27bb(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_2783(save_item: SaveItem) -> SaveItem:
+func _upgrade_2783(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"player_info":
 			var money: int = save_item.value.get("money", 0)
@@ -75,7 +94,7 @@ func _upgrade_2783(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_2743(save_item: SaveItem) -> SaveItem:
+func _upgrade_2743(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history":
 			_replace_chat_history_prefixes_for_2743(save_item.value)
@@ -114,7 +133,7 @@ func _replace_fatness_keys_for_2743(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _upgrade_24cc(save_item: SaveItem) -> SaveItem:
+func _upgrade_24cc(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history":
 			_replace_dialog_with_chat(save_item.value.get("history_items", {}))
@@ -131,7 +150,7 @@ func _replace_dialog_with_chat(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _upgrade_245b(save_item: SaveItem) -> SaveItem:
+func _upgrade_245b(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
 			if save_item.key in [
@@ -144,7 +163,7 @@ func _upgrade_245b(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_1b3c(save_item: SaveItem) -> SaveItem:
+func _upgrade_1b3c(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
 			save_item.key = _upgrade_1b3c_level_id(save_item.key)
@@ -165,7 +184,7 @@ func _upgrade_1b3c_level_id(value: String) -> String:
 	return new_value
 
 
-func _upgrade_19c5(save_item: SaveItem) -> SaveItem:
+func _upgrade_19c5(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
 			save_item.key = _upgrade_199c_level_id(save_item.key)
@@ -179,7 +198,7 @@ func _upgrade_19c5(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_199c(save_item: SaveItem) -> SaveItem:
+func _upgrade_199c(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"scenario_history":
 			save_item.type = "level_history"
@@ -206,7 +225,7 @@ func _upgrade_199c_level_id(value: String) -> String:
 	return new_value
 
 
-func _upgrade_1922(save_item: SaveItem) -> SaveItem:
+func _upgrade_1922(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history":
 			_replace_dialog_with_creatures_primary(save_item.value)
@@ -225,7 +244,7 @@ func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
 					sub_dict.erase(key)
 
 
-func _upgrade_1682(save_item: SaveItem) -> SaveItem:
+func _upgrade_1682(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat-history":
 			save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
@@ -248,7 +267,7 @@ func _replace_key_hyphens_with_underscores(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _upgrade_163e(save_item: SaveItem) -> SaveItem:
+func _upgrade_163e(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"scenario-history":
 			for rank_result_obj in save_item.value:
@@ -258,7 +277,7 @@ func _upgrade_163e(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_15d2(save_item: SaveItem) -> SaveItem:
+func _upgrade_15d2(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"scenario-history":
 			match save_item.key:

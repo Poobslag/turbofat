@@ -23,14 +23,14 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	return upgrader
 
 
-func _upgrade_2783(save_item: SaveItem) -> SaveItem:
+func _upgrade_2783(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history", "creature_library", "finished_levels", "level_history", "player_info", "successful_levels":
 			save_item = null
 	return save_item
 
 
-func _upgrade_2743(save_item: SaveItem) -> SaveItem:
+func _upgrade_2743(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"miscellaneous_settings":
 			save_item.type = "misc_settings"

@@ -1,0 +1,26 @@
+[
+  {
+    "type": "version",
+    "value": "375c"
+  },
+  {
+    "type": "successful_levels",
+    "value": {
+      "practice/marathon_normal": {
+        "year": 2020,
+        "month": 9,
+        "day": 24,
+        "weekday": 4,
+        "dst": false,
+        "hour": 19,
+        "minute": 49,
+        "second": 36
+      }
+    }
+  },
+  {
+    "type": "finished_levels",
+    "value": {
+    }
+  }
+]
