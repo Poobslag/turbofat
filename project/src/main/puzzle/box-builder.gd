@@ -146,13 +146,17 @@ func process_boxes() -> bool:
 	var dt4 := _filled_rectangles(db, 4)
 	var dt5 := _filled_rectangles(db, 5)
 	
-	for y in range(PuzzleTileMap.ROW_COUNT):
+	for hi_y in range(PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
-			if dt5[y][x] >= 3 and _process_box(x, y, 3, 5): return true
-			if dt4[y][x] >= 3 and _process_box(x, y, 3, 4): return true
-			if dt3[y][x] >= 3 and _process_box(x, y, 3, 3): return true
-			if dt3[y][x] >= 4 and _process_box(x, y, 4, 3): return true
-			if dt3[y][x] >= 5 and _process_box(x, y, 5, 3): return true
+			# Process boxes from bottom to top, to hopefully match a typical player's intent. If multiple boxes can
+			# be made, it's better to leave an incomplete box at the top of the playfield rather than being buried at
+			# the bottom.
+			var lo_y := PuzzleTileMap.ROW_COUNT - hi_y - 1
+			if dt5[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 5): return true
+			if dt4[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 4): return true
+			if dt3[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 3): return true
+			if dt3[lo_y][x] >= 4 and _process_box(x, lo_y, 4, 3): return true
+			if dt3[lo_y][x] >= 5 and _process_box(x, lo_y, 5, 3): return true
 	return false
 
 

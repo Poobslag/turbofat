@@ -191,7 +191,12 @@ func _on_LineClearer_line_deleted(y: int) -> void:
 
 func _on_LineClearer_after_lines_deleted() -> void:
 	emit_signal("after_lines_deleted")
-	PuzzleState.after_piece_written()
+	
+	# On levels with weird pieces, clearing a line can create a box. If this happens we delay the
+	# 'after_piece_written' signal until after the box is built
+	_box_builder.process_boxes()
+	if _box_builder.remaining_box_build_frames <= 0:
+		PuzzleState.after_piece_written()
 
 
 func _on_GoopGlobs_hit_playfield(glob: Node) -> void:
