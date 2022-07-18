@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/demo/ui/level-select/level-select-button-demo.gd" type="Script" id=1]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=4]
+
+[node name="Demo" type="Node"]
+script = ExtResource( 1 )
+LevelButtonScene = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 4
+columns = 6
+
+[node name="GradeLabels" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 4 )
+GradeLabelScene = ExtResource( 3 )
