@@ -30,30 +30,7 @@ func set_selected_mode(new_selected_mode: String) -> void:
 
 ## Sets the currently selected level, used for generating a description.
 func set_level(new_level: LevelSettings) -> void:
-	var new_description := ""
-	match get_selected_mode():
-		"Marathon":
-			var target_value: int = new_level.finish_condition.value
-			
-			new_description = tr("Survive as the pieces get faster and faster! Can you clear %s lines?") \
-					% StringUtils.comma_sep(target_value)
-		"Ultra":
-			new_description = tr("Earn %s as quickly as possible!") \
-					% StringUtils.format_money(new_level.finish_condition.value)
-		"Sprint":
-			new_description = tr("Earn as much money as you can in %s!") \
-					% StringUtils.format_duration(new_level.finish_condition.value)
-		"Rank":
-			new_description = tr("An escalating set of challenges.")
-			match new_level.success_condition.type:
-				Milestone.SCORE:
-					new_description += " " + tr("Finish with %s to achieve this rank!") \
-							% StringUtils.format_money(new_level.success_condition.value)
-				Milestone.TIME_UNDER:
-					new_description += " " + tr("Finish in %s to achieve this rank!") \
-							% StringUtils.format_duration(new_level.success_condition.value)
-		"Sandbox":
-			new_description = tr("Just relax! There is no way to win or lose this mode.")
+	var new_description := new_level.description
 	$Desc.text = new_description
 
 

@@ -1,5 +1,7 @@
 {
   "version": "2cb4",
+  "title": "Sandbox: Master",
+  "description": "Practice with instant gravity! There is no way to win or lose this mode.",
   "blocks_during": [
     "clear_on_top_out"
   ],

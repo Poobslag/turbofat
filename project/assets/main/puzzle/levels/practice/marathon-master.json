@@ -1,6 +1,8 @@
 {
   "version": "2cb4",
   "start_speed": "FA",
+  "title": "Marathon: Master (500 lines)",
+  "description": "An impossible test of endurance for true Turbo Fat masters! Can you clear 500 lines?",
   "speed_ups": [
     {
       "type": "lines",

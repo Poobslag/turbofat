@@ -1,6 +1,8 @@
 {
   "version": "2cb4",
   "start_speed": "0",
+  "title": "Ultra: Normal (200¥)",
+  "description": "Earn ¥200 as fast as possible!",
   "finish_condition": {
     "type": "score",
     "value": "200"
