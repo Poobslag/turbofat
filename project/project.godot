@@ -659,6 +659,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/packed-sprite.gd"
 }, {
+"base": "HBoxContainer",
+"class": "PagedRegionButtons",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/paged-region-buttons.gd"
+}, {
 "base": "ColorRect",
 "class": "PaletteButton",
 "language": "GDScript",
@@ -1190,6 +1195,7 @@ _global_script_class_icons={
 "OverworldUi": "",
 "OverworldWorld": "",
 "PackedSprite": "",
+"PagedRegionButtons": "",
 "PaletteButton": "",
 "PaletteEditorTab": "",
 "PhaseCondition": "",

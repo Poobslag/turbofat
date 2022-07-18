@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=9]
 [ext_resource path="res://src/main/ui/menu/region-description-panel.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/menu/region-info-panel.gd" type="Script" id=11]
-[ext_resource path="res://src/main/ui/menu/region-buttons.gd" type="Script" id=12]
+[ext_resource path="res://src/main/ui/menu/paged-region-buttons.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=13]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=14]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=15]
@@ -46,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 7 )
+_region_buttons_path = NodePath("RegionSelect/VBoxContainer/Top/RegionButtons")
 
 [node name="Wallpaper" parent="." instance=ExtResource( 2 )]
 
@@ -254,9 +255,10 @@ action = "ui_cancel"
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
 
-[connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="button_added" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
 [connection signal="region_selected" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_region_selected"]
 [connection signal="region_selected" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_region_selected"]
+[connection signal="region_started" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="." method="_on_RegionButtons_region_started"]
 [connection signal="pressed" from="RegionSelect/VBoxContainer/Top/RegionButtons/LeftArrow" to="RegionSelect/VBoxContainer/Top/RegionButtons" method="_on_LeftArrow_pressed"]
 [connection signal="pressed" from="RegionSelect/VBoxContainer/Top/RegionButtons/RightArrow" to="RegionSelect/VBoxContainer/Top/RegionButtons" method="_on_RightArrow_pressed"]
+[connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]
