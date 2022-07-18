@@ -6,10 +6,10 @@ extends Node
 ## by the puzzle code.
 
 ## Path to the json file with the list of levels. Can be changed for tests.
-const DEFAULT_WORLDS_PATH := "res://assets/main/puzzle/career-worlds.json"
+const DEFAULT_REGIONS_PATH := "res://assets/main/puzzle/career-regions.json"
 
 ## Path to the json file with the list of levels. Can be changed for tests.
-var worlds_path := DEFAULT_WORLDS_PATH setget set_worlds_path
+var regions_path := DEFAULT_REGIONS_PATH setget set_regions_path
 
 ## List of CareerRegions containing region and level data, sorted by distance
 var regions: Array = []
@@ -92,8 +92,8 @@ func piece_speed_between(min_speed: String, max_speed: String, weight: float, r:
 	return PieceSpeeds.speed_ids[int(speed_index_result)]
 
 
-func set_worlds_path(new_worlds_path: String) -> void:
-	worlds_path = new_worlds_path
+func set_regions_path(new_regions_path: String) -> void:
+	regions_path = new_regions_path
 	_load_raw_json_data()
 
 
@@ -227,7 +227,7 @@ func trim_levels_by_available_if(levels: Array) -> Array:
 func _load_raw_json_data() -> void:
 	regions.clear()
 	
-	var worlds_text := FileUtils.get_file_as_text(worlds_path)
+	var worlds_text := FileUtils.get_file_as_text(regions_path)
 	var worlds_json: Dictionary = parse_json(worlds_text)
 	for region_json in worlds_json.get("regions", []):
 		var region := CareerRegion.new()

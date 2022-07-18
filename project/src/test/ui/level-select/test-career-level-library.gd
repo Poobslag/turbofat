@@ -7,11 +7,11 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	CareerLevelLibrary.worlds_path = LevelLibrary.DEFAULT_WORLDS_PATH
+	CareerLevelLibrary.regions_path = CareerLevelLibrary.DEFAULT_REGIONS_PATH
 
 
 func test_regions() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	assert_eq(CareerLevelLibrary.regions.size(), 3)
 	
 	var region_1: CareerRegion = CareerLevelLibrary.regions[1]
@@ -25,7 +25,7 @@ func test_regions() -> void:
 
 
 func test_region_chefs() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
 	assert_eq(region_0.population.chefs.size(), 2)
@@ -40,7 +40,7 @@ func test_region_chefs() -> void:
 
 
 func test_region_customers() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
 	assert_eq(region_0.population.customers.size(), 2)
@@ -55,7 +55,7 @@ func test_region_customers() -> void:
 
 
 func test_region_observers() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
 	assert_eq(region_0.population.observers.size(), 2)
@@ -70,7 +70,7 @@ func test_region_observers() -> void:
 
 
 func test_region_demographics() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	
 	var region_0: CareerRegion = CareerLevelLibrary.regions[0]
 	assert_eq(region_0.population.demographics.size(), 1)
@@ -111,7 +111,7 @@ func test_piece_speed_between_narrow() -> void:
 
 
 func test_region_for_distance() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	
 	assert_eq(CareerLevelLibrary.region_for_distance(0).name, "Permissible World")
 	assert_eq(CareerLevelLibrary.region_for_distance(9).name, "Permissible World")
@@ -121,7 +121,7 @@ func test_region_for_distance() -> void:
 
 
 func test_region_weight_for_distance() -> void:
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
 	
 	assert_eq(CareerLevelLibrary.region_weight_for_distance(
 		CareerLevelLibrary.region_for_distance(10), 10), 0.0)
