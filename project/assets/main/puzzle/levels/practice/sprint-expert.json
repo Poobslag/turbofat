@@ -1,6 +1,8 @@
 {
   "version": "2cb4",
   "start_speed": "F0",
+  "title": "Sprint: Expert (3:00)",
+  "description": "Earn as much money as you can in 3:00. Use the faster pieces to set a high score!",
   "finish_condition": {
     "type": "time_over",
     "value": "180"

@@ -1,5 +1,7 @@
 {
   "version": "2cb4",
+  "title": "1 Dan",
+  "description": "An escalating set of challenges. Finish with ¥1,200 to achieve this rank!",
   "success_condition": {
     "type": "score",
     "value": "1200"
