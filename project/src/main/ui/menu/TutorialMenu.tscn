@@ -67,8 +67,8 @@ __meta__ = {
 [node name="BackButton" parent="Buttons/Northeast" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 292.0
-margin_right = 392.0
+margin_left = 402.0
+margin_right = 502.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
 shortcut = SubResource( 2 )
@@ -78,14 +78,7 @@ normal_icon = ExtResource( 4 )
 pressed_icon = ExtResource( 5 )
 
 [node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 1 )]
-action = "phone"
-
-[node name="Spacer" type="Control" parent="Buttons/Northeast"]
-margin_left = 402.0
-margin_right = 502.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-mouse_filter = 2
+action = "ui_cancel"
 
 [node name="MusicPopup" parent="." instance=ExtResource( 7 )]
 
