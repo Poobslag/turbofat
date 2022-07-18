@@ -69,40 +69,25 @@ func test_adjust_speed_ups() -> void:
 	add_speed_up("6")
 	adjuster.adjust("5")
 	
-	assert_start_speed("1")
-	assert_speed_up(1, "3")
-	assert_speed_up(2, "5")
+	assert_start_speed("5")
+	assert_speed_up(1, "7")
+	assert_speed_up(2, "9")
 
 
 func test_adjust_speed_ups_too_slow() -> void:
-	set_start_speed("1")
+	set_start_speed("5")
 	add_speed_up("3")
-	add_speed_up("5")
+	add_speed_up("1")
 	adjuster.adjust("1")
 	
-	assert_start_speed("0")
+	assert_start_speed("1")
 	assert_speed_up(1, "0")
-	assert_speed_up(2, "1")
+	assert_speed_up(2, "0")
 
 
 func test_get_adjusted_speed_unique() -> void:
 	assert_eq(adjuster.get_adjusted_speed("T", -1), "T")
 	assert_eq(adjuster.get_adjusted_speed("T", 1), "T")
-	
-	assert_eq(adjuster.get_adjusted_speed("A0", -1), "A0")
-	assert_eq(adjuster.get_adjusted_speed("A0", 1), "A0")
-	
-	assert_eq(adjuster.get_adjusted_speed("AE", -1), "AE")
-	assert_eq(adjuster.get_adjusted_speed("AE", 1), "AE")
-	
-	assert_eq(adjuster.get_adjusted_speed("AF", -1), "AF")
-	assert_eq(adjuster.get_adjusted_speed("AF", 1), "AF")
-	
-	assert_eq(adjuster.get_adjusted_speed("F0", -1), "F0")
-	assert_eq(adjuster.get_adjusted_speed("F0", 1), "F0")
-	
-	assert_eq(adjuster.get_adjusted_speed("F1", -1), "F1")
-	assert_eq(adjuster.get_adjusted_speed("F1", 1), "F1")
 
 
 func test_get_adjusted_speed_3() -> void:
@@ -119,8 +104,8 @@ func test_get_adjusted_speed_AB() -> void:
 	assert_eq(adjuster.get_adjusted_speed("AB", -1), "AA")
 	assert_eq(adjuster.get_adjusted_speed("AB", 1), "AC")
 	
-	assert_eq(adjuster.get_adjusted_speed("AB", -99), "A1")
-	assert_eq(adjuster.get_adjusted_speed("AB", 99), "AD")
+	assert_eq(adjuster.get_adjusted_speed("AB", -99), "A0")
+	assert_eq(adjuster.get_adjusted_speed("AB", 99), "AF")
 
 
 func test_get_adjusted_speed_FC() -> void:
@@ -128,5 +113,5 @@ func test_get_adjusted_speed_FC() -> void:
 	assert_eq(adjuster.get_adjusted_speed("FC", 1), "FD")
 	assert_eq(adjuster.get_adjusted_speed("FC", 3), "FF")
 	
-	assert_eq(adjuster.get_adjusted_speed("FC", -99), "FA")
+	assert_eq(adjuster.get_adjusted_speed("FC", -99), "F0")
 	assert_eq(adjuster.get_adjusted_speed("FC", 99), "FFF")
