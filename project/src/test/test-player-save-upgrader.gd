@@ -166,3 +166,7 @@ func test_375c() -> void:
 	
 	# added missing 'finished_level' entries -- successful levels weren't recorded as finished
 	assert_eq(PlayerData.level_history.finished_levels.keys(), ["practice/marathon_normal"])
+	
+	# update sandbox data to 'm' rank
+	var best_result := PlayerData.level_history.best_result("practice/sandbox_normal")
+	assert_eq(best_result.score_rank, 0)
