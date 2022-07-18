@@ -1,6 +1,7 @@
 {
   "regions": [
     {
+      "id": "permissible",
       "name": "Permissible World",
       "start": 0,
       "icon": "forest",
@@ -40,6 +41,7 @@
       ]
     },
     {
+      "id": "even",
       "name": "Even World",
       "start": 10,
       "icon": "cactus",
@@ -65,6 +67,7 @@
       ]
     },
     {
+      "id": "cherries",
       "name": "Cherries World",
       "start": 20,
       "icon": "island",
