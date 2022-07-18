@@ -4,6 +4,48 @@
     "value": "375c"
   },
   {
+    "type": "level_history",
+    "key": "practice/sandbox_normal",
+    "value": [
+      {
+        "box_score": 445,
+        "box_score_per_line": 11.710526,
+        "box_score_per_line_rank": 999,
+        "combo_score": 160,
+        "combo_score_per_line": 4.848485,
+        "combo_score_per_line_rank": 999,
+        "pickup_score": 0,
+        "pickup_score_per_line": 0,
+        "pickup_score_rank": 999,
+        "compare": "+score",
+        "leftover_score": 0,
+        "lines": 38,
+        "lines_rank": 999,
+        "pieces": 86,
+        "pieces_rank": 999,
+        "lost": false,
+        "score": 643,
+        "score_rank": 999,
+        "seconds": 80.783338,
+        "seconds_rank": 0,
+        "speed": 28.223642,
+        "speed_rank": 999,
+        "success": false,
+        "timestamp": {
+          "year": 2022,
+          "month": 7,
+          "day": 15,
+          "weekday": 5,
+          "dst": true,
+          "hour": 15,
+          "minute": 21,
+          "second": 20
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
     "type": "successful_levels",
     "value": {
       "practice/marathon_normal": {

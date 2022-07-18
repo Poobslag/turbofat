@@ -42,11 +42,12 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	return upgrader
 
 
-## Save data prior to 375c had a bug where successful levels weren't recorded as finished levels. We locate the
-## successful levels entries and copy them over to the finished levels to fill in the gaps.
 func _upgrade_375c(old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"finished_levels":
+			# Save data prior to 375c had a bug where successful levels weren't recorded as finished levels. We locate
+			# the successful levels entries and copy them over to the finished levels to fill in the gaps.
+			
 			# locate the successful_levels entries
 			var successful_levels := {}
 			for old_save_item in old_save_items:
@@ -57,6 +58,12 @@ func _upgrade_375c(old_save_items: Array, save_item: SaveItem) -> SaveItem:
 			for key in successful_levels:
 				if not save_item.value.has(key):
 					save_item.value[key] = successful_levels[key]
+		
+		"level_history":
+			# Older versions of the sandbox levels would give the player an unranked grade instead of a master rank.
+			if save_item.key.begins_with("practice/sandbox_"):
+				for level_history_entry in save_item.value:
+					level_history_entry["score_rank"] = 0.0
 	return save_item
 
 
