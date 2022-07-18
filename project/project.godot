@@ -419,7 +419,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/letter-shooter.gd"
 }, {
-"base": "Control",
+"base": "Reference",
 "class": "LevelButtons",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/level-buttons.gd"

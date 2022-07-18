@@ -17,6 +17,13 @@ enum LevelSize {
 	LONG
 }
 
+const BUTTON_COLOR_RED := Color("e35274")
+const BUTTON_COLOR_ORANGE := Color("e37452")
+const BUTTON_COLOR_YELLOW := Color("e3bf52")
+const BUTTON_COLOR_GREEN := Color("7be352")
+const BUTTON_COLOR_BLUE := Color("52afe3")
+const BUTTON_COLOR_PURPLE := Color("9852e3")
+
 const SHORT := LevelSize.SHORT
 const MEDIUM := LevelSize.MEDIUM
 const LONG := LevelSize.LONG
@@ -26,7 +33,7 @@ const VERTICAL_SPACING := 6
 var world_id: String
 var level_id: String
 
-## the duration of the level; this affects the button size
+## an enum from LevelSize for the duration of the level. this affects the button size
 var level_duration: int = LevelSize.MEDIUM setget set_level_duration
 
 ## the width of the column this button is in
@@ -50,6 +57,9 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_started := false
 
+## The button's background color. If omitted, the button will use a pseudo-random background color based on its id
+var bg_color: Color setget set_bg_color
+
 onready var _label := $Label
 
 func _ready() -> void:
@@ -61,7 +71,12 @@ func _process(_delta: float) -> void:
 	_focus_just_entered = false
 
 
-func set_bg_color(color: Color) -> void:
+func set_bg_color(new_bg_color: Color) -> void:
+	bg_color = new_bg_color
+	_set_style_color(bg_color)
+
+
+func _set_style_color(color: Color) -> void:
 	get("custom_styles/normal").bg_color = color
 	get("custom_styles/hover").bg_color = color
 
@@ -107,14 +122,18 @@ func _refresh_appearance() -> void:
 	
 	_label.text = StringUtils.default_if_empty(level_title, "-")
 	
-	var new_bg_color: Color = get("custom_styles/normal").bg_color
-	match _label.text.hash() % 5:
-		0: new_bg_color.h = 0.9611 # red
-		1: new_bg_color.h = 0.0389 # orange
-		2: new_bg_color.h = 0.1250 # yellow
-		3: new_bg_color.h = 0.2861 # green
-		4: new_bg_color.h = 0.7472 # purple
-	set_bg_color(new_bg_color)
+	var new_style_color: Color
+	if bg_color:
+		new_style_color = bg_color
+	else:
+		match level_id.hash() % 6:
+			0: new_style_color = BUTTON_COLOR_RED
+			1: new_style_color = BUTTON_COLOR_ORANGE
+			2: new_style_color = BUTTON_COLOR_YELLOW
+			3: new_style_color = BUTTON_COLOR_GREEN
+			4: new_style_color = BUTTON_COLOR_BLUE
+			5: new_style_color = BUTTON_COLOR_PURPLE
+	_set_style_color(new_style_color)
 
 
 func _on_pressed() -> void:

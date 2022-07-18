@@ -12,19 +12,17 @@ func refresh_color_from_text() -> void:
 	var outline_darkness := 0.2
 	match text:
 		"M":
-			font_color.h = 0.1250 # near-white
-			font_color.s = 0.0600
+			font_color = Color("fffbf0") # near-white
 			outline_darkness = 0.1
 		"SSS":
-			font_color.h = 0.1250 # bright yellow
-			font_color.s = 0.4444
+			font_color = Color("ffe38e") # bright yellow
 			outline_darkness = 0.15
-		"SS+", "SS": font_color.h = 0.1250 # yellow
-		"S+", "S", "S-": font_color.h = 0.2861 # green
-		"AA+", "AA": font_color.h = 0.4667 # cyan
-		"A+", "A", "A-": font_color.h = 0.5889 # blue
-		"B+", "B", "B-": font_color.h = 0.7472 # purple
-		"-": font_color.s = 0.0
+		"SS+", "SS": font_color = Color("ffd249") # yellow
+		"S+", "S", "S-": font_color = Color("7dff49") # green
+		"AA+", "AA": font_color = Color("4affdb") # cyan
+		"A+", "A", "A-": font_color = Color("4a9fff") # blue
+		"B+", "B", "B-": font_color = Color("a24aff") # purple
+		"-": font_color = Color("999999") # grey
 	set("custom_colors/font_color", font_color)
 	
 	# assign the font outline color based on the font color and outline_darkness

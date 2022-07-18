@@ -80,26 +80,30 @@ func _refresh_status_icon(lock_status: int) -> void:
 	_grade_label.visible = false
 	_status_icon.visible = true
 	
-	var outline_color: Color = Color("b39a8f")
+	var icon_color := Color("4eff49") # green
+	var outline_darkness := 0.2
+	var outline_color := Color("b39a8f") # light brown tint. the outline is also colored by the modulate property
 	match lock_status:
 		LevelLock.STATUS_NONE:
 			_status_icon.texture = null
-			_status_icon.modulate = Color.white
+			icon_color = Color.white
 		LevelLock.STATUS_CLEARED:
 			_status_icon.texture = _cleared_texture
-			_status_icon.modulate = Color("36d936")
+			icon_color = Color("7dff49") # green
 		LevelLock.STATUS_CROWN:
 			_status_icon.texture = _crown_texture
-			_status_icon.modulate = Color("36d936")
+			icon_color = Color("ffd249") # yellow
 		LevelLock.STATUS_KEY:
 			_status_icon.texture = _key_texture
-			_status_icon.modulate = Color("36d936")
+			icon_color = Color("7dff49") # green
 		LevelLock.STATUS_SOFT_LOCK:
 			_status_icon.texture = _locked_texture
-			_status_icon.modulate = Color("666666")
-			outline_color = Color("808080")
+			icon_color = Color("888888")
+			outline_darkness = 0.00
 		_:
 			push_warning("Unexpected lock status: %s" % [lock_status])
+	
+	_status_icon.modulate = icon_color
 	_status_icon.material.set("shader_param/black", outline_color)
 
 
