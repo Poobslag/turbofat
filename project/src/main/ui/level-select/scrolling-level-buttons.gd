@@ -1,6 +1,8 @@
 class_name LevelButtons
 extends Control
 ## Creates and arranges level buttons for the level select screen.
+##
+## These buttons are arranged in a ScrollContainer which the player can scroll using the mouse or touchscreen.
 
 enum LevelsToInclude {
 	ALL_LEVELS, # show both tutorial levels and regular levels

@@ -1,0 +1,101 @@
+{
+  "regions": [
+    {
+      "id": "tutorial",
+      "name": "Tutorials",
+      "description": "Tutorials designed to teach new concepts to players of all skill levels.",
+      "flags": [
+        "tutorial"
+      ],
+      "level_ids": [
+        "tutorial/basics_0",
+        "tutorial/squish_0",
+        "tutorial/combo_0",
+        "tutorial/cakes_0",
+        "tutorial/spins_0"
+      ]
+    },
+    {
+      "id": "practice/marathon",
+      "name": "Training: Marathon",
+      "branch_name": "Marathon",
+      "description": "A test of endurance where you survive as long as you can against increasing speeds.",
+      "flags": [
+        "training"
+      ],
+      "level_ids": [
+        "practice/marathon_normal",
+        "practice/marathon_hard",
+        "practice/marathon_expert",
+        "practice/marathon_master"
+      ]
+    },
+    {
+      "id": "practice/ultra",
+      "name": "Training: Ultra",
+      "branch_name": "Ultra",
+      "description": "A test of speed where you race to a target amount of money. How fast can you finish?",
+      "flags": [
+        "training"
+      ],
+      "level_ids": [
+        "practice/ultra_normal",
+        "practice/ultra_hard",
+        "practice/ultra_expert"
+      ]
+    },
+    {
+      "id": "practice/sprint",
+      "name": "Training: Sprint",
+      "branch_name": "Sprint",
+      "description": "A test of speed where you earn as much money as you can within a time limit. How much can you earn?",
+      "flags": [
+        "training"
+      ],
+      "level_ids": [
+        "practice/sprint_normal",
+        "practice/sprint_expert"
+      ]
+    },
+    {
+      "id": "rank",
+      "name": "Training: Rank",
+      "branch_name": "Rank",
+      "description": "An escalating set of challenges. How high can you get?",
+      "level_ids": [
+        "rank/7k",
+        "rank/6k",
+        "rank/5k",
+        "rank/4k",
+        "rank/3k",
+        "rank/2k",
+        "rank/1k",
+        "rank/1d",
+        "rank/2d",
+        "rank/3d",
+        "rank/4d",
+        "rank/5d",
+        "rank/6d",
+        "rank/7d",
+        "rank/8d",
+        "rank/9d",
+        "rank/10d",
+        "rank/m"
+      ]
+    },
+    {
+      "id": "practice/sandbox",
+      "name": "Training: Sandbox",
+      "branch_name": "Sandbox",
+      "description": "An endless mode with no way to win or lose.",
+      "flags": [
+        "training"
+      ],
+      "level_ids": [
+        "practice/sandbox_normal",
+        "practice/sandbox_expert",
+        "practice/sandbox_master"
+      ]
+    }
+  ]
+}

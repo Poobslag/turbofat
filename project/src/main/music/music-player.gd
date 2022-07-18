@@ -16,8 +16,8 @@ var current_bgm: CheckpointSong
 
 ## volume_db changes when we fade in/fade out so we cache the original value.
 ##
-## key: bgm node name
-## value: desired volume_db for playing music
+## key: (String) bgm node name
+## value: (float) desired volume_db for playing music
 var _max_volume_db_by_bgm := {}
 
 var all_bgms: Array

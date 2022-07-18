@@ -5,8 +5,8 @@ class_name LevelTriggers
 ## a trigger might rotate the pieces in the piece queue every 2 seconds, or a trigger might toggle the playfield
 ## invisible every time the player places a piece.
 
-## key: An enum from LevelTrigger.LevelTriggerPhase
-## value: An array of LevelTriggers which should happen during that phase
+## key: (int) An enum from LevelTrigger.LevelTriggerPhase
+## value: (Array) LevelTriggers which should happen during that phase
 var triggers := {}
 
 ## Runs all triggers for the specified phase.

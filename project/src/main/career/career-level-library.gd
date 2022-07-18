@@ -11,7 +11,7 @@ const DEFAULT_REGIONS_PATH := "res://assets/main/puzzle/career-regions.json"
 ## Path to the json file with the list of levels. Can be changed for tests.
 var regions_path := DEFAULT_REGIONS_PATH setget set_regions_path
 
-## List of CareerRegions containing region and level data, sorted by distance
+## List of CareerRegion instances containing region and level data, sorted by distance
 var regions: Array = []
 
 ## Loads the list of levels from JSON

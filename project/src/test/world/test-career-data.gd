@@ -8,7 +8,7 @@ func before_each() -> void:
 	_data = CareerData.new()
 	add_child(_data)
 	
-	CareerLevelLibrary.regions_path = "res://assets/test/ui/level-select/career-regions-simple.json"
+	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
 	PlayerSave.data_filename = "user://%s" % TEMP_PLAYER_FILENAME
 	PlayerData.reset()
 	

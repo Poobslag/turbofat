@@ -1,0 +1,25 @@
+{
+  "regions": [
+    {
+      "id": "toot",
+      "name": "Toot Tow",
+      "description": "Toot tow description",
+      "flags": [
+        "tutorial"
+      ],
+      "level_ids": [
+        "tutorial/basics_0",
+        "tutorial/squish_0"
+      ]
+    },
+    {
+      "id": "quaint",
+      "name": "Quaint Complex",
+      "description": "Quaint complex decription",
+      "level_ids": [
+        "practice/marathon-normal",
+        "practice/marathon-hard"
+      ]
+    }
+  ]
+}
