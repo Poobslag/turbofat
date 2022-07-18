@@ -8,11 +8,8 @@ class_name LevelSpeedAdjuster
 var _speed_matrix := [
 	["T"], # 25 ppm
 	["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], # 25 ppm
-	["A0"], # 25 ppm
-	["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD"], # 35 ppm
-	["AE"], ["AF"], # 50 ppm. these allow faster play than the other 'Ax' speeds
-	["F0"], ["F1"], # 50 ppm. these limit fast play of the other 'Fx' speeds
-	["FA", "FB", "FC", "FD", "FE", "FF", "FFF"], # 67-134 ppm
+	["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF"], # 35-50 ppm
+	["F0", "F1", "FA", "FB", "FC", "FD", "FE", "FF", "FFF"], # 50-134 ppm
 ]
 
 ## key: (String) speed id
@@ -30,6 +27,7 @@ func _init(init_settings: LevelSettings) -> void:
 		for x in range(_speed_matrix[y].size()):
 			_coordinates_by_speed[_speed_matrix[y][x]] = Vector2(x, y)
 
+
 ## Adjusts the piece speeds of our LevelSettings instance.
 ##
 ## We calculate the fastest speed of the LevelSettings instance, and compare it to the specified speed to determine
@@ -41,7 +39,7 @@ func _init(init_settings: LevelSettings) -> void:
 ## Passing in an empty speed results in no adjustment.
 ##
 ## Parameters:
-## 	new_speed: The desired fastest speed id for the LevelSettings.
+## 	new_speed: The desired slowest speed id for the LevelSettings.
 func adjust(new_speed: String) -> void:
 	if not new_speed:
 		# empty speed, do not adjust
@@ -49,13 +47,13 @@ func adjust(new_speed: String) -> void:
 	if not _coordinates_by_speed.has(new_speed):
 		push_warning("Unrecognized speed: '%s'" % [new_speed])
 		return
-	if not _coordinates_by_speed.has(settings.speed.get_max_speed()):
-		push_warning("Unrecognized speed: '%s'" % [settings.speed.get_max_speed()])
+	if not _coordinates_by_speed.has(settings.speed.get_start_speed()):
+		push_warning("Unrecognized speed: '%s'" % [settings.speed.get_start_speed()])
 		return
 	
 	var can_adjust := true
 	var new_coord: Vector2 = _coordinates_by_speed[new_speed]
-	var old_coord: Vector2 = _coordinates_by_speed[settings.speed.get_max_speed()]
+	var old_coord: Vector2 = _coordinates_by_speed[settings.speed.get_start_speed()]
 	if new_coord.y != old_coord.y:
 		can_adjust = false
 	
