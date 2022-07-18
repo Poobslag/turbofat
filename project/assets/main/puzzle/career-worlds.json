@@ -1,6 +1,7 @@
 {
   "regions": [
     {
+      "id": "lemon",
       "name": "Lemony Thickets",
       "start": 0,
       "description": "Locate the mysterious Fat Sensei and launch your first successful restaurant. It all starts here!",
@@ -79,6 +80,7 @@
       ]
     },
     {
+      "id": "poki",
       "name": "Poki Desert",
       "start": 10,
       "icon": "cactus",
@@ -126,6 +128,7 @@
       ]
     },
     {
+      "id": "sand",
       "name": "Cannoli Sandbar",
       "start": 25,
       "icon": "island",
@@ -182,6 +185,7 @@
       ]
     },
     {
+      "id": "marsh",
       "name": "Merrymellow Marsh",
       "start": 40,
       "description": "Meet the quirky chefs at the Merrymellow Marsh location and help them attract more customers. You can do it!",
@@ -315,6 +319,7 @@
       ]
     },
     {
+      "id": "lava",
       "name": "Chocolava Canyon",
       "start": 80,
       "icon": "volcano",
@@ -365,6 +370,7 @@
       ]
     },
     {
+      "id": "star",
       "name": "Starberry Mountain",
       "start": 100,
       "icon": "rainbow",

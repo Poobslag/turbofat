@@ -19,6 +19,9 @@ const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
 ## Chat key containing each region's epilogue cutscene, which plays after all other cutscenes/levels
 const EPILOGUE_CHAT_KEY_NAME := "epilogue"
 
+## The region id used for identifying regions in source code and save data
+var id: String
+
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
@@ -76,6 +79,7 @@ var puzzle_environment_name: String
 var region_button_name: String
 
 func from_json_dict(json: Dictionary) -> void:
+	id = json.get("id", "")
 	name = json.get("name", "")
 	start = int(json.get("start", 0))
 	
