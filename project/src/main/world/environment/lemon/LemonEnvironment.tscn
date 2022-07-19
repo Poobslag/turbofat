@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/main/world/environment/lemon/lemon-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/lemon/LemonCookieSmall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/environment/lemon/LemonLemon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/FreeRoamExit.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/lemon/BrotSpotStool.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/world/environment/lemon/BrotSpot.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/main/world/environment/lemon/brot-spot-stool-orange.png" type="Texture" id=14]
@@ -109,6 +110,45 @@ ground_map_path = NodePath("../../../Ground/GroundMap")
 grass_density = 0.04
 ground_no_goop_tile_index = 1
 grass_tile_index = 7
+
+[node name="Exit0" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 244.964, 1525.82 )
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
+exit_direction = 7
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit1" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 5061.51, 3607.66 )
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
+exit_direction = 3
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit2" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 3563.94, 1266.17 )
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
+exit_direction = 1
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit3" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 485.181, 1437.24 )
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit4" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 1364.91, 1496.94 )
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit5" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 4468.65, 2463.38 )
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
 
 [node name="BrotSpot" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1394.09, 1375.69 )
