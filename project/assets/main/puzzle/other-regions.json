@@ -4,9 +4,6 @@
       "id": "tutorial",
       "name": "Tutorials",
       "description": "Tutorials designed to teach new concepts to players of all skill levels.",
-      "flags": [
-        "tutorial"
-      ],
       "level_ids": [
         "tutorial/basics_0",
         "tutorial/squish_0",

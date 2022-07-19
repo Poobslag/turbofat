@@ -12,5 +12,4 @@ func test_regions() -> void:
 	assert_eq(region_0.id, "toot")
 	assert_eq(region_0.name, "Toot Tow")
 	assert_eq(region_0.description, "Toot tow description")
-	assert_eq(region_0.has_flag(OtherRegion.FLAG_TUTORIAL), true)
 	assert_eq(region_0.level_ids, ["tutorial/basics_0", "tutorial/squish_0"])

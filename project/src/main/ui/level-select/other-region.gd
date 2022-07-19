@@ -2,12 +2,10 @@ class_name OtherRegion
 ## Stores information about a group of levels not used in career mode. This includes tutorials and training levels.
 
 ## Unique region IDs for regions with special properties
+const ID_MARATHON := "practice/marathon"
 const ID_RANK := "rank"
 const ID_SANDBOX := "practice/sandbox"
-const ID_MARATHON := "practice/marathon"
-
-## A flag for regions where Fat Sensei is not following the player
-const FLAG_TUTORIAL := "tutorial"
+const ID_TUTORIAL := "tutorial"
 
 ## A flag for practice mode's training regions
 const FLAG_TRAINING := "training"
