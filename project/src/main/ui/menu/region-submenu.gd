@@ -19,7 +19,7 @@ func popup(default_region_id: String) -> void:
 	var regions := []
 	for region_obj in OtherLevelLibrary.regions:
 		var region: OtherRegion = region_obj
-		if region.has_flag(OtherRegion.FLAG_TUTORIAL):
+		if region.id == OtherRegion.ID_TUTORIAL:
 			# don't include tutorials, those are on the main menu
 			pass
 		else:

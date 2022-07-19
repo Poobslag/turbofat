@@ -177,6 +177,10 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 	if region is CareerRegion and not PlayerData.level_history.has_result(level_id):
 		# career levels are locked if the player hasn't played them
 		level_button.lock_status = LevelLock.LockStatus.SOFT_LOCK
+	elif region.id == OtherRegion.ID_TUTORIAL:
+		# tutorial levels show a checkmark if completed
+		if PlayerData.level_history.is_level_finished(level_id):
+			level_button.lock_status = LevelLock.STATUS_CLEARED
 	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
 		# rank/marathon levels show a crown if completed
 		var result := PlayerData.level_history.best_result(level_id)

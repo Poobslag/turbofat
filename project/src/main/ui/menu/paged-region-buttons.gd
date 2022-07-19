@@ -70,8 +70,8 @@ func set_regions(new_regions: Array) -> void:
 		elif regions[i] is CareerRegion and regions[i - 1] is CareerRegion:
 			pass
 		elif regions[i] is OtherRegion and regions[i - 1] is OtherRegion:
-			var curr_region_is_tutorial: bool = regions[i].has_flag(OtherRegion.FLAG_TUTORIAL)
-			var prev_region_is_tutorial: bool = regions[i - 1].has_flag(OtherRegion.FLAG_TUTORIAL)
+			var curr_region_is_tutorial: bool = regions[i].id == OtherRegion.ID_TUTORIAL
+			var prev_region_is_tutorial: bool = regions[i - 1].id == OtherRegion.ID_TUTORIAL
 			if curr_region_is_tutorial != prev_region_is_tutorial:
 				same_group = false
 		else:
