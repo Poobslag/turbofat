@@ -27,7 +27,6 @@ func test_cutscene_location() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
 	assert_eq(chat_tree.location_id, "marsh/walk")
-	assert_eq(chat_tree.destination_id, "marsh")
 
 
 func test_chat_key() -> void:
@@ -37,9 +36,9 @@ func test_chat_key() -> void:
 
 
 func test_overall_meta() -> void:
-	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
+	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
-	assert_eq(chat_tree.meta.get("filler"), false)
+	assert_eq(chat_tree.meta.get("fixed_zoom"), 1.0)
 
 
 func test_cutscene_spawn_locations() -> void:

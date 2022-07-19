@@ -44,11 +44,6 @@ onready var _normal_textures := {
 	"ui_left": preload("res://assets/main/ui/touch/move-left.png"),
 	"ui_right": preload("res://assets/main/ui/touch/move-right.png"),
 
-	"walk_up": preload("res://assets/main/ui/touch/move-up.png"),
-	"walk_down": preload("res://assets/main/ui/touch/move-down.png"),
-	"walk_left": preload("res://assets/main/ui/touch/move-left.png"),
-	"walk_right": preload("res://assets/main/ui/touch/move-right.png"),
-
 	"move_piece_left": preload("res://assets/main/ui/touch/move-left.png"),
 	"move_piece_right": preload("res://assets/main/ui/touch/move-right.png"),
 	"hard_drop": preload("res://assets/main/ui/touch/move-up.png"),
@@ -56,21 +51,10 @@ onready var _normal_textures := {
 	"rotate_cw": preload("res://assets/main/ui/touch/rotate-cw.png"),
 	"rotate_ccw": preload("res://assets/main/ui/touch/rotate-ccw.png"),
 
-	"interact": preload("res://assets/main/ui/touch/interact.png"),
 	"ui_menu": preload("res://assets/main/ui/touch/menu.png"),
 }
 
 onready var _pressed_textures := {
-	"ui_up": preload("res://assets/main/ui/touch/move-up-pressed.png"),
-	"ui_down": preload("res://assets/main/ui/touch/move-down-pressed.png"),
-	"ui_left": preload("res://assets/main/ui/touch/move-left-pressed.png"),
-	"ui_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
-
-	"walk_up": preload("res://assets/main/ui/touch/move-up-pressed.png"),
-	"walk_down": preload("res://assets/main/ui/touch/move-down-pressed.png"),
-	"walk_left": preload("res://assets/main/ui/touch/move-left-pressed.png"),
-	"walk_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
-
 	"move_piece_left": preload("res://assets/main/ui/touch/move-left-pressed.png"),
 	"move_piece_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
 	"hard_drop": preload("res://assets/main/ui/touch/move-up-pressed.png"),
@@ -78,7 +62,6 @@ onready var _pressed_textures := {
 	"rotate_cw": preload("res://assets/main/ui/touch/rotate-cw-pressed.png"),
 	"rotate_ccw": preload("res://assets/main/ui/touch/rotate-ccw-pressed.png"),
 
-	"interact": preload("res://assets/main/ui/touch/interact-pressed.png"),
 	"ui_menu": preload("res://assets/main/ui/touch/menu-pressed.png"),
 }
 

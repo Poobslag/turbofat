@@ -10,9 +10,6 @@ const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
 ## non-interactive cutscene which shows creatures talking and interacting.
 const SCENE_CUTSCENE := "res://src/main/world/Cutscene.tscn"
 
-## overworld which the player character can run around on and talk to other creatures.
-const SCENE_FREE_ROAM := "res://src/main/world/FreeRoam.tscn"
-
 ## scene for career mode which shows the player's progress between levels
 const SCENE_CAREER_MAP := "res://src/main/world/CareerMap.tscn"
 
@@ -77,12 +74,4 @@ func benchmark_end(key: String = "") -> void:
 
 func get_overworld_ui() -> OverworldUi:
 	var nodes := get_tree().get_nodes_in_group("overworld_ui")
-	return nodes[0] if nodes else null
-
-
-## Locates the node responsible for creating and initializing chat icons, if one exists.
-##
-## The creatures in free roam mode have chat icons. Career mode and cutscenes do not.
-func get_chat_icon_container() -> ChatIcons:
-	var nodes := get_tree().get_nodes_in_group("chat_icon_containers")
 	return nodes[0] if nodes else null

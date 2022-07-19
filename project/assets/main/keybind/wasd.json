@@ -27,21 +27,6 @@
       "button_index": 3
     }
   ],
-  "interact": [
-    {
-      "type": "key",
-      "scancode": 90
-    },
-    {
-      "type": "key",
-      "scancode": 32
-    },
-    {
-      "type": "joypad_button",
-      "device": 0,
-      "button_index": 0
-    }
-  ],
   "move_piece_left": [
     {
       "type": "key",
@@ -70,17 +55,6 @@
       "type": "joypad_button",
       "device": 0,
       "button_index": 15
-    }
-  ],
-  "phone": [
-    {
-      "type": "key",
-      "scancode": 16777218
-    },
-    {
-      "type": "joypad_button",
-      "device": 0,
-      "button_index": 3
     }
   ],
   "rewind_text": [
@@ -269,66 +243,6 @@
   "ui_select": [
   ],
   "ui_up": [
-    {
-      "type": "key",
-      "scancode": 16777232
-    },
-    {
-      "type": "key",
-      "scancode": 87
-    },
-    {
-      "type": "joypad_button",
-      "device": 0,
-      "button_index": 12
-    }
-  ],
-  "walk_down": [
-    {
-      "type": "key",
-      "scancode": 16777234
-    },
-    {
-      "type": "key",
-      "scancode": 83
-    },
-    {
-      "type": "joypad_button",
-      "device": 0,
-      "button_index": 13
-    }
-  ],
-  "walk_left": [
-    {
-      "type": "key",
-      "scancode": 16777231
-    },
-    {
-      "type": "key",
-      "scancode": 65
-    },
-    {
-      "type": "joypad_button",
-      "device": 0,
-      "button_index": 14
-    }
-  ],
-  "walk_right": [
-    {
-      "type": "key",
-      "scancode": 16777233
-    },
-    {
-      "type": "key",
-      "scancode": 68
-    },
-    {
-      "type": "joypad_button",
-      "device": 0,
-      "button_index": 15
-    }
-  ],
-  "walk_up": [
     {
       "type": "key",
       "scancode": 16777232

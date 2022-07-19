@@ -400,7 +400,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
 margin_right = 420.0
-margin_bottom = 280.0
+margin_bottom = 220.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 0
 
@@ -464,40 +464,22 @@ margin_right = 420.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="Walk" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 200.0
-margin_bottom = 220.0
-description = "Walk"
-keybind_value = "Arrows, WASD"
-
-[node name="Interact" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 220.0
-margin_bottom = 240.0
-description = "Interact"
-keybind_value = "Space, Z"
-
 [node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 240.0
 margin_bottom = 260.0
 description = "Rewind Text"
 keybind_value = "Shift"
 
-[node name="Phone" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 260.0
-margin_bottom = 280.0
-description = "Phone"
-keybind_value = "Tab"
-
 [node name="CustomScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 margin_top = 30.0
 margin_right = 560.0
-margin_bottom = 256.0
+margin_bottom = 206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer"]
 margin_right = 490.0
-margin_bottom = 612.0
+margin_bottom = 456.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 2
 
@@ -589,59 +571,23 @@ margin_right = 490.0
 margin_bottom = 380.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="WalkUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 382.0
 margin_bottom = 406.0
-description = "Walk Up"
-action_name = "walk_up"
-
-[node name="WalkDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 408.0
-margin_bottom = 432.0
-description = "Walk Down"
-action_name = "walk_down"
-
-[node name="WalkLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 434.0
-margin_bottom = 458.0
-description = "Walk Left"
-action_name = "walk_left"
-
-[node name="WalkRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 460.0
-margin_bottom = 484.0
-description = "Walk Right"
-action_name = "walk_right"
-
-[node name="Interact" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 486.0
-margin_bottom = 510.0
-description = "Interact"
-action_name = "interact"
-
-[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 512.0
-margin_bottom = 536.0
 description = "Rewind Text"
 action_name = "rewind_text"
 
-[node name="Phone" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 538.0
-margin_bottom = 562.0
-description = "Phone"
-action_name = "phone"
-
 [node name="Spacer3" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-margin_top = 564.0
+margin_top = 408.0
 margin_right = 490.0
-margin_bottom = 584.0
+margin_bottom = 428.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
 margin_left = 175.0
-margin_top = 586.0
+margin_top = 430.0
 margin_right = 314.0
-margin_bottom = 612.0
+margin_bottom = 456.0
 size_flags_horizontal = 4
 theme = ExtResource( 1 )
 text = "Reset to Default"

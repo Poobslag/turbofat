@@ -3,8 +3,7 @@ extends Node2D
 ##
 ## The decision to spawn the creature is controlled by the 'spawn_if' property.
 ##
-## The creature's creature_id, properties and groups (the 'chattables' group in particular) can be managed by the
-## target_properties and target_groups fields.
+## The creature's creature_id, properties and groups can be managed by the target_properties and target_groups fields.
 
 export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
@@ -13,9 +12,6 @@ export (NodePath) var stool_path: NodePath
 
 ## the properties of the spawned creature
 export (Dictionary) var target_properties: Dictionary
-
-## the groups of the spawned creature
-export (Array) var target_groups: Array
 
 ## a boolean expression which, if evaluated to 'true', will result in the creature being spawned
 export (String) var spawn_if: String
@@ -70,7 +66,7 @@ func _spawn_target() -> void:
 	
 	# create the creature, add it to the scene tree and assign its properties
 	var creature_id: String = target_properties["creature_id"]
-	_target_creature = _overworld_environment.add_creature(creature_id, target_groups.has("chattables"))
+	_target_creature = _overworld_environment.add_creature(creature_id)
 	_target_creature.name = old_name
 	_target_creature.position = position
 	for key in target_properties:
@@ -79,11 +75,6 @@ func _spawn_target() -> void:
 		_target_creature.set_fatness(max_fatness)
 		_target_creature.set_visual_fatness(max_fatness)
 		_target_creature.save_fatness(max_fatness)
-	for group in target_groups:
-		if group == "chattables":
-			continue
-		else:
-			_target_creature.add_to_group(group)
 	
 	if _stool:
 		# mark the creature's stool as occupied

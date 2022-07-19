@@ -82,18 +82,6 @@ class LevelFinishedExpression extends BoolExpression:
 	func evaluate() -> bool:
 		return PlayerData.level_history.is_level_finished(args[0].string)
 
-
-class NotableExpression extends BoolExpression:
-	var _creature_id: String
-	
-	func _init(new_token: BoolToken, creature_id: String) -> void:
-		token = new_token
-		_creature_id = creature_id
-	
-	
-	func evaluate() -> bool:
-		return PlayerData.chat_history.filler_count(_creature_id) > 0
-
 ## error encountered when parsing the boolean string
 var _parse_error: String
 
@@ -184,12 +172,6 @@ func _parse_function() -> BoolExpression:
 			expression = ChatFinishedExpression.new(_get_next_token(), _get_next_token())
 		"level_finished":
 			expression = LevelFinishedExpression.new(_get_next_token(), _get_next_token())
-		"notable":
-			if _subject is String:
-				expression = NotableExpression.new(_get_next_token(), _subject)
-			else:
-				_report_error(_get_next_token().position, "Keyword %s cannot be applied to type '%s'" \
-						% [_subject, null if _subject == null else _subject.get_class()])
 		_:
 			expression = _parse_atom()
 	return expression

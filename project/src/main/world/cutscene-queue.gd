@@ -4,25 +4,6 @@ extends Node
 ## When the game plays cutscenes, it plays one or more cutscenes and sometimes plays a level or returns to a different
 ## overworld scene. This script maintains a queue of the pending cutscenes and levels.
 
-## List of positions the sensei should spawn following a cutscene where the sensei was absent.
-##
-## In most cutscenes, the player and sensei will spawn at their position in the cutscene. For cutscenes where the
-## sensei was absent, we spawn them near the player. This dictionary contains a list of those spawn locations keyed by
-## the player's location in the cutscene, in the format '<location_id>/<spawn_id>'
-const SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION := {
-	"marsh/restaurant_1": "restaurant_11",
-	"marsh/restaurant_4": "restaurant_11",
-	"marsh/restaurant_8": "restaurant_1",
-	"marsh/restaurant_11": "restaurant_1",
-	
-	"marsh/inside_turbo_fat/kitchen_1": "kitchen_7",
-	"marsh/inside_turbo_fat/kitchen_3": "kitchen_7",
-	"marsh/inside_turbo_fat/kitchen_5": "kitchen_7",
-	"marsh/inside_turbo_fat/kitchen_7": "kitchen_5",
-	"marsh/inside_turbo_fat/kitchen_9": "kitchen_5",
-	"marsh/inside_turbo_fat/kitchen_11": "kitchen_5",
-}
-
 ## Queue of ChatTree and String instances. ChatTrees represent cutscenes, and strings represent level IDs.
 var _queue := []
 
@@ -125,34 +106,6 @@ func _pop_level() -> void:
 		CurrentLevel.chef_id = level_properties["chef_id"]
 	if level_properties.has("customers"):
 		CurrentLevel.customers = level_properties["customers"]
-	if level_properties.has("cutscene_force"):
-		CurrentLevel.cutscene_force = level_properties["cutscene_force"]
 	if level_properties.has("puzzle_environment_name"):
 		CurrentLevel.puzzle_environment_name = level_properties["puzzle_environment_name"]
 	PlayerData.creature_queue.pop_secondary_creatures(CurrentLevel.get_creature_ids())
-
-
-## Assign the player and sensei spawn IDs based on the specified chat tree.
-##
-## This makes it so they'll spawn in appopriate positions after the cutscene is over.
-func assign_player_spawn_ids(chat_tree: ChatTree) -> void:
-	PlayerData.free_roam.player_spawn_id = ""
-	PlayerData.free_roam.sensei_spawn_id = ""
-	
-	for creature_id in chat_tree.spawn_locations:
-		if creature_id == CreatureLibrary.PLAYER_ID:
-			PlayerData.free_roam.player_spawn_id = chat_tree.spawn_locations[creature_id]
-		elif creature_id == CreatureLibrary.SENSEI_ID:
-			PlayerData.free_roam.sensei_spawn_id = chat_tree.spawn_locations[creature_id]
-	
-	# if the player wasn't in the cutscene (?!) unset the spawn ids
-	if PlayerData.free_roam.sensei_spawn_id and not PlayerData.free_roam.player_spawn_id:
-		PlayerData.free_roam.sensei_spawn_id = ""
-	
-	# if the sensei wasn't in the cutscene, move them near the player
-	if PlayerData.free_roam.player_spawn_id and not PlayerData.free_roam.sensei_spawn_id:
-		var player_location_key := "%s/%s" % [chat_tree.location_id, PlayerData.free_roam.player_spawn_id]
-		PlayerData.free_roam.sensei_spawn_id = SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION.get(player_location_key)
-		if not PlayerData.free_roam.sensei_spawn_id:
-			push_warning("SENSEI_SPAWN_IDS_BY_PLAYER_SPAWN_ID did not have an entry for '%s'"
-					% [PlayerData.free_roam.player_spawn_id])

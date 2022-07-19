@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/demo/world/free-roam.gd" type="Script" id=1]
+[ext_resource path="res://src/demo/world/free-roam-world.gd" type="Script" id=2]
+[ext_resource path="res://src/demo/world/free-roam-camera.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/demo/world/FreeRoamUi.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/demo/world/environment/marsh/MarshFreeRoamEnvironment.tscn" type="PackedScene" id=7]
+
+[node name="FreeRoam" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Bg" parent="." instance=ExtResource( 4 )]
+
+[node name="World" type="Node" parent="."]
+script = ExtResource( 2 )
+EnvironmentScene = ExtResource( 7 )
+
+[node name="Environment" parent="World" instance=ExtResource( 7 )]
+
+[node name="ChatLetters" parent="World" instance=ExtResource( 5 )]
+
+[node name="Camera" type="Camera2D" parent="World"]
+current = true
+smoothing_enabled = true
+smoothing_speed = 12.5
+script = ExtResource( 3 )
+
+[node name="Ui" parent="." instance=ExtResource( 6 )]

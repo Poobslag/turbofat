@@ -31,7 +31,7 @@
 [ext_resource path="res://src/main/world/environment/WoodPillar.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/main/world/environment/IndoorStool.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=34]
-[ext_resource path="res://src/main/world/FreeRoamExit.tscn" type="PackedScene" id=35]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=37]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=38]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=39]
@@ -98,7 +98,6 @@ countertop_plates_tile_index = 11
 
 [node name="FreeRoamExit" parent="Obstacles" instance=ExtResource( 35 )]
 position = Vector2( 130.547, 315.908 )
-destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
 exit_direction = 4
 player_spawn_id = "restaurant_player"
 sensei_spawn_id = "restaurant_sensei"
@@ -633,7 +632,6 @@ target_properties = {
 "elevation": 0.0,
 "orientation": 1
 }
-target_groups = [ "chattables" ]
 spawn_if = "not level_finished marsh/hello_everyone"
 
 [node name="Terpion" parent="Obstacles" instance=ExtResource( 30 )]

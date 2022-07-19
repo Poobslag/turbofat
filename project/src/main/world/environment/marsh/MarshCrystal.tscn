@@ -17,7 +17,6 @@ extents = Vector2( 24, 12 )
 [node name="MarshCrystal" type="KinematicBody2D"]
 script = ExtResource( 1 )
 shadow_scale = 0.4
-chat_key = "chat/marsh-crystal"
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

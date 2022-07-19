@@ -28,7 +28,7 @@ func refresh_chat_theme(chat_theme: ChatTheme) -> void:
 
 ## Assigns the name label's text and updates our nametag_size field to the smallest name label which fit.
 func set_nametag_text(new_text: String) -> void:
-	new_text = ChattableManager.substitute_variables(new_text, true)
+	new_text = PlayerData.creature_library.substitute_variables(new_text, true)
 	
 	if new_text.empty():
 		nametag_size = ChatTheme.NAMETAG_OFF

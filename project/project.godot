@@ -109,16 +109,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-history.gd"
 }, {
-"base": "Node2D",
-"class": "ChatIcon",
-"language": "GDScript",
-"path": "res://src/main/world/chat-icon.gd"
-}, {
-"base": "Node2D",
-"class": "ChatIcons",
-"language": "GDScript",
-"path": "res://src/main/world/chat-icons.gd"
-}, {
 "base": "Reference",
 "class": "ChatKeyPair",
 "language": "GDScript",
@@ -309,15 +299,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
 }, {
-"base": "Reference",
-"class": "FreeRoamData",
-"language": "GDScript",
-"path": "res://src/main/free-roam-data.gd"
-}, {
 "base": "OverworldWorld",
 "class": "FreeRoamWorld",
 "language": "GDScript",
-"path": "res://src/main/world/free-roam-world.gd"
+"path": "res://src/demo/world/free-roam-world.gd"
 }, {
 "base": "Reference",
 "class": "GameplaySettings",
@@ -420,11 +405,6 @@ _global_script_classes=[ {
 "path": "res://src/main/world/letter-shooter.gd"
 }, {
 "base": "Control",
-"class": "LevelButtons",
-"language": "GDScript",
-"path": "res://src/main/ui/level-select/scrolling-level-buttons.gd"
-}, {
-"base": "Control",
 "class": "LevelEditor",
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/level-editor.gd"
@@ -433,11 +413,6 @@ _global_script_classes=[ {
 "class": "LevelHistory",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/level-history.gd"
-}, {
-"base": "Reference",
-"class": "LevelLock",
-"language": "GDScript",
-"path": "res://src/main/ui/level-select/level-lock.gd"
 }, {
 "base": "Reference",
 "class": "LevelPosse",
@@ -1014,11 +989,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/string-utils.gd"
 }, {
-"base": "ScrollContainer",
-"class": "SwipeContainer",
-"language": "GDScript",
-"path": "res://src/main/ui/swipe-container.gd"
-}, {
 "base": "Reference",
 "class": "SystemSaveUpgrader",
 "language": "GDScript",
@@ -1073,16 +1043,6 @@ _global_script_classes=[ {
 "class": "Wobbler",
 "language": "GDScript",
 "path": "res://src/main/puzzle/wobbler.gd"
-}, {
-"base": "Reference",
-"class": "WorldLock",
-"language": "GDScript",
-"path": "res://src/main/ui/level-select/world-lock.gd"
-}, {
-"base": "LevelSelectButton",
-"class": "WorldSelectButton",
-"language": "GDScript",
-"path": "res://src/main/ui/level-select/world-select-button.gd"
 } ]
 _global_script_class_icons={
 "ActionButton": "",
@@ -1105,8 +1065,6 @@ _global_script_class_icons={
 "ChatEvent": "",
 "ChatFrame": "",
 "ChatHistory": "",
-"ChatIcon": "",
-"ChatIcons": "",
 "ChatKeyPair": "",
 "ChatLineLabel": "",
 "ChatLinePanel": "",
@@ -1145,7 +1103,6 @@ _global_script_class_icons={
 "FoodItem": "",
 "Foods": "",
 "FrameInput": "",
-"FreeRoamData": "",
 "FreeRoamWorld": "",
 "GameplaySettings": "",
 "GoopGlob": "",
@@ -1167,10 +1124,8 @@ _global_script_class_icons={
 "LeafPoof": "",
 "LetterProjectile": "",
 "LetterShooter": "",
-"LevelButtons": "",
 "LevelEditor": "",
 "LevelHistory": "",
-"LevelLock": "",
 "LevelPosse": "",
 "LevelSelectButton": "",
 "LevelSettings": "",
@@ -1286,7 +1241,6 @@ _global_script_class_icons={
 "Stool": "",
 "StringTransformer": "",
 "StringUtils": "",
-"SwipeContainer": "",
 "SystemSaveUpgrader": "",
 "TouchSettings": "",
 "TutorialDiagram": "",
@@ -1297,9 +1251,7 @@ _global_script_class_icons={
 "VolumeSettings": "",
 "WalkingBuddy": "",
 "WallpaperBorder": "",
-"Wobbler": "",
-"WorldLock": "",
-"WorldSelectButton": ""
+"Wobbler": ""
 }
 
 [application]
@@ -1324,7 +1276,7 @@ Breadcrumb="*res://src/main/breadcrumb.gd"
 CareerLevelLibrary="*res://src/main/career/career-level-library.gd"
 CareerCutsceneLibrary="*res://src/main/ui/chat/career-cutscene-library.gd"
 ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
-ChattableManager="*res://src/main/world/chattable-manager.gd"
+CreatureManager="*res://src/main/world/creature-manager.gd"
 CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
 CrumbDefinitions="*res://src/main/puzzle/crumb-definitions.gd"
 CurrentCutscene="*res://src/main/world/current-cutscene.gd"
@@ -1332,7 +1284,6 @@ CurrentLevel="*res://src/main/puzzle/level/current-level.gd"
 CutsceneQueue="*res://src/main/world/cutscene-queue.gd"
 DnaUtils="*res://src/main/world/creature/dna-utils.gd"
 KeybindManager="*res://src/main/settings/keybind-manager.gd"
-LevelLibrary="*res://src/main/ui/level-select/level-library.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
@@ -1454,13 +1405,6 @@ ui_menu={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-interact={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
 rewind_text={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -1499,12 +1443,6 @@ soft_drop={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777352,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-phone={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
- ]
-}
 move_piece_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -1517,34 +1455,6 @@ move_piece_right={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777356,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-walk_left={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-walk_right={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-walk_up={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-walk_down={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

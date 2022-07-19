@@ -96,7 +96,7 @@ func reset() -> void:
 	creature_def_paths.append(Creatures.SENSEI_PATH)
 	
 	# append primary paths
-	creature_def_paths += _file_paths("res://assets/main/creatures/primary", "/creature.json")
+	creature_def_paths += _file_paths("res://assets/main/creatures/primary")
 	
 	# append secondary paths
 	creature_def_paths += _file_paths("res://assets/main/creatures/secondary")
@@ -174,6 +174,19 @@ func get_creature_def(creature_id: String) -> CreatureDef:
 
 func set_creature_def(creature_id: String, creature_def: CreatureDef) -> void:
 	_creature_defs_by_id[creature_id] = creature_def
+
+
+## Substitutes variables in player-visible text.
+##
+## Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
+func substitute_variables(string: String, full_name: bool = false) -> String:
+	var result := string
+	if full_name:
+		result = result.replace(PLAYER_ID, get_player_def().creature_name)
+	else:
+		result = result.replace(PLAYER_ID, get_player_def().creature_short_name)
+	result = result.replace(SENSEI_ID, get_sensei_def().creature_short_name)
+	return result
 
 
 ## Populates the fatness for randomly generated filler creatures.

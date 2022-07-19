@@ -11,8 +11,6 @@ func before_each() -> void:
 	add_level_history_item("level_200", true)
 	add_level_history_item("level_201", true)
 	add_level_history_item("level_400", false)
-	
-	PlayerData.chat_history.increment_filler_count("creature_200")
 
 
 func add_level_history_item(level_id: String, cleared: bool) -> void:
@@ -60,14 +58,3 @@ func test_complex_expression() -> void:
 	assert_evaluate(false, "not (chat_finished creature/gurus750/chat_200 or level_finished level_404)")
 	assert_evaluate(false, "not (chat_finished creature/gurus750/chat_404 or level_finished level_200)")
 	assert_evaluate(true, "not (chat_finished creature/gurus750/chat_404 or level_finished level_404)")
-
-
-func test_notable_expression() -> void:
-	# creature with a filler chat triggers the 'notable' flag; they're ready for a serious chat
-	assert_evaluate(true, "notable", "creature_200")
-	
-	# creature with no filler chats does not trigger the 'notable' flag; they're not ready for a serious chat
-	assert_evaluate(false, "notable", "creature_201")
-	
-	# null creature doesn't trigger the 'notable' flag
-	assert_evaluate(false, "notable", "")

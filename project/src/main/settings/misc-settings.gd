@@ -22,9 +22,6 @@ const SAVE_SLOT_PREFIXES := {
 ## The current save slot for saving/loading progress
 var save_slot: int = SaveSlot.SLOT_A setget set_save_slot
 
-## Whether cutscenes should play by default.
-var cutscene_force: int = Levels.CutsceneForce.NONE
-
 ## Resets the miscellaneous settings to their default values.
 func reset() -> void:
 	from_json_dict({})
@@ -40,13 +37,11 @@ func set_save_slot(new_save_slot: int) -> void:
 func to_json_dict() -> Dictionary:
 	return {
 		"locale": TranslationServer.get_locale(),
-		"cutscene_force": cutscene_force,
 		"save_slot": save_slot,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
-	cutscene_force = int(json.get("cutscene_force", Levels.CutsceneForce.NONE))
 	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A))
 	
 	if json.has("locale"):

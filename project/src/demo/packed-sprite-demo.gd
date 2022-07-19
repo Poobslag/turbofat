@@ -7,21 +7,22 @@ extends Node
 
 onready var _packed_sprite: PackedSprite = $PackedSprite
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
-		_packed_sprite.frame = wrapi(_packed_sprite.frame + 1, 0, _packed_sprite.frame_count)
-	if Input.is_action_just_pressed("ui_right"):
-		_packed_sprite.offset.x += 1
-		_print_frame_details()
-	if Input.is_action_just_pressed("ui_left"):
-		_packed_sprite.offset.x -= 1
-		_print_frame_details()
-	if Input.is_action_just_pressed("ui_up"):
-		_packed_sprite.offset.y -= 1
-		_print_frame_details()
-	if Input.is_action_just_pressed("ui_down"):
-		_packed_sprite.offset.y += 1
-		_print_frame_details()
+func _input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_Z:
+			_packed_sprite.frame = wrapi(_packed_sprite.frame + 1, 0, _packed_sprite.frame_count)
+		KEY_RIGHT:
+			_packed_sprite.offset.x += 1
+			_print_frame_details()
+		KEY_LEFT:
+			_packed_sprite.offset.x -= 1
+			_print_frame_details()
+		KEY_UP:
+			_packed_sprite.offset.y -= 1
+			_print_frame_details()
+		KEY_DOWN:
+			_packed_sprite.offset.y += 1
+			_print_frame_details()
 
 
 func _print_frame_details() -> void:

@@ -3,9 +3,6 @@
 [location]
 marsh/walk
 
-[destination]
-marsh
-
 [characters]
 player, p1, kitchen_3
 (observer) sensei, s1, kitchen_5

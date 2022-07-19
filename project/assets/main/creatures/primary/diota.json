@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "diota",
+  "name": "Diota",
+  "short_name": "Diota",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "0",
+    "ear": "15",
+    "eye": "3",
+    "hair": "0",
+    "head": "3",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "0",
+    "tail": "4",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "ffbfcb",
+    "belly_rgb": "fffaff",
+    "cloth_rgb": "fad4cf",
+    "glass_rgb": "1d1d1d",
+    "plastic_rgb": "f55034",
+    "hair_rgb": "fffaff",
+    "eye_rgb": "74a27f fffaff",
+    "horn_rgb": "fde9e7"
+  },
+  "chat_theme": {
+    "accent_scale": 1.15,
+    "accent_texture": 1,
+    "color": "ffbfcb"
+  },
+  "fatness": 1.1
+}

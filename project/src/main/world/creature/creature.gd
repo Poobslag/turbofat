@@ -103,7 +103,7 @@ var _creature_outline: CreatureOutline
 
 onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
-onready var _chat_icon_hook: RemoteTransform2D = $ChatIconHook
+onready var _mouth_hook: Node2D = $MouthHook
 onready var _fade_tween: Tween = $FadeTween
 
 func _ready() -> void:
@@ -117,7 +117,7 @@ func _ready() -> void:
 	
 	creature_visuals = _creature_outline.creature_visuals
 	if not Engine.editor_hint:
-		_chat_icon_hook.creature_visuals = creature_visuals
+		_mouth_hook.creature_visuals = creature_visuals
 		_collision_shape.creature_visuals = creature_visuals
 	creature_visuals.creature_sfx = _creature_sfx
 	
@@ -458,7 +458,7 @@ func _refresh_elevation() -> void:
 	if not is_inside_tree():
 		return
 	_creature_outline.set_elevation(elevation)
-	_chat_icon_hook.set_elevation(elevation)
+	_mouth_hook.set_elevation(elevation)
 
 
 func _apply_friction() -> void:
@@ -601,7 +601,7 @@ func fatness_to_score(in_fatness: float) -> float:
 ## Returns:
 ## 	A coordinate relative to the creature's body.
 func body_pos_from_head_pos(v: Vector2) -> Vector2:
-	return _chat_icon_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
+	return _mouth_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
 
 
 func _on_CreatureVisuals_talking_changed() -> void:

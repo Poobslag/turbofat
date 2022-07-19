@@ -173,19 +173,19 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 	level_button.level_title = level_settings.title
 	
 	# calculate the lock status
-	level_button.lock_status = LevelLock.LockStatus.NONE
+	level_button.lock_status = LevelSelectButton.STATUS_NONE
 	if region is CareerRegion and not PlayerData.level_history.has_result(level_id):
 		# career levels are locked if the player hasn't played them
-		level_button.lock_status = LevelLock.LockStatus.SOFT_LOCK
+		level_button.lock_status = LevelSelectButton.STATUS_LOCKED
 	elif region.id == OtherRegion.ID_TUTORIAL:
 		# tutorial levels show a checkmark if completed
 		if PlayerData.level_history.is_level_finished(level_id):
-			level_button.lock_status = LevelLock.STATUS_CLEARED
+			level_button.lock_status = LevelSelectButton.STATUS_CLEARED
 	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
 		# rank/marathon levels show a crown if completed
 		var result := PlayerData.level_history.best_result(level_id)
 		if result and result.success:
-			level_button.lock_status = LevelLock.STATUS_CROWN
+			level_button.lock_status = LevelSelectButton.STATUS_CROWN
 	
 	# calculate the background color. this is usually random, but for rank mode we use specific colors
 	if region is OtherRegion and region.id == OtherRegion.ID_RANK:
@@ -208,7 +208,7 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 
 ## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelButton_focus_entered(level_button: LevelSelectButton, level_id: String) -> void:
-	if level_button.lock_status in [LevelLock.STATUS_SOFT_LOCK, LevelLock.STATUS_HARD_LOCK]:
+	if level_button.lock_status == LevelSelectButton.STATUS_LOCKED:
 		emit_signal("locked_level_selected", _level_settings_by_id[level_id])
 	else:
 		emit_signal("unlocked_level_selected", _level_settings_by_id[level_id])
