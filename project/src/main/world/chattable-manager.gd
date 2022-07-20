@@ -9,10 +9,12 @@ signal focus_changed
 const MAX_INTERACT_DISTANCE := 240.0
 
 ## The player's sprite
-var player: Creature
+## virtual property; value is only exposed through getters/setters
+var player: Creature setget ,get_player
 
 ## The sensei's sprite
-var sensei: Creature
+## virtual property; value is only exposed through getters/setters
+var sensei: Creature setget ,get_sensei
 
 ## The overworld object which the player will currently interact with if they hit the button
 var focused_chattable: Node2D setget set_focused_chattable
@@ -36,17 +38,17 @@ func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focused_chattable: Node2D
 
-	if _focus_enabled and player:
+	if _focus_enabled and get_player():
 		# iterate over all chattables and find the nearest one
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			if not is_instance_valid(chattable_obj):
 				continue
-			if player == chattable_obj:
+			if get_player() == chattable_obj:
 				continue
 			var chattable: Node2D = chattable_obj
 			
 			var chattable_pos: Vector2 = chattable.global_transform.origin
-			var player_pos: Vector2 = player.global_transform.origin
+			var player_pos: Vector2 = get_player().global_transform.origin
 			
 			if "chat_extents" in chattable:
 				# if the chattable object has extents, we measure from its closest point
@@ -71,10 +73,6 @@ func refresh_creatures() -> void:
 	_creatures_by_id.clear()
 	for creature_obj in get_tree().get_nodes_in_group("creatures"):
 		var creature: Creature = creature_obj
-		if creature.creature_id == CreatureLibrary.PLAYER_ID:
-			player = creature
-		if creature.creature_id == CreatureLibrary.SENSEI_ID:
-			sensei = creature
 		register_creature(creature)
 
 
@@ -84,6 +82,14 @@ func refresh_creatures() -> void:
 ## conflicts, the sensei or player cannot be retrieved by their actual name.
 func get_creature_by_id(chat_id: String) -> Creature:
 	return _creatures_by_id.get(chat_id)
+
+
+func get_player() -> Creature:
+	return _creatures_by_id.get(CreatureLibrary.PLAYER_ID)
+
+
+func get_sensei() -> Creature:
+	return _creatures_by_id.get(CreatureLibrary.SENSEI_ID)
 
 
 ## Loads the chat tree for the currently focused chattable.
@@ -179,8 +185,6 @@ func register_creature(creature: Creature) -> void:
 ## Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
 ## possible for an invisible object from a previous scene to receive focus.
 func _on_Breadcrumb_before_scene_changed() -> void:
-	player = null
-	sensei = null
 	focused_chattable = null
 	_focus_enabled = true
 	_creatures_by_id.clear()
