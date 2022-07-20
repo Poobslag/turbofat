@@ -169,4 +169,4 @@ func test_375c() -> void:
 	
 	# update sandbox data to 'm' rank
 	var best_result := PlayerData.level_history.best_result("practice/sandbox_normal")
-	assert_eq(best_result.score_rank, 0)
+	assert_eq(best_result.score_rank, 0.0)

@@ -417,11 +417,77 @@ func test_pinch_kick_0r_0() -> void:
 		"i     ",
 		"i:::::",
 	]
-
+	assert_kick()
 
 
 func test_pinch_kick_0r_1() -> void:
 	from_orientation = 0
+	from_grid = [
+		"      ",
+		"     :",
+		"      ",
+		"  iiii",
+		"      ",
+		"::::: ",
+	]
+	to_orientation = 1
+	to_grid = [
+		"      ",
+		"     :",
+		"     i",
+		"     i",
+		"     i",
+		":::::i",
+	]
+	assert_kick()
+
+
+func test_pinch_kick_0l_0() -> void:
+	from_orientation = 0
+	from_grid = [
+		"      ",
+		":     ",
+		"      ",
+		"iiii  ",
+		"      ",
+		" :::::",
+	]
+	to_orientation = 3
+	to_grid = [
+		"      ",
+		":     ",
+		"i     ",
+		"i     ",
+		"i     ",
+		"i:::::",
+	]
+	assert_kick()
+
+
+func test_pinch_kick_0l_1() -> void:
+	from_orientation = 0
+	from_grid = [
+		"      ",
+		"     :",
+		"      ",
+		"  iiii",
+		"      ",
+		"::::: ",
+	]
+	to_orientation = 3
+	to_grid = [
+		"      ",
+		"     :",
+		"     i",
+		"     i",
+		"     i",
+		":::::i",
+	]
+	assert_kick()
+
+
+func test_pinch_kick_2r_0() -> void:
+	from_orientation = 2
 	from_grid = [
 		"      ",
 		":     ",
@@ -439,28 +505,7 @@ func test_pinch_kick_0r_1() -> void:
 		"i     ",
 		"i:::::",
 	]
-
-
-func test_pinch_kick_2r_0() -> void:
-	from_orientation = 2
-	from_grid = [
-		"      ",
-		"     :",
-		"      ",
-		"  iiii",
-		"      ",
-		"::::: ",
-	]
-	to_orientation = 1
-	to_grid = [
-		"      ",
-		"     :",
-		"      ",
-		"  iiii",
-		"      ",
-		"::::: ",
-	]
-
+	assert_kick()
 
 
 func test_pinch_kick_2r_1() -> void:
@@ -482,3 +527,48 @@ func test_pinch_kick_2r_1() -> void:
 		"     i",
 		":::::i",
 	]
+	assert_kick()
+
+
+func test_pinch_kick_2l_0() -> void:
+	from_orientation = 2
+	from_grid = [
+		"      ",
+		":     ",
+		"      ",
+		"      ",
+		"iiii  ",
+		" :::::",
+	]
+	to_orientation = 3
+	to_grid = [
+		"      ",
+		":     ",
+		"i     ",
+		"i     ",
+		"i     ",
+		"i:::::",
+	]
+	assert_kick()
+
+
+func test_pinch_kick_2l_1() -> void:
+	from_orientation = 2
+	from_grid = [
+		"      ",
+		"     :",
+		"      ",
+		"      ",
+		"  iiii",
+		"::::: ",
+	]
+	to_orientation = 3
+	to_grid = [
+		"      ",
+		"     :",
+		"     i",
+		"     i",
+		"     i",
+		":::::i",
+	]
+	assert_kick()
