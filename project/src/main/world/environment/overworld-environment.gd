@@ -60,7 +60,7 @@ func add_creature(creature_id: String = "", chattable: bool = true) -> Creature:
 		creature.add_to_group("chattables")
 		var chat_bubble_type := ChatLibrary.chat_icon_for_creature(creature)
 		creature.set_meta("chat_bubble_type", chat_bubble_type)
-		ChattableManager.register_creature(creature)
+	ChattableManager.register_creature(creature)
 	process_new_obstacle(creature)
 	return creature
 
