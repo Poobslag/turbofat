@@ -12,6 +12,10 @@ const FREE_ROAM_PATHS_BY_ENVIRONMENT_PATH := {
 			"res://src/main/world/environment/lemon/LemonFreeRoamEnvironment.tscn",
 }
 
+func _ready() -> void:
+	cutscene = true
+
+
 ## Extends the parent class's _apply_chat_event_meta() method to add support for the 'start_walking' and 'stop_walking'
 ## metadata items.
 func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:

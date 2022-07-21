@@ -75,7 +75,7 @@ action = "ui_cancel"
 [sub_resource type="ShortCut" id=14]
 shortcut = SubResource( 13 )
 
-[node name="OverworldUi" type="CanvasLayer" groups=["overworld_ui"]]
+[node name="FreeRoamUi" type="CanvasLayer" groups=["overworld_ui"]]
 script = ExtResource( 1 )
 
 [node name="Labels" type="Control" parent="."]
