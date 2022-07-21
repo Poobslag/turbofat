@@ -314,11 +314,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/free-roam-data.gd"
 }, {
-"base": "CanvasLayer",
-"class": "FreeRoamUi",
-"language": "GDScript",
-"path": "res://src/main/ui/overworld-ui.gd"
-}, {
 "base": "OverworldWorld",
 "class": "FreeRoamWorld",
 "language": "GDScript",
@@ -653,6 +648,11 @@ _global_script_classes=[ {
 "class": "OverworldObstacle",
 "language": "GDScript",
 "path": "res://src/main/world/environment/overworld-obstacle.gd"
+}, {
+"base": "CanvasLayer",
+"class": "OverworldUi",
+"language": "GDScript",
+"path": "res://src/main/ui/overworld-ui.gd"
 }, {
 "base": "Node",
 "class": "OverworldWorld",
@@ -1146,7 +1146,6 @@ _global_script_class_icons={
 "Foods": "",
 "FrameInput": "",
 "FreeRoamData": "",
-"FreeRoamUi": "",
 "FreeRoamWorld": "",
 "GameplaySettings": "",
 "GoopGlob": "",
@@ -1214,6 +1213,7 @@ _global_script_class_icons={
 "OvalShadow": "",
 "OverworldEnvironment": "",
 "OverworldObstacle": "",
+"OverworldUi": "",
 "OverworldWorld": "",
 "PackedSprite": "",
 "PagedLevelButtons": "",
