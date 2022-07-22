@@ -15,7 +15,7 @@
     {
       "id": "quaint",
       "name": "Quaint Complex",
-      "description": "Quaint complex decription",
+      "description": "Quaint complex description",
       "level_ids": [
         "practice/marathon-normal",
         "practice/marathon-hard"

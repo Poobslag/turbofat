@@ -5,7 +5,7 @@ extends Node
 
 signal save_slot_deleted
 
-const SYSTEM_DATA_VERSION := "27bb"
+const SYSTEM_DATA_VERSION := "37b3"
 
 ## Save files older than July 2021 which should be deleted during an upgrade
 const OLD_SAVES_TO_DELETE := [
