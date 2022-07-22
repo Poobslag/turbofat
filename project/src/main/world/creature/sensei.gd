@@ -8,6 +8,9 @@ extends Creature
 const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 
+## if 'true' the sensei is in free roam mode and will follow the player
+var free_roam := false
+
 ## Cannot statically type as 'OverworldUi' because of circular reference
 onready var _overworld_ui: Node = Global.get_overworld_ui()
 
@@ -17,15 +20,14 @@ func _ready() -> void:
 
 
 func _on_MoveTimer_timeout() -> void:
-	if _overworld_ui and _overworld_ui.cutscene:
-		# disable movement during cutscenes
+	if not free_roam:
+		# disable movement outside of free roam mode
 		return
 	
-	if not ChattableManager.player:
-		# disable movement outside free roam mode
+	if not CreatureManager.player:
 		return
 	
-	var player_relative_pos: Vector2 = Global.from_iso(ChattableManager.player.position - position)
+	var player_relative_pos: Vector2 = Global.from_iso(CreatureManager.player.position - position)
 	# the sensei runs at isometric 45 degree angles to mimic the player's inputs
 	var player_angle := stepify(player_relative_pos.normalized().angle(), PI / 4)
 	

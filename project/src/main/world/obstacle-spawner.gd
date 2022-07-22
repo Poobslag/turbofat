@@ -4,8 +4,7 @@ extends Node2D
 ##
 ## The decision to spawn the obstacle is controlled by the 'spawn_if' property.
 ##
-## The obstacle's properties and groups (the 'chattables' group in particular) can be managed by the target_properties
-## and target_groups fields.
+## The obstacle's properties and groups can be managed by the target_properties and target_groups fields.
 
 export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
@@ -14,9 +13,6 @@ export (PackedScene) var TargetScene: PackedScene
 
 ## the properties of the spawned obstacle
 export (Dictionary) var target_properties: Dictionary
-
-## the groups of the spawned obstacle
-export (Array) var target_groups: Array
 
 ## a boolean expression which, if evaluated to 'true', will result in the obstacle being spawned
 export (String) var spawn_if: String
@@ -60,8 +56,6 @@ func _spawn_target() -> void:
 	_spawned_object.position = position
 	for key in target_properties:
 		_spawned_object.set(key, target_properties[key])
-	for group in target_groups:
-		_spawned_object.add_to_group(group)
 	
 	# add it to the scene tree
 	_overworld_environment.add_obstacle_below_node(self, _spawned_object)

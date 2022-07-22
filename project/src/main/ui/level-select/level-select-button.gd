@@ -5,16 +5,20 @@ extends Button
 ## emitted when a level is launched.
 signal level_started
 
-## Emitted when a button is 'lowlighted'.
-##
-## Lowlighted buttons are unrelated to the currently selected world and fade into the background.
-signal lowlight_changed
-
 ## short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
 	SHORT,
 	MEDIUM,
 	LONG
+}
+
+## the status whether or not a level is locked/unlocked
+enum LockStatus {
+	NONE, # not locked
+	CLEARED, # cleared without any rank; used for tutorials
+	KEY, # not locked, and can unlock another level
+	CROWN, # not locked, and can unlock another world
+	LOCKED, # locked
 }
 
 const BUTTON_COLOR_RED := Color("e35274")
@@ -24,13 +28,18 @@ const BUTTON_COLOR_GREEN := Color("7be352")
 const BUTTON_COLOR_BLUE := Color("52afe3")
 const BUTTON_COLOR_PURPLE := Color("9852e3")
 
+const STATUS_NONE := LockStatus.NONE
+const STATUS_KEY := LockStatus.KEY
+const STATUS_CROWN := LockStatus.CROWN
+const STATUS_CLEARED := LockStatus.CLEARED
+const STATUS_LOCKED := LockStatus.LOCKED
+
 const SHORT := LevelSize.SHORT
 const MEDIUM := LevelSize.MEDIUM
 const LONG := LevelSize.LONG
 
 const VERTICAL_SPACING := 6
 
-var world_id: String
 var level_id: String
 
 ## an enum from LevelSize for the duration of the level. this affects the button size
@@ -40,15 +49,12 @@ var level_duration: int = LevelSize.MEDIUM setget set_level_duration
 var level_column_width: int = 120
 
 ## the status whether or not this level is locked/unlocked
-var lock_status: int = LevelLock.STATUS_NONE setget set_lock_status
+var lock_status: int = STATUS_NONE setget set_lock_status
 
 ## the number of remaining levels the player needs to play to unlock this level
 var keys_needed := -1 setget set_keys_needed
 
 var level_title: String setget set_level_title
-
-## 'true' if this button should be darkened so that it doesn't draw the player's attention.
-var lowlight: bool setget set_lowlight
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'level
 ## started' event
@@ -101,15 +107,6 @@ func set_level_duration(new_level_duration: int) -> void:
 	_refresh_appearance()
 
 
-## Updates the button to be 'lowlighted'.
-##
-## Lowlighted buttons are unrelated to the currently selected world and fade into the background.
-func set_lowlight(new_lowlight: bool) -> void:
-	lowlight = new_lowlight
-	modulate = Color("50ffffff") if lowlight else Color.white
-	emit_signal("lowlight_changed")
-
-
 ## Updates the button's text, colors, size and icon based on the level and its status.
 func _refresh_appearance() -> void:
 	if not is_inside_tree():
@@ -137,7 +134,7 @@ func _refresh_appearance() -> void:
 
 
 func _on_pressed() -> void:
-	if lock_status in [LevelLock.STATUS_SOFT_LOCK, LevelLock.STATUS_HARD_LOCK]:
+	if lock_status == STATUS_LOCKED:
 		# level is locked, don't launch the level
 		return
 	

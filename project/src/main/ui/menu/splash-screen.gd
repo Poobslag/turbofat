@@ -20,12 +20,12 @@ func _exit_tree() -> void:
 
 func _launch_tutorial() -> void:
 	PlayerData.creature_queue.clear()
-	CurrentLevel.set_launched_level(LevelLibrary.BEGINNER_TUTORIAL)
+	CurrentLevel.set_launched_level(OtherLevelLibrary.BEGINNER_TUTORIAL)
 	CurrentLevel.push_level_trail()
 
 
 func _on_Play_pressed() -> void:
-	if not PlayerData.level_history.is_level_finished(LevelLibrary.BEGINNER_TUTORIAL):
+	if not PlayerData.level_history.is_level_finished(OtherLevelLibrary.BEGINNER_TUTORIAL):
 		_launch_tutorial()
 	else:
 		SceneTransition.push_trail(Global.SCENE_MAIN_MENU, true)

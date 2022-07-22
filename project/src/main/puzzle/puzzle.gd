@@ -156,17 +156,6 @@ func _start_puzzle() -> void:
 
 
 func _quit_puzzle() -> void:
-	if _should_play_postroll():
-		# enqueue the postroll cutscene
-		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		CutsceneQueue.enqueue_cutscene(chat_tree)
-	
-	if _should_play_epilogue():
-		# enqueue the epilogue cutscene (after any postroll cutscene)
-		var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
-		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
-		CutsceneQueue.enqueue_cutscene(chat_tree)
-	
 	if PlayerData.career.is_career_mode():
 		PlayerData.career.process_puzzle_result()
 	
@@ -182,46 +171,6 @@ func _quit_puzzle() -> void:
 			CutsceneQueue.replace_trail()
 		else:
 			SceneTransition.pop_trail()
-
-
-## Returns 'true' if we should play a postroll cutscene after this level.
-##
-## We play a postroll cutscene if the player clears the level, although we forcibly skip the cutscene in other
-## circumstances as well.
-func _should_play_postroll() -> bool:
-	var result := true
-	var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-	if not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
-		# player didn't clear the level; don't play the cutscene
-		result = false
-	elif not ChatLibrary.should_play_cutscene(chat_tree, CurrentLevel.cutscene_force):
-		# the player's seen it already, or its 'skip_if' condition is met; don't play the cutscene
-		result = false
-	else:
-		# play the postroll cutscene
-		result = true
-	return result
-
-
-## Returns 'true' if we should play an epilogue after this level and its postroll cutscenes.
-##
-## We play an epilogue if the player's beaten the last level in the current world, and if the player hasn't seen this
-## world's epilogue scene yet.
-func _should_play_epilogue() -> bool:
-	var result := false
-	var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
-	if not world_lock:
-		result = false
-	elif not world_lock.epilogue_chat_key:
-		# the world has no epilogue assigned; don't play the epilogue
-		result = false
-	elif PlayerData.chat_history.is_chat_finished(world_lock.epilogue_chat_key):
-		# the player's already seen the epilogue; don't play the epilogue
-		result = false
-	else:
-		# play the epilogue
-		result = true
-	return result
 
 
 func _overall_rank(rank_result: RankResult) -> float:

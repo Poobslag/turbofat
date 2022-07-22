@@ -7,6 +7,8 @@ extends Node
 ## Path to the json file with the list of levels. Can be changed for tests.
 const DEFAULT_OTHER_REGIONS_PATH := "res://assets/main/puzzle/other-regions.json"
 
+const BEGINNER_TUTORIAL := "tutorial/basics_0"
+
 ## Path to the json file with the list of levels. Can be changed for tests.
 var other_regions_path := DEFAULT_OTHER_REGIONS_PATH setget set_other_regions_path
 

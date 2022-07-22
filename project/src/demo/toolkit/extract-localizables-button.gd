@@ -29,10 +29,8 @@ func _extract_and_write_localizables() -> void:
 	var old_locale := TranslationServer.get_locale()
 	TranslationServer.set_locale("en")
 	
-	_extract_localizables_from_worlds()
 	_extract_localizables_from_career_regions()
 	_extract_localizables_from_levels()
-	_extract_localizables_from_creatures()
 	_extract_localizables_from_scancode_strings()
 	_write_localizables(OUTPUT_PATH, _localizables)
 	_write_localizables(SCANCODE_OUTPUT_PATH, _scancode_localizables)
@@ -41,13 +39,6 @@ func _extract_and_write_localizables() -> void:
 	_output_label.text = "Wrote %s strings to %s, %s." % [
 			StringUtils.comma_sep(_localizables.size() + _scancode_localizables.size()),
 			OUTPUT_PATH, SCANCODE_OUTPUT_PATH]
-
-
-## Extracts localizable strings from worlds in story mode.
-func _extract_localizables_from_worlds() -> void:
-	for world_id in LevelLibrary.world_ids:
-		var world_lock: WorldLock = LevelLibrary.world_lock(world_id)
-		_localizables.append(world_lock.world_name)
 
 
 ## Extracts localizable strings from regions in career mode.
@@ -62,8 +53,6 @@ func _extract_localizables_from_career_regions() -> void:
 func _extract_localizables_from_levels() -> void:
 	# Create a sorted list of all level IDs
 	var level_id_set := {}
-	for level_id in LevelLibrary.all_level_ids():
-		level_id_set[level_id] = true
 	for level_id in CareerLevelLibrary.all_level_ids():
 		level_id_set[level_id] = true
 	var level_ids := level_id_set.keys()
@@ -76,33 +65,6 @@ func _extract_localizables_from_levels() -> void:
 		# extract level's title and description as localizables
 		_localizables.append(level_settings.title)
 		_localizables.append(level_settings.description)
-		
-		# extract level's cutscene chat as localizables
-		if ChatLibrary.has_preroll(level_id):
-			var chat_tree := ChatLibrary.chat_tree_for_preroll(level_id)
-			_extract_localizables_from_chat_tree(chat_tree)
-		if ChatLibrary.has_postroll(level_id):
-			var chat_tree := ChatLibrary.chat_tree_for_postroll(level_id)
-			_extract_localizables_from_chat_tree(chat_tree)
-
-
-## Extracts localizable strings from creature chats and adds them to the in-memory list of localizables.
-func _extract_localizables_from_creatures() -> void:
-	var creature_ids := PlayerData.creature_library.creature_ids()
-	creature_ids.sort()
-	for creature_id in creature_ids:
-		var creature_def := PlayerData.creature_library.get_creature_def(creature_id)
-		
-		# extract the creature's filler chat as localizables
-		for filler_id in ChatLibrary.filler_ids_for_creature(creature_id):
-			var chat_tree := ChatLibrary.chat_tree_for_creature_chat_id(creature_def, filler_id)
-			_extract_localizables_from_chat_tree(chat_tree)
-		
-		# extract the creature's level/story chat as localizables
-		for chat_selector_obj in creature_def.chat_selectors:
-			var chat_selector: Dictionary = chat_selector_obj
-			var chat_tree := ChatLibrary.chat_tree_for_creature_chat_id(creature_def, chat_selector.get("chat"))
-			_extract_localizables_from_chat_tree(chat_tree)
 
 
 ## Extracts localizable strings from a chat tree and adds them to the in-memory list of localizables.

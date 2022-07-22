@@ -53,9 +53,3 @@ func _refresh_environment_scene() -> void:
 	add_child(overworld_environment)
 	move_child(overworld_environment, 0)
 	overworld_environment.owner = get_tree().get_edited_scene_root()
-	
-	# create chat icons for all chattables
-	if not Engine.editor_hint:
-		var chat_icons := Global.get_chat_icon_container()
-		if chat_icons:
-			chat_icons.recreate_all_icons()

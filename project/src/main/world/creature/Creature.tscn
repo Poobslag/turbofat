@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=7]
 [ext_resource path="res://src/main/world/creature/creature-collision-shape.gd" type="Script" id=8]
 [ext_resource path="res://src/main/world/creature/creature-sfx.gd" type="Script" id=23]
-[ext_resource path="res://src/main/world/creature/creature-chat-icon-hook.gd" type="Script" id=31]
+[ext_resource path="res://src/main/world/creature/mouth-hook.gd" type="Script" id=31]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -344,9 +344,7 @@ dna = {
 update_rotation = false
 update_scale = false
 
-[node name="ChatIconHook" type="RemoteTransform2D" parent="."]
-update_rotation = false
-update_scale = false
+[node name="MouthHook" type="Node2D" parent="."]
 script = ExtResource( 31 )
 
 [node name="CreatureSfx" type="Node2D" parent="."]

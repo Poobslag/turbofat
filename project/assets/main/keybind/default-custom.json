@@ -129,70 +129,10 @@
     {
     }
   ],
-  "walk_up": [
-    {
-      "type": "key",
-      "scancode": 16777232
-    },
-    {
-    },
-    {
-    }
-  ],
-  "walk_down": [
-    {
-      "type": "key",
-      "scancode": 16777234
-    },
-    {
-    },
-    {
-    }
-  ],
-  "walk_left": [
-    {
-      "type": "key",
-      "scancode": 16777231
-    },
-    {
-    },
-    {
-    }
-  ],
-  "walk_right": [
-    {
-      "type": "key",
-      "scancode": 16777233
-    },
-    {
-    },
-    {
-    }
-  ],
-  "interact": [
-    {
-      "type": "key",
-      "scancode": 32
-    },
-    {
-    },
-    {
-    }
-  ],
   "rewind_text": [
     {
       "type": "key",
       "scancode": 16777237
-    },
-    {
-    },
-    {
-    }
-  ],
-  "phone": [
-    {
-      "type": "key",
-      "scancode": 16777218
     },
     {
     },

@@ -24,9 +24,6 @@ var level_id: String
 ## The piece speed to adjust the level to
 var piece_speed: String
 
-## The creature who launched the level.
-var creature_id: String
-
 ## The customers to queue up at the start of the level. If absent, random customers will be queued.
 ##
 ## This array can hold a combination of creature ids and CreatureDef instances.
@@ -40,9 +37,6 @@ var best_result: int = Levels.Result.NONE setget set_best_result
 
 ## How many times the player has tried the level in this session.
 var attempt_count := 0
-
-## Tracks whether or not the player wants to play or skip this level's cutscene.
-var cutscene_force: int = Levels.CutsceneForce.NONE
 
 ## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
 var puzzle_environment_name: String
@@ -65,24 +59,15 @@ func clear_launched_level() -> void:
 func set_launched_level(new_level_id: String) -> void:
 	level_id = new_level_id
 	piece_speed = ""
-	
-	var level_lock: LevelLock
-	if level_id:
-		level_lock = LevelLibrary.level_lock(level_id)
-	
 	set_best_result(Levels.Result.NONE)
 	attempt_count = 0
-	cutscene_force = Levels.CutsceneForce.NONE
 	puzzle_environment_name = ""
 	
-	if level_lock:
-		creature_id = level_lock.creature_id
-		customers = level_lock.customer_ids.duplicate()
-		chef_id = level_lock.chef_id
-	else:
-		creature_id = ""
-		customers = []
-		chef_id = ""
+	if new_level_id:
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		if level_settings.other.tutorial:
+			customers = [CreatureLibrary.SENSEI_ID]
 
 
 func start_level(new_settings: LevelSettings) -> void:
@@ -104,8 +89,8 @@ func push_level_trail() -> void:
 		LevelSpeedAdjuster.new(level_settings).adjust(piece_speed)
 	
 	# When the player first launches the game and does the tutorial, we skip the typical puzzle intro.
-	if level_id == LevelLibrary.BEGINNER_TUTORIAL \
-			and not PlayerData.level_history.is_level_finished(LevelLibrary.BEGINNER_TUTORIAL):
+	if level_id == OtherLevelLibrary.BEGINNER_TUTORIAL \
+			and not PlayerData.level_history.is_level_finished(OtherLevelLibrary.BEGINNER_TUTORIAL):
 		level_settings.other.skip_intro = true
 	
 	start_level(level_settings)
@@ -133,8 +118,6 @@ func set_best_result(new_best_result: int) -> void:
 ## creature ids are not included.
 func get_creature_ids() -> Array:
 	var result := {}
-	if creature_id:
-		result[creature_id] = true
 	if chef_id:
 		result[chef_id] = true
 	for customer_obj in customers:

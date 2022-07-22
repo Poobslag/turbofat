@@ -30,7 +30,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if _chatter and not _letter_shooter.is_stopped():
 		_letter_shooter.letter_position = _chatter.position \
-				+ _chatter.get_node("ChatIconHook").position \
+				+ _chatter.get_node("MouthHook").position \
 				+ VOICE_POSITIONS_BY_ORIENTATION[_chatter.orientation] * _chatter.creature_visuals.scale.y
 		
 		_letter_shooter.letter_angle = LETTER_ANGLES_BY_ORIENTATION[_chatter.orientation]

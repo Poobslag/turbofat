@@ -76,26 +76,6 @@ class LocationState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-## Parser state for parsing destination data (where the player goes after a conversation).
-class DestinationState extends AbstractState:
-	
-	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
-			pass
-	
-	
-	## Syntax:
-	## 	[destination]
-	## 	marsh/inside_turbo_fat
-	func line(line: String) -> String:
-		var result := ""
-		if line:
-			chat_tree.destination_id = line
-		else:
-			result = DEFAULT
-		return result
-
-# -----------------------------------------------------------------------------
-
 ## Parser state for parsing character data (participants in a conversation).
 class CharactersState extends AbstractState:
 	
@@ -419,7 +399,6 @@ const ORIENTATION_STRINGS := {
 ## parser headers which appear in square braces in the chatscript file
 const DEFAULT := "default"
 const LOCATION := "location"
-const DESTINATION := "destination"
 const CHARACTERS := "characters"
 const CHAT := "chat"
 
@@ -439,7 +418,6 @@ func _init() -> void:
 	_states_by_name = {
 		DEFAULT: DefaultState.new(_chat_tree),
 		LOCATION: LocationState.new(_chat_tree),
-		DESTINATION: DestinationState.new(_chat_tree),
 		CHARACTERS: CharactersState.new(_chat_tree, _character_aliases),
 		CHAT: ChatState.new(_chat_tree, _character_aliases),
 	}

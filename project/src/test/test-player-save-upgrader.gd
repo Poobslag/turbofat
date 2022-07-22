@@ -50,7 +50,6 @@ func test_1682_chat_history_preserved() -> void:
 	load_legacy_player_data("turbofat-1682.json")
 	
 	assert_eq(PlayerData.chat_history.chat_age("creature/boatricia/my_maid_died"), 5)
-	assert_eq(PlayerData.chat_history.filler_count("creature/boatricia"), 13)
 
 
 func test_199c() -> void:
@@ -104,8 +103,6 @@ func test_24cc() -> void:
 	assert_eq(PlayerData.chat_history.chat_history.get("creature/bort/filler"), 6)
 	assert_eq(PlayerData.chat_history.chat_counts.get("chat"), 77)
 	assert_eq(PlayerData.chat_history.chat_counts.get("creature/bort"), 24)
-	assert_eq(PlayerData.chat_history.filler_counts.get("creature/richie"), 6)
-	assert_eq(PlayerData.chat_history.filler_counts.get("creature/boatricia"), 58)
 
 
 func test_2743() -> void:
@@ -122,10 +119,6 @@ func test_2743() -> void:
 	# chat counts should use underscores, and new prefixes
 	assert_eq(PlayerData.chat_history.chat_counts.get("creature/richie"), 6)
 	assert_eq(PlayerData.chat_history.chat_counts.get("creature/shirts"), 2)
-	
-	# filler counts should use underscores, and new prefixes
-	assert_eq(PlayerData.chat_history.filler_counts.get("creature/richie"), 6)
-	assert_eq(PlayerData.chat_history.filler_counts.get("creature/shirts"), 2)
 	
 	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_000#"), 1.03, 0.01)
 	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_100#"), 1.68, 0.01)

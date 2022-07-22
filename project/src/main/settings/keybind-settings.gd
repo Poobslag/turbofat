@@ -42,13 +42,7 @@ const MENU_ACTION_NAMES := {
 ## Set of inputs accepted on the overworld.
 ## This includes inputs for walking, interacting, and bringing up a menu.
 const OVERWORLD_ACTION_NAMES := {
-	"walk_up": true,
-	"walk_down": true,
-	"walk_left": true,
-	"walk_right": true,
-	"interact": true,
 	"rewind_text": true,
-	"phone": true,
 	"ui_menu": true,
 }
 

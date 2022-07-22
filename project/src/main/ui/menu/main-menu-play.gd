@@ -17,24 +17,6 @@ func _on_Career_pressed() -> void:
 		Breadcrumb.push_trail(Global.SCENE_CAREER_REGION_SELECT_MENU)
 
 
-func _on_FreeRoam_pressed() -> void:
-	PlayerData.creature_queue.clear()
-	PlayerData.free_roam.reset()
-	CurrentLevel.clear_launched_level()
-	
-	var world_lock := LevelLibrary.world_lock(WORLD0_ID)
-	if world_lock.prologue_chat_key and not PlayerData.chat_history.is_chat_finished(world_lock.prologue_chat_key):
-		# load the prologue scene
-		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.prologue_chat_key)
-		CutsceneQueue.enqueue_cutscene(chat_tree)
-		CutsceneQueue.push_trail()
-		
-		# after the prologue, drop the player into free roam mode
-		Breadcrumb.trail.push_front(Global.SCENE_FREE_ROAM)
-	else:
-		SceneTransition.push_trail(Global.SCENE_FREE_ROAM)
-
-
 func _on_Practice_pressed() -> void:
 	SceneTransition.push_trail("res://src/main/ui/menu/PracticeMenu.tscn", true)
 

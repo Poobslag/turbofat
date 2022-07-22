@@ -26,10 +26,10 @@ func _ready() -> void:
 		_add_button(button)
 	
 	for lock_status in [
-			LevelLock.STATUS_KEY,
-			LevelLock.STATUS_CROWN,
-			LevelLock.STATUS_CLEARED,
-			LevelLock.STATUS_SOFT_LOCK]:
+			LevelSelectButton.STATUS_KEY,
+			LevelSelectButton.STATUS_CROWN,
+			LevelSelectButton.STATUS_CLEARED,
+			LevelSelectButton.STATUS_LOCKED]:
 		var button := _button()
 		button.lock_status = lock_status
 		_add_button(button)

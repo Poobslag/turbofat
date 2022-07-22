@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/world/overworld-touch-buttons.gd" type="Script" id=3]
+[ext_resource path="res://src/demo/world/free-roam-touch-buttons.gd" type="Script" id=3]
 
 [node name="TouchButtons" type="Control"]
 modulate = Color( 1, 1, 1, 0.627451 )
@@ -9,9 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ButtonsSw" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.0
@@ -22,10 +19,6 @@ margin_left = 10.0
 margin_top = -250.0
 margin_right = 250.0
 margin_bottom = -10.0
-up_action = "walk_up"
-down_action = "walk_down"
-left_action = "walk_left"
-right_action = "walk_right"
 up_right_weight = 1.0
 up_left_weight = 1.0
 down_right_weight = 1.0
