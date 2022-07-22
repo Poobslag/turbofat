@@ -4,6 +4,226 @@ class_name PlayerSaveUpgrader
 ## This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
 ## backwards compatibility for older versions.
 
+## Level ids to prune when upgrading from version 3776
+const LEVEL_PRUNE_LIST_3776 := {
+	"002": true,
+	"003": true,
+	"004": true,
+	"005": true,
+	"007": true,
+	"009": true,
+	"010": true,
+	"011": true,
+	"a_little_extra": true,
+	"a_little_garbage_2": true,
+	"a_little_garbage_3": true,
+	"accelerator": true,
+	"all_clear": true,
+	"artistic_libaty": true,
+	"bleah": true,
+	"boatricia": true,
+	"boatricia1": true,
+	"boatricia2": true,
+	"bogus_level": true,
+	"cake_check": true,
+	"career/boss_1k": true,
+	"career/boss_2k": true,
+	"career/boss_3k": true,
+	"career/boss_4k": true,
+	"career/boss_5k": true,
+	"career/boss_7k": true,
+	"career/fruit_on_the_top": true,
+	"career/veggie_puzzle": true,
+	"cookies": true,
+	"donuts": true,
+	"etc": true,
+	"etc2": true,
+	"example": true,
+	"example_ac": true,
+	"experiment/000": true,
+	"experiment/001": true,
+	"experiment/002": true,
+	"experiment/003": true,
+	"experiment/004": true,
+	"experiment/005": true,
+	"experiment/006": true,
+	"experiment/007": true,
+	"experiment/008": true,
+	"experiment/009": true,
+	"experiment/010": true,
+	"experiment/011": true,
+	"five_customers_no_vegetables": true,
+	"flip_scenario": true,
+	"freestyle": true,
+	"fruit_salad": true,
+	"goodbye_skins": true,
+	"hello_everyone": true,
+	"hello_skins": true,
+	"lo_kcal": true,
+	"lol": true,
+	"many_boxes": true,
+	"marsh/goodbye_bones": true,
+	"marsh/goodbye_everyone": true,
+	"marsh/goodbye_shirts": true,
+	"marsh/goodbye_skins": true,
+	"marsh/hello_bones": true,
+	"marsh/hello_everyone": true,
+	"marsh/hello_shirts": true,
+	"marsh/hello_skins": true,
+	"marsh/lets_all_get_merry": true,
+	"marsh/pulling_for_bones": true,
+	"marsh/pulling_for_bones_short": true,
+	"marsh/pulling_for_everyone": true,
+	"marsh/pulling_for_shirts": true,
+	"marsh/pulling_for_skins": true,
+	"marsh/pulling_for_skins2": true,
+	"micro_customers": true,
+	"micro_lines": true,
+	"micro_score": true,
+	"micro_time": true,
+	"obnoxious": true,
+	"obnoxious2": true,
+	"placeholder01": true,
+	"placeholder02": true,
+	"placeholder03": true,
+	"placeholder04": true,
+	"placeholder05": true,
+	"placeholder06": true,
+	"placeholder07": true,
+	"placeholder08": true,
+	"placeholder09": true,
+	"placeholder10": true,
+	"placeholder11": true,
+	"placeholder12": true,
+	"placeholder13": true,
+	"placeholder14": true,
+	"placeholder15": true,
+	"placeholder16": true,
+	"placeholder17": true,
+	"placeholder18": true,
+	"placeholder2": true,
+	"placeholder3": true,
+	"placeholder4": true,
+	"placeholder6": true,
+	"placeholder7": true,
+	"placeholder8": true,
+	"practice/sandbox_hard": true,
+	"practice/squish_test": true,
+	"pulling_for_bones_short": true,
+	"pulling_for_skins": true,
+	"rainbows": true,
+	"rocket_drop_test": true,
+	"something": true,
+	"spins_0": true,
+	"spins_1": true,
+	"spins_2": true,
+	"spins_3": true,
+	"spins_4": true,
+	"spins_5": true,
+	"spins_6": true,
+	"spins_9": true,
+	"spins_secret": true,
+	"stacks": true,
+	"strawberry_shortcut": true,
+	"test_5952": true,
+	"test_top_out": true,
+	"the_curse": true,
+	"time_level_up": true,
+	"tulip": true,
+	"tutorial/beginner_0": true,
+	"tutorial/combo_3": true,
+	"tutorial/combo_4": true,
+	"tutorial/combo_5": true,
+	"tutorial/combo_6": true,
+	"tutorial/combos_0": true,
+	"tutorial/spins_0_example": true,
+	"tutorial/spins_1a": true,
+	"tutorial/spins_4": true,
+	"tutorial/spins_5_example": true,
+	"tutorial/spins_6": true,
+	"tutorial/spins_9": true,
+	"tutorial/squish_1": true,
+	"tutorial/squish_4": true,
+	"tutorial/squish_5": true,
+	"tutorial_combos_4": true,
+	"tutorial_combos_6": true,
+	"tutorial_squish_5": true,
+	"tutorial_squish_6": true,
+	"u_climb": true,
+	"ultra_normal": true,
+	"unfresh_fruits_2": true,
+	"veggie_patty": true,
+	"veggie_puzzle": true,
+	"wedge": true
+}
+
+## Chat ids to prune when upgrading from version 3776
+const CHAT_PRUNE_LIST_3776 := {
+	"chat/level_select": true,
+	"chat/level_select_2": true,
+	"chat/glowy_sphere": true,
+	"chat/marsh_crystal": true,
+	"chat/level_select_1": true,
+	"chat/meet_the_competition": true,
+	"creature/boatricia/hi": true,
+	"creature/boatricia/filler": true,
+	"creature/ebe/filler": true,
+	"creature/bort/filler": true,
+	"creature/boatricia/level_1": true,
+	"creature/boatricia/my_maid_died": true,
+	"creature/boatricia/level_2": true,
+	"creature/boatricia/life_is_so_short": true,
+	"creature/ebe/no_vegetables": true,
+	"creature/ebe/filler_000": true,
+	"creature/shirts/filler_000": true,
+	"creature/skins/filler_000": true,
+	"creature/bones/filler_000": true,
+	"creature/richie/filler_000": true,
+	"level/marsh/hello_everyone": true,
+	"level/marsh/hello_everyone_000": true,
+	"level/marsh/hello_everyone_100": true,
+	"level/boatricia2_000": true,
+	"level/marsh/hello_bones_100": true,
+	"level/marsh/hello_everyone_000.chat": true,
+	"level/marsh/hello_shirts_000.chat": true,
+	"level/boatricia1_000.chat": true,
+	"level/boatricia2_000.chat": true,
+	"level/marsh/hello_skins_100": true,
+	"level/marsh/hello_shirts_000": true,
+	"creature/bort/filler_000": true,
+	"creature/shirts/filler_001": true,
+	"creature/richie/pomodoro": true,
+	"creature/bones/filler_001": true,
+	"creature/richie/filler_001": true,
+	"creature/bones/filler_002": true,
+	"creature/richie/filler_002": true,
+	"creature/bort/filler_000.chat": true,
+	"creature/bones/filler_000.chat": true,
+	"creature/boatricia/filler_000": true,
+	"level/five_customers_no_vegetables_000": true,
+	"level/marsh/pulling_for_everyone_000": true,
+	"level/marsh/pulling_for_skins_100": true,
+	"level/marsh/pulling_for_everyone_100": true,
+	"creature/skins/filler_001": true,
+	"creature/jayton/soliciting_buttercup_customers": true,
+	"creature/jayton/soliciting_buttercup_customers_2": true,
+	"creature/jayton/filler_000": true,
+	"creature/diota/having_trouble": true,
+	"level/marsh/pulling_for_bones_100": true,
+	"level/marsh/goodbye_everyone_100": true,
+	"chat/marsh_prologue": true,
+	"chat/marsh_epilogue": true,
+	"creature/shirts/filler_002": true,
+	"creature/skins/filler_002": true,
+	"level/marsh/lets_all_get_merry_100": true,
+	"level/marsh/pulling_for_shirts_100": true,
+	"level/boatricia1_000": true,
+	"chat/buttercup_sign_closed": true,
+	"chat/career/general_00_0": true,
+	"chat/career/marsh/00": true,
+	"chat/career/marsh/00_end": true,
+}
+
 ## chat history prefixes to replace when upgrading from version 2743
 ## key: old string prefix to be replaced
 ## value: new string prefix
@@ -23,7 +243,8 @@ const PREFIX_REPLACEMENTS_2743 := {
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "3776"
+	upgrader.current_version = "37b3"
+	upgrader.add_upgrade_method(self, "_upgrade_37b3", "3776", "37b3")
 	upgrader.add_upgrade_method(self, "_upgrade_375c", "375c", "3776")
 	upgrader.add_upgrade_method(self, "_upgrade_36c3", "36c3", "375c")
 	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "36c3")
@@ -40,6 +261,35 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			# Convert hyphens to underscores
+			save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
+			
+			# Remove level keys for levels which aren't around as of 2022-07-22
+			if save_item.key in LEVEL_PRUNE_LIST_3776:
+				save_item = null
+		"finished_levels", "successful_levels":
+			# Convert hyphens to underscores
+			for level_id in save_item.value.keys():
+				if "-" in level_id:
+					save_item.value[StringUtils.hyphens_to_underscores(level_id)] = save_item.value[level_id]
+					save_item.value.erase(level_id)
+			
+			# Remove level keys for levels which aren't around as of 2022-07-22
+			for level_id in save_item.value.keys():
+				if level_id in LEVEL_PRUNE_LIST_3776:
+					save_item.value.erase(level_id)
+		"chat_history":
+			var history_items: Dictionary = save_item.value.get("history_items", {})
+			for chat_id in history_items.keys():
+				if chat_id in CHAT_PRUNE_LIST_3776:
+					history_items.erase(chat_id)
+			
+	return save_item
 
 
 func _upgrade_375c(old_save_items: Array, save_item: SaveItem) -> SaveItem:

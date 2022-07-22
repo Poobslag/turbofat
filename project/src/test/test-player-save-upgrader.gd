@@ -46,10 +46,8 @@ func test_163e_lost_erases_success() -> void:
 	assert_eq(PlayerData.level_history.results("rank/7d")[0].success, false)
 
 
-func test_1682_chat_history_preserved() -> void:
-	load_legacy_player_data("turbofat-1682.json")
-	
-	assert_eq(PlayerData.chat_history.chat_age("creature/boatricia/my_maid_died"), 5)
+# Note: There is no test for save data version 1682. The updater performs some chat history renames, but these chat
+# items are nonexistent in the newest version of the game because of the removal of free roam mode
 
 
 func test_199c() -> void:
@@ -58,8 +56,7 @@ func test_199c() -> void:
 	assert_eq(PlayerData.level_history.successful_levels.has("practice/marathon_normal"), true)
 	assert_eq(PlayerData.level_history.successful_levels.has("rank/7k"), true)
 	
-	assert_eq(PlayerData.level_history.finished_levels.has("boatricia"), true)
-	assert_eq(PlayerData.level_history.finished_levels.has("example"), true)
+	assert_eq(PlayerData.level_history.finished_levels.has("rank/7k"), true)
 
 
 func test_19c5() -> void:
@@ -89,36 +86,18 @@ func test_245b() -> void:
 	load_legacy_player_data("turbofat-245b.json")
 	
 	# some levels were made much harder/different, and their scores should be invalidated
-	assert_true(PlayerData.level_history.level_names().has("marsh/pulling_for_everyone"))
 	assert_false(PlayerData.level_history.level_names().has("marsh/hello_everyone"))
 	assert_false(PlayerData.level_history.level_names().has("marsh/hello_skins"))
 	assert_false(PlayerData.level_history.level_names().has("marsh/pulling_for_skins"))
 	assert_false(PlayerData.level_history.level_names().has("marsh/goodbye_skins"))
 
 
-func test_24cc() -> void:
-	load_legacy_player_data("turbofat-24cc.json")
-	
-	assert_eq(PlayerData.chat_history.chat_history.get("chat/level_select"), 10)
-	assert_eq(PlayerData.chat_history.chat_history.get("creature/bort/filler"), 6)
-	assert_eq(PlayerData.chat_history.chat_counts.get("chat"), 77)
-	assert_eq(PlayerData.chat_history.chat_counts.get("creature/bort"), 24)
+# Note: There is no test for save data version 24cc. The updater performs some chat history renames, but these chat
+# items are nonexistent in the newest version of the game because of the removal of free roam mode
 
 
 func test_2743() -> void:
 	load_legacy_player_data("turbofat-2743.json")
-	
-	# chat history should use underscores, and new prefixes
-	assert_eq(PlayerData.chat_history.chat_history.get("creature/boatricia/hi"), 57)
-	assert_eq(PlayerData.chat_history.chat_history.get("creature/richie/filler_000"), 4)
-	assert_eq(PlayerData.chat_history.chat_history.get("level/five_customers_no_vegetables_000"), 4)
-	assert_eq(PlayerData.chat_history.chat_history.get("level/marsh/hello_everyone_000"), 55)
-	assert_eq(PlayerData.chat_history.chat_history.get("level/marsh/hello_shirts_000"), 57)
-	assert_eq(PlayerData.chat_history.chat_history.get("chat/meet_the_competition"), 78)
-	
-	# chat counts should use underscores, and new prefixes
-	assert_eq(PlayerData.chat_history.chat_counts.get("creature/richie"), 6)
-	assert_eq(PlayerData.chat_history.chat_counts.get("creature/shirts"), 2)
 	
 	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_000#"), 1.03, 0.01)
 	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_100#"), 1.68, 0.01)
@@ -133,7 +112,7 @@ func test_2783() -> void:
 	
 	# Save data was in one file in 2783, but was then split into system and player data.
 	# Level history is a part of the player data, and should be preserved.
-	assert_true(PlayerData.level_history.finished_levels.has("marsh/hello_everyone"))
+	assert_true(PlayerData.level_history.finished_levels.has("rank/7k"))
 
 
 func test_27bb() -> void:
@@ -163,3 +142,43 @@ func test_375c() -> void:
 	# update sandbox data to 'm' rank
 	var best_result := PlayerData.level_history.best_result("practice/sandbox_normal")
 	assert_eq(best_result.score_rank, 0.0)
+
+
+## With the removal of free roam mode, we also remove all of the old level history items.
+##
+## This includes levels specific to free roam mode as well as experimental levels from older Turbo Fat versions. Each
+## level's history is about 4 kb, so added together across 3 save slots and 7 (!) rotating backups, this can add up to
+## about 4-5 megabytes that we're cleaning up
+func test_3776_level_history_purged() -> void:
+	load_legacy_player_data("turbofat-3776.json")
+	
+	# finished levels
+	assert_eq(PlayerData.level_history.finished_levels.has("tutorial/basics_0"), true)
+	assert_eq(PlayerData.level_history.finished_levels.has("boatricia"), false)
+	assert_eq(PlayerData.level_history.finished_levels.has("practice/sandbox_hard"), false)
+	assert_eq(PlayerData.level_history.finished_levels.has("marsh/hello_everyone"), false)
+	assert_eq(PlayerData.level_history.finished_levels.has("five-customers-no-vegetables"), false)
+	
+	# successful levels
+	assert_eq(PlayerData.level_history.successful_levels.has("practice/marathon_hard"), true)
+	assert_eq(PlayerData.level_history.successful_levels.has("bogus_level"), false)
+	
+	# level history
+	assert_eq(PlayerData.level_history.rank_results.has("practice/marathon_hard"), true)
+	assert_eq(PlayerData.level_history.rank_results.has("boatricia"), false)
+	assert_eq(PlayerData.level_history.rank_results.has("practice/sandbox_hard"), false)
+	assert_eq(PlayerData.level_history.rank_results.has("marsh/hello_everyone"), false)
+	assert_eq(PlayerData.level_history.rank_results.has("five-customers-no-vegetables"), false)
+
+
+## With the removal of free roam mode, we also remove all of the old chat history items.
+##
+## This includes chats specific to free roam mode as well as from older Turbo Fat versions.
+func test_3776_chat_history_purged() -> void:
+	load_legacy_player_data("turbofat-3776.json")
+	
+	# chat history
+	assert_eq(PlayerData.chat_history.chat_history.has("chat/career/marsh/10_b"), true)
+	assert_eq(PlayerData.chat_history.chat_history.has("chat/level_select"), false)
+	assert_eq(PlayerData.chat_history.chat_history.has("creature/bort/filler_000"), false)
+	assert_eq(PlayerData.chat_history.chat_history.has("level/marsh/pulling_for_everyone_100"), false)

@@ -27,6 +27,7 @@ var description: String
 ## Regions can have flags for unusual qualities, such as tutorial regions
 var flags: Dictionary = {}
 
+## List of string level ids for levels in this region
 var level_ids := []
 
 ## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment

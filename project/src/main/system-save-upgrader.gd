@@ -7,7 +7,8 @@ class_name SystemSaveUpgrader
 ## Creates and configures a SaveItemUpgrader capable of upgrading older system save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "27bb"
+	upgrader.current_version = "37b3"
+	upgrader.add_upgrade_method(self, "_upgrade_37b3", "27bb", "37b3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "2743", "2783")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "252a", "2783")
@@ -21,6 +22,19 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "163e", "2783")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "15d2", "2783")
 	return upgrader
+
+
+func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"keybind_settings":
+			if save_item.value.get("custom_keybinds") is Dictionary:
+				save_item.value["custom_keybinds"].erase("interact")
+				save_item.value["custom_keybinds"].erase("phone")
+				save_item.value["custom_keybinds"].erase("walk_down")
+				save_item.value["custom_keybinds"].erase("walk_left")
+				save_item.value["custom_keybinds"].erase("walk_right")
+				save_item.value["custom_keybinds"].erase("walk_up")
+	return save_item
 
 
 func _upgrade_2783(_old_save_items: Array, save_item: SaveItem) -> SaveItem:

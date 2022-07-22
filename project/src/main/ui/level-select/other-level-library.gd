@@ -20,6 +20,14 @@ func _ready() -> void:
 	_load_raw_json_data()
 
 
+func all_level_ids() -> Array:
+	var result := {}
+	for region in regions:
+		for level_id in region.level_ids:
+			result[level_id] = true
+	return result.keys()
+
+
 func set_other_regions_path(new_other_regions_path: String) -> void:
 	other_regions_path = new_other_regions_path
 	_load_raw_json_data()

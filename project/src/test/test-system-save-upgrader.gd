@@ -27,3 +27,14 @@ func test_1b3c() -> void:
 	
 	# 'miscellaneous settings' were renamed to 'misc settings'
 	assert_eq(TranslationServer.get_locale(), "es")
+
+
+func test_27bb() -> void:
+	load_legacy_player_data("turbofat-1b3c.json")
+	
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("interact"), false)
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("phone"), false)
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_down"), false)
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_left"), false)
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_right"), false)
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_up"), false)
