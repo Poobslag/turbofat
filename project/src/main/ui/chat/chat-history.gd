@@ -40,7 +40,7 @@ func delete_history_item(chat_key: String) -> bool:
 func chat_age(chat_key: String) -> int:
 	var result := CHAT_AGE_NEVER
 	if chat_history.has(chat_key):
-		result = _chat_count - chat_history.get(chat_key) - 1
+		result = _chat_count - chat_history.get(chat_key)
 	return result
 
 

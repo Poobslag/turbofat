@@ -2,6 +2,10 @@ extends "res://addons/gut/test.gd"
 
 var history := ChatHistory.new()
 
+func before_each() -> void:
+	history.reset()
+
+
 func test_chat_age() -> void:
 	history.add_history_item("chat/item_200")
 	history.add_history_item("chat/item_100")
