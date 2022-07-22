@@ -289,3 +289,14 @@ func test_trim_levels_by_available_if() -> void:
 	var trimmed_levels := CareerLevelLibrary.trim_levels_by_available_if(all_levels)
 	assert_eq(trimmed_levels.size(), 1)
 	assert_eq(trimmed_levels[0].level_id, "level_211")
+
+
+func test_region_for_chat_key() -> void:
+	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
+	
+	CareerLevelLibrary.regions[0].cutscene_path = "chat/career/permissible"
+	CareerLevelLibrary.regions[2].cutscene_path = "chat/career/cherries"
+	
+	assert_eq(CareerLevelLibrary.region_for_chat_key("chat/career/permissible/10_b"), CareerLevelLibrary.regions[0])
+	assert_eq(CareerLevelLibrary.region_for_chat_key("chat/career/cherries/20_a"), CareerLevelLibrary.regions[2])
+	assert_eq(CareerLevelLibrary.region_for_chat_key("chat/career/bogus/30_c"), null)

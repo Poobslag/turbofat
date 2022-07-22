@@ -375,6 +375,31 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 	return region_completion
 
 
+## Advance the player past the region shown in the specified cutscene.
+##
+## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode.
+##
+## This is an important gameplay consideration if the player is stuck in a difficult area -- finishing every cutscene
+## lets them see the rest of the game. It's more of a quirk otherwise, and might even frustrate the player if they
+## still want to play a specific region. But it would be confusing and weird if they watched a cutscene saying 'Well,
+## that's enough of that area! Goodbye!' and then they remained there to play more levels.
+##
+## If the player is already past the specified cutscene, this method has no effect.
+##
+## Parameters:
+## 	'chat_key': The chat key for a cutscene which shows the player advancing to the next region
+func advance_past_chat_region(chat_key: String) -> void:
+	var region: CareerRegion = CareerLevelLibrary.region_for_chat_key(chat_key)
+	
+	if distance_travelled < region.end + 1:
+		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
+		remain_in_region = false
+		var old_distance_travelled := distance_travelled
+		distance_travelled = region.end + 1
+		best_distance_travelled = max(best_distance_travelled, distance_travelled)
+		distance_earned += (distance_travelled - old_distance_travelled)
+
+
 ## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode
 ##
 ## This is an important gameplay consideration if the player is stuck in a difficult area -- finishing every cutscene
@@ -382,17 +407,9 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 ## still want to play a specific region. But it would be confusing and weird if they watched a cutscene saying 'Well,
 ## that's enough of that area! Goodbye!' and then they remained there to play more levels.
 func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
-	var region: CareerRegion = current_region()
-	
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 	if chat_tree.meta.get("advance_region", false):
-		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
-		remain_in_region = false
-		var old_distance_travelled := distance_travelled
-		distance_travelled = max(distance_travelled, region.end + 1)
-		best_distance_travelled = max(best_distance_travelled, distance_travelled)
-		if distance_travelled > old_distance_travelled:
-			distance_earned += (distance_travelled - old_distance_travelled)
+		advance_past_chat_region(chat_key)
 
 
 func _on_DailySecondsPlayedTimer_timeout() -> void:

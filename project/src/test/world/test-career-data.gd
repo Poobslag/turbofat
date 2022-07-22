@@ -185,3 +185,31 @@ func test_distance_penalties_cant_cross_regions() -> void:
 	
 	_data.distance_travelled = 12
 	assert_eq(_data.distance_penalties(), [2, 2, 0])
+
+
+func test_advance_past_chat_region() -> void:
+	CareerLevelLibrary.regions[0].cutscene_path = "chat/career/permissible"
+	_data.distance_travelled = 3
+	_data.best_distance_travelled = 3
+	_data.distance_earned = 2
+	_data.remain_in_region = true
+	_data.advance_past_chat_region("chat/career/permissible/boss_level_end_2")
+	
+	assert_eq(_data.distance_travelled, 10)
+	assert_eq(_data.best_distance_travelled, 10)
+	assert_eq(_data.distance_earned, 9)
+	assert_eq(_data.remain_in_region, false)
+
+
+func test_advance_past_chat_region_previous_region() -> void:
+	CareerLevelLibrary.regions[0].cutscene_path = "chat/career/permissible"
+	_data.distance_travelled = 13
+	_data.best_distance_travelled = 13
+	_data.distance_earned = 2
+	_data.remain_in_region = false
+	_data.advance_past_chat_region("chat/career/permissible/boss_level_end_2")
+	
+	assert_eq(_data.distance_travelled, 13)
+	assert_eq(_data.best_distance_travelled, 13)
+	assert_eq(_data.distance_earned, 2)
+	assert_eq(_data.remain_in_region, false)

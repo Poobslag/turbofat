@@ -223,6 +223,22 @@ func trim_levels_by_available_if(levels: Array) -> Array:
 	return trimmed_levels
 
 
+## Returns the CareerRegion with the specified cutscene.
+##
+## Parameters:
+## 	'chat_key': A chat key such as 'chat/career/marsh/epilogue' identifying a cutscene
+##
+## Returns:
+## 	A CareerRegion with the specified cutscene. Returns null if no CareerRegion could be found
+func region_for_chat_key(chat_key: String) -> CareerRegion:
+	var result: CareerRegion
+	for region in regions:
+		if region.cutscene_path and chat_key.begins_with(region.cutscene_path):
+			result = region
+			break
+	return result
+
+
 ## Loads the list of levels from JSON.
 func _load_raw_json_data() -> void:
 	regions.clear()
