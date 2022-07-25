@@ -77,6 +77,11 @@ func get_remaining_line_erase_frames() -> int:
 	return line_clearer.remaining_line_erase_frames
 
 
+## Returns the y coordinate of lines currently being cleared.
+func get_lines_being_cleared() -> Array:
+	return line_clearer.lines_being_cleared
+
+
 func get_remaining_box_build_frames() -> int:
 	return _box_builder.remaining_box_build_frames
 

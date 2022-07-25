@@ -32,6 +32,12 @@ signal hard_dropped # emitted when the player presses the hard drop key
 signal dropped # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 signal squish_moved(piece, old_pos)
 
+# emitted when the player places a sealed-in piece with a spin move
+signal finished_spin_move(piece, lines_cleared)
+
+# emitted when the player places a sealed-in piece with a squish move
+signal finished_squish_move(piece, lines_cleared)
+
 ## emitted for piece locks
 signal lock_cancelled
 signal lock_started
@@ -58,6 +64,7 @@ var drawn_piece_orientation: int
 ## TileMap containing the puzzle blocks which make up the active piece
 onready var tile_map: PuzzleTileMap = $TileMap
 onready var input: PieceInput = $Input
+onready var tech_move_detector: TechMoveDetector = $TechMoveDetector
 
 onready var _physics: PiecePhysics = $Physics
 onready var _playfield: Playfield = get_node(playfield_path)
@@ -184,6 +191,11 @@ func is_playfield_clearing_lines() -> bool:
 	return _playfield.get_remaining_line_erase_frames() > 0
 
 
+## Returns the y coordinate of lines currently being cleared.
+func get_playfield_lines_being_cleared() -> Array:
+	return _playfield.get_lines_being_cleared()
+
+
 ## Set the state frames so that the piece spawns immediately.
 func skip_prespawn() -> void:
 	if CurrentLevel.settings.other.non_interactive:
@@ -192,6 +204,14 @@ func skip_prespawn() -> void:
 	if _states.get_state() != _states.prespawn:
 		_states.set_state(_states.prespawn)
 	_states.prespawn.frames = 3600
+
+
+func finish_spin_move(spin_piece: ActivePiece, lines_cleared: int) -> void:
+	emit_signal("finished_spin_move", spin_piece, lines_cleared)
+
+
+func finish_squish_move(squish_piece: ActivePiece, lines_cleared: int) -> void:
+	emit_signal("finished_squish_move", squish_piece, lines_cleared)
 
 
 func _prepare_tileset() -> void:

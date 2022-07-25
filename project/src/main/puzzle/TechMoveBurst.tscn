@@ -1,15 +1,16 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/main/puzzle/modak-regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://src/main/puzzle/combo-burst.gd" type="Script" id=4]
-[ext_resource path="res://src/main/puzzle/BurstAccent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/puzzle/BurstAccent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/puzzle/tech-move-burst.gd" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=7]
 resource_local_to_scene = true
-size = 24
 outline_size = 2
-outline_color = Color( 0.4817, 0.6, 0.054, 1 )
-font_data = ExtResource( 3 )
+outline_color = Color( 0.054902, 0.309804, 0.6, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -4
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "RESET"
@@ -52,7 +53,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "fade"
-length = 1.5
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -60,10 +61,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 2.8, 3, 3.003 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:velocity")
@@ -72,10 +73,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 2, 2.8, 3.003 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -30 ), Vector2( 0, -5 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, -30 ), Vector2( 0, -5 ), Vector2( 0, -1 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Accent:scale_modifier")
@@ -84,15 +85,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.96, 0.96 ), Vector2( 1.04, 1.04 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 0.96, 0.96 ), Vector2( 1.04, 1.04 ), Vector2( 0.96, 0.96 ), Vector2( 1.04, 1.04 ) ]
 }
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.43913 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 0.290196, 0.623529, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
@@ -101,34 +102,35 @@ gradient = SubResource( 3 )
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
+initial_velocity = 200.0
 initial_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
+color = Color( 0.290196, 0.623529, 1, 1 )
 color_ramp = SubResource( 4 )
 
-[node name="ComboBurst" type="Node2D"]
+[node name="TechMoveBurst" type="Node2D"]
 script = ExtResource( 4 )
 velocity = Vector2( 0, -30 )
 
-[node name="Accent" parent="." instance=ExtResource( 5 )]
-modulate = Color( 0.483, 0.6, 0.06, 1 )
+[node name="Accent" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 0.25, 0.25 )
+frame = 4
 base_scale = Vector2( 0.25, 0.25 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -32.0
-margin_top = -30.0
-margin_right = 32.0
-margin_bottom = 34.0
-custom_colors/font_color = Color( 0.847059, 1, 0.290196, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "3x"
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0.290196, 0.623529, 1, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "T-Spin
+Double"
 align = 1
 valign = 1
 clip_text = true
-max_lines_visible = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade"
@@ -137,7 +139,7 @@ anims/fade = SubResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 emitting = false
-amount = 12
+amount = 5
 lifetime = 0.8
 one_shot = true
 explosiveness = 1.0

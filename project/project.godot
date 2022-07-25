@@ -999,6 +999,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/system-save-upgrader.gd"
 }, {
+"base": "Node2D",
+"class": "TechMoveBurst",
+"language": "GDScript",
+"path": "res://src/main/puzzle/tech-move-burst.gd"
+}, {
+"base": "Node",
+"class": "TechMoveDetector",
+"language": "GDScript",
+"path": "res://src/main/puzzle/piece/tech-move-detector.gd"
+}, {
 "base": "Reference",
 "class": "TouchSettings",
 "language": "GDScript",
@@ -1248,6 +1258,8 @@ _global_script_class_icons={
 "StringTransformer": "",
 "StringUtils": "",
 "SystemSaveUpgrader": "",
+"TechMoveBurst": "",
+"TechMoveDetector": "",
 "TouchSettings": "",
 "TutorialDiagram": "",
 "TutorialHud": "",
