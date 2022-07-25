@@ -92,12 +92,12 @@ velocity = Vector2( 0, -30 )
 
 [node name="Accent" type="Node2D" parent="."]
 modulate = Color( 0.483, 0.6, 0.06, 1 )
-position = Vector2( -16, -16 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/combo-accents-packed.json"
-rect_size = Vector2( 64, 64 )
+rect_size = Vector2( 128, 128 )
+offset = Vector2( -64, -64 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -32.0
