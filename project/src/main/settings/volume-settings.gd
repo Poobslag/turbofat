@@ -3,28 +3,45 @@ class_name VolumeSettings
 
 enum VolumeType { MASTER, MUSIC, SOUND, VOICE }
 
+## Maximum volume level for each volume type.
+##
+## When the user adjusts the volume to 100% or 50%, we actually adjust the bus to a decreased value like 80% or 40%.
+const MAX_LINEAR_VOLUME_BY_TYPE := {
+	VolumeType.MASTER: 0.80, # 100% volume is too loud, so we limit the user to 80% volume
+	VolumeType.MUSIC: 0.66, # the music overpowers other sounds at max volume, so we nudge it down
+}
+
 const MASTER := VolumeType.MASTER
 const MUSIC := VolumeType.MUSIC
 const SOUND := VolumeType.SOUND
 const VOICE := VolumeType.VOICE
 
 ## Returns the volume of the specified bus as a linear energy value.
+##
+## This returns a user-friendly energy value which always scales from 0.0 to 1.0, even if internally we limit a bus to
+## 80% volume.
 func get_bus_volume_linear(volume_type: int) -> float:
-	var volume_linear: float
+	var user_volume_linear: float
 	var bus_index := _bus_index(volume_type)
 	if AudioServer.is_bus_mute(bus_index):
-		volume_linear = 0.0
+		user_volume_linear = 0.0
 	else:
 		var volume_db := AudioServer.get_bus_volume_db(bus_index)
-		volume_linear = db2linear(volume_db)
-	return volume_linear
+		var bus_volume_linear: float = db2linear(volume_db)
+		user_volume_linear = bus_volume_linear / MAX_LINEAR_VOLUME_BY_TYPE.get(volume_type, 1.0)
+		user_volume_linear = clamp(user_volume_linear, 0.0, 1.0)
+	return user_volume_linear
 
 
 ## Sets the volume of the specified bus with a linear energy value.
-func set_bus_volume_linear(volume_type: int, new_value: float) -> void:
+##
+## This accepts a user-friendly energy value which always scales from 0.0 to 1.0, but internally we reduce the value
+## before assigning it to the bus.
+func set_bus_volume_linear(volume_type: int, new_user_volume_linear: float) -> void:
 	var bus_index := _bus_index(volume_type)
-	AudioServer.set_bus_volume_db(bus_index, linear2db(new_value))
-	AudioServer.set_bus_mute(bus_index, new_value <= 0)
+	var bus_volume_linear: float = new_user_volume_linear * MAX_LINEAR_VOLUME_BY_TYPE.get(volume_type, 1.0)
+	AudioServer.set_bus_volume_db(bus_index, linear2db(bus_volume_linear))
+	AudioServer.set_bus_mute(bus_index, new_user_volume_linear <= 0)
 
 
 func is_bus_mute(volume_type: int) -> bool:
