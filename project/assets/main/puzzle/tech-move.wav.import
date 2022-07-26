@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tech-move.wav-e67b1220280c9bad8a2303d048b62d51.sample"
+
+[deps]
+
+source_file="res://assets/main/puzzle/tech-move.wav"
+dest_files=[ "res://.import/tech-move.wav-e67b1220280c9bad8a2303d048b62d51.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

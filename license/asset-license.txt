@@ -50,8 +50,10 @@ project/assets/main/puzzle/pickup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\In
 project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
 project/assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
+project/assets/main/puzzle/rotate-sealed.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\IMPACTS - HITS - (50)\IMPACT Button Press Click 01.wav"
 project/assets/main/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 project/assets/main/puzzle/speedup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
+project/assets/main/puzzle/tech-move.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 03.wav"
 project/assets/main/puzzle/tutorial/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
 project/assets/main/puzzle/tutorial/tutorial-section-fail.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\BONGS - TIMERS - BELLS - (72)\BONG Bell Timer Hit Deep Long 03.wav"
 project/assets/main/puzzle/tutorial/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"

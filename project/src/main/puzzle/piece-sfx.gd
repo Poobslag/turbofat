@@ -1,6 +1,10 @@
 extends Node
 ## Plays sound effects when the player piece is moved.
 
+export (NodePath) var piece_manager_path: NodePath
+
+onready var _piece_manager: PieceManager = get_node(piece_manager_path)
+
 func _ready() -> void:
 	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
 
@@ -54,27 +58,45 @@ func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> vo
 ## Rotation events ----------------------------------------------------------------
 
 func _on_PieceManager_initial_rotated_ccw() -> void:
-	$Rotate0Sound.play()
+	if _piece_manager.piece.is_sealed():
+		$RotateSealed0Sound.play()
+	else:
+		$Rotate0Sound.play()
 
 
 func _on_PieceManager_initial_rotated_cw() -> void:
-	$Rotate1Sound.play()
+	if _piece_manager.piece.is_sealed():
+		$RotateSealed0Sound.play()
+	else:
+		$Rotate0Sound.play()
 
 
 func _on_PieceManager_initial_rotated_180() -> void:
-	$Rotate0Sound.play()
+	if _piece_manager.piece.is_sealed():
+		$RotateSealed0Sound.play()
+	else:
+		$Rotate0Sound.play()
 
 
 func _on_PieceManager_rotated_ccw() -> void:
-	$Rotate0Sound.play()
+	if _piece_manager.piece.is_sealed():
+		$RotateSealed0Sound.play()
+	else:
+		$Rotate0Sound.play()
 
 
 func _on_PieceManager_rotated_cw() -> void:
-	$Rotate1Sound.play()
+	if _piece_manager.piece.is_sealed():
+		$RotateSealed1Sound.play()
+	else:
+		$Rotate1Sound.play()
 
 
 func _on_PieceManager_rotated_180() -> void:
-	$Rotate0Sound.play()
+	if _piece_manager.piece.is_sealed():
+		$RotateSealed0Sound.play()
+	else:
+		$Rotate0Sound.play()
 
 ## Other events -------------------------------------------------------------------
 
@@ -84,3 +106,11 @@ func _on_PieceManager_lock_started() -> void:
 
 func _on_PieceManager_lock_cancelled() -> void:
 	_play_move_sfx()
+
+
+func _on_PieceManager_finished_spin_move(_piece, _lines_cleared) -> void:
+	$TechMoveSound.play()
+
+
+func _on_PieceManager_finished_squish_move(_piece, _lines_cleared) -> void:
+	$TechMoveSound.play()

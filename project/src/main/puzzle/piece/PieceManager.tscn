@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/main/puzzle/piece/squish-fx.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=2]
@@ -31,6 +31,9 @@
 [ext_resource path="res://src/main/puzzle/piece/piece-squisher.gd" type="Script" id=29]
 [ext_resource path="res://src/main/puzzle/piece/piece-physics.gd" type="Script" id=30]
 [ext_resource path="res://src/main/puzzle/piece/ghost-mover.gd" type="Script" id=31]
+[ext_resource path="res://src/main/puzzle/piece/tech-move-detector.gd" type="Script" id=32]
+[ext_resource path="res://assets/main/puzzle/rotate-sealed.wav" type="AudioStream" id=33]
+[ext_resource path="res://assets/main/puzzle/tech-move.wav" type="AudioStream" id=34]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -69,9 +72,10 @@ margin_right = 688.0
 margin_bottom = 572.0
 rect_clip_content = true
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="TechMoveDetector" type="Node" parent="."]
+script = ExtResource( 32 )
+piece_manager_path = NodePath("..")
 
 [node name="GhostMover" type="Node" parent="."]
 script = ExtResource( 31 )
@@ -162,6 +166,7 @@ input_path = NodePath("../../Input")
 
 [node name="Sfx" type="Node" parent="."]
 script = ExtResource( 13 )
+piece_manager_path = NodePath("..")
 
 [node name="Rotate0Sound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 6 )
@@ -171,6 +176,17 @@ bus = "Sound Bus"
 [node name="Rotate1Sound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 7 )
 volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="RotateSealed0Sound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 33 )
+volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="RotateSealed1Sound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 33 )
+volume_db = -4.0
+pitch_scale = 0.84
 bus = "Sound Bus"
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="Sfx"]
@@ -190,26 +206,44 @@ bus = "Sound Bus"
 stream = ExtResource( 5 )
 bus = "Sound Bus"
 
+[node name="TechMoveSound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 34 )
+volume_db = -6.0
+bus = "Sound Bus"
+
 [connection signal="das_moved_left" from="." to="Sfx" method="_on_PieceManager_das_moved_left"]
 [connection signal="das_moved_right" from="." to="Sfx" method="_on_PieceManager_das_moved_right"]
+[connection signal="dropped" from="." to="TechMoveDetector" method="_on_PieceManager_dropped"]
+[connection signal="finished_spin_move" from="." to="Sfx" method="_on_PieceManager_finished_spin_move"]
+[connection signal="finished_squish_move" from="." to="Sfx" method="_on_PieceManager_finished_squish_move"]
 [connection signal="initial_das_moved_left" from="." to="Sfx" method="_on_PieceManager_initial_das_moved_left"]
 [connection signal="initial_das_moved_right" from="." to="Sfx" method="_on_PieceManager_initial_das_moved_right"]
 [connection signal="initial_rotated_180" from="." to="Sfx" method="_on_PieceManager_initial_rotated_180"]
+[connection signal="initial_rotated_180" from="." to="TechMoveDetector" method="_on_PieceManager_initial_rotated_180"]
 [connection signal="initial_rotated_ccw" from="." to="Sfx" method="_on_PieceManager_initial_rotated_ccw"]
+[connection signal="initial_rotated_ccw" from="." to="TechMoveDetector" method="_on_PieceManager_initial_rotated_ccw"]
 [connection signal="initial_rotated_cw" from="." to="Sfx" method="_on_PieceManager_initial_rotated_cw"]
+[connection signal="initial_rotated_cw" from="." to="TechMoveDetector" method="_on_PieceManager_initial_rotated_cw"]
 [connection signal="lock_cancelled" from="." to="Sfx" method="_on_PieceManager_lock_cancelled"]
 [connection signal="lock_started" from="." to="Sfx" method="_on_PieceManager_lock_started"]
 [connection signal="moved_left" from="." to="Sfx" method="_on_PieceManager_moved_left"]
+[connection signal="moved_left" from="." to="TechMoveDetector" method="_on_PieceManager_moved_left"]
 [connection signal="moved_right" from="." to="Sfx" method="_on_PieceManager_moved_right"]
+[connection signal="moved_right" from="." to="TechMoveDetector" method="_on_PieceManager_moved_right"]
 [connection signal="piece_disturbed" from="." to="Physics/Dropper" method="_on_PieceManager_piece_disturbed"]
 [connection signal="piece_disturbed" from="." to="Physics/Squisher" method="_on_PieceManager_piece_disturbed"]
+[connection signal="piece_spawned" from="." to="TechMoveDetector" method="_on_PieceManager_piece_spawned"]
 [connection signal="playfield_disturbed" from="." to="Physics/Dropper" method="_on_PieceManager_playfield_disturbed"]
 [connection signal="playfield_disturbed" from="." to="Physics/Squisher" method="_on_PieceManager_playfield_disturbed"]
 [connection signal="rotated_180" from="." to="Sfx" method="_on_PieceManager_rotated_180"]
+[connection signal="rotated_180" from="." to="TechMoveDetector" method="_on_PieceManager_rotated_180"]
 [connection signal="rotated_ccw" from="." to="Sfx" method="_on_PieceManager_rotated_ccw"]
+[connection signal="rotated_ccw" from="." to="TechMoveDetector" method="_on_PieceManager_rotated_ccw"]
 [connection signal="rotated_cw" from="." to="Sfx" method="_on_PieceManager_rotated_cw"]
+[connection signal="rotated_cw" from="." to="TechMoveDetector" method="_on_PieceManager_rotated_cw"]
 [connection signal="squish_moved" from="." to="Sfx" method="_on_PieceManager_squish_moved"]
 [connection signal="squish_moved" from="." to="SquishFx" method="_on_PieceManager_squish_moved"]
+[connection signal="squish_moved" from="." to="TechMoveDetector" method="_on_PieceManager_squish_moved"]
 [connection signal="tiles_changed" from="." to="SquishFx/SweatDrops" method="_on_PieceManager_tiles_changed"]
 [connection signal="dropped" from="Physics/Dropper" to="." method="_on_Dropper_dropped"]
 [connection signal="hard_drop_target_pos_changed" from="Physics/Dropper" to="GhostMover" method="_on_Dropper_hard_drop_target_pos_changed"]

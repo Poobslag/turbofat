@@ -51,6 +51,19 @@ func _init(init_type: PieceType, init_cell_blocked_func: FuncRef) -> void:
 	orientation %= type.pos_arr.size()
 
 
+## Returns the center position of the piece.
+##
+## This calculates the center of the smallest rectangle encompassing the piece. It does not care if the piece has more
+## cells on one side. If the piece's dimensions are even, this will return a fractional result.
+func center() -> Vector2:
+	if not get_pos_arr():
+		return Vector2.ZERO
+	var cell_bounds: Rect2 = Rect2(get_pos_arr()[0], Vector2.ZERO)
+	for cell_pos in get_pos_arr():
+		cell_bounds = cell_bounds.expand(cell_pos)
+	return cell_bounds.position + cell_bounds.size / 2.0 + pos
+
+
 ## Returns 'true' if a specified playfield cell is blocked, either
 ## because it lies outside the playfield or is obstructed by a block.
 func is_cell_blocked(cell_pos: Vector2) -> bool:
@@ -169,3 +182,20 @@ func kick_piece(kicks: Array = []) -> void:
 
 func can_floor_kick() -> bool:
 	return floor_kicks < type.max_floor_kicks
+
+
+## Returns 'true' if the piece is blocked from moving in all four directions.
+func is_sealed() -> bool:
+	var sealed := true
+	var pos_arr := get_pos_arr()
+	for dir in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		var dir_sealed := false
+		for cell_pos in pos_arr:
+			if is_cell_blocked(pos + cell_pos + dir):
+				dir_sealed = true
+				break
+		if not dir_sealed:
+			sealed = false
+			break
+	
+	return sealed

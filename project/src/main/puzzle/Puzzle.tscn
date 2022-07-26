@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -31,7 +31,7 @@
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/top-out-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
-[ext_resource path="res://src/main/puzzle/combo-bursts.gd" type="Script" id=32]
+[ext_resource path="res://src/main/puzzle/bursts.gd" type="Script" id=32]
 [ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=34]
 [ext_resource path="res://src/main/puzzle/GoopGlob.tscn" type="PackedScene" id=35]
@@ -76,6 +76,7 @@
 [ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
 [ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
+[ext_resource path="res://src/main/puzzle/TechMoveBurst.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/main/puzzle/puzzle-money-hud.gd" type="Script" id=78]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -547,13 +548,18 @@ autostart = true
 wait_time = 0.5
 one_shot = true
 
-[node name="ComboBursts" type="Node2D" parent="Fg"]
+[node name="Bursts" type="Node2D" parent="Fg"]
 position = Vector2( 364, 28 )
 z_index = 6
 script = ExtResource( 32 )
 piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
 ComboBurstScene = ExtResource( 43 )
+TechMoveBurstScene = ExtResource( 77 )
+
+[node name="Combo" type="Node2D" parent="Fg/Bursts"]
+
+[node name="Tech" type="Node2D" parent="Fg/Bursts"]
 
 [node name="FryingPansUi" parent="Fg" instance=ExtResource( 58 )]
 margin_left = 771.0
@@ -778,8 +784,10 @@ script = ExtResource( 19 )
 [connection signal="hit_playfield" from="Fg/GoopGlobs" to="GoopSfx" method="_on_GoopGlobs_hit_playfield"]
 [connection signal="hit_wall" from="Fg/GoopGlobs" to="Fg/WallGlobViewports" method="_on_GoopGlobs_hit_wall"]
 [connection signal="hit_wall" from="Fg/GoopGlobs" to="GoopSfx" method="_on_GoopGlobs_hit_wall"]
+[connection signal="finished_spin_move" from="Fg/PieceManager" to="Fg/Bursts" method="_on_PieceManager_finished_spin_move"]
+[connection signal="finished_squish_move" from="Fg/PieceManager" to="Fg/Bursts" method="_on_PieceManager_finished_squish_move"]
 [connection signal="squish_moved" from="Fg/PieceManager" to="Fg/GoopGlobs" method="_on_PieceManager_squish_moved"]
-[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/ComboBursts" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/Bursts" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/GoopGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_blocks_prepared"]
