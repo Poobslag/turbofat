@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/puzzle/combo-accents-packed.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/puzzle/modak-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/main/puzzle/combo-burst.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/BurstAccent.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
@@ -38,6 +37,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, -30 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Accent:scale_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "fade"
@@ -49,7 +60,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.4, 1.5 ),
+"times": PoolRealArray( 0, 1.3, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -61,10 +72,22 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 1.4, 1.5 ),
+"times": PoolRealArray( 0, 1, 1.3, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ), Vector2( 0, -5 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Accent:scale_modifier")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.96, 0.96 ), Vector2( 1.04, 1.04 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Gradient" id=3]
@@ -90,30 +113,23 @@ position = Vector2( 40, 40 )
 script = ExtResource( 4 )
 velocity = Vector2( 0, -30 )
 
-[node name="Accent" type="Node2D" parent="."]
+[node name="Accent" parent="." instance=ExtResource( 5 )]
 modulate = Color( 0.483, 0.6, 0.06, 1 )
 scale = Vector2( 0.25, 0.25 )
-script = ExtResource( 1 )
-texture = ExtResource( 2 )
-frame_data = "res://assets/main/puzzle/combo-accents-packed.json"
-rect_size = Vector2( 128, 128 )
-offset = Vector2( -64, -64 )
+base_scale = Vector2( 0.25, 0.25 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -32.0
 margin_top = -30.0
 margin_right = 32.0
 margin_bottom = 34.0
-custom_colors/font_color = Color( 0.846167, 1, 0.29, 1 )
+custom_colors/font_color = Color( 0.847059, 1, 0.290196, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "3x"
 align = 1
 valign = 1
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade"

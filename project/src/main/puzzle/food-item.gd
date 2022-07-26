@@ -90,6 +90,7 @@ func _physics_process(delta: float) -> void:
 	_refresh_scale()
 	_refresh_rotation()
 
+
 ## Jiggles the food briefly.
 func jiggle() -> void:
 	# restart the jiggle animation if the item was already jiggling
