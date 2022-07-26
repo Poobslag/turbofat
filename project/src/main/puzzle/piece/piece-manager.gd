@@ -27,8 +27,9 @@ signal moved_right
 signal rotated_ccw
 signal rotated_cw
 signal rotated_180
-signal soft_dropped
-signal hard_dropped
+signal soft_dropped # emitted when the player presses the soft drop key
+signal hard_dropped # emitted when the player presses the hard drop key
+signal dropped # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 signal squish_moved(piece, old_pos)
 
 ## emitted for piece locks
@@ -284,6 +285,7 @@ func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> vo
 
 func _on_Dropper_hard_dropped() -> void: emit_signal("hard_dropped")
 func _on_Dropper_soft_dropped() -> void: emit_signal("soft_dropped")
+func _on_Dropper_dropped() -> void: emit_signal("dropped")
 
 func _on_Squisher_lock_cancelled() -> void: emit_signal("lock_cancelled")
 func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2) -> void:

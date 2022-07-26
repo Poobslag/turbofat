@@ -91,6 +91,7 @@ func get_pos_arr() -> Array:
 func get_target_pos_arr() -> Array:
 	return type.pos_arr[target_orientation]
 
+
 ## Returns 'true' if the specified position and location is unobstructed, and the piece could fit there. Returns
 ## 'false' if parts of this piece would be out of the playfield or obstructed by blocks.
 ##
@@ -127,6 +128,7 @@ func perform_lock_reset() -> void:
 		return
 	lock = 0
 	lock_resets += 1
+
 
 ## Kicks a rotated piece into a nearby empty space.
 ##

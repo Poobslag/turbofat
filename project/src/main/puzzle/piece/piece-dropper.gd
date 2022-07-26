@@ -4,8 +4,9 @@ extends Node
 ## Emitted when the hard drop destination for the current piece changes. Used for drawing the ghost piece.
 signal hard_drop_target_pos_changed(piece, hard_drop_target_pos)
 
-signal hard_dropped
-signal soft_dropped
+signal soft_dropped # emitted when the player presses the soft drop key
+signal hard_dropped # emitted when the player presses the hard drop key
+signal dropped # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 
 export (NodePath) var input_path: NodePath
 export (NodePath) var piece_mover_path: NodePath
@@ -40,9 +41,12 @@ func apply_hard_drop_input(piece: ActivePiece) -> void:
 	calculate_hard_drop_target(piece)
 	
 	# move and lock piece
+	var pos_changed := piece.pos != hard_drop_target_pos
 	piece.pos = hard_drop_target_pos
 	piece.lock = PieceSpeeds.current_speed.lock_delay
-	emit_signal("hard_dropped")
+	if pos_changed:
+		emit_signal("hard_dropped")
+		emit_signal("dropped")
 	did_hard_drop = true
 
 
@@ -55,20 +59,26 @@ func apply_gravity(piece: ActivePiece) -> void:
 		if input.is_soft_drop_pressed():
 			# soft drop
 			piece.gravity += int(max(PieceSpeeds.DROP_G, PieceSpeeds.current_speed.gravity))
-			emit_signal("soft_dropped")
 		else:
 			piece.gravity += PieceSpeeds.current_speed.gravity
 		
+		var pos_changed := false
 		while piece.gravity >= PieceSpeeds.G:
 			piece.gravity -= PieceSpeeds.G
 			piece.reset_target()
 			piece.target_pos.y = piece.pos.y + 1
 			if piece.can_move_to_target():
+				pos_changed = true
 				piece.move_to_target()
 			else:
 				break
 			
 			piece_mover.attempt_mid_drop_movement(piece)
+		
+		if input.is_soft_drop_pressed() and pos_changed:
+			emit_signal("soft_dropped")
+		if pos_changed:
+			emit_signal("dropped")
 
 
 ## Squish moving pauses gravity for a moment.

@@ -211,6 +211,7 @@ bus = "Sound Bus"
 [connection signal="squish_moved" from="." to="Sfx" method="_on_PieceManager_squish_moved"]
 [connection signal="squish_moved" from="." to="SquishFx" method="_on_PieceManager_squish_moved"]
 [connection signal="tiles_changed" from="." to="SquishFx/SweatDrops" method="_on_PieceManager_tiles_changed"]
+[connection signal="dropped" from="Physics/Dropper" to="." method="_on_Dropper_dropped"]
 [connection signal="hard_drop_target_pos_changed" from="Physics/Dropper" to="GhostMover" method="_on_Dropper_hard_drop_target_pos_changed"]
 [connection signal="hard_dropped" from="Physics/Dropper" to="." method="_on_Dropper_hard_dropped"]
 [connection signal="soft_dropped" from="Physics/Dropper" to="." method="_on_Dropper_soft_dropped"]
