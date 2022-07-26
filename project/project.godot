@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
 "base": "Reference",
+"class": "AsciiPieceAnalyzer",
+"language": "GDScript",
+"path": "res://src/test/puzzle/piece/ascii-piece-analyzer.gd"
+}, {
+"base": "Reference",
 "class": "BlockLevelChunk",
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/block-level-chunk.gd"
@@ -1047,6 +1052,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ActionButton": "",
 "ActivePiece": "",
+"AsciiPieceAnalyzer": "",
 "BlockLevelChunk": "",
 "BlockLevelChunkControl": "",
 "BlocksDuringRules": "",
