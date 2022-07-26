@@ -31,7 +31,7 @@
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/top-out-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
-[ext_resource path="res://src/main/puzzle/combo-counters.gd" type="Script" id=32]
+[ext_resource path="res://src/main/puzzle/combo-bursts.gd" type="Script" id=32]
 [ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=34]
 [ext_resource path="res://src/main/puzzle/GoopGlob.tscn" type="PackedScene" id=35]
@@ -42,7 +42,7 @@
 [ext_resource path="res://src/main/puzzle/WoodBg.tscn" type="PackedScene" id=40]
 [ext_resource path="res://assets/main/puzzle/playfield-walls.png" type="Texture" id=41]
 [ext_resource path="res://assets/main/puzzle/chalkboard.png" type="Texture" id=42]
-[ext_resource path="res://src/main/puzzle/ComboCounter.tscn" type="PackedScene" id=43]
+[ext_resource path="res://src/main/puzzle/ComboBurst.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/main/world/chef/gameover-voice4.wav" type="AudioStream" id=44]
 [ext_resource path="res://assets/main/world/chef/gameover-voice3.wav" type="AudioStream" id=45]
 [ext_resource path="res://assets/main/world/chef/gameover-voice0.wav" type="AudioStream" id=46]
@@ -547,13 +547,13 @@ autostart = true
 wait_time = 0.5
 one_shot = true
 
-[node name="ComboCounters" type="Node2D" parent="Fg"]
+[node name="ComboBursts" type="Node2D" parent="Fg"]
 position = Vector2( 364, 28 )
 z_index = 6
 script = ExtResource( 32 )
 piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
-ComboCounterScene = ExtResource( 43 )
+ComboBurstScene = ExtResource( 43 )
 
 [node name="FryingPansUi" parent="Fg" instance=ExtResource( 58 )]
 margin_left = 771.0
@@ -779,7 +779,7 @@ script = ExtResource( 19 )
 [connection signal="hit_wall" from="Fg/GoopGlobs" to="Fg/WallGlobViewports" method="_on_GoopGlobs_hit_wall"]
 [connection signal="hit_wall" from="Fg/GoopGlobs" to="GoopSfx" method="_on_GoopGlobs_hit_wall"]
 [connection signal="squish_moved" from="Fg/PieceManager" to="Fg/GoopGlobs" method="_on_PieceManager_squish_moved"]
-[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/ComboCounters" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/ComboBursts" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/GoopGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_blocks_prepared"]
