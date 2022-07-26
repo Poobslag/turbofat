@@ -155,9 +155,9 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/level/combo-break-rules.gd"
 }, {
 "base": "Node2D",
-"class": "ComboCounter",
+"class": "ComboBurst",
 "language": "GDScript",
-"path": "res://src/main/puzzle/combo-counter.gd"
+"path": "res://src/main/puzzle/combo-burst.gd"
 }, {
 "base": "Node",
 "class": "ComboTracker",
@@ -1074,7 +1074,7 @@ _global_script_class_icons={
 "CheatCodeDetector": "",
 "CheckpointSong": "",
 "ComboBreakRules": "",
-"ComboCounter": "",
+"ComboBurst": "",
 "ComboTracker": "",
 "Creature": "",
 "CreatureAnimations": "",

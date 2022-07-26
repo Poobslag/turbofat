@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/puzzle/combo-accents-packed.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/puzzle/modak-regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://src/main/puzzle/combo-counter.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/combo-burst.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
@@ -85,7 +85,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 4 )
 
-[node name="ComboCounter" type="Node2D"]
+[node name="ComboBurst" type="Node2D"]
 position = Vector2( 40, 40 )
 script = ExtResource( 4 )
 velocity = Vector2( 0, -30 )

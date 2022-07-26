@@ -3,7 +3,7 @@ extends Node2D
 
 export (NodePath) var piece_manager_path: NodePath
 export (NodePath) var playfield_path: NodePath
-export (PackedScene) var ComboCounterScene: PackedScene
+export (PackedScene) var ComboBurstScene: PackedScene
 
 ## Stores the x position of the previous combo counter to ensure consecutive counters aren't vertically aligned
 var _previous_cell_x := -1
@@ -65,8 +65,8 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 			target_cell.x += Utils.rand_value([-1, 1])
 	_previous_cell_x = target_cell.x
 	
-	var combo_counter: ComboCounter = ComboCounterScene.instance()
-	combo_counter.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
-	combo_counter.position *= _playfield.tile_map.scale
-	combo_counter.combo = PuzzleState.combo
-	add_child(combo_counter)
+	var combo_burst: ComboBurst = ComboBurstScene.instance()
+	combo_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
+	combo_burst.position *= _playfield.tile_map.scale
+	combo_burst.combo = PuzzleState.combo
+	add_child(combo_burst)

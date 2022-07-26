@@ -1,6 +1,6 @@
-class_name ComboCounter
+class_name ComboBurst
 extends Node2D
-## A combo indicator which appears when the player clears a line in puzzle mode.
+## An indicator like '6x' which appears when the player clears multiple lines in succession.
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
@@ -58,22 +58,19 @@ func _refresh_combo() -> void:
 
 func _calculate_colors() -> void:
 	var outline_darkness := 0.2
-	_font_color = Color("4eff49")
 	if combo < COMBO_THRESHOLD_0:
-		_font_color.h = 0.5889 # blue
+		_font_color = Color("4a9fff") # blue
 	elif combo < COMBO_THRESHOLD_1:
-		_font_color.h = 0.4667 # cyan
+		_font_color = Color("4affcf") # cyan
 	elif combo <= COMBO_THRESHOLD_2:
-		_font_color.h = 0.2861 # green
+		_font_color = Color("80ff4a") # green
 	elif combo <= COMBO_THRESHOLD_3:
-		_font_color.h = 0.1250 # yellow
+		_font_color = Color("ffd24a") # yellow
 	elif combo <= COMBO_THRESHOLD_4:
-		_font_color.h = 0.1250 # bright yellow
-		_font_color.s = 0.4444
+		_font_color = Color("ffe38f") # bright yellow
 		outline_darkness = 0.16
 	else:
-		_font_color.h = 0.1250 # near-white
-		_font_color.s = 0.0600
+		_font_color = Color("fffcf0") # near-white
 		outline_darkness = 0.12
 	_accent_color = _font_color
 	_accent_color.s += outline_darkness
