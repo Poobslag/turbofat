@@ -7,7 +7,8 @@ $ "Foley Rubber Glove 1" by Epidemic Sound (Epidemic Sound license, https://cdn.
 $$ "2000 Game SFX Collection" by GameBurp (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Cartoon Voices" by Dawid Moroz, Soundholder Studio (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Cooking Game" by Epic Stock Media (Coniss license, https://sonniss.com/sound-effects-licensing/)
-$$$ "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons, https://creativecommons.org/licenses/by/3.0/)
+$$$ "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons attribution license, https://creativecommons.org/licenses/by/3.0/)
+$$$ "Shuffling cards (riffle) 03.WAV" by VKProduktion at FreeSound.org (Creative Commons universal license, https://creativecommons.org/publicdomain/zero/1.0/)
 $$$ TS-808 emulator by Jonathan Murphy (Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Australia License., http://creativecommons.org/licenses/by-nc-nd/2.5/au/)
 
 Fonts:
@@ -67,6 +68,7 @@ project/assets/main/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\S
 project/assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
 project/assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
 project/assets/main/ui/touch/duck.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Chef_A_03_Cartoon_Voice.wav"
+project/assets/main/ui/transition-blocks.wav Shuffling cards (riffle) 03.WAV by VKProduktion from freesound.org; licensed under creative commons universal license https://creativecommons.org/publicdomain/zero/1.0/
 project/assets/main/world/chef/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
 project/assets/main/world/chef/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
 project/assets/main/world/customer/combo-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
