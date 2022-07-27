@@ -1,7 +1,7 @@
 extends Node
 ## Emits scene transition signals and keeps track of the currently active scene transition.
 
-const SCREEN_FADE_OUT_DURATION := 0.3
+const SCREEN_FADE_OUT_DURATION := 1.2
 const SCREEN_FADE_IN_DURATION := 0.6
 
 ## A scene transition emits these two signals in order as the screen fades out and fades back in
@@ -34,7 +34,7 @@ func push_trail(path: String, skip_transition: bool = false) -> void:
 		
 		Breadcrumb.push_trail(path)
 	else:
-		_fade_out(funcref(Breadcrumb, "push_trail"), [path])
+		fade_out(funcref(Breadcrumb, "push_trail"), [path])
 
 
 ## Navigates back one level in the breadcrumb trail after a scene transition.
@@ -50,7 +50,7 @@ func pop_trail(skip_transition: bool = false) -> void:
 		
 		Breadcrumb.pop_trail()
 	else:
-		_fade_out(funcref(Breadcrumb, "pop_trail"))
+		fade_out(funcref(Breadcrumb, "pop_trail"))
 
 
 ## Stays at the current level in the breadcrumb trail, but replaces the current navigation path after a scene
@@ -70,7 +70,7 @@ func replace_trail(path: String, skip_transition: bool = false) -> void:
 		
 		Breadcrumb.replace_trail(path)
 	else:
-		_fade_out(funcref(Breadcrumb, "replace_trail"), [path])
+		fade_out(funcref(Breadcrumb, "replace_trail"), [path])
 
 
 ## Changes the running scene to the one at the front of the breadcrumb trail after a scene transition.
@@ -84,7 +84,7 @@ func change_scene(skip_transition: bool = false) -> void:
 		
 		Breadcrumb.change_scene()
 	else:
-		_fade_out(funcref(Breadcrumb, "change_scene"), [])
+		fade_out(funcref(Breadcrumb, "change_scene"), [])
 
 
 ## Called when the 'fade out' visual transition ends, triggering a scene transition.
@@ -107,7 +107,7 @@ func end_fade_in() -> void:
 
 
 ## Launches the 'fade out' visual transition.
-func _fade_out(new_breadcrumb_method: FuncRef, new_breadcrumb_arg_array: Array = []) -> void:
+func fade_out(new_breadcrumb_method: FuncRef = null, new_breadcrumb_arg_array: Array = []) -> void:
 	# ignore input to prevent edge-cases where player does weird things during scene transitions
 	get_tree().get_root().set_disable_input(true)
 	

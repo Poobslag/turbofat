@@ -115,18 +115,24 @@ func _on_Bottom_ok_pressed() -> void:
 
 
 func _on_Bottom_quit_pressed() -> void:
-	hide()
+	# keep the menu shown, but unpause the scene tree
+	get_tree().paused = false
+	
 	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
 	else:
+		hide()
 		emit_signal("quit_pressed")
 
 
 func _on_Bottom_other_quit_pressed() -> void:
-	hide()
+	# keep the menu shown, but unpause the scene tree
+	get_tree().paused = false
+	
 	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
 	else:
+		hide()
 		emit_signal("other_quit_pressed")
 
 
