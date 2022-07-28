@@ -7,7 +7,7 @@ signal start_button_pressed
 signal settings_button_pressed
 signal back_button_pressed
 
-onready var _message_label := $MessageLabel
+onready var _puzzle_message: PuzzleMessage = $PuzzleMessage
 onready var _back_button := $Buttons/Back
 onready var _start_button := $Buttons/Start
 onready var _settings_button := $Buttons/Settings
@@ -20,7 +20,6 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	CurrentLevel.connect("best_result_changed", self, "_on_Level_best_result_changed")
-	_message_label.hide()
 	
 	if PlayerData.career.is_career_mode():
 		# they can't go back in career mode
@@ -32,7 +31,7 @@ func _ready() -> void:
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
-	_message_label = $MessageLabel
+	_puzzle_message = $PuzzleMessage
 	_back_button = $Buttons/Back
 	_start_button = $Buttons/Start
 	_settings_button = $Buttons/Settings
@@ -43,13 +42,12 @@ func is_settings_button_visible() -> bool:
 
 
 ## Shows a succinct single-line message, like 'Game Over'
-func show_message(text: String) -> void:
-	_message_label.show()
-	_message_label.text = text
+func show_message(message_type: int, text: String) -> void:
+	_puzzle_message.show_message(message_type, text)
 
 
 func hide_message() -> void:
-	_message_label.hide()
+	_puzzle_message.hide_message()
 
 
 func hide_buttons() -> void:
@@ -95,7 +93,7 @@ func _on_Back_pressed() -> void:
 
 func _on_PuzzleState_game_prepared() -> void:
 	hide_buttons()
-	show_message(tr("Ready?"))
+	show_message(PuzzleMessage.NEUTRAL, tr("Ready?"))
 
 
 func _on_PuzzleState_game_started() -> void:
@@ -108,9 +106,9 @@ func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
 		return
 	
 	if PuzzleState.level_performance.lost:
-		show_message(tr("Regret..."))
+		show_message(PuzzleMessage.BAD, tr("Regret..."))
 	else:
-		show_message(tr("Good!"))
+		show_message(PuzzleMessage.GOOD, tr("Good!"))
 
 
 func _on_PuzzleState_after_level_changed() -> void:
@@ -118,22 +116,27 @@ func _on_PuzzleState_after_level_changed() -> void:
 
 
 func _on_PuzzleState_game_ended() -> void:
-	var message: String
+	var message_type := PuzzleMessage.NEUTRAL
+	var message_text: String
 	match PuzzleState.end_result():
 		Levels.Result.NONE:
 			hide_message()
 		Levels.Result.LOST:
-			message = tr("Game over")
+			message_type = PuzzleMessage.BAD
+			message_text = tr("Game over")
 		Levels.Result.FINISHED:
-			message = tr("Finish!")
+			message_type = PuzzleMessage.NEUTRAL
+			message_text = tr("Finish!")
 		Levels.Result.WON:
-			message = tr("You win!")
-	show_message(message)
+			message_type = PuzzleMessage.GOOD
+			message_text = tr("You win!")
+	if message_text:
+		show_message(message_type, message_text)
 
 
 ## Restores the HUD elements after the player wins or loses.
 func _on_PuzzleState_after_game_ended() -> void:
-	_message_label.hide()
+	_puzzle_message.hide_message()
 	_settings_button.show()
 	_back_button.show()
 	_start_button.show()

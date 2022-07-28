@@ -74,7 +74,7 @@ func scroll_to_new_creature() -> void:
 ## Start a countdown when transitioning between levels. Used during tutorials.
 func start_level_countdown() -> void:
 	$Fg/PieceManager.set_physics_process(false)
-	$Hud/Center/PuzzleMessages.show_message(tr("Ready?"))
+	$Hud/Center/PuzzleMessages.show_message(PuzzleMessage.NEUTRAL, tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
 	yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
 	$Hud/Center/PuzzleMessages.hide_message()
