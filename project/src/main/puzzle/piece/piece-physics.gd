@@ -18,21 +18,25 @@ onready var _states: PieceStates = get_node(piece_states_path)
 ##
 ## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func initially_move_piece(piece: ActivePiece) -> bool:
-	rotator.apply_initial_rotate_input(piece)
+	var rotation_signal: String = rotator.apply_initial_rotate_input(piece)
 	
 	# relocate piece to the top of the playfield
 	var highest_pos := 3
-	for pos_arr_item in piece.get_pos_arr():
+	for pos_arr_item in piece.get_target_pos_arr():
 		if pos_arr_item.y < highest_pos:
 			highest_pos = pos_arr_item.y
 	piece.pos.y -= highest_pos
 	
-	mover.apply_initial_move_input(piece)
+	var movement_signal: String = mover.apply_initial_move_input(piece)
 	
 	var success := true
 	if not piece.can_move_to_target():
 		PuzzleState.top_out()
 		success = false
+	else:
+		piece.move_to_target()
+		rotator.emit_initial_rotate_signal(piece, rotation_signal)
+		mover.emit_initial_move_signal(piece, movement_signal)
 	return success
 
 
