@@ -43,7 +43,8 @@ const SPAWN_RIGHT := [
 		Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
 	]
 
-func apply_initial_move_input(piece: ActivePiece) -> void:
+func apply_initial_move_input(piece: ActivePiece) -> String:
+	var movement_signal: String = ""
 	var initial_das_dir := 0
 	if input.is_left_das_active():
 		input.set_left_input_as_handled()
@@ -55,24 +56,27 @@ func apply_initial_move_input(piece: ActivePiece) -> void:
 	match initial_das_dir:
 		-1:
 			# player is holding left; start piece on the left side
-			var old_pos := piece.pos
-			piece.reset_target()
+			var old_pos := piece.target_pos
 			piece.kick_piece(SPAWN_LEFT)
-			piece.move_to_target()
-			if old_pos != piece.pos:
-				emit_signal("initial_das_moved_left")
+			if old_pos != piece.target_pos:
+				movement_signal = "initial_das_moved_left"
 		0:
-			piece.reset_target()
 			piece.kick_piece(SPAWN_CENTER)
-			piece.move_to_target()
 		1:
 			# player is holding right; start piece on the right side
-			var old_pos := piece.pos
-			piece.reset_target()
+			var old_pos := piece.target_pos
 			piece.kick_piece(SPAWN_RIGHT)
-			piece.move_to_target()
-			if old_pos != piece.pos:
-				emit_signal("initial_das_moved_right")
+			if old_pos != piece.target_pos:
+				movement_signal = "initial_das_moved_right"
+	
+	return movement_signal
+
+
+func emit_initial_move_signal(piece: ActivePiece, movement_signal: String) -> void:
+	if not movement_signal:
+		return
+	
+	emit_signal(movement_signal)
 
 
 func apply_move_input(piece: ActivePiece) -> void:
