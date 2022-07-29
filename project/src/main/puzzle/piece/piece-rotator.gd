@@ -25,44 +25,42 @@ func apply_initial_rotate_input(piece: ActivePiece) -> String:
 	
 	var rotation_signal: String
 	
-	if input.is_cw_pressed() and input.is_ccw_pressed():
+	if CurrentLevel.settings.other.suppress_piece_initial_rotation \
+			== OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS:
+		# suppress signals
+		pass
+	elif input.is_cw_pressed() and input.is_ccw_pressed():
+		input.set_cw_input_as_handled()
+		input.set_ccw_input_as_handled()
 		rotation_signal = "initial_rotated_180"
 	elif input.is_cw_pressed():
+		input.set_cw_input_as_handled()
 		rotation_signal = "initial_rotated_cw"
 	elif input.is_ccw_pressed():
+		input.set_ccw_input_as_handled()
 		rotation_signal = "initial_rotated_ccw"
 	
-	match rotation_signal:
-		"initial_rotated_ccw":
-			input.set_ccw_input_as_handled()
-			piece.target_orientation = piece.get_ccw_orientation()
-		"initial_rotated_cw":
-			input.set_cw_input_as_handled()
-			piece.target_orientation = piece.get_cw_orientation()
-		"initial_rotated_180":
-			input.set_cw_input_as_handled()
-			input.set_ccw_input_as_handled()
-			piece.target_orientation = piece.get_flip_orientation()
+	if CurrentLevel.settings.other.suppress_piece_initial_rotation \
+			== OtherRules.SuppressPieceRotation.ROTATION:
+		# suppress rotation
+		pass
+	else:
+		match rotation_signal:
+			"initial_rotated_ccw":
+				piece.target_orientation = piece.get_ccw_orientation()
+			"initial_rotated_cw":
+				piece.target_orientation = piece.get_cw_orientation()
+			"initial_rotated_180":
+				piece.target_orientation = piece.get_flip_orientation()
 	
 	return rotation_signal
 
 
-func emit_initial_rotate_signal(piece: ActivePiece, rotation_signal: String) -> void:
+func emit_initial_rotate_signal(_piece: ActivePiece, rotation_signal: String) -> void:
 	if not rotation_signal:
 		return
-
-	match CurrentLevel.settings.other.suppress_piece_initial_rotation:
-		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS:
-			# 'suppress piece initial rotation and signals' is enabled; do nothing
-			pass
-		OtherRules.SuppressPieceRotation.ROTATION:
-			# 'suppress piece initial rotation' is enabled; emit rotation signals but don't rotate
-			emit_signal(rotation_signal)
-		_:
-			# rotate the piece and emit rotation signals
-			piece.move_to_target()
-			emit_signal(rotation_signal)
 	
+	emit_signal(rotation_signal)
 	match rotation_signal:
 		"initial_rotated_ccw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_CCW)
 		"initial_rotated_cw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_CW)
