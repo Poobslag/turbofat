@@ -68,4 +68,4 @@ func _on_SaveButton_pressed() -> void:
 ## Updates the player character and writes it to their save file.
 func _on_SaveConfirmation_confirmed() -> void:
 	PlayerData.creature_library.player_def = _creature_editor.center_creature.creature_def
-	PlayerSave.save_player_data()
+	PlayerSave.schedule_save()

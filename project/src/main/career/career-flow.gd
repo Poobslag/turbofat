@@ -83,7 +83,7 @@ func _preapply_failure_penalties() -> void:
 	var temp_hours_passed := career_data.hours_passed
 	career_data.advance_clock(0, false)
 	career_data.skipped_previous_level = true
-	PlayerSave.save_player_data()
+	PlayerSave.schedule_save()
 	career_data.distance_earned = temp_distance_earned
 	career_data.distance_travelled = temp_distance_travelled
 	career_data.hours_passed = temp_hours_passed
