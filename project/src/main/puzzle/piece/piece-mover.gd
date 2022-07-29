@@ -2,7 +2,9 @@ class_name PieceMover
 extends Node
 ## Handles horizontal movement for the player's active piece.
 
+# warning-ignore:unused_signal
 signal initial_das_moved_left
+# warning-ignore:unused_signal
 signal initial_das_moved_right
 # warning-ignore:unused_signal
 signal das_moved_left
@@ -72,7 +74,7 @@ func apply_initial_move_input(piece: ActivePiece) -> String:
 	return movement_signal
 
 
-func emit_initial_move_signal(piece: ActivePiece, movement_signal: String) -> void:
+func emit_initial_move_signal(_piece: ActivePiece, movement_signal: String) -> void:
 	if not movement_signal:
 		return
 	
