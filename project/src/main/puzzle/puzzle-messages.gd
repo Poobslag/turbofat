@@ -7,8 +7,8 @@ signal start_button_pressed
 signal settings_button_pressed
 signal back_button_pressed
 
-onready var _puzzle_message: PuzzleMessage = $PuzzleMessage
 onready var _back_button := $Buttons/Back
+onready var _puzzle_message: PuzzleMessage = $PuzzleMessage
 onready var _start_button := $Buttons/Start
 onready var _settings_button := $Buttons/Settings
 
