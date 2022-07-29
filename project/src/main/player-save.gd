@@ -26,9 +26,14 @@ var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
 ## Provides backwards compatibility with older save formats
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
+## 'true' if player data will be saved during the next scene transition
+var _save_scheduled := false
+
 func _ready() -> void:
 	rolling_backups.data_filename = data_filename
 	rolling_backups.legacy_filename = legacy_filename
+	
+	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
 
 
 func get_corrupt_filenames() -> Array:
@@ -47,6 +52,14 @@ func set_data_filename(new_data_filename: String) -> void:
 func set_legacy_filename(new_legacy_filename: String) -> void:
 	legacy_filename = new_legacy_filename
 	rolling_backups.legacy_filename = legacy_filename
+
+
+## Schedules player data to be saved later.
+##
+## Serializing the player's in-memory data into a large JSON file takes about 50 milliseconds or longer. To prevent
+## stuttering or frame drops, we do this during scene transitions.
+func schedule_save() -> void:
+	_save_scheduled = true
 
 
 ## Writes the player's in-memory data to a save file.
@@ -216,3 +229,9 @@ func _load_line(type: String, key: String, json_value) -> void:
 			PlayerData.practice.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)
+
+
+func _on_Breadcrumb_before_scene_changed() -> void:
+	if _save_scheduled:
+		save_player_data()
+		_save_scheduled = false

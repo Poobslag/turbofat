@@ -14,7 +14,7 @@ func _ready() -> void:
 	_refresh_mood()
 	
 	PlayerData.career.advance_calendar()
-	PlayerSave.save_player_data()
+	PlayerSave.schedule_save()
 	
 	_button.grab_focus()
 

@@ -12,7 +12,6 @@ func _ready() -> void:
 	
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	$Fg/Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/PieceManager.connect(
@@ -247,28 +246,23 @@ func _on_PuzzleState_game_ended() -> void:
 	if not CurrentLevel.level_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
-	
+
 	_settings_menu.quit_type = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.level_history.add_result(CurrentLevel.level_id, rank_result)
 	PlayerData.level_history.prune(CurrentLevel.level_id)
 	PlayerData.emit_signal("level_history_changed")
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
-	
+
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 		_update_career_data(rank_result)
-	
+
 	if not PuzzleState.level_performance.lost and _overall_rank(rank_result) < 24: $ApplauseSound.play()
-	
+
 	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
 	CurrentLevel.attempt_count += 1
-
-
-## Wait until after the game ends to save the player's data.
-##
-## This makes the stutter from writing to disk less noticable.
-func _on_PuzzleState_after_game_ended() -> void:
-	PlayerSave.save_player_data()
+	
+	PlayerSave.schedule_save()
 
 
 ## Briefly pause during level transitions.
