@@ -108,7 +108,13 @@ func _assign_label_text(message_type: int, text: String) -> void:
 ##
 ## Good messages get more uplifting, bubbly accents. Wide messages get wider accents.
 func _assign_accent_texture(message_type: int, text: String) -> void:
-	var wide_message: bool = _label.get("custom_fonts/normal_font").get_string_size(text).x > 200
+	# check if any lines is more than 200 pixels wide
+	var wide_message: bool = false
+	for line in text.split("\n"):
+		if _label.get("custom_fonts/normal_font").get_string_size(line).x > 200:
+			wide_message = true
+			break
+	
 	match message_type:
 		GOOD:
 			_accent.texture = _word_accent_good_wide if wide_message else _word_accent_good
