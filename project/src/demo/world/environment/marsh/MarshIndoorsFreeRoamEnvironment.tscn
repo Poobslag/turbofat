@@ -632,7 +632,6 @@ target_properties = {
 "elevation": 0.0,
 "orientation": 1
 }
-spawn_if = "not level_finished marsh/hello_everyone"
 
 [node name="Terpion" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 349, 323 )
@@ -643,7 +642,6 @@ target_properties = {
 "elevation": 150.0,
 "orientation": 0
 }
-spawn_if = "level_finished marsh/pulling_for_everyone"
 max_fatness = 4.0
 
 [node name="Pandon" parent="Obstacles" instance=ExtResource( 2 )]
@@ -656,7 +654,6 @@ target_properties = {
 "elevation": 150.0,
 "orientation": 1
 }
-spawn_if = "level_finished marsh/pulling_for_everyone"
 max_fatness = 4.0
 
 [node name="Nictor" parent="Obstacles" instance=ExtResource( 2 )]
@@ -668,7 +665,6 @@ target_properties = {
 "elevation": 150.0,
 "orientation": 0
 }
-spawn_if = "level_finished marsh/lets_all_get_merry"
 max_fatness = 3.0
 
 [node name="Beats" parent="Obstacles" instance=ExtResource( 2 )]
@@ -681,7 +677,6 @@ target_properties = {
 "elevation": 150.0,
 "orientation": 1
 }
-spawn_if = "level_finished marsh/goodbye_everyone"
 max_fatness = 4.0
 
 [node name="WoodPillar" parent="Obstacles" instance=ExtResource( 6 )]

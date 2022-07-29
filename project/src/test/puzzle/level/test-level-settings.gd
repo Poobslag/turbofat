@@ -56,15 +56,15 @@ func test_load_tiles() -> void:
 func test_path_from_level_key() -> void:
 	assert_eq(LevelSettings.path_from_level_key("boatricia1"),
 			"res://assets/main/puzzle/levels/boatricia1.json")
-	assert_eq(LevelSettings.path_from_level_key("marsh/goodbye_bones"),
-			"res://assets/main/puzzle/levels/marsh/goodbye-bones.json")
+	assert_eq(LevelSettings.path_from_level_key("career/its_tee_time"),
+			"res://assets/main/puzzle/levels/career/its-tee-time.json")
 
 
 func test_level_key_from_path_resources() -> void:
 	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/boatricia1.json"),
 			"boatricia1")
-	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/marsh/goodbye_bones.json"),
-			"marsh/goodbye_bones")
+	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/career/its-tee-time.json"),
+			"career/its_tee_time")
 
 
 func test_level_key_from_path_files() -> void:

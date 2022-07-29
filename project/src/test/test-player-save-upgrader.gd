@@ -82,18 +82,9 @@ func test_1b3c() -> void:
 	assert_eq(history_marathon.score, 5115)
 
 
-func test_245b() -> void:
-	load_legacy_player_data("turbofat-245b.json")
-	
-	# some levels were made much harder/different, and their scores should be invalidated
-	assert_false(PlayerData.level_history.level_names().has("marsh/hello_everyone"))
-	assert_false(PlayerData.level_history.level_names().has("marsh/hello_skins"))
-	assert_false(PlayerData.level_history.level_names().has("marsh/pulling_for_skins"))
-	assert_false(PlayerData.level_history.level_names().has("marsh/goodbye_skins"))
-
-
-# Note: There is no test for save data version 24cc. The updater performs some chat history renames, but these chat
-# items are nonexistent in the newest version of the game because of the removal of free roam mode
+# Note: There is no test for save data version 245b or 24cc. The updater performs some chat history/level history
+# tweaks, but these chat items and levels are nonexistent in the newest version of the game because of the removal of
+# free roam mode
 
 
 func test_2743() -> void:
