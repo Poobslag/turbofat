@@ -220,3 +220,11 @@ func _on_RestaurantPuzzleScene_current_creature_index_changed(_value: int) -> vo
 
 func _on_Customer_dna_loaded(customer: Creature) -> void:
 	_hello_timer.maybe_play_hello_voice(customer)
+
+
+func _on_Playfield_all_lines_cleared() -> void:
+	if MilestoneManager.is_met(CurrentLevel.settings.finish_condition):
+		# avoid conflicting chef moods at the end of a level
+		return
+	
+	get_chef().play_mood(Creatures.Mood.LAUGH1)

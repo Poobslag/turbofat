@@ -51,6 +51,9 @@ onready var _accent := $Accent
 ## animates the text popping in/out
 onready var _animation_player := $AnimationPlayer
 
+## The raw message text currently shown on the label. Empty if the label is invisible or turning invisible.
+var shown_message_text := ""
+
 func _ready() -> void:
 	_text_holder.visible = false
 
@@ -62,6 +65,8 @@ func _ready() -> void:
 ##
 ## 	'text': The message text.
 func show_message(message_type: int, text: String) -> void:
+	shown_message_text = text
+	
 	_assign_label_text(message_type, text)
 	_assign_accent_texture(message_type, text)
 	_assign_boundaries(message_type, text)
@@ -73,6 +78,8 @@ func show_message(message_type: int, text: String) -> void:
 
 ## Hides the message, popping it out with an animation.
 func hide_message() -> void:
+	shown_message_text = ""
+	
 	if _text_holder.visible:
 		_animation_player.stop()
 		_animation_player.play("pop-out")

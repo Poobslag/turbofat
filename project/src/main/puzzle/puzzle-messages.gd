@@ -7,7 +7,10 @@ signal start_button_pressed
 signal settings_button_pressed
 signal back_button_pressed
 
+var all_clear_message_text := tr("All\nClear!")
+
 onready var _back_button := $Buttons/Back
+onready var _hide_message_timer := $HideMessageTimer
 onready var _puzzle_message: PuzzleMessage = $PuzzleMessage
 onready var _start_button := $Buttons/Start
 onready var _settings_button := $Buttons/Settings
@@ -16,6 +19,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
+	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
@@ -74,6 +78,12 @@ func _refresh_start_button() -> void:
 		match CurrentLevel.attempt_count:
 			0: _start_button.text = tr("Start")
 			_: _start_button.text = tr("Retry")
+
+
+func _hide_all_clear_message() -> void:
+	if _puzzle_message.shown_message_text == all_clear_message_text:
+		hide_message()
+		_hide_message_timer.stop()
 
 
 func _on_Start_pressed() -> void:
@@ -182,3 +192,28 @@ func _on_Level_best_result_changed() -> void:
 			_back_button.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
 		_:
 			_back_button.text = tr("Back")
+
+
+func _on_Playfield_all_lines_cleared() -> void:
+	if MilestoneManager.is_met(CurrentLevel.settings.finish_condition):
+		# avoid showing conflicting messages
+		return
+	
+	# show an an all clear message
+	show_message(PuzzleMessage.GOOD, all_clear_message_text)
+	_hide_message_timer.start()
+
+
+## We hide the all clear message after a few seconds.
+##
+## The all clear message can also be manually hidden by placing a piece.
+func _on_HideMessageTimer_timeout() -> void:
+	_hide_all_clear_message()
+
+
+## We hide the all clear message when the player places a piece.
+##
+## The all clear message is also automatically hidden after a few seconds.
+func _on_PuzzleState_before_piece_written() -> void:
+	if not _hide_message_timer.is_stopped():
+		_hide_all_clear_message()

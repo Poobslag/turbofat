@@ -787,6 +787,8 @@ script = ExtResource( 19 )
 [connection signal="finished_spin_move" from="Fg/PieceManager" to="Fg/Bursts" method="_on_PieceManager_finished_spin_move"]
 [connection signal="finished_squish_move" from="Fg/PieceManager" to="Fg/Bursts" method="_on_PieceManager_finished_squish_move"]
 [connection signal="squish_moved" from="Fg/PieceManager" to="Fg/GoopGlobs" method="_on_PieceManager_squish_moved"]
+[connection signal="all_lines_cleared" from="Fg/Playfield" to="Fg/RestaurantView" method="_on_Playfield_all_lines_cleared"]
+[connection signal="all_lines_cleared" from="Fg/Playfield" to="Hud/Center/PuzzleMessages" method="_on_Playfield_all_lines_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/Bursts" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/GoopGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_before_line_cleared"]

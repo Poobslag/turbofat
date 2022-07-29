@@ -3,6 +3,9 @@ extends Control
 ## Stores information about the game playfield: writing pieces to the playfield, calculating whether a line was cleared
 ## or whether a box was built, pausing and playing sound effects
 
+## emitted after a 'line clear' if the player cleared the final line.
+signal all_lines_cleared
+
 ## emitted when a new box is built
 signal box_built(rect, box_type)
 
@@ -232,3 +235,7 @@ func _on_Pickups_food_spawned(cell: Vector2, remaining_food: int, food_type: int
 
 func _on_PuzzleState_after_piece_written() -> void:
 	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_PIECE_WRITTEN)
+
+
+func _on_LineClearer_all_lines_cleared() -> void:
+	emit_signal("all_lines_cleared")

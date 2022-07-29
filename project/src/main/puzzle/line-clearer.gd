@@ -4,6 +4,9 @@ extends Node
 ##
 ## Lines are cleared when the player completes rows, tops out or completes a level.
 
+## emitted after a 'line clear' if the player cleared the final line.
+signal all_lines_cleared
+
 ## emitted shortly before a set of lines are cleared
 signal line_clears_scheduled(ys)
 
@@ -104,6 +107,10 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	emit_signal("before_line_cleared", y, total_lines, remaining_lines, box_ints)
 	_erase_line(y, total_lines, remaining_lines)
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
+	
+	# All lines are cleared at the end of a level but this shouldn't trigger an 'all clear'.
+	if not PuzzleState.finish_triggered and not _tile_map.get_used_cells():
+		emit_signal("all_lines_cleared")
 
 
 ## Schedules any full rows to be cleared later.
