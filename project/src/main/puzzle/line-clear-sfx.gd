@@ -43,6 +43,7 @@ onready var _combo_endless_sounds := [
 		preload("res://assets/main/puzzle/combo-e11.wav"),
 	]
 
+onready var _all_clear_sound := $AllClearSound
 onready var _clear_cake_piece_sound := $ClearCakePieceSound
 onready var _clear_snack_piece_sound := $ClearSnackPieceSound
 onready var _combo_sound := $ComboSound
@@ -99,3 +100,11 @@ func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines
 
 func _on_Playfield_line_erased(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	_play_thump_sound(y, total_lines, remaining_lines, box_ints)
+
+
+func _on_Playfield_all_lines_cleared() -> void:
+	if MilestoneManager.is_met(CurrentLevel.settings.finish_condition):
+		# message is not shown at the end of a level
+		return
+	
+	_all_clear_sound.play()

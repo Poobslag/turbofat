@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://src/main/puzzle/pickups.gd" type="Script" id=27]
 [ext_resource path="res://assets/main/puzzle/pickup.wav" type="AudioStream" id=28]
 [ext_resource path="res://src/main/puzzle/line-filler.gd" type="Script" id=29]
+[ext_resource path="res://assets/main/puzzle/tech-move.wav" type="AudioStream" id=30]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
@@ -347,6 +348,11 @@ bus = "Sound Bus"
 stream = ExtResource( 14 )
 bus = "Sound Bus"
 
+[node name="AllClearSound" type="AudioStreamPlayer" parent="LineClearSfx"]
+stream = ExtResource( 30 )
+volume_db = -6.0
+bus = "Sound Bus"
+
 [node name="LineInserter" type="Node" parent="."]
 script = ExtResource( 25 )
 tile_map_path = NodePath("../TileMapClip/TileMap")
@@ -388,6 +394,7 @@ bus = "Sound Bus"
 wait_time = 0.3
 one_shot = true
 
+[connection signal="all_lines_cleared" from="." to="LineClearSfx" method="_on_Playfield_all_lines_cleared"]
 [connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
@@ -409,6 +416,7 @@ one_shot = true
 [connection signal="box_built" from="BoxBuilder" to="LineClearer" method="_on_BoxBuilder_box_built"]
 [connection signal="after_lines_deleted" from="LineClearer" to="." method="_on_LineClearer_after_lines_deleted"]
 [connection signal="after_lines_deleted" from="LineClearer" to="LineFiller" method="_on_LineClearer_after_lines_deleted"]
+[connection signal="all_lines_cleared" from="LineClearer" to="." method="_on_LineClearer_all_lines_cleared"]
 [connection signal="before_line_cleared" from="LineClearer" to="." method="_on_LineClearer_before_line_cleared"]
 [connection signal="line_cleared" from="LineClearer" to="." method="_on_LineClearer_line_cleared"]
 [connection signal="line_clears_scheduled" from="LineClearer" to="." method="_on_LineClearer_line_clears_scheduled"]
