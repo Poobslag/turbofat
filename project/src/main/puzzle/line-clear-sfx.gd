@@ -43,8 +43,10 @@ onready var _combo_endless_sounds := [
 		preload("res://assets/main/puzzle/combo-e11.wav"),
 	]
 
+onready var _clear_cake_piece_sound := $ClearCakePieceSound
+onready var _clear_snack_piece_sound := $ClearSnackPieceSound
+onready var _combo_sound := $ComboSound
 onready var _line_erase_sounds := [$LineEraseSound1, $LineEraseSound2, $LineEraseSound3]
-
 onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSound3]
 
 func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
@@ -73,16 +75,16 @@ func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_i
 	else:
 		sound = _combo_endless_sounds[(PuzzleState.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
 	if sound:
-		$ComboSound.stream = sound
-		$ComboSound.play()
+		_combo_sound.stream = sound
+		_combo_sound.play()
 
 
 func _play_box_sound(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	var sound: AudioStreamPlayer
 	if PuzzleTileMap.has_cake_box(box_ints):
-		sound = $ClearCakePieceSound
+		sound = _clear_cake_piece_sound
 	elif not box_ints.empty():
-		sound = $ClearSnackPieceSound
+		sound = _clear_snack_piece_sound
 	if sound: sound.play()
 
 

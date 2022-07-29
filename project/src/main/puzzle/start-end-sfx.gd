@@ -1,7 +1,9 @@
 extends Node
 ## Plays sound effects at the start and end of a puzzle.
 
+onready var _go_sound := $GoSound
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
+onready var _ready_sound := $ReadySound
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -12,11 +14,11 @@ func _ready() -> void:
 
 
 func play_ready_sound() -> void:
-	$ReadySound.play()
+	_ready_sound.play()
 
 
 func play_go_sound() -> void:
-	$GoSound.play()
+	_go_sound.play()
 	Utils.rand_value(_go_voices).play()
 
 

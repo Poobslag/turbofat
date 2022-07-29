@@ -71,6 +71,13 @@ func show_message(message_type: int, text: String) -> void:
 	_animation_player.play("pop-in")
 
 
+## Hides the message, popping it out with an animation.
+func hide_message() -> void:
+	if _text_holder.visible:
+		_animation_player.stop()
+		_animation_player.play("pop-out")
+
+
 ## Decorates the specified text in bbcode and assigns it to the label.
 func _assign_label_text(message_type: int, text: String) -> void:
 	var bbcode_text := text
@@ -132,10 +139,3 @@ func _assign_colors(message_type: int, _text: String) -> void:
 	# the 'modulate' property is used by the pop in/pop out animations to make the accent transparent, so we use the
 	# self_modulate property to assign a color
 	_accent.self_modulate = OUTLINE_COLOR_BY_TYPE[message_type]
-
-
-## Hides the message, popping it out with an animation.
-func hide_message() -> void:
-	if _text_holder.visible:
-		_animation_player.stop()
-		_animation_player.play("pop-out")
