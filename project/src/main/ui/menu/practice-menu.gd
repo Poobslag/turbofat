@@ -11,10 +11,11 @@ var _speed_matrix := [
 	["F0", "F1", "FA", "FB", "FC", "FD", "FE", "FF", "FFF"], # 67-134 ppm
 ]
 
-export (NodePath) var _speed_selector_path: NodePath
 export (NodePath) var _high_scores_path: NodePath
 export (NodePath) var _level_button_path: NodePath
 export (NodePath) var _level_description_label_path: NodePath
+export (NodePath) var _speed_selector_path: NodePath
+export (NodePath) var _start_button_path: NodePath
 
 ## A CareerRegion or OtherRegion instance for the currently selected region
 var _region: Object
@@ -25,10 +26,11 @@ var _level_settings: LevelSettings = LevelSettings.new()
 ## The currently selected piece speed
 var _piece_speed: String
 
-onready var _speed_selector: PracticeSpeedSelector = get_node(_speed_selector_path)
 onready var _high_scores: Panel = get_node(_high_scores_path)
 onready var _level_button: Button = get_node(_level_button_path)
 onready var _level_description_label: Label = get_node(_level_description_label_path)
+onready var _speed_selector: PracticeSpeedSelector = get_node(_speed_selector_path)
+onready var _start_button: Button = get_node(_start_button_path)
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -44,7 +46,7 @@ func _ready() -> void:
 	if PlayerData.practice.piece_speed:
 		_speed_selector.set_selected_speed(PlayerData.practice.piece_speed)
 	
-	_level_button.grab_focus()
+	_start_button.grab_focus()
 
 
 func _exit_tree() -> void:

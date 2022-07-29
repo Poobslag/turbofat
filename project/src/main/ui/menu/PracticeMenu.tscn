@@ -92,10 +92,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 33 )
-_speed_selector_path = NodePath("MainMenu/VBoxContainer/Speed")
 _high_scores_path = NodePath("MainMenu/VBoxContainer/HighScores")
 _level_button_path = NodePath("MainMenu/VBoxContainer/Level/ButtonHolder/Button")
 _level_description_label_path = NodePath("MainMenu/VBoxContainer/Level/Desc")
+_speed_selector_path = NodePath("MainMenu/VBoxContainer/Speed")
+_start_button_path = NodePath("MainMenu/VBoxContainer/System/Start")
 
 [node name="Wallpaper" parent="." instance=ExtResource( 11 )]
 
