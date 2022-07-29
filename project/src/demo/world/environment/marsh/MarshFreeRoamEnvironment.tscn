@@ -154,7 +154,6 @@ target_properties = {
 "elevation": 0.0,
 "orientation": 0
 }
-spawn_if = "not level_finished marsh/goodbye_everyone"
 
 [node name="Phthalo" parent="Obstacles" instance=ExtResource( 54 )]
 position = Vector2( 825.609, 1106.09 )
@@ -171,7 +170,6 @@ target_properties = {
 "elevation": 80.0,
 "orientation": 0
 }
-spawn_if = "not level_finished marsh/lets_all_get_merry"
 
 [node name="MarshTree1" parent="Obstacles" instance=ExtResource( 38 )]
 position = Vector2( 908.558, 902.497 )
@@ -215,7 +213,6 @@ target_properties = {
 "occupied_texture": ExtResource( 16 ),
 "unoccupied_texture": ExtResource( 15 )
 }
-spawn_if = "not level_finished marsh/goodbye_everyone"
 
 [node name="ButtercupStool2" parent="Obstacles" instance=ExtResource( 41 )]
 position = Vector2( 561.509, 1582.36 )
@@ -223,26 +220,14 @@ target_properties = {
 "occupied_texture": ExtResource( 17 ),
 "unoccupied_texture": ExtResource( 22 )
 }
-spawn_if = "not level_finished marsh/goodbye_everyone"
 
 [node name="ButtercupTable1" parent="Obstacles" instance=ExtResource( 42 )]
 position = Vector2( 449.589, 1635.08 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/goodbye_everyone"
 
 [node name="ButtercupSign" parent="Obstacles" instance=ExtResource( 28 )]
 position = Vector2( 596.167, 1293.78 )
-
-[node name="ForLeaseSign" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 601.101, 1318.58 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 13 )
-offset = Vector2( 0, -80 )
-TargetScene = ExtResource( 49 )
-target_properties = {
-}
-spawn_if = "level_finished marsh/goodbye_everyone"
 
 [node name="MarshHouse" parent="Obstacles" instance=ExtResource( 32 )]
 position = Vector2( 290.833, 661.52 )
@@ -282,97 +267,81 @@ position = Vector2( 583.168, 1297.78 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal1" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 148.917, 1575.15 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal2" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 577.392, 1088.6 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal3" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 799.533, 1542.64 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal4" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( -37.5356, 1316.09 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal5" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 578.976, 1639.99 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal6" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 749.714, 1234.5 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="ButtercupCrystal7" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 178.464, 1418.09 )
 target_properties = {
 }
-spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="TurboFatCrystal1" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1975.49, 874.757 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/pulling_for_shirts"
 
 [node name="TurboFatCrystal2" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1827.16, 996.117 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/pulling_for_bones"
 
 [node name="TurboFatCrystal3" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1756.54, 1036.03 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/goodbye_shirts"
 
 [node name="TurboFatCrystal4" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1780.98, 1216.18 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/pulling_for_everyone"
 
 [node name="TurboFatCrystal5" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 941.954, 847.977 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/goodbye_bones"
 
 [node name="TurboFatCrystal6" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1206.64, 682.821 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/pulling_for_skins"
 
 [node name="TurboFatCrystal7" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1499.38, 1292.35 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/lets_get_merry"
 
 [node name="TurboFatCrystal8" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1238.62, 921.227 )
 target_properties = {
 }
-spawn_if = "level_finished marsh/goodbye_skins"
 
 [node name="Spawns" type="Node2D" parent="."]
 

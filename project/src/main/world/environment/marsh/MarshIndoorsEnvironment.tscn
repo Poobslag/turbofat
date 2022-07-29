@@ -624,66 +624,6 @@ dna = {
 }
 elevation = 150.0
 
-[node name="Richie" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 490.501, 119.061 )
-flip_h = true
-target_properties = {
-"creature_id": "richie",
-"elevation": 0.0,
-"orientation": 1
-}
-spawn_if = "not level_finished marsh/hello_everyone"
-
-[node name="Terpion" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 349, 323 )
-offset = Vector2( 0, -140 )
-stool_path = NodePath("../Stool4")
-target_properties = {
-"creature_id": "terpion",
-"elevation": 150.0,
-"orientation": 0
-}
-spawn_if = "level_finished marsh/pulling_for_everyone"
-max_fatness = 4.0
-
-[node name="Pandon" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 525, 323 )
-offset = Vector2( 0, -140 )
-flip_h = true
-stool_path = NodePath("../Stool3")
-target_properties = {
-"creature_id": "pandon",
-"elevation": 150.0,
-"orientation": 1
-}
-spawn_if = "level_finished marsh/pulling_for_everyone"
-max_fatness = 4.0
-
-[node name="Nictor" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 1313.39, 220 )
-offset = Vector2( 0, -140 )
-stool_path = NodePath("../Stool10")
-target_properties = {
-"creature_id": "nictor",
-"elevation": 150.0,
-"orientation": 0
-}
-spawn_if = "level_finished marsh/lets_all_get_merry"
-max_fatness = 3.0
-
-[node name="Beats" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 768, 36 )
-offset = Vector2( 0, -140 )
-flip_h = true
-stool_path = NodePath("../Stool1")
-target_properties = {
-"creature_id": "beats",
-"elevation": 150.0,
-"orientation": 1
-}
-spawn_if = "level_finished marsh/goodbye_everyone"
-max_fatness = 4.0
-
 [node name="WoodPillar" parent="Obstacles" instance=ExtResource( 32 )]
 position = Vector2( 498, 9 )
 
