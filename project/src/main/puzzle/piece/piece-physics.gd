@@ -18,6 +18,7 @@ onready var _states: PieceStates = get_node(piece_states_path)
 ##
 ## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func initially_move_piece(piece: ActivePiece) -> bool:
+	piece.reset_target()
 	var rotation_signal: String = rotator.apply_initial_rotate_input(piece)
 	
 	# relocate piece to the top of the playfield
