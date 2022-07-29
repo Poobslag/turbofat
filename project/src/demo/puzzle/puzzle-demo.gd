@@ -80,7 +80,6 @@ func _insert_line(tiles_key: String, y: int) -> void:
 
 
 func _clear_line(cleared_line: int) -> void:
-	$Puzzle/Fg/Playfield/LineClearer.lines_being_cleared = range(cleared_line, cleared_line + _line_clear_count)
 	$Puzzle/Fg/Playfield/LineClearer.clear_line(cleared_line, 1, 0)
 
 
