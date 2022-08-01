@@ -22,18 +22,11 @@ Pressing and holding the 'soft drop' key lets you move pieces past each other. T
 
 ## Controls
 
-### Puzzle Mode
   * <kbd>Left</kbd> or <kbd>Right</kbd> moves your piece.
   * <kbd>Z</kbd> or <kbd>X</kbd> rotates your piece.
   * <kbd>Down</kbd> lowers your piece.
   * <kbd>Space</kbd>, <kbd>Up</kbd> or <kbd>Shift</kbd> drops your piece immediately.
-### Walking around
-  * <kbd>Up</kbd>, <kbd>Down</kbd>, <kbd>Left</kbd> or <kbd>Right</kbd> moves your character.
-  * <kbd>Z</kbd> talks to other characters.
-  * <kbd>Tab</kbd> brings up a level select.
-  * <kbd>Shift</kbd> rewinds dialog.
-
-<kbd>Esc</kbd> quits the game.
+  * <kbd>Esc</kbd> brings up a menu.
 
 Gamepads are also supported.
 
