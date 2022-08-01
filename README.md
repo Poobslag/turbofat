@@ -10,7 +10,7 @@ The game is inspired by a few other block-dropping games but breaks some rules. 
 
 ![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](img/screenshot-overworld.png)
 
-The game also includes a story mode where you can interact with other monsters. This will eventually grow to include many characters to meet with unique stories, worlds to explore, and crazy puzzle challenges.
+The game also includes a career mode where you can interact with other monsters. This will eventually grow to include many characters to meet with unique stories, worlds to explore, and crazy puzzle challenges.
 
 ## Summary
 
