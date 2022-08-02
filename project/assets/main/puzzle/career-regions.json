@@ -10,29 +10,6 @@
       "puzzle_environment": "lemon",
       "region_button": "lemon",
       "piece_speed": "0",
-      "cutscene_path": "chat/career/lemon",
-      "population": {
-        "demographics": [
-          "squirrel 100%"
-        ],
-        "customers": [
-          "chinta 4%",
-          "dusty 4%",
-          "lango 3%",
-          "logana 3%",
-          "mara 2%",
-          "mcgoat 4%",
-          "namory 4%",
-          "nest 3%",
-          "phoena 4%",
-          "rice 4%",
-          "toat 4%"
-        ]
-      },
-      "flags": [
-        "no_sensei",
-        "no_restaurant"
-      ],
       "boss_level": {
         "id": "career/boss_7k",
         "observer_id": "sensei"
@@ -80,9 +57,65 @@
       ]
     },
     {
+      "id": "welcome",
+      "name": "Welcome to Turbo Fat",
+      "start": 10,
+      "description": "We're not done yet, there's a heckton of work which goes into setting up a restaurant! ...Oh wait, there isn't? Never mind then!",
+      "icon": "forest",
+      "overworld_environment": "lemon_2",
+      "puzzle_environment": "lemon_2",
+      "region_button": "lemon",
+      "piece_speed": "0-2",
+      "cutscene_path": "chat/career/lemon_2",
+      "boss_level": {
+        "id": "career/boss_6k"
+      },
+      "levels": [
+        {
+          "id": "career/200_race"
+        },
+        {
+          "id": "career/bon_appetit"
+        },
+        {
+          "id": "career/chocolate_star"
+        },
+        {
+          "id": "career/cookies"
+        },
+        {
+          "id": "career/donuts"
+        },
+        {
+          "id": "career/fat_stacks"
+        },
+        {
+          "id": "career/just_bread"
+        },
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/just_fruit"
+        },
+        {
+          "id": "career/lo_kcal"
+        },
+        {
+          "id": "career/square_curse"
+        },
+        {
+          "id": "career/tulip"
+        },
+        {
+          "id": "career/wedge"
+        }
+      ]
+    },
+    {
       "id": "poki",
       "name": "Poki Desert",
-      "start": 10,
+      "start": 25,
       "icon": "cactus",
       "piece_speed": "0-3",
       "boss_level": {
@@ -130,7 +163,7 @@
     {
       "id": "sand",
       "name": "Cannoli Sandbar",
-      "start": 25,
+      "start": 40,
       "icon": "island",
       "piece_speed": "1-5",
       "boss_level": {
@@ -187,7 +220,7 @@
     {
       "id": "marsh",
       "name": "Merrymellow Marsh",
-      "start": 40,
+      "start": 60,
       "description": "Meet the quirky chefs at the Merrymellow Marsh location and help them attract more customers. You can do it!",
       "icon": "skull",
       "overworld_environment": "marsh",
@@ -273,7 +306,7 @@
     },
     {
       "name": "Vega Churn Twelve",
-      "start": 60,
+      "start": 80,
       "icon": "gear",
       "piece_speed": "5-8",
       "boss_level": {
@@ -321,7 +354,7 @@
     {
       "id": "lava",
       "name": "Chocolava Canyon",
-      "start": 80,
+      "start": 100,
       "icon": "volcano",
       "piece_speed": "6-9",
       "boss_level": {
@@ -372,7 +405,7 @@
     {
       "id": "star",
       "name": "Starberry Mountain",
-      "start": 100,
+      "start": 120,
       "icon": "rainbow",
       "piece_speed": "A1-AD",
       "levels": [

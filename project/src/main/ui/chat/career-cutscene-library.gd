@@ -358,7 +358,8 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 		var children: Array = _preroll_tree.get(chat_key, [])
 		if not children:
 			# leaf node; enqueue it
-			potential_chat_key_pairs.append(_chat_key_pairs_by_preroll[chat_key])
+			if _chat_key_pairs_by_preroll.has(chat_key):
+				potential_chat_key_pairs.append(_chat_key_pairs_by_preroll[chat_key])
 		else:
 			# branch node; enqueue its children
 			chat_key_queue.push_front([])
