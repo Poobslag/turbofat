@@ -18,6 +18,9 @@ signal hours_passed_changed
 ## Chat key root for non-region-specific cutscenes
 const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
 
+## The career distance the player has to travel to have a 'nice restaurant'
+const DECORATED_RESTAURANT_CUTOFF := 24
+
 ## The number of days worth of records which are stored.
 const MAX_DAILY_HISTORY := 40
 
@@ -407,7 +410,8 @@ func advance_past_chat_region(chat_key: String) -> void:
 ## still want to play a specific region. But it would be confusing and weird if they watched a cutscene saying 'Well,
 ## that's enough of that area! Goodbye!' and then they remained there to play more levels.
 func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
-	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+	# Cannot statically type as 'ChatTree' because of circular reference
+	var chat_tree = ChatLibrary.chat_tree_for_key(chat_key)
 	if chat_tree.meta.get("advance_region", false):
 		advance_past_chat_region(chat_key)
 

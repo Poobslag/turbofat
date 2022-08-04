@@ -1,11 +1,8 @@
 tool
 extends Node
-## Autotiles a tilemap for indoor floors.
+## Autotiles a tilemap for kitchen floors.
 ##
-## The indoor floor tiling logic renders floors with deliberate imperfections.
-
-## percent of carpet cells without imperfections, in the range [0.0, 1.0]
-const CARPET_QUALITY := 0.76
+## The kitchen floor tiling logic renders floors with deliberate imperfections.
 
 ## autotile coordinates for a kitchen cell with a drain
 const KITCHEN_DRAIN_CELL := Vector2(1, 0)

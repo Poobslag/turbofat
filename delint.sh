@@ -82,6 +82,7 @@ RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \
   | grep -v "utils.gd.*var tmp = arr\[i\]" \
   | grep -v "dna-loader.gd.*var property_value =" \
+  | grep -v "career-data.gd.*var chat_tree = ChatLibrary.chat" \
   | grep -v "dna-loader.gd.*var shader_value =")
 if [ -n "$RESULT" ]
 then
