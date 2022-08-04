@@ -29,6 +29,7 @@ const DEFAULT_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.
 
 const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
+	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
 	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
 	
 	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",

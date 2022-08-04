@@ -1,0 +1,17 @@
+{
+  "version": "2cb4",
+  "title": "Grand Opening: Lemony Thickets",
+  "description": "We're officially open! Let's attract enough customers to make sure we stay that way.",
+  "success_condition": {
+    "type": "score",
+    "value": "200"
+  },
+  "start_speed": "2",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "180"
+  },
+  "rank": [
+    "success_bonus 2"
+  ]
+}

@@ -25,6 +25,7 @@ const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshE
 ## 	that environment
 const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
+	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
 	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
 }
 
