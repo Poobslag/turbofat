@@ -114,7 +114,6 @@ mouth_type = 7
 
 [node name="LemonTree5" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 993.458, 326.991 )
-leaf_type = 0
 mouth_type = 8
 
 [node name="LemonTree6" parent="Obstacles" instance=ExtResource( 18 )]

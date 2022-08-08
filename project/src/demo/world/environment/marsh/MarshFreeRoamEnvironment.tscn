@@ -1,20 +1,14 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=5]
-[ext_resource path="res://assets/main/world/environment/marsh/for-lease-sign.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white.png" type="Texture" id=15]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white-occupied.png" type="Texture" id=16]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-green-occupied.png" type="Texture" id=17]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-green.png" type="Texture" id=22]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" type="TileSet" id=23]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=25]
 [ext_resource path="res://src/main/world/environment/marsh/ButtercupSign.tscn" type="PackedScene" id=28]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=29]
-[ext_resource path="res://src/main/world/ObstacleSpawner.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/marsh/ButtercupStoolSpawnerW.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/world/environment/marsh/MarshHouse.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/main/world/environment/marsh/MarshGroundMap.tscn" type="PackedScene" id=33]
@@ -28,7 +22,6 @@
 [ext_resource path="res://src/main/world/environment/TurboFatRestaurant.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=47]
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystalSpawner.tscn" type="PackedScene" id=48]
-[ext_resource path="res://src/main/world/environment/marsh/ForLeaseSign.tscn" type="PackedScene" id=49]
 [ext_resource path="res://src/main/world/environment/marsh/MarshRippleWaves.tscn" type="PackedScene" id=52]
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=53]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=54]
@@ -210,22 +203,12 @@ shadow_scale = 4.0
 
 [node name="ButtercupStool1" parent="Obstacles" instance=ExtResource( 31 )]
 position = Vector2( 339.509, 1582.36 )
-target_properties = {
-"occupied_texture": ExtResource( 16 ),
-"unoccupied_texture": ExtResource( 15 )
-}
 
 [node name="ButtercupStool2" parent="Obstacles" instance=ExtResource( 41 )]
 position = Vector2( 561.509, 1582.36 )
-target_properties = {
-"occupied_texture": ExtResource( 17 ),
-"unoccupied_texture": ExtResource( 22 )
-}
 
 [node name="ButtercupTable1" parent="Obstacles" instance=ExtResource( 42 )]
 position = Vector2( 449.589, 1635.08 )
-target_properties = {
-}
 
 [node name="ButtercupSign" parent="Obstacles" instance=ExtResource( 28 )]
 position = Vector2( 596.167, 1293.78 )
@@ -271,78 +254,48 @@ target_properties = {
 
 [node name="ButtercupCrystal1" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 148.917, 1575.15 )
-target_properties = {
-}
 
 [node name="ButtercupCrystal2" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 577.392, 1088.6 )
-target_properties = {
-}
 
 [node name="ButtercupCrystal3" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 799.533, 1542.64 )
-target_properties = {
-}
 
 [node name="ButtercupCrystal4" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( -37.5356, 1316.09 )
-target_properties = {
-}
 
 [node name="ButtercupCrystal5" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 578.976, 1639.99 )
-target_properties = {
-}
 
 [node name="ButtercupCrystal6" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 749.714, 1234.5 )
-target_properties = {
-}
 
 [node name="ButtercupCrystal7" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 178.464, 1418.09 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal1" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1975.49, 874.757 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal2" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1827.16, 996.117 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal3" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1756.54, 1036.03 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal4" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1780.98, 1216.18 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal5" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 941.954, 847.977 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal6" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1206.64, 682.821 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal7" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1499.38, 1292.35 )
-target_properties = {
-}
 
 [node name="TurboFatCrystal8" parent="Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 1238.62, 921.227 )
-target_properties = {
-}
 
 [node name="Spawns" type="Node2D" parent="."]
 
