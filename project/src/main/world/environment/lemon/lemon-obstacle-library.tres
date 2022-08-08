@@ -50,8 +50,8 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 74, 106 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 74, 106 )
+1/shape_offset = Vector2( 74, 166 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 74, 166 )
 1/shape = SubResource( 1 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -60,7 +60,7 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 74, 106 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 74, 166 )
 } ]
 1/z_index = 0
 2/name = "lemon-all-goop"
@@ -78,8 +78,8 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 2/autotile/z_index_map = [  ]
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 67, 82 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 67, 82 )
+2/shape_offset = Vector2( 67, 134.5 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 67, 134.5 )
 2/shape = SubResource( 1 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -88,133 +88,133 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 } ]
 2/z_index = 0
 3/name = "lemon-no-goop-sheet.png 3"
@@ -232,8 +232,8 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 3/autotile/z_index_map = [  ]
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 67, 82 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 67, 82 )
+3/shape_offset = Vector2( 67, 134.5 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 67, 134.5 )
 3/shape = SubResource( 1 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
@@ -242,193 +242,193 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 } ]
 3/z_index = 0
 4/name = "marsh-fence-sheet.png 4"
@@ -448,8 +448,8 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 4/autotile/z_index_map = [  ]
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, -28 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, -28 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 4/shape = SubResource( 2 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
@@ -458,73 +458,73 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 9 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
 5/name = "lemon-some-goop-obstacle-sheet.png 5"
@@ -542,8 +542,8 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 5/autotile/z_index_map = [  ]
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 67, 82 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 67, 82 )
+5/shape_offset = Vector2( 67, 134.5 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 67, 134.5 )
 5/shape = SubResource( 1 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
@@ -552,193 +552,193 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 2, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 3, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 4, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 5, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 0, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 }, {
 "autotile_coord": Vector2( 1, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 67, 134.5 )
 } ]
 5/z_index = 0
 6/name = "lemon-obstacle-corners-sheet.png 6"
