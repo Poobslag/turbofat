@@ -1,14 +1,11 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/main/world/environment/marsh/for-lease-sign.png" type="Texture" id=3]
 [ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=5]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white.png" type="Texture" id=6]
 [ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white-occupied.png" type="Texture" id=8]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-green-occupied.png" type="Texture" id=9]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=23]
@@ -28,7 +25,6 @@
 [ext_resource path="res://src/main/world/environment/marsh/ButtercupSign.tscn" type="PackedScene" id=41]
 [ext_resource path="res://src/main/world/ObstacleSpawner.tscn" type="PackedScene" id=42]
 [ext_resource path="res://src/main/world/environment/marsh/ButtercupStoolSpawnerW.tscn" type="PackedScene" id=43]
-[ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-green.png" type="Texture" id=45]
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -333,8 +329,6 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -80 )
 TargetScene = ExtResource( 24 )
-target_properties = {
-}
 spawn_if = "chat_finished chat/career/marsh/60_end"
 
 [node name="ButtercupCrystalSign" parent="Obstacles" instance=ExtResource( 27 )]
@@ -388,16 +382,10 @@ spawn_if = "not chat_finished chat/career/marsh/20"
 
 [node name="ButtercupStool4" parent="Obstacles" instance=ExtResource( 37 )]
 position = Vector2( 4132.8, 1326.5 )
-target_properties = {
-"occupied_texture": ExtResource( 9 ),
-"unoccupied_texture": ExtResource( 45 )
-}
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="ButtercupTable2" parent="Obstacles" instance=ExtResource( 31 )]
 position = Vector2( 4020.88, 1379.22 )
-target_properties = {
-}
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="Jayton" parent="Obstacles" instance=ExtResource( 33 )]
@@ -413,32 +401,18 @@ spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="ButtercupStool5" parent="Obstacles" instance=ExtResource( 43 )]
 position = Vector2( 3910.69, 1326.71 )
-target_properties = {
-"occupied_texture": ExtResource( 8 ),
-"unoccupied_texture": ExtResource( 6 )
-}
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="ButtercupStool1" parent="Obstacles" instance=ExtResource( 43 )]
 position = Vector2( 4214.87, 1060.61 )
-target_properties = {
-"occupied_texture": ExtResource( 8 ),
-"unoccupied_texture": ExtResource( 6 )
-}
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="ButtercupStool2" parent="Obstacles" instance=ExtResource( 37 )]
 position = Vector2( 4436.87, 1060.61 )
-target_properties = {
-"occupied_texture": ExtResource( 9 ),
-"unoccupied_texture": ExtResource( 45 )
-}
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="ButtercupTable1" parent="Obstacles" instance=ExtResource( 31 )]
 position = Vector2( 4324.95, 1113.33 )
-target_properties = {
-}
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 
 [node name="Spawns" type="Node2D" parent="."]

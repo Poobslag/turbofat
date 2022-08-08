@@ -11,5 +11,3 @@ centered = false
 offset = Vector2( -125, -200 )
 script = ExtResource( 2 )
 TargetScene = ExtResource( 3 )
-target_properties = {
-}

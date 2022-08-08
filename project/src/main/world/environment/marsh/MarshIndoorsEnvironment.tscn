@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/indoor-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/restaurant/floor-library.tres" type="TileSet" id=2]
@@ -26,7 +26,6 @@
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=25]
 [ext_resource path="res://src/main/world/environment/kitchen-obstacle-tiler.gd" type="Script" id=27]
 [ext_resource path="res://src/main/world/ground-map-indoors.gd" type="Script" id=28]
-[ext_resource path="res://src/main/world/CreatureSpawner.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/WoodTable.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/world/environment/WoodPillar.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/main/world/environment/IndoorStool.tscn" type="PackedScene" id=33]
