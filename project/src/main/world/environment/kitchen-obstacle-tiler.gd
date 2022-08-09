@@ -1,9 +1,10 @@
 tool
 extends Node
-## Maintains a tilemap for indoor obstacles.
+## Autotiles a tilemap for kitchen obstacles.
 ##
-## The indoor tilemap is an isometric tilemap which must be drawn from left to right. This tilemap includes
-## functionality for sorting tiles by their x coordinate.
+## The kitchen tiles like grills, counters and sinks involve multiple cell types and cannot be handled by Godot's
+## built-in autotiling. Instead of configuring the autotiling behavior with the TileSet's autotile bitmask, it is
+## configured with several dictionary constants defined in this script.
 
 const BIND_TOP := TileSet.BIND_TOP
 const BIND_BOTTOM := TileSet.BIND_BOTTOM
@@ -302,6 +303,7 @@ func _autotile_sink(cell: Vector2) -> void:
 	# update the autotile if a matching sink cell exists
 	if SINK_AUTOTILE_COORDS_BY_BINDING.has(sink_key):
 		_set_cell_autotile_coord(cell, SINK_AUTOTILE_COORDS_BY_BINDING.get(sink_key))
+
 
 ## Calculates which adjacent cells match the specified tile indexes.
 ##
