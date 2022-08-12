@@ -27,6 +27,9 @@ const CHAT_DATA_VERSION := "1922"
 
 const DEFAULT_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
+const DECORATED_RESTAURANT_PATH := "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn"
+const UNDECORATED_RESTAURANT_PATH := "res://src/main/world/environment/marsh/UndecoratedIndoorsEnvironment.tscn"
+
 const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
@@ -147,9 +150,19 @@ func can_advance() -> bool:
 
 ## Returns the scene path where this chat takes place.
 func chat_environment_path() -> String:
+	var result: String
+	
 	if not ENVIRONMENT_SCENE_PATHS_BY_ID.has(location_id):
 		push_warning("Invalid location_id: %s" % [location_id])
-	return ENVIRONMENT_SCENE_PATHS_BY_ID.get(location_id, DEFAULT_ENVIRONMENT)
+	
+	result = ENVIRONMENT_SCENE_PATHS_BY_ID.get(location_id, DEFAULT_ENVIRONMENT)
+	
+	# if the player hasn't gotten far enough in the story, they don't have a nice decorated restaurant
+	if result == DECORATED_RESTAURANT_PATH \
+			and PlayerData.career.best_distance_travelled < CareerData.DECORATED_RESTAURANT_CUTOFF:
+		result = UNDECORATED_RESTAURANT_PATH
+	
+	return result
 
 
 func reset() -> void:

@@ -3,9 +3,11 @@ class_name PuzzleWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during puzzles.
 
-## The path to the scene resource defining creatures and obstacles for career regions which do not specify an
+## The path to the scene resources defining creatures and obstacles for career regions which do not specify an
 ## environment, or regions which specify an invalid environment
-const DEFAULT_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn"
+const DECORATED_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn"
+const UNDECORATED_PUZZLE_ENVIRONMENT_PATH \
+		:= "res://src/main/world/environment/marsh/UndecoratedIndoorsEnvironment.tscn"
 
 ## key: (String) an environment name which appears in the json definitions
 ## value: (String) The path to the scene resource defining creatures and obstacles which appear in
@@ -28,7 +30,15 @@ func _ready() -> void:
 
 
 func initial_environment_path() -> String:
-	return ENVIRONMENT_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, DEFAULT_PUZZLE_ENVIRONMENT_PATH)
+	var result: String = ENVIRONMENT_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, \
+			DECORATED_PUZZLE_ENVIRONMENT_PATH)
+	
+	# if the player hasn't gotten far enough in the story, they don't have a nice decorated restaurant
+	if result == DECORATED_PUZZLE_ENVIRONMENT_PATH \
+			and PlayerData.career.best_distance_travelled < CareerData.DECORATED_RESTAURANT_CUTOFF:
+		result = UNDECORATED_PUZZLE_ENVIRONMENT_PATH
+	
+	return result
 
 
 ## Removes all creatures from the overworld.
