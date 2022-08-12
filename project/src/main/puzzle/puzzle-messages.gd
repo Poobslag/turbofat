@@ -103,7 +103,9 @@ func _on_Back_pressed() -> void:
 
 func _on_PuzzleState_game_prepared() -> void:
 	hide_buttons()
-	show_message(PuzzleMessage.NEUTRAL, tr("Ready?"))
+	
+	if not CurrentLevel.settings.other.skip_intro:
+		show_message(PuzzleMessage.NEUTRAL, tr("Ready?"))
 
 
 func _on_PuzzleState_game_started() -> void:
