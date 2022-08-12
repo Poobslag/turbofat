@@ -337,6 +337,7 @@ func process_puzzle_result() -> void:
 
 func set_distance_travelled(new_distance_travelled: int) -> void:
 	distance_travelled = new_distance_travelled
+	best_distance_travelled = max(best_distance_travelled, distance_travelled)
 	emit_signal("distance_travelled_changed")
 
 
@@ -395,8 +396,7 @@ func advance_past_chat_region(chat_key: String) -> void:
 		# The cutscene shows the player advancing to the next region. Forcibly advance the player to the next region.
 		remain_in_region = false
 		var old_distance_travelled := distance_travelled
-		distance_travelled = region.end + 1
-		best_distance_travelled = max(best_distance_travelled, distance_travelled)
+		set_distance_travelled(region.end + 1)
 		distance_earned += (distance_travelled - old_distance_travelled)
 
 
