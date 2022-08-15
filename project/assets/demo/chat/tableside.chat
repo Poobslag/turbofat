@@ -1,0 +1,11 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_10
+mara, m, table_seat_left
+
+p1: Oh hey Mara! Don't worry, this one will be on the house~
+m: ^_^/ Oh that's alright.
