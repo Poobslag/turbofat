@@ -1,0 +1,9 @@
+{"version": "2476"}
+
+player: Hello!
+boatricia: Hello, nice to meet you!
+ (set_flag bone_practice)
+ 
+[alternate_start]
+boatricia: I remember you!
+ (start_if has_flag bone_practice)

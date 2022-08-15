@@ -119,6 +119,7 @@ func advance(link_index := -1) -> bool:
 		_position.index += 1
 		did_increment = true
 	_apply_say_if_conditions()
+	_apply_set_flag_statements()
 	return did_increment
 
 
@@ -133,6 +134,7 @@ func prepare_first_chat_event() -> void:
 	
 	_apply_start_if_conditions()
 	_apply_say_if_conditions()
+	_apply_set_flag_statements()
 	_did_prepare = true
 
 
@@ -229,3 +231,26 @@ func _apply_say_if_conditions() -> void:
 			# advance through the current chat branch
 			_position.index += 1
 			did_increment = true
+
+
+## Sets any flags for 'set_flag' statements. Unsets flags for 'unset_flag' statements.
+func _apply_set_flag_statements() -> void:
+	for meta_item in get_event().meta:
+		if meta_item.begins_with("unset_flag "):
+			var tokens: Array = meta_item.split(" ")
+			match tokens.size():
+				2:
+					PlayerData.chat_history.unset_flag(tokens[1])
+				_:
+					push_warning("Invalid argument count for unset_flag call. Expected 1 but was %s"
+							% [tokens.size() - 1])
+		if meta_item.begins_with("set_flag "):
+			var tokens: Array = meta_item.split(" ")
+			match tokens.size():
+				2:
+					PlayerData.chat_history.set_flag(tokens[1])
+				3:
+					PlayerData.chat_history.set_flag(tokens[1], tokens[2])
+				_:
+					push_warning("Invalid argument count for set_flag call. Expected 1 or 2 but was %s"
+							% [tokens.size() - 1])

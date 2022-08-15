@@ -82,6 +82,27 @@ class LevelFinishedExpression extends BoolExpression:
 	func evaluate() -> bool:
 		return PlayerData.level_history.is_level_finished(args[0].string)
 
+
+class HasFlagExpression extends BoolExpression:
+	func _init(new_token: BoolToken, flag: BoolToken) -> void:
+		token = new_token
+		args = [flag]
+	
+	
+	func evaluate() -> bool:
+		return PlayerData.chat_history.has_flag(args[0].string)
+
+
+class IsFlagExpression extends BoolExpression:
+	func _init(new_token: BoolToken, flag: BoolToken, value: BoolToken) -> void:
+		token = new_token
+		args = [flag, value]
+	
+	
+	func evaluate() -> bool:
+		return PlayerData.chat_history.is_flag(args[0].string, args[1].string)
+
+
 ## error encountered when parsing the boolean string
 var _parse_error: String
 
@@ -170,6 +191,10 @@ func _parse_function() -> BoolExpression:
 	match _peek_next_token_string():
 		"chat_finished":
 			expression = ChatFinishedExpression.new(_get_next_token(), _get_next_token())
+		"has_flag":
+			expression = HasFlagExpression.new(_get_next_token(), _get_next_token())
+		"is_flag":
+			expression = IsFlagExpression.new(_get_next_token(), _get_next_token(), _get_next_token())
 		"level_finished":
 			expression = LevelFinishedExpression.new(_get_next_token(), _get_next_token())
 		_:
