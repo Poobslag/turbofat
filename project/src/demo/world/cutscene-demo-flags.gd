@@ -10,6 +10,7 @@ var value: String setget set_value, get_value
 ## This involves assigning and unassigning conversations they've had and levels they've played based on the input. The
 ## input field supports the following flags:
 ##
+## 	'best_distance_travelled 123'
 ## 	'chat_finished foo'
 ## 	'not chat_finished foo'
 ## 	'level_finished foo'
@@ -19,6 +20,9 @@ func apply_flags() -> void:
 		var line: String = line_obj
 		if not line:
 			pass
+		elif line.begins_with("best_distance_travelled "):
+			PlayerData.career.best_distance_travelled = \
+					int(StringUtils.substring_after(line, "best_distance_travelled "))
 		elif line.begins_with("chat_finished "):
 			var chat_key := StringUtils.substring_after(line, "chat_finished ")
 			PlayerData.chat_history.add_history_item(chat_key)
