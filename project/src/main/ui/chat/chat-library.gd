@@ -8,7 +8,7 @@ const DEFAULT_CHAT_KEY_ROOT_PATH := "res://assets/main"
 
 const CHAT_EXTENSION := ".chat"
 
-## Resource path containing career cutscenes. Can be changed for tests.
+## Resource path containing career cutscenes. Can be changed for demos and tests.
 var chat_key_root_path := DEFAULT_CHAT_KEY_ROOT_PATH
 
 
