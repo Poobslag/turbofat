@@ -754,3 +754,25 @@ id = "kitchen_9"
 [node name="Kitchen11" parent="Spawns" instance=ExtResource( 30 )]
 position = Vector2( 1740.68, 77.2144 )
 id = "kitchen_11"
+
+[node name="TableSeatLeft" parent="Spawns" instance=ExtResource( 30 )]
+position = Vector2( 749.285, 321.719 )
+stool_path = NodePath("../../Obstacles/Stool6")
+id = "table_seat_left"
+elevation = 140.0
+
+[node name="Table2" parent="Spawns" instance=ExtResource( 30 )]
+position = Vector2( 689.515, 237.165 )
+id = "table_2"
+
+[node name="Table10" parent="Spawns" instance=ExtResource( 30 )]
+position = Vector2( 995.141, 231.219 )
+orientation = 1
+id = "table_10"
+
+[node name="TableSeatRight" parent="Spawns" instance=ExtResource( 30 )]
+position = Vector2( 925.285, 321.719 )
+orientation = 1
+stool_path = NodePath("../../Obstacles/Stool5")
+id = "table_seat_right"
+elevation = 140.0
