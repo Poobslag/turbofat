@@ -26,7 +26,7 @@ func initially_move_piece(piece: ActivePiece) -> bool:
 	for pos_arr_item in piece.get_target_pos_arr():
 		if pos_arr_item.y < highest_pos:
 			highest_pos = pos_arr_item.y
-	piece.pos.y -= highest_pos
+	piece.target_pos.y -= highest_pos
 	
 	var movement_signal: String = mover.apply_initial_move_input(piece)
 	
