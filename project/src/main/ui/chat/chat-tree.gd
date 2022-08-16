@@ -119,7 +119,7 @@ func advance(link_index := -1) -> bool:
 		_position.index += 1
 		did_increment = true
 	_apply_say_if_conditions()
-	_apply_set_flag_statements()
+	_assign_flags_and_phrases()
 	return did_increment
 
 
@@ -134,7 +134,7 @@ func prepare_first_chat_event() -> void:
 	
 	_apply_start_if_conditions()
 	_apply_say_if_conditions()
-	_apply_set_flag_statements()
+	_assign_flags_and_phrases()
 	_did_prepare = true
 
 
@@ -233,8 +233,9 @@ func _apply_say_if_conditions() -> void:
 			did_increment = true
 
 
-## Sets any flags for 'set_flag' statements. Unsets flags for 'unset_flag' statements.
-func _apply_set_flag_statements() -> void:
+## Processes any 'set_flag', 'unset_flag' and 'set_phrase' statements.
+func _assign_flags_and_phrases() -> void:
+	# process unset_flag statements
 	for meta_item in get_event().meta:
 		if meta_item.begins_with("unset_flag "):
 			var tokens: Array = meta_item.split(" ")
@@ -244,6 +245,9 @@ func _apply_set_flag_statements() -> void:
 				_:
 					push_warning("Invalid argument count for unset_flag call. Expected 1 but was %s"
 							% [tokens.size() - 1])
+	
+	# process set_flag statements
+	for meta_item in get_event().meta:
 		if meta_item.begins_with("set_flag "):
 			var tokens: Array = meta_item.split(" ")
 			match tokens.size():
@@ -254,3 +258,13 @@ func _apply_set_flag_statements() -> void:
 				_:
 					push_warning("Invalid argument count for set_flag call. Expected 1 or 2 but was %s"
 							% [tokens.size() - 1])
+	
+	# process set_phrase statements
+	for meta_item in get_event().meta:
+		if meta_item.begins_with("set_phrase "):
+			var tokens: Array = meta_item.split(" ")
+			if tokens.size() <= 2:
+				push_warning("Invalid token count for set_phrase call. Expected 2 but was %s"
+						% [tokens.size() - 1])
+			else:
+				PlayerData.chat_history.set_phrase(tokens[1], PoolStringArray(tokens.slice(2, tokens.size())).join(" "))

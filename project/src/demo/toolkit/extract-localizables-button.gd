@@ -96,6 +96,16 @@ func _extract_localizables_from_chat_tree(chat_tree: ChatTree) -> void:
 			else:
 				for link_text in event.link_texts:
 					_localizables.append(link_text)
+			
+			# append player choices such as restaurant names as localizables.
+			for meta_item in event.meta:
+				if meta_item.begins_with("set_phrase "):
+					var tokens: Array = meta_item.split(" ")
+					if tokens.size() <= 2:
+						push_warning("Invalid token count for set_phrase call. Expected 2 but was %s"
+								% [tokens.size() - 1])
+					else:
+						_localizables.append(PoolStringArray(tokens.slice(2, tokens.size())).join(" "))
 
 
 ## Extract localizables from OS.get_scancode_string()
