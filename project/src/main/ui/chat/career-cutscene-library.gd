@@ -53,8 +53,8 @@ var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_ca
 var all_chat_key_pairs := [] setget set_all_chat_key_pairs
 
 ## key: (String) An interlude preroll chat key like 'chat/career/general_00_a'. For the case where a level has a
-## 	postroll cutscene
-## 	but no preroll cutscene, this chat key may actually correspond to a non-existent preroll cutscene.
+## 	postroll cutscene but no preroll cutscene, this chat key may actually correspond to a non-existent preroll
+## 	cutscene.
 ##
 ## value: (ChatKeyPair) A ChatKeyPair defining preroll and postroll cutscenes.
 var _chat_key_pairs_by_preroll := {}
@@ -391,6 +391,11 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 	return potential_chat_key_pairs
 
 
+## Returns a list of all file paths in the career cutscene root path, performing a tree traversal.
+func find_career_cutscene_resource_paths() -> Array:
+	return _find_resource_paths(career_cutscene_root_path)
+
+
 ## Returns a child chat key by combining the specified chat key with a delimiter and suffix.
 ##
 ## 	_child_key(['chat/career/general', 'chat/career/general', '00']       = 'chat/career/general/00'
@@ -442,7 +447,7 @@ func _is_special_chat_key(chat_key: String) -> bool:
 ##
 ## Also regenerates all internal fields such as the preroll tree.
 func _refresh_chat_key_pairs() -> void:
-	var resource_paths := _find_resource_paths(career_cutscene_root_path)
+	var resource_paths := find_career_cutscene_resource_paths()
 	
 	# populate all_chat_key_pairs
 	var new_all_chat_key_pairs := []
