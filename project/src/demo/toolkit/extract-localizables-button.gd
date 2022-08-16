@@ -31,6 +31,7 @@ func _extract_and_write_localizables() -> void:
 	
 	_extract_localizables_from_career_regions()
 	_extract_localizables_from_levels()
+	_extract_localizables_from_chat_trees()
 	_extract_localizables_from_scancode_strings()
 	_write_localizables(OUTPUT_PATH, _localizables)
 	_write_localizables(SCANCODE_OUTPUT_PATH, _scancode_localizables)
@@ -71,6 +72,12 @@ func _extract_localizables_from_levels() -> void:
 		# extract level's title and description as localizables
 		_localizables.append(level_settings.title)
 		_localizables.append(level_settings.description)
+
+
+func _extract_localizables_from_chat_trees() -> void:
+	for path in CareerCutsceneLibrary.find_career_cutscene_resource_paths():
+		var chat_tree := ChatLibrary.chat_tree_from_file(path)
+		_extract_localizables_from_chat_tree(chat_tree)
 
 
 ## Extracts localizable strings from a chat tree and adds them to the in-memory list of localizables.
