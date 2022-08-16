@@ -34,7 +34,7 @@ uniform float accent_amount = 0.24;
 uniform bool accent_swapped = false;
 
 // A number from [0, 1.0] representing how translucent the middle area is; 1.0 = fully transparent
-uniform float center_transparency = 0.16;
+uniform float center_transparency = 0.08;
 
 // These two parameters specify how far and how fast and the textures move
 uniform vec2 scroll_period = vec2(7.377, 4.111);

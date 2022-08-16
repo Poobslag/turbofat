@@ -20,7 +20,7 @@ p1: I was thinking something like...
 [junjorito]
 p1: /._. Something like... Junjorito?
  (stop_walking)
- (set_phrase proposed_restaurant_name Junjorito)
+ (set_phrase bad_restaurant_name Junjorito)
 s1: ^N^ What on earth is a junjorito?
 p1: <_< I didn't say we had to call it Junjorito! Just something LIKE Junjorito.
 [end]
@@ -28,7 +28,7 @@ p1: <_< I didn't say we had to call it Junjorito! Just something LIKE Junjorito.
 [caboodles]
 p1: /._. Something like... Caboodles?
  (stop_walking)
- (set_phrase proposed_restaurant_name Caboodles)
+ (set_phrase bad_restaurant_name Caboodles)
 s1: ^N^ What on earth is a caboodle?
 p1: ^__^ You know, like kitten caboodles! Or is it kit 'n caboodles? I don't know... It's just a cute nonsense word!
 [end]
@@ -36,7 +36,7 @@ p1: ^__^ You know, like kitten caboodles! Or is it kit 'n caboodles? I don't kno
 [eaties]
 p1: /._. Something like... Eaties?
  (stop_walking)
- (set_phrase proposed_restaurant_name Eaties)
+ (set_phrase bad_restaurant_name Eaties)
 s1: ^N^ What on earth is an eatie?
 p1: ^__^ You know, sort of like foodies... But a friendlier version of it!
 [end]
@@ -44,7 +44,7 @@ p1: ^__^ You know, sort of like foodies... But a friendlier version of it!
 [fats_of_life]
 p1: /._. Something like... The Fats of Life?
  (stop_walking)
- (set_phrase proposed_restaurant_name The Fats of Life)
+ (set_phrase bad_restaurant_name The Fats of Life)
 s1: ^N^ Really? You want our restaurant's name to pay homage to a sitcom from what... the 20th century?
 p1: ^__^ Yeah! It's sort of plays off of your name you know? Because you're Fat Sensei! The Fats of Life!
 [end]
@@ -52,7 +52,7 @@ p1: ^__^ Yeah! It's sort of plays off of your name you know? Because you're Fat 
 [sparky_s]
 p1: /._. Something like... Sparky's?
  (stop_walking)
- (set_phrase proposed_restaurant_name Sparky's)
+ (set_phrase bad_restaurant_name Sparky's)
 s1: ^N^ What on earth is a sparky?
 p1: ^__^ Yeah it's like, a cute little punchy name. Sparky's! Doesn't it sound fun?
 [end]
@@ -60,7 +60,7 @@ p1: ^__^ Yeah it's like, a cute little punchy name. Sparky's! Doesn't it sound f
 [smack_dab]
 p1: /._. Something like... Smack Dab?
  (stop_walking)
- (set_phrase proposed_restaurant_name Smack Dab)
+ (set_phrase bad_restaurant_name Smack Dab)
 s1: ^N^ What on earth is a smack dab?
 p1: ^__^ Oh like that phrase, smack dab in the middle! We'll be smack dab!
 [end]

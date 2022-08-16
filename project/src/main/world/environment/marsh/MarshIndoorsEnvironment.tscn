@@ -765,13 +765,18 @@ stool_path = NodePath("../../Obstacles/Stool6")
 id = "table_seat_left"
 elevation = 140.0
 
+[node name="Table1" parent="Spawns" instance=ExtResource( 38 )]
+position = Vector2( 903.167, 189.642 )
+orientation = 1
+id = "table_1"
+
 [node name="Table2" parent="Spawns" instance=ExtResource( 38 )]
-position = Vector2( 689.515, 237.165 )
+position = Vector2( 995.141, 231.219 )
+orientation = 1
 id = "table_2"
 
 [node name="Table10" parent="Spawns" instance=ExtResource( 38 )]
-position = Vector2( 995.141, 231.219 )
-orientation = 1
+position = Vector2( 689.515, 237.165 )
 id = "table_10"
 
 [node name="TableSeatRight" parent="Spawns" instance=ExtResource( 38 )]

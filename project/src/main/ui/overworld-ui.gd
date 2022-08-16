@@ -10,6 +10,12 @@ signal chat_ended
 ## emitted when we launch a creature's talk animation
 signal chatter_talked(chatter)
 
+## emitted when a chat event is played containing metadata
+##
+## Parameters:
+## 	'meta_item': (String) A single meta item
+signal chat_event_meta_played(meta_item)
+
 ## emitted when creatures enter or exit a conversation
 signal visible_chatters_changed()
 
@@ -161,6 +167,8 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
 			var orientation: int = int(meta_item_split[2])
 			creature.set_orientation(orientation)
+	
+	emit_signal("chat_event_meta_played", meta_item)
 
 
 func _on_ChatUi_chat_finished() -> void:

@@ -1,0 +1,72 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, !table_2
+(customer) tunathy, t, table_seat_left
+
+p1: Hey Tunathy! ...So how's your art doing?
+t: ^n^ Ohh well... I'm still struggling to find customers.
+t: u_u But on the bright side, having no work to do gives me plenty of free time to succumb to my irrepressible ennui...
+[marketing] Marketing yourself is tough
+[free_time] Enjoy the free time
+[subjective] All art is subjective, but...
+
+
+[marketing]
+p1: /._. Well, marketing yourself is tough. I hate doing that kind of stuff, it almost feels arrogant you know?
+p1: One trick some people use is to pretend they're talking about someone else, instead of talking about themselves!
+p1: ^Y^ But even then, it just takes practice really.
+[why]
+
+[free_time]
+p1: ^_^ Free time's kind of a blessing in itself! It gives you more time to practice and hone your skills.
+p1: ^Y^ In a few years when you're bombarded with customers, I'm sure you'll wish you had this kind of opportunity again.
+[why]
+
+[subjective]
+p1: ._.; Well... All art is subjective.
+p1: ^Y^ ...If people don't like your art, then that means your art is subjectively bad! I wouldn't take it too personally.
+[why]
+
+
+[why]
+t: .__.; I don't... ...Why are you paying attention to me? Is it because you want me to tip more?
+s1: What's this? I only heard half of the conversation. But yes, we want you to give us more money.
+ (s1 enters)
+p1: ^n^ No we don't! Tunathy, I'm just trying to...
+[cheer_you_up] Cheer you up
+[help_you_out] Help you out
+[be_your_friend] Be your friend
+
+[be_your_friend]
+p1: ^__^ I'm just trying to be your friend!
+t: @_@ Wait... so you're expressing a genuine interest in my personal life? I'm so confused...
+[no_no]
+
+[help_you_out]
+p1: ^y^ I'm just trying to help you out.
+t: @_@ Wait... you're expressing a genuine interest in my well-being? I'm so confused...
+[no_no]
+
+[cheer_you_up]
+p1: ^_^ I'm just trying to cheer you up!
+t: @_@ Wait... you're expressing a genuine interest in my well-being? I'm so confused...
+[no_no]
+
+
+[no_no]
+s1: /._. Sorry. ...What #player# is trying to explain is, hmm....
+s1: ^_^ Friends, TRUE friends. True friends give each other money all the time! They don't even think about it.
+s1: ^__^ You should give us more money, and maybe we'll like you more.
+ (p1 faces right, p1 mood >_<)
+t: /._. Well... Sure, that seems fair, let's see how much I got...
+p1: >__< That's not right at all!!! Get out of here.
+ (s1 exits)
+p1: /._. (sigh) Don't listen to Fat Sensei! They don't know what they're talking about. Anyways where were we...
+ (p1 faces left)
+t: ._.; Is five dollars okay?
+p1: <__< ...

@@ -1,0 +1,70 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, kitchen_7
+sensei, s1, kitchen_3
+(chef) sidger, s, chef
+
+s1: Ahhh Sidger, we had a complaint at table three. Apparently the fudge drops were overdone.
+ (p1 faces left)
+s: Nuh-uh, that wasn't me. That was #player.possessive# fault.
+p1: ._.; What? No it wasn't!
+ (p1 faces right)
+s1: Hmm, I see. #player#, try to focus more. These careless mistakes of yours are making you a real liability.
+[conniving] Sidger, you're so conniving!
+[gullible] Sensei, you're so gullible!
+[not_me] This has nothing to do with me
+[stove] Look who's at the stove!
+
+[conniving]
+p1: >__< Sidger, you conniving little... munch!
+ (p faces left)
+p1: If you're gonna lie, at least lie about something that matters! Not just, overcooking this one stupid-
+[dont_blame]
+
+[gullible]
+p1: >_< Sensei, how are you this gullible!?
+p1: Sidger's cooked everything today, I've just been coaching them. How would it even make sense for me to-
+[dont_blame]
+
+[not_me]
+p1: .__.; This has nothing to do with me, I haven't cooked a single thing today. I've just been watching Sidger-
+[dont_blame]
+
+[stove]
+p1: <__< Look who's at the stove, they didn't even move an inch! how could you possibly think that I-
+[dont_blame]
+
+
+[dont_blame]
+s1: ^N^ Now now, you shouldn't go around blaming each other. #player#, you need to be more of a team player like Sidger.
+ (s1 faces right)
+s: /._. ...Remember what I was saying about a delicate balance?
+ (s1 exits, s faces right, p1 faces left)
+[angry] @#$%!
+[teach_me] ...Teach me...
+[my_cooking] I'll focus on my cooking
+
+[teach_me]
+p1: @_@ ...Teach me...
+s: -o- Heh heh heh. Sorry, you're good as done for.
+[job_hunt]
+
+[angry]
+p1: >__< Why don't you go delicately balance yourself on top of some train tracks, you smelly little sycophant!
+s: -o- Heh heh heh. Sorry things didn't work out for you here.
+[job_hunt]
+
+[my_cooking]
+p1: ._. I don't need to play your petty little games, my cooking speaks for itself!
+s: -o- Heh heh heh. Well, can't say I didn't try.
+[job_hunt]
+
+
+[job_hunt]
+s: I'll give you my contact info though! You can use me as a reference when you're job hunting.
+p1: -_- (grumble) I already have a job...
+ (p1 faces right)

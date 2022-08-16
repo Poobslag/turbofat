@@ -1,0 +1,86 @@
+{"version": "2476", "fixed_zoom": 0.8}
+
+[location]
+lemon_2
+
+[characters]
+player, p1, !restaurant_8
+sensei, s1, restaurant_11
+(customer) sandrew, s, !restaurant_4
+
+s1: (scribble, scribble...)
+ (s1 faces left)
+ (turbofat_closed_sign disappears)
+p1: Oh! What are you writing down?
+ (p1 enters)
+s1: Hmm? Just making a sign for our restaurant.
+p1: /._. Oh you thought of a name?
+p1: ...
+ (s1 faces right)
+ (turbofat_closed_sign appears)
+p1: -_- ...'Closed'? I can come up with a better name than that.
+p1: <__< I mean, oh! ...Oh, right. Sorry!
+ (s1 faces left)
+ (s1 mood >_<)
+s: ^_^ Heyyy this is that new restaurant I've heard about...? Ooh, 'Closed'! Sounds... exclusive!
+ (s enters)
+s: What kind of food do you specialize in?
+ (s1 faces right)
+[come_on_in] Come on in!
+[oops_me_too] I made the same mistake
+[come_back_later] Can you come back later?
+[literally_closed] We're literally closed
+
+
+[come_back_later]
+p1: <_< Sorry, could you come back later? We're not open right now.
+[not_open_food]
+
+[literally_closed]
+p1: We're literally closed, as in our restaurant is not open.
+[not_open_food]
+
+[oops_me_too]
+p1: ^O^ Oh I made the same mistake, but we're ACTUALLY closed. ...Closed as in, not open.
+[not_open_food]
+
+[come_on_in]
+p1: ^__^ Come on in! What do you feel like?
+s1: -__- Umm, what #player# MEANT to say is that we're, ahhh... not open right now.
+[not_open_food]
+
+[not_open_food]
+s: /._. Hmm so like... 'not open' food? Like burritos? Sure, I could give that a try!
+[our_first_customer] Wow, our first customer!
+[please_go_away] Please go away
+[just_leave] We won't serve you
+[ill_hurt_you] I will hurt you
+
+
+[please_go_away]
+p1: -_- ...Please go away.
+s: ^O^ Ha! Ha! Oh it's one of those places that heckles the customers. Go ahead, I can take it! Where's the menu?
+[i_give_up]
+
+[ill_hurt_you]
+p1: >___< I will hurt you.
+s: ^O^ Ha! Ha! Oh it's one of those places that heckles the customers. Go ahead, I can take it! Where's the menu?
+[i_give_up]
+
+[just_leave]
+p1: >_< We're not going to serve you, so just leave.
+s: ^O^ Ohhhh wow, this place IS really exclusive! ...Can I see a menu?
+[i_give_up]
+
+[our_first_customer]
+p1: ^__^ Wow, our first customer! Come on in, seat yourself.
+s1: >__< Ahh, what #player# MEANT to say is...
+ (s1 faces left)
+s1: Please go away, you're dumb and you smell. And please tell your dumb smelly friends to stay away from our restaurant, too.
+ (s1 faces right)
+s: ^O^ Ha! Ha! Oh it's one of those places that heckles the customers. Go ahead, I can take it! Where's the menu?
+[i_give_up]
+
+[i_give_up]
+s1: -_- Okay... (sigh) We should probably just serve this idiot...
+ (s1 faces left)

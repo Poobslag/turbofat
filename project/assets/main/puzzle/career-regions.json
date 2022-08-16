@@ -90,6 +90,9 @@
       "region_button": "lemon",
       "piece_speed": "0-2",
       "cutscene_path": "chat/career/lemon_2",
+      "intro_level": {
+        "id": "career/donuts"
+      },
       "boss_level": {
         "id": "career/boss_6k"
       },

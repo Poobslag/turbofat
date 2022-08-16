@@ -1,0 +1,27 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) goldfince, g, table_seat_left
+
+g: So how are you two related? Are you siblings, or...
+p1: ^o^ Oh, no! We're not related.
+g: /._. Really? Because the resemblance is uncanny.
+s1: ^n^ No no. No relation, we're just partners.
+p1: >_< BUSINESS partners.
+s1: Well, that seems redundant...
+ (s1 faces right)
+p1: >__< It ISN'T.
+g: /._. Hmm, so long have you been together?
+ (s1 faces left)
+p1: >__< Been together IN BUSINESS.
+g: <__< ...
+g: Umm well anyway, I'm going to take off! Good luck with your... ...business.
+ (g exits)
+p1: >__< Our BUSINESS business.
+ (s1 faces right, s1 mood -_-)
+p1: ^N^ Wait -- nope. That one was okay.

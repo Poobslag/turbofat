@@ -1,0 +1,59 @@
+{"version": "2476", "fixed_zoom": 1.0}
+
+[location]
+lemon_2
+
+[characters]
+player, p1, restaurant_11
+sensei, s1, restaurant_1
+tunathy, t, !restaurant_8
+
+p1: Wow! We got funding, signed a lease, set up our kitchen and stocked it with food. All in one afternoon!
+p1: /._. ...Is there anything left to do?
+s1: ._./ Ahh not really! I'm just waiting for this lazy nerd to decorate our restaurant so it doesn't look like a cardboard box.
+ (t enters)
+t: ._.; I'm not lazy! ...But you haven't told me the restaurant's name yet.
+s1: ^N^ Kshh, so unprofessional. We talked about the name '#bad_restaurant_name#' don't you remember?
+ (default_phrase bad_restaurant_name Junjorito)
+p1: <_< I don't think they were there for that conversation, sensei.
+t: Whatever you come up with, just write it out for me on this form! I don't want to get the spelling wrong.
+t: /._. And where it says Restauranteur Name, be sure to write-
+s1: -Yes yes, don't worry. I have years of experience making little funny shapes on pieces of paper. I'll handle it.
+t: ^Y^ Th-thank you!
+t: Also, umm, it's quite literally not my business but...
+t: ._.; ...Please don't call your restaurant #bad_restaurant_name#...
+[we_like_it] The name is great
+[its_a_joke] The name was a joke
+[get_lost] Will you go away!?
+[lazy_nerd] Stop slacking off, you lazy nerd!
+
+[we_like_it]
+p1: ^_^ #bad_restaurant_name# is a great name! It matches our restaurant perfectly.
+ (p1 faces left)
+t: <__< Really? You're making... THAT kind of restaurant?
+t: ...
+t: Have you thought about making a good restaurant instead?
+s1: >__< Will you go away!?
+t: .__.; Ack!
+ (t exits)
+
+[its_a_joke]
+p1: <_< #bad_restaurant_name# was just a joke! ...We'll come up with a better name.
+ (p1 faces left)
+t: ^o^ Oh! ...Okay, phew. I'll just be patient, then.
+t: ...
+t: /._. So will you come up with a name soon? Or-
+s1: >__< Will you go away!?
+t: .__.; Ack!
+ (t exits)
+ 
+[get_lost]
+p1: >__< Will you go away!?
+ (p1 faces left)
+t: .__.; Ack!
+ (t exits)
+
+[lazy_nerd]
+p1: >_< Stop slacking off, you lazy nerd!
+ (p1 faces left)
+t: .__.; Ack!

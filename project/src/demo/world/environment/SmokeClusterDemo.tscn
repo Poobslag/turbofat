@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/demo/world/environment/smoke-cluster-demo.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/SmokeCluster.tscn" type="PackedScene" id=2]
+
+[node name="SmokeClusterDemo" type="Node"]
+script = ExtResource( 1 )
+SmokeClusterScene = ExtResource( 2 )

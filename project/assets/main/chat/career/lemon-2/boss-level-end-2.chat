@@ -1,0 +1,41 @@
+{"version": "2476"}
+
+[location]
+lemon/walk
+
+[characters]
+player, p1
+sensei, s1
+narrator, n
+
+n: Following the success of their restaurant in Lemony Thickets, Fat Sensei formulated plans for a second location.
+p1: We're already opening a second franchise? Do we have the money for something like that?
+s1: No, but that's why it's located in the desert. This way when it fails, the real estate is cheap and there are no witnesses.
+p1: /._. Isn't this awfully quick? Our first restaurant just barely got off the round. Who's going to keep it running?
+ (stop_walking)
+s1: ^y^ I left it in Sidger's hands, they can handle the restaurant fine by themselves.
+s1: They have our recipes and they'll just hire any help they need.
+p1: Really? Because...
+[need_longer] It seems sudden
+[not_the_best] They're not the best
+[stay_behind] I could stay behind
+
+
+[not_the_best]
+p1: <__< They're not the best chef, and their loyalty is-
+[dont_worry]
+
+[stay_behind]
+p1: /._. I could stay behind and help them out, until they-
+[dont_worry]
+
+[need_longer]
+p1: ^N^ It seems like maybe they could use a few more weeks to-
+[dont_worry]
+
+
+[dont_worry]
+s1: ^o^ Ah-hahahaha, you worry too much. Focus on your own problems first, smelly.
+p1: Okay.
+ (start_walking)
+p1: >__< ...Hey!

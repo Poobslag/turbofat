@@ -1,0 +1,25 @@
+{"version": "2476", "fixed_zoom": 1.1}
+
+[location]
+lemon_2
+
+[characters]
+player, p1, restaurant_11
+sensei, s1, !restaurant_8
+tunathy, t, restaurant_1
+(customer) sandrew, s, !restaurant_4
+
+p1: .__.; Wait... Turbo Fat?
+t: ^Y^ Yeah, Turbo Fat! That's what you wrote on the form, I triple checked because it sounded so... distinctive.
+t: I hope Bits 'n' Bites likes what I did with the sign. Do you know when they'll be here?
+p1: @_@ No, their name is Turbo Fat! The RESTAURANT'S name is Bits 'n Bites!
+s1: >__< My NAME is Fat Sensei! ...And why is Turbo Fat in big ugly letters over my poorly decorated restaurant!?
+ (s1 enters)
+t: .__.; ... ...
+s: Oh no! 'Turbo Fat'? I really liked the food at 'Closed'.
+ (s enters)
+p1: -_- No no, WE'RE Closed.
+s: Oh okay. Goodbye then! I guess I'll have to find a new favorite restaurant...
+ (s faces right)
+p1: >__< Just come in and sit down, you idiot!!!
+ (s faces left)

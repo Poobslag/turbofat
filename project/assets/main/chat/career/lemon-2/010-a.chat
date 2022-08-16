@@ -1,0 +1,53 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_10
+(customer) tunathy, t, table_seat_left
+
+p1: ^_^/ Wow Tunathy, you brought a sketchbook to the table? I'd be worried about getting food on it...
+t: Oh this isn't my good sketchbook. I just draw in it for practice...
+ (t faces left)
+t: ^N^ Anyway, it's okay. ...You don't need to feign interest in my personal life. I'm really just here to eat...
+p1: Are these your drawings?
+[pretty_good] They're pretty good
+[nothing_special] They're so messy
+[amazing] Wow! They're amazing
+[gorilla] It's like those gorillas
+
+
+[amazing]
+p1: owo Wow, these look amazing!!
+t: <__< What? ...Really?
+p1: I had no idea you were this talented! Do you have anything else I can look at?
+t: ._.; I... I don't know how to react to positive attention, can you say something mean?
+p1: ^__^ I wish I could draw like that...
+t: @_@ Ack! ...Can't ...breathe!
+
+[pretty_good]
+p1: ^Y^ They're pretty good! I especially like that one.
+t: <__< What? ...Really?
+p1: I mean it's obvious these are just for practice, but the underlying technique is there. You have such a cool style!
+t: ._.; I... I don't know how to react to positive attention, can you say something mean?
+p1: ^__^ I wish I could draw like that...
+t: @_@ Ack! ...Can't ...breathe!
+
+[nothing_special]
+p1: -__- Ohhhh okay, so it's just like... a bunch of messy sketches! Do you have any actual drawings in here?
+t: ^n^ Oh! ...Yeah, I'm sorry. This one's just for me. There's nothing finished.
+p1: It's just I've seen sketchbooks from like... REAL artists where it's these elaborately detailed pages...
+t: ^N^ Y-yeahhhh, I know. ...This is just something I sketch in for practice.
+p1: <_< I'm kind of surprised you showed this to me! These just look like something you'd throw away. ...No offense!
+t: u_u Right, no! Um... None taken...
+
+[gorilla]
+p1: /._. Oh wow, this reminds me of -- not to change the subject! But I read about this zoo where they had a donation of paintbrushes,
+p1: And they put them in the primate enclosure and let the gorillas paint. Did you ever hear about that?
+t: /._. Oh, hmmmmm! ...Yeah I think that rings a bell.
+p1: I mean their paintings were just complete and utter garbage, obviously! Because they're just gorillas.
+t: <__< Well yeah, that makes sense.
+p1: ^N^ They don't have the same kind of dexterity or spatial awareness that we take for granted.
+p1: <_< Well anyway... I don't know why that came to mind all of a sudden! Thanks for showing me your sketchbook.
+t: u_u Ohhhh...

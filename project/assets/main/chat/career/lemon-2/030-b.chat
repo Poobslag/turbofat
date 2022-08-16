@@ -1,0 +1,41 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) tunathy, t, table_seat_left
+
+t: /._. So... Is it true you give out free desserts to people on their birthday?
+s1: ^Y^ Free desserts? Hmm, sure why not. ...We give people free desserts on their birthday, if they pay for them.
+p1: Wait why, is your birthday coming up soon?
+t: ^N^ Oh no, no! My birthday's not for sixteen months...
+[wow_sixteen] Sixteen months!?
+[you_mean_four] You mean... four months?
+[leap_year] You were born on a leap year?
+
+[wow_sixteen]
+p1: @_@ Sixteen months!? That's an awfully long wait...
+t: Well, I only celebrate my birthday every other year. I don't deserve to be happy every year, or it gets to my head...
+[feel_bad]
+
+[you_mean_four]
+p1: ^N^ That would mean your next birthday is in... four months. Right?
+t: Well, I only celebrate my birthday every other year. I don't deserve to be happy every year, or it gets to my head...
+[feel_bad]
+
+[leap_year]
+p1: ^_^ Oh! Is this one of those leap year things? Like you were born February 29th?
+t: ^N^ No, no, nothing like that. I used to celebrate my birthday every year, but now I only celebrate every other year.
+t: I don't deserve to be happy every year, or it gets to my head...
+[feel_bad]
+
+
+[feel_bad]
+p1: u_u Ohh... Well now I feel bad for asking, I didn't know it would be such a long wait.
+s1: ...Is there anything we can do? We could charge you for some free desserts if you like.
+t: ^__^ Oh really? That would be nice! Thank you... That's the nicest thing anyone's ever done for me!
+t: u_u That makes me so happ-- ohhhhh... I guess I should probably scratch out my next birthday...
+p1: <__< ...
