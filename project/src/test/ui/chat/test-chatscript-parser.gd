@@ -8,6 +8,7 @@ const CHAT_CONDITION := "res://assets/test/ui/chat/chat-condition.chat"
 const CHAT_FULL := "res://assets/test/ui/chat/chat-full.chat"
 const CHAT_LINK_MOOD := "res://assets/test/ui/chat/chat-link-mood.chat"
 const CHAT_NEWLINES := "res://assets/test/ui/chat/chat-newlines.chat"
+const CHAT_PHRASE := "res://assets/test/ui/chat/chat-phrase.chat"
 const CHAT_STRING_FLAG := "res://assets/test/ui/chat/chat-string-flag.chat"
 const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 
@@ -16,7 +17,7 @@ func before_each() -> void:
 	PlayerData.chat_history.reset()
 
 
-func after_each() -> void:
+func after_all() -> void:
 	ChatLibrary.chat_key_root_path = ChatLibrary.DEFAULT_CHAT_KEY_ROOT_PATH
 	PlayerData.chat_history.reset()
 
@@ -264,3 +265,11 @@ func test_unset_flag() -> void:
 	# advancing the chat tree hits an 'unset_flag' meta item
 	chat_tree.advance()
 	assert_eq(PlayerData.chat_history.get_flag("adventurous_classy"), "")
+
+
+func test_set_phrase() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_PHRASE)
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "")
+	
+	chat_tree.advance()
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Frequent Straw")

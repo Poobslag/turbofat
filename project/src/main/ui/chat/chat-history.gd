@@ -11,19 +11,30 @@ const CHAT_AGE_NEVER := 99999999
 ## Tracks which conversations the player has had with each creature. The value is a per-creature index which starts
 ## from 0 and increments with each conversation with that creature.
 ##
-## key: chat key
-## value: ordering of when the chat happened (smaller is older)
+## key: (String) chat key
+## value: (int) ordering of when the chat happened (smaller is older)
 var chat_history: Dictionary
 
-## Stores flags which can be stored/received from chatscript. Flags represent chat choices the player made, such as
-## the answer to a yes or no question. They are persisted alongside the player's chat history.
-var _flags: Dictionary
+## Flags which can be stored/retreived from chatscript. Flags represent chat choices the player made, such as the
+## answer to a yes or no question. They are persisted alongside the player's chat history.
+##
+## key: (String) flag name
+## value: (String) flag value
+var flags: Dictionary
+
+## Phrases which can be stored/retrieved from chatscript. Phrases represent chat choices the player made, such as the
+## answer to a short answer question. They are persisted alongside the player's chat history.
+##
+## key: (String) phrase name
+## value: (String) phrase value
+var phrases: Dictionary
 
 var _chat_count := 0
 
 func reset() -> void:
 	chat_history.clear()
-	_flags.clear()
+	flags.clear()
+	phrases.clear()
 	_chat_count = 0
 
 
@@ -54,19 +65,16 @@ func is_chat_finished(chat_key: String) -> bool:
 	return chat_history.has(chat_key)
 
 
-## Stores a chat flag.
-func set_flag(flag: String, value: String = "true") -> void:
-	_flags[flag] = value
+func set_flag(key: String, value: String = "true") -> void:
+	flags[key] = value
 
 
-## Removes a chat flag.
-func unset_flag(flag: String) -> void:
-	_flags.erase(flag)
+func unset_flag(key: String) -> void:
+	flags.erase(key)
 
 
-## Returns the value of a chat flag.
-func get_flag(flag: String) -> String:
-	return _flags.get(flag, "")
+func get_flag(key: String) -> String:
+	return flags.get(key, "")
 
 
 ## Returns 'true' if a chat flag's value is truthy.
@@ -76,8 +84,16 @@ func get_flag(flag: String) -> String:
 ##
 ## Returns:
 ## 	'true' if the flag's value is a truthy string such as "1", "True" or "Potato".
-func has_flag(flag: String) -> bool:
-	return Utils.to_bool(_flags.get(flag, ""))
+func has_flag(key: String) -> bool:
+	return Utils.to_bool(flags.get(key, ""))
+
+
+func set_phrase(key: String, value: String) -> void:
+	phrases[key] = value
+
+
+func get_phrase(key: String) -> String:
+	return phrases.get(key, "")
 
 
 ## Returns 'true' if a chat flag's value matches the specified value.
@@ -95,14 +111,16 @@ func is_flag(flag: String, value: String) -> bool:
 
 func to_json_dict() -> Dictionary:
 	return {
-		"flags": _flags,
+		"flags": flags,
 		"history_items": chat_history,
+		"phrases": phrases,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
-	_flags = json.get("flags", {})
+	flags = json.get("flags", {})
 	chat_history = json.get("history_items", {})
+	phrases = json.get("phrases", {})
 	_convert_float_values_to_ints(chat_history)
 	
 	# calculate _chat_count instead of storing it
