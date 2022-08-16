@@ -179,13 +179,17 @@ func set_creature_def(creature_id: String, creature_def: CreatureDef) -> void:
 ## Substitutes variables in player-visible text.
 ##
 ## Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
-func substitute_variables(string: String, full_name: bool = false) -> String:
+func substitute_variables(string: String) -> String:
 	var result := string
-	if full_name:
-		result = result.replace(PLAYER_ID, get_player_def().creature_name)
-	else:
-		result = result.replace(PLAYER_ID, get_player_def().creature_short_name)
+	
+	# replace player/sensei name
+	result = result.replace(PLAYER_ID, get_player_def().creature_short_name)
 	result = result.replace(SENSEI_ID, get_sensei_def().creature_short_name)
+	
+	# replace phrases from choices the player's made, such as the proposed restaurant name
+	for phrase in PlayerData.chat_history.phrases:
+		result = result.replace("#%s#" % [phrase], tr(PlayerData.chat_history.phrases[phrase]))
+	
 	return result
 
 
