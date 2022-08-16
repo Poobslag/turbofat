@@ -27,3 +27,17 @@ func test_from_json_dict_chat_age() -> void:
 	
 	assert_eq(history.chat_age("chat/item_100"), 0)
 	assert_eq(history.chat_age("chat/item_200"), 1)
+
+
+func test_has_flag() -> void:
+	history.set_flag("bottle_horses", "123")
+	assert_eq(history.has_flag("bottle_horses"), true)
+
+	history.set_flag("bottle_horses", "")
+	assert_eq(history.has_flag("bottle_horses"), false)
+
+	history.set_flag("bottle_horses", "true")
+	assert_eq(history.has_flag("bottle_horses"), true)
+
+	history.set_flag("bottle_horses", "false")
+	assert_eq(history.has_flag("bottle_horses"), false)

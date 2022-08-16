@@ -15,10 +15,15 @@ const CHAT_AGE_NEVER := 99999999
 ## value: ordering of when the chat happened (smaller is older)
 var chat_history: Dictionary
 
+## Stores flags which can be stored/received from chatscript. Flags represent chat choices the player made, such as
+## the answer to a yes or no question. They are persisted alongside the player's chat history.
+var _flags: Dictionary
+
 var _chat_count := 0
 
 func reset() -> void:
 	chat_history.clear()
+	_flags.clear()
 	_chat_count = 0
 
 
@@ -49,13 +54,54 @@ func is_chat_finished(chat_key: String) -> bool:
 	return chat_history.has(chat_key)
 
 
+## Stores a chat flag.
+func set_flag(flag: String, value: String = "true") -> void:
+	_flags[flag] = value
+
+
+## Removes a chat flag.
+func unset_flag(flag: String) -> void:
+	_flags.erase(flag)
+
+
+## Returns the value of a chat flag.
+func get_flag(flag: String) -> String:
+	return _flags.get(flag, "")
+
+
+## Returns 'true' if a chat flag's value is truthy.
+##
+## Parameters:
+## 	'flag': The flag whose value should be inspected.
+##
+## Returns:
+## 	'true' if the flag's value is a truthy string such as "1", "True" or "Potato".
+func has_flag(flag: String) -> bool:
+	return Utils.to_bool(_flags.get(flag, ""))
+
+
+## Returns 'true' if a chat flag's value matches the specified value.
+##
+## Parameters:
+## 	'flag': The flag whose value should be inspected.
+##
+## 	'value': The string value to compare to.
+##
+## Returns:
+## 	'true' if the flag's value matches the specified value.
+func is_flag(flag: String, value: String) -> bool:
+	return get_flag(flag) == value
+
+
 func to_json_dict() -> Dictionary:
 	return {
+		"flags": _flags,
 		"history_items": chat_history,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
+	_flags = json.get("flags", {})
 	chat_history = json.get("history_items", {})
 	_convert_float_values_to_ints(chat_history)
 	

@@ -1,0 +1,11 @@
+{"version": "2476"}
+
+player: Hello!
+boatricia: Hello, nice to meet you!
+ (set_flag adventurous_classy capable)
+ 
+[alternate_start]
+boatricia: I remember you!
+ (start_if is_flag adventurous_classy capable)
+player: ...Let's pretend we haven't met before. Wouldn't that be fun?
+ (unset_flag adventurous_classy)
