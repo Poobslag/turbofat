@@ -19,6 +19,7 @@ var _chat_count := 0
 
 func reset() -> void:
 	chat_history.clear()
+	_chat_count = 0
 
 
 func add_history_item(chat_key: String) -> void:

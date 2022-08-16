@@ -10,10 +10,12 @@ const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 
 func before_each() -> void:
 	ChatLibrary.chat_key_root_path = "res://assets/test"
+	PlayerData.chat_history.reset()
 
 
 func after_each() -> void:
 	ChatLibrary.chat_key_root_path = ChatLibrary.DEFAULT_CHAT_KEY_ROOT_PATH
+	PlayerData.chat_history.reset()
 
 
 func _chat_tree_from_file(path: String) -> ChatTree:
