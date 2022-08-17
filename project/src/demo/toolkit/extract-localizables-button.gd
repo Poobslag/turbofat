@@ -74,38 +74,42 @@ func _extract_localizables_from_levels() -> void:
 		_localizables.append(level_settings.description)
 
 
+## Extracts localizable strings from all cutscenes/chats and adds them to the in-memory list of localizables.
 func _extract_localizables_from_chat_trees() -> void:
 	for path in CareerCutsceneLibrary.find_career_cutscene_resource_paths():
 		var chat_tree := ChatLibrary.chat_tree_from_file(path)
-		_extract_localizables_from_chat_tree(chat_tree)
+		for event_sequence in chat_tree.events.values():
+			for event_obj in event_sequence:
+				_extract_localizables_from_chat_event(event_obj)
 
 
-## Extracts localizable strings from a chat tree and adds them to the in-memory list of localizables.
-func _extract_localizables_from_chat_tree(chat_tree: ChatTree) -> void:
-	for event_sequence in chat_tree.events.values():
-		for event_obj in event_sequence:
-			var event: ChatEvent = event_obj
-			
-			# append a line of chat as a localizable
-			_localizables.append(event.text)
-			
-			# Append the list of player-selected chat choices as localizables.
-			if event.link_texts.size() == 1:
-				# We do not localize chat which only has one choice because the player is not prompted.
-				pass
-			else:
-				for link_text in event.link_texts:
-					_localizables.append(link_text)
-			
-			# append player choices such as restaurant names as localizables.
-			for meta_item in event.meta:
-				if meta_item.begins_with("set_phrase "):
-					var tokens: Array = meta_item.split(" ")
-					if tokens.size() <= 2:
+## Extracts localizable strings from a chat event and adds them to the in-memory list of localizables.
+##
+## This includes the chat event's dialog, branches, and meta items like restaurant names the player can choose.
+func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
+	# append a line of chat as a localizable
+	_localizables.append(event.text)
+	
+	# Append the list of player-selected chat choices as localizables.
+	if event.link_texts.size() == 1:
+		# We do not localize chat which only has one choice because the player is not prompted.
+		pass
+	else:
+		for link_text in event.link_texts:
+			_localizables.append(link_text)
+	
+	# append player choices such as restaurant names as localizables.
+	for meta_item in event.meta:
+		var tokens: Array = meta_item.split(" ")
+		var args: Array = tokens.slice(1, tokens.size())
+		if tokens:
+			match tokens[0]:
+				"set_phrase":
+					if args.size() < 2:
 						push_warning("Invalid token count for set_phrase call. Expected 2 but was %s"
-								% [tokens.size() - 1])
-					else:
-						_localizables.append(PoolStringArray(tokens.slice(2, tokens.size())).join(" "))
+								% [args.size()])
+					
+					_localizables.append(PoolStringArray(args.slice(1, args.size())).join(" "))
 
 
 ## Extract localizables from OS.get_scancode_string()

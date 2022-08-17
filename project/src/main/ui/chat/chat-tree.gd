@@ -233,38 +233,42 @@ func _apply_say_if_conditions() -> void:
 			did_increment = true
 
 
-## Processes any 'set_flag', 'unset_flag' and 'set_phrase' statements.
+## Processes meta items which manipulate flags and phrases.
 func _assign_flags_and_phrases() -> void:
-	# process unset_flag statements
 	for meta_item in get_event().meta:
-		if meta_item.begins_with("unset_flag "):
-			var tokens: Array = meta_item.split(" ")
-			match tokens.size():
-				2:
-					PlayerData.chat_history.unset_flag(tokens[1])
-				_:
-					push_warning("Invalid argument count for unset_flag call. Expected 1 but was %s"
-							% [tokens.size() - 1])
+		var tokens: Array = meta_item.split(" ")
+		var args: Array = tokens.slice(1, tokens.size())
+		if tokens:
+			match tokens[0]:
+				"set_flag": _process_set_flag_statement(args)
+				"set_phrase": _process_set_phrase_statement(args)
+				"unset_flag": _process_unset_flag_statement(args)
+
+
+func _process_set_flag_statement(args: Array) -> void:
+	match args.size():
+		1:
+			PlayerData.chat_history.set_flag(args[0])
+		2:
+			PlayerData.chat_history.set_flag(args[0], args[1])
+		_:
+			push_warning("Invalid argument count for set_flag call. Expected 1 or 2 but was %s"
+					% [args.size()])
+
+
+func _process_set_phrase_statement(args: Array) -> void:
+	if args.size() < 2:
+		push_warning("Invalid argument count for set_phrase call. Expected at least 2 but was %s"
+				% [args.size()])
+		return
 	
-	# process set_flag statements
-	for meta_item in get_event().meta:
-		if meta_item.begins_with("set_flag "):
-			var tokens: Array = meta_item.split(" ")
-			match tokens.size():
-				2:
-					PlayerData.chat_history.set_flag(tokens[1])
-				3:
-					PlayerData.chat_history.set_flag(tokens[1], tokens[2])
-				_:
-					push_warning("Invalid argument count for set_flag call. Expected 1 or 2 but was %s"
-							% [tokens.size() - 1])
+	PlayerData.chat_history.set_phrase(
+			args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
+
+
+func _process_unset_flag_statement(args: Array) -> void:
+	if args.size() != 1:
+		push_warning("Invalid argument count for unset_flag call. Expected 1 but was %s"
+				% [args.size()])
 	
-	# process set_phrase statements
-	for meta_item in get_event().meta:
-		if meta_item.begins_with("set_phrase "):
-			var tokens: Array = meta_item.split(" ")
-			if tokens.size() <= 2:
-				push_warning("Invalid token count for set_phrase call. Expected 2 but was %s"
-						% [tokens.size() - 1])
-			else:
-				PlayerData.chat_history.set_phrase(tokens[1], PoolStringArray(tokens.slice(2, tokens.size())).join(" "))
+	PlayerData.chat_history.unset_flag(args[0])
