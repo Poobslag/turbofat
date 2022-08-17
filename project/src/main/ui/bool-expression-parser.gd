@@ -93,6 +93,16 @@ class HasFlagExpression extends BoolExpression:
 		return PlayerData.chat_history.has_flag(args[0].string)
 
 
+class HasPhraseExpression extends BoolExpression:
+	func _init(new_token: BoolToken, flag: BoolToken) -> void:
+		token = new_token
+		args = [flag]
+	
+	
+	func evaluate() -> bool:
+		return PlayerData.chat_history.has_phrase(args[0].string)
+
+
 class IsFlagExpression extends BoolExpression:
 	func _init(new_token: BoolToken, flag: BoolToken, value: BoolToken) -> void:
 		token = new_token
@@ -193,6 +203,8 @@ func _parse_function() -> BoolExpression:
 			expression = ChatFinishedExpression.new(_get_next_token(), _get_next_token())
 		"has_flag":
 			expression = HasFlagExpression.new(_get_next_token(), _get_next_token())
+		"has_phrase":
+			expression = HasPhraseExpression.new(_get_next_token(), _get_next_token())
 		"is_flag":
 			expression = IsFlagExpression.new(_get_next_token(), _get_next_token(), _get_next_token())
 		"level_finished":

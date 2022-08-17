@@ -274,3 +274,34 @@ func test_set_phrase() -> void:
 	
 	chat_tree.advance()
 	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Frequent Straw")
+
+
+func test_has_phrase() -> void:
+	var chat_tree: ChatTree
+	
+	chat_tree = _chat_tree_from_file(CHAT_SET_PHRASE)
+	assert_eq(chat_tree.get_event().text, "Hello!")
+	
+	PlayerData.chat_history.set_phrase("tall_cluttered", "Frequent Straw")
+	
+	chat_tree = _chat_tree_from_file(CHAT_SET_PHRASE)
+	assert_eq(chat_tree.get_event().text, "I remember you!")
+
+
+func test_default_phrase() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_DEFAULT_PHRASE)
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "")
+	
+	chat_tree.advance()
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Frequent Straw")
+
+
+func test_default_phrase_doesnt_overwrite() -> void:
+	PlayerData.chat_history.set_phrase("tall_cluttered", "Wreck Lean")
+	
+	var chat_tree := _chat_tree_from_file(CHAT_DEFAULT_PHRASE)
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Wreck Lean")
+	
+	# the 'default_phrase' meta item should not overwrite a phrase which is already saved
+	chat_tree.advance()
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Wreck Lean")

@@ -110,6 +110,12 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 								% [args.size()])
 					
 					_localizables.append(PoolStringArray(args.slice(1, args.size())).join(" "))
+				"default_phrase":
+					if args.size() < 2:
+						push_warning("Invalid token count for default_phrase call. Expected 2 but was %s"
+								% [args.size()])
+					
+					_localizables.append(PoolStringArray(args.slice(1, args.size())).join(" "))
 
 
 ## Extract localizables from OS.get_scancode_string()
