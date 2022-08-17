@@ -433,24 +433,34 @@ func chat_tree_from_file(path: String) -> ChatTree:
 	_chat_tree.reset()
 	_character_aliases.clear()
 	
-	var f := File.new()
-	f.open(path, File.READ)
-	
-	while not f.eof_reached():
-		# strip any whitespace at the end of the line
-		var line := f.get_line().strip_edges(false)
-		if line.begins_with("//"):
-			# comment; ignore line
-			continue
-		var new_state_name := _state.line(line)
-		if new_state_name:
-			if not _states_by_name.has(new_state_name):
-				push_warning("Invalid header line: %s" % [line])
+	if not FileUtils.file_exists(path):
+		push_error("File not found: %s" % [path])
+	else:
+		var f := File.new()
+		f.open(path, File.READ)
+		
+		while f.get_error() == OK and not f.eof_reached():
+			# strip any whitespace at the end of the line
+			var line := f.get_line().strip_edges(false)
+			if line.begins_with("//"):
+				# comment; ignore line
 				continue
-			_state = _states_by_name[new_state_name]
-	
-	f.close()
-	
-	_chat_tree.chat_key = ChatLibrary.chat_key_from_path(path)
+			var new_state_name := _state.line(line)
+			if new_state_name:
+				if not _states_by_name.has(new_state_name):
+					push_warning("Invalid header line: %s" % [line])
+					continue
+				_state = _states_by_name[new_state_name]
+		
+		match f.get_error():
+			OK, ERR_FILE_EOF:
+				pass
+			_:
+				push_error("File error %s: %s" % [f.get_error(), path])
+		
+		if f.is_open():
+			f.close()
+		
+		_chat_tree.chat_key = ChatLibrary.chat_key_from_path(path)
 	
 	return _chat_tree

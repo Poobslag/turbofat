@@ -3,13 +3,14 @@ extends "res://addons/gut/test.gd"
 const CUTSCENE_FULL := "res://assets/test/ui/chat/cutscene-full.chat"
 const CUTSCENE_META := "res://assets/test/ui/chat/cutscene-meta.chat"
 
-const CHAT_BOOLEAN_FLAG := "res://assets/test/ui/chat/chat-boolean-flag.chat"
 const CHAT_CONDITION := "res://assets/test/ui/chat/chat-condition.chat"
+const CHAT_DEFAULT_PHRASE := "res://assets/test/ui/chat/chat-default-phrase.chat"
 const CHAT_FULL := "res://assets/test/ui/chat/chat-full.chat"
 const CHAT_LINK_MOOD := "res://assets/test/ui/chat/chat-link-mood.chat"
 const CHAT_NEWLINES := "res://assets/test/ui/chat/chat-newlines.chat"
-const CHAT_PHRASE := "res://assets/test/ui/chat/chat-phrase.chat"
-const CHAT_STRING_FLAG := "res://assets/test/ui/chat/chat-string-flag.chat"
+const CHAT_SET_PHRASE := "res://assets/test/ui/chat/chat-set-phrase.chat"
+const CHAT_SET_FLAG_STRING := "res://assets/test/ui/chat/chat-set-flag-string.chat"
+const CHAT_SET_FLAG_BOOL := "res://assets/test/ui/chat/chat-set-flag-bool.chat"
 const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 
 func before_each() -> void:
@@ -211,46 +212,46 @@ func test_newlines() -> void:
 	assert_eq(chat_tree.get_event().link_texts[0], "Oh!\nHi!")
 
 
-func test_set_boolean_flag() -> void:
-	var chat_tree := _chat_tree_from_file(CHAT_BOOLEAN_FLAG)
+func test_set_flag_bool() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_SET_FLAG_BOOL)
 	assert_eq(PlayerData.chat_history.get_flag("bone_practice"), "")
 	chat_tree.advance()
 	assert_eq(PlayerData.chat_history.get_flag("bone_practice"), "true")
 
 
-func test_get_boolean_flag() -> void:
-	var chat_tree: ChatTree
-	
-	chat_tree = _chat_tree_from_file(CHAT_BOOLEAN_FLAG)
-	assert_eq(chat_tree.get_event().text, "Hello!")
-	
-	PlayerData.chat_history.set_flag("bone_practice")
-	
-	chat_tree = _chat_tree_from_file(CHAT_BOOLEAN_FLAG)
-	assert_eq(chat_tree.get_event().text, "I remember you!")
-
-
-func test_set_string_flag() -> void:
-	var chat_tree := _chat_tree_from_file(CHAT_STRING_FLAG)
+func test_set_flag_string() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_SET_FLAG_STRING)
 	assert_eq(PlayerData.chat_history.get_flag("adventurous_classy"), "")
 	chat_tree.advance()
 	assert_eq(PlayerData.chat_history.get_flag("adventurous_classy"), "capable")
 
 
-func test_get_string_flag() -> void:
+func test_has_flag() -> void:
 	var chat_tree: ChatTree
 	
-	chat_tree = _chat_tree_from_file(CHAT_STRING_FLAG)
+	chat_tree = _chat_tree_from_file(CHAT_SET_FLAG_BOOL)
+	assert_eq(chat_tree.get_event().text, "Hello!")
+	
+	PlayerData.chat_history.set_flag("bone_practice")
+	
+	chat_tree = _chat_tree_from_file(CHAT_SET_FLAG_BOOL)
+	assert_eq(chat_tree.get_event().text, "I remember you!")
+
+
+func test_is_flag() -> void:
+	var chat_tree: ChatTree
+	
+	chat_tree = _chat_tree_from_file(CHAT_SET_FLAG_STRING)
 	assert_eq(chat_tree.get_event().text, "Hello!")
 	
 	PlayerData.chat_history.set_flag("adventurous_classy", "achiever")
 	
-	chat_tree = _chat_tree_from_file(CHAT_STRING_FLAG)
+	chat_tree = _chat_tree_from_file(CHAT_SET_FLAG_STRING)
 	assert_eq(chat_tree.get_event().text, "Hello!")
 
 	PlayerData.chat_history.set_flag("adventurous_classy", "capable")
 	
-	chat_tree = _chat_tree_from_file(CHAT_STRING_FLAG)
+	chat_tree = _chat_tree_from_file(CHAT_SET_FLAG_STRING)
 	assert_eq(chat_tree.get_event().text, "I remember you!")
 
 
@@ -259,7 +260,7 @@ func test_unset_flag() -> void:
 	
 	PlayerData.chat_history.set_flag("adventurous_classy", "capable")
 	
-	chat_tree = _chat_tree_from_file(CHAT_STRING_FLAG)
+	chat_tree = _chat_tree_from_file(CHAT_SET_FLAG_STRING)
 	assert_eq(PlayerData.chat_history.get_flag("adventurous_classy"), "capable")
 	
 	# advancing the chat tree hits an 'unset_flag' meta item
@@ -268,7 +269,7 @@ func test_unset_flag() -> void:
 
 
 func test_set_phrase() -> void:
-	var chat_tree := _chat_tree_from_file(CHAT_PHRASE)
+	var chat_tree := _chat_tree_from_file(CHAT_SET_PHRASE)
 	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "")
 	
 	chat_tree.advance()
