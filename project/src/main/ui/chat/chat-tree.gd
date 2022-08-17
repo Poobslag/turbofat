@@ -240,9 +240,22 @@ func _assign_flags_and_phrases() -> void:
 		var args: Array = tokens.slice(1, tokens.size())
 		if tokens:
 			match tokens[0]:
+				"default_phrase": _process_default_phrase_statement(args)
 				"set_flag": _process_set_flag_statement(args)
 				"set_phrase": _process_set_phrase_statement(args)
 				"unset_flag": _process_unset_flag_statement(args)
+
+
+
+func _process_default_phrase_statement(args: Array) -> void:
+	if args.size() < 2:
+		push_warning("Invalid argument count for default_phrase call. Expected at least 2 but was %s"
+				% [args.size()])
+		return
+	
+	if not PlayerData.chat_history.has_phrase(args[0]):
+		PlayerData.chat_history.set_phrase(
+				args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
 
 
 func _process_set_flag_statement(args: Array) -> void:

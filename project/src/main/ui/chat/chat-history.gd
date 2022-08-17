@@ -92,6 +92,11 @@ func set_phrase(key: String, value: String) -> void:
 	phrases[key] = value
 
 
+## Returns 'true' of a chat phrase's value is set to a non-empty value.
+func has_phrase(key: String) -> bool:
+	return not get_phrase(key).empty()
+
+
 func get_phrase(key: String) -> String:
 	return phrases.get(key, "")
 

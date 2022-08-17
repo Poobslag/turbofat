@@ -8,4 +8,5 @@ player, p1, table_10
 mara, m, table_seat_left
 
 p1: Oh hey Mara! Don't worry, this one will be on the house~
-m: ^_^/ Oh that's alright.
+m: ^_^/ Oh that's alright. I know you like #favorite_animal#.
+ (default_phrase favorite_animal classy kittens)

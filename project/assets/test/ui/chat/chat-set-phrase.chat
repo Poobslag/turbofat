@@ -3,3 +3,7 @@
 player: Hello!
 boatricia: Hello, nice to meet you!
  (set_phrase tall_cluttered Frequent Straw)
+  
+[alternate_start]
+boatricia: I remember you!
+ (start_if has_phrase tall_cluttered)
