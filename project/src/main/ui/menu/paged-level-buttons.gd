@@ -104,6 +104,10 @@ func _add_buttons() -> void:
 		
 		_grid_container.add_child(new_level_button)
 		emit_signal("button_added", new_level_button)
+	
+	# assign default focus to the first button
+	if _grid_container.get_child_count():
+		_grid_container.get_children().front().grab_focus()
 
 
 ## Removes all buttons/placeholders in preparation for loading a new set of level buttons.

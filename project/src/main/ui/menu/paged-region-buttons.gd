@@ -113,6 +113,10 @@ func _add_buttons() -> void:
 				i, _regions_by_page[_page][i])
 		_hbox_container.add_child(new_region_button)
 		emit_signal("button_added", new_region_button)
+	
+	# assing default focus to the first button
+	if _hbox_container.get_child_count():
+		_hbox_container.get_children().front().grab_focus()
 
 
 ## Enables/disables the paging arrows, hiding them if the player only has access to a single page of regions.

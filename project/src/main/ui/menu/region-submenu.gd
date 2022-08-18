@@ -26,10 +26,8 @@ func popup(default_region_id: String) -> void:
 			regions.append(region)
 	regions.append_array(CareerLevelLibrary.regions)
 	_region_buttons.regions = regions
-	
 	if default_region_id:
 		_region_buttons.focus_region(default_region_id)
-	
 	show()
 
 
