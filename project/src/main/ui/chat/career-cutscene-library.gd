@@ -146,14 +146,23 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 	var potential_chat_key_pairs := find_chat_key_pairs(chat_key_roots, search_flags)
 	var trimmed_chat_key_pairs := []
 	for potential_chat_key_pair in potential_chat_key_pairs:
-		var accept_chat_key_pair: bool
-		if not chef_id and not customer_id and not observer_id:
-			# no criteria specified; accept all chat key pairs
-			accept_chat_key_pair = true
-		elif customer_id == CareerLevel.NONQUIRKY_CUSTOMER:
+		var accept_chat_key_pair: bool = true
+		var key_parts := _split_key(_preroll_key_from_chat_key_pair(potential_chat_key_pair))
+		
+		if accept_chat_key_pair \
+				and key_parts.size() >= 2 and int(key_parts[1]) >= 100:
+			# post-boss cutscene; only play it if the player has cleared the region
+			accept_chat_key_pair = PlayerData.career.is_region_cleared(PlayerData.career.current_region())
+		
+		if accept_chat_key_pair \
+				and (chef_id or customer_id or observer_id) \
+				and customer_id == CareerLevel.NONQUIRKY_CUSTOMER:
 			# nonquirky customer; only accept chat key pairs with nonquirky chefs/customers/observers
 			accept_chat_key_pair = _chat_key_pair_is_nonquirky(potential_chat_key_pair)
-		else:
+		
+		if accept_chat_key_pair \
+				and (chef_id or customer_id or observer_id) \
+				and customer_id != CareerLevel.NONQUIRKY_CUSTOMER:
 			# only accept chat key pairs with a matching quirky chef/customer/observer
 			accept_chat_key_pair = _chat_key_pair_has_creatures(potential_chat_key_pair, chef_id, customer_id, observer_id)
 		
@@ -233,8 +242,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	_preroll_tree.clear()
 	for chat_key_pair in all_chat_key_pairs:
 		var preroll_key := _preroll_key_from_chat_key_pair(chat_key_pair)
-		var key_parts := [StringUtils.substring_before_last(preroll_key, "/")]
-		key_parts.append_array(StringUtils.substring_after_last(preroll_key, "/").split("_"))
+		var key_parts := _split_key(preroll_key)
 		for i in range(1, key_parts.size()):
 			var key_part: String = key_parts[i]
 			var prefix: String = key_parts[0]
@@ -257,6 +265,13 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 				_general_sensei_chat_keys.append(chat_key)
 			if chat_tree.inside_restaurant():
 				_general_restaurant_chat_keys.append(chat_key)
+
+
+## Splits a preroll key like 'foo/bar/10_d' into an array like ['foo/bar', '10', 'd'].
+func _split_key(preroll_key: String) -> Array:
+	var result := [StringUtils.substring_before_last(preroll_key, "/")]
+	result.append_array(StringUtils.substring_after_last(preroll_key, "/").split("_"))
+	return result
 
 
 ## Returns a collection of interlude preroll chat keys for cutscenes the player has already seen.
