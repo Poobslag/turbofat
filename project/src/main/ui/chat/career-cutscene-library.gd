@@ -4,32 +4,35 @@ extends Node
 ##
 ## Cutscene resources are arranged in a mostly-flat directory structure like this:
 ##
-## 	career/general/00-a
-## 	career/general/00-b
-## 	career/marsh/00
-## 	career/marsh/00-end
-## 	career/marsh/10-a
-## 	career/marsh/10-b
-## 	career/marsh/10-c
+## 	career/general/000-a
+## 	career/general/000-b
+## 	career/marsh/000
+## 	career/marsh/000-end
+## 	career/marsh/010-a
+## 	career/marsh/010-b
+## 	career/marsh/010-c
 ## 	...
 ##
 ## However, these filenames define a tree-like structure for cutscenes:
 ##
 ## 	+career/general
-## 	|+career/general/00
-## 	||-career/general/00_a
-## 	|\-career/general/00_b
+## 	|+career/general/000
+## 	||-career/general/000_a
+## 	|\-career/general/000_b
 ## 	+career/marsh
-## 	|+career/marsh/00
-## 	|+career/marsh/10
-## 	||-career/marsh/10_a
-## 	||-career/marsh/10_b
-## 	|\-career/marsh/10_c
+## 	|+career/marsh/000
+## 	|+career/marsh/010
+## 	||-career/marsh/010_a
+## 	||-career/marsh/010_b
+## 	|\-career/marsh/010_c
 ## 	|...
 ##
-## These cutscenes are ordered such that numeric siblings are always played in ascending order (00, 10, 11, 20..) but
+## These cutscenes are ordered such that numeric siblings are always played in ascending order (000, 010, 011, 020..) but
 ## alphabetic siblings are played in random order (c, a, b...). These ordering rules apply both to leaf nodes as well
 ## as parent nodes.
+##
+## Nodes starting with a number 100 or greater are 'post-boss cutscenes' and will not play unless the player has
+## cleared the region's boss level.
 
 ## Default resource path containing career cutscenes.
 const DEFAULT_CAREER_CUTSCENE_ROOT_PATH := "res://assets/main/chat/career"
