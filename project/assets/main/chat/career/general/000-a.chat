@@ -16,11 +16,11 @@ s1: ^N^ You don't need a spatula. A real chef cooks with their bare pans.
 p1: Their bare... pans? What about spoons? Forks? Knives?
 s1: Pans, pans and pans. Really, what is a knife but a specialized sharpened pan? You don't need any of that stuff.
 s1: ^y^ Name one activity in a kitchen that you can't do better with a pan.
-[make_pancakes]Make pancakes
-[blow_your_nose]Blow your nose
-[scratch_your_butt]Scratch your butt
-[mop_the_floor]Mop the floor
-[swat_a_fly]Swat a fly
+[make_pancakes] Make pancakes
+[blow_your_nose] Blow your nose
+[scratch_your_butt] Scratch your butt
+[mop_the_floor] Mop the floor
+[swat_a_fly] Swat a fly
 
 [make_pancakes]
 p1: /._. Well, you can't make pancakes with a pan.

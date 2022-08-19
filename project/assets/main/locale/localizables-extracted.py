@@ -288,7 +288,7 @@ tr("I'm just going to leave, you two are confusing me. ...Are you hungry or not!
 tr("Maybe we're hungry, and maybe we aren't! I'm not telling you anything!")
 tr("Namory, the coy part is over! What's wrong with you!?")
 tr("Ohhh well... That was more than I should have eaten today.")
-tr("It's taking all my energy just to sit up, I don't know HOW I'll find the energy to walk home...")
+tr("It's taking all my energy just to sit up, I don't know HOW I'll manage the walk home...")
 tr("WALK home? ...You're a squirrel, don't you live up in a tree?")
 tr("...Well, crap.")
 tr("Say, I know this is a long shot but ehhh... How's your throwing arm?")
