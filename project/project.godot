@@ -1019,6 +1019,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/settings/touch-settings.gd"
 }, {
+"base": "Reference",
+"class": "Tracery",
+"language": "GDScript",
+"path": "res://src/main/tracery.gd"
+}, {
 "base": "Control",
 "class": "TutorialDiagram",
 "language": "GDScript",
@@ -1267,6 +1272,7 @@ _global_script_class_icons={
 "TechMoveBurst": "",
 "TechMoveDetector": "",
 "TouchSettings": "",
+"Tracery": "",
 "TutorialDiagram": "",
 "TutorialHud": "",
 "TutorialMessages": "",

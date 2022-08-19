@@ -21,8 +21,16 @@ func test_substitute_variables_names() -> void:
 
 
 func test_substitute_variables_phrases() -> void:
-	PlayerData.chat_history.set_phrase("favorite_animal_plural", "classy rabbits")
+	PlayerData.chat_history.set_phrase("silly_name", "Gomot Ocedut")
 	
 	var result := PlayerData.creature_library.substitute_variables(
-			"I sure love #favorite_animal_plural#.")
-	assert_eq(result, "I sure love classy rabbits.")
+			"Please call me #silly_name#.")
+	assert_eq(result, "Please call me Gomot Ocedut.")
+
+
+func test_substitute_possessive() -> void:
+	PlayerData.creature_library.player_def.creature_short_name = "Gegad"
+	
+	var result := PlayerData.creature_library.substitute_variables(
+			"This is all #player.possessive# fault.")
+	assert_eq(result, "This is all Gegad's fault.")

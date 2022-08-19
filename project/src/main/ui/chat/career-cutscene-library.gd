@@ -27,9 +27,9 @@ extends Node
 ## 	|\-career/marsh/010_c
 ## 	|...
 ##
-## These cutscenes are ordered such that numeric siblings are always played in ascending order (000, 010, 011, 020..) but
-## alphabetic siblings are played in random order (c, a, b...). These ordering rules apply both to leaf nodes as well
-## as parent nodes.
+## These cutscenes are ordered such that numeric siblings are always played in ascending order (000, 010, 011, 020..)
+## but alphabetic siblings are played in random order (c, a, b...). These ordering rules apply both to leaf nodes as
+## well as parent nodes.
 ##
 ## Nodes starting with a number 100 or greater are 'post-boss cutscenes' and will not play unless the player has
 ## cleared the region's boss level.
