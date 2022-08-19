@@ -83,6 +83,7 @@ RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src \
   | grep -v "utils.gd.*var tmp = arr\[i\]" \
   | grep -v "dna-loader.gd.*var property_value =" \
   | grep -v "career-data.gd.*var chat_tree = ChatLibrary.chat" \
+  | grep -v "tracery.gd.*var selected_rule = match_name" \
   | grep -v "dna-loader.gd.*var shader_value =")
 if [ -n "$RESULT" ]
 then

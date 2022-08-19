@@ -180,17 +180,14 @@ func set_creature_def(creature_id: String, creature_def: CreatureDef) -> void:
 ##
 ## Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
 func substitute_variables(string: String) -> String:
-	var result := string
-	
-	# replace player/sensei name
-	result = result.replace(PLAYER_ID, get_player_def().creature_short_name)
-	result = result.replace(SENSEI_ID, get_sensei_def().creature_short_name)
-	
-	# replace phrases from choices the player's made, such as the proposed restaurant name
+	var rules := {}
+	rules["player"] = get_player_def().creature_short_name
+	rules["sensei"] = get_sensei_def().creature_short_name
 	for phrase in PlayerData.chat_history.phrases:
-		result = result.replace("#%s#" % [phrase], tr(PlayerData.chat_history.phrases[phrase]))
-	
-	return result
+		rules[phrase] = tr(PlayerData.chat_history.phrases[phrase])
+	var grammar := Tracery.Grammar.new(rules)
+	grammar.add_modifiers(Tracery.Modifiers.get_modifiers())
+	return grammar.flatten(string)
 
 
 ## Populates the fatness for randomly generated filler creatures.

@@ -27,6 +27,8 @@ $ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited
 $ Paws by Solid Icon Co (https://www.flaticon.com/authors/solid-icon-co) (Unlimited use without attribution)
 
 Other:
+$ GDTracery by Althar93 (https://github.com/Althar93/GDTracery) (Apache-2.0 license)
+$ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
 $$$ Godot Engine (MIT license)
@@ -129,5 +131,5 @@ project/assets/main/ui/schoolbell-regular.ttf Schoolbell by Font Diner
 Other
 --------------------------------------------------------------------------------
 project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+project/src/main/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
 project/addons/gut "Gut" by Tom "Butch" Wesley
-
