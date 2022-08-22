@@ -25,6 +25,8 @@ func test_sanitize_name_first_and_last_character() -> void:
 
 func test_sanitize_name_invalid_characters() -> void:
 	assert_eq(NameUtils.sanitize_name("abc	def"), "abc def")
+	assert_eq(NameUtils.sanitize_name("abc#def"), "abc def")
+	assert_eq(NameUtils.sanitize_name("abc|def"), "abc def")
 
 
 func test_sanitize_name_valid_characters() -> void:
@@ -32,6 +34,7 @@ func test_sanitize_name_valid_characters() -> void:
 	assert_eq(NameUtils.sanitize_name("spoil-633"), "spoil-633")
 	assert_eq(NameUtils.sanitize_name("húsbóndi"), "húsbóndi")
 	assert_eq(NameUtils.sanitize_name("Dr. Smiles"), "Dr. Smiles")
+	assert_eq(NameUtils.sanitize_name("abc/def"), "abc/def")
 
 
 func test_sanitize_short_name() -> void:

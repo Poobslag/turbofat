@@ -6,7 +6,7 @@ extends RichTextLabel
 signal text_shown(new_text)
 
 ## unshown character which causes the output to pause for 0.2 beats
-const LULL_CHARACTER := '/'
+const LULL_CHARACTER := '|'
 
 ## The delay in seconds before displaying the next character
 var _pause := 0.0
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	while _unshown_index < _unshown_text.length() and _pause <= 0.0:
 		# continue showing characters until we hit a pause
 		var unshown_char := _unshown_text[_unshown_index]
-		if unshown_char == '/':
+		if unshown_char == LULL_CHARACTER:
 			_pause += 0.2 * _beat_duration
 		else:
 			text += unshown_char
@@ -58,9 +58,9 @@ func _process(delta: float) -> void:
 
 ## Reveals the label and empties its contents, gradually appending text over time.
 ##
-## The text can include lull characters, '/', which are hidden from the player but result in a brief delay to mimic
+## The text can include lull characters, '|', which are hidden from the player but result in a brief delay to mimic
 ## patterns of speech:
-## 	'Despite the promise of info,/ I was unable to determine what,/ if anything,/ a 'butt/ onion'/ is supposed to be.'
+## 	'Despite the promise of info,| I was unable to determine what,| if anything,| a 'butt| onion'| is supposed to be.'
 func show_text(text_with_lulls: String) -> void:
 	# reset text state before showing new text
 	hide_text()

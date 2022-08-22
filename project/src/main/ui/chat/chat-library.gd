@@ -40,28 +40,28 @@ func chat_tree_from_file(path: String) -> ChatTree:
 ## Lull characters make the chat UI briefly pause at parts of the chat line. We add these after periods, commas and
 ## other punctuation.
 func add_lull_characters(s: String) -> String:
-	if "/" in s:
+	if "|" in s:
 		# if the sentence already contains lull characters, we leave it alone
 		return s
 	
 	var transformer := StringTransformer.new(s)
 	
 	# add pauses after certain kinds of punctuation
-	transformer.sub("([!.?,])", "$1/")
+	transformer.sub("([!.?,])", "$1|")
 	
 	# add pauses after dashes, but not in hyphenated words
-	transformer.sub("(-)(?=[/!.?,\\- ])", "$1/")
+	transformer.sub("(-)(?=[|!.?,\\- ])", "$1|")
 	
-	# strip pauses from ellipses which conclude a line, unless the entire sentence is an ellipsis
-	if transformer.search("[^/!.?,\\- ]"):
+	# remove pauses from ellipses which conclude a line, unless the entire sentence is an ellipsis
+	if transformer.search("[^\\|!.?,\\- ]"):
 		for _i in range(10):
 			var old_transformed := transformer.transformed
-			transformer.sub("/([/!.?,\\-]*)$", "$1")
+			transformer.sub("\\|([\\|!.?]*)$", "$1")
 			if old_transformed == transformer.transformed:
 				break
 	
 	# remove lull character from the end of the line
-	transformer.transformed = transformer.transformed.trim_suffix("/")
+	transformer.transformed = transformer.transformed.trim_suffix("|")
 	
 	return transformer.transformed
 
@@ -73,13 +73,13 @@ func add_mega_lull_characters(s: String) -> String:
 	var transformer := StringTransformer.new(s)
 	
 	# long pause between words
-	transformer.sub(" ", "// ")
+	transformer.sub(" ", "|| ")
 	
 	# short pause between letters, punctuation
-	transformer.sub("([^/ ])", "$1/")
+	transformer.sub("([^| ])", "$1|")
 	
 	# remove lull character from the end of the line
-	transformer.transformed = transformer.transformed.trim_suffix("/")
+	transformer.transformed = transformer.transformed.trim_suffix("|")
 	return transformer.transformed
 
 

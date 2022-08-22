@@ -7,10 +7,10 @@ signal all_text_shown
 ## How many seconds to delay when displaying a character.
 const DEFAULT_PAUSE := 0.05
 
-## How many seconds to delay when displaying whitespace or the special lull character, '/'.
+## How many seconds to delay when displaying whitespace or the special lull character, '|'.
 const PAUSE_CHARACTERS := {
 	" ": 0.00,
-	"/": 0.40,
+	"|": 0.40,
 	"\n": 0.80,
 }
 
@@ -62,7 +62,7 @@ func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> void:
 	
 	_label.visible = true
 	set_process(true)
-	_label.text = text_with_lulls.replace("/", "")
+	_label.text = text_with_lulls.replace("|", "")
 	_calculate_pauses(text_with_lulls, initial_pause)
 
 

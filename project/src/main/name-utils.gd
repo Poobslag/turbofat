@@ -14,8 +14,12 @@ static func sanitize_name(name: String) -> String:
 	
 	# sanitize characters we don't want in names
 	for i in range(name.length()):
-		if utf8[i] < 32 or utf8[i] == 127:
-			# replace sequences of one or more bad characters with a single hyphen
+		if utf8[i] < 32 or utf8[i] in [
+			35, ## number sign; used for tracery
+			124, ## vertical line; 'lull character' when printing text
+			127, ## control character
+			]:
+			# replace sequences of one or more bad characters with a single space
 			if not result.ends_with(" "):
 				result += " "
 		else:
