@@ -12,7 +12,7 @@ extends Node
 ## 	[H, J, K, L]: Sly0 (Scheming), Sly1 (Malicious), Smile0 (Happy), Smile1 (Sweet)
 ##
 ## 	[Z, X, C, V]: Sweat0 (Nervous), Sweat1 (Fidgety), Think0 (Pensive), Think1 (Confused)
-## 	[B, N, M, comma]: Wave0 (Polite), Wave1 (Friendly), Yes0 (Nod), Yes1 (More Nods)
+## 	[B, N, M, comma, period]: Wave0 (neutral), Wave1 (Polite), Wave2 (Friendly), Yes0 (Nod), Yes1 (More Nods)
 ##
 ## 	[Shift + T]: Talk
 ## 	[=]: Make the creature fat
@@ -80,8 +80,9 @@ func _input(event: InputEvent) -> void:
 			KEY_V: $Creature.play_mood(Creatures.Mood.THINK1)
 			KEY_B: $Creature.play_mood(Creatures.Mood.WAVE0)
 			KEY_N: $Creature.play_mood(Creatures.Mood.WAVE1)
-			KEY_M: $Creature.play_mood(Creatures.Mood.YES0)
-			KEY_COMMA: $Creature.play_mood(Creatures.Mood.YES1)
+			KEY_M: $Creature.play_mood(Creatures.Mood.WAVE2)
+			KEY_COMMA: $Creature.play_mood(Creatures.Mood.YES0)
+			KEY_PERIOD: $Creature.play_mood(Creatures.Mood.YES1)
 			KEY_SPACE: $Creature.feed(Foods.FoodType.BROWN_0)
 			KEY_EQUAL: $Creature.set_fatness(3)
 

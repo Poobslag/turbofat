@@ -30,8 +30,9 @@ var textures := {
 	Creatures.Mood.SWEAT1: preload("res://assets/main/ui/chat/choice-mood-sweat1.png"),
 	Creatures.Mood.THINK0: preload("res://assets/main/ui/chat/choice-mood-think0.png"),
 	Creatures.Mood.THINK1: preload("res://assets/main/ui/chat/choice-mood-think1.png"),
-	Creatures.Mood.WAVE0: preload("res://assets/main/ui/chat/choice-mood-smile0.png"),
+	Creatures.Mood.WAVE0: preload("res://assets/main/ui/chat/choice-mood-default.png"),
 	Creatures.Mood.WAVE1: preload("res://assets/main/ui/chat/choice-mood-smile0.png"),
+	Creatures.Mood.WAVE2: preload("res://assets/main/ui/chat/choice-mood-smile0.png"),
 	Creatures.Mood.YES0: preload("res://assets/main/ui/chat/choice-mood-yes.png"),
 	Creatures.Mood.YES1: preload("res://assets/main/ui/chat/choice-mood-yes.png"),
 }

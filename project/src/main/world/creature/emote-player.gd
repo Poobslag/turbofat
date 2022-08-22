@@ -34,6 +34,7 @@ const EMOTE_ANIMS := {
 	Creatures.Mood.THINK1: "think1",
 	Creatures.Mood.WAVE0: "wave0",
 	Creatures.Mood.WAVE1: "wave1",
+	Creatures.Mood.WAVE2: "wave2",
 	Creatures.Mood.YES0: "yes0",
 	Creatures.Mood.YES1: "yes1",
 }
