@@ -244,15 +244,13 @@
   "input_replay": [
     "56 +move_piece_right",
     "61 -move_piece_right",
-    "110 +move_piece_right",
-    "116 -move_piece_right",
-    "123 +move_piece_left",
-    "128 +rotate_ccw",
-    "130 -move_piece_left",
-    "134 -rotate_ccw",
-    "141 +move_piece_right",
-    "146 -move_piece_right",
-    "156 +hard_drop",
-    "163 -hard_drop"
+    "113 +move_piece_left",
+    "118 +rotate_ccw",
+    "120 -move_piece_left",
+    "124 -rotate_ccw",
+    "131 +move_piece_right",
+    "136 -move_piece_right",
+    "146 +hard_drop",
+    "153 -hard_drop"
   ]
 }
