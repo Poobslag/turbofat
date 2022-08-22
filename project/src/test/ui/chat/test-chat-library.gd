@@ -7,6 +7,14 @@ func test_add_lull_characters_no_effect() -> void:
 	assert_eq(ChatLibrary.add_lull_characters("One two."), "One two.")
 
 
+func test_dont_manipulate_tracery_tags() -> void:
+	assert_eq(ChatLibrary.add_lull_characters("I'm your #1 fan"), "I'm your #1 fan")
+	assert_eq(ChatLibrary.add_lull_characters("I'm your #1 fan. #1!"), "I'm your #1 fan.| #1!")
+	assert_eq(ChatLibrary.add_lull_characters("One #two# three"), "One #two# three")
+	assert_eq(ChatLibrary.add_lull_characters("One #two.possessive# three"), "One #two.possessive# three")
+	assert_eq(ChatLibrary.add_lull_characters("One #two.a# #three.a# four"), "One #two.a# #three.a# four")
+
+
 func test_add_lull_characters_punctuation() -> void:
 	assert_eq(ChatLibrary.add_lull_characters("One two, three four!"), "One two,| three four!")
 	assert_eq(ChatLibrary.add_lull_characters("One? Two!"), "One?| Two!")
