@@ -60,6 +60,11 @@ func add_lull_characters(s: String) -> String:
 			if old_transformed == transformer.transformed:
 				break
 	
+	# remove lull characters from the middle of tracery tags
+	#
+	# '[player.|possessive]' -> '[player.possessive]'
+	transformer.sub("(#[^# ]*)\\.\\|([^# ]*#)", "$1.$2") #ok
+	
 	# remove lull character from the end of the line
 	transformer.transformed = transformer.transformed.trim_suffix("|")
 	
