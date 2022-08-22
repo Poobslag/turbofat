@@ -73,8 +73,10 @@ class Grammar extends Reference:
 
 
 	func _init(rules: Dictionary) -> void:
+		# This expansion regex is modified from GDTracery to avoid matching spaces. This prevents us from matching
+		# number signs in sentences.
 		_expansion_regex = RegEx.new()
-		_expansion_regex.compile("(?<!\\[|:)(?!\\])#.+?(?<!\\[|:)#(?!\\])")
+		_expansion_regex.compile("(?<!\\[|:)(?!\\])#[^ ]+?(?<!\\[|:)#(?!\\])")
 		
 		_save_symbol_regex = RegEx.new()
 		_save_symbol_regex.compile("\\[.+?\\]")
