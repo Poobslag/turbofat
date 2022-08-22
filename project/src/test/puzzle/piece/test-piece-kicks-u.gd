@@ -203,9 +203,9 @@ func test_spire_kick_r2() -> void:
 		"     ",
 	]
 	to_grid = [
-		"u u  ",
-		"uuu  ",
-		":    ",
+		"     ",
+		" u u ",
+		":uuu ",
 		"     ",
 		"     ",
 	]
@@ -255,9 +255,9 @@ func test_spire_kick_l2() -> void:
 		"     ",
 	]
 	to_grid = [
-		"  u u",
-		"  uuu",
-		"    :",
+		"     ",
+		" u u ",
+		" uuu:",
 		"     ",
 		"     ",
 	]
@@ -291,10 +291,10 @@ func test_diagonalnw_kick_0r() -> void:
 		"   ::",
 	]
 	to_grid = [
-		"::uu ",
-		":  u ",
-		"  uu:",
-		"   ::",
+		"::   ",
+		":uu  ",
+		"  u :",
+		" uu::",
 	]
 	assert_kick()
 
@@ -394,10 +394,10 @@ func test_diagonalne_kick_2l() -> void:
 		"::   ",
 	]
 	to_grid = [
-		" uu::",
-		" u  :",
-		":uu  ",
-		"::   ",
+		"   ::",
+		"  uu:",
+		": u  ",
+		"::uu ",
 	]
 	assert_kick()
 
@@ -549,135 +549,6 @@ func test_shaft_kick_l2_1() -> void:
 	assert_kick()
 
 
-func test_climb_kick_l0() -> void:
-	from_grid = [
-		"    ",
-		" uu ",
-		" u  ",
-		" uu:",
-	]
-	to_grid = [
-		"    ",
-		" uuu",
-		" u u",
-		"   :",
-	]
-	assert_kick()
-
-
-func test_climb_kick_r0() -> void:
-	from_grid = [
-		"    ",
-		" uu ",
-		"  u ",
-		":uu ",
-	]
-	to_grid = [
-		"    ",
-		"uuu ",
-		"u u ",
-		":   ",
-	]
-	assert_kick()
-
-
-## A 'ledge kick' is when the piece is teetering on a ledge and shouldn't drop off.
-func test_ledge_kick_right_0r() -> void:
-	from_grid = [
-		"    ",
-		" uuu",
-		" u u",
-		"   :",
-	]
-	to_grid = [
-		"  uu",
-		"   u",
-		"  uu",
-		"   :",
-	]
-	assert_kick()
-
-
-func test_ledge_kick_right_r2() -> void:
-	from_grid = [
-		"  uu",
-		"   u",
-		"  uu",
-		"   :",
-	]
-	to_grid = [
-		" u u",
-		" uuu",
-		"    ",
-		"   :",
-	]
-	assert_kick()
-
-
-func test_ledge_kick_right_l0() -> void:
-	from_grid = [
-		"  uu",
-		"  u ",
-		"  uu",
-		"   :",
-	]
-	to_grid = [
-		" uuu",
-		" u u",
-		"    ",
-		"   :",
-	]
-	assert_kick()
-
-
-func test_ledge_kick_left_0l() -> void:
-	from_grid = [
-		"    ",
-		"uuu ",
-		"u u ",
-		":   ",
-	]
-	to_grid = [
-		"uu  ",
-		"u   ",
-		"uu  ",
-		":   ",
-	]
-	assert_kick()
-
-
-func test_ledge_kick_left_l2() -> void:
-	from_grid = [
-		"uu  ",
-		"u   ",
-		"uu  ",
-		":   ",
-	]
-	to_grid = [
-		"u u ",
-		"uuu ",
-		"    ",
-		":   ",
-	]
-	assert_kick()
-
-
-func test_ledge_kick_left_r0() -> void:
-	from_grid = [
-		"uu  ",
-		" u  ",
-		"uu  ",
-		":   ",
-	]
-	to_grid = [
-		"uuu ",
-		"u u ",
-		"    ",
-		":   ",
-	]
-	assert_kick()
-
-
 func test_flip_kick_rl_narrow() -> void:
 	from_grid = [
 		"  ",
@@ -706,10 +577,36 @@ func test_flip_kick_rl_wide() -> void:
 	]
 	to_grid = [
 		"   ",
-		"uu ",
-		"u  ",
-		"uu ",
+		" uu",
+		" u ",
+		" uu",
 		"   ",
+	]
+	assert_kick()
+
+
+func test_flip_kick_02_narrow() -> void:
+	from_grid = [
+		"uuu",
+		"u u",
+	]
+	to_grid = [
+		"u u",
+		"uuu",
+	]
+	assert_kick()
+
+
+func test_flip_kick_02_wide() -> void:
+	from_grid = [
+		"   ",
+		"uuu",
+		"u u",
+	]
+	to_grid = [
+		"   ",
+		"u u",
+		"uuu",
 	]
 	assert_kick()
 
@@ -767,5 +664,37 @@ func test_spine_flip_20() -> void:
 		" : ",
 		"uuu",
 		"u:u",
+	]
+	assert_kick()
+
+
+func test_snack_kick_2l() -> void:
+	from_grid = [
+		"     ",
+		"u u :",
+		"uuu::",
+		"::  :",
+	]
+	to_grid = [
+		"     ",
+		"  uu:",
+		"  u::",
+		"::uu:",
+	]
+	assert_kick()
+
+
+func test_snack_kick_2r() -> void:
+	from_grid = [
+		"     ",
+		": u u",
+		"::uuu",
+		":  ::",
+	]
+	to_grid = [
+		"     ",
+		":uu  ",
+		"::u  ",
+		":uu::",
 	]
 	assert_kick()
