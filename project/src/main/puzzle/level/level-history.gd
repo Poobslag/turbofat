@@ -81,6 +81,7 @@ func best_results(level_id: String, daily: bool = false) -> Array:
 	return results.slice(0, min(results.size() - 1, max_size - 1))
 
 
+## Returns the most recent result for a specific level.
 func prev_result(level_id: String) -> RankResult:
 	if not rank_results.has(level_id) or rank_results[level_id].empty():
 		return null
