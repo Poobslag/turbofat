@@ -9,18 +9,18 @@ extends Node
 ## 	[F]: Flashes the screen
 
 const TEXTS := [
-	"Oh my,/ you're not supposed to know how to do that!\n\n" \
-			+ "...But yes,/ box clears earn you five times as much money./" \
+	"Oh my, you're not supposed to know how to do that!\n\n" \
+			+ "...But yes, box clears earn you five times as much money." \
 			+ " Maybe more than that if you're clever.",
 	"Clear a row by filling it with blocks.",
 	"Hold soft drop to squish a piece through a narrow gap.",
 	"Build a snack box by arranging two pieces into a square.",
 	"Well done!\n\nSnack boxes earn ¥15 if you clear all three lines.",
-	"Now let's try it for real!/ Serve these creatures and try to earn ¥100.",
-	"Well done!\n\nLine clears earn ¥1./ Maybe more if you can build a combo.",
-	"Well done!\n\nSquish moves can help you out of a jam./ They're also good for certain boxes.",
-	"Welcome to Turbo Fat!/ You seem to already be familiar with this sort of game,/ so let's dive right in.",
-	"Oh my,/ you're not supposed to know how to do that!\n\n...But yes,/ squish moves can help you out of a jam.",
+	"Now let's try it for real! Serve these creatures and try to earn ¥100.",
+	"Well done!\n\nLine clears earn ¥1. Maybe more if you can build a combo.",
+	"Well done!\n\nSquish moves can help you out of a jam. They're also good for certain boxes.",
+	"Welcome to Turbo Fat! You seem to already be familiar with this sort of game, so let's dive right in.",
+	"Oh my, you're not supposed to know how to do that!\n\n...But yes, squish moves can help you out of a jam.",
 ]
 
 ## a tutorial level id to demo, like 'tutorial/basic_0'
@@ -44,7 +44,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				_tutorial_hud.set_message(TEXTS[Utils.key_num(event)])
 		KEY_O:
-			_tutorial_hud.set_big_message("O/H/,/// M/Y/!/!/!")
+			_tutorial_hud.set_big_message("O|H|,||| M|Y|!|!|!")
 		KEY_F:
 			_tutorial_hud.flash_for_level_change()
 		KEY_H:

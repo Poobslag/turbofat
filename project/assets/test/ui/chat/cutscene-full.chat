@@ -43,14 +43,14 @@ s: ._.; Uhh I mean like, Richie's been helping me figure out the kitchen stuff. 
 [sensei_answers_praise]
 s1: /._. Hmm. Yes! Pretty good. Your rhythm's ahhh... a little off though!
 s: My... my rhythm?
-s1: Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
+s1: Yes!/ That food should be coming out like pap-|pap-|pap-|pap-|pap!| Right now you're more like pappap,|| pappa| pap.
 s1: You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!
 [oh_okay]
 
 [sensei_answers_insult]
 s1: /._. What I think #player# is trying to say is your rhythm is ahhh... a little off.
 s: My... my rhythm?
-s1: Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
+s1: Yes!/ That food should be coming out like pap-|pap-|pap-|pap-|pap!| Right now you're more like pappap,|| pappa| pap.
 s1: You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!
 [oh_okay]
 

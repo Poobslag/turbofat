@@ -31,14 +31,14 @@ func hide_results_message() -> void:
 
 ## Prepares a game over message to show to the player.
 ##
-## The message is littered with lull characters, '/', which are hidden from the player but result in a brief pause when
+## The message is littered with lull characters, '|', which are hidden from the player but result in a brief pause when
 ## displayed.
 func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: int) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
-	var text := "//////////"
+	var text := "||||||||||"
 	text = _append_customer_scores(rank_result, customer_scores, finish_condition_type, text)
 	text = _append_grade_information(rank_result, customer_scores, finish_condition_type, text)
-	text += "//////////\n"
+	text += "||||||||||\n"
 	text += tr("Hint: %s") % Utils.rand_value(_hints)
 	text += "\n"
 	
@@ -55,7 +55,7 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 			# customer_score can contain zeroes if the player tops out without clearing lines
 			continue
 		var left := tr("Customer #%s") % StringUtils.comma_sep(i + 1)
-		var right := "%s/\n" % StringUtils.format_money(customer_score)
+		var right := "%s|\n" % StringUtils.format_money(customer_score)
 		var middle := " "
 		var period_count := 49 - _period_count(left + right)
 		for _p in range(period_count):
@@ -76,35 +76,35 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 	text += "\n"
 	
 	if _speed_shown(finish_condition_type):
-		text += "/////" + tr("Speed: %d") % round(rank_result.speed * 200 / 60)
+		text += "|||||" + tr("Speed: %d") % round(rank_result.speed * 200 / 60)
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
 		text += "\n"
 	
 	if _pieces_shown(finish_condition_type):
-		text += "/////" + tr("Pieces: %d") % rank_result.pieces
+		text += "|||||" + tr("Pieces: %d") % rank_result.pieces
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
 		text += "\n"
 	
 	if _lines_shown(finish_condition_type):
-		text += "/////" + tr("Lines: %d") % rank_result.lines
+		text += "|||||" + tr("Lines: %d") % rank_result.lines
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
 		text += "\n"
 	
 	if _boxes_shown():
-		text += "/////" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
+		text += "|||||" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
 		text += "\n"
 	
 	if _combos_shown():
-		text += "/////" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
+		text += "|||||" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
@@ -119,15 +119,15 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 			# show the 'total' pickup score
 			shown_pickup_score = float(rank_result.pickup_score)
 		
-		text += "/////" + tr("Pickups: %d") % shown_pickup_score
+		text += "|||||" + tr("Pickups: %d") % shown_pickup_score
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.pickup_score_rank)
 		text += "\n"
 	
 	if not CurrentLevel.settings.rank.unranked:
-		text += "/////\n" + tr("Overall: ")
-		text += "//////////"
+		text += "|||||\n" + tr("Overall: ")
+		text += "||||||||||"
 		if finish_condition_type == Milestone.SCORE:
 			var duration := StringUtils.format_duration(rank_result.seconds)
 			text += "%s%s (%s)\n" % [duration, topped_out, RankCalculator.grade(rank_result.seconds_rank)]
