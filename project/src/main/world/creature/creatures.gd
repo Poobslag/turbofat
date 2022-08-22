@@ -46,8 +46,9 @@ enum Mood {
 	SWEAT1, # incredibly anxious
 	THINK0, # pensive
 	THINK1, # confused
-	WAVE0, # casual greeting (or pointing)
-	WAVE1, # enthusiastic greeting
+	WAVE0, # emotionless greeting (or pointing)
+	WAVE1, # friendly greeting
+	WAVE2, # enthusiastic greeting
 	YES0, # nodding once
 	YES1, # nodding a few times
 }

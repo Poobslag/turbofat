@@ -378,8 +378,9 @@ const MOOD_PREFIXES := {
 	"-__-;": Creatures.Mood.SWEAT1,
 	"/._.": Creatures.Mood.THINK0,
 	"@_@": Creatures.Mood.THINK1,
-	"^_^/": Creatures.Mood.WAVE0,
-	"^__^/": Creatures.Mood.WAVE1,
+	"._./": Creatures.Mood.WAVE0,
+	"^_^/": Creatures.Mood.WAVE1,
+	"^__^/": Creatures.Mood.WAVE2,
 	"^y^": Creatures.Mood.YES0,
 	"^Y^": Creatures.Mood.YES1,
 }
