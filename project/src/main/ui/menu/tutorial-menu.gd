@@ -9,8 +9,10 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	
-	var tutorial_region := _find_tutorial_region()
-	_populate_level_buttons(tutorial_region)
+	var tutorial_region = _find_tutorial_region()
+	if tutorial_region:
+		_assign_default_recent_data(tutorial_region)
+		_populate_level_buttons(tutorial_region)
 
 
 func _find_tutorial_region() -> OtherRegion:
@@ -19,23 +21,26 @@ func _find_tutorial_region() -> OtherRegion:
 		if region.id == OtherRegion.ID_TUTORIAL:
 			tutorial_region = region
 			break
+	
+	if not tutorial_region or not tutorial_region.level_ids:
+		push_warning("No tutorial levels found.")
+	
 	return tutorial_region
 
 
-func _populate_level_buttons(tutorial_region: OtherRegion) -> void:
-	if not tutorial_region or not tutorial_region.level_ids:
-		push_warning("No tutorial levels found.")
+## Assign a tutorial level if this is the first time launching the tutorial menu
+func _assign_default_recent_data(tutorial_region: OtherRegion) -> void:
+	if PlayerData.practice.tutorial_level_id:
+		# player has already launched the tutorial menu
 		return
 	
-	var focused_level: String = tutorial_region.level_ids.back()
-	for level_id in tutorial_region.level_ids:
-		if not PlayerData.level_history.is_level_finished(level_id):
-			focused_level = level_id
-			break
-	
-	level_buttons.set_region(tutorial_region)
-	level_buttons.set_level_ids(tutorial_region.level_ids)
-	level_buttons.focus_level(focused_level)
+	PlayerData.practice.tutorial_level_id = _tutorial_region.level_ids.front()
+
+
+func _populate_level_buttons(tutorial_region: OtherRegion) -> void:
+	level_buttons.set_region(_tutorial_region)
+	level_buttons.set_level_ids(_tutorial_region.level_ids)
+	level_buttons.focus_level(PlayerData.practice.tutorial_level_id)
 
 
 func _exit_tree() -> void:
@@ -47,5 +52,6 @@ func _on_BackButton_pressed() -> void:
 
 
 func _on_LevelButtons_level_started(settings: LevelSettings) -> void:
+	PlayerData.practice.tutorial_level_id = settings.id
 	CurrentLevel.set_launched_level(settings.id)
 	CurrentLevel.push_level_trail()
