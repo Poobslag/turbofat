@@ -2,6 +2,10 @@ extends "res://addons/gut/test.gd"
 
 var rules := {}
 
+func before_each() -> void:
+	rules.clear()
+
+
 # GDTracery's original set_rng() implementation had a bug
 # https://github.com/Althar93/GDTracery/issues/2
 func test_set_rng() -> void:
@@ -14,8 +18,15 @@ func test_set_rng() -> void:
 func test_simple() -> void:
 	rules["favorite_color"] = ["blue"]
 	
-	assert_flatten("My favorite color is #favorite_color#.",
-			"My favorite color is blue.")
+	assert_flatten("My favorite color is #favorite_color#.", "My favorite color is blue.")
+
+
+func test_rule_undefined() -> void:
+	assert_flatten("My favorite color is #favorite_color#.", "My favorite color is favorite_color.")
+
+
+func test_pound_signs() -> void:
+	assert_flatten("I'm your #1 fan. #1!", "I'm your #1 fan. #1!")
 
 
 func test_modifier_possessive() -> void:
