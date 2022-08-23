@@ -9,7 +9,7 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	
-	var tutorial_region = _find_tutorial_region()
+	var tutorial_region := _find_tutorial_region()
 	if tutorial_region:
 		_assign_default_recent_data(tutorial_region)
 		_populate_level_buttons(tutorial_region)
