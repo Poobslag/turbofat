@@ -21,6 +21,9 @@ enum ChatLineSize {
 	XL # 3 lines at 100% capacity
 }
 
+const DEFAULT_ACCENT_AMOUNT_DARK := 0.24
+const DEFAULT_ACCENT_AMOUNT_LIGHT := 0.18
+
 const DEFAULT_COLOR := Color.gray
 const DEFAULT_ACCENT_SCALE := 8.0
 
@@ -37,7 +40,7 @@ const NAMETAG_XL := NametagSize.XL
 const NAMETAG_XXL := NametagSize.XXL
 
 ## The scale of the accent's background texture
-var accent_scale: float
+var accent_scale: float = DEFAULT_ACCENT_SCALE
 
 ## If 'true', the accent's foreground/background colors will be swapped
 var accent_swapped: bool
@@ -46,19 +49,26 @@ var accent_swapped: bool
 var accent_texture_index: int
 
 ## The color of the chat window
-var color: Color setget set_color
+var color: Color = DEFAULT_COLOR setget set_color
 
 ## If 'true', the backgrond will be black instead of white
 var dark: bool setget set_dark
 
+## The color for the nametag font; black or white.
 ## virtual property; value is only exposed through getters/setters
 var nametag_font_color setget ,get_nametag_font_color
 
+## The scale of the accent's background texture
 ## virtual property; value is only exposed through getters/setters
 var accent_color: Color setget ,get_accent_color
 
+## The color for the frame border, nametag background and text.
 ## virtual property; value is only exposed through getters/setters
 var border_color: Color setget ,get_border_color
+
+## The opacity of the accent's background texture.
+## virtual property; value is only exposed through getters/setters
+var accent_amount: float setget ,get_accent_amount
 
 func from_json_dict(dict: Dictionary) -> void:
 	accent_scale = dict.get("accent_scale", DEFAULT_ACCENT_SCALE)
@@ -95,25 +105,44 @@ func get_nametag_font_color() -> Color:
 	return Color.black if dark else Color.white
 
 
+func get_accent_amount() -> float:
+	return DEFAULT_ACCENT_AMOUNT_DARK if dark else DEFAULT_ACCENT_AMOUNT_LIGHT
+
+
 func get_accent_color() -> Color:
 	var result := color
+	
+	var color_brightness := Utils.brightness(result)
 	if dark:
-		# accent color is a darker version of the input color
-		result.v = lerp(result.v, 0.33, 0.8)
+		if color_brightness < 0.30:
+			# avoid dark accents on black backgrounds, they're hard to see
+			result = result.lightened(0.30 - color_brightness)
+		elif color_brightness > 0.60:
+			# avoid dark accents on black backgrounds, they're too distracting
+			result = result.darkened(color_brightness - 0.60)
 	else:
-		# accent color is a lighter, more saturated version of the input color
-		result.v = lerp(result.v, 0.67, 0.8)
-		result.s = pow(result.s, 0.22)
+		if color_brightness > 0.50:
+			# avoid light accents on white backgrounds, they're hard to see
+			result = result.darkened(color_brightness - 0.50)
+		elif color_brightness < 0.25:
+			# avoid dark accents on white backgrounds, they're too distracting
+			result = result.lightened(0.25 - color_brightness)
+	
 	return result
 
 
 func get_border_color() -> Color:
 	var result := color
-	if dark:
-		# border color is a lighter, more saturated version of the input color
-		result.v = lerp(result.v, 0.78, 0.8)
-		result.s = pow(result.s, 0.33)
-	else:
-		# border color is a darker version of the input color
-		result.v = lerp(result.v, 0.22, 0.8)
+	
+	# desaturate the text and brighten/darken it
+	result.s = lerp(result.s, 0.0, 0.2)
+	result.v = lerp(result.v, 0.78 if dark else 0.22, 0.5)
+	
+	# make further adjustments for especially bright/dark colors
+	var color_brightness := Utils.brightness(result)
+	if dark and color_brightness < 0.40:
+		result = result.lightened(0.40 - color_brightness)
+	elif not dark and color_brightness > 0.30:
+		result = result.darkened(color_brightness - 0.30)
+	
 	return result

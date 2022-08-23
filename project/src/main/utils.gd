@@ -7,6 +7,19 @@ const NUM_SCANCODES := {
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
 }
 
+## Returns the perceived brightness of a color.
+##
+## This allows UI elements to avoid combinations like dark blue on black or light green on white.
+##
+## Parameters:
+## 	'color': The color whose brightness should be calculated. The alpha component is ignored.
+##
+## Returns:
+## 	A number in the range [0.0, 1.0] corresponding to the color's perceived brightness.
+static func brightness(color: Color) -> float:
+	return clamp(color.r * 0.2990 + color.g * 0.5871 + color.b * 0.1140, 0.0, 1.0)
+
+
 static func print_json(value) -> String:
 	return JSON.print(value, "  ")
 

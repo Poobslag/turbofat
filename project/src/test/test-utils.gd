@@ -86,3 +86,14 @@ func test_seeded_shuffle_different_seed() -> void:
 	Utils.seeded_shuffle(shuffled2, 18)
 	
 	assert_false(shuffled1 == shuffled2, "different seed resulted in same output (%s, %s)" % [shuffled1, shuffled2])
+
+
+func test_brightness() -> void:
+	# white and black should return exactly 0.0 and 1.0
+	assert_eq(Utils.brightness(Color("000000")), 0.0)
+	assert_eq(Utils.brightness(Color("ffffff")), 1.0)
+	
+	# green is brighter than red, red is brighter than blue
+	assert_almost_eq(Utils.brightness(Color("800000")), 0.15, 0.1)
+	assert_almost_eq(Utils.brightness(Color("008000")), 0.29, 0.1)
+	assert_almost_eq(Utils.brightness(Color("000080")), 0.05, 0.1)

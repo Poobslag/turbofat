@@ -45,7 +45,7 @@ func update_appearance(chat_theme: ChatTheme, chat_line_size: int) -> void:
 	rect_pivot_offset = rect_size * 0.5
 	rect_position = get_parent().rect_size / 2 - rect_size / 2
 	
-	material.set_shader_param("accent_amount", 0.40 if chat_theme.dark else 0.24)
+	material.set_shader_param("accent_amount", chat_theme.accent_amount)
 	material.set_shader_param("accent_color", chat_theme.accent_color)
 	material.set_shader_param("accent_scale", chat_theme.accent_scale)
 	material.set_shader_param("accent_swapped", chat_theme.accent_swapped)
