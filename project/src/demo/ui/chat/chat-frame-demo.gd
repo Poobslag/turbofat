@@ -48,7 +48,7 @@ const NAMES := [
 const COLORS := [
 	"b23823", "eeda4d", "41a740", "b47922", "6f83db",
 	"a854cb", "f57e7d", "f9bb4a", "8fea40", "feceef",
-	"b1edee", "f9f7d9", "1a1a1e", "7a8289", "0b45a6",
+	"b1edee", "f9f7d9", "1a1a1e", "000020", "dfffdf",
 ]
 
 const SCALES := [
@@ -98,7 +98,11 @@ func _input(event: InputEvent) -> void:
 			print(_chat_theme.to_json_dict())
 		KEY_R:
 			_color_index = randi() % COLORS.size()
+			_chat_theme.color = COLORS[_color_index]
+			
 			_scale_index = randi() % SCALES.size()
+			_chat_theme.accent_scale = SCALES[_scale_index]
+			
 			_chat_theme.accent_swapped = randf() > 0.5
 			_chat_theme.accent_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
 			_chat_theme.dark = randf() > 0.5
@@ -116,17 +120,25 @@ func _input(event: InputEvent) -> void:
 			_play_chat_event()
 		KEY_RIGHT:
 			_color_index = wrapi(_color_index + 1, 0, COLORS.size())
+			_chat_theme.color = COLORS[_color_index]
+			
 			_play_chat_event()
 		KEY_LEFT:
 			_color_index = wrapi(_color_index - 1, 0, COLORS.size())
+			_chat_theme.color = COLORS[_color_index]
+			
 			_play_chat_event()
 		KEY_UP:
 			if _scale_index < SCALES.size():
 				_scale_index += 1
+				_chat_theme.accent_scale = SCALES[_scale_index]
+				
 				_play_chat_event()
 		KEY_DOWN:
 			if _scale_index > 0:
 				_scale_index -= 1
+				_chat_theme.accent_scale = SCALES[_scale_index]
+				
 				_play_chat_event()
 		KEY_Z:
 			_squished = not _squished
@@ -138,9 +150,6 @@ func _play_chat_event() -> void:
 	var creature_def := CreatureDef.new()
 	creature_def.creature_name = NAMES[_name_index]
 	PlayerData.creature_library.set_creature_def("lorum", creature_def)
-	
-	_chat_theme.color = COLORS[_color_index]
-	_chat_theme.accent_scale = SCALES[_scale_index]
 	
 	var chat_event := ChatEvent.new()
 	chat_event.who = "lorum"
