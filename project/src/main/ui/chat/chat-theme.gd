@@ -21,11 +21,10 @@ enum ChatLineSize {
 	XL # 3 lines at 100% capacity
 }
 
-const DEFAULT_ACCENT_AMOUNT_DARK := 0.24
-const DEFAULT_ACCENT_AMOUNT_LIGHT := 0.18
-
 const DEFAULT_COLOR := Color.gray
 const DEFAULT_ACCENT_SCALE := 8.0
+const DEFAULT_ACCENT_AMOUNT_DARK := 0.24
+const DEFAULT_ACCENT_AMOUNT_LIGHT := 0.18
 
 const LINE_SMALL := ChatLineSize.SMALL
 const LINE_MEDIUM := ChatLineSize.MEDIUM
