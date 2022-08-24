@@ -25,8 +25,15 @@ onready var _chat_choices: ChatChoices = $ChatChoices
 onready var _chat_frame: ChatFrame = $ChatFrame
 onready var _narration_frame: NarrationFrame = $NarrationFrame
 
+## the chat tree currently being played.
+var _chat_tree: ChatTree
+
 ## true if the player has advanced past the last line in the chat tree
 var _chat_finished := false
+
+func _ready() -> void:
+	Global.get_overworld_ui().connect("visible_chatters_changed", self, "_on_OverworldUi_visible_chatters_changed")
+
 
 func _process(delta: float) -> void:
 	_rewind_action_duration = _rewind_action_duration + delta if Input.is_action_pressed("rewind_text") else 0.0
@@ -47,7 +54,9 @@ func _input(event: InputEvent) -> void:
 
 
 func play_chat_tree(chat_tree: ChatTree) -> void:
+	_chat_tree = chat_tree
 	_chat_finished = false
+	_assign_nametag_sides()
 	_chat_advancer.play_chat_tree(chat_tree)
 	emit_signal("popped_in")
 
@@ -74,6 +83,9 @@ func _handle_rewind_action(event: InputEvent) -> void:
 ## The player can tap the advance button to make chat lines appear faster or advance to the next line. They can hold
 ## the advance button to continuously advance the text.
 func _handle_advance_action(event: InputEvent) -> void:
+	if not _chat_tree:
+		return
+	
 	var advance_action := false
 	if event.is_action_pressed("ui_accept"):
 		# if the player presses the 'interact' button, advance the text
@@ -108,9 +120,9 @@ func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
 		if chat_event.link_moods[i] != -1:
 			# use the mood from the chat link
 			mood = chat_event.link_moods[i]
-		elif _chat_advancer.chat_tree.events.has(link):
+		elif _chat_tree.events.has(link):
 			# chat link did not specify a mood; use the mood from the branch's first event
-			var first_event: ChatEvent = _chat_advancer.chat_tree.events[link][0]
+			var first_event: ChatEvent = _chat_tree.events[link][0]
 			if first_event and first_event.mood:
 				mood = first_event.mood
 		else:
@@ -136,10 +148,38 @@ func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
 			text = chat_event.link_texts[i]
 		else:
 			# chat link did not specify text; use the text from the branch's first event
-			var first_event: ChatEvent = _chat_advancer.chat_tree.events[link][0]
+			var first_event: ChatEvent = _chat_tree.events[link][0]
 			text = first_event.text
 		texts.append(text)
 	return texts
+
+
+## Assign nametag sides for each chat line.
+##
+## We calculate the midpoint of the chatters. Creatures to the right of the midpoint have their nametags on the right.
+## Creatures to the left have their nametags on the left.
+##
+## This information is stored back into the chat tree so that it can be utilized by the chat ui.
+func _assign_nametag_sides() -> void:
+	if not _chat_tree:
+		return
+	
+	var chatter_bounding_box := Global.get_overworld_ui().get_chatter_bounding_box([], [])
+	var center_of_chatters: Vector2 = chatter_bounding_box.position + chatter_bounding_box.size * 0.5
+	
+	for chat_events_obj in _chat_tree.events.values():
+		var chat_events: Array = chat_events_obj
+		for chat_event_obj in chat_events:
+			var chat_event: ChatEvent = chat_event_obj
+			if not chat_event.who:
+				continue
+			var chatter: Creature = CreatureManager.get_creature_by_id(chat_event.who)
+			if not chatter:
+				continue
+			if chatter.position.x > center_of_chatters.x:
+				chat_event.nametag_side = ChatEvent.NametagSide.RIGHT
+			else:
+				chat_event.nametag_side = ChatEvent.NametagSide.LEFT
 
 
 ## Displays the current chat event to the player.
@@ -216,3 +256,8 @@ func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
 
 func _on_ChatAdvancer_chat_finished() -> void:
 	_chat_finished = true
+	_chat_tree = null
+
+
+func _on_OverworldUi_visible_chatters_changed() -> void:
+	_assign_nametag_sides()

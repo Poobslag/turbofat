@@ -50,8 +50,6 @@ func start_chat(new_chat_tree: ChatTree) -> void:
 	if CreatureManager.player:
 		chatters.append(CreatureManager.player)
 	
-	_assign_nametag_sides(new_chat_tree)
-	
 	_update_visible()
 	# emit 'chat_started' event first to prepare chatters before emoting
 	emit_signal("chat_started")
@@ -115,31 +113,6 @@ func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 			creatures.append(chatter)
 	
 	return creatures
-
-
-## Assign nametag sides for each chat line.
-##
-## We calculate the midpoint of the chatters. Creatures to the right of the midpoint have their nametags on the right.
-## Creatures to the left have their nametags on the left.
-##
-## This information is stored back into the chat tree so that it can be utilized by the chat ui.
-func _assign_nametag_sides(new_chat_tree: ChatTree) -> void:
-	var chatter_bounding_box := get_chatter_bounding_box([], [])
-	var center_of_chatters: Vector2 = chatter_bounding_box.position + chatter_bounding_box.size * 0.5
-	
-	for chat_events_obj in new_chat_tree.events.values():
-		var chat_events: Array = chat_events_obj
-		for chat_event_obj in chat_events:
-			var chat_event: ChatEvent = chat_event_obj
-			if not chat_event.who:
-				continue
-			var chatter: Creature = CreatureManager.get_creature_by_id(chat_event.who)
-			if not chatter:
-				continue
-			if chatter.position.x > center_of_chatters.x:
-				chat_event.nametag_side = ChatEvent.NametagSide.RIGHT
-			else:
-				chat_event.nametag_side = ChatEvent.NametagSide.LEFT
 
 
 ## Updates the different UI components to be visible/invisible based on the UI's current state.
