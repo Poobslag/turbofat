@@ -240,10 +240,15 @@ const PREFIX_REPLACEMENTS_2743 := {
 }
 
 
+## Regex used for replacing two zeroes with a third zero. This regex is lazily initialized.
+var _third_zero_regex: RegEx
+
+
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "37b3"
+	upgrader.current_version = "38c3"
+	upgrader.add_upgrade_method(self, "_upgrade_38c3", "37b3", "38c3")
 	upgrader.add_upgrade_method(self, "_upgrade_37b3", "3776", "37b3")
 	upgrader.add_upgrade_method(self, "_upgrade_375c", "375c", "3776")
 	upgrader.add_upgrade_method(self, "_upgrade_36c3", "36c3", "375c")
@@ -261,6 +266,28 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+## Prepends a third zero to any two-digit numbers in the specified string.
+func prepend_third_zero(s: String) -> String:
+	if not _third_zero_regex:
+		_third_zero_regex = RegEx.new()
+		_third_zero_regex.compile("(^|[^0-9])([0-9]{2})([^0-9]|$)")
+	
+	return _third_zero_regex.sub(s, "${1}0$2$3", true)
+
+
+func _upgrade_38c3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"chat_history":
+			# prepend a third zero to any chat keys with two-digit numbers
+			var history_items: Dictionary = save_item.value.get("history_items", {})
+			for chat_id in history_items.keys():
+				var new_chat_id: String = prepend_third_zero(chat_id)
+				if new_chat_id != chat_id:
+					history_items[new_chat_id] = history_items[chat_id]
+					history_items.erase(chat_id)
+	return save_item
 
 
 func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
