@@ -68,7 +68,7 @@ func set_player_def(new_player_def: CreatureDef) -> void:
 
 
 func get_player_def() -> CreatureDef:
-	return _creature_defs_by_id.get(PLAYER_ID)
+	return get_creature_def(PLAYER_ID)
 
 
 func set_sensei_def(new_sensei_def: CreatureDef) -> void:
@@ -76,7 +76,7 @@ func set_sensei_def(new_sensei_def: CreatureDef) -> void:
 
 
 func get_sensei_def() -> CreatureDef:
-	return _creature_defs_by_id.get(SENSEI_ID)
+	return get_creature_def(SENSEI_ID)
 
 
 func reset() -> void:
@@ -169,7 +169,11 @@ func from_json_dict(json: Dictionary) -> void:
 
 
 func get_creature_def(creature_id: String) -> CreatureDef:
-	return _creature_defs_by_id.get(creature_id)
+	var result: CreatureDef = _creature_defs_by_id.get(creature_id)
+	if creature_id == SENSEI_ID and PlayerData.career and PlayerData.career.is_sensei_turbo():
+		result.creature_name = "Turbo"
+		result.creature_short_name = "Turbo"
+	return result
 
 
 func set_creature_def(creature_id: String, creature_def: CreatureDef) -> void:
