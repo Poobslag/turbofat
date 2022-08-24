@@ -1,0 +1,42 @@
+[
+  {
+    "type": "version",
+    "value": "37b3"
+  },
+  {
+    "type": "chat_history",
+    "value": {
+      "history_items": {
+        "chat/career/general/00_b": 0,
+        "chat/career/marsh/10_c_end": 3,
+        "chat/career/marsh/10_a_end": 3,
+        "chat/career/marsh/10_b": 4,
+        "chat/career/marsh/10_d": 5,
+        "chat/career/marsh/20": 5,
+        "chat/career/marsh/20_end": 5,
+        "chat/career/marsh/30_a_end": 5,
+        "chat/career/marsh/30_b_end": 5,
+        "chat/career/marsh/30_c_end": 5,
+        "chat/career/marsh/30_d": 5,
+        "chat/career/marsh/40_end": 5,
+        "chat/career/marsh/50_a_end": 5,
+        "chat/career/marsh/50_b_end": 5,
+        "chat/career/marsh/50_c_end": 5,
+        "chat/career/marsh/50_d": 5,
+        "chat/career/marsh/prologue": 6,
+        "chat/career/lemon/prologue": 0,
+        "chat/career/lemon/10_a": 1,
+        "chat/career/general/00_a": 6,
+        "chat/career/lemon/10_b_end": 2,
+        "chat/career/lemon/20_b": 3,
+        "chat/career/lemon/20_b_end": 4,
+        "chat/career/lemon/20_a": 5,
+        "chat/career/marsh/60_end": 9,
+        "chat/career/marsh/epilogue": 10,
+        "chat/career/lemon/30_a_end": 6,
+        "chat/career/lemon/30_c": 7,
+        "chat/career/lemon/30_b": 8
+      }
+    }
+  }
+]

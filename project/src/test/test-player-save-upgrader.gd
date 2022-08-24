@@ -169,7 +169,28 @@ func test_3776_chat_history_purged() -> void:
 	load_legacy_player_data("turbofat-3776.json")
 	
 	# chat history
-	assert_eq(PlayerData.chat_history.chat_history.has("chat/career/marsh/10_b"), true)
+	assert_eq(PlayerData.chat_history.chat_history.has("chat/career/marsh/010_b"), true)
 	assert_eq(PlayerData.chat_history.chat_history.has("chat/level_select"), false)
 	assert_eq(PlayerData.chat_history.chat_history.has("creature/bort/filler_000"), false)
 	assert_eq(PlayerData.chat_history.chat_history.has("level/marsh/pulling_for_everyone_100"), false)
+
+
+func test_37b3_chat_history_migrated() -> void:
+	load_legacy_player_data("turbofat-37b3.json")
+	
+	assert_eq(PlayerData.chat_history.chat_age("chat/career/general/000_b"), 10)
+	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/010_c_end"), 7)
+	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/060_end"), 1)
+	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/epilogue"), 0)
+
+
+func test_prepend_third_zero() -> void:
+	var upgrader: PlayerSaveUpgrader = PlayerSaveUpgrader.new()
+	assert_eq(upgrader.prepend_third_zero("ilesa/sin/00_ibo_suture"), "ilesa/sin/000_ibo_suture")
+	assert_eq(upgrader.prepend_third_zero("ilesa_40"), "ilesa_040")
+	assert_eq(upgrader.prepend_third_zero("ilesa_21_sin"), "ilesa_021_sin")
+	assert_eq(upgrader.prepend_third_zero("93_ilesa"), "093_ilesa")
+	assert_eq(upgrader.prepend_third_zero("36_ilesa_72"), "036_ilesa_072")
+	assert_eq(upgrader.prepend_third_zero("ilesa"), "ilesa")
+	assert_eq(upgrader.prepend_third_zero("ilesa_443_sin"), "ilesa_443_sin")
+	assert_eq(upgrader.prepend_third_zero("ilesa_8_sin"), "ilesa_8_sin")
