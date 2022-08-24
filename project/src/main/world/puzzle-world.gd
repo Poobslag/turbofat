@@ -35,7 +35,7 @@ func initial_environment_path() -> String:
 	
 	# if the player hasn't gotten far enough in the story, they don't have a nice decorated restaurant
 	if result == DECORATED_PUZZLE_ENVIRONMENT_PATH \
-			and PlayerData.career.best_distance_travelled < CareerData.DECORATED_RESTAURANT_CUTOFF:
+			and not PlayerData.career.is_restaurant_decorated():
 		result = UNDECORATED_PUZZLE_ENVIRONMENT_PATH
 	
 	return result

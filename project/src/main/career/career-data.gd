@@ -18,9 +18,6 @@ signal hours_passed_changed
 ## Chat key root for non-region-specific cutscenes
 const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
 
-## The career distance the player has to travel to have a 'nice restaurant'
-const DECORATED_RESTAURANT_CUTOFF := 24
-
 ## The number of days worth of records which are stored.
 const MAX_DAILY_HISTORY := 40
 
@@ -401,6 +398,17 @@ func advance_past_chat_region(chat_key: String) -> void:
 		var old_distance_travelled := distance_travelled
 		set_distance_travelled(region.end + 1)
 		distance_earned += (distance_travelled - old_distance_travelled)
+
+
+## Returns 'true' if the player's travelled far enough to have a 'nice restaurant'
+func is_restaurant_decorated() -> bool:
+	return best_distance_travelled >= 24
+
+
+## Returns 'true' if the player still refers to Fat Sensei as 'Turbo'
+func is_sensei_turbo() -> bool:
+	return not PlayerData.chat_history.is_chat_finished("chat/career/lemon/boss_level") \
+		and best_distance_travelled < 10
 
 
 ## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode

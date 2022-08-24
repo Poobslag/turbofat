@@ -118,7 +118,9 @@ func _refresh_child_buttons() -> void:
 	
 	for i in range(_choices.size()):
 		var button: ChatChoiceButton = ChatChoiceButtonScene.instance()
-		button.set_choice_text(_choices[i])
+		var choice_text: String = _choices[i]
+		choice_text = PlayerData.creature_library.substitute_variables(choice_text)
+		button.set_choice_text(choice_text)
 		button.set_mood(_moods[i])
 		button.set_mood_right(i % 2 == 1)
 		button.connect("focus_entered", self, "_on_ChatChoiceButton_focus_entered")

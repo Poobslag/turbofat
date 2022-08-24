@@ -7,9 +7,9 @@ onready var sprite := $Sprite
 onready var undecorated_sprite := $UndecoratedSprite
 
 func _ready() -> void:
-	if PlayerData.career.best_distance_travelled < CareerData.DECORATED_RESTAURANT_CUTOFF:
-		sprite.visible = false
-		undecorated_sprite.visible = true
-	else:
+	if PlayerData.career.is_restaurant_decorated():
 		sprite.visible = true
 		undecorated_sprite.visible = false
+	else:
+		sprite.visible = false
+		undecorated_sprite.visible = true
