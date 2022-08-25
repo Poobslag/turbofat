@@ -70,8 +70,8 @@ const TRANSITIONS := {
 	[Creatures.Mood.LAUGH1, Creatures.Mood.LAUGH0]: "_transition_laugh1_laugh0",
 	[Creatures.Mood.LAUGH1, Creatures.Mood.LAUGH1]: "_transition_noop",
 	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE0]: "_transition_noop",
-	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1]: "_transition_noop",
-	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1_FOREVER]: "_transition_noop",
+	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1]: "_transition_love0_love1",
+	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1_FOREVER]: "_transition_love0_love1",
 	[Creatures.Mood.LOVE1, Creatures.Mood.LOVE0]: "_transition_love1_love0",
 	[Creatures.Mood.LOVE1, Creatures.Mood.LOVE1]: "_transition_noop",
 	[Creatures.Mood.LOVE1, Creatures.Mood.LOVE1_FOREVER]: "_transition_noop",
@@ -127,6 +127,7 @@ const MAX_VOLUME := 0.0
 const FADE_SFX_DURATION := 0.08
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
+export (NodePath) var creature_animations_path: NodePath setget set_creature_animations_path
 
 ## stores the previous mood so that we can apply mood transitions.
 var _prev_mood: int
@@ -135,6 +136,7 @@ var _prev_mood: int
 var _mood: int
 
 var _creature_visuals: CreatureVisuals
+var _creature_animations: CreatureAnimations
 
 ## specific sprites manipulated frequently when emoting
 var _emote_eye_z0: PackedSprite
@@ -150,6 +152,7 @@ onready var _volume_db_tween := $VolumeDbTween
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()
+	_refresh_creature_animations_path()
 
 
 func _process(_delta: float) -> void:
@@ -180,6 +183,11 @@ func fade_out_sfx() -> void:
 func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	creature_visuals_path = new_creature_visuals_path
 	_refresh_creature_visuals_path()
+
+
+func set_creature_animations_path(new_creature_animations_path: NodePath) -> void:
+	creature_animations_path = new_creature_animations_path
+	_refresh_creature_animations_path()
 
 
 ## Stops and emits an 'animation_stopped' signal.
@@ -463,6 +471,11 @@ func _transition_laugh1_laugh0() -> void:
 	_reset_tween.start()
 
 
+## Transitions from 'love0' to 'love1', lowering the arms
+func _transition_love0_love1() -> void:
+	_creature_animations.emote_arm_frame = 0
+
+
 ## Transitions from 'love1' to 'love0', hiding the hearts and blush.
 func _transition_love1_love0() -> void:
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
@@ -559,9 +572,17 @@ func _refresh_creature_visuals_path() -> void:
 		_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow"),
 	]
 
+
+func _refresh_creature_animations_path() -> void:
+	if not (is_inside_tree() and creature_animations_path):
+		return
+	
+	_creature_animations = get_node(creature_animations_path)
+
+
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.ends_with("..."):
-		# endless animation; merge it into the looping version
+		# endless animation; merge it into the looping version like '...love1...'
 		play("...%s..." % [anim_name.trim_suffix("...")])
 	elif _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:
 		unemote(anim_name)
