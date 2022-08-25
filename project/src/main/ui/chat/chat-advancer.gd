@@ -71,6 +71,7 @@ func advance() -> void:
 	if did_increment:
 		emit_signal("chat_event_shown", current_chat_event())
 	else:
+		chat_tree = null
 		emit_signal("chat_finished")
 
 
