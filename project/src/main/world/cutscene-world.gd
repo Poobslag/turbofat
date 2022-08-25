@@ -38,10 +38,9 @@ func _launch_cutscene() -> void:
 ## Removes all creatures from the overworld except for the player and sensei.
 func _remove_all_creatures() -> void:
 	for node in get_tree().get_nodes_in_group("creatures"):
-		if node != CreatureManager.player and node != CreatureManager.sensei:
-			# remove it immediately so we don't find it in the tree later
-			node.get_parent().remove_child(node)
-			node.queue_free()
+		# remove it immediately so we don't find it in the tree later
+		node.get_parent().remove_child(node)
+		node.queue_free()
 	
 	for node in get_tree().get_nodes_in_group("creature_spawners"):
 		node.get_parent().remove_child(node)
