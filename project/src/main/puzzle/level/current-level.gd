@@ -46,8 +46,17 @@ func _ready() -> void:
 
 
 ## Unsets all of the 'launched level' data.
-func clear_launched_level() -> void:
-	set_launched_level("")
+func reset() -> void:
+	keep_retrying = false
+	settings == LevelSettings.new()
+	puzzle = null
+	level_id = ""
+	piece_speed = ""
+	customers = []
+	chef_id = ""
+	best_result = Levels.Result.NONE
+	attempt_count = 0
+	puzzle_environment_name = ""
 
 
 ## Stores the launched level data, so the level can be played later.
@@ -57,11 +66,8 @@ func clear_launched_level() -> void:
 ## Parameters:
 ## 	'level_id': The level to launch
 func set_launched_level(new_level_id: String) -> void:
+	reset()
 	level_id = new_level_id
-	piece_speed = ""
-	set_best_result(Levels.Result.NONE)
-	attempt_count = 0
-	puzzle_environment_name = ""
 	
 	if new_level_id:
 		var level_settings := LevelSettings.new()

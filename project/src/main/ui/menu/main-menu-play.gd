@@ -5,7 +5,7 @@ const WORLD0_ID := "world0"
 
 func _on_Career_pressed() -> void:
 	PlayerData.creature_queue.clear()
-	CurrentLevel.clear_launched_level()
+	CurrentLevel.reset()
 	
 	# Launch the first scene in career mode. This is probably the career map, but in some edge cases it could be a
 	# cutscene or victory screen.
