@@ -173,7 +173,8 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 
 
 func _on_PuzzleState_topped_out() -> void:
-	get_chef().play_mood(Creatures.Mood.CRY0)
+	if PuzzleState.game_active:
+		get_chef().play_mood(Creatures.Mood.CRY0)
 
 
 ## When clearing lines, the chef smiles if they're scoring a lot of bonus points.
