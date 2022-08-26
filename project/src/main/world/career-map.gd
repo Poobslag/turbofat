@@ -6,6 +6,9 @@ extends Node
 ## The number of levels the player can choose between
 const SELECTION_COUNT := 3
 
+## Chefs/customers for each level the player can select
+var _level_posses := []
+
 ## LevelSettings instances for each level the player can select
 var _pickable_level_settings := []
 
@@ -97,10 +100,10 @@ func _load_level_settings() -> void:
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
 		_pickable_level_settings.append(level_settings)
 	
-	var level_posses := []
+	_level_posses = []
 	for i in range(_pickable_career_levels.size()):
-		level_posses.append(_level_posse(i))
-	_world.refresh_from_career_data(level_posses)
+		_level_posses.append(_new_level_posse(i))
+	_world.refresh_from_career_data(_level_posses)
 
 
 ## Recreates all level select buttons in the scene tree based on the current level settings.
@@ -272,7 +275,7 @@ func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 ##
 ## This can potentially include creatures which are important to a level, creatures which appear in a cutscene, or
 ## creatures which randomly show up sometimes in a region.
-func _level_posse(level_index: int) -> LevelPosse:
+func _new_level_posse(level_index: int) -> LevelPosse:
 	var career_level: CareerLevel = _pickable_career_levels[level_index]
 	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
 	
@@ -369,8 +372,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	CurrentLevel.puzzle_environment_name = PlayerData.career.current_region().puzzle_environment_name
 	CurrentLevel.piece_speed = _piece_speed
 	
-	var level_posse := _level_posse(level_index)
-	
+	var level_posse: LevelPosse = _level_posses[level_index]
 	CurrentLevel.customers = level_posse.customer_ids
 	CurrentLevel.chef_id = level_posse.chef_id
 	
