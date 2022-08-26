@@ -158,7 +158,7 @@ func _quit_puzzle() -> void:
 	if PlayerData.career.is_career_mode():
 		PlayerData.career.process_puzzle_result()
 	
-	CurrentLevel.clear_launched_level()
+	CurrentLevel.reset()
 	PlayerData.creature_queue.clear()
 	
 	if PlayerData.career.is_career_mode():
