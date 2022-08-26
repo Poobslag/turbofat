@@ -67,8 +67,12 @@ const TRANSITIONS := {
 	[Creatures.Mood.CRY1, Creatures.Mood.CRY1]: "_transition_noop",
 	[Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH0]: "_transition_noop",
 	[Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH1]: "_transition_noop",
+	[Creatures.Mood.LAUGH0, Creatures.Mood.SMILE0]: "_transition_laugh0_any",
+	[Creatures.Mood.LAUGH0, Creatures.Mood.SMILE1]: "_transition_laugh0_any",
 	[Creatures.Mood.LAUGH1, Creatures.Mood.LAUGH0]: "_transition_laugh1_laugh0",
 	[Creatures.Mood.LAUGH1, Creatures.Mood.LAUGH1]: "_transition_noop",
+	[Creatures.Mood.LAUGH1, Creatures.Mood.SMILE0]: "_transition_laugh1_smile0",
+	[Creatures.Mood.LAUGH1, Creatures.Mood.SMILE1]: "_transition_laugh1_smile1",
 	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE0]: "_transition_noop",
 	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1]: "_transition_love0_love1",
 	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1_FOREVER]: "_transition_love0_love1",
@@ -95,9 +99,13 @@ const TRANSITIONS := {
 	[Creatures.Mood.SLY0, Creatures.Mood.SLY1]: "_transition_sly0_sly1",
 	[Creatures.Mood.SLY1, Creatures.Mood.SLY0]: "_transition_sly1_sly0",
 	[Creatures.Mood.SLY1, Creatures.Mood.SLY1]: "_transition_noop",
+	[Creatures.Mood.SMILE0, Creatures.Mood.LAUGH0]: "_transition_noop",
+	[Creatures.Mood.SMILE0, Creatures.Mood.LAUGH1]: "_transition_noop",
 	[Creatures.Mood.SMILE0, Creatures.Mood.SMILE0]: "_transition_noop",
 	[Creatures.Mood.SMILE0, Creatures.Mood.SMILE1]: "_transition_noop",
-	[Creatures.Mood.SMILE1, Creatures.Mood.SMILE0]: "_transition_smile1_smile0",
+	[Creatures.Mood.SMILE1, Creatures.Mood.LAUGH0]: "_transition_smile1_any",
+	[Creatures.Mood.SMILE1, Creatures.Mood.LAUGH1]: "_transition_smile1_any",
+	[Creatures.Mood.SMILE1, Creatures.Mood.SMILE0]: "_transition_smile1_any",
 	[Creatures.Mood.SMILE1, Creatures.Mood.SMILE1]: "_transition_noop",
 	[Creatures.Mood.SWEAT0, Creatures.Mood.SWEAT0]: "_transition_noop",
 	[Creatures.Mood.SWEAT0, Creatures.Mood.SWEAT1]: "_transition_noop",
@@ -463,12 +471,34 @@ func _transition_awkward1_awkward0() -> void:
 	_reset_tween.start()
 
 
+## Transitions from 'laugh0' to any other mood, lowering the arms.
+func _transition_laugh0_any() -> void:
+	_creature_animations.emote_arm_frame = 0
+
+
 ## Transitions from 'laugh1' to 'laugh0', hiding the yellow laugh lines.
 func _transition_laugh1_laugh0() -> void:
 	_head_bobber.reset_head_bob()
 	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain"])
 	_reset_tween.start()
+
+
+## Transitions from 'laugh1' to 'smile0', hiding the yellow laugh lines and lowering the arms.
+func _transition_laugh1_smile0() -> void:
+	_creature_animations.emote_arm_frame = 0
+	_head_bobber.reset_head_bob()
+	_reset_tween.remove_all()
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain"])
+	_reset_tween.start()
+
+
+## Transitions from 'laugh1' to 'smile1', immediately hiding the yellow laugh lines and lowering the arms.
+func _transition_laugh1_smile1() -> void:
+	_creature_animations.emote_arm_frame = 0
+	_head_bobber.reset_head_bob()
+	# We do not use a tween because 'smile1' uses EmoteBrain for its heart bubble
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").modulate = Color.transparent
 
 
 ## Transitions from 'love0' to 'love1', lowering the arms
@@ -516,8 +546,8 @@ func _transition_sly1_sly0() -> void:
 	_head_bobber.reset_head_bob()
 
 
-## Transitions from 'smile1' to 'smile0', hiding the pink love bubble and blush.
-func _transition_smile1_smile0() -> void:
+## Transitions from 'smile1' to any other mood, hiding the pink love bubble and blush.
+func _transition_smile1_any() -> void:
 	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
 	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
