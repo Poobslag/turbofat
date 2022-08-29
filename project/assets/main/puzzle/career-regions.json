@@ -90,6 +90,17 @@
       "region_button": "lemon",
       "piece_speed": "0-2",
       "cutscene_path": "chat/career/lemon_2",
+      "population": {
+        "chefs": [
+          "sidger 25%"
+        ],
+        "customers": [
+          "goldfince 4%",
+          "mara 6%",
+          "sandrew 6%",
+          "tunathy 6%"
+        ]
+      },
       "intro_level": {
         "id": "career/donuts"
       },
