@@ -87,7 +87,7 @@
       "icon": "forest",
       "overworld_environment": "lemon_2",
       "puzzle_environment": "lemon_2",
-      "region_button": "lemon",
+      "region_button": "lemon_2",
       "piece_speed": "0-2",
       "cutscene_path": "chat/career/lemon_2",
       "population": {
