@@ -48,7 +48,7 @@ func _ready() -> void:
 ## Unsets all of the 'launched level' data.
 func reset() -> void:
 	keep_retrying = false
-	settings == LevelSettings.new()
+	settings = LevelSettings.new()
 	puzzle = null
 	level_id = ""
 	piece_speed = ""
