@@ -299,28 +299,6 @@ target_properties = {
 }
 spawn_if = "chat_finished chat/career/marsh/30_b_end"
 
-[node name="Restaurant1" parent="Obstacles" instance=ExtResource( 39 )]
-position = Vector2( 271.495, 1072.24 )
-scale = Vector2( 0.539, 0.539 )
-orientation = 1
-id = "restaurant_1"
-
-[node name="Restaurant4" parent="Obstacles" instance=ExtResource( 39 )]
-position = Vector2( 326.432, 1152.12 )
-scale = Vector2( 0.539, 0.539 )
-orientation = 1
-id = "restaurant_4"
-
-[node name="Restaurant8" parent="Obstacles" instance=ExtResource( 39 )]
-position = Vector2( 81.5159, 1154.66 )
-scale = Vector2( 0.539, 0.539 )
-id = "restaurant_8"
-
-[node name="Restaurant11" parent="Obstacles" instance=ExtResource( 39 )]
-position = Vector2( 132.969, 1070.01 )
-scale = Vector2( 0.539, 0.539 )
-id = "restaurant_11"
-
 [node name="ButtercupRestaurant" parent="Obstacles" instance=ExtResource( 30 )]
 position = Vector2( 3951.74, 942.062 )
 shadow_scale = 4.0
@@ -448,6 +426,28 @@ id = "buttercup_9"
 [node name="Buttercup11" parent="Spawns" instance=ExtResource( 39 )]
 position = Vector2( 3633.95, 1137.63 )
 id = "buttercup_11"
+
+[node name="Restaurant1" parent="Spawns" instance=ExtResource( 39 )]
+position = Vector2( 271.495, 1072.24 )
+scale = Vector2( 0.539, 0.539 )
+orientation = 1
+id = "restaurant_1"
+
+[node name="Restaurant4" parent="Spawns" instance=ExtResource( 39 )]
+position = Vector2( 326.432, 1152.12 )
+scale = Vector2( 0.539, 0.539 )
+orientation = 1
+id = "restaurant_4"
+
+[node name="Restaurant8" parent="Spawns" instance=ExtResource( 39 )]
+position = Vector2( 81.5159, 1154.66 )
+scale = Vector2( 0.539, 0.539 )
+id = "restaurant_8"
+
+[node name="Restaurant11" parent="Spawns" instance=ExtResource( 39 )]
+position = Vector2( 132.969, 1070.01 )
+scale = Vector2( 0.539, 0.539 )
+id = "restaurant_11"
 
 [node name="PlayerPath" type="Path2D" parent="."]
 position = Vector2( 475.371, 923.074 )

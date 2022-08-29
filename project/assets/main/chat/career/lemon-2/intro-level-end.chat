@@ -1,0 +1,66 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, kitchen_11
+sensei, s1, kitchen_1
+
+p1: You still haven't filled out that restaurant form for Tunathy? Here, I'll do it.
+p1: ^_^ Hmmm... Maybe we should just name the restaurant after you! 'Turbo Fat.'
+s1: -_- First of all, my name is Fat Sensei. Secondly, Turbo Fat is... quite possibly the WORST imaginable name for a restaurant.
+p1: /._. Oh I don't think it's that bad! It evokes a certain sense of...
+[revulsion] Revulsion
+[fear] Fear
+[indulgence] Indulgence
+[urgency] Urgency
+[convenience] Convenience
+[shamelessness] Shamelessness
+
+
+[urgency]
+p1: ^y^ A sense of urgency!
+s1: ^N^ ...Yes. Urgency to become fat. Hard pass.
+[fine]
+
+[indulgence]
+p1: ^y^ A sense of indulgence!
+s1: ^N^ ...Yes. Rapid indulgence, which is the most idiotic thing I've ever heard of.
+[fine]
+
+[convenience]
+p1: ^y^ A sense of convenience!
+s1: ^N^ ...Yes. The convenience of becoming fat. Hard pass.
+[fine]
+
+[fear]
+p1: ^y^ A sense of fear!
+s1: /._. ...Fear!?
+p1: Yeah, it's just... The danger is in your face, like warning labels on cigarettes!
+p1: >___< ...Watch out! Long term use of Turbo Fat has been linked to permanent and irreversible side effects!
+s1: ^N^ I'm getting the impression you haven't done this kind of thing before.
+[fine]
+
+[revulsion]
+p1: ^y^ A sense of revulsion!
+s1: /._. ...Revulsion!?
+p1: ^Y^ Yeah, something like... Eww! Turbo Fat!? Gross, I'll eat ANYWHERE but there!
+s1: ^N^ I'm getting the impression you haven't done this kind of thing before.
+[fine]
+
+[shamelessness]
+p1: ^y^ A sense of shamelessness!
+s1: /._. ...Shamelessness!?
+p1: ^Y^ Yeah, something like... Okay our portions are huge, our food is unhealthy, but we're up front about it!
+s1: ^N^ I'm getting the impression you haven't done this kind of thing before.
+[fine]
+
+
+[fine]
+p1: Fine. How about... Bits 'n' Bites?
+s1: ^Y^ Hmm... Yes yes, fine. Whatever. It's marginally better than #bad_restaurant_name#.
+ (default_phrase bad_restaurant_name Junjorito)
+ (s1 exits)
+p1: (scribble, scribble...)
+ 

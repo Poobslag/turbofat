@@ -1,0 +1,38 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) mara, m, table_seat_left
+
+p1: ^_^/ Oh it's you, Mara! Don't worry, this one will be on the house~
+m: ^_^ No that's alright, I don't mind paying! I just love that you're hitting it off so well with Fat Sensei.
+m: ^__^ So... When are you going to introduce me to your boyfriend?
+ (say_if is_flag sensei_gender male)
+m: ^__^ So... When are you going to introduce me to your girlfriend?
+ (say_if is_flag sensei_gender female)
+m: ^__^ So... When are you going to introduce me to your boyfriend and/or girlfriend?
+ (say_if not has_flag sensei_gender)
+p1: -_- What!? We're not dating...
+s1: ^y^ Oh it's fine, I can introduce myself. Hello, I'm Fat Sensei, #player.possessive# partner.
+p1: >__< My BUSINESS partner.
+p1: ._. ...Uhh but anyways Fat Sensei, this is my roommate Mara! Well, I don't know if we're technically roommates?
+ (p1 faces right)
+p1: I cook for them sometimes, and in exchange they let me sleep in their guest room for free.
+ (p1 faces left)
+s1: -_- Wait. ...Are you serious!?!
+s1: -__- Mara, I mean this in the nicest way possible. I've tasted #player.possessive# cooking. ...They should be paying rent.
+m: ^_^ Oh? ...Th-thank you!
+p1: >__< WHAT?! Don't thank them for that!
+m: ^__^ I'm sorry! You have a very nice boyfriend. ...Sorry! I mean, 'Partner'.
+ (say_if is_flag sensei_gender male)
+m: ^__^ I'm sorry! You have a very nice girlfriend. ...Sorry! I mean, 'Partner'.
+ (say_if is_flag sensei_gender female)
+m: ^__^ I'm sorry! You have a very nice boyfriend and/or girlfriend. ...Sorry! I mean, 'Partner'.
+ (say_if not has_flag sensei_gender)
+p1: ... (grumble) ...
+ (p1 faces right)
+ (p1 exits)

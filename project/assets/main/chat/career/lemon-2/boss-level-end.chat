@@ -1,0 +1,36 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) sandrew, s, table_seat_left
+
+s: ^_^ Well... You're not quite as good as 'Closed', but I'll be back again!
+s: ._. 'Turbo Fat'... Hmm... That name is going to take some getting used to.
+ (s faces left)
+s1: >_< Yes, yes... I think that goes for all of us.
+ (s exits, s1 faces right)
+p1: /._. Don't look at me that way! This wasn't my fault. ...Wait... Was it my fault?
+s1: ^n^ Don't be ridiculous. It was Tunathy's fault! That useless little emotional punching bag.
+s1: Remind me to insult them again later! If I make them cry hard enough, maybe they'll refund our money...
+[not_their_fault] It wasn't their fault
+[good_cop] Let's play good cop/bad cop
+[some_slack] Cut Tunathy some slack
+
+[some_slack]
+p1: u_u Oh poor Tunathy, let's cut them some slack.
+s1: ^n^ Hmph, you just don't understand how to run a business. If nobody's crying, you're not trying hard enough.
+
+[good_cop]
+p1: -u- I want in on this too! Maybe we can do kind of a good cop/bad cop thing.
+s1: ^n^ No no, you need to start pulling your weight! We both need to be bad cops.
+s1: ^_^ That's just called good business! If nobody's crying, you're not trying hard enough.
+
+[not_their_fault]
+p1: <_< I don't think it was actually their fault...
+s1: ^n^ Yes, but with their low self-esteem who do you think they're more likely to believe? Us or themselves?
+s1: ^_^ That's just called good business! If nobody's crying, you're not trying hard enough.
+ (next_scene chat/career/lemon/boss_level_end_2)

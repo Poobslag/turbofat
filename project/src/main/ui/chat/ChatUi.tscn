@@ -18,9 +18,6 @@ margin_right = 512.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ChatFrame" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.5

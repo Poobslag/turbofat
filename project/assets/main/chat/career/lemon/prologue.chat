@@ -27,12 +27,14 @@ m: ^_^ Ooooooh! ...So who is this mystery man? ...Do they have a name?
 
 [a_man]
 p1: /._. ...So their name was 'Turbo', and I THINK they were a man! ...But I have this weird intuition -
+ (set_flag sensei_gender male)
 p1: I think if I run into the forest in a random direction for a long time, I might be lucky enough to bump into them? I guess!
 m: ^o^ Well gosh hurry along then!\nI wouldn't want to get in between you and the man of your dreams!
 [end]
 
 [a_woman]
 p1: /._. ...So their name was 'Turbo', and I THINK they were a woman! ...But I have this weird intuition -
+ (set_flag sensei_gender female)
 p1: I think if I run into the forest in a random direction for a long time, I might be lucky enough to bump into them? I guess!
 m: ^o^ Well gosh hurry along then!\nI wouldn't want to get in between you and the woman of your dreams!
 [end]

@@ -29,6 +29,7 @@
     "horn_rgb": "828863"
   },
   "chat_theme": {
+    "accent_amount": 0.12,
     "accent_scale": 4,
     "accent_swapped": true,
     "accent_texture": 12,

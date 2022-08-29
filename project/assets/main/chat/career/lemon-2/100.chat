@@ -1,0 +1,85 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+sensei, s1, table_1
+player, p1, table_2
+(customer) tunathy, t, table_seat_left
+
+t: .__.; Ohhh, Fat Sensei! Sorry I'm -- I'm reeeally sorry again about messing up your sign.
+s1: ^N^ Ahhh that's okay. It wasn't your fault, any artist could make that mistake.
+t: Th-thank you! I don't know what to say.
+[very_understanding] That's very understanding
+[their_fault] But... it WAS Tunathy's fault
+[my_fault] It was my fault
+
+[very_understanding]
+p1: ^_^ That's very understanding of you, Sensei! I thought you'd be harder on them.
+s1: ^N^ Well, it's not fair to blame the artist in a case like this.
+[you_see]
+
+[their_fault]
+p1: /._. Really, Sensei? ...It was all Tunathy's fault, I thought you'd be harder on them.
+s1: ^N^ Well, it's not fair to blame the artist in a case like this.
+[you_see]
+
+[my_fault]
+p1: ._.; It was my fault anyways. I'm the one who filled out the form wrong.
+s1: ^N^ No no, don't blame yourself. It was definitely the artist's fault.
+[you_see]
+
+
+[you_see]
+s1: ...You see #player#, artists aren't normal people like you and me.
+ (s1 faces right)
+s1: Years upon years of failing to challenge themselves in any meaningful way shrivels their brain to a subhuman state.
+s1: ^N^ Why, most artists are lucky if they can even memorize two phone numbers.
+t: <_< Well... I know my own phone number! And I used to know my old one, before I got a new phone...
+s1: No, no. But artists make up for it in other ways-
+ (t mood ._.;)
+s1: ^_^ The one quality all real artists share is their courage -- their confidence!
+s1: Their inhuman ability to shake off criticism like water off a duck's back, and to constantly stay productive.
+ (t mood u_u)
+s1: ^__^ Yes, that's what truly sets real artists apart from worthless garbage who just sit around and never amount to anything.
+t: u__u Ohhhhhhhh...
+ (s1 exits)
+[comfort] (Comfort them)
+[do_not] (Do not)
+
+[do_not]
+p1: ...
+t: ... ...
+t: ._.; Sorry, I thought you were going to jump in with some kind of... uplifting anecdote.
+p1: <__< ...
+
+[comfort]
+p1: ^N^ That's okay, Tunathy. You don't need to worry about people like them!
+t: ...
+t: ... ...
+t: ._.; Sorry, I thought you were going to follow that up with some kind of uplifting anecdote.
+p1: <_< Sorry, umm...
+[thats_the_ticket] That's the spirit!
+[dont_worry] As long as you're happy
+[say_nothing] ...
+[theyre_a_knob] They're a knob
+
+
+[theyre_a_knob]
+p1: -__- Fat Sensei's kind of a knob. And to be honest-
+p1: -the more you're disappointing people like them, the more likely it is you're doing something right.
+t: ^_^ Oh! ...Th-thanks!
+
+[dont_worry]
+p1: ^__^ Don't worry about what other people think! As long as you're happy, that's what counts.
+t: u_u As long as I'm... Ohhhhh...
+p1: <__< ...
+
+[thats_the_ticket]
+p1: ^__^ That's the spirit!
+t: <_< ...
+p1: <__< ...
+
+[say_nothing]
+p1: <__< ...

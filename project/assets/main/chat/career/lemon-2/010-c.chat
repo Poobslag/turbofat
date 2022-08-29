@@ -1,0 +1,44 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, kitchen_1
+(chef) sidger, s, kitchen_11
+
+p1: So each table should have their food done all at once. Which means when you're cooking it, you should-
+s: <_< You don't gotta train me, I've got plenty of experience with this sorta thing.
+p1: Oh, like... restaurant experience?
+s: ^n^ Nah nah, failed business experience.
+p1: Failed business experience!?
+[just_starting] But we just started!
+[no_kitchen] You've never worked in a kitchen?
+[no_cook] ...Wait, can you cook?
+[not_failing] We're not failing!
+
+[just_starting]
+p1: ._.; We just got started! We're not failing...
+s: -__- Oh sure sure! I'm sure your first million is just around the corner. Take my advice though-
+[the_secret]
+
+[no_kitchen]
+p1: @_@ You've never worked in a kitchen?
+s: -__- What, you think a kitchen's any different than working a call center or mortuary? Take my advice-
+[the_secret]
+
+[no_cook]
+p1: /._. Wait... do you know how to cook?
+s: -__- I'm not the best, but I'll pick up what I need to. It's not the cooking that's the important part! Take my advice-
+[the_secret]
+
+[not_failing]
+p1: ^o^ Pshh! Our business isn't failing!
+s: -__- Oh sure sure! I'm sure your first million is just around the corner. Take my advice though-
+[the_secret]
+
+[the_secret]
+s: The secret is to half-ass your job, take on JUST enough responsibility to look busy while staying out of trouble.
+s: ^Y^ That way when things start to go south, you look like a team player and not a liability! It's a delicate balance.
+p1: .__.; At least let me teach you the BASICS of cooking...
+s: ^O^ Pshh look at you, you little try-hard! You're not gonna last three weeks at a place like this...

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/pebble-overworld-tiler.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/main/world/environment/lemon/BrotSpot.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/TurboFatRestaurant.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/lemon/LemonCookieSmall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/environment/GrassOverworldTiler.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/lemon/BrotSpotStool.tscn" type="PackedScene" id=11]
@@ -118,6 +119,7 @@ impassable_tile_index = 1
 
 [node name="TurboFatRestaurant1" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 601.902, 2213.51 )
+sfx_disabled = true
 
 [node name="TurboFatRestaurant2" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 4889.83, 2387.49 )
@@ -205,12 +207,12 @@ leaf_type = 4
 mouth_type = 6
 
 [node name="LemonTree5" parent="Obstacles" instance=ExtResource( 23 )]
-position = Vector2( 4512.5, 2558.09 )
+position = Vector2( 4461.65, 2447.91 )
 leaf_type = 3
 mouth_type = 1
 
 [node name="LemonTree15" parent="Obstacles" instance=ExtResource( 23 )]
-position = Vector2( 224.694, 2347.06 )
+position = Vector2( 173.84, 2236.88 )
 leaf_type = 3
 mouth_type = 1
 
@@ -494,6 +496,24 @@ frame = 3
 flip_h = true
 
 [node name="Spawns" type="Node2D" parent="."]
+
+[node name="Restaurant11" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 4574.49, 2526.68 )
+id = "restaurant_11"
+
+[node name="Restaurant8" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 4513.88, 2585.05 )
+id = "restaurant_8"
+
+[node name="Restaurant4" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 4852.86, 2596.27 )
+orientation = 1
+id = "restaurant_4"
+
+[node name="Restaurant1" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 4787.76, 2535.66 )
+orientation = 1
+id = "restaurant_1"
 
 [node name="PlayerPath" type="Path2D" parent="."]
 position = Vector2( 475.371, 1744.54 )

@@ -939,6 +939,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/tutorial/skill-tally-panel.gd"
 }, {
+"base": "Particles2D",
+"class": "SmokeCluster",
+"language": "GDScript",
+"path": "res://src/main/world/environment/smoke-cluster.gd"
+}, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
@@ -1256,6 +1261,7 @@ _global_script_class_icons={
 "ShadowCasterShadows": "",
 "SkillTallyItem": "",
 "SkillTallyPanel": "",
+"SmokeCluster": "",
 "SmoothPath": "",
 "Spawn": "",
 "SpeedRules": "",

@@ -1,0 +1,17 @@
+{"version": "2476"}
+
+[location]
+marsh/inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) sandrew, s, table_seat_left
+
+s1: ^Y^ Ahh yes, that's a good question.
+s1: I'll get my... business partner to weigh in on this. BUSINESS.
+ (s1 faces right)
+s1: .__.; Sorry, can you remind me why I have to keep saying 'business'?
+p1: -_- (whisper, whisper)
+s1: ^O^ Ahha ha ha ha! Oh come on. I don't think anybody's going to believe THAT...
+ (p1 mood -__-)
