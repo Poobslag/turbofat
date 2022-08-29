@@ -255,15 +255,20 @@ func is_boss_level() -> bool:
 func is_intro_level() -> bool:
 	var result := true
 	var region: CareerRegion = current_region()
-	if not region.intro_level:
+	if distance_travelled != region.start:
+		# the player is not at the start of the region
+		result = false
+	elif not region.intro_level:
+		# the region has no intro level
 		result = false
 	elif is_intro_level_finished(region):
+		# the player has already cleared this intro level
 		result = false
 	return result
 
 
 func is_intro_level_finished(region: CareerRegion) -> bool:
-	return region.intro_level and PlayerData.level_history.is_level_finished(region.intro_level.level_id)
+	return region.intro_level and best_distance_travelled > region.start
 
 
 ## Returns the number of levels the player can choose between, based on their current distance and progress.
