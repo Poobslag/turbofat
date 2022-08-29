@@ -25,13 +25,21 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 	career_data.hours_passed += 1
 	
 	if career_data.is_boss_level():
-		var boss_region: CareerRegion = career_data.current_region()
+		var region: CareerRegion = career_data.current_region()
 		if success:
 			# if they pass a boss level, update best_distance_travelled to mark the region as cleared
-			career_data.best_distance_travelled = max(career_data.best_distance_travelled, boss_region.end + 1)
+			career_data.best_distance_travelled = max(career_data.best_distance_travelled, region.end + 1)
 		else:
 			# if they fail a boss level, they lose 1-2 days worth of progress
-			career_data.distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
+			career_data.distance_earned = -int(max(region.length * rand_range(0.125, 0.25), 2))
+	elif career_data.is_intro_level():
+		var region: CareerRegion = career_data.current_region()
+		if new_distance_earned > 0:
+			# if they finish an intro level, update best_distance_travelled to mark the intro as cleared
+			career_data.best_distance_travelled = max(career_data.best_distance_travelled, region.start + 1)
+		else:
+			# if the fail an intro level, leave them where they are
+			pass
 	
 	if career_data.distance_earned > 0:
 		# if they make forward progress, they also spend their banked steps
