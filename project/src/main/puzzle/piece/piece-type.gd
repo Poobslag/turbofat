@@ -11,41 +11,32 @@ var pos_arr: Array
 ## array of vectors representing the autotile coordinates of used cells
 var color_arr: Array
 
-## array of piece kicks to try when rotating clockwise
-var cw_kicks: Array
-
-## array of piece kicks to try when rotating counterclockwise
-var ccw_kicks: Array
-
-## array of piece kicks to try when rotating 180
-var flips: Array
+## dictionary of kicks to try when rotating or flipping
+## key: (int) number representing the source/destination rotation.
+## 	kicks[12] = piece kicks to try when rotating clockwise from orientation R to orientation 2
+## 	kicks[03] = piece kicks to try when rotating counter-clockwise from orientation 0 to orientation L
+## 	kicks[20] = piece kicks to try when flipping from orientation 2 to orientation 0
+## values: (Array, Vector2) kicks to try
+var kicks: Dictionary
 
 ## maximum number of 'floor kicks', kicks which move the piece upward
 var max_floor_kicks: int
 
 func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array,
-		init_kicks: Array, init_flips: Array, init_max_floor_kicks := 3) -> void:
+		init_kicks: Dictionary, init_max_floor_kicks := 3) -> void:
 	string = init_string
 	pos_arr = init_pos_arr
 	color_arr = init_color_arr
-	if init_kicks.size() == pos_arr.size() * 2:
-		# store cw kicks and ccw kicks from input array
-		cw_kicks = []
-		ccw_kicks = []
-		for _i in range(pos_arr.size()):
-			cw_kicks.append(init_kicks[_i * 2])
-			ccw_kicks.append(init_kicks[_i * 2 + 1])
-	else:
-		# store cw kicks from input array; calculate ccw kicks
-		cw_kicks = init_kicks
-		ccw_kicks = []
-		for cw_kick in cw_kicks:
-			var ccw_kick: Array = cw_kick.duplicate()
-			# invert all kicks but the first one (the first one is the floor kick)
-			for i in range(cw_kick.size()):
-				ccw_kick[i] = Vector2(-cw_kick[i].x, -cw_kick[i].y)
-			ccw_kicks += [ccw_kick]
-	flips = init_flips
+	
+	# store kicks and create inverse kicks, if absent
+	kicks = init_kicks.duplicate()
+	for kick_key in kicks:
+		var inverse_key: int = (kick_key % 10) * 10 + int(kick_key / 10)
+		if kicks.has(kick_key) and not kicks.has(inverse_key):
+			kicks[inverse_key] = []
+			for kick in kicks[kick_key]:
+				kicks[inverse_key].append(Vector2(-kick.x, -kick.y))
+	
 	max_floor_kicks = init_max_floor_kicks
 
 
