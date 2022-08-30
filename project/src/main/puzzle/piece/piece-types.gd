@@ -52,13 +52,13 @@ const KICKS_T := {
 	}
 
 const KICKS_U := {
-		01: [Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1), Vector2( 1, -2)],
-		12: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
-		23: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1)],
-		30: [Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  2)],
+		01: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1)],
+		12: [Vector2( 1, -1), Vector2( 0, -1), Vector2( 1,  0), Vector2( 0, -2), Vector2( 1,  1)],
+		23: [Vector2( 1,  1), Vector2( 0,  1), Vector2( 1,  0), Vector2( 0,  2), Vector2( 1, -1)],
+		30: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
 		
 		02: [Vector2( 0, -1)],
-		13: [Vector2(-1,  0)],
+		13: [Vector2( 1,  0)],
 	}
 
 const KICKS_V := {
@@ -104,8 +104,7 @@ var piece_i := PieceType.new("i",
 			[Vector2( 8, 3), Vector2(12, 3), Vector2(12, 3), Vector2( 4, 3)],
 			[Vector2( 2, 3), Vector2( 3, 3), Vector2( 3, 3), Vector2( 1, 3)],
 		],
-		KICKS_I,
-		5 # i-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
+		KICKS_I
 	)
 
 var piece_j := PieceType.new("j",
@@ -237,20 +236,19 @@ var piece_t := PieceType.new("t",
 var piece_u := PieceType.new("u",
 		# shape data
 		[
-			[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(2, 1)],
-			[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 2), Vector2(1, 2)],
 			[Vector2(0, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 			[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
+			[Vector2(0, 1), Vector2(1, 1), Vector2(2, 1), Vector2(0, 2), Vector2(2, 2)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 2), Vector2(1, 2)],
 		],
 		# color data
 		[
-			[Vector2(10, 2), Vector2(12, 2), Vector2( 6, 2), Vector2( 1, 2), Vector2( 1, 2)],
-			[Vector2( 8, 2), Vector2( 6, 2), Vector2( 3, 2), Vector2( 8, 2), Vector2( 5, 2)],
 			[Vector2( 2, 2), Vector2( 2, 2), Vector2( 9, 2), Vector2(12, 2), Vector2( 5, 2)],
 			[Vector2(10, 2), Vector2( 4, 2), Vector2( 3, 2), Vector2( 9, 2), Vector2( 4, 2)],
+			[Vector2(10, 2), Vector2(12, 2), Vector2( 6, 2), Vector2( 1, 2), Vector2( 1, 2)],
+			[Vector2( 8, 2), Vector2( 6, 2), Vector2( 3, 2), Vector2( 8, 2), Vector2( 5, 2)],
 		],
-		KICKS_U,
-		5 # u-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
+		KICKS_U
 	)
 
 var piece_v := PieceType.new("v",

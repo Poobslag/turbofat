@@ -1,6 +1,8 @@
 class_name ActivePiece
 ## Contains the settings and state for the currently active piece.
 
+const MAX_FLOOR_KICKS := 3
+
 ## The current position/orientation. For most pieces, orientation will range from
 ## [0, 1, 2, 3] for [unrotated, clockwise, flipped, counterclockwise]
 var pos := Vector2(3, 3)
@@ -174,7 +176,7 @@ func kick_piece(kicks: Array = []) -> void:
 
 
 func can_floor_kick() -> bool:
-	return floor_kicks < type.max_floor_kicks
+	return floor_kicks < MAX_FLOOR_KICKS
 
 
 ## Returns 'true' if the piece is blocked from moving in all four directions.
