@@ -303,7 +303,7 @@ func _advance_level() -> void:
 							_:
 								hud.set_message(tr("Hmph, I'll bet you think you're pretty clever..."))
 								_annoying_flip_count += 1
-						new_level_id = "tutorial/spins_5" if _annoying_flip_count < 3 else "tutorial/spins_secret"
+						new_level_id = "tutorial/spins_6" if _annoying_flip_count < 3 else "tutorial/spins_secret"
 					_:
 						hud.set_message(tr("Good job!\n\nYou could just squish that in, too. You don't always need spin moves."))
 			else:
