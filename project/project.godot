@@ -489,6 +489,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/line-inserter.gd"
 }, {
+"base": "Sprite",
+"class": "LoadingOrb",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/loading-orb.gd"
+}, {
+"base": "Node2D",
+"class": "LoadingProgressBar",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/loading-progress-bar.gd"
+}, {
 "base": "Button",
 "class": "LockAlleleButton",
 "language": "GDScript",
@@ -1171,6 +1181,8 @@ _global_script_class_icons={
 "LineClearer": "",
 "LineFiller": "",
 "LineInserter": "",
+"LoadingOrb": "",
+"LoadingProgressBar": "",
 "LockAlleleButton": "",
 "LoseConditionRules": "",
 "MainMenu": "",
