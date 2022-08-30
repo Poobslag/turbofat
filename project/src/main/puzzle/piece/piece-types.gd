@@ -47,8 +47,8 @@ const KICKS_T := {
 		23: [Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2(-1,  0)],
 		30: [Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0,  1)],
 		
-		02: [Vector2(0, -1)],
-		13: [Vector2(1, 0)],
+		02: [Vector2( 0, -1)],
+		13: [Vector2( 1,  0)],
 	}
 
 const KICKS_U := {
@@ -57,8 +57,8 @@ const KICKS_U := {
 		23: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1)],
 		30: [Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  2)],
 		
-		02: [Vector2(0, -1)],
-		13: [Vector2(-1, 0)],
+		02: [Vector2( 0, -1)],
+		13: [Vector2(-1,  0)],
 	}
 
 const KICKS_V := {
