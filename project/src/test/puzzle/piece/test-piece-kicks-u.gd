@@ -43,9 +43,9 @@ func test_wall_kick_r0_0() -> void:
 	]
 	to_grid = [
 		"    ",
+		"    ",
 		"uuu ",
 		"u u ",
-		"    ",
 		"    ",
 	]
 	assert_kick()
@@ -133,9 +133,9 @@ func test_wall_kick_l0_1() -> void:
 	]
 	to_grid = [
 		"    ",
+		"    ",
 		" uuu",
 		" u u",
-		"    ",
 		"    ",
 	]
 	assert_kick()
@@ -343,9 +343,9 @@ func test_diagonalnw_kick_l0() -> void:
 	]
 	to_grid = [
 		"::  ",
-		":uuu",
-		" u u",
-		"   :",
+		":   ",
+		"uuu ",
+		"u u:",
 		"  ::",
 	]
 	assert_kick()
@@ -360,10 +360,10 @@ func test_diagonalne_kick_0r() -> void:
 		"::   ",
 	]
 	to_grid = [
-		"   ::",
-		"  uu:",
-		":  u ",
-		"::uu ",
+		" uu::",
+		"  u :",
+		":uu  ",
+		"::   ",
 	]
 	assert_kick()
 
@@ -597,16 +597,30 @@ func test_flip_kick_02_narrow() -> void:
 	assert_kick()
 
 
-func test_flip_kick_02_wide() -> void:
+func test_flip_kick_02_floor() -> void:
 	from_grid = [
 		"   ",
 		"uuu",
 		"u u",
 	]
 	to_grid = [
+		"u u",
+		"uuu",
+		"   ",
+	]
+	assert_kick()
+
+
+func test_flip_kick_20_floor() -> void:
+	from_grid = [
 		"   ",
 		"u u",
 		"uuu",
+	]
+	to_grid = [
+		"   ",
+		"uuu",
+		"u u",
 	]
 	assert_kick()
 

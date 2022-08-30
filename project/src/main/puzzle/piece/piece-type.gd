@@ -19,11 +19,8 @@ var color_arr: Array
 ## values: (Array, Vector2) kicks to try
 var kicks: Dictionary
 
-## maximum number of 'floor kicks', kicks which move the piece upward
-var max_floor_kicks: int
-
 func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array,
-		init_kicks: Dictionary, init_max_floor_kicks := 3) -> void:
+		init_kicks: Dictionary) -> void:
 	string = init_string
 	pos_arr = init_pos_arr
 	color_arr = init_color_arr
@@ -36,8 +33,6 @@ func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array,
 			kicks[inverse_key] = []
 			for kick in kicks[kick_key]:
 				kicks[inverse_key].append(Vector2(-kick.x, -kick.y))
-	
-	max_floor_kicks = init_max_floor_kicks
 
 
 ## Returns the position of the specified cell.
