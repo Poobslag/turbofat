@@ -65,7 +65,12 @@ func progress_value(milestone: Milestone) -> float:
 ##
 ## This controls the speed at which the pieces move.
 func prev_milestone() -> Milestone:
-	return CurrentLevel.settings.speed.speed_ups[PuzzleState.speed_index]
+	var milestone: Milestone
+	if PuzzleState.speed_index < CurrentLevel.settings.speed.speed_ups.size():
+		milestone = CurrentLevel.settings.speed.speed_ups[PuzzleState.speed_index]
+	else:
+		milestone = CurrentLevel.settings.speed.speed_ups.back()
+	return milestone
 
 
 ## Returns the next upcoming milestone. This is reflected in the UI.
