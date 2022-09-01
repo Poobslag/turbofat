@@ -17,10 +17,10 @@ func _ready() -> void:
 ## Launches the 'fade out' visual transition.
 func fade_out() -> void:
 	_mask.modulate = SceneTransition.fade_color
-	_animation_player.play("fade-out", -1, 1.0 / SceneTransition.SCREEN_FADE_OUT_DURATION)
+	_animation_player.play("fade-out", -1, 1.0 / SceneTransition.next_fade_out_duration)
 	
 	# play a random part of the scene transition sound effect so it's not as repetitive
-	var max_audio_start := _audio_stream_player.stream.get_length() - SceneTransition.SCREEN_FADE_OUT_DURATION
+	var max_audio_start := max(0.0, _audio_stream_player.stream.get_length() - SceneTransition.next_fade_out_duration)
 	_audio_stream_player.play(rand_range(0.0, max_audio_start))
 
 
@@ -30,7 +30,7 @@ func fade_in() -> void:
 	_animation_player.play("fade-in", -1, 1.0 / SceneTransition.SCREEN_FADE_IN_DURATION)
 	
 	# play a random part of the scene transition sound effect so it's not as repetitive
-	var max_audio_start := _audio_stream_player.stream.get_length() - SceneTransition.SCREEN_FADE_IN_DURATION
+	var max_audio_start := max(0.0, _audio_stream_player.stream.get_length() - SceneTransition.SCREEN_FADE_IN_DURATION)
 	_audio_stream_player.play(rand_range(0.0, max_audio_start))
 
 

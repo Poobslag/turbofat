@@ -18,6 +18,11 @@ var fade_color: Color = ProjectSettings.get_setting("rendering/environment/defau
 var breadcrumb_method: FuncRef
 var breadcrumb_arg_array: Array
 
+## The duration of the next fade duration (or the current one, if already fading). These can be assigned for a slower
+## or faster fadeout, but they will reset to their default values after the next fade.
+var next_fade_in_duration := SCREEN_FADE_IN_DURATION
+var next_fade_out_duration := SCREEN_FADE_OUT_DURATION
+
 ## Navigates forward one level, appending the new path to the breadcrumb trail after a scene transition.
 ##
 ## Parameters:
@@ -89,6 +94,7 @@ func change_scene(skip_transition: bool = false) -> void:
 
 ## Called when the 'fade out' visual transition ends, triggering a scene transition.
 func end_fade_out() -> void:
+	next_fade_out_duration = SCREEN_FADE_OUT_DURATION
 	if breadcrumb_method:
 		breadcrumb_method.call_funcv(breadcrumb_arg_array)
 
@@ -103,6 +109,7 @@ func fade_in() -> void:
 
 ## Called when the 'fade in' visual transition ends, toggling a state variable.
 func end_fade_in() -> void:
+	next_fade_out_duration = SCREEN_FADE_IN_DURATION
 	fading = false
 
 
