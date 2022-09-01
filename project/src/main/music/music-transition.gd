@@ -28,4 +28,4 @@ func _on_SceneTransition_fade_in_started() -> void:
 func _on_SceneTransition_fade_out_started() -> void:
 	if OS.has_feature("web"):
 		_faded_bgm = MusicPlayer.current_bgm
-		MusicPlayer.stop(SceneTransition.SCREEN_FADE_OUT_DURATION * 0.5)
+		MusicPlayer.stop(SceneTransition.next_fade_out_duration * 0.5)
