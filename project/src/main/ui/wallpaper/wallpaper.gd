@@ -9,8 +9,8 @@ export (PackedScene) var WallpaperBorderScene: PackedScene
 export (PackedScene) var StickerRowScene: PackedScene
 
 ## the two colors used for this wallpaper
-var _color_0: Color
-var _color_1: Color
+var dark_color: Color
+var light_color: Color
 
 func _ready() -> void:
 	_assign_daily_colors()
@@ -20,10 +20,10 @@ func _ready() -> void:
 	for border_y in range(-250, 250, 150):
 		var wallpaper_border := _add_border(border_y, 50)
 		if border_index % 2 == 0:
-			wallpaper_border.set_gradient_colors(_color_1, _color_0)
+			wallpaper_border.set_gradient_colors(light_color, dark_color)
 			wallpaper_border.velocity = Vector2(12.0, 0)
 		else:
-			wallpaper_border.set_gradient_colors(_color_0, _color_1)
+			wallpaper_border.set_gradient_colors(dark_color, light_color)
 			wallpaper_border.velocity = Vector2(-12.0, 0)
 		border_index += 1
 	
@@ -31,7 +31,7 @@ func _ready() -> void:
 	var color_rect_index := 0
 	for color_rect_y in range (-350, 350, 150):
 		var color_rect := _add_color_rect(color_rect_y - 2, 104)
-		color_rect.color = _color_0 if color_rect_index % 2 == 0 else _color_1
+		color_rect.color = dark_color if color_rect_index % 2 == 0 else light_color
 		color_rect_index += 1
 	
 	# stretch top/bottom color rects so they fill the screen
@@ -44,7 +44,7 @@ func _ready() -> void:
 	var sticker_row_index := 0
 	for sticker_row_y in range (-350, 350, 150):
 		var sticker_row := _add_sticker_row(sticker_row_y, 100)
-		sticker_row.color = _color_1 if sticker_row_index % 2 == 0 else _color_0
+		sticker_row.color = light_color if sticker_row_index % 2 == 0 else dark_color
 		sticker_row.velocity = Vector2(-30.0, 0) if sticker_row_index % 2 == 0 else Vector2(30, 0)
 		sticker_row_index += 1
 
@@ -53,26 +53,26 @@ func _ready() -> void:
 func _assign_daily_colors() -> void:
 	match OS.get_datetime().get("weekday"):
 		OS.DAY_MONDAY: # chocolate brown
-			_color_0 = Color("280808")
-			_color_1 = Color("360f09")
+			dark_color = Color("280808")
+			light_color = Color("360f09")
 		OS.DAY_TUESDAY: # baby blue
-			_color_0 = Color("009cf3")
-			_color_1 = Color("61bff3")
+			dark_color = Color("009cf3")
+			light_color = Color("61bff3")
 		OS.DAY_WEDNESDAY: # dark purple
-			_color_0 = Color("602091")
-			_color_1 = Color("7125a9")
+			dark_color = Color("602091")
+			light_color = Color("7125a9")
 		OS.DAY_THURSDAY: # sugar white
-			_color_0 = Color("cba688")
-			_color_1 = Color("e3c9b1")
+			dark_color = Color("cba688")
+			light_color = Color("e3c9b1")
 		OS.DAY_FRIDAY: # grassy green
-			_color_0 = Color("36b16a")
-			_color_1 = Color("6adc8d")
+			dark_color = Color("36b16a")
+			light_color = Color("6adc8d")
 		OS.DAY_SATURDAY: # bready orange
-			_color_0 = Color("e87d25")
-			_color_1 = Color("f79545")
+			dark_color = Color("e87d25")
+			light_color = Color("f79545")
 		OS.DAY_SUNDAY, _: # strawberry red
-			_color_0 = Color("ed333b")
-			_color_1 = Color("ff5d68")
+			dark_color = Color("ed333b")
+			light_color = Color("ff5d68")
 
 
 func _add_sticker_row(row_y: float, row_height: float) -> StickerRow:
