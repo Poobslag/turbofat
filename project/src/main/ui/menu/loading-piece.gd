@@ -21,6 +21,17 @@ const FADE_OUT_X := 80
 ## The duration it takes pieces to fade out when they crawl off left side of the loading bar
 const FADE_OUT_DURATION := 0.3
 
+const PIECE_COLORS_BY_FRAME := [
+	Color("ff636d"), # T (v piece)
+	Color("ffb474"), # u (u piece)
+	Color("ffef7d"), # r (l piece)
+	Color("94ff82"), # b (q piece)
+	Color("82fffb"), # o (o piece)
+	Color("82baff"), # f (j piece)
+	Color("b182ff"), # a (p piece)
+	Color("ff7afb"), # t (t piece)
+]
+
 ## The pieces's position/velocity/rotation as launched from the orb, without homing them towards the loading bar
 var _source_position: Vector2
 var _source_velocity: Vector2
@@ -34,15 +45,21 @@ var _target_rotation: float
 var _total_time: float
 
 ## How the piece should wobble on the loading bar
-var _wobble_amount := rand_range(0.02, 0.08)
+var _wobble_amount := rand_range(0.15, 0.30)
 var _wobble_period := rand_range(0.98, 1.63)
 var _wobble_offset := rand_range(0, 10)
+
+## 'true' if the piece is colored, having landed on the loading bar
+var _colored := false
 
 ## 'true' if the piece is fading out, having crawled off the left side of the loading bar
 var _fading := false
 
 ## the progress bar the piece should home in on
 var _progress_bar: LoadingProgressBar
+
+## particles emitted when the piece hits the loading bar
+onready var _particles := $Particles
 
 ## Parameters:
 ## 	'init_orb': The orb which is launching this puzzle piece
@@ -84,6 +101,11 @@ func _refresh() -> void:
 	flight_amount = pow(flight_amount, 1.5)
 	position = lerp(_source_position, _target_position, flight_amount)
 	rotation = lerp(_source_rotation, _target_rotation, flight_amount)
+	
+	if _total_time > PIECE_FLIGHT_DURATION and not _colored:
+		_colored = true
+		modulate = PIECE_COLORS_BY_FRAME[frame]
+		_particles.emitting = true
 	
 	if _total_time > PIECE_FLIGHT_DURATION and position.x < FADE_OUT_X and not _fading:
 		# if we're at our target position and it's below a threshold, fade out
