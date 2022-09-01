@@ -12,6 +12,9 @@ var touch_settings := TouchSettings.new()
 var keybind_settings := KeybindSettings.new()
 var misc_settings := MiscSettings.new()
 
+## We accelerate scene transitions and animations during development.
+var fast_mode := OS.is_debug_build()
+
 ## Resets the system's in-memory data to a default state.
 func reset() -> void:
 	gameplay_settings.reset()
