@@ -16,8 +16,8 @@ const THREAD_COUNT := 4
 ## loading scenes is slower than loading regular resources; this constant estimates how much slower
 const WORK_PER_SCENE := 8.0
 
-## in non-threaded environments, this is how long we're willing to block a thread to cache resources
-const CHUNK_SECONDS := 0.1
+## this is how long we're willing to block a thread to cache resources
+const CHUNK_SECONDS := 0.01667
 
 ## directories containing resources which should be preloaded
 const RESOURCE_DIRS := ["res://assets/main", "res://src/main"]
@@ -28,8 +28,18 @@ export (bool) var verbose := false
 ## reduces the number of textures loaded throughout the game
 export (bool) var minimal_resources := false
 
+## resources which should be cached last. some resources are complex and depend on other resources, if we load them
+## first it causes a big lag spike on the loading screen
+export (Array, String) var low_priority_resource_paths: Array
+
 ## resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
 export (Array, String) var skipped_resource_paths: Array
+
+## if true, the caching process will be threaded on platforms which support it
+export (bool) var threaded := false
+
+## the minimum amount of time the game should take to load
+export (float) var load_seconds := 0.0
 
 ## maintains references to all resources to prevent them from being cleaned up
 ## key: resource path
@@ -65,6 +75,9 @@ var _remaining_scene_paths := []
 ## value: singleton nodes
 var _singletons: Dictionary
 
+## The system time when we initialized the resource load.
+var _start_load_begin_msec: float
+
 ## Initializes the resource load.
 ##
 ## For desktop/mobile targets, this involves launching a background thread.
@@ -72,21 +85,26 @@ var _singletons: Dictionary
 ## Web targets do not support background threads (Godot issue #12699) so we initialize the list of PNG paths, and load
 ## them one at a time in the _process function.
 func start_load() -> void:
+	_start_load_begin_msec = OS.get_ticks_msec()
 	set_process(true)
 	_find_resource_paths()
-	if OS.has_feature("web"):
-		# Godot issue #12699; threads not supported for HTML5
-		pass
-	else:
-		for _i in range(THREAD_COUNT):
-			var thread := Thread.new()
-			thread.start(self, "_preload_all_resources")
-			_load_threads.append(thread)
+	if threaded:
+		if OS.has_feature("web"):
+			# Godot issue #12699; threads not supported for HTML5
+			pass
+		else:
+			for _i in range(THREAD_COUNT):
+				var thread := Thread.new()
+				thread.start(self, "_preload_all_resources")
+				_load_threads.append(thread)
 
 
 func _process(_delta: float) -> void:
 	if _remaining_resource_paths:
-		if OS.has_feature("web"):
+		if threaded:
+			# wait for background threads to finish
+			pass
+		else:
 			var start_msec := OS.get_ticks_msec()
 			# Web targets do not support background threads, so we load a few resources every frame
 			while _remaining_resource_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
@@ -94,8 +112,11 @@ func _process(_delta: float) -> void:
 	elif _remaining_scene_paths:
 		var start_msec := OS.get_ticks_msec()
 		# Loading scenes in threads causes 'another resource is loaded' errors, so we don't thread this
-		while _remaining_scene_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
+		while _remaining_scene_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS \
+				and not _overworked():
 			_preload_next_scene()
+	elif OS.get_ticks_msec() < _start_load_begin_msec + 1000 * load_seconds:
+		pass
 	else:
 		set_process(false)
 		call_deferred("emit_signal", "finished_loading")
@@ -138,12 +159,15 @@ func remove_singletons() -> void:
 			singleton_obj.get_parent().remove_child(singleton_obj)
 
 
+## Returns the overall progress based on the resources loaded and the mandatory wait timer.
 func get_progress() -> float:
-	return clamp(_work_done / _work_total, 0.0, 1.0)
+	var work_progress := _work_progress()
+	var wait_progress := _wait_progress()
+	return min(work_progress, wait_progress)
 
 
 func is_done() -> bool:
-	return _work_done >= _work_total
+	return _work_done >= _work_total and OS.get_ticks_msec() >= _start_load_begin_msec + 1000 * load_seconds
 
 
 func has_cached_resource(path: String) -> bool:
@@ -176,13 +200,40 @@ func get_frame_dest_rects(path: String) -> Array:
 	return _frame_dest_rect_cache.get(path, [])
 
 
+## Returns the progress based on the resources loaded.
+func _work_progress() -> float:
+	return clamp(_work_done / _work_total, 0.0, 1.0)
+
+
+## Returns the progress based on the mandatory wait timer.
+##
+## We have an optional setting for how long the load screen should take. The load screen has some cute graphics on it
+## and if we load as fast as possible, these graphics appear glitchy and jittery.
+func _wait_progress() -> float:
+	var wait_progress := 1.0
+	if load_seconds > 0:
+		wait_progress = clamp((OS.get_ticks_msec() - _start_load_begin_msec) / (1000 * load_seconds), 0.0, 1.0)
+	return wait_progress
+
+
+## Returns 'true' if we are ahead of schedule and should wait to load more resources.
+func _overworked() -> bool:
+	return _work_progress() >= _wait_progress() + 0.15
+
+
 ## Loads all pngs in the /assets directory and stores the resulting resources in our cache
 ##
 ## Parameters:
 ## 	'_userdata': Unused; needed for threads
 func _preload_all_resources(_userdata: Object) -> void:
 	while _remaining_resource_paths and not _exiting:
-		_preload_next_resource()
+		while _remaining_resource_paths and not _exiting \
+				and not _overworked():
+			_preload_next_resource()
+		
+		# If we're ahead of schedule, we wait until the next idle frame to load more resources
+		if _overworked():
+			yield(get_tree(), "idle_frame")
 
 
 ## Loads a single resource and stores the resulting resource in our cache.
@@ -256,6 +307,16 @@ func _find_resource_paths() -> Array:
 	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
 	_remaining_resource_paths.shuffle()
 	_remaining_scene_paths.shuffle()
+	
+	# move low-priority resources to the end of the queue
+	for low_priority_resource_path in low_priority_resource_paths:
+		if _remaining_resource_paths.has(low_priority_resource_path):
+			_remaining_resource_paths.erase(low_priority_resource_path)
+			_remaining_resource_paths.push_back(low_priority_resource_path)
+		if _remaining_scene_paths.has(low_priority_resource_path):
+			_remaining_scene_paths.erase(low_priority_resource_path)
+			_remaining_scene_paths.push_back(low_priority_resource_path)
+	
 	randomize()
 	
 	# all pngs have been located. increment the progress bar and calculate its new maximum
