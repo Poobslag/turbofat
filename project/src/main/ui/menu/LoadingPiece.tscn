@@ -1,10 +1,59 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/menu/loading-piece.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/menu/loading-piece-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/puzzle/crumbs.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=6]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.665217, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.735178, 0.768182 ), -0.985714, -0.985714, 0, 0, Vector2( 1, 0 ), -7.40866, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 90.0
+gravity = Vector3( 0, 1000, 0 )
+initial_velocity = 360.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+angle_random = 1.0
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+anim_offset = 1.0
+anim_offset_random = 1.0
 
 [node name="LoadingPiece" type="Sprite"]
 texture = ExtResource( 2 )
 hframes = 3
 vframes = 3
 script = ExtResource( 1 )
+
+[node name="Particles" type="Particles2D" parent="."]
+material = SubResource( 6 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 7
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 9 )
+texture = ExtResource( 3 )
