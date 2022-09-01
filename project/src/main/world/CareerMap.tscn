@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/career/career-rewinder.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/environment/EmptyEnvironment.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=11]
@@ -225,10 +226,14 @@ quit_type = 3
 layer = 10
 
 [node name="CheatCodeDetector" parent="Ui" instance=ExtResource( 5 )]
-codes = [ "bossio", "cambra", "cutsio", "cyclio", "epilio", "moveme" ]
+codes = [ "bossio", "cambra", "chap01", "chap02", "cutsio", "cyclio", "epilio", "moveme" ]
+
+[node name="CareerRewinder" type="Node" parent="."]
+script = ExtResource( 7 )
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
+[connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="CareerRewinder" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="Ui" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="World" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
