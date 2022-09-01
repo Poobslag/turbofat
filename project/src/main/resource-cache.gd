@@ -85,6 +85,11 @@ var _start_load_begin_msec: float
 ## Web targets do not support background threads (Godot issue #12699) so we initialize the list of PNG paths, and load
 ## them one at a time in the _process function.
 func start_load() -> void:
+	if OS.is_debug_build():
+		# for debug builds, just run as fast as possible
+		threaded = true
+		load_seconds = 0
+	
 	_start_load_begin_msec = OS.get_ticks_msec()
 	set_process(true)
 	_find_resource_paths()
