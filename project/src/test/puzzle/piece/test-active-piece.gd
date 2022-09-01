@@ -61,11 +61,11 @@ func test_is_sealed_false_right() -> void:
 func test_center_o() -> void:
 	# the O piece's center x and y coordinates are in between two grid coordinates
 	var piece := ActivePiece.new(PieceTypes.piece_o, null)
-	assert_eq(piece.center(), Vector2(4.5, 3.5))
+	assert_eq(piece.center(), Vector2(3.5, 3.5))
 	
 	# when moved, the O piece's center moves too
 	piece.pos = Vector2(2, 2)
-	assert_eq(piece.center(), Vector2(3.5, 2.5))
+	assert_eq(piece.center(), Vector2(2.5, 2.5))
 
 
 func test_center_t() -> void:

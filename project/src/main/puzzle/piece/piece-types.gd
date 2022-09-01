@@ -63,28 +63,28 @@ const KICKS_U := {
 
 const KICKS_V := {
 		# these kicks should be symmetrical over the y-axis
-		01: [Vector2(-1,  0), Vector2( 1,  1), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1),
-				Vector2( 0,  2)],
-		10: [Vector2(-1,  0), Vector2( 1, -1), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0,  1),
+		01: [Vector2( 1,  0), Vector2(-1, -1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1),
 				Vector2( 0, -2)],
-		
-		# these kicks should be symmetrical over the x-axis
-		12: [Vector2( 0, -1), Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2(-1,  1),
-				Vector2(-1, -2), Vector2(-2,  0)],
-		21: [Vector2( 0, -1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 1, -1), Vector2( 1,  1),
-				Vector2( 1, -2), Vector2( 2,  0)],
-
-		# these kicks should be symmetrical over the y-axis
-		23: [Vector2( 1,  0), Vector2(-1, -1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1),
-				Vector2( 0, -2)],
-		32: [Vector2( 1,  0), Vector2(-1,  1), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -1),
+		10: [Vector2( 1,  0), Vector2(-1,  1), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -1),
 				Vector2( 0,  2)],
 		
 		# these kicks should be symmetrical over the x-axis
-		30: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 1,  1), Vector2( 1, -1),
+		12: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 1,  1), Vector2( 1, -1),
 				Vector2( 1,  2), Vector2( 2,  0)],
-		03: [Vector2( 0,  1), Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2(-1, -1),
+		21: [Vector2( 0,  1), Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2(-1, -1),
 				Vector2(-1,  2), Vector2(-2,  0)],
+		
+		# these kicks should be symmetrical over the y-axis
+		23: [Vector2(-1,  0), Vector2( 1,  1), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1),
+				Vector2( 0,  2)],
+		32: [Vector2(-1,  0), Vector2( 1, -1), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0,  1),
+				Vector2( 0, -2)],
+		
+		# these kicks should be symmetrical over the x-axis
+		30: [Vector2( 0, -1), Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2(-1,  1),
+				Vector2(-1, -2), Vector2(-2,  0)],
+		03: [Vector2( 0, -1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 1, -1), Vector2( 1,  1),
+				Vector2( 1, -2), Vector2( 2,  0)],
 	}
 
 const KICKS_NONE := {}
@@ -92,10 +92,10 @@ const KICKS_NONE := {}
 var piece_i := PieceType.new("i",
 		# shape data
 		[
-			[Vector2(0, 1), Vector2(1, 1), Vector2(2, 1), Vector2(3, 1)],
-			[Vector2(2, 0), Vector2(2, 1), Vector2(2, 2), Vector2(2, 3)],
-			[Vector2(0, 2), Vector2(1, 2), Vector2(2, 2), Vector2(3, 2)],
+			[Vector2(-1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 			[Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(1, 3)],
+			[Vector2(-1, 2), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
+			[Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)],
 		],
 		# color data
 		[
@@ -146,10 +146,10 @@ var piece_l := PieceType.new("l",
 var piece_o := PieceType.new("o",
 		# shape data, four states so that the rotate button has an effect and can distinguish cw/ccw rotation
 		[
-			[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
-			[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
-			[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
-			[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
 		],
 		# color data
 		[
@@ -254,17 +254,17 @@ var piece_u := PieceType.new("u",
 var piece_v := PieceType.new("v",
 		# shape data
 		[
-			[Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
-			[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(0, 2)],
 			[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(2, 1), Vector2(2, 2)],
 			[Vector2(2, 0), Vector2(2, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
+			[Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(0, 2)],
 		],
 		# color data
 		[
-			[Vector2( 2, 3), Vector2( 3, 3), Vector2( 9, 3), Vector2(12, 3), Vector2( 4, 3)],
-			[Vector2(10, 3), Vector2(12, 3), Vector2( 4, 3), Vector2( 3, 3), Vector2( 1, 3)],
 			[Vector2( 8, 3), Vector2(12, 3), Vector2( 6, 3), Vector2( 3, 3), Vector2( 1, 3)],
 			[Vector2( 2, 3), Vector2( 3, 3), Vector2( 8, 3), Vector2(12, 3), Vector2( 5, 3)],
+			[Vector2( 2, 3), Vector2( 3, 3), Vector2( 9, 3), Vector2(12, 3), Vector2( 4, 3)],
+			[Vector2(10, 3), Vector2(12, 3), Vector2( 4, 3), Vector2( 3, 3), Vector2( 1, 3)],
 		],
 		KICKS_V
 	)
