@@ -109,16 +109,13 @@
       },
       "levels": [
         {
-          "id": "career/200_race"
-        },
-        {
-          "id": "career/bon_appetit"
-        },
-        {
-          "id": "career/chocolate_star"
+          "id": "career/bottomless_pit"
         },
         {
           "id": "career/cookies"
+        },
+        {
+          "id": "career/creeping_crevice"
         },
         {
           "id": "career/donuts"
@@ -130,22 +127,22 @@
           "id": "career/just_bread"
         },
         {
-          "id": "career/just_cream"
-        },
-        {
           "id": "career/just_fruit"
         },
         {
-          "id": "career/lo_kcal"
+          "id": "career/lets_all_get_merry"
         },
         {
-          "id": "career/square_curse"
+          "id": "career/paranormal_tetrominon"
+        },
+        {
+          "id": "career/strawberry_shortcut"
         },
         {
           "id": "career/tulip"
         },
         {
-          "id": "career/wedge"
+          "id": "career/unfresh_fruits"
         }
       ]
     },
