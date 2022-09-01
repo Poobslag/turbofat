@@ -32,8 +32,6 @@ func _ready() -> void:
 	
 	if Global.get_overworld_ui():
 		Global.get_overworld_ui().connect("chat_event_meta_played", self, "_on_OverworldUi_chat_event_meta_played")
-	else:
-		push_warning("Cannot find OverworldUi node, chat events will be disabled")
 
 
 func hide_closed_sign() -> void:
