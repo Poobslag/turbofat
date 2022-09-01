@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/loading-orb-sheet.png-85782e1aa814b07b9782e486757d5348.stex"
+path="res://.import/loading-piece-sheet.png-ddce15536f8d1e53eca69435b2a23dd9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/ui/loading-orb-sheet.png"
-dest_files=[ "res://.import/loading-orb-sheet.png-85782e1aa814b07b9782e486757d5348.stex" ]
+source_file="res://assets/main/ui/menu/loading-piece-sheet.png"
+dest_files=[ "res://.import/loading-piece-sheet.png-ddce15536f8d1e53eca69435b2a23dd9.stex" ]
 
 [params]
 

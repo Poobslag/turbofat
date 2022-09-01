@@ -2,13 +2,13 @@
 
 [ext_resource path="res://src/main/ui/menu/loading-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/LoadingPiece.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/menu/LoadingPiece.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/loading-orb.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/menu/loading-pieces.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/menu/loading-progress-bar.gd" type="Script" id=7]
 [ext_resource path="res://assets/main/ui/dotted-line.png" type="Texture" id=8]
-[ext_resource path="res://assets/main/ui/loading-orb-sheet.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/ui/menu/loading-orb-sheet.png" type="Texture" id=9]
 
 [node name="LoadingScreen" type="Control"]
 anchor_right = 1.0
