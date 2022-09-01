@@ -1,8 +1,6 @@
 extends Control
 ## Shows a progress bar while resources are loading.
 
-#onready var _progress_bar: ProgressBar = $ProgressBar
-
 onready var _wallpaper := $Wallpaper
 onready var _orb := $Holder/Orb
 onready var _progress_bar := $Holder/ProgressBar
