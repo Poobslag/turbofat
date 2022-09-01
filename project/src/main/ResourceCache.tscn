@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 low_priority_resource_paths = [ "res://src/main/puzzle/Puzzle.tscn", "res://src/main/editor/puzzle/LevelEditor.tscn" ]
 skipped_resource_paths = [ "res://assets/main/world/environment", "res://src/main/world/environment" ]
-threaded = true
+load_seconds = 6.0
