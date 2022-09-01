@@ -233,7 +233,7 @@ func trim_levels_by_available_if(levels: Array) -> Array:
 func region_for_chat_key(chat_key: String) -> CareerRegion:
 	var result: CareerRegion
 	for region in regions:
-		if region.cutscene_path and chat_key.begins_with(region.cutscene_path):
+		if region.cutscene_path and chat_key.begins_with(region.cutscene_path + "/"):
 			result = region
 			break
 	return result

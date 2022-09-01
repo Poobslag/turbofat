@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=16]
 [ext_resource path="res://src/main/ui/level-select/HookableRegionGradeLabel.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/ui/menu/region-grade-labels.gd" type="Script" id=18]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/career/career-rewinder.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -251,14 +253,21 @@ pressed_icon = ExtResource( 9 )
 [node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 1 )]
 action = "ui_cancel"
 
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 19 )]
+codes = [ "chap01", "chap02" ]
+
 [node name="MusicPopup" parent="." instance=ExtResource( 3 )]
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
 
+[node name="CareerRewinder" type="Node" parent="."]
+script = ExtResource( 20 )
+
+[connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="CareerRewinder" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="button_added" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
 [connection signal="region_selected" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_region_selected"]
 [connection signal="region_selected" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_region_selected"]
 [connection signal="region_started" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="." method="_on_RegionButtons_region_started"]
 [connection signal="pressed" from="RegionSelect/VBoxContainer/Top/RegionButtons/LeftArrow" to="RegionSelect/VBoxContainer/Top/RegionButtons" method="_on_LeftArrow_pressed"]
 [connection signal="pressed" from="RegionSelect/VBoxContainer/Top/RegionButtons/RightArrow" to="RegionSelect/VBoxContainer/Top/RegionButtons" method="_on_RightArrow_pressed"]
-[connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]

@@ -79,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/career/career-region.gd"
 }, {
+"base": "Node",
+"class": "CareerRewinder",
+"language": "GDScript",
+"path": "res://src/main/career/career-rewinder.gd"
+}, {
 "base": "Control",
 "class": "ChalkboardMapRow",
 "language": "GDScript",
@@ -1099,6 +1104,7 @@ _global_script_class_icons={
 "CareerLevel": "",
 "CareerLevelSelect": "",
 "CareerRegion": "",
+"CareerRewinder": "",
 "ChalkboardMapRow": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",
