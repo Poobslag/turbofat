@@ -154,7 +154,7 @@ func perform_lock_reset() -> void:
 func kick_piece(kicks: Array = []) -> void:
 	if kicks == []:
 		if _trace_kicks: print("%s to %s -> %s" % [type.string, orientation, target_orientation])
-		kicks = type.kicks.get(orientation * 10 + target_orientation)
+		kicks = type.kicks.get(orientation * 10 + target_orientation, [])
 	else:
 		if _trace_kicks: print("%s to: %s" % [type.string, kicks])
 	
