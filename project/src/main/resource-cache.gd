@@ -106,7 +106,7 @@ func start_load() -> void:
 
 func _process(_delta: float) -> void:
 	if _remaining_resource_paths:
-		if threaded:
+		if _load_threads:
 			# wait for background threads to finish
 			pass
 		else:
