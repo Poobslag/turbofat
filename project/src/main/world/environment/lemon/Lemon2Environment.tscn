@@ -251,6 +251,11 @@ mouth_type = 4
 
 [node name="LemonTree13" parent="Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 1486.32, 1849.77 )
+__meta__ = {
+"_edit_group_": true,
+"_editor_description_": "",
+"shadow_scale": 1.0
+}
 mouth_type = 7
 
 [node name="LemonTree14" parent="Obstacles" instance=ExtResource( 23 )]
@@ -419,11 +424,17 @@ frame = 2
 flip_h = true
 
 [node name="LemonCookieLarge13" parent="Obstacles" instance=ExtResource( 17 )]
-position = Vector2( 5295.54, 2391.4 )
+position = Vector2( 5305.63, 2391.4 )
+__meta__ = {
+"_editor_description_": ""
+}
 frame = 3
 
 [node name="LemonCookieLarge14" parent="Obstacles" instance=ExtResource( 17 )]
-position = Vector2( 1007.65, 2238.66 )
+position = Vector2( 1016.65, 2238.66 )
+__meta__ = {
+"_editor_description_": ""
+}
 frame = 3
 
 [node name="LemonLemon" parent="Obstacles" instance=ExtResource( 16 )]
