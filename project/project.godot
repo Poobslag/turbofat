@@ -309,7 +309,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
 }, {
-"base": "OverworldWorld",
+"base": "Reference",
 "class": "FreeRoamWorld",
 "language": "GDScript",
 "path": "res://src/demo/world/free-roam-world.gd"
@@ -1314,7 +1314,7 @@ config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 config/icon="res://assets/main/ui/icon.png"
 config/windows_native_icon="res://assets/main/ui/icon.ico"
-config/version="0.4800"
+config/version="0.4900"
 
 [audio]
 
