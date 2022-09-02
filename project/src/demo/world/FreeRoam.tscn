@@ -7,7 +7,7 @@
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/demo/world/FreeRoamUi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=7]
-[ext_resource path="res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/demo/world/environment/marsh/UndecoratedIndoorsFreeRoamEnvironment.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=9]
 
 [node name="FreeRoam" type="Node"]
