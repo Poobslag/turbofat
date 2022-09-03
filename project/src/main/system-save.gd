@@ -82,6 +82,10 @@ func load_system_data() -> bool:
 		# If the player only has older July 2021 save data, we load that instead
 		filename = legacy_filename
 	
+	if not FileUtils.file_exists(filename):
+		# file does not exist
+		return false
+	
 	var file := File.new()
 	var open_result := file.open(filename, File.READ)
 	if open_result != OK:
