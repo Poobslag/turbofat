@@ -24,4 +24,6 @@ func _exit_tree():
 	# Always remember to remove it from the engine when deactivated
 	remove_custom_type("Gut")
 	remove_control_from_bottom_panel(_bottom_panel)
+	if _bottom_panel._gut_config_gui and _bottom_panel._gut_config_gui._base_control:
+		_bottom_panel._gut_config_gui._base_control.free()
 	_bottom_panel.free()
