@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "5",
-  "title": "Muffin Impossible",
+  "name": "Muffin Impossible",
   "description": "So many awkward mismatched pieces! This is like solving a jigsaw puzzle with no edges...",
   "finish_condition": {
     "type": "score",

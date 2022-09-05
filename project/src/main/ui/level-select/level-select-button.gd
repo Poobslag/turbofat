@@ -54,7 +54,7 @@ var lock_status: int = STATUS_NONE setget set_lock_status
 ## the number of remaining levels the player needs to play to unlock this level
 var keys_needed := -1 setget set_keys_needed
 
-var level_title: String setget set_level_title
+var level_name: String setget set_level_name
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'level
 ## started' event
@@ -97,8 +97,8 @@ func set_keys_needed(new_keys_needed: int) -> void:
 	_refresh_appearance()
 
 
-func set_level_title(new_level_title: String) -> void:
-	level_title = new_level_title
+func set_level_name(new_level_name: String) -> void:
+	level_name = new_level_name
 	_refresh_appearance()
 
 
@@ -117,7 +117,7 @@ func _refresh_appearance() -> void:
 		LevelSize.MEDIUM: rect_min_size.y = level_column_width * 0.75 + VERTICAL_SPACING * 0.5
 		LevelSize.LONG: rect_min_size.y = level_column_width + VERTICAL_SPACING
 	
-	_label.text = StringUtils.default_if_empty(level_title, "-")
+	_label.text = StringUtils.default_if_empty(level_name, "-")
 	
 	var new_style_color: Color
 	if bg_color:

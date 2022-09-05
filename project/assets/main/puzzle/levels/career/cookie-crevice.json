@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "2",
-  "title": "Cookie Crevice",
+  "name": "Cookie Crevice",
   "description": "The good stuff's at the bottom!",
   "finish_condition": {
     "type": "lines",

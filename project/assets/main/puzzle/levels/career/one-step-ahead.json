@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "3",
-  "title": "One Step Ahead",
+  "name": "One Step Ahead",
   "description": "It's easy if you make a plan.",
   "finish_condition": {
     "type": "time_over",

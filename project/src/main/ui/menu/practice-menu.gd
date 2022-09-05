@@ -96,15 +96,15 @@ func _refresh_input_focus_mode() -> void:
 		node.focus_mode = FOCUS_NONE if submenu_visible else FOCUS_ALL
 
 
-## Updates the level button to show the current level's title.
+## Updates the level button to show the current level's name.
 func _refresh_level_button() -> void:
 	if _region is CareerRegion:
-		_level_button.text = "%s: %s" % [_region.name, _level_settings.title]
+		_level_button.text = "%s: %s" % [_region.name, _level_settings.name]
 	else:
 		if _region.has_flag(OtherRegion.FLAG_TRAINING):
-			_level_button.text = _level_settings.title
+			_level_button.text = _level_settings.name
 		else:
-			_level_button.text = "%s: %s" % [_region.branch_name, _level_settings.title]
+			_level_button.text = "%s: %s" % [_region.branch_name, _level_settings.name]
 	_level_description_label.text = _level_settings.description
 
 

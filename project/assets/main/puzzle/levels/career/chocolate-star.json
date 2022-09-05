@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Chocolate Star",
+  "name": "Chocolate Star",
   "description": "Close your eyes and make a chocolate wish!",
   "finish_condition": {
     "type": "lines",

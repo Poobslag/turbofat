@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "6",
-  "title": "It's Tee Time",
+  "name": "It's Tee Time",
   "description": "Augh, bread overload! And half the end pieces are missing...",
   "finish_condition": {
     "type": "time_over",

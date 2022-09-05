@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "1",
-  "title": "Curly Queue",
+  "name": "Curly Queue",
   "description": "Augh who keeps spinning the next queue? Oh wait, it's me.",
   "finish_condition": {
     "type": "time_over",

@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "F0",
-  "title": "Ultra: Expert (¥3,000)",
+  "name": "Ultra: Expert (¥3,000)",
   "description": "Earn ¥3,000 as fast as possible, with faster piece movement!",
   "finish_condition": {
     "type": "score",

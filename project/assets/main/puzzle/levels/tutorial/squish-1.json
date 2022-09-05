@@ -1,5 +1,5 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "T",
   "lose_condition": [
     "top_out 999999"

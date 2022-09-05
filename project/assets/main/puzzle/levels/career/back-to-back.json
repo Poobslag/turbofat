@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Back to Back",
+  "name": "Back to Back",
   "description": "Now where did I put those two line pieces?",
   "finish_condition": {
     "type": "time_over",

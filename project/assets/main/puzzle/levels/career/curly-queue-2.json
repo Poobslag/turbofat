@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "1",
-  "title": "Curly Queue II",
+  "name": "Curly Queue II",
   "description": "They won't stop spinning! This is hurting my head a little...",
   "finish_condition": {
     "type": "time_over",

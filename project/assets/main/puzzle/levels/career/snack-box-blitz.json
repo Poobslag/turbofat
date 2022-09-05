@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Snack Box Blitz",
+  "version": "392b",
+  "name": "Snack Box Blitz",
   "description": "Everyone's in a hurry today. Get those cakes out!",
   "start_speed": "5",
   "finish_condition": {

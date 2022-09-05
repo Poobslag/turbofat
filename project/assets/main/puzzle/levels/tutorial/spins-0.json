@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Meet Spins",
+  "version": "392b",
+  "name": "Meet Spins",
   "description": "Learn to spin and flip pieces in tight spaces.",
   "start_speed": "T",
   "finish_condition": {

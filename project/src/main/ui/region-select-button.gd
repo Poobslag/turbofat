@@ -38,7 +38,7 @@ var _texture_pairs_by_type := {
 }
 
 ## text to show at the top of the button, like 'Merrymellow Marsh'
-var name_text := "" setget set_name_text
+var region_name := "" setget set_region_name
 
 ## the button's visual index, the leftmost shown button has an index of '0'
 var button_index := 0 setget set_button_index
@@ -88,8 +88,8 @@ func set_disabled(new_disabled: bool) -> void:
 	_refresh()
 
 
-func set_name_text(new_name_text: String) -> void:
-	name_text = new_name_text
+func set_region_name(new_region_name: String) -> void:
+	region_name = new_region_name
 	_refresh()
 
 
@@ -103,7 +103,7 @@ func _refresh() -> void:
 		return
 	
 	_button.disabled = disabled
-	_button_name_label.text = name_text
+	_button_name_label.text = region_name
 	
 	# change the button's image
 	var texture_pair: Array = _texture_pairs_by_type[button_type]

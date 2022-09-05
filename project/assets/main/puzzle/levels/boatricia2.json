@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Real Meal",
+  "name": "Real Meal",
   "description": "If you're going to indulge, you may as well make it worth it!",
   "finish_condition": {
     "type": "score",

@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Fat Stacks",
+  "name": "Fat Stacks",
   "description": "Stack 'em up, we have customers to serve!",
   "finish_condition": {
     "type": "time_over",

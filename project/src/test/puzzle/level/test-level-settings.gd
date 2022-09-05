@@ -83,12 +83,12 @@ func _convert_to_json_and_back() -> void:
 
 
 func test_to_json_basic_properties() -> void:
-	settings.title = "title 215"
+	settings.name = "name 215"
 	settings.description = "description 356"
 	settings.difficulty = "FD"
 	_convert_to_json_and_back()
 	
-	assert_eq(settings.title, "title 215")
+	assert_eq(settings.name, "name 215")
 	assert_eq(settings.description, "description 356")
 	assert_eq(settings.difficulty, "FD")
 

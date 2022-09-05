@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "T",
-  "title": "Zero Gravity",
+  "name": "Zero Gravity",
   "description": "In space, nobody can hear you scream.",
   "difficulty": "6",
   "finish_condition": {

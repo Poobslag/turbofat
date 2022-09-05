@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Squish and Recover",
+  "version": "392b",
+  "name": "Squish and Recover",
   "description": "Learn how squish moves work and when to use them.",
   "start_speed": "T",
   "piece_types": [

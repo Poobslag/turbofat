@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "5",
-  "title": "Extra Cream",
+  "name": "Extra Cream",
   "description": "Too much of a good thing is still a good thing!",
   "finish_condition": {
     "type": "lines",

@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Grand Opening: Starberry Mountain",
+  "version": "392b",
+  "name": "Grand Opening: Starberry Mountain",
   "description": "Opening a new restaurant can be tough!",
   "success_condition": {
     "type": "score",

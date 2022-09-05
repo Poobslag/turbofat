@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Master",
+  "version": "392b",
+  "name": "Master",
   "description": "An escalating set of challenges. Finish with ¥10,000 to achieve this rank!",
   "success_condition": {
     "type": "score",

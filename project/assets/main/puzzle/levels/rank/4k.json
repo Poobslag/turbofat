@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "4 Kyu",
+  "version": "392b",
+  "name": "4 Kyu",
   "description": "An escalating set of challenges. Finish with ¥200 to achieve this rank!",
   "success_condition": {
     "type": "score",

@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A1",
-  "title": "EX Fruit Salad",
+  "name": "EX Fruit Salad",
   "description": "Ick! Salad. ...You said there would be fruit!",
   "blocks_during": [
     "shuffle_inserted_lines slice"

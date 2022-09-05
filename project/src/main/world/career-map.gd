@@ -355,7 +355,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
-		# avoid changing the level button titles when you pick an earlier level
+		# avoid changing the level button names when you pick an earlier level
 		PlayerData.career.disconnect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
 	
 	# apply a distance penalty if they select an earlier level

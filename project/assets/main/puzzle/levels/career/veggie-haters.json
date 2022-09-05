@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "4",
-  "title": "Veggie Haters",
+  "name": "Veggie Haters",
   "description": "Five of the pickiest customers you'll ever meet!",
   "finish_condition": {
     "type": "customers",
