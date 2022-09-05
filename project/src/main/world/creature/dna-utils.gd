@@ -254,17 +254,17 @@ const ALLELE_NAMES := {
 	"tail-7": "Lizard",
 }
 
-## key: allele value key, such as 'tail-4'
-## value: positive numeric weights [0.0-100.0]. high values for common alleles
+## key: (String) allele value key, such as 'tail-4'
+## value: (Array, float) positive numeric weights [0.0-100.0]. high values for common alleles
 var _allele_weights := {}
 
-## key: allele combo key, such as 'mouth-1-nose-2'
-## value: Positive/negative adjustments [-999, 999]. Positive for good combos, negative for bad combos
+## key: (String) allele combo key, such as 'mouth-1-nose-2'
+## value: (Array, int) Positive/negative adjustments [-999, 999]. Positive for good combos, negative for bad combos
 var _allele_combo_adjustments := {}
 
-## key: species adjustment combo key, such as '1-tail-4'
-## value: Positive/negative adjustments [-999, 999]. Positive for attributes which define the species, negative for
-## 	attributes which conflict with the species.
+## key: (String) species adjustment combo key, such as '1-tail-4'
+## value: (Array, int) Positive/negative adjustments [-999, 999]. Positive for attributes which define the species,
+## 	negative for attributes which conflict with the species.
 var _species_adjustments := {}
 
 func _ready() -> void:

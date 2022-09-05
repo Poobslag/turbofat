@@ -49,8 +49,8 @@ const CAKE_CENTER := 1024
 ##
 ## key: (int) bitmask of surrounding tiles
 ## value: (Vector2) array of two elements which define a 'binding value':
-##  value[0]: an enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
-##  value[1]: autotile coordinate of the new tile
+##  value[0]: (int) an enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
+##  value[1]: (Vector2) autotile coordinate of the new tile
 const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 	# goopless tiles
 	0: [TileTypes.NO_GOOP,
@@ -236,13 +236,13 @@ export (int) var corner_tile_index: int
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
-## key: an enum from TileTypes
-## value: a tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
+## key: (int) an enum from TileTypes
+## value: (int) a tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_indexes_by_type := {}
 
-## key: a tile index from the parent tilemap
-## value: an enum from TileTypes corresponding to the specified tile index, as defined by no_goop_tile_index,
+## key: (int) a tile index from the parent tilemap
+## value: (int) an enum from TileTypes corresponding to the specified tile index, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_types_by_index := {}
 

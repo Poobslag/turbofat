@@ -13,8 +13,8 @@ class CrumbDefinition:
 		max_crumb_count = init_max_crumb_count
 		crumb_colors = init_crumb_colors
 
-## key: an enum from Foods.FoodType defining the food being eaten
-## value: CrumbDefinition defining the color and density of crumbs
+## key: (int) An enum from Foods.FoodType defining the food being eaten
+## value: (CrumbDefinition) CrumbDefinition defining the color and density of crumbs
 var crumb_definitions := {
 }
 

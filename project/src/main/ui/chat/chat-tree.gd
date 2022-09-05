@@ -47,8 +47,8 @@ var chat_key: String
 var meta: Dictionary
 
 ## tree of chat event objects
-## key: chat id (String)
-## value: array of sequential ChatEvent objects for a particular chat sequence
+## key: (String) chat id
+## value: (Array, ChatEvent) events for a particular chat sequence
 var events := {}
 
 ## a specific location where this conversation takes place, if any
@@ -57,8 +57,8 @@ var location_id: String
 ## Spawn locations for different creatures, if this ChatTree represents a cutscene. Spawn locations prefixed with a '!'
 ## indicate that the creature should spawn invisible.
 ##
-## key: creature id
-## value: spawn id
+## key: (String) creature id
+## value: (String) spawn id
 var spawn_locations := {}
 
 ## The creature who acts as the chef for the cutscene, if any. This ensures levels are paired up with appropriate

@@ -6,8 +6,8 @@ extends Panel
 ## The text shown in the region info panel
 var text: String setget set_text
 
-## Key: (String) level id
-## Value: (String) human readable rank for the specified level id, such as '7 dan'
+## key: (String) level id
+## value: (String) human readable rank for the specified level id, such as '7 dan'
 var rank_by_level_id := {
 	"rank/7k": tr("7 kyu"),
 	"rank/6k": tr("6 kyu"),

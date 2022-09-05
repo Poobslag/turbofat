@@ -10,12 +10,12 @@ var max_length := 15
 ## between the lower and higher values while generating words.
 var order := 2.5
 
-## key: Letter cluster, newline-terminated for the word's end
-## value: Number of times the cluster appeared in the input data
+## key: (String) Letter cluster, newline-terminated for the word's end
+## value: (int) Number of times the cluster appeared in the input data
 var frequency := {}
 
-## key: Letter cluster
-## value: Dictionary of continuation clusters
+## key: (String) Letter cluster
+## value: (Dictionary) Dictionary of continuation clusters
 var connections := {}
 
 func clear() -> void:

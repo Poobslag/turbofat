@@ -28,8 +28,8 @@ const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
 const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const TIMER_0 := LevelTriggerPhase.TIMER_0
 
-## key: an enum from LevelTriggerPhase
-## value: array of PhaseCondition instances defining whether the trigger should fire
+## key: (int) an enum from LevelTriggerPhase
+## value: (Array, PhaseCondition) Conditions for whether the trigger should fire
 var phases := {}
 
 ## the effect caused by this level trigger

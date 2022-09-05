@@ -44,7 +44,7 @@ var data_filename: String
 ## Filename for save data older than July 2021
 var legacy_filename: String
 
-## Enum value for the backup was successfully loaded, 'Backup.CURRENT' if the current file worked.
+## An enum from Backup for the backup which was successfully loaded, 'Backup.CURRENT' if the current file worked.
 var loaded_backup := -1
 
 ## Newly renamed save files which couldn't be loaded
@@ -109,10 +109,10 @@ func corrupt_filename(in_filename: String) -> String:
 	return StringUtils.substring_before_last(in_filename, ".save") + ".save.corrupt"
 
 
-## Returns filename with a '.save' or '.bak' suffix to differentiate backup saves.
+## Returns a filename with a '.save' or '.bak' suffix to differentiate backup saves.
 ##
 ## Parameters:
-## 	'backup': A constant from the Backup enum for to the filename to return.
+## 	'backup': An enum from Backup for the filename to return.
 func rolling_filename(backup: int) -> String:
 	if backup == Backup.LEGACY:
 		return legacy_filename

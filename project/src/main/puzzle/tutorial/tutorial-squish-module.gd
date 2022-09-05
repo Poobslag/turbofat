@@ -15,8 +15,8 @@ var _did_build_box := false
 var _show_diagram_count := 0
 
 ## set of level IDs which the player has attempted during this tutorial
-## key: level id
-## value: number of attempts, initialized to '1' during the player's first attempt
+## key: (String) level id
+## value: (int) number of attempts, initialized to '1' during the player's first attempt
 var _level_attempt_count: Dictionary
 
 var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")

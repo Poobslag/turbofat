@@ -15,11 +15,11 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	var _combos_string: String
 	
 	## key: (int) piece index which triggers this phase condition, '0' is the first piece
-	## value: true
+	## value: (bool) true
 	var _indexes_to_run := {}
 	
 	## key: (int) combo value which triggers this phase condition, '0' means no combo
-	## value: true
+	## value: (bool) true
 	var _combos_to_run := {}
 	
 	## Creates a new AfterPieceWrittenPhaseCondition instance with the specified configuration.
@@ -122,7 +122,7 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 
 class AfterLineClearedPhaseCondition extends PhaseCondition:
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
-	## value: true
+	## value: (bool) true
 	var which_lines := {}
 	
 	## Creates a new AfterLineClearedPhaseCondition instance with the specified configuration.

@@ -19,8 +19,8 @@ class UpgradeMethod:
 	var new_version: String
 
 ## Externally defined methods which provide version-specific updates.
-## key: old save data version from which the method upgrades
-## value: UpgradeMethod for the method to call
+## key: (String) old save data version from which the method upgrades
+## value: (UpgradeMethod) method to call
 var _upgrade_methods := {}
 
 ## The newest version which everything should upgrade to.

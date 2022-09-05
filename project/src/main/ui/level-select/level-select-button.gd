@@ -42,7 +42,7 @@ const VERTICAL_SPACING := 6
 
 var level_id: String
 
-## an enum from LevelSize for the duration of the level. this affects the button size
+## An enum from LevelSize for the duration of the level. this affects the button size
 var level_duration: int = LevelSize.MEDIUM setget set_level_duration
 
 ## the width of the column this button is in

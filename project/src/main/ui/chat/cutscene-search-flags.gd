@@ -9,7 +9,7 @@ class_name CutsceneSearchFlags
 ## omitted, no chat keys will be excluded.
 ##
 ## key: (String) a chat key to exclude from the search
-## value: true
+## value: (bool) true
 var excluded_chat_keys := {}
 
 ## If true, indicates that all numeric children should be included, instead of just including the lowest-numbered one.

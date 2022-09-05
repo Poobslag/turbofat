@@ -24,8 +24,8 @@ var _focus_just_entered := false
 ## 'true' if the 'region started' signal should be emitted in response to a button click.
 var _emit_region_started := false
 
-## key: an enum RegionSelectButton.Type
-## value: a pair of texture resources to use when the button is enabled or disabled
+## key: (int) an enum from RegionSelectButton.Type
+## value: (Array, Resource) a pair of texture resources to use when the button is enabled or disabled
 var _texture_pairs_by_type := {
 	Type.NONE: [preload("res://assets/main/ui/career/region-default.png"),
 			preload("res://assets/main/ui/career/region-default-off.png")],

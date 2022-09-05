@@ -5,8 +5,8 @@ extends Control
 
 export (PackedScene) var GradeLabelScene: PackedScene
 
-## key: RegionSelectButton instance
-## value: HookableRegionGradeLabel for the specified button
+## key: (RegionSelectButton) button instance
+## value: (HookableRegionGradeLabel) label for the specified button
 var _labels_by_button: Dictionary
 
 ## Add a grade label for the specified button.

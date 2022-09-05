@@ -16,8 +16,8 @@ const PICKUP_FLOAT_REGEN: int = BlocksDuringRules.PickupType.FLOAT_REGEN
 export (NodePath) var _puzzle_tile_map_path: NodePath
 export (PackedScene) var PickupScene: PackedScene
 
-## key: Vector2 playfield cell positions
-## value: Pickup node contained within that cell
+## key: (Vector2) playfield cell positions
+## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
 ## the next pickup sound effect to play

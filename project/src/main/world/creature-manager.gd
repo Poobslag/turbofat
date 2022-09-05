@@ -12,8 +12,8 @@ var sensei: Creature setget ,get_sensei
 ## Mapping from creature ids to Creature objects. The player and sensei are omitted from this mapping, as the player
 ## can set their own name and it could conflict with overworld creatures.
 ##
-## key: creature id as it appears in chat files
-## value: Creature object corresponding to the creature id
+## key: (String) creature id as it appears in chat files
+## value: (Creature) creature for the creature id
 var _creatures_by_id := {}
 
 func _ready() -> void:

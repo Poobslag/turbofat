@@ -8,8 +8,8 @@ export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path
 ##
 ## This mapping is optional. Tile indexes which are absent will be given a 1x1 cell shadow.
 ##
-## key: tile index corresponding to a tile in the obstacle map
-## value: a rectangle which measures tile's grid size, in cells
+## key: (int) tile index corresponding to a tile in the obstacle map
+## value: (Rect2) a rectangle which measures tile's grid size, in cells
 export (Dictionary) var cell_shadow_mapping setget set_cell_shadow_mapping
 
 onready var _obstacle_map_shadows := $ObstacleMapShadows

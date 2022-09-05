@@ -2,13 +2,13 @@ class_name InputReplay
 ## Stores a sequence of puzzle inputs to be replayed for things such as tutorials.
 
 ## set of actions which are currently in the 'pressed' state
-## key: action name
-## value: true
+## key: (String) action name
+## value: (bool) true
 var _pressed_actions: Dictionary
 
 ## set of frames when different actions are pressed/released
-## key: action key containing the frame number and action, '46 +ui_right'
-## value: true
+## key: (String) action key containing the frame number and action, '46 +ui_right'
+## value: (bool) true
 var action_timings: Dictionary
 
 ## Returns true if there is no replay data.

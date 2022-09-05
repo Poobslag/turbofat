@@ -42,14 +42,14 @@ export (bool) var threaded := false
 export (float) var load_seconds := 0.0
 
 ## maintains references to all resources to prevent them from being cleaned up
-## key: resource path
-## value: resource
+## key: (String) resource path
+## value: (Resource) resource
 var _cache := {}
 var _cache_mutex := Mutex.new()
 
 ## stores parsed versions of Aseprite json resources to speed up retrieval
-## key: json resource path
-## value: array of Rect2 instances representing regions defined by Aseprite
+## key: (String) json resource path
+## value: (Array, Rect2) regions defined by Aseprite
 var _frame_src_rect_cache := {}
 var _frame_dest_rect_cache := {}
 var _frame_cache_mutex := Mutex.new()
@@ -71,8 +71,8 @@ var _remaining_resource_paths_mutex := Mutex.new()
 var _remaining_scene_paths := []
  
 ## singleton nodes, cached to preserve their appearance during scene transitions
-## key: singleton names
-## value: singleton nodes
+## key: (String) singleton names
+## value: (Node) singleton nodes
 var _singletons: Dictionary
 
 ## The system time when we initialized the resource load.

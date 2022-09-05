@@ -17,8 +17,8 @@ const DOWN := 2
 const LEFT := 4
 const RIGHT := 8
 
-## key: union of TileSet bindings for adjacent cells containing countertops
-## value: countertop autotile coordinate
+## key: (int) union of TileSet bindings for adjacent cells containing countertops
+## value: (Vector2) countertop autotile coordinate
 const COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 	0: Vector2(0, 0),
 	BIND_TOP: Vector2(1, 0),
@@ -33,8 +33,8 @@ const COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 	BIND_LEFT | BIND_RIGHT: Vector2(2, 2),
 }
 
-## key: union of TileSet bindings for adjacent cells containing countertops
-## value: array of possible countertop-plates autotile coordinates
+## key: (int) union of TileSet bindings for adjacent cells containing countertops
+## value: (Vector2) array of possible countertop-plates autotile coordinates
 const COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
 	0: [Vector2(0, 0), Vector2(1, 0)],
 	BIND_TOP: [Vector2(2, 0), Vector2(3, 0)],
@@ -50,8 +50,8 @@ const COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
 	BIND_LEFT | BIND_RIGHT: [Vector2(4, 3), Vector2(5, 3), Vector2(0, 4), Vector2(1, 4)],
 }
 
-## key: countertop autotile coordinate
-## value: direction which the grill is facing on that tile (UP, DOWN, LEFT, RIGHT)
+## key: (Vector2) countertop autotile coordinate
+## value: (int) direction which the grill is facing on that tile (UP, DOWN, LEFT, RIGHT)
 const GRILL_ORIENTATION_BY_CELL := {
 	Vector2(0, 0): UP,
 	Vector2(1, 0): UP,
@@ -87,11 +87,11 @@ const GRILL_ORIENTATION_BY_CELL := {
 	Vector2(3, 7): RIGHT,
 }
 
-## key: array containing 3 elements representing TileSet bindings and metadata:
-## 	key[0] = direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
-## 	key[1] = union of TileSet bindings for adjacent cells containing grills
-## 	key[2] = union of TileSet bindings for adjacent cells containing grills and countertops
-## value: grill autotile coordinate
+## key: (Array) array containing 3 elements representing TileSet bindings and metadata:
+## 	key[0]: (int) direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
+## 	key[1]: (int) union of TileSet bindings for adjacent cells containing grills
+## 	key[2]: (int) union of TileSet bindings for adjacent cells containing grills and countertops
+## value: (Vector2) grill autotile coordinate
 const GRILL_AUTOTILE_COORDS_BY_BINDING := {
 	[UP, 0, 0]: Vector2(0, 0),
 	[UP, 0, BIND_LEFT]: Vector2(1, 0),
@@ -127,8 +127,8 @@ const GRILL_AUTOTILE_COORDS_BY_BINDING := {
 	[RIGHT, BIND_BOTTOM, BIND_TOP | BIND_BOTTOM]: Vector2(3, 7),
 }
 
-## key: sink autotile coordinate
-## value: direction which the sink is facing on that tile (UP, DOWN, LEFT, RIGHT)
+## key: (Vector2) sink autotile coordinate
+## value: (int) direction which the sink is facing on that tile (UP, DOWN, LEFT, RIGHT)
 const SINK_ORIENTATION_BY_CELL := {
 	Vector2(0, 0): UP,
 	Vector2(1, 0): UP,
@@ -144,10 +144,10 @@ const SINK_ORIENTATION_BY_CELL := {
 	Vector2(2, 3): RIGHT,
 }
 
-## key: array containing 3 elements representing TileSet bindings and metadata:
-## 	key[0] = direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
-## 	key[1] = union of TileSet bindings for adjacent cells containing sinks
-## value: sink autotile coordinate
+## key: (Array) array containing 3 elements representing TileSet bindings and metadata:
+## 	key[0]: (int) direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
+## 	key[1]: (int) union of TileSet bindings for adjacent cells containing sinks
+## value: (Vector2) sink autotile coordinate
 const SINK_AUTOTILE_COORDS_BY_BINDING := {
 	[UP, 0]: Vector2(0, 0),
 	[UP, BIND_LEFT]: Vector2(1, 0),

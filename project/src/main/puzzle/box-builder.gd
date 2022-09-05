@@ -23,8 +23,8 @@ onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 ## with pink and white pieces, where 'l123' is a 5x3 box with pink, bread and white pieces. 's0' is a 3x3 box with
 ## brown pieces.
 ##
-## key: Ingredient string describing the box's size and color
-## value: BoxType for the resulting snack/cake
+## key: (string) Ingredient string describing the box's size and color
+## value: (int) An enum from Foods.BoxType for the resulting snack/cake
 const BOX_TYPES_BY_INGREDIENTS := {
 	# 3x3
 	"s0": Foods.BoxType.BROWN,
