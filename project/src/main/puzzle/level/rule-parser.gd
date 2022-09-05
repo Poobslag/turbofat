@@ -215,7 +215,7 @@ class StringPropertyParser extends PropertyParser:
 ## upper case snake case strings like 'TIME_OVER'.
 class EnumPropertyParser extends PropertyParser:
 	## key: (String) upper case snake case enum key
-	## value: (int) enum index
+	## value: (int) an enum index
 	var _enum_dict: Dictionary
 	
 	## Parameters:

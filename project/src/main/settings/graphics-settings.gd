@@ -8,7 +8,7 @@ enum CreatureDetail {
 	HIGH
 }
 
-## CreatureDetail enum describing how detailed the creatures should look
+## an enum from CreatureDetail describing how detailed the creatures should look
 var creature_detail: int = _default_creature_detail() setget set_creature_detail
 
 var use_vsync: bool = _default_use_vsync() setget set_use_vsync

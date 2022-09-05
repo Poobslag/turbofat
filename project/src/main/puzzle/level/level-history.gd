@@ -5,16 +5,16 @@ class_name LevelHistory
 ## how many daily and all-time records we can store before we start deleting old ones
 var max_size := 3
 
-## key: level id
-## value: array of RankResults for the specified level
+## key: (String) level id
+## value: (Array, RankResult) results for the specified level
 var rank_results := {}
 
-## key: level id
-## value: date when the player was first successful at the level
+## key: (String) level id
+## value: (Dictionary) date when the player was first successful at the level
 var successful_levels := {}
 
-## key: level id
-## value: Date when the player first finished the level. Losing or quitting does not count as finishing.
+## key: (String) level id
+## value: (Dictionary) Date when the player first finished the level. Losing or quitting does not count as finishing.
 var finished_levels := {}
 
 func level_names() -> Array:

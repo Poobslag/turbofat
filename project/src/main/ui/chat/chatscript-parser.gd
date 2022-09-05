@@ -81,8 +81,8 @@ class CharactersState extends AbstractState:
 	
 	## Creature aliases used in chatscript chat lines. ChatState references this dictionary when parsing chat lines.
 	##
-	## key: creature id
-	## value: alias used in chatscript chat lines
+	## key: (String) creature id
+	## value: (String) alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
 	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
@@ -154,8 +154,8 @@ class ChatState extends AbstractState:
 	## Creature aliases used in chatscript chat lines. CharactersState populates this dictionary when parsing
 	## characters.
 	##
-	## key: creature id
-	## value: alias used in chatscript chat lines
+	## key: (String) creature id
+	## value: (String) alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
 	## The current chat event being parsed. Any parsed metadata and links will be attached to this event.
@@ -342,8 +342,8 @@ class ChatState extends AbstractState:
 const CHATSCRIPT_VERSION := "2476"
 
 ## Emoticons which can appear at the start of a chat line to define its mood
-## key: String emoji representing a chatscript mood
-## value: int corresponding to an entry in Creatures.Mood
+## key: (String) String emoji representing a chatscript mood
+## value: (int) An enum from Creatures.Mood
 const MOOD_PREFIXES := {
 	"._.": Creatures.Mood.DEFAULT,
 	"<_<": Creatures.Mood.AWKWARD0,
@@ -386,8 +386,8 @@ const MOOD_PREFIXES := {
 }
 
 ## Different directions a creature can face
-## key: String representing a direction a creature can face
-## value: int corresponding to an entry in Creatures.Orientation
+## key: (String) String representing a direction a creature can face
+## value: (int) An enum from Creatures.Orientation
 const ORIENTATION_STRINGS := {
 	"left": Creatures.SOUTHWEST,
 	"right": Creatures.SOUTHEAST,
@@ -403,16 +403,16 @@ const LOCATION := "location"
 const CHARACTERS := "characters"
 const CHAT := "chat"
 
-## key: parser state name such as 'default', 'location', 'characters', 'chat'
-## value: AbstractState
+## key: (String) parser state name such as 'default', 'location', 'characters', 'chat'
+## value: (AbstractState) parser state
 var _states_by_name: Dictionary
 
 ## the chat tree being parsed
 var _chat_tree := ChatTree.new()
 var _state: AbstractState
 
-## key: creature id
-## value: alias used in chatscript chat lines
+## key: (String) creature id
+## value: (String) alias used in chatscript chat lines
 var _character_aliases := {}
 
 func _init() -> void:

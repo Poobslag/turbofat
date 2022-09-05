@@ -39,8 +39,8 @@ var _filler_ids: Array
 ## This is a transient field which is populated on startup, but is not saved anywhere. As its contents not written to
 ## disk, it should not be modified with the intent of permanently changing a creature's appearance.
 ##
-## key: creature_id
-## value: CreatureDef instance with the specified id
+## key: (String) creature_id
+## value: (CreatureDef) CreatureDef instance with the specified id
 var _creature_defs_by_id: Dictionary
 
 func _init() -> void:

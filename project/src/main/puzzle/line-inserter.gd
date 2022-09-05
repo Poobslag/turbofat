@@ -12,16 +12,16 @@ signal line_inserted(y, tiles_key, src_y)
 
 export (NodePath) var tile_map_path: NodePath
 
-## key: a tiles key for tiles referenced by level rules
-## value: the next row to insert from the referenced tiles
+## key: (String) a tiles key for tiles referenced by level rules
+## value: (int) the next row to insert from the referenced tiles
 var _row_index_by_tiles_key := {}
 
-## key: a tiles key for the tiles referenced by level rules
-## value: array of possible next rows to insert from the referenced tiles
+## key: (String) a tiles key for the tiles referenced by level rules
+## value: (Array, int) array of possible next rows to insert from the referenced tiles
 var _row_bag_by_tiles_key := {}
 
-## key: a tiles key for tiles referenced by level rules
-## value: the total number of rows in the referenced tiles
+## key: (String) a tiles key for tiles referenced by level rules
+## value: (int) the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
 var _prev_tiles_key := ""

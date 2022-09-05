@@ -19,7 +19,7 @@ export var song_color: Color
 ## array of ints corresponding to how much each 'chunk' of music has been _played
 var _staleness_record: Array
 
-## value: 'true' if the BGM node has been _played
+## 'true' if the BGM node has been _played
 var _played: bool
 
 func _ready() -> void:

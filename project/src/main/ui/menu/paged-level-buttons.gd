@@ -28,8 +28,8 @@ var level_ids: Array setget set_level_ids
 ## the current page of buttons being shown
 var _page := 0
 
-## Key: (String) level id
-## Value: (LevelSettings) level settings for the level id
+## key: (String) level id
+## value: (LevelSettings) level settings for the level id
 var _level_settings_by_id: Dictionary = {}
 
 ## container for new level buttons

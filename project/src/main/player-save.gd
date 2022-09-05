@@ -9,7 +9,9 @@ const PLAYER_DATA_VERSION := "38c3"
 
 var rolling_backups := RollingBackups.new()
 
-## Enum value for the backup was successfully loaded. 'RollingBackups.CURRENT' if the current file worked.
+## An enum from RollingBackups for the backup which was successfully loaded, 'RollingBackups.CURRENT' if the current
+## file worked.
+##
 ## Virtual property; value is only exposed through getters/setters
 var loaded_backup: int setget ,get_loaded_backup
 

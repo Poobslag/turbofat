@@ -18,13 +18,13 @@ var _failure_count := 0
 var _annoying_flip_count := 0
 
 ## set of level IDs which the player has attempted during this tutorial
-## key: level id
-## value: true
+## key: (String) level id
+## value: (bool) true
 var _prepared_levels: Dictionary
 
 ## set of level IDs which the player has succeeded at during this tutorial
-## key: level id
-## value: true
+## key: (String) level id
+## value: (bool) true
 var _failed_levels: Dictionary
 
 ## The most recent way the piece moved, such as rotating, flipping or dropping. This determines whether the player

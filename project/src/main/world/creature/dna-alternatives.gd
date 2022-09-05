@@ -6,11 +6,11 @@ class_name DnaAlternatives
 ## don't work outright, but this class provides alternatives so that we can give the glasses a slightly different
 ## design, or remove parts of the eyeglass frames or things like that.
 
-## key: allele value key like 'accessory-2', for an allele which can vary
-## value: array of three items
-## 	value[0]: conflicting allele key, such as 'nose'
-## 	value[1]: array of conflicting allele values
-## 	value[2]: alternative allele value to replace the allele with
+## key: (String) allele value key like 'accessory-2', for an allele which can vary
+## value: (Array) array of three items
+## 	value[0]: (String) conflicting allele key, such as 'nose'
+## 	value[1]: (Array, String) array of conflicting allele values
+## 	value[2]: (String) alternative allele value to replace the allele with
 var _alternatives: Dictionary
 
 func _init() -> void:

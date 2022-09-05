@@ -11,8 +11,8 @@ export (PackedScene) var TechMoveBurstScene: PackedScene
 var _previous_cell_x := -1
 
 ## Tracks the x position of the most recent piece placed in each row
-## key: y value of a recently dropped piece
-## value: average x position of the piece's blocks in that row
+## key: (int) y value of a recently dropped piece
+## value: (float) average x position of the piece's blocks in that row
 var _piece_x_by_y: Dictionary
 
 onready var _piece_manager: PieceManager = get_node(piece_manager_path)

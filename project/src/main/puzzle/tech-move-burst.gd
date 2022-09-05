@@ -15,8 +15,8 @@ const SQUISH := TechType.SQUISH
 ## The velocity applied to the food when in the 'floating' state
 export (Vector2) var velocity: Vector2
 
-## Key: (int) Number of lines cleared
-## Value: (String) Word for the number of lines like 'Single' or 'Double'
+## key: (int) Number of lines cleared
+## value: (String) Word for the number of lines like 'Single' or 'Double'
 var _word_by_lines_cleared := {
 	0: "",
 	1: tr("Single"),
@@ -25,8 +25,8 @@ var _word_by_lines_cleared := {
 	4: tr("Quad"),
 }
 
-## Key: (int) Enum from TechType such as Spin or Squish
-## Value: (String) Suffix such as 'Spin' for the phrases 'J-Squish' or 'P-Spin'
+## key: (int) An enum from TechType such as Spin or Squish
+## value: (String) Suffix such as 'Spin' for the phrases 'J-Squish' or 'P-Spin'
 var _suffix_by_tech_type := {
 	SPIN: tr("Spin"),
 	SQUISH: tr("Squish"),

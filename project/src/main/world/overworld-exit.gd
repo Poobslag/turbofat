@@ -25,8 +25,8 @@ const SOUTHWEST = ExitDirection.SOUTHWEST
 const WEST = ExitDirection.WEST
 const NORTHWEST = ExitDirection.NORTHWEST
 
-## key: an enum from ExitDirection
-## value: a non-isometric unit vector in the direction the exit is facing
+## key: (int) an enum from ExitDirection
+## value: (Vector2) a non-isometric unit vector in the direction the exit is facing
 const VECTOR_BY_EXIT_DIRECTION := {
 	NORTH: Vector2.UP,
 	NORTHEAST: Vector2(sqrt(2), -sqrt(2)),

@@ -225,8 +225,8 @@ const CHAT_PRUNE_LIST_3776 := {
 }
 
 ## chat history prefixes to replace when upgrading from version 2743
-## key: old string prefix to be replaced
-## value: new string prefix
+## key: (string) old string prefix to be replaced
+## value: (string) new string prefix
 const PREFIX_REPLACEMENTS_2743 := {
 	"chat/bones": "creature/bones",
 	"chat/skins": "creature/skins",

@@ -7,8 +7,8 @@ extends Node
 ## The maximum amount of timers which a level can define
 const MAX_TIMER_COUNT := 1
 
-## key: timer index
-## value: an enum from LevelTriggerPhase for the timer's trigger
+## key: (int) timer index
+## value: (int) an enum from LevelTriggerPhase for the timer's trigger
 const PHASES_BY_TIMER_INDEX := {
 	0: LevelTrigger.TIMER_0,
 }

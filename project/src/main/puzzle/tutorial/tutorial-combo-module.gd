@@ -17,8 +17,8 @@ var _show_diagram_count := 0
 var _showed_end_of_level_message := false
 
 ## set of level IDs which the player has attempted during this tutorial
-## key: level id
-## value: true
+## key: (String) level id
+## value: (bool) true
 var _prepared_levels: Dictionary
 
 var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")

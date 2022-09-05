@@ -19,16 +19,16 @@ export (NodePath) var tile_map_path: NodePath
 ## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
 var _topping_out := false
 
-## key: a tiles key for tiles referenced by level rules
-## value: the next row to fill from the referenced tiles
+## key: (String) a tiles key for tiles referenced by level rules
+## value: (int) the next row to fill from the referenced tiles
 var _row_index_by_tiles_key := {}
 
-## key: a tiles key for the tiles referenced by level rules
-## value: array of possible next rows to fill from the referenced tiles
+## key: (String) a tiles key for the tiles referenced by level rules
+## value: (Array, int) array of possible next rows to fill from the referenced tiles
 var _row_bag_by_tiles_key := {}
 
-## key: a tiles key for tiles referenced by level rules
-## value: the total number of rows in the referenced tiles
+## key: (String) a tiles key for tiles referenced by level rules
+## value: (int) the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
 ## List of frame timings for scheduled line fills.

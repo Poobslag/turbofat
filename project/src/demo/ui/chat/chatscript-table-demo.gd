@@ -6,8 +6,8 @@ extends Node
 ## The number of columns in the BBCode table
 var _table_width := 1
 
-## key: An int corresponding to a mood from Creatures.Mood
-## value: An array of string chat prefixes (emoticons)
+## key: (int) an enum from Creatures.Mood
+## value: (Array, String) string chat prefixes (emoticons)
 var _prefixes_by_mood := {}
 
 ## TextEdit containing the BBCode table

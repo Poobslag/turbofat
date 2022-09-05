@@ -38,8 +38,8 @@ class BlockBunch:
 		pickups[pos] = box_type
 
 
-## key: a tiles key for tiles referenced by level rules, or the string 'start' for the initial set of tiles
-## value: a BlockBunch instance
+## key: (String) a tiles key for tiles referenced by level rules, or the string 'start' for the initial set of tiles
+## value: (BlockBunch) set of blocks for that tiles key
 var bunches: Dictionary = {}
 
 func from_json_dict(json: Dictionary) -> void:

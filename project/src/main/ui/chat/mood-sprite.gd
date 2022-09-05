@@ -41,7 +41,7 @@ var textures := {
 ## Sets which mood should be displayed.
 ##
 ## Parameters:
-## 	'mood': An enum in Creatures.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
+## 	'mood': An enum from Creatures.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
 ## 		mood being shown.
 func set_mood(new_mood: int) -> void:
 	if textures.has(new_mood):

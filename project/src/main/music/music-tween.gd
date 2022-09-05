@@ -15,7 +15,7 @@ const FADING_OUT := FadingState.FADING_OUT
 const FADE_OUT_DURATION := 0.4
 const FADE_IN_DURATION := 2.5
 
-## a FadingState enum representing whether the music is fading in or out
+## An enum from FadingState representing whether the music is fading in or out
 var fading_state: int = FADING_NONE
 
 ## Gradually silences a music track.
