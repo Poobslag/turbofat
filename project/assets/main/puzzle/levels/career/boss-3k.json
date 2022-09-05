@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Grand Opening: Vega Churn Twelve",
+  "version": "392b",
+  "name": "Grand Opening: Vega Churn Twelve",
   "description": "Opening a new restaurant can be tough!",
   "success_condition": {
     "type": "score",

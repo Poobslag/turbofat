@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A0",
-  "title": "Sprint: Normal (2:30)",
+  "name": "Sprint: Normal (2:30)",
   "description": "Earn as much money as you can in 2:30!",
   "finish_condition": {
     "type": "time_over",

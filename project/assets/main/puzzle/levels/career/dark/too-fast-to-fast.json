@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A1",
-  "title": "EX Too Fast to Fast II",
+  "name": "EX Too Fast to Fast II",
   "description": "It was already too fast before! This is nonsense...",
   "finish_condition": {
     "type": "time_over",

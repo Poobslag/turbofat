@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A1",
-  "title": "Marathon: Hard (200 lines)",
+  "name": "Marathon: Hard (200 lines)",
   "description": "A true test of endurance with faster pieces than before! Can you clear 200 lines?",
   "speed_ups": [
     {

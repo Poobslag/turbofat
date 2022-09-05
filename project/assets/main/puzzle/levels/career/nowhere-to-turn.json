@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "3",
-  "title": "Nowhere To Turn",
+  "name": "Nowhere To Turn",
   "description": "You really can't turn the pieces? I think there might be a way...",
   "finish_condition": {
     "type": "time_over",

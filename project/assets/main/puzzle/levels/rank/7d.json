@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "7 Dan",
+  "version": "392b",
+  "name": "7 Dan",
   "description": "An escalating set of challenges. Finish with ¥5,000 to achieve this rank!",
   "success_condition": {
     "type": "score",

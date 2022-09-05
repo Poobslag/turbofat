@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A5",
-  "title": "Marathon: Expert (300 lines)",
+  "name": "Marathon: Expert (300 lines)",
   "description": "A grueling test of endurance ramping up to instant gravity! Can you clear 300 lines?",
   "speed_ups": [
     {

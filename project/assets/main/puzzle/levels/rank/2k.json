@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "2 Kyu",
+  "version": "392b",
+  "name": "2 Kyu",
   "description": "An escalating set of challenges. Finish in 3:00 to achieve this rank!",
   "success_condition": {
     "type": "time_under",

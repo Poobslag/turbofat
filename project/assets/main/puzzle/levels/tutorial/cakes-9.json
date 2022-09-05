@@ -1,5 +1,5 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "finish_condition": {
     "type": "time_over",
     "value": "45"

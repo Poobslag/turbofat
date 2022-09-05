@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A1",
-  "title": "EX It's Square to be Square",
+  "name": "EX It's Square to be Square",
   "description": "Can you handle all this sugar, or will you go down swinging?",
   "finish_condition": {
     "type": "score",

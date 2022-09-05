@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "6",
-  "title": "Creeping Crevice II",
+  "name": "Creeping Crevice II",
   "description": "It just keeps going...",
   "blocks_during": [
     "shuffle_inserted_lines"

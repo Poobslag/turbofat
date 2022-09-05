@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Cookies",
+  "name": "Cookies",
   "description": "Let's make some cookies! Who brought the U pieces?",
   "finish_condition": {
     "type": "lines",

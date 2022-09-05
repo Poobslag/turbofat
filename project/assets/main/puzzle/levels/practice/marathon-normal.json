@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Marathon: Normal (100 lines)",
+  "name": "Marathon: Normal (100 lines)",
   "description": "A test of endurance against faster and faster pieces! Can you clear 100 lines?",
   "speed_ups": [
     {

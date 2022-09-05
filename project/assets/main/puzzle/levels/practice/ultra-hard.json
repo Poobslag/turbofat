@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A0",
-  "title": "Ultra: Hard (1,000¥)",
+  "name": "Ultra: Hard (1,000¥)",
   "description": "Earn ¥1,000 as fast as possible!",
   "finish_condition": {
     "type": "score",

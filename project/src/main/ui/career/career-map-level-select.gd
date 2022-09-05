@@ -40,7 +40,7 @@ func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
 	button.rect_min_size = Vector2(200, 120)
 	button.size_flags_horizontal = 6
 	button.size_flags_vertical = 4
-	button.level_title = settings.title
+	button.level_name = settings.name
 	button.level_id = settings.id
 	var duration := _duration_calculator.duration(settings)
 	if duration < 100:

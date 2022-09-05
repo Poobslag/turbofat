@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "5",
-  "title": "Bottomless Pit II",
+  "name": "Bottomless Pit II",
   "description": "How deep does this thing go!?",
   "finish_condition": {
     "type": "time_over",

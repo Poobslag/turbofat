@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "10 Dan",
+  "version": "392b",
+  "name": "10 Dan",
   "description": "An escalating set of challenges. Finish in 6:00 to achieve this rank!",
   "success_condition": {
     "type": "time_under",

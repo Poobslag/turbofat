@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "A1",
-  "title": "EX Muffin Impossible II",
+  "name": "EX Muffin Impossible II",
   "description": "More awkward mismatched pieces!? When will the pain stop?",
   "finish_condition": {
     "type": "score",

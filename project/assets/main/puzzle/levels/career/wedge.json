@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Wedge",
+  "name": "Wedge",
   "description": "A fun shape to climb, if only it wasn't so sticky...",
   "finish_condition": {
     "type": "score",

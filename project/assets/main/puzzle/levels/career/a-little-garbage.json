@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "1",
-  "title": "A Little Garbage",
+  "name": "A Little Garbage",
   "description": "Nothing to worry about.",
   "finish_condition": {
     "type": "time_over",

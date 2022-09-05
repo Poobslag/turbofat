@@ -1,6 +1,6 @@
 {
-  "version": "2cb4",
-  "title": "Trial: Fat Sensei",
+  "version": "392b",
+  "name": "Trial: Fat Sensei",
   "description": "Opening a new restaurant can be tough!",
   "success_condition": {
     "type": "time_under",

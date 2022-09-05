@@ -21,6 +21,7 @@ var current_version: String
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_2cb4", "2cb4", "392b")
 	_add_upgrade_method("_upgrade_297a", "297a", "2cb4")
 	_add_upgrade_method("_upgrade_19c5", "19c5", "297a")
 	_add_upgrade_method("_upgrade_1922", "1922", "19c5")
@@ -89,6 +90,15 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+func _upgrade_2cb4(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
+	match old_key:
+		"title":
+			new_json["name"] = old_json[old_key]
+		_:
+			new_json[old_key] = old_json[old_key]
+	return new_json
 
 
 func _upgrade_297a(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:

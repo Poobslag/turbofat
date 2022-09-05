@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Checkerboard Vault",
+  "name": "Checkerboard Vault",
   "description": "Do you have the combination?",
   "finish_condition": {
     "type": "time_over",

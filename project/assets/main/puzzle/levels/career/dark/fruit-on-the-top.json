@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "F0",
-  "title": "EX Fruit on the Top",
+  "name": "EX Fruit on the Top",
   "description": "It needs to settle first.",
   "finish_condition": {
     "type": "time_over",

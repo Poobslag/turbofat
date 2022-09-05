@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "4",
-  "title": "Creeping Crevice",
+  "name": "Creeping Crevice",
   "description": "It'll sneak up on you!",
   "blocks_during": [
     "shuffle_inserted_lines"

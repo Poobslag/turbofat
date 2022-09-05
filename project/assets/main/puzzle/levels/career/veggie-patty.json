@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "4",
-  "title": "Veggie Patty",
+  "name": "Veggie Patty",
   "description": "Twice the pace and half the space? ...This is a recipe for disaster!",
   "finish_condition": {
     "type": "pieces",

@@ -1,7 +1,7 @@
 {
-  "version": "2cb4",
+  "version": "392b",
   "start_speed": "0",
-  "title": "Just Fruit",
+  "name": "Just Fruit",
   "description": "Do we really need a recipe?",
   "finish_condition": {
     "type": "score",
@@ -18,5 +18,5 @@
     "piece_j",
     "piece_j",
     "piece_j"
-  ],
+  ]
 }

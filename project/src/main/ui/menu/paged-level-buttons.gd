@@ -117,7 +117,7 @@ func _clear_contents() -> void:
 		child.queue_free()
 
 
-## Loads the level settings and sorts the level ids by their title
+## Loads the level settings and sorts the level ids by their name
 func _refresh_level_settings() -> void:
 	for level_id in level_ids:
 		var level_settings := LevelSettings.new()
@@ -127,14 +127,14 @@ func _refresh_level_settings() -> void:
 	# Sort the levels
 	if region is CareerRegion:
 		# Career levels aren't in any particular order so we sort them.
-		level_ids.sort_custom(self, "_compare_by_title")
+		level_ids.sort_custom(self, "_compare_by_level_name")
 	else:
 		# Training/tutorial levels are already sorted from easiest to hardest.
 		pass
 
 
-func _compare_by_title(a: String, b: String) -> bool:
-	return _level_settings_by_id[b].title > _level_settings_by_id[a].title
+func _compare_by_level_name(a: String, b: String) -> bool:
+	return _level_settings_by_id[b].name > _level_settings_by_id[a].name
 
 
 ## Enables/disables the paging arrows, hiding them if the player only has access to a single page of levels.
@@ -174,7 +174,7 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 	level_button.level_duration = LevelSelectButton.MEDIUM if level_count >= 10 else LevelSelectButton.LONG
 	level_button.rect_min_size.x = 120
 	level_button.level_column_width = 120
-	level_button.level_title = level_settings.title
+	level_button.level_name = level_settings.name
 	
 	# calculate the lock status
 	level_button.lock_status = LevelSelectButton.STATUS_NONE

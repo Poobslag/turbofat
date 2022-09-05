@@ -30,6 +30,9 @@ var input_replay := InputReplay.new()
 ## have different rules.
 var lose_condition := LoseConditionRules.new()
 
+## The level name shown in menus.
+var name := ""
+
 ## Rules which are unique enough that it doesn't make sense to put them in their own groups.
 var other := OtherRules.new()
 
@@ -53,9 +56,6 @@ var tiles := LevelTiles.new()
 
 ## Timers which cause strange things to happen during a level.
 var timers := LevelTimers.new()
-
-## The level title shown in menus.
-var title := ""
 
 ## Triggers which cause strange things to happen during a level.
 var triggers := LevelTriggers.new()
@@ -101,6 +101,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		input_replay.from_json_array(json["input_replay"])
 	if json.has("lose_condition"):
 		lose_condition.from_json_array(json["lose_condition"])
+	if json.has("name"):
+		name = json["name"]
 	if json.has("other"):
 		other.from_json_array(json["other"])
 	if json.has("piece_types"):
@@ -117,8 +119,6 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		success_condition.from_json_dict(json["success_condition"])
 	if json.has("tiles"):
 		tiles.from_json_dict(json["tiles"])
-	if json.has("title"):
-		title = json["title"]
 	if json.has("timers"):
 		timers.from_json_array(json["timers"])
 	if json.has("triggers"):
@@ -127,7 +127,7 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 
 func to_json_dict() -> Dictionary:
 	var result := {}
-	if title: result["title"] = title
+	if name: result["name"] = name
 	if description: result["description"] = description
 	if difficulty: result["difficulty"] = difficulty
 	if not speed.start_speed_is_default(): result["start_speed"] = speed.start_speed_to_json_string()
