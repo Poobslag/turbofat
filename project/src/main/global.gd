@@ -4,7 +4,7 @@ extends Node
 ## splash screen which precedes the main menu.
 const SCENE_SPLASH := "res://src/main/ui/menu/SplashScreen.tscn"
 
-## menu the user sees after starting the game.
+## menu the player sees after starting the game.
 const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
 
 ## non-interactive cutscene which shows creatures talking and interacting.

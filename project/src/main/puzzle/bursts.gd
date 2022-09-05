@@ -50,7 +50,7 @@ func _add_combo_burst(target_cell: Vector2, combo: int) -> void:
 ## Parameters:
 ## 	'target_cell': The cell to add the tech move burst to.
 ##
-## 	'piece_type': The piece type, such as 'U-Piece' or 'V-Piece'
+## 	'piece_type': The piece type, such as 'U piece' or 'V piece'
 ##
 ## 	'tech_type': An enum from TechMoveBurst.TechType such as 'Spin' or 'Squish'
 ##

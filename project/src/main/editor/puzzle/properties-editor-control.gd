@@ -2,7 +2,7 @@ class_name PropertiesEditorControl
 extends Control
 ## UI control for editing level properties.
 
-## emitted when the user edits level property values using the UI.
+## emitted when the player edits level property values using the UI.
 signal properties_changed
 
 onready var _button: Button = $Pickups/Button

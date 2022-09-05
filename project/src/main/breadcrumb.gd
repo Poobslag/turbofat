@@ -1,10 +1,10 @@
 extends Node
 ## List of paths representing the current scene and its ancestors, leading back to the main menu.
 ##
-## This breadcrumb trail is used for navigation. It keeps track of which scene the user should go back to when they
+## This breadcrumb trail is used for navigation. It keeps track of which scene the player should go back to when they
 ## press the various 'Quit' buttons throughout the game.
 
-## Emitted when the user goes back, popping the front item off of the breadcrumb trail
+## Emitted when the player goes back, popping the front item off of the breadcrumb trail
 ##
 ## Parameters:
 ## 	'prev_path': The path item which was just popped from the breadcrumb trail

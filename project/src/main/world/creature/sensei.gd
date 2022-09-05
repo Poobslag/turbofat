@@ -11,7 +11,7 @@ const TOO_FAR_THRESHOLD := 280.0
 ## if 'true' the sensei is in free roam mode and will follow the player
 var free_roam := false
 
-## Cannot statically type as 'OverworldUi' because of circular reference
+## Cannot statically type as 'OverworldUi' because of cyclic reference
 onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:

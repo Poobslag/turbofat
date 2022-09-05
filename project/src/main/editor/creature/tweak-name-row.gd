@@ -39,10 +39,10 @@ func _refresh_name_ui() -> void:
 	$Edit/ShortName.visible = creature.creature_short_name != creature.creature_name
 
 
-## If the user's typed a valid name, we update the name immediately.
+## If the player's typed a valid name, we update the name immediately.
 ##
-## We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the name
-## or appending punctuation/spaces, as the text box is constantly updated.
+## We don't update if the player's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the
+## name or appending punctuation/spaces, as the text box is constantly updated.
 func _on_Edit_text_changed(text: String) -> void:
 	if text == NameUtils.sanitize_name(text):
 		_finish_name_edit(text)
@@ -56,10 +56,10 @@ func _on_Edit_focus_exited() -> void:
 	_finish_name_edit($Edit/Name.text)
 
 
-## If the user's typed a valid short name, we update the name immediately.
+## If the player's typed a valid short name, we update the name immediately.
 ##
-## We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the name
-## or appending punctuation/spaces, as the text box is constantly updated.
+## We don't update if the player's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the
+## name or appending punctuation/spaces, as the text box is constantly updated.
 func _on_ShortName_text_changed(text: String) -> void:
 	if text == NameUtils.sanitize_short_name(text):
 		_finish_short_name_edit(text)

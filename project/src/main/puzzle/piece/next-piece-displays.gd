@@ -7,7 +7,7 @@ const DISPLAY_COUNT := 9
 export (NodePath) var piece_queue_path: NodePath
 export (PackedScene) var NextPieceDisplayScene
 
-## array of NextPieceDisplays which are shown to the user
+## array of NextPieceDisplays which are shown to the player
 var _next_piece_displays := []
 
 onready var _piece_queue: PieceQueue = get_node(piece_queue_path)

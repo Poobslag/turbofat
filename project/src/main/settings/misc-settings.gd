@@ -11,7 +11,7 @@ enum SaveSlot {
 	SLOT_D,
 }
 
-## Human-readable prefixes for the save slots. These are shown to the user in menus
+## Human-readable prefixes for the save slots. These are shown to the player in menus
 const SAVE_SLOT_PREFIXES := {
 	SaveSlot.SLOT_A: "A",
 	SaveSlot.SLOT_B: "B",

@@ -162,8 +162,8 @@ static func parse_duration(s: String) -> float:
 
 ## Sanitizes the 'file root' to avoid creating files with unusual filenames.
 ##
-## The file root is the part of a filename preceding the file extension. To limit bugs and user error we sanitize file
-## roots to ensure they're short, lower-case, and don't include unusual characters.
+## The file root is the part of a filename preceding the file extension. To limit bugs we sanitize file roots to ensure
+## they're short, lower-case, and don't include unusual characters.
 static func sanitize_file_root(file_root: String) -> String:
 	var result := ""
 	var utf8 := file_root.to_lower().to_utf8()

@@ -47,7 +47,7 @@ export (bool) var emit_actions := true setget set_emit_actions
 onready var _close := preload("res://assets/main/ui/touch/menu.png")
 onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
 
-## when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying to quit
+## when the player is testing buttons, we replace the icon so we don't confuse players trying to quit
 ## (although... there's an argument that replacing the close button with a duck might confuse them more...)
 onready var _duck := preload("res://assets/main/ui/touch/duck.png")
 onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.png")

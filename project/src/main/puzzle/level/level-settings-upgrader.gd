@@ -13,7 +13,7 @@ class UpgradeMethod:
 
 ## Internally defined methods which provide version-specific updates.
 ## key: old save data version from which the method upgrades
-## value: a UpgradeMethod corresponding to the method to call
+## value: UpgradeMethod corresponding to the method to call
 var _upgrade_methods := {}
 
 ## The newest version which everything should upgrade to.

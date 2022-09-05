@@ -49,7 +49,7 @@ func _ready() -> void:
 	_delete_confirmation_2.get_close_button().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
 
 
-## Displays a dialog prompting the user if they want to change their save slot
+## Displays a dialog prompting the player if they want to change their save slot
 func confirm_new_save_slot() -> void:
 	_change_save_confirmation.popup_centered()
 
@@ -70,14 +70,14 @@ func _delete_confirmation_dialog_text(message: String) -> String:
 	return "%s\n%s (%s)" % [message, save_slot_name, playtime_message]
 
 
-## Displays a dialog prompting the user if they want to delete a save
+## Displays a dialog prompting the player if they want to delete a save
 func _on_SaveSlot_delete_pressed() -> void:
 	_delete_confirmation_1.dialog_text = _delete_confirmation_dialog_text(tr("Delete save data?"))
 	_delete_confirmation_1.popup_centered()
 	_delete_confirmation_1.get_cancel().grab_focus()
 
 
-## Displays a dialog prompting the user if they're sure want to delete a save
+## Displays a dialog prompting the player if they're sure want to delete a save
 func _on_DeleteConfirmation1_confirmed() -> void:
 	_delete_confirmation_2.dialog_text = _delete_confirmation_dialog_text(tr("Are you sure?"))
 	_delete_confirmation_2.popup_centered()

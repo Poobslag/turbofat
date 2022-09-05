@@ -1,7 +1,7 @@
 class_name DurationCalculator
 ## Estimates the duration of a puzzle.
 ##
-## This is shown to the user on the level select screen, and also affects the relative sizes of the level buttons.
+## This is shown to the player on the level select screen, and also affects the relative sizes of the level buttons.
 
 ## While rank 48 only requires a player to clear 3-4 lines per minute, it's unreasonable to predict that a level that
 ## requiring 12 line clears will take 3-4 minutes. This constant stores the expected lines per minute for a novice

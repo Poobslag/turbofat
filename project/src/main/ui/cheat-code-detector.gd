@@ -2,7 +2,7 @@ class_name CheatCodeDetector
 extends Node
 ## Detects when the player enters cheat codes.
 ##
-## When the player types a key, this class checks whether the user finished typing a cheat code. If a cheat code was
+## When the player types a key, this class checks whether the player finished typing a cheat code. If a cheat code was
 ## typed, this class emits a signal which can be used to activate the cheat code. Any gameplay effects and sound
 ## effects are the responsibility of the class receiving the signal.
 ##

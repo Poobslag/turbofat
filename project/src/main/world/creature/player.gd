@@ -8,7 +8,7 @@ var ui_has_focus := false setget set_ui_has_focus
 ## if 'true' the player is in free roam mode and can move with the arrow keys.
 var free_roam := false
 
-## Cannot statically type as 'OverworldUi' because of circular reference
+## Cannot statically type as 'OverworldUi' because of cyclic reference
 onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
@@ -50,7 +50,7 @@ func _on_SceneTransition_fade_out_started() -> void:
 	set_suppress_sfx(true)
 
 
-## Returns a vector corresponding to the direction the user is pressing.
+## Returns a vector corresponding to the direction the player is pressing.
 ##
 ## Parameters:
 ## 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.

@@ -1,6 +1,6 @@
 class_name MilestoneHud
 extends Control
-## Shows the user's level performance as a progress bar.
+## Shows the player's level performance as a progress bar.
 ##
 ## the progress bar fills up as they approach the next level up milestone. If there are no more speedups, it fills as
 ## they approach the level's win/finish condition.

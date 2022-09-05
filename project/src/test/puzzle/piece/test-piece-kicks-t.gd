@@ -189,7 +189,7 @@ func test_rose_kick_l0() -> void:
 	assert_kick()
 
 
-## A duck kick is when the T-piece tries to rotate an extrusion towards its flat side, and gets shoved away.
+## A duck kick is when the T piece tries to rotate an extrusion towards its flat side, and gets shoved away.
 ##
 ## This does not replace the usual floor kick, but acts as a replacement if the floor kick fails.
 func test_duck_kick_0r() -> void:
