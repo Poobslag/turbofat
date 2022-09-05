@@ -117,7 +117,7 @@ func _ready() -> void:
 	add_child(_daily_seconds_played_timer)
 	_daily_seconds_played_timer.start()
 	
-	## We avoid circular reference errors by loading these scripts with 'load' instead of 'preload'
+	## We avoid cyclic reference errors by loading these scripts with 'load' instead of 'preload'
 	_career_calendar = load("res://src/main/career/career-calendar.gd").new(self)
 	_career_flow = load("res://src/main/career/career-flow.gd").new(self)
 
@@ -423,7 +423,7 @@ func is_sensei_turbo() -> bool:
 ## still want to play a specific region. But it would be confusing and weird if they watched a cutscene saying 'Well,
 ## that's enough of that area! Goodbye!' and then they remained there to play more levels.
 func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
-	# Cannot statically type as 'ChatTree' because of circular reference
+	# Cannot statically type as 'ChatTree' because of cyclic reference
 	var chat_tree = ChatLibrary.chat_tree_for_key(chat_key)
 	if chat_tree.meta.get("advance_region", false):
 		advance_past_chat_region(chat_key)

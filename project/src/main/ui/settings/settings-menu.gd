@@ -74,7 +74,7 @@ func hide() -> void:
 	emit_signal("hide")
 
 
-## Prompts the user for confirmation, if necessary, and saves their system settings.
+## Prompts the player for confirmation, if necessary, and saves their system settings.
 ##
 ## Confirmation is only required when changing the current save slot. If the player confirms changing their save slot,
 ## we drop them back on the title screen.

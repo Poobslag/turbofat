@@ -4,7 +4,7 @@ extends Node
 
 export (NodePath) var piece_manager_path: NodePath
 
-## Cannot statically type as 'PieceManager' because of circular reference
+## Cannot statically type as 'PieceManager' because of cyclic reference
 onready var _piece_manager: Node = get_node(piece_manager_path)
 
 ## 'true' if the piece was most recently disturbed by the player spinning it

@@ -97,7 +97,7 @@ func drop_data(pos: Vector2, data: Object) -> void:
 				_prev_dropped_data.autotile_coords[cell] = Vector2(randi() % 18, randi() % 4)
 
 
-## If the user clicks and drags on the playfield, we reuse the previously dropped data.
+## If the player clicks and drags on the playfield, we reuse the previously dropped data.
 ##
 ## This makes it easier to populate a playfield with lots of vegetables or pickups.
 func get_drag_data(_pos: Vector2) -> Object:
