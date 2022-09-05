@@ -272,7 +272,7 @@ msgid "Cookies"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:60
-msgid "Let's make some cookies! Who brought the U pieces?"
+msgid "Let's make some cookies! Who brought the U-Blocks?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:61
@@ -7385,7 +7385,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:125
-msgid "Good job! You can make gelatin with a J, L and O piece."
+msgid "Good job! You can make gelatin with a J, L and O-Block."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:127
@@ -7804,7 +7804,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd:89
-msgid "How about with a U piece, can you spin here?"
+msgid "How about with a U-Block, can you spin here?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd:95
@@ -7845,7 +7845,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd:117
-msgid "How about this T piece? Can you spin this one too?"
+msgid "How about this T-Block? Can you spin this one too?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd:122

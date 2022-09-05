@@ -22,14 +22,14 @@ const FADE_OUT_X := 80
 const FADE_OUT_DURATION := 0.3
 
 const PIECE_COLORS_BY_FRAME := [
-	Color("ff636d"), # T (v piece)
-	Color("ffb474"), # u (u piece)
-	Color("ffef7d"), # r (l piece)
-	Color("94ff82"), # b (q piece)
-	Color("82fffb"), # o (o piece)
-	Color("82baff"), # f (j piece)
-	Color("b182ff"), # a (p piece)
-	Color("ff7afb"), # t (t piece)
+	Color("ff636d"), # T (V-Block)
+	Color("ffb474"), # u (U-Block)
+	Color("ffef7d"), # r (L-Block)
+	Color("94ff82"), # b (Q-Block)
+	Color("82fffb"), # o (O-Block)
+	Color("82baff"), # f (J-Block)
+	Color("b182ff"), # a (P-Block)
+	Color("ff7afb"), # t (T-Block)
 ]
 
 ## The pieces's position/velocity/rotation as launched from the orb, without homing them towards the loading bar

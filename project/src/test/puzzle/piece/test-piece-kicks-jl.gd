@@ -1,5 +1,5 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-## Tests the j and l pieces' kick behavior.
+## Tests kick behavior for J-Blocks and L-Blocks.
 
 func test_j_floor_kick_0r() -> void:
 	from_grid = [
@@ -209,7 +209,7 @@ func test_l_wall_kick_l2() -> void:
 	assert_kick()
 
 
-## A 'vee kick' is when a J/L piece pivots like a V piece to hook its long end into a gap
+## A 'vee kick' is when a J/L-Block pivots like a V-Block to hook its long end into a gap
 func test_j_vee_kick_0l() -> void:
 	from_grid = [
 		"   ::",
@@ -376,7 +376,7 @@ func test_l_vee_kick_l0() -> void:
 	assert_kick()
 
 
-## A 'gold kick' is when a J/L piece hooks its short end into a small gap
+## A 'gold kick' is when a J/L-Block hooks its short end into a small gap
 func test_j_gold_kick_2l() -> void:
 	from_grid = [
 		"  :  ",
@@ -521,7 +521,7 @@ func test_l_gold_kick_l2() -> void:
 	assert_kick()
 
 
-## A 'golder kick' is when a J/L piece hooks its short end into a small gap from far away.
+## A 'golder kick' is when a J/L-Block hooks its short end into a small gap from far away.
 func test_j_golder_kick_2l() -> void:
 	from_grid = [
 		"     ",
@@ -598,7 +598,7 @@ func test_j_climb_r2_1() -> void:
 	assert_kick()
 
 
-## It's important a j piece can climb onto an l piece against a wall, to start a jlo box
+## It's important a J-Block can climb onto an L-Block against a wall, to start a jlo box
 func test_j_climb_r2_jlo() -> void:
 	from_grid = [
 		"     ",
@@ -789,7 +789,7 @@ func test_l_climb_l2_1() -> void:
 	assert_kick()
 
 
-## It's important an l piece can climb onto an j piece against a wall, to start a jlo box
+## It's important an L-Block can climb onto a J-Block against a wall, to start a jlo box
 func test_l_climb_l2_jlo() -> void:
 	from_grid = [
 		"     ",
@@ -808,7 +808,7 @@ func test_l_climb_l2_jlo() -> void:
 	assert_kick()
 
 
-## A 'hammer kick' is where the J piece pivots around its tip, like swinging a hammer.
+## A 'hammer kick' is where the J-Block pivots around its tip, like swinging a hammer.
 func test_j_hammer_kick_r2() -> void:
 	from_grid = [
 		"    ",
@@ -845,7 +845,7 @@ func test_l_hammer_kick_l2() -> void:
 	assert_kick()
 
 
-## A plant kick is when the j/l piece pivots around its hinge like a t block.
+## A plant kick is when the J/L-Block pivots around its hinge like a T-Block.
 func test_j_plant_kick_0r() -> void:
 	from_grid = [
 		":: ::",
@@ -918,7 +918,7 @@ func test_l_plant_kick_2r() -> void:
 	assert_kick()
 
 
-## A 'snack kick' is when a j/l piece's hinge slides one square towards its long end.
+## A 'snack kick' is when a J/L-Block's hinge slides one square towards its long end.
 func test_j_snack_kick_0r() -> void:
 	from_grid = [
 		"  :::",

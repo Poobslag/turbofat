@@ -1,5 +1,5 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-## Tests the u piece's kick behavior.
+## Tests the U-Block's kick behavior.
 
 func test_floor_kick_2l() -> void:
 	from_grid = [
@@ -177,7 +177,7 @@ func test_wall_kick_l2_1() -> void:
 	assert_kick()
 
 
-## A spire kick is when a u piece rotates while a block is in its gap.
+## A spire kick is when a U-Block rotates while a block is in its gap.
 func test_spire_kick_0r() -> void:
 	from_grid = [
 		"     ",
@@ -282,7 +282,7 @@ func test_spire_kick_r0() -> void:
 	assert_kick()
 
 
-## a 'diagonalnw kick' is when the u piece is boxed in by the nw/se corners
+## a 'diagonalnw kick' is when the U-Block is boxed in by the nw/se corners
 func test_diagonalnw_kick_0r() -> void:
 	from_grid = [
 		"::   ",
@@ -351,7 +351,7 @@ func test_diagonalnw_kick_l0() -> void:
 	assert_kick()
 
 
-## a 'diagonalne kick' is when the u piece is boxed in by the ne/sw corners
+## a 'diagonalne kick' is when the U-Block is boxed in by the ne/sw corners
 func test_diagonalne_kick_0r() -> void:
 	from_grid = [
 		"   ::",
@@ -420,7 +420,7 @@ func test_diagonalne_kick_l0() -> void:
 	assert_kick()
 
 
-## a 'shaft kick' is when the u piece rotates after being dropped down a narrow shaft
+## a 'shaft kick' is when the U-Block rotates after being dropped down a narrow shaft
 func test_shaft_kick_r0_0() -> void:
 	from_grid = [
 		"  ::",
@@ -625,7 +625,7 @@ func test_flip_kick_20_floor() -> void:
 	assert_kick()
 
 
-## A spine flip is where the U piece flips, with its three central pieces remaining in place.
+## A spine flip is where the U-Block flips, with its three central pieces remaining in place.
 func test_spine_flip_02() -> void:
 	from_grid = [
 		" : ",

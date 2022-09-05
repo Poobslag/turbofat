@@ -59,20 +59,20 @@ func test_is_sealed_false_right() -> void:
 
 
 func test_center_o() -> void:
-	# the O piece's center x and y coordinates are in between two grid coordinates
+	# the O-Block's center x and y coordinates are in between two grid coordinates
 	var piece := ActivePiece.new(PieceTypes.piece_o, null)
 	assert_eq(piece.center(), Vector2(3.5, 3.5))
 	
-	# when moved, the O piece's center moves too
+	# when moved, the O-Block's center moves too
 	piece.pos = Vector2(2, 2)
 	assert_eq(piece.center(), Vector2(2.5, 2.5))
 
 
 func test_center_t() -> void:
-	# the T piece's center x is the exact middle of its three columns
+	# the T-Block's center x is the exact middle of its three columns
 	var piece := ActivePiece.new(PieceTypes.piece_t, null)
 	assert_eq(piece.center(), Vector2(4.0, 3.5))
 	
-	# when rotated, the T piece's center y is the exact middle of its three rows
+	# when rotated, the T-Block's center y is the exact middle of its three rows
 	piece.orientation = 1
 	assert_eq(piece.center(), Vector2(4.5, 4.0))

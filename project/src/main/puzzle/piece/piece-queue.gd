@@ -220,7 +220,7 @@ func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	
 	if extra_piece_types:
 		if CurrentLevel.settings.piece_types.suppress_o_piece and extra_piece_types[0] == PieceTypes.piece_o:
-			# the o piece is awful, so it comes 10% less often
+			# the O-Block is awful, so it comes 10% less often
 			extra_piece_types.shuffle()
 		pieces.insert(new_piece_index, _new_next_piece(extra_piece_types[0]))
 
