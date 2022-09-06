@@ -83,6 +83,9 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			rotation_signal = "rotated_180"
 		
 		var old_piece_y := piece.pos.y
+		
+		if piece.can_move_to_target():
+			_nudge_onscreen(piece)
 		if not piece.can_move_to_target():
 			piece.kick_piece()
 		if not piece.can_move_to_target() and input.is_cw_pressed() and input.is_ccw_pressed():
@@ -119,7 +122,39 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			"rotated_180": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_180)
 
 
-## Calculates the position and orientation the player is trying to rotate the piece to.
+## Gently nudge a piece downward to keep it onscreen.
+##
+## We do this so that the U piece does not immediately rotate off the top of the playfield.
+func _nudge_onscreen(piece: ActivePiece) -> void:
+	var old_above_playfield := _is_partially_offscreen(piece, piece.pos, piece.orientation)
+	var new_above_playfield := _is_partially_offscreen(piece, piece.pos, piece.target_orientation)
+	if new_above_playfield \
+			and not old_above_playfield \
+			and piece.can_move_to(piece.pos + Vector2.DOWN, piece.target_orientation):
+		piece.target_pos += Vector2.DOWN
+
+
+## Returns 'true' if the piece will be above the playfield in the specified position/orientation.
+##
+## Parameters:
+## 	'piece': The piece whose shape should be evaluated
+##
+## 	'piece_pos': The position to evaluate
+##
+## 	'piece_orientation': The orientation to evaluate
+##
+## Returns:
+## 	'true' if the piece will be above the palyfield in the specified position/orientation.
+func _is_partially_offscreen(piece: ActivePiece, piece_pos: Vector2, piece_orientation: int) -> bool:
+	var result := false
+	for pos in piece.type.pos_arr[piece_orientation]:
+		if piece_pos.y + pos.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
+			result = true
+			break
+	return result
+
+
+## Calculates the orientation the player is trying to rotate the piece to.
 func _calc_rotate_target(piece: ActivePiece) -> void:
 	if not input.is_cw_pressed() and not input.is_ccw_pressed():
 		return

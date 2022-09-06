@@ -52,13 +52,13 @@ const KICKS_T := {
 	}
 
 const KICKS_U := {
-		01: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1)],
-		12: [Vector2( 1, -1), Vector2( 0, -1), Vector2( 1,  0), Vector2( 0, -2), Vector2( 1,  1)],
-		23: [Vector2( 1,  1), Vector2( 0,  1), Vector2( 1,  0), Vector2( 0,  2), Vector2( 1, -1)],
-		30: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
+		01: [Vector2( 1,  1), Vector2( 0,  1), Vector2( 1,  0), Vector2( 0,  2), Vector2( 1, -1)],
+		12: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
+		23: [Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1)],
+		30: [Vector2( 1, -1), Vector2( 0, -1), Vector2( 1,  0), Vector2( 0, -2), Vector2( 1,  1)],
 		
-		02: [Vector2( 0, -1)],
-		13: [Vector2( 1,  0)],
+		02: [Vector2( 0,  1)],
+		13: [Vector2(-1,  0)],
 	}
 
 const KICKS_V := {
@@ -236,17 +236,17 @@ var piece_t := PieceType.new("t",
 var piece_u := PieceType.new("u",
 		# shape data
 		[
-			[Vector2(0, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
-			[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
-			[Vector2(0, 1), Vector2(1, 1), Vector2(2, 1), Vector2(0, 2), Vector2(2, 2)],
-			[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 2), Vector2(1, 2)],
+			[Vector2(0,  0), Vector2(1,  0), Vector2(2, 0), Vector2(0, 1), Vector2(2, 1)],
+			[Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
+			[Vector2(0, -1), Vector2(2, -1), Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)],
+			[Vector2(1, -1), Vector2(2, -1), Vector2(1, 0), Vector2(1, 1), Vector2(2, 1)],
 		],
 		# color data
 		[
-			[Vector2( 2, 2), Vector2( 2, 2), Vector2( 9, 2), Vector2(12, 2), Vector2( 5, 2)],
-			[Vector2(10, 2), Vector2( 4, 2), Vector2( 3, 2), Vector2( 9, 2), Vector2( 4, 2)],
 			[Vector2(10, 2), Vector2(12, 2), Vector2( 6, 2), Vector2( 1, 2), Vector2( 1, 2)],
 			[Vector2( 8, 2), Vector2( 6, 2), Vector2( 3, 2), Vector2( 8, 2), Vector2( 5, 2)],
+			[Vector2( 2, 2), Vector2( 2, 2), Vector2( 9, 2), Vector2(12, 2), Vector2( 5, 2)],
+			[Vector2(10, 2), Vector2( 4, 2), Vector2( 3, 2), Vector2( 9, 2), Vector2( 4, 2)],
 		],
 		KICKS_U
 	)
