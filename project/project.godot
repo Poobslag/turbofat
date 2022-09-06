@@ -47,12 +47,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "BoolExpressionEvaluator",
 "language": "GDScript",
-"path": "res://src/main/ui/bool-expression-evaluator.gd"
+"path": "res://src/main/utils/bool-expression-evaluator.gd"
 }, {
 "base": "Reference",
 "class": "BoolExpressionParser",
 "language": "GDScript",
-"path": "res://src/main/ui/bool-expression-parser.gd"
+"path": "res://src/main/utils/bool-expression-parser.gd"
 }, {
 "base": "Node",
 "class": "BoxBuilder",
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "ChatAdvancer",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/chat-advancer.gd"
+"path": "res://src/main/chat/chat-advancer.gd"
 }, {
 "base": "Button",
 "class": "ChatChoiceButton",
@@ -107,7 +107,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ChatEvent",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/chat-event.gd"
+"path": "res://src/main/chat/chat-event.gd"
 }, {
 "base": "Control",
 "class": "ChatFrame",
@@ -117,7 +117,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ChatHistory",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/chat-history.gd"
+"path": "res://src/main/chat/chat-history.gd"
 }, {
 "base": "Reference",
 "class": "ChatKeyPair",
@@ -142,12 +142,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ChatTree",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/chat-tree.gd"
+"path": "res://src/main/chat/chat-tree.gd"
 }, {
 "base": "Reference",
 "class": "ChatscriptParser",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/chatscript-parser.gd"
+"path": "res://src/main/chat/chatscript-parser.gd"
 }, {
 "base": "Node",
 "class": "CheatCodeDetector",
@@ -202,7 +202,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "CreatureLibrary",
 "language": "GDScript",
-"path": "res://src/main/creature-library.gd"
+"path": "res://src/main/world/creature/creature-library.gd"
 }, {
 "base": "Node2D",
 "class": "CreatureOutline",
@@ -217,7 +217,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "CreatureQueue",
 "language": "GDScript",
-"path": "res://src/main/creature-queue.gd"
+"path": "res://src/main/puzzle/creature-queue.gd"
 }, {
 "base": "Node2D",
 "class": "CreatureSfx",
@@ -257,7 +257,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "CutsceneSearchFlags",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/cutscene-search-flags.gd"
+"path": "res://src/main/chat/cutscene-search-flags.gd"
 }, {
 "base": "OverworldWorld",
 "class": "CutsceneWorld",
@@ -287,7 +287,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "FileUtils",
 "language": "GDScript",
-"path": "res://src/main/file-utils.gd"
+"path": "res://src/main/utils/file-utils.gd"
 }, {
 "base": "Label",
 "class": "FontFitLabel",
@@ -522,7 +522,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "MarkovModel",
 "language": "GDScript",
-"path": "res://src/main/markov-model.gd"
+"path": "res://src/main/utils/markov-model.gd"
 }, {
 "base": "OverworldObstacle",
 "class": "MileMarker",
@@ -567,12 +567,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "NameGenerator",
 "language": "GDScript",
-"path": "res://src/main/name-generator.gd"
+"path": "res://src/main/world/creature/name-generator.gd"
 }, {
 "base": "Reference",
 "class": "NameUtils",
 "language": "GDScript",
-"path": "res://src/main/name-utils.gd"
+"path": "res://src/main/world/creature/name-utils.gd"
 }, {
 "base": "Panel",
 "class": "NametagPanel",
@@ -592,7 +592,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "NearestSorter",
 "language": "GDScript",
-"path": "res://src/main/nearest-sorter.gd"
+"path": "res://src/main/utils/nearest-sorter.gd"
 }, {
 "base": "Reference",
 "class": "NextPiece",
@@ -617,7 +617,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "OtherRegion",
 "language": "GDScript",
-"path": "res://src/main/ui/level-select/other-region.gd"
+"path": "res://src/main/puzzle/other-region.gd"
 }, {
 "base": "Reference",
 "class": "OtherRules",
@@ -657,7 +657,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PackedSprite",
 "language": "GDScript",
-"path": "res://src/main/packed-sprite.gd"
+"path": "res://src/main/utils/packed-sprite.gd"
 }, {
 "base": "HBoxContainer",
 "class": "PagedLevelButtons",
@@ -757,7 +757,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PlayerSaveUpgrader",
 "language": "GDScript",
-"path": "res://src/main/player-save-upgrader.gd"
+"path": "res://src/main/data/player-save-upgrader.gd"
 }, {
 "base": "Control",
 "class": "Playfield",
@@ -777,12 +777,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Population",
 "language": "GDScript",
-"path": "res://src/main/ui/level-select/population.gd"
+"path": "res://src/main/career/population.gd"
 }, {
 "base": "Reference",
 "class": "PracticeData",
 "language": "GDScript",
-"path": "res://src/main/practice-data.gd"
+"path": "res://src/main/data/practice-data.gd"
 }, {
 "base": "VBoxContainer",
 "class": "PracticeSpeedSelector",
@@ -812,7 +812,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PuzzleConnect",
 "language": "GDScript",
-"path": "res://src/main/puzzle-connect.gd"
+"path": "res://src/main/puzzle/puzzle-connect.gd"
 }, {
 "base": "Control",
 "class": "PuzzleMessage",
@@ -862,7 +862,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "RegionCompletion",
 "language": "GDScript",
-"path": "res://src/main/region-completion.gd"
+"path": "res://src/main/career/region-completion.gd"
 }, {
 "base": "MarginContainer",
 "class": "RegionSelectButton",
@@ -902,7 +902,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "RollingBackups",
 "language": "GDScript",
-"path": "res://src/main/rolling-backups.gd"
+"path": "res://src/main/data/rolling-backups.gd"
 }, {
 "base": "Reference",
 "class": "RuleParser",
@@ -912,12 +912,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SaveItem",
 "language": "GDScript",
-"path": "res://src/main/save-item.gd"
+"path": "res://src/main/data/save-item.gd"
 }, {
 "base": "Reference",
 "class": "SaveItemUpgrader",
 "language": "GDScript",
-"path": "res://src/main/save-item-upgrader.gd"
+"path": "res://src/main/data/save-item-upgrader.gd"
 }, {
 "base": "HBoxContainer",
 "class": "SaveSlotControl",
@@ -987,12 +987,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://src/main/state.gd"
+"path": "res://src/main/utils/state.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://src/main/state-machine.gd"
+"path": "res://src/main/utils/state-machine.gd"
 }, {
 "base": "Sprite",
 "class": "Sticker",
@@ -1012,17 +1012,17 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "StringTransformer",
 "language": "GDScript",
-"path": "res://src/main/string-transformer.gd"
+"path": "res://src/main/utils/string-transformer.gd"
 }, {
 "base": "Reference",
 "class": "StringUtils",
 "language": "GDScript",
-"path": "res://src/main/string-utils.gd"
+"path": "res://src/main/utils/string-utils.gd"
 }, {
 "base": "Reference",
 "class": "SystemSaveUpgrader",
 "language": "GDScript",
-"path": "res://src/main/system-save-upgrader.gd"
+"path": "res://src/main/data/system-save-upgrader.gd"
 }, {
 "base": "Node2D",
 "class": "TechMoveBurst",
@@ -1042,7 +1042,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Tracery",
 "language": "GDScript",
-"path": "res://src/main/tracery.gd"
+"path": "res://src/main/chat/tracery.gd"
 }, {
 "base": "Control",
 "class": "TutorialDiagram",
@@ -1067,7 +1067,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Utils",
 "language": "GDScript",
-"path": "res://src/main/utils.gd"
+"path": "res://src/main/utils/utils.gd"
 }, {
 "base": "Reference",
 "class": "VolumeSettings",
@@ -1318,18 +1318,18 @@ config/version="0.4904"
 
 [audio]
 
-default_bus_layout="res://src/main/ui/default_bus_layout.tres"
+default_bus_layout="res://src/main/settings/default-bus-layout.tres"
 
 [autoload]
 
-Global="*res://src/main/global.gd"
+Global="*res://src/main/utils/global.gd"
 LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
-Breadcrumb="*res://src/main/breadcrumb.gd"
+Breadcrumb="*res://src/main/utils/breadcrumb.gd"
 CareerLevelLibrary="*res://src/main/career/career-level-library.gd"
-CareerCutsceneLibrary="*res://src/main/ui/chat/career-cutscene-library.gd"
-ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
+CareerCutsceneLibrary="*res://src/main/career/career-cutscene-library.gd"
+ChatLibrary="*res://src/main/chat/chat-library.gd"
 CreatureManager="*res://src/main/world/creature-manager.gd"
 CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
 CrumbDefinitions="*res://src/main/puzzle/crumb-definitions.gd"
@@ -1341,16 +1341,16 @@ KeybindManager="*res://src/main/settings/keybind-manager.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
-NameGeneratorLibrary="*res://src/main/name-generator-library.gd"
-OtherLevelLibrary="*res://src/main/ui/level-select/other-level-library.gd"
-Pauser="*res://src/main/pauser.gd"
-PlayerData="*res://src/main/player-data.gd"
-PlayerSave="*res://src/main/player-save.gd"
+NameGeneratorLibrary="*res://src/main/world/creature/name-generator-library.gd"
+OtherLevelLibrary="*res://src/main/puzzle/other-level-library.gd"
+Pauser="*res://src/main/utils/pauser.gd"
+PlayerData="*res://src/main/data/player-data.gd"
+PlayerSave="*res://src/main/data/player-save.gd"
 PuzzleState="*res://src/main/puzzle/puzzle-state.gd"
-ResourceCache="*res://src/main/ResourceCache.tscn"
-SceneTransition="*res://src/main/ui/scene-transition.gd"
-SystemData="*res://src/main/system-data.gd"
-SystemSave="*res://src/main/system-save.gd"
+ResourceCache="*res://src/main/utils/ResourceCache.tscn"
+SceneTransition="*res://src/main/utils/scene-transition.gd"
+SystemData="*res://src/main/data/system-data.gd"
+SystemSave="*res://src/main/data/system-save.gd"
 PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
 
 [debug]

@@ -132,5 +132,5 @@ project/assets/main/ui/schoolbell-regular.ttf Schoolbell by Font Diner
 Other
 --------------------------------------------------------------------------------
 project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
-project/src/main/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
+project/src/main/chat/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
 project/addons/gut "Gut" by Tom "Butch" Wesley

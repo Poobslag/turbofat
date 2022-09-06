@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/main/outline.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/world/environment/lemon/gravesite-grave.png" type="Texture" id=3]
 

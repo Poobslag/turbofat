@@ -1,7 +1,7 @@
 [gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
-[ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=2]
+[ext_resource path="res://src/main/utils/packed-sprite.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/creature/EmotePlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=4]
 [ext_resource path="res://src/main/world/creature/creature-animations.gd" type="Script" id=5]
