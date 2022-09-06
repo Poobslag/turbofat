@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/scene-transition-cover.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/ui/transition-blocks-mask.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/ui/transition-pieces-mask.png" type="Texture" id=2]
 [ext_resource path="res://src/main/ScaledTextureRect.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/main/ui/transition-blocks.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/main/ui/transition-pieces.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/main/ui/transition-mask.shader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=2]

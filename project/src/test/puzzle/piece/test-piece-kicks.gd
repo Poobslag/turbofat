@@ -58,7 +58,7 @@ func test_framework() -> void:
 ## moved to the correct position.
 func assert_kick() -> void:
 	var result := _kick_piece()
-	var text := "Rotating '%s' block from %s -> %s should kick %s" \
+	var text := "Rotating '%s' piece from %s -> %s should kick %s" \
 			% [_from_piece.type.string, _from_piece.orientation,
 			_to_piece.orientation, _to_piece.pos - _from_piece.pos]
 	if result == FAILED_KICK:

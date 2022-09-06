@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block-shadow.png-f296b22abdff5d1601159e1413f15120.stex"
+path="res://.import/cell-shadow.png-533a86bec5fb75810207907965eef2db.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/block-shadow.png"
-dest_files=[ "res://.import/block-shadow.png-f296b22abdff5d1601159e1413f15120.stex" ]
+source_file="res://assets/main/world/environment/cell-shadow.png"
+dest_files=[ "res://.import/cell-shadow.png-533a86bec5fb75810207907965eef2db.stex" ]
 
 [params]
 

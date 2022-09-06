@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blocks-transition.png-b0cc3adc4355c5451273d155237a6f70.stex"
+path="res://.import/transition-pieces-mask.png-f72a15fa309eb0979ff50c7dba1f3a68.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/ui/blocks-transition.png"
-dest_files=[ "res://.import/blocks-transition.png-b0cc3adc4355c5451273d155237a6f70.stex" ]
+source_file="res://assets/main/ui/transition-pieces-mask.png"
+dest_files=[ "res://.import/transition-pieces-mask.png-f72a15fa309eb0979ff50c7dba1f3a68.stex" ]
 
 [params]
 

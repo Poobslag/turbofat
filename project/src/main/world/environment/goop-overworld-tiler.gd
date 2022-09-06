@@ -88,7 +88,7 @@ const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 			[Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5),
 			Vector2(1, 5), Vector2(2, 5), Vector2(3, 5), Vector2(4, 5), Vector2(5, 5)]],
 	
-	# fully goopy tiles, where all adjacent blocks are also goopy
+	# fully goopy tiles, where all adjacent cells are also goopy
 	GOOP_CENTER:
 			[TileTypes.ALL_GOOP, [Vector2(0, 0)]],
 	GOOP_CENTER | CAKE_TOP | GOOP_TOP:
@@ -122,7 +122,7 @@ const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP:
 			[TileTypes.ALL_GOOP, [Vector2(3, 3)]],
 	
-	# partially goopy tiles, where some adjacent blocks are goopless
+	# partially goopy tiles, where some adjacent cells are goopless
 	GOOP_CENTER | CAKE_ALL:
 			[TileTypes.SOME_GOOP, [Vector2(0, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_TOP: [TileTypes.SOME_GOOP,
@@ -218,13 +218,13 @@ const CORNER_COVERS_BY_BINDING := {
 	GOOP_TOPLEFT | GOOP_CENTER | GOOP_LEFT | GOOP_TOP: Vector2(0, 3),
 }
 
-## The parent tilemap's tile ID for goopless blocks
+## The parent tilemap's tile ID for goopless cells
 export (int) var no_goop_tile_index: int setget set_block_tile_index
 
-## The parent tilemap's tile ID for partially goopy blocks
+## The parent tilemap's tile ID for partially goopy cells
 export (int) var some_goop_tile_index: int setget set_some_goop_tile_index
 
-## The parent tilemap's tile ID for goopy blocks
+## The parent tilemap's tile ID for goopy cells
 export (int) var all_goop_tile_index: int setget set_goop_tile_index
 
 ## the corner tilemap's tile ID for goopless/partially goopy/goopy corner covers
@@ -396,15 +396,15 @@ func _set_corner_cover_autotile_coord(cell: Vector2, autotile_coord: Vector2) ->
 	_corner_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
 
 
-## Calculates which of the five adjacent cells have blocks or goop.
+## Calculates which of the five adjacent cells have cells or goop.
 ##
-## This includes the current block and its four neighbors.
+## This includes the current cell and its four neighbors.
 ##
 ## Parameters:
 ## 	'cell': The TileMap coordinates of the cell to be analyzed.
 ##
 ## Returns:
-## 	An int bitmask of cell directions containing blocks (CAKE_TOP, CAKE_BOTTOM, CAKE_LEFT, CAKE_RIGHT) or goop
+## 	An int bitmask of cell directions containing cells (CAKE_TOP, CAKE_BOTTOM, CAKE_LEFT, CAKE_RIGHT) or goop
 ## 	(GOOP_CENTER, GOOP_TOP, GOOP_BOTTOM, GOOP_LEFT, GOOP_RIGHT)
 func _adjacencies(cell: Vector2) -> int:
 	var binding := 0
@@ -422,7 +422,7 @@ func _adjacencies(cell: Vector2) -> int:
 
 ## Calculates which of the four cells in the up/left direction have goop.
 ##
-## This includes the current block, its top neighbor, its left neighbor, and its topleft diagonal neighbor.
+## This includes the current cell, its top neighbor, its left neighbor, and its topleft diagonal neighbor.
 ##
 ## Returns:
 ## 	An int bitmask of cell directions containing goop (GOOP_CENTER, GOOP_TOP, GOOP_LEFT, GOOP_TOPLEFT)

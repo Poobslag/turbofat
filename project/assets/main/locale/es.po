@@ -6976,7 +6976,7 @@ msgstr ""
 "asegurarse!"
 
 #: project/src/main/puzzle/results-hud.gd:20
-msgid "Press 'down' to squish pieces past other pieces!"
+msgid "Press 'down' to squish pieces past other blocks!"
 msgstr "¡Presiona \"abajo\" para aplastar piezas por otras piezas!"
 
 #: project/src/main/puzzle/results-hud.gd:42

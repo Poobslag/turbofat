@@ -50,7 +50,7 @@ const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("babab
 const DAILY_STEPS_GOOD := 25
 const DAILY_STEPS_OK := 8
 
-## The number of steps the player couldn't take because they were blocked by a boss/intro level.
+## The number of steps the player couldn't take because they were stopped by a boss/intro level.
 var banked_steps := 0
 
 ## The distance the player has travelled in the current career session.

@@ -1,5 +1,5 @@
 class_name CareerRegion
-## Stores information about a block of levels for career mode.
+## Stores information about a group of levels for career mode.
 
 ## A flag for regions where Fat Sensei is not following the player
 const FLAG_NO_SENSEI := "no_sensei"

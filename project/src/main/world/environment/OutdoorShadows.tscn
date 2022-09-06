@@ -5,10 +5,10 @@
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/lemon/environment-shadows.gd" type="Script" id=5]
-[ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/world/environment/cell-shadow.png" type="Texture" id=6]
 
 [sub_resource type="TileSet" id=2]
-0/name = "block-shadow.png 0"
+0/name = "cell-shadow.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 20 )
 0/modulate = Color( 1, 1, 1, 1 )
