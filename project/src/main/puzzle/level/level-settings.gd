@@ -127,6 +127,7 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 
 func to_json_dict() -> Dictionary:
 	var result := {}
+	result["version"] = _upgrader.current_version
 	if name: result["name"] = name
 	if description: result["description"] = description
 	if difficulty: result["difficulty"] = difficulty

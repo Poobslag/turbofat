@@ -37,6 +37,13 @@ func test_load_297a_data() -> void:
 			"settings.blocks_during.shuffle_inserted_lines")
 
 
+func test_load_2cb4_data() -> void:
+	load_level("level-2cb4")
+	
+	assert_eq(settings.name, "Extra Cream")
+	assert_eq(settings.piece_types.suppress_o_piece, false)
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
@@ -80,6 +87,11 @@ func _convert_to_json_and_back() -> void:
 	var json_dict := settings.to_json_dict()
 	settings = LevelSettings.new()
 	settings.from_json_dict("id_873", json_dict)
+
+
+func test_to_json_version() -> void:
+	var json_dict := settings.to_json_dict()
+	assert_eq(json_dict.get("version"), Levels.LEVEL_DATA_VERSION)
 
 
 func test_to_json_basic_properties() -> void:
