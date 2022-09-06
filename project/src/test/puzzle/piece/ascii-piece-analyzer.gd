@@ -10,7 +10,7 @@ class_name AsciiPieceAnalyzer
 ## 	' ':                                    An empty playfield cell
 ## 	':':                                    A filled playfield cell
 ##
-## Here is an example grid showing a T piece on a narrow platform:
+## Here is an example grid showing a T-Block on a narrow platform:
 ## 	[
 ## 	 "     ",
 ## 	 "  t  ",
@@ -53,7 +53,7 @@ func _determine_piece_type() -> PieceType:
 ##
 ## Parameters:
 ## 	'forced_piece_orientation': (Optional) A number [0-3] representing the piece's orientation. For some pieces
-## 		(such as the O piece) the orientation is ambiguous but some tests might care which one is selected.
+## 		(such as the O-Block) the orientation is ambiguous but some tests might care which one is selected.
 ##
 ## Returns:
 ## 	An ActivePiece instance with the appropriate piece type, position and orientation. Returns null if the type,

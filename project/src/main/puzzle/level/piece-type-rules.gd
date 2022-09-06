@@ -48,7 +48,7 @@ var start_types := []
 ## list of PieceTypes to choose from. if empty, defaults to the basic 8 types (jlopqtuv)
 var types := []
 
-## if 'true', the bag algorithm rerolls the extra piece once if it comes up as an O piece
+## if 'true', the bag algorithm rerolls the extra piece once if it comes up as an O-Block
 var suppress_o_piece: bool = true
 
 ## If 'true', the bag algorithm adjusts its shuffling and extra piece generation to avoid generating the same piece

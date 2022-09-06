@@ -32,7 +32,7 @@ var _suffix_by_tech_type := {
 	SQUISH: tr("Squish"),
 }
 
-## The piece type, such as 'J piece' or 'P piece'
+## The piece type, such as 'J-Block' or 'P-Block'
 var piece_type: PieceType setget set_piece_type
 
 ## An enum from TechType such as 'Spin' or 'Squish'

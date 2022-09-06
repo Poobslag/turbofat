@@ -2,7 +2,7 @@
   "version": "392b",
   "start_speed": "0",
   "name": "Cookies",
-  "description": "Let's make some cookies! Who brought the U pieces?",
+  "description": "Let's make some cookies! Who brought the U-Blocks?",
   "finish_condition": {
     "type": "lines",
     "value": "20"

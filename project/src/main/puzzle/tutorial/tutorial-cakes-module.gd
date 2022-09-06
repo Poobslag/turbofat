@@ -122,7 +122,7 @@ func _advance_level() -> void:
 		"tutorial/cakes_2":
 			if _cakes_built >= 1:
 				_schedule_finish_line_clears()
-				hud.set_message(tr("Good job! You can make gelatin with a J, L and O piece."))
+				hud.set_message(tr("Good job! You can make gelatin with a J, L and O-Block."))
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
 				PuzzleState.level_performance.lost = true

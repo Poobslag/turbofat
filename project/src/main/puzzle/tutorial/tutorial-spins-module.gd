@@ -86,7 +86,7 @@ func prepare_tutorial_level() -> void:
 		"tutorial/spins_2":
 			_prepare_box_tally_item()
 			if _failure_count == 0:
-				hud.set_message(tr("How about with a U piece, can you spin here?"))
+				hud.set_message(tr("How about with a U-Block, can you spin here?"))
 			else:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 		"tutorial/spins_3":
@@ -114,7 +114,7 @@ func prepare_tutorial_level() -> void:
 		"tutorial/spins_5":
 			_prepare_box_tally_item()
 			if _failure_count == 0:
-				hud.set_message(tr("How about this T piece? Can you spin this one too?"))
+				hud.set_message(tr("How about this T-Block? Can you spin this one too?"))
 			else:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 		"tutorial/spins_6":
