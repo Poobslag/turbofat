@@ -5,7 +5,7 @@ func after_each() -> void:
 
 
 func test_regions() -> void:
-	OtherLevelLibrary.other_regions_path = "res://assets/test/ui/level-select/other-regions-simple.json"
+	OtherLevelLibrary.other_regions_path = "res://assets/test/puzzle/other-regions-simple.json"
 	assert_eq(OtherLevelLibrary.regions.size(), 2)
 	
 	var region_0: OtherRegion = OtherLevelLibrary.regions[0]
@@ -16,7 +16,7 @@ func test_regions() -> void:
 
 
 func test_all_level_ids() -> void:
-	OtherLevelLibrary.other_regions_path = "res://assets/test/ui/level-select/other-regions-simple.json"
+	OtherLevelLibrary.other_regions_path = "res://assets/test/puzzle/other-regions-simple.json"
 	
 	assert_eq(OtherLevelLibrary.all_level_ids(),
 			["tutorial/basics_0", "tutorial/squish_0", "practice/marathon-normal", "practice/marathon-hard"])

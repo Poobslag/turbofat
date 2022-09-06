@@ -33,174 +33,174 @@ func _assert_eq_ckp(actual_chat_key_pairs: Array, expected_chat_key_pairs: Array
 
 
 func test_load_all_chat_keys() -> void:
-	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/ui/chat/fake-career"
+	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/career/fake-career"
 	
 	_assert_eq_ckp(CareerCutsceneLibrary.all_chat_key_pairs, [
-		_interlude("ui/chat/fake_career/general/000_a", ""),
-		_interlude("ui/chat/fake_career/general/000_b", ""),
-		_interlude("ui/chat/fake_career/marsh/000", "ui/chat/fake_career/marsh/000_end"),
-		_interlude("ui/chat/fake_career/marsh/010_a", ""),
-		_interlude("ui/chat/fake_career/marsh/010_b", ""),
-		_interlude("", "ui/chat/fake_career/marsh/010_c_end"),
-		_interlude("ui/chat/fake_career/marsh/020", ""),
-		_interlude("ui/chat/fake_career/marsh/030_a", ""),
-		_interlude("ui/chat/fake_career/marsh/030_b", ""),
+		_interlude("career/fake_career/general/000_a", ""),
+		_interlude("career/fake_career/general/000_b", ""),
+		_interlude("career/fake_career/marsh/000", "career/fake_career/marsh/000_end"),
+		_interlude("career/fake_career/marsh/010_a", ""),
+		_interlude("career/fake_career/marsh/010_b", ""),
+		_interlude("", "career/fake_career/marsh/010_c_end"),
+		_interlude("career/fake_career/marsh/020", ""),
+		_interlude("career/fake_career/marsh/030_a", ""),
+		_interlude("career/fake_career/marsh/030_b", ""),
 	])
 
 
 func test_find_chat_key_pairs() -> void:
-	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/ui/chat/fake-career"
+	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/career/fake-career"
 	
 	var search_flags := CutsceneSearchFlags.new()
 	search_flags.include_all_numeric_children = true
-	var chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs(["ui/chat/fake_career/marsh"], search_flags)
+	var chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs(["career/fake_career/marsh"], search_flags)
 	_assert_eq_ckp(chat_key_pairs, [
-		_interlude("ui/chat/fake_career/marsh/000", "ui/chat/fake_career/marsh/000_end"),
-		_interlude("ui/chat/fake_career/marsh/010_a", ""),
-		_interlude("ui/chat/fake_career/marsh/010_b", ""),
-		_interlude("", "ui/chat/fake_career/marsh/010_c_end"),
-		_interlude("ui/chat/fake_career/marsh/020", ""),
-		_interlude("ui/chat/fake_career/marsh/030_a", ""),
-		_interlude("ui/chat/fake_career/marsh/030_b", ""),
+		_interlude("career/fake_career/marsh/000", "career/fake_career/marsh/000_end"),
+		_interlude("career/fake_career/marsh/010_a", ""),
+		_interlude("career/fake_career/marsh/010_b", ""),
+		_interlude("", "career/fake_career/marsh/010_c_end"),
+		_interlude("career/fake_career/marsh/020", ""),
+		_interlude("career/fake_career/marsh/030_a", ""),
+		_interlude("career/fake_career/marsh/030_b", ""),
 	])
 
 
 func test_potential_chat_keys_letter() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
-		_interlude("ui/chat/fake_career/general/000_a", ""),
-		_interlude("ui/chat/fake_career/general/000_b", ""),
+		_interlude("career/fake_career/general/000_a", ""),
+		_interlude("career/fake_career/general/000_b", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
-		_interlude("ui/chat/fake_career/general/000_a", ""),
-		_interlude("ui/chat/fake_career/general/000_b", ""),
+		_interlude("career/fake_career/general/000_a", ""),
+		_interlude("career/fake_career/general/000_b", ""),
 	])
 
 
 func test_potential_chat_keys_number() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
-		_interlude("ui/chat/fake_career/general/000_0", ""),
-		_interlude("ui/chat/fake_career/general/000_1", ""),
+		_interlude("career/fake_career/general/000_0", ""),
+		_interlude("career/fake_career/general/000_1", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
-		_interlude("ui/chat/fake_career/general/000_0", ""),
+		_interlude("career/fake_career/general/000_0", ""),
 	])
 
 
 func test_potential_chat_keys_letter_and_number() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include number/letter keys at same level
-		_interlude("ui/chat/fake_career/general/000_a", ""),
-		_interlude("ui/chat/fake_career/general/000_0", ""),
-		_interlude("ui/chat/fake_career/general/000_1", ""),
-		_interlude("ui/chat/fake_career/general/000_b", ""),
+		_interlude("career/fake_career/general/000_a", ""),
+		_interlude("career/fake_career/general/000_0", ""),
+		_interlude("career/fake_career/general/000_1", ""),
+		_interlude("career/fake_career/general/000_b", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
 		# letter keys are intermingled with the lowest number key
-		_interlude("ui/chat/fake_career/general/000_0", ""),
-		_interlude("ui/chat/fake_career/general/000_a", ""),
-		_interlude("ui/chat/fake_career/general/000_b", ""),
+		_interlude("career/fake_career/general/000_0", ""),
+		_interlude("career/fake_career/general/000_a", ""),
+		_interlude("career/fake_career/general/000_b", ""),
 	])
 
 
 func test_potential_chat_keys_ignore_other_numeric_branches() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include two unrelated numeric branches
-		_interlude("ui/chat/fake_career/general/000_0", ""),
-		_interlude("ui/chat/fake_career/general/000_0_a", ""),
-		_interlude("ui/chat/fake_career/general/000_0_b", ""),
-		_interlude("ui/chat/fake_career/general/000_1", ""),
-		_interlude("ui/chat/fake_career/general/000_1_a", ""),
+		_interlude("career/fake_career/general/000_0", ""),
+		_interlude("career/fake_career/general/000_0_a", ""),
+		_interlude("career/fake_career/general/000_0_b", ""),
+		_interlude("career/fake_career/general/000_1", ""),
+		_interlude("career/fake_career/general/000_1_a", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
 		# only return scenes in first numeric branch
-		_interlude("ui/chat/fake_career/general/000_0_a", ""),
-		_interlude("ui/chat/fake_career/general/000_0_b", ""),
+		_interlude("career/fake_career/general/000_0_a", ""),
+		_interlude("career/fake_career/general/000_0_b", ""),
 	])
 
 
 func test_potential_chat_keys_include_other_letter_branches() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include two unrelated letter branches
-		_interlude("ui/chat/fake_career/general/000_a", ""),
-		_interlude("ui/chat/fake_career/general/000_a_0", ""),
-		_interlude("ui/chat/fake_career/general/000_a_1", ""),
-		_interlude("ui/chat/fake_career/general/000_b", ""),
-		_interlude("ui/chat/fake_career/general/000_b_0", ""),
+		_interlude("career/fake_career/general/000_a", ""),
+		_interlude("career/fake_career/general/000_a_0", ""),
+		_interlude("career/fake_career/general/000_a_1", ""),
+		_interlude("career/fake_career/general/000_b", ""),
+		_interlude("career/fake_career/general/000_b_0", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
 		# return scenes in both letter branches
-		_interlude("ui/chat/fake_career/general/000_a_0", ""),
-		_interlude("ui/chat/fake_career/general/000_b_0", ""),
+		_interlude("career/fake_career/general/000_a_0", ""),
+		_interlude("career/fake_career/general/000_b_0", ""),
 	])
 
 
 func test_potential_chat_keys_exclude_played_leaf() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
-		_interlude("ui/chat/fake_career/general/000_0", ""),
-		_interlude("ui/chat/fake_career/general/000_1", ""),
+		_interlude("career/fake_career/general/000_0", ""),
+		_interlude("career/fake_career/general/000_1", ""),
 	]
-	PlayerData.chat_history.add_history_item("ui/chat/fake_career/general/000_0")
+	PlayerData.chat_history.add_history_item("career/fake_career/general/000_0")
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
-		_interlude("ui/chat/fake_career/general/000_1", ""),
+		_interlude("career/fake_career/general/000_1", ""),
 	])
 
 
 func test_potential_chat_keys_exclude_played_branch() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include a numeric branch with no remaining cutscenes
-		_interlude("ui/chat/fake_career/general/000_0_a", ""),
-		_interlude("", "ui/chat/fake_career/general/000_0_b_end"),
-		_interlude("ui/chat/fake_career/general/000_1_a", ""),
+		_interlude("career/fake_career/general/000_0_a", ""),
+		_interlude("", "career/fake_career/general/000_0_b_end"),
+		_interlude("career/fake_career/general/000_1_a", ""),
 	]
-	PlayerData.chat_history.add_history_item("ui/chat/fake_career/general/000_0_a")
-	PlayerData.chat_history.add_history_item("ui/chat/fake_career/general/000_0_b_end")
+	PlayerData.chat_history.add_history_item("career/fake_career/general/000_0_a")
+	PlayerData.chat_history.add_history_item("career/fake_career/general/000_0_b_end")
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career/general"
+		"career/fake_career/general"
 	]), [
 		# only return scenes in second numeric branch
-		_interlude("ui/chat/fake_career/general/000_1_a", ""),
+		_interlude("career/fake_career/general/000_1_a", ""),
 	])
 
 
 func test_potential_chat_keys_includes_chef() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include a numeric branch with no remaining cutscenes
-		_interlude("ui/chat/fake_career_2/a", ""),
-		_interlude("ui/chat/fake_career_2/b", ""),
-		_interlude("ui/chat/fake_career_2/c", ""),
+		_interlude("career/fake_career_2/a", ""),
+		_interlude("career/fake_career_2/b", ""),
+		_interlude("career/fake_career_2/c", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career_2"
+		"career/fake_career_2"
 	], "skins"), [
 		# only return scenes with skins as a chef
-		_interlude("ui/chat/fake_career_2/a", ""),
+		_interlude("career/fake_career_2/a", ""),
 	])
 
 
 func test_potential_chat_keys_includes_customer() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include a numeric branch with no remaining cutscenes
-		_interlude("ui/chat/fake_career_2/a", ""),
-		_interlude("ui/chat/fake_career_2/b", ""),
-		_interlude("ui/chat/fake_career_2/c", ""),
+		_interlude("career/fake_career_2/a", ""),
+		_interlude("career/fake_career_2/b", ""),
+		_interlude("career/fake_career_2/c", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career_2"
+		"career/fake_career_2"
 	], "", "rhonk"), [
 		# only return scenes with rhonk as a customer
-		_interlude("ui/chat/fake_career_2/b", ""),
+		_interlude("career/fake_career_2/b", ""),
 	])
 
 
@@ -215,37 +215,37 @@ func test_potential_chat_keys_includes_unnamed_customers() -> void:
 	
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# cutscenes include a numeric branch with no remaining cutscenes
-		_interlude("ui/chat/fake_career_2/a", ""),
-		_interlude("ui/chat/fake_career_2/b", ""),
-		_interlude("ui/chat/fake_career_2/c", ""),
+		_interlude("career/fake_career_2/a", ""),
+		_interlude("career/fake_career_2/b", ""),
+		_interlude("career/fake_career_2/c", ""),
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career_2"
+		"career/fake_career_2"
 	], "", CareerLevel.NONQUIRKY_CUSTOMER), [
 		# only return scenes with no named chefs/customers
-		_interlude("ui/chat/fake_career_2/c", ""),
+		_interlude("career/fake_career_2/c", ""),
 	])
 
 
 func test_potential_chat_keys_excludes_boss_levels() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		# include post-boss cutscenes, cutscenes numbered 100-199
-		_interlude("ui/chat/fake_career_2/100_a", ""),
-		_interlude("ui/chat/fake_career_2/100_b", ""),
+		_interlude("career/fake_career_2/100_a", ""),
+		_interlude("career/fake_career_2/100_b", ""),
 	]
 	
 	PlayerData.career.best_distance_travelled = 100
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career_2"
+		"career/fake_career_2"
 	]), [
 		# player has cleared the boss level, post-boss cutscenes are included
-		_interlude("ui/chat/fake_career_2/100_a", ""),
-		_interlude("ui/chat/fake_career_2/100_b", ""),
+		_interlude("career/fake_career_2/100_a", ""),
+		_interlude("career/fake_career_2/100_b", ""),
 	])
 	
 	PlayerData.career.best_distance_travelled = 0
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
-		"ui/chat/fake_career_2"
+		"career/fake_career_2"
 	]), [
 		# player hasn't cleared the boss level, post-boss cutscenes are excluded
 	])

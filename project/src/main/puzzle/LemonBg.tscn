@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/main/puzzle/lemon-bg.png" type="Texture" id=1]
-[ext_resource path="res://src/main/ScaledTextureRect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/ScaledTextureRect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/main/puzzle/lemon-bg-grass-sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/puzzle/lemon-bg-pebbles-sheet.png" type="Texture" id=4]
 

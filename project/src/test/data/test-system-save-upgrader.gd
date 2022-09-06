@@ -18,13 +18,13 @@ func after_each() -> void:
 
 func load_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/%s" % filename, "user://%s" % TEMP_FILENAME)
+	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
 	SystemSave.load_system_data()
 
 
 func load_legacy_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
+	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
 	SystemSave.load_system_data()
 
 

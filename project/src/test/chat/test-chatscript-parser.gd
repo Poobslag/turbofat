@@ -1,17 +1,17 @@
 extends "res://addons/gut/test.gd"
 
-const CUTSCENE_FULL := "res://assets/test/ui/chat/cutscene-full.chat"
-const CUTSCENE_META := "res://assets/test/ui/chat/cutscene-meta.chat"
+const CUTSCENE_FULL := "res://assets/test/chat/cutscene-full.chat"
+const CUTSCENE_META := "res://assets/test/chat/cutscene-meta.chat"
 
-const CHAT_CONDITION := "res://assets/test/ui/chat/chat-condition.chat"
-const CHAT_DEFAULT_PHRASE := "res://assets/test/ui/chat/chat-default-phrase.chat"
-const CHAT_FULL := "res://assets/test/ui/chat/chat-full.chat"
-const CHAT_LINK_MOOD := "res://assets/test/ui/chat/chat-link-mood.chat"
-const CHAT_NEWLINES := "res://assets/test/ui/chat/chat-newlines.chat"
-const CHAT_SET_PHRASE := "res://assets/test/ui/chat/chat-set-phrase.chat"
-const CHAT_SET_FLAG_STRING := "res://assets/test/ui/chat/chat-set-flag-string.chat"
-const CHAT_SET_FLAG_BOOL := "res://assets/test/ui/chat/chat-set-flag-bool.chat"
-const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
+const CHAT_CONDITION := "res://assets/test/chat/chat-condition.chat"
+const CHAT_DEFAULT_PHRASE := "res://assets/test/chat/chat-default-phrase.chat"
+const CHAT_FULL := "res://assets/test/chat/chat-full.chat"
+const CHAT_LINK_MOOD := "res://assets/test/chat/chat-link-mood.chat"
+const CHAT_NEWLINES := "res://assets/test/chat/chat-newlines.chat"
+const CHAT_SET_PHRASE := "res://assets/test/chat/chat-set-phrase.chat"
+const CHAT_SET_FLAG_STRING := "res://assets/test/chat/chat-set-flag-string.chat"
+const CHAT_SET_FLAG_BOOL := "res://assets/test/chat/chat-set-flag-bool.chat"
+const CHAT_THOUGHT := "res://assets/test/chat/chat-thought.chat"
 
 func before_each() -> void:
 	ChatLibrary.chat_key_root_path = "res://assets/test"
@@ -39,7 +39,7 @@ func test_cutscene_location() -> void:
 func test_chat_key() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
-	assert_eq(chat_tree.chat_key, "ui/chat/cutscene_full")
+	assert_eq(chat_tree.chat_key, "chat/cutscene_full")
 
 
 func test_overall_meta() -> void:

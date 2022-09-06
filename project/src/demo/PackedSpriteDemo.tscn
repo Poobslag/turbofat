@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/demo/ball-sheet.png" type="Texture" id=2]
 [ext_resource path="res://src/demo/packed-sprite-demo.gd" type="Script" id=3]
-[ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=4]
+[ext_resource path="res://src/main/utils/packed-sprite.gd" type="Script" id=4]
 
 [node name="PackedSpriteDemo" type="Node"]
 script = ExtResource( 3 )

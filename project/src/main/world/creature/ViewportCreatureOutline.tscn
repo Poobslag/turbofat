@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=19]
 [ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=20]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=21]
-[ext_resource path="res://src/main/outline.shader" type="Shader" id=23]
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
 [ext_resource path="res://src/main/world/creature/viewport-creature-outline.gd" type="Script" id=24]
 
 [sub_resource type="ShaderMaterial" id=1]
