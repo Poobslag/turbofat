@@ -14,7 +14,7 @@ onready var squisher := $Squisher
 
 onready var _states: PieceStates = get_node(piece_states_path)
 
-## Positions a new piece at the top of the _playfield.
+## Positions a new piece at the top of the playfield.
 ##
 ## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func initially_move_piece(piece: ActivePiece) -> bool:

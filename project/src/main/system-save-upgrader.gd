@@ -8,7 +8,7 @@ class_name SystemSaveUpgrader
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
 	upgrader.current_version = "37b3"
-	upgrader.add_upgrade_method(self, "_upgrade_37b3", "27bb", "37b3")
+	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "37b3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "2743", "2783")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "252a", "2783")
@@ -24,7 +24,7 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	return upgrader
 
 
-func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+func _upgrade_27bb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"keybind_settings":
 			if save_item.value.get("custom_keybinds") is Dictionary:
