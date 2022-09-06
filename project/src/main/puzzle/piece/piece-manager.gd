@@ -137,7 +137,7 @@ func exit_top_out_state() -> void:
 	piece.spawn_delay = 0
 
 
-## Spawns a new piece at the top of the _playfield.
+## Spawns a new piece at the top of the playfield.
 ##
 ## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func spawn_piece() -> bool:

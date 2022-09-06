@@ -50,7 +50,7 @@ signal combo_changed(value)
 ## it's possible for a combo to end without being reset to zero.
 signal combo_ended
 
-## emitted when the current piece can't be placed in the _playfield
+## emitted when the current piece can't be placed in the playfield
 signal topped_out
 
 const DELAY_NONE := 0.00

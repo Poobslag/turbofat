@@ -6,7 +6,7 @@ extends AudioStreamPlayer
 ## tracks which parts of the song have been played so the MusicPlayer can skip to the parts which have been played the
 ## least.
 
-## we measure which 'chunks' of music have been _played the least, this defines the chunk size
+## we measure which 'chunks' of music have been played the least, this defines the chunk size
 const CHUNK_SIZE := 6.0
 
 ## array of floats corresponding to good start positions in each song
@@ -16,10 +16,10 @@ export (Array, float) var checkpoints: Array = []
 export var song_title: String
 export var song_color: Color
 
-## array of ints corresponding to how much each 'chunk' of music has been _played
+## array of ints corresponding to how much each 'chunk' of music has been played
 var _staleness_record: Array
 
-## 'true' if the BGM node has been _played
+## 'true' if the BGM node has been played
 var _played: bool
 
 func _ready() -> void:
