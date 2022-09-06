@@ -43,7 +43,7 @@ func initially_move_piece(piece: ActivePiece) -> bool:
 
 ## Moves the piece based on player input and gravity.
 ##
-## If any move/rotate keys were pressed, this method will move the block accordingly. Gravity will then be applied.
+## If any move/rotate keys were pressed, this method will move the piece accordingly. Gravity will then be applied.
 ##
 ## Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
 ## lock reset

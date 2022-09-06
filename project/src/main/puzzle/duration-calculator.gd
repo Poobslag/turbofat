@@ -10,19 +10,19 @@ const MIN_LINES_PER_MINUTE := 8.0
 
 ## Estimated rank for each difficulty based on the various rank levels
 const RANKS_BY_DIFFICULTY := {
-	# beginner; 10-30 blocks per minute
+	# beginner; 10-30 pieces per minute
 	"T": 48.0,
 	"0": 48.0, "1": 44.0, "2": 40.0, "3": 36.0, "4": 32.0,
 	"5": 30.0, "6": 28.0, "7": 27.0, "8": 26.0, "9": 25.0,
 	
-	# normal; 30-60 blocks per minute
+	# normal; 30-60 pieces per minute
 	"A0": 24.0, "A1": 22.0, "A2": 20.0, "A3": 19.0, "A4": 18.0,
 	"A5": 17.0, "A6": 16.0, "A7": 15.0, "A8": 14.0, "A9": 13.0,
 	
-	# hard; 60-120 blocks per minute
+	# hard; 60-120 pieces per minute
 	"AA": 12.0, "AB": 11.0, "AC": 10.0, "AD": 9.0, "AE": 8.0, "AF": 7.0,
 	
-	# crazy; 120-250 blocks per minute
+	# crazy; 120-250 pieces per minute
 	"F0": 6.0, "F1": 5.0, "FA": 4.5, "FB": 4.0, "FC": 3.5,
 	"FD": 3.0, "FE": 2.5, "FF": 2.0, "FFF": 1.5,
 }

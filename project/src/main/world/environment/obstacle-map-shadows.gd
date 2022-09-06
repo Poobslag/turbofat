@@ -44,7 +44,7 @@ func _refresh_shadows() -> void:
 		var cell_id := _obstacle_map.get_cellv(cell)
 		
 		if cell_shadow_mapping.has(cell_id):
-			# block the surrounding cells for objects which are larger than the cell extents
+			# shade the surrounding cells for objects which are larger than the cell extents
 			var cell_rect: Rect2 = cell_shadow_mapping[cell_id]
 			for x in range(cell_rect.position.x + cell.x, cell_rect.end.x + cell.x):
 				for y in range(cell_rect.position.y + cell.y, cell_rect.end.y + cell.y):

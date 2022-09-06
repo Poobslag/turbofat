@@ -31,7 +31,7 @@ func _ready() -> void:
 	# tutorial; piece does not drop
 	_add_speed(PieceSpeed.new("T",   0, 20, 36, 7, 16, 60, 24, 12))
 	
-	# beginner; 10-30 blocks per minute
+	# beginner; 10-30 pieces per minute
 	_add_speed(PieceSpeed.new("0",   4, 20, 36, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("1",   5, 20, 36, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("2",   6, 20, 36, 7, 16, 60, 24, 12))
@@ -43,7 +43,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("8",  32, 20, 36, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("9",  48, 20, 36, 7, 16, 60, 24, 12))
 	
-	# normal; 30-60 blocks per minute
+	# normal; 30-60 pieces per minute
 	_add_speed(PieceSpeed.new("A0",    4, 20, 20, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("A1",   32, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("A2",   48, 20, 20, 7, 16, 40, 24, 12))
@@ -55,7 +55,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("A8",  200, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("A9",  224, 20, 20, 7, 16, 40, 24, 12))
 	
-	# hard; 60-120 blocks per minute
+	# hard; 60-120 pieces per minute
 	_add_speed(PieceSpeed.new("AA",  1*G, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("AB",  2*G, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("AC",  3*G, 20, 20, 7, 16, 40, 24, 12))
@@ -63,7 +63,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("AE", 20*G, 20, 16, 7, 10, 30, 18,  9))
 	_add_speed(PieceSpeed.new("AF", 20*G, 16, 12, 7, 10, 30, 12,  6))
 	
-	# crazy; 120-250 blocks per minute
+	# crazy; 120-250 pieces per minute
 	_add_speed(PieceSpeed.new( "F0",    4, 10, 6, 7,  8, 60, 6, 3))
 	_add_speed(PieceSpeed.new( "F1",  1*G, 10, 6, 7,  8, 40, 6, 3))
 	_add_speed(PieceSpeed.new( "FA", 20*G, 10, 6, 7,  8, 24, 6, 3))

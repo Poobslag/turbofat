@@ -6917,7 +6917,7 @@ msgid "After a hard drop, tap 'down' to delay the piece from locking!"
 msgstr ""
 
 #: project/src/main/puzzle/results-hud.gd:20
-msgid "Press 'down' to squish pieces past other pieces!"
+msgid "Press 'down' to squish pieces past other blocks!"
 msgstr ""
 
 #: project/src/main/puzzle/results-hud.gd:42

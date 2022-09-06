@@ -17,7 +17,7 @@ var _hints := [
 	tr("When a piece locks, hold both rotate keys to quickly flip the next piece!"),
 	tr("When a piece locks, hold up to quickly hard-drop the next piece!"),
 	tr("After a hard drop, tap 'down' to delay the piece from locking!"),
-	tr("Press 'down' to squish pieces past other pieces!"),
+	tr("Press 'down' to squish pieces past other blocks!"),
 ]
 
 func _ready() -> void:

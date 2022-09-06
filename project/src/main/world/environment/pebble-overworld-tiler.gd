@@ -9,10 +9,10 @@ export (NodePath) var ground_map_path: NodePath
 ## Percent of cake tiles which should have pebbles
 export (float, 0.0, 1.0) var pebble_density := 0.03
 
-## The ground tilemap's tile ID for goopless blocks
+## The ground tilemap's tile ID for goopless cells
 export (int) var ground_no_goop_tile_index: int
 
-## The ground tilemap's tile ID for goopy blocks
+## The ground tilemap's tile ID for goopy cells
 export (int) var ground_all_goop_tile_index: int
 
 ## The terrain tilemap's tile ID for pebble tiles
