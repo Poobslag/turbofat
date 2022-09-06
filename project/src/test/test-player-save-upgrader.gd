@@ -25,6 +25,12 @@ func load_legacy_player_data(filename: String) -> void:
 	PlayerSave.load_player_data()
 
 
+func load_player_data(filename: String) -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/%s" % filename, "user://%s" % TEMP_FILENAME)
+	PlayerSave.load_player_data()
+
+
 func test_15d2_rank_success() -> void:
 	load_legacy_player_data("turbofat-15d2.json")
 	
@@ -107,14 +113,14 @@ func test_2783() -> void:
 
 
 func test_27bb() -> void:
-	load_legacy_player_data("turbofat-27bb.json")
+	load_player_data("turbofat-27bb.json")
 	
 	# changed 'max_distance_travelled' to 'best_distance_travelled'
 	assert_eq(PlayerData.career.best_distance_travelled, 167)
 
 
 func test_36c3() -> void:
-	load_legacy_player_data("turbofat-36c3.json")
+	load_player_data("turbofat-36c3.json")
 	
 	# changed 'chat_theme_def' to 'chat_theme
 	assert_eq(PlayerData.creature_library.player_def.chat_theme.accent_scale, 1.33)
@@ -125,7 +131,7 @@ func test_36c3() -> void:
 
 
 func test_375c() -> void:
-	load_legacy_player_data("turbofat-375c.json")
+	load_player_data("turbofat-375c.json")
 	
 	# added missing 'finished_level' entries -- successful levels weren't recorded as finished
 	assert_eq(PlayerData.level_history.finished_levels.keys(), ["practice/marathon_normal"])
@@ -141,7 +147,7 @@ func test_375c() -> void:
 ## level's history is about 4 kb, so added together across 3 save slots and 7 (!) rotating backups, this can add up to
 ## about 4-5 megabytes that we're cleaning up
 func test_3776_level_history_purged() -> void:
-	load_legacy_player_data("turbofat-3776.json")
+	load_player_data("turbofat-3776.json")
 	
 	# finished levels
 	assert_eq(PlayerData.level_history.finished_levels.has("tutorial/basics_0"), true)
@@ -166,7 +172,7 @@ func test_3776_level_history_purged() -> void:
 ##
 ## This includes chats specific to free roam mode as well as from older Turbo Fat versions.
 func test_3776_chat_history_purged() -> void:
-	load_legacy_player_data("turbofat-3776.json")
+	load_player_data("turbofat-3776.json")
 	
 	# chat history
 	assert_eq(PlayerData.chat_history.chat_history.has("chat/career/marsh/010_b"), true)
@@ -176,7 +182,7 @@ func test_3776_chat_history_purged() -> void:
 
 
 func test_37b3_chat_history_migrated() -> void:
-	load_legacy_player_data("turbofat-37b3.json")
+	load_player_data("turbofat-37b3.json")
 	
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/general/000_b"), 10)
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/010_c_end"), 7)

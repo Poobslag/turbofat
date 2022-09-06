@@ -1,14 +1,19 @@
 extends "res://addons/gut/test.gd"
 
 func before_each() -> void:
+	PlayerData.career.reset()
 	PlayerData.creature_library.reset()
 
 
 func after_all() -> void:
+	PlayerData.career.reset()
 	PlayerData.creature_library.reset()
 
 
 func test_substitute_variables_names() -> void:
+	# Avoid triggering the 'sensei is hard-coded to Turbo' logic
+	PlayerData.career.best_distance_travelled = 100
+	
 	PlayerData.creature_library.player_def.creature_name = "Gegad Hi"
 	PlayerData.creature_library.player_def.creature_short_name = "Gegad"
 	
