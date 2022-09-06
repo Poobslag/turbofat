@@ -103,26 +103,26 @@ func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2:
 	
 	var target_pos_arr := piece.get_target_pos_arr()
 	
-	var unblocked_blocks := []
+	var unobstructed_blocks := []
 	for pos_arr_item in target_pos_arr:
-		unblocked_blocks.append(true)
+		unobstructed_blocks.append(true)
 	
 	var valid_target_pos := false
 	while not valid_target_pos and piece.target_pos.y < PuzzleTileMap.ROW_COUNT:
 		piece.target_pos.y += 1
 		valid_target_pos = true
 		for i in range(target_pos_arr.size()):
-			var valid_block_pos := not piece.is_cell_blocked(target_pos_arr[i] + piece.target_pos)
+			var valid_block_pos := not piece.is_cell_obstructed(target_pos_arr[i] + piece.target_pos)
 			valid_target_pos = valid_target_pos and valid_block_pos
-			unblocked_blocks[i] = unblocked_blocks[i] and valid_block_pos
+			unobstructed_blocks[i] = unobstructed_blocks[i] and valid_block_pos
 			
 	# for the squish to succeed, at least one block needs to have been
-	# unblocked the entire way down, and the target needs to be valid
-	var any_unblocked_blocks := false
-	for unblocked_block in unblocked_blocks:
-		if unblocked_block:
-			any_unblocked_blocks = true
-	if not valid_target_pos or not any_unblocked_blocks:
+	# unobstructed the entire way down, and the target needs to be valid
+	var any_unobstructed_blocks := false
+	for unobstructed_block in unobstructed_blocks:
+		if unobstructed_block:
+			any_unobstructed_blocks = true
+	if not valid_target_pos or not any_unobstructed_blocks:
 		piece.reset_target()
 	return piece.target_pos
 

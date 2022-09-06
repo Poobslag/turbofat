@@ -1,6 +1,6 @@
 extends Node
 ## Stores information on the various piece shapes. This includes information on their appearance, how they rotate, and
-## how they 'kick' when they're blocked from rotating.
+## how they 'kick' when they're obstructed from rotating.
 
 const KICKS_I := {
 		01: [Vector2(-2,  0), Vector2( 1,  0), Vector2(-2,  1), Vector2( 1, -2)],

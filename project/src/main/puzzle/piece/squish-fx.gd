@@ -87,17 +87,17 @@ func _handle_sfx() -> void:
 ## Initialize the squish animation for long squish moves
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	if piece.pos.y - old_pos.y >= 3:
-		var unblocked_blocks: Array = piece.type.pos_arr[piece.orientation].duplicate()
+		var unobstructed_blocks: Array = piece.type.pos_arr[piece.orientation].duplicate()
 		_squish_map.start_squish(PieceSpeeds.POST_SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
 		for dy in range(piece.pos.y - old_pos.y):
 			var i := 0
-			while i < unblocked_blocks.size():
-				var target_block_pos: Vector2 = unblocked_blocks[i] + old_pos + Vector2(0, dy)
-				if piece.is_cell_blocked(target_block_pos):
-					unblocked_blocks.remove(i)
+			while i < unobstructed_blocks.size():
+				var target_block_pos: Vector2 = unobstructed_blocks[i] + old_pos + Vector2(0, dy)
+				if piece.is_cell_obstructed(target_block_pos):
+					unobstructed_blocks.remove(i)
 				else:
 					i += 1
-			_squish_map.stretch_to(unblocked_blocks, old_pos + Vector2(0, dy))
+			_squish_map.stretch_to(unobstructed_blocks, old_pos + Vector2(0, dy))
 
 
 func _on_Level_settings_changed() -> void:

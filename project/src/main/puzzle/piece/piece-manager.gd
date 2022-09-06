@@ -81,7 +81,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
-	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
+	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_obstructed"))
 
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	_states.set_state(_states.none)
@@ -142,7 +142,7 @@ func exit_top_out_state() -> void:
 ## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func spawn_piece() -> bool:
 	var next_piece := _piece_queue.pop_next_piece()
-	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_blocked"))
+	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_obstructed"))
 	piece.orientation = next_piece.orientation
 	var success := _physics.initially_move_piece(piece)
 	emit_signal("piece_spawned")
@@ -219,7 +219,7 @@ func _prepare_tileset() -> void:
 
 
 func _clear_piece() -> void:
-	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
+	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_obstructed"))
 
 
 ## Refresh the tilemap which displays the piece, based on the current piece's position and orientation.

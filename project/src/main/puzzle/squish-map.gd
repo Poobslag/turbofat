@@ -32,13 +32,13 @@ func _process(delta: float) -> void:
 			if is_cell_empty(cell_pos):
 				continue
 			var color_x := 0
-			if row > 0 and is_cell_blocked(cell_pos + Vector2.UP):
+			if row > 0 and is_cell_obstructed(cell_pos + Vector2.UP):
 				color_x = PuzzleConnect.set_u(color_x)
-			if row < ROW_COUNT - 1 and is_cell_blocked(cell_pos + Vector2.DOWN):
+			if row < ROW_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.DOWN):
 				color_x = PuzzleConnect.set_d(color_x)
-			if col > 0 and is_cell_blocked(cell_pos + Vector2.LEFT):
+			if col > 0 and is_cell_obstructed(cell_pos + Vector2.LEFT):
 				color_x = PuzzleConnect.set_l(color_x)
-			if col < COL_COUNT - 1 and is_cell_blocked(cell_pos + Vector2.RIGHT):
+			if col < COL_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.RIGHT):
 				color_x = PuzzleConnect.set_r(color_x)
 			set_block(cell_pos, 0, Vector2(color_x, _color_y))
 	

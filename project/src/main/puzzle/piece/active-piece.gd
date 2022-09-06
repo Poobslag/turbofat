@@ -34,9 +34,9 @@ var spawn_delay := 0
 ## Piece shape, color, kick information
 var type: PieceType
 
-## A callback function which returns 'true' if a specified cell is blocked,
+## A callback function which returns 'true' if a specified cell is obstructed,
 ## either because it lies outside the playfield or is obstructed by a block
-var cell_blocked_func: FuncRef
+var cell_obstructed_func: FuncRef
 
 ## Can be enabled to trace detailed information about piece kicks
 var _trace_kicks := false
@@ -44,11 +44,11 @@ var _trace_kicks := false
 ## Parameters:
 ## 	'init_type': Piece shape, color, kick information
 ##
-## 	'init_is_cell_blocked': A callback function which returns 'true' if a specified cell is
-## 		blocked, either because it lies outside the playfield or is obstructed by a block
-func _init(init_type: PieceType, init_cell_blocked_func: FuncRef) -> void:
+## 	'init_is_cell_obstructed': A callback function which returns 'true' if a specified cell is
+## 		obstructed, either because it lies outside the playfield or is obstructed by a block
+func _init(init_type: PieceType, init_cell_obstructed_func: FuncRef) -> void:
 	type = init_type
-	cell_blocked_func = init_cell_blocked_func
+	cell_obstructed_func = init_cell_obstructed_func
 	
 	orientation %= type.pos_arr.size()
 
@@ -66,10 +66,10 @@ func center() -> Vector2:
 	return cell_bounds.position + cell_bounds.size / 2.0 + pos
 
 
-## Returns 'true' if a specified playfield cell is blocked, either
+## Returns 'true' if a specified playfield cell is obstructed, either
 ## because it lies outside the playfield or is obstructed by a block.
-func is_cell_blocked(cell_pos: Vector2) -> bool:
-	return cell_blocked_func.call_func(cell_pos)
+func is_cell_obstructed(cell_pos: Vector2) -> bool:
+	return cell_obstructed_func.call_func(cell_pos)
 
 
 func reset_target() -> void:
@@ -121,7 +121,7 @@ func can_move_to(new_pos: Vector2, new_orientation: int) -> bool:
 		valid_target_pos = false
 	else:
 		for block_pos in type.pos_arr[new_orientation]:
-			valid_target_pos = valid_target_pos and not is_cell_blocked(new_pos + block_pos)
+			valid_target_pos = valid_target_pos and not is_cell_obstructed(new_pos + block_pos)
 	return valid_target_pos
 
 
@@ -179,14 +179,14 @@ func can_floor_kick() -> bool:
 	return floor_kicks < MAX_FLOOR_KICKS
 
 
-## Returns 'true' if the piece is blocked from moving in all four directions.
+## Returns 'true' if the piece is obstructed from moving in all four directions.
 func is_sealed() -> bool:
 	var sealed := true
 	var pos_arr := get_pos_arr()
 	for dir in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
 		var dir_sealed := false
 		for cell_pos in pos_arr:
-			if is_cell_blocked(pos + cell_pos + dir):
+			if is_cell_obstructed(pos + cell_pos + dir):
 				dir_sealed = true
 				break
 		if not dir_sealed:

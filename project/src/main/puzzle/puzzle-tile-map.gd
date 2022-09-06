@@ -138,7 +138,7 @@ func is_cell_empty(pos: Vector2) -> bool:
 
 
 ## Returns 'true' if the specified cell is outside the playfield bounds or contains a block.
-func is_cell_blocked(pos: Vector2) -> bool:
+func is_cell_obstructed(pos: Vector2) -> bool:
 	return not is_cell_empty(pos)
 
 

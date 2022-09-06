@@ -1,6 +1,6 @@
 class_name PieceType
 ## Stores information on a piece shape. This includes information on its appearance, how it rotates, and how it 'kicks'
-## when it's blocked from rotating.
+## when it's obstructed from rotating.
 
 ## string representation when debugging; 'j', 'l', etc...
 var string: String
