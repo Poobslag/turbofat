@@ -16,6 +16,12 @@ func after_each() -> void:
 	save_dir.remove(TEMP_LEGACY_FILENAME)
 
 
+func load_player_data(filename: String) -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/%s" % filename, "user://%s" % TEMP_FILENAME)
+	SystemSave.load_system_data()
+
+
 func load_legacy_player_data(filename: String) -> void:
 	var dir := Directory.new()
 	dir.copy("res://assets/test/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
@@ -23,14 +29,16 @@ func load_legacy_player_data(filename: String) -> void:
 
 
 func test_1b3c() -> void:
+	var original_locale := TranslationServer.get_locale()
 	load_legacy_player_data("turbofat-1b3c.json")
 	
 	# 'miscellaneous settings' were renamed to 'misc settings'
 	assert_eq(TranslationServer.get_locale(), "es")
+	TranslationServer.set_locale(original_locale)
 
 
 func test_27bb() -> void:
-	load_legacy_player_data("turbofat-1b3c.json")
+	load_player_data("config-27bb.json")
 	
 	assert_eq(SystemData.keybind_settings.custom_keybinds.has("interact"), false)
 	assert_eq(SystemData.keybind_settings.custom_keybinds.has("phone"), false)
