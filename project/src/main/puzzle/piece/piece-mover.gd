@@ -115,7 +115,7 @@ func apply_move_input(piece: ActivePiece) -> void:
 	# direction but DAS hasn't yet activated.
 	#
 	# Otherwise, there are some unusual situations 'O' pieces in a central 3-column well will get instant DAS to the
-	# right (where they're blocked) but not to the left (where they can move)
+	# right (where they're obstructed) but not to the left (where they can move)
 	if input.is_left_pressed() and not piece.can_move_to(piece.pos + Vector2.LEFT, piece.orientation):
 		input.set_left_das_active()
 	if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2.RIGHT, piece.orientation):

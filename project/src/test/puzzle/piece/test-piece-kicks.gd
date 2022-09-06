@@ -85,11 +85,11 @@ func _kick_piece() -> Vector2:
 	var piece := from_analyzer.create_active_piece(from_orientation)
 	piece.target_orientation = _to_piece.orientation
 	
-	# if the piece is blocked, kick the piece
+	# if the piece is obstructed, kick the piece
 	if not piece.can_move_to(piece.target_pos, piece.target_orientation):
 		piece.kick_piece()
 	
-	# if the piece is still blocked, it's a failed kick
+	# if the piece is still obstructed, it's a failed kick
 	if not piece.can_move_to(piece.target_pos, piece.target_orientation):
 		result = FAILED_KICK
 	else:

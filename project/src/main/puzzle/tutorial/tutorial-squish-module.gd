@@ -145,7 +145,7 @@ func _show_next_diagram() -> void:
 			1: hud_messages.append(tr("These examples on the right don't work,"
 					+ " because the piece can't \"see\" where it's going."))
 			2: hud_messages.append(tr("You can think of it like..."
-					+ "\n\nIf the piece were split into tiny chunks, would each chunk be blocked?"))
+					+ "\n\nIf the piece were split into tiny chunks, would each chunk be obstructed?"))
 			3: hud_messages.append(tr("These examples on the left work,"
 					+ " because one tiny chunk of the piece has a clear path.\n\nIt just needs one."))
 	hud.set_messages(hud_messages)

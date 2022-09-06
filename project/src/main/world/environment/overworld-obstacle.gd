@@ -1,6 +1,6 @@
 class_name OverworldObstacle
 extends KinematicBody2D
-## Something which blocks the player on the overworld, such as a tree or bush.
+## Something which obstructs the player on the overworld, such as a tree or bush.
 ##
 ## These objects can also be inspected (talked to) if the chat_key is set.
 

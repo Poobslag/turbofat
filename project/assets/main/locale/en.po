@@ -2198,11 +2198,11 @@ msgstr ""
 msgid ""
 "You can think of it like...\n"
 "\n"
-"If the piece were split into tiny chunks, would each chunk be blocked?"
+"If the piece were split into tiny chunks, would each chunk be obstructed?"
 msgstr ""
 "You can think of it like...\n"
 "\n"
-"If the piece were split into tiny chunks, would each chunk be blocked?"
+"If the piece were split into tiny chunks, would each chunk be obstructed?"
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:164
 msgid ""
