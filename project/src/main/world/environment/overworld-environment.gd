@@ -51,7 +51,6 @@ func add_creature(creature_id: String = "") -> Creature:
 	var creature: Creature = CreatureScene.instance()
 	creature.creature_id = creature_id
 	_obstacles.add_child(creature)
-	CreatureManager.register_creature(creature)
 	process_new_obstacle(creature)
 	return creature
 
@@ -66,15 +65,3 @@ func process_new_obstacle(obstacle: Node2D) -> void:
 		_environment_shadows.create_creature_shadow(obstacle)
 	else:
 		_environment_shadows.create_shadow_caster_shadow(obstacle)
-
-
-## Locates the creature with the specified creature_id.
-func find_creature(creature_id: String) -> Creature:
-	var creature: Creature
-	
-	for creature_node in get_tree().get_nodes_in_group("creatures"):
-		if creature_node.creature_id == creature_id:
-			creature = creature_node
-			break
-	
-	return creature
