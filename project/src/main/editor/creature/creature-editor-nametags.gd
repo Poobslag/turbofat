@@ -4,8 +4,8 @@ extends Node
 ## Creates a nametag for each creature in the scene.
 
 ## nametag colors for focused/unfocused creatures
-const NAMETAG_HIGHLIGHT = Color("303060")
-const NAMETAG_LOWLIGHT = Color.darkgray
+const NAMETAG_HIGHLIGHT := Color("303060")
+const NAMETAG_LOWLIGHT := Color.darkgray
 
 export (PackedScene) var HookableNametagScene: PackedScene
 

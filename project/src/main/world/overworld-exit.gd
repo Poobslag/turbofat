@@ -16,14 +16,14 @@ enum ExitDirection {
 	NORTHWEST
 }
 
-const NORTH = ExitDirection.NORTH
-const NORTHEAST = ExitDirection.NORTHEAST
-const EAST = ExitDirection.EAST
-const SOUTHEAST = ExitDirection.SOUTHEAST
-const SOUTH = ExitDirection.SOUTH
-const SOUTHWEST = ExitDirection.SOUTHWEST
-const WEST = ExitDirection.WEST
-const NORTHWEST = ExitDirection.NORTHWEST
+const NORTH := ExitDirection.NORTH
+const NORTHEAST := ExitDirection.NORTHEAST
+const EAST := ExitDirection.EAST
+const SOUTHEAST := ExitDirection.SOUTHEAST
+const SOUTH := ExitDirection.SOUTH
+const SOUTHWEST := ExitDirection.SOUTHWEST
+const WEST := ExitDirection.WEST
+const NORTHWEST := ExitDirection.NORTHWEST
 
 ## key: (int) an enum from ExitDirection
 ## value: (Vector2) a non-isometric unit vector in the direction the exit is facing

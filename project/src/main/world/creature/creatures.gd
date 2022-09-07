@@ -61,10 +61,10 @@ enum Type {
 
 const CREATURE_DATA_VERSION := "375c"
 
-const SOUTHEAST = Orientation.SOUTHEAST
-const SOUTHWEST = Orientation.SOUTHWEST
-const NORTHWEST = Orientation.NORTHWEST
-const NORTHEAST = Orientation.NORTHEAST
+const SOUTHEAST := Orientation.SOUTHEAST
+const SOUTHWEST := Orientation.SOUTHWEST
+const NORTHWEST := Orientation.NORTHWEST
+const NORTHEAST := Orientation.NORTHEAST
 
 const IDLE := MovementMode.IDLE
 const SPRINT := MovementMode.SPRINT

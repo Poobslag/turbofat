@@ -12,9 +12,9 @@ enum SquishState {
 	VALID, # valid; there's empty space beneath the piece
 }
 
-const UNKNOWN = SquishState.UNKNOWN
-const INVALID = SquishState.INVALID
-const VALID = SquishState.VALID
+const UNKNOWN := SquishState.UNKNOWN
+const INVALID := SquishState.INVALID
+const VALID := SquishState.VALID
 
 export (NodePath) var input_path: NodePath
 

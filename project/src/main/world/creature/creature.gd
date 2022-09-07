@@ -20,7 +20,7 @@ signal landed
 signal fade_in_finished
 signal fade_out_finished
 
-const IDLE = Creatures.IDLE
+const IDLE := Creatures.IDLE
 
 ## Number from [0.0, 1.0] which determines how quickly the creature slows down
 const FRICTION := 0.15
