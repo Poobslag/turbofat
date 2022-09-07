@@ -34,9 +34,9 @@ const THIS_WEEK := Backup.THIS_WEEK
 const PREV_WEEK := Backup.PREV_WEEK
 const LEGACY := Backup.LEGACY
 
-const SECONDS_PER_MINUTE = 60
-const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
-const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
+const SECONDS_PER_MINUTE := 60
+const SECONDS_PER_HOUR := 60 * SECONDS_PER_MINUTE
+const SECONDS_PER_DAY := 24 * SECONDS_PER_HOUR
 
 ## Filename for the current save. Backup filenames are derived based on this filename
 var data_filename: String

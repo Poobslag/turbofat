@@ -7,7 +7,7 @@ extends Control
 signal pressed
 
 ## radius from the eightway's center where touches should be processed. significantly larger than its visual radius
-const RADIUS = 180
+const RADIUS := 180
 
 ## actions associated with each cardinal direction. if omitted, the button will not be shown
 export (String) var up_action: String setget set_up_action

@@ -4,7 +4,7 @@ extends AnimationPlayer
 ## An AnimationPlayer which animates mouths.
 
 ## emote animations which should result in a frown, if the mouth is capable of frowning
-const FROWN_ANIMS = {
+const FROWN_ANIMS := {
 	"ambient-sweat": "",
 	"cry0": "",
 	"cry1": "",

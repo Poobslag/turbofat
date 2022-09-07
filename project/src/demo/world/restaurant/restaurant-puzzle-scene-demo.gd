@@ -7,7 +7,7 @@ extends Node
 ## 	[Q,W,E,R]: Switch to the 1st, 2nd or 3rd creature.
 ## 	brace keys: Change the creature's appearance
 
-const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+const FATNESS_KEYS := [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
 onready var _scene: RestaurantPuzzleScene = $RestaurantPuzzleScene
 
