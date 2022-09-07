@@ -54,7 +54,7 @@ func _remove_all_creatures() -> void:
 ## Adds all creatures referenced by the cutscene's chat tree.
 func _add_cutscene_creatures() -> void:
 	for creature_id in CurrentCutscene.chat_tree.spawn_locations:
-		var creature: Creature = overworld_environment.find_creature(creature_id)
+		var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
 		if not creature:
 			creature = overworld_environment.add_creature(creature_id)
 		creature.set_collision_disabled(true)
@@ -63,7 +63,7 @@ func _add_cutscene_creatures() -> void:
 ## Moves all cutscene creatures to their proper locations.
 func _arrange_creatures() -> void:
 	for creature_id in CurrentCutscene.chat_tree.spawn_locations:
-		var creature: Creature = overworld_environment.find_creature(creature_id)
+		var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
 		var spawn_id: String = CurrentCutscene.chat_tree.spawn_locations[creature_id]
 		
 		# move the creature to its spawn location
