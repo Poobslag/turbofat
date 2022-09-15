@@ -14,9 +14,9 @@
 [ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=14]
-[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=15]
+[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=15]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=17]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=17]
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=3]

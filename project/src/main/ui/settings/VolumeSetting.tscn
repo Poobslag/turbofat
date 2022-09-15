@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/settings/volume-setting-control.gd" type="Script" id=2]
+[ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=4]
+
+[node name="Setting" type="HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -10.0
+margin_right = 200.0
+margin_bottom = 10.0
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer1" type="Control" parent="."]
+margin_right = 18.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Label" type="Label" parent="."]
+margin_left = 38.0
+margin_right = 158.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Music"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 178.0
+margin_right = 361.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 140, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+margin_top = 2.0
+margin_right = 113.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Percent" type="Label" parent="HBoxContainer"]
+margin_left = 123.0
+margin_right = 183.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 0 )
+text = "100%"
+
+[node name="Spacer2" type="Control" parent="."]
+margin_left = 381.0
+margin_right = 400.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="SampleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SampleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound Bus"
+
+[node name="SampleVoice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 6.0
+bus = "Voice Bus"

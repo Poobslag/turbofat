@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/demo/toolkit/fix-levels-button.gd" type="Script" id=1]
 [ext_resource path="res://src/demo/toolkit/extract-localizables-button.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=4]
+[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=4]
 [ext_resource path="res://src/demo/toolkit/fix-chats-button.gd" type="Script" id=5]
 [ext_resource path="res://src/demo/toolkit/fix-creatures-button.gd" type="Script" id=6]
 

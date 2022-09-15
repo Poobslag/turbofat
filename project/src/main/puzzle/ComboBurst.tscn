@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/main/puzzle/modak-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/main/ui/font/modak-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/main/puzzle/combo-burst.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/BurstAccent.tscn" type="PackedScene" id=5]
 

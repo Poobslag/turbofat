@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/world/cutscene-ui.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=5]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/chat/ui/ChatUi.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=20]

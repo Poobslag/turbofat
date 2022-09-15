@@ -27,14 +27,14 @@ var _emit_region_started := false
 ## key: (int) an enum from RegionSelectButton.Type
 ## value: (Array, Resource) a pair of texture resources to use when the button is enabled or disabled
 var _texture_pairs_by_type := {
-	Type.NONE: [preload("res://assets/main/ui/career/region-default.png"),
-			preload("res://assets/main/ui/career/region-default-off.png")],
-	Type.LEMON: [preload("res://assets/main/ui/career/region-lemon.png"),
-			preload("res://assets/main/ui/career/region-lemon-off.png")],
-	Type.LEMON_2: [preload("res://assets/main/ui/career/region-lemon-2.png"),
-			preload("res://assets/main/ui/career/region-lemon-2-off.png")],
-	Type.MARSH: [preload("res://assets/main/ui/career/region-marsh.png"),
-			preload("res://assets/main/ui/career/region-marsh-off.png")],
+	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),
+			preload("res://assets/main/career/ui/region-default-off.png")],
+	Type.LEMON: [preload("res://assets/main/career/ui/region-lemon.png"),
+			preload("res://assets/main/career/ui/region-lemon-off.png")],
+	Type.LEMON_2: [preload("res://assets/main/career/ui/region-lemon-2.png"),
+			preload("res://assets/main/career/ui/region-lemon-2-off.png")],
+	Type.MARSH: [preload("res://assets/main/career/ui/region-marsh.png"),
+			preload("res://assets/main/career/ui/region-marsh-off.png")],
 }
 
 ## text to show at the top of the button, like 'Merrymellow Marsh'

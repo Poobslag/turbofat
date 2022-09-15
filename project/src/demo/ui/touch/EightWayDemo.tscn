@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/demo/ui/touch/eight-way-demo.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=3]
 
 [node name="Demo" type="Node"]
 script = ExtResource( 2 )

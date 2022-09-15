@@ -2326,27 +2326,27 @@ msgid "9,999 m"
 msgstr "9,999 m"
 
 #: project/src/main/ui/NametagPanel.tscn:37
-#: project/src/main/ui/chat/ChatFrame.tscn:61
+#: project/src/main/chat/ui/ChatFrame.tscn:61
 msgid "Lorem ipsu"
 msgstr "Lorem ipsu"
 
 #: project/src/main/ui/NametagPanel.tscn:58
-#: project/src/main/ui/chat/ChatFrame.tscn:82
+#: project/src/main/chat/ui/ChatFrame.tscn:82
 msgid "Lorem ipsum dolor s"
 msgstr "Lorem ipsum dolor s"
 
 #: project/src/main/ui/NametagPanel.tscn:80
-#: project/src/main/ui/chat/ChatFrame.tscn:104
+#: project/src/main/chat/ui/ChatFrame.tscn:104
 msgid "Lorem ipsum dolor sit amet"
 msgstr "Lorem ipsum dolor sit amet"
 
 #: project/src/main/ui/NametagPanel.tscn:103
-#: project/src/main/ui/chat/ChatFrame.tscn:127
+#: project/src/main/chat/ui/ChatFrame.tscn:127
 msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 
 #: project/src/main/ui/NametagPanel.tscn:125
-#: project/src/main/ui/chat/ChatFrame.tscn:149
+#: project/src/main/chat/ui/ChatFrame.tscn:149
 #: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:129
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
@@ -2493,12 +2493,12 @@ msgstr "Ok"
 msgid "v1.2.3.4"
 msgstr "v1.2.3.4"
 
-#: project/src/main/ui/VolumeSetting.tscn:37
-#: project/src/main/ui/volume-setting-control.gd:57
+#: project/src/main/ui/settings/VolumeSetting.tscn:37
+#: project/src/main/ui/settings/volume-setting-control.gd:57
 msgid "Music"
 msgstr "Music"
 
-#: project/src/main/ui/VolumeSetting.tscn:74
+#: project/src/main/ui/settings/VolumeSetting.tscn:74
 msgid "100%"
 msgstr "100%"
 
@@ -2570,28 +2570,28 @@ msgstr "Loco Console"
 msgid "Loco Desktop"
 msgstr "Loco Desktop"
 
-#: project/src/main/ui/volume-setting-control.gd:47
+#: project/src/main/ui/settings/volume-setting-control.gd:47
 msgid "Mute"
 msgstr "Mute"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:234
-#: project/src/main/ui/volume-setting-control.gd:56
+#: project/src/main/ui/settings/volume-setting-control.gd:56
 msgid "Master"
 msgstr "Master"
 
-#: project/src/main/ui/volume-setting-control.gd:58
+#: project/src/main/ui/settings/volume-setting-control.gd:58
 msgid "Sounds"
 msgstr "Sounds"
 
-#: project/src/main/ui/volume-setting-control.gd:59
+#: project/src/main/ui/settings/volume-setting-control.gd:59
 msgid "Voices"
 msgstr "Voices"
 
-#: project/src/main/ui/chat/ChatChoiceButton.tscn:188
+#: project/src/main/chat/ui/ChatChoiceButton.tscn:188
 msgid "Oh bother"
 msgstr "Oh bother"
 
-#: project/src/main/ui/chat/ChatLineLabel.tscn:18
+#: project/src/main/chat/ui/ChatLineLabel.tscn:18
 msgid "Hello"
 msgstr "Hello"
 

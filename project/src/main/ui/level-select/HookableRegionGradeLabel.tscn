@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://src/main/ui/career/hookable-region-grade-label.gd" type="Script" id=2]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/career/ui/hookable-region-grade-label.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/level-select/grade-label.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]

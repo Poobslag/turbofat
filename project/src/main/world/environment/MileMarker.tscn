@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/main/world/environment/mile-marker-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/environment/outline-material-15.tres" type="Material" id=2]
 [ext_resource path="res://src/main/world/environment/mile-marker.gd" type="Script" id=3]
-[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24

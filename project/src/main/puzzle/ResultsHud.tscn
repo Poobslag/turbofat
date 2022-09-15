@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/main/puzzle/results-hud.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/results-label.gd" type="Script" id=4]
-[ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/main/chat/ui/bebebe.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/main/ui/cheat-enable.wav" type="AudioStream" id=8]
 
 [node name="ResultsHud" type="Control"]

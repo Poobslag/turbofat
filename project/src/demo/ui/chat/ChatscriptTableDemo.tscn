@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/demo/ui/chat/chatscript-table-demo.gd" type="Script" id=2]
+[ext_resource path="res://src/demo/chat/ui/chatscript-table-demo.gd" type="Script" id=2]
 
 [node name="Demo" type="Node"]
 script = ExtResource( 2 )

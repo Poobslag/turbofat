@@ -900,7 +900,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:223
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:44
 #: project/src/main/ui/menu/region-info-panel.gd:29
-#: project/src/main/ui/volume-setting-control.gd:54
+#: project/src/main/ui/settings/volume-setting-control.gd:54
 msgid "Master"
 msgstr "Maestro"
 
@@ -8339,27 +8339,27 @@ msgid "9,999 m"
 msgstr "9.999 m"
 
 #: project/src/main/ui/NametagPanel.tscn:37
-#: project/src/main/ui/chat/ChatFrame.tscn:64
+#: project/src/main/chat/ui/ChatFrame.tscn:64
 msgid "Lorem ipsu"
 msgstr "Lorem ipsu"
 
 #: project/src/main/ui/NametagPanel.tscn:58
-#: project/src/main/ui/chat/ChatFrame.tscn:85
+#: project/src/main/chat/ui/ChatFrame.tscn:85
 msgid "Lorem ipsum dolor s"
 msgstr "Lorem ipsum dolor s"
 
 #: project/src/main/ui/NametagPanel.tscn:80
-#: project/src/main/ui/chat/ChatFrame.tscn:107
+#: project/src/main/chat/ui/ChatFrame.tscn:107
 msgid "Lorem ipsum dolor sit amet"
 msgstr "Lorem ipsum dolor sit amet"
 
 #: project/src/main/ui/NametagPanel.tscn:103
-#: project/src/main/ui/chat/ChatFrame.tscn:130
+#: project/src/main/chat/ui/ChatFrame.tscn:130
 msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 
 #: project/src/main/ui/NametagPanel.tscn:125
-#: project/src/main/ui/chat/ChatFrame.tscn:152
+#: project/src/main/chat/ui/ChatFrame.tscn:152
 #: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:129
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
@@ -8372,12 +8372,12 @@ msgstr ""
 msgid "v1.2.3.4"
 msgstr "v1.2.3.4"
 
-#: project/src/main/ui/VolumeSetting.tscn:37
-#: project/src/main/ui/volume-setting-control.gd:55
+#: project/src/main/ui/settings/VolumeSetting.tscn:37
+#: project/src/main/ui/settings/volume-setting-control.gd:55
 msgid "Music"
 msgstr "Música"
 
-#: project/src/main/ui/VolumeSetting.tscn:74
+#: project/src/main/ui/settings/VolumeSetting.tscn:74
 msgid "100%"
 msgstr "100%"
 
@@ -8385,171 +8385,171 @@ msgstr "100%"
 msgid "All-time Best"
 msgstr "Mejor de Todos"
 
-#: project/src/main/ui/volume-setting-control.gd:45
+#: project/src/main/ui/settings/volume-setting-control.gd:45
 msgid "Mute"
 msgstr "Mudo"
 
-#: project/src/main/ui/volume-setting-control.gd:56
+#: project/src/main/ui/settings/volume-setting-control.gd:56
 msgid "Sounds"
 msgstr "Sonidos"
 
-#: project/src/main/ui/volume-setting-control.gd:57
+#: project/src/main/ui/settings/volume-setting-control.gd:57
 msgid "Voices"
 msgstr "Voces"
 
-#: project/src/main/ui/career/CareerWin.tscn:173
-#: project/src/main/ui/career/chalkboard-title.gd:13
+#: project/src/main/career/ui/CareerWin.tscn:173
+#: project/src/main/career/ui/chalkboard-title.gd:13
 msgid "LOOK WHAT WE DID"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:283
+#: project/src/main/career/ui/CareerWin.tscn:283
 msgid "Served:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:296
+#: project/src/main/career/ui/CareerWin.tscn:296
 msgid "132"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:349
+#: project/src/main/career/ui/CareerWin.tscn:349
 msgid "Steps:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:362
+#: project/src/main/career/ui/CareerWin.tscn:362
 msgid "23"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:427
+#: project/src/main/career/ui/CareerWin.tscn:427
 msgid "Earned:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:440
+#: project/src/main/career/ui/CareerWin.tscn:440
 msgid "¥999,999"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:493
+#: project/src/main/career/ui/CareerWin.tscn:493
 msgid "Time:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:506
+#: project/src/main/career/ui/CareerWin.tscn:506
 msgid "15:03"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:571
+#: project/src/main/career/ui/CareerWin.tscn:571
 #: project/src/main/ui/settings/SettingsMenu.tscn:1037
 msgid "Ok"
 msgstr "Ok"
 
-#: project/src/main/ui/career/ChalkboardMapRow.tscn:178
-#: project/src/main/ui/career/Landmark.tscn:43
+#: project/src/main/career/ui/ChalkboardMapRow.tscn:178
+#: project/src/main/career/ui/Landmark.tscn:43
 #: project/src/main/world/CareerMap.tscn:149
 msgid "999,999"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:7
+#: project/src/main/career/ui/career-time-label.gd:7
 msgid "?:?? zm"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:12
+#: project/src/main/career/ui/career-time-label.gd:12
 msgid "8:00 am"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:13
+#: project/src/main/career/ui/career-time-label.gd:13
 msgid "9:10 am"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:14
+#: project/src/main/career/ui/career-time-label.gd:14
 msgid "10:15 am"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:15
+#: project/src/main/career/ui/career-time-label.gd:15
 msgid "11:20 am"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:16
+#: project/src/main/career/ui/career-time-label.gd:16
 msgid "12:30 pm"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:17
+#: project/src/main/career/ui/career-time-label.gd:17
 msgid "1:40 pm"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:18
+#: project/src/main/career/ui/career-time-label.gd:18
 msgid "2:45 pm"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:19
+#: project/src/main/career/ui/career-time-label.gd:19
 msgid "3:50 pm"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:20
+#: project/src/main/career/ui/career-time-label.gd:20
 msgid "5:00 pm"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:8
+#: project/src/main/career/ui/chalkboard-title.gd:8
 msgid "CONGRATULATIONS"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:9
+#: project/src/main/career/ui/chalkboard-title.gd:9
 msgid "WE DID IT"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:10
+#: project/src/main/career/ui/chalkboard-title.gd:10
 msgid "HOORAY"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:11
+#: project/src/main/career/ui/chalkboard-title.gd:11
 msgid "FANTASTIC"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:12
+#: project/src/main/career/ui/chalkboard-title.gd:12
 msgid "YAHOO FOR US"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:14
+#: project/src/main/career/ui/chalkboard-title.gd:14
 msgid "GOSH! WE'RE SO COOL"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:15
+#: project/src/main/career/ui/chalkboard-title.gd:15
 msgid "WELL HOORAY"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:16
+#: project/src/main/career/ui/chalkboard-title.gd:16
 msgid "AMAZING"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:21
+#: project/src/main/career/ui/chalkboard-title.gd:21
 msgid "OH! WHAT A DAY"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:22
+#: project/src/main/career/ui/chalkboard-title.gd:22
 msgid "THAT'S FINE"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:23
+#: project/src/main/career/ui/chalkboard-title.gd:23
 msgid "LET'S GO HOME"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:28
+#: project/src/main/career/ui/chalkboard-title.gd:28
 msgid "OH DEAR WHAT HAPPENED"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:29
+#: project/src/main/career/ui/chalkboard-title.gd:29
 msgid "OH! NO! GO ON TRYING"
 msgstr ""
 
-#: project/src/main/ui/career/chalkboard-title.gd:30
+#: project/src/main/career/ui/chalkboard-title.gd:30
 msgid "GOSH THAT'S NOT GOOD"
 msgstr ""
 
-#: project/src/main/ui/chat/ChatChoiceButton.tscn:248
+#: project/src/main/chat/ui/ChatChoiceButton.tscn:248
 msgid "Oh bother"
 msgstr "Oh hermano"
 
-#: project/src/main/ui/chat/ChatLineLabel.tscn:19
+#: project/src/main/chat/ui/ChatLineLabel.tscn:19
 msgid "Hello"
 msgstr "Hola"
 
-#: project/src/main/ui/chat/NarrationFrame.tscn:46
+#: project/src/main/chat/ui/NarrationFrame.tscn:46
 msgid ""
 "Most of the Turbo Fat locations gradually developed a loyal following of "
 "hungry customers, except for Merrymellow Marsh where business was unusually "

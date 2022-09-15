@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
-[ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=2]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=2]
 [ext_resource path="res://src/main/ui/settings/keybind/custom-keybind-button.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/settings/keybind/custom-keybind-row.gd" type="Script" id=4]
 
