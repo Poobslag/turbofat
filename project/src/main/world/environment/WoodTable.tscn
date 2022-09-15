@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/world/restaurant/wood-table.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/restaurant/wood-table.png" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

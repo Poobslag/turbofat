@@ -71,8 +71,8 @@ project/assets/main/ui/cheat-disable.wav "\GameBurp - 2000 Game Sound FX Collect
 project/assets/main/ui/cheat-enable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 project/assets/main/ui/touch/duck.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Chef_A_03_Cartoon_Voice.wav"
 project/assets/main/ui/transition-pieces.wav Shuffling cards (riffle) 03.WAV by VKProduktion from freesound.org; licensed under creative commons universal license https://creativecommons.org/publicdomain/zero/1.0/
-project/assets/main/world/chef/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
-project/assets/main/world/chef/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
+project/assets/main/world/creature/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
+project/assets/main/world/creature/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
 project/assets/main/world/customer/combo-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
 project/assets/main/world/customer/goodbye-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
 project/assets/main/world/customer/hello-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
@@ -80,7 +80,7 @@ project/assets/main/world/customer/move-bonk.wav "\Cooking_Game_16bit\Cooking_Ga
 project/assets/main/world/customer/move-hop.wav Cooking_Game_16bit
 project/assets/main/world/customer/munch*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
 project/assets/main/world/environment/poof-in.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Pop_05.wav"
-project/assets/main/world/restaurant/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
+project/assets/main/world/environment/restaurant/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
 
 Graphics
 --------------------------------------------------------------------------------

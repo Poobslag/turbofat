@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/main/world/restaurant/restaurant-puzzle-camera.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/demo/world/restaurant/restaurant-puzzle-scene-demo.gd" type="Script" id=4]
+[ext_resource path="res://src/main/world/environment/restaurant/restaurant-puzzle-camera.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/demo/world/environment/restaurant/restaurant-puzzle-scene-demo.gd" type="Script" id=4]
 
 [node name="Demo" type="Node"]
 script = ExtResource( 4 )

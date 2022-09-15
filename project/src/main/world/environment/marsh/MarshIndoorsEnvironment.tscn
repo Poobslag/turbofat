@@ -1,7 +1,7 @@
 [gd_scene load_steps=38 format=2]
 
-[ext_resource path="res://src/main/world/restaurant/indoor-obstacle-library.tres" type="TileSet" id=1]
-[ext_resource path="res://src/main/world/restaurant/floor-library.tres" type="TileSet" id=2]
+[ext_resource path="res://src/main/world/environment/restaurant/indoor-obstacle-library.tres" type="TileSet" id=1]
+[ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=4]
 [ext_resource path="res://src/main/world/environment/marsh/KitchenFloorTiler.tscn" type="PackedScene" id=5]
