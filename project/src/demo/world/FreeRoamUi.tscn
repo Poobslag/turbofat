@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=1]
+[ext_resource path="res://src/demo/world/overworld-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]

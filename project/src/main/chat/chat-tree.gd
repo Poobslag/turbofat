@@ -27,17 +27,17 @@ const CHAT_DATA_VERSION := "1922"
 
 const DEFAULT_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
-const DECORATED_RESTAURANT_PATH := "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn"
-const UNDECORATED_RESTAURANT_PATH := "res://src/main/world/environment/marsh/UndecoratedIndoorsEnvironment.tscn"
+const DECORATED_RESTAURANT_PATH := "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn"
+const UNDECORATED_RESTAURANT_PATH := "res://src/main/world/environment/restaurant/UndecoratedTurboFatEnvironment.tscn"
 
 const ENVIRONMENT_SCENE_PATHS_BY_ID := {
-	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
-	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
-	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
+	"inside_turbo_fat": "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn",
 	
+	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
+	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
+	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
 	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
 	"marsh/walk": "res://src/main/world/environment/marsh/MarshWalkEnvironment.tscn",
-	"marsh/inside_turbo_fat": "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn",
 }
 
 ## unique key to identify this conversation in the chat history
@@ -180,7 +180,7 @@ func reset() -> void:
 ##
 ## This signifies that this cutscene should not be played if the player does not have a restaurant.
 func inside_restaurant() -> bool:
-	return location_id in ["marsh/inside_turbo_fat"]
+	return location_id in ["inside_turbo_fat"]
 
 
 ## Returns 'true' if this cutscene features Fat Sensei.
