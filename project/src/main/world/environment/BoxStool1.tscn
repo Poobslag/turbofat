@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
-[ext_resource path="res://assets/main/world/restaurant/box-stool-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/world/environment/restaurant/box-stool-1.png" type="Texture" id=2]
 [ext_resource path="res://src/main/world/environment/stool.gd" type="Script" id=4]
-[ext_resource path="res://assets/main/world/restaurant/box-stool-1-occupied.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/world/environment/restaurant/box-stool-1-occupied.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

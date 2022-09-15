@@ -8360,7 +8360,7 @@ msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 
 #: project/src/main/ui/NametagPanel.tscn:125
 #: project/src/main/chat/ui/ChatFrame.tscn:152
-#: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:129
+#: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:129
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
 "tempor incidid"
@@ -9107,19 +9107,19 @@ msgstr "O"
 msgid "99"
 msgstr ""
 
-#: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:38
+#: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:38
 msgid "Bug"
 msgstr "Error"
 
-#: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:60
+#: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:60
 msgid "Lorem ipsum do"
 msgstr "Lorem ipsum do"
 
-#: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:83
+#: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:83
 msgid "Lorem ipsum dolor sit ame"
 msgstr "Lorem ipsum dolor sit ame"
 
-#: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:106
+#: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:106
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
 

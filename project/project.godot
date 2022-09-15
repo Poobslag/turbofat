@@ -869,10 +869,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/region-select-button.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "RestaurantPuzzleScene",
 "language": "GDScript",
-"path": "res://src/main/world/restaurant/restaurant-puzzle-scene.gd"
+"path": "res://src/main/world/environment/restaurant/restaurant-puzzle-scene.gd"
 }, {
 "base": "Control",
 "class": "RestaurantView",

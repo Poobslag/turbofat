@@ -35,8 +35,8 @@
 [ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=33]
 [ext_resource path="res://assets/main/world/creature/4/mouth-packed.png" type="Texture" id=34]
 [ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=35]
-[ext_resource path="res://src/main/world/restaurant/floor-library.tres" type="TileSet" id=36]
-[ext_resource path="res://src/main/world/restaurant/indoor-obstacle-library.tres" type="TileSet" id=37]
+[ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=36]
+[ext_resource path="res://src/main/world/environment/restaurant/indoor-obstacle-library.tres" type="TileSet" id=37]
 [ext_resource path="res://src/main/world/environment/marsh/CarpetTiler.tscn" type="PackedScene" id=38]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]

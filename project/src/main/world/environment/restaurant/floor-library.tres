@@ -1,0 +1,48 @@
+[gd_resource type="TileSet" load_steps=3 format=2]
+
+[ext_resource path="res://assets/main/world/environment/restaurant/floor-carpet-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/restaurant/floor-kitchen-sheet.png" type="Texture" id=3]
+
+[resource]
+54907/name = "floor-kitchen-sheet.png 3"
+54907/texture = ExtResource( 3 )
+54907/tex_offset = Vector2( 39, 0 )
+54907/modulate = Color( 1, 1, 1, 1 )
+54907/region = Rect2( 0, 0, 640, 447 )
+54907/tile_mode = 2
+54907/autotile/icon_coordinate = Vector2( 0, 0 )
+54907/autotile/tile_size = Vector2( 210, 108 )
+54907/autotile/spacing = 5
+54907/autotile/occluder_map = [  ]
+54907/autotile/navpoly_map = [  ]
+54907/autotile/priority_map = [  ]
+54907/autotile/z_index_map = [  ]
+54907/occluder_offset = Vector2( 0, 0 )
+54907/navigation_offset = Vector2( 0, 0 )
+54907/shape_offset = Vector2( 0, 0 )
+54907/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+54907/shape_one_way = false
+54907/shape_one_way_margin = 0.0
+54907/shapes = [  ]
+54907/z_index = 0
+82455/name = "floor-carpet-sheet.png 2"
+82455/texture = ExtResource( 1 )
+82455/tex_offset = Vector2( 39, 0 )
+82455/modulate = Color( 1, 1, 1, 1 )
+82455/region = Rect2( 0, 0, 640, 447 )
+82455/tile_mode = 2
+82455/autotile/icon_coordinate = Vector2( 0, 0 )
+82455/autotile/tile_size = Vector2( 210, 108 )
+82455/autotile/spacing = 5
+82455/autotile/occluder_map = [  ]
+82455/autotile/navpoly_map = [  ]
+82455/autotile/priority_map = [  ]
+82455/autotile/z_index_map = [  ]
+82455/occluder_offset = Vector2( 0, 0 )
+82455/navigation_offset = Vector2( 0, 0 )
+82455/shape_offset = Vector2( 0, 0 )
+82455/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+82455/shape_one_way = false
+82455/shape_one_way_margin = 0.0
+82455/shapes = [  ]
+82455/z_index = 0
