@@ -53,10 +53,11 @@ var score_rank := WORST_RANK
 ## how many times did the player top out?
 var top_out_count := 0
 
-## did the player lose?
+## true if the player lost the level by quitting or losing all their lives
 var lost := false
 
-## did the player succeed?
+## true if the player met the level's success criteria. Not all levels have success criteria, but some levels expect
+## the player to reach a target score or finish within a time limit.
 var success := false
 
 func to_json_dict() -> Dictionary:
@@ -120,11 +121,3 @@ func from_json_dict(json: Dictionary) -> void:
 
 func topped_out() -> bool:
 	return top_out_count > 0
-
-
-## Returns the rank used to evaluate the player's overall level performance.
-##
-## For timed levels, this is the player's seconds_rank which evaluates how fast they were. For all other levels, this
-## is the player's score_rank which evaluates how high their score was.
-func overall_rank() -> float:
-	return seconds_rank if compare == "-seconds" else score_rank
