@@ -19,7 +19,7 @@ func _refresh_text() -> void:
 		_label.text = text
 
 
-func _on_RegionButtons_region_selected(region_obj: Object) -> void:
+func _on_RegionButtons_region_focused(region_obj: Object) -> void:
 	if region_obj is CareerRegion:
 		var region: CareerRegion = region_obj
 		if PlayerData.career.is_region_locked(region):

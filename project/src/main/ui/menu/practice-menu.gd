@@ -159,7 +159,7 @@ func _on_LevelButton_pressed() -> void:
 
 
 # When the player selects their region from the region submenu, we launch the level submenu
-func _on_RegionSubmenu_region_started(region: Object) -> void:
+func _on_RegionSubmenu_region_chosen(region: Object) -> void:
 	$RegionSubmenu.hide()
 	$LevelSubmenu.popup(region, _level_settings.id)
 
@@ -170,7 +170,7 @@ func _on_RegionSubmenu_visibility_changed() -> void:
 		_level_button.grab_focus()
 
 
-func _on_LevelSelect_level_started(region: Object, settings: LevelSettings) -> void:
+func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> void:
 	_region = region
 	PlayerData.practice.region_id = _region.id
 	_level_settings = settings

@@ -113,7 +113,7 @@ func _refresh_level_select_buttons() -> void:
 	for i in range(_pickable_level_settings.size()):
 		var level_settings: LevelSettings = _pickable_level_settings[i]
 		var level_select_button: LevelSelectButton = _level_select_control.add_level_select_button(level_settings)
-		level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
+		level_select_button.connect("level_chosen", self, "_on_LevelSelectButton_level_chosen", [i])
 
 
 ## Return a list of random CareerLevels for the player to choose from.
@@ -353,7 +353,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 
 
 ## When the player clicks a level button twice, we launch the selected level
-func _on_LevelSelectButton_level_started(level_index: int) -> void:
+func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
 		# avoid changing the level button names when you pick an earlier level
 		PlayerData.career.disconnect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")

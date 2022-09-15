@@ -201,7 +201,7 @@ func _update_other_region_text(region: OtherRegion) -> void:
 	set_text(new_text)
 
 
-func _on_RegionButtons_region_selected(region_obj: Object) -> void:
+func _on_RegionButtons_region_focused(region_obj: Object) -> void:
 	if region_obj is CareerRegion:
 		_update_career_region_text(region_obj)
 	elif region_obj is OtherRegion and region_obj.id == OtherRegion.ID_RANK:

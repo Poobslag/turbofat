@@ -51,7 +51,7 @@ func _on_BackButton_pressed() -> void:
 	SceneTransition.pop_trail(true)
 
 
-func _on_LevelButtons_level_started(settings: LevelSettings) -> void:
+func _on_LevelButtons_level_chosen(settings: LevelSettings) -> void:
 	PlayerData.practice.tutorial_level_id = settings.id
 	CurrentLevel.set_launched_level(settings.id)
 	CurrentLevel.push_level_trail()

@@ -15,14 +15,14 @@ enum Type {
 }
 
 ## Emitted when the player launches a career region.
-signal region_started
+signal region_chosen
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
 ## started' event
 var _focus_just_entered := false
 
 ## 'true' if the 'region started' signal should be emitted in response to a button click.
-var _emit_region_started := false
+var _emit_region_chosen := false
 
 ## key: (int) an enum from RegionSelectButton.Type
 ## value: (Array, Resource) a pair of texture resources to use when the button is enabled or disabled
@@ -131,13 +131,13 @@ func _on_Button_button_down() -> void:
 	if _focus_just_entered:
 		pass
 	else:
-		_emit_region_started = true
+		_emit_region_chosen = true
 
 
 func _on_Button_pressed() -> void:
-	if _emit_region_started:
-		_emit_region_started = false
-		emit_signal("region_started")
+	if _emit_region_chosen:
+		_emit_region_chosen = false
+		emit_signal("region_chosen")
 
 
 func _on_Button_focus_exited() -> void:

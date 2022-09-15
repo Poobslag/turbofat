@@ -3,7 +3,7 @@ extends Button
 ## A button on the level select screen which launches a level.
 
 ## emitted when a level is launched.
-signal level_started
+signal level_chosen
 
 ## short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
@@ -61,7 +61,7 @@ var level_name: String setget set_level_name
 var _focus_just_entered := false
 
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
-var _emit_level_started := false
+var _emit_level_chosen := false
 
 ## The button's background color. If omitted, the button will use a pseudo-random background color based on its id
 var bg_color: Color setget set_bg_color
@@ -138,9 +138,9 @@ func _on_pressed() -> void:
 		# level is locked, don't launch the level
 		return
 	
-	if _emit_level_started:
-		_emit_level_started = false
-		emit_signal("level_started")
+	if _emit_level_chosen:
+		_emit_level_chosen = false
+		emit_signal("level_chosen")
 
 
 func _on_focus_entered() -> void:
@@ -158,4 +158,4 @@ func _on_button_down() -> void:
 	if _focus_just_entered:
 		pass
 	else:
-		_emit_level_started = true
+		_emit_level_chosen = true

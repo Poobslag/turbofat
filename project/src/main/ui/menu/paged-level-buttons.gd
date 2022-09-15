@@ -7,13 +7,13 @@ extends HBoxContainer
 const MAX_LEVELS_PER_PAGE := 18
 
 ## Emitted when the player 'starts' a level, choosing it for practice.
-signal level_started(settings)
+signal level_chosen(settings)
 
 ## Emitted when the player highlights a locked level to show more information.
-signal locked_level_selected(settings)
+signal locked_level_chosen(settings)
 
 ## Emitted when the player highlights an unlocked level to show more information.
-signal unlocked_level_selected(settings)
+signal unlocked_level_chosen(settings)
 
 ## Emitted when a new level button is added.
 signal button_added(button)
@@ -206,21 +206,21 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 				level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_RED)
 	
 	level_button.connect("focus_entered", self, "_on_LevelButton_focus_entered", [level_button, level_id])
-	level_button.connect("level_started", self, "_on_LevelButton_level_started", [level_settings])
+	level_button.connect("level_chosen", self, "_on_LevelButton_level_chosen", [level_settings])
 	return level_button
 
 
 ## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelButton_focus_entered(level_button: LevelSelectButton, level_id: String) -> void:
 	if level_button.lock_status == LevelSelectButton.STATUS_LOCKED:
-		emit_signal("locked_level_selected", _level_settings_by_id[level_id])
+		emit_signal("locked_level_chosen", _level_settings_by_id[level_id])
 	else:
-		emit_signal("unlocked_level_selected", _level_settings_by_id[level_id])
+		emit_signal("unlocked_level_chosen", _level_settings_by_id[level_id])
 
 
 ## When the player clicks a level button twice, we emit a signal which chooses the level
-func _on_LevelButton_level_started(level_settings: LevelSettings) -> void:
-	emit_signal("level_started", level_settings)
+func _on_LevelButton_level_chosen(level_settings: LevelSettings) -> void:
+	emit_signal("level_chosen", level_settings)
 
 
 func _on_LeftArrow_pressed() -> void:

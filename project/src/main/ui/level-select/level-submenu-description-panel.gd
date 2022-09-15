@@ -20,10 +20,10 @@ func _refresh_text() -> void:
 
 
 ## When an unlocked level is selected, we display the level's description.
-func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
+func _on_LevelButtons_unlocked_level_chosen(settings: LevelSettings) -> void:
 	set_text(settings.description)
 
 
 ## When a locked level is selected, we tell the player how to unlock it.
-func _on_LevelButtons_locked_level_selected(_settings: LevelSettings) -> void:
+func _on_LevelButtons_locked_level_chosen(_settings: LevelSettings) -> void:
 	set_text(tr("Play this level in Career mode to unlock it!"))

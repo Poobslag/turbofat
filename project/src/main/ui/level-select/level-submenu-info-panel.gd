@@ -69,10 +69,10 @@ func _update_unlocked_level_text(settings: LevelSettings) -> void:
 
 
 ## When an unlocked level is selected, we display some statistics for that level.
-func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
+func _on_LevelButtons_unlocked_level_chosen(settings: LevelSettings) -> void:
 	_update_unlocked_level_text(settings)
 
 
 ## When a locked level is selected, we clear out the info panel.
-func _on_LevelButtons_locked_level_selected(_settings: LevelSettings) -> void:
+func _on_LevelButtons_locked_level_chosen(_settings: LevelSettings) -> void:
 	set_text("")

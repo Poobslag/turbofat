@@ -24,7 +24,7 @@ func _on_BackButton_pressed() -> void:
 	SceneTransition.pop_trail(true)
 
 
-func _on_RegionButtons_region_started(region) -> void:
+func _on_RegionButtons_region_chosen(region) -> void:
 	PlayerData.career.distance_travelled = region.start
 	PlayerData.career.remain_in_region = region.end < PlayerData.career.best_distance_travelled
 	
