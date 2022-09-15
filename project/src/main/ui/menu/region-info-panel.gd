@@ -60,9 +60,7 @@ func _update_career_region_text(region: CareerRegion) -> void:
 		var ranks := []
 		for level_obj in region.levels:
 			var level: CareerLevel = level_obj
-			var best_result := PlayerData.level_history.best_result(level.level_id)
-			var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
-			ranks.append(rank)
+			ranks.append(PlayerData.level_history.best_overall_rank(level.level_id))
 		
 		# calculate the worst rank
 		var worst_rank := 0.0
@@ -113,8 +111,7 @@ func _update_rank_region_text(region: OtherRegion) -> void:
 	# find the last rank level which the player completed successfully
 	var last_successful_level_id: String
 	for level_id in region.level_ids:
-		var best_result := PlayerData.level_history.best_result(level_id)
-		if best_result and best_result.success:
+		if PlayerData.level_history.is_level_success(level_id):
 			last_successful_level_id = level_id
 	
 	# translate the level id into a message like 'Overall rank: 7 dan'
@@ -159,9 +156,7 @@ func _update_other_region_text(region: OtherRegion) -> void:
 		# include grade details -- how the player can get a better grade
 		var ranks := []
 		for level_id in region.level_ids:
-			var best_result := PlayerData.level_history.best_result(level_id)
-			var rank := best_result.overall_rank() if best_result else RankResult.WORST_RANK
-			ranks.append(rank)
+			ranks.append(PlayerData.level_history.best_overall_rank(level_id))
 		
 		# calculate the worst rank
 		var worst_rank := 0.0

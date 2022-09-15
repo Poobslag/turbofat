@@ -187,8 +187,7 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 			level_button.lock_status = LevelSelectButton.STATUS_CLEARED
 	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
 		# rank/marathon levels show a crown if completed
-		var result := PlayerData.level_history.best_result(level_id)
-		if result and result.success:
+		if PlayerData.level_history.is_level_success(level_id):
 			level_button.lock_status = LevelSelectButton.STATUS_CROWN
 	
 	# calculate the background color. this is usually random, but for rank mode we use specific colors

@@ -9,10 +9,14 @@ var max_size := 3
 ## value: (Array, RankResult) results for the specified level
 var rank_results := {}
 
+## Set of levels where the player has met the level's success criteria.
+##
 ## key: (String) level id
 ## value: (Dictionary) date when the player was first successful at the level
 var successful_levels := {}
 
+## Set of levels which the player has finished. Losing or quitting does not count as finishing.
+##
 ## key: (String) level id
 ## value: (Dictionary) Date when the player first finished the level. Losing or quitting does not count as finishing.
 var finished_levels := {}
@@ -31,6 +35,27 @@ func reset() -> void:
 ## Returns a player's performances for a specific level.
 func results(level_id: String) -> Array:
 	return rank_results.get(level_id, [])
+
+
+## Returns a player's best performance for a specific level.
+##
+## Parameters:
+## 	'level_id': The id of the level to evaluate
+##
+## Returns:
+## 	The rank for the player's best overall level performance. For timed levels, this is the player's best
+## 	seconds_rank which evaluates how fast they were. For all other levels, this is the player's best score_rank
+## 	which evaluates how high their score was.
+func best_overall_rank(level_id: String) -> float:
+	var best_rank: float
+	var best_result := best_result(level_id)
+	if not best_result:
+		best_rank = RankResult.WORST_RANK
+	elif best_result.compare == "-seconds":
+		best_rank = best_result.seconds_rank
+	else:
+		best_rank = best_result.score_rank
+	return best_rank
 
 
 ## Returns a player's best performance for a specific level.
@@ -136,6 +161,14 @@ func prune(level_id: String) -> void:
 ## Returns 'true' if the level has been finished. Losing or quitting does not count as finishing.
 func is_level_finished(level_id: String) -> bool:
 	return finished_levels.has(level_id)
+
+
+## Returns 'true' if the player has met the level's success criteria.
+##
+## Not all levels have success criteria, but some levels expect the player to meet a target score or finish under a
+## target time.
+func is_level_success(level_id: String) -> bool:
+	return successful_levels.has(level_id)
 
 
 func _compare_by_low_seconds(a: RankResult, b: RankResult) -> bool:

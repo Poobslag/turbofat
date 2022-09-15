@@ -45,8 +45,7 @@ func set_button(new_button: LevelSelectButton) -> void:
 ## If the level has been cleared, we display text corresponding to the player's grade. If the level hasn't been
 ## cleared, we show a lock/key/crown icon corresponding to the level's lock status.
 func _refresh_appearance() -> void:
-	var result := PlayerData.level_history.best_result(button.level_id)
-	if not result or result.lost:
+	if not PlayerData.level_history.is_level_finished(button.level_id):
 		# uncleared levels do not show a grade
 		_refresh_status_icon(button.lock_status)
 	elif button.lock_status in [LevelSelectButton.STATUS_CLEARED, LevelSelectButton.STATUS_CROWN]:
@@ -54,7 +53,7 @@ func _refresh_appearance() -> void:
 		_refresh_status_icon(button.lock_status)
 	else:
 		# cleared levels show a grade
-		_refresh_grade_text(result.overall_rank())
+		_refresh_grade_text(PlayerData.level_history.best_overall_rank(button.level_id))
 
 
 ## Updates the icon based on the level's status.
