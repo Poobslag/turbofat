@@ -25,13 +25,22 @@ var current_speed: PieceSpeed
 ## Array of speed ids in ascending order
 var speed_ids := []
 
+## Matrix of piece speed adjustments.
+##
+## Each row in the matrix represents a set of speeds in order from slowest to fastest. Speeds which give the player a
+## speed advantage are given their own group (e.g playing with a 200 ms appearance delay instead of a 300 ms
+## appearance delay.)
+var speed_id_matrix := []
+
 var _speeds := {}
 
 func _ready() -> void:
 	# tutorial; piece does not drop
+	_add_speed_group()
 	_add_speed(PieceSpeed.new("T",   0, 20, 36, 7, 16, 60, 24, 12))
 	
 	# beginner; 10-30 pieces per minute
+	_add_speed_group()
 	_add_speed(PieceSpeed.new("0",   4, 20, 36, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("1",   5, 20, 36, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("2",   6, 20, 36, 7, 16, 60, 24, 12))
@@ -44,6 +53,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("9",  48, 20, 36, 7, 16, 60, 24, 12))
 	
 	# normal; 30-60 pieces per minute
+	_add_speed_group()
 	_add_speed(PieceSpeed.new("A0",    4, 20, 20, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("A1",   32, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("A2",   48, 20, 20, 7, 16, 40, 24, 12))
@@ -64,6 +74,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("AF", 20*G, 16, 12, 7, 10, 30, 12,  6))
 	
 	# crazy; 120-250 pieces per minute
+	_add_speed_group()
 	_add_speed(PieceSpeed.new( "F0",    4, 10, 6, 7,  8, 60, 6, 3))
 	_add_speed(PieceSpeed.new( "F1",  1*G, 10, 6, 7,  8, 40, 6, 3))
 	_add_speed(PieceSpeed.new( "FA", 20*G, 10, 6, 7,  8, 24, 6, 3))
@@ -83,8 +94,13 @@ func speed(string: String) -> PieceSpeed:
 	return _speeds[string]
 
 
+func _add_speed_group() -> void:
+	speed_id_matrix.append([])
+
+
 func _add_speed(speed: PieceSpeed) -> void:
 	speed_ids.append(speed.id)
+	speed_id_matrix.back().append(speed.id)
 	_speeds[speed.id] = speed
 
 

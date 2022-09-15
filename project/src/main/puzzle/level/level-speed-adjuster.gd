@@ -1,19 +1,8 @@
 class_name LevelSpeedAdjuster
 ## Adjusts a LevelSettings to use faster or slower piece speeds
 
-## Matrix of piece speed adjustments.
-##
-## Each row in the matrix represents a set of speeds in order from slowest to fastest. Speeds which cannot be
-## adjusted, such as the tutorial speed, appear in a row by themselves.
-var _speed_matrix := [
-	["T"], # 25 ppm
-	["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], # 25 ppm
-	["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF"], # 35-50 ppm
-	["F0", "F1", "FA", "FB", "FC", "FD", "FE", "FF", "FFF"], # 50-134 ppm
-]
-
 ## key: (String) speed id
-## value: (Vector2) x/y coordinates for an entry in _speed_matrix
+## value: (Vector2) x/y coordinates for an entry in PieceSpeeds.speed_id_matrix
 var _coordinates_by_speed := {}
 
 ## the settings to adjust
@@ -22,10 +11,10 @@ var settings: LevelSettings
 func _init(init_settings: LevelSettings) -> void:
 	settings = init_settings
 	
-	# initialize the _coordinates_by_speed matrix based on the contents of _speed_matrix
-	for y in range(_speed_matrix.size()):
-		for x in range(_speed_matrix[y].size()):
-			_coordinates_by_speed[_speed_matrix[y][x]] = Vector2(x, y)
+	# initialize the _coordinates_by_speed matrix based on the entries in PieceSpeeds.speed_id_matrix
+	for row in range(PieceSpeeds.speed_id_matrix.size()):
+		for col in range(PieceSpeeds.speed_id_matrix[row].size()):
+			_coordinates_by_speed[PieceSpeeds.speed_id_matrix[row][col]] = Vector2(col, row)
 
 
 ## Adjusts the piece speeds of our LevelSettings instance.
@@ -82,5 +71,5 @@ func get_adjusted_speed(speed: String, adjustment: int) -> String:
 		return speed
 	
 	var coord: Vector2 = _coordinates_by_speed[speed]
-	coord.x = clamp(coord.x + adjustment, 0, _speed_matrix[coord.y].size() - 1)
-	return _speed_matrix[coord.y][coord.x]
+	coord.x = clamp(coord.x + adjustment, 0, PieceSpeeds.speed_id_matrix[coord.y].size() - 1)
+	return PieceSpeeds.speed_id_matrix[coord.y][coord.x]
