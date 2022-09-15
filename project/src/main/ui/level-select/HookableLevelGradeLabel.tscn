@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/main/ui/level-select/crown.png" type="Texture" id=2]
 [ext_resource path="res://src/main/ui/outline-material-80.tres" type="Material" id=3]
 [ext_resource path="res://src/main/ui/level-select/hookable-level-grade-label.gd" type="Script" id=4]

@@ -34,7 +34,7 @@ func push_career_trail() -> void:
 	
 	if not redirected and career_data.is_day_over():
 		# After the final level, we show a 'you win' screen.
-		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
+		SceneTransition.replace_trail("res://src/main/career/ui/CareerWin.tscn")
 		redirected = true
 	
 	if not redirected:

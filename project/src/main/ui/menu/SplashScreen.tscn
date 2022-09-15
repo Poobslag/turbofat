@@ -2,13 +2,13 @@
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=7]
-[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=8]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=9]
+[ext_resource path="res://src/main/ui/theme/h1.theme" type="Theme" id=7]
+[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=8]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=9]
 [ext_resource path="res://src/main/ui/menu/bad-save-data-control.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=12]
@@ -24,9 +24,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Wallpaper" parent="." instance=ExtResource( 11 )]
 

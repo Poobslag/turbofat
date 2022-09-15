@@ -3,11 +3,11 @@ $$ = SHOULD credit in your credits (you used their stuff, but their license is l
 $ = MAY credit in your credits (you sort of used their stuff, i guess. Or their license doesn't require it, or doesn't really apply. 
 
 Sounds: 
-$ "Foley Rubber Glove 1" by Epidemic Sound (Epidemic Sound license, https://cdn.epidemicsound.com/legacy/10/documents/SingleTrackLicensesV6.pdf. This license is geared more towards music tracks for youtube videos, but says indie games can use licensed 'Music Pieces' which presumably applies to to sound effects as well.)
 $$ "2000 Game SFX Collection" by GameBurp (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Cartoon Voices" by Dawid Moroz, Soundholder Studio (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Cooking Game" by Epic Stock Media (Coniss license, https://sonniss.com/sound-effects-licensing/)
 $$$ "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons attribution license, https://creativecommons.org/licenses/by/3.0/)
+$ "Foley Rubber Glove 1" by Epidemic Sound (Epidemic Sound license, https://cdn.epidemicsound.com/legacy/10/documents/SingleTrackLicensesV6.pdf. This license is geared more towards music tracks for youtube videos, but says indie games can use licensed 'Music Pieces' which presumably applies to to sound effects as well.)
 $$$ "Shuffling cards (riffle) 03.WAV" by VKProduktion at FreeSound.org (Creative Commons universal license, https://creativecommons.org/publicdomain/zero/1.0/)
 $$$ TS-808 emulator by Jonathan Murphy (Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Australia License., http://creativecommons.org/licenses/by-nc-nd/2.5/au/)
 
@@ -19,28 +19,32 @@ $$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventio
 $$ Schoolbell by Font Diner (Apache License, Version 2.0)
 
 Icons:
-$ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
-$ Frying Pan by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
-$ Reload by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
 $ Clock by Ilham Fitrotul Hayat (https://www.flaticon.com/authors/ilham-fitrotul-hayat) (Unlimited use without attribution)
-$ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$ Frying Pan by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
 $ Paws by Solid Icon Co (https://www.flaticon.com/authors/solid-icon-co) (Unlimited use without attribution)
+$ Reload by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
+$ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
 
 Other:
 $ GDTracery by Althar93 (https://github.com/Althar93/GDTracery) (Apache-2.0 license)
-$ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)
-$ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
-$$ Gut by Tom "Butch" Wesley (MIT License)
 $$$ Godot Engine (MIT license)
 $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (You referenced their code for your 'custom keybinds' logic)
+$$ Gut by Tom "Butch" Wesley (MIT License)
+$ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
+$ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)
 
 Sounds
 --------------------------------------------------------------------------------
-project/assets/main/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
+project/asproject/src/main/utils/resource-cache.gdsets/main/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
+project/assets/main/chat/ui/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
 project/assets/main/puzzle/clear-cake-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav" 
 project/assets/main/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav"
 project/assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
+project/assets/main/puzzle/excellent.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 project/assets/main/puzzle/fanfare*.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
+project/assets/main/puzzle/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"
+project/assets/main/puzzle/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
 project/assets/main/puzzle/goop-splat*.wav "\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Batter_Pour_01"
 project/assets/main/puzzle/level-change.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SWIPES - SLASHES - WHOOSHES - (58)\SWIPE Whoosh 07.wav"
 project/assets/main/puzzle/line-erase.wav "\Cooking_Game_16bit\Cooking_Actions\Chop\Cooking_Game_Action_Chop_B_02.wav"
@@ -48,12 +52,14 @@ project/assets/main/puzzle/line-fall.wav "\Cooking_Game_16bit\Cooking_Game_16bit
 project/assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_01.wav"
 project/assets/main/puzzle/make-cake-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\sfx-packs\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 06.wav"
 project/assets/main/puzzle/make-snack-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 03.wav"
+project/assets/main/puzzle/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
 project/assets/main/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
 project/assets/main/puzzle/pickup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
 project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
+project/assets/main/puzzle/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
+project/assets/main/puzzle/rotate-sealed.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\IMPACTS - HITS - (50)\IMPACT Button Press Click 01.wav"
 project/assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
-project/assets/main/puzzle/rotate-sealed.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\IMPACTS - HITS - (50)\IMPACT Button Press Click 01.wav"
 project/assets/main/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 project/assets/main/puzzle/speedup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
 project/assets/main/puzzle/tech-move.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 03.wav"
@@ -61,14 +67,8 @@ project/assets/main/puzzle/tutorial/tutorial-section-complete.wav "\GameBurp - 2
 project/assets/main/puzzle/tutorial/tutorial-section-fail.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\BONGS - TIMERS - BELLS - (72)\BONG Bell Timer Hit Deep Long 03.wav"
 project/assets/main/puzzle/tutorial/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
 project/assets/main/puzzle/veg-erase.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav"
-project/assets/main/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
 project/assets/main/ui/cheat-disable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 project/assets/main/ui/cheat-enable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
-project/assets/main/ui/excellent.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
-project/assets/main/ui/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"
-project/assets/main/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
-project/assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
-project/assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
 project/assets/main/ui/touch/duck.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Chef_A_03_Cartoon_Voice.wav"
 project/assets/main/ui/transition-pieces.wav Shuffling cards (riffle) 03.WAV by VKProduktion from freesound.org; licensed under creative commons universal license https://creativecommons.org/publicdomain/zero/1.0/
 project/assets/main/world/chef/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
@@ -84,12 +84,15 @@ project/assets/main/world/restaurant/door-chime*.wav Doorbell Pull Store bell Do
 
 Graphics
 --------------------------------------------------------------------------------
+project/assets/main/career/ui/icon-distance.png 'Paws' by Solid icon Co
+project/assets/main/career/ui/icon-time-of-day-sheet.png 'Clock' by Ilhan Fitrotul Hayat
 project/assets/main/editor/creature/edit.png 'Dna' by Freepik
 project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
 project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
+project/assets/main/puzzle/pan/frying-pan-dead.png 'Frying pan' by Creative Stall Premium
+project/assets/main/puzzle/pan/frying-pan-gold.png 'Frying pan' by Creative Stall Premium, 'Reload' by DinosoftLabs
+project/assets/main/puzzle/pan/frying-pan.png 'Frying pan' by Creative Stall Premium
 project/assets/main/ui/icon-music.png 'Musical Notes' by Freepik
-project/assets/main/ui/icon-distance.png 'Paws' by Solid icon Co
-project/assets/main/ui/icon-time-of-day-sheet.png 'Clock' by Ilhan Fitrotul Hayat
 project/assets/main/ui/level-select/cleared.png 'Verification checkmark symbol' by Catalin Fertu
 project/assets/main/ui/level-select/crown.png 'Crown' by Freepik
 project/assets/main/ui/level-select/key.png 'Old Key' by Freepik
@@ -115,22 +118,19 @@ project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' b
 project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
-project/assets/main/puzzle/pan/frying-pan.png 'Frying pan' by Creative Stall Premium
-project/assets/main/puzzle/pan/frying-pan-dead.png 'Frying pan' by Creative Stall Premium
-project/assets/main/puzzle/pan/frying-pan-gold.png 'Frying pan' by Creative Stall Premium, 'Reload' by DinosoftLabs
 
 Fonts
 --------------------------------------------------------------------------------
-project/assets/main/ui/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
-project/assets/main/ui/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
-project/assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
-project/assets/main/ui/fredoka-one-regular.ttf Fredoka One by Milena Brandao
-project/assets/main/ui/nikumaru.otf Nikumaru by Kato Masashi
-project/assets/main/puzzle/modak-regular.ttf Modak by Ek Type
-project/assets/main/ui/schoolbell-regular.ttf Schoolbell by Font Diner 
+project/assets/main/ui/font/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/font/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/font/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/font/fredoka-one-regular.ttf Fredoka One by Milena Brandao
+project/assets/main/ui/font/modak-regular.ttf Modak by Ek Type
+project/assets/main/ui/font/nikumaru.otf Nikumaru by Kato Masashi
+project/assets/main/ui/font/schoolbell-regular.ttf Schoolbell by Font Diner 
 
 Other
 --------------------------------------------------------------------------------
-project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
-project/src/main/chat/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
 project/addons/gut "Gut" by Tom "Butch" Wesley
+project/src/main/chat/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
+project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)

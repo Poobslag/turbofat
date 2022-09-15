@@ -1,0 +1,9 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://assets/main/ui/font/nikumaru.otf" type="DynamicFontData" id=1]
+
+[resource]
+size = 12
+outline_size = 2
+outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+font_data = ExtResource( 1 )

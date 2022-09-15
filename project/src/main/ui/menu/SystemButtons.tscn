@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=3]
 [ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=4]

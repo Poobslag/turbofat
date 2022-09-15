@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/editor/creature/mutate-allele-button.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=2]
 [ext_resource path="res://assets/main/editor/creature/unlocked.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/editor/creature/locked.png" type="Texture" id=4]
 

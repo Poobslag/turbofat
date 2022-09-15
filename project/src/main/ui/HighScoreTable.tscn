@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/high-score-table.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=3]
 
 [node name="HighScoreTable" type="VBoxContainer"]
 margin_right = 412.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=1]
 [ext_resource path="res://src/demo/puzzle/level/level-rank-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/demo/puzzle/level/level-rank-demo-open.gd" type="Script" id=4]
