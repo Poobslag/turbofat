@@ -5,16 +5,16 @@ extends OverworldWorld
 
 ## The path to the scene resources defining creatures and obstacles for career regions which do not specify an
 ## environment, or regions which specify an invalid environment
-const DECORATED_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn"
+const DECORATED_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn"
 const UNDECORATED_PUZZLE_ENVIRONMENT_PATH \
-		:= "res://src/main/world/environment/marsh/UndecoratedIndoorsEnvironment.tscn"
+		:= "res://src/main/world/environment/restaurant/UndecoratedTurboFatEnvironment.tscn"
 
 ## key: (String) an environment name which appears in the json definitions
 ## value: (String) The path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
 const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonRestaurantEnvironment.tscn",
-	"marsh": "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn",
+	"marsh": "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn",
 }
 
 var customers := []

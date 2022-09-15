@@ -65,7 +65,7 @@ class LocationState extends AbstractState:
 	
 	## Syntax:
 	## 	[location]
-	## 	marsh/inside_turbo_fat
+	## 	inside_turbo_fat
 	func line(line: String) -> String:
 		var result := ""
 		if line:

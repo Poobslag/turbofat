@@ -8,7 +8,7 @@ func test_inside_restaurant() -> void:
 	chat_tree.location_id = "marsh"
 	assert_eq(chat_tree.inside_restaurant(), false)
 	
-	chat_tree.location_id = "marsh/inside_turbo_fat"
+	chat_tree.location_id = "inside_turbo_fat"
 	assert_eq(chat_tree.inside_restaurant(), true)
 
 
