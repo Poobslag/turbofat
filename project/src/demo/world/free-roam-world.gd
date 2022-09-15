@@ -4,7 +4,6 @@ extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles on the free roam overworld.
 
 func _ready() -> void:
-	CreatureManager.refresh_creatures()
 	CreatureManager.player.free_roam = true
 	CreatureManager.sensei.free_roam = true
 	

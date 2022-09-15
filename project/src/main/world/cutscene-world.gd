@@ -13,7 +13,6 @@ func _ready() -> void:
 		_camera.fixed_zoom = CurrentCutscene.chat_tree.meta["fixed_zoom"]
 	
 	MusicPlayer.play_chill_bgm()
-	CreatureManager.refresh_creatures()
 	_launch_cutscene()
 
 
