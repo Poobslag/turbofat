@@ -1,16 +1,6 @@
 extends Control
 ## Scene which lets the player repeatedly play a set of levels.
 
-## Matrix of piece speed adjustments.
-##
-## Each row in the matrix represents a set of speeds in order from slowest to fastest.
-var _speed_matrix := [
-	["T"], # 25 ppm
-	["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], # 25 ppm
-	["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF"], # 35-50 ppm
-	["F0", "F1", "FA", "FB", "FC", "FD", "FE", "FF", "FFF"], # 67-134 ppm
-]
-
 export (NodePath) var _high_scores_path: NodePath
 export (NodePath) var _level_button_path: NodePath
 export (NodePath) var _level_description_label_path: NodePath
@@ -128,7 +118,7 @@ func _refresh_speed_selector() -> void:
 	else:
 		# Constrain the speed selector. We default to the level's speed, but usually allow faster speeds within a
 		# threshold.
-		for next_speed_matrix_row in _speed_matrix:
+		for next_speed_matrix_row in PieceSpeeds.speed_id_matrix:
 			if next_speed_matrix_row.has(selected_speed):
 				speed_names = next_speed_matrix_row.duplicate()
 				break
