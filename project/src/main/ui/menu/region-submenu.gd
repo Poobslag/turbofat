@@ -5,7 +5,7 @@ extends Control
 ##
 ## Parameters:
 ## 	'region': A CareerRegion or OtherRegion instance for the chosen region.
-signal region_started(region)
+signal region_chosen(region)
 
 export (NodePath) var region_buttons_path: NodePath
 
@@ -31,8 +31,8 @@ func popup(default_region_id: String) -> void:
 	show()
 
 
-func _on_RegionButtons_region_started(region: Object) -> void:
-	emit_signal("region_started", region)
+func _on_RegionButtons_region_chosen(region: Object) -> void:
+	emit_signal("region_chosen", region)
 
 
 func _on_BackButton_pressed() -> void:

@@ -5,10 +5,10 @@ extends HBoxContainer
 ## These buttons are arranged in multiple pages which can be navigated with arrow buttons.
 
 ## Emitted when the player highlights a region to show more information.
-signal region_selected(region)
+signal region_focused(region)
 
 ## Emitted when the player 'starts' a region, choosing it for practice.
-signal region_started(region)
+signal region_chosen(region)
 
 ## Emitted when a new region button is added.
 signal button_added(button)
@@ -186,18 +186,18 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
 	
 	region_button.connect("focus_entered", self, "_on_RegionButton_focus_entered", [region_obj])
-	region_button.connect("region_started", self, "_on_RegionButton_region_started", [region_obj])
+	region_button.connect("region_chosen", self, "_on_RegionButton_region_chosen", [region_obj])
 	return region_button
 
 
 ## When the player clicks a region button once, we emit a signal to show more information.
 func _on_RegionButton_focus_entered(region: Object) -> void:
-	emit_signal("region_selected", region)
+	emit_signal("region_focused", region)
 
 
 ## When the player clicks a region button twice, we emit a signal which chooses the region
-func _on_RegionButton_region_started(region: Object) -> void:
-	emit_signal("region_started", region)
+func _on_RegionButton_region_chosen(region: Object) -> void:
+	emit_signal("region_chosen", region)
 
 
 func _on_LeftArrow_pressed() -> void:

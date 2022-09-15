@@ -7,7 +7,7 @@ extends Control
 ## 	'region': A CareerRegion or OtherRegion instance for the chosen region.
 ##
 ## 	'level_id': The chosen level id
-signal level_started(region, level_id)
+signal level_chosen(region, level_id)
 
 export (NodePath) var level_buttons_path: NodePath
 
@@ -41,8 +41,8 @@ func popup(new_region: Object, default_level_id: String = "") -> void:
 	show()
 
 
-func _on_LevelButtons_level_started(settings: LevelSettings) -> void:
-	emit_signal("level_started", _region, settings)
+func _on_LevelButtons_level_chosen(settings: LevelSettings) -> void:
+	emit_signal("level_chosen", _region, settings)
 
 
 func _on_BackButton_pressed() -> void:
