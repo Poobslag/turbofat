@@ -149,6 +149,25 @@ static func subtract(a: Array, b: Array) -> Array:
 	return result
 
 
+## Returns a new array containing the intersection of the given arrays.
+##
+## The input arrays are not modified. This code is adapted from Apache Common Collections.
+static func intersection(a: Array, b: Array) -> Array:
+	var result := []
+	var bag := {}
+	for item in b:
+		if not bag.has(item):
+			bag[item] = 0
+		bag[item] += 1
+	for item in a:
+		if bag.has(item):
+			bag[item] -= 1
+			if bag[item] == 0:
+				bag.erase(item)
+			result.append(item)
+	return result
+
+
 ## Assigns a default path for a FileDialog.
 ##
 ## At runtime, this will default to the user data directory. During development, this will default to a resource path
