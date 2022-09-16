@@ -123,7 +123,6 @@ func _load_standard_customers() -> void:
 		else:
 			var creature_def: CreatureDef = CreatureDef.new()
 			creature_def = creature_def.from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
-			creature_def.creature_id = file.get_file().get_basename()
 			standard_queue.append(creature_def)
 	dir.list_dir_end()
 	standard_queue.shuffle()
