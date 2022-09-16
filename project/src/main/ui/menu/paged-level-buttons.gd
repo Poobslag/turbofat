@@ -172,8 +172,6 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 	var level_button: LevelSelectButton = LevelButtonScene.instance()
 	level_button.level_id = level_id
 	level_button.level_duration = LevelSelectButton.MEDIUM if level_count >= 10 else LevelSelectButton.LONG
-	level_button.rect_min_size.x = 120
-	level_button.level_column_width = 120
 	level_button.level_name = level_settings.name
 	
 	# calculate the lock status
