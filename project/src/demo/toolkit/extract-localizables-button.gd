@@ -69,8 +69,8 @@ func _extract_localizables_from_levels() -> void:
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level_id)
 		
-		# extract level's title and description as localizables
-		_localizables.append(level_settings.title)
+		# extract level's name and description as localizables
+		_localizables.append(level_settings.name)
 		_localizables.append(level_settings.description)
 
 

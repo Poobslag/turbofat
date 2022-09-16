@@ -29,6 +29,19 @@ func test_subtract_duplicates() -> void:
 	assert_eq(Utils.subtract([1, 1, 1, 1, 1], [1, 1]), [1, 1, 1])
 
 
+func test_intersection() -> void:
+	assert_eq(Utils.intersection([1, 2, 3], [2, 3, 4]), [2, 3])
+	assert_eq(Utils.intersection([1, 2, 3], [2]), [2])
+	assert_eq(Utils.intersection([2], [1, 2, 3]), [2])
+	assert_eq(Utils.intersection([], [1]), [])
+	assert_eq(Utils.intersection([1], []), [])
+
+
+func test_intersection_duplicates() -> void:
+	assert_eq(Utils.intersection([1, 1, 1], [1, 1]), [1, 1])
+	assert_eq(Utils.intersection([1, 2, 2, 3, 3, 3], [1, 1, 1, 2, 2, 3]), [1, 2, 2, 3])
+
+
 func test_remove_all() -> void:
 	assert_eq([4, 10, 15], Utils.remove_all([1, 4, 10, 1, 15], 1))
 
