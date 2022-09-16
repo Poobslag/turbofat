@@ -23,8 +23,8 @@ func _ready() -> void:
 	
 	# set a baseline fatness state
 	PlayerData.creature_library.save_fatness_state()
-	PlayerData.customer_queue.primary_index = 0
-	PlayerData.customer_queue.reset_secondary_customer_queue()
+	PlayerData.customer_queue.priority_index = 0
+	PlayerData.customer_queue.reset_standard_customer_queue()
 	for i in range(_restaurant_view.get_customers().size()):
 		_restaurant_view.summon_customer(i)
 	
@@ -106,30 +106,30 @@ func feed_creature(customer: Creature, food_type: int) -> void:
 
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
 func _start_puzzle() -> void:
-	PlayerData.customer_queue.reset_secondary_customer_queue()
+	PlayerData.customer_queue.reset_standard_customer_queue()
 	var current_customer_ids := []
 	for customer in _restaurant_view.get_customers():
 		current_customer_ids.append(customer.creature_id)
-	PlayerData.customer_queue.pop_secondary_customers(current_customer_ids)
+	PlayerData.customer_queue.pop_standard_customers(current_customer_ids)
 	
 	if not CurrentLevel.keep_retrying:
 		# Reset everyone's fatness. Replaying a puzzle in free roam mode shouldn't make a creature super fat.
 		# Thematically we're turning back time.
 		PlayerData.creature_library.restore_fatness_state()
 	
-	PlayerData.customer_queue.primary_index = 0
+	PlayerData.customer_queue.priority_index = 0
 	_restaurant_view.briefly_suppress_sfx()
 	
-	if PlayerData.customer_queue.primary_queue:
-		var starting_creature_id: String = PlayerData.customer_queue.primary_queue[0].creature_id
+	if PlayerData.customer_queue.priority_queue:
+		var starting_creature_id: String = PlayerData.customer_queue.priority_queue[0].creature_id
 		var starting_creature_index: int = _restaurant_view.find_creature_index_with_id(starting_creature_id)
 		if starting_creature_index == -1:
-			# starting creature isn't found; load them to a different index and advance the primary queue
+			# starting creature isn't found; load them to a different index and advance the priority queue
 			starting_creature_index = _restaurant_view.next_creature_index()
 			_restaurant_view.summon_customer(starting_creature_index)
 		else:
-			# starting creature is found; advance the primary creature queue so we don't see them twice
-			PlayerData.customer_queue.pop_primary_customer()
+			# starting creature is found; advance the priority customer queue so we don't see them twice
+			PlayerData.customer_queue.pop_priority_customer()
 			
 			if PlayerData.creature_library.has_fatness(starting_creature_id):
 				# restore their fatness so they start skinny again when replaying a puzzle
