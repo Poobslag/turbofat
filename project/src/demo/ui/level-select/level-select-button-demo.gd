@@ -42,8 +42,6 @@ func _button() -> LevelSelectButton:
 	var button: LevelSelectButton = LevelButtonScene.instance()
 	button.level_id = "level_%03d" % [button_index]
 	button.level_name = "Level %03d" % [button_index]
-	button.rect_min_size.x = 120
-	button.level_column_width = 120
 	
 	return button
 

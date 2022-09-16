@@ -1,6 +1,8 @@
 class_name LevelSelectButton
 extends Button
 ## A button on the level select screen which launches a level.
+##
+## The button adjusts its rect_min_size based on level duration.
 
 ## emitted when a level is launched.
 signal level_chosen
@@ -38,15 +40,13 @@ const SHORT := LevelSize.SHORT
 const MEDIUM := LevelSize.MEDIUM
 const LONG := LevelSize.LONG
 
+const MAX_BUTTON_HEIGHT := 120
 const VERTICAL_SPACING := 6
 
 var level_id: String
 
 ## An enum from LevelSize for the duration of the level. this affects the button size
 var level_duration: int = LevelSize.MEDIUM setget set_level_duration
-
-## the width of the column this button is in
-var level_column_width: int = 120
 
 ## the status whether or not this level is locked/unlocked
 var lock_status: int = STATUS_NONE setget set_lock_status
@@ -113,9 +113,9 @@ func _refresh_appearance() -> void:
 		return
 	
 	match level_duration:
-		LevelSize.SHORT: rect_min_size.y = level_column_width * 0.5
-		LevelSize.MEDIUM: rect_min_size.y = level_column_width * 0.75 + VERTICAL_SPACING * 0.5
-		LevelSize.LONG: rect_min_size.y = level_column_width + VERTICAL_SPACING
+		LevelSize.SHORT: rect_min_size.y = MAX_BUTTON_HEIGHT * 0.5
+		LevelSize.MEDIUM: rect_min_size.y = MAX_BUTTON_HEIGHT * 0.75 + VERTICAL_SPACING * 0.5
+		LevelSize.LONG: rect_min_size.y = MAX_BUTTON_HEIGHT + VERTICAL_SPACING
 	
 	_label.text = StringUtils.default_if_empty(level_name, "-")
 	

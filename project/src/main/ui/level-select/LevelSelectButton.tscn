@@ -15,7 +15,7 @@ font_data = ExtResource( 1 )
 [node name="Button" type="Button" groups=["level_select_buttons"]]
 margin_right = 72.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 0, 80 )
+rect_min_size = Vector2( 120, 80 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 custom_styles/hover = ExtResource( 3 )
