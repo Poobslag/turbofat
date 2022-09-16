@@ -3,12 +3,12 @@ extends "res://addons/gut/test.gd"
 var customer_queue := CustomerQueue.new()
 
 func before_each() -> void:
-	customer_queue.secondary_customers_path = ""
+	customer_queue.customer_dirs = []
 
 
 func test_standard_queue_has_creatures() -> void:
 	assert_eq(customer_queue.standard_queue.size(), 0)
-	customer_queue.secondary_customers_path = "res://assets/test/secondary-creatures"
+	customer_queue.customer_dirs = ["res://assets/test/nonstory-creatures"]
 	assert_eq(customer_queue.standard_queue.size(), 2)
 
 
@@ -37,7 +37,6 @@ func test_reset_standard_customer_queue() -> void:
 	_assert_creature_id(customer_queue.pop_standard_customer(), "")
 
 
-## Populates the standard queue with the specified creature ids and standard index
 func test_pop_standard_customers_before() -> void:
 	_populate_standard_queue(["ofa_100", "ofa_200", "ofa_300"], 2)
 	customer_queue.pop_standard_customers(["ofa_100"])
@@ -80,6 +79,7 @@ func test_pop_standard_customers_multiple() -> void:
 	_assert_standard_queue(["ofa_100", "ofa_200", "ofa_400", "ofa_300", "ofa_500"], 3)
 
 
+## Populates the standard queue with the specified creature ids and standard index
 func _populate_standard_queue(new_creature_ids: Array, new_standard_index: int) -> void:
 	for creature_id in new_creature_ids:
 		var creature_def := CreatureDef.new()
