@@ -43,6 +43,16 @@ func region_for_distance(distance: int) -> CareerRegion:
 	return result
 
 
+## Returns the region with the specified region id.
+func region_for_id(region_id: String) -> CareerRegion:
+	var result: CareerRegion
+	for next_region in regions:
+		if next_region.id == region_id:
+			result = next_region
+			break
+	return result
+
+
 ## Returns an appropriate piece speed ID after the player travels a certain distance.
 ##
 ## Each region defines a minimum and maximum piece speed. When the player first enters a region, piece speeds will be

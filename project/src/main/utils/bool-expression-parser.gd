@@ -73,6 +73,38 @@ class ChatFinishedExpression extends BoolExpression:
 		return PlayerData.chat_history.is_chat_finished(args[0].string)
 
 
+class RegionStartedExpression extends BoolExpression:
+	func _init(new_token: BoolToken, arg: BoolToken) -> void:
+		token = new_token
+		args = [arg]
+	
+	
+	func evaluate() -> bool:
+		var result := false
+		var region: CareerRegion = CareerLevelLibrary.region_for_id(args[0].string)
+		if region:
+			result = PlayerData.career.is_region_started(region)
+		else:
+			push_warning("region not found: %s" % [args[0].string])
+		return result
+
+
+class RegionClearedExpression extends BoolExpression:
+	func _init(new_token: BoolToken, arg: BoolToken) -> void:
+		token = new_token
+		args = [arg]
+	
+	
+	func evaluate() -> bool:
+		var result := false
+		var region: CareerRegion = CareerLevelLibrary.region_for_id(args[0].string)
+		if region:
+			result = PlayerData.career.is_region_cleared(region)
+		else:
+			push_warning("region not found: %s" % [args[0].string])
+		return result
+
+
 class LevelFinishedExpression extends BoolExpression:
 	func _init(new_token: BoolToken, arg: BoolToken) -> void:
 		token = new_token
@@ -209,6 +241,10 @@ func _parse_function() -> BoolExpression:
 			expression = IsFlagExpression.new(_get_next_token(), _get_next_token(), _get_next_token())
 		"level_finished":
 			expression = LevelFinishedExpression.new(_get_next_token(), _get_next_token())
+		"region_cleared":
+			expression = RegionClearedExpression.new(_get_next_token(), _get_next_token())
+		"region_started":
+			expression = RegionStartedExpression.new(_get_next_token(), _get_next_token())
 		_:
 			expression = _parse_atom()
 	return expression

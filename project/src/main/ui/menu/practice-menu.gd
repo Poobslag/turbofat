@@ -60,17 +60,13 @@ func _assign_default_recent_data() -> void:
 func _load_recent_data() -> void:
 	# find the player's previously played non-career region
 	if not _region:
-		for next_region in OtherLevelLibrary.regions:
-			if next_region.id == PlayerData.practice.region_id:
-				_region = next_region
-				break
+		if PlayerData.practice.region_id:
+			_region = OtherLevelLibrary.region_for_id(PlayerData.practice.region_id)
 	
 	# find the player's previously played career region
 	if not _region:
-		for next_region in CareerLevelLibrary.regions:
-			if next_region.id == PlayerData.practice.region_id:
-				_region = next_region
-				break
+		if PlayerData.practice.region_id:
+			_region = CareerLevelLibrary.region_for_id(PlayerData.practice.region_id)
 	
 	# load the player's previously played level
 	_level_settings.load_from_resource(PlayerData.practice.level_id)

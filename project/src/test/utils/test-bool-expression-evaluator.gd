@@ -3,6 +3,7 @@ extends "res://addons/gut/test.gd"
 func before_each() -> void:
 	PlayerData.chat_history.reset()
 	PlayerData.level_history.reset()
+	PlayerData.career.reset()
 	
 	PlayerData.chat_history.add_history_item("creature/gurus750/chat_200")
 	PlayerData.chat_history.add_history_item("creature/gurus750/chat_201")
@@ -11,6 +12,10 @@ func before_each() -> void:
 	add_level_history_item("level_200", true)
 	add_level_history_item("level_201", true)
 	add_level_history_item("level_400", false)
+
+
+func after_all() -> void:
+	CareerLevelLibrary.regions_path = CareerLevelLibrary.DEFAULT_REGIONS_PATH
 
 
 func add_level_history_item(level_id: String, cleared: bool) -> void:
@@ -34,6 +39,32 @@ func test_level_finished() -> void:
 	assert_evaluate(true, "level_finished level_200")
 	assert_evaluate(false, "level_finished level_400")
 	assert_evaluate(false, "level_finished level_404")
+
+
+func test_region_cleared() -> void:
+	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
+	
+	PlayerData.career.best_distance_travelled = 9
+	assert_evaluate(false, "region_cleared permissible")
+	
+	PlayerData.career.best_distance_travelled = 10
+	assert_evaluate(true, "region_cleared permissible")
+	
+	PlayerData.career.best_distance_travelled = 11
+	assert_evaluate(true, "region_cleared permissible")
+
+
+func test_region_started() -> void:
+	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
+	
+	PlayerData.career.best_distance_travelled = 9
+	assert_evaluate(false, "region_started even")
+	
+	PlayerData.career.best_distance_travelled = 10
+	assert_evaluate(false, "region_started even")
+	
+	PlayerData.career.best_distance_travelled = 11
+	assert_evaluate(true, "region_started even")
 
 
 func test_and_expression() -> void:
