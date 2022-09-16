@@ -190,7 +190,7 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 			creature.creature_id = remaining_customer_ids.pop_front()
 		else:
 			# randomize the customer
-			creature.creature_def = PlayerData.random_creature_def()
+			creature.creature_def = PlayerData.random_customer_def()
 	
 	_hide_duplicate_creatures()
 
@@ -217,7 +217,7 @@ func _refresh_multi_level_creatures(level_posses: Array) -> void:
 		else:
 			# randomize the customer
 			creature.add_to_group("customers")
-			creature.creature_def = PlayerData.random_creature_def()
+			creature.creature_def = PlayerData.random_customer_def()
 	
 	_hide_duplicate_creatures()
 
