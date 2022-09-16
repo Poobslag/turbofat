@@ -23,8 +23,8 @@ func _ready() -> void:
 	
 	# set a baseline fatness state
 	PlayerData.creature_library.save_fatness_state()
-	PlayerData.creature_queue.primary_index = 0
-	PlayerData.creature_queue.reset_secondary_creature_queue()
+	PlayerData.customer_queue.primary_index = 0
+	PlayerData.customer_queue.reset_secondary_customer_queue()
 	for i in range(_restaurant_view.get_customers().size()):
 		_restaurant_view.summon_customer(i)
 	
@@ -106,18 +106,18 @@ func feed_creature(customer: Creature, food_type: int) -> void:
 
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
 func _start_puzzle() -> void:
-	PlayerData.creature_queue.reset_secondary_creature_queue()
+	PlayerData.customer_queue.reset_secondary_customer_queue()
 	
 	if not CurrentLevel.keep_retrying:
 		# Reset everyone's fatness. Replaying a puzzle in free roam mode shouldn't make a creature super fat.
 		# Thematically we're turning back time.
 		PlayerData.creature_library.restore_fatness_state()
 	
-	PlayerData.creature_queue.primary_index = 0
+	PlayerData.customer_queue.primary_index = 0
 	_restaurant_view.briefly_suppress_sfx()
 	
-	if PlayerData.creature_queue.primary_queue:
-		var starting_creature_id: String = PlayerData.creature_queue.primary_queue[0].creature_id
+	if PlayerData.customer_queue.primary_queue:
+		var starting_creature_id: String = PlayerData.customer_queue.primary_queue[0].creature_id
 		var starting_creature_index: int = _restaurant_view.find_creature_index_with_id(starting_creature_id)
 		if starting_creature_index == -1:
 			# starting creature isn't found; load them to a different index and advance the primary queue
@@ -125,7 +125,7 @@ func _start_puzzle() -> void:
 			_restaurant_view.summon_customer(starting_creature_index)
 		else:
 			# starting creature is found; advance the primary creature queue so we don't see them twice
-			PlayerData.creature_queue.pop_primary_creature()
+			PlayerData.customer_queue.pop_primary_customer()
 			
 			if PlayerData.creature_library.has_fatness(starting_creature_id):
 				# restore their fatness so they start skinny again when replaying a puzzle
@@ -159,7 +159,7 @@ func _quit_puzzle() -> void:
 		PlayerData.career.process_puzzle_result()
 	
 	CurrentLevel.reset()
-	PlayerData.creature_queue.clear()
+	PlayerData.customer_queue.clear()
 	
 	if PlayerData.career.is_career_mode():
 		# career mode; defer to CareerData to decide the next scene.

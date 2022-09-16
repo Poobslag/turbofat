@@ -13,7 +13,7 @@ onready var _scene: RestaurantPuzzleScene = $RestaurantPuzzleScene
 
 func _ready() -> void:
 	for i in range(_scene.get_customers().size()):
-		_scene.summon_customer(CreatureLoader.random_def(), i)
+		_scene.summon_customer(CreatureLoader.random_customer_def(), i)
 
 
 func _input(event: InputEvent) -> void:
@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			_scene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
-			_scene.summon_customer(CreatureLoader.random_def())
+			_scene.summon_customer(CreatureLoader.random_customer_def())
 		KEY_Q: _scene.current_creature_index = 0
 		KEY_W: _scene.current_creature_index = 1
 		KEY_E: _scene.current_creature_index = 2

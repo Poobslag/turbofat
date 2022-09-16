@@ -108,4 +108,4 @@ func _pop_level() -> void:
 		CurrentLevel.customers = level_properties["customers"]
 	if level_properties.has("puzzle_environment_name"):
 		CurrentLevel.puzzle_environment_name = level_properties["puzzle_environment_name"]
-	PlayerData.creature_queue.pop_secondary_creatures(CurrentLevel.get_creature_ids())
+	PlayerData.customer_queue.pop_secondary_customers(CurrentLevel.get_creature_ids())
