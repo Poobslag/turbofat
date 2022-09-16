@@ -34,5 +34,6 @@
     "accent_texture": 2,
     "color": "1a1a1e",
     "dark": true
-  }
+  },
+  "customer_if": "false"
 }

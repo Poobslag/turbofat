@@ -32,6 +32,7 @@
     "accent_texture": 11,
     "color": "ffa32c"
   },
+  "customer_if": "region_started marsh",
   "weight_gain_scale": 0.25,
   "metabolism_scale": 4
 }

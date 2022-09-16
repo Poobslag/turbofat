@@ -89,6 +89,7 @@ func reset() -> void:
 	new_player_def.dna = CreatureDef.DEFAULT_DNA.duplicate()
 	new_player_def.min_fatness = 1.0
 	new_player_def.chat_theme.from_json_dict(CreatureDef.DEFAULT_CHAT_THEME_JSON.duplicate())
+	new_player_def.customer_if = "false"
 	set_player_def(new_player_def)
 	
 	var creature_def_paths := []

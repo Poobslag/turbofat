@@ -33,5 +33,6 @@
     "accent_texture": 1,
     "color": "ffbfcb"
   },
+  "customer_if": "region_cleared marsh",
   "fatness": 1.1
 }
