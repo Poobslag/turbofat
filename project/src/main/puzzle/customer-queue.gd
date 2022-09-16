@@ -1,98 +1,98 @@
 class_name CustomerQueue
 ## Queue of creatures who appear when the player solves puzzles.
 ##
-## This includes a 'primary queue' of creatures guaranteed to show up at the start of a puzzle, and a 'secondary queue'
+## This includes a 'priority queue' of creatures guaranteed to show up at the start of a puzzle, and a 'standard queue'
 ## of creatures who randomly show up during a puzzle.
 
-## Path to the directory with secondary creatures. Can be changed for tests.
+## Path to the directory with standard customers. Can be changed for tests.
 const DEFAULT_SECONDARY_CUSTOMERS_PATH := "res://assets/main/creatures/secondary"
 
-## Path to the directory with secondary creatures. Can be changed for tests.
+## Path to the directory with standard customers. Can be changed for tests.
 var secondary_customers_path := DEFAULT_SECONDARY_CUSTOMERS_PATH setget set_secondary_customers_path
 
 ## Queue of creatures who show up at the start of a puzzle.
-var primary_queue := []
-var primary_index: int
+var priority_queue := []
+var priority_index: int
 
 ## Queue of creatures who randomly show up during a puzzle.
-var secondary_queue: Array
-var secondary_index := 0
+var standard_queue: Array
+var standard_index := 0
 
 func _init() -> void:
-	_load_secondary_customers()
+	_load_standard_customers()
 
 
 func set_secondary_customers_path(value: String) -> void:
 	secondary_customers_path = value
-	secondary_queue.clear()
-	secondary_index = 0
-	_load_secondary_customers()
+	standard_queue.clear()
+	standard_index = 0
+	_load_standard_customers()
 
 
-## Returns 'true' if the primary creature queue has any creatures left.
-func has_primary_customer() -> bool:
-	return primary_index < primary_queue.size()
+## Returns 'true' if the priority customer queue has any creatures left.
+func has_priority_customer() -> bool:
+	return priority_index < priority_queue.size()
 
 
-## Returns the next creature in the primary creature queue, and advances the queue.
-func pop_primary_customer() -> CreatureDef:
+## Returns the next creature in the priority customer queue, and advances the queue.
+func pop_priority_customer() -> CreatureDef:
 	var creature_def: CreatureDef
-	if has_primary_customer():
-		creature_def = primary_queue[primary_index]
-		primary_index += 1
+	if has_priority_customer():
+		creature_def = priority_queue[priority_index]
+		priority_index += 1
 	return creature_def
 
 
-## Returns 'true' if the secondary creature queue has any creatures left.
-func has_secondary_customer() -> bool:
-	return secondary_index < secondary_queue.size()
+## Returns 'true' if the standard customer queue has any creatures left.
+func has_standard_customer() -> bool:
+	return standard_index < standard_queue.size()
 
 
-## Returns the next creature in the secondary creature queue, and advances the queue.
-func pop_secondary_customer() -> CreatureDef:
+## Returns the next creature in the standard customer queue, and advances the queue.
+func pop_standard_customer() -> CreatureDef:
 	var creature_def: CreatureDef
-	if has_secondary_customer():
-		creature_def = secondary_queue[secondary_index]
+	if has_standard_customer():
+		creature_def = standard_queue[standard_index]
 		# don't loop back through the queue; we don't want the same customer showing up twice during a puzzle
-		secondary_index += 1
+		standard_index += 1
 	return creature_def
 
 
 ## Empties the queue of creatures who will show up at the start of the next puzzle.
 ##
-## Also rotates the secondary creatures so the same creatures don't show up over and over.
+## Also rotates the standard customers so the same creatures don't show up over and over.
 func clear() -> void:
-	primary_queue = []
-	primary_index = 0
-	reset_secondary_customer_queue()
+	priority_queue = []
+	priority_index = 0
+	reset_standard_customer_queue()
 
 
-## Resets the queue of secondary creatures; recognizable characters who show up now and then, but don't have any chats
+## Resets the queue of standard customers; recognizable characters who show up now and then, but don't have any chats
 ## or levels
 ##
 ## This resets the queue_index to 0, and moves the beginning of the queue to the end.
-func reset_secondary_customer_queue() -> void:
-	if secondary_queue and secondary_index > 0:
+func reset_standard_customer_queue() -> void:
+	if standard_queue and standard_index > 0:
 		var new_queue := []
-		new_queue += secondary_queue.slice(
-				secondary_index, secondary_queue.size() - 1)
-		new_queue += secondary_queue.slice(0, secondary_index - 1)
-		secondary_queue = new_queue
-		secondary_index = 0
+		new_queue += standard_queue.slice(
+				standard_index, standard_queue.size() - 1)
+		new_queue += standard_queue.slice(0, standard_index - 1)
+		standard_queue = new_queue
+		standard_index = 0
 
 
-## Shift secondary creatures in the queue so that they will not be summoned soon.
+## Shift standard customers in the queue so that they will not be summoned soon.
 ##
-## This prevents the player from seeing a random secondary creature at an inopportune time, such as picking a level
-## featuring a creature and then having them show up in the restaurant later during that same level.
+## This prevents the player from seeing a random customer from the standard queue at an inopportune time, such as
+## picking a level featuring a creature and then having them show up in the restaurant later during that same level.
 ##
 ## Parameters:
 ## 	'creature_ids': The ids of creatures who should be shifted in the queue
-func pop_secondary_customers(creature_ids: Array) -> void:
+func pop_standard_customers(creature_ids: Array) -> void:
 	for creature_id in creature_ids:
 		var creature_index := -1
-		for i in range(secondary_queue.size()):
-			if secondary_queue[i].creature_id == creature_id:
+		for i in range(standard_queue.size()):
+			if standard_queue[i].creature_id == creature_id:
 				creature_index = i
 				break
 		
@@ -100,16 +100,16 @@ func pop_secondary_customers(creature_ids: Array) -> void:
 			# creature not found
 			pass
 		else:
-			var creature_def: CreatureDef = secondary_queue[creature_index]
-			secondary_queue.remove(creature_index)
-			if creature_index >= secondary_index:
-				# when moving a creature backwards in the queue, we advance secondary_index
-				secondary_index += 1
-			secondary_queue.insert(secondary_index - 1, creature_def)
+			var creature_def: CreatureDef = standard_queue[creature_index]
+			standard_queue.remove(creature_index)
+			if creature_index >= standard_index:
+				# when moving a creature backwards in the queue, we advance standard_index
+				standard_index += 1
+			standard_queue.insert(standard_index - 1, creature_def)
 
 
-## Loads all secondary creature data from a directory of json files.
-func _load_secondary_customers() -> void:
+## Loads all standard customer data from a directory of json files.
+func _load_standard_customers() -> void:
 	if not secondary_customers_path:
 		return
 	
@@ -124,6 +124,6 @@ func _load_secondary_customers() -> void:
 			var creature_def: CreatureDef = CreatureDef.new()
 			creature_def = creature_def.from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
 			creature_def.creature_id = file.get_file().get_basename()
-			secondary_queue.append(creature_def)
+			standard_queue.append(creature_def)
 	dir.list_dir_end()
-	secondary_queue.shuffle()
+	standard_queue.shuffle()

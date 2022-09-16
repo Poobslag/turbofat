@@ -78,30 +78,30 @@ var _dna_alternatives := DnaAlternatives.new()
 ## Returns a random creature definition.
 ##
 ## Parameters:
-## 	'include_secondary_customers': If 'true' the function has a chance to return a creature from a library of
+## 	'include_predefined_customers': If 'true' the function has a chance to return a creature from a library of
 ## 		predefined creatures instead of a randomly generated one.
 ##
 ## 	'creature_type': (Optional) The required creature type. If specified, creatures will be skipped in the
 ## 		secondary queue until one conforms to the specified type.
-func random_customer_def(include_secondary_customers: bool = false,
+func random_customer_def(include_predefined_customers: bool = false,
 		creature_type: int = Creatures.Type.DEFAULT) -> CreatureDef:
 	var result: CreatureDef
-	if include_secondary_customers \
-			and PlayerData.customer_queue.has_secondary_customer() \
+	if include_predefined_customers \
+			and PlayerData.customer_queue.has_standard_customer() \
 			and randf() < 0.2:
 		
 		# We check the next 8 creatures for one which matches the specified type. If we check too few creatures, we
 		# won't find one. If we check too many, we'll aggressively advance the creature queue. 8 feels about right.
 		for i in range(8):
-			if PlayerData.customer_queue.secondary_index + i >= PlayerData.customer_queue.secondary_queue.size():
+			if PlayerData.customer_queue.standard_index + i >= PlayerData.customer_queue.standard_queue.size():
 				break
 			var potential_result: CreatureDef = \
-					PlayerData.customer_queue.secondary_queue[PlayerData.customer_queue.secondary_index + i]
+					PlayerData.customer_queue.standard_queue[PlayerData.customer_queue.standard_index + i]
 			if not potential_result.is_customer():
 				continue
 			if DnaUtils.dna_matches_type(potential_result.dna, creature_type):
 				result = potential_result
-				PlayerData.customer_queue.secondary_index += i + 1
+				PlayerData.customer_queue.standard_index += i + 1
 				break
 	
 	if not result:
