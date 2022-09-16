@@ -33,5 +33,6 @@
     "accent_texture": 10,
     "color": "b24b10",
     "dark": true
-  }
+  },
+  "customer_if": "false"
 }

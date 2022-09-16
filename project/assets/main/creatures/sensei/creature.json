@@ -32,5 +32,6 @@
     "accent_texture": 7,
     "color": "a854cb"
   },
+  "customer_if": "false",
   "weight_gain_scale": 0
 }

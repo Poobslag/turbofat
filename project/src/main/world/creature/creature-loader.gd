@@ -97,6 +97,8 @@ func random_customer_def(include_secondary_customers: bool = false,
 				break
 			var potential_result: CreatureDef = \
 					PlayerData.customer_queue.secondary_queue[PlayerData.customer_queue.secondary_index + i]
+			if not potential_result.is_customer():
+				continue
 			if DnaUtils.dna_matches_type(potential_result.dna, creature_type):
 				result = potential_result
 				PlayerData.customer_queue.secondary_index += i + 1
