@@ -30,6 +30,21 @@ func assert_evaluate(expected: bool, string: String, subject = null) -> void:
 			"\"%s\" expected [%s] but was [%s]" % [string, expected, actual])
 
 
+func test_true() -> void:
+	assert_evaluate(true, "true")
+	assert_evaluate(true, "TRUE")
+	assert_evaluate(true, "True")
+	assert_evaluate(true, "1")
+
+
+func test_false() -> void:
+	assert_evaluate(false, "false")
+	assert_evaluate(false, "FALSE")
+	assert_evaluate(false, "False")
+	assert_evaluate(false, "0")
+	assert_evaluate(false, "")
+
+
 func test_chat_finished() -> void:
 	assert_evaluate(true, "chat_finished creature/gurus750/chat_200")
 	assert_evaluate(false, "chat_finished creature/gurus750/chat_404")

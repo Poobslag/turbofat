@@ -145,6 +145,15 @@ class IsFlagExpression extends BoolExpression:
 		return PlayerData.chat_history.is_flag(args[0].string, args[1].string)
 
 
+class TruthyExpression extends BoolExpression:
+	func _init(new_token: BoolToken) -> void:
+		token = new_token
+	
+	
+	func evaluate() -> bool:
+		return Utils.to_bool(token.string)
+
+
 ## error encountered when parsing the boolean string
 var _parse_error: String
 
@@ -245,6 +254,10 @@ func _parse_function() -> BoolExpression:
 			expression = RegionClearedExpression.new(_get_next_token(), _get_next_token())
 		"region_started":
 			expression = RegionStartedExpression.new(_get_next_token(), _get_next_token())
+		"true", "True", "TRUE", "1", "false", "False", "FALSE", "0":
+			expression = TruthyExpression.new(_get_next_token())
+		"":
+			expression = TruthyExpression.new(BoolToken.new(0, ""))
 		_:
 			expression = _parse_atom()
 	return expression
