@@ -107,6 +107,10 @@ func feed_creature(customer: Creature, food_type: int) -> void:
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
 func _start_puzzle() -> void:
 	PlayerData.customer_queue.reset_secondary_customer_queue()
+	var current_customer_ids := []
+	for customer in _restaurant_view.get_customers():
+		current_customer_ids.append(customer.creature_id)
+	PlayerData.customer_queue.pop_secondary_customers(current_customer_ids)
 	
 	if not CurrentLevel.keep_retrying:
 		# Reset everyone's fatness. Replaying a puzzle in free roam mode shouldn't make a creature super fat.
