@@ -4,11 +4,14 @@ class_name CustomerQueue
 ## This includes a 'priority queue' of creatures guaranteed to show up at the start of a puzzle, and a 'standard queue'
 ## of creatures who randomly show up during a puzzle.
 
-## Path to the directory with standard customers. Can be changed for tests.
-const DEFAULT_SECONDARY_CUSTOMERS_PATH := "res://assets/main/creatures/secondary"
+## Path to directories with customers. Can be changed for tests.
+const DEFAULT_CUSTOMER_DIRS := [
+	"res://assets/main/creatures/nonstory",
+	"res://assets/main/creatures/story",
+]
 
 ## Path to the directory with standard customers. Can be changed for tests.
-var secondary_customers_path := DEFAULT_SECONDARY_CUSTOMERS_PATH setget set_secondary_customers_path
+var customer_dirs := DEFAULT_CUSTOMER_DIRS setget set_customer_dirs
 
 ## Queue of creatures who show up at the start of a puzzle.
 var priority_queue := []
@@ -19,14 +22,14 @@ var standard_queue: Array
 var standard_index := 0
 
 func _init() -> void:
-	_load_standard_customers()
+	_load_customers()
 
 
-func set_secondary_customers_path(value: String) -> void:
-	secondary_customers_path = value
+func set_customer_dirs(value: Array) -> void:
+	customer_dirs = value
 	standard_queue.clear()
 	standard_index = 0
-	_load_standard_customers()
+	_load_customers()
 
 
 ## Returns 'true' if the priority customer queue has any creatures left.
@@ -109,20 +112,18 @@ func pop_standard_customers(creature_ids: Array) -> void:
 
 
 ## Loads all standard customer data from a directory of json files.
-func _load_standard_customers() -> void:
-	if not secondary_customers_path:
-		return
-	
-	var dir := Directory.new()
-	dir.open(secondary_customers_path)
-	dir.list_dir_begin(true, true)
-	while true:
-		var file := dir.get_next()
-		if not file:
-			break
-		else:
-			var creature_def: CreatureDef = CreatureDef.new()
-			creature_def = creature_def.from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
-			standard_queue.append(creature_def)
-	dir.list_dir_end()
-	standard_queue.shuffle()
+func _load_customers() -> void:
+	for customer_dir in customer_dirs:
+		var dir := Directory.new()
+		dir.open(customer_dir)
+		dir.list_dir_begin(true, true)
+		while true:
+			var file := dir.get_next()
+			if not file:
+				break
+			else:
+				var creature_def: CreatureDef = CreatureDef.new()
+				creature_def = creature_def.from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
+				standard_queue.append(creature_def)
+		dir.list_dir_end()
+		standard_queue.shuffle()

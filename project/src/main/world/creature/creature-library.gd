@@ -93,14 +93,9 @@ func reset() -> void:
 	set_player_def(new_player_def)
 	
 	var creature_def_paths := []
-	# append sensei path
 	creature_def_paths.append(Creatures.SENSEI_PATH)
-	
-	# append primary paths
-	creature_def_paths += _file_paths("res://assets/main/creatures/primary")
-	
-	# append secondary paths
-	creature_def_paths += _file_paths("res://assets/main/creatures/secondary")
+	creature_def_paths += _file_paths("res://assets/main/creatures/story")
+	creature_def_paths += _file_paths("res://assets/main/creatures/nonstory")
 	
 	# store load and creature_defs in _creature_defs_by_id
 	for path in creature_def_paths:

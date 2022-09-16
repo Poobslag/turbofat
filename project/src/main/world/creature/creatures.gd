@@ -76,7 +76,7 @@ const WIGGLE := MovementMode.WIGGLE
 const MAX_FATNESS := 10.0
 
 ## the creature definition path for the sensei who leads tutorials
-const SENSEI_PATH := "res://assets/main/creatures/sensei/creature.json"
+const SENSEI_PATH := "res://assets/main/creatures/sensei.json"
 
 ## Returns true if the specified creature orientation points south (towards the camera)
 ##
