@@ -15,6 +15,14 @@ func test_regions() -> void:
 	assert_eq(region_0.level_ids, ["tutorial/basics_0", "tutorial/squish_0"])
 
 
+func test_region_for_id() -> void:
+	OtherLevelLibrary.other_regions_path = "res://assets/test/puzzle/other-regions-simple.json"
+	
+	var region := OtherLevelLibrary.region_for_id("toot")
+	assert_not_null(region)
+	assert_eq(region.id, "toot")
+
+
 func test_all_level_ids() -> void:
 	OtherLevelLibrary.other_regions_path = "res://assets/test/puzzle/other-regions-simple.json"
 	

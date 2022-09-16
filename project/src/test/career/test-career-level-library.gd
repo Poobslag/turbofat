@@ -78,6 +78,14 @@ func test_region_demographics() -> void:
 	assert_eq(region_0.population.demographics[0].chance, 1.0)
 
 
+func test_region_for_id() -> void:
+	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
+	
+	var region := CareerLevelLibrary.region_for_id("even")
+	assert_not_null(region)
+	assert_eq(region.id, "even")
+
+
 ## increasing the weight selects faster speeds
 func test_piece_speed_between_weight() -> void:
 	assert_eq(CareerLevelLibrary.piece_speed_between("0", "4", 0.0, 0.5), "0")

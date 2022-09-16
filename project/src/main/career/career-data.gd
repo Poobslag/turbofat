@@ -235,6 +235,11 @@ func is_region_cleared(region: CareerRegion) -> bool:
 	return best_distance_travelled > region.end
 
 
+## Returns 'true' if the player has completed one level in the specified region
+func is_region_started(region: CareerRegion) -> bool:
+	return best_distance_travelled > region.start
+
+
 ## Returns 'true' if the current career mode distance corresponds to an uncleared boss level
 func is_boss_level() -> bool:
 	var result := true

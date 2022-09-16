@@ -33,6 +33,16 @@ func set_other_regions_path(new_other_regions_path: String) -> void:
 	_load_raw_json_data()
 
 
+## Returns the region with the specified region id.
+func region_for_id(region_id: String) -> OtherRegion:
+	var result: OtherRegion
+	for next_region in regions:
+		if next_region.id == region_id:
+			result = next_region
+			break
+	return result
+
+
 ## Loads the list of levels from JSON.
 func _load_raw_json_data() -> void:
 	regions.clear()
