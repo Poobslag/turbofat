@@ -63,7 +63,7 @@ func _refresh_status_icon(lock_status: int) -> void:
 	_grade_label.visible = false
 	_status_icon.visible = true
 	
-	var icon_color := Color("4eff49") # green
+	var icon_color := GradeLabel.GRADE_COLOR_GREEN
 	var outline_color := Color("b39a8f") # light brown tint. the outline is also colored by the modulate property
 	match lock_status:
 		LevelSelectButton.STATUS_NONE:
@@ -71,16 +71,16 @@ func _refresh_status_icon(lock_status: int) -> void:
 			icon_color = Color.white
 		LevelSelectButton.STATUS_CLEARED:
 			_status_icon.texture = _cleared_texture
-			icon_color = Color("7dff49") # green
+			icon_color = GradeLabel.GRADE_COLOR_GREEN
 		LevelSelectButton.STATUS_CROWN:
 			_status_icon.texture = _crown_texture
-			icon_color = Color("ffd249") # yellow
+			icon_color = GradeLabel.GRADE_COLOR_YELLOW
 		LevelSelectButton.STATUS_KEY:
 			_status_icon.texture = _key_texture
-			icon_color = Color("7dff49") # green
+			icon_color = GradeLabel.GRADE_COLOR_GREEN
 		LevelSelectButton.STATUS_LOCKED:
 			_status_icon.texture = _locked_texture
-			icon_color = Color("888888")
+			icon_color = GradeLabel.GRADE_COLOR_GREY
 		_:
 			push_warning("Unexpected lock status: %s" % [lock_status])
 	
