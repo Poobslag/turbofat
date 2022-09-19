@@ -7,29 +7,29 @@ extends Control
 ## inserting a row might bump the piece up, or erasing a row might shift the ghost piece down.
 signal playfield_disturbed(piece)
 
-signal piece_spawned
+signal piece_spawned(piece)
 
 ## emitted when the current piece changes in some way (moved, replaced, reoriented)
 signal piece_disturbed(piece)
 
 ## emitted when the player rotates a piece
-signal initial_rotated_cw
-signal initial_rotated_ccw
-signal initial_rotated_180
+signal initial_rotated_cw(piece)
+signal initial_rotated_ccw(piece)
+signal initial_rotated_180(piece)
 
 ## emitted when the player moves a piece
-signal initial_das_moved_left
-signal initial_das_moved_right
-signal das_moved_left
-signal das_moved_right
-signal moved_left
-signal moved_right
-signal rotated_ccw
-signal rotated_cw
-signal rotated_180
-signal soft_dropped # emitted when the player presses the soft drop key
-signal hard_dropped # emitted when the player presses the hard drop key
-signal dropped # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
+signal initial_das_moved_left(piece)
+signal initial_das_moved_right(piece)
+signal das_moved_left(piece)
+signal das_moved_right(piece)
+signal moved_left(piece)
+signal moved_right(piece)
+signal rotated_ccw(piece)
+signal rotated_cw(piece)
+signal rotated_180(piece)
+signal soft_dropped(piece) # emitted when the player presses the soft drop key
+signal hard_dropped(piece) # emitted when the player presses the hard drop key
+signal dropped(piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 signal squish_moved(piece, old_pos)
 
 # emitted when the player places a sealed-in piece with a spin move
@@ -39,8 +39,8 @@ signal finished_spin_move(piece, lines_cleared)
 signal finished_squish_move(piece, lines_cleared)
 
 ## emitted for piece locks
-signal lock_cancelled
-signal lock_started
+signal lock_cancelled(piece)
+signal lock_started(piece)
 
 signal tiles_changed(tile_map)
 
@@ -145,7 +145,7 @@ func spawn_piece() -> bool:
 	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_obstructed"))
 	piece.orientation = next_piece.orientation
 	var success := _physics.initially_move_piece(piece)
-	emit_signal("piece_spawned")
+	emit_signal("piece_spawned", piece)
 	emit_signal("piece_disturbed", piece)
 	return success
 
@@ -253,7 +253,7 @@ func _on_States_entered_state(prev_state: State, state: State) -> void:
 		tile_map.z_index = TILE_MAP_DEFAULT_Z_INDEX
 	
 	if state == _states.prelock:
-		emit_signal("lock_started")
+		emit_signal("lock_started", piece)
 
 
 func _on_PuzzleState_game_prepared() -> void:
@@ -303,24 +303,29 @@ func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> vo
 	emit_signal("playfield_disturbed", piece)
 
 
-func _on_Dropper_hard_dropped() -> void: emit_signal("hard_dropped")
-func _on_Dropper_soft_dropped() -> void: emit_signal("soft_dropped")
-func _on_Dropper_dropped() -> void: emit_signal("dropped")
+func _on_Dropper_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
+func _on_Dropper_soft_dropped(dropped_piece: ActivePiece) -> void: emit_signal("soft_dropped", dropped_piece)
+func _on_Dropper_dropped(dropped_piece: ActivePiece) -> void: emit_signal("dropped", dropped_piece)
 
-func _on_Squisher_lock_cancelled() -> void: emit_signal("lock_cancelled")
-func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2) -> void:
-	emit_signal("squish_moved", squished_piece, old_pos)
+func _on_Squisher_lock_cancelled(cancelled_piece: ActivePiece) -> void: emit_signal("lock_cancelled", cancelled_piece)
+func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2) -> void: emit_signal("squish_moved", \
+		squished_piece, old_pos)
 
-func _on_Mover_initial_das_moved_left() -> void: emit_signal("initial_das_moved_left")
-func _on_Mover_initial_das_moved_right() -> void: emit_signal("initial_das_moved_right")
-func _on_Mover_das_moved_left() -> void: emit_signal("das_moved_left")
-func _on_Mover_das_moved_right() -> void: emit_signal("das_moved_right")
-func _on_Mover_moved_left() -> void: emit_signal("moved_left")
-func _on_Mover_moved_right() -> void: emit_signal("moved_right")
+func _on_Mover_initial_das_moved_left(moved_piece: ActivePiece) -> void:emit_signal("initial_das_moved_left", \
+		moved_piece)
+func _on_Mover_initial_das_moved_right(moved_piece: ActivePiece) -> void: emit_signal("initial_das_moved_right", \
+		moved_piece)
+func _on_Mover_das_moved_left(moved_piece: ActivePiece) -> void: emit_signal("das_moved_left", moved_piece)
+func _on_Mover_das_moved_right(moved_piece: ActivePiece) -> void: emit_signal("das_moved_right", moved_piece)
+func _on_Mover_moved_left(moved_piece: ActivePiece) -> void: emit_signal("moved_left", moved_piece)
+func _on_Mover_moved_right(moved_piece: ActivePiece) -> void: emit_signal("moved_right", moved_piece)
 
-func _on_Rotator_rotated_ccw() -> void: emit_signal("rotated_ccw")
-func _on_Rotator_rotated_cw() -> void: emit_signal("rotated_cw")
-func _on_Rotator_rotated_180() -> void: emit_signal("rotated_180")
-func _on_Rotator_initial_rotated_ccw() -> void: emit_signal("initial_rotated_ccw")
-func _on_Rotator_initial_rotated_cw() -> void: emit_signal("initial_rotated_cw")
-func _on_Rotator_initial_rotated_180() -> void: emit_signal("initial_rotated_180")
+func _on_Rotator_rotated_ccw(rotated_piece: ActivePiece) -> void: emit_signal("rotated_ccw", rotated_piece)
+func _on_Rotator_rotated_cw(rotated_piece: ActivePiece) -> void: emit_signal("rotated_cw", rotated_piece)
+func _on_Rotator_rotated_180(rotated_piece: ActivePiece) -> void: emit_signal("rotated_180", rotated_piece)
+func _on_Rotator_initial_rotated_ccw(rotated_piece: ActivePiece) -> void: emit_signal("initial_rotated_ccw", \
+		rotated_piece)
+func _on_Rotator_initial_rotated_cw(rotated_piece: ActivePiece) -> void: emit_signal("initial_rotated_cw", \
+		rotated_piece)
+func _on_Rotator_initial_rotated_180(rotated_piece: ActivePiece) -> void: emit_signal("initial_rotated_180", \
+		rotated_piece)

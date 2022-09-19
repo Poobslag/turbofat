@@ -230,7 +230,7 @@ func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 		hud.skill_tally_item("CakeBox").increment()
 
 
-func _on_PieceManager_piece_spawned() -> void:
+func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 	_did_build_cake = false
 
 

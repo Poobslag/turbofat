@@ -2,11 +2,6 @@ class_name TechMoveDetector
 extends Node
 ## Detects when the player places a sealed-in piece with a spin move or squish move.
 
-export (NodePath) var piece_manager_path: NodePath
-
-## Cannot statically type as 'PieceManager' because of cyclic reference
-onready var _piece_manager: Node = get_node(piece_manager_path)
-
 ## 'true' if the piece was most recently disturbed by the player spinning it
 var did_spin := false
 
@@ -37,45 +32,45 @@ func _refresh_squish(new_squish: bool) -> void:
 	did_spin = false
 
 
-func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
-	_refresh_squish(_piece_manager.piece.is_sealed())
+func _on_PieceManager_squish_moved(piece: ActivePiece, _old_pos: Vector2) -> void:
+	_refresh_squish(piece.is_sealed())
 
 
-func _on_PieceManager_piece_spawned() -> void:
+func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 	_refresh_none()
 
 
-func _on_PieceManager_rotated_cw() -> void:
-	_refresh_spin(_piece_manager.piece.is_sealed())
+func _on_PieceManager_rotated_cw(piece: ActivePiece) -> void:
+	_refresh_spin(piece.is_sealed())
 
 
-func _on_PieceManager_rotated_ccw() -> void:
-	_refresh_spin(_piece_manager.piece.is_sealed())
+func _on_PieceManager_rotated_ccw(piece: ActivePiece) -> void:
+	_refresh_spin(piece.is_sealed())
 
 
-func _on_PieceManager_rotated_180() -> void:
-	_refresh_spin(_piece_manager.piece.is_sealed())
+func _on_PieceManager_rotated_180(piece: ActivePiece) -> void:
+	_refresh_spin(piece.is_sealed())
 
 
-func _on_PieceManager_initial_rotated_cw() -> void:
-	_refresh_spin(_piece_manager.piece.is_sealed())
+func _on_PieceManager_initial_rotated_cw(piece: ActivePiece) -> void:
+	_refresh_spin(piece.is_sealed())
 
 
-func _on_PieceManager_initial_rotated_ccw() -> void:
-	_refresh_spin(_piece_manager.piece.is_sealed())
+func _on_PieceManager_initial_rotated_ccw(piece: ActivePiece) -> void:
+	_refresh_spin(piece.is_sealed())
 
 
-func _on_PieceManager_initial_rotated_180() -> void:
-	_refresh_spin(_piece_manager.piece.is_sealed())
+func _on_PieceManager_initial_rotated_180(piece: ActivePiece) -> void:
+	_refresh_spin(piece.is_sealed())
 
 
-func _on_PieceManager_moved_left() -> void:
+func _on_PieceManager_moved_left(_piece: ActivePiece) -> void:
 	_refresh_none()
 
 
-func _on_PieceManager_moved_right() -> void:
+func _on_PieceManager_moved_right(_piece: ActivePiece) -> void:
 	_refresh_none()
 
 
-func _on_PieceManager_dropped() -> void:
+func _on_PieceManager_dropped(_piece: ActivePiece) -> void:
 	_refresh_none()

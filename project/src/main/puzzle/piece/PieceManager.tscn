@@ -75,7 +75,6 @@ script = ExtResource( 3 )
 
 [node name="TechMoveDetector" type="Node" parent="."]
 script = ExtResource( 32 )
-piece_manager_path = NodePath("..")
 
 [node name="GhostMover" type="Node" parent="."]
 script = ExtResource( 31 )
@@ -166,7 +165,6 @@ input_path = NodePath("../../Input")
 
 [node name="Sfx" type="Node" parent="."]
 script = ExtResource( 13 )
-piece_manager_path = NodePath("..")
 
 [node name="Rotate0Sound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 6 )
