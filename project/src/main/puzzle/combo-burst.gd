@@ -4,6 +4,13 @@ extends Node2D
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
+const BURST_COLOR_BLUE := Color("4a9fff")
+const BURST_COLOR_CYAN := Color("4affcf")
+const BURST_COLOR_GREEN := Color("80ff4a")
+const BURST_COLOR_YELLOW := Color("ffd24a")
+const BURST_COLOR_LIGHT_YELLOW := Color("ffe38f")
+const BURST_COLOR_NEAR_WHITE := Color("fffcf0")
+
 ## When the combo exceeds these values, the indicator changes its appearance
 const COMBO_THRESHOLD_0 := 5
 const COMBO_THRESHOLD_1 := 10
@@ -55,22 +62,21 @@ func _refresh_combo() -> void:
 	_refresh_accent()
 	_refresh_particles()
 
-
 func _calculate_colors() -> void:
 	var outline_darkness := 0.2
 	if combo < COMBO_THRESHOLD_0:
-		_font_color = Color("4a9fff") # blue
+		_font_color = BURST_COLOR_BLUE
 	elif combo < COMBO_THRESHOLD_1:
-		_font_color = Color("4affcf") # cyan
+		_font_color = BURST_COLOR_CYAN
 	elif combo <= COMBO_THRESHOLD_2:
-		_font_color = Color("80ff4a") # green
+		_font_color = BURST_COLOR_GREEN
 	elif combo <= COMBO_THRESHOLD_3:
-		_font_color = Color("ffd24a") # yellow
+		_font_color = BURST_COLOR_YELLOW
 	elif combo <= COMBO_THRESHOLD_4:
-		_font_color = Color("ffe38f") # bright yellow
+		_font_color = BURST_COLOR_LIGHT_YELLOW
 		outline_darkness = 0.16
 	else:
-		_font_color = Color("fffcf0") # near-white
+		_font_color = BURST_COLOR_NEAR_WHITE
 		outline_darkness = 0.12
 	_accent_color = _font_color
 	_accent_color.s += outline_darkness

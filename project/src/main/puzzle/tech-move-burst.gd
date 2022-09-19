@@ -94,9 +94,9 @@ func _refresh() -> void:
 func _calculate_colors() -> void:
 	var outline_darkness := 0.2
 	if lines_cleared == 0:
-		_font_color = Color("4a9fff") # blue
+		_font_color = ComboBurst.BURST_COLOR_BLUE
 	else:
-		_font_color = Color("4affcf") # cyan
+		_font_color = ComboBurst.BURST_COLOR_CYAN
 	_accent_color = _font_color
 	_accent_color.s += outline_darkness
 	_accent_color.v -= outline_darkness * 2
