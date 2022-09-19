@@ -36,8 +36,8 @@ func initially_move_piece(piece: ActivePiece) -> bool:
 		success = false
 	else:
 		piece.move_to_target()
-		rotator.emit_initial_rotate_signal(piece, rotation_signal)
-		mover.emit_initial_move_signal(piece, movement_signal)
+		rotator.emit_initial_rotate_signal(rotation_signal, piece)
+		mover.emit_initial_move_signal(movement_signal, piece)
 	return success
 
 

@@ -432,9 +432,6 @@ margin_top = 134.094
 margin_right = 846.626
 margin_bottom = 214.094
 script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Bg" type="Panel" parent="Fg/StepMeter"]
 anchor_right = 1.0

@@ -2,7 +2,7 @@ class_name PieceSquisher
 extends Node
 ## Handles squish moves for the player's active piece.
 
-signal lock_cancelled
+signal lock_cancelled(piece)
 signal squish_moved(piece, old_pos)
 
 ## state of the current squish move
@@ -61,7 +61,7 @@ func attempt_squish(piece: ActivePiece) -> void:
 		elif input.is_soft_drop_just_pressed() and squish_state == SquishState.INVALID:
 			# lock cancel
 			piece.perform_lock_reset()
-			emit_signal("lock_cancelled")
+			emit_signal("lock_cancelled", piece)
 		elif squish_state == SquishState.VALID and piece.lock >= PieceSpeeds.current_speed.lock_delay:
 			# slow squish
 			_squish_to(piece, _squish_target_pos)

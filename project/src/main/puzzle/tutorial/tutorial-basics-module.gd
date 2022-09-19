@@ -160,7 +160,7 @@ func _handle_snack_stack_message() -> void:
 					+ " you can organize boxes in tall vertical stacks and earn a lot of money."))
 
 
-func _on_PieceManager_piece_spawned() -> void:
+func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 	_did_line_clear = false
 	_did_squish_move = false
 	_did_build_box = false

@@ -171,7 +171,7 @@ func _show_next_diagram() -> void:
 	_show_diagram_count += 1
 
 
-func _on_PieceManager_piece_spawned() -> void:
+func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 	_did_end_combo = false
 
 

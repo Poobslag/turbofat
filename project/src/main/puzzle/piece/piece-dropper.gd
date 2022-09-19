@@ -45,8 +45,8 @@ func apply_hard_drop_input(piece: ActivePiece) -> void:
 	piece.pos = hard_drop_target_pos
 	piece.lock = PieceSpeeds.current_speed.lock_delay
 	if pos_changed:
-		emit_signal("hard_dropped")
-		emit_signal("dropped")
+		emit_signal("hard_dropped", piece)
+		emit_signal("dropped", piece)
 	did_hard_drop = true
 
 
@@ -76,9 +76,9 @@ func apply_gravity(piece: ActivePiece) -> void:
 			piece_mover.attempt_mid_drop_movement(piece)
 		
 		if input.is_soft_drop_pressed() and pos_changed:
-			emit_signal("soft_dropped")
+			emit_signal("soft_dropped", piece)
 		if pos_changed:
-			emit_signal("dropped")
+			emit_signal("dropped", piece)
 
 
 ## Squish moving pauses gravity for a moment.

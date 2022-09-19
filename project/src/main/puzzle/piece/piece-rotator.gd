@@ -2,18 +2,18 @@ extends Node
 ## Handles horizontal movement for the player's active piece.
 
 # warning-ignore:unused_signal
-signal initial_rotated_ccw
+signal initial_rotated_ccw(piece)
 # warning-ignore:unused_signal
-signal initial_rotated_cw
+signal initial_rotated_cw(piece)
 # warning-ignore:unused_signal
-signal initial_rotated_180
+signal initial_rotated_180(piece)
 
 # warning-ignore:unused_signal
-signal rotated_ccw
+signal rotated_ccw(piece)
 # warning-ignore:unused_signal
-signal rotated_cw
+signal rotated_cw(piece)
 # warning-ignore:unused_signal
-signal rotated_180
+signal rotated_180(piece)
 
 export (NodePath) var input_path: NodePath
 
@@ -56,11 +56,11 @@ func apply_initial_rotate_input(piece: ActivePiece) -> String:
 	return rotation_signal
 
 
-func emit_initial_rotate_signal(_piece: ActivePiece, rotation_signal: String) -> void:
+func emit_initial_rotate_signal(rotation_signal: String, piece: ActivePiece) -> void:
 	if not rotation_signal:
 		return
 	
-	emit_signal(rotation_signal)
+	emit_signal(rotation_signal, piece)
 	match rotation_signal:
 		"initial_rotated_ccw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_CCW)
 		"initial_rotated_cw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_CW)
@@ -107,11 +107,11 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 					pass
 				OtherRules.SuppressPieceRotation.ROTATION:
 					# 'suppress piece rotation' is enabled; emit rotation signals but don't rotate
-					emit_signal(rotation_signal)
+					emit_signal(rotation_signal, piece)
 				_:
 					# rotate the piece and emit rotation signals
 					piece.move_to_target()
-					emit_signal(rotation_signal)
+					emit_signal(rotation_signal, piece)
 		
 		if piece.pos.y < old_piece_y:
 			piece.floor_kicks += 1

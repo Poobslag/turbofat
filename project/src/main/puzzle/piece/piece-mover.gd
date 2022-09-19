@@ -3,17 +3,17 @@ extends Node
 ## Handles horizontal movement for the player's active piece.
 
 # warning-ignore:unused_signal
-signal initial_das_moved_left
+signal initial_das_moved_left(piece)
 # warning-ignore:unused_signal
-signal initial_das_moved_right
+signal initial_das_moved_right(piece)
 # warning-ignore:unused_signal
-signal das_moved_left
+signal das_moved_left(piece)
 # warning-ignore:unused_signal
-signal das_moved_right
+signal das_moved_right(piece)
 # warning-ignore:unused_signal
-signal moved_left
+signal moved_left(piece)
 # warning-ignore:unused_signal
-signal moved_right
+signal moved_right(piece)
 
 export (NodePath) var input_path: NodePath
 
@@ -74,11 +74,11 @@ func apply_initial_move_input(piece: ActivePiece) -> String:
 	return movement_signal
 
 
-func emit_initial_move_signal(_piece: ActivePiece, movement_signal: String) -> void:
+func emit_initial_move_signal(movement_signal: String, piece: ActivePiece) -> void:
 	if not movement_signal:
 		return
 	
-	emit_signal(movement_signal)
+	emit_signal(movement_signal, piece)
 
 
 func apply_move_input(piece: ActivePiece) -> void:
@@ -108,7 +108,7 @@ func apply_move_input(piece: ActivePiece) -> void:
 		if piece.can_move_to_target():
 			piece.move_to_target()
 			_horizontal_movement_count += 1
-			emit_signal(movement_signal)
+			emit_signal(movement_signal, piece)
 	
 	# To prevent pieces from slipping past nooks before DAS, we automatically trigger DAS if you're pushing a
 	# piece towards an obstruction. We trigger DAS if the piece already moved successfully, or they're pressing the
