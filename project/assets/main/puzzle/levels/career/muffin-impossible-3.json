@@ -1,11 +1,11 @@
 {
   "version": "392b",
   "start_speed": "A1",
-  "name": "Muffin Impossible II",
+  "name": "Muffin Impossible III",
   "description": "More awkward mismatched pieces!? When will the pain stop?",
   "finish_condition": {
     "type": "score",
-    "value": "1800"
+    "value": "1200"
   },
   "piece_types": [
     "piece_j",

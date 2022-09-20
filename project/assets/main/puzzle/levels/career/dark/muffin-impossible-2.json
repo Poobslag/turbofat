@@ -5,7 +5,7 @@
   "description": "More awkward mismatched pieces!? When will the pain stop?",
   "finish_condition": {
     "type": "score",
-    "value": "1200"
+    "value": "1800"
   },
   "piece_types": [
     "piece_j",
