@@ -29,11 +29,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if manual_mode:
 		# if the camera is being moved manually with a cheat code, adjust its position
-		var dir := Vector2.ZERO
-		if Input.is_action_pressed("ui_right"): dir += Vector2.RIGHT
-		if Input.is_action_pressed("ui_left"): dir += Vector2.LEFT
-		if Input.is_action_pressed("ui_up"): dir += Vector2.UP
-		if Input.is_action_pressed("ui_down"): dir += Vector2.DOWN
+		var dir := Utils.ui_pressed_dir()
 		if dir:
 			position += dir * delta * MANUAL_CAMERA_SPEED
 
