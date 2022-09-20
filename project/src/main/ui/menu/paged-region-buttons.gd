@@ -7,7 +7,7 @@ extends HBoxContainer
 ## Emitted when the player highlights a region to show more information.
 signal region_focused(region)
 
-## Emitted when the player 'starts' a region, choosing it for practice.
+## Emitted when the player finishes choosing a region to play.
 signal region_chosen(region)
 
 ## Emitted when a new region button is added.

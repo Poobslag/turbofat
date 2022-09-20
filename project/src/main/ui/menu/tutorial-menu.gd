@@ -1,9 +1,7 @@
 extends Control
 ## Scene which lets the player launch tutorials.
 
-export (NodePath) var level_buttons_path
-
-onready var level_buttons: PagedLevelButtons = get_node(level_buttons_path)
+onready var _paged_level_panel := $Panel
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -38,9 +36,7 @@ func _assign_default_recent_data(tutorial_region: OtherRegion) -> void:
 
 
 func _populate_level_buttons(tutorial_region: OtherRegion) -> void:
-	level_buttons.set_region(tutorial_region)
-	level_buttons.set_level_ids(tutorial_region.level_ids)
-	level_buttons.focus_level(PlayerData.practice.tutorial_level_id)
+	_paged_level_panel.populate(tutorial_region, PlayerData.practice.tutorial_level_id)
 
 
 func _exit_tree() -> void:
@@ -51,7 +47,7 @@ func _on_BackButton_pressed() -> void:
 	SceneTransition.pop_trail(true)
 
 
-func _on_LevelButtons_level_chosen(settings: LevelSettings) -> void:
+func _on_Panel_level_chosen(settings: LevelSettings) -> void:
 	PlayerData.practice.tutorial_level_id = settings.id
 	CurrentLevel.set_launched_level(settings.id)
 	CurrentLevel.push_level_trail()
