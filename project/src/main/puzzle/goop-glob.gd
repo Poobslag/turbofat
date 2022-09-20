@@ -42,7 +42,7 @@ var velocity := Vector2.ZERO
 ## time in milliseconds between the engine starting and this node being initialized
 var _creation_time := 0.0
 
-onready var _tween: Tween = $Tween
+onready var _tween: SceneTreeTween
 onready var _fade_timer: Timer = $FadeTimer
 
 ## Populates this object from another GoopGlob instance.
@@ -107,10 +107,9 @@ func fall() -> void:
 	falling = true
 	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
 	
-	_tween.remove_all()
-	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
-			FALL_DURATION * rand_range(0.8, 1.2), Tween.TRANS_CIRC, Tween.EASE_IN)
-	_tween.start()
+	_tween = Utils.recreate_tween(self, _tween).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
+	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), FALL_DURATION * rand_range(0.8, 1.2))
+	_tween.connect("finished", self, "_on_SceneTreeTween_finished")
 
 
 ## Makes this goop glob fade away and disappear.
@@ -119,11 +118,6 @@ func fall() -> void:
 func fade() -> void:
 	falling = false
 	_fade_timer.start(FADE_DELAY * rand_range(0.8, 1.2))
-	
-	# No Tween.start() call; Tween is started once timer finishes
-	_tween.remove_all()
-	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
-			FADE_DURATION * rand_range(0.8, 1.2), Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 
 ## Applies gravity and checks for collisions.
@@ -146,9 +140,11 @@ func _process(delta: float) -> void:
 		emit_signal("hit_wall", self)
 
 
-func _on_Tween_tween_all_completed() -> void:
+func _on_SceneTreeTween_finished() -> void:
 	queue_free()
 
 
 func _on_FadeTimer_timeout() -> void:
-	_tween.start()
+	_tween = Utils.recreate_tween(self, _tween).set_ease(Tween.EASE_IN)
+	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), \
+			FADE_DURATION * rand_range(0.8, 1.2))

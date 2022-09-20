@@ -12,7 +12,7 @@ var leaf_frame: int setget set_leaf_frame
 var leaf_type: int
 
 ## turns the leaf invisible
-onready var _tween: Tween = $Tween
+onready var _tween: SceneTreeTween
 
 ## animates and flips the leaf
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
@@ -48,10 +48,9 @@ func _update_tween_and_animation() -> void:
 		return
 	
 	_animation_player.advance(randf() * 10)
-	_tween.remove_all()
-	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate),
-			LIFETIME, Tween.TRANS_QUAD, Tween.EASE_IN)
-	_tween.start()
+	_tween = Utils.recreate_tween(self, _tween).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), LIFETIME)
+	_tween.connect("finished", self, "_on_SceneTreeTween_finished")
 
 
 func _refresh_frame() -> void:
@@ -65,5 +64,5 @@ func _physics_process(delta: float) -> void:
 	position += delta * velocity
 
 
-func _on_Tween_tween_all_completed() -> void:
+func _on_SceneTreeTween_finished() -> void:
 	queue_free()

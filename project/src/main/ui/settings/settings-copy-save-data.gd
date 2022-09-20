@@ -7,7 +7,7 @@ export var _save_slot_control_path: NodePath
 onready var _save_slot_control: SaveSlotControl = get_node(_save_slot_control_path)
 
 onready var _copied_label: Label = $HBoxContainer/Copied
-onready var _copied_tween: Tween = $HBoxContainer/CopiedTween
+var _copied_tween: SceneTreeTween
 
 func _ready() -> void:
 	# hide the 'Copied!' message until we need to display it
@@ -22,5 +22,5 @@ func _on_Button_pressed() -> void:
 	
 	# display the 'Copied!' message, and gradually fade it out
 	_copied_label.modulate = Color.white
-	_copied_tween.interpolate_property(_copied_label, "modulate", Color.white, Color.transparent, 3.0)
-	_copied_tween.start()
+	_copied_tween = Utils.recreate_tween(self, _copied_tween)
+	_copied_tween.tween_property(_copied_label, "modulate", Color.transparent, 3.0)
