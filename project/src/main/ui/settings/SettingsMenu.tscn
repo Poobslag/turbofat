@@ -1098,8 +1098,6 @@ text = "Copied!"
 valign = 1
 autowrap = true
 
-[node name="CopiedTween" type="Tween" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
-
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 margin_top = 250.0
 margin_right = 570.0

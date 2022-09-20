@@ -43,7 +43,7 @@ onready var _upbeat_bgms := [
 
 onready var _tutorial_bgms := [$MyFatnessPal]
 onready var _music_tween := $MusicTween
-onready var _filter_tween := $FilterTween
+onready var _filter_tween: SceneTreeTween
 
 func _ready() -> void:
 	all_bgms = _chill_bgms + _upbeat_bgms + _tutorial_bgms
@@ -128,18 +128,20 @@ func set_night_filter(new_night_filter: bool) -> void:
 	var low_pass_filter: AudioEffectLowPassFilter = AudioServer.get_bus_effect(bus_idx, effect_idx)
 	if new_night_filter:
 		# Enable the low-pass filter, but increase its cutoff_hz to where it's unnoticable
-		if not _filter_tween.is_active():
+		if not _filter_tween or not _filter_tween.is_running():
 			low_pass_filter.cutoff_hz = MAX_FILTER_HZ
 		AudioServer.set_bus_effect_enabled(bus_idx, effect_idx, true)
 		
 		# Gradually reduce the cutoff_hz to muffle the music
-		_filter_tween.interpolate_property(low_pass_filter, "cutoff_hz",
-				null, MIN_FILTER_HZ, 0.3, Tween.TRANS_CIRC, Tween.EASE_OUT)
+		_filter_tween = Utils.recreate_tween(self, _filter_tween)
+		_filter_tween.tween_property(low_pass_filter, "cutoff_hz", MIN_FILTER_HZ, 0.3) \
+				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 	else:
 		# Gradually increase the cutoff_hz to unmuffle the music
-		_filter_tween.interpolate_property(low_pass_filter, "cutoff_hz",
-				null, MAX_FILTER_HZ, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	_filter_tween.start()
+		_filter_tween = Utils.recreate_tween(self, _filter_tween)
+		_filter_tween.tween_property(low_pass_filter, "cutoff_hz", MAX_FILTER_HZ, 0.3) \
+				.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+		_filter_tween.tween_callback(self, "_on_Tween_unfilter_completed")
 
 
 ## Plays the first song from the specified list, and reorders the songs.
@@ -164,9 +166,7 @@ func _play_next_bgm(bgms: Array, fade_in: bool) -> void:
 
 
 ## When the night audio filter finished unmuffling the audio, we disable the filter.
-func _on_FilterTween_tween_completed(object: Object, key: NodePath) -> void:
+func _on_Tween_unfilter_completed() -> void:
 	var bus_idx := AudioServer.get_bus_index("Music Bus")
 	var effect_idx := 0
-	var low_pass_filter: AudioEffectLowPassFilter = AudioServer.get_bus_effect(bus_idx, effect_idx)
-	if object == low_pass_filter and key == ":cutoff_hz" and is_equal_approx(low_pass_filter.cutoff_hz, MAX_FILTER_HZ):
-		AudioServer.set_bus_effect_enabled(bus_idx, effect_idx, false)
+	AudioServer.set_bus_effect_enabled(bus_idx, effect_idx, false)

@@ -88,7 +88,7 @@ onready var glow_map: TileMap = $GlowMap
 onready var bg_strobe: ColorRect = $BgStrobe
 
 ## gradually dims the glowiness
-onready var _glow_tween: Tween = $GlowTween
+onready var _glow_tween: SceneTreeTween
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -153,14 +153,14 @@ func _init_tile(color: Color) -> void:
 ## Starts the glow tween, causing the lights to slowly dim.
 func _start_glow_tween() -> void:
 	if _brightness > 0 and _glow_duration > 0.0:
-		_glow_tween.remove_all()
-		_glow_tween.interpolate_property(light_map, "modulate:a", 1.00, 0.50,
-			_glow_duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		_glow_tween.interpolate_property(glow_map, "modulate:a", 0.75, 0.125,
-			_glow_duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		_glow_tween.interpolate_property(bg_strobe, "color:a", 0.33, 0.00,
-			_glow_duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		_glow_tween.start()
+		light_map.modulate.a = 1.00
+		glow_map.modulate.a = 0.75
+		bg_strobe.color.a = 0.33
+		
+		_glow_tween = Utils.recreate_tween(self, _glow_tween).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+		_glow_tween.tween_property(light_map, "modulate:a", 0.50, _glow_duration)
+		_glow_tween.parallel().tween_property(glow_map, "modulate:a", 0.125, _glow_duration)
+		_glow_tween.parallel().tween_property(bg_strobe, "color:a", 0.00, _glow_duration)
 
 
 ## Calculates the light color for a row in the playfield.

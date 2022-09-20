@@ -38,7 +38,7 @@ onready var _carrot_poof_sound: AudioStreamPlayer = $CarrotPoofSound
 onready var _carrot_move_sound: AudioStreamPlayer = $CarrotMoveSound
 
 ## tweens carrot sfx
-onready var _tween: Tween = $SfxTween
+onready var _tween: SceneTreeTween
 
 func _ready() -> void:
 	_refresh_playfield_path()
@@ -177,17 +177,18 @@ func _refresh_carrot_move_sound() -> void:
 	
 	if active_carrots and _move_sfx_state in [MoveSfxState.STOPPED, MoveSfxState.STOPPING]:
 		_move_sfx_state = MoveSfxState.STARTING
-		_tween.remove(_carrot_move_sound, "volume_db")
-		_tween.interpolate_property(_carrot_move_sound, "volume_db", MIN_VOLUME, MOVE_SOUND_DB,
-				0.8, Tween.TRANS_SINE, Tween.EASE_OUT)
-		_tween.start()
+		_carrot_move_sound.volume_db = MIN_VOLUME
+		_tween = Utils.recreate_tween(self, _tween)
+		_tween.tween_property(_carrot_move_sound, "volume_db", MOVE_SOUND_DB,
+				0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		_tween.tween_callback(self, "_on_Tween_completed")
 		_carrot_move_sound.play()
 	elif not active_carrots and _move_sfx_state in [MoveSfxState.PLAYING, MoveSfxState.STARTING]:
 		_move_sfx_state = MoveSfxState.STOPPING
-		_tween.remove(_carrot_move_sound, "volume_db")
-		_tween.interpolate_property(_carrot_move_sound, "volume_db", null, MIN_VOLUME,
-				0.4, Tween.TRANS_SINE, Tween.EASE_IN)
-		_tween.start()
+		_tween = Utils.recreate_tween(self, _tween)
+		_tween.tween_property(_carrot_move_sound, "volume_db", MIN_VOLUME,
+				0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		_tween.tween_callback(self, "_on_Tween_completed")
 
 
 func _on_Playfield_blocks_prepared() -> void:
@@ -200,15 +201,12 @@ func _on_Carrot_started_hiding() -> void:
 	_refresh_carrot_move_sound()
 
 
-func _on_Tween_tween_completed(object: Object, key: String) -> void:
-	if object == _carrot_move_sound and key == ":volume_db":
-		if abs(_carrot_move_sound.volume_db - MIN_VOLUME) < 0.01:
-			_carrot_move_sound.stop()
-			_move_sfx_state = MoveSfxState.STOPPED
-		else:
-			_move_sfx_state = MoveSfxState.PLAYING
+func _on_Tween_completed() -> void:
+	if abs(_carrot_move_sound.volume_db - MIN_VOLUME) < 0.01:
+		_carrot_move_sound.stop()
+		_move_sfx_state = MoveSfxState.STOPPED
 	else:
-		pass
+		_move_sfx_state = MoveSfxState.PLAYING
 
 
 ## Prioritizes carrots so that non-overlapping carrots will appear if possible.

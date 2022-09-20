@@ -29,7 +29,7 @@ var hours_passed := 0 setget set_hours_passed
 ## Digital text which shows the time using text like '8:50 pm'
 onready var _label: Label = $Label
 
-onready var _tween := $Tween
+onready var _tween: SceneTreeTween
 
 ## Analog clock which shows the time using an and hour and minute hand.
 onready var _visuals: ProgressBoardClockVisuals = $VisualsHolder/Visuals
@@ -46,7 +46,7 @@ func _ready() -> void:
 
 ## Advance the clock for a single level.
 func play(new_hours_passed: int, duration: float) -> void:
-	_tween.remove_all()
+	_tween = Utils.recreate_tween(self, _tween)
 	
 	# Assign our underlying hours passed variable, but don't update the UI. the UI will be gradually animated to the
 	# new value.
@@ -65,15 +65,15 @@ func play(new_hours_passed: int, duration: float) -> void:
 	new_minute_hand_position += 60.0 * int(
 				_hour_hand_position(new_hours_passed, false) - _hour_hand_position(old_hours_passed, false))
 	
-	_tween.interpolate_property(_visuals, "minutes", old_minute_hand_position, new_minute_hand_position,
-			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-	_tween.interpolate_property(_visuals, "hours", null, _hour_hand_position(new_hours_passed),
-			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-	_tween.interpolate_property(_visuals, "filled_percent", null, _filled_percent(new_hours_passed),
-			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
+	_visuals.minutes = old_minute_hand_position
+	_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_parallel()
+	_tween.tween_property(_visuals, "minutes", new_minute_hand_position, duration)
+	_tween.tween_property(_visuals, "hours", _hour_hand_position(new_hours_passed), duration)
+	_tween.tween_property(_visuals, "filled_percent", _filled_percent(new_hours_passed), duration)
+	_tween.chain().tween_callback(self, "_on_Tween_completed")
 	
 	_clock_advance_sound.play()
-	_tween.start()
+	
 
 
 func set_hours_passed(new_hours_passed: int = 0) -> void:
@@ -144,7 +144,7 @@ func _refresh() -> void:
 ## When the clock stops spinning forward we update all UI elements one last time.
 ##
 ## This is especially important for the digital display which does not animate.
-func _on_Tween_tween_all_completed() -> void:
+func _on_Tween_completed() -> void:
 	_clock_advance_sound.stop()
 	var old_label_text := _label.text
 	_refresh()

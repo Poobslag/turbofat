@@ -265,12 +265,6 @@ anims/face-7 = SubResource( 14 )
 anims/face-8 = SubResource( 15 )
 anims/face-9 = SubResource( 16 )
 
-[node name="ShowTween" type="Tween" parent="."]
-
-[node name="MoveTween" type="Tween" parent="."]
-
 [node name="FreeTimer" type="Timer" parent="."]
 
-[connection signal="tween_all_completed" from="ShowTween" to="." method="_on_ShowTween_tween_all_completed"]
-[connection signal="tween_all_completed" from="MoveTween" to="." method="_on_MoveTween_tween_all_completed"]
 [connection signal="timeout" from="FreeTimer" to="." method="_on_FreeTimer_timeout"]

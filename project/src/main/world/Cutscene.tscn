@@ -22,6 +22,4 @@ script = ExtResource( 1 )
 current = true
 script = ExtResource( 3 )
 
-[node name="Tween" type="Tween" parent="World/Camera"]
-
 [node name="CutsceneUi" parent="." instance=ExtResource( 4 )]

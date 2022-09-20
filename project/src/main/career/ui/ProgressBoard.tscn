@@ -597,8 +597,6 @@ text = "0"
 align = 1
 valign = 1
 
-[node name="Tween" type="Tween" parent="ChalkboardRegion/Player"]
-
 [node name="PlayerMoveSound" type="AudioStreamPlayer" parent="ChalkboardRegion/Player"]
 stream = ExtResource( 18 )
 bus = "Sound Bus"
@@ -757,10 +755,6 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 41 )
 
-[node name="FlashTween" type="Tween" parent="Clock/Label"]
-
-[node name="Tween" type="Tween" parent="Clock"]
-
 [node name="ClockAdvanceSound" type="AudioStreamPlayer" parent="Clock"]
 stream = ExtResource( 3 )
 volume_db = 2.0
@@ -796,7 +790,6 @@ wait_time = 0.5
 one_shot = true
 
 [connection signal="visibility_changed" from="Backdrop" to="." method="_on_Backdrop_visibility_changed"]
-[connection signal="tween_all_completed" from="Clock/Tween" to="Clock" method="_on_Tween_tween_all_completed"]
 [connection signal="animation_finished" from="ShowAnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="HideTimer" to="." method="_on_HideTimer_timeout"]
 [connection signal="timeout" from="AnimateStartTimer" to="." method="_on_AnimateStartTimer_timeout"]

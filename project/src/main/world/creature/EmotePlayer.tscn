@@ -4473,10 +4473,6 @@ anims/yes1 = SubResource( 62 )
 script = ExtResource( 12 )
 creature_visuals_path = NodePath("../..")
 
-[node name="ResetTween" type="Tween" parent="."]
-
-[node name="VolumeDbTween" type="Tween" parent="."]
-
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 bus = "Sound Bus"

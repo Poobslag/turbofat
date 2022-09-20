@@ -8,7 +8,7 @@ const TWEEN_DURATION := 0.1
 export (NodePath) var results_label_path: NodePath
 
 onready var _money_label := $MoneyLabel
-onready var _money_label_tween := $MoneyLabelTween
+onready var _money_label_tween: SceneTreeTween
 onready var _results_label: ResultsLabel = get_node(results_label_path)
 
 func _ready() -> void:
@@ -23,16 +23,14 @@ func _ready() -> void:
 ## shown.
 func _show_money(rank_result: RankResult) -> void:
 	_money_label.set_shown_money(PlayerData.money - rank_result.score)
-	_money_label_tween.remove_all()
-	_money_label_tween.interpolate_property(_money_label, "rect_position:y", null, 0, TWEEN_DURATION)
-	_money_label_tween.start()
+	_money_label_tween = Utils.recreate_tween(self, _money_label_tween)
+	_money_label_tween.tween_property(_money_label, "rect_position:y", 0.0, TWEEN_DURATION)
 
 
 ## Hides the money label.
 func _hide_money() -> void:
-	_money_label_tween.remove_all()
-	_money_label_tween.interpolate_property(_money_label, "rect_position:y", null, -32.0, TWEEN_DURATION)
-	_money_label_tween.start()
+	_money_label_tween = Utils.recreate_tween(self, _money_label_tween)
+	_money_label_tween.tween_property(_money_label, "rect_position:y", -32.0, TWEEN_DURATION)
 
 
 func _on_PuzzleState_game_prepared() -> void:

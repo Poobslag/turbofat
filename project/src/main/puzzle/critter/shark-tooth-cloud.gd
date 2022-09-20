@@ -49,8 +49,8 @@ onready var _cloud_timer: Timer = $CloudTimer
 ## Timer which cycles the cyclone of teeth to the next frame.
 onready var _tooth_timer: Timer = $ToothTimer
 
-## Timer which ends the eating animation.
-onready var _eat_tween: Tween = $EatTween
+## Tween which ends the eating animation.
+onready var _eat_tween: SceneTreeTween
 
 func _ready() -> void:
 	_refresh_eating()
@@ -119,7 +119,7 @@ func _refresh_eating() -> void:
 		_crumbs.emitting = false
 		_cloud_timer.stop()
 		_tooth_timer.stop()
-		_eat_tween.stop_all()
+		_eat_tween = Utils.kill_tween(_eat_tween)
 
 
 ## Connects adjacent cells in the eaten piece tilemap.
@@ -140,11 +140,12 @@ func _connect_eaten_cells() -> void:
 ## Makes the eaten piece tilemap descend into the shark's mouth.
 func _start_eat_tween() -> void:
 	var piece_height := _tile_map.get_used_rect().size.y * _tile_map.cell_size.y
-	_eat_tween.interpolate_property(_tile_map, "position",
-			TILE_MAP_START_POSITION,
-			TILE_MAP_START_POSITION + Vector2(0, piece_height), eat_duration,
-			Tween.TRANS_SINE, Tween.EASE_OUT)
-	_eat_tween.start()
+	_tile_map.position = TILE_MAP_START_POSITION
+	_eat_tween = Utils.recreate_tween(self, _eat_tween)
+	_eat_tween.tween_property(_tile_map, "position",
+			TILE_MAP_START_POSITION + Vector2(0, piece_height), eat_duration) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_eat_tween.tween_callback(self, "_on_Tween_completed")
 
 
 ## Randomizes the appearance of the cyclone of teeth.
@@ -216,7 +217,7 @@ func _on_ToothTimer_timeout() -> void:
 	_shuffle_tooth()
 
 
-func _on_EatTween_tween_completed(_object: Object, _key: NodePath) -> void:
+func _on_Tween_completed() -> void:
 	# we don't need our PuzzleTileMap anymore; return it to the SharkTileMapPool so other sharks can use it
 	_return_tilemap()
 	

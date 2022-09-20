@@ -1429,7 +1429,3 @@ bus = "Sound Bus"
 [node name="Zap" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 22 )
 bus = "Sound Bus"
-
-[node name="OnionLocationTween" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="OnionLocationTween" to="." method="_on_OnionLocationTween_tween_completed"]

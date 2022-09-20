@@ -85,7 +85,7 @@ size_flags_vertical = 4
 texture = ExtResource( 5 )
 expand = true
 
-[node name="PopupTween" type="Tween" parent="."]
+[node name="PopupTween" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="PopOutTimer" type="Timer" parent="PopupTween"]

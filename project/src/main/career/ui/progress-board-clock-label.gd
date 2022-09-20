@@ -10,7 +10,7 @@ const FLASH_DURATION := 1.5
 const OUTLINE_COLOR := Color("6c4331")
 
 ## The tween that handles the clock's flash effect.
-onready var _flash_tween := $FlashTween
+onready var _flash_tween: SceneTreeTween
 
 ## Particles emitted when the clock flashes.
 onready var _particles := $Particles
@@ -25,7 +25,7 @@ func flash() -> void:
 		particles_2d.emitting = true
 	
 	var font: DynamicFont = get("custom_fonts/font")
-	_flash_tween.remove_all()
-	_flash_tween.interpolate_property(font, "outline_color", Color.white, OUTLINE_COLOR, \
-			1.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	_flash_tween.start()
+	font.outline_color = Color.white
+	_flash_tween = Utils.recreate_tween(self, _flash_tween)
+	_flash_tween.tween_property(font, "outline_color", OUTLINE_COLOR, 1.5) \
+			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)

@@ -36,7 +36,7 @@ onready var _voice_short_sounds := [
 ##
 ## The eating sound is a long, sustained sound which is played for an arbitrary duration. We tween its pitch so that
 ## it ends less abruptly.
-onready var _eat_tween: Tween = $EatTween
+onready var _eat_tween: SceneTreeTween
 
 onready var _bite := $Bite
 onready var _eat := $Eat
@@ -66,12 +66,12 @@ func play_voice_short_sound() -> void:
 func play_eat_sound() -> void:
 	var pitch_scale_start := rand_range(pitch_scale * 0.9, pitch_scale * 1.1)
 	var pitch_scale_end := pitch_scale_start * 0.75
+	_eat.pitch_scale = pitch_scale_start
 	
-	_eat_tween.remove(_eat, "pitch_scale")
-	_eat_tween.interpolate_property(_eat, "pitch_scale",
-			pitch_scale_start, pitch_scale_end, eat_duration,
-			Tween.TRANS_CIRC, Tween.EASE_IN)
-	_eat_tween.start()
+	_eat_tween = Utils.recreate_tween(self, _eat_tween)
+	_eat_tween.tween_property(_eat, "pitch_scale",
+			pitch_scale_end, eat_duration) \
+			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 	
 	SfxDeconflicter.play(_eat, rand_range(0.0, 0.2))
 

@@ -281,7 +281,7 @@ anims/choose = SubResource( 1 )
 anims/default = SubResource( 2 )
 anims/focus = SubResource( 3 )
 
-[node name="PopTween" type="Tween" parent="."]
+[node name="PopTween" type="Node" parent="."]
 script = ExtResource( 6 )
 
 [node name="PopAnimation" type="AnimationPlayer" parent="."]

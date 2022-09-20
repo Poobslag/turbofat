@@ -8,7 +8,7 @@ onready var _sky_sprites := [$SkyA, $SkyB]
 onready var _star_nodes := [$NightStarsDark, $NightStarsLight]
 
 ## rapidly rotates the stars when the playfield shows up, for a time lapse effect
-onready var _sky_spin_tween := $SkySpinTween
+onready var _sky_spin_tween: SceneTreeTween
 
 func _ready() -> void:
 	for sprite in _sky_sprites:
@@ -30,10 +30,13 @@ func _randomize_sky_sprites() -> void:
 
 ## Rapidly rotates the stars for a time lapse effect
 func _spin_sky() -> void:
-	_sky_spin_tween.remove_all()
+	if _star_nodes:
+		_sky_spin_tween = Utils.recreate_tween(self, _sky_spin_tween)
+	
 	for node in _star_nodes:
-		_sky_spin_tween.interpolate_property(node, "rotation", 0, PI / 2, 0.6, Tween.TRANS_QUINT, Tween.EASE_OUT)
-	_sky_spin_tween.start()
+		node.rotation = 0
+		_sky_spin_tween.parallel().tween_property(node, "rotation", PI / 2, 0.6) \
+				.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 
 
 func _on_AnimateTimer_timeout() -> void:
