@@ -125,7 +125,7 @@ func _on_PuzzleState_game_prepared() -> void:
 	reset()
 
 
-func _on_skill_performed() -> void:
+func _on_skill_performed(_piece: ActivePiece) -> void:
 	increment()
 
 
