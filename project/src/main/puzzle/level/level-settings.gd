@@ -13,6 +13,9 @@ var difficulty := "" setget ,get_difficulty
 ## Blocks/boxes which appear or disappear while the game is going on.
 var blocks_during := BlocksDuringRules.new()
 
+## Level button color. This is usually random, but for rank mode we use specific colors.
+var color_string := ""
+
 ## Things that disrupt the player's combo.
 var combo_break := ComboBreakRules.new()
 
@@ -89,6 +92,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	
 	if json.has("blocks_during"):
 		blocks_during.from_json_array(json["blocks_during"])
+	if json.has("color"):
+		color_string = json["color"]
 	if json.has("combo_break"):
 		combo_break.from_json_array(json["combo_break"])
 	if json.has("description"):
@@ -131,6 +136,7 @@ func to_json_dict() -> Dictionary:
 	if name: result["name"] = name
 	if description: result["description"] = description
 	if difficulty: result["difficulty"] = difficulty
+	if color_string: result["color"] = color_string
 	if not speed.start_speed_is_default(): result["start_speed"] = speed.start_speed_to_json_string()
 	if not speed.speed_ups_is_default(): result["speed_ups"] = speed.speed_ups_to_json_array()
 	if not blocks_during.is_default(): result["blocks_during"] = blocks_during.to_json_array()

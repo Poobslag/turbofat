@@ -2,6 +2,7 @@
   "version": "392b",
   "name": "4 Dan",
   "description": "An escalating set of challenges. Finish with ¥2,000 to achieve this rank!",
+  "color": "green",
   "success_condition": {
     "type": "score",
     "value": "2000"
