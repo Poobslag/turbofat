@@ -926,6 +926,8 @@ size_flags_stretch_ratio = 0.74
 text = "Copied!"
 valign = 1
 
+[node name="CopiedTween" type="Tween" parent="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer"]
+
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 margin_top = 254.0
 margin_right = 570.0

@@ -325,23 +325,3 @@ static func ui_released_dir(event: InputEvent = null) -> bool:
 		if Input.is_action_just_released("ui_right"):
 			ui_dir += Vector2.RIGHT
 	return ui_dir.length() > 0
-
-
-## Creates/recreates a tween, invalidating it if it is already active.
-##
-## This is useful for SceneTreeTweens. These are designed to be created and thrown away, but tweening the same
-## property with multiple tweens creates unpredictable behavior. This recreate_tween method lets us ensure each
-## property is only being modified by a single tween.
-##
-## Parameters:
-## 	'node': The scene tree node which the tween should be bound to. This affects details like whether the tween
-## 		stops if the player pauses the game.
-##
-## 	'tween': The tween to invalidate. Can be null.
-##
-## Returns:
-## 	A new SceneTreeTween bound to the specified node.
-static func recreate_tween(node: Node, tween: SceneTreeTween) -> SceneTreeTween:
-	if tween:
-		tween.kill()
-	return node.create_tween()

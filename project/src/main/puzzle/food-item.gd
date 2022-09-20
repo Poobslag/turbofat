@@ -30,6 +30,9 @@ var food_type: int setget set_food_type
 ## Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
+## Tweens the food's position to fly into the customer's mouth.
+var _flying_tween: Tween
+
 ## This func ref and array correspond to a callback which return the position of the customer's mouth.
 var _get_target_pos: FuncRef
 var _target_pos_arg_array: Array
@@ -136,9 +139,13 @@ func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
 	velocity = Vector2.ZERO
 	
 	_source_pos = position
-	var flying_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	flying_tween.tween_property(self, "_flight_percent", 1.0, duration)
-	flying_tween.tween_callback(self, "queue_free").set_delay(0.03)
+	_flying_tween = Tween.new()
+	add_child(_flying_tween)
+	
+	_flying_tween.interpolate_property(self, "_flight_percent", 0.0, 1.0, duration, Tween.TRANS_QUAD, Tween.EASE_IN)
+	# linger at the destination for a few frames before deleting
+	_flying_tween.interpolate_callback(self, duration + 0.03, "queue_free")
+	_flying_tween.start()
 
 
 func _refresh_scale() -> void:

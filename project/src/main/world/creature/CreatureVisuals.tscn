@@ -741,6 +741,8 @@ script = ExtResource( 33 )
 emote_player_path = NodePath("../EmotePlayer")
 creature_visuals_path = NodePath("../..")
 
+[node name="Tween" type="Tween" parent="Animations"]
+
 [node name="EmotePlayer" parent="Animations" instance=ExtResource( 3 )]
 creature_animations_path = NodePath("..")
 
