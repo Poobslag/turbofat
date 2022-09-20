@@ -45,11 +45,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		# If the player presses one or more directions, the pieces are launched in different directions.
-		var new_pressed_dir := Vector2.ZERO
-		if event.is_action_pressed("ui_right"): new_pressed_dir += Vector2.RIGHT
-		if event.is_action_pressed("ui_left"): new_pressed_dir += Vector2.LEFT
-		if event.is_action_pressed("ui_up"): new_pressed_dir += Vector2.UP
-		if event.is_action_pressed("ui_down"): new_pressed_dir += Vector2.DOWN
+		var new_pressed_dir := Utils.ui_pressed_dir()
 		if new_pressed_dir != Vector2.ZERO:
 			_pressed_dir = new_pressed_dir
 		

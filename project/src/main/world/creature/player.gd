@@ -17,7 +17,7 @@ func _ready() -> void:
 	refresh_collision_extents()
 
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if not free_roam:
 		# disable movement outside of free roam mode
 		return
@@ -26,9 +26,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 		# disable movement when navigating menus
 		return
 	
-	if ui_pressed_dir(_event) or ui_released_dir(_event):
+	if Utils.ui_pressed_dir(event) or Utils.ui_released_dir(event):
 		# calculate the direction the player wants to move
-		set_non_iso_walk_direction(ui_pressed_dir())
+		set_non_iso_walk_direction(Utils.ui_pressed_dir())
 		get_tree().set_input_as_handled()
 
 
@@ -48,57 +48,3 @@ func _on_OverworldUi_showed_chat_choices() -> void:
 func _on_SceneTransition_fade_out_started() -> void:
 	# suppress 'bonk' sound effects, otherwise it sounds like the player bumps into the door
 	set_suppress_sfx(true)
-
-
-## Returns a vector corresponding to the direction the player is pressing.
-##
-## Parameters:
-## 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
-static func ui_pressed_dir(event: InputEvent = null) -> Vector2:
-	var ui_dir := Vector2.ZERO
-	if event:
-		if event.is_action_pressed("ui_up"):
-			ui_dir += Vector2.UP
-		if event.is_action_pressed("ui_down"):
-			ui_dir += Vector2.DOWN
-		if event.is_action_pressed("ui_left"):
-			ui_dir += Vector2.LEFT
-		if event.is_action_pressed("ui_right"):
-			ui_dir += Vector2.RIGHT
-	else:
-		if Input.is_action_pressed("ui_up"):
-			ui_dir += Vector2.UP
-		if Input.is_action_pressed("ui_down"):
-			ui_dir += Vector2.DOWN
-		if Input.is_action_pressed("ui_left"):
-			ui_dir += Vector2.LEFT
-		if Input.is_action_pressed("ui_right"):
-			ui_dir += Vector2.RIGHT
-	return ui_dir
-
-
-## Returns 'true' if the player just released a direction key.
-##
-## Parameters:
-## 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
-static func ui_released_dir(event: InputEvent = null) -> bool:
-	var ui_dir := Vector2.ZERO
-	if event:
-		if event.is_action_released("ui_up"):
-			ui_dir += Vector2.UP
-		if event.is_action_released("ui_down"):
-			ui_dir += Vector2.DOWN
-		if event.is_action_released("ui_left"):
-			ui_dir += Vector2.LEFT
-		if event.is_action_released("ui_right"):
-			ui_dir += Vector2.RIGHT
-	else:
-		if Input.is_action_just_released("ui_up"):
-			ui_dir += Vector2.UP
-		if Input.is_action_just_released("ui_down"):
-			ui_dir += Vector2.DOWN
-		if Input.is_action_just_released("ui_left"):
-			ui_dir += Vector2.LEFT
-		if Input.is_action_just_released("ui_right"):
-			ui_dir += Vector2.RIGHT
-	return ui_dir.length() > 0
