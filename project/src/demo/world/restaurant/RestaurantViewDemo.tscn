@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://src/main/world/environment/restaurant/RestaurantView.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/demo/world/environment/restaurant/restaurant-view-demo.gd" type="Script" id=2]
-
-[node name="Demo" type="Node"]
-script = ExtResource( 2 )
-
-[node name="RestaurantView" parent="." instance=ExtResource( 1 )]
