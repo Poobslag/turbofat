@@ -74,11 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="TaskCompleteSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -4.0
 bus = "Sound Bus"
-
-[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

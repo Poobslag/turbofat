@@ -19,7 +19,7 @@ onready var _star := $Star
 onready var _food_item := $FoodItem
 
 ## tween used to update the star's color
-onready var _star_color_tween := $StarColorTween
+onready var _star_color_tween: SceneTreeTween
 
 func _ready() -> void:
 	_seed.visible = true
@@ -77,16 +77,16 @@ func _refresh_appearance() -> void:
 ## Gradually changes the star to a new color.
 func _launch_star_color_tween(var initial_launch := false) -> void:
 	var new_star_color_index := (_star_color_index + 1) % _star_colors.size()
-	_star_color_tween.remove_all()
+	
+	_star_color_tween = Utils.recreate_tween(self, _star_color_tween).set_trans(Tween.TRANS_SINE)
 	# for the initial launch, the duration has more variance so that different stars will start out of sync
 	var duration_min := STAR_COLOR_CHANGE_DURATION * (0.0 if initial_launch else 0.8)
 	var duration_max := STAR_COLOR_CHANGE_DURATION * 1.2
-	_star_color_tween.interpolate_property(_star, "modulate", \
-			_star.modulate, _star_colors[new_star_color_index], rand_range(duration_min, duration_max),
-			Tween.TRANS_SINE)
-	_star_color_tween.start()
+	_star_color_tween.tween_property(_star, "modulate", \
+			_star_colors[new_star_color_index], rand_range(duration_min, duration_max))
+	_star_color_tween.connect("finished", self, "_on_StarColorTween_finished")
 	_star_color_index = new_star_color_index
 
 
-func _on_StarColorTween_tween_all_completed() -> void:
+func _on_StarColorTween_finished() -> void:
 	_launch_star_color_tween()
