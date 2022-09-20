@@ -104,7 +104,7 @@ var _creature_outline: CreatureOutline
 onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 onready var _mouth_hook: Node2D = $MouthHook
-onready var _fade_tween: SceneTreeTween
+onready var _fade_tween: Tween = $FadeTween
 
 func _ready() -> void:
 	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"
@@ -130,6 +130,7 @@ func _ready() -> void:
 	
 	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
 	
+	_fade_tween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
 	if creature_id:
 		_refresh_creature_id()
 	else:
@@ -439,9 +440,9 @@ func get_eating_delay() -> float:
 
 ## Starts a tween which changes this creature's opacity.
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
-	_fade_tween = Utils.recreate_tween(self, _fade_tween)
-	_fade_tween.connect("finished", self, "_on_FadeTween_finished")
-	_fade_tween.tween_property(self, "modulate", Utils.to_transparent(modulate, new_alpha), duration)
+	_fade_tween.remove_all()
+	_fade_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
+	_fade_tween.start()
 
 
 func _refresh_creature_id() -> void:
@@ -595,14 +596,12 @@ func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) ->
 		set_elevation(0)
 
 
-func _on_FadeTween_finished() -> void:
+func _on_FadeTween_tween_all_completed() -> void:
 	if modulate.a == 0.0:
 		visible = false
 		emit_signal("fade_out_finished")
 	else:
 		emit_signal("fade_in_finished")
-
-
 func _on_CreatureVisuals_talking_changed() -> void:
 	emit_signal("talking_changed")
 
