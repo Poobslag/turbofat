@@ -6,7 +6,7 @@ extends HBoxContainer
 
 const MAX_LEVELS_PER_PAGE := 18
 
-## Emitted when the player 'starts' a level, choosing it for practice.
+## Emitted when the player finishes choosing a level to play.
 signal level_chosen(settings)
 
 ## Emitted when the player highlights a locked level to show more information.

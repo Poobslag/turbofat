@@ -1,7 +1,7 @@
 extends Control
 ## A region select screen which shows buttons and region info. Used in the practice menu.
 
-## Emitted when the player 'starts' a region, choosing it for practice.
+## Emitted when the player finishes choosing a region to play.
 ##
 ## Parameters:
 ## 	'region': A CareerRegion or OtherRegion instance for the chosen region.

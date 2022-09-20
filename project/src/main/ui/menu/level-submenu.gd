@@ -1,20 +1,18 @@
 extends Control
 ## A level select screen which shows buttons and level info. Used in the practice menu.
 
-## Emitted when the player 'starts' a level, choosing it for practice.
+## Emitted when the player finishes choosing a level to play.
 ##
 ## Parameters:
 ## 	'region': A CareerRegion or OtherRegion instance for the chosen region.
 ##
 ## 	'level_id': The chosen level id
-signal level_chosen(region, level_id)
-
-export (NodePath) var level_buttons_path: NodePath
+signal level_chosen(region, settings)
 
 ## A CareerRegion/OtherRegion instance for the region whose levels should be shown
 var _region: Object
 
-onready var _level_buttons: PagedLevelButtons = get_node(level_buttons_path)
+onready var _paged_level_panel := $Panel
 
 ## Populates this submenu with levels and shows it to the player.
 ##
@@ -26,22 +24,12 @@ onready var _level_buttons: PagedLevelButtons = get_node(level_buttons_path)
 ##
 ## 	'default_level_id': The level whose button is focused after showing the menu
 func popup(new_region: Object, default_level_id: String = "") -> void:
-	var level_ids := []
 	_region = new_region
-	if _region is CareerRegion:
-		for career_level in _region.levels:
-			level_ids.append(career_level.level_id)
-	else:
-		level_ids.append_array(_region.level_ids)
-	
-	_level_buttons.region = _region
-	_level_buttons.level_ids = level_ids
-	if default_level_id:
-		_level_buttons.focus_level(default_level_id)
+	_paged_level_panel.populate(new_region, default_level_id)
 	show()
 
 
-func _on_LevelButtons_level_chosen(settings: LevelSettings) -> void:
+func _on_Panel_level_chosen(settings: LevelSettings) -> void:
 	emit_signal("level_chosen", _region, settings)
 
 
