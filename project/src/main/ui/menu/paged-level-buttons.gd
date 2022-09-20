@@ -189,18 +189,17 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 			level_button.lock_status = LevelSelectButton.STATUS_CROWN
 	
 	# calculate the background color. this is usually random, but for rank mode we use specific colors
-	if region is OtherRegion and region.id == OtherRegion.ID_RANK:
-		match level_id:
-			"rank/7k", "rank/6k", "rank/5k", "rank/4k", "rank/3k", "rank/2k", "rank/1k":
-				level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_BLUE)
-			"rank/1d", "rank/2d", "rank/3d", "rank/4d", "rank/5d":
-				level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_GREEN)
-			"rank/6d", "rank/7d", "rank/8d":
-				level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_YELLOW)
-			"rank/9d", "rank/10d":
-				level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_ORANGE)
-			"rank/m":
-				level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_RED)
+	if level_settings.color_string:
+		match level_settings.color_string:
+			"red": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_RED)
+			"orange": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_ORANGE)
+			"yellow": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_YELLOW)
+			"green": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_GREEN)
+			"blue": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_BLUE)
+			"purple": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_PURPLE)
+			_:
+				push_warning("Unrecognized color string '%s'" % [level_settings.color_string])
+				pass
 	
 	level_button.connect("focus_entered", self, "_on_LevelButton_focus_entered", [level_button, level_id])
 	level_button.connect("level_chosen", self, "_on_LevelButton_level_chosen", [level_settings])

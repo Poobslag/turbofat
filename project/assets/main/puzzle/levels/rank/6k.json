@@ -2,6 +2,7 @@
   "version": "392b",
   "name": "6 Kyu",
   "description": "An escalating set of challenges. Finish with ¥200 to achieve this rank!",
+  "color": "blue",
   "success_condition": {
     "type": "score",
     "value": "200"

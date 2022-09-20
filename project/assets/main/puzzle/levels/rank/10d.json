@@ -2,6 +2,7 @@
   "version": "392b",
   "name": "10 Dan",
   "description": "An escalating set of challenges. Finish in 6:00 to achieve this rank!",
+  "color": "orange",
   "success_condition": {
     "type": "time_under",
     "value": "360"
