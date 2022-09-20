@@ -19,7 +19,7 @@
 [ext_resource path="res://src/main/ui/level-select/HookableRegionGradeLabel.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/ui/menu/region-grade-labels.gd" type="Script" id=18]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/career/career-rewinder.gd" type="Script" id=20]
+[ext_resource path="res://src/main/career/CareerRewinder.tscn" type="PackedScene" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -254,17 +254,15 @@ pressed_icon = ExtResource( 9 )
 action = "ui_cancel"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 19 )]
-codes = [ "chap01", "chap02" ]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 3 )]
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
 
-[node name="CareerRewinder" type="Node" parent="."]
-script = ExtResource( 20 )
+[node name="CareerRewinder" parent="." instance=ExtResource( 20 )]
+cheat_code_detector_path = NodePath("../CheatCodeDetector")
 
 [connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="CareerRewinder" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="button_added" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
 [connection signal="region_chosen" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="." method="_on_RegionButtons_region_chosen"]
 [connection signal="region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_region_focused"]
