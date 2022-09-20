@@ -8,6 +8,17 @@ const CHAPTER_CHEATS := [
 	"chap02",
 ]
 
+export (NodePath) var cheat_code_detector_path: NodePath
+
+onready var _cheat_code_detector: CheatCodeDetector = get_node(cheat_code_detector_path)
+
+func _ready() -> void:
+	for chapter_cheat in CHAPTER_CHEATS:
+		if not chapter_cheat in _cheat_code_detector.codes:
+			_cheat_code_detector.codes.append(chapter_cheat)
+	if not _cheat_code_detector.is_connected("cheat_detected", self, "_on_CheatCodeDetector_cheat_detected"):
+		_cheat_code_detector.connect("cheat_detected", self, "_on_CheatCodeDetector_cheat_detected")
+
 
 ## Skips forward or backward to the specified region.
 ##
