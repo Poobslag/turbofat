@@ -525,43 +525,6 @@ func _update_animation() -> void:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
-func _on_Creature_fatness_changed() -> void:
-	emit_signal("fatness_changed")
-
-
-func _on_CreatureVisuals_dna_loaded() -> void:
-	visible = true
-	emit_signal("dna_loaded")
-
-
-func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
-	emit_signal("food_eaten", food_type)
-
-
-func _on_CreatureVisuals_landed() -> void:
-	emit_signal("landed")
-
-
-func _on_CreatureVisuals_visual_fatness_changed() -> void:
-	emit_signal("visual_fatness_changed")
-
-
-func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
-	if new_mode in [Creatures.WALK, Creatures.RUN]:
-		# when on two legs, the body is a little higher off the ground
-		set_elevation(35)
-	else:
-		set_elevation(0)
-
-
-func _on_FadeTween_tween_all_completed() -> void:
-	if modulate.a == 0.0:
-		visible = false
-		emit_signal("fade_out_finished")
-	else:
-		emit_signal("fade_in_finished")
-
-
 ## Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0]
 func score_to_fatness(in_score: float) -> float:
 	var result: float
@@ -604,6 +567,41 @@ func body_pos_from_head_pos(v: Vector2) -> Vector2:
 	return _mouth_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
 
 
+func _on_Creature_fatness_changed() -> void:
+	emit_signal("fatness_changed")
+
+
+func _on_CreatureVisuals_dna_loaded() -> void:
+	visible = true
+	emit_signal("dna_loaded")
+
+
+func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
+	emit_signal("food_eaten", food_type)
+
+
+func _on_CreatureVisuals_landed() -> void:
+	emit_signal("landed")
+
+
+func _on_CreatureVisuals_visual_fatness_changed() -> void:
+	emit_signal("visual_fatness_changed")
+
+
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
+	if new_mode in [Creatures.WALK, Creatures.RUN]:
+		# when on two legs, the body is a little higher off the ground
+		set_elevation(35)
+	else:
+		set_elevation(0)
+
+
+func _on_FadeTween_tween_all_completed() -> void:
+	if modulate.a == 0.0:
+		visible = false
+		emit_signal("fade_out_finished")
+	else:
+		emit_signal("fade_in_finished")
 func _on_CreatureVisuals_talking_changed() -> void:
 	emit_signal("talking_changed")
 

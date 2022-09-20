@@ -21,6 +21,11 @@ var _piece_manager: PieceManager
 ## property is 'true' if the skill tally is lit up brightly.
 var _bright_tween_active: bool
 
+onready var _blink_panel := $Blink
+onready var _label := $Label
+onready var _task_complete_sound := $TaskCompleteSound
+onready var _tween := $Tween
+
 func _ready() -> void:
 	reset()
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -67,9 +72,9 @@ func update_label() -> void:
 		return
 	
 	if show_as_percent:
-		$Label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
+		_label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
 	else:
-		$Label.text = "%s\n(%d/%d)" % [label_text, value, max_value]
+		_label.text = "%s\n(%d/%d)" % [label_text, value, max_value]
 
 
 ## Initializes this node when the puzzle field is assigned.
@@ -104,21 +109,21 @@ func _blink(bright: bool = false) -> void:
 	if _bright_tween_active:
 		return
 	
-	$Tween.remove_all()
-	$Blink.rect_scale = Vector2(1, 1)
+	_tween.remove_all()
+	_blink_panel.rect_scale = Vector2(1, 1)
 	if bright:
 		_bright_tween_active = true
-		$Blink.modulate = Color.white
-		$Tween.interpolate_property($Blink, "rect_scale", $Blink.rect_scale, Vector2(2.0, 2.0), 1.2)
-		$Tween.interpolate_property($Blink, "modulate", $Blink.modulate, Color(0.111, 0.888, 0.111, 0.0),
+		_blink_panel.modulate = Color.white
+		_tween.interpolate_property(_blink_panel, "rect_scale", _blink_panel.rect_scale, Vector2(2.0, 2.0), 1.2)
+		_tween.interpolate_property(_blink_panel, "modulate", _blink_panel.modulate, Color(0.111, 0.888, 0.111, 0.0),
 				1.2, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
-		$TaskCompleteSound.play()
+		_task_complete_sound.play()
 	else:
-		$Blink.modulate = Color(0.111, 0.888, 0.111, 0.5)
-		$Tween.interpolate_property($Blink, "rect_scale", $Blink.rect_scale, Vector2(1.5, 1.5), 0.6)
-		$Tween.interpolate_property($Blink, "modulate:a", $Blink.modulate.a, 0.0,
+		_blink_panel.modulate = Color(0.111, 0.888, 0.111, 0.5)
+		_tween.interpolate_property(_blink_panel, "rect_scale", _blink_panel.rect_scale, Vector2(1.5, 1.5), 0.6)
+		_tween.interpolate_property(_blink_panel, "modulate:a", _blink_panel.modulate.a, 0.0,
 				0.6, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
-	$Tween.start()
+	_tween.start()
 
 
 func _on_PuzzleState_game_prepared() -> void:
