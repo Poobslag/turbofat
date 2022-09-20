@@ -388,9 +388,6 @@ margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
 script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 _puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 StarSeedScene = ExtResource( 72 )
 
@@ -620,8 +617,6 @@ results_label_path = NodePath("../Center/ResultsHud/ResultsLabel")
 [node name="MoneyLabel" parent="Hud/PuzzleMoneyHud" instance=ExtResource( 76 )]
 margin_top = -32.0
 margin_bottom = 0.0
-
-[node name="MoneyLabelTween" type="Tween" parent="Hud/PuzzleMoneyHud"]
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 

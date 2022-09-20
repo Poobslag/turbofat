@@ -35,7 +35,7 @@ var creature_sfx: CreatureSfx setget set_creature_sfx
 onready var _idle_timer: Timer = $IdleTimer
 
 ## recoils the creature's head
-onready var _tween: Tween = $Tween
+onready var _tween: SceneTreeTween
 
 ## EmotePlayer which animates moods: blinking, smiling, sweating, etc.
 onready var _emote_player: AnimationPlayer = $EmotePlayer
@@ -110,10 +110,9 @@ func play_mood(mood: int) -> void:
 ## The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method
 ## controls all of those secondary visual effects of the creature being fed.
 func show_food_effects() -> void:
-	_tween.interpolate_property(_head_bobber, "position:x",
-			clamp(_head_bobber.position.x - 6, -20, 0), 0, 0.5,
-			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-	_tween.start()
+	_head_bobber.position.x = clamp(_head_bobber.position.x - 6, -20, 0)
+	_tween = Utils.recreate_tween(self, _tween).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	_tween.tween_property(_head_bobber, "position:x", 0.0, 0.5)
 
 
 ## Plays a movement animation with the specified animation name, such as 'run-sw'.
