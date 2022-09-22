@@ -10,6 +10,9 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 mouse_filter = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="Control" parent="."]
 margin_right = 32.0

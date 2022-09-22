@@ -7,7 +7,10 @@
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
+[node name="Tween" type="Tween" parent="."]
+
 [node name="FadeTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="FadeTimer" to="." method="_on_FadeTimer_timeout"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
