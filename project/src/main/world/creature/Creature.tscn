@@ -374,6 +374,8 @@ one_shot = true
 shape = SubResource( 1 )
 script = ExtResource( 8 )
 
+[node name="FadeTween" type="Tween" parent="."]
+
 [connection signal="food_eaten" from="." to="CreatureSfx" method="_on_Creature_food_eaten"]
 [connection signal="landed" from="." to="CreatureSfx" method="_on_Creature_landed"]
 [connection signal="timeout" from="CreatureSfx/SuppressSfxTimer" to="CreatureSfx" method="_on_SuppressSfxTimer_timeout"]

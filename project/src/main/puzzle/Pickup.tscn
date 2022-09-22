@@ -33,3 +33,7 @@ avg_pulse_period = 4.28
 
 [node name="FoodItem" parent="." instance=ExtResource( 1 )]
 visible = false
+
+[node name="StarColorTween" type="Tween" parent="."]
+
+[connection signal="tween_all_completed" from="StarColorTween" to="." method="_on_StarColorTween_tween_all_completed"]
