@@ -116,7 +116,8 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 			if _mole_cell_has_floor(mole_cell) \
 					and not _mole_cell_has_block(mole_cell) \
 					and not _mole_cell_has_pickup(mole_cell) \
-					and not _mole_cell_has_mole(mole_cell):
+					and not _mole_cell_has_mole(mole_cell) \
+					and not _mole_cell_overlaps_piece(mole_cell):
 				
 				# check if the mole is at his 'home terrain'; cakes, holes, etc
 				var at_home := true
@@ -162,6 +163,16 @@ func _mole_cell_has_pickup(mole_cell: Vector2) -> bool:
 ## Returns 'true' if the specified cell has a mole.
 func _mole_cell_has_mole(mole_cell: Vector2) -> bool:
 	return _moles_by_cell.has(mole_cell)
+
+
+## Returns 'true' if the specified cell overlaps the currently active piece.
+func _mole_cell_overlaps_piece(mole_cell: Vector2) -> bool:
+	var result := false
+	for pos_arr_item_obj in _piece_manager.piece.get_pos_arr():
+		if mole_cell == pos_arr_item_obj + _piece_manager.piece.pos:
+			result = true
+			break
+	return result
 
 
 ## Adds a mole to the specified cell.
@@ -244,14 +255,10 @@ func _clear_moles() -> void:
 
 
 ## Updates the overlapped moles as the player moves their piece.
-func _refresh_moles_for_piece(piece: ActivePiece) -> void:
+func _refresh_moles_for_piece() -> void:
 	for mole_cell in _moles_by_cell:
 		var mole: Mole = _moles_by_cell[mole_cell]
-		var piece_overlaps_mole := false
-		for pos_arr_item_obj in piece.get_pos_arr():
-			if mole_cell == pos_arr_item_obj + piece.pos:
-				piece_overlaps_mole = true
-				break
+		var piece_overlaps_mole := _mole_cell_overlaps_piece(mole_cell)
 		
 		if piece_overlaps_mole and not mole.hidden:
 			mole.hidden = true
@@ -363,8 +370,8 @@ func _on_Playfield_blocks_prepared() -> void:
 	_clear_moles()
 
 
-func _on_PieceManager_piece_disturbed(piece: ActivePiece) -> void:
-	_refresh_moles_for_piece(piece)
+func _on_PieceManager_piece_disturbed(_piece: ActivePiece) -> void:
+	_refresh_moles_for_piece()
 
 
 func _on_PuzzleState_before_piece_written() -> void:
