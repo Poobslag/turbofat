@@ -188,7 +188,7 @@ func apply_lock() -> void:
 
 
 func is_playfield_clearing_lines() -> bool:
-	return _playfield.get_remaining_line_erase_frames() > 0
+	return _playfield.is_clearing_lines()
 
 
 ## Returns the y coordinate of lines currently being cleared.

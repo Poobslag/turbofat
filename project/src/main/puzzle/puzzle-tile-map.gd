@@ -48,6 +48,14 @@ func _ready() -> void:
 	clear()
 
 
+func is_cake_cell(cell: Vector2) -> bool:
+	return get_cellv(cell) == TILE_BOX and Foods.is_cake_box(get_cell_autotile_coord(cell.x, cell.y).y)
+
+
+func is_snack_cell(cell: Vector2) -> bool:
+	return get_cellv(cell) == TILE_BOX and Foods.is_snack_box(get_cell_autotile_coord(cell.x, cell.y).y)
+
+
 func set_ghost_shadow_offset(new_ghost_shadow_offset: Vector2) -> void:
 	ghost_shadow_offset = new_ghost_shadow_offset
 
@@ -171,6 +179,7 @@ func erase_playfield_row(y: int) -> void:
 			_disconnect_box(Vector2(x, y))
 		
 		set_block(Vector2(x, y), -1)
+
 
 ## Sets the whiteness property to make the tilemap flash or blink.
 func set_whiteness(new_whiteness: float) -> void:

@@ -13,8 +13,8 @@ func _process(_delta: float) -> void:
 		var new_text := ""
 		
 		new_text += "%1d" % [min(9, _combo_tracker.combo_break)]
-		new_text += "l" if _playfield.get_remaining_line_erase_frames() > 0 else "-"
-		new_text += "b" if _playfield.get_remaining_box_build_frames() > 0 else "-"
+		new_text += "l" if _playfield.is_clearing_lines() else "-"
+		new_text += "b" if _playfield.is_building_boxes() else "-"
 		new_text += "r" if _playfield.ready_for_new_piece() else "-"
 		new_text += " %s(%02d)" % [_piece_manager.get_state().name.left(4), min(99, _piece_manager.get_state().frames)]
 		new_text += "\n"

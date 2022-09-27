@@ -704,6 +704,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/pickup-level-chunk-control.gd"
 }, {
+"base": "Control",
+"class": "Pickups",
+"language": "GDScript",
+"path": "res://src/main/puzzle/pickups.gd"
+}, {
 "base": "Node",
 "class": "PieceInput",
 "language": "GDScript",
@@ -1234,6 +1239,7 @@ _global_script_class_icons={
 "Pickup": "",
 "PickupLevelChunk": "",
 "PickupLevelChunkControl": "",
+"Pickups": "",
 "PieceInput": "",
 "PieceManager": "",
 "PieceMover": "",
