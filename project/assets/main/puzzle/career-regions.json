@@ -109,10 +109,10 @@
       },
       "levels": [
         {
-          "id": "career/bottomless_pit"
+          "id": "career/a_thousand_moles"
         },
         {
-          "id": "career/cookies"
+          "id": "career/bottomless_pit"
         },
         {
           "id": "career/creeping_crevice"
@@ -124,16 +124,16 @@
           "id": "career/fat_stacks"
         },
         {
-          "id": "career/just_bread"
-        },
-        {
           "id": "career/just_fruit"
         },
         {
-          "id": "career/lets_all_get_merry"
+          "id": "career/mole_money_mole_problems"
         },
         {
           "id": "career/paranormal_tetrominon"
+        },
+        {
+          "id": "career/rice_bear_island"
         },
         {
           "id": "career/strawberry_shortcut"
@@ -151,7 +151,7 @@
       "name": "Poki Desert",
       "start": 25,
       "icon": "cactus",
-      "piece_speed": "0-3",
+      "piece_speed": "1-3",
       "boss_level": {
         "id": "career/boss_5k"
       },
@@ -178,7 +178,7 @@
           "id": "career/strawberry_shortcut"
         },
         {
-          "id": "career/shelf"
+          "id": "career/above_and_below"
         },
         {
           "id": "career/teensy_taste"
@@ -199,7 +199,7 @@
       "name": "Cannoli Sandbar",
       "start": 40,
       "icon": "island",
-      "piece_speed": "1-5",
+      "piece_speed": "2-5",
       "boss_level": {
         "id": "career/boss_4k"
       },
@@ -238,7 +238,7 @@
           "id": "career/fruit_salad"
         },
         {
-          "id": "career/muffin_impossible_2"
+          "id": "career/shelf"
         },
         {
           "id": "career/wedding_cake_for_one"
@@ -357,7 +357,7 @@
           "id": "career/secret_brownies"
         },
         {
-          "id": "career/veggie_patty"
+          "id": "career/hungry_moles"
         },
         {
           "id": "career/snack_box_blitz"
@@ -429,7 +429,7 @@
           "id": "career/too_fast_to_fast"
         },
         {
-          "id": "career/wedding_cake_for_one"
+          "id": "career/surprise_guests"
         },
         {
           "id": "career/fruit_on_the_top"
@@ -478,6 +478,15 @@
         },
         {
           "id": "career/dark/fruit_on_the_top"
+        },
+        {
+          "id": "career/dark/surprise_guests"
+        },
+        {
+          "id": "career/dark/above_and_below"
+        },
+        {
+          "id": "career/dark/hungry_moles"
         }
       ]
     }

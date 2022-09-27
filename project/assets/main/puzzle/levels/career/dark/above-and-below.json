@@ -1,140 +1,194 @@
 {
   "version": "39e5",
-  "start_speed": "0",
-  "name": "Shelf",
-  "description": "Who came up with this stupid shelf anyway!? ...Ooh! Cookies!",
+  "start_speed": "A1",
+  "name": "EX Above and Below",
+  "description": "Build some delicious snack boxes above while befriending some moles below.",
   "finish_condition": {
-    "type": "score",
-    "value": "400"
+    "type": "lines",
+    "value": "75"
   },
   "blocks_during": [
-    "refresh_on_top_out",
-    "shuffle_inserted_lines"
+    "refresh_on_top_out"
   ],
   "rank": [
-    "box_factor 0.73",
-    "combo_factor 0.91",
-    "master_pickup_score_per_line 4.65"
+    "extra_seconds_per_piece 0.40",
+    "box_factor 0.71",
+    "combo_factor 0.45",
+    "master_pickup_score_per_line 10.77"
   ],
   "triggers": [
     {
       "phases": [
-        "line_cleared y=0-5"
+        "line_cleared y=0-2"
       ],
-      "effect": "insert_line y=6 tiles_key=0"
+      "effect": "insert_line y=3 tiles_key=0"
     },
     {
       "phases": [
-        "line_cleared y=6"
+        "piece_written"
       ],
-      "effect": "insert_line y=7 tiles_key=1"
+      "effect": "add_moles y=0-2"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_moles"
     }
   ],
   "tiles": {
     "start": [
       {
-        "pos": "6 10",
-        "tile": "1 10 0"
+        "pos": "2 15",
+        "tile": "2 12 0"
       },
       {
-        "pos": "7 10",
-        "tile": "1 14 0"
+        "pos": "3 15",
+        "tile": "2 16 2"
       },
       {
-        "pos": "8 10",
-        "tile": "1 6 0"
+        "pos": "5 15",
+        "tile": "2 11 2"
       },
       {
-        "pos": "0 11",
-        "tile": "0 10 3"
+        "pos": "8 15",
+        "tile": "2 1 1"
       },
       {
-        "pos": "1 11",
-        "tile": "0 6 3"
+        "pos": "0 16",
+        "tile": "2 9 3"
       },
       {
-        "pos": "6 11",
-        "tile": "1 11 0"
+        "pos": "2 16",
+        "tile": "2 4 3"
       },
       {
-        "pos": "7 11",
-        "tile": "1 15 0"
+        "pos": "3 16",
+        "tile": "2 11 2"
       },
       {
-        "pos": "8 11",
-        "tile": "1 7 0"
+        "pos": "4 16",
+        "tile": "2 3 0"
       },
       {
-        "pos": "0 12",
-        "tile": "0 9 3"
+        "pos": "5 16",
+        "tile": "2 13 1"
       },
       {
-        "pos": "1 12",
-        "tile": "0 5 3"
+        "pos": "6 16",
+        "tile": "2 2 3"
       },
       {
-        "pos": "6 12",
-        "tile": "1 9 0"
+        "pos": "8 16",
+        "tile": "2 7 3"
       },
       {
-        "pos": "7 12",
-        "tile": "1 13 0"
+        "pos": "0 17",
+        "pickup": "6"
       },
       {
-        "pos": "8 12",
-        "tile": "1 5 0"
+        "pos": "1 17",
+        "pickup": "6"
       },
       {
-        "pos": "0 13",
-        "tile": "2 17 1"
+        "pos": "2 17",
+        "pickup": "6"
       },
       {
-        "pos": "1 13",
-        "tile": "2 15 0"
+        "pos": "3 17",
+        "pickup": "6"
       },
       {
-        "pos": "2 13",
-        "tile": "2 1 2"
+        "pos": "4 17",
+        "pickup": "6"
       },
       {
-        "pos": "3 13",
-        "pickup": "0"
+        "pos": "6 17",
+        "pickup": "6"
       },
       {
-        "pos": "4 13",
-        "pickup": "7"
+        "pos": "7 17",
+        "pickup": "6"
       },
       {
-        "pos": "5 13",
-        "pickup": "0"
+        "pos": "8 17",
+        "pickup": "6"
       },
       {
-        "pos": "6 13",
-        "tile": "2 14 2"
+        "pos": "0 18",
+        "tile": "1 10 6"
       },
       {
-        "pos": "7 13",
-        "tile": "2 4 1"
+        "pos": "1 18",
+        "tile": "1 14 6"
       },
       {
-        "pos": "8 13",
-        "tile": "2 12 3"
+        "pos": "2 18",
+        "tile": "1 6 6"
+      },
+      {
+        "pos": "3 18",
+        "tile": "2 6 1"
+      },
+      {
+        "pos": "4 18",
+        "tile": "2 6 1"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 10 6"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 14 6"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 6 6"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 6"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 6"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 6"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 13 0"
+      },
+      {
+        "pos": "4 19",
+        "pickup": "6"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "6"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 6"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 6"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 6"
       }
     ],
     "0": [
     ],
     "1": [
       {
-        "pos": "0 0",
-        "pickup": "0"
-      },
-      {
         "pos": "1 0",
         "tile": "2 14 3"
-      },
-      {
-        "pos": "2 0",
-        "pickup": "7"
       },
       {
         "pos": "3 0",
@@ -143,10 +197,6 @@
       {
         "pos": "4 0",
         "tile": "2 9 0"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "0"
       },
       {
         "pos": "6 0",
@@ -161,20 +211,12 @@
         "tile": "2 13 2"
       },
       {
-        "pos": "0 1",
-        "pickup": "0"
-      },
-      {
         "pos": "1 1",
         "tile": "2 12 3"
       },
       {
         "pos": "2 1",
         "tile": "2 7 0"
-      },
-      {
-        "pos": "3 1",
-        "pickup": "7"
       },
       {
         "pos": "4 1",
@@ -185,20 +227,12 @@
         "tile": "2 13 2"
       },
       {
-        "pos": "6 1",
-        "pickup": "0"
-      },
-      {
         "pos": "7 1",
         "tile": "2 13 0"
       },
       {
         "pos": "8 1",
         "tile": "2 5 2"
-      },
-      {
-        "pos": "0 2",
-        "pickup": "0"
       },
       {
         "pos": "1 2",
@@ -213,10 +247,6 @@
         "tile": "2 9 2"
       },
       {
-        "pos": "4 2",
-        "pickup": "7"
-      },
-      {
         "pos": "5 2",
         "tile": "2 3 0"
       },
@@ -229,24 +259,12 @@
         "tile": "2 6 2"
       },
       {
-        "pos": "8 2",
-        "pickup": "0"
-      },
-      {
         "pos": "0 3",
         "tile": "2 13 1"
       },
       {
-        "pos": "1 3",
-        "pickup": "0"
-      },
-      {
         "pos": "2 3",
         "tile": "2 3 3"
-      },
-      {
-        "pos": "3 3",
-        "pickup": "7"
       },
       {
         "pos": "4 3",
@@ -255,10 +273,6 @@
       {
         "pos": "5 3",
         "tile": "2 0 2"
-      },
-      {
-        "pos": "6 3",
-        "pickup": "0"
       },
       {
         "pos": "7 3",
@@ -273,10 +287,6 @@
         "tile": "2 7 2"
       },
       {
-        "pos": "1 4",
-        "pickup": "0"
-      },
-      {
         "pos": "2 4",
         "tile": "2 3 3"
       },
@@ -285,16 +295,8 @@
         "tile": "2 6 0"
       },
       {
-        "pos": "4 4",
-        "pickup": "7"
-      },
-      {
         "pos": "5 4",
         "tile": "2 6 3"
-      },
-      {
-        "pos": "6 4",
-        "pickup": "0"
       },
       {
         "pos": "7 4",
@@ -309,10 +311,6 @@
         "tile": "2 15 3"
       },
       {
-        "pos": "1 5",
-        "pickup": "0"
-      },
-      {
         "pos": "2 5",
         "tile": "2 16 2"
       },
@@ -321,20 +319,12 @@
         "tile": "2 7 2"
       },
       {
-        "pos": "4 5",
-        "pickup": "7"
-      },
-      {
         "pos": "5 5",
         "tile": "2 9 2"
       },
       {
         "pos": "6 5",
         "tile": "2 5 3"
-      },
-      {
-        "pos": "7 5",
-        "pickup": "0"
       },
       {
         "pos": "8 5",
@@ -349,16 +339,8 @@
         "tile": "2 3 1"
       },
       {
-        "pos": "2 6",
-        "pickup": "0"
-      },
-      {
         "pos": "3 6",
         "tile": "2 11 3"
-      },
-      {
-        "pos": "4 6",
-        "pickup": "7"
       },
       {
         "pos": "5 6",
@@ -367,10 +349,6 @@
       {
         "pos": "6 6",
         "tile": "2 12 2"
-      },
-      {
-        "pos": "7 6",
-        "pickup": "0"
       },
       {
         "pos": "8 6",
@@ -385,10 +363,6 @@
         "tile": "2 6 2"
       },
       {
-        "pos": "2 7",
-        "pickup": "0"
-      },
-      {
         "pos": "3 7",
         "tile": "2 13 3"
       },
@@ -397,16 +371,8 @@
         "tile": "2 3 1"
       },
       {
-        "pos": "5 7",
-        "pickup": "7"
-      },
-      {
         "pos": "6 7",
         "tile": "2 14 1"
-      },
-      {
-        "pos": "7 7",
-        "pickup": "0"
       },
       {
         "pos": "8 7",
@@ -421,10 +387,6 @@
         "tile": "2 0 1"
       },
       {
-        "pos": "2 8",
-        "pickup": "0"
-      },
-      {
         "pos": "3 8",
         "tile": "2 1 3"
       },
@@ -433,20 +395,12 @@
         "tile": "2 12 0"
       },
       {
-        "pos": "5 8",
-        "pickup": "7"
-      },
-      {
         "pos": "6 8",
         "tile": "2 15 1"
       },
       {
         "pos": "7 8",
         "tile": "2 1 0"
-      },
-      {
-        "pos": "8 8",
-        "pickup": "0"
       },
       {
         "pos": "0 9",
@@ -459,18 +413,6 @@
       {
         "pos": "2 9",
         "tile": "2 12 2"
-      },
-      {
-        "pos": "3 9",
-        "pickup": "0"
-      },
-      {
-        "pos": "4 9",
-        "pickup": "7"
-      },
-      {
-        "pos": "5 9",
-        "pickup": "0"
       },
       {
         "pos": "6 9",
@@ -497,10 +439,6 @@
         "tile": "2 14 0"
       },
       {
-        "pos": "3 10",
-        "pickup": "0"
-      },
-      {
         "pos": "4 10",
         "tile": "2 12 3"
       },
@@ -509,16 +447,8 @@
         "tile": "2 10 2"
       },
       {
-        "pos": "6 10",
-        "pickup": "7"
-      },
-      {
         "pos": "7 10",
         "tile": "2 11 3"
-      },
-      {
-        "pos": "8 10",
-        "pickup": "0"
       }
     ]
   }

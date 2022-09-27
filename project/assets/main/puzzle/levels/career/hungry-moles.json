@@ -1,0 +1,39 @@
+{
+  "version": "39e5",
+  "start_speed": "5",
+  "name": "Hungry Moles",
+  "description": "You had my curiosity... but now you have my attention!",
+  "finish_condition": {
+    "type": "score",
+    "value": "600"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.20",
+    "box_factor 0.00",
+    "master_pickup_score_per_line 15.41"
+  ],
+  "score": [
+    "cake_all 0",
+    "snack_all 0"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_moles count=2 reward=seed"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_moles count=5 dig_duration=2"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_moles"
+    }
+  ]
+}

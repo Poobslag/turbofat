@@ -1,0 +1,89 @@
+{
+  "version": "39e5",
+  "start_speed": "0",
+  "name": "A Thousand Moles",
+  "description": "Making my way downtown...",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "80"
+  },
+  "rank": [
+    "master_pickup_score_per_line 7.97"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=16,22,28,32,36,40,42,44,46"
+      ],
+      "effect": "add_moles home=surface dig_duration=2 reward=seed"
+    },
+    {
+      "phases": [
+        "piece_written n=47,48,49..."
+      ],
+      "effect": "add_moles home=surface dig_duration=1 reward=seed"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_moles"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 18",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "1 18",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "2 18",
+        "tile": "2 6 3"
+      },
+      {
+        "pos": "3 18",
+        "tile": "2 3 2"
+      },
+      {
+        "pos": "4 18",
+        "tile": "2 9 3"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 16 3"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 15 3"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 10 1"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 10 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 1 3"
+      }
+    ]
+  }
+}
