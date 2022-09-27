@@ -143,18 +143,11 @@ class AfterLineClearedPhaseCondition extends PhaseCondition:
 	## 	'phase_config.y': (Optional) An expression defining which line clears will fire this trigger.
 	func _init(_phase_config: Dictionary).(_phase_config) -> void:
 		var y_expression: String = _phase_config.get("y")
-		var lo := 0
-		var hi := PuzzleTileMap.ROW_COUNT
 		if y_expression:
-			for sub_expression in y_expression.split(","):
-				if "-" in sub_expression:
-					lo = int(StringUtils.substring_before(sub_expression, "-"))
-					hi = int(StringUtils.substring_after(sub_expression, "-")) + 1
-				else:
-					lo = int(sub_expression)
-					hi = int(sub_expression) + 1
-				for y in range(lo, hi):
-					which_lines[PuzzleTileMap.ROW_COUNT - y - 1] = true
+			var which_lines_array := ConfigStringUtils.ints_from_config_string(y_expression)
+			which_lines_array = ConfigStringUtils.invert_puzzle_row_indexes(which_lines_array)
+			for which_line in which_lines_array:
+				which_lines[which_line] = true
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -172,27 +165,8 @@ class AfterLineClearedPhaseCondition extends PhaseCondition:
 	## Returns:
 	## 	A set of phase configuration strings defining criteria for this phase condition.
 	func get_phase_config() -> Dictionary:
-		var y_expression: String = ""
-		
-		var range_start := -1
-		for y in range(PuzzleTileMap.ROW_COUNT + 1):
-			var include_prev := which_lines.has(PuzzleTileMap.ROW_COUNT - y)
-			var include_curr := which_lines.has(PuzzleTileMap.ROW_COUNT - y - 1)
-			if include_curr and not include_prev:
-				# start a new range
-				range_start = y
-			if not include_curr and include_prev:
-				# end the range and append it to the y_expression
-				var range_end := y - 1
-				if y_expression:
-					y_expression += ","
-				if range_start == range_end:
-					# isolated lines are output as "1,3,5"
-					y_expression += str(range_start)
-				else:
-					# adjacent lines are hyphenated as "1-3,5-9"
-					y_expression += "%s-%s" % [range_start, range_end]
-		
+		var inverted_which_lines := ConfigStringUtils.invert_puzzle_row_indexes(which_lines.keys())
+		var y_expression: String = ConfigStringUtils.config_string_from_ints(inverted_which_lines)
 		return {"y": y_expression}
 
 var phase_conditions_by_string := {
