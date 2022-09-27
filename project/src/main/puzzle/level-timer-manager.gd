@@ -5,12 +5,14 @@ extends Node
 ## LevelTimers script, but the actual timer objects which count down are kept here.
 
 ## The maximum amount of timers which a level can define
-const MAX_TIMER_COUNT := 1
+const MAX_TIMER_COUNT := 3
 
 ## key: (int) timer index
 ## value: (int) an enum from LevelTriggerPhase for the timer's trigger
 const PHASES_BY_TIMER_INDEX := {
 	0: LevelTrigger.TIMER_0,
+	1: LevelTrigger.TIMER_1,
+	2: LevelTrigger.TIMER_2,
 }
 
 func _ready() -> void:
@@ -28,7 +30,7 @@ func _ready() -> void:
 func _on_PuzzleState_game_started() -> void:
 	for timer_index in range(CurrentLevel.settings.timers.get_timer_count()):
 		var timer: Timer = get_child(timer_index)
-		timer.start(CurrentLevel.settings.timers.get_timer_interval(timer_index))
+		timer.start(CurrentLevel.settings.timers.get_timer_initial_interval(timer_index))
 
 
 ## Stops any timers needed for the current level.
@@ -41,3 +43,7 @@ func _on_PuzzleState_game_ended() -> void:
 ## Runs all triggers for the specified timer.
 func _on_Timer_timeout(timer_index: int) -> void:
 	CurrentLevel.settings.triggers.run_triggers(PHASES_BY_TIMER_INDEX[timer_index])
+	if CurrentLevel.settings.timers.get_timer_initial_interval(timer_index) \
+			!= CurrentLevel.settings.timers.get_timer_interval(timer_index):
+		var timer: Timer = get_child(timer_index)
+		timer.start(CurrentLevel.settings.timers.get_timer_interval(timer_index))
