@@ -44,14 +44,14 @@ signal blocks_prepared
 ## remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
 
-onready var tile_map := $TileMapClip/TileMap
-onready var pickups := $TileMapClip/Pickups
-onready var line_inserter := $LineInserter
+onready var tile_map: PuzzleTileMap = $TileMapClip/TileMap
+onready var pickups: Pickups = $TileMapClip/Pickups
+onready var line_inserter: LineInserter = $LineInserter
+onready var line_clearer: LineClearer = $LineClearer
 
 onready var _bg_glob_viewports: GoopViewports = $BgGlobViewports
 onready var _box_builder: BoxBuilder = $BoxBuilder
 onready var _combo_tracker: ComboTracker = $ComboTracker
-onready var line_clearer: LineClearer = $LineClearer
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -76,8 +76,8 @@ func _physics_process(delta: float) -> void:
 		_remaining_misc_delay_frames -= 1
 
 
-func get_remaining_line_erase_frames() -> int:
-	return line_clearer.remaining_line_erase_frames
+func is_clearing_lines() -> bool:
+	return line_clearer.remaining_line_erase_frames > 0
 
 
 ## Returns the y coordinate of lines currently being cleared.
@@ -85,8 +85,8 @@ func get_lines_being_cleared() -> Array:
 	return line_clearer.lines_being_cleared
 
 
-func get_remaining_box_build_frames() -> int:
-	return _box_builder.remaining_box_build_frames
+func is_building_boxes() -> bool:
+	return _box_builder.remaining_box_build_frames > 0
 
 
 func add_misc_delay_frames(frames: int) -> void:

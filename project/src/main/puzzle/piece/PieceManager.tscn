@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/main/puzzle/piece/squish-fx.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://src/main/puzzle/piece/tech-move-detector.gd" type="Script" id=32]
 [ext_resource path="res://assets/main/puzzle/rotate-sealed.wav" type="AudioStream" id=33]
 [ext_resource path="res://assets/main/puzzle/tech-move.wav" type="AudioStream" id=34]
+[ext_resource path="res://src/main/utils/StateMachine.tscn" type="PackedScene" id=35]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -116,7 +117,7 @@ autostart = true
 stream = ExtResource( 25 )
 script = ExtResource( 24 )
 
-[node name="States" type="Node" parent="."]
+[node name="States" parent="." instance=ExtResource( 35 )]
 script = ExtResource( 19 )
 
 [node name="None" type="Node" parent="States"]

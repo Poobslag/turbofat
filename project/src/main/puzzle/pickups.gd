@@ -1,3 +1,4 @@
+class_name Pickups
 extends Control
 ## Creates pickups on the playfield for certain levels.
 ##
@@ -46,6 +47,15 @@ func _ready() -> void:
 	_prepare_pickups_for_level()
 
 
+## Returns the pickup at the specified playfield cell.
+##
+## Returns TileMap.INVALID_CELL if the specified cell has no pickup.
+func get_pickup(cell: Vector2) -> int:
+	if not _pickups_by_cell.has(cell):
+		return TileMap.INVALID_CELL
+	return _pickups_by_cell[cell].food_type
+
+
 ## Adds or replaces a pickup in a playfield cell.
 func set_pickup(cell: Vector2, box_type: int) -> void:
 	remove_pickup(cell)
@@ -81,7 +91,7 @@ func clear() -> void:
 
 ## Spawns any pickups necessary for starting the current level.
 func _prepare_pickups_for_level() -> void:
-	var src_pickups := CurrentLevel.settings.tiles.blocks_start().pickups
+	var src_pickups: Dictionary = CurrentLevel.settings.tiles.blocks_start().pickups
 	
 	var pickups_to_add := []
 	var pickups_to_remove := []
@@ -302,7 +312,7 @@ func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 	_shift_rows(y, Vector2.UP)
 	
 	# fill in the new gaps with pickups
-	var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
+	var block_bunch: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var src_pos := Vector2(x, src_y)
 		if not block_bunch.pickups.has(src_pos):
@@ -322,7 +332,7 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 func _on_Playfield_line_filled(y: int, tiles_key: String, src_y: int) -> void:
 	# fill in the new gaps with pickups
-	var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
+	var block_bunch: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var src_pos := Vector2(x, src_y)
 		if not block_bunch.pickups.has(src_pos):
