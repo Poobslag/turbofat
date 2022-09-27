@@ -16,6 +16,8 @@ enum LevelTriggerPhase {
 	ROTATED_CCW, # when the piece is rotated counterclockwise
 	ROTATED_180, # when the piece is flipped
 	TIMER_0, # when timer 0 times out
+	TIMER_1, # when timer 1 times out
+	TIMER_2, # when timer 2 times out
 }
 
 const AFTER_PIECE_WRITTEN := LevelTriggerPhase.AFTER_PIECE_WRITTEN
@@ -27,6 +29,8 @@ const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
 const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
 const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const TIMER_0 := LevelTriggerPhase.TIMER_0
+const TIMER_1 := LevelTriggerPhase.TIMER_1
+const TIMER_2 := LevelTriggerPhase.TIMER_2
 
 ## key: (int) an enum from LevelTriggerPhase
 ## value: (Array, PhaseCondition) Conditions for whether the trigger should fire

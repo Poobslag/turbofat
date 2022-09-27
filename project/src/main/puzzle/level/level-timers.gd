@@ -8,7 +8,17 @@ var timers := []
 
 ## Returns how frequently the timer should fire, measured in seconds.
 func get_timer_interval(timer_index: int) -> float:
-	return timers[timer_index].get("interval")
+	return timers[timer_index].get("interval", 1.0)
+
+
+## Returns how long the timer should wait to fire the first time, measured in seconds.
+func get_timer_initial_interval(timer_index: int) -> float:
+	var result: float
+	if timers[timer_index].has("initial_interval"):
+		result = timers[timer_index]["initial_interval"]
+	else:
+		result = timers[timer_index].get("interval", 1.0)
+	return result
 
 
 ## Returns the number of timers used by this level.
