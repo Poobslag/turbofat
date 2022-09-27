@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://assets/main/chat/ui/emote-love0.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/main/chat/ui/emote-wave0.wav" type="AudioStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/main/chat/ui/emote-think0.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/main/chat/ui/emote-laugh1.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/world/creature/emote-player.gd" type="Script" id=12]
+[ext_resource path="res://src/main/world/creature/emote-sfx.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "...love1..."
@@ -4479,5 +4480,6 @@ creature_visuals_path = NodePath("../..")
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 bus = "Sound Bus"
+script = ExtResource( 13 )
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
