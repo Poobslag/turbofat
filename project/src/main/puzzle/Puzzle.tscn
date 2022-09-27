@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=104 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -78,6 +78,7 @@
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
 [ext_resource path="res://src/main/puzzle/TechMoveBurst.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/main/puzzle/puzzle-money-hud.gd" type="Script" id=78]
+[ext_resource path="res://src/main/puzzle/critter/Critters.tscn" type="PackedScene" id=79]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -393,6 +394,10 @@ __meta__ = {
 }
 _puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 StarSeedScene = ExtResource( 72 )
+
+[node name="Critters" parent="Fg" instance=ExtResource( 79 )]
+_playfield_path = NodePath("../Playfield")
+_piece_manager_path = NodePath("../PieceManager")
 
 [node name="PieceManager" parent="Fg" instance=ExtResource( 9 )]
 playfield_path = NodePath("../Playfield")

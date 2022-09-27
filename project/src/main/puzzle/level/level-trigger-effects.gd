@@ -3,6 +3,57 @@ extends Node
 ##
 ## These effects are each mapped to a unique string so that they can be referenced from json.
 
+## Adds one or more moles to the playfield.
+class AddMolesEffect extends LevelTriggerEffect:
+	var config: MoleConfig = MoleConfig.new()
+	
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("count"):
+			config.count = new_config["count"].to_int()
+		if new_config.has("home"):
+			config.home = Utils.enum_from_snake_case(MoleConfig.Home, new_config["home"])
+		if new_config.has("y"):
+			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
+			config.lines = ConfigStringUtils.invert_lines(inverted_lines)
+		if new_config.has("x"):
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"])
+		if new_config.has("dig_duration"):
+			config.dig_duration = new_config["dig_duration"].to_int()
+		if new_config.has("reward"):
+			config.reward = Utils.enum_from_snake_case(MoleConfig.Reward, new_config["reward"])
+	
+	
+	func run() -> void:
+		CurrentLevel.puzzle.get_moles().add_moles(config)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		
+		if config.count != 1:
+			result["count"] = str(config.count)
+		if config.home != MoleConfig.Home.ANY:
+			result["home"] = Utils.enum_to_snake_case(MoleConfig.Home, config.home)
+		if config.lines:
+			var inverted_lines := ConfigStringUtils.invert_lines(config.lines)
+			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_lines)
+		if config.columns:
+			result["x"] = ConfigStringUtils.config_string_from_ints(config.columns)
+		if config.dig_duration != 3:
+			result["dig_duration"] = str(config.dig_duration)
+		if config.reward != MoleConfig.Reward.STAR:
+			result["reward"] = Utils.enum_to_snake_case(MoleConfig.Reward, config.reward)
+		
+		return result
+
+
+## Advances all moles on the playfield, allowing them to dig up pickups.
+class AdvanceMolesEffect extends LevelTriggerEffect:
+	
+	func run() -> void:
+		CurrentLevel.puzzle.get_moles().advance_moles()
+
+
 ## Rotates one or more pieces in the piece queue.
 class RotateNextPiecesEffect extends LevelTriggerEffect:
 	enum Rotation {
@@ -116,9 +167,12 @@ class InsertLineEffect extends LevelTriggerEffect:
 
 
 var effects_by_string := {
+	"add_moles": AddMolesEffect,
+	"advance_moles": AdvanceMolesEffect,
 	"rotate_next_pieces": RotateNextPiecesEffect,
 	"insert_line": InsertLineEffect,
 }
+
 
 ## Creates a new LevelTriggerEffect instance.
 ##

@@ -59,6 +59,11 @@ func get_piece_queue() -> PieceQueue:
 	return $PieceQueue as PieceQueue
 
 
+## Returns the node which handles moles, puzzle critters which dig up star seeds for the player.
+func get_moles() -> Moles:
+	return $Fg/Critters/Moles as Moles
+
+
 func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 
