@@ -96,7 +96,7 @@ func to_json_dict() -> Dictionary:
 	
 	# serialize the effect as json
 	var dict_config := effect.get_config()
-	var effect_key := LevelTriggerEffects.effect_key(effect)
+	var effect_key: String = LevelTriggerEffects.effect_key(effect)
 	if dict_config:
 		var string_config := PoolStringArray(dict_config_to_array(dict_config)).join(" ")
 		result["effect"] = "%s %s" % [effect_key, string_config]

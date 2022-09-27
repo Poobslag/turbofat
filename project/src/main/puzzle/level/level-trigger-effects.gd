@@ -35,7 +35,7 @@ class AddMolesEffect extends LevelTriggerEffect:
 		if config.home != MoleConfig.Home.ANY:
 			result["home"] = Utils.enum_to_snake_case(MoleConfig.Home, config.home)
 		if config.lines:
-			var inverted_lines := ConfigStringUtils.invert_lines(config.lines)
+			var inverted_lines: Array = ConfigStringUtils.invert_lines(config.lines)
 			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_lines)
 		if config.columns:
 			result["x"] = ConfigStringUtils.config_string_from_ints(config.columns)
