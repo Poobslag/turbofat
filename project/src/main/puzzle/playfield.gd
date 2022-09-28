@@ -234,7 +234,7 @@ func _on_Pickups_food_spawned(cell: Vector2, remaining_food: int, food_type: int
 
 
 func _on_PuzzleState_after_piece_written() -> void:
-	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_PIECE_WRITTEN)
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
 
 
 func _on_LineClearer_all_lines_cleared() -> void:

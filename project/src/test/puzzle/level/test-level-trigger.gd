@@ -1,50 +1,50 @@
 extends "res://addons/gut/test.gd"
 
-func test_after_line_cleared_012345() -> void:
+func test_line_cleared_012345() -> void:
 	var json_dict := {
-		"phases": ["after_line_cleared y=0-5"],
+		"phases": ["line_cleared y=0-5"],
 		"effect": "insert_line"
 	}
 	
 	var trigger := LevelTrigger.new()
 	trigger.from_json_dict(json_dict)
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 19}), "should_run y=0")
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 16}), "should_run y=3")
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 14}), "should_run y=5")
-	assert_false(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 13}), "should_run y=6")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 19}), "should_run y=0")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 16}), "should_run y=3")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 14}), "should_run y=5")
+	assert_false(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 13}), "should_run y=6")
 
 
-func test_after_line_cleared_135() -> void:
+func test_line_cleared_135() -> void:
 	var json_dict := {
-		"phases": ["after_line_cleared y=1,3,5"],
+		"phases": ["line_cleared y=1,3,5"],
 		"effect": "insert_line"
 	}
 	
 	var trigger := LevelTrigger.new()
 	trigger.from_json_dict(json_dict)
-	assert_false(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 19}), "should_run y=0")
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 16}), "should_run y=3")
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 14}), "should_run y=5")
-	assert_false(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 13}), "should_run y=6")
+	assert_false(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 19}), "should_run y=0")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 16}), "should_run y=3")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 14}), "should_run y=5")
+	assert_false(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 13}), "should_run y=6")
 
 
-func test_after_line_cleared_0456() -> void:
+func test_line_cleared_0456() -> void:
 	var json_dict := {
-		"phases": ["after_line_cleared y=1,4-6"],
+		"phases": ["line_cleared y=1,4-6"],
 		"effect": "insert_line"
 	}
 	
 	var trigger := LevelTrigger.new()
 	trigger.from_json_dict(json_dict)
-	assert_false(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 19}), "should_run y=0")
-	assert_false(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 16}), "should_run y=3")
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 14}), "should_run y=5")
-	assert_true(trigger.should_run(LevelTrigger.AFTER_LINE_CLEARED, {"y": 13}), "should_run y=6")
+	assert_false(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 19}), "should_run y=0")
+	assert_false(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 16}), "should_run y=3")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 14}), "should_run y=5")
+	assert_true(trigger.should_run(LevelTrigger.LINE_CLEARED, {"y": 13}), "should_run y=6")
 
 
-func test_after_line_cleared_to_json_dict() -> void:
+func test_line_cleared_to_json_dict() -> void:
 	var json_dict := {
-		"phases": ["after_line_cleared y=1,4-6"],
+		"phases": ["line_cleared y=1,4-6"],
 		"effect": "insert_line"
 	}
 	

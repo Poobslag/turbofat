@@ -3,7 +3,7 @@ extends Node
 ##
 ## These conditions are each mapped to a unique string so that they can be referenced from json.
 
-class AfterPieceWrittenPhaseCondition extends PhaseCondition:
+class PieceWrittenPhaseCondition extends PhaseCondition:
 	## We precalculate which pieces will trigger the rule, up to this number of pieces.
 	## 20,000 corresponds to an expert player playing at ~200 PPM for two hours.
 	const MAX_PIECE_INDEX := 20000
@@ -22,7 +22,7 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	## value: (bool) true
 	var _combos_to_run := {}
 	
-	## Creates a new AfterPieceWrittenPhaseCondition instance with the specified configuration.
+	## Creates a new PieceWrittenPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'n' expression defining which pieces will fire this trigger.
 	## 0 is the first piece placed.
@@ -120,12 +120,12 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 		return result
 
 
-class AfterLineClearedPhaseCondition extends PhaseCondition:
+class LineClearedPhaseCondition extends PhaseCondition:
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: (bool) true
 	var which_lines := {}
 	
-	## Creates a new AfterLineClearedPhaseCondition instance with the specified configuration.
+	## Creates a new LineClearedPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'y' expression defining which line clears will fire this trigger.
 	## Commas and hyphens are accepted, 0 is the lowest line in the playfield.
@@ -170,8 +170,8 @@ class AfterLineClearedPhaseCondition extends PhaseCondition:
 		return {"y": y_expression}
 
 var phase_conditions_by_string := {
-	"after_line_cleared": AfterLineClearedPhaseCondition,
-	"after_piece_written": AfterPieceWrittenPhaseCondition,
+	"piece_written": PieceWrittenPhaseCondition,
+	"line_cleared": LineClearedPhaseCondition,
 }
 
 ## Creates a new PhaseCondition instance.

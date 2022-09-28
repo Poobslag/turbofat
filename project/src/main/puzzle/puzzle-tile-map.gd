@@ -122,13 +122,13 @@ func build_box(rect: Rect2, box_type: int) -> void:
 
 ## Deletes the row at the specified location, lowering all higher rows to fill the gap.
 func delete_row(y: int) -> void:
-	erase_playfield_row(y)
-	_shift_rows(y - 1, Vector2.DOWN)
+	erase_row(y)
+	shift_rows(y - 1, Vector2.DOWN)
 
 
 ## Inserts a blank row at the specified location, raising all higher rows to make room.
 func insert_row(y: int) -> void:
-	_shift_rows(y, Vector2.UP)
+	shift_rows(y, Vector2.UP)
 
 
 ## Deletes the specified row in the tilemap, dropping all higher rows down to fill the gap.
@@ -151,7 +151,7 @@ func is_cell_obstructed(pos: Vector2) -> bool:
 
 
 ## Returns true if the specified row has no empty cells.
-func playfield_row_is_full(y: int) -> bool:
+func row_is_full(y: int) -> bool:
 	var row_is_full := true
 	for x in range(COL_COUNT):
 		if is_cell_empty(Vector2(x, y)):
@@ -161,7 +161,7 @@ func playfield_row_is_full(y: int) -> bool:
 
 
 ## Returns true if the specified row has only empty cells.
-func playfield_row_is_empty(y: int) -> bool:
+func row_is_empty(y: int) -> bool:
 	var row_is_empty := true
 	for x in range(COL_COUNT):
 		if not is_cell_empty(Vector2(x, y)):
@@ -171,7 +171,7 @@ func playfield_row_is_empty(y: int) -> bool:
 
 
 ## Erases all cells in the specified row.
-func erase_playfield_row(y: int) -> void:
+func erase_row(y: int) -> void:
 	for x in range(COL_COUNT):
 		if get_cellv(Vector2(x, y)) == 0:
 			_convert_piece_to_veg(Vector2(x, y))
@@ -269,7 +269,7 @@ func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
 ## 	'bottom_row': The lowest row to shift. All rows at or above this row will be shifted.
 ##
 ## 	'direction': The direction to shift the rows, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_row: int, direction: Vector2) -> void:
+func shift_rows(bottom_row: int, direction: Vector2) -> void:
 	# First, erase and store all the old cells which are shifting
 	var piece_colors_to_set := {}
 	var autotile_coords_to_set := {}
