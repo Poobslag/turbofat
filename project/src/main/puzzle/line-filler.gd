@@ -94,7 +94,7 @@ func _fill_empty_lines() -> void:
 	# fill the empty rows from bottom to top
 	var y := PuzzleTileMap.ROW_COUNT - 1
 	while y >= 0:
-		if _tile_map.playfield_row_is_empty(y):
+		if _tile_map.row_is_empty(y):
 			_fill_line(_fill_lines_tiles_key(), y)
 		y -= 1
 	

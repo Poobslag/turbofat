@@ -7,11 +7,11 @@ class_name LevelTrigger
 
 ## phases when a level trigger can fire
 enum LevelTriggerPhase {
-	AFTER_PIECE_WRITTEN, # after the piece is written, and all boxes are made, and all lines are cleared
-	AFTER_LINE_CLEARED,
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
 	INITIAL_ROTATED_CCW, # when the piece is rotated counterclockwise using initial DAS
 	INITIAL_ROTATED_180, # when the piece is flipped using initial DAS
+	LINE_CLEARED, # after the line is erased for a line clear, but before the lines above are shifted
+	PIECE_WRITTEN, # after the piece is written, and all boxes are made, and all lines are cleared
 	ROTATED_CW, # when the piece is rotated clockwise
 	ROTATED_CCW, # when the piece is rotated counterclockwise
 	ROTATED_180, # when the piece is flipped
@@ -20,11 +20,11 @@ enum LevelTriggerPhase {
 	TIMER_2, # when timer 2 times out
 }
 
-const AFTER_PIECE_WRITTEN := LevelTriggerPhase.AFTER_PIECE_WRITTEN
-const AFTER_LINE_CLEARED := LevelTriggerPhase.AFTER_LINE_CLEARED
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
 const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
 const INITIAL_ROTATED_180 := LevelTriggerPhase.INITIAL_ROTATED_180
+const LINE_CLEARED := LevelTriggerPhase.LINE_CLEARED
+const PIECE_WRITTEN := LevelTriggerPhase.PIECE_WRITTEN
 const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
 const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
 const ROTATED_180 := LevelTriggerPhase.ROTATED_180

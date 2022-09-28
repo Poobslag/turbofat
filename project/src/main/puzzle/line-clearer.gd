@@ -117,7 +117,7 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 func schedule_full_row_line_clears() -> void:
 	var lines_to_clear := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
-		if _tile_map.playfield_row_is_full(y):
+		if _tile_map.row_is_full(y):
 			lines_to_clear.append(y)
 	if lines_to_clear:
 		schedule_line_clears(lines_to_clear, PieceSpeeds.current_speed.line_clear_delay)
@@ -136,7 +136,7 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 	var unscheduled_erases := []
 	if award_points:
 		for y in lines_to_clear:
-			if _box_ints(y) or _tile_map.playfield_row_is_full(y):
+			if _box_ints(y) or _tile_map.row_is_full(y):
 				unscheduled_clears.append(y)
 			else:
 				unscheduled_erases.append(y)
@@ -190,7 +190,7 @@ func _per_line_frame_delay() -> float:
 ## increase the combo or award points.
 func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
-	_tile_map.erase_playfield_row(y)
+	_tile_map.erase_row(y)
 	if _rows_to_preserve_at_end:
 		_rows_to_preserve_at_end.erase(y)
 	emit_signal("line_erased", y, total_lines, remaining_lines, box_ints)
@@ -213,7 +213,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 	old_lines_being_deleted.sort()
 	var max_line: int = old_lines_being_deleted.back() if old_lines_being_deleted else -1
 	for y in range(max_line):
-		if not _tile_map.playfield_row_is_empty(y) and not old_lines_being_deleted.has(y):
+		if not _tile_map.row_is_empty(y) and not old_lines_being_deleted.has(y):
 			play_sound = true
 			break
 	
@@ -240,7 +240,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 	
 	if old_lines_being_cleared:
 		for line in old_lines_being_cleared:
-			CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_LINE_CLEARED, {"y": line})
+			CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, {"y": line})
 	
 	for i in range(lines_being_deleted_during_trigger.size()):
 		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
@@ -287,7 +287,7 @@ func schedule_finish_line_clears() -> void:
 	var full_lines := []
 	var box_lines := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
-		if _tile_map.playfield_row_is_full(y):
+		if _tile_map.row_is_full(y):
 			full_lines.append(y)
 		elif _box_ints(y) and not _rows_to_preserve_at_end.has(y):
 			box_lines.append(y)

@@ -21,6 +21,7 @@ var current_version: String
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_392b", "392b", "39e5")
 	_add_upgrade_method("_upgrade_2cb4", "2cb4", "392b")
 	_add_upgrade_method("_upgrade_297a", "297a", "2cb4")
 	_add_upgrade_method("_upgrade_19c5", "19c5", "297a")
@@ -90,6 +91,23 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+func _upgrade_392b(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
+	match old_key:
+		"triggers":
+			var new_value: Array = old_json[old_key].duplicate(true)
+			for trigger in new_value:
+				for phase_index in range(trigger.get("phases", []).size()):
+					var phase: String = trigger["phases"][phase_index]
+					if phase.begins_with("after_line_cleared "):
+						trigger["phases"][phase_index] = phase.replace("after_line_cleared", "line_cleared")
+					if phase.begins_with("after_piece_written "):
+						trigger["phases"][phase_index] = phase.replace("after_piece_written", "piece_written")
+			new_json[old_key] = new_value
+		_:
+			new_json[old_key] = old_json[old_key]
+	return new_json
 
 
 func _upgrade_2cb4(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:

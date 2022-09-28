@@ -35,6 +35,18 @@ func test_load_297a_data() -> void:
 	
 	assert_eq(settings.blocks_during.shuffle_inserted_lines, BlocksDuringRules.ShuffleLinesType.SLICE, \
 			"settings.blocks_during.shuffle_inserted_lines")
+	
+	var phases := settings.triggers.triggers.keys()
+	assert_eq(phases, [LevelTrigger.LINE_CLEARED])
+	var triggers: Array = settings.triggers.triggers[LevelTrigger.LINE_CLEARED]
+	assert_eq(1, triggers.size())
+	assert_eq_shallow({
+			"phases": [
+				"line_cleared y=0-8"
+			],
+			"effect": "insert_line tiles_key=0",
+		},
+		triggers[0].to_json_dict())
 
 
 func test_load_2cb4_data() -> void:
@@ -133,7 +145,7 @@ func test_to_json_rules() -> void:
 	settings.speed.set_start_speed("6")
 	settings.timers.timers = [{"interval": 5}]
 	settings.triggers.from_json_array(
-			[{"phases": ["after_line_cleared y=0-5"], "effect": "insert_line tiles_key=0"}])
+			[{"phases": ["line_cleared y=0-5"], "effect": "insert_line tiles_key=0"}])
 	_convert_to_json_and_back()
 	
 	assert_eq(settings.blocks_during.clear_on_top_out, true)
@@ -146,4 +158,4 @@ func test_to_json_rules() -> void:
 	assert_eq(settings.score.cake_points, 30)
 	assert_eq(settings.speed.get_start_speed(), "6")
 	assert_eq_deep(settings.timers.timers, [{"interval": 5}])
-	assert_eq(settings.triggers.triggers.keys(), [LevelTrigger.AFTER_LINE_CLEARED])
+	assert_eq(settings.triggers.triggers.keys(), [LevelTrigger.LINE_CLEARED])
