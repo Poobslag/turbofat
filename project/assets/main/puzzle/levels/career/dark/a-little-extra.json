@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "A1",
   "name": "EX A Little Extra",
   "description": "Some fun little bonuses at the bottom. But you have to work for it!",
@@ -16,7 +16,7 @@
   "triggers": [
     {
       "phases": [
-        "after_line_cleared y=0-7"
+        "line_cleared y=0-7"
       ],
       "effect": "insert_line tiles_key=0"
     }

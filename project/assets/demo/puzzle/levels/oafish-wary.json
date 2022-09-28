@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "0",
   "name": "Oafish Wary",
   "description": "It's easy if you make a plan.",
@@ -10,13 +10,13 @@
   "triggers": [
     {
       "phases": [
-        "after_piece_written n=2,7,15,19,23,25,27..."
+        "piece_written n=2,7,15,19,23,25,27..."
       ],
       "effect": "add_moles count=1"
     },
     {
       "phases": [
-        "after_piece_written n=0,1,2..."
+        "piece_written n=0,1,2..."
       ],
       "effect": "advance_moles"
     }

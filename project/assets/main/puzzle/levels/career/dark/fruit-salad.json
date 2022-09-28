@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "A1",
   "name": "EX Fruit Salad",
   "description": "Ick! Salad. ...You said there would be fruit!",
@@ -27,7 +27,7 @@
   "triggers": [
     {
       "phases": [
-        "after_line_cleared y=0-5",
+        "line_cleared y=0-5",
         "timer_0"
       ],
       "effect": "insert_line tiles_key=0"

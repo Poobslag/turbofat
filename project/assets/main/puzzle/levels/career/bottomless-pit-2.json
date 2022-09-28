@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "5",
   "name": "Bottomless Pit II",
   "description": "How deep does this thing go!?",
@@ -14,7 +14,7 @@
   "triggers": [
     {
       "phases": [
-        "after_piece_written n=3,10,17..."
+        "piece_written n=3,10,17..."
       ],
       "effect": "insert_line tiles_key=0"
     }

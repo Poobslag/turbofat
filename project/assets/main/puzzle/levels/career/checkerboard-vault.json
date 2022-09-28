@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "0",
   "name": "Checkerboard Vault",
   "description": "Do you have the combination?",
@@ -24,7 +24,7 @@
   "triggers": [
     {
       "phases": [
-        "after_line_cleared y=0-2"
+        "line_cleared y=0-2"
       ],
       "effect": "insert_line tiles_key=1"
     }

@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "6",
   "name": "Creeping Crevice II",
   "description": "It just keeps going...",
@@ -19,7 +19,7 @@
   "triggers": [
     {
       "phases": [
-        "after_piece_written combo=0,1,2"
+        "piece_written combo=0,1,2"
       ],
       "effect": "insert_line tiles_key=0"
     }
