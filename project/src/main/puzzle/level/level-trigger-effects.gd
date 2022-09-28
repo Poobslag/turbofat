@@ -14,7 +14,7 @@ class AddMolesEffect extends LevelTriggerEffect:
 			config.home = Utils.enum_from_snake_case(MoleConfig.Home, new_config["home"])
 		if new_config.has("y"):
 			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
-			config.lines = ConfigStringUtils.invert_lines(inverted_lines)
+			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines)
 		if new_config.has("x"):
 			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"])
 		if new_config.has("dig_duration"):
@@ -35,7 +35,7 @@ class AddMolesEffect extends LevelTriggerEffect:
 		if config.home != MoleConfig.Home.ANY:
 			result["home"] = Utils.enum_to_snake_case(MoleConfig.Home, config.home)
 		if config.lines:
-			var inverted_lines: Array = ConfigStringUtils.invert_lines(config.lines)
+			var inverted_lines: Array = ConfigStringUtils.invert_puzzle_row_indexes(config.lines)
 			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_lines)
 		if config.columns:
 			result["x"] = ConfigStringUtils.config_string_from_ints(config.columns)
