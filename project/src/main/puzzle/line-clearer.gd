@@ -31,6 +31,9 @@ const LINE_ERASE_TIMING_PCT := 0.667
 
 export (NodePath) var tile_map_path: NodePath
 
+## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
+var _topping_out := false
+
 ## lines currently being cleared/erased/deleted as a part of _physics_process
 var lines_being_cleared := []
 var lines_being_erased := []
@@ -61,6 +64,9 @@ onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 func _ready() -> void:
 	set_physics_process(false)
 	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
 func _physics_process(_delta: float) -> void:
@@ -105,6 +111,7 @@ func _physics_process(_delta: float) -> void:
 func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	emit_signal("before_line_cleared", y, total_lines, remaining_lines, box_ints)
+	
 	_erase_line(y, total_lines, remaining_lines)
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 	
@@ -197,7 +204,7 @@ func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 
 
 ## Deletes rows from the playfield, dropping all rows above them.
-func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
+func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
 		old_lines_being_deleted: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
@@ -217,8 +224,30 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 			play_sound = true
 			break
 	
+	# Cache the lines being deleted. Clearing a line can cause new lines to be inserted, which needs to then adjust
+	# the lines emitted by the signal. Otherwise we have bugs where pickups get misaligned.
+	lines_being_deleted_during_trigger = old_lines_being_deleted
+	
 	if old_lines_being_deleted:
-		_tile_map.delete_rows(old_lines_being_deleted)
+		var rows_to_delete := old_lines_being_deleted.duplicate()
+		# sort to avoid edge cases with row indexes changing during deletion
+		rows_to_delete.sort()
+		
+		for y in old_lines_being_deleted:
+			_tile_map.erase_row(y)
+			
+			if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
+				# If we're doing a 'refresh on top out', don't run triggers. Any effects will interfere with the
+				# refresh.
+				pass
+			else:
+				# Some levels insert rows in response to rows being deleted. It is important that lines these triggers emit
+				# after rows are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
+				# or the newly inserted lines could be deleted as a part of a big line clear.
+				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, {"y": y})
+			
+			_tile_map.shift_rows(y - 1, Vector2.DOWN)
+	
 	
 	if play_sound:
 		_line_fall_sound.play()
@@ -234,17 +263,11 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 				_new_rows_to_preserve_at_end[new_key] = true
 			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
 	
-	# Cache the lines being deleted. Clearing a line can cause new lines to be inserted, which needs to then adjust
-	# the lines emitted by the signal. Otherwise we have bugs where pickups get misaligned.
-	lines_being_deleted_during_trigger = old_lines_being_deleted
-	
-	if old_lines_being_cleared:
-		for line in old_lines_being_cleared:
-			CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, {"y": line})
-	
 	for i in range(lines_being_deleted_during_trigger.size()):
 		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
 	
+	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
+		_topping_out = false
 	emit_signal("after_lines_deleted")
 
 
@@ -366,6 +389,18 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 			_rows_to_preserve_at_end.erase(i)
 			_rows_to_preserve_at_end[i-1] = true
 	_rows_to_preserve_at_end[y] = true
+
+
+func _on_PuzzleState_game_prepared() -> void:
+	_topping_out = false
+
+
+func _on_Level_settings_changed() -> void:
+	_topping_out = false
+
+
+func _on_PuzzleState_topped_out() -> void:
+	_topping_out = true
 
 
 ## When lines are filled, we mark them so they're preserved at the end.

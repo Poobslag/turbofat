@@ -94,5 +94,14 @@ static func ints_from_config_string(config_string: String) -> Array:
 static func invert_puzzle_row_indexes(lines: Array) -> Array:
 	var new_lines := []
 	for line in lines:
-		new_lines.append(PuzzleTileMap.ROW_COUNT - line - 1)
+		new_lines.append(invert_puzzle_row_index(line))
 	return new_lines
+
+
+## Converts a user-friendly puzzle row index like 0 into row numbers like 19 or vice-versa.
+##
+## Our config files use coordinates where '0' is the bottom row of the playfield and '16' is the top. But our tilemap
+## represents '19' as the bottom row of the playfield and '3' as the highest visible row. (There are three additional
+## rows above it.)
+static func invert_puzzle_row_index(line: int) -> int:
+	return PuzzleTileMap.ROW_COUNT - line - 1
