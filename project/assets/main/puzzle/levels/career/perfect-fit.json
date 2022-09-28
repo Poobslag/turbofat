@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "0",
   "name": "Perfect Fit",
   "description": "This is my hole! It was made for me!",
@@ -16,7 +16,7 @@
   "triggers": [
     {
       "phases": [
-        "after_line_cleared y=0-5"
+        "line_cleared y=0-5"
       ],
       "effect": "insert_line tiles_keys=0,1"
     }

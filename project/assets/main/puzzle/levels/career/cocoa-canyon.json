@@ -1,5 +1,5 @@
 {
-  "version": "392b",
+  "version": "39e5",
   "start_speed": "2",
   "name": "Cocoa Canyon",
   "description": "Excavate the chocolate! Hurry, hurry!",
@@ -22,7 +22,7 @@
   "triggers": [
     {
       "phases": [
-        "after_line_cleared y=0-8"
+        "line_cleared y=0-8"
       ],
       "effect": "insert_line tiles_key=0"
     }
