@@ -5,6 +5,7 @@ extends Button
 
 ## directories containing levels which should be upgraded
 const LEVEL_DIRS := ["res://assets/main/puzzle/levels"]
+const CAREER_LEVEL_DIRS := ["res://assets/main/puzzle/levels/career"]
 
 export (NodePath) var output_label_path: NodePath
 
@@ -20,14 +21,14 @@ onready var _output_label: Label = get_node(output_label_path)
 func _upgrade_levels() -> void:
 	_converted.clear()
 	
-	var level_paths := _find_level_paths()
+	var level_paths := _find_level_paths(LEVEL_DIRS)
 	for level_path in level_paths:
 		_upgrade_settings(level_path)
 	
 	if _converted:
-		_output_label.text = "Upgraded %d levels to settings version %s." % [_converted.size(), Levels.LEVEL_DATA_VERSION]
-	else:
-		_output_label.text = "No levels required upgrading."
+		if _output_label.text:
+			_output_label.text += "\n"
+		_output_label.text += "Upgraded %d levels to settings version %s." % [_converted.size(), Levels.LEVEL_DATA_VERSION]
 
 
 ## Upgrades a level to the newest version.
@@ -48,11 +49,11 @@ func _upgrade_settings(path: String) -> void:
 ##
 ## Returns:
 ## 	List of string paths to json resources containing level data to upgrade.
-func _find_level_paths() -> Array:
+func _find_level_paths(dirs: Array) -> Array:
 	var result := []
 	
 	# directories remaining to be traversed
-	var dir_queue := LEVEL_DIRS.duplicate()
+	var dir_queue := dirs.duplicate()
 	
 	# recursively look for json files under the specified paths
 	var dir: Directory
@@ -78,5 +79,26 @@ func _find_level_paths() -> Array:
 	return result
 
 
+## Reports any levels in CAREER_LEVEL_DIRS which are not actually available in career mode.
+func _report_unused_career_levels() -> void:
+	var level_keys_in_dir := []
+	var level_paths_in_dir := _find_level_paths(CAREER_LEVEL_DIRS)
+	for level_path in level_paths_in_dir:
+		level_keys_in_dir.append(LevelSettings.level_key_from_path(level_path))
+	
+	var level_keys_in_career_regions := CareerLevelLibrary.all_level_ids()
+	
+	var level_keys_not_in_career_regions := Utils.subtract(level_keys_in_dir, level_keys_in_career_regions)
+	level_keys_not_in_career_regions.sort()
+	
+	if level_keys_not_in_career_regions:
+		if _output_label.text:
+			_output_label.text += "\n"
+		_output_label.text += "Level keys not in career regions: %s" % [level_keys_not_in_career_regions]
+
+
 func _on_pressed() -> void:
 	_upgrade_levels()
+	_report_unused_career_levels()
+	if not _output_label.text:
+		_output_label.text = "No level files have problems."

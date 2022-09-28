@@ -24,6 +24,10 @@ func all_level_ids() -> Array:
 	for region in regions:
 		for career_level in region.levels:
 			result[career_level.level_id] = true
+		if region.boss_level:
+			result[region.boss_level.level_id] = true
+		if region.intro_level:
+			result[region.intro_level.level_id] = true
 	return result.keys()
 
 
