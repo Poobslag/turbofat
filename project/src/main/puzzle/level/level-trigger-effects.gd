@@ -123,13 +123,13 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 		return result
 
 
-## Inserts a new line at the bottom of the playfield.
+## Inserts a new line.
 class InsertLineEffect extends LevelTriggerEffect:
-	## (Optional) key corresponding to a set of tiles in LevelTiles for the tiles to insert
-	var tiles_key: String
+	## (Optional) target row
+	var y: int = PuzzleTileMap.ROW_COUNT - 1
 	
 	## (Optional) keys corresponding to sets of tiles in LevelTiles for the tiles to insert
-	var tiles_keys: Array
+	var tiles_keys: Array = []
 	
 	## Updates the effect's configuration.
 	##
@@ -143,26 +143,30 @@ class InsertLineEffect extends LevelTriggerEffect:
 	##
 	## Example: ["tiles_keys=0,1"]
 	func set_config(new_config: Dictionary = {}) -> void:
-		tiles_key = new_config.get("tiles_key", "")
-		tiles_keys = new_config["tiles_keys"].split(",") if new_config.has("tiles_keys") else []
+		if new_config.has("tiles_key"):
+			tiles_keys = [new_config["tiles_key"]]
+		if new_config.has("tiles_keys"):
+			tiles_keys = new_config["tiles_keys"].split(",")
+		if new_config.has("y"):
+			y = ConfigStringUtils.invert_puzzle_row_index(int(new_config["y"]))
 	
 	
 	## Inserts a new line at the bottom of the playfield.
 	func run() -> void:
-		if tiles_key:
-			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([tiles_key])
-		elif tiles_keys:
-			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys)
-		else:
-			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([])
+		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys, y)
 	
 	
 	func get_config() -> Dictionary:
 		var result := {}
-		if tiles_key:
-			result["tiles_key"] = tiles_key
-		if tiles_keys:
-			result["tiles_keys"] = PoolStringArray(tiles_keys).join(",")
+		match tiles_keys.size():
+			0:
+				pass
+			1:
+				result["tiles_key"] = tiles_keys[0]
+			_:
+				result["tiles_keys"] = PoolStringArray(tiles_keys).join(",")
+		if y != PuzzleTileMap.ROW_COUNT - 1:
+			result["y"] = ConfigStringUtils.invert_puzzle_row_index(y)
 		return result
 
 

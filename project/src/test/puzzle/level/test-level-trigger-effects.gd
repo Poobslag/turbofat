@@ -14,7 +14,7 @@ func test_rotate_next_pieces_get_config() -> void:
 	assert_eq_shallow(effect.get_config(), {"0": "180"})
 
 
-func test_insert_line_get_config_0() -> void:
+func test_insert_line_get_config() -> void:
 	var effect: LevelTriggerEffects.InsertLineEffect
 	effect = LevelTriggerEffects.InsertLineEffect.new()
 	assert_eq_shallow(effect.get_config(), {})
@@ -22,16 +22,14 @@ func test_insert_line_get_config_0() -> void:
 	effect = LevelTriggerEffects.InsertLineEffect.new()
 	effect.set_config({"tiles_key": "0"})
 	assert_eq_shallow(effect.get_config(), {"tiles_key": "0"})
-
-
-func test_insert_line_get_config_1() -> void:
-	var effect: LevelTriggerEffects.InsertLineEffect
-	effect = LevelTriggerEffects.InsertLineEffect.new()
-	assert_eq_shallow(effect.get_config(), {})
 	
 	effect = LevelTriggerEffects.InsertLineEffect.new()
 	effect.set_config({"tiles_keys": "0,1"})
 	assert_eq_shallow(effect.get_config(), {"tiles_keys": "0,1"})
+	
+	effect = LevelTriggerEffects.InsertLineEffect.new()
+	effect.set_config({"y": 5})
+	assert_eq_shallow(effect.get_config(), {"y": 5})
 
 
 func test_add_moles_set_config() -> void:
