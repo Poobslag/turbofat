@@ -32,6 +32,9 @@ var _page := 0
 ## value: (LevelSettings) level settings for the level id
 var _level_settings_by_id: Dictionary = {}
 
+## 'true' if the player has temporarily unlocked all levels with a cheat code
+var _unlock_cheat_enabled := false
+
 ## container for new level buttons
 onready var _grid_container := $GridContainer
 
@@ -176,7 +179,7 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 	
 	# calculate the lock status
 	level_button.lock_status = LevelSelectButton.STATUS_NONE
-	if region is CareerRegion and not PlayerData.level_history.has_result(level_id):
+	if region is CareerRegion and not PlayerData.level_history.has_result(level_id) and not _unlock_cheat_enabled:
 		# career levels are locked if the player hasn't played them
 		level_button.lock_status = LevelSelectButton.STATUS_LOCKED
 	elif region.id == OtherRegion.ID_TUTORIAL:
@@ -227,3 +230,15 @@ func _on_LeftArrow_pressed() -> void:
 func _on_RightArrow_pressed() -> void:
 	_page = min(_max_selectable_page(), _page + 1)
 	_refresh()
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+	if cheat == "unlock":
+		_unlock_cheat_enabled = !_unlock_cheat_enabled
+		detector.play_cheat_sound(_unlock_cheat_enabled)
+		var button_index_to_focus := -1
+		if get_focus_owner() in _grid_container.get_children():
+			button_index_to_focus = get_focus_owner().get_index()
+		_refresh()
+		if button_index_to_focus != -1:
+			_grid_container.get_children()[button_index_to_focus].grab_focus()

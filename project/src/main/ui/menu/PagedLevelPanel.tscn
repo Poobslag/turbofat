@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/menu/paged-level-buttons.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/menu/paged-level-panel.gd" type="Script" id=7]
 [ext_resource path="res://src/main/ui/level-select/level-submenu-info-panel.gd" type="Script" id=8]
@@ -210,6 +211,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 3 )]
+__meta__ = {
+"_editor_description_": ""
+}
+codes = [ "unlock" ]
+
+[connection signal="cheat_detected" from="CheatCodeDetector" to="VBoxContainer/Top/LevelButtons" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="button_added" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Top/GradeLabels" method="_on_LevelButtons_button_added"]
 [connection signal="level_chosen" from="VBoxContainer/Top/LevelButtons" to="." method="_on_LevelButtons_level_chosen"]
 [connection signal="locked_level_chosen" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_LevelButtons_locked_level_chosen"]
