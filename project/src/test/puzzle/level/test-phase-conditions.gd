@@ -4,7 +4,7 @@ func before_each() -> void:
 	PuzzleState.reset()
 
 
-func test_after_lines_cleared_phase_config() -> void:
+func test_line_cleared_phase_config() -> void:
 	var condition: PhaseConditions.LineClearedPhaseCondition
 	condition = PhaseConditions.LineClearedPhaseCondition.new({"y": "2"})
 	assert_eq_shallow(condition.get_phase_config(), {"y": "2"})
@@ -17,6 +17,9 @@ func test_after_lines_cleared_phase_config() -> void:
 	
 	condition = PhaseConditions.LineClearedPhaseCondition.new({"y": "0,4-6"})
 	assert_eq_shallow(condition.get_phase_config(), {"y": "0,4-6"})
+	
+	condition = PhaseConditions.LineClearedPhaseCondition.new({})
+	assert_eq_shallow(condition.get_phase_config(), {})
 
 
 func test_piece_written_phase_condition() -> void:
