@@ -1,0 +1,135 @@
+{
+  "version": "39e5",
+  "start_speed": "7",
+  "name": "Surprise Guests",
+  "description": "Surpriiiise! ...We just thought we'd drop in.",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "145"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.20",
+    "box_factor 0.90",
+    "combo_factor 0.90",
+    "master_pickup_score_per_line 6.69"
+  ],
+  "timers": [
+    {
+      "initial_interval": 6.4,
+      "interval": 12.8
+    },
+    {
+      "interval": 1.6
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_moles count=6 dig_duration=2 reward=seed"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "advance_moles"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "2 16",
+        "tile": "0 10 2"
+      },
+      {
+        "pos": "3 16",
+        "tile": "0 4 2"
+      },
+      {
+        "pos": "2 17",
+        "tile": "0 3 2"
+      },
+      {
+        "pos": "3 17",
+        "tile": "2 8 2"
+      },
+      {
+        "pos": "4 17",
+        "tile": "2 5 2"
+      },
+      {
+        "pos": "5 17",
+        "tile": "0 10 0"
+      },
+      {
+        "pos": "6 17",
+        "tile": "0 14 0"
+      },
+      {
+        "pos": "7 17",
+        "tile": "0 4 0"
+      },
+      {
+        "pos": "2 18",
+        "tile": "0 9 2"
+      },
+      {
+        "pos": "3 18",
+        "tile": "0 4 2"
+      },
+      {
+        "pos": "4 18",
+        "tile": "2 2 1"
+      },
+      {
+        "pos": "5 18",
+        "tile": "0 9 0"
+      },
+      {
+        "pos": "6 18",
+        "tile": "0 5 0"
+      },
+      {
+        "pos": "7 18",
+        "tile": "2 3 0"
+      },
+      {
+        "pos": "8 18",
+        "tile": "2 1 2"
+      },
+      {
+        "pos": "0 19",
+        "tile": "2 14 3"
+      },
+      {
+        "pos": "2 19",
+        "tile": "2 16 1"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 11 3"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 17 0"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 4 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 5 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "2 3 1"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 15 1"
+      }
+    ]
+  }
+}
