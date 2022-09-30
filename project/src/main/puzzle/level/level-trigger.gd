@@ -7,6 +7,7 @@ class_name LevelTrigger
 
 ## phases when a level trigger can fire
 enum LevelTriggerPhase {
+	BOX_BUILT, # when a snack/cake box is built
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
 	INITIAL_ROTATED_CCW, # when the piece is rotated counterclockwise using initial DAS
 	INITIAL_ROTATED_180, # when the piece is flipped using initial DAS
@@ -20,6 +21,7 @@ enum LevelTriggerPhase {
 	TIMER_2, # when timer 2 times out
 }
 
+const BOX_BUILT := LevelTriggerPhase.BOX_BUILT
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
 const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
 const INITIAL_ROTATED_180 := LevelTriggerPhase.INITIAL_ROTATED_180

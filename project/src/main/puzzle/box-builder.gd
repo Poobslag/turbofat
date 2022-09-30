@@ -84,6 +84,7 @@ func build_box(rect: Rect2, box_type: int) -> void:
 	# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
 	remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
 	_tile_map.build_box(rect, box_type)
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BOX_BUILT, {"type": box_type})
 	emit_signal("box_built", rect, box_type)
 
 

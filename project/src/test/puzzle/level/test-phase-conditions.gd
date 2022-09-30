@@ -18,7 +18,22 @@ func test_line_cleared_phase_config() -> void:
 	condition = PhaseConditions.LineClearedPhaseCondition.new({"y": "0,4-6"})
 	assert_eq_shallow(condition.get_phase_config(), {"y": "0,4-6"})
 	
+	condition = PhaseConditions.LineClearedPhaseCondition.new({"n": "1,2,3..."})
+	assert_eq_shallow(condition.get_phase_config(), {"n": "1,2,3..."})
+	
 	condition = PhaseConditions.LineClearedPhaseCondition.new({})
+	assert_eq_shallow(condition.get_phase_config(), {})
+
+
+func test_box_built_phase_condition() -> void:
+	var condition: PhaseConditions.BoxBuiltPhaseCondition
+	condition = PhaseConditions.BoxBuiltPhaseCondition.new({"0": "snack"})
+	assert_eq_shallow(condition.get_phase_config(), {"0": "snack"})
+	
+	condition = PhaseConditions.BoxBuiltPhaseCondition.new({"0": "cake"})
+	assert_eq_shallow(condition.get_phase_config(), {"0": "cake"})
+	
+	condition = PhaseConditions.BoxBuiltPhaseCondition.new({"0": "any"})
 	assert_eq_shallow(condition.get_phase_config(), {})
 
 

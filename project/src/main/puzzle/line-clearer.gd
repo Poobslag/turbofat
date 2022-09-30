@@ -58,6 +58,10 @@ var _remaining_line_erase_timings := []
 ## rows containing prebuilt level boxes, which aren't cleared at the end of the level.
 var _rows_to_preserve_at_end := {}
 
+## The total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
+## show to the player, because the two values are incremented at different times.
+var _total_cleared_line_count := 0
+
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 
@@ -244,7 +248,9 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 				# Some levels insert rows in response to rows being deleted. It is important that lines these triggers emit
 				# after rows are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
 				# or the newly inserted lines could be deleted as a part of a big line clear.
-				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, {"y": y})
+				_total_cleared_line_count += 1
+				var event_params := {"y": y, "n": _total_cleared_line_count}
+				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, event_params)
 			
 			_tile_map.shift_rows(y - 1, Vector2.DOWN)
 	
@@ -393,6 +399,7 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 
 func _on_PuzzleState_game_prepared() -> void:
 	_topping_out = false
+	_total_cleared_line_count = 0
 
 
 func _on_Level_settings_changed() -> void:
