@@ -51,18 +51,26 @@ static func config_string_from_ints(ints: Array) -> String:
 ## ints_from_config_string('7,2-5') = [2, 3, 4, 5, 7]
 ## ints_from_config_string('')      = []
 ##
+## This also supports ellipses for continuous sequences. For continuous sequences, the input string should be in
+## ascending order or the resulting behavior is undefined.
+##
+## ints_from_config_string('1,2,3...', 6) = [1, 2, 3, 4, 5, 6]
+## ints_from_config_string('2-4,6,8...', 15) = [2, 3, 4, 6, 8, 10, 12, 14]
+##
 ## Parameters:
 ## 	'config_string': A config string like '2-5,7'
 ##
+## 	'max_int': (Optional) The maximum value which should be checked for belonging to a continuous sequence.
+##
 ## Returns:
 ## 	A series of ints like [2, 3, 4, 5, 7]
-static func ints_from_config_string(config_string: String) -> Array:
+static func ints_from_config_string(config_string: String, max_int: int = 0) -> Dictionary:
 	if not config_string:
-		return []
+		return {}
 	
 	var ints := {}
 	
-	for sub_expression in config_string.split(","):
+	for sub_expression in config_string.trim_suffix("...").split(","):
 		var lo: int
 		var hi: int
 		if "-" in sub_expression:
@@ -74,9 +82,29 @@ static func ints_from_config_string(config_string: String) -> Array:
 		for y in range(lo, hi):
 			ints[y] = true
 	
-	var result := ints.keys()
-	result.sort()
-	return result
+	# This unusual for loop checks for ellipses, and allows us to 'break' for errors to avoid 'return' statements
+	# in the middle of a method
+	for _i in range(1 if config_string.ends_with("...") else 0):
+		var ints_split := config_string.trim_suffix("...").split(",")
+		
+		# determine difference of last two values
+		if ints_split.size() < 2:
+			push_warning("index string doesn't have enough values to extrapolate: '%s'" % [config_string])
+			break
+		
+		var low := int(ints_split[ints_split.size() - 2])
+		var high := int(ints_split[ints_split.size() - 1])
+		if high <= low:
+			push_warning("nonsensical index string extrapolation: '%s'" % [config_string])
+			break
+		
+		var i := 2 * high - low
+		# extrapolate until we hit max_int
+		while i <= max_int:
+			ints[i] = true
+			i += high - low
+	
+	return ints
 
 
 ## Converts an array of user-friendly puzzle row indexes like [0, 1] into row numbers like [19, 18] or vice-versa.

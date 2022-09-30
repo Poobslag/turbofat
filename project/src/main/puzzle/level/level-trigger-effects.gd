@@ -14,9 +14,9 @@ class AddMolesEffect extends LevelTriggerEffect:
 			config.home = Utils.enum_from_snake_case(MoleConfig.Home, new_config["home"])
 		if new_config.has("y"):
 			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
-			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines)
+			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
 		if new_config.has("x"):
-			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"])
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
 		if new_config.has("dig_duration"):
 			config.dig_duration = new_config["dig_duration"].to_int()
 		if new_config.has("reward"):

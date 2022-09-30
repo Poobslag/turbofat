@@ -40,12 +40,12 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## 	'phase_config.n': (Optional) An expression defining which pieces will fire this trigger.
 	##
 	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
-	func _init(_phase_config: Dictionary).(_phase_config) -> void:
-		_indexes_string = _phase_config.get("n", "")
-		_indexes_to_run = _parse_int_series(_indexes_string, MAX_PIECE_INDEX)
+	func _init(phase_config: Dictionary).(phase_config) -> void:
+		_indexes_string = phase_config.get("n", "")
+		_indexes_to_run = ConfigStringUtils.ints_from_config_string(_indexes_string, MAX_PIECE_INDEX)
 		
-		_combos_string = _phase_config.get("combo", "")
-		_combos_to_run = _parse_int_series(_combos_string, MAX_PIECE_INDEX)
+		_combos_string = phase_config.get("combo", "")
+		_combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -68,55 +68,6 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	func get_phase_config() -> Dictionary:
 		var result := {}
 		if _indexes_string: result["n"] = _indexes_string
-		return result
-	
-	
-	## Parse an int series string such as '3,4,5...'
-	##
-	## Parses a string expression and returns a dictionary containing all ints which meet that condition. Commas and
-	## ellipses are supported.
-	##
-	## 	{"n": "0,1,2,3,4"}: The numbers 0, 1, 2, 3 and 4 meet the condition.
-	##
-	## 	{"n": "1,3,5..."}: All positive odd numbers meet the condition.
-	##
-	## 	{"n": "10,11,12..."}: All numbers greater than or equal to 10 meet the condition.
-	##
-	## Parameters:
-	## 	'int_series_string': A string expression describing ints which meet a condition.
-	##
-	## 	'max_int': The maximum value which should be checked for meeting the condition.
-	##
-	## Returns:
-	## 	A dictionary of int values meeting the specified condition. The values are set to 'true'.
-	func _parse_int_series(int_series_string: String, max_int: int) -> Dictionary:
-		var result := {}
-		
-		# append all raw values
-		var ints_split := int_series_string.trim_suffix("...").split(",")
-		for index_obj in ints_split:
-			result[int(index_obj)] = true
-		
-		# This unusual for loop checks for ellipses, and allows us to 'break' for errors to avoid 'return' statements
-		# in the middle of a method
-		for _i in range(1 if int_series_string.ends_with("...") else 0):
-			# determine difference of last two values
-			if ints_split.size() < 2:
-				push_warning("index string doesn't have enough values to extrapolate: '%s'" % [int_series_string])
-				break
-			
-			var low := int(ints_split[ints_split.size() - 2])
-			var high := int(ints_split[ints_split.size() - 1])
-			if high <= low:
-				push_warning("nonsensical index string extrapolation: '%s'" % [int_series_string])
-				break
-			
-			var i := 2 * high - low
-			# extrapolate until we hit max_int
-			while i < max_int:
-				result[i] = true
-				i += high - low
-		
 		return result
 
 
@@ -141,13 +92,12 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	##
 	## Parameters:
 	## 	'phase_config.y': (Optional) An expression defining which line clears will fire this trigger.
-	func _init(_phase_config: Dictionary).(_phase_config) -> void:
-		var y_expression: String = _phase_config.get("y")
-		if y_expression:
-			var which_lines_array := ConfigStringUtils.ints_from_config_string(y_expression)
-			which_lines_array = ConfigStringUtils.invert_puzzle_row_indexes(which_lines_array)
-			for which_line in which_lines_array:
-				which_lines[which_line] = true
+	func _init(phase_config: Dictionary).(phase_config) -> void:
+		if phase_config.has("y"):
+			var y_expression: String = phase_config["y"]
+			var inverted_which_lines := ConfigStringUtils.ints_from_config_string(y_expression)
+			for which_line in inverted_which_lines:
+				which_lines[ConfigStringUtils.invert_puzzle_row_index(which_line)] = true
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -155,7 +105,10 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## Parameters:
 	## 	'event_params': 'y' specifies which line was cleared, 0 is the highest line in the playfield.
 	func should_run(event_params: Dictionary) -> bool:
-		return which_lines.has(event_params["y"])
+		var result := true
+		if which_lines:
+			result = result and which_lines.has(event_params["y"])
+		return result
 	
 	
 	## Extracts a set of phase configuration strings from this phase condition.
@@ -165,9 +118,11 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## Returns:
 	## 	A set of phase configuration strings defining criteria for this phase condition.
 	func get_phase_config() -> Dictionary:
-		var inverted_which_lines := ConfigStringUtils.invert_puzzle_row_indexes(which_lines.keys())
-		var y_expression: String = ConfigStringUtils.config_string_from_ints(inverted_which_lines)
-		return {"y": y_expression}
+		var result := {}
+		if which_lines:
+			var inverted_which_lines := ConfigStringUtils.invert_puzzle_row_indexes(which_lines.keys())
+			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_which_lines)
+		return result
 
 var phase_conditions_by_string := {
 	"piece_written": PieceWrittenPhaseCondition,
