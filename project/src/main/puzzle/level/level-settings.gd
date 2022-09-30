@@ -156,11 +156,23 @@ func to_json_dict() -> Dictionary:
 
 
 func load_from_resource(new_id: String) -> void:
-	load_from_text(new_id, FileUtils.get_file_as_text(path_from_level_key(new_id)))
+	var text := FileUtils.get_file_as_text(path_from_level_key(new_id))
+	
+	if not text:
+		push_error("Level not found: %s" % [new_id])
+		return
+	
+	load_from_text(new_id, text)
 
 
 func load_from_text(new_id: String, text: String) -> void:
-	from_json_dict(new_id, parse_json(text))
+	var json: Dictionary = parse_json(text)
+	
+	if not json:
+		push_error("Level not found: %s" % [new_id])
+		return
+	
+	from_json_dict(new_id, json)
 
 
 func get_difficulty() -> String:

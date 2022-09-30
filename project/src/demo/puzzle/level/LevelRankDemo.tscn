@@ -16,13 +16,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -200.0
-margin_top = -96.0
+margin_top = -146.0
 margin_right = 200.0
-margin_bottom = 96.0
+margin_bottom = 146.0
 rect_min_size = Vector2( 400, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlayerGrade" type="HBoxContainer" parent="Input"]
 margin_right = 400.0
@@ -77,8 +74,9 @@ text = "Calculate"
 [node name="Output" type="TextEdit" parent="Input"]
 margin_top = 88.0
 margin_right = 400.0
-margin_bottom = 188.0
+margin_bottom = 292.0
 rect_min_size = Vector2( 0, 100 )
+size_flags_vertical = 3
 theme = ExtResource( 1 )
 text = "Oh!
 What an output"
@@ -112,8 +110,6 @@ popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 filters = PoolStringArray( "*.json" )
-current_dir = "res://assets/main/puzzle/levels"
-current_path = "res://assets/main/puzzle/levels/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
