@@ -33,7 +33,8 @@ func _ready() -> void:
 		settings.from_json_dict(level_key, json_dict)
 		# Ignore the start_level property so we can test the middle parts of tutorials
 		settings.other.start_level = ""
-		
+	
+	CurrentLevel.keep_retrying = true
 	CurrentLevel.start_level(settings)
 	_tutorial_hud.replace_tutorial_module()
 

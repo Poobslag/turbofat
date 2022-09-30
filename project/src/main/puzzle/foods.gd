@@ -108,25 +108,57 @@ const FOOD_TYPES_BY_BOX_TYPES := {
 ##
 ## There are four snack box colors; brown, pink, bread and white.
 static func is_snack_box(box_type: int) -> bool:
-	return box_type <= BoxType.WHITE
+	return box_type in [
+		BoxType.BROWN,
+		BoxType.PINK,
+		BoxType.BREAD,
+		BoxType.WHITE
+	]
 
 
 ## Returns 'true' if the specified box type corresponds to a cake box.
 ##
 ## There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 static func is_cake_box(box_type: int) -> bool:
-	return box_type >= BoxType.CAKE_JJO
+	return box_type in [
+		BoxType.CAKE_JJO,
+		BoxType.CAKE_JLO,
+		BoxType.CAKE_JTT,
+		BoxType.CAKE_LLO,
+		BoxType.CAKE_LTT,
+		BoxType.CAKE_PQV,
+		BoxType.CAKE_PUV,
+		BoxType.CAKE_QUV,
+	]
 
 
 ## Returns 'true' if the specified food type corresponds to a snack food.
 ##
 ## There are eight snack food types; two each of brown, pink, bread and white.
 static func is_snack_food(food_type: int) -> bool:
-	return food_type <= FoodType.WHITE
+	return food_type in [
+		FoodType.BROWN_0,
+		FoodType.BROWN_1,
+		FoodType.PINK_0,
+		FoodType.PINK_1,
+		FoodType.BREAD_0,
+		FoodType.BREAD_1,
+		FoodType.WHITE_0,
+		FoodType.WHITE_1,
+	]
 
 
 ## Returns 'true' if the specified food type corresponds to a cake food.
 ##
 ## There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 static func is_cake_food(food_type: int) -> bool:
-	return food_type >= FoodType.CAKE_JJO
+	return food_type in [
+		FoodType.CAKE_JJO,
+		FoodType.CAKE_JLO,
+		FoodType.CAKE_JTT,
+		FoodType.CAKE_LLO,
+		FoodType.CAKE_LTT,
+		FoodType.CAKE_PQV,
+		FoodType.CAKE_PUV,
+		FoodType.CAKE_QUV,
+	]

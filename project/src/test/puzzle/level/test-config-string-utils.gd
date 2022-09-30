@@ -7,7 +7,7 @@ func test_ints_from_config_string() -> void:
 	assert_eq(ConfigStringUtils.ints_from_config_string("0-3").keys(), [0, 1, 2, 3])
 	assert_eq(ConfigStringUtils.ints_from_config_string("1-2,4-5").keys(), [1, 2, 4, 5])
 	assert_eq(ConfigStringUtils.ints_from_config_string("0,4-6").keys(), [0, 4, 5, 6])
-	assert_eq(ConfigStringUtils.ints_from_config_string("6,2-4,13").keys(), [2, 3, 4, 6, 13])
+	assert_eq(ConfigStringUtils.ints_from_config_string("6,2-4,13").keys(), [6, 2, 3, 4, 13])
 
 
 func test_config_string_from_ints() -> void:
