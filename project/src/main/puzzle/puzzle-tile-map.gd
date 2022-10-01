@@ -130,6 +130,8 @@ func delete_row(y: int) -> void:
 ## Inserts a blank row at the specified location, raising all higher rows to make room.
 func insert_row(y: int) -> void:
 	shift_rows(y, Vector2.UP)
+	_disconnect_from_empty_rows(y - 1)
+	_disconnect_from_empty_rows(y + 1)
 
 
 ## Deletes the specified row in the tilemap, dropping all higher rows down to fill the gap.
@@ -174,12 +176,9 @@ func row_is_empty(y: int) -> bool:
 ## Erases all cells in the specified row.
 func erase_row(y: int) -> void:
 	for x in range(COL_COUNT):
-		if get_cellv(Vector2(x, y)) == TILE_PIECE:
-			_convert_piece_to_veg(Vector2(x, y))
-		elif get_cellv(Vector2(x, y)) == TILE_BOX:
-			_disconnect_box(Vector2(x, y))
-		
 		set_block(Vector2(x, y), -1)
+	_disconnect_from_empty_rows(y - 1)
+	_disconnect_from_empty_rows(y + 1)
 
 
 ## Sets the whiteness property to make the tilemap flash or blink.
@@ -216,6 +215,19 @@ func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
 
 
+## Disconnects a row from any empty neighbors.
+##
+## Disconnected boxes have their connections updated. Disconnected pieces are converted to vegetable blocks.
+func _disconnect_from_empty_rows(y: int) -> void:
+	for x in range(COL_COUNT):
+		var pos := Vector2(x, y)
+		match get_cellv(pos):
+			TILE_PIECE:
+				_convert_piece_to_veg(pos)
+			TILE_BOX:
+				_disconnect_box_from_empty_neighbors(pos)
+
+
 ## Deconstructs the piece at the specified location into vegetable blocks.
 func _convert_piece_to_veg(pos: Vector2) -> void:
 	# store connections
@@ -236,7 +248,7 @@ func _convert_piece_to_veg(pos: Vector2) -> void:
 		_convert_piece_to_veg(pos + Vector2.RIGHT)
 
 
-## Disconnects the specified block, which is a part of a box, from the boxes above and below it.
+## Disconnects the specified block, which is a part of a box, from any empty neighbors.
 ##
 ## When clearing a line which contains a box, parts of the box can stay behind. We want to redraw those boxes so that
 ## they don't look chopped-off, and so that the player can still tell they're worth bonus points, so we turn them into
@@ -244,11 +256,15 @@ func _convert_piece_to_veg(pos: Vector2) -> void:
 ##
 ## If we didn't perform this step, the chopped-off bottom of a bread box would still just look like bread. This way,
 ## the bottom of a bread box looks like a delicious goopy snack and the player can tell it's special.
-func _disconnect_box(pos: Vector2) -> void:
-	if get_cellv(pos + Vector2.UP) == TILE_BOX:
-		_disconnect_block(pos + Vector2.UP, PuzzleConnect.DOWN)
-	if get_cellv(pos + Vector2.DOWN) == TILE_BOX:
-		_disconnect_block(pos + Vector2.DOWN, PuzzleConnect.UP)
+func _disconnect_box_from_empty_neighbors(pos: Vector2) -> void:
+	if get_cellv(pos + Vector2.UP) == TileMap.INVALID_CELL:
+		_disconnect_block(pos, PuzzleConnect.UP)
+	if get_cellv(pos + Vector2.DOWN) == TileMap.INVALID_CELL:
+		_disconnect_block(pos, PuzzleConnect.DOWN)
+	if get_cellv(pos + Vector2.LEFT) == TileMap.INVALID_CELL:
+		_disconnect_block(pos, PuzzleConnect.LEFT)
+	if get_cellv(pos + Vector2.RIGHT) == TileMap.INVALID_CELL:
+		_disconnect_block(pos, PuzzleConnect.RIGHT)
 
 
 ## Disconnects a block from its specified neighbors.
