@@ -107,17 +107,18 @@ func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) 
 func build_box(rect: Rect2, box_type: int) -> void:
 	for curr_x in range(rect.position.x, rect.end.x):
 		for curr_y in range (rect.position.y, rect.end.y):
-			set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, box_type))
-	
-	# top/bottom edge
-	for curr_x in range(rect.position.x, rect.end.x):
-		_disconnect_block(Vector2(curr_x, rect.position.y), PuzzleConnect.UP)
-		_disconnect_block(Vector2(curr_x, rect.end.y - 1), PuzzleConnect.DOWN)
-	
-	# left/right edge
-	for curr_y in range(rect.position.y, rect.end.y):
-		_disconnect_block(Vector2(rect.position.x, curr_y), PuzzleConnect.LEFT)
-		_disconnect_block(Vector2(rect.end.x - 1, curr_y), PuzzleConnect.RIGHT)
+			var autotile_coord := Vector2(15, box_type)
+			
+			if curr_x == rect.position.x:
+				autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, PuzzleConnect.LEFT)
+			if curr_x == rect.end.x - 1:
+				autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, PuzzleConnect.RIGHT)
+			if curr_y == rect.position.y:
+				autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, PuzzleConnect.UP)
+			if curr_y == rect.end.y - 1:
+				autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, PuzzleConnect.DOWN)
+			
+			set_block(Vector2(curr_x, curr_y), TILE_BOX, autotile_coord)
 
 
 ## Deletes the row at the specified location, lowering all higher rows to fill the gap.
@@ -173,9 +174,9 @@ func row_is_empty(y: int) -> bool:
 ## Erases all cells in the specified row.
 func erase_row(y: int) -> void:
 	for x in range(COL_COUNT):
-		if get_cellv(Vector2(x, y)) == 0:
+		if get_cellv(Vector2(x, y)) == TILE_PIECE:
 			_convert_piece_to_veg(Vector2(x, y))
-		elif get_cellv(Vector2(x, y)) == 1:
+		elif get_cellv(Vector2(x, y)) == TILE_BOX:
 			_disconnect_box(Vector2(x, y))
 		
 		set_block(Vector2(x, y), -1)
@@ -225,13 +226,13 @@ func _convert_piece_to_veg(pos: Vector2) -> void:
 	set_block(pos, TILE_VEG, Vector2(randi() % 18, vegetable_type))
 	
 	# recurse to neighboring connected cells
-	if get_cellv(pos + Vector2.UP) == 0 and PuzzleConnect.is_u(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.UP) == TILE_PIECE and PuzzleConnect.is_u(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.UP)
-	if get_cellv(pos + Vector2.DOWN) == 0 and PuzzleConnect.is_d(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.DOWN) == TILE_PIECE and PuzzleConnect.is_d(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.DOWN)
-	if get_cellv(pos + Vector2.LEFT) == 0 and PuzzleConnect.is_l(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.LEFT) == TILE_PIECE and PuzzleConnect.is_l(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.LEFT)
-	if get_cellv(pos + Vector2.RIGHT) == 0 and PuzzleConnect.is_r(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.RIGHT) == TILE_PIECE and PuzzleConnect.is_r(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.RIGHT)
 
 
@@ -250,13 +251,14 @@ func _disconnect_box(pos: Vector2) -> void:
 		_disconnect_block(pos + Vector2.DOWN, PuzzleConnect.UP)
 
 
-## Disconnects a block from its surrounding directions.
+## Disconnects a block from its specified neighbors.
 ##
 ## Parameters:
-## 	'dir_mask': Directions to be disconnected. Defaults to 15 which disconnects it from all four directions.
+## 	'dir_mask': (Optional) Neighboring directions to be disconnected. Defaults to 15 which disconnects it from all
+## 		four directions.
 func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
-	if get_cellv(pos) == TileMap.INVALID_CELL:
-		# empty cell; nothing to disconnect
+	if not get_cellv(pos) in [TILE_PIECE, TILE_BOX]:
+		# only boxes/pieces have connections between blocks
 		return
 	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
 	autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, dir_mask)
