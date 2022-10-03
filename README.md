@@ -42,6 +42,10 @@ Turbo Fat is still in development! If you're interested, join the community on D
 - itch.io: https://poobslag.itch.io/turbo-fat
 - GitHub: https://github.com/Poobslag/turbofat
 
+# For Developers
+
+If you want to run the Turbo Fat source code, see [Workstation Setup](https://github.com/Poobslag/turbofat/wiki/workstation-setup) in the Turbo Fat wiki.
+
 # License
 
 Turbo Fat's code and framework are licensed under the MIT licence. Please see the [LICENSE.md](LICENSE.md) file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
