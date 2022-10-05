@@ -13,18 +13,6 @@
         "line_cleared"
       ],
       "effect": "insert_line y=2 tiles_key=0"
-    },
-    {
-      "phases": [
-        "line_cleared"
-      ],
-      "effect": "insert_line y=4 tiles_key=0"
-    },
-    {
-      "phases": [
-        "line_cleared"
-      ],
-      "effect": "insert_line y=6 tiles_key=0"
     }
   ],
   "tiles": {
