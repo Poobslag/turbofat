@@ -14,7 +14,8 @@ const PICKUP_DEFAULT: int = BlocksDuringRules.PickupType.DEFAULT
 const PICKUP_FLOAT: int = BlocksDuringRules.PickupType.FLOAT
 const PICKUP_FLOAT_REGEN: int = BlocksDuringRules.PickupType.FLOAT_REGEN
 
-export (NodePath) var _puzzle_tile_map_path: NodePath
+export (NodePath) var piece_manager_path: NodePath setget set_piece_manager_path
+export (NodePath) var puzzle_tile_map_path: NodePath
 export (PackedScene) var PickupScene: PackedScene
 
 ## key: (Vector2) playfield cell positions
@@ -27,7 +28,10 @@ var _pickup_sfx_index := 0
 ## how many more pickup sounds should play after the current one
 var _remaining_pickup_sfx := 0
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
+onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+
+## Cannot statically type as 'PieceManager' because of cyclic reference
+onready var _piece_manager: Node
 
 ## parent node for the pickup graphics
 onready var _visuals := $Visuals
@@ -44,6 +48,7 @@ func _ready() -> void:
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	_refresh_piece_manager_path()
 	_prepare_pickups_for_level()
 
 
@@ -71,6 +76,8 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 		
 		_pickups_by_cell[cell] = pickup
 		_visuals.add_child(pickup)
+	
+	_refresh_pickup_state(_piece_manager.piece)
 
 
 ## Removes a pickup from a playfield cell.
@@ -87,6 +94,24 @@ func clear() -> void:
 	for pickup in _visuals.get_children():
 		pickup.queue_free()
 	_pickups_by_cell.clear()
+
+
+func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
+	piece_manager_path = new_piece_manager_path
+	_refresh_piece_manager_path()
+
+
+func _refresh_piece_manager_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	if _piece_manager:
+		_piece_manager.disconnect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
+	
+	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
+	
+	if _piece_manager:
+		_piece_manager.connect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
 
 
 ## Spawns any pickups necessary for starting the current level.

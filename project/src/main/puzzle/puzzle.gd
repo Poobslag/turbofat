@@ -14,8 +14,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	$Fg/Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
-	$Fg/PieceManager.connect(
-			"piece_disturbed", $Fg/Playfield.pickups, "_on_PieceManager_piece_disturbed")
+	$Fg/Playfield.pickups.piece_manager_path = $Fg/Playfield.pickups.get_path_to($Fg/PieceManager)
 	CurrentLevel.puzzle = self
 	
 	# reset the current puzzle, so transient data doesn't carry over from scene to scene
