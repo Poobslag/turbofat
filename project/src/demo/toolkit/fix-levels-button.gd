@@ -98,6 +98,7 @@ func _report_unused_career_levels() -> void:
 
 
 func _on_pressed() -> void:
+	_output_label.text = ""
 	_upgrade_levels()
 	_report_unused_career_levels()
 	if not _output_label.text:
