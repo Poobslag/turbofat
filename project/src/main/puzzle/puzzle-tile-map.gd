@@ -223,29 +223,46 @@ func _disconnect_from_empty_rows(y: int) -> void:
 		var pos := Vector2(x, y)
 		match get_cellv(pos):
 			TILE_PIECE:
-				_convert_piece_to_veg(pos)
+				_convert_piece_if_broken(pos)
 			TILE_BOX:
 				_disconnect_box_from_empty_neighbors(pos)
 
 
-## Deconstructs the piece at the specified location into vegetable blocks.
-func _convert_piece_to_veg(pos: Vector2) -> void:
+## Deconstructs the specified block, which is part of a piece, if it has been 'broken'.
+##
+## A 'broken piece' is a piece where some of the adjacent cells making up the piece have been moved, transformed or
+## erased. We don't allow partial pieces in the playfield -- pieces either remain whole, or we turn them into
+## veggies.
+##
+## This method recurses to adjacent cells to ensure the entire piece is converted to veggies.
+func _convert_piece_if_broken(pos: Vector2) -> void:
 	# store connections
 	var old_autotile_coord: Vector2 = get_cell_autotile_coord(pos.x, pos.y)
 	
-	# convert to vegetable. there are four kinds of vegetables
-	var vegetable_type := int(old_autotile_coord.y) % 4
-	set_block(pos, TILE_VEG, Vector2(randi() % 18, vegetable_type))
+	var should_convert := false
+	if PuzzleConnect.is_u(old_autotile_coord.x) and get_cellv(pos + Vector2.UP) != TILE_PIECE:
+		should_convert = true
+	if PuzzleConnect.is_d(old_autotile_coord.x) and get_cellv(pos + Vector2.DOWN) != TILE_PIECE:
+		should_convert = true
+	if PuzzleConnect.is_l(old_autotile_coord.x) and get_cellv(pos + Vector2.LEFT) != TILE_PIECE:
+		should_convert = true
+	if PuzzleConnect.is_r(old_autotile_coord.x) and get_cellv(pos + Vector2.RIGHT) != TILE_PIECE:
+		should_convert = true
 	
-	# recurse to neighboring connected cells
-	if get_cellv(pos + Vector2.UP) == TILE_PIECE and PuzzleConnect.is_u(old_autotile_coord.x):
-		_convert_piece_to_veg(pos + Vector2.UP)
-	if get_cellv(pos + Vector2.DOWN) == TILE_PIECE and PuzzleConnect.is_d(old_autotile_coord.x):
-		_convert_piece_to_veg(pos + Vector2.DOWN)
-	if get_cellv(pos + Vector2.LEFT) == TILE_PIECE and PuzzleConnect.is_l(old_autotile_coord.x):
-		_convert_piece_to_veg(pos + Vector2.LEFT)
-	if get_cellv(pos + Vector2.RIGHT) == TILE_PIECE and PuzzleConnect.is_r(old_autotile_coord.x):
-		_convert_piece_to_veg(pos + Vector2.RIGHT)
+	if should_convert:
+		# convert to vegetable. there are four kinds of vegetables
+		var vegetable_type := int(old_autotile_coord.y) % 4
+		set_block(pos, TILE_VEG, Vector2(randi() % 18, vegetable_type))
+		
+		# recurse to neighboring connected cells
+		if PuzzleConnect.is_u(old_autotile_coord.x) and get_cellv(pos + Vector2.UP) == TILE_PIECE:
+			_convert_piece_if_broken(pos + Vector2.UP)
+		if PuzzleConnect.is_d(old_autotile_coord.x) and get_cellv(pos + Vector2.DOWN) == TILE_PIECE:
+			_convert_piece_if_broken(pos + Vector2.DOWN)
+		if PuzzleConnect.is_l(old_autotile_coord.x) and get_cellv(pos + Vector2.LEFT) == TILE_PIECE:
+			_convert_piece_if_broken(pos + Vector2.LEFT)
+		if PuzzleConnect.is_r(old_autotile_coord.x) and get_cellv(pos + Vector2.RIGHT) == TILE_PIECE:
+			_convert_piece_if_broken(pos + Vector2.RIGHT)
 
 
 ## Disconnects the specified block, which is a part of a box, from any empty neighbors.
