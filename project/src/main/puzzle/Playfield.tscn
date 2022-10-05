@@ -160,7 +160,7 @@ script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_puzzle_tile_map_path = NodePath("../TileMap")
+puzzle_tile_map_path = NodePath("../TileMap")
 PickupScene = ExtResource( 26 )
 
 [node name="Visuals" type="Control" parent="TileMapClip/Pickups"]
