@@ -190,7 +190,7 @@ var phase_conditions_by_string := {
 ## Creates a new PhaseCondition instance.
 ##
 ## Parameters:
-## 	'phase_key': A string key corresponding to the phase, such as 'after_line_cleared'.
+## 	'phase_key': A string key corresponding to the phase, such as 'line_cleared'.
 ##
 ## 	'phase_config': (Optional) A dictionary of strings defining any special conditions for the phase.
 func create(phase_key: String, phase_config: Dictionary) -> PhaseCondition:

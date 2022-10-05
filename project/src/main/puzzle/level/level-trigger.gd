@@ -115,7 +115,7 @@ func to_json_dict() -> Dictionary:
 ## Enables this trigger for the specified phase.
 ##
 ## Parameters:
-## 	'phase_key': A string key corresponding to the phase, such as 'after_line_cleared'.
+## 	'phase_key': A string key corresponding to the phase, such as 'line_cleared'.
 ##
 ## 	'phase_config': A dictionary of strings defining any special conditions for the phase.
 func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
