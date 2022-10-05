@@ -77,7 +77,8 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 		_pickups_by_cell[cell] = pickup
 		_visuals.add_child(pickup)
 	
-	_refresh_pickup_state(_piece_manager.piece)
+	if _piece_manager:
+		_refresh_pickup_state(_piece_manager.piece)
 
 
 ## Removes a pickup from a playfield cell.
