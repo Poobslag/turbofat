@@ -194,3 +194,7 @@ static func level_key_from_path(level_path: String) -> String:
 		# strip the entire path, resulting in 'level_183'
 		level_key = StringUtils.substring_after_last(level_key, "/")
 	return level_key
+
+
+static func level_exists_with_key(level_key: String) -> bool:
+	return FileUtils.file_exists(path_from_level_key(level_key))

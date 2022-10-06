@@ -1,6 +1,10 @@
 extends Control
 ## Scene which lets the player repeatedly play a set of levels.
 
+## Default region/level to load the first time, or if there is an issue loading the save data
+const DEFAULT_REGION_ID := OtherRegion.ID_MARATHON
+const DEFAULT_LEVEL_ID := "practice/marathon_normal"
+
 export (NodePath) var _high_scores_path: NodePath
 export (NodePath) var _level_button_path: NodePath
 export (NodePath) var _level_description_label_path: NodePath
@@ -47,13 +51,16 @@ func _exit_tree() -> void:
 
 
 ## Assign a region/level if this is the first time launching the practice menu
+##
+## Parameters:
+## 	'overwrite': If true, this will overwrite the player's data even if they've already launched the practice menu.
 func _assign_default_recent_data() -> void:
 	if PlayerData.practice.region_id and PlayerData.practice.level_id:
 		# player has already launched the practice menu
 		return
 	
-	PlayerData.practice.region_id = OtherRegion.ID_MARATHON
-	PlayerData.practice.level_id = "practice/marathon_normal"
+	PlayerData.practice.region_id = DEFAULT_REGION_ID
+	PlayerData.practice.level_id = DEFAULT_LEVEL_ID
 
 
 ## Load the most recently played region and level.
@@ -70,6 +77,18 @@ func _load_recent_data() -> void:
 	if not _region:
 		if PlayerData.practice.region_id:
 			_region = CareerLevelLibrary.region_for_id(PlayerData.practice.region_id)
+	
+	# can't find the player's previously played region; assign default data as a fail safe
+	if not _region:
+		PlayerData.practice.region_id = DEFAULT_REGION_ID
+		PlayerData.practice.level_id = DEFAULT_LEVEL_ID
+		_region = OtherLevelLibrary.region_for_id(DEFAULT_REGION_ID)
+	
+	# can't find the player's previously played level; assign default data as a fail safe
+	if not LevelSettings.level_exists_with_key(PlayerData.practice.level_id):
+		PlayerData.practice.region_id = DEFAULT_REGION_ID
+		PlayerData.practice.level_id = DEFAULT_LEVEL_ID
+		_region = OtherLevelLibrary.region_for_id(DEFAULT_REGION_ID)
 	
 	# load the player's previously played level
 	_level_settings.load_from_resource(PlayerData.practice.level_id)
