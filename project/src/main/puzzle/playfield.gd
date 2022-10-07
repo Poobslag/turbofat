@@ -116,19 +116,20 @@ func ready_for_new_piece() -> bool:
 ##
 ## Returns true if the written piece results in a line clear.
 func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> void:
-	_box_builder.remaining_box_build_frames = 0
-	line_clearer.remaining_line_erase_frames = 0
-	
 	tile_map.save_state()
 	
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
-		tile_map.set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
+		if Rect2(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT).has_point(pos + block_pos):
+			tile_map.set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
 	
 	if not death_piece:
+		_box_builder.remaining_box_build_frames = 0
 		_box_builder.process_boxes()
-		line_clearer.schedule_filled_line_clears()
+		if CurrentLevel.settings.blocks_during.clear_filled_lines:
+			line_clearer.remaining_line_erase_frames = 0
+			line_clearer.schedule_filled_line_clears()
 	
 	PuzzleState.before_piece_written()
 	

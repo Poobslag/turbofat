@@ -56,7 +56,18 @@ var _remaining_line_clear_timings := []
 var _remaining_line_erase_timings := []
 
 ## lines containing prebuilt level boxes, which aren't cleared at the end of the level.
+## key: (int) line index
+## value: true
 var _lines_to_preserve_at_end := {}
+
+## tracks the age of lines which have been filled, but not yet cleared due to the level's rules
+## key: (int) line index
+## value: (int) number of times this line has been full during 'calculate_lines_to_clear'
+var _line_filled_age := {}
+
+## Array of dictionaries whose keys correspond to lines. These keys must be adjusted as lines are inserted/deleted from
+## the playfield.
+var _line_dicts := [_lines_to_preserve_at_end, _line_filled_age]
 
 ## The total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
 ## show to the player, because the two values are incremented at different times.
@@ -125,13 +136,67 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 
 
 ## Schedules any filled lines to be cleared later.
-func schedule_filled_line_clears() -> void:
-	var lines_to_clear := []
-	for y in range(PuzzleTileMap.ROW_COUNT):
-		if _tile_map.row_is_full(y):
-			lines_to_clear.append(y)
+func schedule_filled_line_clears(force: bool = false) -> void:
+	var lines_to_clear := calculate_lines_to_clear(filled_lines(), force)
+	
 	if lines_to_clear:
 		schedule_line_clears(lines_to_clear, PieceSpeeds.current_speed.line_clear_delay)
+
+
+## Calculates the lines to clear, based on which lines are currently filled.
+##
+## This results in a state change, as it updates the 'line_filled_age' array so it should only be called once for each
+## potential set of line clears.
+func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array:
+	var lines_to_clear := filled_lines.duplicate()
+	
+	# increment entries in _line_filled_age
+	for line in filled_lines:
+		if not _line_filled_age.has(line):
+			_line_filled_age[line] = 0
+		else:
+			_line_filled_age[line] += 1
+	
+	# apply 'filled_line_clear_min' setting
+	if lines_to_clear and not force \
+			and lines_to_clear.size() < CurrentLevel.settings.blocks_during.filled_line_clear_min:
+		lines_to_clear.clear()
+	
+	# apply 'filled_line_clear_delay' setting
+	if lines_to_clear and not force \
+			and CurrentLevel.settings.blocks_during.filled_line_clear_delay >= 1:
+		var new_lines_to_clear := []
+		for line in lines_to_clear:
+			if _line_filled_age[line] >= CurrentLevel.settings.blocks_during.filled_line_clear_delay:
+				new_lines_to_clear.append(line)
+		lines_to_clear = new_lines_to_clear
+	
+	# apply 'filled_line_clear_order' setting
+	if lines_to_clear:
+		match CurrentLevel.settings.blocks_during.filled_line_clear_order:
+			BlocksDuringRules.FilledLineClearOrder.OLDEST:
+				lines_to_clear.sort_custom(self, "_compare_by_line_filled_age")
+			BlocksDuringRules.FilledLineClearOrder.LOWEST:
+				lines_to_clear.sort()
+				lines_to_clear.invert()
+			BlocksDuringRules.FilledLineClearOrder.RANDOM:
+				lines_to_clear.shuffle()
+			BlocksDuringRules.FilledLineClearOrder.DEFAULT, BlocksDuringRules.FilledLineClearOrder.HIGHEST, _:
+				lines_to_clear.sort()
+	
+	# apply 'filled_line_clear_max' setting
+	if lines_to_clear and not force:
+		lines_to_clear = lines_to_clear.slice(0, CurrentLevel.settings.blocks_during.filled_line_clear_max - 1)
+	
+	return lines_to_clear
+
+
+func filled_lines() -> Array:
+	var filled_lines := []
+	for y in range(PuzzleTileMap.ROW_COUNT):
+		if _tile_map.row_is_full(y):
+			filled_lines.append(y)
+	return filled_lines
 
 
 ## Schedules the specified lines to be cleared later.
@@ -242,7 +307,10 @@ func reset() -> void:
 	_remaining_line_clear_timings.clear()
 	_remaining_line_erase_timings.clear()
 	_total_cleared_line_count = 0
-	_lines_to_preserve_at_end.clear()
+	
+	for line_dict in _line_dicts:
+		line_dict.clear()
+
 
 
 func _per_line_frame_delay() -> float:
@@ -257,8 +325,8 @@ func _per_line_frame_delay() -> float:
 func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	_tile_map.erase_row(y)
-	if _lines_to_preserve_at_end:
-		_lines_to_preserve_at_end.erase(y)
+	for line_dict in _line_dicts:
+		line_dict.erase(y)
 	emit_signal("line_erased", y, total_lines, remaining_lines, box_ints)
 
 
@@ -313,16 +381,17 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 	if play_sound:
 		_line_fall_sound.play()
 	
-	if _lines_to_preserve_at_end:
+	for line_dict in _line_dicts:
 		# Shift all _lines_to_preserve_at_end entries above the deleted lines
 		for line_being_deleted in old_lines_being_deleted:
-			var _new_lines_to_preserve_at_end := {}
+			var new_line_dict := {}
 			for key in _lines_to_preserve_at_end:
 				var new_key: int = key
 				if key < line_being_deleted:
 					new_key += 1
-				_new_lines_to_preserve_at_end[new_key] = true
-			_lines_to_preserve_at_end = _new_lines_to_preserve_at_end
+				new_line_dict[new_key] = true
+			line_dict.clear()
+			line_dict.merge(new_line_dict)
 	
 	for i in range(lines_being_deleted_during_trigger.size()):
 		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
@@ -362,11 +431,16 @@ func _box_ints(y: int) -> Array:
 	return box_ints
 
 
+func _compare_by_line_filled_age(a: int, b: int) -> bool:
+	return _line_filled_age.get(a, -1) > _line_filled_age.get(b, -1)
+
+
 func _on_PuzzleState_finish_triggered() -> void:
 	if CurrentLevel.settings.other.clear_on_finish:
 		schedule_finish_line_clears()
 	else:
 		PuzzleState.end_game()
+
 
 ## When a new set of blocks is loaded, we recalculate the lines to preserve at the end.
 ##
@@ -383,9 +457,8 @@ func _on_Playfield_blocks_prepared() -> void:
 ## Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
 ## them, then they're cleared.
 func _on_BoxBuilder_box_built(rect: Rect2, _box_type: int) -> void:
-	if _lines_to_preserve_at_end:
-		for y in range(rect.position.y, rect.end.y):
-			_lines_to_preserve_at_end.erase(y)
+	for y in range(rect.position.y, rect.end.y):
+		_lines_to_preserve_at_end.erase(y)
 
 
 ## When lines are inserted, we adjust the lines being cleared/erased/deleted.
@@ -405,10 +478,12 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 		if lines_being_deleted_during_trigger[i] <= y:
 			lines_being_deleted_during_trigger[i] -= 1
 	
-	for i in _lines_to_preserve_at_end.keys():
-		if i <= y:
-			_lines_to_preserve_at_end.erase(i)
-			_lines_to_preserve_at_end[i-1] = true
+	for line_dict in _line_dicts:
+		for i in line_dict.keys():
+			if i <= y:
+				line_dict.erase(i)
+				line_dict[i - 1] = true
+	
 	_lines_to_preserve_at_end[y] = true
 
 
