@@ -25,7 +25,7 @@ signal line_erased(y, total_lines, remaining_lines, box_ints)
 signal line_deleted(y)
 
 ## emitted after a set of lines is deleted
-signal after_lines_deleted
+signal after_lines_deleted(lines)
 
 ## emitted when lines are inserted. some levels insert lines, but most do not
 signal line_inserted(y, tiles_key, src_y)
@@ -128,7 +128,7 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	
 	if not death_piece:
 		_box_builder.process_boxes()
-		line_clearer.schedule_full_row_line_clears()
+		line_clearer.schedule_filled_line_clears()
 	
 	PuzzleState.before_piece_written()
 	
@@ -197,8 +197,8 @@ func _on_LineClearer_line_deleted(y: int) -> void:
 	emit_signal("line_deleted", y)
 
 
-func _on_LineClearer_after_lines_deleted() -> void:
-	emit_signal("after_lines_deleted")
+func _on_LineClearer_after_lines_deleted(lines: Array) -> void:
+	emit_signal("after_lines_deleted", lines)
 	
 	# On levels with weird pieces, clearing a line can create a box. If this happens we delay the
 	# 'after_piece_written' signal until after the box is built
