@@ -3,6 +3,38 @@ extends Node
 ##
 ## These effects are each mapped to a unique string so that they can be referenced from json.
 
+## Clears any filled lines on the playfield.
+##
+## This normally has no effect, as filled lines on the playfield are automatically cleared. But it can result in
+## interesting behavior when combined with effects which prevent or delay these automatic line clears.
+class ClearFilledLinesEffect extends LevelTriggerEffect:
+	var force: bool = false
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [force]: (Optional) If 'true', line clears will ignore any 'blocks during' conditions such as
+	## 	'filled_line_clear_delay' or 'filled_line_clear_max'. Defaults to 'false'
+	##
+	## Example: ["add_moles count=2 reward=seed"]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("force"):
+			force = Utils.to_bool(new_config["force"])
+	
+	
+	## Clears any filled lines on the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_playfield().line_clearer.schedule_filled_line_clears(force)
+	
+	
+	func get_config() -> Dictionary:
+		var config := {}
+		if force != false:
+			config["force"] = "true"
+		return config
+
+
 ## Adds one or more moles to the playfield.
 class AddMolesEffect extends LevelTriggerEffect:
 	var config: MoleConfig = MoleConfig.new()
@@ -189,6 +221,7 @@ class InsertLineEffect extends LevelTriggerEffect:
 var effects_by_string := {
 	"add_moles": AddMolesEffect,
 	"advance_moles": AdvanceMolesEffect,
+	"clear_filled_lines": ClearFilledLinesEffect,
 	"rotate_next_pieces": RotateNextPiecesEffect,
 	"insert_line": InsertLineEffect,
 }

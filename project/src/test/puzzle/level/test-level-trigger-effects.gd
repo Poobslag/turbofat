@@ -81,8 +81,21 @@ func test_add_moles_get_config() -> void:
 func test_add_moles_to_json() -> void:
 	var effect: LevelTriggerEffects.AddMolesEffect
 	
-	effect = LevelTriggerEffects.create("add_moles", {"count": "2", "home": "veg", "dig_duration": "4", "reward": "star"})
-	effect.get_config()
+	effect = LevelTriggerEffects.create("add_moles", {})
+	assert_eq_shallow({}, effect.get_config())
+	
+	effect = LevelTriggerEffects.create("add_moles", {"count": "2", "home": "veg", "dig_duration": "4", "reward": "seed"})
+	assert_eq_shallow({"count": "2", "home": "veg", "dig_duration": "4", "reward": "seed"}, effect.get_config())
+
+
+func test_clear_filled_lines_to_json() -> void:
+	var effect: LevelTriggerEffects.ClearFilledLinesEffect
+	
+	effect = LevelTriggerEffects.create("clear_filled_lines", {})
+	assert_eq_shallow({}, effect.get_config())
+	
+	effect = LevelTriggerEffects.create("clear_filled_lines", {"force": "true"})
+	assert_eq_shallow({"force": "true"}, effect.get_config())
 
 
 func test_effect_key() -> void:
