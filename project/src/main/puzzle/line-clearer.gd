@@ -382,14 +382,14 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 		_line_fall_sound.play()
 	
 	for line_dict in _line_dicts:
-		# Shift all _lines_to_preserve_at_end entries above the deleted lines
+		# Shift all entries above the deleted lines
 		for line_being_deleted in old_lines_being_deleted:
 			var new_line_dict := {}
-			for key in _lines_to_preserve_at_end:
+			for key in line_dict:
 				var new_key: int = key
 				if key < line_being_deleted:
 					new_key += 1
-				new_line_dict[new_key] = true
+				new_line_dict[new_key] = line_dict[key]
 			line_dict.clear()
 			line_dict.merge(new_line_dict)
 	
