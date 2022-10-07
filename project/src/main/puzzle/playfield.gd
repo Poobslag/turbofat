@@ -133,6 +133,8 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	
 	PuzzleState.before_piece_written()
 	
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
+	
 	if _box_builder.remaining_box_build_frames == 0 and line_clearer.remaining_line_erase_frames == 0:
 		# If any boxes are being built or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
@@ -235,7 +237,7 @@ func _on_Pickups_food_spawned(cell: Vector2, remaining_food: int, food_type: int
 
 
 func _on_PuzzleState_after_piece_written() -> void:
-	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_PIECE_WRITTEN)
 
 
 func _on_LineClearer_all_lines_cleared() -> void:
