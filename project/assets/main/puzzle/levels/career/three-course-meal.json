@@ -1,0 +1,222 @@
+{
+  "version": "39e5",
+  "start_speed": "5",
+  "name": "Three Course Meal",
+  "description": "It's important to bring out all three courses at once! ...Or is that something else...",
+  "finish_condition": {
+    "type": "lines",
+    "value": "30"
+  },
+  "blocks_during": [
+    "fill_lines 0",
+    "filled_line_clear_min 3"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.64",
+    "box_factor 0.73",
+    "combo_factor 0.83",
+    "master_pickup_score_per_line 14.88"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 6",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 7",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 8",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 9",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 10",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 12",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 13",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 14",
+        "tile": "2 8 0"
+      },
+      {
+        "pos": "1 14",
+        "tile": "2 2 1"
+      },
+      {
+        "pos": "2 14",
+        "tile": "0 2 2"
+      },
+      {
+        "pos": "3 14",
+        "tile": "0 8 1"
+      },
+      {
+        "pos": "4 14",
+        "tile": "0 12 1"
+      },
+      {
+        "pos": "5 14",
+        "tile": "0 6 1"
+      },
+      {
+        "pos": "6 14",
+        "tile": "0 2 2"
+      },
+      {
+        "pos": "7 14",
+        "tile": "2 0 2"
+      },
+      {
+        "pos": "8 14",
+        "tile": "2 10 2"
+      },
+      {
+        "pos": "0 15",
+        "tile": "2 7 2"
+      },
+      {
+        "pos": "1 15",
+        "tile": "0 8 2"
+      },
+      {
+        "pos": "2 15",
+        "tile": "0 7 2"
+      },
+      {
+        "pos": "3 15",
+        "tile": "0 2 1"
+      },
+      {
+        "pos": "5 15",
+        "tile": "0 1 1"
+      },
+      {
+        "pos": "6 15",
+        "tile": "0 11 2"
+      },
+      {
+        "pos": "7 15",
+        "tile": "0 4 2"
+      },
+      {
+        "pos": "8 15",
+        "tile": "2 9 3"
+      },
+      {
+        "pos": "0 16",
+        "tile": "2 7 3"
+      },
+      {
+        "pos": "1 16",
+        "tile": "2 9 3"
+      },
+      {
+        "pos": "2 16",
+        "tile": "0 1 2"
+      },
+      {
+        "pos": "3 16",
+        "tile": "0 9 1"
+      },
+      {
+        "pos": "4 16",
+        "tile": "0 12 1"
+      },
+      {
+        "pos": "5 16",
+        "tile": "0 4 1"
+      },
+      {
+        "pos": "6 16",
+        "tile": "0 1 2"
+      },
+      {
+        "pos": "7 16",
+        "tile": "2 14 1"
+      },
+      {
+        "pos": "8 16",
+        "tile": "2 15 2"
+      },
+      {
+        "pos": "8 17",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 18",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 19",
+        "pickup": "2"
+      }
+    ],
+    "0": [
+      {
+        "pos": "8 0",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 2",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 3",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 5",
+        "pickup": "2"
+      }
+    ]
+  }
+}

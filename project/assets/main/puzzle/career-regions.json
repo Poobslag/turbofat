@@ -102,7 +102,11 @@
         ]
       },
       "intro_level": {
-        "id": "career/donuts"
+        "id": "career/slow_service",
+        "chef_id": "sidger",
+        "customer_ids": [
+          "goldfince"
+        ]
       },
       "boss_level": {
         "id": "career/boss_6k"
@@ -115,16 +119,7 @@
           "id": "career/bottomless_pit"
         },
         {
-          "id": "career/creeping_crevice"
-        },
-        {
-          "id": "career/donuts"
-        },
-        {
           "id": "career/fat_stacks"
-        },
-        {
-          "id": "career/just_fruit"
         },
         {
           "id": "career/mole_money_mole_problems"
@@ -136,10 +131,25 @@
           "id": "career/rice_bear_island"
         },
         {
+          "id": "career/slow_service",
+          "chef_id": "sidger",
+          "customer_ids": [
+            "goldfince"
+          ]
+        },
+        {
           "id": "career/strawberry_shortcut"
         },
         {
+          "id": "career/traffic_jam",
+          "chef_id": "sidger"
+        },
+        {
           "id": "career/tulip"
+        },
+        {
+          "id": "career/two_box_buffet",
+          "chef_id": "sidger"
         },
         {
           "id": "career/unfresh_fruits"
@@ -179,9 +189,6 @@
         },
         {
           "id": "career/muffin_impossible"
-        },
-        {
-          "id": "career/paranormal_tetrominon"
         },
         {
           "id": "career/strawberry_shortcut"
@@ -241,7 +248,7 @@
           "id": "career/shelf"
         },
         {
-          "id": "career/unfresh_fruits_2"
+          "id": "career/traffic_jam_2"
         },
         {
           "id": "career/veggie_haters"
@@ -351,12 +358,6 @@
           "id": "career/90_second_sprint"
         },
         {
-          "id": "career/a_little_garbage_2"
-        },
-        {
-          "id": "career/bottomless_pit_2"
-        },
-        {
           "id": "career/checkerboard_vault"
         },
         {
@@ -382,6 +383,12 @@
         },
         {
           "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/strawberry_slowcake"
+        },
+        {
+          "id": "career/three_course_meal"
         }
       ]
     },
@@ -408,19 +415,19 @@
           "id": "career/creeping_crevice_2"
         },
         {
+          "id": "career/five_course_meal"
+        },
+        {
           "id": "career/fruit_on_the_top"
-        },
-        {
-          "id": "career/fruit_salad"
-        },
-        {
-          "id": "career/its_square_to_be_square"
         },
         {
           "id": "career/leftovers"
         },
         {
           "id": "career/muffin_impossible_3"
+        },
+        {
+          "id": "career/slow_service_2"
         },
         {
           "id": "career/surprise_guests"
@@ -466,6 +473,9 @@
         },
         {
           "id": "career/dark/hungry_moles"
+        },
+        {
+          "id": "career/dark/it_takes_two"
         },
         {
           "id": "career/dark/its_square_to_be_square"
