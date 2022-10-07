@@ -241,6 +241,54 @@ func _start_first_piece() -> void:
 	skip_prespawn()
 
 
+## Shifts the active piece when a line is inserted.
+func _shift_piece_for_inserted_line(inserted_line: int) -> void:
+	piece.reset_target()
+	
+	var highest_piece_cell_y := 999
+	for i in range(piece.type.pos_arr[piece.orientation].size()):
+		var block_pos := piece.type.get_cell_position(piece.orientation, i)
+		highest_piece_cell_y = min(highest_piece_cell_y, piece.pos.y + block_pos.y)
+	
+	if highest_piece_cell_y > inserted_line and highest_piece_cell_y > 0 and not piece.can_move_to_target():
+		piece.target_pos.y -= 1
+	piece.move_to_target()
+
+
+## Shifts the active piece when a line is deleted.
+func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
+	# if the piece is above a deleted line, move it down
+	piece.reset_target()
+	
+	# iterate over the deleted lines from highest to lowest
+	deleted_lines = deleted_lines.duplicate()
+	deleted_lines.sort()
+	deleted_lines.invert()
+	
+	for deleted_line in deleted_lines:
+		var lowest_piece_cell_y := -999
+		for i in range(piece.type.pos_arr[piece.orientation].size()):
+			var block_pos := piece.type.get_cell_position(piece.orientation, i)
+			lowest_piece_cell_y = max(lowest_piece_cell_y, piece.pos.y + block_pos.y)
+		
+		if lowest_piece_cell_y < deleted_line and lowest_piece_cell_y < PuzzleTileMap.ROW_COUNT:
+			piece.target_pos.y += 1
+	
+	if piece.can_move_to_target():
+		piece.move_to_target()
+	else:
+		# make room for the piece
+		for i in range(piece.type.pos_arr[piece.orientation].size()):
+			var block_pos := piece.type.get_cell_position(piece.orientation, i)
+			tile_map.erase_cell(piece.target_pos + block_pos)
+		
+		# write the piece to the playfield
+		piece.move_to_target()
+		write_piece_to_playfield()
+		_states.set_state(_states.wait_for_playfield)
+	emit_signal("piece_disturbed", piece)
+
+
 func _on_Level_settings_changed() -> void:
 	_prepare_tileset()
 
@@ -292,14 +340,28 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 
 ## When a line is inserted which intersects with the active piece, we shift it up.
-func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
-	piece.reset_target()
-	while piece.target_pos.y > 0 and not piece.can_move_to_target():
-		piece.target_pos.y -= 1
-	piece.move_to_target()
+func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
+	if _states.get_state() in [_states.move_piece, _states.prelock]:
+		_shift_piece_for_inserted_line(y)
 	
-	# regardless of whether the piece shifted, we emit the 'playfield_disturbed'
-	# signal so other piece scripts can react to the playfield shifting.
+	emit_signal("playfield_disturbed", piece)
+
+
+func _on_Playfield_after_lines_filled() -> void:
+	emit_signal("playfield_disturbed", piece)
+
+
+func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	emit_signal("playfield_disturbed", piece)
+
+
+## When playfield lines are deleted, we shift the piece if the player is currently controlling it.
+##
+## Most levels only delete lines after the player drops a piece, but unusual levels might delete lines at other times.
+func _on_Playfield_after_lines_deleted(deleted_lines: Array) -> void:
+	if _states.get_state() in [_states.move_piece, _states.prelock]:
+		_shift_piece_for_deleted_lines(deleted_lines)
+	
 	emit_signal("playfield_disturbed", piece)
 
 
