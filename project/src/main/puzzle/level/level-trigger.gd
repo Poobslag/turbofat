@@ -7,12 +7,13 @@ class_name LevelTrigger
 
 ## phases when a level trigger can fire
 enum LevelTriggerPhase {
+	AFTER_PIECE_WRITTEN, # after the piece is written, and all boxes are made, and all lines are cleared
 	BOX_BUILT, # when a snack/cake box is built
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
 	INITIAL_ROTATED_CCW, # when the piece is rotated counterclockwise using initial DAS
 	INITIAL_ROTATED_180, # when the piece is flipped using initial DAS
 	LINE_CLEARED, # after the line is erased for a line clear, but before the lines above are shifted
-	PIECE_WRITTEN, # after the piece is written, and all boxes are made, and all lines are cleared
+	PIECE_WRITTEN, # when the piece is written, but before any boxes are made or lines are cleared
 	ROTATED_CW, # when the piece is rotated clockwise
 	ROTATED_CCW, # when the piece is rotated counterclockwise
 	ROTATED_180, # when the piece is flipped
@@ -21,6 +22,7 @@ enum LevelTriggerPhase {
 	TIMER_2, # when timer 2 times out
 }
 
+const AFTER_PIECE_WRITTEN := LevelTriggerPhase.AFTER_PIECE_WRITTEN
 const BOX_BUILT := LevelTriggerPhase.BOX_BUILT
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
 const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
@@ -79,6 +81,15 @@ func from_json_dict(json: Dictionary) -> void:
 	var effect_key: String = effect_split[0]
 	var effect_config: Dictionary = dict_config_from_array(effect_split.slice(1, effect_split.size()))
 	effect = LevelTriggerEffects.create(effect_key, effect_config)
+	
+	# handle special cases
+	if phases.has("piece_written"):
+		# 'piece_written' triggers should typically happen after the piece is written, except for clearing filled lines
+		if effect_key in ["clear_filled_lines"]:
+			pass
+		else:
+			phases["after_piece_written"] = phases["piece_written"]
+			phases.erase("piece_written")
 
 
 func to_json_dict() -> Dictionary:
