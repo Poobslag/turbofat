@@ -222,9 +222,6 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json" )
-current_dir = "/"
-current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
-current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -242,8 +239,6 @@ popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 filters = PoolStringArray( "*.json" )
-current_dir = "res://assets/main/puzzle/levels"
-current_path = "res://assets/main/puzzle/levels/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -260,9 +255,6 @@ margin_bottom = 480.0
 popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.json" )
-current_dir = "/"
-current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
-current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
 __meta__ = {
 "_edit_use_anchors_": false
 }
