@@ -39,7 +39,7 @@ func _on_PuzzleState_game_prepared() -> void:
 	_topping_out = false
 
 
-func _on_Playfield_after_lines_deleted() -> void:
+func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
 	if _topping_out and not CurrentLevel.settings.blocks_during.refresh_on_top_out:
 		# The current level's top out process ends with the lines which were just deleted. Restore piece mobility.
 		_topping_out = false

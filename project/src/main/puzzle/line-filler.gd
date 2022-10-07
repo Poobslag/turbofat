@@ -209,7 +209,7 @@ func _reset() -> void:
 			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
 
 
-## Returns the tiles key for filled lines.
+## Returns the tiles key for 'filled' lines -- lines which fill from the top for levels with narrow playfields
 func _fill_lines_tiles_key() -> String:
 	return CurrentLevel.settings.blocks_during.fill_lines
 
@@ -224,7 +224,7 @@ func _on_Level_settings_changed() -> void:
 	_reset()
 
 
-func _on_LineClearer_after_lines_deleted() -> void:
+func _on_LineClearer_after_lines_deleted(_lines: Array) -> void:
 	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
 		_topping_out = false
 		

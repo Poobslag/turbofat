@@ -22,7 +22,7 @@ enum PickupType {
 ## if true, the entire playfield is cleared when the player tops out
 var clear_on_top_out := false
 
-## tiles key for filled lines
+## tiles key for 'filled' lines -- lines which fill from the top for levels with narrow playfields
 var fill_lines: String
 
 ## whether blocks drop following a line clear

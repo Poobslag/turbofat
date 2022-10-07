@@ -127,6 +127,18 @@ func delete_row(y: int) -> void:
 	shift_rows(y - 1, Vector2.DOWN)
 
 
+## Erases the block from the specified cell, disconnecting any neighboring cells.
+func erase_cell(pos: Vector2) -> void:
+	if get_cellv(pos) == INVALID_CELL:
+		return
+	
+	set_block(pos, INVALID_CELL)
+	_disconnect_from_empty_cells(pos + Vector2.UP)
+	_disconnect_from_empty_cells(pos + Vector2.DOWN)
+	_disconnect_from_empty_cells(pos + Vector2.LEFT)
+	_disconnect_from_empty_cells(pos + Vector2.RIGHT)
+
+
 ## Inserts a blank row at the specified location, raising all higher rows to make room.
 func insert_row(y: int) -> void:
 	shift_rows(y, Vector2.UP)
@@ -145,7 +157,7 @@ func delete_rows(rows: Array) -> void:
 
 ## Returns 'true' if the specified cell is within the playfield bounds and does not contain a block.
 func is_cell_empty(pos: Vector2) -> bool:
-	return Rect2(0, 0, COL_COUNT, ROW_COUNT).has_point(pos) and get_cellv(pos) == -1
+	return Rect2(0, 0, COL_COUNT, ROW_COUNT).has_point(pos) and get_cellv(pos) == INVALID_CELL
 
 
 ## Returns 'true' if the specified cell is outside the playfield bounds or contains a block.
@@ -176,7 +188,7 @@ func row_is_empty(y: int) -> bool:
 ## Erases all cells in the specified row.
 func erase_row(y: int) -> void:
 	for x in range(COL_COUNT):
-		set_block(Vector2(x, y), -1)
+		set_block(Vector2(x, y), INVALID_CELL)
 	_disconnect_from_empty_rows(y - 1)
 	_disconnect_from_empty_rows(y + 1)
 
@@ -221,11 +233,18 @@ func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 func _disconnect_from_empty_rows(y: int) -> void:
 	for x in range(COL_COUNT):
 		var pos := Vector2(x, y)
-		match get_cellv(pos):
-			TILE_PIECE:
-				_convert_piece_if_broken(pos)
-			TILE_BOX:
-				_disconnect_box_from_empty_neighbors(pos)
+		_disconnect_from_empty_cells(pos)
+
+
+## Disconnects a cell from any empty neighbors.
+##
+## Disconnected boxes have their connections updated. Disconnected pieces are converted to vegetable blocks.
+func _disconnect_from_empty_cells(pos: Vector2) -> void:
+	match get_cellv(pos):
+		TILE_PIECE:
+			_convert_piece_if_broken(pos)
+		TILE_BOX:
+			_disconnect_box_from_empty_neighbors(pos)
 
 
 ## Deconstructs the specified block, which is part of a piece, if it has been 'broken'.
@@ -317,7 +336,7 @@ func shift_rows(bottom_row: int, direction: Vector2) -> void:
 		var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
 		piece_colors_to_set[cell + direction] = piece_color
 		autotile_coords_to_set[cell + direction] = autotile_coord
-		set_block(cell, -1)
+		set_block(cell, INVALID_CELL)
 	
 	# Next, write the old cells in their new locations
 	for cell in piece_colors_to_set:

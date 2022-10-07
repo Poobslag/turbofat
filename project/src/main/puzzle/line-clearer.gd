@@ -16,14 +16,14 @@ signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
 ## emitted after a 'line clear' where a line is erased and the player is rewarded
 signal line_cleared(y, total_lines, remaining_lines, box_ints)
 
-## emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
+## emitted when a line is erased. this includes line clears but also top outs and non-scoring end game lines.
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
-## emitted when an erased line is deleted, causing the rows above it to drop down
+## emitted when an erased line is deleted, causing the lines above it to drop down
 signal line_deleted(y)
 
 ## emitted after a set of lines is deleted
-signal after_lines_deleted
+signal after_lines_deleted(lines)
 
 ## percent of the line clear delay which should be spent erasing lines.
 ## 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
@@ -55,8 +55,8 @@ var _erased_line_index := 0
 var _remaining_line_clear_timings := []
 var _remaining_line_erase_timings := []
 
-## rows containing prebuilt level boxes, which aren't cleared at the end of the level.
-var _rows_to_preserve_at_end := {}
+## lines containing prebuilt level boxes, which aren't cleared at the end of the level.
+var _lines_to_preserve_at_end := {}
 
 ## The total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
 ## show to the player, because the two values are incremented at different times.
@@ -124,8 +124,8 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 		emit_signal("all_lines_cleared")
 
 
-## Schedules any full rows to be cleared later.
-func schedule_full_row_line_clears() -> void:
+## Schedules any filled lines to be cleared later.
+func schedule_filled_line_clears() -> void:
 	var lines_to_clear := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		if _tile_map.row_is_full(y):
@@ -190,6 +190,61 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 		emit_signal("line_clears_scheduled", lines_being_cleared)
 
 
+## Schedules line clears which occur when a puzzle is finished.
+##
+## Any full lines and lines containing boxes result in line clears, and the player is awarded points.
+##
+## Any partial lines containing only vegetables are left behind, the player is not awarded points for those.
+func schedule_finish_line_clears() -> void:
+	var full_lines := []
+	var box_lines := []
+	for y in range(PuzzleTileMap.ROW_COUNT):
+		if _tile_map.row_is_full(y):
+			full_lines.append(y)
+		elif _box_ints(y) and not _lines_to_preserve_at_end.has(y):
+			box_lines.append(y)
+	NearestSorter.new().sort(box_lines, Utils.mean(full_lines + lines_being_cleared, 0.0))
+	var lines_to_clear := full_lines + box_lines
+	
+	# schedule line clears, same pace as clearing three lines concurrently
+	if full_lines or box_lines:
+		# hard-code the line clear delay; faster values don't look good
+		var line_clear_delay := 24
+		var total_duration: int = line_clear_delay * ((box_lines.size() - 1) / 3.0) / LINE_ERASE_TIMING_PCT
+		var old_lines_being_deleted := lines_being_deleted.duplicate()
+		var was_clearing_lines: bool = lines_being_cleared or lines_being_erased
+		
+		schedule_line_clears(lines_to_clear, total_duration, true)
+		
+		# preserve full lines which were already being deleted
+		for line in old_lines_being_deleted:
+			if not lines_being_deleted.has(line):
+				lines_being_deleted.append(line)
+		
+		# if we were already clearing lines, we pause before triggering additional line clears
+		if was_clearing_lines:
+			remaining_line_erase_frames += _per_line_frame_delay()
+	
+	# ensure remaining_line_erase_frames is always set to a non-zero value. the level end is triggered when this
+	# number decreases from 1 to 0, so if it ends up being 0 or less it causes a softlock
+	remaining_line_erase_frames = max(1, remaining_line_erase_frames)
+
+
+func reset() -> void:
+	_topping_out = false
+	lines_being_cleared.clear()
+	lines_being_erased.clear()
+	lines_being_deleted.clear()
+	lines_being_deleted_during_trigger.clear()
+	remaining_line_erase_frames = 0
+	_cleared_line_index = 0
+	_erased_line_index = 0
+	_remaining_line_clear_timings.clear()
+	_remaining_line_erase_timings.clear()
+	_total_cleared_line_count = 0
+	_lines_to_preserve_at_end.clear()
+
+
 func _per_line_frame_delay() -> float:
 	var line_erase_timing_window := LINE_ERASE_TIMING_PCT * remaining_line_erase_frames
 	return floor(line_erase_timing_window / max(1, lines_being_cleared.size() + lines_being_erased.size() - 1))
@@ -202,12 +257,12 @@ func _per_line_frame_delay() -> float:
 func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	_tile_map.erase_row(y)
-	if _rows_to_preserve_at_end:
-		_rows_to_preserve_at_end.erase(y)
+	if _lines_to_preserve_at_end:
+		_lines_to_preserve_at_end.erase(y)
 	emit_signal("line_erased", y, total_lines, remaining_lines, box_ints)
 
 
-## Deletes rows from the playfield, dropping all rows above them.
+## Deletes lines from the playfield, dropping all lines above them.
 func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
 		old_lines_being_deleted: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
@@ -233,9 +288,9 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 	lines_being_deleted_during_trigger = old_lines_being_deleted
 	
 	if old_lines_being_deleted:
-		var rows_to_delete := old_lines_being_deleted.duplicate()
+		var lines_to_delete := old_lines_being_deleted.duplicate()
 		# sort to avoid edge cases with row indexes changing during deletion
-		rows_to_delete.sort()
+		lines_to_delete.sort()
 		
 		for y in old_lines_being_deleted:
 			_tile_map.erase_row(y)
@@ -245,8 +300,8 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 				# refresh.
 				pass
 			else:
-				# Some levels insert rows in response to rows being deleted. It is important that lines these triggers emit
-				# after rows are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
+				# Some levels insert lines in response to lines being deleted. It is important that lines these triggers emit
+				# after lines are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
 				# or the newly inserted lines could be deleted as a part of a big line clear.
 				_total_cleared_line_count += 1
 				var event_params := {"y": y, "n": _total_cleared_line_count}
@@ -258,23 +313,23 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 	if play_sound:
 		_line_fall_sound.play()
 	
-	if _rows_to_preserve_at_end:
-		# Shift all _rows_to_preserve_at_end entries above the deleted rows
+	if _lines_to_preserve_at_end:
+		# Shift all _lines_to_preserve_at_end entries above the deleted lines
 		for line_being_deleted in old_lines_being_deleted:
-			var _new_rows_to_preserve_at_end := {}
-			for key in _rows_to_preserve_at_end:
+			var _new_lines_to_preserve_at_end := {}
+			for key in _lines_to_preserve_at_end:
 				var new_key: int = key
 				if key < line_being_deleted:
 					new_key += 1
-				_new_rows_to_preserve_at_end[new_key] = true
-			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
+				_new_lines_to_preserve_at_end[new_key] = true
+			_lines_to_preserve_at_end = _new_lines_to_preserve_at_end
 	
 	for i in range(lines_being_deleted_during_trigger.size()):
 		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
 	
 	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
 		_topping_out = false
-	emit_signal("after_lines_deleted")
+	emit_signal("after_lines_deleted", lines_being_deleted_during_trigger)
 
 
 ## Returns a list of food colors in the specified row.
@@ -307,70 +362,30 @@ func _box_ints(y: int) -> Array:
 	return box_ints
 
 
-## Schedules line clears which occur when a puzzle is finished.
-##
-## Any full lines and lines containing boxes result in line clears, and the player is awarded points.
-##
-## Any partial lines containing only vegetables are left behind, the player is not awarded points for those.
-func schedule_finish_line_clears() -> void:
-	var full_lines := []
-	var box_lines := []
-	for y in range(PuzzleTileMap.ROW_COUNT):
-		if _tile_map.row_is_full(y):
-			full_lines.append(y)
-		elif _box_ints(y) and not _rows_to_preserve_at_end.has(y):
-			box_lines.append(y)
-	NearestSorter.new().sort(box_lines, Utils.mean(full_lines + lines_being_cleared, 0.0))
-	var lines_to_clear := full_lines + box_lines
-	
-	# schedule line clears, same pace as clearing three lines concurrently
-	if full_lines or box_lines:
-		# hard-code the line clear delay; faster values don't look good
-		var line_clear_delay := 24
-		var total_duration: int = line_clear_delay * ((box_lines.size() - 1) / 3.0) / LINE_ERASE_TIMING_PCT
-		var old_lines_being_deleted := lines_being_deleted.duplicate()
-		var was_clearing_lines: bool = lines_being_cleared or lines_being_erased
-		
-		schedule_line_clears(lines_to_clear, total_duration, true)
-		
-		# preserve full lines which were already being deleted
-		for line in old_lines_being_deleted:
-			if not lines_being_deleted.has(line):
-				lines_being_deleted.append(line)
-		
-		# if we were already clearing lines, we pause before triggering additional line clears
-		if was_clearing_lines:
-			remaining_line_erase_frames += _per_line_frame_delay()
-	
-	# ensure remaining_line_erase_frames is always set to a non-zero value. the level end is triggered when this
-	# number decreases from 1 to 0, so if it ends up being 0 or less it causes a softlock
-	remaining_line_erase_frames = max(1, remaining_line_erase_frames)
-
-
 func _on_PuzzleState_finish_triggered() -> void:
 	if CurrentLevel.settings.other.clear_on_finish:
 		schedule_finish_line_clears()
 	else:
 		PuzzleState.end_game()
 
-## When a new set of blocks is loaded, we recalculate the rows to preserve at the end.
+## When a new set of blocks is loaded, we recalculate the lines to preserve at the end.
 ##
 ## Any prebuilt level boxes aren't cleared at the end of the level.
 func _on_Playfield_blocks_prepared() -> void:
-	_rows_to_preserve_at_end.clear()
+	_lines_to_preserve_at_end.clear()
 	for cell in _tile_map.get_used_cells():
 		if _tile_map.get_cellv(cell) == 1:
-			_rows_to_preserve_at_end[int(cell.y)] = true
+			_lines_to_preserve_at_end[int(cell.y)] = true
 
 
-## When a box is made, we remove those rows from the rows to preserve at the end.
+## When a box is made, we remove those lines from the lines to preserve at the end.
 ##
 ## Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
 ## them, then they're cleared.
 func _on_BoxBuilder_box_built(rect: Rect2, _box_type: int) -> void:
-	if _rows_to_preserve_at_end:
+	if _lines_to_preserve_at_end:
 		for y in range(rect.position.y, rect.end.y):
-			_rows_to_preserve_at_end.erase(y)
+			_lines_to_preserve_at_end.erase(y)
 
 
 ## When lines are inserted, we adjust the lines being cleared/erased/deleted.
@@ -390,16 +405,15 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 		if lines_being_deleted_during_trigger[i] <= y:
 			lines_being_deleted_during_trigger[i] -= 1
 	
-	for i in _rows_to_preserve_at_end.keys():
+	for i in _lines_to_preserve_at_end.keys():
 		if i <= y:
-			_rows_to_preserve_at_end.erase(i)
-			_rows_to_preserve_at_end[i-1] = true
-	_rows_to_preserve_at_end[y] = true
+			_lines_to_preserve_at_end.erase(i)
+			_lines_to_preserve_at_end[i-1] = true
+	_lines_to_preserve_at_end[y] = true
 
 
 func _on_PuzzleState_game_prepared() -> void:
-	_topping_out = false
-	_total_cleared_line_count = 0
+	reset()
 
 
 func _on_Level_settings_changed() -> void:
@@ -412,4 +426,4 @@ func _on_PuzzleState_topped_out() -> void:
 
 ## When lines are filled, we mark them so they're preserved at the end.
 func _on_Playfield_line_filled(y: int, _tiles_key: String, _src_y: int) -> void:
-	_rows_to_preserve_at_end[y] = true
+	_lines_to_preserve_at_end[y] = true

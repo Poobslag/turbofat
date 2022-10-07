@@ -7,6 +7,20 @@ extends Node
 class AddMolesEffect extends LevelTriggerEffect:
 	var config: MoleConfig = MoleConfig.new()
 	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [count]: (Optional) How many moles appear during a single 'add moles' effect. Defaults to 1.
+	## [home]: (Optional) Restricts which types of tiles moles can appear: 'any', 'veg', 'box', 'surface', 'cake' or
+	## 	'hole'.
+	## [y]: (Optional) Restricts which rows the moles appear on, where '0' is the bottom row of the playfield and '16'
+	## 	is the top.
+	## [x]: (Optional) Restricts which columns the moles appear on, where '0' is the leftmost column of the playfield.
+	## [dig_duration]: (Optional) How many turns/seconds/cycles the moles dig for. Defaults to 3.
+	## [reward]: (Optional) The reward the moles dig up: 'seed' or 'star'. Defaults to 'star'.
+	##
+	## Example: ["add_moles count=2 reward=seed"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		if new_config.has("count"):
 			config.count = new_config["count"].to_int()
@@ -23,6 +37,7 @@ class AddMolesEffect extends LevelTriggerEffect:
 			config.reward = Utils.enum_from_snake_case(MoleConfig.Reward, new_config["reward"])
 	
 	
+	## Adds one or more moles to the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().add_moles(config)
 	
@@ -50,6 +65,7 @@ class AddMolesEffect extends LevelTriggerEffect:
 ## Advances all moles on the playfield, allowing them to dig up pickups.
 class AdvanceMolesEffect extends LevelTriggerEffect:
 	
+	## Advances all moles on the playfield, allowing them to dig up pickups.
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().advance_moles()
 

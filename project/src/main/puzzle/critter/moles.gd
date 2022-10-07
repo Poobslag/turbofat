@@ -421,5 +421,5 @@ func _on_Playfield_line_filled(_y: int, _tiles_key: String, _src_y: int) -> void
 	_refresh_moles_for_playfield()
 
 
-func _on_Playfield_after_lines_deleted() -> void:
+func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
 	_refresh_moles_for_playfield()
