@@ -49,4 +49,5 @@ func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
 func _on_Playfield_after_lines_filled() -> void:
 	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
 		# The current level's top out process ends with the lines which were just filled. Restore piece mobility.
+		_topping_out = false
 		_piece_manager.exit_top_out_state()
