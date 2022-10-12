@@ -1,0 +1,133 @@
+{
+  "version": "39e5",
+  "start_speed": "8",
+  "name": "Slower Service",
+  "description": "May... I... take... your... order...?",
+  "combo_break": [
+    "pieces 0"
+  ],
+  "score": [
+    "snack_all 10",
+    "cake_all 20"
+  ],
+  "finish_condition": {
+    "type": "pieces",
+    "value": "110"
+  },
+  "blocks_during": [
+    "filled_line_clear_delay 3"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.34",
+    "box_factor 2.65",
+    "combo_factor 0.00"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "8 12",
+        "tile": "0 2 0"
+      },
+      {
+        "pos": "6 13",
+        "tile": "0 8 0"
+      },
+      {
+        "pos": "7 13",
+        "tile": "0 12 0"
+      },
+      {
+        "pos": "8 13",
+        "tile": "0 5 0"
+      },
+      {
+        "pos": "6 14",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "7 14",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "8 14",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "6 15",
+        "tile": "1 11 3"
+      },
+      {
+        "pos": "7 15",
+        "tile": "1 15 3"
+      },
+      {
+        "pos": "8 15",
+        "tile": "1 7 3"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 5 3"
+      },
+      {
+        "pos": "5 17",
+        "tile": "0 2 1"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 2"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 2"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 2"
+      },
+      {
+        "pos": "5 18",
+        "tile": "0 3 1"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 2"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 2"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 2"
+      },
+      {
+        "pos": "4 19",
+        "tile": "0 8 1"
+      },
+      {
+        "pos": "5 19",
+        "tile": "0 5 1"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 2"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 2"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 2"
+      }
+    ]
+  }
+}

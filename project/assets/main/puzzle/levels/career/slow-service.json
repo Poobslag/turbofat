@@ -1,17 +1,22 @@
 {
   "version": "39e5",
-  "start_speed": "0",
-  "name": "Experiment",
-  "description": "Just goofing around",
+  "start_speed": "1",
+  "name": "Slow Service",
+  "description": "May... I... take... your... order...?",
   "finish_condition": {
-    "type": "time_over",
-    "value": "90"
+    "type": "lines",
+    "value": "15"
   },
   "blocks_during": [
-    "filled_line_clear_delay 3"
+    "filled_line_clear_delay 2"
   ],
   "combo_break": [
     "pieces 999999"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 1.12",
+    "box_factor 1.25",
+    "combo_factor 1.21"
   ],
   "tiles": {
     "start": [

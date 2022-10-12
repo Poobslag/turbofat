@@ -1,0 +1,283 @@
+{
+  "version": "39e5",
+  "start_speed": "1",
+  "name": "Traffic Jam",
+  "description": "Nobody knows what the 'H' stands for! We just know it is annoying and gets in the way...",
+  "finish_condition": {
+    "type": "score",
+    "value": "225"
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=1,3,5..."
+      ],
+      "effect": "clear_filled_lines"
+    }
+  ],
+  "blocks_during": [
+    "filled_line_clear_max 1",
+    "filled_line_clear_order highest",
+    "no_clear_filled_lines",
+    "refresh_on_top_out"
+  ],
+  "rank": [
+    "combo_factor 1.21"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 8",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 8",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 8",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 9",
+        "tile": "1 10 2"
+      },
+      {
+        "pos": "1 9",
+        "tile": "1 14 2"
+      },
+      {
+        "pos": "2 9",
+        "tile": "1 6 2"
+      },
+      {
+        "pos": "0 10",
+        "tile": "1 9 2"
+      },
+      {
+        "pos": "1 10",
+        "tile": "1 13 2"
+      },
+      {
+        "pos": "2 10",
+        "tile": "1 5 2"
+      },
+      {
+        "pos": "0 11",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 11",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 11",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 12",
+        "tile": "2 2 3"
+      },
+      {
+        "pos": "1 12",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "2 12",
+        "tile": "2 0 3"
+      },
+      {
+        "pos": "0 13",
+        "tile": "2 4 2"
+      },
+      {
+        "pos": "1 13",
+        "tile": "2 17 1"
+      },
+      {
+        "pos": "2 13",
+        "tile": "2 1 3"
+      },
+      {
+        "pos": "3 13",
+        "tile": "2 3 0"
+      },
+      {
+        "pos": "4 13",
+        "tile": "2 8 2"
+      },
+      {
+        "pos": "5 13",
+        "tile": "2 3 2"
+      },
+      {
+        "pos": "6 13",
+        "tile": "2 11 1"
+      },
+      {
+        "pos": "7 13",
+        "tile": "2 7 3"
+      },
+      {
+        "pos": "8 13",
+        "tile": "2 13 3"
+      },
+      {
+        "pos": "0 14",
+        "tile": "2 4 1"
+      },
+      {
+        "pos": "1 14",
+        "tile": "2 6 0"
+      },
+      {
+        "pos": "2 14",
+        "tile": "2 7 2"
+      },
+      {
+        "pos": "3 14",
+        "tile": "2 10 2"
+      },
+      {
+        "pos": "4 14",
+        "tile": "2 1 0"
+      },
+      {
+        "pos": "5 14",
+        "tile": "2 2 0"
+      },
+      {
+        "pos": "6 14",
+        "tile": "2 11 2"
+      },
+      {
+        "pos": "7 14",
+        "tile": "2 16 3"
+      },
+      {
+        "pos": "8 14",
+        "tile": "2 0 1"
+      },
+      {
+        "pos": "0 15",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 15",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 15",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "6 15",
+        "tile": "2 14 2"
+      },
+      {
+        "pos": "7 15",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "8 15",
+        "tile": "2 6 2"
+      },
+      {
+        "pos": "0 16",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 10 2"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 14 2"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 6 2"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 9 2"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 13 2"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 5 2"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 5 3"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 4 2"
+      }
+    ]
+  }
+}

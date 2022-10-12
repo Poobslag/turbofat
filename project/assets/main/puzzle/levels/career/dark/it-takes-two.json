@@ -1,0 +1,85 @@
+{
+  "version": "39e5",
+  "start_speed": "A1",
+  "name": "It Takes Two",
+  "description": "What takes two? ...Oh please no, not that...",
+  "finish_condition": {
+    "type": "pieces",
+    "value": "165"
+  },
+  "blocks_during": [
+    "clear_on_top_out",
+    "filled_line_clear_min 2",
+    "filled_line_clear_max 1",
+    "filled_line_clear_order lowest"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.39",
+    "box_factor 0.96",
+    "combo_factor 0.58"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 18",
+        "tile": "1 10 11"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 14 11"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 6 11"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 10 11"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 14 11"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 6 11"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 11"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 11"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 11"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 11"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 11"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 11"
+      }
+    ]
+  }
+}

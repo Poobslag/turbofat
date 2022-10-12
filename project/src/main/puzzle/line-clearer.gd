@@ -361,7 +361,7 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 		lines_to_delete.sort()
 		
 		for i in range(lines_being_deleted_during_trigger.size()):
-			var line_being_deleted = lines_being_deleted_during_trigger[i]
+			var line_being_deleted: int = lines_being_deleted_during_trigger[i]
 			_tile_map.erase_row(line_being_deleted)
 			
 			if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
