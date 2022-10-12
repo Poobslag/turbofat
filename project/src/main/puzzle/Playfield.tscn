@@ -157,9 +157,6 @@ margin_top = -272.0
 margin_right = 162.0
 margin_bottom = 272.0
 script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 puzzle_tile_map_path = NodePath("../TileMap")
 PickupScene = ExtResource( 26 )
 
@@ -373,6 +370,7 @@ bus = "Sound Bus"
 
 [node name="LineFiller" type="Node" parent="."]
 script = ExtResource( 29 )
+pickups_path = NodePath("../TileMapClip/Pickups")
 tile_map_path = NodePath("../TileMapClip/TileMap")
 
 [node name="LineFillSound1" type="AudioStreamPlayer" parent="LineFiller"]
