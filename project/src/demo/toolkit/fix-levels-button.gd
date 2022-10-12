@@ -97,9 +97,38 @@ func _report_unused_career_levels() -> void:
 		_output_label.text += "Level keys not in career regions: %s" % [level_keys_not_in_career_regions]
 
 
+## Alphabetizes the levels in 'career-regions.json'
+func _alphabetize_career_levels() -> void:
+	var sorted_region_ids := {}
+	
+	var old_text := FileUtils.get_file_as_text(CareerLevelLibrary.DEFAULT_REGIONS_PATH)
+	var old_json: Dictionary = parse_json(old_text)
+	var new_json := old_json.duplicate(true)
+	for region in new_json.get("regions", []):
+		var old_levels: Array = region.get("levels", [])
+		var new_levels := old_levels.duplicate()
+		new_levels.sort_custom(self, "_compare_by_id")
+		if not new_levels == old_levels:
+			sorted_region_ids[region.get("id", "(unknown)")] = true
+			region["levels"] = new_levels
+	
+	if sorted_region_ids:
+		var new_text := Utils.print_json(new_json)
+		FileUtils.write_file(CareerLevelLibrary.DEFAULT_REGIONS_PATH, new_text)
+		if _output_label.text:
+			_output_label.text += "\n"
+		_output_label.text += "Sorted career level ids: %s" \
+			% [PoolStringArray(sorted_region_ids.keys()).join(", ")]
+
+
+func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:
+	return obj0.get("id") < obj1.get("id")
+
+
 func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_levels()
 	_report_unused_career_levels()
+	_alphabetize_career_levels()
 	if not _output_label.text:
 		_output_label.text = "No level files have problems."
