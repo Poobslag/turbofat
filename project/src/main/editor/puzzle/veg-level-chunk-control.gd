@@ -18,7 +18,7 @@ func set_veg_size(new_veg_size: Vector2) -> void:
 func _refresh_tile_map() -> void:
 	for x in range(veg_size.x):
 		for y in range(veg_size.y):
-			$TileMap.set_block(Vector2(x, y), PuzzleTileMap.TILE_VEG, Vector2(randi() % 18, randi() % 4))
+			$TileMap.set_block(Vector2(x, y), PuzzleTileMap.TILE_VEG, PuzzleTileMap.random_veg_autotile_coord())
 
 
 func _on_RotateButton_pressed() -> void:

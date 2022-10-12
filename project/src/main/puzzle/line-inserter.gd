@@ -67,12 +67,16 @@ func insert_line(tiles_keys: Array = [], dest_y: int = PuzzleTileMap.ROW_COUNT -
 		for x in range(PuzzleTileMap.COL_COUNT):
 			var src_pos := Vector2(x, src_y)
 			var tile: int = tiles.block_tiles.get(src_pos, -1)
-			var autotile_coord: Vector2 = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
+			var autotile_coord: Vector2
+			if tile == PuzzleTileMap.TILE_VEG:
+				autotile_coord = PuzzleTileMap.random_veg_autotile_coord()
+			else:
+				autotile_coord = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
 			_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
 	else:
 		# fill bottom row with random veggie garbage
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var veg_autotile_coord := Vector2(randi() % 18, randi() % 4)
+			var veg_autotile_coord := PuzzleTileMap.random_veg_autotile_coord()
 			_tile_map.set_block(Vector2(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
 		_tile_map.set_block(Vector2(randi() % PuzzleTileMap.COL_COUNT, dest_y), -1)
 	

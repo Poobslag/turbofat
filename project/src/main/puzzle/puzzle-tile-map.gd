@@ -253,6 +253,31 @@ func shift_rows(bottom_row: int, direction: Vector2) -> void:
 		set_block(cell, piece_colors_to_set[cell], autotile_coords_to_set[cell])
 
 
+## Returns the PuzzleTileMap's contents as a multi-row string.
+##
+## This string can be displayed (preferably using a fixed-width font) which helps in debugging.
+func contents_as_string() -> String:
+	var str_rows := []
+	for y in range(get_used_rect().position.y, get_used_rect().position.y + get_used_rect().size.y):
+		str_rows.append("")
+		for x in range(get_used_rect().position.x, get_used_rect().position.x + get_used_rect().size.x):
+			var cell_str: String = "."
+			match get_cell(x, y):
+				INVALID_CELL: cell_str = "."
+				TILE_PIECE: cell_str = "u"
+				TILE_BOX: cell_str = "w"
+				TILE_VEG: cell_str = "v"
+				_: cell_str = "?"
+			str_rows[str_rows.size() - 1] += cell_str
+	
+	var result := ""
+	for str_row in str_rows:
+		if result:
+			result += "\n"
+		result += str_row
+	return result
+
+
 ## Disconnects a row from any empty neighbors.
 ##
 ## Disconnected boxes have their connections updated. Disconnected pieces are converted to vegetable blocks.
@@ -353,3 +378,8 @@ static func has_cake_box(box_types: Array) -> bool:
 			result = true
 			break
 	return result
+
+
+## Returns a random autotile coordinate for a vegetable tile.
+static func random_veg_autotile_coord() -> Vector2:
+	return Vector2(randi() % 18, randi() % 4)

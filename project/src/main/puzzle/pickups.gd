@@ -102,6 +102,16 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 	_refresh_piece_manager_path()
 
 
+## Returns true if the specified row has no pickups.
+func row_is_empty(y: int) -> bool:
+	var row_is_empty := true
+	for x in range(PuzzleTileMap.COL_COUNT):
+		if not get_pickup(Vector2(x, y)) == TileMap.INVALID_CELL:
+			row_is_empty = false
+			break
+	return row_is_empty
+
+
 func _refresh_piece_manager_path() -> void:
 	if not is_inside_tree():
 		return

@@ -119,7 +119,11 @@ func _fill_line(tiles_key: String, dest_y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var src_pos := Vector2(x, src_y)
 		var tile: int = tiles.block_tiles.get(src_pos, -1)
-		var autotile_coord: Vector2 = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
+		var autotile_coord: Vector2
+		if tile == PuzzleTileMap.TILE_VEG:
+			autotile_coord = PuzzleTileMap.random_veg_autotile_coord()
+		else:
+			autotile_coord = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
 		_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
 	
 	emit_signal("line_filled", dest_y, tiles_key, src_y)

@@ -176,6 +176,9 @@ class InsertLineEffect extends LevelTriggerEffect:
 	## (Optional) target row
 	var y: int = PuzzleTileMap.ROW_COUNT - 1
 	
+	## (Optional) number of lines to insert
+	var count: int = 1
+	
 	## (Optional) keys corresponding to sets of tiles in LevelTiles for the tiles to insert
 	var tiles_keys: Array = []
 	
@@ -197,11 +200,14 @@ class InsertLineEffect extends LevelTriggerEffect:
 			tiles_keys = new_config["tiles_keys"].split(",")
 		if new_config.has("y"):
 			y = ConfigStringUtils.invert_puzzle_row_index(int(new_config["y"]))
+		if new_config.has("count"):
+			count = new_config["count"].to_int()
 	
 	
 	## Inserts a new line at the bottom of the playfield.
 	func run() -> void:
-		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys, y)
+		for _i in range(count):
+			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys, y)
 	
 	
 	func get_config() -> Dictionary:
@@ -214,7 +220,9 @@ class InsertLineEffect extends LevelTriggerEffect:
 			_:
 				result["tiles_keys"] = PoolStringArray(tiles_keys).join(",")
 		if y != PuzzleTileMap.ROW_COUNT - 1:
-			result["y"] = ConfigStringUtils.invert_puzzle_row_index(y)
+			result["y"] = str(ConfigStringUtils.invert_puzzle_row_index(y))
+		if count != 1:
+			result["count"] = str(count)
 		return result
 
 

@@ -360,8 +360,9 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 		# sort to avoid edge cases with row indexes changing during deletion
 		lines_to_delete.sort()
 		
-		for y in old_lines_being_deleted:
-			_tile_map.erase_row(y)
+		for i in range(lines_being_deleted_during_trigger.size()):
+			var line_being_deleted = lines_being_deleted_during_trigger[i]
+			_tile_map.erase_row(line_being_deleted)
 			
 			if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
 				# If we're doing a 'refresh on top out', don't run triggers. Any effects will interfere with the
@@ -372,26 +373,29 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 				# after lines are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
 				# or the newly inserted lines could be deleted as a part of a big line clear.
 				_total_cleared_line_count += 1
-				var event_params := {"y": y, "n": _total_cleared_line_count}
+				var event_params := {"y": line_being_deleted, "n": _total_cleared_line_count}
 				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, event_params)
+				
+				# reassign 'line_being_deleted' in case lines_being_deleted_during_trigger was modified during the
+				# triggers, like when inserting a line
+				line_being_deleted = lines_being_deleted_during_trigger[i]
 			
-			_tile_map.shift_rows(y - 1, Vector2.DOWN)
+			_tile_map.shift_rows(line_being_deleted - 1, Vector2.DOWN)
+			
+			for line_dict in _line_dicts:
+				# Shift all entries above the deleted line
+				var new_line_dict := {}
+				for key in line_dict:
+					var new_key: int = key
+					if key < line_being_deleted:
+						new_key += 1
+					new_line_dict[new_key] = line_dict[key]
+				line_dict.clear()
+				line_dict.merge(new_line_dict)
 	
 	
 	if play_sound:
 		_line_fall_sound.play()
-	
-	for line_dict in _line_dicts:
-		# Shift all entries above the deleted lines
-		for line_being_deleted in old_lines_being_deleted:
-			var new_line_dict := {}
-			for key in line_dict:
-				var new_key: int = key
-				if key < line_being_deleted:
-					new_key += 1
-				new_line_dict[new_key] = line_dict[key]
-			line_dict.clear()
-			line_dict.merge(new_line_dict)
 	
 	for i in range(lines_being_deleted_during_trigger.size()):
 		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
@@ -479,10 +483,14 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 			lines_being_deleted_during_trigger[i] -= 1
 	
 	for line_dict in _line_dicts:
+		var new_line_dict := {}
 		for i in line_dict.keys():
 			if i <= y:
-				line_dict.erase(i)
-				line_dict[i - 1] = true
+				new_line_dict[i - 1] = line_dict[i]
+			else:
+				new_line_dict[i] = line_dict[i]
+		line_dict.clear()
+		line_dict.merge(new_line_dict)
 	
 	_lines_to_preserve_at_end[y] = true
 

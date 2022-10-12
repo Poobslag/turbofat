@@ -94,7 +94,7 @@ func drop_data(pos: Vector2, data: Object) -> void:
 		# change vegetable data avoid repeating the same vegetables
 		for cell in _prev_dropped_data.used_cells:
 			if _prev_dropped_data.tiles[cell] == PuzzleTileMap.TILE_VEG:
-				_prev_dropped_data.autotile_coords[cell] = Vector2(randi() % 18, randi() % 4)
+				_prev_dropped_data.autotile_coords[cell] = PuzzleTileMap.random_veg_autotile_coord()
 
 
 ## If the player clicks and drags on the playfield, we reuse the previously dropped data.
