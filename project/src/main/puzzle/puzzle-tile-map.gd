@@ -227,6 +227,32 @@ func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
 
 
+## Shifts a group of rows up or down.
+##
+## Parameters:
+## 	'bottom_row': The lowest row to shift. All rows at or above this row will be shifted.
+##
+## 	'direction': The direction to shift the rows, such as Vector2.UP or Vector2.DOWN.
+func shift_rows(bottom_row: int, direction: Vector2) -> void:
+	# First, erase and store all the old cells which are shifting
+	var piece_colors_to_set := {}
+	var autotile_coords_to_set := {}
+	for cell in get_used_cells():
+		if cell.y > bottom_row:
+			# cells below the specified bottom row are left alone
+			continue
+		# cells at or above the specified bottom row are shifted
+		var piece_color: int = get_cellv(cell)
+		var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
+		piece_colors_to_set[cell + direction] = piece_color
+		autotile_coords_to_set[cell + direction] = autotile_coord
+		set_block(cell, INVALID_CELL)
+	
+	# Next, write the old cells in their new locations
+	for cell in piece_colors_to_set:
+		set_block(cell, piece_colors_to_set[cell], autotile_coords_to_set[cell])
+
+
 ## Disconnects a row from any empty neighbors.
 ##
 ## Disconnected boxes have their connections updated. Disconnected pieces are converted to vegetable blocks.
@@ -315,32 +341,6 @@ func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
 	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
 	autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, dir_mask)
 	set_block(pos, get_cellv(pos), autotile_coord)
-
-
-## Shifts a group of rows up or down.
-##
-## Parameters:
-## 	'bottom_row': The lowest row to shift. All rows at or above this row will be shifted.
-##
-## 	'direction': The direction to shift the rows, such as Vector2.UP or Vector2.DOWN.
-func shift_rows(bottom_row: int, direction: Vector2) -> void:
-	# First, erase and store all the old cells which are shifting
-	var piece_colors_to_set := {}
-	var autotile_coords_to_set := {}
-	for cell in get_used_cells():
-		if cell.y > bottom_row:
-			# cells below the specified bottom row are left alone
-			continue
-		# cells at or above the specified bottom row are shifted
-		var piece_color: int = get_cellv(cell)
-		var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
-		piece_colors_to_set[cell + direction] = piece_color
-		autotile_coords_to_set[cell + direction] = autotile_coord
-		set_block(cell, INVALID_CELL)
-	
-	# Next, write the old cells in their new locations
-	for cell in piece_colors_to_set:
-		set_block(cell, piece_colors_to_set[cell], autotile_coords_to_set[cell])
 
 
 ## Returns 'true' if the specified array contains a cake box type.
