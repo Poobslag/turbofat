@@ -100,8 +100,8 @@ func _prepare_star_seeds_for_level() -> void:
 ## Parameters:
 ## 	'rect_range': Cell coordinates defining the cells to search.
 func _add_star_seeds_for_boxes(rect_range: Rect2) -> void:
-	for x in range(rect_range.position.x, rect_range.position.x + rect_range.size.x):
-		for y in range(rect_range.position.y, rect_range.position.y + rect_range.size.y):
+	for y in range(rect_range.position.y, rect_range.position.y + rect_range.size.y):
+		for x in range(rect_range.position.x, rect_range.position.x + rect_range.size.x):
 			var cell_contents := _puzzle_tile_map.get_cellv(Vector2(x, y))
 			if cell_contents != PuzzleTileMap.TILE_BOX:
 				continue
