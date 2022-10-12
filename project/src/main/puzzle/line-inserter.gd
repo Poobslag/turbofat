@@ -151,6 +151,8 @@ func _reset() -> void:
 		var max_y := 0
 		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
 			max_y = int(max(max_y, cell.y))
+		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].pickups:
+			max_y = int(max(max_y, cell.y))
 		_row_count_by_tiles_key[tiles_key] = max_y + 1
 	
 	# initialize _row_index_by_tiles_key

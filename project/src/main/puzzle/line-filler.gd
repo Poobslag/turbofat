@@ -14,6 +14,8 @@ signal line_filled(y, tiles_key, src_y)
 ## emitted after a set of lines are filled, either following a topout/refresh or line clear
 signal after_lines_filled
 
+export (NodePath) var pickups_path: NodePath
+
 export (NodePath) var tile_map_path: NodePath
 
 ## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
@@ -43,6 +45,7 @@ var _filled_line_index := 0
 ## The index of the next line fill sound to play.
 var _line_fill_sfx_index := 0
 
+onready var _pickups: Pickups = get_node(pickups_path)
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 onready var _line_fill_sounds := [$LineFillSound1, $LineFillSound2, $LineFillSound3]
 onready var _line_fill_sfx_reset_timer := $LineFillSfxResetTimer
@@ -94,7 +97,7 @@ func _fill_empty_lines() -> void:
 	# fill the empty rows from bottom to top
 	var y := PuzzleTileMap.ROW_COUNT - 1
 	while y >= 0:
-		if _tile_map.row_is_empty(y):
+		if _tile_map.row_is_empty(y) and _pickups.row_is_empty(y):
 			_fill_line(_fill_lines_tiles_key(), y)
 		y -= 1
 	
@@ -185,10 +188,14 @@ func _reset() -> void:
 			var min_y := PuzzleTileMap.ROW_COUNT - 1
 			for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
 				min_y = int(min(min_y, cell.y))
+			for cell in CurrentLevel.settings.tiles.bunches[tiles_key].pickups:
+				min_y = int(min(min_y, cell.y))
 			_row_count_by_tiles_key[tiles_key] = PuzzleTileMap.ROW_COUNT - min_y
 		else:
 			var max_y := 0
 			for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
+				max_y = int(max(max_y, cell.y))
+			for cell in CurrentLevel.settings.tiles.bunches[tiles_key].pickups:
 				max_y = int(max(max_y, cell.y))
 			_row_count_by_tiles_key[tiles_key] = max_y + 1
 	
