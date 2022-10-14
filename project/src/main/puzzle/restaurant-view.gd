@@ -20,10 +20,10 @@ var current_creature_index: int setget set_current_creature_index, get_current_c
 ## bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
 
-onready var _customer_nametag_panel := $CustomerNametag/Panel
-onready var _customer_view_viewport := $CustomerView/Viewport
-onready var _customer_view := $CustomerView
-onready var _restaurant_nametag_panel := $RestaurantNametag/Panel
+onready var _customer_nametag_panel := $Customer/Nametag/Panel
+onready var _customer_view_viewport := $Customer/View/Viewport
+onready var _customer_view := $Customer/View
+onready var _chef_nametag_panel := $Chef/Nametag/Panel
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 onready var _hello_timer := $HelloTimer
 
@@ -135,7 +135,7 @@ func _refresh_customer_name() -> void:
 
 
 func _refresh_chef_name() -> void:
-	_restaurant_nametag_panel.refresh_creature(get_chef())
+	_chef_nametag_panel.refresh_creature(get_chef())
 
 
 ## Update the chef's mood based on the current bonus score.
