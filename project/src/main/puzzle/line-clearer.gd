@@ -65,10 +65,6 @@ var _lines_to_preserve_at_end := {}
 ## value: (int) number of times this line has been full during 'calculate_lines_to_clear'
 var _line_filled_age := {}
 
-## Array of dictionaries whose keys correspond to lines. These keys must be adjusted as lines are inserted/deleted from
-## the playfield.
-var _line_dicts := [_lines_to_preserve_at_end, _line_filled_age]
-
 ## The total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
 ## show to the player, because the two values are incremented at different times.
 var _total_cleared_line_count := 0
@@ -308,7 +304,7 @@ func reset() -> void:
 	_remaining_line_erase_timings.clear()
 	_total_cleared_line_count = 0
 	
-	for line_dict in _line_dicts:
+	for line_dict in _line_dicts():
 		line_dict.clear()
 
 
@@ -325,7 +321,7 @@ func _per_line_frame_delay() -> float:
 func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	_tile_map.erase_row(y)
-	for line_dict in _line_dicts:
+	for line_dict in _line_dicts():
 		line_dict.erase(y)
 	emit_signal("line_erased", y, total_lines, remaining_lines, box_ints)
 
@@ -382,7 +378,7 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 			
 			_tile_map.shift_rows(line_being_deleted - 1, Vector2.DOWN)
 			
-			for line_dict in _line_dicts:
+			for line_dict in _line_dicts():
 				# Shift all entries above the deleted line
 				var new_line_dict := {}
 				for key in line_dict:
@@ -439,6 +435,26 @@ func _compare_by_line_filled_age(a: int, b: int) -> bool:
 	return _line_filled_age.get(a, -1) > _line_filled_age.get(b, -1)
 
 
+## Dictionaries whose keys correspond to lines. These keys must be adjusted as lines are inserted/deleted from the
+## playfield.
+func _line_dicts() -> Array:
+	return [
+		_lines_to_preserve_at_end,
+		_line_filled_age,
+	]
+
+
+## Arrays whose entries correspond to lines. These entries must be adjusted as lines are inserted/deleted from the
+## playfield.
+func _line_arrays() -> Array:
+	return [
+		lines_being_cleared,
+		lines_being_erased,
+		lines_being_deleted,
+		lines_being_deleted_during_trigger,
+	]
+
+
 func _on_PuzzleState_finish_triggered() -> void:
 	if CurrentLevel.settings.other.clear_on_finish:
 		schedule_finish_line_clears()
@@ -469,20 +485,12 @@ func _on_BoxBuilder_box_built(rect: Rect2, _box_type: int) -> void:
 ##
 ## Without these adjustments, strange behavior happens when lines are inserted and deleted simultaneously.
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
-	for i in range(lines_being_cleared.size()):
-		if lines_being_cleared[i] <= y:
-			lines_being_cleared[i] -= 1
-	for i in range(lines_being_erased.size()):
-		if lines_being_erased[i] <= y:
-			lines_being_erased[i] -= 1
-	for i in range(lines_being_deleted.size()):
-		if lines_being_deleted[i] <= y:
-			lines_being_deleted[i] -= 1
-	for i in range(lines_being_deleted_during_trigger.size()):
-		if lines_being_deleted_during_trigger[i] <= y:
-			lines_being_deleted_during_trigger[i] -= 1
+	for line_array in _line_arrays():
+		for i in range(line_array.size()):
+			if line_array[i] <= y:
+				line_array[i] -= 1
 	
-	for line_dict in _line_dicts:
+	for line_dict in _line_dicts():
 		var new_line_dict := {}
 		for i in line_dict.keys():
 			if i <= y:
