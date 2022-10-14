@@ -32,6 +32,8 @@ func initially_move_piece(piece: ActivePiece) -> bool:
 	
 	var success := true
 	if not piece.can_move_to_target():
+		# apply initial rotation when topping the player out, so they can see why the piece didn't fit
+		piece.orientation = piece.target_orientation
 		PuzzleState.top_out()
 		success = false
 	else:
