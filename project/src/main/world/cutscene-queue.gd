@@ -1,4 +1,4 @@
-extends Node
+class_name CutsceneQueue
 ## Maintains a queue of pending cutscenes and levels.
 ##
 ## When the game plays cutscenes, it plays one or more cutscenes and sometimes plays a level or returns to a different

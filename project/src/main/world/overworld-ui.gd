@@ -145,7 +145,7 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var next_scene_key := meta_item_split[1]
 			var next_scene_chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(next_scene_key)
 			# insert the chat tree to ensure it happens before any enqueued levels
-			CutsceneQueue.insert_cutscene(0, next_scene_chat_tree)
+			PlayerData.cutscene_queue.insert_cutscene(0, next_scene_chat_tree)
 		"creature_enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)

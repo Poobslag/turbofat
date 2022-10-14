@@ -167,15 +167,15 @@ func _quit_puzzle() -> void:
 		PlayerData.career.process_puzzle_result()
 	
 	CurrentLevel.reset()
-	PlayerData.customer_queue.clear()
+	PlayerData.customer_queue.reset()
 	
 	if PlayerData.career.is_career_mode():
 		# career mode; defer to CareerData to decide the next scene.
 		PlayerData.career.push_career_trail()
 	else:
 		# not career mode; play a cutscene or return to the previous scene
-		if CutsceneQueue.is_front_cutscene():
-			CutsceneQueue.replace_trail()
+		if PlayerData.cutscene_queue.is_front_cutscene():
+			PlayerData.cutscene_queue.replace_trail()
 		else:
 			SceneTransition.pop_trail()
 
