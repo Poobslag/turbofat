@@ -73,7 +73,7 @@ custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
 
-[node name="CareerContainer" type="HBoxContainer" parent="DropPanel/Play"]
+[node name="Career" type="Button" parent="DropPanel/Play"]
 margin_left = 134.0
 margin_top = 72.0
 margin_right = 327.0
@@ -81,18 +81,11 @@ margin_bottom = 119.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Career" type="Button" parent="DropPanel/Play/CareerContainer"]
-margin_right = 193.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 0, 47 )
-size_flags_horizontal = 3
 theme = ExtResource( 2 )
 text = "Career"
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Practice" type="Button" parent="DropPanel/Play"]
 margin_left = 134.0
@@ -199,7 +192,7 @@ __meta__ = {
 [connection signal="pressed" from="DropPanel/Create/Creatures" to="DropPanel/Create" method="_on_Creatures_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]
-[connection signal="pressed" from="DropPanel/Play/CareerContainer/Career" to="DropPanel/Play" method="_on_Career_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Career" to="DropPanel/Play" method="_on_Career_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Practice" to="DropPanel/Play" method="_on_Practice_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Tutorials" to="DropPanel/Play" method="_on_Tutorials_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
