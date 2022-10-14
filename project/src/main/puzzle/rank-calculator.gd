@@ -386,7 +386,6 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		else:
 			rank_result.score_rank -= CurrentLevel.settings.rank.success_bonus
 	
-	_apply_top_out_penalty(rank_result)
 	_clamp_result(rank_result, lenient)
 
 
@@ -426,28 +425,6 @@ func target_lines_for_score(box_score_per_line: float, combo_score_per_line: flo
 		result = max(1, result - (CurrentLevel.settings.rank.preplaced_pieces / 2.0))
 	
 	return result
-
-
-## Reduces the player's ranks if they topped out.
-##
-## Each time the player tops out, all of their ranks are reduced by a certain amount.
-##
-## It's also possible for the player to lose without topping out, if they either met a special lose condition or hit
-## 'esc' to give up on the level. In this case, we still apply one top out penalty. This prevents people from losing on
-## purpose to achieve a good rank.
-func _apply_top_out_penalty(rank_result: RankResult) -> void:
-	if rank_result.topped_out() or rank_result.lost:
-		var penalty_count := max(1, rank_result.top_out_count)
-		var settings: LevelSettings = CurrentLevel.settings
-		var all_penalty := penalty_count * settings.rank.top_out_penalty
-		rank_result.speed_rank = rank_result.speed_rank + all_penalty
-		rank_result.lines_rank = rank_result.lines_rank + all_penalty
-		rank_result.pieces_rank = rank_result.pieces_rank + all_penalty
-		rank_result.box_score_per_line_rank = rank_result.box_score_per_line_rank + all_penalty
-		rank_result.combo_score_per_line_rank = rank_result.combo_score_per_line_rank + all_penalty
-		rank_result.pickup_score_rank = rank_result.pickup_score_rank + all_penalty
-		rank_result.score_rank = rank_result.score_rank + all_penalty
-		rank_result.seconds_rank = rank_result.seconds_rank + all_penalty
 
 
 ## Clamps the player's ranks within [0, 999] to avoid edge cases.

@@ -130,23 +130,14 @@ func test_calculate_rank_sprint_120_top_out() -> void:
 	assert_eq(RankCalculator.grade(rank1.combo_score_per_line_rank), "SS")
 	assert_eq(RankCalculator.grade(rank1.score_rank), "S+")
 	
-	# after topping out, ranks decrease
+	# even when topping out, ranks stay the same
 	PuzzleState.level_performance.top_out_count = 1
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.speed_rank), "S+")
-	assert_eq(RankCalculator.grade(rank2.lines_rank), "SS")
-	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "S-")
-	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "S+")
-	assert_eq(RankCalculator.grade(rank2.score_rank), "S")
-	
-	# after topping out again, ranks decrease further
-	PuzzleState.level_performance.top_out_count = 2
-	var rank3 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank3.speed_rank), "S+")
-	assert_eq(RankCalculator.grade(rank3.lines_rank), "S+")
-	assert_eq(RankCalculator.grade(rank3.box_score_per_line_rank), "AA+")
-	assert_eq(RankCalculator.grade(rank3.combo_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank3.score_rank), "S-")
+	assert_eq(RankCalculator.grade(rank2.speed_rank), "SS+")
+	assert_eq(RankCalculator.grade(rank2.lines_rank), "SS+")
+	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "S")
+	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "SS")
+	assert_eq(RankCalculator.grade(rank2.score_rank), "S+")
 
 
 func test_calculate_rank_ultra_200() -> void:
@@ -162,21 +153,6 @@ func test_calculate_rank_ultra_200() -> void:
 	assert_eq(rank.combo_score_per_line, 20.0)
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "M")
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "SS+")
-
-
-func test_calculate_rank_ultra_200_lost() -> void:
-	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
-	PuzzleState.level_performance.seconds = 60
-	PuzzleState.level_performance.lines = 10
-	PuzzleState.level_performance.box_score = 80
-	PuzzleState.level_performance.combo_score = 60
-	PuzzleState.level_performance.score = 150
-	PuzzleState.level_performance.lost = true
-	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.speed_rank), "S-")
-	assert_eq(rank.seconds_rank, 999.0)
-	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S-")
-	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S")
 
 
 ## This is an edge case where, if the player clears too many lines for ultra, they can sort of be robbed of a master
