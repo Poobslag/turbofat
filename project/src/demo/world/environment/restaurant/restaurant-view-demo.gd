@@ -10,6 +10,8 @@ extends Node
 ## 	[1-9,0]: Change the creature's size from 10% to 100%
 ## 	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
 ## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th creature.
+## 	[comma, period]: Swoop the customer/chef to be onscreen
+## 	SHIFT+[comma, period]: Swoop the customer/chef to be offscreen
 ## 	arrows: Change the creature's orientation
 ## 	brace keys: Change the creature's appearance
 
@@ -31,7 +33,7 @@ const NAMES := [
 
 var _current_name_index := 4
 
-onready var _view := $RestaurantView
+onready var _view: RestaurantView = $RestaurantView
 onready var _restaurant_scene := $RestaurantView/RestaurantViewport/Scene
 
 func _ready() -> void:
@@ -81,6 +83,16 @@ func _input(event: InputEvent) -> void:
 			_view.get_customer().set_orientation(Creatures.NORTHWEST)
 		KEY_UP:
 			_view.get_customer().set_orientation(Creatures.NORTHEAST)
+		KEY_COMMA:
+			if Input.is_key_pressed(KEY_SHIFT):
+				_view.swoop_customer_bubble_offscreen()
+			else:
+				_view.swoop_customer_bubble_onscreen()
+		KEY_PERIOD:
+			if Input.is_key_pressed(KEY_SHIFT):
+				_view.swoop_chef_bubble_offscreen()
+			else:
+				_view.swoop_chef_bubble_onscreen()
 
 
 func _customer() -> Creature:

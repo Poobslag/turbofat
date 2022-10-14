@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/world/environment/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=2]
@@ -139,6 +139,26 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "swoop_chef_bubble_onscreen"
+}, {
+"args": [  ],
+"method": "swoop_customer_bubble_onscreen"
+} ]
+}
 
 [node name="RestaurantView" type="Control"]
 script = ExtResource( 4 )
@@ -295,6 +315,12 @@ custom_styles/panel = SubResource( 4 )
 [node name="HelloTimer" type="Timer" parent="."]
 one_shot = true
 script = ExtResource( 12 )
+
+[node name="SwoopTween" type="Tween" parent="."]
+
+[node name="SwoopAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 7 )
 
 [connection signal="timeout" from="HelloTimer" to="HelloTimer" method="_on_timeout"]
 [connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="." method="_on_RestaurantPuzzleScene_current_creature_index_changed"]
