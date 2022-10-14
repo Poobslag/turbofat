@@ -4,6 +4,9 @@ extends Control
 ##
 ## As the player drops blocks and scores points, the characters animate and react.
 
+## emitted when the customer changes, either because of a broken combo or because the level restarts
+signal customer_changed
+
 const MOUTH_POSITIONS_BY_ORIENTATION := {
 	Creatures.SOUTHEAST: Vector2(18, -22),
 	Creatures.SOUTHWEST: Vector2(-11, -22),
@@ -11,8 +14,7 @@ const MOUTH_POSITIONS_BY_ORIENTATION := {
 	Creatures.NORTHEAST: Vector2(28, -26),
 }
 
-## emitted when the customer changes, either because of a broken combo or because the level restarts
-signal customer_changed
+const SWOOP_DURATION := 0.8
 
 ## virtual property; value is only exposed through getters/setters
 var current_creature_index: int setget set_current_creature_index, get_current_creature_index
@@ -20,11 +22,22 @@ var current_creature_index: int setget set_current_creature_index, get_current_c
 ## bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
 
+## offscreen/onscreen positions for the customer and chef bubbles, used when swooping them in at the start of a level
+var _customer_onscreen_rect_position: Vector2
+var _customer_offscreen_rect_position: Vector2
+var _chef_onscreen_rect_position: Vector2
+var _chef_offscreen_rect_position: Vector2
+
+onready var _chef := $Chef
+onready var _chef_nametag_panel := $Chef/Nametag/Panel
+
+onready var _customer := $Customer
 onready var _customer_nametag_panel := $Customer/Nametag/Panel
 onready var _customer_view_viewport := $Customer/View/Viewport
 onready var _customer_view := $Customer/View
-onready var _chef_nametag_panel := $Chef/Nametag/Panel
+
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
+onready var _swoop_tween: Tween = $SwoopTween
 onready var _hello_timer := $HelloTimer
 
 func _ready() -> void:
@@ -44,6 +57,40 @@ func _ready() -> void:
 		customer.connect("dna_loaded", self, "_on_Customer_dna_loaded", [customer])
 	_refresh_chef_name()
 	_refresh_customer_name()
+	
+	_reset_bubbles_offscreen()
+
+
+## Moves the chef/customer bubbles offscreen, recording their position for later
+##
+## We record their current position and relocate them offscreen. The bubbles are tweened onscreen later by an
+## AnimationPlayer.
+func _reset_bubbles_offscreen() -> void:
+	_chef_onscreen_rect_position = _chef.rect_position
+	_chef_offscreen_rect_position = _chef_onscreen_rect_position + Vector2(2 * _chef.rect_size.x, 0)
+	_chef.rect_position = _chef_offscreen_rect_position
+	_chef.modulate = Color.transparent
+	
+	_customer_onscreen_rect_position = _customer.rect_position
+	_customer_offscreen_rect_position = _customer_onscreen_rect_position - Vector2(1.5 * _customer.rect_size.x, 0)
+	_customer.rect_position = _customer_offscreen_rect_position
+	_customer.modulate = Color.transparent
+
+
+func swoop_chef_bubble_onscreen() -> void:
+	_swoop_bubble(_chef, true)
+
+
+func swoop_customer_bubble_onscreen() -> void:
+	_swoop_bubble(_customer, true)
+
+
+func swoop_chef_bubble_offscreen() -> void:
+	_swoop_bubble(_chef, false)
+
+
+func swoop_customer_bubble_offscreen() -> void:
+	_swoop_bubble(_customer, false)
 
 
 ## Pans the camera to a new creature. This also changes which creature will be fed.
@@ -128,6 +175,24 @@ func briefly_suppress_sfx(duration: float = 1.0) -> void:
 	for customer in get_customers():
 		customer.briefly_suppress_sfx(duration)
 	_restaurant_viewport_scene.briefly_suppress_sfx(duration)
+
+
+func _swoop_bubble(bubble: Control, onscreen: bool) -> void:
+	_swoop_tween.remove(bubble, "modulate")
+	_swoop_tween.remove(bubble, "rect_position")
+	
+	var target_pos: Vector2
+	if bubble == _chef:
+		target_pos = _chef_onscreen_rect_position if onscreen else _chef_offscreen_rect_position
+	elif bubble == _customer:
+		target_pos = _customer_onscreen_rect_position if onscreen else _customer_offscreen_rect_position
+	var target_opacity := Color.white if onscreen else Color.transparent
+	
+	_swoop_tween.interpolate_property(bubble, "modulate", bubble.modulate, target_opacity,
+			SWOOP_DURATION)
+	_swoop_tween.interpolate_property(bubble, "rect_position", bubble.rect_position, target_pos,
+			SWOOP_DURATION, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	_swoop_tween.start()
 
 
 func _refresh_customer_name() -> void:
