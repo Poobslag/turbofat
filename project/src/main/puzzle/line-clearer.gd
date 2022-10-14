@@ -39,8 +39,9 @@ var lines_being_cleared := []
 var lines_being_erased := []
 var lines_being_deleted := []
 
-## Lines currently being deleted in preparation for firing a trigger. Clearing a line can cause new lines to be
+## Lines currently being cleared/deleted in preparation for firing a trigger. Clearing a line can cause new lines to be
 ## inserted, which needs to then adjust the lines emitted by the signal.
+var lines_being_cleared_during_trigger := []
 var lines_being_deleted_during_trigger := []
 
 ## remaining frames to wait for erasing the current lines
@@ -294,6 +295,7 @@ func schedule_finish_line_clears() -> void:
 func reset() -> void:
 	_topping_out = false
 	lines_being_cleared.clear()
+	lines_being_cleared_during_trigger.clear()
 	lines_being_erased.clear()
 	lines_being_deleted.clear()
 	lines_being_deleted_during_trigger.clear()
@@ -327,7 +329,7 @@ func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 
 
 ## Deletes lines from the playfield, dropping all lines above them.
-func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
+func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
 		old_lines_being_deleted: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
@@ -349,6 +351,7 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 	
 	# Cache the lines being deleted. Clearing a line can cause new lines to be inserted, which needs to then adjust
 	# the lines emitted by the signal. Otherwise we have bugs where pickups get misaligned.
+	lines_being_cleared_during_trigger = old_lines_being_cleared
 	lines_being_deleted_during_trigger = old_lines_being_deleted
 	
 	if old_lines_being_deleted:
@@ -360,21 +363,17 @@ func _delete_lines(_old_lines_being_cleared: Array, _old_lines_being_erased: Arr
 			var line_being_deleted: int = lines_being_deleted_during_trigger[i]
 			_tile_map.erase_row(line_being_deleted)
 			
-			if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
-				# If we're doing a 'refresh on top out', don't run triggers. Any effects will interfere with the
-				# refresh.
-				pass
-			else:
+			if line_being_deleted in lines_being_cleared_during_trigger:
 				# Some levels insert lines in response to lines being deleted. It is important that lines these triggers emit
 				# after lines are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
 				# or the newly inserted lines could be deleted as a part of a big line clear.
 				_total_cleared_line_count += 1
 				var event_params := {"y": line_being_deleted, "n": _total_cleared_line_count}
 				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, event_params)
-				
-				# reassign 'line_being_deleted' in case lines_being_deleted_during_trigger was modified during the
-				# triggers, like when inserting a line
-				line_being_deleted = lines_being_deleted_during_trigger[i]
+			
+			# reassign 'line_being_deleted' in case lines_being_deleted_during_trigger was modified during the
+			# triggers, like when inserting a line
+			line_being_deleted = lines_being_deleted_during_trigger[i]
 			
 			_tile_map.shift_rows(line_being_deleted - 1, Vector2.DOWN)
 			
@@ -451,6 +450,7 @@ func _line_arrays() -> Array:
 		lines_being_cleared,
 		lines_being_erased,
 		lines_being_deleted,
+		lines_being_cleared_during_trigger,
 		lines_being_deleted_during_trigger,
 	]
 
