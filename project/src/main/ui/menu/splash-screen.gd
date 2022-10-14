@@ -19,7 +19,7 @@ func _exit_tree() -> void:
 
 
 func _launch_tutorial() -> void:
-	PlayerData.customer_queue.clear()
+	PlayerData.customer_queue.reset()
 	CurrentLevel.set_launched_level(OtherLevelLibrary.BEGINNER_TUTORIAL)
 	CurrentLevel.push_level_trail()
 

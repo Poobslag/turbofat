@@ -64,7 +64,7 @@ func pop_standard_customer() -> CreatureDef:
 ## Empties the queue of creatures who will show up at the start of the next puzzle.
 ##
 ## Also rotates the standard customers so the same creatures don't show up over and over.
-func clear() -> void:
+func reset() -> void:
 	priority_queue = []
 	priority_index = 0
 	reset_standard_customer_queue()

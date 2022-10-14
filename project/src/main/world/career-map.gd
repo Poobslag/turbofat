@@ -385,12 +385,12 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	var preroll_key: String = chat_key_pair.preroll
 	var postroll_key: String = chat_key_pair.postroll
 	
-	CutsceneQueue.reset()
+	PlayerData.cutscene_queue.reset()
 	
 	if preroll_key:
-		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
+		PlayerData.cutscene_queue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
 	
-	CutsceneQueue.enqueue_level({
+	PlayerData.cutscene_queue.enqueue_level({
 		"level_id": level_settings.id,
 		"piece_speed": _piece_speed,
 		"chef_id": CurrentLevel.chef_id,
@@ -399,18 +399,18 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	})
 	
 	if postroll_key:
-		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
+		PlayerData.cutscene_queue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
 	
 	if preroll_key or postroll_key:
 		match chat_key_pair.type:
 			ChatKeyPair.INTRO_LEVEL:
-				CutsceneQueue.set_cutscene_flag("intro_level")
+				PlayerData.cutscene_queue.set_cutscene_flag("intro_level")
 			ChatKeyPair.BOSS_LEVEL:
-				CutsceneQueue.set_cutscene_flag("boss_level")
+				PlayerData.cutscene_queue.set_cutscene_flag("boss_level")
 	
 	if _should_play_epilogue(chat_key_pair):
 		var region := PlayerData.career.current_region()
-		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
+		PlayerData.cutscene_queue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
 	
 	PlayerData.career.push_career_trail()
 
