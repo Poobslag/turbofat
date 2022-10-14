@@ -59,6 +59,9 @@ const DELAY_LONG := 3.30
 
 const READY_DURATION := 1.4
 
+## Number of points deducted from the player's score if they top out.
+const TOP_OUT_PENALTY := 100
+
 ## the current input frame for recording/replaying the player's inputs. a value of '-1' indicates that no input should
 ## be recorded or replayed yet.
 var input_frame := -1
@@ -130,9 +133,11 @@ func set_speed_index(new_speed_index: int) -> void:
 
 func top_out() -> void:
 	level_performance.top_out_count += 1
+	level_performance.score = max(level_performance.score - TOP_OUT_PENALTY, 0)
 	if level_performance.top_out_count >= CurrentLevel.settings.lose_condition.top_out:
 		make_player_lose()
 	emit_signal("topped_out")
+	emit_signal("score_changed")
 
 
 func make_player_lose() -> void:

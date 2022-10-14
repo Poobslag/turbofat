@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/demo/puzzle/score-demo.gd" type="Script" id=2]
+
+[node name="ScoreDemo" type="Node"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -135.0
+margin_top = -47.0
+margin_right = 135.0
+margin_bottom = 47.0
+color = Color( 0.458824, 0.25098, 0.501961, 1 )
+
+[node name="Score" parent="ColorRect" instance=ExtResource( 1 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -37.0
+margin_right = 125.0
+margin_bottom = 37.0

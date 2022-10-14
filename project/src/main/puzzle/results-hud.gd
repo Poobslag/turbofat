@@ -68,44 +68,34 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 
 func _append_grade_information(rank_result: RankResult, _customer_scores: Array, \
 		finish_condition_type: int, text: String) -> String:
-	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
-	var topped_out := ""
-	if rank_result.topped_out() and CurrentLevel.settings.rank.top_out_penalty > 0:
-		topped_out = "?"
-	
 	text += "\n"
 	
 	if _speed_shown(finish_condition_type):
 		text += "|||||" + tr("Speed: %d") % round(rank_result.speed * 200 / 60)
-		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
 		text += "\n"
 	
 	if _pieces_shown(finish_condition_type):
 		text += "|||||" + tr("Pieces: %d") % rank_result.pieces
-		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
 		text += "\n"
 	
 	if _lines_shown(finish_condition_type):
 		text += "|||||" + tr("Lines: %d") % rank_result.lines
-		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
 		text += "\n"
 	
 	if _boxes_shown():
 		text += "|||||" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
-		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
 		text += "\n"
 	
 	if _combos_shown():
 		text += "|||||" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
-		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
 		text += "\n"
@@ -120,7 +110,6 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 			shown_pickup_score = float(rank_result.pickup_score)
 		
 		text += "|||||" + tr("Pickups: %d") % shown_pickup_score
-		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.pickup_score_rank)
 		text += "\n"
@@ -130,7 +119,7 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 		text += "||||||||||"
 		if finish_condition_type == Milestone.SCORE:
 			var duration := StringUtils.format_duration(rank_result.seconds)
-			text += "%s%s (%s)\n" % [duration, topped_out, RankCalculator.grade(rank_result.seconds_rank)]
+			text += "%s (%s)\n" % [duration, RankCalculator.grade(rank_result.seconds_rank)]
 		else:
 			text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
 	return text
