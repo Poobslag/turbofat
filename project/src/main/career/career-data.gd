@@ -15,6 +15,14 @@ signal distance_travelled_changed
 ## mid-scene, and really only happens when using cheat codes.
 signal hours_passed_changed
 
+## Whether the career map should show the player's progress.
+enum ShowProgress {
+	NONE, # Skip the progress board
+	STATIC, # Display the progress board to show where the player is
+	ANIMATED, # Animate the progress board to show the player advancing
+	FOREVER, # Leave the progress board up forever (for demos/debugging)
+}
+
 ## Chat key root for non-region-specific cutscenes
 const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
 
@@ -49,6 +57,21 @@ const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("babab
 # Daily step thresholds to trigger positive feedback.
 const DAILY_STEPS_GOOD := 25
 const DAILY_STEPS_OK := 8
+
+## time to show when the number of levels the player has played is an unexpected value
+var invalid_time_of_day := tr("?:?? zm")
+
+## key: (int) corresonding to the number of levels the player has played
+## value: (String) human-readable time of day
+var time_of_day_by_hours := {
+	0: tr("11:00 am"),
+	1: tr("12:10 pm"),
+	2: tr("1:20 pm"),
+	3: tr("6:30 pm"),
+	4: tr("7:40 pm"),
+	5: tr("8:50 pm"),
+	6: tr("10:00 pm"),
+}
 
 ## The number of steps the player couldn't take because they were stopped by a boss/intro level.
 var banked_steps := 0
@@ -97,6 +120,9 @@ var remain_in_region := false
 
 ## 'true' if the player skipped or gave up on the previous level, instead of finishing it or topping out.
 var skipped_previous_level := false
+
+## Whether the career map should show the player's progress.
+var show_progress: int = ShowProgress.STATIC
 
 ## periodically increments the 'daily_seconds_played' value
 var _daily_seconds_played_timer: Timer

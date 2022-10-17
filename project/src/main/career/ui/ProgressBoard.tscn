@@ -1,0 +1,664 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/main/career/ui/map/landmark-forest.png" type="Texture" id=2]
+[ext_resource path="res://src/main/career/ui/progress-board-title.gd" type="Script" id=4]
+[ext_resource path="res://src/main/career/ui/progress-board-clock-visuals.gd" type="Script" id=5]
+[ext_resource path="res://src/main/career/ui/progress-board-player.gd" type="Script" id=6]
+[ext_resource path="res://src/main/career/ui/progress-board-clock.gd" type="Script" id=7]
+[ext_resource path="res://src/main/career/ui/ProgressBoardTrail.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=9]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/main/career/ui/map/player-sheet.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/career/ui/progress-board-map-lemon.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/career/ui/progress-board.png" type="Texture" id=13]
+[ext_resource path="res://src/main/ui/theme/chalkboard-36.theme" type="Theme" id=14]
+[ext_resource path="res://src/main/career/ui/progress-board.gd" type="Script" id=15]
+[ext_resource path="res://assets/main/career/ui/progress-board-disappear.wav" type="AudioStream" id=16]
+
+[sub_resource type="Curve2D" id=28]
+_data = {
+"points": PoolVector2Array( -33.521, -11.6283, 33.521, 11.6283, 94.3464, 162.697, -25.4344, 5.80531, 25.4344, -5.80531, 195.012, 172.469, -29.7682, -4.73003, 29.7682, 4.73003, 288.659, 155.795, -13.2634, -17.4669, 13.2634, 17.4669, 365.102, 196.407, -22.5294, -12.8969, 22.5294, 12.8969, 426.208, 252.474, -26.8952, 5.45759, 26.8952, -5.45759, 525.742, 266.963 )
+}
+
+[sub_resource type="ShaderMaterial" id=29]
+shader = ExtResource( 9 )
+shader_param/width = 8.0
+shader_param/white = Color( 0.811765, 0.772549, 0.415686, 1 )
+shader_param/black = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+shader_param/sample_count = 24
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "alone"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "default"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="DynamicFont" id=26]
+size = 36
+outline_size = 5
+outline_color = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=30]
+size = 28
+outline_size = 3
+outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=34]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Clock:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 422, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Clock:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChalkboardRegion:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 171.8, 66.396 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ChalkboardRegion:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChalkboardRegion:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Backdrop:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Backdrop:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Clock:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "hide"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Clock:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 422, 8 ), Vector2( 822, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Clock:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChalkboardRegion:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 171.8, 66.396 ), Vector2( 521.8, 66.396 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ChalkboardRegion:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChalkboardRegion:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.02, 0.98 ), Vector2( 1.02, 0.98 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Backdrop:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.033, 0.165 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Backdrop:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("LevelChangeSound")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Clock:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.033, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ChalkboardRegion:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.033, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "show"
+length = 0.8
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Clock:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 322, 8 ), Vector2( 322, 8 ), Vector2( 422, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Clock:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChalkboardRegion:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 21.8, 66.396 ), Vector2( 21.8, 66.396 ), Vector2( 171.8, 66.396 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ChalkboardRegion:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChalkboardRegion:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667, 0.433333, 0.566667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Backdrop:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Backdrop:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("LevelChangeSound")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Clock:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.233333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ChalkboardRegion:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.231 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="ProgressBoard" type="CanvasLayer"]
+script = ExtResource( 15 )
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.752941 )
+
+[node name="ChalkboardRegion" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.2
+margin_top = -233.604
+margin_right = 340.203
+margin_bottom = 233.604
+rect_pivot_offset = Vector2( 340.2, 233.604 )
+mouse_filter = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Chalkboard" type="TextureRect" parent="ChalkboardRegion"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 1
+
+[node name="Map" type="TextureRect" parent="ChalkboardRegion"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 12 )
+expand = true
+
+[node name="Path2D" type="Path2D" parent="ChalkboardRegion/Map"]
+curve = SubResource( 28 )
+
+[node name="Trail" parent="ChalkboardRegion" instance=ExtResource( 8 )]
+path2d_path = NodePath("../Map/Path2D")
+
+[node name="Player" type="Control" parent="ChalkboardRegion"]
+margin_left = 93.4843
+margin_top = 161.542
+margin_right = 93.4843
+margin_bottom = 161.542
+script = ExtResource( 6 )
+trail_path = NodePath("../Trail")
+
+[node name="PlayerSprite" type="Sprite" parent="ChalkboardRegion/Player"]
+material = SubResource( 29 )
+position = Vector2( 0, -24 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 11 )
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ChalkboardRegion/Player/PlayerSprite"]
+autoplay = "default"
+anims/RESET = SubResource( 23 )
+anims/alone = SubResource( 24 )
+anims/default = SubResource( 25 )
+
+[node name="Label" type="Label" parent="ChalkboardRegion/Player"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.0
+margin_top = -92.0
+margin_right = 25.0
+margin_bottom = -42.0
+rect_min_size = Vector2( 50, 50 )
+custom_colors/font_color = Color( 0.811765, 0.803922, 0.803922, 1 )
+custom_fonts/font = SubResource( 26 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Shadow" type="Polygon2D" parent="ChalkboardRegion"]
+color = Color( 0, 0, 0, 0.392157 )
+antialiased = true
+polygon = PoolVector2Array( 16, 16, 21, 16, 21, 446, 665, 446, 665, 451, 16, 451 )
+
+[node name="Title" type="Control" parent="ChalkboardRegion"]
+modulate = Color( 1, 0.5, 0.945313, 1 )
+anchor_right = 1.0
+margin_left = 30.0
+margin_top = 21.7091
+margin_right = -30.0
+margin_bottom = 70.7091
+script = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChalkboardRegion/Title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control1" type="Control" parent="ChalkboardRegion/Title/HBoxContainer"]
+margin_right = 189.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ChalkboardRegion/Title/HBoxContainer/Control1"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.5
+margin_top = -25.0
+margin_right = 32.5
+margin_bottom = 25.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="ChalkboardRegion/Title/HBoxContainer"]
+margin_left = 193.0
+margin_right = 426.0
+margin_bottom = 50.0
+theme = ExtResource( 14 )
+text = "Lemony Thickets"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="ChalkboardRegion/Title/HBoxContainer"]
+margin_left = 430.0
+margin_right = 620.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ChalkboardRegion/Title/HBoxContainer/Control2"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.5
+margin_top = -25.0
+margin_right = 32.5
+margin_bottom = 25.0
+rect_min_size = Vector2( 65, 50 )
+texture = ExtResource( 2 )
+expand = true
+flip_h = true
+
+[node name="Clock" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -90.0
+margin_top = 8.0
+margin_right = 90.0032
+margin_bottom = 58.0
+mouse_filter = 2
+script = ExtResource( 7 )
+
+[node name="VisualsHolder" type="Control" parent="Clock"]
+margin_right = 50.0
+margin_bottom = 50.0
+
+[node name="Visuals" type="Node2D" parent="Clock/VisualsHolder"]
+position = Vector2( 25, 25 )
+script = ExtResource( 5 )
+radius = 22.0
+line_width = 3.4
+minute_hand_length = 15.0
+hour_hand_length = 10.0
+filled_color = Color( 0.894118, 0.709804, 0.584314, 1 )
+line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[node name="MinuteHand" type="Line2D" parent="Clock/VisualsHolder/Visuals"]
+points = PoolVector2Array( 0, 0, -6.55671e-07, -15 )
+width = 3.4
+default_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="HourHand" type="Line2D" parent="Clock/VisualsHolder/Visuals"]
+points = PoolVector2Array( 0, 0, -4.37114e-07, -10 )
+width = 3.4
+default_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Label" type="Label" parent="Clock"]
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_right = 109.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 30 )
+text = "10:15 am"
+valign = 1
+
+[node name="LevelChangeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -8.0
+bus = "Sound Bus"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 34 )
+anims/hide = SubResource( 36 )
+anims/show = SubResource( 31 )
+
+[node name="HideTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="visibility_changed" from="Backdrop" to="." method="_on_Backdrop_visibility_changed"]
+[connection signal="timeout" from="HideTimer" to="." method="_on_HideTimer_timeout"]

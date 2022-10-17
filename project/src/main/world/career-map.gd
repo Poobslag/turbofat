@@ -52,7 +52,10 @@ func _ready() -> void:
 	
 	if not redirected:
 		_refresh_ui()
-		_level_select_control.focus_button()
+		if PlayerData.career.show_progress == CareerData.ShowProgress.NONE:
+			# Ordinarily, we focus the level button after the progress board vanishes. But if the progress board is not
+			# being shown, we focus the button right away.
+			_level_select_control.focus_button()
 
 
 func _exit_tree() -> void:
@@ -418,5 +421,10 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 func _on_CareerData_distance_travelled_changed() -> void:
 	_refresh_ui()
 	
-	# restore focus to the level select buttons for controller players
+	# Restore focus to the level select buttons for controller players. This is necessary for the 'MOVEME' cheat which
+	# regenerates these buttons.
+	_level_select_control.focus_button()
+
+
+func _on_ProgressBoardHolder_progress_board_hidden() -> void:
 	_level_select_control.focus_button()

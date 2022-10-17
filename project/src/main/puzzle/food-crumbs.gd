@@ -12,7 +12,6 @@ onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
 ## hiccup, and it's better for this to happen on load rather than during gameplay.
 var _crumb_cluster_pool := []
 
-## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for customer_obj in _restaurant_view.get_customers():
 		var customer: Creature = customer_obj

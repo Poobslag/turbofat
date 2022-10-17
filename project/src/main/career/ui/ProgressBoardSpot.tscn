@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=1]
+[ext_resource path="res://assets/main/career/ui/chalkboard-spot-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/career/ui/progress-board-spot.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=29]
+shader = ExtResource( 1 )
+shader_param/width = 8.0
+shader_param/white = Color( 0.811765, 0.772549, 0.415686, 1 )
+shader_param/black = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+shader_param/sample_count = 24
+
+[node name="Spot" type="Control"]
+script = ExtResource( 3 )
+
+[node name="Hole" type="ColorRect" parent="."]
+visible = false
+margin_left = -9.0
+margin_top = -6.0
+margin_right = 9.0
+margin_bottom = 6.0
+color = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+
+[node name="SpotSprite" type="Sprite" parent="."]
+material = SubResource( 29 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 4

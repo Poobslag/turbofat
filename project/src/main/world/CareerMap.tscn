@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/career/CareerRewinder.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/world/environment/EmptyEnvironment.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/career/ui/ProgressBoard.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=11]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=12]
@@ -90,6 +91,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 GradeLabelScene = ExtResource( 3 )
+
+[node name="ProgressBoardHolder" parent="." instance=ExtResource( 9 )]
+visible = false
 
 [node name="Ui" type="CanvasLayer" parent="."]
 script = ExtResource( 45 )
@@ -233,6 +237,9 @@ cheat_code_detector_path = NodePath("../Ui/CheatCodeDetector")
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
+[connection signal="progress_board_hidden" from="ProgressBoardHolder" to="." method="_on_ProgressBoardHolder_progress_board_hidden"]
+[connection signal="progress_board_hidden" from="ProgressBoardHolder" to="Ui" method="_on_ProgressBoardHolder_progress_board_hidden"]
+[connection signal="progress_board_shown" from="ProgressBoardHolder" to="Ui" method="_on_ProgressBoardHolder_progress_board_shown"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="Ui" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="World" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]

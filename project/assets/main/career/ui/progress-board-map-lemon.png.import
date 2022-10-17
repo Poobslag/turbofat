@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chalkboard-customer-0.png-c861ae78575ece619183235d5a785c75.stex"
+path="res://.import/progress-board-map-lemon.png-e7f09f79c931834a9cc3b8a77af837f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/career/ui/chalkboard-customer-0.png"
-dest_files=[ "res://.import/chalkboard-customer-0.png-c861ae78575ece619183235d5a785c75.stex" ]
+source_file="res://assets/main/career/ui/progress-board-map-lemon.png"
+dest_files=[ "res://.import/progress-board-map-lemon.png-e7f09f79c931834a9cc3b8a77af837f2.stex" ]
 
 [params]
 
