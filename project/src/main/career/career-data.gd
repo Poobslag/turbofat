@@ -28,7 +28,7 @@ const MAX_DAY := 999999
 const MAX_DISTANCE_TRAVELLED := 999999
 
 ## The maximum number of consecutive levels the player can play in one career session.
-const HOURS_PER_CAREER_DAY := 8
+const HOURS_PER_CAREER_DAY := 6
 
 ## Array of dictionaries containing milestone metadata, including the necessary rank, the distance the player will
 ## travel, and the UI color.
@@ -192,8 +192,8 @@ func to_json_dict() -> Dictionary:
 func career_interlude_hours() -> Array:
 	var result: Array
 	if remain_in_region:
-		# When replaying an already-cleared region, the 3rd, 6th and 8th levels include a cutscene
-		result = [2, 5, 7]
+		# When replaying an already-cleared region, the 2nd, 4th and 6th levels include a cutscene
+		result = [1, 3, 5]
 	else:
 		# Normally, the 3rd and 6th levels include a cutscene
 		result = [2, 5]

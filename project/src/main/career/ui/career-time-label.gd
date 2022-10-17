@@ -9,15 +9,13 @@ var _invalid_time_of_day := tr("?:?? zm")
 ## key: (int) corresonding to the number of levels the player has played
 ## value: (String) human-readable time of day
 var _time_of_day_by_hours := {
-	0: tr("8:00 am"),
-	1: tr("9:10 am"),
-	2: tr("10:15 am"),
-	3: tr("11:20 am"),
-	4: tr("12:30 pm"),
-	5: tr("1:40 pm"),
-	6: tr("2:45 pm"),
-	7: tr("3:50 pm"),
-	8: tr("5:00 pm"),
+	0: tr("11:00 am"),
+	1: tr("12:10 am"),
+	2: tr("1:20 am"),
+	3: tr("6:30 pm"),
+	4: tr("7:40 pm"),
+	5: tr("8:50 pm"),
+	6: tr("10:00 pm"),
 }
 
 onready var _label := $Label
