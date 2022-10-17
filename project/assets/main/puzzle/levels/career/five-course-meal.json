@@ -19,7 +19,8 @@
   ],
   "rank": [
     "box_factor 1.80",
-    "combo_factor 0.29"
+    "combo_factor 0.29",
+    "hide_combos_rank"
   ],
   "tiles": {
     "start": [
