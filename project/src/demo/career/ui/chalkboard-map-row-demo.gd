@@ -2,6 +2,7 @@ extends Node
 ## Demonstrates the map which shows up after the player finishes career mode.
 ##
 ## Keys:
+## 	[1]: Toggle the sensei
 ## 	[Q,W,E,R,T,Y,U]: Toggle the number of circles on the left side of the map
 ## 	[brace keys]: Increase/decrease the number of landmarks
 ## 	[A,S,D,F,G,H]: Switch between different landmarks
@@ -47,6 +48,16 @@ func _random_landmark_type() -> int:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
+		KEY_1:
+			if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
+				PlayerData.career.current_region().flags.erase(CareerRegion.FLAG_NO_SENSEI)
+			else:
+				PlayerData.career.current_region().flags[CareerRegion.FLAG_NO_SENSEI] = true
+			
+			# artificially force a refresh
+			_map_row.player_distance += 1
+			_map_row.player_distance -= 1
+		
 		KEY_Q: _map_row.set_landmark_type(0, Landmark.NONE)
 		KEY_W: _map_row.set_landmark_type(0, Landmark.CIRCLES_1)
 		KEY_E: _map_row.set_landmark_type(0, Landmark.CIRCLES_2)
@@ -66,6 +77,7 @@ func _input(event: InputEvent) -> void:
 		KEY_F: _increment_landmark_type(4)
 		KEY_G: _increment_landmark_type(5)
 		KEY_H: _increment_landmark_type(6)
+			
 		KEY_MINUS: _map_row.player_distance -= 10 if Input.is_key_pressed(KEY_SHIFT) else 1
 		KEY_EQUAL: _map_row.player_distance += 10 if Input.is_key_pressed(KEY_SHIFT) else 1
 

@@ -14,6 +14,7 @@ onready var _dot_sprite: Sprite = $DotSprite
 
 ## Shows a player graphic above the path.
 onready var _player_sprite: Sprite = $PlayerSprite
+onready var _player_animation_player: AnimationPlayer = $PlayerSprite/AnimationPlayer
 
 ## Shows a line connecting the player's dot to the distance label.
 onready var _line: Line2D = $Line2D
@@ -39,6 +40,11 @@ func _refresh() -> void:
 	var right_landmark_index := _right_landmark_index(landmarks)
 	var landmark_endpoints := LandmarkLines.landmark_line_points(landmarks, right_landmark_index)
 	var progress_percent := _progress_percent(landmarks, right_landmark_index)
+	
+	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
+		_player_animation_player.play("alone")
+	else:
+		_player_animation_player.play("default")
 	
 	# update the position of the player components
 	_reposition_nodes(landmark_endpoints, progress_percent)

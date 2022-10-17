@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture" id=2]
 [ext_resource path="res://src/demo/career/ui/chalkboard-map-row-demo.gd" type="Script" id=3]
 
-[node name="Node" type="Node"]
+[node name="Demo" type="Node"]
 script = ExtResource( 3 )
 
 [node name="Chalkboard" type="TextureRect" parent="."]
