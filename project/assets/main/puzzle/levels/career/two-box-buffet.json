@@ -18,7 +18,8 @@
   "rank": [
     "box_factor 0.67",
     "combo_factor 0.94",
-    "master_pickup_score_per_line 4.72"
+    "master_pickup_score_per_line 4.72",
+    "show_pickups_rank"
   ],
   "tiles": {
     "start": [

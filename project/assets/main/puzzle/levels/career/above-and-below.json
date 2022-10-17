@@ -12,7 +12,8 @@
   ],
   "rank" : [
     "extra_seconds_per_piece 0.40",
-    "master_pickup_score_per_line 23.91"
+    "master_pickup_score_per_line 23.91",
+    "show_pickups_rank"
   ],
   "triggers": [
     {

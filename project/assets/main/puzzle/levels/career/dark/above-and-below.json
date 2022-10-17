@@ -14,7 +14,8 @@
     "extra_seconds_per_piece 0.40",
     "box_factor 0.71",
     "combo_factor 0.45",
-    "master_pickup_score_per_line 10.77"
+    "master_pickup_score_per_line 10.77",
+    "show_pickups_rank"
   ],
   "triggers": [
     {

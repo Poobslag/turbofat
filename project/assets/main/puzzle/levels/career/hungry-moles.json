@@ -10,7 +10,9 @@
   "rank": [
     "extra_seconds_per_piece 0.20",
     "box_factor 0.00",
-    "master_pickup_score_per_line 15.41"
+    "master_pickup_score_per_line 15.41",
+    "hide_boxes_rank",
+    "show_pickups_rank"
   ],
   "score": [
     "cake_all 0",

@@ -15,7 +15,8 @@
     "extra_seconds_per_piece 0.64",
     "box_factor 0.73",
     "combo_factor 0.83",
-    "master_pickup_score_per_line 14.88"
+    "master_pickup_score_per_line 14.88",
+    "show_pickups_rank"
   ],
   "tiles": {
     "start": [

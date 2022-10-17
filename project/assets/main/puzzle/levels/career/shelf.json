@@ -14,7 +14,8 @@
   "rank": [
     "box_factor 0.73",
     "combo_factor 0.91",
-    "master_pickup_score_per_line 4.65"
+    "master_pickup_score_per_line 4.65",
+    "show_pickups_rank"
   ],
   "triggers": [
     {
