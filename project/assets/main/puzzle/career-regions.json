@@ -82,7 +82,7 @@
     {
       "id": "lemon_2",
       "name": "Welcome to Turbo Fat",
-      "start": 10,
+      "start": 8,
       "description": "We're not done yet, there's a heckton of work which goes into setting up a restaurant! ...Oh wait, there isn't? Never mind then!",
       "icon": "forest",
       "overworld_environment": "lemon_2",
@@ -159,7 +159,7 @@
     {
       "id": "poki",
       "name": "Poki Desert",
-      "start": 25,
+      "start": 20,
       "icon": "cactus",
       "piece_speed": "1-3",
       "boss_level": {
@@ -204,7 +204,7 @@
     {
       "id": "sand",
       "name": "Cannoli Sandbar",
-      "start": 40,
+      "start": 32,
       "icon": "island",
       "piece_speed": "2-5",
       "boss_level": {
@@ -261,7 +261,7 @@
     {
       "id": "marsh",
       "name": "Merrymellow Marsh",
-      "start": 60,
+      "start": 46,
       "description": "Meet the quirky chefs at the Merrymellow Marsh location and help them attract more customers. You can do it!",
       "icon": "skull",
       "overworld_environment": "marsh",
@@ -347,7 +347,7 @@
     },
     {
       "name": "Vega Churn Twelve",
-      "start": 80,
+      "start": 62,
       "icon": "gear",
       "piece_speed": "5-8",
       "boss_level": {
@@ -395,7 +395,7 @@
     {
       "id": "lava",
       "name": "Chocolava Canyon",
-      "start": 100,
+      "start": 80,
       "icon": "volcano",
       "piece_speed": "6-9",
       "boss_level": {
@@ -446,7 +446,7 @@
     {
       "id": "star",
       "name": "Starberry Mountain",
-      "start": 120,
+      "start": 100,
       "icon": "rainbow",
       "piece_speed": "A1-AD",
       "levels": [
