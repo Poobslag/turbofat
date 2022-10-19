@@ -10,8 +10,8 @@ var _invalid_time_of_day := tr("?:?? zm")
 ## value: (String) human-readable time of day
 var _time_of_day_by_hours := {
 	0: tr("11:00 am"),
-	1: tr("12:10 am"),
-	2: tr("1:20 am"),
+	1: tr("12:10 pm"),
+	2: tr("1:20 pm"),
 	3: tr("6:30 pm"),
 	4: tr("7:40 pm"),
 	5: tr("8:50 pm"),
