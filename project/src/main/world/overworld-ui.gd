@@ -181,6 +181,9 @@ func _on_ChatUi_chat_finished() -> void:
 	elif PlayerData.career.is_career_mode():
 		# launch the next scene in career mode after playing the cutscene
 		PlayerData.career.push_career_trail()
+		
+		# save data to record the cutscene as viewed
+		PlayerSave.schedule_save()
 	else:
 		push_warning("Unexpected state after chat finished: %s" % [Breadcrumb.trail])
 		SceneTransition.pop_trail()
