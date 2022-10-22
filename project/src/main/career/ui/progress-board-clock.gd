@@ -27,48 +27,128 @@ const HAND_POSITIONS_BY_HOURS := {
 var hours_passed := 0 setget set_hours_passed
 
 ## Digital text which shows the time using text like '8:50 pm'
-onready var _label := $Label
+onready var _label: Label = $Label
+
+onready var _tween := $Tween
 
 ## Analog clock which shows the time using an and hour and minute hand.
 onready var _visuals: ProgressBoardClockVisuals = $VisualsHolder/Visuals
+
+## Winding sound that plays as the clock's hands spin.
+onready var _clock_advance_sound := $ClockAdvanceSound
+
+## Bell sound that plays when the clock's hands stop spinning.
+onready var _clock_ring_sound := $ClockRingSound
 
 func _ready() -> void:
 	_refresh()
 
 
-func _refresh() -> void:
-	if not is_inside_tree():
-		return
-	
-	var hand_positions: Array = HAND_POSITIONS_BY_HOURS.get(PlayerData.career.hours_passed, INVALID_HAND_POSITIONS)
-	
-	# calculate minute hand position
-	_visuals.minutes = hand_positions[1]
-	
-	# calculate hour hand position, advancing it based on the minute hand position
-	var new_hours: float = hand_positions[0]
-	new_hours += _visuals.minutes / 60.0
-	_visuals.hours = new_hours
-	
-	# calculate how much of the clock is filled
-	var filled_percent: float
-	if hours_passed == CareerData.HOURS_PER_CAREER_DAY:
-		filled_percent = 1.0
-	else:
-		filled_percent = _visuals.minutes / 60.0
-	_visuals.filled_percent = filled_percent
-	
-	# update digital display
-	_label.text = PlayerData.career.time_of_day_by_hours.get(
-			PlayerData.career.hours_passed, PlayerData.career.invalid_time_of_day)
-
-
 ## Advance the clock for a single level.
-func advance() -> void:
-	set_hours_passed(hours_passed + 1)
+func play(new_hours_passed: int, duration: float) -> void:
+	_tween.remove_all()
+	
+	# Assign our underlying hours passed variable, but don't update the UI. the UI will be gradually animated to the
+	# new value.
+	var old_hours_passed := hours_passed
+	hours_passed = new_hours_passed
+	
+	# During animations, the minute hand is temporarily assigned something nonsensical like 7:80 for the sake of
+	# animating the clock forward. We reset the minute hand to avoid bugs where the clock might rewind backward from
+	# 7:80 to 7:30
+	var old_minute_hand_position := fmod(_visuals.minutes, 60)
+	
+	# Calculate the new minute hand position. When animating from 2:00 to 6:30, we don't want the minute hand spin 180
+	# degrees, we want it to spin  to spin around 1,620 degrees. To accomplish this, we set the minute hand position to
+	# something like 270.
+	var new_minute_hand_position := _minute_hand_position(new_hours_passed)
+	new_minute_hand_position += 60.0 * int(
+				_hour_hand_position(new_hours_passed, false) - _hour_hand_position(old_hours_passed, false))
+	
+	_tween.interpolate_property(_visuals, "minutes", old_minute_hand_position, new_minute_hand_position,
+			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
+	_tween.interpolate_property(_visuals, "hours", _visuals.hours, _hour_hand_position(new_hours_passed),
+			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
+	_tween.interpolate_property(_visuals, "filled_percent", _visuals.filled_percent, _filled_percent(new_hours_passed),
+			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
+	
+	_clock_advance_sound.play()
+	_tween.start()
 
 
 func set_hours_passed(new_hours_passed: int = 0) -> void:
 	hours_passed = new_hours_passed
 	
 	_refresh()
+
+
+## Calculates the desired minute hand position.
+##
+## Parameters:
+## 	'new_hours_passed': The number of hours passed in career mode.
+func _minute_hand_position(new_hours_passed: int) -> float:
+	var hand_positions: Array = HAND_POSITIONS_BY_HOURS.get(new_hours_passed, INVALID_HAND_POSITIONS)
+	return hand_positions[1]
+
+
+## Calculates the desired hour hand position, advancing it based on the minute hand position.
+##
+## Parameters:
+## 	'new_hours_passed': The number of hours passed in career mode.
+##
+## 	'advance_for_minutes': If true, the hour hand will be advanced based on the minute hand position, pointing between
+## 		two numbers on an analog clock. If false, the hour hand will ignore the minute hand, pointing directly to one
+## 		of the twelve numbers on an analog clock.
+func _hour_hand_position(new_hours_passed: int, advance_for_minutes: bool = true) -> float:
+	var hand_positions: Array = HAND_POSITIONS_BY_HOURS.get(new_hours_passed, INVALID_HAND_POSITIONS)
+	var new_hours: float = hand_positions[0]
+	if advance_for_minutes:
+		new_hours += _minute_hand_position(new_hours_passed) / 60.0
+	return new_hours
+
+
+## Calculates how much of the clock should be filled.
+##
+## Parameters:
+## 	'new_hours_passed': The number of hours passed in career mode.
+##
+## Returns:
+## 	A number in the range [0.0, 1.0] for how much of the clock should be filled.
+func _filled_percent(new_hours_passed: int) -> float:
+	var filled_percent: float
+	if new_hours_passed == CareerData.HOURS_PER_CAREER_DAY:
+		filled_percent = 1.0
+	else:
+		filled_percent = _minute_hand_position(new_hours_passed) / 60.0
+	return filled_percent
+
+
+## Calculates the text of the digital clock, like '12:30 pm'
+func _clock_text(new_hours_passed: int) -> String:
+	return PlayerData.career.time_of_day_by_hours.get(new_hours_passed, PlayerData.career.invalid_time_of_day)
+
+
+## Updates the clock visuals based on the number of hours passed.
+func _refresh() -> void:
+	if not is_inside_tree():
+		return
+	
+	_visuals.minutes = _minute_hand_position(hours_passed)
+	_visuals.hours = _hour_hand_position(hours_passed)
+	_visuals.filled_percent = _filled_percent(hours_passed)
+	
+	# update digital display
+	_label.text = _clock_text(hours_passed)
+
+
+## When the clock stops spinning forward we update all UI elements one last time.
+##
+## This is especially important for the digital display which does not animate.
+func _on_Tween_tween_all_completed() -> void:
+	_clock_advance_sound.stop()
+	var old_label_text := _label.text
+	_refresh()
+	
+	if old_label_text != _label.text:
+		_clock_ring_sound.play()
+		_label.flash()

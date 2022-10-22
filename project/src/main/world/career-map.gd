@@ -365,6 +365,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
 	PlayerData.career.distance_travelled -= distance_penalty
 	PlayerData.career.daily_steps -= distance_penalty
+	PlayerData.career.progress_board_start_distance_travelled = PlayerData.career.distance_travelled
 	_distance_label.suppress_distance_penalty()
 	
 	var level_settings: LevelSettings = _pickable_level_settings[level_index]
@@ -427,4 +428,8 @@ func _on_CareerData_distance_travelled_changed() -> void:
 
 
 func _on_ProgressBoardHolder_progress_board_hidden() -> void:
-	_level_select_control.focus_button()
+	if PlayerData.career.is_day_over():
+		# After the final level, we show a 'you win' screen.
+		SceneTransition.replace_trail("res://src/main/career/ui/CareerWin.tscn")
+	else:
+		_level_select_control.focus_button()

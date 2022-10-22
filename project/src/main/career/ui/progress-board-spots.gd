@@ -48,6 +48,34 @@ func get_spot(i: int) -> ProgressBoardSpot:
 	return get_child(i) as ProgressBoardSpot
 
 
+## Returns the position along the trail of the specified spot.
+##
+## This can be called with a whole number like '3' which will return the position of the fourth spot. It can also be
+## called with a decimal like '3.5' which will return a position half-way between the fourth and fifth spot.
+##
+## Parameters:
+## 	'i': The spot whose position should be returned. This can be a whole number like '3' to obtain a spot's exact
+## 		position, or a decimal like '3.5' to obtain a position between two spots.
+##
+## Returns:
+## 	The position of the specified spot, or a position between the two specified spots.
+func get_spot_position(i: float) -> Vector2:
+	if path2d == null:
+		return Vector2.ZERO
+	
+	var baked_points := path2d.curve.get_baked_points()
+	var baked_point_float_index: float = lerp(0, baked_points.size() - 1, \
+			inverse_lerp(0, spot_count - 1, i))
+	
+	# avoid baked_points OOB issues by bounding baked_point_float_index
+	baked_point_float_index = clamp(baked_point_float_index, 0, baked_points.size() - 1)
+	
+	return lerp(
+			baked_points[int(floor(baked_point_float_index))],
+			baked_points[int(ceil(baked_point_float_index))],
+			baked_point_float_index - int(baked_point_float_index))
+
+
 ## Deletes and recreates all spots on the trail, assigning their positions and frames.
 func _refresh_spots() -> void:
 	for child in get_children():
@@ -55,18 +83,9 @@ func _refresh_spots() -> void:
 	
 	# position children
 	if path2d != null:
-		var baked_points := path2d.curve.get_baked_points()
-		
 		for point_index in spot_count:
-			var baked_point_float_index: float = lerp(0, baked_points.size() - 1, \
-					inverse_lerp(0, spot_count - 1, point_index))
-			var baked_point: Vector2 = lerp(
-				baked_points[int(floor(baked_point_float_index))],
-				baked_points[int(ceil(baked_point_float_index))],
-				baked_point_float_index - int(baked_point_float_index))
-			
 			var spot: ProgressBoardSpot = spot_scene.instance()
-			spot.rect_position = baked_point
+			spot.rect_position = get_spot_position(point_index)
 			add_child(spot)
 	
 	# calculate minimum distance between two adjacent spots

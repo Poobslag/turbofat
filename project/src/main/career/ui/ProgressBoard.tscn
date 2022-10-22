@@ -1,6 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=35 format=2]
 
+[ext_resource path="res://src/main/career/ui/progress-board-clock-label.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/map/landmark-forest.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/career/ui/clock-advance.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/main/career/ui/progress-board-title.gd" type="Script" id=4]
 [ext_resource path="res://src/main/career/ui/progress-board-clock-visuals.gd" type="Script" id=5]
 [ext_resource path="res://src/main/career/ui/progress-board-player.gd" type="Script" id=6]
@@ -13,7 +15,9 @@
 [ext_resource path="res://assets/main/career/ui/progress-board.png" type="Texture" id=13]
 [ext_resource path="res://src/main/ui/theme/chalkboard-36.theme" type="Theme" id=14]
 [ext_resource path="res://src/main/career/ui/progress-board.gd" type="Script" id=15]
-[ext_resource path="res://assets/main/career/ui/progress-board-disappear.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/main/career/ui/progress-board-appear.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/main/career/ui/clock-ring.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/main/career/ui/progress-board-player-move.wav" type="AudioStream" id=18]
 
 [sub_resource type="Curve2D" id=28]
 _data = {
@@ -80,11 +84,66 @@ outline_size = 5
 outline_color = Color( 0.121569, 0.0941176, 0.0941176, 1 )
 font_data = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=30]
+[sub_resource type="DynamicFont" id=42]
 size = 28
 outline_size = 3
 outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 font_data = ExtResource( 10 )
+
+[sub_resource type="Gradient" id=37]
+offsets = PoolRealArray( 0, 0.695652 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 37 )
+
+[sub_resource type="ParticlesMaterial" id=38]
+flag_disable_z = true
+direction = Vector3( -100, -40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=39]
+flag_disable_z = true
+direction = Vector3( 100, -40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=40]
+flag_disable_z = true
+direction = Vector3( -100, 40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=41]
+flag_disable_z = true
+direction = Vector3( 100, 40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 4 )
 
 [sub_resource type="Animation" id=34]
 length = 0.001
@@ -196,10 +255,23 @@ tracks/8/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("ProgressBoardDisappear:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "hide"
-step = 0.0333333
+length = 0.166667
+step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Clock:rect_position")
 tracks/0/interp = 1
@@ -284,22 +356,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
-tracks/7/type = "audio"
-tracks/7/path = NodePath("LevelChangeSound")
+tracks/7/type = "value"
+tracks/7/path = NodePath("Clock:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 16 )
-} ],
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0.033, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Clock:visible")
+tracks/8/path = NodePath("ChalkboardRegion:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -310,22 +380,24 @@ tracks/8/keys = {
 "update": 1,
 "values": [ true, false ]
 }
-tracks/9/type = "value"
-tracks/9/path = NodePath("ChalkboardRegion:visible")
+tracks/9/type = "audio"
+tracks/9/path = NodePath("ProgressBoardDisappear")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0.033, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=31]
 resource_name = "show"
-length = 0.8
+length = 0.5
 step = 0.0333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Clock:rect_position")
@@ -382,7 +454,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667, 0.433333, 0.566667 ),
+"times": PoolRealArray( 0, 0.233333, 0.366667, 0.416667, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1, 1 ) ]
@@ -411,39 +483,43 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
-tracks/7/type = "audio"
-tracks/7/path = NodePath("LevelChangeSound")
+tracks/7/type = "value"
+tracks/7/path = NodePath("Clock:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"clips": [  ],
-"times": PoolRealArray(  )
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Clock:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
 "times": PoolRealArray( 0, 0.233333 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
-tracks/9/type = "value"
-tracks/9/path = NodePath("ChalkboardRegion:visible")
+tracks/8/type = "value"
+tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.231 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "audio"
+tracks/9/path = NodePath("ProgressBoardAppear")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 0.231 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0.166667 )
 }
 
 [node name="ProgressBoard" type="CanvasLayer"]
@@ -459,10 +535,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -340.2
-margin_top = -233.604
-margin_right = 340.203
-margin_bottom = 233.604
+margin_left = 171.8
+margin_top = 66.396
+margin_right = 852.203
+margin_bottom = 533.604
 rect_pivot_offset = Vector2( 340.2, 233.604 )
 mouse_filter = 2
 __meta__ = {
@@ -526,6 +602,12 @@ custom_fonts/font = SubResource( 26 )
 text = "0"
 align = 1
 valign = 1
+
+[node name="Tween" type="Tween" parent="ChalkboardRegion/Player"]
+
+[node name="PlayerMoveSound" type="AudioStreamPlayer" parent="ChalkboardRegion/Player"]
+stream = ExtResource( 18 )
+bus = "Sound Bus"
 
 [node name="Shadow" type="Polygon2D" parent="ChalkboardRegion"]
 color = Color( 0, 0, 0, 0.392157 )
@@ -599,9 +681,9 @@ flip_h = true
 [node name="Clock" type="Control" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -90.0
+margin_left = 422.0
 margin_top = 8.0
-margin_right = 90.0032
+margin_right = 602.003
 margin_bottom = 58.0
 mouse_filter = 2
 script = ExtResource( 7 )
@@ -641,16 +723,75 @@ anchor_bottom = 1.0
 margin_left = 60.0
 margin_right = 109.0
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 30 )
+custom_fonts/font = SubResource( 42 )
 text = "10:15 am"
 valign = 1
+script = ExtResource( 1 )
 
-[node name="LevelChangeSound" type="AudioStreamPlayer" parent="."]
+[node name="Particles" type="Control" parent="Clock/Label"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Nw" type="Particles2D" parent="Clock/Label/Particles"]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 38 )
+
+[node name="Ne" type="Particles2D" parent="Clock/Label/Particles"]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 39 )
+
+[node name="Sw" type="Particles2D" parent="Clock/Label/Particles"]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 40 )
+
+[node name="Se" type="Particles2D" parent="Clock/Label/Particles"]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 41 )
+
+[node name="FlashTween" type="Tween" parent="Clock/Label"]
+
+[node name="Tween" type="Tween" parent="Clock"]
+
+[node name="ClockAdvanceSound" type="AudioStreamPlayer" parent="Clock"]
+stream = ExtResource( 3 )
+volume_db = 2.0
+bus = "Sound Bus"
+
+[node name="ClockRingSound" type="AudioStreamPlayer" parent="Clock"]
+stream = ExtResource( 17 )
+volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="ProgressBoardAppear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -8.0
+pitch_scale = 1.1
+bus = "Sound Bus"
+
+[node name="ProgressBoardDisappear" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = -8.0
 bus = "Sound Bus"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="ShowAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 34 )
 anims/hide = SubResource( 36 )
 anims/show = SubResource( 31 )
@@ -659,6 +800,12 @@ anims/show = SubResource( 31 )
 wait_time = 1.5
 one_shot = true
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[node name="AnimateStartTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="AnimateStartTimer" to="." method="_on_AnimateStartTimer_timeout"]
 [connection signal="visibility_changed" from="Backdrop" to="." method="_on_Backdrop_visibility_changed"]
+[connection signal="tween_all_completed" from="Clock/Tween" to="Clock" method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="HideTimer" to="." method="_on_HideTimer_timeout"]
+[connection signal="animation_finished" from="ShowAnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -32,11 +32,6 @@ func push_career_trail() -> void:
 		CurrentCutscene.push_cutscene_trail()
 		redirected = true
 	
-	if not redirected and career_data.is_day_over():
-		# After the final level, we show a 'you win' screen.
-		SceneTransition.replace_trail("res://src/main/career/ui/CareerWin.tscn")
-		redirected = true
-	
 	if not redirected:
 		# After a puzzle (or any other scene), we go back to the career map.
 		SceneTransition.change_scene()
