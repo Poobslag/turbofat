@@ -198,3 +198,17 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		"cyclio":
 			_cycle_levels()
 			detector.play_cheat_sound(true)
+
+
+## The status bar is temporarily hidden when the progress board is shown.
+##
+## The progress board includes a clock, so we hide the status bar to avoid showing two clocks which are out of sync.
+func _on_ProgressBoardHolder_progress_board_hidden() -> void:
+	$Control/StatusBar.show()
+
+
+## The status bar is temporarily hidden when the progress board is shown.
+##
+## The progress board includes a clock, so we hide the status bar to avoid showing two clocks which are out of sync.
+func _on_ProgressBoardHolder_progress_board_shown() -> void:
+	$Control/StatusBar.hide()

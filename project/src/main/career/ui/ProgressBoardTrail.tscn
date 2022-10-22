@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/career/ui/progress-board-trail.gd" type="Script" id=1]
+[ext_resource path="res://src/main/career/ui/progress-board-spots.gd" type="Script" id=2]
+[ext_resource path="res://src/main/career/ui/progress-board-lines.gd" type="Script" id=3]
+[ext_resource path="res://src/main/career/ui/ProgressBoardSpot.tscn" type="PackedScene" id=4]
+
+[node name="Path" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Lines" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+line_width = 4.0
+outline_width = 4.0
+path_color = Color( 0.811765, 0.772549, 0.415686, 1 )
+outline_color = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+
+[node name="Spots" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+spot_scene = ExtResource( 4 )
+
+[node name="Spot" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 93.3381
+margin_top = 161.927
+margin_right = 93.3381
+margin_bottom = 161.927
+frame = 8
+
+[node name="Spot2" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 145.664
+margin_top = 173.241
+margin_right = 145.664
+margin_bottom = 173.241
+frame = 4
+
+[node name="Spot3" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 199.404
+margin_top = 170.413
+margin_right = 199.404
+margin_bottom = 170.413
+frame = 4
+
+[node name="Spot4" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 256.68
+margin_top = 156.271
+margin_right = 256.68
+margin_bottom = 156.271
+frame = 4
+
+[node name="Spot5" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 325.976
+margin_top = 167.584
+margin_right = 325.976
+margin_bottom = 167.584
+frame = 4
+
+[node name="Spot6" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 369.817
+margin_top = 202.233
+margin_right = 369.817
+margin_bottom = 202.233
+frame = 4
+
+[node name="Spot7" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 410.829
+margin_top = 240.416
+margin_right = 410.829
+margin_bottom = 240.416
+frame = 4
+
+[node name="Spot8" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 465.302
+margin_top = 265.788
+margin_right = 465.302
+margin_bottom = 265.788
+frame = 4
+
+[node name="Spot9" parent="Spots" instance=ExtResource( 4 )]
+margin_left = 526.068
+margin_top = 266.148
+margin_right = 526.068
+margin_bottom = 266.148
+frame = 12

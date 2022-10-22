@@ -19,6 +19,13 @@ func _init(init_career_data: CareerData) -> void:
 ##
 ## 	'success': 'True' if the player met the success criteria for the current level.
 func advance_clock(new_distance_earned: int, success: bool) -> void:
+	if career_data.remain_in_region:
+		# don't show progress; the player is not trying to beat the region
+		pass
+	else:
+		career_data.show_progress = CareerData.ShowProgress.ANIMATED
+	
+	
 	career_data.distance_earned = new_distance_earned
 	career_data.skipped_previous_level = false
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chalkboard-title-1.png-14754796875129e762de48f185b65697.stex"
+path="res://.import/chalkboard-spot-sheet.png-dbd1b58a3853e027649dcd9ba5930330.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/career/ui/chalkboard-title-1.png"
-dest_files=[ "res://.import/chalkboard-title-1.png-14754796875129e762de48f185b65697.stex" ]
+source_file="res://assets/main/career/ui/chalkboard-spot-sheet.png"
+dest_files=[ "res://.import/chalkboard-spot-sheet.png-dbd1b58a3853e027649dcd9ba5930330.stex" ]
 
 [params]
 
