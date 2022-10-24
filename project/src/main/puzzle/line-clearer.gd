@@ -76,7 +76,6 @@ onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 func _ready() -> void:
 	set_physics_process(false)
 	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
@@ -466,7 +465,7 @@ func _on_PuzzleState_finish_triggered() -> void:
 ##
 ## Any prebuilt level boxes aren't cleared at the end of the level.
 func _on_Playfield_blocks_prepared() -> void:
-	_lines_to_preserve_at_end.clear()
+	reset()
 	for cell in _tile_map.get_used_cells():
 		if _tile_map.get_cellv(cell) == 1:
 			_lines_to_preserve_at_end[int(cell.y)] = true
@@ -501,10 +500,6 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 		line_dict.merge(new_line_dict)
 	
 	_lines_to_preserve_at_end[y] = true
-
-
-func _on_PuzzleState_game_prepared() -> void:
-	reset()
 
 
 func _on_Level_settings_changed() -> void:
