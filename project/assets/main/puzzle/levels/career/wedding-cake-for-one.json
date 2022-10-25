@@ -11,7 +11,9 @@
   "rank": [
     "customer_combo 9",
     "leftover_lines 3",
-    "preplaced_pieces 10"
+    "preplaced_pieces 10",
+    "box_factor 1.38",
+    "combo_factor 1.21"
   ],
   "piece_types": [
     "piece_j",
