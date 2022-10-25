@@ -8,8 +8,8 @@
     "value": "150"
   },
   "rank": [
-    "box_factor 0.8",
-    "combo_factor 0.5"
+    "box_factor 0.51",
+    "combo_factor 0.60"
   ],
   "tiles": {
     "start": [

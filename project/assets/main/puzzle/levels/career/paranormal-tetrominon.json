@@ -15,8 +15,8 @@
     "piece_s",
     "piece_z"
   ],
-  "rank": [
-    "box_factor 0.77",
-    "combo_factor 1.14"
+  "rank" : [
+    "box_factor 1.43",
+    "combo_factor 0.23"
   ]
 }
