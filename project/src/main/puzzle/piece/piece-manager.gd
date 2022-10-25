@@ -250,7 +250,7 @@ func _shift_piece_for_inserted_line(inserted_line: int) -> void:
 		var block_pos := piece.type.get_cell_position(piece.orientation, i)
 		highest_piece_cell_y = min(highest_piece_cell_y, piece.pos.y + block_pos.y)
 	
-	if highest_piece_cell_y > inserted_line and highest_piece_cell_y > 0 and not piece.can_move_to_target():
+	if highest_piece_cell_y <= inserted_line and highest_piece_cell_y > 0 and not piece.can_move_to_target():
 		piece.target_pos.y -= 1
 	piece.move_to_target()
 
