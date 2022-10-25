@@ -346,6 +346,7 @@
       ]
     },
     {
+      "id": "vega",
       "name": "Vega Churn Twelve",
       "start": 62,
       "icon": "gear",
