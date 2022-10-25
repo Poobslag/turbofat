@@ -211,11 +211,10 @@ func _refresh_tile_maps() -> void:
 	var old_pattern := _pattern
 	var new_pattern: Array = OFF_PATTERN
 	
-	if CurrentLevel.settings.combo_break.pieces != ComboBreakRules.UNLIMITED_PIECES:
-		if _combo_tracker.combo_break == CurrentLevel.settings.combo_break.pieces - 1:
-			new_pattern = HALF_PATTERN
-		elif _combo_tracker.combo_break < CurrentLevel.settings.combo_break.pieces - 1:
-			new_pattern = ON_PATTERN
+	if _combo_tracker.combo_break == CurrentLevel.settings.combo_break.pieces - 1:
+		new_pattern = HALF_PATTERN
+	elif _combo_tracker.combo_break < CurrentLevel.settings.combo_break.pieces - 1:
+		new_pattern = ON_PATTERN
 	
 	if old_pattern == OFF_PATTERN and new_pattern == OFF_PATTERN:
 		# no need to refresh if all the lights remain off
