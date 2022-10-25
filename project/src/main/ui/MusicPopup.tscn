@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/ui/music-popup-tween.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/music-popup.gd" type="Script" id=3]
-[ext_resource path="res://src/main/ui/outline-material-80.tres" type="Material" id=4]
 [ext_resource path="res://assets/main/ui/icon-music.png" type="Texture" id=5]
+[ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 resource_local_to_scene = true
@@ -19,6 +19,13 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 6 )
+shader_param/width = 6.0
+shader_param/white = Color( 1, 1, 1, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/sample_count = 24
+
 [node name="MusicPopup" type="Control" groups=["singletons"]]
 pause_mode = 2
 anchor_right = 1.0
@@ -26,9 +33,6 @@ margin_top = -60.0
 margin_bottom = -4.0
 mouse_filter = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="."]
 anchor_left = 0.5
@@ -52,12 +56,9 @@ anchor_bottom = 1.0
 margin_top = -26.0
 margin_bottom = -6.0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LeftIcon" type="TextureRect" parent="Panel/HBoxContainer"]
-material = ExtResource( 4 )
+material = SubResource( 2 )
 margin_left = 8.0
 margin_right = 28.0
 margin_bottom = 20.0
@@ -80,7 +81,7 @@ align = 1
 valign = 1
 
 [node name="RightIcon" type="TextureRect" parent="Panel/HBoxContainer"]
-material = ExtResource( 4 )
+material = SubResource( 2 )
 margin_left = 421.0
 margin_right = 441.0
 margin_bottom = 20.0
