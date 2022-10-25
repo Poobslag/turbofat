@@ -13,6 +13,13 @@ onready var _control := $Control
 onready var _grade_labels := $Control/GradeLabels
 onready var _level_buttons_container := $Control/LevelButtons
 
+func _ready() -> void:
+	# If the day is over, we show the career map briefly so the player can see their progress, but we hide the level
+	# select buttons.
+	if PlayerData.career.is_day_over():
+		_control.visible = false
+
+
 ## Returns the index of the currently focused level button, or -1 if none is selected.
 ##
 ## For a boss level where only one level is available, this will return '0' if the level button is selected.

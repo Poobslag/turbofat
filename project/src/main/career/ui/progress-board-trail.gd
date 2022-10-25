@@ -32,8 +32,19 @@ func set_spot_count(new_spot_count: int) -> void:
 	_refresh_spots()
 
 
-func get_spot_position(i: int) -> Vector2:
-	return _spots.get_child(i).rect_position
+## Returns the position along the trail of the specified spot.
+##
+## This can be called with a whole number like '3' which will return the position of the fourth spot. It can also be
+## called with a decimal like '3.5' which will return a position half-way between the fourth and fifth spot.
+##
+## Parameters:
+## 	'i': The spot whose position should be returned. This can be a whole number like '3' to obtain a spot's exact
+## 		position, or a decimal like '3.5' to obtain a position between two spots.
+##
+## Returns:
+## 	The position of the specified spot, or a position between the two specified spots.
+func get_spot_position(i: float) -> Vector2:
+	return _spots.get_spot_position(i)
 
 
 func set_spots_truncated(new_spots_truncated: bool) -> void:

@@ -20,7 +20,6 @@ enum ShowProgress {
 	NONE, # Skip the progress board
 	STATIC, # Display the progress board to show where the player is
 	ANIMATED, # Animate the progress board to show the player advancing
-	FOREVER, # Leave the progress board up forever (for demos/debugging)
 }
 
 ## Chat key root for non-region-specific cutscenes
@@ -79,7 +78,10 @@ var banked_steps := 0
 ## The distance the player has travelled in the current career session.
 var distance_travelled := 0 setget set_distance_travelled
 
-## The distance earned from the previously completed puzzle.
+## The distance the progress board should start from when moving the player
+var progress_board_start_distance_travelled := 0
+
+## The distance earned from the previously completed puzzle, plus any banked steps from earlier puzzles.
 var distance_earned := 0
 
 ## The number of levels played in the current career session.

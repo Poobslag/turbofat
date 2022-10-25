@@ -95,7 +95,7 @@ border_color = Color( 1, 1, 1, 1 )
 offsets = PoolRealArray( 0, 0.695652 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=25]
 gradient = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=5]
@@ -108,7 +108,7 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 25 )
 
 [sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
@@ -120,7 +120,7 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 25 )
 
 [sub_resource type="ParticlesMaterial" id=7]
 flag_disable_z = true
@@ -132,7 +132,7 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 25 )
 
 [sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
@@ -144,7 +144,7 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 25 )
 
 [sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("Fg/WallGlobViewports/Viewport")

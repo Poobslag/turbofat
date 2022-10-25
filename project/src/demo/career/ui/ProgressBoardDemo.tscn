@@ -7,3 +7,4 @@
 script = ExtResource( 2 )
 
 [node name="ProgressBoard" parent="." instance=ExtResource( 1 )]
+suppress_hide = true
