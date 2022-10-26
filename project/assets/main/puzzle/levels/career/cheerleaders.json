@@ -1,0 +1,122 @@
+{
+  "version": "39e5",
+  "start_speed": "1",
+  "name": "Cheerleaders",
+  "description": "They're just happy to be included!",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "85"
+  },
+  "piece_types": [
+    "start_piece_q",
+    "start_piece_l"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared combo=3,6..."
+      ],
+      "effect": "add_carrots size=medium duration=5"
+    },
+    {
+      "phases": [
+        "line_cleared combo=5,10"
+      ],
+      "effect": "add_carrots size=large duration=8"
+    },
+    {
+      "phases": [
+        "line_cleared combo=7,14"
+      ],
+      "effect": "add_carrots count=2 size=medium duration=13"
+    },
+    {
+      "phases": [
+        "line_cleared combo=11,22"
+      ],
+      "effect": "add_carrots size=small smoke=large duration=21"
+    },
+    {
+      "phases": [
+        "combo_ended combo=7..."
+      ],
+      "effect": "remove_carrots 999999"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "2 17",
+        "tile": "1 10 5"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 6 5"
+      },
+      {
+        "pos": "7 17",
+        "tile": "2 12 2"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 11 5"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 7 5"
+      },
+      {
+        "pos": "7 18",
+        "tile": "2 15 1"
+      },
+      {
+        "pos": "1 19",
+        "tile": "2 15 0"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 9 5"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 5 5"
+      }
+    ]
+  }
+}

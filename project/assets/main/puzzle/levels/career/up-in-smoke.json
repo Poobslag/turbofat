@@ -1,0 +1,134 @@
+{
+  "version": "39e5",
+  "start_speed": "0",
+  "name": "Up In Smoke",
+  "description": "I don't love carrots, but I promise to hate them slightly less if they stay over there...",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "90"
+  },
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "30",
+      "speed": "1"
+    },
+    {
+      "type": "time_over",
+      "value": "60",
+      "speed": "2"
+    }
+  ],
+  "timers": [
+    {
+      "initial_interval": 6,
+      "interval": 19
+    },
+    {
+      "initial_interval": 8,
+      "interval": 15.5
+    },
+    {
+      "initial_interval": 10,
+      "interval": 13.5
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0",
+        "timer_1",
+        "timer_2"
+      ],
+      "effect": "add_carrots size=small smoke=large x=4-7 duration=18"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 17",
+        "tile": "1 10 10"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 10"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 14 10"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 14 10"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 6 10"
+      },
+      {
+        "pos": "5 17",
+        "tile": "2 1 3"
+      },
+      {
+        "pos": "6 17",
+        "tile": "2 14 1"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 11 10"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 15 10"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 15 10"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 15 10"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 7 10"
+      },
+      {
+        "pos": "5 18",
+        "tile": "2 0 2"
+      },
+      {
+        "pos": "8 18",
+        "tile": "2 15 0"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 10"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 10"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 13 10"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 13 10"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 5 10"
+      },
+      {
+        "pos": "7 19",
+        "tile": "2 4 0"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 2 3"
+      }
+    ]
+  }
+}

@@ -119,6 +119,12 @@
           "id": "career/bottomless_pit"
         },
         {
+          "id": "career/carrot_cake"
+        },
+        {
+          "id": "career/cheerleaders"
+        },
+        {
           "id": "career/fat_stacks"
         },
         {
@@ -138,21 +144,15 @@
           ]
         },
         {
-          "id": "career/strawberry_shortcut"
-        },
-        {
           "id": "career/traffic_jam",
           "chef_id": "sidger"
-        },
-        {
-          "id": "career/tulip"
         },
         {
           "id": "career/two_box_buffet",
           "chef_id": "sidger"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/up_in_smoke"
         }
       ]
     },
@@ -191,7 +191,7 @@
           "id": "career/muffin_impossible"
         },
         {
-          "id": "career/strawberry_shortcut"
+          "id": "career/no_smoking_section"
         },
         {
           "id": "career/teensy_taste"
@@ -242,7 +242,7 @@
           "id": "career/real_meal"
         },
         {
-          "id": "career/secret_brownies"
+          "id": "career/serving_on_a_rocket"
         },
         {
           "id": "career/shelf"
@@ -293,10 +293,10 @@
           "id": "career/90_second_sprint"
         },
         {
-          "id": "career/a_little_extra"
+          "id": "career/a_little_garbage"
         },
         {
-          "id": "career/a_little_garbage"
+          "id": "career/carrot_alley"
         },
         {
           "id": "career/cleaning_duty"
@@ -359,10 +359,13 @@
           "id": "career/90_second_sprint"
         },
         {
+          "id": "career/carrot_cake_2"
+        },
+        {
           "id": "career/checkerboard_vault"
         },
         {
-          "id": "career/creeping_crevice_2"
+          "id": "career/destroy_them_with_combos"
         },
         {
           "id": "career/hungry_moles"
@@ -416,10 +419,10 @@
           "id": "career/creeping_crevice_2"
         },
         {
-          "id": "career/five_course_meal"
+          "id": "career/destroy_them_with_boxes"
         },
         {
-          "id": "career/fruit_on_the_top"
+          "id": "career/five_course_meal"
         },
         {
           "id": "career/leftovers"
@@ -483,6 +486,9 @@
         },
         {
           "id": "career/dark/muffin_impossible_2"
+        },
+        {
+          "id": "career/dark/no_smoking_section_2"
         },
         {
           "id": "career/dark/secret_brownies"

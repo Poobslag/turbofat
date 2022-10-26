@@ -1,0 +1,99 @@
+{
+  "version": "39e5",
+  "start_speed": "6",
+  "name": "Carrot Cake II",
+  "description": "Even cakier cakes! ...Even chonkier carrots! This level is a menace!!!",
+  "finish_condition": {
+    "type": "score",
+    "value": "750"
+  },
+  "score": [
+    "cake_all 20"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_carrots size=medium duration=14.0"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_carrots count=2 size=xl duration=18.0"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "8 14",
+        "tile": "0 2 3"
+      },
+      {
+        "pos": "8 15",
+        "tile": "0 3 3"
+      },
+      {
+        "pos": "6 16",
+        "tile": "0 8 3"
+      },
+      {
+        "pos": "7 16",
+        "tile": "0 12 3"
+      },
+      {
+        "pos": "8 16",
+        "tile": "0 5 3"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "0 18",
+        "tile": "2 12 1"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 3"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 3"
+      },
+      {
+        "pos": "0 19",
+        "tile": "2 8 3"
+      },
+      {
+        "pos": "1 19",
+        "tile": "2 17 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 3"
+      }
+    ]
+  }
+}

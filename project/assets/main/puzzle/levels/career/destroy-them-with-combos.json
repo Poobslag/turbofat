@@ -1,0 +1,200 @@
+{
+  "version": "39e5",
+  "start_speed": "5",
+  "name": "Destroy Them With Combos!",
+  "description": "No no, I was talking about the carrots! ...Please don't destroy the customers.",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "165"
+  },
+  "timers": [
+    {
+      "initial_interval": 21.7,
+      "interval": 3.2
+    },
+    {
+      "initial_interval": 10.5,
+      "interval": 3.2
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_carrots count=3 duration=14"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_carrots count=2 duration=14"
+    },
+    {
+      "phases": [
+        "line_cleared combo=1-5"
+      ],
+      "effect": "remove_carrots"
+    },
+    {
+      "phases": [
+        "line_cleared combo=6-10"
+      ],
+      "effect": "remove_carrots 2"
+    },
+    {
+      "phases": [
+        "line_cleared combo=11..."
+      ],
+      "effect": "remove_carrots 3"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 14",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "1 14",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "2 14",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "6 14",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "7 14",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "8 14",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "0 15",
+        "tile": "1 11 1"
+      },
+      {
+        "pos": "1 15",
+        "tile": "1 15 1"
+      },
+      {
+        "pos": "2 15",
+        "tile": "1 7 1"
+      },
+      {
+        "pos": "6 15",
+        "tile": "1 11 1"
+      },
+      {
+        "pos": "7 15",
+        "tile": "1 15 1"
+      },
+      {
+        "pos": "8 15",
+        "tile": "1 7 1"
+      },
+      {
+        "pos": "0 16",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 10 0"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 0"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 6 0"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 11 0"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 15 0"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 7 0"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 3"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 3"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 0"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 0"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 0"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 3"
+      }
+    ]
+  }
+}

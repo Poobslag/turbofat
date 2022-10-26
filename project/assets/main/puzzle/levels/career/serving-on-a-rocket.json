@@ -1,0 +1,44 @@
+{
+  "version": "39e5",
+  "start_speed": "2",
+  "name": "Serving On A Rocket",
+  "description": "Time for flying rockets. Let's serve up some delicious treats!",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "95"
+  },
+  "timers": [
+    {
+      "initial_interval": 1.5,
+      "interval": 5.62
+    },
+    {
+      "initial_interval": 30.0,
+      "interval": 2.24
+    },
+    {
+      "initial_interval": 60.0,
+      "interval": 12.65
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_carrots count=3 smoke=medium size=small duration=8"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_carrots count=2 duration=4"
+    },
+    {
+      "phases": [
+        "timer_2"
+      ],
+      "effect": "add_carrots size=large smoke=large duration=16"
+    }
+  ]
+}
