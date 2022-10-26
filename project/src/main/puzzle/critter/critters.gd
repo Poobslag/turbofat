@@ -7,6 +7,9 @@ export (NodePath) var _piece_manager_path: NodePath setget set_piece_manager_pat
 ## Draws moles, puzzle critters which dig up star seeds for the player.
 onready var _moles: Moles = $Moles
 
+# Draws carrots, puzzle critters which rocket up the screen, blocking the player's vision.
+onready var _carrots: Carrots = $Carrots
+
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	_refresh_playfield_path()
@@ -28,6 +31,7 @@ func _refresh_playfield_path() -> void:
 		return
 	
 	_moles.playfield_path = _moles.get_path_to(get_node(_playfield_path))
+	_carrots.playfield_path = _carrots.get_path_to(get_node(_playfield_path))
 
 
 func _refresh_piece_manager_path() -> void:
