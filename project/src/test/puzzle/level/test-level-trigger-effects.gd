@@ -92,6 +92,62 @@ func test_add_moles_to_json() -> void:
 	assert_eq_shallow({"count": "2", "home": "veg", "dig_duration": "4", "reward": "seed"}, effect.get_config())
 
 
+func test_add_carrots_set_config() -> void:
+	var effect: LevelTriggerEffects.AddCarrotsEffect
+	
+	effect = LevelTriggerEffects.AddCarrotsEffect.new()
+	effect.set_config({})
+	assert_eq(effect.config.columns, [])
+	assert_eq(effect.config.count, 1)
+	assert_eq(effect.config.duration, 8.0)
+	assert_eq(effect.config.size, CarrotConfig.CarrotSize.MEDIUM)
+	assert_eq(effect.config.smoke, CarrotConfig.Smoke.SMALL)
+	
+	effect = LevelTriggerEffects.AddCarrotsEffect.new()
+	effect.set_config({"x": "0-2", "count": "2", "duration": "12.0", "size": "large", "smoke": "none"})
+	assert_eq(effect.config.columns, [0, 1, 2])
+	assert_eq(effect.config.count, 2)
+	assert_eq(effect.config.duration, 12.0)
+	assert_eq(effect.config.size, CarrotConfig.CarrotSize.LARGE)
+	assert_eq(effect.config.smoke, CarrotConfig.Smoke.NONE)
+
+
+func test_add_carrots_get_config() -> void:
+	var effect: LevelTriggerEffects.AddCarrotsEffect
+	
+	effect = LevelTriggerEffects.AddCarrotsEffect.new()
+	effect.set_config({})
+	assert_eq_shallow({}, effect.get_config())
+	
+	effect = LevelTriggerEffects.AddCarrotsEffect.new()
+	effect.set_config({"count": "2", "duration": "12.0", "size": "large", "smoke": "none", "x": "0-2"})
+	assert_eq_shallow({"count": "2", "duration": "12", "size": "large", "smoke": "none", "x": "0-2"}, effect.get_config())
+
+
+func test_remove_carrots_set_config() -> void:
+	var effect: LevelTriggerEffects.RemoveCarrotsEffect
+	
+	effect = LevelTriggerEffects.RemoveCarrotsEffect.new()
+	effect.set_config({})
+	assert_eq(effect.count, 1)
+	
+	effect = LevelTriggerEffects.RemoveCarrotsEffect.new()
+	effect.set_config({"0": "2"})
+	assert_eq(effect.count, 2)
+
+
+func test_remove_carrots_get_config() -> void:
+	var effect: LevelTriggerEffects.RemoveCarrotsEffect
+	
+	effect = LevelTriggerEffects.RemoveCarrotsEffect.new()
+	effect.set_config({})
+	assert_eq_shallow({}, effect.get_config())
+	
+	effect = LevelTriggerEffects.RemoveCarrotsEffect.new()
+	effect.set_config({"0": "2"})
+	assert_eq_shallow({"0": "2"}, effect.get_config())
+
+
 func test_clear_filled_lines_to_json() -> void:
 	var effect: LevelTriggerEffects.ClearFilledLinesEffect
 	

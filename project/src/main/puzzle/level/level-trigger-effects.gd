@@ -35,6 +35,57 @@ class ClearFilledLinesEffect extends LevelTriggerEffect:
 		return config
 
 
+## Adds one or more carrots to the playfield.
+class AddCarrotsEffect extends LevelTriggerEffect:
+	var config: CarrotConfig = CarrotConfig.new()
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [count]: (Optional) How many carrots appear during a single 'add carrots' effect. Defaults to 1.
+	## [duration]: (Optional) Duration in seconds that the carrot remains onscreen. Defaults to eight seconds.
+	## [size]: (Optional) The carrot size: 'small', 'medium', 'large' or 'xl'. Defaults to 'medium'.
+	## [smoke]: (Optional) The size of the smoke cloud: 'none', 'small', 'medium' or 'large'. Defaults to 'small'.
+	## [x]: (Optional) Restricts which columns the carrots appear on, where '0' is the leftmost column of the
+	## 	playfield. For large carrots, this corresponds to the leftmost column of the carrot.
+	##
+	## Example: ["add_carrots count=2 size=large"]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("count"):
+			config.count = new_config["count"].to_int()
+		if new_config.has("duration"):
+			config.duration = new_config["duration"]
+		if new_config.has("size"):
+			config.size = Utils.enum_from_snake_case(CarrotConfig.CarrotSize, new_config["size"])
+		if new_config.has("smoke"):
+			config.smoke = Utils.enum_from_snake_case(CarrotConfig.Smoke, new_config["smoke"])
+		if new_config.has("x"):
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
+	
+	
+	## Adds one or more carrots to the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_carrots().add_carrots(config)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		
+		if config.count != 1:
+			result["count"] = str(config.count)
+		if config.duration != 8.0:
+			result["duration"] = str(config.duration)
+		if config.size != CarrotConfig.CarrotSize.MEDIUM:
+			result["size"] = Utils.enum_to_snake_case(CarrotConfig.CarrotSize, config.size)
+		if config.smoke != CarrotConfig.Smoke.SMALL:
+			result["smoke"] = Utils.enum_to_snake_case(CarrotConfig.Smoke, config.smoke)
+		if config.columns:
+			result["x"] = ConfigStringUtils.config_string_from_ints(config.columns)
+		
+		return result
+
+
 ## Adds one or more moles to the playfield.
 class AddMolesEffect extends LevelTriggerEffect:
 	var config: MoleConfig = MoleConfig.new()
@@ -100,6 +151,36 @@ class AdvanceMolesEffect extends LevelTriggerEffect:
 	## Advances all moles on the playfield, allowing them to dig up pickups.
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().advance_moles()
+
+
+## Removes one or more carrots from the playfield.
+class RemoveCarrotsEffect extends LevelTriggerEffect:
+	var count := 1
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [0]: (Optional) The number of carrots to remove. Defaults to 1.
+	##
+	## Example: ["remove_carrots 2"]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("0"):
+			count = new_config["0"].to_int()
+	
+	
+	## Adds one or more carrots to the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_carrots().remove_carrots(count)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		
+		if count != 1:
+			result["0"] = str(count)
+		
+		return result
 
 
 ## Rotates one or more pieces in the piece queue.
@@ -186,13 +267,12 @@ class InsertLineEffect extends LevelTriggerEffect:
 	##
 	## This effect's configuration accepts the following parameters:
 	##
+	## [count]: (Optional) The number of lines to insert. Defaults to 1.
 	## [tiles_key]: (Optional) A key corresponding to a set of tiles in LevelTiles for the tiles to insert.
-	##
-	## Example: ["tiles_key=0"]
-	##
 	## [tiles_keys]: (Optional) A key corresponding to sets of tiles in LevelTiles for the tiles to insert.
+	## [y]: (Optional) The target row to insert. '0' corresponds to the bottom row. Defaults to 0.
 	##
-	## Example: ["tiles_keys=0,1"]
+	## Example: ["insert_line tiles_keys=0,1"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		if new_config.has("tiles_key"):
 			tiles_keys = [new_config["tiles_key"]]
@@ -229,7 +309,9 @@ class InsertLineEffect extends LevelTriggerEffect:
 var effects_by_string := {
 	"add_moles": AddMolesEffect,
 	"advance_moles": AdvanceMolesEffect,
+	"add_carrots": AddCarrotsEffect,
 	"clear_filled_lines": ClearFilledLinesEffect,
+	"remove_carrots": RemoveCarrotsEffect,
 	"rotate_next_pieces": RotateNextPiecesEffect,
 	"insert_line": InsertLineEffect,
 }

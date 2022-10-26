@@ -63,6 +63,11 @@ func get_moles() -> Moles:
 	return $Fg/Critters/Moles as Moles
 
 
+## Returns the node which handles carrots, puzzle critters which block the player's vision.
+func get_carrots() -> Carrots:
+	return $Fg/Critters/Carrots as Carrots
+
+
 func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 
