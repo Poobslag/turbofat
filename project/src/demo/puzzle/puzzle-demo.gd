@@ -11,8 +11,6 @@ extends Node
 ## 	[J]: Generate a food item
 ## 	[K]: Cycle to the next food item
 ## 	[L]: Level up
-## 	[M]: Add a mole
-## 	[,]: Advance moles
 
 var _line_clear_count := 1
 var _box_type := 0
@@ -72,11 +70,6 @@ func _input(event: InputEvent) -> void:
 		
 		KEY_L:
 			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed.speed_ups.size())
-		
-		KEY_M:
-			$Puzzle/Fg/Critters/Moles.add_moles()
-		KEY_COMMA:
-			$Puzzle/Fg/Critters/Moles.advance_moles()
 
 
 func _build_box(y: int) -> void:

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/demo/puzzle/puzzle-critter-demo.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=2]
+
+[node name="PuzzleCritterDemo" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Puzzle" parent="." instance=ExtResource( 2 )]
