@@ -5,6 +5,7 @@ $ = MAY credit in your credits (you sort of used their stuff, i guess. Or their 
 Sounds: 
 $$ "2000 Game SFX Collection" by GameBurp (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Call Bell.WAV" by Pablobd at FreeSound.org (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
+$$ "Cartoon Plane Loop" from tsymbal at pond5.com (Pond5 Content License Agreement https://www.pond5.com/legal/license)
 $$ "Cartoon Voices" by Dawid Moroz, Soundholder Studio (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Clog Boxes" by Alan Vista at alanvista.com (Advertised as 'Free VST', no license provided)
 $$ "Cooking Game" by Epic Stock Media (Coniss license, https://sonniss.com/sound-effects-licensing/)
@@ -48,6 +49,7 @@ project/assets/main/puzzle/applause.wav "GameBurp - 2000 Game Sound FX Collectio
 project/assets/main/puzzle/clear-cake-box.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav" 
 project/assets/main/puzzle/clear-snack-box.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav"
 project/assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
+project/assets/main/puzzle/critter/carrot-move.wav "Cartoon Plane Loop" from tsymbal
 project/assets/main/puzzle/critter/critter-poof.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SWIPES - SLASHES - WHOOSHES - (58)\SWIPE Whoosh 07.wav"
 project/assets/main/puzzle/critter/mole-dig.wav "Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Slice_Bread_Thick_03.wav"
 project/assets/main/puzzle/critter/mole-found.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\VOCAL CUTE - CHARACTERS - (113)\VOCAL CUTE Call Happy 05.wav"
