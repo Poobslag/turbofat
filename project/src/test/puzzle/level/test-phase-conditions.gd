@@ -21,6 +21,9 @@ func test_line_cleared_phase_config() -> void:
 	condition = PhaseConditions.LineClearedPhaseCondition.new({"n": "1,2,3..."})
 	assert_eq_shallow(condition.get_phase_config(), {"n": "1,2,3..."})
 	
+	condition = PhaseConditions.LineClearedPhaseCondition.new({"combo": "1,2,3..."})
+	assert_eq_shallow(condition.get_phase_config(), {"combo": "1,2,3..."})
+	
 	condition = PhaseConditions.LineClearedPhaseCondition.new({})
 	assert_eq_shallow(condition.get_phase_config(), {})
 
@@ -35,6 +38,27 @@ func test_box_built_phase_condition() -> void:
 	
 	condition = PhaseConditions.BoxBuiltPhaseCondition.new({"0": "any"})
 	assert_eq_shallow(condition.get_phase_config(), {})
+
+
+func test_combo_ended_phase_condition() -> void:
+	var condition: PhaseConditions.ComboEndedPhaseCondition
+	condition = PhaseConditions.ComboEndedPhaseCondition.new({})
+	assert_eq_shallow(condition.get_phase_config(), {})
+	
+	condition = PhaseConditions.ComboEndedPhaseCondition.new({"combo": "5-10"})
+	assert_eq_shallow(condition.get_phase_config(), {"combo": "5-10"})
+
+
+func test_pickup_collected() -> void:
+	var condition: PhaseConditions.PickupCollectedPhaseCondition
+	condition = PhaseConditions.PickupCollectedPhaseCondition.new({})
+	assert_eq_shallow(condition.get_phase_config(), {})
+	
+	condition = PhaseConditions.PickupCollectedPhaseCondition.new({"0": "snack"})
+	assert_eq_shallow(condition.get_phase_config(), {"0": "snack"})
+	
+	condition = PhaseConditions.PickupCollectedPhaseCondition.new({"0": "cake"})
+	assert_eq_shallow(condition.get_phase_config(), {"0": "cake"})
 
 
 func test_piece_written_phase_condition() -> void:

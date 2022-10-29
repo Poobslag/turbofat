@@ -9,10 +9,12 @@ class_name LevelTrigger
 enum LevelTriggerPhase {
 	AFTER_PIECE_WRITTEN, # after the piece is written, and all boxes are made, and all lines are cleared
 	BOX_BUILT, # when a snack/cake box is built
+	COMBO_ENDED, # when the player breaks their combo
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
 	INITIAL_ROTATED_CCW, # when the piece is rotated counterclockwise using initial DAS
 	INITIAL_ROTATED_180, # when the piece is flipped using initial DAS
 	LINE_CLEARED, # after the line is erased for a line clear, but before the lines above are shifted
+	PICKUP_COLLECTED, # when a pickup is collected
 	PIECE_WRITTEN, # when the piece is written, but before any boxes are made or lines are cleared
 	ROTATED_CW, # when the piece is rotated clockwise
 	ROTATED_CCW, # when the piece is rotated counterclockwise
@@ -20,14 +22,23 @@ enum LevelTriggerPhase {
 	TIMER_0, # when timer 0 times out
 	TIMER_1, # when timer 1 times out
 	TIMER_2, # when timer 2 times out
+	TIMER_3, # when timer 3 times out
+	TIMER_4, # when timer 4 times out
+	TIMER_5, # when timer 5 times out
+	TIMER_6, # when timer 6 times out
+	TIMER_7, # when timer 7 times out
+	TIMER_8, # when timer 8 times out
+	TIMER_9, # when timer 9 times out
 }
 
 const AFTER_PIECE_WRITTEN := LevelTriggerPhase.AFTER_PIECE_WRITTEN
 const BOX_BUILT := LevelTriggerPhase.BOX_BUILT
+const COMBO_ENDED := LevelTriggerPhase.COMBO_ENDED
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
 const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
 const INITIAL_ROTATED_180 := LevelTriggerPhase.INITIAL_ROTATED_180
 const LINE_CLEARED := LevelTriggerPhase.LINE_CLEARED
+const PICKUP_COLLECTED := LevelTriggerPhase.PICKUP_COLLECTED
 const PIECE_WRITTEN := LevelTriggerPhase.PIECE_WRITTEN
 const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
 const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
@@ -35,6 +46,13 @@ const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const TIMER_0 := LevelTriggerPhase.TIMER_0
 const TIMER_1 := LevelTriggerPhase.TIMER_1
 const TIMER_2 := LevelTriggerPhase.TIMER_2
+const TIMER_3 := LevelTriggerPhase.TIMER_3
+const TIMER_4 := LevelTriggerPhase.TIMER_4
+const TIMER_5 := LevelTriggerPhase.TIMER_5
+const TIMER_6 := LevelTriggerPhase.TIMER_6
+const TIMER_7 := LevelTriggerPhase.TIMER_7
+const TIMER_8 := LevelTriggerPhase.TIMER_8
+const TIMER_9 := LevelTriggerPhase.TIMER_9
 
 ## key: (int) an enum from LevelTriggerPhase
 ## value: (Array, PhaseCondition) Conditions for whether the trigger should fire

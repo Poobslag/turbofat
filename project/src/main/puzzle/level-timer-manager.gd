@@ -5,7 +5,7 @@ extends Node
 ## LevelTimers script, but the actual timer objects which count down are kept here.
 
 ## The maximum amount of timers which a level can define
-const MAX_TIMER_COUNT := 3
+const MAX_TIMER_COUNT := 10
 
 ## key: (int) timer index
 ## value: (int) an enum from LevelTriggerPhase for the timer's trigger
@@ -13,6 +13,13 @@ const PHASES_BY_TIMER_INDEX := {
 	0: LevelTrigger.TIMER_0,
 	1: LevelTrigger.TIMER_1,
 	2: LevelTrigger.TIMER_2,
+	3: LevelTrigger.TIMER_3,
+	4: LevelTrigger.TIMER_4,
+	5: LevelTrigger.TIMER_5,
+	6: LevelTrigger.TIMER_6,
+	7: LevelTrigger.TIMER_7,
+	8: LevelTrigger.TIMER_8,
+	9: LevelTrigger.TIMER_9,
 }
 
 func _ready() -> void:

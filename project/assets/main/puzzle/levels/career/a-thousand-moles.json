@@ -20,7 +20,7 @@
     },
     {
       "phases": [
-        "piece_written n=47,48,49..."
+        "piece_written n=47..."
       ],
       "effect": "add_moles home=surface dig_duration=1 reward=seed"
     },

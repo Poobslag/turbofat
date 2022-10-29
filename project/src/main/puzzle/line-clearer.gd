@@ -367,7 +367,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 				# after lines are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
 				# or the newly inserted lines could be deleted as a part of a big line clear.
 				_total_cleared_line_count += 1
-				var event_params := {"y": line_being_deleted, "n": _total_cleared_line_count}
+				var event_params := {"y": line_being_deleted, "n": _total_cleared_line_count, "combo": PuzzleState.combo - i}
 				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, event_params)
 			
 			# reassign 'line_being_deleted' in case lines_being_deleted_during_trigger was modified during the

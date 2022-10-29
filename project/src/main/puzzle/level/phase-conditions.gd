@@ -3,6 +3,94 @@ extends Node
 ##
 ## These conditions are each mapped to a unique string so that they can be referenced from json.
 
+class PickupCollectedPhaseCondition extends PhaseCondition:
+	
+	enum RequiredPickupType {
+		ANY,
+		SNACK,
+		CAKE,
+	}
+	
+	# an enum from RequiredPickupType defining the pickup's required type
+	var required_pickup_type: int = RequiredPickupType.ANY
+	
+	## Creates a new PickupCollectedPhaseCondition instance with the specified configuration.
+	func _init(phase_config: Dictionary).(phase_config) -> void:
+		if phase_config.has("0"):
+			required_pickup_type = Utils.enum_from_snake_case(RequiredPickupType, phase_config["0"])
+	
+	
+	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
+	##
+	## Parameters:
+	## 	'event_params': 'type' is an enum from Foods.PickupType defining the pickup's color
+	func should_run(event_params: Dictionary) -> bool:
+		var actual_pickup_type: int = event_params["type"]
+		var should_run := false
+		match required_pickup_type:
+			RequiredPickupType.ANY:
+				should_run = true
+			RequiredPickupType.SNACK:
+				should_run = Foods.is_snack_food(actual_pickup_type)
+			RequiredPickupType.CAKE:
+				should_run = Foods.is_cake_food(actual_pickup_type)
+		return should_run
+	
+	
+	## Extracts a set of phase configuration strings from this phase condition.
+	func get_phase_config() -> Dictionary:
+		var result := {}
+		if required_pickup_type != RequiredPickupType.ANY:
+			result["0"] = Utils.enum_to_snake_case(RequiredPickupType, required_pickup_type)
+		return result
+
+
+class ComboEndedPhaseCondition extends PhaseCondition:
+	const MAX_PIECE_INDEX := 20000
+	
+	## The 'combo' string read from the json configuration file.
+	var _combos_string: String
+	
+	## key: (int) combo value which triggers this phase condition, '0' means no combo
+	## value: (bool) true
+	var _combos_to_run := {}
+	
+	## Creates a new ComboEndedPhaseCondition instance with the specified configuration.
+	##
+	## The phase_config parameter accepts an optional 'combo' expression defining which combo values will fire this
+	## trigger. 1 means the smallest possible combo (clearing one line)
+	##
+	## 	{"combo": "10..."}: The trigger will fire if the player breaks their combo after clearing ten lines in a single
+	## 		combo.
+	##
+	## Parameters:
+	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
+	func _init(phase_config: Dictionary).(phase_config) -> void:
+		_combos_string = phase_config.get("combo", "")
+		_combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+	
+	
+	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
+	##
+	## Parameters:
+	## 	'_event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
+	func should_run(_event_params: Dictionary) -> bool:
+		var result := true
+		if _combos_string:
+			result = result and (_event_params["combo"] in _combos_to_run)
+		return result
+	
+	
+	## Extracts a set of phase configuration strings from this phase condition.
+	##
+	## Returns:
+	## 	A set of phase configuration strings defining criteria for this phase condition.
+	func get_phase_config() -> Dictionary:
+		var result := {}
+		if _combos_string: result["combo"] = _combos_string
+		return result
+
+
 class PieceWrittenPhaseCondition extends PhaseCondition:
 	## We precalculate which pieces will trigger the rule, up to this number of pieces.
 	## 20,000 corresponds to an expert player playing at ~200 PPM for two hours.
@@ -69,6 +157,7 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	func get_phase_config() -> Dictionary:
 		var result := {}
 		if _indexes_string: result["n"] = _indexes_string
+		if _combos_string: result["combo"] = _combos_string
 		return result
 
 
@@ -115,6 +204,8 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 
 
 class LineClearedPhaseCondition extends PhaseCondition:
+	const MAX_PIECE_INDEX := 20000
+	const MAX_LINE_INDEX := 10000
 	
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: (bool) true
@@ -125,6 +216,13 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## key: (int) a line milestone which causes the trigger to fire when cleared.
 	## value: (bool) true
 	var how_many_lines := {}
+	
+	## The 'combo' string read from the json configuration file.
+	var _combos_string: String
+	
+	## key: (int) combo value which triggers this phase condition, '0' means no combo
+	## value: (bool) true
+	var _combos_to_run := {}
 	
 	## Creates a new LineClearedPhaseCondition instance with the specified configuration.
 	##
@@ -141,7 +239,9 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## 		cleared.
 	##
 	## Parameters:
-	## 	'phase_config.y': (Optional) An expression defining which line clears will fire this trigger.
+	## 	'phase_config.y': (Optional) An expression defining which rows will fire this trigger.
+	## 	'phase_config.n': (Optional) An expression defining how many line clears will fire this trigger.
+	## 	'phase_config.combo': (Optional) An expression defining how many combos will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		if phase_config.has("y"):
 			var y_expression: String = phase_config["y"]
@@ -150,19 +250,26 @@ class LineClearedPhaseCondition extends PhaseCondition:
 				which_lines[ConfigStringUtils.invert_puzzle_row_index(which_line)] = true
 		if phase_config.has("n"):
 			how_many_lines_string = phase_config["n"]
-			how_many_lines = ConfigStringUtils.ints_from_config_string(how_many_lines_string, 2000)
+			how_many_lines = ConfigStringUtils.ints_from_config_string(how_many_lines_string, MAX_LINE_INDEX)
+		_combos_string = phase_config.get("combo", "")
+		_combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
 	##
 	## Parameters:
-	## 	'event_params': 'y' specifies which line was cleared, 0 is the highest line in the playfield.
+	## 	'event_params': Defines criteria for this line clear.
+	##	 	'event_params.y': specifies which line was cleared, 0 is the highest line in the playfield.
+	##	 	'event_params.n': specifies how many total lines have been cleared, 1 for the first line cleared.
+	## 		'event_params.combo': specifies the combo after clearing this line, 1 for the first line in a combo.
 	func should_run(event_params: Dictionary) -> bool:
 		var result := true
 		if which_lines:
 			result = result and which_lines.has(event_params["y"])
 		if how_many_lines:
-			result = result and how_many_lines.has(PuzzleState.level_performance.lines)
+			result = result and how_many_lines.has(event_params["n"])
+		if _combos_to_run:
+			result = result and _combos_to_run.has(event_params["combo"])
 		return result
 	
 	
@@ -179,12 +286,16 @@ class LineClearedPhaseCondition extends PhaseCondition:
 			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_which_lines)
 		if how_many_lines_string:
 			result["n"] = how_many_lines_string
+		if _combos_string:
+			result["combo"] = _combos_string
 		return result
 
 var phase_conditions_by_string := {
 	"box_built": BoxBuiltPhaseCondition,
-	"piece_written": PieceWrittenPhaseCondition,
+	"combo_ended": ComboEndedPhaseCondition,
 	"line_cleared": LineClearedPhaseCondition,
+	"pickup_collected": PickupCollectedPhaseCondition,
+	"piece_written": PieceWrittenPhaseCondition,
 }
 
 ## Creates a new PhaseCondition instance.

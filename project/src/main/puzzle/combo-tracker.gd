@@ -33,15 +33,18 @@ func set_combo_break(new_combo_break: int) -> void:
 
 
 func break_combo() -> void:
-	if PuzzleState.combo >= 20:
+	var old_combo: int = PuzzleState.combo
+	if old_combo >= 20:
 		$Fanfare3.play()
-	elif PuzzleState.combo >= 10:
+	elif old_combo >= 10:
 		$Fanfare2.play()
-	elif PuzzleState.combo >= 5:
+	elif old_combo >= 5:
 		$Fanfare1.play()
 	
-	if PuzzleState.combo > 0:
+	if old_combo > 0:
 		PuzzleState.end_combo()
+		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.COMBO_ENDED, {"combo": old_combo})
+	
 	emit_signal("combo_break_changed", combo_break)
 
 
