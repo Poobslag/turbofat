@@ -5,11 +5,29 @@ extends Node2D
 ## Carrots remain onscreen for several seconds. They have many different sizes, and can also leave behind a smokescreen
 ## which blocks the player's vision for even longer.
 
+## volume to fade out to; once the music reaches this volume, it's stopped
+const MIN_VOLUME := -40.0
+
+## volume of the carrot's movement sound
+const MOVE_SOUND_DB := -4.0
+
 export (PackedScene) var CarrotScene: PackedScene
 
 var playfield_path: NodePath setget set_playfield_path
 
 var _playfield: Playfield
+
+## node which contains all of the child carrot nodes
+onready var _carrot_holder: Node2D = $CarrotHolder
+
+## sound which plays when the carrot appears/disappears
+onready var _carrot_poof_sound: AudioStreamPlayer = $CarrotPoofSound
+
+## sound which plays while at least one carrot is moving
+onready var _carrot_move_sound: AudioStreamPlayer = $CarrotMoveSound
+
+## tweens carrot sfx
+onready var _tween: Tween = $Tween
 
 func _ready() -> void:
 	_refresh_playfield_path()
@@ -26,7 +44,11 @@ func set_playfield_path(new_playfield_path: NodePath) -> void:
 ## 	'count': The number of carrots to remove. If there aren't enough carrots on the playfield, all carrots are removed.
 func remove_carrots(count: int) -> void:
 	for _i in range(count):
-		_remove_carrot()
+		var result := _remove_carrot()
+		if not result:
+			# No more children to remove; immediately terminate the loop. This avoids a substantial performance
+			# degradation when this method is called with a huge number (999,999)
+			break
 
 
 ## Adds carrots to the playfield.
@@ -46,31 +68,26 @@ func add_carrots(config: CarrotConfig) -> void:
 	# don't allow carrots to spawn too far to the right
 	var carrot_dimensions: Vector2 = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
 	potential_carrot_columns = Utils.intersection(potential_carrot_columns, \
-			range(PuzzleTileMap.COL_COUNT - carrot_dimensions.x))
+			range(PuzzleTileMap.COL_COUNT - carrot_dimensions.x + 1))
 	potential_carrot_columns.shuffle()
 	
-	for i in range(1, potential_carrot_columns.size()):
-		if abs(potential_carrot_columns[i] - potential_carrot_columns[i - 1]) < carrot_dimensions.x:
-			# carrots are too close together; swap another carrot in
-			var swap_index := i
-			for j in range(i + 1, potential_carrot_columns.size()):
-				if abs(potential_carrot_columns[j] - potential_carrot_columns[i - 1]) >= carrot_dimensions.x:
-					swap_index = j
-					break
-			if swap_index != i:
-				var swap: int = potential_carrot_columns[i]
-				potential_carrot_columns[i] = potential_carrot_columns[swap_index]
-				potential_carrot_columns[swap_index] = swap
+	potential_carrot_columns = deconflict_carrots(potential_carrot_columns, carrot_dimensions)
 	
 	for i in range(min(config.count, potential_carrot_columns.size())):
 		_add_carrot(Vector2(potential_carrot_columns[i], PuzzleTileMap.ROW_COUNT), config)
+	SfxDeconflicter.play(_carrot_poof_sound)
 
 
 func _refresh_playfield_path() -> void:
 	if not (is_inside_tree() and playfield_path):
 		return
 	
+	if _playfield:
+		_playfield.disconnect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
+	
 	_playfield = get_node(playfield_path)
+	
+	_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
 
 
 ## Adds a carrot to the specified cell.
@@ -96,7 +113,9 @@ func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
 	carrot.smoke = config.smoke
 	carrot.carrot_size = config.size
 	
-	add_child(carrot)
+	_carrot_holder.add_child(carrot)
+	
+	carrot.connect("started_hiding", self, "_on_Carrot_started_hiding")
 	
 	# launch the carrot towards its destination at the top of the screen
 	var destination_cell := Vector2(cell.x, 0)
@@ -107,14 +126,105 @@ func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
 	
 	var duration := config.duration
 	carrot.launch(destination_position, duration)
+	
+	_refresh_carrot_move_sound()
 
 
 ## Removes the newest carrot.
-func _remove_carrot() -> void:
-	var i := get_child_count() - 1
+##
+## Returns:
+## 	'true' if a carrot was successfully removed. False if no carrots were found.
+func _remove_carrot() -> bool:
+	var result := false
+	var i := _carrot_holder.get_child_count() - 1
 	while i >= 0:
-		var carrot: Carrot = get_child(i)
+		var carrot: Carrot = _carrot_holder.get_child(i)
 		if not carrot.hiding:
 			carrot.hide()
+			result = true
 			break
 		i -= 1
+	return result
+
+
+## Immediately remove all carrots from the playfield, with no animation.
+func _clear_carrots() -> void:
+	for carrot in _carrot_holder.get_children():
+		carrot.hide() # also call hide to ensure the sound stops playing
+		carrot.queue_free()
+	_refresh_carrot_move_sound()
+
+
+func _refresh_carrot_move_sound() -> void:
+	var active_carrots := false
+	
+	for carrot in _carrot_holder.get_children():
+		if not carrot.hiding:
+			active_carrots = true
+			break
+	
+	if active_carrots and not _carrot_move_sound.playing:
+		_tween.remove(_carrot_move_sound, "volume_db")
+		_tween.interpolate_property(_carrot_move_sound, "volume_db", MIN_VOLUME, MOVE_SOUND_DB,
+				0.8, Tween.TRANS_SINE, Tween.EASE_OUT)
+		_tween.start()
+		_carrot_move_sound.play()
+	elif not active_carrots and _carrot_move_sound.playing:
+		_tween.remove(_carrot_move_sound, "volume_db")
+		_tween.interpolate_property(_carrot_move_sound, "volume_db", _carrot_move_sound.volume_db, MIN_VOLUME,
+				0.4, Tween.TRANS_SINE, Tween.EASE_IN)
+		_tween.start()
+
+
+func _on_Playfield_blocks_prepared() -> void:
+	_clear_carrots()
+	_refresh_carrot_move_sound()
+
+
+func _on_Carrot_started_hiding() -> void:
+	SfxDeconflicter.play(_carrot_poof_sound)
+	_refresh_carrot_move_sound()
+
+
+func _on_Tween_tween_completed(object: Object, key: String) -> void:
+	if object == _carrot_move_sound and key == ":volume_db" and abs(_carrot_move_sound.volume_db - MIN_VOLUME) < 0.01:
+		_carrot_move_sound.stop()
+	else:
+		pass
+
+
+## Prioritizes carrots so that non-overlapping carrots will appear if possible.
+##
+## Parameters:
+## 	'potential_columns': Carrot columns in priority order.
+##
+## 	'carrot_dimensions': Carrot width and height in cells. The width determines how close carrots can be.
+##
+## Returns:
+## 	A new list of carrot columns in priority order, so that non-overlapping carrots appear at the front of the list.
+static func deconflict_carrots(potential_columns: Array, carrot_dimensions: Vector2) -> Array:
+	var results := []
+	
+	# set of columns which are near other carrot columns.
+	# key: (int) carrot column
+	# value: (bool) true
+	var overlapping_columns: Dictionary = {}
+	
+	var next_non_overlapping_column_index := 0
+	for i in range(potential_columns.size()):
+		var potential_column: int = potential_columns[i]
+		if overlapping_columns.has(potential_column):
+			# column overlaps; push it to the back of the results array
+			results.push_back(potential_column)
+		else:
+			# column does not overlap; insert it into the front of the results array
+			results.insert(next_non_overlapping_column_index, potential_column)
+			next_non_overlapping_column_index += 1
+			
+			# append neighboring columns to the overlapping_columns set
+			var min_overlapping_column := potential_column - carrot_dimensions.x + 1
+			var max_overlapping_column := potential_column + carrot_dimensions.x - 1
+			for overlapping_column in range(min_overlapping_column, max_overlapping_column + 1):
+				overlapping_columns[overlapping_column] = true
+	
+	return results

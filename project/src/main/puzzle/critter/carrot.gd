@@ -5,6 +5,9 @@ extends Node2D
 ## Carrots remain onscreen for several seconds. They have many different sizes, and can also leave behind a smokescreen
 ## which blocks the player's vision for even longer.
 
+## Emitted when the carrot starts its 'hide' animation, indicating it will soon be freed.
+signal started_hiding
+
 ## Duration in seconds it takes for the carrot's show animation.
 const SHOW_DURATION := 0.20
 
@@ -110,6 +113,7 @@ func show() -> void:
 ## frees itself from memory.
 func hide() -> void:
 	hiding = true
+	emit_signal("started_hiding")
 	
 	_show_tween.remove(_visuals, "modulate")
 	_show_tween.interpolate_property(_visuals, "modulate", _visuals.modulate, Color.transparent,

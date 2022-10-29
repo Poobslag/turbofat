@@ -21,6 +21,7 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 gradient = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=5]
+resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 10, 4, 1 )
 flag_disable_z = true

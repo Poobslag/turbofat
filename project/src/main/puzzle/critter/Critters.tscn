@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/moles.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/critter/critters.gd" type="Script" id=2]
 [ext_resource path="res://src/main/puzzle/critter/Mole.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/puzzle/critter/carrots.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/critter/Carrot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/main/puzzle/critter/carrot-move.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/main/puzzle/critter/critter-poof.wav" type="AudioStream" id=7]
 
 [node name="Critters" type="Control"]
 margin_left = 364.0
@@ -20,3 +22,17 @@ MoleScene = ExtResource( 3 )
 [node name="Carrots" type="Node2D" parent="."]
 script = ExtResource( 4 )
 CarrotScene = ExtResource( 5 )
+
+[node name="CarrotHolder" type="Node2D" parent="Carrots"]
+
+[node name="CarrotPoofSound" type="AudioStreamPlayer" parent="Carrots"]
+stream = ExtResource( 7 )
+bus = "Sound Bus"
+
+[node name="CarrotMoveSound" type="AudioStreamPlayer" parent="Carrots"]
+stream = ExtResource( 6 )
+bus = "Sound Bus"
+
+[node name="Tween" type="Tween" parent="Carrots"]
+
+[connection signal="tween_completed" from="Carrots/Tween" to="Carrots" method="_on_Tween_tween_completed"]
