@@ -290,6 +290,11 @@ func _on_PuzzleState_before_piece_written() -> void:
 		remaining_food_for_piece -= 1
 		emit_signal("food_spawned", pickup_cell, remaining_food_for_piece, pickup.food_type)
 	
+	# Run pickup_collected triggers
+	for pickup_cell in collected_pickup_cells:
+		var pickup: Pickup = _pickups_by_cell[pickup_cell]
+		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PICKUP_COLLECTED, {"type": pickup.food_type})
+	
 	# Remove collected pickups
 	for pickup_cell in collected_pickup_cells:
 		var pickup: Pickup = _pickups_by_cell[pickup_cell]

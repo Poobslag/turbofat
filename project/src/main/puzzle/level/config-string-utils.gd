@@ -87,22 +87,31 @@ static func ints_from_config_string(config_string: String, max_int: int = 0) -> 
 	for _i in range(1 if config_string.ends_with("...") else 0):
 		var ints_split := config_string.trim_suffix("...").split(",")
 		
-		# determine difference of last two values
-		if ints_split.size() < 2:
-			push_warning("index string doesn't have enough values to extrapolate: '%s'" % [config_string])
+		# calculate the starting value and increment
+		var start: int
+		var increment: int
+		if ints_split.size() < 1:
+			# if the index string is empty, we do not loop
 			break
+		elif ints_split.size() == 1:
+			# for a single value like '6...' we use an increment of 1
+			start = int(ints_split[0])
+			increment = 1
+		else:
+			# for a series like '6,8,10...' we calculate the difference of the last two values
+			var low := int(ints_split[ints_split.size() - 2])
+			var high := int(ints_split[ints_split.size() - 1])
+			if high <= low:
+				push_warning("nonsensical index string extrapolation: '%s'" % [config_string])
+				break
+			increment = high - low
+			start = high + increment
 		
-		var low := int(ints_split[ints_split.size() - 2])
-		var high := int(ints_split[ints_split.size() - 1])
-		if high <= low:
-			push_warning("nonsensical index string extrapolation: '%s'" % [config_string])
-			break
-		
-		var i := 2 * high - low
 		# extrapolate until we hit max_int
+		var i := start
 		while i <= max_int:
 			ints[i] = true
-			i += high - low
+			i += increment
 	
 	return ints
 

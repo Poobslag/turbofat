@@ -16,7 +16,7 @@
   "triggers": [
     {
       "phases": [
-        "piece_written 0,2,4..."
+        "piece_written n=0,2,4..."
       ],
       "effect": "add_moles home=hole"
     },
