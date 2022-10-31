@@ -32,6 +32,10 @@ func _refresh_level() -> void:
 	level_settings.load_from_resource(_open_input.value)
 	CurrentLevel.start_level(level_settings)
 	_calculate_button.disabled = not PlayerData.level_history.has_result(CurrentLevel.level_id)
+	
+	# immediately recalculate the level metadata
+	if not _calculate_button.disabled:
+		_calculate()
 
 
 ## Calculates and outputs the necessary level metadata for the player to attain their expected grade.
