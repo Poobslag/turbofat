@@ -1,0 +1,120 @@
+{
+  "version": "39e5",
+  "start_speed": "A4",
+  "name": "No Smoking Section II",
+  "description": "Cough! Cough! ...Carrots! Too many!",
+  "finish_condition": {
+    "type": "score",
+    "value": "2700"
+  },
+  "timers": [
+    {
+      "initial_interval": 2,
+      "interval": 18
+    },
+    {
+      "initial_interval": 3,
+      "interval": 18
+    },
+    {
+      "initial_interval": 12,
+      "interval": 18
+    },
+    {
+      "initial_interval": 13,
+      "interval": 18
+    }
+  ],
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "70",
+      "speed": "A5"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "speed": "A6"
+    },
+    {
+      "type": "lines",
+      "value": "90",
+      "speed": "A7"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "speed": "A8"
+    },
+    {
+      "type": "lines",
+      "value": "110",
+      "speed": "A9"
+    },
+    {
+      "type": "lines",
+      "value": "120",
+      "speed": "AA"
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0",
+        "timer_1"
+      ],
+      "effect": "add_carrots count=2 size=small smoke=large duration=10 x=0-3"
+    },
+    {
+      "phases": [
+        "timer_2",
+        "timer_3"
+      ],
+      "effect": "add_carrots count=2 size=small smoke=large duration=10 x=4-7"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "7 17",
+        "pickup": "8"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "8"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "7 19",
+        "tile": "2 11 1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": "39e5",
+  "start_speed": "1",
+  "name": "No Smoking Section",
+  "description": "Carrot smoke is the healthiest kind of smoke! But, we still don't like it very much.",
+  "finish_condition": {
+    "type": "score",
+    "value": "275"
+  },
+  "timers": [
+    {
+      "initial_interval": 2,
+      "interval": 20
+    },
+    {
+      "initial_interval": 4,
+      "interval": 20
+    },
+    {
+      "initial_interval": 12,
+      "interval": 20
+    },
+    {
+      "initial_interval": 14,
+      "interval": 20
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0",
+        "timer_1"
+      ],
+      "effect": "add_carrots size=small smoke=large x=0-2"
+    },
+    {
+      "phases": [
+        "timer_2",
+        "timer_3"
+      ],
+      "effect": "add_carrots size=small smoke=large x=5-7"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "4 17",
+        "pickup": "6"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "7 18",
+        "pickup": "6"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 14 3"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 16 3"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 4 2"
+      }
+    ]
+  }
+}
