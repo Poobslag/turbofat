@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main/career/ui/progress-board-map-marsh.png" type="Texture" id=1]
+
+[sub_resource type="Curve2D" id=28]
+_data = {
+"points": PoolVector2Array( -28.3899, -10.9204, 28.3899, 10.9204, 146.663, 225.57, -31.8312, -3.39736, 31.8312, 3.39736, 215.715, 260.493, -22.9081, -4.58844, 22.9081, 4.58844, 279.211, 250.175, -28.3051, 4.19899, 28.3051, -4.19899, 360.962, 236.682, -23.9838, -5.73631, 23.9838, 5.73631, 427.633, 233.507, -22.2236, -7.1433, 22.2236, 7.1433, 487.16, 260.493, -27.4529, 12.2792, 27.4529, -12.2792, 559.558, 260.881 )
+}
+
+[node name="Map" type="TextureRect"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -343.597
+margin_bottom = -132.792
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 28 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0

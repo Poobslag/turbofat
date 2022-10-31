@@ -11,18 +11,14 @@
 [ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=9]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/main/career/ui/map/player-sheet.png" type="Texture" id=11]
-[ext_resource path="res://assets/main/career/ui/progress-board-map-lemon.png" type="Texture" id=12]
+[ext_resource path="res://src/main/career/ui/ProgressBoardMapLemon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/main/career/ui/progress-board.png" type="Texture" id=13]
 [ext_resource path="res://src/main/ui/theme/chalkboard-36.theme" type="Theme" id=14]
 [ext_resource path="res://src/main/career/ui/progress-board.gd" type="Script" id=15]
 [ext_resource path="res://assets/main/career/ui/progress-board-appear.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/career/ui/clock-ring.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/main/career/ui/progress-board-player-move.wav" type="AudioStream" id=18]
-
-[sub_resource type="Curve2D" id=28]
-_data = {
-"points": PoolVector2Array( -33.521, -11.6283, 33.521, 11.6283, 94.3464, 162.697, -25.4344, 5.80531, 25.4344, -5.80531, 195.012, 172.469, -29.7682, -4.73003, 29.7682, 4.73003, 288.659, 155.795, -13.2634, -17.4669, 13.2634, 17.4669, 365.102, 196.407, -22.5294, -12.8969, 22.5294, 12.8969, 426.208, 252.474, -26.8952, 5.45759, 26.8952, -5.45759, 525.742, 266.963 )
-}
+[ext_resource path="res://src/main/career/ui/progress-board-map-holder.gd" type="Script" id=19]
 
 [sub_resource type="ShaderMaterial" id=29]
 shader = ExtResource( 9 )
@@ -552,18 +548,16 @@ texture = ExtResource( 13 )
 expand = true
 stretch_mode = 1
 
-[node name="Map" type="TextureRect" parent="ChalkboardRegion"]
-modulate = Color( 1, 1, 1, 0.784314 )
+[node name="MapHolder" type="Control" parent="ChalkboardRegion"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 12 )
-expand = true
+script = ExtResource( 19 )
 
-[node name="Path2D" type="Path2D" parent="ChalkboardRegion/Map"]
-curve = SubResource( 28 )
+[node name="Map" parent="ChalkboardRegion/MapHolder" instance=ExtResource( 12 )]
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="Trail" parent="ChalkboardRegion" instance=ExtResource( 8 )]
-path2d_path = NodePath("../Map/Path2D")
 
 [node name="Player" type="Control" parent="ChalkboardRegion"]
 margin_left = 93.4843
