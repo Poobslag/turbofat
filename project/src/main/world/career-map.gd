@@ -40,11 +40,6 @@ func _ready() -> void:
 	
 	var redirected := false
 	
-	# if they've played eight levels, redirect them to the 'you win' screen
-	if not redirected and PlayerData.career.is_day_over():
-		PlayerData.career.push_career_trail()
-		redirected = true
-	
 	# if they haven't seen this region's prologue, redirect them to the prologue cutscene
 	if not redirected and PlayerData.career.should_play_prologue():
 		PlayerData.career.push_career_trail()
@@ -55,7 +50,7 @@ func _ready() -> void:
 		if PlayerData.career.show_progress == CareerData.ShowProgress.NONE:
 			# Ordinarily, we focus the level button after the progress board vanishes. But if the progress board is not
 			# being shown, we focus the button right away.
-			_level_select_control.focus_button()
+			_after_progress_board()
 
 
 func _exit_tree() -> void:
@@ -355,6 +350,18 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 	return result
 
 
+## After the progress board is shown, the player is either redirected to the career win screen, or we focus one of the
+## level buttons.
+##
+## If the progress board is not being shown, this happens at the start of the level.
+func _after_progress_board() -> void:
+	if PlayerData.career.is_day_over():
+		# After the final level, we show a 'you win' screen.
+		SceneTransition.replace_trail(Global.SCENE_CAREER_WIN)
+	else:
+		_level_select_control.focus_button()
+
+
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
@@ -428,8 +435,4 @@ func _on_CareerData_distance_travelled_changed() -> void:
 
 
 func _on_ProgressBoardHolder_progress_board_hidden() -> void:
-	if PlayerData.career.is_day_over():
-		# After the final level, we show a 'you win' screen.
-		SceneTransition.replace_trail("res://src/main/career/ui/CareerWin.tscn")
-	else:
-		_level_select_control.focus_button()
+	_after_progress_board()
