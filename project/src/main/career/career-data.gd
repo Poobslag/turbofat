@@ -440,13 +440,13 @@ func advance_past_chat_region(chat_key: String) -> void:
 
 ## Returns 'true' if the player's travelled far enough to have a 'nice restaurant'
 func is_restaurant_decorated() -> bool:
-	return best_distance_travelled >= 24
+	return best_distance_travelled >= 19
 
 
 ## Returns 'true' if the player still refers to Fat Sensei as 'Turbo'
 func is_sensei_turbo() -> bool:
 	return not PlayerData.chat_history.is_chat_finished("chat/career/lemon/boss_level") \
-		and best_distance_travelled < 10
+		and best_distance_travelled < 8
 
 
 ## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode

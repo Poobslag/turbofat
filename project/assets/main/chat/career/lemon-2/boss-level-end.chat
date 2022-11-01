@@ -23,14 +23,16 @@ s1: Remind me to insult them again later! If I make them cry hard enough, maybe 
 [some_slack]
 p1: u_u Oh poor Tunathy, let's cut them some slack.
 s1: ^n^ Hmph, you just don't understand how to run a business. If nobody's crying, you're not trying hard enough.
+ (next_scene chat/career/lemon_2/boss_level_end_2)
 
 [good_cop]
 p1: -u- I want in on this too! Maybe we can do kind of a good cop/bad cop thing.
 s1: ^n^ No no, you need to start pulling your weight! We both need to be bad cops.
 s1: ^_^ That's just called good business! If nobody's crying, you're not trying hard enough.
+ (next_scene chat/career/lemon_2/boss_level_end_2)
 
 [not_their_fault]
 p1: <_< I don't think it was actually their fault...
 s1: ^n^ Yes, but with their low self-esteem who do you think they're more likely to believe? Us or themselves?
 s1: ^_^ That's just called good business! If nobody's crying, you're not trying hard enough.
- (next_scene chat/career/lemon/boss_level_end_2)
+ (next_scene chat/career/lemon_2/boss_level_end_2)
