@@ -180,7 +180,11 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 
 func _on_SettingsMenu_other_quit_pressed() -> void:
+	# If the day is over, they're redirected to the career map to view the progress board. But they don't need to view
+	# the progress board if they're already on the career map screen, so we set 'show_progress' to 'none' to redirect
+	# them directly to the career win screen.
 	PlayerData.career.hours_passed = CareerData.HOURS_PER_CAREER_DAY
+	PlayerData.career.show_progress = CareerData.ShowProgress.NONE
 	PlayerData.career.push_career_trail()
 
 

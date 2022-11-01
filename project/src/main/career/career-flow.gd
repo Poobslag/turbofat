@@ -32,6 +32,12 @@ func push_career_trail() -> void:
 		CurrentCutscene.push_cutscene_trail()
 		redirected = true
 	
+	if not redirected and career_data.is_day_over() and career_data.show_progress == CareerData.ShowProgress.NONE:
+		# If the day is over, they're redirected to the career map to view the progress board. But if they don't need
+		# to view the progress board, we can redirect them directly to the career win screen.
+		SceneTransition.replace_trail(Global.SCENE_CAREER_WIN)
+		redirected = true
+	
 	if not redirected:
 		# After a puzzle (or any other scene), we go back to the career map.
 		SceneTransition.change_scene()
