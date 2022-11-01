@@ -5,6 +5,14 @@ extends Node2D
 ## Carrots remain onscreen for several seconds. They have many different sizes, and can also leave behind a smokescreen
 ## which blocks the player's vision for even longer.
 
+## tracks whether the carrot sfx are playing
+enum MoveSfxState {
+	STOPPED, # sfx are not playing
+	STARTING, # sfx are playing, and volume is increasing
+	PLAYING, # sfx are playing, and volume is at 100%
+	STOPPING, # sfx are playing, and volume is decreasing
+}
+
 ## volume to fade out to; once the music reaches this volume, it's stopped
 const MIN_VOLUME := -40.0
 
@@ -17,6 +25,9 @@ var playfield_path: NodePath setget set_playfield_path
 
 var _playfield: Playfield
 
+## tracks whether the carrot sfx are playing
+var _move_sfx_state: int = MoveSfxState.STOPPED
+
 ## node which contains all of the child carrot nodes
 onready var _carrot_holder: Node2D = $CarrotHolder
 
@@ -27,7 +38,7 @@ onready var _carrot_poof_sound: AudioStreamPlayer = $CarrotPoofSound
 onready var _carrot_move_sound: AudioStreamPlayer = $CarrotMoveSound
 
 ## tweens carrot sfx
-onready var _tween: Tween = $Tween
+onready var _tween: Tween = $SfxTween
 
 func _ready() -> void:
 	_refresh_playfield_path()
@@ -163,13 +174,15 @@ func _refresh_carrot_move_sound() -> void:
 			active_carrots = true
 			break
 	
-	if active_carrots and not _carrot_move_sound.playing:
+	if active_carrots and _move_sfx_state in [MoveSfxState.STOPPED, MoveSfxState.STOPPING]:
+		_move_sfx_state = MoveSfxState.STARTING
 		_tween.remove(_carrot_move_sound, "volume_db")
 		_tween.interpolate_property(_carrot_move_sound, "volume_db", MIN_VOLUME, MOVE_SOUND_DB,
 				0.8, Tween.TRANS_SINE, Tween.EASE_OUT)
 		_tween.start()
 		_carrot_move_sound.play()
-	elif not active_carrots and _carrot_move_sound.playing:
+	elif not active_carrots and _move_sfx_state in [MoveSfxState.PLAYING, MoveSfxState.STARTING]:
+		_move_sfx_state = MoveSfxState.STOPPING
 		_tween.remove(_carrot_move_sound, "volume_db")
 		_tween.interpolate_property(_carrot_move_sound, "volume_db", _carrot_move_sound.volume_db, MIN_VOLUME,
 				0.4, Tween.TRANS_SINE, Tween.EASE_IN)
@@ -187,8 +200,12 @@ func _on_Carrot_started_hiding() -> void:
 
 
 func _on_Tween_tween_completed(object: Object, key: String) -> void:
-	if object == _carrot_move_sound and key == ":volume_db" and abs(_carrot_move_sound.volume_db - MIN_VOLUME) < 0.01:
-		_carrot_move_sound.stop()
+	if object == _carrot_move_sound and key == ":volume_db":
+		if abs(_carrot_move_sound.volume_db - MIN_VOLUME) < 0.01:
+			_carrot_move_sound.stop()
+			_move_sfx_state = MoveSfxState.STOPPED
+		else:
+			_move_sfx_state = MoveSfxState.PLAYING
 	else:
 		pass
 
