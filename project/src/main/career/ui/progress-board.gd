@@ -37,6 +37,9 @@ onready var _title := $ChalkboardRegion/Title
 ## The player's chalk graphics on the progress board.
 onready var _player := $ChalkboardRegion/Player
 
+## The chalk drawing of the region.
+onready var _map_holder := $ChalkboardRegion/MapHolder
+
 ## Animation player which makes the progress board 'pop in' and 'pop out' animations.
 onready var _show_animation_player := $ShowAnimationPlayer
 
@@ -96,10 +99,13 @@ func play() -> void:
 
 ## Update the progress board's graphics based on the player's career progress.
 func refresh() -> void:
+	# refresh region
 	var region := PlayerData.career.current_region()
 	_title.set_text(region.name)
 	var icon_type := Utils.enum_from_snake_case(ProgressBoardTitle.IconType, region.icon_name, ProgressBoardTitle.NONE)
 	_title.set_icon_type(icon_type)
+	_map_holder.set_region_id(region.id)
+	_trail.path2d_path = _trail.get_path_to(_map_holder.path2d)
 	
 	# refresh spot_count
 	var new_spot_count := region.length

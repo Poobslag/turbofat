@@ -35,3 +35,4 @@ func _draw() -> void:
 
 func set_path2d(new_path2d: Path2D) -> void:
 	path2d = new_path2d
+	update()
