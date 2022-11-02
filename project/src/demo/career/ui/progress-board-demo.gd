@@ -69,6 +69,7 @@ func _input(event: InputEvent) -> void:
 		KEY_MINUS:
 			PlayerData.career.distance_earned = 0
 			PlayerData.career.distance_travelled -= 10 if Input.is_key_pressed(KEY_SHIFT) else 1
+			PlayerData.career.distance_travelled = int(max(PlayerData.career.distance_travelled, 0))
 			_progress_board.refresh()
 
 
