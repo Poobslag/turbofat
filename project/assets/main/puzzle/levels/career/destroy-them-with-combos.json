@@ -32,21 +32,21 @@
     },
     {
       "phases": [
-        "line_cleared combo=1-5"
-      ],
-      "effect": "remove_carrots"
-    },
-    {
-      "phases": [
-        "line_cleared combo=6-10"
+        "line_cleared combo=5-9"
       ],
       "effect": "remove_carrots 2"
     },
     {
       "phases": [
-        "line_cleared combo=11..."
+        "line_cleared combo=10-19"
       ],
       "effect": "remove_carrots 3"
+    },
+    {
+      "phases": [
+        "line_cleared combo=20..."
+      ],
+      "effect": "remove_carrots 5"
     }
   ],
   "tiles": {
