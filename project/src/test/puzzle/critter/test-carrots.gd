@@ -1,7 +1,7 @@
 extends "res://addons/gut/test.gd"
 
 func test_deconflict_carrots_width_1() -> void:
-	assert_eq(Carrots.deconflict_carrots([3, 4, 5, 1, 2, 0, 6], Vector2(1, 4)), [3, 4, 5, 1, 2, 3, 6])
+	assert_eq(Carrots.deconflict_carrots([3, 4, 5, 1, 2, 0, 6], Vector2(1, 4)), [3, 4, 5, 1, 2, 0, 6])
 	assert_eq(Carrots.deconflict_carrots([6, 0, 1, 5, 4, 2, 3], Vector2(1, 4)), [6, 0, 1, 5, 4, 2, 3])
 
 
