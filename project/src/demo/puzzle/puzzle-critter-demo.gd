@@ -68,7 +68,6 @@ func _carrot_input(event: InputEvent) -> void:
 		KEY_0:
 			$Puzzle/Fg/Critters/Carrots.remove_carrots(1)
 		KEY_1:
-			_carrot_config.columns = [0, 1, 2]
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_2:
 			_carrot_config.smoke = (_carrot_config.smoke + 1) % CarrotConfig.Smoke.size()
