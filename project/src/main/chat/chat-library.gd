@@ -88,8 +88,8 @@ func add_mega_lull_characters(s: String) -> String:
 	return transformer.transformed
 
 
-## Converts a path like 'res://assets/main/chat/career/lemon/20-a.chat' into a chat key like
-## 'chat/career/lemon/20_a'.
+## Converts a path like 'res://assets/main/chat/career/lemon/020-a.chat' into a chat key like
+## 'chat/career/lemon/020_a'.
 ##
 ## Using these chat keys has many benefits. Most notably they aren't invalidated if we move files or change extensions.
 ##
@@ -97,7 +97,7 @@ func add_mega_lull_characters(s: String) -> String:
 ## 	'path': The path of a chat resource.
 ##
 ## Returns:
-## 	A key such as 'chat/career/lemon/20_a' corresponding to the specified chat resource
+## 	A key such as 'chat/career/lemon/020_a' corresponding to the specified chat resource
 func chat_key_from_path(path: String) -> String:
 	var chat_key := path
 	chat_key = chat_key.trim_suffix(".chat")
@@ -106,11 +106,11 @@ func chat_key_from_path(path: String) -> String:
 	return chat_key
 
 
-## Converts a chat key like 'chat/career/lemon/20_a' into a path like
-## 'res://assets/main/chat/career/lemon/20-a.chat'
+## Converts a chat key like 'chat/career/lemon/020_a' into a path like
+## 'res://assets/main/chat/career/lemon/020-a.chat'
 ##
 ## Parameters:
-## 	'chat_key': A chat key such as 'chat/career/lemon/20_a'
+## 	'chat_key': A chat key such as 'chat/career/lemon/020_a'
 ##
 ## Returns:
 ## 	The path of the resource identified by the specified chat key.

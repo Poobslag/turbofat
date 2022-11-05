@@ -326,7 +326,7 @@
         {
           "id": "career/one_step_ahead",
           "chef_id": "skins",
-          "available_if": "chat_finished chat/career/marsh/20_end"
+          "available_if": "chat_finished chat/career/marsh/020_end"
         },
         {
           "id": "career/pineapple_on_its_side_cake"

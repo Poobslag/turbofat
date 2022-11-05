@@ -41,7 +41,7 @@ margin_right = 400.0
 margin_bottom = 124.0
 rect_min_size = Vector2( 0, 100 )
 theme = ExtResource( 7 )
-text = "chat_finished career/marsh/20
+text = "chat_finished career/marsh/020
 chat_finished career/marsh/30_d"
 
 [node name="LongNames" type="CheckBox" parent="Input"]
