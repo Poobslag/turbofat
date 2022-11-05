@@ -319,49 +319,49 @@ position = Vector2( 3712.98, 1087.07 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupCrystal1" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 3923.16, 1402.75 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupCrystal2" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 3781, 1362 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupCrystal3" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 3600.04, 1049.28 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupCrystal4" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 4512.79, 1146.11 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupCrystal5" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 3993.71, 1122.3 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupCrystal6" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 4373.1, 1142.94 )
 target_properties = {
 "chat_key": ""
 }
-spawn_if = "not chat_finished chat/career/marsh/20"
+spawn_if = "not chat_finished chat/career/marsh/020"
 
 [node name="ButtercupStool4" parent="Obstacles" instance=ExtResource( 37 )]
 position = Vector2( 4132.8, 1326.5 )
