@@ -5,7 +5,7 @@
   "description": "Cough! Cough! ...Carrots! Too many!",
   "finish_condition": {
     "type": "score",
-    "value": "2700"
+    "value": "1800"
   },
   "timers": [
     {
