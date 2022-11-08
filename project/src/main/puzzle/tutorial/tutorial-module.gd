@@ -53,6 +53,7 @@ func prepare_tutorial_level() -> void:
 	# Reset the player's combo between puzzle sections. Each tutorial section should have a fresh start; We don't want
 	# them to receive a discouraging 'you broke your combo' fanfare at the start of a section.
 	PuzzleState.set_combo(0)
+	PuzzleState.tutorial_section_finished = false
 	
 	# Hide all completed skill tally items.
 	for skill_tally_item_obj in hud.skill_tally_items():

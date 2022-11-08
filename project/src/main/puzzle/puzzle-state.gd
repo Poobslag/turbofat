@@ -86,6 +86,9 @@ var fatness_score := 0
 ## 'true' if the player has started a game which is still running.
 var game_active: bool
 
+## 'true' if the player finished this tutorial section.
+var tutorial_section_finished: bool
+
 ## 'true' if the player survived until the end the level.
 var finish_triggered: bool
 
@@ -189,6 +192,7 @@ func change_level(level_id: String, delay_between_levels: float = DELAY_SHORT) -
 ## wasn't wasted, if they built a lot of boxes they didn't clear.
 func trigger_finish() -> void:
 	if CurrentLevel.settings.other.tutorial:
+		tutorial_section_finished = true
 		emit_signal("tutorial_section_finished")
 	else:
 		game_active = false
@@ -280,6 +284,7 @@ func reset() -> void:
 	level_performance = PuzzlePerformance.new()
 	game_active = false
 	finish_triggered = false
+	tutorial_section_finished = false
 	game_ended = false
 	speed_index = 0
 	no_more_customers = CurrentLevel.settings.other.tutorial
@@ -339,6 +344,7 @@ func after_piece_written() -> void:
 func _prepare_game() -> void:
 	game_active = false
 	finish_triggered = false
+	tutorial_section_finished = false
 	game_ended = false
 	
 	if CurrentLevel.settings.other.start_level:

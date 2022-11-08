@@ -1,44 +1,26 @@
 {
   "version": "39e5",
   "start_speed": "0",
-  "name": "No Smoking Section",
-  "description": "Carrot smoke is the healthiest kind of smoke! But, we still don't like it very much.",
+  "name": "Just Cream",
+  "description": "What are these pieces!? LOLOLOL",
   "finish_condition": {
     "type": "time_over",
-    "value": "90"
+    "value": "50"
   },
-  "timers": [
-    {
-      "initial_interval": 2.0,
-      "interval": 20
-    },
-    {
-      "initial_interval": 4.0,
-      "interval": 20
-    },
-    {
-      "initial_interval": 12.0,
-      "interval": 20
-    },
-    {
-      "initial_interval": 14.0,
-      "interval": 20
-    }
+  "rank": [
+    "box_factor 0.76",
+    "master_pickup_score_per_line 3.84",
+    "show_pickups_rank"
   ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_0",
-        "timer_1"
-      ],
-      "effect": "add_carrots size=small smoke=large x=0-2"
-    },
-    {
-      "phases": [
-        "timer_2",
-        "timer_3"
-      ],
-      "effect": "add_carrots size=small smoke=large x=5-7"
-    }
+  "piece_types": [
+    "ordered_start",
+    "start_piece_v",
+    "start_piece_v",
+    "start_piece_v",
+    "start_piece_o",
+    "start_piece_o",
+    "start_piece_o",
+    "piece_o",
+    "piece_v"
   ]
 }

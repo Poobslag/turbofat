@@ -293,4 +293,8 @@ func _on_Playfield_all_lines_cleared() -> void:
 		# avoid conflicting chef moods at the end of a level
 		return
 	
+	if PuzzleState.tutorial_section_finished:
+		# avoid reporting 'all clear' at the end of a tutorial section
+		return
+	
 	get_chef().play_mood(Creatures.Mood.LAUGH1)
