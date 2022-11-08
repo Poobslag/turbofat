@@ -205,6 +205,8 @@
     "657 -move_piece_right",
     "664 +move_piece_right",
     "669 -move_piece_right",
+    "677 +move_piece_right",
+    "682 -move_piece_right",
     "696 +soft_drop",
     "728 -soft_drop"
   ],
