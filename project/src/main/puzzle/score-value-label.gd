@@ -14,6 +14,9 @@ func _ready() -> void:
 
 
 func _on_resized() -> void:
+	if not _top_out_particles:
+		return
+	
 	margin_left = -rect_size.x
 	_top_out_particles.rect_position = rect_size * 0.5
 
