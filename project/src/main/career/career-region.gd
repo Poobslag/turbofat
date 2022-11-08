@@ -80,7 +80,7 @@ var region_button_name: String
 
 func from_json_dict(json: Dictionary) -> void:
 	id = json.get("id", "")
-	name = json.get("name", "")
+	name = tr(json.get("name", ""))
 	start = int(json.get("start", 0))
 	
 	if json.has("boss_level"):
@@ -89,7 +89,7 @@ func from_json_dict(json: Dictionary) -> void:
 	cutscene_path = json.get("cutscene_path", "")
 	if json.has("population"):
 		population.from_json_dict(json.get("population"))
-	description = json.get("description", "")
+	description = tr(json.get("description", ""))
 	for flags_string in json.get("flags", []):
 		flags[flags_string] = true
 	icon_name = json.get("icon", "")

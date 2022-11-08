@@ -23,13 +23,15 @@ msgstr ""
 #: project/src/main/career/ui/ProgressBoard.tscn:648
 #: project/src/main/ui/RegionSelectButton.tscn:57
 msgid "Lemony Thickets"
-msgstr ""
+msgstr "Matorrales de limón"
 
 #: project/assets/main/locale/localizables-extracted.py:3
 msgid ""
 "Locate the mysterious Fat Sensei and launch your first successful "
 "restaurant. It all starts here!"
 msgstr ""
+"Localiza al misterioso Fat Sensei y lanza tu primer éxito"
+"restaurante. ¡Todo comienza aquí!"
 
 #: project/assets/main/locale/localizables-extracted.py:4
 msgid "Welcome to Turbo Fat"
@@ -83,13 +85,15 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:15
 msgid "Training: Marathon"
-msgstr ""
+msgstr "Entrenamiento: Maratón"
 
 #: project/assets/main/locale/localizables-extracted.py:16
 msgid ""
 "A test of endurance where you survive as long as you can against increasing "
 "speeds."
 msgstr ""
+"Una prueba de resistencia donde sobrevives el mayor tiempo posible contra el aumento de "
+"velocidades."
 
 #: project/assets/main/locale/localizables-extracted.py:17
 msgid "Training: Ultra"
@@ -982,7 +986,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:247
 msgid "Marathon: Normal (100 lines)"
-msgstr ""
+msgstr "Maratón: Normal (100 líneas)"
 
 #: project/assets/main/locale/localizables-extracted.py:248
 msgid ""
