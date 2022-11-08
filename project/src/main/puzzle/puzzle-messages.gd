@@ -201,6 +201,10 @@ func _on_Playfield_all_lines_cleared() -> void:
 		# avoid showing conflicting messages
 		return
 	
+	if PuzzleState.tutorial_section_finished:
+		# avoid showing conflicting messages
+		return
+	
 	# show an an all clear message
 	show_message(PuzzleMessage.GOOD, all_clear_message_text)
 	_hide_message_timer.start()

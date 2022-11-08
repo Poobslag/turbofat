@@ -192,6 +192,7 @@ func _advance_level() -> void:
 ## Each cake makes a unique kind of food. We clear the lines so that the player can see what they made.
 func _schedule_finish_line_clears() -> void:
 	hud.puzzle.get_playfield().line_clearer.schedule_finish_line_clears()
+	PuzzleState.tutorial_section_finished = true
 
 
 func _handle_build_cake_message() -> void:

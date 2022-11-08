@@ -106,5 +106,9 @@ func _on_Playfield_all_lines_cleared() -> void:
 	if MilestoneManager.is_met(CurrentLevel.settings.finish_condition):
 		# message is not shown at the end of a level
 		return
+		
+	if PuzzleState.tutorial_section_finished:
+		# message is not shown at the end of a tutorial section
+		return
 	
 	_all_clear_sound.play()
