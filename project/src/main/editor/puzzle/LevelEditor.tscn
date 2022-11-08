@@ -12,16 +12,7 @@
 [ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=18]
 
-[node name="LevelEditor" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 1024, 600 )
+[node name="LevelEditor" type="Node"]
 script = ExtResource( 8 )
 PuzzleScene = ExtResource( 17 )
 
@@ -32,9 +23,6 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = -5.0
 margin_bottom = -5.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TabContainer" type="TabContainer" parent="HBoxContainer"]
 margin_right = 830.0
