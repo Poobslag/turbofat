@@ -2,40 +2,40 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-09 08:43-0500\n"
-"PO-Revision-Date: 2021-03-25 16:25-0300\n"
+"POT-Creation-Date: 2022-11-09 14:32-0500\n"
+"PO-Revision-Date: 2022-11-09 16:01-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"Generated-By: Babel 2.9.0\n"
+"X-Generator: Poedit 3.2\n"
 
 #: project/assets/main/locale/localizables-extracted.py:2
 #: project/src/main/career/ui/ProgressBoard.tscn:648
 #: project/src/main/ui/RegionSelectButton.tscn:57
 msgid "Lemony Thickets"
-msgstr "Matorrales de limón"
+msgstr "Bosque limonesco"
 
 #: project/assets/main/locale/localizables-extracted.py:3
 msgid ""
 "Locate the mysterious Fat Sensei and launch your first successful "
 "restaurant. It all starts here!"
 msgstr ""
-"Localiza al misterioso Fat Sensei y lanza tu primer éxitorestaurante. ¡Todo "
-"comienza aquí!"
+"Localiza al misterioso Fat Sensei y lanza tu primer restaurante exitoso. "
+"¡Todo comienza aquí!"
 
 #: project/assets/main/locale/localizables-extracted.py:4
 msgid "Welcome to Turbo Fat"
-msgstr ""
+msgstr "Bienvenido a Turbo Fat"
 
 #: project/assets/main/locale/localizables-extracted.py:5
 msgid ""
@@ -928,7 +928,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:235
 msgid "Wedding Cake For One"
-msgstr ""
+msgstr "Torta de Bodas para Uno"
 
 #: project/assets/main/locale/localizables-extracted.py:236
 msgid ""
@@ -1246,7 +1246,7 @@ msgstr "Aplastar y Recuperar"
 
 #: project/assets/main/locale/localizables-extracted.py:310
 msgid "Learn how squish moves work and when to use them."
-msgstr "Aprenda como funciona el aplastar piezas y cuando usarlas"
+msgstr "Aprenda como funciona la mecánica aplastar piezas y cuando usarla."
 
 #: project/assets/main/locale/localizables-extracted.py:311
 msgid "You seem confused. Are you... looking for something?"
@@ -3818,7 +3818,7 @@ msgstr "Jaja, si, creo que estás un poco gordito por el medio."
 
 #: project/assets/main/locale/localizables-extracted.py:914
 msgid "W-what!?!"
-msgstr "¡¿¡Q-Qué?!?"
+msgstr "¡¿¡Q-Qué!?!"
 
 #: project/assets/main/locale/localizables-extracted.py:915
 msgid "Ha ha, go exercise."
@@ -5684,8 +5684,8 @@ msgstr "Nosotros estaremos aquí cuando quieran entrenarnos más. ¡Sin apuros!"
 #: project/assets/main/locale/localizables-extracted.py:1369
 msgid "So explain again why my beloved restaurant is very, very empty?"
 msgstr ""
-"Entonces, explicame de nuevo por qué mi querido restaurante está muy, muy "
-"vacío."
+"Entonces, explicame de nuevo ¿por qué mi querido restaurante está muy, muy "
+"vacío?"
 
 #: project/assets/main/locale/localizables-extracted.py:1370
 msgid "Aw come on now! It's not empty, we got the two line cooks here..."
@@ -5760,7 +5760,7 @@ msgstr "¡Eso es, bien dicho! Como un ancla hecha de nueces."
 
 #: project/assets/main/locale/localizables-extracted.py:1386
 msgid "There you go, well put! Like a anchor made of... wait what!?"
-msgstr "¡Eso es, bien dicho! Como un ancla hecha de... ¡¿Espera qué?!"
+msgstr "¡Eso es, bien dicho! Como un ancla hecha de... ¿¡Espera qué!?"
 
 #: project/assets/main/locale/localizables-extracted.py:1387
 msgid ""
@@ -5797,7 +5797,7 @@ msgstr "Es que... bueno..."
 
 #: project/assets/main/locale/localizables-extracted.py:1395
 msgid "Go ahead, Skins! Why don't you show 'em what you got."
-msgstr "¡Adelante, Skins! ¿Por qué no les muestras de qué estás hecho?"
+msgstr "¡Adelante, Skins! Demuestrales de qué estás hecho."
 
 #: project/assets/main/locale/localizables-extracted.py:1396
 msgid "Can do! Mowr!"
@@ -5905,7 +5905,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-scancodes.py:2
 #: project/src/main/ui/settings/SettingsMenu.tscn:453
 msgid "Space"
-msgstr ""
+msgstr "Espacio"
 
 #: project/assets/main/locale/localizables-scancodes.py:3
 msgid "Exclam"
@@ -6303,7 +6303,7 @@ msgstr ""
 #: project/src/main/ui/settings/SettingsMenu.tscn:435
 #: project/src/main/ui/settings/SettingsMenu.tscn:459
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: project/assets/main/locale/localizables-scancodes.py:102
 msgid "Tab"
@@ -6347,7 +6347,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:112
 msgid "Clear"
-msgstr ""
+msgstr "Supr"
 
 #: project/assets/main/locale/localizables-scancodes.py:113
 msgid "Home"
@@ -6387,7 +6387,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-scancodes.py:121
 #: project/src/main/ui/settings/SettingsMenu.tscn:471
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #: project/assets/main/locale/localizables-scancodes.py:122
 msgid "Control"
@@ -6403,15 +6403,15 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:125
 msgid "CapsLock"
-msgstr "BloqMayús"
+msgstr "BloqMayus"
 
 #: project/assets/main/locale/localizables-scancodes.py:126
 msgid "NumLock"
-msgstr ""
+msgstr "BloqNum"
 
 #: project/assets/main/locale/localizables-scancodes.py:127
 msgid "ScrollLock"
-msgstr ""
+msgstr "BloqDespl"
 
 #: project/assets/main/locale/localizables-scancodes.py:128
 msgid "F1"
@@ -6501,7 +6501,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:149
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: project/assets/main/locale/localizables-scancodes.py:150
 msgid "Direction L"
@@ -6520,15 +6520,15 @@ msgstr "Atrás"
 
 #: project/assets/main/locale/localizables-scancodes.py:153
 msgid "Forward"
-msgstr ""
+msgstr "Adelante"
 
 #: project/assets/main/locale/localizables-scancodes.py:154
 msgid "Stop"
-msgstr ""
+msgstr "Detener"
 
 #: project/assets/main/locale/localizables-scancodes.py:155
 msgid "Refresh"
-msgstr ""
+msgstr "Refrescar"
 
 #: project/assets/main/locale/localizables-scancodes.py:156
 msgid "VolumeDown"
@@ -6736,68 +6736,68 @@ msgstr ""
 
 #: project/src/main/career/career-data.gd:66
 msgid "11:00 am"
-msgstr ""
+msgstr "11:00 am"
 
 #: project/src/main/career/career-data.gd:67
 msgid "12:10 pm"
-msgstr ""
+msgstr "12:10 pm"
 
 #: project/src/main/career/career-data.gd:68
 msgid "1:20 pm"
-msgstr ""
+msgstr "1:20 pm"
 
 #: project/src/main/career/career-data.gd:69
 msgid "6:30 pm"
-msgstr ""
+msgstr "6:30 pm"
 
 #: project/src/main/career/career-data.gd:70
 msgid "7:40 pm"
-msgstr ""
+msgstr "7:40 pm"
 
 #: project/src/main/career/career-data.gd:71
 msgid "8:50 pm"
-msgstr ""
+msgstr "8:50 pm"
 
 #: project/src/main/career/career-data.gd:72
 msgid "10:00 pm"
-msgstr ""
+msgstr "10:00 pm"
 
 #: project/src/main/career/ui/CareerWin.tscn:168
 #: project/src/main/career/ui/chalkboard-title.gd:13
 msgid "LOOK WHAT WE DID"
-msgstr ""
+msgstr "MIRA QUE HICIMOS"
 
 #: project/src/main/career/ui/CareerWin.tscn:278
 msgid "Served:"
-msgstr ""
+msgstr "Servidos:"
 
 #: project/src/main/career/ui/CareerWin.tscn:291
 msgid "132"
-msgstr ""
+msgstr "132"
 
 #: project/src/main/career/ui/CareerWin.tscn:344
 msgid "Steps:"
-msgstr ""
+msgstr "Pasos:"
 
 #: project/src/main/career/ui/CareerWin.tscn:357
 msgid "23"
-msgstr ""
+msgstr "23"
 
 #: project/src/main/career/ui/CareerWin.tscn:422
 msgid "Earned:"
-msgstr ""
+msgstr "Conseguido:"
 
 #: project/src/main/career/ui/CareerWin.tscn:435
 msgid "¥999,999"
-msgstr ""
+msgstr "¥999.999"
 
 #: project/src/main/career/ui/CareerWin.tscn:488
 msgid "Time:"
-msgstr ""
+msgstr "Tiempo:"
 
 #: project/src/main/career/ui/CareerWin.tscn:501
 msgid "15:03"
-msgstr ""
+msgstr "15:03"
 
 #: project/src/main/career/ui/CareerWin.tscn:566
 #: project/src/main/ui/settings/SettingsMenu.tscn:1037
@@ -6808,73 +6808,73 @@ msgstr "Ok"
 #: project/src/main/career/ui/Landmark.tscn:43
 #: project/src/main/world/CareerMap.tscn:150
 msgid "999,999"
-msgstr ""
+msgstr "999.999"
 
 #: project/src/main/career/ui/ProgressBoard.tscn:596
 #: project/src/main/editor/puzzle/LevelEditor.tscn:71
 #: project/src/main/ui/menu/PracticeMenu.tscn:188
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: project/src/main/career/ui/ProgressBoard.tscn:721
 msgid "10:15 am"
-msgstr ""
+msgstr "10:15 am"
 
 #: project/src/main/career/ui/chalkboard-title.gd:8
 msgid "CONGRATULATIONS"
-msgstr ""
+msgstr "FELICIDADES"
 
 #: project/src/main/career/ui/chalkboard-title.gd:9
 msgid "WE DID IT"
-msgstr ""
+msgstr "LO HICIMOS"
 
 #: project/src/main/career/ui/chalkboard-title.gd:10
 msgid "HOORAY"
-msgstr ""
+msgstr "HURRA"
 
 #: project/src/main/career/ui/chalkboard-title.gd:11
 msgid "FANTASTIC"
-msgstr ""
+msgstr "FANTÁNTISCO"
 
 #: project/src/main/career/ui/chalkboard-title.gd:12
 msgid "YAHOO FOR US"
-msgstr ""
+msgstr "BIEN POR NOSOTROS"
 
 #: project/src/main/career/ui/chalkboard-title.gd:14
 msgid "GOSH! WE'RE SO COOL"
-msgstr ""
+msgstr "¡DIOS! SOMOS GENIALES"
 
 #: project/src/main/career/ui/chalkboard-title.gd:15
 msgid "WELL HOORAY"
-msgstr ""
+msgstr "BUENO HURRA"
 
 #: project/src/main/career/ui/chalkboard-title.gd:16
 msgid "AMAZING"
-msgstr ""
+msgstr "INCREÍBLE"
 
 #: project/src/main/career/ui/chalkboard-title.gd:21
 msgid "OH! WHAT A DAY"
-msgstr ""
+msgstr "¡OH! QUE DÍA"
 
 #: project/src/main/career/ui/chalkboard-title.gd:22
 msgid "THAT'S FINE"
-msgstr ""
+msgstr "ESTÁ BIEN"
 
 #: project/src/main/career/ui/chalkboard-title.gd:23
 msgid "LET'S GO HOME"
-msgstr ""
+msgstr "VAMOS A CASA"
 
 #: project/src/main/career/ui/chalkboard-title.gd:28
 msgid "OH DEAR WHAT HAPPENED"
-msgstr ""
+msgstr "OH QUE PASÓ"
 
 #: project/src/main/career/ui/chalkboard-title.gd:29
 msgid "OH! NO! GO ON TRYING"
-msgstr ""
+msgstr "¡OH! ¡NO! SIGUE INTENTANDO"
 
 #: project/src/main/career/ui/chalkboard-title.gd:30
 msgid "GOSH THAT'S NOT GOOD"
-msgstr ""
+msgstr "¡DIOS! ESO NO ESTÁ BIEN"
 
 #: project/src/main/chat/ui/ChatChoiceButton.tscn:248
 msgid "Oh bother"
@@ -6921,6 +6921,10 @@ msgid ""
 "slow. Fat Sensei and Spira were on their way to get to the bottom of this "
 "mystery."
 msgstr ""
+"La mayoría de las sucursales de Turbo Fat ganaron leales seguidores de "
+"hambrientos clientes, excepto en Merrymellow Marsh donde el negocio estaba "
+"inusualmente lento. Fat Sensei y Spira están en camino a descubrir el origen "
+"de este misterio."
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1289
 #: project/src/main/editor/puzzle/LevelEditor.tscn:168
@@ -7130,15 +7134,15 @@ msgstr "Tamaño:"
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:62
 msgid "Pickups"
-msgstr ""
+msgstr "Recolectables"
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:79
 msgid "Calculate"
-msgstr ""
+msgstr "Calcular"
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:95
 msgid "default"
-msgstr "Por defecto"
+msgstr "por defecto"
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:109
 msgid "Open File"
@@ -7158,25 +7162,25 @@ msgstr "abc"
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:252
 msgid "blocks:"
-msgstr ""
+msgstr "bloques:"
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:260
 msgid "start"
-msgstr ""
+msgstr "comenzar"
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:275
 #: project/src/main/ui/menu/CareerRegionSelectMenu.tscn:120
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:103
 #: project/src/main/ui/menu/PracticeMenu.tscn:366
 msgid "<"
-msgstr ""
+msgstr "<"
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:284
 #: project/src/main/ui/menu/CareerRegionSelectMenu.tscn:140
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:129
 #: project/src/main/ui/menu/PracticeMenu.tscn:386
 msgid ">"
-msgstr ""
+msgstr ">"
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:302
 #: project/src/main/ui/settings/SettingsMenu.tscn:853
@@ -7186,7 +7190,7 @@ msgstr "X"
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:311
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: project/src/main/music/MusicPlayer.tscn:34
 msgid "Juicer Mixer Grinder"
@@ -7280,7 +7284,7 @@ msgstr "10"
 #: project/src/main/puzzle/Puzzle.tscn:468
 #: project/src/main/ui/menu/PracticeMenu.tscn:195
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: project/src/main/puzzle/Puzzle.tscn:609
 msgid "abcd"
@@ -7346,15 +7350,17 @@ msgid ""
 "All\n"
 "Clear!"
 msgstr ""
+"¡Todo\n"
+"Listo!"
 
 #: project/src/main/puzzle/puzzle-messages.gd:30
 msgid "Skip"
-msgstr ""
+msgstr "Omitor"
 
 #: project/src/main/puzzle/puzzle-messages.gd:75
 #: project/src/main/ui/menu/MainMenu.tscn:99
 msgid "Practice"
-msgstr "Práctica"
+msgstr "Practicar"
 
 #: project/src/main/puzzle/puzzle-messages.gd:76
 #: project/src/main/puzzle/puzzle-messages.gd:80
@@ -7484,7 +7490,7 @@ msgstr "Pista: %s"
 #: project/src/main/puzzle/results-hud.gd:64
 #, python-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Total: %s"
 
 #: project/src/main/puzzle/results-hud.gd:74
 #, python-format
@@ -7514,39 +7520,39 @@ msgstr "Combos: %d"
 #: project/src/main/puzzle/results-hud.gd:112
 #, python-format
 msgid "Pickups: %d"
-msgstr ""
+msgstr "Recolectados: %d"
 
 #: project/src/main/puzzle/results-hud.gd:118
 msgid "Overall: "
-msgstr "General:"
+msgstr "General: "
 
 #: project/src/main/puzzle/tech-move-burst.gd:22
 msgid "Single"
-msgstr ""
+msgstr "Simple"
 
 #: project/src/main/puzzle/tech-move-burst.gd:23
 msgid "Double"
-msgstr ""
+msgstr "Doble"
 
 #: project/src/main/puzzle/tech-move-burst.gd:24
 msgid "Triple"
-msgstr ""
+msgstr "Triple"
 
 #: project/src/main/puzzle/tech-move-burst.gd:25
 msgid "Quad"
-msgstr ""
+msgstr "Cuádruple"
 
 #: project/src/main/puzzle/tech-move-burst.gd:31
 msgid "Spin"
-msgstr ""
+msgstr "Giro"
 
 #: project/src/main/puzzle/tech-move-burst.gd:32
 msgid "Squish"
-msgstr ""
+msgstr "Aplastado"
 
 #: project/src/main/puzzle/tech-move-burst.gd:115
 msgid "Mega"
-msgstr ""
+msgstr "Mega"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:12
 msgid "Move"
@@ -8862,19 +8868,19 @@ msgstr "Acabamos de comenzar"
 
 #: project/src/main/ui/level-select/level-submenu-description-panel.gd:29
 msgid "Play this level in Career mode to unlock it!"
-msgstr ""
+msgstr "¡Juega este nivel en el modo Carrera para desbloquearlo!"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:35
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:37
 msgid "Very Easy"
-msgstr ""
+msgstr "Muy Fácil"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:38
 msgid "Easy"
-msgstr ""
+msgstr "Fácil"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:39
 msgid "Normal"
@@ -8886,7 +8892,7 @@ msgstr "Difícil"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:41
 msgid "Very Hard"
-msgstr ""
+msgstr "Muy Difícil"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:42
 msgid "Expert"
@@ -8894,31 +8900,31 @@ msgstr "Experto"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:43
 msgid "Very Expert"
-msgstr ""
+msgstr "Muy Experto"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:45
 #, python-format
 msgid "Difficulty: %s"
-msgstr ""
+msgstr "Dificultad: %s"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:58
 #, python-format
 msgid "Duration: %s"
-msgstr ""
+msgstr "Duración: %s"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:63
 #, python-format
 msgid "New: %s"
-msgstr ""
+msgstr "Nuevo: %s"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:67
 #, python-format
 msgid "Top: %s"
-msgstr ""
+msgstr "Mejor: %s"
 
 #: project/src/main/ui/menu/CareerRegionSelectMenu.tscn:90
 msgid "Chapter Select"
-msgstr ""
+msgstr "Selección de Capítulo"
 
 #: project/src/main/ui/menu/MainMenu.tscn:49
 #: project/src/main/ui/menu/SplashScreen.tscn:46
@@ -8932,7 +8938,7 @@ msgstr "Jugar"
 
 #: project/src/main/ui/menu/MainMenu.tscn:85
 msgid "Career"
-msgstr ""
+msgstr "Carrera"
 
 #: project/src/main/ui/menu/MainMenu.tscn:130
 msgid "Create"
@@ -8953,15 +8959,15 @@ msgstr "Prueba de Estrés"
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:73
 #: project/src/main/ui/menu/PracticeMenu.tscn:336
 msgid "Level Select"
-msgstr ""
+msgstr "Selección de Nivel"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:101
 msgid "Level"
-msgstr ""
+msgstr "Nivel"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:127
 msgid "Sprint: Normal"
-msgstr ""
+msgstr "Carrera: Normal"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:136
 msgid "Score 200 points as quickly as possible!"
@@ -8969,7 +8975,7 @@ msgstr "¡Obtén 200 puntos lo más rápido posible!"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:156
 msgid "Speed"
-msgstr ""
+msgstr "Velocidad"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:212
 msgid "3"
@@ -8981,130 +8987,130 @@ msgstr "Bueno, mierda"
 
 #: project/src/main/ui/menu/region-description-panel.gd:26
 msgid "Advance further into career mode to unlock new areas!"
-msgstr ""
+msgstr "¡Avanza más en el modo Carrera para desbloquear nuevas areas!"
 
 #: project/src/main/ui/menu/region-info-panel.gd:12
 msgid "7 kyu"
-msgstr ""
+msgstr "7 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:13
 msgid "6 kyu"
-msgstr ""
+msgstr "6 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:14
 msgid "5 kyu"
-msgstr ""
+msgstr "5 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:15
 msgid "4 kyu"
-msgstr ""
+msgstr "4 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:16
 msgid "3 kyu"
-msgstr ""
+msgstr "3 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:17
 msgid "2 kyu"
-msgstr ""
+msgstr "2 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:18
 msgid "1 kyu"
-msgstr ""
+msgstr "1 kyu"
 
 #: project/src/main/ui/menu/region-info-panel.gd:19
 msgid "1 dan"
-msgstr ""
+msgstr "1 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:20
 msgid "2 dan"
-msgstr ""
+msgstr "2 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:21
 msgid "3 dan"
-msgstr ""
+msgstr "3 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:22
 msgid "4 dan"
-msgstr ""
+msgstr "4 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:23
 msgid "5 dan"
-msgstr ""
+msgstr "5 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:24
 msgid "6 dan"
-msgstr ""
+msgstr "6 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:25
 msgid "7 dan"
-msgstr ""
+msgstr "7 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:26
 msgid "8 dan"
-msgstr ""
+msgstr "8 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:27
 msgid "9 dan"
-msgstr ""
+msgstr "9 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:28
 msgid "10 dan"
-msgstr ""
+msgstr "10 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd:89
 #: project/src/main/ui/menu/region-info-panel.gd:185
 #, python-format
 msgid "Overall grade: %s"
-msgstr ""
+msgstr "Grado General: %s"
 
 #: project/src/main/ui/menu/region-info-panel.gd:91
 #: project/src/main/ui/menu/region-info-panel.gd:139
 #: project/src/main/ui/menu/region-info-panel.gd:187
 #, python-format
 msgid "Promotion to %s: %.1f%%"
-msgstr ""
+msgstr "Promoción a %s: %.1f%%"
 
 #: project/src/main/ui/menu/region-info-panel.gd:94
 #: project/src/main/ui/menu/region-info-panel.gd:190
 #, python-format
 msgid "Total stars: %s"
-msgstr ""
+msgstr "Estrellas Totales: %s"
 
 #: project/src/main/ui/menu/region-info-panel.gd:97
 #: project/src/main/ui/menu/region-info-panel.gd:193
 #, python-format
 msgid "Completion: %.1f%%"
-msgstr ""
+msgstr "Completado: %.1f%%"
 
 #: project/src/main/ui/menu/region-info-panel.gd:99
 msgid "Replay this chapter to continue your adventure!"
-msgstr ""
+msgstr "¡Vuelve a jugar este capítulo para continuar tu aventura!"
 
 #: project/src/main/ui/menu/region-info-panel.gd:101
 #: project/src/main/ui/menu/region-info-panel.gd:194
 msgid "Clear every level to get to 100%!"
-msgstr ""
+msgstr "¡Termina todos los niveles para tener el 100%!"
 
 #: project/src/main/ui/menu/region-info-panel.gd:119
 #, python-format
 msgid "Overall rank: %s"
-msgstr ""
+msgstr "Rango General: %s"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:135
 msgid "Sound + Music"
-msgstr ""
+msgstr "Sonido + Música"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:191
 msgid "Graphics"
-msgstr ""
+msgstr "Gráficos"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:211
 msgid "Creature detail"
-msgstr ""
+msgstr "Detalle de Criatura"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:247
 msgid "Use Vsync"
-msgstr ""
+msgstr "Usar Vsync"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:288
 msgid "Ghost Piece"
@@ -9112,7 +9118,7 @@ msgstr "Pieza Fantasma"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:324
 msgid "Soft Drop Lock Cancel"
-msgstr ""
+msgstr "Cancelar Bloqueo de Caída Suave"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:371
 msgid "Guideline"
@@ -9132,11 +9138,11 @@ msgstr "Mover Pieza"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:411
 msgid "Left, Right"
-msgstr ""
+msgstr "Izquierda, Derecha"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:423
 msgid "Space, Up, Shift"
-msgstr ""
+msgstr "Espacio, Arriba, Shift"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:428
 msgid "Rotate Piece"
@@ -9144,11 +9150,11 @@ msgstr "Rotar Pieza"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:429
 msgid "Z, X"
-msgstr ""
+msgstr "Z, X"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:446
 msgid "Move in Menus"
-msgstr "Mover en Menús"
+msgstr "Mover en Menú"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:447
 msgid "Arrows, WASD"
@@ -9157,12 +9163,12 @@ msgstr "Flechas, WASD"
 #: project/src/main/ui/settings/SettingsMenu.tscn:452
 #: project/src/main/ui/settings/SettingsMenu.tscn:559
 msgid "Confirm in Menus"
-msgstr "Confirmar en Menús"
+msgstr "Confirmar en Menú"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:458
 #: project/src/main/ui/settings/SettingsMenu.tscn:565
 msgid "Back in Menus"
-msgstr "Volver en Menús"
+msgstr "Volver en Menú"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:470
 #: project/src/main/ui/settings/SettingsMenu.tscn:577
@@ -9179,11 +9185,11 @@ msgstr "Mover Pieza a la Derecha"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:511
 msgid "Rotate Ccw"
-msgstr "Rotar a Contrarreloj"
+msgstr "Rotar Sentido Contrarreloj"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:517
 msgid "Rotate Cw"
-msgstr "Rotar a Reloj"
+msgstr "Rotar Sentido Reloj"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:535
 msgid "Up in Menus"
@@ -9223,27 +9229,28 @@ msgstr "Lenguaje"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:815
 msgid "Save Slot"
-msgstr ""
+msgstr "Ranura de Guardado"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:843
+#, fuzzy
 msgid "Slot A"
-msgstr ""
+msgstr "Ranura A"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:881
 msgid "Open User Folder"
-msgstr ""
+msgstr "Abrir Carpeta de Usuario"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:917
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Copiar a Portapapeles"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:926
 msgid "Copied!"
-msgstr ""
+msgstr "¡Copiado!"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:1073
 msgid "* Your settings will take effect in the next scene."
-msgstr ""
+msgstr "* Tus cambios tendrán efecto en la siguiente escena."
 
 #: project/src/main/ui/settings/VolumeSetting.tscn:37
 #: project/src/main/ui/settings/volume-setting-control.gd:55
@@ -9256,36 +9263,36 @@ msgstr "100%"
 
 #: project/src/main/ui/settings/settings-creature-detail.gd:7
 msgid "Low"
-msgstr ""
+msgstr "Bajo"
 
 #: project/src/main/ui/settings/settings-creature-detail.gd:8
 msgid "High"
-msgstr ""
+msgstr "Alto"
 
 #: project/src/main/ui/settings/settings-dialogs.gd:31
 #: project/src/main/ui/settings/settings-dialogs.gd:37
 #: project/src/main/ui/settings/settings-dialogs.gd:44
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: project/src/main/ui/settings/settings-dialogs.gd:32
 #: project/src/main/ui/settings/settings-dialogs.gd:38
 #: project/src/main/ui/settings/settings-dialogs.gd:45
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: project/src/main/ui/settings/settings-dialogs.gd:68
 #, python-format
 msgid "%.1f hours"
-msgstr ""
+msgstr "%.1f horas"
 
 #: project/src/main/ui/settings/settings-dialogs.gd:75
 msgid "Delete save data?"
-msgstr ""
+msgstr "¿Eliminar datos guardados?"
 
 #: project/src/main/ui/settings/settings-dialogs.gd:82
 msgid "Are you sure?"
-msgstr ""
+msgstr "¿Estás seguro?"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd:37
 #: project/src/main/ui/settings/settings-menu-bottom.gd:40
@@ -9295,11 +9302,11 @@ msgstr "Guardar + Salir"
 #: project/src/main/ui/settings/settings-menu-bottom.gd:38
 #: project/src/main/ui/settings/settings-menu-bottom.gd:41
 msgid "Give Up"
-msgstr "Renunciar"
+msgstr "Rendirse"
 
 #: project/src/main/ui/settings/settings-tab-container.gd:9
 msgid "Sound + Graphics"
-msgstr ""
+msgstr "Sonido + Gráficos"
 
 #: project/src/main/ui/settings/settings-tab-container.gd:10
 msgid "Gameplay"
@@ -9387,7 +9394,7 @@ msgstr "Abajo, Numpad2"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:36
 msgid "Space, Up, Shift, Numpad8"
-msgstr "Espacio, arriba, Shift, Numpad8"
+msgstr "Espacio, Arriba, Shift, Numpad8"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:37
 msgid "Z, X, Numpad7/9"
@@ -9411,7 +9418,7 @@ msgstr "Izquierda, Derecha, Numpad7/9"
 
 #: project/src/main/world/CareerMap.tscn:194
 msgid "12:05 am"
-msgstr ""
+msgstr "12:05 am"
 
 #: project/src/main/world/LetterProjectile.tscn:113
 msgid "O"
@@ -9419,7 +9426,7 @@ msgstr "O"
 
 #: project/src/main/world/environment/MileMarker.tscn:45
 msgid "99"
-msgstr ""
+msgstr "99"
 
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:38
 msgid "Bug"
@@ -9737,7 +9744,7 @@ msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
 #~ "¿Quién preparó estos ricos postres? ...¿No se supone que es tu trabajo?"
 
 #~ msgid "Wedding Cake for One"
-#~ msgstr "Tarta de Boda para Uno"
+#~ msgstr "Torta de Bodas para Uno"
 
 #~ msgid "It's Square to be Square II"
 #~ msgstr "Bocados Helados Cuadrados II"
