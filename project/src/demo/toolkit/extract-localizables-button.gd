@@ -130,7 +130,7 @@ func _extract_localizables_from_scancode_strings() -> void:
 			_scancode_localizables.append(scancode_string)
 	
 	# non-ascii printable characters: F1, left, caps lock...
-	for i in range(16777217, 16777319):
+	for i in range(16777217, 16777359):
 		var scancode_string := OS.get_scancode_string(i)
 		if scancode_string.length() > 1:
 			_scancode_localizables.append(scancode_string)
