@@ -72,9 +72,9 @@ func update_label() -> void:
 		return
 	
 	if show_as_percent:
-		_label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
+		_label.text = "%s\n%d%%" % [tr(label_text), int(100 * value / max_value)]
 	else:
-		_label.text = "%s\n(%d/%d)" % [label_text, value, max_value]
+		_label.text = "%s\n(%d/%d)" % [tr(label_text), value, max_value]
 
 
 ## Initializes this node when the puzzle field is assigned.

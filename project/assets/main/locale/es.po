@@ -2,12 +2,12 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2021.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-09 14:32-0500\n"
+"POT-Creation-Date: 2022-11-09 14:52-0500\n"
 "PO-Revision-Date: 2022-11-09 16:01-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -7157,6 +7157,7 @@ msgid "Test"
 msgstr "Prueba"
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:152
+#: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:54
 msgid "abc"
 msgstr "abc"
 
@@ -7559,12 +7560,14 @@ msgid "Move"
 msgstr "Mover"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:13
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:93
 #: project/src/main/ui/settings/SettingsMenu.tscn:416
 #: project/src/main/ui/settings/SettingsMenu.tscn:499
 msgid "Soft Drop"
 msgstr "Caida Suave"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:14
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:105
 #: project/src/main/ui/settings/SettingsMenu.tscn:422
 #: project/src/main/ui/settings/SettingsMenu.tscn:505
 msgid "Hard Drop"
@@ -7604,6 +7607,59 @@ msgstr ""
 
 #: project/src/main/puzzle/level/level-settings.gd:110
 msgid "name"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:44
+msgid "Move Left"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:56
+msgid "Move Right"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:68
+msgid "Rotate Left"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:80
+msgid "Rotate Right"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:117
+#: project/src/main/puzzle/tutorial/TutorialSquishModule.tscn:68
+msgid "Line Clear"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:129
+#: project/src/main/puzzle/tutorial/TutorialCakesModule.tscn:44
+#: project/src/main/puzzle/tutorial/TutorialSquishModule.tscn:56
+msgid "Snack Box"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:141
+msgid "Box Clear"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:152
+#: project/src/main/puzzle/tutorial/TutorialSquishModule.tscn:44
+msgid "Squish Move"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:164
+msgid "Snack Stack"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialCakesModule.tscn:56
+#: project/src/main/puzzle/tutorial/TutorialComboModule.tscn:18
+msgid "Cake Box"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialComboModule.tscn:13
+msgid "Combo"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/TutorialSpinsModule.tscn:44
+msgid "Make Box"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:34
