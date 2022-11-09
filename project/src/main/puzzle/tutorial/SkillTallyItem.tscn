@@ -48,10 +48,7 @@ custom_styles/bg = SubResource( 2 )
 max_value = 5.0
 percent_visible = false
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-label_text = "Do Thing"
+label_text = "abc"
 
 [node name="Blink" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -66,13 +63,10 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Do Thing
+text = "abc
 (0/5)"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="."]
 
