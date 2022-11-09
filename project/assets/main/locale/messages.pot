@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-02 15:10-0400\n"
+"POT-Creation-Date: 2022-11-09 08:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6623,6 +6623,66 @@ msgstr ""
 msgid "LaunchF"
 msgstr ""
 
+#: project/assets/main/locale/localizables-scancodes.py:191
+msgid "Kp Multiply"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:192
+msgid "Kp Divide"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:193
+msgid "Kp Subtract"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:194
+msgid "Kp Period"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:195
+msgid "Kp Add"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:196
+msgid "Kp 0"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:197
+msgid "Kp 1"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:198
+msgid "Kp 2"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:199
+msgid "Kp 3"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:200
+msgid "Kp 4"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:201
+msgid "Kp 5"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:202
+msgid "Kp 6"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:203
+msgid "Kp 7"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:204
+msgid "Kp 8"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:205
+msgid "Kp 9"
+msgstr ""
+
 #: project/src/main/career/career-data.gd:61
 msgid "?:?? zm"
 msgstr ""
@@ -6704,7 +6764,7 @@ msgid "999,999"
 msgstr ""
 
 #: project/src/main/career/ui/ProgressBoard.tscn:596
-#: project/src/main/editor/puzzle/LevelEditor.tscn:83
+#: project/src/main/editor/puzzle/LevelEditor.tscn:71
 #: project/src/main/ui/menu/PracticeMenu.tscn:188
 msgid "0"
 msgstr ""
@@ -6814,7 +6874,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1289
-#: project/src/main/editor/puzzle/LevelEditor.tscn:180
+#: project/src/main/editor/puzzle/LevelEditor.tscn:168
 #: project/src/main/puzzle/PuzzleMessages.tscn:46
 #: project/src/main/ui/menu/PracticeMenu.tscn:248
 #: project/src/main/ui/menu/SystemButtons.tscn:30
@@ -6822,7 +6882,7 @@ msgid "Settings"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1302
-#: project/src/main/editor/puzzle/LevelEditor.tscn:191
+#: project/src/main/editor/puzzle/LevelEditor.tscn:179
 #: project/src/main/ui/CreatureStressTest.tscn:96
 #: project/src/main/ui/menu/PracticeMenu.tscn:263
 #: project/src/main/ui/menu/SystemButtons.tscn:46
@@ -6953,7 +7013,7 @@ msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1642
 #: project/src/main/editor/creature/CreatureEditor.tscn:1922
-#: project/src/main/editor/puzzle/LevelEditor.tscn:137
+#: project/src/main/editor/puzzle/LevelEditor.tscn:125
 msgid "Save"
 msgstr ""
 
@@ -7019,31 +7079,31 @@ msgstr ""
 msgid "Size:"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:74
+#: project/src/main/editor/puzzle/LevelEditor.tscn:62
 msgid "Pickups"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:91
+#: project/src/main/editor/puzzle/LevelEditor.tscn:79
 msgid "Calculate"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:107
+#: project/src/main/editor/puzzle/LevelEditor.tscn:95
 msgid "default"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:121
+#: project/src/main/editor/puzzle/LevelEditor.tscn:109
 msgid "Open File"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:129
+#: project/src/main/editor/puzzle/LevelEditor.tscn:117
 msgid "Open Resource"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:153
+#: project/src/main/editor/puzzle/LevelEditor.tscn:141
 msgid "Test"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:164
+#: project/src/main/editor/puzzle/LevelEditor.tscn:152
 msgid "abc"
 msgstr ""
 
@@ -7464,6 +7524,14 @@ msgid ""
 "silly goose!"
 msgstr ""
 
+#: project/src/main/puzzle/level/level-settings.gd:100
+msgid "description"
+msgstr ""
+
+#: project/src/main/puzzle/level/level-settings.gd:110
+msgid "name"
+msgstr ""
+
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:34
 msgid ""
 "Welcome to Turbo Fat! You seem to already be familiar with this sort of "
@@ -7763,35 +7831,35 @@ msgstr ""
 msgid "Wow! That's all eight recipes."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:199
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:200
 msgid ""
 "Alright, you little showoff.\n"
 "\n"
 "...Have you been studying?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:200
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:201
 msgid ""
 "Make a few more snack boxes.\n"
 "\n"
 "...Or cake boxes, if you must."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:248
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:249
 msgid ""
 "Ahhh... you didn't make any cakes!\n"
 "\n"
 "Well, cake boxes can be tricky. Keep practicing!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:250
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:251
 msgid ""
 "Ahhh... you only made one cake?\n"
 "\n"
 "Well, cake boxes can be tricky. Keep practicing!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:252
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:253
 #, python-format
 msgid ""
 "Oh, you made %s cakes!\n"
@@ -7799,24 +7867,24 @@ msgid ""
 "All that training paid off. Look at those happy customers!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:255
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:256
 #, python-format
 msgid "Wow, you made %s cakes? Maybe you should be training me!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:257
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:258
 msgid ""
 "Just kidding, I should still be training you.\n"
 "\n"
 "But you did really well! Wow!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:259
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:260
 #, python-format
 msgid "%s CAKES!? Okay, well that's just ridiculous!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:261
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:262
 msgid ""
 "I'll have to think of some harder tutorials for someone like you.\n"
 "\n"
