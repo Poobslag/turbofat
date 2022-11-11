@@ -13,7 +13,8 @@ func _ready() -> void:
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	$Fg/Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
+	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
+	$Fg/Playfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield.pickups.piece_manager_path = $Fg/Playfield.pickups.get_path_to($Fg/PieceManager)
 	CurrentLevel.puzzle = self
 	

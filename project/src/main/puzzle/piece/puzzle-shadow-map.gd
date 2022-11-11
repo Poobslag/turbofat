@@ -31,13 +31,3 @@ func _process(_delta: float) -> void:
 		for cell in piece_tile_map.get_used_cells():
 			var autotile_coord: Vector2 = piece_tile_map.get_cell_autotile_coord(cell.x, cell.y)
 			set_cellv(cell, piece_tile_map.get_cellv(cell), false, false, false, autotile_coord)
-		
-		if piece_tile_map.ghost_shadow_offset:
-			# if the ghost_shadow_offset is set, draw a copy of our shadows at the target location
-			for cell in piece_tile_map.get_used_cells():
-				var autotile_coord: Vector2 = piece_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-				var ghost_cell: Vector2 = piece_tile_map.ghost_shadow_offset + cell
-				# merge our autotile bitmask with the existing bitmask to combine the shadows
-				var merged_x := int(autotile_coord.x) | int(get_cell_autotile_coord(ghost_cell.x, ghost_cell.y).x)
-				set_cellv(ghost_cell, piece_tile_map.get_cellv(cell), false, false, false, \
-						Vector2(merged_x, autotile_coord.y))
