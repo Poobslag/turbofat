@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "deathcliff",
+  "name": "Deathcliff",
+  "short_name": "Deathcliff",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "3",
+    "ear": "6",
+    "eye": "7",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "6",
+    "nose": "2",
+    "tail": "3",
+    "accessory": "1",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "725e96",
+    "belly_rgb": "a9d252",
+    "cloth_rgb": "41f2ff",
+    "glass_rgb": "2d2b2b",
+    "plastic_rgb": "1f1f1f",
+    "hair_rgb": "4f5651",
+    "eye_rgb": "41f2ff d6ffff",
+    "horn_rgb": "5a635d"
+  },
+  "chat_theme": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "color": "725e96",
+    "dark": true
+  },
+  "fatness": 1.1
+}

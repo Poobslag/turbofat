@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "trudy",
+  "name": "Trudy",
+  "short_name": "Trudy",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "2",
+    "body": "1",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "1",
+    "eye": "5",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "1",
+    "tail": "0",
+    "accessory": "5",
+    "line_rgb": "41281e",
+    "body_rgb": "3b494f",
+    "belly_rgb": "eec086",
+    "cloth_rgb": "282828",
+    "glass_rgb": "f5e194",
+    "plastic_rgb": "abb7f5",
+    "hair_rgb": "282828",
+    "eye_rgb": "4e8eee f8ffff",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme": {
+    "accent_scale": 1,
+    "accent_swapped": true,
+    "accent_texture": 5,
+    "color": "3b494f"
+  }
+}
