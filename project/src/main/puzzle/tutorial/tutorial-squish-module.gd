@@ -194,16 +194,15 @@ func _on_PuzzleState_after_piece_written() -> void:
 		"tutorial/squish_5":
 			if PuzzleState.level_performance.pieces == 1:
 				CurrentLevel.settings.input_replay.clear()
-				if not hud.messages.is_all_messages_visible():
-					yield(hud.messages, "all_messages_shown")
-				yield(get_tree().create_timer(1.5), "timeout")
+				var messages: Array
 				if _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 2:
-					hud.set_message(tr("Not again! ...Can you clean this up using squish moves?"
-								+ "\n\nTry to clear three lines."))
+					messages = [tr("Not again! ...Can you clean this up using squish moves?"
+								+ "\n\nTry to clear three lines.")]
 				else:
-					hud.set_message(tr("Oops! Look at the mess you made."
-								+ " ...Can you clean this up using squish moves?"
-								+ "\n\nTry to clear three lines."))
+					messages = [tr("Oops! Look at the mess you made. ...Can you clean this up using squish moves?"
+								+ "\n\nTry to clear three lines.")]
+				start_timer_after_all_messages_shown(1.5)\
+						.connect("timeout", self, "_on_Timer_timeout_set_messages", [messages])
 			
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleState.level_performance.lines >= 3:
@@ -211,15 +210,15 @@ func _on_PuzzleState_after_piece_written() -> void:
 		"tutorial/squish_6":
 			if PuzzleState.level_performance.pieces == 1:
 				CurrentLevel.settings.input_replay.clear()
-				if not hud.messages.is_all_messages_visible():
-					yield(hud.messages, "all_messages_shown")
-				yield(get_tree().create_timer(1.5), "timeout")
+				var messages: Array
 				if _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 2:
-					hud.set_message(tr("Oh no, it keeps happening! Well, try to clear three lines."
-							+ "\n\nRemember your squish moves!"))
+					messages = [tr("Oh no, it keeps happening! Well, try to clear three lines."
+							+ "\n\nRemember your squish moves!")]
 				else:
-					hud.set_messages([tr("Oh no! Now you've done it.\n\nLook at how clumsy you are!"),
-						tr("That's okay.\n\nI'm sure you'll think of a clever way to clean this up, too.")])
+					messages = [tr("Oh no! Now you've done it.\n\nLook at how clumsy you are!"),
+						tr("That's okay.\n\nI'm sure you'll think of a clever way to clean this up, too.")]
+				start_timer_after_all_messages_shown(1.5)\
+						.connect("timeout", self, "_on_Timer_timeout_set_messages", [messages])
 			
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleState.level_performance.lines >= 3:
@@ -238,6 +237,10 @@ func _on_PuzzleState_after_game_prepared() -> void:
 	_show_diagram_count = 0
 	
 	prepare_tutorial_level()
+
+
+func _on_Timer_timeout_set_messages(messages: Array) -> void:
+	hud.set_messages(messages)
 
 
 func _on_TutorialDiagram_ok_chosen() -> void:

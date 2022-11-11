@@ -19,7 +19,6 @@ var _cakes_diagram_1 := preload("res://assets/main/puzzle/tutorial/cakes-diagram
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
 	
@@ -243,6 +242,8 @@ func _on_PuzzleState_after_game_prepared() -> void:
 
 
 func _on_PuzzleState_game_ended() -> void:
+	._on_PuzzleState_game_ended()
+	
 	if not PuzzleState.level_performance.lost and CurrentLevel.settings.id == "tutorial/cakes_9":
 		# show end-of-tutorial message
 		if _cakes_built == 0:

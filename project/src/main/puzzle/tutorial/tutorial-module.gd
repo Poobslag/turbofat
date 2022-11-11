@@ -4,11 +4,19 @@ extends Node
 ##
 ## Subclasses can show messages and advances the player through the tutorial as they complete tasks.
 
+## if 'true', the next level change will be accompanied by a 'Ready? Go!' countdown
+var _start_customer_countdown := false
+
 ## generic nodes used by tutorial module subclasses
 var hud: TutorialHud
 var puzzle: Puzzle
 var playfield: Playfield
 var piece_manager: PieceManager
+
+## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
+## up if the tutorial is interrupted. Otherwise for example, we might schedule a level change 3 seconds from now, but
+## then the player restarts the tutorial, and the level change happens after they've restarted.
+onready var _timers := $Timers
 
 func _ready() -> void:
 	puzzle = hud.puzzle
@@ -16,6 +24,8 @@ func _ready() -> void:
 	piece_manager = puzzle.get_piece_manager()
 	
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	
 	for skill_tally_item in $SkillTallyItems.get_children():
 		if skill_tally_item is SkillTallyItem:
@@ -24,14 +34,22 @@ func _ready() -> void:
 			hud.add_skill_tally_item(new_item)
 
 
+## Cleanup any temporary timers and listeners.
+##
+## This prevents the tutorial from behaving unexpectedly if the player restarts at an unusual time.
+func cleanup_listeners() -> void:
+	for child in _timers.get_children():
+		child.queue_free()
+	
+	if hud.messages.is_connected("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer"):
+		hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
+
+
 ## Starts a countdown and switches from tutorial music to regular music.
 ##
 ## This is used at the end of each tutorial when customers come in.
 func start_customer_countdown() -> void:
-	yield(PuzzleState, "after_level_changed")
-	MusicPlayer.play_upbeat_bgm(false)
-	PuzzleState.game_active = true
-	puzzle.start_level_countdown()
+	_start_customer_countdown = true
 
 
 ## Resets the timer and scores and dismisses the sensei, so the player can serve some real customers.
@@ -68,18 +86,76 @@ func prepare_tutorial_level() -> void:
 func change_level(level_id: String, delay_between_levels: float = PuzzleState.DELAY_SHORT) -> void:
 	PuzzleState.emit_signal("before_level_changed", level_id)
 	
-	if not hud.messages.is_all_messages_visible():
-		yield(hud.messages, "all_messages_shown")
-	if delay_between_levels:
-		yield(get_tree().create_timer(delay_between_levels), "timeout")
+	start_timer_after_all_messages_shown(delay_between_levels) \
+			.connect("timeout", self, "_on_Timer_timeout_change_level", [level_id])
+
+
+## Creates and starts a timer after all tutorial messages are shown.
+##
+## Parameters:
+## 	'wait_time': The amount of time to wait after all messages are shown. A value of '0.0' will result in an error.
+##
+## Returns:
+## 	A timer which has been added to the scene tree. The timer may be active or inactive depending on whether the
+## 	tutorial messages are still being written to the user.
+func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
+	var timer := Timer.new()
+	timer.one_shot = true
+	timer.wait_time = wait_time
+	_timers.add_child(timer)
 	
-	var settings := LevelSettings.new()
-	settings.load_from_resource(level_id)
-	CurrentLevel.switch_level(settings)
-	# initialize input_frame to allow for recording/replaying inputs
-	PuzzleState.input_frame = 0
-	PuzzleState.emit_signal("after_level_changed")
+	if not hud.messages.is_all_messages_visible():
+		hud.messages.connect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer", [timer])
+	else:
+		timer.start()
+	
+	return timer
+
+
+## Creates and starts a timer.
+##
+## Parameters:
+## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
+##
+## Returns:
+## 	A timer which has been added to the scene tree, and is currently active.
+func start_timer(wait_time: float) -> Timer:
+	var timer := Timer.new()
+	_timers.add_child(timer)
+	timer.one_shot = true
+	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
+	timer.start(wait_time)
+	return timer
+
+
+func _on_TutorialMessages_all_messages_shown_start_timer(timer: Timer) -> void:
+	hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
+	timer.start()
+
+
+func _on_Timer_timeout_queue_free(timer: Timer) -> void:
+	timer.queue_free()
+
+
+func _on_Timer_timeout_change_level(level_id: String) -> void:
+	PuzzleState.change_level(level_id)
 
 
 func _on_PuzzleState_after_level_changed() -> void:
 	prepare_tutorial_level()
+	
+	if _start_customer_countdown:
+		_start_customer_countdown = false
+		MusicPlayer.play_upbeat_bgm(false)
+		PuzzleState.game_active = true
+		puzzle.start_level_countdown()
+
+
+func _on_PuzzleState_game_ended() -> void:
+	_start_customer_countdown = false
+	cleanup_listeners()
+
+
+func _on_PuzzleState_game_prepared() -> void:
+	_start_customer_countdown = false
+	cleanup_listeners()

@@ -305,6 +305,8 @@ func _on_States_entered_state(prev_state: State, state: State) -> void:
 
 
 func _on_PuzzleState_game_prepared() -> void:
+	# enable physics_process if it was temporarily disabled
+	set_physics_process(true)
 	_clear_piece()
 
 
