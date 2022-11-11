@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -109,7 +109,10 @@ blend_mode = 1
 blend_mode = 1
 
 [sub_resource type="ViewportTexture" id=12]
-viewport_path = NodePath("TileMapClip/TileMap/Viewport")
+viewport_path = NodePath("TileMapClip/TileMap/ShadowViewport")
+
+[sub_resource type="ViewportTexture" id=14]
+viewport_path = NodePath("TileMapClip/TileMap/GhostPieceViewport")
 
 [node name="Playfield" type="Control"]
 margin_right = 324.0
@@ -245,9 +248,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 12 )
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="GhostPieceTexture" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.235294 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 14 )
+flip_v = true
 
 [node name="TutorialKeybindsLabel" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0.392157 )
