@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-09 14:52-0500\n"
+"POT-Creation-Date: 2022-11-11 14:51-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7104,7 +7104,7 @@ msgid "Test"
 msgstr ""
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:152
-#: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:54
+#: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:51
 msgid "abc"
 msgstr ""
 
@@ -7314,7 +7314,7 @@ msgid "Retry"
 msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:108
-#: project/src/main/puzzle/puzzle.gd:86
+#: project/src/main/puzzle/puzzle.gd:87
 msgid "Ready?"
 msgstr ""
 
@@ -7619,7 +7619,7 @@ msgid "OH, MY!!!"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:75
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:159
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:158
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:116
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd:193
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:103
@@ -7707,215 +7707,215 @@ msgid ""
 "Clear a row by filling it with blocks."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:26
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:25
 msgid ""
 "Today we'll learn about cake boxes!\n"
 "\n"
 "Do you remember how boxes work?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:39
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:38
 msgid "Try making some snack boxes by arranging pairs of pieces into squares."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:42
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:41
 msgid ""
 "Arranging pieces into a square makes a snack box worth ¥15.\n"
 "\n"
 "But rectangles make cake boxes worth ¥40!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:44
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:43
 msgid ""
 "A cake box needs exactly three pieces in a rectangle.\n"
 "\n"
 "No more, no less."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:45
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:44
 msgid ""
 "There are eight ways to do it.\n"
 "\n"
 "I could show you, but I want you to try it yourself!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:51
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:57
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:79
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:85
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:50
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:56
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:78
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:84
 msgid ""
 "Give it another try.\n"
 "\n"
 "See if you can make a rectangle."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:53
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:52
 msgid ""
 "Let's start by making gelatin.\n"
 "\n"
 "Can you make a rectangle with these pieces?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:59
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:58
 msgid ""
 "Next let's try double-decker brownies.\n"
 "\n"
 "Can you make another cake box with this?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:63
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:62
 msgid ""
 "I'll give you a small hint:\n"
 "\n"
 "Both chocolate pieces go into the left box."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:65
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:91
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:64
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:90
 msgid ""
 "Give it another try.\n"
 "\n"
 "See if you can make two rectangles."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:67
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:66
 msgid "Here's something more difficult. Can you make two cake boxes at once?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:70
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:69
 msgid ""
 "You can make cake boxes with the bigger pieces.\n"
 "\n"
 "And they're worth three times as much sideways!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:72
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:71
 msgid ""
 "See all those stars? Each star becomes a tasty treat for our customers. "
 "And more treats means more money!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:74
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:73
 msgid "Let's see if you can figure out these last four recipes without my help."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:81
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:80
 msgid ""
 "How about some cheesecake?\n"
 "\n"
 "You'll need a bigger rectangle this time."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:87
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:86
 msgid ""
 "Let's try some strawberry cake.\n"
 "\n"
 "Can you make a cake box with these pieces?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:93
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:92
 msgid ""
 "Okay, final two recipes!\n"
 "\n"
 "...Can you make two cakes at once?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:95
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:94
 msgid ""
 "I'm getting a tummy ache!\n"
 "\n"
 "Try your new cake recipes on these customers, while I go lie down..."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:114
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:113
 msgid "Good! Snack boxes are worth lots of money. But, we can do better!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:116
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:115
 msgid ""
 "Good job!\n"
 "\n"
 "It seems like you understand cake boxes already."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:118
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:117
 msgid ""
 "Ahha ha ha!\n"
 "\n"
 "You're just trying to impress me."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:125
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:124
 msgid "Good job! You can make gelatin with a J, L and O-Block."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:127
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:134
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:144
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:154
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:161
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:172
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:126
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:133
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:143
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:153
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:160
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:171
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:106
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:113
 msgid "Oops! ...Let's try that again."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:132
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:131
 msgid ""
 "Oh? But I even gave you an extra piece to trick you!\n"
 "\n"
 "Hmm, how about this."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:139
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:138
 msgid ""
 "Wow, color me impressed!\n"
 "\n"
 "But, there's one more thing you should know about cake boxes."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:141
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:169
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:140
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:168
 msgid "Oh, you're half way there! ...Now try for the other one."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:152
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:151
 msgid "Wow, that looks delicious!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:167
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:166
 msgid "Wow! That's all eight recipes."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:200
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:199
 msgid ""
 "Alright, you little showoff.\n"
 "\n"
 "...Have you been studying?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:201
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:200
 msgid ""
 "Make a few more snack boxes.\n"
 "\n"
 "...Or cake boxes, if you must."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:249
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:250
 msgid ""
 "Ahhh... you didn't make any cakes!\n"
 "\n"
 "Well, cake boxes can be tricky. Keep practicing!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:251
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:252
 msgid ""
 "Ahhh... you only made one cake?\n"
 "\n"
 "Well, cake boxes can be tricky. Keep practicing!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:253
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:254
 #, python-format
 msgid ""
 "Oh, you made %s cakes!\n"
@@ -7923,24 +7923,24 @@ msgid ""
 "All that training paid off. Look at those happy customers!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:256
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:257
 #, python-format
 msgid "Wow, you made %s cakes? Maybe you should be training me!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:258
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:259
 msgid ""
 "Just kidding, I should still be training you.\n"
 "\n"
 "But you did really well! Wow!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:260
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:261
 #, python-format
 msgid "%s CAKES!? Okay, well that's just ridiculous!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:262
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:263
 msgid ""
 "I'll have to think of some harder tutorials for someone like you.\n"
 "\n"
@@ -8086,56 +8086,56 @@ msgid ""
 "ahead."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:193
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:190
 msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:199
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:198
 msgid ""
 "There, I did it!\n"
 "\n"
 "That was tricky."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:214
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:211
 msgid ""
 "Wow, I didn't expect that! Great job.\n"
 "\n"
 "You're already a combo master!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:217
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:214
 msgid ""
 "Oh no, you broke your combo without reaching ¥120!\n"
 "\n"
 "Well, don't worry about that."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:220
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:217
 msgid "¥120 is just a number I pulled out of my, um. ...Out of thin air."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:42
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:58
 msgid "Okay, I get it!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:42
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:58
 msgid "...Can you go into more detail?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:43
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:59
 msgid "Yes, I see!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:43
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:59
 msgid "What do you mean by that?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:44
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:60
 msgid "Oh! That's easy."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:44
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:60
 msgid "Hmm, maybe one more time?"
 msgstr ""
 
@@ -8594,14 +8594,14 @@ msgid ""
 "It just needs one."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:201
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:199
 msgid ""
 "Not again! ...Can you clean this up using squish moves?\n"
 "\n"
 "Try to clear three lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:204
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:202
 msgid ""
 "Oops! Look at the mess you made. ...Can you clean this up using squish "
 "moves?\n"
@@ -8609,21 +8609,21 @@ msgid ""
 "Try to clear three lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:218
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:215
 msgid ""
 "Oh no, it keeps happening! Well, try to clear three lines.\n"
 "\n"
 "Remember your squish moves!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:221
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:218
 msgid ""
 "Oh no! Now you've done it.\n"
 "\n"
 "Look at how clumsy you are!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:222
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:219
 msgid ""
 "That's okay.\n"
 "\n"
