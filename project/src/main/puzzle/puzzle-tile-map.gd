@@ -36,6 +36,8 @@ var _saved_autotile_coords := []
 
 ## tilemap which covers the corners of this tilemap
 onready var corner_map: TileMap = $CornerMap
+onready var _ghost_piece_shadow_map: TileMap = $GhostPieceViewport/ShadowMap
+onready var _ghost_piece_corner_map: TileMap = $GhostPieceViewport/ShadowMap/CornerMap
 
 var _puzzle_tile_sets_by_enum := {
 	TileSetType.DEFAULT: load("res://src/main/puzzle/puzzle-tile-set.tres"),
@@ -225,6 +227,9 @@ func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	puzzle_tile_set_type = new_puzzle_tile_set_type
 	tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
 	corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
+	
+	_ghost_piece_shadow_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
+	_ghost_piece_corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
 
 
 ## Shifts a group of rows up or down.
