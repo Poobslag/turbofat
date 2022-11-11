@@ -43,3 +43,5 @@ custom_styles/bg = SubResource( 2 )
 max_value = 1.0
 label_text = "Make Box"
 signal_names = [ "box_built" ]
+
+[node name="Timers" type="Node" parent="."]

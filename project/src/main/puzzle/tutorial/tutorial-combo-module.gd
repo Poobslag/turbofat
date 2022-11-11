@@ -187,20 +187,17 @@ func _on_PuzzleState_after_piece_written() -> void:
 				_advance_level()
 		"tutorial/combo_3":
 			if PuzzleState.level_performance.pieces == 2:
-				if not hud.messages.is_all_messages_visible():
-					yield(hud.messages, "all_messages_shown")
-				yield(get_tree().create_timer(3.0), "timeout")
-				hud.set_message(tr("Oops! I can still make the cake box, but my combo already broke."))
+				var message := tr("Oops! I can still make the cake box, but my combo already broke.")
+				start_timer_after_all_messages_shown(3.0) \
+						.connect("timeout", self, "_on_Timer_timeout_set_message", [message])
 			if PuzzleState.level_performance.pieces >= 3:
-				yield(get_tree().create_timer(3.0), "timeout")
-				_advance_level()
+				start_timer(3.0) \
+						.connect("timeout", self, "_on_Timer_timeout_advance_level")
 		"tutorial/combo_4":
 			if PuzzleState.level_performance.pieces >= 4:
 				hud.set_message(tr("There, I did it!\n\nThat was tricky."))
-				if not hud.messages.is_all_messages_visible():
-					yield(hud.messages, "all_messages_shown")
-				yield(get_tree().create_timer(3.0), "timeout")
-				_advance_level()
+				start_timer_after_all_messages_shown(3.0) \
+						.connect("timeout", self, "_on_Timer_timeout_advance_level")
 		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				_advance_level()
@@ -246,6 +243,14 @@ func _on_PuzzleState_after_game_prepared() -> void:
 	_show_diagram_count = 0
 	
 	prepare_tutorial_level()
+
+
+func _on_Timer_timeout_set_message(message: String) -> void:
+	hud.set_message(message)
+
+
+func _on_Timer_timeout_advance_level() -> void:
+	_advance_level()
 
 
 func _on_TutorialDiagram_ok_chosen() -> void:

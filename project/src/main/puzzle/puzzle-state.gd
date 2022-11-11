@@ -53,7 +53,7 @@ signal combo_ended
 ## emitted when the current piece can't be placed in the playfield
 signal topped_out
 
-const DELAY_NONE := 0.00
+const DELAY_NONE := 0.01
 const DELAY_SHORT := 2.05
 const DELAY_LONG := 3.30
 
@@ -171,12 +171,8 @@ func end_game() -> void:
 	emit_signal("after_game_ended")
 
 
-func change_level(level_id: String, delay_between_levels: float = DELAY_SHORT) -> void:
+func change_level(level_id: String) -> void:
 	emit_signal("before_level_changed", level_id)
-	
-	if delay_between_levels:
-		yield(get_tree().create_timer(delay_between_levels), "timeout")
-	
 	var settings := LevelSettings.new()
 	settings.load_from_resource(level_id)
 	CurrentLevel.switch_level(settings)
