@@ -21,7 +21,7 @@ s1: Hmm, I see. #player#, try to focus more. These careless mistakes of yours ar
 
 [conniving]
 p1: >__< Sidger, you conniving little... munch!
- (p faces left)
+ (p1 faces left)
 p1: If you're gonna lie, at least lie about something that matters! Not just, overcooking this one stupid-
 [dont_blame]
 
