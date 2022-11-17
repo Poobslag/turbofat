@@ -28,9 +28,7 @@ func _report_problems_for_chats() -> void:
 		_output_label.text = "No chatscript files have problems."
 
 
-func _report_problems_for_chat(chat_path: String) -> void:
-	# Report broken chat links
-	var chat_tree: ChatTree = ChatLibrary.chat_tree_from_file(chat_path)
+func _report_broken_chat_links(chat_path: String, chat_tree: ChatTree) -> void:
 	for chat_key in chat_tree.events:
 		for event_obj in chat_tree.events[chat_key]:
 			var chat_event:ChatEvent = event_obj
@@ -41,8 +39,36 @@ func _report_problems_for_chat(chat_path: String) -> void:
 								% [chat_path, chat_key, link])
 						if not _problems.has(chat_path):
 							_problems.append(chat_path)
-	
-	# Report disallowed characters in chat keys. We only allow lowercase letters, numbers and underscores
+
+
+func _report_invalid_meta_creature_ids(chat_path: String, chat_tree: ChatTree) -> void:
+	for chat_key in chat_tree.events:
+		for event_obj in chat_tree.events[chat_key]:
+			for meta_obj in event_obj.meta:
+				var meta: String = meta_obj
+				var meta_split: Array = meta.split(" ")
+				
+				if meta_split.size() < 1:
+					# ignore empty meta items to avoid array out of bounds
+					continue
+				
+				var meta_creature_ids: Array = []
+				match meta_split[0]:
+					"creature_enter", "creature_exit", "creature_orientation", "creature_mood":
+						meta_creature_ids.append(meta_split[1])
+				
+				for meta_creature_id in meta_creature_ids:
+					var chat_tree_has_creature := chat_tree.spawn_locations.has(meta_creature_id)
+					
+					if not chat_tree_has_creature:
+						push_warning("%s - The chat key '%s' has an invalid creature id %s"
+								% [chat_path, chat_key, meta_creature_id])
+						if not _problems.has(chat_path):
+							_problems.append(chat_path)
+
+
+## Report disallowed characters in chat keys. We only allow lowercase letters, numbers and underscores.
+func _report_disallowed_characters_in_chat_keys(chat_path: String, chat_tree: ChatTree) -> void:
 	var regex := RegEx.new()
 	regex.compile("[^a-z0-9_]")
 	for chat_key in chat_tree.events:
@@ -52,6 +78,13 @@ func _report_problems_for_chat(chat_path: String) -> void:
 					% [chat_path, chat_key, regex_match.get_string()])
 			if not _problems.has(chat_path):
 				_problems.append(chat_path)
+
+
+func _report_problems_for_chat(chat_path: String) -> void:
+	var chat_tree: ChatTree = ChatLibrary.chat_tree_from_file(chat_path)
+	_report_broken_chat_links(chat_path, chat_tree)
+	_report_invalid_meta_creature_ids(chat_path, chat_tree)
+	_report_disallowed_characters_in_chat_keys(chat_path, chat_tree)
 
 
 ## Returns a list of all chat paths within 'CHAT_DIRS', performing a tree traversal.
