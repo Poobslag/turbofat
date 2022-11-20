@@ -119,6 +119,8 @@ fi
 # project settings which are enabled temporarily, but shouldn't be pushed
 RESULT=
 RESULT=${RESULT}"Ê"$(grep "emulate_touch_from_mouse=true" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "^window/size/test_width=" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "^window/size/test_height=" project/project.godot)
 RESULT=$(echo "${RESULT}" |
   sed 's/ÊÊÊ*/Ê/g' | # remove consecutive newline placeholders
   sed 's/^Ê\(.*\)$/\1/g' | # remove trailing newline placeholders
