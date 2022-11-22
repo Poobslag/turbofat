@@ -50,7 +50,7 @@ If you want to run the Turbo Fat source code, see [Workstation Setup](https://gi
 
 Turbo Fat's code and framework are licensed under the MIT licence. Please see the [LICENSE.md](LICENSE.md) file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
 
-Turbo Fat's game resources are licensed under the CC-BY-NC license. Please see the [LICENSE2.md](LICENSE.md) file for more information. tl;dr you can share it and change it, but you can't use it to make money.
+Turbo Fat's game resources are licensed under the CC-BY-NC license. Please see the [LICENSE2.md](LICENSE2.md) file for more information. tl;dr you can share it and change it, but you can't use it to make money.
 
 Turbo Fat includes other resources which have their own licenses. This includes creative commons resources and purchased resources. The licenses for these resources are accessible in the [/license](/license) folder.
 
