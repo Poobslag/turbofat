@@ -2,45 +2,24 @@
 
 ![Game screenshot showing blocks of food in a playfield, while a chubby monster sits at a table.](img/screenshot-puzzle.png)
 
-Turbo Fat is a block-dropping puzzle game for Windows, Linux, iOS, Android and HTML5.
+*Turbo Fat* is a block-dropping puzzle game for Windows, Linux, iOS, Android and HTML5.
 
-**Turbo Fat is free; you can download the latest version on the [releases page](https://github.com/Poobslag/turbofat/releases), or play it online at [itch.io](https://poobslag.itch.io/turbo-fat).**
-
-The game is inspired by a few other block-dropping games but breaks some rules. Instead of being rewarded for clean horizontal stacks, multiline clears and T-spins, you're rewarded for messy vertical stacks, 3x3 boxes and 'squish moves' where you smush pieces into impossible positions.
+Turbo Fat was inspired by block-stacking games of the 90s, but builds on them with new pieces, new moves, new ways to score, and hilarious level gimmicks! Misdrop a piece? Use a squish move to fix it! Want higher scores? Build up a combo of 10 lines, 20 lines, 100 lines... there is no limit! Waiting for that crucial line piece? Don't wait long, we got rid of those! (Hey, nobody said it would be easy...)
 
 ![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](img/screenshot-overworld.png)
 
 The game also includes a career mode where you can interact with other monsters. This will eventually grow to include many characters to meet with unique stories, worlds to explore, and crazy puzzle challenges.
 
-## Summary
-
-Rotate the falling pieces and arrange them into lines to clear them. To earn more money, arrange your pieces into 3x3, 3x4 and 3x5 boxes. The more of these boxes you make, the more money you'll get.
-
-Another way to earn more money is to clear a lot of lines one after the other, which builds a combo. Making boxes also keeps your combo going.
-
-Pressing and holding the 'soft drop' key lets you move pieces past each other. This can help to recover from a poorly placed piece, but also helps when trying to make boxes.
-
-## Controls
-
-  * <kbd>Left</kbd> or <kbd>Right</kbd> moves your piece.
-  * <kbd>Z</kbd> or <kbd>X</kbd> rotates your piece.
-  * <kbd>Down</kbd> lowers your piece.
-  * <kbd>Space</kbd>, <kbd>Up</kbd> or <kbd>Shift</kbd> drops your piece immediately.
-  * <kbd>Esc</kbd> brings up a menu.
-
-Gamepads are also supported.
-
-For more details about the scoring system and game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
+**Turbo Fat is free; you can download the latest version on the [releases page](https://github.com/Poobslag/turbofat/releases), or play it online at [itch.io](https://poobslag.itch.io/turbo-fat).**
 
 # Social Media Links
 
 Turbo Fat is still in development! If you're interested, join the community on Discord, or follow its progress on Twitter, Reddit, itch.io and of course GitHub!
 
 - Discord: https://discord.gg/yU6aurT
+- itch.io: https://poobslag.itch.io/turbo-fat
 - Twitter: https://twitter.com/poobslag/
 - Reddit: https://www.reddit.com/r/turbofat/
-- itch.io: https://poobslag.itch.io/turbo-fat
-- GitHub: https://github.com/Poobslag/turbofat
 
 # For Developers
 
