@@ -16,6 +16,7 @@ The game also includes a career mode where you can interact with other monsters.
 
 Turbo Fat is still in development! If you're interested, join the community on Discord, or follow its progress on Twitter, Reddit, itch.io and of course GitHub!
 
+- Steam: https://store.steampowered.com/app/2213410/Turbo_Fat
 - Discord: https://discord.gg/yU6aurT
 - itch.io: https://poobslag.itch.io/turbo-fat
 - Twitter: https://twitter.com/poobslag/
