@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-20 18:32-0500\n"
+"POT-Creation-Date: 2022-11-23 07:39-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7053,6 +7053,32 @@ msgstr ""
 msgid "Plastic"
 msgstr ""
 
+#: project/src/main/editor/creature/CreatureEditor.tscn:1950
+#: project/src/main/ui/settings/SettingsMenu.tscn:1106
+#: project/src/main/ui/settings/SettingsMenu.tscn:1125
+#: project/src/main/ui/settings/SettingsMenu.tscn:1145
+msgid "Confirm"
+msgstr ""
+
+#: project/src/main/editor/creature/CreatureEditor.tscn:1951
+msgid "Is this what you want to look like?"
+msgstr ""
+
+#: project/src/main/editor/creature/CreatureEditor.tscn:1966
+#: project/src/main/editor/puzzle/LevelEditor.tscn:209
+#: project/src/main/editor/puzzle/LevelEditor.tscn:227
+msgid "Open a File"
+msgstr ""
+
+#: project/src/main/editor/creature/CreatureEditor.tscn:1984
+msgid "Export Creature"
+msgstr ""
+
+#: project/src/main/editor/creature/CreatureEditor.tscn:1994
+#: project/src/main/editor/puzzle/LevelEditor.tscn:254
+msgid "Error"
+msgstr ""
+
 #: project/src/main/editor/creature/MutateAlleleButton.tscn:15
 #: project/src/main/editor/creature/TweakAlleleRow.tscn:16
 msgid "Allele"
@@ -9088,6 +9114,10 @@ msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:1073
 msgid "* Your settings will take effect in the next scene."
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:1107
+msgid "Change save slot?"
 msgstr ""
 
 #: project/src/main/ui/settings/VolumeSetting.tscn:37
