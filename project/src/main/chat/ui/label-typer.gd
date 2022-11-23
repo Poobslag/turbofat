@@ -55,8 +55,6 @@ func _process(delta: float) -> void:
 ## This function also calculates the duration to pause for each character. All visible characters cause a short pause.
 ## Newlines cause a long pause. Slashes cause a medium pause and are hidden from the player.
 func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> void:
-	text_with_lulls = PlayerData.creature_library.substitute_variables(text_with_lulls)
-	
 	# clear any pauses and data related to the old message
 	hide_message()
 	

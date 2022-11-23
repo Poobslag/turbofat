@@ -21,6 +21,45 @@ func test_replace() -> void:
 	assert_flatten("My favorite color is #favorite_color#.", "My favorite color is blue.")
 
 
+## Messages and symbols should be translated into other languages.
+func test_replace_es() -> void:
+	var original_locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("es")
+	var translation: Translation = Translation.new()
+	translation.add_message("My favorite color is #favorite_color#.", "Mi color favorito es el #favorite_color#.")
+	translation.add_message("blue", "azul")
+	translation.locale = "es"
+	TranslationServer.add_translation(translation)
+	
+	rules["favorite_color"] = ["blue"]
+	assert_flatten("My favorite color is #favorite_color#.", "Mi color favorito es el azul.")
+	
+	TranslationServer.set_locale(original_locale)
+
+
+## Player name should be exempt from translation.
+##
+## We cannot prevent all translation of the player name until we fix #1791.
+func test_dont_translate_player_name() -> void:
+	var original_locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("es")
+	var translation: Translation = Translation.new()
+	translation.add_message("Sue", "Demandar")
+	translation.locale = "es"
+	TranslationServer.add_translation(translation)
+	
+	rules["bad_restaurant_name"] = ["Sue"]
+	assert_flatten("Bottle support #bad_restaurant_name#", "Bottle support Demandar")
+	
+	rules["player"] = ["Sue"]
+	assert_flatten("Bottle support #player#", "Bottle support Sue")
+	
+	rules["player"] = ["Sue"]
+	assert_flatten("#player#", "Sue")
+	
+	TranslationServer.set_locale(original_locale)
+
+
 func test_rule_undefined() -> void:
 	assert_flatten("My favorite color is #favorite_color#.", "My favorite color is favorite_color.")
 
@@ -64,5 +103,6 @@ func test_modifier_possessive_es() -> void:
 
 func assert_flatten(rule: String, expected: String) -> void:
 	var grammar := Tracery.Grammar.new(rules)
+	grammar.add_translation_exempt_symbol("#player#")
 	grammar.add_modifiers(Tracery.Modifiers.get_modifiers())
 	assert_eq(grammar.flatten(rule), expected)

@@ -187,6 +187,7 @@ func substitute_variables(string: String) -> String:
 		rules[phrase] = tr(PlayerData.chat_history.phrases[phrase])
 	var grammar := Tracery.Grammar.new(rules)
 	grammar.add_modifiers(Tracery.Modifiers.get_modifiers())
+	grammar.add_translation_exempt_symbol("#player#")
 	return grammar.flatten(string)
 
 
