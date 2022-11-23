@@ -135,6 +135,8 @@ then
   then
     # unset project settings
     sed -i "/emulate_touch_from_mouse=true/d" project/project.godot
+    sed -i "/^window\/size\/test_width=/d" project/project.godot
+    sed -i "/^window\/size\/test_height=/d" project/project.godot
     echo "...Temporary settings reverted."
   fi
 fi
