@@ -246,7 +246,12 @@ func _assign_flags_and_phrases() -> void:
 				"unset_flag": _process_unset_flag_statement(args)
 
 
-
+## Processes a default_phrase statement like 'default_phrase dog_breed Labrador Retriever'
+##
+## Assigns the specified value to the specified chat history phrase if the phrase is currently unset.
+##
+## Parameters:
+## 	'args': The statement's arguments, such as ['dog_breed', 'Labrador' 'Retriever']
 func _process_default_phrase_statement(args: Array) -> void:
 	if args.size() < 2:
 		push_warning("Invalid argument count for default_phrase call. Expected at least 2 but was %s"
@@ -258,6 +263,13 @@ func _process_default_phrase_statement(args: Array) -> void:
 				args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
 
 
+## Processes a set_flag statement like 'set_flag foo' or 'set_flag foo bar'
+##
+## Assigns the specified value to the specified chat history flag. If no value is specified, it is set to the word
+## 'true'.
+##
+## Parameters:
+## 	'args': The statement's arguments, such as ['foo'] or ['foo', 'bar']
 func _process_set_flag_statement(args: Array) -> void:
 	match args.size():
 		1:
@@ -269,6 +281,12 @@ func _process_set_flag_statement(args: Array) -> void:
 					% [args.size()])
 
 
+## Processes a set_phrase statement like 'set_phrase dog_breed Labrador Retriever'
+##
+## Assigns the specified value to the specified chat history phrase.
+##
+## Parameters:
+## 	'args': The statement's arguments, such as ['dog_breed', 'Labrador', 'Retriever]
 func _process_set_phrase_statement(args: Array) -> void:
 	if args.size() < 2:
 		push_warning("Invalid argument count for set_phrase call. Expected at least 2 but was %s"
@@ -279,6 +297,12 @@ func _process_set_phrase_statement(args: Array) -> void:
 			args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
 
 
+## Processes an unset_flag statement like 'unset_flag foo'
+##
+## Unassigns the specified chat history flag.
+##
+## Parameters:
+## 	'args': The statement's arguments, such as ['foo'].
 func _process_unset_flag_statement(args: Array) -> void:
 	if args.size() != 1:
 		push_warning("Invalid argument count for unset_flag call. Expected 1 but was %s"

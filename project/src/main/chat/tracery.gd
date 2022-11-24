@@ -70,6 +70,14 @@ class Grammar extends Reference:
 	var _save_data: Dictionary = {}
 	var _expansion_regex: RegEx
 	var _save_symbol_regex: RegEx
+	
+	## List of tracery symbols which should not be processed by the translation server. This includes symbols like
+	## '#player#' for the player's name. We do not want to translate the player's name even if it corresponds to an
+	## English phrase.
+	##
+	## key: (String) Tracery symbol like '#player#' which should not be processed
+	## value: (bool) true
+	var _translation_exempt_symbols: Dictionary = {}
 
 
 	func _init(rules: Dictionary) -> void:
@@ -87,6 +95,15 @@ class Grammar extends Reference:
 		_rules = rules.duplicate(true)
 
 
+	## Disable translation of the specified symbol.
+	##
+	## This is used for keywords which should not be processed by the translation server. This includes symbols like
+	## '#player#' for the player's name. We do not want to translate the player's name even if it corresponds to an
+	## English phrase.
+	func add_translation_exempt_symbol(key: String) -> void:
+		_translation_exempt_symbols[key] = true
+
+
 	func add_modifier(key: String, object: Object, function: String) -> void:
 		_modifier_lookup[key] = [object, function]
 
@@ -96,7 +113,16 @@ class Grammar extends Reference:
 			_modifier_lookup[k] = modifiers[k]
 
 
+	## Replaces all tracery symbols with their appropriate values.
+	##
+	## Translates the symbol values through Godot's translation engine as well, unless they are in the list of
+	## translation-exempt symbols.
+	##
+	## Parameters:
+	## 	'rule': The rule to be flattened, such as 'Hello #player#'.
 	func flatten(rule: String) -> String:
+		rule = tr(rule)
+		
 		var expansion_matches := _expansion_regex.search_all(rule)
 		if expansion_matches.empty():
 			_resolve_save_symbols(rule)
@@ -107,6 +133,7 @@ class Grammar extends Reference:
 			
 			# Remove the # surrounding the symbol name
 			var match_name := match_value.replace("#", "")
+			match_name = tr(match_name)
 			
 			# Remove the save symbols
 			match_name = _save_symbol_regex.sub(match_name, "", true)
@@ -130,7 +157,13 @@ class Grammar extends Reference:
 				var rand_index: int = rng.randi() % selected_rule.size()
 				selected_rule = selected_rule[rand_index] as String
 			
-			var resolved := flatten(selected_rule)
+			# Run the rule through the translation engine, unless it is exempt from translation
+			var resolved: String
+			if match_value in _translation_exempt_symbols:
+				resolved = selected_rule
+			else:
+				resolved = flatten(selected_rule)
+			
 			resolved = _apply_modifiers(resolved, modifiers)
 			rule = rule.replace(match_value, resolved)
 		

@@ -36,11 +36,13 @@ func play_chat_event(chat_event: ChatEvent) -> void:
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
 	
-	# add lull characters
-	var text_with_lulls := ChatLibrary.add_lull_characters(chat_event.text)
+	# substitute variables and add lull characters
+	var text_to_show := chat_event.text
+	text_to_show = PlayerData.creature_library.substitute_variables(text_to_show)
+	text_to_show = ChatLibrary.add_lull_characters(text_to_show)
 	
 	# set the text
-	$NarrationPanel.show_message(text_with_lulls, 0.5)
+	$NarrationPanel.show_message(text_to_show, 0.5)
 
 
 func is_narration_window_showing() -> bool:
