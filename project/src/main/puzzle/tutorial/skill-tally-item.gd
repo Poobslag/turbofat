@@ -75,6 +75,7 @@ func update_label() -> void:
 		_label.text = "%s\n%d%%" % [tr(label_text), int(100 * value / max_value)]
 	else:
 		_label.text = "%s\n(%d/%d)" % [tr(label_text), value, max_value]
+	_label.pick_largest_font()
 
 
 ## Initializes this node when the puzzle field is assigned.

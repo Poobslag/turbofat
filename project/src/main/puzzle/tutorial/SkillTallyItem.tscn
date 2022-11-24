@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-skill-tally.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/skill-tally-item.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-task-complete.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-12.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
@@ -63,10 +67,17 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 7 )
 text = "abc
 (0/5)"
 align = 1
 valign = 1
+script = ExtResource( 4 )
+fonts = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Tween" type="Tween" parent="."]
 
