@@ -15,7 +15,7 @@ func test_set_rng() -> void:
 	assert_eq(grammar.rng, new_rng)
 
 
-func test_simple() -> void:
+func test_replace() -> void:
 	rules["favorite_color"] = ["blue"]
 	
 	assert_flatten("My favorite color is #favorite_color#.", "My favorite color is blue.")
@@ -29,7 +29,11 @@ func test_pound_signs() -> void:
 	assert_flatten("I'm your #1 fan. #1!", "I'm your #1 fan. #1!")
 
 
-func test_modifier_possessive() -> void:
+## English has a possessive modifier. Nouns are suffixed with "'s".
+func test_modifier_possessive_en() -> void:
+	var original_locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("en")
+	
 	rules["person"] = ["Erik"]
 	assert_flatten("What's #person.possessive# problem?", "What's Erik's problem?")
 	
@@ -38,6 +42,8 @@ func test_modifier_possessive() -> void:
 	
 	rules["person"] = [""]
 	assert_flatten("What's #person.possessive# problem?", "What's 's problem?")
+	
+	TranslationServer.set_locale(original_locale)
 
 
 ## Spanish has no possessive modifier. Returning the unmodified input is grammatically correct.
@@ -52,6 +58,7 @@ func test_modifier_possessive_es() -> void:
 	
 	rules["person"] = [""]
 	assert_flatten("¿Dónde está el lápiz de #person.possessive#?", "¿Dónde está el lápiz de ?")
+	
 	TranslationServer.set_locale(original_locale)
 
 
