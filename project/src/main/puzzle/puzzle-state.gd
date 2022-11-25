@@ -103,6 +103,11 @@ var speed_index: int setget set_speed_index
 ## for tutorials to prevent the sensei from leaving.
 var no_more_customers: bool
 
+## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
+## up if the puzzle is interrupted. Otherwise for example, we might schedule a victory screen to appear 3 seconds from
+## now, but then the player restarts the level, and the victory screen is shown after they've restarted.
+onready var _timers := $Timers
+
 func _physics_process(_delta: float) -> void:
 	if input_frame < 0:
 		# if input_frame is negative, we preserve its value. a negative value indicates that no input should be
@@ -112,20 +117,56 @@ func _physics_process(_delta: float) -> void:
 		input_frame += 1
 
 
+## Creates and starts a one-shot timer.
+##
+## This timer is freed when it times out or when the puzzle is interrupted.
+##
+## Parameters:
+## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
+##
+## Returns:
+## 	A timer which has been added to the scene tree, and is currently active.
+func start_timer(wait_time: float) -> Timer:
+	var timer := add_timer(wait_time)
+	timer.start()
+	return timer
+
+
+## Creates a one-shot timer, but does not start it.
+##
+## This timer is freed when it times out or when the puzzle is interrupted.
+##
+## Parameters:
+## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
+##
+## Returns:
+## 	A timer which has been added to the scene tree, but is not yet active.
+func add_timer(wait_time: float) -> Timer:
+	var timer := Timer.new()
+	timer.one_shot = true
+	timer.wait_time = wait_time
+	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
+	_timers.add_child(timer)
+	return timer
+
+
+## Cleans up any temporary timers and listeners.
+##
+## This prevents the puzzle from behaving unexpectedly if the player restarts at an unusual time.
+func _cleanup_listeners() -> void:
+	for child in _timers.get_children():
+		child.queue_free()
+
+
 ## Resets all score data, and starts a new game after a brief pause.
 func prepare_and_start_game() -> void:
 	_prepare_game()
 	
 	if CurrentLevel.settings.other.skip_intro:
 		# when skipping the intro, we don't pause between preparing/starting the game
-		pass
+		_start_game()
 	else:
-		yield(get_tree().create_timer(READY_DURATION), "timeout")
-		if get_tree().paused:
-			# If the player pauses during the initial countdown, we wait to start until the game is unpaused.
-			yield(Pauser, "paused_changed")
-	
-	_start_game()
+		start_timer(READY_DURATION).connect("timeout", self, "_on_Timer_timeout_start_game")
 
 
 func set_speed_index(new_speed_index: int) -> void:
@@ -159,17 +200,17 @@ func end_game() -> void:
 	end_combo()
 	if not level_performance.lost:
 		level_performance.success = MilestoneManager.is_met(CurrentLevel.settings.success_condition)
+	_cleanup_listeners()
 	emit_signal("game_ended")
-	var yield_duration: float
+	var wait_time: float
 	match end_result():
 		Levels.Result.FINISHED, Levels.Result.LOST:
-			yield_duration = 2.2
+			wait_time = 2.2
 		Levels.Result.WON:
-			yield_duration = 4.2
+			wait_time = 4.2
 		Levels.Result.NONE:
-			yield_duration = 0.0
-	yield(get_tree().create_timer(yield_duration), "timeout")
-	emit_signal("after_game_ended")
+			wait_time = 0.0
+	start_timer(wait_time).connect("timeout", self, "_on_Timer_timeout_emit_after_game_ended")
 
 
 ## Signals a level transition.
@@ -357,6 +398,7 @@ func _prepare_game() -> void:
 		CurrentLevel.start_level(new_settings)
 	
 	reset()
+	_cleanup_listeners()
 	emit_signal("game_prepared")
 	emit_signal("after_game_prepared")
 
@@ -386,3 +428,15 @@ func _add_line() -> void:
 
 func _add_customer_score(delta: int) -> void:
 	customer_scores[customer_scores.size() - 1] += delta
+
+
+func _on_Timer_timeout_start_game() -> void:
+	_start_game()
+
+
+func _on_Timer_timeout_emit_after_game_ended() -> void:
+	emit_signal("after_game_ended")
+
+
+func _on_Timer_timeout_queue_free(timer: Timer) -> void:
+	timer.queue_free()

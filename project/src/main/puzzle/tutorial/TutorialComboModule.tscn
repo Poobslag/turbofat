@@ -16,5 +16,3 @@ label_text = "Combo"
 visible = false
 max_value = 2.0
 label_text = "Cake Box"
-
-[node name="Timers" type="Node" parent="."]

@@ -67,5 +67,3 @@ custom_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Line Clear"
 signal_names = [ "line_cleared" ]
-
-[node name="Timers" type="Node" parent="."]

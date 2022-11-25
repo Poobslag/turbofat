@@ -191,7 +191,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 				start_timer_after_all_messages_shown(3.0) \
 						.connect("timeout", self, "_on_Timer_timeout_set_message", [message])
 			if PuzzleState.level_performance.pieces >= 3:
-				start_timer(3.0) \
+				PuzzleState.start_timer(3.0) \
 						.connect("timeout", self, "_on_Timer_timeout_advance_level")
 		"tutorial/combo_4":
 			if PuzzleState.level_performance.pieces >= 4:
