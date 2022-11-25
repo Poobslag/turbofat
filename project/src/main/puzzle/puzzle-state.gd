@@ -176,9 +176,18 @@ func set_speed_index(new_speed_index: int) -> void:
 	emit_signal("speed_index_changed", speed_index)
 
 
-func top_out() -> void:
-	level_performance.top_out_count += 1
+## Updates the player's score and statistics as a result of topping out.
+##
+## This ends the player's combo to account for the case where their score is less than the top-out penalty, but they
+## have accumulated a large untabulated score on the current customer.
+func apply_top_out_score_penalty() -> void:
+	end_combo()
 	level_performance.score = max(level_performance.score - TOP_OUT_PENALTY, 0)
+	PuzzleState.level_performance.top_out_count += 1
+
+
+func top_out() -> void:
+	apply_top_out_score_penalty()
 	if level_performance.top_out_count >= CurrentLevel.settings.lose_condition.top_out:
 		make_player_lose()
 	emit_signal("topped_out")
@@ -189,14 +198,20 @@ func make_player_lose() -> void:
 	if not game_active:
 		return
 	if not CurrentLevel.settings.lose_condition.finish_on_lose:
+		# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual effects
 		level_performance.lost = true
+		game_active = false
+		game_ended = true
+		
+		# trigger the visual effects for topping out, such as making the player go swirly eyed
+		top_out()
 	end_game()
 
 
 func end_game() -> void:
+	# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual effects
 	game_active = false
 	game_ended = true
-	
 	end_combo()
 	if not level_performance.lost:
 		level_performance.success = MilestoneManager.is_met(CurrentLevel.settings.success_condition)
