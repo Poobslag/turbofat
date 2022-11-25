@@ -225,7 +225,11 @@ func end_game() -> void:
 			wait_time = 4.2
 		Levels.Result.NONE:
 			wait_time = 0.0
-	start_timer(wait_time).connect("timeout", self, "_on_Timer_timeout_emit_after_game_ended")
+	
+	if wait_time > 0.0:
+		start_timer(wait_time).connect("timeout", self, "_on_Timer_timeout_emit_after_game_ended")
+	else:
+		emit_signal("after_game_ended")
 
 
 ## Signals a level transition.
@@ -312,7 +316,7 @@ func end_combo() -> void:
 		# don't add $0 creatures. creatures don't pay if they owe $0
 		pass
 	elif CurrentLevel.settings.finish_condition.type == Milestone.CUSTOMERS \
-			and PuzzleState.customer_scores.size() >= CurrentLevel.settings.finish_condition.value:
+			and customer_scores.size() >= CurrentLevel.settings.finish_condition.value:
 		# some levels have a limited number of customers
 		no_more_customers = true
 	else:
