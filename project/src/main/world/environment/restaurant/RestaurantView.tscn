@@ -316,6 +316,8 @@ custom_styles/panel = SubResource( 4 )
 one_shot = true
 script = ExtResource( 12 )
 
+[node name="SummonCreatureTimers" type="Node" parent="."]
+
 [node name="SwoopTween" type="Tween" parent="."]
 
 [node name="SwoopAnimationPlayer" type="AnimationPlayer" parent="."]

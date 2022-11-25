@@ -39,6 +39,7 @@ onready var _customer_view := $Customer/View
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 onready var _swoop_tween: Tween = $SwoopTween
 onready var _hello_timer := $HelloTimer
+onready var _summon_creature_timers := $SummonCreatureTimers
 
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
@@ -150,7 +151,7 @@ func summon_customer(creature_index: int = -1) -> void:
 	else:
 		creature_def = PlayerData.random_customer_def(true)
 	_restaurant_viewport_scene.summon_customer(creature_def, creature_index)
-	if creature_index == -1 or creature_index == current_creature_index:
+	if creature_index == -1 or creature_index == get_current_creature_index():
 		emit_signal("customer_changed")
 
 
@@ -161,13 +162,20 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 		new_creature_index = next_creature_index()
 	set_current_creature_index(new_creature_index)
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
-	yield(get_tree().create_timer(0.5), "timeout")
-	summon_customer(old_creature_index)
+	
+	var summon_creature_timer := Timer.new()
+	summon_creature_timer.autostart = true
+	summon_creature_timer.one_shot = true
+	summon_creature_timer.wait_time = 0.5
+	summon_creature_timer.connect("timeout", self, "_on_Timer_timeout_summon_customer", [old_creature_index])
+	summon_creature_timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [summon_creature_timer])
+	_summon_creature_timers.add_child(summon_creature_timer)
 
 
 ## Returns a random creature index different from the current creature index.
 func next_creature_index() -> int:
-	return (get_current_creature_index() + randi() % 2 + 1) % get_customers().size()
+	var customer_count := get_customers().size()
+	return (get_current_creature_index() + randi() % (customer_count - 1) + 1) % customer_count
 
 
 ## Temporarily suppresses 'hello' and 'door chime' sounds.
@@ -298,3 +306,11 @@ func _on_Playfield_all_lines_cleared() -> void:
 		return
 	
 	get_chef().play_mood(Creatures.Mood.LAUGH1)
+
+
+func _on_Timer_timeout_summon_customer(creature_index: int) -> void:
+	summon_customer(creature_index)
+
+
+func _on_Timer_timeout_queue_free(timer: Timer) -> void:
+	timer.queue_free()
