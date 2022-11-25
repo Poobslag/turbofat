@@ -63,7 +63,9 @@ func _advance_level() -> void:
 		# the player did something crazy; skip the tutorial entirely
 		
 		# change the level immediately; don't wait for dialog to finish
-		PuzzleState.change_level("tutorial/oh_my")
+		var level_id := "tutorial/oh_my"
+		PuzzleState.prepare_level_change(level_id)
+		PuzzleState.change_level(level_id)
 		
 		hud.set_big_message(ChatLibrary.add_mega_lull_characters(tr("OH, MY!!!")))
 		hud.enqueue_pop_out()
