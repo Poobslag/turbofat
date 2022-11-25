@@ -8,6 +8,7 @@ extends Label
 onready var _penalty_timer := $PenaltyTimer
 
 func _ready() -> void:
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")
 	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	text = "-"
@@ -44,3 +45,8 @@ func _on_PuzzleState_topped_out() -> void:
 	text = StringUtils.format_money(-1 * PuzzleState.TOP_OUT_PENALTY)
 	rect_size = Vector2(0, 0)
 	_penalty_timer.start()
+
+
+func _on_PuzzleState_game_prepared() -> void:
+	_penalty_timer.stop()
+	_refresh_score()
