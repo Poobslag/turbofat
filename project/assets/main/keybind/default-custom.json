@@ -39,6 +39,16 @@
     {
     }
   ],
+  "retry": [
+    {
+      "type": "key",
+      "scancode": 82
+    },
+    {
+    },
+    {
+    }
+  ],
   "rotate_ccw": [
     {
       "type": "key",

@@ -59,6 +59,6 @@
     "value": "100"
   },
   "lose_condition": [
-    "top_out 1"
+    "top_out 5"
   ]
 }

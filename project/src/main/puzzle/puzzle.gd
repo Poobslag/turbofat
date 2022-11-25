@@ -45,6 +45,25 @@ func _input(event: InputEvent) -> void:
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		_settings_menu.show()
 		get_tree().set_input_as_handled()
+	
+	if event.is_action_pressed("retry"):
+		if not PuzzleState.game_active and not PuzzleState.game_ended:
+			# still at the start of a puzzle; don't retry
+			pass
+		else:
+			if not CurrentLevel.settings.lose_condition.finish_on_lose:
+				# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual
+				# effects
+				PuzzleState.level_performance.lost = true
+				PuzzleState.game_active = false
+				PuzzleState.game_ended = true
+				PuzzleState.apply_top_out_score_penalty()
+			if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+				PuzzleState.end_game()
+			var rank_result := RankCalculator.new().calculate_rank()
+			_save_level_result(rank_result)
+			_start_puzzle()
+			get_tree().set_input_as_handled()
 
 
 func get_playfield() -> Playfield:
