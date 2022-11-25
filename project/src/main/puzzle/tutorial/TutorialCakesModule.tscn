@@ -54,5 +54,3 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 8.0
 label_text = "Cake Box"
-
-[node name="Timers" type="Node" parent="."]

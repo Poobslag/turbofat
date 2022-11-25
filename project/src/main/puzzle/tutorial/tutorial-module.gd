@@ -13,11 +13,6 @@ var puzzle: Puzzle
 var playfield: Playfield
 var piece_manager: PieceManager
 
-## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
-## up if the tutorial is interrupted. Otherwise for example, we might schedule a level change 3 seconds from now, but
-## then the player restarts the tutorial, and the level change happens after they've restarted.
-onready var _timers := $Timers
-
 func _ready() -> void:
 	puzzle = hud.puzzle
 	playfield = puzzle.get_playfield()
@@ -34,13 +29,10 @@ func _ready() -> void:
 			hud.add_skill_tally_item(new_item)
 
 
-## Cleanup any temporary timers and listeners.
+## Cleans up any temporary timers and listeners.
 ##
 ## This prevents the tutorial from behaving unexpectedly if the player restarts at an unusual time.
 func cleanup_listeners() -> void:
-	for child in _timers.get_children():
-		child.queue_free()
-	
 	if hud.messages.is_connected("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer"):
 		hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
 
@@ -98,32 +90,13 @@ func change_level(level_id: String, delay_between_levels: float = PuzzleState.DE
 ## 	A timer which has been added to the scene tree. The timer may be active or inactive depending on whether the
 ## 	tutorial messages are still being written to the user.
 func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
-	var timer := Timer.new()
-	timer.one_shot = true
-	timer.wait_time = wait_time
-	_timers.add_child(timer)
+	var timer := PuzzleState.add_timer(wait_time)
 	
 	if not hud.messages.is_all_messages_visible():
 		hud.messages.connect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer", [timer])
 	else:
 		timer.start()
 	
-	return timer
-
-
-## Creates and starts a timer.
-##
-## Parameters:
-## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
-##
-## Returns:
-## 	A timer which has been added to the scene tree, and is currently active.
-func start_timer(wait_time: float) -> Timer:
-	var timer := Timer.new()
-	_timers.add_child(timer)
-	timer.one_shot = true
-	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
-	timer.start(wait_time)
 	return timer
 
 
