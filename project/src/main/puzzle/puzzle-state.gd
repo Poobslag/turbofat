@@ -17,6 +17,7 @@ signal game_started
 
 ## emitted during tutorials, when changing from one tutorial section to the next
 signal before_level_changed(new_level_id)
+
 signal after_level_changed
 
 ## emitted when the player survives until the end the level.
@@ -171,8 +172,14 @@ func end_game() -> void:
 	emit_signal("after_game_ended")
 
 
-func change_level(level_id: String) -> void:
+## Signals a level transition.
+##
+## During tutorials, this notifies the player that this section is over. It also pauses time-sensitive puzzle logic.
+func prepare_level_change(level_id: String) -> void:
 	emit_signal("before_level_changed", level_id)
+
+
+func change_level(level_id: String) -> void:
 	var settings := LevelSettings.new()
 	settings.load_from_resource(level_id)
 	CurrentLevel.switch_level(settings)

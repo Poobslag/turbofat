@@ -84,8 +84,7 @@ func prepare_tutorial_level() -> void:
 ##
 ## Copy/pasted from PuzzleState.change_level with an extra yield statement added.
 func change_level(level_id: String, delay_between_levels: float = PuzzleState.DELAY_SHORT) -> void:
-	PuzzleState.emit_signal("before_level_changed", level_id)
-	
+	PuzzleState.prepare_level_change(level_id)
 	start_timer_after_all_messages_shown(delay_between_levels) \
 			.connect("timeout", self, "_on_Timer_timeout_change_level", [level_id])
 
