@@ -218,6 +218,22 @@ func _update_career_data(rank_result: RankResult) -> void:
 	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
 
 
+## Stores the rank result for later.
+func _save_level_result(rank_result: RankResult) -> void:
+	_settings_menu.quit_type = SettingsMenu.QUIT
+	PlayerData.level_history.add_result(CurrentLevel.level_id, rank_result)
+	PlayerData.level_history.prune(CurrentLevel.level_id)
+	PlayerData.emit_signal("level_history_changed")
+	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
+	
+	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+		_update_career_data(rank_result)
+	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
+	CurrentLevel.attempt_count += 1
+	
+	PlayerSave.schedule_save()
+
+
 func _on_Hud_start_button_pressed() -> void:
 	_start_puzzle()
 
@@ -260,23 +276,11 @@ func _on_PuzzleState_game_ended() -> void:
 	if not CurrentLevel.level_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
-
-	_settings_menu.quit_type = SettingsMenu.QUIT
+	
 	var rank_result := RankCalculator.new().calculate_rank()
-	PlayerData.level_history.add_result(CurrentLevel.level_id, rank_result)
-	PlayerData.level_history.prune(CurrentLevel.level_id)
-	PlayerData.emit_signal("level_history_changed")
-	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
-
-	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
-		_update_career_data(rank_result)
+	_save_level_result(rank_result)
 
 	if not PuzzleState.level_performance.lost and _overall_rank(rank_result) < 24: $ApplauseSound.play()
-
-	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
-	CurrentLevel.attempt_count += 1
-	
-	PlayerSave.schedule_save()
 
 
 ## Briefly pause during level transitions.

@@ -9,15 +9,17 @@ var _rank_calculator: RankCalculator = RankCalculator.new()
 onready var _recalculate_timer: Timer = $RecalculateTimer
 
 func _ready() -> void:
-	# only display the meter in career mode
 	if PlayerData.career.is_career_mode():
-		visible = true
-		_recalculate_timer.start()
 		PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
 		PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")
 		PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	
+	if PlayerData.career.is_career_mode():
+		visible = true
+		_recalculate_timer.start()
 	else:
 		visible = false
+		_recalculate_timer.stop()
 	
 	# initialize the meter as empty
 	_recalculate()
@@ -37,6 +39,11 @@ func _milestone_met_percent(milestone: Milestone) -> float:
 ##
 ## For career mode boss levels, the success condition acts as an additional prerequisite to progress. This method
 ## calculates how close the player is to progressing through career mode.
+##
+## For non-boss levels, this method always returns 1.0.
+##
+## Returns:
+## 	A number in the range [0.0, 1.0] for the player's progress toward the current level's success condition.
 func _boss_level_percent() -> float:
 	if CurrentLevel.settings.success_condition.type == Milestone.NONE:
 		return 1.0

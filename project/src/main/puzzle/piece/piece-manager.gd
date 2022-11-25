@@ -84,8 +84,8 @@ func _ready() -> void:
 	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_obstructed"))
 
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
-	_states.set_state(_states.none)
 	_clear_piece()
+	_states.set_state(_states.none)
 	_prepare_tileset()
 
 
@@ -308,6 +308,7 @@ func _on_PuzzleState_game_prepared() -> void:
 	# enable physics_process if it was temporarily disabled
 	set_physics_process(true)
 	_clear_piece()
+	_states.set_state(_states.none)
 
 
 func _on_PuzzleState_game_started() -> void:
