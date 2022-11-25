@@ -41,26 +41,68 @@ func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 
 
 func _on_PieceManager_rotated_cw(piece: ActivePiece) -> void:
+	# Piece rotation is suppressed, so T-Spins are impossible
+	if CurrentLevel.settings.other.suppress_piece_rotation in [
+		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+		OtherRules.SuppressPieceRotation.ROTATION
+	]:
+		return
+	
 	_refresh_spin(piece.is_sealed())
 
 
 func _on_PieceManager_rotated_ccw(piece: ActivePiece) -> void:
+	# Piece rotation is suppressed, so T-Spins are impossible
+	if CurrentLevel.settings.other.suppress_piece_rotation in [
+		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+		OtherRules.SuppressPieceRotation.ROTATION
+	]:
+		return
+	
 	_refresh_spin(piece.is_sealed())
 
 
 func _on_PieceManager_rotated_180(piece: ActivePiece) -> void:
+	# Piece rotation is suppressed, so T-Spins are impossible
+	if CurrentLevel.settings.other.suppress_piece_rotation in [
+		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+		OtherRules.SuppressPieceRotation.ROTATION
+	]:
+		return
+	
 	_refresh_spin(piece.is_sealed())
 
 
 func _on_PieceManager_initial_rotated_cw(piece: ActivePiece) -> void:
+	# Initial piece rotation is suppressed, so T-Spins are impossible
+	if CurrentLevel.settings.other.suppress_piece_initial_rotation in [
+		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+		OtherRules.SuppressPieceRotation.ROTATION
+	]:
+		return
+	
 	_refresh_spin(piece.is_sealed())
 
 
 func _on_PieceManager_initial_rotated_ccw(piece: ActivePiece) -> void:
+	# Initial piece rotation is suppressed, so T-Spins are impossible
+	if CurrentLevel.settings.other.suppress_piece_initial_rotation in [
+		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+		OtherRules.SuppressPieceRotation.ROTATION
+	]:
+		return
+	
 	_refresh_spin(piece.is_sealed())
 
 
 func _on_PieceManager_initial_rotated_180(piece: ActivePiece) -> void:
+	# Initial piece rotation is suppressed, so T-Spins are impossible
+	if CurrentLevel.settings.other.suppress_piece_initial_rotation in [
+		OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+		OtherRules.SuppressPieceRotation.ROTATION
+	]:
+		return
+	
 	_refresh_spin(piece.is_sealed())
 
 
