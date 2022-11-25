@@ -1952,117 +1952,116 @@ msgstr "Estaba pensando algo como..."
 
 #: project/assets/main/locale/localizables-extracted.py:442
 msgid "Something like... Junjorito?"
-msgstr "Algo como... ¿Junjorito?"
+msgstr "Algo como... ¿Junjorjito?"
 
 #: project/assets/main/locale/localizables-extracted.py:443
 #: project/assets/main/locale/localizables-extracted.py:834
 #: project/assets/main/locale/localizables-extracted.py:875
 msgid "Junjorito"
-msgstr "Junjorito"
+msgstr "Junjorjito"
 
 #: project/assets/main/locale/localizables-extracted.py:444
 msgid "What on earth is a junjorito?"
-msgstr "¿Qué diablos es un junjorito?"
+msgstr "¿Qué diablos es un junjorjito?"
 
 #: project/assets/main/locale/localizables-extracted.py:445
 msgid ""
 "I didn't say we had to call it Junjorito! Just something LIKE Junjorito."
 msgstr ""
-"¡No dije que debamos llamarlo Junjorito! Solo algo PARECIDO a Junjorito."
+"¡No dije que debamos llamarlo Junjorjito! Solo algo PARECIDO a Junjorjito."
 
 #: project/assets/main/locale/localizables-extracted.py:446
 msgid "Something like... Caboodles?"
-msgstr "Algo como... ¿Caboodles?"
+msgstr "Algo como... ¿Don Chow?"
 
 #: project/assets/main/locale/localizables-extracted.py:447
 msgid "Caboodles"
-msgstr "Caboodles"
+msgstr "Don Chow"
 
 #: project/assets/main/locale/localizables-extracted.py:448
 msgid "What on earth is a caboodle?"
-msgstr "¿Qué diablos es un caboodle?"
+msgstr "¿Qué diablos es un Don Chow?"
 
 #: project/assets/main/locale/localizables-extracted.py:449
 msgid ""
 "You know, like kitten caboodles! Or is it kit 'n caboodles? I don't know... "
 "It's just a cute nonsense word!"
 msgstr ""
-"¡Ya sabes, como kitten caboodles! ¿O era kit 'n caboodles? No se... ¡Es solo "
-"un lindo juego de palabras!"
+"¡Ya sabes, como la propaganda! Si es rico, debe ser por Don Chow. No se... "
+"¡Algo pegadizo!"
 
 #: project/assets/main/locale/localizables-extracted.py:450
 msgid "Something like... Eaties?"
-msgstr "Algo como... ¿Eaties?"
+msgstr "Algo como... ¿Comidita?"
 
 #: project/assets/main/locale/localizables-extracted.py:451
 msgid "Eaties"
-msgstr "Eaties"
+msgstr "Comidita"
 
 #: project/assets/main/locale/localizables-extracted.py:452
 msgid "What on earth is an eatie?"
-msgstr "¿Qué diablos es un eatie?"
+msgstr "¿En serio? ¿Comidita?"
 
 #: project/assets/main/locale/localizables-extracted.py:453
 msgid "You know, sort of like foodies... But a friendlier version of it!"
-msgstr "Ya sabes, algo como foodies... ¡Pero una versión más amistosa!"
+msgstr "Por supuesto, suena muy lindo... ¡El diminutivo ayuda mucho!"
 
 #: project/assets/main/locale/localizables-extracted.py:454
 msgid "Something like... The Fats of Life?"
-msgstr "Algo como... ¿The Fats of Life?"
+msgstr "Algo como... Más Rica la del Barrio"
 
 #: project/assets/main/locale/localizables-extracted.py:455
 msgid "The Fats of Life"
-msgstr "The Fats of Life"
+msgstr "Más Rica la del Barrio"
 
 #: project/assets/main/locale/localizables-extracted.py:456
 msgid ""
 "Really? You want our restaurant's name to pay homage to a sitcom from "
 "what... the 20th century?"
 msgstr ""
-"En serio? Quieres que el nombre le de homenaje a una comedia de qué... ¿El "
-"siglo 20?"
+"¿En serio? Me suena a una telenovela que miraría mi madre una y otra vez."
 
 #: project/assets/main/locale/localizables-extracted.py:457
 msgid ""
 "Yeah! It's sort of plays off of your name you know? Because you're Fat "
 "Sensei! The Fats of Life!"
 msgstr ""
-"¡Si! También juega con tu nombre, ¿no? ¡Porque eres Fat Sensei! ¡The Fats of "
-"Life!"
+"Con razón pensé en ese nombre. Podríamos aprovechar si existe algún fan club."
 
 #: project/assets/main/locale/localizables-extracted.py:458
 msgid "Something like... Sparky's?"
-msgstr "Algo como... ¿Sparky's?"
+msgstr "Algo como... ¿Mezclados Libres?"
 
 #: project/assets/main/locale/localizables-extracted.py:459
 msgid "Sparky's"
-msgstr "Sparky's"
+msgstr "Mezclados Libres"
 
 #: project/assets/main/locale/localizables-extracted.py:460
 msgid "What on earth is a sparky?"
-msgstr "¿Qué diablos es un sparky?"
+msgstr "¿Qué diablos es un mezclado libre?"
 
 #: project/assets/main/locale/localizables-extracted.py:461
 msgid ""
 "Yeah it's like, a cute little punchy name. Sparky's! Doesn't it sound fun?"
 msgstr ""
-"Si, algo como, un lindo nombre impactante. ¡Sparky's! ¿No suena divertido?"
+"¡Es como serviríamos la comida! Mucha variedad, y tienes libertad de comprar."
 
 #: project/assets/main/locale/localizables-extracted.py:462
 msgid "Something like... Smack Dab?"
-msgstr "Algo como... ¿Smack Dab?"
+msgstr "Algo como... ¿Grr-Idóneo?"
 
 #: project/assets/main/locale/localizables-extracted.py:463
 msgid "Smack Dab"
-msgstr "Smack Dab"
+msgstr "Grr-Idóneo"
 
 #: project/assets/main/locale/localizables-extracted.py:464
 msgid "What on earth is a smack dab?"
-msgstr "¿Qué diablos es un smack dab?"
+msgstr "¿Qué diablos significa grr idóneo?"
 
 #: project/assets/main/locale/localizables-extracted.py:465
 msgid "Oh like that phrase, smack dab in the middle! We'll be smack dab!"
-msgstr "¡Como esa frase, smack dab en el medio! ¡Nosotros seremos smack dab!"
+msgstr ""
+"Me gusta como suena. ¡Si tu estómago hace ruido, tenemos la comida justa!"
 
 #: project/assets/main/locale/localizables-extracted.py:466
 msgid ""
