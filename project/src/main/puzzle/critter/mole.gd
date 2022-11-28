@@ -54,8 +54,8 @@ var _next_states := []
 ## accidentally popping two states from the queue when the mole first spawns.
 var _already_popped_state := false
 
-## key: An enum from States
-## value: A State node from the _states StateMachine
+## key: (int) An enum from States
+## value: (Node) A State node from the _states StateMachine
 onready var _state_nodes_by_enum := {
 	NONE: $States/None,
 	WAITING: $States/Waiting,
