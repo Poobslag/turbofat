@@ -88,6 +88,8 @@ func _ready() -> void:
 	current_speed = PieceSpeeds.speed("0")
 	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	
+	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
 
 
 func speed(string: String) -> PieceSpeed:
@@ -105,7 +107,10 @@ func _add_speed(speed: PieceSpeed) -> void:
 
 
 func _update_current_speed() -> void:
-	PieceSpeeds.current_speed = PieceSpeeds.speed(MilestoneManager.prev_milestone().get_meta("speed"))
+	var piece_speed_string: String = MilestoneManager.prev_milestone().get_meta("speed")
+	if not CurrentLevel.settings.other.tutorial:
+		piece_speed_string = GameplayPieceSpeeds.get_adjusted_piece_speed(piece_speed_string)
+	PieceSpeeds.current_speed = PieceSpeeds.speed(piece_speed_string)
 
 
 func _on_PuzzleState_speed_index_changed(_value: int) -> void:
@@ -113,4 +118,8 @@ func _on_PuzzleState_speed_index_changed(_value: int) -> void:
 
 
 func _on_PuzzleState_game_prepared() -> void:
+	_update_current_speed()
+
+
+func _on_GameplaySettings_speed_changed(_value: int) -> void:
 	_update_current_speed()

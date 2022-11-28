@@ -3,6 +3,8 @@ class_name GameplaySettings
 
 signal ghost_piece_changed(value)
 
+signal speed_changed(value)
+
 enum Speed {
 	DEFAULT,
 	SLOW,
@@ -38,13 +40,20 @@ var soft_drop_lock_cancel := true
 
 ## The current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
 ## the game harder, or to cheat on levels which otherwise require slow and thoughtful play.
-var speed: int = Speed.DEFAULT
+var speed: int = Speed.DEFAULT setget set_speed
 
 func set_ghost_piece(new_ghost_piece: bool) -> void:
 	if ghost_piece == new_ghost_piece:
 		return
 	ghost_piece = new_ghost_piece
 	emit_signal("ghost_piece_changed", new_ghost_piece)
+
+
+func set_speed(new_speed: int) -> void:
+	if speed == new_speed:
+		return
+	speed = new_speed
+	emit_signal("speed_changed", new_speed)
 
 
 ## Resets the gameplay settings to their default values.
