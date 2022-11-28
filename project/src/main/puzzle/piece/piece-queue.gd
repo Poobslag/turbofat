@@ -16,6 +16,9 @@ const MIN_SIZE := 50
 
 const UNLIMITED_PIECES := 999999
 
+## how many pieces are in the 'cheat bag' which generates line pieces
+const CHEAT_BAG_SIZE := 9
+
 ## queue of upcoming NextPiece instances
 var pieces := []
 
@@ -24,14 +27,28 @@ var _default_piece_types := PieceTypes.default_types
 
 var _remaining_piece_count := UNLIMITED_PIECES
 
+var _popped_piece_count := 0
+
+## When line pieces are enabled, they are pulled from a 'cheat bag'.
+##
+## Imagine a bag with eight blue balls and one red ball. For each opportunity where a line piece could be added to the
+## piece queue, you first pull a ball from the bag. If it is red, then you add a line piece, otherwise you don't. Once
+## the bag is empty, it is refilled.
+##
+## These two fields correspond to the number of line pieces and total pieces remaining in the cheat bag.
+var _cheat_bag_line_pieces_remaining := 0
+var _cheat_bag_pieces_remaining := 0
+
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	SystemData.gameplay_settings.connect("line_piece_changed", self, "_on_GameplaySettings_line_piece_changed")
 	_fill()
 
 
 ## Clears the pieces and refills the piece queues.
 func clear() -> void:
+	_popped_piece_count = 0
 	if CurrentLevel.settings.finish_condition.type == Milestone.PIECES:
 		_remaining_piece_count = CurrentLevel.settings.finish_condition.value
 	else:
@@ -42,6 +59,7 @@ func clear() -> void:
 
 ## Pops the next piece off the queue.
 func pop_next_piece() -> NextPiece:
+	_popped_piece_count += 1
 	var next_piece_type: NextPiece = pieces.pop_front()
 	if _remaining_piece_count != UNLIMITED_PIECES:
 		_remaining_piece_count -= 1
@@ -74,6 +92,7 @@ func _apply_piece_limit() -> void:
 ## The first pieces have some constraints to limit players from having especially lucky or unlucky starts. Later pieces
 ## have fewer constraints, but still use a bagging algorithm to ensure fairness.
 func _fill() -> void:
+	_reset_cheat_bag()
 	if pieces.empty():
 		_fill_initial_pieces()
 	_fill_remaining_pieces()
@@ -82,6 +101,8 @@ func _fill() -> void:
 
 ## Initializes an empty queue with a set of starting pieces.
 func _fill_initial_pieces() -> void:
+	var old_piece_count := pieces.size()
+	
 	if CurrentLevel.settings.piece_types.types.empty() and CurrentLevel.settings.piece_types.start_types.empty():
 		# Default starting pieces:
 		# 1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
@@ -136,6 +157,60 @@ func _fill_initial_pieces() -> void:
 		pieces_tmp.shuffle()
 		for piece_type in pieces_tmp:
 			pieces.push_front(_new_next_piece(piece_type))
+	
+	# insert cheat pieces anywhere (including before the very first piece)
+	_maybe_insert_cheat_pieces(old_piece_count)
+
+
+## Refills the cheat bag with its initial contents; one line piece and several regular pieces.
+func _reset_cheat_bag() -> void:
+	_cheat_bag_line_pieces_remaining = 1
+	_cheat_bag_pieces_remaining = CHEAT_BAG_SIZE
+
+
+## Inserts line pieces into the queue if certain conditions are met.
+##
+## Line pieces are only inserted if the player has the line piece cheat enabled. Extra line pieces will not be inserted
+## in tutorials, or in levels which already have line pieces.
+##
+## Parameters:
+## 	'min_line_piece_index': The earliest index where a line piece can be inserted. Line pieces can be inserted before
+## 		this index, appended to the end of the piece queue, or inserted anywhere in between.
+func _maybe_insert_cheat_pieces(min_line_piece_index: int) -> void:
+	if not SystemData.gameplay_settings.line_piece:
+		# don't add line pieces unless the player has the cheat enabled
+		return
+	
+	if CurrentLevel.settings.other.tutorial:
+		# don't add line pieces to tutorials
+		return
+	
+	if PieceTypes.piece_i in CurrentLevel.settings.piece_types.start_types \
+			or PieceTypes.piece_i in CurrentLevel.settings.piece_types.types:
+		# don't add line pieces to levels which already have them
+		return
+	
+	var piece_index := min_line_piece_index
+	while piece_index <= pieces.size():
+		if _cheat_bag_pieces_remaining <= 0:
+			_reset_cheat_bag()
+		
+		if _cheat_bag_line_pieces_remaining <= 0:
+			# no line pieces remaining in the cheat bag
+			pass
+		elif piece_index < pieces.size() and pieces[piece_index].type == PieceTypes.piece_i:
+			# don't insert a line piece before a line piece
+			pass
+		elif piece_index - 1 >= 0 and pieces[piece_index - 1].type == PieceTypes.piece_i:
+			# don't insert a line piece after a line piece
+			pass
+		elif randi() % _cheat_bag_pieces_remaining < _cheat_bag_line_pieces_remaining:
+			# insert a line piece
+			_cheat_bag_line_pieces_remaining -= 1
+			pieces.insert(piece_index, _new_next_piece(PieceTypes.piece_i))
+		
+		_cheat_bag_pieces_remaining -= 1
+		piece_index += 1
 
 
 ## Creates a new next piece with the specified type.
@@ -154,6 +229,8 @@ func _new_next_piece(type: PieceType) -> NextPiece:
 ## but avoids pulling the same piece back to back. With this algorithm you're always able to build four 3x3 boxes, but
 ## the extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
 func _fill_remaining_pieces() -> void:
+	var old_piece_count := pieces.size()
+	
 	while pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
 		var new_piece_types := shuffled_piece_types()
@@ -174,6 +251,10 @@ func _fill_remaining_pieces() -> void:
 					# don't advance from_index if it would skip an item in the queue
 					from_index += 1
 		_insert_annoying_piece(new_piece_types.size())
+	
+	# insert cheat pieces anywhere, but not before the very first piece -- we already checked if a cheat piece should
+	# go there
+	_maybe_insert_cheat_pieces(old_piece_count + 1)
 
 
 ## Moves a piece which appears back-to-back in the piece queue.
@@ -201,9 +282,9 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	return to_index
 
 
-## Inserts an extra piece into the bag.
+## Inserts an extra piece into the queue.
 ##
-## Turbo Fat's pieces fit together too well. We periodically add extra pieces to the bag to ensure the game isn't too
+## Turbo Fat's pieces fit together too well. We periodically add extra pieces to the queue to ensure the game isn't too
 ## easy.
 ##
 ## Parameters:
@@ -231,6 +312,21 @@ func _on_Level_settings_changed() -> void:
 
 func _on_PuzzleState_game_prepared() -> void:
 	clear()
+
+
+## When the player toggles the line piece cheat, we immediately regenerate the piece queue.
+##
+## This has the potential for some very silly gameplay where the player repeatedly toggles the cheat on and off to get
+## every piece in a particular order.
+func _on_GameplaySettings_line_piece_changed(_value: bool) -> void:
+	var old_popped_piece_count := _popped_piece_count
+	
+	clear()
+	
+	# Reset the piece queue to its previous position. This prevents edge cases such as giving the player extra pieces
+	# in levels with limited pieces, or giving the player their initial set of pieces over and over.
+	for _i in range(old_popped_piece_count):
+		pop_next_piece()
 
 
 ## Returns a list of of positions where a piece can be inserted without being adjacent to another piece of the same
