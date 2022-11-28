@@ -15,7 +15,8 @@ func _ready() -> void:
 	_option_button.add_item(tr("Faster"), GameplaySettings.Speed.FASTER)
 	_option_button.add_item(tr("Fastest"), GameplaySettings.Speed.FASTEST)
 	_option_button.add_item(tr("Fastestest"), GameplaySettings.Speed.FASTESTEST)
-	_option_button.selected = SystemData.touch_settings.scheme
+	
+	_option_button.selected = _option_button.get_item_index(SystemData.gameplay_settings.speed)
 
 
 func _on_OptionButton_item_selected(index: int) -> void:
