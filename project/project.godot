@@ -345,9 +345,9 @@ _global_script_classes=[ {
 "path": "res://src/demo/world/free-roam-world.gd"
 }, {
 "base": "Reference",
-"class": "GameplayPieceSpeeds",
+"class": "GameplayDifficultyAdjustments",
 "language": "GDScript",
-"path": "res://src/main/puzzle/level/gameplay-piece-speeds.gd"
+"path": "res://src/main/puzzle/level/gameplay-difficulty-adjustments.gd"
 }, {
 "base": "Reference",
 "class": "GameplaySettings",
@@ -1237,7 +1237,7 @@ _global_script_class_icons={
 "Foods": "",
 "FrameInput": "",
 "FreeRoamWorld": "",
-"GameplayPieceSpeeds": "",
+"GameplayDifficultyAdjustments": "",
 "GameplaySettings": "",
 "GoopGlob": "",
 "GoopViewports": "",

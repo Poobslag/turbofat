@@ -26,15 +26,15 @@ func is_met(milestone: Milestone) -> bool:
 		Milestone.NONE:
 			result = false
 		Milestone.TIME_UNDER:
-			result = progress <= milestone.value
+			result = progress <= milestone.adjusted_value()
 		_:
-			result = progress >= milestone.value
+			result = progress >= milestone.adjusted_value()
 	return result
 
 
 ## Returns the player's current progress toward the specified milestone as a percentage.
 func progress_percent(milestone: Milestone) -> float:
-	return progress_value(milestone) / milestone.value
+	return progress_value(milestone) / milestone.adjusted_value()
 
 
 ## Returns the player's current progress toward the specified milestone as a number ranged [0, inf].
