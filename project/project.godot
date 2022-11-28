@@ -384,6 +384,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/high-score-table.gd"
 }, {
+"base": "PieceDisplay",
+"class": "HoldPieceDisplay",
+"language": "GDScript",
+"path": "res://src/main/puzzle/hold-piece-display.gd"
+}, {
+"base": "Control",
+"class": "HoldPieceDisplays",
+"language": "GDScript",
+"path": "res://src/main/puzzle/hold-piece-displays.gd"
+}, {
 "base": "Node2D",
 "class": "HookableLevelGradeLabel",
 "language": "GDScript",
@@ -654,7 +664,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece.gd"
 }, {
-"base": "Node2D",
+"base": "PieceDisplay",
 "class": "NextPieceDisplay",
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece-display.gd"
@@ -1250,6 +1260,8 @@ _global_script_class_icons={
 "GraphicsSettings": "",
 "HeadBobber": "",
 "HighScoreTable": "",
+"HoldPieceDisplay": "",
+"HoldPieceDisplays": "",
 "HookableLevelGradeLabel": "",
 "HookableRegionGradeLabel": "",
 "HudFlash": "",

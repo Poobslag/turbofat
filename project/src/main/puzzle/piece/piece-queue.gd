@@ -22,6 +22,9 @@ const CHEAT_BAG_SIZE := 9
 ## queue of upcoming NextPiece instances
 var pieces := []
 
+## the held piece if the player has enabled the hold piece cheat
+var hold_piece: NextPiece = _new_next_piece(PieceTypes.piece_null)
+
 ## default pieces to pull from if none are provided by the level
 var _default_piece_types := PieceTypes.default_types
 
@@ -48,6 +51,7 @@ func _ready() -> void:
 
 ## Clears the pieces and refills the piece queues.
 func clear() -> void:
+	hold_piece = _new_next_piece(PieceTypes.piece_null)
 	_popped_piece_count = 0
 	if CurrentLevel.settings.finish_condition.type == Milestone.PIECES:
 		_remaining_piece_count = CurrentLevel.settings.finish_condition.value
@@ -70,6 +74,12 @@ func pop_next_piece() -> NextPiece:
 ## Returns a specific piece in the queue.
 func get_next_piece(index: int) -> NextPiece:
 	return pieces[index]
+
+
+func swap_hold_piece(piece_type: PieceType) -> NextPiece:
+	var old_hold_piece := hold_piece
+	hold_piece = _new_next_piece(piece_type)
+	return old_hold_piece
 
 
 func shuffled_piece_types() -> Array:
@@ -324,11 +334,13 @@ func _on_GameplaySettings_line_piece_changed(_value: bool) -> void:
 		return
 	
 	var old_popped_piece_count := _popped_piece_count
+	var old_hold_piece := hold_piece
 	
 	clear()
 	
-	# Reset the piece queue to its previous position. This prevents edge cases such as giving the player extra pieces
-	# in levels with limited pieces, or giving the player their initial set of pieces over and over.
+	# Restore the piece queue to its previous state. This prevents edge cases such as giving the player extra pieces
+	# in levels with limited pieces, or giving the player the same initial pieces over and over.
+	hold_piece = old_hold_piece
 	for _i in range(old_popped_piece_count):
 		pop_next_piece()
 

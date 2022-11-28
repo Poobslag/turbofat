@@ -8,7 +8,7 @@ var seconds := 0.0
 ## raw number of cleared lines, not including bonus points
 var lines := 0
 
-## number of pieces placed
+## number of pieces spawned without topping out
 var pieces := 0
 
 ## bonus points awarded for clearing boxes

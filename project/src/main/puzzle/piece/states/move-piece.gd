@@ -12,6 +12,7 @@ func enter(piece_manager: PieceManager, prev_state_name: String) -> void:
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state := ""
+	piece_manager.apply_swap_input()
 	piece_manager.move_piece()
 	piece_manager.apply_lock()
 	if piece_manager.piece.lock > PieceSpeeds.current_speed.lock_delay:

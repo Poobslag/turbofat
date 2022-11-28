@@ -69,6 +69,16 @@
     {
     }
   ],
+  "swap_hold_piece": [
+    {
+      "type": "key",
+      "scancode": 16777237
+    },
+    {
+    },
+    {
+    }
+  ],
   "ui_up": [
     {
       "type": "key",

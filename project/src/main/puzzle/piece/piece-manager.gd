@@ -12,6 +12,8 @@ signal piece_spawned(piece)
 ## emitted when the current piece changes in some way (moved, replaced, reoriented)
 signal piece_disturbed(piece)
 
+signal hold_piece_swapped(piece)
+
 ## emitted when the player rotates a piece
 signal initial_rotated_cw(piece)
 signal initial_rotated_ccw(piece)
@@ -138,9 +140,45 @@ func exit_top_out_state() -> void:
 
 
 ## Spawns a new piece at the top of the playfield.
+##
+## This is usually from the piece queue, but can also be the player's hold piece if they have the appropriate cheat
+## enabled and are holding the swap key.
 func spawn_piece() -> void:
-	var next_piece := _piece_queue.pop_next_piece()
+	if CurrentLevel.hold_piece_enabled() \
+			and input.is_swap_hold_piece_pressed():
+		# pop the next piece, which will then be swapped for the hold piece
+		PuzzleState.level_performance.pieces += 1
+		var next_piece := _piece_queue.pop_next_piece()
+		_initialize_piece(next_piece.type, next_piece.orientation)
+		swap_hold_piece()
+	else:
+		_spawn_piece_from_next_queue()
+
+
+func initially_move_piece() -> bool:
+	var success := _physics.initially_move_piece(piece)
+	emit_signal("piece_disturbed", piece)
+	return success
+
+
+func apply_swap_input() -> void:
+	if not input.is_swap_hold_piece_just_pressed():
+		return
+	
+	if CurrentLevel.hold_piece_enabled() and piece.hold_piece_swaps < 1:
+		swap_hold_piece()
+
+
+func swap_hold_piece() -> void:
+	var next_piece: NextPiece = _piece_queue.swap_hold_piece(piece.type)
+	if next_piece.type == PieceTypes.piece_null:
+		# first swap; advance the piece queue
+		PuzzleState.level_performance.pieces += 1
+		next_piece = _piece_queue.pop_next_piece()
+	
+	var old_hold_piece_swaps := piece.hold_piece_swaps
 	_initialize_piece(next_piece.type, next_piece.orientation)
+	piece.hold_piece_swaps = old_hold_piece_swaps + 1
 	if piece.type == PieceTypes.piece_null:
 		# don't attempt to move/rotate null pieces; just say it spawned successfully. this only comes up during edge
 		# cases in levels with limited pieces
@@ -149,15 +187,10 @@ func spawn_piece() -> void:
 		_physics.initially_move_piece(piece)
 	emit_signal("piece_spawned", piece)
 	emit_signal("piece_disturbed", piece)
+	emit_signal("hold_piece_swapped", piece)
 	
 	if piece.type == PieceTypes.piece_null:
 		PuzzleState.trigger_finish()
-
-
-func initially_move_piece() -> bool:
-	var success := _physics.initially_move_piece(piece)
-	emit_signal("piece_disturbed", piece)
-	return success
 
 
 func move_piece() -> void:
@@ -291,6 +324,23 @@ func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
 		write_piece_to_playfield()
 		_states.set_state(_states.wait_for_playfield)
 	emit_signal("piece_disturbed", piece)
+
+
+func _spawn_piece_from_next_queue() -> void:
+	PuzzleState.level_performance.pieces += 1
+	var next_piece := _piece_queue.pop_next_piece()
+	_initialize_piece(next_piece.type, next_piece.orientation)
+	if piece.type == PieceTypes.piece_null:
+		# don't attempt to move/rotate null pieces; just say it spawned successfully. this only comes up during edge
+		# cases in levels with limited pieces
+		pass
+	else:
+		_physics.initially_move_piece(piece)
+	emit_signal("piece_spawned", piece)
+	emit_signal("piece_disturbed", piece)
+	
+	if piece.type == PieceTypes.piece_null:
+		PuzzleState.trigger_finish()
 
 
 func _initialize_piece(type: PieceType, orientation: int = 0) -> void:

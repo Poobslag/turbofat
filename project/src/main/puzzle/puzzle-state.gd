@@ -394,7 +394,6 @@ func end_result() -> int:
 
 
 func before_piece_written() -> void:
-	level_performance.pieces += 1
 	emit_signal("before_piece_written")
 
 

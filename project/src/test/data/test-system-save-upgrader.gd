@@ -48,4 +48,5 @@ func test_27bb() -> void:
 	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_up"), false)
 	
 	assert_eq(SystemData.gameplay_settings.speed, GameplaySettings.Speed.DEFAULT)
+	assert_eq(SystemData.gameplay_settings.hold_piece, false)
 	assert_eq(SystemData.gameplay_settings.line_piece, false)

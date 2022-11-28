@@ -28,6 +28,9 @@ var lock_resets := 0
 ## Number of 'floor kicks' which have been applied to this piece
 var floor_kicks := 0
 
+## Number of 'hold piece swaps' which have been applied without placing a piece
+var hold_piece_swaps := 0
+
 ## Number of frames to wait before spawning the piece after this one
 var spawn_delay := 0
 

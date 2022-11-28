@@ -8,6 +8,7 @@ onready var cw: FrameInput = $Cw
 onready var ccw: FrameInput = $Ccw
 onready var soft_drop: FrameInput = $SoftDrop
 onready var hard_drop: FrameInput = $HardDrop
+onready var swap_hold_piece: FrameInput = $SwapHoldPiece
 
 ## Records any inputs to a buffer to be replayed later.
 func buffer_inputs() -> void:
@@ -46,3 +47,6 @@ func is_soft_drop_pressed() -> bool: return soft_drop.is_pressed()
 
 func is_hard_drop_just_pressed() -> bool: return hard_drop.is_just_pressed()
 func is_hard_drop_das_active() -> bool: return hard_drop.is_das_active()
+
+func is_swap_hold_piece_just_pressed() -> bool: return swap_hold_piece.is_just_pressed()
+func is_swap_hold_piece_pressed() -> bool: return swap_hold_piece.is_pressed()
