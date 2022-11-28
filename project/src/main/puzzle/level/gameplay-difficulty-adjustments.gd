@@ -1,10 +1,37 @@
-class_name GameplayPieceSpeeds
-## Adjusts piece speeds based on the player's gameplay speed settings.
+class_name GameplayDifficultyAdjustments
+## Adjusts piece speeds and level durations based on the player's gameplay speed settings.
 ##
 ## This is specifically used for cheats where the player can make the pieces fall slower or faster. To speed up and
 ## slow down pieces, we adjust all drop speeds by a fixed percent. This doesn't have a significant effect on instant
 ## gravity levels however (50% of 20G is still 10G which is way too fast for a novice) so this script defines mappings
 ## to adjust piece speeds based on the player's gameplay speed settings.
+
+## key: (int) enum from GameplaySettings.Speed
+## value: (float) multiplier for score milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
+const SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
+	GameplaySettings.Speed.SLOW: 0.70,
+	GameplaySettings.Speed.SLOWER: 0.40,
+	GameplaySettings.Speed.SLOWEST: 0.20,
+	GameplaySettings.Speed.SLOWESTEST: 0.10,
+}
+
+## key: (int) enum from GameplaySettings.Speed
+## value: (float) multiplier for line milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
+const LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
+	GameplaySettings.Speed.SLOW: 0.85,
+	GameplaySettings.Speed.SLOWER: 0.70,
+	GameplaySettings.Speed.SLOWEST: 0.40,
+	GameplaySettings.Speed.SLOWESTEST: 0.20,
+}
+
+## key: (int) enum from GameplaySettings.Speed
+## value: (float) multiplier for duration milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
+const TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
+	GameplaySettings.Speed.SLOW: 1.00,
+	GameplaySettings.Speed.SLOWER: 0.90,
+	GameplaySettings.Speed.SLOWEST: 0.70,
+	GameplaySettings.Speed.SLOWESTEST: 0.40,
+}
 
 ## key: (int) enum from GameplaySettings.Speed
 ## value: (Dictionary) mapping from piece speed strings to adjusted piece speed strings
@@ -412,7 +439,43 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 ##
 ## Returns:
 ## 	A modified piece speed string such as '0' or 'A9'
-static func get_adjusted_piece_speed(piece_speed_string: String) -> String:
+static func adjust_piece_speed(piece_speed_string: String) -> String:
 	var adjusted_speed_by_piece_speed: Dictionary = \
 			PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, {})
 	return adjusted_speed_by_piece_speed.get(piece_speed_string, piece_speed_string)
+
+
+## Adjusts a score milestone value based on the player's gameplay speed settings.
+##
+## When the player plays at slow speeds, we make milestones easier to reach.
+static func adjust_score_milestone(score: int) -> int:
+	var score_milestone_factor: float = \
+			SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+	return int(max(score * score_milestone_factor, 1.0))
+
+
+## Adjusts a line milestone value based on the player's gameplay speed settings.
+##
+## When the player plays at slow speeds, we make milestones easier to reach.
+static func adjust_line_milestone(lines: int) -> int:
+	var line_milestone_factor: float = \
+			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+	return int(max(lines * line_milestone_factor, 1.0))
+
+
+## Adjusts a piece milestone value based on the player's gameplay speed settings.
+##
+## When the player plays at slow speeds, we make milestones easier to reach.
+static func adjust_piece_milestone(pieces: int) -> int:
+	var piece_milestone_factor: float = \
+			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+	return int(max(pieces * piece_milestone_factor, 1.0))
+
+
+## Adjusts a duration milestone value based on the player's gameplay speed settings.
+##
+## When the player plays at very slow speeds, we make milestones easier to reach.
+static func adjust_time_over_milestone(time_over: int) -> int:
+	var time_over_milestone_factor: float = \
+			TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+	return int(max(time_over * time_over_milestone_factor, 1.0))

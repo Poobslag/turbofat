@@ -109,7 +109,7 @@ func _add_speed(speed: PieceSpeed) -> void:
 func _update_current_speed() -> void:
 	var piece_speed_string: String = MilestoneManager.prev_milestone().get_meta("speed")
 	if not CurrentLevel.settings.other.tutorial:
-		piece_speed_string = GameplayPieceSpeeds.get_adjusted_piece_speed(piece_speed_string)
+		piece_speed_string = GameplayDifficultyAdjustments.adjust_piece_speed(piece_speed_string)
 	PieceSpeeds.current_speed = PieceSpeeds.speed(piece_speed_string)
 
 
