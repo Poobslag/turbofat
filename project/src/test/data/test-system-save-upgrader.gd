@@ -46,3 +46,5 @@ func test_27bb() -> void:
 	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_left"), false)
 	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_right"), false)
 	assert_eq(SystemData.keybind_settings.custom_keybinds.has("walk_up"), false)
+	
+	assert_eq(SystemData.gameplay_settings.speed, GameplaySettings.Speed.DEFAULT)
