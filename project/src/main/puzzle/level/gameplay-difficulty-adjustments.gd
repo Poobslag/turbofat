@@ -451,7 +451,7 @@ static func adjust_piece_speed(piece_speed_string: String) -> String:
 static func adjust_score_milestone(score: int) -> int:
 	var score_milestone_factor: float = \
 			SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
-	return int(max(score * score_milestone_factor, 1.0))
+	return int(ceil(score * score_milestone_factor))
 
 
 ## Adjusts a line milestone value based on the player's gameplay speed settings.
@@ -460,7 +460,7 @@ static func adjust_score_milestone(score: int) -> int:
 static func adjust_line_milestone(lines: int) -> int:
 	var line_milestone_factor: float = \
 			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
-	return int(max(lines * line_milestone_factor, 1.0))
+	return int(ceil(lines * line_milestone_factor))
 
 
 ## Adjusts a piece milestone value based on the player's gameplay speed settings.
@@ -469,7 +469,7 @@ static func adjust_line_milestone(lines: int) -> int:
 static func adjust_piece_milestone(pieces: int) -> int:
 	var piece_milestone_factor: float = \
 			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
-	return int(max(pieces * piece_milestone_factor, 1.0))
+	return int(ceil(pieces * piece_milestone_factor))
 
 
 ## Adjusts a duration milestone value based on the player's gameplay speed settings.
@@ -478,4 +478,4 @@ static func adjust_piece_milestone(pieces: int) -> int:
 static func adjust_time_over_milestone(time_over: int) -> int:
 	var time_over_milestone_factor: float = \
 			TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
-	return int(max(time_over * time_over_milestone_factor, 1.0))
+	return int(ceil(time_over * time_over_milestone_factor))
