@@ -14,7 +14,7 @@ func test_adjust_line_milestone() -> void:
 	
 	# slowing down gameplay speed decreases lines required
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.SLOW
-	assert_eq(GameplayDifficultyAdjustments.adjust_line_milestone(50), 42)
+	assert_eq(GameplayDifficultyAdjustments.adjust_line_milestone(50), 43)
 	
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.SLOWER
 	assert_eq(GameplayDifficultyAdjustments.adjust_line_milestone(50), 35)
@@ -34,7 +34,7 @@ func test_adjust_piece_milestone() -> void:
 	
 	# slowing down gameplay speed decreases pieces required
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.SLOW
-	assert_eq(GameplayDifficultyAdjustments.adjust_piece_milestone(50), 42)
+	assert_eq(GameplayDifficultyAdjustments.adjust_piece_milestone(50), 43)
 	
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.SLOWER
 	assert_eq(GameplayDifficultyAdjustments.adjust_piece_milestone(50), 35)
@@ -81,11 +81,11 @@ func test_adjust_time_over_milestone() -> void:
 	assert_eq(GameplayDifficultyAdjustments.adjust_time_over_milestone(180), 162)
 	
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.SLOWEST
-	assert_eq(GameplayDifficultyAdjustments.adjust_time_over_milestone(180), 125)
+	assert_eq(GameplayDifficultyAdjustments.adjust_time_over_milestone(180), 126)
 	
 	# level duration won't decrease below a certain threshold (0:01)
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.SLOWESTEST
-	assert_eq(GameplayDifficultyAdjustments.adjust_time_over_milestone(3), 1)
+	assert_eq(GameplayDifficultyAdjustments.adjust_time_over_milestone(3), 2)
 	
 	# increasing gameplay speed does not affect milestones
 	SystemData.gameplay_settings.speed = GameplaySettings.Speed.FASTER
