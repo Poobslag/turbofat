@@ -100,9 +100,9 @@ func _bind_keys(action_name: String, input_events: Array) -> void:
 func _on_KeybindSettings_settings_changed() -> void:
 	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE:
-			_bind_keys_from_file("res://assets/main/keybind/guideline.json")
+			_bind_keys_from_file(KeybindSettings.GUIDELINE_PATH)
 		KeybindSettings.WASD:
-			_bind_keys_from_file("res://assets/main/keybind/wasd.json")
+			_bind_keys_from_file(KeybindSettings.WASD_PATH)
 		KeybindSettings.CUSTOM:
 			_bind_keys_from_json_dict(SystemData.keybind_settings.custom_keybinds)
 		_:
