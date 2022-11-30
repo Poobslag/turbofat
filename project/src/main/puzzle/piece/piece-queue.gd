@@ -319,6 +319,10 @@ func _on_PuzzleState_game_prepared() -> void:
 ## This has the potential for some very silly gameplay where the player repeatedly toggles the cheat on and off to get
 ## every piece in a particular order.
 func _on_GameplaySettings_line_piece_changed(_value: bool) -> void:
+	if CurrentLevel.settings.other.tutorial:
+		# don't regenerate pieces for tutorials. it can make the tutorials impossible
+		return
+	
 	var old_popped_piece_count := _popped_piece_count
 	
 	clear()
