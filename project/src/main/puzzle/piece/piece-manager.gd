@@ -81,8 +81,8 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
-	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_obstructed"))
-
+	_clear_piece()
+	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	_clear_piece()
 	_states.set_state(_states.none)
@@ -138,16 +138,20 @@ func exit_top_out_state() -> void:
 
 
 ## Spawns a new piece at the top of the playfield.
-##
-## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
-func spawn_piece() -> bool:
+func spawn_piece() -> void:
 	var next_piece := _piece_queue.pop_next_piece()
-	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_obstructed"))
-	piece.orientation = next_piece.orientation
-	var success := _physics.initially_move_piece(piece)
+	_initialize_piece(next_piece.type, next_piece.orientation)
+	if piece.type == PieceTypes.piece_null:
+		# don't attempt to move/rotate null pieces; just say it spawned successfully. this only comes up during edge
+		# cases in levels with limited pieces
+		pass
+	else:
+		_physics.initially_move_piece(piece)
 	emit_signal("piece_spawned", piece)
 	emit_signal("piece_disturbed", piece)
-	return success
+	
+	if piece.type == PieceTypes.piece_null:
+		PuzzleState.trigger_finish()
 
 
 func initially_move_piece() -> bool:
@@ -219,7 +223,7 @@ func _prepare_tileset() -> void:
 
 
 func _clear_piece() -> void:
-	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_obstructed"))
+	_initialize_piece(PieceTypes.piece_null)
 
 
 ## Refresh the tilemap which displays the piece, based on the current piece's position and orientation.
@@ -287,6 +291,11 @@ func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
 		write_piece_to_playfield()
 		_states.set_state(_states.wait_for_playfield)
 	emit_signal("piece_disturbed", piece)
+
+
+func _initialize_piece(type: PieceType, orientation: int = 0) -> void:
+	piece = ActivePiece.new(type, funcref(_playfield.tile_map, "is_cell_obstructed"))
+	piece.orientation = orientation
 
 
 func _on_Level_settings_changed() -> void:
