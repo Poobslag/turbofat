@@ -759,6 +759,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/pickups.gd"
 }, {
+"base": "Node2D",
+"class": "PieceDisplay",
+"language": "GDScript",
+"path": "res://src/main/puzzle/piece-display.gd"
+}, {
 "base": "Node",
 "class": "PieceInput",
 "language": "GDScript",
@@ -1320,6 +1325,7 @@ _global_script_class_icons={
 "PickupLevelChunk": "",
 "PickupLevelChunkControl": "",
 "Pickups": "",
+"PieceDisplay": "",
 "PieceInput": "",
 "PieceManager": "",
 "PieceMover": "",
