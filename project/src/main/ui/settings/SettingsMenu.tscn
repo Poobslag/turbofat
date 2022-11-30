@@ -545,11 +545,6 @@ margin_bottom = 80.0
 description = "Rotate Piece"
 keybind_value = "Z, X"
 
-[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 60.0
-margin_bottom = 80.0
-description = "Swap Hold Piece"
-
 [node name="Retry" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 80.0
 margin_bottom = 100.0
@@ -632,12 +627,6 @@ margin_top = 78.0
 margin_bottom = 102.0
 description = "Hard Drop"
 action_name = "hard_drop"
-
-[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 78.0
-margin_bottom = 102.0
-description = "Swap Hold Piece"
-action_name = "swap_hold_piece"
 
 [node name="RotateCcw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 104.0
