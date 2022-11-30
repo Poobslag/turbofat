@@ -5,6 +5,6 @@
 
 [node name="PuzzleDemo" type="Node"]
 script = ExtResource( 2 )
-level_path = "res://assets/main/puzzle/levels/career/veggie-patty.json"
+level_path = "res://assets/demo/puzzle/levels/experiment.json"
 
 [node name="Puzzle" parent="." instance=ExtResource( 1 )]
