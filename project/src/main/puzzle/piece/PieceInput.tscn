@@ -25,3 +25,6 @@ action = "soft_drop"
 
 [node name="HardDrop" parent="." instance=ExtResource( 1 )]
 action = "hard_drop"
+
+[node name="SwapHoldPiece" parent="." instance=ExtResource( 1 )]
+action = "swap_hold_piece"

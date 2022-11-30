@@ -177,6 +177,11 @@ stream = ExtResource( 7 )
 volume_db = -4.0
 bus = "Sound Bus"
 
+[node name="SwapHoldPieceSound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 7 )
+pitch_scale = 0.84
+bus = "Sound Bus"
+
 [node name="RotateSealed0Sound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 33 )
 volume_db = -4.0
@@ -215,6 +220,7 @@ bus = "Sound Bus"
 [connection signal="dropped" from="." to="TechMoveDetector" method="_on_PieceManager_dropped"]
 [connection signal="finished_spin_move" from="." to="Sfx" method="_on_PieceManager_finished_spin_move"]
 [connection signal="finished_squish_move" from="." to="Sfx" method="_on_PieceManager_finished_squish_move"]
+[connection signal="hold_piece_swapped" from="." to="Sfx" method="_on_PieceManager_hold_piece_swapped"]
 [connection signal="initial_das_moved_left" from="." to="Sfx" method="_on_PieceManager_initial_das_moved_left"]
 [connection signal="initial_das_moved_right" from="." to="Sfx" method="_on_PieceManager_initial_das_moved_right"]
 [connection signal="initial_rotated_180" from="." to="Sfx" method="_on_PieceManager_initial_rotated_180"]

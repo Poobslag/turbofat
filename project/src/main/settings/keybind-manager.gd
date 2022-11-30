@@ -3,6 +3,7 @@ extends Node
 
 func _ready() -> void:
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
+	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
 
 
 ## Converts a json dictionary to an InputEvent instance.
@@ -96,14 +97,28 @@ func _bind_keys(action_name: String, input_events: Array) -> void:
 		InputMap.action_add_event(action_name, input_event)
 
 
-## Updates the InputMap when the player's keybind settings change
-func _on_KeybindSettings_settings_changed() -> void:
+func _refresh_keybinds() -> void:
 	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE:
-			_bind_keys_from_file(KeybindSettings.GUIDELINE_PATH)
+			var path := KeybindSettings.GUIDELINE_PATH
+			if SystemData.gameplay_settings.hold_piece:
+				path = KeybindSettings.GUIDELINE_HOLD_PATH
+			_bind_keys_from_file(path)
 		KeybindSettings.WASD:
-			_bind_keys_from_file(KeybindSettings.WASD_PATH)
+			var path := KeybindSettings.WASD_PATH
+			if SystemData.gameplay_settings.hold_piece:
+				path = KeybindSettings.WASD_HOLD_PATH
+			_bind_keys_from_file(path)
 		KeybindSettings.CUSTOM:
 			_bind_keys_from_json_dict(SystemData.keybind_settings.custom_keybinds)
 		_:
 			push_warning("Unrecognized keybind settings preset: %s" % SystemData.keybind_settings.preset)
+
+
+## Updates the InputMap when the player's keybind settings change
+func _on_KeybindSettings_settings_changed() -> void:
+	_refresh_keybinds()
+
+
+func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:
+	_refresh_keybinds()

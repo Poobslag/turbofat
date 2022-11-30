@@ -144,3 +144,10 @@ func get_creature_ids() -> Array:
 ## continue consuming resources and could cause side effects.
 func _on_Breadcrumb_before_scene_changed() -> void:
 	puzzle = null
+
+
+## Returns 'true' if the hold piece window should be visible for the current level.
+##
+## We hide the hold piece window if the player is in a tutorial, or if they have the hold piece cheat disabled.
+func hold_piece_enabled() -> bool:
+	return SystemData.gameplay_settings.hold_piece and not settings.other.tutorial

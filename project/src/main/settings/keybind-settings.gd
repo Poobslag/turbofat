@@ -15,7 +15,9 @@ enum KeybindPreset {
 
 ## files defining keybind presets
 const GUIDELINE_PATH := "res://assets/main/keybind/guideline.json"
+const GUIDELINE_HOLD_PATH := "res://assets/main/keybind/guideline-hold.json"
 const WASD_PATH := "res://assets/main/keybind/wasd.json"
+const WASD_HOLD_PATH := "res://assets/main/keybind/wasd-hold.json"
 const DEFAULT_CUSTOM_PATH := "res://assets/main/keybind/default-custom.json"
 
 const GUIDELINE := KeybindPreset.GUIDELINE

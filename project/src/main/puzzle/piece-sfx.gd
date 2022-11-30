@@ -94,6 +94,10 @@ func _on_PieceManager_rotated_180(piece: ActivePiece) -> void:
 	else:
 		$Rotate0Sound.play()
 
+
+func _on_PieceManager_hold_piece_swapped(_piece: ActivePiece) -> void:
+	$SwapHoldPieceSound.play()
+
 ## Other events -------------------------------------------------------------------
 
 func _on_PieceManager_lock_started(_piece: ActivePiece) -> void:

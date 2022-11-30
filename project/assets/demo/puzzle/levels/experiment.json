@@ -1,64 +1,89 @@
 {
   "version": "39e5",
-  "start_speed": "0",
-  "name": "Marathon: Normal (100 lines)",
-  "description": "A test of endurance against faster and faster pieces! Can you clear 100 lines?",
-  "speed_ups": [
-    {
-      "type": "lines",
-      "value": "10",
-      "speed": "1"
-    },
-    {
-      "type": "lines",
-      "value": "20",
-      "speed": "2"
-    },
-    {
-      "type": "lines",
-      "value": "30",
-      "speed": "3"
-    },
-    {
-      "type": "lines",
-      "value": "40",
-      "speed": "4"
-    },
-    {
-      "type": "lines",
-      "value": "50",
-      "speed": "5"
-    },
-    {
-      "type": "lines",
-      "value": "60",
-      "speed": "6"
-    },
-    {
-      "type": "lines",
-      "value": "70",
-      "speed": "7"
-    },
-    {
-      "type": "lines",
-      "value": "80",
-      "speed": "8"
-    },
-    {
-      "type": "lines",
-      "value": "90",
-      "speed": "9"
-    }
-  ],
-  "success_condition": {
-    "type": "lines",
-    "value": "100"
-  },
+  "start_speed": "4",
+  "name": "Veggie Patty",
+  "description": "Twice the pace and half the space? ...This is a recipe for disaster!",
   "finish_condition": {
-    "type": "lines",
-    "value": "100"
+    "type": "pieces",
+    "value": "60"
   },
   "lose_condition": [
-    "top_out 5"
-  ]
+    "top_out 2"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 11",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "1 11",
+        "tile": "2 12 2"
+      },
+      {
+        "pos": "4 11",
+        "tile": "2 17 3"
+      },
+      {
+        "pos": "5 11",
+        "tile": "2 9 0"
+      },
+      {
+        "pos": "6 11",
+        "tile": "2 6 3"
+      },
+      {
+        "pos": "0 12",
+        "tile": "2 7 2"
+      },
+      {
+        "pos": "1 12",
+        "tile": "2 3 2"
+      },
+      {
+        "pos": "2 12",
+        "tile": "2 6 3"
+      },
+      {
+        "pos": "3 12",
+        "tile": "2 16 1"
+      },
+      {
+        "pos": "5 12",
+        "tile": "2 5 1"
+      },
+      {
+        "pos": "6 12",
+        "tile": "2 14 1"
+      },
+      {
+        "pos": "7 12",
+        "tile": "2 0 3"
+      },
+      {
+        "pos": "8 12",
+        "tile": "2 7 0"
+      },
+      {
+        "pos": "2 13",
+        "tile": "2 2 0"
+      },
+      {
+        "pos": "3 13",
+        "tile": "2 10 3"
+      },
+      {
+        "pos": "4 13",
+        "tile": "2 8 2"
+      },
+      {
+        "pos": "7 13",
+        "tile": "2 5 1"
+      },
+      {
+        "pos": "8 13",
+        "tile": "2 14 2"
+      }
+    ]
+  }
 }

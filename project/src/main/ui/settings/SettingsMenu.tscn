@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
 [ext_resource path="res://src/main/ui/settings/settings-gameplay-speed.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/settings/settings-line-piece.gd" type="Script" id=31]
+[ext_resource path="res://src/main/ui/settings/settings-hold-piece.gd" type="Script" id=32]
 [ext_resource path="res://src/main/ui/settings/reset-gameplay-button.gd" type="Script" id=33]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -448,6 +449,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HoldPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+margin_top = 174.0
+margin_right = 548.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 32 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece"]
+margin_right = 211.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.63
+text = "Hold Piece"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece"]
+margin_left = 231.0
+margin_right = 548.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 160, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.94
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
 margin_left = 204.0
 margin_top = 206.0
@@ -517,7 +554,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
 margin_right = 420.0
-margin_bottom = 260.0
+margin_bottom = 240.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 0
 
@@ -602,7 +639,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer"]
 margin_right = 490.0
-margin_bottom = 508.0
+margin_bottom = 482.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 2
 
@@ -1302,6 +1339,7 @@ __meta__ = {
 [connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/SaveSlot" method="_on_Delete_pressed"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece" method="_on_OptionButton_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LinePiece/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LinePiece" method="_on_OptionButton_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LockCancel/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LockCancel" method="_on_OptionButton_toggled"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/Speed/OptionButton" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/Speed" method="_on_OptionButton_item_selected"]
