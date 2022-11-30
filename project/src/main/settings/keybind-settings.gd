@@ -13,6 +13,11 @@ enum KeybindPreset {
 	CUSTOM
 }
 
+## files defining keybind presets
+const GUIDELINE_PATH := "res://assets/main/keybind/guideline.json"
+const WASD_PATH := "res://assets/main/keybind/wasd.json"
+const DEFAULT_CUSTOM_PATH := "res://assets/main/keybind/default-custom.json"
+
 const GUIDELINE := KeybindPreset.GUIDELINE
 const WASD := KeybindPreset.WASD
 const CUSTOM := KeybindPreset.CUSTOM
@@ -114,7 +119,7 @@ func from_json_dict(json: Dictionary) -> void:
 
 ## Resets the custom keybinds to a sensible set of defaults.
 func restore_default_custom_keybinds() -> void:
-	var json_text := FileUtils.get_file_as_text("res://assets/main/keybind/default-custom.json")
+	var json_text := FileUtils.get_file_as_text(DEFAULT_CUSTOM_PATH)
 	var json_dict: Dictionary = parse_json(json_text)
 	custom_keybinds = json_dict
 	emit_signal("settings_changed")
