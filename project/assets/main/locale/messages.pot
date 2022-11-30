@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-23 07:39-0500\n"
+"POT-Creation-Date: 2022-11-30 16:57-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5856,7 +5856,7 @@ msgid "What? ...Why?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:2
-#: project/src/main/ui/settings/SettingsMenu.tscn:453
+#: project/src/main/ui/settings/SettingsMenu.tscn:613
 msgid "Space"
 msgstr ""
 
@@ -6253,8 +6253,8 @@ msgid "Ydiaeresis"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:101
-#: project/src/main/ui/settings/SettingsMenu.tscn:435
-#: project/src/main/ui/settings/SettingsMenu.tscn:459
+#: project/src/main/ui/settings/SettingsMenu.tscn:595
+#: project/src/main/ui/settings/SettingsMenu.tscn:619
 msgid "Escape"
 msgstr ""
 
@@ -6325,7 +6325,7 @@ msgid "Right"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:118
-#: project/src/main/ui/settings/SettingsMenu.tscn:417
+#: project/src/main/ui/settings/SettingsMenu.tscn:571
 msgid "Down"
 msgstr ""
 
@@ -6338,7 +6338,7 @@ msgid "PageDown"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:121
-#: project/src/main/ui/settings/SettingsMenu.tscn:471
+#: project/src/main/ui/settings/SettingsMenu.tscn:631
 msgid "Shift"
 msgstr ""
 
@@ -6439,8 +6439,8 @@ msgid "Super R"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:146
-#: project/src/main/ui/settings/SettingsMenu.tscn:434
-#: project/src/main/ui/settings/SettingsMenu.tscn:523
+#: project/src/main/ui/settings/SettingsMenu.tscn:594
+#: project/src/main/ui/settings/SettingsMenu.tscn:689
 msgid "Menu"
 msgstr ""
 
@@ -6753,7 +6753,7 @@ msgid "15:03"
 msgstr ""
 
 #: project/src/main/career/ui/CareerWin.tscn:566
-#: project/src/main/ui/settings/SettingsMenu.tscn:1037
+#: project/src/main/ui/settings/SettingsMenu.tscn:1203
 msgid "Ok"
 msgstr ""
 
@@ -6886,8 +6886,8 @@ msgstr ""
 #: project/src/main/ui/CreatureStressTest.tscn:96
 #: project/src/main/ui/menu/PracticeMenu.tscn:263
 #: project/src/main/ui/menu/SystemButtons.tscn:46
-#: project/src/main/ui/settings/SettingsMenu.tscn:974
-#: project/src/main/ui/settings/SettingsMenu.tscn:999
+#: project/src/main/ui/settings/SettingsMenu.tscn:1140
+#: project/src/main/ui/settings/SettingsMenu.tscn:1165
 #: project/src/main/ui/settings/settings-menu-bottom.gd:36
 msgid "Quit"
 msgstr ""
@@ -7037,7 +7037,7 @@ msgid "Button"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1834
-#: project/src/main/ui/settings/SettingsMenu.tscn:626
+#: project/src/main/ui/settings/SettingsMenu.tscn:792
 msgid "Size"
 msgstr ""
 
@@ -7054,9 +7054,9 @@ msgid "Plastic"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1950
-#: project/src/main/ui/settings/SettingsMenu.tscn:1106
-#: project/src/main/ui/settings/SettingsMenu.tscn:1125
-#: project/src/main/ui/settings/SettingsMenu.tscn:1145
+#: project/src/main/ui/settings/SettingsMenu.tscn:1272
+#: project/src/main/ui/settings/SettingsMenu.tscn:1291
+#: project/src/main/ui/settings/SettingsMenu.tscn:1311
 msgid "Confirm"
 msgstr ""
 
@@ -7130,7 +7130,7 @@ msgid "Test"
 msgstr ""
 
 #: project/src/main/editor/puzzle/LevelEditor.tscn:152
-#: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:51
+#: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:55
 msgid "abc"
 msgstr ""
 
@@ -7157,7 +7157,7 @@ msgid ">"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:302
-#: project/src/main/ui/settings/SettingsMenu.tscn:853
+#: project/src/main/ui/settings/SettingsMenu.tscn:1019
 #: project/src/main/ui/settings/keybind/KeybindCustom.tscn:85
 msgid "X"
 msgstr ""
@@ -7247,20 +7247,20 @@ msgstr ""
 msgid "3x"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:309
+#: project/src/main/puzzle/Puzzle.tscn:314
 msgid "Goal"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:322
+#: project/src/main/puzzle/Puzzle.tscn:327
 msgid "10"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:468
+#: project/src/main/puzzle/Puzzle.tscn:522
 #: project/src/main/ui/menu/PracticeMenu.tscn:195
 msgid "1"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:609
+#: project/src/main/puzzle/Puzzle.tscn:663
 msgid "abcd"
 msgstr ""
 
@@ -7336,11 +7336,13 @@ msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:76
 #: project/src/main/puzzle/puzzle-messages.gd:80
+#: project/src/main/ui/settings/SettingsMenu.tscn:588
+#: project/src/main/ui/settings/SettingsMenu.tscn:683
 msgid "Retry"
 msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:108
-#: project/src/main/puzzle/puzzle.gd:87
+#: project/src/main/puzzle/puzzle.gd:106
 msgid "Ready?"
 msgstr ""
 
@@ -7515,15 +7517,15 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:13
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:93
-#: project/src/main/ui/settings/SettingsMenu.tscn:416
-#: project/src/main/ui/settings/SettingsMenu.tscn:499
+#: project/src/main/ui/settings/SettingsMenu.tscn:570
+#: project/src/main/ui/settings/SettingsMenu.tscn:659
 msgid "Soft Drop"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:14
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:105
-#: project/src/main/ui/settings/SettingsMenu.tscn:422
-#: project/src/main/ui/settings/SettingsMenu.tscn:505
+#: project/src/main/ui/settings/SettingsMenu.tscn:576
+#: project/src/main/ui/settings/SettingsMenu.tscn:665
 msgid "Hard Drop"
 msgstr ""
 
@@ -7621,7 +7623,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:44
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:104
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:106
 msgid "Try making a snack box by arranging two pieces into a square."
 msgstr ""
 
@@ -7640,11 +7642,11 @@ msgid ""
 "See if you can earn ¥100."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:68
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:70
 msgid "OH, MY!!!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:75
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:77
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:158
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:116
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd:193
@@ -7653,36 +7655,36 @@ msgstr ""
 msgid "Good job!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:78
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:80
 msgid "Nicely done!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:81
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:83
 msgid "Impressive!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:84
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:86
 msgid "Oh! I thought that would be more difficult..."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:91
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:93
 msgid ""
 "Well done!\n"
 "\n"
 "Line clears earn ¥1. Maybe more if you can build a combo."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:101
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:243
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:103
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:245
 msgid "Clear a row by filling it with blocks."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:106
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:108
 msgid "Try clearing a few box lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:114
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:119
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:116
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:121
 msgid ""
 "Well done!\n"
 "\n"
@@ -7690,14 +7692,14 @@ msgid ""
 "you're clever."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:129
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:131
 msgid ""
 "Oh my, you're not supposed to know how to do that!\n"
 "\n"
 "...But yes, squish moves can help you out of a jam."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:135
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:137
 msgid ""
 "Well done!\n"
 "\n"
@@ -7705,27 +7707,27 @@ msgid ""
 "boxes."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:144
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:146
 msgid ""
 "Oh my, you're not supposed to know how to do that!\n"
 "\n"
 "...But yes, those boxes earn ¥15 when you clear them."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:150
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:152
 msgid ""
 "Well done!\n"
 "\n"
 "Those boxes earn ¥15 when you clear them. Try clearing a few box lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:159
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:161
 msgid ""
 "Impressive! Using squish moves, you can organize boxes in tall vertical "
 "stacks and earn a lot of money."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:239
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:241
 msgid ""
 "Welcome to Turbo Fat! You seem to already be familiar with this sort of "
 "game, so let's dive right in.\n"
@@ -8839,6 +8841,7 @@ msgid "Score 200 points as quickly as possible!"
 msgstr ""
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:156
+#: project/src/main/ui/settings/SettingsMenu.tscn:396
 msgid "Speed"
 msgstr ""
 
@@ -8961,162 +8964,179 @@ msgstr ""
 msgid "Overall rank: %s"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:135
+#: project/src/main/ui/settings/SettingsMenu.tscn:139
 msgid "Sound + Music"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:191
+#: project/src/main/ui/settings/SettingsMenu.tscn:195
 msgid "Graphics"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:211
+#: project/src/main/ui/settings/SettingsMenu.tscn:215
 msgid "Creature detail"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:247
+#: project/src/main/ui/settings/SettingsMenu.tscn:251
 msgid "Use Vsync"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:288
+#: project/src/main/ui/settings/SettingsMenu.tscn:302
 msgid "Ghost Piece"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:324
+#: project/src/main/ui/settings/SettingsMenu.tscn:338
 msgid "Soft Drop Lock Cancel"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:371
-msgid "Guideline"
+#: project/src/main/ui/settings/SettingsMenu.tscn:373
+msgid "Cheats"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:381
-msgid "WASD"
+#: project/src/main/ui/settings/SettingsMenu.tscn:433
+msgid "Line Piece"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:391
-msgid "Custom"
+#: project/src/main/ui/settings/SettingsMenu.tscn:469
+msgid "Hold Piece"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:410
-msgid "Move Piece"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:411
-msgid "Left, Right"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:423
-msgid "Space, Up, Shift"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:428
-msgid "Rotate Piece"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:429
-msgid "Z, X"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:446
-msgid "Move in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:447
-msgid "Arrows, WASD"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:452
-#: project/src/main/ui/settings/SettingsMenu.tscn:559
-msgid "Confirm in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:458
-#: project/src/main/ui/settings/SettingsMenu.tscn:565
-msgid "Back in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:470
-#: project/src/main/ui/settings/SettingsMenu.tscn:577
-msgid "Rewind Text"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:487
-msgid "Move Piece Left"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:493
-msgid "Move Piece Right"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:511
-msgid "Rotate Ccw"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:517
-msgid "Rotate Cw"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:535
-msgid "Up in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:541
-msgid "Down in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:547
-msgid "Left in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:553
-msgid "Right in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:593
+#: project/src/main/ui/settings/SettingsMenu.tscn:495
+#: project/src/main/ui/settings/SettingsMenu.tscn:759
 msgid "Reset to Default"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:664
+#: project/src/main/ui/settings/SettingsMenu.tscn:526
+msgid "Guideline"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:536
+msgid "WASD"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:546
+msgid "Custom"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:564
+msgid "Move Piece"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:565
+msgid "Left, Right"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:577
+msgid "Space, Up, Shift"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:582
+msgid "Rotate Piece"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:583
+msgid "Z, X"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:589
+msgid "R"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:606
+msgid "Move in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:607
+msgid "Arrows, WASD"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:612
+#: project/src/main/ui/settings/SettingsMenu.tscn:725
+msgid "Confirm in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:618
+#: project/src/main/ui/settings/SettingsMenu.tscn:731
+msgid "Back in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:630
+#: project/src/main/ui/settings/SettingsMenu.tscn:743
+msgid "Rewind Text"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:647
+msgid "Move Piece Left"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:653
+msgid "Move Piece Right"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:671
+msgid "Rotate Ccw"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:677
+msgid "Rotate Cw"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:701
+msgid "Up in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:707
+msgid "Down in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:713
+msgid "Left in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:719
+msgid "Right in Menus"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:830
 msgid "1.00x"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:690
+#: project/src/main/ui/settings/SettingsMenu.tscn:856
 msgid "Scheme"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:726
+#: project/src/main/ui/settings/SettingsMenu.tscn:892
 msgid "Fat Finger"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:770
+#: project/src/main/ui/settings/SettingsMenu.tscn:936
 msgid "Language"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:815
+#: project/src/main/ui/settings/SettingsMenu.tscn:981
 msgid "Save Slot"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:843
+#: project/src/main/ui/settings/SettingsMenu.tscn:1009
 msgid "Slot A"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:881
+#: project/src/main/ui/settings/SettingsMenu.tscn:1047
 msgid "Open User Folder"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:917
+#: project/src/main/ui/settings/SettingsMenu.tscn:1083
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:926
+#: project/src/main/ui/settings/SettingsMenu.tscn:1092
 msgid "Copied!"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1073
+#: project/src/main/ui/settings/SettingsMenu.tscn:1239
 msgid "* Your settings will take effect in the next scene."
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1107
+#: project/src/main/ui/settings/SettingsMenu.tscn:1273
 msgid "Change save slot?"
 msgstr ""
 
@@ -9160,6 +9180,42 @@ msgstr ""
 
 #: project/src/main/ui/settings/settings-dialogs.gd:82
 msgid "Are you sure?"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:9
+msgid "Slowestest"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:10
+msgid "Slowest"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:11
+msgid "Slower"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:12
+msgid "Slow"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:13
+msgid "Default"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:14
+msgid "Fast"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:15
+msgid "Faster"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:16
+msgid "Fastest"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-gameplay-speed.gd:17
+msgid "Fastestest"
 msgstr ""
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd:37
@@ -9252,36 +9308,52 @@ msgstr ""
 msgid "<Enter Key>"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:34
-msgid "Left, Right, Numpad4/6"
-msgstr ""
-
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:35
-msgid "Down, Numpad2"
+msgid "Left, Right, Kp 4, Kp 6"
 msgstr ""
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:36
-msgid "Space, Up, Shift, Numpad8"
+msgid "Down, Kp 2"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:37
-msgid "Z, X, Numpad7/9"
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:38
+msgid "Space, Up, Kp 8"
 msgstr ""
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:40
-msgid "A, D, Numpad4/6"
+msgid "Space, Up, Kp 8, Shift"
 msgstr ""
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:41
-msgid "Down, S, Numpad8"
+msgid "Z, X, Kp 7, Kp 9"
 msgstr ""
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:42
-msgid "Up, Space, W, Numpad5"
+msgid "Shift, C, Kp 0"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:43
-msgid "Left, Right, Numpad7/9"
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:46
+msgid "A, D, Kp 4, Kp 6"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:47
+msgid "S, Kp 8"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:49
+msgid "W, Kp 5"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:51
+msgid "W, Kp 5, Kp Enter"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:52
+msgid "Left, Right, Kp 7, Kp 9"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:53
+msgid "Shift, Kp Enter"
 msgstr ""
 
 #: project/src/main/world/CareerMap.tscn:194
