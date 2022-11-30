@@ -2,9 +2,8 @@ class_name GameplaySettings
 ## Manages settings which control the gameplay.
 
 signal ghost_piece_changed(value)
-
+signal soft_drop_lock_cancel_changed(value)
 signal speed_changed(value)
-
 signal line_piece_changed(value)
 
 enum Speed {
@@ -41,7 +40,7 @@ var ghost_piece := true setget set_ghost_piece
 var line_piece := false setget set_line_piece
 
 ## 'true' if pressing soft drop should perform a lock cancel
-var soft_drop_lock_cancel := true
+var soft_drop_lock_cancel := true setget set_soft_drop_lock_cancel
 
 ## The current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
 ## the game harder, or to cheat on levels which otherwise require slow and thoughtful play.
@@ -52,6 +51,13 @@ func set_ghost_piece(new_ghost_piece: bool) -> void:
 		return
 	ghost_piece = new_ghost_piece
 	emit_signal("ghost_piece_changed", new_ghost_piece)
+
+
+func set_soft_drop_lock_cancel(new_soft_drop_lock_cancel: bool) -> void:
+	if soft_drop_lock_cancel == new_soft_drop_lock_cancel:
+		return
+	soft_drop_lock_cancel = new_soft_drop_lock_cancel
+	emit_signal("soft_drop_lock_cancel_changed", new_soft_drop_lock_cancel)
 
 
 func set_speed(new_speed: int) -> void:
@@ -85,7 +91,7 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	set_ghost_piece(json.get("ghost_piece", true))
 	set_line_piece(json.get("line_piece", false))
-	soft_drop_lock_cancel = json.get("soft_drop_lock_cancel", true)
+	set_soft_drop_lock_cancel(json.get("soft_drop_lock_cancel", true))
 	set_speed(Utils.enum_from_snake_case(Speed, json.get("speed", "")))
 
 

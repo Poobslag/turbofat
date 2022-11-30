@@ -16,9 +16,19 @@ func _ready() -> void:
 	_option_button.add_item(tr("Fastest"), GameplaySettings.Speed.FASTEST)
 	_option_button.add_item(tr("Fastestest"), GameplaySettings.Speed.FASTESTEST)
 	
+	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
+	
+	_refresh()
+
+
+func _refresh() -> void:
 	_option_button.selected = _option_button.get_item_index(SystemData.gameplay_settings.speed)
 
 
 func _on_OptionButton_item_selected(index: int) -> void:
 	var item_id := _option_button.get_item_id(index)
 	SystemData.gameplay_settings.speed = item_id
+
+
+func _on_GameplaySettings_speed_changed(_value: int) -> void:
+	_refresh()
