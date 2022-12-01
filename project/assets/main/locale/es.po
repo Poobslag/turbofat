@@ -10037,15 +10037,15 @@ msgstr "Cancelar Asegurado con Caída Lenta"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:373
 msgid "Cheats"
-msgstr ""
+msgstr "Trampas"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:433
 msgid "Line Piece"
-msgstr ""
+msgstr "Pieza Larga"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:469
 msgid "Hold Piece"
-msgstr ""
+msgstr "Sostener Pieza"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:495
 #: project/src/main/ui/settings/SettingsMenu.tscn:759
@@ -10086,7 +10086,7 @@ msgstr "Z, X"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:589
 msgid "R"
-msgstr ""
+msgstr "R"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:606
 msgid "Move in Menus"
@@ -10231,39 +10231,39 @@ msgstr "¿Estás seguro?"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:9
 msgid "Slowestest"
-msgstr ""
+msgstr "Lentisisísimo"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:10
 msgid "Slowest"
-msgstr ""
+msgstr "Lentisísimo"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:11
 msgid "Slower"
-msgstr ""
+msgstr "Lentísimo"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:12
 msgid "Slow"
-msgstr ""
+msgstr "Lento"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:13
 msgid "Default"
-msgstr ""
+msgstr "Normal"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:14
 msgid "Fast"
-msgstr ""
+msgstr "Rápido"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:15
 msgid "Faster"
-msgstr ""
+msgstr "Rapidísimo"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:16
 msgid "Fastest"
-msgstr ""
+msgstr "Rapidisísimo"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:17
 msgid "Fastestest"
-msgstr ""
+msgstr "Rapidisisísimo"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd:37
 #: project/src/main/ui/settings/settings-menu-bottom.gd:40
@@ -10357,51 +10357,51 @@ msgstr "<Tecla>"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:35
 msgid "Left, Right, Kp 4, Kp 6"
-msgstr ""
+msgstr "Izquierda, Derecha, Numpad 4, Numpad 6"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:36
 msgid "Down, Kp 2"
-msgstr ""
+msgstr "Abajo, Numpad 2"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:38
 msgid "Space, Up, Kp 8"
-msgstr ""
+msgstr "Espacio, Arriba, Numpad 8"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:40
 msgid "Space, Up, Kp 8, Shift"
-msgstr ""
+msgstr "Espacio, Arriba, Numpad 8, Shift"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:41
 msgid "Z, X, Kp 7, Kp 9"
-msgstr ""
+msgstr "Z, X, Numpad 7, Numpad 9"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:42
 msgid "Shift, C, Kp 0"
-msgstr ""
+msgstr "Shift, C, Numpad 0"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:46
 msgid "A, D, Kp 4, Kp 6"
-msgstr ""
+msgstr "A, D, Numpad 4, Numpad 6"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:47
 msgid "S, Kp 8"
-msgstr ""
+msgstr "S, Numpad 8"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:49
 msgid "W, Kp 5"
-msgstr ""
+msgstr "W, Numpad 5"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:51
 msgid "W, Kp 5, Kp Enter"
-msgstr ""
+msgstr "W, Numpad 5, Numpad Intro"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:52
 msgid "Left, Right, Kp 7, Kp 9"
-msgstr ""
+msgstr "Izquierda, Derecha, Numpad 7, Numpad 9"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:53
 msgid "Shift, Kp Enter"
-msgstr ""
+msgstr "Shift, Numpad Intro"
 
 #: project/src/main/world/CareerMap.tscn:194
 msgid "12:05 am"
