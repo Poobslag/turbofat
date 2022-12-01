@@ -6969,7 +6969,7 @@ msgstr "Intro"
 
 #: project/assets/main/locale/localizables-scancodes.py:106
 msgid "Kp Enter"
-msgstr "PadNum Intro"
+msgstr "Numpad Intro"
 
 #: project/assets/main/locale/localizables-scancodes.py:107
 msgid "Insert"
@@ -7318,63 +7318,63 @@ msgstr "LaunchF"
 
 #: project/assets/main/locale/localizables-scancodes.py:191
 msgid "Kp Multiply"
-msgstr "PadNum Asterisco"
+msgstr "Numpad Asterisco"
 
 #: project/assets/main/locale/localizables-scancodes.py:192
 msgid "Kp Divide"
-msgstr "PadNum Barra"
+msgstr "Numpad Barra"
 
 #: project/assets/main/locale/localizables-scancodes.py:193
 msgid "Kp Subtract"
-msgstr "PadNum Menos"
+msgstr "Numpad Menos"
 
 #: project/assets/main/locale/localizables-scancodes.py:194
 msgid "Kp Period"
-msgstr "PadNum Punto"
+msgstr "Numpad Punto"
 
 #: project/assets/main/locale/localizables-scancodes.py:195
 msgid "Kp Add"
-msgstr "PadNum Más"
+msgstr "Numpad Más"
 
 #: project/assets/main/locale/localizables-scancodes.py:196
 msgid "Kp 0"
-msgstr "PadNum 0"
+msgstr "Numpad 0"
 
 #: project/assets/main/locale/localizables-scancodes.py:197
 msgid "Kp 1"
-msgstr "PadNum 1"
+msgstr "Numpad 1"
 
 #: project/assets/main/locale/localizables-scancodes.py:198
 msgid "Kp 2"
-msgstr "PadNum 2"
+msgstr "Numpad 2"
 
 #: project/assets/main/locale/localizables-scancodes.py:199
 msgid "Kp 3"
-msgstr "PadNum 3"
+msgstr "Numpad 3"
 
 #: project/assets/main/locale/localizables-scancodes.py:200
 msgid "Kp 4"
-msgstr "PadNum 4"
+msgstr "Numpad 4"
 
 #: project/assets/main/locale/localizables-scancodes.py:201
 msgid "Kp 5"
-msgstr "PadNum 5"
+msgstr "Numpad 5"
 
 #: project/assets/main/locale/localizables-scancodes.py:202
 msgid "Kp 6"
-msgstr "PadNum 6"
+msgstr "Numpad 6"
 
 #: project/assets/main/locale/localizables-scancodes.py:203
 msgid "Kp 7"
-msgstr "PadNum 7"
+msgstr "Numpad 7"
 
 #: project/assets/main/locale/localizables-scancodes.py:204
 msgid "Kp 8"
-msgstr "PadNum 8"
+msgstr "Numpad 8"
 
 #: project/assets/main/locale/localizables-scancodes.py:205
 msgid "Kp 9"
-msgstr "PadNum 9"
+msgstr "Numpad 9"
 
 #: project/src/main/career/career-data.gd:61
 msgid "?:?? zm"
