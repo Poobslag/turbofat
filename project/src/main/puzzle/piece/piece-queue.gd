@@ -218,6 +218,9 @@ func _maybe_insert_cheat_pieces(min_line_piece_index: int) -> void:
 			# insert a line piece
 			_cheat_bag_line_pieces_remaining -= 1
 			pieces.insert(piece_index, _new_next_piece(PieceTypes.piece_i))
+			
+			# increment piece_index past the inserted line piece
+			piece_index += 1
 		
 		_cheat_bag_pieces_remaining -= 1
 		piece_index += 1
