@@ -17,7 +17,11 @@ func _on_resized() -> void:
 	if not _top_out_particles:
 		return
 	
+	# Avoid a Stack Overflow where changing our margins triggers another _on_resized() event, see #1810
+	disconnect("resized", self, "_on_resized")
 	margin_left = -rect_size.x
+	connect("resized", self, "_on_resized")
+	
 	_top_out_particles.rect_position = rect_size * 0.5
 
 

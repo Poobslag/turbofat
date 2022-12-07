@@ -29,7 +29,10 @@ func _refresh_score() -> void:
 
 
 func _on_resized() -> void:
+	# Avoid a Stack Overflow where changing our margins triggers another _on_resized() event, see #1810
+	disconnect("resized", self, "_on_resized")
 	margin_left = -rect_size.x
+	connect("resized", self, "_on_resized")
 
 
 func _on_PuzzleState_score_changed() -> void:
