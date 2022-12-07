@@ -186,14 +186,23 @@ func apply_top_out_score_penalty() -> void:
 	PuzzleState.level_performance.top_out_count += 1
 
 
+## Makes the player top out, triggering any top out effects and score penalty.
+##
+## If the player is not out of lives, the game will still continue.
 func top_out() -> void:
-	apply_top_out_score_penalty()
 	if level_performance.top_out_count >= CurrentLevel.settings.lose_condition.top_out:
 		make_player_lose()
-	emit_signal("topped_out")
-	emit_signal("score_changed")
+	else:
+		apply_top_out_score_penalty()
+		emit_signal("topped_out")
+		emit_signal("score_changed")
 
 
+## Immediately ends the game, triggering any top out effects and score penalty. This is triggered when the player
+## gives up or runs out of lives.
+##
+## For most levels, this sets the 'LevelPerformance.lost' flag -- the only exception being sandbox levels where it
+## counts as finishing the level, even if the player quits.
 func make_player_lose() -> void:
 	if not game_active:
 		return
@@ -204,10 +213,17 @@ func make_player_lose() -> void:
 		game_ended = true
 		
 		# trigger the visual effects for topping out, such as making the player go swirly eyed
-		top_out()
+		apply_top_out_score_penalty()
+		emit_signal("topped_out")
+		emit_signal("score_changed")
 	end_game()
 
 
+## Immediately ends the game, triggering any other end-of-game effects.
+##
+## End-of-game effects include calculating the player's final score, restoring the chill background music and
+## triggering the chef's reaction. End-of-game effects do not include clearing the player's remaining boxes -- this
+## occurs before the game ends.
 func end_game() -> void:
 	# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual effects
 	game_active = false
