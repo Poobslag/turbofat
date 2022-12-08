@@ -36,6 +36,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Music"
 align = 2
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
