@@ -26,7 +26,7 @@ var _post_save_method: String
 var _post_save_args_array: Array
 
 onready var _controls_control := $Window/UiArea/TabContainer/Controls
-onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/SaveSlot
+onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot
 onready var _touch_control := $Window/UiArea/TabContainer/Touch
 
 onready var _bg := $Bg
