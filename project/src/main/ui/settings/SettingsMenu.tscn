@@ -33,6 +33,11 @@
 [ext_resource path="res://src/main/ui/settings/settings-line-piece.gd" type="Script" id=31]
 [ext_resource path="res://src/main/ui/settings/settings-hold-piece.gd" type="Script" id=32]
 [ext_resource path="res://src/main/ui/settings/reset-gameplay-button.gd" type="Script" id=33]
+[ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=35]
+[ext_resource path="res://src/main/ui/theme/h6-font.tres" type="DynamicFont" id=36]
+[ext_resource path="res://src/main/ui/theme/h7-font.tres" type="DynamicFont" id=37]
+[ext_resource path="res://src/main/ui/theme/h8-font.tres" type="DynamicFont" id=38]
+[ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -1089,15 +1094,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 
-[node name="Button" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder"]
+[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder" instance=ExtResource( 39 )]
 margin_left = 224.0
 margin_right = 384.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 160, 0 )
+rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Open User Folder"
+fonts = [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ) ]
 
 [node name="CopySaveData" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 114.0
@@ -1126,14 +1132,15 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
-[node name="Button" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
+[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer" instance=ExtResource( 39 )]
 margin_right = 160.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 160, 0 )
+rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Copy to Clipboard"
+fonts = [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ) ]
 
 [node name="Copied" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
 margin_left = 164.0
