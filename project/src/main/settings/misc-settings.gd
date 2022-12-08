@@ -1,6 +1,9 @@
 class_name MiscSettings
 ## Manages miscellaneous settings such as language.
 
+## Emitted when the MiscSettings.locale property is assigned.
+signal locale_changed(value)
+
 signal save_slot_changed
 
 ## Different save slots where the player can save/load their progress
@@ -22,9 +25,19 @@ const SAVE_SLOT_PREFIXES := {
 ## The current save slot for saving/loading progress
 var save_slot: int = SaveSlot.SLOT_A setget set_save_slot
 
+## The current locale. This is redundant with TranslationServer.locale, but exposing a setter lets us provide a signal
+## to notify when the locale changes.
+var locale := "en" setget set_locale
+
 ## Resets the miscellaneous settings to their default values.
 func reset() -> void:
 	from_json_dict({})
+
+
+func set_locale(new_locale: String) -> void:
+	locale = new_locale
+	TranslationServer.set_locale(new_locale)
+	emit_signal("locale_changed", locale)
 
 
 func set_save_slot(new_save_slot: int) -> void:
@@ -36,7 +49,7 @@ func set_save_slot(new_save_slot: int) -> void:
 
 func to_json_dict() -> Dictionary:
 	return {
-		"locale": TranslationServer.get_locale(),
+		"locale": locale,
 		"save_slot": save_slot,
 	}
 
@@ -44,13 +57,13 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A))
 	
+	var new_locale: String
 	if json.has("locale"):
-		TranslationServer.set_locale(json.get("locale"))
+		new_locale = json.get("locale")
 	else:
 		# resetting the locale sets it to the OS locale unless the 'locale/test' property is set.
-		var default_locale: String
 		if ProjectSettings.get_setting("locale/test"):
-			default_locale = ProjectSettings.get_setting("locale/test")
+			new_locale = ProjectSettings.get_setting("locale/test")
 		else:
-			default_locale = OS.get_locale()
-		TranslationServer.set_locale(default_locale)
+			new_locale = OS.get_locale()
+	set_locale(new_locale)
