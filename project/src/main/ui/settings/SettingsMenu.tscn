@@ -215,6 +215,7 @@ size_flags_stretch_ratio = 0.74
 text = "Creature detail"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -251,6 +252,7 @@ size_flags_stretch_ratio = 0.74
 text = "Use Vsync"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -302,6 +304,7 @@ size_flags_stretch_ratio = 0.63
 text = "Ghost Piece"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -338,6 +341,7 @@ size_flags_stretch_ratio = 0.63
 text = "Soft Drop Lock Cancel"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -396,6 +400,7 @@ size_flags_stretch_ratio = 0.74
 text = "Speed"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -433,6 +438,7 @@ size_flags_stretch_ratio = 0.63
 text = "Line Piece"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -469,6 +475,7 @@ size_flags_stretch_ratio = 0.63
 text = "Hold Piece"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -802,6 +809,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Size"
 align = 2
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -867,6 +875,7 @@ size_flags_stretch_ratio = 0.74
 text = "Scheme"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -903,6 +912,7 @@ size_flags_stretch_ratio = 0.74
 text = "Fat Finger"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -947,6 +957,7 @@ size_flags_stretch_ratio = 0.74
 text = "Language"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -992,6 +1003,7 @@ size_flags_stretch_ratio = 0.74
 text = "Save Slot"
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1102,6 +1114,7 @@ size_flags_vertical = 1
 size_flags_stretch_ratio = 0.74
 text = "Copied!"
 valign = 1
+autowrap = true
 
 [node name="CopiedTween" type="Tween" parent="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer"]
 

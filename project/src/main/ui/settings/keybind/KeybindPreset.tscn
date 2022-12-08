@@ -25,6 +25,7 @@ size_flags_vertical = 5
 size_flags_stretch_ratio = 0.9
 align = 2
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
