@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -112,7 +112,7 @@ __meta__ = {
 
 [node name="TabContainer" type="TabContainer" parent="Window/UiArea"]
 margin_right = 570.0
-margin_bottom = 250.0
+margin_bottom = 246.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 13 )
 custom_styles/tab_fg = SubResource( 1 )
@@ -124,80 +124,90 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sound + Graphics" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+[node name="Sound + Graphics" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 35.0
 margin_right = -5.0
 margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="Volume" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
 margin_right = 560.0
+margin_bottom = 210.0
+size_flags_horizontal = 3
+
+[node name="Volume" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
+margin_right = 548.0
 margin_bottom = 20.0
 theme = ExtResource( 1 )
 text = "Sound + Music"
 align = 1
 
-[node name="Master" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
+[node name="Master" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 24.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 44.0
 
-[node name="Music" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
+[node name="Music" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 48.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 68.0
 volume_type = 1
 
-[node name="Sounds" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
+[node name="Sounds" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 72.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 92.0
 volume_type = 2
 
-[node name="Voices" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
+[node name="Voices" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 96.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 116.0
 volume_type = 3
 
-[node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
 margin_top = 120.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 124.0
 
-[node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
 margin_top = 128.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 148.0
 theme = ExtResource( 1 )
 text = "Graphics"
 align = 1
 
-[node name="Creature Detail" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="Creature Detail" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
 margin_top = 152.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 178.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -205,8 +215,8 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 19 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail"]
-margin_right = 217.0
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail"]
+margin_right = 212.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -220,9 +230,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail"]
-margin_left = 237.0
-margin_right = 397.0
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail"]
+margin_left = 232.0
+margin_right = 392.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -232,9 +242,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Use Vsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="Use Vsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
 margin_top = 182.0
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 210.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -242,8 +252,8 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 25 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync"]
-margin_right = 217.0
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync"]
+margin_right = 212.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -257,16 +267,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync"]
-margin_left = 237.0
-margin_right = 397.0
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync"]
+margin_left = 232.0
+margin_right = 392.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
+[node name="Gameplay" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -280,12 +290,12 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Gameplay" type="VBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
 margin_right = 560.0
 margin_bottom = 232.0
 size_flags_horizontal = 3
 
-[node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_right = 548.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 400, 26 )
@@ -294,7 +304,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 12 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/GhostPiece"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece"]
 margin_right = 211.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
@@ -309,7 +319,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/GhostPiece"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece"]
 margin_left = 231.0
 margin_right = 548.0
 margin_bottom = 28.0
@@ -321,7 +331,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 32.0
 margin_right = 548.0
 margin_bottom = 60.0
@@ -331,7 +341,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 28 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LockCancel"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel"]
 margin_right = 211.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
@@ -346,7 +356,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LockCancel"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel"]
 margin_left = 231.0
 margin_right = 548.0
 margin_bottom = 28.0
@@ -358,7 +368,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 64.0
 margin_right = 548.0
 margin_bottom = 84.0
@@ -366,7 +376,7 @@ rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Cheats" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="Cheats" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 88.0
 margin_right = 548.0
 margin_bottom = 108.0
@@ -380,7 +390,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 112.0
 margin_right = 548.0
 margin_bottom = 138.0
@@ -390,7 +400,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 30 )
 
-[node name="Speed" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/Speed"]
+[node name="Speed" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
 margin_right = 212.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -405,7 +415,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/Speed"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
 margin_left = 232.0
 margin_right = 392.0
 margin_bottom = 26.0
@@ -418,7 +428,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="LinePiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="LinePiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 142.0
 margin_right = 548.0
 margin_bottom = 170.0
@@ -428,7 +438,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 31 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LinePiece"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
 margin_right = 211.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
@@ -443,7 +453,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LinePiece"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
 margin_left = 231.0
 margin_right = 548.0
 margin_bottom = 28.0
@@ -455,7 +465,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HoldPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="HoldPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 174.0
 margin_right = 548.0
 margin_bottom = 202.0
@@ -465,7 +475,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 32 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
 margin_right = 211.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
@@ -480,7 +490,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
 margin_left = 231.0
 margin_right = 548.0
 margin_bottom = 28.0
@@ -492,7 +502,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/ScrollContainer/Gameplay"]
+[node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_left = 204.0
 margin_top = 206.0
 margin_right = 343.0
@@ -776,7 +786,7 @@ size_flags_horizontal = 4
 theme = ExtResource( 1 )
 text = "Reset to Default"
 
-[node name="Touch" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+[node name="Touch" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -784,8 +794,18 @@ margin_left = 5.0
 margin_top = 35.0
 margin_right = -5.0
 margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="Size" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+margin_right = 560.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Size" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
 margin_right = 560.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 400, 20 )
@@ -794,13 +814,13 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 8 )
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 margin_right = 29.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Size"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 margin_left = 49.0
 margin_right = 196.0
 margin_bottom = 20.0
@@ -814,7 +834,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/Size"]
+[node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 margin_left = 216.0
 margin_right = 510.0
 margin_bottom = 20.0
@@ -826,7 +846,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
+[node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_top = 2.0
 margin_right = 224.0
 margin_bottom = 18.0
@@ -840,7 +860,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
+[node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_left = 234.0
 margin_right = 294.0
 margin_bottom = 20.0
@@ -848,14 +868,14 @@ rect_min_size = Vector2( 60, 0 )
 theme = ExtResource( 1 )
 text = "1.00x"
 
-[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 margin_left = 530.0
 margin_right = 560.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Scheme" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+[node name="Scheme" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
 margin_top = 24.0
 margin_right = 560.0
 margin_bottom = 50.0
@@ -865,7 +885,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 10 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Scheme"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme"]
 margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -880,7 +900,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/Scheme"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme"]
 margin_left = 237.0
 margin_right = 397.0
 margin_bottom = 26.0
@@ -892,7 +912,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+[node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
 margin_top = 54.0
 margin_right = 560.0
 margin_bottom = 80.0
@@ -902,7 +922,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 11 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger"]
 margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -917,7 +937,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger"]
 margin_left = 237.0
 margin_right = 397.0
 margin_bottom = 26.0
@@ -929,7 +949,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Misc" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+[node name="Misc" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -937,8 +957,18 @@ margin_left = 5.0
 margin_top = 35.0
 margin_right = -5.0
 margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
+margin_right = 560.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+
+[node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_right = 560.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 400, 26 )
@@ -947,7 +977,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 17 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/Language"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Language"]
 margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -962,7 +992,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/Language"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Language"]
 margin_left = 237.0
 margin_right = 397.0
 margin_bottom = 26.0
@@ -974,13 +1004,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc"]
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 30.0
 margin_right = 560.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="SaveSlot" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
+[node name="SaveSlot" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 54.0
 margin_right = 560.0
 margin_bottom = 80.0
@@ -993,7 +1023,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/SaveSlot"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
 margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -1008,7 +1038,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/SaveSlot"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
 margin_left = 237.0
 margin_right = 441.0
 margin_bottom = 26.0
@@ -1022,7 +1052,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
 margin_right = 160.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
@@ -1034,14 +1064,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer"]
+[node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
 margin_left = 180.0
 margin_right = 204.0
 margin_bottom = 26.0
 size_flags_vertical = 4
 text = "X"
 
-[node name="Open User Folder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
+[node name="Open User Folder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 84.0
 margin_right = 560.0
 margin_bottom = 110.0
@@ -1051,17 +1081,17 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 26 )
 
-[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/Open User Folder"]
-margin_right = 217.0
+[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder"]
+margin_right = 204.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 
-[node name="Button" type="Button" parent="Window/UiArea/TabContainer/Misc/Open User Folder"]
-margin_left = 237.0
-margin_right = 397.0
+[node name="Button" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder"]
+margin_left = 224.0
+margin_right = 384.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -1069,7 +1099,7 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Open User Folder"
 
-[node name="CopySaveData" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
+[node name="CopySaveData" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 114.0
 margin_right = 560.0
 margin_bottom = 140.0
@@ -1080,7 +1110,7 @@ custom_constants/separation = 20
 script = ExtResource( 27 )
 _save_slot_control_path = NodePath("../SaveSlot")
 
-[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/CopySaveData"]
+[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData"]
 margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -1088,7 +1118,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/CopySaveData"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData"]
 margin_left = 237.0
 margin_right = 521.0
 margin_bottom = 26.0
@@ -1096,7 +1126,7 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
-[node name="Button" type="Button" parent="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer"]
+[node name="Button" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
 margin_right = 160.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
@@ -1105,7 +1135,7 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Copy to Clipboard"
 
-[node name="Copied" type="Label" parent="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer"]
+[node name="Copied" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
 margin_left = 164.0
 margin_right = 284.0
 margin_bottom = 26.0
@@ -1116,12 +1146,12 @@ text = "Copied!"
 valign = 1
 autowrap = true
 
-[node name="CopiedTween" type="Tween" parent="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer"]
+[node name="CopiedTween" type="Tween" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
-margin_top = 254.0
+margin_top = 250.0
 margin_right = 570.0
-margin_bottom = 354.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 0, 100 )
 script = ExtResource( 29 )
 __meta__ = {
@@ -1278,7 +1308,7 @@ script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/SaveSlot")
+_save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot")
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource( 23 )]
 
@@ -1357,18 +1387,18 @@ __meta__ = {
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/CopySaveData" method="_on_Button_pressed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/Language" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/Open User Folder/Button" to="Window/UiArea/TabContainer/Misc/Open User Folder" method="_on_Button_pressed"]
-[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/SaveSlot" method="_on_Delete_pressed"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/HoldPiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LinePiece/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LinePiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LockCancel/CheckBox" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/LockCancel" method="_on_OptionButton_toggled"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/ScrollContainer/Gameplay/Speed/OptionButton" to="Window/UiArea/TabContainer/ScrollContainer/Gameplay/Speed" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync/CheckBox" to="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync" method="_on_CheckBox_pressed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
-[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_OptionButton_toggled"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData" method="_on_Button_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Language" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder" method="_on_Button_pressed"]
+[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync/CheckBox" to="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync" method="_on_CheckBox_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
+[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]
