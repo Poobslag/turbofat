@@ -87,11 +87,11 @@ func prepare_tutorial_level() -> void:
 ## Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	PuzzleState.level_performance.lost = false
-	var delay_between_levels := PuzzleState.DELAY_SHORT
+	var delay_between_levels := TutorialModule.DELAY_SHORT
 	match CurrentLevel.settings.id:
 		"tutorial/squish_1":
 			# no delay for the non-interactive segment where we show the player a diagram
-			delay_between_levels = PuzzleState.DELAY_NONE
+			delay_between_levels = TutorialModule.DELAY_NONE
 		"tutorial/squish_2":
 			hud.set_message(tr("Yes, that's right."))
 		"tutorial/squish_3":

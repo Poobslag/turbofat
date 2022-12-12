@@ -106,7 +106,7 @@ func _advance_level() -> void:
 	PuzzleState.level_performance.lost = false
 	_level_finished = true
 	
-	var delay_between_levels := PuzzleState.DELAY_SHORT
+	var delay_between_levels := TutorialModule.DELAY_SHORT
 	match CurrentLevel.settings.id:
 		"tutorial/cakes_0":
 			if _cakes_built == 0:
@@ -117,7 +117,7 @@ func _advance_level() -> void:
 				hud.set_message(tr("Ahha ha ha!\n\nYou're just trying to impress me."))
 		"tutorial/cakes_1":
 			# wait for the player to finish reading the diagram
-			delay_between_levels = PuzzleState.DELAY_LONG
+			delay_between_levels = TutorialModule.DELAY_LONG
 		"tutorial/cakes_2":
 			if _cakes_built >= 1:
 				_schedule_finish_line_clears()
@@ -144,7 +144,7 @@ func _advance_level() -> void:
 				PuzzleState.level_performance.lost = true
 		"tutorial/cakes_5":
 			# wait for the player to finish reading the diagram
-			delay_between_levels = PuzzleState.DELAY_LONG
+			delay_between_levels = TutorialModule.DELAY_LONG
 		"tutorial/cakes_6":
 			if _cakes_built >= 1:
 				_schedule_finish_line_clears()

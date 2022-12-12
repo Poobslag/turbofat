@@ -54,10 +54,6 @@ signal combo_ended
 ## emitted when the current piece can't be placed in the playfield
 signal topped_out
 
-const DELAY_NONE := 0.01
-const DELAY_SHORT := 2.05
-const DELAY_LONG := 3.30
-
 const READY_DURATION := 1.4
 
 ## Number of points deducted from the player's score if they top out.
