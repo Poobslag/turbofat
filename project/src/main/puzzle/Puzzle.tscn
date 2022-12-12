@@ -35,7 +35,7 @@
 [ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=34]
 [ext_resource path="res://src/main/puzzle/GoopGlob.tscn" type="PackedScene" id=35]
-[ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
+[ext_resource path="res://src/main/ui/FontFitLabel.tscn" type="PackedScene" id=36]
 [ext_resource path="res://src/main/puzzle/FoodItem.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/main/puzzle/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/puzzle/ready.wav" type="AudioStream" id=39]
@@ -317,7 +317,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="Fg/Chalkboard/MilestoneHud"]
+[node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource( 36 )]
 margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
@@ -329,9 +329,8 @@ align = 1
 valign = 1
 autowrap = true
 max_lines_visible = 1
-script = ExtResource( 36 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": ""
 }
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 

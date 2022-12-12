@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-skill-tally.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/skill-tally-item.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-task-complete.wav" type="AudioStream" id=3]
-[ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/FontFitLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-12.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=7]
@@ -64,7 +64,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" parent="." instance=ExtResource( 4 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -76,7 +76,9 @@ text = "abc
 (0/5)"
 align = 1
 valign = 1
-script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
 fonts = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Tween" type="Tween" parent="."]
