@@ -18,9 +18,6 @@ export (NodePath) var pickups_path: NodePath
 
 export (NodePath) var tile_map_path: NodePath
 
-## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
-var _topping_out := false
-
 ## key: (String) a tiles key for tiles referenced by level rules
 ## value: (int) the next row to fill from the referenced tiles
 var _row_index_by_tiles_key := {}
@@ -53,7 +50,6 @@ onready var _line_fill_sfx_reset_timer := $LineFillSfxResetTimer
 func _ready() -> void:
 	set_physics_process(false)
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
@@ -226,28 +222,20 @@ func _fill_lines_tiles_key() -> String:
 
 
 func _on_PuzzleState_game_prepared() -> void:
-	_topping_out = false
 	_reset()
 
 
 func _on_Level_settings_changed() -> void:
-	_topping_out = false
 	_reset()
 
 
 func _on_LineClearer_after_lines_deleted(_lines: Array) -> void:
-	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
-		_topping_out = false
-		
+	if PuzzleState.topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
 		# schedule line fills after a top out
 		_schedule_playfield_refill()
 	else:
 		# fill empty lines after a line clear
 		_fill_empty_lines()
-
-
-func _on_PuzzleState_topped_out() -> void:
-	_topping_out = true
 
 
 func _on_LineFillSfxResetTimer_timeout() -> void:

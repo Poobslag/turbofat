@@ -54,6 +54,10 @@ signal combo_ended
 ## emitted when the current piece can't be placed in the playfield
 signal topped_out
 
+## emitted when the player enters or exits the non-terminal top out state -- the process where lines are deleted and
+## re-filled
+signal topping_out_changed(value)
+
 const READY_DURATION := 1.4
 
 ## Number of points deducted from the player's score if they top out.
@@ -98,6 +102,9 @@ var speed_index: int setget set_speed_index
 ## This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
 ## for tutorials to prevent the sensei from leaving.
 var no_more_customers: bool
+
+## 'True' if the player is going through the non-terminal top out process where lines are deleted and re-filled
+var topping_out: bool setget set_topping_out
 
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the puzzle is interrupted. Otherwise for example, we might schedule a victory screen to appear 3 seconds from
@@ -172,6 +179,13 @@ func set_speed_index(new_speed_index: int) -> void:
 	emit_signal("speed_index_changed", speed_index)
 
 
+func set_topping_out(new_topping_out: bool) -> void:
+	if topping_out == new_topping_out:
+		return
+	topping_out = new_topping_out
+	emit_signal("topping_out_changed", new_topping_out)
+
+
 ## Updates the player's score and statistics as a result of topping out.
 ##
 ## This ends the player's combo to account for the case where their score is less than the top-out penalty, but they
@@ -190,6 +204,7 @@ func top_out() -> void:
 		PuzzleState.level_performance.top_out_count += 1
 		make_player_lose()
 	else:
+		set_topping_out(true)
 		apply_top_out_score_penalty()
 		emit_signal("topped_out")
 		emit_signal("score_changed")
@@ -362,10 +377,12 @@ func reset() -> void:
 	finish_triggered = false
 	tutorial_section_finished = false
 	game_ended = false
+	topping_out = false
 	speed_index = 0
 	no_more_customers = CurrentLevel.settings.other.tutorial
 	input_frame = -1
 	
+	emit_signal("topping_out_changed", false)
 	emit_signal("score_changed")
 	emit_signal("speed_index_changed", 0)
 
@@ -421,6 +438,7 @@ func _prepare_game() -> void:
 	finish_triggered = false
 	tutorial_section_finished = false
 	game_ended = false
+	topping_out = false
 	
 	if CurrentLevel.settings.other.start_level:
 		# Load a different level to start (used for tutorials)
