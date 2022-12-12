@@ -60,13 +60,6 @@ func hide_buttons() -> void:
 	_back_button.hide()
 
 
-func show_buttons() -> void:
-	_start_button.show()
-	_start_button.grab_focus()
-	_settings_button.show()
-	_back_button.show()
-
-
 ## Updates the start button's text after the player finishes the level.
 func _refresh_start_button() -> void:
 	if PlayerData.career.is_career_mode():

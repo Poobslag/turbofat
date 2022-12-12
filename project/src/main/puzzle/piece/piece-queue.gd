@@ -82,15 +82,6 @@ func swap_hold_piece(piece_type: PieceType) -> NextPiece:
 	return old_hold_piece
 
 
-func shuffled_piece_types() -> Array:
-	var result: Array = CurrentLevel.settings.piece_types.types
-	if not result:
-		result = _default_piece_types
-	result = result.duplicate()
-	result.shuffle()
-	return result
-
-
 func _apply_piece_limit() -> void:
 	if _remaining_piece_count < pieces.size():
 		for i in range(_remaining_piece_count, pieces.size()):
@@ -145,7 +136,7 @@ func _fill_initial_pieces() -> void:
 			pieces.append(_new_next_piece(piece_type))
 		pieces.shuffle()
 		
-		var _other_piece_types := shuffled_piece_types()
+		var _other_piece_types := _shuffled_piece_types()
 		for piece_type in _other_piece_types:
 			var duplicate_piece := false
 			if CurrentLevel.settings.piece_types.suppress_repeat_piece:
@@ -176,6 +167,15 @@ func _fill_initial_pieces() -> void:
 func _reset_cheat_bag() -> void:
 	_cheat_bag_line_pieces_remaining = 1
 	_cheat_bag_pieces_remaining = CHEAT_BAG_SIZE
+
+
+func _shuffled_piece_types() -> Array:
+	var result: Array = CurrentLevel.settings.piece_types.types
+	if not result:
+		result = _default_piece_types
+	result = result.duplicate()
+	result.shuffle()
+	return result
 
 
 ## Inserts line pieces into the queue if certain conditions are met.
@@ -246,7 +246,7 @@ func _fill_remaining_pieces() -> void:
 	
 	while pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
-		var new_piece_types := shuffled_piece_types()
+		var new_piece_types := _shuffled_piece_types()
 		for piece_type in new_piece_types:
 			pieces.append(_new_next_piece(piece_type))
 		
@@ -305,7 +305,7 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 ## 		will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
 func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	var new_piece_index := int(rand_range(pieces.size() - max_pieces_to_right + 1, pieces.size() + 1))
-	var extra_piece_types: Array = shuffled_piece_types()
+	var extra_piece_types: Array = _shuffled_piece_types()
 	if CurrentLevel.settings.piece_types.suppress_repeat_piece and extra_piece_types.size() >= 3:
 		# check the neighboring pieces, and remove those from the pieces we're picking from
 		Utils.remove_all(extra_piece_types, pieces[new_piece_index - 1].type)
