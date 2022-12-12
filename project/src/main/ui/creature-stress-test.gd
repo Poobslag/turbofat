@@ -28,9 +28,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var start_msec := OS.get_ticks_msec()
+	var start_msec := Time.get_ticks_msec()
 	while _creature_container.get_child_count() != _target_creature_count \
-			and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
+			and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 		if _creature_container.get_child_count() < _target_creature_count:
 			_add_creature()
 		elif _creature_container.get_child_count() > _target_creature_count:

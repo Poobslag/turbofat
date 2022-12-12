@@ -18,9 +18,9 @@ onready var _count := $Ui/Control/Count
 var _target_sprite_count := 10
 
 func _physics_process(_delta: float) -> void:
-	var start_msec := OS.get_ticks_msec()
+	var start_msec := Time.get_ticks_msec()
 	while _sprite_container.get_child_count() != _target_sprite_count \
-			and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
+			and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 		if _sprite_container.get_child_count() < _target_sprite_count:
 			_add_sprite()
 		elif _sprite_container.get_child_count() > _target_sprite_count:

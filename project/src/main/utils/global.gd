@@ -63,7 +63,7 @@ static func from_iso(vector: Vector2) -> Vector2:
 ## Sets the start time for a benchmark. Calling 'benchmark_start(foo)' and 'benchmark_finish(foo)' will display a
 ## message like 'foo took 123 milliseconds'.
 func benchmark_start(key: String = "") -> void:
-	_benchmark_start_times[key] = OS.get_ticks_usec()
+	_benchmark_start_times[key] = Time.get_ticks_usec()
 
 
 ## Prints the amount of time which has passed since a benchmark was started. Calling 'benchmark_start(foo)' and
@@ -72,7 +72,7 @@ func benchmark_end(key: String = "") -> void:
 	if not _benchmark_start_times.has(key):
 		print("Invalid benchmark: %s" % key)
 		return
-	print("benchmark %s: %.3f msec" % [key, (OS.get_ticks_usec() - _benchmark_start_times[key]) / 1000.0])
+	print("benchmark %s: %.3f msec" % [key, (Time.get_ticks_usec() - _benchmark_start_times[key]) / 1000.0])
 
 
 func get_overworld_ui() -> OverworldUi:

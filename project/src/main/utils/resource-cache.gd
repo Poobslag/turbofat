@@ -90,7 +90,7 @@ func start_load() -> void:
 		threaded = true
 		load_seconds = 0
 	
-	_start_load_begin_msec = OS.get_ticks_msec()
+	_start_load_begin_msec = Time.get_ticks_msec()
 	set_process(true)
 	_find_resource_paths()
 	if threaded:
@@ -110,17 +110,17 @@ func _process(_delta: float) -> void:
 			# wait for background threads to finish
 			pass
 		else:
-			var start_msec := OS.get_ticks_msec()
+			var start_msec := Time.get_ticks_msec()
 			# Web targets do not support background threads, so we load a few resources every frame
-			while _remaining_resource_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
+			while _remaining_resource_paths and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 				_preload_next_resource()
 	elif _remaining_scene_paths:
-		var start_msec := OS.get_ticks_msec()
+		var start_msec := Time.get_ticks_msec()
 		# Loading scenes in threads causes 'another resource is loaded' errors, so we don't thread this
-		while _remaining_scene_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS \
+		while _remaining_scene_paths and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS \
 				and not _overworked():
 			_preload_next_scene()
-	elif OS.get_ticks_msec() < _start_load_begin_msec + 1000 * load_seconds:
+	elif Time.get_ticks_msec() < _start_load_begin_msec + 1000 * load_seconds:
 		pass
 	else:
 		set_process(false)
@@ -172,7 +172,7 @@ func get_progress() -> float:
 
 
 func is_done() -> bool:
-	return _work_done >= _work_total and OS.get_ticks_msec() >= _start_load_begin_msec + 1000 * load_seconds
+	return _work_done >= _work_total and Time.get_ticks_msec() >= _start_load_begin_msec + 1000 * load_seconds
 
 
 func has_cached_resource(path: String) -> bool:
@@ -217,7 +217,7 @@ func _work_progress() -> float:
 func _wait_progress() -> float:
 	var wait_progress := 1.0
 	if load_seconds > 0:
-		wait_progress = clamp((OS.get_ticks_msec() - _start_load_begin_msec) / (1000 * load_seconds), 0.0, 1.0)
+		wait_progress = clamp((Time.get_ticks_msec() - _start_load_begin_msec) / (1000 * load_seconds), 0.0, 1.0)
 	return wait_progress
 
 
@@ -378,9 +378,9 @@ func _load_resource(resource_path: String) -> void:
 			# resource doesn't exist; cache so we don't try again
 			result = "_"
 		else:
-			var start := OS.get_ticks_msec()
+			var start := Time.get_ticks_msec()
 			result = load(resource_path)
-			var duration := OS.get_ticks_msec() - start
+			var duration := Time.get_ticks_msec() - start
 			if verbose: print("resource loaded: %4d, %s" % [duration, resource_path])
 		
 		_cache_mutex.lock()

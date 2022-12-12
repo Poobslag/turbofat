@@ -58,10 +58,10 @@ func should_play(player: Node) -> bool:
 	var result := true
 	var resource_path: String = player.stream.resource_path
 	var last_played_msec: int = last_played_msec_by_resource_path.get(resource_path, 0)
-	if last_played_msec + SUPPRESS_SFX_MSEC >= OS.get_ticks_msec():
+	if last_played_msec + SUPPRESS_SFX_MSEC >= Time.get_ticks_msec():
 		# suppress sound effect; sound was played too recently
 		result = false
 	else:
 		# update 'last_played'; sound is about to be played
-		last_played_msec_by_resource_path[resource_path] = OS.get_ticks_msec()
+		last_played_msec_by_resource_path[resource_path] = Time.get_ticks_msec()
 	return result
