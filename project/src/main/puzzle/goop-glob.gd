@@ -84,7 +84,7 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 		modulate = Foods.COLORS_ALL[new_box_type]
 	
 	position = new_position
-	scale = Vector2(1, 1)
+	scale = Vector2.ONE
 	rotation = 0
 	velocity = Vector2.ZERO
 	# add x velocity twice so that its distribution is more of a bell curve

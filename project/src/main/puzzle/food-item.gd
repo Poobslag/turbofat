@@ -8,11 +8,11 @@ extends PackedSprite
 signal ready_to_fly
 
 ## Scale/rotation modifiers applied by our animation
-export (Vector2) var scale_modifier := Vector2(1.0, 1.0)
+export (Vector2) var scale_modifier := Vector2.ONE
 export (float) var rotation_modifier := 0.0
 
 ## The unmodified scale/rotation before pulsing/spinning
-var base_scale := Vector2(1.0, 1.0) setget set_base_scale
+var base_scale := Vector2.ONE setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
 ## The velocity applied to the food when in the 'floating' state

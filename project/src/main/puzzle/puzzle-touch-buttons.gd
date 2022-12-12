@@ -95,10 +95,10 @@ func _refresh_emit_actions() -> void:
 ##
 ## This updates their location and size.
 func _refresh_button_positions() -> void:
-	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
+	$ButtonsSw.rect_scale = Vector2.ONE * SystemData.touch_settings.size
 	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 	
-	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
+	$ButtonsSe.rect_scale = Vector2.ONE * SystemData.touch_settings.size
 	$ButtonsSe.rect_position.x = rect_size.x - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
 	$ButtonsSe.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 	

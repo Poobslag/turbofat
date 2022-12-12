@@ -3,7 +3,7 @@ extends Sprite
 ## An image which scrolls by on the wallpaper.
 
 ## The unmodified scale/rotation before pulsing/spinning
-var base_scale := Vector2(1.0, 1.0) setget set_base_scale
+var base_scale := Vector2.ONE setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
 ## Stickers pulse and rotate. This field is used to calculate the pulse/rotation amount

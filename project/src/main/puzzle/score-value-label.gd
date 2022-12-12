@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 	# Workaround for Godot #40357 to force the label to shrink to its minimum size. Otherwise, the ScoreParticles
 	# will be positioned incorrectly if the text ever shrinks.
-	rect_size = Vector2(0, 0)
+	rect_size = Vector2.ZERO
 
 
 func _on_resized() -> void:
@@ -30,7 +30,7 @@ func _on_PuzzleState_score_changed() -> void:
 	
 	# Workaround for Godot #40357 to force the label to shrink to its minimum size. Otherwise, the ScoreParticles
 	# will be positioned incorrectly if the text ever shrinks.
-	rect_size = Vector2(0, 0)
+	rect_size = Vector2.ZERO
 
 
 func _on_PuzzleState_topped_out() -> void:

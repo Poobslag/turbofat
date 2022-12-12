@@ -10,7 +10,7 @@ const LERP_WEIGHT := 0.05
 
 ## zoom amount when zoomed in or out
 const ZOOM_AMOUNT_NEAR := Vector2(0.5, 0.5)
-const ZOOM_AMOUNT_FAR := Vector2(1.0, 1.0)
+const ZOOM_AMOUNT_FAR := Vector2.ONE
 
 ## fixed zoom amount for cutscenes which should not zoom in and out
 var fixed_zoom := 0.0

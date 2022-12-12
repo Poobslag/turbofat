@@ -6,7 +6,7 @@ extends Node2D
 export (Vector2) var shadow_offset: Vector2
 
 export (NodePath) var creature_path: NodePath setget set_creature_path
-export (Vector2) var shadow_scale := Vector2(1.0, 1.0)
+export (Vector2) var shadow_scale := Vector2.ONE
 
 ## The Creature this shadow is for
 var _creature: Creature

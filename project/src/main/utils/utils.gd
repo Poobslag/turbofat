@@ -76,6 +76,11 @@ static func rand_value(values: Array):
 	return values[randi() % values.size()]
 
 
+## Generates a pseudo-random 32-bit signed integer between from and to (inclusive).
+static func randi_range(from: int, to: int) -> int:
+	return randi() % (to + 1 - from) + from
+
+
 ## Returns a random key from the specified dictionary.
 ##
 ## The values in the dictionary are numeric weights for each key.
@@ -256,7 +261,7 @@ static func to_bool(s: String) -> bool:
 ## For now, the nuance and complexity required in correctly implementing this trivial functionality warrants a utility
 ## function.
 static func map_to_world_centered(tile_map: TileMap, cell: Vector2) -> Vector2:
-	return (tile_map.map_to_world(cell) + tile_map.map_to_world(cell + Vector2(1, 1))) * 0.5
+	return (tile_map.map_to_world(cell) + tile_map.map_to_world(cell + Vector2.ONE)) * 0.5
 
 
 ## Shuffles the entries of the given array in a predictable manner, using the Fisher-Yates algorithm.
