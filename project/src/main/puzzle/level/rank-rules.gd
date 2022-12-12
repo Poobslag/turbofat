@@ -77,9 +77,6 @@ var skip_results := false
 ## gives the player a little bump in rank so achieving the target score will always result in a higher grade.
 var success_bonus := 0.0
 
-## rank penalty applied each time the player tops out
-var top_out_penalty := 4.0
-
 ## If 'true' the player is not given a rank for this level.
 var unranked := false
 
@@ -103,7 +100,6 @@ func _init() -> void:
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_speed_rank"))
 	_rule_parser.add_bool("skip_results")
 	_rule_parser.add_float("success_bonus")
-	_rule_parser.add_float("top_out_penalty").default(4.0)
 	_rule_parser.add_bool("unranked")
 
 
