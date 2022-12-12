@@ -186,7 +186,8 @@ func apply_top_out_score_penalty() -> void:
 ##
 ## If the player is not out of lives, the game will still continue.
 func top_out() -> void:
-	if level_performance.top_out_count >= CurrentLevel.settings.lose_condition.top_out:
+	if level_performance.top_out_count + 1 >= CurrentLevel.settings.lose_condition.top_out:
+		PuzzleState.level_performance.top_out_count += 1
 		make_player_lose()
 	else:
 		apply_top_out_score_penalty()
