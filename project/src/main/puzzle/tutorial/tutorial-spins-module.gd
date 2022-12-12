@@ -182,7 +182,7 @@ func _prepare_box_tally_item() -> void:
 ## Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	PuzzleState.level_performance.lost = false
-	var delay_between_levels := PuzzleState.DELAY_SHORT
+	var delay_between_levels := TutorialModule.DELAY_SHORT
 	var new_level_id: String
 	
 	match CurrentLevel.settings.id:
