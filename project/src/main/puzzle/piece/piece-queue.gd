@@ -304,7 +304,7 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 ## 	'max_pieces_to_right': The maximum number of pieces to the right of the new piece. '0' guarantees the new piece
 ## 		will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
 func _insert_annoying_piece(max_pieces_to_right: int) -> void:
-	var new_piece_index := int(rand_range(pieces.size() - max_pieces_to_right + 1, pieces.size() + 1))
+	var new_piece_index := Utils.randi_range(pieces.size() - max_pieces_to_right + 1, pieces.size())
 	var extra_piece_types: Array = _shuffled_piece_types()
 	if CurrentLevel.settings.piece_types.suppress_repeat_piece and extra_piece_types.size() >= 3:
 		# check the neighboring pieces, and remove those from the pieces we're picking from

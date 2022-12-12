@@ -46,7 +46,7 @@ func _on_PuzzleState_score_changed() -> void:
 func _on_PuzzleState_topped_out() -> void:
 	modulate = Color("80ff5555")
 	text = StringUtils.format_money(-1 * PuzzleState.TOP_OUT_PENALTY)
-	rect_size = Vector2(0, 0)
+	rect_size = Vector2.ZERO
 	_penalty_timer.start()
 
 

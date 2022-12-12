@@ -35,7 +35,7 @@ func _interpolate_pop(popping_in: bool) -> void:
 	remove(_chat_choice, "rect_scale:y")
 	
 	var chat_choice_modulate := Color.white if popping_in else Color.transparent
-	var chat_choice_scale := Vector2(1.0, 1.0) if popping_in else POP_OUT_SCALE
+	var chat_choice_scale := Vector2.ONE if popping_in else POP_OUT_SCALE
 	
 	interpolate_property(_chat_choice, "modulate", _chat_choice.modulate,
 			chat_choice_modulate, 0.1, Tween.TRANS_LINEAR)

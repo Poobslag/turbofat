@@ -455,7 +455,7 @@ func _post_unemote() -> void:
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").material.set_shader_param("red", Color.white)
 	_creature_visuals.get_node("EmoteBody").scale = Vector2(0.836, 0.836)
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead").position = Vector2( 0, 256 )
-	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
+	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
 
 
 ## Transition function for moods which don't need a transition.
@@ -465,7 +465,7 @@ func _transition_noop() -> void:
 
 ## Transitions from 'awkward1' to 'awkward0', hiding the white sweat circles.
 func _transition_awkward1_awkward0() -> void:
-	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
+	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
 	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteHead"])
 	_reset_tween.start()
@@ -526,7 +526,7 @@ func _transition_rage1_rage0() -> void:
 
 ## Transitions from 'sigh1' to 'sigh0', turning the head forward again
 func _transition_sigh1_sigh0() -> void:
-	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
+	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
 	_reset_tween.remove_all()
 	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
 			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)

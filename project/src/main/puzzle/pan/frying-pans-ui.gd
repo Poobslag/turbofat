@@ -126,7 +126,7 @@ func _add_pans_to_tilemap(pan_cells: Array) -> void:
 ## The tilemap is rescaled so that its contents will fit into its parent control horizontally.
 func _update_tilemap_scale() -> void:
 	var total_width := max(10, _tile_map.get_used_rect().size.x + 1) * _tile_map.cell_size.x
-	_tile_map.scale = Vector2(1, 1) * (rect_size.x / total_width)
+	_tile_map.scale = Vector2.ONE * (rect_size.x / total_width)
 
 
 ## Animates a pan disappearing when the player loses a life.

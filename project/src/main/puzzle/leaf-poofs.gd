@@ -27,7 +27,7 @@ func _spawn_poofs(y: int, veg_columns: Array, poof_count: int) -> void:
 	
 	# we split the line 3/6 or 4/5 between the two leaf varieties. 'cutoff' decides where the line is split.
 	# 'cutoff_direction' decides which leaf variety is on which side
-	var cutoff := int(rand_range(3, 6))
+	var cutoff := Utils.randi_range(3, 5)
 	var cutoff_direction := randf() < 0.5
 	
 	veg_columns.shuffle()

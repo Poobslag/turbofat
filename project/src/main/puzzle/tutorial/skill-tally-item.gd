@@ -111,7 +111,7 @@ func _blink(bright: bool = false) -> void:
 		return
 	
 	_tween.remove_all()
-	_blink_panel.rect_scale = Vector2(1, 1)
+	_blink_panel.rect_scale = Vector2.ONE
 	if bright:
 		_bright_tween_active = true
 		_blink_panel.modulate = Color.white

@@ -28,6 +28,6 @@ func set_shuffle(value: bool) -> void:
 	
 	set_frame(randi() % ($Sprite.hframes * $Sprite.vframes))
 	set_flip_h(randf() > 0.5)
-	scale = Vector2(1.0, 1.0)
+	scale = Vector2.ONE
 	
 	property_list_changed_notify()

@@ -11,7 +11,7 @@ const MANUAL_CAMERA_SPEED := 3000
 var _total_time := rand_range(0.0, 10.0)
 
 ## base zoom value before drift is applied
-var _base_zoom := Vector2(1.0, 1.0)
+var _base_zoom := Vector2.ONE
 
 ## period for offset/zoom drift, in seconds
 var offset_h_drift_period := 6.450 * rand_range(0.666, 1.333)

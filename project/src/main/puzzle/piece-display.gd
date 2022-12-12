@@ -21,7 +21,7 @@ func refresh_tile_map(next_piece: NextPiece) -> void:
 	_tile_map.clear()
 	if next_piece.type != PieceTypes.piece_null:
 		var bounding_box := Rect2( \
-				next_piece.type.get_cell_position(next_piece.orientation, 0), Vector2(1.0, 1.0))
+				next_piece.type.get_cell_position(next_piece.orientation, 0), Vector2.ONE)
 		# update the tilemap with the new piece type
 		for i in range(next_piece.type.pos_arr[0].size()):
 			var block_pos := next_piece.type.get_cell_position(next_piece.orientation, i)
@@ -30,7 +30,7 @@ func refresh_tile_map(next_piece: NextPiece) -> void:
 			bounding_box = bounding_box.expand( \
 					next_piece.type.get_cell_position(next_piece.orientation, i))
 			bounding_box = bounding_box.expand( \
-					next_piece.type.get_cell_position(next_piece.orientation, i) + Vector2(1, 1))
+					next_piece.type.get_cell_position(next_piece.orientation, i) + Vector2.ONE)
 		
 		# grow to accommodate bigger pieces
 		var bounding_box_longest_dimension := max(bounding_box.size.x, bounding_box.size.y)

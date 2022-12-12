@@ -71,7 +71,7 @@ func _autotile_undecorated_floor(cell: Vector2) -> void:
 		_set_cell_autotile_coord(cell, tile_alternatives[0])
 	else:
 		# replace the cell with a blemished undecorated floor tile
-		_set_cell_autotile_coord(cell, tile_alternatives[int(rand_range(1, tile_alternatives.size()))])
+		_set_cell_autotile_coord(cell, tile_alternatives[Utils.randi_range(1, tile_alternatives.size() - 1)])
 
 
 ## Updates the autotile coordinate for a TileMap cell.
