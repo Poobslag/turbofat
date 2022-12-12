@@ -1,9 +1,20 @@
 extends Node
-## Plays sound effects at the start and end of a puzzle.
+## Plays sound effects at the start and end of a level.
 
+# sounds played at the start of a level
 onready var _go_sound := $GoSound
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 onready var _ready_sound := $ReadySound
+
+# sounds played during tutorials
+onready var _level_change_sound := $LevelChangeSound
+onready var _section_complete_sound := $SectionCompleteSound
+onready var _section_fail_sound := $SectionFailSound
+
+# sounds played at the end of a level
+onready var _excellent_sound := $ExcellentSound
+onready var _game_over_sound := $GameOverSound
+onready var _match_end_sound := $MatchEndSound
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -44,23 +55,23 @@ func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
 		return
 	
 	if PuzzleState.level_performance.lost:
-		$SectionFailSound.play()
+		_section_fail_sound.play()
 	else:
-		$SectionCompleteSound.play()
+		_section_complete_sound.play()
 
 
 func _on_PuzzleState_after_level_changed() -> void:
-	$LevelChangeSound.play()
+	_level_change_sound.play()
 
 
 func _on_PuzzleState_game_ended() -> void:
 	var sound: AudioStreamPlayer
 	match PuzzleState.end_result():
 		Levels.Result.LOST:
-			sound = $GameOverSound
+			sound = _game_over_sound
 		Levels.Result.FINISHED:
-			sound = $MatchEndSound
+			sound = _match_end_sound
 		Levels.Result.WON:
-			sound = $ExcellentSound
+			sound = _excellent_sound
 	if sound:
 		sound.play()

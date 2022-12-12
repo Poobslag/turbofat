@@ -95,7 +95,8 @@ func test_add_carrots_get_config() -> void:
 	effect = LevelTriggerEffects.create("add_carrots", {})
 	assert_eq_shallow({}, effect.get_config())
 	
-	effect = LevelTriggerEffects.create("add_carrots", {"count": "2", "duration": "12.0", "size": "large", "smoke": "none", "x": "0-2"})
+	effect = LevelTriggerEffects.create("add_carrots", {"x": "0-2", "count": "2", "duration": "12.0", "size": "large",
+			"smoke": "none"})
 	assert_eq_shallow({"count": "2", "duration": "12", "size": "large", "smoke": "none", "x": "0-2"}, effect.get_config())
 
 
