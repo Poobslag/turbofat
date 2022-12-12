@@ -6,15 +6,12 @@
 [ext_resource path="res://src/main/editor/creature/tweak-eye-row.gd" type="Script" id=4]
 [ext_resource path="res://assets/main/editor/creature/edit-rainbow.png" type="Texture" id=5]
 
-[node name="Eye Color" type="HBoxContainer"]
+[node name="EyeColor" type="HBoxContainer"]
 margin_top = 124.0
 margin_right = 306.0
 margin_bottom = 150.0
 custom_constants/separation = 10
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 creature_editor_path = NodePath("../../../../..")
 
 [node name="Label" type="Label" parent="."]
@@ -151,12 +148,12 @@ __meta__ = {
 [connection signal="color_changed" from="Edit2" to="." method="_on_Edit_color_changed"]
 [connection signal="popup_closed" from="Edit2" to="." method="_on_Edit_popup_closed"]
 [connection signal="pressed" from="Edit2" to="." method="_on_Edit_pressed"]
-[connection signal="button_down" from="GrayDna/Button" to="GrayDna/Button" method="_on_button_down"]
-[connection signal="button_up" from="GrayDna/Button" to="GrayDna/Button" method="_on_button_up"]
-[connection signal="pressed" from="GrayDna/Button" to="." method="_on_GrayDna_pressed"]
-[connection signal="button_down" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_down"]
-[connection signal="button_up" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_up"]
-[connection signal="pressed" from="PurpleDna/Button" to="." method="_on_PurpleDna_pressed"]
 [connection signal="button_down" from="RainbowDna/Button" to="RainbowDna/Button" method="_on_button_down"]
 [connection signal="button_up" from="RainbowDna/Button" to="RainbowDna/Button" method="_on_button_up"]
 [connection signal="pressed" from="RainbowDna/Button" to="." method="_on_RainbowDna_pressed"]
+[connection signal="button_down" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_down"]
+[connection signal="button_up" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_up"]
+[connection signal="pressed" from="PurpleDna/Button" to="." method="_on_PurpleDna_pressed"]
+[connection signal="button_down" from="GrayDna/Button" to="GrayDna/Button" method="_on_button_down"]
+[connection signal="button_up" from="GrayDna/Button" to="GrayDna/Button" method="_on_button_up"]
+[connection signal="pressed" from="GrayDna/Button" to="." method="_on_GrayDna_pressed"]

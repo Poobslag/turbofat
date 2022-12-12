@@ -191,6 +191,15 @@ then
   echo "$RESULT"
 fi
 
+# node names with spaces
+RESULT=$(grep -R -n "node name=\"[^\"]* [^\"]*\"" --include="*.tscn" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Node names with spaces:"
+  echo "$RESULT"
+fi
+
 # sort signal connections. Workaround for Godot #35084
 # https://github.com/godotengine/godot/issues/35084
 if [ "$CLEAN" ]
