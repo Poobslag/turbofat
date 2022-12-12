@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/ui/music-popup-tween.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/music-popup.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/ui/icon-music.png" type="Texture" id=5]
-[ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=6]
+[ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 resource_local_to_scene = true
