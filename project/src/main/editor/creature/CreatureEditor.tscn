@@ -1406,7 +1406,7 @@ allele = "all_rgb"
 text = "All Colors"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Body Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="BodyColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 64.0
 margin_right = 378.0
 margin_bottom = 90.0
@@ -1414,7 +1414,7 @@ allele = "body_rgb"
 text = "Main Color"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Line Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="LineColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 94.0
 margin_right = 378.0
 margin_bottom = 120.0
@@ -1446,7 +1446,7 @@ allele = "eye"
 text = "Eye"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Eye Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 24 )]
+[node name="EyeColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 24 )]
 margin_top = 214.0
 margin_right = 378.0
 margin_bottom = 240.0
@@ -1484,7 +1484,7 @@ allele = "ear"
 text = "Ear"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Horn Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="HornColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 364.0
 margin_right = 378.0
 margin_bottom = 390.0
@@ -1508,7 +1508,7 @@ allele = "hair"
 text = "Hair"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Hair Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="HairColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 454.0
 margin_right = 378.0
 margin_bottom = 480.0
@@ -1532,7 +1532,7 @@ allele = "belly"
 text = "Belly"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Belly Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="BellyColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 544.0
 margin_right = 378.0
 margin_bottom = 570.0
@@ -1570,7 +1570,7 @@ allele = "collar"
 text = "Collar"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Cloth Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="ClothColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 694.0
 margin_right = 378.0
 margin_bottom = 720.0
@@ -1578,7 +1578,7 @@ allele = "cloth_rgb"
 text = "Cloth Color"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Glass Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="GlassColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 724.0
 margin_right = 378.0
 margin_bottom = 750.0
@@ -1586,7 +1586,7 @@ allele = "glass_rgb"
 text = "Glass Color"
 creature_editor_path = NodePath("../../../../../../..")
 
-[node name="Plastic Color2" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+[node name="PlasticColor" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
 margin_top = 754.0
 margin_right = 378.0
 margin_bottom = 780.0
@@ -1967,9 +1967,6 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json" )
-current_dir = "/"
-current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
-current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
 
 [node name="Export" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
@@ -1983,9 +1980,6 @@ margin_bottom = 480.0
 popup_exclusive = true
 window_title = "Export Creature"
 access = 2
-current_dir = "/"
-current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
-current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
 
 [node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
 margin_right = 250.0
@@ -1998,28 +1992,28 @@ dialog_autowrap = true
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 29 )]
 
-[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
 [connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]
 [connection signal="hovered_creature_changed" from="Ui/CreatureSelector" to="Ui/Nametags" method="_on_CreatureSelector_hovered_creature_changed"]
 [connection signal="mouse_exited" from="Ui/CreatureSelector" to="Ui/CreatureSelector" method="_on_mouse_exited"]
-[connection signal="about_to_show" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="file_selected" from="Ui/Dialogs/Export" to="Ui/Dialogs" method="_on_ExportDialog_file_selected"]
-[connection signal="popup_hide" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="file_selected" from="Ui/Dialogs/Import" to="Ui/Dialogs" method="_on_ImportDialog_file_selected"]
-[connection signal="popup_hide" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="confirmed" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs" method="_on_SaveConfirmation_confirmed"]
-[connection signal="popup_hide" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Ui/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Ui/Reroll/Button" to="." method="_on_Reroll_pressed"]
 [connection signal="value_changed" from="Ui/Reroll/HSlider" to="Ui/Reroll" method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
 [connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
 [connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
+[connection signal="about_to_show" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="confirmed" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs" method="_on_SaveConfirmation_confirmed"]
+[connection signal="popup_hide" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/Import" to="Ui/Dialogs" method="_on_ImportDialog_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/Export" to="Ui/Dialogs" method="_on_ExportDialog_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]

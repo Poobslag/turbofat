@@ -129,7 +129,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sound + Graphics" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
+[node name="SoundAndGraphics" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -142,19 +142,19 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
 margin_right = 560.0
 margin_bottom = 210.0
 size_flags_horizontal = 3
 
-[node name="Volume" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
+[node name="Volume" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_right = 548.0
 margin_bottom = 20.0
 theme = ExtResource( 1 )
 text = "Sound + Music"
 align = 1
 
-[node name="Master" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
+[node name="Master" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -164,7 +164,7 @@ margin_top = 24.0
 margin_right = 548.0
 margin_bottom = 44.0
 
-[node name="Music" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
+[node name="Music" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -175,7 +175,7 @@ margin_right = 548.0
 margin_bottom = 68.0
 volume_type = 1
 
-[node name="Sounds" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
+[node name="Sounds" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -186,7 +186,7 @@ margin_right = 548.0
 margin_bottom = 92.0
 volume_type = 2
 
-[node name="Voices" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer" instance=ExtResource( 6 )]
+[node name="Voices" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -197,12 +197,12 @@ margin_right = 548.0
 margin_bottom = 116.0
 volume_type = 3
 
-[node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 120.0
 margin_right = 548.0
 margin_bottom = 124.0
 
-[node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
+[node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 128.0
 margin_right = 548.0
 margin_bottom = 148.0
@@ -210,7 +210,7 @@ theme = ExtResource( 1 )
 text = "Graphics"
 align = 1
 
-[node name="Creature Detail" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
+[node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 152.0
 margin_right = 548.0
 margin_bottom = 178.0
@@ -220,7 +220,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 19 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
 margin_right = 212.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -235,7 +235,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
 margin_left = 232.0
 margin_right = 392.0
 margin_bottom = 26.0
@@ -247,7 +247,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Use Vsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer"]
+[node name="UseVsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 182.0
 margin_right = 548.0
 margin_bottom = 210.0
@@ -257,7 +257,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 25 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
 margin_right = 212.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 0 )
@@ -272,7 +272,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
 margin_left = 232.0
 margin_right = 392.0
 margin_bottom = 28.0
@@ -1076,7 +1076,7 @@ margin_bottom = 26.0
 size_flags_vertical = 4
 text = "X"
 
-[node name="Open User Folder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
+[node name="OpenUserFolder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 84.0
 margin_right = 560.0
 margin_bottom = 110.0
@@ -1086,7 +1086,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 26 )
 
-[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder"]
+[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder"]
 margin_right = 204.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -1094,7 +1094,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 
-[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder" instance=ExtResource( 39 )]
+[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" instance=ExtResource( 39 )]
 margin_left = 224.0
 margin_right = 384.0
 margin_bottom = 26.0
@@ -1379,6 +1379,27 @@ __meta__ = {
 
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_OptionButton_toggled"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" method="_on_OptionButton_toggled"]
+[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Language" method="_on_OptionButton_item_selected"]
+[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" method="_on_Button_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData" method="_on_Button_pressed"]
+[connection signal="ok_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_ok_pressed"]
+[connection signal="other_quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_other_quit_pressed"]
+[connection signal="quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_quit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
 [connection signal="change_save_cancelled" from="Dialogs" to="." method="_on_Dialogs_change_save_cancelled"]
 [connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
 [connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
@@ -1388,24 +1409,3 @@ __meta__ = {
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="ok_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_ok_pressed"]
-[connection signal="other_quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_other_quit_pressed"]
-[connection signal="quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_quit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_OptionButton_toggled"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData" method="_on_Button_pressed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Language" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Open User Folder" method="_on_Button_pressed"]
-[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Creature Detail" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync/CheckBox" to="Window/UiArea/TabContainer/Sound + Graphics/VBoxContainer/Use Vsync" method="_on_CheckBox_pressed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
-[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]
