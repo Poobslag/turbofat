@@ -63,7 +63,7 @@ func copy_from(glob: Node) -> void:
 
 ## Returns the time in seconds since this glob was initialized.
 func get_age() -> float:
-	return (OS.get_ticks_msec() - _creation_time) / 1000
+	return (Time.get_ticks_msec() - _creation_time) / 1000
 
 
 func is_rainbow() -> bool:
@@ -72,7 +72,7 @@ func is_rainbow() -> bool:
 
 ## Resets this goop glob's state, including its color and position.
 func initialize(new_box_type: int, new_position: Vector2) -> void:
-	_creation_time = OS.get_ticks_msec()
+	_creation_time = Time.get_ticks_msec()
 	box_type = new_box_type
 	falling = true
 	set_process(true)

@@ -22,8 +22,8 @@ func _process(_delta: float) -> void:
 	if _pending_shader_keys:
 		# if there are any pending shader keys, we load a few each frame. Setting shader params is slow and setting
 		# too many at once causes frame drops
-		var start_ticks_usec := OS.get_ticks_usec()
-		while OS.get_ticks_usec() - start_ticks_usec < MAX_SHADER_USEC_PER_FRAME and _pending_shader_keys:
+		var start_ticks_usec := Time.get_ticks_usec()
+		while Time.get_ticks_usec() - start_ticks_usec < MAX_SHADER_USEC_PER_FRAME and _pending_shader_keys:
 			var key: String = _pending_shader_keys.pop_front()
 			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
