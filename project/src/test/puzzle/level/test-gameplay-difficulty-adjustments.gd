@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func before_each() -> void:
 	SystemData.gameplay_settings.reset()

@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 ## This matrix is generated in a complex way, so we test its contents.
 func test_speed_id_matrix() -> void:

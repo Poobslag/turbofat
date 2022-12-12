@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_sanitize_name_length() -> void:
 	# 31 character limit

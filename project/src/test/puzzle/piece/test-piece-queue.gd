@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_empty() -> void:
 	assert_eq([0], non_adjacent_indexes([], "p"))

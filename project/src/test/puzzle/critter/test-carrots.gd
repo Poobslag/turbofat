@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_deconflict_carrots_width_1() -> void:
 	assert_eq(Carrots.deconflict_carrots([3, 4, 5, 1, 2, 0, 6], Vector2(1, 4)), [3, 4, 5, 1, 2, 0, 6])

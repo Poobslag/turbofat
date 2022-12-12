@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func after_each() -> void:
 	OtherLevelLibrary.other_regions_path = OtherLevelLibrary.DEFAULT_OTHER_REGIONS_PATH

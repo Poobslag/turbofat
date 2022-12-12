@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 const TEMP_PLAYER_FILENAME := "test997.save"
 

@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 ## Framework for testing piece kicks.
 
 ## Unit tests need to distinguish between a piece rotating in place and failing to rotate.

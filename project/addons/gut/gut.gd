@@ -38,9 +38,6 @@ var _inner_class_name = ''
 var _should_maximize = false setget set_should_maximize, get_should_maximize
 var _log_level = 1 setget set_log_level, get_log_level
 var _disable_strict_datatype_checks = false setget disable_strict_datatype_checks, is_strict_datatype_checks_disabled
-var _test_prefix = 'test_'
-var _file_prefix = 'test_'
-var _file_extension = '.gd'
 var _inner_class_prefix = 'Test'
 var _temp_directory = 'user://gut_temp_directory'
 var _export_path = '' setget set_export_path, get_export_path
@@ -51,6 +48,7 @@ var _post_run_script = '' setget set_post_run_script, get_post_run_script
 var _color_output = false setget set_color_output, get_color_output
 var _junit_xml_file = '' setget set_junit_xml_file, get_junit_xml_file
 var _junit_xml_timestamp = false setget set_junit_xml_timestamp, get_junit_xml_timestamp
+var _add_children_to = self setget set_add_children_to, get_add_children_to
 # -- End Settings --
 
 
@@ -137,6 +135,8 @@ var _before_all_test_obj = load('res://addons/gut/test_collector.gd').Test.new()
 # Used for proper assert tracking and printing during after_all
 var _after_all_test_obj = load('res://addons/gut/test_collector.gd').Test.new()
 
+
+var _file_prefix = 'test_'
 const SIGNAL_TESTS_FINISHED = 'tests_finished'
 const SIGNAL_STOP_YIELD_BEFORE_TEARDOWN = 'stop_yield_before_teardown'
 
@@ -172,7 +172,7 @@ func _init():
 	_gui = load('res://addons/gut/GutScene.tscn').instance()
 
 
-func _process(delta):
+func _physics_process(delta):
 	if(_yield_frames > 0):
 		_yield_frames -= 1
 
@@ -396,7 +396,7 @@ func _print_summary():
 
 	if(_new_summary.get_totals().tests > 0):
 		var fmt = _lgr.fmts.green
-		var msg = str(_new_summary.get_totals().passing) + ' passed ' + str(_new_summary.get_totals().failing) + ' failed.  ' + \
+		var msg = str(_new_summary.get_totals().passing_tests) + ' passed ' + str(_new_summary.get_totals().failing_tests) + ' failed.  ' + \
 			str("Tests finished in ", _gui.elapsed_time_as_str())
 		if(_new_summary.get_totals().failing > 0):
 			fmt = _lgr.fmts.red
@@ -426,7 +426,7 @@ func _validate_hook_script(path):
 			result.valid = true
 		else:
 			result.valid = false
-			_lgr.error('The hook script [' + path + '] does not extend res://addons/gut/hook_script.gd')
+			_lgr.error('The hook script [' + path + '] does not extend GutHookScript')
 	else:
 		result.valid = false
 		_lgr.error('The hook script [' + path + '] does not exist.')
@@ -515,6 +515,7 @@ func _end_run():
 		p(str("GUT version ",_utils.latest_version," is now available."))
 
 	_gui.set_title("Finished.")
+	_gui.compact_mode(false)
 
 
 # ------------------------------------------------------------------------------
@@ -590,7 +591,7 @@ func _does_class_name_match(the_class_name, script_class_name):
 func _setup_script(test_script):
 	test_script.gut = self
 	test_script.set_logger(_lgr)
-	add_child(test_script)
+	_add_children_to.add_child(test_script)
 	_test_script_objects.append(test_script)
 
 
@@ -600,32 +601,35 @@ func _do_yield_between(frames=2):
 	_yield_frames = frames
 	return self
 
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 func _wait_for_done(result):
-	var iter_counter = 0
-	var print_after = 3
-
 	# callback method sets waiting to false.
 	result.connect(COMPLETED, self, '_on_test_script_yield_completed')
 	if(!_was_yield_method_called):
-		_lgr.log('-- Yield detected, waiting --', _lgr.fmts.yellow)
+		_lgr.yield_msg('-- Yield detected, waiting --')
 
 	_was_yield_method_called = false
 	_waiting = true
-	_wait_timer.set_wait_time(0.4)
 
+	var cycles_per_dot = 500
+	var cycles = 0
 	var dots = ''
+
 	while(_waiting):
-		iter_counter += 1
-		_lgr.yield_text('waiting' + dots)
-		_wait_timer.start()
-		yield(_wait_timer, 'timeout')
-		dots += '.'
-		if(dots.length() > 5):
-			dots = ''
+		yield(get_tree(), 'idle_frame')
+		cycles += 1
+
+		if(cycles >= cycles_per_dot):
+			cycles = 0
+			dots += '.'
+			if(dots.length() > 5):
+				dots = ''
+			_lgr.yield_text('waiting' + dots)
 
 	_lgr.end_yield()
+
 
 # ------------------------------------------------------------------------------
 # returns self so it can be integrated into the yield call.
@@ -634,6 +638,7 @@ func _wait_for_continue_button():
 	p(PAUSE_MESSAGE, 0)
 	_waiting = true
 	return self
+
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -671,6 +676,9 @@ func _get_indexes_matching_path(path):
 # ------------------------------------------------------------------------------
 func _run_parameterized_test(test_script, test_name):
 	var script_result = _run_test(test_script, test_name)
+	if(_current_test.assert_count == 0 and !_current_test.pending):
+		_lgr.warn('Test did not assert')
+
 	if(_is_function_state(script_result)):
 		# _run_tests does _wait_for_done so just wait on it to  complete
 		yield(script_result, COMPLETED)
@@ -680,10 +688,15 @@ func _run_parameterized_test(test_script, test_name):
 		_fail(str('Parameterized test ', _current_test.name, ' did not call use_parameters for the default value of the parameter.'))
 	else:
 		while(!_parameter_handler.is_done()):
+			var cur_assert_count = _current_test.assert_count
 			script_result = _run_test(test_script, test_name)
 			if(_is_function_state(script_result)):
 				# _run_tests does _wait_for_done so just wait on it to  complete
 				yield(script_result, COMPLETED)
+
+			if(_current_test.assert_count == cur_assert_count and !_current_test.pending):
+				_lgr.warn('Test did not assert')
+
 
 	_parameter_handler = null
 
@@ -828,7 +841,7 @@ func _test_the_scripts(indexes=[]):
 		_orphan_counter.add_counter('script')
 
 		if(the_script.tests.size() > 0):
-			_gui.set_title(the_script.get_full_name())
+			_gui.set_script_path(the_script.get_full_name())
 			_lgr.set_indent_level(0)
 			_print_script_heading(the_script)
 		_new_summary.add_script(the_script.get_full_name())
@@ -885,8 +898,11 @@ func _test_the_scripts(indexes=[]):
 					# _run_test calls _wait for done, just wait for that to finish
 					yield(script_result, COMPLETED)
 
-				if(_current_test.assert_count == 0 and !_current_test.pending):
+				if(!_current_test.did_assert()):
 					_lgr.warn('Test did not assert')
+
+				_gui.add_test(_current_test.did_pass())
+
 				_current_test.has_printed_name = false
 				_gui.set_progress_test_value(i + 1)
 				emit_signal('test_finished')
@@ -908,7 +924,7 @@ func _test_the_scripts(indexes=[]):
 		# don't clean up after themselves.  Might have to consolidate output
 		# into some other structure and kill the script objects with
 		# test_script.free() instead of remove child.
-		remove_child(test_script)
+		_add_children_to.remove_child(test_script)
 
 		_lgr.set_indent_level(0)
 		if(test_script.get_assert_count() > 0):
@@ -939,7 +955,8 @@ func _pass(text=''):
 func _fail(text=''):
 	_gui.add_failing() # increments counters
 	if(_current_test != null):
-		var line_text = '  at line ' + str(_extract_line_number(_current_test))
+		var line_number = _extract_line_number(_current_test)
+		var line_text = '  at line ' + str(line_number)
 		p(line_text, LOG_LEVEL_FAIL_ONLY)
 		# format for summary
 		line_text =  "\n    " + line_text
@@ -949,6 +966,7 @@ func _fail(text=''):
 		_new_summary.add_fail(_current_test.name, call_count_text + text + line_text)
 		_current_test.passed = false
 		_current_test.assert_count += 1
+		_current_test.line_number = line_number
 	else:
 		if(_new_summary != null): # b/c of tests.
 			_new_summary.add_fail('script level', text)
@@ -985,6 +1003,9 @@ func _pending(text=''):
 func _get_files(path, prefix, suffix):
 	var files = []
 	var directories = []
+	# ignore addons/gut per issue 294
+	if(path == 'res://addons/gut'):
+		return [];
 
 	var d = Directory.new()
 	d.open(path)
@@ -1061,7 +1082,9 @@ func test_scripts(run_rest=false):
 	if(_script_name != null and _script_name != ''):
 		var indexes = _get_indexes_matching_script_name(_script_name)
 		if(indexes == []):
-			_lgr.error('Could not find script matching ' + _script_name)
+			_lgr.error(str(
+				"Could not find script matching '", _script_name, "'.\n",
+				"Check your directory settings and Script Prefix/Suffix settings."))
 		else:
 			_test_the_scripts(indexes)
 	else:
@@ -1097,7 +1120,7 @@ func add_script(script):
 # with the suffix.  Does not look in sub directories.  Can be called multiple
 # times.
 # ------------------------------------------------------------------------------
-func add_directory(path, prefix=_file_prefix, suffix=_file_extension):
+func add_directory(path, prefix=_file_prefix, suffix=".gd"):
 	# check for '' b/c the calls to addin the exported directories 1-6 will pass
 	# '' if the field has not been populated.  This will cause res:// to be
 	# processed which will include all files if include_subdirectories is true.
@@ -1111,7 +1134,9 @@ func add_directory(path, prefix=_file_prefix, suffix=_file_extension):
 	else:
 		var files = _get_files(path, prefix, suffix)
 		for i in range(files.size()):
-			add_script(files[i])
+			if(_script_name == null or _script_name == '' or \
+					(_script_name != null and files[i].findn(_script_name) != -1)):
+				add_script(files[i])
 
 
 # ------------------------------------------------------------------------------
@@ -1345,7 +1370,7 @@ func set_yield_time(time, text=''):
 		msg += ' --'
 	else:
 		msg +=  ':  ' + text + ' --'
-	_lgr.log(msg, _lgr.fmts.yellow)
+	_lgr.yield_msg(msg)
 	_was_yield_method_called = true
 	return self
 
@@ -1362,7 +1387,7 @@ func set_yield_frames(frames, text=''):
 		msg += ' --'
 	else:
 		msg +=  ':  ' + text + ' --'
-	_lgr.log(msg, _lgr.fmts.yellow)
+	_lgr.yield_msg(msg)
 
 	_was_yield_method_called = true
 	_yield_frames = max(frames + 1, 1)
@@ -1380,7 +1405,7 @@ func set_yield_signal_or_time(obj, signal_name, max_wait, text=''):
 	_yield_timer.set_wait_time(max_wait)
 	_yield_timer.start()
 	_was_yield_method_called = true
-	_lgr.log(str('-- Yielding to signal "', signal_name, '" or for ', max_wait, ' seconds -- ', text), _lgr.fmts.yellow)
+	_lgr.yield_msg(str('-- Yielding to signal "', signal_name, '" or for ', max_wait, ' seconds -- ', text))
 	return self
 
 # ------------------------------------------------------------------------------
@@ -1651,3 +1676,13 @@ func get_junit_xml_timestamp():
 # ------------------------------------------------------------------------------
 func set_junit_xml_timestamp(junit_xml_timestamp):
 	_junit_xml_timestamp = junit_xml_timestamp
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+func get_add_children_to():
+	return _add_children_to
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+func set_add_children_to(add_children_to):
+	_add_children_to = add_children_to
