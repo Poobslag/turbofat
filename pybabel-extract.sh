@@ -1,11 +1,17 @@
 #!/bin/sh
+################################################################################
+# This script extracts messages from source files, generates a POT file, and
+# updates the various PO files.
+
 pybabel extract -F project/assets/main/locale/babelrc \
+	-k description \
 	-k dialog_text \
+	-k keybind_value \
+	-k label_text \
+	-k song_title \
 	-k text \
 	-k tr \
 	-k window_title \
-	-k song_title \
-	-k description \
-	-k keybind_value \
-	-k label_text \
 	-o project/assets/main/locale/messages.pot .
+
+msgmerge --update --backup=none -N project/assets/main/locale/es.po project/assets/main/locale/messages.pot
