@@ -1,25 +1,25 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/ui/RegionSelectButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/ui/menu/career-region-select-menu.gd" type="Script" id=7]
-[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=8]
-[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=9]
-[ext_resource path="res://src/main/ui/menu/region-description-panel.gd" type="Script" id=10]
-[ext_resource path="res://src/main/ui/menu/region-info-panel.gd" type="Script" id=11]
-[ext_resource path="res://src/main/ui/menu/paged-region-buttons.gd" type="Script" id=12]
-[ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=13]
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=14]
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=15]
-[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=16]
-[ext_resource path="res://src/main/ui/level-select/HookableRegionGradeLabel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/level-select/HookableRegionGradeLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/career/CareerRewinder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/RegionSelectButton.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=11]
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
+[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=14]
+[ext_resource path="res://src/main/ui/menu/career-region-select-menu.gd" type="Script" id=15]
+[ext_resource path="res://src/main/ui/menu/region-description-panel.gd" type="Script" id=16]
+[ext_resource path="res://src/main/ui/menu/region-info-panel.gd" type="Script" id=17]
 [ext_resource path="res://src/main/ui/menu/region-grade-labels.gd" type="Script" id=18]
-[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/career/CareerRewinder.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/ui/menu/paged-region-buttons.gd" type="Script" id=19]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -47,10 +47,10 @@ shortcut = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
-script = ExtResource( 7 )
+script = ExtResource( 15 )
 _region_buttons_path = NodePath("RegionSelect/VBoxContainer/Top/RegionButtons")
 
-[node name="Wallpaper" parent="." instance=ExtResource( 2 )]
+[node name="Wallpaper" parent="." instance=ExtResource( 7 )]
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -59,7 +59,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
-custom_styles/panel = ExtResource( 13 )
+custom_styles/panel = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,7 +86,7 @@ custom_constants/separation = 20
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer"]
 margin_right = 904.0
 margin_bottom = 45.0
-theme = ExtResource( 16 )
+theme = ExtResource( 1 )
 text = "Chapter Select"
 align = 1
 
@@ -106,8 +106,8 @@ margin_top = -145.0
 margin_right = 452.0
 margin_bottom = 145.0
 alignment = 1
-script = ExtResource( 12 )
-RegionButtonScene = ExtResource( 5 )
+script = ExtResource( 19 )
+RegionButtonScene = ExtResource( 10 )
 
 [node name="LeftArrow" type="Button" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
 margin_left = 374.0
@@ -116,7 +116,7 @@ margin_right = 398.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 24, 24 )
 size_flags_vertical = 4
-theme = ExtResource( 15 )
+theme = ExtResource( 20 )
 text = "<"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
@@ -127,7 +127,7 @@ rect_min_size = Vector2( 0, 290 )
 size_flags_vertical = 3
 custom_constants/separation = 5
 
-[node name="RegionButton" parent="RegionSelect/VBoxContainer/Top/RegionButtons/HBoxContainer" instance=ExtResource( 5 )]
+[node name="RegionButton" parent="RegionSelect/VBoxContainer/Top/RegionButtons/HBoxContainer" instance=ExtResource( 10 )]
 
 [node name="RightArrow" type="Button" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
 margin_left = 506.0
@@ -136,7 +136,7 @@ margin_right = 530.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 24, 24 )
 size_flags_vertical = 4
-theme = ExtResource( 15 )
+theme = ExtResource( 20 )
 text = ">"
 
 [node name="GradeLabels" type="Control" parent="RegionSelect/VBoxContainer/Top"]
@@ -144,7 +144,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 18 )
-GradeLabelScene = ExtResource( 17 )
+GradeLabelScene = ExtResource( 3 )
 
 [node name="Bottom" type="Control" parent="RegionSelect/VBoxContainer"]
 margin_top = 380.0
@@ -163,8 +163,8 @@ __meta__ = {
 margin_right = 450.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 14 )
-script = ExtResource( 10 )
+custom_styles/panel = ExtResource( 12 )
+script = ExtResource( 16 )
 
 [node name="MarginContainer" type="MarginContainer" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description"]
 anchor_right = 1.0
@@ -183,7 +183,7 @@ margin_top = 5.0
 margin_right = 430.0
 margin_bottom = 95.0
 size_flags_vertical = 1
-theme = ExtResource( 15 )
+theme = ExtResource( 20 )
 align = 1
 valign = 1
 autowrap = true
@@ -196,8 +196,8 @@ margin_left = 454.0
 margin_right = 904.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 14 )
-script = ExtResource( 11 )
+custom_styles/panel = ExtResource( 12 )
+script = ExtResource( 17 )
 
 [node name="MarginContainer" type="MarginContainer" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info"]
 anchor_right = 1.0
@@ -213,7 +213,7 @@ margin_top = 5.0
 margin_right = 430.0
 margin_bottom = 95.0
 size_flags_vertical = 1
-theme = ExtResource( 15 )
+theme = ExtResource( 20 )
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -237,7 +237,7 @@ mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
 
-[node name="BackButton" parent="Buttons/Northeast" instance=ExtResource( 6 )]
+[node name="BackButton" parent="Buttons/Northeast" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 402.0
@@ -245,21 +245,21 @@ margin_right = 502.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
 shortcut = SubResource( 2 )
-icon = ExtResource( 8 )
+icon = ExtResource( 13 )
 expand_icon = true
-normal_icon = ExtResource( 8 )
-pressed_icon = ExtResource( 9 )
+normal_icon = ExtResource( 13 )
+pressed_icon = ExtResource( 14 )
 
-[node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 1 )]
+[node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 5 )]
 action = "ui_cancel"
 
-[node name="CheatCodeDetector" parent="." instance=ExtResource( 19 )]
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 2 )]
 
-[node name="MusicPopup" parent="." instance=ExtResource( 3 )]
+[node name="MusicPopup" parent="." instance=ExtResource( 6 )]
 
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 9 )]
 
-[node name="CareerRewinder" parent="." instance=ExtResource( 20 )]
+[node name="CareerRewinder" parent="." instance=ExtResource( 4 )]
 cheat_code_detector_path = NodePath("../CheatCodeDetector")
 
 [connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]

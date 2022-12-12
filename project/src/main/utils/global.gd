@@ -11,7 +11,7 @@ const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
 const SCENE_CUTSCENE := "res://src/main/world/Cutscene.tscn"
 
 ## scene for career mode which shows the player's progress between levels
-const SCENE_CAREER_MAP := "res://src/main/world/CareerMap.tscn"
+const SCENE_CAREER_MAP := "res://src/main/career/CareerMap.tscn"
 
 ## scene for career mode which is shown at the end of a day
 const SCENE_CAREER_WIN := "res://src/main/career/ui/CareerWin.tscn"
