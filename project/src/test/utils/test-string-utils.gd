@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_capitalize_words() -> void:
 	assert_eq(StringUtils.capitalize_words("a"), "A")

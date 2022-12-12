@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 const TEMP_FILENAME := "test-ripe-bucket.json"
 const TEMP_LEGACY_FILENAME := "test-oven-bucket.save"

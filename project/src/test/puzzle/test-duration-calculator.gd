@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 var _duration_calculator := DurationCalculator.new()
 var _settings: LevelSettings

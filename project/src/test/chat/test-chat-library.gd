@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_add_lull_characters_no_effect() -> void:
 	assert_eq(ChatLibrary.add_lull_characters(""), "")

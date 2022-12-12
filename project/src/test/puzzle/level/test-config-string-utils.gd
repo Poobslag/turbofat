@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_ints_from_config_string() -> void:
 	assert_eq(ConfigStringUtils.ints_from_config_string("").keys(), [])

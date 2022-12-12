@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 var _rank_calculator := RankCalculator.new()
 

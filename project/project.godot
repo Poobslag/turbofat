@@ -374,6 +374,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/settings/graphics-settings.gd"
 }, {
+"base": "Reference",
+"class": "GutHookScript",
+"language": "GDScript",
+"path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Node",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
+}, {
 "base": "Sprite",
 "class": "HeadBobber",
 "language": "GDScript",
@@ -1258,6 +1268,8 @@ _global_script_class_icons={
 "GoopViewports": "",
 "GradeLabel": "",
 "GraphicsSettings": "",
+"GutHookScript": "",
+"GutTest": "",
 "HeadBobber": "",
 "HighScoreTable": "",
 "HoldPieceDisplay": "",

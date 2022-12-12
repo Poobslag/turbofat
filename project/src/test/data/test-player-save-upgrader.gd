@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 const TEMP_FILENAME := "test-ground-lucky.save"
 const TEMP_LEGACY_FILENAME := "test-snatch-lucky.save"

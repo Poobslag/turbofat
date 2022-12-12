@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_allele_weights_hair_and_ant_mouth() -> void:
 	var dna := {"mouth": "1"}

@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_rotate_next_pieces_get_config() -> void:
 	var effect: LevelTriggerEffects.RotateNextPiecesEffect

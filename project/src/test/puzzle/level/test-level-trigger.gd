@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 func test_line_cleared_012345() -> void:
 	var json_dict := {

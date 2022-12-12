@@ -1,4 +1,4 @@
-extends "res://addons/gut/test.gd"
+extends GutTest
 
 const CUTSCENE_FULL := "res://assets/test/chat/cutscene-full.chat"
 const CUTSCENE_META := "res://assets/test/chat/cutscene-meta.chat"
