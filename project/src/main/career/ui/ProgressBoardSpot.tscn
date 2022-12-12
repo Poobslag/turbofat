@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=1]
 [ext_resource path="res://assets/main/career/ui/chalkboard-spot-sheet.png" type="Texture" id=2]
 [ext_resource path="res://src/main/career/ui/progress-board-spot.gd" type="Script" id=3]
 

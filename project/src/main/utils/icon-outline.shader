@@ -1,6 +1,9 @@
 shader_type canvas_item;
 /*
- * Recolors and draws an outline around a frying pan.
+ * Recolors and draws an outline around a single-color sprite.
+ *
+ * Opaque parts of the sprite are recolored as a single color. The icon outline is sampled in 24 directions by default,
+ * but this can be increased for very large or intricate sprites.  
  */
 
 const float TAU = 6.28318530718;
