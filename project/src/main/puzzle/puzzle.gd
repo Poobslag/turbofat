@@ -92,10 +92,6 @@ func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 
 
-func show_buttons() -> void:
-	$Hud/Center/PuzzleMessages.show_buttons()
-
-
 func scroll_to_new_creature() -> void:
 	_restaurant_view.scroll_to_new_creature()
 
