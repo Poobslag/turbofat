@@ -10,10 +10,10 @@ const MAX_LEVELS_PER_PAGE := 18
 signal level_chosen(settings)
 
 ## Emitted when the player highlights a locked level to show more information.
-signal locked_level_chosen(settings)
+signal locked_level_focused(settings)
 
 ## Emitted when the player highlights an unlocked level to show more information.
-signal unlocked_level_chosen(settings)
+signal unlocked_level_focused(settings)
 
 ## Emitted when a new level button is added.
 signal button_added(button)
@@ -212,9 +212,9 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 ## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelButton_focus_entered(level_button: LevelSelectButton, level_id: String) -> void:
 	if level_button.lock_status == LevelSelectButton.STATUS_LOCKED:
-		emit_signal("locked_level_chosen", _level_settings_by_id[level_id])
+		emit_signal("locked_level_focused", _level_settings_by_id[level_id])
 	else:
-		emit_signal("unlocked_level_chosen", _level_settings_by_id[level_id])
+		emit_signal("unlocked_level_focused", _level_settings_by_id[level_id])
 
 
 ## When the player clicks a level button twice, we emit a signal which chooses the level

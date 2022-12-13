@@ -31,7 +31,7 @@ func popup(default_region_id: String) -> void:
 	show()
 
 
-func _on_RegionButtons_region_chosen(region: Object) -> void:
+func _on_Panel_region_chosen(region: Object) -> void:
 	emit_signal("region_chosen", region)
 
 
