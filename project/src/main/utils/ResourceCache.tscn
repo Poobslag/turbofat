@@ -4,6 +4,6 @@
 
 [node name="ResourceCache" type="Node"]
 script = ExtResource( 1 )
-low_priority_resource_paths = [ "res://src/main/puzzle/Puzzle.tscn", "res://src/main/editor/puzzle/LevelEditor.tscn" ]
+low_priority_resource_paths = [ "res://src/main/career/CareerMap.tscn", "res://src/main/career/ui/CareerWin.tscn", "res://src/main/editor/puzzle/LevelEditor.tscn", "res://src/main/puzzle/Puzzle.tscn", "res://src/main/world/Cutscene.tscn" ]
 skipped_resource_paths = [ "res://assets/main/world/environment", "res://src/main/world/environment" ]
 load_seconds = 6.0
