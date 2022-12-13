@@ -19,13 +19,9 @@ func _refresh_text() -> void:
 		_label.text = text
 
 
-func _on_RegionButtons_region_focused(region_obj: Object) -> void:
-	if region_obj is CareerRegion:
-		var region: CareerRegion = region_obj
-		if PlayerData.career.is_region_locked(region):
-			set_text(tr("Advance further into career mode to unlock new areas!"))
-		else:
-			set_text(region.description)
-	else:
-		var region: OtherRegion = region_obj
-		set_text(region.description)
+func _on_RegionButtons_locked_region_focused(_region: Object) -> void:
+	set_text(tr("Advance further into career mode to unlock new areas!"))
+
+
+func _on_RegionButtons_unlocked_region_focused(region: Object) -> void:
+	set_text(region.description)

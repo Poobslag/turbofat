@@ -47,12 +47,18 @@ func _refresh_text() -> void:
 		_label.text = text
 
 
+## Updates the text box to show the region's information.
+func _update_region_text(region_obj: Object) -> void:
+	if region_obj is CareerRegion:
+		_update_career_region_text(region_obj)
+	elif region_obj is OtherRegion and region_obj.id == OtherRegion.ID_RANK:
+		_update_rank_region_text(region_obj)
+	else:
+		_update_other_region_text(region_obj)
+
+
 ## Updates the text box to show the career region's information.
 func _update_career_region_text(region: CareerRegion) -> void:
-	if PlayerData.career.is_region_locked(region):
-		set_text("")
-		return
-	
 	var new_text := ""
 	var region_completion := PlayerData.career.region_completion(region)
 	if region_completion.completion_percent() == 1.0:
@@ -196,10 +202,9 @@ func _update_other_region_text(region: OtherRegion) -> void:
 	set_text(new_text)
 
 
-func _on_RegionButtons_region_focused(region_obj: Object) -> void:
-	if region_obj is CareerRegion:
-		_update_career_region_text(region_obj)
-	elif region_obj is OtherRegion and region_obj.id == OtherRegion.ID_RANK:
-		_update_rank_region_text(region_obj)
-	else:
-		_update_other_region_text(region_obj)
+func _on_RegionButtons_locked_region_focused(_region: Object) -> void:
+	set_text("")
+
+
+func _on_RegionButtons_unlocked_region_focused(region: Object) -> void:
+	_update_region_text(region)

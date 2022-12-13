@@ -4,8 +4,11 @@ extends HBoxContainer
 ##
 ## These buttons are arranged in multiple pages which can be navigated with arrow buttons.
 
-## Emitted when the player highlights a region to show more information.
-signal region_focused(region)
+## Emitted when the player highlights a locked region to show more information.
+signal locked_region_focused(region)
+
+## Emitted when the player highlights an unlocked region to show more information.
+signal unlocked_region_focused(region)
 
 ## Emitted when the player finishes choosing a region to play.
 signal region_chosen(region)
@@ -182,14 +185,17 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 		region_button.region_name = region.name
 		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
 	
-	region_button.connect("focus_entered", self, "_on_RegionButton_focus_entered", [region_obj])
+	region_button.connect("focus_entered", self, "_on_RegionButton_focus_entered", [region_button, region_obj])
 	region_button.connect("region_chosen", self, "_on_RegionButton_region_chosen", [region_obj])
 	return region_button
 
 
 ## When the player clicks a region button once, we emit a signal to show more information.
-func _on_RegionButton_focus_entered(region: Object) -> void:
-	emit_signal("region_focused", region)
+func _on_RegionButton_focus_entered(region_button: RegionSelectButton, region: Object) -> void:
+	if region_button.disabled:
+		emit_signal("locked_region_focused", region)
+	else:
+		emit_signal("unlocked_region_focused", region)
 
 
 ## When the player clicks a region button twice, we emit a signal which chooses the region

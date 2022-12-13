@@ -264,8 +264,10 @@ cheat_code_detector_path = NodePath("../CheatCodeDetector")
 
 [connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="button_added" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
+[connection signal="locked_region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_locked_region_focused"]
+[connection signal="locked_region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_locked_region_focused"]
 [connection signal="region_chosen" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="." method="_on_RegionButtons_region_chosen"]
-[connection signal="region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_region_focused"]
-[connection signal="region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_region_focused"]
+[connection signal="unlocked_region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_unlocked_region_focused"]
+[connection signal="unlocked_region_focused" from="RegionSelect/VBoxContainer/Top/RegionButtons" to="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_unlocked_region_focused"]
 [connection signal="pressed" from="RegionSelect/VBoxContainer/Top/RegionButtons/LeftArrow" to="RegionSelect/VBoxContainer/Top/RegionButtons" method="_on_LeftArrow_pressed"]
 [connection signal="pressed" from="RegionSelect/VBoxContainer/Top/RegionButtons/RightArrow" to="RegionSelect/VBoxContainer/Top/RegionButtons" method="_on_RightArrow_pressed"]
