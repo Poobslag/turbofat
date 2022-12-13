@@ -1,0 +1,191 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
+[ext_resource path="res://src/main/ui/menu/region-grade-labels.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/menu/region-info-panel.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/menu/region-description-panel.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
+[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=6]
+[ext_resource path="res://src/main/ui/menu/paged-region-buttons.gd" type="Script" id=8]
+[ext_resource path="res://src/main/ui/RegionSelectButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/level-select/HookableRegionGradeLabel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/ui/menu/paged-region-panel.gd" type="Script" id=11]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.1, 0.094, 0.094, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Panel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+rect_min_size = Vector2( -10, 0 )
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 904.0
+margin_bottom = 45.0
+theme = ExtResource( 6 )
+text = "Level Select"
+align = 1
+
+[node name="Top" type="Control" parent="VBoxContainer"]
+margin_top = 65.0
+margin_right = 904.0
+margin_bottom = 360.0
+size_flags_vertical = 3
+
+[node name="RegionButtons" type="HBoxContainer" parent="VBoxContainer/Top"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -452.0
+margin_top = -145.0
+margin_right = 452.0
+margin_bottom = 145.0
+alignment = 1
+script = ExtResource( 8 )
+RegionButtonScene = ExtResource( 9 )
+
+[node name="LeftArrow" type="Button" parent="VBoxContainer/Top/RegionButtons"]
+margin_left = 374.0
+margin_top = 132.0
+margin_right = 398.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "<"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top/RegionButtons"]
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 0, 290 )
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="RegionButton" parent="VBoxContainer/Top/RegionButtons/HBoxContainer" instance=ExtResource( 9 )]
+
+[node name="RightArrow" type="Button" parent="VBoxContainer/Top/RegionButtons"]
+margin_left = 506.0
+margin_top = 132.0
+margin_right = 530.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = ">"
+
+[node name="GradeLabels" type="Control" parent="VBoxContainer/Top"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+GradeLabelScene = ExtResource( 10 )
+
+[node name="Bottom" type="Control" parent="VBoxContainer"]
+margin_top = 380.0
+margin_right = 904.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bottom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Panel" parent="VBoxContainer/Bottom/HBoxContainer"]
+margin_right = 450.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/Description"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 430.0
+margin_bottom = 95.0
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Panel" parent="VBoxContainer/Bottom/HBoxContainer"]
+margin_left = 454.0
+margin_right = 904.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/Info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 430.0
+margin_bottom = 95.0
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_added" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
+[connection signal="region_chosen" from="VBoxContainer/Top/RegionButtons" to="." method="_on_RegionButtons_region_chosen"]
+[connection signal="region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_region_focused"]
+[connection signal="region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_region_focused"]
+[connection signal="pressed" from="VBoxContainer/Top/RegionButtons/LeftArrow" to="VBoxContainer/Top/RegionButtons" method="_on_LeftArrow_pressed"]
+[connection signal="pressed" from="VBoxContainer/Top/RegionButtons/RightArrow" to="VBoxContainer/Top/RegionButtons" method="_on_RightArrow_pressed"]
