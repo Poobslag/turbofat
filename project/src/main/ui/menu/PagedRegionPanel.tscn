@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/ui/menu/region-grade-labels.gd" type="Script" id=2]
@@ -184,8 +184,10 @@ __meta__ = {
 }
 
 [connection signal="button_added" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
+[connection signal="locked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_locked_region_focused"]
+[connection signal="locked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_locked_region_focused"]
 [connection signal="region_chosen" from="VBoxContainer/Top/RegionButtons" to="." method="_on_RegionButtons_region_chosen"]
-[connection signal="region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_region_focused"]
-[connection signal="region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_region_focused"]
+[connection signal="unlocked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_unlocked_region_focused"]
+[connection signal="unlocked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_unlocked_region_focused"]
 [connection signal="pressed" from="VBoxContainer/Top/RegionButtons/LeftArrow" to="VBoxContainer/Top/RegionButtons" method="_on_LeftArrow_pressed"]
 [connection signal="pressed" from="VBoxContainer/Top/RegionButtons/RightArrow" to="VBoxContainer/Top/RegionButtons" method="_on_RightArrow_pressed"]
