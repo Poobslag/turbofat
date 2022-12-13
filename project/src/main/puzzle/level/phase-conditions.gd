@@ -3,6 +3,11 @@ extends Node
 ##
 ## These conditions are each mapped to a unique string so that they can be referenced from json.
 
+## We precalculate which pieces/lines will trigger certain rules, up to this limit. 20,000 corresponds to an expert
+## player playing at ~200 PPM for two hours.
+const MAX_PIECE_INDEX := 20000
+const MAX_LINE_INDEX := 10000
+
 class PickupCollectedPhaseCondition extends PhaseCondition:
 	
 	enum RequiredPickupType {
@@ -46,8 +51,6 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 
 
 class ComboEndedPhaseCondition extends PhaseCondition:
-	const MAX_PIECE_INDEX := 20000
-	
 	## The 'combo' string read from the json configuration file.
 	var _combos_string: String
 	
@@ -92,11 +95,6 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 
 
 class PieceWrittenPhaseCondition extends PhaseCondition:
-	## We precalculate which pieces will trigger the rule, up to this number of pieces.
-	## 20,000 corresponds to an expert player playing at ~200 PPM for two hours.
-	const MAX_PIECE_INDEX := 20000
-	const MAX_LINE_INDEX := 10000
-	
 	## The 'n' string read from the json configuration file.
 	var _indexes_string: String
 	
@@ -204,9 +202,6 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 
 
 class LineClearedPhaseCondition extends PhaseCondition:
-	const MAX_PIECE_INDEX := 20000
-	const MAX_LINE_INDEX := 10000
-	
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: (bool) true
 	var which_lines := {}
