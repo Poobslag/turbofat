@@ -28,6 +28,9 @@ var _page := 0
 
 var _regions_by_page := []
 
+## 'true' if the player has temporarily unlocked all regions with a cheat code
+var _unlock_cheat_enabled := false
+
 ## container for new region buttons
 onready var _hbox_container := $HBoxContainer
 
@@ -166,7 +169,7 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 			ranks.append(rank)
 		region_button.ranks = ranks
 		region_button.completion_percent = PlayerData.career.region_completion(region).completion_percent()
-		region_button.disabled = PlayerData.career.is_region_locked(region)
+		region_button.disabled = PlayerData.career.is_region_locked(region) and not _unlock_cheat_enabled
 	else:
 		var region: OtherRegion = region_obj
 		
@@ -211,3 +214,15 @@ func _on_LeftArrow_pressed() -> void:
 func _on_RightArrow_pressed() -> void:
 	_page = min(_max_selectable_page(), _page + 1)
 	_refresh()
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+	if cheat == "unlock":
+		_unlock_cheat_enabled = !_unlock_cheat_enabled
+		detector.play_cheat_sound(_unlock_cheat_enabled)
+		var button_index_to_focus := -1
+		if get_focus_owner() in _hbox_container.get_children():
+			button_index_to_focus = get_focus_owner().get_index()
+		_refresh()
+		if button_index_to_focus != -1:
+			_hbox_container.get_children()[button_index_to_focus].grab_focus()
