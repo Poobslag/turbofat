@@ -81,6 +81,7 @@ func _ready() -> void:
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("topping_out_changed", self, "_on_PuzzleState_topping_out_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
 	_clear_piece()
@@ -425,6 +426,16 @@ func _on_Playfield_after_lines_deleted(deleted_lines: Array) -> void:
 		_shift_piece_for_deleted_lines(deleted_lines)
 	
 	emit_signal("playfield_disturbed", piece)
+
+
+func _on_PuzzleState_topping_out_changed(value: bool) -> void:
+	if not PuzzleState.game_active:
+		return
+	
+	if value:
+		enter_top_out_state()
+	else:
+		exit_top_out_state()
 
 
 func _on_Dropper_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)

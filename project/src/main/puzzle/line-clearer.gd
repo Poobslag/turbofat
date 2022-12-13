@@ -31,9 +31,6 @@ const LINE_ERASE_TIMING_PCT := 0.667
 
 export (NodePath) var tile_map_path: NodePath
 
-## 'True' if the current set of lines being deleted are being deleted as a result of a top out.
-var _topping_out := false
-
 ## lines currently being cleared/erased/deleted as a part of _physics_process
 var lines_being_cleared := []
 var lines_being_erased := []
@@ -76,8 +73,6 @@ onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 func _ready() -> void:
 	set_physics_process(false)
 	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
-	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
 func _physics_process(_delta: float) -> void:
@@ -292,7 +287,6 @@ func schedule_finish_line_clears() -> void:
 
 
 func reset() -> void:
-	_topping_out = false
 	lines_being_cleared.clear()
 	lines_being_cleared_during_trigger.clear()
 	lines_being_erased.clear()
@@ -394,8 +388,6 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 	for i in range(lines_being_deleted_during_trigger.size()):
 		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
 	
-	if _topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
-		_topping_out = false
 	emit_signal("after_lines_deleted", lines_being_deleted_during_trigger)
 
 
@@ -500,14 +492,6 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 		line_dict.merge(new_line_dict)
 	
 	_lines_to_preserve_at_end[y] = true
-
-
-func _on_Level_settings_changed() -> void:
-	_topping_out = false
-
-
-func _on_PuzzleState_topped_out() -> void:
-	_topping_out = true
 
 
 ## When lines are filled, we mark them so they're preserved at the end.
