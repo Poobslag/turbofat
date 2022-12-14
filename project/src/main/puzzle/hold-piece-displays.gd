@@ -13,6 +13,7 @@ var _hold_piece_display: HoldPieceDisplay
 onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
 
 func _ready() -> void:
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
@@ -42,4 +43,9 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 
 func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:
+	_refresh()
+
+
+## When the player advances to a later section in a tutorial, the hold piece might become enabled.
+func _on_Level_settings_changed() -> void:
 	_refresh()
