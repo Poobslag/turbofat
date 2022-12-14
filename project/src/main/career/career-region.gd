@@ -140,6 +140,11 @@ func get_end() -> int:
 	return start + length - 1
 
 
+## Returns 'true' if the region has an end, or 'false' for the final endless region.
+func has_end() -> bool:
+	return length < CareerData.MAX_DISTANCE_TRAVELLED
+
+
 ## Returns 'true' if this region has the specified flag.
 ##
 ## Regions can have flags for unusual qualities, such as regions where Fat Sensei is not following the player, or

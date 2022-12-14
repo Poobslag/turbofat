@@ -85,11 +85,11 @@ func _load_level_settings() -> void:
 	if PlayerData.career.is_boss_level():
 		_piece_speed = ""
 	else:
-		if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+		if region.has_end():
+			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
+		else:
 			var weight: float = float(PlayerData.career.hours_passed) / (CareerData.HOURS_PER_CAREER_DAY - 1)
 			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed, weight)
-		else:
-			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
 	
 	# initialize level settings
 	for level in _pickable_career_levels:

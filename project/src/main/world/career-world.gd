@@ -242,12 +242,12 @@ func _hide_duplicate_creatures() -> void:
 func _distance_percent() -> float:
 	var percent: float
 	var region := PlayerData.career.current_region()
-	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
-		# for 'endless regions' just put them somewhere arbitrary
-		percent = randf()
-	else:
-		# for typical regions, move them to the right gradually as they progress
+	if region.has_end():
+		# for typical regions, move the player to the right gradually as they progress
 		percent = CareerLevelLibrary.region_weight_for_distance(region, PlayerData.career.distance_travelled)
+	else:
+		# for the final endless region, put the player somewhere arbitrary
+		percent = randf()
 	return percent
 
 
@@ -342,16 +342,16 @@ func _add_mile_markers_to_path() -> void:
 	var left_num: int
 	var right_num: int
 	var curr_region: CareerRegion = PlayerData.career.current_region()
-	if curr_region.length == CareerData.MAX_DISTANCE_TRAVELLED:
-		# In the final (endless) region, numbers count up from 0-99, and then reset back to 0
+	if curr_region.has_end():
+		# In most regions, numbers count down to 0. 0 is a 'boss level'
+		right_num = curr_region.length + curr_region.start - 1 - PlayerData.career.distance_travelled
+		left_num = right_num + PlayerData.career.distance_penalties()[0]
+	else:
+		# In the final endless region, numbers count up from 0-99, and then reset back to 0
 		right_num = PlayerData.career.distance_travelled - curr_region.start
 		left_num = right_num - PlayerData.career.distance_penalties()[0]
 		left_num %= 100
 		right_num %= 100
-	else:
-		# In most regions, numbers count down to 0. 0 is a 'boss level'
-		right_num = curr_region.length + curr_region.start - 1 - PlayerData.career.distance_travelled
-		left_num = right_num + PlayerData.career.distance_penalties()[0]
 	
 	_add_mile_marker(_level_creatures[0].position + Vector2(-100, 20), left_num)
 	if right_num != left_num:
