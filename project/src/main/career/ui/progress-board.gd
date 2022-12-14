@@ -53,7 +53,7 @@ func _ready() -> void:
 ## progress board, or not show it at all.
 func show_progress() -> void:
 	match PlayerData.career.show_progress:
-		CareerData.ShowProgress.NONE:
+		Careers.ShowProgress.NONE:
 			visible = false
 		_:
 			visible = true
@@ -120,7 +120,7 @@ func refresh() -> void:
 	_trail.spots_truncated = new_spots_truncated
 	
 	match PlayerData.career.show_progress:
-		CareerData.ShowProgress.ANIMATED:
+		Careers.ShowProgress.ANIMATED:
 			_player.spots_travelled = _spots_travelled_finish()
 			_player.visual_spots_travelled = _spots_travelled_start()
 			_player.refresh()
@@ -128,7 +128,7 @@ func refresh() -> void:
 			_player.spots_travelled = _spots_travelled_finish()
 	
 	match PlayerData.career.show_progress:
-		CareerData.ShowProgress.ANIMATED:
+		Careers.ShowProgress.ANIMATED:
 			_clock.hours_passed = _hours_passed_start()
 		_:
 			_clock.hours_passed = _hours_passed_finish()
@@ -177,10 +177,10 @@ func _on_Backdrop_visibility_changed() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "show":
 		match PlayerData.career.show_progress:
-			CareerData.ShowProgress.ANIMATED:
+			Careers.ShowProgress.ANIMATED:
 				# launch the clock and player animations after a delay
 				_animate_start_timer.start()
-			CareerData.ShowProgress.STATIC:
+			Careers.ShowProgress.STATIC:
 				# hide the progress board after a delay
 				if not suppress_hide:
 					_hide_timer.start(STATIC_HIDE_DELAY)
@@ -190,7 +190,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func _on_HideTimer_timeout() -> void:
 	_show_animation_player.play("hide")
 	if not PlayerData.career.is_day_over():
-		PlayerData.career.show_progress = CareerData.ShowProgress.NONE
+		PlayerData.career.show_progress = Careers.ShowProgress.NONE
 
 
 ## When the AnimateStartTimer times out, we launch the clock and player animations.

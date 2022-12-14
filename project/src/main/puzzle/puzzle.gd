@@ -227,7 +227,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 	var overall_rank := _overall_rank(rank_result)
 	
 	var milestone_index := CareerData.rank_milestone_index(overall_rank)
-	var distance_to_advance: int = CareerData.RANK_MILESTONES[milestone_index].distance
+	var distance_to_advance: int = Careers.RANK_MILESTONES[milestone_index].distance
 	
 	PlayerData.career.daily_steps += distance_to_advance
 	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)

@@ -261,7 +261,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	_general_restaurant_chat_keys.clear()
 	for chat_key_pair in all_chat_key_pairs:
 		for chat_key in chat_key_pair.chat_keys():
-			if not chat_key.begins_with(CareerData.GENERAL_CHAT_KEY_ROOT):
+			if not chat_key.begins_with(Careers.GENERAL_CHAT_KEY_ROOT):
 				continue
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 			if chat_tree.has_sensei():

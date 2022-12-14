@@ -23,7 +23,7 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 		# don't show progress; the player is not trying to beat the region
 		pass
 	else:
-		career_data.show_progress = CareerData.ShowProgress.ANIMATED
+		career_data.show_progress = Careers.ShowProgress.ANIMATED
 	
 	
 	career_data.distance_earned = new_distance_earned
@@ -106,13 +106,13 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 ## Advances the calendar day and resets all daily variables.
 func advance_calendar() -> void:
 	career_data.prev_daily_earnings.push_front(career_data.daily_earnings)
-	if career_data.prev_daily_earnings.size() > CareerData.MAX_DAILY_HISTORY:
-		career_data.prev_daily_earnings = career_data.prev_daily_earnings.slice(0, CareerData.MAX_DAILY_HISTORY - 1)
+	if career_data.prev_daily_earnings.size() > Careers.MAX_DAILY_HISTORY:
+		career_data.prev_daily_earnings = career_data.prev_daily_earnings.slice(0, Careers.MAX_DAILY_HISTORY - 1)
 	
 	career_data.best_distance_travelled = max(career_data.best_distance_travelled, career_data.distance_travelled)
 	career_data.prev_distance_travelled.push_front(career_data.distance_travelled)
-	if career_data.prev_distance_travelled.size() > CareerData.MAX_DAILY_HISTORY:
-		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, CareerData.MAX_DAILY_HISTORY - 1)
+	if career_data.prev_distance_travelled.size() > Careers.MAX_DAILY_HISTORY:
+		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, Careers.MAX_DAILY_HISTORY - 1)
 	
 	career_data.banked_steps = 0
 	career_data.distance_earned = 0
@@ -122,7 +122,7 @@ func advance_calendar() -> void:
 	career_data.daily_level_ids.clear()
 	career_data.daily_seconds_played = 0.0
 	career_data.daily_steps = 0
-	career_data.day = min(career_data.day + 1, CareerData.MAX_DAY)
+	career_data.day = min(career_data.day + 1, Careers.MAX_DAY)
 	
 	# Put the player at the start of their current region and trigger the 'distance_travelled_changed' signal
 	career_data.distance_travelled = career_data.current_region().start

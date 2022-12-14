@@ -38,7 +38,7 @@ func career_levels_for_distance(distance: int) -> Array:
 
 ## Returns the CareerRegion the player is in after they travel a certain distance.
 func region_for_distance(distance: int) -> CareerRegion:
-	distance = clamp(distance, 0, CareerData.MAX_DISTANCE_TRAVELLED)
+	distance = clamp(distance, 0, Careers.MAX_DISTANCE_TRAVELLED)
 	var result: CareerRegion
 	for region in regions:
 		result = region
@@ -269,4 +269,4 @@ func _load_raw_json_data() -> void:
 		if i < regions.size() - 1:
 			regions[i].length = regions[i + 1].start - regions[i].start
 		else:
-			regions[i].length = CareerData.MAX_DISTANCE_TRAVELLED
+			regions[i].length = Careers.MAX_DISTANCE_TRAVELLED

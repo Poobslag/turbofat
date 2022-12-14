@@ -54,7 +54,7 @@ func _refresh() -> void:
 func _progress_percent(landmarks: Array, right_landmark_index: int) -> float:
 	var progress_percent: float
 	var from: float = landmarks[right_landmark_index - 1].distance
-	if landmarks[right_landmark_index].distance == CareerData.MAX_DISTANCE_TRAVELLED:
+	if landmarks[right_landmark_index].distance == Careers.MAX_DISTANCE_TRAVELLED:
 		progress_percent = clamp(
 			inverse_lerp(from, from + 100, _map_row.player_distance), 0, 0.5)
 	else:

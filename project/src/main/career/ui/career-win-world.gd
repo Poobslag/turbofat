@@ -34,11 +34,11 @@ func initial_environment_path() -> String:
 func _refresh_mood() -> void:
 	var player := CreatureManager.get_player()
 	var sensei := CreatureManager.get_sensei()
-	if PlayerData.career.daily_steps >= CareerData.DAILY_STEPS_GOOD:
+	if PlayerData.career.daily_steps >= Careers.DAILY_STEPS_GOOD:
 		player.play_mood(Creatures.Mood.LAUGH0)
 		if sensei:
 			sensei.play_mood(Creatures.Mood.LAUGH0)
-	elif PlayerData.career.daily_steps >= CareerData.DAILY_STEPS_OK:
+	elif PlayerData.career.daily_steps >= Careers.DAILY_STEPS_OK:
 		player.play_mood(Creatures.Mood.SMILE0)
 		if sensei:
 			sensei.play_mood(Creatures.Mood.SMILE0)
