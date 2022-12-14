@@ -413,12 +413,12 @@ script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
+puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 StarSeedScene = ExtResource( 72 )
 
 [node name="Critters" parent="Fg" instance=ExtResource( 79 )]
-_playfield_path = NodePath("../Playfield")
-_piece_manager_path = NodePath("../PieceManager")
+playfield_path = NodePath("../Playfield")
+piece_manager_path = NodePath("../PieceManager")
 
 [node name="PieceManager" parent="Fg" instance=ExtResource( 9 )]
 playfield_path = NodePath("../Playfield")

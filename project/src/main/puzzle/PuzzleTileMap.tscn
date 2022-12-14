@@ -112,7 +112,7 @@ tile_set = SubResource( 3 )
 cell_size = Vector2( 72, 64 )
 format = 1
 script = ExtResource( 4 )
-_playfield_tile_map_path = NodePath("../..")
+playfield_tile_map_path = NodePath("../..")
 
 [node name="GhostPieceViewport" type="Viewport" parent="."]
 size = Vector2( 324, 544 )

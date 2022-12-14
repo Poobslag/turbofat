@@ -6,13 +6,13 @@ extends Control
 ## the level editor.
 
 export (PackedScene) var PickupScene: PackedScene
-export (NodePath) var _puzzle_tile_map_path: NodePath
+export (NodePath) var puzzle_tile_map_path: NodePath
 
 ## key: (Vector2) playfield cell positions
 ## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
+onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 ## Adds or replaces a pickup in a playfield cell.
 func set_pickup(cell: Vector2, box_type: int) -> void:

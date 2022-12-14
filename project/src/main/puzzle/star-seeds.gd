@@ -75,7 +75,7 @@ const STAR_SEED_POSITIONS_BY_SIZE_DOUBLE := {
 		],
 }
 
-export (NodePath) var _puzzle_tile_map_path: NodePath
+export (NodePath) var puzzle_tile_map_path: NodePath
 
 ## key: (Vector2) playfield cell positions
 ## value: (StarSeed) StarSeed node contained within that cell
@@ -83,7 +83,7 @@ var _star_seeds_by_cell: Dictionary
 
 export (PackedScene) var StarSeedScene: PackedScene
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
+onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")

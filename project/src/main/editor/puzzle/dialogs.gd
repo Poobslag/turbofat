@@ -1,9 +1,9 @@
 extends Control
 ## Shows popup dialogs for the level editor.
 
-export (NodePath) var _level_editor_path: NodePath
+export (NodePath) var level_editor_path: NodePath
 
-onready var _level_editor: LevelEditor = get_node(_level_editor_path)
+onready var _level_editor: LevelEditor = get_node(level_editor_path)
 
 onready var _open_file_dialog := $OpenFile
 onready var _open_resource_dialog := $OpenResource

@@ -1114,7 +1114,7 @@ size_flags_horizontal = 3
 theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 27 )
-_save_slot_control_path = NodePath("../SaveSlot")
+save_slot_control_path = NodePath("../SaveSlot")
 
 [node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData"]
 margin_right = 217.0
@@ -1315,7 +1315,7 @@ script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot")
+save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot")
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource( 23 )]
 
