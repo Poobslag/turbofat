@@ -109,13 +109,13 @@ func refresh() -> void:
 	
 	# refresh spot_count
 	var new_spot_count := region.length
-	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+	if not region.has_end():
 		new_spot_count = 35
 	_trail.spot_count = new_spot_count
 	
 	# refresh spots_truncated
 	var new_spots_truncated := false
-	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+	if not region.has_end():
 		new_spots_truncated = true
 	_trail.spots_truncated = new_spots_truncated
 	
@@ -138,7 +138,7 @@ func refresh() -> void:
 func _spots_travelled_start() -> int:
 	var region := PlayerData.career.current_region()
 	var spots_travelled := PlayerData.career.progress_board_start_distance_travelled - region.start
-	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+	if not region.has_end():
 		spots_travelled = int(min(spots_travelled, 5))
 	spots_travelled = int(clamp(spots_travelled, 0, _trail.spot_count))
 	return spots_travelled
@@ -149,7 +149,7 @@ func _spots_travelled_finish() -> int:
 	var region := PlayerData.career.current_region()
 	var spots_travelled := PlayerData.career.distance_travelled - region.start
 	spots_travelled = int(clamp(spots_travelled, 0, _trail.spot_count))
-	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+	if not region.has_end():
 		spots_travelled = int(min(spots_travelled, 30))
 	spots_travelled = int(min(spots_travelled, _trail.spot_count - 1))
 	return spots_travelled
