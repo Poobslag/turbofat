@@ -337,7 +337,7 @@ func _on_Playfield_line_deleted(y: int) -> void:
 		# pickups do not move
 		return
 	
-	# some levels have rows which are deleted, but not erased. erase any pickups
+	# Levels with the 'FloatFall' LineClearType have rows which are deleted, but not erased. Erase any pickups
 	_erase_row(y)
 	
 	# drop all pickups above the deleted lines to fill the gap

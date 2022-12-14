@@ -317,7 +317,7 @@ func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int,
 
 
 func _on_Playfield_line_deleted(y: int) -> void:
-	# some levels might have rows which are deleted, but not erased. erase any star_seeds
+	# Levels with the 'FloatFall' LineClearType have rows which are deleted, but not erased. Erase any star_seeds
 	_erase_row(y)
 	
 	# drop all star seeds above the specified row to fill the gap

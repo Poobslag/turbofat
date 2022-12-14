@@ -390,7 +390,7 @@ func _on_PuzzleState_before_piece_written() -> void:
 
 
 func _on_Playfield_line_deleted(y: int) -> void:
-	# some levels might have rows which are deleted, but not erased. erase any moles
+	# Levels with the 'FloatFall' LineClearType have rows which are deleted, but not erased. Erase any moles
 	_erase_row(y)
 	
 	# drop all moles above the specified row to fill the gap
