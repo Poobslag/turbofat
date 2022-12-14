@@ -58,7 +58,7 @@ func replace_tutorial_module() -> void:
 ## Shows or hides the tutorial hud based on the current level.
 func refresh() -> void:
 	# only visible for tutorial levels
-	visible = CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial
+	visible = CurrentLevel.is_tutorial() or CurrentLevel.settings.other.after_tutorial
 	diagram.hide()
 	emit_signal("refreshed")
 

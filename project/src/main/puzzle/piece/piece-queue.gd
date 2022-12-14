@@ -187,17 +187,7 @@ func _shuffled_piece_types() -> Array:
 ## 	'min_line_piece_index': The earliest index where a line piece can be inserted. Line pieces can be inserted before
 ## 		this index, appended to the end of the piece queue, or inserted anywhere in between.
 func _maybe_insert_cheat_pieces(min_line_piece_index: int) -> void:
-	if not SystemData.gameplay_settings.line_piece:
-		# don't add line pieces unless the player has the cheat enabled
-		return
-	
-	if CurrentLevel.settings.other.tutorial:
-		# don't add line pieces to tutorials
-		return
-	
-	if PieceTypes.piece_i in CurrentLevel.settings.piece_types.start_types \
-			or PieceTypes.piece_i in CurrentLevel.settings.piece_types.types:
-		# don't add line pieces to levels which already have them
+	if not CurrentLevel.is_line_piece_cheat_enabled():
 		return
 	
 	var piece_index := min_line_piece_index
@@ -332,8 +322,7 @@ func _on_PuzzleState_game_prepared() -> void:
 ## This has the potential for some very silly gameplay where the player repeatedly toggles the cheat on and off to get
 ## every piece in a particular order.
 func _on_GameplaySettings_line_piece_changed(_value: bool) -> void:
-	if CurrentLevel.settings.other.tutorial:
-		# don't regenerate pieces for tutorials. it can make the tutorials impossible
+	if not CurrentLevel.is_line_piece_cheat_enabled():
 		return
 	
 	var old_popped_piece_count := _popped_piece_count

@@ -145,7 +145,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	_settings_button.show()
 	_back_button.show()
 	_start_button.show()
-	if CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial:
+	if CurrentLevel.is_tutorial() or CurrentLevel.settings.other.after_tutorial:
 		if not PuzzleState.level_performance.lost:
 			# if they won, make them exit; hide the start button
 			_start_button.hide()

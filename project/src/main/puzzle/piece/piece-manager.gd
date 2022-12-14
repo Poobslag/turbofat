@@ -145,7 +145,7 @@ func exit_top_out_state() -> void:
 ## This is usually from the piece queue, but can also be the player's hold piece if they have the appropriate cheat
 ## enabled and are holding the swap key.
 func spawn_piece() -> void:
-	if CurrentLevel.hold_piece_enabled() \
+	if CurrentLevel.is_hold_piece_cheat_enabled() \
 			and input.is_swap_hold_piece_pressed():
 		# pop the next piece, which will then be swapped for the hold piece
 		PuzzleState.level_performance.pieces += 1
@@ -166,7 +166,7 @@ func apply_swap_input() -> void:
 	if not input.is_swap_hold_piece_just_pressed():
 		return
 	
-	if CurrentLevel.hold_piece_enabled() and piece.hold_piece_swaps < 1:
+	if CurrentLevel.is_hold_piece_cheat_enabled() and piece.hold_piece_swaps < 1:
 		swap_hold_piece()
 
 

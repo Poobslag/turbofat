@@ -3,8 +3,12 @@ extends TextureRect
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
-	visible = not CurrentLevel.settings.other.tutorial
+	_refresh()
+
+
+func _refresh() -> void:
+	visible = not CurrentLevel.is_tutorial()
 
 
 func _on_Level_settings_changed() -> void:
-	visible = not CurrentLevel.settings.other.tutorial
+	_refresh()
