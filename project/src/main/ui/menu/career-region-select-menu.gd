@@ -27,7 +27,7 @@ func _on_BackButton_pressed() -> void:
 func _on_RegionButtons_region_chosen(region) -> void:
 	PlayerData.career.distance_travelled = region.start
 	PlayerData.career.remain_in_region = region.end < PlayerData.career.best_distance_travelled
-	PlayerData.career.show_progress = CareerData.ShowProgress.STATIC
+	PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 	
 	if Breadcrumb.trail.front() == Global.SCENE_CAREER_REGION_SELECT_MENU:
 		Breadcrumb.trail.pop_front()

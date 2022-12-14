@@ -15,7 +15,7 @@ func before_each() -> void:
 	PlayerData.level_history.add_result("intro_211", RankResult.new())
 	PlayerData.level_history.add_result("intro_311", RankResult.new())
 	PlayerData.level_history.add_result("intro_411", RankResult.new())
-	_data.best_distance_travelled = CareerData.MAX_DISTANCE_TRAVELLED
+	_data.best_distance_travelled = Careers.MAX_DISTANCE_TRAVELLED
 
 
 func after_each() -> void:
@@ -28,9 +28,9 @@ func test_prev_daily_earnings() -> void:
 		_data.daily_earnings = i
 		_data.advance_calendar()
 	
-	assert_eq(_data.prev_daily_earnings.size(), CareerData.MAX_DAILY_HISTORY)
+	assert_eq(_data.prev_daily_earnings.size(), Careers.MAX_DAILY_HISTORY)
 	assert_eq(99, _data.prev_daily_earnings[0])
-	assert_eq(60, _data.prev_daily_earnings[CareerData.MAX_DAILY_HISTORY - 1])
+	assert_eq(60, _data.prev_daily_earnings[Careers.MAX_DAILY_HISTORY - 1])
 
 
 func test_advance_clock_stops_at_boss_level_0() -> void:

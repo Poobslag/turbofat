@@ -89,7 +89,7 @@ func refresh() -> void:
 	else:
 		_sprite_animation_player.play("default")
 	
-	if PlayerData.career.show_progress == CareerData.ShowProgress.ANIMATED:
+	if PlayerData.career.show_progress == Careers.ShowProgress.ANIMATED:
 		_label.visible = true
 	else:
 		_label.visible = false

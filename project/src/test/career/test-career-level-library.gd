@@ -125,7 +125,7 @@ func test_region_for_distance() -> void:
 	assert_eq(CareerLevelLibrary.region_for_distance(9).name, "Permissible World")
 	assert_eq(CareerLevelLibrary.region_for_distance(10).name, "Even World")
 	assert_eq(CareerLevelLibrary.region_for_distance(33).name, "Cherries World")
-	assert_eq(CareerLevelLibrary.region_for_distance(CareerData.MAX_DISTANCE_TRAVELLED).name, "Cherries World")
+	assert_eq(CareerLevelLibrary.region_for_distance(Careers.MAX_DISTANCE_TRAVELLED).name, "Cherries World")
 
 
 func test_region_weight_for_distance() -> void:

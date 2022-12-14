@@ -17,7 +17,7 @@ onready var _player := $ProgressBoard/ChalkboardRegion/Player
 
 func _ready() -> void:
 	PlayerData.career.hours_passed = 2
-	PlayerData.career.show_progress = CareerData.ShowProgress.STATIC
+	PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 	_progress_board.show_progress()
 
 
@@ -25,19 +25,19 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_Q:
 			_progress_board.suppress_hide = false
-			PlayerData.career.show_progress = CareerData.ShowProgress.NONE
+			PlayerData.career.show_progress = Careers.ShowProgress.NONE
 			_progress_board.show_progress()
 		KEY_W:
 			_progress_board.suppress_hide = false
-			PlayerData.career.show_progress = CareerData.ShowProgress.STATIC
+			PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 			_progress_board.show_progress()
 		KEY_E:
 			_progress_board.suppress_hide = false
-			PlayerData.career.show_progress = CareerData.ShowProgress.ANIMATED
+			PlayerData.career.show_progress = Careers.ShowProgress.ANIMATED
 			_progress_board.show_progress()
 		KEY_R:
 			_progress_board.suppress_hide = true
-			PlayerData.career.show_progress = CareerData.ShowProgress.STATIC
+			PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 			_progress_board.show_progress()
 		KEY_Z:
 			_animate_progress(0 * (-1 if Input.is_key_pressed(KEY_SHIFT) else 1))
@@ -74,10 +74,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _animate_progress(distance_earned: int) -> void:
-	if PlayerData.career.current_region().length == CareerData.MAX_DISTANCE_TRAVELLED:
+	if PlayerData.career.current_region().length == Careers.MAX_DISTANCE_TRAVELLED:
 		PlayerData.career.distance_travelled = int(min(PlayerData.career.distance_travelled,
 				PlayerData.career.current_region().start + 5))
-	PlayerData.career.show_progress = CareerData.ShowProgress.ANIMATED
+	PlayerData.career.show_progress = Careers.ShowProgress.ANIMATED
 	PlayerData.career.progress_board_start_distance_travelled = PlayerData.career.distance_travelled
 	PlayerData.career.distance_travelled += distance_earned
 	_progress_board.refresh()

@@ -80,20 +80,20 @@ func _recalculate() -> void:
 	
 	var boss_level_progress := _boss_level_percent()
 	if boss_level_progress < 1.0:
-		var rank_milestone := CareerData.RANK_MILESTONE_FAIL
+		var rank_milestone := Careers.RANK_MILESTONE_FAIL
 		_update_ui(rank_milestone, boss_level_progress)
 	else:
 		var next_progress_value: float
 		var overall_rank := _overall_rank()
 		var rank_milestone_index := CareerData.rank_milestone_index(overall_rank)
 		
-		if rank_milestone_index == CareerData.RANK_MILESTONES.size() - 1:
+		if rank_milestone_index == Careers.RANK_MILESTONES.size() - 1:
 			next_progress_value = 1.0
 		else:
-			next_progress_value = inverse_lerp(CareerData.RANK_MILESTONES[rank_milestone_index].rank,
-					CareerData.RANK_MILESTONES[rank_milestone_index + 1].rank, overall_rank)
+			next_progress_value = inverse_lerp(Careers.RANK_MILESTONES[rank_milestone_index].rank,
+					Careers.RANK_MILESTONES[rank_milestone_index + 1].rank, overall_rank)
 		next_progress_value = clamp(next_progress_value, 0.0, 1.0)
-		var rank_milestone: Dictionary = CareerData.RANK_MILESTONES[rank_milestone_index]
+		var rank_milestone: Dictionary = Careers.RANK_MILESTONES[rank_milestone_index]
 		_update_ui(rank_milestone, next_progress_value)
 
 

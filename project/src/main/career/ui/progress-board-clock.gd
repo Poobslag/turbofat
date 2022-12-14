@@ -116,7 +116,7 @@ func _hour_hand_position(new_hours_passed: int, advance_for_minutes: bool = true
 ## 	A number in the range [0.0, 1.0] for how much of the clock should be filled.
 func _filled_percent(new_hours_passed: int) -> float:
 	var filled_percent: float
-	if new_hours_passed == CareerData.HOURS_PER_CAREER_DAY:
+	if new_hours_passed == Careers.HOURS_PER_CAREER_DAY:
 		filled_percent = 1.0
 	else:
 		filled_percent = _minute_hand_position(new_hours_passed) / 60.0

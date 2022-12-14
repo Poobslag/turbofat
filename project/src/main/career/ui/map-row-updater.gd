@@ -87,7 +87,7 @@ func _update_icon_landmarks(start_region_index: int, end_region_index: int) -> v
 		if region_index >= CareerLevelLibrary.regions.size():
 			# final unreachable region; update the landmark with an infinite distance and mystery icon
 			landmark_type = Landmark.MYSTERY
-			landmark_distance = CareerData.MAX_DISTANCE_TRAVELLED
+			landmark_distance = Careers.MAX_DISTANCE_TRAVELLED
 		else:
 			# update the landmark with the region's distance and icon
 			var region: CareerRegion = CareerLevelLibrary.regions[region_index]

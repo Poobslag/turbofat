@@ -30,7 +30,7 @@ var start := 0
 
 ## The smallest distance the player must travel to exit this region.
 ##
-## If the length is CareerData.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
+## If the length is Careers.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
 var length := 0
 
 ## The furthest distance the player can travel while remaining within this region.
@@ -142,7 +142,7 @@ func get_end() -> int:
 
 ## Returns 'true' if the region has an end, or 'false' for the final endless region.
 func has_end() -> bool:
-	return length < CareerData.MAX_DISTANCE_TRAVELLED
+	return length < Careers.MAX_DISTANCE_TRAVELLED
 
 
 ## Returns 'true' if this region has the specified flag.

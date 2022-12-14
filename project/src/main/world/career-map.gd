@@ -47,7 +47,7 @@ func _ready() -> void:
 	
 	if not redirected:
 		_refresh_ui()
-		if PlayerData.career.show_progress == CareerData.ShowProgress.NONE:
+		if PlayerData.career.show_progress == Careers.ShowProgress.NONE:
 			# Ordinarily, we focus the level button after the progress board vanishes. But if the progress board is not
 			# being shown, we focus the button right away.
 			_after_progress_board()
@@ -88,7 +88,7 @@ func _load_level_settings() -> void:
 		if region.has_end():
 			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
 		else:
-			var weight: float = float(PlayerData.career.hours_passed) / (CareerData.HOURS_PER_CAREER_DAY - 1)
+			var weight: float = float(PlayerData.career.hours_passed) / (Careers.HOURS_PER_CAREER_DAY - 1)
 			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed, weight)
 	
 	# initialize level settings
@@ -237,7 +237,7 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	if result.empty():
 		# no region-specific cutscene available; find a general cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
-				[CareerData.GENERAL_CHAT_KEY_ROOT], chef_id, customer_id, observer_id)
+				[Careers.GENERAL_CHAT_KEY_ROOT], chef_id, customer_id, observer_id)
 	if not result.empty():
 		result.type = ChatKeyPair.INTERLUDE
 	
