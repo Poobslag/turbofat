@@ -138,16 +138,43 @@ func get_creature_ids() -> Array:
 	return result.keys()
 
 
+## Returns 'true' if the hold piece window should be visible for the current level.
+##
+## Even if the player wants to cheat, we hide the hold piece window if the player is in a tutorial.
+func is_hold_piece_cheat_enabled() -> bool:
+	return SystemData.gameplay_settings.hold_piece \
+			and not is_tutorial()
+
+
+## Returns 'true' if the piece speed should be adjusted for the current level.
+##
+## Even if the player wants to cheat, we preserve the game's original piece speed if the player is in a tutorial.
+func is_piece_speed_cheat_enabled() -> bool:
+	return SystemData.gameplay_settings.speed != GameplaySettings.Speed.DEFAULT \
+			and not CurrentLevel.is_tutorial()
+
+
+## Returns 'true' if line pieces should be inserted for the current level.
+##
+## Even if the player wants to cheat, we don't add line pieces if the player is in the tutorial or if the level already
+## includes line pieces.
+##
+## Adding line pieces for tutorials can make the tutorials impossible.
+func is_line_piece_cheat_enabled() -> bool:
+	return SystemData.gameplay_settings.line_piece \
+			and not CurrentLevel.is_tutorial() \
+			and not PieceTypes.piece_i in CurrentLevel.settings.piece_types.start_types \
+			and not PieceTypes.piece_i in CurrentLevel.settings.piece_types.types
+
+
+## Returns 'true' for tutorial levels which are led by Turbo.
+func is_tutorial() -> bool:
+	return settings.other.tutorial
+
+
 ## Purges all node instances from the singleton.
 ##
 ## Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll
 ## continue consuming resources and could cause side effects.
 func _on_Breadcrumb_before_scene_changed() -> void:
 	puzzle = null
-
-
-## Returns 'true' if the hold piece window should be visible for the current level.
-##
-## We hide the hold piece window if the player is in a tutorial, or if they have the hold piece cheat disabled.
-func hold_piece_enabled() -> bool:
-	return SystemData.gameplay_settings.hold_piece and not settings.other.tutorial

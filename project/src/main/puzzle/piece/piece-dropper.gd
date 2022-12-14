@@ -56,9 +56,10 @@ func apply_gravity(piece: ActivePiece) -> void:
 		piece.remaining_post_squish_frames -= 1
 		piece_mover.attempt_mid_drop_movement(piece)
 	else:
-		var current_gravity := PieceSpeeds.current_speed.gravity
-		if not CurrentLevel.settings.other.tutorial:
+		var current_gravity: int = PieceSpeeds.current_speed.gravity
+		if CurrentLevel.is_piece_speed_cheat_enabled():
 			current_gravity *= SystemData.gameplay_settings.get_gravity_factor()
+		
 		if input.is_soft_drop_pressed():
 			# soft drop
 			piece.gravity += int(max(PieceSpeeds.DROP_G, current_gravity))

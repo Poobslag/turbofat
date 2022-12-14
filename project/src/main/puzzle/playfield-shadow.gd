@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
-	_hold_piece_shadow.visible = CurrentLevel.hold_piece_enabled()
+	_hold_piece_shadow.visible = CurrentLevel.is_hold_piece_cheat_enabled()
 	_normal_shadow.visible = not _hold_piece_shadow.visible
 
 

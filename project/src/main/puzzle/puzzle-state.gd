@@ -282,7 +282,7 @@ func change_level(level_id: String) -> void:
 ## help/hurt things like their box rank or combo rank. It's mostly to put on a show and help them feel like their work
 ## wasn't wasted, if they built a lot of boxes they didn't clear.
 func trigger_finish() -> void:
-	if CurrentLevel.settings.other.tutorial:
+	if CurrentLevel.is_tutorial():
 		tutorial_section_finished = true
 		emit_signal("tutorial_section_finished")
 	else:
@@ -334,7 +334,7 @@ func add_pickup_score(pickup_score: int) -> void:
 ## Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 func end_combo() -> void:
 	var old_combo := combo
-	if CurrentLevel.settings.other.tutorial:
+	if CurrentLevel.is_tutorial():
 		# during tutorials, reset the combo and line clears
 		customer_scores[customer_scores.size() - 1] = 0
 		combo = 0
@@ -379,7 +379,7 @@ func reset() -> void:
 	game_ended = false
 	topping_out = false
 	speed_index = 0
-	no_more_customers = CurrentLevel.settings.other.tutorial
+	no_more_customers = CurrentLevel.is_tutorial()
 	input_frame = -1
 	
 	emit_signal("topping_out_changed", false)

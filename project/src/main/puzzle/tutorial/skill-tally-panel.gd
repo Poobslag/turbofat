@@ -34,4 +34,4 @@ func show_skill_tally_items() -> void:
 
 ## Pauses and plays a camera flash effect for transitions.
 func _on_PuzzleState_after_level_changed() -> void:
-	visible = CurrentLevel.settings.other.tutorial
+	visible = CurrentLevel.is_tutorial()

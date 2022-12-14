@@ -72,7 +72,7 @@ func is_default() -> bool:
 ##
 ## When the player plays at slow speeds, we make milestones easier to reach.
 func adjusted_value() -> int:
-	if CurrentLevel.settings.other.tutorial:
+	if not CurrentLevel.is_piece_speed_cheat_enabled():
 		# Don't adjust milestones for tutorials. Some tutorials require the player to place 3 pieces, shortening it to
 		# 2 pieces would ruin the tutorial
 		return value

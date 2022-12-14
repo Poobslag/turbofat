@@ -151,7 +151,7 @@ func _prepare_tileset() -> void:
 
 ## Resets the playfield to the level's initial state.
 func _prepare_level_blocks() -> void:
-	$TutorialKeybindsLabel.visible = CurrentLevel.settings.other.tutorial and not OS.has_touchscreen_ui_hint()
+	$TutorialKeybindsLabel.visible = CurrentLevel.is_tutorial() and not OS.has_touchscreen_ui_hint()
 	
 	tile_map.clear()
 	var blocks_start: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.blocks_start()

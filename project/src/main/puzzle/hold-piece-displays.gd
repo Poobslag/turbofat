@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
-	visible = CurrentLevel.hold_piece_enabled()
+	visible = CurrentLevel.is_hold_piece_cheat_enabled()
 
 
 ## Gets ready for a new game, randomizing the pieces and filling the piece queues.
