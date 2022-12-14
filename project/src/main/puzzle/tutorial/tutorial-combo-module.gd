@@ -109,28 +109,28 @@ func _set_combo_state(start: int, goal: int = 0) -> void:
 ## Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	PuzzleState.level_performance.lost = false
-	var delay_between_levels := TutorialModule.DELAY_SHORT
+	var delay_between_levels := Tutorials.DELAY_SHORT
 	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
 				hud.set_message(tr("Good job!"))
 			else:
 				hud.set_message(tr("Oops! ...You needed to clear a line with that last piece."))
-				delay_between_levels = TutorialModule.DELAY_LONG
+				delay_between_levels = Tutorials.DELAY_LONG
 				PuzzleState.level_performance.lost = true
 		"tutorial/combo_1":
 			# no delay for the non-interactive segment where we show the player a diagram
-			delay_between_levels = TutorialModule.DELAY_NONE
+			delay_between_levels = Tutorials.DELAY_NONE
 		"tutorial/combo_3", "tutorial/combo_4":
 			# no delay for the non-interactive segment where we demo for the player
-			delay_between_levels = TutorialModule.DELAY_NONE
+			delay_between_levels = Tutorials.DELAY_NONE
 		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				hud.set_message(tr("Impressive!\n\nHmm... Was there anything else?"))
 				start_customer_countdown()
 			else:
 				hud.set_message(tr("Oh! ...You needed to clear a line that time."))
-				delay_between_levels = TutorialModule.DELAY_LONG
+				delay_between_levels = Tutorials.DELAY_LONG
 				PuzzleState.level_performance.lost = true
 	
 	var level_ids := [

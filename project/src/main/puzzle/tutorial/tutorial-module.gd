@@ -4,10 +4,6 @@ extends Node
 ##
 ## Subclasses can show messages and advances the player through the tutorial as they complete tasks.
 
-const DELAY_NONE := 0.01
-const DELAY_SHORT := 2.05 # delay when the player should read something or dwell on a success
-const DELAY_LONG := 3.30 # delay when the player must read something important or dwell on a failure
-
 ## if 'true', the next level change will be accompanied by a 'Ready? Go!' countdown
 var _start_customer_countdown := false
 
@@ -79,7 +75,7 @@ func prepare_tutorial_level() -> void:
 ## Changes a level after all tutorial messages are shown.
 ##
 ## Copy/pasted from PuzzleState.change_level with an extra yield statement added.
-func change_level(level_id: String, delay_between_levels: float = TutorialModule.DELAY_SHORT) -> void:
+func change_level(level_id: String, delay_between_levels: float = Tutorials.DELAY_SHORT) -> void:
 	PuzzleState.prepare_level_change(level_id)
 	start_timer_after_all_messages_shown(delay_between_levels) \
 			.connect("timeout", self, "_on_Timer_timeout_change_level", [level_id])
