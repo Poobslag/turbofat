@@ -355,7 +355,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 PickupScene = ExtResource( 6 )
-_puzzle_tile_map_path = NodePath("../TileMap")
+puzzle_tile_map_path = NodePath("../TileMap")
 
 [node name="PickupsDropPreview" type="Control" parent="CenterPanel/Playfield/Bg"]
 modulate = Color( 1, 1, 1, 0.25098 )
@@ -367,7 +367,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 PickupScene = ExtResource( 6 )
-_puzzle_tile_map_path = NodePath("../TileMap")
+puzzle_tile_map_path = NodePath("../TileMap")
 
 [node name="TileMap" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
 material = SubResource( 1 )

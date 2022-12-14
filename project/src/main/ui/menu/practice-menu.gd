@@ -5,11 +5,11 @@ extends Control
 const DEFAULT_REGION_ID := OtherRegion.ID_MARATHON
 const DEFAULT_LEVEL_ID := "practice/marathon_normal"
 
-export (NodePath) var _high_scores_path: NodePath
-export (NodePath) var _level_button_path: NodePath
-export (NodePath) var _level_description_label_path: NodePath
-export (NodePath) var _speed_selector_path: NodePath
-export (NodePath) var _start_button_path: NodePath
+export (NodePath) var high_scores_path: NodePath
+export (NodePath) var level_button_path: NodePath
+export (NodePath) var level_description_label_path: NodePath
+export (NodePath) var speed_selector_path: NodePath
+export (NodePath) var start_button_path: NodePath
 
 ## A CareerRegion or OtherRegion instance for the currently selected region
 var _region: Object
@@ -20,11 +20,11 @@ var _level_settings: LevelSettings = LevelSettings.new()
 ## The currently selected piece speed
 var _piece_speed: String
 
-onready var _high_scores: Panel = get_node(_high_scores_path)
-onready var _level_button: Button = get_node(_level_button_path)
-onready var _level_description_label: Label = get_node(_level_description_label_path)
-onready var _speed_selector: PracticeSpeedSelector = get_node(_speed_selector_path)
-onready var _start_button: Button = get_node(_start_button_path)
+onready var _high_scores: Panel = get_node(high_scores_path)
+onready var _level_button: Button = get_node(level_button_path)
+onready var _level_description_label: Label = get_node(level_description_label_path)
+onready var _speed_selector: PracticeSpeedSelector = get_node(speed_selector_path)
+onready var _start_button: Button = get_node(start_button_path)
 
 onready var _level_submenu := $LevelSubmenu
 onready var _region_submenu := $RegionSubmenu

@@ -192,7 +192,7 @@ script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_level_editor_path = NodePath("../..")
+level_editor_path = NodePath("../..")
 
 [node name="Backdrop" parent="Ui/Dialogs" instance=ExtResource( 15 )]
 

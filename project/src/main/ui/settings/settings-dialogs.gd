@@ -13,7 +13,7 @@ signal delete_confirmed
 ## emitted when the player is prompted to delete a save slot and answers 'no' or closes the window
 signal delete_cancelled
 
-export var _save_slot_control_path: NodePath
+export var save_slot_control_path: NodePath
 
 ## 'Are you sure you want to change save slots?' confirmation dialog
 onready var _change_save_confirmation := $ChangeSaveConfirmation
@@ -25,7 +25,7 @@ onready var _delete_confirmation_1 := $DeleteConfirmation1
 onready var _delete_confirmation_2 := $DeleteConfirmation2
 
 ## UI component for a changing the current save slot or deleting save slots
-onready var _save_slot_control: SaveSlotControl = get_node(_save_slot_control_path)
+onready var _save_slot_control: SaveSlotControl = get_node(save_slot_control_path)
 
 func _ready() -> void:
 	_change_save_confirmation.get_ok().text = tr("Yes")
