@@ -7,7 +7,7 @@ extends Label
 const FONT_GAP := 3
 
 ## Different fonts to try. Should be ordered from largest to smallest.
-export(Array, Font) var fonts := [] setget set_fonts
+export (Array, Font) var fonts := [] setget set_fonts
 
 var chosen_font_index := -1 setget set_chosen_font_index
 

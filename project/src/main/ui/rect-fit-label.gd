@@ -7,7 +7,7 @@ extends Label
 const FONT_GAP := 3
 
 ## Different label sizes to try, ordered from smallest to largest.
-export(Array, Vector2) var sizes := [] setget set_sizes
+export (Array, Vector2) var sizes := [] setget set_sizes
 
 var chosen_size_index := -1 setget set_chosen_size_index
 

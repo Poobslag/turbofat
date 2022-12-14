@@ -6,7 +6,7 @@ extends Button
 const PADDING := 6
 
 ## Different fonts to try. Should be ordered from largest to smallest.
-export(Array, Font) var fonts := [] setget set_fonts
+export (Array, Font) var fonts := [] setget set_fonts
 
 func _ready() -> void:
 	SystemData.misc_settings.connect("locale_changed", self, "_on_MiscSettings_locale_changed")

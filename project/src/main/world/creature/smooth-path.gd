@@ -6,14 +6,14 @@ extends Path2D
 ##
 ## Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a-curve-in-2d?show=57123#a57123
 
-export(float) var spline_length := 25.0
-export(bool) var _smooth: bool setget smooth
-export(bool) var _straighten: bool setget straighten
-export(bool) var closed := true
+export (float) var spline_length := 25.0
+export (bool) var _smooth: bool setget smooth
+export (bool) var _straighten: bool setget straighten
+export (bool) var closed := true
 
-export(Color) var line_color := Color.black setget set_line_color
-export(Color) var fill_color := Color.transparent setget set_fill_color
-export(float) var line_width := 8.0
+export (Color) var line_color := Color.black setget set_line_color
+export (Color) var fill_color := Color.transparent setget set_fill_color
+export (float) var line_width := 8.0
 
 ## internal array used for drawing polygons
 var _poly_colors := PoolColorArray()
