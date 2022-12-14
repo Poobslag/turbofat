@@ -51,12 +51,12 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 
 
 class ComboEndedPhaseCondition extends PhaseCondition:
-	## The 'combo' string read from the json configuration file.
-	var _combos_string: String
-	
 	## key: (int) combo value which triggers this phase condition, '0' means no combo
 	## value: (bool) true
-	var _combos_to_run := {}
+	var combos_to_run := {}
+	
+	## The 'combo' string read from the json configuration file.
+	var _combos_string: String
 	
 	## Creates a new ComboEndedPhaseCondition instance with the specified configuration.
 	##
@@ -70,7 +70,7 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		_combos_string = phase_config.get("combo", "")
-		_combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+		combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -80,7 +80,7 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	func should_run(_event_params: Dictionary) -> bool:
 		var result := true
 		if _combos_string:
-			result = result and (_event_params["combo"] in _combos_to_run)
+			result = result and (_event_params["combo"] in combos_to_run)
 		return result
 	
 	
@@ -95,19 +95,19 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 
 
 class PieceWrittenPhaseCondition extends PhaseCondition:
+	## key: (int) piece index which triggers this phase condition, '0' is the first piece
+	## value: (bool) true
+	var indexes_to_run := {}
+	
+	## key: (int) combo value which triggers this phase condition, '0' means no combo
+	## value: (bool) true
+	var combos_to_run := {}
+	
 	## The 'n' string read from the json configuration file.
 	var _indexes_string: String
 	
 	## The 'combo' string read from the json configuration file.
 	var _combos_string: String
-	
-	## key: (int) piece index which triggers this phase condition, '0' is the first piece
-	## value: (bool) true
-	var _indexes_to_run := {}
-	
-	## key: (int) combo value which triggers this phase condition, '0' means no combo
-	## value: (bool) true
-	var _combos_to_run := {}
 	
 	## Creates a new PieceWrittenPhaseCondition instance with the specified configuration.
 	##
@@ -129,10 +129,10 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		_indexes_string = phase_config.get("n", "")
-		_indexes_to_run = ConfigStringUtils.ints_from_config_string(_indexes_string, MAX_PIECE_INDEX)
+		indexes_to_run = ConfigStringUtils.ints_from_config_string(_indexes_string, MAX_PIECE_INDEX)
 		
 		_combos_string = phase_config.get("combo", "")
-		_combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+		combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -142,9 +142,9 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	func should_run(_event_params: Dictionary) -> bool:
 		var result := true
 		if _indexes_string:
-			result = result and (PuzzleState.level_performance.pieces - 1 in _indexes_to_run)
+			result = result and (PuzzleState.level_performance.pieces - 1 in indexes_to_run)
 		if _combos_string:
-			result = result and (PuzzleState.combo in _combos_to_run)
+			result = result and (PuzzleState.combo in combos_to_run)
 		return result
 	
 	
@@ -204,20 +204,21 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 class LineClearedPhaseCondition extends PhaseCondition:
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: (bool) true
-	var which_lines := {}
-	
-	var how_many_lines_string := ""
+	var rows := {}
 	
 	## key: (int) a line milestone which causes the trigger to fire when cleared.
 	## value: (bool) true
-	var how_many_lines := {}
-	
-	## The 'combo' string read from the json configuration file.
-	var _combos_string: String
+	var indexes_to_run := {}
 	
 	## key: (int) combo value which triggers this phase condition, '0' means no combo
 	## value: (bool) true
-	var _combos_to_run := {}
+	var combos_to_run := {}
+	
+	## The 'n' string read from the json configuration file.
+	var _indexes_string := ""
+	
+	## The 'combo' string read from the json configuration file.
+	var _combos_string: String
 	
 	## Creates a new LineClearedPhaseCondition instance with the specified configuration.
 	##
@@ -238,16 +239,16 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## 	'phase_config.n': (Optional) An expression defining how many line clears will fire this trigger.
 	## 	'phase_config.combo': (Optional) An expression defining how many combos will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
-		if phase_config.has("y"):
-			var y_expression: String = phase_config["y"]
-			var inverted_which_lines := ConfigStringUtils.ints_from_config_string(y_expression)
-			for which_line in inverted_which_lines:
-				which_lines[ConfigStringUtils.invert_puzzle_row_index(which_line)] = true
-		if phase_config.has("n"):
-			how_many_lines_string = phase_config["n"]
-			how_many_lines = ConfigStringUtils.ints_from_config_string(how_many_lines_string, MAX_LINE_INDEX)
+		var y_expression: String = phase_config.get("y", "")
+		var inverted_rows := ConfigStringUtils.ints_from_config_string(y_expression)
+		for row in inverted_rows:
+			rows[ConfigStringUtils.invert_puzzle_row_index(row)] = true
+		
+		_indexes_string = phase_config.get("n", "")
+		indexes_to_run = ConfigStringUtils.ints_from_config_string(_indexes_string, MAX_LINE_INDEX)
+		
 		_combos_string = phase_config.get("combo", "")
-		_combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+		combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -259,31 +260,32 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## 		'event_params.combo': specifies the combo after clearing this line, 1 for the first line in a combo.
 	func should_run(event_params: Dictionary) -> bool:
 		var result := true
-		if which_lines:
-			result = result and which_lines.has(event_params["y"])
-		if how_many_lines:
-			result = result and how_many_lines.has(event_params["n"])
-		if _combos_to_run:
-			result = result and _combos_to_run.has(event_params["combo"])
+		if rows:
+			result = result and rows.has(event_params["y"])
+		if indexes_to_run:
+			result = result and indexes_to_run.has(event_params["n"])
+		if combos_to_run:
+			result = result and combos_to_run.has(event_params["combo"])
 		return result
 	
 	
 	## Extracts a set of phase configuration strings from this phase condition.
 	##
-	## Reverse-engineers a 'y' expression like {"y": "0,4-6"} based on the `which_lines` property.
+	## Reverse-engineers a 'y' expression like {"y": "0,4-6"} based on the `rows` property.
 	##
 	## Returns:
 	## 	A set of phase configuration strings defining criteria for this phase condition.
 	func get_phase_config() -> Dictionary:
 		var result := {}
-		if which_lines:
-			var inverted_which_lines := ConfigStringUtils.invert_puzzle_row_indexes(which_lines.keys())
-			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_which_lines)
-		if how_many_lines_string:
-			result["n"] = how_many_lines_string
+		if rows:
+			var inverted_rows := ConfigStringUtils.invert_puzzle_row_indexes(rows.keys())
+			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_rows)
+		if _indexes_string:
+			result["n"] = _indexes_string
 		if _combos_string:
 			result["combo"] = _combos_string
 		return result
+
 
 var phase_conditions_by_string := {
 	"box_built": BoxBuiltPhaseCondition,
@@ -292,6 +294,7 @@ var phase_conditions_by_string := {
 	"pickup_collected": PickupCollectedPhaseCondition,
 	"piece_written": PieceWrittenPhaseCondition,
 }
+
 
 ## Creates a new PhaseCondition instance.
 ##
