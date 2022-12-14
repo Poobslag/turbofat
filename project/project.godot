@@ -1175,6 +1175,11 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/tutorial/tutorial-module.gd"
 }, {
 "base": "Reference",
+"class": "Tutorials",
+"language": "GDScript",
+"path": "res://src/main/puzzle/tutorial/tutorials.gd"
+}, {
+"base": "Reference",
 "class": "Utils",
 "language": "GDScript",
 "path": "res://src/main/utils/utils.gd"
@@ -1433,6 +1438,7 @@ _global_script_class_icons={
 "TutorialHud": "",
 "TutorialMessages": "",
 "TutorialModule": "",
+"Tutorials": "",
 "Utils": "",
 "VolumeSettings": "",
 "WalkingBuddy": "",
