@@ -24,13 +24,15 @@ const BG_SHADOW_COLOR_BY_NAME := {
 export (Array, NodePath) var shadow_paths: Array
 
 func _ready() -> void:
-	if has_node("Bg"):
-		_remove_bg()
+	_remove_bg()
 	_add_bg()
 	_refresh_shadow_color()
 
 
 func _remove_bg() -> void:
+	if not has_node("Bg"):
+		return
+	
 	var bg := get_node("Bg")
 	bg.queue_free()
 	remove_child(bg)

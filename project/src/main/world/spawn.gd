@@ -17,8 +17,7 @@ export (float) var elevation: float
 var _stool: Stool
 
 func _ready() -> void:
-	if stool_path:
-		_stool = get_node(stool_path)
+	_stool = get_node(stool_path) if stool_path else null
 
 
 ## Relocates the specified creature to this spawn point.

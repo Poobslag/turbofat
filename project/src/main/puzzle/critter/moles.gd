@@ -46,14 +46,15 @@ func _refresh_playfield_path() -> void:
 		_playfield.disconnect("line_filled", self, "_on_Playfield_line_filled")
 		_playfield.disconnect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
 	
-	_playfield = get_node(playfield_path)
+	_playfield = get_node(playfield_path) if playfield_path else null
 	
-	_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-	_playfield.connect("line_deleted", self, "_on_Playfield_line_deleted")
-	_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
-	_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
-	_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
-	_playfield.connect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
+	if _playfield:
+		_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
+		_playfield.connect("line_deleted", self, "_on_Playfield_line_deleted")
+		_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
+		_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
+		_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
+		_playfield.connect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
 
 
 ## Connects piece manager listeners.
@@ -64,9 +65,10 @@ func _refresh_piece_manager_path() -> void:
 	if _piece_manager:
 		_piece_manager.disconnect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
 	
-	_piece_manager = get_node(piece_manager_path)
+	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
 	
-	_piece_manager.connect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
+	if _piece_manager:
+		_piece_manager.connect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
 
 
 ## Adds moles to the playfield.

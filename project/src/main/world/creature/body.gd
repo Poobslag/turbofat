@@ -105,8 +105,9 @@ func _refresh_creature_visuals_path() -> void:
 	
 	if _creature_visuals:
 		_creature_visuals.disconnect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
-	_creature_visuals = get_node(creature_visuals_path)
-	_creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+	_creature_visuals = get_node(creature_visuals_path) if creature_visuals_path else null
+	if _creature_visuals:
+		_creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
 
 
 func _refresh_editing() -> void:

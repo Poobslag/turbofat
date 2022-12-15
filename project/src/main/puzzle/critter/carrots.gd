@@ -96,9 +96,10 @@ func _refresh_playfield_path() -> void:
 	if _playfield:
 		_playfield.disconnect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
 	
-	_playfield = get_node(playfield_path)
+	_playfield = get_node(playfield_path) if playfield_path else null
 	
-	_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
+	if _playfield:
+		_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
 
 
 ## Adds a carrot to the specified cell.
