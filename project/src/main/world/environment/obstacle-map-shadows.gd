@@ -30,8 +30,7 @@ func set_cell_shadow_mapping(new_cell_shadow_mapping: Dictionary) -> void:
 
 
 func _refresh_obstacle_map_path() -> void:
-	if obstacle_map_path:
-		_obstacle_map = get_node(obstacle_map_path)
+	_obstacle_map = get_node(obstacle_map_path) if obstacle_map_path else null
 
 
 func _refresh_shadows() -> void:

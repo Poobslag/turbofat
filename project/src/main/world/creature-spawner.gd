@@ -31,9 +31,8 @@ var _target_creature: Creature
 onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
 func _ready() -> void:
-	if stool_path:
-		_stool = get_node(stool_path)
-		_update_stool_occupied()
+	_stool = get_node(stool_path) if stool_path else null
+	_update_stool_occupied()
 	
 	if spawn_if and BoolExpressionEvaluator.evaluate(spawn_if):
 		# Spawn the creature and remove the spawner from the scene tree.
@@ -46,6 +45,9 @@ func _ready() -> void:
 
 ## Updates the spawned creature's stool to be occupied or unoccupied.
 func _update_stool_occupied() -> void:
+	if not _stool:
+		return
+
 	var occupied := _target_creature != null
 	if _stool is ObstacleSpawner:
 		_stool.set_target_property("occupied", occupied)
@@ -76,9 +78,8 @@ func _spawn_target() -> void:
 		_target_creature.set_visual_fatness(max_fatness)
 		_target_creature.save_fatness(max_fatness)
 	
-	if _stool:
-		# mark the creature's stool as occupied
-		_update_stool_occupied()
+	# mark the creature's stool as occupied
+	_update_stool_occupied()
 	
 	# remove the spawner from the scene tree
 	queue_free()

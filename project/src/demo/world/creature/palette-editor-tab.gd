@@ -10,15 +10,14 @@ var _creature_editor: CreatureEditor
 var _creature_palettes := []
 
 func _ready() -> void:
-	if creature_editor_path:
-		_creature_editor = get_node(creature_editor_path)
+	_refresh_creature_editor_path()
 	for palette in DnaUtils.CREATURE_PALETTES:
 		_add_palette(palette)
 
 
 func set_creature_editor_path(new_creature_editor_path: NodePath) -> void:
+	_refresh_creature_editor_path()
 	creature_editor_path = new_creature_editor_path
-	_creature_editor = get_node(creature_editor_path)
 
 
 func get_center_creature() -> Creature:
@@ -48,6 +47,11 @@ func _print_palette(palette: Dictionary) -> void:
 	result += "\"glass_rgb\": \"%s\", " % palette["glass_rgb"]
 	result += "\"plastic_rgb\": \"%s\"}, # ??????" % palette["plastic_rgb"]
 	print(result)
+
+
+func _refresh_creature_editor_path() -> void:
+	if creature_editor_path:
+		_creature_editor = get_node(creature_editor_path) if creature_editor_path else null
 
 
 ## Updates the creature's colors with the clicked palette.

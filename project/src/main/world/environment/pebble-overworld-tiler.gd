@@ -52,7 +52,7 @@ func autotile(value: bool) -> void:
 ## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_tile_map = get_parent()
-	_ground_map = get_node(ground_map_path)
+	_ground_map = get_node(ground_map_path) if ground_map_path else null
 
 
 func _erase_all_pebbles() -> void:

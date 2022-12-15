@@ -59,10 +59,7 @@ func _refresh_path2d_path() -> void:
 	if not is_inside_tree():
 		return
 	
-	if path2d_path:
-		path2d = get_node(path2d_path)
-	else:
-		path2d = null
+	path2d = get_node(path2d_path) if path2d_path else null
 	
 	_lines.path2d = path2d
 	_spots.path2d = path2d

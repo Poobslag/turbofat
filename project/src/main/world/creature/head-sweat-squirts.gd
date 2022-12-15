@@ -25,8 +25,9 @@ func _refresh_creature_visuals_path() -> void:
 	
 	_creature_visuals = get_node(creature_visuals_path)
 	
-	_creature_visuals.connect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
-	_creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+	if _creature_visuals:
+		_creature_visuals.connect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
+		_creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:
