@@ -109,7 +109,7 @@ var topping_out: bool setget set_topping_out
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the puzzle is interrupted. Otherwise for example, we might schedule a victory screen to appear 3 seconds from
 ## now, but then the player restarts the level, and the victory screen is shown after they've restarted.
-onready var _timers := $Timers
+onready var _timers: TimerGroup = $Timers
 
 func _physics_process(_delta: float) -> void:
 	if input_frame < 0:
@@ -130,9 +130,7 @@ func _physics_process(_delta: float) -> void:
 ## Returns:
 ## 	A timer which has been added to the scene tree, and is currently active.
 func start_timer(wait_time: float) -> Timer:
-	var timer := add_timer(wait_time)
-	timer.start()
-	return timer
+	return _timers.start_timer(wait_time)
 
 
 ## Creates a one-shot timer, but does not start it.
@@ -145,20 +143,7 @@ func start_timer(wait_time: float) -> Timer:
 ## Returns:
 ## 	A timer which has been added to the scene tree, but is not yet active.
 func add_timer(wait_time: float) -> Timer:
-	var timer := Timer.new()
-	timer.one_shot = true
-	timer.wait_time = wait_time
-	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
-	_timers.add_child(timer)
-	return timer
-
-
-## Cleans up any temporary timers and listeners.
-##
-## This prevents the puzzle from behaving unexpectedly if the player restarts at an unusual time.
-func _cleanup_listeners() -> void:
-	for child in _timers.get_children():
-		child.queue_free()
+	return _timers.add_timer(wait_time)
 
 
 ## Resets all score data, and starts a new game after a brief pause.
@@ -243,7 +228,7 @@ func end_game() -> void:
 	end_combo()
 	if not level_performance.lost:
 		level_performance.success = MilestoneManager.is_met(CurrentLevel.settings.success_condition)
-	_cleanup_listeners()
+	_timers.clear()
 	emit_signal("game_ended")
 	var wait_time: float
 	match end_result():
@@ -447,7 +432,7 @@ func _prepare_game() -> void:
 		CurrentLevel.start_level(new_settings)
 	
 	reset()
-	_cleanup_listeners()
+	_timers.clear()
 	emit_signal("game_prepared")
 	emit_signal("after_game_prepared")
 
@@ -485,7 +470,3 @@ func _on_Timer_timeout_start_game() -> void:
 
 func _on_Timer_timeout_emit_after_game_ended() -> void:
 	emit_signal("after_game_ended")
-
-
-func _on_Timer_timeout_queue_free(timer: Timer) -> void:
-	timer.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/main/world/environment/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/main/world/environment/restaurant/LayoutContainer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/restaurant/hello-timer.gd" type="Script" id=12]
 [ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/utils/TimerGroup.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -316,7 +317,7 @@ custom_styles/panel = SubResource( 4 )
 one_shot = true
 script = ExtResource( 12 )
 
-[node name="SummonCreatureTimers" type="Node" parent="."]
+[node name="SummonCreatureTimers" parent="." instance=ExtResource( 14 )]
 
 [node name="SwoopTween" type="Tween" parent="."]
 
