@@ -190,6 +190,25 @@ func has_sensei() -> bool:
 	return spawn_locations.has(CreatureLibrary.SENSEI_ID)
 
 
+## Suppresses warnings from showing up on the console.
+##
+## This is only used during utilities to suppress duplicate messages.
+func suppress_warnings() -> void:
+	meta["suppress_warnings"] = true
+
+
+## Adds a warning about something potentially harmful with this chat tree.
+##
+## This could be something like a line spoken by a character who isn't in the scene.
+func warn(warning: String) -> void:
+	if not meta.has("warnings"):
+		meta["warnings"] = []
+	meta["warnings"].append(warning)
+	
+	if meta.get("suppress_warnings", false):
+		push_warning(warning)
+
+
 ## Jump to any chat sequences whose 'start_if' conditions are met.
 func _apply_start_if_conditions() -> void:
 	# look for 'start_if' conditions...
