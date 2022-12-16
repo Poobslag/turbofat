@@ -18,11 +18,11 @@ func test_line_cleared_phase_config() -> void:
 	condition = PhaseConditions.LineClearedPhaseCondition.new({"y": "0,4-6"})
 	assert_eq_shallow(condition.get_phase_config(), {"y": "0,4-6"})
 	
-	condition = PhaseConditions.LineClearedPhaseCondition.new({"n": "1,2,3..."})
-	assert_eq_shallow(condition.get_phase_config(), {"n": "1,2,3..."})
+	condition = PhaseConditions.LineClearedPhaseCondition.new({"n": "1..."})
+	assert_eq_shallow(condition.get_phase_config(), {"n": "1..."})
 	
-	condition = PhaseConditions.LineClearedPhaseCondition.new({"combo": "1,2,3..."})
-	assert_eq_shallow(condition.get_phase_config(), {"combo": "1,2,3..."})
+	condition = PhaseConditions.LineClearedPhaseCondition.new({"combo": "1..."})
+	assert_eq_shallow(condition.get_phase_config(), {"combo": "1..."})
 	
 	condition = PhaseConditions.LineClearedPhaseCondition.new({})
 	assert_eq_shallow(condition.get_phase_config(), {})

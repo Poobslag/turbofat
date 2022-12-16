@@ -55,9 +55,6 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	## value: (bool) true
 	var combos_to_run := {}
 	
-	## The 'combo' string read from the json configuration file.
-	var _combos_string: String
-	
 	## Creates a new ComboEndedPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'combo' expression defining which combo values will fire this
@@ -69,8 +66,8 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	## Parameters:
 	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
-		_combos_string = phase_config.get("combo", "")
-		combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+		var combos_string: String = phase_config.get("combo", "")
+		combos_to_run = ConfigStringUtils.ints_from_config_string(combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -79,7 +76,7 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	## 	'_event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 	func should_run(_event_params: Dictionary) -> bool:
 		var result := true
-		if _combos_string:
+		if combos_to_run:
 			result = result and (_event_params["combo"] in combos_to_run)
 		return result
 	
@@ -90,7 +87,8 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	## 	A set of phase configuration strings defining criteria for this phase condition.
 	func get_phase_config() -> Dictionary:
 		var result := {}
-		if _combos_string: result["combo"] = _combos_string
+		if combos_to_run:
+			result["combo"] = ConfigStringUtils.config_string_from_ints(combos_to_run.keys(), MAX_PIECE_INDEX)
 		return result
 
 
@@ -102,12 +100,6 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## key: (int) combo value which triggers this phase condition, '0' means no combo
 	## value: (bool) true
 	var combos_to_run := {}
-	
-	## The 'n' string read from the json configuration file.
-	var _indexes_string: String
-	
-	## The 'combo' string read from the json configuration file.
-	var _combos_string: String
 	
 	## Creates a new PieceWrittenPhaseCondition instance with the specified configuration.
 	##
@@ -128,11 +120,11 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	##
 	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
-		_indexes_string = phase_config.get("n", "")
-		indexes_to_run = ConfigStringUtils.ints_from_config_string(_indexes_string, MAX_PIECE_INDEX)
+		var indexes_string: String = phase_config.get("n", "")
+		indexes_to_run = ConfigStringUtils.ints_from_config_string(indexes_string, MAX_PIECE_INDEX)
 		
-		_combos_string = phase_config.get("combo", "")
-		combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+		var combos_string: String = phase_config.get("combo", "")
+		combos_to_run = ConfigStringUtils.ints_from_config_string(combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -141,9 +133,9 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## 	'_event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 	func should_run(_event_params: Dictionary) -> bool:
 		var result := true
-		if _indexes_string:
+		if indexes_to_run:
 			result = result and (PuzzleState.level_performance.pieces - 1 in indexes_to_run)
-		if _combos_string:
+		if combos_to_run:
 			result = result and (PuzzleState.combo in combos_to_run)
 		return result
 	
@@ -154,8 +146,10 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## 	A set of phase configuration strings defining criteria for this phase condition.
 	func get_phase_config() -> Dictionary:
 		var result := {}
-		if _indexes_string: result["n"] = _indexes_string
-		if _combos_string: result["combo"] = _combos_string
+		if indexes_to_run:
+			result["n"] = ConfigStringUtils.config_string_from_ints(indexes_to_run.keys(), MAX_PIECE_INDEX)
+		if combos_to_run:
+			result["combo"] = ConfigStringUtils.config_string_from_ints(combos_to_run.keys(), MAX_PIECE_INDEX)
 		return result
 
 
@@ -214,12 +208,6 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## value: (bool) true
 	var combos_to_run := {}
 	
-	## The 'n' string read from the json configuration file.
-	var _indexes_string := ""
-	
-	## The 'combo' string read from the json configuration file.
-	var _combos_string: String
-	
 	## Creates a new LineClearedPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'y' expression defining which line clears will fire this trigger.
@@ -244,11 +232,11 @@ class LineClearedPhaseCondition extends PhaseCondition:
 		for row in inverted_rows:
 			rows[ConfigStringUtils.invert_puzzle_row_index(row)] = true
 		
-		_indexes_string = phase_config.get("n", "")
-		indexes_to_run = ConfigStringUtils.ints_from_config_string(_indexes_string, MAX_LINE_INDEX)
+		var indexes_string: String = phase_config.get("n", "")
+		indexes_to_run = ConfigStringUtils.ints_from_config_string(indexes_string, MAX_LINE_INDEX)
 		
-		_combos_string = phase_config.get("combo", "")
-		combos_to_run = ConfigStringUtils.ints_from_config_string(_combos_string, MAX_PIECE_INDEX)
+		var combos_string: String = phase_config.get("combo", "")
+		combos_to_run = ConfigStringUtils.ints_from_config_string(combos_string, MAX_LINE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -280,10 +268,10 @@ class LineClearedPhaseCondition extends PhaseCondition:
 		if rows:
 			var inverted_rows := ConfigStringUtils.invert_puzzle_row_indexes(rows.keys())
 			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_rows)
-		if _indexes_string:
-			result["n"] = _indexes_string
-		if _combos_string:
-			result["combo"] = _combos_string
+		if indexes_to_run:
+			result["n"] = ConfigStringUtils.config_string_from_ints(indexes_to_run.keys(), MAX_LINE_INDEX)
+		if combos_to_run:
+			result["combo"] = ConfigStringUtils.config_string_from_ints(combos_to_run.keys(), MAX_LINE_INDEX)
 		return result
 
 
