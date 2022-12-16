@@ -19,6 +19,7 @@ class AbstractState:
 	func line(_line: String) -> String:
 		return ""
 
+
 # -----------------------------------------------------------------------------
 
 ## Default parser state for parsing headers and metadata.
@@ -44,7 +45,7 @@ class DefaultState extends AbstractState:
 				if "version" in chat_tree.meta:
 					chat_tree.meta.erase("version")
 			else:
-				push_warning("Malformed chatscript JSON: %s" % [line])
+				chat_tree.warn("Malformed chatscript JSON: %s" % [line])
 		elif line.begins_with("[") and line.ends_with("]"):
 			# state name; update state
 			result = line.trim_prefix("[").trim_suffix("]")
@@ -123,7 +124,7 @@ class CharactersState extends AbstractState:
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
 			if chat_tree.chef_id:
-				push_warning("Too many chefs: %s" % [character_name])
+				chat_tree.warn("Too many chefs: %s" % [character_name])
 			chat_tree.chef_id = character_name
 		
 		# parse (customer) prefix
@@ -133,7 +134,7 @@ class CharactersState extends AbstractState:
 		# parse (observer) prefix
 		if character_prefix == "(observer)":
 			if chat_tree.observer_id:
-				push_warning("Too many observers: %s" % [character_name])
+				chat_tree.warn("Too many observers: %s" % [character_name])
 			chat_tree.observer_id = character_name
 		
 		# parse spawn location
@@ -203,7 +204,7 @@ class ChatState extends AbstractState:
 	## 	s: ^_^ Oh okay cool!
 	func _parse_chat_line(line: String) -> void:
 		if not ": " in line:
-			push_warning("Malformed chat line: %s" % [line])
+			chat_tree.warn("Malformed chat line: %s" % [line])
 			return
 		
 		_event = ChatEvent.new()
@@ -212,7 +213,7 @@ class ChatState extends AbstractState:
 		who = _unalias(who)
 		if _character_aliases:
 			if not who in _character_aliases and not who in _character_aliases.values():
-				push_warning("Unrecognized character name: %s" % [who])
+				chat_tree.warn("Unrecognized character name: %s" % [who])
 		_event.who = who
 		
 		_event.text = StringUtils.substring_after(line, ": ")
@@ -233,7 +234,7 @@ class ChatState extends AbstractState:
 	func _parse_chat_link(line: String) -> void:
 		# add branch to _event
 		if not line.begins_with("[") or not "]" in line:
-			push_warning("Malformed chat link: %s" % [line])
+			chat_tree.warn("Malformed chat link: %s" % [line])
 			return
 		
 		var branch_name := StringUtils.substring_between(line, "[", "]").strip_edges()
@@ -252,7 +253,7 @@ class ChatState extends AbstractState:
 	## 	[very-good]
 	func _parse_branch_key(line: String) -> void:
 		if not line.begins_with("[") or not line.ends_with("]"):
-			push_warning("Malformed chat branch: %s" % [line])
+			chat_tree.warn("Malformed chat branch: %s" % [line])
 			return
 		
 		_branch_key = line.trim_prefix("[").trim_suffix("]")
@@ -262,7 +263,7 @@ class ChatState extends AbstractState:
 	## 	(I'm not sure if they heard me.)
 	func _parse_thought(line: String) -> void:
 		if not line.begins_with("(") or not line.ends_with(")"):
-			push_warning("Malformed thought: %s" % [line])
+			chat_tree.warn("Malformed thought: %s" % [line])
 			return
 		
 		_event = ChatEvent.new()
@@ -278,7 +279,7 @@ class ChatState extends AbstractState:
 	## 	' (spira enters)'  <-- with a leading space
 	func _parse_meta(line: String) -> void:
 		if not line.begins_with(" (") or not line.ends_with(")"):
-			push_warning("Malformed meta: %s" % [line])
+			chat_tree.warn("Malformed meta: %s" % [line])
 			return
 		
 		var meta_array_string := line.trim_prefix(" (").trim_suffix(")").strip_edges()
@@ -449,7 +450,7 @@ func chat_tree_from_file(path: String) -> ChatTree:
 			var new_state_name := _state.line(line)
 			if new_state_name:
 				if not _states_by_name.has(new_state_name):
-					push_warning("Invalid header line: %s" % [line])
+					_chat_tree.warn("Invalid header line: %s" % [line])
 					continue
 				_state = _states_by_name[new_state_name]
 		
