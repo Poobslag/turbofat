@@ -55,7 +55,7 @@ var _remaining_line_erase_timings := []
 
 ## lines containing prebuilt level boxes, which aren't cleared at the end of the level.
 ## key: (int) line index
-## value: true
+## value: (bool) true
 var _lines_to_preserve_at_end := {}
 
 ## tracks the age of lines which have been filled, but not yet cleared due to the level's rules
