@@ -17,7 +17,7 @@ const SCENE_CAREER_MAP := "res://src/main/career/CareerMap.tscn"
 const SCENE_CAREER_WIN := "res://src/main/career/ui/CareerWin.tscn"
 
 ## scene for career mode's region select menu (chapter select menu)
-const SCENE_CAREER_REGION_SELECT_MENU := "res://src/main/ui/menu/CareerRegionSelectMenu.tscn"
+const SCENE_CAREER_REGION_SELECT_MENU := "res://src/main/career/ui/CareerRegionSelectMenu.tscn"
 
 ## puzzle where a player drops pieces into a playfield of blocks.
 const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"

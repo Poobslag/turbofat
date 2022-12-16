@@ -54,9 +54,9 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 	if cheat_successful:
 		# Drop the player back at the career select screen
 		Breadcrumb.trail = [
-			"res://src/main/ui/menu/CareerRegionSelectMenu.tscn",
-			"res://src/main/ui/menu/MainMenu.tscn",
-			"res://src/main/ui/menu/SplashScreen.tscn"
+			Global.SCENE_CAREER_REGION_SELECT_MENU,
+			Global.SCENE_MAIN_MENU,
+			Global.SCENE_SPLASH,
 		]
 
 		SceneTransition.change_scene()
