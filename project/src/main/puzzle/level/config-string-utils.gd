@@ -3,42 +3,77 @@ class_name ConfigStringUtils
 
 ## Converts a series of ints like [2, 3, 4, 5, 7] into a config string like '2-5,7'.
 ##
-## config_string_from_ints([2, 3, 4])       = '2-4'
-## config_string_from_ints([3, 5, 7])       = '3,5,7'
-## config_string_from_ints([2, 3, 4, 5, 7]) = '2-5,7'
-## config_string_from_ints([7, 2, 4, 3, 5]) = '2-5,7'
-## config_string_from_ints([])              = ''
+## config_string_from_ints([2, 3, 4])                       = '2-4'
+## config_string_from_ints([3, 5, 7])                       = '3,5,7'
+## config_string_from_ints([2, 3, 4, 5, 7])                 = '2-5,7'
+## config_string_from_ints([7, 2, 4, 3, 5])                 = '2-5,7'
+## config_string_from_ints([5, 10, 11, 12, 13, 14, 15], 15) = '5,10,11...'
+## config_string_from_ints([])                              = ''
 ##
 ## Parameters:
 ## 	'ints': A series of ints like [2, 3, 4, 5, 7].
 ##
+## 	'max_int': (Optional) The maximum value which should be checked for belonging to a continuous sequence.
+##
 ## Returns:
 ## 	A config string like '2-5,7'
-static func config_string_from_ints(ints: Array) -> String:
-	if not ints:
-		return ""
-	
+static func config_string_from_ints(ints: Array, max_int: int = 0) -> String:
 	var config_string := ""
 	ints = ints.duplicate()
 	ints.sort()
 	
-	var range_start: int = ints[0]
-	for i in range(ints.size()):
-		var include_next: bool = i < ints.size() - 1 and ints[i + 1] == ints[i] + 1
+	# detect ellipses and truncate 'ints' array to omit items in the ellipses expression
+	var start_value: int
+	var increment: int
+	if ints.size() > 3 and max_int:
+		var lo: int = ints[ints.size() - 3]
+		var mid: int = ints[ints.size() - 2]
+		var hi: int = ints[ints.size() - 1]
 		
-		if not include_next:
-			var range_end: int = ints[i]
-			if config_string:
-				config_string += ","
-			if range_start == range_end:
-				# isolated values are output as "1,3,5"
-				config_string += str(range_start)
-			else:
-				# adjacent values are hyphenated as "1-3, 5-9"
-				config_string += "%s-%s" % [range_start, range_end]
+		if mid - lo == hi - mid and hi + hi - mid > max_int:
+			# we've detected an ellipses expression. determine its size
+			increment = hi - mid
+			var start_index: int = ints.size() - 2
+			while start_index > 0 and ints[start_index] - ints[start_index - 1] == increment:
+				start_index -= 1
+				start_value = ints[start_index]
 			
-			if i < ints.size() - 1:
-				range_start = ints[i + 1]
+			# truncate the 'ints' array to omit items in the ellipses expression
+			ints.resize(start_index)
+	
+	# detect the non-ellipse values in the expression
+	if ints:
+		var range_start: int = ints[0]
+		for i in range(ints.size()):
+			var include_next: bool = i < ints.size() - 1 and ints[i + 1] == ints[i] + 1
+			
+			if not include_next:
+				var range_end: int = ints[i]
+				if config_string:
+					config_string += ","
+				if range_start == range_end:
+					# isolated values are output as "1,3,5"
+					config_string += str(range_start)
+				else:
+					# adjacent values are hyphenated as "1-3, 5-9"
+					config_string += "%s-%s" % [range_start, range_end]
+				
+				if i < ints.size() - 1:
+					range_start = ints[i + 1]
+	
+	# output an ellipse expression if necessary
+	if increment == 0:
+		# no sequence detected; do not output an ellipsis expression
+		pass
+	else:
+		if config_string:
+			config_string += ","
+		if increment == 1 and not config_string:
+			# produce output like '6...'
+			config_string += "%s..." % [start_value]
+		else:
+			# produce output like '6,8...'
+			config_string += "%s,%s..." % [start_value, start_value + increment]
 	
 	return config_string
 
