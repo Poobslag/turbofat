@@ -24,10 +24,20 @@
  "should_exit": true,
  "should_exit_on_success": false,
  "should_maximize": true,
+ "compact_mode": false,
  "show_help": false,
  "suffix": ".gd",
  "tests": [
 
  ],
- "unit_test_name": null
+ "unit_test_name": null,
+ "gut_on_top": true,
+ "panel_options": {
+  "font_name": "CourierPrime",
+  "font_size": 12,
+  "hide_result_tree": false,
+  "hide_output_text": false,
+  "hide_settings": false,
+  "use_colors": false
+ }
 }
