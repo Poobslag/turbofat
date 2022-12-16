@@ -39,7 +39,7 @@ onready var _customer_view := $Customer/View
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 onready var _swoop_tween: Tween = $SwoopTween
 onready var _hello_timer := $HelloTimer
-onready var _summon_creature_timers := $SummonCreatureTimers
+onready var _summon_creature_timers: TimerGroup = $SummonCreatureTimers
 
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
@@ -163,13 +163,8 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 	set_current_creature_index(new_creature_index)
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	
-	var summon_creature_timer := Timer.new()
-	summon_creature_timer.autostart = true
-	summon_creature_timer.one_shot = true
-	summon_creature_timer.wait_time = 0.5
+	var summon_creature_timer := _summon_creature_timers.start_timer(0.5)
 	summon_creature_timer.connect("timeout", self, "_on_Timer_timeout_summon_customer", [old_creature_index])
-	summon_creature_timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [summon_creature_timer])
-	_summon_creature_timers.add_child(summon_creature_timer)
 
 
 ## Returns a random creature index different from the current creature index.
@@ -310,7 +305,3 @@ func _on_Playfield_all_lines_cleared() -> void:
 
 func _on_Timer_timeout_summon_customer(creature_index: int) -> void:
 	summon_customer(creature_index)
-
-
-func _on_Timer_timeout_queue_free(timer: Timer) -> void:
-	timer.queue_free()

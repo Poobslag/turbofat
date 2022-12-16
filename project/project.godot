@@ -1144,6 +1144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/tech-move-detector.gd"
 }, {
+"base": "Node",
+"class": "TimerGroup",
+"language": "GDScript",
+"path": "res://src/main/utils/timer-group.gd"
+}, {
 "base": "Reference",
 "class": "TouchSettings",
 "language": "GDScript",
@@ -1432,6 +1437,7 @@ _global_script_class_icons={
 "SystemSaveUpgrader": "",
 "TechMoveBurst": "",
 "TechMoveDetector": "",
+"TimerGroup": "",
 "TouchSettings": "",
 "Tracery": "",
 "TutorialDiagram": "",
