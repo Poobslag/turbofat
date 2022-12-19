@@ -85,14 +85,21 @@ func _schedule_playfield_refill() -> void:
 		_lines_being_filled.append(max(1, (visible_row_count - i) * per_line_fill_delay))
 
 
-## Immediately fills all empty lines on the playfield.
-func _fill_empty_lines() -> void:
+## Immediately fills empty lines on the playfield.
+##
+## Only the top few lines of the playfield are considered. This is because the fill pattern might include gaps which we
+## don't want filled.
+##
+## Parameters:
+## 	'filled_line_count': The number of lines at the top of the playfield to fill. Empty lines are filled, non-empty
+## 		lines are skipped.
+func _fill_empty_lines(filled_line_count: int) -> void:
 	if not _fill_lines_tiles_key():
 		return
 	
 	# fill the empty rows from bottom to top
-	var y := PuzzleTileMap.ROW_COUNT - 1
-	while y >= 0:
+	var y := filled_line_count
+	while y > 0:
 		if _tile_map.row_is_empty(y) and _pickups.row_is_empty(y):
 			_fill_line(_fill_lines_tiles_key(), y)
 		y -= 1
@@ -229,13 +236,13 @@ func _on_Level_settings_changed() -> void:
 	_reset()
 
 
-func _on_LineClearer_after_lines_deleted(_lines: Array) -> void:
+func _on_LineClearer_after_lines_deleted(lines: Array) -> void:
 	if PuzzleState.topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
 		# schedule line fills after a top out
 		_schedule_playfield_refill()
 	else:
 		# fill empty lines after a line clear
-		_fill_empty_lines()
+		_fill_empty_lines(lines.size())
 
 
 func _on_LineFillSfxResetTimer_timeout() -> void:
