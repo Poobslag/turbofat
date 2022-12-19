@@ -97,6 +97,43 @@ func _report_unused_career_levels() -> void:
 		_output_label.text += "Level keys not in career regions: %s" % [level_keys_not_in_career_regions]
 
 
+## Reports any unusual show_rank and hide_rank settings
+func _report_bad_show_rank() -> void:
+	var bad_level_id_set := {}
+	
+	for level_id in CareerLevelLibrary.all_level_ids():
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		
+		if level_settings.rank.show_boxes_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]:
+			if level_settings.rank.box_factor < 0.1:
+				push_warning("%s - show_boxes_rank enabled with box_factor of %s"
+						% [level_id, level_settings.rank.box_factor])
+				bad_level_id_set[level_id] = true
+		
+		if level_settings.rank.show_combos_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]:
+			if level_settings.rank.combo_factor < 0.1:
+				push_warning("%s - show_combos_rank enabled with combo_factor of %s"
+						% [level_id, level_settings.rank.box_factor])
+				bad_level_id_set[level_id] = true
+			if level_settings.combo_break.pieces == ComboBreakRules.UNLIMITED_PIECES:
+				push_warning("%s - show_combos_rank enabled with combo_break.pieces == %s"
+						% [level_id, level_settings.combo_break.pieces])
+				bad_level_id_set[level_id] = true
+		
+		if not level_settings.rank.show_pickups_rank in [RankRules.ShowRank.SHOW]:
+			if level_settings.rank.master_pickup_score_per_line > 1.0:
+				push_warning("%s - show_pickups_rank disabled with master_pickup_score_per_line of %s"
+						% [level_id, level_settings.rank.master_pickup_score_per_line])
+	
+	var bad_level_ids := bad_level_id_set.keys()
+	bad_level_ids.sort()
+	if bad_level_ids:
+		if _output_label.text:
+			_output_label.text += "\n"
+		_output_label.text += "Level keys with bad show_rank settings: %s" % [bad_level_ids]
+
+
 ## Alphabetizes the levels in 'career-regions.json'
 func _alphabetize_career_levels() -> void:
 	var sorted_region_ids := {}
@@ -129,6 +166,7 @@ func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_levels()
 	_report_unused_career_levels()
+	_report_bad_show_rank()
 	_alphabetize_career_levels()
 	if not _output_label.text:
 		_output_label.text = "No level files have problems."
