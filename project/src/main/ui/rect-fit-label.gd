@@ -3,9 +3,6 @@ extends Label
 ## This label changes its size dynamically based on the amount of text it needs to display. It chooses the smallest
 ## size where the text does not overrun its boundaries.
 
-## When calculating how much text we can accommodate, there is a 3 pixel gap between each row.
-const FONT_GAP := 3
-
 ## Different label sizes to try, ordered from smallest to largest.
 export (Array, Vector2) var sizes := [] setget set_sizes
 
@@ -50,7 +47,8 @@ func set_chosen_size_index(new_index: int) -> void:
 
 
 func _lines_fit() -> bool:
-	max_lines_visible = (rect_size.y + FONT_GAP) / (get("custom_fonts/font").get_height() + FONT_GAP)
+	max_lines_visible = (rect_size.y + get_constant("line_spacing")) \
+			/ (get("custom_fonts/font").get_height() + get_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
 
 
