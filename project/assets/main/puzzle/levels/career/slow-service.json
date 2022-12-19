@@ -16,7 +16,8 @@
   "rank": [
     "extra_seconds_per_piece 1.12",
     "box_factor 1.25",
-    "combo_factor 1.21"
+    "combo_factor 1.21",
+    "hide_combos_rank"
   ],
   "tiles": {
     "start": [
