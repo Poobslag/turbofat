@@ -24,11 +24,11 @@ var _row_bag_by_tiles_key := {}
 ## value: (int) the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
-## key: (Array) a tiles_keys array previously provided to the insert_line() method
+## key: (String) a concatenated tiles_keys array previously provided to insert_line()
 ## value: (String) the previous tiles key referenced that tiles keys array
 var _prev_tiles_key_by_tiles_keys := {}
 
-## key: (Array) a tiles_keys array previously provided to the insert_line() method
+## key: (String) a concatenated tiles_keys array previously provided to insert_line()
 ## value: (String) the number of insert statements from that tiles keys array
 var _prev_tiles_key_insert_count_by_tiles_keys := {}
 
@@ -80,7 +80,8 @@ func insert_line(tiles_keys: Array = [], dest_y: int = PuzzleTileMap.ROW_COUNT -
 			_tile_map.set_block(Vector2(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
 		_tile_map.set_block(Vector2(randi() % PuzzleTileMap.COL_COUNT, dest_y), -1)
 	
-	_prev_tiles_key_by_tiles_keys[tiles_keys] = tiles_key
+	var tiles_keys_string := _string_from_tiles_keys(tiles_keys)
+	_prev_tiles_key_by_tiles_keys[tiles_keys_string] = tiles_key
 	emit_signal("line_inserted", dest_y, tiles_key, src_y)
 
 
@@ -89,17 +90,19 @@ func insert_line(tiles_keys: Array = [], dest_y: int = PuzzleTileMap.ROW_COUNT -
 ## Levels can insert rows with multiple tiles keys. It will continue inserting from one tiles key until it is
 ## exhausted, and then swap to the next.
 func _determine_tiles_key(tiles_keys: Array) -> String:
+	var tiles_keys_string := _string_from_tiles_keys(tiles_keys)
+	
 	var result: String
 	
-	var prev_tiles_key: String = _prev_tiles_key_by_tiles_keys.get(tiles_keys, "")
-	var prev_tiles_key_insert_count: int = _prev_tiles_key_insert_count_by_tiles_keys.get(tiles_keys, 0)
+	var prev_tiles_key: String = _prev_tiles_key_by_tiles_keys.get(tiles_keys_string, "")
+	var prev_tiles_key_insert_count: int = _prev_tiles_key_insert_count_by_tiles_keys.get(tiles_keys_string, 0)
 	
 	if not tiles_keys:
 		result = ""
 	elif prev_tiles_key and prev_tiles_key_insert_count < _row_count_by_tiles_key[prev_tiles_key]:
 		# the previously used tiles key isn't exhausted, continue using it
 		result = prev_tiles_key
-		_prev_tiles_key_insert_count_by_tiles_keys[tiles_keys] = prev_tiles_key_insert_count + 1
+		_prev_tiles_key_insert_count_by_tiles_keys[tiles_keys_string] = prev_tiles_key_insert_count + 1
 	else:
 		# the previously used tiles key is exhausted, pick a new tiles key.
 		var possible_tiles_keys := tiles_keys.duplicate()
@@ -107,7 +110,7 @@ func _determine_tiles_key(tiles_keys: Array) -> String:
 			# avoid picking the same key twice
 			possible_tiles_keys.remove(possible_tiles_keys.find(prev_tiles_key))
 		result = Utils.rand_value(possible_tiles_keys)
-		_prev_tiles_key_insert_count_by_tiles_keys[tiles_keys] = 1
+		_prev_tiles_key_insert_count_by_tiles_keys[tiles_keys_string] = 1
 	
 	return result
 
@@ -163,6 +166,11 @@ func _reset() -> void:
 	if CurrentLevel.settings.blocks_during.shuffle_inserted_lines == BlocksDuringRules.ShuffleLinesType.SLICE:
 		for tiles_key in CurrentLevel.settings.tiles.bunches:
 			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
+
+
+## Converts a tiles keys array into a string like '0 1'
+func _string_from_tiles_keys(tiles_keys: Array) -> String:
+	return PoolStringArray(tiles_keys).join(" ")
 
 
 func _on_PuzzleState_game_prepared() -> void:
