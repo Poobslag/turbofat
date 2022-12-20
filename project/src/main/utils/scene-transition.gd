@@ -1,8 +1,8 @@
 extends Node
 ## Emits scene transition signals and keeps track of the currently active scene transition.
 
-const SCREEN_FADE_OUT_DURATION := 1.2
-const SCREEN_FADE_IN_DURATION := 0.6
+const DEFAULT_FADE_OUT_DURATION := 1.2
+const DEFAULT_FADE_IN_DURATION := 0.6
 
 ## A scene transition emits these two signals in order as the screen fades out and fades back in
 signal fade_out_started
@@ -20,8 +20,8 @@ var breadcrumb_arg_array: Array
 
 ## The duration of the next fade duration (or the current one, if already fading). These can be assigned for a slower
 ## or faster fadeout, but they will reset to their default values after the next fade.
-var next_fade_in_duration := SCREEN_FADE_IN_DURATION
-var next_fade_out_duration := SCREEN_FADE_OUT_DURATION
+var next_fade_in_duration := DEFAULT_FADE_IN_DURATION
+var next_fade_out_duration := DEFAULT_FADE_OUT_DURATION
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail after a scene transition.
 ##
@@ -94,7 +94,7 @@ func change_scene(skip_transition: bool = false) -> void:
 
 ## Called when the 'fade out' visual transition ends, triggering a scene transition.
 func end_fade_out() -> void:
-	next_fade_out_duration = SCREEN_FADE_OUT_DURATION
+	next_fade_out_duration = DEFAULT_FADE_OUT_DURATION
 	if breadcrumb_method:
 		breadcrumb_method.call_funcv(breadcrumb_arg_array)
 
@@ -109,7 +109,7 @@ func fade_in() -> void:
 
 ## Called when the 'fade in' visual transition ends, toggling a state variable.
 func end_fade_in() -> void:
-	next_fade_out_duration = SCREEN_FADE_IN_DURATION
+	next_fade_out_duration = DEFAULT_FADE_OUT_DURATION
 	fading = false
 
 

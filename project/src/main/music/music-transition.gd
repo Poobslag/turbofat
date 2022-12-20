@@ -16,7 +16,7 @@ func _on_SceneTransition_fade_in_started() -> void:
 	if _faded_bgm:
 		# If we faded the music out, we fade it back in
 		MusicPlayer.play_bgm(_faded_bgm, _faded_bgm.get_playback_position())
-		MusicPlayer.fade_in(SceneTransition.SCREEN_FADE_IN_DURATION * 1.5)
+		MusicPlayer.fade_in(SceneTransition.DEFAULT_FADE_IN_DURATION * 1.5)
 		
 		# reset _faded_bgm to avoid fading the same song in twice
 		_faded_bgm = null
