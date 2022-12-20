@@ -21,7 +21,3 @@ curve = SubResource( 28 )
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
