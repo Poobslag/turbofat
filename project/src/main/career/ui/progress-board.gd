@@ -148,10 +148,12 @@ func _spots_travelled_start() -> int:
 func _spots_travelled_finish() -> int:
 	var region := PlayerData.career.current_region()
 	var spots_travelled := PlayerData.career.distance_travelled - region.start
-	spots_travelled = int(clamp(spots_travelled, 0, _trail.spot_count))
 	if not region.has_end():
-		spots_travelled = int(min(spots_travelled, 30))
-	spots_travelled = int(min(spots_travelled, _trail.spot_count - 1))
+		var start_spots_travelled := PlayerData.career.progress_board_start_distance_travelled - region.start
+		start_spots_travelled = int(min(start_spots_travelled, 5))
+		
+		spots_travelled = int(min(start_spots_travelled + PlayerData.career.distance_earned, 30))
+	spots_travelled = int(clamp(spots_travelled, 0, _trail.spot_count))
 	return spots_travelled
 
 
