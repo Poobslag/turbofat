@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/main/world/overworld-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=8]
 [ext_resource path="res://src/demo/world/FreeRoamTouchButtons.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/chat/ui/ChatUi.tscn" type="PackedScene" id=16]
@@ -143,8 +142,6 @@ codes = [ "bigfps" ]
 quit_type = 1
 
 [node name="MusicPopup" parent="." instance=ExtResource( 17 )]
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 13 )]
 
 [connection signal="pressed" from="Buttons/Northeast/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="chat_choice_chosen" from="ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=2]
@@ -28,7 +28,6 @@
 [ext_resource path="res://assets/main/world/creature/1/nose-packed.png" type="Texture" id=26]
 [ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=27]
 [ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=28]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=29]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=32]
@@ -1989,8 +1988,6 @@ window_title = "Error"
 dialog_autowrap = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 13 )]
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 29 )]
 
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
 [connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]

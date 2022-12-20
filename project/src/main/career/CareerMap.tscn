@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -25,7 +25,6 @@
 [ext_resource path="res://assets/main/career/ui/icon-time-of-day-sheet.png" type="Texture" id=47]
 [ext_resource path="res://src/main/world/environment/MileMarker.tscn" type="PackedScene" id=48]
 [ext_resource path="res://src/main/world/career-camera.gd" type="Script" id=49]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=50]
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -222,9 +221,6 @@ layer = 5
 quit_type = 3
 
 [node name="MusicPopup" parent="Ui" instance=ExtResource( 24 )]
-
-[node name="SceneTransitionCover" parent="Ui" instance=ExtResource( 50 )]
-layer = 10
 
 [node name="CheatCodeDetector" parent="Ui" instance=ExtResource( 5 )]
 codes = [ "bossio", "cambra", "cutsio", "cyclio", "epilio", "moveme" ]

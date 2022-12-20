@@ -18,9 +18,11 @@ func _on_Career_pressed() -> void:
 
 
 func _on_Practice_pressed() -> void:
-	SceneTransition.push_trail("res://src/main/ui/menu/PracticeMenu.tscn", true)
+	SceneTransition.push_trail("res://src/main/ui/menu/PracticeMenu.tscn",
+			{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
 
 
 func _on_Tutorials_pressed() -> void:
-	SceneTransition.push_trail("res://src/main/ui/menu/TutorialMenu.tscn", true)
+	SceneTransition.push_trail("res://src/main/ui/menu/TutorialMenu.tscn",
+			{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
  

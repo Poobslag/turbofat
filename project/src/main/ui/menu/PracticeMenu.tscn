@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/main/ui/menu/PagedRegionPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://src/main/ui/menu/PagedLevelPanel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=17]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/ui/menu/region-submenu.gd" type="Script" id=22]
 [ext_resource path="res://src/main/ui/menu/level-submenu.gd" type="Script" id=24]
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=31]
@@ -374,8 +373,6 @@ action = "ui_cancel"
 [node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 16 )]
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 18 )]
 
 [connection signal="level_chosen" from="LevelSubmenu" to="." method="_on_LevelSelect_level_chosen"]
 [connection signal="visibility_changed" from="LevelSubmenu" to="." method="_on_LevelSubmenu_visibility_changed"]

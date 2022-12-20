@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/menu/main-menu-play.gd" type="Script" id=13]
 [ext_resource path="res://src/main/ui/menu/main-menu-create.gd" type="Script" id=14]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -186,8 +185,6 @@ __meta__ = {
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 10 )]
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 15 )]
 
 [connection signal="pressed" from="DropPanel/Create/Creatures" to="DropPanel/Create" method="_on_Creatures_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
