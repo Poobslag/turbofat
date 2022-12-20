@@ -74,6 +74,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _animate_progress(distance_earned: int) -> void:
+	PlayerData.career.distance_earned = distance_earned
 	if PlayerData.career.current_region().length == Careers.MAX_DISTANCE_TRAVELLED:
 		PlayerData.career.distance_travelled = int(min(PlayerData.career.distance_travelled,
 				PlayerData.career.current_region().start + 5))
