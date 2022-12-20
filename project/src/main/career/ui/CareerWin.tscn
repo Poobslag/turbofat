@@ -1,7 +1,6 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/main/career/ui/career-win.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/career/ui/career-win-world.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/theme/chalkboard-54.theme" type="Theme" id=6]
@@ -593,7 +592,5 @@ current = true
 [node name="Ui" type="CanvasLayer" parent="."]
 
 [node name="MusicPopup" parent="Ui" instance=ExtResource( 37 )]
-
-[node name="SceneTransitionCover" parent="Ui" instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="Bg/Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]

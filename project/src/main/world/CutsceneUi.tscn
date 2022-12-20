@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/world/cutscene-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/chat/ui/ChatUi.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=19]
@@ -57,8 +56,6 @@ visible = false
 codes = [ "bigfps" ]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 13 )]
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 14 )]
 
 [connection signal="chat_choice_chosen" from="ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]

@@ -21,7 +21,7 @@ func _exit_tree() -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	SceneTransition.pop_trail(true)
+	SceneTransition.pop_trail({SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
 
 
 func _on_RegionButtons_region_chosen(region) -> void:

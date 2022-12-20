@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/demo/world/cutscene-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/demo/world/cutscene-demo-fatness.gd" type="Script" id=4]
 [ext_resource path="res://src/demo/world/cutscene-demo-long-names.gd" type="Script" id=5]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=7]
 [ext_resource path="res://src/demo/world/cutscene-demo-flags.gd" type="Script" id=8]
 [ext_resource path="res://src/demo/DemoSave.tscn" type="PackedScene" id=9]
@@ -160,8 +159,6 @@ margin_bottom = 58.0
 popup_exclusive = true
 window_title = "Error"
 dialog_autowrap = true
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 6 )]
 
 [node name="DemoSave" parent="." instance=ExtResource( 9 )]
 

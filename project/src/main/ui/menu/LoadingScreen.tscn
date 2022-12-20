@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/ui/menu/loading-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/menu/LoadingPiece.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/loading-orb.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/menu/loading-pieces.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/menu/loading-progress-bar.gd" type="Script" id=7]
@@ -62,5 +61,3 @@ script = ExtResource( 6 )
 orb_path = NodePath("../Orb")
 progress_bar_path = NodePath("../ProgressBar")
 piece_scene = ExtResource( 3 )
-
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
