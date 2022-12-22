@@ -9,9 +9,6 @@ margin_bottom = 152.0
 size_flags_horizontal = 3
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="."]
 margin_right = 412.0
@@ -19,9 +16,6 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Today's Best"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_top = 24.0

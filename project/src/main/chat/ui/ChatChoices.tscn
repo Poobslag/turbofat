@@ -16,9 +16,6 @@ margin_right = -13.9999
 margin_bottom = -5.00018
 columns = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 ChatChoiceButtonScene = ExtResource( 6 )
 
 [node name="Button0" parent="." instance=ExtResource( 6 )]

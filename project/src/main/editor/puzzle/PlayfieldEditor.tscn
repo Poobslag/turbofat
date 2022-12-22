@@ -36,18 +36,12 @@ margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Palette" type="Control" parent="."]
 margin_right = 472.0
 margin_bottom = 564.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Palette"]
 anchor_right = 1.0
@@ -56,9 +50,6 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = -5.0
 margin_bottom = -5.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="GridContainer" parent="Palette/VBoxContainer"]
 margin_left = 157.0
@@ -66,9 +57,6 @@ margin_right = 305.0
 margin_bottom = 64.0
 size_flags_horizontal = 4
 columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RotateButton" type="Button" parent="Palette/VBoxContainer/Buttons"]
 margin_right = 72.0
@@ -94,9 +82,6 @@ margin_right = 381.0
 margin_bottom = 404.0
 size_flags_horizontal = 4
 columns = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Veg" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_right = 72.0
@@ -315,9 +300,6 @@ margin_left = 544.0
 margin_right = 1016.0
 margin_bottom = 564.0
 size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Playfield" type="Control" parent="CenterPanel"]
 anchor_left = 0.5
@@ -330,9 +312,6 @@ margin_right = 139.5
 margin_bottom = 275.5
 rect_min_size = Vector2( 279, 551 )
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Bg" type="ColorRect" parent="CenterPanel/Playfield"]
 anchor_right = 1.0
@@ -342,18 +321,12 @@ margin_bottom = -12.0
 rect_min_size = Vector2( 279, 551 )
 mouse_filter = 2
 color = Color( 0.113725, 0.101961, 0.101961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Pickups" type="Control" parent="CenterPanel/Playfield/Bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 PickupScene = ExtResource( 6 )
 puzzle_tile_map_path = NodePath("../TileMap")
 
@@ -363,9 +336,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 PickupScene = ExtResource( 6 )
 puzzle_tile_map_path = NodePath("../TileMap")
 

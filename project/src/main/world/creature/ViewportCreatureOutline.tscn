@@ -104,6 +104,3 @@ rect_scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
 texture = SubResource( 2 )
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}

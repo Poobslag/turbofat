@@ -14,9 +14,6 @@ margin_top = -86.0
 theme = ExtResource( 1 )
 custom_constants/separation = 10
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Settings" type="Button" parent="."]
 margin_left = 454.0

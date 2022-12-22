@@ -19,9 +19,6 @@ margin_left = -120.0
 margin_bottom = 30.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 panel_sizes = [ Vector2( 120, 30 ), Vector2( 240, 30 ), Vector2( 240, 24 ), Vector2( 240, 48 ), Vector2( 240, 72 ) ]
 
 [node name="Small" type="Label" parent="."]
@@ -41,9 +38,6 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Medium" type="Label" parent="."]
 visible = false
@@ -63,9 +57,6 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Large" type="Label" parent="."]
 visible = false
@@ -86,9 +77,6 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtraLarge" type="Label" parent="."]
 visible = false
@@ -109,9 +97,6 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtraExtraLarge" type="Label" parent="."]
 visible = false
@@ -132,6 +117,3 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}

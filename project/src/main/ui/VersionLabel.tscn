@@ -15,6 +15,3 @@ theme = ExtResource( 2 )
 text = "v1.2.3.4"
 align = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

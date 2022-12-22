@@ -45,9 +45,6 @@ margin_right = 219.5
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 anchor_top = 1.0
@@ -67,9 +64,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 5 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer"]
 margin_left = 32.0
@@ -90,9 +84,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 5 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PopupTween" type="Tween" parent="."]
 script = ExtResource( 2 )

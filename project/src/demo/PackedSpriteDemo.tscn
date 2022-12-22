@@ -13,9 +13,6 @@ margin_top = 100.0
 margin_right = 220.0
 margin_bottom = 220.0
 rect_rotation = 30.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 margin_left = 300.0
@@ -23,9 +20,6 @@ margin_top = 100.0
 margin_right = 420.0
 margin_bottom = 220.0
 rect_rotation = 30.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PackedSprite" type="Node2D" parent="."]
 position = Vector2( 100, 100 )

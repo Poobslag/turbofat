@@ -39,9 +39,6 @@ script = ExtResource( 3 )
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 chat_frame_path = NodePath("../ChatFrame")
 narration_frame_path = NodePath("../NarrationFrame")
 

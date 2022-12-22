@@ -10,9 +10,6 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="Control" parent="."]
 margin_right = 32.0
@@ -33,6 +30,3 @@ margin_bottom = 30.0
 custom_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "9,999 m"
-__meta__ = {
-"_edit_use_anchors_": false
-}

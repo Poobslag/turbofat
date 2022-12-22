@@ -78,9 +78,6 @@ custom_fonts/font = ExtResource( 17 )
 text = "Level"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ButtonHolder" type="Control" parent="MainMenu/VBoxContainer/Level"]
 margin_top = 49.0
@@ -113,9 +110,6 @@ theme = ExtResource( 6 )
 text = "Score 200 points as quickly as possible!"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Speed" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 margin_top = 155.0
@@ -133,9 +127,6 @@ custom_fonts/font = ExtResource( 17 )
 text = "Speed"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Slider" type="HSlider" parent="MainMenu/VBoxContainer/Speed" groups=["main_practice_inputs"]]
 margin_left = 192.0
@@ -196,9 +187,6 @@ margin_bottom = 431.0
 size_flags_vertical = 10
 custom_constants/separation = 10
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Start" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
 margin_left = 402.0
@@ -249,9 +237,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/panel = ExtResource( 12 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tables" type="HBoxContainer" parent="MainMenu/VBoxContainer/HighScores"]
 anchor_right = 1.0
@@ -261,9 +246,6 @@ margin_top = 5.0
 margin_right = -20.0
 margin_bottom = -5.0
 custom_constants/separation = 200
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DailyTable" parent="MainMenu/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
 margin_right = 280.0

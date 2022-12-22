@@ -12,9 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ResultsLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -26,9 +23,6 @@ custom_fonts/normal_font = ExtResource( 2 )
 custom_styles/normal = ExtResource( 1 )
 scroll_following = true
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BebebeSound" type="AudioStreamPlayer" parent="ResultsLabel"]
 stream = ExtResource( 5 )

@@ -12,9 +12,6 @@ anchor_bottom = 1.0
 margin_top = 47.0
 theme = ExtResource( 2 )
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5

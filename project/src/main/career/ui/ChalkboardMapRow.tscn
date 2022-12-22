@@ -78,9 +78,6 @@ custom_constants/margin_right = 50
 custom_constants/margin_top = 5
 custom_constants/margin_left = 50
 custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Lines" type="Control" parent="MarginContainer"]
 margin_left = 50.0
@@ -88,9 +85,6 @@ margin_top = 5.0
 margin_right = 880.0
 margin_bottom = 155.0
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 LandmarkLineScene = ExtResource( 1 )
 
 [node name="Line2D1" parent="MarginContainer/Lines" instance=ExtResource( 1 )]
@@ -115,9 +109,6 @@ margin_right = 880.0
 margin_bottom = 155.0
 custom_constants/separation = 0
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 LandmarkScene = ExtResource( 8 )
 LandmarkSpacerScene = ExtResource( 9 )
 map_row_path = NodePath("../..")
@@ -172,9 +163,6 @@ margin_top = 5.0
 margin_right = 880.0
 margin_bottom = 155.0
 script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 map_row_path = NodePath("../..")
 
 [node name="Label" type="Label" parent="MarginContainer/Player"]
@@ -190,9 +178,6 @@ rect_min_size = Vector2( 120, 0 )
 theme = ExtResource( 2 )
 text = "999,999"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DotSprite" type="Sprite" parent="MarginContainer/Player"]
 modulate = Color( 0.784314, 0.784314, 0.784314, 1 )

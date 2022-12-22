@@ -30,9 +30,6 @@ modulate = Color( 1, 1, 1, 0.627451 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Northeast" type="HBoxContainer" parent="Buttons"]
 anchor_left = 1.0
@@ -45,9 +42,6 @@ rect_min_size = Vector2( 100, 100 )
 mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackButton" parent="Buttons/Northeast" instance=ExtResource( 2 )]
 anchor_right = 0.0

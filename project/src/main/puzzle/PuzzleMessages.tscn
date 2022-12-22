@@ -44,9 +44,6 @@ theme = ExtResource( 3 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 8 )
 text = "Settings"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ShortcutHelper" parent="Buttons/Settings" instance=ExtResource( 9 )]
 action = "ui_cancel"
@@ -63,9 +60,6 @@ theme = ExtResource( 3 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 7 )
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PuzzleMessage" parent="." instance=ExtResource( 1 )]
 mouse_filter = 2

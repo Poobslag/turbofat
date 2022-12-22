@@ -50,9 +50,6 @@ margin_bottom = -10.0
 mouse_filter = 2
 theme = ExtResource( 5 )
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FpsLabel" parent="Labels/SoutheastLabels" instance=ExtResource( 19 )]
 visible = false
@@ -82,9 +79,6 @@ margin_right = 512.0
 margin_bottom = 300.0
 mouse_filter = 2
 theme = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MoneyLabel" parent="Labels/NorthwestLabels" instance=ExtResource( 15 )]
 margin_right = 502.0
@@ -113,9 +107,6 @@ rect_min_size = Vector2( 100, 100 )
 mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SettingsButton" parent="Buttons/Northeast" instance=ExtResource( 3 )]
 anchor_right = 0.0

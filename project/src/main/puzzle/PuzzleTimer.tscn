@@ -10,6 +10,3 @@ theme = ExtResource( 1 )
 text = "0:00"
 align = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

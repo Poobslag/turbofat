@@ -23,9 +23,6 @@ margin_right = 360.0
 margin_bottom = 370.0
 rect_pivot_offset = Vector2( 180, 185 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" parent="Messages" instance=ExtResource( 7 )]
 anchor_right = 1.0
@@ -64,16 +61,10 @@ margin_left = 355.0
 margin_right = 760.0
 margin_bottom = 600.0
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Diagram"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureMarginContainer" type="MarginContainer" parent="Diagram/VBoxContainer"]
 margin_right = 405.0
@@ -102,9 +93,6 @@ margin_bottom = -10.0
 size_flags_vertical = 3
 expand = true
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ChatChoices" parent="Diagram/VBoxContainer" instance=ExtResource( 1 )]
 anchor_left = 0.0
@@ -135,9 +123,6 @@ margin_top = -168.0
 margin_right = 110.0
 margin_bottom = 168.0
 columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="chat_choice_chosen" from="Diagram/VBoxContainer/ChatChoices" to="Diagram" method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="all_text_shown" from="Messages/Label" to="Messages" method="_on_Label_all_text_shown"]

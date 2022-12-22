@@ -26,9 +26,6 @@ custom_styles/normal = SubResource( 5 )
 shortcut_in_tooltip = false
 flat = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

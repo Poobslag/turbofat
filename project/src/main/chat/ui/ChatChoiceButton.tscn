@@ -263,9 +263,6 @@ margin_bottom = 41.0
 rect_pivot_offset = Vector2( 15, 15 )
 mouse_filter = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Texture" type="TextureRect" parent="MoodSprite"]
 margin_left = -49.0
@@ -276,9 +273,6 @@ rect_rotation = -8.0
 rect_scale = Vector2( 0.33, 0.33 )
 rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MoodSprite"]
 autoplay = "default"

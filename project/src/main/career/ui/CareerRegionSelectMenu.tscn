@@ -59,9 +59,6 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
 custom_styles/panel = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RegionSelect" type="Panel" parent="."]
 anchor_right = 1.0
@@ -154,9 +151,6 @@ rect_min_size = Vector2( 0, 100 )
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Description" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
 margin_right = 450.0
@@ -172,9 +166,6 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 5
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
 margin_left = 20.0
@@ -186,9 +177,6 @@ theme = ExtResource( 20 )
 align = 1
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Info" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
 margin_left = 454.0
@@ -214,9 +202,6 @@ margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="Control" parent="."]
 modulate = Color( 1, 1, 1, 0.627451 )

@@ -90,9 +90,6 @@ z_index = 3
 margin_right = 324.0
 margin_bottom = 544.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 squish_curve = SubResource( 2 )
 
 [node name="SquishMap" parent="SquishFx" instance=ExtResource( 9 )]
