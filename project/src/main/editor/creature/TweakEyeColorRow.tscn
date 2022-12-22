@@ -69,16 +69,13 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
+[connection signal="button_down" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_down"]
+[connection signal="button_up" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_up"]
+[connection signal="pressed" from="DnaMargin/Dna" to="." method="_on_Dna_pressed"]
 [connection signal="color_changed" from="Edit1" to="." method="_on_Edit_color_changed"]
 [connection signal="popup_closed" from="Edit1" to="." method="_on_Edit_popup_closed"]
 [connection signal="pressed" from="Edit1" to="." method="_on_Edit_pressed"]
 [connection signal="color_changed" from="Edit2" to="." method="_on_Edit_color_changed"]
 [connection signal="popup_closed" from="Edit2" to="." method="_on_Edit_popup_closed"]
 [connection signal="pressed" from="Edit2" to="." method="_on_Edit_pressed"]
-[connection signal="button_down" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_down"]
-[connection signal="button_up" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_up"]
-[connection signal="pressed" from="DnaMargin/Dna" to="." method="_on_Dna_pressed"]

@@ -18,6 +18,3 @@ anchor_right = 1.0
 margin_bottom = 44.0
 theme = ExtResource( 3 )
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}

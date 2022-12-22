@@ -12,9 +12,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Description" type="Label" parent="."]
 margin_right = 180.0
@@ -26,9 +23,6 @@ size_flags_stretch_ratio = 0.9
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Value" type="Label" parent="."]
 margin_left = 200.0

@@ -290,9 +290,6 @@ margin_right = 308.0
 margin_bottom = 233.0
 rect_min_size = Vector2( 250, 40 )
 script = ExtResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ProgressBar" type="ProgressBar" parent="Fg/Chalkboard/MilestoneHud"]
 margin_left = 150.0
@@ -302,9 +299,6 @@ margin_bottom = 75.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Desc" type="Label" parent="Fg/Chalkboard/MilestoneHud"]
 anchor_right = 1.0
@@ -312,9 +306,6 @@ margin_bottom = 30.0
 theme = ExtResource( 1 )
 text = "Goal"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource( 36 )]
 margin_left = 150.0
@@ -338,9 +329,6 @@ margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Nw" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
 position = Vector2( 50, 22.5 )
@@ -409,9 +397,6 @@ margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
 script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 StarSeedScene = ExtResource( 72 )
 
@@ -494,9 +479,6 @@ script = ExtResource( 33 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Fill" type="Panel" parent="Fg/StepMeter"]
 anchor_right = 1.0
@@ -507,9 +489,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 theme = SubResource( 23 )
 custom_styles/panel = SubResource( 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Fg/StepMeter"]
 anchor_right = 1.0
@@ -520,9 +499,6 @@ custom_fonts/font = ExtResource( 73 )
 text = "1"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RecalculateTimer" type="Timer" parent="Fg/StepMeter"]
 
@@ -564,9 +540,6 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 19 )
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FoodCrumbs" type="Node2D" parent="Fg"]
 script = ExtResource( 63 )
@@ -660,9 +633,6 @@ margin_bottom = 40.0
 theme = ExtResource( 1 )
 text = "abcd"
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 puzzle_path = NodePath("../..")
 
 [node name="MusicPopup" parent="Hud" instance=ExtResource( 31 )]
@@ -693,9 +663,6 @@ margin_right = -10.0
 margin_bottom = -10.0
 mouse_filter = 2
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FrameDropsLabel" type="Label" parent="Hud/VBoxContainer"]
 visible = false
@@ -707,9 +674,6 @@ text = "0 frame drops
 0 step drops"
 align = 2
 script = ExtResource( 69 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FpsLabel" parent="Hud/VBoxContainer" instance=ExtResource( 56 )]
 visible = false

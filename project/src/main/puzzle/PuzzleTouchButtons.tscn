@@ -13,9 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ButtonsSw" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.0
@@ -42,9 +39,6 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -116.0
 margin_bottom = 116.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MenuButton" type="TouchScreenButton" parent="MenuButtonHolder"]
 position = Vector2( 10, 10 )

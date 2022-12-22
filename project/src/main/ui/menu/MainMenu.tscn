@@ -37,9 +37,6 @@ margin_top = 50.0
 margin_right = -50.0
 margin_bottom = -50.0
 custom_styles/panel = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TurboFat" type="Label" parent="DropPanel"]
 anchor_right = 1.0
@@ -48,9 +45,6 @@ custom_fonts/font = SubResource( 1 )
 text = "turbo fat"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Play" type="VBoxContainer" parent="DropPanel"]
 anchor_right = 0.5
@@ -60,9 +54,6 @@ margin_bottom = -100.0
 custom_constants/separation = 10
 alignment = 1
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="DropPanel/Play"]
 margin_top = 17.0
@@ -117,9 +108,6 @@ margin_bottom = -100.0
 custom_constants/separation = 10
 alignment = 1
 script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="DropPanel/Create"]
 margin_top = 45.0
@@ -166,9 +154,6 @@ margin_top = -48.0
 margin_right = -19.9999
 margin_bottom = -20.0
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StressTest" type="Button" parent="DropPanel/Debug"]
 margin_right = 116.0
@@ -176,9 +161,6 @@ margin_bottom = 28.0
 rect_min_size = Vector2( 116, 28 )
 theme = ExtResource( 11 )
 text = "Stress Test"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 

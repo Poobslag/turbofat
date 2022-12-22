@@ -18,8 +18,5 @@ margin_right = 480.0
 margin_bottom = 291.2
 texture = ExtResource( 2 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MapRow" parent="." instance=ExtResource( 1 )]

@@ -10,9 +10,6 @@ anchor_right = 1.0
 margin_top = 100.0
 margin_bottom = 200.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 StickerScene = ExtResource( 4 )
 color = Color( 1, 0, 0, 1 )
 texture_0 = ExtResource( 2 )

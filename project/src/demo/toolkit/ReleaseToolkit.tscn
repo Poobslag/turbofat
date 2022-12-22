@@ -22,9 +22,6 @@ margin_right = 384.0
 margin_bottom = 225.0
 rect_min_size = Vector2( 768, 450 )
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtractLocalizables" type="Button" parent="VBoxContainer"]
 margin_left = 199.0
@@ -35,9 +32,6 @@ size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Extract Localizables"
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 output_label_path = NodePath("../Output")
 
 [node name="FixChats" type="Button" parent="VBoxContainer"]
@@ -49,9 +43,6 @@ size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Fix Chats"
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 output_label_path = NodePath("../Output")
 
 [node name="FixCreatures" type="Button" parent="VBoxContainer"]
@@ -63,9 +54,6 @@ size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Fix Creatures"
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 output_label_path = NodePath("../Output")
 
 [node name="FixLevels" type="Button" parent="VBoxContainer"]
@@ -77,9 +65,6 @@ size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Fix Levels"
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 output_label_path = NodePath("../Output")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]

@@ -60,9 +60,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 54, 32 )
 custom_styles/panel = SubResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" parent="." instance=ExtResource( 4 )]
 anchor_right = 1.0

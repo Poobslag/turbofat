@@ -70,9 +70,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 5 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PurpleDna" type="MarginContainer" parent="."]
 margin_left = 246.0
@@ -103,9 +100,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GrayDna" type="MarginContainer" parent="."]
 margin_left = 282.0
@@ -138,9 +132,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="color_changed" from="Edit1" to="." method="_on_Edit_color_changed"]
 [connection signal="popup_closed" from="Edit1" to="." method="_on_Edit_popup_closed"]
@@ -148,12 +139,12 @@ __meta__ = {
 [connection signal="color_changed" from="Edit2" to="." method="_on_Edit_color_changed"]
 [connection signal="popup_closed" from="Edit2" to="." method="_on_Edit_popup_closed"]
 [connection signal="pressed" from="Edit2" to="." method="_on_Edit_pressed"]
-[connection signal="button_down" from="RainbowDna/Button" to="RainbowDna/Button" method="_on_button_down"]
-[connection signal="button_up" from="RainbowDna/Button" to="RainbowDna/Button" method="_on_button_up"]
-[connection signal="pressed" from="RainbowDna/Button" to="." method="_on_RainbowDna_pressed"]
-[connection signal="button_down" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_down"]
-[connection signal="button_up" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_up"]
-[connection signal="pressed" from="PurpleDna/Button" to="." method="_on_PurpleDna_pressed"]
 [connection signal="button_down" from="GrayDna/Button" to="GrayDna/Button" method="_on_button_down"]
 [connection signal="button_up" from="GrayDna/Button" to="GrayDna/Button" method="_on_button_up"]
 [connection signal="pressed" from="GrayDna/Button" to="." method="_on_GrayDna_pressed"]
+[connection signal="button_down" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_down"]
+[connection signal="button_up" from="PurpleDna/Button" to="PurpleDna/Button" method="_on_button_up"]
+[connection signal="pressed" from="PurpleDna/Button" to="." method="_on_PurpleDna_pressed"]
+[connection signal="button_down" from="RainbowDna/Button" to="RainbowDna/Button" method="_on_button_down"]
+[connection signal="button_up" from="RainbowDna/Button" to="RainbowDna/Button" method="_on_button_up"]
+[connection signal="pressed" from="RainbowDna/Button" to="." method="_on_RainbowDna_pressed"]

@@ -17,9 +17,6 @@ margin_top = -50.0
 margin_right = 150.0
 margin_bottom = 100.0
 color = Color( 0.34902, 0.560784, 0.764706, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FryingPansUi" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.5
@@ -39,9 +36,6 @@ margin_top = 71.4717
 margin_right = 216.734
 margin_bottom = 175.472
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Remaining"]
 margin_right = 179.0
@@ -67,9 +61,6 @@ min_value = 1.0
 max_value = 999.0
 value = 3.0
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Max" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -79,9 +70,6 @@ margin_top = 70.4122
 margin_right = -85.7158
 margin_bottom = 174.412
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Max"]
 margin_right = 134.0
@@ -106,9 +94,6 @@ min_value = 1.0
 max_value = 999.0
 value = 3.0
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Gold" type="CheckBox" parent="."]
 margin_left = 437.0
@@ -117,9 +102,6 @@ margin_right = 547.0
 margin_bottom = 232.0
 theme = ExtResource( 2 )
 text = "Gold"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="toggled" from="Gold" to="." method="_on_Gold_toggled"]
 [connection signal="value_changed" from="Max/HBoxContainer/SpinBox" to="." method="_on_TotalSpinBox_value_changed"]

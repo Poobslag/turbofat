@@ -646,9 +646,6 @@ margin_right = 426.0
 margin_bottom = 50.0
 theme = ExtResource( 14 )
 text = "Lemony Thickets"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control2" type="Control" parent="ChalkboardRegion/Title/HBoxContainer"]
 margin_left = 430.0

@@ -13,6 +13,3 @@ margin_bottom = 158.0
 rect_pivot_offset = Vector2( 294, 60 )
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

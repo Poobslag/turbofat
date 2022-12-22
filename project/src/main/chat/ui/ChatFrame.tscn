@@ -43,9 +43,6 @@ margin_right = 540.0
 margin_bottom = 4.57764e-05
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 panel_sizes = [ Vector2( 180, 60 ), Vector2( 360, 60 ), Vector2( 360, 60 ), Vector2( 240, 60 ), Vector2( 360, 60 ) ]
 
 [node name="Small" type="Label" parent="ChatLinePanel/NametagPanel"]
@@ -65,9 +62,6 @@ text = "Lorem ipsu"
 align = 1
 autowrap = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Medium" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
@@ -87,9 +81,6 @@ align = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Large" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
@@ -109,9 +100,6 @@ align = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtraLarge" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
@@ -132,9 +120,6 @@ align = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtraExtraLarge" type="Label" parent="ChatLinePanel/NametagPanel"]
 anchor_left = 0.5
@@ -155,9 +140,6 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ChatLineLabel" parent="." instance=ExtResource( 2 )]
 panel_padding = Vector2( 60, 40 )

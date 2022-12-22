@@ -5,9 +5,6 @@
 
 [node name="GoopViewports" type="Control"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 GoopGlobScene = ExtResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="."]

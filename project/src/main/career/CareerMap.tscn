@@ -83,9 +83,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 GradeLabelScene = ExtResource( 3 )
 
 [node name="ProgressBoardHolder" parent="." instance=ExtResource( 9 )]
@@ -105,9 +102,6 @@ anchor_right = 1.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 custom_styles/panel = SubResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Money" parent="Ui/Control/StatusBar" instance=ExtResource( 42 )]
 compact = true
@@ -121,9 +115,6 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 mouse_filter = 2
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 level_select_path = NodePath("../../../../LevelSelect")
 
 [node name="TextureRect" type="Control" parent="Ui/Control/StatusBar/Distance"]
@@ -148,9 +139,6 @@ custom_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 custom_fonts/font = ExtResource( 43 )
 text = "999,999"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Time" type="Control" parent="Ui/Control/StatusBar"]
 anchor_left = 1.0
@@ -161,17 +149,11 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 136, 32 )
 mouse_filter = 2
 script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Icon" type="Control" parent="Ui/Control/StatusBar/Time"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IconSprite" type="Sprite" parent="Ui/Control/StatusBar/Time/Icon"]
 position = Vector2( 16, 16 )
@@ -193,9 +175,6 @@ custom_fonts/font = ExtResource( 43 )
 text = "12:05 am"
 align = 2
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SettingsButton" parent="Ui/Control" instance=ExtResource( 12 )]
 modulate = Color( 1, 1, 1, 0.627451 )

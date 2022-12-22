@@ -8,9 +8,6 @@
 margin_right = 64.0
 margin_bottom = 544.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 NextPieceDisplayScene = ExtResource( 2 )
 
 [node name="BgSprite" type="TextureRect" parent="."]
@@ -18,9 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GoopMain" type="ColorRect" parent="."]
 visible = false
@@ -28,9 +22,6 @@ modulate = Color( 1, 1, 1, 0.588235 )
 margin_right = 64.0
 margin_bottom = 484.0
 color = Color( 1, 0.364706, 0.407843, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GoopGutter" type="ColorRect" parent="."]
 visible = false
@@ -38,22 +29,13 @@ margin_top = 484.0
 margin_right = 64.0
 margin_bottom = 544.0
 color = Color( 1, 0.364706, 0.407843, 0.392157 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Shadow" type="ColorRect" parent="."]
 margin_right = 6.0
 margin_bottom = 544.0
 color = Color( 0, 0, 0, 0.196078 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BgColor" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.627451 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

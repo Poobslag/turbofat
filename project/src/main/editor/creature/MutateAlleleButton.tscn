@@ -15,9 +15,6 @@ theme = ExtResource( 2 )
 text = "Allele"
 expand_icon = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 locked_texture = ExtResource( 4 )
 unlocked_texture = ExtResource( 3 )
 

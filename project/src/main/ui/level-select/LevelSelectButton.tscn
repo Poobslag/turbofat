@@ -43,9 +43,6 @@ align = 1
 valign = 1
 autowrap = true
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

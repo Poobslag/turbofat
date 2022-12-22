@@ -32,9 +32,6 @@ margin_right = 150.0
 margin_bottom = 51.0
 theme = ExtResource( 2 )
 text = "× 2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlusTen" type="Button" parent="Ui/Control"]
 margin_top = 61.0
@@ -42,9 +39,6 @@ margin_right = 150.0
 margin_bottom = 112.0
 theme = ExtResource( 2 )
 text = "+ 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Count" type="Label" parent="Ui/Control"]
 margin_top = 122.0
@@ -60,9 +54,6 @@ margin_right = 150.0
 margin_bottom = 228.0
 theme = ExtResource( 2 )
 text = "- 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Divide2" type="Button" parent="Ui/Control"]
 margin_top = 238.0
@@ -70,9 +61,6 @@ margin_right = 150.0
 margin_bottom = 289.0
 theme = ExtResource( 2 )
 text = "÷ 2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FpsLabel" parent="Ui" instance=ExtResource( 1 )]
 margin_top = -30.0

@@ -11,9 +11,6 @@ margin_right = 186.0
 margin_bottom = 26.0
 custom_constants/separation = 10
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="."]
 margin_top = 3.0
@@ -61,9 +58,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 5 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PurpleDna" type="MarginContainer" parent="."]
 margin_left = 196.0
@@ -93,9 +87,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GrayDna" type="MarginContainer" parent="."]
 margin_left = 232.0
@@ -127,9 +118,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="color_changed" from="Edit" to="." method="_on_Edit_color_changed"]
 [connection signal="popup_closed" from="Edit" to="." method="_on_Edit_popup_closed"]

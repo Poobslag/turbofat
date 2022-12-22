@@ -16,9 +16,6 @@ margin_right = 360.0
 margin_bottom = 60.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 panel_sizes = [ Vector2( 180, 60 ), Vector2( 360, 60 ), Vector2( 360, 60 ), Vector2( 240, 60 ), Vector2( 360, 60 ) ]
 
 [node name="Small" type="Label" parent="."]
@@ -38,9 +35,6 @@ text = "Lorem ipsu"
 align = 1
 autowrap = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Medium" type="Label" parent="."]
 visible = false
@@ -60,9 +54,6 @@ align = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Large" type="Label" parent="."]
 visible = false
@@ -82,9 +73,6 @@ align = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtraLarge" type="Label" parent="."]
 visible = false
@@ -105,9 +93,6 @@ align = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExtraExtraLarge" type="Label" parent="."]
 anchor_left = 0.5
@@ -128,6 +113,3 @@ valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}

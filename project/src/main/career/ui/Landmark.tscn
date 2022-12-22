@@ -9,9 +9,6 @@ margin_right = 76.0
 margin_bottom = 150.0
 size_flags_horizontal = 3
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
@@ -25,9 +22,6 @@ margin_right = 45.0
 margin_bottom = 45.0
 texture = ExtResource( 1 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
@@ -42,6 +36,3 @@ margin_bottom = 65.0
 theme = ExtResource( 3 )
 text = "999,999"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}

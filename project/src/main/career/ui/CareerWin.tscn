@@ -95,9 +95,6 @@ margin_right = 480.0
 margin_bottom = 291.2
 texture = ExtResource( 7 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Shadow" type="Polygon2D" parent="Bg/Chalkboard"]
 show_behind_parent = true
@@ -113,17 +110,11 @@ margin_top = 15.0
 margin_right = -15.0
 margin_bottom = -15.0
 custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Spacer1" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_right = 930.0
 margin_bottom = 6.0
 rect_min_size = Vector2( 0, 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TitleRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 1, 0.5, 0.945313, 1 )
@@ -136,9 +127,6 @@ rect_min_size = Vector2( 0, 75 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control1" type="Control" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
 margin_right = 246.0
@@ -165,9 +153,6 @@ margin_right = 679.0
 margin_bottom = 75.0
 theme = ExtResource( 6 )
 text = "LOOK WHAT WE DID"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control2" type="Control" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
 margin_left = 683.0
@@ -188,9 +173,6 @@ margin_right = 38.5
 margin_bottom = 32.5
 texture = ExtResource( 10 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Separator1" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 0.726563, 0.5, 1, 1 )
@@ -211,9 +193,6 @@ margin_right = 432.0
 margin_bottom = 13.0
 texture = ExtResource( 14 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ServedStepsRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 106.0
@@ -224,9 +203,6 @@ rect_min_size = Vector2( 0, 90 )
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Served" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
 margin_right = 463.0
@@ -262,9 +238,6 @@ margin_right = 38.5
 margin_bottom = 35.0
 texture = ExtResource( 13 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 modulate = Color( 0.5, 0.883333, 1, 1 )
@@ -276,9 +249,6 @@ size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Served:"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 margin_left = 270.0
@@ -289,9 +259,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "132"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Steps" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
 margin_left = 467.0
@@ -328,9 +295,6 @@ margin_right = 38.5
 margin_bottom = 35.0
 texture = ExtResource( 12 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
@@ -342,9 +306,6 @@ size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Steps:"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 margin_left = 263.0
@@ -355,9 +316,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "23"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EarnedTimeRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 196.0
@@ -368,9 +326,6 @@ rect_min_size = Vector2( 0, 90 )
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Earned" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
 margin_right = 463.0
@@ -406,9 +361,6 @@ margin_right = 38.5
 margin_bottom = 35.0
 texture = ExtResource( 15 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
@@ -420,9 +372,6 @@ size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Earned:"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 margin_left = 266.0
@@ -433,9 +382,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "¥999,999"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Time" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
 margin_left = 467.0
@@ -472,9 +418,6 @@ margin_right = 38.5
 margin_bottom = 35.0
 texture = ExtResource( 16 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
@@ -486,9 +429,6 @@ size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Time:"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 margin_left = 263.0
@@ -499,9 +439,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "15:03"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MapRowUpdater" type="Node" parent="Bg/Chalkboard/VBoxContainer"]
 script = ExtResource( 31 )
@@ -536,9 +473,6 @@ margin_right = 432.0
 margin_bottom = 9.0
 texture = ExtResource( 8 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ButtonRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 471.0
@@ -563,18 +497,12 @@ custom_styles/focus = SubResource( 11 )
 custom_styles/disabled = SubResource( 7 )
 custom_styles/normal = SubResource( 10 )
 text = "Ok"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Spacer2" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 534.0
 margin_right = 930.0
 margin_bottom = 540.0
 rect_min_size = Vector2( 0, 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="Bg"]
 stream = ExtResource( 33 )

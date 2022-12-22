@@ -43,9 +43,6 @@ script = ExtResource( 4 )
 [node name="Pickups" type="VBoxContainer" parent="HBoxContainer/TabContainer/Properties"]
 margin_right = 120.0
 margin_bottom = 60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer1" type="HBoxContainer" parent="HBoxContainer/TabContainer/Properties/Pickups"]
 margin_right = 120.0
@@ -76,9 +73,6 @@ margin_bottom = 60.0
 size_flags_horizontal = 3
 theme = ExtResource( 11 )
 text = "Calculate"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SideButtons" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 834.0
@@ -150,9 +144,6 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 3
 text = "abc"
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 playfield_editor_path = NodePath("../../TabContainer/Playfield")
 properties_editor_path = NodePath("../../TabContainer/Properties")
 test_button_path = NodePath("../Test")
@@ -188,9 +179,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 level_editor_path = NodePath("../..")
 
 [node name="Backdrop" parent="Ui/Dialogs" instance=ExtResource( 15 )]
@@ -209,9 +197,6 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OpenResource" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
@@ -226,9 +211,6 @@ popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 filters = PoolStringArray( "*.json" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Save" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
@@ -242,9 +224,6 @@ margin_bottom = 480.0
 popup_exclusive = true
 access = 2
 filters = PoolStringArray( "*.json" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
 margin_right = 250.0

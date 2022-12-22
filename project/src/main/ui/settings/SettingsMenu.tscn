@@ -80,9 +80,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.752941 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TouchButtons" parent="." instance=ExtResource( 9 )]
 visible = false
@@ -100,9 +97,6 @@ margin_right = 290.0
 margin_bottom = 180.0
 rect_min_size = Vector2( 530, 360 )
 custom_styles/panel = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="UiArea" type="VBoxContainer" parent="Window"]
 anchor_right = 1.0
@@ -111,9 +105,6 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = -5.0
 margin_bottom = -5.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TabContainer" type="TabContainer" parent="Window/UiArea"]
 margin_right = 570.0
@@ -125,9 +116,6 @@ custom_styles/tab_disabled = ExtResource( 2 )
 custom_styles/tab_bg = ExtResource( 2 )
 custom_styles/panel = SubResource( 2 )
 script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SoundAndGraphics" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 anchor_right = 1.0
@@ -231,9 +219,6 @@ text = "Creature detail"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
 margin_left = 232.0
@@ -243,9 +228,6 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="UseVsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 182.0
@@ -268,9 +250,6 @@ text = "Use Vsync"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
 margin_left = 232.0
@@ -320,9 +299,6 @@ text = "Ghost Piece"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece"]
 margin_left = 231.0
@@ -332,9 +308,6 @@ rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 32.0
@@ -357,9 +330,6 @@ text = "Soft Drop Lock Cancel"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel"]
 margin_left = 231.0
@@ -369,9 +339,6 @@ rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 64.0
@@ -391,9 +358,6 @@ size_flags_stretch_ratio = 0.5
 theme = ExtResource( 1 )
 text = "Cheats"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 112.0
@@ -416,9 +380,6 @@ text = "Speed"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
 margin_left = 232.0
@@ -454,9 +415,6 @@ text = "Line Piece"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
 margin_left = 231.0
@@ -466,9 +424,6 @@ rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HoldPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 174.0
@@ -491,9 +446,6 @@ text = "Hold Piece"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
 margin_left = 231.0
@@ -503,9 +455,6 @@ rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_left = 204.0
@@ -835,9 +784,6 @@ size_flags_stretch_ratio = 0.5
 text = "Size"
 align = 2
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 margin_left = 216.0
@@ -847,9 +793,6 @@ rect_min_size = Vector2( 140, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_top = 2.0
@@ -861,9 +804,6 @@ size_flags_vertical = 4
 max_value = 11.0
 value = 1.0
 tick_count = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_left = 234.0
@@ -901,9 +841,6 @@ text = "Scheme"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme"]
 margin_left = 237.0
@@ -913,9 +850,6 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
 margin_top = 54.0
@@ -938,9 +872,6 @@ text = "Fat Finger"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger"]
 margin_left = 237.0
@@ -950,9 +881,6 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Misc" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
@@ -993,9 +921,6 @@ text = "Language"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Language"]
 margin_left = 237.0
@@ -1005,9 +930,6 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 30.0
@@ -1024,9 +946,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 22 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
 margin_right = 217.0
@@ -1039,9 +958,6 @@ text = "Save Slot"
 align = 2
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
 margin_left = 237.0
@@ -1065,9 +981,6 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Slot A"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
 margin_left = 180.0
@@ -1161,17 +1074,11 @@ margin_right = 570.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 0, 100 )
 script = ExtResource( 29 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/Bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer1" type="VBoxContainer" parent="Window/UiArea/Bottom/HBoxContainer"]
 margin_right = 190.0
@@ -1199,9 +1106,6 @@ size_flags_vertical = 4
 theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Holder2" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1"]
 margin_top = 50.0
@@ -1224,9 +1128,6 @@ size_flags_vertical = 4
 theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Window/UiArea/Bottom/HBoxContainer"]
 margin_left = 190.0
@@ -1262,9 +1163,6 @@ theme = ExtResource( 3 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 7 )
 text = "Ok"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ShortcutHelper" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" instance=ExtResource( 4 )]
 action = "ui_cancel"
@@ -1302,9 +1200,6 @@ align = 2
 valign = 1
 autowrap = true
 script = ExtResource( 21 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Dialogs" type="Control" parent="."]
 visible = false
@@ -1312,9 +1207,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot")
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource( 23 )]
@@ -1333,9 +1225,6 @@ popup_exclusive = true
 window_title = "Confirm"
 dialog_text = "Change save slot?"
 dialog_autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
 visible = true
@@ -1353,9 +1242,6 @@ window_title = "Confirm"
 dialog_text = "Delete save slot?
 Slot A (34.2 hours)"
 dialog_autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
 visible = true
@@ -1373,33 +1259,9 @@ window_title = "Confirm"
 dialog_text = "Are you sure?
 Slot A (34.2 hours)"
 dialog_autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_OptionButton_toggled"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" method="_on_OptionButton_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" method="_on_OptionButton_toggled"]
-[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Language" method="_on_OptionButton_item_selected"]
-[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" method="_on_Button_pressed"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData" method="_on_Button_pressed"]
-[connection signal="ok_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_ok_pressed"]
-[connection signal="other_quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_other_quit_pressed"]
-[connection signal="quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_quit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
 [connection signal="change_save_cancelled" from="Dialogs" to="." method="_on_Dialogs_change_save_cancelled"]
 [connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
 [connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
@@ -1409,3 +1271,24 @@ __meta__ = {
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="ok_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_ok_pressed"]
+[connection signal="other_quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_other_quit_pressed"]
+[connection signal="quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_quit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_OptionButton_toggled"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData" method="_on_Button_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Language" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" method="_on_Button_pressed"]
+[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
+[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]

@@ -11,9 +11,6 @@ margin_right = 306.0
 margin_bottom = 420.0
 custom_constants/separation = 10
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 creature_editor_path = NodePath("../../../../..")
 
 [node name="Label" type="Label" parent="."]
@@ -67,9 +64,6 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="button_down" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_down"]
 [connection signal="button_up" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_up"]

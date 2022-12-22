@@ -130,25 +130,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 37 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BgColor" type="ColorRect" parent="."]
 margin_right = 324.0
 margin_bottom = 544.0
 color = Color( 0, 0, 0, 0.627451 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TileMapClip" type="Control" parent="."]
 margin_right = 324.0
 margin_bottom = 544.0
 rect_clip_content = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Pickups" type="Control" parent="TileMapClip"]
 anchor_left = 0.5
@@ -166,9 +157,6 @@ PickupScene = ExtResource( 26 )
 [node name="Visuals" type="Control" parent="TileMapClip/Pickups"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PickupSfx0" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
@@ -227,9 +215,6 @@ margin_top = 96.0
 margin_right = 324.0
 margin_bottom = 640.0
 color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="TileMapClip/PlayfieldFx/BgStrobe"]
 
@@ -273,9 +258,6 @@ Z, X: Rotate"
 fit_content_height = true
 scroll_active = false
 script = ExtResource( 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ComboTracker" type="Node" parent="."]
 script = ExtResource( 61 )
