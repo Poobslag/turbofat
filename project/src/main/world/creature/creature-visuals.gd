@@ -71,7 +71,7 @@ var comfort := 0.0 setget set_comfort
 var mouth_player
 
 ## For bouncy feeding animation, allowing inertia and acceleration.
-## (See: enum GraphicsSettings.FeedingAnimation and creature_visuals.update_fattening_animation) 
+## (See: enum GraphicsSettings.FeedingAnimation and creature_visuals.update_fattening_animation)
 var _fattening_intertia: float = 0
 
 ## Stores the normal scale for the creature (right now just 0.6 for squirrels)
@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	update_fattening_animation(delta)
 
 
-func update_fattening_animation(delta: float):
+func update_fattening_animation(delta: float) -> void:
 	var animation: int = SystemData.graphics_settings.feeding_animation
 	if animation == SystemData.graphics_settings.FeedingAnimation.LINEAR:
 		# linear animation; lerp plus a little extra
@@ -123,26 +123,25 @@ func update_fattening_animation(delta: float):
 			return
 		# inertia/acceleration/fatness/etc:
 		# as we make this value bigger, the amount of time to accelerate decreases:
-		# var lerp_speed = sqrt(abs((fatness - visual_fatness) / 80.0))
-		var lerp_speed = 0.01
+		var lerp_speed: float = 0.01
 		# as we make this value bigger, the acceleration rises (more jiggle):
-		var inertia_this_frame_slope = (fatness - visual_fatness) / 1.0
-		print(lerp_speed)
+		var inertia_this_frame_slope: float = (fatness - visual_fatness) / 1.0
 		_fattening_intertia = lerp(_fattening_intertia, inertia_this_frame_slope, lerp_speed)
 		visual_fatness += _fattening_intertia
 		# dampening (reduces jiggle)
 		visual_fatness = lerp(visual_fatness, fatness, 0.04)
 		set_visual_fatness(visual_fatness)
-		# squash n' stretch	
-		var squash_amount = 1.0
-		var stretch_amount = 1.0
-		var offset_amount = sqrt(1 + abs(visual_fatness - fatness))
+		# squash n' stretch
+		var squash_amount: float = 1.0
+		var stretch_amount: float = 1.0
+		var offset_amount: float = sqrt(1 + abs(visual_fatness - fatness))
 		if _fattening_intertia > 0:
-			squash_amount = 1 + abs(_fattening_intertia) * 3
+			squash_amount = 1 + abs(_fattening_intertia)
 		else:
-			# we won't see _fattening_inertia <= 0 as often as it's only a little bit of rubber-banding that get us there
-			stretch_amount = 1 + abs(_fattening_intertia) * 3
-		var squash_stretch = (Vector2(squash_amount,stretch_amount).normalized() / 0.7107 * _base_scale) * max(stretch_amount,squash_amount)
+			# we won't see _fattening_inertia <= 0 often as it's only a little bit of rubber-banding that get us there
+			stretch_amount = 1 + abs(_fattening_intertia)
+		var normalized_squash_stretch: Vector2 = Vector2(squash_amount,stretch_amount).normalized()
+		var squash_stretch: Vector2 = normalized_squash_stretch / 0.7107 * _base_scale * max(stretch_amount,squash_amount)
 		self.rescale(squash_stretch.x, squash_stretch.y, false)
 
 
@@ -260,8 +259,8 @@ func set_orientation(new_orientation: int) -> void:
 ##
 ## Parameters:
 ## 	'new_scale_x': The new scale.x and scale.y value. Negative values are OK, and will be normalized.
-##  'new_scale_y': (Optional) If overriden, scale.y will be equal to this rather than equivalent to 'new_scale_x'
-##  'is_base_scale': (Optional) If overridden and set to false, the creature's _base_scale will not be changed (good for temporary animations)
+##  'new_scale_y': (Optional) Scale.y will be equal to this rather than equivalent to 'new_scale_x'
+##  'is_base_scale': (Optional) Controls whether creature's _base_scale will be changed (good in temporary animation)
 func rescale(new_scale_x: float, new_scale_y: float = -1, is_base_scale: bool = true) -> void:
 	if new_scale_y == -1:
 		new_scale_y = new_scale_x

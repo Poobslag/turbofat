@@ -99,6 +99,6 @@ margin_bottom = 0.0
 [connection signal="pressed" from="Ui/Control/PlusOne" to="." method="_on_CreatureButton_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="Ui/Control/MinusOne" to="." method="_on_CreatureButton_pressed" binds= [ -1 ]]
 [connection signal="pressed" from="Ui/Control/MinusTen" to="." method="_on_CreatureButton_pressed" binds= [ -10 ]]
-[connection signal="pressed" from="Ui/Control/Emfatten" to="." method="_on_FattenButton_pressed" binds= [ 0.1 ]]
-[connection signal="pressed" from="Ui/Control/Defatten" to="." method="_on_FattenButton_pressed" binds= [ -0.1 ]]
+[connection signal="pressed" from="Ui/Control/Emfatten" to="." method="_on_FattenButton_pressed" binds= [ 0.333 ]]
+[connection signal="pressed" from="Ui/Control/Defatten" to="." method="_on_FattenButton_pressed" binds= [ -0.333 ]]
 [connection signal="pressed" from="Ui/Control/QuitButton" to="." method="_on_QuitButton_pressed"]

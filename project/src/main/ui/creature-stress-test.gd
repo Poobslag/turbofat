@@ -86,10 +86,9 @@ func _on_CreatureButton_pressed(creature_delta: int) -> void:
 	_target_creature_count += creature_delta
 
 
-func _on_FattenButton_pressed(fat_delta : float):
+func _on_FattenButton_pressed(fat_delta : float) -> void:
 	_target_fat_amount += fat_delta
 	_target_fat_set = false
-	pass # Replace with function body.
 
 
 func _on_QuitButton_pressed() -> void:

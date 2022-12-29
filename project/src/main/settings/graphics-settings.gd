@@ -5,12 +5,12 @@ signal creature_detail_changed(value)
 
 enum CreatureDetail {
 	LOW,
-	HIGH
+	HIGH,
 }
 
 enum FeedingAnimation {
 	LINEAR,
-	BOUNCY
+	BOUNCY,
 }
 
 ## an enum from CreatureDetail describing how detailed the creatures should look
