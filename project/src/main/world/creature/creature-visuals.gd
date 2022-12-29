@@ -70,6 +70,14 @@ var comfort := 0.0 setget set_comfort
 ## MouthPlayer instance which animates mouths
 var mouth_player
 
+## For bouncy feeding animation, allowing inertia and acceleration.
+## (See: enum GraphicsSettings.FeedingAnimation and creature_visuals.update_fattening_animation) 
+var _fattening_intertia: float = 0
+
+## Stores the normal scale for the creature (right now just 0.6 for squirrels)
+## Changed upon creature_visuals.rescale(), used so we can squash and stretch based on this value
+var _base_scale: Vector2 = Vector2(1.0, 1.0)
+
 ## forces listeners to update their animation frame
 var _force_orientation_change := false
 
@@ -93,14 +101,49 @@ func _physics_process(delta: float) -> void:
 	if Engine.editor_hint:
 		# don't move stuff in the editor
 		return
-	
-	# lerp plus a little extra
-	if visual_fatness != fatness:
+	update_fattening_animation(delta)
+
+
+func update_fattening_animation(delta: float):
+	var animation: int = SystemData.graphics_settings.feeding_animation
+	if animation == SystemData.graphics_settings.FeedingAnimation.LINEAR:
+		# linear animation; lerp plus a little extra
+		if visual_fatness == fatness:
+			return
 		if visual_fatness < fatness:
 			visual_fatness = min(visual_fatness + 4 * delta, fatness)
 		elif visual_fatness > fatness:
 			visual_fatness = max(visual_fatness - 4 * delta, fatness)
 		set_visual_fatness(lerp(visual_fatness, fatness, 0.008))
+
+	elif animation == SystemData.graphics_settings.FeedingAnimation.BOUNCY:
+		# bouncy animation; acceleration and squash n' stretch
+		if visual_fatness == fatness and _fattening_intertia < 0.05:
+			_fattening_intertia = 0.0
+			return
+		# inertia/acceleration/fatness/etc:
+		# as we make this value bigger, the amount of time to accelerate decreases:
+		# var lerp_speed = sqrt(abs((fatness - visual_fatness) / 80.0))
+		var lerp_speed = 0.01
+		# as we make this value bigger, the acceleration rises (more jiggle):
+		var inertia_this_frame_slope = (fatness - visual_fatness) / 1.0
+		print(lerp_speed)
+		_fattening_intertia = lerp(_fattening_intertia, inertia_this_frame_slope, lerp_speed)
+		visual_fatness += _fattening_intertia
+		# dampening (reduces jiggle)
+		visual_fatness = lerp(visual_fatness, fatness, 0.04)
+		set_visual_fatness(visual_fatness)
+		# squash n' stretch	
+		var squash_amount = 1.0
+		var stretch_amount = 1.0
+		var offset_amount = sqrt(1 + abs(visual_fatness - fatness))
+		if _fattening_intertia > 0:
+			squash_amount = 1 + abs(_fattening_intertia) * 3
+		else:
+			# we won't see _fattening_inertia <= 0 as often as it's only a little bit of rubber-banding that get us there
+			stretch_amount = 1 + abs(_fattening_intertia) * 3
+		var squash_stretch = (Vector2(squash_amount,stretch_amount).normalized() / 0.7107 * _base_scale) * max(stretch_amount,squash_amount)
+		self.rescale(squash_stretch.x, squash_stretch.y, false)
 
 
 func set_creature_sfx(new_creature_sfx: CreatureSfx) -> void:
@@ -217,8 +260,16 @@ func set_orientation(new_orientation: int) -> void:
 ##
 ## Parameters:
 ## 	'new_scale_x': The new scale.x and scale.y value. Negative values are OK, and will be normalized.
-func rescale(new_scale_x: float) -> void:
-	scale = Vector2(abs(new_scale_x), abs(new_scale_x))
+##  'new_scale_y': (Optional) If overriden, scale.y will be equal to this rather than equivalent to 'new_scale_x'
+##  'is_base_scale': (Optional) If overridden and set to false, the creature's _base_scale will not be changed (good for temporary animations)
+func rescale(new_scale_x: float, new_scale_y: float = -1, is_base_scale: bool = true) -> void:
+	if new_scale_y == -1:
+		new_scale_y = new_scale_x
+	scale = Vector2(abs(new_scale_x), abs(new_scale_y))
+
+	if is_base_scale:
+		_base_scale = scale
+	
 	scale.x = abs(scale.x) if orientation in [Creatures.SOUTHEAST, Creatures.NORTHWEST] \
 			else -abs(scale.x)
 	
