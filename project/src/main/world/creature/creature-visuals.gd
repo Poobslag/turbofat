@@ -123,18 +123,20 @@ func update_fattening_animation(delta: float) -> void:
 			return
 		# inertia/acceleration/fatness/etc:
 		# as we make this value bigger, the amount of time to accelerate decreases:
-		var lerp_speed: float = 0.01
+		var lerp_speed: float = 0.05
 		# as we make this value bigger, the acceleration rises (more jiggle):
 		var inertia_this_frame_slope: float = (fatness - visual_fatness) / 1.0
 		_fattening_intertia = lerp(_fattening_intertia, inertia_this_frame_slope, lerp_speed)
 		visual_fatness += _fattening_intertia
+		# bounce to prevent visual_fatness from going too small (avoid becoming negative or thin)
+		if visual_fatness < 1.0 and _fattening_intertia < 0:
+			_fattening_intertia = -_fattening_intertia
 		# dampening (reduces jiggle)
 		visual_fatness = lerp(visual_fatness, fatness, 0.04)
 		set_visual_fatness(visual_fatness)
 		# squash n' stretch
 		var squash_amount: float = 1.0
 		var stretch_amount: float = 1.0
-		var offset_amount: float = sqrt(1 + abs(visual_fatness - fatness))
 		if _fattening_intertia > 0:
 			squash_amount = 1 + abs(_fattening_intertia)
 		else:

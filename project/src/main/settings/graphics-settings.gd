@@ -76,4 +76,4 @@ func _default_use_vsync() -> bool:
 
 ## Retuns the default feeding animation setting value.
 func _default_feeding_animation() -> int:
-	return FeedingAnimation.LINEAR
+	return FeedingAnimation.BOUNCY

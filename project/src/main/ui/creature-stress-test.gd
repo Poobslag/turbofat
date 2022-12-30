@@ -19,12 +19,6 @@ export (PackedScene) var CreatureScene: PackedScene
 ## the desired number of creatures to show
 var _target_creature_count := 5
 
-## the desired fat to override each creature to (applied upon _target_fat_set being false)
-var _target_fat_amount: float = 1
-
-## Set to true for _target_fat_amount to apply to all creatures; will be set to false upon application
-var _target_fat_set := true
-
 onready var _creature_container := $CreatureContainer
 onready var _creature_count := $Ui/Control/CreatureCount
 
@@ -42,11 +36,6 @@ func _physics_process(_delta: float) -> void:
 		elif _creature_container.get_child_count() > _target_creature_count:
 			_remove_creature()
 	_creature_count.text = StringUtils.comma_sep(_creature_container.get_child_count())
-
-	if not _target_fat_set:
-		for i in _creature_container.get_children():
-			i.set_fatness(_target_fat_amount)
-		_target_fat_set = true
 
 
 ## Adds a creature to the scene.
@@ -84,11 +73,6 @@ func _remove_creature() -> void:
 ## 	'creature_delta': The number of creatures to add if positive, or to remove if negative.
 func _on_CreatureButton_pressed(creature_delta: int) -> void:
 	_target_creature_count += creature_delta
-
-
-func _on_FattenButton_pressed(fat_delta : float) -> void:
-	_target_fat_amount += fat_delta
-	_target_fat_set = false
 
 
 func _on_QuitButton_pressed() -> void:
