@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://src/main/ui/settings/settings-line-piece.gd" type="Script" id=31]
 [ext_resource path="res://src/main/ui/settings/settings-hold-piece.gd" type="Script" id=32]
 [ext_resource path="res://src/main/ui/settings/reset-gameplay-button.gd" type="Script" id=33]
+[ext_resource path="res://src/main/ui/settings/settings-feeding-animation.gd" type="Script" id=34]
 [ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=35]
 [ext_resource path="res://src/main/ui/theme/h6-font.tres" type="DynamicFont" id=36]
 [ext_resource path="res://src/main/ui/theme/h7-font.tres" type="DynamicFont" id=37]
@@ -221,6 +222,37 @@ valign = 1
 autowrap = true
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
+margin_left = 232.0
+margin_right = 392.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+
+[node name="FeedingAnimation" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
+margin_top = 182.0
+margin_right = 548.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 34 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
+margin_right = 212.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Feeding Animation"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
 margin_left = 232.0
 margin_right = 392.0
 margin_bottom = 26.0
@@ -1288,6 +1320,7 @@ dialog_autowrap = true
 [connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
