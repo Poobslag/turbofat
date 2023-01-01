@@ -72,11 +72,11 @@ var mouth_player
 
 ## For bouncy feeding animation, allowing inertia and acceleration.
 ## (See: enum GraphicsSettings.FeedingAnimation and creature_visuals.update_fattening_animation)
-var _fattening_intertia: float = 0
+var _fattening_inertia: float = 0
 
 ## Stores the normal scale for the creature (right now just 0.6 for squirrels)
 ## Changed upon creature_visuals.rescale(), used so we can squash and stretch based on this value
-var _base_scale: Vector2 = Vector2(1.0, 1.0)
+var _base_scale: Vector2 = Vector2.ONE
 
 ## forces listeners to update their animation frame
 var _force_orientation_change := false
@@ -118,30 +118,30 @@ func update_fattening_animation(delta: float) -> void:
 
 	elif animation == SystemData.graphics_settings.FeedingAnimation.BOUNCY:
 		# bouncy animation; acceleration and squash n' stretch
-		if visual_fatness == fatness and _fattening_intertia < 0.05:
-			_fattening_intertia = 0.0
+		if visual_fatness == fatness and _fattening_inertia < 0.05:
+			_fattening_inertia = 0.0
 			return
 		# inertia/acceleration/fatness/etc:
 		# as we make this value bigger, the amount of time to accelerate decreases:
 		var lerp_speed: float = 0.05
 		# as we make this value bigger, the acceleration rises (more jiggle):
 		var inertia_this_frame_slope: float = (fatness - visual_fatness) / 1.0
-		_fattening_intertia = lerp(_fattening_intertia, inertia_this_frame_slope, lerp_speed)
-		visual_fatness += _fattening_intertia
+		_fattening_inertia = lerp(_fattening_inertia, inertia_this_frame_slope, lerp_speed)
+		visual_fatness += _fattening_inertia
 		# bounce to prevent visual_fatness from going too small (avoid becoming negative or thin)
-		if visual_fatness < 1.0 and _fattening_intertia < 0:
-			_fattening_intertia = -_fattening_intertia
+		if visual_fatness < 1.0 and _fattening_inertia < 0:
+			_fattening_inertia = -_fattening_inertia
 		# dampening (reduces jiggle)
 		visual_fatness = lerp(visual_fatness, fatness, 0.04)
 		set_visual_fatness(visual_fatness)
 		# squash n' stretch
 		var squash_amount: float = 1.0
 		var stretch_amount: float = 1.0
-		if _fattening_intertia > 0:
-			squash_amount = 1 + abs(_fattening_intertia)
+		if _fattening_inertia > 0:
+			squash_amount = 1 + abs(_fattening_inertia)
 		else:
 			# we won't see _fattening_inertia <= 0 often as it's only a little bit of rubber-banding that get us there
-			stretch_amount = 1 + abs(_fattening_intertia)
+			stretch_amount = 1 + abs(_fattening_inertia)
 		var normalized_squash_stretch: Vector2 = Vector2(squash_amount,stretch_amount).normalized()
 		var squash_stretch: Vector2 = normalized_squash_stretch / 0.7107 * _base_scale * max(stretch_amount,squash_amount)
 		self.rescale(squash_stretch.x, squash_stretch.y, false)
