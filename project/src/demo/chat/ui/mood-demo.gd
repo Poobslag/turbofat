@@ -30,7 +30,16 @@ extends Node
 
 var _creature_type: int = Creatures.Type.DEFAULT
 
+## a local path to a json creature resource to demo
+export (String, FILE, "*.json") var creature_path: String
+
+onready var _creature := $Creature
 onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
+
+func _ready() -> void:
+	if creature_path:
+		_creature.creature_def = CreatureDef.new().from_json_path(creature_path)
+
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_CONTROL):
@@ -47,46 +56,46 @@ func _input(event: InputEvent) -> void:
 			KEY_S: _creature_animations.play_idle_animation("idle-close-eyes1")
 			KEY_D: _creature_animations.play_idle_animation("idle-ear-wiggle0")
 			KEY_F: _creature_animations.play_idle_animation("idle-ear-wiggle1")
-			KEY_T: $Creature.talk()
-			KEY_SLASH: print(to_json($Creature.dna))
+			KEY_T: _creature.talk()
+			KEY_SLASH: print(to_json(_creature.dna))
 	else:
 		match Utils.key_scancode(event):
-			KEY_BRACKETLEFT, KEY_BRACKETRIGHT: $Creature.dna = DnaUtils.random_dna(_creature_type)
+			KEY_BRACKETLEFT, KEY_BRACKETRIGHT: _creature.dna = DnaUtils.random_dna(_creature_type)
 			
-			KEY_1: $Creature.play_mood(Creatures.Mood.DEFAULT)
-			KEY_Q: $Creature.play_mood(Creatures.Mood.AWKWARD0)
-			KEY_W: $Creature.play_mood(Creatures.Mood.AWKWARD1)
-			KEY_E: $Creature.play_mood(Creatures.Mood.CRY0)
-			KEY_R: $Creature.play_mood(Creatures.Mood.CRY1)
-			KEY_T: $Creature.play_mood(Creatures.Mood.LAUGH0)
-			KEY_Y: $Creature.play_mood(Creatures.Mood.LAUGH1)
-			KEY_U: $Creature.play_mood(Creatures.Mood.LOVE0)
-			KEY_I: $Creature.play_mood(Creatures.Mood.LOVE1)
-			KEY_8: $Creature.play_mood(Creatures.Mood.LOVE1_FOREVER)
-			KEY_O: $Creature.play_mood(Creatures.Mood.NO0)
-			KEY_P: $Creature.play_mood(Creatures.Mood.NO1)
-			KEY_A: $Creature.play_mood(Creatures.Mood.RAGE0)
-			KEY_S: $Creature.play_mood(Creatures.Mood.RAGE1)
-			KEY_D: $Creature.play_mood(Creatures.Mood.RAGE2)
-			KEY_F: $Creature.play_mood(Creatures.Mood.SIGH0)
-			KEY_G: $Creature.play_mood(Creatures.Mood.SIGH1)
-			KEY_H: $Creature.play_mood(Creatures.Mood.SLY0)
-			KEY_J: $Creature.play_mood(Creatures.Mood.SLY1)
-			KEY_K: $Creature.play_mood(Creatures.Mood.SMILE0)
-			KEY_L: $Creature.play_mood(Creatures.Mood.SMILE1)
-			KEY_Z: $Creature.play_mood(Creatures.Mood.SWEAT0)
-			KEY_X: $Creature.play_mood(Creatures.Mood.SWEAT1)
-			KEY_C: $Creature.play_mood(Creatures.Mood.THINK0)
-			KEY_V: $Creature.play_mood(Creatures.Mood.THINK1)
-			KEY_B: $Creature.play_mood(Creatures.Mood.WAVE0)
-			KEY_N: $Creature.play_mood(Creatures.Mood.WAVE1)
-			KEY_M: $Creature.play_mood(Creatures.Mood.WAVE2)
-			KEY_COMMA: $Creature.play_mood(Creatures.Mood.YES0)
-			KEY_PERIOD: $Creature.play_mood(Creatures.Mood.YES1)
-			KEY_SPACE: $Creature.feed(Foods.FoodType.BROWN_0)
-			KEY_EQUAL: $Creature.set_fatness(3)
+			KEY_1: _creature.play_mood(Creatures.Mood.DEFAULT)
+			KEY_Q: _creature.play_mood(Creatures.Mood.AWKWARD0)
+			KEY_W: _creature.play_mood(Creatures.Mood.AWKWARD1)
+			KEY_E: _creature.play_mood(Creatures.Mood.CRY0)
+			KEY_R: _creature.play_mood(Creatures.Mood.CRY1)
+			KEY_T: _creature.play_mood(Creatures.Mood.LAUGH0)
+			KEY_Y: _creature.play_mood(Creatures.Mood.LAUGH1)
+			KEY_U: _creature.play_mood(Creatures.Mood.LOVE0)
+			KEY_I: _creature.play_mood(Creatures.Mood.LOVE1)
+			KEY_8: _creature.play_mood(Creatures.Mood.LOVE1_FOREVER)
+			KEY_O: _creature.play_mood(Creatures.Mood.NO0)
+			KEY_P: _creature.play_mood(Creatures.Mood.NO1)
+			KEY_A: _creature.play_mood(Creatures.Mood.RAGE0)
+			KEY_S: _creature.play_mood(Creatures.Mood.RAGE1)
+			KEY_D: _creature.play_mood(Creatures.Mood.RAGE2)
+			KEY_F: _creature.play_mood(Creatures.Mood.SIGH0)
+			KEY_G: _creature.play_mood(Creatures.Mood.SIGH1)
+			KEY_H: _creature.play_mood(Creatures.Mood.SLY0)
+			KEY_J: _creature.play_mood(Creatures.Mood.SLY1)
+			KEY_K: _creature.play_mood(Creatures.Mood.SMILE0)
+			KEY_L: _creature.play_mood(Creatures.Mood.SMILE1)
+			KEY_Z: _creature.play_mood(Creatures.Mood.SWEAT0)
+			KEY_X: _creature.play_mood(Creatures.Mood.SWEAT1)
+			KEY_C: _creature.play_mood(Creatures.Mood.THINK0)
+			KEY_V: _creature.play_mood(Creatures.Mood.THINK1)
+			KEY_B: _creature.play_mood(Creatures.Mood.WAVE0)
+			KEY_N: _creature.play_mood(Creatures.Mood.WAVE1)
+			KEY_M: _creature.play_mood(Creatures.Mood.WAVE2)
+			KEY_COMMA: _creature.play_mood(Creatures.Mood.YES0)
+			KEY_PERIOD: _creature.play_mood(Creatures.Mood.YES1)
+			KEY_SPACE: _creature.feed(Foods.FoodType.BROWN_0)
+			KEY_EQUAL: _creature.set_fatness(3)
 
 
 func _change_demographic(demographic_type: int) -> void:
 	_creature_type = demographic_type
-	$Creature.dna = DnaUtils.random_dna(_creature_type)
+	_creature.dna = DnaUtils.random_dna(_creature_type)
