@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "pigpog",
+  "name": "Pigpog",
+  "short_name": "Pigpog",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "1",
+    "ear": "4",
+    "eye": "0",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "0",
+    "tail": "1",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "f57e7d",
+    "belly_rgb": "fffaff",
+    "cloth_rgb": "fad4cf",
+    "glass_rgb": "cbde88",
+    "plastic_rgb": "546127",
+    "hair_rgb": "2e261f",
+    "eye_rgb": "4e8eee f8ffff",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme": {
+    "accent_scale": 2.3,
+    "accent_texture": 15,
+    "color": "f57e7d"
+  },
+  "fatness": 1.1
+}

@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "repost",
+  "name": "Repost",
+  "short_name": "Repost",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "0",
+    "collar": "0",
+    "ear": "4",
+    "eye": "4",
+    "hair": "0",
+    "head": "1",
+    "horn": "2",
+    "mouth": "3",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "f8f8f8",
+    "belly_rgb": "f8f8f8",
+    "cloth_rgb": "f05236",
+    "glass_rgb": "f8f8f8",
+    "plastic_rgb": "111111",
+    "hair_rgb": "f05236",
+    "eye_rgb": "f05236 f8f8f8",
+    "horn_rgb": "f8f8f8"
+  },
+  "chat_theme": {
+    "accent_scale": 1.75,
+    "accent_texture": 4,
+    "color": "f8f8f8",
+    "dark": true
+  }
+}
