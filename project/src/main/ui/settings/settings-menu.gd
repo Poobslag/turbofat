@@ -94,7 +94,9 @@ func _confirm_and_save(new_post_save_method: String, new_post_save_args_array: A
 		_dialogs.confirm_new_save_slot()
 	else:
 		SystemSave.save_system_data()
-		callv(_post_save_method, _post_save_args_array)
+		hide()
+		if _post_save_method:
+			callv(_post_save_method, _post_save_args_array)
 
 
 func _refresh_quit_type() -> void:
@@ -111,7 +113,7 @@ func _load_player_data() -> void:
 
 func _on_Bottom_ok_pressed() -> void:
 	# when the player confirms, we save the player's new settings
-	_confirm_and_save("hide", [])
+	_confirm_and_save("", [])
 
 
 func _on_Bottom_quit_pressed() -> void:
@@ -143,7 +145,9 @@ func _on_Settings_pressed() -> void:
 func _on_Dialogs_change_save_cancelled() -> void:
 	_save_slot_control.revert_save_slot()
 	SystemSave.save_system_data()
-	callv(_post_save_method, _post_save_args_array)
+	hide()
+	if _post_save_method:
+		callv(_post_save_method, _post_save_args_array)
 
 
 func _on_Dialogs_change_save_confirmed() -> void:

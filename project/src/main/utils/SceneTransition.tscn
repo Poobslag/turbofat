@@ -169,6 +169,7 @@ tracks/3/keys = {
 }
 
 [node name="SceneTransition" type="CanvasLayer" groups=["scene_transition_covers"]]
+layer = 10
 script = ExtResource( 6 )
 
 [node name="MaskHolder" type="Control" parent="."]
