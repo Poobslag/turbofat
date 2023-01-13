@@ -10,6 +10,7 @@ const MAP_SCENE_PATHS_BY_REGION_ID := {
 	"lemon": "res://src/main/career/ui/ProgressBoardMapLemon.tscn",
 	"lemon_2": "res://src/main/career/ui/ProgressBoardMapLemon2.tscn",
 	"marsh": "res://src/main/career/ui/ProgressBoardMapMarsh.tscn",
+	"poki": "res://src/main/career/ui/ProgressBoardMapPoki.tscn",
 }
 
 export (String) var region_id: String setget set_region_id
