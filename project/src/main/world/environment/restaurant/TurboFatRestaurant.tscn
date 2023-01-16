@@ -24,6 +24,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+shadow_scale = 5.5
 SmokeClusterScene = ExtResource( 6 )
 
 [node name="Restaurant" type="Sprite" parent="."]
