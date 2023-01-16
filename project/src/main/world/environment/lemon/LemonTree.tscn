@@ -324,7 +324,6 @@ position = Vector2( 0, -80 )
 texture = ExtResource( 6 )
 hframes = 3
 vframes = 5
-frame = 2
 
 [node name="LeafPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )

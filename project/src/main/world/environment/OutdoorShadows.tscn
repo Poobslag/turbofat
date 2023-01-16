@@ -26,8 +26,6 @@
 [node name="Shadows" type="Node2D"]
 modulate = Color( 1, 1, 1, 0.627451 )
 script = ExtResource( 5 )
-cell_shadow_mapping = {
-}
 
 [node name="ObstacleMapShadows" type="TileMap" parent="."]
 mode = 1
@@ -37,8 +35,6 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 script = ExtResource( 1 )
-cell_shadow_mapping = {
-}
 
 [node name="CreatureShadows" parent="." instance=ExtResource( 4 )]
 
