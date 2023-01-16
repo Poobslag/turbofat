@@ -27,6 +27,7 @@ const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
 	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
+	"poki": "res://src/main/world/environment/poki/PokiEnvironment.tscn",
 }
 
 export (PackedScene) var MileMarkerScene: PackedScene
