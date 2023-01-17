@@ -11,13 +11,25 @@ export (bool) var flip_h: bool setget set_flip_h
 ## An editor toggle which randomizes the obstacle's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
+func _ready() -> void:
+	_refresh()
+
+
 func set_frame(new_frame: int) -> void:
 	frame = new_frame
-	$Sprite.frame = frame
+	_refresh()
 
 
 func set_flip_h(new_flip_h: bool) -> void:
 	flip_h = new_flip_h
+	_refresh()
+
+
+func _refresh() -> void:
+	if not is_inside_tree():
+		return
+	
+	$Sprite.frame = frame
 	$Sprite.flip_h = flip_h
 
 
