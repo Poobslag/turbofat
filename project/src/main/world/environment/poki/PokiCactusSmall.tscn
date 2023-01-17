@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/world/environment/frame-overworld-obstacle.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/environment/poki/poki-cactus-small-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/world/environment/outline-material-15.tres" type="Material" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28, 14 )
+
+[node name="PokiCactusSmall" type="KinematicBody2D"]
+position = Vector2( 480.957, 462.977 )
+script = ExtResource( 1 )
+shadow_scale = 0.4
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 3 )
+scale = Vector2( 0.539476, 0.539476 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -60, -290 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

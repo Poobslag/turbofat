@@ -1,16 +1,22 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/poki/PokiGroundMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/restaurant/TurboFatRestaurant.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/environment/poki/PokiCactusSmall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/pebble-overworld-tiler.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/environment/lemon/lemon-obstacle-library.tres" type="TileSet" id=8]
 [ext_resource path="res://src/main/world/environment/lemon/lemon-terrain-library.tres" type="TileSet" id=9]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/environment/poki/PokiCactusLarge.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/world/environment/poki/PokiMarshmallow.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/world/environment/poki/PokiCrowd.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/lemon/LemonRippleWaves.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/poki/PokiCactusHuge.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/world/environment/poki/PokiCactusPlaque.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=28]
 
@@ -111,6 +117,45 @@ suppress_fatness = true
 [node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
 wait_time = 0.3
 autostart = true
+
+[node name="PokiCactusLarge" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 1829.95, 1341.22 )
+frame = 4
+flip_h = true
+
+[node name="PokiCactusHuge" parent="Obstacles" instance=ExtResource( 16 )]
+position = Vector2( 1442.47, 1312.77 )
+
+[node name="PokiCactusPlaque" parent="Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 1468.78, 1366.21 )
+
+[node name="PokiCrowd1" parent="Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1632.33, 1525.74 )
+frame = 12
+crowd_color_index = 3
+
+[node name="PokiCrowd2" parent="Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1670.94, 1555.92 )
+frame = 12
+flip_h = true
+crowd_color_index = 1
+
+[node name="PokiCrowd3" parent="Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1715.15, 1526.66 )
+frame = 12
+crowd_color_index = 1
+
+[node name="PokiCrowd4" parent="Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1757.75, 1557.88 )
+crowd_color_index = 3
+
+[node name="Marshmallow" parent="Obstacles" instance=ExtResource( 12 )]
+position = Vector2( 1052.74, 1432.9 )
+frame = 5
+flip_h = true
+
+[node name="PokiCactusSmall" parent="Obstacles" instance=ExtResource( 5 )]
+position = Vector2( 1738.11, 1243.44 )
 
 [node name="Spawns" type="Node2D" parent="."]
 
