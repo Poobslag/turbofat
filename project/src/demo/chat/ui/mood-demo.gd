@@ -60,7 +60,9 @@ func _input(event: InputEvent) -> void:
 			KEY_SLASH: print(to_json(_creature.dna))
 	else:
 		match Utils.key_scancode(event):
-			KEY_BRACKETLEFT, KEY_BRACKETRIGHT: _creature.dna = DnaUtils.random_dna(_creature_type)
+			KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
+				_creature.dna = DnaUtils.random_dna(_creature_type)
+				_randomize_creature()
 			
 			KEY_1: _creature.play_mood(Creatures.Mood.DEFAULT)
 			KEY_Q: _creature.play_mood(Creatures.Mood.AWKWARD0)
@@ -98,4 +100,9 @@ func _input(event: InputEvent) -> void:
 
 func _change_demographic(demographic_type: int) -> void:
 	_creature_type = demographic_type
+	_randomize_creature()
+
+
+func _randomize_creature() -> void:
 	_creature.dna = DnaUtils.random_dna(_creature_type)
+	_creature.set_fatness(Utils.rand_value(Global.FATNESSES))
