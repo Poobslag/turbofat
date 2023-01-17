@@ -1,12 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=10]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=17]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=19]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=20]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=21]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
 [ext_resource path="res://src/main/world/creature/viewport-creature-outline.gd" type="Script" id=24]
 
@@ -34,64 +28,6 @@ audio_listener_enable_2d = true
 
 [node name="Visuals" parent="Viewport" instance=ExtResource( 9 )]
 position = Vector2( 512, 912 )
-dna = {
-"property:Body:belly_color": Color( 0, 0, 0, 1 ),
-"property:Body:body_color": Color( 0, 0, 0, 1 ),
-"property:Body:line_color": Color( 0, 0, 0, 1 ),
-"property:Body:shadow_color": Color( 0, 0, 0, 0.25 ),
-"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 20 ),
-"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 10 ),
-"property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 21 ),
-"property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 19 ),
-"property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 17 ),
-"property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 13 ),
-"shader:Bellybutton:black": Color( 0, 0, 0, 1 ),
-"shader:Collar:black": Color( 0, 0, 0, 1 ),
-"shader:EmoteBody:black": Color( 0, 0, 0, 1 ),
-"shader:FarArm:black": Color( 0, 0, 0, 1 ),
-"shader:FarLeg:black": Color( 0, 0, 0, 1 ),
-"shader:NearArm:black": Color( 0, 0, 0, 1 ),
-"shader:NearLeg:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ0:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ1:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ2:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/CheekZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/CheekZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/CheekZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Chin:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ0:red": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ1:red": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HairZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HairZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HairZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:green": Color( 0.952941, 0.572549, 0.454902, 1 ),
-"shader:Neck0/HeadBobber/Nose:black": Color( 0, 0, 0, 1 ),
-"shader:TailZ0:black": Color( 0, 0, 0, 1 ),
-"shader:TailZ1:black": Color( 0, 0, 0, 1 )
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 light_mask = 2
