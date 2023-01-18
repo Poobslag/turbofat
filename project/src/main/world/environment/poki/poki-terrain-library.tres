@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=3 format=2]
 
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-path-sheet.png" type="Texture" id=1]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-pebbles-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/world/environment/poki/poki-path-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/poki/poki-puddle-sheet.png" type="Texture" id=2]
 
 [resource]
-0/name = "lemon-path-sheet.png 0"
+0/name = "poki-path-sheet.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -27,7 +27,7 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "lemon-pebbles-sheet.png 1"
+1/name = "poki-puddle-sheet.png 1"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
