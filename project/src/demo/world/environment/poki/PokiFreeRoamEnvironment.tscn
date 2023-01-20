@@ -168,7 +168,7 @@ crowd_color_index = 3
 
 [node name="PokiCrowd2" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1670.94, 1555.92 )
-frame = 13
+frame = 12
 flip_h = true
 crowd_color_index = 1
 
@@ -179,7 +179,6 @@ crowd_color_index = 1
 
 [node name="PokiCrowd4" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1757.75, 1557.88 )
-frame = 4
 crowd_color_index = 3
 
 [node name="Marshmallow" parent="Obstacles" instance=ExtResource( 12 )]
