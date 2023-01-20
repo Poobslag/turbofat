@@ -4,12 +4,22 @@ extends OverworldObstacle
 ##
 ## This script randomizes the crowd member's color, appearance and direction.
 
+## Directions the crowd member will face when shuffled.
+enum FlipBias {
+	NONE, # 50/50 left and right
+	LEFT, # usually face left
+	RIGHT, # usually face right
+}
+
 const CROWD_COLORS := [
 	Color("3d291f"),
 	Color("4c3125"),
 	Color("5d3b2b"),
 	Color("6c4331"),
 ]
+
+## The direction to face when shuffled
+export (FlipBias) var flip_bias: int
 
 ## Current frame to display from the sprite sheet.
 export (int) var frame: int setget set_frame
@@ -68,7 +78,13 @@ func set_shuffle(value: bool) -> void:
 		return
 	
 	set_frame(randi() % (_sprite.hframes * _sprite.vframes))
-	set_flip_h(randf() > 0.9) # crowd members usually face right
+	var flip_chance := 0.5
+	match flip_bias:
+		FlipBias.RIGHT:
+			flip_chance = 0.1
+		FlipBias.LEFT:
+			flip_chance = 0.9
+	set_flip_h(randf() < flip_chance)
 	set_crowd_color_index(Utils.randi_range(0, CROWD_COLORS.size() - 1))
 	scale = Vector2.ONE
 	
