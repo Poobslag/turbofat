@@ -161,6 +161,7 @@
       "name": "Poki Desert",
       "start": 20,
       "icon": "cactus",
+      "overworld_environment": "poki",
       "piece_speed": "1-3",
       "boss_level": {
         "id": "career/boss_5k"
