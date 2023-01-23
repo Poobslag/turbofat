@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58, 25 )
 
-[node name="PokiCactusPlaque" type="KinematicBody2D"]
+[node name="CactusPlaque" type="KinematicBody2D"]
 position = Vector2( 566.612, 247.67 )
 script = ExtResource( 1 )
 shadow_scale = 0.4

@@ -150,34 +150,34 @@ frame = 1
 [node name="WeAccept" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 2334.53, 1490.51 )
 
-[node name="PokiCactusLarge" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="CactusLarge" parent="Obstacles" instance=ExtResource( 11 )]
 position = Vector2( 1829.95, 1341.22 )
 frame = 3
 flip_h = true
 
-[node name="PokiCactusHuge" parent="Obstacles" instance=ExtResource( 16 )]
+[node name="CactusHuge" parent="Obstacles" instance=ExtResource( 16 )]
 position = Vector2( 1442.47, 1312.77 )
 
-[node name="PokiCactusPlaque" parent="Obstacles" instance=ExtResource( 17 )]
+[node name="CactusPlaque" parent="Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 1468.78, 1366.21 )
 
-[node name="PokiCrowd1" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowd1" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1632.33, 1525.74 )
 frame = 13
 crowd_color_index = 3
 
-[node name="PokiCrowd2" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowd2" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1670.94, 1555.92 )
 frame = 12
 flip_h = true
 crowd_color_index = 1
 
-[node name="PokiCrowd3" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowd3" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1715.15, 1526.66 )
 frame = 12
 crowd_color_index = 1
 
-[node name="PokiCrowd4" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowd4" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1757.75, 1557.88 )
 crowd_color_index = 3
 
@@ -186,7 +186,7 @@ position = Vector2( 1052.74, 1432.9 )
 frame = 5
 flip_h = true
 
-[node name="PokiCactusSmall" parent="Obstacles" instance=ExtResource( 5 )]
+[node name="CactusSmall" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 1738.11, 1243.44 )
 
 [node name="Spawns" type="Node2D" parent="."]
