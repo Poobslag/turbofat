@@ -10,7 +10,7 @@ extents = Vector2( 120, 14 )
 [node name="Tent" type="KinematicBody2D"]
 position = Vector2( 486.489, 339.411 )
 script = ExtResource( 3 )
-shadow_scale = 0.7
+shadow_scale = 1.2
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 2 )
