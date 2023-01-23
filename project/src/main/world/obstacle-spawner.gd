@@ -18,15 +18,18 @@ export (Dictionary) var target_properties: Dictionary
 export (String) var spawn_if: String
 
 ## the spawned object, or 'null' if the object has not yet spawned
-var _spawned_object: Node2D
+var spawned_object: Node2D
 
 onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
 func _ready() -> void:
-	if not spawn_if or BoolExpressionEvaluator.evaluate(spawn_if):
+	if Engine.editor_hint:
+		# Don't spawn/free nodes in the editor. (Some of our children are tool scripts.)
+		pass
+	elif not spawn_if or BoolExpressionEvaluator.evaluate(spawn_if):
 		# Spawn the obstacle, and remove the spawner from the scene tree.
 		# This call is deferred to avoid a 'Parent node is busy setting up children' error.
-		call_deferred("_spawn_target")
+		call_deferred("spawn_target")
 	else:
 		# Don't spawn the obstacle. Remove the spawner from the scene tree.
 		queue_free()
@@ -39,26 +42,26 @@ func _ready() -> void:
 func set_target_property(property: String, value) -> void:
 	# if the object has not spawned we need to update our target_properties dictionary
 	target_properties[property] = value
-	if _spawned_object:
+	if spawned_object:
 		# if the object has spawned we need to update the target_object directly
-		_spawned_object.set(property, value)
+		spawned_object.set(property, value)
 
 
 ## Spawns the obstacle and remove the spawner from the scene tree.
-func _spawn_target() -> void:
+func spawn_target() -> void:
 	# change the spawner's name to avoid conflicting with the spawned object
 	var old_name := name
 	name = "ObstacleSpawner"
 	
 	# create the object and assign its properties
-	_spawned_object = TargetScene.instance()
-	_spawned_object.name = old_name
-	_spawned_object.position = position
+	spawned_object = TargetScene.instance()
+	spawned_object.name = old_name
+	spawned_object.position = position
 	for key in target_properties:
-		_spawned_object.set(key, target_properties[key])
+		spawned_object.set(key, target_properties[key])
 	
 	# add it to the scene tree
-	_overworld_environment.add_obstacle_below_node(self, _spawned_object)
+	_overworld_environment.add_obstacle_below_node(self, spawned_object)
 	
 	# remove the spawner from the scene tree
 	queue_free()
