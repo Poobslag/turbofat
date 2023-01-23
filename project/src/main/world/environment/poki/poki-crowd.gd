@@ -38,7 +38,12 @@ onready var _sprite := $Sprite
 onready var _wiggle_timer := $WiggleTimer
 
 func _ready() -> void:
-	_wiggle_timer.start(rand_range(0.0, 7.0))
+	if Engine.editor_hint:
+		# don't animate the crowd member in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
+		# polluting version control
+		pass
+	else:
+		_wiggle_timer.start(rand_range(0.0, 7.0))
 	
 	_refresh()
 

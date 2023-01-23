@@ -10,7 +10,6 @@ extents = Vector2( 28, 14 )
 position = Vector2( 561.443, 360.624 )
 script = ExtResource( 2 )
 shadow_scale = 0.4
-frame = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.239216, 0.160784, 0.121569, 1 )
@@ -20,13 +19,11 @@ centered = false
 offset = Vector2( -195, -375 )
 hframes = 4
 vframes = 5
-frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="WiggleTimer" type="Timer" parent="."]
 wait_time = 7.0
-autostart = true
 
 [connection signal="timeout" from="WiggleTimer" to="." method="_on_WiggleTimer_timeout"]
