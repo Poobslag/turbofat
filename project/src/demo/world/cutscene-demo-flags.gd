@@ -35,6 +35,12 @@ func apply_flags() -> void:
 		elif line.begins_with("not level_finished "):
 			var level_key := StringUtils.substring_after(line, "level_finished ")
 			PlayerData.level_history.delete_results(level_key)
+		elif line.begins_with("has_flag "):
+			var flag := StringUtils.substring_after(line, "has_flag ")
+			PlayerData.chat_history.set_flag(flag)
+		elif line.begins_with("not has_flag "):
+			var flag := StringUtils.substring_after(line, "has_flag ")
+			PlayerData.chat_history.unset_flag(flag)
 		else:
 			push_warning("Unrecognized flag: %s" % [line])
 
