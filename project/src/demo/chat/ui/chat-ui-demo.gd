@@ -90,4 +90,5 @@ func _play_chat_tree(filename: String = "") -> void:
 	if _choice_override:
 		for i in range(chat_tree.get_event().link_texts.size()):
 			chat_tree.get_event().link_texts[i] = _choice_override
-	$ChatUi.play_chat_tree(chat_tree)
+	$Ui/ChatUi.visible = true
+	$Ui/ChatUi.play_chat_tree(chat_tree)
