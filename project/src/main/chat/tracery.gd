@@ -15,12 +15,18 @@ class Modifiers extends Reference:
 	
 	## Returns a collection of Tracery modifiers for the current locale.
 	static func get_modifiers() -> Dictionary:
-		var result: Dictionary
+		var result := {
+			"capitalize": [Modifiers, "_capitalize"]
+		}
 		match TranslationServer.get_locale():
 			"es":
-				result = {} # spanish lacks a possessive suffix
+				# spanish lacks a possessive suffix
+				result = {
+					"capitalize": [Modifiers, "_capitalize"]
+				}
 			_, "en":
 				result = {
+					"capitalize": [Modifiers, "_capitalize"],
 					"possessive": [Modifiers, "_en_possessive"],
 				}
 		return result
@@ -35,6 +41,10 @@ class Modifiers extends Reference:
 			return s + "'"
 		else:
 			return s + "'s"
+
+
+	static func _capitalize(s: String) -> String:
+		return s.capitalize()
 
 
 ## An implementation of a Tracery grammar.
