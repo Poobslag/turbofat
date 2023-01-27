@@ -69,6 +69,20 @@ func test_pound_signs() -> void:
 
 
 ## English has a possessive modifier. Nouns are suffixed with "'s".
+func test_modifier_capitalize_en() -> void:
+	var original_locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("en")
+	
+	rules["food"] = ["spaghetti"]
+	assert_flatten("#food.capitalize# is delicious!", "Spaghetti is delicious!")
+	
+	rules["food"] = [""]
+	assert_flatten("#food.capitalize# is delicious!", " is delicious!")
+	
+	TranslationServer.set_locale(original_locale)
+
+
+## English has a possessive modifier. Nouns are suffixed with "'s".
 func test_modifier_possessive_en() -> void:
 	var original_locale := TranslationServer.get_locale()
 	TranslationServer.set_locale("en")
