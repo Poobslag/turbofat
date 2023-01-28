@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "buggo",
+  "name": "Buggo",
+  "short_name": "Buggo",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "3",
+    "body": "1",
+    "cheek": "1",
+    "collar": "2",
+    "ear": "4",
+    "eye": "5",
+    "hair": "0",
+    "head": "3",
+    "horn": "0",
+    "mouth": "1",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "3",
+    "line_rgb": "6c4331",
+    "body_rgb": "a1c48c",
+    "belly_rgb": "d9e4a7",
+    "cloth_rgb": "111111",
+    "glass_rgb": "72d2eb",
+    "plastic_rgb": "a3a2a6",
+    "hair_rgb": "4b974b",
+    "eye_rgb": "111111 ffffff",
+    "horn_rgb": "d9e4a7"
+  },
+  "chat_theme": {
+    "accent_scale": 4,
+    "accent_texture": 14,
+    "color": "a1c48c"
+  },
+  "fatness": 2
+}
