@@ -513,6 +513,23 @@ position = Vector2( 1383.76, 123.852 )
 
 [node name="Spawns" type="Node2D" parent="."]
 
+[node name="Bar10" parent="Spawns" instance=ExtResource( 38 )]
+position = Vector2( 1154.6, 179.54 )
+id = "bar_10"
+
+[node name="Bar11" parent="Spawns" instance=ExtResource( 38 )]
+position = Vector2( 1212.97, 121.172 )
+id = "bar_11"
+
+[node name="BarStool" parent="Spawns" instance=ExtResource( 38 )]
+position = Vector2( 1313, 220 )
+__meta__ = {
+"_editor_description_": ""
+}
+stool_path = NodePath("../../Obstacles/Stool10")
+id = "bar_stool"
+elevation = 140.0
+
 [node name="Chef" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1512, 255 )
 orientation = 1
@@ -555,6 +572,10 @@ id = "entrance_5"
 [node name="Entrance7" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 126.975, 170.117 )
 id = "entrance_7"
+
+[node name="Entrance8" parent="Spawns" instance=ExtResource( 38 )]
+position = Vector2( 59.9599, 131.418 )
+id = "entrance_8"
 
 [node name="Entrance10" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 179.111, 52.3916 )
