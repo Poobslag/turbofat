@@ -6,6 +6,7 @@ extends Node
 const CHAPTER_CHEATS := [
 	"chap01",
 	"chap02",
+	"chap03",
 ]
 
 export (NodePath) var cheat_code_detector_path: NodePath
