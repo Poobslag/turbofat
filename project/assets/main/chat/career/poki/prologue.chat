@@ -1,0 +1,39 @@
+{"version": "2476"}
+
+[location]
+poki
+
+[characters]
+player, p1, restaurant_9
+sensei, s1, restaurant_1
+narrator, n
+
+n: Fat Sensei and #player# arrived at their new location in Poki Desert, ready to start their first day, but...
+p1: Wait, THIS is Poki Desert!?
+p1: @_@ When you said 'desert' I assumed you meant 'Hot Place With People In It'... This place is literally deserted!
+s1: Oh come now. LITERALLY deserted?
+p1: -_- Yes. LITERALLY DESERTED. There are NO people.
+s1: -u- Hmph, well WE'RE here, aren't we?
+[you_dont_count] You don't count as a person
+[pedantry] Your pedantry is ever-helpful
+[problems_solved] Yay, our problems are solved
+
+[problems_solved]
+p1: ^O^ You're right, our problems are solved! ...Are you hungry?
+[outro]
+
+[you_dont_count]
+p1: ^N^ Oh you don't count as a person. I was talking about customers! Unless... I don't suppose you're hungry?
+[outro]
+
+[pedantry]
+p1: -__- Your pedantry is ever-helpful. I'm forever in debt to your priceless advice.
+p1: ...With that said, we still need customers. I don't suppose you're hungry?
+[outro]
+
+[outro]
+s1: <__< Not really...
+s1: ... ...
+s1: ._./ Wow! That's a big cactus.
+ (s1 faces right)
+p1: >__< Don't change the subject!

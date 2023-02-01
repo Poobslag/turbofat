@@ -1,0 +1,58 @@
+{"version": "2476"}
+
+[location]
+poki/walk
+
+[characters]
+player, p1
+sensei, s1
+narrator, n
+
+n: With a steady stream of customers in Poki Desert, Fat Sensei already had plans for a third location. But #player# was suspicious of their good fortune.
+p1: -_- So that was an awfully big coincidence...
+p1: Opening our new restaurant in the PERFECT location to attract a huge untapped influx of customers.
+p1: But isn't it short-sighted for us to leave so suddenly?
+s1: /._. Mmm? I don't follow.
+[next_week] What happens next week?
+[who_runs_it] What about staff?
+[customers_dwindle] What about customers?
+
+
+[next_week]
+p1: /._. What happens next week, when Desert Q is over?
+ (stop_walking)
+s1: ^N^ Oh, you don't need to worry about that kind of stuff.
+s1: Next week's problems are next week's problems.
+[that_explains_everything]
+
+[who_runs_it]
+p1: /._. What about our staff, Who's going to run the restaurant?
+ (stop_walking)
+s1: ^N^ Oh, you don't need to worry about that kind of stuff.
+s1: I hired someone to fill in while we're gone, probably. I don't remember.
+
+[customers_dwindle]
+p1: /._. What about our customers, won't they stop coming eventually?
+ (stop_walking)
+s1: ^N^ Oh, you don't need to worry about that kind of stuff.
+s1: Who needs customers anyways? Customers, shmustomers.
+[that_explains_everything]
+
+[that_explains_everything]
+p1: -__- I see... Well that takes care of every possible loose end! Everything worked out perfectly.
+s1: ^_^ Yes yes. Everything seemed to just fall into place didn't it?
+p1: Did you even know about Desert Q before our first day there?
+ (start_walking)
+s1: ._.; Oh! Umm. Yes? Maybe. ...My motives are umm... complex. Mwahha ha ha ha~
+p1: -_- Your motives sound like you're throwing a dart at a map.
+s1: .__.; My motives are more complex than THAT! And besides, darts are scary and pointy...
+ (stop_walking)
+p1: -__- M-hm. Sure. So where did the dart land this time?
+s1: ^_^ Ah, just a delicious destination called the "Flan Islands"
+p1: ^o^ Oooh, that sounds nice!
+ (start_walking)
+s1: ._.; Wait... no... Not the "Flan Islands"... the "Kflab Islands". Hmph. Stupid autocorrect!
+p1: -_- ...So you were saying about your complex motives?
+s1: ^O^ I mean, I ummm... I autocorrected it on purpose! Mwahha ha ha ha ha... ...
+s1: -_- ...Oh, whatever.
+ (p1 mood -__-)

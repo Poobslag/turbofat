@@ -1,0 +1,42 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+sensei, s1, chef
+player, p1, kitchen_9
+
+p1: ._.; Fat Sensei, I was just serving those guests and they said Thursday is the last day of Desert Q!
+ (p1 faces left)
+s1: /._. Interesting. ...You know, I was just serving THOSE guests and they said Monday is the Hamburglar's birthday!
+ (s1 faces right)
+[not_concerned] You don't seem concerned
+[out_of_business] We might go out of business
+[its_wednesday] No, that's Wednesday
+
+[its_wednesday]
+p1: ^N^ What? ...The Hamburglar's birthday isn't Monday, it's Wednesday!
+[cant_believe_it]
+
+[not_concerned]
+p1: <_< You... don't seem very concerned.
+s1: Oh I'm very concerned! That's why I'm double-checking it on the internet...
+ (s1 faces left)
+s1: (tap, tap... tap type... swipe...)
+[cant_believe_it]
+
+[out_of_business]
+p1: ^o^ We might go out of business... but at least we know the Hamburglar's birthday.
+s1: -u- Oh-ho ho, you might THINK that... But that's why I'm double-checking it on the internet...
+ (s1 faces left)
+s1: (tap, tap... tap type... swipe...)
+[cant_believe_it]
+
+
+[cant_believe_it]
+s1: >__< WHAT!? I can't believe I actually believed them. This is an outrage!!
+s1: If you'll pardon me, I have to teach a toddler some VERY grown-up words.
+ (s1 faces right)
+p1: <__< I hope it's not the same toddler as last time...
+ (s1 exits)

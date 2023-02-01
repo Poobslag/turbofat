@@ -1,0 +1,88 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) goris, g, table_seat_left
+
+g: So what's your impression of Desert Q so far?
+[confused] I'm confused
+[makes_sense] It makes sense
+[dumb] It seems dumb
+[love_it] I love it
+
+
+[dumb]
+p1: -__- It seems sort of... dumb. You just stand around in the desert for 7 days and don't actually do anything.
+g: ^o^ Heh yeah! You're not alone, When I tell most people about it, they just think it seems dumb.
+[fat_sensei_chimes_in]
+
+[confused]
+p1: /._. I'm sort of... confused by it. It sounds like you just stand around for 7 days and don't actually do anything.
+g: /._. Wait up really? A bunch of people standing in the desert for 7 days, and you're confused by that?
+g: 'Cause when I tell most people about it, they just think it just seems dumb.
+[fat_sensei_chimes_in]
+
+[makes_sense]
+p1: ^Y^ It makes sense to me. You hang out with your friends and do nothing! A big week-long party with no obligations.
+g: /._. Wait up really? A bunch of people standing in the desert doing nothing for 7 days, and that makes sense to you?
+g: 'Cause when I tell most people about it, they just think it just seems dumb.
+[fat_sensei_chimes_in]
+
+[love_it]
+p1: ^__^ It's great, I'd love to stand around outside with my friends for an entire week!
+g: /._. Wait up really? A bunch of people standing in the desert doing nothing for 7 days, THAT'S what you aspire to?
+g: 'Cause when I tell most people about it, they just think it just seems dumb.
+[fat_sensei_chimes_in]
+
+[fat_sensei_chimes_in]
+s1: ^Y^ Goris, I'm like a thousand years old so EVERYTHING seems dumb.
+s1: But you're not hurting anyone and it seems like you're having fun.
+s1: There comes a time in everyone's life when they're no longer fun enough to be dumb.
+ (s1 faces right)
+s1: <_< A time when you sit in a boring chair every day and you are very boring and you feel very smart.
+s1: So, if you're still at the age where you're dumb enough to have fun, then well...
+s1: ^_^ ...I think that in itself is worth celebrating. Go be dumb! Life is too short.
+ (s1 faces left)
+g: ^O^ Heck yeah thanks!
+g: Now if you'll pardon me, I'ma go dumb it up with my friends. Peace~
+ (g faces left)
+[still_confused] I'm still confused
+[still_dumb] Have fun with your dumb friends
+[still_makes_sense] It still makes sense
+[still_love_it] I still love it
+
+
+[still_dumb]
+p1: ^O^ Desert Q does seem dumb! Go have fun with your dumb friends.
+s1: ._.; Whoa! Where did THAT come from!?
+ (g faces right, g mood ._.;)
+ (s1 faces right)
+ (p1 mood ._.)
+g: Whoaaaaaa that was out of line, #player#! You know, words can hurt sometimes.
+p1: .__.; But... But I...
+
+[still_confused]
+p1: /._. Well, I'm still a little confused by it...
+g: ^N^ Maaaaaaan you're not supposed to understand it! It's just this dumb thing we all do once a year, ha ha.
+ (g faces right)
+g: But don't worry about it! Fat Sensei gets it. And you, you got another year to figure it out. Take it easy~
+ (g faces left, g exits)
+
+[still_makes_sense]
+p1: ^Y^ Well, it still makes sense to me! I'd love to join you next year.
+g: ^N^ Maaaaaaan it's not supposed to make sense! It's just this dumb thing we all do once a year, ha ha.
+ (g faces right)
+g: But don't worry about it! Fat Sensei gets it. And you, you got another year to figure it out. Take it easy~
+ (g faces left, g exits)
+
+[still_love_it]
+p1: ^__^ I still love everything about Desert Q! I love the line... And I love the umm...
+p1: There's just too many things to name! I love them all.
+g: ^N^ Maaaaaaan you're not supposed to love it! It's just this dumb thing we all do once a year, ha ha.
+ (g faces right)
+g: But don't worry about it! Fat Sensei gets it. And you, you got another year to figure it out. Take it easy~
+ (g faces left, g exits)

@@ -1,0 +1,30 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) raymon, r, table_seat_left
+(customer) pairet, p, table_seat_right
+
+s1: ^_^ Sooooo, did everyone enjoy their food?
+r: ^__^ Mmmmm, yeah that was delicious!
+p: ^_^ Soooo good. You can really taste the #vegan_food_1# #vegan_food_2#!
+ (default_phrase vegan_food_1 smoke)
+ (default_phrase vegan_food_2 nuts)
+s1: -_- Mmm, yes. W-wait. ...#vegan_food_1.capitalize# #vegan_food_2#?
+ (s1 faces right)
+[easier] It gets easier every time
+[alone] I need to be alone
+[pressure] They pressured me
+
+[easier]
+p1: ^O^ Ha ha ha! Like you said, it gets easier every time...
+
+[alone]
+p1: u_u I... I think I need to be alone...
+
+[pressure]
+p1: .__.; It's... It's not my fault! ...They pressured me!

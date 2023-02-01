@@ -1,0 +1,72 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+sensei, s1, bar_10
+player, p1, bar_11
+lisk, l, bar_stool
+
+p1: ^__^/ Oh hey Lisk! What's going on, Desert Q's just seven days right? Didn't it end a few days ago?
+l: ^_^ Oh you know how it is. Seven days became eight days, and a few of us missed our flights home.
+ (l faces left)
+l: ._./ Then we missed our makeup flights, and then we set up some tents outside.
+s1: /._. You set up... tents?
+l: <__< And then a bunch of us kind of got hooked on the food here, which... Can you blame us?
+l: Anyway, I'll probably go home in a few weeks, or months, or... You know, whenever.
+p1: ._.; That seems weird, don't you have...
+[pets] Pets?
+[significant_other] A significant other?
+[friends] Friends?
+[responsibilities] Responsibilities?
+
+[pets]
+p1: ._.; Don't you have pets?
+l: -_- Psh whatever. Do YOU have pets?
+[touche]
+
+[friends]
+p1: ._.; Don't you have friends?
+l: -_- Psh whatever. Do YOU have friends?
+[touche]
+
+[significant_other]
+p1: ._.; Don't you have a significant other?
+l: -_- Psh whatever. Do YOU have a significant other?
+[touche]
+
+[responsibilities]
+p1: ._.; Don't you have responsibilities?
+l: -_- Psh whatever. Do YOU have responsibilities?
+[touche]
+
+
+[touche]
+p1: -_- ...Umm. Touche?
+s1: ._./ Well, we do have other locations.
+l: ^N^ That sounds like way too much work for me! Three vanilla puffs please.
+l: ^__^ And gimme some extras, I'll take 'em home to my tent-mates.
+[more_customers] Hooray! More customers!
+[for_wrong_reasons] I'm glad you're staying, but...
+[obsessive] This behavior seems obsessive
+
+[obsessive]
+p1: @_@ This behavior seems obsessive! You can't upend your life just because you found a new favorite place to eat.
+[in_tents]
+
+[for_wrong_reasons]
+p1: <_< I mean, I'm glad everyone's sticking around, but I'm worried it's for kind of the wrong reasons...
+[in_tents]
+
+[more_customers]
+p1: ^o^ Hooray! I wasn't sure if we'd survive without customers, but it sounds like they're here for good.
+p1: They've even improvised some kind of a shanty town!
+[in_tents]
+
+
+[in_tents]
+s1: ^Y^ Right? I wasn't expecting our food to provoke such in-tents cravings.
+p1: ...
+ (p1 mood -_-, p1 faces left)
+ (s1 mood ^_^)

@@ -1,0 +1,24 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) trudy, t, table_seat_left
+
+t: This place is pretty nice! So you two, what, co-own it or something?
+s1: -_- Maybe... Who are you anyways?
+t: ^O^ Oh sorry! I was just curious about your business. I'm Trudy, I handle the only payment system for Desert Q.
+p1: ^Y^ Oh! We've heard about Desert Q...
+s1: /._. Yes, yes -- some kind of... gathering of the greatest minds, something like that?
+t: ^N^ Heck if I know! I just walk around and act important, and people give me money for doing nothing.
+t: /._. It's probably a lot like what you do here! People just show up and give you money, right?
+s1: >_< Well we... USUALLY bring them food... Hint, hint...
+t: -__- Hmm hmm, yes, bringing people food. That sounds like way too much work for me! Doing nothing's way easier.
+t: But then I do like the idea of having a building to stay cool in. Do you mind if I open my own business next door?
+s1: Hmph well. It's a free cactus.
+ (s1 faces right)
+p1: /._. Wait. What kind of business?
+ (s1 faces right)

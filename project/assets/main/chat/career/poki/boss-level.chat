@@ -1,0 +1,52 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, entrance_2
+sensei, s1, entrance_5
+(customer) lisk, l, entrance_7
+(customer) pigpog, p, !entrance_8
+
+l: /._. I heard someone say you'll save our place in line. Is that true?
+s1: ^N^ Yes, yes, #player# would be happy to shave your faceless swine.
+ (s1 faces right)
+l: Wait, what!? That's not what I -
+s1: ._.; #player#, can you handle this? There are three tables which need my attention.
+ (s1 faces left)
+s1: Why are we so busy all of a sudden!? This was supposed to be a desert.
+ (s1 faces right)
+l: /._. ...So, umm... did you hear my question?
+ (s1 exits)
+[will_save] Yes, we'll do that
+[wont_save] No, we won't do that
+[swine] Lead me to the swine
+[table_opened_up] A table just opened up
+
+[swine]
+p1: ^__^ Lead me to the swine!
+l: <_< That's... that's incredibly rude.
+ (p enters)
+ (p mood ._./)
+p1: <__< ...
+
+[table_opened_up]
+p1: /._. We might have a table that just opened up! If you don't mind sitting on someone else's cheek-prints...
+ (p enters)
+ (p mood ._./)
+l: <_< Umm... thanks, I guess...
+
+[wont_save]
+p1: ^N^ I can tell you with utmost honesty that nobody will save your place in line.
+p1: /._. But if you're lucky, you won't remember asking us? So it's sort of win/win.
+ (p enters)
+ (p mood ._./)
+l: <_< Umm... thanks, I guess...
+
+[will_save]
+p1: ^Y^ Yes, we'll save your place. ...But, sometimes the people in line won't believe you!
+p1: ^_^ You might have to assertively force your way in and be rude to them after your meal.
+ (p enters)
+ (p mood ._./)
+l: <_< Umm... thanks, I guess...
