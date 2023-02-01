@@ -6,7 +6,7 @@ lemon_2
 [characters]
 player, p1, restaurant_11
 sensei, s1, !restaurant_8
-tunathy, t, restaurant_1
+(observer) tunathy, t, restaurant_1
 (customer) sandrew, s, !restaurant_4
 
 p1: .__.; Wait... Turbo Fat?

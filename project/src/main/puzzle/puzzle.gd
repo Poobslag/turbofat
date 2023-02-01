@@ -133,6 +133,7 @@ func feed_creature(customer: Creature, food_type: int) -> void:
 func _start_puzzle() -> void:
 	PlayerData.customer_queue.reset_standard_customer_queue()
 	var current_customer_ids := []
+	_restaurant_view.reset()
 	for customer in _restaurant_view.get_customers():
 		current_customer_ids.append(customer.creature_id)
 	PlayerData.customer_queue.pop_standard_customers(current_customer_ids)
