@@ -1,0 +1,23 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_10
+sensei, s1, !table_2
+(customer) beats, b, table_seat_left
+(customer) lisk, l, table_seat_right
+
+b: ^N^ Lisk, nobody's going to pay you to see the big cactus...
+l: ^o^ But it's a REALLY big cactus!
+s1: /._. Are you two talking about the big cactus in front of our restaurant?
+ (s1 enters)
+ (l faces right, l mood ._.)
+s1: ...That's my cactus. But I'll sell it to you~
+l: /._. ... ... ...
+l: -_- Seeeeee, Beats? Any idiot can say it's their cactus. And besides, I can talk way louder than THAT person.
+ (l faces left)
+ (s1 mood >_<)
+s1: (grumble...)
+ (s1 faces right, s1 exits)

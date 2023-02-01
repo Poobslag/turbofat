@@ -1,0 +1,47 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, bar_10
+sensei, s1, bar_11
+(customer) raymon, r, bar_stool
+
+r: ^__^ Heck yeah, those were some seriously choice chocolate puffs! Sorry for bugging you about the whole nut thing.
+ (r faces left)
+s1: Ahhaha, trust me. It was no trouble~
+p1: >__< Fat Sensei, that was still dangerous. You're lucky they didn't have an allergic reaction!
+ (r faces right)
+ (r exits)
+ (s1 faces left)
+s1: ^n^ Hmph. Here's a secret about food -- nobody's allergic to anything.
+s1: "Allergic" is just a word people use for emphasis, like the word "literally". If you don't believe me, let's ask Raymon over here.
+s1: ._.; Raymon, I'm afraid there was a mix-up in the kitchen. This is important -- are you LITERALLY allergic to nuts?
+ (s1 faces right)
+ (r enters, r faces left)
+r: .__.; Nuts? Oh yeah, I'm literally allergic to them! Like, literally could not be more allergic.
+r: Umm like I bit into this walnut brownie the other day and I LITERALLY had to brush my teeth afterwards.
+r: ^y^ I didn't actually brush my teeth 'cause my cat was in my lap! But you know how it is.
+s1: ^Y^ Yes, yes. Everyone's allergic to everything until a cat's in their lap.
+[allergic_to_cats] I'm allergic to cats
+[other_lap] Some day the cat will be in the other lap
+[brush_your_teeth] You should brush your teeth
+
+[other_lap]
+p1: >_< Fat Sensei, some day the cat's going to be in the OTHER lap.
+ (s1 faces left)
+s1: /._. I... don't know what that means.
+p1: >__< You know EXACTLY what it means!
+
+[allergic_to_cats]
+p1: ._.; I'm... allergic to cats.
+ (s1 faces left)
+s1: ^n^ Well see, now you're just being mean to cats!
+p1: <__< No I don't DISLIKE cats! I just... Ack, you're impossible!
+
+[brush_your_teeth]
+p1: <_< Cat or no cat, you should really brush your teeth...
+s1: ^n^ Well see, now you're just being mean to cats!
+ (s1 faces left)
+p1: <__< How is THAT being mean to cats!?

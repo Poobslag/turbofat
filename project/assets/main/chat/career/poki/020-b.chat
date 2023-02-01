@@ -1,0 +1,66 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) pairet, p, table_seat_left
+
+p: So this double chocolate cheesecake... Is this vegan? I've been trying to go vegan lately.
+s1: ^y^ Yes yes, everything on the menu is vegan.
+p: /._. Really? ...'cause it's a caaaaaake, so what do you use instead of eggs? And butter?
+s1: /._. Oh yes our recipe doesn't use COW butter, it's hmm... GOAT butter!
+p: -_- Goats... aren't vegan.
+s1: .__.; P-peanuts?
+p: ^_^ Peanut... butter? Hmm that sounds healthy! ...What about the eggs?
+ (s1 mood ._.)
+s1: ^_^ Yes #player#, what ABOUT the eggs?
+ (s1 faces right)
+[rocks] Rocks
+[smoke] Smoke
+[peanuts] Peanuts
+[sand] Sand
+[eggs] Eggs
+[milkweed] Milkweed
+
+[peanuts]
+p1: ._.; ...Peanut eggs?
+ (s1 faces left)
+[sounds_tasty]
+
+[sand]
+p1: ._.; ...Sand eggs?
+ (s1 faces left)
+[sounds_tasty]
+
+[smoke]
+p1: ._.; ...Smoke eggs?
+ (s1 faces left)
+[sounds_tasty]
+
+[rocks]
+p1: ._.; ...Rock eggs?
+ (s1 faces left)
+[sounds_tasty]
+
+[milkweed]
+p1: ._.; ...Milkweed eggs?
+ (s1 faces left)
+[sounds_tasty]
+
+[eggs]
+p1: ^n^ We use real eggs.
+ (s1 faces left)
+ (s1 mood -_-)
+p: /._. "Real Eggs?" Ohhhhhh so is that sort of like... like the "Impossible Burger" but for eggs?
+[sounds_tasty]
+
+ 
+[sounds_tasty]
+p: ^__^ Oooh sounds tasty. I'll have that!
+p1: -_- I feel so dirty...
+ (s1 faces right)
+ (p exits)
+s1: ^O^ Don't worry. It gets easier every time~

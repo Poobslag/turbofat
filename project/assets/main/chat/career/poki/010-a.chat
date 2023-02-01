@@ -1,0 +1,75 @@
+{"version": "2476"}
+
+[location]
+poki
+
+[characters]
+player, p1, restaurant_3
+sensei, s1, restaurant_1
+(customer) dreadhark, d, restaurant_9
+(customer) goris, g, restaurant_11
+
+p1: /._. You're back!? ...Does this line go in a circle?
+g: u_u Tsk, we lost our place last time. We had to go back to the end.
+d: u_u Maaaaaan, I really liked your food too! But I don't wanna step out of line again. Desert Q...
+g: u__u ...Desert Q...
+s1: ^Y^ Mmmm, we'll save your place in line. Go on inside!
+d: ^_^ Really, you'd do that? Sweet, it's on then!
+ (d faces left, d exits, g mood ^_^)
+g: I'm getting one of them chocolate puffs!!
+ (g faces left, g exits)
+p1: You're really going to wait in line for them?
+ (s1 faces right)
+s1: ^N^ No, and neither are you! ...Go cook.
+[ill-cook] You think of a lie
+[make-up-a-story] What lie should we make up?
+[wont-they-be-mad] Won't they be mad?
+
+
+[wont-they-be-mad]
+p1: ._.; That seems dishonest... Won't they be mad?
+s1: -__- No they won't be mad. If you do your job they won't be anything!
+s1: Do you think they're going to remember any of our promises when their stomachs are full and their brains are empty?
+[lying-is-fun] Lying is fun
+[im-telling] I'm telling them
+[i-dont-like-this] I don't like this
+
+[make-up-a-story]
+p1: <_< Well... We should think of some kind of a lie, right?
+s1: -__- Hmph. You're assuming they're going to remember anything that happened in the past thirty seconds.
+s1: ...If you do your job, they'll be sprawled out in their respective food comas and we won't have to make up a thing.
+[lying-is-fun] Lying is fun
+[im-telling] I'm telling them
+[i-dont-like-this] I don't like this
+
+[ill-cook]
+p1: ^y^ Okay, I'll cook! You think of a lie.
+s1: -__- A lie? It's bold of you to assume they'll remember anything that happened in the past thirty seconds.
+s1: ...If you do your job, they'll be sprawled out in their respective food comas and we won't have to lie about a thing.
+[lying-is-fun] Lying is fun
+[im-telling] I'm telling them
+[i-dont-like-this] I don't like this
+
+
+[i-dont-like-this]
+p1: <__< Mmmm... Yeah. I don't like this.
+ (unset_flag tell_the_truth)
+s1: ^N^ Fine whatever, go ahead and dislike whatever you want to dislike.
+ (s1 faces left)
+s1: I'm going to go hide in the back and put on my "I Told You So" pants.
+ (s1 exits)
+
+[lying-is-fun]
+p1: ^O^ Lying to customers is fun!
+ (unset_flag tell_the_truth)
+s1: ^o^ Ahha ha ha ha, yes it is. But we're not going to have to lie, just wait and see!
+s1: You worry about the cooking, I'll go hide in the back and put on my "I Told You So" pants.
+ (s1 faces left, s1 exits)
+
+[im-telling]
+p1: >__< I'm telling them the truth!
+ (set_flag tell_the_truth)
+s1: >_< Hmph, you can tell them whatever you want after you finish cooking for them.
+ (s1 faces left)
+s1: ...In the meantime, I'll go hide in the back and put on my "I Told You So" pants.
+ (s1 exits)

@@ -1,0 +1,84 @@
+{"version": "2476", "fixed_zoom": 0.8}
+
+[location]
+poki
+
+[characters]
+player, p1, restaurant_11
+sensei, s1, restaurant_1
+
+s1: ^_^/ Look at all these customers!
+ (s1 faces right, p1 faces left)
+p1: ^N^ Wow! That line goes on forever.
+s1: ^O^ Ahha ha ha. Remember when you complained that this place was "literally deserted?"
+ (s1 faces left)
+s1: I guess you feel pretty silly about that now.
+ (p1 faces right)
+[was_deserted] It WAS deserted
+[is_deserted] It IS desert-ed
+[is_desserted] It IS dessert-ed
+[i_was_wrong] I was wrong
+
+[was_deserted]
+p1: <_< It WAS literally deserted, I wasn't wrong! It just became... less deserted since then.
+s1: ^_^ That's an understatement! You're going to have to learn to cook faster.
+p1: ^o^ If I cook faster, won't I be making it even MORE deserted?
+s1: /._. Hmm?
+p1: ^O^ You know... Because of all the new DESSERTS! Get it? Dessert-ed?
+[oh_no]
+
+[is_deserted]
+p1: -_- It IS literally desert-ed! Think about it.
+s1: /._. Hmm?
+p1: -__- It's literally deserted, because we're LITERALLY in a desert. ...That's what literally is SUPPOSED to mean.
+s1: ^Y^ Oh phew, I thought you meant like... "Dessert-ed", as in... ...
+[oh_no]
+
+[is_desserted]
+p1: ^o^ Well if you think about it... It is literally dessert-ed!
+s1: /._. Hmm?
+p1: ^O^ You know... Because of all of our DESSERTS! Get it? Dessert-ed?
+[oh_no]
+
+[i_was_wrong]
+p1: u_u I was wrong...
+s1: ^Y^ Yes yes, don't feel bad. At some point, everybody but me is wrong. You'll get used to it~
+p1: /._. But anyways, it is still literally deserted.
+s1: /._. Hmm?
+p1: ^O^ You know... Because of all of our DESSERTS! Get it? Dessert-ed?
+[oh_no]
+
+[oh_no]
+s1: u_u Oh... Oh no. Desserts? Dessert QUEUE!?! What have I done!!
+[gonna_be_sick] I'm going to be sick
+[oops] Don't feel bad
+[thats_funny] That's pretty funny
+
+[thats_funny]
+p1: ^O^ You're right, it is a dessert queue! That's pretty funny~
+s1: .__.; It's not funny, it's terrible. Horrifying! ...And... the pun was right there the whole time!?
+s1: How many people did I put in danger through my... my unthinkable negligence? There were families. Children!!!
+p1: ^_^ Oh lighten up, Fat Sensei.
+s1: >___< ...I'm afraid we need to shut down this location.
+ (s1 faces right)
+p1: u__u Nooooooo...
+
+[gonna_be_sick]
+p1: @_@ Eughhh, I think I'm going to be sick...
+s1: .__.; This is terrible. Horrifying! ...And... the pun was right there the whole time!?
+s1: How many people did I put in danger through my... my unthinkable negligence? There were families. Children!!!
+p1: u_u So many lives ruined...
+s1: >___< I'm afraid we need to burn down this location.
+ (s1 faces right)
+p1: ^Y^ It's for the best. I'll forge the necessary insurance paperwork...
+ (p1 faces left)
+ (s1 exits)
+
+[oops]
+p1: <__< Oops! Well, umm... this sort of thing could happen to anyone. Don't feel bad about it...
+s1: .__.; Don't feel BAD about it!? This is terrible. Horrifying! ...And... the pun was right there the whole time!?
+s1: How many people did I put in danger through my... my unthinkable negligence? There were families. Children!!!
+p1: ^_^ Oh lighten up, Fat Sensei.
+s1: >___< ...I'm afraid we need to shut down this location.
+ (s1 faces right)
+p1: u__u Nooooooo...

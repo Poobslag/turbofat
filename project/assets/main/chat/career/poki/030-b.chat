@@ -1,0 +1,119 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_10
+(customer) raymon, r, table_seat_left
+(customer) pairet, p, table_seat_right
+
+p: ^_^ Ooh this fudge blondie looks good! And it doesn't have milk either, right?
+p1: /._. Well it's not COW milk, it comes from umm...
+[grass] Grass
+[milkweed] Milkweed
+[pickles] Pickles
+[rocks] Rocks
+[nuts] Nuts
+
+
+[nuts]
+p1: ._.; From nuts!
+ (set_phrase vegan_food_2 nuts)
+p: /._. Nut... milk?
+p1: Y-yeah!
+r: u_u Aww did you say nut milk? I'm allergic to nuts!
+ (r faces left)
+p1: ._.; N-no these aren't like... REGULAR nuts! These are special nuts made from um...
+[sand] Sand
+[fish] Fish
+[goats] Goats
+[crabs] Crabs
+[smoke] Smoke
+
+[milkweed]
+p1: ._.; From milkweed!
+ (set_phrase vegan_food_2 weed)
+p: /._. Milk.. weed... milk?
+p1: Y-yeah!
+r: u_u Aww did you say weed milk? I'm allergic to weeds!
+ (r faces left)
+p1: ._.; N-no this isn't like... REGULAR milkweed! These is special milkweed grown from um...
+[sand] Sand
+[fish] Fish
+[goats] Goats
+[crabs] Crabs
+[smoke] Smoke
+
+[rocks]
+p1: ._.; From rocks!
+ (set_phrase vegan_food_2 rocks)
+p: /._. Rock... milk?
+p1: Y-yeah!
+r: u_u Aww did you say rock milk? I'm allergic to rocks!
+ (r faces left)
+p1: ._.; N-no these aren't like... REGULAR rocks! These are special rocks made from um...
+[sand] Sand
+[fish] Fish
+[goats] Goats
+[crabs] Crabs
+[smoke] Smoke
+
+[pickles]
+p1: ._.; From pickles!
+ (set_phrase vegan_food_2 pickles)
+p: /._. Pickle... milk?
+p1: Y-yeah!
+r: u_u Aww did you say pickle milk? I'm allergic to pickles!
+ (r faces left)
+p1: ._.; N-no these aren't like... REGULAR pickles! These are special pickles harvested from um...
+[sand] Sand
+[fish] Fish
+[goats] Goats
+[crabs] Crabs
+[smoke] Smoke
+
+[grass]
+p1: ._.; From grass!
+ (set_phrase vegan_food_2 grass)
+p: /._. Grass... milk?
+p1: Y-yeah!
+r: u_u Aww did you say grass milk? I'm allergic to grass!
+ (r faces left)
+p1: ._.; N-no these aren't like... REGULAR pickles! This is SPECIAL grass harvested from um...
+[sand] Sand
+[fish] Fish
+[goats] Goats
+[crabs] Crabs
+[smoke] Smoke
+
+
+[goats]
+p1: .__.; From... goats? Well I mean... imitation goats. Of course.
+ (set_phrase vegan_food_1 goat)
+[end]
+
+[smoke]
+p1: .__.; From... smoke? Well I mean... imitation smoke. Of course.
+ (set_phrase vegan_food_1 smoke)
+[end]
+
+[fish]
+p1: .__.; From... fish? Well I mean... imitation fish. Of course.
+ (set_phrase vegan_food_1 fish)
+[end]
+
+[sand]
+p1: .__.; From... sand? Well I mean... imitation sand. Of course.
+ (set_phrase vegan_food_1 sand)
+[end]
+
+[crabs]
+p1: .__.; From... crabs? Well I mean... imitation crabs. Of course.
+ (set_phrase vegan_food_1 crab)
+[end]
+
+[end]
+p: ^__^ Imitation #vegan_food_1# #vegan_food_2#? Oh that sounds healthy!
+ (r faces right, r mood ^_^)
+p1: @_@ ...It does? Well, I guess it kind of does...

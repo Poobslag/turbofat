@@ -1,0 +1,109 @@
+{"version": "2476"}
+
+[location]
+poki
+
+[characters]
+sensei, s1, front_2
+player, p1, front_3
+(customer) goris, g, front_11
+(customer) dreadhark, d, front_12
+
+d: ^o^ Oh hey what are you doing here? No cutsies!
+s1: /._. We were just curious what you and Goris were up to. ...We didn't see you for a few days.
+g: ^_^ Well you caught us just in time, my friend!
+g: We were just enjoying our shining moment at the front before we grabbed a bite to eat.
+d: u_u Yeah! Sucks we gotta get out of the desert line though.
+g: >__< Dude, why you always callin' it a line? You know it's a queue. Desert QUEUE!
+d: ^__^ Aww my bad, ha ha! Desert QUEUE!
+ (g mood ^_^)
+ (d faces left)
+[queue] Desert QUEUE!?
+[kill_someone] I'm going to kill someone
+[nothing_here] There's nothing here?
+
+[nothing_here]
+p1: /._. Wait... This is the front of the line? There's nothing here!
+ (d faces right)
+d: What do you mean there's nothing here? WE'RE here dude!
+g: Heck yeah we are!
+[best_ever]
+
+[queue]
+p1: @_@ Wait, it's called desert QUEUE? Like a queue people wait in!?!
+ (d faces right)
+[best_ever]
+
+[kill_someone]
+p1: >___< I... I think I'm going to kill someone.
+ (d faces right)
+[best_ever]
+
+
+[best_ever]
+g: ^_^ I think this was like... the best Desert Q ever! So many memories...
+d: ^o^ Getting in line with everyone... Going home... I can't wait for next year! Desert KYUUU!
+ (d faces left)
+g: ^__^ Desert Q!! Y'know, I heard someone saying there was once a FESTIVAL at the front of the queue.
+ (d mood ^__^)
+d: ^_^ ...Must have been nice...
+g: ... ...
+s1: /._. ...What if there was a restaurant at the front of the queue?
+ (d faces right)
+d: ^Y^ Go on...?
+[first_iq_110] Imagine an ordered set of vertices...
+[first_iq_100] A certain dining establishment?
+[first_iq_90] Our restaurant
+[first_iq_80] Turbo Fat
+
+[first_iq_110]
+p1: ._. The term 'queue' is mathematically ambiguous, but let's imagine an ordered set of vertices...
+p1: If the set were ordered by distance, they might converge on a point of interest, a notable location such as...?
+[im_following]
+
+[first_iq_100]
+p1: ^Y^ A certain dining establishment that might come to mind?
+[im_following]
+
+[first_iq_90]
+p1: <_< ...OUR restaurant?
+[im_following]
+
+[first_iq_80]
+p1: -_- Turbo Fat. They mean Turbo Fat.
+[im_following]
+
+[im_following]
+d: ^Y^ I'm following, keep going?
+[second_iq_110] If each participant is a point in a directed graph...
+[second_iq_100] The line could go to...?
+[second_iq_90] This could be a line for Turbo Fat
+[second_iq_80] Ugh, I give up
+
+[second_iq_110]
+p1: ._. If each member of the line is a point in a directed graph, we could redirect the graph without moving the points...
+p1: While the graph would directing its members to an arbitrary location, that arbitrary location could redefined... as...?
+d: ^Y^ Riiight...? I think I'm with you?
+d: /._. You mean like... redirecting a semi-commutative digraph with an arbitrary terminal vertex? ...Keep going, what else?
+[idiots]
+
+[second_iq_100]
+p1: ^Y^ What if this line could go someplace... more interesting? A certain place to eat?
+d: ^Y^ Riiight...? I think I'm with you?
+[idiots]
+
+[second_iq_90]
+p1: <_< What if the line went to Turbo Fat?
+d: ^Y^ Riiight...? I think I'm with you?
+[idiots]
+
+[second_iq_80]
+p1: ^N^ I give up. Just... Ask Goris. I think they get it.
+d: ^Y^ Hmm, so I should ask someone... I think I'm with you. ...Keep going, what else?
+[idiots]
+
+[idiots]
+s1: >__< Just get everyone to follow me, you idiots...
+g: ^O^ Alright! (claps) Bring it around everyone, the queue's going this way!!
+ (s1 exits)
+ (g faces left, d faces left)

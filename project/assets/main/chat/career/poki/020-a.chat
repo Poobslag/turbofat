@@ -1,0 +1,62 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) miteby, m, table_seat_left
+
+m: ^o^ So your food must be amazing! I've had this place recommended to me by like... fiiiiive different people!
+s1: ^_^ Really? People are talking about us?
+m: Yep! The place next to the big cactus. Is it ummmm.. Is it true you save people's place in line?
+[no] No
+[maybe] I'm not sure...
+[yes] Yes
+
+[yes]
+p1: ^y^ Yes! That's... apparently true.
+m: ^_^ Oh okay, thank goodness! Because I already paid them outside, and I didn't want it to turn into this big thing.
+[you_paid_them]
+
+[maybe]
+p1: <__< I'm not sure...
+m: <_< Oooh then we may have a little problem, because I already paid them outside, so if I get back in line, hmm...
+[you_paid_them]
+
+[no]
+p1: ^n^ Umm sorry, we don't do that...
+m: <_< Oooh then we may have a little problem, because I already paid them outside, so if I get back in line, hmm...
+[you_paid_them]
+
+
+[you_paid_them]
+s1: /._. Wait you paid... them? The... line people? You have to pay someone before you can wait in line?
+m: ^n^ No no no -- it's not like you pay beforehand or anything. They have this online payment system.
+p1: Online payment?
+m: ^O^ Yep. ... ...Someone walks up to you on the line, and you pay them! Ha ha ha~
+ (s1 mood -_-)
+m: /._. So is someone going to take my order? Orrrrrrr...
+ (s1 faces right, s1 exits)
+[i_will] I'll take your order
+[if_we_must] If we have to
+[get_out] Get out
+[literally_allergic] They're allergic to puns
+
+
+[get_out]
+p1: >___< Get out.
+m: ...?
+
+[if_we_must]
+p1: -__- Ugh. If we have to...
+m: ...?
+
+[i_will]
+p1: ^o^ I'll take your order! Don't worry about Fat Sensei, they're umm... literally allergic to puns.
+m: ...?
+
+[literally_allergic]
+p1: .__.; You'll have to excuse Fat Sensei, they're umm... literally allergic to puns.
+m: ...?

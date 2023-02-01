@@ -1,0 +1,60 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) dreadhark, d, table_seat_left
+(customer) goris, g, table_seat_right
+
+g: @_@ My stomach hurts, but I want to keep eating... Ohhhhh.... This might be my new favorite restaurant...
+ (d mood @_@)
+d: @_@ Oooof.... I'm gonna leave an online review! Right after I deal with the aftermath of my own terrible, terrible decisions...
+ (g exits, d faces left)
+s1: ^N^ ...See? Our food's good enough to cancel out whatever weird leaps of morality you have to justify to yourself.
+ (d exits, p1 faces right)
+s1: So, don't overthink it. At the end of the meal, we're happy and our customers are happy. It's win/win.
+[dont_like_it] I still don't like it
+[wanted_to_lie] I didn't get to lie
+[should_have_confessed] I should have told them
+
+
+[truth_start]
+g: @_@ My stomach hurts, but I want to keep eating... Ohhhhh.... This might be my new favorite restaurant...
+ (start_if has_flag tell_the_truth, d mood @_@)
+p1: u_u Hey sorry, I know we said we'd save your places in line but we didn't do that. I hope you're not mad...
+d: Our places in... what? Ohhhh yeah we gotta get back in line, dude.
+ (d faces left)
+g: Probably gotta go back to the end again... Desert Q...
+ (d exits)
+s1: ^N^ ...See? Our food's good enough to cancel out whatever weird leaps of morality you have to justify to yourself.
+ (g exits, p1 faces right)
+s1: So, don't overthink it. At the end of the meal, we're happy and our customers are happy. It's win/win.
+[dont_like_it] I still don't like it
+[should_have_lied] I should have lied
+[confess_again] I'm telling them again
+
+
+[dont_like_it]
+p1: <__< Fine, you're right. But I still don't have to like it.
+s1: ^_^ Well. ...You don't HAVE to like it. But you should try liking it! You'll sleep a little better~
+
+[wanted_to_lie]
+p1: ^O^ Aww but that's no fun! I wanted to make up a really cool lie.
+s1: ^o^ Oh don't worry! You'll have plenty of other opportunities to lie to our customers, you... weird little sociopath.
+
+[should_have_lied]
+p1: /._. That wasn't as fun as I expected. Maybe I should have told them a really cool lie.
+s1: ^o^ Oh don't worry! You'll have plenty of other opportunities to lie to our customers, you... weird little sociopath.
+
+[should_have_confessed]
+p1: /._. Maybe I should have told them the truth...
+s1: -__- Oh don't worry, I'm sure you'll have plenty of other opportunities to ruin everything with the stupid truth.
+
+[confess_again]
+p1: >__< Hmph, I'm going to go tell them the truth again! Maybe they didn't hear...
+ (p1 faces left)
+s1: -__- Oh don't worry, I'm sure you'll have plenty of other opportunities to ruin everything with the stupid truth.
+ (p1 exits)

@@ -1,0 +1,45 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, bar_10
+sensei, s1, bar_11
+(customer) raymon, r, bar_stool
+
+r: /._. Hey so these chocolate puffs... They don't have nuts do they? 'Cause I'm allergic to nuts.
+ (r faces left)
+[yes] Yes, they have nuts
+[no] No, they don't have nuts
+[maybe] I'm not sure...
+
+[yes]
+p1: ._.; Actually, they do have nuts!
+s1: >__< What? Why would you tell them they have nuts!?
+ (s1 faces left)
+[dont-worry]
+
+[no]
+p1: ^N^ No, they don't have nuts.
+[dont-worry]
+
+[maybe]
+p1: /._. Hmmm, I'm not sure if they have nuts or not...
+[dont-worry]
+
+[dont-worry]
+s1: ^Y^ Don't worry. Everything on our menu is nut free. Our chef even wears an athletic cup.
+ (s1 faces right)
+r: Oh okay! Right on.
+ (r faces right)
+p1: Fat Sensei, is that actually true?
+ (r exits)
+ (s1 faces left)
+s1: /._. What, you mean about the athletic cup?
+p1: >__< About everything!
+s1: Yes? No. I don't know. I don't really keep track of that sort of thing.
+s1: ...Besides, it's not like a food allergy ever killed anyone.
+ (p1 mood -_-)
+s1: <__< Don't look at me that way!
+ (p1 mood -_-)
