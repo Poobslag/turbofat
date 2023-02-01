@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/world/environment/poki/tent-spawner.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/environment/poki/tent-spawner.png" type="Texture" id=2]
+[ext_resource path="res://src/main/world/environment/poki/Tent.tscn" type="PackedScene" id=3]
+
+[node name="TentSpawner" type="Sprite"]
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -100 )
+script = ExtResource( 1 )
+TargetScene = ExtResource( 3 )
+target_properties = {
+}
+spawn_if = "false"

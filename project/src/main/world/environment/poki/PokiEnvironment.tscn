@@ -1,6 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=1]
+[ext_resource path="res://src/main/world/environment/poki/PokiCrowdSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=4]
 [ext_resource path="res://src/demo/world/environment/poki/puddle-overworld-tiler.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/environment/poki/PokiGroundMap.tscn" type="PackedScene" id=6]
@@ -8,17 +10,20 @@
 [ext_resource path="res://src/main/world/environment/restaurant/TurboFatRestaurant.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/poki/PokiMarshmallow.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusSmall.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/main/world/environment/poki/Tent.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/world/environment/poki/footprint-eraser.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusHuge.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusPlaque.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/environment/poki/PokiRippleWaves.tscn" type="PackedScene" id=17]
-[ext_resource path="res://src/main/world/environment/poki/PokiCrowd.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/world/environment/poki/TentSpawner.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/world/environment/poki/WeAccept.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/environment/poki/poki-obstacle-library.tres" type="TileSet" id=21]
+[ext_resource path="res://src/main/world/ObstacleSpawner.tscn" type="PackedScene" id=22]
+[ext_resource path="res://assets/main/world/environment/poki/we-accept.png" type="Texture" id=23]
+[ext_resource path="res://assets/main/world/environment/poki/poki-cactus-plaque.png" type="Texture" id=24]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -61,6 +66,9 @@ ground_map_path = NodePath("../../GroundMap")
 ground_no_goop_tile_index = 1
 puddle_tile_index = 1
 
+[node name="FootprintEraser" type="Node" parent="Ground/Terrain"]
+script = ExtResource( 11 )
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 19 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
@@ -96,7 +104,7 @@ exit_direction = 5
 position = Vector2( 5514.73, 1753.71 )
 exit_direction = 1
 
-[node name="OverworldExit3" parent="Obstacles" instance=ExtResource( 12 )]
+[node name="OverworldExit3" parent="Obstacles" groups=["turbo_fat_entrances"] instance=ExtResource( 12 )]
 position = Vector2( 381.77, 1387.85 )
 
 [node name="OverworldExit4" parent="Obstacles" instance=ExtResource( 12 )]
@@ -218,7 +226,7 @@ flip_h = true
 position = Vector2( 3704.03, 1096.34 )
 flip_h = true
 
-[node name="CactusLarge1" parent="Obstacles" instance=ExtResource( 7 )]
+[node name="CactusLarge" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 4982.34, 1665.95 )
 
 [node name="CactusLarge2" parent="Obstacles" instance=ExtResource( 7 )]
@@ -260,724 +268,983 @@ position = Vector2( 1121.78, 1678.65 )
 frame = 4
 flip_h = true
 
-[node name="CactusLarge10" parent="Obstacles" instance=ExtResource( 7 )]
+[node name="CactusLarge11" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( -237.036, 1484.99 )
 flip_h = true
 
-[node name="CactusLarge11" parent="Obstacles" instance=ExtResource( 7 )]
+[node name="CactusLarge12" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 2712.2, 1132.99 )
 frame = 3
 
-[node name="CactusLarge12" parent="Obstacles" instance=ExtResource( 7 )]
+[node name="CactusLarge13" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 3677.83, 1308.99 )
 frame = 4
 flip_h = true
 
-[node name="CactusLarge13" parent="Obstacles" instance=ExtResource( 7 )]
+[node name="CactusLarge14" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 3330.58, 2631.39 )
 frame = 1
 flip_h = true
 
-[node name="CactusLarge14" parent="Obstacles" instance=ExtResource( 7 )]
+[node name="CactusLarge15" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 5713.75, 2445.87 )
 flip_h = true
 
-[node name="PokiCactusHuge" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="CactusHuge" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 763.388, 1666.04 )
 
-[node name="PokiCactusPlaque" parent="Obstacles" instance=ExtResource( 14 )]
+[node name="CactusPlaque" parent="Obstacles" instance=ExtResource( 22 )]
 position = Vector2( 789.698, 1719.48 )
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 24 )
+centered = false
+offset = Vector2( -110, -130 )
+TargetScene = ExtResource( 14 )
+spawn_if = "chat_finished chat/career/poki/010_c_end"
 
-[node name="Tent1" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent1" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 166.23, 1709.72 )
-frame = 2
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent2" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent2" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 296.48, 1675.74 )
-frame = 3
-flip_h = true
+target_properties = {
+"flip_h": false,
+"frame": 3
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent3" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent3" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 30.6691, 1648.63 )
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent4" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent4" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 480.18, 1847.67 )
-frame = 2
+target_properties = {
+"flip_h": true,
+"frame": 5
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent5" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent5" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 610.43, 1813.69 )
+target_properties = {
+"flip_h": true,
+"frame": 5
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent6" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent6" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 415.269, 2008.85 )
-frame = 5
-flip_h = true
+target_properties = {
+"flip_h": false,
+"frame": 5
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent7" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent7" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 44.7448, 1819.35 )
-frame = 1
+target_properties = {
+"flip_h": false,
+"frame": 2
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent8" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent8" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 358.762, 1783.75 )
-frame = 4
+target_properties = {
+"flip_h": true,
+"frame": 4
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent9" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent9" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1028.18, 1861.67 )
-frame = 4
-flip_h = true
+target_properties = {
+"flip_h": true,
+"frame": 3
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent10" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent10" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1158.43, 1827.69 )
-frame = 5
-flip_h = true
+target_properties = {
+"flip_h": true,
+"frame": 4
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent11" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent11" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 786.762, 1923.75 )
-frame = 3
+target_properties = {
+"flip_h": false,
+"frame": 2
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent12" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent12" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1916.75, 1526.06 )
-frame = 1
+target_properties = {
+"flip_h": false,
+"frame": 4
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent13" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent13" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 2096.95, 1563.43 )
-frame = 5
+target_properties = {
+"flip_h": true,
+"frame": 5
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent14" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent14" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3692.49, 1785.86 )
-frame = 2
+target_properties = {
+"flip_h": false,
+"frame": 5
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent15" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent15" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3833.4, 1832.21 )
-frame = 4
-flip_h = true
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent16" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent16" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3568.26, 1700.01 )
-frame = 5
+target_properties = {
+"flip_h": false,
+"frame": 4
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent17" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent17" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3784.01, 1735.68 )
-flip_h = true
+target_properties = {
+"flip_h": false,
+"frame": 4
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent18" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent18" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3649.83, 1488.4 )
-frame = 4
+target_properties = {
+"flip_h": false,
+"frame": 5
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent19" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent19" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3790.74, 1534.76 )
-frame = 5
-flip_h = true
+target_properties = {
+"flip_h": false,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent20" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent20" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3508.4, 1605.14 )
-frame = 2
+target_properties = {
+"flip_h": true,
+"frame": 3
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent21" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent21" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3828.66, 1427.53 )
-frame = 2
+target_properties = {
+"flip_h": false,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent22" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent22" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1754.89, 1578.69 )
-frame = 2
-flip_h = true
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent23" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent23" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1555.24, 1668.77 )
-frame = 3
+target_properties = {
+"flip_h": true,
+"frame": 0
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent24" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent24" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1735.43, 1706.14 )
-frame = 1
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent25" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent25" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1393.37, 1721.4 )
-frame = 5
-flip_h = true
+target_properties = {
+"flip_h": false,
+"frame": 0
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent26" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent26" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 2084.15, 1824.33 )
-frame = 4
-flip_h = true
+target_properties = {
+"flip_h": false,
+"frame": 0
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent27" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent27" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 2213.44, 1762.71 )
-frame = 1
-flip_h = true
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="Tent28" parent="Obstacles" instance=ExtResource( 11 )]
+[node name="Tent28" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 1871.38, 1777.96 )
-frame = 3
-flip_h = true
+target_properties = {
+"flip_h": true,
+"frame": 1
+}
+spawn_if = "chat_finished chat/career/poki/120"
 
-[node name="WeAccept" parent="Obstacles" instance=ExtResource( 20 )]
+[node name="WeAccept" parent="Obstacles" instance=ExtResource( 22 )]
 position = Vector2( 1072.19, 1251.8 )
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 23 )
+offset = Vector2( 0, -190 )
+TargetScene = ExtResource( 20 )
+spawn_if = "chat_finished chat/career/poki/030_c"
 
-[node name="Crowd1" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd1" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 273.219, 1428.16 )
-flip_bias = 2
-frame = 9
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 1,
+"frame": 15
+}
 
-[node name="Crowd2" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd2" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 341.916, 1479.35 )
-flip_bias = 2
-frame = 14
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 8
+}
 
-[node name="Crowd3" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd3" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 271.752, 1494.81 )
-flip_bias = 2
-frame = 12
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 10
+}
 
-[node name="Crowd4" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd4" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 386.125, 1450.09 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 13
+}
 
-[node name="Crowd5" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd5" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 425.729, 1488.06 )
-flip_bias = 2
-frame = 7
+target_properties = {
+"crowd_color_index": 2,
+"frame": 19
+}
 
-[node name="Crowd6" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd6" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 686.14, 1483.57 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 0,
+"frame": 16
+}
 
-[node name="Crowd7" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd7" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 754.531, 1475.12 )
-flip_bias = 2
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 3,
+"frame": 16
+}
 
-[node name="Crowd8" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd8" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 532.729, 1509.79 )
-flip_bias = 2
-frame = 4
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 17
+}
 
-[node name="Crowd9" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd9" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -266.404, 1296.46 )
-flip_bias = 2
-frame = 19
+target_properties = {
+"crowd_color_index": 0,
+"frame": 11
+}
 
-[node name="Crowd10" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd10" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -176.39, 1294.51 )
-flip_bias = 2
-frame = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 19
+}
 
-[node name="Crowd11" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd11" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -137.78, 1324.69 )
-flip_bias = 2
-frame = 14
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 4
+}
 
-[node name="Crowd12" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd12" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -49.7943, 1332.22 )
-flip_bias = 2
-frame = 13
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 4
+}
 
-[node name="Crowd13" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd13" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -20.5911, 1371.04 )
-flip_bias = 2
-frame = 7
-flip_h = true
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 5
+}
 
-[node name="Crowd14" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd14" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 19.0125, 1409 )
-flip_bias = 2
-frame = 19
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 1,
+"frame": 15
+}
 
-[node name="Crowd15" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd15" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 90.0594, 1432.58 )
-flip_bias = 2
-frame = 19
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 0,
+"frame": 9
+}
 
-[node name="Crowd16" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd16" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 174.493, 1427.83 )
-flip_bias = 2
-frame = 12
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 17
+}
 
-[node name="Crowd17" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd17" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 192.887, 1472.28 )
-flip_bias = 2
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 1,
+"frame": 0
+}
 
-[node name="Crowd18" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd18" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 577.883, 1472.97 )
-flip_bias = 2
-frame = 12
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 3,
+"frame": 3
+}
 
-[node name="Crowd19" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd19" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 619.54, 1507.03 )
-flip_bias = 2
-frame = 19
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 12
+}
 
-[node name="Crowd20" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd20" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2078.92, 1299 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 4
+}
 
-[node name="Crowd21" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd21" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1993.04, 1298.75 )
-flip_bias = 2
-frame = 16
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 1,
+"frame": 0
+}
 
-[node name="Crowd22" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd22" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2136.6, 1323.62 )
-flip_bias = 2
-frame = 7
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 3,
+"frame": 17
+}
 
-[node name="Crowd23" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd23" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2456.38, 1402.03 )
-flip_bias = 2
-frame = 13
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 2
+}
 
-[node name="Crowd24" parent="Obstacles" instance=ExtResource( 18 )]
-position = Vector2( 2283.2, 1383.31 )
-flip_bias = 2
-frame = 19
-crowd_color_index = 3
-
-[node name="Crowd25" parent="Obstacles" instance=ExtResource( 18 )]
-position = Vector2( 2212.36, 1300.52 )
-flip_bias = 2
-frame = 15
-flip_h = true
-
-[node name="Crowd26" parent="Obstacles" instance=ExtResource( 18 )]
-position = Vector2( 1478.34, 1277.94 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 3
-
-[node name="Crowd27" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd24" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1528.75, 1238.02 )
-flip_bias = 2
-frame = 17
-flip_h = true
+target_properties = {
+"crowd_color_index": 3,
+"frame": 12
+}
 
-[node name="Crowd28" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd25" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 2283.2, 1383.31 )
+target_properties = {
+"crowd_color_index": 0,
+"frame": 12
+}
+
+[node name="Crowd26" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 2212.36, 1300.52 )
+target_properties = {
+"crowd_color_index": 1,
+"frame": 10
+}
+
+[node name="Crowd27" parent="Obstacles" instance=ExtResource( 2 )]
+position = Vector2( 1478.34, 1277.94 )
+target_properties = {
+"crowd_color_index": 1,
+"frame": 15
+}
+
+[node name="Crowd28" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1631.02, 1228.51 )
-flip_bias = 2
-frame = 14
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 10
+}
 
-[node name="Crowd29" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd29" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1567.36, 1268.2 )
-flip_bias = 2
-frame = 2
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 1,
+"frame": 3
+}
 
-[node name="Crowd30" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd30" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1725.82, 1227.25 )
-flip_bias = 2
-frame = 18
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 13
+}
 
-[node name="Crowd31" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd31" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1765.43, 1265.21 )
-flip_bias = 2
-frame = 1
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 0,
+"frame": 9
+}
 
-[node name="Crowd32" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd32" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1820.33, 1223.05 )
-flip_bias = 2
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 8
+}
 
-[node name="Crowd33" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd33" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1858.94, 1253.23 )
-flip_bias = 2
-frame = 9
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 3,
+"frame": 14
+}
 
-[node name="Crowd34" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd34" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1343.3, 1292.12 )
-flip_bias = 2
-frame = 19
+target_properties = {
+"crowd_color_index": 3,
+"frame": 7
+}
 
-[node name="Crowd35" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd35" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1398.2, 1249.96 )
-flip_bias = 2
-frame = 8
+target_properties = {
+"crowd_color_index": 3,
+"frame": 9
+}
 
-[node name="Crowd36" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd36" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1904.76, 1218.29 )
-flip_bias = 2
-frame = 18
-flip_h = true
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 0,
+"frame": 5
+}
 
-[node name="Crowd37" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd37" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 912.619, 1455.28 )
-flip_bias = 2
-frame = 15
+target_properties = {
+"crowd_color_index": 1,
+"frame": 4
+}
 
-[node name="Crowd38" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd38" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 963.03, 1415.37 )
-flip_bias = 2
-frame = 3
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 17
+}
 
-[node name="Crowd39" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd39" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1065.3, 1405.86 )
-flip_bias = 2
-frame = 3
+target_properties = {
+"crowd_color_index": 3,
+"frame": 2
+}
 
-[node name="Crowd40" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd40" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 832.276, 1478.43 )
-flip_bias = 2
-frame = 9
+target_properties = {
+"crowd_color_index": 1,
+"frame": 19
+}
 
-[node name="Crowd41" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd41" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1112.96, 1368.68 )
-flip_bias = 2
-frame = 4
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 14
+}
 
-[node name="Crowd42" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd42" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1189.5, 1330.8 )
-flip_bias = 2
-frame = 13
+target_properties = {
+"crowd_color_index": 0,
+"frame": 6
+}
 
-[node name="Crowd43" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd43" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1228.11, 1360.98 )
-flip_bias = 2
-frame = 6
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 3,
+"frame": 0
+}
 
-[node name="Crowd44" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd44" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1267.2, 1287.88 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 3,
+"frame": 0
+}
 
-[node name="Crowd45" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd45" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1285.6, 1332.33 )
-flip_bias = 2
-frame = 11
+target_properties = {
+"crowd_color_index": 3,
+"frame": 0
+}
 
-[node name="Crowd46" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd46" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2328.35, 1346.5 )
-flip_bias = 2
-frame = 3
+target_properties = {
+"crowd_color_index": 2,
+"frame": 2
+}
 
-[node name="Crowd47" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd47" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2370.01, 1380.55 )
-flip_bias = 2
-frame = 2
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 10
+}
 
-[node name="Crowd48" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd48" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3086.41, 1714.85 )
-flip_bias = 2
-frame = 12
-flip_h = true
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 0,
+"frame": 3
+}
 
-[node name="Crowd49" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd49" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3155.1, 1766.05 )
-flip_bias = 2
-frame = 4
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 0,
+"frame": 8
+}
 
-[node name="Crowd50" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd50" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3084.94, 1781.51 )
-flip_bias = 2
-frame = 16
-crowd_color_index = 3
 
-[node name="Crowd51" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd51" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3169.35, 1850.66 )
-flip_bias = 2
-frame = 12
-flip_h = true
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 0,
+"frame": 0
+}
 
-[node name="Crowd52" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd52" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3208.95, 1888.62 )
-flip_bias = 2
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 1,
+"frame": 12
+}
 
-[node name="Crowd53" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd53" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3281.58, 1947.98 )
-flip_bias = 2
-frame = 9
+target_properties = {
+"crowd_color_index": 1,
+"frame": 10
+}
 
-[node name="Crowd54" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd54" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3473.6, 1951.94 )
-flip_bias = 2
-frame = 1
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 12
+}
 
-[node name="Crowd55" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd55" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3556.76, 2028.32 )
-flip_bias = 2
-frame = 1
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 1,
+"frame": 14
+}
 
-[node name="Crowd56" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd56" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2552.78, 1451.3 )
-flip_bias = 2
-frame = 6
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 3,
+"frame": 1
+}
 
-[node name="Crowd57" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd57" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2592.38, 1489.27 )
-flip_bias = 2
-frame = 3
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 14
+}
 
-[node name="Crowd58" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd58" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2664.17, 1524.19 )
-flip_bias = 2
-frame = 12
+target_properties = {
+"crowd_color_index": 0,
+"frame": 15
+}
 
-[node name="Crowd59" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd59" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2752.16, 1516.26 )
-flip_bias = 2
-frame = 3
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 3
+}
 
-[node name="Crowd60" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd60" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2702.78, 1554.37 )
-flip_bias = 2
-frame = 8
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 1,
+"frame": 15
+}
 
-[node name="Crowd61" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd61" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2790.77, 1561.9 )
-flip_bias = 2
-frame = 17
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 3,
+"frame": 6
+}
 
-[node name="Crowd62" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd62" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2841.19, 1602.8 )
-flip_bias = 2
-frame = 3
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 3
+}
 
-[node name="Crowd63" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd63" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2912.24, 1641.37 )
-flip_bias = 2
-frame = 6
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 1,
+"frame": 6
+}
 
-[node name="Crowd64" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd64" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2950.85, 1671.55 )
-flip_bias = 2
-frame = 1
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 0,
+"frame": 11
+}
 
-[node name="Crowd65" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd65" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3365.34, 1941.34 )
-flip_bias = 2
-frame = 18
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 0,
+"frame": 8
+}
 
-[node name="Crowd66" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd66" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3407, 1975.4 )
-flip_bias = 2
-frame = 12
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 0,
+"frame": 6
+}
 
-[node name="Crowd67" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd67" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4856.07, 1692.06 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 1,
+"frame": 5
+}
 
-[node name="Crowd68" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd68" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4940.48, 1758.97 )
-flip_bias = 2
-frame = 19
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 0,
+"frame": 15
+}
 
-[node name="Crowd69" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd69" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4854.6, 1758.71 )
-flip_bias = 2
-frame = 16
+target_properties = {
+"crowd_color_index": 1,
+"frame": 17
+}
 
-[node name="Crowd70" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd70" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5015.31, 1779.57 )
-flip_bias = 2
-frame = 17
+target_properties = {
+"crowd_color_index": 2,
+"frame": 16
+}
 
-[node name="Crowd71" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd71" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5347.69, 1770.42 )
-flip_bias = 2
-frame = 18
-crowd_color_index = 3
 
-[node name="Crowd72" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd72" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5135.9, 1721.52 )
-flip_bias = 2
-frame = 13
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 1,
+"frame": 12
+}
 
-[node name="Crowd73" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd73" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5174.51, 1751.7 )
-flip_bias = 2
-frame = 2
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 3,
+"frame": 7
+}
 
-[node name="Crowd74" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd74" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5087.07, 1765.81 )
-flip_bias = 2
-frame = 14
+target_properties = {
+"crowd_color_index": 2,
+"frame": 12
+}
 
-[node name="Crowd75" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd75" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4354, 1797.19 )
-flip_bias = 2
-frame = 6
-crowd_color_index = 3
 
-[node name="Crowd76" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd76" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4404.41, 1757.28 )
-flip_bias = 2
-frame = 11
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 13
+}
 
-[node name="Crowd77" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd77" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4488.81, 1722.45 )
-flip_bias = 2
-frame = 3
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 2,
+"frame": 19
+}
 
-[node name="Crowd78" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd78" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4527.42, 1768.09 )
-flip_bias = 2
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 5
+}
 
-[node name="Crowd79" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd79" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4583.61, 1721.19 )
-flip_bias = 2
-frame = 15
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 2,
+"frame": 0
+}
 
-[node name="Crowd80" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd80" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4623.21, 1759.15 )
-flip_bias = 2
-frame = 17
-flip_h = true
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 0
+}
 
-[node name="Crowd81" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd81" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4656.53, 1696.36 )
-flip_bias = 2
-frame = 13
+target_properties = {
+"crowd_color_index": 0,
+"frame": 1
+}
 
-[node name="Crowd82" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd82" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4720.5, 1713.19 )
-flip_bias = 2
-frame = 18
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 3,
+"frame": 19
+}
 
-[node name="Crowd83" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd83" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4230.28, 1828.36 )
-flip_bias = 2
-frame = 8
+target_properties = {
+"crowd_color_index": 0,
+"frame": 16
+}
 
-[node name="Crowd84" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd84" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4285.18, 1786.2 )
-flip_bias = 2
-frame = 9
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 0,
+"frame": 2
+}
 
-[node name="Crowd85" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd85" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4766.32, 1678.26 )
-flip_bias = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 2
+}
 
-[node name="Crowd86" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd86" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4784.71, 1722.71 )
-flip_bias = 2
-frame = 2
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 1,
+"frame": 14
+}
 
-[node name="Crowd87" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd87" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3675.25, 1970.52 )
-flip_bias = 2
-frame = 14
+target_properties = {
+"crowd_color_index": 1,
+"frame": 15
+}
 
-[node name="Crowd88" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd88" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3714.85, 2008.48 )
-flip_bias = 2
-frame = 10
-crowd_color_index = 1
+target_properties = {
+"crowd_color_index": 2,
+"frame": 6
+}
 
-[node name="Crowd89" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd89" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3765.26, 1968.57 )
-flip_bias = 2
-frame = 6
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 3
+}
 
-[node name="Crowd90" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd90" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3867.53, 1959.06 )
-flip_bias = 2
-flip_h = true
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 3,
+"frame": 9
+}
 
-[node name="Crowd91" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd91" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3634.51, 2031.63 )
-flip_bias = 2
-frame = 12
+target_properties = {
+"crowd_color_index": 2,
+"frame": 8
+}
 
-[node name="Crowd92" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd92" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3915.19, 1921.87 )
-flip_bias = 2
-frame = 2
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 1,
+"frame": 8
+}
 
-[node name="Crowd93" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd93" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3991.73, 1884 )
-flip_bias = 2
-frame = 4
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 10
+}
 
-[node name="Crowd94" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd94" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4030.34, 1914.18 )
-flip_bias = 2
-crowd_color_index = 3
+target_properties = {
+"crowd_color_index": 0,
+"frame": 12
+}
 
-[node name="Crowd95" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd95" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4154.19, 1824.13 )
-flip_bias = 2
-frame = 3
-flip_h = true
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 3,
+"frame": 14
+}
 
-[node name="Crowd96" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd96" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4087.83, 1885.53 )
-flip_bias = 2
-frame = 15
+target_properties = {
+"crowd_color_index": 0,
+"frame": 14
+}
 
-[node name="Crowd97" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd97" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5219.66, 1714.89 )
-flip_bias = 2
-frame = 3
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 2,
+"frame": 6
+}
 
-[node name="Crowd98" parent="Obstacles" instance=ExtResource( 18 )]
+[node name="Crowd98" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5261.32, 1748.94 )
-flip_bias = 2
-frame = 4
-crowd_color_index = 2
+target_properties = {
+"crowd_color_index": 1,
+"frame": 1
+}
 
 [node name="Spawns" type="Node2D" parent="."]
+
+[node name="Restaurant1" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 697.999, 1367.96 )
+orientation = 1
+id = "restaurant_1"
+
+[node name="Restaurant3" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 756.732, 1422.69 )
+orientation = 1
+id = "restaurant_3"
+
+[node name="Restaurant9" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 449.719, 1422.69 )
+id = "restaurant_9"
+
+[node name="Restaurant11" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 513.791, 1366.63 )
+id = "restaurant_11"
+
+[node name="Front2" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 5630.57, 1901.3 )
+orientation = 1
+id = "front_2"
+
+[node name="Front3" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 5698.46, 1969.77 )
+orientation = 1
+id = "front_3"
+
+[node name="Front11" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 5401.1, 1813.82 )
+id = "front_11"
+
+[node name="Front12" parent="Spawns" instance=ExtResource( 3 )]
+position = Vector2( 5482.04, 1799.43 )
+id = "front_12"
 
 [node name="PlayerPath" type="Path2D" parent="."]
 position = Vector2( 475.371, 923.074 )

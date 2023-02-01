@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/main/world/environment/marsh/marsh-crystal.png" type="Texture" id=3]
 
-[node name="ButtercupCrystal" type="Sprite"]
+[node name="MarshCrystal" type="Sprite"]
 scale = Vector2( 0.539, 0.539 )
 texture = ExtResource( 3 )
 centered = false
