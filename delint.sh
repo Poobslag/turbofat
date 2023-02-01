@@ -158,6 +158,7 @@ fi
 
 # print statements that got left in by mistake
 RESULT=$(git diff main | grep print\()
+RESULT=$(git diff main | grep print_debug\()
 if [ -n "$RESULT" ]
 then
   echo ""
