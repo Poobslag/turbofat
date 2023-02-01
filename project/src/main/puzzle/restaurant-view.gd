@@ -28,6 +28,11 @@ var _customer_offscreen_rect_position: Vector2
 var _chef_onscreen_rect_position: Vector2
 var _chef_offscreen_rect_position: Vector2
 
+## Ordered list of int indexes which will be cycled to with the next_creature_index or scroll_to_new_creature methods.
+##
+## If empty, the ordering will be purely random.
+var _next_creature_indexes := []
+
 onready var _chef := $Chef
 onready var _chef_nametag_panel := $Chef/Nametag/Panel
 
@@ -60,6 +65,12 @@ func _ready() -> void:
 	_refresh_customer_name()
 	
 	_reset_bubbles_offscreen()
+
+
+## Resets any cached data to prepare for a new puzzle.
+func reset() -> void:
+	_recent_bonuses.clear()
+	_next_creature_indexes.clear()
 
 
 ## Moves the chef/customer bubbles offscreen, recording their position for later
@@ -148,6 +159,7 @@ func summon_customer(creature_index: int = -1) -> void:
 	var creature_def := CreatureDef.new()
 	if PlayerData.customer_queue.has_priority_customer():
 		creature_def = PlayerData.customer_queue.pop_priority_customer()
+		_next_creature_indexes.push_back(creature_index)
 	else:
 		creature_def = PlayerData.random_customer_def(true)
 	_restaurant_viewport_scene.summon_customer(creature_def, creature_index)
@@ -169,8 +181,16 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 
 ## Returns a random creature index different from the current creature index.
 func next_creature_index() -> int:
-	var customer_count := get_customers().size()
-	return (get_current_creature_index() + randi() % (customer_count - 1) + 1) % customer_count
+	var result: int
+	if _next_creature_indexes:
+		# return queued result
+		result = _next_creature_indexes.pop_front()
+	else:
+		# return random result
+		var customer_count := get_customers().size()
+		result = (get_current_creature_index() + randi() % (customer_count - 1) + 1) % customer_count
+	
+	return result
 
 
 ## Temporarily suppresses 'hello' and 'door chime' sounds.
@@ -276,7 +296,7 @@ func _on_PuzzleState_game_ended() -> void:
 			mood = Creatures.Mood.LAUGH1
 	if mood != Creatures.Mood.NONE:
 		get_chef().play_mood(mood)
-		_recent_bonuses = []
+		_recent_bonuses.clear()
 
 
 func _on_Customer_creature_name_changed() -> void:

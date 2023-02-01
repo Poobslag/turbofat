@@ -104,10 +104,10 @@ func push_level_trail() -> void:
 		if customer_obj is String:
 			var customer_id: String = customer_obj
 			var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(customer_id)
-			PlayerData.customer_queue.priority_queue.push_front(creature_def)
+			PlayerData.customer_queue.priority_queue.append(creature_def)
 		elif customer_obj is CreatureDef:
 			var creature_def: CreatureDef = customer_obj
-			PlayerData.customer_queue.priority_queue.push_front(creature_def)
+			PlayerData.customer_queue.priority_queue.append(creature_def)
 		else:
 			push_warning("Unrecognized customer: %s" % [customer_obj])
 	SceneTransition.push_trail(Global.SCENE_PUZZLE)
