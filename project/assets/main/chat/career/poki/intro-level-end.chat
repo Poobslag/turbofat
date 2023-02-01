@@ -1,0 +1,28 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+dreadhark, d, table_seat_right
+goris, g, table_seat_left
+
+s1: /._. So tell me more about this... Desert Q festival?
+d: ^N^ Aww man, Desert Q's not just a festival! It's a gathering of minds!
+ (d faces right)
+d: The world's greatest creatives, all celebrating the spirit of Desert Q!
+g: ^o^ Desert Q!
+s1: Yes but... What are you celebrating exactly? ...And how do you celebrate it?
+g: ^N^ Pshh we're celebrating the spirit of the greatest minds! All gathering in the desert for seven days! C'mon.
+s1: /._. Are there... bands? Or events?
+d: @_@ This isn't just like, some dumb concert here! It's the world's GREATEST minds we're talking about!
+d: We gather and umm... Like have you seen the line? It's a REALLY big line!
+g: ._./ Wait a minute Dreadhark, look outside! I think we lost our place!
+ (d faces left, g faces left)
+d: ._.; Aww what! Desert Q!!!
+ (d exits, d mood ._.;, g mood ._.;)
+g: Desert Q!!!
+ (g exits)
+s1: ._.; ...Umm! ...Tell your friends about us!?

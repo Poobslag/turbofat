@@ -1,0 +1,25 @@
+{"version": "2476"}
+
+[location]
+poki
+
+[characters]
+player, p1, restaurant_1
+sensei, s1, restaurant_3
+(customer) dreadhark, d, !restaurant_9
+(customer) goris, g, !restaurant_11
+
+p1: ._.; What the heck!? Where did all these people come from!
+ (s1 faces right)
+d: ^__^ Desert KYUUUUUU!
+ (d enters, g enters)
+g: ^__^ Desert KYUUUUUU!
+s1: ^n^ Clearly they're here for... 'Desert Q'?
+ (s1 faces left)
+p1: /._. What's Desert Q? Some kind of big festival?
+g: ^O^ This is your first Desert Q!? Well, think of it as a seven-day celebration with the world's greatest creatives...
+g: A special gathering where we can all get together and celebrate the spirit of Desert Q!
+s1: -_- Mmmm... can we get you something to eat while you wait?
+d: ^Y^ Heck yeah let's grub up! Desert Q!!!
+g: Desert Q! That's what I'm talkin' about.
+ (s1 mood -__-)
