@@ -3,6 +3,10 @@ extends Node
 ##
 ## This data includes how well they've done on each level and how much money they've earned.
 
+signal before_save
+
+signal after_save
+
 ## Current version for saved player data. Should be updated if and only if the player format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const PLAYER_DATA_VERSION := "38c3"
@@ -66,6 +70,7 @@ func schedule_save() -> void:
 
 ## Writes the player's in-memory data to a save file.
 func save_player_data() -> void:
+	emit_signal("before_save")
 	var save_json := []
 	save_json.append(_save_item("version", PLAYER_DATA_VERSION).to_json_dict())
 	var player_info := {}
@@ -87,6 +92,7 @@ func save_player_data() -> void:
 			PlayerData.level_history.finished_levels).to_json_dict())
 	FileUtils.write_file(data_filename, Utils.print_json(save_json))
 	rolling_backups.rotate_backups()
+	emit_signal("after_save")
 
 
 ## Populates the player's in-memory data based on their save files.
