@@ -75,6 +75,9 @@ var customer_ids: Array
 ## cutscenes.
 var observer_id: String
 
+## Creatures in this cutscene.
+var creature_ids: Array
+
 ## current position in this chat tree
 var _position := Position.new()
 
@@ -157,7 +160,7 @@ func chat_environment_path() -> String:
 	var result: String
 	
 	if not ENVIRONMENT_SCENE_PATHS_BY_ID.has(location_id):
-		push_warning("Invalid location_id: %s" % [location_id])
+		warn("Invalid location_id: %s" % [location_id])
 	
 	result = ENVIRONMENT_SCENE_PATHS_BY_ID.get(location_id, DEFAULT_ENVIRONMENT)
 	
@@ -175,7 +178,12 @@ func reset() -> void:
 	events = {}
 	location_id = ""
 	spawn_locations = {}
+	chef_id = ""
+	customer_ids = []
+	observer_id = ""
+	creature_ids = []
 	_position.reset()
+	_did_prepare = false
 
 
 ## Returns 'true' if this cutscene is set inside the restaurant.
@@ -189,7 +197,7 @@ func inside_restaurant() -> bool:
 ##
 ## This signifies that this cutscene should not be played if Fat Sensei is not following the player.
 func has_sensei() -> bool:
-	return spawn_locations.has(CreatureLibrary.SENSEI_ID)
+	return creature_ids.has(CreatureLibrary.SENSEI_ID)
 
 
 ## Suppresses warnings from showing up on the console.
@@ -207,7 +215,7 @@ func warn(warning: String) -> void:
 		meta["warnings"] = []
 	meta["warnings"].append(warning)
 	
-	if meta.get("suppress_warnings", false):
+	if not meta.get("suppress_warnings", false):
 		push_warning(warning)
 
 
@@ -233,7 +241,7 @@ func _apply_start_if_conditions() -> void:
 	
 	if start_keys.size() >= 2:
 		# if two or more 'start_if' conditions are met, report a warning
-		push_warning("Multiple start_if conditions were met: %s" % [[start_keys]])
+		warn("Multiple start_if conditions were met: %s" % [[start_keys]])
 
 
 ## Skip any dialog lines whose 'say_if' conditions are unmet.
@@ -275,7 +283,7 @@ func _assign_flags_and_phrases() -> void:
 ## 	'args': The statement's arguments, such as ['dog_breed', 'Labrador' 'Retriever']
 func _process_default_phrase_statement(args: Array) -> void:
 	if args.size() < 2:
-		push_warning("Invalid argument count for default_phrase call. Expected at least 2 but was %s"
+		warn("Invalid argument count for default_phrase call. Expected at least 2 but was %s"
 				% [args.size()])
 		return
 	
@@ -298,7 +306,7 @@ func _process_set_flag_statement(args: Array) -> void:
 		2:
 			PlayerData.chat_history.set_flag(args[0], args[1])
 		_:
-			push_warning("Invalid argument count for set_flag call. Expected 1 or 2 but was %s"
+			warn("Invalid argument count for set_flag call. Expected 1 or 2 but was %s"
 					% [args.size()])
 
 
@@ -310,7 +318,7 @@ func _process_set_flag_statement(args: Array) -> void:
 ## 	'args': The statement's arguments, such as ['dog_breed', 'Labrador', 'Retriever]
 func _process_set_phrase_statement(args: Array) -> void:
 	if args.size() < 2:
-		push_warning("Invalid argument count for set_phrase call. Expected at least 2 but was %s"
+		warn("Invalid argument count for set_phrase call. Expected at least 2 but was %s"
 				% [args.size()])
 		return
 	
@@ -326,7 +334,7 @@ func _process_set_phrase_statement(args: Array) -> void:
 ## 	'args': The statement's arguments, such as ['foo'].
 func _process_unset_flag_statement(args: Array) -> void:
 	if args.size() != 1:
-		push_warning("Invalid argument count for unset_flag call. Expected 1 but was %s"
+		warn("Invalid argument count for unset_flag call. Expected 1 but was %s"
 				% [args.size()])
 	
 	PlayerData.chat_history.unset_flag(args[0])

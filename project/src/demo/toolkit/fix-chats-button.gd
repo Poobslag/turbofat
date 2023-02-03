@@ -56,7 +56,7 @@ func _report_invalid_meta_creature_ids(chat_tree: ChatTree) -> void:
 						meta_creature_ids.append(meta_split[1])
 				
 				for meta_creature_id in meta_creature_ids:
-					var chat_tree_has_creature := chat_tree.spawn_locations.has(meta_creature_id)
+					var chat_tree_has_creature := chat_tree.creature_ids.has(meta_creature_id)
 					
 					if not chat_tree_has_creature:
 						chat_tree.warn("The chat key '%s' has an invalid creature id %s"
