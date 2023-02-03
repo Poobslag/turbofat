@@ -84,7 +84,8 @@ RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src 
   | grep -v "dna-loader.gd.*var property_value =" \
   | grep -v "career-data.gd.*var chat_tree = ChatLibrary.chat" \
   | grep -v "tracery.gd.*var selected_rule = match_name" \
-  | grep -v "dna-loader.gd.*var shader_value =")
+  | grep -v "dna-loader.gd.*var shader_value =" \
+  | grep -v "population.gd.*var creature_def =")
 if [ -n "$RESULT" ]
 then
   echo ""
