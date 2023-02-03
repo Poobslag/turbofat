@@ -118,14 +118,9 @@ func _career_creature_ids() -> Array:
 	# get a list of 'story creature ids' from the cutscenes
 	for path in CareerCutsceneLibrary.find_career_cutscene_resource_paths():
 		var chat_tree := ChatLibrary.chat_tree_from_file(path)
-		for creature_id in _creature_ids_from_chat_tree(chat_tree):
+		for creature_id in chat_tree.creature_ids:
 			result[creature_id] = true
 	return result.keys()
-
-
-## Returns a list of creature ids in a chat tree.
-func _creature_ids_from_chat_tree(chat_tree: ChatTree) -> Array:
-	return chat_tree.spawn_locations.keys()
 
 
 ## Returns a list of creature ids in all creature files in a directory.

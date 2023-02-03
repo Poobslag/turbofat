@@ -15,8 +15,8 @@ func test_inside_restaurant() -> void:
 func test_has_sensei() -> void:
 	assert_eq(chat_tree.has_sensei(), false)
 	
-	chat_tree.spawn_locations[CreatureLibrary.PLAYER_ID] = "kitchen_7"
+	chat_tree.creature_ids.append(CreatureLibrary.PLAYER_ID)
 	assert_eq(chat_tree.has_sensei(), false)
 	
-	chat_tree.spawn_locations[CreatureLibrary.SENSEI_ID] = "kitchen_5"
+	chat_tree.creature_ids.append(CreatureLibrary.SENSEI_ID)
 	assert_eq(chat_tree.has_sensei(), true)

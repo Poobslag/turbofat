@@ -48,6 +48,16 @@ func test_overall_meta() -> void:
 	assert_eq(chat_tree.meta.get("fixed_zoom"), 1.0)
 
 
+func test_cutscene_creature_ids() -> void:
+	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
+	
+	assert_has(chat_tree.creature_ids, "#player#")
+	assert_has(chat_tree.creature_ids, "#sensei#")
+	assert_has(chat_tree.creature_ids, "richie")
+	assert_has(chat_tree.creature_ids, "skins")
+	assert_has(chat_tree.creature_ids, "bones")
+
+
 func test_cutscene_spawn_locations() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	

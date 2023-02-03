@@ -120,6 +120,7 @@ class CharactersState extends AbstractState:
 		
 		# parse character name
 		character_name = StringUtils.hashwrap_constants(character_name)
+		chat_tree.creature_ids.append(character_name)
 		
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
