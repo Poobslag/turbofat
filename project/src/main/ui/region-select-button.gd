@@ -11,6 +11,7 @@ enum Type {
 	NONE,
 	LEMON,
 	LEMON_2,
+	POKI,
 	MARSH,
 }
 
@@ -33,6 +34,8 @@ var _texture_pairs_by_type := {
 			preload("res://assets/main/career/ui/region-lemon-off.png")],
 	Type.LEMON_2: [preload("res://assets/main/career/ui/region-lemon-2.png"),
 			preload("res://assets/main/career/ui/region-lemon-2-off.png")],
+	Type.POKI: [preload("res://assets/main/career/ui/region-poki.png"),
+			preload("res://assets/main/career/ui/region-poki-off.png")],
 	Type.MARSH: [preload("res://assets/main/career/ui/region-marsh.png"),
 			preload("res://assets/main/career/ui/region-marsh-off.png")],
 }
