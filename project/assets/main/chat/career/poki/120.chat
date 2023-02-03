@@ -6,7 +6,7 @@ inside_turbo_fat
 [characters]
 sensei, s1, bar_10
 player, p1, bar_11
-lisk, l, bar_stool
+(customer) lisk, l, bar_stool
 
 p1: ^__^/ Oh hey Lisk! What's going on, Desert Q's just seven days right? Didn't it end a few days ago?
 l: ^_^ Oh you know how it is. Seven days became eight days, and a few of us missed our flights home.
@@ -23,22 +23,22 @@ p1: ._.; That seems weird, don't you have...
 
 [pets]
 p1: ._.; Don't you have pets?
-l: -_- Psh whatever. Do YOU have pets?
+l: -_- Psh whatever. Don't YOU have pets?
 [touche]
 
 [friends]
 p1: ._.; Don't you have friends?
-l: -_- Psh whatever. Do YOU have friends?
+l: -_- Psh whatever. Don't YOU have friends?
 [touche]
 
 [significant_other]
 p1: ._.; Don't you have a significant other?
-l: -_- Psh whatever. Do YOU have a significant other?
+l: -_- Psh whatever. Don't YOU have a significant other?
 [touche]
 
 [responsibilities]
 p1: ._.; Don't you have responsibilities?
-l: -_- Psh whatever. Do YOU have responsibilities?
+l: -_- Psh whatever. Don't YOU have responsibilities?
 [touche]
 
 
