@@ -172,6 +172,45 @@ func is_tutorial() -> bool:
 	return settings.other.tutorial
 
 
+## Returns 'true' if the customer queue already has the specified customer.
+##
+## Customers are compared by creature_id, or by name if neither customer has a creature_id.
+##
+## Parameters:
+## 	'customer_obj': A String creature_id or CreatureDef to search for.
+func has_customer(customer_obj) -> bool:
+	var result := false
+	for other_customer_obj in customers:
+		if _customers_match(customer_obj, other_customer_obj):
+			result = true
+			break
+	return result
+
+
+## Returns 'true' if the specified objects represent the same customer.
+##
+## Customers are compared by creature_id, or by name if neither customer has a creature_id.
+##
+## Parameters:
+## 	'customer1': A String creature_id or CreatureDef to compare.
+##
+## 	'customer2': A String creature_id or CreatureDef to compare.
+func _customers_match(customer1, customer2) -> bool:
+	var result := false
+	
+	var id1 := customer1 as String if customer1 is String else customer1.creature_id
+	var id2 := customer2 as String if customer2 is String else customer2.creature_id
+	var name1 := "" if customer1 is String else customer1.creature_name
+	var name2 := "" if customer2 is String else customer2.creature_name
+	
+	if id1 or id2:
+		result = id1 == id2
+	elif name1 or name2:
+		result = name1 == name2
+	
+	return result
+
+
 ## Purges all node instances from the singleton.
 ##
 ## Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll

@@ -387,11 +387,21 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	CurrentLevel.customers = level_posse.customer_ids
 	CurrentLevel.chef_id = level_posse.chef_id
 	
-	# enqueue customers/chefs from the overworld if the level doesn't define any
-	if not CurrentLevel.customers:
+	if _pickable_career_levels.size() == 1 or not CurrentLevel.customers:
+		# Append filler customers for the selected level.
+		#
+		# For boss/intro levels, this appends the 1-2 extra filler customers who appear alongside the main creature.
+		#
+		# For regular levels, this appends the one randomly generated customer.
+		var other_customers := []
 		for customer in _world.get_visible_customers(level_index):
-			CurrentLevel.customers.append(customer.creature_def)
-		CurrentLevel.customers.shuffle()
+			if CurrentLevel.has_customer(customer):
+				continue
+			
+			other_customers.append(customer.creature_def)
+		other_customers.shuffle()
+		
+		CurrentLevel.customers.append_array(other_customers)
 	
 	var preroll_key: String = chat_key_pair.preroll
 	var postroll_key: String = chat_key_pair.postroll
