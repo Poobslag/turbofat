@@ -146,9 +146,28 @@ func _creature_ids_from_directory(dir_string: String) -> Array:
 	return result.keys()
 
 
+## Reports any career regions whose population has bad creature ids.
+func _report_population_creatures() -> void:
+	for region_obj in CareerLevelLibrary.regions:
+		var invalid_creature_ids := {}
+		var region: CareerRegion = region_obj
+		var appearances := []
+		appearances.append_array(region.population.chefs)
+		appearances.append_array(region.population.customers)
+		appearances.append_array(region.population.observers)
+		for appearance in appearances:
+			if PlayerData.creature_library.get_creature_def(appearance.id) == null:
+				invalid_creature_ids[appearance.id] = true
+		if invalid_creature_ids:
+			if _output_label.text:
+				_output_label.text += "\n"
+			_output_label.text += "Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()]
+
+
 func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_creatures()
 	_report_story_creatures()
+	_report_population_creatures()
 	if not _output_label.text:
 		_output_label.text = "No creature files have problems."
