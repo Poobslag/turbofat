@@ -18,17 +18,17 @@ r: /._. Hey so these chocolate puffs... They don't have nuts do they? 'Cause I'm
 p1: ._.; Actually, they do have nuts!
 s1: >__< What? Why would you tell them they have nuts!?
  (s1 faces left)
-[dont-worry]
+[dont_worry]
 
 [no]
 p1: ^N^ No, they don't have nuts.
-[dont-worry]
+[dont_worry]
 
 [maybe]
 p1: /._. Hmmm, I'm not sure if they have nuts or not...
-[dont-worry]
+[dont_worry]
 
-[dont-worry]
+[dont_worry]
 s1: ^Y^ Don't worry. Everything on our menu is nut free. Our chef even wears an athletic cup.
  (s1 faces right)
 r: Oh okay! Right on.
