@@ -162,6 +162,7 @@
       "start": 20,
       "icon": "cactus",
       "overworld_environment": "poki",
+      "region_button": "poki",
       "piece_speed": "1-3",
       "cutscene_path": "chat/career/poki",
       "boss_level": {
