@@ -15,11 +15,11 @@ margin_right = 688.0
 margin_bottom = 572.0
 script = ExtResource( 2 )
 
-[node name="Moles" type="Node2D" parent="."]
+[node name="Moles" type="Node2D" parent="." groups=["night_mode_light"]]
 script = ExtResource( 1 )
 MoleScene = ExtResource( 3 )
 
-[node name="Carrots" type="Node2D" parent="."]
+[node name="Carrots" type="Node2D" parent="." groups=["night_mode_light"]]
 script = ExtResource( 4 )
 CarrotScene = ExtResource( 5 )
 

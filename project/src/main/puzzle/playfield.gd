@@ -46,6 +46,7 @@ var _remaining_misc_delay_frames := 0
 
 onready var tile_map: PuzzleTileMap = $TileMapClip/TileMap
 onready var pickups: Pickups = $TileMapClip/Pickups
+onready var playfield_fx: PlayfieldFx = $TileMapClip/PlayfieldFx
 onready var line_inserter: LineInserter = $LineInserter
 onready var line_clearer: LineClearer = $LineClearer
 

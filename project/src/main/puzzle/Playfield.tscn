@@ -114,7 +114,7 @@ viewport_path = NodePath("TileMapClip/TileMap/ShadowViewport")
 [sub_resource type="ViewportTexture" id=14]
 viewport_path = NodePath("TileMapClip/TileMap/GhostPieceViewport")
 
-[node name="Playfield" type="Control"]
+[node name="Playfield" type="Control" groups=["night_mode_invisible"]]
 margin_right = 324.0
 margin_bottom = 544.0
 script = ExtResource( 1 )
@@ -214,7 +214,7 @@ material = SubResource( 11 )
 margin_top = 96.0
 margin_right = 324.0
 margin_bottom = 640.0
-color = Color( 1, 1, 1, 0 )
+color = Color( 0, 0, 0, 0 )
 
 [node name="Tween" type="Tween" parent="TileMapClip/PlayfieldFx/BgStrobe"]
 

@@ -56,7 +56,7 @@
 2/shapes = [  ]
 2/z_index = 0
 
-[node name="FryingPans" type="Control"]
+[node name="FryingPans" type="Control" groups=["night_mode_light"]]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 5 )

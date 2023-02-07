@@ -189,7 +189,7 @@ texture_scale = 0.5
 mode = 3
 range_item_cull_mask = 2
 
-[node name="View" type="ViewportContainer" parent="Customer"]
+[node name="View" type="ViewportContainer" parent="Customer" groups=["night_mode_dark"]]
 light_mask = 2
 margin_right = 290.0
 margin_bottom = 270.0
@@ -213,7 +213,7 @@ position = Vector2( 200, 600 )
 current = true
 zoom = Vector2( 0.18, 0.18 )
 
-[node name="Outline" type="TextureRect" parent="Customer"]
+[node name="Outline" type="TextureRect" parent="Customer" groups=["night_mode_dark"]]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
 margin_right = 580.0
 margin_bottom = 540.0
@@ -229,7 +229,7 @@ restaurant_scene_path = NodePath("../../RestaurantViewport/Scene")
 customer_camera_path = NodePath("../View/Viewport/Camera2D")
 headroom = 0.0
 
-[node name="Nametag" parent="Customer" instance=ExtResource( 11 )]
+[node name="Nametag" parent="Customer" groups=["night_mode_light"] instance=ExtResource( 11 )]
 margin_left = 23.8597
 margin_top = 189.138
 margin_right = 263.86
@@ -262,7 +262,7 @@ texture_scale = 0.26
 mode = 3
 range_item_cull_mask = 4
 
-[node name="View" type="ViewportContainer" parent="Chef"]
+[node name="View" type="ViewportContainer" parent="Chef" groups=["night_mode_dark"]]
 light_mask = 4
 margin_right = 150.0
 margin_bottom = 140.0
@@ -285,7 +285,7 @@ position = Vector2( 6780, 960 )
 current = true
 zoom = Vector2( 0.18, 0.18 )
 
-[node name="Outline" type="TextureRect" parent="Chef"]
+[node name="Outline" type="TextureRect" parent="Chef" groups=["night_mode_dark"]]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
 margin_left = -1.61597
 margin_top = -1.563
@@ -302,7 +302,7 @@ script = ExtResource( 1 )
 restaurant_scene_path = NodePath("../../RestaurantViewport/Scene")
 chef_camera_path = NodePath("../View/Viewport/Camera2D")
 
-[node name="Nametag" parent="Chef" instance=ExtResource( 11 )]
+[node name="Nametag" parent="Chef" groups=["night_mode_light"] instance=ExtResource( 11 )]
 margin_left = -44.277
 margin_top = 121.813
 margin_right = 195.723

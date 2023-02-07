@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/main/puzzle/next-piece-bg.png" type="Texture" id=1]
+[ext_resource path="res://src/main/puzzle/onion-next-piece-displays.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/piece/OnionPieceDisplay.tscn" type="PackedScene" id=3]
+
+[node name="OnionNextPieceDisplays" type="Control" groups=["night_mode_visible"]]
+margin_right = 64.0
+margin_bottom = 544.0
+script = ExtResource( 2 )
+OnionPieceDisplayScene = ExtResource( 3 )
+
+[node name="BgSprite" type="TextureRect" parent="."]
+modulate = Color( 0.419608, 0.419608, 0.862745, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Shadow" type="ColorRect" parent="."]
+margin_right = 6.0
+margin_bottom = 544.0
+color = Color( 0, 0, 0, 0.196078 )
