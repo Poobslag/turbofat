@@ -21,6 +21,7 @@ func _ready() -> void:
 	$Fg/OnionPlayfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/OnionPlayfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	CurrentLevel.puzzle = self
+	_initialize_night_mode() # initialize night mode early for levels which require it, to avoid a bright flash
 	
 	# reset the current puzzle, so transient data doesn't carry over from scene to scene
 	PuzzleState.reset()
@@ -87,6 +88,11 @@ func get_piece_queue() -> PieceQueue:
 ## Returns the node which handles moles, puzzle critters which dig up star seeds for the player.
 func get_moles() -> Moles:
 	return $Fg/Critters/Moles as Moles
+
+
+## Returns the node which handles onions, puzzle critters which darken things making it hard to see.
+func get_onions() -> Onions:
+	return $Fg/Critters/Onions as Onions
 
 
 ## Returns the node which handles carrots, puzzle critters which block the player's vision.
@@ -258,6 +264,18 @@ func _save_level_result(rank_result: RankResult) -> void:
 	CurrentLevel.attempt_count += 1
 	
 	PlayerSave.schedule_save()
+
+
+## For nighttime levels, this initializes night mode immediately to avoid an unpleasant blink effect.
+func _initialize_night_mode() -> void:
+	var initial_add_onion_effect: LevelTriggerEffects.AddOnionEffect
+	for trigger_obj in CurrentLevel.settings.triggers.triggers.get(LevelTrigger.BEFORE_START, []):
+		var trigger: LevelTrigger = trigger_obj
+		if trigger.effect is LevelTriggerEffects.AddOnionEffect:
+			initial_add_onion_effect = trigger.effect
+	
+	if initial_add_onion_effect and initial_add_onion_effect.config.get_state(0) == OnionConfig.OnionState.NIGHT:
+		_night_mode_toggler.set_night_mode(true, 0.0)
 
 
 func _on_Hud_start_button_pressed() -> void:

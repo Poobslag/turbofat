@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/demo/puzzle/critter/onion-demo.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/critter/Onion.tscn" type="PackedScene" id=2]
+
+[node name="OnionDemo" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 390.0
+margin_top = 90.0
+margin_right = 410.0
+margin_bottom = 110.0
+
+[node name="Onion" parent="." instance=ExtResource( 2 )]
+position = Vector2( 532.241, 545.799 )
+sky_position = Vector2( 400, 100 )

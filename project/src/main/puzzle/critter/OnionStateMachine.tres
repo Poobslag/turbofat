@@ -1,0 +1,135 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=34 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "dance-end-start"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "dance-end"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "dance"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "float"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "land"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "launch"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "none"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "plummet"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "soar"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "start-plummet"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+advance_condition = "dancing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+advance_condition = "dancing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+advance_condition = "floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+advance_condition = "location_sky"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+advance_condition = "not_floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+advance_condition = "location_soil"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+advance_condition = "dancing_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+advance_condition = "floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+advance_condition = "dancing_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+advance_condition = "dancing_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+advance_condition = "not_floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+advance_condition = "floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+switch_mode = 2
+advance_condition = "floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+advance_condition = "floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+advance_condition = "dancing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+advance_condition = "location_soil"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+advance_condition = "floating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+advance_condition = "dancing"
+
+[resource]
+resource_name = "onion_location_sky"
+states/dance/node = SubResource( 2 )
+states/dance/position = Vector2( -12, 63.989 )
+states/dance-end/node = SubResource( 31 )
+states/dance-end/position = Vector2( 306, -70.011 )
+states/dance-end-start/node = SubResource( 1 )
+states/dance-end-start/position = Vector2( 14, -80.011 )
+states/float/node = SubResource( 3 )
+states/float/position = Vector2( 631, 55.989 )
+states/land/node = SubResource( 4 )
+states/land/position = Vector2( -207, 137.989 )
+states/launch/node = SubResource( 5 )
+states/launch/position = Vector2( 214, 73.989 )
+states/none/node = SubResource( 6 )
+states/none/position = Vector2( -207, -19.011 )
+states/plummet/node = SubResource( 28 )
+states/plummet/position = Vector2( 71, 233.989 )
+states/soar/node = SubResource( 8 )
+states/soar/position = Vector2( 457, -28.011 )
+states/start-plummet/node = SubResource( 7 )
+states/start-plummet/position = Vector2( 347, 203.989 )
+states/stun/node = SubResource( 9 )
+states/stun/position = Vector2( 586, 183.989 )
+transitions = [ "none", "dance", SubResource( 11 ), "land", "dance", SubResource( 12 ), "dance", "launch", SubResource( 13 ), "launch", "soar", SubResource( 14 ), "soar", "float", SubResource( 15 ), "float", "stun", SubResource( 16 ), "stun", "start-plummet", SubResource( 17 ), "start-plummet", "land", SubResource( 18 ), "dance", "dance-end-start", SubResource( 19 ), "dance-end-start", "launch", SubResource( 20 ), "none", "dance-end-start", SubResource( 21 ), "land", "dance-end-start", SubResource( 22 ), "soar", "start-plummet", SubResource( 23 ), "start-plummet", "soar", SubResource( 24 ), "land", "launch", SubResource( 25 ), "none", "launch", SubResource( 26 ), "dance-end-start", "dance", SubResource( 27 ), "start-plummet", "plummet", SubResource( 29 ), "plummet", "land", SubResource( 30 ), "dance-end-start", "dance-end", SubResource( 32 ), "dance-end", "launch", SubResource( 33 ), "dance-end", "dance", SubResource( 34 ) ]
+start_node = "none"
+graph_offset = Vector2( -370, -147.011 )

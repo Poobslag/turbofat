@@ -30,6 +30,26 @@ func test_insert_line_get_config() -> void:
 	assert_eq_shallow(effect.get_config(), {"y": "5"})
 
 
+func test_add_onion_set_config() -> void:
+	var effect: LevelTriggerEffects.AddOnionEffect
+	
+	effect = LevelTriggerEffects.create("add_onion", {"0": "nnndddd"})
+	assert_eq_shallow(effect.get_config(), {"0": "nnndddd"})
+	
+	effect = LevelTriggerEffects.create("add_onion", {})
+	assert_eq_shallow(effect.get_config(), {})
+
+
+func test_add_onion_get_config() -> void:
+	var effect: LevelTriggerEffects.AddOnionEffect
+	
+	effect = LevelTriggerEffects.create("add_onion", {"0": "nnndddd"})
+	assert_eq_shallow(effect.get_config(), {"0": "nnndddd"})
+	
+	effect = LevelTriggerEffects.create("add_onion", {})
+	assert_eq_shallow(effect.get_config(), {})
+
+
 func test_add_moles_set_config() -> void:
 	var effect: LevelTriggerEffects.AddMolesEffect
 	
