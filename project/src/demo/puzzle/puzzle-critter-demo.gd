@@ -5,14 +5,14 @@ extends Node
 ## example, you can add a mole to the playfield by pressing 'M' for mole, and then '1' to add a mole.
 ##
 ## Keys:
-## 	[M]: Manipulate moles
-## 	[M] -> [1]: Add a mole
-## 	[M] -> ']': Advance moles
 ## 	[C]: Manipulate carrots
 ## 	[C] -> [0]: Remove a carrot
 ## 	[C] -> [1]: Add a carrot
 ## 	[C] -> [2]: Toggle the amount of carrot smoke, and add a carrot
 ## 	[C] -> [3]: Toggle the carrot size, and add a carrot
+## 	[M]: Manipulate moles
+## 	[M] -> [1]: Add a mole
+## 	[M] -> ']': Advance moles
 
 enum CritterType {
 	NONE,
@@ -54,15 +54,6 @@ func _input(event: InputEvent) -> void:
 		CritterType.MOLE: _mole_input(event)
 
 
-func _mole_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
-		KEY_1:
-			var mole_config := MoleConfig.new()
-			$Puzzle/Fg/Critters/Moles.add_moles(mole_config)
-		KEY_BRACKETRIGHT:
-			$Puzzle/Fg/Critters/Moles.advance_moles()
-
-
 func _carrot_input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_0:
@@ -75,3 +66,12 @@ func _carrot_input(event: InputEvent) -> void:
 		KEY_3:
 			_carrot_config.size = (_carrot_config.size + 1) % CarrotConfig.CarrotSize.size()
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
+
+
+func _mole_input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_1:
+			var mole_config := MoleConfig.new()
+			$Puzzle/Fg/Critters/Moles.add_moles(mole_config)
+		KEY_BRACKETRIGHT:
+			$Puzzle/Fg/Critters/Moles.advance_moles()
