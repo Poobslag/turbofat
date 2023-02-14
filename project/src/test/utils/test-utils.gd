@@ -42,6 +42,19 @@ func test_intersection_duplicates() -> void:
 	assert_eq(Utils.intersection([1, 2, 2, 3, 3, 3], [1, 1, 1, 2, 2, 3]), [1, 2, 2, 3])
 
 
+func test_disjunction() -> void:
+	assert_eq(Utils.disjunction([1, 2, 3], [2, 3, 4]), [1, 4])
+	assert_eq(Utils.disjunction([1, 2, 3], [2]), [1, 3])
+	assert_eq(Utils.disjunction([2], [1, 2, 3]), [1, 3])
+	assert_eq(Utils.disjunction([], [1]), [1])
+	assert_eq(Utils.disjunction([1], []), [1])
+
+
+func test_disjunction_duplicates() -> void:
+	assert_eq(Utils.disjunction([1, 1, 1], [1, 1]), [1])
+	assert_eq(Utils.disjunction([1, 2, 2, 3, 3, 3], [1, 1, 1, 2, 2, 3]), [1, 1, 3, 3])
+
+
 func test_remove_all() -> void:
 	assert_eq([4, 10, 15], Utils.remove_all([1, 4, 10, 1, 15], 1))
 

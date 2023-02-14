@@ -173,6 +173,26 @@ static func intersection(a: Array, b: Array) -> Array:
 	return result
 
 
+## Returns a new array containing the disjunction of the given arrays.
+##
+## This is equivalent to union(subtract(a, b), subtract(b, a)).
+static func disjunction(a: Array, b: Array) -> Array:
+	var result := []
+	var bag := {}
+	for item in a:
+		if not bag.has(item):
+			bag[item] = 0
+		bag[item] += 1
+	for item in b:
+		if not bag.has(item):
+			bag[item] = 0
+		bag[item] -= 1
+	for item in bag:
+		for _i in range(abs(bag[item])):
+			result.append(item)
+	return result
+
+
 ## Assigns a default path for a FileDialog.
 ##
 ## At runtime, this will default to the user data directory. During development, this will default to a resource path
