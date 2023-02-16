@@ -2,7 +2,7 @@
 
 ![Game screenshot showing blocks of food in a playfield, while a chubby monster sits at a table.](img/screenshot-puzzle.png)
 
-*Turbo Fat* is a block-dropping puzzle game for Windows, Linux, iOS, Android and HTML5.
+*Turbo Fat* is a block-dropping puzzle game for Windows, Linux, Android and HTML5.
 
 Turbo Fat was inspired by block-stacking games of the 90s, but builds on them with new pieces, new moves, new ways to score, and hilarious level gimmicks! Misdrop a piece? Use a squish move to fix it! Want higher scores? Build up a combo of 10 lines, 20 lines, 100 lines... there is no limit! Waiting for that crucial line piece? Don't wait long, we got rid of those! (Hey, nobody said it would be easy...)
 
