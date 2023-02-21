@@ -52,13 +52,22 @@ func _ready() -> void:
 	_prepare_pickups_for_level()
 
 
-## Returns the pickup at the specified playfield cell.
+func get_cells_with_pickups() -> Array:
+	return _pickups_by_cell.keys()
+
+
+## Returns the pickup food type at the specified playfield cell.
 ##
 ## Returns TileMap.INVALID_CELL if the specified cell has no pickup.
-func get_pickup(cell: Vector2) -> int:
+func get_pickup_food_type(cell: Vector2) -> int:
 	if not _pickups_by_cell.has(cell):
 		return TileMap.INVALID_CELL
 	return _pickups_by_cell[cell].food_type
+
+
+## Returns the pickup at the specified playfield cell.
+func get_pickup(cell: Vector2) -> Pickup:
+	return _pickups_by_cell.get(cell)
 
 
 ## Adds or replaces a pickup in a playfield cell.
@@ -106,7 +115,7 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 func row_is_empty(y: int) -> bool:
 	var row_is_empty := true
 	for x in range(PuzzleTileMap.COL_COUNT):
-		if not get_pickup(Vector2(x, y)) == TileMap.INVALID_CELL:
+		if not get_pickup_food_type(Vector2(x, y)) == TileMap.INVALID_CELL:
 			row_is_empty = false
 			break
 	return row_is_empty
