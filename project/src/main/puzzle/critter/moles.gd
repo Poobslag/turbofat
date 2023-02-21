@@ -159,7 +159,7 @@ func _mole_cell_has_block(mole_cell: Vector2) -> bool:
 
 ## Returns 'true' if the specified cell has a pickup.
 func _mole_cell_has_pickup(mole_cell: Vector2) -> bool:
-	return _playfield.pickups.get_pickup(mole_cell) != TileMap.INVALID_CELL
+	return _playfield.pickups.get_pickup_food_type(mole_cell) != TileMap.INVALID_CELL
 
 
 ## Returns 'true' if the specified cell has a mole.

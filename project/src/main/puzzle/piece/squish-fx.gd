@@ -1,3 +1,4 @@
+class_name SquishFx
 extends Control
 ## Generates visual and audio effects for a squish move.
 ##
@@ -12,30 +13,32 @@ var _squish_amount: float
 ## Calculates how much the piece should flash and shake as it's squished
 export (Curve) var squish_curve: Curve
 
-onready var _piece_manager: PieceManager = get_parent()
-onready var _sweat_drops: Particles2D = $SweatDrops
+onready var squish_map: SquishMap = $SquishMap
+onready var sweat_drops: Particles2D = $SweatDrops
+
+## Cannot statically type as 'PieceManager' because of cyclic reference
+onready var _piece_manager = get_parent()
+
 onready var _presquish_sfx: PresquishSfx = $PresquishSfx
-onready var _squish_map: SquishMap = $SquishMap
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	_prepare_tileset()
 
 
-func _process(_delta: float) -> void:
-	if _squish_map.squish_seconds_remaining > 0:
-		_squish_map.show()
+func _process(delta: float) -> void:
+	_total_time += delta
+	
+	if squish_map.squish_seconds_remaining > 0:
+		squish_map.show()
 		_piece_manager.tile_map.hide()
 		
 		# if the player continues to move the piece, we keep stretching to its new location
-		_squish_map.stretch_to(_piece_manager.piece.get_pos_arr(), _piece_manager.piece.pos)
+		squish_map.stretch_to(_piece_manager.piece.get_pos_arr(), _piece_manager.piece.pos)
 	else:
-		_squish_map.hide()
+		squish_map.hide()
 		_piece_manager.tile_map.show()
-
-
-func _physics_process(delta: float) -> void:
-	_total_time += delta
+	
 	_squish_amount = squish_curve.interpolate(_piece_manager.squish_percent())
 	
 	_handle_shake()
@@ -45,7 +48,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _prepare_tileset() -> void:
-	_squish_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
+	squish_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
 
 
 ## Makes the piece shake left and right if a squish move is in progress.
@@ -68,10 +71,10 @@ func _handle_flash() -> void:
 func _handle_sweat() -> void:
 	if _squish_amount > 0.1:
 		# gradually increase speed of sweat drops
-		_sweat_drops.lifetime = lerp(2.5, 1.0, _squish_amount)
-		_sweat_drops.emitting = true
+		sweat_drops.lifetime = lerp(2.5, 1.0, _squish_amount)
+		sweat_drops.emitting = true
 	else:
-		_sweat_drops.emitting = false
+		sweat_drops.emitting = false
 
 
 ## Plays a sound effect if a squish move is in progress.
@@ -88,7 +91,7 @@ func _handle_sfx() -> void:
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	if piece.pos.y - old_pos.y >= 3:
 		var unobstructed_blocks: Array = piece.type.pos_arr[piece.orientation].duplicate()
-		_squish_map.start_squish(PieceSpeeds.POST_SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
+		squish_map.start_squish(PieceSpeeds.POST_SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
 		for dy in range(piece.pos.y - old_pos.y):
 			var i := 0
 			while i < unobstructed_blocks.size():
@@ -97,7 +100,7 @@ func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void
 					unobstructed_blocks.remove(i)
 				else:
 					i += 1
-			_squish_map.stretch_to(unobstructed_blocks, old_pos + Vector2(0, dy))
+			squish_map.stretch_to(unobstructed_blocks, old_pos + Vector2(0, dy))
 
 
 func _on_Level_settings_changed() -> void:

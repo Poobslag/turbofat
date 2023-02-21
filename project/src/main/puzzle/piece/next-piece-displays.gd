@@ -19,6 +19,10 @@ func _ready() -> void:
 		_add_display(i, 5, 5 + i * (486.0 / (DISPLAY_COUNT - 1)), 0.5)
 
 
+func get_display(piece_index: int) -> NextPieceDisplay:
+	return _next_piece_displays[piece_index]
+
+
 ## Adds a new next piece display.
 func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
 	var new_display: NextPieceDisplay = NextPieceDisplayScene.instance()

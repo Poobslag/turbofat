@@ -1,3 +1,4 @@
+class_name StarSeeds
 extends Control
 ## Draws shadowy stars and seeds inside snack boxes and cake boxes.
 ##
@@ -87,6 +88,14 @@ onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+
+
+func get_cells_with_star_seeds() -> Array:
+	return _star_seeds_by_cell.keys()
+
+
+func get_star_seed(cell: Vector2) -> StarSeed:
+	return _star_seeds_by_cell.get(cell)
 
 
 ## Detects boxes in the playfield, and places star seeds in them.

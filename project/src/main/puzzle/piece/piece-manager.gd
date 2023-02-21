@@ -252,6 +252,10 @@ func finish_squish_move(squish_piece: ActivePiece, lines_cleared: int) -> void:
 	emit_signal("finished_squish_move", squish_piece, lines_cleared)
 
 
+func get_squish_fx() -> SquishFx:
+	return $SquishFx as SquishFx
+
+
 func _prepare_tileset() -> void:
 	tile_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
 
