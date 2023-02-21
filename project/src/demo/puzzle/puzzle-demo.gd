@@ -7,6 +7,7 @@ extends Node
 ## 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
 ## 	[H]: Change the cake box variation used to make cake boxes
 ## 	[U,I,O]: Clear a line at different locations in the playfield
+## 	[N]: Toggle night mode
 ## 	[P]: Add pickups
 ## 	[J]: Generate a food item
 ## 	[K]: Cycle to the next food item
@@ -16,6 +17,7 @@ var _line_clear_count := 1
 var _box_type := 0
 var _food_item_index := 0
 var _cake_box_type: int = Foods.BoxType.CAKE_JJO
+var _night_mode := false
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
@@ -70,6 +72,10 @@ func _input(event: InputEvent) -> void:
 		
 		KEY_L:
 			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed.speed_ups.size())
+			
+		KEY_N:
+			_night_mode = not _night_mode
+			CurrentLevel.puzzle.set_night_mode(_night_mode)
 
 
 func _build_box(y: int) -> void:

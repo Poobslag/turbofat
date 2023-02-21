@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/puzzle-timer.gd" type="Script" id=3]
 
-[node name="PuzzleTimer" type="Label"]
+[node name="PuzzleTimer" type="Label" groups=["night_mode_light"]]
 margin_right = 250.0
 margin_bottom = 30.0
 theme = ExtResource( 1 )

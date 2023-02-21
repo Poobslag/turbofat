@@ -60,7 +60,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 10 )
 
-[node name="Score" type="Control"]
+[node name="Score" type="Control" groups=["night_mode_light"]]
 margin_right = 250.0
 margin_bottom = 74.0
 

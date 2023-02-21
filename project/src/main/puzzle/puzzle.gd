@@ -3,8 +3,8 @@ extends Control
 ## A puzzle scene where a player drops pieces into a playfield of blocks.
 
 onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
-
 onready var _settings_menu: SettingsMenu = $SettingsMenu
+onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -16,6 +16,8 @@ func _ready() -> void:
 	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield.pickups.piece_manager_path = $Fg/Playfield.pickups.get_path_to($Fg/PieceManager)
+	$Fg/OnionPlayfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
+	$Fg/OnionPlayfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	CurrentLevel.puzzle = self
 	
 	# reset the current puzzle, so transient data doesn't carry over from scene to scene
@@ -127,6 +129,10 @@ func feed_creature(customer: Creature, food_type: int) -> void:
 	var new_comfort := customer.score_to_comfort(PuzzleState.combo, PuzzleState.get_customer_score())
 	customer.set_comfort(new_comfort)
 	customer.feed(food_type)
+
+
+func set_night_mode(night_mode: bool) -> void:
+	_night_mode_toggler.set_night_mode(night_mode)
 
 
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
