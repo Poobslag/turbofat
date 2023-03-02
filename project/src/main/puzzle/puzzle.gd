@@ -13,6 +13,8 @@ func _ready() -> void:
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	
 	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield.pickups.piece_manager_path = $Fg/Playfield.pickups.get_path_to($Fg/PieceManager)
@@ -36,6 +38,8 @@ func _ready() -> void:
 		$PuzzleMusicManager.start_puzzle_music()
 		yield(get_tree().create_timer(0.8), "timeout")
 		_start_puzzle()
+	else:
+		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
 
 
 func _exit_tree() -> void:
@@ -336,3 +340,9 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 				PuzzleState.level_performance.seconds = finish_condition.adjusted_value()
 		
 		detector.play_cheat_sound(true)
+
+
+func _on_Level_settings_changed() -> void:
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
+	if PuzzleState.game_active:
+		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.START)
