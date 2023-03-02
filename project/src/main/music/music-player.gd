@@ -5,6 +5,12 @@ extends Node
 
 signal current_bgm_changed(value)
 
+## highest cutoff for the low-pass night filter; this should render the filter unnoticable
+const MAX_FILTER_HZ := 20000.0
+
+## lowest cutoff for the low-pass night filter; this should make the music sound muffled
+const MIN_FILTER_HZ := 500.0
+
 ## volume to fade out to; once the music reaches this volume, it's stopped
 const MIN_VOLUME := -40.0
 
@@ -13,6 +19,9 @@ const MAX_VOLUME := 0.0
 
 ## the music currently playing
 var current_bgm: CheckpointSong
+
+## true if the music should have a low-pass filter applied; used during nighttime
+var night_filter: bool = false setget set_night_filter
 
 ## volume_db changes when we fade in/fade out so we cache the original value.
 ##
@@ -33,6 +42,7 @@ onready var _upbeat_bgms := [
 
 onready var _tutorial_bgms := [$MyFatnessPal]
 onready var _music_tween := $MusicTween
+onready var _filter_tween := $FilterTween
 
 func _ready() -> void:
 	all_bgms = _chill_bgms + _upbeat_bgms + _tutorial_bgms
@@ -106,6 +116,31 @@ func play_bgm(new_bgm: CheckpointSong, from_position: float = -1.0) -> void:
 	emit_signal("current_bgm_changed", current_bgm)
 
 
+## Enables or disables the low-pass filter used during nighttime.
+func set_night_filter(new_night_filter: bool) -> void:
+	if night_filter == new_night_filter:
+		return
+	night_filter = new_night_filter
+	
+	var bus_idx := AudioServer.get_bus_index("Music Bus")
+	var effect_idx := 0
+	var low_pass_filter: AudioEffectLowPassFilter = AudioServer.get_bus_effect(bus_idx, effect_idx)
+	if new_night_filter:
+		# Enable the low-pass filter, but increase its cutoff_hz to where it's unnoticable
+		if not _filter_tween.is_active():
+			low_pass_filter.cutoff_hz = MAX_FILTER_HZ
+		AudioServer.set_bus_effect_enabled(bus_idx, effect_idx, true)
+		
+		# Gradually reduce the cutoff_hz to muffle the music
+		_filter_tween.interpolate_property(low_pass_filter, "cutoff_hz",
+				null, MIN_FILTER_HZ, 0.3, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	else:
+		# Gradually increase the cutoff_hz to unmuffle the music
+		_filter_tween.interpolate_property(low_pass_filter, "cutoff_hz",
+				null, MAX_FILTER_HZ, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	_filter_tween.start()
+
+
 ## Plays the first song from the specified list, and reorders the songs.
 ##
 ## If a song from the specified list is already playing, this method has no effect. Otherwise, any currently playing
@@ -125,3 +160,12 @@ func _play_next_bgm(bgms: Array, fade_in: bool) -> void:
 	play_bgm(new_bgm)
 	if fade_in:
 		fade_in()
+
+
+## When the night audio filter finished unmuffling the audio, we disable the filter.
+func _on_FilterTween_tween_completed(object: Object, key: NodePath) -> void:
+	var bus_idx := AudioServer.get_bus_index("Music Bus")
+	var effect_idx := 0
+	var low_pass_filter: AudioEffectLowPassFilter = AudioServer.get_bus_effect(bus_idx, effect_idx)
+	if object == low_pass_filter and key == ":cutoff_hz" and is_equal_approx(low_pass_filter.cutoff_hz, MAX_FILTER_HZ):
+		AudioServer.set_bus_effect_enabled(bus_idx, effect_idx, false)

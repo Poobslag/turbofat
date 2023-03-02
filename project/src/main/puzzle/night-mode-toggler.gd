@@ -27,6 +27,11 @@ var _night_mode := false
 ## Adjusts node colors and visibility during day/night transitions.
 onready var _tween := $Tween
 
+func _exit_tree() -> void:
+	# unset night filter if it was enabled
+	MusicPlayer.night_filter = false
+
+
 ## Transition the puzzle to day/night mode, with an accompanying visual effect.
 ##
 ## Parameters:
@@ -39,6 +44,7 @@ func set_night_mode(new_night_mode: bool, duration := TWEEN_DURATION) -> void:
 		return
 	_night_mode = new_night_mode
 	
+	MusicPlayer.night_filter = _night_mode
 	_start_night_tween(duration)
 
 
