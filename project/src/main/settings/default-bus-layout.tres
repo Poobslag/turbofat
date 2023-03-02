@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=2]
+[gd_resource type="AudioBusLayout" load_steps=3 format=2]
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
@@ -8,6 +8,12 @@ damping = 0.05
 spread = 0.2
 hipass = 0.5
 wet = 0.15
+
+[sub_resource type="AudioEffectLowPassFilter" id=2]
+resource_name = "LowPassFilter"
+cutoff_hz = 500.0
+resonance = 0.4
+db = 2
 
 [resource]
 bus/1/name = "Sound Bus"
@@ -30,3 +36,5 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = -6.0
 bus/3/send = "Master"
+bus/3/effect/0/effect = SubResource( 2 )
+bus/3/effect/0/enabled = false
