@@ -435,6 +435,7 @@ func _prepare_game() -> void:
 	_timers.clear()
 	emit_signal("game_prepared")
 	emit_signal("after_game_prepared")
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
 
 
 func _start_game() -> void:
@@ -445,6 +446,7 @@ func _start_game() -> void:
 	# initialize input_frame to allow for recording/replaying inputs
 	input_frame = 0
 	emit_signal("game_started")
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.START)
 
 
 func _add_score(delta: int) -> void:

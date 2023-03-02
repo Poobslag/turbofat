@@ -8,6 +8,7 @@ class_name LevelTrigger
 ## phases when a level trigger can fire
 enum LevelTriggerPhase {
 	AFTER_PIECE_WRITTEN, # after the piece is written, and all boxes are made, and all lines are cleared
+	BEFORE_START, # when the game will start soon, including when the puzzle is first shown
 	BOX_BUILT, # when a snack/cake box is built
 	COMBO_ENDED, # when the player breaks their combo
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
@@ -19,6 +20,7 @@ enum LevelTriggerPhase {
 	ROTATED_CW, # when the piece is rotated clockwise
 	ROTATED_CCW, # when the piece is rotated counterclockwise
 	ROTATED_180, # when the piece is flipped
+	START, # after the initial countdown finishes, when the player can start playing.
 	TIMER_0, # when timer 0 times out
 	TIMER_1, # when timer 1 times out
 	TIMER_2, # when timer 2 times out
@@ -32,6 +34,7 @@ enum LevelTriggerPhase {
 }
 
 const AFTER_PIECE_WRITTEN := LevelTriggerPhase.AFTER_PIECE_WRITTEN
+const BEFORE_START := LevelTriggerPhase.BEFORE_START
 const BOX_BUILT := LevelTriggerPhase.BOX_BUILT
 const COMBO_ENDED := LevelTriggerPhase.COMBO_ENDED
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
@@ -43,6 +46,7 @@ const PIECE_WRITTEN := LevelTriggerPhase.PIECE_WRITTEN
 const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
 const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
 const ROTATED_180 := LevelTriggerPhase.ROTATED_180
+const START := LevelTriggerPhase.START
 const TIMER_0 := LevelTriggerPhase.TIMER_0
 const TIMER_1 := LevelTriggerPhase.TIMER_1
 const TIMER_2 := LevelTriggerPhase.TIMER_2
