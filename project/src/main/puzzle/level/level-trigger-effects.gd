@@ -86,6 +86,40 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 		return result
 
 
+## Adds an onion to the playfield.
+class AddOnionEffect extends LevelTriggerEffect:
+	var config: OnionConfig = OnionConfig.new()
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [0]: A string defining the onion's day/night cycle. This accepts the following characters:
+	## 		'.': 'None' state. The onion is underground.
+	## 		'd': 'Day' state. The onion is dancing ominously.
+	## 		'e': 'Day End' state. The onion raises their arms in warning.
+	## 		'n': 'Night' state. The onion is in the sky, and the puzzle is cast in darkness.
+	##
+	## Example: ["add_onion dddennn."]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("0"):
+			config.day_string = new_config["0"]
+	
+	
+	## Adds an onion to the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_onions().add_onion(config)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		
+		if config.day_string:
+			result["0"] = config.day_string
+		
+		return result
+
+
 ## Adds one or more moles to the playfield.
 class AddMolesEffect extends LevelTriggerEffect:
 	var config: MoleConfig = MoleConfig.new()
@@ -143,6 +177,14 @@ class AddMolesEffect extends LevelTriggerEffect:
 			result["reward"] = Utils.enum_to_snake_case(MoleConfig.Reward, config.reward)
 		
 		return result
+
+
+## Advances the day/night cycle of any onions on the playfield.
+class AdvanceOnionEffect extends LevelTriggerEffect:
+	
+	## Advances the day/night cycle of any onions on the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_onions().advance_onion()
 
 
 ## Advances all moles on the playfield, allowing them to dig up pickups.
@@ -308,7 +350,9 @@ class InsertLineEffect extends LevelTriggerEffect:
 
 var effects_by_string := {
 	"add_moles": AddMolesEffect,
+	"add_onion": AddOnionEffect,
 	"advance_moles": AdvanceMolesEffect,
+	"advance_onion": AdvanceOnionEffect,
 	"add_carrots": AddCarrotsEffect,
 	"clear_filled_lines": ClearFilledLinesEffect,
 	"remove_carrots": RemoveCarrotsEffect,

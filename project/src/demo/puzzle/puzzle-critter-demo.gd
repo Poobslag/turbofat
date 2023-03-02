@@ -13,11 +13,19 @@ extends Node
 ## 	[M]: Manipulate moles
 ## 	[M] -> [1]: Add a mole
 ## 	[M] -> ']': Advance moles
+## 	[O] -> [0]: Despawn the onion
+## 	[O] -> [1]: Spawn an onion with a regular day/night cycle
+## 	[O] -> [2]: Advance the onion through different phases
+## 	[O] -> [3]: Force daytime
+## 	[O] -> [4]: Force day end
+## 	[O] -> [5]: Force night
+## 	[O] -> [6]: Force 'none'
 
 enum CritterType {
 	NONE,
 	CARROT,
 	MOLE,
+	ONION,
 }
 
 var critter_type: int = CritterType.NONE
@@ -48,10 +56,12 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_C: critter_type = CritterType.CARROT
 		KEY_M: critter_type = CritterType.MOLE
+		KEY_O: critter_type = CritterType.ONION
 	
 	match critter_type:
 		CritterType.CARROT: _carrot_input(event)
 		CritterType.MOLE: _mole_input(event)
+		CritterType.ONION: _onion_input(event)
 
 
 func _carrot_input(event: InputEvent) -> void:
@@ -75,3 +85,21 @@ func _mole_input(event: InputEvent) -> void:
 			$Puzzle/Fg/Critters/Moles.add_moles(mole_config)
 		KEY_BRACKETRIGHT:
 			$Puzzle/Fg/Critters/Moles.advance_moles()
+
+
+func _onion_input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_0:
+			$Puzzle/Fg/Critters/Onions.remove_onion()
+		KEY_1:
+			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("denn."))
+		KEY_2:
+			$Puzzle/Fg/Critters/Onions.advance_onion()
+		KEY_3:
+			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("dd"))
+		KEY_4:
+			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("ee"))
+		KEY_5:
+			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("nn"))
+		KEY_6:
+			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new(".."))

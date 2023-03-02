@@ -1,13 +1,27 @@
 {
   "version": "39e5",
   "start_speed": "4",
-  "name": "Veggie Patty",
-  "description": "Twice the pace and half the space? ...This is a recipe for disaster!",
+  "name": "Brightness Darkness",
+  "description": "Who turned the lights out?",
   "finish_condition": {
-    "type": "pieces",
-    "value": "6"
+    "type": "lines",
+    "value": "50"
   },
   "lose_condition": [
     "top_out 2"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "start"
+      ],
+      "effect": "add_onion dddeennnnn"
+    },
+    {
+      "phases": [
+        "line_cleared"
+      ],
+      "effect": "advance_onion"
+    }
   ]
 }

@@ -9,8 +9,11 @@ $$ "Cartoon Plane Loop" from tsymbal at pond5.com (Pond5 Content License Agreeme
 $$ "Cartoon Voices" by Dawid Moroz, Soundholder Studio (Soniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Clog Boxes" by Alan Vista at alanvista.com (Advertised as 'Free VST', no license provided)
 $$ "Cooking Game" by Epic Stock Media (Coniss license, https://sonniss.com/sound-effects-licensing/)
+$$ "Crickets At Night - Clean sound" by doctorphil at Defelozedd94 (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
 $$$ "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons attribution license, https://creativecommons.org/licenses/by/3.0/)
 $ "Foley Rubber Glove 1" by Epidemic Sound (Epidemic Sound license, https://cdn.epidemicsound.com/legacy/10/documents/SingleTrackLicensesV6.pdf. This license is geared more towards music tracks for youtube videos, but says indie games can use licensed 'Music Pieces' which presumably applies to to sound effects as well.)
+$$ "FilmCow Royalty Free Sound Effects Library" by FilmCow (FilmCow license, https://filmcow.itch.io/filmcow-sfx)
+$$ "Rooster crows" by jsbarrett at FreeSound.org (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
 $$$ "Shuffling cards (riffle) 03.WAV" by VKProduktion at FreeSound.org (Creative Commons universal license, https://creativecommons.org/publicdomain/zero/1.0/)
 $$$ "TS-808 emulator" by Jonathan Murphy/Tactile Sounds (Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Australia License., http://creativecommons.org/licenses/by-nc-nd/2.5/au/)
 $$ "Winding up an old wall clock.WAV" by doctorphil at FreeSound.org (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
@@ -53,6 +56,16 @@ project/assets/main/puzzle/critter/carrot-move.wav "Cartoon Plane Loop" from tsy
 project/assets/main/puzzle/critter/critter-poof.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SWIPES - SLASHES - WHOOSHES - (58)\SWIPE Whoosh 07.wav"
 project/assets/main/puzzle/critter/mole-dig.wav "Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Slice_Bread_Thick_03.wav"
 project/assets/main/puzzle/critter/mole-found.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\VOCAL CUTE - CHARACTERS - (113)\VOCAL CUTE Call Happy 05.wav"
+project/assets/main/puzzle/critter/onion-crickets.wav "Crickets At Night - Clean sound" by Defelozedd94
+project/assets/main/puzzle/critter/onion-down.wav "FilmCow Recorded SFX\slide whistle 14.wav" 
+project/assets/main/puzzle/critter/onion-kaboom.wav "Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_Water_01.wav"
+project/assets/main/puzzle/critter/onion-rooster0.wav "Rooster crows" by jsbarrett
+project/assets/main/puzzle/critter/onion-rooster1.wav "Rooster crows" by jsbarrett
+project/assets/main/puzzle/critter/onion-thump.wav "FilmCow Recorded SFX\fish 17.wav"
+project/assets/main/puzzle/critter/onion-up.wav "FilmCow Recorded SFX\slide whistle 4.wav"
+project/assets/main/puzzle/critter/onion-voice-*.wav "Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Customer_02_Cartoon_Voice.wav"
+project/assets/main/puzzle/critter/onion-wow.wav "Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Customer_02_Cartoon_Voice.wav"
+project/assets/main/puzzle/critter/onion-zap.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SPLATS - SQUELCHES - (36)\SPLAT Crush 07.wav"
 project/assets/main/puzzle/excellent.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 project/assets/main/puzzle/fanfare*.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
 project/assets/main/puzzle/gameover.wav "Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"
