@@ -1,0 +1,116 @@
+{
+  "version": "39e5",
+  "start_speed": "4",
+  "name": "The Last ¥100",
+  "description": "Why is the last mile the hardest mile?",
+  "finish_condition": {
+    "type": "score",
+    "value": "360"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.03",
+    "box_factor 0.66"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared score=260"
+      ],
+      "effect": "add_onion dennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..........dddddddd"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_onion"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 17",
+        "tile": "2 1 3"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "0 18",
+        "tile": "2 15 3"
+      },
+      {
+        "pos": "2 18",
+        "tile": "2 6 3"
+      },
+      {
+        "pos": "3 18",
+        "pickup": "6"
+      },
+      {
+        "pos": "4 18",
+        "tile": "2 10 3"
+      },
+      {
+        "pos": "6 18",
+        "tile": "2 2 3"
+      },
+      {
+        "pos": "7 18",
+        "pickup": "6"
+      },
+      {
+        "pos": "8 18",
+        "tile": "2 3 3"
+      },
+      {
+        "pos": "0 19",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 4 2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "version": "39e5",
+  "start_speed": "9",
+  "name": "Mystery Box",
+  "description": "Can you guess what's inside? Hey, no peeking!",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "90"
+  },
+  "rank": [
+    "box_factor 0.82",
+    "master_pickup_score 100"
+  ],
+  "timers": [
+    {
+      "interval": 5
+    },
+    {
+      "interval": 35
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_onion nnnn........"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_onion"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "remove_onion"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 16",
+        "tile": "1 8 5"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 12 5"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 4 5"
+      },
+      {
+        "pos": "0 17",
+        "pickup": "5"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 8 5"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 4 5"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 0"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 0"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 0"
+      },
+      {
+        "pos": "0 18",
+        "pickup": "5"
+      },
+      {
+        "pos": "1 18",
+        "pickup": "5"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 0 5"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 0"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 0"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 0"
+      },
+      {
+        "pos": "0 19",
+        "pickup": "5"
+      },
+      {
+        "pos": "1 19",
+        "pickup": "5"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 0 5"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 0"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 0"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 0"
+      }
+    ]
+  }
+}
