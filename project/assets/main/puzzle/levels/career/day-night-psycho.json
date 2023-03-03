@@ -1,0 +1,35 @@
+{
+  "version": "39e5",
+  "start_speed": "5",
+  "name": "Day/Night Psycho",
+  "description": "Sometimes the days just seem to fly by.",
+  "finish_condition": {
+    "type": "score",
+    "value": "500"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.28",
+    "box_factor 0.65"
+  ],
+  "piece_types": [
+    "piece_q",
+    "piece_l",
+    "piece_p",
+    "piece_j",
+    "piece_o"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "start"
+      ],
+      "effect": "add_onion ..ddennnnnnnnnn.......ddennnnn"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_onion"
+    }
+  ]
+}

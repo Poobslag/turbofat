@@ -1,0 +1,88 @@
+{
+  "version": "39e5",
+  "start_speed": "1",
+  "name": "Midnight Snack",
+  "description": "We already turned the lights off! Come back tomorrow.",
+  "finish_condition": {
+    "type": "customers",
+    "value": "3"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.21",
+    "box_factor 0.81"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_onion ndn"
+    },
+    {
+      "phases": [
+        "combo_ended"
+      ],
+      "effect": "advance_onion"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "6 16",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 10 9"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 14 9"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 14 9"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 6 9"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 9 9"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 13 9"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 9"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 9"
+      }
+    ]
+  }
+}

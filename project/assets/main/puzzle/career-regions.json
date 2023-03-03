@@ -200,28 +200,31 @@
           "id": "career/above_and_below"
         },
         {
-          "id": "career/bottomless_pit"
-        },
-        {
           "id": "career/boxing_day"
         },
         {
           "id": "career/cookie_crevice"
         },
         {
-          "id": "career/extra_cream"
-        },
-        {
           "id": "career/fruit_on_the_top"
         },
         {
+          "id": "career/midnight_snack"
+        },
+        {
           "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/new_onion_friend"
         },
         {
           "id": "career/no_smoking_section"
         },
         {
           "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/the_last_100"
         },
         {
           "id": "career/unfresh_fruits"
@@ -261,6 +264,9 @@
         },
         {
           "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/moonshower"
         },
         {
           "id": "career/pineapple_on_its_side_cake"
@@ -343,6 +349,9 @@
           "chef_id": "skins"
         },
         {
+          "id": "career/day_night_psycho"
+        },
+        {
           "id": "career/extra_cream"
         },
         {
@@ -420,6 +429,9 @@
         },
         {
           "id": "career/three_course_meal"
+        },
+        {
+          "id": "career/three_nights"
         }
       ]
     },
@@ -458,6 +470,9 @@
           "id": "career/muffin_impossible_3"
         },
         {
+          "id": "career/mystery_box"
+        },
+        {
           "id": "career/slow_service_2"
         },
         {
@@ -494,6 +509,9 @@
           "id": "career/dark/above_and_below"
         },
         {
+          "id": "career/dark/all_nighter"
+        },
+        {
           "id": "career/dark/boxing_day"
         },
         {
@@ -518,6 +536,9 @@
           "id": "career/dark/no_smoking_section_2"
         },
         {
+          "id": "career/dark/onion_cranny"
+        },
+        {
           "id": "career/dark/secret_brownies"
         },
         {
@@ -525,6 +546,9 @@
         },
         {
           "id": "career/dark/surprise_guests"
+        },
+        {
+          "id": "career/dark/sweet_dreams"
         },
         {
           "id": "career/dark/three_minute_sprint"
