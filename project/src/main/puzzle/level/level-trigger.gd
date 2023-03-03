@@ -72,16 +72,12 @@ var effect: LevelTriggerEffect
 ##
 ## 	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 func should_run(phase: int, event_params: Dictionary = {}) -> bool:
-	var result := true
+	var result := false
 	var phase_conditions: Array = phases.get(phase, [])
-	if not phase_conditions:
-		result = false
-	else:
-		for phase_condition_obj in phase_conditions:
-			var phase_condition: PhaseCondition = phase_condition_obj
-			if not phase_condition.should_run(event_params):
-				result = false
-				break
+	for phase_condition_obj in phase_conditions:
+		var phase_condition: PhaseCondition = phase_condition_obj
+		if phase_condition.should_run(event_params):
+			result = true
 	return result
 
 
