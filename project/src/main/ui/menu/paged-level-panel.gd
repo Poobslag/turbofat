@@ -11,6 +11,7 @@ signal level_chosen(settings)
 var _region: Object
 
 onready var _level_buttons: PagedLevelButtons = $VBoxContainer/Top/LevelButtons
+onready var _cheat_code_detector: CheatCodeDetector = $CheatCodeDetector
 
 ## Populates this submenu with levels in to show it to the player.
 ##
@@ -34,6 +35,10 @@ func populate(new_region: Object, default_level_id: String = "") -> void:
 	_level_buttons.level_ids = level_ids
 	if default_level_id:
 		_level_buttons.focus_level(default_level_id)
+
+
+func disable_cheat_sfx() -> void:
+	_cheat_code_detector.cheat_sounds_enabled = false
 
 
 func _on_LevelButtons_level_chosen(settings: LevelSettings) -> void:
