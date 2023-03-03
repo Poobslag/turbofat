@@ -29,6 +29,10 @@ func popup(new_region: Object, default_level_id: String = "") -> void:
 	show()
 
 
+func disable_cheat_sfx() -> void:
+	_paged_level_panel.disable_cheat_sfx()
+
+
 func _on_Panel_level_chosen(settings: LevelSettings) -> void:
 	emit_signal("level_chosen", _region, settings)
 

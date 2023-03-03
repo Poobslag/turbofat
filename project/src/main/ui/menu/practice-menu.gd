@@ -43,6 +43,9 @@ func _ready() -> void:
 	if PlayerData.practice.piece_speed:
 		_speed_selector.set_selected_speed(PlayerData.practice.piece_speed)
 	
+	# Disable cheat sfx to avoid duplicate sound for 'unlock' cheat. The 'unlock' cheat affects both the region and
+	# level panels.
+	_level_submenu.disable_cheat_sfx()
 	_start_button.grab_focus()
 
 

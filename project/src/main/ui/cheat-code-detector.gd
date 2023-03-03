@@ -33,12 +33,17 @@ const CODE_KEYS := {
 ## cheat code will take precedence.
 export (Array, String) var codes := []
 
+export (bool) var cheat_sounds_enabled := true
+
 ## Buffer of key strings which were previously pressed.
 var _previous_keypresses := ""
 
 
 ## Plays the sound effect for enabling/disabling a cheat.
 func play_cheat_sound(enabled: bool) -> void:
+	if not cheat_sounds_enabled:
+		return
+	
 	var cheat_sound := $CheatEnableSound if enabled else $CheatDisableSound
 	cheat_sound.play()
 
