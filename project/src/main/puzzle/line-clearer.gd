@@ -67,6 +67,12 @@ var _line_filled_age := {}
 ## show to the player, because the two values are incremented at different times.
 var _total_cleared_line_count := 0
 
+## The maximum score the player has reached.
+##
+## Level triggers can fire when the player reaches a score threshold. The player's score can decrease if they top out,
+## so we track their max score to ensure score triggers only fire once.
+var _max_trigger_score := 0
+
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 
@@ -298,6 +304,7 @@ func reset() -> void:
 	_remaining_line_clear_timings.clear()
 	_remaining_line_erase_timings.clear()
 	_total_cleared_line_count = 0
+	_max_trigger_score = 0
 	
 	for line_dict in _line_dicts():
 		line_dict.clear()
@@ -361,7 +368,17 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 				# after lines are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
 				# or the newly inserted lines could be deleted as a part of a big line clear.
 				_total_cleared_line_count += 1
-				var event_params := {"y": line_being_deleted, "n": _total_cleared_line_count, "combo": PuzzleState.combo - i}
+				
+				var event_params := {}
+				event_params["y"] = line_being_deleted
+				event_params["n"] = _total_cleared_line_count
+				event_params["combo"] = PuzzleState.combo - i
+				
+				var prev_max_trigger_score := _max_trigger_score
+				_max_trigger_score = PuzzleState.get_score() + PuzzleState.get_bonus_score()
+				event_params["prev_score"] = prev_max_trigger_score
+				event_params["score"] = _max_trigger_score
+				
 				CurrentLevel.settings.triggers.run_triggers(LevelTrigger.LINE_CLEARED, event_params)
 			
 			# reassign 'line_being_deleted' in case lines_being_deleted_during_trigger was modified during the
