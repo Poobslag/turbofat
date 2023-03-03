@@ -24,6 +24,9 @@ func test_line_cleared_phase_config() -> void:
 	condition = PhaseConditions.LineClearedPhaseCondition.new({"combo": "1..."})
 	assert_eq_shallow(condition.get_phase_config(), {"combo": "1..."})
 	
+	condition = PhaseConditions.LineClearedPhaseCondition.new({"score": "200,500"})
+	assert_eq_shallow(condition.get_phase_config(), {"score": "200,500"})
+	
 	condition = PhaseConditions.LineClearedPhaseCondition.new({})
 	assert_eq_shallow(condition.get_phase_config(), {})
 

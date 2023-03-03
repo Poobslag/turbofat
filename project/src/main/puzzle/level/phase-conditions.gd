@@ -208,6 +208,10 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## value: (bool) true
 	var combos_to_run := {}
 	
+	## key: (int) score values which trigger this phase condition when exceeded
+	## value: (bool) true
+	var scores_to_run := {}
+	
 	## Creates a new LineClearedPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'y' expression defining which line clears will fire this trigger.
@@ -226,6 +230,7 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## 	'phase_config.y': (Optional) An expression defining which rows will fire this trigger.
 	## 	'phase_config.n': (Optional) An expression defining how many line clears will fire this trigger.
 	## 	'phase_config.combo': (Optional) An expression defining how many combos will fire this trigger.
+	## 	'phase_config.score': (Optional) An expression defining which score milestones will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		var y_expression: String = phase_config.get("y", "")
 		var inverted_rows := ConfigStringUtils.ints_from_config_string(y_expression)
@@ -237,6 +242,9 @@ class LineClearedPhaseCondition extends PhaseCondition:
 		
 		var combos_string: String = phase_config.get("combo", "")
 		combos_to_run = ConfigStringUtils.ints_from_config_string(combos_string, MAX_LINE_INDEX)
+		
+		var scores_string: String = phase_config.get("score", "")
+		scores_to_run = ConfigStringUtils.ints_from_config_string(scores_string, MAX_LINE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -246,6 +254,8 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	##	 	'event_params.y': specifies which line was cleared, 0 is the highest line in the playfield.
 	##	 	'event_params.n': specifies how many total lines have been cleared, 1 for the first line cleared.
 	## 		'event_params.combo': specifies the combo after clearing this line, 1 for the first line in a combo.
+	## 		'event_params.prev_score': specifies the max score reached before clearing this line.
+	## 		'event_params.score': specifies the max score reached after clearing this line.
 	func should_run(event_params: Dictionary) -> bool:
 		var result := true
 		if rows:
@@ -254,6 +264,13 @@ class LineClearedPhaseCondition extends PhaseCondition:
 			result = result and indexes_to_run.has(event_params["n"])
 		if combos_to_run:
 			result = result and combos_to_run.has(event_params["combo"])
+		if scores_to_run:
+			var score_reached := false
+			for score in range(event_params["prev_score"] + 1, event_params["score"]):
+				if scores_to_run.has(score):
+					score_reached = true
+					break
+			result = result and score_reached
 		return result
 	
 	
@@ -272,6 +289,8 @@ class LineClearedPhaseCondition extends PhaseCondition:
 			result["n"] = ConfigStringUtils.config_string_from_ints(indexes_to_run.keys(), MAX_LINE_INDEX)
 		if combos_to_run:
 			result["combo"] = ConfigStringUtils.config_string_from_ints(combos_to_run.keys(), MAX_LINE_INDEX)
+		if scores_to_run:
+			result["score"] = ConfigStringUtils.config_string_from_ints(scores_to_run.keys(), MAX_LINE_INDEX)
 		return result
 
 
