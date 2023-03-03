@@ -140,6 +140,13 @@ func test_remove_carrots_get_config() -> void:
 	assert_eq_shallow({"0": "2"}, effect.get_config())
 
 
+func test_remove_onion_get_config() -> void:
+	var effect: LevelTriggerEffects.RemoveOnionEffect
+	
+	effect = LevelTriggerEffects.create("remove_onion")
+	assert_eq_shallow(effect.get_config(), {})
+
+
 func test_clear_filled_lines_get_config() -> void:
 	var effect: LevelTriggerEffects.ClearFilledLinesEffect
 	
