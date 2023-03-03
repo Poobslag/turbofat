@@ -50,7 +50,7 @@ func _calculate() -> void:
 	
 	# trim extra newlines from the output
 	_text_edit.text = _text_edit.text.strip_edges().rstrip(",")
-	_text_edit.text = "\"rank\" : [\n%s\n]," % [_text_edit.text]
+	_text_edit.text = "\"rank\": [\n%s\n]," % [_text_edit.text]
 
 
 ## Calculates and outputs the extra_seconds_per_piece for levels which inhibit fast players.
