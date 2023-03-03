@@ -241,4 +241,5 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			button_index_to_focus = get_focus_owner().get_index()
 		_refresh()
 		if button_index_to_focus != -1:
+			yield(get_tree(), "idle_frame")
 			_grid_container.get_children()[button_index_to_focus].grab_focus()
