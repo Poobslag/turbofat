@@ -225,6 +225,12 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 		return result
 
 
+## Removes the onion from the playfield.
+class RemoveOnionEffect extends LevelTriggerEffect:
+	func run() -> void:
+		CurrentLevel.puzzle.get_onions().remove_onion()
+
+
 ## Rotates one or more pieces in the piece queue.
 class RotateNextPiecesEffect extends LevelTriggerEffect:
 	enum Rotation {
@@ -356,6 +362,7 @@ var effects_by_string := {
 	"add_carrots": AddCarrotsEffect,
 	"clear_filled_lines": ClearFilledLinesEffect,
 	"remove_carrots": RemoveCarrotsEffect,
+	"remove_onion": RemoveOnionEffect,
 	"rotate_next_pieces": RotateNextPiecesEffect,
 	"insert_line": InsertLineEffect,
 }

@@ -57,9 +57,10 @@ func advance_onion() -> void:
 func remove_onion() -> void:
 	if not _onion:
 		return
-
+	
 	_onion.poof_and_free()
 	_onion = null
+	CurrentLevel.puzzle.set_night_mode(false)
 
 
 ## Recalculates an onion's position based on their playfield cell.
