@@ -41,14 +41,7 @@ func add_onion(onion_config: OnionConfig) -> void:
 	_update_onion_position(_onion, Vector2(4, PuzzleTileMap.ROW_COUNT - 1))
 	add_child(_onion)
 	
-	_onion.clear_states()
-	for i in range(onion_config.cycle_length()):
-		_onion.append_next_state(onion_config.get_state(i))
-	
-	if CurrentLevel.puzzle.is_night_mode():
-		_onion.skip_to_night_mode()
-	
-	_onion.advance_state()
+	_initialize_onion_states(onion_config)
 
 
 ## Teleport the onion into the sky.
@@ -76,13 +69,30 @@ func remove_onion() -> void:
 
 
 func starts_in_night_mode() -> bool:
+	var initial_add_onion_effect := _initial_add_onion_effect()
+	return initial_add_onion_effect and initial_add_onion_effect.config.get_state(0) == OnionConfig.OnionState.NIGHT
+
+
+## Initializes the onion's states with the specified onion config.
+func _initialize_onion_states(config: OnionConfig) -> void:
+	_onion.clear_states()
+	for i in range(config.cycle_length()):
+		_onion.append_next_state(config.get_state(i))
+	
+	if CurrentLevel.puzzle.is_night_mode():
+		_onion.skip_to_night_mode()
+	
+	_onion.advance_state()
+
+
+## Returns the AddOnionEffect which takes place before the level starts, if any.
+func _initial_add_onion_effect() -> LevelTriggerEffects.AddOnionEffect:
 	var initial_add_onion_effect: LevelTriggerEffects.AddOnionEffect
 	for trigger_obj in CurrentLevel.settings.triggers.triggers.get(LevelTrigger.BEFORE_START, []):
 		var trigger: LevelTrigger = trigger_obj
 		if trigger.effect is LevelTriggerEffects.AddOnionEffect:
 			initial_add_onion_effect = trigger.effect
-	
-	return initial_add_onion_effect and initial_add_onion_effect.config.get_state(0) == OnionConfig.OnionState.NIGHT
+	return initial_add_onion_effect
 
 
 ## Recalculates an onion's position based on their playfield cell.
@@ -120,9 +130,7 @@ func _on_PuzzleState_game_prepared() -> void:
 		return
 	
 	if starts_in_night_mode():
-		_onion.reset_cycle()
-		skip_to_night_mode()
-		CurrentLevel.puzzle.set_night_mode(true)
+		_initialize_onion_states(_initial_add_onion_effect().config)
 	else:
 		remove_onion()
 		CurrentLevel.puzzle.set_night_mode(false)
