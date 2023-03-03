@@ -30,19 +30,31 @@ func _refresh_playfield_path() -> void:
 
 ## Adds an onion to the playfield.
 func add_onion(onion_config: OnionConfig) -> void:
-	if not _onion:
-		_onion = OnionScene.instance()
-		_onion.z_index = 4
-		_onion.scale = _playfield.tile_map.scale
-		_onion.sky_position = Vector2(162, 92)
-		_onion.connect("float_animation_playing_changed", self, "_on_Onion_float_animation_playing_changed")
-		_update_onion_position(_onion, Vector2(4, PuzzleTileMap.ROW_COUNT - 1))
-		add_child(_onion)
+	if _onion:
+		return
+	
+	_onion = OnionScene.instance()
+	_onion.z_index = 4
+	_onion.scale = _playfield.tile_map.scale
+	_onion.sky_position = Vector2(162, 92)
+	_onion.connect("float_animation_playing_changed", self, "_on_Onion_float_animation_playing_changed")
+	_update_onion_position(_onion, Vector2(4, PuzzleTileMap.ROW_COUNT - 1))
+	add_child(_onion)
 	
 	_onion.clear_states()
 	for i in range(onion_config.cycle_length()):
 		_onion.append_next_state(onion_config.get_state(i))
+	
+	if CurrentLevel.puzzle.is_night_mode():
+		_onion.skip_to_night_mode()
+	
 	_onion.advance_state()
+
+
+## Teleport the onion into the sky.
+func skip_to_night_mode() -> void:
+	if _onion:
+		_onion.skip_to_night_mode()
 
 
 ## Advances the onion to the next state in its day/night cycle.
@@ -61,6 +73,16 @@ func remove_onion() -> void:
 	_onion.poof_and_free()
 	_onion = null
 	CurrentLevel.puzzle.set_night_mode(false)
+
+
+func starts_in_night_mode() -> bool:
+	var initial_add_onion_effect: LevelTriggerEffects.AddOnionEffect
+	for trigger_obj in CurrentLevel.settings.triggers.triggers.get(LevelTrigger.BEFORE_START, []):
+		var trigger: LevelTrigger = trigger_obj
+		if trigger.effect is LevelTriggerEffects.AddOnionEffect:
+			initial_add_onion_effect = trigger.effect
+	
+	return initial_add_onion_effect and initial_add_onion_effect.config.get_state(0) == OnionConfig.OnionState.NIGHT
 
 
 ## Recalculates an onion's position based on their playfield cell.
@@ -97,4 +119,10 @@ func _on_PuzzleState_game_prepared() -> void:
 	if not _onion:
 		return
 	
-	remove_onion()
+	if starts_in_night_mode():
+		_onion.reset_cycle()
+		skip_to_night_mode()
+		CurrentLevel.puzzle.set_night_mode(true)
+	else:
+		remove_onion()
+		CurrentLevel.puzzle.set_night_mode(false)

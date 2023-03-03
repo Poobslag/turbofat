@@ -92,14 +92,19 @@ func _onion_input(event: InputEvent) -> void:
 		KEY_0:
 			$Puzzle/Fg/Critters/Onions.remove_onion()
 		KEY_1:
+			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("denn."))
 		KEY_2:
 			$Puzzle/Fg/Critters/Onions.advance_onion()
 		KEY_3:
+			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("dd"))
 		KEY_4:
+			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("ee"))
 		KEY_5:
+			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new("nn"))
 		KEY_6:
+			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new(".."))

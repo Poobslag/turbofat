@@ -48,6 +48,10 @@ func set_night_mode(new_night_mode: bool, duration := TWEEN_DURATION) -> void:
 	_start_night_tween(duration)
 
 
+func is_night_mode() -> bool:
+	return _night_mode
+
+
 ## Tweens the modulate properties of all daytime/nighttime nodes in the scene tree.
 ##
 ## This finds all nodes in the 'night_mode_...' groups and adjusts their modulate property appropriately. This usually

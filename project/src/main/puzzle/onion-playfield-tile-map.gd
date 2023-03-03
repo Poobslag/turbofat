@@ -20,6 +20,14 @@ func _reset() -> void:
 	_silhouettes_by_cell.clear()
 
 
+## When assigned a tilemap, we immediately refresh our silhouettes.
+##
+## This allows the silhouettes to be visible when a puzzle is first loaded, so the player can't see any gaps.
+func set_source_tile_map(new_source_tile_map: PuzzleTileMap) -> void:
+	.set_source_tile_map(new_source_tile_map)
+	_refresh_silhouettes()
+
+
 ## Updates our tilemap based on the source tilemap, and based on our calculated silhouettes.
 func _refresh_tiles_from_source() -> void:
 	# copy data from the source tilemap

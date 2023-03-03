@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=34 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=40 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "dance-end-start"
@@ -24,8 +24,14 @@ animation = "none"
 [sub_resource type="AnimationNodeAnimation" id=28]
 animation = "plummet"
 
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "skip-to-float"
+
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "soar"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "start-float"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "start-plummet"
@@ -106,6 +112,20 @@ advance_condition = "floating"
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
 advance_condition = "dancing"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+advance_condition = "location_sky"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+advance_condition = "not_floating"
+
 [resource]
 resource_name = "onion_location_sky"
 states/dance/node = SubResource( 2 )
@@ -115,7 +135,7 @@ states/dance-end/position = Vector2( 306, -70.011 )
 states/dance-end-start/node = SubResource( 1 )
 states/dance-end-start/position = Vector2( 14, -80.011 )
 states/float/node = SubResource( 3 )
-states/float/position = Vector2( 631, 55.989 )
+states/float/position = Vector2( 752, 96.989 )
 states/land/node = SubResource( 4 )
 states/land/position = Vector2( -207, 137.989 )
 states/launch/node = SubResource( 5 )
@@ -124,12 +144,16 @@ states/none/node = SubResource( 6 )
 states/none/position = Vector2( -207, -19.011 )
 states/plummet/node = SubResource( 28 )
 states/plummet/position = Vector2( 71, 233.989 )
+states/skip-to-float/node = SubResource( 35 )
+states/skip-to-float/position = Vector2( 933, 96.989 )
 states/soar/node = SubResource( 8 )
 states/soar/position = Vector2( 457, -28.011 )
+states/start-float/node = SubResource( 36 )
+states/start-float/position = Vector2( 616, -19.011 )
 states/start-plummet/node = SubResource( 7 )
 states/start-plummet/position = Vector2( 347, 203.989 )
 states/stun/node = SubResource( 9 )
-states/stun/position = Vector2( 586, 183.989 )
-transitions = [ "none", "dance", SubResource( 11 ), "land", "dance", SubResource( 12 ), "dance", "launch", SubResource( 13 ), "launch", "soar", SubResource( 14 ), "soar", "float", SubResource( 15 ), "float", "stun", SubResource( 16 ), "stun", "start-plummet", SubResource( 17 ), "start-plummet", "land", SubResource( 18 ), "dance", "dance-end-start", SubResource( 19 ), "dance-end-start", "launch", SubResource( 20 ), "none", "dance-end-start", SubResource( 21 ), "land", "dance-end-start", SubResource( 22 ), "soar", "start-plummet", SubResource( 23 ), "start-plummet", "soar", SubResource( 24 ), "land", "launch", SubResource( 25 ), "none", "launch", SubResource( 26 ), "dance-end-start", "dance", SubResource( 27 ), "start-plummet", "plummet", SubResource( 29 ), "plummet", "land", SubResource( 30 ), "dance-end-start", "dance-end", SubResource( 32 ), "dance-end", "launch", SubResource( 33 ), "dance-end", "dance", SubResource( 34 ) ]
+states/stun/position = Vector2( 616, 203.989 )
+transitions = [ "none", "dance", SubResource( 11 ), "land", "dance", SubResource( 12 ), "dance", "launch", SubResource( 13 ), "launch", "soar", SubResource( 14 ), "soar", "float", SubResource( 15 ), "float", "stun", SubResource( 16 ), "stun", "start-plummet", SubResource( 17 ), "start-plummet", "land", SubResource( 18 ), "dance", "dance-end-start", SubResource( 19 ), "dance-end-start", "launch", SubResource( 20 ), "none", "dance-end-start", SubResource( 21 ), "land", "dance-end-start", SubResource( 22 ), "soar", "start-plummet", SubResource( 23 ), "start-plummet", "soar", SubResource( 24 ), "land", "launch", SubResource( 25 ), "none", "launch", SubResource( 26 ), "dance-end-start", "dance", SubResource( 27 ), "start-plummet", "plummet", SubResource( 29 ), "plummet", "land", SubResource( 30 ), "dance-end-start", "dance-end", SubResource( 32 ), "dance-end", "launch", SubResource( 33 ), "dance-end", "dance", SubResource( 34 ), "soar", "start-float", SubResource( 37 ), "start-float", "float", SubResource( 38 ), "skip-to-float", "float", SubResource( 39 ), "start-float", "stun", SubResource( 40 ) ]
 start_node = "none"
-graph_offset = Vector2( -370, -147.011 )
+graph_offset = Vector2( -78, -131.011 )

@@ -124,6 +124,23 @@ func emit_dirt_particles() -> void:
 	_dirt_particles.emitting = true
 
 
+## Immediately puts the onion in the sky without an animation.
+##
+## This is used when initially loading a night level, or when restarting a permanently dark level.
+func skip_to_night_mode() -> void:
+	# There is no path to the 'skip-to-float' node, so the animation tree always warps there instantly. 
+	_animation_tree["parameters/playback"].travel("skip-to-float")
+
+
+## Resets the onion to the first state in its day/night cycle.
+func reset_cycle() -> void:
+	if not _next_states:
+		set_state(OnionConfig.OnionState.NONE)
+	else:
+		_current_state_index = 0
+		set_state(_next_states[_current_state_index])
+
+
 ## Updates the state machine's state to match the value of the 'state' enum.
 func _refresh_state() -> void:
 	if not is_inside_tree():

@@ -145,6 +145,10 @@ func set_night_mode(night_mode: bool) -> void:
 	_night_mode_toggler.set_night_mode(night_mode)
 
 
+func is_night_mode() -> bool:
+	return _night_mode_toggler.is_night_mode()
+
+
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
 func _start_puzzle() -> void:
 	PlayerData.customer_queue.reset_standard_customer_queue()
@@ -268,14 +272,9 @@ func _save_level_result(rank_result: RankResult) -> void:
 
 ## For nighttime levels, this initializes night mode immediately to avoid an unpleasant blink effect.
 func _initialize_night_mode() -> void:
-	var initial_add_onion_effect: LevelTriggerEffects.AddOnionEffect
-	for trigger_obj in CurrentLevel.settings.triggers.triggers.get(LevelTrigger.BEFORE_START, []):
-		var trigger: LevelTrigger = trigger_obj
-		if trigger.effect is LevelTriggerEffects.AddOnionEffect:
-			initial_add_onion_effect = trigger.effect
-	
-	if initial_add_onion_effect and initial_add_onion_effect.config.get_state(0) == OnionConfig.OnionState.NIGHT:
+	if get_onions().starts_in_night_mode():
 		_night_mode_toggler.set_night_mode(true, 0.0)
+		get_onions().skip_to_night_mode()
 
 
 func _on_Hud_start_button_pressed() -> void:
