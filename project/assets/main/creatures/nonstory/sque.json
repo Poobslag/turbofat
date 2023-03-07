@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "sque",
+  "name": "Sque",
+  "short_name": "Sque",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "5",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "6f83db",
+    "belly_rgb": "92d8e5",
+    "cloth_rgb": "415a73",
+    "glass_rgb": "bf3a3a",
+    "plastic_rgb": "34373a",
+    "hair_rgb": "477d5b",
+    "eye_rgb": "374265 eaf2f4",
+    "horn_rgb": "ffe7e5"
+  },
+  "chat_theme": {
+    "accent_scale": 6,
+    "accent_swapped": true,
+    "color": "23a2e3",
+    "dark": true
+  },
+  "fatness": 1.5
+}

@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "mack",
+  "name": "Mack",
+  "short_name": "Mack",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "1",
+    "collar": "2",
+    "ear": "4",
+    "eye": "8",
+    "hair": "0",
+    "head": "5",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "0",
+    "tail": "7",
+    "accessory": "5",
+    "line_rgb": "41281e",
+    "body_rgb": "0b45a6",
+    "belly_rgb": "eec086",
+    "cloth_rgb": "fad541",
+    "glass_rgb": "f5e194",
+    "plastic_rgb": "ae2222",
+    "hair_rgb": "eec086",
+    "eye_rgb": "fad541 ffffff",
+    "horn_rgb": "d6be9e"
+  },
+  "chat_theme": {
+    "accent_scale": 2.66,
+    "accent_texture": 14,
+    "color": "0b45a6",
+    "dark": true
+  },
+  "fatness": 1.2
+}

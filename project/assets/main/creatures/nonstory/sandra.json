@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "sandra",
+  "name": "Sandra",
+  "short_name": "Sandra",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "2",
+    "cheek": "2",
+    "collar": "1",
+    "ear": "1",
+    "eye": "4",
+    "hair": "0",
+    "head": "3",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "5",
+    "accessory": "0",
+    "line_rgb": "a05f35",
+    "body_rgb": "c7ac78",
+    "belly_rgb": "fef3bb",
+    "cloth_rgb": "6e99ca",
+    "glass_rgb": "ffffff",
+    "plastic_rgb": "111111",
+    "hair_rgb": "a05f35",
+    "eye_rgb": "7c5a46 f8f8f8",
+    "horn_rgb": "f8f8f8"
+  },
+  "chat_theme": {
+    "accent_scale": 0.88,
+    "accent_swapped": true,
+    "accent_texture": 2,
+    "color": "2c4b9e",
+    "dark": true
+  }
+}
