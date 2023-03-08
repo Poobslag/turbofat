@@ -10,7 +10,7 @@ signal all_lines_cleared
 signal box_built(rect, box_type)
 
 ## emitted shortly before a set of lines are cleared
-signal line_clears_scheduled(ys)
+signal line_clears_scheduled(y_coords)
 
 ## emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
@@ -181,8 +181,8 @@ func _on_BoxBuilder_after_boxes_built() -> void:
 		PuzzleState.after_piece_written()
 
 
-func _on_LineClearer_line_clears_scheduled(ys: Array) -> void:
-	emit_signal("line_clears_scheduled", ys)
+func _on_LineClearer_line_clears_scheduled(y_coords: Array) -> void:
+	emit_signal("line_clears_scheduled", y_coords)
 
 
 func _on_LineClearer_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
