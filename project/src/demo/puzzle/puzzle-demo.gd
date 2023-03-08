@@ -79,7 +79,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Puzzle/Fg/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _box_type)
+	$Puzzle/Fg/Playfield/BoxBuilder.build_box(Rect2(0, y, 3, 3), _box_type)
 
 
 func _insert_line(tiles_key: String, y: int) -> void:
