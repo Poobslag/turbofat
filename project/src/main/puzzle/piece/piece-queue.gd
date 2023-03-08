@@ -145,7 +145,7 @@ func _fill_initial_pieces() -> void:
 						duplicate_piece = true
 						break
 			if not duplicate_piece:
-				pieces.push_back(_new_next_piece(piece_type))
+				pieces.append(_new_next_piece(piece_type))
 		
 		_insert_annoying_piece(3)
 	elif CurrentLevel.settings.piece_types.start_types and CurrentLevel.settings.piece_types.ordered_start:

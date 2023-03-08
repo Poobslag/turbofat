@@ -55,7 +55,7 @@ func set_big_message(message: String) -> void:
 ##
 ## If other messages are already in the queue, this message will be appended to the queue.
 func enqueue_message(message: String) -> void:
-	_message_queue.push_back(message)
+	_message_queue.append(message)
 	if not _popped_in or $Label.is_all_text_visible():
 		_refresh_queue_timer()
 

@@ -232,7 +232,7 @@ func _apply_start_if_conditions() -> void:
 				start_condition = meta_item.trim_prefix("start_if ")
 				break
 		if start_condition and BoolExpressionEvaluator.evaluate(start_condition):
-			start_keys.push_back(key)
+			start_keys.append(key)
 	
 	if start_keys:
 		# if a 'start_if' condition is met, move to that chat branch

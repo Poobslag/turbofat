@@ -89,7 +89,7 @@ func _calculate_pan_cells() -> Array:
 	# calculate the positions of pans within each row
 	var cell_pos := Vector2.ZERO
 	for _i in range(min(pans_max, 50)):
-		pan_cells.push_back(cell_pos)
+		pan_cells.append(cell_pos)
 		cell_pos.x += 2
 		if cell_pos.x >= 2 * pans_per_row:
 			cell_pos = Vector2(0, cell_pos.y + 1)

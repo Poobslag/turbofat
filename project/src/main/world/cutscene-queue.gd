@@ -29,7 +29,7 @@ func has_cutscene_flag(flag: String) -> bool:
 
 ## Adds a cutscene to the back of the queue.
 func enqueue_cutscene(chat_tree: ChatTree) -> void:
-	_queue.push_back({
+	_queue.append({
 		"type": "cutscene",
 		"value": chat_tree,
 	})
@@ -45,7 +45,7 @@ func insert_cutscene(position: int, chat_tree: ChatTree) -> void:
 
 ## Adds a level to the back of the queue.
 func enqueue_level(level_properties: Dictionary) -> void:
-	_queue.push_back({
+	_queue.append({
 		"type": "level",
 		"value": level_properties
 	})
