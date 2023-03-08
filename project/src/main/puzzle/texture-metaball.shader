@@ -26,9 +26,6 @@ uniform sampler2D goop_texture : hint_albedo;
 // texture for rainbow metaballs
 uniform sampler2D rainbow_texture : hint_albedo;
 
-// an offset which is applied to both textures
-uniform vec2 goop_texture_offset;
-
 // the maximum goop opacity
 uniform float goop_alpha = 0.6;
 

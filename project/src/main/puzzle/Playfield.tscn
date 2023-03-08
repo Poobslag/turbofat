@@ -56,7 +56,6 @@ viewport_path = NodePath("BgGlobViewports/RainbowViewport")
 [sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
 shader = ExtResource( 18 )
-shader_param/goop_texture_offset = Vector2( 0, 0 )
 shader_param/goop_alpha = 0.6
 shader_param/noise = SubResource( 3 )
 shader_param/goop_texture = SubResource( 1 )
