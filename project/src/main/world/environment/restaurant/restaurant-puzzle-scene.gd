@@ -1,13 +1,13 @@
 class_name RestaurantPuzzleScene
 extends Node
 
-## emitted on the frame when creature bites into some food
+## emitted on the frame when customer bites into some food
 signal food_eaten(food_type)
 
-signal current_creature_index_changed(value)
+signal current_customer_index_changed(value)
 
-## the index of the creature being served
-var current_creature_index := 0 setget set_current_creature_index
+## the index of the customer being served
+var current_customer_index := 0 setget set_current_customer_index
 
 onready var _world := $World
 onready var _door_chime := $DoorChime
@@ -18,20 +18,20 @@ func _ready() -> void:
 		customer.connect("food_eaten", self, "_on_Creature_food_eaten")
 
 
-func set_current_creature_index(new_index: int) -> void:
-	if current_creature_index == new_index:
+func set_current_customer_index(new_index: int) -> void:
+	if current_customer_index == new_index:
 		return
-	current_creature_index = new_index
-	emit_signal("current_creature_index_changed", new_index)
+	current_customer_index = new_index
+	emit_signal("current_customer_index_changed", new_index)
 
 
-## Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
+## Recolors the customer according to the specified creature definition. This involves updating shaders and sprite
 ## properties.
 ##
 ## Parameters:
-## 	'creature_def': defines the creature's attributes such as name and appearance.
-func summon_customer(creature_def: CreatureDef, creature_index: int = -1) -> void:
-	var customer := get_customer(creature_index)
+## 	'creature_def': defines the customer's attributes such as name and appearance.
+func summon_customer(creature_def: CreatureDef, customer_index: int = -1) -> void:
+	var customer := get_customer(customer_index)
 	customer.set_creature_def(creature_def)
 	customer.set_comfort(0)
 
@@ -44,8 +44,8 @@ func get_customers() -> Array:
 	return _world.customers
 
 
-func get_customer(creature_index: int = -1) -> Creature:
-	return _world.customers[current_creature_index] if creature_index == -1 else _world.customers[creature_index]
+func get_customer(customer_index: int = -1) -> Creature:
+	return _world.customers[current_customer_index] if customer_index == -1 else _world.customers[customer_index]
 
 
 ## Temporarily suppresses 'hello' and 'door chime' sounds.
