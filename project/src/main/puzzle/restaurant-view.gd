@@ -17,7 +17,7 @@ const MOUTH_POSITIONS_BY_ORIENTATION := {
 const SWOOP_DURATION := 0.8
 
 ## virtual property; value is only exposed through getters/setters
-var current_creature_index: int setget set_current_creature_index, get_current_creature_index
+var current_customer_index: int setget set_current_customer_index, get_current_customer_index
 
 ## bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
@@ -28,10 +28,10 @@ var _customer_offscreen_rect_position: Vector2
 var _chef_onscreen_rect_position: Vector2
 var _chef_offscreen_rect_position: Vector2
 
-## Ordered list of int indexes which will be cycled to with the next_creature_index or scroll_to_new_creature methods.
+## Ordered list of int indexes which will be cycled to with the next_customer_index or scroll_to_new_customer methods.
 ##
 ## If empty, the ordering will be purely random.
-var _next_creature_indexes := []
+var _next_customer_indexes := []
 
 onready var _chef := $Chef
 onready var _chef_nametag_panel := $Chef/Nametag/Panel
@@ -44,7 +44,7 @@ onready var _customer_view := $Customer/View
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 onready var _swoop_tween: Tween = $SwoopTween
 onready var _hello_timer := $HelloTimer
-onready var _summon_creature_timers: TimerGroup = $SummonCreatureTimers
+onready var _summon_customer_timers: TimerGroup = $SummonCustomerTimers
 
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
@@ -62,7 +62,7 @@ func _ready() -> void:
 		customer.connect("creature_name_changed", self, "_on_Customer_creature_name_changed")
 		customer.connect("dna_loaded", self, "_on_Customer_dna_loaded", [customer])
 	_refresh_chef_name()
-	_refresh_customer_name()
+	_refresh_creature_name()
 	
 	_reset_bubbles_offscreen()
 
@@ -70,7 +70,7 @@ func _ready() -> void:
 ## Resets any cached data to prepare for a new puzzle.
 func reset() -> void:
 	_recent_bonuses.clear()
-	_next_creature_indexes.clear()
+	_next_customer_indexes.clear()
 
 
 ## Moves the chef/customer bubbles offscreen, recording their position for later
@@ -105,18 +105,18 @@ func swoop_customer_bubble_offscreen() -> void:
 	_swoop_bubble(_customer, false)
 
 
-## Pans the camera to a new creature. This also changes which creature will be fed.
-func set_current_creature_index(new_index: int) -> void:
-	_restaurant_viewport_scene.current_creature_index = new_index
+## Pans the camera to a new customer. This also changes which customer will be fed.
+func set_current_customer_index(new_index: int) -> void:
+	_restaurant_viewport_scene.current_customer_index = new_index
 	emit_signal("customer_changed")
 
 
-func get_current_creature_index() -> int:
-	return _restaurant_viewport_scene.current_creature_index
+func get_current_customer_index() -> int:
+	return _restaurant_viewport_scene.current_customer_index
 
 
-func get_customer(creature_index: int = -1) -> Creature:
-	return _restaurant_viewport_scene.get_customer(creature_index)
+func get_customer(customer_index: int = -1) -> Creature:
+	return _restaurant_viewport_scene.get_customer(customer_index)
 
 
 func get_chef() -> Creature:
@@ -141,54 +141,58 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 	return target_pos
 
 
-func find_creature_index_with_id(creature_id: String) -> int:
-	var creature_index := -1
+func find_customer_index_with_id(customer_id: String) -> int:
+	var customer_index := -1
 	var customers := get_customers()
 	
 	for i in range(customers.size()):
-		if customers[i].creature_def.creature_id == creature_id:
-			creature_index = i
+		if customers[i].customer_def.customer_id == customer_id:
+			customer_index = i
 			break
 	
-	return creature_index
+	return customer_index
 
 
-## Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
-## properties.
-func summon_customer(creature_index: int = -1) -> void:
-	var creature_def := CreatureDef.new()
+## Dequeues a customer from the customer queue, summoning them to the restaurant.
+##
+## The specified customer has their appearance updated according to the next customer_def in the customer queue.
+##
+## Parameters:
+## 	'customer_index': (Optional) The customer to be altered. Defaults to the current customer.
+func summon_customer(customer_index: int = -1) -> void:
+	var customer_def := CreatureDef.new()
 	if PlayerData.customer_queue.has_priority_customer():
-		creature_def = PlayerData.customer_queue.pop_priority_customer()
-		_next_creature_indexes.append(creature_index)
+		customer_def = PlayerData.customer_queue.pop_priority_customer()
+		_next_customer_indexes.append(customer_index)
 	else:
-		creature_def = PlayerData.random_customer_def(true)
-	_restaurant_viewport_scene.summon_customer(creature_def, creature_index)
-	if creature_index == -1 or creature_index == get_current_creature_index():
+		customer_def = PlayerData.random_customer_def(true)
+	_restaurant_viewport_scene.summon_customer(customer_def, customer_index)
+	if customer_index == -1 or customer_index == get_current_customer_index():
 		emit_signal("customer_changed")
 
 
-## Scroll to a new creature and replace the old creature.
-func scroll_to_new_creature(new_creature_index: int = -1) -> void:
-	var old_creature_index: int = get_current_creature_index()
-	if new_creature_index == -1:
-		new_creature_index = next_creature_index()
-	set_current_creature_index(new_creature_index)
+## Scroll to a new customer and replace the old customer.
+func scroll_to_new_customer(new_customer_index: int = -1) -> void:
+	var old_customer_index: int = get_current_customer_index()
+	if new_customer_index == -1:
+		new_customer_index = next_customer_index()
+	set_current_customer_index(new_customer_index)
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	
-	var summon_creature_timer := _summon_creature_timers.start_timer(0.5)
-	summon_creature_timer.connect("timeout", self, "_on_Timer_timeout_summon_customer", [old_creature_index])
+	var summon_customer_timer := _summon_customer_timers.start_timer(0.5)
+	summon_customer_timer.connect("timeout", self, "_on_Timer_timeout_summon_customer", [old_customer_index])
 
 
-## Returns a random creature index different from the current creature index.
-func next_creature_index() -> int:
+## Returns a random customer index different from the current customer index.
+func next_customer_index() -> int:
 	var result: int
-	if _next_creature_indexes:
+	if _next_customer_indexes:
 		# return queued result
-		result = _next_creature_indexes.pop_front()
+		result = _next_customer_indexes.pop_front()
 	else:
 		# return random result
 		var customer_count := get_customers().size()
-		result = (get_current_creature_index() + randi() % (customer_count - 1) + 1) % customer_count
+		result = (get_current_customer_index() + randi() % (customer_count - 1) + 1) % customer_count
 	
 	return result
 
@@ -218,7 +222,7 @@ func _swoop_bubble(bubble: Control, onscreen: bool) -> void:
 	_swoop_tween.start()
 
 
-func _refresh_customer_name() -> void:
+func _refresh_creature_name() -> void:
 	_customer_nametag_panel.refresh_creature(get_customer())
 
 
@@ -252,7 +256,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 		pass
 	elif PuzzleState.game_active:
 		_hello_timer.maybe_play_goodbye_voice(get_customer())
-		scroll_to_new_creature()
+		scroll_to_new_customer()
 	
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
 	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size() - 1)
@@ -300,11 +304,11 @@ func _on_PuzzleState_game_ended() -> void:
 
 
 func _on_Customer_creature_name_changed() -> void:
-	_refresh_customer_name()
+	_refresh_creature_name()
 
 
-func _on_RestaurantPuzzleScene_current_creature_index_changed(_value: int) -> void:
-	_refresh_customer_name()
+func _on_RestaurantPuzzleScene_current_customer_index_changed(_value: int) -> void:
+	_refresh_creature_name()
 
 
 func _on_Customer_dna_loaded(customer: Creature) -> void:
@@ -323,5 +327,5 @@ func _on_Playfield_all_lines_cleared() -> void:
 	get_chef().play_mood(Creatures.Mood.LAUGH1)
 
 
-func _on_Timer_timeout_summon_customer(creature_index: int) -> void:
-	summon_customer(creature_index)
+func _on_Timer_timeout_summon_customer(customer_index: int) -> void:
+	summon_customer(customer_index)

@@ -50,7 +50,7 @@ func start_customer_countdown() -> void:
 ## 	'messages': Array of string messages to be shown when the sensei is dismissed.
 func dismiss_sensei(messages: Array) -> void:
 	PuzzleState.reset()
-	puzzle.scroll_to_new_creature()
+	puzzle.scroll_to_new_customer()
 	hud.set_messages(messages)
 	hud.enqueue_pop_out()
 

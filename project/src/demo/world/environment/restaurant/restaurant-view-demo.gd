@@ -3,17 +3,17 @@ extends Node
 ##
 ## Keys:
 ## 	[D]: Ring the doorbell
-## 	[F]: Feed the creature
+## 	[F]: Feed the customer
 ## 	[I]: Launch an idle animation
 ## 	[V]: Say something
 ## 	[N]: Change the nametag names
-## 	[1-9,0]: Change the creature's size from 10% to 100%
-## 	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
-## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th creature.
+## 	[1-9,0]: Change the customer's size from 10% to 100%
+## 	SHIFT+[1-9,0]: Change the customer's comfort from 0.0 -> 1.0 -> -1.0
+## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th customer.
 ## 	[comma, period]: Swoop the customer/chef to be onscreen
 ## 	SHIFT+[comma, period]: Swoop the customer/chef to be offscreen
-## 	arrows: Change the creature's orientation
-## 	brace keys: Change the creature's appearance
+## 	arrows: Change the customer's orientation
+## 	brace keys: Change the customer's appearance
 
 const FATNESS_KEYS := [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 const NAMES := [
@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 			_customer().get_node("CreatureSfx").play_goodbye_voice()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
-				# shift pressed; change creature's comfort
+				# shift pressed; change customer's comfort
 				match Utils.key_scancode(event):
 					KEY_1: _view.get_customer().set_comfort(0.00) # hasn't eaten
 					KEY_2: _view.get_customer().set_comfort(0.30)
@@ -67,12 +67,12 @@ func _input(event: InputEvent) -> void:
 					KEY_9: _view.get_customer().set_comfort(-0.90)
 					KEY_0: _view.get_customer().set_comfort(-1.00) # ate way too much
 			else:
-				# shift not pressed; change creature's fatness
+				# shift not pressed; change customer's fatness
 				_view.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
-		KEY_Q: _view.set_current_creature_index(0)
-		KEY_W: _view.set_current_creature_index(1)
-		KEY_E: _view.set_current_creature_index(2)
-		KEY_R: _view.set_current_creature_index(3)
+		KEY_Q: _view.set_current_customer_index(0)
+		KEY_W: _view.set_current_customer_index(1)
+		KEY_E: _view.set_current_customer_index(2)
+		KEY_R: _view.set_current_customer_index(3)
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 			_view.summon_customer()
 		KEY_RIGHT:

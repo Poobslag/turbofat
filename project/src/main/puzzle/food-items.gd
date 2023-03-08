@@ -153,7 +153,7 @@ func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
 	
 	if _customer_index == food_item.customer_index:
 		# ensure the customer hasn't been replaced before fattening them
-		_puzzle.feed_creature(food_item.customer, food_item.food_type)
+		_puzzle.feed_customer(food_item.customer, food_item.food_type)
 		
 		var new_fatness: float = _pending_food_fatness.pop_front()
 		food_item.customer.set_fatness(new_fatness)

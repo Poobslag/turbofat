@@ -104,8 +104,8 @@ func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 
 
-func scroll_to_new_creature() -> void:
-	_restaurant_view.scroll_to_new_creature()
+func scroll_to_new_customer() -> void:
+	_restaurant_view.scroll_to_new_customer()
 
 
 ## Start a countdown when transitioning between levels. Used during tutorials.
@@ -124,18 +124,18 @@ func get_customer() -> Creature:
 	return _restaurant_view.get_customer()
 
 
-## Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_pct' parameter which defines how
-## much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
+## Triggers the eating animation and makes the customer fatter. Accepts a 'fatness_pct' parameter which defines how
+## much fatter the customer should get. We can calculate how fat they should be, and a value of 0.4 means the customer
 ## should increase by 40% of the amount needed to reach that target.
 ##
 ## This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
-## want the creature to suddenly grow full size. We want it to take 3 bites.
+## want the customer to suddenly grow full size. We want it to take 3 bites.
 ##
 ## Parameters:
-## 	'customer': The creature to feed
+## 	'customer': The customer to feed
 ##
 ## 	'food_type': An enum from FoodType corresponding to the food to show
-func feed_creature(customer: Creature, food_type: int) -> void:
+func feed_customer(customer: Creature, food_type: int) -> void:
 	var new_comfort := customer.score_to_comfort(PuzzleState.combo, PuzzleState.get_customer_score())
 	customer.set_comfort(new_comfort)
 	customer.feed(food_type)
@@ -159,7 +159,7 @@ func _start_puzzle() -> void:
 	PlayerData.customer_queue.pop_standard_customers(current_customer_ids)
 	
 	if not CurrentLevel.keep_retrying:
-		# Reset everyone's fatness. Replaying a puzzle in free roam mode shouldn't make a creature super fat.
+		# Reset everyone's fatness. Replaying a puzzle in free roam mode shouldn't make a customer super fat.
 		# Thematically we're turning back time.
 		PlayerData.creature_library.restore_fatness_state()
 	
@@ -167,39 +167,39 @@ func _start_puzzle() -> void:
 	_restaurant_view.briefly_suppress_sfx()
 	
 	if PlayerData.customer_queue.priority_queue:
-		var starting_creature_id: String = PlayerData.customer_queue.priority_queue[0].creature_id
-		var starting_creature_index: int = _restaurant_view.find_creature_index_with_id(starting_creature_id)
-		if starting_creature_index == -1:
-			# starting creature isn't found; load them to a different index and advance the priority queue
-			starting_creature_index = _restaurant_view.next_creature_index()
-			_restaurant_view.summon_customer(starting_creature_index)
+		var starting_customer_creature_id: String = PlayerData.customer_queue.priority_queue[0].creature_id
+		var starting_customer_index: int = _restaurant_view.find_customer_index_with_id(starting_customer_creature_id)
+		if starting_customer_index == -1:
+			# starting customer isn't found; load them to a different index and advance the priority queue
+			starting_customer_index = _restaurant_view.next_customer_index()
+			_restaurant_view.summon_customer(starting_customer_index)
 		else:
-			# starting creature is found; advance the priority customer queue so we don't see them twice
+			# starting customer is found; advance the priority customer queue so we don't see them twice
 			PlayerData.customer_queue.pop_priority_customer()
 			
-			if PlayerData.creature_library.has_fatness(starting_creature_id):
+			if PlayerData.creature_library.has_fatness(starting_customer_creature_id):
 				# restore their fatness so they start skinny again when replaying a puzzle
-				var fatness: float = PlayerData.creature_library.get_fatness(starting_creature_id)
-				_restaurant_view.get_customer(starting_creature_index).set_fatness(fatness)
+				var fatness: float = PlayerData.creature_library.get_fatness(starting_customer_creature_id)
+				_restaurant_view.get_customer(starting_customer_index).set_fatness(fatness)
 		
-		# summon the other creatures
+		# summon the other customers
 		for i in range(_restaurant_view.get_customers().size()):
-			if i != starting_creature_index:
+			if i != starting_customer_index:
 				_restaurant_view.summon_customer(i)
 		
-		# scroll to the starting creature
-		_restaurant_view.current_creature_index = starting_creature_index
+		# scroll to the starting customer
+		_restaurant_view.current_customer_index = starting_customer_index
 	else:
-		var current_creature_feed_count: int = _restaurant_view.get_customer().feed_count
+		var current_customer_feed_count: int = _restaurant_view.get_customer().feed_count
 		
-		# fill the seats if the creatures ate
+		# fill the seats if the customers ate
 		for i in range(_restaurant_view.get_customers().size()):
 			if _restaurant_view.get_customer(i).feed_count:
 				_restaurant_view.summon_customer(i)
 		
-		# calculate the starting creature; stay on the same creature if they didn't eat
-		if current_creature_feed_count > 0:
-			_restaurant_view.current_creature_index = _restaurant_view.next_creature_index()
+		# calculate the starting customer; stay on the same customer if they didn't eat
+		if current_customer_feed_count > 0:
+			_restaurant_view.current_customer_index = _restaurant_view.next_customer_index()
 	
 	PuzzleState.prepare_and_start_game()
 
@@ -289,7 +289,7 @@ func _on_Hud_back_button_pressed() -> void:
 	_quit_puzzle()
 
 
-## Triggers the 'creature feeding' animation.
+## Triggers the 'customer feeding' animation.
 func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, _box_ints: Array) -> void:
 	var customer: Creature = get_customer()
 	
@@ -303,7 +303,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	if remaining_lines == 0 and PuzzleState.finish_triggered and not PuzzleState.game_ended:
 		PuzzleState.end_game()
 	
-	# Calculate whether or not the creature should say something positive about the combo.
+	# Calculate whether or not the customer should say something positive about the combo.
 	# They say something after clearing [6, 12, 18, 24...] lines.
 	if remaining_lines == 0 and PuzzleState.combo >= 6 and total_lines > PuzzleState.combo % 6:
 		yield(get_tree().create_timer(0.5), "timeout")
