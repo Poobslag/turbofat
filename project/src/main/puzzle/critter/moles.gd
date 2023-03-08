@@ -96,14 +96,14 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 	var potential_mole_cells := []
 	
 	# Columns which have a ceiling overhead, for moles with a home of 'surface' or 'hole'
-	var ceiling_cols := {}
+	var ceiling_x_coords := {}
 	
-	for row in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
-		for col in range(PuzzleTileMap.COL_COUNT):
-			var mole_cell := Vector2(col, row)
+	for y in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
+		for x in range(PuzzleTileMap.COL_COUNT):
+			var mole_cell := Vector2(x, y)
 			
 			if _playfield.tile_map.get_cellv(mole_cell) != TileMap.INVALID_CELL:
-				ceiling_cols[col] = true
+				ceiling_x_coords[x] = true
 			
 			# check if the mole is in an appropriate row
 			if config.lines:
@@ -134,10 +134,10 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 						if not _playfield.tile_map.is_cake_cell(mole_cell + Vector2.DOWN):
 							at_home = false
 					MoleConfig.Home.SURFACE:
-						if ceiling_cols.has(int(mole_cell.x)):
+						if ceiling_x_coords.has(int(mole_cell.x)):
 							at_home = false
 					MoleConfig.Home.HOLE:
-						if not ceiling_cols.has(int(mole_cell.x)):
+						if not ceiling_x_coords.has(int(mole_cell.x)):
 							at_home = false
 				if not at_home:
 					continue
@@ -346,14 +346,14 @@ func _erase_row(y: int) -> void:
 ## Shifts a group of moles up or down.
 ##
 ## Parameters:
-## 	'bottom_row': The lowest row to shift. All moles at or above this row will be shifted.
+## 	'bottom_y': The lowest row to shift. All moles at or above this row will be shifted.
 ##
 ## 	'direction': The direction to shift the moles, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_row: int, direction: Vector2) -> void:
+func _shift_rows(bottom_y: int, direction: Vector2) -> void:
 	# First, erase and store all the old moles which are shifting
 	var shifted := {}
 	for cell in _moles_by_cell.keys():
-		if cell.y > bottom_row:
+		if cell.y > bottom_y:
 			# moles below the specified bottom row are left alone
 			continue
 		# moles above the specified bottom row are shifted

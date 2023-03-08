@@ -70,22 +70,22 @@ func remove_carrots(count: int) -> void:
 ## Parameters:
 ## 	'config': rules for how many carrots to add, where to add them, and how fast they move.
 func add_carrots(config: CarrotConfig) -> void:
-	var potential_carrot_columns: Array
+	var potential_carrot_x_coords: Array
 	if config.columns:
-		potential_carrot_columns = config.columns.duplicate()
+		potential_carrot_x_coords = config.columns.duplicate()
 	else:
-		potential_carrot_columns = range(PuzzleTileMap.COL_COUNT)
+		potential_carrot_x_coords = range(PuzzleTileMap.COL_COUNT)
 	
 	# don't allow carrots to spawn too far to the right
 	var carrot_dimensions: Vector2 = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
-	potential_carrot_columns = Utils.intersection(potential_carrot_columns, \
+	potential_carrot_x_coords = Utils.intersection(potential_carrot_x_coords, \
 			range(PuzzleTileMap.COL_COUNT - carrot_dimensions.x + 1))
-	potential_carrot_columns.shuffle()
+	potential_carrot_x_coords.shuffle()
 	
-	potential_carrot_columns = deconflict_carrots(potential_carrot_columns, carrot_dimensions)
+	potential_carrot_x_coords = deconflict_carrots(potential_carrot_x_coords, carrot_dimensions)
 	
-	for i in range(min(config.count, potential_carrot_columns.size())):
-		_add_carrot(Vector2(potential_carrot_columns[i], PuzzleTileMap.ROW_COUNT), config)
+	for i in range(min(config.count, potential_carrot_x_coords.size())):
+		_add_carrot(Vector2(potential_carrot_x_coords[i], PuzzleTileMap.ROW_COUNT), config)
 	SfxDeconflicter.play(_carrot_poof_sound)
 
 

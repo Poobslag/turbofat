@@ -10,35 +10,35 @@ var _max_distance := 0
 var _color_y: int
 
 func _ready() -> void:
-	for row in range(ROW_COUNT):
+	for y in range(ROW_COUNT):
 		_stretch_pos.append([])
-		for _col in range(COL_COUNT):
-			_stretch_pos[row].append(0)
+		for _x in range(COL_COUNT):
+			_stretch_pos[y].append(0)
 	set_process(false)
 
 
 func _process(delta: float) -> void:
-	for row in range(ROW_COUNT):
-		for col in range(COL_COUNT):
-			if _stretch_pos[row][col] > _max_distance \
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
+			if _stretch_pos[y][x] > _max_distance \
 					* (squish_seconds_total - squish_seconds_remaining) / squish_seconds_total:
-				set_block(Vector2(col, row), 0, Vector2(0, _color_y))
+				set_block(Vector2(x, y), 0, Vector2(0, _color_y))
 			else:
-				set_block(Vector2(col, row), -1)
+				set_block(Vector2(x, y), -1)
 	
-	for row in range(ROW_COUNT):
-		for col in range(COL_COUNT):
-			var cell_pos := Vector2(col, row)
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
+			var cell_pos := Vector2(x, y)
 			if is_cell_empty(cell_pos):
 				continue
 			var color_x := 0
-			if row > 0 and is_cell_obstructed(cell_pos + Vector2.UP):
+			if y > 0 and is_cell_obstructed(cell_pos + Vector2.UP):
 				color_x = PuzzleConnect.set_u(color_x)
-			if row < ROW_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.DOWN):
+			if y < ROW_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.DOWN):
 				color_x = PuzzleConnect.set_d(color_x)
-			if col > 0 and is_cell_obstructed(cell_pos + Vector2.LEFT):
+			if x > 0 and is_cell_obstructed(cell_pos + Vector2.LEFT):
 				color_x = PuzzleConnect.set_l(color_x)
-			if col < COL_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.RIGHT):
+			if x < COL_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.RIGHT):
 				color_x = PuzzleConnect.set_r(color_x)
 			set_block(cell_pos, 0, Vector2(color_x, _color_y))
 	
@@ -68,9 +68,9 @@ func start_squish(post_squish_frames: int, new_color_y: int) -> void:
 	
 	clear()
 	corner_map.dirty = true
-	for row in range(ROW_COUNT):
-		for col in range(COL_COUNT):
-			_stretch_pos[row][col] = 0
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
+			_stretch_pos[y][x] = 0
 
 
 ## Returns 'true' if the piece is already stretched to the specified position.

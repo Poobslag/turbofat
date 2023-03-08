@@ -8,7 +8,7 @@ extends Node
 signal all_lines_cleared
 
 ## emitted shortly before a set of lines are cleared
-signal line_clears_scheduled(ys)
+signal line_clears_scheduled(y_coords)
 
 ## emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
