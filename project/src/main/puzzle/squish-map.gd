@@ -5,26 +5,30 @@ extends PuzzleTileMap
 var squish_seconds_remaining := 0.0
 var squish_seconds_total := 0.0
 
-var _stretch_pos := []
+## key: (Vector2) tile map cell
+## value: (int) A number proportional to how long this cell should contain a stretched block. Higher numbered cells are
+## 	drawn for more frames, lower numbered cells are drawn for fewer frames. Cells with a value of zero are never drawn.
+var _stretch_pos := {}
+
+## Threshold for which cells should be drawn with stretched blocks.
 var _max_distance := 0
+
+## Autotile y for filled tilemap cells.
 var _color_y: int
 
 func _ready() -> void:
-	for y in range(ROW_COUNT):
-		_stretch_pos.append([])
-		for _x in range(COL_COUNT):
-			_stretch_pos[y].append(0)
 	set_process(false)
 
 
 func _process(delta: float) -> void:
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
-			if _stretch_pos[y][x] > _max_distance \
+			var cell_pos := Vector2(x, y)
+			if _stretch_pos.get(cell_pos, 0) > _max_distance \
 					* (squish_seconds_total - squish_seconds_remaining) / squish_seconds_total:
-				set_block(Vector2(x, y), 0, Vector2(0, _color_y))
+				set_block(cell_pos, 0, Vector2(0, _color_y))
 			else:
-				set_block(Vector2(x, y), -1)
+				set_block(cell_pos, -1)
 	
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
@@ -55,7 +59,7 @@ func stretch_to(piece_pos_arr: Array, offset: Vector2) -> void:
 	_max_distance += 1
 	
 	for piece_pos in piece_pos_arr:
-		_stretch_pos[piece_pos.y + offset.y][piece_pos.x + offset.x] = _max_distance
+		_stretch_pos[Vector2(piece_pos.x + offset.x, piece_pos.y + offset.y)] = _max_distance
 
 
 ## Starts a new squish move, which will make the piece appear vertically stretched for a few frames.
@@ -68,9 +72,7 @@ func start_squish(post_squish_frames: int, new_color_y: int) -> void:
 	
 	clear()
 	corner_map.dirty = true
-	for y in range(ROW_COUNT):
-		for x in range(COL_COUNT):
-			_stretch_pos[y][x] = 0
+	_stretch_pos.clear()
 
 
 ## Returns 'true' if the piece is already stretched to the specified position.
@@ -80,6 +82,6 @@ func _is_stretched_to(piece_pos_arr: Array, offset: Vector2) -> bool:
 		result = true
 	else:
 		for piece_pos in piece_pos_arr:
-			if _stretch_pos[piece_pos.y + offset.y][piece_pos.x + offset.x] < _max_distance:
+			if _stretch_pos.get(Vector2(piece_pos.x + offset.x, piece_pos.y + offset.y), 0) < _max_distance:
 				result = true
 	return result
