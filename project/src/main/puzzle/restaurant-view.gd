@@ -115,6 +115,10 @@ func get_current_customer_index() -> int:
 	return _restaurant_viewport_scene.current_customer_index
 
 
+## Returns the specified customer.
+##
+## Parameters:
+## 	'customer_index' (Optional) The index of the customer to return. Defaults to the current creature.
 func get_customer(customer_index: int = -1) -> Creature:
 	return _restaurant_viewport_scene.get_customer(customer_index)
 
@@ -172,6 +176,10 @@ func summon_customer(customer_index: int = -1) -> void:
 
 
 ## Scroll to a new customer and replace the old customer.
+##
+## Parameters:
+## 	'new_customer_index': (Optional) The index of the customer to scroll to. Defaults to a random creature index
+## 		different from the current creature index.
 func scroll_to_new_customer(new_customer_index: int = -1) -> void:
 	var old_customer_index: int = get_current_customer_index()
 	if new_customer_index == -1:

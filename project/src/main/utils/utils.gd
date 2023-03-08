@@ -135,8 +135,6 @@ static func remove_all(values: Array, value) -> Array:
 
 
 ## Returns a new array containing a - b.
-##
-## The input arrays are not modified. This code is adapted from Apache Common Collections.
 static func subtract(a: Array, b: Array) -> Array:
 	var result := []
 	var bag := {}
@@ -155,8 +153,6 @@ static func subtract(a: Array, b: Array) -> Array:
 
 
 ## Returns a new array containing the intersection of the given arrays.
-##
-## The input arrays are not modified. This code is adapted from Apache Common Collections.
 static func intersection(a: Array, b: Array) -> Array:
 	var result := []
 	var bag := {}

@@ -4,7 +4,7 @@ extends Node
 ## Keys:
 ## 	[F]: Feed the customer
 ## 	[1-9,0]: Change the customer's size from 10% to 100%
-## 	[Q,W,E,R]: Switch to the 1st, 2nd or 3rd customer.
+## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th customer.
 ## 	brace keys: Change the customer's appearance
 
 const FATNESS_KEYS := [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]

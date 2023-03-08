@@ -164,9 +164,6 @@ func set_visual_fatness(new_visual_fatness: float) -> void:
 
 ## Returns the creature's fatness, a float which determines how fat the creature
 ## should be; 5.0 = 5x normal size
-##
-## Parameters:
-## 	'creature_index': (Optional) The creature to ask about. Defaults to the current creature.
 func get_fatness() -> float:
 	return fatness
 
@@ -175,9 +172,7 @@ func get_fatness() -> float:
 ## the creature should be; 5.0 = 5x normal size
 ##
 ## Parameters:
-## 	'fatness_percent': Controls how fat the creature should be; 5.0 = 5x normal size
-##
-## 	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
+## 	'new_fatness': Controls how fat the creature should be; 5.0 = 5x normal size
 func set_fatness(new_fatness: float) -> void:
 	fatness = new_fatness
 	emit_signal("fatness_changed")
@@ -298,8 +293,7 @@ func feed(food_type: int) -> void:
 		mouth_player.eat()
 
 
-## Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
-## properties.
+## Updates the creature's appearance according to the specified creature definition.
 func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
 	if not is_inside_tree():

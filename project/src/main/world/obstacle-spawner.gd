@@ -47,7 +47,7 @@ func set_target_property(property: String, value) -> void:
 		spawned_object.set(property, value)
 
 
-## Spawns the obstacle and remove the spawner from the scene tree.
+## Spawns the obstacle and removes the spawner from the scene tree.
 func spawn_target() -> void:
 	# change the spawner's name to avoid conflicting with the spawned object
 	var old_name := name

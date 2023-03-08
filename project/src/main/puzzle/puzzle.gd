@@ -124,12 +124,7 @@ func get_customer() -> Creature:
 	return _restaurant_view.get_customer()
 
 
-## Triggers the eating animation and makes the customer fatter. Accepts a 'fatness_pct' parameter which defines how
-## much fatter the customer should get. We can calculate how fat they should be, and a value of 0.4 means the customer
-## should increase by 40% of the amount needed to reach that target.
-##
-## This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
-## want the customer to suddenly grow full size. We want it to take 3 bites.
+## Triggers the eating animation and makes the customer fatter.
 ##
 ## Parameters:
 ## 	'customer': The customer to feed

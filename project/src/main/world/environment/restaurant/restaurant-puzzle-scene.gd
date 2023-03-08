@@ -25,11 +25,12 @@ func set_current_customer_index(new_index: int) -> void:
 	emit_signal("current_customer_index_changed", new_index)
 
 
-## Recolors the customer according to the specified creature definition. This involves updating shaders and sprite
-## properties.
+## Updates the creature's appearance according to the specified creature definition.
 ##
 ## Parameters:
 ## 	'creature_def': defines the customer's attributes such as name and appearance.
+##
+## 	'customer_index': (Optional) The index of the customer to update. Defaults to the current creature.
 func summon_customer(creature_def: CreatureDef, customer_index: int = -1) -> void:
 	var customer := get_customer(customer_index)
 	customer.set_creature_def(creature_def)
@@ -44,6 +45,10 @@ func get_customers() -> Array:
 	return _world.customers
 
 
+## Returns the specified customer.
+##
+## Parameters:
+## 	'customer_index': (Optional) The index of the customer to return. Defaults to the current creature.
 func get_customer(customer_index: int = -1) -> Creature:
 	return _world.customers[current_customer_index] if customer_index == -1 else _world.customers[customer_index]
 
