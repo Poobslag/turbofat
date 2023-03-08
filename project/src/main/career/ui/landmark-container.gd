@@ -32,12 +32,12 @@ func _refresh_landmarks() -> void:
 		# add spacer
 		var new_spacer: Control = LandmarkSpacerScene.instance()
 		add_child(new_spacer)
-		_landmark_spacers.push_back(new_spacer)
+		_landmark_spacers.append(new_spacer)
 		
 		# add landmark
 		var new_landmark: Landmark = LandmarkScene.instance()
 		add_child(new_landmark)
-		_landmarks.push_back(new_landmark)
+		_landmarks.append(new_landmark)
 	
 	while _landmarks.size() > _map_row.landmark_count:
 		# remove landmark from scene tree

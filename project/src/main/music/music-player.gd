@@ -157,7 +157,7 @@ func _play_next_bgm(bgms: Array, fade_in: bool) -> void:
 		return
 	
 	var new_bgm: CheckpointSong = bgms.pop_front()
-	bgms.push_back(new_bgm)
+	bgms.append(new_bgm)
 	play_bgm(new_bgm)
 	if fade_in:
 		fade_in()

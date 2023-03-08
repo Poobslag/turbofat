@@ -317,10 +317,10 @@ func _find_resource_paths() -> Array:
 	for low_priority_resource_path in low_priority_resource_paths:
 		if _remaining_resource_paths.has(low_priority_resource_path):
 			_remaining_resource_paths.erase(low_priority_resource_path)
-			_remaining_resource_paths.push_back(low_priority_resource_path)
+			_remaining_resource_paths.append(low_priority_resource_path)
 		if _remaining_scene_paths.has(low_priority_resource_path):
 			_remaining_scene_paths.erase(low_priority_resource_path)
-			_remaining_scene_paths.push_back(low_priority_resource_path)
+			_remaining_scene_paths.append(low_priority_resource_path)
 	
 	randomize()
 	

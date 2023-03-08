@@ -10,7 +10,7 @@ func test_has_customer_empty() -> void:
 
 
 func test_has_customer_string() -> void:
-	CurrentLevel.customers.push_back("jump_escape")
+	CurrentLevel.customers.append("jump_escape")
 	
 	assert_eq(CurrentLevel.has_customer("jump_escape"), true)
 	assert_eq(CurrentLevel.has_customer("destroy_stupid"), false)
@@ -19,7 +19,7 @@ func test_has_customer_string() -> void:
 
 
 func test_has_customer_creature_def_with_id() -> void:
-	CurrentLevel.customers.push_back(_creature_def("jump_escape", "Jump Escape"))
+	CurrentLevel.customers.append(_creature_def("jump_escape", "Jump Escape"))
 	
 	assert_eq(CurrentLevel.has_customer("jump_escape"), true)
 	assert_eq(CurrentLevel.has_customer("destroy_stupid"), false)
@@ -29,7 +29,7 @@ func test_has_customer_creature_def_with_id() -> void:
 
 
 func test_has_customer_creature_def_without_id() -> void:
-	CurrentLevel.customers.push_back(_creature_def("", "Jump Escape"))
+	CurrentLevel.customers.append(_creature_def("", "Jump Escape"))
 	
 	assert_eq(CurrentLevel.has_customer("destroy_stupid"), false)
 	assert_eq(CurrentLevel.has_customer(_creature_def("", "Jump Escape")), true)

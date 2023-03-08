@@ -159,7 +159,7 @@ func summon_customer(creature_index: int = -1) -> void:
 	var creature_def := CreatureDef.new()
 	if PlayerData.customer_queue.has_priority_customer():
 		creature_def = PlayerData.customer_queue.pop_priority_customer()
-		_next_creature_indexes.push_back(creature_index)
+		_next_creature_indexes.append(creature_index)
 	else:
 		creature_def = PlayerData.random_customer_def(true)
 	_restaurant_viewport_scene.summon_customer(creature_def, creature_index)

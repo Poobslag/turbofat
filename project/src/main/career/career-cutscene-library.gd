@@ -330,7 +330,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 						min_numeric_child = child
 				else:
 					if not search_flags.excluded_chat_keys.has(child_key):
-						chat_key_queue.front().push_back(child_key)
+						chat_key_queue.front().append(child_key)
 				
 			# enqueue lowest-numbered numeric key
 			if min_numeric_child:

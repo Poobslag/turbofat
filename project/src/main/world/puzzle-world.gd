@@ -71,4 +71,4 @@ func _spawn_customers() -> void:
 			continue
 		var customer := overworld_environment.add_creature()
 		overworld_environment.move_creature_to_spawn(customer, spawn.id)
-		customers.push_back(customer)
+		customers.append(customer)

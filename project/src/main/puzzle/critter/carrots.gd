@@ -233,7 +233,7 @@ static func deconflict_carrots(potential_columns: Array, carrot_dimensions: Vect
 		var potential_column: int = potential_columns[i]
 		if overlapping_columns.has(potential_column):
 			# column overlaps; push it to the back of the results array
-			results.push_back(potential_column)
+			results.append(potential_column)
 		else:
 			# column does not overlap; insert it into the front of the results array
 			results.insert(next_non_overlapping_column_index, potential_column)
