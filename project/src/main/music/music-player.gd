@@ -17,6 +17,8 @@ const MIN_VOLUME := -40.0
 ## volume to fade in to
 const MAX_VOLUME := 0.0
 
+var all_bgms: Array
+
 ## the music currently playing
 var current_bgm: CheckpointSong
 
@@ -29,16 +31,15 @@ var night_filter: bool = false setget set_night_filter
 ## value: (float) desired volume_db for playing music
 var _max_volume_db_by_bgm := {}
 
-var all_bgms: Array
-
 onready var _chill_bgms := [
 		$ChubHub, $DessertCourse, $HarderButter,
 		$HotFunkSundae, $LoFiChill, $RainbowSherbeat]
 
 onready var _upbeat_bgms := [
-		$ChubNBass, $ChunkyObake, $DooDooDoo, $JuicerMixerGrinder,
+		$AcidReflux, $ChocolateChip, $ChubNBass, $ChunkyObake,
+		$DooDooDoo, $ExtraSprinkles, $GingerbreadHouse, $JuicerMixerGrinder,
 		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake,
-		$AcidReflux, $ExtraSprinkles, $ChocolateChip, $GingerbreadHouse]
+		]
 
 onready var _tutorial_bgms := [$MyFatnessPal]
 onready var _music_tween := $MusicTween
