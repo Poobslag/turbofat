@@ -141,12 +141,12 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 	return target_pos
 
 
-func find_customer_index_with_id(customer_id: String) -> int:
+func find_customer_index_with_id(customer_creature_id: String) -> int:
 	var customer_index := -1
 	var customers := get_customers()
 	
 	for i in range(customers.size()):
-		if customers[i].customer_def.customer_id == customer_id:
+		if customers[i].customer_def.creature_id == customer_creature_id:
 			customer_index = i
 			break
 	
