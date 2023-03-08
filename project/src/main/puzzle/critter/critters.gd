@@ -4,14 +4,14 @@ extends Control
 export (NodePath) var playfield_path: NodePath setget set_playfield_path
 export (NodePath) var piece_manager_path: NodePath setget set_piece_manager_path
 
+# Draws carrots, puzzle critters which rocket up the screen, blocking the player's vision.
+onready var _carrots: Carrots = $Carrots
+
 ## Draws moles, puzzle critters which dig up star seeds for the player.
 onready var _moles: Moles = $Moles
 
 ## Draws onions, puzzle critters which darken things making it hard to see.
 onready var _onions: Onions = $Onions
-
-# Draws carrots, puzzle critters which rocket up the screen, blocking the player's vision.
-onready var _carrots: Carrots = $Carrots
 
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
