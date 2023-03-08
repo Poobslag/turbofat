@@ -174,63 +174,6 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 	return trimmed_chat_key_pairs
 
 
-## Returns 'true' if the specified chat key pair does not have a quirky chef, customer or observer.
-func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
-	var quirky := false
-	var region: CareerRegion = PlayerData.career.current_region()
-	
-	for chat_key in chat_key_pair.chat_keys():
-		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-		
-		if not quirky and chat_tree.chef_id:
-			# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
-			if region.population.has_quirky_chef(chat_tree.chef_id):
-				quirky = true
-		
-		if not quirky and chat_tree.customer_ids:
-			# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
-			for customer_id in chat_tree.customer_ids:
-				if region.population.has_quirky_customer(customer_id):
-					quirky = true
-					break
-		
-		if not quirky and chat_tree.observer_id:
-			# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
-			if region.population.has_quirky_observer(chat_tree.observer_id):
-				quirky = true
-		
-		if quirky:
-			break
-	
-	return not quirky
-
-
-## Returns 'true' if the specified chat key pair features the specified chef, customer or observer.
-func _chat_key_pair_has_creatures(chat_key_pair: ChatKeyPair,
-		chef_id: String, customer_id: String, observer_id: String) -> bool:
-	var matches := false
-	
-	for chat_key in chat_key_pair.chat_keys():
-		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-		
-		if not matches and chef_id:
-			if chat_tree.chef_id == chef_id:
-				matches = true
-		
-		if not matches and customer_id:
-			if customer_id in chat_tree.customer_ids:
-				matches = true
-		
-		if not matches and observer_id:
-			if observer_id == chat_tree.observer_id:
-				matches = true
-		
-		if matches:
-			break
-	
-	return matches
-
-
 ## Assigns the list of interlude ChatKeyPairs, and regenerates all internal fields such as the preroll tree.
 func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	all_chat_key_pairs = new_all_chat_key_pairs
@@ -268,13 +211,6 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 				_general_sensei_chat_keys.append(chat_key)
 			if chat_tree.inside_restaurant():
 				_general_restaurant_chat_keys.append(chat_key)
-
-
-## Splits a preroll key like 'foo/bar/10_d' into an array like ['foo/bar', '10', 'd'].
-func _split_key(preroll_key: String) -> Array:
-	var result := [StringUtils.substring_before_last(preroll_key, "/")]
-	result.append_array(StringUtils.substring_after_last(preroll_key, "/").split("_"))
-	return result
 
 
 ## Returns a collection of interlude preroll chat keys for cutscenes the player has already seen.
@@ -412,6 +348,70 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 ## Returns a list of all file paths in the career cutscene root path, performing a tree traversal.
 func find_career_cutscene_resource_paths() -> Array:
 	return _find_resource_paths(career_cutscene_root_path)
+
+
+## Returns 'true' if the specified chat key pair does not have a quirky chef, customer or observer.
+func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
+	var quirky := false
+	var region: CareerRegion = PlayerData.career.current_region()
+	
+	for chat_key in chat_key_pair.chat_keys():
+		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+		
+		if not quirky and chat_tree.chef_id:
+			# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
+			if region.population.has_quirky_chef(chat_tree.chef_id):
+				quirky = true
+		
+		if not quirky and chat_tree.customer_ids:
+			# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
+			for customer_id in chat_tree.customer_ids:
+				if region.population.has_quirky_customer(customer_id):
+					quirky = true
+					break
+		
+		if not quirky and chat_tree.observer_id:
+			# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
+			if region.population.has_quirky_observer(chat_tree.observer_id):
+				quirky = true
+		
+		if quirky:
+			break
+	
+	return not quirky
+
+
+## Returns 'true' if the specified chat key pair features the specified chef, customer or observer.
+func _chat_key_pair_has_creatures(chat_key_pair: ChatKeyPair,
+		chef_id: String, customer_id: String, observer_id: String) -> bool:
+	var matches := false
+	
+	for chat_key in chat_key_pair.chat_keys():
+		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+		
+		if not matches and chef_id:
+			if chat_tree.chef_id == chef_id:
+				matches = true
+		
+		if not matches and customer_id:
+			if customer_id in chat_tree.customer_ids:
+				matches = true
+		
+		if not matches and observer_id:
+			if observer_id == chat_tree.observer_id:
+				matches = true
+		
+		if matches:
+			break
+	
+	return matches
+
+
+## Splits a preroll key like 'foo/bar/10_d' into an array like ['foo/bar', '10', 'd'].
+func _split_key(preroll_key: String) -> Array:
+	var result := [StringUtils.substring_before_last(preroll_key, "/")]
+	result.append_array(StringUtils.substring_after_last(preroll_key, "/").split("_"))
+	return result
 
 
 ## Returns a child chat key by combining the specified chat key with a delimiter and suffix.

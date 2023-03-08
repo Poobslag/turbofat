@@ -2,16 +2,16 @@ extends Node
 ## Shows off the visual effects for the puzzle.
 ##
 ## Keys:
-## 	[Q,W,E]: Build a box at different locations in the playfield
-## 	[T,Y]: Insert a line at different locations in the playfield
 ## 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
 ## 	[H]: Change the cake box variation used to make cake boxes
-## 	[U,I,O]: Clear a line at different locations in the playfield
-## 	[N]: Toggle night mode
-## 	[P]: Add pickups
 ## 	[J]: Generate a food item
 ## 	[K]: Cycle to the next food item
 ## 	[L]: Level up
+## 	[N]: Toggle night mode
+## 	[P]: Add pickups
+## 	[Q,W,E]: Build a box at different locations in the playfield
+## 	[T,Y]: Insert a line at different locations in the playfield
+## 	[U,I,O]: Clear a line at different locations in the playfield
 
 var _line_clear_count := 1
 var _box_type := 0

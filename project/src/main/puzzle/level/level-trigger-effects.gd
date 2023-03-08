@@ -355,11 +355,11 @@ class InsertLineEffect extends LevelTriggerEffect:
 
 
 var effects_by_string := {
+	"add_carrots": AddCarrotsEffect,
 	"add_moles": AddMolesEffect,
 	"add_onion": AddOnionEffect,
 	"advance_moles": AdvanceMolesEffect,
 	"advance_onion": AdvanceOnionEffect,
-	"add_carrots": AddCarrotsEffect,
 	"clear_filled_lines": ClearFilledLinesEffect,
 	"remove_carrots": RemoveCarrotsEffect,
 	"remove_onion": RemoveOnionEffect,

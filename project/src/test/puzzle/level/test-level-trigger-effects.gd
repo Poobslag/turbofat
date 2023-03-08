@@ -30,24 +30,34 @@ func test_insert_line_get_config() -> void:
 	assert_eq_shallow(effect.get_config(), {"y": "5"})
 
 
-func test_add_onion_set_config() -> void:
-	var effect: LevelTriggerEffects.AddOnionEffect
+func test_add_carrots_set_config() -> void:
+	var effect: LevelTriggerEffects.AddCarrotsEffect
 	
-	effect = LevelTriggerEffects.create("add_onion", {"0": "nnndddd"})
-	assert_eq_shallow(effect.get_config(), {"0": "nnndddd"})
+	effect = LevelTriggerEffects.create("add_carrots", {})
+	assert_eq(effect.config.columns, [])
+	assert_eq(effect.config.count, 1)
+	assert_eq(effect.config.duration, 8.0)
+	assert_eq(effect.config.size, CarrotConfig.CarrotSize.MEDIUM)
+	assert_eq(effect.config.smoke, CarrotConfig.Smoke.SMALL)
 	
-	effect = LevelTriggerEffects.create("add_onion", {})
-	assert_eq_shallow(effect.get_config(), {})
+	effect = LevelTriggerEffects.create("add_carrots", {"x": "0-2", "count": "2", "duration": "12.0", "size": "large",
+			"smoke": "none"})
+	assert_eq(effect.config.columns, [0, 1, 2])
+	assert_eq(effect.config.count, 2)
+	assert_eq(effect.config.duration, 12.0)
+	assert_eq(effect.config.size, CarrotConfig.CarrotSize.LARGE)
+	assert_eq(effect.config.smoke, CarrotConfig.Smoke.NONE)
 
 
-func test_add_onion_get_config() -> void:
-	var effect: LevelTriggerEffects.AddOnionEffect
+func test_add_carrots_get_config() -> void:
+	var effect: LevelTriggerEffects.AddCarrotsEffect
 	
-	effect = LevelTriggerEffects.create("add_onion", {"0": "nnndddd"})
-	assert_eq_shallow(effect.get_config(), {"0": "nnndddd"})
+	effect = LevelTriggerEffects.create("add_carrots", {})
+	assert_eq_shallow({}, effect.get_config())
 	
-	effect = LevelTriggerEffects.create("add_onion", {})
-	assert_eq_shallow(effect.get_config(), {})
+	effect = LevelTriggerEffects.create("add_carrots", {"x": "0-2", "count": "2", "duration": "12.0", "size": "large",
+			"smoke": "none"})
+	assert_eq_shallow({"count": "2", "duration": "12", "size": "large", "smoke": "none", "x": "0-2"}, effect.get_config())
 
 
 func test_add_moles_set_config() -> void:
@@ -90,34 +100,24 @@ func test_add_moles_get_config() -> void:
 	assert_eq_shallow({"y": "0,8"}, effect.get_config())
 
 
-func test_add_carrots_set_config() -> void:
-	var effect: LevelTriggerEffects.AddCarrotsEffect
+func test_add_onion_set_config() -> void:
+	var effect: LevelTriggerEffects.AddOnionEffect
 	
-	effect = LevelTriggerEffects.create("add_carrots", {})
-	assert_eq(effect.config.columns, [])
-	assert_eq(effect.config.count, 1)
-	assert_eq(effect.config.duration, 8.0)
-	assert_eq(effect.config.size, CarrotConfig.CarrotSize.MEDIUM)
-	assert_eq(effect.config.smoke, CarrotConfig.Smoke.SMALL)
+	effect = LevelTriggerEffects.create("add_onion", {"0": "nnndddd"})
+	assert_eq_shallow(effect.get_config(), {"0": "nnndddd"})
 	
-	effect = LevelTriggerEffects.create("add_carrots", {"x": "0-2", "count": "2", "duration": "12.0", "size": "large",
-			"smoke": "none"})
-	assert_eq(effect.config.columns, [0, 1, 2])
-	assert_eq(effect.config.count, 2)
-	assert_eq(effect.config.duration, 12.0)
-	assert_eq(effect.config.size, CarrotConfig.CarrotSize.LARGE)
-	assert_eq(effect.config.smoke, CarrotConfig.Smoke.NONE)
+	effect = LevelTriggerEffects.create("add_onion", {})
+	assert_eq_shallow(effect.get_config(), {})
 
 
-func test_add_carrots_get_config() -> void:
-	var effect: LevelTriggerEffects.AddCarrotsEffect
+func test_add_onion_get_config() -> void:
+	var effect: LevelTriggerEffects.AddOnionEffect
 	
-	effect = LevelTriggerEffects.create("add_carrots", {})
-	assert_eq_shallow({}, effect.get_config())
+	effect = LevelTriggerEffects.create("add_onion", {"0": "nnndddd"})
+	assert_eq_shallow(effect.get_config(), {"0": "nnndddd"})
 	
-	effect = LevelTriggerEffects.create("add_carrots", {"x": "0-2", "count": "2", "duration": "12.0", "size": "large",
-			"smoke": "none"})
-	assert_eq_shallow({"count": "2", "duration": "12", "size": "large", "smoke": "none", "x": "0-2"}, effect.get_config())
+	effect = LevelTriggerEffects.create("add_onion", {})
+	assert_eq_shallow(effect.get_config(), {})
 
 
 func test_remove_carrots_set_config() -> void:
