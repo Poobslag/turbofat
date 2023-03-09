@@ -178,7 +178,6 @@ __meta__ = {
 }
 codes = [ "unlock" ]
 
-[connection signal="cheat_detected" from="CheatCodeDetector" to="VBoxContainer/Top/RegionButtons" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="button_added" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]
 [connection signal="locked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_RegionButtons_locked_region_focused"]
 [connection signal="locked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_locked_region_focused"]
@@ -187,3 +186,4 @@ codes = [ "unlock" ]
 [connection signal="unlocked_region_focused" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_RegionButtons_unlocked_region_focused"]
 [connection signal="pressed" from="VBoxContainer/Top/RegionButtons/LeftArrow" to="VBoxContainer/Top/RegionButtons" method="_on_LeftArrow_pressed"]
 [connection signal="pressed" from="VBoxContainer/Top/RegionButtons/RightArrow" to="VBoxContainer/Top/RegionButtons" method="_on_RightArrow_pressed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="VBoxContainer/Top/RegionButtons" method="_on_CheatCodeDetector_cheat_detected"]

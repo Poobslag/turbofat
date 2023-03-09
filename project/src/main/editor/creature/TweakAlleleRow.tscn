@@ -58,9 +58,9 @@ rect_min_size = Vector2( 20, 20 )
 texture = ExtResource( 4 )
 expand = true
 
-[connection signal="button_down" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_down"]
-[connection signal="button_up" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_up"]
-[connection signal="pressed" from="DnaMargin/Dna" to="." method="_on_Dna_pressed"]
 [connection signal="item_focused" from="Edit" to="." method="_on_Edit_item_focused"]
 [connection signal="item_selected" from="Edit" to="." method="_on_Edit_item_selected"]
 [connection signal="pressed" from="Edit" to="." method="_on_Edit_pressed"]
+[connection signal="button_down" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_down"]
+[connection signal="button_up" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_up"]
+[connection signal="pressed" from="DnaMargin/Dna" to="." method="_on_Dna_pressed"]

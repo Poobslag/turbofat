@@ -271,6 +271,6 @@ anims/face-9 = SubResource( 16 )
 
 [node name="FreeTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="FreeTimer" to="." method="_on_FreeTimer_timeout"]
-[connection signal="tween_all_completed" from="MoveTween" to="." method="_on_MoveTween_tween_all_completed"]
 [connection signal="tween_all_completed" from="ShowTween" to="." method="_on_ShowTween_tween_all_completed"]
+[connection signal="tween_all_completed" from="MoveTween" to="." method="_on_MoveTween_tween_all_completed"]
+[connection signal="timeout" from="FreeTimer" to="." method="_on_FreeTimer_timeout"]

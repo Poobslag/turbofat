@@ -202,7 +202,6 @@ __meta__ = {
 }
 codes = [ "unlock" ]
 
-[connection signal="cheat_detected" from="CheatCodeDetector" to="VBoxContainer/Top/LevelButtons" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="button_added" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Top/GradeLabels" method="_on_LevelButtons_button_added"]
 [connection signal="level_chosen" from="VBoxContainer/Top/LevelButtons" to="." method="_on_LevelButtons_level_chosen"]
 [connection signal="locked_level_focused" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_LevelButtons_locked_level_focused"]
@@ -211,3 +210,4 @@ codes = [ "unlock" ]
 [connection signal="unlocked_level_focused" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_LevelButtons_unlocked_level_focused"]
 [connection signal="pressed" from="VBoxContainer/Top/LevelButtons/LeftArrow" to="VBoxContainer/Top/LevelButtons" method="_on_LeftArrow_pressed"]
 [connection signal="pressed" from="VBoxContainer/Top/LevelButtons/RightArrow" to="VBoxContainer/Top/LevelButtons" method="_on_RightArrow_pressed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="VBoxContainer/Top/LevelButtons" method="_on_CheatCodeDetector_cheat_detected"]

@@ -325,7 +325,7 @@ script = ExtResource( 12 )
 autoplay = "default"
 anims/default = SubResource( 7 )
 
-[connection signal="timeout" from="HelloTimer" to="HelloTimer" method="_on_timeout"]
 [connection signal="current_customer_index_changed" from="RestaurantViewport/Scene" to="." method="_on_RestaurantPuzzleScene_current_customer_index_changed"]
 [connection signal="current_customer_index_changed" from="RestaurantViewport/Scene" to="Customer/CameraMover" method="_on_RestaurantPuzzleScene_current_customer_index_changed"]
 [connection signal="food_eaten" from="RestaurantViewport/Scene" to="Customer/CameraMover" method="_on_RestaurantPuzzleScene_food_eaten"]
+[connection signal="timeout" from="HelloTimer" to="HelloTimer" method="_on_timeout"]

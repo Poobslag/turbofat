@@ -202,34 +202,3 @@ then
   echo "Node names with spaces:"
   echo "$RESULT"
 fi
-
-# sort signal connections. Workaround for Godot #35084
-# https://github.com/godotengine/godot/issues/35084
-if [ "$CLEAN" ]
-then
-  echo ""
-  while read -r IN_FILE
-  do
-    echo "Sorting signal connections in $IN_FILE..."
-    OUT_FILE="$IN_FILE"~
-
-    # calculate the range of lines to sort
-    FIRST_LINE=$(awk '/^\[connection signal/{print NR; exit}' "$IN_FILE")
-    LINE_COUNT=$(grep -c "^\[connection signal" "$IN_FILE")
-
-    # move the 'signal=' attribute after the 'from=' attribute so that the signal sort order mostly matches Godot
-    sed -i "s/^\\(\\[connection\\)\\( signal=\"[^\"]*\"\\)\\( from=\"[^\"]*\"\\)\\(.*\\)/\\1\\3\\2\\4/g" "$IN_FILE"
-
-    # sort the '[connection]' lines
-    (head -n $(("$FIRST_LINE" - 1)); head -n "$LINE_COUNT" | sort; cat ) < "$IN_FILE" 1<> "$OUT_FILE"
-    mv -f "$OUT_FILE" "$IN_FILE"
-
-    # move the 'signal=' attribute back where it was
-    sed -i "s/^\\(\\[connection\\)\\( from=\"[^\"]*\"\\)\\( signal=\"[^\"]*\"\\)\\(.*\\)/\\1\\3\\2\\4/g" "$IN_FILE"
-  done < <(git diff main --name-only | grep "\.tscn$")
-
-  # The preceding command sorts only modified files. Sorting all files takes longer but can be done by replacing the
-  # preceding loop condition:
-  #
-  # done < <(find project/src -type f -name '*.tscn' -print)
-fi

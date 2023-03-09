@@ -61,5 +61,5 @@ action = "ui_cancel"
 
 [node name="MusicPopup" parent="." instance=ExtResource( 7 )]
 
-[connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="level_chosen" from="Panel" to="." method="_on_Panel_level_chosen"]
+[connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]

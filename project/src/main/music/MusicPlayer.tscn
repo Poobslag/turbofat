@@ -149,5 +149,5 @@ script = ExtResource( 4 )
 
 [node name="FilterTween" type="Tween" parent="."]
 
-[connection signal="tween_completed" from="FilterTween" to="." method="_on_FilterTween_tween_completed"]
 [connection signal="tween_completed" from="MusicTween" to="MusicTween" method="_on_tween_completed"]
+[connection signal="tween_completed" from="FilterTween" to="." method="_on_FilterTween_tween_completed"]

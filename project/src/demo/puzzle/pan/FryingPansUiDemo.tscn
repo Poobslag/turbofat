@@ -103,6 +103,6 @@ margin_bottom = 232.0
 theme = ExtResource( 2 )
 text = "Gold"
 
-[connection signal="toggled" from="Gold" to="." method="_on_Gold_toggled"]
-[connection signal="value_changed" from="Max/HBoxContainer/SpinBox" to="." method="_on_TotalSpinBox_value_changed"]
 [connection signal="value_changed" from="Remaining/HBoxContainer/SpinBox" to="." method="_on_RemainingSpinBox_value_changed"]
+[connection signal="value_changed" from="Max/HBoxContainer/SpinBox" to="." method="_on_TotalSpinBox_value_changed"]
+[connection signal="toggled" from="Gold" to="." method="_on_Gold_toggled"]
