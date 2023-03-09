@@ -117,10 +117,10 @@ dialog_autowrap = true
 
 [node name="DemoSave" parent="." instance=ExtResource( 6 )]
 
-[connection signal="about_to_show" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="pressed" from="Input/Open/Button" to="." method="_on_OpenButton_pressed"]
+[connection signal="pressed" from="Input/CalculateButton" to="." method="_on_CalculateButton_pressed"]
 [connection signal="about_to_show" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Dialogs/OpenFile" to="." method="_on_OpenFileDialog_file_selected"]
 [connection signal="popup_hide" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="pressed" from="Input/CalculateButton" to="." method="_on_CalculateButton_pressed"]
-[connection signal="pressed" from="Input/Open/Button" to="." method="_on_OpenButton_pressed"]
+[connection signal="about_to_show" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]

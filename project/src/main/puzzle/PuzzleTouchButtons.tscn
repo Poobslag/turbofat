@@ -57,5 +57,5 @@ stream = ExtResource( 6 )
 volume_db = -4.0
 bus = "Sound Bus"
 
-[connection signal="pressed" from="ButtonsSe" to="." method="_on_EightWay_pressed"]
 [connection signal="pressed" from="ButtonsSw" to="." method="_on_EightWay_pressed"]
+[connection signal="pressed" from="ButtonsSe" to="." method="_on_EightWay_pressed"]

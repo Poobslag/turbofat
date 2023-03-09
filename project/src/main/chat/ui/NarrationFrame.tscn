@@ -64,6 +64,6 @@ stream = ExtResource( 3 )
 volume_db = -14.0
 bus = "Sound Bus"
 
+[connection signal="pop_out_completed" from="PopTween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="all_text_shown" from="NarrationPanel" to="." method="_on_NarrationPanel_all_text_shown"]
 [connection signal="all_text_shown" from="NarrationPanel/NarrationLabel/LabelTyper" to="NarrationPanel" method="_on_LabelTyper_all_text_shown"]
-[connection signal="pop_out_completed" from="PopTween" to="." method="_on_Tween_pop_out_completed"]

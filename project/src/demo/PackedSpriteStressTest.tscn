@@ -67,7 +67,7 @@ margin_top = -30.0
 margin_right = -10.0002
 margin_bottom = 0.0
 
-[connection signal="pressed" from="Ui/Control/Divide2" to="." method="_on_Divide2_pressed"]
-[connection signal="pressed" from="Ui/Control/MinusTen" to="." method="_on_MinusTen_pressed"]
-[connection signal="pressed" from="Ui/Control/PlusTen" to="." method="_on_PlusTen_pressed"]
 [connection signal="pressed" from="Ui/Control/Times2" to="." method="_on_Times2_pressed"]
+[connection signal="pressed" from="Ui/Control/PlusTen" to="." method="_on_PlusTen_pressed"]
+[connection signal="pressed" from="Ui/Control/MinusTen" to="." method="_on_MinusTen_pressed"]
+[connection signal="pressed" from="Ui/Control/Divide2" to="." method="_on_Divide2_pressed"]
