@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/onion-sky-c.png-12a25fcb8cf6ddb7f6362ea4b0da5d26.stex"
+path="res://.import/night-sky-particle-sheet.png-f81808592dfcc10c9b66fd918c0a9c11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/puzzle/onion-sky-c.png"
-dest_files=[ "res://.import/onion-sky-c.png-12a25fcb8cf6ddb7f6362ea4b0da5d26.stex" ]
+source_file="res://assets/main/puzzle/night/night-sky-particle-sheet.png"
+dest_files=[ "res://.import/night-sky-particle-sheet.png-f81808592dfcc10c9b66fd918c0a9c11.stex" ]
 
 [params]
 

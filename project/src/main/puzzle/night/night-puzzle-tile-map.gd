@@ -1,4 +1,4 @@
-class_name OnionTileMap
+class_name NightPuzzleTileMap
 extends TileMap
 ## TileMap containing puzzle blocks shown to the player during night mode.
 ##

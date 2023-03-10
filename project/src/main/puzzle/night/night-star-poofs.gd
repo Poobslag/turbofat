@@ -1,4 +1,4 @@
-class_name OnionStarPoofs
+class_name NightStarPoofs
 extends Node2D
 ## Spawns star poofs when the player clears a row containing vegetables during night mode.
 ##
@@ -13,7 +13,7 @@ var source_tile_map: PuzzleTileMap
 func _spawn_poof(cell_x: int, cell_y: int) -> void:
 	# poof can appear half-way into horizontally adjacent cells, or in the cell above this one
 	var poof_position := source_tile_map.somewhere_near_cell(Vector2(cell_x, cell_y))
-	var star_poof: StarPoof = StarPoofScene.instance()
+	var star_poof: NightStarPoof = StarPoofScene.instance()
 	add_child(star_poof)
 	star_poof.position = poof_position
 

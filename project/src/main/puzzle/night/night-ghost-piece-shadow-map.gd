@@ -1,5 +1,5 @@
 extends TileMap
-## Tilemap which draws the ghost piece.
+## Tilemap which draws the ghost piece during night mode.
 
 ## Tilemap for the active piece
 var piece_tile_map: TileMap

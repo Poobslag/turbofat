@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/main/puzzle/blocks/stars.png" type="Texture" id=1]
-[ext_resource path="res://src/main/puzzle/onion-star-poof.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/night/night-star-poof.gd" type="Script" id=2]
 
 [sub_resource type="CanvasItemMaterial" id=21]
 particles_animation = true

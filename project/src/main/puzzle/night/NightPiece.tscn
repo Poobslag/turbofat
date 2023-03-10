@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://src/main/puzzle/OnionPuzzleTileMap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/puzzle/onion-piece.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/night/NightPuzzleTileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/puzzle/night/night-piece.gd" type="Script" id=2]
 [ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=3]
 [ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=4]
-[ext_resource path="res://src/main/puzzle/onion-squish-fx.gd" type="Script" id=6]
+[ext_resource path="res://src/main/puzzle/night/night-squish-fx.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true

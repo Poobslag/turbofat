@@ -49,7 +49,7 @@
 [ext_resource path="res://assets/main/puzzle/gameover.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/main/world/creature/gameover-voice2.wav" type="AudioStream" id=48]
 [ext_resource path="res://src/main/puzzle/PuzzleTimer.tscn" type="PackedScene" id=49]
-[ext_resource path="res://src/main/puzzle/OnionPlayfield.tscn" type="PackedScene" id=50]
+[ext_resource path="res://src/main/puzzle/night/NightPlayfield.tscn" type="PackedScene" id=50]
 [ext_resource path="res://assets/main/puzzle/excellent.wav" type="AudioStream" id=51]
 [ext_resource path="res://assets/main/puzzle/matchend.wav" type="AudioStream" id=52]
 [ext_resource path="res://assets/main/world/creature/go-voice0.wav" type="AudioStream" id=53]
@@ -84,13 +84,13 @@
 [ext_resource path="res://src/main/puzzle/piece/HoldPieceDisplay.tscn" type="PackedScene" id=82]
 [ext_resource path="res://assets/main/puzzle/hold-piece-bg.png" type="Texture" id=83]
 [ext_resource path="res://src/main/puzzle/playfield-shadow.gd" type="Script" id=84]
-[ext_resource path="res://src/main/puzzle/OnionPiece.tscn" type="PackedScene" id=85]
-[ext_resource path="res://src/main/puzzle/OnionNextPieceDisplays.tscn" type="PackedScene" id=86]
-[ext_resource path="res://src/main/puzzle/onion-hold-piece-displays.gd" type="Script" id=87]
-[ext_resource path="res://src/main/puzzle/piece/OnionPieceDisplay.tscn" type="PackedScene" id=88]
-[ext_resource path="res://src/main/puzzle/night-mode-toggler.gd" type="Script" id=89]
-[ext_resource path="res://src/main/puzzle/onion-star-seeds.gd" type="Script" id=90]
-[ext_resource path="res://src/main/puzzle/OnionStarSeed.tscn" type="PackedScene" id=91]
+[ext_resource path="res://src/main/puzzle/night/NightPiece.tscn" type="PackedScene" id=85]
+[ext_resource path="res://src/main/puzzle/night/NightNextPieceDisplays.tscn" type="PackedScene" id=86]
+[ext_resource path="res://src/main/puzzle/night/night-hold-piece-displays.gd" type="Script" id=87]
+[ext_resource path="res://src/main/puzzle/night/NightPieceDisplay.tscn" type="PackedScene" id=88]
+[ext_resource path="res://src/main/puzzle/night/night-mode-toggler.gd" type="Script" id=89]
+[ext_resource path="res://src/main/puzzle/night/night-star-seeds.gd" type="Script" id=90]
+[ext_resource path="res://src/main/puzzle/night/NightStarSeed.tscn" type="PackedScene" id=91]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -517,7 +517,7 @@ margin_right = 364.0
 margin_bottom = 96.5
 script = ExtResource( 87 )
 hold_piece_displays_path = NodePath("../HoldPieceDisplays")
-OnionPieceDisplayScene = ExtResource( 88 )
+NightPieceDisplayScene = ExtResource( 88 )
 
 [node name="Holder" type="Control" parent="Fg/OnionHoldPieceDisplays"]
 anchor_right = 1.0

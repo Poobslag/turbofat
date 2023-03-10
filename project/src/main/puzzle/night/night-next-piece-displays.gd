@@ -6,7 +6,7 @@ extends Control
 ## The path to the daytime next piece displays to synchronize with.
 export (NodePath) var next_piece_displays_path: NodePath
 
-export (PackedScene) var OnionPieceDisplayScene
+export (PackedScene) var NightPieceDisplayScene
 
 ## array of OnionNextPieceDisplays which are shown to the player
 var _onion_piece_displays := []
@@ -29,13 +29,13 @@ func _refresh_displays() -> void:
 		_refresh_display(display)
 
 
-func _refresh_display(display: OnionPieceDisplay) -> void:
+func _refresh_display(display: NightPieceDisplay) -> void:
 	display.visible = display.source_display.visible
 
 
 ## Adds a new next piece display.
 func _add_display(piece_index: int) -> void:
-	var new_display: OnionPieceDisplay = OnionPieceDisplayScene.instance()
+	var new_display: NightPieceDisplay = NightPieceDisplayScene.instance()
 	new_display.initialize(_next_piece_displays.get_display(piece_index))
 	new_display.scale = new_display.source_display.scale
 	new_display.position = new_display.source_display.position

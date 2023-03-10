@@ -1,5 +1,5 @@
-class_name OnionPlayfieldTileMap
-extends OnionTileMap
+class_name NightPlayfieldTileMap
+extends NightPuzzleTileMap
 ## Displays the playfield tile map during night mode.
 ##
 ## Many other night mode tilemaps such as the active piece, next piece and hold piece use similar logic. The playfield
