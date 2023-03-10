@@ -93,60 +93,60 @@ class CharactersState extends AbstractState:
 	func line(line: String) -> String:
 		var result := ""
 		if line:
-			_parse_character_name(line)
+			_parse_creature_id(line)
 		else:
 			result = DEFAULT
 		return result
 	
 	
 	## Syntax:
-	## 	skins, s, kitchen_9        - a character named 'skins' with an alias 's' spawns at kitchen_9
-	## 	skins, s, !kitchen_9       - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
-	## 	(chef) skins, s            - a character named 'skins' with an alias 's' is the chef for this scene
-	## 	(customer) rhonk           - a character named 'rhonk' is a customer for this scene
-	## 	(observer) bones           - a character named 'bones' is the observer for this scene
-	## 	skins, s                   - a character named 'skins' with an alias 's'
-	## 	skins                      - a character named 'skins'
-	func _parse_character_name(line: String) -> void:
+	## 	skins, s, kitchen_9        - a character 'skins' with an alias 's' spawns at kitchen_9
+	## 	skins, s, !kitchen_9       - a character 'skins' with an alias 's' spawns invisible at kitchen_9
+	## 	(chef) skins, s            - a character 'skins' with an alias 's' is the chef for this scene
+	## 	(customer) rhonk           - a character 'rhonk' is a customer for this scene
+	## 	(observer) bones           - a character 'bones' is the observer for this scene
+	## 	skins, s                   - a character 'skins' with an alias 's'
+	## 	skins                      - a character 'skins'
+	func _parse_creature_id(line: String) -> void:
 		var line_parts := line.split(",")
-		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
+		var creature_id := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
 		var character_prefix: String
 		
 		for possible_prefix in ["(chef)", "(customer)", "(observer)"]:
-			if character_name.begins_with(possible_prefix):
-				character_name = StringUtils.substring_after(character_name, possible_prefix).strip_edges()
+			if creature_id.begins_with(possible_prefix):
+				creature_id = StringUtils.substring_after(creature_id, possible_prefix).strip_edges()
 				character_prefix = possible_prefix
 				break
 		
-		# parse character name
-		character_name = StringUtils.hashwrap_constants(character_name)
-		chat_tree.creature_ids.append(character_name)
+		# parse creature id
+		creature_id = StringUtils.hashwrap_constants(creature_id)
+		chat_tree.creature_ids.append(creature_id)
 		
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
 			if chat_tree.chef_id:
-				chat_tree.warn("Too many chefs: %s" % [character_name])
-			chat_tree.chef_id = character_name
+				chat_tree.warn("Too many chefs: %s" % [creature_id])
+			chat_tree.chef_id = creature_id
 		
 		# parse (customer) prefix
 		if character_prefix == "(customer)":
-			chat_tree.customer_ids.append(character_name)
+			chat_tree.customer_ids.append(creature_id)
 		
 		# parse (observer) prefix
 		if character_prefix == "(observer)":
 			if chat_tree.observer_id:
-				chat_tree.warn("Too many observers: %s" % [character_name])
-			chat_tree.observer_id = character_name
+				chat_tree.warn("Too many observers: %s" % [creature_id])
+			chat_tree.observer_id = creature_id
 		
 		# parse spawn location
 		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
-		if character_name and character_location:
-			chat_tree.spawn_locations[character_name] = character_location
+		if creature_id and character_location:
+			chat_tree.spawn_locations[creature_id] = character_location
 		
 		# parse alias
 		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
-		if character_name and character_alias:
-			_character_aliases[character_alias] = character_name
+		if creature_id and character_alias:
+			_character_aliases[character_alias] = creature_id
 
 # -----------------------------------------------------------------------------
 
@@ -214,7 +214,7 @@ class ChatState extends AbstractState:
 		who = _unalias(who)
 		if _character_aliases:
 			if not who in _character_aliases and not who in _character_aliases.values():
-				chat_tree.warn("Unrecognized character name: %s" % [who])
+				chat_tree.warn("Unrecognized creature id: %s" % [who])
 		_event.who = who
 		
 		_event.text = StringUtils.substring_after(line, ": ")
