@@ -80,13 +80,13 @@ fi
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \
-  | grep -v "career-data.gd.*var chat_tree = ChatLibrary.chat" \
-  | grep -v "dna-loader.gd.*var property_value =" \
-  | grep -v "dna-loader.gd.*var shader_value =" \
-  | grep -v "population.gd.*var creature_def =" \
-  | grep -v "squish-fx.gd.*var _piece_manager =" \
-  | grep -v "tracery.gd.*var selected_rule = match_name" \
-  | grep -v "utils.gd.*var tmp = arr\[i\]" \
+  | grep -v "career-data\\.gd.*var chat_tree = ChatLibrary.chat" \
+  | grep -v "dna-loader\\.gd.*var property_value =" \
+  | grep -v "dna-loader\\.gd.*var shader_value =" \
+  | grep -v "population\\.gd.*var creature_def =" \
+  | grep -v "squish-fx\\.gd.*var _piece_manager =" \
+  | grep -v "tracery\\.gd.*var selected_rule = match_name" \
+  | grep -v "utils\\.gd.*var tmp = arr\[i\]" \
   )
 if [ -n "$RESULT" ]
 then
