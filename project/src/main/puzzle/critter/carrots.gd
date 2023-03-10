@@ -185,7 +185,7 @@ func _refresh_carrot_move_sound() -> void:
 	elif not active_carrots and _move_sfx_state in [MoveSfxState.PLAYING, MoveSfxState.STARTING]:
 		_move_sfx_state = MoveSfxState.STOPPING
 		_tween.remove(_carrot_move_sound, "volume_db")
-		_tween.interpolate_property(_carrot_move_sound, "volume_db", _carrot_move_sound.volume_db, MIN_VOLUME,
+		_tween.interpolate_property(_carrot_move_sound, "volume_db", null, MIN_VOLUME,
 				0.4, Tween.TRANS_SINE, Tween.EASE_IN)
 		_tween.start()
 

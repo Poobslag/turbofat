@@ -108,7 +108,7 @@ func fall() -> void:
 	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
 	
 	_tween.remove_all()
-	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
+	_tween.interpolate_property(self, "modulate", null, Utils.to_transparent(modulate), \
 			FALL_DURATION * rand_range(0.8, 1.2), Tween.TRANS_CIRC, Tween.EASE_IN)
 	_tween.start()
 
@@ -122,7 +122,7 @@ func fade() -> void:
 	
 	# No Tween.start() call; Tween is started once timer finishes
 	_tween.remove_all()
-	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
+	_tween.interpolate_property(self, "modulate", null, Utils.to_transparent(modulate), \
 			FADE_DURATION * rand_range(0.8, 1.2), Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 

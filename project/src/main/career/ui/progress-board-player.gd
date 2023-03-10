@@ -73,7 +73,7 @@ func play(new_spots_travelled: int, duration: float) -> void:
 	
 	# launch the movement tween, causing the player sprite to move along the path
 	_tween.remove_all()
-	_tween.interpolate_property(self, "visual_spots_travelled", visual_spots_travelled, new_spots_travelled,
+	_tween.interpolate_property(self, "visual_spots_travelled", null, new_spots_travelled,
 			duration)
 	_tween.start()
 	

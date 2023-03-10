@@ -115,14 +115,14 @@ func _blink(bright: bool = false) -> void:
 	if bright:
 		_bright_tween_active = true
 		_blink_panel.modulate = Color.white
-		_tween.interpolate_property(_blink_panel, "rect_scale", _blink_panel.rect_scale, Vector2(2.0, 2.0), 1.2)
-		_tween.interpolate_property(_blink_panel, "modulate", _blink_panel.modulate, Color(0.111, 0.888, 0.111, 0.0),
+		_tween.interpolate_property(_blink_panel, "rect_scale", null, Vector2(2.0, 2.0), 1.2)
+		_tween.interpolate_property(_blink_panel, "modulate", null, Color(0.111, 0.888, 0.111, 0.0),
 				1.2, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 		_task_complete_sound.play()
 	else:
 		_blink_panel.modulate = Color(0.111, 0.888, 0.111, 0.5)
-		_tween.interpolate_property(_blink_panel, "rect_scale", _blink_panel.rect_scale, Vector2(1.5, 1.5), 0.6)
-		_tween.interpolate_property(_blink_panel, "modulate:a", _blink_panel.modulate.a, 0.0,
+		_tween.interpolate_property(_blink_panel, "rect_scale", null, Vector2(1.5, 1.5), 0.6)
+		_tween.interpolate_property(_blink_panel, "modulate:a", null, 0.0,
 				0.6, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 	_tween.start()
 

@@ -218,9 +218,9 @@ func _swoop_bubble(bubble: Control, onscreen: bool) -> void:
 		target_pos = _customer_onscreen_rect_position if onscreen else _customer_offscreen_rect_position
 	var target_opacity := Color.white if onscreen else Color.transparent
 	
-	_swoop_tween.interpolate_property(bubble, "modulate", bubble.modulate, target_opacity,
+	_swoop_tween.interpolate_property(bubble, "modulate", null, target_opacity,
 			SWOOP_DURATION)
-	_swoop_tween.interpolate_property(bubble, "rect_position", bubble.rect_position, target_pos,
+	_swoop_tween.interpolate_property(bubble, "rect_position", null, target_pos,
 			SWOOP_DURATION, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	_swoop_tween.start()
 

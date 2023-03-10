@@ -82,7 +82,7 @@ func _launch_star_color_tween(var initial_launch := false) -> void:
 	var duration_min := STAR_COLOR_CHANGE_DURATION * (0.0 if initial_launch else 0.8)
 	var duration_max := STAR_COLOR_CHANGE_DURATION * 1.2
 	_star_color_tween.interpolate_property(_star, "modulate", \
-			_star.modulate, _star_colors[new_star_color_index], rand_range(duration_min, duration_max),
+			null, _star_colors[new_star_color_index], rand_range(duration_min, duration_max),
 			Tween.TRANS_SINE)
 	_star_color_tween.start()
 	_star_color_index = new_star_color_index

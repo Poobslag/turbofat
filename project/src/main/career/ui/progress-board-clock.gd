@@ -67,9 +67,9 @@ func play(new_hours_passed: int, duration: float) -> void:
 	
 	_tween.interpolate_property(_visuals, "minutes", old_minute_hand_position, new_minute_hand_position,
 			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-	_tween.interpolate_property(_visuals, "hours", _visuals.hours, _hour_hand_position(new_hours_passed),
+	_tween.interpolate_property(_visuals, "hours", null, _hour_hand_position(new_hours_passed),
 			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
-	_tween.interpolate_property(_visuals, "filled_percent", _visuals.filled_percent, _filled_percent(new_hours_passed),
+	_tween.interpolate_property(_visuals, "filled_percent", null, _filled_percent(new_hours_passed),
 			duration, Tween.TRANS_SINE, Tween.EASE_OUT)
 	
 	_clock_advance_sound.play()

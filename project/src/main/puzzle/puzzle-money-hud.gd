@@ -24,16 +24,14 @@ func _ready() -> void:
 func _show_money(rank_result: RankResult) -> void:
 	_money_label.set_shown_money(PlayerData.money - rank_result.score)
 	_money_label_tween.remove_all()
-	_money_label_tween.interpolate_property(_money_label, "rect_position:y",
-			_money_label.rect_position.y, 0, TWEEN_DURATION)
+	_money_label_tween.interpolate_property(_money_label, "rect_position:y", null, 0, TWEEN_DURATION)
 	_money_label_tween.start()
 
 
 ## Hides the money label.
 func _hide_money() -> void:
 	_money_label_tween.remove_all()
-	_money_label_tween.interpolate_property(_money_label, "rect_position:y",
-			_money_label.rect_position.y, -32.0, TWEEN_DURATION)
+	_money_label_tween.interpolate_property(_money_label, "rect_position:y", null, -32.0, TWEEN_DURATION)
 	_money_label_tween.start()
 
 

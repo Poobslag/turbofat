@@ -49,7 +49,7 @@ func _update_tween_and_animation() -> void:
 	
 	_animation_player.advance(randf() * 10)
 	_tween.remove_all()
-	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate),
+	_tween.interpolate_property(self, "modulate", null, Utils.to_transparent(modulate),
 			LIFETIME, Tween.TRANS_QUAD, Tween.EASE_IN)
 	_tween.start()
 
