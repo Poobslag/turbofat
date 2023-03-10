@@ -150,7 +150,7 @@ func find_customer_index_with_id(customer_creature_id: String) -> int:
 	var customers := get_customers()
 	
 	for i in range(customers.size()):
-		if customers[i].customer_def.creature_id == customer_creature_id:
+		if customers[i].creature_def.creature_id == customer_creature_id:
 			customer_index = i
 			break
 	
