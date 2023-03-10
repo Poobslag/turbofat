@@ -98,11 +98,11 @@ func show() -> void:
 	_visuals.scale = HIDE_SCALE
 	
 	_show_tween.remove_all()
-	_show_tween.interpolate_property(_visuals, "modulate", _visuals.modulate, Color.white,
+	_show_tween.interpolate_property(_visuals, "modulate", null, Color.white,
 			SHOW_DURATION)
-	_show_tween.interpolate_property(self, "_mix_color", _mix_color, Color.transparent,
+	_show_tween.interpolate_property(self, "_mix_color", null, Color.transparent,
 			SHOW_DURATION * 3.0, Tween.TRANS_QUAD, Tween.EASE_IN)
-	_show_tween.interpolate_property(_visuals, "scale", _visuals.scale, Vector2.ONE,
+	_show_tween.interpolate_property(_visuals, "scale", null, Vector2.ONE,
 			SHOW_DURATION)
 	_show_tween.start()
 
@@ -116,11 +116,9 @@ func hide() -> void:
 	emit_signal("started_hiding")
 	
 	_show_tween.remove(_visuals, "modulate")
-	_show_tween.interpolate_property(_visuals, "modulate", _visuals.modulate, Color.transparent,
-			HIDE_DURATION)
+	_show_tween.interpolate_property(_visuals, "modulate", null, Color.transparent, HIDE_DURATION)
 	_show_tween.remove(_visuals, "scale")
-	_show_tween.interpolate_property(_visuals, "scale", _visuals.scale, HIDE_SCALE,
-			HIDE_DURATION)
+	_show_tween.interpolate_property(_visuals, "scale", null, HIDE_SCALE, HIDE_DURATION)
 	_show_tween.start()
 
 
@@ -132,8 +130,7 @@ func hide() -> void:
 ## 	'duration': The duration in seconds to travel toward the destination.
 func launch(destination: Vector2, duration: float) -> void:
 	_move_tween.remove_all()
-	_move_tween.interpolate_property(self, "position", position, destination,
-			duration)
+	_move_tween.interpolate_property(self, "position", null, destination, duration)
 	_move_tween.start()
 
 

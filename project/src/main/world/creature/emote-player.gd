@@ -348,17 +348,14 @@ func unemote(anim_name: String = "") -> void:
 		play("ambient-sweat")
 	
 	_reset_tween.remove_all()
-	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
-			_head_bobber.rotation_degrees, 0, UNEMOTE_DURATION)
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees", null, 0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
-		_reset_tween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
-				UNEMOTE_DURATION)
-		_reset_tween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
+		_reset_tween.interpolate_property(emote_sprite, "rotation_degrees", null, 0, UNEMOTE_DURATION)
+		_reset_tween.interpolate_property(emote_sprite, "modulate", null,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
 		# some animations like the 'love' animation change the emote eye scale
-		_reset_tween.interpolate_property(eye_sprite, "scale", eye_sprite.scale, Vector2(2.0, 2.0),
-				UNEMOTE_DURATION)
+		_reset_tween.interpolate_property(eye_sprite, "scale", null, Vector2(2.0, 2.0), UNEMOTE_DURATION)
 	
 	_head_bobber.reset_head_bob()
 	_reset_tween.start()
@@ -368,7 +365,7 @@ func unemote(anim_name: String = "") -> void:
 ## Adjusts the volume for all mood-related sound effects for this creature.
 func _tween_sfx_volume(new_value: float) -> void:
 	_volume_db_tween.remove_all()
-	_volume_db_tween.interpolate_property(_emote_sfx, "volume_db", _emote_sfx.volume_db, new_value, FADE_SFX_DURATION)
+	_volume_db_tween.interpolate_property(_emote_sfx, "volume_db", null, new_value, FADE_SFX_DURATION)
 	_volume_db_tween.start()
 
 
@@ -528,16 +525,14 @@ func _transition_rage1_rage0() -> void:
 func _transition_sigh1_sigh0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
 	_reset_tween.remove_all()
-	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
-			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees", null, 0.0, UNEMOTE_DURATION)
 	_reset_tween.start()
 
 
 ## Transitions from 'sly0' to 'sly1', resetting the head's rotation
 func _transition_sly0_sly1() -> void:
 	_reset_tween.remove_all()
-	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
-			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees", null, 0.0, UNEMOTE_DURATION)
 	_reset_tween.start()
 
 
@@ -550,8 +545,7 @@ func _transition_sly1_sly0() -> void:
 func _transition_smile1_any() -> void:
 	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
-	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
-			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees", null, 0.0, UNEMOTE_DURATION)
 	_reset_tween.start()
 
 
@@ -567,7 +561,7 @@ func _transition_sweat1_sweat0() -> void:
 func _tween_nodes_to_transparent(paths: Array) -> void:
 	for path in paths:
 		var node: Node2D = _creature_visuals.get_node(path)
-		_reset_tween.interpolate_property(node, "modulate", node.modulate, Color.transparent, UNEMOTE_DURATION)
+		_reset_tween.interpolate_property(node, "modulate", null, Color.transparent, UNEMOTE_DURATION)
 
 
 ## This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a

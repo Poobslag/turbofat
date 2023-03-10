@@ -44,11 +44,11 @@ func _interpolate_pop(popping_in: bool) -> void:
 	var chat_frame_modulate := Color.white if popping_in else Color.transparent
 	var chat_frame_scale := Vector2.ONE if popping_in else POP_OUT_SCALE
 	
-	interpolate_property(_chat_frame, "modulate", _chat_frame.modulate,
+	interpolate_property(_chat_frame, "modulate", null,
 			chat_frame_modulate, 0.2, Tween.TRANS_LINEAR)
-	interpolate_property(_chat_frame, "rect_scale:x", _chat_frame.rect_scale.x,
+	interpolate_property(_chat_frame, "rect_scale:x", null,
 			chat_frame_scale.x, 0.8, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-	interpolate_property(_chat_frame, "rect_scale:y", _chat_frame.rect_scale.y,
+	interpolate_property(_chat_frame, "rect_scale:y", null,
 			chat_frame_scale.y, 0.4, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	start()
 

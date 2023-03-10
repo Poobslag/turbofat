@@ -18,5 +18,5 @@ func unsquish() -> void:
 ## Squishes/unsquishes the chat window when prompting the player.
 func _interpolate_squish(squished: bool) -> void:
 	remove(_chat_frame, "rect_position:x")
-	interpolate_property(_chat_frame, "rect_position:x", _chat_frame.rect_position.x,
+	interpolate_property(_chat_frame, "rect_position:x", null,
 			-100 if squished else 0, 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)

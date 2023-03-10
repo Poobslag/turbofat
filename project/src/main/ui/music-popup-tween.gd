@@ -58,7 +58,7 @@ func _pop_in() -> void:
 	if tween_duration:
 		_popup_state = PopupState.POPPING_IN
 		remove_all()
-		interpolate_property(_music_panel, "rect_position:y", _music_panel.rect_position.y, POP_IN_Y, tween_duration)
+		interpolate_property(_music_panel, "rect_position:y", null, POP_IN_Y, tween_duration)
 		start()
 	else:
 		$PopOutTimer.start(POPUP_DURATION)
@@ -74,7 +74,7 @@ func _pop_out() -> void:
 	if tween_duration:
 		_popup_state = PopupState.POPPING_OUT
 		remove_all()
-		interpolate_property(_music_panel, "rect_position:y", _music_panel.rect_position.y, POP_OUT_Y, tween_duration)
+		interpolate_property(_music_panel, "rect_position:y", null, POP_OUT_Y, tween_duration)
 		start()
 	else:
 		_popup_state = PopupState.POPPED_OUT

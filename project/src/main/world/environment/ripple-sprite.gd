@@ -34,7 +34,7 @@ func _refresh_ripple_state() -> void:
 	# fade the sprite in or out
 	var new_modulate := Color.transparent if ripple_state == Ripples.RippleState.OFF else Color.white
 	if modulate != new_modulate:
-		_fade_tween.interpolate_property(self, "modulate", modulate, new_modulate, FADE_DURATION)
+		_fade_tween.interpolate_property(self, "modulate", null, new_modulate, FADE_DURATION)
 		_fade_tween.start()
 	
 	# determine the animation to play. we change the animation if the sprite is flipped

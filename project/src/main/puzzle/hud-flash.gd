@@ -6,5 +6,5 @@ extends ColorRect
 func flash() -> void:
 	modulate.a = 0.25
 	$Tween.remove_all()
-	$Tween.interpolate_property(self, "modulate:a", modulate.a, 0.0, 1.0)
+	$Tween.interpolate_property(self, "modulate:a", null, 0.0, 1.0)
 	$Tween.start()

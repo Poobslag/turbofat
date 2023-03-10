@@ -23,7 +23,7 @@ func fade_out(player: AudioStreamPlayer, min_volume: float, duration: float = FA
 	fading_state = FADING_OUT
 	stop(player, "volume_db")
 	remove(player, "volume_db")
-	interpolate_property(player, "volume_db", player.volume_db, min_volume, duration)
+	interpolate_property(player, "volume_db", null, min_volume, duration)
 	start()
 
 
@@ -32,7 +32,7 @@ func fade_in(player: AudioStreamPlayer, max_volume: float, duration: float = FAD
 	fading_state = FADING_IN
 	stop(player, "volume_db")
 	remove(player, "volume_db")
-	interpolate_property(player, "volume_db", player.volume_db, max_volume, duration)
+	interpolate_property(player, "volume_db", null, max_volume, duration)
 	start()
 
 

@@ -441,7 +441,7 @@ func get_eating_delay() -> float:
 ## Starts a tween which changes this creature's opacity.
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	_fade_tween.remove_all()
-	_fade_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
+	_fade_tween.interpolate_property(self, "modulate", null, Utils.to_transparent(modulate, new_alpha), duration)
 	_fade_tween.start()
 
 
