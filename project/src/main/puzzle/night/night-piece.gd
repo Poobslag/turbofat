@@ -9,8 +9,8 @@ export (NodePath) var piece_manager_path: NodePath setget set_piece_manager_path
 ## daytime piece manager to synchronize with
 var _piece_manager: PieceManager
 
-onready var _tile_map: OnionTileMap = $TileMap
-onready var _squish_fx: OnionSquishFx = $SquishFx
+onready var _tile_map: NightPuzzleTileMap = $TileMap
+onready var _squish_fx: NightSquishFx = $SquishFx
 
 func _ready() -> void:
 	_refresh_piece_manager_path()

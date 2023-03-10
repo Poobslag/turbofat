@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/main/puzzle/blocks/stars.png" type="Texture" id=1]
-[ext_resource path="res://src/main/puzzle/onion-stars-light-material.tres" type="Material" id=2]
+[ext_resource path="res://src/main/puzzle/night/night-stars-light-material.tres" type="Material" id=2]
 
 [sub_resource type="CanvasItemMaterial" id=17]
 particles_animation = true

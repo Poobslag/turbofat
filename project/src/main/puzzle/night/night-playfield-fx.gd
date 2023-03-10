@@ -1,4 +1,4 @@
-class_name OnionPlayfieldFx
+class_name NightPlayfieldFx
 extends Node2D
 ## Generates visual lighting effects for the playfield during night mode.
 ##

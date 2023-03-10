@@ -1,4 +1,4 @@
-class_name OnionPickups
+class_name NightPickups
 extends Control
 ## Draws pickups on the playfield for certain levels during night mode.
 ##
@@ -10,7 +10,7 @@ export (PackedScene) var PickupScene: PackedScene
 var source_pickups: Pickups
 
 ## key: (Vector2) playfield cell positions
-## value: (OnionPickup) Pickup node contained within that cell
+## value: (NightPickup) Pickup node contained within that cell
 var _pickups_by_cell := {}
 
 onready var _visuals := $Visuals
@@ -38,7 +38,7 @@ func _remove_pickup(cell: Vector2) -> void:
 
 ## Adds a pickup to a playfield cell.
 func _add_pickup(cell: Vector2) -> void:
-	var pickup: OnionPickup = PickupScene.instance()
+	var pickup: NightPickup = PickupScene.instance()
 	pickup.food_type = source_pickups.get_pickup(cell).food_type
 	pickup.food_shown = source_pickups.get_pickup(cell).food_shown
 	pickup.position = source_pickups.get_pickup(cell).position

@@ -10,10 +10,10 @@ export (NodePath) var source_playfield_path: NodePath setget set_source_playfiel
 ## playfield to synchronize with
 var _source_playfield: Playfield
 
-onready var _pickups: OnionPickups = $TileMapClip/Pickups
-onready var _playfield_fx: OnionPlayfieldFx = $TileMapClip/PlayfieldFx
-onready var _star_poofs: OnionStarPoofs = $TileMapClip/StarPoofs
-onready var _tile_map: OnionPlayfieldTileMap = $TileMapClip/TileMap
+onready var _pickups: NightPickups = $TileMapClip/Pickups
+onready var _playfield_fx: NightPlayfieldFx = $TileMapClip/PlayfieldFx
+onready var _star_poofs: NightStarPoofs = $TileMapClip/StarPoofs
+onready var _tile_map: NightPlayfieldTileMap = $TileMapClip/TileMap
 
 func _ready() -> void:
 	_refresh_playfield_path()

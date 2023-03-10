@@ -1,4 +1,4 @@
-class_name OnionPieceDisplay
+class_name NightPieceDisplay
 extends Node2D
 ## Contains logic for a piece display shown during night mode.
 ##

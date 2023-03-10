@@ -6,9 +6,9 @@ extends Control
 ## The path to the daytime hold piece displays to synchronize with.
 export (NodePath) var hold_piece_displays_path: NodePath
 
-export (PackedScene) var OnionPieceDisplayScene
+export (PackedScene) var NightPieceDisplayScene
 
-var _display: OnionPieceDisplay
+var _display: NightPieceDisplay
 
 ## daytime hold piece displays to synchronize with
 onready var _hold_piece_displays: HoldPieceDisplays = get_node(hold_piece_displays_path)
@@ -19,7 +19,7 @@ onready var holder := $Holder
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
-	_display = OnionPieceDisplayScene.instance()
+	_display = NightPieceDisplayScene.instance()
 	_display.initialize(_hold_piece_displays.display)
 	_display.scale = _display.source_display.scale
 	_display.position = _display.source_display.position

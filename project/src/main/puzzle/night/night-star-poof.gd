@@ -1,4 +1,4 @@
-class_name StarPoof
+class_name NightStarPoof
 extends Node2D
 ## A star poof spawned when the player clears a row containing vegetables during night mode.
 
