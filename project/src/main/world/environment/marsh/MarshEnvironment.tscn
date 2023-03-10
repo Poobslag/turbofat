@@ -101,18 +101,6 @@ corner_tile_index = 6
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 23 )]
-position = Vector2( 203.557, 1169.48 )
-creature_id = "#player#"
-dna = {
-}
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 23 )]
-position = Vector2( 471.085, 1219.45 )
-creature_id = "#sensei#"
-dna = {
-}
-
 [node name="Exit0" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 31.4402, 1073.84 )
 player_spawn_id = "restaurant_player"
