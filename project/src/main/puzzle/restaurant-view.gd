@@ -176,14 +176,9 @@ func summon_customer(customer_index: int = -1) -> void:
 
 
 ## Scroll to a new customer and replace the old customer.
-##
-## Parameters:
-## 	'new_customer_index': (Optional) The index of the customer to scroll to. Defaults to a random creature index
-## 		different from the current creature index.
-func scroll_to_new_customer(new_customer_index: int = -1) -> void:
+func scroll_to_new_customer() -> void:
 	var old_customer_index: int = get_current_customer_index()
-	if new_customer_index == -1:
-		new_customer_index = next_customer_index()
+	var new_customer_index := next_customer_index()
 	set_current_customer_index(new_customer_index)
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	
