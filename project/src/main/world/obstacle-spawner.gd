@@ -1,5 +1,5 @@
 class_name ObstacleSpawner
-extends Node2D
+extends Sprite
 ## Conditionally spawns an obstacle on the overworld.
 ##
 ## The decision to spawn the obstacle is controlled by the 'spawn_if' property.

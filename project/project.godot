@@ -739,7 +739,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/night/night-star-poofs.gd"
 }, {
-"base": "Node2D",
+"base": "Sprite",
 "class": "ObstacleSpawner",
 "language": "GDScript",
 "path": "res://src/main/world/obstacle-spawner.gd"
