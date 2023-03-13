@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/demo/toolkit/fix-levels-button.gd" type="Script" id=1]
 [ext_resource path="res://src/demo/toolkit/extract-localizables-button.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=4]
 [ext_resource path="res://src/demo/toolkit/fix-chats-button.gd" type="Script" id=5]
 [ext_resource path="res://src/demo/toolkit/fix-creatures-button.gd" type="Script" id=6]
+[ext_resource path="res://src/demo/toolkit/release_toolkit_output.gd" type="Script" id=7]
 
 [node name="ReleaseToolkit" type="Control"]
 anchor_right = 1.0
@@ -80,6 +81,7 @@ rect_min_size = Vector2( 0, 100 )
 theme = ExtResource( 4 )
 align = 1
 autowrap = true
+script = ExtResource( 7 )
 
 [connection signal="pressed" from="VBoxContainer/ExtractLocalizables" to="VBoxContainer/ExtractLocalizables" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/FixChats" to="VBoxContainer/FixChats" method="_on_pressed"]

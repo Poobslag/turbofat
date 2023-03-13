@@ -1054,6 +1054,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/region-select-button.gd"
 }, {
+"base": "Label",
+"class": "ReleaseToolkitOutput",
+"language": "GDScript",
+"path": "res://src/demo/toolkit/release_toolkit_output.gd"
+}, {
 "base": "Node",
 "class": "RestaurantPuzzleScene",
 "language": "GDScript",
@@ -1504,6 +1509,7 @@ _global_script_class_icons={
 "RectFitLabel": "",
 "RegionCompletion": "",
 "RegionSelectButton": "",
+"ReleaseToolkitOutput": "",
 "RestaurantPuzzleScene": "",
 "RestaurantView": "",
 "ResultsLabel": "",
