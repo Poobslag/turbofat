@@ -69,7 +69,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/career/career-level.gd"
 }, {
-"base": "CanvasLayer",
+"base": "Reference",
 "class": "CareerLevelSelect",
 "language": "GDScript",
 "path": "res://src/main/career/ui/career-map-level-select.gd"
@@ -104,22 +104,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/critter/carrots.gd"
 }, {
-"base": "Control",
+"base": "Reference",
 "class": "ChalkboardMapRow",
 "language": "GDScript",
 "path": "res://src/main/career/ui/chalkboard-map-row.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "ChatAdvancer",
 "language": "GDScript",
 "path": "res://src/main/chat/chat-advancer.gd"
 }, {
-"base": "Button",
+"base": "Reference",
 "class": "ChatChoiceButton",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/chat-choice-button.gd"
 }, {
-"base": "GridContainer",
+"base": "Reference",
 "class": "ChatChoices",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/chat-choices.gd"
@@ -129,7 +129,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/chat/chat-event.gd"
 }, {
-"base": "Control",
+"base": "Reference",
 "class": "ChatFrame",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/chat-frame.gd"
@@ -144,12 +144,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/chat-key-pair.gd"
 }, {
-"base": "RectFitLabel",
+"base": "Reference",
 "class": "ChatLineLabel",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/chat-line-label.gd"
 }, {
-"base": "Panel",
+"base": "Reference",
 "class": "ChatLinePanel",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/chat-line-panel.gd"
@@ -344,7 +344,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
 }, {
-"base": "OverworldWorld",
+"base": "Reference",
 "class": "FreeRoamWorld",
 "language": "GDScript",
 "path": "res://src/demo/world/free-roam-world.gd"
@@ -444,17 +444,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/settings/keybind-settings.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "LabelTyper",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/label-typer.gd"
 }, {
-"base": "Control",
+"base": "Reference",
 "class": "Landmark",
 "language": "GDScript",
 "path": "res://src/main/career/ui/landmark.gd"
 }, {
-"base": "Control",
+"base": "Reference",
 "class": "LandmarkLines",
 "language": "GDScript",
 "path": "res://src/main/career/ui/landmark-lines.gd"
@@ -659,12 +659,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/nametag-panel.gd"
 }, {
-"base": "Control",
+"base": "Reference",
 "class": "NarrationFrame",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/narration-frame.gd"
 }, {
-"base": "Panel",
+"base": "Reference",
 "class": "NarrationLinePanel",
 "language": "GDScript",
 "path": "res://src/main/chat/ui/narration-line-panel.gd"
@@ -679,7 +679,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece.gd"
 }, {
-"base": "PieceDisplay",
+"base": "Node2D",
 "class": "NextPieceDisplay",
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece-display.gd"
@@ -789,7 +789,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/environment/overworld-obstacle.gd"
 }, {
-"base": "CanvasLayer",
+"base": "Reference",
 "class": "OverworldUi",
 "language": "GDScript",
 "path": "res://src/main/world/overworld-ui.gd"
@@ -799,7 +799,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/overworld-world.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "PackedSprite",
 "language": "GDScript",
 "path": "res://src/main/utils/packed-sprite.gd"
@@ -1184,12 +1184,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/star-seeds.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "State",
 "language": "GDScript",
 "path": "res://src/main/utils/state.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/main/utils/state-machine.gd"
@@ -1619,7 +1619,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gui]
 
