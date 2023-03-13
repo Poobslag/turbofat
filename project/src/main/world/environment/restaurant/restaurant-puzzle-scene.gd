@@ -16,6 +16,7 @@ func _ready() -> void:
 	for customer_obj in _world.customers:
 		var customer: Creature = customer_obj
 		customer.connect("food_eaten", self, "_on_Creature_food_eaten")
+		customer.connect("dna_loaded", _door_chime, "_on_CreatureVisuals_dna_loaded")
 
 
 func set_current_customer_index(new_index: int) -> void:
