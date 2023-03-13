@@ -19,26 +19,27 @@ func _spawn_poof(cell_x: int, cell_y: int) -> void:
 
 
 ## Spawns multiple star poofs near vegetable cells in the specified row.
-func _spawn_poofs(y: int, veg_columns: Array, poof_count: int) -> void:
-	if poof_count <= 0:
-		return
+func _spawn_poofs(y: int) -> void:
+	## Calculate the vegetable cells to spawn star poofs in
+	var poof_columns := _veg_columns(y)
+	poof_columns.shuffle()
+	var poof_count := 0 if poof_columns.size() <= 3 else poof_columns.size() - 2
+	poof_columns = poof_columns.slice(0, poof_count - 1)
 	
-	veg_columns.shuffle()
-	
-	for i in range(poof_count):
-		var x: int = veg_columns[i % veg_columns.size()]
+	## Spawn star poofs
+	for x in poof_columns:
 		_spawn_poof(x, y)
 
 
-func _poof_count(veg_cell_count: int) -> int:
-	return int(max(veg_cell_count - 2, 0))
-
-
-## If the specified row includes enough vegetable cells, we spawn star poofs nearby.
-func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+## Returns a list of columns containing pieces or vegetable blocks in the specified row.
+func _veg_columns(y: int) -> Array:
 	var veg_columns := []
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if source_tile_map.get_cell(x, y) in [PuzzleTileMap.TILE_VEG, PuzzleTileMap.TILE_PIECE]:
 			veg_columns.append(x)
-	var poof_count := _poof_count(veg_columns.size())
-	_spawn_poofs(y, veg_columns, poof_count)
+	return veg_columns
+
+
+## If the specified row includes enough vegetable cells, we spawn star poofs nearby.
+func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	_spawn_poofs(y)
