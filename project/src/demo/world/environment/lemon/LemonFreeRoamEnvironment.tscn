@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/world/environment/lemon/lemon-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/lemon/lemon-terrain-library.tres" type="TileSet" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/main/world/environment/lemon/LemonCookieLarge.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/world/environment/lemon/LemonLemon.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/main/world/environment/lemon/LemonCookieSmall.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=29]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=31]
 
 [sub_resource type="Curve2D" id=4]
@@ -76,14 +77,19 @@ pebble_tile_index = 1
 
 [node name="Exit0" parent="Ground/Exits" instance=ExtResource( 31 )]
 position = Vector2( 244.964, 1525.82 )
+scale = Vector2( -0.539476, 0.539476 )
+texture = ExtResource( 29 )
 exit_direction = 7
 
 [node name="Exit1" parent="Ground/Exits" instance=ExtResource( 31 )]
 position = Vector2( 5061.51, 3607.66 )
+scale = Vector2( 0.539476, -0.539476 )
+texture = ExtResource( 29 )
 exit_direction = 3
 
 [node name="Exit2" parent="Ground/Exits" instance=ExtResource( 31 )]
 position = Vector2( 3563.94, 1266.17 )
+texture = ExtResource( 29 )
 exit_direction = 1
 
 [node name="Exit3" parent="Ground/Exits" instance=ExtResource( 31 )]
@@ -452,8 +458,6 @@ rotation = 3.14159
 position = Vector2( 3260.33, 1646.82 )
 rotation = 3.14159
 frame = 3
-
-[node name="Spawns" type="Node2D" parent="."]
 
 [node name="PlayerPath" type="Path2D" parent="."]
 position = Vector2( 475.371, 923.074 )
