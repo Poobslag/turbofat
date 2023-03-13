@@ -15,3 +15,4 @@ pybabel extract -F project/assets/main/locale/babelrc \
 	-o project/assets/main/locale/messages.pot .
 
 msgmerge --update --backup=none -N project/assets/main/locale/es.po project/assets/main/locale/messages.pot
+msgmerge --update --backup=none -N project/assets/main/locale/en.po project/assets/main/locale/messages.pot
