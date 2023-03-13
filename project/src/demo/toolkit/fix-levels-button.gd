@@ -26,9 +26,7 @@ func _upgrade_levels() -> void:
 		_upgrade_settings(level_path)
 	
 	if _converted:
-		if _output_label.text:
-			_output_label.text += "\n"
-		_output_label.text += "Upgraded %d levels to settings version %s." % [_converted.size(), Levels.LEVEL_DATA_VERSION]
+		_output_label.add_line("Upgraded %d levels to settings version %s." % [_converted.size(), Levels.LEVEL_DATA_VERSION])
 
 
 ## Upgrades a level to the newest version.
@@ -92,9 +90,7 @@ func _report_unused_career_levels() -> void:
 	level_keys_not_in_career_regions.sort()
 	
 	if level_keys_not_in_career_regions:
-		if _output_label.text:
-			_output_label.text += "\n"
-		_output_label.text += "Level keys not in career regions: %s" % [level_keys_not_in_career_regions]
+		_output_label.add_line("Level keys not in career regions: %s" % [level_keys_not_in_career_regions])
 
 
 ## Reports any unusual show_rank and hide_rank settings
@@ -129,9 +125,7 @@ func _report_bad_show_rank() -> void:
 	var bad_level_ids := bad_level_id_set.keys()
 	bad_level_ids.sort()
 	if bad_level_ids:
-		if _output_label.text:
-			_output_label.text += "\n"
-		_output_label.text += "Level keys with bad show_rank settings: %s" % [bad_level_ids]
+		_output_label.add_line("Level keys with bad show_rank settings: %s" % [bad_level_ids])
 
 
 ## Alphabetizes the levels in 'career-regions.json'
@@ -152,10 +146,7 @@ func _alphabetize_career_levels() -> void:
 	if sorted_region_ids:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(CareerLevelLibrary.DEFAULT_REGIONS_PATH, new_text)
-		if _output_label.text:
-			_output_label.text += "\n"
-		_output_label.text += "Sorted career level ids: %s" \
-			% [PoolStringArray(sorted_region_ids.keys()).join(", ")]
+		_output_label.add_line("Sorted career level ids: %s" % [PoolStringArray(sorted_region_ids.keys()).join(", ")])
 
 
 func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:

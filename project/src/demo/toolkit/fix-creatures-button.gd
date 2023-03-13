@@ -24,12 +24,9 @@ func _upgrade_creatures() -> void:
 	for creature_path in creature_paths:
 		_upgrade_creature(creature_path)
 	
-	if _output_label.text:
-		_output_label.text += "\n"
-	
 	if _converted:
-		_output_label.text += "Upgraded %d creatures to settings version %s." \
-				% [_converted.size(), Creatures.CREATURE_DATA_VERSION]
+		_output_label.add_line("Upgraded %d creatures to settings version %s." \
+				% [_converted.size(), Creatures.CREATURE_DATA_VERSION])
 
 
 ## Upgrades a creature to the newest version.
@@ -95,10 +92,8 @@ func _report_story_creatures() -> void:
 	var move_to_nonstory_ids := Utils.subtract(story_ids, career_creature_ids)
 	move_to_nonstory_ids.sort()
 	if move_to_nonstory_ids:
-		if _output_label.text:
-			_output_label.text += "\n"
-		_output_label.text += "%s creatures should be moved from /story to /nonstory: %s" \
-				% [move_to_nonstory_ids.size(), move_to_nonstory_ids]
+		_output_label.add_line("%s creatures should be moved from /story to /nonstory: %s" \
+				% [move_to_nonstory_ids.size(), move_to_nonstory_ids])
 	
 	# get a list of creature ids from the /nonstory/ directory
 	var nonstory_ids := _creature_ids_from_directory("res://assets/main/creatures/nonstory")
@@ -106,10 +101,8 @@ func _report_story_creatures() -> void:
 	# report any story creatures who are in our list of career creature ids
 	var move_to_story_ids := Utils.intersection(nonstory_ids, career_creature_ids)
 	if move_to_story_ids:
-		if _output_label.text:
-			_output_label.text += "\n"
-		_output_label.text += "%s creatures should be moved from /nonstory to /story: %s" \
-				% [move_to_story_ids.size(), move_to_story_ids]
+		_output_label.add_line("%s creatures should be moved from /nonstory to /story: %s" \
+				% [move_to_story_ids.size(), move_to_story_ids])
 
 
 ## Returns a list of creature ids which appear in career mode's story.
@@ -154,9 +147,7 @@ func _report_population_creatures() -> void:
 			if PlayerData.creature_library.get_creature_def(appearance.id) == null:
 				invalid_creature_ids[appearance.id] = true
 		if invalid_creature_ids:
-			if _output_label.text:
-				_output_label.text += "\n"
-			_output_label.text += "Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()]
+			_output_label.add_line("Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()])
 
 
 func _on_pressed() -> void:
