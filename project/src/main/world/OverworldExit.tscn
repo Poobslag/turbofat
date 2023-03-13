@@ -48,7 +48,6 @@ tracks/0/keys = {
 extents = Vector2( 20, 20 )
 
 [node name="OverworldExit" type="Area2D"]
-z_index = -1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

@@ -25,6 +25,8 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 
+[node name="Exits" type="Node2D" parent="Ground"]
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 

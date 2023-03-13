@@ -71,6 +71,41 @@ pebble_density = 0.015
 ground_no_goop_tile_index = 1
 pebble_tile_index = 1
 
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="Exit0" parent="Ground/Exits" instance=ExtResource( 11 )]
+position = Vector2( 244.964, 1525.82 )
+exit_direction = 7
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit1" parent="Ground/Exits" instance=ExtResource( 11 )]
+position = Vector2( 5061.51, 3607.66 )
+exit_direction = 3
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit2" parent="Ground/Exits" instance=ExtResource( 11 )]
+position = Vector2( 3563.94, 1266.17 )
+exit_direction = 1
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit3" parent="Ground/Exits" instance=ExtResource( 11 )]
+position = Vector2( 485.181, 1437.24 )
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit4" parent="Ground/Exits" instance=ExtResource( 11 )]
+position = Vector2( 1364.91, 1496.94 )
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
+[node name="Exit5" parent="Ground/Exits" instance=ExtResource( 11 )]
+position = Vector2( 4468.65, 2463.38 )
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 8 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
@@ -116,39 +151,6 @@ grass_tile_index = 7
 [node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 17 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
-
-[node name="Exit0" parent="Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 244.964, 1525.82 )
-exit_direction = 7
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
-
-[node name="Exit1" parent="Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 5061.51, 3607.66 )
-exit_direction = 3
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
-
-[node name="Exit2" parent="Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 3563.94, 1266.17 )
-exit_direction = 1
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
-
-[node name="Exit3" parent="Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 485.181, 1437.24 )
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
-
-[node name="Exit4" parent="Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 1364.91, 1496.94 )
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
-
-[node name="Exit5" parent="Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 4468.65, 2463.38 )
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="BrotSpot" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1394.09, 1375.69 )

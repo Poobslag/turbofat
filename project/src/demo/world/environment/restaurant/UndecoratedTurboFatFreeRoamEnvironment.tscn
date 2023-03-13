@@ -66,6 +66,14 @@ kitchen_tile_index = 54907
 script = ExtResource( 7 )
 undecorated_tile_index = 82456
 
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 5 )]
+position = Vector2( 130.547, 315.908 )
+exit_direction = 4
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 33 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
@@ -95,12 +103,6 @@ tile_data = PoolIntArray( -262125, 1, 0, -262124, 13, 0, -262123, 13, 0, -262122
 [node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 3 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
-
-[node name="FreeRoamExit" parent="Obstacles" instance=ExtResource( 5 )]
-position = Vector2( 130.547, 315.908 )
-exit_direction = 4
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Player" parent="Obstacles" instance=ExtResource( 4 )]
 position = Vector2( 154.174, 285.058 )

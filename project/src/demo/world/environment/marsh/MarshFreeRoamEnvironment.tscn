@@ -56,6 +56,23 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( 196627, 0, 327681, 196628, 0, 393218, 196629, 0, 196609, 196633, 0, 327681, 196634, 0, 196608, 262160, 0, 327680, 262161, 0, 458754, 262162, 0, 393217, 262163, 0, 131074, 262165, 0, 262146, 262166, 0, 196608, 262169, 0, 262147, 262170, 0, 458752, 262171, 0, 196608, 327696, 0, 327683, 327697, 0, 131074, 327702, 0, 262146, 327703, 0, 458754, 327704, 0, 196608, 327707, 0, 65536, 393232, 0, 65536, 393239, 0, 327683, 393240, 0, 458753, 393241, 0, 393216, 393242, 0, 393218, 393243, 0, 196610, 458768, 0, 65536, 458775, 0, 65539, 458779, 0, 262146, 458780, 0, 196609, 524304, 0, 65536, 524311, 0, 65539, 524316, 0, 65539, 589838, 0, 262145, 589839, 0, 393218, 589840, 0, 131075, 589847, 0, 262146, 589848, 0, 196608, 589851, 0, 327680, 589852, 0, 196611, 655384, 0, 262146, 655385, 0, 393217, 655386, 0, 393218, 655387, 0, 589824, 655388, 0, 196611, 720923, 0, 262146, 720924, 0, 196611, 786460, 0, 65538, 851996, 0, 65539, 917532, 0, 65537, 983068, 0, 65538, 1048604, 0, 65537, 1114139, 0, 327680, 1114140, 0, 196610, 1179671, 0, 327681, 1179672, 0, 196608, 1179674, 0, 327681, 1179675, 0, 589825, 1179676, 0, 131075, 1245207, 0, 262147, 1245208, 0, 458752, 1245209, 0, 393217, 1245210, 0, 458753, 1245211, 0, 131074 )
 
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="TurboFatEntrance" parent="Ground/Exits" instance=ExtResource( 44 )]
+position = Vector2( 1409.4, 1003.45 )
+
+[node name="NwExit" parent="Ground/Exits" instance=ExtResource( 44 )]
+position = Vector2( 759.881, 359.956 )
+exit_direction = 7
+player_spawn_id = "se_player"
+sensei_spawn_id = "se_sensei"
+
+[node name="SeExit" parent="Ground/Exits" instance=ExtResource( 44 )]
+position = Vector2( 1919.48, 1759.62 )
+exit_direction = 3
+player_spawn_id = "nw_player"
+sensei_spawn_id = "nw_sensei"
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
@@ -215,21 +232,6 @@ position = Vector2( 596.167, 1293.78 )
 
 [node name="MarshHouse" parent="Obstacles" instance=ExtResource( 32 )]
 position = Vector2( 290.833, 661.52 )
-
-[node name="TurboFatEntrance" parent="Obstacles" instance=ExtResource( 44 )]
-position = Vector2( 1409.4, 1003.45 )
-
-[node name="NwExit" parent="Obstacles" instance=ExtResource( 44 )]
-position = Vector2( 759.881, 359.956 )
-exit_direction = 7
-player_spawn_id = "se_player"
-sensei_spawn_id = "se_sensei"
-
-[node name="SeExit" parent="Obstacles" instance=ExtResource( 44 )]
-position = Vector2( 1919.48, 1759.62 )
-exit_direction = 3
-player_spawn_id = "nw_player"
-sensei_spawn_id = "nw_sensei"
 
 [node name="MarshCrystal1" parent="Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 714.246, 614.675 )
