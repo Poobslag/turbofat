@@ -11,8 +11,15 @@ export (bool) var flip_h: bool setget set_flip_h
 ## An editor toggle which randomizes the obstacle's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
+onready var _sprite := $Sprite
+
 func _ready() -> void:
 	_refresh()
+
+
+## Preemptively initializes onready variables to avoid null references.
+func _enter_tree() -> void:
+	_sprite = $Sprite
 
 
 func set_frame(new_frame: int) -> void:
@@ -29,8 +36,8 @@ func _refresh() -> void:
 	if not is_inside_tree():
 		return
 	
-	$Sprite.frame = frame
-	$Sprite.flip_h = flip_h
+	_sprite.frame = frame
+	_sprite.flip_h = flip_h
 
 
 ## Randomizes the obstacle's appearance.
@@ -38,7 +45,7 @@ func set_shuffle(value: bool) -> void:
 	if not value:
 		return
 	
-	set_frame(randi() % ($Sprite.hframes * $Sprite.vframes))
+	set_frame(randi() % (_sprite.hframes * _sprite.vframes))
 	set_flip_h(randf() > 0.5)
 	scale = Vector2.ONE
 	

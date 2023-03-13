@@ -66,11 +66,20 @@ var _player_exiting := false
 ## We embed the get_overworld_ui() call in a conditional to avoid errors in the editor
 onready var _overworld_ui: OverworldUi = null if Engine.editor_hint else Global.get_overworld_ui()
 
+onready var _collision_shape_2d := $CollisionShape2D
+onready var _sprite := $Sprite
+
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
 	connect("body_exited", self, "_on_body_exited")
 	
 	_refresh_exit_direction()
+
+
+## Preemptively initializes onready variables to avoid null references.
+func _enter_tree() -> void:
+	_collision_shape_2d = $CollisionShape2D
+	_sprite = $Sprite
 
 
 func set_exit_direction(new_exit_direction: int) -> void:
@@ -81,15 +90,15 @@ func set_exit_direction(new_exit_direction: int) -> void:
 
 ## Updates the appearance and collision shape based on the new exit direction.
 func _refresh_exit_direction() -> void:
-	$CollisionShape2D.position = VECTOR_BY_EXIT_DIRECTION.get(exit_direction) * 20
+	_collision_shape_2d.position = VECTOR_BY_EXIT_DIRECTION.get(exit_direction) * 20
 	
-	$Sprite.scale.x = abs($Sprite.scale.x) * (-1 if exit_direction in [SOUTHWEST, WEST, NORTHWEST] else 1)
-	$Sprite.scale.y = abs($Sprite.scale.y) * (-1 if exit_direction in [SOUTHWEST, SOUTH, SOUTHEAST] else 1)
+	_sprite.scale.x = abs(_sprite.scale.x) * (-1 if exit_direction in [SOUTHWEST, WEST, NORTHWEST] else 1)
+	_sprite.scale.y = abs(_sprite.scale.y) * (-1 if exit_direction in [SOUTHWEST, SOUTH, SOUTHEAST] else 1)
 	
 	match exit_direction:
-		NORTH, SOUTH: $Sprite.texture = _exit_n_sheet
-		NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST: $Sprite.texture = _exit_ne_sheet
-		EAST, WEST: $Sprite.texture = _exit_e_sheet
+		NORTH, SOUTH: _sprite.texture = _exit_n_sheet
+		NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST: _sprite.texture = _exit_ne_sheet
+		EAST, WEST: _sprite.texture = _exit_e_sheet
 
 
 func _on_body_entered(body: Node) -> void:
