@@ -14,8 +14,15 @@ export (Texture) var unoccupied_texture: Texture
 ## 'true' if the stool has a creature sitting on it
 export (bool) var occupied := false setget set_occupied
 
+onready var _sprite := $Sprite
+
 func _ready() -> void:
 	_refresh_occupied()
+
+
+## Preemptively initializes onready variables to avoid null references.
+func _enter_tree() -> void:
+	_sprite = $Sprite
 
 
 func _refresh_occupied() -> void:
@@ -26,12 +33,12 @@ func _refresh_occupied() -> void:
 		# enable the shadow and disable collision. this allows a creature to overlap the stool
 		collision_layer = 0
 		collision_mask = 0
-		$Sprite.texture = occupied_texture
+		_sprite.texture = occupied_texture
 	else:
 		# disable the shadow and enable collision
 		collision_layer = 1
 		collision_mask = 1
-		$Sprite.texture = unoccupied_texture
+		_sprite.texture = unoccupied_texture
 
 
 func set_occupied(new_occupied: bool) -> void:
