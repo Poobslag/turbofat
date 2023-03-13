@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" type="TileSet" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=5]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/main/world/environment/exit-e-sheet.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=9]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=23]
@@ -66,30 +68,23 @@ tile_data = PoolIntArray( -1769413, 0, 327681, -1769412, 0, 131072, -1703878, 0,
 
 [node name="Exit0" parent="Ground/Exits" instance=ExtResource( 10 )]
 position = Vector2( 31.4402, 1073.84 )
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Exit1" parent="Ground/Exits" instance=ExtResource( 10 )]
 position = Vector2( 1891.49, 1132.19 )
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Exit2" parent="Ground/Exits" instance=ExtResource( 10 )]
 position = Vector2( 5553.59, 1072.96 )
+texture = ExtResource( 8 )
 exit_direction = 2
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Exit3" parent="Ground/Exits" instance=ExtResource( 10 )]
 position = Vector2( -997.007, 1179.2 )
+scale = Vector2( -0.539476, 0.539476 )
+texture = ExtResource( 9 )
 exit_direction = 7
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Exit4" parent="Ground/Exits" instance=ExtResource( 10 )]
 position = Vector2( 4042.15, 1078.19 )
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")

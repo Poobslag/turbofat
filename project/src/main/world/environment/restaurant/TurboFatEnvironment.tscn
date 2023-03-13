@@ -45,9 +45,8 @@ kitchen_tile_index = 54907
 
 [node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 35 )]
 position = Vector2( 130.547, 315.908 )
+scale = Vector2( 0.539476, -0.539476 )
 exit_direction = 4
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 42 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")

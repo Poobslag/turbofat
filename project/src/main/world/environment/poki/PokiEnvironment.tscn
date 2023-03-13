@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/poki/PokiCrowdSpawner.tscn" type="PackedScene" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://src/main/world/ObstacleSpawner.tscn" type="PackedScene" id=22]
 [ext_resource path="res://assets/main/world/environment/poki/we-accept.png" type="Texture" id=23]
 [ext_resource path="res://assets/main/world/environment/poki/poki-cactus-plaque.png" type="Texture" id=24]
+[ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=25]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -73,18 +74,21 @@ script = ExtResource( 11 )
 position = Vector2( -2, 1 )
 
 [node name="OverworldExit" parent="Ground/Exits" instance=ExtResource( 12 )]
-position = Vector2( -1.26801, 1894.68 )
+position = Vector2( 0.73199, 1893.68 )
+scale = Vector2( -0.539476, -0.539476 )
+texture = ExtResource( 25 )
 exit_direction = 5
 
 [node name="OverworldExit2" parent="Ground/Exits" instance=ExtResource( 12 )]
-position = Vector2( 5514.73, 1753.71 )
+position = Vector2( 5516.73, 1752.71 )
+texture = ExtResource( 25 )
 exit_direction = 1
 
 [node name="OverworldExit3" parent="Ground/Exits" groups=["turbo_fat_entrances"] instance=ExtResource( 12 )]
-position = Vector2( 381.77, 1387.85 )
+position = Vector2( 383.77, 1386.85 )
 
 [node name="OverworldExit4" parent="Ground/Exits" instance=ExtResource( 12 )]
-position = Vector2( 1139.4, 1351.17 )
+position = Vector2( 1141.4, 1350.17 )
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 19 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/poki/PokiGroundMap.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusPlaque.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/poki/WeAccept.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/poki/Tent.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=20]
 [ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=28]
 
@@ -67,10 +68,14 @@ puddle_tile_index = 1
 
 [node name="OverworldExit" parent="Ground/Exits" instance=ExtResource( 4 )]
 position = Vector2( 309.859, 1727.8 )
+scale = Vector2( -0.539476, -0.539476 )
+texture = ExtResource( 20 )
 exit_direction = 5
 
 [node name="OverworldExit2" parent="Ground/Exits" instance=ExtResource( 4 )]
 position = Vector2( 3874.24, 2254.34 )
+scale = Vector2( 0.539476, -0.539476 )
+texture = ExtResource( 20 )
 exit_direction = 3
 
 [node name="OverworldExit3" parent="Ground/Exits" instance=ExtResource( 4 )]
@@ -190,8 +195,6 @@ flip_h = true
 
 [node name="CactusSmall" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 1738.11, 1243.44 )
-
-[node name="Spawns" type="Node2D" parent="."]
 
 [node name="PlayerPath" type="Path2D" parent="."]
 position = Vector2( 475.371, 923.074 )

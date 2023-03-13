@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/overworld-exit.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/world/environment/exit-n-sheet.png" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
-resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/width = 1.5
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -44,16 +43,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7, 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 20, 20 )
-
-[node name="OverworldExit" type="Area2D"]
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite"]
 modulate = Color( 1, 1, 1, 0.752941 )
 material = SubResource( 1 )
 scale = Vector2( 0.539476, 0.539476 )
@@ -61,12 +51,9 @@ texture = ExtResource( 3 )
 hframes = 3
 vframes = 3
 frame = 4
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
 anims/RESET = SubResource( 4 )
 anims/default = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -20 )
-shape = SubResource( 3 )
