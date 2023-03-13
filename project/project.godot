@@ -285,6 +285,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/cutscene-camera.gd"
 }, {
 "base": "Reference",
+"class": "CutsceneQueue",
+"language": "GDScript",
+"path": "res://src/main/world/cutscene-queue.gd"
+}, {
+"base": "Reference",
 "class": "CutsceneSearchFlags",
 "language": "GDScript",
 "path": "res://src/main/chat/cutscene-search-flags.gd"
@@ -378,6 +383,11 @@ _global_script_classes=[ {
 "class": "GutHookScript",
 "language": "GDScript",
 "path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Node",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
 }, {
 "base": "Sprite",
 "class": "HeadBobber",
@@ -1059,6 +1069,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/restaurant-view.gd"
 }, {
+"base": "RichTextLabel",
+"class": "ResultsLabel",
+"language": "GDScript",
+"path": "res://src/main/puzzle/results-label.gd"
+}, {
 "base": "AnimatedSprite",
 "class": "RippleSprite",
 "language": "GDScript",
@@ -1163,6 +1178,11 @@ _global_script_classes=[ {
 "class": "StarSeed",
 "language": "GDScript",
 "path": "res://src/main/puzzle/star-seed.gd"
+}, {
+"base": "Control",
+"class": "StarSeeds",
+"language": "GDScript",
+"path": "res://src/main/puzzle/star-seeds.gd"
 }, {
 "base": "Reference",
 "class": "State",
@@ -1335,6 +1355,7 @@ _global_script_class_icons={
 "CrumbCluster": "",
 "CustomerQueue": "",
 "CutsceneCamera": "",
+"CutsceneQueue": "",
 "CutsceneSearchFlags": "",
 "CutsceneWorld": "",
 "DnaAlternatives": "",
@@ -1354,6 +1375,7 @@ _global_script_class_icons={
 "GradeLabel": "",
 "GraphicsSettings": "",
 "GutHookScript": "",
+"GutTest": "",
 "HeadBobber": "",
 "HighScoreTable": "",
 "HoldPieceDisplay": "",
@@ -1490,6 +1512,7 @@ _global_script_class_icons={
 "ReleaseToolkitOutput": "",
 "RestaurantPuzzleScene": "",
 "RestaurantView": "",
+"ResultsLabel": "",
 "RippleSprite": "",
 "RippleWave": "",
 "Ripples": "",
@@ -1511,6 +1534,7 @@ _global_script_class_icons={
 "SquishFx": "",
 "SquishMap": "",
 "StarSeed": "",
+"StarSeeds": "",
 "State": "",
 "StateMachine": "",
 "Sticker": "",
@@ -1595,7 +1619,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gui]
 
