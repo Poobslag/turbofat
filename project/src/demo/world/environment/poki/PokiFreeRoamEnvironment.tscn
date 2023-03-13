@@ -63,6 +63,22 @@ ground_map_path = NodePath("../../GroundMap")
 ground_no_goop_tile_index = 1
 puddle_tile_index = 1
 
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="OverworldExit" parent="Ground/Exits" instance=ExtResource( 4 )]
+position = Vector2( 309.859, 1727.8 )
+exit_direction = 5
+
+[node name="OverworldExit2" parent="Ground/Exits" instance=ExtResource( 4 )]
+position = Vector2( 3874.24, 2254.34 )
+exit_direction = 3
+
+[node name="OverworldExit3" parent="Ground/Exits" instance=ExtResource( 4 )]
+position = Vector2( 374.643, 1491.19 )
+
+[node name="OverworldExit4" parent="Ground/Exits" instance=ExtResource( 4 )]
+position = Vector2( 2404.11, 1586.62 )
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 24 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
@@ -89,20 +105,6 @@ impassable_tile_index = 1
 
 [node name="TurboFatRestaurant" parent="Obstacles" instance=ExtResource( 3 )]
 position = Vector2( 581.884, 1354.79 )
-
-[node name="OverworldExit" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 309.859, 1727.8 )
-exit_direction = 5
-
-[node name="OverworldExit2" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 3874.24, 2254.34 )
-exit_direction = 3
-
-[node name="OverworldExit3" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 374.643, 1491.19 )
-
-[node name="OverworldExit4" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 2404.11, 1586.62 )
 
 [node name="Player" parent="Obstacles" instance=ExtResource( 15 )]
 position = Vector2( 3002.58, 1817.63 )

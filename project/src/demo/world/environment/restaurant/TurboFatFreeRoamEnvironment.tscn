@@ -65,6 +65,14 @@ carpet_tile_index = 82455
 [node name="KitchenFloorTiler" parent="Ground/GroundMap" instance=ExtResource( 14 )]
 kitchen_tile_index = 54907
 
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 1 )]
+position = Vector2( 130.547, 315.908 )
+exit_direction = 4
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
+
 [node name="Shadows" parent="Ground" instance=ExtResource( 3 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
@@ -101,12 +109,6 @@ bare_countertop_tile_index = 8
 grill_tile_index = 9
 sink_tile_index = 10
 countertop_plates_tile_index = 11
-
-[node name="FreeRoamExit" parent="Obstacles" instance=ExtResource( 1 )]
-position = Vector2( 130.547, 315.908 )
-exit_direction = 4
-player_spawn_id = "restaurant_player"
-sensei_spawn_id = "restaurant_sensei"
 
 [node name="Player" parent="Obstacles" instance=ExtResource( 8 )]
 position = Vector2( 154.174, 285.058 )
