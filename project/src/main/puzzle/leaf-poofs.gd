@@ -21,19 +21,20 @@ func _spawn_poof(type: int, cell_x: int, cell_y: int) -> void:
 
 
 ## Spawns multiple leaf poofs near vegetable cells in the specified row.
-func _spawn_poofs(y: int, veg_columns: Array, poof_count: int) -> void:
-	if poof_count <= 0:
-		return
+func _spawn_poofs(y: int) -> void:
+	## Calculate the vegetable cells to leaf star poofs in
+	var poof_columns := _veg_columns(y)
+	poof_columns.shuffle()
+	var poof_count := 0 if poof_columns.size() <= 3 else poof_columns.size() - 2
+	poof_columns = poof_columns.slice(0, poof_count - 1)
 	
 	# we split the line 3/6 or 4/5 between the two leaf varieties. 'cutoff' decides where the line is split.
 	# 'cutoff_direction' decides which leaf variety is on which side
 	var cutoff := Utils.randi_range(3, 5)
 	var cutoff_direction := randf() < 0.5
 	
-	veg_columns.shuffle()
-	for i in range(poof_count):
-		var x: int = veg_columns[i % veg_columns.size()]
-		
+	## Spawn leaf poofs
+	for x in poof_columns:
 		# determine the leaf type. the third leaf in each variety is spawned less frequently
 		var type: int = Utils.rand_value([0, 0, 1, 1, 2])
 		if x < cutoff != cutoff_direction:
@@ -42,22 +43,14 @@ func _spawn_poofs(y: int, veg_columns: Array, poof_count: int) -> void:
 		_spawn_poof(type, x, y)
 
 
-func _poof_count(veg_cell_count: int) -> int:
-	var poof_count := 0
-	match veg_cell_count:
-		3: poof_count = 1
-		4: poof_count = 2
-		5: poof_count = 3
-		6: poof_count = 4
-		7, 8, 9: poof_count = 8
-	return poof_count
-
-
-## If the specified row includes enough vegetable cells, we spawn leaf poofs nearby.
-func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+func _veg_columns(y: int) -> Array:
 	var veg_columns := []
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if _puzzle_tile_map.get_cell(x, y) in [PuzzleTileMap.TILE_VEG, PuzzleTileMap.TILE_PIECE]:
 			veg_columns.append(x)
-	var poof_count := _poof_count(veg_columns.size())
-	_spawn_poofs(y, veg_columns, poof_count)
+	return veg_columns
+
+
+## If the specified row includes enough vegetable cells, we spawn leaf poofs nearby.
+func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	_spawn_poofs(y)
