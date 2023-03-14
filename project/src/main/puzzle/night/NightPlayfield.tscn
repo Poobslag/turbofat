@@ -165,29 +165,29 @@ margin_right = 324.0
 margin_bottom = 544.0
 rect_clip_content = true
 
-[node name="OnionSky" type="ColorRect" parent="TileMapClip"]
+[node name="NightSky" type="ColorRect" parent="TileMapClip"]
 margin_right = 324.0
 margin_bottom = 544.0
 color = Color( 0.121569, 0.121569, 0.239216, 1 )
 script = ExtResource( 6 )
 
-[node name="SkyA" type="Sprite" parent="TileMapClip/OnionSky"]
+[node name="SkyA" type="Sprite" parent="TileMapClip/NightSky"]
 position = Vector2( 162, 91.712 )
 scale = Vector2( 0.44, 0.44 )
 texture = ExtResource( 3 )
 hframes = 3
 
-[node name="SkyB" type="Sprite" parent="TileMapClip/OnionSky"]
+[node name="SkyB" type="Sprite" parent="TileMapClip/NightSky"]
 position = Vector2( 162, 91.712 )
 scale = Vector2( 0.44, 0.44 )
 texture = ExtResource( 4 )
 hframes = 3
 
-[node name="AnimateTimer" type="Timer" parent="TileMapClip/OnionSky"]
+[node name="AnimateTimer" type="Timer" parent="TileMapClip/NightSky"]
 wait_time = 1.333
 autostart = true
 
-[node name="OnionStarsDark" parent="TileMapClip/OnionSky" instance=ExtResource( 7 )]
+[node name="NightStarsDark" parent="TileMapClip/NightSky" instance=ExtResource( 7 )]
 modulate = Color( 0.329412, 0.415686, 0.584314, 1 )
 material = SubResource( 24 )
 position = Vector2( 154.227, 595.369 )
@@ -196,16 +196,16 @@ preprocess = 20.0
 speed_scale = 0.2
 process_material = ExtResource( 18 )
 
-[node name="SkyGlow" type="Sprite" parent="TileMapClip/OnionSky"]
+[node name="SkyGlow" type="Sprite" parent="TileMapClip/NightSky"]
 position = Vector2( 162, 92 )
 scale = Vector2( 0.44, 0.44 )
 texture = ExtResource( 16 )
 script = ExtResource( 20 )
 onion_sprite_path = NodePath("../../Onion/Onion")
 
-[node name="Tween" type="Tween" parent="TileMapClip/OnionSky/SkyGlow"]
+[node name="Tween" type="Tween" parent="TileMapClip/NightSky/SkyGlow"]
 
-[node name="Particles2D" type="Particles2D" parent="TileMapClip/OnionSky/SkyGlow"]
+[node name="Particles2D" type="Particles2D" parent="TileMapClip/NightSky/SkyGlow"]
 material = SubResource( 27 )
 amount = 36
 lifetime = 5.0
@@ -215,12 +215,12 @@ local_coords = false
 process_material = SubResource( 28 )
 texture = ExtResource( 22 )
 
-[node name="OnionStarsLight" parent="TileMapClip/OnionSky" instance=ExtResource( 7 )]
+[node name="NightStarsLight" parent="TileMapClip/NightSky" instance=ExtResource( 7 )]
 position = Vector2( 154.227, 595.369 )
 preprocess = 20.0
 speed_scale = 0.4
 
-[node name="SkySpinTween" type="Tween" parent="TileMapClip/OnionSky"]
+[node name="SkySpinTween" type="Tween" parent="TileMapClip/NightSky"]
 
 [node name="Onion" type="Control" parent="TileMapClip"]
 anchor_right = 1.0
@@ -237,7 +237,7 @@ frame = 20
 script = ExtResource( 21 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapClip/Onion"]
-root_node = NodePath("../../OnionSky")
+root_node = NodePath("../../NightSky")
 autoplay = "default"
 anims/RESET = SubResource( 25 )
 anims/default = SubResource( 26 )
@@ -314,6 +314,6 @@ anchor_bottom = 1.0
 texture = SubResource( 14 )
 flip_v = true
 
-[connection signal="visibility_changed" from="TileMapClip/OnionSky" to="TileMapClip/OnionSky" method="_on_visibility_changed"]
-[connection signal="timeout" from="TileMapClip/OnionSky/AnimateTimer" to="TileMapClip/OnionSky" method="_on_AnimateTimer_timeout"]
-[connection signal="tween_completed" from="TileMapClip/OnionSky/SkyGlow/Tween" to="TileMapClip/OnionSky/SkyGlow" method="_on_Tween_tween_completed"]
+[connection signal="visibility_changed" from="TileMapClip/NightSky" to="TileMapClip/NightSky" method="_on_visibility_changed"]
+[connection signal="timeout" from="TileMapClip/NightSky/AnimateTimer" to="TileMapClip/NightSky" method="_on_AnimateTimer_timeout"]
+[connection signal="tween_completed" from="TileMapClip/NightSky/SkyGlow/Tween" to="TileMapClip/NightSky/SkyGlow" method="_on_Tween_tween_completed"]

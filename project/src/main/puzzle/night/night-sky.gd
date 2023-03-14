@@ -5,7 +5,7 @@ extends ColorRect
 onready var _sky_sprites := [$SkyA, $SkyB]
 
 ## Particle2Ds which draw a starfield of big, cartoony stars
-onready var _star_nodes := [$OnionStarsDark, $OnionStarsLight]
+onready var _star_nodes := [$NightStarsDark, $NightStarsLight]
 
 ## rapidly rotates the stars when the playfield shows up, for a time lapse effect
 onready var _sky_spin_tween := $SkySpinTween
