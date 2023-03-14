@@ -33,7 +33,7 @@ orbit_velocity_random = 0.0
 scale = 1.3
 color_ramp = SubResource( 5 )
 
-[node name="OnionPiece" type="Control" groups=["night_mode_visible"]]
+[node name="NightPiece" type="Control" groups=["night_mode_visible"]]
 margin_left = 364.0
 margin_top = 28.0
 margin_right = 688.0

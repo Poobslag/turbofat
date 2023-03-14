@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/puzzle/night/night-next-piece-displays.gd" type="Script" id=2]
 [ext_resource path="res://src/main/puzzle/night/NightPieceDisplay.tscn" type="PackedScene" id=3]
 
-[node name="OnionNextPieceDisplays" type="Control" groups=["night_mode_visible"]]
+[node name="NightNextPieceDisplays" type="Control" groups=["night_mode_visible"]]
 margin_right = 64.0
 margin_bottom = 544.0
 script = ExtResource( 2 )

@@ -18,8 +18,8 @@ func _ready() -> void:
 	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield.pickups.piece_manager_path = $Fg/Playfield.pickups.get_path_to($Fg/PieceManager)
-	$Fg/OnionPlayfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
-	$Fg/OnionPlayfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
+	$Fg/NightPlayfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
+	$Fg/NightPlayfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	CurrentLevel.puzzle = self
 	_initialize_night_mode() # initialize night mode early for levels which require it, to avoid a bright flash
 	
