@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "0",
   "name": "Mole Money Mole Problems",
   "description": "This cave isn't big enough for the eight of us...",
@@ -16,7 +16,7 @@
   "triggers": [
     {
       "phases": [
-        "piece_written n=0,2,4..."
+        "piece_written n=1,3,5..."
       ],
       "effect": "add_moles home=hole"
     },

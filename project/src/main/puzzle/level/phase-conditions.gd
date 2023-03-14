@@ -93,7 +93,7 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 
 
 class PieceWrittenPhaseCondition extends PhaseCondition:
-	## key: (int) piece index which triggers this phase condition, '0' is the first piece
+	## key: (int) piece index which triggers this phase condition, '1' is the first piece
 	## value: (bool) true
 	var indexes_to_run := {}
 	
@@ -111,7 +111,7 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	##
 	## 	{"combo": "0"}: The trigger will fire for every piece if no combo is active.
 	##
-	## 	{"n": "0,1,2,3,4"}: The trigger will fire for the first five pieces.
+	## 	{"n": "1,2,3,4,5"}: The trigger will fire for the first five pieces.
 	##
 	## 	{"n": "10,11,12..."}: The trigger will fire for every piece past the tenth piece.
 	##
@@ -134,7 +134,7 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	func should_run(_event_params: Dictionary) -> bool:
 		var result := true
 		if indexes_to_run:
-			result = result and (PuzzleState.level_performance.pieces - 1 in indexes_to_run)
+			result = result and (PuzzleState.level_performance.pieces in indexes_to_run)
 		if combos_to_run:
 			result = result and (PuzzleState.combo in combos_to_run)
 		return result

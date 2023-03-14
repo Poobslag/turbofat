@@ -21,6 +21,7 @@ var current_version: String
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_39e5", "39e5", "4373")
 	_add_upgrade_method("_upgrade_392b", "392b", "39e5")
 	_add_upgrade_method("_upgrade_2cb4", "2cb4", "392b")
 	_add_upgrade_method("_upgrade_297a", "297a", "2cb4")
@@ -91,6 +92,64 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+func _upgrade_39e5(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
+	match old_key:
+		"triggers":
+			var new_value: Array = old_json[old_key].duplicate(true)
+			for trigger in new_value:
+				for phase_index in range(trigger.get("phases", []).size()):
+					var phase: String = trigger["phases"][phase_index]
+					if phase.begins_with("piece_written "):
+						trigger["phases"][phase_index] = _increment_phase_string(phase, "n")
+			new_json[old_key] = new_value
+		_:
+			new_json[old_key] = old_json[old_key]
+	return new_json
+
+
+func _increment_phase_string(phase: String, condition: String) -> String:
+	var result: String = phase
+	var split := phase.split(" ")
+	for i_split in range(split.size()):
+		var phase_fragment: String = split[i_split]
+		
+		if phase_fragment.begins_with("%s=" % [condition]):
+			split[i_split] = increment_string(phase_fragment)
+			result = PoolStringArray(split).join(" ")
+			break
+	
+	return result
+
+
+## Increments all integers in a string by one.
+##
+## 	increment_string(""):      ""
+## 	increment_string("1 2 3"): "2 3 4"
+## 	increment_string("1,200"): "2,201"
+## 	increment_string("-96"):   "-97"
+##
+## Symbols like '-' and ',' are treated as non-numeric data and ignored.
+static func increment_string(s: String) -> String:
+	var result := ""
+	var num_buffer := ""
+	for i in range(s.length()):
+		if StringUtils.is_digit(s[i]):
+			# digit; add to buffer
+			num_buffer += s[i]
+		elif num_buffer:
+			# non-digit; 
+			result += str(int(num_buffer) + 1)
+			num_buffer = ""
+			result += s[i]
+		else:
+			result += s[i]
+	
+	if num_buffer:
+		result += str(int(num_buffer) + 1)
+	
+	return result
 
 
 func _upgrade_392b(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:

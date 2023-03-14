@@ -56,6 +56,32 @@ func test_load_2cb4_data() -> void:
 	assert_eq(settings.piece_types.suppress_o_piece, false)
 
 
+func test_load_39e5_data() -> void:
+	load_level("level-39e5")
+	
+	assert_eq(settings.name, "A Thousand Moles")
+	var triggers: Array = settings.triggers.triggers[LevelTrigger.PIECE_WRITTEN]
+	assert_eq(3, triggers.size())
+	assert_eq_shallow({
+			"phases": [
+				"piece_written n=17,23,29,33,37,41,43,45,47"
+			],
+			"effect": "add_moles home=surface dig_duration=2 reward=seed"
+		}, triggers[0].to_json_dict())
+	assert_eq_shallow({
+			"phases": [
+				"piece_written n=48..."
+			],
+			"effect": "add_moles home=surface dig_duration=1 reward=seed"
+		}, triggers[1].to_json_dict())
+	assert_eq_shallow({
+			"phases": [
+				"piece_written"
+			],
+			"effect": "advance_moles"
+		}, triggers[2].to_json_dict())
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
