@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white-occupied.png" type="Texture" id=3]
 [ext_resource path="res://src/main/world/obstacle-spawner.gd" type="Script" id=4]
 
-[node name="ButtercupStool" type="Sprite"]
+[node name="ButtercupStool" type="Sprite" groups=["stools"]]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 centered = false

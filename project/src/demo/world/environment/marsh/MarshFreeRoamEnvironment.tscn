@@ -175,7 +175,6 @@ dna = {
 [node name="Jayton" parent="Obstacles" instance=ExtResource( 34 )]
 position = Vector2( 339.509, 1583.36 )
 offset = Vector2( 0, -100 )
-stool_path = NodePath("../ButtercupStool1")
 target_properties = {
 "creature_id": "jayton",
 "elevation": 80.0,

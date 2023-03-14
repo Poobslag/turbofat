@@ -359,7 +359,6 @@ spawn_if = "not chat_finished chat/career/marsh/60_end"
 [node name="Jayton" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 3910.69, 1327.71 )
 offset = Vector2( 0, -100 )
-stool_path = NodePath("../ButtercupStool5")
 target_properties = {
 "creature_id": "jayton",
 "elevation": 80.0,
