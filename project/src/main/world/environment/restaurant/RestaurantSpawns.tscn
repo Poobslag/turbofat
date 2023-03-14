@@ -1,0 +1,117 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=2]
+
+[node name="Spawns" type="Node2D"]
+
+[node name="Bar10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1154.6, 179.54 )
+id = "bar_10"
+
+[node name="Bar11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1212.97, 121.172 )
+id = "bar_11"
+
+[node name="BarStool" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1313, 220 )
+id = "bar_stool"
+elevation = 140.0
+
+[node name="Chef" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1512, 255 )
+orientation = 1
+id = "chef"
+
+[node name="Customer1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 592, 35 )
+id = "customer_1"
+elevation = 140.0
+
+[node name="Customer2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 349, 322 )
+id = "customer_2"
+elevation = 140.0
+
+[node name="Customer3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 992, 35 )
+id = "customer_3"
+elevation = 140.0
+
+[node name="Customer4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1313, 220 )
+id = "customer_4"
+elevation = 140.0
+
+[node name="Entrance2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 342.245, 52.3916 )
+orientation = 1
+id = "entrance_2"
+
+[node name="Entrance5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 394.38, 152.458 )
+orientation = 1
+id = "entrance_5"
+
+[node name="Entrance7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 126.975, 170.117 )
+id = "entrance_7"
+
+[node name="Entrance8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 59.9599, 131.418 )
+id = "entrance_8"
+
+[node name="Entrance10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 179.111, 52.3916 )
+id = "entrance_10"
+
+[node name="Kitchen1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1863.6, 75.8002 )
+orientation = 1
+id = "kitchen_1"
+
+[node name="Kitchen3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1910.61, 182.605 )
+orientation = 1
+id = "kitchen_3"
+
+[node name="Kitchen5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1955.82, 282.207 )
+orientation = 1
+id = "kitchen_5"
+
+[node name="Kitchen7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1596.46, 279.091 )
+id = "kitchen_7"
+
+[node name="Kitchen9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1667.9, 173.54 )
+id = "kitchen_9"
+
+[node name="Kitchen11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1740.68, 77.2144 )
+id = "kitchen_11"
+
+[node name="TableSeatLeft" parent="." instance=ExtResource( 2 )]
+position = Vector2( 749.285, 321.719 )
+id = "table_seat_left"
+elevation = 140.0
+
+[node name="Table1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 903.167, 189.642 )
+orientation = 1
+id = "table_1"
+
+[node name="Table2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 995.141, 231.219 )
+orientation = 1
+id = "table_2"
+
+[node name="Table10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 689.515, 237.165 )
+id = "table_10"
+
+[node name="TableSeatRight" parent="." instance=ExtResource( 2 )]
+position = Vector2( 925.285, 321.719 )
+orientation = 1
+id = "table_seat_right"
+elevation = 140.0
