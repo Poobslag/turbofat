@@ -32,7 +32,8 @@ var _chat_tree: ChatTree
 var _chat_finished := false
 
 func _ready() -> void:
-	Global.get_overworld_ui().connect("visible_chatters_changed", self, "_on_OverworldUi_visible_chatters_changed")
+	if Global.get_overworld_ui():
+		Global.get_overworld_ui().connect("visible_chatters_changed", self, "_on_OverworldUi_visible_chatters_changed")
 
 
 func _process(delta: float) -> void:
@@ -162,6 +163,9 @@ func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
 ## This information is stored back into the chat tree so that it can be utilized by the chat ui.
 func _assign_nametag_sides() -> void:
 	if not _chat_tree:
+		return
+	
+	if not Global.get_overworld_ui():
 		return
 	
 	var chatter_bounding_box := Global.get_overworld_ui().get_chatter_bounding_box([], [])
