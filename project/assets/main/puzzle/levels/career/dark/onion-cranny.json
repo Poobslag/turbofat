@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "A1",
   "name": "Onion Cranny",
   "description": "This looks just like another level! The resemblance is onion-cranny.",
@@ -41,7 +41,7 @@
     },
     {
       "phases": [
-        "piece_written n=8,18..."
+        "piece_written n=9,19..."
       ],
       "effect": "insert_line tiles_key=0"
     }

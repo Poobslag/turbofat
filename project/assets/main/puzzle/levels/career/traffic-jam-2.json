@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "3",
   "name": "Another Traffic Jam",
   "description": "An even bigger, and even slower H! ...But what does the H stand for?",
@@ -16,7 +16,7 @@
   "triggers": [
     {
       "phases": [
-        "piece_written n=2,4,6..."
+        "piece_written n=3,5,7..."
       ],
       "effect": "clear_filled_lines"
     }

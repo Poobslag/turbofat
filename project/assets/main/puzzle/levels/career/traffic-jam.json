@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "1",
   "name": "Traffic Jam",
   "description": "Nobody knows what the 'H' stands for! We just know it is annoying and gets in the way...",
@@ -10,7 +10,7 @@
   "triggers": [
     {
       "phases": [
-        "piece_written n=1,3,5..."
+        "piece_written n=2,4,6..."
       ],
       "effect": "clear_filled_lines"
     }

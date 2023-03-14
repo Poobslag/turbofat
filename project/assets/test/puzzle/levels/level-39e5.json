@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "39e5",
   "start_speed": "0",
   "name": "A Thousand Moles",
   "description": "Making my way downtown...",
@@ -14,13 +14,13 @@
   "triggers": [
     {
       "phases": [
-        "piece_written n=17,23,29,33,37,41,43,45,47"
+        "piece_written n=16,22,28,32,36,40,42,44,46"
       ],
       "effect": "add_moles home=surface dig_duration=2 reward=seed"
     },
     {
       "phases": [
-        "piece_written n=48..."
+        "piece_written n=47..."
       ],
       "effect": "add_moles home=surface dig_duration=1 reward=seed"
     },

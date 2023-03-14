@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "AB",
   "name": "Sweet Dreams",
   "description": "Who left these chocolates under my pillow? They're all melted now!",
@@ -22,9 +22,9 @@
     },
     {
       "phases": [
-        "piece_written n=10,37...",
-        "piece_written n=12,39...",
-        "piece_written n=14,41..."
+        "piece_written n=11,38...",
+        "piece_written n=13,40...",
+        "piece_written n=15,42..."
       ],
       "effect": "add_moles count=8 dig_duration=2 reward=seed"
     },

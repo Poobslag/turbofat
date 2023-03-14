@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "8",
   "name": "Three Nights",
   "description": "I'm not afraid of the dark! It's just very annoying...",
@@ -17,7 +17,7 @@
       "interval": 2.5
     },
     {
-      "interval": 95.0
+      "interval": 95
     }
   ],
   "triggers": [

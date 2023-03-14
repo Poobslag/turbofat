@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "4",
   "name": "Creeping Crevice",
   "description": "It'll sneak up on you!",
@@ -16,7 +16,7 @@
   "triggers": [
     {
       "phases": [
-        "piece_written n=1,3,5... combo=0,1,2"
+        "piece_written n=2,4,6... combo=0,1,2"
       ],
       "effect": "insert_line tiles_key=0"
     }

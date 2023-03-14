@@ -151,6 +151,11 @@ static func is_letter(character: String) -> bool:
 	return character >= "A" and character <= "Z" or character >= "a" and character <= "z"
 
 
+## Returns true if the specified character is a digit (0-9)
+static func is_digit(character: String) -> bool:
+	return character >= "0" and character <= "9"
+
+
 ## Parses a duration like 1:03.159 into '63.159'
 static func parse_duration(s: String) -> float:
 	var split: Array = s.split(":")

@@ -1,5 +1,5 @@
 {
-  "version": "39e5",
+  "version": "4373",
   "start_speed": "2",
   "name": "Serving On A Rocket",
   "description": "Time for flying rockets. Let's serve up some delicious treats!",
@@ -13,11 +13,11 @@
       "interval": 5.62
     },
     {
-      "initial_interval": 30.0,
+      "initial_interval": 30,
       "interval": 2.24
     },
     {
-      "initial_interval": 60.0,
+      "initial_interval": 60,
       "interval": 12.65
     }
   ],

@@ -191,6 +191,12 @@ func test_is_letter() -> void:
 	assert_eq(StringUtils.is_letter("7"), false)
 
 
+func test_is_digit() -> void:
+	assert_eq(StringUtils.is_digit(""), false)
+	assert_eq(StringUtils.is_digit("r"), false)
+	assert_eq(StringUtils.is_digit("7"), true)
+
+
 func test_parse_duration() -> void:
 	assert_almost_eq(-100.0, StringUtils.parse_duration("-1:40"), 0.01)
 	assert_almost_eq(-10.0, StringUtils.parse_duration("-0:10"), 0.01)
