@@ -13,7 +13,7 @@ shader_param/edge_fix_factor = 1.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 38, 18 )
 
-[node name="Stool" type="KinematicBody2D"]
+[node name="Stool" type="KinematicBody2D" groups=["stools"]]
 script = ExtResource( 1 )
 __meta__ = {
 "shadow_scale": 0.5

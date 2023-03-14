@@ -154,7 +154,6 @@ position = Vector2( 1313, 220 )
 __meta__ = {
 "_editor_description_": ""
 }
-stool_path = NodePath("../../Obstacles/Stool10")
 id = "bar_stool"
 elevation = 140.0
 
@@ -165,25 +164,21 @@ id = "chef"
 
 [node name="Customer1" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 592, 35 )
-stool_path = NodePath("../../Obstacles/Stool2")
 id = "customer_1"
 elevation = 140.0
 
 [node name="Customer2" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 349, 322 )
-stool_path = NodePath("../../Obstacles/Stool4")
 id = "customer_2"
 elevation = 140.0
 
 [node name="Customer3" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 992, 35 )
-stool_path = NodePath("../../Obstacles/Stool8")
 id = "customer_3"
 elevation = 140.0
 
 [node name="Customer4" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 1313, 220 )
-stool_path = NodePath("../../Obstacles/Stool10")
 id = "customer_4"
 elevation = 140.0
 
@@ -238,7 +233,6 @@ id = "kitchen_11"
 
 [node name="TableSeatLeft" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 749.285, 321.719 )
-stool_path = NodePath("../../Obstacles/Stool6")
 id = "table_seat_left"
 elevation = 140.0
 
@@ -259,6 +253,5 @@ id = "table_10"
 [node name="TableSeatRight" parent="Spawns" instance=ExtResource( 38 )]
 position = Vector2( 925.285, 321.719 )
 orientation = 1
-stool_path = NodePath("../../Obstacles/Stool5")
 id = "table_seat_right"
 elevation = 140.0

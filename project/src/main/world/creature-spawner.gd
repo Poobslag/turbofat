@@ -7,9 +7,6 @@ extends Node2D
 
 export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
-## (optional) path to a stool the spawned creature sits on
-export (NodePath) var stool_path: NodePath
-
 ## the properties of the spawned creature
 export (Dictionary) var target_properties: Dictionary
 
@@ -31,7 +28,6 @@ var _target_creature: Creature
 onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
 func _ready() -> void:
-	_stool = get_node(stool_path) if stool_path else null
 	_update_stool_occupied()
 	
 	if spawn_if and BoolExpressionEvaluator.evaluate(spawn_if):
@@ -45,14 +41,9 @@ func _ready() -> void:
 
 ## Updates the spawned creature's stool to be occupied or unoccupied.
 func _update_stool_occupied() -> void:
-	if not _stool:
-		return
-
 	var occupied := _target_creature != null
-	if _stool is ObstacleSpawner:
-		_stool.set_target_property("occupied", occupied)
-	else:
-		_stool.occupied = occupied
+	
+	Stool.update_stool_occupied(self, occupied)
 
 
 ## Spawns the creature and removes the spawner from the scene tree.
