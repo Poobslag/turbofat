@@ -150,7 +150,7 @@ viewport_path = NodePath("TileMapClip/TileMap/ShadowViewport")
 [sub_resource type="ViewportTexture" id=14]
 viewport_path = NodePath("TileMapClip/TileMap/GhostPieceViewport")
 
-[node name="OnionPlayfield" type="Control" groups=["night_mode_visible"]]
+[node name="NightPlayfield" type="Control" groups=["night_mode_visible"]]
 margin_right = 324.0
 margin_bottom = 544.0
 script = ExtResource( 5 )

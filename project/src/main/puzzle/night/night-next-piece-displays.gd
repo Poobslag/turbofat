@@ -8,7 +8,7 @@ export (NodePath) var next_piece_displays_path: NodePath
 
 export (PackedScene) var NightPieceDisplayScene
 
-## array of OnionNextPieceDisplays which are shown to the player
+## array of NightNextPieceDisplays which are shown to the player
 var _onion_piece_displays := []
 
 ## next piece displays to synchronize with

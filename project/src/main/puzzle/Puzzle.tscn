@@ -398,7 +398,7 @@ margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
 
-[node name="OnionPlayfield" parent="Fg" instance=ExtResource( 50 )]
+[node name="NightPlayfield" parent="Fg" instance=ExtResource( 50 )]
 visible = false
 margin_left = 364.0
 margin_top = 28.0
@@ -415,7 +415,7 @@ script = ExtResource( 18 )
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 StarSeedScene = ExtResource( 72 )
 
-[node name="OnionStarSeeds" type="Control" parent="Fg" groups=["night_mode_visible"]]
+[node name="NightStarSeeds" type="Control" parent="Fg" groups=["night_mode_visible"]]
 visible = false
 margin_left = 364.0
 margin_top = 28.0
@@ -433,7 +433,7 @@ piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
 piece_queue_path = NodePath("../../PieceQueue")
 
-[node name="OnionPiece" parent="Fg" instance=ExtResource( 85 )]
+[node name="NightPiece" parent="Fg" instance=ExtResource( 85 )]
 visible = false
 piece_manager_path = NodePath("../PieceManager")
 
@@ -444,7 +444,7 @@ margin_right = 752.0
 margin_bottom = 572.0
 piece_queue_path = NodePath("../../PieceQueue")
 
-[node name="OnionNextPieceDisplays" parent="Fg" instance=ExtResource( 86 )]
+[node name="NightNextPieceDisplays" parent="Fg" instance=ExtResource( 86 )]
 visible = false
 margin_left = 688.0
 margin_top = 28.0
