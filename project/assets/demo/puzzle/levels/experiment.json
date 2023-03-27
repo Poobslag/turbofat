@@ -1,13 +1,30 @@
 {
   "version": "39e5",
-  "start_speed": "AB",
-  "name": "Experiment",
-  "description": "Just messing around.",
+  "start_speed": "0",
+  "name": "I'm A Shaaaark!",
+  "description": "I'm so huuuungry!",
   "finish_condition": {
-    "type": "time_over",
-    "value": "125"
+    "type": "lines",
+    "value": "50"
   },
-  "piece_types": [
-    "piece_-"
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_sharks size=small"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_sharks size=large"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
   ]
 }
