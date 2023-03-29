@@ -2,6 +2,14 @@ extends Node
 ## Stores information on the various piece shapes. This includes information on their appearance, how they rotate, and
 ## how they 'kick' when they're obstructed from rotating.
 
+## Piece kicks for a 2 block domino piece, featured in Dr. Mario and Puyo Puyo
+const KICKS_DOMINO := {
+		01: [Vector2( 1,  0), Vector2( 0,  1), Vector2( 1,  1)],
+		12: [Vector2(-1,  0), Vector2( 0, -1), Vector2(-1, -1)],
+		23: [Vector2( 1,  0), Vector2( 0,  1), Vector2( 1,  1)],
+		30: [Vector2(-1,  0), Vector2( 0, -1), Vector2(-1, -1)],
+	}
+
 const KICKS_I := {
 		01: [Vector2(-2,  0), Vector2( 1,  0), Vector2(-2,  1), Vector2( 1, -2)],
 		12: [Vector2(-1,  0), Vector2( 2,  0), Vector2(-1, -2), Vector2( 2,  1)],
@@ -88,6 +96,25 @@ const KICKS_V := {
 	}
 
 const KICKS_NONE := {}
+
+## 2 block domino piece featured in Dr. Mario and Puyo Puyo
+var piece_domino := PieceType.new("-",
+		# shape data
+		[
+			[Vector2(0,  1), Vector2(1, 1)],
+			[Vector2(0,  0), Vector2(0, 1)],
+			[Vector2(0,  1), Vector2(1, 1)],
+			[Vector2(0,  0), Vector2(0, 1)],
+		],
+		# color data
+		[
+			[Vector2( 8, 3), Vector2( 4, 3)],
+			[Vector2( 2, 3), Vector2( 1, 3)],
+			[Vector2( 8, 3), Vector2( 4, 3)],
+			[Vector2( 2, 3), Vector2( 1, 3)],
+		],
+		KICKS_DOMINO
+)
 
 var piece_i := PieceType.new("i",
 		# shape data
@@ -291,6 +318,7 @@ var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE)
 var default_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
 var pieces_by_string := {
+	"-": piece_domino,
 	"i": piece_i,
 	"j": piece_j,
 	"l": piece_l,
