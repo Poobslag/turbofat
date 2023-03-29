@@ -1,38 +1,13 @@
 {
   "version": "39e5",
   "start_speed": "AB",
-  "name": "Sweet Dreams",
-  "description": "Who left these chocolates under my pillow? They're all melted now!",
+  "name": "Experiment",
+  "description": "Just messing around.",
   "finish_condition": {
     "type": "time_over",
     "value": "125"
   },
-  "triggers": [
-    {
-      "phases": [
-        "start"
-      ],
-      "effect": "add_onion ....ddddennnnnnnnn........."
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_onion"
-    },
-    {
-      "phases": [
-        "piece_written n=10,37...",
-        "piece_written n=12,39...",
-        "piece_written n=14,41..."
-      ],
-      "effect": "add_moles count=8 dig_duration=2 reward=seed"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_moles"
-    }
+  "piece_types": [
+    "piece_-"
   ]
 }
