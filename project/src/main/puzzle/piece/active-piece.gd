@@ -119,7 +119,7 @@ func get_target_pos_arr() -> Array:
 ## 	'new_orientation': The desired orientation to rotate the piece to
 func can_move_to(new_pos: Vector2, new_orientation: int) -> bool:
 	var valid_target_pos := true
-	if type == PieceTypes.piece_null:
+	if type.empty():
 		# Return 'false' for an empty piece to avoid an infinite loop
 		valid_target_pos = false
 	else:
