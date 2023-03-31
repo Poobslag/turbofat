@@ -72,50 +72,50 @@ func test_piece_written_phase_condition() -> void:
 
 func test_piece_written_phase_condition_count_by_sixes() -> void:
 	var condition: PhaseConditions.PieceWrittenPhaseCondition
-	condition = PhaseConditions.PieceWrittenPhaseCondition.new({"n": "5,11,17..."})
+	condition = PhaseConditions.PieceWrittenPhaseCondition.new({"n": "6,12,18..."})
 	
 	PuzzleState.level_performance.pieces = 1
-	assert_eq(condition.should_run({}), false, "5,11,17...: 0")
+	assert_eq(condition.should_run({}), false, "6,12,18...: 1")
 	
 	PuzzleState.level_performance.pieces = 6
-	assert_eq(condition.should_run({}), true, "5,11,17...: 5")
+	assert_eq(condition.should_run({}), true, "6,12,18...: 6")
 	
 	PuzzleState.level_performance.pieces = 11
-	assert_eq(condition.should_run({}), false, "5,11,17...: 10")
+	assert_eq(condition.should_run({}), false, "6,12,18...: 11")
 	
 	PuzzleState.level_performance.pieces = 12
-	assert_eq(condition.should_run({}), true, "5,11,17...: 11")
+	assert_eq(condition.should_run({}), true, "6,12,18...: 12")
 	
 	PuzzleState.level_performance.pieces = 42
-	assert_eq(condition.should_run({}), true, "5,11,17...: 41")
+	assert_eq(condition.should_run({}), true, "6,12,18...: 42")
 
 
 func test_piece_written_specific_values() -> void:
 	var condition: PhaseConditions.PieceWrittenPhaseCondition
-	condition = PhaseConditions.PieceWrittenPhaseCondition.new({"n": "0,1,2"})
+	condition = PhaseConditions.PieceWrittenPhaseCondition.new({"n": "1,2,3"})
 	
 	PuzzleState.level_performance.pieces = 1
-	assert_eq(condition.should_run({}), true, "0,1,2: 0")
+	assert_eq(condition.should_run({}), true, "1,2,3: 1")
 	
 	PuzzleState.level_performance.pieces = 2
-	assert_eq(condition.should_run({}), true, "0,1,2: 1")
+	assert_eq(condition.should_run({}), true, "1,2,3: 2")
 	
 	PuzzleState.level_performance.pieces = 3
-	assert_eq(condition.should_run({}), true, "0,1,2: 2")
+	assert_eq(condition.should_run({}), true, "1,2,3: 3")
 	
 	PuzzleState.level_performance.pieces = 4
-	assert_eq(condition.should_run({}), false, "0,1,2: 3")
+	assert_eq(condition.should_run({}), false, "1,2,3: 4")
 
 
 func test_piece_written_skip_early_values() -> void:
 	var condition: PhaseConditions.PieceWrittenPhaseCondition
-	condition = PhaseConditions.PieceWrittenPhaseCondition.new({"n": "10,11,12..."})
+	condition = PhaseConditions.PieceWrittenPhaseCondition.new({"n": "11,12,13..."})
 	
 	PuzzleState.level_performance.pieces = 1
-	assert_eq(condition.should_run({}), false, "10,11,12...: 0")
+	assert_eq(condition.should_run({}), false, "11,12,13...: 1")
 	
 	PuzzleState.level_performance.pieces = 11
-	assert_eq(condition.should_run({}), true, "10,11,12...: 10")
+	assert_eq(condition.should_run({}), true, "11,12,13...: 11")
 	
 	PuzzleState.level_performance.pieces = 14
-	assert_eq(condition.should_run({}), true, "10,11,12...: 13")
+	assert_eq(condition.should_run({}), true, "11,12,13...: 14")
