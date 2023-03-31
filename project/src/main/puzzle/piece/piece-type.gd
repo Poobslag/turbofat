@@ -5,10 +5,10 @@ class_name PieceType
 ## string representation when debugging; 'j', 'l', etc...
 var string: String
 
-## array of vectors representing the position of used cells
+## array of array of vectors representing the position of used cells
 var pos_arr: Array
 
-## array of vectors representing the autotile coordinates of used cells
+## array of array of vectors representing the autotile coordinates of used cells
 var color_arr: Array
 
 ## dictionary of kicks to try when rotating or flipping
@@ -19,8 +19,8 @@ var color_arr: Array
 ## values: (Array, Vector2) kicks to try
 var kicks: Dictionary
 
-func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array,
-		init_kicks: Dictionary) -> void:
+func _init(init_string: String = "", init_pos_arr: Array = [], init_color_arr: Array = [],
+		init_kicks: Dictionary = {}) -> void:
 	string = init_string
 	pos_arr = init_pos_arr
 	color_arr = init_color_arr
@@ -46,8 +46,11 @@ func get_cell_color(orientation: int, cell_index: int) -> Vector2:
 
 
 ## Returns PuzzleTileMap's food color index for this piece (brown, pink, bread, white)
+##
+## For a null piece, this returns 0. This allows code centered around "what color should these piece crumbs be" or
+## "which sprite should I show" to fail more gracefully, instead of throwing an out of bounds error.
 func get_box_type() -> int:
-	return color_arr[0][0][1]
+	return color_arr[0][0].y if color_arr and color_arr[0] else 0
 
 
 func _to_string() -> String:
@@ -67,3 +70,11 @@ func get_ccw_orientation(orientation: int) -> int:
 ## Returns the orientation the piece will be in if it rotates 180 degrees.
 func get_flip_orientation(orientation: int) -> int:
 	return (orientation + 2) % pos_arr.size()
+
+
+func size() -> int:
+	return pos_arr[0].size() if pos_arr and pos_arr[0] else 0
+
+
+func empty() -> bool:
+	return size() == 0
