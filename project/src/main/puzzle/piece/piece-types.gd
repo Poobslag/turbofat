@@ -98,7 +98,7 @@ const KICKS_V := {
 const KICKS_NONE := {}
 
 ## 2 block domino piece featured in Dr. Mario and Puyo Puyo
-var piece_domino := PieceType.new("-",
+var piece_domino := PieceType.new("d",
 		# shape data
 		[
 			[Vector2(0,  1), Vector2(1, 1)],
@@ -318,7 +318,7 @@ var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE)
 var default_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
 var pieces_by_string := {
-	"-": piece_domino,
+	"d": piece_domino,
 	"i": piece_i,
 	"j": piece_j,
 	"l": piece_l,

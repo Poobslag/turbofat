@@ -6,13 +6,13 @@ func test_floor_kick_0r_0() -> void:
 	from_grid = [
 		"    ",
 		"    ",
-		" -- ",
+		" dd ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
-		" -  ",
-		" -  ",
+		" d  ",
+		" d  ",
 	]
 	assert_kick()
 
@@ -22,13 +22,13 @@ func test_floor_kick_0l_0() -> void:
 	from_grid = [
 		"    ",
 		"    ",
-		" -- ",
+		" dd ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
-		" -  ",
-		" -  ",
+		" d  ",
+		" d  ",
 	]
 	assert_kick()
 
@@ -37,15 +37,15 @@ func test_wall_kick_r0_0() -> void:
 	from_orientation = 1
 	from_grid = [
 		"   ",
-		"-  ",
-		"-  ",
+		"d  ",
+		"d  ",
 		"   ",
 	]
 	to_orientation = 0
 	to_grid = [
 		"   ",
 		"   ",
-		"-- ",
+		"dd ",
 		"   ",
 	]
 	assert_kick()
@@ -55,15 +55,15 @@ func test_wall_kick_r0_1() -> void:
 	from_orientation = 1
 	from_grid = [
 		"   ",
-		"  -",
-		"  -",
+		"  d",
+		"  d",
 		"   ",
 	]
 	to_orientation = 0
 	to_grid = [
 		"   ",
 		"   ",
-		" --",
+		" dd",
 		"   ",
 	]
 	assert_kick()
@@ -73,15 +73,15 @@ func test_wall_kick_r2_0() -> void:
 	from_orientation = 1
 	from_grid = [
 		"   ",
-		"-  ",
-		"-  ",
+		"d  ",
+		"d  ",
 		"   ",
 	]
 	to_orientation = 2
 	to_grid = [
 		"   ",
 		"   ",
-		"-- ",
+		"dd ",
 		"   ",
 	]
 	assert_kick()
@@ -91,15 +91,15 @@ func test_wall_kick_r2_1() -> void:
 	from_orientation = 1
 	from_grid = [
 		"   ",
-		"  -",
-		"  -",
+		"  d",
+		"  d",
 		"   ",
 	]
 	to_orientation = 2
 	to_grid = [
 		"   ",
 		"   ",
-		" --",
+		" dd",
 		"   ",
 	]
 	assert_kick()
@@ -110,14 +110,14 @@ func test_kick_0r_0() -> void:
 	from_grid = [
 		"    ",
 		" :  ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
-		" :- ",
-		"  - ",
+		" :d ",
+		"  d ",
 		"    ",
 	]
 	assert_kick()
@@ -128,15 +128,15 @@ func test_kick_0r_1() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
 		" :: ",
-		" -  ",
-		" -  ",
+		" d  ",
+		" d  ",
 	]
 	assert_kick()
 
@@ -146,15 +146,15 @@ func test_kick_0r_2() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		" :  ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
 		" :: ",
-		"  - ",
-		" :- ",
+		"  d ",
+		" :d ",
 	]
 	assert_kick()
 
@@ -164,14 +164,14 @@ func test_kick_0l_0() -> void:
 	from_grid = [
 		"    ",
 		" :  ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 3
 	to_grid = [
 		"    ",
-		" :- ",
-		"  - ",
+		" :d ",
+		"  d ",
 		"    ",
 	]
 	assert_kick()
@@ -182,15 +182,15 @@ func test_kick_0l_1() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 3
 	to_grid = [
 		"    ",
 		" :: ",
-		" -  ",
-		" -  ",
+		" d  ",
+		" d  ",
 	]
 	assert_kick()
 
@@ -200,15 +200,15 @@ func test_kick_0l_2() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		" :  ",
 	]
 	to_orientation = 3
 	to_grid = [
 		"    ",
 		" :: ",
-		"  - ",
-		" :- ",
+		"  d ",
+		" :d ",
 	]
 	assert_kick()
 
@@ -217,15 +217,15 @@ func test_kick_l0_0() -> void:
 	from_orientation = 1
 	from_grid = [
 		"    ",
-		" -  ",
-		" -: ",
+		" d  ",
+		" d: ",
 		"    ",
 	]
 	to_orientation = 0
 	to_grid = [
 		"    ",
 		"    ",
-		"--: ",
+		"dd: ",
 		"    ",
 	]
 	assert_kick()
@@ -235,14 +235,14 @@ func test_kick_l0_1() -> void:
 	from_orientation = 1
 	from_grid = [
 		"    ",
-		" -  ",
-		":-: ",
+		" d  ",
+		":d: ",
 		"    ",
 	]
 	to_orientation = 0
 	to_grid = [
 		"    ",
-		" -- ",
+		" dd ",
 		": : ",
 		"    ",
 	]
@@ -253,14 +253,14 @@ func test_kick_l0_2() -> void:
 	from_orientation = 1
 	from_grid = [
 		"    ",
-		" -: ",
-		":-: ",
+		" d: ",
+		":d: ",
 		"    ",
 	]
 	to_orientation = 0
 	to_grid = [
 		"    ",
-		"--: ",
+		"dd: ",
 		": : ",
 		"    ",
 	]
@@ -272,14 +272,14 @@ func test_kick_2r_0() -> void:
 	from_grid = [
 		"    ",
 		" :  ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
-		" :- ",
-		"  - ",
+		" :d ",
+		"  d ",
 		"    ",
 	]
 	assert_kick()
@@ -290,15 +290,15 @@ func test_kick_2r_1() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
 		" :: ",
-		" -  ",
-		" -  ",
+		" d  ",
+		" d  ",
 	]
 	assert_kick()
 
@@ -308,15 +308,15 @@ func test_kick_2r_2() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		" :  ",
 	]
 	to_orientation = 1
 	to_grid = [
 		"    ",
 		" :: ",
-		"  - ",
-		" :- ",
+		"  d ",
+		" :d ",
 	]
 	assert_kick()
 
@@ -326,14 +326,14 @@ func test_kick_2l_0() -> void:
 	from_grid = [
 		"    ",
 		" :  ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 3
 	to_grid = [
 		"    ",
-		" :- ",
-		"  - ",
+		" :d ",
+		"  d ",
 		"    ",
 	]
 	assert_kick()
@@ -344,15 +344,15 @@ func test_kick_2l_1() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		"    ",
 	]
 	to_orientation = 3
 	to_grid = [
 		"    ",
 		" :: ",
-		" -  ",
-		" -  ",
+		" d  ",
+		" d  ",
 	]
 	assert_kick()
 
@@ -362,14 +362,14 @@ func test_kick_2l_2() -> void:
 	from_grid = [
 		"    ",
 		" :: ",
-		" -- ",
+		" dd ",
 		" :  ",
 	]
 	to_orientation = 3
 	to_grid = [
 		"    ",
 		" :: ",
-		"  - ",
-		" :- ",
+		"  d ",
+		" :d ",
 	]
 	assert_kick()
