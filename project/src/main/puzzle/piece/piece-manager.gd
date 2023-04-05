@@ -446,6 +446,7 @@ func _on_Dropper_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("
 func _on_Dropper_soft_dropped(dropped_piece: ActivePiece) -> void: emit_signal("soft_dropped", dropped_piece)
 func _on_Dropper_dropped(dropped_piece: ActivePiece) -> void: emit_signal("dropped", dropped_piece)
 
+func _on_Squisher_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
 func _on_Squisher_lock_cancelled(cancelled_piece: ActivePiece) -> void: emit_signal("lock_cancelled", cancelled_piece)
 func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2) -> void: emit_signal("squish_moved", \
 		squished_piece, old_pos)
