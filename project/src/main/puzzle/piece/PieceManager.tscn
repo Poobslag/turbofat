@@ -265,6 +265,7 @@ bus = "Sound Bus"
 [connection signal="hard_drop_target_pos_changed" from="Physics/Dropper" to="GhostMover" method="_on_Dropper_hard_drop_target_pos_changed"]
 [connection signal="hard_dropped" from="Physics/Dropper" to="." method="_on_Dropper_hard_dropped"]
 [connection signal="soft_dropped" from="Physics/Dropper" to="." method="_on_Dropper_soft_dropped"]
+[connection signal="hard_dropped" from="Physics/Squisher" to="." method="_on_Squisher_hard_dropped"]
 [connection signal="lock_cancelled" from="Physics/Squisher" to="." method="_on_Squisher_lock_cancelled"]
 [connection signal="squish_moved" from="Physics/Squisher" to="." method="_on_Squisher_squish_moved"]
 [connection signal="squish_moved" from="Physics/Squisher" to="Physics/Dropper" method="_on_Squisher_squish_moved"]

@@ -2,6 +2,8 @@ class_name PieceSquisher
 extends Node
 ## Handles squish moves for the player's active piece.
 
+## Usually the PieceDropper handles hard drops, but the Squisher emits a hard drop signal during rocket drops
+signal hard_dropped(piece)
 signal lock_cancelled(piece)
 signal squish_moved(piece, old_pos)
 
@@ -48,6 +50,7 @@ func attempt_squish(piece: ActivePiece) -> void:
 		if squish_drop_target != piece.pos:
 			# squish drop
 			_squish_to(piece, squish_drop_target)
+			emit_signal("hard_dropped", piece)
 			did_squish_drop = true
 	elif not piece.can_move_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
 		# calculate and cache squish target
