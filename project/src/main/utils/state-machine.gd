@@ -34,6 +34,9 @@ func update() -> void:
 func set_state(new_state: State) -> void:
 	var prev_state := _state
 	var prev_state_name := "" if _state == null else _state.name
+	var new_state_name := "" if new_state == null else new_state.name
+	if _state:
+		_state.exit(_host, new_state_name)
 	_state = new_state
 	_state.frames = 0
 	_state.enter(_host, prev_state_name)
