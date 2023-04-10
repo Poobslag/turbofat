@@ -7,16 +7,27 @@ extends Node
 ## The number of frames this state has been active for.
 var frames := 0
 
-## Called once when the state is first entered.
+## Called when the state is entered.
 ##
 ## Parameters:
 ## 	'_host': The state machine's parent object.
 ##
-## 	'_prev_state': The previous state the state machine was in.
+## 	'_prev_state_name': The state name the state machine was in before this one.
 func enter(_host, _prev_state_name: String) -> void:
 	pass
 
-## Called once each frame to make the state update.
+
+## Called when the state is exited.
+##
+## Parameters:
+## 	'_host': The state machine's parent object.
+##
+## 	'_new_state_name': The state name the state machine will be in after this one.
+func exit(_host, _new_state_name: String) -> void:
+	pass
+
+
+## Called each frame to make the state update.
 ##
 ## Returns the name of the new state to transition to, or '' if the state should not change.
 ##
