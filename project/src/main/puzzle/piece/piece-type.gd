@@ -35,6 +35,17 @@ func _init(init_string: String = "", init_pos_arr: Array = [], init_color_arr: A
 				kicks[inverse_key].append(Vector2(-kick.x, -kick.y))
 
 
+## Populates this object from another PieceType instance.
+##
+## Parameters:
+## 	'piece_type': The PieceType instance to copy from.
+func copy_from(piece_type: PieceType) -> void:
+	string = piece_type.string
+	pos_arr = piece_type.pos_arr.duplicate(true)
+	color_arr = piece_type.color_arr.duplicate(true)
+	kicks = piece_type.kicks.duplicate(true)
+
+
 ## Returns the position of the specified cell.
 func get_cell_position(orientation: int, cell_index: int) -> Vector2:
 	return pos_arr[orientation][cell_index]
@@ -51,6 +62,13 @@ func get_cell_color(orientation: int, cell_index: int) -> Vector2:
 ## "which sprite should I show" to fail more gracefully, instead of throwing an out of bounds error.
 func get_box_type() -> int:
 	return color_arr[0][0].y if color_arr and color_arr[0] else 0
+
+
+## Changes the PuzzleTileMap's food color index for this piece (brown, pink, bread, white)
+func set_box_type(new_type: int) -> void:
+	for i in range(color_arr.size()):
+		for j in range(color_arr[i].size()):
+			color_arr[i][j].y = new_type
 
 
 func _to_string() -> String:
