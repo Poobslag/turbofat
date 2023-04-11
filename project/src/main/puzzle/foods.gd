@@ -39,13 +39,21 @@ enum FoodType {
 	CAKE_QUV,
 }
 
-## Food colors for the food which gets hurled into the creature's mouth.
+## Food colors for food crumbs and goop.
 const COLOR_VEGETABLE := Color("335320")
 const COLOR_BROWN := Color("a4470b")
 const COLOR_PINK := Color("ff5d68")
 const COLOR_BREAD := Color("ffa357")
 const COLOR_WHITE := Color("fff6eb")
 const COLORS_ALL := [COLOR_BROWN, COLOR_PINK, COLOR_BREAD, COLOR_WHITE ]
+
+## Food colors for veggie crumbs and goop, for levels which use the 'veggie' tileset.
+const COLOR_VEG_GREEN := Color("839f43")
+const COLOR_VEG_RED := Color("a21d24")
+const COLOR_VEG_BREAD := Color("af884d")
+const COLOR_VEG_WHITE := Color("c1a57e")
+const COLORS_VEG_ALL := [COLOR_VEG_GREEN, COLOR_VEG_RED, COLOR_VEG_BREAD, COLOR_VEG_WHITE]
+
 
 ## key: (int) an enum from FoodType
 ## value: (int) an enum from BoxType for the corresponding box
@@ -103,6 +111,24 @@ const FOOD_TYPES_BY_BOX_TYPES := {
 	BoxType.CAKE_PUV: [FoodType.CAKE_PUV],
 	BoxType.CAKE_QUV: [FoodType.CAKE_QUV],
 }
+
+## key: (int) an enum from BoxType
+## value: (Array, int) array of enums from FoodType for the corresponding food items
+const COLORS_BY_BOX_TYPES := {
+	BoxType.BROWN: [COLOR_BROWN],
+	BoxType.PINK: [COLOR_PINK],
+	BoxType.BREAD: [COLOR_BREAD],
+	BoxType.WHITE: [COLOR_WHITE],
+	BoxType.CAKE_JJO: [COLOR_PINK, COLOR_PINK, COLOR_WHITE],
+	BoxType.CAKE_JLO: [COLOR_PINK, COLOR_BROWN, COLOR_WHITE],
+	BoxType.CAKE_JTT: [COLOR_PINK, COLOR_BREAD, COLOR_BREAD],
+	BoxType.CAKE_LLO: [COLOR_BROWN, COLOR_BROWN, COLOR_WHITE],
+	BoxType.CAKE_LTT: [COLOR_BROWN, COLOR_BREAD, COLOR_BREAD],
+	BoxType.CAKE_PQV: [COLOR_PINK, COLOR_BROWN, COLOR_WHITE],
+	BoxType.CAKE_PUV: [COLOR_PINK, COLOR_BREAD, COLOR_WHITE],
+	BoxType.CAKE_QUV: [COLOR_BROWN, COLOR_BREAD, COLOR_WHITE],
+}
+
 
 ## Returns 'true' if the specified box type corresponds to a snack box.
 ##

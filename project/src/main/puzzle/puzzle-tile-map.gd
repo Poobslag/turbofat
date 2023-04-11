@@ -283,6 +283,36 @@ func contents_as_string() -> String:
 	return result
 
 
+## Returns crumb colors for the specified cell.
+##
+## If the cell contains a normal piece, the resulting list will only have a single item. If the cell contains a cake
+## box, the resulting list will have a few items based on the cake ingredients.
+##
+## Parameters:
+## 	'cell_pos': An (x, y) position in the TileMap
+##
+## Returns:
+## 	An array of Color instances corresponding to crumb colors when the specified cell is destroyed.
+func crumb_colors_for_cell(cell_pos: Vector2) -> Array:
+	var result := []
+	var autotile_coord := get_cell_autotile_coord(cell_pos.x, cell_pos.y)
+	
+	var cellv := get_cellv(cell_pos)
+	match cellv:
+		TILE_PIECE, TILE_CORNER:
+			match puzzle_tile_set_type:
+				TileSetType.DEFAULT, TileSetType.DIAGRAM:
+					result = [Foods.COLORS_ALL[int(autotile_coord.y)]]
+				TileSetType.VEGGIE:
+					result = [Foods.COLORS_VEG_ALL[int(autotile_coord.y)]]
+		TILE_BOX:
+			result = Foods.COLORS_BY_BOX_TYPES[int(autotile_coord.y)]
+		TILE_VEG:
+			result = [Foods.COLOR_VEGETABLE]
+	
+	return result
+
+
 ## Disconnects a row from any empty neighbors.
 ##
 ## Disconnected boxes have their connections updated. Disconnected pieces are converted to vegetable blocks.
