@@ -47,7 +47,7 @@ func attempt_squish(piece: ActivePiece) -> void:
 				squish_drop_target = prev_squish_drop_target
 				break
 		
-		var squish_move_is_unnecessary = true
+		var squish_move_is_unnecessary := true
 		for y in range(piece.pos.y, squish_drop_target.y):
 			if not piece.can_move_to(Vector2(piece.pos.x, y), piece.orientation):
 				squish_move_is_unnecessary = false

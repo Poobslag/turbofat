@@ -139,7 +139,7 @@ static func increment_string(s: String) -> String:
 			# digit; add to buffer
 			num_buffer += s[i]
 		elif num_buffer:
-			# non-digit; 
+			# non-digit;
 			result += str(int(num_buffer) + 1)
 			num_buffer = ""
 			result += s[i]
