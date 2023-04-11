@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -91,6 +91,7 @@
 [ext_resource path="res://src/main/puzzle/night/night-mode-toggler.gd" type="Script" id=89]
 [ext_resource path="res://src/main/puzzle/night/night-star-seeds.gd" type="Script" id=90]
 [ext_resource path="res://src/main/puzzle/night/NightStarSeed.tscn" type="PackedScene" id=91]
+[ext_resource path="res://src/main/puzzle/MoneyBurst.tscn" type="PackedScene" id=92]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -663,9 +664,12 @@ script = ExtResource( 32 )
 piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
 ComboBurstScene = ExtResource( 43 )
+MoneyBurstScene = ExtResource( 92 )
 TechMoveBurstScene = ExtResource( 77 )
 
 [node name="Combo" type="Node2D" parent="Fg/Bursts"]
+
+[node name="Money" type="Node2D" parent="Fg/Bursts"]
 
 [node name="Tech" type="Node2D" parent="Fg/Bursts"]
 

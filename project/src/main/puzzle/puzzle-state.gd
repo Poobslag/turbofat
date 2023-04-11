@@ -35,6 +35,7 @@ signal speed_index_changed(value)
 
 signal added_line_score(combo_score, box_score)
 signal added_pickup_score(pickup_score)
+signal added_unusual_cell_score(cell, cell_score)
 
 ## emitted on the frame that the player drops and locks a new piece
 signal before_piece_written
@@ -314,6 +315,15 @@ func add_pickup_score(pickup_score: int) -> void:
 	
 	emit_signal("added_pickup_score", pickup_score)
 	emit_signal("score_changed")
+
+
+## Adds points for doing something unusual in a cell.
+##
+## This occurs during very specific levels with gimmicks like sharks. It mostly gets treated the same way as pickups,
+## but also triggers a money UI popup.
+func add_unusual_cell_score(cell: Vector2, cell_score: int) -> void:
+	PuzzleState.add_pickup_score(20)
+	emit_signal("added_unusual_cell_score", cell, cell_score)
 
 
 ## Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
