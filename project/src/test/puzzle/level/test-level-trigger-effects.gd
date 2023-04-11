@@ -120,6 +120,29 @@ func test_add_onion_get_config() -> void:
 	assert_eq_shallow(effect.get_config(), {})
 
 
+func test_add_sharks_set_config() -> void:
+	var effect: LevelTriggerEffects.AddSharksEffect
+	
+	effect = LevelTriggerEffects.create("add_sharks", {})
+	assert_eq(effect.config.count, 1)
+	assert_eq(effect.config.home, SharkConfig.Home.ANY)
+	assert_eq(effect.config.patience, 0)
+	assert_eq(effect.config.size, SharkConfig.SharkSize.MEDIUM)
+	
+	effect = LevelTriggerEffects.create("add_sharks", {"count": "2", "home": "veg", "patience": "4",
+			"size": "small"})
+	assert_eq(effect.config.count, 2)
+	assert_eq(effect.config.home, SharkConfig.Home.VEG)
+	assert_eq(effect.config.patience, 4)
+	assert_eq(effect.config.size, SharkConfig.SharkSize.SMALL)
+	
+	effect = LevelTriggerEffects.create("add_sharks", {"x": "3-5"})
+	assert_eq(effect.config.columns, [3, 4, 5])
+	
+	effect = LevelTriggerEffects.create("add_sharks", {"y": "0,8"})
+	assert_eq(effect.config.lines, [19, 11])
+
+
 func test_remove_carrots_set_config() -> void:
 	var effect: LevelTriggerEffects.RemoveCarrotsEffect
 	

@@ -100,6 +100,11 @@ func get_onions() -> Onions:
 	return $Fg/Critters/Onions as Onions
 
 
+## Returns the node which handles sharks, puzzle critters which eat pieces.
+func get_sharks() -> Sharks:
+	return $Fg/Critters/Sharks as Sharks
+
+
 func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 

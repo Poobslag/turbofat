@@ -13,6 +13,9 @@ onready var _moles: Moles = $Moles
 ## Draws onions, puzzle critters which darken things making it hard to see.
 onready var _onions: Onions = $Onions
 
+## Draws sharks, puzzle critters which eat pieces.
+onready var _sharks: Sharks = $Sharks
+
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	_refresh_playfield_path()
@@ -35,6 +38,7 @@ func _refresh_playfield_path() -> void:
 	
 	_moles.playfield_path = _moles.get_path_to(get_node(playfield_path))
 	_onions.playfield_path = _onions.get_path_to(get_node(playfield_path))
+	_sharks.playfield_path = _sharks.get_path_to(get_node(playfield_path))
 	_carrots.playfield_path = _carrots.get_path_to(get_node(playfield_path))
 
 
@@ -43,6 +47,7 @@ func _refresh_piece_manager_path() -> void:
 		return
 	
 	_moles.piece_manager_path = _moles.get_path_to(get_node(piece_manager_path))
+	_sharks.piece_manager_path = _sharks.get_path_to(get_node(piece_manager_path))
 
 
 ## When the player pauses, we hide the playfield so they can't cheat.

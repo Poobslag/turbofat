@@ -11,6 +11,7 @@ $$ "Clog Boxes" by Alan Vista at alanvista.com (Advertised as 'Free VST', no lic
 $$ "Cooking Game" by Epic Stock Media (Coniss license, https://sonniss.com/sound-effects-licensing/)
 $$ "Crickets At Night - Clean sound" by doctorphil at Defelozedd94 (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
 $$$ "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons attribution license, https://creativecommons.org/licenses/by/3.0/)
+$$ "Empty Blender" by parkersenk at freesound.org (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
 $ "Foley Rubber Glove 1" by Epidemic Sound (Epidemic Sound license, https://cdn.epidemicsound.com/legacy/10/documents/SingleTrackLicensesV6.pdf. This license is geared more towards music tracks for youtube videos, but says indie games can use licensed 'Music Pieces' which presumably applies to to sound effects as well.)
 $$ "FilmCow Royalty Free Sound Effects Library" by FilmCow (FilmCow license, https://filmcow.itch.io/filmcow-sfx)
 $$ "Rooster crows" by jsbarrett at FreeSound.org (CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, https://creativecommons.org/publicdomain/zero/1.0/)
@@ -54,6 +55,7 @@ project/assets/main/puzzle/clear-snack-box.wav "Cooking_Game_16bit\Ingredient_Pi
 project/assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
 project/assets/main/puzzle/critter/carrot-move.wav "Cartoon Plane Loop" from tsymbal
 project/assets/main/puzzle/critter/critter-poof.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SWIPES - SLASHES - WHOOSHES - (58)\SWIPE Whoosh 07.wav"
+project/assets/main/puzzle/critter/critter-squish.wav "Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Actions\Cooking_Game_Ingredient_Actions_Squish_03.wav"
 project/assets/main/puzzle/critter/mole-dig.wav "Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Slice_Bread_Thick_03.wav"
 project/assets/main/puzzle/critter/mole-found.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\VOCAL CUTE - CHARACTERS - (113)\VOCAL CUTE Call Happy 05.wav"
 project/assets/main/puzzle/critter/onion-crickets.wav "Crickets At Night - Clean sound" by Defelozedd94
@@ -66,6 +68,9 @@ project/assets/main/puzzle/critter/onion-up.wav "FilmCow Recorded SFX\slide whis
 project/assets/main/puzzle/critter/onion-voice-*.wav "Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Customer_02_Cartoon_Voice.wav"
 project/assets/main/puzzle/critter/onion-wow.wav "Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Customer_02_Cartoon_Voice.wav"
 project/assets/main/puzzle/critter/onion-zap.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SPLATS - SQUELCHES - (36)\SPLAT Crush 07.wav"
+project/assets/main/puzzle/critter/shark-bite.wav Cartoon Bite Sound Effect from 'Sound effects for youtubers' https://www.youtube.com/watch?v=RlvRyo4ofvM
+project/assets/main/puzzle/critter/shark-eat.wav Empty blender by parkersenk from freesound.org
+project/assets/main/puzzle/critter/shark-voice-*.wav Created using Bosca Ceoil by Terry Cavanagh
 project/assets/main/puzzle/excellent.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 project/assets/main/puzzle/fanfare*.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
 project/assets/main/puzzle/gameover.wav "Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"

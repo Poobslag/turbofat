@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/moles.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/critter/critters.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/main/puzzle/critter/critter-poof.wav" type="AudioStream" id=7]
 [ext_resource path="res://src/main/puzzle/critter/onions.gd" type="Script" id=8]
 [ext_resource path="res://src/main/puzzle/critter/Onion.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/puzzle/critter/sharks.gd" type="Script" id=10]
+[ext_resource path="res://src/main/puzzle/critter/Shark.tscn" type="PackedScene" id=11]
 
 [node name="Critters" type="Control"]
 margin_left = 364.0
@@ -24,6 +26,10 @@ MoleScene = ExtResource( 3 )
 [node name="Onions" type="Node2D" parent="." groups=["night_mode_invisible"]]
 script = ExtResource( 8 )
 OnionScene = ExtResource( 9 )
+
+[node name="Sharks" type="Node2D" parent="." groups=["night_mode_light"]]
+script = ExtResource( 10 )
+SharkScene = ExtResource( 11 )
 
 [node name="Carrots" type="Node2D" parent="." groups=["night_mode_light"]]
 script = ExtResource( 4 )

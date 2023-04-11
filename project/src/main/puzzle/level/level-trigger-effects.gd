@@ -179,6 +179,65 @@ class AddMolesEffect extends LevelTriggerEffect:
 		return result
 
 
+## Adds one or more sharks to the playfield.
+class AddSharksEffect extends LevelTriggerEffect:
+	var config: SharkConfig = SharkConfig.new()
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [count]: (Optional) How many sharks appear during a single 'add sharks' effect. Defaults to 1.
+	## [home]: (Optional) Restricts which types of tiles sharks can appear: 'any', 'veg', 'box', 'surface', 'cake' or
+	## 	'hole'.
+	## [y]: (Optional) Restricts which rows the sharks appear on, where '0' is the bottom row of the playfield and '16'
+	## 	is the top.
+	## [x]: (Optional) Restricts which columns the sharks appear on, where '0' is the leftmost column of the playfield.
+	## [patience]: (Optional) The reward the sharks dig up: 'seed' or 'star'. Defaults to 'star'.
+	## [size]: (Optional) The size (and appetite) of the shark: 'small', 'medium' or 'large'. Defaults to 'medium'.
+	##
+	## Example: ["add_sharks size=small count=3 patience=5"]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("count"):
+			config.count = new_config["count"].to_int()
+		if new_config.has("home"):
+			config.home = Utils.enum_from_snake_case(SharkConfig.Home, new_config["home"])
+		if new_config.has("y"):
+			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
+			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
+		if new_config.has("x"):
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
+		if new_config.has("patience"):
+			config.patience = new_config["patience"].to_int()
+		if new_config.has("size"):
+			config.size = Utils.enum_from_snake_case(SharkConfig.SharkSize, new_config["size"])
+	
+	
+	## Adds one or more moles to the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_sharks().add_sharks(config)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		
+		if config.count != 1:
+			result["count"] = str(config.count)
+		if config.home != SharkConfig.Home.ANY:
+			result["home"] = Utils.enum_to_snake_case(SharkConfig.Home, config.home)
+		if config.lines:
+			var inverted_lines: Array = ConfigStringUtils.invert_puzzle_row_indexes(config.lines)
+			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_lines)
+		if config.columns:
+			result["x"] = ConfigStringUtils.config_string_from_ints(config.columns)
+		if config.patience != 3:
+			result["patience"] = str(config.patience)
+		if config.size != SharkConfig.SharkSize.MEDIUM:
+			result["size"] = Utils.enum_to_snake_case(SharkConfig.SharkSize, config.size)
+		
+		return result
+
+
 ## Advances the day/night cycle of any onions on the playfield.
 class AdvanceOnionEffect extends LevelTriggerEffect:
 	
@@ -193,6 +252,14 @@ class AdvanceMolesEffect extends LevelTriggerEffect:
 	## Advances all moles on the playfield, allowing them to dig up pickups.
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().advance_moles()
+
+
+## Advances all sharks on the playfield, making them appear/disappear.
+class AdvanceSharksEffect extends LevelTriggerEffect:
+	
+	## Advances all sharks on the playfield, making them appear/disappear
+	func run() -> void:
+		CurrentLevel.puzzle.get_sharks().advance_sharks()
 
 
 ## Removes one or more carrots from the playfield.
@@ -358,8 +425,10 @@ var effects_by_string := {
 	"add_carrots": AddCarrotsEffect,
 	"add_moles": AddMolesEffect,
 	"add_onion": AddOnionEffect,
+	"add_sharks": AddSharksEffect,
 	"advance_moles": AdvanceMolesEffect,
 	"advance_onion": AdvanceOnionEffect,
+	"advance_sharks": AdvanceSharksEffect,
 	"clear_filled_lines": ClearFilledLinesEffect,
 	"remove_carrots": RemoveCarrotsEffect,
 	"remove_onion": RemoveOnionEffect,

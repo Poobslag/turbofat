@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shark-voice-short-4.wav-4a4a4654e2952225add085148c3f6096.sample"
+
+[deps]
+
+source_file="res://assets/main/puzzle/critter/shark-voice-short-4.wav"
+dest_files=[ "res://.import/shark-voice-short-4.wav-4a4a4654e2952225add085148c3f6096.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

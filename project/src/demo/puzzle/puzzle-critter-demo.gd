@@ -20,17 +20,24 @@ extends Node
 ## 	[O] -> [4]: Force day end
 ## 	[O] -> [5]: Force night
 ## 	[O] -> [6]: Force 'none'
+## 	[S]: Manipulate sharks
+## 	[S] -> [1]: Add a small shark
+## 	[S] -> [2]: Add a medium shark
+## 	[S] -> [3]: Add a large shark
+## 	[S] -> ']': Advance sharks
 
 enum CritterType {
 	NONE,
 	CARROT,
 	MOLE,
 	ONION,
+	SHARK,
 }
 
 var critter_type: int = CritterType.NONE
 
 var _carrot_config := CarrotConfig.new()
+var _shark_config := SharkConfig.new()
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
@@ -57,11 +64,13 @@ func _input(event: InputEvent) -> void:
 		KEY_C: critter_type = CritterType.CARROT
 		KEY_M: critter_type = CritterType.MOLE
 		KEY_O: critter_type = CritterType.ONION
+		KEY_S: critter_type = CritterType.SHARK
 	
 	match critter_type:
 		CritterType.CARROT: _carrot_input(event)
 		CritterType.MOLE: _mole_input(event)
 		CritterType.ONION: _onion_input(event)
+		CritterType.SHARK: _shark_input(event)
 
 
 func _carrot_input(event: InputEvent) -> void:
@@ -108,3 +117,18 @@ func _onion_input(event: InputEvent) -> void:
 		KEY_6:
 			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new(".."))
+
+
+func _shark_input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_1:
+			_shark_config.size = SharkConfig.SharkSize.SMALL
+			$Puzzle/Fg/Critters/Sharks.add_sharks(_shark_config)
+		KEY_2:
+			_shark_config.size = SharkConfig.SharkSize.MEDIUM
+			$Puzzle/Fg/Critters/Sharks.add_sharks(_shark_config)
+		KEY_3:
+			_shark_config.size = SharkConfig.SharkSize.LARGE
+			$Puzzle/Fg/Critters/Sharks.add_sharks(_shark_config)
+		KEY_BRACKETRIGHT:
+			$Puzzle/Fg/Critters/Sharks.advance_sharks()
