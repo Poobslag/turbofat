@@ -5,6 +5,7 @@ export (NodePath) var piece_manager_path: NodePath
 export (NodePath) var playfield_path: NodePath
 
 export (PackedScene) var ComboBurstScene: PackedScene
+export (PackedScene) var MoneyBurstScene: PackedScene
 export (PackedScene) var TechMoveBurstScene: PackedScene
 
 ## Stores the x position of the previous combo burst to ensure consecutive bursts aren't vertically aligned
@@ -20,10 +21,12 @@ onready var _playfield: Playfield = get_node(playfield_path)
 
 # Containers for combo bursts and tech bursts. Tech bursts appear on top.
 onready var _combo_container := $Combo
+onready var _money_container := $Money
 onready var _tech_container := $Tech
 
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
+	PuzzleState.connect("added_unusual_cell_score", self, "_on_PuzzleState_added_unusual_cell_score")
 
 
 ## Adds a combo burst to the specified cell.
@@ -40,6 +43,24 @@ func _add_combo_burst(target_cell: Vector2, combo: int) -> void:
 	combo_burst.position *= _playfield.tile_map.scale
 	combo_burst.combo = combo
 	_combo_container.add_child(combo_burst)
+
+
+## Adds a money burst to the specified cell.
+##
+## A money burst is an indicator like '¥20' which appears when the player earns money from a puzzle critter. This
+## occurs during very specific levels with gimmicks like sharks. It mostly gets treated the same way as pickups, but
+## also triggers a money UI popup.
+##
+## Parameters:
+## 	'target_cell': The cell to add the money burst to.
+##
+## 	'money': The money to display.
+func _add_money_burst(target_cell: Vector2, money: int) -> void:
+	var money_burst: MoneyBurst = MoneyBurstScene.instance()
+	money_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
+	money_burst.position *= _playfield.tile_map.scale
+	money_burst.money = money
+	_money_container.add_child(money_burst)
 
 
 ## Adds a tech move burst to the specified cell.
@@ -119,6 +140,11 @@ func _on_PuzzleState_before_piece_written() -> void:
 	
 	for y in piece_min_x_by_y:
 		_piece_x_by_y[int(y)] = (piece_min_x_by_y[y] + piece_max_x_by_y[y]) / 2
+
+
+## When the player earns money from a puzzle critter we add a new money burst.
+func _on_PuzzleState_added_unusual_cell_score(cell: Vector2, cell_score: int) -> void:
+	_add_money_burst(cell, cell_score)
 
 
 ## When a line is cleared we add a new combo burst.
