@@ -109,6 +109,14 @@ func get_state() -> State:
 	return states.get_state()
 
 
+## Updates our piece state to a specific state from PieceStates.
+##
+## PieceManager typically updates its own state, but unusual level gimmicks may need to interrupt it with a custom
+## state.
+func set_state(new_state: State) -> void:
+	states.set_state(new_state)
+
+
 func is_playfield_ready_for_new_piece() -> bool:
 	return _playfield.ready_for_new_piece()
 

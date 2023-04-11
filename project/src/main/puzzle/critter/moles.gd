@@ -377,18 +377,11 @@ func _on_PieceManager_piece_disturbed(_piece: ActivePiece) -> void:
 
 
 func _on_PuzzleState_before_piece_written() -> void:
-	for mole_cell in _moles_by_cell.duplicate():
-		var mole: Mole = _moles_by_cell[mole_cell]
-		if mole.hidden:
-			if mole.state == Mole.WAITING or mole.hidden and mole.hidden_mole_state == Mole.WAITING:
-				# mole hasn't appeared yet; relocate the mole
-				_relocate_mole(mole_cell)
-			else:
-				# mole was squished; remove the mole
-				remove_mole(mole_cell)
-		
-		# immediately unhide the mole
-		mole.hidden = false
+	_refresh_moles_for_playfield()
+	
+	# restore any remaining moles which were hidden by the active piece
+	for mole_cell in _moles_by_cell:
+		_moles_by_cell[mole_cell].hidden = false
 
 
 func _on_Playfield_line_deleted(y: int) -> void:

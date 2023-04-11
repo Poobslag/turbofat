@@ -154,6 +154,8 @@ func pop_next_state() -> int:
 	return hidden_mole_state if hidden else state
 
 
+## Parameters:
+## 	'new_state': an enum from States for the mole's new animation state.
 func set_state(new_state: int) -> void:
 	state = new_state
 	_refresh_state()
