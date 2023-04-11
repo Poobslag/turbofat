@@ -71,7 +71,7 @@ onready var tech_move_detector: TechMoveDetector = $TechMoveDetector
 onready var _physics: PiecePhysics = $Physics
 onready var _playfield: Playfield = get_node(playfield_path)
 onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
-onready var _states: PieceStates = $States
+onready var states: PieceStates = $States
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
@@ -88,12 +88,12 @@ func _ready() -> void:
 	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	_clear_piece()
-	_states.set_state(_states.none)
+	states.set_state(states.none)
 	_prepare_tileset()
 
 
 func _physics_process(_delta: float) -> void:
-	_states.update()
+	states.update()
 	if drawn_piece_type != piece.type \
 			or drawn_piece_pos != piece.pos \
 			or drawn_piece_orientation != piece.orientation:
@@ -106,7 +106,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func get_state() -> State:
-	return _states.get_state()
+	return states.get_state()
 
 
 func is_playfield_ready_for_new_piece() -> bool:
@@ -126,7 +126,7 @@ func write_piece_to_playfield() -> void:
 ## When the player tops out but doesn't lose, the playfield deletes some lines to make space. During this time the
 ## piece enters a state of immobility. This 'enter_top_out_state' function makes the piece temporarily immobile.
 func enter_top_out_state() -> void:
-	_states.set_state(_states.top_out)
+	states.set_state(states.top_out)
 	
 	# prevent the piece from spawning until the playfield is ready
 	piece.spawn_delay = 999999
@@ -239,9 +239,9 @@ func skip_prespawn() -> void:
 	if CurrentLevel.settings.other.non_interactive:
 		return
 	
-	if _states.get_state() != _states.prespawn:
-		_states.set_state(_states.prespawn)
-	_states.prespawn.frames = 3600
+	if states.get_state() != states.prespawn:
+		states.set_state(states.prespawn)
+	states.prespawn.frames = 3600
 
 
 func finish_spin_move(spin_piece: ActivePiece, lines_cleared: int) -> void:
@@ -279,7 +279,7 @@ func _start_first_piece() -> void:
 	if CurrentLevel.settings.other.non_interactive:
 		return
 	
-	_states.set_state(_states.prespawn)
+	states.set_state(states.prespawn)
 	skip_prespawn()
 
 
@@ -327,7 +327,7 @@ func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
 		# write the piece to the playfield
 		piece.move_to_target()
 		write_piece_to_playfield()
-		_states.set_state(_states.wait_for_playfield)
+		states.set_state(states.wait_for_playfield)
 	emit_signal("piece_disturbed", piece)
 
 
@@ -359,12 +359,12 @@ func _on_Level_settings_changed() -> void:
 
 func _on_States_entered_state(prev_state: State, state: State) -> void:
 	# when topping out, the piece temporarily moves in front of other playfield elements
-	if state in [_states.top_out, _states.game_ended]:
+	if state in [states.top_out, states.game_ended]:
 		tile_map.z_index = TILE_MAP_TOP_OUT_Z_INDEX
-	elif prev_state in [_states.top_out, _states.game_ended]:
+	elif prev_state in [states.top_out, states.game_ended]:
 		tile_map.z_index = TILE_MAP_DEFAULT_Z_INDEX
 	
-	if state == _states.prelock:
+	if state == states.prelock:
 		emit_signal("lock_started", piece)
 
 
@@ -372,7 +372,7 @@ func _on_PuzzleState_game_prepared() -> void:
 	# enable physics_process if it was temporarily disabled
 	set_physics_process(true)
 	_clear_piece()
-	_states.set_state(_states.none)
+	states.set_state(states.none)
 
 
 func _on_PuzzleState_game_started() -> void:
@@ -383,13 +383,13 @@ func _on_PuzzleState_game_started() -> void:
 ## it's not left floating.
 func _on_PuzzleState_finish_triggered() -> void:
 	_clear_piece()
-	_states.set_state(_states.game_ended)
+	states.set_state(states.game_ended)
 
 
 ## The game ended the game, possibly by a top out. We leave the piece in place so that they can see why they topped
 ## out.
 func _on_PuzzleState_game_ended() -> void:
-	_states.set_state(_states.game_ended)
+	states.set_state(states.game_ended)
 
 
 func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
@@ -408,7 +408,7 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 ## When a line is inserted which intersects with the active piece, we shift it up.
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
-	if _states.get_state() in [_states.move_piece, _states.prelock]:
+	if states.get_state() in [states.move_piece, states.prelock]:
 		_shift_piece_for_inserted_line(y)
 	
 	emit_signal("playfield_disturbed", piece)
@@ -426,7 +426,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 ##
 ## Most levels only delete lines after the player drops a piece, but unusual levels might delete lines at other times.
 func _on_Playfield_after_lines_deleted(deleted_lines: Array) -> void:
-	if _states.get_state() in [_states.move_piece, _states.prelock]:
+	if states.get_state() in [states.move_piece, states.prelock]:
 		_shift_piece_for_deleted_lines(deleted_lines)
 	
 	emit_signal("playfield_disturbed", piece)
