@@ -185,7 +185,7 @@ var piece_o := PieceType.new("o",
 			[Vector2(10, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2( 5, 3)],
 			[Vector2(10, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2( 5, 3)],
 		],
-		KICKS_NONE
+		KICKS_JLSZ
 	)
 
 var piece_p := PieceType.new("p",
