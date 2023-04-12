@@ -98,12 +98,23 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 	# Columns which have a ceiling overhead, for moles with a home of 'surface' or 'hole'
 	var ceiling_x_coords := {}
 	
+	# Columns which have a mole overhead
+	var midair_mole_x_coords := {}
+	
 	for y in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
 			var mole_cell := Vector2(x, y)
 			
 			if _playfield.tile_map.get_cellv(mole_cell) != TileMap.INVALID_CELL:
 				ceiling_x_coords[x] = true
+				midair_mole_x_coords.erase(x)
+			
+			if _moles_by_cell.has(mole_cell):
+				# don't place a mole beneath a mid-air mole; this can happen during line clears
+				midair_mole_x_coords[x] = true
+			
+			if midair_mole_x_coords.has(x):
+				continue
 			
 			# check if the mole is in an appropriate row
 			if config.lines:
@@ -385,8 +396,7 @@ func _on_PuzzleState_before_piece_written() -> void:
 
 
 func _on_Playfield_line_deleted(y: int) -> void:
-	# Levels with the 'FloatFall' LineClearType have rows which are deleted, but not erased. Erase any moles
-	_erase_row(y)
+	# don't erase moles; moles can be added during the line clear process, which includes erase/delete events
 	
 	# drop all moles above the specified row to fill the gap
 	_shift_rows(y - 1, Vector2.DOWN)
@@ -394,8 +404,8 @@ func _on_Playfield_line_deleted(y: int) -> void:
 	# don't refresh the playfield moles when a single line is deleted; wait until all lines are deleted
 
 
-func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
-	_erase_row(y)
+func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	# don't erase moles; moles can be added during the line clear process, which includes erase/delete events
 	
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate moles until all lines are deleted.
