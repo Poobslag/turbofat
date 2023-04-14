@@ -152,12 +152,15 @@ func process_boxes() -> bool:
 			# Process boxes from bottom to top, to hopefully match a typical player's intent. If multiple boxes can
 			# be made, it's better to leave an incomplete box at the top of the playfield rather than being buried at
 			# the bottom.
+			
+			# If multiple boxes can be made at the same height, we prioritize larger horizontal boxes. They're worth
+			# more points.  
 			var lo_y := PuzzleTileMap.ROW_COUNT - hi_y - 1
+			if dt3[lo_y][x] >= 5 and _process_box(x, lo_y, 5, 3): return true
 			if dt5[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 5): return true
+			if dt3[lo_y][x] >= 4 and _process_box(x, lo_y, 4, 3): return true
 			if dt4[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 4): return true
 			if dt3[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 3): return true
-			if dt3[lo_y][x] >= 4 and _process_box(x, lo_y, 4, 3): return true
-			if dt3[lo_y][x] >= 5 and _process_box(x, lo_y, 5, 3): return true
 	return false
 
 
