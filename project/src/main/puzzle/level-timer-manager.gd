@@ -29,6 +29,7 @@ func _ready() -> void:
 	# create placeholder timers. different levels might start some, all or none of these timers
 	for i in range(MAX_TIMER_COUNT):
 		var timer := Timer.new()
+		timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
 		timer.connect("timeout", self, "_on_Timer_timeout", [i])
 		add_child(timer)
 
