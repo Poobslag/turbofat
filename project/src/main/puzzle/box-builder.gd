@@ -154,7 +154,7 @@ func process_boxes() -> bool:
 			# the bottom.
 			
 			# If multiple boxes can be made at the same height, we prioritize larger horizontal boxes. They're worth
-			# more points.  
+			# more points.
 			var lo_y := PuzzleTileMap.ROW_COUNT - hi_y - 1
 			if dt3[lo_y][x] >= 5 and _process_box(x, lo_y, 5, 3): return true
 			if dt5[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 5): return true
