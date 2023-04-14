@@ -322,7 +322,7 @@ func add_pickup_score(pickup_score: int) -> void:
 ## This occurs during very specific levels with gimmicks like sharks. It mostly gets treated the same way as pickups,
 ## but also triggers a money UI popup.
 func add_unusual_cell_score(cell: Vector2, cell_score: int) -> void:
-	PuzzleState.add_pickup_score(20)
+	PuzzleState.add_pickup_score(cell_score)
 	emit_signal("added_unusual_cell_score", cell, cell_score)
 
 
