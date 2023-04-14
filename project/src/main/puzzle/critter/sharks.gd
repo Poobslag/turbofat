@@ -148,7 +148,7 @@ func _refresh_sharks_for_piece() -> void:
 			
 			# Change the shark, adding any eaten cells
 			var new_piece_cells := _playfield_piece_cells()
-			shark.set_state(Shark.EATING)
+			shark.eat()
 			_feed_shark_cells(shark_cell, old_piece_cells, new_piece_cells)
 
 

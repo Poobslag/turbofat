@@ -24,6 +24,7 @@ extends Node
 ## 	[S] -> [1]: Add a small shark
 ## 	[S] -> [2]: Add a medium shark
 ## 	[S] -> [3]: Add a large shark
+## 	[S] -> [4]: Toggle shark patience
 ## 	[S] -> ']': Advance sharks
 
 enum CritterType {
@@ -130,5 +131,7 @@ func _shark_input(event: InputEvent) -> void:
 		KEY_3:
 			_shark_config.size = SharkConfig.SharkSize.LARGE
 			$Puzzle/Fg/Critters/Sharks.add_sharks(_shark_config)
+		KEY_4:
+			_shark_config.patience = 0 if _shark_config.patience == 3 else 3
 		KEY_BRACKETRIGHT:
 			$Puzzle/Fg/Critters/Sharks.advance_sharks()
