@@ -155,13 +155,16 @@ func has_next_state() -> bool:
 ## If the shark is currently hidden, they remain invisible. But this still updates their hidden state and returns the
 ## dequeued state.
 ##
+## Parameters:
+## 	'force': If 'true', the shark will be updated again even if it was already updated this frame.
+##
 ## Returns:
 ## 	An enum from States for the shark's new state.
-func pop_next_state() -> int:
+func pop_next_state(force: bool = false) -> int:
 	if not _next_states:
 		return NONE
 	
-	if _already_popped_state:
+	if _already_popped_state and not force:
 		pass
 	else:
 		var next_state: int = _next_states.pop_front()
@@ -242,7 +245,16 @@ func sync_dance() -> void:
 ## They stay squished for two cycles and then poof away.
 func squish() -> void:
 	_next_states = [SQUISHED, SQUISHED, NONE]
-	pop_next_state()
+	pop_next_state(true)
+
+
+## Makes the shark eat.
+##
+## Details about the piece being eaten should be assigned with set_puzzle_tile_set_type(), set_eaten_cell(),
+## set_eaten_color() and set_duration().
+func eat() -> void:
+	_next_states = [EATING]
+	pop_next_state(true)
 
 
 ## Plays the specified 'shark animation', such as 'dance' which corresponds to a longer animation name like
