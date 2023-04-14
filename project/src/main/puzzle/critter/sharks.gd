@@ -124,11 +124,11 @@ func _refresh_sharks_for_piece() -> void:
 		if shark.state in [Shark.DANCING, Shark.DANCING_END] and piece_overlaps_shark:
 			match shark.shark_size:
 				SharkConfig.SharkSize.SMALL:
-					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 5)
-				SharkConfig.SharkSize.MEDIUM:
 					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 10)
-				SharkConfig.SharkSize.LARGE:
+				SharkConfig.SharkSize.MEDIUM:
 					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 20)
+				SharkConfig.SharkSize.LARGE:
+					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 50)
 			
 			# Assign the color before the piece is eaten. Otherwise if the entire piece is eaten, we won't know which
 			# color it was.
