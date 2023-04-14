@@ -264,7 +264,7 @@ func play_shark_anim(anim_prefix: String) -> void:
 	
 	# preserve old animation position when transitioning from 'dance' to 'dance-end' or vice-versa
 	if old_animation.begins_with("dance-") and animation_player.current_animation.begins_with("dance-"):
-		animation_player.seek(old_animation_position)
+		animation_player.seek(old_animation_position, true)
 
 
 ## Refreshes our appearance and behavior based on our current shark size.
