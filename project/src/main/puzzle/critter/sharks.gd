@@ -285,6 +285,10 @@ func _to_domino(piece_type: PieceType) -> PieceType:
 	var result := PieceType.new()
 	result.copy_from(PieceTypes.piece_domino)
 	result.set_box_type(piece_type.get_box_type())
+	
+	# We update the piece string so that tech moves like 'T-spin' reflect the original piece.
+	result.string = piece_type.string
+	
 	return result
 
 
