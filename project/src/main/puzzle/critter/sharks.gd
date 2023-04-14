@@ -272,6 +272,12 @@ func _update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orie
 		_piece_manager.piece.orientation = 0
 		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
 		_piece_manager.set_state(_piece_manager.states.wait_for_playfield)
+	
+	# If partially eating a piece ends a level, we'll still let the player place the mangled piece. But if an entire
+	# piece is eaten, we end the level right away.
+	if PuzzleState.game_active and _piece_manager.piece.type.empty() \
+			and MilestoneManager.is_met(CurrentLevel.settings.finish_condition):
+		PuzzleState.trigger_finish()
 
 
 ## Returns a new 'domino' piece type which preserves the color of the specified piece.
