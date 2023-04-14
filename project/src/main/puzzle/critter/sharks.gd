@@ -114,6 +114,8 @@ func _refresh_sharks_for_piece() -> void:
 		
 		if shark.state == Shark.WAITING:
 			shark.visible = not piece_overlaps_shark
+		else:
+			shark.visible = true
 		
 		if _did_hard_drop and piece_overlaps_shark \
 				and shark.state in [Shark.DANCING, Shark.DANCING_END, Shark.EATING, Shark.FED]:
@@ -290,6 +292,8 @@ func _refresh_sharks_for_playfield(include_waiting_sharks: bool = true) -> void:
 		if _shark_cell_has_floor(shark_cell) \
 				and not _shark_cell_has_block(shark_cell):
 			continue
+		
+		shark.visible = true
 		
 		if shark.state == Shark.WAITING:
 			# shark hasn't appeared yet; relocate the shark
