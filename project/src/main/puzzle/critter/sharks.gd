@@ -639,11 +639,20 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
 	# raise all sharks at or above the specified row
 	_shift_rows(y, Vector2.UP)
-	_refresh_sharks_for_playfield()
+	
+	if _playfield.is_clearing_lines():
+		# If lines are being erased as a part of line clears, we wait to relocate sharks until all lines are deleted.
+		pass
+	else:
+		_refresh_sharks_for_playfield()
 
 
 func _on_Playfield_line_filled(_y: int, _tiles_key: String, _src_y: int) -> void:
-	_refresh_sharks_for_playfield()
+	if _playfield.is_clearing_lines():
+		# If lines are being erased as a part of line clears, we wait to relocate sharks until all lines are deleted.
+		pass
+	else:
+		_refresh_sharks_for_playfield()
 
 
 func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
