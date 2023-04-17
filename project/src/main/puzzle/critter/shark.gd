@@ -244,7 +244,7 @@ func sync_dance() -> void:
 ##
 ## They stay squished for two cycles and then poof away.
 func squish() -> void:
-	_next_states = [SQUISHED, SQUISHED, NONE]
+	_next_states = [SQUISHED, NONE]
 	pop_next_state(true)
 
 
@@ -322,7 +322,7 @@ func _on_Poof_animation_finished() -> void:
 
 ## When the 'eating' animation finishes, the shark advances to the 'fed' state and disappears.
 func _on_ToothCloud_finished_eating() -> void:
-	_next_states = [FED, FED, NONE]
+	_next_states = [FED, NONE]
 	pop_next_state()
 
 
