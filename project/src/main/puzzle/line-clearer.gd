@@ -108,13 +108,15 @@ func _physics_process(_delta: float) -> void:
 		var old_lines_being_erased := lines_being_erased
 		var old_lines_being_deleted := lines_being_deleted
 		
-		set_physics_process(false)
-		
 		lines_being_cleared = []
 		lines_being_erased = []
 		lines_being_deleted = []
 		
 		_delete_lines(old_lines_being_cleared, old_lines_being_erased, old_lines_being_deleted)
+		
+		# setting physics_process to 'false' causes 'Playfield.is_building_boxes()' to return false, so we make sure to
+		# assign this after all signals are fired.
+		set_physics_process(false)
 
 
 ## Clears a full line in the playfield as a reward.
@@ -308,7 +310,6 @@ func reset() -> void:
 	
 	for line_dict in _line_dicts():
 		line_dict.clear()
-
 
 
 func _per_line_frame_delay() -> float:

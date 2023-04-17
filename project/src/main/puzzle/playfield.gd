@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 
 
 func is_clearing_lines() -> bool:
-	return line_clearer.remaining_line_erase_frames > 0
+	return line_clearer.is_physics_processing()
 
 
 ## Returns the y coordinate of lines currently being cleared.
@@ -87,7 +87,7 @@ func get_lines_being_cleared() -> Array:
 
 
 func is_building_boxes() -> bool:
-	return _box_builder.remaining_box_build_frames > 0
+	return _box_builder.is_physics_processing()
 
 
 func add_misc_delay_frames(frames: int) -> void:

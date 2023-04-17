@@ -73,8 +73,11 @@ func _physics_process(_delta: float) -> void:
 	remaining_box_build_frames -= 1
 	if remaining_box_build_frames <= 0:
 		# stop processing if we're done building boxes
-		set_physics_process(false)
 		emit_signal("after_boxes_built")
+		
+		# setting physics_process to 'false' causes 'Playfield.is_building_boxes()' to return false, so we make sure to
+		# assign this after all signals are fired.
+		set_physics_process(false)
 
 
 ## Builds a box with the specified location and size.
