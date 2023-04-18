@@ -364,10 +364,13 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 			var line_being_deleted: int = lines_being_deleted_during_trigger[i]
 			_tile_map.erase_row(line_being_deleted)
 			
-			if line_being_deleted in lines_being_cleared_during_trigger:
-				# Some levels insert lines in response to lines being deleted. It is important that lines these triggers emit
-				# after lines are erased, but before they're shifted. Otherwise lines might be inserted in the wrong place,
-				# or the newly inserted lines could be deleted as a part of a big line clear.
+			if lines_being_cleared_during_trigger.empty():
+				# If lines are being deleted because of a top out, we don't fire triggers.
+				pass
+			else:
+				# Some levels insert lines in response to lines being deleted. It is important that line clear
+				# triggers run after lines are erased, but before they're shifted. Otherwise lines might be inserted
+				# in the wrong place, or the newly inserted lines could be deleted as a part of a big line clear.
 				_total_cleared_line_count += 1
 				
 				var event_params := {}
