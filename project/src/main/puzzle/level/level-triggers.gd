@@ -49,6 +49,26 @@ func is_default() -> bool:
 	return triggers.empty()
 
 
+## Returns 'true' if this level contains a trigger with the specified effect.
+##
+## Parameters:
+## 	'effect_type': A LevelTriggerEffect class such as 'InsertLineEffect.LevelTriggerEffects'
+func has_effect(effect_type) -> bool:
+	var result := false
+	
+	for phase in triggers:
+		for trigger_obj in triggers[phase]:
+			var trigger: LevelTrigger = trigger_obj
+			if trigger.effect is effect_type:
+				result = true
+				break
+		
+		if result:
+			break
+	
+	return result
+
+
 func _add_trigger(trigger: LevelTrigger) -> void:
 	for phase in trigger.phases:
 		if not triggers.has(phase):

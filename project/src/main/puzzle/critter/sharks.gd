@@ -19,6 +19,9 @@ var _playfield: Playfield
 ## value: (Shark) shark at that cell location
 var _sharks_by_cell: Dictionary
 
+## node which contains all of the child shark nodes
+onready var _shark_holder := $SharkHolder
+
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
 	_refresh_playfield_path()
@@ -109,6 +112,10 @@ func _refresh_sharks_for_piece() -> void:
 	shark_cells.sort_custom(self, "_compare_by_y_then_x")
 	
 	for shark_cell in shark_cells:
+		if not shark_cell in _sharks_by_cell:
+			# this shark was removed as a result of another shark eating
+			continue
+		
 		var shark: Shark = _sharks_by_cell[shark_cell]
 		var piece_overlaps_shark := _shark_cell_overlaps_piece(shark_cell)
 		
@@ -271,13 +278,10 @@ func _update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orie
 		# null piece type only has one orientation
 		_piece_manager.piece.orientation = 0
 		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
+		
+		# fire 'piece_written' triggers to ensure sharks get advanced
+		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
 		_piece_manager.set_state(_piece_manager.states.wait_for_playfield)
-	
-	# If partially eating a piece ends a level, we'll still let the player place the mangled piece. But if an entire
-	# piece is eaten, we end the level right away.
-	if PuzzleState.game_active and _piece_manager.piece.type.empty() \
-			and MilestoneManager.is_met(CurrentLevel.settings.finish_condition):
-		PuzzleState.trigger_finish()
 
 
 ## Returns a new 'domino' piece type which preserves the color of the specified piece.
@@ -397,7 +401,7 @@ func _update_shark_position(shark: Shark, cell: Vector2) -> void:
 
 ## Removes all sharks from all playfield cells.
 func _clear_sharks() -> void:
-	for shark in get_children():
+	for shark in _shark_holder.get_children():
 		shark.queue_free()
 	_sharks_by_cell.clear()
 
@@ -560,7 +564,7 @@ func _add_shark(cell: Vector2, config: SharkConfig) -> void:
 	
 	shark.pop_next_state()
 	
-	add_child(shark)
+	_shark_holder.add_child(shark)
 	_sharks_by_cell[cell] = shark
 
 
