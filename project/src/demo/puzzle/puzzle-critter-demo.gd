@@ -10,9 +10,11 @@ extends Node
 ## 	[C] -> [1]: Add a carrot
 ## 	[C] -> [2]: Toggle the amount of carrot smoke, and add a carrot
 ## 	[C] -> [3]: Toggle the carrot size, and add a carrot
+## 	[C] -> '=': Increase carrot count to 99 for stress testing
 ## 	[M]: Manipulate moles
 ## 	[M] -> [1]: Add a mole
 ## 	[M] -> ']': Advance moles
+## 	[M] -> '=': Increase mole count to 99 for stress testing
 ## 	[O] -> [0]: Despawn the onion
 ## 	[O] -> [1]: Spawn an onion with a regular day/night cycle
 ## 	[O] -> [2]: Advance the onion through different phases
@@ -26,6 +28,7 @@ extends Node
 ## 	[S] -> [3]: Add a large shark
 ## 	[S] -> [4]: Toggle shark patience
 ## 	[S] -> ']': Advance sharks
+## 	[S] -> '=': Increase shark count to 99 for stress testing
 
 enum CritterType {
 	NONE,
@@ -38,6 +41,7 @@ enum CritterType {
 var critter_type: int = CritterType.NONE
 
 var _carrot_config := CarrotConfig.new()
+var _mole_config := MoleConfig.new()
 var _shark_config := SharkConfig.new()
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
@@ -45,7 +49,12 @@ onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 ## a local path to a json level resource to demo
 export (String, FILE, "*.json") var level_path: String
 
+export (bool) var cache_resources := false
+
 func _ready() -> void:
+	if cache_resources:
+		ResourceCache.start_load()
+	
 	var settings: LevelSettings = LevelSettings.new()
 	if level_path:
 		var json_text := FileUtils.get_file_as_text(level_path)
@@ -86,15 +95,18 @@ func _carrot_input(event: InputEvent) -> void:
 		KEY_3:
 			_carrot_config.size = (_carrot_config.size + 1) % CarrotConfig.CarrotSize.size()
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
+		KEY_EQUAL:
+			_carrot_config.count = 99
 
 
 func _mole_input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_1:
-			var mole_config := MoleConfig.new()
-			$Puzzle/Fg/Critters/Moles.add_moles(mole_config)
+			$Puzzle/Fg/Critters/Moles.add_moles(_mole_config)
 		KEY_BRACKETRIGHT:
 			$Puzzle/Fg/Critters/Moles.advance_moles()
+		KEY_EQUAL:
+			_mole_config.count = 99
 
 
 func _onion_input(event: InputEvent) -> void:
@@ -135,3 +147,5 @@ func _shark_input(event: InputEvent) -> void:
 			_shark_config.patience = 0 if _shark_config.patience == 3 else 3
 		KEY_BRACKETRIGHT:
 			$Puzzle/Fg/Critters/Sharks.advance_sharks()
+		KEY_EQUAL:
+			_shark_config.count = 99
