@@ -14,6 +14,8 @@ const TILE_MAP_START_POSITION := Vector2(144, 296)
 ## The path to the Particles2D which emits crumb particles as a piece is eaten.
 export (NodePath) var crumbs_path: NodePath
 
+export (PackedScene) var PuzzleTileMapScene: PackedScene
+
 ## Can be set to 'true' to activate the tooth cloud's various eating effects.
 export (bool) var eating: bool = false setget set_eating
 
@@ -26,8 +28,11 @@ var eaten_autotile_y := 0
 ## The duration in seconds the shark takes to eat.
 var eat_duration := Shark.DEFAULT_EAT_DURATION
 
+## node which contains any child PuzzleTileMap node
+onready var _tilemap_holder: Control = $TileMapHolder
+
 ## The eaten piece tilemap.
-onready var _tile_map: PuzzleTileMap = $TileMapHolder/TileMap
+onready var _tile_map: PuzzleTileMap
 
 ## Dust clouds which appear over the shark's mouth while they eat.
 onready var _clouds: SharkClouds = $Clouds
@@ -58,6 +63,7 @@ func _ready() -> void:
 ##
 ## 	'autotile_y': autotile_y for the flavor of pieces being eaten (chocolate, fruit, bread...)
 func set_eaten_color(tile: int, autotile_y: int) -> void:
+	_check_for_tilemap()
 	eaten_tile = tile
 	eaten_autotile_y = autotile_y
 	
@@ -69,11 +75,13 @@ func set_eaten_color(tile: int, autotile_y: int) -> void:
 
 ## Adds a cell to the eaten piece tilemap.
 func set_eaten_cell(position: Vector2) -> void:
+	_check_for_tilemap()
 	_tile_map.set_block(position, eaten_tile, Vector2(0, eaten_autotile_y))
 
 
 ## Clears the eaten piece tilemap.
 func clear_eaten_cells() -> void:
+	_check_for_tilemap()
 	_tile_map.clear()
 
 
@@ -82,6 +90,7 @@ func clear_eaten_cells() -> void:
 ## Parameters:
 ## 	'new_puzzle_tile_set_type': an enum from TileSetType referencing the tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
+	_check_for_tilemap()
 	_tile_map.set_puzzle_tile_set_type(new_puzzle_tile_set_type)
 
 
@@ -97,6 +106,7 @@ func set_eating(new_eating: bool) -> void:
 func _refresh_eating() -> void:
 	visible = eating
 	if visible:
+		_check_for_tilemap()
 		_cloud_timer.start()
 		_tooth_timer.start()
 		
@@ -145,6 +155,59 @@ func _shuffle_tooth() -> void:
 	_tooth.frame = (_tooth.frame + Utils.randi_range(1, TOOTH_VARIANT_COUNT - 1)) % TOOTH_VARIANT_COUNT
 
 
+## Lazily instances the tilemap if it
+##
+## It takes about 34 ms to instance the PuzzleTileMap. Doing it for a single shark results in a slight 1-2 frame burp,
+## but doing it for 10-20 sharks which all spawn simultaneously results in 20-40 frames of lag.
+func _check_for_tilemap() -> void:
+	if not _tile_map:
+		_borrow_tilemap()
+		_tile_map.position = TILE_MAP_START_POSITION
+		_tile_map.scale = Vector2(1.0, 1.0)
+		_tile_map.z_index = 0
+
+
+## Obtains a PuzzleTileMap, either from a SharkTileMapPool or by instancing one.
+func _borrow_tilemap() -> void:
+	var new_tile_map: PuzzleTileMap
+	if _shark_tile_map_pool():
+		# if a SharkTileMapPool is available, we obtain a pooled PuzzleTileMap
+		new_tile_map = _shark_tile_map_pool().borrow_tilemap()
+	else:
+		# if no SharkTileMapPool is available, we instance our own PuzzleTileMap.
+		new_tile_map = PuzzleTileMapScene.instance()
+	
+	_tile_map = new_tile_map
+	_tilemap_holder.add_child(_tile_map)
+	_clouds.tile_map = _tile_map
+	_crumbs.tile_map = _tile_map
+
+
+## Returns any SharkTileMapPool in the scene tree, or 'null' if none exists.
+func _shark_tile_map_pool() -> SharkTileMapPool:
+	var pool: SharkTileMapPool
+	if get_tree().get_nodes_in_group("shark_tilemap_pools"):
+		pool = get_tree().get_nodes_in_group("shark_tilemap_pools")[0]
+	return pool
+
+
+## Releases this shark's PuzzleTileMap, either returning it to the SharkTileMapPool or freeing it.
+func _return_tilemap() -> void:
+	var old_tile_map := _tile_map
+	
+	_tilemap_holder.remove_child(old_tile_map)
+	_tile_map = null
+	_clouds.tile_map = null
+	_crumbs.tile_map = null
+	
+	if _shark_tile_map_pool():
+		# if a SharkTileMapPool is available, we return our pooled PuzzleTileMap
+		_shark_tile_map_pool().return_tilemap(old_tile_map)
+	else:
+		# if no SharkTileMapPool is available, we free our PuzzleTileMap
+		old_tile_map.queue_free()
+
+
 func _on_CloudTimer_timeout() -> void:
 	_clouds.shuffle()
 
@@ -154,4 +217,7 @@ func _on_ToothTimer_timeout() -> void:
 
 
 func _on_EatTween_tween_completed(_object: Object, _key: NodePath) -> void:
+	# we don't need our PuzzleTileMap anymore; return it to the SharkTileMapPool so other sharks can use it
+	_return_tilemap()
+	
 	emit_signal("finished_eating")

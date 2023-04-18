@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://assets/main/puzzle/critter/shark-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/main/puzzle/critter/shark-sfx.gd" type="Script" id=2]
@@ -17,8 +17,7 @@
 [ext_resource path="res://src/main/puzzle/critter/shark-clouds.gd" type="Script" id=15]
 [ext_resource path="res://assets/main/puzzle/critter/shark-tooth-sheet.png" type="Texture" id=16]
 [ext_resource path="res://src/main/puzzle/critter/shark-tooth-cloud.gd" type="Script" id=17]
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=18]
-[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/puzzle/critter/SharkCloudPart.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/main/puzzle/crumbs.png" type="Texture" id=21]
 [ext_resource path="res://src/main/puzzle/critter/shark-crumbs.gd" type="Script" id=22]
@@ -27,11 +26,6 @@
 [ext_resource path="res://assets/main/puzzle/critter/shark-eat.wav" type="AudioStream" id=25]
 [ext_resource path="res://assets/main/puzzle/critter/shark-voice-short-0.wav" type="AudioStream" id=26]
 [ext_resource path="res://assets/main/puzzle/critter/shark-bite.wav" type="AudioStream" id=27]
-
-[sub_resource type="ShaderMaterial" id=9]
-resource_local_to_scene = true
-shader = ExtResource( 18 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="CanvasItemMaterial" id=10]
 particles_animation = true
@@ -1273,6 +1267,7 @@ visible = false
 position = Vector2( 0, -30 )
 script = ExtResource( 17 )
 crumbs_path = NodePath("../Crumbs")
+PuzzleTileMapScene = ExtResource( 18 )
 
 [node name="TileMapHolder" type="Control" parent="ToothCloud"]
 margin_left = -180.0
@@ -1281,18 +1276,10 @@ margin_right = 180.0
 rect_pivot_offset = Vector2( 180, 360 )
 rect_clip_content = true
 
-[node name="TileMap" parent="ToothCloud/TileMapHolder" instance=ExtResource( 19 )]
-material = SubResource( 9 )
-position = Vector2( 144, 296 )
-scale = Vector2( 1, 1 )
-z_index = 0
-tile_data = PoolIntArray( 0, 1, 0 )
-
 [node name="Clouds" type="Node2D" parent="ToothCloud"]
 position = Vector2( 0, -18 )
 script = ExtResource( 15 )
 CloudPartScene = ExtResource( 20 )
-tile_map_path = NodePath("../TileMapHolder/TileMap")
 
 [node name="Tooth" type="Sprite" parent="ToothCloud"]
 position = Vector2( 0, -18 )
@@ -1320,7 +1307,6 @@ local_coords = false
 process_material = SubResource( 13 )
 texture = ExtResource( 21 )
 script = ExtResource( 22 )
-tile_map_path = NodePath("../ToothCloud/TileMapHolder/TileMap")
 
 [node name="WaitHigh" type="Sprite" parent="."]
 visible = false

@@ -13,6 +13,14 @@ func test_is_default() -> void:
 	assert_eq(triggers.is_default(), false)
 
 
+func test_has_effect() -> void:
+	assert_eq(triggers.has_effect(LevelTriggerEffects.InsertLineEffect), false)
+	triggers.from_json_array(
+			[{"phases": ["line_cleared y=0-5"], "effect": "insert_line tiles_key=0"}])
+	assert_eq(triggers.has_effect(LevelTriggerEffects.InsertLineEffect), true)
+	assert_eq(triggers.has_effect(LevelTriggerEffects.ClearFilledLinesEffect), false)
+
+
 func test_to_json_empty() -> void:
 	assert_eq(triggers.to_json_array(), [])
 

@@ -7,11 +7,14 @@ const CLOUD_VARIANT_COUNT := 3
 
 export (PackedScene) var CloudPartScene: PackedScene
 
-## The path to the tile map for the pieces the shark is eating.
-export (NodePath) var tile_map_path: NodePath
-
 ## The tile map for the pieces the shark is eating.
-onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
+var tile_map: PuzzleTileMap setget set_tile_map
+
+func set_tile_map(new_tile_map: PuzzleTileMap) -> void:
+	tile_map = new_tile_map
+	
+	refresh()
+
 
 ## Randomizes the cloud's appearance.
 ##
@@ -49,11 +52,14 @@ func shuffle() -> void:
 ##
 ## Depending on the shape of the eaten pieces, the dust cloud might be narrow, wide, or lopsided.
 func refresh() -> void:
+	if not tile_map:
+		return
+	
 	for child in get_children():
 		child.queue_free()
 		remove_child(child)
 	
-	var used_rect := _tile_map.get_used_rect()
+	var used_rect := tile_map.get_used_rect()
 	
 	if not used_rect:
 		# have a small cloud, even if nothing is being eaten
@@ -64,7 +70,7 @@ func refresh() -> void:
 	
 	for cell_x in range(start_cell_x, end_cell_x):
 		var new_cloud_part: Sprite = CloudPartScene.instance()
-		new_cloud_part.position.x = _tile_map.cell_size.x * cell_x
+		new_cloud_part.position.x = tile_map.cell_size.x * cell_x
 		add_child(new_cloud_part)
 	
 	shuffle()
