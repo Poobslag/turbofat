@@ -377,6 +377,8 @@ func _shift_rows(bottom_y: int, direction: Vector2) -> void:
 	
 	# Next, write the old moles in their new locations
 	for cell in shifted.keys():
+		if _moles_by_cell.has(cell):
+			remove_mole(cell)
 		_moles_by_cell[cell] = shifted[cell]
 
 

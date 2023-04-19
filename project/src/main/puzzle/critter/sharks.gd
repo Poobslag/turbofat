@@ -624,6 +624,8 @@ func _shift_rows(bottom_y: int, direction: Vector2) -> void:
 	
 	# Next, write the old sharks in their new locations
 	for cell in shifted.keys():
+		if _sharks_by_cell.has(cell):
+			remove_shark(cell)
 		_sharks_by_cell[cell] = shifted[cell]
 
 
