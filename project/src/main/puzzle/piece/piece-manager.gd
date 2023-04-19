@@ -342,6 +342,11 @@ func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
 func _spawn_piece_from_next_queue() -> void:
 	PuzzleState.level_performance.pieces += 1
 	var next_piece := _piece_queue.pop_next_piece()
+	
+	# We immediately calculate whether or not we dequeued a null piece. There are edge cases where a piece might become
+	# null, such as if a shark eats it during initial movement
+	var no_more_pieces := next_piece.type == PieceTypes.piece_null
+	
 	_initialize_piece(next_piece.type, next_piece.orientation)
 	if piece.type == PieceTypes.piece_null:
 		# don't attempt to move/rotate null pieces; just say it spawned successfully. this only comes up during edge
@@ -352,7 +357,7 @@ func _spawn_piece_from_next_queue() -> void:
 	emit_signal("piece_spawned", piece)
 	emit_signal("piece_disturbed", piece)
 	
-	if piece.type == PieceTypes.piece_null:
+	if no_more_pieces:
 		PuzzleState.trigger_finish()
 
 
