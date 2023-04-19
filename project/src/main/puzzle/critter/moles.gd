@@ -10,6 +10,9 @@ export (PackedScene) var MoleScene: PackedScene
 var piece_manager_path: NodePath setget set_piece_manager_path
 var playfield_path: NodePath setget set_playfield_path
 
+## A queue of calls to defer until after line clears are finished
+var _call_queue: CallQueue = CallQueue.new()
+
 ## key: (Vector2) cell containing a mole
 ## value: (Mole) mole at that cell location
 var _moles_by_cell: Dictionary
@@ -79,10 +82,12 @@ func _refresh_piece_manager_path() -> void:
 ## Parameters:
 ## 	'config': rules for how many moles to add, where to add them, how long they stay and what they dig.
 func add_moles(config: MoleConfig) -> void:
-	var potential_mole_cells := _potential_mole_cells(config)
-	potential_mole_cells.shuffle()
-	for i in range(min(config.count, potential_mole_cells.size())):
-		_add_mole(potential_mole_cells[i], config)
+	if _playfield.is_clearing_lines():
+		# We don't add moles during line clear events -- the playfield
+		_call_queue.defer(self, "_inner_add_moles", [config])
+	else:
+		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
+		_inner_add_moles(config)
 
 
 ## Returns potential cells to which a mole could be added.
@@ -223,16 +228,12 @@ func _add_mole(cell: Vector2, config: MoleConfig) -> void:
 
 ## Advances all moles by one state.
 func advance_moles() -> void:
-	for cell in _moles_by_cell.duplicate():
-		var mole: Mole = _moles_by_cell[cell]
-		var new_state := mole.pop_next_state()
-		match new_state:
-			Mole.FOUND_SEED:
-				_playfield.pickups.set_pickup(cell, Foods.BoxType.BREAD)
-			Mole.FOUND_STAR:
-				_playfield.pickups.set_pickup(cell, Foods.BoxType.CAKE_JTT)
-			Mole.NONE:
-				remove_mole(cell)
+	if _playfield.is_clearing_lines():
+		# We don't add moles during line clear events -- the playfield
+		_call_queue.defer(self, "_inner_advance_moles", [])
+	else:
+		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
+		_inner_advance_moles()
 
 
 ## Plays a 'poof' animation and queues a mole for deletion.
@@ -379,6 +380,34 @@ func _shift_rows(bottom_y: int, direction: Vector2) -> void:
 		_moles_by_cell[cell] = shifted[cell]
 
 
+## Adds moles to the playfield.
+##
+## Details like the number of moles to add, where to add them, how long they stay and what they dig are all specified
+## by the config parameter.
+##
+## Parameters:
+## 	'config': rules for how many moles to add, where to add them, how long they stay and what they dig.
+func _inner_add_moles(config: MoleConfig) -> void:
+	var potential_mole_cells := _potential_mole_cells(config)
+	potential_mole_cells.shuffle()
+	for i in range(min(config.count, potential_mole_cells.size())):
+		_add_mole(potential_mole_cells[i], config)
+
+
+## Advances all moles by one state.
+func _inner_advance_moles() -> void:
+	for cell in _moles_by_cell.duplicate():
+		var mole: Mole = _moles_by_cell[cell]
+		var new_state := mole.pop_next_state()
+		match new_state:
+			Mole.FOUND_SEED:
+				_playfield.pickups.set_pickup(cell, Foods.BoxType.BREAD)
+			Mole.FOUND_STAR:
+				_playfield.pickups.set_pickup(cell, Foods.BoxType.CAKE_JTT)
+			Mole.NONE:
+				remove_mole(cell)
+
+
 func _on_Playfield_blocks_prepared() -> void:
 	_clear_moles()
 
@@ -436,4 +465,8 @@ func _on_Playfield_line_filled(_y: int, _tiles_key: String, _src_y: int) -> void
 
 
 func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
+	_call_queue.pop_deferred(self, "_inner_add_moles")
+	_call_queue.pop_deferred(self, "_inner_advance_moles")
+	_call_queue.assert_empty()
+
 	_refresh_moles_for_playfield()

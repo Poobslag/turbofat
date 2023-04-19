@@ -10,6 +10,9 @@ export (PackedScene) var SharkScene: PackedScene
 var piece_manager_path: NodePath setget set_piece_manager_path
 var playfield_path: NodePath setget set_playfield_path
 
+## A queue of calls to defer until after line clears are finished
+var _call_queue: CallQueue = CallQueue.new()
+
 ## 'true' if the player hard dropped the piece this frame
 var _did_hard_drop := false
 var _piece_manager: PieceManager
@@ -50,31 +53,12 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 ## Parameters:
 ## 	'config': rules for how many sharks to add, where to add them, how long they stay and how much they eat.
 func add_sharks(config: SharkConfig) -> void:
-	var potential_shark_cells := _potential_shark_cells(config)
-	potential_shark_cells.shuffle()
-	
-	# sharks prioritize the highest cell, so players can make clever plays by shaping pieces at the top and placing
-	# them below.
-	potential_shark_cells.sort_custom(self, "_compare_by_y_then_random")
-	
-	for i in range(min(config.count, potential_shark_cells.size())):
-		_add_shark(potential_shark_cells[i], config)
-
-
-## Advances all sharks by one state.
-func advance_sharks() -> void:
-	for cell in _sharks_by_cell.duplicate():
-		var shark: Shark = _sharks_by_cell[cell]
-		if not shark.has_next_state():
-			# Sharks will not stop dancing just because they exhaust their state queue
-			continue
-		
-		var new_state := shark.pop_next_state()
-		match new_state:
-			Shark.NONE:
-				remove_shark(cell)
-	
-	_refresh_sharks_for_playfield()
+	if _playfield.is_clearing_lines():
+		# We don't add sharks during line clear events -- the playfield
+		_call_queue.defer(self, "_inner_add_sharks", [config])
+	else:
+		# If sharks are being added as a part of line clears, we wait to add sharks until all lines are deleted.
+		_inner_add_sharks(config)
 
 
 ## Plays a 'poof' animation and queues a shark for deletion.
@@ -88,6 +72,50 @@ func remove_shark(cell: Vector2) -> void:
 	var shark: Shark = _sharks_by_cell[cell]
 	shark.poof_and_free()
 	_sharks_by_cell.erase(cell)
+
+
+## Advances all sharks by one state.
+func advance_sharks() -> void:
+	if _playfield.is_clearing_lines():
+		_call_queue.defer(self, "_inner_advance_sharks", [])
+	else:
+		# If sharks are being advanced as a part of line clears, we wait to advance sharks until all lines are deleted.
+		_inner_advance_sharks()
+
+
+## Adds sharks to the playfield.
+##
+## Details like the number of sharks to add, where to add them, how long they stay and much they eat are all specified
+## by the config parameter.
+##
+## Parameters:
+## 	'config': rules for how many sharks to add, where to add them, how long they stay and how much they eat.
+func _inner_add_sharks(config: SharkConfig) -> void:
+	var potential_shark_cells := _potential_shark_cells(config)
+	potential_shark_cells.shuffle()
+	
+	# sharks prioritize the highest cell, so players can make clever plays by shaping pieces at the top and placing
+	# them below.
+	potential_shark_cells.sort_custom(self, "_compare_by_y_then_random")
+	
+	for i in range(min(config.count, potential_shark_cells.size())):
+		_add_shark(potential_shark_cells[i], config)
+
+
+## Advances all sharks by one state.
+func _inner_advance_sharks() -> void:
+	for cell in _sharks_by_cell.duplicate():
+		var shark: Shark = _sharks_by_cell[cell]
+		if not shark.has_next_state():
+			# Sharks will not stop dancing just because they exhaust their state queue
+			continue
+		
+		var new_state := shark.pop_next_state()
+		match new_state:
+			Shark.NONE:
+				remove_shark(cell)
+	
+	_refresh_sharks_for_playfield()
 
 
 func _compare_by_y_then_random(a: Vector2, b: Vector2) -> bool:
@@ -433,7 +461,7 @@ func _refresh_playfield_path() -> void:
 ## Returns potential cells to which a shark could be added.
 ##
 ## Sharks must appear on empty cells without a powerup. Levels may have additional rules as specified in config,
-## such as only allowing moles to dig through veggie blocks or in the center 3 columns.
+## such as only allowing sharks to dig through veggie blocks or in the center 3 columns.
 ##
 ## Parameters:
 ## 	'config': rules for where sharks can appear.
@@ -456,7 +484,7 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 					midair_shark_x_coords.erase(x)
 			
 			if _sharks_by_cell.has(shark_cell):
-				# don't place a mole beneath a mid-air mole; this can happen during line clears
+				# don't place a shark beneath a mid-air shark; this can happen during line clears
 				midair_shark_x_coords[x] = true
 			
 			if midair_shark_x_coords.has(x):
@@ -660,4 +688,8 @@ func _on_Playfield_line_filled(_y: int, _tiles_key: String, _src_y: int) -> void
 
 
 func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
+	_call_queue.pop_deferred(self, "_inner_add_sharks")
+	_call_queue.pop_deferred(self, "_inner_advance_sharks")
+	_call_queue.assert_empty()
+	
 	_refresh_sharks_for_playfield()
