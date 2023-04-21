@@ -27,7 +27,7 @@ func spawn_target() -> void:
 	if PlayerData.chat_history.is_chat_finished("chat/career/poki/100"):
 		# people face the restaurant
 		var entrances := get_tree().get_nodes_in_group("turbo_fat_entrances")
-		var entrance: Area2D
+		var entrance: Sprite
 		if entrances:
 			entrance = entrances[0]
 		
