@@ -170,8 +170,11 @@ func _refresh_sharks_for_piece() -> void:
 			shark.set_eaten_color(0, _piece_manager.piece.type.get_box_type())
 			shark.set_eat_duration(PieceSpeeds.current_speed.lock_delay / 60.0)
 			
-			# Change the piece, removing any eaten cells
+			# Change the shark, setting them into the 'eating' state
 			var old_piece_cells := _playfield_piece_cells()
+			shark.eat()
+			
+			# Change the piece, removing any eaten cells
 			match shark.shark_size:
 				SharkConfig.SharkSize.SMALL:
 					shark.set_eat_duration(0.1)
@@ -180,10 +183,9 @@ func _refresh_sharks_for_piece() -> void:
 					_replace_active_piece_with_domino()
 				SharkConfig.SharkSize.LARGE:
 					_eat_entire_piece()
-			
-			# Change the shark, adding any eaten cells
 			var new_piece_cells := _playfield_piece_cells()
-			shark.eat()
+			
+			# Add any eaten cells to the shark
 			_feed_shark_cells(shark_cell, old_piece_cells, new_piece_cells)
 
 
