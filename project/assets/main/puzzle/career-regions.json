@@ -194,7 +194,7 @@
       },
       "levels": [
         {
-          "id": "career/1000_race"
+          "id": "career/500_race"
         },
         {
           "id": "career/500_race"
@@ -203,7 +203,7 @@
           "id": "career/above_and_below"
         },
         {
-          "id": "career/boxing_day"
+          "id": "career/back_to_back"
         },
         {
           "id": "career/chompo_and_bitey"
@@ -224,9 +224,6 @@
           "id": "career/midnight_snack"
         },
         {
-          "id": "career/muffin_impossible"
-        },
-        {
           "id": "career/new_onion_friend"
         },
         {
@@ -236,13 +233,7 @@
           "id": "career/shark_bait"
         },
         {
-          "id": "career/teensy_taste"
-        },
-        {
           "id": "career/the_last_100"
-        },
-        {
-          "id": "career/unfresh_fruits"
         }
       ]
     },
@@ -261,9 +252,6 @@
         },
         {
           "id": "career/a_little_extra"
-        },
-        {
-          "id": "career/back_to_back"
         },
         {
           "id": "career/bottomless_pit_2"
@@ -288,9 +276,6 @@
         },
         {
           "id": "career/pineapple_on_its_side_cake"
-        },
-        {
-          "id": "career/real_meal"
         },
         {
           "id": "career/serving_on_a_rocket"
@@ -386,9 +371,6 @@
           "available_if": "chat_finished chat/career/marsh/020_end"
         },
         {
-          "id": "career/pineapple_on_its_side_cake"
-        },
-        {
           "id": "career/real_meal"
         },
         {
@@ -396,9 +378,6 @@
         },
         {
           "id": "career/tempting_jellies"
-        },
-        {
-          "id": "career/unfresh_fruits_2"
         }
       ]
     },
@@ -489,9 +468,6 @@
         },
         {
           "id": "career/left_shark"
-        },
-        {
-          "id": "career/leftovers"
         },
         {
           "id": "career/muffin_impossible_3"
