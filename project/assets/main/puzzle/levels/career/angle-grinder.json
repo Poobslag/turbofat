@@ -5,12 +5,19 @@
   "description": "So many bendy pieces! Need a helping hand? ...Or a helping jaw?",
   "finish_condition": {
     "type": "lines",
-    "value": "5"
+    "value": "20"
   },
   "piece_types": [
     "piece_o",
     "piece_s",
     "piece_z"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 2.00",
+    "box_factor 1.23",
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 29.23",
+    "show_pickups_rank"
   ],
   "triggers": [
     {

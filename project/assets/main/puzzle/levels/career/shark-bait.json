@@ -1,0 +1,134 @@
+{
+  "version": "4373",
+  "start_speed": "2",
+  "name": "Shark Bait",
+  "description": "This is almost TOO easy! ...Is there a trick?",
+  "finish_condition": {
+    "type": "lines",
+    "value": "3"
+  },
+  "piece_types": [
+    "ordered_start",
+    "start_piece_v",
+    "start_piece_u"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 2.00",
+    "box_factor 1.92",
+    "combo_factor 0.60",
+    "master_pickup_score_per_line 292.27",
+    "show_pickups_rank"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_sharks size=large"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_sharks size=large count=3"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 17",
+        "tile": "2 8 2"
+      },
+      {
+        "pos": "1 17",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "2 17",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "6 17",
+        "tile": "2 8 2"
+      },
+      {
+        "pos": "7 17",
+        "tile": "2 12 1"
+      },
+      {
+        "pos": "8 17",
+        "tile": "2 10 3"
+      },
+      {
+        "pos": "0 18",
+        "tile": "2 2 2"
+      },
+      {
+        "pos": "1 18",
+        "tile": "2 11 1"
+      },
+      {
+        "pos": "2 18",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "3 18",
+        "tile": "2 11 1"
+      },
+      {
+        "pos": "4 18",
+        "tile": "2 2 0"
+      },
+      {
+        "pos": "6 18",
+        "tile": "2 6 3"
+      },
+      {
+        "pos": "7 18",
+        "tile": "2 6 1"
+      },
+      {
+        "pos": "8 18",
+        "tile": "2 16 2"
+      },
+      {
+        "pos": "0 19",
+        "tile": "2 12 2"
+      },
+      {
+        "pos": "1 19",
+        "tile": "2 8 3"
+      },
+      {
+        "pos": "2 19",
+        "tile": "2 8 0"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 2 3"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 5 2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 15 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "2 6 2"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 8 1"
+      }
+    ]
+  }
+}

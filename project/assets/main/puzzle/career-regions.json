@@ -186,7 +186,7 @@
         ]
       },
       "intro_level": {
-        "id": "career/teensy_taste",
+        "id": "career/the_last_100",
         "customer_ids": [
           "dreadhark",
           "goris"
@@ -197,16 +197,28 @@
           "id": "career/1000_race"
         },
         {
+          "id": "career/500_race"
+        },
+        {
           "id": "career/above_and_below"
         },
         {
           "id": "career/boxing_day"
         },
         {
+          "id": "career/chompo_and_bitey"
+        },
+        {
           "id": "career/cookie_crevice"
         },
         {
           "id": "career/fruit_on_the_top"
+        },
+        {
+          "id": "career/garbage_disposal"
+        },
+        {
+          "id": "career/its_nibbler"
         },
         {
           "id": "career/midnight_snack"
@@ -219,6 +231,9 @@
         },
         {
           "id": "career/no_smoking_section"
+        },
+        {
+          "id": "career/shark_bait"
         },
         {
           "id": "career/teensy_taste"
@@ -267,6 +282,9 @@
         },
         {
           "id": "career/moonshower"
+        },
+        {
+          "id": "career/one_shark_two_shark"
         },
         {
           "id": "career/pineapple_on_its_side_cake"
@@ -327,6 +345,9 @@
         },
         {
           "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/angle_grinder"
         },
         {
           "id": "career/carrot_alley"
@@ -422,6 +443,9 @@
           "id": "career/secret_brownies"
         },
         {
+          "id": "career/sharky_cheese"
+        },
+        {
           "id": "career/snack_box_blitz"
         },
         {
@@ -462,6 +486,9 @@
         },
         {
           "id": "career/five_course_meal"
+        },
+        {
+          "id": "career/left_shark"
         },
         {
           "id": "career/leftovers"
@@ -519,6 +546,9 @@
         },
         {
           "id": "career/dark/fruit_salad"
+        },
+        {
+          "id": "career/dark/garbage_disposal"
         },
         {
           "id": "career/dark/hungry_moles"

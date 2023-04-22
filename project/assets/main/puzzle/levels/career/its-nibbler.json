@@ -1,0 +1,187 @@
+{
+  "version": "4373",
+  "start_speed": "7",
+  "name": "It's Nibbler",
+  "description": "Aww, they take such tiny bites. ...Oww! My finger!",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "75"
+  },
+  "rank": [
+    "extra_seconds_per_piece 1.37",
+    "box_factor 1.65",
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 8.64",
+    "show_pickups_rank"
+  ],
+  "timers": [
+    {
+      "interval": 1.25,
+      "initial_interval": 5
+    },
+    {
+      "interval": 15,
+      "initial_interval": 5
+    },
+    {
+      "interval": 15,
+      "initial_interval": 12.5
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_sharks size=small count=1 patience=5"
+    },
+    {
+      "phases": [
+        "timer_2"
+      ],
+      "effect": "add_sharks size=small count=2 patience=5"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_sharks"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "4 15",
+        "tile": "2 17 1"
+      },
+      {
+        "pos": "5 15",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "6 15",
+        "tile": "1 10 0"
+      },
+      {
+        "pos": "7 15",
+        "tile": "1 14 0"
+      },
+      {
+        "pos": "8 15",
+        "tile": "1 6 0"
+      },
+      {
+        "pos": "0 16",
+        "tile": "2 4 0"
+      },
+      {
+        "pos": "1 16",
+        "tile": "2 17 0"
+      },
+      {
+        "pos": "3 16",
+        "tile": "2 1 0"
+      },
+      {
+        "pos": "4 16",
+        "tile": "2 6 2"
+      },
+      {
+        "pos": "5 16",
+        "tile": "2 6 1"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 9 0"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 13 0"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 5 0"
+      },
+      {
+        "pos": "0 17",
+        "tile": "0 2 2"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 10 6"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 14 6"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 6"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 6"
+      },
+      {
+        "pos": "0 18",
+        "tile": "0 11 2"
+      },
+      {
+        "pos": "1 18",
+        "tile": "0 4 2"
+      },
+      {
+        "pos": "3 18",
+        "tile": "0 10 3"
+      },
+      {
+        "pos": "4 18",
+        "tile": "0 6 3"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 11 6"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 15 6"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 6"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 6"
+      },
+      {
+        "pos": "0 19",
+        "tile": "0 1 2"
+      },
+      {
+        "pos": "3 19",
+        "tile": "0 9 3"
+      },
+      {
+        "pos": "4 19",
+        "tile": "0 5 3"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 9 6"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 13 6"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 6"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 6"
+      }
+    ]
+  }
+}
