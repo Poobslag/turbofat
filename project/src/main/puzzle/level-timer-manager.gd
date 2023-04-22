@@ -23,6 +23,7 @@ const PHASES_BY_TIMER_INDEX := {
 }
 
 func _ready() -> void:
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	
@@ -34,18 +35,31 @@ func _ready() -> void:
 		add_child(timer)
 
 
-## Starts any timers needed for the current level.
-func _on_PuzzleState_game_started() -> void:
+func _start_all() -> void:
 	for timer_index in range(CurrentLevel.settings.timers.get_timer_count()):
 		var timer: Timer = get_child(timer_index)
 		timer.start(CurrentLevel.settings.timers.get_timer_initial_interval(timer_index))
 
 
-## Stops any timers needed for the current level.
-func _on_PuzzleState_game_ended() -> void:
+func _stop_all() -> void:
 	for i in range(MAX_TIMER_COUNT):
 		var timer: Timer = get_child(i)
 		timer.stop()
+
+
+## Starts any timers needed for the current level.
+func _on_PuzzleState_game_started() -> void:
+	_start_all()
+
+
+## Stops any timers needed for the current level.
+func _on_PuzzleState_game_ended() -> void:
+	_stop_all()
+
+
+## Stops any timers needed for the current level.
+func _on_PuzzleState_game_prepared() -> void:
+	_stop_all()
 
 
 ## Runs all triggers for the specified timer.
