@@ -77,6 +77,22 @@ func _find_level_paths(dirs: Array) -> Array:
 	return result
 
 
+## Reports any level ids in career-regions.json which don't have corresponding files 
+func _report_invalid_career_levels() -> void:
+	var level_keys_in_career_regions := CareerLevelLibrary.all_level_ids()
+	
+	var invalid_level_keys := {}
+	for level_key in level_keys_in_career_regions:
+		var text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(level_key))
+		if not text:
+			invalid_level_keys[level_key] = true
+	
+	if invalid_level_keys:
+		var keys_to_print := invalid_level_keys.keys()
+		keys_to_print.sort()
+		_output_label.add_line("Invalid levels in career regions: %s" % [keys_to_print])
+
+
 ## Reports any levels in CAREER_LEVEL_DIRS which are not actually available in career mode.
 func _report_unused_career_levels() -> void:
 	var level_keys_in_dir := []
@@ -156,6 +172,7 @@ func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:
 func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_levels()
+	_report_invalid_career_levels()
 	_report_unused_career_levels()
 	_report_bad_show_rank()
 	_alphabetize_career_levels()
