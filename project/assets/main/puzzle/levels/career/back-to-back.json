@@ -1,6 +1,6 @@
 {
   "version": "4373",
-  "start_speed": "0",
+  "start_speed": "1",
   "name": "Back to Back",
   "description": "Now where did I put those two line pieces?",
   "finish_condition": {

@@ -1,0 +1,149 @@
+{
+  "version": "4373",
+  "start_speed": "3",
+  "name": "Chompo and Bitey",
+  "description": "I call the red one Bitey! They like snack boxes... but who doesn't?",
+  "finish_condition": {
+    "type": "pieces",
+    "value": "50"
+  },
+  "rank": [
+    "extra_seconds_per_piece 2.00",
+    "box_factor 1.16",
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 17.71",
+    "show_pickups_rank"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_sharks size=medium"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_sharks size=large"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "5 14",
+        "tile": "2 10 0"
+      },
+      {
+        "pos": "6 14",
+        "tile": "2 10 1"
+      },
+      {
+        "pos": "7 14",
+        "tile": "2 9 1"
+      },
+      {
+        "pos": "3 15",
+        "tile": "1 10 2"
+      },
+      {
+        "pos": "4 15",
+        "tile": "1 14 2"
+      },
+      {
+        "pos": "5 15",
+        "tile": "1 6 2"
+      },
+      {
+        "pos": "6 15",
+        "tile": "2 12 1"
+      },
+      {
+        "pos": "2 16",
+        "tile": "2 0 2"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 9 2"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 13 2"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 5 2"
+      },
+      {
+        "pos": "6 16",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 8 9"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 12 9"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 12 9"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 4 9"
+      },
+      {
+        "pos": "6 17",
+        "tile": "2 15 2"
+      },
+      {
+        "pos": "1 18",
+        "tile": "2 17 2"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 10 9"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 14 9"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 14 9"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 6 9"
+      },
+      {
+        "pos": "1 19",
+        "tile": "2 11 3"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 9 9"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 13 9"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 13 9"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 5 9"
+      }
+    ]
+  }
+}

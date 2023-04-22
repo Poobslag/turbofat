@@ -1,0 +1,167 @@
+{
+  "version": "4373",
+  "start_speed": "A9",
+  "name": "EX Garbage Disposal",
+  "description": "These pieces are garbage. Lucky thing we've got a garbage disposal! Om nom nom nom nom.",
+  "finish_condition": {
+    "type": "score",
+    "value": "2500"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.44",
+    "box_factor 0.81",
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 11.81",
+    "show_pickups_rank"
+  ],
+  "timers": [
+    {
+      "initial_interval": 1,
+      "interval": 2
+    },
+    {
+      "initial_interval": 1,
+      "interval": 24
+    },
+    {
+      "initial_interval": 7,
+      "interval": 24
+    },
+    {
+      "initial_interval": 13,
+      "interval": 24
+    },
+    {
+      "initial_interval": 19,
+      "interval": 24
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_sharks"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_sharks size=medium patience=5 x=0-1"
+    },
+    {
+      "phases": [
+        "timer_2"
+      ],
+      "effect": "add_sharks size=medium patience=5 count=2 x=6-8"
+    },
+    {
+      "phases": [
+        "timer_3"
+      ],
+      "effect": "add_sharks size=medium patience=5 count=2 x=0-2"
+    },
+    {
+      "phases": [
+        "timer_4"
+      ],
+      "effect": "add_sharks size=medium patience=5 x=7-8"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 16",
+        "tile": "0 2 0"
+      },
+      {
+        "pos": "0 17",
+        "tile": "0 11 0"
+      },
+      {
+        "pos": "1 17",
+        "tile": "0 6 0"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 10 2"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 14 2"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 6 2"
+      },
+      {
+        "pos": "5 17",
+        "tile": "2 2 0"
+      },
+      {
+        "pos": "6 17",
+        "tile": "2 7 3"
+      },
+      {
+        "pos": "0 18",
+        "tile": "0 9 0"
+      },
+      {
+        "pos": "1 18",
+        "tile": "0 5 0"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 9 2"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 13 2"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 5 2"
+      },
+      {
+        "pos": "5 18",
+        "tile": "2 15 0"
+      },
+      {
+        "pos": "6 18",
+        "tile": "2 15 1"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 8 2"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 12 2"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 4 2"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 7 2"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 5 2"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 10 0"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 0 0"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 7 3"
+      }
+    ]
+  }
+}
