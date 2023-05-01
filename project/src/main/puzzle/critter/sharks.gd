@@ -168,7 +168,13 @@ func _refresh_sharks_for_piece() -> void:
 			# Assign the color before the piece is eaten. Otherwise if the entire piece is eaten, we won't know which
 			# color it was.
 			shark.set_eaten_color(0, _piece_manager.piece.type.get_box_type())
-			shark.set_eat_duration(PieceSpeeds.current_speed.lock_delay / 60.0)
+			
+			# Assign the eat duration before the piece is eaten. Otherwise the wrong SFX will play.
+			match shark.shark_size:
+				SharkConfig.SharkSize.SMALL:
+					shark.set_eat_duration(0.1)
+				_:
+					shark.set_eat_duration(PieceSpeeds.current_speed.lock_delay / 60.0)
 			
 			# Change the shark, setting them into the 'eating' state
 			var old_piece_cells := _playfield_piece_cells()
@@ -177,7 +183,6 @@ func _refresh_sharks_for_piece() -> void:
 			# Change the piece, removing any eaten cells
 			match shark.shark_size:
 				SharkConfig.SharkSize.SMALL:
-					shark.set_eat_duration(0.1)
 					_nibble_piece(shark_cell)
 				SharkConfig.SharkSize.MEDIUM:
 					_replace_active_piece_with_domino()
