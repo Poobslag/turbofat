@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "sluggy",
+  "name": "Sluggy",
+  "short_name": "Sluggy",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "1",
+    "body": "2",
+    "cheek": "0",
+    "collar": "0",
+    "ear": "1",
+    "eye": "6",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "2",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "f8f8f8",
+    "belly_rgb": "f8f8f8",
+    "cloth_rgb": "c421ac",
+    "glass_rgb": "edeaea",
+    "plastic_rgb": "a3a2a5",
+    "hair_rgb": "f8f8f8",
+    "eye_rgb": "111111 f8f8f8",
+    "horn_rgb": "edeaea"
+  },
+  "chat_theme": {
+    "accent_scale": 4,
+    "accent_swapped": true,
+    "accent_texture": 4,
+    "color": "f8f8f8",
+    "dark": true
+  }
+}
