@@ -107,17 +107,17 @@ func _walk() -> void:
 			_walk_state = WalkState.SITTING
 			_sit_and_reorient()
 			new_non_iso_walk_direction = Vector2.ZERO
-		elif non_iso_walk_direction and buddy_relative_pos.length() > TOO_FAR_THRESHOLD:
+		elif non_iso_walk_direction != Vector2.ZERO and buddy_relative_pos.length() > TOO_FAR_THRESHOLD:
 			# we're too far from our buddy, and they're following us. stop moving
 			new_non_iso_walk_direction = Vector2.ZERO
-		elif not non_iso_walk_direction and buddy_relative_pos.length() < lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.2):
+		elif non_iso_walk_direction == Vector2.ZERO and buddy_relative_pos.length() < lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.2):
 			# we're too close to our buddy, and they're following us. start moving
 			new_non_iso_walk_direction = _desired_walk_direction
 	elif leader_or_follower == LeaderOrFollower.FOLLOWER:
-		if not non_iso_walk_direction and buddy_relative_pos.length() > lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.8):
+		if non_iso_walk_direction == Vector2.ZERO and buddy_relative_pos.length() > lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.8):
 			# we're too far from our buddy, and they're leading us. start moving
 			new_non_iso_walk_direction = _desired_walk_direction
-		elif non_iso_walk_direction and buddy_relative_pos.length() < TOO_CLOSE_THRESHOLD:
+		elif non_iso_walk_direction != Vector2.ZERO and buddy_relative_pos.length() < TOO_CLOSE_THRESHOLD:
 			# we're too close to our buddy, and they're leading us. stop moving
 			new_non_iso_walk_direction = Vector2.ZERO
 	

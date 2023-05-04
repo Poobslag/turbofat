@@ -94,7 +94,7 @@ func _schedule_playfield_refill() -> void:
 ## 	'filled_line_count': The number of lines at the top of the playfield to fill. Empty lines are filled, non-empty
 ## 		lines are skipped.
 func _fill_empty_lines(filled_line_count: int) -> void:
-	if not _fill_lines_tiles_key():
+	if _fill_lines_tiles_key().empty():
 		return
 	
 	# fill the empty rows from bottom to top
@@ -170,7 +170,7 @@ func _tiles_src_y(tiles_key: String) -> int:
 		
 		# obtain the row bag
 		var row_bag: Array = _row_bag_by_tiles_key.get(tiles_key, [])
-		if not row_bag:
+		if row_bag.empty():
 			# refill the row bag
 			for i in range(_row_count_by_tiles_key[tiles_key]):
 				row_bag.append(i)

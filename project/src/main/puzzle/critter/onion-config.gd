@@ -44,7 +44,7 @@ func _init(init_day_string: String = "") -> void:
 ## Returns:
 ## 	An enum from OnionState for the state the onion should be in
 func get_state(advance_count: int) -> int:
-	if not day_string:
+	if day_string.empty():
 		return OnionState.NONE
 	
 	return onion_state_by_day_char.get(day_string[advance_count % day_string.length()], OnionState.NONE)

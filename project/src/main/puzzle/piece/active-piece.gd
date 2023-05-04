@@ -61,7 +61,7 @@ func _init(init_type: PieceType, init_cell_obstructed_func: FuncRef) -> void:
 ## This calculates the center of the smallest rectangle encompassing the piece. It does not care if the piece has more
 ## cells on one side. If the piece's dimensions are even, this will return a fractional result.
 func center() -> Vector2:
-	if not get_pos_arr():
+	if get_pos_arr().empty():
 		return Vector2.ZERO
 	var cell_bounds: Rect2 = Rect2(get_pos_arr()[0], Vector2.ZERO)
 	for cell_pos in get_pos_arr():

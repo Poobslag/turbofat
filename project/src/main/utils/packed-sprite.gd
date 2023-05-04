@@ -45,7 +45,7 @@ func set_frame_data(new_frame_data: String) -> void:
 		_frame_src_rects = ResourceCache.get_frame_src_rects(frame_data)
 		_frame_dest_rects = ResourceCache.get_frame_dest_rects(frame_data)
 
-		if not _frame_src_rects:
+		if _frame_src_rects.empty():
 			# if the ResourceCache is unavailable (possibly during demos) we load things the slow way
 			_load_rects_from_json()
 	update()
@@ -85,7 +85,7 @@ func set_offset(new_offset: Vector2) -> void:
 
 
 func _draw() -> void:
-	if not _frame_dest_rects:
+	if _frame_dest_rects.empty():
 		# frame data not loaded
 		return
 	

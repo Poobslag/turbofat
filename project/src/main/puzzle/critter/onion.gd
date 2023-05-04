@@ -100,7 +100,7 @@ func append_next_state(next_state: int) -> void:
 func advance_state() -> int:
 	if _already_popped_state:
 		pass
-	elif not _next_states:
+	elif _next_states.empty():
 		set_state(OnionConfig.OnionState.NONE)
 	else:
 		_current_state_index = (_current_state_index + 1) % _next_states.size()
@@ -134,7 +134,7 @@ func skip_to_night_mode() -> void:
 
 ## Resets the onion to the first state in its day/night cycle.
 func reset_cycle() -> void:
-	if not _next_states:
+	if _next_states.empty():
 		set_state(OnionConfig.OnionState.NONE)
 	else:
 		_current_state_index = 0

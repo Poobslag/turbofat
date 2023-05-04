@@ -24,7 +24,7 @@ var type: int = NONE
 
 ## Returns 'true' if this ChatKeyPair does not define any cutscenes.
 func empty() -> bool:
-	return not preroll and not postroll
+	return preroll.empty() and postroll.empty()
 
 
 ## Returns an ordered list of all cutscenes defined by this ChatKeyPair.

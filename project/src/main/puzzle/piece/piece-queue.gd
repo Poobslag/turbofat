@@ -171,7 +171,7 @@ func _reset_cheat_bag() -> void:
 
 func _shuffled_piece_types() -> Array:
 	var result: Array = CurrentLevel.settings.piece_types.types
-	if not result:
+	if result.empty():
 		result = _default_piece_types
 	result = result.duplicate()
 	result.shuffle()

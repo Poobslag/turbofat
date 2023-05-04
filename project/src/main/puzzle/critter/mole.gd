@@ -138,7 +138,7 @@ func has_next_state() -> bool:
 ## Returns:
 ## 	An enum from States for the mole's new state.
 func pop_next_state() -> int:
-	if not _next_states:
+	if _next_states.empty():
 		return NONE
 	
 	if _already_popped_state:
