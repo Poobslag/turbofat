@@ -66,10 +66,6 @@ window/stretch/mode="2d"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=false
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
-
 [gui]
 
 common/snap_controls_to_pixels=false

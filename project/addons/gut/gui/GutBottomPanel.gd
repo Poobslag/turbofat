@@ -52,17 +52,17 @@ func _init():
 
 
 func _ready():
-	_ctrls.results.bar.connect('draw', Callable(self, '_on_results_bar_draw').bind(_ctrls.results.bar))
-	hide_settings(!_ctrls.settings_button.pressed)
+	_ctrls.results.bar.connect('draw', _on_results_bar_draw.bind(_ctrls.results.bar))
+	hide_settings(!_ctrls.settings_button.button_pressed)
 	_gut_config_gui = GutConfigGui.new(_ctrls.settings)
 	_gut_config_gui.set_options(_gut_config.options)
 
 	_apply_options_to_controls()
 
-	_ctrls.shortcuts_button.icon = get_icon('Shortcut', 'EditorIcons')
-	_ctrls.settings_button.icon = get_icon('Tools', 'EditorIcons')
-	_ctrls.run_results_button.icon = get_icon('AnimationTrackGroup', 'EditorIcons') # Tree
-	_ctrls.output_button.icon = get_icon('Font', 'EditorIcons')
+	_ctrls.shortcuts_button.icon = get_theme_icon('Shortcut', 'EditorIcons')
+	_ctrls.settings_button.icon = get_theme_icon('Tools', 'EditorIcons')
+	_ctrls.run_results_button.icon = get_theme_icon('AnimationTrackGroup', 'EditorIcons') # Tree
+	_ctrls.output_button.icon = get_theme_icon('Font', 'EditorIcons')
 
 	_ctrls.run_results.set_output_control(_ctrls.output_ctrl)
 	_ctrls.run_results.set_font(
@@ -130,9 +130,9 @@ func _show_errors(errs):
 
 func _save_config():
 	_gut_config.options = _gut_config_gui.get_options(_gut_config.options)
-	_gut_config.options.panel_options.hide_settings = !_ctrls.settings_button.pressed
-	_gut_config.options.panel_options.hide_result_tree = !_ctrls.run_results_button.pressed
-	_gut_config.options.panel_options.hide_output_text = !_ctrls.output_button.pressed
+	_gut_config.options.panel_options.hide_settings = !_ctrls.settings_button.button_pressed
+	_gut_config.options.panel_options.hide_result_tree = !_ctrls.run_results_button.button_pressed
+	_gut_config.options.panel_options.hide_output_text = !_ctrls.output_button.button_pressed
 	_gut_config.options.panel_options.use_colors = _ctrls.output_ctrl.get_use_colors()
 
 	var w_result = _gut_config.write_options(RUNNER_JSON_PATH)
@@ -205,11 +205,9 @@ func _on_RunAll_pressed():
 func _on_Shortcuts_pressed():
 	_ctrls.shortcut_dialog.popup_centered()
 
-
-func _on_BottomPanelShortcuts_popup_hide():
+func _on_bottom_panel_shortcuts_visibility_changed():
 	_apply_shortcuts()
 	_ctrls.shortcut_dialog.save_shortcuts(SHORTCUTS_PATH)
-
 
 func _on_RunAtCursor_run_tests(what):
 	_gut_config.options.selected = what.script
@@ -220,17 +218,17 @@ func _on_RunAtCursor_run_tests(what):
 
 
 func _on_Settings_pressed():
-	hide_settings(!_ctrls.settings_button.pressed)
+	hide_settings(!_ctrls.settings_button.button_pressed)
 	_save_config()
 
 
 func _on_OutputBtn_pressed():
-	hide_output_text(!_ctrls.output_button.pressed)
+	hide_output_text(!_ctrls.output_button.button_pressed)
 	_save_config()
 
 
 func _on_RunResultsBtn_pressed():
-	hide_result_tree(! _ctrls.run_results_button.pressed)
+	hide_result_tree(! _ctrls.run_results_button.button_pressed)
 	_save_config()
 
 
@@ -272,14 +270,13 @@ func load_result_output():
 
 	var summary = get_file_as_text(RESULT_JSON)
 	var test_json_conv = JSON.new()
-	test_json_conv.parse(summary)
-	var results = test_json_conv.get_data()
-	if(results.error != OK):
+	if (test_json_conv.parse(summary) != OK):
 		return
+	var results = test_json_conv.get_data()
 
-	_ctrls.run_results.load_json_results(results.result)
+	_ctrls.run_results.load_json_results(results)
 
-	var summary_json = results.result['test_scripts']['props']
+	var summary_json = results['test_scripts']['props']
 	_ctrls.results.passing.text = str(summary_json.passing)
 	_ctrls.results.passing.get_parent().visible = true
 
@@ -307,7 +304,7 @@ func load_result_output():
 	else:
 		_light_color = Color(0, 1, 0, .75)
 	_ctrls.light.visible = true
-	_ctrls.light.update()
+	_ctrls.light.queue_redraw()
 
 
 func set_current_script(script):
@@ -320,7 +317,7 @@ func set_current_script(script):
 
 func set_interface(value):
 	_interface = value
-	_interface.get_script_editor().connect("editor_script_changed", Callable(self, '_on_editor_script_changed'))
+	_interface.get_script_editor().connect("editor_script_changed",Callable(self,'_on_editor_script_changed'))
 
 	var ste = ScriptTextEditors.new(_interface.get_script_editor())
 	_ctrls.run_results.set_interface(_interface)
@@ -340,12 +337,12 @@ func set_panel_button(value):
 # Write a file.
 # ------------------------------------------------------------------------------
 func write_file(path, content):
-	var f = File.new()
-	var result = f.open(path, f.WRITE)
-	if(result == OK):
+	var f = FileAccess.open(path, FileAccess.WRITE)
+	if(f != null):
 		f.store_string(content)
-		f.close()
-	return result
+	f = null;
+
+	return FileAccess.get_open_error()
 
 
 # ------------------------------------------------------------------------------
@@ -353,11 +350,10 @@ func write_file(path, content):
 # ------------------------------------------------------------------------------
 func get_file_as_text(path):
 	var to_return = ''
-	var f = File.new()
-	var result = f.open(path, f.READ)
-	if(result == OK):
+	var f = FileAccess.open(path, FileAccess.READ)
+	if(f != null):
 		to_return = f.get_as_text()
-		f.close()
+	f = null
 	return to_return
 
 
@@ -369,4 +365,3 @@ func nvl(value, if_null):
 		return if_null
 	else:
 		return value
-
