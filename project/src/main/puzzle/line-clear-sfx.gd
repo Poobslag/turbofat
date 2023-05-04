@@ -107,7 +107,7 @@ func _on_Playfield_all_lines_cleared() -> void:
 		# message is not shown at the end of a level
 		return
 		
-	if PuzzleState.tutorial_section_finished:
+	if PuzzleState.tutorial_section_finish_emitted:
 		# message is not shown at the end of a tutorial section
 		return
 	

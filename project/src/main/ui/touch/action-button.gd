@@ -23,12 +23,12 @@ extends TextureRect
 signal pressed
 
 ## action activated by this button. also affects its appearance
-@export (String) var action: String: set = set_action
+@export var action: String: set = set_action
 
 ## if false, pressing the button won't emit any actions.
-@export (bool) var emit_actions: bool = true
+@export var emit_actions: bool = true
 
-var pressed := false: set = set_pressed
+var button_pressed := false: set = set_pressed
 
 ## current textures this button toggles between when pressed/unpressed
 var _normal_texture: Texture2D
@@ -77,17 +77,17 @@ func set_action(new_action: String) -> void:
 
 ## Emits a pressed/released InputEvent and updates the button's appearance.
 func set_pressed(new_pressed: bool) -> void:
-	if pressed == new_pressed:
+	if button_pressed == new_pressed:
 		return
 	
-	pressed = new_pressed
-	texture = _pressed_texture if pressed else _normal_texture
+	button_pressed = new_pressed
+	texture = _pressed_texture if button_pressed else _normal_texture
 	
 	if emit_actions:
 		# fire the appropriate events
 		var ev := InputEventAction.new()
 		ev.action = action
-		ev.button_pressed = pressed
+		ev.button_pressed = button_pressed
 		Input.parse_input_event(ev)
 	emit_signal("pressed")
 
@@ -96,5 +96,5 @@ func set_pressed(new_pressed: bool) -> void:
 func _refresh() -> void:
 	_normal_texture = _normal_textures.get(action, _empty_texture)
 	_pressed_texture = _pressed_textures.get(action, _empty_pressed_texture)
-	texture = _pressed_texture if pressed else _normal_texture
+	texture = _pressed_texture if button_pressed else _normal_texture
 	visible = true if action else false

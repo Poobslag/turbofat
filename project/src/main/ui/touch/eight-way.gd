@@ -10,20 +10,20 @@ signal pressed
 const RADIUS := 180
 
 ## actions associated with each cardinal direction. if omitted, the button will not be shown
-@export (String) var up_action: String: set = set_up_action
-@export (String) var down_action: String: set = set_down_action
-@export (String) var left_action: String: set = set_left_action
-@export (String) var right_action: String: set = set_right_action
+@export var up_action: String: set = set_up_action
+@export var down_action: String: set = set_down_action
+@export var left_action: String: set = set_left_action
+@export var right_action: String: set = set_right_action
 
 ## these values influence how easy it is to press two buttons at once
 ## 0.0 = impossible; 1.0 = as easy as pressing a single button
-@export (float, 0, 1) var up_right_weight := 0.0
-@export (float, 0, 1) var up_left_weight := 0.0
-@export (float, 0, 1) var down_right_weight := 0.0
-@export (float, 0, 1) var down_left_weight := 0.0
+@export_range(0, 1) var up_right_weight := 0.0
+@export_range(0, 1) var up_left_weight := 0.0
+@export_range(0, 1) var down_right_weight := 0.0
+@export_range(0, 1) var down_left_weight := 0.0
 
 ## if false, pressing the buttons won't emit any actions.
-@export (bool) var emit_actions := true: set = set_emit_actions
+@export var emit_actions := true: set = set_emit_actions
 
 ## position relative to our center of the most recent touch event
 var _touch_dir: Vector2
@@ -91,18 +91,6 @@ func set_right_action(new_right_action: String) -> void:
 	_refresh_right_action()
 
 
-## Becomes visible and receives touch input.
-func show() -> void:
-	visible = true
-
-
-## Becomes invisible. Releases any held buttons and ignores touch input.
-func hide() -> void:
-	visible = false
-	_touch_index = -1
-	_release_buttons()
-
-
 func _refresh_up_action() -> void:
 	if is_inside_tree():
 		_up.action = up_action
@@ -159,3 +147,10 @@ func _diagonalness(diagonal_direction: Vector2) -> float:
 
 func _on_ActionButton_pressed() -> void:
 	emit_signal("pressed")
+
+
+func _on_visibility_changed():
+	if not visible:
+		## Release any held buttons and ignore touch input.
+		_touch_index = -1
+		_release_buttons()

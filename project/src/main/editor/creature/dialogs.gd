@@ -1,7 +1,7 @@
 extends Control
 ## Shows popup dialogs for the creature editor.
 
-@export (NodePath) var creature_editor_path: NodePath
+@export var creature_editor_path: NodePath
 
 @onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 @onready var _error_dialog := $Error

@@ -28,4 +28,4 @@ func flash() -> void:
 	font.outline_color = Color.WHITE
 	_flash_tween = Utils.recreate_tween(self, _flash_tween)
 	_flash_tween.tween_property(font, "outline_color", OUTLINE_COLOR, 1.5) \
-			super.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)

@@ -6,7 +6,7 @@ extends Control
 @onready var _progress_bar := $Holder/ProgressBar
 
 func _ready() -> void:
-	ResourceCache.connect("finished_loading", Callable(self, "_on_ResourceCache_finished_loading"))
+	ResourceCache.finished_loading.connect(_on_ResourceCache_finished_loading)
 	ResourceCache.start_load()
 	
 	_orb.modulate = _wallpaper.light_color.lightened(0.5)

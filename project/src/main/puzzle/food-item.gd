@@ -8,8 +8,8 @@ extends PackedSprite
 signal ready_to_fly
 
 ## Scale/rotation modifiers applied by our animation
-@export (Vector2) var scale_modifier := Vector2.ONE
-@export (float) var rotation_modifier := 0.0
+@export var scale_modifier := Vector2.ONE
+@export var rotation_modifier := 0.0
 
 ## Unmodified scale/rotation before pulsing/spinning
 var base_scale := Vector2.ONE: set = set_base_scale
@@ -25,13 +25,13 @@ var customer: Creature
 var customer_index: int
 
 ## Enum from FoodType corresponding to the food to show
-var food_type: int: set = set_food_type
+var food_type: Foods.FoodType: set = set_food_type
 
 ## Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
 ## This func ref and array correspond to a callback which return the position of the customer's mouth.
-var _get_target_pos: FuncRef
+var _get_target_pos: Callable
 var _target_pos_arg_array: Array
 
 ## Position the food is flying from
@@ -70,9 +70,9 @@ func _physics_process(delta: float) -> void:
 	_total_time += delta
 	
 	if _floating_upward:
-		if _get_target_pos and _flight_percent > 0.0:
+		if not _get_target_pos.is_null() and _flight_percent > 0.0:
 			_source_pos += velocity * delta
-			_target_pos = _get_target_pos.call_funcv(_target_pos_arg_array)
+			_target_pos = _get_target_pos.callv(_target_pos_arg_array)
 			
 			if _target_pos == Vector2.INF:
 				# get_target_pos returns Vector2.INF if the food should be removed
@@ -104,7 +104,7 @@ func collect() -> void:
 	jiggle()
 
 
-func set_food_type(new_food_type: int) -> void:
+func set_food_type(new_food_type: Foods.FoodType) -> void:
 	food_type = new_food_type
 	set_frame(new_food_type)
 
@@ -128,7 +128,7 @@ func set_base_rotation(new_base_rotation: float) -> void:
 ## 	'new_get_target_pos': The callback function which returns the position of the customer's mouth.
 ##
 ## 	'target_pos_arg_array': The parameters of the callback function which returns the position of the customer's mouth.
-func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
+func fly_to_target(new_get_target_pos: Callable, target_pos_arg_array: Array,
 			duration: float) -> void:
 	_get_target_pos = new_get_target_pos
 	_target_pos_arg_array = target_pos_arg_array

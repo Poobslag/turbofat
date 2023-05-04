@@ -45,11 +45,11 @@ const VERTICAL_SPACING := 6
 
 var level_id: String
 
-## Enum from LevelSize for the duration of the level. This affects the button size
-var level_duration: int = LevelSize.MEDIUM: set = set_level_duration
+## Enum from LevelSize for the duration of the level. this affects the button size
+var level_duration := LevelSize.MEDIUM: set = set_level_duration
 
 ## status whether or not this level is locked/unlocked
-var lock_status: int = STATUS_NONE: set = set_lock_status
+var lock_status := STATUS_NONE: set = set_lock_status
 
 ## number of remaining levels the player needs to play to unlock this level
 var keys_needed := -1: set = set_keys_needed
@@ -87,7 +87,7 @@ func _set_style_color(color: Color) -> void:
 	get("theme_override_styles/hover").bg_color = color
 
 
-func set_lock_status(new_lock_status: int) -> void:
+func set_lock_status(new_lock_status: LockStatus) -> void:
 	lock_status = new_lock_status
 	_refresh_appearance()
 
@@ -102,7 +102,7 @@ func set_level_name(new_level_name: String) -> void:
 	_refresh_appearance()
 
 
-func set_level_duration(new_level_duration: int) -> void:
+func set_level_duration(new_level_duration: LevelSize) -> void:
 	level_duration = new_level_duration
 	_refresh_appearance()
 

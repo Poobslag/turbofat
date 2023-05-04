@@ -14,7 +14,7 @@ const ANIMATED_HIDE_DELAY := 1.2
 const STATIC_HIDE_DELAY := 2.0
 
 ## If 'true', the board will not hide itself. Used for demos/debugging.
-@export (bool) var suppress_hide := false
+@export var suppress_hide := false
 
 ## Backdrop which darkens parts of the scene behind the progress board.
 @onready var _backdrop := $Backdrop

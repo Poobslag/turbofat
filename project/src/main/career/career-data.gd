@@ -82,7 +82,7 @@ var remain_in_region := false
 var skipped_previous_level := false
 
 ## Whether the career map should show the player's progress.
-var show_progress: int = Careers.ShowProgress.STATIC
+var show_progress := Careers.ShowProgress.STATIC
 
 ## periodically increments the 'daily_seconds_played' value
 var _daily_seconds_played_timer: Timer
@@ -95,11 +95,11 @@ var _career_calendar
 var _career_flow
 
 func _ready() -> void:
-	CurrentCutscene.connect("cutscene_played", Callable(self, "_on_CurrentCutscene_cutscene_played"))
+	CurrentCutscene.cutscene_played.connect(_on_CurrentCutscene_cutscene_played)
 	
 	_daily_seconds_played_timer = Timer.new()
 	_daily_seconds_played_timer.wait_time = PlayerData.SECONDS_PLAYED_INCREMENT
-	_daily_seconds_played_timer.connect("timeout", Callable(self, "_on_DailySecondsPlayedTimer_timeout"))
+	_daily_seconds_played_timer.timeout.connect(_on_DailySecondsPlayedTimer_timeout)
 	add_child(_daily_seconds_played_timer)
 	_daily_seconds_played_timer.start()
 	

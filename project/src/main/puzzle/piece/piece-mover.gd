@@ -15,7 +15,7 @@ signal moved_left(piece)
 # warning-ignore:unused_signal
 signal moved_right(piece)
 
-@export (NodePath) var input_path: NodePath
+@export var input_path: NodePath
 
 ## how many times the piece has moved horizontally this frame
 var _horizontal_movement_count := 0
@@ -27,22 +27,22 @@ func _physics_process(_delta: float) -> void:
 
 ## locations the piece will spawn if the player holds left
 const SPAWN_LEFT := [
-		Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1),
-		Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1),
-		Vector2(0, 0), Vector2(0, -1), Vector2(1, 0), Vector2(1, -1),
+		Vector2i(-4, 0), Vector2i(-4, -1), Vector2i(-3, 0), Vector2i(-3, -1),
+		Vector2i(-2, 0), Vector2i(-2, -1), Vector2i(-1, 0), Vector2i(-1, -1),
+		Vector2i(0, 0), Vector2i(0, -1), Vector2i(1, 0), Vector2i(1, -1),
 	]
 
 ## locations the piece will spawn if the player does not hold left or right
 const SPAWN_CENTER := [
-		Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0),
-		Vector2(-1, -1), Vector2(1, 0), Vector2(1, -1),
+		Vector2i(0, 0), Vector2i(0, -1), Vector2i(-1, 0),
+		Vector2i(-1, -1), Vector2i(1, 0), Vector2i(1, -1),
 	]
 
 ## locations the piece will spawn if the player holds right
 const SPAWN_RIGHT := [
-		Vector2(4, 0), Vector2(4, -1), Vector2(3, 0), Vector2(3, -1),
-		Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1),
-		Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
+		Vector2i(4, 0), Vector2i(4, -1), Vector2i(3, 0), Vector2i(3, -1),
+		Vector2i(2, 0), Vector2i(2, -1), Vector2i(1, 0), Vector2i(1, -1),
+		Vector2i(0, 0), Vector2i(0, -1), Vector2i(-1, 0), Vector2i(-1, -1),
 	]
 
 func apply_initial_move_input(piece: ActivePiece) -> String:
@@ -116,9 +116,9 @@ func apply_move_input(piece: ActivePiece) -> void:
 	#
 	# Otherwise, there are some unusual situations 'O' pieces in a central 3-column well will get instant DAS to the
 	# right (where they're obstructed) but not to the left (where they can move)
-	if input.is_left_pressed() and not piece.can_move_to(piece.pos + Vector2.LEFT, piece.orientation):
+	if input.is_left_pressed() and not piece.can_move_to(piece.pos + Vector2i.LEFT, piece.orientation):
 		input.set_left_das_active()
-	if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2.RIGHT, piece.orientation):
+	if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2i.RIGHT, piece.orientation):
 		input.set_right_das_active()
 
 

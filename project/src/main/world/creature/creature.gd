@@ -37,21 +37,21 @@ const MAX_RUN_ACCELERATION := 2250
 const CREATURE_FADE_IN_DURATION := 0.6
 const CREATURE_FADE_OUT_DURATION := 0.3
 
-@export (String) var creature_id: String: set = set_creature_id
-@export (Dictionary) var dna: Dictionary: set = set_dna
+@export var creature_id: String: set = set_creature_id
+@export var dna: Dictionary: set = set_dna
 
 ## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
-@export (bool) var suppress_sfx: bool = false: set = set_suppress_sfx
+@export var suppress_sfx: bool = false: set = set_suppress_sfx
 
 ## if 'true' the creature will only use the fatness in the creature definition,
 ## ignoring any accrued fatness from puzzles
-@export (bool) var suppress_fatness: bool = false
+@export var suppress_fatness: bool = false
 
 ## how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
-@export (float) var elevation: float: set = set_elevation
+@export var elevation: float: set = set_elevation
 
 ## virtual property; value is not kept up-to-date and should only be accessed through getters/setters
-@export (Creatures.Orientation) var orientation: int: get = get_orientation, set = set_orientation
+@export var orientation: Creatures.Orientation: get = get_orientation, set = set_orientation
 
 ## virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef: get = get_creature_def, set = set_creature_def
@@ -126,14 +126,14 @@ func _ready() -> void:
 		_collision_shape.creature_visuals = creature_visuals
 	creature_visuals.creature_sfx = _creature_sfx
 	
-	creature_visuals.connect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
-	creature_visuals.connect("food_eaten", Callable(self, "_on_CreatureVisuals_food_eaten"))
-	creature_visuals.connect("landed", Callable(self, "_on_CreatureVisuals_landed"))
-	creature_visuals.connect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
-	creature_visuals.connect("talking_changed", Callable(self, "_on_CreatureVisuals_talking_changed"))
-	creature_visuals.connect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
+	creature_visuals.dna_loaded.connect(_on_CreatureVisuals_dna_loaded)
+	creature_visuals.food_eaten.connect(_on_CreatureVisuals_food_eaten)
+	creature_visuals.landed.connect(_on_CreatureVisuals_landed)
+	creature_visuals.movement_mode_changed.connect(_on_CreatureVisuals_movement_mode_changed)
+	creature_visuals.talking_changed.connect(_on_CreatureVisuals_talking_changed)
+	creature_visuals.visual_fatness_changed.connect(_on_CreatureVisuals_visual_fatness_changed)
 	
-	SceneTransition.connect("fade_in_started", Callable(self, "_on_SceneTransition_fade_in_started"))
+	SceneTransition.fade_in_started.connect(_on_SceneTransition_fade_in_started)
 	
 	if creature_id:
 		_refresh_creature_id()
@@ -259,7 +259,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 ##
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
-func play_mood(mood: int) -> void:
+func play_mood(mood: Creatures.Mood) -> void:
 	creature_visuals.play_mood(mood)
 
 
@@ -278,7 +278,7 @@ func orient_toward(target_position: Vector2) -> void:
 	set_orientation(Creatures.SOUTHEAST if direction_dot > 0 else Creatures.SOUTHWEST)
 
 
-func set_orientation(new_orientation: int) -> void:
+func set_orientation(new_orientation: Creatures.Orientation) -> void:
 	orientation = new_orientation
 	if creature_visuals:
 		creature_visuals.orientation = new_orientation
@@ -326,7 +326,7 @@ func play_goodbye_voice() -> void:
 
 ## Parameters:
 ## 	'food_type': Enum from FoodType corresponding to the food to show
-func feed(food_type: int) -> void:
+func feed(food_type: Foods.FoodType) -> void:
 	feed_count += 1
 	box_feed_count += 1
 	creature_visuals.feed(food_type)
@@ -391,13 +391,13 @@ func refresh_dna() -> void:
 
 
 ## Workaround for Godot #21789 to make get_class return class_name
-func get_class() -> String:
-	return "Creature"
+#func get_class() -> String:
+#	return "Creature"
 
 
 ## Workaround for Godot #21789 to make is_class match class_name
-func is_class(name: String) -> bool:
-	return name == "Creature" or super.is_class(name)
+#func is_class(name: String) -> bool:
+#	return name == "Creature" or super.is_class(name)
 
 
 func get_movement_mode() -> int:
@@ -471,7 +471,7 @@ func _refresh_elevation() -> void:
 
 
 func _apply_friction() -> void:
-	if _iso_velocity and iso_walk_direction:
+	if _iso_velocity.length() > 0 and iso_walk_direction.length() > 0:
 		_friction = _non_iso_velocity.normalized().dot(non_iso_walk_direction.normalized()) < 0.25
 	else:
 		_friction = true
@@ -585,7 +585,7 @@ func _on_CreatureVisuals_dna_loaded() -> void:
 	emit_signal("dna_loaded")
 
 
-func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
+func _on_CreatureVisuals_food_eaten(food_type: Foods.FoodType) -> void:
 	emit_signal("food_eaten", food_type)
 
 
@@ -597,7 +597,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	emit_signal("visual_fatness_changed")
 
 
-func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: Creatures.MovementMode, new_mode: Creatures.MovementMode) -> void:
 	if new_mode in [Creatures.WALK, Creatures.RUN]:
 		# when on two legs, the body is a little higher off the ground
 		set_elevation(35)

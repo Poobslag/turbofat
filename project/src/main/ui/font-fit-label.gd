@@ -4,7 +4,7 @@ extends Label
 ## which will not overrun its boundaries.
 
 ## Different fonts to try. Should be ordered from largest to smallest.
-@export (Array, Font) var fonts := []: set = set_fonts
+@export var fonts: Array[Font]: set = set_fonts
 
 var chosen_font_index := -1: set = set_chosen_font_index
 
@@ -12,8 +12,8 @@ func _ready() -> void:
 	connect("resized", Callable(self, "_on_resized"))
 	pick_largest_font()
 	
-	# this class requires both autowrap and max_lines_visible to be set
-	autowrap = true
+	# this class requires both autowrap_mode and max_lines_visible to be set
+	autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	max_lines_visible = max(1, max_lines_visible)
 
 
@@ -36,8 +36,8 @@ func set_chosen_font_index(new_index: int) -> void:
 
 
 func _lines_fit() -> bool:
-	max_lines_visible = (size.y + get_constant("line_spacing")) \
-			/ (get("theme_override_fonts/font").get_height() + get_constant("line_spacing"))
+	max_lines_visible = (size.y + get_theme_constant("line_spacing")) \
+			/ (get("theme_override_fonts/font").get_height() + get_theme_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
 
 

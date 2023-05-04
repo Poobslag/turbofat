@@ -16,24 +16,24 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
-		_creature_visuals.disconnect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
+		_creature_visuals.comfort_changed.disconnect(_on_CreatureVisuals_comfort_changed)
+		_creature_visuals.dna_loaded.disconnect(_on_CreatureVisuals_dna_loaded)
 	
 	_creature_visuals = get_node(creature_visuals_path)
 	
 	if _creature_visuals:
-		_creature_visuals.connect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
-		_creature_visuals.connect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
+		_creature_visuals.comfort_changed.connect(_on_CreatureVisuals_comfort_changed)
+		_creature_visuals.dna_loaded.connect(_on_CreatureVisuals_dna_loaded)
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:
 	emitting = _creature_visuals.comfort < -0.6
 	if emitting:
-		var sweat_amount := clamp(inverse_lerp(-0.6, -1.0, _creature_visuals.comfort), 0.0, 1.0)
+		var sweat_amount: float = clamp(inverse_lerp(-0.6, -1.0, _creature_visuals.comfort), 0.0, 1.0)
 		amount = lerp(3, 8, sweat_amount)
 
 

@@ -52,15 +52,15 @@ const TILE_MAP_DEFAULT_Z_INDEX := 3
 ## z index the piece manager's tilemap switches to temporarily when topping out
 const TILE_MAP_TOP_OUT_Z_INDEX := 4
 
-@export (NodePath) var playfield_path: NodePath
-@export (NodePath) var piece_queue_path: NodePath
+@export var playfield_path: NodePath
+@export var piece_queue_path: NodePath
 
 ## settings and state for the currently active piece.
 var piece: ActivePiece
 
 ## information about the piece previously rendered to the tilemap
 var drawn_piece_type: PieceType
-var drawn_piece_pos: Vector2
+var drawn_piece_pos: Vector2i
 var drawn_piece_orientation: int
 
 ## TileMap containing the puzzle blocks which make up the active piece
@@ -74,15 +74,15 @@ var drawn_piece_orientation: int
 @onready var states: PieceStates = $States
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
-	PuzzleState.connect("before_level_changed", Callable(self, "_on_PuzzleState_before_level_changed"))
-	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
-	PuzzleState.connect("finish_triggered", Callable(self, "_on_PuzzleState_finish_triggered"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
-	PuzzleState.connect("topping_out_changed", Callable(self, "_on_PuzzleState_topping_out_changed"))
-	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.game_started.connect(_on_PuzzleState_game_started)
+	PuzzleState.before_level_changed.connect(_on_PuzzleState_before_level_changed)
+	PuzzleState.after_level_changed.connect(_on_PuzzleState_after_level_changed)
+	PuzzleState.finish_triggered.connect(_on_PuzzleState_finish_triggered)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
+	PuzzleState.topping_out_changed.connect(_on_PuzzleState_topping_out_changed)
+	Pauser.paused_changed.connect(_on_Pauser_paused_changed)
 	
 	_clear_piece()
 	
@@ -226,7 +226,7 @@ func squish_percent() -> float:
 ## Increments the piece's 'lock'. A piece will become locked once its accumulated 'lock' exceeds a certain threshold,
 ## usually about half a second.
 func apply_lock() -> void:
-	if not piece.can_move_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+	if not piece.can_move_to(Vector2i(piece.pos.x, piece.pos.y + 1), piece.orientation):
 		piece.lock += 1
 		piece.gravity = 0
 	else:
@@ -274,10 +274,10 @@ func _clear_piece() -> void:
 
 ## Refresh the tilemap which displays the piece, based on the current piece's position and orientation.
 func _update_tile_map() -> void:
-	tile_map.clear()
+	tile_map.clear_puzzle()
 	var pos_arr := piece.get_pos_arr()
 	for i in range(pos_arr.size()):
-		var block_pos: Vector2 = piece.pos + pos_arr[i]
+		var block_pos: Vector2i = piece.pos + pos_arr[i]
 		var block_color := piece.type.get_cell_color(piece.orientation, i)
 		tile_map.set_block(block_pos, 0, block_color)
 
@@ -313,7 +313,7 @@ func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
 	# iterate over the deleted lines from highest to lowest
 	deleted_lines = deleted_lines.duplicate()
 	deleted_lines.sort()
-	deleted_lines.invert()
+	deleted_lines.reverse()
 	
 	for deleted_line in deleted_lines:
 		var lowest_piece_cell_y := -999
@@ -330,7 +330,7 @@ func _shift_piece_for_deleted_lines(deleted_lines: Array) -> void:
 		# make room for the piece
 		for i in range(piece.type.pos_arr[piece.orientation].size()):
 			var block_pos := piece.type.get_cell_position(piece.orientation, i)
-			tile_map.erase_cell(piece.target_pos + block_pos)
+			tile_map.erase_puzzle_cell(piece.target_pos + block_pos)
 		
 		# write the piece to the playfield
 		piece.move_to_target()
@@ -362,7 +362,7 @@ func _spawn_piece_from_next_queue() -> void:
 
 
 func _initialize_piece(type: PieceType, orientation: int = 0) -> void:
-	piece = ActivePiece.new(type, funcref(_playfield.tile_map, "is_cell_obstructed"))
+	piece = ActivePiece.new(type, Callable(_playfield.tile_map, "is_cell_obstructed"))
 	piece.orientation = orientation
 
 
@@ -461,7 +461,7 @@ func _on_Dropper_dropped(dropped_piece: ActivePiece) -> void: emit_signal("dropp
 
 func _on_Squisher_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
 func _on_Squisher_lock_cancelled(cancelled_piece: ActivePiece) -> void: emit_signal("lock_cancelled", cancelled_piece)
-func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2) -> void: emit_signal("squish_moved", \
+func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2i) -> void: emit_signal("squish_moved", \
 		squished_piece, old_pos)
 
 func _on_Mover_initial_das_moved_left(moved_piece: ActivePiece) -> void:emit_signal("initial_das_moved_left", \

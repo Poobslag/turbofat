@@ -23,7 +23,7 @@ const TIME_OVER := MilestoneType.TIME_OVER
 const TIME_UNDER := MilestoneType.TIME_UNDER
 
 ## enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
-var type: int = MilestoneType.NONE
+var type := MilestoneType.NONE
 
 ## value describing the milestone criteria (number of lines, points, seconds)
 var value := 0
@@ -34,7 +34,7 @@ var value := 0
 ## 	'new_type': milestone criteria (lines, score, time)
 ##
 ## 	'new_value': value describing the milestone criteria (number of lines, points, seconds)
-func set_milestone(new_type: int, new_value: int) -> void:
+func set_milestone(new_type: Milestone.MilestoneType, new_value: int) -> void:
 	type = new_type
 	value = new_value
 

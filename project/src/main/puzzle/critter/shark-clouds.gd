@@ -5,7 +5,7 @@ extends Node2D
 ## Number of animation variants in the sprite sheet. We cycle between random variants.
 const CLOUD_VARIANT_COUNT := 3
 
-@export (PackedScene) var CloudPartScene: PackedScene
+@export var CloudPartScene: PackedScene
 
 ## Tile map for the pieces the shark is eating.
 var tile_map: PuzzleTileMap: set = set_tile_map
@@ -61,9 +61,9 @@ func refresh() -> void:
 	
 	var used_rect := tile_map.get_used_rect()
 	
-	if used_rect.has_no_area():
+	if not used_rect.has_area():
 		# have a small cloud, even if nothing is being eaten
-		used_rect = Rect2(0, 0, 1, 1)
+		used_rect = Rect2i(0, 0, 1, 1)
 	
 	var start_cell_x := used_rect.position.x
 	var end_cell_x := used_rect.end.x

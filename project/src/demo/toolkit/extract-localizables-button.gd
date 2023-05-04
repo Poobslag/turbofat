@@ -9,7 +9,7 @@ extends Button
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
 const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
 
-@export (NodePath) var output_label_path: NodePath
+@export var output_label_path: NodePath
 
 ## localizable strings extracted from levels and chats
 var _localizables := []
@@ -109,19 +109,19 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 						push_warning("Invalid token count for set_phrase call. Expected 2 but was %s"
 								% [args.size()])
 					
-					_localizables.append(PackedStringArray(args.slice(1, args." ".join(size()))))
+					_localizables.append(" ".join(PackedStringArray(args.slice(1, args.size()))))
 				"default_phrase":
 					if args.size() < 2:
 						push_warning("Invalid token count for default_phrase call. Expected 2 but was %s"
 								% [args.size()])
 					
-					_localizables.append(PackedStringArray(args.slice(1, args." ".join(size()))))
+					_localizables.append(" ".join(PackedStringArray(args.slice(1, args.size()))))
 
 
 ## Extract localizables from OS.get_scancode_string()
 ##
 ## This is a workaround for Godot #4140 (https://github.com/godotengine/godot/issues/4140). Because Godot does not
-## offer a way to localize scancode strings, we must extract and localize them ourselves.
+## offer a way to localize keycode strings, we must extract and localize them ourselves.
 func _extract_localizables_from_scancode_strings() -> void:
 	# ascii printable characters: space, comma, period, slash...
 	for i in range(256):
@@ -138,8 +138,7 @@ func _extract_localizables_from_scancode_strings() -> void:
 
 ## Writes the in-memory list of localizables to a file, in a format accessible by pybabel.
 func _write_localizables(output_path: String, localizables: Array) -> void:
-	var f := File.new()
-	f.open(output_path, f.WRITE)
+	var f := FileAccess.open(output_path, FileAccess.WRITE)
 	f.store_string("# Localizable strings extracted by LocalizationDemo.tscn\n")
 	for localizable_string_obj in localizables:
 		var localizable_string: String = localizable_string_obj

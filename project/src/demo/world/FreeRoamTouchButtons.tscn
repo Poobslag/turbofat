@@ -28,4 +28,4 @@ up_left_weight = 1.0
 down_right_weight = 1.0
 down_left_weight = 1.0
 
-[connection signal="visibility_changed" from="." to="." method="_on_TouchButtons_visibility_changed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

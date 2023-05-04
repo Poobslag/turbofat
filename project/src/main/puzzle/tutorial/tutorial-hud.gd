@@ -5,9 +5,9 @@ extends Control
 ## emitted when the HUD should be refreshed during initial setup or for a level change.
 signal refreshed
 
-@export (NodePath) var puzzle_path: NodePath
+@export var puzzle_path: NodePath
 
-@export (NodePath) var hud_flash_path: NodePath
+@export var hud_flash_path: NodePath
 
 @onready var messages: TutorialMessages = $Messages
 @onready var diagram: TutorialDiagram = $Diagram
@@ -18,9 +18,9 @@ signal refreshed
 
 func _ready() -> void:
 	visible = false
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.after_level_changed.connect(_on_PuzzleState_after_level_changed)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	replace_tutorial_module()
 
 

@@ -15,7 +15,7 @@ func popup() -> void:
 	# Construct a message to show the player. The tone is informal and sympathetic. Hopefully this endears the player
 	# toward us because they're going to have a bad day. (Hopefully the backups worked.)
 	var message := ""
-	if PlayerSave.loaded_backup == -1:
+	if PlayerSave.loaded_backup == RollingBackups.Backup.NONE:
 		message += "So... I had some kind of problem loading your save data."
 		message += " Unfortunately, none of the backups worked either, so I don't really know how to fix it."
 	else:

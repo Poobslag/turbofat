@@ -1,8 +1,8 @@
 extends Timer
 ## Timer which randomizes its wait time each time it elapses.
 
-@export (float) var min_wait_time := 1.0
-@export (float) var max_wait_time := 1.0
+@export var min_wait_time := 1.0
+@export var max_wait_time := 1.0
 
 func _ready() -> void:
 	# When the timer is initialized, we randomize its wait time.

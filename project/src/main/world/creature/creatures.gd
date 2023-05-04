@@ -82,7 +82,7 @@ const SENSEI_PATH := "res://assets/main/creatures/sensei.json"
 ##
 ## Parameters:
 ## 	'orientation': enum from Creatures.Orientation
-static func oriented_south(orientation: int) -> bool:
+static func oriented_south(orientation: Creatures.Orientation) -> bool:
 	return orientation in [SOUTHWEST, SOUTHEAST]
 
 
@@ -90,5 +90,5 @@ static func oriented_south(orientation: int) -> bool:
 ##
 ## Parameters:
 ## 	'orientation': enum from Creatures.Orientation
-static func oriented_north(orientation: int) -> bool:
+static func oriented_north(orientation: Creatures.Orientation) -> bool:
 	return orientation in [NORTHWEST, NORTHEAST]

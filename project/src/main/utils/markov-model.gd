@@ -52,7 +52,7 @@ func generate_word() -> String:
 	while true:
 		var cluster := word.substr(max(0, word.length() - ceil(order) - 1), ceil(order) + 1)
 		cluster = _get_cluster(cluster, word.length() >= min_length)
-		if not cluster:
+		if cluster.is_empty():
 			# failure; couldn't find a continuation
 			word = ""
 			break
@@ -79,7 +79,8 @@ func generate_word() -> String:
 func _get_cluster(cluster_in: String, may_end: bool) -> String:
 	# calculate the total number of connections
 	var total := 0
-	var int_order := floor(order) if randf() > fmod(order, 1.0) else ceil(order)
+	# randomly round order to an int; 2.3 is usually rounded down, but sometimes rounded up
+	var int_order: int = floor(order) if randf() > fmod(order, 1.0) else ceil(order)
 	var prefix := cluster_in.substr(max(cluster_in.length() - int_order, 0))
 	for cluster in connections.get(prefix):
 		if cluster.ends_with("\n") and not may_end:

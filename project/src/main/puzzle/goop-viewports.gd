@@ -3,12 +3,12 @@ extends Control
 ## Maintains viewports for drawing smeared snack/cake goop globs.
 
 ## minimum smear size for globs which are smeared slowly.
-@export (float) var glob_min_scale := 1.0
+@export var glob_min_scale := 1.0
 
 ## maximum smear size for globs which are smeared quickly.
-@export (float) var glob_max_scale := 1.0
+@export var glob_max_scale := 1.0
 
-@export (PackedScene) var GoopGlobScene: PackedScene
+@export var GoopGlobScene: PackedScene
 
 func _ready() -> void:
 	$SubViewport.size = size

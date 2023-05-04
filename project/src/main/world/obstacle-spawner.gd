@@ -6,16 +6,16 @@ extends Sprite2D
 ##
 ## The obstacle's properties and groups can be managed by the target_properties and target_groups fields.
 
-@export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
+@export var overworld_environment_path: NodePath = NodePath("../..")
 
 ## PackedScene of the spawned obstacle
-@export (PackedScene) var TargetScene: PackedScene
+@export var TargetScene: PackedScene
 
 ## properties of the spawned obstacle
-@export (Dictionary) var target_properties: Dictionary
+@export var target_properties: Dictionary
 
 ## boolean expression which, if evaluated to 'true', will result in the obstacle being spawned
-@export (String) var spawn_if: String
+@export var spawn_if: String
 
 ## spawned object, or 'null' if the object has not yet spawned
 var spawned_object: Node2D

@@ -4,7 +4,7 @@ extends Node
 ## Keys:
 ## 	[space bar]: Emits a smoke cluster.
 
-@export (PackedScene) var SmokeClusterScene: PackedScene
+@export var SmokeClusterScene: PackedScene
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

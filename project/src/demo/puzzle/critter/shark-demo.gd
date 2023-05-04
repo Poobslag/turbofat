@@ -18,16 +18,16 @@ extends Node
 
 const EATEN_PIECE_SHAPES := [
 	[], # null piece
-	[Vector2(0, 0)], # single piece
-	[Vector2(0, 0), Vector2(0, -1), Vector2(0, -2)], # tall piece
-	[Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0)], # wide piece
-	[Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, -1), Vector2(1, -2)], # crazy piece
+	[Vector2i(0, 0)], # single piece
+	[Vector2i(0, 0), Vector2i(0, -1), Vector2i(0, -2)], # tall piece
+	[Vector2i(-1, 0), Vector2i(0, 0), Vector2i(1, 0)], # wide piece
+	[Vector2i(-1, 0), Vector2i(0, 0), Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, -2)], # crazy piece
 ]
 
 @onready var _shark := $Shark
 
 func _ready() -> void:
-	_shark.set_eaten_cell(Vector2.ZERO)
+	_shark.set_eaten_cell(Vector2i.ZERO)
 
 
 func _input(event: InputEvent) -> void:

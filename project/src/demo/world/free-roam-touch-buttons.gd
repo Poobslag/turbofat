@@ -2,8 +2,8 @@ extends Control
 ## Touchscreen buttons displayed for the overworld.
 
 func _ready() -> void:
-	if OS.has_touchscreen_ui_hint():
-		SystemData.touch_settings.connect("changed", Callable(self, "_on_TouchSettings_settings_changed"))
+	if DisplayServer.is_touchscreen_available():
+		SystemData.touch_settings.changed.connect(_on_TouchSettings_settings_changed)
 		show()
 	else:
 		hide()
@@ -13,7 +13,7 @@ func _ready() -> void:
 ##
 ## This updates their location, visibility and size.
 func _refresh_buttons() -> void:
-	if visible and OS.has_touchscreen_ui_hint():
+	if visible and DisplayServer.is_touchscreen_available():
 		# stop ignoring touch input
 		$ButtonsSw.show()
 		$ButtonsSw.scale = Vector2.ONE * SystemData.touch_settings.size
@@ -23,12 +23,12 @@ func _refresh_buttons() -> void:
 		$ButtonsSw.hide()
 
 
-func _on_Menu_show() -> void:
+func _on_Menu_shown() -> void:
 	hide()
 
 
-func _on_Menu_hide() -> void:
-	if OS.has_touchscreen_ui_hint():
+func _on_Menu_hidden() -> void:
+	if DisplayServer.is_touchscreen_available():
 		show()
 
 
@@ -36,5 +36,5 @@ func _on_TouchSettings_settings_changed() -> void:
 	_refresh_buttons()
 
 
-func _on_TouchButtons_visibility_changed() -> void:
+func _on_visibility_changed():
 	_refresh_buttons()

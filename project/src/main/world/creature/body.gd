@@ -8,23 +8,23 @@ extends Node2D
 ## CreatureCurve instances are invisible by default, but can be made visible by toggling the 'editing' flag. This is
 ## useful when editing curves in the Godot editor.
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 ## Color for the body outline
-@export (Color) var line_color := Color.BLACK
+@export var line_color := Color.BLACK
 
 ## Main color for most of the creature's body
-@export (Color) var body_color := Color.GREEN
+@export var body_color := Color.GREEN
 
 ## Secondary color for the creature's belly
-@export (Color) var belly_color := Color.RED
+@export var belly_color := Color.RED
 
 ## Color to use for shadows, including an alpha component
-@export (Color) var shadow_color := Color.BLUE
+@export var shadow_color := Color.BLUE
 
 ## If 'true', the CreatureCurve instances will be made visible. This is useful
 ## when editing curves in the Godot editor.
-@export (bool) var editing := false: set = set_editing
+@export var editing := false: set = set_editing
 
 ## Rounded shape of the torso.
 var body_shape: CreatureCurve
@@ -82,21 +82,21 @@ func refresh_children() -> void:
 	if shadows:
 		_connect_curve_signals(shadows.get_children())
 	
-	update()
+	queue_redraw()
 
 
 ## Connects signals to receive updates from the specified CreatureCurves.
 func _connect_curve_signals(creature_curves: Array) -> void:
 	for creature_curve in creature_curves:
 		if creature_curve:
-			creature_curve.connect("appearance_changed", Callable(self, "_on_CreatureCurve_appearance_changed"))
+			creature_curve.appearance_changed.connect(_on_CreatureCurve_appearance_changed)
 
 
 ## Disconnects signals to no longer receive updates from the specified CreatureCurves.
 func _disconnect_curve_signals(creature_curves: Array) -> void:
 	for creature_curve in creature_curves:
 		if creature_curve:
-			creature_curve.disconnect("appearance_changed", Callable(self, "_on_CreatureCurve_appearance_changed"))
+			creature_curve.appearance_changed.disconnect(_on_CreatureCurve_appearance_changed)
 
 
 func _refresh_creature_visuals_path() -> void:
@@ -104,10 +104,10 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
-	_creature_visuals = get_node(creature_visuals_path) if creature_visuals_path else null
+		_creature_visuals.movement_mode_changed.disconnect(_on_CreatureVisuals_movement_mode_changed)
+	_creature_visuals = get_node(creature_visuals_path) if not creature_visuals_path.is_empty() else null
 	if _creature_visuals:
-		_creature_visuals.connect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
+		_creature_visuals.movement_mode_changed.connect(_on_CreatureVisuals_movement_mode_changed)
 
 
 func _refresh_editing() -> void:
@@ -174,10 +174,10 @@ func _fill_shadows() -> void:
 	while i < all_polypoints.size():
 		j = i + 1
 		while j < all_polypoints.size():
-			var result: Array = Geometry.merge_polygons(all_polypoints[i], all_polypoints[j])
+			var result: Array = Geometry2D.merge_polygons(all_polypoints[i], all_polypoints[j])
 			if result.size() == 1:
 				# the polygons intersect. replace the two entries a merged polygon
-				all_polypoints.remove(j)
+				all_polypoints.remove_at(j)
 				all_polypoints[i] = result[0]
 				continue
 			
@@ -189,7 +189,7 @@ func _fill_shadows() -> void:
 	var body_shape_points := body_shape.curve.get_baked_points()
 	for polypoints in all_polypoints:
 		# Avoid drawing outside the body shape
-		var intersecting_points_array := Geometry.intersect_polygons(body_shape_points, polypoints)
+		var intersecting_points_array := Geometry2D.intersect_polygons(body_shape_points, polypoints)
 		for intersecting_points_obj in intersecting_points_array:
 			_draw_body_polygon(intersecting_points_obj, shadow_color)
 
@@ -205,7 +205,7 @@ func _fill_belly() -> void:
 	var belly_points := belly.curve.get_baked_points()
 	
 		# Avoid drawing outside the body shape
-	var intersecting_points_array := Geometry.intersect_polygons(body_shape_points, belly_points)
+	var intersecting_points_array := Geometry2D.intersect_polygons(body_shape_points, belly_points)
 	for intersecting_points_obj in intersecting_points_array:
 		_draw_body_polygon(intersecting_points_obj, belly_color)
 
@@ -216,8 +216,8 @@ func _draw_body_polygon(points: PackedVector2Array, color: Color) -> void:
 		# don't waste cycles filling invisible polygons
 		return
 	
-	var _poly_colors := PackedColorArray([color])
-	draw_polygon(points, _poly_colors, PackedVector2Array())
+	# todo: polygon antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
+	draw_colored_polygon(points, color)
 
 
 ## Draw a polyline.
@@ -232,8 +232,8 @@ func _draw_body_polyline(points: PackedVector2Array, color: Color, line_width: f
 
 
 func _on_CreatureCurve_appearance_changed() -> void:
-	update()
+	queue_redraw()
 
 
-func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, _new_mode: int) -> void:
-	update()
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: Creatures.MovementMode, _new_mode: Creatures.MovementMode) -> void:
+	queue_redraw()

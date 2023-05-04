@@ -375,7 +375,7 @@ func _ready() -> void:
 ##
 ## Returns:
 ## 	'true' if the specified dna dictionary conforms to the specified creature type
-func dna_matches_type(dna: Dictionary, creature_type: int) -> bool:
+func dna_matches_type(dna: Dictionary, creature_type: Creatures.Type) -> bool:
 	var matches := true
 	for allele in dna:
 		var allele_value: String = dna[allele]
@@ -412,7 +412,7 @@ func trim_dna(dna: Dictionary) -> Dictionary:
 ## Fill in the creature's missing traits with random values.
 ##
 ## Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
-func fill_dna(dna: Dictionary, creature_type: int = Creatures.Type.DEFAULT) -> Dictionary:
+func fill_dna(dna: Dictionary, creature_type: Creatures.Type = Creatures.Type.DEFAULT) -> Dictionary:
 	# duplicate the dna so that we don't modify the original
 	var result := dna.duplicate()
 	
@@ -435,7 +435,7 @@ func fill_dna(dna: Dictionary, creature_type: int = Creatures.Type.DEFAULT) -> D
 ## Returns a dna dictionary containing sensible random values.
 ##
 ## This includes an aesthetically pleasing palette and body parts that look good together.
-func random_dna(creature_type: int = Creatures.Type.DEFAULT) -> Dictionary:
+func random_dna(creature_type: Creatures.Type = Creatures.Type.DEFAULT) -> Dictionary:
 	return fill_dna({}, creature_type)
 
 
@@ -510,7 +510,7 @@ func invalid_allele_value(dna: Dictionary, property: String, value: String) -> S
 ## Returns a dictionary with weights for the specified allele.
 ##
 ## Some values are more common than others, and some combinations are more common as well.
-func allele_weights(dna: Dictionary, property: String, creature_type: int = Creatures.Type.DEFAULT) -> Dictionary:
+func allele_weights(dna: Dictionary, property: String, creature_type: Creatures.Type = Creatures.Type.DEFAULT) -> Dictionary:
 	var result := {}
 	
 	if property in COLOR_ALLELES:
@@ -560,11 +560,11 @@ func _get_allele_combo_adjustment(key1: String, value1: String, key2: String, va
 	return _allele_combo_adjustments.get(combo_key, 0)
 
 
-func _set_species_adjustment(creature_type: int, key: String, value: String, score: int) -> void:
+func _set_species_adjustment(creature_type: Creatures.Type, key: String, value: String, score: int) -> void:
 	_species_adjustments[_species_adjustment_key(creature_type, key, value)] = score
 
 
-func _get_species_adjustment(creature_type: int, key: String, value: String) -> int:
+func _get_species_adjustment(creature_type: Creatures.Type, key: String, value: String) -> int:
 	return _species_adjustments.get(_species_adjustment_key(creature_type, key, value), 0.0)
 
 
@@ -572,7 +572,7 @@ func _get_species_adjustment(creature_type: int, key: String, value: String) -> 
 ##
 ## A combination such as 'squirrels with stubby tails' becomes a string key such as '1-tail-4' which is compatible
 ## with dictionaries.
-func _species_adjustment_key(creature_type: int, key: String, value: String) -> String:
+func _species_adjustment_key(creature_type: Creatures.Type, key: String, value: String) -> String:
 	return("%s-%s-%s" % [creature_type, key, value])
 
 

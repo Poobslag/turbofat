@@ -29,7 +29,7 @@ signal after_lines_deleted(lines)
 ## 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
 const LINE_ERASE_TIMING_PCT := 0.667
 
-@export (NodePath) var tile_map_path: NodePath
+@export var tile_map_path: NodePath
 
 ## lines currently being cleared/erased/deleted as a part of _physics_process
 var lines_being_cleared := []
@@ -78,7 +78,7 @@ var _max_trigger_score := 0
 
 func _ready() -> void:
 	set_physics_process(false)
-	PuzzleState.connect("finish_triggered", Callable(self, "_on_PuzzleState_finish_triggered"))
+	PuzzleState.finish_triggered.connect(_on_PuzzleState_finish_triggered)
 
 
 func _physics_process(_delta: float) -> void:
@@ -130,7 +130,7 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 	
 	# All lines are cleared at the end of a level but this shouldn't trigger an 'all clear'.
-	if not PuzzleState.finish_triggered and not _tile_map.get_used_cells():
+	if not PuzzleState.finish_trigger_emitted and _tile_map.get_used_cells(0).is_empty():
 		emit_signal("all_lines_cleared")
 
 
@@ -157,12 +157,12 @@ func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array
 			_line_filled_age[line] += 1
 	
 	# apply 'filled_line_clear_min' setting
-	if lines_to_clear and not force \
+	if not lines_to_clear.is_empty() and not force \
 			and lines_to_clear.size() < CurrentLevel.settings.blocks_during.filled_line_clear_min:
 		lines_to_clear.clear()
 	
 	# apply 'filled_line_clear_delay' setting
-	if lines_to_clear and not force \
+	if not lines_to_clear.is_empty() and not force \
 			and CurrentLevel.settings.blocks_during.filled_line_clear_delay >= 1:
 		var new_lines_to_clear := []
 		for line in lines_to_clear:
@@ -177,14 +177,14 @@ func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array
 				lines_to_clear.sort_custom(Callable(self, "_compare_by_line_filled_age"))
 			BlocksDuringRules.FilledLineClearOrder.LOWEST:
 				lines_to_clear.sort()
-				lines_to_clear.invert()
+				lines_to_clear.reverse()
 			BlocksDuringRules.FilledLineClearOrder.RANDOM:
 				lines_to_clear.shuffle()
 			BlocksDuringRules.FilledLineClearOrder.DEFAULT, BlocksDuringRules.FilledLineClearOrder.HIGHEST, _:
 				lines_to_clear.sort()
 	
 	# apply 'filled_line_clear_max' setting
-	if lines_to_clear and CurrentLevel.settings.blocks_during.filled_line_clear_max >= 1 and not force:
+	if not lines_to_clear.is_empty() and CurrentLevel.settings.blocks_during.filled_line_clear_max >= 1 and not force:
 		lines_to_clear = lines_to_clear.slice(0, CurrentLevel.settings.blocks_during.filled_line_clear_max - 1)
 	
 	return lines_to_clear
@@ -211,7 +211,7 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 	var unscheduled_erases := []
 	if award_points:
 		for y in lines_to_clear:
-			if _box_ints(y) or _tile_map.row_is_full(y):
+			if not _box_ints(y).is_empty() or _tile_map.row_is_full(y):
 				unscheduled_clears.append(y)
 			else:
 				unscheduled_erases.append(y)
@@ -265,18 +265,18 @@ func schedule_finish_line_clears() -> void:
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		if _tile_map.row_is_full(y):
 			full_lines.append(y)
-		elif _box_ints(y) and not _lines_to_preserve_at_end.has(y):
+		elif not _box_ints(y).is_empty() and not _lines_to_preserve_at_end.has(y):
 			box_lines.append(y)
 	NearestSorter.new().sort(box_lines, Utils.mean(full_lines + lines_being_cleared, 0.0))
 	var lines_to_clear := full_lines + box_lines
 	
 	# schedule line clears, same pace as clearing three lines concurrently
-	if full_lines or box_lines:
+	if not full_lines.is_empty() or not box_lines.is_empty():
 		# hard-code the line clear delay; faster values don't look good
 		var line_clear_delay := 24
 		var total_duration: int = line_clear_delay * ((box_lines.size() - 1) / 3.0) / LINE_ERASE_TIMING_PCT
 		var old_lines_being_deleted := lines_being_deleted.duplicate()
-		var was_clearing_lines: bool = lines_being_cleared or lines_being_erased
+		var was_clearing_lines: bool = not lines_being_cleared.is_empty() or not lines_being_erased.is_empty()
 		
 		schedule_line_clears(lines_to_clear, total_duration, true)
 		
@@ -367,7 +367,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 			if lines_being_cleared_during_trigger.is_empty():
 				# If lines are being deleted because of a top out, we don't fire triggers.
 				pass
-			elif PuzzleState.finish_triggered:
+			elif PuzzleState.finish_trigger_emitted:
 				# If lines are being deleted at the level end, we don't fire triggers.
 				pass
 			else:
@@ -392,7 +392,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 			# triggers, like when inserting a line
 			line_being_deleted = lines_being_deleted_during_trigger[i]
 			
-			_tile_map.shift_rows(line_being_deleted - 1, Vector2.DOWN)
+			_tile_map.shift_rows(line_being_deleted - 1, Vector2i.DOWN)
 			
 			for line_dict in _line_dicts():
 				# Shift all entries above the deleted line
@@ -428,8 +428,8 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 func _box_ints(y: int) -> Array:
 	var box_ints := []
 	for x in range(PuzzleTileMap.COL_COUNT):
-		var autotile_coord := _tile_map.get_cell_autotile_coord(x, y)
-		var right_autotile_coord := _tile_map.get_cell_autotile_coord(x + 1, y)
+		var autotile_coord := _tile_map.get_cell_atlas_coords(0, Vector2i(x, y))
+		var right_autotile_coord := _tile_map.get_cell_atlas_coords(0, Vector2i(x + 1, y))
 		if _tile_map.get_cell(x, y) == 1:
 			var should_count: bool = false
 			if PuzzleConnect.is_l(autotile_coord.x) and PuzzleConnect.is_r(autotile_coord.x):
@@ -482,8 +482,8 @@ func _on_PuzzleState_finish_triggered() -> void:
 ## Any prebuilt level boxes aren't cleared at the end of the level.
 func _on_Playfield_blocks_prepared() -> void:
 	reset()
-	for cell in _tile_map.get_used_cells():
-		if _tile_map.get_cellv(cell) == 1:
+	for cell in _tile_map.get_used_cells(0):
+		if _tile_map.get_cell_source_id(0, cell) == 1:
 			_lines_to_preserve_at_end[int(cell.y)] = true
 
 
@@ -491,7 +491,7 @@ func _on_Playfield_blocks_prepared() -> void:
 ##
 ## Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
 ## them, then they're cleared.
-func _on_BoxBuilder_box_built(rect: Rect2, _box_type: int) -> void:
+func _on_BoxBuilder_box_built(rect: Rect2i, _box_type: Foods.BoxType) -> void:
 	for y in range(rect.position.y, rect.end.y):
 		_lines_to_preserve_at_end.erase(y)
 

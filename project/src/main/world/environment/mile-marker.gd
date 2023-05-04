@@ -21,7 +21,7 @@ const TEXT_ROTATION_DEGREES_BY_FRAME := {
 }
 
 ## Number which appears on the sign
-@export (int) var mile_number: int = 1: set = set_mile_number
+@export var mile_number: int = 1: set = set_mile_number
 
 @onready var _label := $Text/Label
 @onready var _sprite := $Sprite2D

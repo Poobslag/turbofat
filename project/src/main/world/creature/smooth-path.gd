@@ -6,20 +6,20 @@ extends Path2D
 ##
 ## Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a-curve-in-2d?show=57123#a57123
 
-@export (float) var spline_length := 25.0
-@export (bool) var _smooth: bool: set = smooth
-@export (bool) var _straighten: bool: set = straighten
-@export (bool) var closed := true
+@export var spline_length := 25.0
+@export var _smooth: bool: set = smooth
+@export var _straighten: bool: set = straighten
+@export var closed := true
 
-@export (Color) var line_color := Color.BLACK: set = set_line_color
-@export (Color) var fill_color := Color.TRANSPARENT: set = set_fill_color
-@export (float) var line_width := 8.0
+@export var line_color := Color.BLACK: set = set_line_color
+@export var fill_color := Color.TRANSPARENT: set = set_fill_color
+@export var line_width := 8.0
 
 ## internal array used for drawing polygons
 var _poly_colors := PackedColorArray()
 
 func _ready() -> void:
-	update()
+	queue_redraw()
 
 
 func _draw() -> void:
@@ -31,7 +31,8 @@ func _draw() -> void:
 				_poly_colors.resize(points.size())
 				for i in range(_poly_colors.size()):
 					_poly_colors[i] = fill_color
-			draw_polygon(points, _poly_colors, PackedVector2Array(), null, null, true)
+			# todo: SmoothPath's antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
+			draw_colored_polygon(points, fill_color)
 		if line_color.a > 0:
 			# don't waste cycles drawing invisible lines
 			if closed:
@@ -41,14 +42,14 @@ func _draw() -> void:
 
 func set_line_color(new_line_color: Color) -> void:
 	line_color = new_line_color
-	update()
+	queue_redraw()
 
 
 func set_fill_color(new_fill_color: Color) -> void:
 	fill_color = new_fill_color
 	for i in range(_poly_colors.size()):
 		_poly_colors.set(i, new_fill_color)
-	update()
+	queue_redraw()
 
 
 ## Straightens the Path2D into a series of straight lines, instead of smooth curves.

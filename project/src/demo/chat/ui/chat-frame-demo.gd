@@ -68,7 +68,7 @@ var _chat_theme := ChatTheme.new()
 var _color_index := 0
 var _scale_index := 5
 
-var _nametag_side: int = ChatEvent.NametagSide.LEFT
+var _nametag_side := ChatEvent.NametagSide.LEFT
 var _squished := false
 
 func _ready() -> void:

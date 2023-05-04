@@ -16,10 +16,10 @@ func _process(_delta: float) -> void:
 	
 	if piece_tile_map.ghost_shadow_offset:
 		# copy the piece's tilemap contents to our shadow map
-		for cell in piece_tile_map.get_used_cells():
-			var autotile_coord: Vector2 = piece_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-			var ghost_cell: Vector2 = piece_tile_map.ghost_shadow_offset + cell
-			set_cellv(ghost_cell, piece_tile_map.get_cellv(cell), false, false, false, \
+		for cell in piece_tile_map.get_used_cells(0):
+			var autotile_coord: Vector2i = piece_tile_map.get_cell_atlas_coords(0, cell)
+			var ghost_cell: Vector2i = piece_tile_map.ghost_shadow_offset + cell
+			set_cell(0, ghost_cell, piece_tile_map.get_cell_source_id(0, cell), \
 					autotile_coord)
 	else:
 		# If the ghost_shadow_offset is zero, we don't copy the piece's tilemap contents. Drawing the ghost piece

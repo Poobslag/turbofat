@@ -5,17 +5,17 @@ extends Control
 ## This stripped down class excludes gameplay code for sound effects and scoring. It only includes logic required for
 ## the level editor.
 
-@export (PackedScene) var PickupScene: PackedScene
-@export (NodePath) var puzzle_tile_map_path: NodePath
+@export var PickupScene: PackedScene
+@export var puzzle_tile_map_path: NodePath
 
-## key: (Vector2) playfield cell positions
+## key: (Vector2i) playfield cell positions
 ## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
 @onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 ## Adds or replaces a pickup in a playfield cell.
-func set_pickup(cell: Vector2, box_type: int) -> void:
+func set_pickup(cell: Vector2i, box_type: Foods.BoxType) -> void:
 	remove_pickup(cell)
 	
 	if box_type != -1:
@@ -35,16 +35,16 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 ##
 ## Returns:
 ## 	Enum from Foods.FoodType for the pickup at the specified cell, or -1 if the cell is empty.
-func get_food_type(cell: Vector2) -> int:
+func get_food_type(cell: Vector2i) -> int:
 	var result := -1
 	if _pickups_by_cell.has(cell):
-		var food_type: int = _pickups_by_cell.get(cell, -1).food_type
+		var food_type: Foods.FoodType = _pickups_by_cell.get(cell, -1).food_type
 		result = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
 	return result
 
 
 ## Removes a pickup from a playfield cell.
-func remove_pickup(cell: Vector2) -> void:
+func remove_pickup(cell: Vector2i) -> void:
 	if not _pickups_by_cell.has(cell):
 		return
 	
@@ -67,6 +67,6 @@ func get_used_cells() -> Array:
 ##
 ## The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard
 ## pattern.
-func _food_type_for_cell(box_type: int, cell: Vector2) -> int:
+func _food_type_for_cell(box_type: Foods.BoxType, cell: Vector2i) -> int:
 	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
 	return food_types[(int(cell.x + cell.y) % food_types.size())]

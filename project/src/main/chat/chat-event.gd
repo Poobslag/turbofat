@@ -11,13 +11,13 @@ enum NametagSide {
 var who := ""
 
 ## whether the chatter's nametag should be drawn on the right/left side of the frame
-var nametag_side: int = NametagSide.NO_PREFERENCE
+var nametag_side: NametagSide = NametagSide.NO_PREFERENCE
 
 ## Chat line
 var text: String
 
 ## Behavior the chatter should perform while saying the text (laughing, sweating, etc)
-var mood: int = Creatures.Mood.NONE
+var mood := Creatures.Mood.NONE
 
 ## Metadata about the chat event, such as whether it should launch a level
 var meta: Array
@@ -39,7 +39,7 @@ var link_metas: Array
 ## appearance, such as 'blue', 'soccer balls' and 'giant'.
 var chat_theme: ChatTheme = ChatTheme.new()
 
-func add_link(link: String, link_text: String, link_mood: int) -> void:
+func add_link(link: String, link_text: String, link_mood: Creatures.Mood) -> void:
 	links.append(link)
 	link_texts.append(link_text)
 	link_moods.append(link_mood)

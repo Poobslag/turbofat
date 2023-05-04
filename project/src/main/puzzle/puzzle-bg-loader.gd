@@ -21,7 +21,7 @@ const BG_SHADOW_COLOR_BY_NAME := {
 }
 
 ## Nodes showing shadows to recolor when the background changes.
-@export (Array, NodePath) var shadow_paths: Array
+@export var shadow_paths: Array[NodePath]
 
 func _ready() -> void:
 	_remove_bg()

@@ -21,7 +21,7 @@ enum Reward {
 var count := 1
 
 ## which type of terrain the moles appear on
-var home: int = Home.ANY
+var home := Home.ANY
 
 ## which rows the moles appear on
 var lines: Array = []
@@ -33,4 +33,4 @@ var columns: Array = []
 var dig_duration: int = 3
 
 ## reward the moles dig up
-var reward: int = Reward.STAR
+var reward := Reward.STAR

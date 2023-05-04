@@ -3,15 +3,15 @@ extends AnimationPlayer
 ##
 ## Specifically, this animation player ensures the tail is always moving if nothing else is animating it.
 
-@export (NodePath) var movement_player_path: NodePath
-@export (NodePath) var creature_visuals_path: NodePath
+@export var movement_player_path: NodePath
+@export var creature_visuals_path: NodePath
 
 @onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 @onready var _movement_player: AnimationPlayer = get_node(movement_player_path)
 
 func _ready() -> void:
-	_movement_player.connect("animation_started", Callable(self, "_on_MovementPlayer_animation_started"))
-	_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+	_movement_player.animation_started.connect(_on_MovementPlayer_animation_started)
+	_creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
 
 
 func _process(_delta: float) -> void:
@@ -38,6 +38,6 @@ func _on_MovementPlayer_animation_started(anim_name: String) -> void:
 		stop()
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, _new_orientation: Creatures.Orientation) -> void:
 	if is_playing():
 		_play_tail_ambient_animation()

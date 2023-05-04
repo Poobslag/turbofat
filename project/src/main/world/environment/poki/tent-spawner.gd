@@ -5,7 +5,7 @@ extends ObstacleSpawner
 ## Provides a utility method in the editor for shuffling the tent's appearance.
 
 ## Editor toggle which randomizes the obstacle's appearance
-@export (bool) var shuffle: bool: set = set_shuffle
+@export var shuffle: bool: set = set_shuffle
 
 ## Randomizes the obstacle's appearance.
 func set_shuffle(value: bool) -> void:

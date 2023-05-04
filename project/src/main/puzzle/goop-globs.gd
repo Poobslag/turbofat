@@ -10,10 +10,10 @@ signal hit_wall(glob)
 signal hit_playfield(glob)
 signal hit_next_pieces(glob)
 
-@export (NodePath) var puzzle_tile_map_path: NodePath
-@export (NodePath) var playfield_path: NodePath
-@export (NodePath) var next_piece_displays_path: NodePath
-@export (PackedScene) var GoopGlobScene: PackedScene
+@export var puzzle_tile_map_path: NodePath
+@export var playfield_path: NodePath
+@export var next_piece_displays_path: NodePath
+@export var GoopGlobScene: PackedScene
 
 @onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 @onready var _puzzle_areas: PuzzleAreas
@@ -36,7 +36,7 @@ func _ready() -> void:
 ## 	'box_type': Enum from Foods.BoxType defining the glob's color
 ## 	'glob_count': The number of goop globs to launch
 ## 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
-func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha: float = 1.0) -> void:
+func _spawn_globs(cell_pos: Vector2i, box_type: Foods.BoxType, glob_count: int, glob_alpha: float = 1.0) -> void:
 	var viewport: SubViewport
 	if Foods.is_cake_box(box_type):
 		viewport = $GlobViewports/RainbowViewport
@@ -54,9 +54,9 @@ func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha:
 func _instance_glob(new_parent: Node = null) -> GoopGlob:
 	var glob: GoopGlob = GoopGlobScene.instantiate()
 	glob.puzzle_areas = _puzzle_areas
-	glob.connect("hit_wall", Callable(self, "_on_GoopGlob_hit_wall"))
-	glob.connect("hit_playfield", Callable(self, "_on_GoopGlob_hit_playfield"))
-	glob.connect("hit_next_pieces", Callable(self, "_on_GoopGlob_hit_next_pieces"))
+	glob.hit_wall.connect(_on_GoopGlob_hit_wall)
+	glob.hit_playfield.connect(_on_GoopGlob_hit_playfield)
+	glob.hit_next_pieces.connect(_on_GoopGlob_hit_next_pieces)
 	new_parent.add_child(glob)
 	return glob
 
@@ -66,19 +66,19 @@ func _instance_glob(new_parent: Node = null) -> GoopGlob:
 ## This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		var box_type: int
+		var box_type: Foods.BoxType
 		var glob_count: int
 		if _puzzle_tile_map.get_cell(x, y) == PuzzleTileMap.TILE_BOX:
-			box_type = _puzzle_tile_map.get_cell_autotile_coord(x, y).y
+			box_type = _puzzle_tile_map.get_cell_atlas_coords(0, Vector2i(x, y)).y
 			if Foods.is_snack_box(box_type):
 				glob_count = 2
 			elif Foods.is_cake_box(box_type):
 				glob_count = 4
-		_spawn_globs(Vector2(x, y), box_type, glob_count)
+		_spawn_globs(Vector2i(x, y), box_type, glob_count)
 
 
 ## When a box is built, we generate goop globs on the inside of the box.
-func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
+func _on_Playfield_box_built(rect: Rect2i, box_type: Foods.BoxType) -> void:
 	for y in range(rect.position.y, rect.end.y):
 		for x in range(rect.position.x, rect.end.x):
 			var glob_count: int
@@ -86,17 +86,17 @@ func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 				glob_count = 1
 			elif Foods.is_cake_box(box_type):
 				glob_count = 2
-			_spawn_globs(Vector2(x, y), box_type, glob_count)
+			_spawn_globs(Vector2i(x, y), box_type, glob_count)
 
 
 ## When a squish move is performed, we generate goop globs around the old and new piece position.
-func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2i) -> void:
 	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
 		# veggie pieces don't spawn goop
 		return
 	
 	for pos_arr_item_obj in piece.get_pos_arr():
-		var pos_arr_item: Vector2 = pos_arr_item_obj
+		var pos_arr_item: Vector2i = pos_arr_item_obj
 		var glob_cell_from := old_pos + pos_arr_item
 		var glob_cell_to := piece.pos + pos_arr_item
 		_spawn_globs(glob_cell_from, piece.type.get_box_type(), 1, 0.8)

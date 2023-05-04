@@ -126,14 +126,14 @@ func _on_QueueTimer_timeout() -> void:
 		_show_or_hide_message(message)
 	
 	# if the queue is now empty, stop the queue timer
-	if not _message_queue:
+	if _message_queue.is_empty():
 		$QueueTimer.stop()
 
 
 ## When the message is entirely visible, we pause for a moment and show the next message in the queue.
 func _on_Label_all_text_shown() -> void:
 	_refresh_queue_timer()
-	if not _message_queue:
+	if _message_queue.is_empty():
 		emit_signal("all_messages_shown")
 
 

@@ -18,7 +18,7 @@ signal unlocked_level_focused(settings)
 ## Emitted when a new level button is added.
 signal button_added(button)
 
-@export (PackedScene) var LevelButtonScene: PackedScene
+@export var LevelButtonScene: PackedScene
 
 ## CareerRegion or OtherRegion instance whose levels are being shown
 var region: Object: set = set_region_enabled
@@ -204,8 +204,8 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 				push_warning("Unrecognized color string '%s'" % [level_settings.color_string])
 				pass
 	
-	level_button.connect("focus_entered", Callable(self, "_on_LevelButton_focus_entered").bind(level_button, level_id))
-	level_button.connect("level_chosen", Callable(self, "_on_LevelButton_level_chosen").bind(level_settings))
+	level_button.focus_entered.connect(_on_LevelButton_focus_entered.bind(level_button, level_id))
+	level_button.level_chosen.connect(_on_LevelButton_level_chosen.bind(level_settings))
 	return level_button
 
 

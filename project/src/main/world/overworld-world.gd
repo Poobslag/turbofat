@@ -4,7 +4,7 @@ extends Node
 ## Populates/unpopulates creatures and obstacles for various overworld scenes.
 
 ## Creatures and obstacles to show
-@export (Resource) var EnvironmentScene: Resource: set = set_environment_scene
+@export var EnvironmentScene: Resource: set = set_environment_scene
 
 @onready var overworld_environment: OverworldEnvironment = $Environment
 

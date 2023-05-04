@@ -7,7 +7,7 @@ extends Control
 @onready var _hold_piece_shadow: Polygon2D = $HoldPieceShadow
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
+	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
 	_refresh()
 
 

@@ -2,7 +2,7 @@ class_name LevelSpeedAdjuster
 ## Adjusts a LevelSettings to use faster or slower piece speeds
 
 ## key: (String) speed id
-## value: (Vector2) x/y coordinates for an entry in PieceSpeeds.speed_id_matrix
+## value: (Vector2i) x/y coordinates for an entry in PieceSpeeds.speed_id_matrix
 var _coordinates_by_speed := {}
 
 ## settings to adjust
@@ -14,7 +14,7 @@ func _init(init_settings: LevelSettings) -> void:
 	# initialize the _coordinates_by_speed matrix based on the entries in PieceSpeeds.speed_id_matrix
 	for row in range(PieceSpeeds.speed_id_matrix.size()):
 		for col in range(PieceSpeeds.speed_id_matrix[row].size()):
-			_coordinates_by_speed[PieceSpeeds.speed_id_matrix[row][col]] = Vector2(col, row)
+			_coordinates_by_speed[PieceSpeeds.speed_id_matrix[row][col]] = Vector2i(col, row)
 
 
 ## Adjusts the piece speeds of our LevelSettings instance.
@@ -30,7 +30,7 @@ func _init(init_settings: LevelSettings) -> void:
 ## Parameters:
 ## 	new_speed: The desired slowest speed id for the LevelSettings.
 func adjust(new_speed: String) -> void:
-	if not new_speed:
+	if new_speed.is_empty():
 		# empty speed, do not adjust
 		return
 	if not _coordinates_by_speed.has(new_speed):
@@ -41,8 +41,8 @@ func adjust(new_speed: String) -> void:
 		return
 	
 	var can_adjust := true
-	var new_coord: Vector2 = _coordinates_by_speed[new_speed]
-	var old_coord: Vector2 = _coordinates_by_speed[settings.speed.get_start_speed()]
+	var new_coord: Vector2i = _coordinates_by_speed[new_speed]
+	var old_coord: Vector2i = _coordinates_by_speed[settings.speed.get_start_speed()]
 	if new_coord.y != old_coord.y:
 		can_adjust = false
 	
@@ -70,6 +70,6 @@ func get_adjusted_speed(speed: String, adjustment: int) -> String:
 		push_warning("Unrecognized speed: '%s'" % [speed])
 		return speed
 	
-	var coord: Vector2 = _coordinates_by_speed[speed]
+	var coord: Vector2i = _coordinates_by_speed[speed]
 	coord.x = clamp(coord.x + adjustment, 0, PieceSpeeds.speed_id_matrix[coord.y].size() - 1)
 	return PieceSpeeds.speed_id_matrix[coord.y][coord.x]

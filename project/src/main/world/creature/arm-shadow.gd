@@ -10,7 +10,7 @@ var _near_arm: CreaturePackedSprite
 ## Overrides the superclass's implementation to disconnect additional listeners.
 func disconnect_creature_visuals_listeners() -> void:
 	super.disconnect_creature_visuals_listeners()
-	_near_arm.disconnect("frame_changed", Callable(self, "_on_NearArm_frame_changed"))
+	_near_arm.frame_changed.disconnect(_on_NearArm_frame_changed)
 
 
 ## Connects creature visuals listeners specific to arm shadows.
@@ -19,7 +19,7 @@ func disconnect_creature_visuals_listeners() -> void:
 func connect_creature_visuals_listeners() -> void:
 	super.connect_creature_visuals_listeners()
 	_near_arm = creature_visuals.get_node("NearArm")
-	_near_arm.connect("frame_changed", Callable(self, "_on_NearArm_frame_changed"))
+	_near_arm.frame_changed.connect(_on_NearArm_frame_changed)
 
 
 ## Updates the 'drawn' property based on the arm's current frame.

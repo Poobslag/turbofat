@@ -23,7 +23,7 @@ func _ready() -> void:
 func _recalculate_prefixes_by_mood() -> void:
 	_prefixes_by_mood.clear()
 	for mood_prefix in ChatscriptParser.MOOD_PREFIXES:
-		var mood: int = ChatscriptParser.MOOD_PREFIXES[mood_prefix]
+		var mood: Creatures.Mood = ChatscriptParser.MOOD_PREFIXES[mood_prefix]
 		if not _prefixes_by_mood.has(mood):
 			_prefixes_by_mood[mood] = []
 		_prefixes_by_mood[mood].append(mood_prefix)
@@ -56,7 +56,7 @@ func _add_mood_rows() -> void:
 	mood_names.sort()
 	
 	for mood_name in mood_names:
-		var mood: int = Creatures.Mood.get(mood_name)
+		var mood: Creatures.Mood = Creatures.Mood.get(mood_name)
 		if not _prefixes_by_mood.has(mood):
 			# skip moods with no chat prefixes, such as Mood.NONE
 			continue

@@ -10,7 +10,7 @@ extends Node
 ## 	[Shift + -, Shift + =]: Move the player left right faster
 
 ## Array of landmark types chosen when the user switches between different landmarks
-const INCREMENTABLE_LANDMARKS := [
+const INCREMENTABLE_LANDMARKS: Array[Landmark.LandmarkType] = [
 	Landmark.NONE,
 	
 	Landmark.CACTUS,
@@ -84,7 +84,7 @@ func _input(event: InputEvent) -> void:
 
 ## Changes the icon for the specified landmark.
 func _increment_landmark_type(landmark_index: int) -> void:
-	var old_landmark_type: int = _map_row.get_landmark_type(landmark_index)
+	var old_landmark_type: Landmark.LandmarkType = _map_row.get_landmark_type(landmark_index)
 	var new_index := (INCREMENTABLE_LANDMARKS.find(old_landmark_type, 0) + 1) % INCREMENTABLE_LANDMARKS.size()
-	var new_landmark_type: int = INCREMENTABLE_LANDMARKS[new_index]
+	var new_landmark_type := INCREMENTABLE_LANDMARKS[new_index]
 	_map_row.set_landmark_type(landmark_index, new_landmark_type)

@@ -10,9 +10,9 @@ var _rank_calculator: RankCalculator = RankCalculator.new()
 
 func _ready() -> void:
 	if PlayerData.career.is_career_mode():
-		PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
-		PuzzleState.connect("score_changed", Callable(self, "_on_PuzzleState_score_changed"))
-		PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+		PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
+		PuzzleState.score_changed.connect(_on_PuzzleState_score_changed)
+		PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
 	
 	if PlayerData.career.is_career_mode():
 		visible = true

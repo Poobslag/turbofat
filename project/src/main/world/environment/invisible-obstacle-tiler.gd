@@ -5,10 +5,10 @@ extends Node
 ## These invisible obstacles are placed wherever there's an 'unwalkable cell' like a cliff next to a 'walkable cell'
 ## like a patch of ground.
 
-@export (NodePath) var ground_map_path: NodePath
+@export var ground_map_path: NodePath
 
 ## tile index in this tilemap which should be used to make tiles impassable
-@export (int) var impassable_tile_index := -1
+@export var impassable_tile_index := -1
 
 ## tilemap containing data on which cells are walkable
 @onready var _ground_map: TileMap = get_node(ground_map_path)
@@ -20,7 +20,7 @@ extends Node
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-@export (bool) var _autotile: bool: set = autotile
+@export var _autotile: bool: set = autotile
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
@@ -43,33 +43,33 @@ func autotile(value: bool) -> void:
 	
 	# remove all invisible obstacles
 	for cell_obj in _tile_map.get_used_cells_by_id(impassable_tile_index):
-		var cell: Vector2 = cell_obj
-		_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
+		var cell: Vector2i = cell_obj
+		_tile_map.set_cell(0, cell, -1)
 	
 	# calculate empty unwalkable cells which are adjacent to walkable cells
 	var unwalkable_cells := {}
-	for cell_obj in _ground_map.get_used_cells():
-		var cell: Vector2 = cell_obj
+	for cell_obj in _ground_map.get_used_cells(0):
+		var cell: Vector2i = cell_obj
 		for neighbor_x in range(cell.x - 1, cell.x + 2):
 			for neighbor_y in range(cell.y - 1, cell.y + 2):
-				if unwalkable_cells.has(Vector2(neighbor_x, neighbor_y)):
+				if unwalkable_cells.has(Vector2i(neighbor_x, neighbor_y)):
 					# already added an entry to the map
 					continue
 				
-				if _ground_map.get_cell(neighbor_x, neighbor_y) != TileMap.INVALID_CELL:
+				if _ground_map.get_cell(neighbor_x, neighbor_y) != -1:
 					# walkable; the ground map has terrain at that cell
 					continue
 				
-				if _tile_map.get_cell(neighbor_x, neighbor_y) != TileMap.INVALID_CELL:
+				if _tile_map.get_cell(neighbor_x, neighbor_y) != -1:
 					# the obstacle map already has an obstacle at that cell; don't overwrite it
 					continue
 				
-				unwalkable_cells[Vector2(neighbor_x, neighbor_y)] = true
+				unwalkable_cells[Vector2i(neighbor_x, neighbor_y)] = true
 	
 	# place an invisible obstacle on each unwalkable cell
 	for unwalkable_cell_obj in unwalkable_cells:
-		var unwalkable_cell: Vector2 = unwalkable_cell_obj
-		_tile_map.set_cellv(unwalkable_cell, impassable_tile_index)
+		var unwalkable_cell: Vector2i = unwalkable_cell_obj
+		_tile_map.set_cell(0, unwalkable_cell, impassable_tile_index)
 
 
 ## Preemptively initializes onready variables to avoid null references.

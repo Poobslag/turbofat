@@ -13,7 +13,7 @@ const SPIN := TechType.SPIN
 const SQUISH := TechType.SQUISH
 
 ## Velocity applied to the food when in the 'floating' state
-@export (Vector2) var velocity: Vector2
+@export var velocity: Vector2
 
 ## key: (int) Number of lines cleared
 ## value: (String) Word for the number of lines like 'Single' or 'Double'
@@ -36,7 +36,7 @@ var _suffix_by_tech_type := {
 var piece_type: PieceType: set = set_piece_type
 
 ## Enum from TechType such as 'Spin' or 'Squish'
-var tech_type: int: set = set_burst_type
+var tech_type: TechType: set = set_burst_type
 
 ## Number of lines cleared by this tech move
 var lines_cleared: int: set = set_lines_cleared
@@ -76,7 +76,7 @@ func set_lines_cleared(new_lines_cleared: int) -> void:
 	_refresh()
 
 
-func set_burst_type(new_burst_type: int) -> void:
+func set_burst_type(new_burst_type: TechType) -> void:
 	tech_type = new_burst_type
 	_refresh()
 

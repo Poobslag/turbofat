@@ -2,12 +2,12 @@
 extends HBoxContainer
 ## Row which lets the player define keybinds for a specific action, such as 'Move Piece Left'.
 
-@export (String) var description: String: set = set_description
-@export (String) var action_name : set = set_action_name
+@export var description: String: set = set_description
+@export var action_name: String: set = set_action_name
 
 func _ready() -> void:
 	_refresh_description_label()
-	$Delete.connect("pressed", Callable(self, "_on_Delete_pressed"))
+	$Delete.pressed.connect(_on_Delete_pressed)
 
 
 func set_description(new_description: String) -> void:

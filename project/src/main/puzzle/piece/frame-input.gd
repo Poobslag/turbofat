@@ -5,11 +5,11 @@ extends Node
 ## Also provides support for buffered inputs. The buffer duration is dictated by the child timer.
 
 ## Action to track
-@export (String) var action: String
+@export var action: String
 
 ## Action which negates this one if pressed. For example if the player holds move_piece_left and presses
 ## move_piece_right, move_piece_left no longer gets triggered.
-@export (String) var cancel_action: String
+@export var cancel_action: String
 
 var pressed_frames: int
 

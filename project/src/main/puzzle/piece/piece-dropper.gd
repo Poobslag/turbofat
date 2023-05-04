@@ -8,14 +8,14 @@ signal soft_dropped # emitted when the player presses the soft drop key
 signal hard_dropped # emitted when the player presses the hard drop key
 signal dropped # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 
-@export (NodePath) var input_path: NodePath
-@export (NodePath) var piece_mover_path: NodePath
+@export var input_path: NodePath
+@export var piece_mover_path: NodePath
 
 ## 'true' if the player hard dropped the piece this frame
 var did_hard_drop: bool
 
-## Hard drop destination for the current piece. Used for drawing the ghost piece.
-var hard_drop_target_pos: Vector2
+## hard drop destination for the current piece. Used for drawing the ghost piece.
+var hard_drop_target_pos: Vector2i
 
 @onready var input: PieceInput = get_node(input_path)
 @onready var piece_mover: PieceMover = get_node(piece_mover_path)
@@ -27,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 ## Recalculates the hard drop destination for the current piece.
 func calculate_hard_drop_target(piece: ActivePiece) -> void:
 	piece.reset_target()
-	while piece.can_move_to(piece.target_pos + Vector2(0, 1), piece.orientation):
+	while piece.can_move_to(piece.target_pos + Vector2i(0, 1), piece.orientation):
 		piece.target_pos.y += 1
 	hard_drop_target_pos = piece.target_pos
 	emit_signal("hard_drop_target_pos_changed", piece, hard_drop_target_pos)
@@ -88,7 +88,7 @@ func apply_gravity(piece: ActivePiece) -> void:
 ## Squish moving pauses gravity for a moment.
 ##
 ## This allows players to squish and slide a piece before it drops, even at 20G.
-func _on_Squisher_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
+func _on_Squisher_squish_moved(_piece: ActivePiece, _old_pos: Vector2i) -> void:
 	_piece.remaining_post_squish_frames = PieceSpeeds.POST_SQUISH_FRAMES
 
 

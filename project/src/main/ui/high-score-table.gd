@@ -8,7 +8,7 @@ extends VBoxContainer
 var _level: LevelSettings: set = set_level
 
 ## if true, only performances with today's date are included
-@export (bool) var daily := false: set = set_daily
+@export var daily := false: set = set_daily
 
 @onready var _label: Label = $Label
 @onready var _grid_container: GridContainer = $GridContainer

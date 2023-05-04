@@ -30,13 +30,13 @@ var _piece_speed: String
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	
-	if not Breadcrumb.trail:
+	if Breadcrumb.trail.is_empty():
 		# For developers accessing the CareerMap scene directly, we initialize a default Breadcrumb trail.
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	
 	MusicPlayer.play_chill_bgm()
-	PlayerData.career.connect("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed"))
+	PlayerData.career.distance_travelled_changed.connect(_on_CareerData_distance_travelled_changed)
 	
 	var redirected := false
 	
@@ -111,7 +111,7 @@ func _refresh_level_select_buttons() -> void:
 	for i in range(_pickable_level_settings.size()):
 		var level_settings: LevelSettings = _pickable_level_settings[i]
 		var level_select_button: LevelSelectButton = _level_select_control.add_level_select_button(level_settings)
-		level_select_button.connect("level_chosen", Callable(self, "_on_LevelSelectButton_level_chosen").bind(i))
+		level_select_button.level_chosen.connect(_on_LevelSelectButton_level_chosen.bind(i))
 
 
 ## Return a list of random CareerLevels for the player to choose from.
@@ -142,7 +142,7 @@ func _random_levels() -> Array:
 				required_cutscene_characters.chef_ids,
 				required_cutscene_characters.customer_ids,
 				required_cutscene_characters.observer_ids)
-		if not levels:
+		if levels.is_empty():
 			push_warning("Can't find any levels for distance=%s, chef_ids=%s, customer_ids=%s observer_ids=%s" %
 					[PlayerData.career.distance_travelled,
 					required_cutscene_characters.chef_ids,
@@ -223,7 +223,7 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	var customer_id: String
 	var observer_id: String
 	if career_level:
-		if career_level.chef_id or career_level.customer_ids or career_level.observer_id:
+		if not career_level.chef_id.is_empty() or not career_level.customer_ids.is_empty() or not career_level.observer_id.is_empty():
 			chef_id = career_level.chef_id
 			customer_id = career_level.customer_ids[0] if career_level.customer_ids else ""
 			observer_id = career_level.observer_id
@@ -282,32 +282,32 @@ func _new_level_posse(level_index: int) -> LevelPosse:
 	# add customers/chefs from the cutscene
 	for chat_key in chat_key_pair.chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
-		if chat_tree.chef_id:
+		if not chat_tree.chef_id.is_empty():
 			level_posse.chef_id = chat_tree.chef_id
-		if chat_tree.customer_ids:
+		if not chat_tree.customer_ids.is_empty():
 			level_posse.customer_ids = chat_tree.customer_ids.duplicate()
-		if chat_tree.observer_id:
+		if not chat_tree.observer_id.is_empty():
 			level_posse.observer_id = chat_tree.observer_id
 	
 	# add customers/chefs from the level if the cutscene doesn't define any
-	if not level_posse.chef_id:
+	if level_posse.chef_id.is_empty():
 		level_posse.chef_id = career_level.chef_id
-	if not level_posse.customer_ids:
+	if level_posse.customer_ids.is_empty():
 		level_posse.customer_ids = career_level.customer_ids.duplicate()
-	if not level_posse.observer_id:
+	if level_posse.observer_id.is_empty():
 		level_posse.observer_id = career_level.observer_id
 	
 	# add customers/chefs from the region if the level doesn't define any
 	var region := PlayerData.career.current_region()
-	if not level_posse.customer_ids:
+	if level_posse.customer_ids.is_empty():
 		var customer: Population.CreatureAppearance = region.population.random_customer()
 		if customer:
 			level_posse.customer_ids = [customer.id]
-	if not level_posse.chef_id:
+	if level_posse.chef_id.is_empty():
 		var chef: Population.CreatureAppearance = region.population.random_chef()
 		if chef:
 			level_posse.chef_id = chef.id
-	if not level_posse.observer_id:
+	if level_posse.observer_id.is_empty():
 		var observer: Population.CreatureAppearance = region.population.random_observer()
 		if observer:
 			level_posse.observer_id = observer.id
@@ -319,7 +319,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 	var result := true
 	var region := PlayerData.career.current_region()
 	
-	if not region.cutscene_path:
+	if region.cutscene_path.is_empty():
 		# no cutscenes for region; do not play epilogue
 		result = false
 	
@@ -334,7 +334,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 	if result:
 		# derive the preroll key from the chat_key_pair
 		var preroll_key: String = chat_key_pair.preroll
-		if not preroll_key: preroll_key = chat_key_pair.postroll.trim_suffix("_end")
+		if preroll_key.is_empty(): preroll_key = chat_key_pair.postroll.trim_suffix("_end")
 		
 		# determine if any cutscenes will remain after this cutscene was played
 		var search_flags := CutsceneSearchFlags.new()
@@ -364,9 +364,9 @@ func _after_progress_board() -> void:
 
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
-	if PlayerData.career.is_connected("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed")):
+	if PlayerData.career.distance_travelled_changed.is_connected(_on_CareerData_distance_travelled_changed):
 		# avoid changing the level button names when you pick an earlier level
-		PlayerData.career.disconnect("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed"))
+		PlayerData.career.distance_travelled_changed.disconnect(_on_CareerData_distance_travelled_changed)
 	
 	# apply a distance penalty if they select an earlier level
 	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
@@ -387,7 +387,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	CurrentLevel.customers = level_posse.customer_ids
 	CurrentLevel.chef_id = level_posse.chef_id
 	
-	if _pickable_career_levels.size() == 1 or not CurrentLevel.customers:
+	if _pickable_career_levels.size() == 1 or CurrentLevel.customers.is_empty():
 		# Append filler customers for the selected level.
 		#
 		# For boss/intro levels, this appends the 1-2 extra filler customers who appear alongside the main creature.
@@ -422,7 +422,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	if postroll_key:
 		PlayerData.cutscene_queue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
 	
-	if preroll_key or postroll_key:
+	if not preroll_key.is_empty() or not postroll_key.is_empty():
 		match chat_key_pair.type:
 			ChatKeyPair.INTRO_LEVEL:
 				PlayerData.cutscene_queue.set_cutscene_flag("intro_level")

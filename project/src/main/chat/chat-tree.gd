@@ -114,7 +114,7 @@ func get_event() -> ChatEvent:
 ## 		branch.
 func advance(link_index := -1) -> bool:
 	var did_increment := false
-	if get_event().links and events.has(get_event().links[link_index]):
+	if not get_event().links.is_empty() and events.has(get_event().links[link_index]):
 		# reset to beginning of a new chat branch
 		_position.key = get_event().links[link_index]
 		_position.index = 0
@@ -146,7 +146,7 @@ func prepare_first_chat_event() -> void:
 ## Returns 'true' if the chat position can be advanced deeper into the tree.
 func can_advance() -> bool:
 	var can_increment := false
-	if get_event().links and events.has(get_event().links[-1]):
+	if not get_event().links.is_empty() and events.has(get_event().links[-1]):
 		# can reset to beginning of a new chat branch
 		can_increment = true
 	elif _position.index + 1 < events[_position.key].size():
@@ -231,7 +231,7 @@ func _apply_start_if_conditions() -> void:
 			if meta_item.begins_with("start_if "):
 				start_condition = meta_item.trim_prefix("start_if ")
 				break
-		if start_condition and BoolExpressionEvaluator.evaluate(start_condition):
+		if not start_condition.is_empty() and BoolExpressionEvaluator.evaluate(start_condition):
 			start_keys.append(key)
 	
 	if start_keys:
@@ -254,7 +254,7 @@ func _apply_say_if_conditions() -> void:
 			if meta_item.begins_with("say_if "):
 				chat_condition = meta_item.trim_prefix("say_if ")
 				break
-		if chat_condition \
+		if not chat_condition.is_empty() \
 				and not BoolExpressionEvaluator.evaluate(chat_condition) \
 				and _position.index + 1 < events[_position.key].size():
 			# advance through the current chat branch
@@ -289,7 +289,7 @@ func _process_default_phrase_statement(args: Array) -> void:
 	
 	if not PlayerData.chat_history.has_phrase(args[0]):
 		PlayerData.chat_history.set_phrase(
-				args[0], PackedStringArray(args.slice(1, args." ".join(size()))))
+				args[0], " ".join(PackedStringArray(args.slice(1, args.size()))))
 
 
 ## Processes a set_flag statement like 'set_flag foo' or 'set_flag foo bar'
@@ -323,7 +323,7 @@ func _process_set_phrase_statement(args: Array) -> void:
 		return
 	
 	PlayerData.chat_history.set_phrase(
-			args[0], PackedStringArray(args.slice(1, args." ".join(size()))))
+			args[0], " ".join(PackedStringArray(args.slice(1, args.size()))))
 
 
 ## Processes an unset_flag statement like 'unset_flag foo'

@@ -19,14 +19,14 @@ const MIN_VOLUME := -40.0
 ## volume of the carrot's movement sound
 const MOVE_SOUND_DB := -4.0
 
-@export (PackedScene) var CarrotScene: PackedScene
+@export var CarrotScene: PackedScene
 
 var playfield_path: NodePath: set = set_playfield_path
 
 var _playfield: Playfield
 
 ## tracks whether the carrot sfx are playing
-var _move_sfx_state: int = MoveSfxState.STOPPED
+var _move_sfx_state: MoveSfxState = MoveSfxState.STOPPED
 
 ## node which contains all of the child carrot nodes
 @onready var _carrot_holder: Node2D = $CarrotHolder
@@ -77,7 +77,7 @@ func add_carrots(config: CarrotConfig) -> void:
 		potential_carrot_x_coords = range(PuzzleTileMap.COL_COUNT)
 	
 	# don't allow carrots to spawn too far to the right
-	var carrot_dimensions: Vector2 = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
+	var carrot_dimensions: Vector2i = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
 	potential_carrot_x_coords = Utils.intersection(potential_carrot_x_coords, \
 			range(PuzzleTileMap.COL_COUNT - carrot_dimensions.x + 1))
 	potential_carrot_x_coords.shuffle()
@@ -85,21 +85,21 @@ func add_carrots(config: CarrotConfig) -> void:
 	potential_carrot_x_coords = deconflict_carrots(potential_carrot_x_coords, carrot_dimensions)
 	
 	for i in range(min(config.count, potential_carrot_x_coords.size())):
-		_add_carrot(Vector2(potential_carrot_x_coords[i], PuzzleTileMap.ROW_COUNT), config)
+		_add_carrot(Vector2i(potential_carrot_x_coords[i], PuzzleTileMap.ROW_COUNT), config)
 	SfxDeconflicter.play(_carrot_poof_sound)
 
 
 func _refresh_playfield_path() -> void:
-	if not (is_inside_tree() and playfield_path):
+	if not (is_inside_tree() and not playfield_path.is_empty()):
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
+		_playfield.blocks_prepared.disconnect(_on_Playfield_blocks_prepared)
 	
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
+		_playfield.blocks_prepared.connect(_on_Playfield_blocks_prepared)
 
 
 ## Adds a carrot to the specified cell.
@@ -109,8 +109,8 @@ func _refresh_playfield_path() -> void:
 ##
 ## Parameters:
 ## 	'config': rules for how many carrots to add, where to add them, and how fast they move.
-func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
-	var carrot_dimensions: Vector2 = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
+func _add_carrot(cell: Vector2i, config: CarrotConfig) -> void:
+	var carrot_dimensions: Vector2i = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
 	
 	# initialize the carrot and add it to the scene
 	var carrot: Carrot = CarrotScene.instantiate()
@@ -118,7 +118,7 @@ func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
 	carrot.z_index = 5
 	carrot.scale = _playfield.tile_map.scale
 	
-	carrot.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
+	carrot.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
 	carrot.position += _playfield.tile_map.cell_size * Vector2(carrot_dimensions.x * 0.5, 0.5)
 	carrot.position *= _playfield.tile_map.scale
 	
@@ -127,12 +127,12 @@ func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
 	
 	_carrot_holder.add_child(carrot)
 	
-	carrot.connect("started_hiding", Callable(self, "_on_Carrot_started_hiding"))
+	carrot.started_hiding.connect(_on_Carrot_started_hiding)
 	
 	# launch the carrot towards its destination at the top of the screen
-	var destination_cell := Vector2(cell.x, 0)
+	var destination_cell := Vector2i(cell.x, 0)
 	var destination_position: Vector2
-	destination_position = _playfield.tile_map.map_to_local(destination_cell + Vector2(0, -carrot_dimensions.y))
+	destination_position = _playfield.tile_map.map_to_local(destination_cell + Vector2i(0, -carrot_dimensions.y))
 	destination_position += _playfield.tile_map.cell_size * Vector2(carrot_dimensions.x * 0.5, 0.5)
 	destination_position *= _playfield.tile_map.scale
 	
@@ -218,7 +218,7 @@ func _on_Tween_completed() -> void:
 ##
 ## Returns:
 ## 	A new list of carrot columns in priority order, so that non-overlapping carrots appear at the front of the list.
-static func deconflict_carrots(potential_columns: Array, carrot_dimensions: Vector2) -> Array:
+static func deconflict_carrots(potential_columns: Array, carrot_dimensions: Vector2i) -> Array:
 	var results := []
 	
 	# set of columns which are near other carrot columns.

@@ -13,7 +13,7 @@ const PULSE_AMOUNT := Vector2(0.015, 0.030)
 const CHAT_TEXTURE_COUNT := 16
 
 ## Different panel sizes to try, ordered from smallest to largest.
-@export (Array, Vector2) var panel_sizes
+@export var panel_sizes: Array[Vector2]
 
 ## The panel squishes over time. This field is used to calculate the squish amount
 var _total_time := 0.0

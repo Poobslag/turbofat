@@ -20,7 +20,7 @@ var preroll: String
 var postroll: String
 
 ## Defines a cutscene type, such as intro, boss level or interlude
-var type: int = NONE
+var type := NONE
 
 ## Returns 'true' if this ChatKeyPair does not define any cutscenes.
 func is_empty() -> bool:

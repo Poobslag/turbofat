@@ -16,7 +16,7 @@ const FADE_OUT_DURATION := 0.4
 const FADE_IN_DURATION := 2.5
 
 ## Enum from FadingState representing whether the music is fading in or out
-var fading_state: int = FADING_NONE
+var fading_state := FADING_NONE
 
 ## key: (AudioStreamPlayer) song
 ## value: (SceneTreeTween) tween adjusting volume
@@ -48,4 +48,7 @@ func _fade(player: AudioStreamPlayer, new_volume_db: float, duration: float) -> 
 func _on_Tween_completed(player: AudioStreamPlayer) -> void:
 	fading_state = FADING_NONE
 	if player.volume_db == MusicPlayer.MIN_VOLUME:
-		player.stop()
+		if player is CheckpointSong:
+			player.stop_checkpoint_song()
+		else:
+			player.stop()

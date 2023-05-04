@@ -106,7 +106,7 @@ func should_prompt() -> bool:
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	_prev_chat_events.append(chat_event)
 	while _prev_chat_events.size() > 100:
-		_prev_chat_events.remove(0)
+		_prev_chat_events.remove_at(0)
 
 
 func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:

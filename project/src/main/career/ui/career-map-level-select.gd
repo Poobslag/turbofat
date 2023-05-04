@@ -4,7 +4,7 @@ extends CanvasLayer
 
 signal level_button_focused(button_index)
 
-@export (PackedScene) var LevelSelectButtonScene: PackedScene
+@export var LevelSelectButtonScene: PackedScene
 
 var _duration_calculator := DurationCalculator.new()
 var _prev_focused_level_button_index := -1
@@ -57,8 +57,7 @@ func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
 	else:
 		button.level_duration = LevelSelectButton.LONG
 	
-	button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", \
-			[_level_buttons_container.get_child_count()])
+	button.focus_entered.connect(_on_LevelSelectButton_focus_entered.bind(_level_buttons_container.get_child_count()))
 	_level_buttons_container.add_child(button)
 	
 	_grade_labels.add_label(button)
@@ -86,11 +85,11 @@ func _on_LevelSelectButton_focus_entered(button_index: int) -> void:
 	emit_signal("level_button_focused", button_index)
 
 
-func _on_SettingsMenu_show() -> void:
+func _on_SettingsMenu_shown() -> void:
 	_control.hide()
 
 
-func _on_SettingsMenu_hide() -> void:
+func _on_SettingsMenu_hidden() -> void:
 	_control.show()
 	if not _control.get_viewport().gui_get_focus_owner():
 		focus_button()

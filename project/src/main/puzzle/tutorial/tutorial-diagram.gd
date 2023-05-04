@@ -18,8 +18,8 @@ var _show_diagram_count := 0
 @onready var _chat_choices: ChatChoices = $VBoxContainer/ChatChoices
 
 func _ready() -> void:
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
 	hide()
 
 
@@ -27,8 +27,8 @@ func _ready() -> void:
 ##
 ## This prevents the tutorial from behaving unexpectedly if the player restarts at an unusual time.
 func cleanup_listeners() -> void:
-	if _hud.messages.is_connected("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices")):
-		_hud.messages.disconnect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices"))
+	if _hud.messages.all_messages_shown.is_connected(_on_TutorialMessages_all_messages_shown_show_choices):
+		_hud.messages.all_messages_shown.disconnect(_on_TutorialMessages_all_messages_shown_show_choices)
 
 
 func show_diagram(texture: Texture2D, show_choices: bool = false) -> void:
@@ -47,7 +47,7 @@ func show_diagram(texture: Texture2D, show_choices: bool = false) -> void:
 	
 	if show_choices:
 		if not _hud.messages.is_all_messages_visible():
-			_hud.messages.connect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices"))
+			_hud.messages.all_messages_shown.connect(_on_TutorialMessages_all_messages_shown_show_choices)
 		else:
 			_show_choices()
 
@@ -64,7 +64,7 @@ func _show_choices() -> void:
 
 
 func _on_TutorialMessages_all_messages_shown_show_choices() -> void:
-	_hud.messages.disconnect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices"))
+	_hud.messages.all_messages_shown.disconnect(_on_TutorialMessages_all_messages_shown_show_choices)
 	_show_choices()
 
 

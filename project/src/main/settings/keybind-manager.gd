@@ -2,22 +2,22 @@ extends Node
 ## Binds the player's input settings to the input map.
 
 func _ready() -> void:
-	SystemData.keybind_settings.connect("changed", Callable(self, "_on_KeybindSettings_settings_changed"))
-	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
+	SystemData.keybind_settings.changed.connect(_on_KeybindSettings_settings_changed)
+	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
 
 
 ## Converts a json dictionary to an InputEvent instance.
 ##
 ## This supports InputEventKey and InputEventJoypadButton events. It does not support joystick, mouse or touch events.
 func input_event_from_json(json: Dictionary) -> InputEvent:
-	if not json:
+	if json.is_empty():
 		return null
 	
 	var input_event: InputEvent
 	match json.get("type"):
 		"key":
 			var input_event_key := InputEventKey.new()
-			input_event_key.keycode = json.get("keycode")
+			input_event_key.keycode = json.get("scancode")
 			input_event = input_event_key
 		"joypad_button":
 			var input_event_joypad_button := InputEventJoypadButton.new()
@@ -36,7 +36,7 @@ func input_event_to_json(input_event: InputEvent) -> Dictionary:
 	var json := {}
 	if input_event is InputEventKey:
 		json["type"] = "key"
-		json["keycode"] = input_event.keycode
+		json["scancode"] = input_event.keycode
 	elif input_event is InputEventJoypadButton:
 		json["type"] = "joypad_button"
 		json["device"] = input_event.device
@@ -55,19 +55,22 @@ func pretty_string(input_json: Dictionary) -> String:
 	var result: String
 	match input_json["type"]:
 		"key":
-			result = OS.get_keycode_string(input_json["keycode"])
+			result = OS.get_keycode_string(input_json["scancode"])
 		"joypad_button":
-			result = Input.get_joy_button_string(input_json["button_index"])
-			result = result.replace("Face Button", "Face")
+			result = get_joy_button_string(input_json["button_index"])
 	return result
+
+
+func get_joy_button_string(button_index: int) -> String:
+	var event := InputEventJoypadButton.new()
+	event.button_index = button_index
+	return event.as_text()
 
 
 ## Updates the InputMap with the bindings in the specified json file
 func _bind_keys_from_file(path: String) -> void:
 	var json_text := FileUtils.get_file_as_text(path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json_text)
-	var json_dict: Dictionary = test_json_conv.get_data()
+	var json_dict: Dictionary = JSON.parse_string(json_text)
 	_bind_keys_from_json_dict(json_dict)
 
 

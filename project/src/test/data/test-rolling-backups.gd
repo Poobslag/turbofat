@@ -9,14 +9,13 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var dir := DirAccess.new()
-	dir.remove(_backups.rolling_filename(RollingBackups.CURRENT))
-	dir.remove(_backups.rolling_filename(RollingBackups.THIS_HOUR))
-	dir.remove(_backups.rolling_filename(RollingBackups.PREV_HOUR))
-	dir.remove(_backups.rolling_filename(RollingBackups.THIS_DAY))
-	dir.remove(_backups.rolling_filename(RollingBackups.PREV_DAY))
-	dir.remove(_backups.rolling_filename(RollingBackups.THIS_WEEK))
-	dir.remove(_backups.rolling_filename(RollingBackups.PREV_WEEK))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.CURRENT))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.THIS_HOUR))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.PREV_HOUR))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.THIS_DAY))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.PREV_DAY))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.THIS_WEEK))
+	DirAccess.remove_absolute(_backups.rolling_filename(RollingBackups.PREV_WEEK))
 
 
 func test_rolling_filename() -> void:
@@ -41,20 +40,19 @@ func test_corrupt_filename() -> void:
 func test_rotate_backups_none_exist() -> void:
 	FileUtils.write_file(_backups.data_filename, "")
 	_backups.rotate_backups()
-	var file := File.new()
 	
 	# current save still exists
-	assert_true(file.file_exists(_backups.rolling_filename(RollingBackups.CURRENT)), "RollingBackups.CURRENT")
+	assert_true(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.CURRENT)), "RollingBackups.CURRENT")
 	
 	# newest backups were created
-	assert_true(file.file_exists(_backups.rolling_filename(RollingBackups.THIS_HOUR)), "RollingBackups.THIS_HOUR")
-	assert_true(file.file_exists(_backups.rolling_filename(RollingBackups.THIS_DAY)), "RollingBackups.THIS_DAY")
-	assert_true(file.file_exists(_backups.rolling_filename(RollingBackups.THIS_WEEK)), "RollingBackups.THIS_WEEK")
+	assert_true(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.THIS_HOUR)), "RollingBackups.THIS_HOUR")
+	assert_true(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.THIS_DAY)), "RollingBackups.THIS_DAY")
+	assert_true(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.THIS_WEEK)), "RollingBackups.THIS_WEEK")
 	
 	# old backups weren't created yet
-	assert_false(file.file_exists(_backups.rolling_filename(RollingBackups.PREV_HOUR)), "RollingBackups.PREV_HOUR")
-	assert_false(file.file_exists(_backups.rolling_filename(RollingBackups.PREV_DAY)), "RollingBackups.PREV_DAY")
-	assert_false(file.file_exists(_backups.rolling_filename(RollingBackups.PREV_WEEK)), "RollingBackups.PREV_WEEK")
+	assert_false(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.PREV_HOUR)), "RollingBackups.PREV_HOUR")
+	assert_false(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.PREV_DAY)), "RollingBackups.PREV_DAY")
+	assert_false(FileAccess.file_exists(_backups.rolling_filename(RollingBackups.PREV_WEEK)), "RollingBackups.PREV_WEEK")
 
 
 ## Don't overwrite the 'this_xxx' backups if they already exist

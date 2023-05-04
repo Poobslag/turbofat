@@ -2,15 +2,15 @@
 class_name OutdoorShadows
 extends Node2D
 
-@export (NodePath) var obstacle_map_path: NodePath: set = set_obstacle_map_path
+@export var obstacle_map_path: NodePath: set = set_obstacle_map_path
 
 ## Maps tile indexes to their grid size. This allows us to generate larger shadows for tiles which span multiple cells.
 ##
 ## This mapping is optional. Tile indexes which are absent will be given a 1x1 cell shadow.
 ##
 ## key: (int) tile index corresponding to a tile in the obstacle map
-## value: (Rect2) rectangle which measures tile's grid size, in cells
-@export (Dictionary) var cell_shadow_mapping : set = set_cell_shadow_mapping
+## value: (Rect2i) tile's grid size, in cells
+@export var cell_shadow_mapping: Dictionary: set = set_cell_shadow_mapping
 
 @onready var _obstacle_map_shadows := $ObstacleMapShadows
 @onready var _creature_shadows := $CreatureShadows

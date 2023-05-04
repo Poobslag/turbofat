@@ -9,13 +9,13 @@ extends OverworldObstacle
 const MAX_STOOL_DISTANCE := 4
 
 ## texture to use when the stool has a creature sitting on it
-@export (Texture2D) var occupied_texture: Texture2D
+@export var occupied_texture: Texture2D
 
 ## texture to use when the stool does not have a creature sitting on it
-@export (Texture2D) var unoccupied_texture: Texture2D
+@export var unoccupied_texture: Texture2D
 
 ## 'true' if the stool has a creature sitting on it
-@export (bool) var occupied := false: set = set_occupied
+@export var occupied := false: set = set_occupied
 
 @onready var _sprite := $Sprite2D
 

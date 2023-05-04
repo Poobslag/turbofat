@@ -14,12 +14,12 @@ func set_tile_map(new_tile_map: PuzzleTileMap) -> void:
 ##
 ## If the shark is eating an especially wide chunk of food, we will emit more particles over a wider area.
 func refresh() -> void:
-	if not tile_map or not tile_map.get_used_cells():
+	if not tile_map or tile_map.get_used_cells(0).is_empty():
 		amount = 2
 		return
 	
 	# assign color
-	var used_cell: Vector2 = tile_map.get_used_cells()[0]
+	var used_cell: Vector2i = tile_map.get_used_cells(0)[0]
 	modulate = Utils.rand_value(tile_map.crumb_colors_for_cell(used_cell))
 	
 	# assign width, position, scale

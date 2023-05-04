@@ -10,15 +10,15 @@ signal food_spawned(cell, remaining_food, food_type)
 ## sound effect volume when the piece overlaps a pickup, temporarily turning it into a food
 const OVERLAP_VOLUME_DB := -6.0
 
-const PICKUP_DEFAULT: int = BlocksDuringRules.PickupType.DEFAULT
-const PICKUP_FLOAT: int = BlocksDuringRules.PickupType.FLOAT
-const PICKUP_FLOAT_REGEN: int = BlocksDuringRules.PickupType.FLOAT_REGEN
+const PICKUP_DEFAULT := BlocksDuringRules.PickupType.DEFAULT
+const PICKUP_FLOAT := BlocksDuringRules.PickupType.FLOAT
+const PICKUP_FLOAT_REGEN := BlocksDuringRules.PickupType.FLOAT_REGEN
 
-@export (NodePath) var piece_manager_path: NodePath: set = set_piece_manager_path
-@export (NodePath) var puzzle_tile_map_path: NodePath
-@export (PackedScene) var PickupScene: PackedScene
+@export var piece_manager_path: NodePath: set = set_piece_manager_path
+@export var puzzle_tile_map_path: NodePath
+@export var PickupScene: PackedScene
 
-## key: (Vector2) playfield cell positions
+## key: (Vector2i) playfield cell positions
 ## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
@@ -43,11 +43,11 @@ var _remaining_pickup_sfx := 0
 @onready var _pickup_sfx_players := [$PickupSfx0, $PickupSfx1, $PickupSfx2, $PickupSfx3, $PickupSfx4, $PickupSfx5]
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
-	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
+	PuzzleState.before_piece_written.connect(_on_PuzzleState_before_piece_written)
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
+	Pauser.paused_changed.connect(_on_Pauser_paused_changed)
 	_refresh_piece_manager_path()
 	_prepare_pickups_for_level()
 
@@ -58,27 +58,27 @@ func get_cells_with_pickups() -> Array:
 
 ## Returns the pickup food type at the specified playfield cell.
 ##
-## Returns TileMap.INVALID_CELL if the specified cell has no pickup.
-func get_pickup_food_type(cell: Vector2) -> int:
+## Returns -1 if the specified cell has no pickup.
+func get_pickup_food_type(cell: Vector2i) -> int:
 	if not _pickups_by_cell.has(cell):
-		return TileMap.INVALID_CELL
+		return -1
 	return _pickups_by_cell[cell].food_type
 
 
 ## Returns the pickup at the specified playfield cell.
-func get_pickup(cell: Vector2) -> Pickup:
+func get_pickup(cell: Vector2i) -> Pickup:
 	return _pickups_by_cell.get(cell)
 
 
 ## Adds or replaces a pickup in a playfield cell.
-func set_pickup(cell: Vector2, box_type: int) -> void:
+func set_pickup(cell: Vector2i, box_type: Foods.BoxType) -> void:
 	remove_pickup(cell)
 	
 	if box_type != -1:
 		var pickup: Pickup = PickupScene.instantiate()
 		pickup.food_type = _food_type_for_box_type(box_type, cell)
 
-		pickup.position = Utils.map_to_world_centered(_puzzle_tile_map, cell + Vector2(0, -3))
+		pickup.position = Utils.map_to_world_centered(_puzzle_tile_map, cell + Vector2i(0, -3))
 		pickup.position *= _puzzle_tile_map.scale
 		pickup.scale = _puzzle_tile_map.scale
 		pickup.z_index = 4 # in front of the active piece
@@ -91,7 +91,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 
 
 ## Removes a pickup from a playfield cell.
-func remove_pickup(cell: Vector2) -> void:
+func remove_pickup(cell: Vector2i) -> void:
 	if not _pickups_by_cell.has(cell):
 		return
 	
@@ -115,7 +115,7 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 func row_is_empty(y: int) -> bool:
 	var row_is_empty := true
 	for x in range(PuzzleTileMap.COL_COUNT):
-		if not get_pickup_food_type(Vector2(x, y)) == TileMap.INVALID_CELL:
+		if not get_pickup_food_type(Vector2i(x, y)) == -1:
 			row_is_empty = false
 			break
 	return row_is_empty
@@ -126,12 +126,12 @@ func _refresh_piece_manager_path() -> void:
 		return
 	
 	if _piece_manager:
-		_piece_manager.disconnect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
+		_piece_manager.piece_disturbed.disconnect(_on_PieceManager_piece_disturbed)
 	
 	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
 	
 	if _piece_manager:
-		_piece_manager.connect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
+		_piece_manager.piece_disturbed.connect(_on_PieceManager_piece_disturbed)
 
 
 ## Spawns any pickups necessary for starting the current level.
@@ -170,7 +170,7 @@ func _prepare_pickups_for_level() -> void:
 ##
 ## The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard
 ## pattern.
-func _food_type_for_box_type(box_type: int, cell: Vector2) -> int:
+func _food_type_for_box_type(box_type: Foods.BoxType, cell: Vector2i) -> int:
 	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
 	return food_types[(int(cell.x + cell.y) % food_types.size())]
 
@@ -204,7 +204,7 @@ func _refresh_pickup_state(piece: ActivePiece) -> void:
 ## Removes all pickups from a playfield row.
 func _erase_row(y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		remove_pickup(Vector2(x, y))
+		remove_pickup(Vector2i(x, y))
 
 
 ## Shifts a group of pickups up or down.
@@ -212,8 +212,8 @@ func _erase_row(y: int) -> void:
 ## Parameters:
 ## 	'bottom_row': The lowest row to shift. All pickups at or above this row will be shifted.
 ##
-## 	'direction': The direction to shift the pickups, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_row: int, direction: Vector2) -> void:
+## 	'direction': The direction to shift the pickups, such as Vector2i.UP or Vector2i.DOWN.
+func _shift_rows(bottom_row: int, direction: Vector2i) -> void:
 	# First, erase and store all the old pickups which are shifting
 	var shifted := {}
 	for cell in _pickups_by_cell.keys():
@@ -350,7 +350,7 @@ func _on_Playfield_line_deleted(y: int) -> void:
 	_erase_row(y)
 	
 	# drop all pickups above the deleted lines to fill the gap
-	_shift_rows(y - 1, Vector2.DOWN)
+	_shift_rows(y - 1, Vector2i.DOWN)
 
 
 func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
@@ -359,16 +359,16 @@ func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 		return
 	
 	# raise all pickups at or above the specified row
-	_shift_rows(y, Vector2.UP)
+	_shift_rows(y, Vector2i.UP)
 	
 	# fill in the new gaps with pickups
 	var block_bunch: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
 	for x in range(PuzzleTileMap.COL_COUNT):
-		var src_pos := Vector2(x, src_y)
+		var src_pos := Vector2i(x, src_y)
 		if not block_bunch.pickups.has(src_pos):
 			continue
-		var box_type: int = block_bunch.pickups[src_pos]
-		set_pickup(Vector2(x, y), box_type)
+		var box_type: Foods.BoxType = block_bunch.pickups[src_pos]
+		set_pickup(Vector2i(x, y), box_type)
 
 
 func _on_PickupSfxTimer_timeout() -> void:
@@ -384,8 +384,8 @@ func _on_Playfield_line_filled(y: int, tiles_key: String, src_y: int) -> void:
 	# fill in the new gaps with pickups
 	var block_bunch: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
 	for x in range(PuzzleTileMap.COL_COUNT):
-		var src_pos := Vector2(x, src_y)
+		var src_pos := Vector2i(x, src_y)
 		if not block_bunch.pickups.has(src_pos):
 			continue
-		var box_type: int = block_bunch.pickups[src_pos]
-		set_pickup(Vector2(x, y), box_type)
+		var box_type: Foods.BoxType = block_bunch.pickups[src_pos]
+		set_pickup(Vector2i(x, y), box_type)

@@ -27,7 +27,7 @@ static func sanitize_name(name: String) -> String:
 	
 	result = result.lstrip(" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
 	result = result.rstrip(" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")
-	if not result:
+	if result.is_empty():
 		result = "X"
 	return result.substr(0, MAX_CREATURE_NAME_LENGTH)
 

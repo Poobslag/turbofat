@@ -48,7 +48,7 @@ var soft_drop_lock_cancel := true: set = set_soft_drop_lock_cancel
 
 ## Current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
 ## the game harder, or to cheat on levels which otherwise require slow and thoughtful play.
-var speed: int = Speed.DEFAULT: set = set_velocity
+var speed := Speed.DEFAULT: set = set_velocity
 
 func set_ghost_piece(new_ghost_piece: bool) -> void:
 	if ghost_piece == new_ghost_piece:
@@ -64,7 +64,7 @@ func set_soft_drop_lock_cancel(new_soft_drop_lock_cancel: bool) -> void:
 	emit_signal("soft_drop_lock_cancel_changed", new_soft_drop_lock_cancel)
 
 
-func set_velocity(new_speed: int) -> void:
+func set_velocity(new_speed: Speed) -> void:
 	if speed == new_speed:
 		return
 	speed = new_speed

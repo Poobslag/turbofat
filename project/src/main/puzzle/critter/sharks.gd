@@ -5,7 +5,7 @@ extends Node2D
 ## Sharks wait on the playfield until bumped by a piece. Depending on the size of the shark, they may take a small bite
 ## from the piece, a big bite from the piece, or eat the entire piece.
 
-@export (PackedScene) var SharkScene: PackedScene
+@export var SharkScene: PackedScene
 
 var piece_manager_path: NodePath: set = set_piece_manager_path
 var playfield_path: NodePath: set = set_playfield_path
@@ -18,7 +18,7 @@ var _did_hard_drop := false
 var _piece_manager: PieceManager
 var _playfield: Playfield
 
-## key: (Vector2) cell containing a shark
+## key: (Vector2i) cell containing a shark
 ## value: (Shark) shark at that cell location
 var _sharks_by_cell: Dictionary
 
@@ -26,7 +26,7 @@ var _sharks_by_cell: Dictionary
 @onready var _shark_holder := $SharkHolder
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
+	PuzzleState.before_piece_written.connect(_on_PuzzleState_before_piece_written)
 	_refresh_playfield_path()
 	_refresh_piece_manager_path()
 
@@ -65,7 +65,7 @@ func add_sharks(config: SharkConfig) -> void:
 ##
 ## Parameters:
 ## 	'cell': A playfield cell containing a shark.
-func remove_shark(cell: Vector2) -> void:
+func remove_shark(cell: Vector2i) -> void:
 	if not _sharks_by_cell.has(cell):
 		return
 	
@@ -118,11 +118,11 @@ func _inner_advance_sharks() -> void:
 	_refresh_sharks_for_playfield()
 
 
-func _compare_by_y_then_random(a: Vector2, b: Vector2) -> bool:
+func _compare_by_y_then_random(a: Vector2i, b: Vector2i) -> bool:
 	return b.y > a.y
 
 
-func _compare_by_y_then_x(a: Vector2, b: Vector2) -> bool:
+func _compare_by_y_then_x(a: Vector2i, b: Vector2i) -> bool:
 	if b.y > a.y:
 		return true
 	if b.y < a.y:
@@ -159,11 +159,11 @@ func _refresh_sharks_for_piece() -> void:
 		if shark.state in [Shark.DANCING, Shark.DANCING_END] and piece_overlaps_shark:
 			match shark.shark_size:
 				SharkConfig.SharkSize.SMALL:
-					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 10)
+					PuzzleState.add_unusual_cell_score(shark_cell + Vector2i.UP, 10)
 				SharkConfig.SharkSize.MEDIUM:
-					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 20)
+					PuzzleState.add_unusual_cell_score(shark_cell + Vector2i.UP, 20)
 				SharkConfig.SharkSize.LARGE:
-					PuzzleState.add_unusual_cell_score(shark_cell + Vector2.UP, 50)
+					PuzzleState.add_unusual_cell_score(shark_cell + Vector2i.UP, 50)
 			
 			# Assign the color before the piece is eaten. Otherwise if the entire piece is eaten, we won't know which
 			# color it was.
@@ -197,14 +197,14 @@ func _refresh_sharks_for_piece() -> void:
 ## Updates a shark's eaten cells based on how a piece changed.
 ##
 ## Parameters:
-## 	'shark_cell': Vector2 playfield tilemap coordinate containing a shark
+## 	'shark_cell': Vector2i playfield tilemap coordinate containing a shark
 ##
-## 	'old_piece_cells': Vector2 playfield tilemap coordinates which which contained piece cells, before the piece was
+## 	'old_piece_cells': Vector2i playfield tilemap coordinates which which contained piece cells, before the piece was
 ## 		eaten
 ##
-## 	'old_piece_cells': Vector2 playfield tilemap coordinates which which contained piece cells, after the piece was
+## 	'old_piece_cells': Vector2i playfield tilemap coordinates which which contained piece cells, after the piece was
 ## 		eaten
-func _feed_shark_cells(shark_cell: Vector2, old_piece_cells: Array, new_piece_cells: Array) -> void:
+func _feed_shark_cells(shark_cell: Vector2i, old_piece_cells: Array, new_piece_cells: Array) -> void:
 	var shark: Shark = _sharks_by_cell[shark_cell]
 	
 	# update the tileset to match the piece's current tileset, so that veggie pieces appear correctly
@@ -227,7 +227,7 @@ func _feed_shark_cells(shark_cell: Vector2, old_piece_cells: Array, new_piece_ce
 
 
 ## Returns:
-## 	Vector2 playfield tilemap coordintaes which contain piece cells
+## 	Vector2i playfield tilemap coordintaes which contain piece cells
 func _playfield_piece_cells() -> Array:
 	var result := []
 	for cell in _piece_manager.piece.get_pos_arr():
@@ -239,7 +239,7 @@ func _playfield_piece_cells() -> Array:
 ##
 ## Parameters:
 ## 	'shark_cell': Cell containing a shark, which will be removed from the active piece
-func _nibble_piece(shark_cell: Vector2) -> void:
+func _nibble_piece(shark_cell: Vector2i) -> void:
 	var old_type := _piece_manager.piece.type
 	var old_pos := _piece_manager.piece.pos
 	var old_orientation := _piece_manager.piece.orientation
@@ -277,14 +277,14 @@ func _replace_active_piece_with_domino() -> void:
 		var pos_arr: Array = _piece_manager.piece.get_pos_arr()
 		for pos_arr_item in pos_arr:
 			# first, try orienting our domino horizontally
-			if pos_arr.has(pos_arr_item + Vector2.RIGHT):
+			if pos_arr.has(pos_arr_item + Vector2i.RIGHT):
 				new_type = _to_domino(old_type)
 				new_orientation = 0
-				new_pos = old_pos + pos_arr_item + Vector2(0, -1)
+				new_pos = old_pos + pos_arr_item + Vector2i(0, -1)
 				break
 			
 			# next, try orienting our domino vertically
-			if pos_arr.has(pos_arr_item + Vector2.DOWN):
+			if pos_arr.has(pos_arr_item + Vector2i.DOWN):
 				new_type = _to_domino(old_type)
 				new_orientation = 1
 				new_pos = old_pos + pos_arr_item
@@ -304,7 +304,7 @@ func _eat_entire_piece() -> void:
 ## Updates the piece manager with the specified piece type, possibly cycling to the next piece.
 ##
 ## If all blocks were removed from the specified piece, we cycle to the next piece after a brief pause.
-func _update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orientation: int) -> void:
+func _update_piece_manager_piece(new_type: PieceType, new_pos: Vector2i, new_orientation: int) -> void:
 	_piece_manager.piece.type = new_type
 	_piece_manager.piece.pos = new_pos
 	_piece_manager.piece.orientation = new_orientation
@@ -368,7 +368,7 @@ func _refresh_sharks_for_playfield(include_waiting_sharks: bool = true) -> void:
 ##
 ## Parameters:
 ## 	'old_cell': The shark's previous position.
-func _relocate_shark(old_cell: Vector2) -> void:
+func _relocate_shark(old_cell: Vector2i) -> void:
 	var shark: Shark = _sharks_by_cell[old_cell]
 	var found_new_cell := false
 	
@@ -376,7 +376,7 @@ func _relocate_shark(old_cell: Vector2) -> void:
 	
 	if not found_new_cell:
 		# search for cells above the shark's current cell
-		new_cell = old_cell + Vector2.UP
+		new_cell = old_cell + Vector2i.UP
 		while not found_new_cell and new_cell.y > PuzzleTileMap.FIRST_VISIBLE_ROW:
 			if _shark_cell_has_floor(new_cell) \
 					and not _shark_cell_has_block(new_cell) \
@@ -384,11 +384,11 @@ func _relocate_shark(old_cell: Vector2) -> void:
 					and not _shark_cell_has_shark(new_cell):
 				found_new_cell = true
 			else:
-				new_cell += Vector2.UP
+				new_cell += Vector2i.UP
 	
 	if not found_new_cell:
 		# search for cells below the shark's current cell
-		new_cell = old_cell + Vector2.DOWN
+		new_cell = old_cell + Vector2i.DOWN
 		while not found_new_cell and new_cell.y < PuzzleTileMap.ROW_COUNT:
 			if _shark_cell_has_floor(new_cell) \
 					and not _shark_cell_has_block(new_cell) \
@@ -396,7 +396,7 @@ func _relocate_shark(old_cell: Vector2) -> void:
 					and not _shark_cell_has_shark(new_cell):
 				found_new_cell = true
 			else:
-				new_cell += Vector2.DOWN
+				new_cell += Vector2i.DOWN
 	
 	if found_new_cell:
 		_update_shark_position(shark, new_cell)
@@ -408,18 +408,18 @@ func _relocate_shark(old_cell: Vector2) -> void:
 
 ## Connects piece manager listeners.
 func _refresh_piece_manager_path() -> void:
-	if not (is_inside_tree() and piece_manager_path):
+	if not (is_inside_tree() and not piece_manager_path.is_empty()):
 		return
 	
 	if _piece_manager:
-		_piece_manager.disconnect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
-		_piece_manager.disconnect("hard_dropped", Callable(self, "_on_PieceManager_hard_dropped"))
+		_piece_manager.piece_disturbed.disconnect(_on_PieceManager_piece_disturbed)
+		_piece_manager.hard_dropped.disconnect(_on_PieceManager_hard_dropped)
 	
 	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
 	
 	if _piece_manager:
-		_piece_manager.connect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
-		_piece_manager.connect("hard_dropped", Callable(self, "_on_PieceManager_hard_dropped"))
+		_piece_manager.piece_disturbed.connect(_on_PieceManager_piece_disturbed)
+		_piece_manager.hard_dropped.connect(_on_PieceManager_hard_dropped)
 
 
 ## Recalculates a shark's position based on their playfield cell.
@@ -428,8 +428,8 @@ func _refresh_piece_manager_path() -> void:
 ## 	'shark': The shark whose position should be recalculated
 ##
 ## 	'cell': The shark's playfield cell
-func _update_shark_position(shark: Shark, cell: Vector2) -> void:
-	shark.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
+func _update_shark_position(shark: Shark, cell: Vector2i) -> void:
+	shark.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
 	shark.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
 	shark.position *= _playfield.tile_map.scale
 
@@ -443,26 +443,26 @@ func _clear_sharks() -> void:
 
 ## Connects playfield listeners.
 func _refresh_playfield_path() -> void:
-	if not (is_inside_tree() and playfield_path):
+	if not (is_inside_tree() and not playfield_path.is_empty()):
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
-		_playfield.disconnect("line_deleted", Callable(self, "_on_Playfield_line_deleted"))
-		_playfield.disconnect("line_erased", Callable(self, "_on_Playfield_line_erased"))
-		_playfield.disconnect("line_inserted", Callable(self, "_on_Playfield_line_inserted"))
-		_playfield.disconnect("line_filled", Callable(self, "_on_Playfield_line_filled"))
-		_playfield.disconnect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
+		_playfield.blocks_prepared.disconnect(_on_Playfield_blocks_prepared)
+		_playfield.line_deleted.disconnect(_on_Playfield_line_deleted)
+		_playfield.line_erased.disconnect(_on_Playfield_line_erased)
+		_playfield.line_inserted.disconnect(_on_Playfield_line_inserted)
+		_playfield.line_filled.disconnect(_on_Playfield_line_filled)
+		_playfield.after_lines_deleted.disconnect(_on_Playfield_after_lines_deleted)
 	
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
-		_playfield.connect("line_deleted", Callable(self, "_on_Playfield_line_deleted"))
-		_playfield.connect("line_erased", Callable(self, "_on_Playfield_line_erased"))
-		_playfield.connect("line_inserted", Callable(self, "_on_Playfield_line_inserted"))
-		_playfield.connect("line_filled", Callable(self, "_on_Playfield_line_filled"))
-		_playfield.connect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
+		_playfield.blocks_prepared.connect(_on_Playfield_blocks_prepared)
+		_playfield.line_deleted.connect(_on_Playfield_line_deleted)
+		_playfield.line_erased.connect(_on_Playfield_line_erased)
+		_playfield.line_inserted.connect(_on_Playfield_line_inserted)
+		_playfield.line_filled.connect(_on_Playfield_line_filled)
+		_playfield.after_lines_deleted.connect(_on_Playfield_after_lines_deleted)
 
 
 ## Returns potential cells to which a shark could be added.
@@ -483,9 +483,9 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 	
 	for y in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var shark_cell := Vector2(x, y)
+			var shark_cell := Vector2i(x, y)
 			
-			if _playfield.tile_map.get_cellv(shark_cell) != TileMap.INVALID_CELL:
+			if _playfield.tile_map.get_cell_source_id(0, shark_cell) != -1:
 				ceiling_x_coords[x] = true
 				if midair_shark_x_coords.has(x):
 					midair_shark_x_coords.erase(x)
@@ -517,13 +517,13 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 				var at_home := true
 				match config.home:
 					SharkConfig.Home.VEG:
-						if not _playfield.tile_map.get_cellv(shark_cell + Vector2.DOWN) == PuzzleTileMap.TILE_VEG:
+						if not _playfield.tile_map.get_cell_source_id(0, shark_cell + Vector2i.DOWN) == PuzzleTileMap.TILE_VEG:
 							at_home = false
 					SharkConfig.Home.BOX:
-						if not _playfield.tile_map.get_cellv(shark_cell + Vector2.DOWN) == PuzzleTileMap.TILE_BOX:
+						if not _playfield.tile_map.get_cell_source_id(0, shark_cell + Vector2i.DOWN) == PuzzleTileMap.TILE_BOX:
 							at_home = false
 					SharkConfig.Home.CAKE:
-						if not _playfield.tile_map.is_cake_cell(shark_cell + Vector2.DOWN):
+						if not _playfield.tile_map.is_cake_cell(shark_cell + Vector2i.DOWN):
 							at_home = false
 					SharkConfig.Home.SURFACE:
 						if ceiling_x_coords.has(int(shark_cell.x)):
@@ -539,28 +539,28 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 
 
 ## Returns 'true' if the specified cell has a non-empty cell beneath it.
-func _shark_cell_has_floor(shark_cell: Vector2) -> bool:
+func _shark_cell_has_floor(shark_cell: Vector2i) -> bool:
 	return shark_cell.y == PuzzleTileMap.ROW_COUNT - 1 \
-			or _playfield.tile_map.get_cellv(shark_cell + Vector2.DOWN) != TileMap.INVALID_CELL
+			or _playfield.tile_map.get_cell_source_id(0, shark_cell + Vector2i.DOWN) != -1
 
 
 ## Returns 'true' if the specified cell is non-empty.
-func _shark_cell_has_block(shark_cell: Vector2) -> bool:
-	return _playfield.tile_map.get_cellv(shark_cell) != TileMap.INVALID_CELL
+func _shark_cell_has_block(shark_cell: Vector2i) -> bool:
+	return _playfield.tile_map.get_cell_source_id(0, shark_cell) != -1
 
 
 ## Returns 'true' if the specified cell has a pickup.
-func _shark_cell_has_pickup(shark_cell: Vector2) -> bool:
-	return _playfield.pickups.get_pickup_food_type(shark_cell) != TileMap.INVALID_CELL
+func _shark_cell_has_pickup(shark_cell: Vector2i) -> bool:
+	return _playfield.pickups.get_pickup_food_type(shark_cell) != -1
 
 
 ## Returns 'true' if the specified cell has a shark.
-func _shark_cell_has_shark(shark_cell: Vector2) -> bool:
+func _shark_cell_has_shark(shark_cell: Vector2i) -> bool:
 	return _sharks_by_cell.has(shark_cell)
 
 
 ## Returns 'true' if the specified cell overlaps the currently active piece.
-func _shark_cell_overlaps_piece(shark_cell: Vector2) -> bool:
+func _shark_cell_overlaps_piece(shark_cell: Vector2i) -> bool:
 	var result := false
 	for pos_arr_item_obj in _piece_manager.piece.get_pos_arr():
 		if shark_cell == pos_arr_item_obj + _piece_manager.piece.pos:
@@ -575,7 +575,7 @@ func _shark_cell_overlaps_piece(shark_cell: Vector2) -> bool:
 ##
 ## Parameters:
 ## 	'config': rules for how long sharks should stay and much they eat.
-func _add_shark(cell: Vector2, config: SharkConfig) -> void:
+func _add_shark(cell: Vector2i, config: SharkConfig) -> void:
 	if _sharks_by_cell.has(cell):
 		return
 	
@@ -606,7 +606,7 @@ func _add_shark(cell: Vector2, config: SharkConfig) -> void:
 ## Removes all sharks from a playfield row.
 func _erase_row(y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		remove_shark(Vector2(x, y))
+		remove_shark(Vector2i(x, y))
 
 
 ## Shifts a group of sharks up or down.
@@ -614,8 +614,8 @@ func _erase_row(y: int) -> void:
 ## Parameters:
 ## 	'bottom_y': The lowest row to shift. All sharks at or above this row will be shifted.
 ##
-## 	'direction': The direction to shift the sharks, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_y: int, direction: Vector2) -> void:
+## 	'direction': The direction to shift the sharks, such as Vector2i.UP or Vector2i.DOWN.
+func _shift_rows(bottom_y: int, direction: Vector2i) -> void:
 	# First, erase and store all the old sharks which are shifting
 	var shifted := {}
 	for cell in _sharks_by_cell.keys():
@@ -660,7 +660,7 @@ func _on_Playfield_line_deleted(y: int) -> void:
 	# don't erase sharks; sharks can be added during the line clear process, which includes erase/delete events
 	
 	# drop all sharks above the specified row to fill the gap
-	_shift_rows(y - 1, Vector2.DOWN)
+	_shift_rows(y - 1, Vector2i.DOWN)
 	
 	# don't refresh the playfield sharks when a single line is deleted; wait until all lines are deleted
 
@@ -679,7 +679,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
 	# raise all sharks at or above the specified row
-	_shift_rows(y, Vector2.UP)
+	_shift_rows(y, Vector2i.UP)
 	
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate sharks until all lines are deleted.

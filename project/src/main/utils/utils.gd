@@ -24,7 +24,7 @@ static func print_json(value) -> String:
 	return JSON.stringify(value, "  ")
 
 
-## Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
+## Returns the keycode for a keypress event, or -1 if the event is not a keypress event.
 static func key_scancode(event: InputEvent) -> int:
 	var keycode := -1
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
@@ -128,7 +128,7 @@ static func remove_all(values: Array, value) -> Array:
 	var index := 0
 	while index < values.size():
 		if values[index] == value:
-			values.remove(index)
+			values.remove_at(index)
 		else:
 			index += 1
 	return values
@@ -200,7 +200,7 @@ static func disjunction(a: Array, b: Array) -> Array:
 static func assign_default_dialog_path(dialog: FileDialog, default_resource_path: String) -> void:
 	if dialog.current_path == "/509e7c82-9399-425a-9f15-9370c2b3de8b":
 		var current_path := ProjectSettings.globalize_path(default_resource_path)
-		if not DirAccess.new().dir_exists(current_path):
+		if not DirAccess.dir_exists_absolute(current_path):
 			current_path = OS.get_user_data_dir()
 		dialog.current_path = current_path
 
@@ -268,16 +268,16 @@ static func to_bool(s: String) -> bool:
 
 ## Returns the local position of the center of the cell corresponding to the given tilemap (grid-based) coordinates.
 ##
-## One might expect this could be implemented trivially by passing in something like 'map_to_world(2.5, 2.5)' to
-## get the center of the cell at (2, 2). But, map_to_world does not work that way.
+## One might expect this could be implemented trivially by passing in something like 'map_to_local(2.5, 2.5)' to
+## get the center of the cell at (2, 2). But, map_to_local does not work that way.
 ##
 ## One might also expect this could be implemented by doing something like "Get the top left corner, and shift it by
 ## half the cell size." But, this returns incorrect results for isometric tilemaps.
 ##
 ## For now, the nuance and complexity required in correctly implementing this trivial functionality warrants a utility
 ## function.
-static func map_to_world_centered(tile_map: TileMap, cell: Vector2) -> Vector2:
-	return (tile_map.map_to_local(cell) + tile_map.map_to_world(cell + Vector2.ONE)) * 0.5
+static func map_to_world_centered(tile_map: TileMap, cell: Vector2i) -> Vector2:
+	return (tile_map.map_to_local(cell) + tile_map.map_to_local(cell + Vector2i.ONE)) * 0.5
 
 
 ## Shuffles the entries of the given array in a predictable manner, using the Fisher-Yates algorithm.

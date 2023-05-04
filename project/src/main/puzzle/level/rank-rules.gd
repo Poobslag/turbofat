@@ -63,12 +63,12 @@ var master_pickup_score := 0.0
 ## expected bonus points per line awarded for pickups
 var master_pickup_score_per_line := 0.0
 
-var show_boxes_rank: int = ShowRank.DEFAULT
-var show_combos_rank: int = ShowRank.DEFAULT
-var show_lines_rank: int = ShowRank.DEFAULT
-var show_pickups_rank: int = ShowRank.DEFAULT
-var show_pieces_rank: int = ShowRank.DEFAULT
-var show_speed_rank: int = ShowRank.DEFAULT
+var show_boxes_rank := ShowRank.DEFAULT
+var show_combos_rank := ShowRank.DEFAULT
+var show_lines_rank := ShowRank.DEFAULT
+var show_pickups_rank := ShowRank.DEFAULT
+var show_pieces_rank := ShowRank.DEFAULT
+var show_speed_rank := ShowRank.DEFAULT
 
 ## 'true' if the results screen should be skipped. Used for tutorials.
 var skip_results := false

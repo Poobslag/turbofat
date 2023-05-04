@@ -5,14 +5,14 @@ extends Node2D
 ## Any occupied cell which isn't used in a box risks spawning a star poof. The more unused cells there are, the greater
 ## the chance of a poof.
 
-@export (PackedScene) var StarPoofScene: PackedScene
+@export var StarPoofScene: PackedScene
 
 var source_tile_map: PuzzleTileMap
 
 ## Spawns a star poof near the specified cell.
 func _spawn_poof(cell_x: int, cell_y: int) -> void:
 	# poof can appear half-way into horizontally adjacent cells, or in the cell above this one
-	var poof_position := source_tile_map.somewhere_near_cell(Vector2(cell_x, cell_y))
+	var poof_position := source_tile_map.somewhere_near_cell(Vector2i(cell_x, cell_y))
 	var star_poof: NightStarPoof = StarPoofScene.instantiate()
 	add_child(star_poof)
 	star_poof.position = poof_position

@@ -16,7 +16,7 @@ var free_roam := false
 
 func _ready() -> void:
 	set_creature_id(CreatureLibrary.SENSEI_ID)
-	$MoveTimer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))
+	$MoveTimer.timeout.connect(_on_MoveTimer_timeout)
 
 
 func _on_MoveTimer_timeout() -> void:

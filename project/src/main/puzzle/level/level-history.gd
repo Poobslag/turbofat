@@ -117,7 +117,7 @@ func prev_result(level_id: String) -> RankResult:
 ##
 ## 'add' should be followed by 'prune' to ensure the history does not grow too large.
 func add_result(level_id: String, rank_result: RankResult) -> void:
-	if not level_id:
+	if level_id.is_empty():
 		# can't store history without a level id
 		return
 	

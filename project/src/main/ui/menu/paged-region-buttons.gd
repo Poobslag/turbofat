@@ -18,7 +18,7 @@ signal button_added(button)
 
 const MAX_REGIONS_PER_PAGE := 7
 
-@export (PackedScene) var RegionButtonScene: PackedScene
+@export var RegionButtonScene: PackedScene
 
 ## Array of CareerRegion and OtherRegion instances to show
 var regions: Array: set = set_regions
@@ -61,7 +61,7 @@ func focus_region(region_id_to_focus: String) -> void:
 		if _page != page_to_focus:
 			_page = page_to_focus
 			_refresh()
-		_hbox_container.get_children()[button_index_to_focus].grab_focus()
+		_hbox_container.get_children()[button_index_to_focus].region_select_button_grab_focus()
 
 
 func set_regions(new_regions: Array) -> void:
@@ -122,7 +122,7 @@ func _add_buttons() -> void:
 	
 	# assing default focus to the first button
 	if _hbox_container.get_child_count():
-		_hbox_container.get_children().front().grab_focus()
+		_hbox_container.get_children().front().region_select_button_grab_focus()
 
 
 ## Enables/disables the paging arrows, hiding them if the player only has access to a single page of regions.
@@ -188,8 +188,8 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 		region_button.region_name = region.name
 		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
 	
-	region_button.connect("focus_entered", Callable(self, "_on_RegionButton_focus_entered").bind(region_button, region_obj))
-	region_button.connect("region_chosen", Callable(self, "_on_RegionButton_region_chosen").bind(region_obj))
+	region_button.focus_entered.connect(_on_RegionButton_focus_entered.bind(region_button, region_obj))
+	region_button.region_chosen.connect(_on_RegionButton_region_chosen.bind(region_obj))
 	return region_button
 
 
@@ -226,4 +226,4 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		_refresh()
 		if button_index_to_focus != -1:
 			await get_tree().idle_frame
-			_hbox_container.get_children()[button_index_to_focus].grab_focus()
+			_hbox_container.get_children()[button_index_to_focus].region_select_button_grab_focus()

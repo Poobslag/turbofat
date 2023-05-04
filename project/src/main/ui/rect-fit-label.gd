@@ -4,15 +4,15 @@ extends Label
 ## size where the text does not overrun its boundaries.
 
 ## Different label sizes to try, ordered from smallest to largest.
-@export (Array, Vector2) var sizes := []: set = set_sizes
+@export var sizes: Array[Vector2]: set = set_sizes
 
 var chosen_size_index := -1: set = set_chosen_size_index
 
 func _ready() -> void:
 	pick_smallest_size()
 	
-	# this class requires both autowrap and max_lines_visible to be set
-	autowrap = true
+	# this class requires both autowrap_mode and max_lines_visible to be set
+	autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	max_lines_visible = max(1, max_lines_visible)
 
 
@@ -47,8 +47,8 @@ func set_chosen_size_index(new_index: int) -> void:
 
 
 func _lines_fit() -> bool:
-	max_lines_visible = (size.y + get_constant("line_spacing")) \
-			/ (get("theme_override_fonts/font").get_height() + get_constant("line_spacing"))
+	max_lines_visible = (size.y + get_theme_constant("line_spacing")) \
+			/ (get("theme_override_fonts/font").get_height() + get_theme_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
 
 

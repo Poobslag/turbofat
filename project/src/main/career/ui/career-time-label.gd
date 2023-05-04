@@ -7,7 +7,7 @@ extends Control
 @onready var _icon_sprite := $Icon/IconSprite
 
 func _ready() -> void:
-	PlayerData.career.connect("hours_passed_changed", Callable(self, "_on_CareerData_hours_passed_changed"))
+	PlayerData.career.hours_passed_changed.connect(_on_CareerData_hours_passed_changed)
 	_refresh()
 
 

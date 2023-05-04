@@ -2,7 +2,7 @@ class_name OvalShadow
 extends Sprite2D
 ## Script which updates the position of a shadow beneath a 'shadow caster'.
 
-@export (NodePath) var shadow_caster_path: NodePath: set = set_shadow_caster_path
+@export var shadow_caster_path: NodePath: set = set_shadow_caster_path
 
 ## Shadow caster this shadow is for
 var _shadow_caster: Node2D

@@ -47,7 +47,7 @@ func _find_region_with_boss_level() -> CareerRegion:
 	var result: CareerRegion
 	# find the latest visited region with a boss level, if one exists
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
-	regions_reversed.invert()
+	regions_reversed.reverse()
 	for region in regions_reversed:
 		if region.start < PlayerData.career.distance_travelled and region.boss_level:
 			result = region
@@ -98,7 +98,7 @@ func _find_region_with_epilogue() -> CareerRegion:
 	var result: CareerRegion
 	# find the latest visited region with a boss level, if one exists
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
-	regions_reversed.invert()
+	regions_reversed.reverse()
 	for region in regions_reversed:
 		if region.start < PlayerData.career.distance_travelled \
 				and ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
@@ -164,14 +164,14 @@ func _cycle_levels() -> void:
 
 
 func _on_SettingsButton_pressed() -> void:
-	$SettingsMenu.show()
+	$SettingsMenu.show_settings_menu()
 
 
-func _on_SettingsMenu_show() -> void:
+func _on_SettingsMenu_shown() -> void:
 	$Control/SettingsButton.hide()
 
 
-func _on_SettingsMenu_hide() -> void:
+func _on_SettingsMenu_hidden() -> void:
 	$Control/SettingsButton.show()
 
 

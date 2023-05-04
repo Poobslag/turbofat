@@ -75,7 +75,7 @@ func reset() -> void:
 ##
 ## This resets the queue_index to 0, and moves the beginning of the queue to the end.
 func reset_standard_customer_queue() -> void:
-	if standard_queue and standard_index > 0:
+	if not standard_queue.is_empty() and standard_index > 0:
 		var new_queue := []
 		new_queue += standard_queue.slice(
 				standard_index, standard_queue.size() - 1)
@@ -104,7 +104,7 @@ func pop_standard_customers(creature_ids: Array) -> void:
 			pass
 		else:
 			var creature_def: CreatureDef = standard_queue[creature_index]
-			standard_queue.remove(creature_index)
+			standard_queue.remove_at(creature_index)
 			if creature_index >= standard_index:
 				# when moving a creature backwards in the queue, we advance standard_index
 				standard_index += 1
@@ -114,12 +114,11 @@ func pop_standard_customers(creature_ids: Array) -> void:
 ## Loads all standard customer data from a directory of json files.
 func _load_customers() -> void:
 	for customer_dir in customer_dirs:
-		var dir := DirAccess.new()
-		dir.open(customer_dir)
+		var dir := DirAccess.open(customer_dir)
 		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		while true:
 			var file := dir.get_next()
-			if not file:
+			if file.is_empty():
 				break
 			else:
 				var creature_def: CreatureDef = CreatureDef.new()

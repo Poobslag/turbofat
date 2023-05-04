@@ -24,8 +24,6 @@ const EMOTE_ANIMS := {
 	Creatures.Mood.SIGH1: "sigh1",
 	Creatures.Mood.SLY0: "sly0",
 	Creatures.Mood.SLY1: "sly1",
-	Creatures.Mood.SMILE0: "sly0",
-	Creatures.Mood.SMILE1: "sly1",
 	Creatures.Mood.SMILE0: "smile0",
 	Creatures.Mood.SMILE1: "smile1",
 	Creatures.Mood.SWEAT0: "sweat0",
@@ -134,14 +132,14 @@ const MAX_VOLUME := 0.0
 
 const FADE_SFX_DURATION := 0.08
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
-@export (NodePath) var creature_animations_path: NodePath: set = set_creature_animations_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_animations_path: NodePath: set = set_creature_animations_path
 
 ## stores the previous mood so that we can apply mood transitions.
-var _prev_mood: int
+var _prev_mood: Creatures.Mood
 
 ## stores the current mood. used to prevent sync issues when changing moods faster than 80 milliseconds.
-var _mood: int
+var _mood: Creatures.Mood
 
 var _creature_visuals: CreatureVisuals
 var _creature_animations: CreatureAnimations
@@ -174,7 +172,7 @@ func _process(_delta: float) -> void:
 			advance(randf() * current_animation_length)
 	if _creature_visuals.oriented_north():
 		if is_playing():
-			stop()
+			stop_emote_player()
 			_creature_visuals.reset_eye_frames()
 
 
@@ -199,7 +197,7 @@ func set_creature_animations_path(new_creature_animations_path: NodePath) -> voi
 
 
 ## Stops and emits an 'animation_stopped' signal.
-func stop(reset: bool = true) -> void:
+func stop_emote_player(reset: bool = true) -> void:
 	var old_anim := current_animation
 	super.stop(reset)
 	emit_signal("animation_stopped", old_anim)
@@ -296,13 +294,13 @@ func eat() -> void:
 ##
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
-func emote(mood: int) -> void:
+func emote(mood: Creatures.Mood) -> void:
 	_mood = mood
 	if _prev_mood in EMOTE_ANIMS:
 		if TRANSITIONS.has([_prev_mood, mood]):
 			# call the custom transition instead of interrupting the animation
 			call(TRANSITIONS.get([_prev_mood, mood]))
-			stop()
+			stop_emote_player()
 		else:
 			# reset to the default mood, and wait for the tween to complete
 			unemote()
@@ -332,7 +330,7 @@ func emote(mood: int) -> void:
 ## Parameters:
 ## 	'anim_name': (Optional) Animation which was previously playing.
 func unemote(anim_name: String = "") -> void:
-	stop()
+	stop_emote_player()
 	_unemote_non_tweened_properties()
 	if anim_name in EAT_SMILE_ANIMS:
 		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ0").frame = 0
@@ -392,7 +390,7 @@ func _unemote_non_tweened_properties() -> void:
 ##
 ## This takes place immediately, callers do not need to wait for $ResetTween.
 func unemote_immediate() -> void:
-	stop()
+	stop_emote_player()
 	_unemote_non_tweened_properties()
 	_creature_visuals.reset_eye_frames()
 	_head_bobber.rotation_degrees = 0
@@ -415,7 +413,7 @@ func unemote_immediate() -> void:
 ##
 ## 	'value': The new value to set the animation keys to
 func _update_animation_keys(anim_name: String, track_path: String, key_indexes: Array, value) -> void:
-	var track_index := get_animation(anim_name).find_track(NodePath(track_path))
+	var track_index := get_animation(anim_name).find_track(NodePath(track_path), Animation.TYPE_ANIMATION)
 	if track_index == -1:
 		push_warning("Track not found: %s -> %s" % [anim_name, track_path])
 		return
@@ -569,12 +567,12 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+		_creature_visuals.orientation_changed.disconnect(_on_CreatureVisuals_orientation_changed)
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
 	
-	_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+	_creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
 	_emote_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ0")
 	_emote_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ1")
 	_head_bobber = _creature_visuals.get_node("Neck0/HeadBobber")
@@ -609,7 +607,7 @@ func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 		play(anim_name)
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, new_orientation: Creatures.Orientation) -> void:
 	if is_processing() and not Creatures.oriented_south(new_orientation):
 		unemote_immediate()
 

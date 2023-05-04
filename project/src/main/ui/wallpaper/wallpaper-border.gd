@@ -10,11 +10,11 @@ extends Control
 const TEXTURE_SIZE := Vector2(512, 512)
 
 ## scroll velocity. only the x component is used
-@export (Vector2) var velocity: Vector2
+@export var velocity: Vector2
 
 ## desired width and height of the border.
 ## a value of [200, 50] means that the texture will be 200 pixels wide and 50 pixels high.
-@export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0): set = set_texture_scale
+@export var texture_scale: Vector2 = Vector2(512.0, 512.0): set = set_texture_scale
 
 @onready var _texture_rect: TextureRect = $TextureRect
 

@@ -33,7 +33,7 @@ var _chat_finished := false
 
 func _ready() -> void:
 	if Global.get_overworld_ui():
-		Global.get_overworld_ui().connect("visible_chatters_changed", Callable(self, "_on_OverworldUi_visible_chatters_changed"))
+		Global.get_overworld_ui().visible_chatters_changed.connect(_on_OverworldUi_visible_chatters_changed)
 
 
 func _process(delta: float) -> void:

@@ -2,8 +2,8 @@ extends Label
 ## UI component showing how long the player has spent on the current puzzle.
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	
 	_init_visible()
 	_refresh_text()

@@ -6,8 +6,6 @@ shader_type canvas_item;
  * but this can be increased for very large or intricate sprites.  
  */
 
-const float TAU = 6.28318530718;
-
 // the outline width
 uniform float width: hint_range(0.0, 128.0);
 

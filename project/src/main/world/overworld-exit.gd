@@ -26,7 +26,7 @@ const WEST := ExitDirection.WEST
 const NORTHWEST := ExitDirection.NORTHWEST
 
 ## direction the exit is facing. Also the direction the player needs to move to use the exit
-@export (ExitDirection) var exit_direction := ExitDirection.NORTH: set = set_exit_direction
+@export var exit_direction := ExitDirection.NORTH: set = set_exit_direction
 
 ## sprite sheet for when the exit faces east or west
 var _exit_e_sheet := preload("res://assets/main/world/environment/exit-e-sheet.png")
@@ -44,7 +44,7 @@ func _ready() -> void:
 	_refresh_exit_direction()
 
 
-func set_exit_direction(new_exit_direction: int) -> void:
+func set_exit_direction(new_exit_direction: ExitDirection) -> void:
 	exit_direction = new_exit_direction
 	
 	if is_inside_tree():

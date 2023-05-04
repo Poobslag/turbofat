@@ -12,7 +12,7 @@ const PLAYER_MOVE_SOUND_PITCH_SCALE_MIN := 0.9
 ## Highest pitch for the player move sound.
 const PLAYER_MOVE_SOUND_PITCH_SCALE_MAX := 1.1
 
-@export (NodePath) var trail_path
+@export var trail_path: NodePath
 
 ## Visual spot where the player has advanced.
 ##

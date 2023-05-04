@@ -7,7 +7,7 @@ extends Node
 const NAMETAG_HIGHLIGHT := Color("303060")
 const NAMETAG_LOWLIGHT := Color.DARK_GRAY
 
-@export (PackedScene) var HookableNametagScene: PackedScene
+@export var HookableNametagScene: PackedScene
 
 ## mapping from Creatures to NametagPanels
 var _creature_to_nametag: Dictionary
@@ -20,7 +20,7 @@ func _ready() -> void:
 		var nametag: Panel = hookable_nametag.get_node("Nametag")
 		add_child(hookable_nametag)
 		creature.get_node("NametagHook").remote_path = creature.get_node("NametagHook").get_path_to(hookable_nametag)
-		creature.connect("creature_name_changed", Callable(self, "_on_Creature_creature_name_changed").bind(creature, nametag))
+		creature.creature_name_changed.connect(_on_Creature_creature_name_changed.bind(creature, nametag))
 		_creature_to_nametag[creature] = nametag
 
 

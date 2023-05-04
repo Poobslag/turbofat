@@ -4,7 +4,7 @@ extends Node2D
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
-@export (Vector2) var velocity: Vector2
+@export var velocity: Vector2
 
 ## Money value to display. This controls our text.
 var money: int: set = set_money

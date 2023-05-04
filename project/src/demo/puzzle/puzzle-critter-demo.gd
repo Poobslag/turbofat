@@ -38,7 +38,7 @@ enum CritterType {
 	SHARK,
 }
 
-var critter_type: int = CritterType.NONE
+var critter_type := CritterType.NONE
 
 var _carrot_config := CarrotConfig.new()
 var _mole_config := MoleConfig.new()
@@ -47,9 +47,9 @@ var _shark_config := SharkConfig.new()
 @onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
 ## local path to a json level resource to demo
-@export (String, FILE, "*.json") var level_path: String
+@export_file("*.json") var level_path: String
 
-@export (bool) var cache_resources := false
+@export var cache_resources := false
 
 func _ready() -> void:
 	if cache_resources:
@@ -58,9 +58,7 @@ func _ready() -> void:
 	var settings: LevelSettings = LevelSettings.new()
 	if level_path:
 		var json_text := FileUtils.get_file_as_text(level_path)
-		var test_json_conv = JSON.new()
-		test_json_conv.parse(json_text)
-		var json_dict: Dictionary = test_json_conv.get_data()
+		var json_dict: Dictionary = JSON.parse_string(json_text)
 		var level_key := LevelSettings.level_key_from_path(level_path)
 		settings.from_json_dict(level_key, json_dict)
 		# Ignore the start_level property so we can test the middle parts of tutorials

@@ -1,8 +1,8 @@
 extends Control
 ## Draws puzzle 'critters', little monsters which affect the puzzle.
 
-@export (NodePath) var playfield_path: NodePath: set = set_playfield_path
-@export (NodePath) var piece_manager_path: NodePath: set = set_piece_manager_path
+@export var playfield_path: NodePath: set = set_playfield_path
+@export var piece_manager_path: NodePath: set = set_piece_manager_path
 
 ## Draws carrots, puzzle critters which rocket up the screen, blocking the player's vision.
 @onready var _carrots: Carrots = $Carrots
@@ -17,7 +17,7 @@ extends Control
 @onready var _sharks: Sharks = $Sharks
 
 func _ready() -> void:
-	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
+	Pauser.paused_changed.connect(_on_Pauser_paused_changed)
 	_refresh_playfield_path()
 	_refresh_piece_manager_path()
 

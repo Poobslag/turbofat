@@ -2,7 +2,7 @@ extends Control
 ## Shows a little 'happy face' icon next to each chat choice.
 
 ## location of the mood icon; the right or left side of the chat window
-@export (bool) var mood_right: bool: set = set_mood_right
+@export var mood_right: bool: set = set_mood_right
 
 var textures := {
 	Creatures.Mood.DEFAULT: preload("res://assets/main/chat/ui/choice-mood-default.png"),
@@ -43,7 +43,7 @@ var textures := {
 ## Parameters:
 ## 	'mood': Enum from Creatures.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
 ## 		mood being shown.
-func set_mood(new_mood: int) -> void:
+func set_mood(new_mood: Creatures.Mood) -> void:
 	if textures.has(new_mood):
 		$Texture2D.texture = textures[new_mood]
 	else:

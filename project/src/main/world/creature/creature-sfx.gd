@@ -164,7 +164,7 @@ func set_suppress_sfx(new_suppress_sfx: bool) -> void:
 ##
 ## Of course in real life you can't talk with your mouth full -- but combo sounds are positive feedback, so it's nice
 ## to avoid interrupting them.
-func _on_Creature_food_eaten(_food_type: int) -> void:
+func _on_Creature_food_eaten(_food_type: Foods.FoodType) -> void:
 	if not should_play_sfx:
 		return
 	

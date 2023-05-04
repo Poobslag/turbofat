@@ -64,7 +64,7 @@ func test_center_o() -> void:
 	assert_eq(piece.center(), Vector2(3.5, 3.5))
 	
 	# when moved, the O-Block's center moves too
-	piece.pos = Vector2(2, 2)
+	piece.pos = Vector2i(2, 2)
 	assert_eq(piece.center(), Vector2(2.5, 2.5))
 
 

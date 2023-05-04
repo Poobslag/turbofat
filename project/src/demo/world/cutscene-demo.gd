@@ -87,9 +87,9 @@ func _on_Open_valid_changed() -> void:
 	_refresh_start_button()
 
 
-func _on_OpenFile_hide() -> void:
+func _on_OpenFile_hidden() -> void:
 	_assign_focus()
 
 
-func _on_Error_hide() -> void:
+func _on_Error_hidden() -> void:
 	_assign_focus()

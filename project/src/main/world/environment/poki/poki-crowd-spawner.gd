@@ -5,7 +5,7 @@ extends ObstacleSpawner
 ## Provides a utility method in the editor for shuffling the crowd member's appearance.
 
 ## Editor toggle which randomizes the crowd member's appearance
-@export (bool) var shuffle: bool: set = set_shuffle
+@export var shuffle: bool: set = set_shuffle
 
 ## Randomizes the crowd member's appearance.
 func set_shuffle(value: bool) -> void:

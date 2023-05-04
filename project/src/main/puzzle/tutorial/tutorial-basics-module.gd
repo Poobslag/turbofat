@@ -18,14 +18,14 @@ var _did_build_cake := false
 var _did_squish_move := false
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
-	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
+	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
+	PuzzleState.game_started.connect(_on_PuzzleState_game_started)
 	
-	playfield.connect("box_built", Callable(self, "_on_Playfield_box_built"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
-	playfield.connect("line_cleared", Callable(self, "_on_Playfield_line_cleared"))
-	piece_manager.connect("squish_moved", Callable(self, "_on_PieceManager_squish_moved"))
-	piece_manager.connect("piece_spawned", Callable(self, "_on_PieceManager_piece_spawned"))
+	playfield.box_built.connect(_on_Playfield_box_built)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
+	playfield.line_cleared.connect(_on_Playfield_line_cleared)
+	piece_manager.squish_moved.connect(_on_PieceManager_squish_moved)
+	piece_manager.piece_spawned.connect(_on_PieceManager_piece_spawned)
 	
 	if CurrentLevel.settings.other.skip_intro:
 		puzzle.hide_buttons()
@@ -170,12 +170,12 @@ func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 	_did_build_cake = false
 
 
-func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2i) -> void:
 	_did_squish_move = true
 	_squish_moves += 1
 
 
-func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, color: Foods.BoxType) -> void:
 	_did_build_box = true
 	_boxes_built += 1
 	

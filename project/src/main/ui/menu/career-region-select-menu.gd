@@ -1,7 +1,7 @@
 extends Control
 ## Scene which lets the player select a career region to play.
 
-@export (NodePath) var region_buttons_path: NodePath
+@export var region_buttons_path: NodePath
 
 @onready var _region_buttons := get_node(region_buttons_path)
 

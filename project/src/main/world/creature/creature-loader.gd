@@ -84,7 +84,7 @@ var _dna_alternatives := DnaAlternatives.new()
 ## 	'creature_type': (Optional) Required creature type. If specified, creatures will be skipped in the
 ## 		secondary queue until one conforms to the specified type.
 func random_customer_def(include_predefined_customers: bool = false,
-		creature_type: int = Creatures.Type.DEFAULT) -> CreatureDef:
+		creature_type: Creatures.Type = Creatures.Type.DEFAULT) -> CreatureDef:
 	var result: CreatureDef
 	if include_predefined_customers \
 			and PlayerData.customer_queue.has_standard_customer() \
@@ -222,7 +222,7 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 	var resource_path: String
 	var frame_data: String
 	var resource: Resource
-	if key and not dna.has(key):
+	if not key.is_empty() and not dna.has(key):
 		# The key was not specified in the creature definition. This is not an error condition, a creature might not
 		# have an 'ear' key if she doesn't have ears.
 		pass

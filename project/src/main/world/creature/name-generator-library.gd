@@ -14,7 +14,7 @@ func _ready() -> void:
 ##
 ## Parameters:
 ## 	type: Enum from Creatures.Type for a creature type such as 'squirrel'
-func generate_name(type: int = Creatures.Type.DEFAULT) -> String:
+func generate_name(type: Creatures.Type = Creatures.Type.DEFAULT) -> String:
 	return _generators_by_type[type].generate_name()
 
 

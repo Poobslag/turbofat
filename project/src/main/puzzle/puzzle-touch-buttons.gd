@@ -42,7 +42,7 @@ const SCHEMES := {
 }
 
 ## if false, pressing the buttons won't emit any actions.
-@export (bool) var emit_actions := true: set = set_emit_actions
+@export var emit_actions := true: set = set_emit_actions
 
 @onready var _close := preload("res://assets/main/ui/touch/menu.png")
 @onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
@@ -55,14 +55,14 @@ const SCHEMES := {
 @onready var _menu_button := $MenuButtonHolder/MenuButton
 
 func _ready() -> void:
-	if OS.has_touchscreen_ui_hint():
-		SystemData.touch_settings.connect("changed", Callable(self, "_on_TouchSettings_settings_changed"))
+	if DisplayServer.is_touchscreen_available():
+		SystemData.touch_settings.changed.connect(_on_TouchSettings_settings_changed)
 		_refresh_emit_actions()
 		_refresh_settings()
 		show()
 	else:
 		hide()
-	_menu_button.connect("pressed", Callable(self, "_on_MenuButton_pressed"))
+	_menu_button.pressed.connect(_on_MenuButton_pressed)
 
 
 func set_emit_actions(new_emit_actions: bool) -> void:
@@ -151,10 +151,10 @@ func _on_EightWay_pressed() -> void:
 		$ButtonSound.play()
 
 
-func _on_Menu_show() -> void:
+func _on_Menu_shown() -> void:
 	hide()
 
 
-func _on_Menu_hide() -> void:
-	if OS.has_touchscreen_ui_hint():
+func _on_Menu_hidden() -> void:
+	if DisplayServer.is_touchscreen_available():
 		show()

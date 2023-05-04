@@ -59,7 +59,7 @@ func _refresh_labels() -> void:
 		var name: String = name_obj
 		var label := Label.new()
 		label.text = name
-		label.align = Label.ALIGNMENT_CENTER
+		label.align = HORIZONTAL_ALIGNMENT_CENTER
 		label.size_flags_horizontal = Label.SIZE_EXPAND_FILL
 		$Labels.add_child(label)
 	
@@ -70,8 +70,8 @@ func _refresh_labels() -> void:
 	
 	# outermost labels take up less space; this helps the ticks align better
 	if $Labels.get_child_count() > 0:
-		$Labels.get_child(0).align = Label.ALIGN_LEFT
-		$Labels.get_child($Labels.get_child_count() - 1).align = Label.ALIGN_RIGHT
+		$Labels.get_child(0).align = HORIZONTAL_ALIGNMENT_LEFT
+		$Labels.get_child($Labels.get_child_count() - 1).align = HORIZONTAL_ALIGNMENT_RIGHT
 		
 		$Labels.get_child(0).size_flags_stretch_ratio = 0.5
 		$Labels.get_child($Labels.get_child_count() - 1).size_flags_stretch_ratio = 0.5

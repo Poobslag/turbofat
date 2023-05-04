@@ -20,10 +20,10 @@ var enhance_combo_fx := false
 var non_interactive := false
 
 ## enum from SuppressPieceRotation for whether pieces can rotate
-var suppress_piece_rotation: int = SuppressPieceRotation.NONE
+var suppress_piece_rotation := SuppressPieceRotation.NONE
 
 ## enum from SuppressPieceRotation for whether pieces can be initially rotated by holding a rotate key
-var suppress_piece_initial_rotation: int = SuppressPieceRotation.NONE
+var suppress_piece_initial_rotation := SuppressPieceRotation.NONE
 
 ## When the player first launches the game and does the tutorial, we skip the start button and countdown.
 var skip_intro := false
@@ -32,7 +32,7 @@ var skip_intro := false
 var start_level: String
 
 ## enum from PuzzleTileMap.TileSetType which affects the blocks' appearance (and sometimes behavior)
-var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
+var tile_set := PuzzleTileMap.TileSetType.DEFAULT
 
 ## 'true' for tutorial levels which are led by Turbo
 var tutorial := false
@@ -46,9 +46,9 @@ func _init() -> void:
 	_rule_parser.add_bool("enhance_combo_fx")
 	_rule_parser.add_bool("non_interactive")
 	_rule_parser.add_enum("suppress_piece_rotation", SuppressPieceRotation) \
-			super.implied(SuppressPieceRotation.ROTATION)
+			.implied(SuppressPieceRotation.ROTATION)
 	_rule_parser.add_enum("suppress_piece_initial_rotation", SuppressPieceRotation) \
-			super.implied(SuppressPieceRotation.ROTATION)
+			.implied(SuppressPieceRotation.ROTATION)
 	_rule_parser.add_bool("skip_intro")
 	_rule_parser.add_string("start_level")
 	_rule_parser.add_enum("tile_set", PuzzleTileMap.TileSetType)

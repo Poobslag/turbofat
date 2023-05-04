@@ -17,11 +17,11 @@ extends Node
 @onready var _match_end_sound := $MatchEndSound
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
-	PuzzleState.connect("before_level_changed", Callable(self, "_on_PuzzleState_before_level_changed"))
-	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.game_started.connect(_on_PuzzleState_game_started)
+	PuzzleState.before_level_changed.connect(_on_PuzzleState_before_level_changed)
+	PuzzleState.after_level_changed.connect(_on_PuzzleState_after_level_changed)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
 
 
 func play_ready_sound() -> void:

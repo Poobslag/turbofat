@@ -16,8 +16,8 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 		CAKE,
 	}
 	
-	## enum from RequiredPickupType defining the pickup's required type
-	var required_pickup_type: int = RequiredPickupType.ANY
+	# enum from RequiredPickupType defining the pickup's required type
+	var required_pickup_type := RequiredPickupType.ANY
 	
 	## Creates a new PickupCollectedPhaseCondition instance with the specified configuration.
 	func _init(phase_config: Dictionary) -> void:
@@ -29,9 +29,9 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
 	##
 	## Parameters:
-	## 	'event_params': 'type' is an enum from Foods.PickupType defining the pickup's color
+	## 	'event_params': 'type' is an enum from Foods.FoodType defining the pickup's color
 	func should_run(event_params: Dictionary) -> bool:
-		var actual_pickup_type: int = event_params["type"]
+		var actual_pickup_type: Foods.FoodType = event_params["type"]
 		var should_run := false
 		match required_pickup_type:
 			RequiredPickupType.ANY:
@@ -164,8 +164,8 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 		CAKE,
 	}
 	
-	## enum from RequiredBoxType defining the box's required type
-	var required_box_type: int = RequiredBoxType.ANY
+	# enum from RequiredBoxType defining the box's required type
+	var required_box_type: RequiredBoxType = RequiredBoxType.ANY
 	
 	## Creates a new BoxBuiltPhaseCondition instance with the specified configuration.
 	func _init(phase_config: Dictionary) -> void:
@@ -179,7 +179,7 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 	## Parameters:
 	## 	'event_params': 'type' is an enum from Foods.BoxType defining the box's color
 	func should_run(event_params: Dictionary) -> bool:
-		var actual_box_type: int = event_params["type"]
+		var actual_box_type: Foods.BoxType = event_params["type"]
 		var should_run := false
 		match required_box_type:
 			RequiredBoxType.ANY:

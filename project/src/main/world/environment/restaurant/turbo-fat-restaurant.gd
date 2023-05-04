@@ -3,10 +3,10 @@ extends OverworldObstacle
 ##
 ## This script toggles the restaurant's appearance based on the player's story progression.
 
-@export (PackedScene) var SmokeClusterScene: PackedScene
+@export var SmokeClusterScene: PackedScene
 
 ## Disable cutscene sound effects. This is useful for environments which have multiple copies of the restaurant
-@export (bool) var sfx_disabled: bool = false
+@export var sfx_disabled: bool = false
 
 ## A 'closed' sign used at the start of the game and during certain cutscenes.
 @onready var closed_sign: Sprite2D = $ClosedSign
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 	
 	if Global.get_overworld_ui():
-		Global.get_overworld_ui().connect("chat_event_meta_played", Callable(self, "_on_OverworldUi_chat_event_meta_played"))
+		Global.get_overworld_ui().chat_event_meta_played.connect(_on_OverworldUi_chat_event_meta_played)
 
 
 func hide_closed_sign() -> void:

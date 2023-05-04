@@ -10,7 +10,7 @@ const MAX_LABELS := 6
 ## Time in seconds for all of the chat choices to pop up.
 const TOTAL_POP_IN_DELAY := 0.3
 
-@export (PackedScene) var ChatChoiceButtonScene
+@export var ChatChoiceButtonScene: PackedScene
 
 ## Strings to show the player for each chat branch.
 var _choices := []
@@ -123,9 +123,9 @@ func _refresh_child_buttons() -> void:
 		button.set_choice_text(choice_text)
 		button.set_mood(_moods[i])
 		button.set_mood_right(i % 2 == 1)
-		button.connect("focus_entered", Callable(self, "_on_ChatChoiceButton_focus_entered"))
-		button.connect("gui_input", Callable(self, "_on_ChatChoiceButton_gui_input"))
-		button.connect("pressed", Callable(self, "_on_ChatChoiceButton_pressed"))
+		button.focus_entered.connect(_on_ChatChoiceButton_focus_entered)
+		button.gui_input.connect(_on_ChatChoiceButton_gui_input)
+		button.pressed.connect(_on_ChatChoiceButton_pressed)
 		add_child(button)
 		new_buttons.append(button)
 	

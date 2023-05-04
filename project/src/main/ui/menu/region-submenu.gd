@@ -7,7 +7,7 @@ extends Control
 ## 	'region': A CareerRegion or OtherRegion instance for the chosen region.
 signal region_chosen(region)
 
-@export (NodePath) var region_buttons_path: NodePath
+@export var region_buttons_path: NodePath
 
 @onready var _region_buttons: PagedRegionButtons = get_node(region_buttons_path)
 
@@ -26,7 +26,7 @@ func popup(default_region_id: String) -> void:
 			regions.append(region)
 	regions.append_array(CareerLevelLibrary.regions)
 	_region_buttons.regions = regions
-	if default_region_id:
+	if not default_region_id.is_empty():
 		_region_buttons.focus_region(default_region_id)
 	show()
 

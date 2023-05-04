@@ -11,7 +11,7 @@ const LONG_SHORT_NAME := "WWWWWWWWWWWWWWW"
 
 
 func _ready() -> void:
-	pressed = PlayerData.creature_library.get_player_def().creature_name == LONG_NAME
+	button_pressed = PlayerData.creature_library.get_player_def().creature_name == LONG_NAME
 
 
 func _on_toggled(button_pressed: bool) -> void:

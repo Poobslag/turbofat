@@ -7,22 +7,22 @@ func _ready() -> void:
 	_refresh_scale()
 
 
-func _get_drag_data(_pos: Vector2) -> Object:
+func _get_drag_data(_pos: Vector2) -> Variant:
 	var data: BlockLevelChunk = BlockLevelChunk.new()
-	for cell in $TileMap.get_used_cells():
-		var tile: int = $TileMap.get_cellv(cell)
-		var autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(cell.x, cell.y)
+	for cell in $TileMap.get_used_cells(0):
+		var tile: int = $TileMap.get_cell_source_id(0, cell)
+		var autotile_coord: Vector2i = $TileMap.get_cell_atlas_coords(0, cell)
 		data.set_block(cell, tile, autotile_coord)
 	_refresh_tile_map()
 	return data
 
 
 ## Calculates the extents of the tilemap's used cells.
-func _tile_map_extents() -> Rect2:
-	var size := Rect2(Vector2.ZERO, Vector2.ZERO)
-	if $TileMap.get_used_cells():
-		size.position = $TileMap.get_used_cells()[0]
-		for cell in $TileMap.get_used_cells():
+func _tile_map_extents() -> Rect2i:
+	var size := Rect2i(Vector2i.ZERO, Vector2i.ZERO)
+	if $TileMap.get_used_cells(0):
+		size.position = $TileMap.get_used_cells(0)[0]
+		for cell in $TileMap.get_used_cells(0):
 			size = size.expand(cell)
 	return size
 

@@ -33,5 +33,5 @@ func _ready() -> void:
 ##
 ## Returns:
 ## 	Color and density of crumbs when the specified food is eaten.
-func get_definition(food_type: int) -> CrumbDefinition:
+func get_definition(food_type: Foods.FoodType) -> CrumbDefinition:
 	return crumb_definitions[food_type]

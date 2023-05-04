@@ -52,7 +52,7 @@ func _normalize_tiles_keys(keys: Array) -> Array:
 	var new_keys := keys.duplicate()
 	new_keys.sort()
 	if "start" in keys:
-		new_keys.remove(new_keys.find("start"))
+		new_keys.remove_at(new_keys.find("start"))
 	new_keys.insert(0, "start")
 	return new_keys
 
@@ -98,7 +98,7 @@ func _on_PlayfieldNav_remove_tiles_key_pressed() -> void:
 		return
 	
 	tiles_key = tiles_keys[old_tiles_key_index - 1]
-	tiles_keys.remove(old_tiles_key_index)
+	tiles_keys.remove_at(old_tiles_key_index)
 	tiles_keys = _normalize_tiles_keys(tiles_keys)
 	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
 

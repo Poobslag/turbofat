@@ -26,6 +26,7 @@ signal finish_triggered
 ## emitted when the player reaches the end of a tutorial section
 signal tutorial_section_finished
 
+## emitted when the game ends by dying or meeting a finish condition
 signal game_ended
 
 ## emitted several seconds after the game ends
@@ -89,13 +90,13 @@ var fatness_score := 0
 var game_active: bool
 
 ## 'true' if the player finished this tutorial section.
-var tutorial_section_finished: bool
+var tutorial_section_finish_emitted: bool
 
 ## 'true' if the player survived until the end the level.
-var finish_triggered: bool
+var finish_trigger_emitted: bool
 
 ## 'true' if the end has been triggered by dying or meeting a finish condition
-var game_ended: bool
+var game_end_emitted: bool
 
 ## speed the player is currently on, if the level has different speeds.
 var speed_index: int: set = set_speed_index
@@ -155,7 +156,7 @@ func prepare_and_start_game() -> void:
 		# when skipping the intro, we don't pause between preparing/starting the game
 		_start_game()
 	else:
-		start_timer(READY_DURATION).connect("timeout", Callable(self, "_on_Timer_timeout_start_game"))
+		start_timer(READY_DURATION).timeout.connect(_on_Timer_timeout_start_game)
 
 
 func set_speed_index(new_speed_index: int) -> void:
@@ -208,7 +209,7 @@ func make_player_lose() -> void:
 		# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual effects
 		level_performance.lost = true
 		game_active = false
-		game_ended = true
+		game_end_emitted = true
 		
 		# trigger the visual effects for topping out, such as making the player go swirly eyed
 		apply_top_out_score_penalty()
@@ -225,7 +226,7 @@ func make_player_lose() -> void:
 func end_game() -> void:
 	# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual effects
 	game_active = false
-	game_ended = true
+	game_end_emitted = true
 	end_combo()
 	if not level_performance.lost:
 		level_performance.success = MilestoneManager.is_met(CurrentLevel.settings.success_condition)
@@ -241,7 +242,7 @@ func end_game() -> void:
 			wait_time = 0.0
 	
 	if wait_time > 0.0:
-		start_timer(wait_time).connect("timeout", Callable(self, "_on_Timer_timeout_emit_after_game_ended"))
+		start_timer(wait_time).timeout.connect(_on_Timer_timeout_emit_after_game_ended)
 	else:
 		emit_signal("after_game_ended")
 
@@ -269,11 +270,11 @@ func change_level(level_id: String) -> void:
 ## wasn't wasted, if they built a lot of boxes they didn't clear.
 func trigger_finish() -> void:
 	if CurrentLevel.is_tutorial():
-		tutorial_section_finished = true
+		tutorial_section_finish_emitted = true
 		emit_signal("tutorial_section_finished")
 	else:
 		game_active = false
-		finish_triggered = true
+		finish_trigger_emitted = true
 		emit_signal("finish_triggered")
 
 
@@ -321,7 +322,7 @@ func add_pickup_score(pickup_score: int) -> void:
 ##
 ## This occurs during very specific levels with gimmicks like sharks. It mostly gets treated the same way as pickups,
 ## but also triggers a money UI popup.
-func add_unusual_cell_score(cell: Vector2, cell_score: int) -> void:
+func add_unusual_cell_score(cell: Vector2i, cell_score: int) -> void:
 	PuzzleState.add_pickup_score(cell_score)
 	emit_signal("added_unusual_cell_score", cell, cell_score)
 
@@ -333,7 +334,7 @@ func end_combo() -> void:
 		# during tutorials, reset the combo and line clears
 		customer_scores[customer_scores.size() - 1] = 0
 		combo = 0
-	elif no_more_customers or game_ended:
+	elif no_more_customers or game_end_emitted:
 		pass
 	elif get_customer_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0
@@ -369,9 +370,9 @@ func reset() -> void:
 	fatness_score = 0
 	level_performance = PuzzlePerformance.new()
 	game_active = false
-	finish_triggered = false
-	tutorial_section_finished = false
-	game_ended = false
+	finish_trigger_emitted = false
+	tutorial_section_finish_emitted = false
+	game_end_emitted = false
 	topping_out = false
 	speed_index = 0
 	no_more_customers = CurrentLevel.is_tutorial()
@@ -418,21 +419,21 @@ func end_result() -> int:
 		return Levels.Result.FINISHED
 
 
-func before_piece_written() -> void:
+func trigger_before_piece_written() -> void:
 	emit_signal("before_piece_written")
 
 
-func after_piece_written() -> void:
-	if finish_triggered and not game_ended:
+func trigger_after_piece_written() -> void:
+	if finish_trigger_emitted and not game_end_emitted:
 		end_game()
 	emit_signal("after_piece_written")
 
 
 func _prepare_game() -> void:
 	game_active = false
-	finish_triggered = false
-	tutorial_section_finished = false
-	game_ended = false
+	finish_trigger_emitted = false
+	tutorial_section_finish_emitted = false
+	game_end_emitted = false
 	topping_out = false
 	
 	if CurrentLevel.settings.other.start_level:

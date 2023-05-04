@@ -1,12 +1,12 @@
 extends HBoxContainer
 ## UI control for editing a creature's name.
 
-@export (NodePath) var creature_editor_path: NodePath
+@export var creature_editor_path: NodePath
 
 @onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
 func _ready() -> void:
-	_creature_editor.connect("center_creature_changed", Callable(self, "_on_CreatureEditor_center_creature_changed"))
+	_creature_editor.center_creature_changed.connect(_on_CreatureEditor_center_creature_changed)
 	$Edit/Name.max_length = NameUtils.MAX_CREATURE_NAME_LENGTH
 	$Edit/ShortName.max_length = NameUtils.MAX_CREATURE_SHORT_NAME_LENGTH
 

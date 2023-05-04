@@ -68,7 +68,7 @@ static func config_string_from_ints(ints: Array, max_int: int = 0) -> String:
 	else:
 		if config_string:
 			config_string += ","
-		if increment == 1 and not config_string:
+		if increment == 1 and config_string.is_empty():
 			# produce output like '6...'
 			config_string += "%s..." % [start_value]
 		else:
@@ -100,7 +100,7 @@ static func config_string_from_ints(ints: Array, max_int: int = 0) -> String:
 ## Returns:
 ## 	A series of ints like [2, 3, 4, 5, 7]
 static func ints_from_config_string(config_string: String, max_int: int = 0) -> Dictionary:
-	if not config_string:
+	if config_string.is_empty():
 		return {}
 	
 	var ints := {}

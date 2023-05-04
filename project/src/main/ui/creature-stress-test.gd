@@ -14,7 +14,7 @@ const CREATURE_IDS := [
 ## how long we're willing to block a thread to add more sprites
 const CHUNK_SECONDS := 0.01
 
-@export (PackedScene) var CreatureScene: PackedScene
+@export var CreatureScene: PackedScene
 
 ## desired number of creatures to show
 var _target_creature_count := 5

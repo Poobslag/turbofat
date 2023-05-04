@@ -32,7 +32,7 @@ var customers: Array
 var chef_id: String
 
 ## Tracks when the player finishes a level.
-var best_result: int = Levels.Result.NONE: set = set_best_result
+var best_result := Levels.Result.NONE: set = set_best_result
 
 ## How many times the player has tried the level in this session.
 var attempt_count := 0
@@ -41,7 +41,7 @@ var attempt_count := 0
 var puzzle_environment_name: String
 
 func _ready() -> void:
-	Breadcrumb.connect("before_scene_changed", Callable(self, "_on_Breadcrumb_before_scene_changed"))
+	Breadcrumb.before_scene_changed.connect(_on_Breadcrumb_before_scene_changed)
 
 
 ## Unsets all of the 'launched level' data.
@@ -68,7 +68,7 @@ func set_launched_level(new_level_id: String) -> void:
 	reset()
 	level_id = new_level_id
 	
-	if new_level_id:
+	if not new_level_id.is_empty():
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level_id)
 		if level_settings.other.tutorial:
@@ -112,7 +112,7 @@ func push_level_trail() -> void:
 	SceneTransition.push_trail(Global.SCENE_PUZZLE)
 
 
-func set_best_result(new_best_result: int) -> void:
+func set_best_result(new_best_result: Levels.Result) -> void:
 	best_result = new_best_result
 	emit_signal("best_result_changed")
 
@@ -123,7 +123,7 @@ func set_best_result(new_best_result: int) -> void:
 ## creature ids are not included.
 func get_creature_ids() -> Array:
 	var result := {}
-	if chef_id:
+	if not chef_id.is_empty():
 		result[chef_id] = true
 	for customer_obj in customers:
 		if customer_obj is String:
@@ -197,14 +197,14 @@ func has_customer(customer_obj) -> bool:
 func _customers_match(customer1, customer2) -> bool:
 	var result := false
 	
-	var id1 := customer1 as String if customer1 is String else customer1.creature_id
-	var id2 := customer2 as String if customer2 is String else customer2.creature_id
-	var name1 := "" if customer1 is String else customer1.creature_name
-	var name2 := "" if customer2 is String else customer2.creature_name
+	var id1: String = customer1 as String if customer1 is String else customer1.creature_id
+	var id2: String = customer2 as String if customer2 is String else customer2.creature_id
+	var name1: String = "" if customer1 is String else customer1.creature_name
+	var name2: String = "" if customer2 is String else customer2.creature_name
 	
-	if id1 or id2:
+	if not id1.is_empty() or not id2.is_empty():
 		result = id1 == id2
-	elif name1 or name2:
+	elif not name1.is_empty() or not name2.is_empty():
 		result = name1 == name2
 	
 	return result

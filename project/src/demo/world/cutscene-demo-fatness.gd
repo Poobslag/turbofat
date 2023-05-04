@@ -14,10 +14,10 @@ func _ready() -> void:
 
 ## Updates the UI controls and the global 'forced_fatness' field.
 func _refresh() -> void:
-	$HSlider.editable = $CheckBox.pressed
+	$HSlider.editable = $CheckBox.button_pressed
 	$Value.text = "%.1f" % [$HSlider.value] if $HSlider.editable else "-"
 	
-	PlayerData.creature_library.forced_fatness = $HSlider.value if $CheckBox.pressed else 0.0
+	PlayerData.creature_library.forced_fatness = $HSlider.value if $CheckBox.button_pressed else 0.0
 
 
 func _on_CheckBox_pressed() -> void:

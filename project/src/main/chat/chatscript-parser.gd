@@ -36,17 +36,13 @@ class DefaultState extends AbstractState:
 	
 	func line(line: String) -> String:
 		var result := ""
-		if not line:
+		if line.is_empty():
 			pass
 		elif line.begins_with("{") and line.ends_with("}"):
 			# json dictionary; set metadata
-			var test_json_conv = JSON.new()
-			test_json_conv.parse(line)
-			var parsed = test_json_conv.get_data()
+			var parsed = JSON.parse_string(line)
 			if typeof(parsed) == TYPE_DICTIONARY:
-				var test_json_conv = JSON.new()
-				test_json_conv.parse(line)
-				chat_tree.meta = test_json_conv.get_data()
+				chat_tree.meta = JSON.parse_string(line)
 				if "version" in chat_tree.meta:
 					chat_tree.meta.erase("version")
 			else:
@@ -131,7 +127,7 @@ class CharactersState extends AbstractState:
 		
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
-			if chat_tree.chef_id:
+			if not chat_tree.chef_id.is_empty():
 				chat_tree.warn("Too many chefs: %s" % [creature_id])
 			chat_tree.chef_id = creature_id
 		
@@ -141,18 +137,18 @@ class CharactersState extends AbstractState:
 		
 		# parse (observer) prefix
 		if character_prefix == "(observer)":
-			if chat_tree.observer_id:
+			if not chat_tree.observer_id.is_empty():
 				chat_tree.warn("Too many observers: %s" % [creature_id])
 			chat_tree.observer_id = creature_id
 		
 		# parse spawn location
 		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
-		if creature_id and character_location:
+		if not creature_id.is_empty() and not character_location.is_empty():
 			chat_tree.spawn_locations[creature_id] = character_location
 		
 		# parse alias
 		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
-		if creature_id and character_alias:
+		if not creature_id.is_empty() and not character_alias.is_empty():
 			_character_aliases[character_alias] = creature_id
 
 ## -----------------------------------------------------------------------------
@@ -447,8 +443,7 @@ func chat_tree_from_file(path: String) -> ChatTree:
 	if not FileUtils.file_exists(path):
 		push_error("File not found: %s" % [path])
 	else:
-		var f := File.new()
-		f.open(path, File.READ)
+		var f := FileAccess.open(path, FileAccess.READ)
 		
 		while f.get_error() == OK and not f.eof_reached():
 			# strip any whitespace at the end of the line

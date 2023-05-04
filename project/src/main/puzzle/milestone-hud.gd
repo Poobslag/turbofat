@@ -22,9 +22,9 @@ const LEVEL_COLOR_5 := Color("b948b9")
 @onready var _progress_bar_particles: Control = $ProgressBarParticles
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.speed_index_changed.connect(_on_PuzzleState_speed_index_changed)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
 			_desc.text = tr("Customers")

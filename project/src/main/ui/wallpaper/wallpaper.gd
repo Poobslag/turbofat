@@ -5,8 +5,8 @@ extends Control
 ## when a float value is unspecified.
 const UNSPECIFIED_FLOAT := 3025403.0
 
-@export (PackedScene) var WallpaperBorderScene: PackedScene
-@export (PackedScene) var StickerRowScene: PackedScene
+@export var WallpaperBorderScene: PackedScene
+@export var StickerRowScene: PackedScene
 
 ## two colors used for this wallpaper
 var dark_color: Color
@@ -52,25 +52,25 @@ func _ready() -> void:
 ## Assigns the background colors based on the day of the week.
 func _assign_daily_colors() -> void:
 	match Time.get_datetime_dict_from_system().get("weekday"):
-		OS.DAY_MONDAY: # chocolate brown
+		Time.WEEKDAY_MONDAY: # chocolate brown
 			dark_color = Color("280808")
 			light_color = Color("360f09")
-		OS.DAY_TUESDAY: # baby blue
+		Time.WEEKDAY_TUESDAY: # baby blue
 			dark_color = Color("009cf3")
 			light_color = Color("61bff3")
-		OS.DAY_WEDNESDAY: # dark purple
+		Time.WEEKDAY_WEDNESDAY: # dark purple
 			dark_color = Color("602091")
 			light_color = Color("7125a9")
-		OS.DAY_THURSDAY: # sugar white
+		Time.WEEKDAY_THURSDAY: # sugar white
 			dark_color = Color("cba688")
 			light_color = Color("e3c9b1")
-		OS.DAY_FRIDAY: # grassy green
+		Time.WEEKDAY_FRIDAY: # grassy green
 			dark_color = Color("36b16a")
 			light_color = Color("6adc8d")
-		OS.DAY_SATURDAY: # bready orange
+		Time.WEEKDAY_SATURDAY: # bready orange
 			dark_color = Color("e87d25")
 			light_color = Color("f79545")
-		OS.DAY_SUNDAY, _: # strawberry red
+		Time.WEEKDAY_SUNDAY, _: # strawberry red
 			dark_color = Color("ed333b")
 			light_color = Color("ff5d68")
 

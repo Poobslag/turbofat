@@ -4,15 +4,15 @@ extends Button
 ## emitted when the player starts or stops rebinding a key
 signal awaiting_changed(awaiting)
 
-@export (String) var action_name: String
-@export (int) var action_index: int
+@export var action_name: String
+@export var action_index: int
 
 ## 'true' if this button is waiting for the player to press a key
 var awaiting := false
 
 func _ready() -> void:
 	connect("pressed", Callable(self, "_on_pressed"))
-	SystemData.keybind_settings.connect("changed", Callable(self, "_on_KeybindSettings_settings_changed"))
+	SystemData.keybind_settings.changed.connect(_on_KeybindSettings_settings_changed)
 	_refresh_text()
 
 
@@ -30,7 +30,7 @@ func end_awaiting() -> void:
 	if not awaiting:
 		return
 	
-	pressed = false
+	button_pressed = false
 	awaiting = false
 	_refresh_text()
 	emit_signal("awaiting_changed", awaiting)
@@ -42,7 +42,7 @@ func _start_awaiting() -> void:
 	for keybind_button in custom_keybind_buttons:
 		keybind_button.end_awaiting()
 	
-	pressed = true
+	button_pressed = true
 	awaiting = true
 	text = tr("<Enter Key>")
 	emit_signal("awaiting_changed", awaiting)
@@ -58,7 +58,7 @@ func _refresh_text() -> void:
 
 
 func _on_pressed() -> void:
-	if pressed:
+	if button_pressed:
 		_start_awaiting()
 	else:
 		end_awaiting()

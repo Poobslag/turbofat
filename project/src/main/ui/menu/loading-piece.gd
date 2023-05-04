@@ -97,7 +97,7 @@ func _refresh() -> void:
 	_target_rotation = _source_rotation + _wobble_amount * sin(_wobble_period * (_total_time + _wobble_offset))
 	
 	# lerp between source/target
-	var flight_amount := clamp(_total_time / PIECE_FLIGHT_DURATION, 0, 1)
+	var flight_amount: float = clamp(_total_time / PIECE_FLIGHT_DURATION, 0, 1)
 	flight_amount = pow(flight_amount, 1.5)
 	position = lerp(_source_position, _target_position, flight_amount)
 	rotation = lerp(_source_rotation, _target_rotation, flight_amount)

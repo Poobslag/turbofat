@@ -11,7 +11,7 @@ extends Node
 ## eating different parts of a pentomino.
 const POOL_SIZE := 5
 
-@export (PackedScene) var PuzzleTileMapScene: PackedScene
+@export var PuzzleTileMapScene: PackedScene
 
 ## Pooled PuzzleTileMap instances which are available to borrow
 var _tilemaps := []
@@ -20,7 +20,7 @@ var _tilemaps := []
 var _load_thread: Thread
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 
 
 func _exit_tree() -> void:

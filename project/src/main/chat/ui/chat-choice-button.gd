@@ -6,7 +6,7 @@ extends Button
 signal pop_choose_completed
 
 ## Text to show the player. We cannot use the button's text property because it does not support multiline text.
-@export (String) var choice_text: String: set = set_choice_text
+@export var choice_text: String: set = set_choice_text
 
 func _ready() -> void:
 	$FontFitLabel.text = choice_text
@@ -44,7 +44,7 @@ func pop_choose() -> void:
 
 
 ## Sets the mood corresponding to the chat choice.
-func set_mood(new_mood: int) -> void:
+func set_mood(new_mood: Creatures.Mood) -> void:
 	$MoodSprite.set_mood(new_mood)
 
 
@@ -54,13 +54,13 @@ func set_mood_right(new_mood_right: bool) -> void:
 
 
 ## Workaround for Godot #21789 to make get_class return class_name
-func get_class() -> String:
-	return "ChatChoiceButton"
+#func get_class() -> String:
+#	return "ChatChoiceButton"
 
 
 ## Workaround for Godot #21789 to make is_class match class_name
-func is_class(name: String) -> bool:
-	return name == "ChatChoiceButton" or super.is_class(name)
+#func is_class(name: String) -> bool:
+#	return name == "ChatChoiceButton" or super.is_class(name)
 
 
 ## Centers the pivot in the button's rectangle.

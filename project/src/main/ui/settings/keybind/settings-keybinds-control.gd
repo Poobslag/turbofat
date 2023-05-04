@@ -2,11 +2,11 @@ extends VBoxContainer
 ## UI control which lets the player view and update the game's keybinds.
 
 func _ready() -> void:
-	$Presets/Guideline.connect("pressed", Callable(self, "_on_Guideline_pressed"))
-	$Presets/Wasd.connect("pressed", Callable(self, "_on_Wasd_pressed"))
-	$Presets/Custom.connect("pressed", Callable(self, "_on_Custom_pressed"))
-	$CustomScrollContainer/VBoxContainer/ResetToDefault.connect("pressed", Callable(self, "_on_ResetToDefault_pressed"))
-	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
+	$Presets/Guideline.pressed.connect(_on_Guideline_pressed)
+	$Presets/Wasd.pressed.connect(_on_Wasd_pressed)
+	$Presets/Custom.pressed.connect(_on_Custom_pressed)
+	$CustomScrollContainer/VBoxContainer/ResetToDefault.pressed.connect(_on_ResetToDefault_pressed)
+	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
 	
 	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE: $Presets/Guideline.button_pressed = true

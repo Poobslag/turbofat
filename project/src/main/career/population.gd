@@ -35,7 +35,7 @@ class CreatureAppearance:
 class Demographic:
 	
 	## Enum from Creatures.Type for a creature type
-	var type: int = Creatures.Type.DEFAULT
+	var type := Creatures.Type.DEFAULT
 	
 	## Creature type's chance of appearing
 	var chance: float = 0.0

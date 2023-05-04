@@ -140,7 +140,7 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 ##
 ## Only one aspect of the creature is changed. We select a value which is different from the creature's current value,
 ## and which hasn't been selected recently.
-func tweak_all_creatures(allele: String, color_mode: int = THEME_COLORS) -> void:
+func tweak_all_creatures(allele: String, color_mode: ColorMode = THEME_COLORS) -> void:
 	for creature_obj in outer_creatures:
 		_tweak_creature(creature_obj, allele, color_mode)
 
@@ -154,7 +154,7 @@ func set_center_creature_def(creature_def: CreatureDef) -> void:
 ##
 ## Depending on the specified color mode, the new palette is either loaded from a preset, or generated with completely
 ## random colors, or derived from the current palette.
-func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
+func _palette(color_mode: ColorMode = THEME_COLORS) -> Dictionary:
 	var result := {}
 	if color_mode == THEME_COLORS:
 		# load a preset palette
@@ -218,7 +218,7 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 ##
 ## Only one aspect of the creature is changed. We select a value which is different from the creature's current value,
 ## and which hasn't been selected recently.
-func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> void:
+func _tweak_creature(creature: Creature, allele: String, color_mode: ColorMode) -> void:
 	var palette: Dictionary = _palette(color_mode)
 	if allele == "line_rgb":
 		# cycle through line colors predictably
@@ -269,7 +269,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			unpicked_alleles.erase(dna[allele])
 			for recent_allele in _recent_tweaked_allele_values[allele]:
 				unpicked_alleles.erase(recent_allele)
-			if not unpicked_alleles:
+			if unpicked_alleles.is_empty():
 				unpicked_alleles = new_alleles
 				unpicked_alleles.erase(dna[allele])
 				_recent_tweaked_allele_values[allele].clear()
@@ -282,7 +282,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 					for _i in range(48):
 						_mutate_allele(creature, dna, new_palette, invalid_value)
 						invalid_value = DnaUtils.invalid_allele_value(dna, allele, dna[allele])
-						if not invalid_value:
+						if invalid_value.is_empty():
 							break
 				_recent_tweaked_allele_values[allele].append(dna[allele])
 	
@@ -328,7 +328,7 @@ func _alleles_to_mutate() -> Array:
 		# numbers like 2.35 are rounded down 35% of the time, and rounded up 65% of the time
 		extra_mutations += 1
 	
-	if not result and extra_mutations == 0:
+	if result.is_empty() and extra_mutations == 0:
 		# ensure there's at least one mutation, even if no alleles are unlocked and mutagen is set to zero
 		extra_mutations += 1
 	

@@ -40,7 +40,7 @@ func _ready() -> void:
 	
 	seconds_played_timer = Timer.new()
 	seconds_played_timer.wait_time = SECONDS_PLAYED_INCREMENT
-	seconds_played_timer.connect("timeout", Callable(self, "_on_SecondsPlayedTimer_timeout"))
+	seconds_played_timer.timeout.connect(_on_SecondsPlayedTimer_timeout)
 	add_child(seconds_played_timer)
 	seconds_played_timer.start()
 
@@ -71,7 +71,7 @@ func set_money(new_money: int) -> void:
 ## 	'include_predefined_customers': If 'true' the function has a chance to return a creature from a library of
 ## 		predefined creatures instead of a randomly generated one.
 func random_customer_def(include_predefined_customers: bool = false) -> CreatureDef:
-	var creature_type: int = Creatures.Type.DEFAULT
+	var creature_type := Creatures.Type.DEFAULT
 	if PlayerData.career.is_career_mode():
 		creature_type = PlayerData.career.current_region().population.random_creature_type()
 	return CreatureLoader.random_customer_def(include_predefined_customers, creature_type)

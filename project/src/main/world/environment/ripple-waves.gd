@@ -4,21 +4,21 @@ extends Node2D
 const MAX_WAVE_COUNT := 50
 
 ## path to the underlying tilemap which controls where waves can spawn
-@export (NodePath) var tile_map_path: NodePath
+@export var tile_map_path: NodePath
 
 ## wave movement direction
-@export (Ripples.RippleDirection) var direction := Ripples.RippleDirection.NORTHEAST
+@export var direction := Ripples.RippleDirection.NORTHEAST
 
-@export (PackedScene) var RippleWaveScene: PackedScene
+@export var RippleWaveScene: PackedScene
 
 ## wave movement speed
-@export (float) var speed: float = 100.0
+@export var speed: float = 100.0
 
 ## duration between waves
-@export (float) var wait_time: float = 6.0
+@export var wait_time: float = 6.0
 
 ## ground tile ids which a ripple can appear over
-@export (Array, int) var rippleable_tile_ids := []
+@export var rippleable_tile_ids: Array[int]
 
 ## path underlying tilemap which controls where waves can spawn
 @onready var _tile_map: TileMap = get_node(tile_map_path)
@@ -46,7 +46,7 @@ func _ready() -> void:
 ## When spawning the initial waves, waves are offset based on the wave frequency and movement speed.
 func _wave_position(wave_index: int = 0) -> Vector2:
 	# calculate where the first wave should spawn
-	var wave_cell_position := Vector2.ZERO
+	var wave_cell_position := Vector2i.ZERO
 	var used_rect := _tile_map.get_used_rect()
 	match direction:
 		Ripples.RippleDirection.NORTHEAST:

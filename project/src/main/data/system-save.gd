@@ -36,7 +36,7 @@ var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
 	load_system_data()
-	SystemData.misc_settings.connect("save_slot_changed", Callable(self, "_on_MiscSettings_save_slot_changed"))
+	SystemData.misc_settings.save_slot_changed.connect(_on_MiscSettings_save_slot_changed)
 	_refresh_save_slot()
 	PlayerSave.load_player_data()
 
@@ -56,8 +56,7 @@ func save_system_data() -> void:
 	if FileUtils.file_exists(legacy_filename):
 		# Data older than July 2021 used a different filename.
 		# We load it once and then move it aside when saving.
-		var dir := DirAccess.new()
-		dir.open("user://")
+		var dir := DirAccess.open("user://")
 		var rename_from := legacy_filename.trim_prefix("user://")
 		var rename_to := rename_from + ".bak"
 		dir.rename(rename_from, rename_to)
@@ -68,7 +67,7 @@ func save_system_data() -> void:
 		
 		# Preserve turbofat0.save.bak, but delete the hourly/daily/weekly backups
 		for filename in OLD_SAVES_TO_DELETE:
-			DirAccess.new().remove(filename)
+			DirAccess.remove_absolute(filename)
 
 
 ## Populates the system's in-memory data based on a save file.
@@ -86,24 +85,22 @@ func load_system_data() -> bool:
 		# file does not exist
 		return false
 	
-	var file := File.new()
-	var open_result := file.open(filename, File.READ)
-	if open_result != OK:
+	var open_result := FileAccess.open(filename, FileAccess.READ)
+	if open_result.get_error() != OK:
 		# validation failed; couldn't open file
 		push_warning("Couldn't open file '%s' for reading: %s" % [filename, open_result])
 		return false
 	
 	var save_json_text := FileUtils.get_file_as_text(filename)
 	
-	var validate_json_result := validate_json(save_json_text)
-	if validate_json_result != "":
+	var test_json_conv := JSON.new()
+	var validate_json_result := test_json_conv.parse(save_json_text)
+	if validate_json_result != OK:
 		# validation failed; invalid json
 		push_warning("Invalid json in file '%s': %s" % [filename, validate_json_result])
 		return false
 	
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(save_json_text)
-	var json_save_items: Array = test_json_conv.get_data()
+	var json_save_items: Array = test_json_conv.data
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
@@ -120,19 +117,19 @@ func load_system_data() -> bool:
 
 
 ## Returns the playtime in seconds for the specified save slot.
-func get_save_slot_playtime(save_slot: int) -> float:
+func get_save_slot_playtime(save_slot: MiscSettings.SaveSlot) -> float:
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	return PlayerSave.get_save_slot_playtime(filename)
 
 
 ## Returns the player's short name for the specified save slot.
-func get_save_slot_player_short_name(save_slot: int) -> String:
+func get_save_slot_player_short_name(save_slot: MiscSettings.SaveSlot) -> String:
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	return PlayerSave.get_save_slot_player_short_name(filename)
 
 
 ## Returns a human-readable name for the specified save slot.
-func get_save_slot_name(save_slot: int) -> String:
+func get_save_slot_name(save_slot: MiscSettings.SaveSlot) -> String:
 	var prefix: String = MiscSettings.SAVE_SLOT_PREFIXES[save_slot]
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	var save_slot_name: String
@@ -145,7 +142,7 @@ func get_save_slot_name(save_slot: int) -> String:
 
 
 ## Deletes the specified save slot and all of its backups.
-func delete_save_slot(save_slot: int) -> void:
+func delete_save_slot(save_slot: MiscSettings.SaveSlot) -> void:
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	
 	var rolling_backups := RollingBackups.new()
@@ -155,7 +152,7 @@ func delete_save_slot(save_slot: int) -> void:
 			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
 			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK]:
 		var rolling_filename := rolling_backups.rolling_filename(backup)
-		DirAccess.new().remove(rolling_filename)
+		DirAccess.remove_absolute(rolling_filename)
 	
 	emit_signal("save_slot_deleted")
 

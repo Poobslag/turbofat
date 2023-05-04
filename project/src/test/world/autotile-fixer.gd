@@ -9,7 +9,7 @@ extends Node
 ## rules to all tiles in the TileMap.
 
 ## Editor toggle which manually applies autotiling.
-@export (bool) var _autotile: bool: set = autotile
+@export var _autotile: bool: set = autotile
 
 ## Applies autotiling rules to all cells in a TileMap.
 func autotile(_value: bool) -> void:

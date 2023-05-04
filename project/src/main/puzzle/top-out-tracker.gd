@@ -8,9 +8,9 @@ const LINES_CLEARED_ON_TOP_OUT := 10
 @onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func _ready() -> void:
-	PuzzleState.connect("topped_out", Callable(self, "_on_PuzzleState_topped_out"))
-	_playfield.connect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
-	_playfield.connect("after_lines_filled", Callable(self, "_on_Playfield_after_lines_filled"))
+	PuzzleState.topped_out.connect(_on_PuzzleState_topped_out)
+	_playfield.after_lines_deleted.connect(_on_Playfield_after_lines_deleted)
+	_playfield.after_lines_filled.connect(_on_Playfield_after_lines_filled)
 
 
 func _on_PuzzleState_topped_out() -> void:

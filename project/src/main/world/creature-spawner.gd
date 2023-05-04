@@ -5,19 +5,19 @@ extends Node2D
 ##
 ## The creature's creature_id, properties and groups can be managed by the target_properties and target_groups fields.
 
-@export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
+@export var overworld_environment_path: NodePath = NodePath("../..")
 
 ## properties of the spawned creature
-@export (Dictionary) var target_properties: Dictionary
+@export var target_properties: Dictionary
 
 ## boolean expression which, if evaluated to 'true', will result in the creature being spawned
-@export (String) var spawn_if: String
+@export var spawn_if: String
 
 ## Maximum fatness for a spawned creature.
 ## If a fatter creature spawns here, they will spontaneously and permanently slim down.
-@export (float, 1.0, 10.0) var max_fatness := 10.0
+@export_range(1.0, 10.0) var max_fatness := 10.0
 
-@export (PackedScene) var CreatureScene: PackedScene
+@export var CreatureScene: PackedScene
 
 ## Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
 var _stool: Node2D

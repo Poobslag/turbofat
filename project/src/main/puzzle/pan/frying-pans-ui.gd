@@ -14,18 +14,18 @@ const TILE_INDEX_PAN_GOLD := 1
 const TILE_INDEX_PAN_DEAD := 2
 
 ## maximum number of frying pans to display (the number of lives the player starts with)
-@export (int) var pans_max := 3: set = set_pans_max
+@export var pans_max := 3: set = set_pans_max
 
 ## number of remaining non-dead pans (the number of lives the player has left)
-@export (int) var pans_remaining := 3: set = set_pans_remaining
+@export var pans_remaining := 3: set = set_pans_remaining
 
 ## if true, the pans are shown as gold pans. golden pans are used shown if topping out clears the playfield
-@export (bool) var gold := false: set = set_gold
+@export var gold := false: set = set_gold
 
-@export (PackedScene) var FryingPanGhostScene: PackedScene
+@export var FryingPanGhostScene: PackedScene
 
 ## tilemap cell containing the upper left most dead pan
-var _first_dead_cell: Vector2
+var _first_dead_cell: Vector2i
 
 @onready var _tile_map: TileMap = $TileMap
 
@@ -65,7 +65,7 @@ func set_pans_remaining(new_pans_remaining: int) -> void:
 ## Recalculates the tilemap cells, tilemap scale, and _first_dead_cell field.
 func refresh_tilemap() -> void:
 	var pan_cells := _calculate_pan_cells()
-	_tile_map.clear()
+	_tile_map.clear_puzzle()
 	_add_pans_to_tilemap(pan_cells)
 	_update_tilemap_scale()
 
@@ -73,7 +73,7 @@ func refresh_tilemap() -> void:
 ## Calculates the position of frying pans within the tilemap.
 ##
 ## Returns:
-## 	An array of Vector2 coordinates in the tilemap which should contain frying pans.
+## 	An array of Vector2i coordinates in the tilemap which should contain frying pans.
 func _calculate_pan_cells() -> Array:
 	var pan_cells := []
 	
@@ -87,12 +87,12 @@ func _calculate_pan_cells() -> Array:
 		pans_per_row = 5
 	
 	# calculate the positions of pans within each row
-	var cell_pos := Vector2.ZERO
+	var cell_pos := Vector2i.ZERO
 	for _i in range(min(pans_max, 50)):
 		pan_cells.append(cell_pos)
 		cell_pos.x += 2
 		if cell_pos.x >= 2 * pans_per_row:
-			cell_pos = Vector2(0, cell_pos.y + 1)
+			cell_pos = Vector2i(0, cell_pos.y + 1)
 	
 	# center the bottom row horizontally
 	for i in range(pans_max - cell_pos.x / 2, min(pans_max, 50)):
@@ -104,10 +104,10 @@ func _calculate_pan_cells() -> Array:
 ## Places pans in the appropriate tilemap cells.
 ##
 ## Parameters:
-## 	'pan_cells': An array of Vector2 coordinates in the tilemap which should contain frying pans.
+## 	'pan_cells': An array of Vector2i coordinates in the tilemap which should contain frying pans.
 func _add_pans_to_tilemap(pan_cells: Array) -> void:
 	for i in range(pan_cells.size()):
-		var pan_cell: Vector2 = pan_cells[i]
+		var pan_cell: Vector2i = pan_cells[i]
 		var tile: int
 		if i >= pans_remaining:
 			tile = TILE_INDEX_PAN_DEAD
@@ -118,14 +118,14 @@ func _add_pans_to_tilemap(pan_cells: Array) -> void:
 			tile = TILE_INDEX_PAN_GOLD
 		else:
 			tile = TILE_INDEX_PAN
-		_tile_map.set_cellv(pan_cell, tile)
+		_tile_map.set_cell(0, pan_cell, tile)
 
 
 ## Updates the tilemap scale based on its contents.
 ##
 ## The tilemap is rescaled so that its contents will fit into its parent control horizontally.
 func _update_tilemap_scale() -> void:
-	var total_width := max(10, _tile_map.get_used_rect().size.x + 1) * _tile_map.cell_size.x
+	var total_width: float = max(10, _tile_map.get_used_rect().size.x + 1) * _tile_map.cell_size.x
 	_tile_map.scale = Vector2.ONE * (size.x / total_width)
 
 

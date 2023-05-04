@@ -4,9 +4,9 @@ extends Node2D
 ## Any occupied cell which isn't used in a box risks spawning a leaf poof. The more unused cells there are, the greater
 ## the chance of a poof.
 
-@export (PackedScene) var LeafPoofScene: PackedScene
+@export var LeafPoofScene: PackedScene
 
-@export (NodePath) var puzzle_tile_map_path: NodePath
+@export var puzzle_tile_map_path: NodePath
 
 @onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 

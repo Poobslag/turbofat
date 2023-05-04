@@ -29,17 +29,17 @@ var _failed_levels: Dictionary
 
 ## Most recent way the piece moved, such as rotating, flipping or dropping. This determines whether the player
 ## performed a spin move, a flip move, or something else.
-var _last_piece_movement: int = PieceMovementType.NONE
+var _last_piece_movement := PieceMovementType.NONE
 
 ## Historical information about the piece's position and orientation. This is used to populate the
 ## _last_piece_movement field.
 var _prev_piece: ActivePiece
 var _prev_piece_orientation: int
-var _prev_piece_pos: Vector2
+var _prev_piece_pos: Vector2i
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	
 	hud.set_message(tr("Let's learn about spin moves!"
 			+ "\n\nMaybe you already figured out how they work, but I'll try to teach you something new."))
@@ -362,13 +362,13 @@ func _advance_level() -> void:
 	
 	if PuzzleState.level_performance.lost:
 		_failed_levels[CurrentLevel.settings.id] = true
-		if not new_level_id:
+		if new_level_id.is_empty():
 			# by default, retry the current tutorial section
 			new_level_id = CurrentLevel.settings.id
 			_failure_count += 1
 	else:
 		_failure_count = 1 if _failed_levels.has(new_level_id) else 0
-		if not new_level_id:
+		if new_level_id.is_empty():
 			# by default, progress to the next tutorial section
 			new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
 	

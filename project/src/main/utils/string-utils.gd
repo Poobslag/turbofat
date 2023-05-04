@@ -159,7 +159,7 @@ static func is_digit(character: String) -> bool:
 ## Parses a duration like 1:03.159 into '63.159'
 static func parse_duration(s: String) -> float:
 	var split: Array = s.split(":")
-	var result := abs(int(split[0])) * 60 + float(split[1])
+	var result: float = abs(int(split[0])) * 60 + float(split[1])
 	if s.begins_with("-"):
 		result *= -1
 	return result
@@ -191,7 +191,7 @@ static func sanitize_file_root(file_root: String) -> String:
 
 ## Gets the substring after the first occurrence of a separator.
 static func substring_after(s: String, sep: String) -> String:
-	if not sep:
+	if sep.is_empty():
 		return s
 	var pos := s.find(sep)
 	return "" if pos == -1 else s.substr(pos + sep.length())
@@ -199,7 +199,7 @@ static func substring_after(s: String, sep: String) -> String:
 
 ## Gets the substring after the last occurrence of a separator.
 static func substring_after_last(s: String, sep: String) -> String:
-	if not sep:
+	if sep.is_empty():
 		return s
 	var pos := s.rfind(sep)
 	return "" if pos == -1 else s.substr(pos + sep.length())
@@ -207,7 +207,7 @@ static func substring_after_last(s: String, sep: String) -> String:
 
 ## Gets the substring before the first occurrence of a separator.
 static func substring_before(s: String, sep: String) -> String:
-	if not sep:
+	if sep.is_empty():
 		return s
 	var pos := s.find(sep)
 	return s if pos == -1 else s.substr(0, pos)
@@ -215,7 +215,7 @@ static func substring_before(s: String, sep: String) -> String:
 
 ## Gets the substring before the last occurrence of a separator.
 static func substring_before_last(s: String, sep: String) -> String:
-	if not sep:
+	if sep.is_empty():
 		return s
 	var pos := s.rfind(sep)
 	return s if pos == -1 else s.substr(0, pos)
@@ -223,7 +223,7 @@ static func substring_before_last(s: String, sep: String) -> String:
 
 ## Gets the String that is nested in between two Strings. Only the first match is returned.
 static func substring_between(s: String, open: String, close: String) -> String:
-	if not s or not open or not close:
+	if s.is_empty() or open.is_empty() or close.is_empty():
 		return ""
 	
 	var result := ""

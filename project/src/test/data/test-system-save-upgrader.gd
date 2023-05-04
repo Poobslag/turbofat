@@ -10,21 +10,18 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var save_dir := DirAccess.new()
-	save_dir.open("user://")
+	var save_dir := DirAccess.open("user://")
 	save_dir.remove(TEMP_FILENAME)
 	save_dir.remove(TEMP_LEGACY_FILENAME)
 
 
 func load_player_data(filename: String) -> void:
-	var dir := DirAccess.new()
-	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
+	var dir := DirAccess.copy_absolute("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
 	SystemSave.load_system_data()
 
 
 func load_legacy_player_data(filename: String) -> void:
-	var dir := DirAccess.new()
-	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
+	var dir := DirAccess.copy_absolute("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
 	SystemSave.load_system_data()
 
 

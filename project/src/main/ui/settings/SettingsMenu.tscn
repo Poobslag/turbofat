@@ -1290,8 +1290,8 @@ dialog_text = "Are you sure?
 Slot A (34.2 hours)"
 dialog_autowrap = true
 
-[connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
-[connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
+[connection signal="hidden" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hidden"]
+[connection signal="shown" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_shown"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]

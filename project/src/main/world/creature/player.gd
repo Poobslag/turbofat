@@ -9,7 +9,7 @@ var ui_has_focus := false: set = set_ui_has_focus
 var free_roam := false
 
 func _ready() -> void:
-	SceneTransition.connect("fade_out_started", Callable(self, "_on_SceneTransition_fade_out_started"))
+	SceneTransition.fade_out_started.connect(_on_SceneTransition_fade_out_started)
 	set_creature_id(CreatureLibrary.PLAYER_ID)
 	refresh_collision_extents()
 
@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# disable movement when navigating menus
 		return
 	
-	if Utils.ui_pressed_dir(event) or Utils.ui_released_dir(event):
+	if Utils.ui_pressed_dir(event).length() > 0 or Utils.ui_released_dir(event):
 		# calculate the direction the player wants to move
 		set_non_iso_walk_direction(Utils.ui_pressed_dir())
 		get_viewport().set_input_as_handled()
@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_ui_has_focus(new_ui_has_focus: bool) -> void:
 	ui_has_focus = new_ui_has_focus
-	if ui_has_focus and non_iso_walk_direction:
+	if ui_has_focus and non_iso_walk_direction.length() > 0:
 		# if the player is moving when something grabs focus, stop their movement
 		set_non_iso_walk_direction(Vector2.ZERO)
 

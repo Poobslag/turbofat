@@ -159,7 +159,7 @@ func rank_lpm(rank: float) -> float:
 				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
 		
 		# calculate the spl based on which is slower: the mechanical limit, or the player's limit
-		var seconds_per_line := max(mechanical_spl_limit, player_spl_limit)
+		var seconds_per_line: float = max(mechanical_spl_limit, player_spl_limit)
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0

@@ -10,8 +10,6 @@ shader_type canvas_item;
  * The shader code uses the red channel of the texture to determine where to draw the background accents.
  */
 
-const float PI = 3.14159265358979;
-
 // The color of the border around the chat window, which is black in the source texture
 uniform vec4 border_color : source_color;
 

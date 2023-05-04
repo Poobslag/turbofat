@@ -71,7 +71,7 @@ func is_rainbow() -> bool:
 
 
 ## Resets this goop glob's state, including its color and position.
-func initialize(new_box_type: int, new_position: Vector2) -> void:
+func initialize(new_box_type: Foods.BoxType, new_position: Vector2) -> void:
 	_creation_time = Time.get_ticks_msec()
 	box_type = new_box_type
 	falling = true

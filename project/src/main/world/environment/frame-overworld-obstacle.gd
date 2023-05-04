@@ -3,13 +3,13 @@ extends OverworldObstacle
 ## Overworld obstacle with different cosmetic variations in a sprite sheet.
 
 ## Current frame to display from the sprite sheet.
-@export (int) var frame: int: set = set_frame
+@export var frame: int: set = set_frame
 
 ## If true, the sprite's texture is flipped horizontally.
-@export (bool) var flip_h: bool: set = set_flip_h
+@export var flip_h: bool: set = set_flip_h
 
 ## Editor toggle which randomizes the obstacle's appearance
-@export (bool) var shuffle: bool: set = set_shuffle
+@export var shuffle: bool: set = set_shuffle
 
 @onready var _sprite := $Sprite2D
 

@@ -15,6 +15,7 @@ class_name RollingBackups
 
 ## Categories of rolling backups for save data.
 enum Backup {
+	NONE,
 	CURRENT, # the current save data
 	THIS_HOUR, # a temporary file which will eventually become the hourly backup
 	PREV_HOUR, # a backup which is 1-2 hours old
@@ -45,7 +46,7 @@ var data_filename: String
 var legacy_filename: String
 
 ## Enum from Backup for the backup which was successfully loaded, 'Backup.CURRENT' if the current file worked.
-var loaded_backup := -1
+var loaded_backup := Backup.NONE
 
 ## Newly renamed save files which couldn't be loaded
 var corrupt_filenames: Array
@@ -60,7 +61,7 @@ var corrupt_filenames: Array
 ##
 ## 	'method': the callback method responsible for loading.
 func load_newest_save(target: Object, method: String) -> void:
-	loaded_backup = -1
+	loaded_backup = Backup.NONE
 	corrupt_filenames = []
 	var bad_filenames := [] # save filenames which couldn't be loaded
 	
@@ -83,18 +84,17 @@ func load_newest_save(target: Object, method: String) -> void:
 		break
 	
 	if bad_filenames:
-		var dir := DirAccess.new()
 		# loaded successfully, but there were some save files that couldn't be loaded
 		for bad_filename in bad_filenames:
 			# copy each bad file to a filename like 'foo.save.corrupt'
 			var corrupt_filename := corrupt_filename(bad_filename)
-			dir.copy(bad_filename, corrupt_filename)
-			dir.remove(bad_filename)
+			DirAccess.copy_absolute(bad_filename, corrupt_filename)
+			DirAccess.remove_absolute(bad_filename)
 			corrupt_filenames.append(corrupt_filename)
 		
 		if load_successful:
 			# copy the good file back to 'foo.save'
-			dir.copy(rolling_filename(loaded_backup), data_filename)
+			DirAccess.copy_absolute(rolling_filename(loaded_backup), data_filename)
 
 
 ## Deletes any old backup saves, replacing it with newer data.
@@ -113,7 +113,7 @@ func corrupt_filename(in_filename: String) -> String:
 ##
 ## Parameters:
 ## 	'backup': Enum from Backup for the filename to return.
-func rolling_filename(backup: int) -> String:
+func rolling_filename(backup: Backup) -> String:
 	if backup == Backup.LEGACY:
 		return legacy_filename
 	
@@ -139,23 +139,22 @@ func rolling_filename(backup: int) -> String:
 ##
 ## Afterwards, if the 'this-xxx' backup file does not exist or was just rotated, it's replaced with the current save
 ## file.
-func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
+func _rotate_backup(this_save: RollingBackups.Backup, prev_save: RollingBackups.Backup, rotate_millis: int) -> void:
 	if not FileUtils.file_exists(data_filename):
 		return
 	
-	var dir := DirAccess.new()
 	var this_filename := rolling_filename(this_save)
 	var prev_filename := rolling_filename(prev_save)
 	
 	var file_age := 0
-	if dir.file_exists(this_filename):
-		file_age = Time.get_unix_time_from_system() - File.new().get_modified_time(this_filename)
+	if FileUtils.file_exists(this_filename):
+		file_age = Time.get_unix_time_from_system() - FileAccess.get_modified_time(this_filename)
 	if file_age >= rotate_millis:
 		# replace the 'prev-xxx' backup with the 'this-xxx' backup
-		var copy_result := dir.copy(this_filename, prev_filename)
+		var copy_result := DirAccess.copy_absolute(this_filename, prev_filename)
 		if copy_result == OK:
-			dir.remove(this_filename)
+			DirAccess.remove_absolute(this_filename)
 	
-	if not dir.file_exists(this_filename):
+	if not FileUtils.file_exists(this_filename):
 		# populate the 'this-xxx' backup from the current save
-		dir.copy(data_filename, this_filename)
+		DirAccess.copy_absolute(data_filename, this_filename)

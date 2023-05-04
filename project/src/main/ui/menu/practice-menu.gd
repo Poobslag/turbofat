@@ -5,11 +5,11 @@ extends Control
 const DEFAULT_REGION_ID := OtherRegion.ID_MARATHON
 const DEFAULT_LEVEL_ID := "practice/marathon_normal"
 
-@export (NodePath) var high_scores_path: NodePath
-@export (NodePath) var level_button_path: NodePath
-@export (NodePath) var level_description_label_path: NodePath
-@export (NodePath) var speed_selector_path: NodePath
-@export (NodePath) var start_button_path: NodePath
+@export var high_scores_path: NodePath
+@export var level_button_path: NodePath
+@export var level_description_label_path: NodePath
+@export var speed_selector_path: NodePath
+@export var start_button_path: NodePath
 
 ## CareerRegion or OtherRegion instance for the currently selected region
 var _region: Object
@@ -73,12 +73,12 @@ func _assign_default_recent_data() -> void:
 func _load_recent_data() -> void:
 	# find the player's previously played non-career region
 	if not _region:
-		if PlayerData.practice.region_id:
+		if not PlayerData.practice.region_id.is_empty():
 			_region = OtherLevelLibrary.region_for_id(PlayerData.practice.region_id)
 	
 	# find the player's previously played career region
 	if not _region:
-		if PlayerData.practice.region_id:
+		if not PlayerData.practice.region_id.is_empty():
 			_region = CareerLevelLibrary.region_for_id(PlayerData.practice.region_id)
 	
 	# can't find the player's previously played region; assign default data as a fail safe

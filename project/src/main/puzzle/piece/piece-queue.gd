@@ -43,9 +43,9 @@ var _cheat_bag_line_pieces_remaining := 0
 var _cheat_bag_pieces_remaining := 0
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	SystemData.gameplay_settings.connect("line_piece_changed", Callable(self, "_on_GameplaySettings_line_piece_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	SystemData.gameplay_settings.line_piece_changed.connect(_on_GameplaySettings_line_piece_changed)
 	_fill()
 
 
@@ -148,7 +148,7 @@ func _fill_initial_pieces() -> void:
 				pieces.append(_new_next_piece(piece_type))
 		
 		_insert_annoying_piece(3)
-	elif CurrentLevel.settings.piece_types.start_types and CurrentLevel.settings.piece_types.ordered_start:
+	elif not CurrentLevel.settings.piece_types.start_types.is_empty() and CurrentLevel.settings.piece_types.ordered_start:
 		# Fixed starting pieces: Append all of the start pieces in order.
 		for piece_type in CurrentLevel.settings.piece_types.start_types:
 			pieces.append(_new_next_piece(piece_type))
@@ -272,7 +272,7 @@ func _fill_remaining_pieces() -> void:
 func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	# remove the piece from the queue
 	var duplicate_piece: NextPiece = pieces[from_index]
-	pieces.remove(from_index)
+	pieces.remove_at(from_index)
 	
 	# find a new position for it
 	var to_index := from_index

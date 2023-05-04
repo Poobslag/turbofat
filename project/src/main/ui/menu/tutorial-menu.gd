@@ -20,7 +20,7 @@ func _find_tutorial_region() -> OtherRegion:
 			tutorial_region = region
 			break
 	
-	if not tutorial_region or not tutorial_region.level_ids:
+	if tutorial_region.is_empty() or tutorial_region.level_ids.is_empty():
 		push_warning("No tutorial levels found.")
 	
 	return tutorial_region
@@ -28,7 +28,7 @@ func _find_tutorial_region() -> OtherRegion:
 
 ## Assign a tutorial level if this is the first time launching the tutorial menu
 func _assign_default_recent_data(tutorial_region: OtherRegion) -> void:
-	if PlayerData.practice.tutorial_level_id:
+	if not PlayerData.practice.tutorial_level_id.is_empty():
 		# player has already launched the tutorial menu
 		return
 	

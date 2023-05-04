@@ -33,7 +33,7 @@ func set_food_shown(new_food_shown: bool) -> void:
 	_refresh_appearance()
 
 
-func set_food_type(new_food_type: int) -> void:
+func set_food_type(new_food_type: Foods.FoodType) -> void:
 	if food_type == new_food_type:
 		return
 	
@@ -46,7 +46,7 @@ func _refresh_appearance() -> void:
 	if not is_inside_tree():
 		return
 	
-	var box_type: int = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
+	var box_type: Foods.BoxType = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
 	
 	# refresh seed appearance
 	_seed.visible = not food_shown and Foods.is_snack_box(box_type)

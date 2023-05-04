@@ -7,7 +7,7 @@ extends Button
 const LEVEL_DIRS := ["res://assets/main/puzzle/levels"]
 const CAREER_LEVEL_DIRS := ["res://assets/main/puzzle/levels/career"]
 
-@export (NodePath) var output_label_path: NodePath
+@export var output_label_path: NodePath
 
 var _upgrader := LevelSettingsUpgrader.new()
 
@@ -35,9 +35,7 @@ func _upgrade_levels() -> void:
 ## 	'path': Path to a json resource containing level data to upgrade.
 func _upgrade_settings(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(old_text)
-	var old_json: Dictionary = test_json_conv.get_data()
+	var old_json: Dictionary = JSON.parse_string(old_text)
 	if _upgrader.needs_upgrade(old_json):
 		var new_json := _upgrader.upgrade(old_json)
 		var new_text := Utils.print_json(new_json)
@@ -71,8 +69,7 @@ func _find_level_paths(dirs: Array) -> Array:
 			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = DirAccess.new()
-			dir.open(dir_queue.pop_front())
+			dir = DirAccess.open(dir_queue.pop_front())
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	
@@ -86,7 +83,7 @@ func _report_invalid_career_levels() -> void:
 	var invalid_level_keys := {}
 	for level_key in level_keys_in_career_regions:
 		var text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(level_key))
-		if not text:
+		if text.is_empty():
 			invalid_level_keys[level_key] = true
 	
 	if invalid_level_keys:
@@ -151,9 +148,7 @@ func _alphabetize_career_levels() -> void:
 	var sorted_region_ids := {}
 	
 	var old_text := FileUtils.get_file_as_text(CareerLevelLibrary.DEFAULT_REGIONS_PATH)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(old_text)
-	var old_json: Dictionary = test_json_conv.get_data()
+	var old_json: Dictionary = JSON.parse_string(old_text)
 	var new_json := old_json.duplicate(true)
 	for region in new_json.get("regions", []):
 		var old_levels: Array = region.get("levels", [])
@@ -166,7 +161,7 @@ func _alphabetize_career_levels() -> void:
 	if sorted_region_ids:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(CareerLevelLibrary.DEFAULT_REGIONS_PATH, new_text)
-		_output_label.add_line("Sorted career level ids: %s" % [PackedStringArray(sorted_region_ids.", ".join(keys()))])
+		_output_label.add_line("Sorted career level ids: %s" % [", ".join(PackedStringArray(sorted_region_ids.keys()))])
 
 
 func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:
@@ -180,5 +175,5 @@ func _on_pressed() -> void:
 	_report_unused_career_levels()
 	_report_bad_show_rank()
 	_alphabetize_career_levels()
-	if not _output_label.text:
+	if _output_label.text.is_empty():
 		_output_label.text = "No level files have problems."

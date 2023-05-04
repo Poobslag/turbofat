@@ -11,19 +11,19 @@ extends Node2D
 
 signal frame_changed
 
-@export (Texture2D) var texture: Texture2D
+@export var texture: Texture2D
 
 ## path of the Aseprite json file containing spatial data for the packed texture
-@export (String, FILE) var frame_data : set = set_frame_data
+@export_file var frame_data : set = set_frame_data
 
 ## our width/height. affects our position when we're centered
-@export (Vector2) var size := Vector2(100, 100): set = set_rect_size
+@export var size := Vector2(100, 100): set = set_rect_size
 
-@export (int) var frame: int: set = set_frame
+@export var frame: int: set = set_frame
 
-@export (bool) var centered: bool = true: set = set_centered
+@export var centered: bool = true: set = set_centered
 
-@export (Vector2) var offset: Vector2: set = set_offset
+@export var offset: Vector2: set = set_offset
 
 ## number of animation frames parsed from the Aseprite json file.
 var frame_count : get = get_frame_count
@@ -48,7 +48,7 @@ func set_frame_data(new_frame_data: String) -> void:
 		if _frame_src_rects.is_empty():
 			# if the ResourceCache is unavailable (possibly during demos) we load things the slow way
 			_load_rects_from_json()
-	update()
+	queue_redraw()
 
 
 func get_frame_count() -> int:
@@ -59,14 +59,14 @@ func set_rect_size(new_rect_size: Vector2) -> void:
 	if size == new_rect_size:
 		return
 	size = new_rect_size
-	update()
+	queue_redraw()
 
 
 func set_frame(new_frame: int) -> void:
 	if frame == new_frame:
 		return
 	frame = new_frame
-	update()
+	queue_redraw()
 	emit_signal("frame_changed")
 
 
@@ -74,14 +74,14 @@ func set_centered(new_centered: bool) -> void:
 	if centered == new_centered:
 		return
 	centered = new_centered
-	update()
+	queue_redraw()
 
 
 func set_offset(new_offset: Vector2) -> void:
 	if offset == new_offset:
 		return
 	offset = new_offset
-	update()
+	queue_redraw()
 
 
 func _draw() -> void:
@@ -108,9 +108,7 @@ func _load_rects_from_json() -> void:
 	
 	# parse json
 	var json: String = FileUtils.get_file_as_text(frame_data)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json)
-	var json_root: Dictionary = test_json_conv.get_data()
+	var json_root: Dictionary = JSON.parse_string(json)
 	if not json_root.has("frames"):
 		# the specified json resource is not an Aseprite json resource; do nothing
 		return

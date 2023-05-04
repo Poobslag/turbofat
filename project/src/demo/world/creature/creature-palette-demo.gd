@@ -4,7 +4,7 @@ extends Node
 ## This adds a third 'palette' tab to the creature editor. Clicking the themes in that tab recolors the creature. There
 ## are also buttons for adding themes and printing them to the console.
 
-@export (PackedScene) var PaletteEditorTabScene: PackedScene
+@export var PaletteEditorTabScene: PackedScene
 
 func _ready() -> void:
 	var palette_editor_tab: PaletteEditorTab = PaletteEditorTabScene.instantiate()

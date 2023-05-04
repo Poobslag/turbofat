@@ -8,9 +8,7 @@ func before_each() -> void:
 
 func load_level(filename: String) -> void:
 	var json_text := FileUtils.get_file_as_text("res://assets/test/puzzle/levels/%s.json" % [filename])
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json_text)
-	var json_dict: Dictionary = test_json_conv.get_data()
+	var json_dict: Dictionary = JSON.parse_string(json_text)
 	settings.from_json_dict("test_5952", json_dict)
 
 
@@ -27,9 +25,9 @@ func test_load_19c5_data() -> void:
 	load_level("level-19c5")
 	
 	var blocks_start := settings.tiles.blocks_start()
-	assert_eq(Vector2(1, 10) in blocks_start.block_tiles, true, "start.block_tiles[(1, 10)]")
-	assert_eq(blocks_start.block_tiles.get(Vector2(1, 10)), 1, "start.block_tiles[(1, 10)]")
-	assert_eq(blocks_start.block_autotile_coords.get(Vector2(1, 10)), Vector2(14, 1), "start.autotile_coords[(1, 10)]")
+	assert_eq(Vector2i(1, 10) in blocks_start.block_tiles, true, "start.block_tiles[(1, 10)]")
+	assert_eq(blocks_start.block_tiles.get(Vector2i(1, 10)), 1, "start.block_tiles[(1, 10)]")
+	assert_eq(blocks_start.block_autotile_coords.get(Vector2i(1, 10)), Vector2i(14, 1), "start.autotile_coords[(1, 10)]")
 
 
 func test_load_297a_data() -> void:
@@ -88,16 +86,16 @@ func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
 	var blocks_start := settings.tiles.blocks_start()
-	assert_eq(Vector2(1, 16) in blocks_start.block_tiles, true, "start.block_tiles[(1, 16)]")
-	assert_eq(blocks_start.block_tiles.get(Vector2(1, 16)), 2, "start.block_tiles[(1, 16)]")
-	assert_eq(blocks_start.block_autotile_coords.get(Vector2(1, 16)), Vector2(9, 1), "start.autotile_coords[(1, 16)]")
+	assert_eq(Vector2i(1, 16) in blocks_start.block_tiles, true, "start.block_tiles[(1, 16)]")
+	assert_eq(blocks_start.block_tiles.get(Vector2i(1, 16)), 2, "start.block_tiles[(1, 16)]")
+	assert_eq(blocks_start.block_autotile_coords.get(Vector2i(1, 16)), Vector2i(9, 1), "start.autotile_coords[(1, 16)]")
 	
 	var blocks_0 := settings.tiles.get_tiles("0")
-	assert_eq(Vector2(3, 2) in blocks_0.block_tiles, true, "0.block_tiles[(3, 2)]")
-	assert_eq(blocks_0.block_tiles.get(Vector2(3, 2)), 2, "0.block_tiles[(3, 2)]")
-	assert_eq(blocks_0.block_autotile_coords.get(Vector2(3, 2)), Vector2(6, 3), "0.block_autotile_coords[(3, 2)]")
-	assert_eq(Vector2(4, 2) in blocks_0.pickups, true, "0.pickups[(4, 2)]")
-	assert_eq(blocks_0.pickups.get(Vector2(4, 2)), 4, "0.pickups[(4, 2)]")
+	assert_eq(Vector2i(3, 2) in blocks_0.block_tiles, true, "0.block_tiles[(3, 2)]")
+	assert_eq(blocks_0.block_tiles.get(Vector2i(3, 2)), 2, "0.block_tiles[(3, 2)]")
+	assert_eq(blocks_0.block_autotile_coords.get(Vector2i(3, 2)), Vector2i(6, 3), "0.block_autotile_coords[(3, 2)]")
+	assert_eq(Vector2i(4, 2) in blocks_0.pickups, true, "0.pickups[(4, 2)]")
+	assert_eq(blocks_0.pickups.get(Vector2i(4, 2)), 4, "0.pickups[(4, 2)]")
 
 
 func test_path_from_level_key() -> void:
@@ -149,7 +147,7 @@ func test_to_json_milestones_and_tiles() -> void:
 	settings.finish_condition.set_milestone(Milestone.TIME_OVER, 180)
 	settings.success_condition.set_milestone(Milestone.LINES, 100)
 	settings.tiles.bunches["start"] = LevelTiles.BlockBunch.new()
-	settings.tiles.bunches["start"].set_block(Vector2(1, 2), 3, Vector2(4, 5))
+	settings.tiles.bunches["start"].set_block(Vector2i(1, 2), 3, Vector2i(4, 5))
 	_convert_to_json_and_back()
 	
 	assert_eq(settings.finish_condition.type, Milestone.TIME_OVER)
@@ -157,8 +155,8 @@ func test_to_json_milestones_and_tiles() -> void:
 	assert_eq(settings.success_condition.type, Milestone.LINES)
 	assert_eq(settings.success_condition.value, 100)
 	assert_eq(settings.tiles.bunches.keys(), ["start"])
-	assert_eq(settings.tiles.bunches["start"].block_tiles[Vector2(1, 2)], 3)
-	assert_eq(settings.tiles.bunches["start"].block_autotile_coords[Vector2(1, 2)], Vector2(4, 5))
+	assert_eq(settings.tiles.bunches["start"].block_tiles[Vector2i(1, 2)], 3)
+	assert_eq(settings.tiles.bunches["start"].block_autotile_coords[Vector2i(1, 2)], Vector2i(4, 5))
 
 
 func test_to_json_rules() -> void:

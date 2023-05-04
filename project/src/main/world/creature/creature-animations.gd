@@ -9,11 +9,11 @@ extends Node
 ## involves animating four sprites. It's tedious having four near-identical animation tracks, so this class
 ## consolidates those four frame properties into one.
 
-@export (int) var emote_eye_frame: int: set = set_emote_eye_frame
-@export (int) var eye_frame: int: set = set_eye_frame
-@export (int) var emote_arm_frame: int: set = set_emote_arm_frame
+@export var emote_eye_frame: int: set = set_emote_eye_frame
+@export var eye_frame: int: set = set_eye_frame
+@export var emote_arm_frame: int: set = set_emote_arm_frame
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 
@@ -95,7 +95,7 @@ func eat() -> void:
 ##
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
-func play_mood(mood: int) -> void:
+func play_mood(mood: Creatures.Mood) -> void:
 	_idle_timer.stop_idle_animation()
 	
 	match mood:
@@ -164,7 +164,7 @@ func _refresh_creature_sfx() -> void:
 	if not creature_sfx:
 		return
 	
-	creature_sfx.connect("should_play_sfx_changed", Callable(self, "_on_CreatureSfx_should_play_sfx_changed"))
+	creature_sfx.should_play_sfx_changed.connect(_on_CreatureSfx_should_play_sfx_changed)
 
 
 func _refresh_emote_eye_frame() -> void:
@@ -232,7 +232,7 @@ func _refresh_should_play_sfx() -> void:
 		_emote_player.fade_out_sfx()
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, new_orientation: Creatures.Orientation) -> void:
 	if not _movement_player:
 		return
 	

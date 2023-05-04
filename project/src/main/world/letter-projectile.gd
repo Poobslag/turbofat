@@ -10,7 +10,7 @@ const BASE_SPEED := 92.0
 const LETTERS := ["タ", "ル", "ボ", "フ", "ト"]
 
 ## How fast the letter should move relative to the base speed. 1.0 = 100% speed. 0.0 = 0% speed.
-@export (float) var speed_scale := 1.0
+@export var speed_scale := 1.0
 
 ## Direction the letter should move, in radians
 var angle := 0.0

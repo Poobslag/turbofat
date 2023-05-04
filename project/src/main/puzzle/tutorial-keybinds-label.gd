@@ -2,7 +2,7 @@ extends RichTextLabel
 ## Label for tutorials which shows the keybinds.
 
 func _ready() -> void:
-	SystemData.keybind_settings.connect("changed", Callable(self, "_on_KeybindSettings_settings_changed"))
+	SystemData.keybind_settings.changed.connect(_on_KeybindSettings_settings_changed)
 	_refresh_message()
 
 
@@ -18,7 +18,7 @@ func _refresh_message() -> void:
 	text = text.replace("%s, %s" % [tr("Left"), tr("Right")], tr("Arrows"))
 	text = text.replace("%s, %s" % [tr("DPAD Left"), tr("DPAD Right")], tr("DPAD"))
 	
-	if not text:
+	if text.is_empty():
 		# If the player unbinds all of their keys, they can't play.
 		text = tr("What have you done!? Click 'Settings' to reconfigure your controls, you silly goose!")
 	

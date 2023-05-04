@@ -9,9 +9,9 @@ extends RectFitLabel
 signal all_text_shown
 
 ## Amount of empty space between the text borders and panel borders.
-@export (Vector2) var panel_padding: Vector2
+@export var panel_padding: Vector2
 
-@export (NodePath) var chat_line_panel_path: NodePath
+@export var chat_line_panel_path: NodePath
 
 @onready var chat_line_panel: ChatLinePanel = get_node(chat_line_panel_path)
 

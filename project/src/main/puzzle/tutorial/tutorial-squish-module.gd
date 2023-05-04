@@ -23,14 +23,14 @@ var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagr
 var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	
-	playfield.connect("box_built", Callable(self, "_on_Playfield_box_built"))
-	piece_manager.connect("squish_moved", Callable(self, "_on_PieceManager_squish_moved"))
-	piece_manager.connect("piece_spawned", Callable(self, "_on_PieceManager_piece_spawned"))
-	hud.diagram.connect("ok_chosen", Callable(self, "_on_TutorialDiagram_ok_chosen"))
-	hud.diagram.connect("help_chosen", Callable(self, "_on_TutorialDiagram_help_chosen"))
+	playfield.box_built.connect(_on_Playfield_box_built)
+	piece_manager.squish_moved.connect(_on_PieceManager_squish_moved)
+	piece_manager.piece_spawned.connect(_on_PieceManager_piece_spawned)
+	hud.diagram.ok_chosen.connect(_on_TutorialDiagram_ok_chosen)
+	hud.diagram.help_chosen.connect(_on_TutorialDiagram_help_chosen)
 	
 	# display a welcome message before the game starts
 	hud.set_message(tr("Today we'll cover some advanced squish move techniques!"
@@ -163,12 +163,12 @@ func _on_PieceManager_piece_spawned(_piece: ActivePiece) -> void:
 	_did_build_box = false
 
 
-func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2i) -> void:
 	_did_squish_move = true
 	_squish_moves += 1
 
 
-func _on_Playfield_box_built(_rect: Rect2, _color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, _color: Foods.BoxType) -> void:
 	_did_build_box = true
 	_boxes_built += 1
 
@@ -202,7 +202,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 					messages = [tr("Oops! Look at the mess you made. ...Can you clean this up using squish moves?"
 								+ "\n\nTry to clear three lines.")]
 				start_timer_after_all_messages_shown(1.5)\
-						super.connect("timeout", Callable(self, "_on_Timer_timeout_set_messages").bind(messages))
+						.timeout.connect(_on_Timer_timeout_set_messages.bind(messages))
 			
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleState.level_performance.lines >= 3:
@@ -218,7 +218,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 					messages = [tr("Oh no! Now you've done it.\n\nLook at how clumsy you are!"),
 						tr("That's okay.\n\nI'm sure you'll think of a clever way to clean this up, too.")]
 				start_timer_after_all_messages_shown(1.5)\
-						super.connect("timeout", Callable(self, "_on_Timer_timeout_set_messages").bind(messages))
+						.timeout.connect(_on_Timer_timeout_set_messages.bind(messages))
 			
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleState.level_performance.lines >= 3:

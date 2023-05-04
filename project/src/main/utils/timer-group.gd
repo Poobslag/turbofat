@@ -11,7 +11,7 @@ extends Node
 ##
 ## TimerGroup enables the following code:
 ##
-## 	timer_group.start_timer(0.5).connect(self, "do_something")
+## 	timer_group.start_timer(0.5).timeout.connect(do_something)
 ##
 ## These timers will be cleaned up if the player changes scenes, or can be interrupted by calling TimerGroup.clear().
 
@@ -43,7 +43,7 @@ func add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.wait_time = wait_time
-	timer.connect("timeout", Callable(self, "_on_Timer_timeout_queue_free").bind(timer))
+	timer.timeout.connect(_on_Timer_timeout_queue_free.bind(timer))
 	add_child(timer)
 	return timer
 

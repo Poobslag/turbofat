@@ -6,7 +6,7 @@ signal quit_pressed
 signal other_quit_pressed
 
 ## Text on the menu's quit button
-var quit_type: int: set = set_quit_type
+var quit_type: SettingsMenu.QuitType: set = set_quit_type
 
 ## UI control which was focused before this settings menu popped up
 var _old_focus_owner: Control
@@ -19,12 +19,12 @@ var _old_focus_owner: Control
 func _ready() -> void:
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
 	for keybind_button in custom_keybind_buttons:
-		keybind_button.connect("awaiting_changed", Callable(self, "_on_CustomKeybindButton_awaiting_changed"))
+		keybind_button.awaiting_changed.connect(_on_CustomKeybindButton_awaiting_changed)
 	
 	_refresh_quit_type()
 
 
-func set_quit_type(new_quit_type: int) -> void:
+func set_quit_type(new_quit_type: SettingsMenu.QuitType) -> void:
 	quit_type = new_quit_type
 	_refresh_quit_type()
 
@@ -63,12 +63,12 @@ func _on_CustomKeybindButton_awaiting_changed(awaiting: bool) -> void:
 	_ok_shortcut_helper.set_process_input(not awaiting)
 
 
-func _on_SettingsMenu_show() -> void:
+func _on_SettingsMenu_shown() -> void:
 	_old_focus_owner = _ok_button.get_viewport().gui_get_focus_owner()
 	_ok_button.grab_focus()
 
 
-func _on_SettingsMenu_hide() -> void:
+func _on_SettingsMenu_hidden() -> void:
 	if _old_focus_owner:
 		_old_focus_owner.grab_focus()
 		_old_focus_owner = null

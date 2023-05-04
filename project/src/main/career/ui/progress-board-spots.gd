@@ -13,7 +13,7 @@ const SPOT_FRAMES_START := [8, 9, 10, 11]
 ## Frames in the sprite sheet for the spot at the end of the trail.
 const SPOT_FRAMES_FINISH := [12]
 
-@export (PackedScene) var spot_scene: PackedScene
+@export var spot_scene: PackedScene
 
 var path2d: Path2D: set = set_path2d
 

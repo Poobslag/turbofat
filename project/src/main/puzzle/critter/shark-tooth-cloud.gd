@@ -12,12 +12,12 @@ const TOOTH_VARIANT_COUNT := 5
 const TILE_MAP_START_POSITION := Vector2(144, 296)
 
 ## Path to the Particles2D which emits crumb particles as a piece is eaten.
-@export (NodePath) var crumbs_path: NodePath
+@export var crumbs_path: NodePath
 
-@export (PackedScene) var PuzzleTileMapScene: PackedScene
+@export var PuzzleTileMapScene: PackedScene
 
 ## Can be set to 'true' to activate the tooth cloud's various eating effects.
-@export (bool) var eating: bool = false: set = set_eating
+@export var eating: bool = false: set = set_eating
 
 ## Tile index in the PuzzleTileMap's tileset which is currently being eaten (piece, box, vegetable...)
 var eaten_tile := 0
@@ -67,29 +67,29 @@ func set_eaten_color(tile: int, autotile_y: int) -> void:
 	eaten_tile = tile
 	eaten_autotile_y = autotile_y
 	
-	for cell in _tile_map.get_used_cells():
-		var autotile_coord := _tile_map.get_cell_autotile_coord(cell.x, cell.y)
+	for cell in _tile_map.get_used_cells(0):
+		var autotile_coord := _tile_map.get_cell_atlas_coords(0, cell)
 		autotile_coord.y = eaten_autotile_y
 		_tile_map.set_block(cell, eaten_tile, autotile_coord)
 
 
 ## Adds a cell to the eaten piece tilemap.
-func set_eaten_cell(position: Vector2) -> void:
+func set_eaten_cell(position: Vector2i) -> void:
 	_check_for_tilemap()
-	_tile_map.set_block(position, eaten_tile, Vector2(0, eaten_autotile_y))
+	_tile_map.set_block(position, eaten_tile, Vector2i(0, eaten_autotile_y))
 
 
 ## Clears the eaten piece tilemap.
 func clear_eaten_cells() -> void:
 	_check_for_tilemap()
-	_tile_map.clear()
+	_tile_map.clear_puzzle()
 
 
 ## Updates the tileset for the eaten piece tilemap.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': enum from TileSetType referencing the tileset used to render blocks
-func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
+## 	'new_puzzle_tile_set_type': enum from PuzzleTileMap.TileSetType referencing the tileset used to render blocks
+func set_puzzle_tile_set_type(new_puzzle_tile_set_type: PuzzleTileMap.TileSetType) -> void:
 	_check_for_tilemap()
 	_tile_map.set_puzzle_tile_set_type(new_puzzle_tile_set_type)
 
@@ -124,27 +124,27 @@ func _refresh_eating() -> void:
 
 ## Connects adjacent cells in the eaten piece tilemap.
 func _connect_eaten_cells() -> void:
-	for cell in _tile_map.get_used_cells():
-		var autotile_coord := Vector2(0, eaten_autotile_y)
-		if _tile_map.get_cellv(cell + Vector2.UP) != TileMap.INVALID_CELL:
+	for cell in _tile_map.get_used_cells(0):
+		var autotile_coord := Vector2i(0, eaten_autotile_y)
+		if _tile_map.get_cell_source_id(0, cell + Vector2i.UP) != -1:
 			autotile_coord.x = PuzzleConnect.set_u(autotile_coord.x)
-		if _tile_map.get_cellv(cell + Vector2.DOWN) != TileMap.INVALID_CELL:
+		if _tile_map.get_cell_source_id(0, cell + Vector2i.DOWN) != -1:
 			autotile_coord.x = PuzzleConnect.set_distance(autotile_coord.x)
-		if _tile_map.get_cellv(cell + Vector2.LEFT) != TileMap.INVALID_CELL:
+		if _tile_map.get_cell_source_id(0, cell + Vector2i.LEFT) != -1:
 			autotile_coord.x = PuzzleConnect.set_l(autotile_coord.x)
-		if _tile_map.get_cellv(cell + Vector2.RIGHT) != TileMap.INVALID_CELL:
+		if _tile_map.get_cell_source_id(0, cell + Vector2i.RIGHT) != -1:
 			autotile_coord.x = PuzzleConnect.set_r(autotile_coord.x)
 		_tile_map.set_block(cell, eaten_tile, autotile_coord)
 
 
 ## Makes the eaten piece tilemap descend into the shark's mouth.
 func _start_eat_tween() -> void:
-	var piece_height := _tile_map.get_used_rect().size.y * _tile_map.cell_size.y
+	var piece_height: float = _tile_map.get_used_rect().size.y * _tile_map.cell_size.y
 	_tile_map.position = TILE_MAP_START_POSITION
 	_eat_tween = Utils.recreate_tween(self, _eat_tween)
 	_eat_tween.tween_property(_tile_map, "position",
 			TILE_MAP_START_POSITION + Vector2(0, piece_height), eat_duration) \
-			super.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	_eat_tween.tween_callback(Callable(self, "_on_Tween_completed"))
 
 

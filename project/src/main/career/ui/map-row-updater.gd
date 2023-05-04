@@ -5,7 +5,7 @@ extends Node
 const REGIONS_BEFORE := 2
 const REGIONS_AFTER := 3
 
-@export (NodePath) var map_path: NodePath
+@export var map_path: NodePath
 
 @onready var _map: ChalkboardMapRow = get_node(map_path)
 
@@ -61,7 +61,7 @@ func _update_landmark_count(start_region_index: int, end_region_index: int) -> v
 
 ## Updates the distance/landmark types for the circle landmark on the left.
 func _update_circle_landmark(start_region_index: int, _end_region_index: int) -> void:
-	var landmark_type: int
+	var landmark_type: Landmark.LandmarkType
 	var landmark_distance: int
 	
 	match start_region_index:
@@ -81,7 +81,7 @@ func _update_circle_landmark(start_region_index: int, _end_region_index: int) ->
 ## Updates the distance/landmark types for non-circle landmarks.
 func _update_icon_landmarks(start_region_index: int, end_region_index: int) -> void:
 	for region_index in range(start_region_index, end_region_index + 1):
-		var landmark_type: int
+		var landmark_type: Landmark.LandmarkType
 		var landmark_distance: int
 		
 		if region_index >= CareerLevelLibrary.regions.size():

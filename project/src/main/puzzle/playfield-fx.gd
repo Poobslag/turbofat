@@ -48,7 +48,7 @@ const OFF_PATTERN := [
 	".........",
 ]
 
-@export (NodePath) var combo_tracker_path: NodePath
+@export var combo_tracker_path: NodePath
 
 ## light pattern being shown.
 var _pattern := OFF_PATTERN
@@ -91,10 +91,10 @@ var _color_tile_indexes: Dictionary
 @onready var _glow_tween: Tween
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	_combo_tracker.connect("combo_break_changed", Callable(self, "_on_ComboTracker_combo_break_changed"))
-	PuzzleState.connect("combo_changed", Callable(self, "_on_PuzzleState_combo_changed"))
-	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	_combo_tracker.combo_break_changed.connect(_on_ComboTracker_combo_break_changed)
+	PuzzleState.combo_changed.connect(_on_PuzzleState_combo_changed)
+	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
 	_init_tile_set()
 	_init_color_tile_indexes()
 	reset()
@@ -231,8 +231,8 @@ func _refresh_tile_maps() -> void:
 						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
 					elif _color_tile_indexes.has(_color):
 						tile = _color_tile_indexes[_color]
-				light_map.set_cell(x, y, tile)
-				glow_map.set_cell(x, y, tile)
+				light_map.set_cell(0, Vector2i(x, y), tile)
+				glow_map.set_cell(0, Vector2i(x, y), tile)
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
@@ -252,7 +252,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 
 
 ## When the player builds a box we brighten the combo lights again.
-func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, _box_type: Foods.BoxType) -> void:
 	_refresh_tile_maps()
 	_start_glow_tween()
 

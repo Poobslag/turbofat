@@ -18,10 +18,10 @@ func _relocate_randomly() -> void:
 ## Recalculates the sweat positions based on the current piece.
 func _on_PieceManager_tiles_changed(tile_map: PuzzleTileMap) -> void:
 	_sweat_positions.clear()
-	if tile_map.get_used_cells():
-		for used_cell in tile_map.get_used_cells():
+	if tile_map.get_used_cells(0):
+		for used_cell in tile_map.get_used_cells(0):
 			for _i in range(2):
-				_sweat_positions.append(tile_map.somewhere_near_cell(used_cell + Vector2(0, -3)))
+				_sweat_positions.append(tile_map.somewhere_near_cell(used_cell + Vector2i(0, -3)))
 		_sweat_positions.shuffle()
 		_relocate_randomly()
 	else:

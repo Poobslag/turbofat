@@ -10,7 +10,7 @@ extends Node
 ## emitted after a line is inserted
 signal line_inserted(y, tiles_key, src_y)
 
-@export (NodePath) var tile_map_path: NodePath
+@export var tile_map_path: NodePath
 
 ## key: (String) tiles key for tiles referenced by level rules
 ## value: (int) next row to insert from the referenced tiles
@@ -36,8 +36,8 @@ var _prev_tiles_key_insert_count_by_tiles_keys := {}
 @onready var _line_insert_sound := $LineInsertSound
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 
 
 ## Inserts a line into the puzzle tilemap.
@@ -65,20 +65,20 @@ func insert_line(tiles_keys: Array = [], dest_y: int = PuzzleTileMap.ROW_COUNT -
 		# get the tiles for this row
 		src_y = _tiles_src_y(tiles_key)
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var src_pos := Vector2(x, src_y)
+			var src_pos := Vector2i(x, src_y)
 			var tile: int = tiles.block_tiles.get(src_pos, -1)
-			var autotile_coord: Vector2
+			var autotile_coord: Vector2i
 			if tile == PuzzleTileMap.TILE_VEG:
 				autotile_coord = PuzzleTileMap.random_veg_autotile_coord()
 			else:
-				autotile_coord = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
-			_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
+				autotile_coord = tiles.block_autotile_coords.get(src_pos, Vector2i.ZERO)
+			_tile_map.set_block(Vector2i(x, dest_y), tile, autotile_coord)
 	else:
 		# fill bottom row with random veggie garbage
 		for x in range(PuzzleTileMap.COL_COUNT):
 			var veg_autotile_coord := PuzzleTileMap.random_veg_autotile_coord()
-			_tile_map.set_block(Vector2(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
-		_tile_map.set_block(Vector2(randi() % PuzzleTileMap.COL_COUNT, dest_y), -1)
+			_tile_map.set_block(Vector2i(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
+		_tile_map.set_block(Vector2i(randi() % PuzzleTileMap.COL_COUNT, dest_y), -1)
 	
 	var tiles_keys_string := _string_from_tiles_keys(tiles_keys)
 	_prev_tiles_key_by_tiles_keys[tiles_keys_string] = tiles_key
@@ -108,7 +108,7 @@ func _determine_tiles_key(tiles_keys: Array) -> String:
 		var possible_tiles_keys := tiles_keys.duplicate()
 		if possible_tiles_keys.size() > 1 and not prev_tiles_key.is_empty():
 			# avoid picking the same key twice
-			possible_tiles_keys.remove(possible_tiles_keys.find(prev_tiles_key))
+			possible_tiles_keys.remove_at(possible_tiles_keys.find(prev_tiles_key))
 		result = Utils.rand_value(possible_tiles_keys)
 		_prev_tiles_key_insert_count_by_tiles_keys[tiles_keys_string] = 1
 	
@@ -141,7 +141,7 @@ func _tiles_src_y(tiles_key: String) -> int:
 			# select and remove a random row from the row bag
 			var row_bag_index := randi() % row_bag.size()
 			src_y = row_bag[row_bag_index]
-			row_bag.remove(row_bag_index)
+			row_bag.remove_at(row_bag_index)
 	return src_y
 
 

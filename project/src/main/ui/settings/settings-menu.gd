@@ -4,8 +4,8 @@ extends CanvasLayer
 ##
 ## This is meant to be overlaid over over scenes, which is why it is a CanvasLayer.
 
-signal show
-signal hide
+signal shown
+signal hidden
 signal quit_pressed
 signal other_quit_pressed
 
@@ -19,7 +19,7 @@ const GIVE_UP := QuitType.GIVE_UP
 const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
 
 ## Text on the menu's quit button
-@export (QuitType) var quit_type: int: set = set_quit_type
+@export var quit_type: QuitType: set = set_quit_type
 
 ## method name and parameters for a method to call after system data is saved
 var _post_save_method: String
@@ -37,9 +37,9 @@ var _post_save_args_array: Array
 
 func _ready() -> void:
 	# starts invisible
-	hide()
+	hide_settings_menu()
 	
-	if OS.has_touchscreen_ui_hint():
+	if DisplayServer.is_touchscreen_available():
 		# hide keybinds settings for mobile devices
 		_controls_control.queue_free()
 	else:
@@ -49,29 +49,29 @@ func _ready() -> void:
 	_refresh_quit_type()
 
 
-func set_quit_type(new_quit_type: int) -> void:
+func set_quit_type(new_quit_type: QuitType) -> void:
 	quit_type = new_quit_type
 	_refresh_quit_type()
 
 
 ## Shows the menu and pauses the scene tree.
-func show() -> void:
+func show_settings_menu() -> void:
 	_bg.show()
 	_touch_buttons.visible = true
 	_dialogs.visible = true
 	_window.show()
 	get_tree().paused = true
-	emit_signal("show")
+	emit_signal("shown")
 
 
 ## Hides the menu and unpauses the scene tree.
-func hide() -> void:
+func hide_settings_menu() -> void:
 	_bg.hide()
 	_touch_buttons.visible = false
 	_dialogs.visible = false
 	_window.hide()
 	get_tree().paused = false
-	emit_signal("hide")
+	emit_signal("hidden")
 
 
 ## Prompts the player for confirmation, if necessary, and saves their system settings.
@@ -94,7 +94,7 @@ func _confirm_and_save(new_post_save_method: String, new_post_save_args_array: A
 		_dialogs.confirm_new_save_slot()
 	else:
 		SystemSave.save_system_data()
-		hide()
+		hide_settings_menu()
 		if _post_save_method:
 			callv(_post_save_method, _post_save_args_array)
 
@@ -123,7 +123,7 @@ func _on_Bottom_quit_pressed() -> void:
 	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
 	else:
-		hide()
+		hide_settings_menu()
 		emit_signal("quit_pressed")
 
 
@@ -134,18 +134,18 @@ func _on_Bottom_other_quit_pressed() -> void:
 	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
 	else:
-		hide()
+		hide_settings_menu()
 		emit_signal("other_quit_pressed")
 
 
 func _on_Settings_pressed() -> void:
-	show()
+	show_settings_menu()
 
 
 func _on_Dialogs_change_save_cancelled() -> void:
 	_save_slot_control.revert_save_slot()
 	SystemSave.save_system_data()
-	hide()
+	hide_settings_menu()
 	if _post_save_method:
 		callv(_post_save_method, _post_save_args_array)
 
@@ -160,7 +160,7 @@ func _on_Dialogs_change_save_confirmed() -> void:
 
 
 func _on_Dialogs_delete_confirmed() -> void:
-	var deleted_save_slot: int = _save_slot_control.get_selected_save_slot()
+	var deleted_save_slot: MiscSettings.SaveSlot = _save_slot_control.get_selected_save_slot()
 	SystemSave.delete_save_slot(deleted_save_slot)
 	
 	if SystemData.misc_settings.save_slot == deleted_save_slot:

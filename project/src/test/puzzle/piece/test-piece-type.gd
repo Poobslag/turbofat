@@ -5,14 +5,14 @@ var type: PieceType = PieceType.new()
 func test_copy_from_performs_deep_copy() -> void:
 	type.copy_from(PieceTypes.piece_domino)
 	
-	type.kicks[01][0] = Vector2(12, 35)
-	type.color_arr[0][0] = Vector2(33, 48)
-	type.pos_arr[0][0] = Vector2(56, 32)
+	type.kicks[01][0] = Vector2i(12, 35)
+	type.color_arr[0][0] = Vector2i(33, 48)
+	type.pos_arr[0][0] = Vector2i(56, 32)
 	
 	# updating the piece's kicks
-	assert_eq(PieceTypes.piece_domino.kicks[01][0], Vector2(1, 0))
-	assert_eq(PieceTypes.piece_domino.color_arr[0][0], Vector2(8, 3))
-	assert_eq(PieceTypes.piece_domino.pos_arr[01][0], Vector2(0, 0))
+	assert_eq(PieceTypes.piece_domino.kicks[01][0], Vector2i(1, 0))
+	assert_eq(PieceTypes.piece_domino.color_arr[0][0], Vector2i(8, 3))
+	assert_eq(PieceTypes.piece_domino.pos_arr[01][0], Vector2i(0, 0))
 
 
 func test_get_box_type() -> void:

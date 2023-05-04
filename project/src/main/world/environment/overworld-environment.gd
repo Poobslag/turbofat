@@ -4,9 +4,9 @@ extends Node
 
 const SCENE_EMPTY_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
-@export (NodePath) var environment_shadows_path: NodePath
-@export (NodePath) var obstacles_path: NodePath
-@export (PackedScene) var CreatureScene: PackedScene
+@export var environment_shadows_path: NodePath
+@export var obstacles_path: NodePath
+@export var CreatureScene: PackedScene
 
 @onready var _obstacles: Node2D = get_node(obstacles_path)
 @onready var _environment_shadows: OutdoorShadows = get_node(environment_shadows_path)

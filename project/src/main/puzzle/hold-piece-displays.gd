@@ -5,8 +5,8 @@ extends Control
 ## There is only one hold piece display at a time. This code is named and organized how it is for symmetry with the
 ## Next Piece Display functionality, since they have a lot in common.
 
-@export (NodePath) var piece_queue_path: NodePath
-@export (PackedScene) var HoldPieceDisplayScene
+@export var piece_queue_path: NodePath
+@export var HoldPieceDisplayScene
 
 var display: HoldPieceDisplay
 
@@ -16,10 +16,10 @@ var display: HoldPieceDisplay
 @onready var holder := $Holder
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
-	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	Pauser.paused_changed.connect(_on_Pauser_paused_changed)
+	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
 	
 	display = HoldPieceDisplayScene.instantiate()
 	display.initialize(_piece_queue)

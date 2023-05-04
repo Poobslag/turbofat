@@ -19,14 +19,14 @@ const POP_IN_Y := 32
 const POP_OUT_Y := 0
 
 ## tracks whether the popup is currently popping in or out
-var _popup_state: int = PopupState.POPPED_OUT
+var _popup_state: PopupState = PopupState.POPPED_OUT
 
 var _tween: Tween
 
 @onready var _music_panel := get_node("../Panel")
 
 func _ready() -> void:
-	$PopOutTimer.connect("timeout", Callable(self, "_on_PopOutTimer_timeout"))
+	$PopOutTimer.timeout.connect(_on_PopOutTimer_timeout)
 
 
 func _enter_tree() -> void:
@@ -34,8 +34,8 @@ func _enter_tree() -> void:
 	# method instead of a yield statement to avoid 'class instance is gone' errors. We also wrap it in an if statement
 	# because this music popup can be reused as a singleton, so it's possible for it to be launched multiple times
 	# with no idle_frame.
-	if not get_tree().is_connected("idle_frame", Callable(self, "_restore_tween_and_timer_state")):
-		get_tree().connect("idle_frame", Callable(self, "_restore_tween_and_timer_state").bind(get_tree()))
+	if not get_tree().idle_frame.is_connected(_restore_tween_and_timer_state):
+		get_tree().idle_frame.connect(_restore_tween_and_timer_state.bind(get_tree())
 
 
 ## Makes the music popup appear, and then hides it after a few seconds.
@@ -45,7 +45,7 @@ func _enter_tree() -> void:
 func pop_in_and_out(pop_in_delay: float) -> void:
 	if pop_in_delay:
 		# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
-		get_tree().create_timer(pop_in_delay).connect("timeout", Callable(self, "_pop_in"))
+		get_tree().create_timer(pop_in_delay).timeout.connect(_pop_in)
 	else:
 		_pop_in()
 
@@ -92,8 +92,8 @@ func _pop_out() -> void:
 ## because get_tree() returns null.
 func _restore_tween_and_timer_state(tree: SceneTree) -> void:
 	# disconnect our one-shot method
-	if tree.is_connected("idle_frame", Callable(self, "_restore_tween_and_timer_state")):
-		tree.disconnect("idle_frame", Callable(self, "_restore_tween_and_timer_state"))
+	if tree.idle_frame.is_connected(_restore_tween_and_timer_state):
+		tree.idle_frame.disconnect(_restore_tween_and_timer_state)
 	
 	if is_inside_tree():
 		match _popup_state:

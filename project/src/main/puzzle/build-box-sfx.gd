@@ -8,7 +8,7 @@ extends Node
 		preload("res://assets/main/puzzle/build-snack-box3.wav"),
 	]
 
-func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, color: Foods.BoxType) -> void:
 	if Foods.is_snack_box(color):
 		$BuildSnackBoxSound.stream = _build_snack_box_sounds[color]
 		$BuildSnackBoxSound.play()

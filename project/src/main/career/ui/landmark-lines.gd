@@ -2,7 +2,7 @@ class_name LandmarkLines
 extends Control
 ## Draws lines connecting landmark icons for career mode's chalkboard map.
 
-@export (Resource) var LandmarkLineScene: Resource
+@export var LandmarkLineScene: Resource
 
 func _ready() -> void:
 	_refresh_lines()

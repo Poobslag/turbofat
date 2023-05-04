@@ -7,7 +7,7 @@ extends Panel
 
 func _ready() -> void:
 	visible = false
-	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	PuzzleState.after_level_changed.connect(_on_PuzzleState_after_level_changed)
 
 
 ## Returns a specific SkillTallyItem instance in the panel.

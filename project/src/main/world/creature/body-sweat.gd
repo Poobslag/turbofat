@@ -6,8 +6,8 @@ extends GPUParticles2D
 @onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
-	_creature_visuals.connect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
-	_creature_visuals.connect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
+	_creature_visuals.comfort_changed.connect(_on_CreatureVisuals_comfort_changed)
+	_creature_visuals.visual_fatness_changed.connect(_on_CreatureVisuals_visual_fatness_changed)
 
 
 func _refresh_sweat() -> void:

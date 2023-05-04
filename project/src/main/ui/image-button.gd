@@ -5,26 +5,26 @@ extends Button
 ## Pressing the button toggles between the normal and pressed icon. The button's size changes based on the player's
 ## touch settings.
 
-@export (Texture2D) var normal_icon: Texture2D: set = set_normal_icon
-@export (Texture2D) var pressed_icon: Texture2D: set = set_pressed_icon
+@export var normal_icon: Texture2D: set = set_normal_icon
+@export var pressed_icon: Texture2D: set = set_pressed_icon
 
 func _ready() -> void:
 	icon = normal_icon
-	SystemData.touch_settings.connect("changed", Callable(self, "_on_TouchSettings_settings_changed"))
+	SystemData.touch_settings.changed.connect(_on_TouchSettings_settings_changed)
 	_refresh_touch_settings()
 
 
 func set_normal_icon(new_normal_icon: Texture2D) -> void:
 	normal_icon = new_normal_icon
 	
-	if not pressed:
+	if not button_pressed:
 		icon = normal_icon
 
 
 func set_pressed_icon(new_pressed_icon: Texture2D) -> void:
 	pressed_icon = new_pressed_icon
 	
-	if pressed:
+	if button_pressed:
 		icon = pressed_icon
 
 
