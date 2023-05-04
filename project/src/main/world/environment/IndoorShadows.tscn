@@ -29,8 +29,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
-cell_shadow_mapping = {
-}
 
 [node name="ObstacleMapShadows" type="TileMap" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -44,8 +42,6 @@ format = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
-}
-cell_shadow_mapping = {
 }
 
 [node name="CreatureShadows" parent="." instance=ExtResource( 4 )]
