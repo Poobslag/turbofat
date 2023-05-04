@@ -16,14 +16,14 @@ var all_clear_message_text := tr("All\nClear!")
 @onready var _settings_button := $Buttons/Settings
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
-	PuzzleState.connect("before_level_changed", Callable(self, "_on_PuzzleState_before_level_changed"))
-	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
-	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
-	PuzzleState.connect("after_game_ended", Callable(self, "_on_PuzzleState_after_game_ended"))
-	CurrentLevel.connect("best_result_changed", Callable(self, "_on_Level_best_result_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.game_started.connect(_on_PuzzleState_game_started)
+	PuzzleState.before_level_changed.connect(_on_PuzzleState_before_level_changed)
+	PuzzleState.before_piece_written.connect(_on_PuzzleState_before_piece_written)
+	PuzzleState.after_level_changed.connect(_on_PuzzleState_after_level_changed)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
+	PuzzleState.after_game_ended.connect(_on_PuzzleState_after_game_ended)
+	CurrentLevel.best_result_changed.connect(_on_Level_best_result_changed)
 	
 	if PlayerData.career.is_career_mode():
 		# they can't go back in career mode
@@ -46,7 +46,7 @@ func is_settings_button_visible() -> bool:
 
 
 ## Shows a succinct single-line message, like 'Game Over'
-func show_message(message_type: int, text: String) -> void:
+func show_message(message_type: PuzzleMessage.MessageType, text: String) -> void:
 	_puzzle_message.show_message(message_type, text)
 
 
@@ -89,7 +89,7 @@ func _on_Settings_pressed() -> void:
 
 func _on_Back_pressed() -> void:
 	# disconnect signal to prevent the back button from changing its label
-	CurrentLevel.disconnect("best_result_changed", Callable(self, "_on_Level_best_result_changed"))
+	CurrentLevel.best_result_changed.disconnect(_on_Level_best_result_changed)
 	
 	emit_signal("back_button_pressed")
 
@@ -194,7 +194,7 @@ func _on_Playfield_all_lines_cleared() -> void:
 		# avoid showing conflicting messages
 		return
 	
-	if PuzzleState.tutorial_section_finished:
+	if PuzzleState.tutorial_section_finish_emitted:
 		# avoid showing conflicting messages
 		return
 	

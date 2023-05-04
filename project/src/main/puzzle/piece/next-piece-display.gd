@@ -13,5 +13,6 @@ func initialize(piece_queue: PieceQueue, piece_index: int) -> void:
 	_piece_index = piece_index
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	super(delta)
 	refresh_tile_map(_piece_queue.get_next_piece(_piece_index))

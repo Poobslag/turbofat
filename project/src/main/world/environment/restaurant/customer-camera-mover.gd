@@ -4,11 +4,11 @@ extends AnimationPlayer
 ## While this is an AnimationPlayer, the animation is only used to calculate the camera position. It shouldn't ever be
 ## played as an animation.
 
-@export (NodePath) var restaurant_scene_path: NodePath
-@export (NodePath) var customer_camera_path: NodePath
+@export var restaurant_scene_path: NodePath
+@export var customer_camera_path: NodePath
 
 ## Amount of empty space over the customer's head.
-@export (float, 0, 1) var headroom := 1.0: set = set_headroom
+@export_range(0, 1) var headroom := 1.0: set = set_headroom
 
 ## position that the restaurant scene's camera lerps to
 var _target_camera_position: Vector2
@@ -28,7 +28,7 @@ var _target_camera_position_dirty := true
 func _ready() -> void:
 	var customers := _restaurant_scene.get_customers()
 	for i in range(customers.size()):
-		customers[i].connect("visual_fatness_changed", Callable(self, "_on_Creature_visual_fatness_changed").bind(i))
+		customers[i].visual_fatness_changed.connect(_on_Creature_visual_fatness_changed.bind(i))
 	_refresh_zoom_and_headroom()
 	_refresh_target_camera_position()
 	_customer_camera.position = _target_camera_position
@@ -85,6 +85,6 @@ func _on_RestaurantPuzzleScene_current_customer_index_changed(_value: int) -> vo
 	_refresh_zoom_and_headroom()
 
 
-func _on_RestaurantPuzzleScene_food_eaten(_food_type: int) -> void:
+func _on_RestaurantPuzzleScene_food_eaten(_food_type: Foods.FoodType) -> void:
 	_shake_total_seconds = 0.20
 	_shake_remaining_seconds = 0.20

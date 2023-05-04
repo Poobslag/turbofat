@@ -1,47 +1,36 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://b144ld7wxfqpx"]
 
-[ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=15]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" type="TileSet" id=40]
-[ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=41]
+[ext_resource type="PackedScene" uid="uid://cqj2q0dsekv8t" path="res://src/main/world/environment/OutdoorShadows.tscn" id="2"]
+[ext_resource type="Script" path="res://src/main/world/environment/overworld-environment.gd" id="15"]
+[ext_resource type="PackedScene" uid="uid://212da705ytk0" path="res://src/main/world/creature/Creature.tscn" id="19"]
+[ext_resource type="TileSet" uid="uid://dl5uq5f6b2u7k" path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" id="40"]
+[ext_resource type="TileSet" uid="uid://biuufj6ghvjr2" path="res://src/main/world/environment/restaurant/floor-library.tres" id="41"]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
-script = ExtResource( 15 )
+script = ExtResource("15")
 environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
-CreatureScene = ExtResource( 19 )
+CreatureScene = ExtResource("19")
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1
 
 [node name="GroundMap" type="TileMap" parent="Ground"]
-scale = Vector2( 0.5, 0.5 )
-mode = 2
-tile_set = ExtResource( 41 )
-cell_size = Vector2( 128, 104 )
-cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
-cell_tile_origin = 1
-centered_textures = true
-format = 1
+scale = Vector2(0.5, 0.5)
+tile_set = ExtResource("41")
+format = 2
 
 [node name="Exits" type="Node2D" parent="Ground"]
 
-[node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
+[node name="Shadows" parent="Ground" instance=ExtResource("2")]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 
 [node name="Obstacles" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
-scale = Vector2( 0.5, 0.5 )
-mode = 2
-tile_set = ExtResource( 40 )
-cell_size = Vector2( 128, 104 )
-cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
-cell_tile_origin = 1
-cell_y_sort = true
-show_collision = true
-centered_textures = true
-format = 1
+scale = Vector2(0.5, 0.5)
+tile_set = ExtResource("40")
+format = 2
 
 [node name="Spawns" type="Node2D" parent="."]

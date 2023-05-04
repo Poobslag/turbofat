@@ -5,16 +5,16 @@ extends Control
 const TWEEN_DURATION := 0.1
 
 ## Path to the label which shows the total each customer paid. The money label responds to these totals.
-@export (NodePath) var results_label_path: NodePath
+@export var results_label_path: NodePath
 
 @onready var _money_label := $MoneyLabel
 @onready var _money_label_tween: Tween
 @onready var _results_label: ResultsLabel = get_node(results_label_path)
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("after_game_ended", Callable(self, "_on_PuzzleState_after_game_ended"))
-	_results_label.connect("text_shown", Callable(self, "_on_ResultsLabel_text_shown"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.after_game_ended.connect(_on_PuzzleState_after_game_ended)
+	_results_label.text_shown.connect(_on_ResultsLabel_text_shown)
 
 
 ## Shows the money label, decrementing it so that it does not include the current customer totals.
@@ -38,7 +38,7 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_PuzzleState_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.level_history.prev_result(CurrentLevel.settings.id)
+	var rank_result: RankResult = PlayerData.level_history.get_prev_result(CurrentLevel.settings.id)
 	if not rank_result or CurrentLevel.settings.rank.skip_results:
 		return
 	

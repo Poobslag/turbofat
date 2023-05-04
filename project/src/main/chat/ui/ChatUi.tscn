@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://66jg21ym183i"]
 
-[ext_resource path="res://src/main/chat/ui/ChatFrame.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/chat/ui/ChatChoices.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/chat/chat-advancer.gd" type="Script" id=3]
-[ext_resource path="res://src/main/chat/ui/touch-translator.gd" type="Script" id=4]
-[ext_resource path="res://src/main/chat/ui/NarrationFrame.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/chat/ui/chat-ui.gd" type="Script" id=16]
+[ext_resource type="PackedScene" uid="uid://c4i15qx5lv3wy" path="res://src/main/chat/ui/ChatFrame.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://7ronexsj66wq" path="res://src/main/chat/ui/ChatChoices.tscn" id="2"]
+[ext_resource type="Script" path="res://src/main/chat/chat-advancer.gd" id="3"]
+[ext_resource type="Script" path="res://src/main/chat/ui/touch-translator.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://by5n628xv15w8" path="res://src/main/chat/ui/NarrationFrame.tscn" id="5"]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-ui.gd" id="16"]
 
 [node name="ChatUi" type="Control"]
+custom_minimum_size = Vector2(1024, 600)
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -16,10 +19,13 @@ offset_left = -512.0
 offset_top = -300.0
 offset_right = 512.0
 offset_bottom = 300.0
-custom_minimum_size = Vector2( 1024, 600 )
-script = ExtResource( 16 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16")
 
-[node name="ChatFrame" parent="." instance=ExtResource( 1 )]
+[node name="ChatFrame" parent="." instance=ExtResource("1")]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -27,30 +33,38 @@ offset_left = -512.0
 offset_top = -200.0
 offset_right = 512.0
 offset_bottom = -0.000732422
+grow_vertical = 0
 
-[node name="ChatChoices" parent="." instance=ExtResource( 2 )]
+[node name="ChatChoices" parent="." instance=ExtResource("2")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 280.0
+offset_bottom = 240.0
 
-[node name="NarrationFrame" parent="." instance=ExtResource( 5 )]
+[node name="NarrationFrame" parent="." instance=ExtResource("5")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ChatAdvancer" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="TouchTranslator" type="Control" parent="."]
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource( 4 )
+script = ExtResource("4")
 chat_frame_path = NodePath("../ChatFrame")
 narration_frame_path = NodePath("../NarrationFrame")
 
-[connection signal="chat_event_played" from="." to="ChatAdvancer" method="_on_ChatUi_chat_event_played"]
-[connection signal="chat_finished" from="." to="TouchTranslator" method="_on_ChatUi_chat_finished"]
-[connection signal="popped_in" from="." to="TouchTranslator" method="_on_ChatUi_popped_in"]
-[connection signal="showed_choices" from="." to="TouchTranslator" method="_on_ChatUi_showed_choices"]
 [connection signal="all_text_shown" from="ChatFrame" to="." method="_on_ChatFrame_all_text_shown"]
 [connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="." method="_on_ChatChoices_chat_choice_chosen"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="ChatAdvancer" method="_on_ChatChoices_chat_choice_chosen"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="TouchTranslator" method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="pop_out_completed" from="NarrationFrame" to="." method="_on_NarrationFrame_pop_out_completed"]
 [connection signal="chat_event_shown" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_event_shown"]
 [connection signal="chat_finished" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_finished"]

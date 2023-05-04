@@ -16,21 +16,19 @@ extends Node
 var _line_clear_count := 1
 var _box_type := 0
 var _food_item_index := 0
-var _cake_box_type: int = Foods.BoxType.CAKE_JJO
+var _cake_box_type := Foods.BoxType.CAKE_JJO
 var _night_mode := false
 
 @onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
 ## local path to a json level resource to demo
-@export (String, FILE, "*.json") var level_path: String
+@export_file("*.json") var level_path: String
 
 func _ready() -> void:
 	var settings: LevelSettings = LevelSettings.new()
 	if level_path:
 		var json_text := FileUtils.get_file_as_text(level_path)
-		var test_json_conv = JSON.new()
-		test_json_conv.parse(json_text)
-		var json_dict: Dictionary = test_json_conv.get_data()
+		var json_dict: Dictionary = JSON.parse_string(json_text)
 		var level_key := LevelSettings.level_key_from_path(level_path)
 		settings.from_json_dict(level_key, json_dict)
 		# Ignore the start_level property so we can test the middle parts of tutorials
@@ -42,7 +40,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_Q: _build_box(3)
 		KEY_W: _build_box(9)
 		KEY_E: _build_box(15)
@@ -67,10 +65,10 @@ func _input(event: InputEvent) -> void:
 		
 		KEY_P: _add_pickups()
 		
-		KEY_J: $Puzzle/Fg/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
+		KEY_J: $Puzzle/Fg/FoodItems.add_food_item(Vector2i(1, 4), _food_item_index)
 		KEY_K:
 			_food_item_index = (_food_item_index + 1) % 16
-			$Puzzle/Fg/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
+			$Puzzle/Fg/FoodItems.add_food_item(Vector2i(1, 4), _food_item_index)
 		
 		KEY_L:
 			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed.speed_ups.size())
@@ -81,7 +79,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Puzzle/Fg/Playfield/BoxBuilder.build_box(Rect2(0, y, 3, 3), _box_type)
+	$Puzzle/Fg/Playfield/BoxBuilder.build_box(Rect2i(0, y, 3, 3), _box_type)
 
 
 func _insert_line(tiles_key: String, y: int) -> void:
@@ -96,10 +94,10 @@ func _add_pickups() -> void:
 	var cells := []
 	for y in range(PuzzleTileMap.ROW_COUNT - 5, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
-			cells.append(Vector2(x, y))
+			cells.append(Vector2i(x, y))
 	
 	for cell in cells:
-		var box_type: int = [
+		var box_type: Foods.BoxType = [
 			Foods.BoxType.BROWN,
 			Foods.BoxType.PINK,
 			Foods.BoxType.BREAD,

@@ -8,25 +8,25 @@ class_name PuzzleTileMapReader
 ## 	'json_tiles': A json fragment listing tiles in a puzzle tilemap.
 ##
 ## 	'set_block': A reference to a function which accepts three parameters:
-## 		'pos' (Vector2): Position of the cell
+## 		'pos' (Vector2i): Position of the cell
 ## 		'tile' (int): Tile index of the cell
-## 		'autotile_coord' (Vector2): Coordinate of the autotile variation in the tileset
+## 		'autotile_coord' (Vector2i): Coordinate of the autotile variation in the tileset
 ##
 ## 	'set_pickup': (Optional) Reference to a function which accepts two parameters:
-## 		'pos' (Vector2): Position of the cell
+## 		'pos' (Vector2i): Position of the cell
 ## 		'box_type' (int): Enum from Foods.BoxType defining the pickup's color
-static func read(json_tiles: Array, set_block: FuncRef, set_pickup: FuncRef = null) -> void:
+static func read(json_tiles: Array, set_block: Callable, set_pickup: Callable = Callable()) -> void:
 	for json_tile in json_tiles:
 		var json_pos_arr: PackedStringArray = json_tile.get("pos", "").split(" ")
 		var json_tile_arr: PackedStringArray = json_tile.get("tile", "").split(" ")
 		var json_pickup_str: String = json_tile.get("pickup", "")
 		if json_pos_arr.size() < 2:
 			continue
-		var pos := Vector2(int(json_pos_arr[0]), int(json_pos_arr[1]))
-		if json_tile_arr.size() >= 3 and set_block:
+		var pos := Vector2i(int(json_pos_arr[0]), int(json_pos_arr[1]))
+		if json_tile_arr.size() >= 3 and not set_block.is_null():
 			var tile := int(json_tile_arr[0])
-			var autotile_coord := Vector2(int(json_tile_arr[1]), int(json_tile_arr[2]))
-			set_block.call_func(pos, tile, autotile_coord)
-		if json_pickup_str and set_pickup:
+			var autotile_coord := Vector2i(int(json_tile_arr[1]), int(json_tile_arr[2]))
+			set_block.call(pos, tile, autotile_coord)
+		if not json_pickup_str.is_empty() and not set_pickup.is_null():
 			var box_type := int(json_pickup_str)
-			set_pickup.call_func(pos, box_type)
+			set_pickup.call(pos, box_type)

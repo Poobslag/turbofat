@@ -16,7 +16,7 @@
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
 [ext_resource path="res://src/main/ui/menu/PagedLevelPanel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=17]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=17]
 [ext_resource path="res://src/main/ui/menu/region-submenu.gd" type="Script" id=22]
 [ext_resource path="res://src/main/ui/menu/level-submenu.gd" type="Script" id=24]
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture2D" id=31]
@@ -75,9 +75,12 @@ offset_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource( 17 )
+theme_override_font_sizes/font_size = 36
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 text = "Level"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonHolder" type="Control" parent="MainMenu/VBoxContainer/Level"]
 offset_top = 49.0
@@ -108,8 +111,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Score 200 points as quickly as possible!"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Speed" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 offset_top = 155.0
@@ -125,8 +128,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource( 17 )
 text = "Speed"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Slider" type="HSlider" parent="MainMenu/VBoxContainer/Speed" groups=["main_practice_inputs"]]
 offset_left = 192.0
@@ -161,7 +164,7 @@ offset_right = 302.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "1"
-align = 1
+horizontal_alignment = 1
 
 [node name="Expert" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
 offset_left = 306.0
@@ -169,7 +172,7 @@ offset_right = 504.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "2"
-align = 1
+horizontal_alignment = 1
 
 [node name="Master" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
 offset_left = 508.0
@@ -178,7 +181,7 @@ offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "3"
-align = 2
+horizontal_alignment =2
 
 [node name="System" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 offset_top = 295.0
@@ -265,8 +268,10 @@ script = ExtResource( 22 )
 region_buttons_path = NodePath("Panel/VBoxContainer/Top/RegionButtons")
 
 [node name="Backdrop" type="ColorRect" parent="RegionSubmenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 color = Color( 0, 0, 0, 0.752941 )
 
 [node name="Panel" parent="RegionSubmenu" instance=ExtResource( 1 )]
@@ -312,8 +317,10 @@ anchor_bottom = 1.0
 script = ExtResource( 24 )
 
 [node name="Backdrop" type="ColorRect" parent="LevelSubmenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 color = Color( 0, 0, 0, 0.752941 )
 
 [node name="Panel" parent="LevelSubmenu" instance=ExtResource( 15 )]

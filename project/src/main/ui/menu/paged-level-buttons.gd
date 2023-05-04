@@ -18,7 +18,7 @@ signal unlocked_level_focused(settings)
 ## Emitted when a new level button is added.
 signal button_added(button)
 
-@export (PackedScene) var LevelButtonScene: PackedScene
+@export var LevelButtonScene: PackedScene
 
 ## CareerRegion or OtherRegion instance whose levels are being shown
 var region: Object: set = set_region_enabled
@@ -55,7 +55,7 @@ func focus_level(level_id_to_focus: String) -> void:
 	var button_index_to_focus := -1
 	
 	if level_ids.has(level_id_to_focus):
-		# warning-ignore:integer_division
+		@warning_ignore("integer_division")
 		page_to_focus = level_ids.find(level_id_to_focus) / MAX_LEVELS_PER_PAGE
 		button_index_to_focus = level_ids.find(level_id_to_focus) % MAX_LEVELS_PER_PAGE
 	
@@ -155,7 +155,7 @@ func _refresh_arrows() -> void:
 
 ## Calculates the highest page the player can select.
 func _max_selectable_page() -> int:
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	return (level_ids.size() - 1) / MAX_LEVELS_PER_PAGE
 
 
@@ -204,8 +204,8 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 				push_warning("Unrecognized color string '%s'" % [level_settings.color_string])
 				pass
 	
-	level_button.connect("focus_entered", Callable(self, "_on_LevelButton_focus_entered").bind(level_button, level_id))
-	level_button.connect("level_chosen", Callable(self, "_on_LevelButton_level_chosen").bind(level_settings))
+	level_button.focus_entered.connect(_on_LevelButton_focus_entered.bind(level_button, level_id))
+	level_button.level_chosen.connect(_on_LevelButton_level_chosen.bind(level_settings))
 	return level_button
 
 
@@ -241,5 +241,5 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			button_index_to_focus = get_viewport().gui_get_focus_owner().get_index()
 		_refresh()
 		if button_index_to_focus != -1:
-			await get_tree().idle_frame
+			await get_tree().process_frame
 			_grid_container.get_children()[button_index_to_focus].grab_focus()

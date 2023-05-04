@@ -55,10 +55,10 @@ var _remaining_misc_delay_frames := 0
 @onready var _combo_tracker: ComboTracker = $ComboTracker
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
-	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
+	Pauser.paused_changed.connect(_on_Pauser_paused_changed)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	_prepare_tileset()
 	_prepare_level_blocks()
 
@@ -116,13 +116,13 @@ func ready_for_new_piece() -> bool:
 ## Writes a piece to the playfield, checking whether it builds any boxes or clears any lines.
 ##
 ## Returns true if the written piece results in a line clear.
-func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> void:
+func write_piece(pos: Vector2i, orientation: int, type: PieceType, death_piece := false) -> void:
 	tile_map.save_state()
 	
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
-		if Rect2(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT).has_point(pos + block_pos):
+		if Rect2i(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT).has_point(pos + block_pos):
 			tile_map.set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
 	
 	if not death_piece:
@@ -132,14 +132,14 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 			line_clearer.remaining_line_erase_frames = 0
 			line_clearer.schedule_filled_line_clears()
 	
-	PuzzleState.before_piece_written()
+	PuzzleState.trigger_before_piece_written()
 	
 	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
 	
 	if _box_builder.remaining_box_build_frames == 0 and line_clearer.remaining_line_erase_frames == 0:
 		# If any boxes are being built or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
-		PuzzleState.after_piece_written()
+		PuzzleState.trigger_after_piece_written()
 
 
 func break_combo() -> void:
@@ -152,9 +152,9 @@ func _prepare_tileset() -> void:
 
 ## Resets the playfield to the level's initial state.
 func _prepare_level_blocks() -> void:
-	$TutorialKeybindsLabel.visible = CurrentLevel.is_tutorial() and not OS.has_touchscreen_ui_hint()
+	$TutorialKeybindsLabel.visible = CurrentLevel.is_tutorial() and not DisplayServer.is_touchscreen_available()
 	
-	tile_map.clear()
+	tile_map.clear_puzzle()
 	var blocks_start: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.blocks_start()
 	for cell in blocks_start.block_tiles:
 		tile_map.set_block(cell, blocks_start.block_tiles[cell], blocks_start.block_autotile_coords[cell])
@@ -170,7 +170,7 @@ func _on_Level_settings_changed() -> void:
 	_prepare_level_blocks()
 
 
-func _on_BoxBuilder_box_built(rect: Rect2, box_type: int) -> void:
+func _on_BoxBuilder_box_built(rect: Rect2i, box_type: Foods.BoxType) -> void:
 	emit_signal("box_built", rect, box_type)
 
 
@@ -178,7 +178,7 @@ func _on_BoxBuilder_after_boxes_built() -> void:
 	if line_clearer.remaining_line_erase_frames > 0:
 		line_clearer.set_physics_process(true)
 	else:
-		PuzzleState.after_piece_written()
+		PuzzleState.trigger_after_piece_written()
 
 
 func _on_LineClearer_line_clears_scheduled(y_coords: Array) -> void:
@@ -208,7 +208,7 @@ func _on_LineClearer_after_lines_deleted(lines: Array) -> void:
 	# 'after_piece_written' signal until after the box is built
 	_box_builder.process_boxes()
 	if _box_builder.remaining_box_build_frames <= 0:
-		PuzzleState.after_piece_written()
+		PuzzleState.trigger_after_piece_written()
 
 
 func _on_GoopGlobs_hit_playfield(glob: Node) -> void:
@@ -233,7 +233,7 @@ func _on_LineInserter_line_inserted(y: int, tiles_key: String, src_y: int) -> vo
 	emit_signal("line_inserted", y, tiles_key, src_y)
 
 
-func _on_Pickups_food_spawned(cell: Vector2, remaining_food: int, food_type: int) -> void:
+func _on_Pickups_food_spawned(cell: Vector2i, remaining_food: int, food_type: Foods.FoodType) -> void:
 	emit_signal("food_spawned", cell, remaining_food, food_type)
 
 

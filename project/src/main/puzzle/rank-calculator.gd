@@ -76,7 +76,7 @@ func calculate_rank(unranked_result: RankResult = null) -> RankResult:
 	if unranked_result:
 		rank_result = unranked_result
 	else:
-		rank_result = unranked_result()
+		rank_result = get_unranked_result()
 	
 	if CurrentLevel.settings.rank.unranked:
 		# automatic master rank for unranked levels
@@ -86,7 +86,7 @@ func calculate_rank(unranked_result: RankResult = null) -> RankResult:
 		_populate_rank_fields(rank_result, false)
 		
 		if CurrentLevel.settings.finish_condition.has_meta("lenient_value"):
-			var lenient_rank_result := unranked_result()
+			var lenient_rank_result := get_unranked_result()
 			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
 			rank_result.lines_rank = min(rank_result.lines_rank, lenient_rank_result.lines_rank)
@@ -153,13 +153,13 @@ func rank_lpm(rank: float) -> float:
 	for i in range(CurrentLevel.settings.speed.speed_ups.size()):
 		# calculate the maximum lpm/spl based on the piece speed
 		var milestone: Milestone = CurrentLevel.settings.speed.speed_ups[i]
-		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
-		var min_frames_per_line := min_frames_per_line(piece_speed)
-		var mechanical_spl_limit: float = min_frames_per_line / 60 \
+		var piece_speed: PieceSpeed = PieceSpeeds.get_speed(milestone.get_meta("speed"))
+		var min_frames_per_line_for_speed := RankCalculator.min_frames_per_line(piece_speed)
+		var mechanical_spl_limit: float = min_frames_per_line_for_speed / 60 \
 				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
 		
 		# calculate the spl based on which is slower: the mechanical limit, or the player's limit
-		var seconds_per_line := max(mechanical_spl_limit, player_spl_limit)
+		var seconds_per_line: float = max(mechanical_spl_limit, player_spl_limit)
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0
@@ -168,28 +168,30 @@ func rank_lpm(rank: float) -> float:
 			var speed_up: Milestone = CurrentLevel.settings.speed.speed_ups[i + 1]
 			match speed_up.type:
 				Milestone.CUSTOMERS:
-					level_lines = master_customer_combo(CurrentLevel.settings)
+					level_lines = RankCalculator.master_customer_combo(CurrentLevel.settings)
 				Milestone.LINES:
 					level_lines = speed_up.value
 				Milestone.PIECES:
-					# warning-ignore:integer_division
+					@warning_ignore("integer_division")
 					level_lines = speed_up.value / 2
 				Milestone.TIME_OVER:
 					level_lines = speed_up.value / seconds_per_line
 				Milestone.SCORE:
 					level_lines = speed_up.value / \
-							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
+							(RankCalculator.master_box_score(CurrentLevel.settings)
+								+ RankCalculator.master_combo_score(CurrentLevel.settings) + 1)
 		else:
 			# calculate lines until reaching the end of the level
 			match finish_condition.type:
 				Milestone.LINES:
 					level_lines = finish_condition.value
 				Milestone.PIECES:
-					# warning-ignore:integer_division
+					@warning_ignore("integer_division")
 					level_lines = finish_condition.value / 2
 				Milestone.SCORE:
 					level_lines = finish_condition.value / \
-							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
+							(RankCalculator.master_box_score(CurrentLevel.settings)
+								+ RankCalculator.master_combo_score(CurrentLevel.settings) + 1)
 		
 		# avoid divide by zero, and round up to the nearest line clear
 		level_lines = ceil(max(level_lines, 1))
@@ -203,7 +205,7 @@ func rank_lpm(rank: float) -> float:
 ## Populates a new RankResult object with raw statistics.
 ##
 ## This does not include any rank data, only objective information like lines cleared and time taken.
-func unranked_result() -> RankResult:
+func get_unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
 	if CurrentLevel.settings.finish_condition.type == Milestone.SCORE:
@@ -241,24 +243,24 @@ func unranked_result() -> RankResult:
 ## 		lines in Marathon mode.
 func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_speed: float = rank_lpm(BEST_RANK)
-	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
-	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
-	var target_pickup_score_per_line := master_pickup_score_per_line(CurrentLevel.settings)
-	var target_pickup_score := master_pickup_score(CurrentLevel.settings)
+	var target_box_score_per_line := RankCalculator.master_box_score(CurrentLevel.settings)
+	var target_combo_score_per_line := RankCalculator.master_combo_score(CurrentLevel.settings)
+	var target_pickup_score_per_line := RankCalculator.master_pickup_score_per_line(CurrentLevel.settings)
+	var target_pickup_score := RankCalculator.master_pickup_score(CurrentLevel.settings)
 	var target_lines: int
-	var leftover_lines := master_leftover_lines(CurrentLevel.settings)
+	var leftover_lines := RankCalculator.master_leftover_lines(CurrentLevel.settings)
 	
 	var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 	match finish_condition.type:
 		Milestone.NONE:
 			target_lines = 999999
 		Milestone.CUSTOMERS:
-			target_lines = master_customer_combo(CurrentLevel.settings) * finish_condition.value
+			target_lines = RankCalculator.master_customer_combo(CurrentLevel.settings) * finish_condition.value
 			leftover_lines = 0 # the level ends when your combo breaks, it's inefficient to stack extra pieces
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.PIECES:
-			# warning-ignore:integer_division
+			@warning_ignore("integer_division")
 			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2.0
 		Milestone.SCORE:
 			target_lines = target_lines_for_score(target_box_score_per_line, target_combo_score_per_line)
@@ -274,7 +276,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	# avoid divide-by-zero errors
 	target_lines = max(1, target_lines)
 	
-	var target_leftover_score := target_leftover_score(leftover_lines)
+	var target_leftover_score_for_lines := target_leftover_score(leftover_lines)
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	if rank_result.compare == "-seconds" or finish_condition.type == Milestone.TIME_OVER:
@@ -322,7 +324,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_pickup_score_per_line := target_pickup_score_per_line \
 				* pow(RDF_PICKUP_SCORE_PER_LINE, tmp_overall_rank)
-		var tmp_leftover_score := target_leftover_score \
+		var tmp_leftover_score := target_leftover_score_for_lines \
 				* pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank) \
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		
@@ -391,7 +393,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 
 ## calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
 func target_leftover_score(leftover_lines: int) -> float:
-	var box_score := master_box_score(CurrentLevel.settings) * leftover_lines
+	var box_score := RankCalculator.master_box_score(CurrentLevel.settings) * leftover_lines
 	var combo_score := 20 * leftover_lines
 	
 	# if the combo factor is 0, they will be starting a new combo for the leftovers
@@ -447,15 +449,15 @@ func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 
 
 ## Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
-static func grade(rank: float) -> String:
-	var grade := NO_GRADE
+static func grade_from_rank(rank: float) -> String:
+	var result := NO_GRADE
 	
 	for grade_ranks_entry in GRADE_RANKS:
 		if rank <= grade_ranks_entry[1]:
-			grade = grade_ranks_entry[0]
+			result = grade_ranks_entry[0]
 			break
 	
-	return grade
+	return result
 
 
 ## Calculates the next grade better than the specified grade.
@@ -475,7 +477,7 @@ static func next_grade(grade: String) -> String:
 ## Converts a letter grade such as 'S+' into a numeric rating such as '12.6'.
 ##
 ## The resulting rating is an average rating for that grade -- not a minimum cutoff.
-static func rank(grade: String) -> float:
+static func rank_from_grade(grade: String) -> float:
 	var rank_lo := WORST_RANK
 	var rank_hi := WORST_RANK
 	

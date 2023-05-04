@@ -14,9 +14,9 @@ signal line_filled(y, tiles_key, src_y)
 ## emitted after a set of lines are filled, either following a topout/refresh or line clear
 signal after_lines_filled
 
-@export (NodePath) var pickups_path: NodePath
+@export var pickups_path: NodePath
 
-@export (NodePath) var tile_map_path: NodePath
+@export var tile_map_path: NodePath
 
 ## key: (String) tiles key for tiles referenced by level rules
 ## value: (int) next row to fill from the referenced tiles
@@ -49,8 +49,8 @@ var _line_fill_sfx_index := 0
 
 func _ready() -> void:
 	set_physics_process(false)
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 
 
 func _physics_process(_delta: float) -> void:
@@ -76,10 +76,10 @@ func _schedule_playfield_refill() -> void:
 	_remaining_line_fill_frames = max(1, PieceSpeeds.current_speed.playfield_refill_delay())
 	_filled_line_index = PuzzleTileMap.ROW_COUNT - 1
 	
-	var visible_row_count := clamp(_row_count_by_tiles_key.get("start", 0),
+	var visible_row_count: int = clamp(_row_count_by_tiles_key.get("start", 0),
 			0, PuzzleTileMap.ROW_COUNT - PuzzleTileMap.FIRST_VISIBLE_ROW)
 	var line_fill_timing_window := PieceSpeeds.current_speed.playfield_refill_delay()
-	var per_line_fill_delay := floor(line_fill_timing_window / max(1, visible_row_count))
+	var per_line_fill_delay: int = floor(line_fill_timing_window / max(1, visible_row_count))
 	
 	for i in range(_row_count_by_tiles_key.get("start", 0)):
 		_lines_being_filled.append(max(1, (visible_row_count - i) * per_line_fill_delay))
@@ -120,14 +120,14 @@ func _fill_line(tiles_key: String, dest_y: int) -> void:
 	var tiles: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
 	var src_y := _tiles_src_y(tiles_key)
 	for x in range(PuzzleTileMap.COL_COUNT):
-		var src_pos := Vector2(x, src_y)
+		var src_pos := Vector2i(x, src_y)
 		var tile: int = tiles.block_tiles.get(src_pos, -1)
-		var autotile_coord: Vector2
+		var autotile_coord: Vector2i
 		if tile == PuzzleTileMap.TILE_VEG:
 			autotile_coord = PuzzleTileMap.random_veg_autotile_coord()
 		else:
-			autotile_coord = tiles.block_autotile_coords.get(src_pos, Vector2.ZERO)
-		_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
+			autotile_coord = tiles.block_autotile_coords.get(src_pos, Vector2i.ZERO)
+		_tile_map.set_block(Vector2i(x, dest_y), tile, autotile_coord)
 	
 	emit_signal("line_filled", dest_y, tiles_key, src_y)
 
@@ -139,7 +139,7 @@ func _fill_line(tiles_key: String, dest_y: int) -> void:
 func _play_line_fill_sound() -> void:
 	_line_fill_sfx_reset_timer.start()
 	
-	var sound_index := clamp(_line_fill_sfx_index, 0, _line_fill_sounds.size() - 1)
+	var sound_index: int = clamp(_line_fill_sfx_index, 0, _line_fill_sounds.size() - 1)
 	var sound: AudioStreamPlayer = _line_fill_sounds[sound_index]
 	sound.pitch_scale = randf_range(0.90, 1.10)
 	sound.play()
@@ -179,7 +179,7 @@ func _tiles_src_y(tiles_key: String) -> int:
 		# select and remove a random row from the row bag
 		var row_bag_index := randi() % row_bag.size()
 		src_y = row_bag[row_bag_index]
-		row_bag.remove(row_bag_index)
+		row_bag.remove_at(row_bag_index)
 	return src_y
 
 

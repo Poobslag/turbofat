@@ -37,7 +37,7 @@ class Modifiers extends RefCounted:
 	## _en_possessive("Erik")    = "Erik's"
 	## _en_possessive("Doris")   = "Doris'"
 	static func _en_possessive(s: String) -> String:
-		if s and s[s.length() - 1] == "s":
+		if not s.is_empty() and s[s.length() - 1] == "s":
 			return s + "'"
 		else:
 			return s + "'s"
@@ -199,7 +199,7 @@ class Grammar extends RefCounted:
 
 	func _get_modifiers(symbol: String) -> PackedStringArray:
 		var modifiers := symbol.replace("#", "").split(".")
-		modifiers.remove(0)
+		modifiers.remove_at(0)
 		return modifiers
 
 

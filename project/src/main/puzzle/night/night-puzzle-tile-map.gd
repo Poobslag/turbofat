@@ -34,9 +34,9 @@ func set_source_tile_map(new_source_tile_map: PuzzleTileMap) -> void:
 ## Can be overridden to refresh tiles differently.
 func _refresh_tiles_from_source() -> void:
 	clear()
-	for cell in source_tile_map.get_used_cells():
-		var autotile_coord := Vector2(source_tile_map.get_cell_autotile_coord(cell.x, cell.y).x, 0)
-		set_cellv(cell, 0, false, false, false, autotile_coord)
+	for cell in source_tile_map.get_used_cells(0):
+		var autotile_coord := Vector2i(source_tile_map.get_cell_atlas_coords(0, cell).x, 0)
+		set_cell(0, cell, 0, autotile_coord)
 	
 	visible = source_tile_map.visible
 

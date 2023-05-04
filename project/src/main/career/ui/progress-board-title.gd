@@ -45,7 +45,7 @@ var _icon_resources_by_type := {
 var text: String: set = set_text
 
 ## Enum from IconType for the type of icon to show alongside the title.
-var icon_type: int: set = set_icon_type
+var icon_type: IconType: set = set_icon_type
 
 ## Label which shows the region name.
 @onready var _label := $HBoxContainer/Label
@@ -63,7 +63,7 @@ func set_text(new_text: String) -> void:
 	_refresh()
 
 
-func set_icon_type(new_icon_type: int) -> void:
+func set_icon_type(new_icon_type: IconType) -> void:
 	icon_type = new_icon_type
 	_refresh()
 

@@ -15,8 +15,9 @@ var free_roam := false
 @onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
+	super()
 	set_creature_id(CreatureLibrary.SENSEI_ID)
-	$MoveTimer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))
+	$MoveTimer.timeout.connect(_on_MoveTimer_timeout)
 
 
 func _on_MoveTimer_timeout() -> void:
@@ -27,9 +28,12 @@ func _on_MoveTimer_timeout() -> void:
 	if not CreatureManager.player:
 		return
 	
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	var player_relative_pos: Vector2 = Global.from_iso(CreatureManager.player.position - position)
 	# the sensei runs at isometric 45 degree angles to mimic the player's inputs
-	var player_angle := snapped(player_relative_pos.normalized().angle(), PI / 4)
+	var player_angle: float = snapped(player_relative_pos.normalized().angle(), PI / 4)
 	
 	var move_dir := Vector2.ZERO
 	if player_relative_pos.length() > TOO_FAR_THRESHOLD:

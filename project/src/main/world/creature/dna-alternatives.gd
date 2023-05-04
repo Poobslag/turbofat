@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name DnaAlternatives
 ## Provides alternatives for alleles which conflict.
 ##
@@ -41,9 +41,9 @@ func alternative(dna: Dictionary, key: String, value: String) -> String:
 	var result := ""
 	var allele_value_key := _allele_value_key(key, value)
 	if _alternatives.has(allele_value_key):
-		for alternative in _alternatives.get(allele_value_key):
-			if dna.get(alternative[0]) in alternative[1]:
-				result = alternative[2]
+		for next_alternative in _alternatives.get(allele_value_key):
+			if dna.get(next_alternative[0]) in next_alternative[1]:
+				result = next_alternative[2]
 				break
 	return result
 

@@ -132,22 +132,22 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	var chef_ids := []
 	var customer_ids := []
 	var observer_ids := []
-	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.potential_chat_key_pairs([region.cutscene_path])
+	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.get_potential_chat_key_pairs([region.cutscene_path])
 	for chat_key_pair in potential_chat_key_pairs:
-		for chat_key in chat_key_pair.chat_keys():
+		for chat_key in chat_key_pair.get_chat_keys():
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 			var has_quirky_chef := false
 			var has_quirky_customer := false
 			var has_quirky_observer := false
 			
-			if chat_tree.chef_id:
+			if not chat_tree.chef_id.is_empty():
 				# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
 				if region.population.has_quirky_chef(chat_tree.chef_id):
 					has_quirky_chef = true
 					if not chat_tree.chef_id in chef_ids:
 						chef_ids.append(chat_tree.chef_id)
 			
-			if chat_tree.customer_ids:
+			if not chat_tree.customer_ids.is_empty():
 				# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
 				for customer_id in chat_tree.customer_ids:
 					if region.population.has_quirky_customer(customer_id):
@@ -155,7 +155,7 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 						if not customer_id in customer_ids:
 							customer_ids.append(customer_id)
 			
-			if chat_tree.observer_id:
+			if not chat_tree.observer_id.is_empty():
 				# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
 				if region.population.has_quirky_observer(chat_tree.observer_id):
 					has_quirky_observer = true
@@ -197,7 +197,7 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 func trim_levels_by_characters(region: CareerRegion, levels: Array,
 		chef_ids: Array, customer_ids: Array, observer_ids: Array) -> Array:
 	var trimmed_levels := []
-	if not chef_ids and not customer_ids and not observer_ids:
+	if chef_ids.is_empty() and customer_ids.is_empty() and observer_ids.is_empty():
 		trimmed_levels.append_array(levels)
 	else:
 		for level in levels:
@@ -258,9 +258,7 @@ func _load_raw_json_data() -> void:
 	regions.clear()
 	
 	var worlds_text := FileUtils.get_file_as_text(regions_path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(worlds_text)
-	var worlds_json: Dictionary = test_json_conv.get_data()
+	var worlds_json: Dictionary = JSON.parse_string(worlds_text)
 	for region_json in worlds_json.get("regions", []):
 		var region := CareerRegion.new()
 		region.from_json_dict(region_json)

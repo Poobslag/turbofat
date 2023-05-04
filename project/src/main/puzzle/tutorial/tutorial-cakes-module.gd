@@ -17,10 +17,11 @@ var _cakes_diagram_0 := preload("res://assets/main/puzzle/tutorial/cakes-diagram
 var _cakes_diagram_1 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-1.png")
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
-	playfield.connect("box_built", Callable(self, "_on_Playfield_box_built"))
-	piece_manager.connect("piece_spawned", Callable(self, "_on_PieceManager_piece_spawned"))
+	super()
+	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
+	playfield.box_built.connect(_on_Playfield_box_built)
+	piece_manager.piece_spawned.connect(_on_PieceManager_piece_spawned)
 	
 	hud.set_message(tr("Today we'll learn about cake boxes!\n\nDo you remember how boxes work?"))
 
@@ -191,7 +192,7 @@ func _advance_level() -> void:
 ## Each cake makes a unique kind of food. We clear the lines so that the player can see what they made.
 func _schedule_finish_line_clears() -> void:
 	hud.puzzle.get_playfield().line_clearer.schedule_finish_line_clears()
-	PuzzleState.tutorial_section_finished = true
+	PuzzleState.tutorial_section_finish_emitted = true
 
 
 func _handle_build_cake_message() -> void:
@@ -223,7 +224,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 				_advance_level()
 
 
-func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, color: Foods.BoxType) -> void:
 	if Foods.is_cake_box(color):
 		_did_build_cake = true
 		_cakes_built += 1

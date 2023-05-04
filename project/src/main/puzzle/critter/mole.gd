@@ -36,13 +36,13 @@ const FOUND_SEED := States.FOUND_SEED
 const FOUND_STAR := States.FOUND_STAR
 
 ## Enum from States for the mole's current animation state.
-var state: int = NONE: set = set_state
+var state := NONE: set = set_state
 
 ## 'true' if the mole is temporarily hidden by the piece.
-var hidden: bool: set = set_hidden
+var hidden_by_piece: bool: set = set_hidden_by_piece
 
 ## Enum from States for the mole's previous animation state, if they are temporarily hidden by the player's piece.
-var hidden_mole_state: int = NONE
+var hidden_mole_state := NONE
 
 ## 'true' if the Mole will be queued for deletion after the 'poof' animation completes.
 var _free_after_poof := false
@@ -99,12 +99,12 @@ func _process(_delta: float) -> void:
 
 
 ## Temporarily hides/unhides the mole with a 'poof' animation.
-func set_hidden(new_hidden: bool) -> void:
-	if hidden == new_hidden:
+func set_hidden_by_piece(new_hidden_by_piece: bool) -> void:
+	if hidden_by_piece == new_hidden_by_piece:
 		return
-	hidden = new_hidden
+	hidden_by_piece = new_hidden_by_piece
 	
-	if hidden:
+	if hidden_by_piece:
 		hidden_mole_state = state
 		set_state(NONE)
 	else:
@@ -118,7 +118,7 @@ func set_hidden(new_hidden: bool) -> void:
 ## 	'next_state': Enum from States
 ##
 ## 	'count': (Optional) Number of instances of the state to enqueue.
-func append_next_state(next_state: int, count: int = 1) -> void:
+func append_next_state(next_state: States, count: int = 1) -> void:
 	for _i in range(count):
 		_next_states.append(next_state)
 
@@ -137,26 +137,26 @@ func has_next_state() -> bool:
 ##
 ## Returns:
 ## 	Enum from States for the mole's new state.
-func pop_next_state() -> int:
+func pop_next_state() -> States:
 	if _next_states.is_empty():
 		return NONE
 	
 	if _already_popped_state:
 		pass
 	else:
-		var next_state: int = _next_states.pop_front()
-		if hidden:
+		var next_state: States = _next_states.pop_front()
+		if hidden_by_piece:
 			hidden_mole_state = next_state
 		else:
 			set_state(next_state)
 		_already_popped_state = true
 	
-	return hidden_mole_state if hidden else state
+	return hidden_mole_state if hidden_by_piece else state
 
 
 ## Parameters:
-## 	'new_state': enum from States for the mole's new animation state.
-func set_state(new_state: int) -> void:
+## 	'new_state': mole's new animation state.
+func set_state(new_state: States) -> void:
 	state = new_state
 	_refresh_state()
 

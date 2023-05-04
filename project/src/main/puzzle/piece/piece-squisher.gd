@@ -18,14 +18,14 @@ const UNKNOWN := SquishState.UNKNOWN
 const INVALID := SquishState.INVALID
 const VALID := SquishState.VALID
 
-@export (NodePath) var input_path: NodePath
+@export var input_path: NodePath
 
 ## 'true' if the player did a squish drop this frame
 var did_squish_drop: bool
 
 ## potential source/target for the current squish move
-var squish_state: int = SquishState.UNKNOWN
-var _squish_target_pos: Vector2
+var squish_state: SquishState = SquishState.UNKNOWN
+var _squish_target_pos: Vector2i
 
 @onready var input: PieceInput = get_node(input_path)
 
@@ -49,7 +49,7 @@ func attempt_squish(piece: ActivePiece) -> void:
 		
 		var squish_move_is_unnecessary := true
 		for y in range(piece.pos.y, squish_drop_target.y):
-			if not piece.can_move_to(Vector2(piece.pos.x, y), piece.orientation):
+			if not piece.can_move_to(Vector2i(piece.pos.x, y), piece.orientation):
 				squish_move_is_unnecessary = false
 				break
 		
@@ -58,7 +58,7 @@ func attempt_squish(piece: ActivePiece) -> void:
 			_squish_to(piece, squish_drop_target)
 			emit_signal("hard_dropped", piece)
 			did_squish_drop = true
-	elif not piece.can_move_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+	elif not piece.can_move_to(Vector2i(piece.pos.x, piece.pos.y + 1), piece.orientation):
 		# calculate and cache squish target
 		if squish_state == SquishState.UNKNOWN:
 			_squish_target_pos = _squish_target(piece)
@@ -85,7 +85,7 @@ func squish_percent(piece: ActivePiece) -> float:
 
 
 ## Squishes a piece through other blocks towards the target.
-func _squish_to(piece: ActivePiece, target_pos: Vector2) -> void:
+func _squish_to(piece: ActivePiece, target_pos: Vector2i) -> void:
 	var old_pos := piece.pos
 	piece.target_pos = target_pos
 	piece.move_to_target()
@@ -106,7 +106,7 @@ func _squish_to(piece: ActivePiece, target_pos: Vector2) -> void:
 ##
 ## 	'reset_target': If true, the piece's target will be reset to its current position before starting the squish. If
 ## 		false, the piece will be squished from its current target.
-func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2:
+func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2i:
 	if reset_target:
 		piece.reset_target()
 	

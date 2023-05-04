@@ -1,43 +1,32 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cqj2q0dsekv8t"]
 
-[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=2]
-[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/world/environment/lemon/environment-shadows.gd" type="Script" id=5]
-[ext_resource path="res://assets/main/world/environment/cell-shadow.png" type="Texture2D" id=6]
+[ext_resource type="Script" path="res://src/main/world/environment/obstacle-map-shadows.gd" id="1"]
+[ext_resource type="Script" path="res://src/main/world/shadow-caster-shadows.gd" id="2"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/OvalShadow.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/CreatureShadows.tscn" id="4"]
+[ext_resource type="Script" path="res://src/main/world/environment/lemon/environment-shadows.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://be5u580xi73hv" path="res://assets/main/world/environment/cell-shadow.png" id="6"]
 
-[sub_resource type="TileSet" id=2]
-0/name = "cell-shadow.png 0"
-0/texture = ExtResource( 6 )
-0/tex_offset = Vector2( 0, 20 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 212, 212 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtgu7"]
+texture = ExtResource("6")
+texture_region_size = Vector2i(212, 212)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="2"]
+tile_size = Vector2i(128, 64)
+sources/0 = SubResource("TileSetAtlasSource_mtgu7")
 
 [node name="Shadows" type="Node2D"]
-modulate = Color( 1, 1, 1, 0.627451 )
-script = ExtResource( 5 )
+modulate = Color(1, 1, 1, 0.627451)
+script = ExtResource("5")
 
 [node name="ObstacleMapShadows" type="TileMap" parent="."]
-mode = 1
-tile_set = SubResource( 2 )
-cell_size = Vector2( 128, 64 )
-cell_tile_origin = 1
-centered_textures = true
-format = 1
-script = ExtResource( 1 )
+tile_set = SubResource("2")
+format = 2
+script = ExtResource("1")
 
-[node name="CreatureShadows" parent="." instance=ExtResource( 4 )]
+[node name="CreatureShadows" parent="." instance=ExtResource("4")]
 
 [node name="ShadowCasterShadows" type="Node2D" parent="."]
-script = ExtResource( 2 )
-OvalShadowScene = ExtResource( 3 )
+script = ExtResource("2")
+OvalShadowScene = ExtResource("3")

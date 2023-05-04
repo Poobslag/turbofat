@@ -82,7 +82,7 @@ var remain_in_region := false
 var skipped_previous_level := false
 
 ## Whether the career map should show the player's progress.
-var show_progress: int = Careers.ShowProgress.STATIC
+var show_progress := Careers.ShowProgress.STATIC
 
 ## periodically increments the 'daily_seconds_played' value
 var _daily_seconds_played_timer: Timer
@@ -95,11 +95,11 @@ var _career_calendar
 var _career_flow
 
 func _ready() -> void:
-	CurrentCutscene.connect("cutscene_played", Callable(self, "_on_CurrentCutscene_cutscene_played"))
+	CurrentCutscene.cutscene_played.connect(_on_CurrentCutscene_cutscene_played)
 	
 	_daily_seconds_played_timer = Timer.new()
 	_daily_seconds_played_timer.wait_time = PlayerData.SECONDS_PLAYED_INCREMENT
-	_daily_seconds_played_timer.connect("timeout", Callable(self, "_on_DailySecondsPlayedTimer_timeout"))
+	_daily_seconds_played_timer.timeout.connect(_on_DailySecondsPlayedTimer_timeout)
 	add_child(_daily_seconds_played_timer)
 	_daily_seconds_played_timer.start()
 	
@@ -344,7 +344,7 @@ func set_hours_passed(new_hours_passed: int) -> void:
 
 ## Returns data about which parts of a region are complete/incomplete.
 func region_completion(region: CareerRegion) -> RegionCompletion:
-	var region_completion := RegionCompletion.new()
+	var result := RegionCompletion.new()
 	
 	# include the percent of cutscenes which have been viewed
 	if region.cutscene_path:
@@ -352,7 +352,7 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 		all_search_flags.include_all_numeric_children = true
 		var all_chat_count: int = CareerCutsceneLibrary.find_chat_key_pairs(
 				[region.cutscene_path], all_search_flags).size()
-		region_completion.potential_cutscene_completion = all_chat_count
+		result.potential_cutscene_completion = all_chat_count
 		
 		var unexhausted_search_flags := CutsceneSearchFlags.new()
 		unexhausted_search_flags.include_all_numeric_children = true
@@ -360,16 +360,16 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 		var unexhausted_chat_count: int = CareerCutsceneLibrary.find_chat_key_pairs(
 				[region.cutscene_path], unexhausted_search_flags).size()
 		
-		region_completion.cutscene_completion = all_chat_count - unexhausted_chat_count
+		result.cutscene_completion = all_chat_count - unexhausted_chat_count
 	
 	# include the percent of levels which have been completed
-	region_completion.potential_level_completion = region.levels.size()
+	result.potential_level_completion = region.levels.size()
 	for level_obj in region.levels:
 		var level: CareerLevel = level_obj
 		if PlayerData.level_history.is_level_finished(level.level_id):
-			region_completion.level_completion += 1.0
+			result.level_completion += 1.0
 	
-	return region_completion
+	return result
 
 
 ## Advance the player past the region shown in the specified cutscene.
@@ -435,10 +435,10 @@ func _on_DailySecondsPlayedTimer_timeout() -> void:
 
 ## Calculates the highest rank milestone the player's reached.
 static func rank_milestone_index(rank: float) -> int:
-	var rank_milestone_index := 0
+	var result := 0
 	for i in range(1, Careers.RANK_MILESTONES.size()):
 		var rank_milestone: Dictionary = Careers.RANK_MILESTONES[i]
 		if rank > rank_milestone.rank:
 			break
-		rank_milestone_index = i
-	return rank_milestone_index
+		result = i
+	return result

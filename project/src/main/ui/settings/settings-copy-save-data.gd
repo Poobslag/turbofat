@@ -18,7 +18,7 @@ func _on_Button_pressed() -> void:
 	# copy the contents of the selected save file to the clipboard
 	var save_filename: String = SystemSave.FILENAMES_BY_SAVE_SLOT[_save_slot_control.get_selected_save_slot()]
 	var save_text := FileUtils.get_file_as_text(save_filename)
-	OS.set_clipboard(save_text)
+	DisplayServer.clipboard_set(save_text)
 	
 	# display the 'Copied!' message, and gradually fade it out
 	_copied_label.modulate = Color.WHITE

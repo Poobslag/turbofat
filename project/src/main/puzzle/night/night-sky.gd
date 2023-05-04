@@ -12,7 +12,7 @@ extends ColorRect
 
 func _ready() -> void:
 	for sprite in _sky_sprites:
-		sprite.frame = Utils.randi_range(0, 2)
+		sprite.frame = randi_range(0, 2)
 	_randomize_sky_sprites()
 
 
@@ -22,10 +22,10 @@ func _ready() -> void:
 ## frames were reused they'd appear to be mostly stationary, even if they were flipped.
 func _randomize_sky_sprites() -> void:
 	for sprite in _sky_sprites:
-		sprite.frame = (sprite.frame + Utils.randi_range(1, 2)) % 3
+		sprite.frame = (sprite.frame + randi_range(1, 2)) % 3
 		sprite.flip_h = randf() > 0.5
 		sprite.flip_v = randf() > 0.5
-		sprite.offset = Vector2(randf_range(-2, 2), randf_range(-2, 2))
+		sprite.offset = Vector2i(randf_range(-2, 2), randf_range(-2, 2))
 
 
 ## Rapidly rotates the stars for a time lapse effect
@@ -36,7 +36,7 @@ func _spin_sky() -> void:
 	for node in _star_nodes:
 		node.rotation = 0
 		_sky_spin_tween.parallel().tween_property(node, "rotation", PI / 2, 0.6) \
-				super.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+				.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 
 
 func _on_AnimateTimer_timeout() -> void:

@@ -52,25 +52,25 @@ var filled_line_clear_min: int = 0
 
 ## Order in which filled lines are cleared. This is purely cosmetic unless other rules are in place to prevent or
 ## delay filled lines from being cleared.
-var filled_line_clear_order: int = FilledLineClearOrder.DEFAULT
+var filled_line_clear_order := FilledLineClearOrder.DEFAULT
 
 ## tiles key for 'filled' lines -- lines which fill from the top for levels with narrow playfields
 var fill_lines: String
 
 ## whether blocks drop following a line clear
-var line_clear_type: int = LineClearType.DEFAULT
+var line_clear_type := LineClearType.DEFAULT
 
 ## whether pickups move with the playfield blocks
-var pickup_type: int = PickupType.DEFAULT
+var pickup_type := PickupType.DEFAULT
 
 ## if true, the entire playfield is refreshed when the player tops out
 var refresh_on_top_out := false
 
 ## whether inserted rows should start from a random row in the source tiles instead of starting from the top
-var shuffle_inserted_lines: int = ShuffleLinesType.NONE
+var shuffle_inserted_lines := ShuffleLinesType.NONE
 
 ## whether filled rows should start from a random row in the source tiles instead of starting from the top
-var shuffle_filled_lines: int = ShuffleLinesType.NONE
+var shuffle_filled_lines := ShuffleLinesType.NONE
 
 var _rule_parser: RuleParser
 
@@ -87,9 +87,9 @@ func _init() -> void:
 	_rule_parser.add_enum("pickup_type", PickupType)
 	_rule_parser.add_bool("refresh_on_top_out")
 	_rule_parser.add_enum("shuffle_filled_lines", ShuffleLinesType) \
-			super.implied(ShuffleLinesType.BAG)
+			.implied(ShuffleLinesType.BAG)
 	_rule_parser.add_enum("shuffle_inserted_lines", ShuffleLinesType) \
-			super.implied(ShuffleLinesType.BAG)
+			.implied(ShuffleLinesType.BAG)
 
 
 func from_json_array(json: Array) -> void:

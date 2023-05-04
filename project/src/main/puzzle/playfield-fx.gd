@@ -8,16 +8,16 @@ extends Node2D
 const RAINBOW_COLOR_COUNT := 7
 
 ## Lights change color based on the lines the player clears.
-const VEGETABLE_LIGHT_COLOR := Color("6074a320")
+const VEGETABLE_LIGHT_COLOR := Color("74a32060")
 const FOOD_LIGHT_COLORS := [
-	Color("c0f47700"), # brown
-	Color("b0ff5d68"), # pink
-	Color("c0ffc357"), # bread
-	Color("a0fff69b"), # white
+	Color("f47700c0"), # brown
+	Color("ff5d68b0"), # pink
+	Color("ffc357c0"), # bread
+	Color("fff69ba0"), # white
 ]
 
 ## Rainbows are modulated white, because the tiles themselves have a color to them.
-const RAINBOW_LIGHT_COLOR := Color("50ffffff")
+const RAINBOW_LIGHT_COLOR := Color("ffffff50")
 
 ## Light pattern shown when the player clears a line or continues their combo.
 const ON_PATTERN := [
@@ -48,7 +48,7 @@ const OFF_PATTERN := [
 	".........",
 ]
 
-@export (NodePath) var combo_tracker_path: NodePath
+@export var combo_tracker_path: NodePath
 
 ## light pattern being shown.
 var _pattern := OFF_PATTERN
@@ -73,8 +73,13 @@ var _glow_duration := 0.0
 ## current background light color
 var _color := Color.TRANSPARENT
 
-## tile indexes by food/vegetable color
-var _color_tile_indexes: Dictionary
+## Key: (String) Food/vegetable color string in html format
+## Value: Tile alternative id
+var _light_map_alternative_ids_by_color: Dictionary
+
+## Key: (String) Food/vegetable color string in html format
+## Value: Tile alternative id
+var _glow_map_alternative_ids_by_color: Dictionary
 
 @onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 
@@ -91,12 +96,13 @@ var _color_tile_indexes: Dictionary
 @onready var _glow_tween: Tween
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	_combo_tracker.connect("combo_break_changed", Callable(self, "_on_ComboTracker_combo_break_changed"))
-	PuzzleState.connect("combo_changed", Callable(self, "_on_PuzzleState_combo_changed"))
-	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	_combo_tracker.combo_break_changed.connect(_on_ComboTracker_combo_break_changed)
+	PuzzleState.combo_changed.connect(_on_PuzzleState_combo_changed)
+	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
 	_init_tile_set()
-	_init_color_tile_indexes()
+	_init_alternative_ids_by_color(_light_map_alternative_ids_by_color, light_map)
+	_init_alternative_ids_by_color(_glow_map_alternative_ids_by_color, glow_map)
 	reset()
 
 
@@ -116,7 +122,7 @@ func reset() -> void:
 
 ## Initializes the different colored tiles in LightMap/GlowMap.
 func _init_tile_set() -> void:
-	if len(light_map.tile_set.get_tiles_ids()) > 1:
+	if light_map.tile_set.get_source(1).get_alternative_tiles_count(Vector2i(0, 0)) > 1:
 		return
 	
 	for food_light_color in FOOD_LIGHT_COLORS:
@@ -131,23 +137,26 @@ func _init_tile_set() -> void:
 
 
 ## Initializes the mapping of tile indexes by food/vegetable color.
-func _init_color_tile_indexes() -> void:
-	if _color_tile_indexes:
+func _init_alternative_ids_by_color(target_dict: Dictionary, tile_map: TileMap) -> void:
+	if not target_dict.is_empty():
 		return
 	
-	for tile_index in light_map.tile_set.get_tiles_ids():
-		var color: Color = light_map.tile_set.tile_get_modulate(tile_index)
-		_color_tile_indexes[color] = tile_index
+	var tile_set_source: TileSetAtlasSource = tile_map.tile_set.get_source(1)
+	for alternative_id_index in range(1, tile_set_source.get_alternative_tiles_count(Vector2i(0, 0))):
+		var alternative_id: int = tile_set_source.get_alternative_tile_id(Vector2i(0, 0), alternative_id_index)
+		var color: Color = tile_set_source.get_tile_data(Vector2i(0, 0), alternative_id).modulate
+		target_dict[color.to_html(true)] = alternative_id
 
 
 func _init_tile(color: Color) -> void:
 	for tile_set in [light_map.tile_set, glow_map.tile_set]:
-		var tile_index := len(tile_set.get_tiles_ids())
-		tile_set.create_tile(tile_index)
-		tile_set.tile_set_texture(tile_index, tile_set.tile_get_texture(0))
-		tile_set.tile_set_material(tile_index, tile_set.tile_get_material(0))
-		tile_set.tile_set_modulate(tile_index, color)
-		tile_set.tile_set_texture_offset(tile_index, tile_set.tile_get_texture_offset(0))
+		var original_tile_data: TileData = tile_set.get_source(1).get_tile_data(Vector2i(0, 0), 0)
+		
+		var alternative_id: int = tile_set.get_source(1).create_alternative_tile(Vector2i(0, 0))
+		var alternative_tile_data: TileData = tile_set.get_source(1).get_tile_data(Vector2i(0, 0), alternative_id)
+		alternative_tile_data.material = original_tile_data.material
+		alternative_tile_data.modulate = color
+		alternative_tile_data.texture_origin = original_tile_data.texture_origin
 
 
 ## Starts the glow tween, causing the lights to slowly dim.
@@ -224,15 +233,33 @@ func _refresh_tile_maps() -> void:
 		_pattern = new_pattern
 		for y in range(PuzzleTileMap.ROW_COUNT):
 			for x in range(PuzzleTileMap.COL_COUNT):
-				var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
-				var tile: int = -1
-				if s[x] == '#':
-					if _color == RAINBOW_LIGHT_COLOR:
-						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
-					elif _color_tile_indexes.has(_color):
-						tile = _color_tile_indexes[_color]
-				light_map.set_cell(x, y, tile)
-				glow_map.set_cell(x, y, tile)
+				var light_map_alternative_tile := find_alternative_tile(light_map, Vector2i(x, y))
+				light_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), light_map_alternative_tile)
+				
+				var glow_map_alternative_tile := find_alternative_tile(glow_map, Vector2i(x, y))
+				glow_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), glow_map_alternative_tile)
+
+
+## Finds an alternative tile with the current color.
+##
+## Parameters:
+## 	tile_map: 'light_map' or 'glow_map', the TileMap whose alternative tile id should be returned
+##
+## 	coords: The tile coordinates of the tile whose alternative tile id should be returned
+##
+## Returns:
+## 	The alternative tile ID for the specified TileMap and cell, or -1 if the cell should be empty
+func find_alternative_tile(tile_map: TileMap, coords: Vector2i) -> int:
+	var result: int = -1
+	var alternative_ids_by_color: Dictionary = \
+			_light_map_alternative_ids_by_color if tile_map == light_map else _glow_map_alternative_ids_by_color
+	var s: String = _pattern[(coords.y + _pattern_y) % _pattern.size()]
+	if s[coords.x] == '#':
+		if _color == RAINBOW_LIGHT_COLOR:
+			result = 6 + ((coords.x + _pattern_y) % RAINBOW_COLOR_COUNT)
+		elif alternative_ids_by_color.has(_color.to_html(true)):
+			result = alternative_ids_by_color[_color.to_html(true)]
+	return result
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
@@ -252,7 +279,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 
 
 ## When the player builds a box we brighten the combo lights again.
-func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, _box_type: Foods.BoxType) -> void:
 	_refresh_tile_maps()
 	_start_glow_tween()
 

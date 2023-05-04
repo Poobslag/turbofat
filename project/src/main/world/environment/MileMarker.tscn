@@ -1,38 +1,42 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cv6iencgrak4i"]
 
-[ext_resource path="res://assets/main/world/environment/mile-marker-sheet.png" type="Texture2D" id=1]
-[ext_resource path="res://src/main/world/environment/outline-material-15.tres" type="Material" id=2]
-[ext_resource path="res://src/main/world/environment/mile-marker.gd" type="Script" id=3]
-[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=4]
+[ext_resource type="Texture2D" uid="uid://dnv7vcuudf46j" path="res://assets/main/world/environment/mile-marker-sheet.png" id="1"]
+[ext_resource type="Material" path="res://src/main/world/environment/outline-material-15.tres" id="2"]
+[ext_resource type="Script" path="res://src/main/world/environment/mile-marker.gd" id="3"]
+[ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="4"]
 
-[sub_resource type="FontFile" id=1]
-size = 24
-use_filter = true
-font_data = ExtResource( 4 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("4")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id="2"]
 
 [node name="MileMarker" type="CharacterBody2D" groups=["mile_markers"]]
-position = Vector2( 60.0678, 68.7442 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-shadow_scale = 0.25
+position = Vector2(60.0678, 68.7442)
+script = ExtResource("3")
 mile_number = 100
+shadow_scale = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource( 2 )
-scale = Vector2( 0.539476, 0.539476 )
-texture = ExtResource( 1 )
+material = ExtResource("2")
+scale = Vector2(0.539476, 0.539476)
+texture = ExtResource("1")
 centered = false
-offset = Vector2( -64, -100 )
+offset = Vector2(-64, -100)
 flip_h = true
 hframes = 2
 vframes = 2
 
 [node name="Text" type="Node2D" parent="."]
-position = Vector2( -4.049, -24.495 )
+position = Vector2(-4.049, -24.495)
 rotation = -0.20944
 
 [node name="Label" type="Label" parent="Text"]
@@ -40,15 +44,12 @@ offset_left = -20.0
 offset_top = -15.0
 offset_right = 20.0
 offset_bottom = 15.0
-theme_override_colors/font_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-theme_override_fonts/font = SubResource( 1 )
+theme_override_colors/font_color = Color(0.423529, 0.262745, 0.192157, 1)
+theme_override_fonts/font = SubResource("1")
 text = "99"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource("2")
 disabled = true
-__meta__ = {
-"_editor_description_": "If we have no collision shape then we have editor warnings, so we include a disabled collision shape"
-}

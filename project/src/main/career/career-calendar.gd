@@ -107,12 +107,12 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 func advance_calendar() -> void:
 	career_data.prev_daily_earnings.push_front(career_data.daily_earnings)
 	if career_data.prev_daily_earnings.size() > Careers.MAX_DAILY_HISTORY:
-		career_data.prev_daily_earnings = career_data.prev_daily_earnings.slice(0, Careers.MAX_DAILY_HISTORY - 1)
+		career_data.prev_daily_earnings = career_data.prev_daily_earnings.slice(0, Careers.MAX_DAILY_HISTORY)
 	
 	career_data.best_distance_travelled = max(career_data.best_distance_travelled, career_data.distance_travelled)
 	career_data.prev_distance_travelled.push_front(career_data.distance_travelled)
 	if career_data.prev_distance_travelled.size() > Careers.MAX_DAILY_HISTORY:
-		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, Careers.MAX_DAILY_HISTORY - 1)
+		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, Careers.MAX_DAILY_HISTORY)
 	
 	career_data.banked_steps = 0
 	career_data.distance_earned = 0

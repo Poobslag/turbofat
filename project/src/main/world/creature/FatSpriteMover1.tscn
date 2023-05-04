@@ -101,7 +101,7 @@ tracks/7/keys = {
 "values": [ Vector2( -10, -50 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Collar:rotation_degrees")
+tracks/8/path = NodePath("Collar:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -137,7 +137,7 @@ tracks/10/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Bellybutton:rotation_degrees")
+tracks/11/path = NodePath("Bellybutton:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -249,7 +249,7 @@ tracks/7/keys = {
 "values": [ Vector2( -10, -50 ), Vector2( -10, -50 ), Vector2( 0, -50 ), Vector2( -2.5, -60 ), Vector2( -10, -140 ), Vector2( 0, -240 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Collar:rotation_degrees")
+tracks/8/path = NodePath("Collar:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -258,7 +258,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array( 0, 1, 2, 3, 5, 10 ),
 "transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.0, -4.46358, -9.26012, -12.8267, -16.3329 ]
+"values": [ 0, 0, -0.0779041674, -0.1616195831, -0.2238681472, -0.2850628814 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("TailZ1:position")
@@ -373,7 +373,7 @@ tracks/7/keys = {
 "values": [ Vector2( -10, -50 ), Vector2( -10, -50 ), Vector2( 0, -50 ), Vector2( -2.5, -60 ), Vector2( -10, -140 ), Vector2( 0, -240 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Collar:rotation_degrees")
+tracks/8/path = NodePath("Collar:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -409,7 +409,7 @@ tracks/10/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 370, -76 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Bellybutton:rotation_degrees")
+tracks/11/path = NodePath("Bellybutton:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -418,7 +418,7 @@ tracks/11/keys = {
 "times": PackedFloat32Array( 0, 1, 10 ),
 "transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.0, 8.0 ]
+"values": [ 0.0, 0.0, 0.1396263402 ]
 }
 
 [node name="FatSpriteMover" type="AnimationPlayer"]

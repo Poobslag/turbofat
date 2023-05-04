@@ -4,11 +4,11 @@ extends Control
 ## These star seeds are is synchronized with the daytime star seeds, and rendered over them.
 
 ## path to the daytime starseeds to synchronize with.
-@export (NodePath) var source_star_seeds_path: NodePath
+@export var source_star_seeds_path: NodePath
 
-@export (PackedScene) var StarSeedScene: PackedScene
+@export var StarSeedScene: PackedScene
 
-## key: (Vector2) playfield cell positions
+## key: (Vector2i) playfield cell positions
 ## value: (StarSeed) StarSeed node contained within that cell
 var _star_seeds_by_cell: Dictionary
 
@@ -27,13 +27,13 @@ func _process(_delta: float) -> void:
 
 
 ## Removes a star seed from a playfield cell.
-func _remove_star_seed(cell: Vector2) -> void:
+func _remove_star_seed(cell: Vector2i) -> void:
 	_star_seeds_by_cell[cell].queue_free()
 	_star_seeds_by_cell.erase(cell)
 
 
 ## Adds a star seed to a playfield cell.
-func _add_star_seed(cell: Vector2) -> void:
+func _add_star_seed(cell: Vector2i) -> void:
 	var star_seed: StarSeed = StarSeedScene.instantiate()
 	
 	var source_star_seed := _source_star_seeds.get_star_seed(cell)

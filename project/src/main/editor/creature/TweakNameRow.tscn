@@ -24,7 +24,7 @@ custom_minimum_size = Vector2( 100, 0 )
 size_flags_vertical = 5
 theme = ExtResource( 1 )
 text = "Name:"
-align = 2
+horizontal_alignment =2
 
 [node name="Edit" type="VBoxContainer" parent="."]
 offset_left = 110.0

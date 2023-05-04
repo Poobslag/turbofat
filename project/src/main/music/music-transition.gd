@@ -7,8 +7,8 @@ extends Node
 var _faded_bgm: CheckpointSong
 
 func _ready() -> void:
-	SceneTransition.connect("fade_out_started", Callable(self, "_on_SceneTransition_fade_out_started"))
-	SceneTransition.connect("fade_in_started", Callable(self, "_on_SceneTransition_fade_in_started"))
+	SceneTransition.fade_out_started.connect(_on_SceneTransition_fade_out_started)
+	SceneTransition.fade_in_started.connect(_on_SceneTransition_fade_in_started)
 
 
 ## When the scene fades back in, we un-fade any music we previously faded out.

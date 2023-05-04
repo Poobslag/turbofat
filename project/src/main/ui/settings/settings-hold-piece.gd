@@ -4,7 +4,7 @@ extends Control
 @onready var _check_box := $CheckBox
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
+	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
 	_refresh()
 
 
@@ -13,7 +13,7 @@ func _refresh() -> void:
 
 
 func _on_OptionButton_toggled(_button_pressed: bool) -> void:
-	SystemData.gameplay_settings.hold_piece = _check_box.pressed
+	SystemData.gameplay_settings.hold_piece = _check_box.button_pressed
 
 
 func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:

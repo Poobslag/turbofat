@@ -18,7 +18,7 @@ signal button_added(button)
 
 const MAX_REGIONS_PER_PAGE := 7
 
-@export (PackedScene) var RegionButtonScene: PackedScene
+@export var RegionButtonScene: PackedScene
 
 ## Array of CareerRegion and OtherRegion instances to show
 var regions: Array: set = set_regions
@@ -61,7 +61,7 @@ func focus_region(region_id_to_focus: String) -> void:
 		if _page != page_to_focus:
 			_page = page_to_focus
 			_refresh()
-		_hbox_container.get_children()[button_index_to_focus].grab_focus()
+		_hbox_container.get_children()[button_index_to_focus].region_select_button_grab_focus()
 
 
 func set_regions(new_regions: Array) -> void:
@@ -122,7 +122,7 @@ func _add_buttons() -> void:
 	
 	# assing default focus to the first button
 	if _hbox_container.get_child_count():
-		_hbox_container.get_children().front().grab_focus()
+		_hbox_container.get_children().front().region_select_button_grab_focus()
 
 
 ## Enables/disables the paging arrows, hiding them if the player only has access to a single page of regions.
@@ -160,12 +160,13 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 	if region_obj is CareerRegion:
 		var region: CareerRegion = region_obj
 		region_button.region_name = region.name
-		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
+		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type,
+				region.region_button_name) as RegionSelectButton.Type
 		
 		var ranks := []
 		for career_level_obj in region.levels:
 			var career_level: CareerLevel = career_level_obj
-			var rank := PlayerData.level_history.best_overall_rank(career_level.level_id)
+			var rank := PlayerData.level_history.get_best_overall_rank(career_level.level_id)
 			ranks.append(rank)
 		region_button.ranks = ranks
 		region_button.completion_percent = PlayerData.career.region_completion(region).completion_percent()
@@ -182,14 +183,15 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 					level_completion += 1
 			elif PlayerData.level_history.is_level_finished(level_id):
 				level_completion += 1
-			ranks.append(PlayerData.level_history.best_overall_rank(level_id))
+			ranks.append(PlayerData.level_history.get_best_overall_rank(level_id))
 		region_button.ranks = ranks
 		region_button.completion_percent = level_completion / float(potential_completion)
 		region_button.region_name = region.name
-		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
+		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type,
+				region.region_button_name) as RegionSelectButton.Type
 	
-	region_button.connect("focus_entered", Callable(self, "_on_RegionButton_focus_entered").bind(region_button, region_obj))
-	region_button.connect("region_chosen", Callable(self, "_on_RegionButton_region_chosen").bind(region_obj))
+	region_button.focus_entered.connect(_on_RegionButton_focus_entered.bind(region_button, region_obj))
+	region_button.region_chosen.connect(_on_RegionButton_region_chosen.bind(region_obj))
 	return region_button
 
 
@@ -225,5 +227,5 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			button_index_to_focus = get_viewport().gui_get_focus_owner().get_index()
 		_refresh()
 		if button_index_to_focus != -1:
-			await get_tree().idle_frame
-			_hbox_container.get_children()[button_index_to_focus].grab_focus()
+			await get_tree().process_frame
+			_hbox_container.get_children()[button_index_to_focus].region_select_button_grab_focus()

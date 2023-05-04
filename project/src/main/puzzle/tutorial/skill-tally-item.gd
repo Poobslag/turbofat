@@ -3,13 +3,13 @@ extends ProgressBar
 ## Provides feedback during tutorials when the player performs an action, such as rotating a piece or clearing a line.
 
 ## if 'true' the skill tally will be shown as '58%' instead of '52/90'
-@export (bool) var show_as_percent: bool
+@export var show_as_percent: bool
 
 ## description of the skill being tallied such as 'Rotate Left'
-@export (String) var label_text: String: set = set_label_text
+@export var label_text: String: set = set_label_text
 
 ## name of the signals this skill tally monitors
-@export (Array, String) var signal_names: Array
+@export var signal_names: Array[String]
 
 ## puzzle to monitor for things such as moving the piece and clearing lines
 var puzzle: Puzzle: set = set_puzzle
@@ -24,11 +24,10 @@ var _tween: Tween
 
 @onready var _blink_panel := $Blink
 @onready var _label := $Label
-@onready var _task_complete_sound := $TaskCompleteSound
 
 func _ready() -> void:
 	reset()
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
 
 
 func set_puzzle(new_puzzle: Puzzle) -> void:
@@ -75,7 +74,7 @@ func update_label() -> void:
 		_label.text = "%s\n%d%%" % [tr(label_text), int(100 * value / max_value)]
 	else:
 		_label.text = "%s\n(%d/%d)" % [tr(label_text), value, max_value]
-	_label.pick_largest_font()
+	_label.pick_largest_font_size()
 
 
 ## Initializes this node when the puzzle field is assigned.
@@ -90,14 +89,21 @@ func _refresh_puzzle() -> void:
 			"":
 				pass
 			"line_cleared":
-				_playfield.connect(signal_name, Callable(self, "_on_Playfield_line_cleared"))
+				_playfield.connect(signal_name, _on_Playfield_line_cleared)
 			"box_built":
-				_playfield.connect(signal_name, Callable(self, "_on_Playfield_box_built"))
+				_playfield.connect(signal_name, _on_Playfield_box_built)
 			"squish_moved":
-				_piece_manager.connect(signal_name, Callable(self, "_on_PieceManager_squish_moved"))
+				_piece_manager.connect(signal_name, _on_PieceManager_squish_moved)
 			_:
-				if signal_name in _get_signal_names(_piece_manager):
-					_piece_manager.connect(signal_name, Callable(self, "_on_skill_performed"))
+				# Workaround for Godot #69282; calling static function from within a class generates a warning
+				# https://github.com/godotengine/godot/issues/69282
+				#
+				# Workaround for Godot #73222; @warning_ignore doesn't work for conditions
+				# https://github.com/godotengine/godot/issues/73222
+				@warning_ignore("static_called_on_instance")
+				var godot_73222_workaround := _get_signal_names(_piece_manager)
+				if signal_name in godot_73222_workaround:
+					_piece_manager.connect(signal_name, _on_skill_performed)
 				else:
 					push_warning("Could not find sender for signal '%s'" % signal_name)
 
@@ -116,14 +122,14 @@ func _blink(bright: bool = false) -> void:
 		_bright_tween_active = true
 		_blink_panel.modulate = Color.WHITE
 		_tween.tween_property(_blink_panel, "scale", Vector2(2.0, 2.0), 1.2)
-		_tween.parallel().tween_property(_blink_panel, "modulate", Color(0.111, 0.888, 0.111, 0.0), 1.2) \
-				super.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+		_tween.parallel().tween_property(_blink_panel, "modulate", Color(0.888, 0.111, 0.0, 0.111), 1.2) \
+				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 		$TaskCompleteSound.play()
 	else:
-		_blink_panel.modulate = Color(0.111, 0.888, 0.111, 0.5)
+		_blink_panel.modulate = Color(0.888, 0.111, 0.5, 0.111)
 		_tween.tween_property(_blink_panel, "scale", Vector2(1.5, 1.5), 0.6)
 		_tween.parallel().tween_property(_blink_panel, "modulate:a", 0.0, 0.6) \
-				super.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	_tween.tween_callback(Callable(self, "_on_Tween_completed"))
 
 
@@ -135,7 +141,7 @@ func _on_skill_performed(_piece: ActivePiece) -> void:
 	increment()
 
 
-func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2i) -> void:
 	increment()
 
 
@@ -143,7 +149,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 	increment()
 
 
-func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, _box_type: Foods.BoxType) -> void:
 	increment()
 
 

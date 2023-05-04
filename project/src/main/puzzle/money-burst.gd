@@ -4,14 +4,13 @@ extends Node2D
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
-@export (Vector2) var velocity: Vector2
+@export var velocity: Vector2
 
 ## Money value to display. This controls our text.
 var money: int: set = set_money
 
 ## particles which explode from the center of the money
 @onready var _particles: GPUParticles2D = $GPUParticles2D
-@onready var _particles_material: ParticleProcessMaterial = $GPUParticles2D.process_material
 
 ## text showing the earned money, like '¥20'
 @onready var _label: Label = $Label
@@ -20,7 +19,7 @@ var money: int: set = set_money
 @onready var _accent: PackedSprite = $Accent
 
 func _ready() -> void:
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	_particles.emitting = true
 	_refresh_money()
 

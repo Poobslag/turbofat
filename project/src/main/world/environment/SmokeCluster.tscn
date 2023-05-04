@@ -13,7 +13,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array( 0, 0.665217, 1 )
 colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture2D" id=3]
+[sub_resource type="GradientTexture1D" id=3]
 gradient = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
@@ -23,21 +23,19 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.735178, 0.768182 ), -0.985
 curve = SubResource( 4 )
 
 [sub_resource type="ParticleProcessMaterial" id=6]
-flag_disable_z = true
+particle_flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 25.0
-initial_velocity_random = 0.5
-angular_velocity = -500.0
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = 360.0
-angle_random = 1.0
+initial_velocity_min = 12.5
+initial_velocity_max = 25.0
+angular_velocity_max = 0.0
+angular_velocity_min = -500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
-anim_offset = 1.0
-anim_offset_random = 1.0
+anim_offset_max = 1.0
 
 [node name="Particles" type="GPUParticles2D"]
 material = SubResource( 7 )

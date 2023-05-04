@@ -19,7 +19,7 @@
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
 [ext_resource path="res://src/main/career/ui/career-map-level-select.gd" type="Script" id=28]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=42]
-[ext_resource path="res://src/main/ui/money-font.tres" type="FontFile" id=43]
+[ext_resource path="res://assets/main/ui/font/blogger-sans-bold.otf" type="FontFile" id=43]
 [ext_resource path="res://src/main/career/ui/career-map-ui.gd" type="Script" id=45]
 [ext_resource path="res://assets/main/career/ui/icon-distance.png" type="Texture2D" id=46]
 [ext_resource path="res://assets/main/career/ui/icon-time-of-day-sheet.png" type="Texture2D" id=47]
@@ -56,7 +56,7 @@ MileMarkerScene = ExtResource( 48 )
 
 [node name="Environment" parent="World" instance=ExtResource( 8 )]
 
-[node name="Camera3D" type="Camera2D" parent="World"]
+[node name="Camera2D" type="Camera2D" parent="World"]
 current = true
 zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 49 )
@@ -137,8 +137,12 @@ offset_bottom = 34.5
 custom_minimum_size = Vector2( 84, 0 )
 theme_override_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 theme_override_fonts/font = ExtResource( 43 )
+theme_override_colors/font_color = Color(1, 0.942667, 0.92, 1)
+theme_override_colors/font_outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
 text = "999,999"
-valign = 1
+vertical_alignment = 1
 
 [node name="Time" type="Control" parent="Ui/Control/StatusBar"]
 anchor_left = 1.0
@@ -173,8 +177,8 @@ custom_minimum_size = Vector2( 120, 32 )
 theme_override_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 theme_override_fonts/font = ExtResource( 43 )
 text = "12:05 am"
-align = 2
-valign = 1
+horizontal_alignment =2
+vertical_alignment = 1
 
 [node name="SettingsButton" parent="Ui/Control" instance=ExtResource( 12 )]
 modulate = Color( 1, 1, 1, 0.627451 )
@@ -213,11 +217,11 @@ cheat_code_detector_path = NodePath("../Ui/CheatCodeDetector")
 [connection signal="progress_board_hidden" from="ProgressBoardHolder" to="Ui" method="_on_ProgressBoardHolder_progress_board_hidden"]
 [connection signal="progress_board_shown" from="ProgressBoardHolder" to="Ui" method="_on_ProgressBoardHolder_progress_board_shown"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
-[connection signal="hide" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hide"]
-[connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
+[connection signal="hidden" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hidden"]
+[connection signal="hidden" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hidden"]
 [connection signal="other_quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_other_quit_pressed"]
 [connection signal="quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_quit_pressed"]
-[connection signal="show" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_show"]
-[connection signal="show" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_show"]
+[connection signal="shown" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_shown"]
+[connection signal="shown" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_shown"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="World" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="Ui" method="_on_CheatCodeDetector_cheat_detected"]

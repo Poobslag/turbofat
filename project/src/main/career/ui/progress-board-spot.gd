@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name ProgressBoardSpot
 extends Control
 ## Draws a spot on the progress board trail.
@@ -6,7 +6,7 @@ extends Control
 ## A spot is usually represented by a single sprite frame, but large spots will have an empty space in the middle which
 ## looks bad. We cover this large spot with a 'hole sprite'.
 
-@export (int) var frame: int: set = set_frame
+@export var frame: int: set = set_frame
 
 ## Sprite representing a spot on the progress board trail.
 @onready var _spot_sprite := $SpotSprite

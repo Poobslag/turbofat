@@ -1,257 +1,265 @@
-[gd_scene load_steps=117 format=2]
+[gd_scene load_steps=115 format=3 uid="uid://c0fpymdml0rwo"]
 
-[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
-[ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="FontFile" id=3]
-[ext_resource path="res://src/main/puzzle/metaball.gdshader" type="Shader" id=4]
-[ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
-[ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/puzzle/rainbow-metaball.gdshader" type="Shader" id=7]
-[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/puzzle/PuzzleTouchButtons.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/main/puzzle/applause.wav" type="AudioStream" id=11]
-[ext_resource path="res://src/main/puzzle/wall-goop-sfx.gd" type="Script" id=12]
-[ext_resource path="res://src/main/ui/theme/h2-font.tres" type="FontFile" id=13]
-[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="FontFile" id=14]
-[ext_resource path="res://src/main/puzzle/texture-metaball.gdshader" type="Shader" id=15]
-[ext_resource path="res://src/main/puzzle/wall-glob-viewports.gd" type="Script" id=16]
-[ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=17]
-[ext_resource path="res://src/main/puzzle/star-seeds.gd" type="Script" id=18]
-[ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
-[ext_resource path="res://src/main/puzzle/food-items.gd" type="Script" id=20]
-[ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
-[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=22]
-[ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
-[ext_resource path="res://src/main/puzzle/goop-globs.gd" type="Script" id=24]
-[ext_resource path="res://src/main/world/environment/restaurant/RestaurantView.tscn" type="PackedScene" id=25]
-[ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=26]
-[ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-complete.wav" type="AudioStream" id=27]
-[ext_resource path="res://assets/main/puzzle/level-change.wav" type="AudioStream" id=28]
-[ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
-[ext_resource path="res://src/main/puzzle/top-out-tracker.gd" type="Script" id=30]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
-[ext_resource path="res://src/main/puzzle/bursts.gd" type="Script" id=32]
-[ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
-[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=34]
-[ext_resource path="res://src/main/puzzle/GoopGlob.tscn" type="PackedScene" id=35]
-[ext_resource path="res://src/main/ui/FontFitLabel.tscn" type="PackedScene" id=36]
-[ext_resource path="res://src/main/puzzle/FoodItem.tscn" type="PackedScene" id=37]
-[ext_resource path="res://assets/main/puzzle/go.wav" type="AudioStream" id=38]
-[ext_resource path="res://assets/main/puzzle/ready.wav" type="AudioStream" id=39]
-[ext_resource path="res://src/main/puzzle/WoodBg.tscn" type="PackedScene" id=40]
-[ext_resource path="res://assets/main/puzzle/playfield-walls.png" type="Texture2D" id=41]
-[ext_resource path="res://assets/main/puzzle/chalkboard.png" type="Texture2D" id=42]
-[ext_resource path="res://src/main/puzzle/ComboBurst.tscn" type="PackedScene" id=43]
-[ext_resource path="res://assets/main/world/creature/gameover-voice4.wav" type="AudioStream" id=44]
-[ext_resource path="res://assets/main/world/creature/gameover-voice3.wav" type="AudioStream" id=45]
-[ext_resource path="res://assets/main/world/creature/gameover-voice0.wav" type="AudioStream" id=46]
-[ext_resource path="res://assets/main/puzzle/gameover.wav" type="AudioStream" id=47]
-[ext_resource path="res://assets/main/world/creature/gameover-voice2.wav" type="AudioStream" id=48]
-[ext_resource path="res://src/main/puzzle/PuzzleTimer.tscn" type="PackedScene" id=49]
-[ext_resource path="res://src/main/puzzle/night/NightPlayfield.tscn" type="PackedScene" id=50]
-[ext_resource path="res://assets/main/puzzle/excellent.wav" type="AudioStream" id=51]
-[ext_resource path="res://assets/main/puzzle/matchend.wav" type="AudioStream" id=52]
-[ext_resource path="res://assets/main/world/creature/go-voice0.wav" type="AudioStream" id=53]
-[ext_resource path="res://assets/main/world/creature/go-voice1.wav" type="AudioStream" id=54]
-[ext_resource path="res://assets/main/world/creature/go-voice2.wav" type="AudioStream" id=55]
-[ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=56]
-[ext_resource path="res://assets/main/world/creature/gameover-voice1.wav" type="AudioStream" id=57]
-[ext_resource path="res://src/main/puzzle/pan/FryingPansUi.tscn" type="PackedScene" id=58]
-[ext_resource path="res://src/main/puzzle/pan/puzzle-frying-pans-ui.gd" type="Script" id=59]
-[ext_resource path="res://src/main/puzzle/CrumbCluster.tscn" type="PackedScene" id=60]
-[ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=61]
-[ext_resource path="res://src/main/puzzle/PuzzleMessages.tscn" type="PackedScene" id=62]
-[ext_resource path="res://src/main/puzzle/food-crumbs.gd" type="Script" id=63]
-[ext_resource path="res://src/main/puzzle/piece/NextPieceDisplays.tscn" type="PackedScene" id=64]
-[ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=65]
-[ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
-[ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=68]
-[ext_resource path="res://src/main/puzzle/frame-drops-label.gd" type="Script" id=69]
-[ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
-[ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
-[ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=73]
-[ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
-[ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
-[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
-[ext_resource path="res://src/main/puzzle/TechMoveBurst.tscn" type="PackedScene" id=77]
-[ext_resource path="res://src/main/puzzle/puzzle-money-hud.gd" type="Script" id=78]
-[ext_resource path="res://src/main/puzzle/critter/Critters.tscn" type="PackedScene" id=79]
-[ext_resource path="res://src/main/puzzle/hold-piece-displays.gd" type="Script" id=80]
-[ext_resource path="res://assets/main/puzzle/hold-piece-walls.png" type="Texture2D" id=81]
-[ext_resource path="res://src/main/puzzle/piece/HoldPieceDisplay.tscn" type="PackedScene" id=82]
-[ext_resource path="res://assets/main/puzzle/hold-piece-bg.png" type="Texture2D" id=83]
-[ext_resource path="res://src/main/puzzle/playfield-shadow.gd" type="Script" id=84]
-[ext_resource path="res://src/main/puzzle/night/NightPiece.tscn" type="PackedScene" id=85]
-[ext_resource path="res://src/main/puzzle/night/NightNextPieceDisplays.tscn" type="PackedScene" id=86]
-[ext_resource path="res://src/main/puzzle/night/night-hold-piece-displays.gd" type="Script" id=87]
-[ext_resource path="res://src/main/puzzle/night/NightPieceDisplay.tscn" type="PackedScene" id=88]
-[ext_resource path="res://src/main/puzzle/night/night-mode-toggler.gd" type="Script" id=89]
-[ext_resource path="res://src/main/puzzle/night/night-star-seeds.gd" type="Script" id=90]
-[ext_resource path="res://src/main/puzzle/night/NightStarSeed.tscn" type="PackedScene" id=91]
-[ext_resource path="res://src/main/puzzle/MoneyBurst.tscn" type="PackedScene" id=92]
+[ext_resource type="Theme" uid="uid://164bawekogs6" path="res://src/main/ui/theme/h3.theme" id="1"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/tutorial/TutorialHud.tscn" id="2"]
+[ext_resource type="Shader" path="res://src/main/puzzle/metaball.gdshader" id="4"]
+[ext_resource type="Script" path="res://src/main/puzzle/puzzle-trace.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://3bnwvwe5g2x1" path="res://src/main/puzzle/ResultsHud.tscn" id="6"]
+[ext_resource type="Shader" path="res://src/main/puzzle/rainbow-metaball.gdshader" id="7"]
+[ext_resource type="PackedScene" path="res://src/main/ui/CheatCodeDetector.tscn" id="8"]
+[ext_resource type="LabelSettings" uid="uid://cmytvngrxo81f" path="res://src/main/ui/line-spacing-24px-0.tres" id="8_j75by"]
+[ext_resource type="PackedScene" uid="uid://d1o3jugrwwre7" path="res://src/main/puzzle/piece/PieceManager.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cr4qehiw07ekh" path="res://src/main/puzzle/PuzzleTouchButtons.tscn" id="10"]
+[ext_resource type="AudioStream" uid="uid://281xeg0htyrm" path="res://assets/main/puzzle/applause.wav" id="11"]
+[ext_resource type="Script" path="res://src/main/puzzle/wall-goop-sfx.gd" id="12"]
+[ext_resource type="Shader" path="res://src/main/puzzle/texture-metaball.gdshader" id="15"]
+[ext_resource type="Script" path="res://src/main/puzzle/wall-glob-viewports.gd" id="16"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/GoopViewports.tscn" id="17"]
+[ext_resource type="Script" path="res://src/main/puzzle/star-seeds.gd" id="18"]
+[ext_resource type="Script" path="res://src/main/puzzle/puzzle-music-manager.gd" id="19"]
+[ext_resource type="Script" path="res://src/main/puzzle/food-items.gd" id="20"]
+[ext_resource type="Script" path="res://src/main/puzzle/puzzle.gd" id="21"]
+[ext_resource type="Shader" path="res://src/main/utils/outline.gdshader" id="22"]
+[ext_resource type="Script" path="res://src/main/puzzle/milestone-hud.gd" id="23"]
+[ext_resource type="Script" path="res://src/main/puzzle/goop-globs.gd" id="24"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/RestaurantView.tscn" id="25"]
+[ext_resource type="PackedScene" uid="uid://dw3n3uvccampk" path="res://src/main/ui/settings/SettingsMenu.tscn" id="26"]
+[ext_resource type="AudioStream" uid="uid://bfwsixem68h7f" path="res://assets/main/puzzle/tutorial/tutorial-section-complete.wav" id="27"]
+[ext_resource type="AudioStream" uid="uid://cexhtl3cqg8e6" path="res://assets/main/puzzle/level-change.wav" id="28"]
+[ext_resource type="AudioStream" uid="uid://c315emy0xccem" path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" id="29"]
+[ext_resource type="Script" path="res://src/main/puzzle/top-out-tracker.gd" id="30"]
+[ext_resource type="PackedScene" path="res://src/main/ui/MusicPopup.tscn" id="31"]
+[ext_resource type="Script" path="res://src/main/puzzle/bursts.gd" id="32"]
+[ext_resource type="Script" path="res://src/main/puzzle/step-meter.gd" id="33"]
+[ext_resource type="Theme" uid="uid://c0p12qckaqsds" path="res://src/main/ui/theme/h2.theme" id="34"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/GoopGlob.tscn" id="35"]
+[ext_resource type="PackedScene" uid="uid://djmx8ic0x6ywq" path="res://src/main/ui/FontFitLabel.tscn" id="36"]
+[ext_resource type="PackedScene" uid="uid://cpiocqr4cjojt" path="res://src/main/puzzle/FoodItem.tscn" id="37"]
+[ext_resource type="AudioStream" uid="uid://bkvbqqw6ucjau" path="res://assets/main/puzzle/go.wav" id="38"]
+[ext_resource type="AudioStream" uid="uid://bkq24g8j8vo8i" path="res://assets/main/puzzle/ready.wav" id="39"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/WoodBg.tscn" id="40"]
+[ext_resource type="Texture2D" uid="uid://bjjxo56pmr3tm" path="res://assets/main/puzzle/playfield-walls.png" id="41"]
+[ext_resource type="Texture2D" uid="uid://01bvliunqgoh" path="res://assets/main/puzzle/chalkboard.png" id="42"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/ComboBurst.tscn" id="43"]
+[ext_resource type="AudioStream" uid="uid://dxtxpy6os6uiu" path="res://assets/main/world/creature/gameover-voice4.wav" id="44"]
+[ext_resource type="AudioStream" uid="uid://1hgotm3osqg6" path="res://assets/main/world/creature/gameover-voice3.wav" id="45"]
+[ext_resource type="AudioStream" uid="uid://b7v6njwbf4jg2" path="res://assets/main/world/creature/gameover-voice0.wav" id="46"]
+[ext_resource type="AudioStream" uid="uid://be26omffpl8w4" path="res://assets/main/puzzle/gameover.wav" id="47"]
+[ext_resource type="AudioStream" uid="uid://dbaiur30n3bbs" path="res://assets/main/world/creature/gameover-voice2.wav" id="48"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/PuzzleTimer.tscn" id="49"]
+[ext_resource type="PackedScene" uid="uid://dvpiw2o5x5g5k" path="res://src/main/puzzle/night/NightPlayfield.tscn" id="50"]
+[ext_resource type="AudioStream" uid="uid://c54n4fcwkaac7" path="res://assets/main/puzzle/excellent.wav" id="51"]
+[ext_resource type="AudioStream" uid="uid://dtee8nka8tqfe" path="res://assets/main/puzzle/matchend.wav" id="52"]
+[ext_resource type="AudioStream" uid="uid://cv3ja8i6qhulq" path="res://assets/main/world/creature/go-voice0.wav" id="53"]
+[ext_resource type="AudioStream" uid="uid://5ll4h80mmlcg" path="res://assets/main/world/creature/go-voice1.wav" id="54"]
+[ext_resource type="AudioStream" uid="uid://b6km8r8sg1ax3" path="res://assets/main/world/creature/go-voice2.wav" id="55"]
+[ext_resource type="PackedScene" path="res://src/main/ui/FpsLabel.tscn" id="56"]
+[ext_resource type="AudioStream" uid="uid://cw8ffxycpyvv6" path="res://assets/main/world/creature/gameover-voice1.wav" id="57"]
+[ext_resource type="PackedScene" uid="uid://qu7jspcgvm28" path="res://src/main/puzzle/pan/FryingPansUi.tscn" id="58"]
+[ext_resource type="Script" path="res://src/main/puzzle/pan/puzzle-frying-pans-ui.gd" id="59"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/CrumbCluster.tscn" id="60"]
+[ext_resource type="PackedScene" uid="uid://nmr8auer4fyi" path="res://src/main/puzzle/Score.tscn" id="61"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/PuzzleMessages.tscn" id="62"]
+[ext_resource type="Script" path="res://src/main/puzzle/food-crumbs.gd" id="63"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/piece/NextPieceDisplays.tscn" id="64"]
+[ext_resource type="PackedScene" uid="uid://cy2cns7kcf1si" path="res://src/main/puzzle/Playfield.tscn" id="65"]
+[ext_resource type="Script" path="res://src/main/puzzle/chalkboard.gd" id="66"]
+[ext_resource type="Script" path="res://src/main/puzzle/start-end-sfx.gd" id="67"]
+[ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="68"]
+[ext_resource type="Script" path="res://src/main/puzzle/frame-drops-label.gd" id="69"]
+[ext_resource type="Script" path="res://src/main/puzzle/level-timer-manager.gd" id="70"]
+[ext_resource type="Script" path="res://src/main/puzzle/piece/piece-queue.gd" id="71"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/StarSeed.tscn" id="72"]
+[ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="73"]
+[ext_resource type="Script" path="res://src/main/puzzle/puzzle-bg-loader.gd" id="74"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/HudFlash.tscn" id="75"]
+[ext_resource type="PackedScene" uid="uid://d38abe8ik2g5t" path="res://src/main/ui/MoneyLabel.tscn" id="76"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/TechMoveBurst.tscn" id="77"]
+[ext_resource type="Script" path="res://src/main/puzzle/puzzle-money-hud.gd" id="78"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/critter/Critters.tscn" id="79"]
+[ext_resource type="Script" path="res://src/main/puzzle/hold-piece-displays.gd" id="80"]
+[ext_resource type="Texture2D" uid="uid://ed40rt02lxeu" path="res://assets/main/puzzle/hold-piece-walls.png" id="81"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/piece/HoldPieceDisplay.tscn" id="82"]
+[ext_resource type="Texture2D" uid="uid://m4psmjce2abl" path="res://assets/main/puzzle/hold-piece-bg.png" id="83"]
+[ext_resource type="Script" path="res://src/main/puzzle/playfield-shadow.gd" id="84"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/night/NightPiece.tscn" id="85"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/night/NightNextPieceDisplays.tscn" id="86"]
+[ext_resource type="Script" path="res://src/main/puzzle/night/night-hold-piece-displays.gd" id="87"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/night/NightPieceDisplay.tscn" id="88"]
+[ext_resource type="Script" path="res://src/main/puzzle/night/night-mode-toggler.gd" id="89"]
+[ext_resource type="Script" path="res://src/main/puzzle/night/night-star-seeds.gd" id="90"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/night/NightStarSeed.tscn" id="91"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/MoneyBurst.tscn" id="92"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 1, 1, 1, 0.333333 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 1 )
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0o4i"]
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="Gradient" id=3]
-offsets = PackedFloat32Array( 0, 0.695652 )
-colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncge3"]
+bg_color = Color(1, 1, 1, 0.333333)
 
-[sub_resource type="GradientTexture2D" id=25]
-gradient = SubResource( 3 )
+[sub_resource type="Gradient" id="3"]
+offsets = PackedFloat32Array(0, 0.695652)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="ParticleProcessMaterial" id=5]
-flag_disable_z = true
-direction = Vector3( -100, -40, 0 )
+[sub_resource type="GradientTexture1D" id="25"]
+gradient = SubResource("3")
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
+particle_flag_disable_z = true
+direction = Vector3(-100, -40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("25")
 
-[sub_resource type="ParticleProcessMaterial" id=6]
-flag_disable_z = true
-direction = Vector3( 100, -40, 0 )
+[sub_resource type="ParticleProcessMaterial" id="6"]
+particle_flag_disable_z = true
+direction = Vector3(100, -40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("25")
 
-[sub_resource type="ParticleProcessMaterial" id=7]
-flag_disable_z = true
-direction = Vector3( -100, 40, 0 )
+[sub_resource type="ParticleProcessMaterial" id="7"]
+particle_flag_disable_z = true
+direction = Vector3(-100, 40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("25")
 
-[sub_resource type="ParticleProcessMaterial" id=8]
-flag_disable_z = true
-direction = Vector3( 100, 40, 0 )
+[sub_resource type="ParticleProcessMaterial" id="8"]
+particle_flag_disable_z = true
+direction = Vector3(100, 40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("25")
 
-[sub_resource type="ViewportTexture" id=9]
+[sub_resource type="ViewportTexture" id="9"]
 viewport_path = NodePath("Fg/WallGlobViewports/SubViewport")
 
-[sub_resource type="FastNoiseLite" id=10]
+[sub_resource type="FastNoiseLite" id="10"]
 resource_local_to_scene = true
 seed = -529000524
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture" id=11]
+[sub_resource type="NoiseTexture2D" id="11"]
 width = 1024
 height = 1024
 seamless = true
-noise = SubResource( 10 )
+noise = SubResource("10")
 
-[sub_resource type="ViewportTexture" id=12]
+[sub_resource type="ViewportTexture" id="12"]
 viewport_path = NodePath("Fg/WallGlobViewports/RainbowViewport")
 
-[sub_resource type="ShaderMaterial" id=13]
+[sub_resource type="ShaderMaterial" id="13"]
 resource_local_to_scene = true
-shader = ExtResource( 15 )
-shader_param/goop_alpha = 0.6
-shader_param/noise = SubResource( 11 )
-shader_param/goop_texture = SubResource( 9 )
-shader_param/rainbow_texture = SubResource( 12 )
+shader = ExtResource("15")
+shader_parameter/goop_alpha = 0.6
+shader_parameter/noise = SubResource("11")
+shader_parameter/goop_texture = SubResource("9")
+shader_parameter/rainbow_texture = SubResource("12")
 
-[sub_resource type="StyleBoxFlat" id=22]
-bg_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+[sub_resource type="StyleBoxFlat" id="22"]
+bg_color = Color(0.254902, 0.156863, 0.117647, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="Theme" id=23]
-Panel/styles/panel = SubResource( 22 )
+[sub_resource type="Theme" id="23"]
+Panel/styles/panel = SubResource("22")
 
-[sub_resource type="StyleBoxFlat" id=24]
-bg_color = Color( 0.282353, 0.72549, 0.407843, 1 )
+[sub_resource type="StyleBoxFlat" id="24"]
+bg_color = Color(0.282353, 0.72549, 0.407843, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="ShaderMaterial" id=14]
-shader = ExtResource( 4 )
+[sub_resource type="ShaderMaterial" id="14"]
+shader = ExtResource("4")
 
-[sub_resource type="ViewportTexture" id=15]
-flags = 5
+[sub_resource type="ViewportTexture" id="15"]
 viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/SubViewport")
 
-[sub_resource type="FastNoiseLite" id=16]
+[sub_resource type="FastNoiseLite" id="16"]
 resource_local_to_scene = true
 seed = -165480819
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture" id=17]
+[sub_resource type="NoiseTexture2D" id="17"]
 width = 1024
 height = 1024
 seamless = true
-noise = SubResource( 16 )
+noise = SubResource("16")
 
-[sub_resource type="ShaderMaterial" id=18]
-shader = ExtResource( 7 )
-shader_param/noise = SubResource( 17 )
+[sub_resource type="ShaderMaterial" id="18"]
+shader = ExtResource("7")
+shader_parameter/noise = SubResource("17")
 
-[sub_resource type="ViewportTexture" id=19]
-flags = 5
+[sub_resource type="ViewportTexture" id="19"]
 viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/RainbowViewport")
 
-[sub_resource type="ShaderMaterial" id=20]
+[sub_resource type="ShaderMaterial" id="20"]
 resource_local_to_scene = true
-shader = ExtResource( 22 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-shader_param/edge_fix_factor = 0.001
+shader = ExtResource("22")
+shader_parameter/width = 6.0
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
+shader_parameter/edge_fix_factor = 0.001
 
-[sub_resource type="ViewportTexture" id=21]
+[sub_resource type="ViewportTexture" id="21"]
 viewport_path = NodePath("Fg/FoodItems/SubViewport")
 
 [node name="Puzzle" type="Control"]
+custom_minimum_size = Vector2(1024, 600)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2( 1024, 600 )
-script = ExtResource( 21 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21")
 
 [node name="BgLoader" type="Control" parent="." groups=["night_mode_dark"]]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 74 )
-shadow_paths = [ NodePath("../Fg/Chalkboard/ChalkboardShadow"), NodePath("../Fg/PlayfieldShadow/NormalShadow") ]
+script = ExtResource("74")
+shadow_paths = Array[NodePath]([NodePath("../Fg/Chalkboard/ChalkboardShadow"), NodePath("../Fg/PlayfieldShadow/NormalShadow")])
 
-[node name="Bg" parent="BgLoader" instance=ExtResource( 40 )]
+[node name="Bg" parent="BgLoader" instance=ExtResource("40")]
+anchors_preset = 0
 
 [node name="Fg" type="Control" parent="."]
+custom_minimum_size = Vector2(1024, 600)
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -260,146 +268,150 @@ offset_left = -512.0
 offset_top = -300.0
 offset_right = 512.0
 offset_bottom = 300.0
-custom_minimum_size = Vector2( 1024, 600 )
 
 [node name="Chalkboard" type="TextureRect" parent="Fg" groups=["night_mode_dark_self"]]
+layout_mode = 0
 offset_left = -58.0
 offset_top = 27.0
 offset_right = 284.0
 offset_bottom = 292.0
-texture = ExtResource( 42 )
-expand = true
-script = ExtResource( 66 )
+texture = ExtResource("42")
+expand_mode = 1
+script = ExtResource("66")
 
 [node name="ChalkboardShadow" type="Polygon2D" parent="Fg/Chalkboard" groups=["night_mode_dark"]]
 show_behind_parent = true
-position = Vector2( 57.4473, -143.371 )
-scale = Vector2( 0.444724, 0.444458 )
-color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+position = Vector2(57.4473, -143.371)
+scale = Vector2(0.444724, 0.444458)
+color = Color(0.345098, 0.14902, 0.0705882, 1)
 antialiased = true
-polygon = PackedVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
+polygon = PackedVector2Array(-129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761)
 
-[node name="Score" parent="Fg/Chalkboard" instance=ExtResource( 61 )]
+[node name="Score" parent="Fg/Chalkboard" instance=ExtResource("61")]
 offset_left = 58.0
 offset_top = 25.0
 offset_right = 308.0
 offset_bottom = 99.0
 
-[node name="PuzzleTimer" parent="Fg/Chalkboard" instance=ExtResource( 49 )]
+[node name="PuzzleTimer" parent="Fg/Chalkboard" instance=ExtResource("49")]
+layout_mode = 0
 offset_left = 58.0
 offset_top = 110.0
 offset_right = 308.0
 offset_bottom = 140.0
+label_settings = ExtResource("8_j75by")
 
 [node name="MilestoneHud" type="Control" parent="Fg/Chalkboard" groups=["night_mode_light"]]
+custom_minimum_size = Vector2(250, 40)
+anchors_preset = 0
 offset_left = 58.0
 offset_top = 153.0
 offset_right = 308.0
 offset_bottom = 233.0
-custom_minimum_size = Vector2( 250, 40 )
-script = ExtResource( 23 )
+script = ExtResource("23")
 
 [node name="ProgressBar" type="ProgressBar" parent="Fg/Chalkboard/MilestoneHud"]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 30.0
 offset_right = 250.0
 offset_bottom = 75.0
-theme_override_styles/fg = SubResource( 1 )
-theme_override_styles/bg = SubResource( 2 )
-percent_visible = false
+theme_override_styles/background = SubResource("StyleBoxFlat_v0o4i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ncge3")
+show_percentage = false
 
 [node name="Desc" type="Label" parent="Fg/Chalkboard/MilestoneHud"]
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 30.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Goal"
-align = 2
+label_settings = ExtResource("8_j75by")
+horizontal_alignment = 2
 
-[node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource( 36 )]
+[node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource("36")]
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 0
 offset_left = 150.0
 offset_top = 30.0
 offset_right = 250.0
 offset_bottom = 75.0
-custom_minimum_size = Vector2( 100, 45 )
-theme_override_fonts/font = ExtResource( 14 )
+theme_override_fonts/font = ExtResource("73")
+theme_override_font_sizes/font_size = 16
 text = "10"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 max_lines_visible = 1
-__meta__ = {
-"_editor_description_": ""
-}
-fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
+font_sizes = Array[float]([36.0, 24.0, 16.0])
 
 [node name="ProgressBarParticles" type="Control" parent="Fg/Chalkboard/MilestoneHud"]
+anchors_preset = 0
 offset_left = 150.0
 offset_top = 30.0
 offset_right = 250.0
 offset_bottom = 75.0
 
 [node name="Nw" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
+position = Vector2(50, 22.5)
 emitting = false
 amount = 3
+process_material = SubResource("5")
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 5 )
 
 [node name="Ne" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
+position = Vector2(50, 22.5)
 emitting = false
 amount = 3
+process_material = SubResource("6")
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 6 )
 
 [node name="Sw" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
+position = Vector2(50, 22.5)
 emitting = false
 amount = 3
+process_material = SubResource("7")
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 7 )
 
 [node name="Se" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
+position = Vector2(50, 22.5)
 emitting = false
 amount = 3
+process_material = SubResource("8")
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 8 )
 
 [node name="PlayfieldShadow" type="Control" parent="Fg" groups=["night_mode_dark"]]
+anchors_preset = 0
 offset_left = 264.0
 offset_top = -72.0
 offset_right = 788.0
 offset_bottom = 672.0
-script = ExtResource( 84 )
-__meta__ = {
-"_editor_description_": ""
-}
+script = ExtResource("84")
 
 [node name="NormalShadow" type="Polygon2D" parent="Fg/PlayfieldShadow"]
 visible = false
-position = Vector2( 414.385, -217.115 )
-color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+position = Vector2(414.385, -217.115)
+color = Color(0.345098, 0.14902, 0.0705882, 1)
 antialiased = true
-polygon = PackedVector2Array( -320.131, 310.11, -314.356, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99 )
+polygon = PackedVector2Array(-320.131, 310.11, -314.356, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99)
 
 [node name="HoldPieceShadow" type="Polygon2D" parent="Fg/PlayfieldShadow"]
-position = Vector2( 414.385, -217.115 )
-color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+position = Vector2(414.385, -217.115)
+color = Color(0.345098, 0.14902, 0.0705882, 1)
 antialiased = true
-polygon = PackedVector2Array( -389.455, 310.11, -383.422, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99, -320.145, 380.409 )
+polygon = PackedVector2Array(-389.455, 310.11, -383.422, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99, -320.145, 380.409)
 
-[node name="Playfield" parent="Fg" instance=ExtResource( 65 )]
+[node name="Playfield" parent="Fg" instance=ExtResource("65")]
 offset_left = 364.0
 offset_top = 28.0
 offset_right = 688.0
 offset_bottom = 572.0
 
-[node name="NightPlayfield" parent="Fg" instance=ExtResource( 50 )]
+[node name="NightPlayfield" parent="Fg" instance=ExtResource("50")]
 visible = false
 offset_left = 364.0
 offset_top = 28.0
@@ -408,246 +420,261 @@ offset_bottom = 572.0
 source_playfield_path = NodePath("../Playfield")
 
 [node name="StarSeeds" type="Control" parent="Fg" groups=["night_mode_invisible"]]
+anchors_preset = 0
 offset_left = 364.0
 offset_top = 28.0
 offset_right = 688.0
 offset_bottom = 572.0
-script = ExtResource( 18 )
+script = ExtResource("18")
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
-StarSeedScene = ExtResource( 72 )
+StarSeedScene = ExtResource("72")
 
 [node name="NightStarSeeds" type="Control" parent="Fg" groups=["night_mode_visible"]]
 visible = false
+anchors_preset = 0
 offset_left = 364.0
 offset_top = 28.0
 offset_right = 688.0
 offset_bottom = 572.0
-script = ExtResource( 90 )
+script = ExtResource("90")
 source_star_seeds_path = NodePath("../StarSeeds")
-StarSeedScene = ExtResource( 91 )
+StarSeedScene = ExtResource("91")
 
-[node name="Critters" parent="Fg" instance=ExtResource( 79 )]
+[node name="Critters" parent="Fg" instance=ExtResource("79")]
+anchors_preset = 0
 playfield_path = NodePath("../Playfield")
 piece_manager_path = NodePath("../PieceManager")
 
-[node name="PieceManager" parent="Fg" instance=ExtResource( 9 )]
+[node name="PieceManager" parent="Fg" instance=ExtResource("9")]
 playfield_path = NodePath("../Playfield")
 piece_queue_path = NodePath("../../PieceQueue")
 
-[node name="NightPiece" parent="Fg" instance=ExtResource( 85 )]
+[node name="NightPiece" parent="Fg" instance=ExtResource("85")]
 visible = false
+anchors_preset = 0
 piece_manager_path = NodePath("../PieceManager")
 
-[node name="NextPieceDisplays" parent="Fg" instance=ExtResource( 64 )]
+[node name="NextPieceDisplays" parent="Fg" instance=ExtResource("64")]
+anchors_preset = 0
 offset_left = 688.0
 offset_top = 28.0
 offset_right = 752.0
 offset_bottom = 572.0
 piece_queue_path = NodePath("../../PieceQueue")
 
-[node name="NightNextPieceDisplays" parent="Fg" instance=ExtResource( 86 )]
+[node name="NightNextPieceDisplays" parent="Fg" instance=ExtResource("86")]
 visible = false
+anchors_preset = 0
 offset_left = 688.0
 offset_top = 28.0
 offset_right = 752.0
 offset_bottom = 572.0
 next_piece_displays_path = NodePath("../NextPieceDisplays")
 
-[node name="WallGlobViewports" parent="Fg" instance=ExtResource( 17 )]
+[node name="WallGlobViewports" parent="Fg" instance=ExtResource("17")]
+anchors_preset = 0
 offset_left = 356.5
 offset_top = 20.5
 offset_right = 758.5
 offset_bottom = 576.5
-script = ExtResource( 16 )
+script = ExtResource("16")
 glob_min_scale = 1.2
 glob_max_scale = 2.5
 
 [node name="Walls" type="TextureRect" parent="Fg" groups=["night_mode_dark"]]
-material = SubResource( 13 )
+material = SubResource("13")
+layout_mode = 0
 offset_left = 356.5
 offset_top = 20.5
 offset_right = 758.5
 offset_bottom = 578.5
-texture = ExtResource( 41 )
-expand = true
+texture = ExtResource("41")
+expand_mode = 1
 
 [node name="HoldPieceDisplays" type="Control" parent="Fg" groups=["night_mode_invisible"]]
+anchors_preset = 0
 offset_left = 288.0
 offset_top = 20.5
 offset_right = 364.0
 offset_bottom = 96.5
-script = ExtResource( 80 )
+script = ExtResource("80")
 piece_queue_path = NodePath("../../PieceQueue")
-HoldPieceDisplayScene = ExtResource( 82 )
+HoldPieceDisplayScene = ExtResource("82")
 
 [node name="Holder" type="Control" parent="Fg/HoldPieceDisplays"]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="BgSprite" type="TextureRect" parent="Fg/HoldPieceDisplays/Holder"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 68.5
 offset_bottom = 72.0
-texture = ExtResource( 83 )
-expand = true
+texture = ExtResource("83")
+expand_mode = 1
 
 [node name="BgColor" type="ColorRect" parent="Fg/HoldPieceDisplays/Holder/BgSprite"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.627451 )
+color = Color(0, 0, 0, 0.627451)
 
 [node name="Polygon2D" type="Polygon2D" parent="Fg/HoldPieceDisplays/Holder/BgSprite"]
-position = Vector2( -3.64645, -3.29289 )
-color = Color( 0, 0, 0, 0.196078 )
+position = Vector2(-3.64645, -3.29289)
+color = Color(0, 0, 0, 0.196078)
 antialiased = true
-polygon = PackedVector2Array( 13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4 )
+polygon = PackedVector2Array(13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4)
 
 [node name="Walls" type="TextureRect" parent="Fg/HoldPieceDisplays/Holder"]
-material = SubResource( 13 )
+material = SubResource("13")
+layout_mode = 0
 offset_right = 76.0
 offset_bottom = 76.0
-texture = ExtResource( 81 )
-expand = true
+texture = ExtResource("81")
+expand_mode = 1
 
 [node name="OnionHoldPieceDisplays" type="Control" parent="Fg" groups=["night_mode_visible"]]
 visible = false
+anchors_preset = 0
 offset_left = 288.0
 offset_top = 20.5
 offset_right = 364.0
 offset_bottom = 96.5
-script = ExtResource( 87 )
+script = ExtResource("87")
 hold_piece_displays_path = NodePath("../HoldPieceDisplays")
-NightPieceDisplayScene = ExtResource( 88 )
+NightPieceDisplayScene = ExtResource("88")
 
 [node name="Holder" type="Control" parent="Fg/OnionHoldPieceDisplays"]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="BgSprite" type="TextureRect" parent="Fg/OnionHoldPieceDisplays/Holder"]
-modulate = Color( 0.419608, 0.419608, 0.862745, 1 )
+modulate = Color(0.419608, 0.419608, 0.862745, 1)
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 68.5
 offset_bottom = 72.0
-texture = ExtResource( 83 )
-expand = true
+texture = ExtResource("83")
+expand_mode = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="Fg/OnionHoldPieceDisplays/Holder/BgSprite"]
-position = Vector2( -3.64645, -3.29289 )
-color = Color( 0, 0, 0, 0.196078 )
+position = Vector2(-3.64645, -3.29289)
+color = Color(0, 0, 0, 0.196078)
 antialiased = true
-polygon = PackedVector2Array( 13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4 )
+polygon = PackedVector2Array(13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4)
 
 [node name="Walls" type="TextureRect" parent="Fg/OnionHoldPieceDisplays/Holder"]
-modulate = Color( 0.419608, 0.419608, 0.862745, 1 )
-material = SubResource( 13 )
+modulate = Color(0.419608, 0.419608, 0.862745, 1)
+material = SubResource("13")
+layout_mode = 0
 offset_right = 76.0
 offset_bottom = 76.0
-texture = ExtResource( 81 )
-expand = true
-__meta__ = {
-"_editor_description_": ""
-}
+texture = ExtResource("81")
+expand_mode = 1
 
 [node name="StepMeter" type="Control" parent="Fg" groups=["night_mode_light"]]
+anchors_preset = 0
 offset_left = 786.626
 offset_top = 134.094
 offset_right = 846.626
 offset_bottom = 214.094
-script = ExtResource( 33 )
+script = ExtResource("33")
 
 [node name="Bg" type="Panel" parent="Fg/StepMeter"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 23 )
+theme = SubResource("23")
 
 [node name="Fill" type="Panel" parent="Fg/StepMeter"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
 offset_right = -5.0
 offset_bottom = -5.0
-theme = SubResource( 23 )
-theme_override_styles/panel = SubResource( 24 )
+theme = SubResource("23")
+theme_override_styles/panel = SubResource("24")
 
 [node name="Label" type="Label" parent="Fg/StepMeter"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 34 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 73 )
+theme = ExtResource("34")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("73")
+theme_override_font_sizes/font_size = 36
 text = "1"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RecalculateTimer" type="Timer" parent="Fg/StepMeter"]
 
-[node name="RestaurantView" parent="Fg" instance=ExtResource( 25 )]
+[node name="RestaurantView" parent="Fg" instance=ExtResource("25")]
+anchors_preset = 0
 
 [node name="GoopGlobs" type="Node2D" parent="Fg"]
 z_index = 4
-script = ExtResource( 24 )
+script = ExtResource("24")
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 playfield_path = NodePath("../Playfield")
 next_piece_displays_path = NodePath("../NextPieceDisplays")
-GoopGlobScene = ExtResource( 35 )
+GoopGlobScene = ExtResource("35")
 
 [node name="GlobViewports" type="Node" parent="Fg/GoopGlobs"]
 
 [node name="SubViewport" type="SubViewport" parent="Fg/GoopGlobs/GlobViewports"]
-size = Vector2( 1024, 600 )
 transparent_bg = true
-usage = 0
+size = Vector2i(1024, 600)
 
 [node name="RainbowViewport" type="SubViewport" parent="Fg/GoopGlobs/GlobViewports"]
-size = Vector2( 1024, 600 )
 transparent_bg = true
-usage = 0
+size = Vector2i(1024, 600)
 
 [node name="TextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
-modulate = Color( 1, 1, 1, 0.768627 )
-material = SubResource( 14 )
+modulate = Color(1, 1, 1, 0.768627)
+material = SubResource("14")
+custom_minimum_size = Vector2(1024, 600)
 offset_right = 1024.0
 offset_bottom = 600.0
-custom_minimum_size = Vector2( 1024, 600 )
-texture = SubResource( 15 )
-flip_v = true
+texture = SubResource("15")
 
 [node name="RainbowTextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
-material = SubResource( 18 )
+material = SubResource("18")
+custom_minimum_size = Vector2(1024, 600)
 offset_right = 1024.0
 offset_bottom = 600.0
-custom_minimum_size = Vector2( 1024, 600 )
-texture = SubResource( 19 )
-flip_v = true
+texture = SubResource("19")
 
 [node name="FoodCrumbs" type="Node2D" parent="Fg"]
-script = ExtResource( 63 )
+script = ExtResource("63")
 restaurant_view_path = NodePath("../RestaurantView")
-CrumbClusterScene = ExtResource( 60 )
+CrumbClusterScene = ExtResource("60")
 
 [node name="FoodItems" type="Node2D" parent="Fg"]
 z_index = 6
-script = ExtResource( 20 )
+script = ExtResource("20")
 puzzle_path = NodePath("../..")
 restaurant_view_path = NodePath("../RestaurantView")
-FoodScene = ExtResource( 37 )
+FoodScene = ExtResource("37")
 
 [node name="SubViewport" type="SubViewport" parent="Fg/FoodItems"]
-size = Vector2( 2560, 1500 )
 transparent_bg = true
-usage = 0
+size = Vector2i(2560, 1500)
 
 [node name="TextureRect" type="TextureRect" parent="Fg/FoodItems"]
-material = SubResource( 20 )
+material = SubResource("20")
+custom_minimum_size = Vector2(2560, 1500)
 offset_right = 2560.0
 offset_bottom = 1500.0
-custom_minimum_size = Vector2( 2560, 1500 )
-scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 21 )
-flip_v = true
+scale = Vector2(0.4, 0.4)
+texture = SubResource("21")
 
 [node name="FoodFlightTimer" type="Timer" parent="Fg/FoodItems"]
 wait_time = 0.08
@@ -658,14 +685,14 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Bursts" type="Node2D" parent="Fg"]
-position = Vector2( 364, 28 )
 z_index = 6
-script = ExtResource( 32 )
+position = Vector2(364, 28)
+script = ExtResource("32")
 piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
-ComboBurstScene = ExtResource( 43 )
-MoneyBurstScene = ExtResource( 92 )
-TechMoveBurstScene = ExtResource( 77 )
+ComboBurstScene = ExtResource("43")
+MoneyBurstScene = ExtResource("92")
+TechMoveBurstScene = ExtResource("77")
 
 [node name="Combo" type="Node2D" parent="Fg/Bursts"]
 
@@ -673,22 +700,24 @@ TechMoveBurstScene = ExtResource( 77 )
 
 [node name="Tech" type="Node2D" parent="Fg/Bursts"]
 
-[node name="FryingPansUi" parent="Fg" instance=ExtResource( 58 )]
+[node name="FryingPansUi" parent="Fg" instance=ExtResource("58")]
 offset_left = 771.0
 offset_top = 314.0
 offset_right = 1011.0
 offset_bottom = 434.0
-script = ExtResource( 59 )
+script = ExtResource("59")
 
 [node name="PieceQueue" type="Node" parent="."]
-script = ExtResource( 71 )
+script = ExtResource("71")
 
 [node name="LevelTimerManager" type="Node" parent="."]
-script = ExtResource( 70 )
+script = ExtResource("70")
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="Center" type="Control" parent="Hud"]
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -697,17 +726,24 @@ offset_left = -512.0
 offset_top = -300.0
 offset_right = 512.0
 offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
-[node name="TutorialHud" parent="Hud/Center" instance=ExtResource( 2 )]
+[node name="TutorialHud" parent="Hud/Center" instance=ExtResource("2")]
 visible = false
+anchors_preset = 0
 puzzle_path = NodePath("../../..")
 hud_flash_path = NodePath("../../HudFlash")
 
-[node name="PuzzleMessages" parent="Hud/Center" instance=ExtResource( 62 )]
+[node name="PuzzleMessages" parent="Hud/Center" instance=ExtResource("62")]
+anchors_preset = 0
 mouse_filter = 2
 
-[node name="ResultsHud" parent="Hud/Center" instance=ExtResource( 6 )]
+[node name="ResultsHud" parent="Hud/Center" instance=ExtResource("6")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PuzzleTrace" type="Label" parent="Hud"]
 visible = false
@@ -715,27 +751,37 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 110.0
 offset_bottom = 40.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "abcd"
-script = ExtResource( 5 )
+script = ExtResource("5")
 puzzle_path = NodePath("../..")
 
-[node name="MusicPopup" parent="Hud" instance=ExtResource( 31 )]
+[node name="MusicPopup" parent="Hud" instance=ExtResource("31")]
+layout_mode = 3
+anchors_preset = 10
+offset_top = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
 
 [node name="PuzzleMoneyHud" type="Control" parent="Hud" groups=["night_mode_light"]]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-script = ExtResource( 78 )
+script = ExtResource("78")
 results_label_path = NodePath("../Center/ResultsHud/ResultsLabel")
 
-[node name="MoneyLabel" parent="Hud/PuzzleMoneyHud" instance=ExtResource( 76 )]
+[node name="MoneyLabel" parent="Hud/PuzzleMoneyHud" instance=ExtResource("76")]
 offset_top = -32.0
 offset_bottom = 0.0
 
-[node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
+[node name="TouchButtons" parent="Hud" instance=ExtResource("10")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hud"]
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -749,132 +795,124 @@ alignment = 2
 
 [node name="FrameDropsLabel" type="Label" parent="Hud/VBoxContainer"]
 visible = false
-offset_top = 203.0
-offset_right = 482.0
-offset_bottom = 246.0
-theme = ExtResource( 68 )
+layout_mode = 2
+theme = ExtResource("68")
 text = "0 frame drops
 0 step drops"
-align = 2
-script = ExtResource( 69 )
+horizontal_alignment = 2
+script = ExtResource("69")
 
-[node name="FpsLabel" parent="Hud/VBoxContainer" instance=ExtResource( 56 )]
+[node name="FpsLabel" parent="Hud/VBoxContainer" instance=ExtResource("56")]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 250.0
-offset_right = 482.0
-offset_bottom = 270.0
+layout_mode = 2
 
-[node name="HudFlash" parent="Hud" instance=ExtResource( 75 )]
+[node name="HudFlash" parent="Hud" instance=ExtResource("75")]
+anchors_preset = 15
 
-[node name="SettingsMenu" parent="." instance=ExtResource( 26 )]
+[node name="SettingsMenu" parent="." instance=ExtResource("26")]
 
 [node name="TopOutTracker" type="Node" parent="."]
-script = ExtResource( 30 )
+script = ExtResource("30")
 
 [node name="GameOverVoice0" type="AudioStreamPlayer" parent="TopOutTracker"]
-stream = ExtResource( 46 )
-bus = "Voice Bus"
+stream = ExtResource("46")
+bus = &"Voice Bus"
 
 [node name="GameOverVoice1" type="AudioStreamPlayer" parent="TopOutTracker"]
-stream = ExtResource( 57 )
-bus = "Voice Bus"
+stream = ExtResource("57")
+bus = &"Voice Bus"
 
 [node name="GameOverVoice2" type="AudioStreamPlayer" parent="TopOutTracker"]
-stream = ExtResource( 48 )
-bus = "Voice Bus"
+stream = ExtResource("48")
+bus = &"Voice Bus"
 
 [node name="GameOverVoice3" type="AudioStreamPlayer" parent="TopOutTracker"]
-stream = ExtResource( 45 )
-bus = "Voice Bus"
+stream = ExtResource("45")
+bus = &"Voice Bus"
 
 [node name="GameOverVoice4" type="AudioStreamPlayer" parent="TopOutTracker"]
-stream = ExtResource( 44 )
-bus = "Voice Bus"
+stream = ExtResource("44")
+bus = &"Voice Bus"
 
 [node name="GoopSfx" type="Node" parent="."]
-script = ExtResource( 12 )
+script = ExtResource("12")
 
 [node name="SplatPlayer0" type="AudioStreamPlayer" parent="GoopSfx"]
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="SplatPlayer1" type="AudioStreamPlayer" parent="GoopSfx"]
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="SplatPlayer2" type="AudioStreamPlayer" parent="GoopSfx"]
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="StartEndSfx" type="Node" parent="."]
-script = ExtResource( 67 )
+script = ExtResource("67")
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 39 )
+stream = ExtResource("39")
 volume_db = -8.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="GoSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 38 )
+stream = ExtResource("38")
 volume_db = -8.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="GoVoice0" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 53 )
+stream = ExtResource("53")
 volume_db = -4.0
-bus = "Voice Bus"
+bus = &"Voice Bus"
 
 [node name="GoVoice1" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 54 )
+stream = ExtResource("54")
 volume_db = -4.0
-bus = "Voice Bus"
+bus = &"Voice Bus"
 
 [node name="GoVoice2" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 55 )
+stream = ExtResource("55")
 volume_db = -4.0
-bus = "Voice Bus"
+bus = &"Voice Bus"
 
 [node name="ExcellentSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 51 )
-bus = "Sound Bus"
+stream = ExtResource("51")
+bus = &"Sound Bus"
 
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 52 )
+stream = ExtResource("52")
 volume_db = -4.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 47 )
-bus = "Sound Bus"
+stream = ExtResource("47")
+bus = &"Sound Bus"
 
 [node name="SectionCompleteSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 27 )
+stream = ExtResource("27")
 volume_db = -4.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="SectionFailSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 29 )
-bus = "Sound Bus"
+stream = ExtResource("29")
+bus = &"Sound Bus"
 
 [node name="LevelChangeSound" type="AudioStreamPlayer" parent="StartEndSfx"]
-stream = ExtResource( 28 )
+stream = ExtResource("28")
 volume_db = -8.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-bus = "Sound Bus"
+stream = ExtResource("11")
+bus = &"Sound Bus"
 
-[node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]
-codes = [ "delays", "bigfps", "finish" ]
+[node name="CheatCodeDetector" parent="." instance=ExtResource("8")]
+codes = Array[String](["delays", "bigfps", "finish"])
 
 [node name="PuzzleMusicManager" type="Node" parent="."]
-script = ExtResource( 19 )
+script = ExtResource("19")
 
 [node name="NightModeToggler" type="Node" parent="."]
-script = ExtResource( 89 )
+script = ExtResource("89")
 
 [connection signal="after_lines_deleted" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_after_lines_deleted"]
 [connection signal="after_lines_filled" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_after_lines_filled"]
@@ -909,9 +947,9 @@ script = ExtResource( 89 )
 [connection signal="back_button_pressed" from="Hud/Center/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/Center/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
 [connection signal="start_button_pressed" from="Hud/Center/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
-[connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
+[connection signal="hidden" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hidden"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
-[connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
+[connection signal="shown" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_shown"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]

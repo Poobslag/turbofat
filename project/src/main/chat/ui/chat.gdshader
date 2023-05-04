@@ -10,8 +10,6 @@ shader_type canvas_item;
  * The shader code uses the red channel of the texture to determine where to draw the background accents.
  */
 
-const float PI = 3.14159265358979;
-
 // The color of the border around the chat window, which is black in the source texture
 uniform vec4 border_color : source_color;
 
@@ -22,7 +20,7 @@ uniform vec4 center_color : source_color;
 uniform vec4 accent_color : source_color;
 
 // A monochrome texture containing the accents to draw in the chat window's middle
-uniform sampler2D accent_texture;
+uniform sampler2D accent_texture : repeat_enable;
 
 uniform float accent_scale = 2.0;
 

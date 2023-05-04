@@ -1,8 +1,8 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 extends AnimationPlayer
 ## AnimationPlayer which animates ears.
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 
@@ -32,28 +32,28 @@ func advance_animation_randomly() -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	var idle_timer: IdleTimer
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+		_creature_visuals.orientation_changed.disconnect(_on_CreatureVisuals_orientation_changed)
 		
 		idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
-		idle_timer.disconnect("idle_animation_started", Callable(self, "_on_IdleTimer_idle_animation_started"))
-		idle_timer.disconnect("idle_animation_stopped", Callable(self, "_on_IdleTimer_idle_animation_stopped"))
+		idle_timer.idle_animation_started.disconnect(_on_IdleTimer_idle_animation_started)
+		idle_timer.idle_animation_stopped.disconnect(_on_IdleTimer_idle_animation_stopped)
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
-	_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+	_creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
 	
 	idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
-	idle_timer.connect("idle_animation_started", Callable(self, "_on_IdleTimer_idle_animation_started"))
-	idle_timer.connect("idle_animation_stopped", Callable(self, "_on_IdleTimer_idle_animation_stopped"))
+	idle_timer.idle_animation_started.connect(_on_IdleTimer_idle_animation_started)
+	idle_timer.idle_animation_stopped.connect(_on_IdleTimer_idle_animation_stopped)
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, new_orientation: Creatures.Orientation) -> void:
 	if Creatures.oriented_north(new_orientation):
 		stop()
 

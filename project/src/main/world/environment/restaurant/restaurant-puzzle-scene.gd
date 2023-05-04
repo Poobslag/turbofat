@@ -15,8 +15,8 @@ var current_customer_index := 0: set = set_current_customer_index
 func _ready() -> void:
 	for customer_obj in _world.customers:
 		var customer: Creature = customer_obj
-		customer.connect("food_eaten", Callable(self, "_on_Creature_food_eaten"))
-		customer.connect("dna_loaded", Callable(_door_chime, "_on_CreatureVisuals_dna_loaded"))
+		customer.food_eaten.connect(_on_Creature_food_eaten)
+		customer.dna_loaded.connect(_door_chime._on_CreatureVisuals_dna_loaded)
 
 
 func set_current_customer_index(new_index: int) -> void:
@@ -63,5 +63,5 @@ func play_door_chime() -> void:
 	_door_chime.play_door_chime()
 
 
-func _on_Creature_food_eaten(food_type: int) -> void:
+func _on_Creature_food_eaten(food_type: Foods.FoodType) -> void:
 	emit_signal("food_eaten", food_type)

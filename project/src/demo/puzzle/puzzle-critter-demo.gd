@@ -38,7 +38,7 @@ enum CritterType {
 	SHARK,
 }
 
-var critter_type: int = CritterType.NONE
+var critter_type := CritterType.NONE
 
 var _carrot_config := CarrotConfig.new()
 var _mole_config := MoleConfig.new()
@@ -47,9 +47,9 @@ var _shark_config := SharkConfig.new()
 @onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
 ## local path to a json level resource to demo
-@export (String, FILE, "*.json") var level_path: String
+@export_file("*.json") var level_path: String
 
-@export (bool) var cache_resources := false
+@export var cache_resources := false
 
 func _ready() -> void:
 	if cache_resources:
@@ -58,9 +58,7 @@ func _ready() -> void:
 	var settings: LevelSettings = LevelSettings.new()
 	if level_path:
 		var json_text := FileUtils.get_file_as_text(level_path)
-		var test_json_conv = JSON.new()
-		test_json_conv.parse(json_text)
-		var json_dict: Dictionary = test_json_conv.get_data()
+		var json_dict: Dictionary = JSON.parse_string(json_text)
 		var level_key := LevelSettings.level_key_from_path(level_path)
 		settings.from_json_dict(level_key, json_dict)
 		# Ignore the start_level property so we can test the middle parts of tutorials
@@ -72,7 +70,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_C: critter_type = CritterType.CARROT
 		KEY_M: critter_type = CritterType.MOLE
 		KEY_O: critter_type = CritterType.ONION
@@ -86,23 +84,23 @@ func _input(event: InputEvent) -> void:
 
 
 func _carrot_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0:
 			$Puzzle/Fg/Critters/Carrots.remove_carrots(1)
 		KEY_1:
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_2:
-			_carrot_config.smoke = (_carrot_config.smoke + 1) % CarrotConfig.Smoke.size()
+			_carrot_config.smoke = (_carrot_config.smoke + 1) % CarrotConfig.Smoke.size() as CarrotConfig.Smoke
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_3:
-			_carrot_config.size = (_carrot_config.size + 1) % CarrotConfig.CarrotSize.size()
+			_carrot_config.size = (_carrot_config.size + 1) % CarrotConfig.CarrotSize.size() as CarrotConfig.CarrotSize
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_EQUAL:
 			_carrot_config.count = 99
 
 
 func _mole_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1:
 			$Puzzle/Fg/Critters/Moles.add_moles(_mole_config)
 		KEY_BRACKETRIGHT:
@@ -112,7 +110,7 @@ func _mole_input(event: InputEvent) -> void:
 
 
 func _onion_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0:
 			$Puzzle/Fg/Critters/Onions.remove_onion()
 		KEY_1:
@@ -135,7 +133,7 @@ func _onion_input(event: InputEvent) -> void:
 
 
 func _shark_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1:
 			_shark_config.size = SharkConfig.SharkSize.SMALL
 			$Puzzle/Fg/Critters/Sharks.add_sharks(_shark_config)

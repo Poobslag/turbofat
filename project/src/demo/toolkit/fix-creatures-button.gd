@@ -8,7 +8,7 @@ extends Button
 ## directories containing creatures which should be upgraded
 const CREATURE_DIRS := ["res://assets/main/creatures", "res://assets/test/nonstory-creatures"]
 
-@export (NodePath) var output_label_path: NodePath
+@export var output_label_path: NodePath
 
 ## string creature paths which have been successfully converted to the newest version
 var _converted := []
@@ -35,9 +35,7 @@ func _upgrade_creatures() -> void:
 ## 	'path': Path to a json resource containing creature data to upgrade.
 func _upgrade_creature(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(old_text)
-	var old_json: Dictionary = test_json_conv.get_data()
+	var old_json: Dictionary = JSON.parse_string(old_text)
 	if old_json.get("version") != Creatures.CREATURE_DATA_VERSION:
 		# converting the json into a CreatureDef and back upgrades the json
 		var creature_def := CreatureDef.new()
@@ -75,8 +73,7 @@ func _find_creature_paths() -> Array:
 			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = DirAccess.new()
-			dir.open(dir_queue.pop_front())
+			dir = DirAccess.open(dir_queue.pop_front())
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	
@@ -121,12 +118,11 @@ func _career_creature_ids() -> Array:
 ## Returns a list of creature ids in all creature files in a directory.
 func _creature_ids_from_directory(dir_string: String) -> Array:
 	var result := {}
-	var dir := DirAccess.new()
-	dir.open(dir_string)
+	var dir := DirAccess.open(dir_string)
 	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	while true:
 		var file := dir.get_next()
-		if not file:
+		if file.is_empty():
 			break
 		else:
 			var creature_def: CreatureDef = CreatureDef.new()

@@ -20,7 +20,7 @@ enum SharkSize {
 var count: int = 1
 
 ## which type of terrain the sharks appear on
-var home: int = Home.ANY
+var home := Home.ANY
 
 ## which rows the sharks appear on
 var lines: Array = []
@@ -29,7 +29,7 @@ var lines: Array = []
 var columns: Array = []
 
 ## Enum from SharkSize for the shark's size
-var size: int = SharkSize.MEDIUM
+var size := SharkSize.MEDIUM
 
 ## how long the shark waits before disappearing
 var patience: int = 0

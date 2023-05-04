@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://jy68od7xq6vs"]
 
-[ext_resource path="res://src/main/career/ui/ChalkboardMapRow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture2D" id=2]
-[ext_resource path="res://src/demo/career/ui/chalkboard-map-row-demo.gd" type="Script" id=3]
+[ext_resource type="PackedScene" uid="uid://cpga3opipxawp" path="res://src/main/career/ui/ChalkboardMapRow.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://l6clqyjppu56" path="res://assets/main/career/ui/chalkboard.png" id="2"]
+[ext_resource type="Script" path="res://src/demo/career/ui/chalkboard-map-row-demo.gd" id="3"]
 
 [node name="Demo" type="Node"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Chalkboard" type="TextureRect" parent="."]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -16,7 +17,7 @@ offset_left = -480.0
 offset_top = -291.2
 offset_right = 480.0
 offset_bottom = 291.2
-texture = ExtResource( 2 )
-expand = true
+texture = ExtResource("2")
+expand_mode = 1
 
-[node name="MapRow" parent="." instance=ExtResource( 1 )]
+[node name="MapRow" parent="." instance=ExtResource("1")]

@@ -6,7 +6,7 @@ extends Button
 ## directories containing chats which should be checked for problems
 const CHAT_DIRS := ["res://assets/main/chat"]
 
-@export (NodePath) var output_label_path: NodePath
+@export var output_label_path: NodePath
 
 ## chatscript paths which have problems
 var _problems := []
@@ -116,8 +116,7 @@ func _find_chat_paths() -> Array:
 			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = DirAccess.new()
-			dir.open(dir_queue.pop_front())
+			dir = DirAccess.open(dir_queue.pop_front())
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	

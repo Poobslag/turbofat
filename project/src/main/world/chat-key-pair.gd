@@ -20,7 +20,7 @@ var preroll: String
 var postroll: String
 
 ## Defines a cutscene type, such as intro, boss level or interlude
-var type: int = NONE
+var type := NONE
 
 ## Returns 'true' if this ChatKeyPair does not define any cutscenes.
 func is_empty() -> bool:
@@ -28,7 +28,7 @@ func is_empty() -> bool:
 
 
 ## Returns an ordered list of all cutscenes defined by this ChatKeyPair.
-func chat_keys() -> Array:
+func get_chat_keys() -> Array:
 	var result := []
 	if preroll: result.append(preroll)
 	if postroll: result.append(postroll)
@@ -38,7 +38,7 @@ func chat_keys() -> Array:
 func from_json_dict(json: Dictionary) -> void:
 	preroll = json.get("preroll", "")
 	postroll = json.get("postroll", "")
-	type = Utils.enum_from_snake_case(ChatKeyPairType, json.get("type"))
+	type = Utils.enum_from_snake_case(ChatKeyPairType, json.get("type")) as ChatKeyPairType
 
 
 func to_json_dict() -> Dictionary:

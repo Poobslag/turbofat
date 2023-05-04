@@ -13,7 +13,7 @@ extends Node
 @onready var _mole := $Mole
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0: _mole.state = Mole.NONE
 		KEY_1: _mole.state = Mole.WAITING
 		KEY_2: _mole.state = Mole.DIGGING

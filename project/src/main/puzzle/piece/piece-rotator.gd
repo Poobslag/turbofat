@@ -1,21 +1,21 @@
 extends Node
 ## Handles horizontal movement for the player's active piece.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_rotated_ccw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_rotated_cw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_rotated_180(piece)
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal rotated_ccw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal rotated_cw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal rotated_180(piece)
 
-@export (NodePath) var input_path: NodePath
+@export var input_path: NodePath
 
 @onready var input: PieceInput = get_node(input_path)
 
@@ -130,8 +130,8 @@ func _nudge_onscreen(piece: ActivePiece) -> void:
 	var new_above_playfield := _is_partially_offscreen(piece, piece.pos, piece.target_orientation)
 	if new_above_playfield \
 			and not old_above_playfield \
-			and piece.can_move_to(piece.pos + Vector2.DOWN, piece.target_orientation):
-		piece.target_pos += Vector2.DOWN
+			and piece.can_move_to(piece.pos + Vector2i.DOWN, piece.target_orientation):
+		piece.target_pos += Vector2i.DOWN
 
 
 ## Returns 'true' if the piece will be above the playfield in the specified position/orientation.
@@ -145,7 +145,7 @@ func _nudge_onscreen(piece: ActivePiece) -> void:
 ##
 ## Returns:
 ## 	'true' if the piece will be above the palyfield in the specified position/orientation.
-func _is_partially_offscreen(piece: ActivePiece, piece_pos: Vector2, piece_orientation: int) -> bool:
+func _is_partially_offscreen(piece: ActivePiece, piece_pos: Vector2i, piece_orientation: int) -> bool:
 	var result := false
 	for pos in piece.type.pos_arr[piece_orientation]:
 		if piece_pos.y + pos.y < PuzzleTileMap.FIRST_VISIBLE_ROW:

@@ -18,7 +18,7 @@ func _init() -> void:
 ## 	'value': an value describing the milestone criteria (number of lines, points, seconds)
 ##
 ## 	'speed_id': a string from PieceSpeeds defining the new speed
-func add_speed_up(type: int, value: int, speed_id: String) -> void:
+func add_speed_up(type: Milestone.MilestoneType, value: int, speed_id: String) -> void:
 	var speed_up := Milestone.new()
 	speed_up.set_milestone(type, value)
 	speed_up.set_meta("speed", speed_id)

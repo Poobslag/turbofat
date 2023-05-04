@@ -21,8 +21,8 @@ var _hints := [
 ]
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("after_game_ended", Callable(self, "_on_PuzzleState_after_game_ended"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.after_game_ended.connect(_on_PuzzleState_after_game_ended)
 
 
 func hide_results_message() -> void:
@@ -33,7 +33,7 @@ func hide_results_message() -> void:
 ##
 ## The message is littered with lull characters, '|', which are hidden from the player but result in a brief pause when
 ## displayed.
-func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: int) -> void:
+func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: Milestone.MilestoneType) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
 	var text := "||||||||||"
 	text = _append_customer_scores(rank_result, customer_scores, finish_condition_type, text)
@@ -47,7 +47,7 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 
 
 func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
-		_finish_condition_type: int, text: String) -> String:
+		_finish_condition_type: Milestone.MilestoneType, text: String) -> String:
 	# Append creature scores
 	for i in range(customer_scores.size()):
 		var customer_score: int = customer_scores[i]
@@ -67,37 +67,37 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 
 
 func _append_grade_information(rank_result: RankResult, _customer_scores: Array, \
-		finish_condition_type: int, text: String) -> String:
+		finish_condition_type: Milestone.MilestoneType, text: String) -> String:
 	text += "\n"
 	
 	if _speed_shown(finish_condition_type):
 		text += "|||||" + tr("Speed: %d") % round(rank_result.speed * 200 / 60)
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.speed_rank)
 		text += "\n"
 	
 	if _pieces_shown(finish_condition_type):
 		text += "|||||" + tr("Pieces: %d") % rank_result.pieces
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.pieces_rank)
 		text += "\n"
 	
 	if _lines_shown(finish_condition_type):
 		text += "|||||" + tr("Lines: %d") % rank_result.lines
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.lines_rank)
 		text += "\n"
 	
 	if _boxes_shown():
 		text += "|||||" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.box_score_per_line_rank)
 		text += "\n"
 	
 	if _combos_shown():
 		text += "|||||" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.combo_score_per_line_rank)
 		text += "\n"
 	
 	if _pickups_shown():
@@ -111,7 +111,7 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 		
 		text += "|||||" + tr("Pickups: %d") % shown_pickup_score
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.pickup_score_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.pickup_score_rank)
 		text += "\n"
 	
 	if not CurrentLevel.settings.rank.unranked:
@@ -119,13 +119,13 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 		text += "||||||||||"
 		if finish_condition_type == Milestone.SCORE:
 			var duration := StringUtils.format_duration(rank_result.seconds)
-			text += "%s (%s)\n" % [duration, RankCalculator.grade(rank_result.seconds_rank)]
+			text += "%s (%s)\n" % [duration, RankCalculator.grade_from_rank(rank_result.seconds_rank)]
 		else:
-			text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
+			text += "(%s)\n" % RankCalculator.grade_from_rank(rank_result.score_rank)
 	return text
 
 
-func _speed_shown(finish_condition_type: int) -> bool:
+func _speed_shown(finish_condition_type: Milestone.MilestoneType) -> bool:
 	var result: bool
 	match CurrentLevel.settings.rank.show_speed_rank:
 		RankRules.ShowRank.SHOW: result = true
@@ -134,7 +134,7 @@ func _speed_shown(finish_condition_type: int) -> bool:
 	return result
 
 
-func _pieces_shown(finish_condition_type: int) -> bool:
+func _pieces_shown(finish_condition_type: Milestone.MilestoneType) -> bool:
 	var result: bool
 	match CurrentLevel.settings.rank.show_pieces_rank:
 		RankRules.ShowRank.SHOW: result = true
@@ -143,7 +143,7 @@ func _pieces_shown(finish_condition_type: int) -> bool:
 	return result
 
 
-func _lines_shown(finish_condition_type: int) -> bool:
+func _lines_shown(finish_condition_type: Milestone.MilestoneType) -> bool:
 	var result: bool
 	match CurrentLevel.settings.rank.show_lines_rank:
 		RankRules.ShowRank.SHOW: result = true
@@ -182,7 +182,7 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_PuzzleState_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.level_history.prev_result(CurrentLevel.settings.id)
+	var rank_result: RankResult = PlayerData.level_history.get_prev_result(CurrentLevel.settings.id)
 	if not rank_result or CurrentLevel.settings.rank.skip_results:
 		return
 	

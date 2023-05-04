@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsog4bkmkh6g3"]
+
+[ext_resource type="Script" path="res://src/main/ui/popup-hide-signal-emitter.gd" id="1_en7vg"]
+
+[node name="PopupHideSignalEmitter" type="Node"]
+script = ExtResource("1_en7vg")

@@ -5,7 +5,7 @@ extends CharacterBody2D
 ## These objects can also be inspected (talked to) if the chat_key is set.
 
 ## size of the shadow cast by this object
-@export (float) var shadow_scale: float = 1.0: set = set_shadow_scale
+@export var shadow_scale: float = 1.0: set = set_shadow_scale
 
 func _init() -> void:
 	add_to_group("shadow_casters")

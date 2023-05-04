@@ -5,7 +5,7 @@ enum EditorPiece {
 	PIECE_J, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
 }
 
-@export (EditorPiece) var editor_piece: int: set = set_editor_piece
+@export var editor_piece: EditorPiece: set = set_editor_piece
 
 var _editor_pieces := {
 	EditorPiece.PIECE_J: PieceTypes.piece_j,
@@ -22,7 +22,8 @@ var _orientation := 0
 var _type: PieceType = PieceTypes.piece_j
 
 func _ready() -> void:
-	$"../../Buttons/RotateButton".connect("pressed", Callable(self, "_on_RotateButton_pressed"))
+	super()
+	$"../../Buttons/RotateButton".pressed.connect(_on_RotateButton_pressed)
 
 
 func set_editor_piece(new_editor_piece: int) -> void:
@@ -33,8 +34,8 @@ func set_editor_piece(new_editor_piece: int) -> void:
 
 
 ## Calculates the extents of the piece's used cells.
-func _piece_extents() -> Rect2:
-	var size := Rect2(Vector2.ZERO, Vector2.ZERO)
+func _piece_extents() -> Rect2i:
+	var size := Rect2i(Vector2i.ZERO, Vector2i.ZERO)
 	size.position = _type.get_cell_position(_orientation, 0)
 	for pos in _type.pos_arr[_orientation]:
 		size = size.expand(pos)

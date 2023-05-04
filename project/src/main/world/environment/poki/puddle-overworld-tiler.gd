@@ -1,22 +1,23 @@
-@tool
+#@tool
 extends Node
 ## Adds puddle tiles to an overworld terrain map.
 ##
 ## Puddle tiles are added to a random selection of goopless cake tiles.
 
-@export (NodePath) var ground_map_path: NodePath
+@export var ground_map_path: NodePath
 
 ## Percent of cake tiles which should have puddles
-@export (float, 0.0, 1.0) var puddle_density := 0.03
+@export_range(0.0, 1.0) var puddle_density := 0.03
 
 ## Ground tilemap's tile ID for goopless cells
-@export (int) var ground_no_goop_tile_index: int
+@export var ground_no_goop_tile_index: int
 
 ## Terrain tilemap's tile ID for puddle tiles
-@export (int) var puddle_tile_index: int
+@export var puddle_tile_index: int
 
 ## Editor toggle which adds puddles to a random selection of goopy/goopless cake tiles
-@export (bool) var _autotile: bool: set = autotile
+@warning_ignore("unused_private_class_variable")
+@export var _autotile: bool: set = autotile
 
 ## Terrain tilemap with puddle tiles to place
 @onready var _tile_map := get_parent()
@@ -53,21 +54,21 @@ func _initialize_onready_variables() -> void:
 
 
 func _erase_all_puddles() -> void:
-	for cell in _tile_map.get_used_cells():
-		if _tile_map.get_cellv(cell) == puddle_tile_index:
-			_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
+	for cell in _tile_map.get_used_cells(0):
+		if _tile_map.get_cell_source_id(0, cell) == puddle_tile_index:
+			_tile_map.set_cell(0, cell, -1)
 
 
 func _add_random_puddles() -> void:
-	for cell in _ground_map.get_used_cells():
-		var ground_cell_id := _ground_map.get_cellv(cell)
+	for cell in _ground_map.get_used_cells(0):
+		var ground_cell_id := _ground_map.get_cell_source_id(0, cell)
 		if not ground_cell_id in [ground_no_goop_tile_index]:
 			# only add puddles to goopless cake tiles
 			continue
-		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
+		if _tile_map.get_cell_source_id(0, cell) != -1:
 			continue
 		if randf() >= puddle_density:
 			# only add puddles to a random selection of tiles
 			continue
-		var autotile_coord := Vector2(randi() % 4, randi() % 3)
-		_tile_map.set_cellv(cell, puddle_tile_index, false, false, false, autotile_coord)
+		var autotile_coord := Vector2i(randi() % 4, randi() % 3)
+		_tile_map.set_cell(0, cell, puddle_tile_index, autotile_coord)

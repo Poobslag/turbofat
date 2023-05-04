@@ -24,15 +24,16 @@ var _prepared_levels: Dictionary
 var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
-	PuzzleState.connect("combo_ended", Callable(self, "_on_PuzzleState_combo_ended"))
+	super()
+	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
+	PuzzleState.combo_ended.connect(_on_PuzzleState_combo_ended)
 	
-	playfield.connect("line_cleared", Callable(self, "_on_Playfield_line_cleared"))
-	playfield.connect("box_built", Callable(self, "_on_Playfield_box_built"))
-	piece_manager.connect("piece_spawned", Callable(self, "_on_PieceManager_piece_spawned"))
-	hud.diagram.connect("ok_chosen", Callable(self, "_on_TutorialDiagram_ok_chosen"))
-	hud.diagram.connect("help_chosen", Callable(self, "_on_TutorialDiagram_help_chosen"))
+	playfield.line_cleared.connect(_on_Playfield_line_cleared)
+	playfield.box_built.connect(_on_Playfield_box_built)
+	piece_manager.piece_spawned.connect(_on_PieceManager_piece_spawned)
+	hud.diagram.ok_chosen.connect(_on_TutorialDiagram_ok_chosen)
+	hud.diagram.help_chosen.connect(_on_TutorialDiagram_help_chosen)
 	
 	hud.set_message(tr("Today we'll go over combos."
 			+ "\n\nCombos are easy, you might have already done them on accident!"))
@@ -189,15 +190,15 @@ func _on_PuzzleState_after_piece_written() -> void:
 			if PuzzleState.level_performance.pieces == 2:
 				var message := tr("Oops! I can still make the cake box, but my combo already broke.")
 				start_timer_after_all_messages_shown(3.0) \
-						super.connect("timeout", Callable(self, "_on_Timer_timeout_set_message").bind(message))
+						.timeout.connect(_on_Timer_timeout_set_message.bind(message))
 			if PuzzleState.level_performance.pieces >= 3:
 				PuzzleState.start_timer(3.0) \
-						super.connect("timeout", Callable(self, "_on_Timer_timeout_advance_level"))
+						.timeout.connect(_on_Timer_timeout_advance_level)
 		"tutorial/combo_4":
 			if PuzzleState.level_performance.pieces >= 4:
 				hud.set_message(tr("There, I did it!\n\nThat was tricky."))
 				start_timer_after_all_messages_shown(3.0) \
-						super.connect("timeout", Callable(self, "_on_Timer_timeout_advance_level"))
+						.timeout.connect(_on_Timer_timeout_advance_level)
 		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				_advance_level()
@@ -223,7 +224,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 	hud.skill_tally_item("Combo").increment()
 
 
-func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, color: Foods.BoxType) -> void:
 	if Foods.is_cake_box(color):
 		_cakes_built += 1
 		hud.skill_tally_item("CakeBox").increment()

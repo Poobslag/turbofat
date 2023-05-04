@@ -8,5 +8,5 @@ offset_right = 250.0
 offset_bottom = 30.0
 theme = ExtResource( 1 )
 text = "0:00"
-align = 2
+horizontal_alignment =2
 script = ExtResource( 3 )

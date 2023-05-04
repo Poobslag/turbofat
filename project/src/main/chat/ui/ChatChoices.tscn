@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://7ronexsj66wq"]
 
-[ext_resource path="res://src/main/chat/ui/chat-choices.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/chat/ui/choice-pop.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/main/chat/ui/choice-choose.wav" type="AudioStream" id=5]
-[ext_resource path="res://src/main/chat/ui/ChatChoiceButton.tscn" type="PackedScene" id=6]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-choices.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://bicrtkeosfx48" path="res://assets/main/chat/ui/choice-pop.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://ccriwfgw42ovw" path="res://assets/main/chat/ui/choice-choose.wav" id="5"]
+[ext_resource type="PackedScene" uid="uid://dimsvbcxbcr5b" path="res://src/main/chat/ui/ChatChoiceButton.tscn" id="6"]
 
 [node name="ChatChoices" type="GridContainer"]
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -15,24 +16,19 @@ offset_top = -245.0
 offset_right = -13.9999
 offset_bottom = -5.00018
 columns = 2
-script = ExtResource( 2 )
-ChatChoiceButtonScene = ExtResource( 6 )
+script = ExtResource("2")
+ChatChoiceButtonScene = ExtResource("6")
 
-[node name="Button0" parent="." instance=ExtResource( 6 )]
-offset_right = 138.0
-offset_bottom = 115.0
+[node name="Button0" parent="." instance=ExtResource("6")]
+layout_mode = 2
 choice_text = "That's neat"
 
-[node name="Button1" parent="." instance=ExtResource( 6 )]
-offset_left = 142.0
-offset_right = 280.0
-offset_bottom = 115.0
+[node name="Button1" parent="." instance=ExtResource("6")]
+layout_mode = 2
 choice_text = "That's an interesting choice"
 
-[node name="Button2" parent="." instance=ExtResource( 6 )]
-offset_top = 119.0
-offset_right = 138.0
-offset_bottom = 234.0
+[node name="Button2" parent="." instance=ExtResource("6")]
+layout_mode = 2
 choice_text = "I wouldn't choose this one!"
 
 [node name="EnableInputTimer" type="Timer" parent="."]
@@ -40,11 +36,11 @@ wait_time = 0.8
 one_shot = true
 
 [node name="PopSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = -6.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="ChooseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource("5")
 volume_db = -6.0
-bus = "Sound Bus"
+bus = &"Sound Bus"

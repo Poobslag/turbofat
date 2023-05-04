@@ -6,12 +6,12 @@ extends GPUParticles2D
 @onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
-	_creature_visuals.connect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
+	_creature_visuals.comfort_changed.connect(_on_CreatureVisuals_comfort_changed)
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:
 	emitting = _creature_visuals.comfort < -0.2
 	if emitting:
-		var sweat_amount := clamp(inverse_lerp(-0.2, -1.0, _creature_visuals.comfort), 0.0, 1.0)
+		var sweat_amount: float = clamp(inverse_lerp(-0.2, -1.0, _creature_visuals.comfort), 0.0, 1.0)
 		amount = lerp(2, 4, sweat_amount)
 		lifetime = lerp(6.0, 3.0, sweat_amount)

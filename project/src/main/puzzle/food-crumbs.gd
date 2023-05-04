@@ -1,10 +1,10 @@
 extends Node2D
 ## Spawns food crumbs near the customer's mouth when they eat.
 
-@export (NodePath) var restaurant_view_path: NodePath
+@export var restaurant_view_path: NodePath
 
 ## Cluster of crumbs which appears when the customer eats.
-@export (PackedScene) var CrumbClusterScene: PackedScene
+@export var CrumbClusterScene: PackedScene
 
 @onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
 
@@ -15,7 +15,7 @@ var _crumb_cluster_pool := []
 func _ready() -> void:
 	for customer_obj in _restaurant_view.get_customers():
 		var customer: Creature = customer_obj
-		customer.connect("food_eaten", Callable(self, "_on_Creature_food_eaten").bind(customer))
+		customer.food_eaten.connect(_on_Creature_food_eaten.bind(customer))
 
 
 func _process(_delta: float) -> void:
@@ -30,7 +30,7 @@ func _exit_tree() -> void:
 
 
 ## When the customer eats, we spawn crumbs near their mouth.
-func _on_Creature_food_eaten(food_type: int, customer: Creature) -> void:
+func _on_Creature_food_eaten(food_type: Foods.FoodType, customer: Creature) -> void:
 	var target_pos := _restaurant_view.get_customer_mouth_position(customer)
 	# calculate the position within the global viewport
 	target_pos = get_global_transform_with_canvas()(target_pos) * 

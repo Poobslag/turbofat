@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cx3g5llnukc6p"]
 
-[ext_resource path="res://src/demo/puzzle/critter/onion-demo.gd" type="Script" id=1]
-[ext_resource path="res://src/main/puzzle/critter/Onion.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://src/demo/puzzle/critter/onion-demo.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://83xhwtdao55a" path="res://src/main/puzzle/critter/Onion.tscn" id="2"]
 
 [node name="OnionDemo" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 390.0
@@ -12,6 +12,6 @@ offset_top = 90.0
 offset_right = 410.0
 offset_bottom = 110.0
 
-[node name="Onion" parent="." instance=ExtResource( 2 )]
-position = Vector2( 532.241, 545.799 )
-sky_position = Vector2( 400, 100 )
+[node name="Onion" parent="." instance=ExtResource("2")]
+position = Vector2(532.241, 545.799)
+sky_position = Vector2(400, 100)

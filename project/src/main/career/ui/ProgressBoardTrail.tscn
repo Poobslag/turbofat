@@ -1,87 +1,100 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://b013ovmriubt8"]
 
-[ext_resource path="res://src/main/career/ui/progress-board-trail.gd" type="Script" id=1]
-[ext_resource path="res://src/main/career/ui/progress-board-spots.gd" type="Script" id=2]
-[ext_resource path="res://src/main/career/ui/progress-board-lines.gd" type="Script" id=3]
-[ext_resource path="res://src/main/career/ui/ProgressBoardSpot.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" path="res://src/main/career/ui/progress-board-trail.gd" id="1"]
+[ext_resource type="Script" path="res://src/main/career/ui/progress-board-spots.gd" id="2"]
+[ext_resource type="Script" path="res://src/main/career/ui/progress-board-lines.gd" id="3"]
+[ext_resource type="PackedScene" path="res://src/main/career/ui/ProgressBoardSpot.tscn" id="4"]
 
 [node name="Path3D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Lines" type="Control" parent="."]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 3 )
+script = ExtResource("3")
 line_width = 4.0
 outline_width = 4.0
-path_color = Color( 0.811765, 0.772549, 0.415686, 1 )
-outline_color = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+path_color = Color(0.811765, 0.772549, 0.415686, 1)
+outline_color = Color(0.121569, 0.0941176, 0.0941176, 1)
 
 [node name="Spots" type="Control" parent="."]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
-spot_scene = ExtResource( 4 )
+script = ExtResource("2")
+spot_scene = ExtResource("4")
 
-[node name="Spot" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 93.3381
 offset_top = 161.927
 offset_right = 93.3381
 offset_bottom = 161.927
 frame = 8
 
-[node name="Spot2" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot2" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 145.664
 offset_top = 173.241
 offset_right = 145.664
 offset_bottom = 173.241
 frame = 4
 
-[node name="Spot3" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot3" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 199.404
 offset_top = 170.413
 offset_right = 199.404
 offset_bottom = 170.413
 frame = 4
 
-[node name="Spot4" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot4" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 256.68
 offset_top = 156.271
 offset_right = 256.68
 offset_bottom = 156.271
 frame = 4
 
-[node name="Spot5" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot5" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 325.976
 offset_top = 167.584
 offset_right = 325.976
 offset_bottom = 167.584
 frame = 4
 
-[node name="Spot6" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot6" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 369.817
 offset_top = 202.233
 offset_right = 369.817
 offset_bottom = 202.233
 frame = 4
 
-[node name="Spot7" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot7" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 410.829
 offset_top = 240.416
 offset_right = 410.829
 offset_bottom = 240.416
 frame = 4
 
-[node name="Spot8" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot8" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 465.302
 offset_top = 265.788
 offset_right = 465.302
 offset_bottom = 265.788
 frame = 4
 
-[node name="Spot9" parent="Spots" instance=ExtResource( 4 )]
+[node name="Spot9" parent="Spots" instance=ExtResource("4")]
+anchors_preset = 0
 offset_left = 526.068
 offset_top = 266.148
 offset_right = 526.068

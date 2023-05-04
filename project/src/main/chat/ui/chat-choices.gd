@@ -10,7 +10,7 @@ const MAX_LABELS := 6
 ## Time in seconds for all of the chat choices to pop up.
 const TOTAL_POP_IN_DELAY := 0.3
 
-@export (PackedScene) var ChatChoiceButtonScene
+@export var ChatChoiceButtonScene: PackedScene
 
 ## Strings to show the player for each chat branch.
 var _choices := []
@@ -58,7 +58,7 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 	
 	if _choices.size() > MAX_LABELS:
 		push_warning("Too many chat choices: %s > %s" % [choices.size(), MAX_LABELS])
-		_choices = choices.slice(0, MAX_LABELS - 1)
+		_choices = choices.slice(0, MAX_LABELS)
 	
 	if new_columns:
 		columns = new_columns
@@ -71,7 +71,7 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 		$EnableInputTimer.start()
 		
 		# wait for old chat choices to be deleted before grabbing focus
-		await get_tree().idle_frame
+		await get_tree().process_frame
 		for button in get_tree().get_nodes_in_group("chat_choices"):
 			button.grab_focus()
 			break
@@ -123,9 +123,9 @@ func _refresh_child_buttons() -> void:
 		button.set_choice_text(choice_text)
 		button.set_mood(_moods[i])
 		button.set_mood_right(i % 2 == 1)
-		button.connect("focus_entered", Callable(self, "_on_ChatChoiceButton_focus_entered"))
-		button.connect("gui_input", Callable(self, "_on_ChatChoiceButton_gui_input"))
-		button.connect("pressed", Callable(self, "_on_ChatChoiceButton_pressed"))
+		button.focus_entered.connect(_on_ChatChoiceButton_focus_entered)
+		button.gui_input.connect(_on_ChatChoiceButton_gui_input)
+		button.pressed.connect(_on_ChatChoiceButton_pressed)
 		add_child(button)
 		new_buttons.append(button)
 	
@@ -140,7 +140,7 @@ func _refresh_child_buttons() -> void:
 		# 'chat-choice-label.gd' to a variable of type 'chat-choice-button.gd'"
 		#
 		# For these two reasons, we check the type of the object, and check that it's not null
-		if is_instance_valid(button_object) and button_object.is_class("ChatChoiceButton"):
+		if is_instance_valid(button_object) and button_object is ChatChoiceButton:
 			var button: ChatChoiceButton = button_object
 			button.pop_in()
 			$PopSound.play()
@@ -151,9 +151,14 @@ func _on_ChatChoiceButton_focus_entered() -> void:
 	$PopSound.play()
 
 
-func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
-	# swallow input; player shouldn't move when answering chat prompts
-	get_viewport().set_input_as_handled()
+func _on_ChatChoiceButton_gui_input(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "ui_up") \
+			or InputMap.event_is_action(event, "ui_down") \
+			or InputMap.event_is_action(event, "ui_left") \
+			or InputMap.event_is_action(event, "ui_right"):
+		
+		# swallow input; player shouldn't move when answering chat prompts
+		get_viewport().set_input_as_handled()
 
 
 ## Makes all the chat choice buttons disappear and emits a signal with the player's selected choice.

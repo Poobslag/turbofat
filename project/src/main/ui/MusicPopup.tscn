@@ -21,13 +21,13 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
-shader_param/width = 6.0
-shader_param/white = Color( 1, 1, 1, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-shader_param/sample_count = 24
+shader_parameter/width = 6.0
+shader_parameter/white = Color( 1, 1, 1, 1 )
+shader_parameter/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_parameter/sample_count = 24
 
 [node name="MusicPopup" type="Control" groups=["night_mode_light", "singletons"]]
-process_mode = 2
+process_mode = 3
 anchor_right = 1.0
 offset_top = -60.0
 offset_bottom = -4.0
@@ -71,8 +71,8 @@ offset_right = 417.0
 offset_bottom = 20.0
 theme_override_fonts/font = ExtResource( 1 )
 text = "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RightIcon" type="TextureRect" parent="Panel/HBoxContainer"]
 material = SubResource( 2 )

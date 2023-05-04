@@ -7,7 +7,7 @@ extends AnimatedSprite2D
 ## duration for goop ripples to fade in and out when they hit the edge of the map
 const FADE_DURATION := 0.3
 
-@export (Ripples.RippleState) var ripple_state := Ripples.RippleState.OFF: set = set_ripple_state
+@export var ripple_state := Ripples.RippleState.OFF: set = set_ripple_state
 
 @onready var _fade_tween: Tween
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 ## Sets the ripple state and updates the ripple's appearance.
-func set_ripple_state(new_ripple_state: int) -> void:
+func set_ripple_state(new_ripple_state: Ripples.RippleState) -> void:
 	if ripple_state == new_ripple_state:
 		return
 	
@@ -48,8 +48,8 @@ func _refresh_ripple_state() -> void:
 	# play the new animation
 	if new_anim:
 		play(new_anim)
-		if frames.get_frame_count(new_anim):
-			frame = randi() % frames.get_frame_count(new_anim)
+		if sprite_frames.get_frame_count(new_anim):
+			frame = randi() % sprite_frames.get_frame_count(new_anim)
 		
 		# Assign a random speed scale. The animations can't be perfectly in sync because we swap animations at sporadic
 		# times. It's better to be perfectly out of sync than mostly in sync.

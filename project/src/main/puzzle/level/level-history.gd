@@ -21,7 +21,7 @@ var successful_levels := {}
 ## value: (Dictionary) Date when the player first finished the level. Losing or quitting does not count as finishing.
 var finished_levels := {}
 
-func level_names() -> Array:
+func get_level_names() -> Array:
 	return rank_results.keys()
 
 
@@ -33,7 +33,7 @@ func reset() -> void:
 
 
 ## Returns a player's performances for a specific level.
-func results(level_id: String) -> Array:
+func get_results(level_id: String) -> Array:
 	return rank_results.get(level_id, [])
 
 
@@ -46,9 +46,9 @@ func results(level_id: String) -> Array:
 ## 	The rank for the player's best overall level performance. For timed levels, this is the player's best
 ## 	seconds_rank which evaluates how fast they were. For all other levels, this is the player's best score_rank
 ## 	which evaluates how high their score was.
-func best_overall_rank(level_id: String) -> float:
+func get_best_overall_rank(level_id: String) -> float:
 	var best_rank: float
-	var best_result := best_result(level_id)
+	var best_result := get_best_result(level_id)
 	if not best_result:
 		best_rank = RankResult.WORST_RANK
 	elif best_result.compare == "-seconds":
@@ -64,12 +64,12 @@ func best_overall_rank(level_id: String) -> float:
 ## 	'level_id': The id of the level to evaluate
 ##
 ## 	'daily': (Optional) If true, only performances with today's date are included
-func best_result(level_id: String, daily: bool = false) -> RankResult:
-	var best_result: RankResult
-	var best_results := best_results(level_id, daily)
-	if best_results:
-		best_result = best_results[0]
-	return best_result
+func get_best_result(level_id: String, daily: bool = false) -> RankResult:
+	var result: RankResult
+	var best_results_for_level := get_best_results(level_id, daily)
+	if best_results_for_level:
+		result = best_results_for_level[0]
+	return result
 
 
 ## Returns a player's best performances for a specific level.
@@ -78,7 +78,7 @@ func best_result(level_id: String, daily: bool = false) -> RankResult:
 ## 	'level_id': The id of the level to evaluate
 ##
 ## 	'daily': (Optional) If true, only performances with today's date are included
-func best_results(level_id: String, daily: bool = false) -> Array:
+func get_best_results(level_id: String, daily: bool = false) -> Array:
 	if not rank_results.has(level_id):
 		return []
 	
@@ -103,11 +103,11 @@ func best_results(level_id: String, daily: bool = false) -> Array:
 				results.sort_custom(Callable(self, "_compare_by_low_seconds"))
 			_:
 				results.sort_custom(Callable(self, "_compare_by_high_score"))
-	return results.slice(0, max_size - 1)
+	return results.slice(0, max_size)
 
 
 ## Returns the most recent result for a specific level.
-func prev_result(level_id: String) -> RankResult:
+func get_prev_result(level_id: String) -> RankResult:
 	if not rank_results.has(level_id) or rank_results[level_id].is_empty():
 		return null
 	return rank_results[level_id][0]
@@ -117,7 +117,7 @@ func prev_result(level_id: String) -> RankResult:
 ##
 ## 'add' should be followed by 'prune' to ensure the history does not grow too large.
 func add_result(level_id: String, rank_result: RankResult) -> void:
-	if not level_id:
+	if level_id.is_empty():
 		# can't store history without a level id
 		return
 	
@@ -150,9 +150,9 @@ func prune(level_id: String) -> void:
 	if not has_result(level_id):
 		return
 	
-	# collect the best scores, but reinsert the newest score at index 0 for prev_result()
+	# collect the best scores, but reinsert the newest score at index 0 for get_prev_result()
 	var best := {}
-	for result in best_results(level_id, false) + best_results(level_id, true):
+	for result in get_best_results(level_id, false) + get_best_results(level_id, true):
 		best[result] = ""
 	best.erase(rank_results[level_id][0])
 	rank_results[level_id] = [rank_results[level_id][0]] + best.keys()

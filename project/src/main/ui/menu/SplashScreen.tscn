@@ -40,8 +40,8 @@ anchor_right = 1.0
 offset_bottom = 150.0
 theme_override_fonts/font = SubResource( 1 )
 text = "turbo fat"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayHolder" type="CenterContainer" parent="DropPanel"]
 anchor_right = 1.0
@@ -108,7 +108,7 @@ The invalid save data is available at the following path:
 \"C:\\Users\\Aaron\\AppData\\Roaming\\Godot\\app_userdata\\Turbo Fat\\turbofat0.this-day.save.bak\"
 
 Sorry."
-autowrap = true
+autowrap_mode = 3
 
 [node name="Button" type="Button" parent="BadSaveDataControl/Popup/VBoxContainer"]
 offset_left = 215.0

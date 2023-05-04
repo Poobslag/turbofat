@@ -4,7 +4,7 @@ class_name PieceTypeMutator
 ## Piece type to remove.
 var piece_type: PieceType
 
-## Vector2 offsets to apply when cycling from one orientation to the next.
+## Vector2i offsets to apply when cycling from one orientation to the next.
 var _rotation_offsets := []
 
 ## Initializes PieceTypeMutator with the specified PieceType.
@@ -19,23 +19,23 @@ func _init(init_piece_type: PieceType) -> void:
 	piece_type = init_piece_type
 	
 	for _orientation in range(piece_type.pos_arr.size()):
-		_rotation_offsets.append(Vector2.ZERO)
+		_rotation_offsets.append(Vector2i.ZERO)
 	
 	for orientation in range(piece_type.pos_arr.size()):
 		var new_orientation := piece_type.get_cw_orientation(orientation)
 		
-		if not piece_type.pos_arr[orientation] or not piece_type.pos_arr[new_orientation]:
+		if piece_type.pos_arr[orientation].is_empty() or piece_type.pos_arr[new_orientation].is_empty():
 			continue
 		
-		var expected_min: Vector2 = _rotate_vector2_cw(piece_type.pos_arr[orientation][0])
+		var expected_min: Vector2i = _rotate_vector2_cw(piece_type.pos_arr[orientation][0])
 		for j in range(1, piece_type.pos_arr[orientation].size()):
-			var expected: Vector2 = _rotate_vector2_cw(piece_type.pos_arr[orientation][j])
+			var expected: Vector2i = _rotate_vector2_cw(piece_type.pos_arr[orientation][j])
 			expected_min.x = min(expected_min.x, expected.x)
 			expected_min.y = min(expected_min.y, expected.y)
 		
-		var actual_min: Vector2 = piece_type.pos_arr[new_orientation][0]
+		var actual_min: Vector2i = piece_type.pos_arr[new_orientation][0]
 		for j in range(1, piece_type.pos_arr[new_orientation].size()):
-			var actual: Vector2 = piece_type.pos_arr[new_orientation][j]
+			var actual: Vector2i = piece_type.pos_arr[new_orientation][j]
 			actual_min.x = min(actual_min.x, actual.x)
 			actual_min.y = min(actual_min.y, actual.y)
 		
@@ -51,7 +51,7 @@ func _init(init_piece_type: PieceType) -> void:
 ## 	'orientation': The orientation of the piece
 ##
 ## 	'cell_to_remove': An (x, y) position of a cell to remove
-func remove_cell(orientation: int, cell_to_remove: Vector2) -> void:
+func remove_cell(orientation: int, cell_to_remove: Vector2i) -> void:
 	var next_orientation := orientation
 	var next_cell_to_remove := cell_to_remove
 	var removed_orientations := {}
@@ -69,19 +69,19 @@ func remove_cell(orientation: int, cell_to_remove: Vector2) -> void:
 					% [cell_to_remove, piece_type.string])
 			continue
 		else:
-			next_pos_arr.remove(cell_index)
-			next_color_arr.remove(cell_index)
+			next_pos_arr.remove_at(cell_index)
+			next_color_arr.remove_at(cell_index)
 		
 		# update the color_arr to reshape the piece
 		for color_arr_index in range(next_color_arr.size()):
 			var color_x: int = 0
-			if next_pos_arr[color_arr_index] + Vector2.UP in next_pos_arr:
+			if next_pos_arr[color_arr_index] + Vector2i.UP in next_pos_arr:
 				color_x = PuzzleConnect.set_u(color_x)
-			if next_pos_arr[color_arr_index] + Vector2.DOWN in next_pos_arr:
+			if next_pos_arr[color_arr_index] + Vector2i.DOWN in next_pos_arr:
 				color_x = PuzzleConnect.set_distance(color_x)
-			if next_pos_arr[color_arr_index] + Vector2.LEFT in next_pos_arr:
+			if next_pos_arr[color_arr_index] + Vector2i.LEFT in next_pos_arr:
 				color_x = PuzzleConnect.set_l(color_x)
-			if next_pos_arr[color_arr_index] + Vector2.RIGHT in next_pos_arr:
+			if next_pos_arr[color_arr_index] + Vector2i.RIGHT in next_pos_arr:
 				color_x = PuzzleConnect.set_r(color_x)
 			next_color_arr[color_arr_index].x = color_x
 		
@@ -89,6 +89,6 @@ func remove_cell(orientation: int, cell_to_remove: Vector2) -> void:
 		next_orientation = piece_type.get_cw_orientation(next_orientation)
 
 
-## Rotates a Vector2 coordinate clockwise around the origin.
-func _rotate_vector2_cw(pos: Vector2) -> Vector2:
-	return Vector2(-pos.y, pos.x)
+## Rotates a Vector2i coordinate clockwise around the origin.
+func _rotate_vector2_cw(pos: Vector2i) -> Vector2i:
+	return Vector2i(-pos.y, pos.x)

@@ -20,9 +20,9 @@ custom_minimum_size = Vector2( 120, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.9
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Value" type="Label" parent="."]
 offset_left = 200.0
@@ -32,5 +32,5 @@ custom_minimum_size = Vector2( 160, 20 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.1
 theme_override_colors/font_color = Color( 1, 1, 1, 0.501961 )
-valign = 1
-autowrap = true
+vertical_alignment = 1
+autowrap_mode = 3

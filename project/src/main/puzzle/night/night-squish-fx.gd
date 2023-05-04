@@ -5,7 +5,7 @@ extends Control
 ## These visual effects are synchronized with the daytime effects, and rendered over them.
 
 ## Path to the tilemap containing the active piece shown during night mode.
-@export (NodePath) var onion_tile_map_path: NodePath: set = set_onion_tile_map_path
+@export var onion_tile_map_path: NodePath: set = set_onion_tile_map_path
 
 ## tilemap containing the active piece shown during night mode
 @onready var _squish_map: NightPuzzleTileMap = $SquishMap

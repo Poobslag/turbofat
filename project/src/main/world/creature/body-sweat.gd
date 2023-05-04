@@ -6,14 +6,14 @@ extends GPUParticles2D
 @onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
-	_creature_visuals.connect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
-	_creature_visuals.connect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
+	_creature_visuals.comfort_changed.connect(_on_CreatureVisuals_comfort_changed)
+	_creature_visuals.visual_fatness_changed.connect(_on_CreatureVisuals_visual_fatness_changed)
 
 
 func _refresh_sweat() -> void:
 	emitting = _creature_visuals.comfort < -0.4
 	if emitting:
-		var sweat_amount := clamp(inverse_lerp(-0.4, -1.0, _creature_visuals.comfort), 0.0, 1.0)
+		var sweat_amount: float = clamp(inverse_lerp(-0.4, -1.0, _creature_visuals.comfort), 0.0, 1.0)
 		var new_amount: float = _creature_visuals.get_fatness() * lerp(1.5, 4, sweat_amount)
 		var new_lifetime: float = lerp(6.0, 3.0, sweat_amount)
 		if abs(amount - new_amount) / max(amount, 1) > 0.33 \

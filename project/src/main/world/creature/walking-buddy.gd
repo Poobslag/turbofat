@@ -24,17 +24,17 @@ const TOO_CLOSE_THRESHOLD := 200.0
 const TOO_FAR_THRESHOLD := 600.0
 
 ## path to the other creature whom this creature is walking with
-@export (NodePath) var buddy_path: NodePath
+@export var buddy_path: NodePath
 
 ## path to the destination. the leader stops walking if they reach this destination
-@export (NodePath) var destination_path: NodePath
+@export var destination_path: NodePath
 
 ## designates this creature as either a leader or follower
-@export (LeaderOrFollower) var leader_or_follower: int
+@export var leader_or_follower: LeaderOrFollower
 
 ## creature's walking state. they start out in the WALKING state, but might change to the SITTING state if they
 ## reach their destination or if the cutscene specifies to stop.
-var _walk_state: int = WalkState.WALKING
+var _walk_state: WalkState = WalkState.WALKING
 
 ## direction the creatures walk, when they're walking
 var _desired_walk_direction: Vector2
@@ -51,7 +51,7 @@ var _desired_walk_direction: Vector2
 ## Note: Some superclass method calls are implicit in gdscript for notifications. This is planned to require explicit
 ## super() calls in Godot 4.0
 func _ready() -> void:
-	_move_timer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))
+	_move_timer.timeout.connect(_on_MoveTimer_timeout)
 	
 	# calculate the desired walk direction based on the relative position of the destination
 	_desired_walk_direction = Vector2(0.70710678118, 0.70710678118)
@@ -97,10 +97,16 @@ func _start_move_timer(delay: float) -> void:
 ## creature moves faster than the other. As long as they're an appropriate distance apart, this method will make them
 ## walk towards their destination.
 func _walk() -> void:
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	var buddy_relative_pos: Vector2 = Global.from_iso(buddy.position - position)
 	
 	var new_non_iso_walk_direction := non_iso_walk_direction
 	if leader_or_follower == LeaderOrFollower.LEADER:
+		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		# https://github.com/godotengine/godot/issues/69282
+		@warning_ignore("static_called_on_instance")
 		if _desired_walk_direction.x > 0 and Global.from_iso(position).x > Global.from_iso(destination.position).x \
 				or _desired_walk_direction.x < 0 and Global.from_iso(position).x < Global.from_iso(destination.position).x:
 			# we're past our destination. stop moving, and face our buddy

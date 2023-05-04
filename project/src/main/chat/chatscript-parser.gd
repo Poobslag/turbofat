@@ -16,7 +16,7 @@ class AbstractState:
 		chat_tree = init_chat_tree
 	
 	
-	func line(_line: String) -> String:
+	func parse_line(_line: String) -> String:
 		return ""
 
 
@@ -31,22 +31,17 @@ class DefaultState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree) -> void:
 		super(init_chat_tree)
-		pass
 	
 	
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
-		if not line:
+		if line.is_empty():
 			pass
 		elif line.begins_with("{") and line.ends_with("}"):
 			# json dictionary; set metadata
-			var test_json_conv = JSON.new()
-			test_json_conv.parse(line)
-			var parsed = test_json_conv.get_data()
+			var parsed = JSON.parse_string(line)
 			if typeof(parsed) == TYPE_DICTIONARY:
-				var test_json_conv = JSON.new()
-				test_json_conv.parse(line)
-				chat_tree.meta = test_json_conv.get_data()
+				chat_tree.meta = JSON.parse_string(line)
 				if "version" in chat_tree.meta:
 					chat_tree.meta.erase("version")
 			else:
@@ -56,7 +51,7 @@ class DefaultState extends AbstractState:
 			result = line.trim_prefix("[").trim_suffix("]")
 		else:
 			# unrecognized text; parse as chat lines and change state
-			result = chat_state.line(line)
+			result = chat_state.parse_line(line)
 			result = StringUtils.default_if_empty(result, CHAT)
 		return result
 
@@ -67,13 +62,12 @@ class LocationState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree) -> void:
 		super(init_chat_tree)
-		pass
 	
 	
 	## Syntax:
 	## 	[location]
 	## 	inside_turbo_fat
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line:
 			chat_tree.location_id = line
@@ -97,7 +91,7 @@ class CharactersState extends AbstractState:
 		_character_aliases = init_chat_aliases
 	
 	
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line:
 			_parse_creature_id(line)
@@ -131,7 +125,7 @@ class CharactersState extends AbstractState:
 		
 		# parse (chef) prefix
 		if character_prefix == "(chef)":
-			if chat_tree.chef_id:
+			if not chat_tree.chef_id.is_empty():
 				chat_tree.warn("Too many chefs: %s" % [creature_id])
 			chat_tree.chef_id = creature_id
 		
@@ -141,18 +135,18 @@ class CharactersState extends AbstractState:
 		
 		# parse (observer) prefix
 		if character_prefix == "(observer)":
-			if chat_tree.observer_id:
+			if not chat_tree.observer_id.is_empty():
 				chat_tree.warn("Too many observers: %s" % [creature_id])
 			chat_tree.observer_id = creature_id
 		
 		# parse spawn location
 		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
-		if creature_id and character_location:
+		if not creature_id.is_empty() and not character_location.is_empty():
 			chat_tree.spawn_locations[creature_id] = character_location
 		
 		# parse alias
 		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
-		if creature_id and character_alias:
+		if not creature_id.is_empty() and not character_alias.is_empty():
 			_character_aliases[character_alias] = creature_id
 
 ## -----------------------------------------------------------------------------
@@ -190,7 +184,7 @@ class ChatState extends AbstractState:
 	## 	[no]
 	## 	p1: Never mind, I don't want to.
 	## 	s: u_u Oh...
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line:
 			if line.begins_with("["):
@@ -319,7 +313,7 @@ class ChatState extends AbstractState:
 			var mood := StringUtils.substring_after(item, " mood ")
 			result = "creature_mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		elif " faces " in item:
-			# spira faces left -> creature_orientation spira 1
+			# spira faces left -> creature_orientation spira 2
 			var name := StringUtils.substring_before(item, " faces ")
 			name = _unalias(name)
 			var orientation := StringUtils.substring_after(item, " faces ")
@@ -447,8 +441,7 @@ func chat_tree_from_file(path: String) -> ChatTree:
 	if not FileUtils.file_exists(path):
 		push_error("File not found: %s" % [path])
 	else:
-		var f := File.new()
-		f.open(path, File.READ)
+		var f := FileAccess.open(path, FileAccess.READ)
 		
 		while f.get_error() == OK and not f.eof_reached():
 			# strip any whitespace at the end of the line
@@ -456,7 +449,7 @@ func chat_tree_from_file(path: String) -> ChatTree:
 			if line.begins_with("//"):
 				# comment; ignore line
 				continue
-			var new_state_name := _state.line(line)
+			var new_state_name := _state.parse_line(line)
 			if new_state_name:
 				if not _states_by_name.has(new_state_name):
 					_chat_tree.warn("Invalid header line: %s" % [line])

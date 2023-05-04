@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name HeadBobber
 extends Sprite2D
 ## Bobs the character's head up and down.
@@ -19,11 +19,11 @@ const BOB_BOUNCE := HeadBobMode.BOUNCE
 const BOB_SHUDDER := HeadBobMode.SHUDDER
 
 ## these three fields control the creature's head motion: how it's moving, as well as how much/how fast
-@export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB: set = set_head_bob_mode
-@export (float) var head_motion_pixels := 2.0
-@export (float) var head_motion_seconds := 6.5
+@export var head_bob_mode := HeadBobMode.BOB: set = set_head_bob_mode
+@export var head_motion_pixels := 2.0
+@export var head_motion_seconds := 6.5
 
-## these constants control how much the creature's head bobs up and down
+## these constants control how much the creature's head bobs up and down 
 const HEAD_BOB_SECONDS := 6.5
 const HEAD_BOB_PIXELS := 2.0
 
@@ -41,10 +41,10 @@ func _process(delta: float) -> void:
 			var bob_amount := head_motion_pixels * sin(2 * head_phase)
 			position.y = -100 + bob_amount
 		HeadBobMode.BOUNCE:
-			var bounce_amount := head_motion_pixels * (1 - 2 * abs(sin(head_phase)))
+			var bounce_amount: float = head_motion_pixels * (1 - 2 * abs(sin(head_phase)))
 			position.y = -100 + bounce_amount
 		HeadBobMode.SHUDDER:
-			var shudder_amount := head_motion_pixels * clamp(2 * sin(2 * head_phase), -1.0, 1.0)
+			var shudder_amount: float = head_motion_pixels * clamp(2 * sin(2 * head_phase), -1.0, 1.0)
 			position.x = shudder_amount
 			position.y = -100
 
@@ -55,7 +55,7 @@ func reset_head_bob() -> void:
 	head_motion_seconds = HEAD_BOB_SECONDS
 
 
-func set_head_bob_mode(new_mode: int) -> void:
+func set_head_bob_mode(new_mode: HeadBobMode) -> void:
 	head_bob_mode = new_mode
 	# Some head bob animations like 'shudder' offset the x position; reset it back to the center
 	position.x = 0

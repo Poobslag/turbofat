@@ -9,7 +9,7 @@ extends Node
 const CHUNK_SECONDS := 0.01
 
 ## Node2D scene to test
-@export (PackedScene) var SpriteScene: PackedScene
+@export var SpriteScene: PackedScene
 
 @onready var _sprite_container := $SpriteContainer
 @onready var _count := $Ui/Control/Count

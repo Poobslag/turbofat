@@ -30,23 +30,23 @@ signal delete_cancelled
 func _ready() -> void:
 	_change_save_confirmation.get_ok_button().text = tr("Yes")
 	_change_save_confirmation.get_cancel_button().text = tr("No")
-	_change_save_confirmation.connect("confirmed", Callable(self, "_on_ChangeSaveConfirmation_confirmed"))
-	_change_save_confirmation.get_cancel_button().connect("pressed", Callable(self, "_on_ChangeSaveConfirmation_cancelled"))
-	_change_save_confirmation.get_close_button().connect("pressed", Callable(self, "_on_ChangeSaveConfirmation_cancelled"))
+	_change_save_confirmation.confirmed.connect(_on_ChangeSaveConfirmation_confirmed)
+	_change_save_confirmation.get_cancel_button().pressed.connect(_on_ChangeSaveConfirmation_cancelled)
+	_change_save_confirmation.close_requested.connect(_on_ChangeSaveConfirmation_cancelled)
 	
 	_delete_confirmation_1.get_ok_button().text = tr("Yes")
 	_delete_confirmation_1.get_cancel_button().text = tr("No")
 	_delete_confirmation_1.get_label().add_theme_color_override("font_color", Color.RED)
-	_delete_confirmation_1.connect("confirmed", Callable(self, "_on_DeleteConfirmation1_confirmed"))
-	_delete_confirmation_1.get_cancel_button().connect("pressed", Callable(self, "_on_DeleteConfirmation_cancelled"))
-	_delete_confirmation_1.get_close_button().connect("pressed", Callable(self, "_on_DeleteConfirmation_cancelled"))
+	_delete_confirmation_1.confirmed.connect(_on_DeleteConfirmation1_confirmed)
+	_delete_confirmation_1.get_cancel_button().pressed.connect(_on_DeleteConfirmation_cancelled)
+	_delete_confirmation_1.close_requested.connect(_on_DeleteConfirmation_cancelled)
 	
 	_delete_confirmation_2.get_ok_button().text = tr("Yes")
 	_delete_confirmation_2.get_cancel_button().text = tr("No")
 	_delete_confirmation_2.get_label().add_theme_color_override("font_color", Color.RED)
-	_delete_confirmation_2.connect("confirmed", Callable(self, "_on_DeleteConfirmation2_confirmed"))
-	_delete_confirmation_2.get_cancel_button().connect("pressed", Callable(self, "_on_DeleteConfirmation_cancelled"))
-	_delete_confirmation_2.get_close_button().connect("pressed", Callable(self, "_on_DeleteConfirmation_cancelled"))
+	_delete_confirmation_2.confirmed.connect(_on_DeleteConfirmation2_confirmed)
+	_delete_confirmation_2.get_cancel_button().pressed.connect(_on_DeleteConfirmation_cancelled)
+	_delete_confirmation_2.close_requested.connect(_on_DeleteConfirmation_cancelled)
 
 
 ## Displays a dialog prompting the player if they want to change their save slot
@@ -64,7 +64,7 @@ func confirm_new_save_slot() -> void:
 func _delete_confirmation_dialog_text(message: String) -> String:
 	var selected_save_slot := _save_slot_control.get_selected_save_slot()
 	var playtime_in_seconds: float = SystemSave.get_save_slot_playtime(selected_save_slot)
-	var playtime_in_hours := clamp(playtime_in_seconds / 3600, 0, 9999.9)
+	var playtime_in_hours: float = clamp(playtime_in_seconds / 3600, 0, 9999.9)
 	var playtime_message := tr("%.1f hours") % [playtime_in_hours]
 	var save_slot_name: String = SystemSave.get_save_slot_name(selected_save_slot)
 	return "%s\n%s (%s)" % [message, save_slot_name, playtime_message]

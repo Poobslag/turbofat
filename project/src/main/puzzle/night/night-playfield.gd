@@ -5,7 +5,7 @@ extends Control
 ## different nodes for things like the playfield blocks, pickups, lights and effects. This node acts as a coordinator,
 ## delegating this synchronization to other nodes but telling them which nodes to synchronize with.
 
-@export (NodePath) var source_playfield_path: NodePath: set = set_source_playfield_path
+@export var source_playfield_path: NodePath: set = set_source_playfield_path
 
 ## playfield to synchronize with
 var _source_playfield: Playfield
@@ -30,11 +30,11 @@ func _refresh_playfield_path() -> void:
 		return
 	
 	if _source_playfield:
-		_source_playfield.disconnect("line_deleted", Callable(_tile_map, "_on_Playfield_line_deleted"))
-		_source_playfield.disconnect("line_erased", Callable(_tile_map, "_on_Playfield_line_erased"))
-		_source_playfield.disconnect("line_inserted", Callable(_tile_map, "_on_Playfield_line_inserted"))
-		_source_playfield.disconnect("blocks_prepared", Callable(_tile_map, "_on_Playfield_blocks_prepared"))
-		_source_playfield.disconnect("before_line_cleared", Callable(_star_poofs, "_on_Playfield_before_line_cleared"))
+		_source_playfield.line_deleted.disconnect(_tile_map._on_Playfield_line_deleted)
+		_source_playfield.line_erased.disconnect(_tile_map._on_Playfield_line_erased)
+		_source_playfield.line_inserted.disconnect(_tile_map._on_Playfield_line_inserted)
+		_source_playfield.blocks_prepared.disconnect(_tile_map._on_Playfield_blocks_prepared)
+		_source_playfield.before_line_cleared.disconnect(_star_poofs._on_Playfield_before_line_cleared)
 	
 	_source_playfield = get_node(source_playfield_path) if source_playfield_path else null
 	
@@ -43,8 +43,8 @@ func _refresh_playfield_path() -> void:
 	_playfield_fx.source_playfield_fx = _source_playfield.playfield_fx
 	_star_poofs.source_tile_map = _source_playfield.tile_map
 	
-	_source_playfield.connect("line_deleted", Callable(_tile_map, "_on_Playfield_line_deleted"))
-	_source_playfield.connect("line_erased", Callable(_tile_map, "_on_Playfield_line_erased"))
-	_source_playfield.connect("line_inserted", Callable(_tile_map, "_on_Playfield_line_inserted"))
-	_source_playfield.connect("blocks_prepared", Callable(_tile_map, "_on_Playfield_blocks_prepared"))
-	_source_playfield.connect("before_line_cleared", Callable(_star_poofs, "_on_Playfield_before_line_cleared"))
+	_source_playfield.line_deleted.connect(_tile_map._on_Playfield_line_deleted)
+	_source_playfield.line_erased.connect(_tile_map._on_Playfield_line_erased)
+	_source_playfield.line_inserted.connect(_tile_map._on_Playfield_line_inserted)
+	_source_playfield.blocks_prepared.connect(_tile_map._on_Playfield_blocks_prepared)
+	_source_playfield.before_line_cleared.connect(_star_poofs._on_Playfield_before_line_cleared)

@@ -94,18 +94,19 @@ tracks/2/keys = {
 offsets = PackedFloat32Array( 0, 0.43913 )
 colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture2D" id=4]
+[sub_resource type="GradientTexture1D" id=4]
 gradient = SubResource( 3 )
 
 [sub_resource type="ParticleProcessMaterial" id=5]
-flag_disable_z = true
+particle_flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
+initial_velocity_min = 0.0
+initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource( 4 )
 
 [node name="MoneyBurst" type="Node2D"]
@@ -125,8 +126,8 @@ offset_bottom = 33.1386
 theme_override_colors/font_color = Color( 0.924249, 1, 0.648438, 1 )
 theme_override_fonts/font = SubResource( 1 )
 text = "¥20"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 max_lines_visible = 1
 

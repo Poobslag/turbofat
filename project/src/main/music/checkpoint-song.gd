@@ -10,7 +10,7 @@ extends AudioStreamPlayer
 const CHUNK_SIZE := 6.0
 
 ## array of floats corresponding to good start positions in each song
-@export (Array, float) var checkpoints: Array = []
+@export var checkpoints: Array[float] = []
 
 ## song title and color shown in the toaster popup
 @export var song_title: String
@@ -26,7 +26,7 @@ func _ready() -> void:
 	$StalenessTimer.wait_time = CHUNK_SIZE * 0.4
 	for _i in range(ceil(stream.get_length() / CHUNK_SIZE)):
 		_staleness_record.append(randi() % 3)
-	if not checkpoints:
+	if checkpoints.is_empty():
 		push_warning("CheckpointSong %s checkpoints=%s" % [name, checkpoints])
 
 
@@ -35,7 +35,7 @@ func _ready() -> void:
 ## Parameters:
 ## 	'from_position': If 0 or greater, the song will begin playing from the specified position. If unspecified or
 ## 		negative, the song will start somewhere in the middle based on an algorithm.
-func play(from_position: float = -1.0) -> void:
+func play_checkpoint_song(from_position: float = -1.0) -> void:
 	if from_position < 0:
 		# calculate the start position based on an algorithm
 		from_position = _freshest_start()
@@ -44,7 +44,7 @@ func play(from_position: float = -1.0) -> void:
 	_increase_staleness()
 
 
-func stop() -> void:
+func stop_checkpoint_song() -> void:
 	super.stop()
 	$StalenessTimer.stop()
 
@@ -73,7 +73,7 @@ func _freshest_start() -> float:
 	var freshest_start_index := 0
 	var min_staleness: int = 0
 	var staleness: int = 0
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	var r: int = _staleness_record.size() / 2
 	for l in range(_staleness_record.size()):
 		# advance the 'freshness window'

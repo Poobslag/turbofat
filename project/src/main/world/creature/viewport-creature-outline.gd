@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends CreatureOutline
 ## Implementation of CreatureOutline which is optimized for graphics quality.
 ##
@@ -10,7 +10,7 @@ extends CreatureOutline
 func _ready() -> void:
 	creature_visuals = $SubViewport/Visuals
 	_texture_rect.scale = Vector2(Global.CREATURE_SCALE, Global.CREATURE_SCALE)
-	creature_visuals.connect("dna_changed", Callable(self, "_on_CreatureVisuals_dna_changed"))
+	creature_visuals.dna_changed.connect(_on_CreatureVisuals_dna_changed)
 	connect("elevation_changed", Callable(self, "_on_elevation_changed"))
 
 

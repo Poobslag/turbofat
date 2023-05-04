@@ -3,6 +3,7 @@ class_name Creatures
 
 ## Directions a creature can face
 enum Orientation {
+	NONE,
 	SOUTHEAST,
 	SOUTHWEST,
 	NORTHWEST,
@@ -79,16 +80,10 @@ const MAX_FATNESS := 10.0
 const SENSEI_PATH := "res://assets/main/creatures/sensei.json"
 
 ## Returns true if the specified creature orientation points south (towards the camera)
-##
-## Parameters:
-## 	'orientation': enum from Creatures.Orientation
-static func oriented_south(orientation: int) -> bool:
+static func oriented_south(orientation: Creatures.Orientation) -> bool:
 	return orientation in [SOUTHWEST, SOUTHEAST]
 
 
 ## Returns true if the specified creature orientation points north (away from the camera)
-##
-## Parameters:
-## 	'orientation': enum from Creatures.Orientation
-static func oriented_north(orientation: int) -> bool:
+static func oriented_north(orientation: Creatures.Orientation) -> bool:
 	return orientation in [NORTHWEST, NORTHEAST]

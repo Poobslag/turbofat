@@ -2,7 +2,7 @@ class_name Onions
 extends Node2D
 ## Handles onions, puzzle critters which darken things making it hard to see.
 
-@export (PackedScene) var OnionScene: PackedScene
+@export var OnionScene: PackedScene
 
 var playfield_path: NodePath: set = set_playfield_path
 
@@ -11,8 +11,8 @@ var _onion: Onion
 var _playfield: Playfield
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
 	_refresh_playfield_path()
 
 
@@ -22,7 +22,7 @@ func set_playfield_path(new_playfield_path: NodePath) -> void:
 
 
 func _refresh_playfield_path() -> void:
-	if not (is_inside_tree() and playfield_path):
+	if not (is_inside_tree() and not playfield_path.is_empty()):
 		return
 	
 	_playfield = get_node(playfield_path) if playfield_path else null
@@ -37,8 +37,8 @@ func add_onion(onion_config: OnionConfig) -> void:
 	_onion.z_index = 4
 	_onion.scale = _playfield.tile_map.scale
 	_onion.sky_position = Vector2(162, 92)
-	_onion.connect("float_animation_playing_changed", Callable(self, "_on_Onion_float_animation_playing_changed"))
-	_update_onion_position(_onion, Vector2(4, PuzzleTileMap.ROW_COUNT - 1))
+	_onion.float_animation_playing_changed.connect(_on_Onion_float_animation_playing_changed)
+	_update_onion_position(_onion, Vector2i(4, PuzzleTileMap.ROW_COUNT - 1))
 	add_child(_onion)
 	
 	_initialize_onion_states(onion_config)
@@ -101,9 +101,9 @@ func _initial_add_onion_effect() -> LevelTriggerEffects.AddOnionEffect:
 ## 	'onion': The onion whose position should be recalculated
 ##
 ## 	'cell': The onion's playfield cell
-func _update_onion_position(onion: Onion, cell: Vector2) -> void:
-	onion.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
-	onion.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
+func _update_onion_position(onion: Onion, cell: Vector2i) -> void:
+	onion.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
+	onion.position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(0.5, 0.5)
 	onion.position *= _playfield.tile_map.scale
 
 

@@ -1,109 +1,93 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://d1svg3ccx088j"]
 
-[ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=1]
-[ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=10]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/world/environment/marsh/MarshBush.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/main/world/environment/marsh/MarshGroundMap.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/main/world/environment/marsh/MarshRippleWaves.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/main/world/environment/marsh/MarshTree.tscn" type="PackedScene" id=23]
-[ext_resource path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" type="TileSet" id=24]
+[ext_resource type="TileSet" path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://cqj2q0dsekv8t" path="res://src/main/world/environment/OutdoorShadows.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/GoopOverworldTiler.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/marsh/MarshCrystal.tscn" id="5"]
+[ext_resource type="Script" path="res://src/main/world/environment/overworld-environment.gd" id="10"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Creature.tscn" id="16"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/marsh/MarshBush.tscn" id="18"]
+[ext_resource type="PackedScene" uid="uid://0ocyq3fsfex5" path="res://src/main/world/environment/marsh/MarshGroundMap.tscn" id="20"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/marsh/MarshRippleWaves.tscn" id="21"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/marsh/MarshTree.tscn" id="23"]
+[ext_resource type="TileSet" path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" id="24"]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
-script = ExtResource( 10 )
+script = ExtResource("10")
 environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
-CreatureScene = ExtResource( 16 )
+CreatureScene = ExtResource("16")
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1
 
-[node name="GroundMap" parent="Ground" instance=ExtResource( 20 )]
-tile_data = PackedInt32Array( -458737, 0, 131073, -458736, 0, 196610, -458735, 0, 65536, -393201, 0, 131074, -393200, 0, 196611, -393199, 0, 65537, -327665, 0, 131074, -327664, 0, 196611, -327663, 0, 65537, -262130, 0, 131073, -262129, 0, 196611, -262128, 0, 196611, -262127, 0, 65537, -196594, 0, 131074, -196593, 0, 196611, -196592, 0, 196611, -196591, 0, 65537, -131058, 0, 131074, -131057, 0, 196611, -131056, 0, 196611, -131055, 0, 196611, -131054, 0, 65536, -65522, 2, 196615, -65521, 2, 131077, -65520, 2, 131078, -65519, 2, 131078, -65518, 2, 196611, 14, 1, 196609, 15, 1, 262146, 16, 1, 327680, 17, 1, 327680, 18, 1, 327684, 19, 1, 131073, 65552, 1, 196609, 65553, 1, 327680, 65554, 1, 327680, 65555, 1, 131074, 131089, 2, 196614, 131090, 1, 327682, 131091, 1, 131075, 196625, 0, 131074, 196626, 2, 196608, 196627, 2, 196612, 262160, 0, 131073, 262161, 0, 196611, 262162, 0, 196611, 262163, 0, 65537, 327696, 0, 131074, 327697, 0, 196611, 327698, 0, 196611, 327699, 0, 5, 393217, 0, 131073, 393218, 0, 196610, 393219, 0, 196610, 393220, 0, 196610, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 65536, 393230, 0, 131073, 393231, 0, 196610, 393232, 0, 196611, 393233, 0, 196611, 393234, 0, 65537, 458753, 0, 131072, 458754, 0, 196611, 458755, 0, 196611, 458756, 0, 196611, 458757, 0, 196611, 458758, 0, 196611, 458759, 0, 196611, 458760, 0, 65537, 458764, 0, 131073, 458765, 0, 196610, 458766, 0, 196611, 458767, 0, 196611, 458768, 0, 196611, 458769, 0, 196611, 458770, 0, 65537, 524290, 0, 131072, 524291, 0, 196611, 524292, 0, 196611, 524293, 0, 196611, 524294, 0, 196611, 524295, 0, 196611, 524296, 0, 196611, 524297, 0, 65536, 524300, 0, 131074, 524301, 0, 196611, 524302, 0, 196611, 524303, 0, 196611, 524304, 0, 196611, 524305, 0, 196611, 524306, 0, 5, 589827, 0, 131072, 589828, 0, 131076, 589829, 0, 196609, 589830, 0, 131077, 589831, 0, 196609, 589832, 0, 196611, 589833, 0, 196611, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196611, 589837, 0, 196611, 589838, 0, 196611, 589839, 0, 196611, 589840, 0, 196611, 589841, 0, 5, 655368, 0, 131072, 655369, 0, 196608, 655370, 0, 196611, 655371, 0, 196611, 655372, 0, 196611, 655373, 0, 196611, 655374, 0, 196611, 655375, 0, 196611, 655376, 0, 5, 720906, 0, 131072, 720907, 0, 196611, 720908, 0, 196611, 720909, 0, 196611, 720910, 0, 196611, 720911, 0, 65537, 786443, 0, 131074, 786444, 0, 196611, 786445, 0, 196611, 786446, 0, 196611, 786447, 0, 5, 851979, 0, 131074, 851980, 0, 196611, 851981, 0, 196611, 851982, 0, 65537, 917515, 0, 131074, 917516, 0, 196611, 917517, 0, 196611, 917518, 0, 65537, 983051, 0, 131074, 983052, 0, 196611, 983053, 0, 196611, 983054, 0, 65537, 1048587, 0, 131074, 1048588, 0, 196611, 1048589, 0, 196611, 1048590, 0, 5, 1114123, 0, 131072, 1114124, 0, 196611, 1114125, 0, 65537, 1179660, 0, 131072, 1179661, 0, 5 )
+[node name="GroundMap" parent="Ground" instance=ExtResource("20")]
+layer_0/tile_data = PackedInt32Array(-458737, 0, 131073, -458736, 0, 196610, -458735, 0, 65536, -393201, 0, 131074, -393200, 0, 196611, -393199, 0, 65537, -327665, 0, 131074, -327664, 0, 196611, -327663, 0, 65537, -262130, 0, 131073, -262129, 0, 196611, -262128, 0, 196611, -262127, 0, 65537, -196594, 0, 131074, -196593, 0, 196611, -196592, 0, 196611, -196591, 0, 65537, -131058, 0, 131074, -131057, 0, 196611, -131056, 0, 196611, -131055, 0, 196611, -131054, 0, 65536, -65522, 2, 196615, -65521, 2, 131077, -65520, 2, 131078, -65519, 2, 131078, -65518, 2, 196611, 14, 1, 196609, 15, 1, 262146, 16, 1, 327680, 17, 1, 327680, 18, 1, 327684, 19, 1, 131073, 65552, 1, 196609, 65553, 1, 327680, 65554, 1, 327680, 65555, 1, 131074, 131089, 2, 196614, 131090, 1, 327682, 131091, 1, 131075, 196625, 0, 131074, 196626, 2, 196608, 196627, 2, 196612, 262160, 0, 131073, 262161, 0, 196611, 262162, 0, 196611, 262163, 0, 65537, 327696, 0, 131074, 327697, 0, 196611, 327698, 0, 196611, 327699, 0, 5, 393217, 0, 131073, 393218, 0, 196610, 393219, 0, 196610, 393220, 0, 196610, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 65536, 393230, 0, 131073, 393231, 0, 196610, 393232, 0, 196611, 393233, 0, 196611, 393234, 0, 65537, 458753, 0, 131072, 458754, 0, 196611, 458755, 0, 196611, 458756, 0, 196611, 458757, 0, 196611, 458758, 0, 196611, 458759, 0, 196611, 458760, 0, 65537, 458764, 0, 131073, 458765, 0, 196610, 458766, 0, 196611, 458767, 0, 196611, 458768, 0, 196611, 458769, 0, 196611, 458770, 0, 65537, 524290, 0, 131072, 524291, 0, 196611, 524292, 0, 196611, 524293, 0, 196611, 524294, 0, 196611, 524295, 0, 196611, 524296, 0, 196611, 524297, 0, 65536, 524300, 0, 131074, 524301, 0, 196611, 524302, 0, 196611, 524303, 0, 196611, 524304, 0, 196611, 524305, 0, 196611, 524306, 0, 5, 589827, 0, 131072, 589828, 0, 131076, 589829, 0, 196609, 589830, 0, 131077, 589831, 0, 196609, 589832, 0, 196611, 589833, 0, 196611, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196611, 589837, 0, 196611, 589838, 0, 196611, 589839, 0, 196611, 589840, 0, 196611, 589841, 0, 5, 655368, 0, 131072, 655369, 0, 196608, 655370, 0, 196611, 655371, 0, 196611, 655372, 0, 196611, 655373, 0, 196611, 655374, 0, 196611, 655375, 0, 196611, 655376, 0, 5, 720906, 0, 131072, 720907, 0, 196611, 720908, 0, 196611, 720909, 0, 196611, 720910, 0, 196611, 720911, 0, 65537, 786443, 0, 131074, 786444, 0, 196611, 786445, 0, 196611, 786446, 0, 196611, 786447, 0, 5, 851979, 0, 131074, 851980, 0, 196611, 851981, 0, 196611, 851982, 0, 65537, 917515, 0, 131074, 917516, 0, 196611, 917517, 0, 196611, 917518, 0, 65537, 983051, 0, 131074, 983052, 0, 196611, 983053, 0, 196611, 983054, 0, 65537, 1048587, 0, 131074, 1048588, 0, 196611, 1048589, 0, 196611, 1048590, 0, 5, 1114123, 0, 131072, 1114124, 0, 196611, 1114125, 0, 65537, 1179660, 0, 131072, 1179661, 0, 5)
 
-[node name="RippleWaves" parent="Ground" instance=ExtResource( 21 )]
+[node name="RippleWaves" parent="Ground" instance=ExtResource("21")]
 tile_map_path = NodePath("../GroundMap")
 direction = 2
 speed = 30.0
 wait_time = 12.0
-rippleable_tile_ids = [ 0 ]
+rippleable_tile_ids = Array[int]([0])
 
 [node name="Terrain" type="TileMap" parent="Ground"]
-position = Vector2( -2, 1 )
-mode = 1
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 128, 64 )
+position = Vector2(-2, 1)
+tile_set = ExtResource("1")
 cell_quadrant_size = 64
-cell_tile_origin = 1
-centered_textures = true
-format = 1
+format = 2
 
-[node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
+[node name="Shadows" parent="Ground" instance=ExtResource("2")]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
-1: Rect2( 0, 0, 0, 0 )
+1: Rect2(0, 0, 0, 0)
 }
 
 [node name="Obstacles" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
-mode = 1
-tile_set = ExtResource( 24 )
-cell_size = Vector2( 128, 64 )
-cell_tile_origin = 1
-cell_y_sort = true
-show_collision = true
-centered_textures = true
-format = 1
-tile_data = PackedInt32Array( -524274, 1, 0, -524273, 1, 0, -524272, 1, 0, -524271, 1, 0, -524270, 1, 0, -458738, 1, 0, -458734, 1, 0, -393202, 1, 0, -393198, 1, 0, -327667, 1, 0, -327666, 1, 0, -327662, 1, 0, -262131, 1, 0, -262126, 1, 0, -196595, 1, 0, -196590, 1, 0, -196589, 1, 0, -131059, 1, 0, -131053, 1, 0, -65523, 1, 0, -65517, 1, 0, -65516, 1, 0, 13, 1, 0, 20, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65556, 1, 0, 131087, 1, 0, 131088, 1, 0, 131092, 1, 0, 196623, 1, 0, 196624, 1, 0, 196628, 1, 0, 262159, 1, 0, 262164, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327700, 1, 0, 393216, 1, 0, 393225, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393235, 1, 0, 393236, 1, 0, 458752, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458771, 1, 0, 524288, 1, 0, 524289, 1, 0, 524298, 1, 0, 524299, 1, 0, 524307, 1, 0, 589825, 1, 0, 589826, 1, 0, 589842, 1, 0, 589843, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655377, 1, 0, 655378, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720912, 1, 0, 720913, 1, 0, 786441, 1, 0, 786442, 1, 0, 786448, 1, 0, 851978, 1, 0, 851983, 1, 0, 851984, 1, 0, 917514, 1, 0, 917519, 1, 0, 983050, 1, 0, 983055, 1, 0, 1048586, 1, 0, 1048591, 1, 0, 1114122, 1, 0, 1114126, 1, 0, 1114127, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1179662, 1, 0, 1245195, 1, 0, 1245196, 1, 0, 1245197, 1, 0, 1245198, 1, 0 )
+tile_set = ExtResource("24")
+format = 2
+layer_0/tile_data = PackedInt32Array(-524274, 0, 0, -524273, 0, 0, -524272, 0, 0, -524271, 0, 0, -524270, 0, 0, -458738, 0, 0, -458734, 0, 0, -393202, 0, 0, -393198, 0, 0, -327667, 0, 0, -327666, 0, 0, -327662, 0, 0, -262131, 0, 0, -262126, 0, 0, -196595, 0, 0, -196590, 0, 0, -196589, 0, 0, -131059, 0, 0, -131053, 0, 0, -65523, 0, 0, -65517, 0, 0, -65516, 0, 0, 13, 0, 0, 20, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 65556, 0, 0, 131087, 0, 0, 131088, 0, 0, 131092, 0, 0, 196623, 0, 0, 196624, 0, 0, 196628, 0, 0, 262159, 0, 0, 262164, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327700, 0, 0, 393216, 0, 0, 393225, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393235, 0, 0, 393236, 0, 0, 458752, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458771, 0, 0, 524288, 0, 0, 524289, 0, 0, 524298, 0, 0, 524299, 0, 0, 524307, 0, 0, 589825, 0, 0, 589826, 0, 0, 589842, 0, 0, 589843, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655377, 0, 0, 655378, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720912, 0, 0, 720913, 0, 0, 786441, 0, 0, 786442, 0, 0, 786448, 0, 0, 851978, 0, 0, 851983, 0, 0, 851984, 0, 0, 917514, 0, 0, 917519, 0, 0, 983050, 0, 0, 983055, 0, 0, 1048586, 0, 0, 1048591, 0, 0, 1114122, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179662, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0)
 
 [node name="CornerMap" type="TileMap" parent="Obstacles/ObstacleMap"]
-mode = 1
-tile_set = ExtResource( 24 )
-cell_size = Vector2( 128, 64 )
-cell_tile_origin = 1
-cell_y_sort = true
-centered_textures = true
-format = 1
+tile_set = ExtResource("24")
+format = 2
 
-[node name="GoopOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 3 )]
+[node name="GoopOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource("3")]
 no_goop_tile_index = 3
 some_goop_tile_index = 5
 all_goop_tile_index = 2
 corner_tile_index = 6
 
-[node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 4 )]
+[node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource("4")]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 16 )]
-position = Vector2( 956.203, 478.918 )
+[node name="Player" parent="Obstacles" instance=ExtResource("16")]
+position = Vector2(956.203, 478.918)
 creature_id = "#player#"
-dna = {
-}
-orientation = 1
+dna = {}
+orientation = 2
 
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 16 )]
-position = Vector2( 68.6856, 477.653 )
+[node name="Sensei" parent="Obstacles" instance=ExtResource("16")]
+position = Vector2(68.6856, 477.653)
 creature_id = "#sensei#"
-dna = {
-}
+dna = {}
 
-[node name="MarshTree1" parent="Obstacles" instance=ExtResource( 23 )]
-position = Vector2( 1024.72, 569.821 )
+[node name="MarshTree1" parent="Obstacles" instance=ExtResource("23")]
+position = Vector2(1024.72, 569.821)
 
-[node name="MarshCrystal1" parent="Obstacles" instance=ExtResource( 5 )]
-position = Vector2( 26.206, 428.89 )
+[node name="MarshCrystal1" parent="Obstacles" instance=ExtResource("5")]
+position = Vector2(26.206, 428.89)
 
-[node name="MarshCrystal2" parent="Obstacles" instance=ExtResource( 5 )]
-position = Vector2( 339.019, 659.296 )
+[node name="MarshCrystal2" parent="Obstacles" instance=ExtResource("5")]
+position = Vector2(339.019, 659.296)
 
-[node name="MarshBush1" parent="Obstacles" instance=ExtResource( 18 )]
-position = Vector2( 954.42, 710.482 )
+[node name="MarshBush1" parent="Obstacles" instance=ExtResource("18")]
+position = Vector2(954.42, 710.482)
 
-[node name="MarshBush2" parent="Obstacles" instance=ExtResource( 18 )]
-position = Vector2( -283.38, 422.895 )
+[node name="MarshBush2" parent="Obstacles" instance=ExtResource("18")]
+position = Vector2(-283.38, 422.895)

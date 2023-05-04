@@ -50,22 +50,22 @@ func test_line_cleared_to_json_dict() -> void:
 	
 	var trigger := LevelTrigger.new()
 	trigger.from_json_dict(json_dict)
-	assert_eq_shallow(trigger.to_json_dict(), json_dict)
+	assert_eq(trigger.to_json_dict(), json_dict)
 
 
 func test_dict_config_from_array_unkeyed() -> void:
 	var params := LevelTrigger.dict_config_from_array(["uppity", "fragile"])
-	assert_eq_shallow(params, {"0": "uppity", "1": "fragile"})
+	assert_eq(params, {"0": "uppity", "1": "fragile"})
 
 
 func test_dict_config_from_array_keyed() -> void:
 	var params := LevelTrigger.dict_config_from_array(["uppity=736", "fragile=662"])
-	assert_eq_shallow(params, {"uppity": "736", "fragile": "662"})
+	assert_eq(params, {"uppity": "736", "fragile": "662"})
 
 
 func test_dict_config_from_array_mixed() -> void:
 	var params := LevelTrigger.dict_config_from_array(["uppity", "fragile=662", "stiff"])
-	assert_eq_shallow(params, {"0": "uppity", "fragile": "662", "1": "stiff"})
+	assert_eq(params, {"0": "uppity", "fragile": "662", "1": "stiff"})
 
 
 func test_dict_config_to_array_unkeyed() -> void:

@@ -5,16 +5,16 @@ extends Control
 ## a dark outline.
 
 ## Width in pixels of the main part of the trail
-@export (float) var line_width := 8.0
+@export var line_width := 8.0
 
 ## Width in pixels of the trail's outline
-@export (float) var outline_width := 8.0
+@export var outline_width := 8.0
 
 ## Color for the main part of the trail
-@export (Color) var path_color := Color.WHITE
+@export var path_color := Color.WHITE
 
 ## Color for the trail's outline
-@export (Color) var outline_color := Color.TRANSPARENT
+@export var outline_color := Color.TRANSPARENT
 
 var path2d: Path2D: set = set_path2d
 
@@ -35,4 +35,4 @@ func _draw() -> void:
 
 func set_path2d(new_path2d: Path2D) -> void:
 	path2d = new_path2d
-	update()
+	queue_redraw()

@@ -9,7 +9,7 @@ var _displayed_orientation: int
 @onready var tile_map: PuzzleTileMap = $TileMap
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	_prepare_tileset()
 
 
@@ -18,10 +18,10 @@ func refresh_tile_map(next_piece: NextPiece) -> void:
 	if next_piece.type == _displayed_type and next_piece.orientation == _displayed_orientation:
 		return
 	
-	tile_map.clear()
+	tile_map.clear_puzzle()
 	if next_piece.type != PieceTypes.piece_null:
-		var bounding_box := Rect2( \
-				next_piece.type.get_cell_position(next_piece.orientation, 0), Vector2.ONE)
+		var bounding_box := Rect2i( \
+				next_piece.type.get_cell_position(next_piece.orientation, 0), Vector2i.ONE)
 		# update the tilemap with the new piece type
 		for i in range(next_piece.type.pos_arr[0].size()):
 			var block_pos := next_piece.type.get_cell_position(next_piece.orientation, i)
@@ -30,13 +30,13 @@ func refresh_tile_map(next_piece: NextPiece) -> void:
 			bounding_box = bounding_box.expand( \
 					next_piece.type.get_cell_position(next_piece.orientation, i))
 			bounding_box = bounding_box.expand( \
-					next_piece.type.get_cell_position(next_piece.orientation, i) + Vector2.ONE)
+					next_piece.type.get_cell_position(next_piece.orientation, i) + Vector2i.ONE)
 		
 		# grow to accommodate bigger pieces
-		var bounding_box_longest_dimension := max(bounding_box.size.x, bounding_box.size.y)
+		var bounding_box_longest_dimension: float = max(bounding_box.size.x, bounding_box.size.y)
 		tile_map.scale = Vector2(1.5, 1.5) / max(bounding_box_longest_dimension, 3)
-		tile_map.position = tile_map.cell_size * Vector2(0.75, 0.75) \
-				- tile_map.cell_size * tile_map.scale * (bounding_box.position + bounding_box.size / 2.0)
+		tile_map.position = Vector2(tile_map.tile_set.tile_size) * Vector2(0.75, 0.75) \
+				- Vector2(tile_map.tile_set.tile_size) * tile_map.scale * (Vector2(bounding_box.position) + bounding_box.size / 2.0)
 	
 	tile_map.corner_map.dirty = true
 	_displayed_type = next_piece.type

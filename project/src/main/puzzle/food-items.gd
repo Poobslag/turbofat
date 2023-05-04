@@ -1,9 +1,9 @@
 extends Node2D
 ## Food items which appear when the player clears boxes in puzzle mode.
 
-@export (NodePath) var puzzle_path: NodePath
-@export (NodePath) var restaurant_view_path: NodePath
-@export (PackedScene) var FoodScene: PackedScene
+@export var puzzle_path: NodePath
+@export var restaurant_view_path: NodePath
+@export var FoodScene: PackedScene
 
 ## Array of floats corresponding to how fat the creature should become after eating each upcoming food item.
 var _pending_food_fatness := []
@@ -30,7 +30,7 @@ var _target_pos_cache := {}
 @onready var _puzzle_tile_map: PuzzleTileMap = _puzzle.get_playfield().tile_map
 
 ## relative position of the PuzzleTileMap, used for positioning food
-@onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
+@onready var _puzzle_tile_map_position: Vector2i = _puzzle_tile_map.get_global_transform().origin \
 		- get_global_transform().origin
 
 @onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
@@ -46,7 +46,7 @@ var _target_pos_cache := {}
 @onready var _customer_change_timer := $CustomerChangeTimer
 
 func _ready() -> void:
-	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
+	PuzzleState.speed_index_changed.connect(_on_PuzzleState_speed_index_changed)
 
 
 func _physics_process(_delta: float) -> void:
@@ -56,7 +56,7 @@ func _physics_process(_delta: float) -> void:
 
 
 ## Adds a food item in the specified cell.
-func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> void:
+func add_food_item(cell: Vector2i, food_type: Foods.FoodType, remaining_food: int = 0) -> void:
 	# calculate and store 'food fatness' for customer; how fat the customer will be after eating each item
 	var customer := _puzzle.get_customer()
 	var old_fatness: float = _pending_food_fatness.back() if _pending_food_fatness else customer.get_fatness()
@@ -75,12 +75,12 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	food_item.base_scale = _puzzle_tile_map.scale / _texture_rect.scale
 	food_item.customer = _puzzle.get_customer()
 	food_item.customer_index = _customer_index
-	food_item.connect("ready_to_fly", Callable(self, "_on_FoodItem_ready_to_fly").bind(food_item))
+	food_item.ready_to_fly.connect(_on_FoodItem_ready_to_fly.bind(food_item))
 	_viewport.add_child(food_item)
 	
 	# float for a moment
 	# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
-	get_tree().create_timer(_food_float_duration).connect("timeout", Callable(self, "_on_FoodItem_float_done").bind(food_item))
+	get_tree().create_timer(_food_float_duration).timeout.connect(_on_FoodItem_float_done.bind(food_item))
 
 
 ## Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
@@ -108,7 +108,7 @@ func get_target_pos(target_customer: Creature, target_customer_index: int) -> Ve
 							_customer_change_timer.time_left / _customer_change_timer.wait_time)
 			
 			# calculate the position within the global viewport
-			target_pos = get_global_transform_with_canvas()(target_pos) * 
+			target_pos = get_global_transform_with_canvas().basis_xform_inv(target_pos)
 			# calculate the position within the FoodItems viewport texture
 			target_pos = target_pos / _texture_rect.scale
 		
@@ -124,7 +124,7 @@ func _update_food_speed() -> void:
 	# calculate the 'speed factor': a number from 0.0 to 1.0 corresponding to
 	# how quickly the player can drop pieces
 	var min_frames_per_line := RankCalculator.min_frames_per_line(PieceSpeeds.current_speed)
-	var speed_factor := clamp(inverse_lerp(40, 120, min_frames_per_line), 0.0, 1.0)
+	var speed_factor: float = clamp(inverse_lerp(40, 120, min_frames_per_line), 0.0, 1.0)
 	
 	# update the food timings based on the speed factor
 	_food_float_duration = lerp(0.2, 1.3, speed_factor)
@@ -138,12 +138,12 @@ func _on_FoodItem_float_done(food_item: FoodItem) -> void:
 
 
 func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
-	food_item.fly_to_target(funcref(self, "get_target_pos"), \
+	food_item.fly_to_target(Callable(self, "get_target_pos"), \
 			[food_item.customer, food_item.customer_index], _food_flight_duration)
 	
 	# trigger the eating animation just before we arrive at the creature's mouth
 	var adjusted_flight_duration := _food_flight_duration - food_item.customer.get_eating_delay()
-	get_tree().create_timer(adjusted_flight_duration).connect("timeout", Callable(self, "_on_FoodItem_flight_done").bind(food_item))
+	get_tree().create_timer(adjusted_flight_duration).timeout.connect(_on_FoodItem_flight_done.bind(food_item))
 
 
 func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
@@ -159,7 +159,7 @@ func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
 		food_item.customer.set_fatness(new_fatness)
 
 
-func _on_StarSeeds_food_spawned(cell: Vector2, remaining_food: int, food_type: int) -> void:
+func _on_StarSeeds_food_spawned(cell: Vector2i, remaining_food: int, food_type: Foods.FoodType) -> void:
 	add_food_item(cell, food_type, remaining_food)
 
 
@@ -170,7 +170,7 @@ func _on_Playfield_food_spawned(cell, remaining_food, food_type) -> void:
 ## When the FoodFlightTimer times out, we check the queue for the next food item which should fly into the customer's
 ## mouth.
 func _on_FoodFlightTimer_timeout() -> void:
-	if not _food_waiting_to_fly:
+	if _food_waiting_to_fly.is_empty():
 		return
 	
 	_food_flight_timer.start(_max_food_repeat_delay * randf())

@@ -19,10 +19,10 @@ offset_bottom = 23.0
 custom_minimum_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
 text = "Allele Color:"
-align = 2
+horizontal_alignment =2
 
 [node name="Edit" type="ColorPickerButton" parent="."]
-process_mode = 2
+process_mode = 3
 offset_left = 110.0
 offset_right = 150.0
 offset_bottom = 26.0

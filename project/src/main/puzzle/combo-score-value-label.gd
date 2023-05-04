@@ -8,14 +8,14 @@ extends Label
 @onready var _penalty_timer := $PenaltyTimer
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("score_changed", Callable(self, "_on_PuzzleState_score_changed"))
-	PuzzleState.connect("topped_out", Callable(self, "_on_PuzzleState_topped_out"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.score_changed.connect(_on_PuzzleState_score_changed)
+	PuzzleState.topped_out.connect(_on_PuzzleState_topped_out)
 	text = "-"
 
 
 func _refresh_score() -> void:
-	modulate = Color("80ffffff")
+	modulate = Color("ff80ffff")
 	var bonus_score := PuzzleState.get_bonus_score()
 	if bonus_score == 0:
 		# zero is displayed as '-'
@@ -30,9 +30,9 @@ func _refresh_score() -> void:
 
 func _on_resized() -> void:
 	# Avoid a Stack Overflow where changing our margins triggers another _on_resized() event, see #1810
-	disconnect("resized", Callable(self, "_on_resized"))
+	resized.disconnect(_on_resized)
 	offset_left = -size.x
-	connect("resized", Callable(self, "_on_resized"))
+	resized.connect(_on_resized)
 
 
 func _on_PuzzleState_score_changed() -> void:
@@ -44,7 +44,7 @@ func _on_PuzzleState_score_changed() -> void:
 
 
 func _on_PuzzleState_topped_out() -> void:
-	modulate = Color("80ff5555")
+	modulate = Color("ff555580")
 	text = StringUtils.format_money(-1 * PuzzleState.TOP_OUT_PENALTY)
 	size = Vector2.ZERO
 	_penalty_timer.start()

@@ -1,21 +1,22 @@
 extends BlockLevelChunkControl
 ## Level editor chunk which contains a snack/cake box.
 
-@export (Foods.BoxType) var box_type: int: set = set_box_type
+@export var box_type: Foods.BoxType: set = set_box_type
 
-@export (Vector2) var box_size: Vector2 = Vector2(3, 3): set = set_box_size
+@export var box_size: Vector2i = Vector2i(3, 3): set = set_box_size
 
 func _ready() -> void:
-	$"../../Buttons/RotateButton".connect("pressed", Callable(self, "_on_RotateButton_pressed"))
-	$"../../Buttons/ChangeButton".connect("pressed", Callable(self, "_on_ChangeButton_pressed"))
+	super()
+	$"../../Buttons/RotateButton".pressed.connect(_on_RotateButton_pressed)
+	$"../../Buttons/ChangeButton".pressed.connect(_on_ChangeButton_pressed)
 
 
-func set_box_type(new_box_type: int) -> void:
+func set_box_type(new_box_type: Foods.BoxType) -> void:
 	box_type = new_box_type
 	_refresh_tile_map()
 
 
-func set_box_size(new_box_size: Vector2) -> void:
+func set_box_size(new_box_size: Vector2i) -> void:
 	box_size = new_box_size
 	_refresh_tile_map()
 	_refresh_scale()
@@ -23,12 +24,12 @@ func set_box_size(new_box_size: Vector2) -> void:
 
 func _refresh_tile_map() -> void:
 	$TileMap.clear()
-	$TileMap.build_box(Rect2(Vector2.ZERO, box_size), box_type)
+	$TileMap.build_box(Rect2i(Vector2i.ZERO, box_size), box_type)
 
 
 func _on_RotateButton_pressed() -> void:
 	if box_size.y >= 3:
-		set_box_size(Vector2(box_size.y, box_size.x))
+		set_box_size(Vector2i(box_size.y, box_size.x))
 
 
 func _on_ChangeButton_pressed() -> void:

@@ -1,17 +1,17 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://0swke326gwvf"]
 
-[ext_resource path="res://src/main/chat/ui/chat.gdshader" type="Shader" id=1]
-[ext_resource path="res://assets/main/chat/ui/texture/bg02.png" type="Texture2D" id=2]
+[ext_resource type="Shader" path="res://src/main/chat/ui/chat.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://dkr37gwflk70v" path="res://assets/main/chat/ui/texture/bg02.png" id="2"]
 
 [resource]
-shader = ExtResource( 1 )
-shader_param/border_color = Color( 0.188235, 0.188235, 0.376471, 1 )
-shader_param/center_color = Color( 1, 1, 1, 1 )
-shader_param/accent_color = Color( 0.435294, 0.513726, 0.858824, 1 )
-shader_param/accent_scale = 2.0
-shader_param/accent_amount = 0.24
-shader_param/accent_swapped = false
-shader_param/center_transparency = 0.16
-shader_param/scroll_period = Vector2( 7.377, 4.111 )
-shader_param/scroll_distance = Vector2( 120, 60 )
-shader_param/accent_texture = ExtResource( 2 )
+shader = ExtResource("1")
+shader_parameter/border_color = Color(0.188235, 0.188235, 0.376471, 1)
+shader_parameter/center_color = Color(1, 1, 1, 1)
+shader_parameter/accent_color = Color(0.435294, 0.513726, 0.858824, 1)
+shader_parameter/accent_scale = 2.0
+shader_parameter/accent_amount = 0.24
+shader_parameter/accent_swapped = false
+shader_parameter/center_transparency = 0.16
+shader_parameter/scroll_period = Vector2(7.377, 4.111)
+shader_parameter/scroll_distance = Vector2(120, 60)
+shader_parameter/accent_texture = ExtResource("2")

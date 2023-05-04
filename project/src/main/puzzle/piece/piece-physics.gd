@@ -5,7 +5,7 @@ extends Node
 ## Some of this logic is pushed out into child nodes such as Rotator and Mover. This class only contains reusable code
 ## and code requiring coordination from different child nodes.
 
-@export (NodePath) var piece_states_path: NodePath
+@export var piece_states_path: NodePath
 
 @onready var rotator := $Rotator
 @onready var mover := $Mover
@@ -84,5 +84,5 @@ func squish_percent(piece: ActivePiece) -> float:
 	return squisher.squish_percent(piece)
 
 
-func hard_drop_target_pos() -> Vector2:
+func hard_drop_target_pos() -> Vector2i:
 	return dropper.hard_drop_target_pos

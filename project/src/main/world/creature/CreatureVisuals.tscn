@@ -1,753 +1,3107 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=123 format=3 uid="uid://dlbg8uqphimbk"]
 
-[ext_resource path="res://src/main/world/rgb-palette.gdshader" type="Shader" id=1]
-[ext_resource path="res://src/main/utils/packed-sprite.gd" type="Script" id=2]
-[ext_resource path="res://src/main/world/creature/EmotePlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture2D" id=4]
-[ext_resource path="res://src/main/world/creature/creature-animations.gd" type="Script" id=5]
-[ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=6]
-[ext_resource path="res://src/main/world/creature/dna-loader.gd" type="Script" id=8]
-[ext_resource path="res://src/main/world/creature/head-bobber.gd" type="Script" id=9]
-[ext_resource path="res://assets/main/world/creature/1/emote-brain-packed.png" type="Texture2D" id=10]
-[ext_resource path="res://src/main/world/creature/Body.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/main/world/creature/1/emote-arm-z1-packed.png" type="Texture2D" id=14]
-[ext_resource path="res://assets/main/world/creature/1/emote-body-packed.png" type="Texture2D" id=15]
-[ext_resource path="res://assets/main/world/creature/1/emote-head-packed.png" type="Texture2D" id=21]
-[ext_resource path="res://assets/main/world/creature/1/emote-arm-z0-packed.png" type="Texture2D" id=25]
-[ext_resource path="res://src/main/world/creature/TailPlayer.tscn" type="PackedScene" id=29]
-[ext_resource path="res://src/main/world/creature/MovementPlayer.tscn" type="PackedScene" id=30]
-[ext_resource path="res://src/main/world/creature/idle-timer.gd" type="Script" id=33]
-[ext_resource path="res://src/main/world/creature/creature-visuals.gd" type="Script" id=37]
-[ext_resource path="res://assets/main/filled-circle-8.png" type="Texture2D" id=42]
-[ext_resource path="res://src/main/world/creature/head-sweat-squirts.gd" type="Script" id=43]
-[ext_resource path="res://assets/main/world/creature/downward-sweat.png" type="Texture2D" id=44]
-[ext_resource path="res://src/main/world/creature/head-sweat-drops.gd" type="Script" id=45]
-[ext_resource path="res://src/main/world/creature/body-sweat.gd" type="Script" id=46]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture2D" id=49]
-[ext_resource path="res://src/main/world/creature/sprint.gd" type="Script" id=50]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture2D" id=51]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture2D" id=52]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture2D" id=56]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture2D" id=57]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture2D" id=58]
+[ext_resource type="Shader" path="res://src/main/world/rgb-palette.gdshader" id="1"]
+[ext_resource type="Script" path="res://src/main/utils/packed-sprite.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bx3fifa58ane3" path="res://assets/main/world/creature/1/head-packed.png" id="2_7sk1y"]
+[ext_resource type="PackedScene" uid="uid://d2xbs64gbscbn" path="res://src/main/world/creature/EmotePlayer.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://dnjp4llnl32yl" path="res://assets/main/world/creature/1/cheek-z0-packed.png" id="3_hkjsw"]
+[ext_resource type="Texture2D" uid="uid://s8ov627kq48c" path="res://assets/main/fuzzy-circle-256.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b767uchsiq0fo" path="res://assets/main/world/creature/1/cheek-z1-packed.png" id="4_vs17t"]
+[ext_resource type="Script" path="res://src/main/world/creature/creature-animations.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://do2u4hl5tnx2c" path="res://assets/main/world/creature/1/cheek-z2-packed.png" id="5_o3fk2"]
+[ext_resource type="Script" path="res://src/main/world/creature/creature-packed-sprite.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://dwoqskkq7iev6" path="res://assets/main/world/creature/15/ear-z1-packed.png" id="6_ieslj"]
+[ext_resource type="Texture2D" uid="uid://cw52kd5nh8kb8" path="res://assets/main/world/creature/15/ear-z2-packed.png" id="7_gvm1p"]
+[ext_resource type="Script" path="res://src/main/world/creature/dna-loader.gd" id="8"]
+[ext_resource type="Texture2D" uid="uid://b116jqkjo83ws" path="res://assets/main/world/creature/1/eye-z0-packed.png" id="8_t5rjy"]
+[ext_resource type="Script" path="res://src/main/world/creature/head-bobber.gd" id="9"]
+[ext_resource type="Texture2D" uid="uid://djl37uv2j8l18" path="res://assets/main/world/creature/1/eye-z1-packed.png" id="9_xhjhj"]
+[ext_resource type="Texture2D" uid="uid://cnllhdguennvt" path="res://assets/main/world/creature/1/emote-brain-packed.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://dd7s5bq0nkyfy" path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" id="10_art4g"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Body.tscn" id="11"]
+[ext_resource type="Texture2D" uid="uid://cbn3aydy0fb7y" path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" id="11_42efc"]
+[ext_resource type="Texture2D" uid="uid://buyqx625nbah1" path="res://assets/main/world/creature/1/hair-z0-packed.png" id="12_auk80"]
+[ext_resource type="Texture2D" uid="uid://ekji5pi7t73p" path="res://assets/main/world/creature/1/hair-z1-packed.png" id="13_5q1ck"]
+[ext_resource type="Texture2D" uid="uid://dybgdfsup2dls" path="res://assets/main/world/creature/1/emote-arm-z1-packed.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://donos4iwcoidb" path="res://assets/main/world/creature/1/hair-z2-packed.png" id="14_7rgv1"]
+[ext_resource type="Texture2D" uid="uid://dnnmnrf1x25fc" path="res://assets/main/world/creature/1/emote-body-packed.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://cdbjdgbyd7vho" path="res://assets/main/world/creature/1/horn-z1-packed.png" id="15_2fqm1"]
+[ext_resource type="Texture2D" uid="uid://ci34p65m60ewk" path="res://assets/main/world/creature/6/mouth-packed.png" id="16_5wm5y"]
+[ext_resource type="Texture2D" uid="uid://d0t6fvvpxwtpf" path="res://assets/main/world/creature/2/nose-packed.png" id="17_oh8g3"]
+[ext_resource type="Texture2D" uid="uid://bit288w63d4ws" path="res://assets/main/world/creature/1/emote-head-packed.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://bkr524k8ybu58" path="res://assets/main/world/creature/1/emote-arm-z0-packed.png" id="25"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/TailPlayer.tscn" id="29"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Body1Shape.tscn" id="29_6fkrr"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/MovementPlayer.tscn" id="30"]
+[ext_resource type="Script" path="res://src/main/world/creature/creature-curve.gd" id="30_32nlb"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Body1Belly1.tscn" id="31_ucj4j"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Body1NeckBlend.tscn" id="32_55u3e"]
+[ext_resource type="Script" path="res://src/main/world/creature/idle-timer.gd" id="33"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Body1Shadows.tscn" id="33_3uqof"]
+[ext_resource type="Script" path="res://src/main/world/creature/body-shadows.gd" id="34_h086d"]
+[ext_resource type="Script" path="res://src/main/world/creature/creature-visuals.gd" id="37"]
+[ext_resource type="Texture2D" uid="uid://bk3sqsj58oqi4" path="res://assets/main/filled-circle-8.png" id="42"]
+[ext_resource type="Script" path="res://src/main/world/creature/head-sweat-squirts.gd" id="43"]
+[ext_resource type="Texture2D" uid="uid://cjxoxgg3lari4" path="res://assets/main/world/creature/downward-sweat.png" id="44"]
+[ext_resource type="Script" path="res://src/main/world/creature/head-sweat-drops.gd" id="45"]
+[ext_resource type="Script" path="res://src/main/world/creature/body-sweat.gd" id="46"]
+[ext_resource type="Texture2D" uid="uid://655nuag6rywn" path="res://assets/main/world/creature/1/arm-z0-packed.png" id="49"]
+[ext_resource type="Script" path="res://src/main/world/creature/sprint.gd" id="50"]
+[ext_resource type="Texture2D" uid="uid://r8u2vcn15bn0" path="res://assets/main/world/creature/1/sprint-z0-packed.png" id="51"]
+[ext_resource type="Texture2D" uid="uid://0ltp8pb2ct1f" path="res://assets/main/world/creature/1/arm-z1-packed.png" id="52"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Mouth6Player.tscn" id="53_ednmo"]
+[ext_resource type="Script" path="res://src/main/world/creature/mouth-player.gd" id="54_lcnvs"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Ear15Player.tscn" id="55_0jvrk"]
+[ext_resource type="Texture2D" uid="uid://8x3rslty4mqk" path="res://assets/main/world/creature/1/chin-packed.png" id="56"]
+[ext_resource type="Script" path="res://src/main/world/creature/ear-player.gd" id="56_4uj6o"]
+[ext_resource type="Texture2D" uid="uid://deby7h2nel1gc" path="res://assets/main/world/creature/1/leg-z1-packed.png" id="57"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/FatSpriteMover1.tscn" id="57_ujfwu"]
+[ext_resource type="Texture2D" uid="uid://bk2pnsm0tmda7" path="res://assets/main/world/creature/1/leg-z0-packed.png" id="58"]
+[ext_resource type="Script" path="res://src/main/world/creature/fat-sprite-mover.gd" id="58_t7u3n"]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id="3"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0.207843, 0.882353, 0.878431, 1)
+shader_parameter/blue = Color(0.278431, 0.490196, 0.356863, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="Curve2D" id="Curve2D_tuiph"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_y4ect"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(-0.827609, -19.5058, 0.827609, 19.5058, -16.4229, -16.8725, -14.9663, 1.17112, 14.9663, -1.17112, 18.2874, 11.2822, 0.670203, 16.3499, -0.670203, -16.3499, 49.4005, -24.8763, 15.2832, -1.67112, -15.2832, 1.67112, 12.944, -59.7323, -0.144124, -20.4429, 0.144124, 20.4429, -16.4229, -19.2536)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_d6kbb"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(-3.43906, 20.3436, 3.43906, -20.3436, -39.25, -57.75, -3.10014, -15.1205, 3.10014, 15.1205, 5.5, -62.5)
+}
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="4"]
 particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=5]
-offsets = PackedFloat32Array( 0, 0.255924, 0.796209, 0.976303 )
-colors = PackedColorArray( 1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.501961, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="5"]
+offsets = PackedFloat32Array(0, 0.255924, 0.796209, 0.976303)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.501961, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture1D" id="6"]
+gradient = SubResource("5")
 
-[sub_resource type="ParticleProcessMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id="7"]
 resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 50.0
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
+direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 50.0
-scale = 0.7
-color_ramp = SubResource( 6 )
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
+scale_min = 0.7
+scale_max = 0.7
+color_ramp = SubResource("6")
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id="8"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.207843, 0.882353, 0.878431, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id="9"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.254902, 0.352941, 0.45098, 1)
+shader_parameter/green = Color(0.278431, 0.490196, 0.356863, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id="10"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 1, 1, 1, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.203922, 0.215686, 0.227451, 1)
+shader_parameter/green = Color(0.74902, 0.227451, 0.227451, 1)
+shader_parameter/blue = Color(1, 1, 1, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id="11"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.278431, 0.490196, 0.356863, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id="12"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0.278431, 0.490196, 0.356863, 1)
+shader_parameter/blue = Color(1, 0.905882, 0.898039, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=13]
+[sub_resource type="ShaderMaterial" id="13"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(1, 0.905882, 0.898039, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=14]
+[sub_resource type="ShaderMaterial" id="14"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=15]
+[sub_resource type="ShaderMaterial" id="15"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0.207843, 0.882353, 0.878431, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id="16"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=17]
+[sub_resource type="ShaderMaterial" id="17"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0.952941, 0.572549, 0.454902, 1)
+shader_parameter/blue = Color(1, 0.905882, 0.898039, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id="18"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0.254902, 0.352941, 0.45098, 1)
+shader_parameter/blue = Color(0.784314, 0.796078, 0.839216, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=19]
+[sub_resource type="ShaderMaterial" id="19"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(1, 1, 1, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=20]
+[sub_resource type="ShaderMaterial" id="20"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0.137255, 0.635294, 0.890196, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="Gradient" id=21]
-offsets = PackedFloat32Array( 0.00473934, 0.390947 )
-colors = PackedColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="21"]
+offsets = PackedFloat32Array(0.00473934, 0.390947)
+colors = PackedColorArray(1, 1, 1, 0.752941, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=22]
-gradient = SubResource( 21 )
+[sub_resource type="GradientTexture1D" id="22"]
+gradient = SubResource("21")
 
-[sub_resource type="ParticleProcessMaterial" id=23]
+[sub_resource type="ParticleProcessMaterial" id="23"]
 emission_shape = 1
 emission_sphere_radius = 120.0
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
-gravity = Vector3( 0, 2400, 0 )
-initial_velocity = -800.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.7
-color_ramp = SubResource( 22 )
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 2400, 0)
+initial_velocity_min = -800.0
+initial_velocity_max = -800.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 1.7
+scale_max = 1.7
+color_ramp = SubResource("22")
 
-[sub_resource type="ParticleProcessMaterial" id=24]
+[sub_resource type="ParticleProcessMaterial" id="24"]
 emission_shape = 1
 emission_sphere_radius = 45.0
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
+direction = Vector3(0, 1, 0)
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 50.0
-scale = 0.7
-color_ramp = SubResource( 6 )
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
+scale_min = 0.7
+scale_max = 0.7
+color_ramp = SubResource("6")
 
-[sub_resource type="CanvasItemMaterial" id=25]
+[sub_resource type="CanvasItemMaterial" id="25"]
 resource_local_to_scene = true
 blend_mode = 1
 
-[sub_resource type="ShaderMaterial" id=26]
+[sub_resource type="ShaderMaterial" id="26"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(1, 1, 1, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 
-[sub_resource type="ShaderMaterial" id=27]
+[sub_resource type="ShaderMaterial" id="27"]
 resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader = ExtResource("1")
+shader_parameter/red = Color(0, 0, 0, 1)
+shader_parameter/green = Color(0, 0, 0, 1)
+shader_parameter/blue = Color(0, 0, 0, 1)
+shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
+
+[sub_resource type="Animation" id="Animation_1wehb"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -100)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collar:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarArm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FarLeg:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NearArm:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NearLeg:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Neck0/HeadBobber:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Neck0:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprint:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TailZ0:frame")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("TailZ1:frame")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_eo0hr"]
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FarLeg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FarArm:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NearLeg:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NearArm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_l53d4"]
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FarLeg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FarArm:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NearLeg:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NearArm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ibmue"]
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, -2), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 0), Vector2(0, -2), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -99), Vector2(0, -99), Vector2(0, -100), Vector2(0, -101), Vector2(0, -100), Vector2(0, -99), Vector2(0, -99), Vector2(0, -100), Vector2(0, -101), Vector2(0, -100), Vector2(0, -99)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.25, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1a3kj"]
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, -2), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 0), Vector2(0, -2), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -99), Vector2(0, -99), Vector2(0, -100), Vector2(0, -101), Vector2(0, -100), Vector2(0, -99), Vector2(0, -99), Vector2(0, -100), Vector2(0, -101), Vector2(0, -100), Vector2(0, -99)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.25, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FarArm:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3lomy"]
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-40.957, 8.645), Vector2(-32.17, -4.364), Vector2(-47.539, -24.439), Vector2(-47.539, -24.439), Vector2(-61.054, -22.945), Vector2(-61.054, -22.945), Vector2(-69.9, -9.24), Vector2(-54.03, 7.886)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-48.9751, -89.5732), Vector2(-25.9337, -92.7823), Vector2(-39.5209, -116.421), Vector2(-39.5209, -116.421), Vector2(-54.8177, -127.399), Vector2(-54.8177, -127.399), Vector2(-85.0453, -115.476), Vector2(-64.7208, -93.0049)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 9, 10, 10, 11, 12]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Collar:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [-0.391205, -0.398581, -0.30666, -0.30666, -0.398581, -0.398581, -0.636658, -0.517619]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TailZ0:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TailZ1:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 10, 11, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_5eos5"]
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(55.95, 51.64), Vector2(47.17, 38.64), Vector2(62.53, 18.57), Vector2(62.53, 18.57), Vector2(76.05, 20.06), Vector2(76.05, 20.06), Vector2(84.9, 33.76), Vector2(69.02, 50.88)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(55.95, -48.36), Vector2(47.17, -61.36), Vector2(62.53, -81.43), Vector2(62.53, -81.43), Vector2(76.05, -79.94), Vector2(76.05, -79.94), Vector2(84.9, -66.24), Vector2(69.02, -49.12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 3, 4, 4, 5, 6]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TailZ0:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 10, 11, 11, 12, 13]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TailZ1:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_y6evn"]
+length = 0.533333
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 20, 19, 20, 21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [22, 21, 20, 21, 22]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 15, 14]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, -1), Vector2(0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.133333, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_id74r"]
+length = 0.533333
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 8, 9, 8, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 7, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 6, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 13, 12, 13, 14]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, -1), Vector2(0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.133333, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FarArm:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 8, 9, 8, 6]
+}
+
+[sub_resource type="Animation" id="Animation_342pa"]
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [33, 34, 35, 36, 37, 38, 33, 34, 35, 36, 37, 38, 33]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [33, 34, 35, 36, 37, 38, 33, 34, 35, 36, 37, 38, 33]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, -4), Vector2(0, -2), Vector2(0, 0), Vector2(0, 2), Vector2(0, -4), Vector2(0, -2), Vector2(0, 0), Vector2(0, 2), Vector2(0, -4), Vector2(0, -2), Vector2(0, 0), Vector2(0, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -99), Vector2(0, -99), Vector2(0, -103), Vector2(0, -101), Vector2(0, -99), Vector2(0, -99), Vector2(0, -103), Vector2(0, -101), Vector2(0, -99), Vector2(0, -99), Vector2(0, -103), Vector2(0, -101), Vector2(0, -99)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_acsxh"]
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 27, 28, 29, 30, 31, 32, 27]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 27, 28, 29, 30, 31, 32, 27]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 15, 16, 17, 18, 19, 20, 15]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 27, 28, 29, 30, 31, 32, 27]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, -4), Vector2(0, -2), Vector2(0, 0), Vector2(0, 2), Vector2(0, -4), Vector2(0, -2), Vector2(0, 0), Vector2(0, 2), Vector2(0, -4), Vector2(0, -2), Vector2(0, 0), Vector2(0, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -99), Vector2(0, -99), Vector2(0, -103), Vector2(0, -101), Vector2(0, -99), Vector2(0, -99), Vector2(0, -103), Vector2(0, -101), Vector2(0, -99), Vector2(0, -99), Vector2(0, -103), Vector2(0, -101), Vector2(0, -99)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}, {
+"args": ["landed"],
+"method": &"emit_sfx_signal"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r213d"]
+_data = {
+"RESET": SubResource("Animation_1wehb"),
+"idle-nw": SubResource("Animation_eo0hr"),
+"idle-se": SubResource("Animation_l53d4"),
+"run-nw": SubResource("Animation_ibmue"),
+"run-se": SubResource("Animation_1a3kj"),
+"sprint-nw": SubResource("Animation_3lomy"),
+"sprint-se": SubResource("Animation_5eos5"),
+"walk-nw": SubResource("Animation_y6evn"),
+"walk-se": SubResource("Animation_id74r"),
+"wiggle-nw": SubResource("Animation_342pa"),
+"wiggle-se": SubResource("Animation_acsxh")
+}
+
+[sub_resource type="Animation" id="Animation_gbrxn"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TailZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TailZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fp156"]
+resource_name = "ambient-nw"
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TailZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TailZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7, 2]
+}
+
+[sub_resource type="Animation" id="Animation_pr1hm"]
+resource_name = "ambient-se"
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TailZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 6, 7, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TailZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7f1dn"]
+_data = {
+"RESET": SubResource("Animation_gbrxn"),
+"ambient-nw": SubResource("Animation_fp156"),
+"ambient-se": SubResource("Animation_pr1hm")
+}
+
+[sub_resource type="Animation" id="Animation_isx2i"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_6jabq"]
+length = 4.0
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.00001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 2]
+}
+
+[sub_resource type="Animation" id="Animation_wi6hj"]
+length = 4.0
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.66667, 3.33333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 3, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.00001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ucfu0"]
+length = 0.5
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366667, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 5, 6, 7, 8, 5, 9, 10, 11, 1, 12, 13, 1]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_food_effects"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 5, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_b48a8"]
+length = 0.433333
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.3, 0.366667, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 5, 9, 10, 11, 1, 12, 13, 1]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_food_effects"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_7ljhn"]
+length = 4.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.233333, 0.333333, 0.5, 0.7, 1.1, 1.33333, 2, 2.13333, 2.23333, 2.33333, 2.43333, 2.53333, 2.63333, 2.7, 2.76667, 2.9, 3, 3.1, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 12, 11, 10, 9, 5, 8, 7, 6, 7, 6, 7, 8, 5, 9, 10, 11, 12, 13, 1, 12, 13, 1, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0999999, 0.166667, 0.233333, 0.333333, 0.5, 0.7, 1.1, 1.33333, 2, 2.13333, 2.23333, 2.33333, 2.43333, 2.53333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 6, 7, 8, 7, 8, 7, 6, 5, 4, 3, 1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_2wqci"]
+length = 4.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.233333, 0.466667, 0.6, 0.733333, 1.3, 1.56667, 1.66667, 1.76667, 1.86667, 1.96667, 2.06667, 2.13333, 2.2, 2.33333, 2.43333, 2.53333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 10, 5, 8, 7, 8, 7, 6, 7, 8, 5, 9, 10, 11, 12, 13, 1, 12, 13, 1, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667, 0.233333, 0.466667, 0.6, 0.733333, 1.3, 1.56667, 1.66667, 1.76667, 1.86667, 1.96667, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 5, 6, 7, 6, 7, 8, 7, 6, 5, 4, 3, 1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ey528"]
+length = 1.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 9, 13, 11, 9, 13, 11, 13, 9, 11, 9, 11, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 1, 1, 3, 1, 1, 1, 3, 1, 3, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2o46w"]
+_data = {
+"RESET": SubResource("Animation_isx2i"),
+"ambient-nw": SubResource("Animation_6jabq"),
+"ambient-se": SubResource("Animation_wi6hj"),
+"eat": SubResource("Animation_ucfu0"),
+"eat-again": SubResource("Animation_b48a8"),
+"idle-yawn0": SubResource("Animation_7ljhn"),
+"idle-yawn1": SubResource("Animation_2wqci"),
+"talk": SubResource("Animation_ey528")
+}
+
+[sub_resource type="Animation" id="Animation_wa3nq"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ffb6f"]
+length = 6.0
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1, 1.33333, 2.16667, 2.5, 2.83333, 3.66667, 4, 4.33333, 5.33333, 5.66667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 4, 3, 1, 3, 4, 5, 4, 3, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1, 1.33333, 2.16667, 2.5, 2.83333, 3.66667, 4, 4.33333, 5.33333, 5.66667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 4, 3, 1, 3, 4, 5, 4, 3, 1]
+}
+
+[sub_resource type="Animation" id="Animation_u2usj"]
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 4, 3, 1, 1, 3, 4, 5, 4, 3, 1, 1, 3, 4, 5, 4, 3, 1, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 4, 5, 4, 3, 1, 1, 3, 4, 5, 4, 3, 1, 1, 3, 4, 5, 4, 3, 1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_mxcr4"]
+length = 4.0
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8125, 0.875, 0.9375, 1, 1.3125, 1.375, 1.4375, 1.5, 1.8125, 1.875, 1.9375, 2, 2.3125, 2.375, 2.4375, 2.5, 2.8125, 2.875, 2.9375, 3, 3.3125, 3.375, 3.4375, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8125, 0.875, 0.9375, 1, 1.3125, 1.375, 1.4375, 1.5, 1.8125, 1.875, 1.9375, 2, 2.3125, 2.375, 2.4375, 2.5, 2.8125, 2.875, 2.9375, 3, 3.3125, 3.375, 3.4375, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3125, 0.375, 0.4375, 0.5, 0.8125, 0.875, 0.9375, 1, 1.3125, 1.375, 1.4375, 1.5, 1.8125, 1.875, 1.9375, 2, 2.3125, 2.375, 2.4375, 2.5, 2.8125, 2.875, 2.9375, 3, 3.3125, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 3, 4, 5, 5, 4, 3, 1, 1, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rndcw"]
+_data = {
+"RESET": SubResource("Animation_wa3nq"),
+"ambient": SubResource("Animation_ffb6f"),
+"idle-ear-wiggle0": SubResource("Animation_u2usj"),
+"idle-ear-wiggle1": SubResource("Animation_mxcr4")
+}
+
+[sub_resource type="Animation" id="Animation_yw6kc"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck0:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Collar:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -100)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodySweat:process_material:emission_sphere_radius")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySweat:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, -50)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Collar:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TailZ0:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Bellybutton:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Bellybutton:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jmtcm"]
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-33.2519, -23.509), Vector2(-54.4241, -35.0451), Vector2(-83.2308, -87.2261), Vector2(-181.155, -161.345), Vector2(-399.483, -349.47)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-33.0066, 0), Vector2(-57.6266, 0), Vector2(-92.1684, -10.4094), Vector2(-169.023, 2.7095), Vector2(-428.053, 6.5144)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(33.8707, -11.0956), Vector2(54.353, -31.0902), Vector2(82.1504, -88.6357), Vector2(166.083, -175.299), Vector2(371.881, -397.689)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(30.091, 0), Vector2(50.086, 0), Vector2(88.6123, -15.1179), Vector2(186.882, -22.8557), Vector2(451.803, -42.8278)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck0:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-16.9513, -24.525), Vector2(-21.4271, -54), Vector2(-29.6163, -133.714), Vector2(-59.2814, -259.238), Vector2(-147.073, -557.208)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Collar:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -100), Vector2(0, -100), Vector2(-16.951, -124.525), Vector2(-24.0967, -156.67), Vector2(-33.6205, -235.049), Vector2(-65.2842, -367.896), Vector2(-152.865, -668.787)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodySweat:process_material:emission_sphere_radius")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 3, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [50.0, 50.0, 135.0, 460.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySweat:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-10, -50), Vector2(-10, -50), Vector2(0, -50), Vector2(-2.5, -60), Vector2(-10, -140), Vector2(0, -240)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Collar:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 0, -0.0779042, -0.16162, -0.223868, -0.285063]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TailZ1:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(6, 2), Vector2(40, 6), Vector2(57, 10), Vector2(142, 30), Vector2(320, 68)]
+}
+
+[sub_resource type="Animation" id="Animation_dk6h1"]
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NearArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(7.00775, -19.2712), Vector2(0.667999, -32.9261), Vector2(-15.4252, -85.1072), Vector2(-43.4252, -157.107), Vector2(-89.4498, -342.343)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearLeg:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(7.253, 0), Vector2(10.179, 0), Vector2(5.30226, -8.29047), Vector2(-20.6977, 2.7095), Vector2(-59.4692, 6.5144)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FarArm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(33.8707, -11.0956), Vector2(54.353, -31.0902), Vector2(82.1504, -88.6357), Vector2(166.083, -175.299), Vector2(371.881, -397.689)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FarLeg:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(30.091, 0), Vector2(50.086, 0), Vector2(88.6123, -15.1179), Vector2(186.882, -22.8557), Vector2(451.803, -42.8278)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck0:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -24.525), Vector2(4, -54), Vector2(17, -121), Vector2(17, -255), Vector2(81.7715, -561.446)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Collar:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -100), Vector2(0, -100), Vector2(0, -124.525), Vector2(4, -154), Vector2(17, -221), Vector2(17, -355), Vector2(81.771, -661.446)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodySweat:process_material:emission_sphere_radius")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 3, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [50.0, 50.0, 135.0, 460.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySweat:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-10, -50), Vector2(-10, -50), Vector2(0, -50), Vector2(-2.5, -60), Vector2(-10, -140), Vector2(0, -240)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Collar:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TailZ0:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-6, -2), Vector2(-24, -6), Vector2(-57, -10), Vector2(-142, -30), Vector2(-320, -68)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Bellybutton:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(370, -76)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Bellybutton:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.139626]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v40fb"]
+_data = {
+"RESET": SubResource("Animation_yw6kc"),
+"fat-nw": SubResource("Animation_jmtcm"),
+"fat-se": SubResource("Animation_dk6h1")
+}
 
 [node name="Visuals" type="Node2D"]
-position = Vector2( 580, 850 )
-script = ExtResource( 37 )
+position = Vector2(580, 850)
+script = ExtResource("37")
 dna = {
-"property:Body:belly_color": Color( 0, 0, 0, 1 ),
-"property:Body:body_color": Color( 0, 0, 0, 1 ),
-"property:Body:line_color": Color( 0, 0, 0, 1 ),
-"property:Body:shadow_color": Color( 0, 0, 0, 0.25 ),
+"accessory": "0",
+"belly": "1",
+"belly_rgb": "35e1e0",
+"bellybutton": "0",
+"body": "1",
+"body_rgb": "23a2e3",
+"cheek": "1",
+"cloth_rgb": "415a73",
+"collar": "0",
+"ear": "15",
+"emote-eye": "1",
+"eye": "1",
+"eye_rgb": "415a73 c8cbd6",
+"glass_rgb": "bf3a3a",
+"hair": "1",
+"hair_rgb": "477d5b",
+"head": "1",
+"horn": "1",
+"horn_rgb": "ffe7e5",
+"line_rgb": "6c4331",
+"mouth": "6",
+"nose": "2",
+"plastic_rgb": "34373a",
+"property:Body:belly_color": Color(0.207843, 0.882353, 0.878431, 1),
+"property:Body:body_color": Color(0.137255, 0.635294, 0.890196, 1),
+"property:Body:line_color": Color(0.423529, 0.262745, 0.192157, 1),
+"property:Body:shadow_color": Color(0.423529, 0.262745, 0.192157, 0.25),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 49 ),
+"property:FarArm:texture": ExtResource("49"),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 58 ),
+"property:FarLeg:texture": ExtResource("58"),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 52 ),
+"property:NearArm:texture": ExtResource("52"),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 57 ),
+"property:NearLeg:texture": ExtResource("57"),
+"property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/1/cheek-z0-packed.json",
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource("3_hkjsw"),
+"property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/1/cheek-z1-packed.json",
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource("4_vs17t"),
+"property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/1/cheek-z2-packed.json",
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource("5_o3fk2"),
 "property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 56 ),
+"property:Neck0/HeadBobber/Chin:texture": ExtResource("56"),
+"property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/15/ear-z1-packed.json",
+"property:Neck0/HeadBobber/EarZ1:texture": ExtResource("6_ieslj"),
+"property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/15/ear-z2-packed.json",
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource("7_gvm1p"),
+"property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource("10_art4g"),
+"property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource("11_42efc"),
+"property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/1/eye-z0-packed.json",
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource("8_t5rjy"),
+"property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource("9_xhjhj"),
+"property:Neck0/HeadBobber/HairZ0:frame_data": "res://assets/main/world/creature/1/hair-z0-packed.json",
+"property:Neck0/HeadBobber/HairZ0:texture": ExtResource("12_auk80"),
+"property:Neck0/HeadBobber/HairZ1:frame_data": "res://assets/main/world/creature/1/hair-z1-packed.json",
+"property:Neck0/HeadBobber/HairZ1:texture": ExtResource("13_5q1ck"),
+"property:Neck0/HeadBobber/HairZ2:frame_data": "res://assets/main/world/creature/1/hair-z2-packed.json",
+"property:Neck0/HeadBobber/HairZ2:texture": ExtResource("14_7rgv1"),
+"property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
+"property:Neck0/HeadBobber/Head:texture": ExtResource("2_7sk1y"),
+"property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/1/horn-z1-packed.json",
+"property:Neck0/HeadBobber/HornZ1:texture": ExtResource("15_2fqm1"),
+"property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/6/mouth-packed.json",
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource("16_5wm5y"),
+"property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/2/nose-packed.json",
+"property:Neck0/HeadBobber/Nose:texture": ExtResource("17_oh8g3"),
 "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 51 ),
-"shader:Bellybutton:black": Color( 0, 0, 0, 1 ),
-"shader:Collar:black": Color( 0, 0, 0, 1 ),
-"shader:EmoteBody:black": Color( 0, 0, 0, 1 ),
-"shader:FarArm:black": Color( 0, 0, 0, 1 ),
-"shader:FarLeg:black": Color( 0, 0, 0, 1 ),
-"shader:NearArm:black": Color( 0, 0, 0, 1 ),
-"shader:NearLeg:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ0:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ1:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/AccessoryZ2:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/CheekZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/CheekZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/CheekZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Chin:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ0:red": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ1:red": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HairZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HairZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HairZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:green": Color( 0.952941, 0.572549, 0.454902, 1 ),
-"shader:Neck0/HeadBobber/Nose:black": Color( 0, 0, 0, 1 ),
-"shader:TailZ0:black": Color( 0, 0, 0, 1 ),
-"shader:TailZ1:black": Color( 0, 0, 0, 1 )
+"property:Sprint:texture": ExtResource("51"),
+"shader:Bellybutton:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Bellybutton:red": Color(0.207843, 0.882353, 0.878431, 1),
+"shader:Collar:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Collar:green": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Collar:red": Color(0.254902, 0.352941, 0.45098, 1),
+"shader:EmoteBody:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:FarArm:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:FarArm:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:FarLeg:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:FarLeg:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:NearArm:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:NearArm:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:NearLeg:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:NearLeg:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/AccessoryZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/AccessoryZ0:blue": Color(1, 1, 1, 1),
+"shader:Neck0/HeadBobber/AccessoryZ0:green": Color(0.74902, 0.227451, 0.227451, 1),
+"shader:Neck0/HeadBobber/AccessoryZ0:red": Color(0.203922, 0.215686, 0.227451, 1),
+"shader:Neck0/HeadBobber/AccessoryZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/AccessoryZ1:blue": Color(1, 1, 1, 1),
+"shader:Neck0/HeadBobber/AccessoryZ1:green": Color(0.74902, 0.227451, 0.227451, 1),
+"shader:Neck0/HeadBobber/AccessoryZ1:red": Color(0.203922, 0.215686, 0.227451, 1),
+"shader:Neck0/HeadBobber/AccessoryZ2:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/AccessoryZ2:blue": Color(1, 1, 1, 1),
+"shader:Neck0/HeadBobber/AccessoryZ2:green": Color(0.74902, 0.227451, 0.227451, 1),
+"shader:Neck0/HeadBobber/AccessoryZ2:red": Color(0.203922, 0.215686, 0.227451, 1),
+"shader:Neck0/HeadBobber/CheekZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/CheekZ0:green": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/CheekZ0:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/CheekZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/CheekZ1:green": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/CheekZ1:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/CheekZ2:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/CheekZ2:green": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/CheekZ2:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/Chin:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/Chin:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EarZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EarZ0:blue": Color(1, 0.905882, 0.898039, 1),
+"shader:Neck0/HeadBobber/EarZ0:green": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Neck0/HeadBobber/EarZ0:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EarZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EarZ1:blue": Color(1, 0.905882, 0.898039, 1),
+"shader:Neck0/HeadBobber/EarZ1:green": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Neck0/HeadBobber/EarZ1:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EarZ2:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EarZ2:blue": Color(1, 0.905882, 0.898039, 1),
+"shader:Neck0/HeadBobber/EarZ2:green": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Neck0/HeadBobber/EarZ2:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EmoteArmZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EmoteArmZ0:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EmoteArmZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EmoteArmZ1:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EmoteBrain:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:red": Color(1, 1, 1, 1),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:red": Color(1, 1, 1, 1),
+"shader:Neck0/HeadBobber/EyeZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EyeZ0:blue": Color(0.784314, 0.796078, 0.839216, 1),
+"shader:Neck0/HeadBobber/EyeZ0:green": Color(0.254902, 0.352941, 0.45098, 1),
+"shader:Neck0/HeadBobber/EyeZ0:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/EyeZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/EyeZ1:blue": Color(0.784314, 0.796078, 0.839216, 1),
+"shader:Neck0/HeadBobber/EyeZ1:green": Color(0.254902, 0.352941, 0.45098, 1),
+"shader:Neck0/HeadBobber/EyeZ1:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/HairZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/HairZ0:red": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Neck0/HeadBobber/HairZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/HairZ1:red": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Neck0/HeadBobber/HairZ2:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/HairZ2:red": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:Neck0/HeadBobber/Head:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/Head:green": Color(0.207843, 0.882353, 0.878431, 1),
+"shader:Neck0/HeadBobber/Head:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/HornZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/HornZ0:green": Color(1, 0.905882, 0.898039, 1),
+"shader:Neck0/HeadBobber/HornZ0:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/HornZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/HornZ1:green": Color(1, 0.905882, 0.898039, 1),
+"shader:Neck0/HeadBobber/HornZ1:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/Mouth:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/Mouth:blue": Color(1, 0.905882, 0.898039, 1),
+"shader:Neck0/HeadBobber/Mouth:green": Color(0.952941, 0.572549, 0.454902, 1),
+"shader:Neck0/HeadBobber/Mouth:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:Neck0/HeadBobber/Nose:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:Neck0/HeadBobber/Nose:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:TailZ0:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:TailZ0:blue": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:TailZ0:green": Color(0.207843, 0.882353, 0.878431, 1),
+"shader:TailZ0:red": Color(0.137255, 0.635294, 0.890196, 1),
+"shader:TailZ1:black": Color(0.423529, 0.262745, 0.192157, 1),
+"shader:TailZ1:blue": Color(0.278431, 0.490196, 0.356863, 1),
+"shader:TailZ1:green": Color(0.207843, 0.882353, 0.878431, 1),
+"shader:TailZ1:red": Color(0.137255, 0.635294, 0.890196, 1),
+"tail": "0"
 }
 
 [node name="FarArm" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 1 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 6 )
-texture = ExtResource( 49 )
-frame_data = "res://assets/main/world/creature/1/arm-z0-packed.json"
-size = Vector2( 512, 512 )
-frame = 1
-offset = Vector2( 0, -119 )
+material = SubResource("1")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("6")
 invisible_while_sprinting = true
+texture = ExtResource("49")
+frame_data = "res://assets/main/world/creature/1/arm-z0-packed.json"
+size = Vector2(512, 512)
+frame = 1
+offset = Vector2(0, -119)
 
 [node name="FarLeg" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 2 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 6 )
-texture = ExtResource( 58 )
-frame_data = "res://assets/main/world/creature/1/leg-z0-packed.json"
-size = Vector2( 512, 512 )
-frame = 1
-offset = Vector2( 0, -119 )
+material = SubResource("2")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("6")
 invisible_while_sprinting = true
+texture = ExtResource("58")
+frame_data = "res://assets/main/world/creature/1/leg-z0-packed.json"
+size = Vector2(512, 512)
+frame = 1
+offset = Vector2(0, -119)
 
 [node name="Sprint" type="Node2D" parent="."]
 visible = false
 light_mask = 2
-material = SubResource( 1 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 50 )
-texture = ExtResource( 51 )
+material = SubResource("1")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("50")
+texture = ExtResource("51")
 frame_data = "res://assets/main/world/creature/1/sprint-z0-packed.json"
-size = Vector2( 512, 512 )
+size = Vector2(512, 512)
 frame = 1
-offset = Vector2( 0, -119 )
+offset = Vector2(0, -119)
 
 [node name="TailZ0" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 3 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
+material = SubResource("3")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("2")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
-offset = Vector2( 0, -119 )
+offset = Vector2(0, -119)
 
-[node name="Body" parent="." instance=ExtResource( 11 )]
+[node name="Body" parent="." instance=ExtResource("11")]
 creature_visuals_path = NodePath("..")
-body_color = Color( 0, 0, 0, 1 )
-belly_color = Color( 0, 0, 0, 1 )
-shadow_color = Color( 0, 0, 0, 0.25 )
+line_color = Color(0.423529, 0.262745, 0.192157, 1)
+body_color = Color(0.137255, 0.635294, 0.890196, 1)
+belly_color = Color(0.207843, 0.882353, 0.878431, 1)
+shadow_color = Color(0.423529, 0.262745, 0.192157, 0.25)
+
+[node name="BodyShape" type="Path2D" parent="Body" instance=ExtResource("29_6fkrr")]
+visible = false
+curve = SubResource("Curve2D_tuiph")
+script = ExtResource("30_32nlb")
+editing = false
+curve_defs = [{
+"curve_def": [[Vector2(-11.158, -72.0639), Vector2(24.9977, 0.341151), Vector2(-32.9037, -0.449047)], [Vector2(-62.0516, -16.4455), Vector2(-0.631155, -31.5491), Vector2(0.500038, 24.995)], [Vector2(-13.1955, 28.0658), Vector2(-27.2528, -0.551655), Vector2(30.9852, 0.627207)], [Vector2(37.7671, -13.4088), Vector2(-0.010441, 25), Vector2(0.011404, -27.3082)], [Vector2(-11.0971, -72.0781), Vector2(27.0964, -1.30105), Vector2(-24.9712, 1.19901)]],
+"fatness": 1.0
+}, {
+"curve_def": [[Vector2(2.48196, -98.0519), Vector2(24.9796, 1.01005), Vector2(-47.2111, -1.90899)], [Vector2(-73.3638, -25.1984), Vector2(-0.830624, -38.0932), Vector2(0.634766, 29.1109)], [Vector2(0.225128, 32.502), Vector2(-35.9932, -0.577805), Vector2(42.1136, 0.676056)], [Vector2(77.9952, -21.8535), Vector2(-0.801091, 32.9443), Vector2(1.04004, -42.7709)], [Vector2(3.64993, -98.0519), Vector2(47.5356, -1.59304), Vector2(-24.986, 0.837346)]],
+"fatness": 1.5
+}, {
+"curve_def": [[Vector2(-0.795074, -123.774), Vector2(24.9736, 1.14793), Vector2(-54.3328, -2.49744)], [Vector2(-103.721, -28.4092), Vector2(0.105613, -58.0879), Vector2(-0.072546, 39.901)], [Vector2(-3.13336, 45.2353), Vector2(-63.8023, 0.391274), Vector2(61.3144, -0.376016)], [Vector2(99.2505, -28.4092), Vector2(-0.06645, 39.2979), Vector2(0.097053, -57.3966)], [Vector2(-0.352325, -123.878), Vector2(52.4123, -1.59304), Vector2(-24.9885, 0.759509)]],
+"fatness": 2.0
+}, {
+"curve_def": [[Vector2(-8.91397, -205.409), Vector2(24.9987, 0.254314), Vector2(-81.0925, -0.824962)], [Vector2(-153.753, -56.6687), Vector2(-0.645028, -82.3391), Vector2(0.43048, 54.9516)], [Vector2(-7.45096, 49.1566), Vector2(-83.8696, 1.41249), Vector2(82.6315, -1.39163)], [Vector2(138.364, -50.8166), Vector2(-0.945125, 49.6637), Vector2(1.22209, -64.2175)], [Vector2(-8.91397, -204.922), Vector2(88.3706, -1.59304), Vector2(-24.996, 0.450598)]],
+"fatness": 3.0
+}, {
+"curve_def": [[Vector2(-15.1975, -342.556), Vector2(24.9942, -0.537486), Vector2(-120.34, 2.58783)], [Vector2(-262.069, -87.7643), Vector2(-2.46623, -173.91), Vector2(1.31159, 92.489)], [Vector2(-29.1206, 90.6122), Vector2(-137.336, -0.624495), Vector2(163.981, 0.745659)], [Vector2(236.408, -78.8047), Vector2(-0.799582, 82.6504), Vector2(1.55683, -160.925)], [Vector2(-14.9055, -342.556), Vector2(128.187, -2.16184), Vector2(-24.9965, 0.421561)]],
+"fatness": 5.0
+}, {
+"curve_def": [[Vector2(-1.29367, -658.921), Vector2(24.9962, 0.436254), Vector2(-186.573, -3.25622)], [Vector2(-494.142, -156.333), Vector2(-4.48658, -290.76), Vector2(3.44123, 223.014)], [Vector2(-18.8258, 204.05), Vector2(-219.143, -2.18805), Vector2(241.903, 2.4153)], [Vector2(497.398, -131.008), Vector2(2.04043, 215.119), Vector2(-3.31852, -349.867)], [Vector2(0.654327, -658.921), Vector2(194.42, -4.10986), Vector2(-24.9945, 0.528361)]],
+"fatness": 10.0
+}]
+creature_visuals_path = NodePath("../..")
+line_width = 2.0
+
+[node name="Belly" type="Path2D" parent="Body" instance=ExtResource("31_ucj4j")]
+visible = false
+curve = SubResource("Curve2D_y4ect")
+script = ExtResource("30_32nlb")
+editing = false
+curve_defs = [{
+"curve_def": [[Vector2(-16.4229, -16.8725), Vector2(-0.827609, -19.5058), Vector2(0.827609, 19.5058)], [Vector2(18.2874, 11.2822), Vector2(-14.9663, 1.17112), Vector2(14.9663, -1.17112)], [Vector2(49.4005, -24.8763), Vector2(0.670203, 16.3499), Vector2(-0.670203, -16.3499)], [Vector2(12.944, -59.7323), Vector2(15.2832, -1.67112), Vector2(-15.2832, 1.67112)], [Vector2(-16.4229, -19.2536), Vector2(-0.144124, -20.4429), Vector2(0.144124, 20.4429)]],
+"fatness": 1.0
+}, {
+"curve_def": [[Vector2(-14.0417, -44.652), Vector2(-5.07054, -36.988), Vector2(5.07054, 36.988)], [Vector2(53.4227, 10.1133), Vector2(-31.3813, 2.0557), Vector2(31.3813, -2.0557)], [Vector2(100.251, -56.5575), Vector2(6.51624, 31.0115), Vector2(-6.51624, -31.0115)], [Vector2(30.4055, -119.26), Vector2(31.663, -1.97161), Vector2(-31.663, 1.97161)], [Vector2(-15.6292, -47.8268), Vector2(-3.40593, -37.2924), Vector2(3.40593, 37.2924)]],
+"fatness": 2.0
+}, {
+"curve_def": [[Vector2(-92.8664, -265.233), Vector2(-39.014, -176.845), Vector2(39.014, 176.845)], [Vector2(263.896, 1.14941), Vector2(-162.701, 9.13235), Vector2(162.701, -9.13235)], [Vector2(487.467, -308.044), Vector2(53.2845, 148.304), Vector2(-53.2845, -148.304)], [Vector2(121.191, -617.238), Vector2(162.701, -4.37552), Vector2(-162.701, 4.37552)], [Vector2(-92.8664, -274.747), Vector2(-29.5004, -172.088), Vector2(29.5004, 172.088)]],
+"fatness": 10.0
+}]
+drawn_when_facing_north = false
+creature_visuals_path = NodePath("../..")
+fill_color = Color(1, 0, 0, 1)
+line_width = 2.0
+
+[node name="NeckBlend" type="Path2D" parent="Body" instance=ExtResource("32_55u3e")]
+visible = false
+curve = SubResource("Curve2D_d6kbb")
+script = ExtResource("30_32nlb")
+editing = false
+curve_defs = [{
+"curve_def": [[Vector2(-39.25, -57.75), Vector2(-3.43906, 20.3436), Vector2(3.43906, -20.3436)], [Vector2(5.5, -62.5), Vector2(-3.10014, -15.1205), Vector2(3.10014, 15.1205)]],
+"fatness": 1.0
+}, {
+"curve_def": [[Vector2(-27.25, -87.25), Vector2(-4.43906, 14.8436), Vector2(4.43906, -14.8436)], [Vector2(21.25, -91.5), Vector2(-5.35014, -12.3705), Vector2(5.35014, 12.3705)]],
+"fatness": 1.5
+}, {
+"curve_def": [[Vector2(-23.75, -116.5), Vector2(-7.68906, 11.8436), Vector2(7.68906, -11.8436)], [Vector2(28.25, -114.25), Vector2(-9.35014, -15.8705), Vector2(9.35014, 15.8705)]],
+"fatness": 2.0
+}, {
+"curve_def": [[Vector2(-21.9132, -198.473), Vector2(-10.18, 12.5253), Vector2(10.18, -12.5253)], [Vector2(32.877, -191.568), Vector2(-5.76846, -16.6342), Vector2(5.76846, 16.6342)]],
+"fatness": 3.0
+}, {
+"curve_def": [[Vector2(19.8726, -618.93), Vector2(-0.918249, 0.479607), Vector2(0.918249, -0.479607)], [Vector2(24.918, -618.089), Vector2(-1.29864, -0.747561), Vector2(1.29864, 0.747561)]],
+"fatness": 10.0
+}]
+drawn_when_facing_south = false
+creature_visuals_path = NodePath("../..")
+closed = false
+line_color = Color(0, 0, 0, 0.501961)
+
+[node name="Shadows" type="Node2D" parent="Body" instance=ExtResource("33_3uqof")]
+visible = false
+script = ExtResource("34_h086d")
+creature_visuals_path = NodePath("../..")
 
 [node name="NearLeg" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 2 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 6 )
-texture = ExtResource( 57 )
-frame_data = "res://assets/main/world/creature/1/leg-z1-packed.json"
-size = Vector2( 512, 512 )
-frame = 1
-offset = Vector2( 0, -119 )
+material = SubResource("2")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("6")
 invisible_while_sprinting = true
+texture = ExtResource("57")
+frame_data = "res://assets/main/world/creature/1/leg-z1-packed.json"
+size = Vector2(512, 512)
+frame = 1
+offset = Vector2(0, -119)
 
 [node name="NearArm" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 1 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 6 )
-texture = ExtResource( 52 )
-frame_data = "res://assets/main/world/creature/1/arm-z1-packed.json"
-size = Vector2( 512, 512 )
-frame = 1
-offset = Vector2( 0, -119 )
+material = SubResource("1")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("6")
 invisible_while_sprinting = true
+texture = ExtResource("52")
+frame_data = "res://assets/main/world/creature/1/arm-z1-packed.json"
+size = Vector2(512, 512)
+frame = 1
+offset = Vector2(0, -119)
 
 [node name="BodySweat" type="GPUParticles2D" parent="."]
-material = SubResource( 4 )
-position = Vector2( -10, -50 )
-scale = Vector2( 1, 0.9 )
+material = SubResource("4")
+position = Vector2(-10, -50)
+scale = Vector2(1, 0.9)
 emitting = false
 amount = 3
+process_material = SubResource("7")
+texture = ExtResource("44")
 lifetime = 3.6
 randomness = 1.0
-process_material = SubResource( 7 )
-texture = ExtResource( 44 )
-script = ExtResource( 46 )
+script = ExtResource("46")
 creature_visuals_path = NodePath("..")
 
 [node name="Bellybutton" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 8 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
-frame = 1
-offset = Vector2( 0, -119 )
+material = SubResource("8")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("6")
 invisible_while_sprinting = true
+frame_data = ""
+size = Vector2(512, 512)
+frame = 1
+offset = Vector2(0, -119)
 
 [node name="Collar" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 9 )
-position = Vector2( 0, -100 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("9")
+position = Vector2(0, -100)
+scale = Vector2(0.836, 0.836)
+script = ExtResource("6")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
 
 [node name="Neck0" type="Sprite2D" parent="."]
-__meta__ = {
-"_editor_description_": "Neck0 offsets the head's position as the creature grows in size."
-}
 
 [node name="HeadBobber" type="Sprite2D" parent="Neck0"]
 light_mask = 2
-position = Vector2( 0, -100 )
-scale = Vector2( 0.418, 0.418 )
+position = Vector2(0, -100)
+scale = Vector2(0.418, 0.418)
 hframes = 3
 frame = 1
-script = ExtResource( 9 )
-__meta__ = {
-"_editor_description_": "Neck1 offsets the head's position as the creature bobs their head up and down"
-}
+script = ExtResource("9")
 
 [node name="AccessoryZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 10 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("10")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
 
 [node name="HairZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 11 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("11")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("12_auk80")
+frame_data = "res://assets/main/world/creature/1/hair-z0-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 12 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("12")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
 
 [node name="HornZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 13 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("13")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
 
 [node name="CheekZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 14 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("14")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("3_hkjsw")
+frame_data = "res://assets/main/world/creature/1/cheek-z0-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="Head" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 15 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("15")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("2_7sk1y")
+frame_data = "res://assets/main/world/creature/1/head-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="Chin" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 16 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = ExtResource( 56 )
+material = SubResource("16")
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("56")
 frame_data = "res://assets/main/world/creature/1/chin-packed.json"
-size = Vector2( 512, 512 )
+size = Vector2(512, 512)
 frame = 1
 
 [node name="EarZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 12 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("12")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("6_ieslj")
+frame_data = "res://assets/main/world/creature/15/ear-z1-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="CheekZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 14 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("14")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("4_vs17t")
+frame_data = "res://assets/main/world/creature/1/cheek-z1-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="Mouth" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 17 )
-scale = Vector2( 2, 2 )
 z_index = 1
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
+material = SubResource("17")
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("16_5wm5y")
+frame_data = "res://assets/main/world/creature/6/mouth-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="EyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 18 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
-frame = 1
+material = SubResource("18")
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("8_t5rjy")
+frame_data = "res://assets/main/world/creature/1/eye-z0-packed.json"
+size = Vector2(512, 512)
 
 [node name="EmoteEyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 19 )
-position = Vector2( 0, 256 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
-offset = Vector2( 0, -128 )
+material = SubResource("19")
+position = Vector2(0, 256)
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("10_art4g")
+frame_data = "res://assets/main/world/creature/1/emote-eye-z0-packed.json"
+size = Vector2(512, 512)
+offset = Vector2(0, -128)
 
 [node name="EmoteArmZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 1 )
-position = Vector2( 0, 234.708 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = ExtResource( 25 )
+material = SubResource("1")
+position = Vector2(0, 234.708)
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("25")
 frame_data = "res://assets/main/world/creature/1/emote-arm-z0-packed.json"
-size = Vector2( 512, 512 )
-offset = Vector2( 0, -119 )
+size = Vector2(512, 512)
+offset = Vector2(0, -119)
 
 [node name="AccessoryZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 10 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("10")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
 
 [node name="HairZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 11 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("11")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("13_5q1ck")
+frame_data = "res://assets/main/world/creature/1/hair-z1-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="HornZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 13 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("13")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("15_2fqm1")
+frame_data = "res://assets/main/world/creature/1/horn-z1-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="Nose" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 20 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("20")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("17_oh8g3")
+frame_data = "res://assets/main/world/creature/2/nose-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="EyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 18 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
-frame = 1
+material = SubResource("18")
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("9_xhjhj")
+frame_data = "res://assets/main/world/creature/1/eye-z1-packed.json"
+size = Vector2(512, 512)
 
 [node name="EmoteEyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 19 )
-position = Vector2( 0, 256 )
+material = SubResource("19")
+position = Vector2(0, 256)
 rotation = 0.139626
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
-offset = Vector2( 0, -128 )
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("11_42efc")
+frame_data = "res://assets/main/world/creature/1/emote-eye-z1-packed.json"
+size = Vector2(512, 512)
+offset = Vector2(0, -128)
 
 [node name="EarZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 12 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("12")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("7_gvm1p")
+frame_data = "res://assets/main/world/creature/15/ear-z2-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="CheekZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 14 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("14")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("5_o3fk2")
+frame_data = "res://assets/main/world/creature/1/cheek-z2-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="HairZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 11 )
-scale = Vector2( 2, 2 )
 z_index = 1
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("11")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+texture = ExtResource("14_7rgv1")
+frame_data = "res://assets/main/world/creature/1/hair-z2-packed.json"
+size = Vector2(512, 512)
 frame = 1
 
 [node name="AccessoryZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 10 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-size = Vector2( 512, 512 )
+material = SubResource("10")
+scale = Vector2(2, 2)
+script = ExtResource("6")
+frame_data = ""
+size = Vector2(512, 512)
 frame = 1
 
 [node name="EmoteArmZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 1 )
-position = Vector2( 0, 234.708 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = ExtResource( 14 )
+material = SubResource("1")
+position = Vector2(0, 234.708)
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("14")
 frame_data = "res://assets/main/world/creature/1/emote-arm-z1-packed.json"
-size = Vector2( 512, 512 )
-offset = Vector2( 0, -119 )
+size = Vector2(512, 512)
+offset = Vector2(0, -119)
 
 [node name="SweatSquirts" type="GPUParticles2D" parent="Neck0/HeadBobber"]
 z_index = 1
 emitting = false
-local_coords = false
-process_material = SubResource( 23 )
-texture = ExtResource( 42 )
-script = ExtResource( 43 )
+process_material = SubResource("23")
+texture = ExtResource("42")
+script = ExtResource("43")
 creature_visuals_path = NodePath("../../..")
 
 [node name="SweatDrops" type="GPUParticles2D" parent="Neck0/HeadBobber"]
-material = SubResource( 4 )
-position = Vector2( 6, -60 )
-scale = Vector2( 2.8, 2.4 )
+material = SubResource("4")
+position = Vector2(6, -60)
+scale = Vector2(2.8, 2.4)
 emitting = false
 amount = 3
+process_material = SubResource("24")
+texture = ExtResource("44")
 lifetime = 3.6
 randomness = 1.0
-process_material = SubResource( 24 )
-texture = ExtResource( 44 )
-script = ExtResource( 45 )
+script = ExtResource("45")
 creature_visuals_path = NodePath("../../..")
 
 [node name="EmoteGlow" type="Sprite2D" parent="Neck0/HeadBobber"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
 light_mask = 2
-material = SubResource( 25 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-offset = Vector2( 0, -239 )
-__meta__ = {
-"_edit_group_": true
-}
+material = SubResource("25")
+scale = Vector2(2, 2)
+texture = ExtResource("4")
+offset = Vector2(0, -239)
 
 [node name="EmoteBrain" type="Node2D" parent="Neck0/HeadBobber"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
 light_mask = 2
-material = SubResource( 26 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = ExtResource( 10 )
+material = SubResource("26")
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("10")
 frame_data = "res://assets/main/world/creature/1/emote-brain-packed.json"
-size = Vector2( 256, 256 )
-offset = Vector2( 0, -119 )
+size = Vector2(256, 256)
+offset = Vector2(0, -119)
 
 [node name="EmoteHead" type="Node2D" parent="Neck0/HeadBobber"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
 light_mask = 2
-position = Vector2( 0, 256 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = ExtResource( 21 )
+position = Vector2(0, 256)
+scale = Vector2(2, 2)
+script = ExtResource("2")
+texture = ExtResource("21")
 frame_data = "res://assets/main/world/creature/1/emote-head-packed.json"
-size = Vector2( 512, 512 )
-offset = Vector2( 0, -128 )
+size = Vector2(512, 512)
+offset = Vector2(0, -128)
 
 [node name="EmoteBody" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
 light_mask = 2
-material = SubResource( 27 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 2 )
-texture = ExtResource( 15 )
+material = SubResource("27")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("2")
+texture = ExtResource("15")
 frame_data = "res://assets/main/world/creature/1/emote-body-packed.json"
-offset = Vector2( 0, -119 )
+offset = Vector2(0, -119)
 
 [node name="TailZ1" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 3 )
-scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 2 )
-size = Vector2( 512, 512 )
-offset = Vector2( 0, -119 )
+material = SubResource("3")
+scale = Vector2(0.836, 0.836)
+script = ExtResource("2")
+frame_data = ""
+size = Vector2(512, 512)
+offset = Vector2(0, -119)
 
 [node name="DnaLoader" type="Node" parent="."]
-process_mode = 2
-script = ExtResource( 8 )
+process_mode = 3
+script = ExtResource("8")
 
 [node name="Animations" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource("5")
 eye_frame = 1
 creature_visuals_path = NodePath("..")
 
 [node name="IdleTimer" type="Timer" parent="Animations"]
-script = ExtResource( 33 )
+script = ExtResource("33")
 emote_player_path = NodePath("../EmotePlayer")
 creature_visuals_path = NodePath("../..")
 
-[node name="EmotePlayer" parent="Animations" instance=ExtResource( 3 )]
-creature_animations_path = NodePath("..")
+[node name="EmotePlayer" parent="Animations" instance=ExtResource("3")]
 
-[node name="MovementPlayer" parent="Animations" instance=ExtResource( 30 )]
+[node name="MovementPlayer" parent="Animations" instance=ExtResource("30")]
+libraries = {
+"": SubResource("AnimationLibrary_r213d")
+}
 
-[node name="TailPlayer" parent="Animations" instance=ExtResource( 29 )]
+[node name="TailPlayer" parent="Animations" instance=ExtResource("29")]
 root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_7f1dn")
+}
+creature_visuals_path = NodePath("../..")
+
+[node name="MouthPlayer" type="AnimationPlayer" parent="Animations" instance=ExtResource("53_ednmo")]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_2o46w")
+}
+script = ExtResource("54_lcnvs")
+creature_visuals_path = NodePath("../..")
+
+[node name="EarPlayer" type="AnimationPlayer" parent="Animations" instance=ExtResource("55_0jvrk")]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_rndcw")
+}
+script = ExtResource("56_4uj6o")
+creature_visuals_path = NodePath("../..")
+
+[node name="FatSpriteMover" type="AnimationPlayer" parent="Animations" instance=ExtResource("57_ujfwu")]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_v40fb")
+}
+script = ExtResource("58_t7u3n")
 creature_visuals_path = NodePath("../..")
 
 [node name="TalkTimer" type="Timer" parent="."]

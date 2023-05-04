@@ -1,0 +1,147 @@
+[gd_resource type="TileSet" load_steps=33 format=3 uid="uid://dl5uq5f6b2u7k"]
+
+[ext_resource type="Texture2D" uid="uid://b7gybedmfntbl" path="res://assets/main/world/environment/restaurant/red-wall-3.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cd2y37eentdx3" path="res://assets/main/empty-600.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://jkkyb4dnb0h2" path="res://assets/main/world/environment/restaurant/red-wall-wide-1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://chis23vflajm7" path="res://assets/main/world/environment/restaurant/red-wall-wide-4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://d2acwxd88tue0" path="res://assets/main/world/environment/restaurant/red-wall-wide-2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://q56nmc4dpsb1" path="res://assets/main/world/environment/restaurant/red-wall-wide-3.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bwm5nwigin62u" path="res://assets/main/world/environment/restaurant/red-wall-wide-5.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://doh12oj18gjkg" path="res://assets/main/world/environment/restaurant/countertop-sheet.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b6g10xg4c8t6k" path="res://assets/main/world/environment/restaurant/grill-sheet.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://hawx3pk1a26" path="res://assets/main/world/environment/restaurant/sink-sheet.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://uvoeutdncti6" path="res://assets/main/world/environment/restaurant/countertop-plates-sheet.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cbxixgm4jplvh" path="res://assets/main/world/environment/restaurant/bar-sheet.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://cnarhwnt6lk0p" path="res://assets/main/world/environment/restaurant/red-wall-1.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://c2h4nlvryyj7v" path="res://assets/main/world/environment/restaurant/red-wall-2.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://djacfpdugpm16" path="res://assets/main/world/environment/restaurant/red-wall-5.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://618xv33fg20g" path="res://assets/main/world/environment/restaurant/red-wall-4.png" id="16"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlro1"]
+texture = ExtResource("2")
+texture_region_size = Vector2i(224, 128)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_24s3b"]
+texture = ExtResource("3")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kpv5i"]
+texture = ExtResource("13")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rv21k"]
+texture = ExtResource("14")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yrwje"]
+texture = ExtResource("1")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x85cp"]
+texture = ExtResource("16")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0kmh"]
+texture = ExtResource("15")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2xegs"]
+texture = ExtResource("12")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_31u4a"]
+texture = ExtResource("5")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o32nc"]
+texture = ExtResource("6")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukpkl"]
+texture = ExtResource("4")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf7dw"]
+texture = ExtResource("7")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ursgm"]
+texture = ExtResource("8")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7wl77"]
+texture = ExtResource("9")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qo7sb"]
+texture = ExtResource("10")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5afc0"]
+texture = ExtResource("11")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[resource]
+tile_size = Vector2i(128, 104)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xlro1")
+sources/1 = SubResource("TileSetAtlasSource_24s3b")
+sources/2 = SubResource("TileSetAtlasSource_31u4a")
+sources/3 = SubResource("TileSetAtlasSource_o32nc")
+sources/4 = SubResource("TileSetAtlasSource_ukpkl")
+sources/5 = SubResource("TileSetAtlasSource_xf7dw")
+sources/6 = SubResource("TileSetAtlasSource_ursgm")
+sources/7 = SubResource("TileSetAtlasSource_7wl77")
+sources/8 = SubResource("TileSetAtlasSource_qo7sb")
+sources/9 = SubResource("TileSetAtlasSource_5afc0")
+sources/10 = SubResource("TileSetAtlasSource_kpv5i")
+sources/11 = SubResource("TileSetAtlasSource_rv21k")
+sources/12 = SubResource("TileSetAtlasSource_yrwje")
+sources/13 = SubResource("TileSetAtlasSource_x85cp")
+sources/14 = SubResource("TileSetAtlasSource_g0kmh")
+sources/15 = SubResource("TileSetAtlasSource_2xegs")

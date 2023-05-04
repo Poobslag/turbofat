@@ -35,4 +35,4 @@ offset_right = 45.0
 offset_bottom = 65.0
 theme = ExtResource( 3 )
 text = "999,999"
-align = 1
+horizontal_alignment = 1

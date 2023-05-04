@@ -1,7 +1,7 @@
 extends Node
 ## Non-interactive demo which shows the different labels and icons for level buttons.
 
-@export (PackedScene) var LevelButtonScene: PackedScene
+@export var LevelButtonScene: PackedScene
 
 @onready var _grid_container := $Control/GridContainer
 @onready var _grade_labels := $Control/GradeLabels

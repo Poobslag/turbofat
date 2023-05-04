@@ -11,10 +11,10 @@ extends Node
 ## activated simultaneously.
 
 ## action which activates the button
-@export (String) var action: String
+@export var action: String
 
 ## (optional) second action which is also required to activate the button
-@export (String) var overridden_action: String
+@export var overridden_action: String
 
 ## button this helper will activate
 @onready var button: Button = get_parent()
@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 		# workaround for Godot #35172; setting button pressed to true doesn't work without toggle mode
 		button.toggle_mode = true
 		button.button_pressed = true
-	if button.pressed and event.is_action_released(action):
+	if button.button_pressed and event.is_action_released(action):
 		# workaround for Godot #35172; setting button pressed to true doesn't work without toggle mode
 		button.button_pressed = false
 		button.toggle_mode = false

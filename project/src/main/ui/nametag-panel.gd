@@ -2,10 +2,10 @@ class_name NametagPanel
 extends Panel
 ## Resizes and shows nametag labels.
 
-@export (Array, Vector2) var panel_sizes: Array
+@export var panel_sizes: Array[Vector2]
 
 ## size of the nametag needed to display the name text
-var nametag_size: int
+var nametag_size: ChatTheme.NametagSize
 
 ## The name is copied into multiple labels. We display the smallest label which fits.
 @onready var _labels := {

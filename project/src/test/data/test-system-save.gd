@@ -12,8 +12,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var dir := DirAccess.new()
-	dir.open("user://")
+	var dir := DirAccess.open("user://")
 	dir.remove(TEMP_SYSTEM_FILENAME)
 	dir.remove(TEMP_LEGACY_FILENAME)
 	for backup in [
@@ -22,7 +21,7 @@ func after_each() -> void:
 			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
 			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK,
 			RollingBackups.LEGACY]:
-		dir.remove(PlayerSave.rolling_backups.rolling_filename(backup))
+		dir.remove(PlayerSave.rolling_backups.get_rolling_filename(backup))
 
 
 func test_save_and_load() -> void:

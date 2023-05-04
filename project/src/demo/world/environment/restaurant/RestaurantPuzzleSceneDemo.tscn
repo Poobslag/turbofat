@@ -1,16 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dkmmmhbkhj53y"]
 
-[ext_resource path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/demo/world/environment/restaurant/restaurant-puzzle-scene-demo.gd" type="Script" id=4]
+[ext_resource type="PackedScene" uid="uid://73btc3shlcmp" path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" id="3"]
+[ext_resource type="Script" path="res://src/demo/world/environment/restaurant/restaurant-puzzle-scene-demo.gd" id="4"]
 
 [node name="Demo" type="Node"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
-[node name="RestaurantPuzzleScene" parent="." instance=ExtResource( 3 )]
+[node name="RestaurantPuzzleScene" parent="." instance=ExtResource("3")]
 
-[node name="Camera3D" type="Camera2D" parent="."]
-offset = Vector2( 1000, 0 )
-current = true
-zoom = Vector2( 3, 3 )
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(1000, 0)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.5

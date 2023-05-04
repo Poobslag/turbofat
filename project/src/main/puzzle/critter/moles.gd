@@ -5,7 +5,7 @@ extends Node2D
 ## Moles dig for a few turns, and then add a pickup to the playfield. But they can be interrupted if they are crushed,
 ## or if the player clears the row they are digging.
 
-@export (PackedScene) var MoleScene: PackedScene
+@export var MoleScene: PackedScene
 
 var piece_manager_path: NodePath: set = set_piece_manager_path
 var playfield_path: NodePath: set = set_playfield_path
@@ -13,7 +13,7 @@ var playfield_path: NodePath: set = set_playfield_path
 ## Queue of calls to defer until after line clears are finished
 var _call_queue: CallQueue = CallQueue.new()
 
-## key: (Vector2) cell containing a mole
+## key: (Vector2i) cell containing a mole
 ## value: (Mole) mole at that cell location
 var _moles_by_cell: Dictionary
 
@@ -21,7 +21,7 @@ var _piece_manager: PieceManager
 var _playfield: Playfield
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
+	PuzzleState.before_piece_written.connect(_on_PuzzleState_before_piece_written)
 	_refresh_playfield_path()
 	_refresh_piece_manager_path()
 
@@ -38,40 +38,40 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 
 ## Connects playfield listeners.
 func _refresh_playfield_path() -> void:
-	if not (is_inside_tree() and playfield_path):
+	if not (is_inside_tree() and not playfield_path.is_empty()):
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
-		_playfield.disconnect("line_deleted", Callable(self, "_on_Playfield_line_deleted"))
-		_playfield.disconnect("line_erased", Callable(self, "_on_Playfield_line_erased"))
-		_playfield.disconnect("line_inserted", Callable(self, "_on_Playfield_line_inserted"))
-		_playfield.disconnect("line_filled", Callable(self, "_on_Playfield_line_filled"))
-		_playfield.disconnect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
+		_playfield.blocks_prepared.disconnect(_on_Playfield_blocks_prepared)
+		_playfield.line_deleted.disconnect(_on_Playfield_line_deleted)
+		_playfield.line_erased.disconnect(_on_Playfield_line_erased)
+		_playfield.line_inserted.disconnect(_on_Playfield_line_inserted)
+		_playfield.line_filled.disconnect(_on_Playfield_line_filled)
+		_playfield.after_lines_deleted.disconnect(_on_Playfield_after_lines_deleted)
 	
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
-		_playfield.connect("line_deleted", Callable(self, "_on_Playfield_line_deleted"))
-		_playfield.connect("line_erased", Callable(self, "_on_Playfield_line_erased"))
-		_playfield.connect("line_inserted", Callable(self, "_on_Playfield_line_inserted"))
-		_playfield.connect("line_filled", Callable(self, "_on_Playfield_line_filled"))
-		_playfield.connect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
+		_playfield.blocks_prepared.connect(_on_Playfield_blocks_prepared)
+		_playfield.line_deleted.connect(_on_Playfield_line_deleted)
+		_playfield.line_erased.connect(_on_Playfield_line_erased)
+		_playfield.line_inserted.connect(_on_Playfield_line_inserted)
+		_playfield.line_filled.connect(_on_Playfield_line_filled)
+		_playfield.after_lines_deleted.connect(_on_Playfield_after_lines_deleted)
 
 
 ## Connects piece manager listeners.
 func _refresh_piece_manager_path() -> void:
-	if not (is_inside_tree() and piece_manager_path):
+	if not (is_inside_tree() and not piece_manager_path.is_empty()):
 		return
 	
 	if _piece_manager:
-		_piece_manager.disconnect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
+		_piece_manager.piece_disturbed.disconnect(_on_PieceManager_piece_disturbed)
 	
 	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
 	
 	if _piece_manager:
-		_piece_manager.connect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
+		_piece_manager.piece_disturbed.connect(_on_PieceManager_piece_disturbed)
 
 
 ## Adds moles to the playfield.
@@ -108,9 +108,9 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 	
 	for y in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var mole_cell := Vector2(x, y)
+			var mole_cell := Vector2i(x, y)
 			
-			if _playfield.tile_map.get_cellv(mole_cell) != TileMap.INVALID_CELL:
+			if _playfield.tile_map.get_cell_source_id(0, mole_cell) != -1:
 				ceiling_x_coords[x] = true
 				midair_mole_x_coords.erase(x)
 			
@@ -141,13 +141,13 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 				var at_home := true
 				match config.home:
 					MoleConfig.Home.VEG:
-						if not _playfield.tile_map.get_cellv(mole_cell + Vector2.DOWN) == PuzzleTileMap.TILE_VEG:
+						if not _playfield.tile_map.get_cell_source_id(0, mole_cell + Vector2i.DOWN) == PuzzleTileMap.TILE_VEG:
 							at_home = false
 					MoleConfig.Home.BOX:
-						if not _playfield.tile_map.get_cellv(mole_cell + Vector2.DOWN) == PuzzleTileMap.TILE_BOX:
+						if not _playfield.tile_map.get_cell_source_id(0, mole_cell + Vector2i.DOWN) == PuzzleTileMap.TILE_BOX:
 							at_home = false
 					MoleConfig.Home.CAKE:
-						if not _playfield.tile_map.is_cake_cell(mole_cell + Vector2.DOWN):
+						if not _playfield.tile_map.is_cake_cell(mole_cell + Vector2i.DOWN):
 							at_home = false
 					MoleConfig.Home.SURFACE:
 						if ceiling_x_coords.has(int(mole_cell.x)):
@@ -163,28 +163,28 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 
 
 ## Returns 'true' if the specified cell has a non-empty cell beneath it.
-func _mole_cell_has_floor(mole_cell: Vector2) -> bool:
+func _mole_cell_has_floor(mole_cell: Vector2i) -> bool:
 	return mole_cell.y == PuzzleTileMap.ROW_COUNT - 1 \
-			or _playfield.tile_map.get_cellv(mole_cell + Vector2.DOWN) != TileMap.INVALID_CELL
+			or _playfield.tile_map.get_cell_source_id(0, mole_cell + Vector2i.DOWN) != -1
 
 
 ## Returns 'true' if the specified cell is non-empty.
-func _mole_cell_has_block(mole_cell: Vector2) -> bool:
-	return _playfield.tile_map.get_cellv(mole_cell) != TileMap.INVALID_CELL
+func _mole_cell_has_block(mole_cell: Vector2i) -> bool:
+	return _playfield.tile_map.get_cell_source_id(0, mole_cell) != -1
 
 
 ## Returns 'true' if the specified cell has a pickup.
-func _mole_cell_has_pickup(mole_cell: Vector2) -> bool:
-	return _playfield.pickups.get_pickup_food_type(mole_cell) != TileMap.INVALID_CELL
+func _mole_cell_has_pickup(mole_cell: Vector2i) -> bool:
+	return _playfield.pickups.get_pickup_food_type(mole_cell) != -1
 
 
 ## Returns 'true' if the specified cell has a mole.
-func _mole_cell_has_mole(mole_cell: Vector2) -> bool:
+func _mole_cell_has_mole(mole_cell: Vector2i) -> bool:
 	return _moles_by_cell.has(mole_cell)
 
 
 ## Returns 'true' if the specified cell overlaps the currently active piece.
-func _mole_cell_overlaps_piece(mole_cell: Vector2) -> bool:
+func _mole_cell_overlaps_piece(mole_cell: Vector2i) -> bool:
 	var result := false
 	for pos_arr_item_obj in _piece_manager.piece.get_pos_arr():
 		if mole_cell == pos_arr_item_obj + _piece_manager.piece.pos:
@@ -199,7 +199,7 @@ func _mole_cell_overlaps_piece(mole_cell: Vector2) -> bool:
 ##
 ## Parameters:
 ## 	'config': rules for how long moles should dig for and what they should dig up.
-func _add_mole(cell: Vector2, config: MoleConfig) -> void:
+func _add_mole(cell: Vector2i, config: MoleConfig) -> void:
 	if _moles_by_cell.has(cell):
 		return
 	
@@ -240,7 +240,7 @@ func advance_moles() -> void:
 ##
 ## Parameters:
 ## 	'cell': A playfield cell containing a mole.
-func remove_mole(cell: Vector2) -> void:
+func remove_mole(cell: Vector2i) -> void:
 	if not _moles_by_cell.has(cell):
 		return
 	
@@ -255,9 +255,9 @@ func remove_mole(cell: Vector2) -> void:
 ## 	'mole': The mole whose position should be recalculated
 ##
 ## 	'cell': The mole's playfield cell
-func _update_mole_position(mole: Mole, cell: Vector2) -> void:
-	mole.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
-	mole.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
+func _update_mole_position(mole: Mole, cell: Vector2i) -> void:
+	mole.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
+	mole.position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(0.5, 0.5)
 	mole.position *= _playfield.tile_map.scale
 
 
@@ -274,10 +274,10 @@ func _refresh_moles_for_piece() -> void:
 		var mole: Mole = _moles_by_cell[mole_cell]
 		var piece_overlaps_mole := _mole_cell_overlaps_piece(mole_cell)
 		
-		if piece_overlaps_mole and not mole.hidden:
-			mole.hidden = true
-		if not piece_overlaps_mole and mole.hidden:
-			mole.hidden = false
+		if piece_overlaps_mole and not mole.hidden_by_piece:
+			mole.hidden_by_piece = true
+		if not piece_overlaps_mole and mole.hidden_by_piece:
+			mole.hidden_by_piece = false
 
 
 ## Updates all moles based on the contents of the playfield.
@@ -291,7 +291,7 @@ func _refresh_moles_for_playfield(include_waiting_moles: bool = true) -> void:
 				and not _mole_cell_has_block(mole_cell):
 			continue
 		
-		if mole.state == Mole.WAITING or mole.hidden and mole.hidden_mole_state == Mole.WAITING:
+		if mole.state == Mole.WAITING or mole.hidden_by_piece and mole.hidden_mole_state == Mole.WAITING:
 			# mole hasn't appeared yet; relocate the mole
 			if include_waiting_moles:
 				_relocate_mole(mole_cell)
@@ -311,7 +311,7 @@ func _refresh_moles_for_playfield(include_waiting_moles: bool = true) -> void:
 ##
 ## Parameters:
 ## 	'old_cell': The mole's previous position.
-func _relocate_mole(old_cell: Vector2) -> void:
+func _relocate_mole(old_cell: Vector2i) -> void:
 	var mole: Mole = _moles_by_cell[old_cell]
 	var found_new_cell := false
 	
@@ -319,7 +319,7 @@ func _relocate_mole(old_cell: Vector2) -> void:
 	
 	if not found_new_cell:
 		# search for cells above the mole's current cell
-		new_cell = old_cell + Vector2.UP
+		new_cell = old_cell + Vector2i.UP
 		while not found_new_cell and new_cell.y > PuzzleTileMap.FIRST_VISIBLE_ROW:
 			if _mole_cell_has_floor(new_cell) \
 					and not _mole_cell_has_block(new_cell) \
@@ -327,11 +327,11 @@ func _relocate_mole(old_cell: Vector2) -> void:
 					and not _mole_cell_has_mole(new_cell):
 				found_new_cell = true
 			else:
-				new_cell += Vector2.UP
+				new_cell += Vector2i.UP
 	
 	if not found_new_cell:
 		# search for cells below the mole's current cell
-		new_cell = old_cell + Vector2.DOWN
+		new_cell = old_cell + Vector2i.DOWN
 		while not found_new_cell and new_cell.y < PuzzleTileMap.ROW_COUNT:
 			if _mole_cell_has_floor(new_cell) \
 					and not _mole_cell_has_block(new_cell) \
@@ -339,7 +339,7 @@ func _relocate_mole(old_cell: Vector2) -> void:
 					and not _mole_cell_has_mole(new_cell):
 				found_new_cell = true
 			else:
-				new_cell += Vector2.DOWN
+				new_cell += Vector2i.DOWN
 	
 	if found_new_cell:
 		_update_mole_position(mole, new_cell)
@@ -352,7 +352,7 @@ func _relocate_mole(old_cell: Vector2) -> void:
 ## Removes all moles from a playfield row.
 func _erase_row(y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		remove_mole(Vector2(x, y))
+		remove_mole(Vector2i(x, y))
 
 
 ## Shifts a group of moles up or down.
@@ -360,8 +360,8 @@ func _erase_row(y: int) -> void:
 ## Parameters:
 ## 	'bottom_y': The lowest row to shift. All moles at or above this row will be shifted.
 ##
-## 	'direction': The direction to shift the moles, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_y: int, direction: Vector2) -> void:
+## 	'direction': The direction to shift the moles, such as Vector2i.UP or Vector2i.DOWN.
+func _shift_rows(bottom_y: int, direction: Vector2i) -> void:
 	# First, erase and store all the old moles which are shifting
 	var shifted := {}
 	for cell in _moles_by_cell.keys():
@@ -369,7 +369,7 @@ func _shift_rows(bottom_y: int, direction: Vector2) -> void:
 			# moles below the specified bottom row are left alone
 			continue
 		# moles above the specified bottom row are shifted
-		_moles_by_cell[cell].position += direction * _playfield.tile_map.cell_size * _playfield.tile_map.scale
+		_moles_by_cell[cell].position += Vector2(direction) * Vector2(_playfield.tile_map.tile_set.tile_size) * _playfield.tile_map.scale
 		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
 			_moles_by_cell[cell].visible = true
 		shifted[cell + direction] = _moles_by_cell[cell]
@@ -430,7 +430,7 @@ func _on_Playfield_line_deleted(y: int) -> void:
 	# don't erase moles; moles can be added during the line clear process, which includes erase/delete events
 	
 	# drop all moles above the specified row to fill the gap
-	_shift_rows(y - 1, Vector2.DOWN)
+	_shift_rows(y - 1, Vector2i.DOWN)
 	
 	# don't refresh the playfield moles when a single line is deleted; wait until all lines are deleted
 
@@ -449,7 +449,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
 	# raise all moles at or above the specified row
-	_shift_rows(y, Vector2.UP)
+	_shift_rows(y, Vector2i.UP)
 	
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate moles until all lines are deleted.

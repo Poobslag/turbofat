@@ -5,7 +5,7 @@ project/export_presets.cfg
 project/export
 
 # Godot-specific ignores
-project/.import/
+project/.godot/
 project/logs/
 
 # Imported translations (automatically generated from CSV files)

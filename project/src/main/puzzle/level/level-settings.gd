@@ -67,7 +67,7 @@ var _upgrader := LevelSettingsUpgrader.new()
 
 
 ## Sets the criteria for finishing the level, such as a time, score, or line goal.
-func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> void:
+func set_finish_condition(type: Milestone.MilestoneType, value: int, lenient_value: int = -1) -> void:
 	finish_condition = Milestone.new()
 	finish_condition.set_milestone(type, value)
 	if lenient_value > -1:
@@ -75,7 +75,7 @@ func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> voi
 
 
 ## Sets the criteria for succeeding, such as a time or score goal.
-func set_success_condition(type: int, value: int) -> void:
+func set_success_condition(type: Milestone.MilestoneType, value: int) -> void:
 	success_condition = Milestone.new()
 	success_condition.set_milestone(type, value)
 
@@ -156,9 +156,9 @@ func to_json_dict() -> Dictionary:
 
 
 func load_from_resource(new_id: String) -> void:
-	var text := FileUtils.get_file_as_text(path_from_level_key(new_id))
+	var text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(new_id))
 	
-	if not text:
+	if text.is_empty():
 		push_error("Level not found: %s" % [new_id])
 		return
 	
@@ -166,11 +166,9 @@ func load_from_resource(new_id: String) -> void:
 
 
 func load_from_text(new_id: String, text: String) -> void:
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(text)
-	var json: Dictionary = test_json_conv.get_data()
+	var json: Dictionary = JSON.parse_string(text)
 	
-	if not json:
+	if json.is_empty():
 		push_error("Level not found: %s" % [new_id])
 		return
 	

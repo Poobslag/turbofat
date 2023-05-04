@@ -1,241 +1,252 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://dimsvbcxbcr5b"]
 
-[ext_resource path="res://src/main/chat/ui/choice-theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/main/chat/ui/mood-sprite.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="FontFile" id=3]
-[ext_resource path="res://src/main/chat/ui/chat-choice-button.gd" type="Script" id=4]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-30.tres" type="FontFile" id=5]
-[ext_resource path="res://src/main/chat/ui/chat-choice-tween.gd" type="Script" id=6]
-[ext_resource path="res://assets/main/chat/ui/choice-mood-cry0.png" type="Texture2D" id=7]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=8]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-24.tres" type="FontFile" id=9]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-12.tres" type="FontFile" id=10]
-[ext_resource path="res://src/main/ui/FontFitLabel.tscn" type="PackedScene" id=11]
+[ext_resource type="Theme" uid="uid://5ntnqxs4r55b" path="res://src/main/chat/ui/choice-theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/main/chat/ui/mood-sprite.gd" id="2"]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-choice-button.gd" id="4"]
+[ext_resource type="FontFile" uid="uid://djvi5vhe42qcp" path="res://assets/main/ui/font/blogger-sans-medium.otf" id="4_q3a6w"]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-choice-tween.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://cx208c1ihewhf" path="res://assets/main/chat/ui/choice-mood-cry0.png" id="7"]
+[ext_resource type="PackedScene" uid="uid://djmx8ic0x6ywq" path="res://src/main/ui/FontFitLabel.tscn" id="11"]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 resource_name = "RESET"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0.0 ]
+"values": [0.0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [Vector2(1, 1)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "choose"
 length = 0.3
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0.0, 120.0 ]
+"values": [0.0, 2.0944]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 1.5, 1.5 ), Vector2( 3, 3 ) ]
+"values": [Vector2(1.5, 1.5), Vector2(3, 3)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.2, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 length = 8.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 1.8, 2.1, 3.8, 4.1, 5.8, 6.1, 7.7, 8 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 1.8, 2.1, 3.8, 4.1, 5.8, 6.1, 7.7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 6.0, 6.0, -6.0, -6.0, 6.0, 6.0, -6.0, -6.0, 6.0, 6.0 ]
+"values": [0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 1, 2, 3, 4, 5, 6, 7, 8 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 8 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 5.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 1, 1.3, 2.2, 2.5, 3.5, 3.8, 4.7, 5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 1, 1.3, 2.2, 2.5, 3.5, 3.8, 4.7, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ 6.0, 6.0, -6.0, -6.0, 6.0, 6.0, -6.0, -6.0, 6.0, 6.0 ]
+"values": [0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ) ]
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.894118), Color(1, 1, 1, 0.501961)]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfkgc"]
+_data = {
+"RESET": SubResource("5"),
+"choose": SubResource("1"),
+"default": SubResource("2"),
+"focus": SubResource("3")
+}
+
+[sub_resource type="Animation" id="6"]
 resource_name = "RESET"
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 length = 0.3
 step = 0.02
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.04, 0.12 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.04, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1.05, 1.05 ) ]
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1.05, 1.05)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b76hd"]
+_data = {
+"RESET": SubResource("6"),
+"choose": SubResource("4")
 }
 
 [node name="ChatChoice" type="Button" groups=["chat_choices"]]
 offset_right = 100.0
 offset_bottom = 66.0
-pivot_offset = Vector2( 50, 33 )
+pivot_offset = Vector2(50, 33)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
-script = ExtResource( 4 )
+theme = ExtResource("1")
+script = ExtResource("4")
 
-[node name="FontFitLabel" parent="." instance=ExtResource( 11 )]
+[node name="FontFitLabel" parent="." instance=ExtResource("11")]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
@@ -243,50 +254,50 @@ offset_top = 6.0
 offset_right = -8.0
 offset_bottom = -6.0
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-theme_override_fonts/font = ExtResource( 3 )
+theme_override_colors/font_color = Color(0.423529, 0.262745, 0.192157, 1)
+theme_override_fonts/font = ExtResource("4_q3a6w")
+theme_override_font_sizes/font_size = 14
 text = "Oh bother"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 max_lines_visible = 1
-__meta__ = {
-"_editor_description_": ""
-}
-fonts = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ]
+font_sizes = Array[float]([30.0, 24.0, 18.0, 14.0, 12.0])
 
 [node name="MoodSprite" type="Control" parent="."]
+anchors_preset = 0
 offset_left = -11.0
 offset_top = 13.0
 offset_right = 17.0
 offset_bottom = 41.0
-pivot_offset = Vector2( 15, 15 )
+pivot_offset = Vector2(15, 15)
 mouse_filter = 2
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Texture2D" type="TextureRect" parent="MoodSprite"]
+layout_mode = 0
 offset_left = -49.0
 offset_top = -49.0
 offset_right = 79.0
 offset_bottom = 79.0
-rotation = -8.0
-scale = Vector2( 0.33, 0.33 )
-pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 7 )
+rotation = -0.139626
+scale = Vector2(0.33, 0.33)
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MoodSprite"]
 autoplay = "default"
-anims/RESET = SubResource( 5 )
-anims/choose = SubResource( 1 )
-anims/default = SubResource( 2 )
-anims/focus = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_sfkgc")
+}
 
 [node name="PopTween" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="PopAnimation" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 6 )
-anims/choose = SubResource( 4 )
+libraries = {
+"": SubResource("AnimationLibrary_b76hd")
+}
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

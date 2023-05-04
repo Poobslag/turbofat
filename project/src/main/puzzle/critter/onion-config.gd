@@ -43,7 +43,7 @@ func _init(init_day_string: String = "") -> void:
 ##
 ## Returns:
 ## 	Enum from OnionState for the state the onion should be in
-func get_state(advance_count: int) -> int:
+func get_state(advance_count: int) -> OnionState:
 	if day_string.is_empty():
 		return OnionState.NONE
 	

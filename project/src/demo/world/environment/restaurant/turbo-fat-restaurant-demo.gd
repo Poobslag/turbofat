@@ -7,7 +7,7 @@ extends Node
 @onready var _restaurant := $TurboFatRestaurant
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_C:
 			if _restaurant.closed_sign.visible:
 				_restaurant.hide_closed_sign()

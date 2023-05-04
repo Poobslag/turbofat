@@ -6,9 +6,9 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/width = 1.5
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-shader_param/edge_fix_factor = 1.0
+shader_parameter/width = 1.5
+shader_parameter/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_parameter/edge_fix_factor = 1.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "RESET"
@@ -28,7 +28,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "default"
 length = 1.33333
-loop = true
+loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")

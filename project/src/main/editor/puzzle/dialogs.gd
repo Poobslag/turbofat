@@ -1,7 +1,7 @@
 extends Control
 ## Shows popup dialogs for the level editor.
 
-@export (NodePath) var level_editor_path: NodePath
+@export var level_editor_path: NodePath
 
 @onready var _level_editor: LevelEditor = get_node(level_editor_path)
 

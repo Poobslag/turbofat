@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name Creature
 extends CharacterBody2D
 ## Script for representing a creature in the 2D overworld.
@@ -37,21 +37,25 @@ const MAX_RUN_ACCELERATION := 2250
 const CREATURE_FADE_IN_DURATION := 0.6
 const CREATURE_FADE_OUT_DURATION := 0.3
 
-@export (String) var creature_id: String: set = set_creature_id
-@export (Dictionary) var dna: Dictionary: set = set_dna
+@export var creature_id: String: set = set_creature_id, get = get_creature_id
+
+## internal version of 'creature_id' which can be assigned without invoking the setter
+var _creature_id_internal: String
+
+@export var dna: Dictionary: set = set_dna
 
 ## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
-@export (bool) var suppress_sfx: bool = false: set = set_suppress_sfx
+@export var suppress_sfx: bool = false: set = set_suppress_sfx
 
 ## if 'true' the creature will only use the fatness in the creature definition,
 ## ignoring any accrued fatness from puzzles
-@export (bool) var suppress_fatness: bool = false
+@export var suppress_fatness: bool = false
 
 ## how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
-@export (float) var elevation: float: set = set_elevation
+@export var elevation: float: set = set_elevation
 
 ## virtual property; value is not kept up-to-date and should only be accessed through getters/setters
-@export (Creatures.Orientation) var orientation: int: get = get_orientation, set = set_orientation
+@export var orientation: Creatures.Orientation: get = get_orientation, set = set_orientation
 
 ## virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef: get = get_creature_def, set = set_creature_def
@@ -126,16 +130,16 @@ func _ready() -> void:
 		_collision_shape.creature_visuals = creature_visuals
 	creature_visuals.creature_sfx = _creature_sfx
 	
-	creature_visuals.connect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
-	creature_visuals.connect("food_eaten", Callable(self, "_on_CreatureVisuals_food_eaten"))
-	creature_visuals.connect("landed", Callable(self, "_on_CreatureVisuals_landed"))
-	creature_visuals.connect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
-	creature_visuals.connect("talking_changed", Callable(self, "_on_CreatureVisuals_talking_changed"))
-	creature_visuals.connect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
+	creature_visuals.dna_loaded.connect(_on_CreatureVisuals_dna_loaded)
+	creature_visuals.food_eaten.connect(_on_CreatureVisuals_food_eaten)
+	creature_visuals.landed.connect(_on_CreatureVisuals_landed)
+	creature_visuals.movement_mode_changed.connect(_on_CreatureVisuals_movement_mode_changed)
+	creature_visuals.talking_changed.connect(_on_CreatureVisuals_talking_changed)
+	creature_visuals.visual_fatness_changed.connect(_on_CreatureVisuals_visual_fatness_changed)
 	
-	SceneTransition.connect("fade_in_started", Callable(self, "_on_SceneTransition_fade_in_started"))
+	SceneTransition.fade_in_started.connect(_on_SceneTransition_fade_in_started)
 	
-	if creature_id:
+	if _creature_id_internal:
 		_refresh_creature_id()
 	else:
 		refresh_dna()
@@ -202,16 +206,25 @@ func get_visual_fatness() -> float:
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
 	non_iso_walk_direction = new_direction
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	iso_walk_direction = Global.to_iso(new_direction)
 
 
 func set_iso_velocity(new_velocity: Vector2) -> void:
 	_iso_velocity = new_velocity
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	_non_iso_velocity = Global.from_iso(new_velocity)
 
 
 func set_non_iso_velocity(new_velocity: Vector2) -> void:
 	_non_iso_velocity = new_velocity
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	_iso_velocity = Global.to_iso(new_velocity)
 
 
@@ -230,8 +243,14 @@ func set_chat_selectors(new_chat_selectors: Array) -> void:
 
 func set_creature_id(new_creature_id: String) -> void:
 	creature_id = new_creature_id
-	set_meta("chat_id", creature_id)
+	_creature_id_internal = new_creature_id
+	
+	set_meta("chat_id", _creature_id_internal)
 	_refresh_creature_id()
+
+
+func get_creature_id() -> String:
+	return _creature_id_internal
 
 
 func set_creature_name(new_creature_name: String) -> void:
@@ -259,13 +278,17 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 ##
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
-func play_mood(mood: int) -> void:
+func play_mood(mood: Creatures.Mood) -> void:
 	creature_visuals.play_mood(mood)
 
 
 ## Orients this creature so they're facing the specified target.
 func orient_toward(target_position: Vector2) -> void:
 	# calculate the relative direction of the object this creature should face
+	
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	var direction: Vector2 = Global.from_iso(position.direction_to(target_position))
 	var direction_dot := 0.0
 	if direction:
@@ -278,7 +301,7 @@ func orient_toward(target_position: Vector2) -> void:
 	set_orientation(Creatures.SOUTHEAST if direction_dot > 0 else Creatures.SOUTHWEST)
 
 
-func set_orientation(new_orientation: int) -> void:
+func set_orientation(new_orientation: Creatures.Orientation) -> void:
 	orientation = new_orientation
 	if creature_visuals:
 		creature_visuals.orientation = new_orientation
@@ -296,7 +319,7 @@ func get_orientation() -> int:
 ## 	'stored_fatness': The fatness to save in the creature library. This can be higher than the creature's current
 ## 		fatness if they're still eating.
 func save_fatness(stored_fatness: float) -> void:
-	if creature_id.is_empty():
+	if _creature_id_internal.is_empty():
 		# randomly-generated creatures have no creature id; their fatness isn't stored
 		return
 	
@@ -306,7 +329,7 @@ func save_fatness(stored_fatness: float) -> void:
 	metabolism = pow(metabolism, metabolism_scale)
 	stored_fatness *= metabolism
 	stored_fatness = clamp(stored_fatness, min_fatness, Creatures.MAX_FATNESS)
-	PlayerData.creature_library.set_fatness(creature_id, stored_fatness)
+	PlayerData.creature_library.set_fatness(_creature_id_internal, stored_fatness)
 
 
 ## Plays a 'hello!' voice sample for when a creature enters the restaurant.
@@ -326,7 +349,7 @@ func play_goodbye_voice() -> void:
 
 ## Parameters:
 ## 	'food_type': Enum from FoodType corresponding to the food to show
-func feed(food_type: int) -> void:
+func feed(food_type: Foods.FoodType) -> void:
 	feed_count += 1
 	box_feed_count += 1
 	creature_visuals.feed(food_type)
@@ -339,7 +362,7 @@ func feed(food_type: int) -> void:
 func rename(new_creature_name: String) -> void:
 	set_creature_name(new_creature_name)
 	creature_short_name = NameUtils.sanitize_short_name(creature_name)
-	creature_id = NameUtils.short_name_to_id(creature_short_name)
+	_creature_id_internal = NameUtils.short_name_to_id(creature_short_name)
 
 
 func restart_idle_timer() -> void:
@@ -347,7 +370,7 @@ func restart_idle_timer() -> void:
 
 
 func set_creature_def(new_creature_def: CreatureDef) -> void:
-	creature_id = new_creature_def.creature_id
+	_creature_id_internal = new_creature_def.creature_id
 	set_dna(new_creature_def.dna)
 	set_chat_theme(new_creature_def.chat_theme)
 	set_creature_name(new_creature_def.creature_name)
@@ -368,7 +391,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 
 func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
-	result.creature_id = creature_id
+	result.creature_id = _creature_id_internal
 	result.dna = DnaUtils.trim_dna(dna)
 	# create a copy to prevent our chat theme from being modified accidentally
 	result.chat_theme.from_json_dict(chat_theme.to_json_dict())
@@ -386,18 +409,9 @@ func refresh_dna() -> void:
 		return
 
 	if dna:
-		dna = DnaUtils.fill_dna(dna)
+		# avoid assigning dna directly, as this calls set_dna resulting in an infinite loop
+		dna.merge(DnaUtils.fill_dna(dna))
 	creature_visuals.dna = dna
-
-
-## Workaround for Godot #21789 to make get_class return class_name
-func get_class() -> String:
-	return "Creature"
-
-
-## Workaround for Godot #21789 to make is_class match class_name
-func is_class(name: String) -> bool:
-	return name == "Creature" or super.is_class(name)
 
 
 func get_movement_mode() -> int:
@@ -455,7 +469,7 @@ func _refresh_creature_id() -> void:
 	if not is_inside_tree():
 		return
 	
-	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
+	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(_creature_id_internal)
 	if new_creature_def:
 		set_creature_def(new_creature_def)
 
@@ -471,7 +485,7 @@ func _refresh_elevation() -> void:
 
 
 func _apply_friction() -> void:
-	if _iso_velocity and iso_walk_direction:
+	if _iso_velocity.length() > 0 and iso_walk_direction.length() > 0:
 		_friction = _non_iso_velocity.normalized().dot(non_iso_walk_direction.normalized()) < 0.25
 	else:
 		_friction = true
@@ -585,7 +599,7 @@ func _on_CreatureVisuals_dna_loaded() -> void:
 	emit_signal("dna_loaded")
 
 
-func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
+func _on_CreatureVisuals_food_eaten(food_type: Foods.FoodType) -> void:
 	emit_signal("food_eaten", food_type)
 
 
@@ -597,7 +611,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	emit_signal("visual_fatness_changed")
 
 
-func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: Creatures.MovementMode, new_mode: Creatures.MovementMode) -> void:
 	if new_mode in [Creatures.WALK, Creatures.RUN]:
 		# when on two legs, the body is a little higher off the ground
 		set_elevation(35)

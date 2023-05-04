@@ -3,7 +3,7 @@ extends VBoxContainer
 
 ## If true, the `ui_cancel` action will activate the quit button. This should be unset in contexts where the 'quit'
 ## button does something destructive such as quitting the game or abandoning an editor.
-@export (bool) var quit_on_cancel: bool = true: set = set_quit_on_cancel
+@export var quit_on_cancel: bool = true: set = set_quit_on_cancel
 
 @onready var _ui_cancel_shortcut := preload("res://src/main/ui/UiCancelShortcut.tres")
 

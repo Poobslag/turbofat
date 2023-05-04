@@ -53,13 +53,13 @@ func is_default() -> bool:
 ##
 ## Parameters:
 ## 	'effect_type': A LevelTriggerEffect class such as 'InsertLineEffect.LevelTriggerEffects'
-func has_effect(effect_type) -> bool:
+func has_effect(effect_type: Script) -> bool:
 	var result := false
 	
 	for phase in triggers:
 		for trigger_obj in triggers[phase]:
 			var trigger: LevelTrigger = trigger_obj
-			if trigger.effect is effect_type:
+			if effect_type.instance_has(trigger.effect):
 				result = true
 				break
 		

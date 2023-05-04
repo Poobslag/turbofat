@@ -63,7 +63,7 @@ func reset() -> void:
 	from_json_dict({})
 
 
-func set_preset(new_preset: int) -> void:
+func set_preset(new_preset: KeybindPreset) -> void:
 	preset = new_preset
 	emit_signal("changed")
 
@@ -112,7 +112,7 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	preset = int(json.get("preset", GUIDELINE))
+	preset = int(json.get("preset", GUIDELINE)) as KeybindPreset
 	custom_keybinds = json.get("custom_keybinds", {})
 	if custom_keybinds.is_empty():
 		restore_default_custom_keybinds()
@@ -122,9 +122,7 @@ func from_json_dict(json: Dictionary) -> void:
 ## Resets the custom keybinds to a sensible set of defaults.
 func restore_default_custom_keybinds() -> void:
 	var json_text := FileUtils.get_file_as_text(DEFAULT_CUSTOM_PATH)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json_text)
-	var json_dict: Dictionary = test_json_conv.get_data()
+	var json_dict: Dictionary = JSON.parse_string(json_text)
 	custom_keybinds = json_dict
 	emit_signal("changed")
 

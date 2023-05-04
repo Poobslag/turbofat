@@ -18,10 +18,10 @@ var _dragging_right_mouse := false
 var _prev_can_drop_pos: Vector2
 
 ## 'data' parameter for the previous call to 'can_drop_data'
-var _prev_can_drop_data: Object
+var _prev_can_drop_data: Variant
 
 ## Data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
-var _prev_dropped_data: Object
+var _prev_dropped_data: Variant
 
 @onready var _tile_map := $Bg/TileMap
 @onready var _tile_map_drop_preview := $Bg/TileMapDropPreview
@@ -44,7 +44,7 @@ func _gui_input(event: InputEvent) -> void:
 		if _dragging_right_mouse:
 			var cell_pos := _cell_pos(event.position)
 			# only emit signals if the underlying data changed to avoid generating json too frequently
-			var should_update_tilemap := true if _tile_map.get_cellv(cell_pos) != TileMap.INVALID_CELL else false
+			var should_update_tilemap := true if _tile_map.get_cell_source_id(0, cell_pos) != -1 else false
 			var should_update_pickups := true if _pickups.get_food_type(cell_pos) != -1 else false
 			if should_update_tilemap:
 				set_block(cell_pos, -1)
@@ -56,7 +56,7 @@ func _gui_input(event: InputEvent) -> void:
 				emit_signal("pickups_changed")
 
 
-func _can_drop_data(pos: Vector2, data: Object) -> bool:
+func _can_drop_data(pos: Vector2, data: Variant) -> bool:
 	var can_drop := Rect2(Vector2.ZERO, size).has_point(pos)
 	if can_drop:
 		if data is BlockLevelChunk:
@@ -78,7 +78,7 @@ func _can_drop_data(pos: Vector2, data: Object) -> bool:
 	return can_drop
 
 
-func _drop_data(pos: Vector2, data: Object) -> void:
+func _drop_data(pos: Vector2, data: Variant) -> void:
 	if data is BlockLevelChunk:
 		_clear_previews()
 		_store_block_level_chunk(_tile_map, pos, data)
@@ -100,7 +100,7 @@ func _drop_data(pos: Vector2, data: Object) -> void:
 ## If the player clicks and drags on the playfield, we reuse the previously dropped data.
 ##
 ## This makes it easier to populate a playfield with lots of vegetables or pickups.
-func _get_drag_data(_pos: Vector2) -> Object:
+func _get_drag_data(_pos: Vector2) -> Variant:
 	return _prev_dropped_data
 
 
@@ -114,7 +114,7 @@ func _get_drag_data(_pos: Vector2) -> Object:
 ## 	'data': The data to apply to the tile map
 func _store_block_level_chunk(target_tile_map: PuzzleTileMap, pos: Vector2, data: BlockLevelChunk) -> void:
 	for cell in data.used_cells:
-		var target_pos: Vector2 = _cell_pos(pos) + cell
+		var target_pos: Vector2i = _cell_pos(pos) + cell
 		_set_tile_map_block(target_tile_map, target_pos, data.tiles[cell], data.autotile_coords[cell])
 
 
@@ -127,7 +127,7 @@ func _store_block_level_chunk(target_tile_map: PuzzleTileMap, pos: Vector2, data
 ##
 ## 	'data': The pickup to add to the set of pickups
 func _store_pickup_level_chunk(target_pickups: EditorPickups, pos: Vector2, data: PickupLevelChunk) -> void:
-	var target_pos: Vector2 = _cell_pos(pos)
+	var target_pos: Vector2i = _cell_pos(pos)
 	target_pickups.set_pickup(target_pos, data.box_type)
 
 
@@ -142,11 +142,11 @@ func _clear_previews() -> void:
 	_prev_can_drop_data = null
 
 
-func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+func set_block(pos: Vector2i, tile: int, autotile_coord: Vector2i = Vector2i.ZERO) -> void:
 	_set_tile_map_block(_tile_map, pos, tile, autotile_coord)
 
 
-func set_pickup(pos: Vector2, box_type: int) -> void:
+func set_pickup(pos: Vector2i, box_type: Foods.BoxType) -> void:
 	_pickups.set_pickup(pos, box_type)
 
 
@@ -159,13 +159,12 @@ func get_pickups() -> EditorPickups:
 
 
 ## Converts an x/y control coordinate like '58, 132' into a tile_map coordinate like '3, 2'
-func _cell_pos(pos: Vector2) -> Vector2:
-	var result := pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / size
-	return result.floor()
+func _cell_pos(pos: Vector2) -> Vector2i:
+	return Vector2i(pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / size)
 
 
-func _set_tile_map_block(tile_map: TileMap, pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	if Rect2(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT).has_point(pos):
+func _set_tile_map_block(tile_map: TileMap, pos: Vector2i, tile: int, autotile_coord: Vector2i) -> void:
+	if Rect2i(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT).has_point(pos):
 		tile_map.set_block(pos, tile, autotile_coord)
 		tile_map.get_node("CornerMap").dirty = true
 

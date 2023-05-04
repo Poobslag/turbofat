@@ -11,7 +11,7 @@ var _total_time: float
 var _squish_amount: float
 
 ## Calculates how much the piece should flash and shake as it's squished
-@export (Curve) var squish_curve: Curve
+@export var squish_curve: Curve
 
 @onready var squish_map: SquishMap = $SquishMap
 @onready var sweat_drops: GPUParticles2D = $SweatDrops
@@ -22,7 +22,7 @@ var _squish_amount: float
 @onready var _presquish_sfx: PresquishSfx = $PresquishSfx
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	_prepare_tileset()
 
 
@@ -88,19 +88,19 @@ func _handle_sfx() -> void:
 
 
 ## Initialize the squish animation for long squish moves
-func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2i) -> void:
 	if piece.pos.y - old_pos.y >= 3:
 		var unobstructed_blocks: Array = piece.type.pos_arr[piece.orientation].duplicate()
 		squish_map.start_squish(PieceSpeeds.POST_SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
 		for dy in range(piece.pos.y - old_pos.y):
 			var i := 0
 			while i < unobstructed_blocks.size():
-				var target_block_pos: Vector2 = unobstructed_blocks[i] + old_pos + Vector2(0, dy)
+				var target_block_pos: Vector2i = unobstructed_blocks[i] + old_pos + Vector2i(0, dy)
 				if piece.is_cell_obstructed(target_block_pos):
-					unobstructed_blocks.remove(i)
+					unobstructed_blocks.remove_at(i)
 				else:
 					i += 1
-			squish_map.stretch_to(unobstructed_blocks, old_pos + Vector2(0, dy))
+			squish_map.stretch_to(unobstructed_blocks, old_pos + Vector2i(0, dy))
 
 
 func _on_Level_settings_changed() -> void:

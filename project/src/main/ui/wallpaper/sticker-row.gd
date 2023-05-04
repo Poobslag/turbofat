@@ -3,13 +3,13 @@ extends Control
 ## Row of wallpaper sprites which slowly scroll by.
 
 ## scroll velocity. only the x component is used
-@export (PackedScene) var StickerScene: PackedScene
-@export (Vector2) var velocity: Vector2: set = set_velocity
-@export (Color) var color: Color
+@export var StickerScene: PackedScene
+@export var velocity: Vector2: set = set_velocity
+@export var color: Color
 
 ## sprite textures. we alternate between these textures and flip them horizontally. the second texture is optional.
-@export (Texture2D) var texture_0: Texture2D: set = set_texture_0
-@export (Texture2D) var texture_1: Texture2D: set = set_texture_1
+@export var texture_0: Texture2D: set = set_texture_0
+@export var texture_1: Texture2D: set = set_texture_1
 var _textures: Array
 var _texture_index := 0
 
@@ -84,7 +84,7 @@ func _add_sticker() -> void:
 	var new_sticker: Sticker = StickerScene.instantiate()
 	
 	if _blank_texture_countdown == 0:
-		_blank_texture_countdown = Utils.randi_range(2, 6)
+		_blank_texture_countdown = randi_range(2, 6)
 	else:
 		_blank_texture_countdown -= 1
 		new_sticker.texture = _textures[_texture_index]

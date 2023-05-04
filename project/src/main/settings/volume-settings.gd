@@ -20,7 +20,7 @@ const VOICE := VolumeType.VOICE
 ##
 ## This returns a player-friendly energy value which always scales from 0.0 to 1.0, even if internally we limit a bus
 ## to 80% volume.
-func get_bus_volume_linear(volume_type: int) -> float:
+func get_bus_volume_linear(volume_type: VolumeType) -> float:
 	var user_volume_linear: float
 	var bus_index := _bus_index(volume_type)
 	if AudioServer.is_bus_mute(bus_index):
@@ -37,14 +37,14 @@ func get_bus_volume_linear(volume_type: int) -> float:
 ##
 ## This accepts a player-friendly energy value which always scales from 0.0 to 1.0, but internally we reduce the value
 ## before assigning it to the bus.
-func set_bus_volume_linear(volume_type: int, new_user_volume_linear: float) -> void:
+func set_bus_volume_linear(volume_type: VolumeType, new_user_volume_linear: float) -> void:
 	var bus_index := _bus_index(volume_type)
 	var bus_volume_linear: float = new_user_volume_linear * MAX_LINEAR_VOLUME_BY_TYPE.get(volume_type, 1.0)
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(bus_volume_linear))
 	AudioServer.set_bus_mute(bus_index, new_user_volume_linear <= 0)
 
 
-func is_bus_mute(volume_type: int) -> bool:
+func is_bus_mute(volume_type: VolumeType) -> bool:
 	var bus_index := _bus_index(volume_type)
 	return AudioServer.is_bus_mute(bus_index)
 
@@ -70,7 +70,7 @@ func from_json_dict(json: Dictionary) -> void:
 	set_bus_volume_linear(VOICE, float(json.get("voice", 0.7)))
 
 
-func _bus_index(volume_type: int) -> int:
+func _bus_index(volume_type: VolumeType) -> int:
 	var bus_name: String
 	match volume_type:
 		MASTER: bus_name = "Master"

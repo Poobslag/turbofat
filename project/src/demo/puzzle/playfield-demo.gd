@@ -11,7 +11,7 @@ var _line_clear_count := 1
 var _box_type := 0
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1, KEY_2, KEY_3: _line_clear_count = Utils.key_num(event)
 		
 		KEY_Q: _build_box(3)
@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Playfield/BoxBuilder.build_box(Rect2(0, y, 3, 3), _box_type)
+	$Playfield/BoxBuilder.build_box(Rect2i(0, y, 3, 3), _box_type)
 
 
 func _clear_line(cleared_line: int) -> void:
@@ -45,4 +45,4 @@ func _clear_line(cleared_line: int) -> void:
 
 
 func _write_piece() -> void:
-	$Playfield.write_piece(Vector2(5, 5), 0, PieceTypes.piece_t)
+	$Playfield.write_piece(Vector2i(5, 5), 0, PieceTypes.piece_t)

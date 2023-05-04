@@ -27,7 +27,7 @@ CreatureScene = ExtResource( 8 )
 
 [node name="ChatLetters" parent="World" instance=ExtResource( 5 )]
 
-[node name="Camera3D" type="Camera2D" parent="World"]
+[node name="Camera2D" type="Camera2D" parent="World"]
 current = true
 position_smoothing_enabled = true
 position_smoothing_speed = 12.5

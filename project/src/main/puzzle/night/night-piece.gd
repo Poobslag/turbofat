@@ -4,7 +4,7 @@ extends Control
 ## This piece is synchronized with the daytime piece, and rendered over it.
 
 ## Path to the daytime piece manager to synchronize with.
-@export (NodePath) var piece_manager_path: NodePath: set = set_piece_manager_path
+@export var piece_manager_path: NodePath: set = set_piece_manager_path
 
 ## daytime piece manager to synchronize with
 var _piece_manager: PieceManager

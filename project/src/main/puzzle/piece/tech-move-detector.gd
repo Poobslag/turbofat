@@ -32,7 +32,7 @@ func _refresh_squish(new_squish: bool) -> void:
 	did_spin = false
 
 
-func _on_PieceManager_squish_moved(piece: ActivePiece, _old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(piece: ActivePiece, _old_pos: Vector2i) -> void:
 	_refresh_squish(piece.is_sealed())
 
 

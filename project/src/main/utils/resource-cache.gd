@@ -7,7 +7,7 @@ extends Node
 ## By preloading resources used throughout the game, we have a slower startup time in exchange for faster load times
 ## during the game.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal finished_loading
 
 ## number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
@@ -23,23 +23,23 @@ const CHUNK_SECONDS := 0.01667
 const RESOURCE_DIRS := ["res://assets/main", "res://src/main"]
 
 ## enables logging paths and durations for loaded resources
-@export (bool) var verbose := false
+@export var verbose := false
 
 ## reduces the number of textures loaded throughout the game
-@export (bool) var minimal_resources := false
+@export var minimal_resources := false
 
 ## resources which should be cached last. some resources are complex and depend on other resources, if we load them
 ## first it causes a big lag spike on the loading screen
-@export (Array, String) var low_priority_resource_paths: Array
+@export var low_priority_resource_paths: Array[String]
 
 ## resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
-@export (Array, String) var skipped_resource_paths: Array
+@export var skipped_resource_paths: Array[String]
 
 ## if true, the caching process will be threaded on platforms which support it
-@export (bool) var threaded := false
+@export var threaded := false
 
 ## minimum amount of time the game should take to load
-@export (float) var load_seconds := 0.0
+@export var load_seconds := 0.0
 
 ## maintains references to all resources to prevent them from being cleaned up
 ## key: (String) resource path
@@ -112,12 +112,12 @@ func _process(_delta: float) -> void:
 		else:
 			var start_msec := Time.get_ticks_msec()
 			# Web targets do not support background threads, so we load a few resources every frame
-			while _remaining_resource_paths and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
+			while not _remaining_resource_paths.is_empty() and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 				_preload_next_resource()
 	elif _remaining_scene_paths:
 		var start_msec := Time.get_ticks_msec()
 		# Loading scenes in threads causes 'another resource is loaded' errors, so we don't thread this
-		while _remaining_scene_paths and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS \
+		while not _remaining_scene_paths.is_empty() and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS \
 				and not _overworked():
 			_preload_next_scene()
 	elif Time.get_ticks_msec() < _start_load_begin_msec + 1000 * load_seconds:
@@ -231,14 +231,14 @@ func _overworked() -> bool:
 ## Parameters:
 ## 	'_userdata': Unused; needed for threads
 func _preload_all_resources(_userdata: Object) -> void:
-	while _remaining_resource_paths and not _exiting:
-		while _remaining_resource_paths and not _exiting \
+	while not _remaining_resource_paths.is_empty() and not _exiting:
+		while not _remaining_resource_paths.is_empty() and not _exiting \
 				and not _overworked():
 			_preload_next_resource()
 		
 		# If we're ahead of schedule, we wait until the next idle frame to load more resources
 		if _overworked():
-			await get_tree().idle_frame
+			await get_tree().process_frame
 
 
 ## Loads a single resource and stores the resulting resource in our cache.
@@ -303,8 +303,7 @@ func _find_resource_paths() -> Array:
 			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = DirAccess.new()
-			dir.open(dir_queue.pop_front())
+			dir = DirAccess.open(dir_queue.pop_front())
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	
@@ -339,9 +338,7 @@ func _find_resource_paths() -> Array:
 func _load_json_resource(json_path: String) -> void:
 	# parse json
 	var json: String = FileUtils.get_file_as_text(json_path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json)
-	var json_root: Dictionary = test_json_conv.get_data()
+	var json_root: Dictionary = JSON.parse_string(json)
 	if not json_root.has("frames"):
 		# the specified json resource is not an Aseprite json resource; do nothing
 		return

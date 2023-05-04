@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_C: MusicPlayer.play_chill_bgm(false)
 		KEY_EQUAL:
 			if not MusicPlayer.current_bgm:
@@ -47,6 +47,7 @@ func next_checkpoint() -> void:
 
 
 func _on_Timer_timeout() -> void:
-	$RichTextLabel.clear()
+	$RichTextLabel.text = ""
+	
 	for bgm in MusicPlayer.all_bgms:
 		$RichTextLabel.text += "%s %s\n" % [bgm.name, bgm._staleness_record]

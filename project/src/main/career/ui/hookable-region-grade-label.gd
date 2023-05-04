@@ -22,12 +22,12 @@ func set_button(new_button: RegionSelectButton) -> void:
 	
 	if button:
 		button.grade_hook.remote_path = null
-		button.disconnect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
+		button.tree_exited.disconnect(_on_LevelSelectButton_tree_exited)
 	
 	button = new_button
 	
 	button.grade_hook.remote_path = button.grade_hook.get_path_to(self)
-	button.connect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
+	button.tree_exited.connect(_on_LevelSelectButton_tree_exited)
 	
 	_refresh_appearance()
 
@@ -51,7 +51,7 @@ func _refresh_appearance() -> void:
 ## Updates the text based on the player's grade on a level.
 func _refresh_grade_text(rank: float) -> void:
 	_grade_label.visible = true
-	_grade_label.text = RankCalculator.grade(rank)
+	_grade_label.text = RankCalculator.grade_from_rank(rank)
 	_grade_label.refresh_color_from_text()
 
 

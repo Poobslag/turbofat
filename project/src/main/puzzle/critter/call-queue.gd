@@ -35,11 +35,11 @@ func defer(target: Object, method: String, args: Array) -> void:
 func pop_deferred(target: Object = null, method: String = "") -> void:
 	var new_deferred_calls := []
 	
-	for call in _deferred_calls:
-		if (target and call.target != target) or (method and call.method != method):
-			new_deferred_calls.append(call)
+	for next_call in _deferred_calls:
+		if (target and next_call.target != target) or (method and next_call.method != method):
+			new_deferred_calls.append(next_call)
 		else:
-			target.callv(method, call.args)
+			target.callv(method, next_call.args)
 	
 	_deferred_calls = new_deferred_calls
 

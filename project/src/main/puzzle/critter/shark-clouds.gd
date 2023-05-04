@@ -5,7 +5,7 @@ extends Node2D
 ## Number of animation variants in the sprite sheet. We cycle between random variants.
 const CLOUD_VARIANT_COUNT := 3
 
-@export (PackedScene) var CloudPartScene: PackedScene
+@export var CloudPartScene: PackedScene
 
 ## Tile map for the pieces the shark is eating.
 var tile_map: PuzzleTileMap: set = set_tile_map
@@ -24,7 +24,7 @@ func shuffle() -> void:
 		return
 	
 	var old_frame: int = get_child(0).frame % CLOUD_VARIANT_COUNT
-	var new_frame: int = (old_frame + Utils.randi_range(1, CLOUD_VARIANT_COUNT - 1)) % CLOUD_VARIANT_COUNT
+	var new_frame: int = (old_frame + randi_range(1, CLOUD_VARIANT_COUNT - 1)) % CLOUD_VARIANT_COUNT
 	var new_flip_h: bool = randf() > 0.5
 	
 	for i in range(get_child_count()):
@@ -61,16 +61,16 @@ func refresh() -> void:
 	
 	var used_rect := tile_map.get_used_rect()
 	
-	if used_rect.has_no_area():
+	if not used_rect.has_area():
 		# have a small cloud, even if nothing is being eaten
-		used_rect = Rect2(0, 0, 1, 1)
+		used_rect = Rect2i(0, 0, 1, 1)
 	
 	var start_cell_x := used_rect.position.x
 	var end_cell_x := used_rect.end.x
 	
 	for cell_x in range(start_cell_x, end_cell_x):
 		var new_cloud_part: Sprite2D = CloudPartScene.instantiate()
-		new_cloud_part.position.x = tile_map.cell_size.x * cell_x
+		new_cloud_part.position.x = tile_map.tile_set.tile_size.x * cell_x
 		add_child(new_cloud_part)
 	
 	shuffle()

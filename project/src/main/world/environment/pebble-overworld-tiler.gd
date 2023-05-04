@@ -1,25 +1,26 @@
-@tool
+#@tool
 extends Node
 ## Adds pebble tiles to an overworld terrain map.
 ##
 ## Pebble tiles are added to a random selection of goopy/goopless cake tiles.
 
-@export (NodePath) var ground_map_path: NodePath
+@export var ground_map_path: NodePath
 
 ## Percent of cake tiles which should have pebbles
-@export (float, 0.0, 1.0) var pebble_density := 0.03
+@export_range(0.0, 1.0) var pebble_density := 0.03
 
 ## Ground tilemap's tile ID for goopless cells
-@export (int) var ground_no_goop_tile_index: int
+@export var ground_no_goop_tile_index: int
 
 ## Ground tilemap's tile ID for goopy cells
-@export (int) var ground_all_goop_tile_index: int
+@export var ground_all_goop_tile_index: int
 
 ## Terrain tilemap's tile ID for pebble tiles
-@export (int) var pebble_tile_index: int
+@export var pebble_tile_index: int
 
 ## Editor toggle which adds pebbles to a random selection of goopy/goopless cake tiles
-@export (bool) var _autotile: bool: set = autotile
+@warning_ignore("unused_private_class_variable")
+@export var _autotile: bool: set = autotile
 
 ## Terrain tilemap with pebble tiles to place
 @onready var _tile_map := get_parent()
@@ -56,21 +57,21 @@ func _initialize_onready_variables() -> void:
 
 
 func _erase_all_pebbles() -> void:
-	for cell in _tile_map.get_used_cells():
-		if _tile_map.get_cellv(cell) == pebble_tile_index:
-			_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
+	for cell in _tile_map.get_used_cells(0):
+		if _tile_map.get_cell_source_id(0, cell) == pebble_tile_index:
+			_tile_map.set_cell(0, cell, -1)
 
 
 func _add_random_pebbles() -> void:
-	for cell in _ground_map.get_used_cells():
-		var ground_cell_id := _ground_map.get_cellv(cell)
+	for cell in _ground_map.get_used_cells(0):
+		var ground_cell_id := _ground_map.get_cell_source_id(0, cell)
 		if not ground_cell_id in [ground_no_goop_tile_index, ground_all_goop_tile_index]:
 			# only add pebbles to goopy/goopless cake tiles
 			continue
-		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
+		if _tile_map.get_cell_source_id(0, cell) != -1:
 			continue
 		if randf() >= pebble_density:
 			# only add pebbles to a random selection of tiles
 			continue
-		var autotile_coord := Vector2(randi() % 4, randi() % 3)
-		_tile_map.set_cellv(cell, pebble_tile_index, false, false, false, autotile_coord)
+		var autotile_coord := Vector2i(randi() % 4, randi() % 3)
+		_tile_map.set_cell(0, cell, pebble_tile_index, false, false, false, autotile_coord)

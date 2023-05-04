@@ -3,7 +3,7 @@ extends Control
 ##
 ## These grade labels appear in the corner and show the player's performance.
 
-@export (PackedScene) var GradeLabelScene: PackedScene
+@export var GradeLabelScene: PackedScene
 
 ## key: (LevelSelectButton) button
 ## value: (HookableLevelGradeLabel) label for the specified button
@@ -20,7 +20,7 @@ func add_label(button: LevelSelectButton) -> void:
 	_labels_by_button[button] = new_label
 	new_label.button = button
 	
-	button.connect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited").bind(button))
+	button.tree_exited.connect(_on_LevelSelectButton_tree_exited.bind(button))
 
 
 func _on_LevelButtons_button_added(button: LevelSelectButton) -> void:

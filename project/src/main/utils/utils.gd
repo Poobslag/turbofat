@@ -1,8 +1,8 @@
-@tool
+#@tool
 class_name Utils
 ## Contains global utilities.
 
-const NUM_SCANCODES := {
+const NUM_KEYCODES := {
 	KEY_0: 0, KEY_1: 1, KEY_2: 2, KEY_3: 3, KEY_4: 4,
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
 }
@@ -24,8 +24,8 @@ static func print_json(value) -> String:
 	return JSON.stringify(value, "  ")
 
 
-## Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
-static func key_scancode(event: InputEvent) -> int:
+## Returns the keycode for a keypress event, or -1 if the event is not a keypress event.
+static func key_keycode(event: InputEvent) -> int:
 	var keycode := -1
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		keycode = event.keycode
@@ -34,7 +34,7 @@ static func key_scancode(event: InputEvent) -> int:
 
 ## Returns [0-9] for a number key event, or -1 if the event is not a number key event.
 static func key_num(event: InputEvent) -> int:
-	return NUM_SCANCODES.get(key_scancode(event), -1)
+	return NUM_KEYCODES.get(key_keycode(event), -1)
 
 
 ## Returns a transparent version of the specified color.
@@ -65,20 +65,15 @@ static func max_value(values: Array, default := 0.0) -> float:
 	if values.is_empty():
 		return default
 	
-	var max_value: float = values[0]
+	var result: float = values[0]
 	for value in range(1, len(values)):
-		max_value = max(value, max_value)
-	return max_value
+		result = max(value, result)
+	return result
 
 
 ## Returns a random value from the specified array.
 static func rand_value(values: Array):
 	return values[randi() % values.size()]
-
-
-## Generates a pseudo-random 32-bit signed integer between from and to (inclusive).
-static func randi_range(from: int, to: int) -> int:
-	return randi() % (to + 1 - from) + from
 
 
 ## Returns a random key from the specified dictionary.
@@ -128,7 +123,7 @@ static func remove_all(values: Array, value) -> Array:
 	var index := 0
 	while index < values.size():
 		if values[index] == value:
-			values.remove(index)
+			values.remove_at(index)
 		else:
 			index += 1
 	return values
@@ -200,7 +195,7 @@ static func disjunction(a: Array, b: Array) -> Array:
 static func assign_default_dialog_path(dialog: FileDialog, default_resource_path: String) -> void:
 	if dialog.current_path == "/509e7c82-9399-425a-9f15-9370c2b3de8b":
 		var current_path := ProjectSettings.globalize_path(default_resource_path)
-		if not DirAccess.new().dir_exists(current_path):
+		if not DirAccess.dir_exists_absolute(current_path):
 			current_path = OS.get_user_data_dir()
 		dialog.current_path = current_path
 
@@ -244,7 +239,7 @@ static func enum_to_snake_case(
 ## 	'from': The snake case string to convert
 ##
 ## 	'default': Default value to assume if the specified snake case string is invalid
-static func enum_from_snake_case(enum_dict: Dictionary, from: String, default: int = 0) -> int:
+static func enum_from_snake_case(enum_dict: Dictionary, from: String, default: int = 0):
 	return enum_dict.get(from.to_upper(), default)
 
 
@@ -268,16 +263,16 @@ static func to_bool(s: String) -> bool:
 
 ## Returns the local position of the center of the cell corresponding to the given tilemap (grid-based) coordinates.
 ##
-## One might expect this could be implemented trivially by passing in something like 'map_to_world(2.5, 2.5)' to
-## get the center of the cell at (2, 2). But, map_to_world does not work that way.
+## One might expect this could be implemented trivially by passing in something like 'map_to_local(2.5, 2.5)' to
+## get the center of the cell at (2, 2). But, map_to_local does not work that way.
 ##
 ## One might also expect this could be implemented by doing something like "Get the top left corner, and shift it by
 ## half the cell size." But, this returns incorrect results for isometric tilemaps.
 ##
 ## For now, the nuance and complexity required in correctly implementing this trivial functionality warrants a utility
 ## function.
-static func map_to_world_centered(tile_map: TileMap, cell: Vector2) -> Vector2:
-	return (tile_map.map_to_local(cell) + tile_map.map_to_world(cell + Vector2.ONE)) * 0.5
+static func map_to_world_centered(tile_map: TileMap, cell: Vector2i) -> Vector2:
+	return (tile_map.map_to_local(cell) + tile_map.map_to_local(cell + Vector2i.ONE)) * 0.5
 
 
 ## Shuffles the entries of the given array in a predictable manner, using the Fisher-Yates algorithm.

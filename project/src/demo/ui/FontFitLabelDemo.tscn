@@ -1,17 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://5r1wekdm81p0"]
 
-[ext_resource path="res://src/demo/ui/font-fit-label-demo.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/FontFitLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/theme/h1-font.tres" type="FontFile" id=3]
-[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="FontFile" id=4]
-[ext_resource path="res://src/main/ui/theme/h5-font.tres" type="FontFile" id=5]
-[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="FontFile" id=6]
-[ext_resource path="res://src/main/ui/theme/h2-font.tres" type="FontFile" id=7]
+[ext_resource type="Script" path="res://src/demo/ui/font-fit-label-demo.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/main/ui/FontFitLabel.tscn" id="2"]
+[ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="3_eprgr"]
 
 [node name="Node" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -20,16 +17,16 @@ offset_left = -150.0
 offset_top = -25.0
 offset_right = 150.0
 offset_bottom = 25.0
-mouse_filter = 2
 size_flags_vertical = 4
-color = Color( 1, 1, 1, 0.196078 )
-__meta__ = {
-"_editor_description_": ""
-}
+mouse_filter = 2
+color = Color(1, 1, 1, 0.196078)
 
-[node name="Label" parent="ColorRect" instance=ExtResource( 2 )]
+[node name="Label" parent="ColorRect" instance=ExtResource("2")]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-align = 1
-valign = 1
-fonts = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ]
+theme_override_fonts/font = ExtResource("3_eprgr")
+text = "hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+font_sizes = Array[float]([48.0, 36.0, 24.0, 16.0, 14.0])

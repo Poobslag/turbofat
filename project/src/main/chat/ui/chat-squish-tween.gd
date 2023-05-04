@@ -19,4 +19,4 @@ func unsquish() -> void:
 func _interpolate_squish(squished: bool) -> void:
 	_tween = Utils.recreate_tween(self, _tween).set_parallel()
 	_tween.tween_property(_chat_frame, "position:x", -100 if squished else 0, 0.2) \
-			super.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)

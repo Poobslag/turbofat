@@ -4,7 +4,7 @@ extends Control
 ## Updates the player's stored settings, and also updates the audio server.
 
 ## Type of volume which is controlled by this slider: music, sounds or voices
-@export (VolumeSettings.VolumeType) var volume_type: int: set = set_volume_type
+@export var volume_type: VolumeSettings.VolumeType: set = set_volume_type
 
 ## Text description of this volume setting, 'Master Volume'
 @onready var _setting_label: Label = $Label
@@ -26,11 +26,11 @@ func _ready() -> void:
 	# don't play sample sounds during initialization
 	_sample_timer.stop()
 	
-	_slider.connect("value_changed", Callable(self, "_on_HSlider_value_changed"))
-	_sample_timer.connect("timeout", Callable(self, "_on_SampleTimer_timeout"))
+	_slider.value_changed.connect(_on_HSlider_value_changed)
+	_sample_timer.timeout.connect(_on_SampleTimer_timeout)
 
 
-func set_volume_type(new_volume_type: int) -> void:
+func set_volume_type(new_volume_type: VolumeSettings.VolumeType) -> void:
 	volume_type = new_volume_type
 	_refresh_setting_label()
 

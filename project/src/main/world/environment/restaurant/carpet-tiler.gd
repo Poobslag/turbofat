@@ -1,31 +1,32 @@
-@tool
+#@tool
 extends Node
 ## Autotiles a tilemap for indoor floors.
 ##
 ## The carpet tiling logic renders floors with deliberate imperfections.
 
 ## autotile coordinates for a carpet cell without imperfections
-const CARPET_FLAWLESS_CELL := Vector2(0, 0)
+const CARPET_FLAWLESS_CELL := Vector2i(0, 0)
 
 ## autotile coordinates for carpet cells with imperfections
 const CARPET_FLAWED_CELLS := [
-	Vector2(1, 0), Vector2(2, 0),
-	Vector2(0, 1), Vector2(1, 1), Vector2(2, 1),
-	Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
-	Vector2(0, 3), Vector2(1, 3), Vector2(2, 3),
+	Vector2i(1, 0), Vector2i(2, 0),
+	Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1),
+	Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2),
+	Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3),
 ]
 
 ## percent of carpet cells without imperfections, in the range [0.0, 1.0]
 const CARPET_QUALITY := 0.76
 
 ## The parent tilemap's tile ID for carpet tiles
-@export (int) var carpet_tile_index: int = -1
+@export var carpet_tile_index: int = -1
 
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-@export (bool) var _autotile: bool: set = autotile
+@warning_ignore("unused_private_class_variable")
+@export var _autotile: bool: set = autotile
 
 ## tilemap containing floors
 @onready var _tile_map: TileMap = get_parent()
@@ -52,7 +53,7 @@ func _initialize_onready_variables() -> void:
 ##
 ## Parameters:
 ## 	'cell': The TileMap coordinates of the cell to be autotiled.
-func _autotile_carpet(cell: Vector2) -> void:
+func _autotile_carpet(cell: Vector2i) -> void:
 	if randf() < CARPET_QUALITY:
 		# replace the cell with a perfect carpet tile
 		_set_cell_autotile_coord(cell, CARPET_FLAWLESS_CELL)
@@ -67,9 +68,10 @@ func _autotile_carpet(cell: Vector2) -> void:
 ## 	'cell': The TileMap coordinates of the cell to be updated.
 ##
 ## 	'autotile_coord': The autotile coordinates to assign.
-func _set_cell_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
-	var tile: int = _tile_map.get_cellv(cell)
+func _set_cell_autotile_coord(cell: Vector2i, autotile_coord: Vector2i) -> void:
+	var tile: int = _tile_map.get_cell_source_id(0, cell)
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
-	_tile_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
+	_tile_map.set_cell(0, cell, tile, autotile_coord)
+	# flip_x, flip_y, transpose

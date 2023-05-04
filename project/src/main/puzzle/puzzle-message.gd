@@ -64,7 +64,7 @@ func _ready() -> void:
 ## 	'message_type': Enum from MessageType describing whether the message is good or bad.
 ##
 ## 	'text': The message text.
-func show_message(message_type: int, text: String) -> void:
+func show_message(message_type: PuzzleMessage.MessageType, text: String) -> void:
 	shown_message_text = text
 	
 	_assign_label_text(message_type, text)
@@ -86,28 +86,28 @@ func hide_message() -> void:
 
 
 ## Decorates the specified text in bbcode and assigns it to the label.
-func _assign_label_text(message_type: int, text: String) -> void:
-	var text := text
+func _assign_label_text(message_type: PuzzleMessage.MessageType, text: String) -> void:
+	var bbcode_text := text
 	
 	match message_type:
 		GOOD:
-			text = "[wave amp=40 freq=8]%s[/wave]" % [text]
+			bbcode_text = "[wave amp=40 freq=8]%s[/wave]" % [bbcode_text]
 		NEUTRAL:
-			text = "[wave amp=0 freq=0]%s[/wave]" % [text]
+			bbcode_text = "[wave amp=0 freq=0]%s[/wave]" % [bbcode_text]
 		BAD:
-			text = "[tornado radius=2 freq=4]%s[/tornado]" % [text]
-	text = "[center]%s[/center]" % [text]
+			text = "[tornado radius=2 freq=4]%s[/tornado]" % [bbcode_text]
+	bbcode_text = "[center]%s[/center]" % [bbcode_text]
 	
-	_label.text = text
+	_label.text = bbcode_text
 	_label.bbcode_enabled = true
-	_outline_label.text = text
+	_outline_label.text = bbcode_text
 	_outline_label.bbcode_enabled = true
 
 
 ## Updates the accent texture based on the message type.
 ##
 ## Good messages get more uplifting, bubbly accents. Wide messages get wider accents.
-func _assign_accent_texture(message_type: int, text: String) -> void:
+func _assign_accent_texture(message_type: PuzzleMessage.MessageType, text: String) -> void:
 	# check if any lines is more than 200 pixels wide
 	var wide_message: bool = false
 	for line in text.split("\n"):
@@ -127,7 +127,7 @@ func _assign_accent_texture(message_type: int, text: String) -> void:
 ## Moves the labels and accent sprite based on the message size.
 ##
 ## For multiline messages, we rearrange the labels and accent sprite to stay vertically centered.
-func _assign_boundaries(_message_type: int, text: String) -> void:
+func _assign_boundaries(_message_type: PuzzleMessage.MessageType, text: String) -> void:
 	_label.size.y = 150 if "\n" in text else 60
 	_label.offset_top = 22 if "\n" in text else 45
 	_label.offset_bottom = 22 if "\n" in text else 45
@@ -141,7 +141,7 @@ func _assign_boundaries(_message_type: int, text: String) -> void:
 
 
 ## Updates the color for the labels and accent sprite.
-func _assign_colors(message_type: int, _text: String) -> void:
+func _assign_colors(message_type: PuzzleMessage.MessageType, _text: String) -> void:
 	var label_font: FontFile = _label.get("theme_override_fonts/normal_font")
 	label_font.outline_color = OUTLINE_COLOR_BY_TYPE[message_type]
 	_label.set("theme_override_colors/default_color", FONT_COLOR_BY_TYPE[message_type])

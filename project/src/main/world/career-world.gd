@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles in the career mode's world.
 
@@ -30,7 +30,7 @@ const ENVIRONMENT_PATH_BY_NAME := {
 	"poki": "res://src/main/world/environment/poki/PokiEnvironment.tscn",
 }
 
-@export (PackedScene) var MileMarkerScene: PackedScene
+@export var MileMarkerScene: PackedScene
 
 ## Creature instances for 'level creatures', chefs and customers associated with each level.
 var _level_creatures := []
@@ -45,9 +45,10 @@ var _move_cheat_enabled := false
 ## path on which which the player and sensei are placed
 @onready var _player_path2d: Path2D
 
-@onready var _camera: Camera2D = $Camera3D
+@onready var _camera: Camera2D = $Camera2D
 
 func _ready() -> void:
+	super()
 	if Engine.is_editor_hint():
 		return
 	
@@ -56,6 +57,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	super(event)
 	if not _move_cheat_enabled:
 		# input handling is only for move cheat
 		return
@@ -76,7 +78,7 @@ func _input(event: InputEvent) -> void:
 			_move_objects_to_path()
 
 
-func initial_environment_path() -> String:
+func get_initial_environment_path() -> String:
 	return _career_environment_path()
 
 
@@ -86,7 +88,7 @@ func initial_environment_path() -> String:
 ## 	'level_posses': LevelPosse instances for creatures which should appear for each level.
 func refresh_from_career_data(level_posses: Array) -> void:
 	if EnvironmentScene.resource_path != _career_environment_path():
-		set_environment_scene(load(initial_environment_path()))
+		set_environment_scene(load(get_initial_environment_path()))
 		_fill_environment_scene()
 	_move_objects_to_path()
 	
@@ -172,12 +174,12 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 	var remaining_customer_ids: Array = level_posse.customer_ids.duplicate()
 	var remaining_creature_indexes := [1, 0, 2]
 	
-	if level_posse.chef_id:
+	if not level_posse.chef_id.is_empty():
 		# if there's a chef_id, add the chef
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.creature_id = level_posse.chef_id
 	
-	if level_posse.observer_id:
+	if not level_posse.observer_id.is_empty():
 		# if there's an observer_id, add the observer
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.creature_id = level_posse.observer_id
@@ -208,10 +210,10 @@ func _refresh_multi_level_creatures(level_posses: Array) -> void:
 		var chef_id: String = level_posses[i].chef_id
 		var customer_ids: Array = level_posses[i].customer_ids
 		var creature: Creature = _level_creatures[i]
-		if chef_id:
+		if not chef_id.is_empty():
 			# if there's a chef_id, show the level's chef
 			creature.creature_id = chef_id
-		elif customer_ids:
+		elif not customer_ids.is_empty():
 			# if there's a customer_id, show the level's customer
 			creature.add_to_group("customers")
 			creature.creature_id = customer_ids[0]
@@ -257,7 +259,7 @@ func _add_level_creature() -> void:
 	var creature := overworld_environment.add_creature()
 	_level_creatures.append(creature)
 	
-	var mood: int
+	var mood: Creatures.Mood
 	if randf() < 0.8:
 		mood = Utils.rand_value(MOODS_COMMON)
 	elif randf() < 0.8:

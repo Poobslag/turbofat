@@ -58,13 +58,13 @@ func _update_unlocked_level_text(settings: LevelSettings) -> void:
 	new_text += tr("Duration: %s") % [duration_string]
 	new_text += "\n"
 	
-	var prev_result := PlayerData.level_history.prev_result(settings.id)
+	var prev_result := PlayerData.level_history.get_prev_result(settings.id)
 	if prev_result:
-		new_text += tr("New: %s") % [PackedStringArray(HighScoreTable."   ".join(rank_result_row(prev_result)))]
+		new_text += tr("New: %s") % ["   ".join(PackedStringArray(HighScoreTable.rank_result_row(prev_result)))]
 	new_text += "\n"
-	var best_result := PlayerData.level_history.best_result(settings.id)
+	var best_result := PlayerData.level_history.get_best_result(settings.id)
 	if best_result:
-		new_text += tr("Top: %s") % [PackedStringArray(HighScoreTable."   ".join(rank_result_row(best_result)))]
+		new_text += tr("Top: %s") % ["   ".join(PackedStringArray(HighScoreTable.rank_result_row(best_result)))]
 	set_text(new_text)
 
 

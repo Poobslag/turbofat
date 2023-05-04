@@ -30,12 +30,12 @@ func set_button(new_button: LevelSelectButton) -> void:
 	
 	if button:
 		button.get_node("GradeHook").remote_path = null
-		button.disconnect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
+		button.tree_exited.disconnect(_on_LevelSelectButton_tree_exited)
 	
 	button = new_button
 	
 	button.get_node("GradeHook").remote_path = button.get_node("GradeHook").get_path_to(self)
-	button.connect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
+	button.tree_exited.connect(_on_LevelSelectButton_tree_exited)
 	
 	_refresh_appearance()
 
@@ -53,13 +53,13 @@ func _refresh_appearance() -> void:
 		_refresh_status_icon(button.lock_status)
 	else:
 		# cleared levels show a grade
-		_refresh_grade_text(PlayerData.level_history.best_overall_rank(button.level_id))
+		_refresh_grade_text(PlayerData.level_history.get_best_overall_rank(button.level_id))
 
 
 ## Updates the icon based on the level's status.
 ##
 ## We show a lock/key/crown icon corresponding to the level's lock status.
-func _refresh_status_icon(lock_status: int) -> void:
+func _refresh_status_icon(lock_status: LevelSelectButton.LockStatus) -> void:
 	_grade_label.visible = false
 	_status_icon.visible = true
 	
@@ -85,14 +85,14 @@ func _refresh_status_icon(lock_status: int) -> void:
 			push_warning("Unexpected lock status: %s" % [lock_status])
 	
 	_status_icon.modulate = icon_color
-	_status_icon.material.set("shader_param/black", outline_color)
+	_status_icon.material.set("shader_parameter/black", outline_color)
 
 
 ## Updates the text based on the player's grade on a level.
 func _refresh_grade_text(rank: float) -> void:
 	_status_icon.visible = false
 	
-	_grade_label.text = RankCalculator.grade(rank)
+	_grade_label.text = RankCalculator.grade_from_rank(rank)
 	_grade_label.visible = false if _grade_label.text == "-" else true
 	_grade_label.refresh_color_from_text()
 

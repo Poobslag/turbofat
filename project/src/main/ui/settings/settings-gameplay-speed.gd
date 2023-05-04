@@ -6,6 +6,7 @@ extends Control
 @onready var _option_button: OptionButton = $OptionButton
 
 func _ready() -> void:
+	_option_button.clear()
 	_option_button.add_item(tr("Slowestest"), GameplaySettings.Speed.SLOWESTEST)
 	_option_button.add_item(tr("Slowest"), GameplaySettings.Speed.SLOWEST)
 	_option_button.add_item(tr("Slower"), GameplaySettings.Speed.SLOWER)
@@ -16,7 +17,7 @@ func _ready() -> void:
 	_option_button.add_item(tr("Fastest"), GameplaySettings.Speed.FASTEST)
 	_option_button.add_item(tr("Fastestest"), GameplaySettings.Speed.FASTESTEST)
 	
-	SystemData.gameplay_settings.connect("speed_changed", Callable(self, "_on_GameplaySettings_speed_changed"))
+	SystemData.gameplay_settings.speed_changed.connect(_on_GameplaySettings_speed_changed)
 	
 	_refresh()
 
@@ -27,8 +28,8 @@ func _refresh() -> void:
 
 func _on_OptionButton_item_selected(index: int) -> void:
 	var item_id := _option_button.get_item_id(index)
-	SystemData.gameplay_settings.speed = item_id
+	SystemData.gameplay_settings.speed = item_id as GameplaySettings.Speed
 
 
-func _on_GameplaySettings_speed_changed(_value: int) -> void:
+func _on_GameplaySettings_speed_changed(_value: GameplaySettings.Speed) -> void:
 	_refresh()

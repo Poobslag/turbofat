@@ -1,68 +1,69 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://by5n628xv15w8"]
 
-[ext_resource path="res://src/main/chat/ui/narration-style.tres" type="StyleBox" id=1]
-[ext_resource path="res://src/main/chat/ui/label-typer.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/chat/ui/frame-pop-out.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/main/chat/ui/frame-pop-in.wav" type="AudioStream" id=4]
-[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="FontFile" id=5]
-[ext_resource path="res://src/main/chat/ui/ChatPopTween.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/chat/ui/narration-frame.gd" type="Script" id=7]
-[ext_resource path="res://assets/main/chat/ui/bebebe.wav" type="AudioStream" id=8]
-[ext_resource path="res://src/main/chat/ui/narration-line-panel.gd" type="Script" id=9]
+[ext_resource type="StyleBox" path="res://src/main/chat/ui/narration-style.tres" id="1"]
+[ext_resource type="Script" path="res://src/main/chat/ui/label-typer.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://ci6uvjlbfykw5" path="res://assets/main/chat/ui/frame-pop-out.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://crd007u5qrk2r" path="res://assets/main/chat/ui/frame-pop-in.wav" id="4"]
+[ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="5_oop30"]
+[ext_resource type="PackedScene" path="res://src/main/chat/ui/ChatPopTween.tscn" id="6"]
+[ext_resource type="Script" path="res://src/main/chat/ui/narration-frame.gd" id="7"]
+[ext_resource type="AudioStream" uid="uid://ch6nyivc3ndm7" path="res://assets/main/chat/ui/bebebe.wav" id="8"]
+[ext_resource type="Script" path="res://src/main/chat/ui/narration-line-panel.gd" id="9"]
 
 [node name="NarrationFrame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 400.0
-pivot_offset = Vector2( 362, 79 )
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "Defines the size of the chat area."
-}
+pivot_offset = Vector2(362, 79)
+script = ExtResource("7")
 
-[node name="PopTween" parent="." instance=ExtResource( 6 )]
+[node name="PopTween" parent="." instance=ExtResource("6")]
 
 [node name="NarrationPanel" type="Panel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
-theme_override_styles/panel = ExtResource( 1 )
-script = ExtResource( 9 )
+theme_override_styles/panel = ExtResource("1")
+script = ExtResource("9")
 
 [node name="NarrationLabel" type="Label" parent="NarrationPanel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
 offset_right = -20.0
-theme_override_colors/font_color = Color( 0.94902, 0.831373, 0.584314, 1 )
-theme_override_fonts/font = ExtResource( 5 )
+theme_override_colors/font_color = Color(0.94902, 0.831373, 0.584314, 1)
+theme_override_fonts/font = ExtResource("5_oop30")
+theme_override_font_sizes/font_size = 24
 text = "Most of the Turbo Fat locations gradually developed a loyal following of hungry customers, except for Merrymellow Marsh where business was unusually slow. Fat Sensei and Spira were on their way to get to the bottom of this mystery."
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 clip_text = true
 
 [node name="LabelTyper" type="Node" parent="NarrationPanel/NarrationLabel"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="BebebeSound" type="AudioStreamPlayer" parent="NarrationPanel/NarrationLabel/LabelTyper"]
-stream = ExtResource( 8 )
+stream = ExtResource("8")
 volume_db = -12.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="PopInSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = -14.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="PopOutSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource("3")
 volume_db = -14.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [connection signal="pop_out_completed" from="PopTween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="all_text_shown" from="NarrationPanel" to="." method="_on_NarrationPanel_all_text_shown"]

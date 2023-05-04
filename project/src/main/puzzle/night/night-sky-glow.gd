@@ -1,7 +1,7 @@
 extends Sprite2D
 ## Circular glow shown behind the onion.
 
-@export (NodePath) var onion_sprite_path: NodePath
+@export var onion_sprite_path: NodePath
 
 ## Onion which we reference when updating our position.
 @onready var onion_sprite: Node2D = get_node(onion_sprite_path)
@@ -22,7 +22,7 @@ func _start_tween() -> void:
 	scale = _tween_values[0]
 	_tween = Utils.recreate_tween(self, _tween)
 	_tween.tween_property(self, "scale", _tween_values[1], 5.0) \
-			super.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_tween.chain().tween_callback(Callable(self, "_on_Tween_completed"))
 
 
@@ -30,5 +30,5 @@ func _start_tween() -> void:
 ##
 ## Each time this is called, we restart the tween and alternate between growing or shrinking.
 func _on_Tween_completed() -> void:
-	_tween_values.invert()
+	_tween_values.reverse()
 	_start_tween()

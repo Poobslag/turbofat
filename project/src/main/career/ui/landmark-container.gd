@@ -1,10 +1,10 @@
 extends HBoxContainer
 ## Draws landmark icons for career mode's chalkboard map.
 
-@export (Resource) var LandmarkScene: Resource
-@export (Resource) var LandmarkSpacerScene: Resource
+@export var LandmarkScene: Resource
+@export var LandmarkSpacerScene: Resource
 
-@export (NodePath) var map_row_path: NodePath
+@export var map_row_path: NodePath
 
 @onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
 
@@ -15,7 +15,7 @@ var _landmark_spacers := []
 var _landmarks := []
 
 func _ready() -> void:
-	_map_row.connect("landmark_count_changed", Callable(self, "_on_MapRow_landmark_count_changed"))
+	_map_row.landmark_count_changed.connect(_on_MapRow_landmark_count_changed)
 	_landmarks = get_tree().get_nodes_in_group("landmarks")
 	_landmark_spacers = get_tree().get_nodes_in_group("landmark_spacers")
 	_refresh_landmarks()

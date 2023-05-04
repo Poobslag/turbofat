@@ -3,10 +3,10 @@ extends Node2D
 ## Cluster of crumbs which appears when the customer eats.
 
 ## Lifetime of the particles in seconds. The CrumbCluster also deletes itself after this duration.
-@export (float) var lifetime := 1.0
+@export var lifetime := 1.0
 
 ## int corresponding to a FoodItem frame
-var food_type : set = set_food_type
+var food_type: Foods.FoodType : set = set_food_type
 
 ## Timer which causes the CrumbCluster to free itself
 @onready var _timer := $Timer
@@ -22,7 +22,7 @@ func _ready() -> void:
 	_refresh_food_type()
 
 
-func set_food_type(new_food_type: int) -> void:
+func set_food_type(new_food_type: Foods.FoodType) -> void:
 	food_type = new_food_type
 	_refresh_food_type()
 

@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name CreatureVisuals
 extends Node2D
 ## Handles animations and audio/visual effects for a creature.
@@ -23,7 +23,7 @@ signal dna_loaded
 signal dna_changed(dna)
 
 ## emitted during the 'run' animation when the creature touches the ground
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal landed
 
 signal orientation_changed(old_orientation, new_orientation)
@@ -34,31 +34,34 @@ signal comfort_changed
 signal talking_changed
 
 ## emitted by FatSpriteMover when it moves the head by making the creature fatter
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal head_moved
 
 const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)
 
 ## toggle to assign default animation frames based on the creature's orientation
-@export (bool) var _reset_frames : set = reset_frames
+@warning_ignore("unused_private_class_variable")
+@export var _reset_frames: bool: set = reset_frames
 
 ## toggle to remove the creature's textures
-@export (bool) var _reset_creature : set = reset_creature
+@warning_ignore("unused_private_class_variable")
+@export var _reset_creature: bool: set = reset_creature
 
 ## toggle to generate a creature with a random appearance
-@export (bool) var _random_creature : set = random_creature
+@warning_ignore("unused_private_class_variable")
+@export var _random_creature: bool: set = random_creature
 
 ## state of whether the creature is walking, running or idle
-@export (Creatures.MovementMode) var movement_mode := Creatures.IDLE: set = set_movement_mode
+@export var movement_mode := Creatures.IDLE: set = set_movement_mode
 
 ## direction the creature is facing
-@export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST: set = set_orientation
+@export var orientation := Creatures.SOUTHEAST: set = set_orientation
 
 ## colors and textures used to draw the creature
-@export (Dictionary) var dna: Dictionary: set = set_dna
+@export var dna: Dictionary: set = set_dna
 
 ## how fat the creature looks right now; gradually approaches the 'fatness' property
-@export (float, 1.0, 10.0) var visual_fatness := 1.0: set = set_visual_fatness
+@export_range(1.0, 10.0) var visual_fatness := 1.0: set = set_visual_fatness
 
 ## how fat the creature will become eventually; visual_fatness gradually approaches this value
 var fatness := 1.0: get = get_fatness, set = set_fatness
@@ -82,7 +85,7 @@ var _base_scale: Vector2 = Vector2.ONE
 var _force_orientation_change := false
 
 ## food type the creature is eating
-var _food_type: int
+var _food_type: Foods.FoodType
 
 var creature_sfx: CreatureSfx: set = set_creature_sfx
 
@@ -92,8 +95,8 @@ var creature_sfx: CreatureSfx: set = set_creature_sfx
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
 	set_orientation(orientation)
-	$DnaLoader.connect("dna_loaded", Callable(self, "_on_DnaLoader_dna_loaded"))
-	$TalkTimer.connect("timeout", Callable(self, "_on_TalkTimer_timeout"))
+	$DnaLoader.dna_loaded.connect(_on_DnaLoader_dna_loaded)
+	$TalkTimer.timeout.connect(_on_TalkTimer_timeout)
 	_refresh_creature_sfx()
 
 
@@ -221,7 +224,7 @@ func random_creature(value: bool = true) -> void:
 ##
 ## If the creature swaps between facing left or right, certain sprites are flipped horizontally. If the creature swaps
 ## between facing forward or backward, certain sprites play different animations or toggle between different frames.
-func set_orientation(new_orientation: int) -> void:
+func set_orientation(new_orientation: Creatures.Orientation) -> void:
 	var old_orientation := orientation
 	orientation = new_orientation
 	if not is_inside_tree():
@@ -244,7 +247,7 @@ func set_orientation(new_orientation: int) -> void:
 		# some listeners try to distinguish between 'big orientation changes' and 'little orientation changes'. if
 		# _force_orientation_change is true, we signal to everyone that they cannot transition from the old
 		# orientation by making it something nonsensical
-		old_orientation = -1
+		old_orientation = Creatures.Orientation.NONE
 	
 	emit_signal("orientation_changed", old_orientation, new_orientation)
 
@@ -278,7 +281,7 @@ func rescale(new_scale_x: float, new_scale_y: float = -1, is_base_scale: bool = 
 ##
 ## Parameters:
 ## 	'food_type': Enum from FoodType corresponding to the food to show
-func feed(food_type: int) -> void:
+func feed(food_type: Foods.FoodType) -> void:
 	if not visible:
 		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
@@ -301,8 +304,9 @@ func set_dna(new_dna: Dictionary) -> void:
 	
 	CreatureLoader.load_details(dna)
 	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
-	$DnaLoader.unload_dna()
-	$DnaLoader.load_dna()
+	var dna_loader: DnaLoader = $DnaLoader
+	dna_loader.unload_dna()
+	dna_loader.load_dna()
 	emit_signal("dna_changed", dna)
 
 
@@ -352,7 +356,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	_animations.play_movement_animation(animation_name)
 
 
-func set_movement_mode(new_mode: int) -> void:
+func set_movement_mode(new_mode: Creatures.MovementMode) -> void:
 	var old_mode := movement_mode
 	movement_mode = new_mode
 	if is_inside_tree():
@@ -363,7 +367,7 @@ func set_movement_mode(new_mode: int) -> void:
 ##
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
-func play_mood(mood: int) -> void:
+func play_mood(mood: Creatures.Mood) -> void:
 	_animations.play_mood(mood)
 
 
@@ -403,19 +407,19 @@ func _refresh_creature_sfx() -> void:
 ##
 ## For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an
 ## orientation of 'southeast'.
-func _compute_orientation(direction: Vector2) -> int:
+func _compute_orientation(direction: Vector2) -> Creatures.Orientation:
 	if direction.length() == 0:
 		# we default to the current orientation if given a zero-length vector
 		return orientation
 	
 	# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
 	# when our direction puts us between two orientations.
-	var new_orientation: int = orientation
+	var new_orientation := orientation
 	# unrounded orientation is a float in the range [-2.0, 2.0]
 	var unrounded_orientation := -2 * direction.angle_to(SOUTHEAST_DIR) / PI
 	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
-		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
+		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4) as Creatures.Orientation
 	return new_orientation
 
 

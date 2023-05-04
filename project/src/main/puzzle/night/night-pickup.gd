@@ -10,10 +10,6 @@ var food_type := 0: set = set_food_type
 ## 'true' if the food item should be shown, 'false' if the star or seed should be shown
 var food_shown: bool = false: set = set_food_shown
 
-## array of Colors the star should cycle between
-var _star_colors: Array = []
-var _star_color_index := 0
-
 @onready var _seed := $Seed
 @onready var _star := $Star
 @onready var _food_item := $FoodItem
@@ -33,7 +29,7 @@ func set_food_shown(new_food_shown: bool) -> void:
 	_refresh_appearance()
 
 
-func set_food_type(new_food_type: int) -> void:
+func set_food_type(new_food_type: Foods.FoodType) -> void:
 	if food_type == new_food_type:
 		return
 	
@@ -46,7 +42,7 @@ func _refresh_appearance() -> void:
 	if not is_inside_tree():
 		return
 	
-	var box_type: int = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
+	var box_type: Foods.BoxType = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
 	
 	# refresh seed appearance
 	_seed.visible = not food_shown and Foods.is_snack_box(box_type)

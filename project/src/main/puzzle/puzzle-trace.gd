@@ -1,7 +1,7 @@
 extends Label
 ## Shows diagnostics for the piece physics. Enabled with the cheat code 'delays'.
 
-@export (NodePath) var puzzle_path: NodePath
+@export var puzzle_path: NodePath
 
 @onready var _puzzle:Puzzle = get_node(puzzle_path)
 @onready var _playfield:Playfield = _puzzle.get_playfield()

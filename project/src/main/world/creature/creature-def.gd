@@ -142,9 +142,7 @@ func to_json_dict() -> Dictionary:
 func from_json_path(path: String) -> Object:
 	var result := self
 	var creature_def_text: String = FileUtils.get_file_as_text(path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(creature_def_text)
-	var parsed = test_json_conv.get_data()
+	var parsed = JSON.parse_string(creature_def_text)
 	if typeof(parsed) == TYPE_DICTIONARY:
 		var json_creature_def: Dictionary = parsed
 		from_json_dict(json_creature_def)

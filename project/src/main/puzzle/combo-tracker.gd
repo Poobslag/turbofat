@@ -20,11 +20,11 @@ var piece_continued_combo := false
 var piece_broke_combo := false
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
-	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
+	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 
 
 func set_combo_break(new_combo_break: int) -> void:
@@ -61,7 +61,7 @@ func _on_Level_settings_changed() -> void:
 	_reset()
 
 
-func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2i, _box_type: Foods.BoxType) -> void:
 	piece_continued_combo = true
 	if combo_break != 0:
 		combo_break = 0

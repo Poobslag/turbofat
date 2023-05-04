@@ -3,16 +3,16 @@ class_name LevelTiles
 
 ## Set of blocks which is shown initially, or appears during the game
 class BlockBunch:
-	## key: (Vector2) positions of cells containing a tile
+	## key: (Vector2i) positions of cells containing a tile
 	## value: (int) tile indexes of each cell
 	var block_tiles := {}
 
-	## key: (Vector2) positions of cells containing a tile
-	## value: (Vector2) coordinate of the autotile variation in the tileset
+	## key: (Vector2i) positions of cells containing a tile
+	## value: (Vector2i) coordinate of the autotile variation in the tileset
 	var block_autotile_coords := {}
 	
-	## key: (Vector2) positions of cells containing a pickup
-	## value: (int) enum from Foods.BoxType defining the pickup's color
+	## key: (Vector2i) positions of cells containing a pickup
+	## value: (Foods.BoxType) pickup's color
 	var pickups := {}
 
 	## Defines a block which will appear on the playfield.
@@ -23,7 +23,7 @@ class BlockBunch:
 	## 	'tile': Tile index of the cell
 	##
 	## 	'autotile_coord': Coordinate of the autotile variation in the tileset
-	func set_block(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
+	func set_block(pos: Vector2i, tile: int, autotile_coord: Vector2i) -> void:
 		block_tiles[pos] = tile
 		block_autotile_coords[pos] = autotile_coord
 	
@@ -34,7 +34,7 @@ class BlockBunch:
 	## 	'pos': Position of the cell
 	##
 	## 	'box_type': Enum from Foods.BoxType defining the pickup's color
-	func set_pickup(pos: Vector2, box_type: int) -> void:
+	func set_pickup(pos: Vector2i, box_type: Foods.BoxType) -> void:
 		pickups[pos] = box_type
 
 
@@ -45,7 +45,7 @@ var bunches: Dictionary = {}
 func from_json_dict(json: Dictionary) -> void:
 	for tiles_key in json.keys():
 		var bunch := BlockBunch.new()
-		PuzzleTileMapReader.read(json[tiles_key], funcref(bunch, "set_block"), funcref(bunch, "set_pickup"))
+		PuzzleTileMapReader.read(json[tiles_key], Callable(bunch, "set_block"), Callable(bunch, "set_pickup"))
 		bunches[tiles_key] = bunch
 
 
@@ -65,7 +65,7 @@ func to_json_dict() -> Dictionary:
 			}
 			if bunch.block_tiles.has(used_cell):
 				var tile_index: int = bunch.block_tiles[used_cell]
-				var autotile_coord: Vector2 = bunch.block_autotile_coords[used_cell]
+				var autotile_coord: Vector2i = bunch.block_autotile_coords[used_cell]
 				json_tile["tile"] = "%s %s %s" % [tile_index, autotile_coord.x, autotile_coord.y]
 			if bunch.pickups.has(used_cell):
 				var pickup_index: int = bunch.pickups[used_cell]

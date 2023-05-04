@@ -13,21 +13,22 @@ const TEXT_POSITION_BY_FRAME := {
 
 ## key: (int) Mile Marker sprite frame
 ## value: (Vector2) Rotation degrees to align the text with the specified sprite frame
-const TEXT_ROTATION_DEGREES_BY_FRAME := {
-	0: 12,
-	1: -14,
-	2: -7,
+const TEXT_ROTATION_BY_FRAME := {
+	0: 0.2094395102,
+	1: -0.2443460953,
+	2: -0.1221730476,
 	3: 0,
 }
 
 ## Number which appears on the sign
-@export (int) var mile_number: int = 1: set = set_mile_number
+@export var mile_number: int = 1: set = set_mile_number
 
 @onready var _label := $Text/Label
 @onready var _sprite := $Sprite2D
 @onready var _text := $Text
 
 func _ready() -> void:
+	super()
 	_randomize_sprite()
 	_refresh_label()
 
@@ -45,9 +46,9 @@ func _randomize_sprite() -> void:
 	
 	# align the text based on the sprite's appearance
 	_text.position = TEXT_POSITION_BY_FRAME[_sprite.frame]
-	_text.rotation_degrees = TEXT_ROTATION_DEGREES_BY_FRAME[_sprite.frame]
+	_text.rotation = TEXT_ROTATION_BY_FRAME[_sprite.frame]
 	if _sprite.flip_h:
-		_text.rotation_degrees *= -1
+		_text.rotation *= -1
 		_text.position.x *= -1
 
 

@@ -13,7 +13,7 @@ const MAP_SCENE_PATHS_BY_REGION_ID := {
 	"poki": "res://src/main/career/ui/ProgressBoardMapPoki.tscn",
 }
 
-@export (String) var region_id: String: set = set_region_id
+@export var region_id: String: set = set_region_id
 
 ## Exposes the map's path2d for the progress board trail.
 var path2d: Path2D

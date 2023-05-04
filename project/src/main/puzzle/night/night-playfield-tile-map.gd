@@ -7,12 +7,13 @@ extends NightPuzzleTileMap
 ##
 ## This tilemap is synchronized with the daytime tilemap, and rendered over it.
 
-## key: (Vector2) playfield cell containing a 'silhouette', a vertical shadow below a block.
+## key: (Vector2i) playfield cell containing a 'silhouette', a vertical shadow below a block.
 ## value: (bool) true
 var _silhouettes_by_cell := {}
 
 func _ready() -> void:
-	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	super()
+	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	_reset()
 
 
@@ -32,47 +33,47 @@ func set_source_tile_map(new_source_tile_map: PuzzleTileMap) -> void:
 func _refresh_tiles_from_source() -> void:
 	# copy data from the source tilemap
 	clear()
-	for cell in source_tile_map.get_used_cells():
-		set_cellv(cell, 0, false, false, false, Vector2(15, 0))
+	for cell in source_tile_map.get_used_cells(0):
+		set_cell(0, cell, 0, Vector2i(15, 0))
 	
 	# add silhouettes
 	for cell in _silhouettes_by_cell:
-		if get_cellv(cell) == INVALID_CELL and _silhouettes_by_cell.get(cell, false):
-			set_cellv(cell, 0, false, false, false, Vector2(15, 0))
+		if get_cell_source_id(0, cell) == -1 and _silhouettes_by_cell.get(cell, false):
+			set_cell(0, cell, 0, Vector2i(15, 0))
 	
 	# shape tiles
-	for cell in get_used_cells():
-		var autotile_coord := Vector2(15, 0)
-		if get_cellv(cell + Vector2.LEFT) == INVALID_CELL:
+	for cell in get_used_cells(0):
+		var autotile_coord := Vector2i(15, 0)
+		if get_cell_source_id(0, cell + Vector2i.LEFT) == -1:
 			autotile_coord.x = PuzzleConnect.unset_l(autotile_coord.x)
-		if get_cellv(cell + Vector2.UP) == INVALID_CELL:
+		if get_cell_source_id(0, cell + Vector2i.UP) == -1:
 			autotile_coord.x = PuzzleConnect.unset_u(autotile_coord.x)
-		if get_cellv(cell + Vector2.RIGHT) == INVALID_CELL:
+		if get_cell_source_id(0, cell + Vector2i.RIGHT) == -1:
 			autotile_coord.x = PuzzleConnect.unset_r(autotile_coord.x)
-		if get_cellv(cell + Vector2.DOWN) == INVALID_CELL:
+		if get_cell_source_id(0, cell + Vector2i.DOWN) == -1:
 			autotile_coord.x = PuzzleConnect.unset_d(autotile_coord.x)
 		if cell.y == PuzzleTileMap.ROW_COUNT - 1:
 			autotile_coord.x = PuzzleConnect.set_distance(autotile_coord.x)
-		set_cellv(cell, 0, false, false, false, autotile_coord)
+		set_cell(0, cell, 0, autotile_coord)
 
 
 ## Recalculates which cells should contain 'silhouettes', vertical shadows below blocks.
 func _refresh_silhouettes() -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
 		for y in range(PuzzleTileMap.ROW_COUNT):
-			_refresh_silhouette(Vector2(x, y))
+			_refresh_silhouette(Vector2i(x, y))
 
 
 ## Recalculates whether the specified cell should contain a 'silhouettes', a vertical shadow below blocks.
 ##
 ## This method assumes the cell above it has already been updated with a silhouette, if necessary.
-func _refresh_silhouette(cell: Vector2) -> void:
+func _refresh_silhouette(cell: Vector2i) -> void:
 	var silhouette := false
-	if source_tile_map.get_cellv(cell) != INVALID_CELL:
+	if source_tile_map.get_cell_source_id(0, cell) != -1:
 		silhouette = false
-	elif source_tile_map.get_cellv(cell + Vector2.UP) != INVALID_CELL:
+	elif source_tile_map.get_cell_source_id(0, cell + Vector2i.UP) != -1:
 		silhouette = true
-	elif _silhouettes_by_cell.get(cell + Vector2.UP, false):
+	elif _silhouettes_by_cell.get(cell + Vector2i.UP, false):
 		silhouette = true
 	_silhouettes_by_cell[cell] = silhouette
 

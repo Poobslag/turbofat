@@ -30,7 +30,7 @@ var player_distance: int = 0: set = set_player_distance
 ## 		landmark.
 ##
 ## 	'landmark_type': Enum from Landmark.LandmarkType for the specified landmark.
-func set_landmark_type(index: int, landmark_type: int) -> void:
+func set_landmark_type(index: int, landmark_type: Landmark.LandmarkType) -> void:
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
 	if index >= landmarks.size():
@@ -48,7 +48,7 @@ func set_landmark_type(index: int, landmark_type: int) -> void:
 ##
 ## Returns:
 ## 	Enum from Landmark.LandmarkType for the specified landmark.
-func get_landmark_type(index: int) -> int:
+func get_landmark_type(index: int) -> Landmark.LandmarkType:
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
 	if index >= landmarks.size():

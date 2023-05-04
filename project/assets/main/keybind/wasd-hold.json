@@ -6,7 +6,7 @@
     },
     {
       "type": "key",
-      "scancode": 16777355
+      "scancode": 4194443
     },
     {
       "type": "joypad_button",
@@ -26,7 +26,7 @@
     },
     {
       "type": "key",
-      "scancode": 16777354
+      "scancode": 4194442
     },
     {
       "type": "joypad_button",
@@ -41,7 +41,7 @@
     },
     {
       "type": "key",
-      "scancode": 16777356
+      "scancode": 4194444
     },
     {
       "type": "joypad_button",
@@ -52,7 +52,7 @@
   "rewind_text": [
     {
       "type": "key",
-      "scancode": 16777237
+      "scancode": 4194325
     },
     {
       "type": "joypad_button",
@@ -74,11 +74,11 @@
   "rotate_ccw": [
     {
       "type": "key",
-      "scancode": 16777231
+      "scancode": 4194319
     },
     {
       "type": "key",
-      "scancode": 16777357
+      "scancode": 4194445
     },
     {
       "type": "joypad_button",
@@ -89,11 +89,11 @@
   "rotate_cw": [
     {
       "type": "key",
-      "scancode": 16777233
+      "scancode": 4194321
     },
     {
       "type": "key",
-      "scancode": 16777359
+      "scancode": 4194447
     },
     {
       "type": "joypad_button",
@@ -108,7 +108,7 @@
     },
     {
       "type": "key",
-      "scancode": 16777358
+      "scancode": 4194446
     },
     {
       "type": "joypad_button",
@@ -124,11 +124,11 @@
   "swap_hold_piece": [
     {
       "type": "key",
-      "scancode": 16777237
+      "scancode": 4194325
     },
     {
       "type": "key",
-      "scancode": 16777222
+      "scancode": 4194310
     },
     {
       "type": "joypad_button",
@@ -144,11 +144,11 @@
   "ui_accept": [
     {
       "type": "key",
-      "scancode": 16777221
+      "scancode": 4194309
     },
     {
       "type": "key",
-      "scancode": 16777222
+      "scancode": 4194310
     },
     {
       "type": "key",
@@ -167,7 +167,7 @@
   "ui_cancel": [
     {
       "type": "key",
-      "scancode": 16777217
+      "scancode": 4194305
     },
     {
       "type": "joypad_button",
@@ -178,7 +178,7 @@
   "ui_down": [
     {
       "type": "key",
-      "scancode": 16777234
+      "scancode": 4194322
     },
     {
       "type": "key",
@@ -193,7 +193,7 @@
   "ui_end": [
     {
       "type": "key",
-      "scancode": 16777230
+      "scancode": 4194318
     }
   ],
   "ui_focus_next": [
@@ -203,13 +203,13 @@
   "ui_home": [
     {
       "type": "key",
-      "scancode": 16777229
+      "scancode": 4194317
     }
   ],
   "ui_left": [
     {
       "type": "key",
-      "scancode": 16777231
+      "scancode": 4194319
     },
     {
       "type": "key",
@@ -224,7 +224,7 @@
   "ui_menu": [
     {
       "type": "key",
-      "scancode": 16777217
+      "scancode": 4194305
     },
     {
       "type": "joypad_button",
@@ -235,19 +235,19 @@
   "ui_page_down": [
     {
       "type": "key",
-      "scancode": 16777236
+      "scancode": 4194324
     }
   ],
   "ui_page_up": [
     {
       "type": "key",
-      "scancode": 16777235
+      "scancode": 4194323
     }
   ],
   "ui_right": [
     {
       "type": "key",
-      "scancode": 16777233
+      "scancode": 4194321
     },
     {
       "type": "key",
@@ -264,7 +264,7 @@
   "ui_up": [
     {
       "type": "key",
-      "scancode": 16777232
+      "scancode": 4194320
     },
     {
       "type": "key",

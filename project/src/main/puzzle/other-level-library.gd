@@ -48,9 +48,7 @@ func _load_raw_json_data() -> void:
 	regions.clear()
 	
 	var other_regions_text := FileUtils.get_file_as_text(other_regions_path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(other_regions_text)
-	var other_regions_json: Dictionary = test_json_conv.get_data()
+	var other_regions_json: Dictionary = JSON.parse_string(other_regions_text)
 	for region_json in other_regions_json.get("regions", []):
 		var region := OtherRegion.new()
 		region.from_json_dict(region_json)

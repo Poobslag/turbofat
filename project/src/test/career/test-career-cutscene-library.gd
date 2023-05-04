@@ -70,7 +70,7 @@ func test_potential_chat_keys_letter() -> void:
 		_interlude("career/fake_career/general/000_a", ""),
 		_interlude("career/fake_career/general/000_b", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		_interlude("career/fake_career/general/000_a", ""),
@@ -83,7 +83,7 @@ func test_potential_chat_keys_number() -> void:
 		_interlude("career/fake_career/general/000_0", ""),
 		_interlude("career/fake_career/general/000_1", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		_interlude("career/fake_career/general/000_0", ""),
@@ -98,7 +98,7 @@ func test_potential_chat_keys_letter_and_number() -> void:
 		_interlude("career/fake_career/general/000_1", ""),
 		_interlude("career/fake_career/general/000_b", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		# letter keys are intermingled with the lowest number key
@@ -117,7 +117,7 @@ func test_potential_chat_keys_ignore_other_numeric_branches() -> void:
 		_interlude("career/fake_career/general/000_1", ""),
 		_interlude("career/fake_career/general/000_1_a", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		# only return scenes in first numeric branch
@@ -135,7 +135,7 @@ func test_potential_chat_keys_include_other_letter_branches() -> void:
 		_interlude("career/fake_career/general/000_b", ""),
 		_interlude("career/fake_career/general/000_b_0", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		# return scenes in both letter branches
@@ -150,7 +150,7 @@ func test_potential_chat_keys_exclude_played_leaf() -> void:
 		_interlude("career/fake_career/general/000_1", ""),
 	]
 	PlayerData.chat_history.add_history_item("career/fake_career/general/000_0")
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		_interlude("career/fake_career/general/000_1", ""),
@@ -166,7 +166,7 @@ func test_potential_chat_keys_exclude_played_branch() -> void:
 	]
 	PlayerData.chat_history.add_history_item("career/fake_career/general/000_0_a")
 	PlayerData.chat_history.add_history_item("career/fake_career/general/000_0_b_end")
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career/general"
 	]), [
 		# only return scenes in second numeric branch
@@ -181,7 +181,7 @@ func test_potential_chat_keys_includes_chef() -> void:
 		_interlude("career/fake_career_2/b", ""),
 		_interlude("career/fake_career_2/c", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career_2"
 	], "skins"), [
 		# only return scenes with skins as a chef
@@ -196,7 +196,7 @@ func test_potential_chat_keys_includes_customer() -> void:
 		_interlude("career/fake_career_2/b", ""),
 		_interlude("career/fake_career_2/c", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career_2"
 	], "", "rhonk"), [
 		# only return scenes with rhonk as a customer
@@ -219,7 +219,7 @@ func test_potential_chat_keys_includes_unnamed_customers() -> void:
 		_interlude("career/fake_career_2/b", ""),
 		_interlude("career/fake_career_2/c", ""),
 	]
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career_2"
 	], "", CareerLevel.NONQUIRKY_CUSTOMER), [
 		# only return scenes with no named chefs/customers
@@ -235,7 +235,7 @@ func test_potential_chat_keys_excludes_boss_levels() -> void:
 	]
 	
 	PlayerData.career.best_distance_travelled = 100
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career_2"
 	]), [
 		# player has cleared the boss level, post-boss cutscenes are included
@@ -244,7 +244,7 @@ func test_potential_chat_keys_excludes_boss_levels() -> void:
 	])
 	
 	PlayerData.career.best_distance_travelled = 0
-	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+	_assert_eq_ckp(CareerCutsceneLibrary.get_potential_chat_key_pairs([
 		"career/fake_career_2"
 	]), [
 		# player hasn't cleared the boss level, post-boss cutscenes are excluded

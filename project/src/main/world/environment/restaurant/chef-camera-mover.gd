@@ -4,11 +4,11 @@ extends AnimationPlayer
 ## While this is an AnimationPlayer, the animation is only used to calculate the camera position. It shouldn't ever be
 ## played as an animation.
 
-@export (NodePath) var restaurant_scene_path: NodePath
-@export (NodePath) var chef_camera_path: NodePath
+@export var restaurant_scene_path: NodePath
+@export var chef_camera_path: NodePath
 
 ## Amount of empty space over the creature's head.
-@export (float, 0, 1) var headroom := 1.0: set = set_headroom
+@export_range(0, 1) var headroom := 1.0: set = set_headroom
 
 ## position that the restaurant scene's camera lerps to
 var _target_camera_position: Vector2

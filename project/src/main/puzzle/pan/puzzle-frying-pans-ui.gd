@@ -2,9 +2,10 @@ extends "res://src/main/puzzle/pan/frying-pans-ui.gd"
 ## Updates the FryingPansUi based on the level's settings and how the player is doing.
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
-	PuzzleState.connect("topped_out", Callable(self, "_on_PuzzleState_topped_out"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	_ready()
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
+	PuzzleState.topped_out.connect(_on_PuzzleState_topped_out)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
 	_refresh_lives()
 
 

@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name CreatureCurve
 extends SmoothPath
 ## Draws a big blobby shape defining a part of the creature's shadow.
@@ -11,21 +11,22 @@ extends SmoothPath
 signal appearance_changed
 
 ## Setting this to 'true' will prevent the body's current curve from being overwritten by the fatness property.
-@export (bool) var editing := true
+@export var editing := true
 
 ## toggle to save the currently edited curve in this node's 'curve_defs'
-@export (bool) var _save_curve: bool: set = save_curve
+@warning_ignore("unused_private_class_variable")
+@export var _save_curve: bool: set = save_curve
 
 ## defines the shadow curve coordinates for each of the creature's levels of fatness.
-@export (Array) var curve_defs: Array: set = set_curve_defs
+@export var curve_defs: Array: set = set_curve_defs
 
 ## if false, the body will not render this curve when the creature faces away from the camera.
-@export (bool) var drawn_when_facing_north: bool = true
+@export var drawn_when_facing_north: bool = true
 
 ## if false, the body will not render this curve when the creature faces toward the camera.
-@export (bool) var drawn_when_facing_south: bool = true
+@export var drawn_when_facing_south: bool = true
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 ## If true, the curve is drawn on the creature's body.
 ## This is independent of the 'visible' property. When the game is running, these curves will be invisible but still
@@ -101,22 +102,22 @@ func set_curve_defs(new_curve_defs: Array) -> void:
 ##
 ## Can be overridden to disconnect additional listeners.
 func disconnect_creature_visuals_listeners() -> void:
-	creature_visuals.disconnect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
-	creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
-	creature_visuals.disconnect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
+	creature_visuals.visual_fatness_changed.disconnect(_on_CreatureVisuals_visual_fatness_changed)
+	creature_visuals.orientation_changed.disconnect(_on_CreatureVisuals_orientation_changed)
+	creature_visuals.dna_loaded.disconnect(_on_CreatureVisuals_dna_loaded)
 
 
 ## Connects creature visuals listeners specific to arm shadows.
 ##
 ## Can be overridden to connect additional listeners.
 func connect_creature_visuals_listeners() -> void:
-	creature_visuals.connect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
-	creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
-	creature_visuals.connect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
+	creature_visuals.visual_fatness_changed.connect(_on_CreatureVisuals_visual_fatness_changed)
+	creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
+	creature_visuals.dna_loaded.connect(_on_CreatureVisuals_dna_loaded)
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	if creature_visuals:
@@ -157,7 +158,7 @@ func _refresh_curve() -> void:
 			var point_in: Vector2 = lerp(curve_def_low.curve_def[i][1], curve_def_high.curve_def[i][1], f_pct)
 			var point_out: Vector2 = lerp(curve_def_low.curve_def[i][2], curve_def_high.curve_def[i][2], f_pct)
 			curve.add_point(point_pos, point_in, point_out)
-	update()
+	queue_redraw()
 	emit_signal("appearance_changed")
 
 
@@ -169,7 +170,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	_refresh_curve()
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, _new_orientation: Creatures.Orientation) -> void:
 	refresh_drawn()
 
 

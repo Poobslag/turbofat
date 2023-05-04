@@ -71,7 +71,7 @@ func play_eat_sound() -> void:
 	_eat_tween = Utils.recreate_tween(self, _eat_tween)
 	_eat_tween.tween_property(_eat, "pitch_scale",
 			pitch_scale_end, eat_duration) \
-			super.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
+			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 	
 	SfxDeconflicter.play(_eat, randf_range(0.0, 0.2))
 

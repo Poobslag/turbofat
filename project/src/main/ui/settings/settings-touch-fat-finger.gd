@@ -8,6 +8,7 @@ const VALUES := [0.00, 0.50, 0.66, 0.83, 1.00]
 @onready var _option_button := $OptionButton
 
 func _ready() -> void:
+	_option_button.clear()
 	_option_button.add_item(tr("Off"))
 	_option_button.add_item(tr("Slim"))
 	_option_button.add_item(tr("Plump"))

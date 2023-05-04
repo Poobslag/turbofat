@@ -30,5 +30,6 @@ void fragment() {
 	rgb_out.a = rgba_in.a;
 	
 	// Assign final color for the pixel, and preserve transparency
+	// COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
 	COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
 }

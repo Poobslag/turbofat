@@ -15,7 +15,7 @@ offset_right = 412.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "Today's Best"
-align = 1
+horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_top = 24.0

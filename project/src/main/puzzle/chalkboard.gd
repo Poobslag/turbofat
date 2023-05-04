@@ -2,7 +2,7 @@ extends TextureRect
 ## Chalkboard which displays the player's score and progress during a puzzle.
 
 func _ready() -> void:
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	_refresh()
 
 

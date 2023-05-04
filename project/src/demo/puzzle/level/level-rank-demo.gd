@@ -129,12 +129,12 @@ func _calculate_master_pickup_score_per_line() -> void:
 ##
 ## The player's data is loaded from the current save slot.
 func _best_result() -> RankResult:
-	return PlayerData.level_history.best_result(CurrentLevel.level_id)
+	return PlayerData.level_history.get_best_result(CurrentLevel.level_id)
 
 
 ## Returns the rank corresponding to the grade chosen in the demo.
 func _target_rank() -> float:
-	return RankCalculator.rank(_grade_input.value)
+	return RankCalculator.rank_from_grade(_grade_input.value)
 
 
 ## Reads the developer's in-memory data from a save file.

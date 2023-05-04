@@ -23,7 +23,7 @@ const SAVE_SLOT_PREFIXES := {
 }
 
 ## Current save slot for saving/loading progress
-var save_slot: int = SaveSlot.SLOT_A: set = set_save_slot
+var save_slot := SaveSlot.SLOT_A: set = set_save_slot
 
 ## Current locale. This is redundant with TranslationServer.locale, but exposing a setter lets us provide a signal
 ## to notify when the locale changes.
@@ -40,7 +40,7 @@ func set_locale(new_locale: String) -> void:
 	emit_signal("locale_changed", locale)
 
 
-func set_save_slot(new_save_slot: int) -> void:
+func set_save_slot(new_save_slot: MiscSettings.SaveSlot) -> void:
 	if save_slot == new_save_slot:
 		return
 	save_slot = new_save_slot
@@ -55,7 +55,7 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A))
+	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A)) as SaveSlot
 	
 	var new_locale: String
 	if json.has("locale"):

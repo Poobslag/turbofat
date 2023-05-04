@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_Q:
 			_progress_board.suppress_hide = false
 			PlayerData.career.show_progress = Careers.ShowProgress.NONE

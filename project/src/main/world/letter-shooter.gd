@@ -3,22 +3,22 @@ extends Node
 ## Emits letters from a particular position and direction.
 
 ## scene describing the letters to emit
-@export (PackedScene) var LetterProjectileScene: PackedScene
+@export var LetterProjectileScene: PackedScene
 
 ## Approximate direction the letter should move, in radians.
 ##
 ## Note: PI and TAU are not supported in export ranges, see Godot-Proposals #1147
 ## (https://github.com/godotengine/godot-proposals/issues/1147)
-@export (float, -6.28318530717959, 6.28318530717959) var letter_angle := 0.0
+@export_range(-6.28318530717959, 6.28318530717959) var letter_angle := 0.0
 
 ## Approximate position where the letter should spawn.
-@export (Vector2) var letter_position: Vector2
+@export var letter_position: Vector2
 
 ## Next letter's index. Used to cycle the letter's appearance and behavior.
 var _letter_index := 0
 
 func _ready() -> void:
-	$ShootTimer.connect("timeout", Callable(self, "_on_ShootTimer_timeout"))
+	$ShootTimer.timeout.connect(_on_ShootTimer_timeout)
 
 
 ## Start emitting letters.

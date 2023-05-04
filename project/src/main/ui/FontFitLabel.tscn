@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://djmx8ic0x6ywq"]
 
-[ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://src/main/ui/font-fit-label.gd" id="1"]
 
 [node name="Label" type="Label"]
-script = ExtResource( 1 )
+visible_characters_behavior = 1
+script = ExtResource("1")

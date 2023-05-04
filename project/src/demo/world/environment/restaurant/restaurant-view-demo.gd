@@ -42,7 +42,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_D: _restaurant_scene.play_door_chime()
 		KEY_F: _customer().feed(Foods.FoodType.BROWN_0)
 		KEY_I: _customer().creature_visuals.get_node("Animations/IdleTimer").start(0.01)
@@ -55,7 +55,7 @@ func _input(event: InputEvent) -> void:
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
 				# shift pressed; change customer's comfort
-				match Utils.key_scancode(event):
+				match Utils.key_keycode(event):
 					KEY_1: _view.get_customer().set_comfort(0.00) # hasn't eaten
 					KEY_2: _view.get_customer().set_comfort(0.30)
 					KEY_3: _view.get_customer().set_comfort(0.60)

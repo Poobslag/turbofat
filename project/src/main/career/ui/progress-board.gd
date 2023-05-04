@@ -14,7 +14,7 @@ const ANIMATED_HIDE_DELAY := 1.2
 const STATIC_HIDE_DELAY := 2.0
 
 ## If 'true', the board will not hide itself. Used for demos/debugging.
-@export (bool) var suppress_hide := false
+@export var suppress_hide := false
 
 ## Backdrop which darkens parts of the scene behind the progress board.
 @onready var _backdrop := $Backdrop
@@ -102,7 +102,8 @@ func refresh() -> void:
 	# refresh region
 	var region := PlayerData.career.current_region()
 	_title.set_text(region.name)
-	var icon_type := Utils.enum_from_snake_case(ProgressBoardTitle.IconType, region.icon_name, ProgressBoardTitle.NONE)
+	var icon_type := Utils.enum_from_snake_case(ProgressBoardTitle.IconType,
+			region.icon_name, ProgressBoardTitle.NONE) as ProgressBoardTitle.IconType
 	_title.set_icon_type(icon_type)
 	_map_holder.set_region_id(region.id)
 	_trail.path2d_path = _trail.get_path_to(_map_holder.path2d)
@@ -169,6 +170,10 @@ func _hours_passed_finish() -> int:
 
 ## When the AnimationPlayer toggles the backdrop visibility, we emit signals so other parts of the UI can refresh.
 func _on_Backdrop_visibility_changed() -> void:
+	if not _backdrop:
+		# A visibility_changed signal is emitted before this node's onready variables are initialized.
+		return
+	
 	if _backdrop.visible:
 		emit_signal("progress_board_shown")
 	else:

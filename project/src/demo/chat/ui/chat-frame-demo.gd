@@ -68,7 +68,7 @@ var _chat_theme := ChatTheme.new()
 var _color_index := 0
 var _scale_index := 5
 
-var _nametag_side: int = ChatEvent.NametagSide.LEFT
+var _nametag_side := ChatEvent.NametagSide.LEFT
 var _squished := false
 
 func _ready() -> void:
@@ -76,7 +76,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
 				_name_index = Utils.key_num(event)
@@ -92,7 +92,7 @@ func _input(event: InputEvent) -> void:
 			_chat_theme.dark = not _chat_theme.dark
 			_play_chat_event()
 		KEY_L:
-			_nametag_side = (_nametag_side + 1) % 3
+			_nametag_side = (_nametag_side + 1) % 3 as ChatEvent.NametagSide
 			_play_chat_event()
 		KEY_P:
 			print(_chat_theme.to_json_dict())

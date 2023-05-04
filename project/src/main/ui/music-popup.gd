@@ -9,9 +9,9 @@ var _shown_bgm: CheckpointSong
 @onready var _popup_tween := $PopupTween
 
 func _ready() -> void:
-	MusicPlayer.connect("current_bgm_changed", Callable(self, "_on_MusicPlayer_current_bgm_changed"))
+	MusicPlayer.current_bgm_changed.connect(_on_MusicPlayer_current_bgm_changed)
 	_refresh_panel(MusicPlayer.current_bgm)
-	_music_label.connect("item_rect_changed", Callable(self, "_on_Label_item_rect_changed"))
+	_music_label.item_rect_changed.connect(_on_Label_item_rect_changed)
 
 
 ## Update the popup's appearance based on the current song, and maybe show it.
@@ -47,7 +47,7 @@ func _on_MusicPlayer_current_bgm_changed(value: CheckpointSong) -> void:
 
 func _on_Label_item_rect_changed() -> void:
 	# wait for a frame; it takes a frame for Label.rect_size to update
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	
 	# resize the music panel to accommodate the label
 	_music_panel.size.x = _music_label.size.x + 64

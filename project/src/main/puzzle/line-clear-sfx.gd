@@ -51,7 +51,7 @@ extends Node
 @onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSound3]
 
 func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	var sound_index := clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
+	var sound_index: int = clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
 	var sound: AudioStreamPlayer
 	if box_ints:
 		sound = _line_erase_sounds[sound_index]
@@ -107,7 +107,7 @@ func _on_Playfield_all_lines_cleared() -> void:
 		# message is not shown at the end of a level
 		return
 		
-	if PuzzleState.tutorial_section_finished:
+	if PuzzleState.tutorial_section_finish_emitted:
 		# message is not shown at the end of a tutorial section
 		return
 	

@@ -5,11 +5,11 @@ const MAX_FLOOR_KICKS := 3
 
 ## Current position/orientation. For most pieces, orientation will range from
 ## [0, 1, 2, 3] for [unrotated, clockwise, flipped, counterclockwise]
-var pos := Vector2(3, 3)
+var pos := Vector2i(3, 3)
 var orientation := 0
 
 ## Desired position/orientation when the piece is trying to move/rotate.
-var target_pos := Vector2(3, 3)
+var target_pos := Vector2i(3, 3)
 var target_orientation := 0
 
 ## Amount of accumulated gravity for this piece. When this number reaches 256, the piece will move down one row
@@ -39,7 +39,7 @@ var type: PieceType
 
 ## Callback function which returns 'true' if a specified cell is obstructed,
 ## either because it lies outside the playfield or is obstructed by a block
-var cell_obstructed_func: FuncRef
+var cell_obstructed_callable: Callable
 
 ## Can be enabled to trace detailed information about piece kicks
 var _trace_kicks := false
@@ -49,9 +49,9 @@ var _trace_kicks := false
 ##
 ## 	'init_is_cell_obstructed': A callback function which returns 'true' if a specified cell is
 ## 		obstructed, either because it lies outside the playfield or is obstructed by a block
-func _init(init_type: PieceType, init_cell_obstructed_func: FuncRef) -> void:
+func _init(init_type: PieceType, init_cell_obstructed_callable: Callable) -> void:
 	type = init_type
-	cell_obstructed_func = init_cell_obstructed_func
+	cell_obstructed_callable = init_cell_obstructed_callable
 	
 	orientation %= type.pos_arr.size()
 
@@ -63,16 +63,16 @@ func _init(init_type: PieceType, init_cell_obstructed_func: FuncRef) -> void:
 func center() -> Vector2:
 	if get_pos_arr().is_empty():
 		return Vector2.ZERO
-	var cell_bounds: Rect2 = Rect2(get_pos_arr()[0], Vector2.ZERO)
+	var cell_bounds: Rect2i = Rect2i(get_pos_arr()[0], Vector2i.ZERO)
 	for cell_pos in get_pos_arr():
 		cell_bounds = cell_bounds.expand(cell_pos)
-	return cell_bounds.position + cell_bounds.size / 2.0 + pos
+	return Vector2(cell_bounds.position) + cell_bounds.size / 2.0 + Vector2(pos)
 
 
 ## Returns 'true' if a specified playfield cell is obstructed, either
 ## because it lies outside the playfield or is obstructed by a block.
-func is_cell_obstructed(cell_pos: Vector2) -> bool:
-	return cell_obstructed_func.call_func(cell_pos)
+func is_cell_obstructed(cell_pos: Vector2i) -> bool:
+	return cell_obstructed_callable.call(cell_pos)
 
 
 func reset_target() -> void:
@@ -96,7 +96,7 @@ func get_flip_orientation() -> int:
 
 
 ## Returns the position the piece will be in if it rotates 180 degrees.
-func get_flip_position() -> Vector2:
+func get_flip_position() -> Vector2i:
 	return pos + type.flips[orientation]
 
 
@@ -117,7 +117,7 @@ func get_target_pos_arr() -> Array:
 ## 	'new_pos': The desired position to move the piece to
 ##
 ## 	'new_orientation': The desired orientation to rotate the piece to
-func can_move_to(new_pos: Vector2, new_orientation: int) -> bool:
+func can_move_to(new_pos: Vector2i, new_orientation: int) -> bool:
 	var valid_target_pos := true
 	if type.is_empty():
 		# Return 'false' for an empty piece to avoid an infinite loop
@@ -161,7 +161,7 @@ func kick_piece(kicks: Array = []) -> void:
 	else:
 		if _trace_kicks: print("%s to: %s" % [type.string, kicks])
 	
-	var successful_kick: Vector2
+	var successful_kick: Vector2i
 	for kick in kicks:
 		if kick.y < 0 and not can_floor_kick():
 			if _trace_kicks: print("no: ", kick, " (too many floor kicks)")
@@ -186,7 +186,7 @@ func can_floor_kick() -> bool:
 func is_sealed() -> bool:
 	var sealed := true
 	var pos_arr := get_pos_arr()
-	for dir in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+	for dir in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
 		var dir_sealed := false
 		for cell_pos in pos_arr:
 			if is_cell_obstructed(pos + cell_pos + dir):

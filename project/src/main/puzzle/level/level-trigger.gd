@@ -58,7 +58,7 @@ const TIMER_7 := LevelTriggerPhase.TIMER_7
 const TIMER_8 := LevelTriggerPhase.TIMER_8
 const TIMER_9 := LevelTriggerPhase.TIMER_9
 
-## key: (int) enum from LevelTriggerPhase
+## key: (LevelTriggerPhase)
 ## value: (Array, PhaseCondition) Conditions for whether the trigger should fire
 var phases := {}
 
@@ -91,13 +91,13 @@ func from_json_dict(json: Dictionary) -> void:
 	for phase_expression in json.get("phases", []):
 		var phase_expression_split: Array = phase_expression.split(" ")
 		var phase_key: String = phase_expression_split[0]
-		var phase_config: Dictionary = dict_config_from_array(phase_expression_split.slice(1, phase_expression_split.size()))
+		var phase_config: Dictionary = LevelTrigger.dict_config_from_array(phase_expression_split.slice(1, phase_expression_split.size()))
 		_add_phase(phase_key, phase_config)
 	
 	# parse the effect from json
 	var effect_split: Array = json.get("effect").split(" ")
 	var effect_key: String = effect_split[0]
-	var effect_config: Dictionary = dict_config_from_array(effect_split.slice(1, effect_split.size()))
+	var effect_config: Dictionary = LevelTrigger.dict_config_from_array(effect_split.slice(1, effect_split.size()))
 	effect = LevelTriggerEffects.create(effect_key, effect_config)
 	
 	# handle special cases
@@ -122,7 +122,7 @@ func to_json_dict() -> Dictionary:
 			var phase_config_dict: Dictionary = phase_condition.get_phase_config()
 			var phase_string: String
 			if phase_config_dict:
-				var phase_config_array := dict_config_to_array(phase_config_dict)
+				var phase_config_array := LevelTrigger.dict_config_to_array(phase_config_dict)
 				var phase_config_string := " ".join(PackedStringArray(phase_config_array))
 				phase_string = "%s %s" % [phase_key, phase_config_string]
 			else:
@@ -131,9 +131,9 @@ func to_json_dict() -> Dictionary:
 	
 	# serialize the effect as json
 	var dict_config := effect.get_config()
-	var effect_key: String = LevelTriggerEffects.effect_key(effect)
+	var effect_key: String = LevelTriggerEffects.get_effect_key(effect)
 	if dict_config:
-		var string_config := " ".join(PackedStringArray(dict_config_to_array(dict_config)))
+		var string_config := " ".join(PackedStringArray(LevelTrigger.dict_config_to_array(dict_config)))
 		result["effect"] = "%s %s" % [effect_key, string_config]
 	else:
 		result["effect"] = effect_key
@@ -151,7 +151,7 @@ func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 	if not LevelTriggerPhase.has(phase_key.to_upper()):
 		push_warning("Unrecognized phase: %s" % [phase_key])
 	var phase_condition: PhaseCondition = PhaseConditions.create(phase_key, phase_config)
-	var phase: int = Utils.enum_from_snake_case(LevelTriggerPhase, phase_key)
+	var phase: LevelTriggerPhase = Utils.enum_from_snake_case(LevelTriggerPhase, phase_key) as LevelTriggerPhase
 	if not phases.has(phase):
 		phases[phase] = []
 	phases[phase].append(phase_condition)

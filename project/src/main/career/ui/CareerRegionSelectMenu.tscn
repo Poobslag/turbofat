@@ -84,7 +84,7 @@ offset_right = 904.0
 offset_bottom = 45.0
 theme = ExtResource( 1 )
 text = "Chapter Select"
-align = 1
+horizontal_alignment = 1
 
 [node name="Top" type="Control" parent="RegionSelect/VBoxContainer"]
 offset_top = 65.0
@@ -174,9 +174,9 @@ offset_right = 430.0
 offset_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Info" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
 offset_left = 454.0
@@ -201,7 +201,7 @@ offset_right = 430.0
 offset_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )
-valign = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="Control" parent="."]
 modulate = Color( 1, 1, 1, 0.627451 )

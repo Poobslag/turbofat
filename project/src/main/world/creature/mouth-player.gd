@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name MouthPlayer
 extends AnimationPlayer
 ## AnimationPlayer which animates mouths.
@@ -24,7 +24,7 @@ const FROWN_ANIMS := {
 	"think1": "",
 }
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 var _emote_player: AnimationPlayer
@@ -61,34 +61,34 @@ func eat() -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	var idle_timer: IdleTimer
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
-		_creature_visuals.disconnect("talking_changed", Callable(self, "_on_CreatureVisuals_talking_changed"))
+		_creature_visuals.orientation_changed.disconnect(_on_CreatureVisuals_orientation_changed)
+		_creature_visuals.talking_changed.disconnect(_on_CreatureVisuals_talking_changed)
 		
-		_emote_player.disconnect("animation_started", Callable(self, "_on_EmotePlayer_animation_started"))
+		_emote_player.animation_started.disconnect(_on_EmotePlayer_animation_started)
 
 		idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
-		idle_timer.disconnect("idle_animation_started", Callable(self, "_on_IdleTimer_idle_animation_started"))
-		idle_timer.disconnect("idle_animation_stopped", Callable(self, "_on_IdleTimer_idle_animation_stopped"))
+		idle_timer.idle_animation_started.disconnect(_on_IdleTimer_idle_animation_started)
+		idle_timer.idle_animation_stopped.disconnect(_on_IdleTimer_idle_animation_stopped)
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
 	
 	if _creature_visuals:
-		_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
-		_creature_visuals.connect("talking_changed", Callable(self, "_on_CreatureVisuals_talking_changed"))
+		_creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
+		_creature_visuals.talking_changed.connect(_on_CreatureVisuals_talking_changed)
 		
 		_emote_player = _creature_visuals.get_node("Animations/EmotePlayer")
-		_emote_player.connect("animation_started", Callable(self, "_on_EmotePlayer_animation_started"))
+		_emote_player.animation_started.connect(_on_EmotePlayer_animation_started)
 		
 		idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
-		idle_timer.connect("idle_animation_started", Callable(self, "_on_IdleTimer_idle_animation_started"))
-		idle_timer.connect("idle_animation_stopped", Callable(self, "_on_IdleTimer_idle_animation_stopped"))
+		idle_timer.idle_animation_started.connect(_on_IdleTimer_idle_animation_started)
+		idle_timer.idle_animation_stopped.connect(_on_IdleTimer_idle_animation_stopped)
 		
 		_mouth = _creature_visuals.get_node("Neck0/HeadBobber/Mouth")
 		_emote_glow = _creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow")
@@ -124,7 +124,7 @@ func _apply_tool_script_workaround() -> void:
 		_creature_visuals = get_parent()
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, _new_orientation: Creatures.Orientation) -> void:
 	if not Engine.is_editor_hint():
 		_mouth.z_index = 0
 		_emote_glow.z_index = 0

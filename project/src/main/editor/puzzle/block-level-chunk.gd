@@ -5,7 +5,7 @@ var used_cells := []
 var tiles := {}
 var autotile_coords := {}
 
-func set_block(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
+func set_block(pos: Vector2i, tile: int, autotile_coord: Vector2i) -> void:
 	used_cells.append(pos)
 	tiles[pos] = tile
 	autotile_coords[pos] = autotile_coord

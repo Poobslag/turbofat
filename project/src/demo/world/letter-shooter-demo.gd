@@ -6,6 +6,6 @@ extends Node
 ## 	[: Stop shooting letters
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_BRACKETRIGHT: $LetterShooter.start()
 		KEY_BRACKETLEFT: $LetterShooter.stop()

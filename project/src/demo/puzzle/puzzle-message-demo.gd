@@ -7,7 +7,7 @@ extends Node
 @onready var _message := $PuzzleMessage
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_Q: _message.show_message(PuzzleMessage.GOOD, "Good!")
 		KEY_A: _message.show_message(PuzzleMessage.GOOD, "Entertaining!!")
 		KEY_Z: _message.show_message(PuzzleMessage.GOOD, "All\nClear!")

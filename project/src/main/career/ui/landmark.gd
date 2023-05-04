@@ -42,8 +42,8 @@ const CIRCLES_4 := LandmarkType.CIRCLES_4
 const CIRCLES_5 := LandmarkType.CIRCLES_5
 const CIRCLES_6 := LandmarkType.CIRCLES_6
 
-@export (LandmarkType) var type: int: set = set_type
-@export (int) var distance: int: set = set_distance
+@export var type: LandmarkType: set = set_type
+@export var distance: int: set = set_distance
 
 var _landmark_resources_by_type := {
 	NONE: null,
@@ -103,7 +103,7 @@ func right_connection_point() -> Vector2:
 	return _texture_center() + (Vector2(48, 18) if _is_circles_type() else Vector2(45, 20))
 
 
-func set_type(new_type: int) -> void:
+func set_type(new_type: LandmarkType) -> void:
 	type = new_type
 	_refresh_type()
 

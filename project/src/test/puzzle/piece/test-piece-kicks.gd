@@ -3,7 +3,7 @@ extends GutTest
 
 ## Unit tests need to distinguish between a piece rotating in place and failing to rotate.
 ## This should only be used in tests; a piece kicking to -99, -99 could cause a softlock the game.
-const FAILED_KICK := Vector2(-99, -99)
+const FAILED_KICK := Vector2i(-99, -99)
 
 var from_grid := []
 var to_grid := []
@@ -43,12 +43,12 @@ func test_framework() -> void:
 	
 	# framework should have detected a 'p' block at (1, 2) with orientation (0)
 	assert_eq(_from_piece.type.string, "p")
-	assert_eq(_from_piece.pos, Vector2(1, 2))
+	assert_eq(_from_piece.pos, Vector2i(1, 2))
 	assert_eq(_from_piece.orientation, 0)
 	
 	# framework should have detected a 'p' block at (1, 1) with orientation (1)
 	assert_eq(_to_piece.type.string, "p")
-	assert_eq(_to_piece.pos, Vector2(1, 1))
+	assert_eq(_to_piece.pos, Vector2i(1, 1))
 	assert_eq(_to_piece.orientation, 1)
 
 
@@ -74,8 +74,8 @@ func assert_kick() -> void:
 ## 	1. FAILED_KICK if the piece could not rotate.
 ## 	2. A zero vector if the piece could rotate without kicking.
 ## 	3. A non-zero vector if the piece could rotate, but needed to be kicked.
-func _kick_piece() -> Vector2:
-	var result: Vector2
+func _kick_piece() -> Vector2i:
+	var result: Vector2i
 	var from_analyzer := AsciiPieceAnalyzer.new(from_grid)
 	_from_piece = from_analyzer.create_active_piece(from_orientation)
 	

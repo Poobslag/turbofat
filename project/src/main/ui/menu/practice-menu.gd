@@ -5,11 +5,11 @@ extends Control
 const DEFAULT_REGION_ID := OtherRegion.ID_MARATHON
 const DEFAULT_LEVEL_ID := "practice/marathon_normal"
 
-@export (NodePath) var high_scores_path: NodePath
-@export (NodePath) var level_button_path: NodePath
-@export (NodePath) var level_description_label_path: NodePath
-@export (NodePath) var speed_selector_path: NodePath
-@export (NodePath) var start_button_path: NodePath
+@export var high_scores_path: NodePath
+@export var level_button_path: NodePath
+@export var level_description_label_path: NodePath
+@export var speed_selector_path: NodePath
+@export var start_button_path: NodePath
 
 ## CareerRegion or OtherRegion instance for the currently selected region
 var _region: Object
@@ -73,12 +73,12 @@ func _assign_default_recent_data() -> void:
 func _load_recent_data() -> void:
 	# find the player's previously played non-career region
 	if not _region:
-		if PlayerData.practice.region_id:
+		if not PlayerData.practice.region_id.is_empty():
 			_region = OtherLevelLibrary.region_for_id(PlayerData.practice.region_id)
 	
 	# find the player's previously played career region
 	if not _region:
-		if PlayerData.practice.region_id:
+		if not PlayerData.practice.region_id.is_empty():
 			_region = CareerLevelLibrary.region_for_id(PlayerData.practice.region_id)
 	
 	# can't find the player's previously played region; assign default data as a fail safe
@@ -135,7 +135,7 @@ func _refresh_speed_selector() -> void:
 		# Constrain the speed selector to region's min/max speeds
 		var min_index := PieceSpeeds.speed_ids.find(_region.min_piece_speed)
 		var max_index := PieceSpeeds.speed_ids.find(_region.max_piece_speed)
-		speed_names = PieceSpeeds.speed_ids.slice(min_index, max_index)
+		speed_names = PieceSpeeds.speed_ids.slice(min_index, max_index + 1)
 	else:
 		# Constrain the speed selector. We default to the level's speed, but usually allow faster speeds within a
 		# threshold.
@@ -150,7 +150,7 @@ func _refresh_speed_selector() -> void:
 		else:
 			# Player can't slow down training modes, they can only speed them up. This prevents them from clearing
 			# hard training levels by slowing them down
-			speed_names = speed_names.slice(speed_names.find(selected_speed), speed_names.size() - 1)
+			speed_names = speed_names.slice(speed_names.find(selected_speed), speed_names.size())
 		
 		if _region.id == OtherRegion.ID_RANK:
 			# Players can't change the speed in rank mode.

@@ -6,12 +6,12 @@ extends HBoxContainer
 ## Allele property used internally when updating the creature. Not shown to the player
 var _allele := "eye_rgb"
 
-@export (NodePath) var creature_editor_path: NodePath
+@export var creature_editor_path: NodePath
 
 @onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
 func _ready() -> void:
-	_creature_editor.connect("center_creature_changed", Callable(self, "_on_CreatureEditor_center_creature_changed"))
+	_creature_editor.center_creature_changed.connect(_on_CreatureEditor_center_creature_changed)
 
 
 ## Update the creature with the player's chosen eye color.

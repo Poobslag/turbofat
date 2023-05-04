@@ -19,12 +19,12 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 14 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 14 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [node name="Playfield" type="HBoxContainer"]
 anchor_right = 1.0
@@ -246,7 +246,7 @@ offset_right = 64.0
 offset_bottom = 20.0
 theme = ExtResource( 13 )
 text = "blocks:"
-align = 1
+horizontal_alignment = 1
 
 [node name="TilesName" type="Label" parent="PlayfieldNav"]
 offset_top = 24.0
@@ -254,7 +254,7 @@ offset_right = 64.0
 offset_bottom = 44.0
 theme = ExtResource( 13 )
 text = "start"
-align = 1
+horizontal_alignment = 1
 clip_text = true
 
 [node name="NextPrev" type="HBoxContainer" parent="PlayfieldNav"]

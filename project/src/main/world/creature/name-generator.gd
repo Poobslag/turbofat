@@ -55,13 +55,13 @@ func add_seed_resource(path: String) -> void:
 ## This method regenerates the markov chain connection data and generates several names all at once. It then returns
 ## those cached names each time it's called until the cache is exhausted.
 func generate_name() -> String:
-	if not _generated_names:
+	if _generated_names.is_empty():
 		# repopulate the list of generated words
 		var words := _mix_seed_lists()
 		_refresh_markov_model(words)
 		_refresh_generated_names()
 	
-	if not _generated_names:
+	if _generated_names.is_empty():
 		# couldn't repopulate the list of generated names
 		push_warning("Couldn't generate any names.")
 		for _i in range(10):
@@ -84,7 +84,7 @@ func _mix_seed_lists() -> Array:
 		for word in word_list:
 			new_words.append(word)
 		new_words.shuffle()
-		words += new_words.slice(0, word_count - 1)
+		words += new_words.slice(0, word_count)
 	return words
 
 
@@ -97,5 +97,5 @@ func _refresh_markov_model(words: Array) -> void:
 func _refresh_generated_names() -> void:
 	for _i in range(100):
 		var name := markov_model.generate_word()
-		if name and not _seed_words.has(name):
+		if not name.is_empty() and not _seed_words.has(name):
 			_generated_names.append(StringUtils.capitalize_words(name))

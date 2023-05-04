@@ -5,7 +5,7 @@ extends Node
 const REGIONS_BEFORE := 2
 const REGIONS_AFTER := 3
 
-@export (NodePath) var map_path: NodePath
+@export var map_path: NodePath
 
 @onready var _map: ChalkboardMapRow = get_node(map_path)
 
@@ -61,7 +61,7 @@ func _update_landmark_count(start_region_index: int, end_region_index: int) -> v
 
 ## Updates the distance/landmark types for the circle landmark on the left.
 func _update_circle_landmark(start_region_index: int, _end_region_index: int) -> void:
-	var landmark_type: int
+	var landmark_type: Landmark.LandmarkType
 	var landmark_distance: int
 	
 	match start_region_index:
@@ -81,7 +81,7 @@ func _update_circle_landmark(start_region_index: int, _end_region_index: int) ->
 ## Updates the distance/landmark types for non-circle landmarks.
 func _update_icon_landmarks(start_region_index: int, end_region_index: int) -> void:
 	for region_index in range(start_region_index, end_region_index + 1):
-		var landmark_type: int
+		var landmark_type: Landmark.LandmarkType
 		var landmark_distance: int
 		
 		if region_index >= CareerLevelLibrary.regions.size():
@@ -91,7 +91,8 @@ func _update_icon_landmarks(start_region_index: int, end_region_index: int) -> v
 		else:
 			# update the landmark with the region's distance and icon
 			var region: CareerRegion = CareerLevelLibrary.regions[region_index]
-			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType, region.icon_name, Landmark.MYSTERY)
+			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType,
+					region.icon_name, Landmark.MYSTERY) as Landmark.LandmarkType
 			landmark_distance = region.start
 		
 		_map.set_landmark_distance(region_index - start_region_index + 1, landmark_distance)

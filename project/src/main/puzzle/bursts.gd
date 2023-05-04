@@ -1,12 +1,12 @@
 extends Node2D
 ## Combo/Spin/Squish indicators which appear when the player builds a combo or performs tech moves in puzzle mode.
 
-@export (NodePath) var piece_manager_path: NodePath
-@export (NodePath) var playfield_path: NodePath
+@export var piece_manager_path: NodePath
+@export var playfield_path: NodePath
 
-@export (PackedScene) var ComboBurstScene: PackedScene
-@export (PackedScene) var MoneyBurstScene: PackedScene
-@export (PackedScene) var TechMoveBurstScene: PackedScene
+@export var ComboBurstScene: PackedScene
+@export var MoneyBurstScene: PackedScene
+@export var TechMoveBurstScene: PackedScene
 
 ## Stores the x position of the previous combo burst to ensure consecutive bursts aren't vertically aligned
 var _previous_cell_x := -1
@@ -25,8 +25,8 @@ var _piece_x_by_y: Dictionary
 @onready var _tech_container := $Tech
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
-	PuzzleState.connect("added_unusual_cell_score", Callable(self, "_on_PuzzleState_added_unusual_cell_score"))
+	PuzzleState.before_piece_written.connect(_on_PuzzleState_before_piece_written)
+	PuzzleState.added_unusual_cell_score.connect(_on_PuzzleState_added_unusual_cell_score)
 
 
 ## Adds a combo burst to the specified cell.
@@ -37,9 +37,9 @@ func _ready() -> void:
 ## 	'target_cell': The cell to add the combo burst to.
 ##
 ## 	'combo': The combo to display.
-func _add_combo_burst(target_cell: Vector2, combo: int) -> void:
+func _add_combo_burst(target_cell: Vector2i, combo: int) -> void:
 	var combo_burst: ComboBurst = ComboBurstScene.instantiate()
-	combo_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
+	combo_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2i(0, -3))
 	combo_burst.position *= _playfield.tile_map.scale
 	combo_burst.combo = combo
 	_combo_container.add_child(combo_burst)
@@ -55,9 +55,9 @@ func _add_combo_burst(target_cell: Vector2, combo: int) -> void:
 ## 	'target_cell': The cell to add the money burst to.
 ##
 ## 	'money': The money to display.
-func _add_money_burst(target_cell: Vector2, money: int) -> void:
+func _add_money_burst(target_cell: Vector2i, money: int) -> void:
 	var money_burst: MoneyBurst = MoneyBurstScene.instantiate()
-	money_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
+	money_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2i(0, -3))
 	money_burst.position *= _playfield.tile_map.scale
 	money_burst.money = money
 	_money_container.add_child(money_burst)
@@ -77,9 +77,9 @@ func _add_money_burst(target_cell: Vector2, money: int) -> void:
 ##
 ## 	'lines_cleared': The number of lines cleared by this tech move
 
-func _add_tech_move_burst(target_cell: Vector2, piece_type: PieceType, tech_type: int, lines_cleared: int) -> void:
+func _add_tech_move_burst(target_cell: Vector2i, piece_type: PieceType, tech_type: TechMoveBurst.TechType, lines_cleared: int) -> void:
 	var tech_move_burst: TechMoveBurst = TechMoveBurstScene.instantiate()
-	tech_move_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
+	tech_move_burst.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2i(0, -3))
 	tech_move_burst.position *= _playfield.tile_map.scale
 	tech_move_burst.piece_type = piece_type
 	tech_move_burst.tech_type = tech_type
@@ -91,8 +91,8 @@ func _add_tech_move_burst(target_cell: Vector2, piece_type: PieceType, tech_type
 ##
 ## Combo bursts appear in front of the previous piece placed in the specified row, although they also never appear
 ## adjacent to the previous combo burst.
-func _combo_burst_cell(y: int) -> Vector2:
-	var target_cell := Vector2(_piece_x_by_y.get(y, 4), y)
+func _combo_burst_cell(y: int) -> Vector2i:
+	var target_cell := Vector2i(_piece_x_by_y.get(y, 4), y)
 	if fmod(target_cell.x, 1.0) > 0.0:
 		# if a piece has two blocks side-by-side, we position the combo burst over one or the other
 		if floor(target_cell.x) == _previous_cell_x or ceil(target_cell.x) == _previous_cell_x:
@@ -116,7 +116,7 @@ func _combo_burst_cell(y: int) -> Vector2:
 ## Calculates the cell for a new tech move burst.
 ##
 ## Tech move bursts appear in the middle of the current piece.
-func _tech_move_cell(piece: ActivePiece) -> Vector2:
+func _tech_move_cell(piece: ActivePiece) -> Vector2i:
 	var center := piece.center()
 	center.x = floor(center.x) if randf() < 0.5 else ceil(center.x)
 	center.y = floor(center.y) if randf() < 0.5 else ceil(center.y)
@@ -130,7 +130,7 @@ func _on_PuzzleState_before_piece_written() -> void:
 	var piece_min_x_by_y := {}
 	var piece_max_x_by_y := {}
 	for pos_arr_item in _piece_manager.piece.get_pos_arr():
-		var target_cell: Vector2 = pos_arr_item + _piece_manager.piece.pos
+		var target_cell: Vector2i = pos_arr_item + _piece_manager.piece.pos
 		if not piece_min_x_by_y.has(target_cell.y):
 			piece_min_x_by_y[target_cell.y] = target_cell.x
 			piece_max_x_by_y[target_cell.y] = target_cell.x
@@ -143,7 +143,7 @@ func _on_PuzzleState_before_piece_written() -> void:
 
 
 ## When the player earns money from a puzzle critter we add a new money burst.
-func _on_PuzzleState_added_unusual_cell_score(cell: Vector2, cell_score: int) -> void:
+func _on_PuzzleState_added_unusual_cell_score(cell: Vector2i, cell_score: int) -> void:
 	_add_money_burst(cell, cell_score)
 
 

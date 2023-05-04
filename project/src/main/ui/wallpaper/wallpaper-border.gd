@@ -10,11 +10,11 @@ extends Control
 const TEXTURE_SIZE := Vector2(512, 512)
 
 ## scroll velocity. only the x component is used
-@export (Vector2) var velocity: Vector2
+@export var velocity: Vector2
 
 ## desired width and height of the border.
 ## a value of [200, 50] means that the texture will be 200 pixels wide and 50 pixels high.
-@export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0): set = set_texture_scale
+@export var texture_scale: Vector2 = Vector2(512.0, 512.0): set = set_texture_scale
 
 @onready var _texture_rect: TextureRect = $TextureRect
 
@@ -37,7 +37,7 @@ func set_texture_scale(new_texture_scale: Vector2) -> void:
 ## Assigns the two colors used for this border.
 func set_gradient_colors(color_0: Color, color_1: Color) -> void:
 	var shader_material: ShaderMaterial = _texture_rect.material
-	var gradient_texture: GradientTexture2D = shader_material.get("shader_param/gradient")
+	var gradient_texture: GradientTexture1D = shader_material.get("shader_parameter/gradient")
 	gradient_texture.gradient.colors[0] = color_0
 	gradient_texture.gradient.colors[1] = color_1
 

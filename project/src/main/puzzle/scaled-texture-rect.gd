@@ -14,10 +14,10 @@ enum TileMode {
 	TILE_Y,
 }
 
-@export (TileMode) var tile_mode: int = TileMode.TILE_BOTH
+@export var tile_mode := TileMode.TILE_BOTH
 
 func _ready() -> void:
-	get_parent().connect("resized", Callable(self, "_on_Control_resized"))
+	get_parent().resized.connect(_on_Control_resized)
 
 
 func _on_Control_resized() -> void:

@@ -155,17 +155,17 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var creature_id := meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
 			creature.fade_out()
-			if not creature.is_connected("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished")):
-				creature.connect("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished").bind(creature))
+			if not creature.fade_out_finished.is_connected(_on_Creature_fade_out_finished):
+				creature.fade_out_finished.connect(_on_Creature_fade_out_finished.bind(creature))
 		"creature_mood":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
-			var mood: int = int(meta_item_split[2])
+			var mood: Creatures.Mood = Creatures.Mood.values()[int(meta_item_split[2]) as Creatures.Orientation]
 			creature.play_mood(mood)
 		"creature_orientation":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
-			var orientation: int = int(meta_item_split[2])
+			var orientation: Creatures.Orientation = int(meta_item_split[2]) as Creatures.Orientation
 			creature.set_orientation(orientation)
 	
 	emit_signal("chat_event_meta_played", meta_item)
@@ -208,8 +208,8 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 
 
 func _on_Creature_fade_out_finished(_creature: Creature) -> void:
-	if _creature.is_connected("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished")):
-		_creature.disconnect("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished"))
+	if _creature.fade_out_finished.is_connected(_on_Creature_fade_out_finished):
+		_creature.fade_out_finished.disconnect(_on_Creature_fade_out_finished)
 	emit_signal("visible_chatters_changed")
 
 
@@ -229,14 +229,14 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 
 func _on_SettingsButton_pressed() -> void:
-	$SettingsMenu.show()
+	$SettingsMenu.show_settings_menu()
 
 
-func _on_SettingsMenu_show() -> void:
+func _on_SettingsMenu_shown() -> void:
 	if CreatureManager.player is Player:
 		CreatureManager.player.ui_has_focus = true
 
 
-func _on_SettingsMenu_hide() -> void:
+func _on_SettingsMenu_hidden() -> void:
 	if CreatureManager.player is Player:
 		CreatureManager.player.ui_has_focus = false

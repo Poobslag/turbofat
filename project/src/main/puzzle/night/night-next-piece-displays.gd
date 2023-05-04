@@ -4,9 +4,9 @@ extends Control
 ## These piece displays are synchronized with daytime piece displays, and rendered over them.
 
 ## Path to the daytime next piece displays to synchronize with.
-@export (NodePath) var next_piece_displays_path: NodePath
+@export var next_piece_displays_path: NodePath
 
-@export (PackedScene) var NightPieceDisplayScene
+@export var NightPieceDisplayScene: PackedScene
 
 ## array of NightNextPieceDisplays which are shown to the player
 var _onion_piece_displays := []
@@ -15,7 +15,7 @@ var _onion_piece_displays := []
 @onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
 
 func _ready() -> void:
-	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
+	Pauser.paused_changed.connect(_on_Pauser_paused_changed)
 	for i in range(NextPieceDisplays.DISPLAY_COUNT):
 		_add_display(i)
 

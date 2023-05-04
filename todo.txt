@@ -1,0 +1,204 @@
+game does not open in editor
+
+*automatic upgrade
+*editor crashes shortly after launching; purged project/.godot folder
+
+game does not run
+
+*update plugins (gut)
+*test-utils runs
+*all tests pass
+*ReleaseToolkit runs
+ *scrutinize localizables
+ *shouldn't scrape joystick stuff anymore
+*code compilation errors
+ *replace boolean evaluations like 'if pos_arr' with 'if not pos_arr.is_empty()'
+ *replace 'Array.remove()' with 'Array.remove_at()'
+ *remove export variable type hints
+ *fix enums typed as 'ints'
+ *change 'pressed' to 'button_pressed'
+ *'Invalid operands', 'Invalid operand' errors
+ *File.new
+ *DirAccess.new
+ *JSON.new
+ *review all connect calls
+ *review all disconnect calls
+ *review all is_connected calls
+
+*replace tweens
+ *'_tween =' references
+
+game starts up, but has bugs
+
+-code tweaks and runtime errors
+ *replace 'await get_tree().idle_frame' with 'await get_tree().process_frame'
+ *update all 'Array.slice()' calls: slice is now exclusive, not inclusive
+ *update all font scene references to include size
+ *fix fonts
+ *game crashes when loading PuzzleTileMap.tscn
+ *update math for 'Control.rect_rotation()' calls
+ *fix input keycodes
+ *remove/cleanup h1-font-new.tres
+ -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
+ -avoid assigning constants to fields; they can't be mutated anymore
+ -assigning your own fields now calls setters
+ -fix 'flipx, flipy, transpose' code in tilers
+ -update save files
+  -update save files to use RGBA instead of ARGB color
+  -update save files to use new scancodes
+*particle updates
+ *randomization
+-tilemap updates
+ *fix 'Cannot create tile. The tile is outside the texture...' errors
+  *PuzzleTileMap.tscn
+  *NightPlayfield.tscn
+   *expand blocks-veggie-cubes-onion to be wider
+  *EmptyEnvironment.tscn
+  *Puzzle.tscn
+ *rewrite tilemaps from scratch
+ *fix out-of-bounds atlas cell definitions; these will cause crashes in Godot 4.x
+ *replace 'get_cellv' with get_cell_source_id
+ *replace 'get_cell' with 'get_cell_source_id
+ -replace 'autotilers' with 'terrain... things'
+-scene tweaks
+ *animation looping; replace 'loop = true' in .tscn files with 'loop_mode=1'
+ *label alignment; replace 'align = 2' in .tscn files with 'horizontal_alignment = 2'
+ *restore 'y_sort_enabled' property for ysort nodes
+ *set project's stretch mode; Godot #3939
+-code warnings
+ *replace '# warning-ignore' comments with '@warning_ignore' annotations
+ -add '@warning_ignore' annotations for self static method calls; Godot #69282
+*investigate 'ChatChoiceButton' get_class workaround; is_class is used by ChatChoices
+*investigate 'Creature' get_class workaround
+-restore @tool scripts
+-localization
+-regression test
+ -#59683; polygon antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
+ -keyboard controls should be preserved
+ -ensure backwards compatibility files were not changed
+ -Demos
+ -EmotePlayer's 'update_animation_keys' behavior
+ -ChatFrameDemo's 'nametag side toggle' (L)
+ -verify pause modes migrated correctly
+ -font sizes, outlines
+ -touchscreen buttons appear, disappear
+ -region select keyboard controls: default focus, 'region_select_button_grab_focus' method
+ -tilers
+ -carrot cells
+ -all tests pass, including the new test-keybind-manager
+ -localization; settings menu, puzzles, dialog
+ -monitor nodes over time; no leaks?
+ -assigning an input to something weird like the '`' or '=' key shows up OK
+ -settings menu in spanish; 'open user folder' button should shrink its font size
+ -big font in easter egg
+ -alternate input settings: WASD
+ -open and save all .tscn files
+
+game runs, but can't export it
+
+-restore export presets
+ -font resources; open all '.theme' files, delete the font and reattach the font
+-regression test
+ -Wonky 'SettingsKeybindsControl Godot #42224 workaround', is it necessary
+
+gold plating
+
+-document '_foo_internal' convention in wiki
+-remove redundant 'enum from...' comments
+-add strong typing to arrays
+*replace 'randi_range' with native call
+*remove 'FileUtils', replace with native calls
+-free-roam-touch-buttons might have extra logic for 'menu shown' 'menu hidden' stuff
+-add 'code smell detection' for next_alternative_id
+
+
+
+Demos
+
+*./project/src/demo/career/ui/ChalkboardMapRowDemo.tscn
+*./project/src/demo/ui/FontFitLabelDemo.tscn
+*./project/src/demo/puzzle/pan/FryingPansUiDemo.tscn
+*./project/src/demo/puzzle/PlayfieldDemo.tscn
+*./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
+*./project/src/demo/career/ui/ProgressBoardDemo.tscn
+*./project/src/demo/chat/ui/ChatFrameDemo.tscn
+*./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
+*./project/src/demo/chat/ui/ChatUiDemo.tscn
+*./project/src/demo/chat/ui/MoodDemo.tscn
+*./project/src/demo/music/MusicPlayerDemo.tscn
+*./project/src/demo/NameGeneratorLibraryDemo.tscn
+*./project/src/demo/PackedSpriteDemo.tscn
+*./project/src/demo/puzzle/critter/CarrotDemo.tscn
+*./project/src/demo/puzzle/critter/MoleDemo.tscn
+*./project/src/demo/puzzle/critter/OnionDemo.tscn
+*./project/src/demo/puzzle/critter/SharkDemo.tscn
+*./project/src/demo/puzzle/level/LevelRankDemo.tscn
+*./project/src/demo/puzzle/level/RankModeDemo.tscn
+*./project/src/demo/ui/settings/SettingsMenuDemo.tscn
+-./project/src/demo/world/environment/restaurant/RestaurantPuzzleSceneDemo.tscn
+ -VERY zoomed in?
+-./project/src/demo/world/environment/restaurant/RestaurantViewDemo.tscn
+ -visuals look very pixelly
+ -characters are zoomed out
+ *chef is facing wrong direction
+ -[D]
+  -doorbell sound doesn't play
+ -[F]
+ -[I]
+ -[V]
+ -[N]
+ -[1-9,0]
+ -SHIFT+[1-9,0]
+  -body-sweat.gd crashes when changing comfort; 'cannot lerp from int to float'
+ -[Q,W,E,R]
+ -[comma, period]
+ -SHIFT+[comma, period]
+ -arrows
+ -brace keys
+-./project/src/demo/puzzle/PuzzleCritterDemo.tscn
+ *about 20 warnings
+ *crashes when launching
+  *infinite recursion error
+  *PuzzleWorld.customers is empty
+ -visual problems
+  *very pixelly (stretch shrink?)
+  *zoomed out
+  *weird colors
+   *clipping has changed
+  *chef nametag is out of position
+  -when you increase the size of the window, the characters should scale up too
+  -get back to https://discord.com/channels/212250894228652034/610347507222052867/1120718375820218521
+  -warning about 'can't change size'
+  -broken environment
+ -merge warning fixes into main branch
+ -Sporadic 'can't store GradientTexture2D' errors
+ -verify camera looks OK as it zooms out
+-./project/src/demo/puzzle/PuzzleDemo.tscn
+-./project/src/demo/puzzle/PuzzleMessageDemo.tscn
+-./project/src/demo/puzzle/ResultsHudDemo.tscn
+-./project/src/demo/puzzle/ScoreDemo.tscn
+-./project/src/demo/puzzle/tutorial/TutorialHudDemo.tscn
+-./project/src/demo/ui/level-select/LevelSelectButtonDemo.tscn
+-./project/src/demo/ui/SceneTransitionDemo.tscn
+-./project/src/demo/ui/settings/keybind/KeybindManagerDemo.tscn
+-./project/src/demo/ui/touch/EightWayDemo.tscn
+-./project/src/demo/world/creature/CreaturePaletteDemo.tscn
+-./project/src/demo/world/CutsceneDemo.tscn
+-./project/src/demo/world/environment/restaurant/TurboFatRestaurantDemo.tscn
+-./project/src/demo/world/environment/RippleWavesDemo.tscn
+-./project/src/demo/world/environment/SmokeClusterDemo.tscn
+-./project/src/demo/world/LetterShooterDemo.tscn
+
+PuzzleWorld.get_initial_environment_path wasn't called?
+Need to explicitly call 'super.ready'
+physics_ticks_per_second
+
+restore font size
+
+globally call 'super.ready'
+globally call other 'super.' methods
+*disable 'line spacing'
+
+
+-add super calls
+-scrutinize super() doesn't need parameters (oops)

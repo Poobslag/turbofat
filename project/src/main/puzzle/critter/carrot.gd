@@ -22,16 +22,16 @@ const HIDE_SCALE := Vector2(0.1, 2.0)
 const FACE_ANIMATIONS := ["face-1", "face-2", "face-3", "face-4", "face-5", "face-6", "face-7", "face-8", "face-9"]
 
 ## CarrotVisuals scenes for each carrot size.
-@export (Array, PackedScene) var carrot_visuals_by_size: Array
+@export var carrot_visuals_by_size: Array[PackedScene]
 
 ## If 'true', the carrot will not be queued when hidden. Used for demos and testing.
-@export (bool) var suppress_queue_free: bool = false
+@export var suppress_queue_free: bool = false
 
 ## Enum from CarrotConfig.Smoke for the size of the carrot's smoke cloud.
-var smoke: int = CarrotConfig.Smoke.SMALL: set = set_smoke
+var smoke := CarrotConfig.Smoke.SMALL: set = set_smoke
 
 ## Enum from CarrotConfig.CarrotSize for the size of the carrot sprite.
-var carrot_size: int = CarrotConfig.CarrotSize.MEDIUM: set = set_carrot_size
+var carrot_size := CarrotConfig.CarrotSize.MEDIUM: set = set_carrot_size
 
 ## 'true' if hide() has been called and the carrot will soon be freed.
 var hiding := false
@@ -68,10 +68,10 @@ func _ready() -> void:
 	_refresh_mix_color()
 	_refresh_smoke()
 	_refresh_carrot_size()
-	show()
+	show_carrot()
 
 
-func set_smoke(new_smoke: int) -> void:
+func set_smoke(new_smoke: CarrotConfig.Smoke) -> void:
 	smoke = new_smoke
 	_refresh_smoke()
 
@@ -81,7 +81,7 @@ func set_mix_color(new_mix_color: Color) -> void:
 	_refresh_mix_color()
 
 
-func set_carrot_size(new_carrot_size: int) -> void:
+func set_carrot_size(new_carrot_size: CarrotConfig.CarrotSize) -> void:
 	carrot_size = new_carrot_size
 	_refresh_carrot_size()
 
@@ -89,7 +89,7 @@ func set_carrot_size(new_carrot_size: int) -> void:
 ## Makes the carrot appear.
 ##
 ## Blinks the carrot into view with an animation.
-func show() -> void:
+func show_carrot() -> void:
 	_visuals.modulate = Color.TRANSPARENT
 	_mix_color = Color.WHITE
 	_visuals.scale = HIDE_SCALE
@@ -107,7 +107,7 @@ func show() -> void:
 ##
 ## Blinks the carrot out of view with an animation. Once the animation completes, the carrot waits a few seconds and
 ## frees itself from memory.
-func hide() -> void:
+func hide_carrot() -> void:
 	hiding = true
 	emit_signal("started_hiding")
 	
@@ -127,7 +127,7 @@ func launch(destination: Vector2, duration: float) -> void:
 	_move_tween = Utils.recreate_tween(self, _move_tween)
 	_move_tween.tween_property(self, "position", destination, duration)
 	## When the carrot reaches its destination, we hide it.
-	_move_tween.chain().tween_callback(Callable(self, "hide"))
+	_move_tween.chain().tween_callback(Callable(self, "hide_carrot"))
 
 
 ## Updates the shader parameters based on our 'mix_color' property.
@@ -151,15 +151,18 @@ func _refresh_smoke() -> void:
 		CarrotConfig.Smoke.SMALL:
 			_particles_2d.amount = 9
 			_particles_2d.lifetime = 0.4
-			_particles_2d.process_material.scale = 1.00 * scale.x
+			_particles_2d.process_material.scale_max = 1.00 * scale.x
+			_particles_2d.process_material.scale_min = _particles_2d.process_material.scale_max
 		CarrotConfig.Smoke.MEDIUM:
 			_particles_2d.amount = 64
 			_particles_2d.lifetime = 2.5
-			_particles_2d.process_material.scale = 1.25 * scale.x
+			_particles_2d.process_material.scale_max = 1.25 * scale.x
+			_particles_2d.process_material.scale_min = _particles_2d.process_material.scale_max
 		CarrotConfig.Smoke.LARGE:
 			_particles_2d.amount = 128
 			_particles_2d.lifetime = 5.0
-			_particles_2d.process_material.scale = 1.50 * scale.x
+			_particles_2d.process_material.scale_max = 1.50 * scale.x
+			_particles_2d.process_material.scale_min = _particles_2d.process_material.scale_max
 
 
 ## Updates our Sprites and our Particles2D position based on our 'carrot_size' property.

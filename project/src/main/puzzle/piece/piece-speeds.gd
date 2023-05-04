@@ -85,14 +85,14 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new( "FF", 20*G,  2, 2, 7,  8, 14, 3, 3))
 	_add_speed(PieceSpeed.new("FFF", 20*G,  2, 2, 7,  8, 12, 3, 3))
 	
-	current_speed = PieceSpeeds.speed("0")
-	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
-	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	current_speed = PieceSpeeds.get_speed("0")
+	PuzzleState.speed_index_changed.connect(_on_PuzzleState_speed_index_changed)
+	PuzzleState.game_prepared.connect(_on_PuzzleState_game_prepared)
 	
-	SystemData.gameplay_settings.connect("speed_changed", Callable(self, "_on_GameplaySettings_speed_changed"))
+	SystemData.gameplay_settings.speed_changed.connect(_on_GameplaySettings_speed_changed)
 
 
-func speed(string: String) -> PieceSpeed:
+func get_speed(string: String) -> PieceSpeed:
 	return _speeds[string]
 
 
@@ -110,7 +110,7 @@ func _update_current_speed() -> void:
 	var piece_speed_string: String = MilestoneManager.prev_milestone().get_meta("speed")
 	if CurrentLevel.is_piece_speed_cheat_enabled():
 		piece_speed_string = GameplayDifficultyAdjustments.adjust_piece_speed(piece_speed_string)
-	PieceSpeeds.current_speed = PieceSpeeds.speed(piece_speed_string)
+	PieceSpeeds.current_speed = PieceSpeeds.get_speed(piece_speed_string)
 
 
 func _on_PuzzleState_speed_index_changed(_value: int) -> void:
@@ -121,5 +121,5 @@ func _on_PuzzleState_game_prepared() -> void:
 	_update_current_speed()
 
 
-func _on_GameplaySettings_speed_changed(_value: int) -> void:
+func _on_GameplaySettings_speed_changed(_value: GameplaySettings.Speed) -> void:
 	_update_current_speed()

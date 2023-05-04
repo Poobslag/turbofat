@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name PokiCrowd
 extends OverworldObstacle
 ## Poki desert crowd member which appears in the overworld.
@@ -13,15 +13,15 @@ const CROWD_COLORS := [
 ]
 
 ## Current frame to display from the sprite sheet.
-@export (int) var frame: int: set = set_frame
+@export var frame: int: set = set_frame
 
 ## If true, the sprite's texture is flipped horizontally.
-@export (bool) var flip_h: bool: set = set_flip_h
+@export var flip_h: bool: set = set_flip_h
 
 ## Editor toggle which randomizes the obstacle's appearance
-@export (bool) var shuffle: bool: set = set_shuffle
+@export var shuffle: bool: set = set_shuffle
 
-@export (int, 0, 3) var crowd_color_index: int: set = set_crowd_color_index
+@export_range(0, 3) var crowd_color_index: int: set = set_crowd_color_index
 
 @onready var _sprite := $Sprite2D
 
@@ -29,6 +29,7 @@ const CROWD_COLORS := [
 @onready var _wiggle_timer := $WiggleTimer
 
 func _ready() -> void:
+	super()
 	if Engine.is_editor_hint():
 		# don't animate the crowd member in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
 		# polluting version control
@@ -41,6 +42,7 @@ func _ready() -> void:
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
+	super()
 	_sprite = $Sprite2D
 
 
@@ -75,7 +77,7 @@ func set_shuffle(value: bool) -> void:
 	
 	set_frame(randi() % (_sprite.hframes * _sprite.vframes))
 	set_flip_h(randf() < 0.5)
-	set_crowd_color_index(Utils.randi_range(0, CROWD_COLORS.size() - 1))
+	set_crowd_color_index(randi_range(0, CROWD_COLORS.size() - 1))
 	scale = Vector2.ONE
 	
 	notify_property_list_changed()

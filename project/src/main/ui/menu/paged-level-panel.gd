@@ -33,7 +33,7 @@ func populate(new_region: Object, default_level_id: String = "") -> void:
 	
 	_level_buttons.region = _region
 	_level_buttons.level_ids = level_ids
-	if default_level_id:
+	if not default_level_id.is_empty():
 		_level_buttons.focus_level(default_level_id)
 
 

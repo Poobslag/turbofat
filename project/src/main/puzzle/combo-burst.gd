@@ -18,7 +18,7 @@ const COMBO_THRESHOLD_2 := 20
 const COMBO_THRESHOLD_3 := 30
 const COMBO_THRESHOLD_4 := 50
 
-@export (Vector2) var velocity: Vector2
+@export var velocity: Vector2
 
 ## Combo to display. This controls our text, color and particle properties.
 var combo: int: set = set_combo
@@ -39,7 +39,7 @@ var _particle_color: Color # lighter version of the font color
 @onready var _accent: PackedSprite = $Accent
 
 func _ready() -> void:
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	_particles.emitting = true
 	_refresh_combo()
 

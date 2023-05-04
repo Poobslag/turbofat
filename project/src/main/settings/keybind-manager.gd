@@ -1,23 +1,52 @@
 extends Node
 ## Binds the player's input settings to the input map.
 
+## Mapping from joystick scancodes to names. Adapted from the names in Godot 3.x
+## https://github.com/madmiraal/godot/blob/280d4e2965db7d448ce0f0ee3902559ee3f2a467/editor/input_map_editor.cpp
+##
+## key: (int) Joystick button scancode
+## value: (String) Description shown to the player for the button
+var names_by_joy_button := {
+	JOY_BUTTON_A: tr("Face Bottom"),
+	JOY_BUTTON_B: tr("Face Right"),
+	JOY_BUTTON_X: tr("Face Left"),
+	JOY_BUTTON_Y: tr("Face Top"),
+	JOY_BUTTON_BACK: tr("Select"),
+	JOY_BUTTON_GUIDE: tr("Guide"),
+	JOY_BUTTON_START: tr("Start"),
+	JOY_BUTTON_LEFT_STICK: tr("L3"),
+	JOY_BUTTON_RIGHT_STICK: tr("R3"),
+	JOY_BUTTON_LEFT_SHOULDER: tr("L"),
+	JOY_BUTTON_RIGHT_SHOULDER: tr("R"),
+	JOY_BUTTON_DPAD_UP: tr("D-Pad Up"),
+	JOY_BUTTON_DPAD_DOWN: tr("D-Pad Down"),
+	JOY_BUTTON_DPAD_LEFT: tr("D-Pad Left"),
+	JOY_BUTTON_DPAD_RIGHT: tr("D-Pad Right"),
+	JOY_BUTTON_MISC1: tr("Misc 1"),
+	JOY_BUTTON_PADDLE1: tr("Paddle 1"),
+	JOY_BUTTON_PADDLE2: tr("Paddle 2"),
+	JOY_BUTTON_PADDLE3: tr("Paddle 3"),
+	JOY_BUTTON_PADDLE4: tr("Paddle 4"),
+	JOY_BUTTON_TOUCHPAD: tr("Touchpad"),
+}
+
 func _ready() -> void:
-	SystemData.keybind_settings.connect("changed", Callable(self, "_on_KeybindSettings_settings_changed"))
-	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
+	SystemData.keybind_settings.changed.connect(_on_KeybindSettings_settings_changed)
+	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
 
 
 ## Converts a json dictionary to an InputEvent instance.
 ##
 ## This supports InputEventKey and InputEventJoypadButton events. It does not support joystick, mouse or touch events.
 func input_event_from_json(json: Dictionary) -> InputEvent:
-	if not json:
+	if json.is_empty():
 		return null
 	
 	var input_event: InputEvent
 	match json.get("type"):
 		"key":
 			var input_event_key := InputEventKey.new()
-			input_event_key.keycode = json.get("keycode")
+			input_event_key.keycode = json.get("scancode")
 			input_event = input_event_key
 		"joypad_button":
 			var input_event_joypad_button := InputEventJoypadButton.new()
@@ -36,7 +65,7 @@ func input_event_to_json(input_event: InputEvent) -> Dictionary:
 	var json := {}
 	if input_event is InputEventKey:
 		json["type"] = "key"
-		json["keycode"] = input_event.keycode
+		json["scancode"] = input_event.keycode
 	elif input_event is InputEventJoypadButton:
 		json["type"] = "joypad_button"
 		json["device"] = input_event.device
@@ -50,24 +79,30 @@ func input_event_to_json(input_event: InputEvent) -> Dictionary:
 ## 	'input_json': A json representation of a keyboard or joypad input
 ##
 ## Returns:
-## 	A short human-readable string like 'DPAD Left' or 'Escape'
+## 	A short human-readable string like 'D-Pad Left' or 'Escape'
 func pretty_string(input_json: Dictionary) -> String:
 	var result: String
 	match input_json["type"]:
 		"key":
-			result = OS.get_keycode_string(input_json["keycode"])
+			result = OS.get_keycode_string(input_json["scancode"])
 		"joypad_button":
-			result = Input.get_joy_button_string(input_json["button_index"])
-			result = result.replace("Face Button", "Face")
+			result = get_joy_button_string(input_json["button_index"])
+	return result
+
+
+func get_joy_button_string(button_index: int) -> String:
+	var result: String
+	if button_index in names_by_joy_button:
+		result = names_by_joy_button.get(button_index)
+	else:
+		result = tr("Joypad Button %s") % [button_index]
 	return result
 
 
 ## Updates the InputMap with the bindings in the specified json file
 func _bind_keys_from_file(path: String) -> void:
 	var json_text := FileUtils.get_file_as_text(path)
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json_text)
-	var json_dict: Dictionary = test_json_conv.get_data()
+	var json_dict: Dictionary = JSON.parse_string(json_text)
 	_bind_keys_from_json_dict(json_dict)
 
 

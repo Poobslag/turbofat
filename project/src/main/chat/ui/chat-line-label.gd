@@ -9,18 +9,19 @@ extends RectFitLabel
 signal all_text_shown
 
 ## Amount of empty space between the text borders and panel borders.
-@export (Vector2) var panel_padding: Vector2
+@export var panel_padding: Vector2
 
-@export (NodePath) var chat_line_panel_path: NodePath
+@export var chat_line_panel_path: NodePath
 
 @onready var chat_line_panel: ChatLinePanel = get_node(chat_line_panel_path)
 
 @onready var _label_typer := $LabelTyper
 
 func _ready() -> void:
+	super()
 	# Populate the chat line sizes based on the chat line panel sizes.
 	# They're the same except for a little padding on the outside.
-	var new_sizes := []
+	var new_sizes: Array[Vector2] = []
 	for panel_size in chat_line_panel.panel_sizes:
 		new_sizes.append(panel_size - panel_padding)
 	set_sizes(new_sizes)

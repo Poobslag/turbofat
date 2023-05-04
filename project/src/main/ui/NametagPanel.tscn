@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bdhys6wtuhqta"]
 
-[ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="FontFile" id=1]
-[ext_resource path="res://src/main/ui/nametag-panel.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://src/main/ui/nametag-panel.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://cew0mqs2pg5bi" path="res://assets/main/ui/font/blogger-sans-bold.otf" id="2_o4k4o"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 resource_local_to_scene = true
-bg_color = Color( 0.188235, 0.188235, 0.376471, 1 )
+bg_color = Color(0.188235, 0.188235, 0.376471, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -14,12 +14,13 @@ corner_radius_bottom_left = 25
 [node name="NametagPanel" type="Panel"]
 offset_right = 360.0
 offset_bottom = 60.0
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
-panel_sizes = [ Vector2( 180, 60 ), Vector2( 360, 60 ), Vector2( 360, 60 ), Vector2( 240, 60 ), Vector2( 360, 60 ) ]
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2")
+panel_sizes = Array[Vector2]([Vector2(180, 60), Vector2(360, 60), Vector2(360, 60), Vector2(240, 60), Vector2(360, 60)])
 
 [node name="Small" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -28,16 +29,19 @@ offset_left = -82.0
 offset_top = -16.0
 offset_right = 98.0
 offset_bottom = 21.0
-scale = Vector2( 0.909, 0.909 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+scale = Vector2(0.909, 0.909)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_o4k4o")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsu"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 max_lines_visible = 1
+visible_characters_behavior = 1
 
 [node name="Medium" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -46,17 +50,20 @@ offset_left = -160.0
 offset_top = -16.0
 offset_right = 190.0
 offset_bottom = 21.0
-scale = Vector2( 0.909, 0.909 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+scale = Vector2(0.909, 0.909)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_o4k4o")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor s"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 1
+visible_characters_behavior = 1
 
 [node name="Large" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -65,17 +72,21 @@ offset_left = -160.0
 offset_top = -16.0
 offset_right = 365.0
 offset_bottom = 21.0
-scale = Vector2( 0.606, 0.909 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+scale = Vector2(0.606, 0.909)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_o4k4o")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor sit amet"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 1
+visible_characters_behavior = 1
 
 [node name="ExtraLarge" type="Label" parent="."]
 visible = false
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -84,17 +95,20 @@ offset_left = -100.0
 offset_top = -23.0
 offset_right = 400.0
 offset_bottom = 57.0
-custom_minimum_size = Vector2( 500, 80 )
-scale = Vector2( 0.4, 0.6 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+scale = Vector2(0.4, 0.6)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_o4k4o")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2
+visible_characters_behavior = 1
 
 [node name="ExtraExtraLarge" type="Label" parent="."]
+custom_minimum_size = Vector2(750, 80)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -103,13 +117,14 @@ offset_left = -150.0
 offset_top = -23.0
 offset_right = 600.0
 offset_bottom = 57.0
-custom_minimum_size = Vector2( 750, 80 )
-scale = Vector2( 0.4, 0.6 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+scale = Vector2(0.4, 0.6)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_o4k4o")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2
+visible_characters_behavior = 1

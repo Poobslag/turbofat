@@ -21,9 +21,9 @@ custom_minimum_size = Vector2( 140, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.74
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Control" type="Control" parent="."]
 offset_left = 142.0

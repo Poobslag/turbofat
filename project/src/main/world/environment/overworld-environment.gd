@@ -4,16 +4,16 @@ extends Node
 
 const SCENE_EMPTY_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
-@export (NodePath) var environment_shadows_path: NodePath
-@export (NodePath) var obstacles_path: NodePath
-@export (PackedScene) var CreatureScene: PackedScene
+@export var environment_shadows_path: NodePath
+@export var obstacles_path: NodePath
+@export var CreatureScene: PackedScene
 
 @onready var _obstacles: Node2D = get_node(obstacles_path)
 @onready var _environment_shadows: OutdoorShadows = get_node(environment_shadows_path)
 
 ## Adds a new obstacle. The obstacle is placed below the given node in the list of children.
 func add_obstacle_below_node(node: Node2D, child_node: Node2D) -> void:
-	_obstacles.add_sibling(node, child_node)
+	node.add_sibling(child_node)
 	process_new_obstacle(child_node)
 
 

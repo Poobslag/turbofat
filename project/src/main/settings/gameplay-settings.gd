@@ -48,7 +48,7 @@ var soft_drop_lock_cancel := true: set = set_soft_drop_lock_cancel
 
 ## Current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
 ## the game harder, or to cheat on levels which otherwise require slow and thoughtful play.
-var speed: int = Speed.DEFAULT: set = set_velocity
+var speed := Speed.DEFAULT: set = set_velocity
 
 func set_ghost_piece(new_ghost_piece: bool) -> void:
 	if ghost_piece == new_ghost_piece:
@@ -64,7 +64,7 @@ func set_soft_drop_lock_cancel(new_soft_drop_lock_cancel: bool) -> void:
 	emit_signal("soft_drop_lock_cancel_changed", new_soft_drop_lock_cancel)
 
 
-func set_velocity(new_speed: int) -> void:
+func set_velocity(new_speed: Speed) -> void:
 	if speed == new_speed:
 		return
 	speed = new_speed
@@ -105,7 +105,7 @@ func from_json_dict(json: Dictionary) -> void:
 	set_hold_piece(json.get("hold_piece", false))
 	set_line_piece(json.get("line_piece", false))
 	set_soft_drop_lock_cancel(json.get("soft_drop_lock_cancel", true))
-	set_velocity(Utils.enum_from_snake_case(Speed, json.get("speed", "")))
+	set_velocity(Utils.enum_from_snake_case(Speed, json.get("speed", "")) as Speed)
 
 
 ## Returns a number in the range [0.0, ∞) for how piece gravity should be modified.

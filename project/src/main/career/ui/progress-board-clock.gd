@@ -24,7 +24,10 @@ const HAND_POSITIONS_BY_HOURS := {
 ##
 ## This is stored independently of the player's career data because this clock might animate to show a time in the past
 ## or future.
-var hours_passed := 0: set = set_hours_passed
+var hours_passed := 0: set = set_hours_passed, get = get_hours_passed
+
+## internal version of 'hours_passed' which can be assigned without invoking the setter
+var _hours_passed_internal := 0
 
 ## Digital text which shows the time using text like '8:50 pm'
 @onready var _label: Label = $Label
@@ -50,8 +53,8 @@ func play(new_hours_passed: int, duration: float) -> void:
 	
 	# Assign our underlying hours passed variable, but don't update the UI. the UI will be gradually animated to the
 	# new value.
-	var old_hours_passed := hours_passed
-	hours_passed = new_hours_passed
+	var old_hours_passed := _hours_passed_internal
+	_hours_passed_internal = new_hours_passed
 	
 	# During animations, the minute hand is temporarily assigned something nonsensical like 7:80 for the sake of
 	# animating the clock forward. We reset the minute hand to avoid bugs where the clock might rewind backward from
@@ -78,8 +81,13 @@ func play(new_hours_passed: int, duration: float) -> void:
 
 func set_hours_passed(new_hours_passed: int = 0) -> void:
 	hours_passed = new_hours_passed
+	_hours_passed_internal = new_hours_passed
 	
 	_refresh()
+
+
+func get_hours_passed() -> int:
+	return _hours_passed_internal
 
 
 ## Calculates the desired minute hand position.
@@ -133,12 +141,12 @@ func _refresh() -> void:
 	if not is_inside_tree():
 		return
 	
-	_visuals.minutes = _minute_hand_position(hours_passed)
-	_visuals.hours = _hour_hand_position(hours_passed)
-	_visuals.filled_percent = _filled_percent(hours_passed)
+	_visuals.minutes = _minute_hand_position(_hours_passed_internal)
+	_visuals.hours = _hour_hand_position(_hours_passed_internal)
+	_visuals.filled_percent = _filled_percent(_hours_passed_internal)
 	
 	# update digital display
-	_label.text = _clock_text(hours_passed)
+	_label.text = _clock_text(_hours_passed_internal)
 
 
 ## When the clock stops spinning forward we update all UI elements one last time.
@@ -147,7 +155,7 @@ func _refresh() -> void:
 func _on_Tween_completed() -> void:
 	_clock_advance_sound.stop()
 	var old_label_text := _label.text
-	_refresh()
+	hours_passed = _hours_passed_internal
 	
 	if old_label_text != _label.text:
 		_clock_ring_sound.play()

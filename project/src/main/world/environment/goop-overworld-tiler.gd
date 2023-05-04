@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Autotiles a tilemap for goopy/goopless overworld cakes.
 ##
@@ -48,145 +48,145 @@ const CAKE_CENTER := 1024
 ##   * GOOP_TOP
 ##
 ## key: (int) bitmask of surrounding tiles
-## value: (Vector2) array of two elements which define a 'binding value':
-##  value[0]: (int) enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
-##  value[1]: (Vector2) autotile coordinate of the new tile
+## value: (Vector2i) array of two elements which define a 'binding value':
+##  value[0]: (TileTypes) TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
+##  value[1]: (Vector2i) autotile coordinate of the new tile
 const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 	# goopless tiles
 	0: [TileTypes.NO_GOOP,
-			[Vector2(0, 0), Vector2(1, 0)]],
+			[Vector2i(0, 0), Vector2i(1, 0)]],
 	CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(2, 0), Vector2(3, 0)]],
+			[Vector2i(2, 0), Vector2i(3, 0)]],
 	CAKE_BOTTOM: [TileTypes.NO_GOOP,
-			[Vector2(4, 0), Vector2(5, 0)]],
+			[Vector2i(4, 0), Vector2i(5, 0)]],
 	CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(0, 1), Vector2(1, 1)]],
+			[Vector2i(0, 1), Vector2i(1, 1)]],
 	CAKE_LEFT: [TileTypes.NO_GOOP,
-			[Vector2(2, 1), Vector2(3, 1)]],
+			[Vector2i(2, 1), Vector2i(3, 1)]],
 	CAKE_LEFT | CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(4, 1), Vector2(5, 1)]],
+			[Vector2i(4, 1), Vector2i(5, 1)]],
 	CAKE_LEFT | CAKE_BOTTOM: [TileTypes.NO_GOOP,
-			[Vector2(0, 2), Vector2(1, 2)]],
+			[Vector2i(0, 2), Vector2i(1, 2)]],
 	CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(2, 2), Vector2(3, 2)]],
+			[Vector2i(2, 2), Vector2i(3, 2)]],
 	CAKE_RIGHT: [TileTypes.NO_GOOP,
-			[Vector2(4, 2), Vector2(5, 2)]],
+			[Vector2i(4, 2), Vector2i(5, 2)]],
 	CAKE_RIGHT | CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(0, 3), Vector2(1, 3)]],
+			[Vector2i(0, 3), Vector2i(1, 3)]],
 	CAKE_RIGHT | CAKE_BOTTOM: [TileTypes.NO_GOOP,
-			[Vector2(2, 3), Vector2(3, 3)]],
+			[Vector2i(2, 3), Vector2i(3, 3)]],
 	CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(4, 3), Vector2(5, 3)]],
+			[Vector2i(4, 3), Vector2i(5, 3)]],
 	CAKE_RIGHT | CAKE_LEFT: [TileTypes.NO_GOOP,
-			[Vector2(0, 4), Vector2(1, 4)]],
+			[Vector2i(0, 4), Vector2i(1, 4)]],
 	CAKE_RIGHT | CAKE_LEFT | CAKE_TOP: [TileTypes.NO_GOOP,
-			[Vector2(2, 4), Vector2(3, 4)]],
+			[Vector2i(2, 4), Vector2i(3, 4)]],
 	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM: [TileTypes.NO_GOOP,
-			[Vector2(4, 4), Vector2(5, 4)]],
+			[Vector2i(4, 4), Vector2i(5, 4)]],
 	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
 			# This first 4-way goopless tile is blank. We repeat it to increase its likelihood of being selected.
-			[Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5),
-			Vector2(1, 5), Vector2(2, 5), Vector2(3, 5), Vector2(4, 5), Vector2(5, 5)]],
+			[Vector2i(0, 5), Vector2i(0, 5), Vector2i(0, 5), Vector2i(0, 5), Vector2i(0, 5),
+			Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]],
 	
 	# fully goopy tiles, where all adjacent cells are also goopy
 	GOOP_CENTER:
-			[TileTypes.ALL_GOOP, [Vector2(0, 0)]],
+			[TileTypes.ALL_GOOP, [Vector2i(0, 0)]],
 	GOOP_CENTER | CAKE_TOP | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(1, 0)]],
+			[TileTypes.ALL_GOOP, [Vector2i(1, 0)]],
 	GOOP_CENTER | CAKE_BOTTOM | GOOP_BOTTOM:
-			[TileTypes.ALL_GOOP, [Vector2(2, 0)]],
+			[TileTypes.ALL_GOOP, [Vector2i(2, 0)]],
 	GOOP_CENTER | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(3, 0)]],
+			[TileTypes.ALL_GOOP, [Vector2i(3, 0)]],
 	GOOP_CENTER | CAKE_LEFT | GOOP_LEFT:
-			[TileTypes.ALL_GOOP, [Vector2(4, 0)]],
+			[TileTypes.ALL_GOOP, [Vector2i(4, 0)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_TOP | GOOP_LEFT | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(5, 0)]],
+			[TileTypes.ALL_GOOP, [Vector2i(5, 0)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT | GOOP_BOTTOM:
-			[TileTypes.ALL_GOOP, [Vector2(0, 1)]],
+			[TileTypes.ALL_GOOP, [Vector2i(0, 1)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(1, 1)], Vector2(2, 1), Vector2(3, 1), Vector2(4, 1)],
+			[TileTypes.ALL_GOOP, [Vector2i(1, 1)], Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)],
 	GOOP_CENTER | CAKE_RIGHT | GOOP_RIGHT:
-			[TileTypes.ALL_GOOP, [Vector2(5, 1)]],
+			[TileTypes.ALL_GOOP, [Vector2i(5, 1)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_TOP | GOOP_RIGHT | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(0, 2)]],
+			[TileTypes.ALL_GOOP, [Vector2i(0, 2)]],
 	GOOP_CENTER | CAKE_BOTTOM | CAKE_RIGHT | GOOP_BOTTOM | GOOP_RIGHT:
-			[TileTypes.ALL_GOOP, [Vector2(1, 2)]],
+			[TileTypes.ALL_GOOP, [Vector2i(1, 2)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(2, 2)]],
+			[TileTypes.ALL_GOOP, [Vector2i(2, 2)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | GOOP_RIGHT | GOOP_LEFT:
-			[TileTypes.ALL_GOOP, [Vector2(3, 2)]],
+			[TileTypes.ALL_GOOP, [Vector2i(3, 2)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT | GOOP_LEFT | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(4, 2), Vector2(5, 2), Vector2(0, 3), Vector2(1, 3)]],
+			[TileTypes.ALL_GOOP, [Vector2i(4, 2), Vector2i(5, 2), Vector2i(0, 3), Vector2i(1, 3)]],
 	GOOP_CENTER | CAKE_BOTTOM | CAKE_RIGHT | CAKE_LEFT | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM:
-			[TileTypes.ALL_GOOP, [Vector2(2, 3)]],
+			[TileTypes.ALL_GOOP, [Vector2i(2, 3)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(3, 3)]],
+			[TileTypes.ALL_GOOP, [Vector2i(3, 3)]],
 	
 	# partially goopy tiles, where some adjacent cells are goopless
 	GOOP_CENTER | CAKE_ALL:
-			[TileTypes.SOME_GOOP, [Vector2(0, 0)]],
+			[TileTypes.SOME_GOOP, [Vector2i(0, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(1, 0)]],
+			[Vector2i(1, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(2, 0)]],
+			[Vector2i(2, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_BOTTOM | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(3, 0), Vector2(4, 0)]],
+			[Vector2i(3, 0), Vector2i(4, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_LEFT: [TileTypes.SOME_GOOP,
-			[Vector2(5, 0)]],
+			[Vector2i(5, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(6, 0), Vector2(7, 0)]],
+			[Vector2i(6, 0), Vector2i(7, 0)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(0, 1), Vector2(1, 1)]],
+			[Vector2i(0, 1), Vector2i(1, 1)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(2, 1), Vector2(3, 1)]],
+			[Vector2i(2, 1), Vector2i(3, 1)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT: [TileTypes.SOME_GOOP,
-			[Vector2(4, 1)]],
+			[Vector2i(4, 1)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(5, 1), Vector2(6, 1)]],
+			[Vector2i(5, 1), Vector2i(6, 1)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(7, 1), Vector2(0, 2)]],
+			[Vector2i(7, 1), Vector2i(0, 2)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_BOTTOM | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(1, 2), Vector2(2, 2)]],
+			[Vector2i(1, 2), Vector2i(2, 2)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT: [TileTypes.SOME_GOOP,
-			[Vector2(3, 2), Vector2(4, 2)]],
+			[Vector2i(3, 2), Vector2i(4, 2)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(5, 2), Vector2(6, 2)]],
+			[Vector2i(5, 2), Vector2i(6, 2)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(7, 2), Vector2(0, 3)]],
+			[Vector2i(7, 2), Vector2i(0, 3)]],
 	
 	# partially goopy tiles on an edge
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(1, 3)]],
+			[Vector2i(1, 3)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(2, 3)]],
+			[Vector2i(2, 3)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(3, 3)]],
+			[Vector2i(3, 3)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(4, 3)]],
+			[Vector2i(4, 3)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(5, 3)]],
+			[Vector2i(5, 3)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(6, 3)]],
+			[Vector2i(6, 3)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(7, 3)]],
+			[Vector2i(7, 3)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(0, 4)]],
+			[Vector2i(0, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_LEFT: [TileTypes.SOME_GOOP,
-			[Vector2(1, 4)]],
+			[Vector2i(1, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(2, 4)]],
+			[Vector2i(2, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT: [TileTypes.SOME_GOOP,
-			[Vector2(3, 4)]],
+			[Vector2i(3, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT | GOOP_TOP: [TileTypes.SOME_GOOP,
-			[Vector2(4, 4)]],
+			[Vector2i(4, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT: [TileTypes.SOME_GOOP,
-			[Vector2(5, 4)]],
+			[Vector2i(5, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(6, 4)]],
+			[Vector2i(6, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_RIGHT: [TileTypes.SOME_GOOP,
-			[Vector2(7, 4)]],
+			[Vector2i(7, 4)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_RIGHT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
-			[Vector2(0, 5)]],
+			[Vector2i(0, 5)]],
 }
 
 ## Defines which corner covers are used for different sets of surrounding tiles.
@@ -198,43 +198,44 @@ const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 ##   * GOOP_TOP_LEFT
 ##
 ## key: (int) Bitmask of surrounding tiles
-## value: (Vector2) autotile coordinate of the corner cover
+## value: (Vector2i) autotile coordinate of the corner cover
 const CORNER_COVERS_BY_BINDING := {
-	0: Vector2(0, 0),
-	GOOP_TOP: Vector2(0, 0),
-	GOOP_LEFT: Vector2(0, 0),
-	GOOP_LEFT | GOOP_TOP: Vector2(0, 0),
-	GOOP_CENTER: Vector2(0, 0),
-	GOOP_CENTER | GOOP_TOP: Vector2(1, 0),
-	GOOP_CENTER | GOOP_LEFT: Vector2(2, 0),
-	GOOP_CENTER | GOOP_LEFT | GOOP_TOP: Vector2(0, 1),
-	GOOP_TOPLEFT: Vector2(0, 0),
-	GOOP_TOPLEFT | GOOP_TOP: Vector2(1, 1),
-	GOOP_TOPLEFT | GOOP_LEFT: Vector2(2, 1),
-	GOOP_TOPLEFT | GOOP_LEFT | GOOP_TOP: Vector2(0, 2),
-	GOOP_TOPLEFT | GOOP_CENTER: Vector2(0, 0),
-	GOOP_TOPLEFT | GOOP_CENTER | GOOP_TOP: Vector2(1, 2),
-	GOOP_TOPLEFT | GOOP_CENTER | GOOP_LEFT: Vector2(2, 2),
-	GOOP_TOPLEFT | GOOP_CENTER | GOOP_LEFT | GOOP_TOP: Vector2(0, 3),
+	0: Vector2i(0, 0),
+	GOOP_TOP: Vector2i(0, 0),
+	GOOP_LEFT: Vector2i(0, 0),
+	GOOP_LEFT | GOOP_TOP: Vector2i(0, 0),
+	GOOP_CENTER: Vector2i(0, 0),
+	GOOP_CENTER | GOOP_TOP: Vector2i(1, 0),
+	GOOP_CENTER | GOOP_LEFT: Vector2i(2, 0),
+	GOOP_CENTER | GOOP_LEFT | GOOP_TOP: Vector2i(0, 1),
+	GOOP_TOPLEFT: Vector2i(0, 0),
+	GOOP_TOPLEFT | GOOP_TOP: Vector2i(1, 1),
+	GOOP_TOPLEFT | GOOP_LEFT: Vector2i(2, 1),
+	GOOP_TOPLEFT | GOOP_LEFT | GOOP_TOP: Vector2i(0, 2),
+	GOOP_TOPLEFT | GOOP_CENTER: Vector2i(0, 0),
+	GOOP_TOPLEFT | GOOP_CENTER | GOOP_TOP: Vector2i(1, 2),
+	GOOP_TOPLEFT | GOOP_CENTER | GOOP_LEFT: Vector2i(2, 2),
+	GOOP_TOPLEFT | GOOP_CENTER | GOOP_LEFT | GOOP_TOP: Vector2i(0, 3),
 }
 
 ## Parent tilemap's tile ID for goopless cells
-@export (int) var no_goop_tile_index: int: set = set_block_tile_index
+@export var no_goop_tile_index: int: set = set_block_tile_index
 
 ## Parent tilemap's tile ID for partially goopy cells
-@export (int) var some_goop_tile_index: int: set = set_some_goop_tile_index
+@export var some_goop_tile_index: int: set = set_some_goop_tile_index
 
 ## Parent tilemap's tile ID for goopy cells
-@export (int) var all_goop_tile_index: int: set = set_goop_tile_index
+@export var all_goop_tile_index: int: set = set_goop_tile_index
 
 ## corner tilemap's tile ID for goopless/partially goopy/goopy corner covers
-@export (int) var corner_tile_index: int
+@export var corner_tile_index: int
 
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-@export (bool) var _autotile: bool: set = autotile
+@warning_ignore("unused_private_class_variable")
+@export var _autotile: bool: set = autotile
 
 ## key: (TileTypes)
 ## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
@@ -330,13 +331,13 @@ func _refresh_tile_indexes() -> void:
 
 ## Autotiles all cake tiles in the ground map.
 func _autotile_ground_tiles() -> void:
-	for cell in _tile_map.get_used_cells():
-		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
+	for cell in _tile_map.get_used_cells(0):
+		match _tile_types_by_index.get(_tile_map.get_cell_source_id(0, cell)):
 			TileTypes.NO_GOOP, TileTypes.SOME_GOOP, TileTypes.ALL_GOOP: _autotile_ground_tile(cell)
 
 
 ## Autotiles the cake tile at the specified coordinates.
-func _autotile_ground_tile(cell: Vector2) -> void:
+func _autotile_ground_tile(cell: Vector2i) -> void:
 	var adjacencies := _adjacencies(cell)
 	if adjacencies & GOOP_CENTER == GOOP_CENTER:
 		# autotile a goopy cake tile
@@ -351,13 +352,13 @@ func _autotile_ground_tile(cell: Vector2) -> void:
 ## Autotiles all corner covers in the corner map.
 func _autotile_corner_tiles() -> void:
 	_corner_map.clear()
-	for cell in _tile_map.get_used_cells():
-		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
+	for cell in _tile_map.get_used_cells(0):
+		match _tile_types_by_index.get(_tile_map.get_cell_source_id(0, cell)):
 			TileTypes.NO_GOOP, TileTypes.SOME_GOOP, TileTypes.ALL_GOOP: _autotile_corner_tile(cell)
 
 
 ## Autotiles the corner cover at the specified coordinates.
-func _autotile_corner_tile(cell: Vector2) -> void:
+func _autotile_corner_tile(cell: Vector2i) -> void:
 	var corner_cover_adjacencies := _corner_cover_adjacencies(cell)
 	if CORNER_COVERS_BY_BINDING.has(corner_cover_adjacencies):
 		# add a corner cover for this cake tile
@@ -371,14 +372,15 @@ func _autotile_corner_tile(cell: Vector2) -> void:
 ##
 ## 	'binding_value': An array of two items defining the tile and autotile coordinates to assign:
 ## 		[0]: (int) tile id to assign
-## 		[1]: (Array, Vector2) list of possible autotile coordinates to assign
-func _set_cell_autotile_coord(cell: Vector2, binding_value: Array) -> void:
+## 		[1]: (Array, Vector2i) list of possible autotile coordinates to assign
+func _set_cell_autotile_coord(cell: Vector2i, binding_value: Array) -> void:
 	var tile: int = _tile_indexes_by_type[binding_value[0]]
-	var autotile_coord: Vector2 = Utils.rand_value(binding_value[1])
+	var autotile_coord: Vector2i = Utils.rand_value(binding_value[1])
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
-	_tile_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
+	_tile_map.set_cell(0, cell, tile, autotile_coord)
+	# flip_x, flip_y, transpose...
 
 
 ## Updates the corner cover for a TileMap cell.
@@ -387,12 +389,13 @@ func _set_cell_autotile_coord(cell: Vector2, binding_value: Array) -> void:
 ## 	'cell': The TileMap coordinates of the corner cover to be updated.
 ##
 ## 	'autotile_coord': autotile coordinates of the corner cover to assign
-func _set_corner_cover_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
+func _set_corner_cover_autotile_coord(cell: Vector2i, autotile_coord: Vector2i) -> void:
 	var tile: int = corner_tile_index
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
-	_corner_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
+	_corner_map.set_cell(0, cell, tile, autotile_coord)
+	# flip_x, flip_y, transpose
 
 
 ## Calculates which of the five adjacent cells have cells or goop.
@@ -405,17 +408,17 @@ func _set_corner_cover_autotile_coord(cell: Vector2, autotile_coord: Vector2) ->
 ## Returns:
 ## 	An int bitmask of cell directions containing cells (CAKE_TOP, CAKE_BOTTOM, CAKE_LEFT, CAKE_RIGHT) or goop
 ## 	(GOOP_CENTER, GOOP_TOP, GOOP_BOTTOM, GOOP_LEFT, GOOP_RIGHT)
-func _adjacencies(cell: Vector2) -> int:
+func _adjacencies(cell: Vector2i) -> int:
 	var binding := 0
-	binding |= CAKE_TOP if _tile_map.get_cellv(cell + Vector2.UP) in _cake_indexes else 0
-	binding |= CAKE_BOTTOM if _tile_map.get_cellv(cell + Vector2.DOWN) in _cake_indexes else 0
-	binding |= CAKE_LEFT if _tile_map.get_cellv(cell + Vector2.LEFT) in _cake_indexes else 0
-	binding |= CAKE_RIGHT if _tile_map.get_cellv(cell + Vector2.RIGHT) in _cake_indexes else 0
-	binding |= GOOP_CENTER if _tile_map.get_cellv(cell) in _goop_indexes else 0
-	binding |= GOOP_TOP if _tile_map.get_cellv(cell + Vector2.UP) in _goop_indexes else 0
-	binding |= GOOP_BOTTOM if _tile_map.get_cellv(cell + Vector2.DOWN) in _goop_indexes else 0
-	binding |= GOOP_LEFT if _tile_map.get_cellv(cell + Vector2.LEFT) in _goop_indexes else 0
-	binding |= GOOP_RIGHT if _tile_map.get_cellv(cell + Vector2.RIGHT) in _goop_indexes else 0
+	binding |= CAKE_TOP if _tile_map.get_cell_source_id(0, cell + Vector2i.UP) in _cake_indexes else 0
+	binding |= CAKE_BOTTOM if _tile_map.get_cell_source_id(0, cell + Vector2i.DOWN) in _cake_indexes else 0
+	binding |= CAKE_LEFT if _tile_map.get_cell_source_id(0, cell + Vector2i.LEFT) in _cake_indexes else 0
+	binding |= CAKE_RIGHT if _tile_map.get_cell_source_id(0, cell + Vector2i.RIGHT) in _cake_indexes else 0
+	binding |= GOOP_CENTER if _tile_map.get_cell_source_id(0, cell) in _goop_indexes else 0
+	binding |= GOOP_TOP if _tile_map.get_cell_source_id(0, cell + Vector2i.UP) in _goop_indexes else 0
+	binding |= GOOP_BOTTOM if _tile_map.get_cell_source_id(0, cell + Vector2i.DOWN) in _goop_indexes else 0
+	binding |= GOOP_LEFT if _tile_map.get_cell_source_id(0, cell + Vector2i.LEFT) in _goop_indexes else 0
+	binding |= GOOP_RIGHT if _tile_map.get_cell_source_id(0, cell + Vector2i.RIGHT) in _goop_indexes else 0
 	return binding
 
 
@@ -425,15 +428,15 @@ func _adjacencies(cell: Vector2) -> int:
 ##
 ## Returns:
 ## 	An int bitmask of cell directions containing goop (GOOP_CENTER, GOOP_TOP, GOOP_LEFT, GOOP_TOPLEFT)
-func _corner_cover_adjacencies(cell: Vector2) -> int:
+func _corner_cover_adjacencies(cell: Vector2i) -> int:
 	var binding := -1
-	if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL \
-			and _tile_map.get_cellv(cell + Vector2.UP) != TileMap.INVALID_CELL \
-			and _tile_map.get_cellv(cell + Vector2.LEFT) != TileMap.INVALID_CELL \
-			and _tile_map.get_cellv(cell + Vector2.UP + Vector2.LEFT) != TileMap.INVALID_CELL:
+	if _tile_map.get_cell_source_id(0, cell) != -1 \
+			and _tile_map.get_cell_source_id(0, cell + Vector2i.UP) != -1 \
+			and _tile_map.get_cell_source_id(0, cell + Vector2i.LEFT) != -1 \
+			and _tile_map.get_cell_source_id(0, cell + Vector2i.UP + Vector2i.LEFT) != -1:
 		binding = 0
-		binding |= GOOP_CENTER if _tile_map.get_cellv(cell) in _goop_indexes else 0
-		binding |= GOOP_TOP if _tile_map.get_cellv(cell + Vector2.UP) in _goop_indexes else 0
-		binding |= GOOP_LEFT if _tile_map.get_cellv(cell + Vector2.LEFT) in _goop_indexes else 0
-		binding |= GOOP_TOPLEFT if _tile_map.get_cellv(cell + Vector2.UP + Vector2.LEFT) in _goop_indexes else 0
+		binding |= GOOP_CENTER if _tile_map.get_cell_source_id(0, cell) in _goop_indexes else 0
+		binding |= GOOP_TOP if _tile_map.get_cell_source_id(0, cell + Vector2i.UP) in _goop_indexes else 0
+		binding |= GOOP_LEFT if _tile_map.get_cell_source_id(0, cell + Vector2i.LEFT) in _goop_indexes else 0
+		binding |= GOOP_TOPLEFT if _tile_map.get_cell_source_id(0, cell + Vector2i.UP + Vector2i.LEFT) in _goop_indexes else 0
 	return binding

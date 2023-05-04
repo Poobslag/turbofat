@@ -31,7 +31,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "ambient-nw"
-loop = true
+loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("TailZ0:frame")
@@ -60,7 +60,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "ambient-se"
-loop = true
+loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("TailZ0:frame")

@@ -21,7 +21,7 @@ func _force_cutscene() -> bool:
 		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([Careers.GENERAL_CHAT_KEY_ROOT])
 	if chat_key_pair.is_empty():
 		# no general cutscene available; make one available
-		var chat_keys := CareerCutsceneLibrary.chat_keys([Careers.GENERAL_CHAT_KEY_ROOT])
+		var chat_keys := CareerCutsceneLibrary.get_chat_keys([Careers.GENERAL_CHAT_KEY_ROOT])
 		var min_chat_age := ChatHistory.CHAT_AGE_NEVER
 		var newest_chat_key := ""
 		for chat_key in chat_keys:
@@ -47,7 +47,7 @@ func _find_region_with_boss_level() -> CareerRegion:
 	var result: CareerRegion
 	# find the latest visited region with a boss level, if one exists
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
-	regions_reversed.invert()
+	regions_reversed.reverse()
 	for region in regions_reversed:
 		if region.start < PlayerData.career.distance_travelled and region.boss_level:
 			result = region
@@ -98,7 +98,7 @@ func _find_region_with_epilogue() -> CareerRegion:
 	var result: CareerRegion
 	# find the latest visited region with a boss level, if one exists
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
-	regions_reversed.invert()
+	regions_reversed.reverse()
 	for region in regions_reversed:
 		if region.start < PlayerData.career.distance_travelled \
 				and ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
@@ -130,7 +130,7 @@ func _force_epilogue_level() -> bool:
 	
 	if new_region:
 		# move the player to the selected region with an epilogue
-		# warning-ignore:integer_division
+		@warning_ignore("integer_division")
 		PlayerData.career.distance_travelled = new_region.start + new_region.length / 2
 		
 		# mark epilogue as unwatched
@@ -164,14 +164,14 @@ func _cycle_levels() -> void:
 
 
 func _on_SettingsButton_pressed() -> void:
-	$SettingsMenu.show()
+	$SettingsMenu.show_settings_menu()
 
 
-func _on_SettingsMenu_show() -> void:
+func _on_SettingsMenu_shown() -> void:
 	$Control/SettingsButton.hide()
 
 
-func _on_SettingsMenu_hide() -> void:
+func _on_SettingsMenu_hidden() -> void:
 	$Control/SettingsButton.show()
 
 

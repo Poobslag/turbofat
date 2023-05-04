@@ -15,7 +15,7 @@ extends Node
 func _ready() -> void:
 	_frying_pans_ui.pans_remaining = _remaining_control.value
 	_frying_pans_ui.pans_max = _max_control.value
-	_frying_pans_ui.gold = _gold_control.pressed
+	_frying_pans_ui.gold = _gold_control.button_pressed
 
 
 func _on_RemainingSpinBox_value_changed(value: float) -> void:

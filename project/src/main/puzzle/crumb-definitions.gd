@@ -14,7 +14,7 @@ class CrumbDefinition:
 		crumb_colors = init_crumb_colors
 
 ## key: (int) Enum from Foods.FoodType defining the food being eaten
-## value: (CrumbDefinition) Color and density of crumbs
+## value: (CrumbDefinition) CrumbDefinition defining the color and density of crumbs
 var crumb_definitions := {
 }
 
@@ -33,5 +33,5 @@ func _ready() -> void:
 ##
 ## Returns:
 ## 	Color and density of crumbs when the specified food is eaten.
-func get_definition(food_type: int) -> CrumbDefinition:
+func get_definition(food_type: Foods.FoodType) -> CrumbDefinition:
 	return crumb_definitions[food_type]

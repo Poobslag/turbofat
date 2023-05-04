@@ -7,9 +7,9 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 23 )
-shader_param/width = 2.5
-shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
-shader_param/edge_fix_factor = 0.001
+shader_parameter/width = 2.5
+shader_parameter/black = Color( 0.254902, 0.156863, 0.117647, 1 )
+shader_parameter/edge_fix_factor = 0.001
 
 [sub_resource type="ViewportTexture" id=2]
 flags = 5
@@ -39,4 +39,3 @@ offset_bottom = 834.0
 scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
 texture = SubResource( 2 )
-flip_v = true

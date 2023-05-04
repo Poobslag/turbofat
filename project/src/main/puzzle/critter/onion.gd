@@ -20,10 +20,10 @@ const LAUNCH_DURATION := 1.2
 @export var sky_position: Vector2 = Vector2.ZERO
 
 ## Onion's location. They are either in the soil, sky, or transitioning between the two.
-@export (OnionLocation) var onion_location: int = OnionLocation.SOIL: set = set_onion_location
+@export var onion_location := OnionLocation.SOIL: set = set_onion_location
 
 ## True if the onion is currently playing their floating animation
-@export (bool) var float_animation_playing: bool: set = set_float_animation_playing
+@export var float_animation_playing: bool: set = set_float_animation_playing
 
 @onready var _animation_tree := $AnimationTree
 @onready var _onion := $Onion
@@ -33,7 +33,7 @@ const LAUNCH_DURATION := 1.2
 @onready var _onion_location_tween: Tween
 
 ## Enum from OnionConfig.OnionState for the onion's current gameplay state.
-var state: int = OnionConfig.OnionState.NONE: set = set_state
+var state: OnionConfig.OnionState = OnionConfig.OnionState.NONE: set = set_state
 
 ## Queue of enums from States for the onion's upcoming animation states.
 var _next_states := []
@@ -65,7 +65,7 @@ func set_float_animation_playing(new_float_animation_playing: bool) -> void:
 	emit_signal("float_animation_playing_changed", float_animation_playing)
 
 
-func set_onion_location(new_onion_location: int) -> void:
+func set_onion_location(new_onion_location: OnionLocation) -> void:
 	if onion_location == new_onion_location:
 		return
 	
@@ -87,7 +87,7 @@ func clear_states() -> void:
 ## 	'next_state': Enum from States
 ##
 ## 	'count': (Optional) Number of instances of the state to enqueue.
-func append_next_state(next_state: int) -> void:
+func append_next_state(next_state: OnionConfig.OnionState) -> void:
 	_next_states.append(next_state)
 
 
@@ -109,7 +109,7 @@ func advance_state() -> int:
 	return state
 
 
-func set_state(new_state: int) -> void:
+func set_state(new_state: OnionConfig.OnionState) -> void:
 	state = new_state
 	_refresh_state()
 
@@ -160,14 +160,14 @@ func _refresh_onion_location() -> void:
 		OnionLocation.ASCENDING:
 			_onion_location_tween = Utils.recreate_tween(self, _onion_location_tween)
 			_onion_location_tween.tween_property(_onion, "position", _local_sky_position(), LAUNCH_DURATION) \
-					super.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			_onion_location_tween.tween_callback(Callable(self, "_refresh_animation_tree_conditions"))
 		OnionLocation.SKY:
 			_onion.position = _local_sky_position()
 		OnionLocation.DESCENDING:
 			_onion_location_tween = Utils.recreate_tween(self, _onion_location_tween)
 			_onion_location_tween.tween_property(_onion, "position", _soil.position, LAUNCH_DURATION) \
-					super.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 			_onion_location_tween.tween_callback(Callable(self, "_refresh_animation_tree_conditions"))
 	
 	_refresh_animation_tree_conditions()

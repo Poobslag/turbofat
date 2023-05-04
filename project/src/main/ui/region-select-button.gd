@@ -50,7 +50,7 @@ var button_index := 0: set = set_button_index
 var disabled := false: set = set_disabled
 
 ## Image shown on the button.
-var button_type: int = Type.NONE: set = set_button_type
+var button_type := Type.NONE: set = set_button_type
 
 ## Array of level ranks for levels in this region. Incomplete levels are treated as rank 999.
 var ranks := []
@@ -81,7 +81,7 @@ func set_button_index(new_button_index: int) -> void:
 	set("theme_override_constants/margin_bottom" if posmod(button_index, 2) == 0 else "theme_override_constants/margin_top", 40)
 
 
-func set_button_type(new_button_type: int) -> void:
+func set_button_type(new_button_type: Type) -> void:
 	button_type = new_button_type
 	_refresh()
 
@@ -96,7 +96,7 @@ func set_region_name(new_region_name: String) -> void:
 	_refresh()
 
 
-func grab_focus() -> void:
+func region_select_button_grab_focus() -> void:
 	_button.grab_focus()
 
 

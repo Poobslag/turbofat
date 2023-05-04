@@ -48,7 +48,7 @@ func push_career_trail() -> void:
 ## If the player skips or fails a level, this has consequences including skipping cutscenes and advancing the clock.
 func process_puzzle_result() -> void:
 	var skip_remaining_cutscenes := false
-	if not PuzzleState.game_ended:
+	if not PuzzleState.game_end_emitted:
 		# player skipped a level
 		skip_remaining_cutscenes = true
 		career_data.advance_clock(0, false)
@@ -79,14 +79,14 @@ func should_play_prologue() -> bool:
 
 ## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.
 func _preapply_failure_penalties() -> void:
-	if PlayerSave.is_connected("before_save", Callable(self, "_on_PlayerSave_before_save")):
-		PlayerSave.disconnect("before_save", Callable(self, "_on_PlayerSave_before_save"))
-	PlayerSave.connect("before_save", Callable(self, "_on_PlayerSave_before_save"))
+	if PlayerSave.before_save.is_connected(_on_PlayerSave_before_save):
+		PlayerSave.before_save.disconnect(_on_PlayerSave_before_save)
+	PlayerSave.before_save.connect(_on_PlayerSave_before_save)
 	
-	if PlayerSave.is_connected("after_save", Callable(self, "_on_PlayerSave_after_save")):
-		PlayerSave.disconnect("after_save", Callable(self, "_on_PlayerSave_after_save"))
-	PlayerSave.connect("after_save", self, "_on_PlayerSave_after_save",
-			[career_data.distance_earned, career_data.distance_travelled, career_data.hours_passed])
+	if PlayerSave.after_save.is_connected(_on_PlayerSave_after_save):
+		PlayerSave.after_save.disconnect(_on_PlayerSave_after_save)
+	PlayerSave.after_save.connect(_on_PlayerSave_after_save.bind(
+			career_data.distance_earned, career_data.distance_travelled, career_data.hours_passed))
 	
 	PlayerSave.schedule_save()
 
@@ -98,7 +98,7 @@ func _on_PlayerSave_before_save() -> void:
 	# Set the 'skipped_previous_level' flag; this will be reset to false if the player finishes a puzzle.
 	career_data.skipped_previous_level = true
 	
-	PlayerSave.disconnect("before_save", Callable(self, "_on_PlayerSave_before_save"))
+	PlayerSave.before_save.disconnect(_on_PlayerSave_before_save)
 
 
 func _on_PlayerSave_after_save(distance_earned, distance_travelled, hours_passed) -> void:
@@ -108,4 +108,4 @@ func _on_PlayerSave_after_save(distance_earned, distance_travelled, hours_passed
 	career_data.distance_travelled = distance_travelled
 	career_data.hours_passed = hours_passed
 	
-	PlayerSave.disconnect("after_save", Callable(self, "_on_PlayerSave_after_save"))
+	PlayerSave.after_save.disconnect(_on_PlayerSave_after_save)

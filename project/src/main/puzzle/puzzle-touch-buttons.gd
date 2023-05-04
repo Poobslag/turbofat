@@ -42,7 +42,7 @@ const SCHEMES := {
 }
 
 ## if false, pressing the buttons won't emit any actions.
-@export (bool) var emit_actions := true: set = set_emit_actions
+@export var emit_actions := true: set = set_emit_actions
 
 @onready var _close := preload("res://assets/main/ui/touch/menu.png")
 @onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
@@ -55,14 +55,14 @@ const SCHEMES := {
 @onready var _menu_button := $MenuButtonHolder/MenuButton
 
 func _ready() -> void:
-	if OS.has_touchscreen_ui_hint():
-		SystemData.touch_settings.connect("changed", Callable(self, "_on_TouchSettings_settings_changed"))
+	if DisplayServer.is_touchscreen_available():
+		SystemData.touch_settings.changed.connect(_on_TouchSettings_settings_changed)
 		_refresh_emit_actions()
 		_refresh_settings()
 		show()
 	else:
 		hide()
-	_menu_button.connect("pressed", Callable(self, "_on_MenuButton_pressed"))
+	_menu_button.pressed.connect(_on_MenuButton_pressed)
 
 
 func set_emit_actions(new_emit_actions: bool) -> void:
@@ -81,14 +81,14 @@ func _refresh_emit_actions() -> void:
 	$ButtonsSe.emit_actions = emit_actions
 	if emit_actions:
 		_menu_button.action = "ui_menu"
-		_menu_button.normal = _close
-		_menu_button.button_pressed = _close_pressed
+		_menu_button.texture_normal = _close
+		_menu_button.texture_pressed = _close_pressed
 	else:
 		# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying
 		# to quit. (there's an argument that replacing the close button with a duck might confuse them more...)
 		_menu_button.action = ""
-		_menu_button.normal = _duck
-		_menu_button.button_pressed = _duck_pressed
+		_menu_button.texture_normal = _duck
+		_menu_button.texture_pressed = _duck_pressed
 
 
 ## Updates the buttons based on the player's settings.
@@ -103,7 +103,7 @@ func _refresh_button_positions() -> void:
 	$ButtonsSe.position.y = size.y - 10 - $ButtonsSw.size.y * $ButtonsSw.scale.y
 	
 	_menu_button.scale = Vector2(0.375, 0.375) * SystemData.touch_settings.size
-	$MenuButtonHolder.position.x = size.x - 20 - _menu_button.pressed.get_size().x * _menu_button.scale.x
+	$MenuButtonHolder.position.x = size.x - 20 - _menu_button.texture_pressed.get_size().x * _menu_button.scale.x
 
 
 ## Updates the buttons based on the player's settings.
@@ -151,10 +151,10 @@ func _on_EightWay_pressed() -> void:
 		$ButtonSound.play()
 
 
-func _on_Menu_show() -> void:
+func _on_Menu_shown() -> void:
 	hide()
 
 
-func _on_Menu_hide() -> void:
-	if OS.has_touchscreen_ui_hint():
+func _on_Menu_hidden() -> void:
+	if DisplayServer.is_touchscreen_available():
 		show()

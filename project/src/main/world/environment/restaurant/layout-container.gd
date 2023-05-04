@@ -19,12 +19,12 @@ enum Layout {
 }
 
 ## Position to apply to the children controls
-@export (Layout) var layout := Layout.CENTER_TOP
+@export var layout := Layout.CENTER_TOP
 
 func _ready() -> void:
 	for child_obj in get_children():
 		var child: Control = child_obj
-		child.connect("resized", Callable(self, "_on_Child_Control_resized").bind(child))
+		child.resized.connect(_on_Child_Control_resized.bind(child))
 
 
 ## Realigns child controls when they are resized.

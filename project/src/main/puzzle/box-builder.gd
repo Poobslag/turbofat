@@ -8,7 +8,7 @@ signal after_boxes_built
 ## emitted when a new box is built
 signal box_built(rect, box_type)
 
-@export (NodePath) var tile_map_path: NodePath
+@export var tile_map_path: NodePath
 
 ## remaining frames to wait for making the current box
 var remaining_box_build_frames := 0
@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 ## Builds a box with the specified location and size.
 ##
 ## Boxes are built when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
-func build_box(rect: Rect2, box_type: int) -> void:
+func build_box(rect: Rect2i, box_type: Foods.BoxType) -> void:
 	# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
 	remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
 	_tile_map.build_box(rect, box_type)
@@ -122,7 +122,7 @@ func _filled_columns() -> Array:
 	var db := _int_matrix()
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var piece_color: int = _tile_map.get_cell(x, y)
+			var piece_color: int = _tile_map.get_cell_source_id(0, Vector2i(x, y))
 			match piece_color:
 				-1:
 					# empty space
@@ -197,25 +197,25 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 	var start_x := end_x - (width - 1)
 	var start_y := end_y - (height - 1)
 	for x in range(start_x, end_x + 1):
-		if PuzzleConnect.is_u(_tile_map.get_cell_autotile_coord(x, start_y).x):
+		if PuzzleConnect.is_u(_tile_map.get_cell_atlas_coords(0, Vector2i(x, start_y)).x):
 			return false
-		if PuzzleConnect.is_d(_tile_map.get_cell_autotile_coord(x, end_y).x):
+		if PuzzleConnect.is_d(_tile_map.get_cell_atlas_coords(0, Vector2i(x, end_y)).x):
 			return false
 	for y in range(start_y, end_y + 1):
-		if PuzzleConnect.is_l(_tile_map.get_cell_autotile_coord(start_x, y).x):
+		if PuzzleConnect.is_l(_tile_map.get_cell_atlas_coords(0, Vector2i(start_x, y)).x):
 			return false
-		if PuzzleConnect.is_r(_tile_map.get_cell_autotile_coord(end_x, y).x):
+		if PuzzleConnect.is_r(_tile_map.get_cell_atlas_coords(0, Vector2i(end_x, y)).x):
 			return false
 	
 	# calculate the ingredient string for the box
 	var piece_box_types_dict := {}
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
-			piece_box_types_dict[_tile_map.get_cell_autotile_coord(x, y).y] = true
+			piece_box_types_dict[_tile_map.get_cell_atlas_coords(0, Vector2i(x, y)).y] = true
 	var ingredients := _box_ingredients(width, height, piece_box_types_dict.keys())
 	
-	var box_type: int = BOX_TYPES_BY_INGREDIENTS.get(ingredients, Foods.BoxType.BROWN)
+	var box_type: Foods.BoxType = BOX_TYPES_BY_INGREDIENTS.get(ingredients, Foods.BoxType.BROWN)
 	
-	build_box(Rect2(start_x, start_y, width, height), box_type)
+	build_box(Rect2i(start_x, start_y, width, height), box_type)
 	
 	return true

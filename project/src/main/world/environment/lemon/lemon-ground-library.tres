@@ -1,92 +1,138 @@
-[gd_resource type="TileSet" load_steps=5 format=2]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://cmgah4t28t4i"]
 
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-all-goop-ground-sheet.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-no-goop-sheet.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-some-goop-ground-sheet.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-ground-corners-sheet.png" type="Texture2D" id=4]
+[ext_resource type="Texture2D" uid="uid://6xnlhnnej8ux" path="res://assets/main/world/environment/lemon/lemon-all-goop-ground-sheet.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cyko2tphpd80" path="res://assets/main/world/environment/lemon/lemon-no-goop-sheet.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bftwab7ryjgdt" path="res://assets/main/world/environment/lemon/lemon-some-goop-ground-sheet.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://q1junfkofbo1" path="res://assets/main/world/environment/lemon/lemon-ground-corners-sheet.png" id="4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qma1b"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(135, 165)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rv4c3"]
+texture = ExtResource("2")
+texture_region_size = Vector2i(135, 165)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5o3yg"]
+texture = ExtResource("3")
+texture_region_size = Vector2i(135, 165)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xn67i"]
+texture = ExtResource("4")
+texture_region_size = Vector2i(67, 45)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
 
 [resource]
-0/name = "lemon-all-goop"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 25 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 810, 660 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 135, 165 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "lemon-no-goop-sheet.png 1"
-1/texture = ExtResource( 2 )
-1/tex_offset = Vector2( 0, 25 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 810, 990 )
-1/tile_mode = 2
-1/autotile/icon_coordinate = Vector2( 0, 0 )
-1/autotile/tile_size = Vector2( 135, 165 )
-1/autotile/spacing = 0
-1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [  ]
-1/autotile/priority_map = [  ]
-1/autotile/z_index_map = [  ]
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "lemon-some-goop-ground-sheet.png 2"
-2/texture = ExtResource( 3 )
-2/tex_offset = Vector2( 0, 25 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 1080, 990 )
-2/tile_mode = 2
-2/autotile/icon_coordinate = Vector2( 0, 0 )
-2/autotile/tile_size = Vector2( 135, 165 )
-2/autotile/spacing = 0
-2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [  ]
-2/autotile/priority_map = [  ]
-2/autotile/z_index_map = [  ]
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-3/name = "lemon-ground-corners-sheet.png 3"
-3/texture = ExtResource( 4 )
-3/tex_offset = Vector2( -0.5, -35 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 0, 0, 201, 180 )
-3/tile_mode = 2
-3/autotile/icon_coordinate = Vector2( 0, 0 )
-3/autotile/tile_size = Vector2( 67, 45 )
-3/autotile/spacing = 0
-3/autotile/occluder_map = [  ]
-3/autotile/navpoly_map = [  ]
-3/autotile/priority_map = [  ]
-3/autotile/z_index_map = [  ]
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
+tile_size = Vector2i(128, 64)
+sources/0 = SubResource("TileSetAtlasSource_qma1b")
+sources/1 = SubResource("TileSetAtlasSource_rv4c3")
+sources/2 = SubResource("TileSetAtlasSource_5o3yg")
+sources/3 = SubResource("TileSetAtlasSource_xn67i")

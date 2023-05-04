@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends OverworldObstacle
 ## Tree which appears in the overworld for Lemony Thickets.
 ##
@@ -8,15 +8,15 @@ extends OverworldObstacle
 const LEMON_ANIMATION_NAMES := ["default-0", "default-1", "default-2"]
 
 ## Editor toggle which randomizes the tree's appearance
-@export (bool) var shuffle: bool: set = set_shuffle
+@export var shuffle: bool: set = set_shuffle
 
 ## Controls the shape of the tree's leaves. Modifying this in the editor has no effect until the scene is reloaded.
 ## There are only three leaf shapes, odd leaf types are mirrored versions of even leaf types.
-@export (int, 0, 5) var leaf_type: int: set = set_leaf_type
+@export_range(0, 5) var leaf_type: int: set = set_leaf_type
 
 ## Controls the shape of the tree's mouth. Modifying this in the editor has no effect until the scene is reloaded.
 ## There are only three mouth shapes, odd mouth types are mirrored versions of even leaf types.
-@export (int, 0, 9) var mouth_type: int: set = set_mouth_type
+@export_range(0, 9) var mouth_type: int: set = set_mouth_type
 
 @onready var _leaves := $Leaves
 @onready var _lemons := $Lemons
@@ -27,6 +27,7 @@ const LEMON_ANIMATION_NAMES := ["default-0", "default-1", "default-2"]
 @onready var _mouth_player := $MouthPlayer
 
 func _ready() -> void:
+	super()
 	if Engine.is_editor_hint():
 		# update the tree's appearance, but don't play any animations
 		_refresh_tree_in_editor()
@@ -41,6 +42,7 @@ func _ready() -> void:
 
 ## Preemptively initializes onready variables to avoid null references
 func _enter_tree() -> void:
+	super()
 	_initialize_onready_variables()
 
 
@@ -107,12 +109,12 @@ func _initialize_onready_variables() -> void:
 
 
 func _leaf_animation_name() -> String:
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	return "default-%s" % [int(leaf_type / 2)]
 
 
 func _mouth_animation_name() -> String:
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	return "default-%s" % [int(mouth_type / 2)]
 
 

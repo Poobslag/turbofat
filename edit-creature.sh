@@ -10,7 +10,7 @@
 #   edit-creature.sh off: Disable creature editing in the editor. This fixes the
 #     errors in the Godot console.
 
-tool_line='tool #uncomment to view creature in editor'
+tool_line='@tool #uncomment to view creature in editor'
 
 if [ "$1" = "on" ]
 then

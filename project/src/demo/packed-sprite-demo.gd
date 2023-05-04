@@ -8,7 +8,7 @@ extends Node
 @onready var _packed_sprite: PackedSprite = $PackedSprite
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_Z:
 			_packed_sprite.frame = wrapi(_packed_sprite.frame + 1, 0, _packed_sprite.frame_count)
 		KEY_RIGHT:

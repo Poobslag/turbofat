@@ -17,7 +17,7 @@ var rolling_backups := RollingBackups.new()
 ## file worked.
 ##
 ## Virtual property; value is only exposed through getters/setters
-var loaded_backup: int: get = get_loaded_backup
+var loaded_backup: RollingBackups.Backup: get = get_loaded_backup
 
 ## Newly renamed save files which couldn't be loaded
 ## Virtual property; value is only exposed through getters/setters
@@ -39,14 +39,14 @@ func _ready() -> void:
 	rolling_backups.data_filename = data_filename
 	rolling_backups.legacy_filename = legacy_filename
 	
-	Breadcrumb.connect("before_scene_changed", Callable(self, "_on_Breadcrumb_before_scene_changed"))
+	Breadcrumb.before_scene_changed.connect(_on_Breadcrumb_before_scene_changed)
 
 
 func get_corrupt_filenames() -> Array:
 	return rolling_backups.corrupt_filenames
 
 
-func get_loaded_backup() -> int:
+func get_loaded_backup() -> RollingBackups.Backup:
 	return rolling_backups.loaded_backup
 
 
@@ -77,9 +77,9 @@ func save_player_data() -> void:
 	player_info["money"] = PlayerData.money
 	player_info["seconds_played"] = PlayerData.seconds_played
 	save_json.append(_save_item("player_info", player_info).to_json_dict())
-	for level_name in PlayerData.level_history.level_names():
+	for level_name in PlayerData.level_history.get_level_names():
 		var rank_results_json := []
-		for rank_result in PlayerData.level_history.results(level_name):
+		for rank_result in PlayerData.level_history.get_results(level_name):
 			rank_results_json.append(rank_result.to_json_dict())
 		save_json.append(_save_item("level_history", rank_results_json, level_name).to_json_dict())
 	save_json.append(_save_item("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
@@ -170,23 +170,21 @@ func _load_player_data_from_file(filename: String) -> bool:
 ## 	A list of SaveItem instances from the specified save file. Returns an empty array if there is an error reading the
 ## 	file.
 func _save_items_from_file(filename: String) -> Array:
-	var file := File.new()
-	var open_result := file.open(filename, File.READ)
-	if open_result != OK:
+	var open_result := FileAccess.open(filename, FileAccess.READ)
+	if open_result.get_error() != OK:
 		# validation failed; couldn't open file
 		push_warning("Couldn't open file '%s' for reading: %s" % [filename, open_result])
 		return []
 	
 	var save_json_text := FileUtils.get_file_as_text(filename)
-	var validate_json_result := validate_json(save_json_text)
-	if validate_json_result != "":
+	var test_json_conv = JSON.new()
+	var validate_json_result := test_json_conv.parse(save_json_text)
+	if validate_json_result != OK:
 		# validation failed; invalid json
 		push_warning("Invalid json in file '%s': %s" % [filename, validate_json_result])
 		return []
 	
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(save_json_text)
-	var json_save_items: Array = test_json_conv.get_data()
+	var json_save_items: Array = test_json_conv.data
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
@@ -213,7 +211,7 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"level_history":
 			var value: Array = json_value
 			# load the values from oldest to newest; that way the newest one is at the front
-			value.invert()
+			value.reverse()
 			for rank_result_json in value:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)

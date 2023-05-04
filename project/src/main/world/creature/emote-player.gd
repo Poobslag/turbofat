@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 extends AnimationPlayer
 ## Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
 
@@ -24,8 +24,6 @@ const EMOTE_ANIMS := {
 	Creatures.Mood.SIGH1: "sigh1",
 	Creatures.Mood.SLY0: "sly0",
 	Creatures.Mood.SLY1: "sly1",
-	Creatures.Mood.SMILE0: "sly0",
-	Creatures.Mood.SMILE1: "sly1",
 	Creatures.Mood.SMILE0: "smile0",
 	Creatures.Mood.SMILE1: "smile1",
 	Creatures.Mood.SWEAT0: "sweat0",
@@ -134,14 +132,14 @@ const MAX_VOLUME := 0.0
 
 const FADE_SFX_DURATION := 0.08
 
-@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
-@export (NodePath) var creature_animations_path: NodePath: set = set_creature_animations_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
+@export var creature_animations_path: NodePath: set = set_creature_animations_path
 
 ## stores the previous mood so that we can apply mood transitions.
-var _prev_mood: int
+var _prev_mood: Creatures.Mood
 
 ## stores the current mood. used to prevent sync issues when changing moods faster than 80 milliseconds.
-var _mood: int
+var _mood: Creatures.Mood
 
 var _creature_visuals: CreatureVisuals
 var _creature_animations: CreatureAnimations
@@ -174,7 +172,7 @@ func _process(_delta: float) -> void:
 			advance(randf() * current_animation_length)
 	if _creature_visuals.oriented_north():
 		if is_playing():
-			stop()
+			stop_emote_player()
 			_creature_visuals.reset_eye_frames()
 
 
@@ -199,7 +197,7 @@ func set_creature_animations_path(new_creature_animations_path: NodePath) -> voi
 
 
 ## Stops and emits an 'animation_stopped' signal.
-func stop(reset: bool = true) -> void:
+func stop_emote_player(reset: bool = true) -> void:
 	var old_anim := current_animation
 	super.stop(reset)
 	emit_signal("animation_stopped", old_anim)
@@ -257,7 +255,7 @@ func eat() -> void:
 		_update_animation_keys("eat-again-sweat0", "Neck0/HeadBobber/EmoteBrain:modulate", [0, 1], brain_color)
 		
 		# gradually become bluer and bluer
-		var glow_color := Utils.to_transparent(Color("800000bc"), lerp(0.25, 0.50, discomfort_amount))
+		var glow_color := Utils.to_transparent(Color("0000bc80"), lerp(0.25, 0.50, discomfort_amount))
 		_update_animation_keys("eat-sweat0", "Neck0/HeadBobber/EmoteGlow:modulate", [1, 2], glow_color)
 		_update_animation_keys("eat-again-sweat0", "Neck0/HeadBobber/EmoteGlow:modulate", [0, 1], glow_color)
 	elif _creature_visuals.comfort > -1.00:
@@ -296,13 +294,13 @@ func eat() -> void:
 ##
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
-func emote(mood: int) -> void:
+func emote(mood: Creatures.Mood) -> void:
 	_mood = mood
 	if _prev_mood in EMOTE_ANIMS:
 		if TRANSITIONS.has([_prev_mood, mood]):
 			# call the custom transition instead of interrupting the animation
 			call(TRANSITIONS.get([_prev_mood, mood]))
-			stop()
+			stop_emote_player()
 		else:
 			# reset to the default mood, and wait for the tween to complete
 			unemote()
@@ -332,7 +330,7 @@ func emote(mood: int) -> void:
 ## Parameters:
 ## 	'anim_name': (Optional) Animation which was previously playing.
 func unemote(anim_name: String = "") -> void:
-	stop()
+	stop_emote_player()
 	_unemote_non_tweened_properties()
 	if anim_name in EAT_SMILE_ANIMS:
 		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ0").frame = 0
@@ -348,9 +346,9 @@ func unemote(anim_name: String = "") -> void:
 		play("ambient-sweat")
 	
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
-	_reset_tween.tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
-		_reset_tween.parallel().tween_property(emote_sprite, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+		_reset_tween.parallel().tween_property(emote_sprite, "rotation", 0.0, UNEMOTE_DURATION)
 		_reset_tween.parallel().tween_property(emote_sprite, "modulate",
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
@@ -384,7 +382,7 @@ func _unemote_non_tweened_properties() -> void:
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
 		eye_sprite.scale = Vector2(2, 2)
 		eye_sprite.frame = 0
-		eye_sprite.rotation_degrees = 0
+		eye_sprite.rotation = 0
 		eye_sprite.position = Vector2(0, 256)
 
 
@@ -392,12 +390,12 @@ func _unemote_non_tweened_properties() -> void:
 ##
 ## This takes place immediately, callers do not need to wait for $ResetTween.
 func unemote_immediate() -> void:
-	stop()
+	stop_emote_player()
 	_unemote_non_tweened_properties()
 	_creature_visuals.reset_eye_frames()
-	_head_bobber.rotation_degrees = 0
+	_head_bobber.rotation = 0
 	for emote_sprite in _emote_sprites:
-		emote_sprite.rotation_degrees = 0
+		emote_sprite.rotation = 0
 		emote_sprite.modulate = Color.TRANSPARENT
 	_head_bobber.reset_head_bob()
 	_prev_mood = Creatures.Mood.DEFAULT
@@ -415,7 +413,7 @@ func unemote_immediate() -> void:
 ##
 ## 	'value': The new value to set the animation keys to
 func _update_animation_keys(anim_name: String, track_path: String, key_indexes: Array, value) -> void:
-	var track_index := get_animation(anim_name).find_track(NodePath(track_path))
+	var track_index := get_animation(anim_name).find_track(NodePath(track_path), Animation.TYPE_ANIMATION)
 	if track_index == -1:
 		push_warning("Track not found: %s -> %s" % [anim_name, track_path])
 		return
@@ -433,7 +431,7 @@ func _post_unemote() -> void:
 	for emote_sprite in _emote_sprites:
 		emote_sprite.frame = 0
 		emote_sprite.modulate = Color.TRANSPARENT
-		emote_sprite.rotation_degrees = 0.0
+		emote_sprite.rotation = 0.0
 		emote_sprite.scale = Vector2(2.0, 2.0)
 		emote_sprite.position = Vector2.ZERO
 		if emote_sprite.material:
@@ -501,7 +499,7 @@ func _transition_love0_love1() -> void:
 ## Transitions from 'love1' to 'love0', hiding the hearts and blush.
 func _transition_love1_love0() -> void:
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
-		eye_sprite.rotation_degrees = 0
+		eye_sprite.rotation = 0
 		eye_sprite.position = Vector2(0, 256)
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
@@ -518,13 +516,13 @@ func _transition_rage1_rage0() -> void:
 func _transition_sigh1_sigh0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
-	_reset_tween.tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 
 
 ## Transitions from 'sly0' to 'sly1', resetting the head's rotation
 func _transition_sly0_sly1() -> void:
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
-	_reset_tween.tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 
 
 ## Transitions from 'sly1' to 'sly0', removing the laughing head bob effect
@@ -536,7 +534,7 @@ func _transition_sly1_sly0() -> void:
 func _transition_smile1_any() -> void:
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
-	_reset_tween.parallel().tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.parallel().tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 
 
 ## Transitions from 'sweat1' to 'sweat0', hiding the white sweat circles.
@@ -569,21 +567,28 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+		_creature_visuals.orientation_changed.disconnect(_on_CreatureVisuals_orientation_changed)
 	
 	root_node = creature_visuals_path
-	_creature_visuals = get_node(creature_visuals_path)
+	var new_creature_visuals := get_node(creature_visuals_path)
+	if Engine.is_editor_hint() and new_creature_visuals.get_script() == null:
+		# workaround for bug introduced in Godot 4.0 where EmotePlayer's _ready() function is called before
+		# CreatureVisuals' script is attached
+		_creature_visuals = null
+	else:
+		_creature_visuals = new_creature_visuals
 	
-	_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
-	_emote_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ0")
-	_emote_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ1")
-	_head_bobber = _creature_visuals.get_node("Neck0/HeadBobber")
-	_emote_sprites = [
-		_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"),
-		_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead"),
-		_creature_visuals.get_node("EmoteBody"),
-		_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow"),
-	]
+	if _creature_visuals:
+		_creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
+		_emote_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ0")
+		_emote_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ1")
+		_head_bobber = _creature_visuals.get_node("Neck0/HeadBobber")
+		_emote_sprites = [
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"),
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead"),
+			_creature_visuals.get_node("EmoteBody"),
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow"),
+		]
 
 
 func _refresh_creature_animations_path() -> void:
@@ -609,7 +614,7 @@ func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 		play(anim_name)
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: Creatures.Orientation, new_orientation: Creatures.Orientation) -> void:
 	if is_processing() and not Creatures.oriented_south(new_orientation):
 		unemote_immediate()
 

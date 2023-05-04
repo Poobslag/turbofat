@@ -57,7 +57,7 @@ func creature_ids() -> Array:
 ## from emerging.
 func next_filler_id() -> String:
 	var filler_id: String = _filler_ids.pop_front()
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	_filler_ids.insert(_filler_ids.size() - randi() % (_filler_ids.size() / 2), filler_id)
 	return filler_id
 
@@ -117,7 +117,7 @@ func restore_fatness_state() -> void:
 
 
 func has_fatness(creature_id: String) -> bool:
-	if not creature_id:
+	if creature_id.is_empty():
 		return false
 	if forced_fatness:
 		return true
@@ -126,7 +126,7 @@ func has_fatness(creature_id: String) -> bool:
 
 
 func get_fatness(creature_id: String) -> float:
-	if not creature_id:
+	if creature_id.is_empty():
 		return 1.0
 	if forced_fatness:
 		return forced_fatness
@@ -135,7 +135,7 @@ func get_fatness(creature_id: String) -> float:
 
 
 func set_fatness(creature_id: String, fatness: float) -> void:
-	if not creature_id:
+	if creature_id.is_empty():
 		return
 	if forced_fatness:
 		# don't persist the temporary fatness when 'forced_fatness' is set
@@ -214,12 +214,11 @@ func _normalize_filler_fatnesses() -> void:
 ## 	'file_suffix': (Optional) Suffix to append to each returned file path.
 func _file_paths(dir_path: String, file_suffix: String = "") -> Array:
 	var result := []
-	var dir := DirAccess.new()
-	dir.open(dir_path)
+	var dir := DirAccess.open(dir_path)
 	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	while true:
 		var file := dir.get_next()
-		if file:
+		if not file.is_empty():
 			result.append(("%s/%s" % [dir.get_current_dir(), file.get_file()]) + file_suffix)
 		else:
 			break

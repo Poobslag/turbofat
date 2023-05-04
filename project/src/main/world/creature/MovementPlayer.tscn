@@ -27,7 +27,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -100 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Collar:rotation_degrees")
+tracks/2/path = NodePath("Collar:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -287,7 +287,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=3]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -393,7 +393,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=4]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -511,7 +511,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=5]
 length = 0.4
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:position")
@@ -564,7 +564,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Collar:rotation_degrees")
+tracks/4/path = NodePath("Collar:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -573,7 +573,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
 "transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ -22.4144, -22.837, -17.5703, -17.5703, -22.837, -22.837, -36.4778, -29.6574 ]
+"values": [ -0.3912050799, -0.3985808413, -0.3066595856, -0.3066595856, -0.3985808413, -0.3985808413, -0.6366577139, -0.5176192776 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("TailZ0:frame")
@@ -602,7 +602,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=6]
 length = 0.4
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:position")
@@ -681,7 +681,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=7]
 length = 0.533333
-loop = true
+loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -787,7 +787,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=8]
 length = 0.533333
-loop = true
+loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -905,7 +905,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=9]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -1014,7 +1014,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=10]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")

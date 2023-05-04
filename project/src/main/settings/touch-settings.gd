@@ -24,7 +24,7 @@ const LOCO_DESKTOP := ControlScheme.LOCO_DESKTOP
 var size := 1.00: set = set_size
 
 ## control scheme that decides which buttons appear where
-var scheme: int = ControlScheme.EASY_CONSOLE: set = set_scheme
+var scheme := ControlScheme.EASY_CONSOLE: set = set_scheme
 
 ## how easy it is to mash two buttons with one finger; 0.0 = impossible, 1.0 = very easy
 var fat_finger := 0.00: set = set_fat_finger
@@ -38,7 +38,7 @@ func set_size(new_size: float) -> void:
 	emit_signal("changed")
 
 
-func set_scheme(new_scheme: int) -> void:
+func set_scheme(new_scheme: ControlScheme) -> void:
 	scheme = new_scheme
 	emit_signal("changed")
 
@@ -58,6 +58,6 @@ func to_json_dict() -> Dictionary:
 
 func from_json_dict(json: Dictionary) -> void:
 	size = float(json.get("size", 1.00))
-	scheme = int(json.get("scheme", 0))
+	scheme = int(json.get("scheme", 0)) as ControlScheme
 	fat_finger = float(json.get("fat_finger", 0.00))
 	emit_signal("changed")

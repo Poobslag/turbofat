@@ -10,10 +10,10 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	
-	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
-	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
-	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.game_started.connect(_on_PuzzleState_game_started)
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
+	PuzzleState.after_level_changed.connect(_on_PuzzleState_after_level_changed)
+	CurrentLevel.changed.connect(_on_Level_settings_changed)
 	
 	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
@@ -50,11 +50,11 @@ func _exit_tree() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu") and not $Hud/Center/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
-		_settings_menu.show()
+		_settings_menu.show_settings_menu()
 		get_viewport().set_input_as_handled()
 	
 	if event.is_action_pressed("retry"):
-		if not PuzzleState.game_active and not PuzzleState.game_ended:
+		if not PuzzleState.game_active and not PuzzleState.game_end_emitted:
 			# still at the start of a puzzle; don't retry
 			pass
 		else:
@@ -63,7 +63,7 @@ func _input(event: InputEvent) -> void:
 				# effects
 				PuzzleState.level_performance.lost = true
 				PuzzleState.game_active = false
-				PuzzleState.game_ended = true
+				PuzzleState.game_end_emitted = true
 				PuzzleState.apply_top_out_score_penalty()
 			if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 				PuzzleState.end_game()
@@ -132,10 +132,10 @@ func get_customer() -> Creature:
 ## Triggers the eating animation and makes the customer fatter.
 ##
 ## Parameters:
-## 	'customer': The customer to feed
+## 	'customer': Customer to feed
 ##
 ## 	'food_type': Enum from FoodType corresponding to the food to show
-func feed_customer(customer: Creature, food_type: int) -> void:
+func feed_customer(customer: Creature, food_type: Foods.FoodType) -> void:
 	var new_comfort := customer.score_to_comfort(PuzzleState.combo, PuzzleState.get_customer_score())
 	customer.set_comfort(new_comfort)
 	customer.feed(food_type)
@@ -282,7 +282,7 @@ func _on_Hud_start_button_pressed() -> void:
 
 
 func _on_Hud_settings_button_pressed() -> void:
-	_settings_menu.show()
+	_settings_menu.show_settings_menu()
 
 
 func _on_Hud_back_button_pressed() -> void:
@@ -300,7 +300,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	
 	# When the player finishes a puzzle, we end the game immediately after the last line clear. We don't wait for the
 	# after_piece_written signal because that signal is emitted after lines are deleted, resulting in an awkward pause.
-	if remaining_lines == 0 and PuzzleState.finish_triggered and not PuzzleState.game_ended:
+	if remaining_lines == 0 and PuzzleState.finish_trigger_emitted and not PuzzleState.game_end_emitted:
 		PuzzleState.end_game()
 	
 	# Calculate whether or not the customer should say something positive about the combo.
@@ -316,7 +316,7 @@ func _on_PuzzleState_game_started() -> void:
 
 ## Method invoked when the game ends. Stores the rank result for later.
 func _on_PuzzleState_game_ended() -> void:
-	if not CurrentLevel.level_id:
+	if CurrentLevel.level_id.is_empty():
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	

@@ -7,6 +7,7 @@ const DEFAULT_LOCALE := "en"
 
 func _ready() -> void:
 	# populate the dropdown with the names of available locales
+	_option_button.clear()
 	for locale in TranslationServer.get_loaded_locales():
 		_option_button.add_item(TranslationServer.get_locale_name(locale))
 	
@@ -35,14 +36,14 @@ func _current_loaded_locale() -> String:
 		# found an exact match
 		result = translation_server_locale
 	
-	if not result:
+	if result.is_empty():
 		# try to find a near match
 		for locale in TranslationServer.get_loaded_locales():
 			if locale.substr(0, 2) == translation_server_locale.substr(0, 2):
 				result = locale
 				break
 	
-	if not result:
+	if result.is_empty():
 		# no match; default to English
 		result = DEFAULT_LOCALE
 	

@@ -4,7 +4,7 @@ extends Control
 ## This includes four components: a player graphic, a distance label, a dot along the player's current path, and a
 ## line connecting the player's dot to the distance label.
 
-@export (NodePath) var map_row_path: NodePath
+@export var map_row_path: NodePath
 
 ## Shows the player's distance.
 @onready var _label: Label = $Label
@@ -22,8 +22,8 @@ extends Control
 @onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
 
 func _ready() -> void:
-	_map_row.connect("landmark_distance_changed", Callable(self, "_on_MapRow_landmark_distance_changed"))
-	_map_row.connect("player_distance_changed", Callable(self, "_on_MapRow_player_distance_changed"))
+	_map_row.landmark_distance_changed.connect(_on_MapRow_landmark_distance_changed)
+	_map_row.player_distance_changed.connect(_on_MapRow_player_distance_changed)
 	_refresh()
 
 

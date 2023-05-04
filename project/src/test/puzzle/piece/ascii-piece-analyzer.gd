@@ -48,7 +48,7 @@ func _determine_piece_type() -> PieceType:
 ##
 ## Calculates the piece's type, position and orientation.
 ##
-## Note: The ActivePiece requires a funcref to this AsciiPieceAnalyzer, and will stop working if the analyzer is
+## Note: The ActivePiece requires a Callable to this AsciiPieceAnalyzer, and will stop working if the analyzer is
 ## garbage collected.
 ##
 ## Parameters:
@@ -68,7 +68,7 @@ func create_active_piece(forced_piece_orientation: int = -1) -> ActivePiece:
 		var row_string: String = ascii_grid[row_index]
 		for col_index in range(row_string.length()):
 			if row_string[col_index] == piece_type.string:
-				from_shape_data.append(Vector2(col_index, row_index))
+				from_shape_data.append(Vector2i(col_index, row_index))
 	
 	var _active_piece: ActivePiece
 	var possible_orientations: Array
@@ -78,14 +78,14 @@ func create_active_piece(forced_piece_orientation: int = -1) -> ActivePiece:
 		possible_orientations = range(piece_type.pos_arr.size())
 	for pos_arr_index in possible_orientations:
 		var shape_data: Array = piece_type.pos_arr[pos_arr_index]
-		var position: Vector2 = from_shape_data[0] - shape_data[0]
+		var position: Vector2i = from_shape_data[0] - shape_data[0]
 		var shape_match := true
 		for shape_data_index in range(shape_data.size()):
 			if shape_data[shape_data_index] + position != from_shape_data[shape_data_index]:
 				shape_match = false
 				break
 		if shape_match:
-			_active_piece = ActivePiece.new(piece_type, funcref(self, "_is_cell_obstructed"))
+			_active_piece = ActivePiece.new(piece_type, Callable(self, "_is_cell_obstructed"))
 			_active_piece.pos = position
 			_active_piece.orientation = pos_arr_index
 			break
@@ -99,7 +99,7 @@ func create_active_piece(forced_piece_orientation: int = -1) -> ActivePiece:
 
 
 ## Returns 'true' if the specified cell has a block in it or if it's outside the ascii drawing's boundaries.
-func _is_cell_obstructed(pos: Vector2) -> bool:
+func _is_cell_obstructed(pos: Vector2i) -> bool:
 	var obstructed := false
 	if pos.y < 0 or pos.y >= ascii_grid.size(): obstructed = true
 	elif pos.x < 0 or pos.x >= ascii_grid[pos.y].length(): obstructed = true

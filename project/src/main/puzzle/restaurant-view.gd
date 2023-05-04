@@ -42,8 +42,8 @@ var _tweens_by_bubble_path := {}
 
 @onready var _customer := $Customer
 @onready var _customer_nametag_panel := $Customer/Nametag/Panel
-@onready var _customer_view_viewport := $Customer/View/SubViewport
-@onready var _customer_view := $Customer/View
+@onready var _customer_view_viewport := $Customer/Clip/View/SubViewport
+@onready var _customer_view := $Customer/Clip/View
 
 @onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 @onready var _hello_timer := $HelloTimer
@@ -54,16 +54,16 @@ func _ready() -> void:
 	# these values in the editor. Otherwise it keeps changing the values back.
 	_customer_view_viewport.size = _customer_view.size * 4
 	
-	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
-	PuzzleState.connect("combo_changed", Callable(self, "_on_PuzzleState_combo_changed"))
-	PuzzleState.connect("topped_out", Callable(self, "_on_PuzzleState_topped_out"))
-	PuzzleState.connect("added_line_score", Callable(self, "_on_PuzzleState_added_line_score"))
-	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
+	PuzzleState.game_ended.connect(_on_PuzzleState_game_ended)
+	PuzzleState.combo_changed.connect(_on_PuzzleState_combo_changed)
+	PuzzleState.topped_out.connect(_on_PuzzleState_topped_out)
+	PuzzleState.added_line_score.connect(_on_PuzzleState_added_line_score)
+	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
 	
-	get_chef().connect("creature_name_changed", Callable(self, "_on_Chef_creature_name_changed"))
+	get_chef().creature_name_changed.connect(_on_Chef_creature_name_changed)
 	for customer in get_customers():
-		customer.connect("creature_name_changed", Callable(self, "_on_Customer_creature_name_changed"))
-		customer.connect("dna_loaded", Callable(self, "_on_Customer_dna_loaded").bind(customer))
+		customer.creature_name_changed.connect(_on_Customer_creature_name_changed)
+		customer.dna_loaded.connect(_on_Customer_dna_loaded.bind(customer))
 	_refresh_chef_name()
 	_refresh_creature_name()
 	
@@ -186,7 +186,7 @@ func scroll_to_new_customer() -> void:
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	
 	var summon_customer_timer := _summon_customer_timers.start_timer(0.5)
-	summon_customer_timer.connect("timeout", Callable(self, "_on_Timer_timeout_summon_customer").bind(old_customer_index))
+	summon_customer_timer.timeout.connect(_on_Timer_timeout_summon_customer.bind(old_customer_index))
 
 
 ## Returns a random customer index different from the current customer index.
@@ -264,7 +264,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 		scroll_to_new_customer()
 	
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
-	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size() - 1)
+	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size())
 	if PuzzleState.game_active:
 		get_chef().play_mood(Creatures.Mood.DEFAULT)
 
@@ -278,7 +278,7 @@ func _on_PuzzleState_topped_out() -> void:
 func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 	_recent_bonuses.append(combo_score + box_score)
 	if _recent_bonuses.size() >= 6:
-		_recent_bonuses = _recent_bonuses.slice(_recent_bonuses.size() - 6, _recent_bonuses.size() - 1)
+		_recent_bonuses = _recent_bonuses.slice(_recent_bonuses.size() - 6, _recent_bonuses.size())
 	_react_to_total_bonus()
 
 
@@ -292,7 +292,7 @@ func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
 
 ## When the game ends, the chef smiles/cries/rages based on how they did.
 func _on_PuzzleState_game_ended() -> void:
-	var mood: int = Creatures.Mood.NONE
+	var mood: Creatures.Mood = Creatures.Mood.NONE
 	match PuzzleState.end_result():
 		Levels.Result.NONE:
 			pass
@@ -325,7 +325,7 @@ func _on_Playfield_all_lines_cleared() -> void:
 		# avoid conflicting chef moods at the end of a level
 		return
 	
-	if PuzzleState.tutorial_section_finished:
+	if PuzzleState.tutorial_section_finish_emitted:
 		# avoid reporting 'all clear' at the end of a tutorial section
 		return
 	

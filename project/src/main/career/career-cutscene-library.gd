@@ -108,7 +108,7 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 ## 	A ChatKeyPair defining preroll and postroll cutscenes.
 func next_interlude_chat_key_pair(chat_key_roots: Array,
 		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> ChatKeyPair:
-	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots, chef_id, customer_id, observer_id)
+	var potential_chat_key_pairs := get_potential_chat_key_pairs(chat_key_roots, chef_id, customer_id, observer_id)
 	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else ChatKeyPair.new()
 
 
@@ -127,7 +127,7 @@ func next_interlude_chat_key_pair(chat_key_roots: Array,
 ##
 ## Returns:
 ## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.
-func potential_chat_key_pairs(chat_key_roots: Array,
+func get_potential_chat_key_pairs(chat_key_roots: Array,
 		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> Array:
 	
 	var search_flags := CutsceneSearchFlags.new()
@@ -158,13 +158,13 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 			accept_chat_key_pair = PlayerData.career.is_region_cleared(PlayerData.career.current_region())
 		
 		if accept_chat_key_pair \
-				and (chef_id or customer_id or observer_id) \
+				and (not chef_id.is_empty() or not customer_id.is_empty() or not observer_id.is_empty()) \
 				and customer_id == CareerLevel.NONQUIRKY_CUSTOMER:
 			# nonquirky customer; only accept chat key pairs with nonquirky chefs/customers/observers
 			accept_chat_key_pair = _chat_key_pair_is_nonquirky(potential_chat_key_pair)
 		
 		if accept_chat_key_pair \
-				and (chef_id or customer_id or observer_id) \
+				and (not chef_id.is_empty() or not customer_id.is_empty() or not observer_id.is_empty()) \
 				and customer_id != CareerLevel.NONQUIRKY_CUSTOMER:
 			# only accept chat key pairs with a matching quirky chef/customer/observer
 			accept_chat_key_pair = _chat_key_pair_has_creatures(potential_chat_key_pair, chef_id, customer_id, observer_id)
@@ -193,7 +193,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 			var key_part: String = key_parts[i]
 			var prefix: String = key_parts[0]
 			if i >= 2:
-				prefix += "/" + PackedStringArray(key_parts.slice(1, i - "_".join(1)))
+				prefix += "/" + "_".join(PackedStringArray(key_parts.slice(1, i)))
 			if not _preroll_tree.has(prefix):
 				_preroll_tree[prefix] = []
 			if not _preroll_tree[prefix].has(key_part):
@@ -203,7 +203,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	_general_sensei_chat_keys.clear()
 	_general_restaurant_chat_keys.clear()
 	for chat_key_pair in all_chat_key_pairs:
-		for chat_key in chat_key_pair.chat_keys():
+		for chat_key in chat_key_pair.get_chat_keys():
 			if not chat_key.begins_with(Careers.GENERAL_CHAT_KEY_ROOT):
 				continue
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
@@ -226,16 +226,16 @@ func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	var excluded_chat_keys := {}
 	
 	# branches are only exhausted when their leaves are exhausted, so leaves must be traversed first (postorder)
-	var chat_key_queue := chat_keys(chat_key_roots)
+	var chat_key_queue := get_chat_keys(chat_key_roots)
 	while chat_key_queue:
 		var chat_key: String = chat_key_queue.pop_front()
 		var chat_key_pair: ChatKeyPair = _chat_key_pairs_by_preroll.get(chat_key, ChatKeyPair.new())
 		var preroll: String = chat_key_pair.preroll
 		var postroll: String = chat_key_pair.postroll
-		if preroll and not PlayerData.chat_history.is_chat_finished(preroll):
+		if not preroll.is_empty() and not PlayerData.chat_history.is_chat_finished(preroll):
 			# don't exclude; preroll cutscene hasn't been played
 			continue
-		if postroll and not PlayerData.chat_history.is_chat_finished(postroll):
+		if not postroll.is_empty() and not PlayerData.chat_history.is_chat_finished(postroll):
 			# don't exclude; postroll cutscene hasn't been played
 			continue
 		elif _preroll_tree.has(chat_key):
@@ -263,7 +263,7 @@ func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 ##
 ## Returns:
 ## 	An array of String chat keys in postorder (leaves first)
-func chat_keys(chat_key_roots: Array) -> Array:
+func get_chat_keys(chat_key_roots: Array) -> Array:
 	var chat_keys := []
 	var chat_key_queue := chat_key_roots.duplicate()
 	while chat_key_queue:
@@ -310,7 +310,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 	while chat_key_queue and chat_key_queue.front():
 		var chat_key: String = chat_key_queue.front().pop_front()
 		var children: Array = _preroll_tree.get(chat_key, [])
-		if not children:
+		if children.is_empty():
 			# leaf node; enqueue it
 			if _chat_key_pairs_by_preroll.has(chat_key):
 				potential_chat_key_pairs.append(_chat_key_pairs_by_preroll[chat_key])
@@ -325,7 +325,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 					# don't include these chat keys; the player's already seen these cutscenes
 					pass
 				elif not search_flags.include_all_numeric_children and child.is_valid_int():
-					if not min_numeric_child or int(child) < int(min_numeric_child):
+					if min_numeric_child.is_empty() or int(child) < int(min_numeric_child):
 						# track lowest-numbered numeric key
 						min_numeric_child = child
 				else:
@@ -339,7 +339,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 					chat_key_queue.front().push_front(child_key)
 		
 		# dequeue any empty arrays before iterating, so the loop will terminate
-		while chat_key_queue and not chat_key_queue.front():
+		while not chat_key_queue.is_empty() and chat_key_queue.front().is_empty():
 			chat_key_queue.pop_front()
 	
 	return potential_chat_key_pairs
@@ -347,6 +347,9 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 
 ## Returns a list of all file paths in the career cutscene root path, performing a tree traversal.
 func find_career_cutscene_resource_paths() -> Array:
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	return _find_resource_paths(career_cutscene_root_path)
 
 
@@ -355,22 +358,22 @@ func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
 	var quirky := false
 	var region: CareerRegion = PlayerData.career.current_region()
 	
-	for chat_key in chat_key_pair.chat_keys():
+	for chat_key in chat_key_pair.get_chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 		
-		if not quirky and chat_tree.chef_id:
+		if not quirky and not chat_tree.chef_id.is_empty():
 			# If a cutscene specifies a quirky chef, it must be accompanied by a level with their quirks.
 			if region.population.has_quirky_chef(chat_tree.chef_id):
 				quirky = true
 		
-		if not quirky and chat_tree.customer_ids:
+		if not quirky and not chat_tree.customer_ids.is_empty():
 			# If a cutscene specifies a quirky customer, it must be accompanied by a level with their quirks.
 			for customer_id in chat_tree.customer_ids:
 				if region.population.has_quirky_customer(customer_id):
 					quirky = true
 					break
 		
-		if not quirky and chat_tree.observer_id:
+		if not quirky and not chat_tree.observer_id.is_empty():
 			# If a cutscene defines a quirky observer, it must be accompanied by a level with their quirks.
 			if region.population.has_quirky_observer(chat_tree.observer_id):
 				quirky = true
@@ -386,18 +389,18 @@ func _chat_key_pair_has_creatures(chat_key_pair: ChatKeyPair,
 		chef_id: String, customer_id: String, observer_id: String) -> bool:
 	var matches := false
 	
-	for chat_key in chat_key_pair.chat_keys():
+	for chat_key in chat_key_pair.get_chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 		
-		if not matches and chef_id:
+		if not matches and not chef_id.is_empty():
 			if chat_tree.chef_id == chef_id:
 				matches = true
 		
-		if not matches and customer_id:
+		if not matches and not customer_id.is_empty():
 			if customer_id in chat_tree.customer_ids:
 				matches = true
 		
-		if not matches and observer_id:
+		if not matches and not observer_id.is_empty():
 			if observer_id == chat_tree.observer_id:
 				matches = true
 		
@@ -515,8 +518,7 @@ static func _find_resource_paths(path: String) -> Array:
 			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = DirAccess.new()
-			dir.open(dir_queue.pop_front())
+			dir = DirAccess.open(dir_queue.pop_front())
 			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	

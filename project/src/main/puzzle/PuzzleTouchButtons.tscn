@@ -1,20 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cr4qehiw07ekh"]
 
-[ext_resource path="res://src/main/puzzle/puzzle-touch-buttons.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/main/ui/touch/duck.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=6]
+[ext_resource type="Script" path="res://src/main/puzzle/puzzle-touch-buttons.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/main/ui/touch/EightWay.tscn" id="2"]
+[ext_resource type="AudioStream" uid="uid://btiok2urd0aog" path="res://assets/main/ui/touch/duck.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://bp53uo0qg2hch" path="res://assets/main/puzzle/move.wav" id="6"]
 
 [node name="TouchButtons" type="Control"]
-modulate = Color( 1, 1, 1, 0.627451 )
+modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="ButtonsSw" parent="." instance=ExtResource( 2 )]
+[node name="ButtonsSw" parent="." instance=ExtResource("2")]
+anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
@@ -24,7 +27,8 @@ offset_top = -250.0
 offset_right = 250.0
 offset_bottom = -10.0
 
-[node name="ButtonsSe" parent="." instance=ExtResource( 2 )]
+[node name="ButtonsSe" parent="." instance=ExtResource("2")]
+anchors_preset = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -35,27 +39,26 @@ offset_right = -10.0
 offset_bottom = -10.0
 
 [node name="MenuButtonHolder" type="Control" parent="."]
+anchors_preset = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -116.0
 offset_bottom = 116.0
 
 [node name="MenuButton" type="TouchScreenButton" parent="MenuButtonHolder"]
-position = Vector2( 10, 10 )
-scale = Vector2( 0.375, 0.375 )
-normal = ExtResource( 3 )
-pressed = ExtResource( 4 )
+position = Vector2(10, 10)
+scale = Vector2(0.375, 0.375)
 action = "ui_menu"
 visibility_mode = 1
 
 [node name="DuckSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-bus = "Sound Bus"
+stream = ExtResource("5")
+bus = &"Sound Bus"
 
 [node name="ButtonSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource("6")
 volume_db = -4.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [connection signal="pressed" from="ButtonsSw" to="." method="_on_EightWay_pressed"]
 [connection signal="pressed" from="ButtonsSe" to="." method="_on_EightWay_pressed"]
