@@ -77,7 +77,7 @@ func _find_level_paths(dirs: Array) -> Array:
 	return result
 
 
-## Reports any level ids in career-regions.json which don't have corresponding files 
+## Reports any level ids in career-regions.json which don't have corresponding files
 func _report_invalid_career_levels() -> void:
 	var level_keys_in_career_regions := CareerLevelLibrary.all_level_ids()
 	

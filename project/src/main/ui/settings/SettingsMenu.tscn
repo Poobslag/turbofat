@@ -133,7 +133,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
 margin_right = 560.0
-margin_bottom = 210.0
+margin_bottom = 240.0
 size_flags_horizontal = 3
 
 [node name="Volume" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]

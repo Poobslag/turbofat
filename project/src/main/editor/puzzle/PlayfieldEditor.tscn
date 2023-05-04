@@ -87,6 +87,7 @@ columns = 4
 margin_right = 72.0
 margin_bottom = 64.0
 script = ExtResource( 12 )
+veg_size = Vector2( 1, 1 )
 
 [node name="Veg2x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 76.0
@@ -100,6 +101,7 @@ margin_left = 152.0
 margin_right = 224.0
 margin_bottom = 64.0
 script = ExtResource( 8 )
+editor_piece = 0
 
 [node name="LPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 228.0
@@ -160,6 +162,7 @@ margin_top = 136.0
 margin_right = 224.0
 margin_bottom = 200.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 1, 1 )
 
 [node name="Box1x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
@@ -168,6 +171,7 @@ margin_top = 136.0
 margin_right = 300.0
 margin_bottom = 200.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 1, 2 )
 
 [node name="Box2x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
@@ -175,6 +179,7 @@ margin_top = 204.0
 margin_right = 72.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 2, 1 )
 
 [node name="Box3x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
@@ -183,6 +188,7 @@ margin_top = 204.0
 margin_right = 148.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 3, 1 )
 
 [node name="Box3x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
@@ -191,6 +197,7 @@ margin_top = 204.0
 margin_right = 224.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 3, 2 )
 
 [node name="Box3x3" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
@@ -199,12 +206,15 @@ margin_top = 204.0
 margin_right = 300.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 3, 3 )
 
 [node name="Box3x4" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_top = 272.0
 margin_right = 72.0
 margin_bottom = 336.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 3, 4 )
 
 [node name="Box3x5" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
@@ -213,6 +223,7 @@ margin_top = 272.0
 margin_right = 148.0
 margin_bottom = 336.0
 script = ExtResource( 11 )
+box_type = 0
 box_size = Vector2( 3, 5 )
 
 [node name="Pickup" type="Control" parent="Palette/VBoxContainer/LevelChunks"]

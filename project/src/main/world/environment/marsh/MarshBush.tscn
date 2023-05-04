@@ -54,7 +54,6 @@ texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -100, -160 )
 hframes = 3
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"

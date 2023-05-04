@@ -10,6 +10,4 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, -100 )
 script = ExtResource( 1 )
 TargetScene = ExtResource( 3 )
-target_properties = {
-}
 spawn_if = "false"
