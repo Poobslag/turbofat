@@ -20,7 +20,7 @@ var _blank_texture_countdown := randi() % 7
 var _back_sticker: Sprite
 
 func _physics_process(delta: float) -> void:
-	if not velocity:
+	if velocity == Vector2.ZERO:
 		# nothing to do if velocity is 0
 		return
 	

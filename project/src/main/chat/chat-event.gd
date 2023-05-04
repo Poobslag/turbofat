@@ -55,14 +55,14 @@ func enabled_link_indexes() -> Array:
 				link_condition = meta_item.trim_prefix("link_if ")
 				break
 		
-		if not link_condition or BoolExpressionEvaluator.evaluate(link_condition):
+		if link_condition.empty() or BoolExpressionEvaluator.evaluate(link_condition):
 			enabled_link_indexes.append(i)
 	return enabled_link_indexes
 
 
 ## Returns 'true' if this chat event represents something the player is thinking.
 func is_thought() -> bool:
-	return text.begins_with("(") and text.ends_with(")") and not who
+	return text.begins_with("(") and text.ends_with(")") and who.empty()
 
 
 func _to_string() -> String:

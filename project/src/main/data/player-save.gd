@@ -151,7 +151,7 @@ func _save_item(type: String, value, key: String = "") -> SaveItem:
 ## Returns 'true' if the data is loaded successfully.
 func _load_player_data_from_file(filename: String) -> bool:
 	var json_save_items := _save_items_from_file(filename)
-	if not json_save_items:
+	if json_save_items.empty():
 		return false
 	
 	for json_save_item_obj in json_save_items:

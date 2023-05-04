@@ -282,7 +282,7 @@ func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 
 ## When collecting pickups, the chef smiles if they're scoring a lot of bonus points.
 func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
-	if not _recent_bonuses:
+	if _recent_bonuses.empty():
 		_recent_bonuses.append(0)
 	_recent_bonuses[_recent_bonuses.size() - 1] += pickup_score
 	_react_to_total_bonus()

@@ -73,7 +73,7 @@ func _on_PlayfieldNav_add_tiles_key_pressed() -> void:
 			new_key = potential_new_key
 			break
 	
-	if not new_key:
+	if new_key.empty():
 		push_error("Couldn't add tiles key: Too many conflicts")
 		return
 	

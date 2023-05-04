@@ -49,7 +49,7 @@ static func to_transparent(color: Color, alpha := 0.0) -> Color:
 ##
 ## Returns a default value of 0.0 if the array is empty.
 static func mean(values: Array, default := 0.0) -> float:
-	if not values:
+	if values.empty():
 		return default
 	
 	var sum := 0.0
@@ -62,7 +62,7 @@ static func mean(values: Array, default := 0.0) -> float:
 ##
 ## Returns a default value of 0.0 if the array is empty.
 static func max_value(values: Array, default := 0.0) -> float:
-	if not values:
+	if values.empty():
 		return default
 	
 	var max_value: float = values[0]
@@ -108,7 +108,7 @@ static func weighted_rand_value(weights_map: Dictionary):
 ## find_closest([1.0, 2.0, 4.0, 8.0], 100) = 3
 ## find_closest([], 100)                   = -1
 static func find_closest(values: Array, target: float) -> int:
-	if not values:
+	if values.empty():
 		return -1
 	
 	var result := 0

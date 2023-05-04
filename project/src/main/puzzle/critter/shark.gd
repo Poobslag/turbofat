@@ -161,7 +161,7 @@ func has_next_state() -> bool:
 ## Returns:
 ## 	An enum from States for the shark's new state.
 func pop_next_state(force: bool = false) -> int:
-	if not _next_states:
+	if _next_states.empty():
 		return NONE
 	
 	if _already_popped_state and not force:

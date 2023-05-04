@@ -97,7 +97,7 @@ func _determine_tiles_key(tiles_keys: Array) -> String:
 	var prev_tiles_key: String = _prev_tiles_key_by_tiles_keys.get(tiles_keys_string, "")
 	var prev_tiles_key_insert_count: int = _prev_tiles_key_insert_count_by_tiles_keys.get(tiles_keys_string, 0)
 	
-	if not tiles_keys:
+	if tiles_keys.empty():
 		result = ""
 	elif prev_tiles_key and prev_tiles_key_insert_count < _row_count_by_tiles_key[prev_tiles_key]:
 		# the previously used tiles key isn't exhausted, continue using it
@@ -106,7 +106,7 @@ func _determine_tiles_key(tiles_keys: Array) -> String:
 	else:
 		# the previously used tiles key is exhausted, pick a new tiles key.
 		var possible_tiles_keys := tiles_keys.duplicate()
-		if possible_tiles_keys.size() > 1 and prev_tiles_key:
+		if possible_tiles_keys.size() > 1 and not prev_tiles_key.empty():
 			# avoid picking the same key twice
 			possible_tiles_keys.remove(possible_tiles_keys.find(prev_tiles_key))
 		result = Utils.rand_value(possible_tiles_keys)
@@ -132,7 +132,7 @@ func _tiles_src_y(tiles_key: String) -> int:
 		BlocksDuringRules.ShuffleLinesType.BAG:
 			# obtain the row bag
 			var row_bag: Array = _row_bag_by_tiles_key.get(tiles_key, [])
-			if not row_bag:
+			if row_bag.empty():
 				# refill the row bag
 				for i in range(_row_count_by_tiles_key[tiles_key]):
 					row_bag.append(i)

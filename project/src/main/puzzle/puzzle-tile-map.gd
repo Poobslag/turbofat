@@ -214,7 +214,7 @@ func set_whiteness(new_whiteness: float) -> void:
 ## 	'cell_offset': (Optional) Grid-based coordinates of the random offset to apply. If unspecified, the coordinate
 ## 		will be randomly offset by a value in the range [(0, 0), (1, 1)]
 func somewhere_near_cell(cell_pos: Vector2, cell_offset: Vector2 = Vector2.ZERO) -> Vector2:
-	if not cell_offset:
+	if cell_offset == Vector2.ZERO:
 		cell_offset = Vector2(randf(), randf())
 	return (cell_pos + cell_offset) * cell_size * scale
 

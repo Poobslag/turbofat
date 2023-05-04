@@ -124,7 +124,7 @@ func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 ## Updates the different UI components to be visible/invisible based on the UI's current state.
 func _update_visible() -> void:
 	$ChatUi.visible = true if chatters else false
-	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
+	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and chatters.empty()
 
 
 ## Applies the specified ChatEvent metadata to the scene.
