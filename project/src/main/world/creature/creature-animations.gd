@@ -192,7 +192,7 @@ func _refresh_emote_arm_frame() -> void:
 	if not is_inside_tree():
 		return
 	
-	if _movement_player.current_animation and not _movement_player.current_animation.begins_with("idle"):
+	if not _movement_player.current_animation.empty() and not _movement_player.current_animation.begins_with("idle"):
 		# if the creature is walking, they can't emote with their arms
 		return
 	
@@ -205,7 +205,7 @@ func _refresh_emote_arm_frame() -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	_creature_visuals = get_node(creature_visuals_path)

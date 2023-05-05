@@ -61,7 +61,7 @@ func refresh() -> void:
 	
 	var used_rect := tile_map.get_used_rect()
 	
-	if not used_rect:
+	if used_rect.has_no_area():
 		# have a small cloud, even if nothing is being eaten
 		used_rect = Rect2(0, 0, 1, 1)
 	

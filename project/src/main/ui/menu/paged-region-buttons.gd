@@ -109,7 +109,7 @@ func _clear_contents() -> void:
 
 ## Adds buttons representing regions the player can choose.
 func _add_buttons() -> void:
-	if not _regions_by_page:
+	if _regions_by_page.empty():
 		# avoid out of bounds errors when there are zero regions
 		return
 	

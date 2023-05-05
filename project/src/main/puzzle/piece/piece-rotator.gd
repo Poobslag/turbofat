@@ -57,7 +57,7 @@ func apply_initial_rotate_input(piece: ActivePiece) -> String:
 
 
 func emit_initial_rotate_signal(rotation_signal: String, piece: ActivePiece) -> void:
-	if not rotation_signal:
+	if rotation_signal.empty():
 		return
 	
 	emit_signal(rotation_signal, piece)

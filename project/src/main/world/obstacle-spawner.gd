@@ -26,7 +26,7 @@ func _ready() -> void:
 	if Engine.editor_hint:
 		# Don't spawn/free nodes in the editor. (Some of our children are tool scripts.)
 		pass
-	elif not spawn_if or BoolExpressionEvaluator.evaluate(spawn_if):
+	elif spawn_if.empty() or BoolExpressionEvaluator.evaluate(spawn_if):
 		# Spawn the obstacle, and remove the spawner from the scene tree.
 		# This call is deferred to avoid a 'Parent node is busy setting up children' error.
 		call_deferred("spawn_target")

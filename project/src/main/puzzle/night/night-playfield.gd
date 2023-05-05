@@ -26,7 +26,7 @@ func set_source_playfield_path(new_source_playfield_path: NodePath) -> void:
 
 ## Connects playfield listeners.
 func _refresh_playfield_path() -> void:
-	if not (is_inside_tree() and source_playfield_path):
+	if not (is_inside_tree() and not source_playfield_path.is_empty()):
 		return
 	
 	if _source_playfield:

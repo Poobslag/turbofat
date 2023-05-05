@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	# recalculate the back sticker
 	if get_child_count() and not _back_sticker:
 		var children := get_children()
-		if is_inside_tree() and children:
+		if is_inside_tree() and not children.empty():
 			_back_sticker = children[0]
 			for child_obj in children:
 				var child: Sprite = child_obj
