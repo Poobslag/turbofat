@@ -34,7 +34,7 @@ func _refresh_obstacle_map_path() -> void:
 
 
 func _refresh_shadows() -> void:
-	if not (is_inside_tree() and obstacle_map_path):
+	if not (is_inside_tree() and not obstacle_map_path.is_empty()):
 		return
 	
 	clear()

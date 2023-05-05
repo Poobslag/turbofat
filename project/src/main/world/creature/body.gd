@@ -100,7 +100,7 @@ func _disconnect_curve_signals(creature_curves: Array) -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	if _creature_visuals:

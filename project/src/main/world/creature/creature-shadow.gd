@@ -35,7 +35,7 @@ func set_creature_path(new_creature_path: NodePath) -> void:
 
 ## Connects the shadow to a new creature and updates its position.
 func _refresh_creature_path() -> void:
-	if not (is_inside_tree() and creature_path):
+	if not (is_inside_tree() and not creature_path.is_empty()):
 		return
 	
 	if _creature and _creature.is_connected("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed"):

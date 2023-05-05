@@ -576,7 +576,7 @@ func _apply_tool_script_workaround() -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	if not (is_inside_tree() and creature_visuals_path):
+	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
 		return
 	
 	if _creature_visuals:
@@ -598,7 +598,7 @@ func _refresh_creature_visuals_path() -> void:
 
 
 func _refresh_creature_animations_path() -> void:
-	if not (is_inside_tree() and creature_animations_path):
+	if not (is_inside_tree() and not creature_animations_path.is_empty()):
 		return
 	
 	_creature_animations = get_node(creature_animations_path)

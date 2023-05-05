@@ -30,7 +30,7 @@ onready var _overworld_environment: OverworldEnvironment = get_node(overworld_en
 func _ready() -> void:
 	_update_stool_occupied()
 	
-	if spawn_if and BoolExpressionEvaluator.evaluate(spawn_if):
+	if not spawn_if.empty() and BoolExpressionEvaluator.evaluate(spawn_if):
 		# Spawn the creature and remove the spawner from the scene tree.
 		# This call is deferred to avoid a 'Parent node is busy setting up children' error.
 		call_deferred("_spawn_target")

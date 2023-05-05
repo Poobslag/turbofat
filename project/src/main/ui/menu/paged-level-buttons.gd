@@ -90,7 +90,7 @@ func _refresh() -> void:
 
 ## Adds buttons representing levels the player can choose.
 func _add_buttons() -> void:
-	if not level_ids:
+	if level_ids.empty():
 		# avoid out of bounds errors when there are zero levels
 		return
 	

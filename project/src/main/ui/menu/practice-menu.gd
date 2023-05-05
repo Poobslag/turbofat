@@ -58,7 +58,7 @@ func _exit_tree() -> void:
 ## Parameters:
 ## 	'overwrite': If true, this will overwrite the player's data even if they've already launched the practice menu.
 func _assign_default_recent_data() -> void:
-	if PlayerData.practice.region_id and PlayerData.practice.level_id:
+	if not PlayerData.practice.region_id.empty() and not PlayerData.practice.level_id.empty():
 		# player has already launched the practice menu
 		return
 	

@@ -25,7 +25,7 @@ func set_shadow_caster_path(new_shadow_caster_path: NodePath) -> void:
 
 ## Connects the shadow to a new shadow caster and updates its position.
 func _refresh_shadow_caster_path() -> void:
-	if not (is_inside_tree() and shadow_caster_path):
+	if not (is_inside_tree() and not shadow_caster_path.is_empty()):
 		return
 	
 	_shadow_caster = get_node(shadow_caster_path)

@@ -23,7 +23,7 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 
 ## Connects piece manager listeners.
 func _refresh_piece_manager_path() -> void:
-	if not (is_inside_tree() and piece_manager_path):
+	if not (is_inside_tree() and not piece_manager_path.is_empty()):
 		return
 	
 	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null

@@ -75,7 +75,7 @@ func apply_initial_move_input(piece: ActivePiece) -> String:
 
 
 func emit_initial_move_signal(movement_signal: String, piece: ActivePiece) -> void:
-	if not movement_signal:
+	if movement_signal.empty():
 		return
 	
 	emit_signal(movement_signal, piece)

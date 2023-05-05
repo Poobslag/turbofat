@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 	if not get_parent().is_visible_in_tree():
 		# do not activate invisible buttons
 		return
-	if overridden_action \
+	if not overridden_action.empty() \
 			and not Input.is_action_pressed(overridden_action) \
 			and not Input.is_action_just_released(overridden_action):
 		# if an 'overridden_action' is defined, only activate when both actions are activated

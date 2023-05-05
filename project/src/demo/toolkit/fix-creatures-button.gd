@@ -155,5 +155,5 @@ func _on_pressed() -> void:
 	_upgrade_creatures()
 	_report_story_creatures()
 	_report_population_creatures()
-	if not _output_label.text:
+	if _output_label.text.empty():
 		_output_label.text = "No creature files have problems."
