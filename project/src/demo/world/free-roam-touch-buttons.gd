@@ -36,5 +36,5 @@ func _on_TouchSettings_settings_changed() -> void:
 	_refresh_buttons()
 
 
-func _on_TouchButtons_visibility_changed():
+func _on_TouchButtons_visibility_changed() -> void:
 	_refresh_buttons()
