@@ -61,7 +61,7 @@ class DefaultState extends AbstractState:
 class LocationState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
-			pass
+		pass
 	
 	
 	## Syntax:
