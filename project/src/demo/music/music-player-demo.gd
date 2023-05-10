@@ -6,6 +6,7 @@ extends Node
 ##
 ## Keys:
 ##     C: Play chill song
+##     N: Toggle night filter
 ##     U: Play upbeat song
 ##     T: Play tutorial song
 ##     =: Fade in the current song
@@ -19,7 +20,11 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_C: MusicPlayer.play_chill_bgm(false)
-		KEY_EQUAL: MusicPlayer.fade_in()
+		KEY_EQUAL:
+			if not MusicPlayer.current_bgm:
+				MusicPlayer.play_chill_bgm()
+			MusicPlayer.fade_in()
+		KEY_N: MusicPlayer.night_filter = not MusicPlayer.night_filter
 		KEY_U: MusicPlayer.play_upbeat_bgm(false)
 		KEY_T: MusicPlayer.play_tutorial_bgm(false)
 		KEY_MINUS: MusicPlayer.stop()
