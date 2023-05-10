@@ -290,8 +290,6 @@ margin_right = 324.0
 margin_bottom = 640.0
 color = Color( 0.682353, 0.847059, 0.815686, 0 )
 
-[node name="Tween" type="Tween" parent="TileMapClip/PlayfieldFx/BgStrobe"]
-
 [node name="GlowTween" type="Tween" parent="TileMapClip/PlayfieldFx"]
 
 [node name="StarPoofs" type="Node2D" parent="TileMapClip"]
