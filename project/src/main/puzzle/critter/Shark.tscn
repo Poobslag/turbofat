@@ -1294,8 +1294,6 @@ wait_time = 0.167
 [node name="ToothTimer" type="Timer" parent="ToothCloud"]
 wait_time = 0.083
 
-[node name="EatTween" type="Tween" parent="ToothCloud"]
-
 [node name="Crumbs" type="Particles2D" parent="."]
 material = SubResource( 10 )
 position = Vector2( 0, -54 )
@@ -1393,10 +1391,7 @@ volume_db = -4.0
 stream = ExtResource( 26 )
 volume_db = -4.0
 
-[node name="EatTween" type="Tween" parent="SharkSfx"]
-
 [connection signal="finished_eating" from="ToothCloud" to="." method="_on_ToothCloud_finished_eating"]
 [connection signal="timeout" from="ToothCloud/CloudTimer" to="ToothCloud" method="_on_CloudTimer_timeout"]
 [connection signal="timeout" from="ToothCloud/ToothTimer" to="ToothCloud" method="_on_ToothTimer_timeout"]
-[connection signal="tween_completed" from="ToothCloud/EatTween" to="ToothCloud" method="_on_EatTween_tween_completed"]
 [connection signal="animation_finished" from="Poof" to="." method="_on_Poof_animation_finished"]

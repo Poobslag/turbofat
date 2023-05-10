@@ -319,8 +319,6 @@ script = ExtResource( 12 )
 
 [node name="SummonCustomerTimers" parent="." instance=ExtResource( 14 )]
 
-[node name="SwoopTween" type="Tween" parent="."]
-
 [node name="SwoopAnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
 anims/default = SubResource( 7 )

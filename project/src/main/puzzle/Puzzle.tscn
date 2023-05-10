@@ -733,8 +733,6 @@ results_label_path = NodePath("../Center/ResultsHud/ResultsLabel")
 margin_top = -32.0
 margin_bottom = 0.0
 
-[node name="MoneyLabelTween" type="Tween" parent="Hud/PuzzleMoneyHud"]
-
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hud"]
@@ -878,8 +876,6 @@ script = ExtResource( 19 )
 [node name="NightModeToggler" type="Node" parent="."]
 script = ExtResource( 89 )
 
-[node name="Tween" type="Tween" parent="NightModeToggler"]
-
 [connection signal="after_lines_deleted" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_after_lines_deleted"]
 [connection signal="after_lines_filled" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_after_lines_filled"]
 [connection signal="all_lines_cleared" from="Fg/Playfield" to="Fg/RestaurantView" method="_on_Playfield_all_lines_cleared"]
@@ -920,4 +916,3 @@ script = ExtResource( 89 )
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="tween_completed" from="NightModeToggler/Tween" to="NightModeToggler" method="_on_Tween_tween_completed"]

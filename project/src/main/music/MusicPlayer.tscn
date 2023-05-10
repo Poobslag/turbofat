@@ -144,10 +144,5 @@ checkpoints = [ 0.0, 7.747, 23.229, 38.696 ]
 song_title = "Triple Thicc Shake"
 song_color = Color( 0.494118, 0.905882, 0.423529, 1 )
 
-[node name="MusicTween" type="Tween" parent="."]
+[node name="MusicTween" type="Node" parent="."]
 script = ExtResource( 4 )
-
-[node name="FilterTween" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="MusicTween" to="MusicTween" method="_on_tween_completed"]
-[connection signal="tween_completed" from="FilterTween" to="." method="_on_FilterTween_tween_completed"]

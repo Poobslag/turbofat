@@ -9,7 +9,7 @@ const FADE_DURATION := 0.3
 
 export (Ripples.RippleState) var ripple_state := Ripples.RippleState.OFF setget set_ripple_state
 
-onready var _fade_tween: Tween = $FadeTween
+onready var _fade_tween: SceneTreeTween
 
 func _ready() -> void:
 	modulate = Color.transparent
@@ -34,8 +34,8 @@ func _refresh_ripple_state() -> void:
 	# fade the sprite in or out
 	var new_modulate := Color.transparent if ripple_state == Ripples.RippleState.OFF else Color.white
 	if modulate != new_modulate:
-		_fade_tween.interpolate_property(self, "modulate", null, new_modulate, FADE_DURATION)
-		_fade_tween.start()
+		_fade_tween = Utils.recreate_tween(self, _fade_tween)
+		_fade_tween.tween_property(self, "modulate", new_modulate, FADE_DURATION)
 	
 	# determine the animation to play. we change the animation if the sprite is flipped
 	var new_anim := ""

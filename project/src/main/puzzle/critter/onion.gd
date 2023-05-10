@@ -30,7 +30,7 @@ onready var _onion := $Onion
 onready var _soil := $Soil
 
 onready var _dirt_particles := $DirtParticles
-onready var _onion_location_tween := $OnionLocationTween
+onready var _onion_location_tween: SceneTreeTween
 
 ## An enum from OnionConfig.OnionState for the onion's current gameplay state.
 var state: int = OnionConfig.OnionState.NONE setget set_state
@@ -153,20 +153,22 @@ func _refresh_onion_location() -> void:
 	if not is_inside_tree():
 		return
 	
-	_onion_location_tween.remove_all()
+	_onion_location_tween = Utils.kill_tween(_onion_location_tween)
 	match onion_location:
 		OnionLocation.SOIL:
 			_onion.position = _soil.position
 		OnionLocation.ASCENDING:
-			_onion_location_tween.interpolate_property(_onion, "position", null,
-					_local_sky_position(), LAUNCH_DURATION, Tween.TRANS_QUAD, Tween.EASE_OUT)
-			_onion_location_tween.start()
+			_onion_location_tween = Utils.recreate_tween(self, _onion_location_tween)
+			_onion_location_tween.tween_property(_onion, "position", _local_sky_position(), LAUNCH_DURATION) \
+					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			_onion_location_tween.tween_callback(self, "_refresh_animation_tree_conditions")
 		OnionLocation.SKY:
 			_onion.position = _local_sky_position()
 		OnionLocation.DESCENDING:
-			_onion_location_tween.interpolate_property(_onion, "position", null,
-					_soil.position, LAUNCH_DURATION, Tween.TRANS_QUAD, Tween.EASE_IN)
-			_onion_location_tween.start()
+			_onion_location_tween = Utils.recreate_tween(self, _onion_location_tween)
+			_onion_location_tween.tween_property(_onion, "position", _soil.position, LAUNCH_DURATION) \
+					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			_onion_location_tween.tween_callback(self, "_refresh_animation_tree_conditions")
 	
 	_refresh_animation_tree_conditions()
 
@@ -182,8 +184,3 @@ func _refresh_animation_tree_conditions() -> void:
 	_animation_tree.set("parameters/conditions/dancing_end", state == OnionConfig.OnionState.DAY_END)
 	_animation_tree.set("parameters/conditions/floating", state == OnionConfig.OnionState.NIGHT)
 	_animation_tree.set("parameters/conditions/not_floating", state != OnionConfig.OnionState.NIGHT)
-
-
-func _on_OnionLocationTween_tween_completed(object: Object, key: NodePath) -> void:
-	if object == _onion and key == ":position":
-		_refresh_animation_tree_conditions()

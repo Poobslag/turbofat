@@ -42,11 +42,11 @@ var _mix_color: Color = Color.transparent setget set_mix_color
 ## 'true' if the Mole will be queued for deletion after the 'poof' animation completes.
 var _free_after_hide := false
 
-## Tween which handles the show/hide animations.
-onready var _show_tween := $ShowTween
+## Handles the show/hide animations.
+onready var _show_tween: SceneTreeTween
 
-## Tween which moves the carrot to the top of the screen.
-onready var _move_tween := $MoveTween
+## Moves the carrot to the top of the screen.
+onready var _move_tween: SceneTreeTween
 
 ## Stores details about the carrot's visuals, such as which sprites to use and the smoke location.
 onready var _visuals: Node2D = $Visuals
@@ -97,14 +97,13 @@ func show() -> void:
 	_mix_color = Color.white
 	_visuals.scale = HIDE_SCALE
 	
-	_show_tween.remove_all()
-	_show_tween.interpolate_property(_visuals, "modulate", null, Color.white,
+	_show_tween = Utils.recreate_tween(self, _show_tween).set_parallel()
+	_show_tween.tween_property(_visuals, "modulate", Color.white,
 			SHOW_DURATION)
-	_show_tween.interpolate_property(self, "_mix_color", null, Color.transparent,
-			SHOW_DURATION * 3.0, Tween.TRANS_QUAD, Tween.EASE_IN)
-	_show_tween.interpolate_property(_visuals, "scale", null, Vector2.ONE,
+	_show_tween.tween_property(self, "_mix_color", Color.transparent,
+			SHOW_DURATION * 3.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_show_tween.tween_property(_visuals, "scale", Vector2.ONE,
 			SHOW_DURATION)
-	_show_tween.start()
 
 
 ## Makes the carrot disappear, and schedules it to free itself from memory.
@@ -115,11 +114,10 @@ func hide() -> void:
 	hiding = true
 	emit_signal("started_hiding")
 	
-	_show_tween.remove(_visuals, "modulate")
-	_show_tween.interpolate_property(_visuals, "modulate", null, Color.transparent, HIDE_DURATION)
-	_show_tween.remove(_visuals, "scale")
-	_show_tween.interpolate_property(_visuals, "scale", null, HIDE_SCALE, HIDE_DURATION)
-	_show_tween.start()
+	_show_tween = Utils.recreate_tween(self, _show_tween).set_parallel()
+	_show_tween.tween_property(_visuals, "modulate", Color.transparent, HIDE_DURATION)
+	_show_tween.tween_property(_visuals, "scale", HIDE_SCALE, HIDE_DURATION)
+	_show_tween.chain().tween_callback(self, "_on_Tween_hide_completed")
 
 
 ## Moves the carrot to the specified location (somewhere near the top of the screen.)
@@ -129,9 +127,10 @@ func hide() -> void:
 ##
 ## 	'duration': The duration in seconds to travel toward the destination.
 func launch(destination: Vector2, duration: float) -> void:
-	_move_tween.remove_all()
-	_move_tween.interpolate_property(self, "position", null, destination, duration)
-	_move_tween.start()
+	_move_tween = Utils.recreate_tween(self, _move_tween)
+	_move_tween.tween_property(self, "position", destination, duration)
+	## When the carrot reaches its destination, we hide it.
+	_move_tween.chain().tween_callback(self, "hide")
 
 
 ## Updates the shader parameters based on our 'mix_color' property.
@@ -208,16 +207,10 @@ func _randomize_face() -> void:
 	_face_animation_player.play(face_animation)
 
 
-## When the carrot reaches its destination, we hide it.
-func _on_MoveTween_tween_all_completed() -> void:
-	hide()
-
-
 ## After the carrot's 'hide' animation completes, we wait for the smoke particles to fade out and then free it.
-func _on_ShowTween_tween_all_completed() -> void:
-	if _visuals.modulate == Color.transparent:
-		_particles_2d.emitting = false
-		_free_timer.start(_particles_2d.lifetime)
+func _on_Tween_hide_completed() -> void:
+	_particles_2d.emitting = false
+	_free_timer.start(_particles_2d.lifetime)
 
 
 ## When the FreeTimer elapses, we free the carrot from memory.

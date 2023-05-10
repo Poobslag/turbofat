@@ -203,8 +203,6 @@ texture = ExtResource( 16 )
 script = ExtResource( 20 )
 onion_sprite_path = NodePath("../../Onion/Onion")
 
-[node name="Tween" type="Tween" parent="TileMapClip/NightSky/SkyGlow"]
-
 [node name="Particles2D" type="Particles2D" parent="TileMapClip/NightSky/SkyGlow"]
 material = SubResource( 27 )
 amount = 36
@@ -219,8 +217,6 @@ texture = ExtResource( 22 )
 position = Vector2( 154.227, 595.369 )
 preprocess = 20.0
 speed_scale = 0.4
-
-[node name="SkySpinTween" type="Tween" parent="TileMapClip/NightSky"]
 
 [node name="Onion" type="Control" parent="TileMapClip"]
 anchor_right = 1.0
@@ -290,8 +286,6 @@ margin_right = 324.0
 margin_bottom = 640.0
 color = Color( 0.682353, 0.847059, 0.815686, 0 )
 
-[node name="GlowTween" type="Tween" parent="TileMapClip/PlayfieldFx"]
-
 [node name="StarPoofs" type="Node2D" parent="TileMapClip"]
 position = Vector2( 0, -96 )
 z_index = 5
@@ -314,4 +308,3 @@ flip_v = true
 
 [connection signal="visibility_changed" from="TileMapClip/NightSky" to="TileMapClip/NightSky" method="_on_visibility_changed"]
 [connection signal="timeout" from="TileMapClip/NightSky/AnimateTimer" to="TileMapClip/NightSky" method="_on_AnimateTimer_timeout"]
-[connection signal="tween_completed" from="TileMapClip/NightSky/SkyGlow/Tween" to="TileMapClip/NightSky/SkyGlow" method="_on_Tween_tween_completed"]

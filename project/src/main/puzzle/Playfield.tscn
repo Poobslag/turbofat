@@ -215,8 +215,6 @@ margin_right = 324.0
 margin_bottom = 640.0
 color = Color( 0, 0, 0, 0 )
 
-[node name="GlowTween" type="Tween" parent="TileMapClip/PlayfieldFx"]
-
 [node name="LeafPoofs" type="Node2D" parent="TileMapClip"]
 position = Vector2( 0, -96 )
 z_index = 5

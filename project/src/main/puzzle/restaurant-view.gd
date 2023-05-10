@@ -33,6 +33,10 @@ var _chef_offscreen_rect_position: Vector2
 ## If empty, the ordering will be purely random.
 var _next_customer_indexes := []
 
+## key: (String) Control node path for a bubble being 'swooped in'
+## value: (SceneTreeTween) Tween adjusting the control node's position
+var _tweens_by_bubble_path := {}
+
 onready var _chef := $Chef
 onready var _chef_nametag_panel := $Chef/Nametag/Panel
 
@@ -42,7 +46,6 @@ onready var _customer_view_viewport := $Customer/View/Viewport
 onready var _customer_view := $Customer/View
 
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
-onready var _swoop_tween: Tween = $SwoopTween
 onready var _hello_timer := $HelloTimer
 onready var _summon_customer_timers: TimerGroup = $SummonCustomerTimers
 
@@ -208,9 +211,6 @@ func briefly_suppress_sfx(duration: float = 1.0) -> void:
 
 
 func _swoop_bubble(bubble: Control, onscreen: bool) -> void:
-	_swoop_tween.remove(bubble, "modulate")
-	_swoop_tween.remove(bubble, "rect_position")
-	
 	var target_pos: Vector2
 	if bubble == _chef:
 		target_pos = _chef_onscreen_rect_position if onscreen else _chef_offscreen_rect_position
@@ -218,11 +218,13 @@ func _swoop_bubble(bubble: Control, onscreen: bool) -> void:
 		target_pos = _customer_onscreen_rect_position if onscreen else _customer_offscreen_rect_position
 	var target_opacity := Color.white if onscreen else Color.transparent
 	
-	_swoop_tween.interpolate_property(bubble, "modulate", null, target_opacity,
+	_tweens_by_bubble_path[bubble.get_path()] = \
+			Utils.recreate_tween(self, _tweens_by_bubble_path.get(bubble.get_path())).parallel()
+	var swoop_tween: SceneTreeTween = _tweens_by_bubble_path[bubble.get_path()]
+	swoop_tween.tween_property(bubble, "modulate", target_opacity,
 			SWOOP_DURATION)
-	_swoop_tween.interpolate_property(bubble, "rect_position", null, target_pos,
-			SWOOP_DURATION, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	_swoop_tween.start()
+	swoop_tween.tween_property(bubble, "rect_position", target_pos,
+			SWOOP_DURATION).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 
 
 func _refresh_creature_name() -> void:

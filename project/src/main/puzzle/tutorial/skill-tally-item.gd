@@ -20,11 +20,11 @@ var _piece_manager: PieceManager
 ## When the player performs a skill enough times, the skill tally plays a noise and lights up more brightly. This
 ## property is 'true' if the skill tally is lit up brightly.
 var _bright_tween_active: bool
+var _tween: SceneTreeTween
 
 onready var _blink_panel := $Blink
 onready var _label := $Label
 onready var _task_complete_sound := $TaskCompleteSound
-onready var _tween := $Tween
 
 func _ready() -> void:
 	reset()
@@ -110,21 +110,21 @@ func _blink(bright: bool = false) -> void:
 	if _bright_tween_active:
 		return
 	
-	_tween.remove_all()
+	_tween = Utils.recreate_tween(self, _tween)
 	_blink_panel.rect_scale = Vector2.ONE
 	if bright:
 		_bright_tween_active = true
 		_blink_panel.modulate = Color.white
-		_tween.interpolate_property(_blink_panel, "rect_scale", null, Vector2(2.0, 2.0), 1.2)
-		_tween.interpolate_property(_blink_panel, "modulate", null, Color(0.111, 0.888, 0.111, 0.0),
-				1.2, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
-		_task_complete_sound.play()
+		_tween.tween_property(_blink_panel, "rect_scale", Vector2(2.0, 2.0), 1.2)
+		_tween.parallel().tween_property(_blink_panel, "modulate", Color(0.111, 0.888, 0.111, 0.0), 1.2) \
+				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+		$TaskCompleteSound.play()
 	else:
 		_blink_panel.modulate = Color(0.111, 0.888, 0.111, 0.5)
-		_tween.interpolate_property(_blink_panel, "rect_scale", null, Vector2(1.5, 1.5), 0.6)
-		_tween.interpolate_property(_blink_panel, "modulate:a", null, 0.0,
-				0.6, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
-	_tween.start()
+		_tween.tween_property(_blink_panel, "rect_scale", Vector2(1.5, 1.5), 0.6)
+		_tween.parallel().tween_property(_blink_panel, "modulate:a", 0.0, 0.6) \
+				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	_tween.tween_callback(self, "_on_Tween_completed")
 
 
 func _on_PuzzleState_game_prepared() -> void:
@@ -147,7 +147,7 @@ func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
 	increment()
 
 
-func _on_Tween_tween_all_completed() -> void:
+func _on_Tween_completed() -> void:
 	_bright_tween_active = false
 
 

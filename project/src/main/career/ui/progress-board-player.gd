@@ -39,7 +39,7 @@ onready var _sprite_animation_player := $PlayerSprite/AnimationPlayer
 onready var _trail: ProgressBoardTrail = get_node(trail_path)
 
 ## Tweens the player's chalk graphic position along the trail.
-onready var _tween: Tween = $Tween
+onready var _tween: SceneTreeTween
 
 ## Plays a 'donk' sound as the player's chalk graphic bounces along the trail.
 onready var _player_move_sound := $PlayerMoveSound
@@ -72,10 +72,8 @@ func play(new_spots_travelled: int, duration: float) -> void:
 	_label.visible = true
 	
 	# launch the movement tween, causing the player sprite to move along the path
-	_tween.remove_all()
-	_tween.interpolate_property(self, "visual_spots_travelled", null, new_spots_travelled,
-			duration)
-	_tween.start()
+	_tween = Utils.recreate_tween(self, _tween)
+	_tween.tween_property(self, "visual_spots_travelled", new_spots_travelled, duration)
 	
 	var starting_pitch := \
 			PLAYER_MOVE_SOUND_PITCH_SCALE_MAX if _moving_backward() else PLAYER_MOVE_SOUND_PITCH_SCALE_MIN
@@ -146,7 +144,7 @@ func _refresh_visual_spots_travelled() -> void:
 	
 	# Play a 'donk' sound as the player's graphics bounce along the trail. We only play this when the tween is
 	# active to avoid playing a sound effect when the progress board is initialized.
-	if old_text != new_text and _tween.is_active():
+	if old_text != new_text and _tween != null and _tween.is_running():
 		var target_pitch := \
 				PLAYER_MOVE_SOUND_PITCH_SCALE_MIN if _moving_backward() else PLAYER_MOVE_SOUND_PITCH_SCALE_MAX
 		_player_move_sound.pitch_scale = lerp(_player_move_sound.pitch_scale, target_pitch, 0.05)

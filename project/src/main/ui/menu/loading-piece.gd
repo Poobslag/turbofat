@@ -112,8 +112,4 @@ func _refresh() -> void:
 		_fading = true
 		var tween := create_tween()
 		tween.tween_property(self, "modulate", Utils.to_transparent(modulate), FADE_OUT_DURATION)
-		tween.connect("finished", self, "_on_FadeTween_finished")
-
-
-func _on_FadeTween_finished() -> void:
-	queue_free()
+		tween.tween_callback(self, "queue_free")

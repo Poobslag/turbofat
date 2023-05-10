@@ -126,5 +126,3 @@ position = Vector2( 97.5439, 65.5899 )
 frames = SubResource( 19 )
 animation = "connected_none"
 script = ExtResource( 2 )
-
-[node name="FadeTween" type="Tween" parent="."]

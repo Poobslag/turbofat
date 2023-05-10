@@ -1,4 +1,4 @@
-extends Tween
+extends Node
 ## Makes the music popup appear and disappear.
 
 enum PopupState {
@@ -21,10 +21,11 @@ const POP_OUT_Y := 0
 ## tracks whether the popup is currently popping in or out
 var _popup_state: int = PopupState.POPPED_OUT
 
+var _tween: SceneTreeTween
+
 onready var _music_panel := get_node("../Panel")
 
 func _ready() -> void:
-	connect("tween_all_completed", self, "_on_tween_all_completed")
 	$PopOutTimer.connect("timeout", self, "_on_PopOutTimer_timeout")
 
 
@@ -57,9 +58,9 @@ func _pop_in() -> void:
 	
 	if tween_duration:
 		_popup_state = PopupState.POPPING_IN
-		remove_all()
-		interpolate_property(_music_panel, "rect_position:y", null, POP_IN_Y, tween_duration)
-		start()
+		_tween = Utils.recreate_tween(self, _tween)
+		_tween.tween_property(_music_panel, "rect_position:y", POP_IN_Y, tween_duration)
+		_tween.tween_callback(self, "_on_Tween_pop_in_completed")
 	else:
 		$PopOutTimer.start(POPUP_DURATION)
 		_popup_state = PopupState.POPPED_IN
@@ -73,9 +74,9 @@ func _pop_out() -> void:
 	
 	if tween_duration:
 		_popup_state = PopupState.POPPING_OUT
-		remove_all()
-		interpolate_property(_music_panel, "rect_position:y", null, POP_OUT_Y, tween_duration)
-		start()
+		_tween = Utils.recreate_tween(self, _tween)
+		_tween.tween_property(_music_panel, "rect_position:y", POP_OUT_Y, tween_duration)
+		_tween.tween_callback(self, "_on_Tween_pop_out_completed")
 	else:
 		_popup_state = PopupState.POPPED_OUT
 
@@ -112,15 +113,13 @@ func _restore_tween_and_timer_state(tree: SceneTree) -> void:
 				$PopOutTimer.start($PopOutTimer.time_left)
 
 
-func _on_tween_all_completed() -> void:
-	match _popup_state:
-		PopupState.POPPING_IN:
-			$PopOutTimer.start(POPUP_DURATION)
-			_popup_state = PopupState.POPPED_IN
-		PopupState.POPPING_OUT:
-			_popup_state = PopupState.POPPED_OUT
-		_:
-			push_warning("Unexpected popup state: %s" % [_popup_state])
+func _on_Tween_pop_in_completed() -> void:
+	$PopOutTimer.start(POPUP_DURATION)
+	_popup_state = PopupState.POPPED_IN
+
+
+func _on_Tween_pop_out_completed() -> void:
+	_popup_state = PopupState.POPPED_OUT
 
 
 func _on_PopOutTimer_timeout() -> void:
