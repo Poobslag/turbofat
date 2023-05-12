@@ -339,7 +339,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 					chat_key_queue.front().push_front(child_key)
 		
 		# dequeue any empty arrays before iterating, so the loop will terminate
-		while chat_key_queue and not chat_key_queue.front():
+		while not chat_key_queue.is_empty() and chat_key_queue.front().is_empty():
 			chat_key_queue.pop_front()
 	
 	return potential_chat_key_pairs
