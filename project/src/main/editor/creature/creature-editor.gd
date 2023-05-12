@@ -233,9 +233,9 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	creature.creature_def = center_creature.creature_def
 	
 	var dna := {}
-	for allele in DnaUtils.ALLELES:
-		if center_creature.dna.has(allele):
-			dna[allele] = center_creature.dna[allele]
+	for next_allele in DnaUtils.ALLELES:
+		if center_creature.dna.has(next_allele):
+			dna[next_allele] = center_creature.dna[next_allele]
 	
 	match allele:
 		"name":
