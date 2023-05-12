@@ -19,5 +19,6 @@ func test_pretty_string_joypad_buttons() -> void:
 	assert_eq(KeybindManager.pretty_string({"type": "joypad_button", "device": 0, "button_index": 1}), "Face Right")
 	assert_eq(KeybindManager.pretty_string({"type": "joypad_button", "device": 0, "button_index": 5}), "R")
 	assert_eq(KeybindManager.pretty_string({"type": "joypad_button", "device": 0, "button_index": 14}), "DPAD Left")
+	assert_eq(KeybindManager.pretty_string({"type": "joypad_button", "device": 0, "button_index": 91}), "")
 	
 	TranslationServer.set_locale(original_locale)
