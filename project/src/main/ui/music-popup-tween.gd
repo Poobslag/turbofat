@@ -34,8 +34,8 @@ func _enter_tree() -> void:
 	# method instead of a yield statement to avoid 'class instance is gone' errors. We also wrap it in an if statement
 	# because this music popup can be reused as a singleton, so it's possible for it to be launched multiple times
 	# with no idle_frame.
-	if not get_tree().idle_frame.is_connected(_restore_tween_and_timer_state):
-		get_tree().idle_frame.connect(_restore_tween_and_timer_state.bind(get_tree())
+	if not get_tree().process_frame.is_connected(_restore_tween_and_timer_state):
+		get_tree().process_frame.connect(_restore_tween_and_timer_state.bind(get_tree()))
 
 
 ## Makes the music popup appear, and then hides it after a few seconds.
@@ -92,8 +92,8 @@ func _pop_out() -> void:
 ## because get_tree() returns null.
 func _restore_tween_and_timer_state(tree: SceneTree) -> void:
 	# disconnect our one-shot method
-	if tree.idle_frame.is_connected(_restore_tween_and_timer_state):
-		tree.idle_frame.disconnect(_restore_tween_and_timer_state)
+	if tree.process_frame.is_connected(_restore_tween_and_timer_state):
+		tree.process_frame.disconnect(_restore_tween_and_timer_state)
 	
 	if is_inside_tree():
 		match _popup_state:

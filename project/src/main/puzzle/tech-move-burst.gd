@@ -57,7 +57,7 @@ var _particle_color: Color # lighter version of the font color
 @onready var _accent: PackedSprite = $Accent
 
 func _ready() -> void:
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	_particles.emitting = true
 	_refresh()
 

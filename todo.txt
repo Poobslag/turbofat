@@ -29,7 +29,7 @@ game does not run
 game starts up, but has bugs
 
 -code tweaks and runtime errors
- -replace 'await get_tree().idle_frame' with 'await get_tree().process_frame'
+ *replace 'await get_tree().idle_frame' with 'await get_tree().process_frame'
  *update all 'Array.slice()' calls: slice is now exclusive, not inclusive
  -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
  -avoid assigning constants to fields; they can't be mutated anymore

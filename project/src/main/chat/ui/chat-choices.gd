@@ -71,7 +71,7 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 		$EnableInputTimer.start()
 		
 		# wait for old chat choices to be deleted before grabbing focus
-		await get_tree().idle_frame
+		await get_tree().process_frame
 		for button in get_tree().get_nodes_in_group("chat_choices"):
 			button.grab_focus()
 			break

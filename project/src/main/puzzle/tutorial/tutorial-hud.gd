@@ -51,7 +51,7 @@ func replace_tutorial_module() -> void:
 		add_child(tutorial_module)
 	
 	# pause to ensure the 'ready' signal is emitted before the 'refreshed' signal
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	refresh()
 
 

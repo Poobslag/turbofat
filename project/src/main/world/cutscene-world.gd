@@ -28,7 +28,7 @@ func _launch_cutscene() -> void:
 	_add_cutscene_creatures()
 	_arrange_creatures()
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 
 	Global.get_overworld_ui().start_chat(CurrentCutscene.chat_tree)
 	_camera.snap_into_position()

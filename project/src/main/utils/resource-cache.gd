@@ -238,7 +238,7 @@ func _preload_all_resources(_userdata: Object) -> void:
 		
 		# If we're ahead of schedule, we wait until the next idle frame to load more resources
 		if _overworked():
-			await get_tree().idle_frame
+			await get_tree().process_frame
 
 
 ## Loads a single resource and stores the resulting resource in our cache.

@@ -175,7 +175,7 @@ func _assign_nametag_sides() -> void:
 		var chat_events: Array = chat_events_obj
 		for chat_event_obj in chat_events:
 			var chat_event: ChatEvent = chat_event_obj
-			if not chat_event.who:
+			if chat_event.who.is_empty():
 				continue
 			var chatter: Creature = CreatureManager.get_creature_by_id(chat_event.who)
 			if not chatter:
@@ -222,10 +222,10 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	elif _narration_frame.is_narration_window_showing():
 		_narration_frame.visible = true if chat_event.text else false
 	
-	if not chat_event.text:
+	if chat_event.text.is_empty():
 		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
 		# signal introduces complications, so we wait until the next frame
-		await get_tree().idle_frame
+		await get_tree().process_frame
 		_chat_frame.emit_signal("all_text_shown")
 		if not _chat_advancer.should_prompt():
 			_chat_advancer.advance()

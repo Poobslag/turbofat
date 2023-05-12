@@ -7,7 +7,7 @@ func _ready() -> void:
 	overworld_ui.chat_ended.connect(_on_OverworldUi_chat_ended)
 	for button in [$Northeast/SettingsButton]:
 		button.resized.connect(_on_Button_resized.bind(button))
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	_resize_container($Northeast)
 
 
