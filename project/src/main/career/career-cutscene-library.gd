@@ -193,7 +193,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 			var key_part: String = key_parts[i]
 			var prefix: String = key_parts[0]
 			if i >= 2:
-				prefix += "/" + "_".join(PackedStringArray(key_parts.slice(1, i - 1)))
+				prefix += "/" + "_".join(PackedStringArray(key_parts.slice(1, i)))
 			if not _preroll_tree.has(prefix):
 				_preroll_tree[prefix] = []
 			if not _preroll_tree[prefix].has(key_part):

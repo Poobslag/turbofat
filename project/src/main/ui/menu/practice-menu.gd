@@ -135,7 +135,7 @@ func _refresh_speed_selector() -> void:
 		# Constrain the speed selector to region's min/max speeds
 		var min_index := PieceSpeeds.speed_ids.find(_region.min_piece_speed)
 		var max_index := PieceSpeeds.speed_ids.find(_region.max_piece_speed)
-		speed_names = PieceSpeeds.speed_ids.slice(min_index, max_index)
+		speed_names = PieceSpeeds.speed_ids.slice(min_index, max_index + 1)
 	else:
 		# Constrain the speed selector. We default to the level's speed, but usually allow faster speeds within a
 		# threshold.
@@ -150,7 +150,7 @@ func _refresh_speed_selector() -> void:
 		else:
 			# Player can't slow down training modes, they can only speed them up. This prevents them from clearing
 			# hard training levels by slowing them down
-			speed_names = speed_names.slice(speed_names.find(selected_speed), speed_names.size() - 1)
+			speed_names = speed_names.slice(speed_names.find(selected_speed), speed_names.size())
 		
 		if _region.id == OtherRegion.ID_RANK:
 			# Players can't change the speed in rank mode.

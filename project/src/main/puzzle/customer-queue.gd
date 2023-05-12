@@ -77,9 +77,8 @@ func reset() -> void:
 func reset_standard_customer_queue() -> void:
 	if not standard_queue.is_empty() and standard_index > 0:
 		var new_queue := []
-		new_queue += standard_queue.slice(
-				standard_index, standard_queue.size() - 1)
-		new_queue += standard_queue.slice(0, standard_index - 1)
+		new_queue += standard_queue.slice(standard_index, standard_queue.size())
+		new_queue += standard_queue.slice(0, standard_index)
 		standard_queue = new_queue
 		standard_index = 0
 

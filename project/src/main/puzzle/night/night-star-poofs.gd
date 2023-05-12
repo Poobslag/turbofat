@@ -24,7 +24,7 @@ func _spawn_poofs(y: int) -> void:
 	var poof_columns := _veg_columns(y)
 	poof_columns.shuffle()
 	var poof_count := 0 if poof_columns.size() <= 3 else poof_columns.size() - 2
-	poof_columns = poof_columns.slice(0, poof_count - 1)
+	poof_columns = poof_columns.slice(0, poof_count)
 	
 	## Spawn star poofs
 	for x in poof_columns:

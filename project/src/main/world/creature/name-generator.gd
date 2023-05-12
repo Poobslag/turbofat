@@ -84,7 +84,7 @@ func _mix_seed_lists() -> Array:
 		for word in word_list:
 			new_words.append(word)
 		new_words.shuffle()
-		words += new_words.slice(0, word_count - 1)
+		words += new_words.slice(0, word_count)
 	return words
 
 

@@ -264,7 +264,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 		scroll_to_new_customer()
 	
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
-	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size() - 1)
+	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size())
 	if PuzzleState.game_active:
 		get_chef().play_mood(Creatures.Mood.DEFAULT)
 
@@ -278,7 +278,7 @@ func _on_PuzzleState_topped_out() -> void:
 func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 	_recent_bonuses.append(combo_score + box_score)
 	if _recent_bonuses.size() >= 6:
-		_recent_bonuses = _recent_bonuses.slice(_recent_bonuses.size() - 6, _recent_bonuses.size() - 1)
+		_recent_bonuses = _recent_bonuses.slice(_recent_bonuses.size() - 6, _recent_bonuses.size())
 	_react_to_total_bonus()
 
 

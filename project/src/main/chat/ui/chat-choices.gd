@@ -58,7 +58,7 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 	
 	if _choices.size() > MAX_LABELS:
 		push_warning("Too many chat choices: %s > %s" % [choices.size(), MAX_LABELS])
-		_choices = choices.slice(0, MAX_LABELS - 1)
+		_choices = choices.slice(0, MAX_LABELS)
 	
 	if new_columns:
 		columns = new_columns

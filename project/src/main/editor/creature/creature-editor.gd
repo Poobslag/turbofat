@@ -334,7 +334,7 @@ func _alleles_to_mutate() -> Array:
 	
 	if extra_mutations:
 		flexible_alleles.shuffle()
-		result += flexible_alleles.slice(0, extra_mutations - 1)
+		result += flexible_alleles.slice(0, extra_mutations)
 	
 	# if the result has 'all_rgb', remove other '_rgb' mutations
 	if result.has("all_rgb"):

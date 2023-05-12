@@ -149,7 +149,7 @@ func _random_levels() -> Array:
 					required_cutscene_characters.customer_ids,
 					required_cutscene_characters.observer_ids])
 	
-	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))
+	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size()))
 	var random_level_index := 0
 	for level in levels:
 		random_levels[random_level_index] = level
