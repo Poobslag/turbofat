@@ -116,11 +116,11 @@ func _blink(bright: bool = false) -> void:
 		_bright_tween_active = true
 		_blink_panel.modulate = Color.WHITE
 		_tween.tween_property(_blink_panel, "scale", Vector2(2.0, 2.0), 1.2)
-		_tween.parallel().tween_property(_blink_panel, "modulate", Color(0.111, 0.888, 0.111, 0.0), 1.2) \
+		_tween.parallel().tween_property(_blink_panel, "modulate", Color(0.888, 0.111, 0.0, 0.111), 1.2) \
 				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 		$TaskCompleteSound.play()
 	else:
-		_blink_panel.modulate = Color(0.111, 0.888, 0.111, 0.5)
+		_blink_panel.modulate = Color(0.888, 0.111, 0.5, 0.111)
 		_tween.tween_property(_blink_panel, "scale", Vector2(1.5, 1.5), 0.6)
 		_tween.parallel().tween_property(_blink_panel, "modulate:a", 0.0, 0.6) \
 				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)

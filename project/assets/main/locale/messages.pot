@@ -9836,15 +9836,15 @@ msgid "Arrows"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Left"
+msgid "D-Pad Left"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Right"
+msgid "D-Pad Right"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD"
+msgid "D-Pad"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:23

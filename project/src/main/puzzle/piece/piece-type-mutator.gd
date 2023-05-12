@@ -24,7 +24,7 @@ func _init(init_piece_type: PieceType) -> void:
 	for orientation in range(piece_type.pos_arr.size()):
 		var new_orientation := piece_type.get_cw_orientation(orientation)
 		
-		if not piece_type.pos_arr[orientation] or not piece_type.pos_arr[new_orientation]:
+		if piece_type.pos_arr[orientation].is_empty() or piece_type.pos_arr[new_orientation].is_empty():
 			continue
 		
 		var expected_min: Vector2i = _rotate_vector2_cw(piece_type.pos_arr[orientation][0])

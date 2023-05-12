@@ -14,7 +14,7 @@ func test_is_default() -> void:
 
 
 func test_to_json_empty() -> void:
-	assert_eq_shallow(tiles.to_json_dict(), {})
+	assert_eq(tiles.to_json_dict(), {})
 
 
 func test_convert_to_json_and_back() -> void:

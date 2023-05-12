@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _refresh_score() -> void:
-	modulate = Color("80ffffff")
+	modulate = Color("ff80ffff")
 	var bonus_score := PuzzleState.get_bonus_score()
 	if bonus_score == 0:
 		# zero is displayed as '-'
@@ -44,7 +44,7 @@ func _on_PuzzleState_score_changed() -> void:
 
 
 func _on_PuzzleState_topped_out() -> void:
-	modulate = Color("80ff5555")
+	modulate = Color("ff555580")
 	text = StringUtils.format_money(-1 * PuzzleState.TOP_OUT_PENALTY)
 	size = Vector2.ZERO
 	_penalty_timer.start()

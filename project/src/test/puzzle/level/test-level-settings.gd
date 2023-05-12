@@ -40,7 +40,7 @@ func test_load_297a_data() -> void:
 	assert_eq(phases, [LevelTrigger.LINE_CLEARED])
 	var triggers: Array = settings.triggers.triggers[LevelTrigger.LINE_CLEARED]
 	assert_eq(1, triggers.size())
-	assert_eq_shallow({
+	assert_eq({
 			"phases": [
 				"line_cleared y=0-8"
 			],
@@ -62,19 +62,19 @@ func test_load_39e5_data() -> void:
 	assert_eq(settings.name, "A Thousand Moles")
 	var triggers: Array = settings.triggers.triggers[LevelTrigger.PIECE_WRITTEN]
 	assert_eq(3, triggers.size())
-	assert_eq_shallow({
+	assert_eq({
 			"phases": [
 				"piece_written n=17,23,29,33,37,41,43,45,47"
 			],
 			"effect": "add_moles home=surface dig_duration=2 reward=seed"
 		}, triggers[0].to_json_dict())
-	assert_eq_shallow({
+	assert_eq({
 			"phases": [
 				"piece_written n=48..."
 			],
 			"effect": "add_moles home=surface dig_duration=1 reward=seed"
 		}, triggers[1].to_json_dict())
-	assert_eq_shallow({
+	assert_eq({
 			"phases": [
 				"piece_written"
 			],

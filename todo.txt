@@ -9,6 +9,8 @@ game does not run
 *test-utils runs
 -all tests pass
 -ReleaseToolkit runs
+ -scrutinize localizables
+ -shouldn't scrape joystick stuff anymore
 *code compilation errors
  *replace boolean evaluations like 'if pos_arr' with 'if not pos_arr.is_empty()'
  *replace 'Array.remove()' with 'Array.remove_at()'
@@ -35,6 +37,9 @@ game starts up, but has bugs
  -avoid assigning constants to fields; they can't be mutated anymore
  -assigning your own fields now calls setters
  -fix 'flipx, flipy, transpose' code in tilers
+ -update save files
+  -update save files to use RGBA instead of ARGB
+  -update save files to use new scancodes
 -tilemap updates
  -replace 'autotilers' with 'terrain... things'
  -replace 'get_cellv' with 'get_something'? get_cell_source_id? get_cell_tile_data?

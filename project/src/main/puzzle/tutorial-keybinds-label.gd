@@ -14,9 +14,9 @@ func _refresh_message() -> void:
 	_append_keybind_line(tr("Hard Drop"), ["hard_drop"])
 	_append_keybind_line(tr("Rotate"), ["rotate_ccw", "rotate_cw"])
 	
-	# replace wordy phrasing like 'DPAD Left, DPAD Right' with succinct phrasing like 'DPAD'
+	# replace wordy phrasing like 'D-Pad Left, D-Pad Right' with succinct phrasing like 'D-Pad'
 	text = text.replace("%s, %s" % [tr("Left"), tr("Right")], tr("Arrows"))
-	text = text.replace("%s, %s" % [tr("DPAD Left"), tr("DPAD Right")], tr("DPAD"))
+	text = text.replace("%s, %s" % [tr("D-Pad Left"), tr("D-Pad Right")], tr("D-Pad"))
 	
 	if text.is_empty():
 		# If the player unbinds all of their keys, they can't play.

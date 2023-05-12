@@ -10750,16 +10750,16 @@ msgid "Arrows"
 msgstr "Arrows"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Left"
-msgstr "DPAD Left"
+msgid "D-Pad Left"
+msgstr "D-Pad Left"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Right"
-msgstr "DPAD Right"
+msgid "D-Pad Right"
+msgstr "D-Pad Right"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD"
-msgstr "DPAD"
+msgid "D-Pad"
+msgstr "D-Pad"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:23
 msgid ""

@@ -8,16 +8,16 @@ extends Node2D
 const RAINBOW_COLOR_COUNT := 7
 
 ## Lights change color based on the lines the player clears.
-const VEGETABLE_LIGHT_COLOR := Color("6074a320")
+const VEGETABLE_LIGHT_COLOR := Color("74a32060")
 const FOOD_LIGHT_COLORS := [
-	Color("c0f47700"), # brown
-	Color("b0ff5d68"), # pink
-	Color("c0ffc357"), # bread
-	Color("a0fff69b"), # white
+	Color("f47700c0"), # brown
+	Color("ff5d68b0"), # pink
+	Color("ffc357c0"), # bread
+	Color("fff69ba0"), # white
 ]
 
 ## Rainbows are modulated white, because the tiles themselves have a color to them.
-const RAINBOW_LIGHT_COLOR := Color("50ffffff")
+const RAINBOW_LIGHT_COLOR := Color("ffffff50")
 
 ## Light pattern shown when the player clears a line or continues their combo.
 const ON_PATTERN := [

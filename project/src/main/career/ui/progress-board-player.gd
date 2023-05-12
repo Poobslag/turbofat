@@ -92,7 +92,7 @@ func refresh() -> void:
 	else:
 		_label.visible = false
 	
-	var new_font_color := Color("ffff5555") if _moving_backward() else Color.WHITE
+	var new_font_color := Color("ff5555ff") if _moving_backward() else Color.WHITE
 	_label.set("theme_override_colors/font_color", new_font_color)
 	
 	_refresh_visual_spots_travelled()

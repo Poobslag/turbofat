@@ -255,7 +255,7 @@ func eat() -> void:
 		_update_animation_keys("eat-again-sweat0", "Neck0/HeadBobber/EmoteBrain:modulate", [0, 1], brain_color)
 		
 		# gradually become bluer and bluer
-		var glow_color := Utils.to_transparent(Color("800000bc"), lerp(0.25, 0.50, discomfort_amount))
+		var glow_color := Utils.to_transparent(Color("0000bc80"), lerp(0.25, 0.50, discomfort_amount))
 		_update_animation_keys("eat-sweat0", "Neck0/HeadBobber/EmoteGlow:modulate", [1, 2], glow_color)
 		_update_animation_keys("eat-again-sweat0", "Neck0/HeadBobber/EmoteGlow:modulate", [0, 1], glow_color)
 	elif _creature_visuals.comfort > -1.00:

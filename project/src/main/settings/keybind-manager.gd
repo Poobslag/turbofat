@@ -1,6 +1,35 @@
 extends Node
 ## Binds the player's input settings to the input map.
 
+## Mapping from joystick scancodes to names. Adapted from the names in Godot 3.x
+## https://github.com/madmiraal/godot/blob/280d4e2965db7d448ce0f0ee3902559ee3f2a467/editor/input_map_editor.cpp
+##
+## key: (int) Joystick button scancode
+## value: (String) Description shown to the player for the button
+var names_by_joy_button := {
+	JOY_BUTTON_A: tr("Face Bottom"),
+	JOY_BUTTON_B: tr("Face Right"),
+	JOY_BUTTON_X: tr("Face Left"),
+	JOY_BUTTON_Y: tr("Face Top"),
+	JOY_BUTTON_BACK: tr("Select"),
+	JOY_BUTTON_GUIDE: tr("Guide"),
+	JOY_BUTTON_START: tr("Start"),
+	JOY_BUTTON_LEFT_STICK: tr("L3"),
+	JOY_BUTTON_RIGHT_STICK: tr("R3"),
+	JOY_BUTTON_LEFT_SHOULDER: tr("L"),
+	JOY_BUTTON_RIGHT_SHOULDER: tr("R"),
+	JOY_BUTTON_DPAD_UP: tr("D-Pad Up"),
+	JOY_BUTTON_DPAD_DOWN: tr("D-Pad Down"),
+	JOY_BUTTON_DPAD_LEFT: tr("D-Pad Left"),
+	JOY_BUTTON_DPAD_RIGHT: tr("D-Pad Right"),
+	JOY_BUTTON_MISC1: tr("Misc 1"),
+	JOY_BUTTON_PADDLE1: tr("Paddle 1"),
+	JOY_BUTTON_PADDLE2: tr("Paddle 2"),
+	JOY_BUTTON_PADDLE3: tr("Paddle 3"),
+	JOY_BUTTON_PADDLE4: tr("Paddle 4"),
+	JOY_BUTTON_TOUCHPAD: tr("Touchpad"),
+}
+
 func _ready() -> void:
 	SystemData.keybind_settings.changed.connect(_on_KeybindSettings_settings_changed)
 	SystemData.gameplay_settings.hold_piece_changed.connect(_on_GameplaySettings_hold_piece_changed)
@@ -50,7 +79,7 @@ func input_event_to_json(input_event: InputEvent) -> Dictionary:
 ## 	'input_json': A json representation of a keyboard or joypad input
 ##
 ## Returns:
-## 	A short human-readable string like 'DPAD Left' or 'Escape'
+## 	A short human-readable string like 'D-Pad Left' or 'Escape'
 func pretty_string(input_json: Dictionary) -> String:
 	var result: String
 	match input_json["type"]:
@@ -62,9 +91,12 @@ func pretty_string(input_json: Dictionary) -> String:
 
 
 func get_joy_button_string(button_index: int) -> String:
-	var event := InputEventJoypadButton.new()
-	event.button_index = button_index
-	return event.as_text()
+	var result: String
+	if button_index in names_by_joy_button:
+		result = names_by_joy_button.get(button_index)
+	else:
+		result = tr("Joypad Button %s") % [button_index]
+	return result
 
 
 ## Updates the InputMap with the bindings in the specified json file

@@ -10551,16 +10551,16 @@ msgid "Arrows"
 msgstr "Flechas"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Left"
-msgstr "DPAD Izquierdo"
+msgid "D-Pad Left"
+msgstr "D-Pad Izquierdo"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Right"
-msgstr "DPAD Derecho"
+msgid "D-Pad Right"
+msgstr "D-Pad Derecho"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD"
-msgstr "DPAD"
+msgid "D-Pad"
+msgstr "D-Pad"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:23
 msgid ""
