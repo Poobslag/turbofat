@@ -184,7 +184,7 @@ func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array
 				lines_to_clear.sort()
 	
 	# apply 'filled_line_clear_max' setting
-	if lines_to_clear and not force:
+	if lines_to_clear and CurrentLevel.settings.blocks_during.filled_line_clear_max >= 1 and not force:
 		lines_to_clear = lines_to_clear.slice(0, CurrentLevel.settings.blocks_during.filled_line_clear_max - 1)
 	
 	return lines_to_clear
