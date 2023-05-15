@@ -7,7 +7,7 @@ game does not run
 
 *update plugins (gut)
 *test-utils runs
--all tests pass
+*all tests pass
 -ReleaseToolkit runs
  -scrutinize localizables
  -shouldn't scrape joystick stuff anymore
@@ -83,3 +83,9 @@ gold plating
 -replace 'randi_range' with native call
 -remove 'FileUtils', replace with native calls
 -free-roam-touch-buttons might have extra logic for 'menu shown' 'menu hidden' stuff
+
+
+
+
+
+globally fix 'autowrap', 'align'
