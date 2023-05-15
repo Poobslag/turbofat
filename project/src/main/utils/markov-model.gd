@@ -1,12 +1,12 @@
 class_name MarkovModel
-## A model for markov chains.
+## Model for markov chains.
 ##
 ## Maintains a list of letter sequences and letters which can follow them.
 
 var min_length := 3
 var max_length := 15
 
-## The smallest cluster of letters which are guaranteed to stay together. A fractional value will randomly alternate
+## Smallest cluster of letters which are guaranteed to stay together. A fractional value will randomly alternate
 ## between the lower and higher values while generating words.
 var order := 2.5
 

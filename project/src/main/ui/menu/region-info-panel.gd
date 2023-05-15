@@ -1,9 +1,9 @@
 extends Panel
-## A panel on the region select screen which summarizes region details.
+## Panel on the region select screen which summarizes region details.
 ##
 ## This includes details about the player's progress and how they can progress further.
 
-## The text shown in the region info panel
+## Text shown in the region info panel
 var text: String setget set_text
 
 ## key: (String) level id
@@ -29,7 +29,7 @@ var rank_by_level_id := {
 	"rank/m": tr("Master"),
 }
 
-## The label which shows the text of the region info panel
+## Label which shows the text of the region info panel
 onready var _label := $MarginContainer/Label
 
 func _ready() -> void:

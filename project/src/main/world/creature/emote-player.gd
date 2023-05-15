@@ -330,7 +330,7 @@ func emote(mood: int) -> void:
 ## updating the creature's appearance.
 ##
 ## Parameters:
-## 	'anim_name': (Optional) The animation which was previously playing.
+## 	'anim_name': (Optional) Animation which was previously playing.
 func unemote(anim_name: String = "") -> void:
 	stop()
 	_unemote_non_tweened_properties()

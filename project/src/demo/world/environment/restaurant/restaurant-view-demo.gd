@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the restaurant view.
+## Demo which shows off the restaurant view.
 ##
 ## Keys:
 ## 	[D]: Ring the doorbell

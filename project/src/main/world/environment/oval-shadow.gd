@@ -4,7 +4,7 @@ extends Sprite
 
 export (NodePath) var shadow_caster_path: NodePath setget set_shadow_caster_path
 
-## The shadow caster this shadow is for
+## Shadow caster this shadow is for
 var _shadow_caster: Node2D
 
 func _ready() -> void:

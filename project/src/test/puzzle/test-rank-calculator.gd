@@ -171,7 +171,7 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "SSS")
 
 
-## A level requiring only one line clear used to trigger divide by zero errors.
+## Level requiring only one line clear used to trigger divide by zero errors.
 func test_calculate_rank_ultra_1() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1)
 	PuzzleState.level_performance.seconds = 7.233

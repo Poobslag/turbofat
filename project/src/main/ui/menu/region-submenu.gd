@@ -1,5 +1,5 @@
 extends Control
-## A region select screen which shows buttons and region info. Used in the practice menu.
+## Region select screen which shows buttons and region info. Used in the practice menu.
 
 ## Emitted when the player finishes choosing a region to play.
 ##

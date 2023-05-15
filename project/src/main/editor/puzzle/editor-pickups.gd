@@ -34,7 +34,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 ## Returns the food type for the pickup at the specified cell.
 ##
 ## Returns:
-## 	An enum from Foods.FoodType for the pickup at the specified cell, or -1 if the cell is empty.
+## 	Enum from Foods.FoodType for the pickup at the specified cell, or -1 if the cell is empty.
 func get_food_type(cell: Vector2) -> int:
 	var result := -1
 	if _pickups_by_cell.has(cell):

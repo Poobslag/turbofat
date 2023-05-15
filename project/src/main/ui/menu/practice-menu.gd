@@ -11,13 +11,13 @@ export (NodePath) var level_description_label_path: NodePath
 export (NodePath) var speed_selector_path: NodePath
 export (NodePath) var start_button_path: NodePath
 
-## A CareerRegion or OtherRegion instance for the currently selected region
+## CareerRegion or OtherRegion instance for the currently selected region
 var _region: Object
 
-## The currently selected level
+## Currently selected level
 var _level_settings: LevelSettings = LevelSettings.new()
 
-## The currently selected piece speed
+## Currently selected piece speed
 var _piece_speed: String
 
 onready var _high_scores: Panel = get_node(high_scores_path)
@@ -165,7 +165,7 @@ func _refresh_high_scores() -> void:
 	_high_scores.set_level(_level_settings)
 
 
-# When the player picks the big 'Start' button we launch the level
+## When the player picks the big 'Start' button we launch the level
 func _on_Start_pressed() -> void:
 	CurrentLevel.set_launched_level(_level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
@@ -174,12 +174,12 @@ func _on_Start_pressed() -> void:
 	CurrentLevel.push_level_trail()
 
 
-# When the player clicks the 'Level Selection' button up top, we launch a series of submenus
+## When the player clicks the 'Level Selection' button up top, we launch a series of submenus
 func _on_LevelButton_pressed() -> void:
 	_region_submenu.popup(_region.id)
 
 
-# When the player selects their region from the region submenu, we launch the level submenu
+## When the player selects their region from the region submenu, we launch the level submenu
 func _on_RegionSubmenu_region_chosen(region: Object) -> void:
 	_region_submenu.hide()
 	_level_submenu.popup(region, _level_settings.id)

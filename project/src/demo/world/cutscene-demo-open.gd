@@ -11,13 +11,13 @@ const CHAT_KEY_ROOT_PATHS := [
 ## Emitted when the player toggles between picking a valid/invalid chat path.
 signal valid_changed
 
-## The cutscene to open
+## Cutscene to open
 ## Virtual property; value is only exposed through getters/setters
 var value: String setget set_value, get_value
 
 ## False if the player selects an invalid chat path.
 ##
-## An invalid chat path could be a file which doesn't exist, doesn't have the correct suffix, or isn't in the
+## Invalid chat path could be a file which doesn't exist, doesn't have the correct suffix, or isn't in the
 ## expected location.
 var valid: bool setget ,is_valid
 

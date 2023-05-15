@@ -1,6 +1,6 @@
 class_name ChalkboardMapRow
 extends Control
-## A simplified chalk map where the player walks on a chalk path past chalk landmarks.
+## Simplified chalk map where the player walks on a chalk path past chalk landmarks.
 ##
 ## The chalk map is divided into a cluster of circles on the left representing past landmarks, and icons on the right
 ## representing current landmarks.
@@ -29,7 +29,7 @@ var player_distance: int = 0 setget set_player_distance
 ## 	'index': The landmark index. '0' corresponds to the circles on the left side of the map, which are also a
 ## 		landmark.
 ##
-## 	'landmark_type': An enum from Landmark.LandmarkType for the specified landmark.
+## 	'landmark_type': Enum from Landmark.LandmarkType for the specified landmark.
 func set_landmark_type(index: int, landmark_type: int) -> void:
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
@@ -47,7 +47,7 @@ func set_landmark_type(index: int, landmark_type: int) -> void:
 ## 		landmark.
 ##
 ## Returns:
-## 	An enum from Landmark.LandmarkType for the specified landmark.
+## 	Enum from Landmark.LandmarkType for the specified landmark.
 func get_landmark_type(index: int) -> int:
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	

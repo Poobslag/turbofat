@@ -1,6 +1,6 @@
 class_name Carrot
 extends Node2D
-## A carrot, a puzzle critter which rockets up the screen, blocking the player's vision.
+## A puzzle critter which rockets up the screen, blocking the player's vision.
 ##
 ## Carrots remain onscreen for several seconds. They have many different sizes, and can also leave behind a smokescreen
 ## which blocks the player's vision for even longer.
@@ -27,10 +27,10 @@ export (Array, PackedScene) var carrot_visuals_by_size: Array
 ## If 'true', the carrot will not be queued when hidden. Used for demos and testing.
 export (bool) var suppress_queue_free: bool = false
 
-## An enum from CarrotConfig.Smoke for the size of the carrot's smoke cloud.
+## Enum from CarrotConfig.Smoke for the size of the carrot's smoke cloud.
 var smoke: int = CarrotConfig.Smoke.SMALL setget set_smoke
 
-## An enum from CarrotConfig.CarrotSize for the size of the carrot sprite.
+## Enum from CarrotConfig.CarrotSize for the size of the carrot sprite.
 var carrot_size: int = CarrotConfig.CarrotSize.MEDIUM setget set_carrot_size
 
 ## 'true' if hide() has been called and the carrot will soon be freed.
@@ -60,13 +60,13 @@ onready var _sprite_material: Material = $Visuals/Sprite.material
 ## Smoke particles.
 onready var _particles_2d: Particles2D = $Particles2D
 
-## A timer which makes the carrot free itself from memory.
+## Timer which makes the carrot free itself from memory.
 onready var _free_timer := $FreeTimer
 
 ## AnimationPlayer which toggles the face sprite's frames.
 onready var _face_animation_player := $FaceAnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_refresh_mix_color()
 	_refresh_smoke()

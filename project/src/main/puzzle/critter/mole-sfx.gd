@@ -8,7 +8,7 @@ onready var _digs := [$Dig0, $Dig1]
 onready var _found := $Found
 onready var _poof := $Poof
 
-## the next dig sound effect to play
+## next dig sound effect to play
 var _dig_index := 0
 
 func play_poof_sound() -> void:

@@ -1,6 +1,6 @@
 class_name LevelEditor
 extends Node
-## A graphical level editor which lets players create, load and save levels.
+## Graphical level editor which lets players create, load and save levels.
 ##
 ## Full instructions are available at https://github.com/Poobslag/turbofat/wiki/level-editor
 

@@ -5,27 +5,27 @@ extends Node2D
 ## The progress bar has a full part and an empty part. The full part is drawn as a solid line, and the empty part
 ## is drawn as a dotted line.
 
-## The speed at which the empty part scrolls to the left.
+## Speed at which the empty part scrolls to the left.
 var LINE_SCROLL_SPEED := 60.0
 
-## The minimum length of the full part of the progress bar. The empty part disappears behind it to create the
+## Minimum length of the full part of the progress bar. The empty part disappears behind it to create the
 ## scrolling effect, so if the full part is ever gone then the illusion will be ruined.
 var DOTTED_LINE_PIXELS := 64.0
 
-## A number in the range of [0.0, 1.0] for the current progress bar value
+## Number in the range of [0.0, 1.0] for the current progress bar value
 var value := 0.0 setget set_value
 
-## The extents of the progress bar
+## Extents of the progress bar
 var _extents := Rect2(Vector2(40, Global.window_size.y - 40), Vector2(Global.window_size.x - 80, 0))
 
-## The current offset to draw the empty part of the progress bar. We gradually decrement this to cause the
+## Current offset to draw the empty part of the progress bar. We gradually decrement this to cause the
 ## scrolling effect.
 var _dotted_line_offset: float = 0
 
-## The full part of the progress bar.
+## Full part of the progress bar.
 onready var _full: Line2D = $Full
 
-## The empty part of the progress bar.
+## Empty part of the progress bar.
 onready var _empty: Line2D = $Empty
 
 func _ready() -> void:
@@ -43,7 +43,7 @@ func set_value(new_value: float) -> void:
 	_refresh_lines()
 
 
-## The x coordinate where the full part and empty part meet.
+## X coordinate where the full part and empty part meet.
 func progress_point() -> Vector2:
 	return _full.points[1]
 

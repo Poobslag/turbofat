@@ -5,7 +5,7 @@ class_name LevelSpeedAdjuster
 ## value: (Vector2) x/y coordinates for an entry in PieceSpeeds.speed_id_matrix
 var _coordinates_by_speed := {}
 
-## the settings to adjust
+## settings to adjust
 var settings: LevelSettings
 
 func _init(init_settings: LevelSettings) -> void:

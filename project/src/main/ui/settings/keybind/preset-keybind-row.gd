@@ -1,6 +1,6 @@
 tool
 extends HBoxContainer
-## A row which shows the player the keybinds for a specific action, such as 'Move Piece Left'.
+## Row which shows the player the keybinds for a specific action, such as 'Move Piece Left'.
 ##
 ## This row is used for presets like 'Guideline' and 'WASD', and is non-interactive.
 

@@ -8,7 +8,7 @@ extends Node
 ## emitted when a creature's textures and animations are loaded
 signal dna_loaded
 
-## The maximum amount of microseconds to spend setting shader params in each frame. This is capped to avoid frame
+## Maximum amount of microseconds to spend setting shader params in each frame. This is capped to avoid frame
 ## drops.
 const MAX_SHADER_USEC_PER_FRAME := 120
 

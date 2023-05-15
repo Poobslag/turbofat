@@ -1,5 +1,5 @@
 extends Node
-## A demo which calculates the necessary level metadata for the player to attain their expected grade.
+## Demo which calculates the necessary level metadata for the player to attain their expected grade.
 ##
 ## This demo takes the player's best performance and calculates the necessary level adjustments so that their best
 ## performance will result in the specified grade. For example, a player might usually play at an 'SSS' rank, but they

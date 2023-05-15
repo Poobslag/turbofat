@@ -10,13 +10,13 @@ extends Node
 ## press both. This node is capable of overriding that behavior, and pressing only one button when two actions are
 ## activated simultaneously.
 
-## the action which activates the button
+## action which activates the button
 export (String) var action: String
 
-## (optional) a second action which is also required to activate the button
+## (optional) second action which is also required to activate the button
 export (String) var overridden_action: String
 
-## the button this helper will activate
+## button this helper will activate
 onready var button: Button = get_parent()
 
 func _input(event: InputEvent) -> void:

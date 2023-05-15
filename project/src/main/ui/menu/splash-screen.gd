@@ -1,5 +1,5 @@
 extends Control
-## A splash screen which precedes the main menu.
+## Splash screen which precedes the main menu.
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()

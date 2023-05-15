@@ -7,7 +7,7 @@ extends Reference
 ## https://github.com/Althar93/GDTracery/blob/f6191894781625b8a8c45923b11f0f79394a896d/scripts/tracery.gd
 
 
-## A collection of Tracery modifiers.
+## Collection of Tracery modifiers.
 ##
 ## A Tracery modifier is a function that takes a string (and optionally parameters) and returns a string. A set of
 ## these is included in mods-eng-basic.js. Modifiers are applied, in order, after a tag is fully expanded.
@@ -47,7 +47,7 @@ class Modifiers extends Reference:
 		return s.capitalize()
 
 
-## An implementation of a Tracery grammar.
+## Implementation of a Tracery grammar.
 ##
 ## A Grammar is:
 ## 	* a dictionary of symbols: a key-value object matching keys (the names of symbols) to expansion rules

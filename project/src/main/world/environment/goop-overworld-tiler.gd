@@ -49,7 +49,7 @@ const CAKE_CENTER := 1024
 ##
 ## key: (int) bitmask of surrounding tiles
 ## value: (Vector2) array of two elements which define a 'binding value':
-##  value[0]: (int) an enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
+##  value[0]: (int) enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
 ##  value[1]: (Vector2) autotile coordinate of the new tile
 const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 	# goopless tiles
@@ -197,7 +197,7 @@ const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 ##   * GOOP_TOP
 ##   * GOOP_TOP_LEFT
 ##
-## key: (int) A bitmask of surrounding tiles
+## key: (int) Bitmask of surrounding tiles
 ## value: (Vector2) autotile coordinate of the corner cover
 const CORNER_COVERS_BY_BINDING := {
 	0: Vector2(0, 0),
@@ -218,32 +218,31 @@ const CORNER_COVERS_BY_BINDING := {
 	GOOP_TOPLEFT | GOOP_CENTER | GOOP_LEFT | GOOP_TOP: Vector2(0, 3),
 }
 
-## The parent tilemap's tile ID for goopless cells
+## Parent tilemap's tile ID for goopless cells
 export (int) var no_goop_tile_index: int setget set_block_tile_index
 
-## The parent tilemap's tile ID for partially goopy cells
+## Parent tilemap's tile ID for partially goopy cells
 export (int) var some_goop_tile_index: int setget set_some_goop_tile_index
 
-## The parent tilemap's tile ID for goopy cells
+## Parent tilemap's tile ID for goopy cells
 export (int) var all_goop_tile_index: int setget set_goop_tile_index
 
-## the corner tilemap's tile ID for goopless/partially goopy/goopy corner covers
+## corner tilemap's tile ID for goopless/partially goopy/goopy corner covers
 export (int) var corner_tile_index: int
 
-## An editor toggle which manually applies autotiling.
+## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
-## key: (int) an enum from TileTypes
-## value: (int) a tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
+## key: (TileTypes)
+## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_indexes_by_type := {}
 
-## key: (int) a tile index from the parent tilemap
-## value: (int) an enum from TileTypes corresponding to the specified tile index, as defined by no_goop_tile_index,
-## 	some_goop_tile_index and all_goop_tile_index
+## key: (int) tile index from the parent tilemap
+## value: (TileTypes) tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
 var _tile_types_by_index := {}
 
 ## indexes of cake tiles in the parent tilemap, both goopy and goopless
@@ -252,10 +251,10 @@ var _cake_indexes := []
 ## indexes of goopy cake tiles in the parent tilemap, both partially and fully goopy
 var _goop_indexes := []
 
-## a tilemap with goopy/goopless overworld cakes which we should autotile
+## tilemap with goopy/goopless overworld cakes which we should autotile
 onready var _tile_map := get_parent()
 
-## A tilemap of corner covers which cover the corners of an overworld tilemap.
+## Tilemap of corner covers which cover the corners of an overworld tilemap.
 ##
 ## Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area.
 ## This tilemap fills in the holes.

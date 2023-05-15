@@ -3,16 +3,16 @@ class_name PracticeData
 ##
 ## This includes the previous region, level and difficulty the player chose.
 
-## the region id the player last chose in practice mode
+## region id the player last chose in practice mode
 var region_id: String
 
-## the level id the player last chose in practice mode
+## level id the player last chose in practice mode
 var level_id: String
 
-## the level id the player last chose in tutorial mode
+## level id the player last chose in tutorial mode
 var tutorial_level_id: String
 
-## the piece speed the player last chose in practice mode
+## piece speed the player last chose in practice mode
 var piece_speed: String
 
 func reset() -> void:

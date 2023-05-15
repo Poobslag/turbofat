@@ -68,7 +68,7 @@ func region_for_id(region_id: String) -> CareerRegion:
 ## Parameters:
 ## 	'distance': The distance the player has travelled.
 ##
-## 	'r': (Optional) A parameter which controls the randomness of the speed formula for unit tests.
+## 	'r': (Optional) Parameter which controls the randomness of the speed formula for unit tests.
 func piece_speed_for_distance(distance: int, r: float = randf()) -> String:
 	var region: CareerRegion = region_for_distance(distance)
 	var weight: float = region_weight_for_distance(region, distance)
@@ -89,7 +89,7 @@ func region_weight_for_distance(region: CareerRegion, distance: int) -> float:
 ##
 ## 	'weight': A number ranged [0.0, 1.0] indicating whether the formula should prefer slower or faster speeds.
 ##
-## 	'r': (Optional) A number ranged [0.0, 1.0] which controls the randomness of the speed formula for unit tests.
+## 	'r': (Optional) Number ranged [0.0, 1.0] which controls the randomness of the speed formula for unit tests.
 ## 		When deciding between two similar piece speeds, a low value exhibits a preference for the slower of the
 ## 		two.
 func piece_speed_between(min_speed: String, max_speed: String, weight: float, r: float = randf()) -> String:

@@ -15,13 +15,13 @@ export (PackedScene) var RippleSpriteScene: PackedScene
 ## ground tile ids which a ripple can appear over
 export (Array, int) var rippleable_tile_ids := []
 
-## The tilemap where waves should appear. Ripples appear and disappear based on the occupied cells of this tilemap.
+## Tilemap where waves should appear. Ripples appear and disappear based on the occupied cells of this tilemap.
 var _tile_map: TileMap
 
-## An enum from Ripples.RippleDirection for this wave's movement
+## Enum from Ripples.RippleDirection for this wave's movement
 var _direction: int = Ripples.RippleDirection.SOUTHEAST
 
-## the current position in the speed adjustment curve
+## current position in the speed adjustment curve
 var _speed_phase := rand_range(0, SPEED_PERIOD)
 
 ## controls how frequently this wave speeds up and slows down, in seconds

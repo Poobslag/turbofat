@@ -1,6 +1,6 @@
 class_name SharkTileMapPool
 extends Node
-## An object pool for Shark PuzzleTileMaps.
+## Object pool for Shark PuzzleTileMaps.
 ##
 ## Sharks use PuzzleTileMaps to render the eaten pieces. PuzzleTileMaps take about 40 ms to instance, so we instance
 ## them in a thread before the puzzle starts.

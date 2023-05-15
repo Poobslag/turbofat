@@ -1,6 +1,6 @@
 tool
 extends CreatureOutline
-## An implementation of CreatureOutline which is optimized for performance, specifically on web and mobile targets.
+## Implementation of CreatureOutline which is optimized for performance, specifically on web and mobile targets.
 ##
 ## This implementation avoids using any ViewportTextures. The ViewportTexture utilized by ViewportCreatureOutline
 ## offers poor performance on mobile and web targets.

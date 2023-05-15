@@ -9,7 +9,7 @@ extends Node
 ## 	[-, =]: Move the player left/right
 ## 	[Shift + -, Shift + =]: Move the player left right faster
 
-# Array of landmark types chosen when the user switches between different landmarks
+## Array of landmark types chosen when the user switches between different landmarks
 const INCREMENTABLE_LANDMARKS := [
 	Landmark.NONE,
 	

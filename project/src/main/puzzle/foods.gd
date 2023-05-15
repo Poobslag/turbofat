@@ -55,8 +55,8 @@ const COLOR_VEG_WHITE := Color("c1a57e")
 const COLORS_VEG_ALL := [COLOR_VEG_GREEN, COLOR_VEG_RED, COLOR_VEG_BREAD, COLOR_VEG_WHITE]
 
 
-## key: (int) an enum from FoodType
-## value: (int) an enum from BoxType for the corresponding box
+## key: (FoodType)
+## value: (BoxType) corresponding box
 const BOX_TYPE_BY_FOOD_TYPE := {
 	FoodType.BROWN_0: BoxType.BROWN,
 	FoodType.BROWN_1: BoxType.BROWN,
@@ -95,8 +95,8 @@ const COLORS_BY_FOOD_TYPE := {
 	FoodType.CAKE_QUV: [COLOR_BROWN, COLOR_BREAD, COLOR_WHITE],
 }
 
-## key: (int) an enum from BoxType
-## value: (Array, int) array of enums from FoodType for the corresponding food items
+## key: (BoxType)
+## value: (Array, FoodType) FoodTypes for the corresponding food items
 const FOOD_TYPES_BY_BOX_TYPES := {
 	BoxType.BROWN: [FoodType.BROWN_0, FoodType.BROWN_1],
 	BoxType.PINK: [FoodType.PINK_0, FoodType.PINK_1],
@@ -112,8 +112,8 @@ const FOOD_TYPES_BY_BOX_TYPES := {
 	BoxType.CAKE_QUV: [FoodType.CAKE_QUV],
 }
 
-## key: (int) an enum from BoxType
-## value: (Array, int) array of enums from FoodType for the corresponding food items
+## key: (BoxType)
+## value: (Array, Color) Food colors for the corresponding food items
 const COLORS_BY_BOX_TYPES := {
 	BoxType.BROWN: [COLOR_BROWN],
 	BoxType.PINK: [COLOR_PINK],

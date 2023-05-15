@@ -1,6 +1,6 @@
 class_name Shark
 extends Node2D
-## A shark, a puzzle critter which eats pieces.
+## A puzzle critter which eats pieces.
 ##
 ## Sharks wait on the playfield until bumped by a piece. Depending on the size of the shark, they may take a small bite
 ## from the piece, a big bite from the piece, or eat the entire piece.
@@ -43,29 +43,29 @@ const SQUISHED := States.SQUISHED
 ## Shorter sharks need the tooth cloud moved lower so it will line up with their mouth. This constant stores the tooth
 ## cloud height for different shark types.
 ##
-## key: (int) an enum from SharkConfig.SharkSize
-## value: (float) the y coordinate for the tooth cloud for the specified shark size.
+## key: (SharkConfig.SharkSize)
+## value: (float) y coordinate for the tooth cloud for the specified shark size.
 const TOOTH_CLOUD_Y_BY_SHARK_SIZE := {
 	SharkConfig.SharkSize.SMALL: -12.0,
 	SharkConfig.SharkSize.MEDIUM: -30.0,
 	SharkConfig.SharkSize.LARGE: -36.0,
 }
 
-## key: (int) an enum from SharkConfig.SharkSize
-## value: (float) the pitch scale for the specified shark size
+## key: (SharkConfig.SharkSize)
+## value: (float) pitch scale for the specified shark size
 const PITCH_SCALE_BY_SHARK_SIZE := {
 	SharkConfig.SharkSize.SMALL: 1.55,
 	SharkConfig.SharkSize.MEDIUM: 1.15,
 	SharkConfig.SharkSize.LARGE: 0.95,
 }
 
-## An enum from SharkConfig.SharkSize for the size of the shark sprite.
+## Enum from SharkConfig.SharkSize for the size of the shark sprite.
 var shark_size: int = SharkConfig.SharkSize.MEDIUM setget set_shark_size
 
 ## Duration in seconds the shark takes to eat.
 var eat_duration: float = DEFAULT_EAT_DURATION setget set_eat_duration
 
-## An enum from States for the shark's current animation state.
+## Enum from States for the shark's current animation state.
 var state: int = NONE setget set_state
 
 ## 'true' if the shark will be queued for deletion after the 'poof' animation completes.
@@ -80,25 +80,25 @@ var _already_popped_state := false
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-## The shark sprite
+## Shark sprite
 onready var shark := $Shark
 
 ## Eating effects including the cyclone of teeth and dust cloud which appear while a shark is eating.
 onready var tooth_cloud := $ToothCloud
 
-## A 'poof cloud' which covers the shark when they appear or disappear
+## Poof cloud which covers the shark when they appear or disappear
 onready var poof: CritterPoof = $Poof
 
-## A speech bubble which appears in the shark's place when the shark is waiting to appear
+## Speech bubble which appears in the shark's place when the shark is waiting to appear
 onready var wait_low := $WaitLow
 
-## A speech bubble which appears over the shark's head when they're about to vanish
+## Speech bubble which appears over the shark's head when they're about to vanish
 onready var wait_high := $WaitHigh
 
 onready var sfx := $SharkSfx
 
-## key: (int) An enum from States
-## value: (Node) A State node from the _states StateMachine
+## key: (int) Enum from States
+## value: (Node) State node from the _states StateMachine
 onready var _state_nodes_by_enum := {
 	NONE: $States/None,
 	WAITING: $States/Waiting,
@@ -135,9 +135,9 @@ func set_shark_size(new_shark_size: int) -> void:
 ## Enqueues an enums from States to the shark's upcoming animation states.
 ##
 ## Parameters:
-## 	'next_state': An enum from States
+## 	'next_state': Enum from States
 ##
-## 	'count': (Optional) The number of instances of the state to enqueue.
+## 	'count': (Optional) Number of instances of the state to enqueue.
 func append_next_state(next_state: int, count: int = 1) -> void:
 	for _i in range(count):
 		_next_states.append(next_state)
@@ -159,7 +159,7 @@ func has_next_state() -> bool:
 ## 	'force': If 'true', the shark will be updated again even if it was already updated this frame.
 ##
 ## Returns:
-## 	An enum from States for the shark's new state.
+## 	Enum from States for the shark's new state.
 func pop_next_state(force: bool = false) -> int:
 	if _next_states.empty():
 		return NONE
@@ -203,13 +203,13 @@ func set_eat_duration(new_eat_duration: float) -> void:
 ## Updates the tileset for the eaten piece tilemap.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': an enum from TileSetType referencing the tileset used to render blocks
+## 	'new_puzzle_tile_set_type': enum from TileSetType referencing the tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	tooth_cloud.set_puzzle_tile_set_type(new_puzzle_tile_set_type)
 
 
 ## Parameters:
-## 	'new_state': an enum from States for the shark's new animation state.
+## 	'new_state': enum from States for the shark's new animation state.
 func set_state(new_state: int) -> void:
 	if state == new_state:
 		return
@@ -332,6 +332,6 @@ func _on_ToothCloud_finished_eating() -> void:
 ## 	'anim_prefix': A short animation name such as 'dance' which corresponds to a longer animation name in the animation
 ## 		player.
 ##
-## 	'in_shark_size': An enum from SharkConfig.SharkSize for the animation to return.
+## 	'in_shark_size': Enum from SharkConfig.SharkSize for the animation to return.
 static func _shark_anim_name(anim_prefix: String, in_shark_size: int) -> String:
 	return "%s-%s" % [anim_prefix, Utils.enum_to_snake_case(SharkConfig.SharkSize, in_shark_size)]

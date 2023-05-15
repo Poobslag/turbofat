@@ -8,7 +8,7 @@ enum OnionState {
 	NIGHT,
 }
 
-## A string representing states the onion goes through, such as 'ddennn'.
+## String representing states the onion goes through, such as 'ddennn'.
 ##
 ## '.': 'None' state. The onion is underground.
 ## 'd': 'Day' state. The onion is dancing ominously.
@@ -16,7 +16,7 @@ enum OnionState {
 ## 'n': 'Night' state. The onion is in the sky, and the puzzle is cast in darkness.
 var day_string: String
 
-## key: (String) A character representing a state the onion goes through
+## key: (String) Character representing a state the onion goes through
 ## value: (int) enum from OnionState
 var onion_state_by_day_char := {
 	".": OnionState.NONE,
@@ -42,7 +42,7 @@ func _init(init_day_string: String = "") -> void:
 ## 	'advance_count': The number of times the onion has been advanced
 ##
 ## Returns:
-## 	An enum from OnionState for the state the onion should be in
+## 	Enum from OnionState for the state the onion should be in
 func get_state(advance_count: int) -> int:
 	if day_string.empty():
 		return OnionState.NONE

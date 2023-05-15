@@ -1,10 +1,10 @@
 extends Sprite
 ## Onion shown during nighttime. Hovers in the sky wiggling its tentacles.
 
-## The position where the onion hovers about.
+## Position where the onion hovers about.
 const CENTER_POSITION := Vector2(162, 92)
 
-## The radius within which the onion hovers.
+## Radius within which the onion hovers.
 const WOBBLE_RADIUS := Vector2(7, 4)
 
 ## The onion hovers around during night time. This field is used to calculate the hover amount.

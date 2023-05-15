@@ -1,14 +1,14 @@
 class_name CutsceneSearchFlags
-## A set of flags defining search behavior for career cutscenes.
+## Set of flags defining search behavior for career cutscenes.
 ##
 ## Career cutscenes are organized hierarchically. Depending on the use case, we sometimes only want the earliest
 ## available cutscenes, or all available cutscenes, or we want to exclude cutscenes the player's seen before. This
 ## class stores flags describing these different kinds of searches.
 
-## A set of chat keys for cutscenes to exclude from the search. This may include leaf nodes and branch nodes. If
+## Set of chat keys for cutscenes to exclude from the search. This may include leaf nodes and branch nodes. If
 ## omitted, no chat keys will be excluded.
 ##
-## key: (String) a chat key to exclude from the search
+## key: (String) chat key to exclude from the search
 ## value: (bool) true
 var excluded_chat_keys := {}
 

@@ -1,5 +1,5 @@
 extends Timer
-## A timer which randomizes its wait time each time it elapses.
+## Timer which randomizes its wait time each time it elapses.
 
 export (float) var min_wait_time := 1.0
 export (float) var max_wait_time := 1.0

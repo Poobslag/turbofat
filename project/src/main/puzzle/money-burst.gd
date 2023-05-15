@@ -1,12 +1,12 @@
 class_name MoneyBurst
 extends Node2D
-## An indicator like '¥20' which appears when the player earns money from a puzzle critter.
+## Indicator like '¥20' which appears when the player earns money from a puzzle critter.
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
 export (Vector2) var velocity: Vector2
 
-## The money value to display. This controls our text.
+## Money value to display. This controls our text.
 var money: int setget set_money
 
 ## particles which explode from the center of the money

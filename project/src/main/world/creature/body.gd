@@ -10,32 +10,32 @@ extends Node2D
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-## The color for the body outline
+## Color for the body outline
 export (Color) var line_color := Color.black
 
-## The main color for most of the creature's body
+## Main color for most of the creature's body
 export (Color) var body_color := Color.green
 
-## The secondary color for the creature's belly
+## Secondary color for the creature's belly
 export (Color) var belly_color := Color.red
 
-## The color to use for shadows, including an alpha component
+## Color to use for shadows, including an alpha component
 export (Color) var shadow_color := Color.blue
 
 ## If 'true', the CreatureCurve instances will be made visible. This is useful
 ## when editing curves in the Godot editor.
 export (bool) var editing := false setget set_editing
 
-## The CreatureCurve defining the rounded shape of the torso.
+## Rounded shape of the torso.
 var body_shape: CreatureCurve
 
-## An optional CreatureCurve defining the shape of the belly markings.
+## (Optional) Shape of the belly markings.
 var belly: CreatureCurve
 
-## An optional CreatureCurve defining an body-colored line which blends the neck with the back of the head
+## (Optional) Body-colored line which blends the neck with the back of the head
 var neck_blend: CreatureCurve
 
-## A node containing CreatureCurves which define the shapes of shadows for the arms, body and head.
+## Node containing CreatureCurves which define the shapes of shadows for the arms, body and head.
 var shadows: Node
 
 var _creature_visuals: CreatureVisuals

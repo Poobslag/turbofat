@@ -15,7 +15,7 @@ signal idle_animation_started(anim_name)
 ## idle animation is active.
 signal idle_animation_stopped()
 
-## the average amount of seconds to wait before launching an idle animation
+## average amount of seconds to wait before launching an idle animation
 const IDLE_FREQUENCY := 24.0
 
 ## list of idle animation names to launch

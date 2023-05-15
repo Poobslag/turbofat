@@ -1,6 +1,6 @@
 class_name PaletteEditorTab
 extends VBoxContainer
-## A tab which lets the player pick and edit different creature palettes.
+## Tab which lets the player pick and edit different creature palettes.
 
 export (PackedScene) var PaletteButtonScene: PackedScene
 export (NodePath) var creature_editor_path: NodePath setget set_creature_editor_path

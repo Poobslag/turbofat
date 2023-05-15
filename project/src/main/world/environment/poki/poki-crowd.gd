@@ -18,14 +18,14 @@ export (int) var frame: int setget set_frame
 ## If true, the sprite's texture is flipped horizontally.
 export (bool) var flip_h: bool setget set_flip_h
 
-## An editor toggle which randomizes the obstacle's appearance
+## Editor toggle which randomizes the obstacle's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
 export (int, 0, 3) var crowd_color_index: int setget set_crowd_color_index
 
 onready var _sprite := $Sprite
 
-## A timer which makes the crowd member animate slightly, alternating between two frames
+## Timer which makes the crowd member animate slightly, alternating between two frames
 onready var _wiggle_timer := $WiggleTimer
 
 func _ready() -> void:

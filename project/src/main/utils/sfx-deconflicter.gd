@@ -5,7 +5,7 @@ extends Node
 ## play to prevent two copies of the same sound from playing simultaneously. This prevents the player from hearing one
 ## very loud sound effect when several things happen at once.
 
-## The number of milliseconds before the same sound can play a second time.
+## Number of milliseconds before the same sound can play a second time.
 const SUPPRESS_SFX_MSEC := 20
 
 ## key: audio stream resource path

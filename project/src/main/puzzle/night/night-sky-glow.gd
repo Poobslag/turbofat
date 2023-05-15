@@ -1,9 +1,9 @@
 extends Sprite
-## A circular glow shown behind the onion.
+## Circular glow shown behind the onion.
 
 export (NodePath) var onion_sprite_path: NodePath
 
-## The onion which we reference when updating our position.
+## Onion which we reference when updating our position.
 onready var onion_sprite: Node2D = get_node(onion_sprite_path)
 
 ## Increases/decreases our size gradually.

@@ -1,5 +1,5 @@
 extends TextEdit
-## A text editor window which shows the current level's json representation.
+## Text editor window which shows the current level's json representation.
 ##
 ## This script includes logic for populating the json model from the level editor, and vice-versa.
 

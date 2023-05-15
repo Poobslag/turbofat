@@ -7,7 +7,7 @@ export (NodePath) var narration_frame_path: NodePath
 ## index of the current touch event, or -1 if there is none
 var _touch_index := -1
 
-## a scancode which triggers a ui_accept action.
+## scancode which triggers a ui_accept action.
 ## echo events cannot be emitted without an InputEventKey instance which requires a scancode
 var _ui_accept_scancode: int
 

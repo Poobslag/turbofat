@@ -1,7 +1,7 @@
 extends Control
 ## Shows a little 'happy face' icon next to each chat choice.
 
-## the location of the mood icon; the right or left side of the chat window
+## location of the mood icon; the right or left side of the chat window
 export (bool) var mood_right: bool setget set_mood_right
 
 var textures := {
@@ -41,7 +41,7 @@ var textures := {
 ## Sets which mood should be displayed.
 ##
 ## Parameters:
-## 	'mood': An enum from Creatures.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
+## 	'mood': Enum from Creatures.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
 ## 		mood being shown.
 func set_mood(new_mood: int) -> void:
 	if textures.has(new_mood):

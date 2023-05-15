@@ -1,6 +1,6 @@
 tool
 extends CreatureOutline
-## An implementation of CreatureOutline which is optimized for graphics quality.
+## Implementation of CreatureOutline which is optimized for graphics quality.
 ##
 ## This implementation utilizes a ViewportTexture to render an outline around the creature.
 

@@ -13,7 +13,7 @@ enum FeedingAnimation {
 	BOUNCY,
 }
 
-## an enum from CreatureDetail describing how detailed the creatures should look
+## enum from CreatureDetail describing how detailed the creatures should look
 var creature_detail: int = _default_creature_detail() setget set_creature_detail
 
 var feeding_animation: int = _default_feeding_animation() setget set_feeding_animation

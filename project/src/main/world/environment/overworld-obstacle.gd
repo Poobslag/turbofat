@@ -4,7 +4,7 @@ extends KinematicBody2D
 ##
 ## These objects can also be inspected (talked to) if the chat_key is set.
 
-## the size of the shadow cast by this object
+## size of the shadow cast by this object
 export (float) var shadow_scale: float = 1.0 setget set_shadow_scale
 
 func _init() -> void:

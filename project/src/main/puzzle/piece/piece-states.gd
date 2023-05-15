@@ -1,6 +1,6 @@
 class_name PieceStates
 extends StateMachine
-## A state machine for the states of the active piece.
+## State machine for the states of the active piece.
 
 ## Default null state. The puzzle hasn't started yet.
 onready var none: State = $None

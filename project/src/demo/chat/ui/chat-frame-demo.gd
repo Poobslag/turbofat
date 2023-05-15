@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the chat window.
+## Demo which shows off the chat window.
 ##
 ## Keys:
 ## 	[0-9]: Prints a chat line; 1 = short, 9 = long, 0 = longest

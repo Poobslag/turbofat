@@ -1,5 +1,5 @@
 extends Control
-## A level select panel which shows buttons and level info. Used in the practice/tutorial menus.
+## Level select panel which shows buttons and level info. Used in the practice/tutorial menus.
 
 ## Emitted when the player finishes choosing a level to play.
 ##
@@ -7,7 +7,7 @@ extends Control
 ## 	'settings': The chosen level settings
 signal level_chosen(settings)
 
-## A CareerRegion/OtherRegion instance for the region whose levels should be shown
+## CareerRegion/OtherRegion instance for the region whose levels should be shown
 var _region: Object
 
 onready var _level_buttons: PagedLevelButtons = $VBoxContainer/Top/LevelButtons

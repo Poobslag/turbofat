@@ -1,10 +1,9 @@
 class_name StringTransformer
 ## Applies a series of regex transformations.
 
-## the transformed string
 var transformed: String
 
-## the regex instance which performs the transformations
+## regex instance which performs the transformations
 var _regex := RegEx.new()
 
 ## Parameters:

@@ -19,7 +19,7 @@ var _piece_x_by_y: Dictionary
 onready var _piece_manager: PieceManager = get_node(piece_manager_path)
 onready var _playfield: Playfield = get_node(playfield_path)
 
-# Containers for combo bursts and tech bursts. Tech bursts appear on top.
+## Containers for combo bursts and tech bursts. Tech bursts appear on top.
 onready var _combo_container := $Combo
 onready var _money_container := $Money
 onready var _tech_container := $Tech
@@ -73,7 +73,7 @@ func _add_money_burst(target_cell: Vector2, money: int) -> void:
 ##
 ## 	'piece_type': The piece type, such as 'U piece' or 'V piece'
 ##
-## 	'tech_type': An enum from TechMoveBurst.TechType such as 'Spin' or 'Squish'
+## 	'tech_type': Enum from TechMoveBurst.TechType such as 'Spin' or 'Squish'
 ##
 ## 	'lines_cleared': The number of lines cleared by this tech move
 

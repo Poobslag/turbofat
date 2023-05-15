@@ -3,32 +3,32 @@ extends Control
 ##
 ## This includes two components: a player graphic and a 'steps remaining' label.
 
-## The maximum height in pixels the player's chalk graphics bounce while advancing.
+## Maximum height in pixels the player's chalk graphics bounce while advancing.
 const MAX_BOUNCE_HEIGHT := 40.0
 
-## The lowest pitch for the player move sound.
+## Lowest pitch for the player move sound.
 const PLAYER_MOVE_SOUND_PITCH_SCALE_MIN := 0.9
 
-## The highest pitch for the player move sound.
+## Highest pitch for the player move sound.
 const PLAYER_MOVE_SOUND_PITCH_SCALE_MAX := 1.1
 
 export (NodePath) var trail_path
 
-## The visual spot where the player has advanced.
+## Visual spot where the player has advanced.
 ##
 ## When animating, this represents the player's target position.
 var spots_travelled: int setget set_spots_travelled
 
-## The visual spot where the player's chalk graphic should be drawn.
+## Visual spot where the player's chalk graphic should be drawn.
 ##
 ## When animating, this represents the player's current position. It can fall between two points, which is why it is a
 ## float and not an int.
 var visual_spots_travelled: float setget set_visual_spots_travelled
 
-## The height in pixels the player's chalk graphics bounce while advancing.
+## Height in pixels the player's chalk graphics bounce while advancing.
 var _bounce_height := MAX_BOUNCE_HEIGHT
 
-## The number label above the player's head which shows how far they will advance.
+## Number label above the player's head which shows how far they will advance.
 onready var _label := $Label
 
 ## Sprite which shows a chalk graphic of the player.
@@ -50,7 +50,7 @@ func _ready() -> void:
 
 ## Animates the player's chalk graphic to move along the trail.
 ##
-## The player's chalk graphic bounces along the trail, playing sound effects which increase in pitch. A number over the
+## Player's chalk graphic bounces along the trail, playing sound effects which increase in pitch. A number over the
 ## player's head counts down, '3, 2, 1...' as they bounce.
 ##
 ## This can also move the player backwards. When moving backward, the sound effects decrease in pitch and the number

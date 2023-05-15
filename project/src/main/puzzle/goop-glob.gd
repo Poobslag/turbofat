@@ -1,6 +1,6 @@
 class_name GoopGlob
 extends Sprite
-## A goop glob which appears when the player clears a line or builds a box.
+## Goop glob which appears when the player clears a line or builds a box.
 
 ## emitted when the glob collides with one of the four outer walls
 signal hit_wall(glob)
@@ -23,12 +23,12 @@ const FADE_DELAY := 4.5
 ## how long it takes globs fade completely after stuck to walls
 const FADE_DURATION := 1.5
 
-## the duration when a glob should be recycled, even if it's somehow still visible
+## duration when a glob should be recycled, even if it's somehow still visible
 const MAX_AGE := 7.0
 
 var puzzle_areas: PuzzleAreas
 
-## the PuzzleTileMap food color index for this glob (brown, pink, bread, white, cake)
+## PuzzleTileMap food color index for this glob (brown, pink, bread, white, cake)
 var box_type := -1
 
 ## remaining time in seconds before this glob will smear against the background

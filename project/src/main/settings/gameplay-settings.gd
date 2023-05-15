@@ -46,7 +46,7 @@ var line_piece := false setget set_line_piece
 ## 'true' if pressing soft drop should perform a lock cancel
 var soft_drop_lock_cancel := true setget set_soft_drop_lock_cancel
 
-## The current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
+## Current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
 ## the game harder, or to cheat on levels which otherwise require slow and thoughtful play.
 var speed: int = Speed.DEFAULT setget set_speed
 

@@ -7,10 +7,10 @@ extends Node2D
 
 export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
-## the properties of the spawned creature
+## properties of the spawned creature
 export (Dictionary) var target_properties: Dictionary
 
-## a boolean expression which, if evaluated to 'true', will result in the creature being spawned
+## boolean expression which, if evaluated to 'true', will result in the creature being spawned
 export (String) var spawn_if: String
 
 ## Maximum fatness for a spawned creature.
@@ -19,10 +19,10 @@ export (float, 1.0, 10.0) var max_fatness := 10.0
 
 export (PackedScene) var CreatureScene: PackedScene
 
-## a Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
+## Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
 var _stool: Node2D
 
-## the spawned creature, or 'null' if the creature has not yet spawned
+## spawned creature, or 'null' if the creature has not yet spawned
 var _target_creature: Creature
 
 onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)

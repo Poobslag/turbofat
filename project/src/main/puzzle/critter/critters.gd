@@ -4,7 +4,7 @@ extends Control
 export (NodePath) var playfield_path: NodePath setget set_playfield_path
 export (NodePath) var piece_manager_path: NodePath setget set_piece_manager_path
 
-# Draws carrots, puzzle critters which rocket up the screen, blocking the player's vision.
+## Draws carrots, puzzle critters which rocket up the screen, blocking the player's vision.
 onready var _carrots: Carrots = $Carrots
 
 ## Draws moles, puzzle critters which dig up star seeds for the player.

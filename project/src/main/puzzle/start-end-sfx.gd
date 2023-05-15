@@ -1,17 +1,17 @@
 extends Node
 ## Plays sound effects at the start and end of a level.
 
-# sounds played at the start of a level
+## sounds played at the start of a level
 onready var _go_sound := $GoSound
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 onready var _ready_sound := $ReadySound
 
-# sounds played during tutorials
+## sounds played during tutorials
 onready var _level_change_sound := $LevelChangeSound
 onready var _section_complete_sound := $SectionCompleteSound
 onready var _section_fail_sound := $SectionFailSound
 
-# sounds played at the end of a level
+## sounds played at the end of a level
 onready var _excellent_sound := $ExcellentSound
 onready var _game_over_sound := $GameOverSound
 onready var _match_end_sound := $MatchEndSound

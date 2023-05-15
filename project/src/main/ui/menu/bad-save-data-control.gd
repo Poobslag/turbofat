@@ -1,5 +1,5 @@
 extends ColorRect
-## A popup window which is shown if there is a problem loading the save data.
+## Popup window which is shown if there is a problem loading the save data.
 
 func _ready() -> void:
 	hide()

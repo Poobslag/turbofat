@@ -1,5 +1,5 @@
 extends Control
-## A background wallpaper with colored areas, borders and shapes.
+## Background wallpaper with colored areas, borders and shapes.
 
 ## optional float parameters don't have the concept of null. this default value acts as a substitute so we can tell
 ## when a float value is unspecified.
@@ -8,7 +8,7 @@ const UNSPECIFIED_FLOAT := 3025403.0
 export (PackedScene) var WallpaperBorderScene: PackedScene
 export (PackedScene) var StickerRowScene: PackedScene
 
-## the two colors used for this wallpaper
+## two colors used for this wallpaper
 var dark_color: Color
 var light_color: Color
 

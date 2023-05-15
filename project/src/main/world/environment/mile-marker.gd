@@ -1,6 +1,6 @@
 class_name MileMarker
 extends OverworldObstacle
-## A distance marker which appears in the overworld during career mode.
+## Distance marker which appears in the overworld during career mode.
 
 ## key: (int) Mile Marker sprite frame
 ## value: (Vector2) Position to align the text with the specified sprite frame

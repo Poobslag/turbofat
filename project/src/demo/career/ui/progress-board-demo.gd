@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the progress board's animations and states.
+## Demo which shows off the progress board's animations and states.
 ##
 ## Keys:
 ## 	[0-9]: Set the time of day, 0=11:00 am, 6=10:00 pm.

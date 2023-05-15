@@ -25,10 +25,10 @@ export (float, 0, 1) var down_left_weight := 0.0
 ## if false, pressing the buttons won't emit any actions.
 export (bool) var emit_actions := true setget set_emit_actions
 
-## the position relative to our center of the most recent touch event
+## position relative to our center of the most recent touch event
 var _touch_dir: Vector2
 
-## the index of the most recent touch event
+## index of the most recent touch event
 var _touch_index := -1
 
 onready var _up := $HBoxContainer/VBoxContainer/Up

@@ -1,8 +1,8 @@
 class_name LeafPoof
 extends Sprite
-## A leaf poof spawned when the player clears a row containing vegetables.
+## Leaf poof spawned when the player clears a row containing vegetables.
 
-## the duration the leaf poof remains visible.
+## duration the leaf poof remains visible.
 const LIFETIME := 1.5
 
 ## leaf animations alternate between two frames; leaf_frame is always 0 or 1

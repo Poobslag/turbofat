@@ -1,11 +1,11 @@
 class_name Onion
 extends Node2D
-## An onion, a puzzle critter which darkens things making it hard to see.
+## a puzzle critter which darkens things making it hard to see.
 
 ## Emitted when the onion starts/stops playing their floating animation
 signal float_animation_playing_changed(value)
 
-## The onion's location. They are either in the soil, sky, or transitioning between the two.
+## Onion's location. They are either in the soil, sky, or transitioning between the two.
 enum OnionLocation {
 	SOIL,
 	ASCENDING,
@@ -19,7 +19,7 @@ const LAUNCH_DURATION := 1.2
 ## Position in the sky the onion should launch towards, defined as units relative to our parent node
 export var sky_position: Vector2 = Vector2.ZERO
 
-## The onion's location. They are either in the soil, sky, or transitioning between the two.
+## Onion's location. They are either in the soil, sky, or transitioning between the two.
 export (OnionLocation) var onion_location: int = OnionLocation.SOIL setget set_onion_location
 
 ## True if the onion is currently playing their floating animation
@@ -32,13 +32,13 @@ onready var _soil := $Soil
 onready var _dirt_particles := $DirtParticles
 onready var _onion_location_tween: SceneTreeTween
 
-## An enum from OnionConfig.OnionState for the onion's current gameplay state.
+## Enum from OnionConfig.OnionState for the onion's current gameplay state.
 var state: int = OnionConfig.OnionState.NONE setget set_state
 
 ## Queue of enums from States for the onion's upcoming animation states.
 var _next_states := []
 
-## The index in next_states for the onion's current state.
+## Index in next_states for the onion's current state.
 var _current_state_index := -1
 
 ## 'true' if a state has already been popped from the _next_states queue this frame. We track this to avoid
@@ -84,9 +84,9 @@ func clear_states() -> void:
 ## Enqueues an enums from States to the onion's upcoming animation states.
 ##
 ## Parameters:
-## 	'next_state': An enum from States
+## 	'next_state': Enum from States
 ##
-## 	'count': (Optional) The number of instances of the state to enqueue.
+## 	'count': (Optional) Number of instances of the state to enqueue.
 func append_next_state(next_state: int) -> void:
 	_next_states.append(next_state)
 
@@ -96,7 +96,7 @@ func append_next_state(next_state: int) -> void:
 ## Updates the onion's animation and returns the dequeued state.
 ##
 ## Returns:
-## 	An enum from States for the onion's new state.
+## 	Enum from States for the onion's new state.
 func advance_state() -> int:
 	if _already_popped_state:
 		pass

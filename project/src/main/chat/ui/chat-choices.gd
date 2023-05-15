@@ -4,7 +4,7 @@ extends GridContainer
 
 signal chat_choice_chosen(choice_index)
 
-## The most branches we can display at once. Branches beyond this will not be displayed.
+## Maximum branches we can display at once. Branches beyond this will not be displayed.
 const MAX_LABELS := 6
 
 ## Time in seconds for all of the chat choices to pop up.
@@ -29,7 +29,7 @@ func _ready() -> void:
 ## chat is displayed, the buttons are closer to the center and wider.
 ##
 ## Parameters:
-## 	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of chat text displayed.
+## 	'chat_line_size': Enum from ChatTheme.ChatLineSize corresponding to the amount of chat text displayed.
 func reposition(chat_line_size: int) -> void:
 	match chat_line_size:
 		ChatTheme.LINE_SMALL:
@@ -50,7 +50,7 @@ func reposition(chat_line_size: int) -> void:
 ##
 ## 	'moods': An array of Creatures.Mood instances for each chat branch
 ##
-## 	'new_columns': (Optional) The number of columns to organize the chat events into.
+## 	'new_columns': (Optional) Number of columns to organize the chat events into.
 func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 	visible = true
 	_choices = choices

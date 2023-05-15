@@ -81,7 +81,7 @@ func test_advance_clock_stops_at_unbeaten_intro_level() -> void:
 	assert_eq(_data.banked_steps, 40)
 
 
-# Even if the intro level is a level the player has somehow played before in practice mode, it should still stop them.
+## Even if the intro level is a level the player has somehow played before in practice mode, it should still stop them.
 func test_advance_clock_stops_at_beaten_intro_level() -> void:
 	_data.best_distance_travelled = 10
 	

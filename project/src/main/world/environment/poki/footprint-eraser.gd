@@ -4,7 +4,7 @@ extends Node
 ## Terrain tilemap with footprint tiles to place
 onready var _tile_map := get_parent()
 
-## A limited set of footprint cells visible when the player and sensei are alone in the desert.
+## Limited set of footprint cells visible when the player and sensei are alone in the desert.
 var _player_and_sensei_footprint_cells := [
 	Vector2(29, 18),
 	Vector2(27, 19),
@@ -26,7 +26,7 @@ var _player_and_sensei_footprint_cells := [
 	Vector2(19, 22),
 ]
 
-## The terrain tilemap's tile ID for footprint tiles
+## Terrain tilemap's tile ID for footprint tiles
 export (int) var footprint_tile_index: int
 
 func _ready() -> void:

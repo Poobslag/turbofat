@@ -1,6 +1,6 @@
 class_name NightPickup
 extends Node2D
-## A pickup which spawns a food item when collected by the player during night mode.
+## Pickup which spawns a food item when collected by the player during night mode.
 ##
 ## This code is identical to the daytime pickup, but without the logic for cycling between different colors. Onion
 ## pickups are always light blue.

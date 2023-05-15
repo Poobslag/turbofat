@@ -39,7 +39,7 @@ func test_adjust_3_6() -> void:
 
 
 ## Can't adjust level from 3 to A5; this changes the lock timings allowing for MUCH faster play, invalidating rankings
-# and high scores
+## and high scores
 func test_adjust_3_A5() -> void:
 	set_start_speed("3")
 	adjuster.adjust("A5")
@@ -48,7 +48,7 @@ func test_adjust_3_A5() -> void:
 
 
 ## Can't adjust level from A5 to FF; this changes the lock timings allowing for MUCH faster play, invalidating rankings
-# and high scores
+## and high scores
 func test_adjust_A5_FF() -> void:
 	set_start_speed("A5")
 	adjuster.adjust("FF")

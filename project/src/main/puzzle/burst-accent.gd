@@ -1,8 +1,8 @@
 tool
 extends PackedSprite
-## A colored accent sprite which appears behind a combo/spin/squish indicator.
+## Colored accent sprite which appears behind a combo/spin/squish indicator.
 
-## The unmodified scale/rotation before pulsing
+## Unmodified scale/rotation before pulsing
 export (Vector2) var base_scale: Vector2 = Vector2.ONE setget set_base_scale
 
 ## Scale modifiers applied by an animation

@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the creature's range of emotions and idle animations
+## Demo which shows off the creature's range of emotions and idle animations
 ##
 ## Keys:
 ## 	[1]: Default mood
@@ -30,7 +30,7 @@ extends Node
 
 var _creature_type: int = Creatures.Type.DEFAULT
 
-## a local path to a json creature resource to demo
+## local path to a json creature resource to demo
 export (String, FILE, "*.json") var creature_path: String
 
 onready var _creature := $Creature

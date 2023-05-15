@@ -1,7 +1,7 @@
 tool
 class_name PackedSprite
 extends Node2D
-## A sprite whose contents are packed with Aseprite.
+## Sprite whose contents are packed with Aseprite.
 ##
 ## Aseprite can export packed and trimmed sprite sheets. These sprite sheets are much smaller than grid-based sheets
 ## because they remove the whitespace for each frame. However, they require spatial data indicating the position of
@@ -13,7 +13,7 @@ signal frame_changed
 
 export (Texture) var texture: Texture
 
-## the path of the Aseprite json file containing spatial data for the packed texture
+## path of the Aseprite json file containing spatial data for the packed texture
 export (String, FILE) var frame_data setget set_frame_data
 
 ## our width/height. affects our position when we're centered
@@ -25,7 +25,7 @@ export (bool) var centered: bool = true setget set_centered
 
 export (Vector2) var offset: Vector2 setget set_offset
 
-## the number of animation frames parsed from the Aseprite json file.
+## number of animation frames parsed from the Aseprite json file.
 var frame_count setget ,get_frame_count
 
 ## Rect2 instances representing sprite sheet regions where each frame can be read

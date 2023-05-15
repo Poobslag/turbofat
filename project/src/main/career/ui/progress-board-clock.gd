@@ -3,13 +3,13 @@ extends Control
 ##
 ## This includes a picture of an analog clock alongside a digital text representation of the time.
 
-## The positions of the analog clock's hour and minute hands when the time of day is an invalid value.
+## Positions of the analog clock's hour and minute hands when the time of day is an invalid value.
 const INVALID_HAND_POSITIONS := [11.0, 0.0]
 
-## The positions of the analog clock's hour and minute hands for different times of day.
+## Positions of the analog clock's hour and minute hands for different times of day.
 ##
 ## key: (int) corresonding to the number of levels the player has played
-## value: (Array, float) An array with two entries for the position of the analog clock's hour and minute hands.
+## value: (Array, float) Array with two entries for the position of the analog clock's hour and minute hands.
 const HAND_POSITIONS_BY_HOURS := {
 	0: [11.0, 0.0], # 11:00 am
 	1: [12.0, 10.0], # 12:10 pm
@@ -20,7 +20,7 @@ const HAND_POSITIONS_BY_HOURS := {
 	6: [22.0, 00.0], # 10:00 pm
 }
 
-## The number of levels played in the current career session.
+## Number of levels played in the current career session.
 ##
 ## This is stored independently of the player's career data because this clock might animate to show a time in the past
 ## or future.

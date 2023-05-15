@@ -1,17 +1,17 @@
 tool
 class_name Stool
 extends OverworldObstacle
-## A stool which appears on the overworld.
+## Stool which appears on the overworld.
 ##
 ## The stool can toggle to an 'occupied' state when it's sat upon. This affects its collisions and appearance.
 
 ## maximum distance where a creature occupies a stool
 const MAX_STOOL_DISTANCE := 4
 
-## the texture to use when the stool has a creature sitting on it
+## texture to use when the stool has a creature sitting on it
 export (Texture) var occupied_texture: Texture
 
-## the texture to use when the stool does not have a creature sitting on it
+## texture to use when the stool does not have a creature sitting on it
 export (Texture) var unoccupied_texture: Texture
 
 ## 'true' if the stool has a creature sitting on it

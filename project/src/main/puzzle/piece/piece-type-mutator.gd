@@ -1,7 +1,7 @@
 class_name PieceTypeMutator
 ## Modifies a piece type by removing cells.
 
-## The piece type to remove.
+## Piece type to remove.
 var piece_type: PieceType
 
 ## Vector2 offsets to apply when cycling from one orientation to the next.

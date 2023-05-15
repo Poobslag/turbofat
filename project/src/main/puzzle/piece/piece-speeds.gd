@@ -9,11 +9,11 @@ extends Node
 ## piece takes 16 frames to drop one row. G is the denominator of that fraction.
 const G := 256
 
-## The maximum number of 'lock resets' the player is allotted for a single piece. A lock reset occurs when a piece is
+## Maximum number of 'lock resets' the player is allotted for a single piece. A lock reset occurs when a piece is
 ## at the bottom of the screen but the player moves or rotates it to prevent from locking.
 const MAX_LOCK_RESETS := 15
 
-## The gravity constant used when the player soft-drops a piece.
+## Gravity constant used when the player soft-drops a piece.
 const DROP_G := 128
 
 ## After the player does a 'squish move' the piece is unaffected by gravity for this many frames.

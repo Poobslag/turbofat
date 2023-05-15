@@ -13,13 +13,13 @@ extends Node
 ## 	'night_mode_light_self': The node will become light blue at night, and uncolored during the day
 ## 	'night_mode_visible': The node will become visible at night, and invisible during the day
 
-## A dark blue color assigned to nodes in the 'night_mode_dark' group
+## Dark blue color assigned to nodes in the 'night_mode_dark' group
 const DARK_BLUE := Color("6b6bdc")
 
-## A light blue color assigned to nodes in the 'night_mode_light' group
+## Light blue color assigned to nodes in the 'night_mode_light' group
 const LIGHT_BLUE := Color("aed8d0")
 
-## The amount of time it takes to transition from day to night, or from night to day.
+## Amount of time it takes to transition from day to night, or from night to day.
 const TWEEN_DURATION := 0.3
 
 var _night_mode := false

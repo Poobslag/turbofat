@@ -11,7 +11,7 @@ extends Control
 ##
 ## 	'remaining_food': The number of remaining food items for the current line clear
 ##
-## 	'food_type': An enum from Foods.FoodType corresponding to the food to spawn
+## 	'food_type': Enum from Foods.FoodType corresponding to the food to spawn
 signal food_spawned(cell, remaining_food, food_type)
 
 ## Aesthetically pleasing star seed arrangements. It looks nice if they're balanced on the left and right sides.
@@ -131,7 +131,7 @@ func _add_star_seeds_for_boxes(rect_range: Rect2) -> void:
 ## Parameters:
 ## 	'rect': Cell coordinates defining the box's position and dimensions
 ##
-## 	'box_type': An enum from Foods.BoxType defining the box's color
+## 	'box_type': Enum from Foods.BoxType defining the box's color
 func _add_star_seeds_for_box(rect: Rect2, box_type: int) -> void:
 	_remove_star_seeds_for_box(rect)
 	var star_seed_positions := _star_seed_positions(rect, box_type)
@@ -157,7 +157,7 @@ func _remove_star_seeds_for_box(rect: Rect2) -> void:
 ## Parameters:
 ## 	'rect': Cell coordinates defining the box's position and dimensions
 ##
-## 	'box_type': An enum from Foods.BoxType defining the box's color
+## 	'box_type': Enum from Foods.BoxType defining the box's color
 ##
 ## Returns:
 ## 	An array of ints representing concatenated columns within the box.
@@ -195,7 +195,7 @@ func _star_seed_positions(rect: Rect2, box_type: int) -> Array:
 ## star seeds.
 ##
 ## Parameters:
-## 	'box_type': An enum from Foods.BoxType defining the box's color
+## 	'box_type': Enum from Foods.BoxType defining the box's color
 ##
 ## Returns:
 ## 	An int multiplier in the range [0, 2] representing how many star seeds the box should have
@@ -213,7 +213,7 @@ func _star_seed_multiplier(box_type: int) -> int:
 ## Parameters:
 ## 	'rect': Cell coordinates defining the box's position and dimensions
 ##
-## 	'box_type': An enum from Foods.BoxType defining the box's color
+## 	'box_type': Enum from Foods.BoxType defining the box's color
 ##
 ## 	'star_seed_positions': An array of ints representing concatenated columns within the box.
 func _spawn_star_seeds(rect: Rect2, box_type: int, star_seed_positions: Array) -> void:

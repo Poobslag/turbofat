@@ -52,8 +52,8 @@ func test_163e_lost_erases_success() -> void:
 	assert_eq(PlayerData.level_history.results("rank/7d")[0].success, false)
 
 
-# Note: There is no test for save data version 1682. The updater performs some chat history renames, but these chat
-# items are nonexistent in the newest version of the game because of the removal of free roam mode
+## Note: There is no test for save data version 1682. The updater performs some chat history renames, but these chat
+## items are nonexistent in the newest version of the game because of the removal of free roam mode
 
 
 func test_199c() -> void:
@@ -88,9 +88,9 @@ func test_1b3c() -> void:
 	assert_eq(history_marathon.score, 5115)
 
 
-# Note: There is no test for save data version 245b or 24cc. The updater performs some chat history/level history
-# tweaks, but these chat items and levels are nonexistent in the newest version of the game because of the removal of
-# free roam mode
+## Note: There is no test for save data version 245b or 24cc. The updater performs some chat history/level history
+## tweaks, but these chat items and levels are nonexistent in the newest version of the game because of the removal of
+## free roam mode
 
 
 func test_2743() -> void:

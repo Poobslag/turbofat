@@ -1,5 +1,5 @@
 extends Control
-## A level select screen which shows buttons and level info. Used in the practice menu.
+## Level select screen which shows buttons and level info. Used in the practice menu.
 
 ## Emitted when the player finishes choosing a level to play.
 ##
@@ -9,7 +9,7 @@ extends Control
 ## 	'level_id': The chosen level id
 signal level_chosen(region, settings)
 
-## A CareerRegion/OtherRegion instance for the region whose levels should be shown
+## CareerRegion/OtherRegion instance for the region whose levels should be shown
 var _region: Object
 
 onready var _paged_level_panel := $Panel

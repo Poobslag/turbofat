@@ -1,5 +1,5 @@
 extends HBoxContainer
-## The chalkboard title shown when the player finishes career mode.
+## Chalkboard title shown when the player finishes career mode.
 
 ## Affirming titles shown when the player does well, travelling many steps during a career session.
 ##

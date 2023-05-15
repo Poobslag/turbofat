@@ -8,13 +8,13 @@ extends Node
 ## how long we're willing to block a thread to add more sprites
 const CHUNK_SECONDS := 0.01
 
-## the Node2D scene to test
+## Node2D scene to test
 export (PackedScene) var SpriteScene: PackedScene
 
 onready var _sprite_container := $SpriteContainer
 onready var _count := $Ui/Control/Count
 
-## the desired number of sprites to show
+## desired number of sprites to show
 var _target_sprite_count := 10
 
 func _physics_process(_delta: float) -> void:

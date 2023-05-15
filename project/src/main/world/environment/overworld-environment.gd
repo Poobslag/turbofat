@@ -44,7 +44,7 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 ## Creates a new creature with the specified creature_id and adds it to the scene.
 ##
 ## Parameters:
-## 	'creature_id': (Optional) The id of a creature to load from the CreatureLibrary. If omitted, the returned
+## 	'creature_id': (Optional) Id of a creature to load from the CreatureLibrary. If omitted, the returned
 ## 		creature will assume a default appearance.
 ##
 ## 	'_chattable': Unused.

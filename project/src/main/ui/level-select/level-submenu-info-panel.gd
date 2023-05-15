@@ -1,5 +1,5 @@
 extends Panel
-## A panel on the level select screen which summarizes level details.
+## Panel on the level select screen which summarizes level details.
 ##
 ## This includes details such as the level's duration, difficulty, and the player's high score.
 

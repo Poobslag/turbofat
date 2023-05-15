@@ -70,7 +70,7 @@ var _pulse_amount := 0.0
 ## how long the lights remain on after a line clear
 var _glow_duration := 0.0
 
-## the current background light color
+## current background light color
 var _color := Color.transparent
 
 ## tile indexes by food/vegetable color

@@ -1,6 +1,6 @@
 class_name Mole
 extends Node2D
-## A mole, a puzzle critter which digs up star seeds for the player.
+## A puzzle critter which digs up star seeds for the player.
 ##
 ## Moles dig for a few turns, and then add a pickup to the playfield. But they can be interrupted if they are crushed,
 ## or if the player clears the row they are digging.
@@ -35,13 +35,13 @@ const FOUND_SEED := States.FOUND_SEED
 ## The mole has found a star pickup.
 const FOUND_STAR := States.FOUND_STAR
 
-## An enum from States for the mole's current animation state.
+## Enum from States for the mole's current animation state.
 var state: int = NONE setget set_state
 
 ## 'true' if the mole is temporarily hidden by the piece.
 var hidden: bool setget set_hidden
 
-## An enum from States for the mole's previous animation state, if they are temporarily hidden by the player's piece.
+## Enum from States for the mole's previous animation state, if they are temporarily hidden by the player's piece.
 var hidden_mole_state: int = NONE
 
 ## 'true' if the Mole will be queued for deletion after the 'poof' animation completes.
@@ -54,8 +54,8 @@ var _next_states := []
 ## accidentally popping two states from the queue when the mole first spawns.
 var _already_popped_state := false
 
-## key: (int) An enum from States
-## value: (Node) A State node from the _states StateMachine
+## key: (int) Enum from States
+## value: (Node) State node from the _states StateMachine
 onready var _state_nodes_by_enum := {
 	NONE: $States/None,
 	WAITING: $States/Waiting,
@@ -67,16 +67,16 @@ onready var _state_nodes_by_enum := {
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-## The mole sprite
+## Mole sprite
 onready var mole := $Mole
 
-## A 'poof cloud' which covers the mole when they appear or disappear
+## Poof cloud which covers the mole when they appear or disappear
 onready var poof: CritterPoof = $Poof
 
-## A speech bubble which appears in the mole's place when the mole is waiting to appear
+## Speech bubble which appears in the mole's place when the mole is waiting to appear
 onready var wait_low := $WaitLow
 
-## A speech bubble which appears over the mole's head when the mole is digging
+## Speech bubble which appears over the mole's head when the mole is digging
 onready var wait_high := $WaitHigh
 
 onready var sfx := $MoleSfx
@@ -115,9 +115,9 @@ func set_hidden(new_hidden: bool) -> void:
 ## Enqueues an enums from States to the mole's upcoming animation states.
 ##
 ## Parameters:
-## 	'next_state': An enum from States
+## 	'next_state': Enum from States
 ##
-## 	'count': (Optional) The number of instances of the state to enqueue.
+## 	'count': (Optional) Number of instances of the state to enqueue.
 func append_next_state(next_state: int, count: int = 1) -> void:
 	for _i in range(count):
 		_next_states.append(next_state)
@@ -136,7 +136,7 @@ func has_next_state() -> bool:
 ## dequeued state.
 ##
 ## Returns:
-## 	An enum from States for the mole's new state.
+## 	Enum from States for the mole's new state.
 func pop_next_state() -> int:
 	if _next_states.empty():
 		return NONE
@@ -155,7 +155,7 @@ func pop_next_state() -> int:
 
 
 ## Parameters:
-## 	'new_state': an enum from States for the mole's new animation state.
+## 	'new_state': enum from States for the mole's new animation state.
 func set_state(new_state: int) -> void:
 	state = new_state
 	_refresh_state()

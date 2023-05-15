@@ -4,7 +4,7 @@ extends Node2D
 ##
 ## If a region has been cleared, we show something like 'S' or 'B+'. If it hasn't been cleared we show nothing.
 
-## the region button this grade label applies to
+## region button this grade label applies to
 var button: RegionSelectButton setget set_button
 
 onready var _grade_label: GradeLabel = $GradeLabel

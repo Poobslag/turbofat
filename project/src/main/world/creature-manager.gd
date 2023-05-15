@@ -1,11 +1,11 @@
 extends Node
 ## Provides access to creature sprites based on their creature id.
 
-## The player's sprite
+## Player's sprite
 ## virtual property; value is only exposed through getters/setters
 var player: Creature setget ,get_player
 
-## The sensei's sprite
+## Sensei's sprite
 ## virtual property; value is only exposed through getters/setters
 var sensei: Creature setget ,get_sensei
 

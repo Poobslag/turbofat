@@ -7,7 +7,7 @@ extends Control
 ## 'true' if the money should be shown in a compact form like '17.2 b' to save on space.
 export (bool) var compact: bool setget set_compact
 
-## The amount of money shown by this label. Might differ from the player's actual money during animations.
+## Amount of money shown by this label. Might differ from the player's actual money during animations.
 var shown_money: int
 
 func _ready() -> void:

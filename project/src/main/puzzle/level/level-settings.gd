@@ -4,10 +4,10 @@ class_name LevelSettings
 ## This includes information about how the player loses/wins, what kind of pieces they're given, whether they're given
 ## a time limit, and any other special rules.
 
-## The level description shown when selecting a level.
+## Level description shown when selecting a level.
 var description := ""
 
-## (optional) The level difficulty shown when selecting a level.
+## (optional) Level difficulty shown when selecting a level.
 var difficulty := "" setget ,get_difficulty
 
 ## Blocks/boxes which appear or disappear while the game is going on.
@@ -23,7 +23,7 @@ var combo_break := ComboBreakRules.new()
 ## used for limits such as serving 5 creatures or clearing 10 lines.
 var finish_condition := Milestone.new()
 
-## The level id used for saving/loading data.
+## Level id used for saving/loading data.
 var id := ""
 
 ## Sequence of puzzle inputs to be replayed for things such as tutorials.
@@ -33,13 +33,13 @@ var input_replay := InputReplay.new()
 ## have different rules.
 var lose_condition := LoseConditionRules.new()
 
-## The level name shown in menus.
+## Level name shown in menus.
 var name := ""
 
 ## Rules which are unique enough that it doesn't make sense to put them in their own groups.
 var other := OtherRules.new()
 
-## The selection of pieces provided to the player.
+## Selection of pieces provided to the player.
 var piece_types := PieceTypeRules.new()
 
 ## Tweaks to rank calculation.

@@ -23,7 +23,7 @@ export (PackedScene) var RegionButtonScene: PackedScene
 ## Array of CareerRegion and OtherRegion instances to show
 var regions: Array setget set_regions
 
-## the current page of regions being shown
+## current page of regions being shown
 var _page := 0
 
 var _regions_by_page := []

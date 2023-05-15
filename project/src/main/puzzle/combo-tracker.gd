@@ -9,7 +9,7 @@ signal combo_break_changed(value)
 ## bonus points which are awarded as the player continues a combo
 const COMBO_SCORE_ARR := [0, 0, 5, 5, 10, 10, 15, 15, 20]
 
-## The number of pieces the player has dropped without clearing a line or making a box.
+## Number of pieces the player has dropped without clearing a line or making a box.
 var combo_break := 0 setget set_combo_break
 
 ## 'true' if the player drops a piece which continues the combo (typically, making a box or clearing a line)

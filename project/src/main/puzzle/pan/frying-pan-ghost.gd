@@ -1,5 +1,5 @@
 extends Sprite
-## A frying pan which vanishes when the player loses a life.
+## Frying pan which vanishes when the player loses a life.
 
 export (Vector2) var velocity: Vector2
 

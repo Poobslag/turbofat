@@ -1,10 +1,10 @@
 tool
 extends Sprite
-## An exit on the floor which the player can step on to go somewhere else.
+## Exit on the floor which the player can step on to go somewhere else.
 ##
 ## Stepping on this exit results transitions to a new scene.
 
-## The direction the exit is facing. Also the direction the player needs to move to use the exit.
+## Direction the exit is facing. Also the direction the player needs to move to use the exit.
 enum ExitDirection {
 	NORTH,
 	NORTHEAST,
@@ -25,7 +25,7 @@ const SOUTHWEST := ExitDirection.SOUTHWEST
 const WEST := ExitDirection.WEST
 const NORTHWEST := ExitDirection.NORTHWEST
 
-## the direction the exit is facing. Also the direction the player needs to move to use the exit
+## direction the exit is facing. Also the direction the player needs to move to use the exit
 export (ExitDirection) var exit_direction := ExitDirection.NORTH setget set_exit_direction
 
 ## sprite sheet for when the exit faces east or west

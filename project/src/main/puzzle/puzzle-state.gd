@@ -64,17 +64,17 @@ const READY_DURATION := 1.4
 ## Number of points deducted from the player's score if they top out.
 const TOP_OUT_PENALTY := 100
 
-## the current input frame for recording/replaying the player's inputs. a value of '-1' indicates that no input should
+## current input frame for recording/replaying the player's inputs. a value of '-1' indicates that no input should
 ## be recorded or replayed yet.
 var input_frame := -1
 
 ## Player's performance on the current level
 var level_performance := PuzzlePerformance.new()
 
-## The scores for each creature in the current level (bonuses and line clears)
+## Scores for each creature in the current level (bonuses and line clears)
 var customer_scores := [0]
 
-## The number of lines the player has cleared without dropping their combo
+## Number of lines the player has cleared without dropping their combo
 var combo := 0 setget set_combo
 
 ## Bonus points awarded during the current combo. This only includes bonuses
@@ -97,7 +97,7 @@ var finish_triggered: bool
 ## 'true' if the end has been triggered by dying or meeting a finish condition
 var game_ended: bool
 
-## the speed the player is currently on, if the level has different speeds.
+## speed the player is currently on, if the level has different speeds.
 var speed_index: int setget set_speed_index
 
 ## This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
@@ -129,7 +129,7 @@ func _physics_process(_delta: float) -> void:
 ## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
 ##
 ## Returns:
-## 	A timer which has been added to the scene tree, and is currently active.
+## 	Timer which has been added to the scene tree, and is currently active.
 func start_timer(wait_time: float) -> Timer:
 	return _timers.start_timer(wait_time)
 
@@ -142,7 +142,7 @@ func start_timer(wait_time: float) -> Timer:
 ## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
 ##
 ## Returns:
-## 	A timer which has been added to the scene tree, but is not yet active.
+## 	Timer which has been added to the scene tree, but is not yet active.
 func add_timer(wait_time: float) -> Timer:
 	return _timers.add_timer(wait_time)
 

@@ -10,7 +10,7 @@ const TILE_COLOR := Color("aed8d1")
 ## tilemap to synchronize with
 var source_tile_map: PuzzleTileMap setget set_source_tile_map
 
-## a number in the range [0, 1] which can be set to make the tilemap flash or blink.
+## number in the range [0, 1] which can be set to make the tilemap flash or blink.
 var whiteness := 0.0 setget set_whiteness
 
 func _process(_delta: float) -> void:
@@ -29,9 +29,9 @@ func set_source_tile_map(new_source_tile_map: PuzzleTileMap) -> void:
 	source_tile_map = new_source_tile_map
 
 
-# Refreshes the tilemap's cells to match the source tilemap 1:1.
-#
-# Can be overridden to refresh tiles differently.
+## Refreshes the tilemap's cells to match the source tilemap 1:1.
+##
+## Can be overridden to refresh tiles differently.
 func _refresh_tiles_from_source() -> void:
 	clear()
 	for cell in source_tile_map.get_used_cells():

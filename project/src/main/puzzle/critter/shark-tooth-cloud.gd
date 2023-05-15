@@ -5,13 +5,13 @@ extends Node2D
 
 signal finished_eating
 
-## The number of animation variants in the sprite sheet. We cycle between random variants.
+## Number of animation variants in the sprite sheet. We cycle between random variants.
 const TOOTH_VARIANT_COUNT := 5
 
-## The start position for the tilemap of eaten tiles. The tilemap moves down as the shark eats.
+## Start position for the tilemap of eaten tiles. The tilemap moves down as the shark eats.
 const TILE_MAP_START_POSITION := Vector2(144, 296)
 
-## The path to the Particles2D which emits crumb particles as a piece is eaten.
+## Path to the Particles2D which emits crumb particles as a piece is eaten.
 export (NodePath) var crumbs_path: NodePath
 
 export (PackedScene) var PuzzleTileMapScene: PackedScene
@@ -19,25 +19,25 @@ export (PackedScene) var PuzzleTileMapScene: PackedScene
 ## Can be set to 'true' to activate the tooth cloud's various eating effects.
 export (bool) var eating: bool = false setget set_eating
 
-## The tile index in the PuzzleTileMap's tileset which is currently being eaten (piece, box, vegetable...)
+## Tile index in the PuzzleTileMap's tileset which is currently being eaten (piece, box, vegetable...)
 var eaten_tile := 0
 
-## The autotile_y for the flavor of pieces being eaten (chocolate, fruit, bread...)
+## Autotile_y for the flavor of pieces being eaten (chocolate, fruit, bread...)
 var eaten_autotile_y := 0
 
-## The duration in seconds the shark takes to eat.
+## Duration in seconds the shark takes to eat.
 var eat_duration := Shark.DEFAULT_EAT_DURATION
 
 ## node which contains any child PuzzleTileMap node
 onready var _tilemap_holder: Control = $TileMapHolder
 
-## The eaten piece tilemap.
+## Eaten piece tilemap.
 onready var _tile_map: PuzzleTileMap
 
 ## Dust clouds which appear over the shark's mouth while they eat.
 onready var _clouds: SharkClouds = $Clouds
 
-## A cyclone of teeth which appears over the shark's mouth while they eat.
+## Cyclone of teeth which appears over the shark's mouth while they eat.
 onready var _tooth: Sprite = $Tooth
 
 ## Emits crumb particles as a piece is eaten.
@@ -88,7 +88,7 @@ func clear_eaten_cells() -> void:
 ## Updates the tileset for the eaten piece tilemap.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': an enum from TileSetType referencing the tileset used to render blocks
+## 	'new_puzzle_tile_set_type': enum from TileSetType referencing the tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	_check_for_tilemap()
 	_tile_map.set_puzzle_tile_set_type(new_puzzle_tile_set_type)

@@ -13,7 +13,7 @@ signal chatter_talked(chatter)
 ## emitted when a chat event is played containing metadata
 ##
 ## Parameters:
-## 	'meta_item': (String) A single meta item
+## 	'meta_item': (String) Single meta item
 signal chat_event_meta_played(meta_item)
 
 ## emitted when creatures enter or exit a conversation
@@ -133,7 +133,7 @@ func _update_visible() -> void:
 ## creature referenced by the metadata and performs the appropriate action.
 ##
 ## Parameters:
-## 	'chat_event': (Unused) The chat event whose metadata should be applied. This is unused by OverworldUi but can be
+## 	'chat_event': (Unused) Chat event whose metadata should be applied. This is unused by OverworldUi but can be
 ## 		utilized by subclasses who extend this method.
 ##
 ## 	'meta_item': The metadata item to apply.

@@ -1,5 +1,5 @@
 class_name LevelTriggerEffect
-## An abstract class describing the effect of a level trigger.
+## Abstract class describing the effect of a level trigger.
 ##
 ## A LevelTriggerEffect might subtract points from the player's score, rotate a piece or turn the playfield invisible.
 

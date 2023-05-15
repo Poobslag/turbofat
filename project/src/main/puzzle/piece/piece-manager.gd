@@ -34,10 +34,10 @@ signal hard_dropped(piece) # emitted when the player presses the hard drop key
 signal dropped(piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 signal squish_moved(piece, old_pos)
 
-# emitted when the player places a sealed-in piece with a spin move
+## emitted when the player places a sealed-in piece with a spin move
 signal finished_spin_move(piece, lines_cleared)
 
-# emitted when the player places a sealed-in piece with a squish move
+## emitted when the player places a sealed-in piece with a squish move
 signal finished_squish_move(piece, lines_cleared)
 
 ## emitted for piece locks
@@ -46,10 +46,10 @@ signal lock_started(piece)
 
 signal tiles_changed(tile_map)
 
-## the z index the piece manager's tilemap defaults to
+## z index the piece manager's tilemap defaults to
 const TILE_MAP_DEFAULT_Z_INDEX := 3
 
-## the z index the piece manager's tilemap switches to temporarily when topping out
+## z index the piece manager's tilemap switches to temporarily when topping out
 const TILE_MAP_TOP_OUT_Z_INDEX := 4
 
 export (NodePath) var playfield_path: NodePath

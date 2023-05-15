@@ -1,5 +1,5 @@
 extends RichTextLabel
-## A label for tutorials which shows the keybinds.
+## Label for tutorials which shows the keybinds.
 
 func _ready() -> void:
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")

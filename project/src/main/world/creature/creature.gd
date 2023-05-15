@@ -64,15 +64,15 @@ var creature_short_name: String
 var chat_theme := ChatTheme.new() setget set_chat_theme
 var chat_extents: Vector2 setget ,get_chat_extents
 
-## the direction the creature wants to move, in isometric and non-isometric coordinates
+## direction the creature wants to move, in isometric and non-isometric coordinates
 var iso_walk_direction := Vector2.ZERO
 var non_iso_walk_direction := Vector2.ZERO setget set_non_iso_walk_direction
 
-## the number of times the creature was fed during this puzzle
+## number of times the creature was fed during this puzzle
 var feed_count := 0
 var box_feed_count := 0
 
-## the minimum fatness; some creatures never get very thin
+## minimum fatness; some creatures never get very thin
 var min_fatness := 1.0
 
 ## how fast the creature should gain weight during a puzzle. 4.0x = four times faster than normal.
@@ -82,7 +82,7 @@ var weight_gain_scale := 1.0
 ## how fast the creature should lose weight between puzzles. 0.25x = four times slower than normal.
 var metabolism_scale := 1.0
 
-## the base fatness when the creature enters the restaurant
+## base fatness when the creature enters the restaurant
 ## player score is added to this to determine their new fatness
 var base_fatness := 1.0
 
@@ -91,11 +91,11 @@ var creature_visuals: CreatureVisuals
 ## 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
 
-## the velocity the player is moving, in isometric and non-isometric coordinates
+## velocity the player is moving, in isometric and non-isometric coordinates
 var _iso_velocity := Vector2.ZERO
 var _non_iso_velocity := Vector2.ZERO
 
-## a number from [0.0 - 1.0] based on how fast the creature can move with their current animation
+## number from [0.0 - 1.0] based on how fast the creature can move with their current animation
 var _run_anim_speed := 1.0
 
 ## handles animations and audio/visual effects for a creature
@@ -318,7 +318,7 @@ func play_goodbye_voice() -> void:
 
 
 ## Parameters:
-## 	'food_type': An enum from FoodType corresponding to the food to show
+## 	'food_type': Enum from FoodType corresponding to the food to show
 func feed(food_type: int) -> void:
 	feed_count += 1
 	box_feed_count += 1

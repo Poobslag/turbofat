@@ -19,7 +19,7 @@ const MAX_VOLUME := 0.0
 
 var all_bgms: Array
 
-## the music currently playing
+## music currently playing
 var current_bgm: CheckpointSong
 
 ## true if the music should have a low-pass filter applied; used during nighttime

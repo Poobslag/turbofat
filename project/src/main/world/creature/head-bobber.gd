@@ -23,11 +23,11 @@ export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB setget set_head_bob_mo
 export (float) var head_motion_pixels := 2.0
 export (float) var head_motion_seconds := 6.5
 
-## the creature's head bobs up and down slowly, these constants control how much it bobs
+## these constants control how much the creature's head bobs up and down
 const HEAD_BOB_SECONDS := 6.5
 const HEAD_BOB_PIXELS := 2.0
 
-## the total number of seconds which have elapsed since the object was created
+## total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
 
 func _process(delta: float) -> void:

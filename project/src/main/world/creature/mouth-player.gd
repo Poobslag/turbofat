@@ -1,7 +1,7 @@
 #tool #uncomment to view creature in editor
 class_name MouthPlayer
 extends AnimationPlayer
-## An AnimationPlayer which animates mouths.
+## AnimationPlayer which animates mouths.
 
 ## emote animations which should result in a frown, if the mouth is capable of frowning
 const FROWN_ANIMS := {

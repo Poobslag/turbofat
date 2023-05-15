@@ -1,6 +1,6 @@
 class_name LevelSelectButton
 extends Button
-## A button on the level select screen which launches a level.
+## Button on the level select screen which launches a level.
 ##
 ## The button adjusts its rect_min_size based on level duration.
 
@@ -14,7 +14,7 @@ enum LevelSize {
 	LONG
 }
 
-## the status whether or not a level is locked/unlocked
+## status whether or not a level is locked/unlocked
 enum LockStatus {
 	NONE, # not locked
 	CLEARED, # cleared without any rank; used for tutorials
@@ -45,13 +45,13 @@ const VERTICAL_SPACING := 6
 
 var level_id: String
 
-## An enum from LevelSize for the duration of the level. this affects the button size
+## Enum from LevelSize for the duration of the level. This affects the button size
 var level_duration: int = LevelSize.MEDIUM setget set_level_duration
 
-## the status whether or not this level is locked/unlocked
+## status whether or not this level is locked/unlocked
 var lock_status: int = STATUS_NONE setget set_lock_status
 
-## the number of remaining levels the player needs to play to unlock this level
+## number of remaining levels the player needs to play to unlock this level
 var keys_needed := -1 setget set_keys_needed
 
 var level_name: String setget set_level_name
@@ -63,7 +63,7 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
 
-## The button's background color. If omitted, the button will use a pseudo-random background color based on its id
+## Button's background color. If omitted, the button will use a pseudo-random background color based on its id
 var bg_color: Color setget set_bg_color
 
 onready var _label := $Label

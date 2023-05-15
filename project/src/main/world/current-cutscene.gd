@@ -7,10 +7,10 @@ extends Node
 ## 	'chat_key': A chat key such as 'chat/marsh_prologue'
 signal cutscene_played(chat_key)
 
-## The chat key for the cutscene currently being launched or played
+## Chat key for the cutscene currently being launched or played
 var chat_key: String
 
-## The chat tree for the cutscene currently being launched or played
+## Chat tree for the cutscene currently being launched or played
 var chat_tree: ChatTree
 
 ## Stores the launched cutscene data, so the cutscene can be played later.

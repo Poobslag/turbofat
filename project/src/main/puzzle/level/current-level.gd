@@ -11,25 +11,24 @@ signal best_result_changed
 ## This is especially true for practice levels such as the 3 minute sprint level.
 var keep_retrying := false
 
-## The settings for the level currently being launched or played
+## Settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level
 
-## The puzzle scene
 var puzzle: Puzzle
 
 ## The level which was originally launched. Some tutorial levels transition
 ## into other levels, so this keeps track of the original.
 var level_id: String
 
-## The piece speed to adjust the level to
+## Piece speed to adjust the level to
 var piece_speed: String
 
-## The customers to queue up at the start of the level. If absent, random customers will be queued.
+## Customers to queue up at the start of the level. If absent, random customers will be queued.
 ##
 ## This array can hold a combination of creature ids and CreatureDef instances.
 var customers: Array
 
-## The creature who will be the chef for the level. If absent, the player will be the chef.
+## Creature who will be the chef for the level. If absent, the player will be the chef.
 var chef_id: String
 
 ## Tracks when the player finishes a level.
@@ -38,7 +37,7 @@ var best_result: int = Levels.Result.NONE setget set_best_result
 ## How many times the player has tried the level in this session.
 var attempt_count := 0
 
-## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
+## Human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
 var puzzle_environment_name: String
 
 func _ready() -> void:

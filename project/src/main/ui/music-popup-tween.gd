@@ -8,13 +8,13 @@ enum PopupState {
 	POPPING_OUT # moving offscreen
 }
 
-## the how long it takes the popup to slide in or out of view
+## how long it takes the popup to slide in or out of view
 const TWEEN_DURATION := 0.2
 
-## the duration in seconds that the popup remains visible
+## duration in seconds that the popup remains visible
 const POPUP_DURATION := 4.0
 
-## the music panel's y coordinate when popped in and when popped out
+## music panel's y coordinate when popped in and when popped out
 const POP_IN_Y := 32
 const POP_OUT_Y := 0
 

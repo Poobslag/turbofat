@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the shark puzzle critter.
+## Demo which shows off the shark puzzle critter.
 ##
 ## Keys:
 ## [0]: Disappear

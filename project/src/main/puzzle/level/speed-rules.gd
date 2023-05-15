@@ -13,7 +13,7 @@ func _init() -> void:
 ## Adds criteria for speeding up, such as a time, score, or line limit.
 ##
 ## Parameters:
-## 	'type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+## 	'type': milestone criteria (lines, score, time)
 ##
 ## 	'value': an value describing the milestone criteria (number of lines, points, seconds)
 ##

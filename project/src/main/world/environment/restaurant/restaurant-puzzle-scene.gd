@@ -6,7 +6,7 @@ signal food_eaten(food_type)
 
 signal current_customer_index_changed(value)
 
-## the index of the customer being served
+## index of the customer being served
 var current_customer_index := 0 setget set_current_customer_index
 
 onready var _world := $World
@@ -31,7 +31,7 @@ func set_current_customer_index(new_index: int) -> void:
 ## Parameters:
 ## 	'creature_def': defines the customer's attributes such as name and appearance.
 ##
-## 	'customer_index': (Optional) The index of the customer to update. Defaults to the current creature.
+## 	'customer_index': (Optional) Index of the customer to update. Defaults to the current creature.
 func summon_customer(creature_def: CreatureDef, customer_index: int = -1) -> void:
 	var customer := get_customer(customer_index)
 	customer.set_creature_def(creature_def)
@@ -49,7 +49,7 @@ func get_customers() -> Array:
 ## Returns the specified customer.
 ##
 ## Parameters:
-## 	'customer_index': (Optional) The index of the customer to return. Defaults to the current creature.
+## 	'customer_index': (Optional) Index of the customer to return. Defaults to the current creature.
 func get_customer(customer_index: int = -1) -> Creature:
 	return _world.customers[current_customer_index] if customer_index == -1 else _world.customers[customer_index]
 

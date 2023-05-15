@@ -2,10 +2,10 @@ class_name SharkSfx
 extends Node
 ## Sound effects for sharks, puzzle critters which eat pieces.
 
-## The pitch scale to apply to most shark noises. Smaller sharks make higher pitched noises.
+## Pitch scale to apply to most shark noises. Smaller sharks make higher pitched noises.
 var pitch_scale := 1.00
 
-## The duration in seconds the shark takes to eat.
+## Duration in seconds the shark takes to eat.
 var eat_duration := Shark.DEFAULT_EAT_DURATION
 
 ## Friendly sounds the shark makes when it finishes eating.

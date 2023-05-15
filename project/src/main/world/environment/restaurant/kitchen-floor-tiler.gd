@@ -20,10 +20,10 @@ const KITCHEN_FLAWED_CELLS := [
 ## percent of kitchen cells without imperfections, in the range [0.0, 1.0]
 const KITCHEN_QUALITY := 0.93
 
-## The parent tilemap's tile ID for kitchen floor tiles
+## Parent tilemap's tile ID for kitchen floor tiles
 export (int) var kitchen_tile_index: int = -1
 
-## An editor toggle which manually applies autotiling.
+## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855

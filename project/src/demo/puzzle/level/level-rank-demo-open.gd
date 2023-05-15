@@ -1,7 +1,7 @@
 extends HBoxContainer
 ## UI input for specifying the level to open
 
-## The level to open
+## Level to open
 ## Virtual property; value is only exposed through getters/setters
 var value: String setget set_value, get_value
 

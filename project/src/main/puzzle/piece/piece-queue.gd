@@ -22,7 +22,7 @@ const CHEAT_BAG_SIZE := 9
 ## queue of upcoming NextPiece instances
 var pieces := []
 
-## the held piece if the player has enabled the hold piece cheat
+## held piece if the player has enabled the hold piece cheat
 var hold_piece: NextPiece = _new_next_piece(PieceTypes.piece_null)
 
 ## default pieces to pull from if none are provided by the level

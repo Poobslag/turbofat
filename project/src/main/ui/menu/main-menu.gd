@@ -1,6 +1,6 @@
 class_name MainMenu
 extends Control
-## The menu the player sees after starting the game.
+## Menu the player sees after starting the game.
 ##
 ## Includes buttons for starting a new game, launching the level editor, and exiting the game.
 

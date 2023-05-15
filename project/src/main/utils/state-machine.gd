@@ -1,6 +1,6 @@
 class_name StateMachine
 extends Node
-## An implementation of the state pattern.
+## Implementation of the state pattern.
 ##
 ## State nodes can be added to this node as children. This class provides logic for switching between its child states,
 ## invoking their methods, and emitting signals.
@@ -8,10 +8,10 @@ extends Node
 ## emitted once when a state is entered
 signal entered_state(prev_state, state)
 
-## the currently active state
+## currently active state
 var _state: State
 
-## the host object which is passed into each state
+## host object which is passed into each state
 onready var _host := get_parent()
 
 ## Calls 'update' on the currently active state, and changes the current state if necessary.

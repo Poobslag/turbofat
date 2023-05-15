@@ -7,19 +7,19 @@ const ID_RANK := "rank"
 const ID_SANDBOX := "practice/sandbox"
 const ID_TUTORIAL := "tutorial"
 
-## A flag for practice mode's training regions
+## Flag for practice mode's training regions
 const FLAG_TRAINING := "training"
 
-## The region id used for identifying unique regions in source code
+## Region id used for identifying unique regions in source code
 var id: String
 
-## A human-readable name to show when this group is in a menu, such as 'Training: Marathon'
+## Human-readable name to show when this group is in a menu, such as 'Training: Marathon'
 var name: String
 
-## A human readable name to show when this group is in a part of a level's name, such as 'Marathon'
+## Human readable name to show when this group is in a part of a level's name, such as 'Marathon'
 var branch_name: String
 
-## A human-readable tagline describing this career region.
+## Human-readable tagline describing this career region.
 var description: String
 
 ## Returns 'true' if this region has the specified flag.
@@ -30,10 +30,10 @@ var flags: Dictionary = {}
 ## List of string level ids for levels in this region
 var level_ids := []
 
-## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
+## Human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
 var puzzle_environment_name: String
 
-## A human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
+## Human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
 var region_button_name: String
 
 func from_json_dict(json: Dictionary) -> void:

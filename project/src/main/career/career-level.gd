@@ -11,7 +11,7 @@ var chef_id: String
 var customer_ids: Array
 var observer_id: String
 
-## A boolean condition which enables this level, such as 'chat_finished chat/career/marsh/30_c_end'
+## Boolean condition which enables this level, such as 'chat_finished chat/career/marsh/30_c_end'
 var available_if: String
 
 func from_json_dict(json: Dictionary) -> void:

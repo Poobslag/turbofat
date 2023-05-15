@@ -32,5 +32,5 @@ var columns: Array = []
 ## how many turns/seconds/cycles the moles dig for
 var dig_duration: int = 3
 
-## the reward the moles dig up
+## reward the moles dig up
 var reward: int = Reward.STAR

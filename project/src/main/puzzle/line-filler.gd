@@ -18,16 +18,16 @@ export (NodePath) var pickups_path: NodePath
 
 export (NodePath) var tile_map_path: NodePath
 
-## key: (String) a tiles key for tiles referenced by level rules
-## value: (int) the next row to fill from the referenced tiles
+## key: (String) tiles key for tiles referenced by level rules
+## value: (int) next row to fill from the referenced tiles
 var _row_index_by_tiles_key := {}
 
-## key: (String) a tiles key for the tiles referenced by level rules
+## key: (String) tiles key for the tiles referenced by level rules
 ## value: (Array, int) array of possible next rows to fill from the referenced tiles
 var _row_bag_by_tiles_key := {}
 
-## key: (String) a tiles key for tiles referenced by level rules
-## value: (int) the total number of rows in the referenced tiles
+## key: (String) tiles key for tiles referenced by level rules
+## value: (int) total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
 ## List of frame timings for scheduled line fills.
@@ -36,10 +36,10 @@ var _lines_being_filled := []
 ## Remaining frame count for scheduled line fills.
 var _remaining_line_fill_frames := 0
 
-## The next line being filled for scheduled line fills.
+## Next line being filled for scheduled line fills.
 var _filled_line_index := 0
 
-## The index of the next line fill sound to play.
+## Index of the next line fill sound to play.
 var _line_fill_sfx_index := 0
 
 onready var _pickups: Pickups = get_node(pickups_path)

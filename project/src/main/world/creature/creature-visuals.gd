@@ -48,13 +48,13 @@ export (bool) var _reset_creature setget reset_creature
 ## toggle to generate a creature with a random appearance
 export (bool) var _random_creature setget random_creature
 
-## the state of whether the creature is walking, running or idle
+## state of whether the creature is walking, running or idle
 export (Creatures.MovementMode) var movement_mode := Creatures.IDLE setget set_movement_mode
 
-## the direction the creature is facing
+## direction the creature is facing
 export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST setget set_orientation
 
-## describes the colors and textures used to draw the creature
+## colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
 
 ## how fat the creature looks right now; gradually approaches the 'fatness' property
@@ -81,7 +81,7 @@ var _base_scale: Vector2 = Vector2.ONE
 ## forces listeners to update their animation frame
 var _force_orientation_change := false
 
-## the food type the creature is eating
+## food type the creature is eating
 var _food_type: int
 
 var creature_sfx: CreatureSfx setget set_creature_sfx
@@ -277,7 +277,7 @@ func rescale(new_scale_x: float, new_scale_y: float = -1, is_base_scale: bool = 
 ## Launches the 'feed' animation. The creature makes a biting motion and plays a munch sound.
 ##
 ## Parameters:
-## 	'food_type': An enum from FoodType corresponding to the food to show
+## 	'food_type': Enum from FoodType corresponding to the food to show
 func feed(food_type: int) -> void:
 	if not visible:
 		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or

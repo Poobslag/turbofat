@@ -2,10 +2,10 @@ class_name GoopViewports
 extends Control
 ## Maintains viewports for drawing smeared snack/cake goop globs.
 
-## the minimum smear size for globs which are smeared slowly.
+## minimum smear size for globs which are smeared slowly.
 export (float) var glob_min_scale := 1.0
 
-## the maximum smear size for globs which are smeared quickly.
+## maximum smear size for globs which are smeared quickly.
 export (float) var glob_max_scale := 1.0
 
 export (PackedScene) var GoopGlobScene: PackedScene

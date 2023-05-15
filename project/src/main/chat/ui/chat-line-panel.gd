@@ -9,7 +9,7 @@ extends Panel
 const PULSE_PERIOD := 5.385
 const PULSE_AMOUNT := Vector2(0.015, 0.030)
 
-## The number of available background textures
+## Number of available background textures
 const CHAT_TEXTURE_COUNT := 16
 
 ## Different panel sizes to try, ordered from smallest to largest.

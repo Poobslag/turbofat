@@ -1,12 +1,12 @@
 class_name RegionSelectButton
 extends MarginContainer
-## A button on the region select screen which selects a career region.
+## Button on the region select screen which selects a career region.
 ##
 ## For layout purposes, this is technically not an actual Button object but instead is a Control which has a Button in
 ## it. However, it supports several button behaviors such as the disabled property and focus_entered/focus_exited
 ## signals.
 
-## A list of different button types which decide the image shown on the button.
+## List of different button types which decide the image shown on the button.
 enum Type {
 	NONE,
 	LEMON,
@@ -25,8 +25,8 @@ var _focus_just_entered := false
 ## 'true' if the 'region started' signal should be emitted in response to a button click.
 var _emit_region_chosen := false
 
-## key: (int) an enum from RegionSelectButton.Type
-## value: (Array, Resource) a pair of texture resources to use when the button is enabled or disabled
+## key: (Type)
+## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
 var _texture_pairs_by_type := {
 	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),
 			preload("res://assets/main/career/ui/region-default-off.png")],
@@ -43,19 +43,19 @@ var _texture_pairs_by_type := {
 ## text to show at the top of the button, like 'Merrymellow Marsh'
 var region_name := "" setget set_region_name
 
-## the button's visual index, the leftmost shown button has an index of '0'
+## button's visual index, the leftmost shown button has an index of '0'
 var button_index := 0 setget set_button_index
 
 ## 'true' if the button is disabled
 var disabled := false setget set_disabled
 
-## The image shown on the button.
+## Image shown on the button.
 var button_type: int = Type.NONE setget set_button_type
 
-## An array of level ranks for levels in this region. Incomplete levels are treated as rank 999.
+## Array of level ranks for levels in this region. Incomplete levels are treated as rank 999.
 var ranks := []
 
-## A number in the range [0.0, 1.0] for how close the player is to completing the region.
+## Number in the range [0.0, 1.0] for how close the player is to completing the region.
 var completion_percent := 0.0
 
 onready var grade_hook := $Button/GradeHook

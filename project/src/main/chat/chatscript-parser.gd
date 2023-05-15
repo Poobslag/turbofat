@@ -20,7 +20,7 @@ class AbstractState:
 		return ""
 
 
-# -----------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 ## Default parser state for parsing headers and metadata.
 ##
@@ -55,7 +55,7 @@ class DefaultState extends AbstractState:
 			result = StringUtils.default_if_empty(result, CHAT)
 		return result
 
-# -----------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 ## Parser state for parsing location data (where a conversation takes place).
 class LocationState extends AbstractState:
@@ -75,7 +75,7 @@ class LocationState extends AbstractState:
 			result = DEFAULT
 		return result
 
-# -----------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 ## Parser state for parsing character data (participants in a conversation).
 class CharactersState extends AbstractState:
@@ -148,7 +148,7 @@ class CharactersState extends AbstractState:
 		if creature_id and character_alias:
 			_character_aliases[character_alias] = creature_id
 
-# -----------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 ## Parser state for parsing chat lines (chat events and branches)
 class ChatState extends AbstractState:
@@ -160,10 +160,10 @@ class ChatState extends AbstractState:
 	## value: (String) alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
-	## The current chat event being parsed. Any parsed metadata and links will be attached to this event.
+	## Current chat event being parsed. Any parsed metadata and links will be attached to this event.
 	var _event: ChatEvent
 	
-	## The current branch key being parsed. Any additional chat events will be attached to this branch.
+	## Current branch key being parsed. Any additional chat events will be attached to this branch.
 	var _branch_key := ""
 	
 	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
@@ -337,7 +337,7 @@ class ChatState extends AbstractState:
 		return result
 
 
-# -----------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 ## Current version for saved chatscript data. Should be updated if and only if the chat format breaks backwards
 ## compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
@@ -345,7 +345,7 @@ const CHATSCRIPT_VERSION := "2476"
 
 ## Emoticons which can appear at the start of a chat line to define its mood
 ## key: (String) String emoji representing a chatscript mood
-## value: (int) An enum from Creatures.Mood
+## value: (int) Enum from Creatures.Mood
 const MOOD_PREFIXES := {
 	"._.": Creatures.Mood.DEFAULT,
 	"<_<": Creatures.Mood.AWKWARD0,
@@ -389,7 +389,7 @@ const MOOD_PREFIXES := {
 
 ## Different directions a creature can face
 ## key: (String) String representing a direction a creature can face
-## value: (int) An enum from Creatures.Orientation
+## value: (int) Enum from Creatures.Orientation
 const ORIENTATION_STRINGS := {
 	"left": Creatures.SOUTHWEST,
 	"right": Creatures.SOUTHEAST,
@@ -409,7 +409,7 @@ const CHAT := "chat"
 ## value: (AbstractState) parser state
 var _states_by_name: Dictionary
 
-## the chat tree being parsed
+## chat tree being parsed
 var _chat_tree := ChatTree.new()
 var _state: AbstractState
 

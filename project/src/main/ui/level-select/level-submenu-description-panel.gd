@@ -1,5 +1,5 @@
 extends Panel
-## A panel on the level select screen which shows level descriptions.
+## Panel on the level select screen which shows level descriptions.
 
 var text: String setget set_text
 

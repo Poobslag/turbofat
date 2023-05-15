@@ -25,7 +25,7 @@ onready var _chat_choices: ChatChoices = $ChatChoices
 onready var _chat_frame: ChatFrame = $ChatFrame
 onready var _narration_frame: NarrationFrame = $NarrationFrame
 
-## the chat tree currently being played.
+## chat tree currently being played.
 var _chat_tree: ChatTree
 
 ## true if the player has advanced past the last line in the chat tree

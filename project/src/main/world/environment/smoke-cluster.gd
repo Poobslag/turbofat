@@ -1,7 +1,7 @@
 class_name SmokeCluster
 extends Particles2D
 
-## The velocity applied to the food when in the 'floating' state
+## Velocity applied to the food when in the 'floating' state
 export (Vector2) var velocity := Vector2(0, -250)
 
 func _ready() -> void:

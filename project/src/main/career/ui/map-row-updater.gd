@@ -1,7 +1,7 @@
 extends Node
 ## Updates the career mode's chalkboard map based on how far the player has travelled.
 
-# Number of regions to show on the chalkboard map
+## Number of regions to show on the chalkboard map
 const REGIONS_BEFORE := 2
 const REGIONS_AFTER := 3
 

@@ -1,7 +1,7 @@
 extends State
 ## The shark is eating a piece.
 
-# if the eating duration is shorter than this, we use a short 'bite' sound effect
+## if the eating duration is shorter than this, we use a short 'bite' sound effect
 const BITE_SFX_THRESHOLD := 0.30
 
 func enter(shark: Shark, prev_state_name: String) -> void:

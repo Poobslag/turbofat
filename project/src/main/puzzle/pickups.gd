@@ -22,7 +22,7 @@ export (PackedScene) var PickupScene: PackedScene
 ## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
-## the next pickup sound effect to play
+## next pickup sound effect to play
 var _pickup_sfx_index := 0
 
 ## how many more pickup sounds should play after the current one

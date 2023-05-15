@@ -1,5 +1,5 @@
 extends CanvasLayer
-## A screen which shows the player's progress through career mode.
+## Screen which shows the player's progress through career mode.
 ##
 ## This includes a chalkboard map showing the player's position, and a clock at the top showing the time.
 
@@ -7,10 +7,10 @@ signal progress_board_shown
 
 signal progress_board_hidden
 
-## The amount of time in seconds to wait before hiding the progress board after an animation.
+## Amount of time in seconds to wait before hiding the progress board after an animation.
 const ANIMATED_HIDE_DELAY := 1.2
 
-## The amount of time in seconds to wait before hiding the progress board when it is not being animated.
+## Amount of time in seconds to wait before hiding the progress board when it is not being animated.
 const STATIC_HIDE_DELAY := 2.0
 
 ## If 'true', the board will not hide itself. Used for demos/debugging.
@@ -19,25 +19,25 @@ export (bool) var suppress_hide := false
 ## Backdrop which darkens parts of the scene behind the progress board.
 onready var _backdrop := $Backdrop
 
-## The analog clock and digital text which appear above the progress board.
+## Analog clock and digital text which appear above the progress board.
 onready var _clock := $Clock
 
-## A timer which hides the progress board.
+## Timer which hides the progress board.
 onready var _hide_timer := $HideTimer
 
-# A timer which triggers the animation of the player advancing and clock moving forward.
+## Timer which triggers the animation of the player advancing and clock moving forward.
 onready var _animate_start_timer := $AnimateStartTimer
 
 ## Spots and lines drawn to show a trail across the progress board.
 onready var _trail := $ChalkboardRegion/Trail
 
-## The title at the top of the progress board.
+## Title at the top of the progress board.
 onready var _title := $ChalkboardRegion/Title
 
-## The player's chalk graphics on the progress board.
+## Player's chalk graphics on the progress board.
 onready var _player := $ChalkboardRegion/Player
 
-## The chalk drawing of the region.
+## Chalk drawing of the region.
 onready var _map_holder := $ChalkboardRegion/MapHolder
 
 ## Animation player which makes the progress board 'pop in' and 'pop out' animations.
