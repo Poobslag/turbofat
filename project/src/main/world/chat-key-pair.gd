@@ -38,7 +38,7 @@ func chat_keys() -> Array:
 func from_json_dict(json: Dictionary) -> void:
 	preroll = json.get("preroll", "")
 	postroll = json.get("postroll", "")
-	type = Utils.enum_from_snake_case(ChatKeyPairType, json.get("type"))
+	type = Utils.enum_from_snake_case(ChatKeyPairType, json.get("type")) as ChatKeyPairType
 
 
 func to_json_dict() -> Dictionary:

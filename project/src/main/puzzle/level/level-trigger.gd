@@ -58,7 +58,7 @@ const TIMER_7 := LevelTriggerPhase.TIMER_7
 const TIMER_8 := LevelTriggerPhase.TIMER_8
 const TIMER_9 := LevelTriggerPhase.TIMER_9
 
-## key: (int) enum from LevelTriggerPhase
+## key: (LevelTriggerPhase) enum from LevelTriggerPhase
 ## value: (Array, PhaseCondition) Conditions for whether the trigger should fire
 var phases := {}
 
@@ -151,7 +151,7 @@ func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 	if not LevelTriggerPhase.has(phase_key.to_upper()):
 		push_warning("Unrecognized phase: %s" % [phase_key])
 	var phase_condition: PhaseCondition = PhaseConditions.create(phase_key, phase_config)
-	var phase: int = Utils.enum_from_snake_case(LevelTriggerPhase, phase_key)
+	var phase: LevelTriggerPhase = Utils.enum_from_snake_case(LevelTriggerPhase, phase_key) as LevelTriggerPhase
 	if not phases.has(phase):
 		phases[phase] = []
 	phases[phase].append(phase_condition)

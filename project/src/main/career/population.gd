@@ -41,7 +41,7 @@ class Demographic:
 	var chance: float = 0.0
 	
 	func from_json_string(json: String) -> void:
-		type = Utils.enum_from_snake_case(Creatures.Type, json.split(" ")[0])
+		type = Utils.enum_from_snake_case(Creatures.Type, json.split(" ")[0]) as Creatures.Type
 		var percent_string := json.split(" ")[1]
 		# convert a string like '35%' to a number like 0.35
 		chance = float(percent_string.rstrip("%")) / 100.0
@@ -118,7 +118,7 @@ func has_quirky_observer(observer_id: String) -> bool:
 ##
 ## Returns:
 ## 	Enum from Creatures.Type for a creature type such as 'squirrel'
-func random_creature_type() -> int:
+func random_creature_type() -> Creatures.Type:
 	# Populate a weights map from the demographic values.
 	var weights_map := {}
 	var total_chance := 0.0

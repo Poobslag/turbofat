@@ -244,7 +244,7 @@ func set_orientation(new_orientation: Creatures.Orientation) -> void:
 		# some listeners try to distinguish between 'big orientation changes' and 'little orientation changes'. if
 		# _force_orientation_change is true, we signal to everyone that they cannot transition from the old
 		# orientation by making it something nonsensical
-		old_orientation = -1
+		old_orientation = Creatures.Orientation.NONE
 	
 	emit_signal("orientation_changed", old_orientation, new_orientation)
 
@@ -403,7 +403,7 @@ func _refresh_creature_sfx() -> void:
 ##
 ## For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an
 ## orientation of 'southeast'.
-func _compute_orientation(direction: Vector2) -> int:
+func _compute_orientation(direction: Vector2) -> Creatures.Orientation:
 	if direction.length() == 0:
 		# we default to the current orientation if given a zero-length vector
 		return orientation
@@ -415,7 +415,7 @@ func _compute_orientation(direction: Vector2) -> int:
 	var unrounded_orientation := -2 * direction.angle_to(SOUTHEAST_DIR) / PI
 	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
-		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
+		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4) as Creatures.Orientation
 	return new_orientation
 
 

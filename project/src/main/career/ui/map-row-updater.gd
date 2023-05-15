@@ -91,7 +91,8 @@ func _update_icon_landmarks(start_region_index: int, end_region_index: int) -> v
 		else:
 			# update the landmark with the region's distance and icon
 			var region: CareerRegion = CareerLevelLibrary.regions[region_index]
-			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType, region.icon_name, Landmark.MYSTERY)
+			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType,
+					region.icon_name, Landmark.MYSTERY) as Landmark.LandmarkType
 			landmark_distance = region.start
 		
 		_map.set_landmark_distance(region_index - start_region_index + 1, landmark_distance)

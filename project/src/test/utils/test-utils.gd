@@ -75,10 +75,14 @@ func test_enum_to_snake_case() -> void:
 
 
 func test_enum_from_snake_case() -> void:
-	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt", MoldyFlap.MEATY_FALSE), MoldyFlap.ROB_RECEIPT)
-	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt"), MoldyFlap.ROB_RECEIPT)
-	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610", MoldyFlap.MEATY_FALSE), MoldyFlap.MEATY_FALSE)
-	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610"), MoldyFlap.BIT_PUNY)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt", MoldyFlap.MEATY_FALSE) as MoldyFlap,
+			MoldyFlap.ROB_RECEIPT)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt") as MoldyFlap,
+			MoldyFlap.ROB_RECEIPT)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610", MoldyFlap.MEATY_FALSE) as MoldyFlap,
+			MoldyFlap.MEATY_FALSE)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610") as MoldyFlap,
+			MoldyFlap.BIT_PUNY)
 
 
 func test_seeded_shuffle_shuffles() -> void:

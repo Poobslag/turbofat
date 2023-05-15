@@ -160,12 +160,12 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 		"creature_mood":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
-			var mood: Creatures.Mood = Creatures.Mood.values()[int(meta_item_split[2])]
+			var mood: Creatures.Mood = Creatures.Mood.values()[int(meta_item_split[2]) as Creatures.Orientation]
 			creature.play_mood(mood)
 		"creature_orientation":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
-			var orientation: Creatures.Orientation = int(meta_item_split[2])
+			var orientation: Creatures.Orientation = int(meta_item_split[2]) as Creatures.Orientation
 			creature.set_orientation(orientation)
 	
 	emit_signal("chat_event_meta_played", meta_item)

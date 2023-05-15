@@ -239,7 +239,7 @@ static func enum_to_snake_case(
 ## 	'from': The snake case string to convert
 ##
 ## 	'default': Default value to assume if the specified snake case string is invalid
-static func enum_from_snake_case(enum_dict: Dictionary, from: String, default: int = 0) -> int:
+static func enum_from_snake_case(enum_dict: Dictionary, from: String, default: int = 0):
 	return enum_dict.get(from.to_upper(), default)
 
 

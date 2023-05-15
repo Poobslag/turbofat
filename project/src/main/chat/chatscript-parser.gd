@@ -315,7 +315,7 @@ class ChatState extends AbstractState:
 			var mood := StringUtils.substring_after(item, " mood ")
 			result = "creature_mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		elif " faces " in item:
-			# spira faces left -> creature_orientation spira 1
+			# spira faces left -> creature_orientation spira 2
 			var name := StringUtils.substring_before(item, " faces ")
 			name = _unalias(name)
 			var orientation := StringUtils.substring_after(item, " faces ")

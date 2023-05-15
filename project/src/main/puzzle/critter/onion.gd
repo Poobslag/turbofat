@@ -65,7 +65,7 @@ func set_float_animation_playing(new_float_animation_playing: bool) -> void:
 	emit_signal("float_animation_playing_changed", float_animation_playing)
 
 
-func set_onion_location(new_onion_location: int) -> void:
+func set_onion_location(new_onion_location: OnionLocation) -> void:
 	if onion_location == new_onion_location:
 		return
 	

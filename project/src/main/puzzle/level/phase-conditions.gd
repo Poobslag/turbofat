@@ -23,7 +23,8 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 	func _init(phase_config: Dictionary) -> void:
 		super(phase_config)
 		if phase_config.has("0"):
-			required_pickup_type = Utils.enum_from_snake_case(RequiredPickupType, phase_config["0"])
+			required_pickup_type = Utils.enum_from_snake_case(RequiredPickupType,
+					phase_config["0"]) as RequiredPickupType
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -171,7 +172,8 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 	func _init(phase_config: Dictionary) -> void:
 		super(phase_config)
 		if phase_config.has("0"):
-			required_box_type = Utils.enum_from_snake_case(RequiredBoxType, phase_config["0"])
+			required_box_type = Utils.enum_from_snake_case(RequiredBoxType,
+					phase_config["0"]) as RequiredBoxType
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.

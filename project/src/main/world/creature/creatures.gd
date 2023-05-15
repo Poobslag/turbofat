@@ -3,6 +3,7 @@ class_name Creatures
 
 ## Directions a creature can face
 enum Orientation {
+	NONE,
 	SOUTHEAST,
 	SOUTHWEST,
 	NORTHWEST,

@@ -105,7 +105,7 @@ func from_json_dict(json: Dictionary) -> void:
 	set_hold_piece(json.get("hold_piece", false))
 	set_line_piece(json.get("line_piece", false))
 	set_soft_drop_lock_cancel(json.get("soft_drop_lock_cancel", true))
-	set_velocity(Utils.enum_from_snake_case(Speed, json.get("speed", "")))
+	set_velocity(Utils.enum_from_snake_case(Speed, json.get("speed", "")) as Speed)
 
 
 ## Returns a number in the range [0.0, ∞) for how piece gravity should be modified.

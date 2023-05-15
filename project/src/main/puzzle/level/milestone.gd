@@ -40,7 +40,7 @@ func set_milestone(new_type: Milestone.MilestoneType, new_value: int) -> void:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	type = Utils.enum_from_snake_case(MilestoneType, json.get("type"))
+	type = Utils.enum_from_snake_case(MilestoneType, json.get("type")) as MilestoneType
 	value = int(json.get("value", 0))
 	for key in json.keys():
 		if not key in ["type", "value"]:

@@ -55,7 +55,7 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A))
+	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A)) as SaveSlot
 	
 	var new_locale: String
 	if json.has("locale"):

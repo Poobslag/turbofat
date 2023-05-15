@@ -125,7 +125,7 @@ func test_chatevent_meta_orientation() -> void:
 	var event := chat_tree.get_event()
 	
 	assert_eq(event.text, "Oh? Is someone there?")
-	assert_eq(event.meta, ["creature_orientation john 1"])
+	assert_eq(event.meta, ["creature_orientation john 2"])
 
 
 func test_cutscene_thought() -> void:

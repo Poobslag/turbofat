@@ -57,9 +57,11 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 		if new_config.has("duration"):
 			config.duration = new_config["duration"]
 		if new_config.has("size"):
-			config.size = Utils.enum_from_snake_case(CarrotConfig.CarrotSize, new_config["size"])
+			config.size = Utils.enum_from_snake_case(CarrotConfig.CarrotSize,
+					new_config["size"]) as CarrotConfig.CarrotSize
 		if new_config.has("smoke"):
-			config.smoke = Utils.enum_from_snake_case(CarrotConfig.Smoke, new_config["smoke"])
+			config.smoke = Utils.enum_from_snake_case(CarrotConfig.Smoke,
+					new_config["smoke"]) as CarrotConfig.Smoke
 		if new_config.has("x"):
 			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
 	
@@ -142,7 +144,8 @@ class AddMolesEffect extends LevelTriggerEffect:
 		if new_config.has("count"):
 			config.count = new_config["count"].to_int()
 		if new_config.has("home"):
-			config.home = Utils.enum_from_snake_case(MoleConfig.Home, new_config["home"])
+			config.home = Utils.enum_from_snake_case(MoleConfig.Home,
+					new_config["home"]) as MoleConfig.Home
 		if new_config.has("y"):
 			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
@@ -151,7 +154,8 @@ class AddMolesEffect extends LevelTriggerEffect:
 		if new_config.has("dig_duration"):
 			config.dig_duration = new_config["dig_duration"].to_int()
 		if new_config.has("reward"):
-			config.reward = Utils.enum_from_snake_case(MoleConfig.Reward, new_config["reward"])
+			config.reward = Utils.enum_from_snake_case(MoleConfig.Reward,
+					new_config["reward"]) as MoleConfig.Reward
 	
 	
 	## Adds one or more moles to the playfield.
@@ -201,7 +205,8 @@ class AddSharksEffect extends LevelTriggerEffect:
 		if new_config.has("count"):
 			config.count = new_config["count"].to_int()
 		if new_config.has("home"):
-			config.home = Utils.enum_from_snake_case(SharkConfig.Home, new_config["home"])
+			config.home = Utils.enum_from_snake_case(SharkConfig.Home,
+					new_config["home"]) as SharkConfig.Home
 		if new_config.has("y"):
 			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
@@ -210,7 +215,8 @@ class AddSharksEffect extends LevelTriggerEffect:
 		if new_config.has("patience"):
 			config.patience = new_config["patience"].to_int()
 		if new_config.has("size"):
-			config.size = Utils.enum_from_snake_case(SharkConfig.SharkSize, new_config["size"])
+			config.size = Utils.enum_from_snake_case(SharkConfig.SharkSize,
+					new_config["size"]) as SharkConfig.SharkSize
 	
 	
 	## Adds one or more moles to the playfield.

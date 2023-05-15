@@ -58,6 +58,6 @@ func to_json_dict() -> Dictionary:
 
 func from_json_dict(json: Dictionary) -> void:
 	size = float(json.get("size", 1.00))
-	scheme = int(json.get("scheme", 0))
+	scheme = int(json.get("scheme", 0)) as ControlScheme
 	fat_finger = float(json.get("fat_finger", 0.00))
 	emit_signal("changed")

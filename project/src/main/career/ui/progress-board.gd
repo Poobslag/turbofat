@@ -102,7 +102,8 @@ func refresh() -> void:
 	# refresh region
 	var region := PlayerData.career.current_region()
 	_title.set_text(region.name)
-	var icon_type := Utils.enum_from_snake_case(ProgressBoardTitle.IconType, region.icon_name, ProgressBoardTitle.NONE)
+	var icon_type := Utils.enum_from_snake_case(ProgressBoardTitle.IconType,
+			region.icon_name, ProgressBoardTitle.NONE) as ProgressBoardTitle.IconType
 	_title.set_icon_type(icon_type)
 	_map_holder.set_region_id(region.id)
 	_trail.path2d_path = _trail.get_path_to(_map_holder.path2d)
