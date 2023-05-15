@@ -12,7 +12,7 @@ class BlockBunch:
 	var block_autotile_coords := {}
 	
 	## key: (Vector2i) positions of cells containing a pickup
-	## value: (Foods.BoxType) the pickup's color
+	## value: (Foods.BoxType) pickup's color
 	var pickups := {}
 
 	## Defines a block which will appear on the playfield.

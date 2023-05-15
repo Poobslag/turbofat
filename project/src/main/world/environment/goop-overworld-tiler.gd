@@ -237,12 +237,12 @@ const CORNER_COVERS_BY_BINDING := {
 @export var _autotile: bool: set = autotile
 
 ## key: (TileTypes)
-## value: (int) a tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
+## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_indexes_by_type := {}
 
-## key: (int) a tile index from the parent tilemap
-## value: (TileTypes) specified tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
+## key: (int) tile index from the parent tilemap
+## value: (TileTypes) tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
 var _tile_types_by_index := {}
 
 ## indexes of cake tiles in the parent tilemap, both goopy and goopless
