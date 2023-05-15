@@ -1,13 +1,13 @@
 class_name LoadingOrb
 extends Sprite
-## An orb which floats around the loading screen, launching puzzle pieces.
+## Orb which floats around the loading screen, launching puzzle pieces.
 ##
 ## The player can control the launched puzzle pieces with the direction/rotate buttons.
 
-## The number of frames in our animation. Each frame launches a different puzzle piece.
+## Number of frames in our animation. Each frame launches a different puzzle piece.
 const FRAME_COUNT := 8
 
-## The rate at which to launch puzzle pieces.
+## Rate at which to launch puzzle pieces.
 const PIECES_PER_SECOND := 3.37
 
 ## The loading orb rotates and moves. This field is used to calculate the rotation/position
@@ -16,7 +16,7 @@ var _total_time := 0.0
 ## Sequential pieces launch in different directions. This field influences the launch direction.
 var _launched_piece_count := randi() % 4
 
-## The most recent direction the player pressed.
+## Most recent direction the player pressed.
 var _pressed_dir := Vector2.ZERO
 var _orientation: float
 

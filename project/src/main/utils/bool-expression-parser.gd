@@ -3,7 +3,7 @@ class_name BoolExpressionParser
 ##
 ## This is a recursive descent parser.
 
-## A lexical token which occurs in a boolean expression.
+## Lexical token which occurs in a boolean expression.
 ##
 ## This token represents a single word, and includes data about the occurrence of the word in the original statement.
 class BoolToken:
@@ -18,7 +18,7 @@ class BoolToken:
 		return string
 
 
-## An node in a tree of boolean expressions.
+## Node in a tree of boolean expressions.
 ##
 ## This node includes information about how to evaluate the expression and its children.
 class BoolExpression:
@@ -160,13 +160,13 @@ var _parse_error: String
 ## list of parsed BoolToken instances
 var _tokens := []
 
-## the index of the next BoolToken to process in the token array
+## index of the next BoolToken to process in the token array
 var _token_index := 0
 
-## the boolean string to parse
+## boolean string to parse
 var _string: String
 
-## The target for which the boolean string is being evaluated, if evaluated for a specific creature or level.
+## Target for which the boolean string is being evaluated, if evaluated for a specific creature or level.
 var _subject
 
 ## Initializes the parser, parsing the specified string into a list of BoolTokens.

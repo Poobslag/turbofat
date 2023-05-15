@@ -1,5 +1,5 @@
 extends Panel
-## A panel on the region select screen which shows region descriptions.
+## Panel on the region select screen which shows region descriptions.
 
 onready var _label := $MarginContainer/Label
 

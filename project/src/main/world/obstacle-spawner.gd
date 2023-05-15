@@ -8,16 +8,16 @@ extends Sprite
 
 export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
-## the PackedScene of the spawned obstacle
+## PackedScene of the spawned obstacle
 export (PackedScene) var TargetScene: PackedScene
 
-## the properties of the spawned obstacle
+## properties of the spawned obstacle
 export (Dictionary) var target_properties: Dictionary
 
-## a boolean expression which, if evaluated to 'true', will result in the obstacle being spawned
+## boolean expression which, if evaluated to 'true', will result in the obstacle being spawned
 export (String) var spawn_if: String
 
-## the spawned object, or 'null' if the object has not yet spawned
+## spawned object, or 'null' if the object has not yet spawned
 var spawned_object: Node2D
 
 onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)

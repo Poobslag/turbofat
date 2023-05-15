@@ -53,10 +53,10 @@ const OVERWORLD_ACTION_NAMES := {
 	"ui_menu": true,
 }
 
-## The player's selected keybind preset, or 'Custom' if they've defined their own
+## Player's selected keybind preset, or 'Custom' if they've defined their own
 var preset := GUIDELINE setget set_preset
 
-## A json representation of the player's custom keybinds
+## Json representation of the player's custom keybinds
 var custom_keybinds: Dictionary
 
 func reset() -> void:

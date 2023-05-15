@@ -16,12 +16,12 @@ const MOODS_COMMON := [Creatures.Mood.SMILE0, Creatures.Mood.SMILE1, Creatures.M
 const MOODS_UNCOMMON := [Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH1, Creatures.Mood.LOVE1, Creatures.Mood.AWKWARD0]
 const MOODS_RARE := [Creatures.Mood.AWKWARD1, Creatures.Mood.SIGH0, Creatures.Mood.SWEAT0, Creatures.Mood.THINK0]
 
-## The path to the scene resource defining creatures and obstacles for career regions which do not specify an
+## Path to the scene resource defining creatures and obstacles for career regions which do not specify an
 ## environment, or regions which specify an invalid environment
 const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshEnvironment.tscn"
 
-## key: (String) an environment name which appears in the json definitions
-## value: (String) The path to the scene resource defining creatures and obstacles which appear in
+## key: (String) an Environment name which appears in the json definitions
+## value: (String) Path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
 const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
@@ -35,7 +35,7 @@ export (PackedScene) var MileMarkerScene: PackedScene
 ## Creature instances for 'level creatures', chefs and customers associated with each level.
 var _level_creatures := []
 
-## The index of the focused level creature. This is usually the same as the index of the focused level button, but not
+## Index of the focused level creature. This is usually the same as the index of the focused level button, but not
 ## always. Sometimes two level buttons correspond to the same level creature.
 var _focused_level_creature_index := -1
 

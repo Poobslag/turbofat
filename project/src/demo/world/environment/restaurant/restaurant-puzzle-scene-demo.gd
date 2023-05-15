@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the restaurant scene.
+## Demo which shows off the restaurant scene.
 ##
 ## Keys:
 ## 	[F]: Feed the customer

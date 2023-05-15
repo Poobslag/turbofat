@@ -12,24 +12,24 @@ signal line_inserted(y, tiles_key, src_y)
 
 export (NodePath) var tile_map_path: NodePath
 
-## key: (String) a tiles key for tiles referenced by level rules
-## value: (int) the next row to insert from the referenced tiles
+## key: (String) tiles key for tiles referenced by level rules
+## value: (int) next row to insert from the referenced tiles
 var _row_index_by_tiles_key := {}
 
-## key: (String) a tiles key for the tiles referenced by level rules
+## key: (String) tiles key for the tiles referenced by level rules
 ## value: (Array, int) array of possible next rows to insert from the referenced tiles
 var _row_bag_by_tiles_key := {}
 
-## key: (String) a tiles key for tiles referenced by level rules
-## value: (int) the total number of rows in the referenced tiles
+## key: (String) tiles key for tiles referenced by level rules
+## value: (int) total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
-## key: (String) a concatenated tiles_keys array previously provided to insert_line()
-## value: (String) the previous tiles key referenced that tiles keys array
+## key: (String) concatenated tiles_keys array previously provided to insert_line()
+## value: (String) previous tiles key referenced that tiles keys array
 var _prev_tiles_key_by_tiles_keys := {}
 
-## key: (String) a concatenated tiles_keys array previously provided to insert_line()
-## value: (String) the number of insert statements from that tiles keys array
+## key: (String) concatenated tiles_keys array previously provided to insert_line()
+## value: (String) number of insert statements from that tiles keys array
 var _prev_tiles_key_insert_count_by_tiles_keys := {}
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
@@ -45,7 +45,7 @@ func _ready() -> void:
 ## Parameters:
 ## 	'tiles_keys': (Optional) keys for the LevelTiles entries for the tiles to insert
 ##
-## 	'dest_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
+## 	'dest_y': (Optional) Y coordinate of the line to insert. If omitted, the line will be inserted at the
 ## 		bottom of the puzzle tilemap.
 func insert_line(tiles_keys: Array = [], dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
 	if dest_y >= PuzzleTileMap.FIRST_VISIBLE_ROW:

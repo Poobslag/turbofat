@@ -1,8 +1,8 @@
 class_name Sticker
 extends Sprite
-## An image which scrolls by on the wallpaper.
+## Image which scrolls by on the wallpaper.
 
-## The unmodified scale/rotation before pulsing/spinning
+## Unmodified scale/rotation before pulsing/spinning
 var base_scale := Vector2.ONE setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 

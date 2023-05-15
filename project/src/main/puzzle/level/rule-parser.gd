@@ -9,15 +9,15 @@ class_name RuleParser
 ## Subclasses can override methods to define their own specialized behavior. A single property parser typically
 ## corresponds to a single property, although some parsers can populate many properties.
 class PropertyParser:
-	## The rules class which contains one or more properties to parse.
+	## Rules class which contains one or more properties to parse.
 	## This must be a weak reference to avoid 'ObjectDB instances leaked at exit' warnings.
 	var _target: WeakRef
 	
-	## The name of the property and json key to parse. This is useful for the most common scenario where a single json
+	## Name of the property and json key to parse. This is useful for the most common scenario where a single json
 	## key maps to a single property. Subclasses can ignore this property if they are doing something unusual.
 	var name: String
 	
-	## The json keys which are handled by this property parser. The RuleParser uses this to decide which PropertyParser
+	## Json keys which are handled by this property parser. The RuleParser uses this to decide which PropertyParser
 	## to activate.
 	var keys := []
 	
@@ -90,7 +90,7 @@ class PropertyParser:
 
 ## Parses a json string like 'skip_intro' into a bool.
 class BoolPropertyParser extends PropertyParser:
-	## A json string corresponding to a value of 'false', such as 'no_clear_on_finish'
+	## Json string corresponding to a value of 'false', such as 'no_clear_on_finish'
 	var _false_string: String
 	
 	## Parameters:
@@ -99,7 +99,7 @@ class BoolPropertyParser extends PropertyParser:
 	## 	'init_name': The name of the property and json key to parse. This json key should correspond to a value of
 	## 		'true'.
 	##
-	## 	'init_false_string': (Optional) A json string corresponding to a value of 'false', such as
+	## 	'init_false_string': (Optional) Json string corresponding to a value of 'false', such as
 	## 		'no_clear_on_finish'
 	func _init(init_target: Object, init_name: String, init_false_string: String = "").(init_target, init_name) -> void:
 		default = false
@@ -215,7 +215,7 @@ class StringPropertyParser extends PropertyParser:
 ## upper case snake case strings like 'TIME_OVER'.
 class EnumPropertyParser extends PropertyParser:
 	## key: (String) upper case snake case enum key
-	## value: (int) an enum index
+	## value: (int) an Enum index
 	var _enum_dict: Dictionary
 	
 	## Parameters:
@@ -275,7 +275,7 @@ class OngoingPropertyDefinition:
 	func implied(new_implied) -> void:
 		_property_parser.implied = new_implied
 
-## The rules class which contains one or more properties to parse.
+## Rules class which contains one or more properties to parse.
 ## This must be a weak reference to avoid 'ObjectDB instances leaked at exit' warnings.
 var _target: WeakRef
 
@@ -296,7 +296,7 @@ func _init(init_target: Object) -> void:
 ## Parameters:
 ## 	'name': The name of the property and json key to parse. This json key should correspond to a value of 'true'.
 ##
-## 	'false_string': (Optional) A json string corresponding to a value of 'false', such as 'no_clear_on_finish'
+## 	'false_string': (Optional) Json string corresponding to a value of 'false', such as 'no_clear_on_finish'
 func add_bool(name: String, false_string: String = "") -> OngoingPropertyDefinition:
 	return add(BoolPropertyParser.new(_target.get_ref(), name, false_string))
 

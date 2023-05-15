@@ -1,6 +1,6 @@
 class_name HighScoreTable
 extends VBoxContainer
-## A table which displays the player's high scores in practice mode.
+## Table which displays the player's high scores in practice mode.
 ##
 ## Scores are separated by mode and difficulty. We also keep daily scores separate.
 

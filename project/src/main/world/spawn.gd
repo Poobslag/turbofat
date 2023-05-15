@@ -1,11 +1,11 @@
 class_name Spawn
 extends Node2D
-## A point where a creature can appear on the overworld.
+## Point where a creature can appear on the overworld.
 
-## the direction the creature will face
+## direction the creature will face
 export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST
 
-## a unique id for this spawn point
+## unique id for this spawn point
 export (String) var id: String
 
 export (float) var elevation: float

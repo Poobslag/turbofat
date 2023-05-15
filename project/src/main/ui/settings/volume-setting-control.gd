@@ -3,7 +3,7 @@ extends Control
 ##
 ## Updates the player's stored settings, and also updates the audio server.
 
-## The type of volume which is controlled by this slider: music, sounds or voices
+## Type of volume which is controlled by this slider: music, sounds or voices
 export (VolumeSettings.VolumeType) var volume_type: int setget set_volume_type
 
 ## Text description of this volume setting, 'Master Volume'

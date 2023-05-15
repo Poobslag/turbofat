@@ -8,7 +8,7 @@ export (int) var frame: int setget set_frame
 ## If true, the sprite's texture is flipped horizontally.
 export (bool) var flip_h: bool setget set_flip_h
 
-## An editor toggle which randomizes the obstacle's appearance
+## Editor toggle which randomizes the obstacle's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
 onready var _sprite := $Sprite

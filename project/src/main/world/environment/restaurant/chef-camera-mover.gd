@@ -7,10 +7,10 @@ extends AnimationPlayer
 export (NodePath) var restaurant_scene_path: NodePath
 export (NodePath) var chef_camera_path: NodePath
 
-## The amount of empty space over the creature's head.
+## Amount of empty space over the creature's head.
 export (float, 0, 1) var headroom := 1.0 setget set_headroom
 
-## the position that the restaurant scene's camera lerps to
+## position that the restaurant scene's camera lerps to
 var _target_camera_position: Vector2
 
 var _target_camera_position_dirty := true

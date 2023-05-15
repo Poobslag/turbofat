@@ -1,24 +1,24 @@
 extends Sprite
-## A puzzle piece which appears on the loading screen.
+## Puzzle piece which appears on the loading screen.
 ##
 ## The puzzle piece has a 3-part lifecycle:
 ## 	1. Flying towards the loading bar from the 'source' to the 'target'
 ## 	2. Crawling along the loading bar at a constant rate
 ## 	3. Fading out and deleting itself
 
-## The speed at which pieces are launched from the orb
+## Speed at which pieces are launched from the orb
 const INITIAL_SPEED := 600
 
-## The duration for pieces to float towards the loading bar
+## Duration for pieces to float towards the loading bar
 const PIECE_FLIGHT_DURATION := 1.0
 
-## The speed at which pieces crawl along the loading bar
+## Speed at which pieces crawl along the loading bar
 const CRAWL_SPEED := 120
 
-## The X coordinate which pieces crawl past on the loading bar, which makes them fade out
+## X coordinate which pieces crawl past on the loading bar, which makes them fade out
 const FADE_OUT_X := 80
 
-## The duration it takes pieces to fade out when they crawl off left side of the loading bar
+## Duration it takes pieces to fade out when they crawl off left side of the loading bar
 const FADE_OUT_DURATION := 0.3
 
 const PIECE_COLORS_BY_FRAME := [
@@ -37,11 +37,11 @@ var _source_position: Vector2
 var _source_velocity: Vector2
 var _source_rotation: float
 
-## The pieces's target position/rotation on the loading bar, ignoring how they were originally launched
+## Pieces's target position/rotation on the loading bar, ignoring how they were originally launched
 var _target_position: Vector2
 var _target_rotation: float
 
-## The number of seconds elapsed since the piece was launched
+## Number of seconds elapsed since the piece was launched
 var _total_time: float
 
 ## How the piece should wobble on the loading bar
@@ -55,7 +55,7 @@ var _colored := false
 ## 'true' if the piece is fading out, having crawled off the left side of the loading bar
 var _fading := false
 
-## the progress bar the piece should home in on
+## progress bar the piece should home in on
 var _progress_bar: LoadingProgressBar
 
 ## particles emitted when the piece hits the loading bar

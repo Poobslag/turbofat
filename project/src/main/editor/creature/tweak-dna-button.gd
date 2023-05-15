@@ -1,5 +1,5 @@
 extends Button
-## A button with a DNA symbol on it.
+## Button with a DNA symbol on it.
 
 func _on_button_down() -> void:
 	$TextureRect.modulate.a = 0.6

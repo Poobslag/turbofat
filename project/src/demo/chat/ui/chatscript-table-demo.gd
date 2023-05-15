@@ -3,10 +3,10 @@ extends Node
 ##
 ## This process is automated because the list of emoticons is likely to expand or change.
 
-## The number of columns in the BBCode table
+## Number of columns in the BBCode table
 var _table_width := 1
 
-## key: (int) an enum from Creatures.Mood
+## key: (Creatures.Mood)
 ## value: (Array, String) string chat prefixes (emoticons)
 var _prefixes_by_mood := {}
 

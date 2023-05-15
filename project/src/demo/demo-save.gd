@@ -8,10 +8,10 @@ extends Node
 ## with invalid data. Demos often put the game into a weird state temporarily, and we don't want to persist this weird
 ## temporary data.
 
-## the path to the save file
+## path to the save file
 const FILENAME := "user://demo-data.json"
 
-## the json data read from the save file
+## json data read from the save file
 var demo_data := {}
 
 func _ready() -> void:

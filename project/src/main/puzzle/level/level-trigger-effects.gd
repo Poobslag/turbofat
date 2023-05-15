@@ -1,5 +1,5 @@
 extends Node
-## A library of level trigger effects.
+## Library of level trigger effects.
 ##
 ## These effects are each mapped to a unique string so that they can be referenced from json.
 
@@ -45,8 +45,8 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 	##
 	## [count]: (Optional) How many carrots appear during a single 'add carrots' effect. Defaults to 1.
 	## [duration]: (Optional) Duration in seconds that the carrot remains onscreen. Defaults to eight seconds.
-	## [size]: (Optional) The carrot size: 'small', 'medium', 'large' or 'xl'. Defaults to 'medium'.
-	## [smoke]: (Optional) The size of the smoke cloud: 'none', 'small', 'medium' or 'large'. Defaults to 'small'.
+	## [size]: (Optional) Carrot size: 'small', 'medium', 'large' or 'xl'. Defaults to 'medium'.
+	## [smoke]: (Optional) Size of the smoke cloud: 'none', 'small', 'medium' or 'large'. Defaults to 'small'.
 	## [x]: (Optional) Restricts which columns the carrots appear on, where '0' is the leftmost column of the
 	## 	playfield. For large carrots, this corresponds to the leftmost column of the carrot.
 	##
@@ -135,7 +135,7 @@ class AddMolesEffect extends LevelTriggerEffect:
 	## 	is the top.
 	## [x]: (Optional) Restricts which columns the moles appear on, where '0' is the leftmost column of the playfield.
 	## [dig_duration]: (Optional) How many turns/seconds/cycles the moles dig for. Defaults to 3.
-	## [reward]: (Optional) The reward the moles dig up: 'seed' or 'star'. Defaults to 'star'.
+	## [reward]: (Optional) Reward the moles dig up: 'seed' or 'star'. Defaults to 'star'.
 	##
 	## Example: ["add_moles count=2 reward=seed"]
 	func set_config(new_config: Dictionary = {}) -> void:
@@ -193,8 +193,8 @@ class AddSharksEffect extends LevelTriggerEffect:
 	## [y]: (Optional) Restricts which rows the sharks appear on, where '0' is the bottom row of the playfield and '16'
 	## 	is the top.
 	## [x]: (Optional) Restricts which columns the sharks appear on, where '0' is the leftmost column of the playfield.
-	## [patience]: (Optional) The reward the sharks dig up: 'seed' or 'star'. Defaults to 'star'.
-	## [size]: (Optional) The size (and appetite) of the shark: 'small', 'medium' or 'large'. Defaults to 'medium'.
+	## [patience]: (Optional) Reward the sharks dig up: 'seed' or 'star'. Defaults to 'star'.
+	## [size]: (Optional) Size (and appetite) of the shark: 'small', 'medium' or 'large'. Defaults to 'medium'.
 	##
 	## Example: ["add_sharks size=small count=3 patience=5"]
 	func set_config(new_config: Dictionary = {}) -> void:
@@ -270,7 +270,7 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 	##
 	## This effect's configuration accepts the following parameters:
 	##
-	## [0]: (Optional) The number of carrots to remove. Defaults to 1.
+	## [0]: (Optional) Number of carrots to remove. Defaults to 1.
 	##
 	## Example: ["remove_carrots 2"]
 	func set_config(new_config: Dictionary = {}) -> void:
@@ -304,22 +304,22 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 		NONE, CW, CCW, FLIP
 	}
 	
-	## an enum in Rotation corresponding to the direction to rotate
+	## enum in Rotation corresponding to the direction to rotate
 	var rotate_dir: int = Rotation.NONE
 	
-	## The first piece index in the queue to rotate, inclusive
+	## First piece index in the queue to rotate, inclusive
 	var next_piece_from_index: int = 0
 	
-	## The last piece index in the queue to rotate, inclusive
+	## Last piece index in the queue to rotate, inclusive
 	var next_piece_to_index: int = 999999
 	
 	## Updates the effect's configuration.
 	##
 	## This effect's configuration accepts the following parameters:
 	##
-	## [0]: (Optional) The direction to rotate, 'cw', 'ccw', '180' or 'none'. Defaults to 'none'.
-	## [1]: (Optional) The first piece index in the queue to rotate. Defaults to 0.
-	## [2]: (Optional) The last piece index in the queue to rotate. Defaults to 999999.
+	## [0]: (Optional) Direction to rotate, 'cw', 'ccw', '180' or 'none'. Defaults to 'none'.
+	## [1]: (Optional) First piece index in the queue to rotate. Defaults to 0.
+	## [2]: (Optional) Last piece index in the queue to rotate. Defaults to 999999.
 	##
 	## Example: ["cw", "0", "0"]
 	func set_config(new_config: Dictionary = {}) -> void:
@@ -382,10 +382,10 @@ class InsertLineEffect extends LevelTriggerEffect:
 	##
 	## This effect's configuration accepts the following parameters:
 	##
-	## [count]: (Optional) The number of lines to insert. Defaults to 1.
-	## [tiles_key]: (Optional) A key corresponding to a set of tiles in LevelTiles for the tiles to insert.
-	## [tiles_keys]: (Optional) A key corresponding to sets of tiles in LevelTiles for the tiles to insert.
-	## [y]: (Optional) The target row to insert. '0' corresponds to the bottom row. Defaults to 0.
+	## [count]: (Optional) Number of lines to insert. Defaults to 1.
+	## [tiles_key]: (Optional) Key corresponding to a set of tiles in LevelTiles for the tiles to insert.
+	## [tiles_keys]: (Optional) Key corresponding to sets of tiles in LevelTiles for the tiles to insert.
+	## [y]: (Optional) Target row to insert. '0' corresponds to the bottom row. Defaults to 0.
 	##
 	## Example: ["insert_line tiles_keys=0,1"]
 	func set_config(new_config: Dictionary = {}) -> void:
@@ -442,7 +442,7 @@ var effects_by_string := {
 ## Parameters:
 ## 	'effect_key': A string key corresponding to the level trigger effect, such as 'insert_line'.
 ##
-## 	'effect_config': (Optional) An array of strings defining the effect's behavior.
+## 	'effect_config': (Optional) Array of strings defining the effect's behavior.
 func create(effect_key: String, effect_config: Dictionary = {}) -> LevelTriggerEffect:
 	if not effects_by_string.has(effect_key):
 		push_warning("Unrecognized effect: %s" % [effect_key])

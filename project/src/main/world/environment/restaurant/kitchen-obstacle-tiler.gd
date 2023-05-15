@@ -163,19 +163,19 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 	[RIGHT, BIND_BOTTOM]: Vector2(2, 3),
 }
 
-## The parent tilemap's tile ID for bare countertops
+## Parent tilemap's tile ID for bare countertops
 export (int) var bare_countertop_tile_index: int
 
-## The parent tilemap's tile ID for countertops with a grill
+## Parent tilemap's tile ID for countertops with a grill
 export (int) var grill_tile_index: int
 
-## The parent tilemap's tile ID for countertops with a sink
+## Parent tilemap's tile ID for countertops with a sink
 export (int) var sink_tile_index: int
 
-## The parent tilemap's tile ID for countertops with plates
+## Parent tilemap's tile ID for countertops with plates
 export (int) var countertop_plates_tile_index: int
 
-## An editor toggle which manually applies autotiling.
+## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855

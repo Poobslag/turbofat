@@ -51,7 +51,7 @@ onready var _accent := $Accent
 ## animates the text popping in/out
 onready var _animation_player := $AnimationPlayer
 
-## The raw message text currently shown on the label. Empty if the label is invisible or turning invisible.
+## Raw message text currently shown on the label. Empty if the label is invisible or turning invisible.
 var shown_message_text := ""
 
 func _ready() -> void:
@@ -61,7 +61,7 @@ func _ready() -> void:
 ## Shows the specified message, popping it in with an animation.
 ##
 ## Parameters:
-## 	'message_type': An enum from MessageType describing whether the message is good or bad.
+## 	'message_type': Enum from MessageType describing whether the message is good or bad.
 ##
 ## 	'text': The message text.
 func show_message(message_type: int, text: String) -> void:

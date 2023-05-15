@@ -33,7 +33,7 @@ var count := 1
 ## Duration in seconds that the carrot remains onscreen
 var duration: float = 8.0
 
-## An enum from CarrotSize for the carrot's size
+## Enum from CarrotSize for the carrot's size
 var size: int = CarrotSize.MEDIUM
 
 ## How much smoke the carrot should emit

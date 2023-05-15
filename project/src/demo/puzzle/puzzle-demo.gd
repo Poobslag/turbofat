@@ -21,7 +21,7 @@ var _night_mode := false
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
-## a local path to a json level resource to demo
+## local path to a json level resource to demo
 export (String, FILE, "*.json") var level_path: String
 
 func _ready() -> void:

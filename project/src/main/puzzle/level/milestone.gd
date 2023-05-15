@@ -22,18 +22,18 @@ const SCORE := MilestoneType.SCORE
 const TIME_OVER := MilestoneType.TIME_OVER
 const TIME_UNDER := MilestoneType.TIME_UNDER
 
-## an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+## enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
 var type: int = MilestoneType.NONE
 
-## an value describing the milestone criteria (number of lines, points, seconds)
+## value describing the milestone criteria (number of lines, points, seconds)
 var value := 0
 
 ## Initializes the milestone with a MilestoneType and value to reach, such as scoring 50 points or clearing 10 lines.
 ##
 ## Parameters:
-## 	'new_type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+## 	'new_type': milestone criteria (lines, score, time)
 ##
-## 	'new_value': an value describing the milestone criteria (number of lines, points, seconds)
+## 	'new_value': value describing the milestone criteria (number of lines, points, seconds)
 func set_milestone(new_type: int, new_value: int) -> void:
 	type = new_type
 	value = new_value

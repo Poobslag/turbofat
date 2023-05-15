@@ -11,7 +11,7 @@ const NARRATOR_ID := "#narrator#"
 ## How many randomly generated filler creatures have their fatness tracked
 const GENERIC_FATNESS_COUNT := 150
 
-## The maximum fatness we'll save for a randomly generated filler creature. We don't want a random creature the player
+## Maximum fatness we'll save for a randomly generated filler creature. We don't want a random creature the player
 ## has never seen who weighs 10,000 pounds; it would sort of break immersion as they'd wonder "who fed this person!? it
 ## wasn't me"
 const MAX_FILLER_FATNESS := 2.5
@@ -211,7 +211,7 @@ func _normalize_filler_fatnesses() -> void:
 ## Parameters:
 ## 	'dir_path': The path of the directory to scan
 ##
-## 	'file_suffix': (Optional) A suffix to append to each returned file path.
+## 	'file_suffix': (Optional) Suffix to append to each returned file path.
 func _file_paths(dir_path: String, file_suffix: String = "") -> Array:
 	var result := []
 	var dir := Directory.new()

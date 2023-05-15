@@ -1,6 +1,6 @@
 class_name LockAlleleButton
 extends Button
-## A button which can lock/unlock an allele.
+## Button which can lock/unlock an allele.
 ##
 ## Unlocked alleles always mutate. Locked alleles never mutate. Alleles which are neither locked nor unlocked mutate
 ## sometimes.
@@ -11,7 +11,7 @@ export (Texture) var locked_texture: Texture
 ## icon which appears next to the button text when the allele is unlocked
 export (Texture) var unlocked_texture: Texture
 
-## An allele property used internally when updating the creature. Not shown to the player
+## Allele property used internally when updating the creature. Not shown to the player
 export (String) var allele: String
 
 ## By default the button toggles between three states: locked/unlocked/flexible. The 'two_states' property can be

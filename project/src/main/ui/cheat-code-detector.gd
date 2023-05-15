@@ -12,7 +12,7 @@ extends Node
 ## emitted when a cheat is entered.
 signal cheat_detected(cheat, detector)
 
-## The maximum length of cheat codes. Entered keys are stored in a buffer, and we don't want the buffer to grow to a
+## Maximum length of cheat codes. Entered keys are stored in a buffer, and we don't want the buffer to grow to a
 ## ridiculous size.
 const MAX_LENGTH := 32
 

@@ -9,7 +9,7 @@ var _cakes_built := 0
 ## whether the player ended the combo with their most recent piece
 var _did_end_combo := false
 
-## The number of times the diagram has been shown. We cycle through different explanations and chat choices.
+## Number of times the diagram has been shown. We cycle through different explanations and chat choices.
 var _show_diagram_count := 0
 
 ## At the end of the tutorial, we show a message based on whether the player got a good combo. We only show this
@@ -97,7 +97,7 @@ func prepare_tutorial_level() -> void:
 ## Parameters:
 ## 	'start': The player's current combo
 ##
-## 	'goal': (Optional) The combo needed to complete the tutorial section
+## 	'goal': (Optional) Combo needed to complete the tutorial section
 func _set_combo_state(start: int, goal: int = 0) -> void:
 	PuzzleState.set_combo(start)
 	if goal:

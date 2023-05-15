@@ -30,37 +30,37 @@ var time_of_day_by_hours := {
 	6: tr("10:00 pm"),
 }
 
-## The number of steps the player couldn't take because they were stopped by a boss/intro level.
+## Number of steps the player couldn't take because they were stopped by a boss/intro level.
 var banked_steps := 0
 
-## The distance the player has travelled in the current career session.
+## Distance the player has travelled in the current career session.
 var distance_travelled := 0 setget set_distance_travelled
 
-## The distance the progress board should start from when moving the player
+## Distance the progress board should start from when moving the player
 var progress_board_start_distance_travelled := 0
 
-## The distance earned from the previously completed puzzle, plus any banked steps from earlier puzzles.
+## Distance earned from the previously completed puzzle, plus any banked steps from earlier puzzles.
 var distance_earned := 0
 
-## The number of levels played in the current career session.
+## Number of levels played in the current career session.
 var hours_passed := 0 setget set_hours_passed
 
-## The number of customers served in the current career session.
+## Number of customers served in the current career session.
 var daily_customers := 0
 
-## The amount of money earned in the current career session.
+## Amount of money earned in the current career session.
 var daily_earnings := 0
 
-## The level IDs played in the current career session. This is tracked to avoid repeating levels.
+## Level IDs played in the current career session. This is tracked to avoid repeating levels.
 var daily_level_ids := []
 
-## The amount of time played in the current career session.
+## Amount of time played in the current career session.
 var daily_seconds_played := 0.0
 
-## The number of steps taken in the current career session (not including initial level selection)
+## Number of steps taken in the current career session (not including initial level selection)
 var daily_steps := 0
 
-## The number of days the player has completed.
+## Number of days the player has completed.
 var day := 0
 
 ## Array of ints for previous daily earnings. Index 0 holds the most recent data.
@@ -69,7 +69,7 @@ var prev_daily_earnings := []
 ## Array of ints for previous distance travelled. Index 0 holds the most recent data.
 var prev_distance_travelled := []
 
-## The furthest total distance the player has travelled in a single session.
+## Furthest total distance the player has travelled in a single session.
 var best_distance_travelled := 0
 
 ## 'true' if the player should not advance to the next region.

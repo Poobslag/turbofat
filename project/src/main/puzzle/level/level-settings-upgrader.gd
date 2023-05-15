@@ -1,14 +1,14 @@
 class_name LevelSettingsUpgrader
 
-## An externally defined method which provides version-specific updates.
+## Externally defined method which provides version-specific updates.
 class UpgradeMethod:
-	## The name of the method which performs the upgrade
+	## Name of the method which performs the upgrade
 	var method: String
 	
-	## The old save data version which the method upgrades from
+	## Old save data version which the method upgrades from
 	var old_version: String
 	
-	## The new save data version which the method upgrades to
+	## New save data version which the method upgrades to
 	var new_version: String
 
 ## Internally defined methods which provide version-specific updates.
@@ -16,7 +16,7 @@ class UpgradeMethod:
 ## value: (UpgradeMethod) method to call
 var _upgrade_methods := {}
 
-## The newest version which everything should upgrade to.
+## Newest version which everything should upgrade to.
 var current_version: String
 
 func _init() -> void:
@@ -76,7 +76,7 @@ func needs_upgrade(json_settings: Dictionary) -> bool:
 ## Upgrade methods include three parameters:
 ## 	'old_json': (Dictionary) Old parsed level settings from which data should be upgraded
 ##
-## 	'old_key': (String) A key corresponding to a key/value pair in the old_json dictionary which should be upgraded
+## 	'old_key': (String) Key corresponding to a key/value pair in the old_json dictionary which should be upgraded
 ##
 ## 	'new_json': (Dictionary) Destination dictionary to which upgraded data should be written
 ##

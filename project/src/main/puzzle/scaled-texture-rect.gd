@@ -1,5 +1,5 @@
 extends TextureRect
-## A TextureRect which uses the 'rect_scale' property to display its texture at a different scale.
+## TextureRect which uses the 'rect_scale' property to display its texture at a different scale.
 ##
 ## This TextureRect should be placed within a parent control. It will adjust itself to occopy the same region as its
 ## parent.

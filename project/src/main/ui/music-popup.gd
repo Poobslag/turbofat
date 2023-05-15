@@ -1,7 +1,7 @@
 extends Control
-## A toaster popup which shows the current song title.
+## Toaster popup which shows the current song title.
 
-## the bgm which was last shown in this popup
+## bgm which was last shown in this popup
 var _shown_bgm: CheckpointSong
 
 onready var _music_label := $Panel/HBoxContainer/Label

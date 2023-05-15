@@ -7,16 +7,16 @@ enum NametagSide {
 	RIGHT,
 }
 
-## The name of the person speaking, or blank if nobody is speaking
+## Name of the person speaking, or blank if nobody is speaking
 var who := ""
 
 ## whether the chatter's nametag should be drawn on the right/left side of the frame
 var nametag_side: int = NametagSide.NO_PREFERENCE
 
-## The chat line
+## Chat line
 var text: String
 
-## The behavior the chatter should perform while saying the text (laughing, sweating, etc)
+## Behavior the chatter should perform while saying the text (laughing, sweating, etc)
 var mood: int = Creatures.Mood.NONE
 
 ## Metadata about the chat event, such as whether it should launch a level

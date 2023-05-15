@@ -1,7 +1,7 @@
 tool
 class_name FoodItem
 extends PackedSprite
-## A food item which appears when the player clears a box in puzzle mode.
+## Food item which appears when the player clears a box in puzzle mode.
 
 # warning-ignore:unused_signal
 ## Emitted when the food item has floated for long enough and fly_to_target can be called. Emitted by food-items.gd
@@ -11,20 +11,20 @@ signal ready_to_fly
 export (Vector2) var scale_modifier := Vector2.ONE
 export (float) var rotation_modifier := 0.0
 
-## The unmodified scale/rotation before pulsing/spinning
+## Unmodified scale/rotation before pulsing/spinning
 var base_scale := Vector2.ONE setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
-## The velocity applied to the food when in the 'floating' state
+## Velocity applied to the food when in the 'floating' state
 var velocity := Vector2(0, -25)
 
-## The creature who this food will fly towards
+## Creature who this food will fly towards
 var customer: Creature
 
 ## Incremented as the customer changes to track the intended recipient of each food item.
 var customer_index: int
 
-## An enum from FoodType corresponding to the food to show
+## Enum from FoodType corresponding to the food to show
 var food_type: int setget set_food_type
 
 ## Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
@@ -34,13 +34,13 @@ var _total_time := 0.0
 var _get_target_pos: FuncRef
 var _target_pos_arg_array: Array
 
-## The position the food is flying from
+## Position the food is flying from
 var _source_pos: Vector2
 
-## The position the food is flying toward
+## Position the food is flying toward
 var _target_pos: Vector2
 
-## A number in the range [0.0, 1.0] corresponding to where the food is positioned between its source and target
+## Number in the range [0.0, 1.0] corresponding to where the food is positioned between its source and target
 var _flight_percent := 0.0
 
 ## 'true' of the food item has been collected and should slowly float upward

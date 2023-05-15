@@ -13,7 +13,7 @@ class_name ConfigStringUtils
 ## Parameters:
 ## 	'ints': A series of ints like [2, 3, 4, 5, 7].
 ##
-## 	'max_int': (Optional) The maximum value which should be checked for belonging to a continuous sequence.
+## 	'max_int': (Optional) Maximum value which should be checked for belonging to a continuous sequence.
 ##
 ## Returns:
 ## 	A config string like '2-5,7'
@@ -95,7 +95,7 @@ static func config_string_from_ints(ints: Array, max_int: int = 0) -> String:
 ## Parameters:
 ## 	'config_string': A config string like '2-5,7'
 ##
-## 	'max_int': (Optional) The maximum value which should be checked for belonging to a continuous sequence.
+## 	'max_int': (Optional) Maximum value which should be checked for belonging to a continuous sequence.
 ##
 ## Returns:
 ## 	A series of ints like [2, 3, 4, 5, 7]

@@ -1,7 +1,7 @@
 extends CanvasLayer
 ## Plays scene transition animations.
 
-## A scene transition emits these two signals in order as the screen fades out and fades back in
+## Scene transition emits these two signals in order as the screen fades out and fades back in
 signal fade_in_started
 signal fade_out_started
 
@@ -14,13 +14,13 @@ enum TransitionType {
 const DEFAULT_FADE_IN_DURATION := 0.6
 const DEFAULT_FADE_OUT_DURATION := 1.2
 
-# (int) an enum from TransitionType for the animation to play. Defaults to a puzzle piece animation
+## (TransitionType) animation to play. Defaults to a puzzle piece animation
 const FLAG_TYPE := "transition-type"
 
-# (float) duration in seconds of the fade in animation. Defaults to DEFAULT_FADE_IN_DURATION
+## (float) duration in seconds of the fade in animation. Defaults to DEFAULT_FADE_IN_DURATION
 const FLAG_FADE_IN_DURATION := "fade-in-duration"
 
-# (float) duration in seconds of the fade out animation. Defaults to DEFAULT_FADE_OUT_DURATION
+## (float) duration in seconds of the fade out animation. Defaults to DEFAULT_FADE_OUT_DURATION
 const FLAG_FADE_OUT_DURATION := "fade-out-duration"
 
 const TYPE_DEFAULT := TransitionType.DEFAULT
@@ -31,7 +31,7 @@ onready var _animation_player: AnimationPlayer = $AnimationPlayer
 onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var _mask: Node = $MaskHolder/Mask
 
-## The color to fade to during scene transitions.
+## Color to fade to during scene transitions.
 var fade_color: Color = ProjectSettings.get_setting("rendering/environment/default_clear_color")
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail after a scene transition.

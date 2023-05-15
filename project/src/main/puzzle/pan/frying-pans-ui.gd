@@ -24,7 +24,7 @@ export (bool) var gold := false setget set_gold
 
 export (PackedScene) var FryingPanGhostScene: PackedScene
 
-## the tilemap cell containing the upper left most dead pan
+## tilemap cell containing the upper left most dead pan
 var _first_dead_cell: Vector2
 
 onready var _tile_map: TileMap = $TileMap

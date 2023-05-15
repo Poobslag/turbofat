@@ -1,6 +1,6 @@
 #tool #uncomment to view creature in editor
 extends CreatureCurve
-## The shadow drawn below the creature's arm.
+## Shadow drawn below the creature's arm.
 
 ## cached NearArm sprite used for calculating shadows
 var _near_arm: CreaturePackedSprite

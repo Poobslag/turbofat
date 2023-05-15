@@ -1,5 +1,5 @@
 extends Button
-## A button which shows the player's custom keybind, and lets them rebind a key.
+## Button which shows the player's custom keybind, and lets them rebind a key.
 
 ## emitted when the player starts or stops rebinding a key
 signal awaiting_changed(awaiting)

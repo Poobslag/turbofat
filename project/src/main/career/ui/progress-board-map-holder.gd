@@ -1,7 +1,7 @@
 extends Control
 ## Swaps the progress board map scene based on the current region.
 
-## The default map scene to use if none is defined for the current region.
+## Default map scene to use if none is defined for the current region.
 const DEFAULT_MAP_SCENE_PATH := "res://src/main/career/ui/ProgressBoardMapMarsh.tscn"
 
 ## key: (String) region id

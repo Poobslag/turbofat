@@ -33,7 +33,7 @@ func _ready() -> void:
 ##
 ## Parameters:
 ## 	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
-## 	'box_type': An enum from Foods.BoxType defining the glob's color
+## 	'box_type': Enum from Foods.BoxType defining the glob's color
 ## 	'glob_count': The number of goop globs to launch
 ## 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha: float = 1.0) -> void:

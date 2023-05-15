@@ -6,8 +6,8 @@ func before_each() -> void:
 	rules.clear()
 
 
-# GDTracery's original set_rng() implementation had a bug
-# https://github.com/Althar93/GDTracery/issues/2
+## GDTracery's original set_rng() implementation had a bug
+## https://github.com/Althar93/GDTracery/issues/2
 func test_set_rng() -> void:
 	var grammar := Tracery.Grammar.new(rules)
 	var new_rng := RandomNumberGenerator.new()

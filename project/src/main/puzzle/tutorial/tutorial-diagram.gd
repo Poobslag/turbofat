@@ -11,7 +11,7 @@ signal ok_chosen
 ## Emitted when the player clicks a button indicating they don't understand the diagram
 signal help_chosen
 
-## The number of times the diagram has been shown. We cycle through different chat choices each time.
+## Number of times the diagram has been shown. We cycle through different chat choices each time.
 var _show_diagram_count := 0
 
 onready var _hud: Node = get_parent()

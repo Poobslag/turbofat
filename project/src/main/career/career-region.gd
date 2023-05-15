@@ -1,10 +1,10 @@
 class_name CareerRegion
 ## Stores information about a group of levels for career mode.
 
-## A flag for regions where Fat Sensei is not following the player
+## Flag for regions where Fat Sensei is not following the player
 const FLAG_NO_SENSEI := "no_sensei"
 
-## A flag for regions where the player does not operate a restaurant.
+## Flag for regions where the player does not operate a restaurant.
 const FLAG_NO_RESTAURANT := "no_restaurant"
 
 ## Chat key containing each region's prologue cutscene, which plays before any other cutscenes/levels
@@ -19,21 +19,21 @@ const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
 ## Chat key containing each region's epilogue cutscene, which plays after all other cutscenes/levels
 const EPILOGUE_CHAT_KEY_NAME := "epilogue"
 
-## The region id used for identifying regions in source code and save data
+## Region id used for identifying regions in source code and save data
 var id: String
 
-## A human-readable region name, such as 'Lemony Thickets'
+## Human-readable region name, such as 'Lemony Thickets'
 var name: String
 
-## The smallest distance the player must travel to enter this region.
+## Smallest distance the player must travel to enter this region.
 var start := 0
 
-## The smallest distance the player must travel to exit this region.
+## Smallest distance the player must travel to exit this region.
 ##
 ## If the length is Careers.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
 var length := 0
 
-## The furthest distance the player can travel while remaining within this region.
+## Furthest distance the player can travel while remaining within this region.
 ##
 ## Immutable value. Calculated by combining 'start' and 'length'
 var end := 0 setget ,get_end
@@ -41,13 +41,13 @@ var end := 0 setget ,get_end
 ## Final level which must be cleared to advance past this region.
 var boss_level: CareerLevel
 
-## A resource chat key prefix for cutscenes for this region, such as 'chat/career/marsh'
+## Resource chat key prefix for cutscenes for this region, such as 'chat/career/marsh'
 var cutscene_path: String
 
 ## Describes the creatures in this region.
 var population := Population.new()
 
-## A human-readable tagline describing this career region.
+## Human-readable tagline describing this career region.
 var description: String
 
 ## Returns 'true' if this region has the specified flag.
@@ -56,7 +56,7 @@ var description: String
 ## where the player does not operate a restaurant.
 var flags: Dictionary = {}
 
-## A human-readable icon name, such as 'forest' or 'cactus'
+## Human-readable icon name, such as 'forest' or 'cactus'
 var icon_name: String
 
 ## First level which must be cleared before any other levels in this region.
@@ -65,17 +65,17 @@ var intro_level: CareerLevel
 ## List of CareerLevel instances which store career-mode-specific information about this region's levels.
 var levels := []
 
-## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
+## Minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
 var min_piece_speed := "0"
 var max_piece_speed := "0"
 
-## A human-readable environment name, such as 'lemon' or 'marsh' for the overworld environment
+## Human-readable environment name, such as 'lemon' or 'marsh' for the overworld environment
 var overworld_environment_name: String
 
-## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
+## Human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
 var puzzle_environment_name: String
 
-## A human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
+## Human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
 var region_button_name: String
 
 func from_json_dict(json: Dictionary) -> void:

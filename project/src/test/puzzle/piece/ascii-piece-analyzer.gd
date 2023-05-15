@@ -52,8 +52,8 @@ func _determine_piece_type() -> PieceType:
 ## garbage collected.
 ##
 ## Parameters:
-## 	'forced_piece_orientation': (Optional) A number [0-3] representing the piece's orientation. For some pieces
-## 		(such as the O-Block) the orientation is ambiguous but some tests might care which one is selected.
+## 	'forced_piece_orientation': (Optional) Number [0-3] representing the piece's orientation. For some pieces
+## 		(such as the O-Block) orientation is ambiguous but some tests might care which one is selected.
 ##
 ## Returns:
 ## 	An ActivePiece instance with the appropriate piece type, position and orientation. Returns null if the type,

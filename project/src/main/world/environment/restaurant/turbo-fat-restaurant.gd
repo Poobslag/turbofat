@@ -11,10 +11,10 @@ export (bool) var sfx_disabled: bool = false
 ## A 'closed' sign used at the start of the game and during certain cutscenes.
 onready var closed_sign: Sprite = $ClosedSign
 
-## The regular restaurant sprite.
+## Regular restaurant sprite.
 onready var _restaurant := $Restaurant
 
-## The undecorated restaurant sprite, used at the start of the game.
+## Undecorated restaurant sprite, used at the start of the game.
 onready var _undecorated_restaurant := $UndecoratedRestaurant
 
 onready var _poof_in_sfx := $PoofInSfx

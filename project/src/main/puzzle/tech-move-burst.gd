@@ -1,6 +1,6 @@
 class_name TechMoveBurst
 extends Node2D
-## An indicator like 'J-Squish' or 'P-Spin Double' which appears when the player locks in a piece in a special way.
+## Indicator like 'J-Squish' or 'P-Spin Double' which appears when the player locks in a piece in a special way.
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
@@ -12,7 +12,7 @@ enum TechType {
 const SPIN := TechType.SPIN
 const SQUISH := TechType.SQUISH
 
-## The velocity applied to the food when in the 'floating' state
+## Velocity applied to the food when in the 'floating' state
 export (Vector2) var velocity: Vector2
 
 ## key: (int) Number of lines cleared
@@ -25,20 +25,20 @@ var _word_by_lines_cleared := {
 	4: tr("Quad"),
 }
 
-## key: (int) An enum from TechType such as Spin or Squish
+## key: (int) Enum from TechType such as Spin or Squish
 ## value: (String) Suffix such as 'Spin' for the phrases 'J-Squish' or 'P-Spin'
 var _suffix_by_tech_type := {
 	SPIN: tr("Spin"),
 	SQUISH: tr("Squish"),
 }
 
-## The piece type, such as 'J-Block' or 'P-Block'
+## Piece type, such as 'J-Block' or 'P-Block'
 var piece_type: PieceType setget set_piece_type
 
-## An enum from TechType such as 'Spin' or 'Squish'
+## Enum from TechType such as 'Spin' or 'Squish'
 var tech_type: int setget set_burst_type
 
-## The number of lines cleared by this tech move
+## Number of lines cleared by this tech move
 var lines_cleared: int setget set_lines_cleared
 
 ## Colors to use; these are automatically assigned based on the number of lines cleared

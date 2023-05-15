@@ -10,7 +10,7 @@ export (PackedScene) var SharkScene: PackedScene
 var piece_manager_path: NodePath setget set_piece_manager_path
 var playfield_path: NodePath setget set_playfield_path
 
-## A queue of calls to defer until after line clears are finished
+## Queue of calls to defer until after line clears are finished
 var _call_queue: CallQueue = CallQueue.new()
 
 ## 'true' if the player hard dropped the piece this frame

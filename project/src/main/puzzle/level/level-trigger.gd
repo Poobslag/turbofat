@@ -1,5 +1,5 @@
 class_name LevelTrigger
-## A trigger which causes strange things to happen during a level.
+## Trigger which causes strange things to happen during a level.
 ##
 ## A level can contain any number of triggers, and each trigger makes something happen at a specific time. For example,
 ## a trigger might rotate the pieces in the piece queue every 2 seconds, or a trigger might toggle the playfield
@@ -58,17 +58,17 @@ const TIMER_7 := LevelTriggerPhase.TIMER_7
 const TIMER_8 := LevelTriggerPhase.TIMER_8
 const TIMER_9 := LevelTriggerPhase.TIMER_9
 
-## key: (int) an enum from LevelTriggerPhase
+## key: (int) enum from LevelTriggerPhase
 ## value: (Array, PhaseCondition) Conditions for whether the trigger should fire
 var phases := {}
 
-## the effect caused by this level trigger
+## effect caused by this level trigger
 var effect: LevelTriggerEffect
 
 ## Returns 'true' if this trigger should run during the specified phase.
 ##
 ## Parameters:
-## 	'phase': An enum from LevelTriggerPhase
+## 	'phase': Enum from LevelTriggerPhase
 ##
 ## 	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 func should_run(phase: int, event_params: Dictionary = {}) -> bool:

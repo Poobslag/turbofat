@@ -6,8 +6,8 @@ extends OverworldWorld
 ## environment, or regions which specify an invalid environment
 const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshWinEnvironment.tscn"
 
-## key: (String) an environment name which appears in the json definitions
-## value: (String) The path to the scene resource defining creatures and obstacles which appear on the victory screen
+## key: (String) an Environment name which appears in the json definitions
+## value: (String) Path to the scene resource defining creatures and obstacles which appear on the victory screen
 ## 	in that environment
 const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonWinEnvironment.tscn",

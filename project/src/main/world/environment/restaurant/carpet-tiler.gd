@@ -21,7 +21,7 @@ const CARPET_QUALITY := 0.76
 ## The parent tilemap's tile ID for carpet tiles
 export (int) var carpet_tile_index: int = -1
 
-## An editor toggle which manually applies autotiling.
+## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855

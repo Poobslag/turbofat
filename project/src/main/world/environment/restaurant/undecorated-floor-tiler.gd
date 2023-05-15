@@ -18,10 +18,10 @@ const ALL_AUTOTILE_ALTERNATIVES := [
 ## percent of cells without imperfections, in the range [0.0, 1.0]
 const UNDECORATED_QUALITY := 0.88
 
-## The parent tilemap's tile ID for undecorated floor tiles
+## Parent tilemap's tile ID for undecorated floor tiles
 export (int) var undecorated_tile_index: int = -1
 
-## An editor toggle which manually applies autotiling.
+## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855

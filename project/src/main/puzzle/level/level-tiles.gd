@@ -1,7 +1,7 @@
 class_name LevelTiles
 ## Sets of blocks which are shown initially, or appear during the game
 
-## A set of blocks which is shown initially, or appears during the game
+## Set of blocks which is shown initially, or appears during the game
 class BlockBunch:
 	## key: (Vector2) positions of cells containing a tile
 	## value: (int) tile indexes of each cell
@@ -12,7 +12,7 @@ class BlockBunch:
 	var block_autotile_coords := {}
 	
 	## key: (Vector2) positions of cells containing a pickup
-	## value: (int) an enum from Foods.BoxType defining the pickup's color
+	## value: (int) enum from Foods.BoxType defining the pickup's color
 	var pickups := {}
 
 	## Defines a block which will appear on the playfield.
@@ -33,12 +33,12 @@ class BlockBunch:
 	## Parameters:
 	## 	'pos': Position of the cell
 	##
-	## 	'box_type': An enum from Foods.BoxType defining the pickup's color
+	## 	'box_type': Enum from Foods.BoxType defining the pickup's color
 	func set_pickup(pos: Vector2, box_type: int) -> void:
 		pickups[pos] = box_type
 
 
-## key: (String) a tiles key for tiles referenced by level rules, or the string 'start' for the initial set of tiles
+## key: (String) tiles key for tiles referenced by level rules, or the string 'start' for the initial set of tiles
 ## value: (BlockBunch) set of blocks for that tiles key
 var bunches: Dictionary = {}
 

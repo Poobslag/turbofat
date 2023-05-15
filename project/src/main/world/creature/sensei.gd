@@ -4,7 +4,7 @@ extends Creature
 ##
 ## The sensei follows the player around.
 
-## the sensei tries to keep a respectable distance from the player
+## sensei tries to keep a respectable distance from the player
 const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 

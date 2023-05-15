@@ -1,4 +1,4 @@
-## A queue of deferred method calls, for scenarios where we need to call methods in the future.
+## Queue of deferred method calls, for scenarios where we need to call methods in the future.
 ##
 ## A typical use case scenario for this queue involves three steps:
 ## 	1. Repeatedly deferring methods using defer(). This schedules calls to occur in the future.
@@ -7,8 +7,8 @@
 class_name CallQueue
 
 ## List of Dictionary items defining method calls and arguments.
-## 	'target': (String) the object whose method should be called
-## 	'method': (String) the method to call
+## 	'target': (String) object whose method should be called
+## 	'method': (String) method to call
 ## 	'args': (Array) arguments to pass into the method
 var _deferred_calls := []
 
@@ -27,10 +27,10 @@ func defer(target: Object, method: String, args: Array) -> void:
 ## Pops method call from the queue, calling the appropriate target.
 ##
 ## Parameters:
-## 	'target': (Optional) the object whose calls should be dequeued. If unspecified, method calls will be dequeued
+## 	'target': (Optional) object whose calls should be dequeued. If unspecified, method calls will be dequeued
 ## 		for all objects.
 ##
-## 	'method': (Optional) the method name whose calls which should be dequeued. If unspecified, method calls will be
+## 	'method': (Optional) method name whose calls which should be dequeued. If unspecified, method calls will be
 ## 		dequeued for all method names.
 func pop_deferred(target: Object = null, method: String = "") -> void:
 	var new_deferred_calls := []

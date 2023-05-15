@@ -5,7 +5,7 @@ extends Node
 ## class converts that information into granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030', and
 ## also loads resource files specific to each creature.
 
-## The color inside a creature's mouth
+## Color inside a creature's mouth
 const PINK_INSIDE_COLOR := Color("f39274")
 
 const SHADOW_ALPHA := 0.25
@@ -81,7 +81,7 @@ var _dna_alternatives := DnaAlternatives.new()
 ## 	'include_predefined_customers': If 'true' the function has a chance to return a creature from a library of
 ## 		predefined creatures instead of a randomly generated one.
 ##
-## 	'creature_type': (Optional) The required creature type. If specified, creatures will be skipped in the
+## 	'creature_type': (Optional) Required creature type. If specified, creatures will be skipped in the
 ## 		secondary queue until one conforms to the specified type.
 func random_customer_def(include_predefined_customers: bool = false,
 		creature_type: int = Creatures.Type.DEFAULT) -> CreatureDef:

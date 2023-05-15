@@ -12,7 +12,7 @@ class_name PhaseCondition
 ## parameters.
 ##
 ## Parameters:
-## 	'_phase_config': (Optional) A set of phase configuration strings defining criteria for a phase condition.
+## 	'_phase_config': (Optional) Set of phase configuration strings defining criteria for a phase condition.
 func _init(_phase_config: Dictionary) -> void:
 	pass
 

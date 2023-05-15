@@ -2,13 +2,13 @@ class_name CreatureShadow
 extends Node2D
 ## Script which updates the size and position of a shadow beneath a creature.
 
-## The direction of this shadow relative to the creature. Used for creatures sitting on restaurant stools.
+## Direction of this shadow relative to the creature. Used for creatures sitting on restaurant stools.
 export (Vector2) var shadow_offset: Vector2
 
 export (NodePath) var creature_path: NodePath setget set_creature_path
 export (Vector2) var shadow_scale := Vector2.ONE
 
-## The Creature this shadow is for
+## Creature this shadow is for
 var _creature: Creature
 
 ## Oval shadow sprite

@@ -1,5 +1,5 @@
 extends BlockLevelChunkControl
-## A level editor chunk which contains a snack/cake box.
+## Level editor chunk which contains a snack/cake box.
 
 export (Foods.BoxType) var box_type: int setget set_box_type
 

@@ -19,10 +19,10 @@ var enhance_combo_fx := false
 ## 'true' for non-interactive tutorial levels which don't let the player do anything
 var non_interactive := false
 
-## an enum from SuppressPieceRotation for whether pieces can rotate
+## enum from SuppressPieceRotation for whether pieces can rotate
 var suppress_piece_rotation: int = SuppressPieceRotation.NONE
 
-## an enum from SuppressPieceRotation for whether pieces can be initially rotated by holding a rotate key
+## enum from SuppressPieceRotation for whether pieces can be initially rotated by holding a rotate key
 var suppress_piece_initial_rotation: int = SuppressPieceRotation.NONE
 
 ## When the player first launches the game and does the tutorial, we skip the start button and countdown.
@@ -31,7 +31,7 @@ var skip_intro := false
 ## If the player restarts, they restart from this level (used for tutorials)
 var start_level: String
 
-## an enum from PuzzleTileMap.TileSetType which affects the blocks' appearance (and sometimes behavior)
+## enum from PuzzleTileMap.TileSetType which affects the blocks' appearance (and sometimes behavior)
 var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
 
 ## 'true' for tutorial levels which are led by Turbo

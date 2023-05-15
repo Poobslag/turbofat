@@ -46,7 +46,7 @@ var _shark_config := SharkConfig.new()
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
-## a local path to a json level resource to demo
+## local path to a json level resource to demo
 export (String, FILE, "*.json") var level_path: String
 
 export (bool) var cache_resources := false

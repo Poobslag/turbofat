@@ -3,7 +3,7 @@ extends Node
 ##
 ## Launching this scene also advances the player towards their goal if 'distance earned' is nonzero.
 
-## The number of levels the player can choose between
+## Number of levels the player can choose between
 const SELECTION_COUNT := 3
 
 ## Chefs/customers for each level the player can select
@@ -210,7 +210,7 @@ func _boss_chat_key_pair() -> ChatKeyPair:
 ## Returns a ChatKeyPair with an arbitrary interlude cutscene for the current region.
 ##
 ## Parameters:
-## 	'career_level': (Optional) The level whose chat key pair should be returned. This is specifically used for the
+## 	'career_level': (Optional) Level whose chat key pair should be returned. This is specifically used for the
 ## 		case where the player is viewing an interlude, and we want the interlude to feature the same creatures
 ## 		shown in the level. For other cases, this parameter can be null.
 func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
@@ -247,7 +247,7 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 ## Returns an intro, boss, or interlude chat key pair for the current region.
 ##
 ## Parameters:
-## 	'career_level': (Optional) The level whose chat key pair should be returned. This is specifically used for the
+## 	'career_level': (Optional) Level whose chat key pair should be returned. This is specifically used for the
 ## 		case where the player is viewing an interlude, and we want the interlude to feature the same creatures
 ## 		shown in the level. For most cases, this parameter can be omitted.
 func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:

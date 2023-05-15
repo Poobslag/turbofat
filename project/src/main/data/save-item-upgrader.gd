@@ -4,18 +4,18 @@ class_name SaveItemUpgrader
 ## SaveItemUpgrader can update the 'version' tag, but any other version-specific updates must be defined externally.
 ## These version-specific updates can be incorporated via SaveItemUpgrader's 'add_upgrade_method' method.
 
-## An externally defined method which provides version-specific updates.
+## Externally defined method which provides version-specific updates.
 class UpgradeMethod:
-	## The object containing the method
+	## Object containing the method
 	var object: Object
 	
-	## The name of the method which performs the upgrade
+	## Name of the method which performs the upgrade
 	var method: String
 	
-	## The old save data version which the method upgrades from
+	## Old save data version which the method upgrades from
 	var old_version: String
 	
-	## The new save data version which the method upgrades to
+	## New save data version which the method upgrades to
 	var new_version: String
 
 ## Externally defined methods which provide version-specific updates.
@@ -23,7 +23,7 @@ class UpgradeMethod:
 ## value: (UpgradeMethod) method to call
 var _upgrade_methods := {}
 
-## The newest version which everything should upgrade to.
+## Newest version which everything should upgrade to.
 var current_version := ""
 
 ## Adds a new externally defined method which provides version-specific updates.

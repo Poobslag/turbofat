@@ -63,10 +63,10 @@ var _landmark_resources_by_type := {
 	CIRCLES_6: preload("res://assets/main/career/ui/map/circles-6.png"),
 }
 
-# Shows the landmark's icon
+## Shows the landmark's icon
 onready var _texture_rect := $TextureRect
 
-# Shows the landmark's distance
+## Shows the landmark's distance
 onready var _label := $Label
 
 func _ready() -> void:
@@ -89,14 +89,14 @@ func _enter_tree() -> void:
 	_label = $Label
 
 
-## The position on the left side of the landmark where a chalk line can connect.
+## Position on the left side of the landmark where a chalk line can connect.
 ##
 ## This position is relative to the entire map, not relative to this landmark.
 func left_connection_point() -> Vector2:
 	return _texture_center() + Vector2(-45, 20)
 
 
-## The position on the right side of the landmark where a chalk line can connect.
+## Position on the right side of the landmark where a chalk line can connect.
 ##
 ## This position is relative to the entire map, not relative to this landmark.
 func right_connection_point() -> Vector2:

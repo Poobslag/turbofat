@@ -22,10 +22,10 @@ const SAVE_SLOT_PREFIXES := {
 	SaveSlot.SLOT_D: "D",
 }
 
-## The current save slot for saving/loading progress
+## Current save slot for saving/loading progress
 var save_slot: int = SaveSlot.SLOT_A setget set_save_slot
 
-## The current locale. This is redundant with TranslationServer.locale, but exposing a setter lets us provide a signal
+## Current locale. This is redundant with TranslationServer.locale, but exposing a setter lets us provide a signal
 ## to notify when the locale changes.
 var locale := "en" setget set_locale
 

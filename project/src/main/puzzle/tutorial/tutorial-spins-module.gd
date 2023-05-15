@@ -27,7 +27,7 @@ var _prepared_levels: Dictionary
 ## value: (bool) true
 var _failed_levels: Dictionary
 
-## The most recent way the piece moved, such as rotating, flipping or dropping. This determines whether the player
+## Most recent way the piece moved, such as rotating, flipping or dropping. This determines whether the player
 ## performed a spin move, a flip move, or something else.
 var _last_piece_movement: int = PieceMovementType.NONE
 
@@ -149,16 +149,16 @@ func prepare_tutorial_level() -> void:
 func _refresh_last_piece_movement() -> void:
 	if piece_manager.piece == _prev_piece:
 		if _prev_piece_orientation != _prev_piece.orientation:
-			## the piece was flipped/rotated
+			## piece was flipped/rotated
 			if _prev_piece_orientation == _prev_piece.get_flip_orientation():
 				_last_piece_movement = PieceMovementType.FLIP
 			else:
 				_last_piece_movement = PieceMovementType.ROTATE
 		elif _prev_piece_pos.x != _prev_piece.pos.x:
-			## the piece was moved horizontally
+			## piece was moved horizontally
 			_last_piece_movement = PieceMovementType.MOVE_X
 		elif _prev_piece_pos.y != _prev_piece.pos.y:
-			## the piece was moved vertically -- hard dropped, soft dropped, squished or affected by gravity
+			## piece was moved vertically -- hard dropped, soft dropped, squished or affected by gravity
 			_last_piece_movement = PieceMovementType.MOVE_Y
 	else:
 		_prev_piece = piece_manager.piece

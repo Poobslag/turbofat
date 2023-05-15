@@ -1,7 +1,7 @@
 class_name ComboBreakRules
 ## Things that disrupt the player's combo.
 
-## a magic number for the 'pieces' combo break rule where the combo will never break
+## magic number for the 'pieces' combo break rule where the combo will never break
 const UNLIMITED_PIECES := 999999
 
 ## by default, dropping 2 pieces breaks their combo

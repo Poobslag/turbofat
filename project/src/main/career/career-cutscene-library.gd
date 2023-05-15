@@ -55,19 +55,19 @@ var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_ca
 ## This is calculated based on the contents of the filesystem, but can be overridden for tests.
 var all_chat_key_pairs := [] setget set_all_chat_key_pairs
 
-## key: (String) An interlude preroll chat key like 'chat/career/general_00_a'. For the case where a level has a
+## key: (String) Interlude preroll chat key like 'chat/career/general_00_a'. For the case where a level has a
 ## 	postroll cutscene but no preroll cutscene, this chat key may actually correspond to a non-existent preroll
 ## 	cutscene.
 ##
-## value: (ChatKeyPair) A ChatKeyPair defining preroll and postroll cutscenes.
+## value: (ChatKeyPair) ChatKeyPair defining preroll and postroll cutscenes.
 var _chat_key_pairs_by_preroll := {}
 
 ## Defines a hierarchy of preroll cutscenes.
 ##
-## key: (String) An interlude preroll chat key like 'chat/career/general_00_a', or a parent path like
+## key: (String) Interlude preroll chat key like 'chat/career/general_00_a', or a parent path like
 ## 	'chat/career/general'.
 ##
-## value: (Array) A list of child chat key fragments, like ['00', '01', '02']. Each fragment corresponds to a suffix
+## value: (Array) List of child chat key fragments, like ['00', '01', '02']. Each fragment corresponds to a suffix
 ## 	which can be appended to the chat key, along with an appropriate delimeter, to create a new path.
 var _preroll_tree := {}
 
@@ -98,11 +98,11 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
-## 	'chef_id': (Optional) The id of a creature who must appear as a chef in the returned cutscenes.
+## 	'chef_id': (Optional) Id of a creature who must appear as a chef in the returned cutscenes.
 ##
-## 	'customer_id': (Optional) The id of a creature who must appear as a customer in the returned cutscenes.
+## 	'customer_id': (Optional) Id of a creature who must appear as a customer in the returned cutscenes.
 ##
-## 	'observer_id': (Optional) The id of a creature who must appear as an observer in the returned cutscenes.
+## 	'observer_id': (Optional) Id of a creature who must appear as an observer in the returned cutscenes.
 ##
 ## Returns:
 ## 	A ChatKeyPair defining preroll and postroll cutscenes.
@@ -121,9 +121,9 @@ func next_interlude_chat_key_pair(chat_key_roots: Array,
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
-## 	'chef_id': (Optional) The id of a creature who must appear as a chef in the returned cutscenes.
+## 	'chef_id': (Optional) Id of a creature who must appear as a chef in the returned cutscenes.
 ##
-## 	'customer_id': (Optional) The id of a creature who must appear as a customer in the returned cutscenes.
+## 	'customer_id': (Optional) Id of a creature who must appear as a customer in the returned cutscenes.
 ##
 ## Returns:
 ## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.

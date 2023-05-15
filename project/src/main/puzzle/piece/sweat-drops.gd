@@ -4,7 +4,7 @@ extends Particles2D
 ## local coordinates to emit sweat from
 var _sweat_positions: Array
 
-## the index of the local coordinate to emit sweat from
+## index of the local coordinate to emit sweat from
 var _sweat_position_index := 0
 
 ## Relocates this Particles2D to a random location.

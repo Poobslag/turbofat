@@ -1,6 +1,6 @@
 class_name NightStarPoof
 extends Node2D
-## A star poof spawned when the player clears a row containing vegetables during night mode.
+## Star poof spawned when the player clears a row containing vegetables during night mode.
 
 func _ready() -> void:
 	## emit four stars which are approximately orthoganally perpendicular

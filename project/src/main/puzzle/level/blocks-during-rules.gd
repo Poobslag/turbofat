@@ -40,17 +40,17 @@ var clear_on_top_out := false
 ## elsewhere before the line clears
 var filled_line_clear_delay := 0
 
-## The maximum number of lines which can be cleared simultaneously. Additional lines are left uncleared until the next
+## Maximum number of lines which can be cleared simultaneously. Additional lines are left uncleared until the next
 ## piece is dropped.
 var filled_line_clear_max: int = 999999
 
-## The minimum number of lines which must be filled to trigger line clears.
+## Minimum number of lines which must be filled to trigger line clears.
 ##
 ## If this is set to 3, filled lines will remain on the playfield until the player fills 3 complete lines. Then all
 ## filled lines will be cleared.
 var filled_line_clear_min: int = 0
 
-## The order in which filled lines are cleared. This is purely cosmetic unless other rules are in place to prevent or
+## Order in which filled lines are cleared. This is purely cosmetic unless other rules are in place to prevent or
 ## delay filled lines from being cleared.
 var filled_line_clear_order: int = FilledLineClearOrder.DEFAULT
 

@@ -28,7 +28,7 @@ var lines: Array = []
 ## which columns the sharks appear on
 var columns: Array = []
 
-## An enum from SharkSize for the shark's size
+## Enum from SharkSize for the shark's size
 var size: int = SharkSize.MEDIUM
 
 ## how long the shark waits before disappearing

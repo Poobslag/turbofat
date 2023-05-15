@@ -75,13 +75,13 @@ const WIGGLE := MovementMode.WIGGLE
 ## How large creatures can grow; 5.0 = 5x normal size
 const MAX_FATNESS := 10.0
 
-## the creature definition path for the sensei who leads tutorials
+## creature definition path for the sensei who leads tutorials
 const SENSEI_PATH := "res://assets/main/creatures/sensei.json"
 
 ## Returns true if the specified creature orientation points south (towards the camera)
 ##
 ## Parameters:
-## 	'orientation': an enum from Creatures.Orientation
+## 	'orientation': enum from Creatures.Orientation
 static func oriented_south(orientation: int) -> bool:
 	return orientation in [SOUTHWEST, SOUTHEAST]
 
@@ -89,6 +89,6 @@ static func oriented_south(orientation: int) -> bool:
 ## Returns true if the specified creature orientation points north (away from the camera)
 ##
 ## Parameters:
-## 	'orientation': an enum from Creatures.Orientation
+## 	'orientation': enum from Creatures.Orientation
 static func oriented_north(orientation: int) -> bool:
 	return orientation in [NORTHWEST, NORTHEAST]

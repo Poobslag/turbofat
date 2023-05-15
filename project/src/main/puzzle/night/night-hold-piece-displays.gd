@@ -3,7 +3,7 @@ extends Control
 ##
 ## These piece displays are synchronized with daytime piece displays, and rendered over them.
 
-## The path to the daytime hold piece displays to synchronize with.
+## Path to the daytime hold piece displays to synchronize with.
 export (NodePath) var hold_piece_displays_path: NodePath
 
 export (PackedScene) var NightPieceDisplayScene

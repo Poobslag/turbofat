@@ -121,7 +121,7 @@ func get_current_customer_index() -> int:
 ## Returns the specified customer.
 ##
 ## Parameters:
-## 	'customer_index' (Optional) The index of the customer to return. Defaults to the current creature.
+## 	'customer_index' (Optional) Index of the customer to return. Defaults to the current creature.
 func get_customer(customer_index: int = -1) -> Creature:
 	return _restaurant_viewport_scene.get_customer(customer_index)
 
@@ -165,7 +165,7 @@ func find_customer_index_with_id(customer_creature_id: String) -> int:
 ## The specified customer has their appearance updated according to the next customer_def in the customer queue.
 ##
 ## Parameters:
-## 	'customer_index': (Optional) The customer to be altered. Defaults to the current customer.
+## 	'customer_index': (Optional) Customer to be altered. Defaults to the current customer.
 func summon_customer(customer_index: int = -1) -> void:
 	var customer_def := CreatureDef.new()
 	if PlayerData.customer_queue.has_priority_customer():

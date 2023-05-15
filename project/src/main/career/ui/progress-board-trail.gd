@@ -12,10 +12,10 @@ export (int) var spot_count := 8 setget set_spot_count
 ## great distance.
 export (bool) var spots_truncated := false setget set_spots_truncated
 
-## The Path2D defining the shape of the trail.
+## Shape of the trail.
 onready var path2d: Path2D
 
-## Lines drawn between the spots on the trail.
+## Lines between the spots on the trail.
 onready var _lines := $Lines
 
 ## Spots drawn along the trail.

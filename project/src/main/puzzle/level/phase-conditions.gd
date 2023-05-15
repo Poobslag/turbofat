@@ -1,5 +1,5 @@
 extends Node
-## A library of phase conditions for level triggers.
+## Library of phase conditions for level triggers.
 ##
 ## These conditions are each mapped to a unique string so that they can be referenced from json.
 
@@ -16,7 +16,7 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 		CAKE,
 	}
 	
-	# an enum from RequiredPickupType defining the pickup's required type
+	## enum from RequiredPickupType defining the pickup's required type
 	var required_pickup_type: int = RequiredPickupType.ANY
 	
 	## Creates a new PickupCollectedPhaseCondition instance with the specified configuration.
@@ -64,7 +64,7 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	## 		combo.
 	##
 	## Parameters:
-	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
+	## 	'phase_config.combo': (Optional) Expression defining which combo values will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		var combos_string: String = phase_config.get("combo", "")
 		combos_to_run = ConfigStringUtils.ints_from_config_string(combos_string, MAX_PIECE_INDEX)
@@ -116,9 +116,9 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## 	{"n": "10,11,12..."}: The trigger will fire for every piece past the tenth piece.
 	##
 	## Parameters:
-	## 	'phase_config.n': (Optional) An expression defining which pieces will fire this trigger.
+	## 	'phase_config.n': (Optional) Expression defining which pieces will fire this trigger.
 	##
-	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
+	## 	'phase_config.combo': (Optional) Expression defining which combo values will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		var indexes_string: String = phase_config.get("n", "")
 		indexes_to_run = ConfigStringUtils.ints_from_config_string(indexes_string, MAX_PIECE_INDEX)
@@ -161,7 +161,7 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 		CAKE,
 	}
 	
-	# an enum from RequiredBoxType defining the box's required type
+	## enum from RequiredBoxType defining the box's required type
 	var required_box_type: int = RequiredBoxType.ANY
 	
 	## Creates a new BoxBuiltPhaseCondition instance with the specified configuration.
@@ -196,11 +196,11 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 
 
 class LineClearedPhaseCondition extends PhaseCondition:
-	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
+	## key: (int) line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: (bool) true
 	var rows := {}
 	
-	## key: (int) a line milestone which causes the trigger to fire when cleared.
+	## key: (int) line milestone which causes the trigger to fire when cleared.
 	## value: (bool) true
 	var indexes_to_run := {}
 	
@@ -227,10 +227,10 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## 		cleared.
 	##
 	## Parameters:
-	## 	'phase_config.y': (Optional) An expression defining which rows will fire this trigger.
-	## 	'phase_config.n': (Optional) An expression defining how many line clears will fire this trigger.
-	## 	'phase_config.combo': (Optional) An expression defining how many combos will fire this trigger.
-	## 	'phase_config.score': (Optional) An expression defining which score milestones will fire this trigger.
+	## 	'phase_config.y': (Optional) Expression defining which rows will fire this trigger.
+	## 	'phase_config.n': (Optional) Expression defining how many line clears will fire this trigger.
+	## 	'phase_config.combo': (Optional) Expression defining how many combos will fire this trigger.
+	## 	'phase_config.score': (Optional) Expression defining which score milestones will fire this trigger.
 	func _init(phase_config: Dictionary).(phase_config) -> void:
 		var y_expression: String = phase_config.get("y", "")
 		var inverted_rows := ConfigStringUtils.ints_from_config_string(y_expression)
@@ -308,7 +308,7 @@ var phase_conditions_by_string := {
 ## Parameters:
 ## 	'phase_key': A string key corresponding to the phase, such as 'line_cleared'.
 ##
-## 	'phase_config': (Optional) A dictionary of strings defining any special conditions for the phase.
+## 	'phase_config': (Optional) Dictionary of strings defining any special conditions for the phase.
 func create(phase_key: String, phase_config: Dictionary) -> PhaseCondition:
 	var phase_condition_type: GDScript = phase_conditions_by_string.get(phase_key, PhaseCondition)
 	var phase_condition: PhaseCondition = phase_condition_type.new(phase_config)

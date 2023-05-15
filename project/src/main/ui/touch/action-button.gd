@@ -1,6 +1,6 @@
 class_name ActionButton
 extends TextureRect
-## A touchscreen button used with EightWay.
+## Touchscreen button used with EightWay.
 ##
 ## Note: Intuitively this functionality should be implemented as a TouchscreenButton. However this is challenging
 ## because of several unique and exciting decisions regarding the design of TouchscreenButton, as well as some
@@ -22,7 +22,7 @@ extends TextureRect
 
 signal pressed
 
-## the action activated by this button. also affects its appearance
+## action activated by this button. also affects its appearance
 export (String) var action: String setget set_action
 
 ## if false, pressing the button won't emit any actions.
@@ -30,11 +30,11 @@ export (bool) var emit_actions: bool = true
 
 var pressed := false setget set_pressed
 
-## the current textures this button toggles between when pressed/unpressed
+## current textures this button toggles between when pressed/unpressed
 var _normal_texture: Texture
 var _pressed_texture: Texture
 
-## the default textures to use when our action has no icon
+## default textures to use when our action has no icon
 onready var _empty_texture := preload("res://assets/main/ui/touch/empty.png")
 onready var _empty_pressed_texture := preload("res://assets/main/ui/touch/empty-pressed.png")
 

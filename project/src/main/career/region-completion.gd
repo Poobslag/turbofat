@@ -1,16 +1,16 @@
 ## Data about which parts of a region are complete/incomplete.
 class_name RegionCompletion
 
-# how many interlude cutscenes the player's viewed in a region
+## how many interlude cutscenes the player's viewed in a region
 var cutscene_completion: int = 0
 
-# how many interlude cutscenes the player can potentially view in a region
+## how many interlude cutscenes the player can potentially view in a region
 var potential_cutscene_completion: int = 0
 
-# how many levels the player has finished in a region
+## how many levels the player has finished in a region
 var level_completion: int = 0
 
-# how many levels the player can potentially finish in a region
+## how many levels the player can potentially finish in a region
 var potential_level_completion: int = 0
 
 ## Returns a number in the range [0.0, 1.0] for how close the player is to completing the region.

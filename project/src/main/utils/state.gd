@@ -1,10 +1,10 @@
 class_name State
 extends Node
-## An empty 'state' script for use in conjunction with the StateMachine class.
+## Empty 'state' script for use in conjunction with the StateMachine class.
 ##
 ## States should extend from this script to define functionality.
 
-## The number of frames this state has been active for.
+## Number of frames this state has been active for.
 var frames := 0
 
 ## Called when the state is entered.

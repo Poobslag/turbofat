@@ -11,16 +11,16 @@ enum ShowProgress {
 ## Chat key root for non-region-specific cutscenes
 const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
 
-## The number of days worth of records which are stored.
+## Number of days worth of records which are stored.
 const MAX_DAILY_HISTORY := 40
 
-## The maximum number of days the player can progress.
+## Maximum number of days the player can progress.
 const MAX_DAY := 999999
 
-## The maximum distance the player can travel.
+## Maximum distance the player can travel.
 const MAX_DISTANCE_TRAVELLED := 999999
 
-## The maximum number of consecutive levels the player can play in one career session.
+## Maximum number of consecutive levels the player can play in one career session.
 const HOURS_PER_CAREER_DAY := 6
 
 ## Array of dictionaries containing milestone metadata, including the necessary rank, the distance the player will
@@ -36,9 +36,9 @@ const RANK_MILESTONES := [
 	{"rank": 0.0, "distance": 25, "color": Color("b948b9")},
 ]
 
-## The rank milestone to display when the player fails a boss level.
+## Rank milestone to display when the player fails a boss level.
 const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("bababa")}
 
-# Daily step thresholds to trigger positive feedback.
+## Daily step thresholds to trigger positive feedback.
 const DAILY_STEPS_GOOD := 25
 const DAILY_STEPS_OK := 8

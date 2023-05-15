@@ -1,8 +1,8 @@
 class_name StickerRow
 extends Control
-## A row of wallpaper sprites which slowly scroll by.
+## Row of wallpaper sprites which slowly scroll by.
 
-## the scroll velocity. only the x component is used
+## scroll velocity. only the x component is used
 export (PackedScene) var StickerScene: PackedScene
 export (Vector2) var velocity: Vector2 setget set_velocity
 export (Color) var color: Color
@@ -16,7 +16,7 @@ var _texture_index := 0
 ## counts down to 0, at which point a single sprite is omitted
 var _blank_texture_countdown := randi() % 7
 
-## the sticker furthest back in the row. when it moves enough a new sticker is created to take its place
+## sticker furthest back in the row. when it moves enough a new sticker is created to take its place
 var _back_sticker: Sprite
 
 func _physics_process(delta: float) -> void:

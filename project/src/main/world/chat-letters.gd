@@ -19,7 +19,7 @@ const LETTER_ANGLES_BY_ORIENTATION := {
 
 onready var _letter_shooter: LetterShooter = $LetterShooter
 
-## the creature currently emitting letters
+## creature currently emitting letters
 var _chatter: Creature
 
 func _ready() -> void:

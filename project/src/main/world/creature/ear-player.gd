@@ -1,6 +1,6 @@
 #tool #uncomment to view creature in editor
 extends AnimationPlayer
-## An AnimationPlayer which animates ears.
+## AnimationPlayer which animates ears.
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 

@@ -17,7 +17,7 @@ const PAUSE_CHARACTERS := {
 ## Stores the delay in seconds for each visible_characters index.
 var _visible_character_pauses := {}
 
-## The delay in seconds before displaying the next character.
+## Delay in seconds before displaying the next character.
 var _pause := 0.0
 
 ## 1.0 = slow, 2.0 = normal, 3.0 = faster, 5.0 = fastest, 1000000.0 = fastestest

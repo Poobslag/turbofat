@@ -16,7 +16,7 @@ const CHUNK_SECONDS := 0.01
 
 export (PackedScene) var CreatureScene: PackedScene
 
-## the desired number of creatures to show
+## desired number of creatures to show
 var _target_creature_count := 5
 
 onready var _creature_container := $CreatureContainer

@@ -9,13 +9,13 @@ export (NodePath) var ground_map_path: NodePath
 ## Percent of cake tiles which should have puddles
 export (float, 0.0, 1.0) var puddle_density := 0.03
 
-## The ground tilemap's tile ID for goopless cells
+## Ground tilemap's tile ID for goopless cells
 export (int) var ground_no_goop_tile_index: int
 
-## The terrain tilemap's tile ID for puddle tiles
+## Terrain tilemap's tile ID for puddle tiles
 export (int) var puddle_tile_index: int
 
-## An editor toggle which adds puddles to a random selection of goopy/goopless cake tiles
+## Editor toggle which adds puddles to a random selection of goopy/goopless cake tiles
 export (bool) var _autotile: bool setget autotile
 
 ## Terrain tilemap with puddle tiles to place

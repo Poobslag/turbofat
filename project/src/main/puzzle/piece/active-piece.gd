@@ -3,12 +3,12 @@ class_name ActivePiece
 
 const MAX_FLOOR_KICKS := 3
 
-## The current position/orientation. For most pieces, orientation will range from
+## Current position/orientation. For most pieces, orientation will range from
 ## [0, 1, 2, 3] for [unrotated, clockwise, flipped, counterclockwise]
 var pos := Vector2(3, 3)
 var orientation := 0
 
-## The desired position/orientation when the piece is trying to move/rotate.
+## Desired position/orientation when the piece is trying to move/rotate.
 var target_pos := Vector2(3, 3)
 var target_orientation := 0
 
@@ -37,7 +37,7 @@ var spawn_delay := 0
 ## Piece shape, color, kick information
 var type: PieceType
 
-## A callback function which returns 'true' if a specified cell is obstructed,
+## Callback function which returns 'true' if a specified cell is obstructed,
 ## either because it lies outside the playfield or is obstructed by a block
 var cell_obstructed_func: FuncRef
 

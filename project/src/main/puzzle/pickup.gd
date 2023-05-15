@@ -1,8 +1,8 @@
 class_name Pickup
 extends Node2D
-## A pickup which spawns a food item when collected by the player.
+## Pickup which spawns a food item when collected by the player.
 
-## the duration in seconds between star color changes
+## duration in seconds between star color changes
 const STAR_COLOR_CHANGE_DURATION := 0.8
 
 var food_type := 0 setget set_food_type

@@ -23,7 +23,7 @@ extends Node
 ## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
 ##
 ## Returns:
-## 	A timer which has been added to the scene tree, and is currently active.
+## 	Timer which has been added to the scene tree, and is currently active.
 func start_timer(wait_time: float) -> Timer:
 	var timer := add_timer(wait_time)
 	timer.start()
@@ -38,7 +38,7 @@ func start_timer(wait_time: float) -> Timer:
 ## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
 ##
 ## Returns:
-## 	A timer which has been added to the scene tree, but is not yet active.
+## 	Timer which has been added to the scene tree, but is not yet active.
 func add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true

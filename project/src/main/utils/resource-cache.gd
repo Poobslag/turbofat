@@ -38,7 +38,7 @@ export (Array, String) var skipped_resource_paths: Array
 ## if true, the caching process will be threaded on platforms which support it
 export (bool) var threaded := false
 
-## the minimum amount of time the game should take to load
+## minimum amount of time the game should take to load
 export (float) var load_seconds := 0.0
 
 ## maintains references to all resources to prevent them from being cleaned up
@@ -75,7 +75,7 @@ var _remaining_scene_paths := []
 ## value: (Node) singleton nodes
 var _singletons: Dictionary
 
-## The system time when we initialized the resource load.
+## System time when we initialized the resource load.
 var _start_load_begin_msec: float
 
 ## Initializes the resource load.

@@ -9,8 +9,8 @@ const DECORATED_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/res
 const UNDECORATED_PUZZLE_ENVIRONMENT_PATH \
 		:= "res://src/main/world/environment/restaurant/UndecoratedTurboFatEnvironment.tscn"
 
-## key: (String) an environment name which appears in the json definitions
-## value: (String) The path to the scene resource defining creatures and obstacles which appear in
+## key: (String) an Environment name which appears in the json definitions
+## value: (String) Path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
 const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonRestaurantEnvironment.tscn",

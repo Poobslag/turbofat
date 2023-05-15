@@ -8,7 +8,7 @@ tool
 ## Instructions: Attach this node to a TileMap and toggle this node's 'autotile' property. This will apply autotiling
 ## rules to all tiles in the TileMap.
 
-## An editor toggle which manually applies autotiling.
+## Editor toggle which manually applies autotiling.
 export (bool) var _autotile: bool setget autotile
 
 ## Applies autotiling rules to all cells in a TileMap.

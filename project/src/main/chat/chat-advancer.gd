@@ -75,7 +75,7 @@ func advance() -> void:
 		emit_signal("chat_finished")
 
 
-## The current chat event being shown to the player.
+## Current chat event being shown to the player.
 ##
 ## This could either be the newest chat event, or a historical one they're rewinding through.
 func current_chat_event() -> ChatEvent:

@@ -1,21 +1,21 @@
 extends Control
 ## Updates the puzzle background.
 
-## The path to the scene resource defining a puzzle background for levels which do not specify an
+## Path to the scene resource defining a puzzle background for levels which do not specify an
 ## background, or which specify an invalid background
 const DEFAULT_BG_PATH := "res://src/main/puzzle/WoodBg.tscn"
 
-## The shadow color for levels which do not specify a color, or which specify an invalid color
+## Shadow color for levels which do not specify a color, or which specify an invalid color
 const DEFAULT_BG_COLOR := Color("582612")
 
-## key: (String) an environment name which appears in the json definitions
-## value: (String) The path to the scene resource defining a puzzle background for that environment
+## key: (String) an Environment name which appears in the json definitions
+## value: (String) Path to the scene resource defining a puzzle background for that environment
 const BG_PATH_BY_NAME := {
 	"lemon": "res://src/main/puzzle/LemonBg.tscn",
 }
 
-## key: (String) an environment name which appears in the json definitions
-## value: (Color) The color for shadows in the puzzle scene
+## key: (String) an Environment name which appears in the json definitions
+## value: (Color) Color for shadows in the puzzle scene
 const BG_SHADOW_COLOR_BY_NAME := {
 	"lemon": Color("3d291f"),
 }

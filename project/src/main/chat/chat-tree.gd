@@ -7,7 +7,7 @@ class_name ChatTree
 class Position:
 	## Current position in a chat tree.
 	
-	## The key of the chat branch being navigated.
+	## Key of the chat branch being navigated.
 	var key := ""
 	
 	## How far we are along the chat branch.
@@ -53,7 +53,7 @@ var meta: Dictionary
 ## value: (Array, ChatEvent) events for a particular chat sequence
 var events := {}
 
-## a specific location where this conversation takes place, if any
+## specific location where this conversation takes place, if any
 var location_id: String
 
 ## Spawn locations for different creatures, if this ChatTree represents a cutscene. Spawn locations prefixed with a '!'
@@ -63,15 +63,15 @@ var location_id: String
 ## value: (String) spawn id
 var spawn_locations := {}
 
-## The creature who acts as the chef for the cutscene, if any. This ensures levels are paired up with appropriate
+## Creature who acts as the chef for the cutscene, if any. This ensures levels are paired up with appropriate
 ## cutscenes.
 var chef_id: String
 
-## The creatures who act as the customers for the cutscene, if any. This ensures levels are paired up with appropriate
+## Creatures who act as the customers for the cutscene, if any. This ensures levels are paired up with appropriate
 ## cutscenes.
 var customer_ids: Array
 
-## The creature who acts as an observer for this cutscene, if any. This ensures levels are paired up with appropriate
+## Creature who acts as an observer for this cutscene, if any. This ensures levels are paired up with appropriate
 ## cutscenes.
 var observer_id: String
 

@@ -1,5 +1,5 @@
 extends Node
-## A demo which shows off the onion puzzle critter.
+## Demo which shows off the onion puzzle critter.
 ##
 ## Keys:
 ## [0]: Disappear

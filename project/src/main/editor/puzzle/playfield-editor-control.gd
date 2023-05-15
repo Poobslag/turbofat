@@ -14,7 +14,7 @@ signal pickups_changed
 
 ## tiles keys which can be selected. 'start' is always the first item in this array
 var tiles_keys := ["start"] setget set_tiles_keys
-## the currently selected tiles key
+## currently selected tiles key
 var tiles_key := "start" setget set_tiles_key
 
 onready var _playfield_nav := $PlayfieldNav

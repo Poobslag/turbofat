@@ -23,7 +23,7 @@ const TEXTS := [
 	"Oh my, you're not supposed to know how to do that!\n\n...But yes, squish moves can help you out of a jam.",
 ]
 
-## a tutorial level id to demo, like 'tutorial/basic_0'
+## tutorial level id to demo, like 'tutorial/basic_0'
 export (String) var level_id: String = OtherLevelLibrary.BEGINNER_TUTORIAL
 
 onready var _tutorial_hud: TutorialHud = $Level/Hud/Center/TutorialHud

@@ -7,7 +7,7 @@ extends OverworldObstacle
 ## Animation names for the tree's lemon eyes
 const LEMON_ANIMATION_NAMES := ["default-0", "default-1", "default-2"]
 
-## An editor toggle which randomizes the tree's appearance
+## Editor toggle which randomizes the tree's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
 ## Controls the shape of the tree's leaves. Modifying this in the editor has no effect until the scene is reloaded.

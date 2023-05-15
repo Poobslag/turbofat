@@ -12,7 +12,7 @@ const CHUNK_SIZE := 6.0
 ## array of floats corresponding to good start positions in each song
 export (Array, float) var checkpoints: Array = []
 
-## the song title and color shown in the toaster popup
+## song title and color shown in the toaster popup
 export var song_title: String
 export var song_color: Color
 

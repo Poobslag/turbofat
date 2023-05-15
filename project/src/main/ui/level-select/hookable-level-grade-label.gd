@@ -5,7 +5,7 @@ extends Node2D
 ## This can be something like 'S' or 'B+' if a level has been cleared, or something like a lock/key icon for levels
 ## which haven't yet been cleared.
 
-## the LevelSelectButton this grade label applies to
+## LevelSelectButton this grade label applies to
 var button: Button setget set_button
 
 var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")

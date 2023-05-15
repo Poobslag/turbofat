@@ -1,5 +1,5 @@
 extends Node
-## A demo which lets you test the chat UI by flipping through pages of a chat.
+## Demo which lets you test the chat UI by flipping through pages of a chat.
 ##
 ## Keys:
 ## 	[0-9]: Changes chat line length; 1 = short, 9 = long, 0 = longest

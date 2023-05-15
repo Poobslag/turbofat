@@ -38,34 +38,34 @@ const NAMETAG_LARGE := NametagSize.LARGE
 const NAMETAG_XL := NametagSize.XL
 const NAMETAG_XXL := NametagSize.XXL
 
-## The scale of the accent's background texture
+## Scale of the accent's background texture
 var accent_scale: float = DEFAULT_ACCENT_SCALE
 
 ## If 'true', the accent's foreground/background colors will be swapped
 var accent_swapped: bool
 
-## A number in the range [0, 15] referring to a background texture
+## Number in the range [0, 15] referring to a background texture
 var accent_texture_index: int
 
-## The color of the chat window
+## Color of the chat window
 var color: Color = DEFAULT_COLOR setget set_color
 
 ## If 'true', the backgrond will be black instead of white
 var dark: bool setget set_dark
 
-## The color for the nametag font; black or white.
+## Color for the nametag font; black or white.
 ## virtual property; value is only exposed through getters/setters
 var nametag_font_color setget ,get_nametag_font_color
 
-## The scale of the accent's background texture
+## Scale of the accent's background texture
 ## virtual property; value is only exposed through getters/setters
 var accent_color: Color setget ,get_accent_color
 
-## The color for the frame border, nametag background and text.
+## Color for the frame border, nametag background and text.
 ## virtual property; value is only exposed through getters/setters
 var border_color: Color setget ,get_border_color
 
-## The opacity of the accent's background texture.
+## Opacity of the accent's background texture.
 ## virtual property; value is only exposed through getters/setters
 var accent_amount: float setget ,get_accent_amount
 

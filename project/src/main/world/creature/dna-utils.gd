@@ -371,7 +371,7 @@ func _ready() -> void:
 ## Parameters:
 ## 	'dna': A dna dictionary whose alleles should be evaluated
 ##
-## 	'creature_type': An enum from Creatures.Type which the alleles should be compare to
+## 	'creature_type': Enum from Creatures.Type which the alleles should be compare to
 ##
 ## Returns:
 ## 	'true' if the specified dna dictionary conforms to the specified creature type
@@ -568,7 +568,7 @@ func _get_species_adjustment(creature_type: int, key: String, value: String) -> 
 	return _species_adjustments.get(_species_adjustment_key(creature_type, key, value), 0.0)
 
 
-## A key corresponding to a species combination, such as 'squirrels with stubby tails'.
+## Key corresponding to a species combination, such as 'squirrels with stubby tails'.
 ##
 ## A combination such as 'squirrels with stubby tails' becomes a string key such as '1-tail-4' which is compatible
 ## with dictionaries.
@@ -576,7 +576,7 @@ func _species_adjustment_key(creature_type: int, key: String, value: String) -> 
 	return("%s-%s-%s" % [creature_type, key, value])
 
 
-## A key corresponding to an allele combination, such as 'big beak with tiny eyes'.
+## Key corresponding to an allele combination, such as 'big beak with tiny eyes'.
 ##
 ## A combination such as 'big beak with tiny eyes' becomes a string key such as 'mouth-4-eye-2' which is compatible
 ## with dictionaries.
@@ -589,7 +589,7 @@ func _allele_combo_key(key1: String, value1: String, key2: String, value2: Strin
 	return combo_key
 
 
-## A key corresponding to an allele value, such as 'stubby tails'.
+## Key corresponding to an allele value, such as 'stubby tails'.
 ##
 ## A combination such as 'stubby tails' becomes a string key such as 'tail-4' which is compatible with dictionaries.
 func _allele_value_key(key: String, value: String) -> String:

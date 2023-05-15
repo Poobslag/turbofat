@@ -87,7 +87,7 @@ func change_level(level_id: String, delay_between_levels: float = Tutorials.DELA
 ## 	'wait_time': The amount of time to wait after all messages are shown. A value of '0.0' will result in an error.
 ##
 ## Returns:
-## 	A timer which has been added to the scene tree. The timer may be active or inactive depending on whether the
+## 	Timer which has been added to the scene tree. The timer may be active or inactive depending on whether the
 ## 	tutorial messages are still being written to the user.
 func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
 	var timer := PuzzleState.add_timer(wait_time)

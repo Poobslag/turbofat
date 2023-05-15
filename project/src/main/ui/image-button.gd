@@ -1,6 +1,6 @@
 class_name ImageButton
 extends Button
-## A button represented by a pair of icons.
+## Button represented by a pair of icons.
 ##
 ## Pressing the button toggles between the normal and pressed icon. The button's size changes based on the player's
 ## touch settings.

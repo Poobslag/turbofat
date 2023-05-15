@@ -1,11 +1,11 @@
 class_name CrumbCluster
 extends Node2D
-## A cluster of crumbs which appears when the customer eats.
+## Cluster of crumbs which appears when the customer eats.
 
-## The lifetime of the particles in seconds. The CrumbCluster also deletes itself after this duration.
+## Lifetime of the particles in seconds. The CrumbCluster also deletes itself after this duration.
 export (float) var lifetime := 1.0
 
-## An int corresponding to a FoodItem frame
+## int corresponding to a FoodItem frame
 var food_type setget set_food_type
 
 ## Timer which causes the CrumbCluster to free itself

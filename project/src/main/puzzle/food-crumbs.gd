@@ -3,7 +3,7 @@ extends Node2D
 
 export (NodePath) var restaurant_view_path: NodePath
 
-## A cluster of crumbs which appears when the customer eats.
+## Cluster of crumbs which appears when the customer eats.
 export (PackedScene) var CrumbClusterScene: PackedScene
 
 onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)

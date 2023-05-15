@@ -297,7 +297,7 @@ static func seeded_shuffle(arr: Array, seed_int: int) -> void:
 ## Returns a unit vector corresponding to the direction the user is pressing.
 ##
 ## Parameters:
-## 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
+## 	'event': (Optional) Input event to be evaluated. If null, this method will evaluate all current inputs.
 static func ui_pressed_dir(event: InputEvent = null) -> Vector2:
 	var ui_dir := Vector2.ZERO
 	if event:
@@ -324,7 +324,7 @@ static func ui_pressed_dir(event: InputEvent = null) -> Vector2:
 ## Returns 'true' if the user just released a direction key.
 ##
 ## Parameters:
-## 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
+## 	'event': (Optional) Input event to be evaluated. If null, this method will evaluate all current inputs.
 static func ui_released_dir(event: InputEvent = null) -> bool:
 	var ui_dir := Vector2.ZERO
 	if event:

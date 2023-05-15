@@ -6,7 +6,7 @@ var squish_seconds_remaining := 0.0
 var squish_seconds_total := 0.0
 
 ## key: (Vector2) tile map cell
-## value: (int) A number proportional to how long this cell should contain a stretched block. Higher numbered cells are
+## value: (int) Number proportional to how long this cell should contain a stretched block. Higher numbered cells are
 ## 	drawn for more frames, lower numbered cells are drawn for fewer frames. Cells with a value of zero are never drawn.
 var _stretch_pos := {}
 

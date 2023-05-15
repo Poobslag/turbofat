@@ -1,5 +1,5 @@
 extends VBoxContainer
-## A UI control which lets the player view and update the game's keybinds.
+## UI control which lets the player view and update the game's keybinds.
 
 func _ready() -> void:
 	$Presets/Guideline.connect("pressed", self, "_on_Guideline_pressed")

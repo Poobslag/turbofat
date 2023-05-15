@@ -18,7 +18,7 @@ const SAVE_AND_QUIT := QuitType.SAVE_AND_QUIT
 const GIVE_UP := QuitType.GIVE_UP
 const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
 
-## The text on the menu's quit button
+## Text on the menu's quit button
 export (QuitType) var quit_type: int setget set_quit_type
 
 ## method name and parameters for a method to call after system data is saved

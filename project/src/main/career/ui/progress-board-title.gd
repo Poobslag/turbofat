@@ -1,6 +1,6 @@
 class_name ProgressBoardTitle
 extends Control
-## The title at the top of the progress board.
+## Title at the top of the progress board.
 ##
 ## This includes a label showing the region name which is bookended by a set of icons.
 
@@ -41,10 +41,10 @@ var _icon_resources_by_type := {
 	VOLCANO: preload("res://assets/main/career/ui/map/landmark-volcano.png"),
 }
 
-## The text of the label showing the region name.
+## Text of the label showing the region name.
 var text: String setget set_text
 
-## An enum from IconType for the type of icon to show alongside the title.
+## Enum from IconType for the type of icon to show alongside the title.
 var icon_type: int setget set_icon_type
 
 ## Label which shows the region name.

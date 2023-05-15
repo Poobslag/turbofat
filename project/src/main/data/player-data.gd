@@ -10,7 +10,7 @@ signal money_changed(value)
 ## emitted when the player beats a level, or when the level history is reset or reloaded
 signal level_history_changed
 
-## the most money the player can have
+## most money the player can have
 const MAX_MONEY := 9999999999999999
 
 ## how often in seconds to increment the 'seconds_played' value
@@ -28,7 +28,7 @@ var practice := PracticeData.new()
 
 var money := 0 setget set_money
 
-## the player's playtime in seconds
+## player's playtime in seconds
 var seconds_played := 0.0
 
 ## periodically increments the 'seconds_played' value

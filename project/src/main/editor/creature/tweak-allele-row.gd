@@ -1,10 +1,10 @@
 extends HBoxContainer
 ## UI control for editing a creature's allele, such their nose or mouth.
 
-## An allele property used internally when updating the creature. Not shown to the player
+## Allele property used internally when updating the creature. Not shown to the player
 export (String) var allele: String
 
-## An allele property used internally when updating the creature. Not shown to the player
+## Allele property used internally when updating the creature. Not shown to the player
 export (String) var text: String
 
 export (NodePath) var creature_editor_path: NodePath

@@ -2,12 +2,12 @@ class_name SharkClouds
 extends Node2D
 ## Generates 'shark clouds', dust clouds which appear over the shark's mouth while they eat.
 
-## The number of animation variants in the sprite sheet. We cycle between random variants.
+## Number of animation variants in the sprite sheet. We cycle between random variants.
 const CLOUD_VARIANT_COUNT := 3
 
 export (PackedScene) var CloudPartScene: PackedScene
 
-## The tile map for the pieces the shark is eating.
+## Tile map for the pieces the shark is eating.
 var tile_map: PuzzleTileMap setget set_tile_map
 
 func set_tile_map(new_tile_map: PuzzleTileMap) -> void:

@@ -14,13 +14,13 @@ signal pickups_changed
 
 var _dragging_right_mouse := false
 
-## The 'pos' parameter for the previous call to 'can_drop_data'
+## 'pos' parameter for the previous call to 'can_drop_data'
 var _prev_can_drop_pos: Vector2
 
-## The 'data' parameter for the previous call to 'can_drop_data'
+## 'data' parameter for the previous call to 'can_drop_data'
 var _prev_can_drop_data: Object
 
-## The data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
+## Data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
 var _prev_dropped_data: Object
 
 onready var _tile_map := $Bg/TileMap

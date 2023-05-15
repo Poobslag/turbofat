@@ -1,6 +1,6 @@
 class_name ResultsLabel
 extends RichTextLabel
-## A results label which reveals its contents line by line.
+## Results label which reveals its contents line by line.
 
 ## emitted when new characters appear in the window. newlines are stripped from the signal
 signal text_shown(new_text)
@@ -8,7 +8,7 @@ signal text_shown(new_text)
 ## unshown character which causes the output to pause for 0.2 beats
 const LULL_CHARACTER := '|'
 
-## The delay in seconds before displaying the next character
+## Delay in seconds before displaying the next character
 var _pause := 0.0
 
 ## timing at which messages appear. defaults to 136 bpm

@@ -20,12 +20,12 @@ signal button_added(button)
 
 export (PackedScene) var LevelButtonScene: PackedScene
 
-## A CareerRegion or OtherRegion instance whose levels are being shown
+## CareerRegion or OtherRegion instance whose levels are being shown
 var region: Object setget set_region
 
 var level_ids: Array setget set_level_ids
 
-## the current page of buttons being shown
+## current page of buttons being shown
 var _page := 0
 
 ## key: (String) level id

@@ -3,13 +3,13 @@ extends Label
 ##
 ## The clock shows text like '12:30 pm', and can flash and emit particles.
 
-## The duration in seconds that the clock should flash white.
+## Duration in seconds that the clock should flash white.
 const FLASH_DURATION := 1.5
 
-## The default font outline color, when not flashing.
+## Default font outline color, when not flashing.
 const OUTLINE_COLOR := Color("6c4331")
 
-## The tween that handles the clock's flash effect.
+## Tween that handles the clock's flash effect.
 onready var _flash_tween: SceneTreeTween
 
 ## Particles emitted when the clock flashes.

@@ -1,14 +1,14 @@
 extends Control
-## The bottom area of the settings menu with the OK and Quit buttons
+## Bottom area of the settings menu with the OK and Quit buttons
 
 signal ok_pressed
 signal quit_pressed
 signal other_quit_pressed
 
-## The text on the menu's quit button
+## Text on the menu's quit button
 var quit_type: int setget set_quit_type
 
-## the UI control which was focused before this settings menu popped up
+## UI control which was focused before this settings menu popped up
 var _old_focus_owner: Control
 
 onready var _ok_button := $HBoxContainer/VBoxContainer2/Holder/Ok

@@ -44,7 +44,7 @@ var lines_being_deleted_during_trigger := []
 ## remaining frames to wait for erasing the current lines
 var remaining_line_erase_frames := 0
 
-## the index of the next line to clear/erase as a part of _physics_process
+## index of the next line to clear/erase as a part of _physics_process
 var _cleared_line_index := 0
 var _erased_line_index := 0
 
@@ -63,11 +63,11 @@ var _lines_to_preserve_at_end := {}
 ## value: (int) number of times this line has been full during 'calculate_lines_to_clear'
 var _line_filled_age := {}
 
-## The total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
+## Total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
 ## show to the player, because the two values are incremented at different times.
 var _total_cleared_line_count := 0
 
-## The maximum score the player has reached.
+## Maximum score the player has reached.
 ##
 ## Level triggers can fire when the player reaches a score threshold. The player's score can decrease if they top out,
 ## so we track their max score to ensure score triggers only fire once.

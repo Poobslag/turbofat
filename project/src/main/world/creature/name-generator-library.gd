@@ -1,7 +1,7 @@
 extends Node
 ## Generates names for different species using different algorithms.
 
-## key: (int) an enum from Creatures.Type for a creature type such as 'squirrel'
+## key: (Creatures.Type) creature type such as 'squirrel'
 ## value: (NameGenerator) generator for the specified creature type
 var _generators_by_type := {}
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 ## Generates a name for the specified creature type.
 ##
 ## Parameters:
-## 	type: An enum from Creatures.Type for a creature type such as 'squirrel'
+## 	type: Enum from Creatures.Type for a creature type such as 'squirrel'
 func generate_name(type: int = Creatures.Type.DEFAULT) -> String:
 	return _generators_by_type[type].generate_name()
 

@@ -1,9 +1,9 @@
 class_name Population
 ## Describes the creatures in a career region.
 
-## A chef/customer who appears in a career region.
+## Chef/customer who appears in a career region.
 class CreatureAppearance:
-	## the id of the creature who appears
+	## id of the creature who appears
 	var id: String
 	
 	## number in the range [0.0, 1.0] describing how often the creature appears
@@ -34,10 +34,10 @@ class CreatureAppearance:
 ## Describes the chance of a creature type appearing in a region.
 class Demographic:
 	
-	## An enum from Creatures.Type for a creature type
+	## Enum from Creatures.Type for a creature type
 	var type: int = Creatures.Type.DEFAULT
 	
-	## The creature type's chance of appearing
+	## Creature type's chance of appearing
 	var chance: float = 0.0
 	
 	func from_json_string(json: String) -> void:
@@ -117,7 +117,7 @@ func has_quirky_observer(observer_id: String) -> bool:
 ## Returns a random creature type weighted such that certain creature types show up more frequently.
 ##
 ## Returns:
-## 	An enum from Creatures.Type for a creature type such as 'squirrel'
+## 	Enum from Creatures.Type for a creature type such as 'squirrel'
 func random_creature_type() -> int:
 	# Populate a weights map from the demographic values.
 	var weights_map := {}

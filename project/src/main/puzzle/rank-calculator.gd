@@ -23,14 +23,14 @@ const MASTER_COMBO_SCORE := 17.575
 const MASTER_CUSTOMER_COMBO := 22
 const MASTER_LEFTOVER_LINES := 12
 
-## The fastest LPM for a human player at the highest piece speeds. Theoretically this could be as high as 180 based on
+## Fastest LPM for a human player at the highest piece speeds. Theoretically this could be as high as 180 based on
 ## similar records in other games.
 ##
 ## The current value of 65 is a conservative estimate extrapolated based on my own personal best of 52 lines per
 ## minute.
 const MASTER_LINES_PER_MINUTE := 65
 
-## The number of extra unnecessary frames a perfect player will spend moving their piece.
+## Number of extra unnecessary frames a perfect player will spend moving their piece.
 const MASTER_MVMT_FRAMES := 6
 
 ## amount of points lost while starting a combo

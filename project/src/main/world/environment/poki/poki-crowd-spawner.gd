@@ -4,7 +4,7 @@ extends ObstacleSpawner
 ##
 ## Provides a utility method in the editor for shuffling the crowd member's appearance.
 
-## An editor toggle which randomizes the crowd member's appearance
+## Editor toggle which randomizes the crowd member's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
 ## Randomizes the crowd member's appearance.

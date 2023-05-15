@@ -3,7 +3,7 @@ extends Node2D
 
 const MAX_WAVE_COUNT := 50
 
-## the path to the underlying tilemap which controls where waves can spawn
+## path to the underlying tilemap which controls where waves can spawn
 export (NodePath) var tile_map_path: NodePath
 
 ## wave movement direction
@@ -20,7 +20,7 @@ export (float) var wait_time: float = 6.0
 ## ground tile ids which a ripple can appear over
 export (Array, int) var rippleable_tile_ids := []
 
-## the path underlying tilemap which controls where waves can spawn
+## path underlying tilemap which controls where waves can spawn
 onready var _tile_map: TileMap = get_node(tile_map_path)
 
 onready var _wave_spawn_timer := $WaveSpawnTimer

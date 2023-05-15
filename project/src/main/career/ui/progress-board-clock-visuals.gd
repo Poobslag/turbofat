@@ -5,34 +5,34 @@ extends Node2D
 ##
 ## The clock has an outline, empty/filled parts of the clock face, and a minute/hour hand.
 
-## The number of points in the clock's outline. The higher this number, the smoother the outline.
+## Number of points in the clock's outline. The higher this number, the smoother the outline.
 const sample_count := 48.0
 
-## A number in the range [0.0, 1.0] for how much of the clock face should be filled.
+## Number in the range [0.0, 1.0] for how much of the clock face should be filled.
 export (float, 0.0, 1.0) var filled_percent := 0.0 setget set_filled_percent
 
-## A number in the range [0.0, 60.0] for the position of the minute hand.
+## Number in the range [0.0, 60.0] for the position of the minute hand.
 ##
 ## Numbers outside the range of [0.0, 60.0] will not cause errors, but will cause the hour hand to behave strangely. At
 ## 8:50 pm, the hour hand is between eight and nine. But at 8:200 pm, the hour hand is between eleven and twelve.
 export (float, 0.0, 60.0) var minutes := 0.0 setget set_minutes
 
-## A number in the range [0.0, 24.0] for the position of the hour hand.
+## Number in the range [0.0, 24.0] for the position of the hour hand.
 ##
 ## Numbers outside the range of [0, 12.0] are functionally equivalent, as this is only a twelve hour display.
 export (float, 0.0, 24.0) var hours := 0.0 setget set_hours
 
-## The radius of the clock face, not including the outline.
+## Radius of the clock face, not including the outline.
 export (float) var radius := 50.0 setget set_radius
 
-## The width of the lines used to draw the clock's outline and minute/hour hand.
+## Width of the lines used to draw the clock's outline and minute/hour hand.
 export (float) var line_width := 8.0 setget set_line_width
 
-## The length of the clock's hands.
+## Length of the clock's hands.
 export (float) var minute_hand_length := 40.0 setget set_minute_hand_length
 export (float) var hour_hand_length := 30.0 setget set_hour_hand_length
 
-## The colors used to draw different parts of the clock.
+## Colors used to draw different parts of the clock.
 export (Color) var empty_color := Color.white setget set_empty_color
 export (Color) var filled_color := Color.gray setget set_filled_color
 export (Color) var line_color := Color.black setget set_line_color
@@ -110,7 +110,7 @@ func _draw() -> void:
 ## The resulting points are ordered, starting from the 12 o'clock position and going clockwise.
 ##
 ## Parameters:
-## 	'percent': (Optional) A number in the range [0.0, 1.0] for how many points should be returned. A value of '0.333'
+## 	'percent': (Optional) Number in the range [0.0, 1.0] for how many points should be returned. A value of '0.333'
 ## 		means the points from the 12 o'clock to 4 o'clock position will be returned. If omitted, a full set of points
 ## 		is returned.
 ##

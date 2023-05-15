@@ -11,7 +11,7 @@ var _boxes_built := 0
 var _did_squish_move := false
 var _did_build_box := false
 
-## The number of times the diagram has been shown. We cycle through different diagrams and chat choices.
+## Number of times the diagram has been shown. We cycle through different diagrams and chat choices.
 var _show_diagram_count := 0
 
 ## set of level IDs which the player has attempted during this tutorial

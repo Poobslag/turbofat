@@ -1,7 +1,7 @@
 tool
 class_name SmoothPath
 extends Path2D
-## A utility class which allows developers to draw curves in the Godot editor. Use the path tool to define line
+## Utility class which allows developers to draw curves in the Godot editor. Use the path tool to define line
 ## segments, then enable the 'smooth' setting in the inspector.
 ##
 ## Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a-curve-in-2d?show=57123#a57123

@@ -1,6 +1,6 @@
 class_name ChatLineLabel
 extends RectFitLabel
-## A label which animates text in a way that mimics speech.
+## Label which animates text in a way that mimics speech.
 ##
 ## Text appears a letter at a time at a constant rate. Newlines cause a long pause. Slashes cause a shorter pause and
 ## are hidden from the player. Slashes are referred to 'lull characters' throughout the code.
@@ -8,7 +8,7 @@ extends RectFitLabel
 ## emitted after the full chat line is typed out onscreen
 signal all_text_shown
 
-## The amount of empty space between the text borders and panel borders.
+## Amount of empty space between the text borders and panel borders.
 export (Vector2) var panel_padding: Vector2
 
 export (NodePath) var chat_line_panel_path: NodePath

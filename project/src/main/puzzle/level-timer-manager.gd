@@ -4,11 +4,11 @@ extends Node
 ## Some levels define behavior where something happens every 5 seconds. These timer definitions are kept in the
 ## LevelTimers script, but the actual timer objects which count down are kept here.
 
-## The maximum amount of timers which a level can define
+## Maximum amount of timers which a level can define
 const MAX_TIMER_COUNT := 10
 
 ## key: (int) timer index
-## value: (int) an enum from LevelTriggerPhase for the timer's trigger
+## value: (LevelTrigger) timer's trigger
 const PHASES_BY_TIMER_INDEX := {
 	0: LevelTrigger.TIMER_0,
 	1: LevelTrigger.TIMER_1,

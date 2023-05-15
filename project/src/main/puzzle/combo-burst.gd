@@ -1,6 +1,6 @@
 class_name ComboBurst
 extends Node2D
-## An indicator like '6x' which appears when the player clears multiple lines in succession.
+## Indicator like '6x' which appears when the player clears multiple lines in succession.
 ##
 ## The indicator includes some colorful stylized text with an accent shape behind it.
 
@@ -20,7 +20,7 @@ const COMBO_THRESHOLD_4 := 50
 
 export (Vector2) var velocity: Vector2
 
-## The combo to display. This controls our text, color and particle properties.
+## Combo to display. This controls our text, color and particle properties.
 var combo: int setget set_combo
 
 ## Colors to use; these are automatically assigned based on the combo value

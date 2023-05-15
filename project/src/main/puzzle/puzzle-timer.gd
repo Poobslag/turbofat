@@ -1,5 +1,5 @@
 extends Label
-## A UI component showing how long the player has spent on the current puzzle.
+## UI component showing how long the player has spent on the current puzzle.
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")

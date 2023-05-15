@@ -5,14 +5,14 @@ class_name LevelTriggers
 ## a trigger might rotate the pieces in the piece queue every 2 seconds, or a trigger might toggle the playfield
 ## invisible every time the player places a piece.
 
-## key: (int) An enum from LevelTrigger.LevelTriggerPhase
+## key: (int) Enum from LevelTrigger.LevelTriggerPhase
 ## value: (Array) LevelTriggers which should happen during that phase
 var triggers := {}
 
 ## Runs all triggers for the specified phase.
 ##
 ## Parameters:
-## 	'phase': An enum from LevelTrigger.LevelTriggerPhase corresponding to the triggers to run.
+## 	'phase': Enum from LevelTrigger.LevelTriggerPhase corresponding to the triggers to run.
 ##
 ## 	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 func run_triggers(phase: int, event_params: Dictionary = {}) -> void:

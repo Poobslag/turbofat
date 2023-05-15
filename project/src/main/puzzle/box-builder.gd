@@ -24,7 +24,7 @@ onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 ## brown pieces.
 ##
 ## key: (string) Ingredient string describing the box's size and color
-## value: (int) An enum from Foods.BoxType for the resulting snack/cake
+## value: (int) Enum from Foods.BoxType for the resulting snack/cake
 const BOX_TYPES_BY_INGREDIENTS := {
 	# 3x3
 	"s0": Foods.BoxType.BROWN,

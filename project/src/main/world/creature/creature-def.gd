@@ -45,7 +45,7 @@ var creature_id: String
 ## creature's name, e.g 'Boatricia'
 var creature_name: String
 
-## a shortened version of the creature's name, for use in conversation
+## shortened version of the creature's name, for use in conversation
 var creature_short_name: String
 
 ## defines the creature's appearance such as eye color and mouth shape
@@ -57,7 +57,7 @@ var chat_theme := ChatTheme.new()
 ## dictionaries containing metadata for which chat sequences should be launched in which order
 var chat_selectors: Array
 
-## A boolean condition which enables this creature to appear as a random customer, such as
+## Boolean condition which enables this creature to appear as a random customer, such as
 ## 'chat_finished chat/career/marsh/30_c_end'
 ##
 ## 'false' if they should never be a customer.

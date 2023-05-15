@@ -1,6 +1,6 @@
 class_name CreatureEditor
 extends Node
-## A graphical creature editor which lets players design their own creatures.
+## Graphical creature editor which lets players design their own creatures.
 
 ## emitted when the center creature is first initialized, and later when it is swapped out
 signal center_creature_changed
@@ -22,7 +22,7 @@ var _next_line_color_index := 0
 ## value: (Array) String values which have been randomly chosen by the 'tweak dna' button
 var _recent_tweaked_allele_values := {}
 
-## the creature the player is editing
+## creature the player is editing
 onready var center_creature: Creature = $World/Creatures/CenterCreature
 
 ## alternative creatures the player can choose
@@ -35,7 +35,7 @@ onready var outer_creatures := [
 	$World/Creatures/SeCreature,
 ]
 
-## the UI which tracks things like mutagen level and locked/unlocked alleles
+## UI which tracks things like mutagen level and locked/unlocked alleles
 onready var _mutate_ui := $Ui/TabContainer/Mutate
 onready var _reroll_ui := $Ui/Reroll
 

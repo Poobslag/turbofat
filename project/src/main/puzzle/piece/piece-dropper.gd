@@ -14,7 +14,7 @@ export (NodePath) var piece_mover_path: NodePath
 ## 'true' if the player hard dropped the piece this frame
 var did_hard_drop: bool
 
-## The hard drop destination for the current piece. Used for drawing the ghost piece.
+## Hard drop destination for the current piece. Used for drawing the ghost piece.
 var hard_drop_target_pos: Vector2
 
 onready var input: PieceInput = get_node(input_path)

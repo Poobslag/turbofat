@@ -8,7 +8,7 @@ enum TileSetType {
 	DIAGRAM, # tileset for making tutorial diagrams
 }
 
-## The highest visible playfield row. Food/wobblers/vfx should not be drawn above this row.
+## Highest visible playfield row. Food/wobblers/vfx should not be drawn above this row.
 const FIRST_VISIBLE_ROW := 3
 
 const TILE_PIECE := 0 # part of an intact piece
@@ -20,13 +20,13 @@ const TILE_CORNER := 3 # inner corner of a piece for CornerMap
 const ROW_COUNT := 20
 const COL_COUNT := 9
 
-## a number in the range [0, 1] which can be set to make the tilemap flash or blink.
+## number in the range [0, 1] which can be set to make the tilemap flash or blink.
 var whiteness := 0.0 setget set_whiteness
 
 ## offset used to draw the 'ghost piece'
 var ghost_shadow_offset: Vector2
 
-## an enum from TileSetType referencing the tileset used to render blocks
+## enum from TileSetType referencing the tileset used to render blocks
 var puzzle_tile_set_type: int = TileSetType.DEFAULT setget set_puzzle_tile_set_type
 
 ## fields used to roll the tilemap back to a previous state
@@ -222,7 +222,7 @@ func somewhere_near_cell(cell_pos: Vector2, cell_offset: Vector2 = Vector2.ZERO)
 ## Updates our tile set and the tileset of the corner map.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': an enum from TileSetType referencing the tileset used to render blocks
+## 	'new_puzzle_tile_set_type': enum from TileSetType referencing the tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	puzzle_tile_set_type = new_puzzle_tile_set_type
 	tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]

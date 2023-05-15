@@ -5,7 +5,7 @@ extends Button
 ## in a proprietary JSON format which pybabel doesn't understand. This demo looks at all levels and chat in the game
 ## and exports any localizable strings into a format accessible by pybabel.
 
-## the file where we write the localizable strings
+## file where we write the localizable strings
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
 const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
 

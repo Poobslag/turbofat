@@ -3,7 +3,7 @@ extends Node
 
 signal pop_out_completed
 
-## the size the chat shrinks to when it disappears
+## size the chat shrinks to when it disappears
 const POP_OUT_SCALE := Vector2(0.5, 0.5)
 
 ## applies scale/modulate effects

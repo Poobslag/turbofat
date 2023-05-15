@@ -1,6 +1,6 @@
 class_name Puzzle
 extends Control
-## A puzzle scene where a player drops pieces into a playfield of blocks.
+## Puzzle scene where a player drops pieces into a playfield of blocks.
 
 onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
 onready var _settings_menu: SettingsMenu = $SettingsMenu
@@ -134,7 +134,7 @@ func get_customer() -> Creature:
 ## Parameters:
 ## 	'customer': The customer to feed
 ##
-## 	'food_type': An enum from FoodType corresponding to the food to show
+## 	'food_type': Enum from FoodType corresponding to the food to show
 func feed_customer(customer: Creature, food_type: int) -> void:
 	var new_comfort := customer.score_to_comfort(PuzzleState.combo, PuzzleState.get_customer_score())
 	customer.set_comfort(new_comfort)

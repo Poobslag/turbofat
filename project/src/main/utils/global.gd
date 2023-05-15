@@ -25,7 +25,7 @@ const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
 ## cutscene demo; only used during development
 const SCENE_CUTSCENE_DEMO := "res://src/demo/world/CutsceneDemo.tscn"
 
-## The scale of the TextureRect the creature is rendered to
+## Scale of the TextureRect the creature is rendered to
 const CREATURE_SCALE := 0.4
 
 ## weighted distribution of 'fatnesses' in the range [1.0, 10.0]. most creatures are skinny.
@@ -35,10 +35,10 @@ const FATNESSES := [
 	1.8, 2.3,
 ]
 
-## The factor to multiply by to convert non-isometric coordinates into isometric coordinates
+## Factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
 
-## The game's main viewport width, as specified in the project settings
+## Game's main viewport width, as specified in the project settings
 var window_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/width"), \
 		ProjectSettings.get_setting("display/window/size/height"))
 
