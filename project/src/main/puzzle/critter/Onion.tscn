@@ -227,7 +227,7 @@ tracks/12/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "dance"
 length = 4.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Onion:frame")
@@ -352,7 +352,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=10]
 resource_name = "dance-end"
 length = 0.5
-loop = true
+loop_mode = 1
 step = 0.125
 tracks/0/type = "value"
 tracks/0/path = NodePath("Onion:frame")
@@ -816,7 +816,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=13]
 resource_name = "plummet"
 length = 0.533333
-loop = true
+loop_mode = 1
 step = 0.0333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Onion:frame")
@@ -935,7 +935,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "soar"
 length = 0.4
-loop = true
+loop_mode = 1
 step = 0.0333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Onion:frame")

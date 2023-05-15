@@ -28,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=19]
 resource_name = "alone"
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -44,7 +44,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=18]
 resource_name = "default"
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1

@@ -287,7 +287,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=3]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -393,7 +393,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=4]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -511,7 +511,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=5]
 length = 0.4
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:position")
@@ -602,7 +602,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=6]
 length = 0.4
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:position")
@@ -681,7 +681,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=7]
 length = 0.533333
-loop = true
+loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -787,7 +787,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=8]
 length = 0.533333
-loop = true
+loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -905,7 +905,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id=9]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")
@@ -1014,7 +1014,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id=10]
 length = 0.6
-loop = true
+loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:frame")

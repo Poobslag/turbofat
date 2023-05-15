@@ -42,7 +42,7 @@ anim_offset_random = 1.0
 
 [sub_resource type="Animation" id=1]
 length = 0.001
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
 tracks/0/interp = 1
@@ -59,7 +59,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "default"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -77,7 +77,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=8]
 resource_name = "face-1"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -95,7 +95,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=9]
 resource_name = "face-2"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -113,7 +113,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=10]
 resource_name = "face-3"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -131,7 +131,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=11]
 resource_name = "face-4"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -149,7 +149,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "face-5"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -167,7 +167,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=13]
 resource_name = "face-6"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -185,7 +185,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=14]
 resource_name = "face-7"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -203,7 +203,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=15]
 resource_name = "face-8"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")
@@ -221,7 +221,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=16]
 resource_name = "face-9"
 length = 10.3333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visuals/Face:frame")

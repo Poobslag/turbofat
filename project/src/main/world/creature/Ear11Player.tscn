@@ -31,7 +31,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=38]
 length = 6.0
-loop = true
+loop_mode = 1
 
 [sub_resource type="Animation" id=39]
 length = 2.0

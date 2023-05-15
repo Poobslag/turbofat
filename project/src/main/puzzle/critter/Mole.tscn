@@ -94,7 +94,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "dig"
 length = 4.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mole:frame")
@@ -219,7 +219,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=5]
 resource_name = "dig-end"
 length = 4.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mole:frame")
@@ -344,7 +344,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "found-seed"
 length = 2.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mole:visible")
@@ -398,7 +398,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=6]
 resource_name = "found-star"
 length = 2.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mole:visible")
@@ -452,7 +452,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=4]
 resource_name = "wait"
 length = 3.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("WaitLow:visible")

@@ -168,7 +168,7 @@ tracks/7/keys = {
 [sub_resource type="Animation" id=23]
 resource_name = "dance-end-large"
 length = 2.08714
-loop = true
+loop_mode = 1
 step = 0.260892
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:frame")
@@ -246,7 +246,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=24]
 resource_name = "dance-end-medium"
 length = 2.08714
-loop = true
+loop_mode = 1
 step = 0.260892
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:frame")
@@ -324,7 +324,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=7]
 resource_name = "dance-end-small"
 length = 2.08714
-loop = true
+loop_mode = 1
 step = 0.260892
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:frame")
@@ -402,7 +402,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=15]
 resource_name = "dance-large"
 length = 2.08714
-loop = true
+loop_mode = 1
 step = 0.260892
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:frame")
@@ -468,7 +468,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=16]
 resource_name = "dance-medium"
 length = 2.08714
-loop = true
+loop_mode = 1
 step = 0.260892
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:frame")
@@ -534,7 +534,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "dance-small"
 length = 2.08714
-loop = true
+loop_mode = 1
 step = 0.260892
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:frame")
@@ -599,7 +599,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=17]
 resource_name = "eat-large"
-loop = true
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -664,7 +664,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=18]
 resource_name = "eat-medium"
-loop = true
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -729,7 +729,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "eat-small"
-loop = true
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -795,7 +795,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=19]
 resource_name = "fed-large"
 length = 0.5
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -861,7 +861,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=20]
 resource_name = "fed-medium"
 length = 0.5
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -927,7 +927,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=6]
 resource_name = "fed-small"
 length = 0.5
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -993,7 +993,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=21]
 resource_name = "squished-large"
 length = 0.333333
-loop = true
+loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -1059,7 +1059,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=22]
 resource_name = "squished-medium"
 length = 0.333333
-loop = true
+loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -1125,7 +1125,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=8]
 resource_name = "squished-small"
 length = 0.333333
-loop = true
+loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Shark:visible")
@@ -1191,7 +1191,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=4]
 resource_name = "wait"
 length = 3.0
-loop = true
+loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("WaitLow:visible")

@@ -22,7 +22,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=1]
 resource_name = "default"
 length = 1.33333
-loop = true
+loop_mode = 1
 step = 0.333333
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite2D:frame")

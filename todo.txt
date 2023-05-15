@@ -46,8 +46,8 @@ game starts up, but has bugs
 -particle updates
  -randomization
 -scene tweaks
- -animation looping; replace 'loop = true' in .tscn files with 'loop_mode=1'
- -label alignment; replace 'align = 2' in .tscn files with 'horizontal_alignment = 2'
+ *animation looping; replace 'loop = true' in .tscn files with 'loop_mode=1'
+ *label alignment; replace 'align = 2' in .tscn files with 'horizontal_alignment = 2'
  -restore 'y_sort_enabled' property for ysort nodes
  -set project's stretch mode; Godot #3939
 -code warnings
