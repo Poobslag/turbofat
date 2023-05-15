@@ -76,8 +76,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource( 17 )
 text = "Level"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ButtonHolder" type="Control" parent="MainMenu/VBoxContainer/Level"]
 offset_top = 49.0
@@ -108,8 +108,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Score 200 points as quickly as possible!"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Speed" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 offset_top = 155.0
@@ -125,8 +125,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource( 17 )
 text = "Speed"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Slider" type="HSlider" parent="MainMenu/VBoxContainer/Speed" groups=["main_practice_inputs"]]
 offset_left = 192.0
@@ -161,7 +161,7 @@ offset_right = 302.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "1"
-align = 1
+horizontal_alignment = 1
 
 [node name="Expert" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
 offset_left = 306.0
@@ -169,7 +169,7 @@ offset_right = 504.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "2"
-align = 1
+horizontal_alignment = 1
 
 [node name="Master" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
 offset_left = 508.0
@@ -178,7 +178,7 @@ offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "3"
-align = 2
+horizontal_alignment =2
 
 [node name="System" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 offset_top = 295.0

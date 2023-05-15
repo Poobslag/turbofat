@@ -19,7 +19,7 @@ offset_bottom = 23.0
 custom_minimum_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
 text = "Allele:"
-align = 2
+horizontal_alignment =2
 
 [node name="Edit" type="OptionButton" parent="."]
 offset_left = 110.0

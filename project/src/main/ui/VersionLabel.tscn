@@ -13,5 +13,5 @@ offset_top = -30.0
 offset_right = -9.99988
 theme = ExtResource( 2 )
 text = "v1.2.3.4"
-align = 2
+horizontal_alignment =2
 script = ExtResource( 1 )

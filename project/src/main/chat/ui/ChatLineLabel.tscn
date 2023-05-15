@@ -17,9 +17,9 @@ offset_bottom = 40.0
 theme_override_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
 theme_override_fonts/font = ExtResource( 3 )
 text = "Hello"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 max_lines_visible = 2
 script = ExtResource( 1 )
 

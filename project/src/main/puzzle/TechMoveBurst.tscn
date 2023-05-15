@@ -128,8 +128,8 @@ theme_override_colors/font_color = Color( 0.290196, 0.623529, 1, 1 )
 theme_override_fonts/font = SubResource( 7 )
 text = "T-Spin
 Double"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

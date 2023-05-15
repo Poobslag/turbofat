@@ -56,7 +56,7 @@ offset_bottom = 25.0
 size_flags_horizontal = 3
 theme = ExtResource( 11 )
 text = "Pickups"
-align = 2
+horizontal_alignment =2
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/TabContainer/Properties/Pickups/HBoxContainer1"]
 offset_left = 62.0

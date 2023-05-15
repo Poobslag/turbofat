@@ -21,7 +21,7 @@ offset_bottom = 23.0
 custom_minimum_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
 text = "Eye Color:"
-align = 2
+horizontal_alignment =2
 
 [node name="Edit1" type="ColorPickerButton" parent="."]
 process_mode = 2

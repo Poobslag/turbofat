@@ -39,9 +39,9 @@ offset_bottom = -4.0
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource( 6 )
 text = "Just getting started"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 clip_text = true
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]

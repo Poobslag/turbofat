@@ -177,7 +177,7 @@ offset_bottom = 75.0
 custom_minimum_size = Vector2( 120, 0 )
 theme = ExtResource( 2 )
 text = "999,999"
-align = 1
+horizontal_alignment = 1
 
 [node name="DotSprite" type="Sprite2D" parent="MarginContainer/Player"]
 modulate = Color( 0.784314, 0.784314, 0.784314, 1 )

@@ -313,7 +313,7 @@ anchor_right = 1.0
 offset_bottom = 30.0
 theme = ExtResource( 1 )
 text = "Goal"
-align = 2
+horizontal_alignment =2
 
 [node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource( 36 )]
 offset_left = 150.0
@@ -323,9 +323,9 @@ offset_bottom = 75.0
 custom_minimum_size = Vector2( 100, 45 )
 theme_override_fonts/font = ExtResource( 14 )
 text = "10"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 max_lines_visible = 1
 __meta__ = {
 "_editor_description_": ""
@@ -579,8 +579,8 @@ theme = ExtResource( 34 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 theme_override_fonts/font = ExtResource( 73 )
 text = "1"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RecalculateTimer" type="Timer" parent="Fg/StepMeter"]
 
@@ -755,7 +755,7 @@ offset_bottom = 246.0
 theme = ExtResource( 68 )
 text = "0 frame drops
 0 step drops"
-align = 2
+horizontal_alignment =2
 script = ExtResource( 69 )
 
 [node name="FpsLabel" parent="Hud/VBoxContainer" instance=ExtResource( 56 )]

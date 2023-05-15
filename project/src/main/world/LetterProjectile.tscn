@@ -111,8 +111,8 @@ offset_right = 5.0
 offset_bottom = 7.0
 theme_override_fonts/font = ExtResource( 1 )
 text = "O"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade"

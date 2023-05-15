@@ -594,8 +594,8 @@ custom_minimum_size = Vector2( 50, 50 )
 theme_override_colors/font_color = Color( 0.811765, 0.803922, 0.803922, 1 )
 theme_override_fonts/font = SubResource( 26 )
 text = "0"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerMoveSound" type="AudioStreamPlayer" parent="ChalkboardRegion/Player"]
 stream = ExtResource( 18 )
@@ -714,7 +714,7 @@ offset_right = 109.0
 size_flags_vertical = 7
 theme_override_fonts/font = SubResource( 42 )
 text = "10:15 am"
-valign = 1
+vertical_alignment = 1
 script = ExtResource( 1 )
 
 [node name="Particles" type="Control" parent="Clock/Label"]

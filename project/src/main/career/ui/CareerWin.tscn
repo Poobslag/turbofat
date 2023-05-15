@@ -248,7 +248,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Served:"
-valign = 1
+vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 offset_left = 270.0
@@ -258,7 +258,7 @@ offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "132"
-align = 2
+horizontal_alignment =2
 
 [node name="Steps" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
 offset_left = 467.0
@@ -305,7 +305,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Steps:"
-valign = 1
+vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 offset_left = 263.0
@@ -315,7 +315,7 @@ offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "23"
-align = 2
+horizontal_alignment =2
 
 [node name="EarnedTimeRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 offset_top = 196.0
@@ -371,7 +371,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Earned:"
-valign = 1
+vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 offset_left = 266.0
@@ -381,7 +381,7 @@ offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "¥999,999"
-align = 2
+horizontal_alignment =2
 
 [node name="Time" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
 offset_left = 467.0
@@ -428,7 +428,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 text = "Time:"
-valign = 1
+vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 offset_left = 263.0
@@ -438,7 +438,7 @@ offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "15:03"
-align = 2
+horizontal_alignment =2
 
 [node name="MapRowUpdater" type="Node" parent="Bg/Chalkboard/VBoxContainer"]
 script = ExtResource( 31 )

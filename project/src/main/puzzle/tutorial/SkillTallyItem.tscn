@@ -71,8 +71,8 @@ offset_bottom = -4.0
 theme_override_fonts/font = ExtResource( 7 )
 text = "abc
 (0/5)"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 __meta__ = {
 "_editor_description_": ""
 }

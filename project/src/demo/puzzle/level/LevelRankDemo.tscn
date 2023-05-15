@@ -32,7 +32,7 @@ offset_right = 88.0
 offset_bottom = 21.0
 theme = ExtResource( 1 )
 text = "Player Grade"
-align = 2
+horizontal_alignment =2
 
 [node name="OptionButton" type="OptionButton" parent="Input/PlayerGrade"]
 offset_left = 92.0

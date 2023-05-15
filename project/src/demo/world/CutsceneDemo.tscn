@@ -84,7 +84,7 @@ custom_minimum_size = Vector2( 35, 0 )
 size_flags_horizontal = 0
 theme = ExtResource( 1 )
 text = "10.0"
-align = 1
+horizontal_alignment = 1
 
 [node name="Open" type="HBoxContainer" parent="Input"]
 offset_top = 192.0

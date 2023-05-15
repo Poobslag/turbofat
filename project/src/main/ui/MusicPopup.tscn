@@ -71,8 +71,8 @@ offset_right = 417.0
 offset_bottom = 20.0
 theme_override_fonts/font = ExtResource( 1 )
 text = "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RightIcon" type="TextureRect" parent="Panel/HBoxContainer"]
 material = SubResource( 2 )

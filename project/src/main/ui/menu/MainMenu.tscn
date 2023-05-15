@@ -43,8 +43,8 @@ anchor_right = 1.0
 offset_bottom = 150.0
 theme_override_fonts/font = SubResource( 1 )
 text = "turbo fat"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Play" type="VBoxContainer" parent="DropPanel"]
 anchor_right = 0.5
@@ -61,7 +61,7 @@ offset_right = 462.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource( 9 )
 text = "Play"
-align = 1
+horizontal_alignment = 1
 
 [node name="Career" type="Button" parent="DropPanel/Play"]
 offset_left = 134.0
@@ -115,7 +115,7 @@ offset_right = 462.0
 offset_bottom = 90.0
 theme_override_fonts/font = ExtResource( 9 )
 text = "Create"
-align = 1
+horizontal_alignment = 1
 
 [node name="Levels" type="Button" parent="DropPanel/Create"]
 offset_left = 134.0

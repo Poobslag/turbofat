@@ -46,7 +46,7 @@ offset_right = 150.0
 offset_bottom = 167.0
 theme = ExtResource( 2 )
 text = "2"
-align = 1
+horizontal_alignment = 1
 
 [node name="MinusTen" type="Button" parent="Ui/Control"]
 offset_top = 177.0

@@ -141,7 +141,7 @@ offset_right = 548.0
 offset_bottom = 20.0
 theme = ExtResource( 1 )
 text = "Sound + Music"
-align = 1
+horizontal_alignment = 1
 
 [node name="Master" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
 anchor_left = 0.0
@@ -197,7 +197,7 @@ offset_right = 548.0
 offset_bottom = 148.0
 theme = ExtResource( 1 )
 text = "Graphics"
-align = 1
+horizontal_alignment = 1
 
 [node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 offset_top = 152.0
@@ -217,9 +217,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Creature detail"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
 offset_left = 232.0
@@ -248,9 +248,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Feeding Animation"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
 offset_left = 232.0
@@ -279,9 +279,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Use Vsync"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
 offset_left = 232.0
@@ -328,9 +328,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Ghost Piece"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece"]
 offset_left = 231.0
@@ -359,9 +359,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Soft Drop Lock Cancel"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel"]
 offset_left = 231.0
@@ -389,7 +389,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 theme = ExtResource( 1 )
 text = "Cheats"
-align = 1
+horizontal_alignment = 1
 
 [node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 offset_top = 112.0
@@ -409,9 +409,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Speed"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
 offset_left = 232.0
@@ -444,9 +444,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Line Piece"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
 offset_left = 231.0
@@ -475,9 +475,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Hold Piece"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
 offset_left = 231.0
@@ -814,8 +814,8 @@ custom_minimum_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Size"
-align = 2
-autowrap = true
+horizontal_alignment =2
+autowrap_mode = 3
 
 [node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 offset_left = 216.0
@@ -870,9 +870,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Scheme"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme"]
 offset_left = 237.0
@@ -901,9 +901,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Fat Finger"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger"]
 offset_left = 237.0
@@ -950,9 +950,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Language"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Language"]
 offset_left = 237.0
@@ -987,9 +987,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Save Slot"
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
 offset_left = 237.0
@@ -1095,8 +1095,8 @@ custom_minimum_size = Vector2( 120, 0 )
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.74
 text = "Copied!"
-valign = 1
-autowrap = true
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 offset_top = 250.0
@@ -1226,9 +1226,9 @@ offset_right = 90.0
 offset_bottom = 19.5
 theme = ExtResource( 20 )
 text = "* Your settings will take effect in the next scene."
-align = 2
-valign = 1
-autowrap = true
+horizontal_alignment =2
+vertical_alignment = 1
+autowrap_mode = 3
 script = ExtResource( 21 )
 
 [node name="Dialogs" type="Control" parent="."]

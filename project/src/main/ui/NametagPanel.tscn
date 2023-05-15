@@ -32,8 +32,8 @@ scale = Vector2( 0.909, 0.909 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 theme_override_fonts/font = ExtResource( 1 )
 text = "Lorem ipsu"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 max_lines_visible = 1
 
 [node name="Medium" type="Label" parent="."]
@@ -50,8 +50,8 @@ scale = Vector2( 0.909, 0.909 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 theme_override_fonts/font = ExtResource( 1 )
 text = "Lorem ipsum dolor s"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 1
 
@@ -69,8 +69,8 @@ scale = Vector2( 0.606, 0.909 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 theme_override_fonts/font = ExtResource( 1 )
 text = "Lorem ipsum dolor sit amet"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 1
 
@@ -89,8 +89,8 @@ scale = Vector2( 0.4, 0.6 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 theme_override_fonts/font = ExtResource( 1 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2
 
@@ -108,8 +108,8 @@ scale = Vector2( 0.4, 0.6 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 theme_override_fonts/font = ExtResource( 1 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2

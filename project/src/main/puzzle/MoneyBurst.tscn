@@ -125,8 +125,8 @@ offset_bottom = 33.1386
 theme_override_colors/font_color = Color( 0.924249, 1, 0.648438, 1 )
 theme_override_fonts/font = SubResource( 1 )
 text = "¥20"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 max_lines_visible = 1
 

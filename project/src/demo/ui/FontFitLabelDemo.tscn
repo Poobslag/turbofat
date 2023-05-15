@@ -30,6 +30,6 @@ __meta__ = {
 [node name="Label" parent="ColorRect" instance=ExtResource( 2 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 fonts = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ]
