@@ -20,6 +20,12 @@ var _scancode_localizables := []
 ## label for outputting messages to the user
 @onready var _output_label := get_node(output_label_path)
 
+var _known_bogus_keycodes := [
+		4194367, 4194368, 4194369, 4194372, 4194374, 4194375, 4194383, 4194384, 4194385, 4194386, 4194387, 4194397,
+		4194420, 4194421, 4194422, 4194423, 4194424, 4194425, 4194426, 4194427, 4194428, 4194429, 4194430, 4194431,
+		4194432
+	]
+
 ## Extracts localizable strings from levels and chats and writes them to a file.
 func _extract_and_write_localizables() -> void:
 	_localizables.clear()
@@ -125,15 +131,28 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 func _extract_localizables_from_scancode_strings() -> void:
 	# ascii printable characters: space, comma, period, slash...
 	for i in range(256):
+		if i == 165:
+			print("133")
 		var scancode_string := OS.get_keycode_string(i)
 		if scancode_string.length() > 1:
 			_scancode_localizables.append(scancode_string)
 	
+	var new_bogus_keycodes := []
+	
 	# non-ascii printable characters: F1, left, caps lock...
-	for i in range(16777217, 16777359):
+	for i in range(4194305, 4194447):
+		if i in _known_bogus_keycodes:
+			continue
 		var scancode_string := OS.get_keycode_string(i)
 		if scancode_string.length() > 1:
 			_scancode_localizables.append(scancode_string)
+		else:
+			new_bogus_keycodes.append(i)
+	
+	if not new_bogus_keycodes.is_empty():
+		new_bogus_keycodes.append_array(_known_bogus_keycodes)
+		new_bogus_keycodes.sort()
+		push_warning("Bad value for _known_bogus_keycodes; should be %s" % [new_bogus_keycodes])
 
 
 ## Writes the in-memory list of localizables to a file, in a format accessible by pybabel.

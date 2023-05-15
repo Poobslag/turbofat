@@ -68,6 +68,7 @@ game starts up, but has bugs
  -carrot cells
  -all tests pass, including the new test-keybind-manager
  -monitor nodes over time; no leaks?
+ -assigning an input to something weird like the '`' or '=' key shows up OK
 
 game runs, but can't export it
 
@@ -88,4 +89,4 @@ gold plating
 
 
 
-globally fix 'autowrap', 'align'
+Localizables removed 'Yen' but added a lot of really weird ones
