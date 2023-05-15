@@ -3,7 +3,7 @@ class_name FoodItem
 extends PackedSprite
 ## Food item which appears when the player clears a box in puzzle mode.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 ## Emitted when the food item has floated for long enough and fly_to_target can be called. Emitted by food-items.gd
 signal ready_to_fly
 

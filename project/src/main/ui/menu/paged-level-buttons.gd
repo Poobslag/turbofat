@@ -55,7 +55,7 @@ func focus_level(level_id_to_focus: String) -> void:
 	var button_index_to_focus := -1
 	
 	if level_ids.has(level_id_to_focus):
-		# warning-ignore:integer_division
+		@warning_ignore("integer_division")
 		page_to_focus = level_ids.find(level_id_to_focus) / MAX_LEVELS_PER_PAGE
 		button_index_to_focus = level_ids.find(level_id_to_focus) % MAX_LEVELS_PER_PAGE
 	
@@ -155,7 +155,7 @@ func _refresh_arrows() -> void:
 
 ## Calculates the highest page the player can select.
 func _max_selectable_page() -> int:
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	return (level_ids.size() - 1) / MAX_LEVELS_PER_PAGE
 
 

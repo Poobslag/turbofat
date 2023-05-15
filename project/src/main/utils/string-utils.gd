@@ -105,7 +105,7 @@ static func english_number(i: int) -> String:
 ## Formats a duration like 63.159 into '1:04'
 static func format_duration(seconds: float) -> String:
 	var seconds_int := int(ceil(abs(seconds)))
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	var result := "%01d:%02d" % [seconds_int / 60, seconds_int % 60]
 	if seconds < 0:
 		result = "-" + result

@@ -7,7 +7,7 @@ extends Node
 ## By preloading resources used throughout the game, we have a slower startup time in exchange for faster load times
 ## during the game.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal finished_loading
 
 ## number of threads to launch; 1 is slower, but more than 4 doesn't seem to help

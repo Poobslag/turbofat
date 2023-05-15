@@ -2,17 +2,17 @@ class_name PieceMover
 extends Node
 ## Handles horizontal movement for the player's active piece.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_das_moved_left(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_das_moved_right(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal das_moved_left(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal das_moved_right(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal moved_left(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal moved_right(piece)
 
 @export var input_path: NodePath

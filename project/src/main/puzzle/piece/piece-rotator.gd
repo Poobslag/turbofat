@@ -1,18 +1,18 @@
 extends Node
 ## Handles horizontal movement for the player's active piece.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_rotated_ccw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_rotated_cw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal initial_rotated_180(piece)
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal rotated_ccw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal rotated_cw(piece)
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal rotated_180(piece)
 
 @export var input_path: NodePath

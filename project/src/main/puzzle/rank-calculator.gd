@@ -172,7 +172,7 @@ func rank_lpm(rank: float) -> float:
 				Milestone.LINES:
 					level_lines = speed_up.value
 				Milestone.PIECES:
-					# warning-ignore:integer_division
+					@warning_ignore("integer_division")
 					level_lines = speed_up.value / 2
 				Milestone.TIME_OVER:
 					level_lines = speed_up.value / seconds_per_line
@@ -185,7 +185,7 @@ func rank_lpm(rank: float) -> float:
 				Milestone.LINES:
 					level_lines = finish_condition.value
 				Milestone.PIECES:
-					# warning-ignore:integer_division
+					@warning_ignore("integer_division")
 					level_lines = finish_condition.value / 2
 				Milestone.SCORE:
 					level_lines = finish_condition.value / \
@@ -258,7 +258,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.PIECES:
-			# warning-ignore:integer_division
+			@warning_ignore("integer_division")
 			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2.0
 		Milestone.SCORE:
 			target_lines = target_lines_for_score(target_box_score_per_line, target_combo_score_per_line)

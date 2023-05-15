@@ -65,10 +65,10 @@ static func max_value(values: Array, default := 0.0) -> float:
 	if values.is_empty():
 		return default
 	
-	var max_value: float = values[0]
+	var result: float = values[0]
 	for value in range(1, len(values)):
-		max_value = max(value, max_value)
-	return max_value
+		result = max(value, result)
+	return result
 
 
 ## Returns a random value from the specified array.

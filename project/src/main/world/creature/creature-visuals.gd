@@ -23,7 +23,7 @@ signal dna_loaded
 signal dna_changed(dna)
 
 ## emitted during the 'run' animation when the creature touches the ground
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal landed
 
 signal orientation_changed(old_orientation, new_orientation)
@@ -34,7 +34,7 @@ signal comfort_changed
 signal talking_changed
 
 ## emitted by FatSpriteMover when it moves the head by making the creature fatter
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal head_moved
 
 const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)

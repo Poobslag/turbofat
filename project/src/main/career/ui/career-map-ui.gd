@@ -130,7 +130,7 @@ func _force_epilogue_level() -> bool:
 	
 	if new_region:
 		# move the player to the selected region with an epilogue
-		# warning-ignore:integer_division
+		@warning_ignore("integer_division")
 		PlayerData.career.distance_travelled = new_region.start + new_region.length / 2
 		
 		# mark epilogue as unwatched

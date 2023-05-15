@@ -370,7 +370,7 @@ func _upgrade_2783(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 			# Old versions didn't measure playtime. We approximate their playtime by guessing that a typical
 			# player earns ¥300 per minute. This may be too high but we want a big playtime number when we warn
 			# them about accidentally deleting their main save file.
-			# warning-ignore:integer_division
+			@warning_ignore("integer_division")
 			save_item.value["seconds_played"] = money / 5
 		"gameplay_settings", "graphics_settings", "keybind_settings", \
 		"misc_settings", "miscellaneous_settings", "touch_settings", "volume_settings":

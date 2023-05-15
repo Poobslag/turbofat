@@ -51,7 +51,7 @@ game starts up, but has bugs
  -restore 'y_sort_enabled' property for ysort nodes
  -set project's stretch mode; Godot #3939
 -code warnings
- -replace '# warning-ignore' comments with '@warning_ignore' annotations
+ *replace '# warning-ignore' comments with '@warning_ignore' annotations
  -add '@warning_ignore' annotations for self static method calls; Godot #69282
 -investigate 'ChatChoiceButton' get_class workaround; is_class is used by ChatChoices
 -investigate 'Creature' get_class workaround
@@ -88,5 +88,6 @@ gold plating
 
 
 
+# warning-ignore:unused_signal
+@warning_ignore("integer_division")
 
-Localizables removed 'Yen' but added a lot of really weird ones

@@ -57,7 +57,7 @@ func creature_ids() -> Array:
 ## from emerging.
 func next_filler_id() -> String:
 	var filler_id: String = _filler_ids.pop_front()
-	# warning-ignore:integer_division
+	@warning_ignore("integer_division")
 	_filler_ids.insert(_filler_ids.size() - randi() % (_filler_ids.size() / 2), filler_id)
 	return filler_id
 
