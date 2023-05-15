@@ -70,7 +70,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_C: critter_type = CritterType.CARROT
 		KEY_M: critter_type = CritterType.MOLE
 		KEY_O: critter_type = CritterType.ONION
@@ -84,7 +84,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _carrot_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0:
 			$Puzzle/Fg/Critters/Carrots.remove_carrots(1)
 		KEY_1:
@@ -100,7 +100,7 @@ func _carrot_input(event: InputEvent) -> void:
 
 
 func _mole_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1:
 			$Puzzle/Fg/Critters/Moles.add_moles(_mole_config)
 		KEY_BRACKETRIGHT:
@@ -110,7 +110,7 @@ func _mole_input(event: InputEvent) -> void:
 
 
 func _onion_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0:
 			$Puzzle/Fg/Critters/Onions.remove_onion()
 		KEY_1:
@@ -133,7 +133,7 @@ func _onion_input(event: InputEvent) -> void:
 
 
 func _shark_input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1:
 			_shark_config.size = SharkConfig.SharkSize.SMALL
 			$Puzzle/Fg/Critters/Sharks.add_sharks(_shark_config)

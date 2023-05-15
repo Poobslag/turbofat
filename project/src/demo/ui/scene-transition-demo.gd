@@ -5,6 +5,6 @@ extends Node
 ##     F: Fade out and in
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_F:
 			SceneTransition.fade_out()

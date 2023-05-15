@@ -7,7 +7,7 @@ extends Button
 
 ## file where we write the localizable strings
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
-const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
+const KEYCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-keycodes.py"
 
 @export var output_label_path: NodePath
 
@@ -15,7 +15,7 @@ const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.p
 var _localizables := []
 
 ## localizable strings extracted from scancodes (input keys)
-var _scancode_localizables := []
+var _keycode_localizables := []
 
 ## label for outputting messages to the user
 @onready var _output_label := get_node(output_label_path)
@@ -29,7 +29,7 @@ var _known_bogus_keycodes := [
 ## Extracts localizable strings from levels and chats and writes them to a file.
 func _extract_and_write_localizables() -> void:
 	_localizables.clear()
-	_scancode_localizables.clear()
+	_keycode_localizables.clear()
 	
 	# Temporarily set the locale to 'en' to ensure we extract english keys
 	var old_locale := TranslationServer.get_locale()
@@ -38,14 +38,14 @@ func _extract_and_write_localizables() -> void:
 	_extract_localizables_from_career_regions()
 	_extract_localizables_from_levels()
 	_extract_localizables_from_chat_trees()
-	_extract_localizables_from_scancode_strings()
+	_extract_localizables_from_keycode_strings()
 	_write_localizables(OUTPUT_PATH, _localizables)
-	_write_localizables(SCANCODE_OUTPUT_PATH, _scancode_localizables)
+	_write_localizables(KEYCODE_OUTPUT_PATH, _keycode_localizables)
 	
 	TranslationServer.set_locale(old_locale)
 	_output_label.text = "Wrote %s strings to %s, %s." % [
-			StringUtils.comma_sep(_localizables.size() + _scancode_localizables.size()),
-			OUTPUT_PATH, SCANCODE_OUTPUT_PATH]
+			StringUtils.comma_sep(_localizables.size() + _keycode_localizables.size()),
+			OUTPUT_PATH, KEYCODE_OUTPUT_PATH]
 
 
 ## Extracts localizable strings from regions in career mode.
@@ -124,18 +124,18 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 					_localizables.append(" ".join(PackedStringArray(args.slice(1, args.size()))))
 
 
-## Extract localizables from OS.get_scancode_string()
+## Extract localizables from OS.get_keycode_string()
 ##
 ## This is a workaround for Godot #4140 (https://github.com/godotengine/godot/issues/4140). Because Godot does not
 ## offer a way to localize keycode strings, we must extract and localize them ourselves.
-func _extract_localizables_from_scancode_strings() -> void:
+func _extract_localizables_from_keycode_strings() -> void:
 	# ascii printable characters: space, comma, period, slash...
 	for i in range(256):
 		if i == 165:
 			print("133")
-		var scancode_string := OS.get_keycode_string(i)
-		if scancode_string.length() > 1:
-			_scancode_localizables.append(scancode_string)
+		var keycode_string := OS.get_keycode_string(i)
+		if keycode_string.length() > 1:
+			_keycode_localizables.append(keycode_string)
 	
 	var new_bogus_keycodes := []
 	
@@ -143,9 +143,9 @@ func _extract_localizables_from_scancode_strings() -> void:
 	for i in range(4194305, 4194447):
 		if i in _known_bogus_keycodes:
 			continue
-		var scancode_string := OS.get_keycode_string(i)
-		if scancode_string.length() > 1:
-			_scancode_localizables.append(scancode_string)
+		var keycode_string := OS.get_keycode_string(i)
+		if keycode_string.length() > 1:
+			_keycode_localizables.append(keycode_string)
 		else:
 			new_bogus_keycodes.append(i)
 	

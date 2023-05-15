@@ -47,7 +47,7 @@ func _random_landmark_type() -> int:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1:
 			if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
 				PlayerData.career.current_region().flags.erase(CareerRegion.FLAG_NO_SENSEI)

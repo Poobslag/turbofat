@@ -43,11 +43,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_CTRL):
-		match Utils.key_scancode(event):
+		match Utils.key_keycode(event):
 			KEY_0: _change_demographic(Creatures.Type.DEFAULT)
 			KEY_1: _change_demographic(Creatures.Type.SQUIRREL)
 	elif Input.is_key_pressed(KEY_SHIFT):
-		match Utils.key_scancode(event):
+		match Utils.key_keycode(event):
 			KEY_Q: _creature_animations.play_idle_animation("idle-look-over-shoulder0")
 			KEY_W: _creature_animations.play_idle_animation("idle-look-over-shoulder1")
 			KEY_E: _creature_animations.play_idle_animation("idle-yawn0")
@@ -59,7 +59,7 @@ func _input(event: InputEvent) -> void:
 			KEY_T: _creature.talk()
 			KEY_SLASH: print(JSON.stringify(_creature.dna))
 	else:
-		match Utils.key_scancode(event):
+		match Utils.key_keycode(event):
 			KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 				_creature.dna = DnaUtils.random_dna(_creature_type)
 				_randomize_creature()

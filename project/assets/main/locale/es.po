@@ -8831,831 +8831,831 @@ msgstr ""
 msgid "Don't change the subject!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-scancodes.py:2
+#: project/assets/main/locale/localizables-keycodes.py:2
 #: project/src/main/ui/settings/SettingsMenu.tscn:621
 msgid "Space"
 msgstr "Espacio"
 
-#: project/assets/main/locale/localizables-scancodes.py:3
+#: project/assets/main/locale/localizables-keycodes.py:3
 msgid "Exclam"
 msgstr "Exclam"
 
-#: project/assets/main/locale/localizables-scancodes.py:4
+#: project/assets/main/locale/localizables-keycodes.py:4
 msgid "QuoteDbl"
 msgstr "Comillas"
 
-#: project/assets/main/locale/localizables-scancodes.py:5
+#: project/assets/main/locale/localizables-keycodes.py:5
 msgid "NumberSign"
 msgstr "Numeral"
 
-#: project/assets/main/locale/localizables-scancodes.py:6
+#: project/assets/main/locale/localizables-keycodes.py:6
 msgid "Dollar"
 msgstr "Dolar"
 
-#: project/assets/main/locale/localizables-scancodes.py:7
+#: project/assets/main/locale/localizables-keycodes.py:7
 msgid "Percent"
 msgstr "Porcentaje"
 
-#: project/assets/main/locale/localizables-scancodes.py:8
+#: project/assets/main/locale/localizables-keycodes.py:8
 msgid "Ampersand"
 msgstr "Ycomercial"
 
-#: project/assets/main/locale/localizables-scancodes.py:9
+#: project/assets/main/locale/localizables-keycodes.py:9
 msgid "Apostrophe"
 msgstr "Apóstrofe"
 
-#: project/assets/main/locale/localizables-scancodes.py:10
+#: project/assets/main/locale/localizables-keycodes.py:10
 msgid "ParenLeft"
 msgstr "ParénIzq"
 
-#: project/assets/main/locale/localizables-scancodes.py:11
+#: project/assets/main/locale/localizables-keycodes.py:11
 msgid "ParenRight"
 msgstr "ParénDer"
 
-#: project/assets/main/locale/localizables-scancodes.py:12
+#: project/assets/main/locale/localizables-keycodes.py:12
 msgid "Asterisk"
 msgstr "Asterisco"
 
-#: project/assets/main/locale/localizables-scancodes.py:13
+#: project/assets/main/locale/localizables-keycodes.py:13
 msgid "Plus"
 msgstr "Más"
 
-#: project/assets/main/locale/localizables-scancodes.py:14
+#: project/assets/main/locale/localizables-keycodes.py:14
 msgid "Comma"
 msgstr "Coma"
 
-#: project/assets/main/locale/localizables-scancodes.py:15
+#: project/assets/main/locale/localizables-keycodes.py:15
 msgid "Minus"
 msgstr "Menos"
 
-#: project/assets/main/locale/localizables-scancodes.py:16
+#: project/assets/main/locale/localizables-keycodes.py:16
 msgid "Period"
 msgstr "Punto"
 
-#: project/assets/main/locale/localizables-scancodes.py:17
+#: project/assets/main/locale/localizables-keycodes.py:17
 msgid "Slash"
 msgstr "Guion"
 
-#: project/assets/main/locale/localizables-scancodes.py:18
+#: project/assets/main/locale/localizables-keycodes.py:18
 msgid "Colon"
 msgstr "DosPuntos"
 
-#: project/assets/main/locale/localizables-scancodes.py:19
+#: project/assets/main/locale/localizables-keycodes.py:19
 msgid "Semicolon"
 msgstr "PuntoComa"
 
-#: project/assets/main/locale/localizables-scancodes.py:20
+#: project/assets/main/locale/localizables-keycodes.py:20
 msgid "Less"
 msgstr "Menor"
 
-#: project/assets/main/locale/localizables-scancodes.py:21
+#: project/assets/main/locale/localizables-keycodes.py:21
 msgid "Equal"
 msgstr "Igual"
 
-#: project/assets/main/locale/localizables-scancodes.py:22
+#: project/assets/main/locale/localizables-keycodes.py:22
 msgid "Greater"
 msgstr "Mayor"
 
-#: project/assets/main/locale/localizables-scancodes.py:23
+#: project/assets/main/locale/localizables-keycodes.py:23
 msgid "Question"
 msgstr "Interr"
 
-#: project/assets/main/locale/localizables-scancodes.py:24
+#: project/assets/main/locale/localizables-keycodes.py:24
 msgid "At"
 msgstr "Arroba"
 
-#: project/assets/main/locale/localizables-scancodes.py:25
+#: project/assets/main/locale/localizables-keycodes.py:25
 msgid "BracketLeft"
 msgstr "CorcheteIzq"
 
-#: project/assets/main/locale/localizables-scancodes.py:26
+#: project/assets/main/locale/localizables-keycodes.py:26
 msgid "BackSlash"
 msgstr "BarraInv"
 
-#: project/assets/main/locale/localizables-scancodes.py:27
+#: project/assets/main/locale/localizables-keycodes.py:27
 msgid "BracketRight"
 msgstr "CorcheteDer"
 
-#: project/assets/main/locale/localizables-scancodes.py:28
+#: project/assets/main/locale/localizables-keycodes.py:28
 msgid "AsciiCircum"
 msgstr "Circunflejo"
 
-#: project/assets/main/locale/localizables-scancodes.py:29
+#: project/assets/main/locale/localizables-keycodes.py:29
 msgid "UnderScore"
 msgstr "GuionBajo"
 
-#: project/assets/main/locale/localizables-scancodes.py:30
+#: project/assets/main/locale/localizables-keycodes.py:30
 msgid "QuoteLeft"
 msgstr "ComillaIzq"
 
-#: project/assets/main/locale/localizables-scancodes.py:31
+#: project/assets/main/locale/localizables-keycodes.py:31
 msgid "BraceLeft"
 msgstr "LlaveIzq"
 
-#: project/assets/main/locale/localizables-scancodes.py:32
+#: project/assets/main/locale/localizables-keycodes.py:32
 msgid "Bar"
 msgstr "Barra"
 
-#: project/assets/main/locale/localizables-scancodes.py:33
+#: project/assets/main/locale/localizables-keycodes.py:33
 msgid "BraceRight"
 msgstr "LlaveDer"
 
-#: project/assets/main/locale/localizables-scancodes.py:34
+#: project/assets/main/locale/localizables-keycodes.py:34
 msgid "AsciiTilde"
 msgstr "AsciiTilde"
 
-#: project/assets/main/locale/localizables-scancodes.py:35
+#: project/assets/main/locale/localizables-keycodes.py:35
 msgid "NoBreakSpace"
 msgstr "CajaAbierta"
 
-#: project/assets/main/locale/localizables-scancodes.py:36
+#: project/assets/main/locale/localizables-keycodes.py:36
 msgid "ExclamDown"
 msgstr "ExclamInv"
 
-#: project/assets/main/locale/localizables-scancodes.py:37
+#: project/assets/main/locale/localizables-keycodes.py:37
 msgid "Cent"
 msgstr "Cent"
 
-#: project/assets/main/locale/localizables-scancodes.py:38
+#: project/assets/main/locale/localizables-keycodes.py:38
 msgid "Sterling"
 msgstr "LibraEst"
 
-#: project/assets/main/locale/localizables-scancodes.py:39
+#: project/assets/main/locale/localizables-keycodes.py:39
 msgid "Currency"
 msgstr "DolarPeso"
 
-#: project/assets/main/locale/localizables-scancodes.py:40
+#: project/assets/main/locale/localizables-keycodes.py:40
 msgid "Yen"
 msgstr "Yen"
 
-#: project/assets/main/locale/localizables-scancodes.py:41
+#: project/assets/main/locale/localizables-keycodes.py:41
 msgid "BrokenBar"
 msgstr "BarraVert"
 
-#: project/assets/main/locale/localizables-scancodes.py:42
+#: project/assets/main/locale/localizables-keycodes.py:42
 msgid "Section"
 msgstr "Sección"
 
-#: project/assets/main/locale/localizables-scancodes.py:43
+#: project/assets/main/locale/localizables-keycodes.py:43
 msgid "Diaeresis"
 msgstr "Diéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:44
+#: project/assets/main/locale/localizables-keycodes.py:44
 msgid "Copyright"
 msgstr "Copyright"
 
-#: project/assets/main/locale/localizables-scancodes.py:45
+#: project/assets/main/locale/localizables-keycodes.py:45
 msgid "Ordfeminine"
 msgstr "OrdFemenino"
 
-#: project/assets/main/locale/localizables-scancodes.py:46
+#: project/assets/main/locale/localizables-keycodes.py:46
 msgid "GuillemotLeft"
 msgstr "AngularIzq"
 
-#: project/assets/main/locale/localizables-scancodes.py:47
+#: project/assets/main/locale/localizables-keycodes.py:47
 msgid "NotSign"
 msgstr "Negación"
 
-#: project/assets/main/locale/localizables-scancodes.py:48
+#: project/assets/main/locale/localizables-keycodes.py:48
 msgid "Hyphen"
 msgstr "Guion"
 
-#: project/assets/main/locale/localizables-scancodes.py:49
+#: project/assets/main/locale/localizables-keycodes.py:49
 msgid "Registered"
 msgstr "Reg"
 
-#: project/assets/main/locale/localizables-scancodes.py:50
+#: project/assets/main/locale/localizables-keycodes.py:50
 msgid "Macron"
 msgstr "Macrón"
 
-#: project/assets/main/locale/localizables-scancodes.py:51
+#: project/assets/main/locale/localizables-keycodes.py:51
 msgid "Degree"
 msgstr "Grado"
 
-#: project/assets/main/locale/localizables-scancodes.py:52
+#: project/assets/main/locale/localizables-keycodes.py:52
 msgid "PlusMinus"
 msgstr "MásMenos"
 
-#: project/assets/main/locale/localizables-scancodes.py:53
+#: project/assets/main/locale/localizables-keycodes.py:53
 msgid "TwoSuperior"
 msgstr "DosSuperior"
 
-#: project/assets/main/locale/localizables-scancodes.py:54
+#: project/assets/main/locale/localizables-keycodes.py:54
 msgid "ThreeSuperior"
 msgstr "TresSuperior"
 
-#: project/assets/main/locale/localizables-scancodes.py:55
+#: project/assets/main/locale/localizables-keycodes.py:55
 msgid "Acute"
 msgstr "Agudo"
 
-#: project/assets/main/locale/localizables-scancodes.py:56
+#: project/assets/main/locale/localizables-keycodes.py:56
 msgid "Mu"
 msgstr "Mu"
 
-#: project/assets/main/locale/localizables-scancodes.py:57
+#: project/assets/main/locale/localizables-keycodes.py:57
 msgid "Paragraph"
 msgstr "Calderón"
 
-#: project/assets/main/locale/localizables-scancodes.py:58
+#: project/assets/main/locale/localizables-keycodes.py:58
 msgid "PeriodCentered"
 msgstr "PuntoCentr"
 
-#: project/assets/main/locale/localizables-scancodes.py:59
+#: project/assets/main/locale/localizables-keycodes.py:59
 msgid "Cedilla"
 msgstr "Cedilla"
 
-#: project/assets/main/locale/localizables-scancodes.py:60
+#: project/assets/main/locale/localizables-keycodes.py:60
 msgid "OneSuperior"
 msgstr "UnoSuperior"
 
-#: project/assets/main/locale/localizables-scancodes.py:61
+#: project/assets/main/locale/localizables-keycodes.py:61
 msgid "Masculine"
 msgstr "Masculino"
 
-#: project/assets/main/locale/localizables-scancodes.py:62
+#: project/assets/main/locale/localizables-keycodes.py:62
 msgid "GuillemotRight"
 msgstr "AngularDer"
 
-#: project/assets/main/locale/localizables-scancodes.py:63
+#: project/assets/main/locale/localizables-keycodes.py:63
 msgid "OneQuarter"
 msgstr "UnCuarto"
 
-#: project/assets/main/locale/localizables-scancodes.py:64
+#: project/assets/main/locale/localizables-keycodes.py:64
 msgid "OneHalf"
 msgstr "UnMitad"
 
-#: project/assets/main/locale/localizables-scancodes.py:65
+#: project/assets/main/locale/localizables-keycodes.py:65
 msgid "ThreeQuarters"
 msgstr "TresCuartos"
 
-#: project/assets/main/locale/localizables-scancodes.py:66
+#: project/assets/main/locale/localizables-keycodes.py:66
 msgid "QuestionDown"
 msgstr "InterrInv"
 
-#: project/assets/main/locale/localizables-scancodes.py:67
+#: project/assets/main/locale/localizables-keycodes.py:67
 msgid "Agrave"
 msgstr "Agrave"
 
-#: project/assets/main/locale/localizables-scancodes.py:68
+#: project/assets/main/locale/localizables-keycodes.py:68
 msgid "Aacute"
 msgstr "Aagudo"
 
-#: project/assets/main/locale/localizables-scancodes.py:69
+#: project/assets/main/locale/localizables-keycodes.py:69
 msgid "AcircumFlex"
 msgstr "Acircunflejo"
 
-#: project/assets/main/locale/localizables-scancodes.py:70
+#: project/assets/main/locale/localizables-keycodes.py:70
 msgid "Atilde"
 msgstr "Atilde"
 
-#: project/assets/main/locale/localizables-scancodes.py:71
+#: project/assets/main/locale/localizables-keycodes.py:71
 msgid "Adiaeresis"
 msgstr "Adiéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:72
+#: project/assets/main/locale/localizables-keycodes.py:72
 msgid "Aring"
 msgstr "Aanillo"
 
-#: project/assets/main/locale/localizables-scancodes.py:73
+#: project/assets/main/locale/localizables-keycodes.py:73
 msgid "Ae"
 msgstr "Ae"
 
-#: project/assets/main/locale/localizables-scancodes.py:74
+#: project/assets/main/locale/localizables-keycodes.py:74
 msgid "Ccedilla"
 msgstr "Ccedilla"
 
-#: project/assets/main/locale/localizables-scancodes.py:75
+#: project/assets/main/locale/localizables-keycodes.py:75
 msgid "Egrave"
 msgstr "Egrave"
 
-#: project/assets/main/locale/localizables-scancodes.py:76
+#: project/assets/main/locale/localizables-keycodes.py:76
 msgid "Eacute"
 msgstr "Eagudo"
 
-#: project/assets/main/locale/localizables-scancodes.py:77
+#: project/assets/main/locale/localizables-keycodes.py:77
 msgid "Ecircumflex"
 msgstr "Ecircunflejo"
 
-#: project/assets/main/locale/localizables-scancodes.py:78
+#: project/assets/main/locale/localizables-keycodes.py:78
 msgid "Ediaeresis"
 msgstr "Ediéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:79
+#: project/assets/main/locale/localizables-keycodes.py:79
 msgid "Igrave"
 msgstr "Igrave"
 
-#: project/assets/main/locale/localizables-scancodes.py:80
+#: project/assets/main/locale/localizables-keycodes.py:80
 msgid "Iacute"
 msgstr "Iagudo"
 
-#: project/assets/main/locale/localizables-scancodes.py:81
+#: project/assets/main/locale/localizables-keycodes.py:81
 msgid "Icircumflex"
 msgstr "Icircunflejo"
 
-#: project/assets/main/locale/localizables-scancodes.py:82
+#: project/assets/main/locale/localizables-keycodes.py:82
 msgid "Idiaeresis"
 msgstr "Idiéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:83
+#: project/assets/main/locale/localizables-keycodes.py:83
 msgid "Eth"
 msgstr "Eth"
 
-#: project/assets/main/locale/localizables-scancodes.py:84
+#: project/assets/main/locale/localizables-keycodes.py:84
 msgid "Ntilde"
 msgstr "Ntilde"
 
-#: project/assets/main/locale/localizables-scancodes.py:85
+#: project/assets/main/locale/localizables-keycodes.py:85
 msgid "Ograve"
 msgstr "Ograve"
 
-#: project/assets/main/locale/localizables-scancodes.py:86
+#: project/assets/main/locale/localizables-keycodes.py:86
 msgid "Oacute"
 msgstr "Oagudo"
 
-#: project/assets/main/locale/localizables-scancodes.py:87
+#: project/assets/main/locale/localizables-keycodes.py:87
 msgid "Ocircumflex"
 msgstr "Ocircunflejo"
 
-#: project/assets/main/locale/localizables-scancodes.py:88
+#: project/assets/main/locale/localizables-keycodes.py:88
 msgid "Otilde"
 msgstr "Otilde"
 
-#: project/assets/main/locale/localizables-scancodes.py:89
+#: project/assets/main/locale/localizables-keycodes.py:89
 msgid "Odiaeresis"
 msgstr "Odiéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:90
+#: project/assets/main/locale/localizables-keycodes.py:90
 msgid "Multiply"
 msgstr "Miltiplicación"
 
-#: project/assets/main/locale/localizables-scancodes.py:91
+#: project/assets/main/locale/localizables-keycodes.py:91
 msgid "Ooblique"
 msgstr "Ooblicua"
 
-#: project/assets/main/locale/localizables-scancodes.py:92
+#: project/assets/main/locale/localizables-keycodes.py:92
 msgid "Ugrave"
 msgstr "Ugrave"
 
-#: project/assets/main/locale/localizables-scancodes.py:93
+#: project/assets/main/locale/localizables-keycodes.py:93
 msgid "Uacute"
 msgstr "Uagudo"
 
-#: project/assets/main/locale/localizables-scancodes.py:94
+#: project/assets/main/locale/localizables-keycodes.py:94
 msgid "Ucircumflex"
 msgstr "Ucircunflejo"
 
-#: project/assets/main/locale/localizables-scancodes.py:95
+#: project/assets/main/locale/localizables-keycodes.py:95
 msgid "Udiaeresis"
 msgstr "Udiéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:96
+#: project/assets/main/locale/localizables-keycodes.py:96
 msgid "Yacute"
 msgstr "Ytilde"
 
-#: project/assets/main/locale/localizables-scancodes.py:97
+#: project/assets/main/locale/localizables-keycodes.py:97
 msgid "Thorn"
 msgstr "Thorn"
 
-#: project/assets/main/locale/localizables-scancodes.py:98
+#: project/assets/main/locale/localizables-keycodes.py:98
 msgid "Ssharp"
 msgstr "Ssharp"
 
-#: project/assets/main/locale/localizables-scancodes.py:99
+#: project/assets/main/locale/localizables-keycodes.py:99
 msgid "Division"
 msgstr "División"
 
-#: project/assets/main/locale/localizables-scancodes.py:100
+#: project/assets/main/locale/localizables-keycodes.py:100
 msgid "Ydiaeresis"
 msgstr "Ydiéresis"
 
-#: project/assets/main/locale/localizables-scancodes.py:101
+#: project/assets/main/locale/localizables-keycodes.py:101
 #: project/src/main/ui/settings/SettingsMenu.tscn:603
 #: project/src/main/ui/settings/SettingsMenu.tscn:627
 msgid "Escape"
 msgstr "Escape"
 
-#: project/assets/main/locale/localizables-scancodes.py:102
+#: project/assets/main/locale/localizables-keycodes.py:102
 msgid "Tab"
 msgstr "Tab"
 
-#: project/assets/main/locale/localizables-scancodes.py:103
+#: project/assets/main/locale/localizables-keycodes.py:103
 msgid "BackTab"
 msgstr "BackTab"
 
-#: project/assets/main/locale/localizables-scancodes.py:104
+#: project/assets/main/locale/localizables-keycodes.py:104
 msgid "BackSpace"
 msgstr "Retroceso"
 
-#: project/assets/main/locale/localizables-scancodes.py:105
+#: project/assets/main/locale/localizables-keycodes.py:105
 msgid "Enter"
 msgstr "Intro"
 
-#: project/assets/main/locale/localizables-scancodes.py:106
+#: project/assets/main/locale/localizables-keycodes.py:106
 msgid "Kp Enter"
 msgstr "Numpad Intro"
 
-#: project/assets/main/locale/localizables-scancodes.py:107
+#: project/assets/main/locale/localizables-keycodes.py:107
 msgid "Insert"
 msgstr "Insert"
 
-#: project/assets/main/locale/localizables-scancodes.py:108
+#: project/assets/main/locale/localizables-keycodes.py:108
 msgid "Delete"
 msgstr "Suprimir"
 
-#: project/assets/main/locale/localizables-scancodes.py:109
+#: project/assets/main/locale/localizables-keycodes.py:109
 msgid "Pause"
 msgstr "Pausa"
 
-#: project/assets/main/locale/localizables-scancodes.py:110
+#: project/assets/main/locale/localizables-keycodes.py:110
 msgid "Print"
 msgstr "ImprPant"
 
-#: project/assets/main/locale/localizables-scancodes.py:111
+#: project/assets/main/locale/localizables-keycodes.py:111
 msgid "SysReq"
 msgstr "PetSis"
 
-#: project/assets/main/locale/localizables-scancodes.py:112
+#: project/assets/main/locale/localizables-keycodes.py:112
 msgid "Clear"
 msgstr "Supr"
 
-#: project/assets/main/locale/localizables-scancodes.py:113
+#: project/assets/main/locale/localizables-keycodes.py:113
 msgid "Home"
 msgstr "Inicio"
 
-#: project/assets/main/locale/localizables-scancodes.py:114
+#: project/assets/main/locale/localizables-keycodes.py:114
 msgid "End"
 msgstr "Fin"
 
-#: project/assets/main/locale/localizables-scancodes.py:115
+#: project/assets/main/locale/localizables-keycodes.py:115
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Left"
 msgstr "Izquierda"
 
-#: project/assets/main/locale/localizables-scancodes.py:116
+#: project/assets/main/locale/localizables-keycodes.py:116
 msgid "Up"
 msgstr "Arriba"
 
-#: project/assets/main/locale/localizables-scancodes.py:117
+#: project/assets/main/locale/localizables-keycodes.py:117
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Right"
 msgstr "Derecha"
 
-#: project/assets/main/locale/localizables-scancodes.py:118
+#: project/assets/main/locale/localizables-keycodes.py:118
 #: project/src/main/ui/settings/SettingsMenu.tscn:574
 msgid "Down"
 msgstr "Abajo"
 
-#: project/assets/main/locale/localizables-scancodes.py:119
+#: project/assets/main/locale/localizables-keycodes.py:119
 msgid "PageUp"
 msgstr "AvPág"
 
-#: project/assets/main/locale/localizables-scancodes.py:120
+#: project/assets/main/locale/localizables-keycodes.py:120
 msgid "PageDown"
 msgstr "RePág"
 
-#: project/assets/main/locale/localizables-scancodes.py:121
+#: project/assets/main/locale/localizables-keycodes.py:121
 #: project/src/main/ui/settings/SettingsMenu.tscn:639
 msgid "Shift"
 msgstr "Shift"
 
-#: project/assets/main/locale/localizables-scancodes.py:122
+#: project/assets/main/locale/localizables-keycodes.py:122
 msgid "Control"
 msgstr "Control"
 
-#: project/assets/main/locale/localizables-scancodes.py:123
+#: project/assets/main/locale/localizables-keycodes.py:123
 msgid "Meta"
 msgstr "Meta"
 
-#: project/assets/main/locale/localizables-scancodes.py:124
+#: project/assets/main/locale/localizables-keycodes.py:124
 msgid "Alt"
 msgstr "Alt"
 
-#: project/assets/main/locale/localizables-scancodes.py:125
+#: project/assets/main/locale/localizables-keycodes.py:125
 msgid "CapsLock"
 msgstr "BloqMayus"
 
-#: project/assets/main/locale/localizables-scancodes.py:126
+#: project/assets/main/locale/localizables-keycodes.py:126
 msgid "NumLock"
 msgstr "BloqNum"
 
-#: project/assets/main/locale/localizables-scancodes.py:127
+#: project/assets/main/locale/localizables-keycodes.py:127
 msgid "ScrollLock"
 msgstr "BloqDespl"
 
-#: project/assets/main/locale/localizables-scancodes.py:128
+#: project/assets/main/locale/localizables-keycodes.py:128
 msgid "F1"
 msgstr "F1"
 
-#: project/assets/main/locale/localizables-scancodes.py:129
+#: project/assets/main/locale/localizables-keycodes.py:129
 msgid "F2"
 msgstr "F2"
 
-#: project/assets/main/locale/localizables-scancodes.py:130
+#: project/assets/main/locale/localizables-keycodes.py:130
 msgid "F3"
 msgstr "F3"
 
-#: project/assets/main/locale/localizables-scancodes.py:131
+#: project/assets/main/locale/localizables-keycodes.py:131
 msgid "F4"
 msgstr "F4"
 
-#: project/assets/main/locale/localizables-scancodes.py:132
+#: project/assets/main/locale/localizables-keycodes.py:132
 msgid "F5"
 msgstr "F5"
 
-#: project/assets/main/locale/localizables-scancodes.py:133
+#: project/assets/main/locale/localizables-keycodes.py:133
 msgid "F6"
 msgstr "F6"
 
-#: project/assets/main/locale/localizables-scancodes.py:134
+#: project/assets/main/locale/localizables-keycodes.py:134
 msgid "F7"
 msgstr "F7"
 
-#: project/assets/main/locale/localizables-scancodes.py:135
+#: project/assets/main/locale/localizables-keycodes.py:135
 msgid "F8"
 msgstr "F8"
 
-#: project/assets/main/locale/localizables-scancodes.py:136
+#: project/assets/main/locale/localizables-keycodes.py:136
 msgid "F9"
 msgstr "F9"
 
-#: project/assets/main/locale/localizables-scancodes.py:137
+#: project/assets/main/locale/localizables-keycodes.py:137
 msgid "F10"
 msgstr "F10"
 
-#: project/assets/main/locale/localizables-scancodes.py:138
+#: project/assets/main/locale/localizables-keycodes.py:138
 msgid "F11"
 msgstr "F11"
 
-#: project/assets/main/locale/localizables-scancodes.py:139
+#: project/assets/main/locale/localizables-keycodes.py:139
 msgid "F12"
 msgstr "F12"
 
-#: project/assets/main/locale/localizables-scancodes.py:140
+#: project/assets/main/locale/localizables-keycodes.py:140
 msgid "F13"
 msgstr "F13"
 
-#: project/assets/main/locale/localizables-scancodes.py:141
+#: project/assets/main/locale/localizables-keycodes.py:141
 msgid "F14"
 msgstr "F14"
 
-#: project/assets/main/locale/localizables-scancodes.py:142
+#: project/assets/main/locale/localizables-keycodes.py:142
 msgid "F15"
 msgstr "F15"
 
-#: project/assets/main/locale/localizables-scancodes.py:143
+#: project/assets/main/locale/localizables-keycodes.py:143
 msgid "F16"
 msgstr "F16"
 
-#: project/assets/main/locale/localizables-scancodes.py:144
+#: project/assets/main/locale/localizables-keycodes.py:144
 msgid "Super L"
 msgstr "Super Izq"
 
-#: project/assets/main/locale/localizables-scancodes.py:145
+#: project/assets/main/locale/localizables-keycodes.py:145
 msgid "Super R"
 msgstr "Super Der"
 
-#: project/assets/main/locale/localizables-scancodes.py:146
+#: project/assets/main/locale/localizables-keycodes.py:146
 #: project/src/main/ui/settings/SettingsMenu.tscn:602
 #: project/src/main/ui/settings/SettingsMenu.tscn:703
 msgid "Menu"
 msgstr "Menú"
 
-#: project/assets/main/locale/localizables-scancodes.py:147
+#: project/assets/main/locale/localizables-keycodes.py:147
 msgid "Hyper L"
 msgstr "Hiper Izq"
 
-#: project/assets/main/locale/localizables-scancodes.py:148
+#: project/assets/main/locale/localizables-keycodes.py:148
 msgid "Hyper R"
 msgstr "Hiper Der"
 
-#: project/assets/main/locale/localizables-scancodes.py:149
+#: project/assets/main/locale/localizables-keycodes.py:149
 msgid "Help"
 msgstr "Ayuda"
 
-#: project/assets/main/locale/localizables-scancodes.py:150
+#: project/assets/main/locale/localizables-keycodes.py:150
 msgid "Direction L"
 msgstr "Dirección Izq"
 
-#: project/assets/main/locale/localizables-scancodes.py:151
+#: project/assets/main/locale/localizables-keycodes.py:151
 msgid "Direction R"
 msgstr "Dirección Der"
 
-#: project/assets/main/locale/localizables-scancodes.py:152
+#: project/assets/main/locale/localizables-keycodes.py:152
 #: project/src/main/puzzle/PuzzleMessages.tscn:62
 #: project/src/main/puzzle/puzzle-messages.gd:187
 #: project/src/main/puzzle/puzzle-messages.gd:189
 msgid "Back"
 msgstr "Atrás"
 
-#: project/assets/main/locale/localizables-scancodes.py:153
+#: project/assets/main/locale/localizables-keycodes.py:153
 msgid "Forward"
 msgstr "Avanzar"
 
-#: project/assets/main/locale/localizables-scancodes.py:154
+#: project/assets/main/locale/localizables-keycodes.py:154
 msgid "Stop"
 msgstr "Detener"
 
-#: project/assets/main/locale/localizables-scancodes.py:155
+#: project/assets/main/locale/localizables-keycodes.py:155
 msgid "Refresh"
 msgstr "Refrescar"
 
-#: project/assets/main/locale/localizables-scancodes.py:156
+#: project/assets/main/locale/localizables-keycodes.py:156
 msgid "VolumeDown"
 msgstr "VolumeDown"
 
-#: project/assets/main/locale/localizables-scancodes.py:157
+#: project/assets/main/locale/localizables-keycodes.py:157
 msgid "VolumeMute"
 msgstr "VolumeMute"
 
-#: project/assets/main/locale/localizables-scancodes.py:158
+#: project/assets/main/locale/localizables-keycodes.py:158
 msgid "VolumeUp"
 msgstr "VolumeUp"
 
-#: project/assets/main/locale/localizables-scancodes.py:159
+#: project/assets/main/locale/localizables-keycodes.py:159
 msgid "BassBoost"
 msgstr "BassBoost"
 
-#: project/assets/main/locale/localizables-scancodes.py:160
+#: project/assets/main/locale/localizables-keycodes.py:160
 msgid "BassUp"
 msgstr "BassUp"
 
-#: project/assets/main/locale/localizables-scancodes.py:161
+#: project/assets/main/locale/localizables-keycodes.py:161
 msgid "BassDown"
 msgstr "BassDown"
 
-#: project/assets/main/locale/localizables-scancodes.py:162
+#: project/assets/main/locale/localizables-keycodes.py:162
 msgid "TrebleUp"
 msgstr "TrebleUp"
 
-#: project/assets/main/locale/localizables-scancodes.py:163
+#: project/assets/main/locale/localizables-keycodes.py:163
 msgid "TrebleDown"
 msgstr "TrebleDown"
 
-#: project/assets/main/locale/localizables-scancodes.py:164
+#: project/assets/main/locale/localizables-keycodes.py:164
 msgid "MediaPlay"
 msgstr "MediaPlay"
 
-#: project/assets/main/locale/localizables-scancodes.py:165
+#: project/assets/main/locale/localizables-keycodes.py:165
 msgid "MediaStop"
 msgstr "MediaStop"
 
-#: project/assets/main/locale/localizables-scancodes.py:166
+#: project/assets/main/locale/localizables-keycodes.py:166
 msgid "MediaPrevious"
 msgstr "MediaPrev"
 
-#: project/assets/main/locale/localizables-scancodes.py:167
+#: project/assets/main/locale/localizables-keycodes.py:167
 msgid "MediaNext"
 msgstr "MediaNext"
 
-#: project/assets/main/locale/localizables-scancodes.py:168
+#: project/assets/main/locale/localizables-keycodes.py:168
 msgid "MediaRecord"
 msgstr "MediaRecord"
 
-#: project/assets/main/locale/localizables-scancodes.py:169
+#: project/assets/main/locale/localizables-keycodes.py:169
 msgid "HomePage"
 msgstr "PágInicio"
 
-#: project/assets/main/locale/localizables-scancodes.py:170
+#: project/assets/main/locale/localizables-keycodes.py:170
 msgid "Favorites"
 msgstr "Favoritos"
 
-#: project/assets/main/locale/localizables-scancodes.py:171
+#: project/assets/main/locale/localizables-keycodes.py:171
 msgid "Search"
 msgstr "Buscar"
 
-#: project/assets/main/locale/localizables-scancodes.py:172
+#: project/assets/main/locale/localizables-keycodes.py:172
 msgid "StandBy"
 msgstr "Suspensión"
 
-#: project/assets/main/locale/localizables-scancodes.py:173
+#: project/assets/main/locale/localizables-keycodes.py:173
 msgid "LaunchMail"
 msgstr "LaunchMail"
 
-#: project/assets/main/locale/localizables-scancodes.py:174
+#: project/assets/main/locale/localizables-keycodes.py:174
 msgid "LaunchMedia"
 msgstr "LaunchMedia"
 
-#: project/assets/main/locale/localizables-scancodes.py:175
+#: project/assets/main/locale/localizables-keycodes.py:175
 msgid "Launch0"
 msgstr "Launch0"
 
-#: project/assets/main/locale/localizables-scancodes.py:176
+#: project/assets/main/locale/localizables-keycodes.py:176
 msgid "Launch1"
 msgstr "Launch1"
 
-#: project/assets/main/locale/localizables-scancodes.py:177
+#: project/assets/main/locale/localizables-keycodes.py:177
 msgid "Launch2"
 msgstr "Launch2"
 
-#: project/assets/main/locale/localizables-scancodes.py:178
+#: project/assets/main/locale/localizables-keycodes.py:178
 msgid "Launch3"
 msgstr "Launch3"
 
-#: project/assets/main/locale/localizables-scancodes.py:179
+#: project/assets/main/locale/localizables-keycodes.py:179
 msgid "Launch4"
 msgstr "Launch4"
 
-#: project/assets/main/locale/localizables-scancodes.py:180
+#: project/assets/main/locale/localizables-keycodes.py:180
 msgid "Launch5"
 msgstr "Launch5"
 
-#: project/assets/main/locale/localizables-scancodes.py:181
+#: project/assets/main/locale/localizables-keycodes.py:181
 msgid "Launch6"
 msgstr "Launch6"
 
-#: project/assets/main/locale/localizables-scancodes.py:182
+#: project/assets/main/locale/localizables-keycodes.py:182
 msgid "Launch7"
 msgstr "Launch7"
 
-#: project/assets/main/locale/localizables-scancodes.py:183
+#: project/assets/main/locale/localizables-keycodes.py:183
 msgid "Launch8"
 msgstr "Launch8"
 
-#: project/assets/main/locale/localizables-scancodes.py:184
+#: project/assets/main/locale/localizables-keycodes.py:184
 msgid "Launch9"
 msgstr "Launch9"
 
-#: project/assets/main/locale/localizables-scancodes.py:185
+#: project/assets/main/locale/localizables-keycodes.py:185
 msgid "LaunchA"
 msgstr "LaunchA"
 
-#: project/assets/main/locale/localizables-scancodes.py:186
+#: project/assets/main/locale/localizables-keycodes.py:186
 msgid "LaunchB"
 msgstr "LaunchB"
 
-#: project/assets/main/locale/localizables-scancodes.py:187
+#: project/assets/main/locale/localizables-keycodes.py:187
 msgid "LaunchC"
 msgstr "LaunchC"
 
-#: project/assets/main/locale/localizables-scancodes.py:188
+#: project/assets/main/locale/localizables-keycodes.py:188
 msgid "LaunchD"
 msgstr "LaunchD"
 
-#: project/assets/main/locale/localizables-scancodes.py:189
+#: project/assets/main/locale/localizables-keycodes.py:189
 msgid "LaunchE"
 msgstr "LaunchE"
 
-#: project/assets/main/locale/localizables-scancodes.py:190
+#: project/assets/main/locale/localizables-keycodes.py:190
 msgid "LaunchF"
 msgstr "LaunchF"
 
-#: project/assets/main/locale/localizables-scancodes.py:191
+#: project/assets/main/locale/localizables-keycodes.py:191
 msgid "Kp Multiply"
 msgstr "Numpad Asterisco"
 
-#: project/assets/main/locale/localizables-scancodes.py:192
+#: project/assets/main/locale/localizables-keycodes.py:192
 msgid "Kp Divide"
 msgstr "Numpad Barra"
 
-#: project/assets/main/locale/localizables-scancodes.py:193
+#: project/assets/main/locale/localizables-keycodes.py:193
 msgid "Kp Subtract"
 msgstr "Numpad Menos"
 
-#: project/assets/main/locale/localizables-scancodes.py:194
+#: project/assets/main/locale/localizables-keycodes.py:194
 msgid "Kp Period"
 msgstr "Numpad Punto"
 
-#: project/assets/main/locale/localizables-scancodes.py:195
+#: project/assets/main/locale/localizables-keycodes.py:195
 msgid "Kp Add"
 msgstr "Numpad Más"
 
-#: project/assets/main/locale/localizables-scancodes.py:196
+#: project/assets/main/locale/localizables-keycodes.py:196
 msgid "Kp 0"
 msgstr "Numpad 0"
 
-#: project/assets/main/locale/localizables-scancodes.py:197
+#: project/assets/main/locale/localizables-keycodes.py:197
 msgid "Kp 1"
 msgstr "Numpad 1"
 
-#: project/assets/main/locale/localizables-scancodes.py:198
+#: project/assets/main/locale/localizables-keycodes.py:198
 msgid "Kp 2"
 msgstr "Numpad 2"
 
-#: project/assets/main/locale/localizables-scancodes.py:199
+#: project/assets/main/locale/localizables-keycodes.py:199
 msgid "Kp 3"
 msgstr "Numpad 3"
 
-#: project/assets/main/locale/localizables-scancodes.py:200
+#: project/assets/main/locale/localizables-keycodes.py:200
 msgid "Kp 4"
 msgstr "Numpad 4"
 
-#: project/assets/main/locale/localizables-scancodes.py:201
+#: project/assets/main/locale/localizables-keycodes.py:201
 msgid "Kp 5"
 msgstr "Numpad 5"
 
-#: project/assets/main/locale/localizables-scancodes.py:202
+#: project/assets/main/locale/localizables-keycodes.py:202
 msgid "Kp 6"
 msgstr "Numpad 6"
 
-#: project/assets/main/locale/localizables-scancodes.py:203
+#: project/assets/main/locale/localizables-keycodes.py:203
 msgid "Kp 7"
 msgstr "Numpad 7"
 
-#: project/assets/main/locale/localizables-scancodes.py:204
+#: project/assets/main/locale/localizables-keycodes.py:204
 msgid "Kp 8"
 msgstr "Numpad 8"
 
-#: project/assets/main/locale/localizables-scancodes.py:205
+#: project/assets/main/locale/localizables-keycodes.py:205
 msgid "Kp 9"
 msgstr "Numpad 9"
 

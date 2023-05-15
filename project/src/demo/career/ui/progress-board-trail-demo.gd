@@ -8,7 +8,7 @@ extends Node
 @onready var path := $ColorRect/Trail
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_MINUS:
 			path.spot_count -= 1
 		KEY_EQUAL:

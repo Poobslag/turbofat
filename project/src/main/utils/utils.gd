@@ -2,7 +2,7 @@
 class_name Utils
 ## Contains global utilities.
 
-const NUM_SCANCODES := {
+const NUM_KEYCODES := {
 	KEY_0: 0, KEY_1: 1, KEY_2: 2, KEY_3: 3, KEY_4: 4,
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
 }
@@ -25,7 +25,7 @@ static func print_json(value) -> String:
 
 
 ## Returns the keycode for a keypress event, or -1 if the event is not a keypress event.
-static func key_scancode(event: InputEvent) -> int:
+static func key_keycode(event: InputEvent) -> int:
 	var keycode := -1
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		keycode = event.keycode
@@ -34,7 +34,7 @@ static func key_scancode(event: InputEvent) -> int:
 
 ## Returns [0-9] for a number key event, or -1 if the event is not a number key event.
 static func key_num(event: InputEvent) -> int:
-	return NUM_SCANCODES.get(key_scancode(event), -1)
+	return NUM_KEYCODES.get(key_keycode(event), -1)
 
 
 ## Returns a transparent version of the specified color.

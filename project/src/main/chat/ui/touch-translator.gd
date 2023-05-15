@@ -9,7 +9,7 @@ var _touch_index := -1
 
 ## keycode which triggers a ui_accept action.
 ## echo events cannot be emitted without an InputEventKey instance which requires a keycode
-var _ui_accept_scancode: int
+var _ui_accept_keycode: int
 
 @onready var _chat_frame: ChatFrame = get_node(chat_frame_path)
 @onready var _narration_frame: NarrationFrame = get_node(narration_frame_path)
@@ -18,7 +18,7 @@ func _ready() -> void:
 	# calculate a keycode which triggers a ui_accept action
 	for action_item in InputMap.action_get_events("ui_accept"):
 		if action_item is InputEventKey:
-			_ui_accept_scancode = action_item.keycode
+			_ui_accept_keycode = action_item.keycode
 			break
 	
 	_disable_translation()
@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 ## Translates the current touch event into a ui_accept event.
 func _emit_ui_accept_event(pressed: bool, echo: bool) -> void:
 	var ev := InputEventKey.new()
-	ev.keycode = _ui_accept_scancode
+	ev.keycode = _ui_accept_keycode
 	ev.button_pressed = pressed
 	ev.echo = echo
 	Input.parse_input_event(ev)

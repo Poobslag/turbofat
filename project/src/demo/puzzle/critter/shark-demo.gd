@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0: _shark.state = Shark.NONE
 		KEY_1: _shark.state = Shark.WAITING
 		KEY_2: _shark.state = Shark.DANCING

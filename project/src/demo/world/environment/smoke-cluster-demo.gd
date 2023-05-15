@@ -7,7 +7,7 @@ extends Node
 @export var SmokeClusterScene: PackedScene
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_SPACE:
 			var smoke_cluster: SmokeCluster = SmokeClusterScene.instantiate()
 			smoke_cluster.position = Global.window_size * 0.5

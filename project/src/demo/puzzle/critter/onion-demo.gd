@@ -12,7 +12,7 @@ extends Node
 @onready var _onion := $Onion
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_0: _onion.state = OnionConfig.OnionState.NONE
 		KEY_1: _onion.state = OnionConfig.OnionState.DAY
 		KEY_2: _onion.state = OnionConfig.OnionState.DAY_END

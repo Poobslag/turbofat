@@ -10,7 +10,7 @@ extends Node
 @onready var _score := $ColorRect/Score
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1: PuzzleState.add_line_score(1, 1)
 		KEY_2: PuzzleState.add_line_score(20, 20)
 		KEY_3: PuzzleState.add_line_score(300, 300)

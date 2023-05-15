@@ -15,7 +15,7 @@ var actions := [
 @onready var _label := $Label
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_EQUAL: _eight_way.scale *= 1.3
 		KEY_MINUS: _eight_way.scale /= 1.3
 

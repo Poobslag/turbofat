@@ -47,7 +47,7 @@
 # 	InputEventScreenTouch
 
 
-static func _to_scancode(which):
+static func _to_keycode(which):
 	var key_code = which
 	if(typeof(key_code) == TYPE_STRING):
 		key_code = key_code.to_upper().to_ascii_buffer()[0]
@@ -67,14 +67,14 @@ static func new_mouse_button_event(position, global_position, pressed, button_in
 
 static func key_up(which):
 	var event = InputEventKey.new()
-	event.keycode = _to_scancode(which)
+	event.keycode = _to_keycode(which)
 	event.pressed = false
 	return event
 
 
 static func key_down(which):
 	var event = InputEventKey.new()
-	event.keycode = _to_scancode(which)
+	event.keycode = _to_keycode(which)
 	event.pressed = true
 	return event
 

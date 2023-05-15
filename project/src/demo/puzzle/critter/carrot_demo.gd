@@ -10,7 +10,7 @@ extends Node
 @onready var _carrot := $Carrot
 
 func _input(event: InputEvent) -> void:
-	match Utils.key_scancode(event):
+	match Utils.key_keycode(event):
 		KEY_1: _carrot.show_carrot()
 		KEY_2: _carrot.hide_carrot()
 		KEY_Q: _carrot.smoke = (_carrot.smoke + 1) % CarrotConfig.Smoke.size()
