@@ -76,11 +76,6 @@ static func rand_value(values: Array):
 	return values[randi() % values.size()]
 
 
-## Generates a pseudo-random 32-bit signed integer between from and to (inclusive).
-static func randi_range(from: int, to: int) -> int:
-	return randi() % (to + 1 - from) + from
-
-
 ## Returns a random key from the specified dictionary.
 ##
 ## The values in the dictionary are numeric weights for each key.

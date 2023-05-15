@@ -13,7 +13,7 @@ func set_shuffle(value: bool) -> void:
 		return
 	
 	target_properties["frame"] = randi() % 20
-	target_properties["crowd_color_index"] = Utils.randi_range(0, PokiCrowd.CROWD_COLORS.size() - 1)
+	target_properties["crowd_color_index"] = randi_range(0, PokiCrowd.CROWD_COLORS.size() - 1)
 	
 	notify_property_list_changed()
 

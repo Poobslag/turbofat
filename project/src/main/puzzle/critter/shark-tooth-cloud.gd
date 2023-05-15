@@ -153,7 +153,7 @@ func _start_eat_tween() -> void:
 ## Cycles to a randomly selected animation frame and randomly flips it horizontally.
 func _shuffle_tooth() -> void:
 	_tooth.flip_h = randf() > 0.5
-	_tooth.frame = (_tooth.frame + Utils.randi_range(1, TOOTH_VARIANT_COUNT - 1)) % TOOTH_VARIANT_COUNT
+	_tooth.frame = (_tooth.frame + randi_range(1, TOOTH_VARIANT_COUNT - 1)) % TOOTH_VARIANT_COUNT
 
 
 ## Lazily instances the tilemap if it

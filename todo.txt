@@ -81,7 +81,7 @@ gold plating
 
 -remove redundant 'enum from...' comments
 -add strong typing to arrays
--replace 'randi_range' with native call
+*replace 'randi_range' with native call
 -remove 'FileUtils', replace with native calls
 -free-roam-touch-buttons might have extra logic for 'menu shown' 'menu hidden' stuff
 
@@ -91,3 +91,4 @@ gold plating
 # warning-ignore:unused_signal
 @warning_ignore("integer_division")
 
+152 warnings/errors running tests

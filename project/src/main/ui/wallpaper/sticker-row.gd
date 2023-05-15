@@ -84,7 +84,7 @@ func _add_sticker() -> void:
 	var new_sticker: Sticker = StickerScene.instantiate()
 	
 	if _blank_texture_countdown == 0:
-		_blank_texture_countdown = Utils.randi_range(2, 6)
+		_blank_texture_countdown = randi_range(2, 6)
 	else:
 		_blank_texture_countdown -= 1
 		new_sticker.texture = _textures[_texture_index]
