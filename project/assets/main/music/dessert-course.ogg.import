@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/dessert-course.ogg-c2be4f715460270b563e93c082b88432.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bnd3sjrgeb22r"
+path="res://.godot/imported/dessert-course.ogg-c2be4f715460270b563e93c082b88432.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/dessert-course.ogg"
-dest_files=[ "res://.import/dessert-course.ogg-c2be4f715460270b563e93c082b88432.oggstr" ]
+dest_files=["res://.godot/imported/dessert-course.ogg-c2be4f715460270b563e93c082b88432.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -2,24 +2,24 @@
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=3]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=4]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="Shortcut" id=3]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="Shortcut" id=4]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
 
 [node name="System" type="VBoxContainer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -86.0
+offset_top = -86.0
 theme = ExtResource( 1 )
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 script = ExtResource( 2 )
 
 [node name="Settings" type="Button" parent="."]
-margin_left = 454.0
-margin_right = 570.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 116, 28 )
+offset_left = 454.0
+offset_right = 570.0
+offset_bottom = 28.0
+custom_minimum_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
@@ -31,11 +31,11 @@ action = "ui_cancel"
 overridden_action = "ui_menu"
 
 [node name="Quit" type="Button" parent="."]
-margin_left = 454.0
-margin_top = 38.0
-margin_right = 570.0
-margin_bottom = 66.0
-rect_min_size = Vector2( 116, 28 )
+offset_left = 454.0
+offset_top = 38.0
+offset_right = 570.0
+offset_bottom = 66.0
+custom_minimum_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false

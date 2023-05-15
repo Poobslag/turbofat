@@ -14,12 +14,12 @@ signal help_chosen
 ## Number of times the diagram has been shown. We cycle through different chat choices each time.
 var _show_diagram_count := 0
 
-onready var _hud: Node = get_parent()
-onready var _chat_choices: ChatChoices = $VBoxContainer/ChatChoices
+@onready var _hud: Node = get_parent()
+@onready var _chat_choices: ChatChoices = $VBoxContainer/ChatChoices
 
 func _ready() -> void:
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
 	hide()
 
 
@@ -27,27 +27,27 @@ func _ready() -> void:
 ##
 ## This prevents the tutorial from behaving unexpectedly if the player restarts at an unusual time.
 func cleanup_listeners() -> void:
-	if _hud.messages.is_connected("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_show_choices"):
-		_hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_show_choices")
+	if _hud.messages.is_connected("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices")):
+		_hud.messages.disconnect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices"))
 
 
-func show_diagram(texture: Texture, show_choices: bool = false) -> void:
+func show_diagram(texture: Texture2D, show_choices: bool = false) -> void:
 	show()
 	$VBoxContainer/TextureMarginContainer/TexturePanel/TextureRect.texture = texture
 	
 	# shift the diagram up to make room for chat choices
 	if show_choices:
-		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_top", 10)
-		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_bottom", 10)
+		$VBoxContainer/TextureMarginContainer.set("theme_override_constants/margin_top", 10)
+		$VBoxContainer/TextureMarginContainer.set("theme_override_constants/margin_bottom", 10)
 		_chat_choices.visible = true
 	else:
-		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_top", 85)
-		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_bottom", 85)
+		$VBoxContainer/TextureMarginContainer.set("theme_override_constants/margin_top", 85)
+		$VBoxContainer/TextureMarginContainer.set("theme_override_constants/margin_bottom", 85)
 		_chat_choices.visible = false
 	
 	if show_choices:
 		if not _hud.messages.is_all_messages_visible():
-			_hud.messages.connect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_show_choices")
+			_hud.messages.connect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices"))
 		else:
 			_show_choices()
 
@@ -64,7 +64,7 @@ func _show_choices() -> void:
 
 
 func _on_TutorialMessages_all_messages_shown_show_choices() -> void:
-	_hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_show_choices")
+	_hud.messages.disconnect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_show_choices"))
 	_show_choices()
 
 

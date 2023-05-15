@@ -1,4 +1,4 @@
-tool
+@tool
 class_name ProgressBoardClockVisuals
 extends Node2D
 ## Draws the analog clock which appears above the progress board.
@@ -9,36 +9,36 @@ extends Node2D
 const sample_count := 48.0
 
 ## Number in the range [0.0, 1.0] for how much of the clock face should be filled.
-export (float, 0.0, 1.0) var filled_percent := 0.0 setget set_filled_percent
+@export (float, 0.0, 1.0) var filled_percent := 0.0: set = set_filled_percent
 
 ## Number in the range [0.0, 60.0] for the position of the minute hand.
 ##
 ## Numbers outside the range of [0.0, 60.0] will not cause errors, but will cause the hour hand to behave strangely. At
 ## 8:50 pm, the hour hand is between eight and nine. But at 8:200 pm, the hour hand is between eleven and twelve.
-export (float, 0.0, 60.0) var minutes := 0.0 setget set_minutes
+@export (float, 0.0, 60.0) var minutes := 0.0: set = set_minutes
 
 ## Number in the range [0.0, 24.0] for the position of the hour hand.
 ##
 ## Numbers outside the range of [0, 12.0] are functionally equivalent, as this is only a twelve hour display.
-export (float, 0.0, 24.0) var hours := 0.0 setget set_hours
+@export (float, 0.0, 24.0) var hours := 0.0: set = set_hours
 
 ## Radius of the clock face, not including the outline.
-export (float) var radius := 50.0 setget set_radius
+@export (float) var radius := 50.0: set = set_radius
 
 ## Width of the lines used to draw the clock's outline and minute/hour hand.
-export (float) var line_width := 8.0 setget set_line_width
+@export (float) var line_width := 8.0: set = set_line_width
 
 ## Length of the clock's hands.
-export (float) var minute_hand_length := 40.0 setget set_minute_hand_length
-export (float) var hour_hand_length := 30.0 setget set_hour_hand_length
+@export (float) var minute_hand_length := 40.0: set = set_minute_hand_length
+@export (float) var hour_hand_length := 30.0: set = set_hour_hand_length
 
 ## Colors used to draw different parts of the clock.
-export (Color) var empty_color := Color.white setget set_empty_color
-export (Color) var filled_color := Color.gray setget set_filled_color
-export (Color) var line_color := Color.black setget set_line_color
+@export (Color) var empty_color := Color.WHITE: set = set_empty_color
+@export (Color) var filled_color := Color.GRAY: set = set_filled_color
+@export (Color) var line_color := Color.BLACK: set = set_line_color
 
-onready var _minute_hand := $MinuteHand
-onready var _hour_hand := $HourHand
+@onready var _minute_hand := $MinuteHand
+@onready var _hour_hand := $HourHand
 
 func _ready() -> void:
 	_refresh_hands()
@@ -137,7 +137,7 @@ func _circle_points(percent: float = 1.0) -> Array:
 ## Draws the empty area of the clock face.
 func _draw_empty_area() -> void:
 	var points := _circle_points()
-	draw_polygon(points, PoolColorArray([empty_color]), PoolVector2Array(), null, null, true)
+	draw_polygon(points, PackedColorArray([empty_color]), PackedVector2Array(), null, null, true)
 
 
 ## Draws the filled area of the clock face.
@@ -148,7 +148,7 @@ func _draw_filled_area() -> void:
 	var points := _circle_points(filled_percent)
 	if filled_percent < 1.0:
 		points.append(Vector2.ZERO)
-	draw_polygon(points, PoolColorArray([filled_color]), PoolVector2Array(), null, null, true)
+	draw_polygon(points, PackedColorArray([filled_color]), PackedVector2Array(), null, null, true)
 
 
 ## Draws the clock's outline.

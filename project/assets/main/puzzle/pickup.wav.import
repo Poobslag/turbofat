@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/pickup.wav-26ec0f48b122f2700c3d154f41b41871.sample"
+type="AudioStreamWAV"
+uid="uid://donoib8cgcls5"
+path="res://.godot/imported/pickup.wav-26ec0f48b122f2700c3d154f41b41871.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/pickup.wav"
-dest_files=[ "res://.import/pickup.wav-26ec0f48b122f2700c3d154f41b41871.sample" ]
+dest_files=["res://.godot/imported/pickup.wav-26ec0f48b122f2700c3d154f41b41871.sample"]
 
 [params]
 

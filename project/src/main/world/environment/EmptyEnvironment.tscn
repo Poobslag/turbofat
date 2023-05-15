@@ -30,7 +30,7 @@ format = 1
 [node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 
-[node name="Obstacles" type="YSort" parent="."]
+[node name="Obstacles" type="Node2D" parent="."]
 
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
 scale = Vector2( 0.5, 0.5 )

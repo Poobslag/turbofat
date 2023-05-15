@@ -2,26 +2,26 @@
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/main/puzzle/metaball.shader" type="Shader" id=4]
+[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="FontFile" id=3]
+[ext_resource path="res://src/main/puzzle/metaball.gdshader" type="Shader" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
 [ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=7]
+[ext_resource path="res://src/main/puzzle/rainbow-metaball.gdshader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/puzzle/PuzzleTouchButtons.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/puzzle/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/puzzle/wall-goop-sfx.gd" type="Script" id=12]
-[ext_resource path="res://src/main/ui/theme/h2-font.tres" type="DynamicFont" id=13]
-[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="DynamicFont" id=14]
-[ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=15]
+[ext_resource path="res://src/main/ui/theme/h2-font.tres" type="FontFile" id=13]
+[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="FontFile" id=14]
+[ext_resource path="res://src/main/puzzle/texture-metaball.gdshader" type="Shader" id=15]
 [ext_resource path="res://src/main/puzzle/wall-glob-viewports.gd" type="Script" id=16]
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/puzzle/star-seeds.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/food-items.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
-[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=22]
+[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=22]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
 [ext_resource path="res://src/main/puzzle/goop-globs.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantView.tscn" type="PackedScene" id=25]
@@ -40,8 +40,8 @@
 [ext_resource path="res://assets/main/puzzle/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/puzzle/ready.wav" type="AudioStream" id=39]
 [ext_resource path="res://src/main/puzzle/WoodBg.tscn" type="PackedScene" id=40]
-[ext_resource path="res://assets/main/puzzle/playfield-walls.png" type="Texture" id=41]
-[ext_resource path="res://assets/main/puzzle/chalkboard.png" type="Texture" id=42]
+[ext_resource path="res://assets/main/puzzle/playfield-walls.png" type="Texture2D" id=41]
+[ext_resource path="res://assets/main/puzzle/chalkboard.png" type="Texture2D" id=42]
 [ext_resource path="res://src/main/puzzle/ComboBurst.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/main/world/creature/gameover-voice4.wav" type="AudioStream" id=44]
 [ext_resource path="res://assets/main/world/creature/gameover-voice3.wav" type="AudioStream" id=45]
@@ -72,7 +72,7 @@
 [ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
 [ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=73]
+[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=73]
 [ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
 [ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
@@ -80,9 +80,9 @@
 [ext_resource path="res://src/main/puzzle/puzzle-money-hud.gd" type="Script" id=78]
 [ext_resource path="res://src/main/puzzle/critter/Critters.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/main/puzzle/hold-piece-displays.gd" type="Script" id=80]
-[ext_resource path="res://assets/main/puzzle/hold-piece-walls.png" type="Texture" id=81]
+[ext_resource path="res://assets/main/puzzle/hold-piece-walls.png" type="Texture2D" id=81]
 [ext_resource path="res://src/main/puzzle/piece/HoldPieceDisplay.tscn" type="PackedScene" id=82]
-[ext_resource path="res://assets/main/puzzle/hold-piece-bg.png" type="Texture" id=83]
+[ext_resource path="res://assets/main/puzzle/hold-piece-bg.png" type="Texture2D" id=83]
 [ext_resource path="res://src/main/puzzle/playfield-shadow.gd" type="Script" id=84]
 [ext_resource path="res://src/main/puzzle/night/NightPiece.tscn" type="PackedScene" id=85]
 [ext_resource path="res://src/main/puzzle/night/NightNextPieceDisplays.tscn" type="PackedScene" id=86]
@@ -105,13 +105,13 @@ border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.695652 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.695652 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=25]
+[sub_resource type="GradientTexture2D" id=25]
 gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 flag_disable_z = true
 direction = Vector3( -100, -40, 0 )
 spread = 15.0
@@ -123,7 +123,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 25 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 flag_disable_z = true
 direction = Vector3( 100, -40, 0 )
 spread = 15.0
@@ -135,7 +135,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 25 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id=7]
 flag_disable_z = true
 direction = Vector3( -100, 40, 0 )
 spread = 15.0
@@ -147,7 +147,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 25 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticleProcessMaterial" id=8]
 flag_disable_z = true
 direction = Vector3( 100, 40, 0 )
 spread = 15.0
@@ -160,12 +160,12 @@ scale = 5.0
 color_ramp = SubResource( 25 )
 
 [sub_resource type="ViewportTexture" id=9]
-viewport_path = NodePath("Fg/WallGlobViewports/Viewport")
+viewport_path = NodePath("Fg/WallGlobViewports/SubViewport")
 
-[sub_resource type="OpenSimplexNoise" id=10]
+[sub_resource type="FastNoiseLite" id=10]
 resource_local_to_scene = true
 seed = -529000524
-octaves = 1
+fractal_octaves = 1
 
 [sub_resource type="NoiseTexture" id=11]
 width = 1024
@@ -206,12 +206,12 @@ shader = ExtResource( 4 )
 
 [sub_resource type="ViewportTexture" id=15]
 flags = 5
-viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/Viewport")
+viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/SubViewport")
 
-[sub_resource type="OpenSimplexNoise" id=16]
+[sub_resource type="FastNoiseLite" id=16]
 resource_local_to_scene = true
 seed = -165480819
-octaves = 1
+fractal_octaves = 1
 
 [sub_resource type="NoiseTexture" id=17]
 width = 1024
@@ -235,12 +235,12 @@ shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/edge_fix_factor = 0.001
 
 [sub_resource type="ViewportTexture" id=21]
-viewport_path = NodePath("Fg/FoodItems/Viewport")
+viewport_path = NodePath("Fg/FoodItems/SubViewport")
 
 [node name="Puzzle" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 1024, 600 )
+custom_minimum_size = Vector2( 1024, 600 )
 script = ExtResource( 21 )
 
 [node name="BgLoader" type="Control" parent="." groups=["night_mode_dark"]]
@@ -256,17 +256,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 1024, 600 )
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 512.0
+offset_bottom = 300.0
+custom_minimum_size = Vector2( 1024, 600 )
 
 [node name="Chalkboard" type="TextureRect" parent="Fg" groups=["night_mode_dark_self"]]
-margin_left = -58.0
-margin_top = 27.0
-margin_right = 284.0
-margin_bottom = 292.0
+offset_left = -58.0
+offset_top = 27.0
+offset_right = 284.0
+offset_bottom = 292.0
 texture = ExtResource( 42 )
 expand = true
 script = ExtResource( 66 )
@@ -277,51 +277,51 @@ position = Vector2( 57.4473, -143.371 )
 scale = Vector2( 0.444724, 0.444458 )
 color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
-polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
+polygon = PackedVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
 
 [node name="Score" parent="Fg/Chalkboard" instance=ExtResource( 61 )]
-margin_left = 58.0
-margin_top = 25.0
-margin_right = 308.0
-margin_bottom = 99.0
+offset_left = 58.0
+offset_top = 25.0
+offset_right = 308.0
+offset_bottom = 99.0
 
 [node name="PuzzleTimer" parent="Fg/Chalkboard" instance=ExtResource( 49 )]
-margin_left = 58.0
-margin_top = 110.0
-margin_right = 308.0
-margin_bottom = 140.0
+offset_left = 58.0
+offset_top = 110.0
+offset_right = 308.0
+offset_bottom = 140.0
 
 [node name="MilestoneHud" type="Control" parent="Fg/Chalkboard" groups=["night_mode_light"]]
-margin_left = 58.0
-margin_top = 153.0
-margin_right = 308.0
-margin_bottom = 233.0
-rect_min_size = Vector2( 250, 40 )
+offset_left = 58.0
+offset_top = 153.0
+offset_right = 308.0
+offset_bottom = 233.0
+custom_minimum_size = Vector2( 250, 40 )
 script = ExtResource( 23 )
 
 [node name="ProgressBar" type="ProgressBar" parent="Fg/Chalkboard/MilestoneHud"]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 150.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 75.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 percent_visible = false
 
 [node name="Desc" type="Label" parent="Fg/Chalkboard/MilestoneHud"]
 anchor_right = 1.0
-margin_bottom = 30.0
+offset_bottom = 30.0
 theme = ExtResource( 1 )
 text = "Goal"
 align = 2
 
 [node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource( 36 )]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 100, 45 )
-custom_fonts/font = ExtResource( 14 )
+offset_left = 150.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 75.0
+custom_minimum_size = Vector2( 100, 45 )
+theme_override_fonts/font = ExtResource( 14 )
 text = "10"
 align = 1
 valign = 1
@@ -333,12 +333,12 @@ __meta__ = {
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
 [node name="ProgressBarParticles" type="Control" parent="Fg/Chalkboard/MilestoneHud"]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
+offset_left = 150.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 75.0
 
-[node name="Nw" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
+[node name="Nw" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
 position = Vector2( 50, 22.5 )
 emitting = false
 amount = 3
@@ -346,7 +346,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 5 )
 
-[node name="Ne" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
+[node name="Ne" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
 position = Vector2( 50, 22.5 )
 emitting = false
 amount = 3
@@ -354,7 +354,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 6 )
 
-[node name="Sw" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
+[node name="Sw" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
 position = Vector2( 50, 22.5 )
 emitting = false
 amount = 3
@@ -362,7 +362,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 7 )
 
-[node name="Se" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
+[node name="Se" type="GPUParticles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
 position = Vector2( 50, 22.5 )
 emitting = false
 amount = 3
@@ -371,10 +371,10 @@ explosiveness = 1.0
 process_material = SubResource( 8 )
 
 [node name="PlayfieldShadow" type="Control" parent="Fg" groups=["night_mode_dark"]]
-margin_left = 264.0
-margin_top = -72.0
-margin_right = 788.0
-margin_bottom = 672.0
+offset_left = 264.0
+offset_top = -72.0
+offset_right = 788.0
+offset_bottom = 672.0
 script = ExtResource( 84 )
 __meta__ = {
 "_editor_description_": ""
@@ -385,43 +385,43 @@ visible = false
 position = Vector2( 414.385, -217.115 )
 color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
-polygon = PoolVector2Array( -320.131, 310.11, -314.356, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99 )
+polygon = PackedVector2Array( -320.131, 310.11, -314.356, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99 )
 
 [node name="HoldPieceShadow" type="Polygon2D" parent="Fg/PlayfieldShadow"]
 position = Vector2( 414.385, -217.115 )
 color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
-polygon = PoolVector2Array( -389.455, 310.11, -383.422, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99, -320.145, 380.409 )
+polygon = PackedVector2Array( -389.455, 310.11, -383.422, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99, -320.145, 380.409 )
 
 [node name="Playfield" parent="Fg" instance=ExtResource( 65 )]
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
+offset_left = 364.0
+offset_top = 28.0
+offset_right = 688.0
+offset_bottom = 572.0
 
 [node name="NightPlayfield" parent="Fg" instance=ExtResource( 50 )]
 visible = false
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
+offset_left = 364.0
+offset_top = 28.0
+offset_right = 688.0
+offset_bottom = 572.0
 source_playfield_path = NodePath("../Playfield")
 
 [node name="StarSeeds" type="Control" parent="Fg" groups=["night_mode_invisible"]]
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
+offset_left = 364.0
+offset_top = 28.0
+offset_right = 688.0
+offset_bottom = 572.0
 script = ExtResource( 18 )
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 StarSeedScene = ExtResource( 72 )
 
 [node name="NightStarSeeds" type="Control" parent="Fg" groups=["night_mode_visible"]]
 visible = false
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
+offset_left = 364.0
+offset_top = 28.0
+offset_right = 688.0
+offset_bottom = 572.0
 script = ExtResource( 90 )
 source_star_seeds_path = NodePath("../StarSeeds")
 StarSeedScene = ExtResource( 91 )
@@ -439,43 +439,43 @@ visible = false
 piece_manager_path = NodePath("../PieceManager")
 
 [node name="NextPieceDisplays" parent="Fg" instance=ExtResource( 64 )]
-margin_left = 688.0
-margin_top = 28.0
-margin_right = 752.0
-margin_bottom = 572.0
+offset_left = 688.0
+offset_top = 28.0
+offset_right = 752.0
+offset_bottom = 572.0
 piece_queue_path = NodePath("../../PieceQueue")
 
 [node name="NightNextPieceDisplays" parent="Fg" instance=ExtResource( 86 )]
 visible = false
-margin_left = 688.0
-margin_top = 28.0
-margin_right = 752.0
-margin_bottom = 572.0
+offset_left = 688.0
+offset_top = 28.0
+offset_right = 752.0
+offset_bottom = 572.0
 next_piece_displays_path = NodePath("../NextPieceDisplays")
 
 [node name="WallGlobViewports" parent="Fg" instance=ExtResource( 17 )]
-margin_left = 356.5
-margin_top = 20.5
-margin_right = 758.5
-margin_bottom = 576.5
+offset_left = 356.5
+offset_top = 20.5
+offset_right = 758.5
+offset_bottom = 576.5
 script = ExtResource( 16 )
 glob_min_scale = 1.2
 glob_max_scale = 2.5
 
 [node name="Walls" type="TextureRect" parent="Fg" groups=["night_mode_dark"]]
 material = SubResource( 13 )
-margin_left = 356.5
-margin_top = 20.5
-margin_right = 758.5
-margin_bottom = 578.5
+offset_left = 356.5
+offset_top = 20.5
+offset_right = 758.5
+offset_bottom = 578.5
 texture = ExtResource( 41 )
 expand = true
 
 [node name="HoldPieceDisplays" type="Control" parent="Fg" groups=["night_mode_invisible"]]
-margin_left = 288.0
-margin_top = 20.5
-margin_right = 364.0
-margin_bottom = 96.5
+offset_left = 288.0
+offset_top = 20.5
+offset_right = 364.0
+offset_bottom = 96.5
 script = ExtResource( 80 )
 piece_queue_path = NodePath("../../PieceQueue")
 HoldPieceDisplayScene = ExtResource( 82 )
@@ -485,10 +485,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="BgSprite" type="TextureRect" parent="Fg/HoldPieceDisplays/Holder"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 68.5
-margin_bottom = 72.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 68.5
+offset_bottom = 72.0
 texture = ExtResource( 83 )
 expand = true
 
@@ -501,21 +501,21 @@ color = Color( 0, 0, 0, 0.627451 )
 position = Vector2( -3.64645, -3.29289 )
 color = Color( 0, 0, 0, 0.196078 )
 antialiased = true
-polygon = PoolVector2Array( 13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4 )
+polygon = PackedVector2Array( 13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4 )
 
 [node name="Walls" type="TextureRect" parent="Fg/HoldPieceDisplays/Holder"]
 material = SubResource( 13 )
-margin_right = 76.0
-margin_bottom = 76.0
+offset_right = 76.0
+offset_bottom = 76.0
 texture = ExtResource( 81 )
 expand = true
 
 [node name="OnionHoldPieceDisplays" type="Control" parent="Fg" groups=["night_mode_visible"]]
 visible = false
-margin_left = 288.0
-margin_top = 20.5
-margin_right = 364.0
-margin_bottom = 96.5
+offset_left = 288.0
+offset_top = 20.5
+offset_right = 364.0
+offset_bottom = 96.5
 script = ExtResource( 87 )
 hold_piece_displays_path = NodePath("../HoldPieceDisplays")
 NightPieceDisplayScene = ExtResource( 88 )
@@ -526,10 +526,10 @@ anchor_bottom = 1.0
 
 [node name="BgSprite" type="TextureRect" parent="Fg/OnionHoldPieceDisplays/Holder"]
 modulate = Color( 0.419608, 0.419608, 0.862745, 1 )
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 68.5
-margin_bottom = 72.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 68.5
+offset_bottom = 72.0
 texture = ExtResource( 83 )
 expand = true
 
@@ -537,13 +537,13 @@ expand = true
 position = Vector2( -3.64645, -3.29289 )
 color = Color( 0, 0, 0, 0.196078 )
 antialiased = true
-polygon = PoolVector2Array( 13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4 )
+polygon = PackedVector2Array( 13, 4, 13, 62, 68, 62, 68, 71, 3, 71, 3, 4 )
 
 [node name="Walls" type="TextureRect" parent="Fg/OnionHoldPieceDisplays/Holder"]
 modulate = Color( 0.419608, 0.419608, 0.862745, 1 )
 material = SubResource( 13 )
-margin_right = 76.0
-margin_bottom = 76.0
+offset_right = 76.0
+offset_bottom = 76.0
 texture = ExtResource( 81 )
 expand = true
 __meta__ = {
@@ -551,10 +551,10 @@ __meta__ = {
 }
 
 [node name="StepMeter" type="Control" parent="Fg" groups=["night_mode_light"]]
-margin_left = 786.626
-margin_top = 134.094
-margin_right = 846.626
-margin_bottom = 214.094
+offset_left = 786.626
+offset_top = 134.094
+offset_right = 846.626
+offset_bottom = 214.094
 script = ExtResource( 33 )
 
 [node name="Bg" type="Panel" parent="Fg/StepMeter"]
@@ -565,19 +565,19 @@ theme = SubResource( 23 )
 [node name="Fill" type="Panel" parent="Fg/StepMeter"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 theme = SubResource( 23 )
-custom_styles/panel = SubResource( 24 )
+theme_override_styles/panel = SubResource( 24 )
 
 [node name="Label" type="Label" parent="Fg/StepMeter"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 34 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 73 )
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_fonts/font = ExtResource( 73 )
 text = "1"
 align = 1
 valign = 1
@@ -596,12 +596,12 @@ GoopGlobScene = ExtResource( 35 )
 
 [node name="GlobViewports" type="Node" parent="Fg/GoopGlobs"]
 
-[node name="Viewport" type="Viewport" parent="Fg/GoopGlobs/GlobViewports"]
+[node name="SubViewport" type="SubViewport" parent="Fg/GoopGlobs/GlobViewports"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
 
-[node name="RainbowViewport" type="Viewport" parent="Fg/GoopGlobs/GlobViewports"]
+[node name="RainbowViewport" type="SubViewport" parent="Fg/GoopGlobs/GlobViewports"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
@@ -609,17 +609,17 @@ usage = 0
 [node name="TextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
 modulate = Color( 1, 1, 1, 0.768627 )
 material = SubResource( 14 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
+offset_right = 1024.0
+offset_bottom = 600.0
+custom_minimum_size = Vector2( 1024, 600 )
 texture = SubResource( 15 )
 flip_v = true
 
 [node name="RainbowTextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
 material = SubResource( 18 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
+offset_right = 1024.0
+offset_bottom = 600.0
+custom_minimum_size = Vector2( 1024, 600 )
 texture = SubResource( 19 )
 flip_v = true
 
@@ -635,17 +635,17 @@ puzzle_path = NodePath("../..")
 restaurant_view_path = NodePath("../RestaurantView")
 FoodScene = ExtResource( 37 )
 
-[node name="Viewport" type="Viewport" parent="Fg/FoodItems"]
+[node name="SubViewport" type="SubViewport" parent="Fg/FoodItems"]
 size = Vector2( 2560, 1500 )
 transparent_bg = true
 usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="Fg/FoodItems"]
 material = SubResource( 20 )
-margin_right = 2560.0
-margin_bottom = 1500.0
-rect_min_size = Vector2( 2560, 1500 )
-rect_scale = Vector2( 0.4, 0.4 )
+offset_right = 2560.0
+offset_bottom = 1500.0
+custom_minimum_size = Vector2( 2560, 1500 )
+scale = Vector2( 0.4, 0.4 )
 texture = SubResource( 21 )
 flip_v = true
 
@@ -674,10 +674,10 @@ TechMoveBurstScene = ExtResource( 77 )
 [node name="Tech" type="Node2D" parent="Fg/Bursts"]
 
 [node name="FryingPansUi" parent="Fg" instance=ExtResource( 58 )]
-margin_left = 771.0
-margin_top = 314.0
-margin_right = 1011.0
-margin_bottom = 434.0
+offset_left = 771.0
+offset_top = 314.0
+offset_right = 1011.0
+offset_bottom = 434.0
 script = ExtResource( 59 )
 
 [node name="PieceQueue" type="Node" parent="."]
@@ -693,10 +693,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 512.0
+offset_bottom = 300.0
 mouse_filter = 2
 
 [node name="TutorialHud" parent="Hud/Center" instance=ExtResource( 2 )]
@@ -711,10 +711,10 @@ mouse_filter = 2
 
 [node name="PuzzleTrace" type="Label" parent="Hud"]
 visible = false
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 110.0
-margin_bottom = 40.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 110.0
+offset_bottom = 40.0
 theme = ExtResource( 1 )
 text = "abcd"
 script = ExtResource( 5 )
@@ -730,8 +730,8 @@ script = ExtResource( 78 )
 results_label_path = NodePath("../Center/ResultsHud/ResultsLabel")
 
 [node name="MoneyLabel" parent="Hud/PuzzleMoneyHud" instance=ExtResource( 76 )]
-margin_top = -32.0
-margin_bottom = 0.0
+offset_top = -32.0
+offset_bottom = 0.0
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
@@ -740,18 +740,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -492.0
-margin_top = -280.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_left = -492.0
+offset_top = -280.0
+offset_right = -10.0
+offset_bottom = -10.0
 mouse_filter = 2
 alignment = 2
 
 [node name="FrameDropsLabel" type="Label" parent="Hud/VBoxContainer"]
 visible = false
-margin_top = 203.0
-margin_right = 482.0
-margin_bottom = 246.0
+offset_top = 203.0
+offset_right = 482.0
+offset_bottom = 246.0
 theme = ExtResource( 68 )
 text = "0 frame drops
 0 step drops"
@@ -764,10 +764,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 250.0
-margin_right = 482.0
-margin_bottom = 270.0
+offset_left = 0.0
+offset_top = 250.0
+offset_right = 482.0
+offset_bottom = 270.0
 
 [node name="HudFlash" parent="Hud" instance=ExtResource( 75 )]
 

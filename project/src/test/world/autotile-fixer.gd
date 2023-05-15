@@ -1,5 +1,5 @@
+@tool
 extends Node
-tool
 ## Applies autotiling rules to all cells in a TileMap.
 ##
 ## After editing a TileSet, there's no easy way to reapply its autotile rules across an entire TileMap. This
@@ -9,7 +9,7 @@ tool
 ## rules to all tiles in the TileMap.
 
 ## Editor toggle which manually applies autotiling.
-export (bool) var _autotile: bool setget autotile
+@export (bool) var _autotile: bool: set = autotile
 
 ## Applies autotiling rules to all cells in a TileMap.
 func autotile(_value: bool) -> void:

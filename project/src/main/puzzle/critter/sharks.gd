@@ -5,10 +5,10 @@ extends Node2D
 ## Sharks wait on the playfield until bumped by a piece. Depending on the size of the shark, they may take a small bite
 ## from the piece, a big bite from the piece, or eat the entire piece.
 
-export (PackedScene) var SharkScene: PackedScene
+@export (PackedScene) var SharkScene: PackedScene
 
-var piece_manager_path: NodePath setget set_piece_manager_path
-var playfield_path: NodePath setget set_playfield_path
+var piece_manager_path: NodePath: set = set_piece_manager_path
+var playfield_path: NodePath: set = set_playfield_path
 
 ## Queue of calls to defer until after line clears are finished
 var _call_queue: CallQueue = CallQueue.new()
@@ -23,10 +23,10 @@ var _playfield: Playfield
 var _sharks_by_cell: Dictionary
 
 ## node which contains all of the child shark nodes
-onready var _shark_holder := $SharkHolder
+@onready var _shark_holder := $SharkHolder
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
+	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
 	_refresh_playfield_path()
 	_refresh_piece_manager_path()
 
@@ -96,7 +96,7 @@ func _inner_add_sharks(config: SharkConfig) -> void:
 	
 	# sharks prioritize the highest cell, so players can make clever plays by shaping pieces at the top and placing
 	# them below.
-	potential_shark_cells.sort_custom(self, "_compare_by_y_then_random")
+	potential_shark_cells.sort_custom(Callable(self, "_compare_by_y_then_random"))
 	
 	for i in range(min(config.count, potential_shark_cells.size())):
 		_add_shark(potential_shark_cells[i], config)
@@ -137,7 +137,7 @@ func _refresh_sharks_for_piece() -> void:
 	var shark_cells := _sharks_by_cell.keys().duplicate()
 	
 	## If multiple sharks touch a piece, the highest shark takes precedence
-	shark_cells.sort_custom(self, "_compare_by_y_then_x")
+	shark_cells.sort_custom(Callable(self, "_compare_by_y_then_x"))
 	
 	for shark_cell in shark_cells:
 		if not shark_cell in _sharks_by_cell:
@@ -309,7 +309,7 @@ func _update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orie
 	_piece_manager.piece.pos = new_pos
 	_piece_manager.piece.orientation = new_orientation
 	
-	if _piece_manager.piece.type.empty():
+	if _piece_manager.piece.type.is_empty():
 		# null piece type only has one orientation
 		_piece_manager.piece.orientation = 0
 		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
@@ -412,14 +412,14 @@ func _refresh_piece_manager_path() -> void:
 		return
 	
 	if _piece_manager:
-		_piece_manager.disconnect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
-		_piece_manager.disconnect("hard_dropped", self, "_on_PieceManager_hard_dropped")
+		_piece_manager.disconnect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
+		_piece_manager.disconnect("hard_dropped", Callable(self, "_on_PieceManager_hard_dropped"))
 	
 	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
 	
 	if _piece_manager:
-		_piece_manager.connect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
-		_piece_manager.connect("hard_dropped", self, "_on_PieceManager_hard_dropped")
+		_piece_manager.connect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
+		_piece_manager.connect("hard_dropped", Callable(self, "_on_PieceManager_hard_dropped"))
 
 
 ## Recalculates a shark's position based on their playfield cell.
@@ -429,7 +429,7 @@ func _refresh_piece_manager_path() -> void:
 ##
 ## 	'cell': The shark's playfield cell
 func _update_shark_position(shark: Shark, cell: Vector2) -> void:
-	shark.position = _playfield.tile_map.map_to_world(cell + Vector2(0, -3))
+	shark.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
 	shark.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
 	shark.position *= _playfield.tile_map.scale
 
@@ -447,22 +447,22 @@ func _refresh_playfield_path() -> void:
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-		_playfield.disconnect("line_deleted", self, "_on_Playfield_line_deleted")
-		_playfield.disconnect("line_erased", self, "_on_Playfield_line_erased")
-		_playfield.disconnect("line_inserted", self, "_on_Playfield_line_inserted")
-		_playfield.disconnect("line_filled", self, "_on_Playfield_line_filled")
-		_playfield.disconnect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
+		_playfield.disconnect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
+		_playfield.disconnect("line_deleted", Callable(self, "_on_Playfield_line_deleted"))
+		_playfield.disconnect("line_erased", Callable(self, "_on_Playfield_line_erased"))
+		_playfield.disconnect("line_inserted", Callable(self, "_on_Playfield_line_inserted"))
+		_playfield.disconnect("line_filled", Callable(self, "_on_Playfield_line_filled"))
+		_playfield.disconnect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
 	
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-		_playfield.connect("line_deleted", self, "_on_Playfield_line_deleted")
-		_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
-		_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
-		_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
-		_playfield.connect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
+		_playfield.connect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
+		_playfield.connect("line_deleted", Callable(self, "_on_Playfield_line_deleted"))
+		_playfield.connect("line_erased", Callable(self, "_on_Playfield_line_erased"))
+		_playfield.connect("line_inserted", Callable(self, "_on_Playfield_line_inserted"))
+		_playfield.connect("line_filled", Callable(self, "_on_Playfield_line_filled"))
+		_playfield.connect("after_lines_deleted", Callable(self, "_on_Playfield_after_lines_deleted"))
 
 
 ## Returns potential cells to which a shark could be added.
@@ -579,7 +579,7 @@ func _add_shark(cell: Vector2, config: SharkConfig) -> void:
 	if _sharks_by_cell.has(cell):
 		return
 	
-	var shark: Shark = SharkScene.instance()
+	var shark: Shark = SharkScene.instantiate()
 	shark.z_index = 4
 	shark.scale = _playfield.tile_map.scale
 	shark.shark_size = config.size

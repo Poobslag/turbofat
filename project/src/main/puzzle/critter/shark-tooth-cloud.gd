@@ -12,12 +12,12 @@ const TOOTH_VARIANT_COUNT := 5
 const TILE_MAP_START_POSITION := Vector2(144, 296)
 
 ## Path to the Particles2D which emits crumb particles as a piece is eaten.
-export (NodePath) var crumbs_path: NodePath
+@export (NodePath) var crumbs_path: NodePath
 
-export (PackedScene) var PuzzleTileMapScene: PackedScene
+@export (PackedScene) var PuzzleTileMapScene: PackedScene
 
 ## Can be set to 'true' to activate the tooth cloud's various eating effects.
-export (bool) var eating: bool = false setget set_eating
+@export (bool) var eating: bool = false: set = set_eating
 
 ## Tile index in the PuzzleTileMap's tileset which is currently being eaten (piece, box, vegetable...)
 var eaten_tile := 0
@@ -29,28 +29,28 @@ var eaten_autotile_y := 0
 var eat_duration := Shark.DEFAULT_EAT_DURATION
 
 ## node which contains any child PuzzleTileMap node
-onready var _tilemap_holder: Control = $TileMapHolder
+@onready var _tilemap_holder: Control = $TileMapHolder
 
 ## Eaten piece tilemap.
-onready var _tile_map: PuzzleTileMap
+@onready var _tile_map: PuzzleTileMap
 
 ## Dust clouds which appear over the shark's mouth while they eat.
-onready var _clouds: SharkClouds = $Clouds
+@onready var _clouds: SharkClouds = $Clouds
 
 ## Cyclone of teeth which appears over the shark's mouth while they eat.
-onready var _tooth: Sprite = $Tooth
+@onready var _tooth: Sprite2D = $Tooth
 
 ## Emits crumb particles as a piece is eaten.
-onready var _crumbs: Particles2D = get_node(crumbs_path)
+@onready var _crumbs: GPUParticles2D = get_node(crumbs_path)
 
 ## Timer which cycles the dust clouds to the next frame.
-onready var _cloud_timer: Timer = $CloudTimer
+@onready var _cloud_timer: Timer = $CloudTimer
 
 ## Timer which cycles the cyclone of teeth to the next frame.
-onready var _tooth_timer: Timer = $ToothTimer
+@onready var _tooth_timer: Timer = $ToothTimer
 
 ## Tween which ends the eating animation.
-onready var _eat_tween: SceneTreeTween
+@onready var _eat_tween: Tween
 
 func _ready() -> void:
 	_refresh_eating()
@@ -129,7 +129,7 @@ func _connect_eaten_cells() -> void:
 		if _tile_map.get_cellv(cell + Vector2.UP) != TileMap.INVALID_CELL:
 			autotile_coord.x = PuzzleConnect.set_u(autotile_coord.x)
 		if _tile_map.get_cellv(cell + Vector2.DOWN) != TileMap.INVALID_CELL:
-			autotile_coord.x = PuzzleConnect.set_d(autotile_coord.x)
+			autotile_coord.x = PuzzleConnect.set_distance(autotile_coord.x)
 		if _tile_map.get_cellv(cell + Vector2.LEFT) != TileMap.INVALID_CELL:
 			autotile_coord.x = PuzzleConnect.set_l(autotile_coord.x)
 		if _tile_map.get_cellv(cell + Vector2.RIGHT) != TileMap.INVALID_CELL:
@@ -144,8 +144,8 @@ func _start_eat_tween() -> void:
 	_eat_tween = Utils.recreate_tween(self, _eat_tween)
 	_eat_tween.tween_property(_tile_map, "position",
 			TILE_MAP_START_POSITION + Vector2(0, piece_height), eat_duration) \
-			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_eat_tween.tween_callback(self, "_on_Tween_completed")
+			super.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_eat_tween.tween_callback(Callable(self, "_on_Tween_completed"))
 
 
 ## Randomizes the appearance of the cyclone of teeth.
@@ -176,7 +176,7 @@ func _borrow_tilemap() -> void:
 		new_tile_map = _shark_tile_map_pool().borrow_tilemap()
 	else:
 		# if no SharkTileMapPool is available, we instance our own PuzzleTileMap.
-		new_tile_map = PuzzleTileMapScene.instance()
+		new_tile_map = PuzzleTileMapScene.instantiate()
 	
 	_tile_map = new_tile_map
 	_tilemap_holder.add_child(_tile_map)

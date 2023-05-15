@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shark-bite.wav-127f0cd32e5c238190b652a1cb45722e.sample"
+type="AudioStreamWAV"
+uid="uid://cc7o7eus0kfoq"
+path="res://.godot/imported/shark-bite.wav-127f0cd32e5c238190b652a1cb45722e.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/shark-bite.wav"
-dest_files=[ "res://.import/shark-bite.wav-127f0cd32e5c238190b652a1cb45722e.sample" ]
+dest_files=["res://.godot/imported/shark-bite.wav-127f0cd32e5c238190b652a1cb45722e.sample"]
 
 [params]
 

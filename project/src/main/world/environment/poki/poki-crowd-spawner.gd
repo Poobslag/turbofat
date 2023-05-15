@@ -1,11 +1,11 @@
-tool
+@tool
 extends ObstacleSpawner
 ## Conditionally spawns a Poki Desert crowd member on the overworld.
 ##
 ## Provides a utility method in the editor for shuffling the crowd member's appearance.
 
 ## Editor toggle which randomizes the crowd member's appearance
-export (bool) var shuffle: bool setget set_shuffle
+@export (bool) var shuffle: bool: set = set_shuffle
 
 ## Randomizes the crowd member's appearance.
 func set_shuffle(value: bool) -> void:
@@ -15,19 +15,19 @@ func set_shuffle(value: bool) -> void:
 	target_properties["frame"] = randi() % 20
 	target_properties["crowd_color_index"] = Utils.randi_range(0, PokiCrowd.CROWD_COLORS.size() - 1)
 	
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 ## Spawns and orients the crowd member and removes the spawner from the scene tree.
 func spawn_target() -> void:
-	.spawn_target()
+	super.spawn_target()
 	
 	var flip_chance := 0.5
 	
 	if PlayerData.chat_history.is_chat_finished("chat/career/poki/100"):
 		# people face the restaurant
 		var entrances := get_tree().get_nodes_in_group("turbo_fat_entrances")
-		var entrance: Sprite
+		var entrance: Sprite2D
 		if entrances:
 			entrance = entrances[0]
 		

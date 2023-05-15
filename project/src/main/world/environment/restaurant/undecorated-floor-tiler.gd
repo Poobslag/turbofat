@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 ## Autotiles a tilemap for undecorated floors.
 ##
@@ -19,16 +19,16 @@ const ALL_AUTOTILE_ALTERNATIVES := [
 const UNDECORATED_QUALITY := 0.88
 
 ## Parent tilemap's tile ID for undecorated floor tiles
-export (int) var undecorated_tile_index: int = -1
+@export (int) var undecorated_tile_index: int = -1
 
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-export (bool) var _autotile: bool setget autotile
+@export (bool) var _autotile: bool: set = autotile
 
 ## tilemap containing floors
-onready var _tile_map: TileMap = get_parent()
+@onready var _tile_map: TileMap = get_parent()
 
 
 ## Preemptively initializes onready variables to avoid null references.

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/onion-crickets.wav-c5b147ce3ea4ce20b3fd5bb0b6c1648f.sample"
+type="AudioStreamWAV"
+uid="uid://o4hysmpdbttu"
+path="res://.godot/imported/onion-crickets.wav-c5b147ce3ea4ce20b3fd5bb0b6c1648f.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/onion-crickets.wav"
-dest_files=[ "res://.import/onion-crickets.wav-c5b147ce3ea4ce20b3fd5bb0b6c1648f.sample" ]
+dest_files=["res://.godot/imported/onion-crickets.wav-c5b147ce3ea4ce20b3fd5bb0b6c1648f.sample"]
 
 [params]
 

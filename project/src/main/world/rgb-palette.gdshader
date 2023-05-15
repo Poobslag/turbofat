@@ -10,12 +10,12 @@
 shader_type canvas_item;
 
 // replacement colors for red, green and blue channels
-uniform vec4 red : hint_color;
-uniform vec4 green : hint_color;
-uniform vec4 blue : hint_color;
+uniform vec4 red : source_color;
+uniform vec4 green : source_color;
+uniform vec4 blue : source_color;
 
 // replacement color for dark parts of the image (shadows)
-uniform vec4 black : hint_color;
+uniform vec4 black : source_color;
 
 void fragment() {
 	vec4 rgba_in = texture(TEXTURE, UV);

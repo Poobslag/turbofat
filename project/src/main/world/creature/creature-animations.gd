@@ -9,11 +9,11 @@ extends Node
 ## involves animating four sprites. It's tedious having four near-identical animation tracks, so this class
 ## consolidates those four frame properties into one.
 
-export (int) var emote_eye_frame: int setget set_emote_eye_frame
-export (int) var eye_frame: int setget set_eye_frame
-export (int) var emote_arm_frame: int setget set_emote_arm_frame
+@export (int) var emote_eye_frame: int: set = set_emote_eye_frame
+@export (int) var eye_frame: int: set = set_eye_frame
+@export (int) var emote_arm_frame: int: set = set_emote_arm_frame
 
-export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
+@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 
@@ -29,19 +29,19 @@ var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
 
-var creature_sfx: CreatureSfx setget set_creature_sfx
+var creature_sfx: CreatureSfx: set = set_creature_sfx
 
 ## IdleTimer which launches idle animations periodically
-onready var _idle_timer: Timer = $IdleTimer
+@onready var _idle_timer: Timer = $IdleTimer
 
 ## recoils the creature's head
-onready var _tween: SceneTreeTween
+@onready var _tween: Tween
 
 ## EmotePlayer which animates moods: blinking, smiling, sweating, etc.
-onready var _emote_player: AnimationPlayer = $EmotePlayer
+@onready var _emote_player: AnimationPlayer = $EmotePlayer
 
 ## AnimationPlayer which animates movement: running, walking, etc.
-onready var _movement_player: AnimationPlayer = $MovementPlayer
+@onready var _movement_player: AnimationPlayer = $MovementPlayer
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()
@@ -164,7 +164,7 @@ func _refresh_creature_sfx() -> void:
 	if not creature_sfx:
 		return
 	
-	creature_sfx.connect("should_play_sfx_changed", self, "_on_CreatureSfx_should_play_sfx_changed")
+	creature_sfx.connect("should_play_sfx_changed", Callable(self, "_on_CreatureSfx_should_play_sfx_changed"))
 
 
 func _refresh_emote_eye_frame() -> void:
@@ -191,7 +191,7 @@ func _refresh_emote_arm_frame() -> void:
 	if not is_inside_tree():
 		return
 	
-	if not _movement_player.current_animation.empty() and not _movement_player.current_animation.begins_with("idle"):
+	if not _movement_player.current_animation.is_empty() and not _movement_player.current_animation.begins_with("idle"):
 		# if the creature is walking, they can't emote with their arms
 		return
 	

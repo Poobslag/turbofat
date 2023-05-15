@@ -5,7 +5,7 @@ class_name RankResult
 const BEST_RANK := 0.0
 const WORST_RANK := 999.0
 
-var timestamp := OS.get_datetime()
+var timestamp := Time.get_datetime_dict_from_system()
 
 ## how this rank result should be compared:
 ## '-seconds': lowest seconds is best

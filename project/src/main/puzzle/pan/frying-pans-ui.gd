@@ -14,20 +14,20 @@ const TILE_INDEX_PAN_GOLD := 1
 const TILE_INDEX_PAN_DEAD := 2
 
 ## maximum number of frying pans to display (the number of lives the player starts with)
-export (int) var pans_max := 3 setget set_pans_max
+@export (int) var pans_max := 3: set = set_pans_max
 
 ## number of remaining non-dead pans (the number of lives the player has left)
-export (int) var pans_remaining := 3 setget set_pans_remaining
+@export (int) var pans_remaining := 3: set = set_pans_remaining
 
 ## if true, the pans are shown as gold pans. golden pans are used shown if topping out clears the playfield
-export (bool) var gold := false setget set_gold
+@export (bool) var gold := false: set = set_gold
 
-export (PackedScene) var FryingPanGhostScene: PackedScene
+@export (PackedScene) var FryingPanGhostScene: PackedScene
 
 ## tilemap cell containing the upper left most dead pan
 var _first_dead_cell: Vector2
 
-onready var _tile_map: TileMap = $TileMap
+@onready var _tile_map: TileMap = $TileMap
 
 func _ready() -> void:
 	refresh_tilemap()
@@ -126,7 +126,7 @@ func _add_pans_to_tilemap(pan_cells: Array) -> void:
 ## The tilemap is rescaled so that its contents will fit into its parent control horizontally.
 func _update_tilemap_scale() -> void:
 	var total_width := max(10, _tile_map.get_used_rect().size.x + 1) * _tile_map.cell_size.x
-	_tile_map.scale = Vector2.ONE * (rect_size.x / total_width)
+	_tile_map.scale = Vector2.ONE * (size.x / total_width)
 
 
 ## Animates a pan disappearing when the player loses a life.
@@ -134,7 +134,7 @@ func _update_tilemap_scale() -> void:
 ## The ghost is spawned at the location of the the upper left most dead pan. It should be called immediately after the
 ## player loses a life and the tilemap is refreshed.
 func _add_frying_pan_ghost() -> void:
-	var frying_pan_ghost: Sprite = FryingPanGhostScene.instance()
+	var frying_pan_ghost: Sprite2D = FryingPanGhostScene.instantiate()
 	var tile_id := TILE_INDEX_PAN_GOLD if gold else TILE_INDEX_PAN
 	frying_pan_ghost.texture = _tile_map.tile_set.tile_get_texture(tile_id)
 	frying_pan_ghost.material = _tile_map.tile_set.tile_get_material(tile_id)

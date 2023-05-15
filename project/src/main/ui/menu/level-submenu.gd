@@ -12,7 +12,7 @@ signal level_chosen(region, settings)
 ## CareerRegion/OtherRegion instance for the region whose levels should be shown
 var _region: Object
 
-onready var _paged_level_panel := $Panel
+@onready var _paged_level_panel := $Panel
 
 ## Populates this submenu with levels and shows it to the player.
 ##

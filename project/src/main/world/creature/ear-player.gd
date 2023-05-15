@@ -2,7 +2,7 @@
 extends AnimationPlayer
 ## AnimationPlayer which animates ears.
 
-export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
+@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		# don't trigger animations in editor
 		return
 	
@@ -38,19 +38,19 @@ func _refresh_creature_visuals_path() -> void:
 	var idle_timer: IdleTimer
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+		_creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
 		
 		idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
-		idle_timer.disconnect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
-		idle_timer.disconnect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+		idle_timer.disconnect("idle_animation_started", Callable(self, "_on_IdleTimer_idle_animation_started"))
+		idle_timer.disconnect("idle_animation_stopped", Callable(self, "_on_IdleTimer_idle_animation_stopped"))
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
-	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
 	
 	idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
-	idle_timer.connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
-	idle_timer.connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+	idle_timer.connect("idle_animation_started", Callable(self, "_on_IdleTimer_idle_animation_started"))
+	idle_timer.connect("idle_animation_stopped", Callable(self, "_on_IdleTimer_idle_animation_stopped"))
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:

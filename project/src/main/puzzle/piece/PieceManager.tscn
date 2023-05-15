@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/main/puzzle/piece/squish-fx.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/filled-circle-8.png" type="Texture2D" id=2]
 [ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/main/puzzle/speedup.wav" type="AudioStream" id=5]
@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/main/puzzle/rotate1.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/main/puzzle/lock.wav" type="AudioStream" id=8]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=10]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=10]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=11]
 [ext_resource path="res://src/main/puzzle/piece/PieceInput.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=13]
@@ -50,13 +50,13 @@ shader = ExtResource( 10 )
 shader_param/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0, 0.390947 )
-colors = PoolColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.390947 )
+colors = PackedColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=7]
+[sub_resource type="GradientTexture2D" id=7]
 gradient = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 gravity = Vector3( 0, 2400, 0 )
@@ -67,11 +67,11 @@ scale = 1.3
 color_ramp = SubResource( 7 )
 
 [node name="PieceManager" type="Control" groups=["night_mode_invisible"]]
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
-rect_clip_content = true
+offset_left = 364.0
+offset_top = 28.0
+offset_right = 688.0
+offset_bottom = 572.0
+clip_contents = true
 script = ExtResource( 3 )
 
 [node name="TechMoveDetector" type="Node" parent="."]
@@ -87,8 +87,8 @@ position = Vector2( 0, -96 )
 z_index = 3
 
 [node name="SquishFx" type="Control" parent="."]
-margin_right = 324.0
-margin_bottom = 544.0
+offset_right = 324.0
+offset_bottom = 544.0
 script = ExtResource( 1 )
 squish_curve = SubResource( 2 )
 
@@ -97,7 +97,7 @@ material = SubResource( 3 )
 position = Vector2( 0, -96 )
 script = ExtResource( 15 )
 
-[node name="SweatDrops" type="Particles2D" parent="SquishFx"]
+[node name="SweatDrops" type="GPUParticles2D" parent="SquishFx"]
 position = Vector2( 200, 200 )
 z_index = 1
 emitting = false

@@ -3,7 +3,7 @@ extends Control
 ##
 ## The gameplay speed affects how fast pieces fall in puzzle mode.
 
-onready var _option_button: OptionButton = $OptionButton
+@onready var _option_button: OptionButton = $OptionButton
 
 func _ready() -> void:
 	_option_button.add_item(tr("Slowestest"), GameplaySettings.Speed.SLOWESTEST)
@@ -16,7 +16,7 @@ func _ready() -> void:
 	_option_button.add_item(tr("Fastest"), GameplaySettings.Speed.FASTEST)
 	_option_button.add_item(tr("Fastestest"), GameplaySettings.Speed.FASTESTEST)
 	
-	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
+	SystemData.gameplay_settings.connect("speed_changed", Callable(self, "_on_GameplaySettings_speed_changed"))
 	
 	_refresh()
 

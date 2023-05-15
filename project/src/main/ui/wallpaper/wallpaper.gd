@@ -5,8 +5,8 @@ extends Control
 ## when a float value is unspecified.
 const UNSPECIFIED_FLOAT := 3025403.0
 
-export (PackedScene) var WallpaperBorderScene: PackedScene
-export (PackedScene) var StickerRowScene: PackedScene
+@export (PackedScene) var WallpaperBorderScene: PackedScene
+@export (PackedScene) var StickerRowScene: PackedScene
 
 ## two colors used for this wallpaper
 var dark_color: Color
@@ -36,9 +36,9 @@ func _ready() -> void:
 	
 	# stretch top/bottom color rects so they fill the screen
 	$ColorRects.get_children().front().anchor_top = 0.0
-	$ColorRects.get_children().front().margin_top = 0.0
+	$ColorRects.get_children().front().offset_top = 0.0
 	$ColorRects.get_children().back().anchor_bottom = 1.0
-	$ColorRects.get_children().back().margin_bottom = 1.0
+	$ColorRects.get_children().back().offset_bottom = 1.0
 	
 	# add sticker rows
 	var sticker_row_index := 0
@@ -51,7 +51,7 @@ func _ready() -> void:
 
 ## Assigns the background colors based on the day of the week.
 func _assign_daily_colors() -> void:
-	match OS.get_datetime().get("weekday"):
+	match Time.get_datetime_dict_from_system().get("weekday"):
 		OS.DAY_MONDAY: # chocolate brown
 			dark_color = Color("280808")
 			light_color = Color("360f09")
@@ -76,7 +76,7 @@ func _assign_daily_colors() -> void:
 
 
 func _add_sticker_row(row_y: float, row_height: float) -> StickerRow:
-	var row: StickerRow = StickerRowScene.instance()
+	var row: StickerRow = StickerRowScene.instantiate()
 	set_anchors(row, 0.0, 0.5, 1.0)
 	set_margins(row, 0.0, row_y, 0.0, row_y + row_height)
 	$Stickers.add_child(row)
@@ -84,7 +84,7 @@ func _add_sticker_row(row_y: float, row_height: float) -> StickerRow:
 
 
 func _add_border(border_y: float, border_height: float) -> WallpaperBorder:
-	var border: WallpaperBorder = WallpaperBorderScene.instance()
+	var border: WallpaperBorder = WallpaperBorderScene.instantiate()
 	set_anchors(border, 0.0, 0.5, 1.0)
 	set_margins(border, 0.0, border_y, 0.0, border_y + border_height)
 	border.texture_scale = Vector2(200, border_height)
@@ -111,10 +111,10 @@ func _add_color_rect(rect_y: float, rect_height: float) -> ColorRect:
 ## third to the right.
 static func set_margins(target: Node, left: float, top: float = UNSPECIFIED_FLOAT,
 		right: float = UNSPECIFIED_FLOAT, bottom: float = UNSPECIFIED_FLOAT) -> void:
-	target.margin_left = left
-	target.margin_top = top if top != UNSPECIFIED_FLOAT else left
-	target.margin_right = right if right != UNSPECIFIED_FLOAT else left
-	target.margin_bottom = bottom if bottom != UNSPECIFIED_FLOAT else top
+	target.offset_left = left
+	target.offset_top = top if top != UNSPECIFIED_FLOAT else left
+	target.offset_right = right if right != UNSPECIFIED_FLOAT else left
+	target.offset_bottom = bottom if bottom != UNSPECIFIED_FLOAT else top
 
 
 ## Sets the left/top/right/bottom anchors for a node.

@@ -12,37 +12,37 @@ const PLAYER_MOVE_SOUND_PITCH_SCALE_MIN := 0.9
 ## Highest pitch for the player move sound.
 const PLAYER_MOVE_SOUND_PITCH_SCALE_MAX := 1.1
 
-export (NodePath) var trail_path
+@export (NodePath) var trail_path
 
 ## Visual spot where the player has advanced.
 ##
 ## When animating, this represents the player's target position.
-var spots_travelled: int setget set_spots_travelled
+var spots_travelled: int: set = set_spots_travelled
 
 ## Visual spot where the player's chalk graphic should be drawn.
 ##
 ## When animating, this represents the player's current position. It can fall between two points, which is why it is a
 ## float and not an int.
-var visual_spots_travelled: float setget set_visual_spots_travelled
+var visual_spots_travelled: float: set = set_visual_spots_travelled
 
 ## Height in pixels the player's chalk graphics bounce while advancing.
 var _bounce_height := MAX_BOUNCE_HEIGHT
 
 ## Number label above the player's head which shows how far they will advance.
-onready var _label := $Label
+@onready var _label := $Label
 
 ## Sprite which shows a chalk graphic of the player.
-onready var _sprite: Sprite = $PlayerSprite
+@onready var _sprite: Sprite2D = $PlayerSprite
 
 ## Animates the player's chalk graphic to wave its arms.
-onready var _sprite_animation_player := $PlayerSprite/AnimationPlayer
-onready var _trail: ProgressBoardTrail = get_node(trail_path)
+@onready var _sprite_animation_player := $PlayerSprite/AnimationPlayer
+@onready var _trail: ProgressBoardTrail = get_node(trail_path)
 
 ## Tweens the player's chalk graphic position along the trail.
-onready var _tween: SceneTreeTween
+@onready var _tween: Tween
 
 ## Plays a 'donk' sound as the player's chalk graphic bounces along the trail.
-onready var _player_move_sound := $PlayerMoveSound
+@onready var _player_move_sound := $PlayerMoveSound
 
 func _ready() -> void:
 	refresh()
@@ -92,8 +92,8 @@ func refresh() -> void:
 	else:
 		_label.visible = false
 	
-	var new_font_color := Color("ffff5555") if _moving_backward() else Color.white
-	_label.set("custom_colors/font_color", new_font_color)
+	var new_font_color := Color("ffff5555") if _moving_backward() else Color.WHITE
+	_label.set("theme_override_colors/font_color", new_font_color)
 	
 	_refresh_visual_spots_travelled()
 
@@ -124,7 +124,7 @@ func _refresh_visual_spots_travelled() -> void:
 		return
 	
 	# update the player's position
-	rect_position = _trail.get_spot_position(visual_spots_travelled)
+	position = _trail.get_spot_position(visual_spots_travelled)
 	
 	# Update the player's offset for a bouncing effect. We convert the fractional part of the visual spots travelled
 	# into a parabola following the formula 'y = -(2x - 1)^2 + 1'

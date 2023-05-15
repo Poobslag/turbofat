@@ -20,10 +20,10 @@ var _accept_action_duration := 0.0
 ## how long the player has been holding the 'rewind' button
 var _rewind_action_duration := 0.0
 
-onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
-onready var _chat_choices: ChatChoices = $ChatChoices
-onready var _chat_frame: ChatFrame = $ChatFrame
-onready var _narration_frame: NarrationFrame = $NarrationFrame
+@onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
+@onready var _chat_choices: ChatChoices = $ChatChoices
+@onready var _chat_frame: ChatFrame = $ChatFrame
+@onready var _narration_frame: NarrationFrame = $NarrationFrame
 
 ## chat tree currently being played.
 var _chat_tree: ChatTree
@@ -33,7 +33,7 @@ var _chat_finished := false
 
 func _ready() -> void:
 	if Global.get_overworld_ui():
-		Global.get_overworld_ui().connect("visible_chatters_changed", self, "_on_OverworldUi_visible_chatters_changed")
+		Global.get_overworld_ui().connect("visible_chatters_changed", Callable(self, "_on_OverworldUi_visible_chatters_changed"))
 
 
 func _process(delta: float) -> void:
@@ -47,11 +47,11 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("rewind_text", true):
 		_handle_rewind_action(event)
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 	if event.is_action_pressed("ui_accept", true):
 		if not _chat_choices.is_showing_choices():
 			_handle_advance_action(event)
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 
 func play_chat_tree(chat_tree: ChatTree) -> void:
@@ -75,7 +75,7 @@ func _handle_rewind_action(event: InputEvent) -> void:
 		rewind_action = true
 	
 	if rewind_action:
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 		_chat_advancer.rewind()
 
 
@@ -96,7 +96,7 @@ func _handle_advance_action(event: InputEvent) -> void:
 		advance_action = true
 	
 	if advance_action:
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 		if _chat_frame.is_chat_window_showing() and not _chat_frame.is_all_text_visible():
 			# text is still being slowly typed out, make it all visible
 			_chat_frame.make_all_text_visible()
@@ -113,7 +113,7 @@ func _handle_advance_action(event: InputEvent) -> void:
 ##
 ## Returns:
 ## 	An array of Creatures.Mood instances for each chat branch
-func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
+func _enabled_link_moods(chat_event: ChatEvent) -> Array:
 	var moods := []
 	for i in chat_event.enabled_link_indexes():
 		var link: String = chat_event.links[i]
@@ -139,7 +139,7 @@ func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
 ##
 ## Returns:
 ## 	An array of string choices for each chat branch
-func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
+func _enabled_link_texts(chat_event: ChatEvent) -> Array:
 	var texts := []
 	for i in chat_event.enabled_link_indexes():
 		var link: String = chat_event.links[i]
@@ -225,7 +225,7 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	if not chat_event.text:
 		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
 		# signal introduces complications, so we wait until the next frame
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		_chat_frame.emit_signal("all_text_shown")
 		if not _chat_advancer.should_prompt():
 			_chat_advancer.advance()

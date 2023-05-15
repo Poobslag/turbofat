@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/cheat-enable.wav-7947eeb62b344a2113ba15a201eed565.sample"
+type="AudioStreamWAV"
+uid="uid://sjpvl7avgyjj"
+path="res://.godot/imported/cheat-enable.wav-7947eeb62b344a2113ba15a201eed565.sample"
 
 [deps]
 
 source_file="res://assets/main/ui/cheat-enable.wav"
-dest_files=[ "res://.import/cheat-enable.wav-7947eeb62b344a2113ba15a201eed565.sample" ]
+dest_files=["res://.godot/imported/cheat-enable.wav-7947eeb62b344a2113ba15a201eed565.sample"]
 
 [params]
 

@@ -76,18 +76,18 @@ const STAR_SEED_POSITIONS_BY_SIZE_DOUBLE := {
 		],
 }
 
-export (NodePath) var puzzle_tile_map_path: NodePath
+@export (NodePath) var puzzle_tile_map_path: NodePath
 
 ## key: (Vector2) playfield cell positions
 ## value: (StarSeed) StarSeed node contained within that cell
 var _star_seeds_by_cell: Dictionary
 
-export (PackedScene) var StarSeedScene: PackedScene
+@export (PackedScene) var StarSeedScene: PackedScene
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+@onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 func _ready() -> void:
-	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
 
 
 func get_cells_with_star_seeds() -> Array:
@@ -219,7 +219,7 @@ func _star_seed_multiplier(box_type: int) -> int:
 func _spawn_star_seeds(rect: Rect2, box_type: int, star_seed_positions: Array) -> void:
 	for star_seed_y in range(rect.size.y):
 		for star_seed_x in _star_seed_x_array(star_seed_positions[star_seed_y]):
-			var star_seed: StarSeed = StarSeedScene.instance()
+			var star_seed: StarSeed = StarSeedScene.instantiate()
 			
 			var cell := rect.position + Vector2(star_seed_x, star_seed_y)
 			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
@@ -230,7 +230,7 @@ func _spawn_star_seeds(rect: Rect2, box_type: int, star_seed_positions: Array) -
 			# alternate snack foods in a horizontal stripe pattern
 			star_seed.food_type = food_types[int(cell.y) % food_types.size()]
 			
-			star_seed.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
+			star_seed.position = _puzzle_tile_map.map_to_local(cell + Vector2(0, -3))
 			star_seed.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 			star_seed.position *= _puzzle_tile_map.scale
 			star_seed.scale = _puzzle_tile_map.scale

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/carrot-move.wav-084a144e9c8eee97f22e666d7f0cb99e.sample"
+type="AudioStreamWAV"
+uid="uid://rse4oii0lpal"
+path="res://.godot/imported/carrot-move.wav-084a144e9c8eee97f22e666d7f0cb99e.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/carrot-move.wav"
-dest_files=[ "res://.import/carrot-move.wav-084a144e9c8eee97f22e666d7f0cb99e.sample" ]
+dest_files=["res://.godot/imported/carrot-move.wav-084a144e9c8eee97f22e666d7f0cb99e.sample"]
 
 [params]
 

@@ -4,7 +4,7 @@ extends Panel
 ## This includes details about the player's progress and how they can progress further.
 
 ## Text shown in the region info panel
-var text: String setget set_text
+var text: String: set = set_text
 
 ## key: (String) level id
 ## value: (String) human readable rank for the specified level id, such as '7 dan'
@@ -30,7 +30,7 @@ var rank_by_level_id := {
 }
 
 ## Label which shows the text of the region info panel
-onready var _label := $MarginContainer/Label
+@onready var _label := $MarginContainer/Label
 
 func _ready() -> void:
 	_refresh_text()

@@ -23,10 +23,10 @@ var _prev_can_drop_data: Object
 ## Data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
 var _prev_dropped_data: Object
 
-onready var _tile_map := $Bg/TileMap
-onready var _tile_map_drop_preview := $Bg/TileMapDropPreview
-onready var _pickups := $Bg/Pickups
-onready var _pickups_drop_preview := $Bg/PickupsDropPreview
+@onready var _tile_map := $Bg/TileMap
+@onready var _tile_map_drop_preview := $Bg/TileMapDropPreview
+@onready var _pickups := $Bg/Pickups
+@onready var _pickups_drop_preview := $Bg/PickupsDropPreview
 
 func _ready() -> void:
 	_tile_map.clear()
@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		_dragging_right_mouse = event.button_mask & BUTTON_RIGHT
+		_dragging_right_mouse = event.button_mask & MOUSE_BUTTON_RIGHT
 	
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		# click/drag the right mouse to erase parts of the tilemap
@@ -56,8 +56,8 @@ func _gui_input(event: InputEvent) -> void:
 				emit_signal("pickups_changed")
 
 
-func can_drop_data(pos: Vector2, data: Object) -> bool:
-	var can_drop := Rect2(Vector2.ZERO, rect_size).has_point(pos)
+func _can_drop_data(pos: Vector2, data: Object) -> bool:
+	var can_drop := Rect2(Vector2.ZERO, size).has_point(pos)
 	if can_drop:
 		if data is BlockLevelChunk:
 			# update drop preview for block
@@ -78,7 +78,7 @@ func can_drop_data(pos: Vector2, data: Object) -> bool:
 	return can_drop
 
 
-func drop_data(pos: Vector2, data: Object) -> void:
+func _drop_data(pos: Vector2, data: Object) -> void:
 	if data is BlockLevelChunk:
 		_clear_previews()
 		_store_block_level_chunk(_tile_map, pos, data)
@@ -100,7 +100,7 @@ func drop_data(pos: Vector2, data: Object) -> void:
 ## If the player clicks and drags on the playfield, we reuse the previously dropped data.
 ##
 ## This makes it easier to populate a playfield with lots of vegetables or pickups.
-func get_drag_data(_pos: Vector2) -> Object:
+func _get_drag_data(_pos: Vector2) -> Object:
 	return _prev_dropped_data
 
 
@@ -160,7 +160,7 @@ func get_pickups() -> EditorPickups:
 
 ## Converts an x/y control coordinate like '58, 132' into a tile_map coordinate like '3, 2'
 func _cell_pos(pos: Vector2) -> Vector2:
-	var result := pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / rect_size
+	var result := pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / size
 	return result.floor()
 
 

@@ -4,26 +4,26 @@ extends Control
 ## This includes four components: a player graphic, a distance label, a dot along the player's current path, and a
 ## line connecting the player's dot to the distance label.
 
-export (NodePath) var map_row_path: NodePath
+@export (NodePath) var map_row_path: NodePath
 
 ## Shows the player's distance.
-onready var _label: Label = $Label
+@onready var _label: Label = $Label
 
 ## Shows a dot along the player's current path.
-onready var _dot_sprite: Sprite = $DotSprite
+@onready var _dot_sprite: Sprite2D = $DotSprite
 
 ## Shows a player graphic above the path.
-onready var _player_sprite: Sprite = $PlayerSprite
-onready var _player_animation_player: AnimationPlayer = $PlayerSprite/AnimationPlayer
+@onready var _player_sprite: Sprite2D = $PlayerSprite
+@onready var _player_animation_player: AnimationPlayer = $PlayerSprite/AnimationPlayer
 
 ## Shows a line connecting the player's dot to the distance label.
-onready var _line: Line2D = $Line2D
+@onready var _line: Line2D = $Line2D
 
-onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
+@onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
 
 func _ready() -> void:
-	_map_row.connect("landmark_distance_changed", self, "_on_MapRow_landmark_distance_changed")
-	_map_row.connect("player_distance_changed", self, "_on_MapRow_player_distance_changed")
+	_map_row.connect("landmark_distance_changed", Callable(self, "_on_MapRow_landmark_distance_changed"))
+	_map_row.connect("player_distance_changed", Callable(self, "_on_MapRow_player_distance_changed"))
 	_refresh()
 
 
@@ -84,10 +84,10 @@ func _reposition_nodes(landmark_endpoints: Array, progress_percent: float) -> vo
 	_line.points[0] = _dot_sprite.position
 	
 	# position the distance label
-	_label.rect_position = lerp(landmark_endpoints[0], \
-			landmark_endpoints[1], 0.5) + Vector2(-_label.rect_size.x * 0.5, 25)
+	_label.position = lerp(landmark_endpoints[0], \
+			landmark_endpoints[1], 0.5) + Vector2(-_label.size.x * 0.5, 25)
 	# connect line to the distance label
-	_line.points[1] = _label.rect_position + Vector2(_label.rect_size.x * 0.5, 0)
+	_line.points[1] = _label.position + Vector2(_label.size.x * 0.5, 0)
 	
 	# position the player sprite
 	_player_sprite.position = lerp(landmark_endpoints[0], \

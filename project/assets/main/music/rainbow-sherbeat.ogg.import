@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/rainbow-sherbeat.ogg-0ca3ec78c1f167f5bc24ff1ac192d466.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://en1rj03tgm4t"
+path="res://.godot/imported/rainbow-sherbeat.ogg-0ca3ec78c1f167f5bc24ff1ac192d466.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/rainbow-sherbeat.ogg"
-dest_files=[ "res://.import/rainbow-sherbeat.ogg-0ca3ec78c1f167f5bc24ff1ac192d466.oggstr" ]
+dest_files=["res://.godot/imported/rainbow-sherbeat.ogg-0ca3ec78c1f167f5bc24ff1ac192d466.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

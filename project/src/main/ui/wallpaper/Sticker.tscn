@@ -2,5 +2,5 @@
 
 [ext_resource path="res://src/main/ui/wallpaper/sticker.gd" type="Script" id=1]
 
-[node name="Sticker" type="Sprite"]
+[node name="Sticker" type="Sprite2D"]
 script = ExtResource( 1 )

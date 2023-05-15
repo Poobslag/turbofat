@@ -5,12 +5,12 @@ extends Label
 
 ## Enforces a minimum time that we show the top out penalty. Without this, the player might not notice the penalty if
 ## their score changed a split second later (or worse yet, on the exact same frame).
-onready var _penalty_timer := $PenaltyTimer
+@onready var _penalty_timer := $PenaltyTimer
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")
-	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("score_changed", Callable(self, "_on_PuzzleState_score_changed"))
+	PuzzleState.connect("topped_out", Callable(self, "_on_PuzzleState_topped_out"))
 	text = "-"
 
 
@@ -30,9 +30,9 @@ func _refresh_score() -> void:
 
 func _on_resized() -> void:
 	# Avoid a Stack Overflow where changing our margins triggers another _on_resized() event, see #1810
-	disconnect("resized", self, "_on_resized")
-	margin_left = -rect_size.x
-	connect("resized", self, "_on_resized")
+	disconnect("resized", Callable(self, "_on_resized"))
+	offset_left = -size.x
+	connect("resized", Callable(self, "_on_resized"))
 
 
 func _on_PuzzleState_score_changed() -> void:
@@ -46,7 +46,7 @@ func _on_PuzzleState_score_changed() -> void:
 func _on_PuzzleState_topped_out() -> void:
 	modulate = Color("80ff5555")
 	text = StringUtils.format_money(-1 * PuzzleState.TOP_OUT_PENALTY)
-	rect_size = Vector2.ZERO
+	size = Vector2.ZERO
 	_penalty_timer.start()
 
 

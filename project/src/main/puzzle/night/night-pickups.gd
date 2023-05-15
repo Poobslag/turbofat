@@ -4,7 +4,7 @@ extends Control
 ##
 ## These pickups are synchronized with daytime pickups, and rendered over them.
 
-export (PackedScene) var PickupScene: PackedScene
+@export (PackedScene) var PickupScene: PackedScene
 
 ## pickups to synchronize with
 var source_pickups: Pickups
@@ -13,7 +13,7 @@ var source_pickups: Pickups
 ## value: (NightPickup) Pickup node contained within that cell
 var _pickups_by_cell := {}
 
-onready var _visuals := $Visuals
+@onready var _visuals := $Visuals
 
 ## synchronize our state with the source pickups
 func _process(_delta: float) -> void:
@@ -38,7 +38,7 @@ func _remove_pickup(cell: Vector2) -> void:
 
 ## Adds a pickup to a playfield cell.
 func _add_pickup(cell: Vector2) -> void:
-	var pickup: NightPickup = PickupScene.instance()
+	var pickup: NightPickup = PickupScene.instantiate()
 	pickup.food_type = source_pickups.get_pickup(cell).food_type
 	pickup.food_shown = source_pickups.get_pickup(cell).food_shown
 	pickup.position = source_pickups.get_pickup(cell).position

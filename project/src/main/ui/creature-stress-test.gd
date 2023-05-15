@@ -14,13 +14,13 @@ const CREATURE_IDS := [
 ## how long we're willing to block a thread to add more sprites
 const CHUNK_SECONDS := 0.01
 
-export (PackedScene) var CreatureScene: PackedScene
+@export (PackedScene) var CreatureScene: PackedScene
 
 ## desired number of creatures to show
 var _target_creature_count := 5
 
-onready var _creature_container := $CreatureContainer
-onready var _creature_count := $Ui/Control/CreatureCount
+@onready var _creature_container := $CreatureContainer
+@onready var _creature_count := $Ui/Control/CreatureCount
 
 func _ready() -> void:
 	# We use a predictable fatness value so that the player's performance in the game will not impact the results
@@ -42,15 +42,15 @@ func _physics_process(_delta: float) -> void:
 ##
 ## The creatures are selected sequentially using a predetermined set of creature IDs.
 func _add_creature() -> void:
-	var creature: Creature = CreatureScene.instance()
+	var creature: Creature = CreatureScene.instantiate()
 	
 	var creature_index := _creature_container.get_child_count()
 	creature.creature_id = CREATURE_IDS[creature_index % CREATURE_IDS.size()]
 	creature.orientation = Utils.rand_value([Creatures.SOUTHWEST, Creatures.SOUTHEAST])
 	
 	var target_rect := Rect2(0, 0, 1024, 768).grow(-100)
-	creature.position.x = rand_range(target_rect.position.x, target_rect.end.x)
-	creature.position.y = rand_range(target_rect.position.y, target_rect.end.y)
+	creature.position.x = randf_range(target_rect.position.x, target_rect.end.x)
+	creature.position.y = randf_range(target_rect.position.y, target_rect.end.y)
 	
 	_creature_container.add_child(creature)
 

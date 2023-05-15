@@ -32,10 +32,10 @@ func refresh_color_from_text() -> void:
 		"A+", "A", "A-": font_color = GRADE_COLOR_BLUE
 		"B+", "B", "B-": font_color = GRADE_COLOR_PURPLE
 		"-": font_color = GRADE_COLOR_GREY
-	set("custom_colors/font_color", font_color)
+	set("theme_override_colors/font_color", font_color)
 	
 	# assign the font outline color based on the font color and outline_darkness
-	var font: DynamicFont = get("custom_fonts/font")
+	var font: FontFile = get("theme_override_fonts/font")
 	font.outline_color = font_color
 	font.outline_color.s += outline_darkness
 	font.outline_color.v -= outline_darkness * 2

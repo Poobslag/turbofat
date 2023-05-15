@@ -48,5 +48,5 @@ func pop_deferred(target: Object = null, method: String = "") -> void:
 ##
 ## This should be called after calling pop_deferred() to ensure all calls were dequeued.
 func assert_empty() -> void:
-	if not _deferred_calls.empty():
+	if not _deferred_calls.is_empty():
 		push_warning("CallQueue should be empty, but was: %s" % [_deferred_calls])

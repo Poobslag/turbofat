@@ -21,11 +21,11 @@ const TEXT_ROTATION_DEGREES_BY_FRAME := {
 }
 
 ## Number which appears on the sign
-export (int) var mile_number: int = 1 setget set_mile_number
+@export (int) var mile_number: int = 1: set = set_mile_number
 
-onready var _label := $Text/Label
-onready var _sprite := $Sprite
-onready var _text := $Text
+@onready var _label := $Text/Label
+@onready var _sprite := $Sprite2D
+@onready var _text := $Text
 
 func _ready() -> void:
 	_randomize_sprite()

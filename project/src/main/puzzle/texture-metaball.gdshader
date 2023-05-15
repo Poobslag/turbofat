@@ -21,10 +21,10 @@ const float CYCLE_SPEED = 0.0240;
 uniform sampler2D noise;
 
 // texture for flat-color metaballs
-uniform sampler2D goop_texture : hint_albedo;
+uniform sampler2D goop_texture : source_color;
 
 // texture for rainbow metaballs
-uniform sampler2D rainbow_texture : hint_albedo;
+uniform sampler2D rainbow_texture : source_color;
 
 // the maximum goop opacity
 uniform float goop_alpha = 0.6;

@@ -1,7 +1,7 @@
 #tool #uncomment to view creature in editor
 extends Node2D
 
-export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
+@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()

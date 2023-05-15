@@ -2,13 +2,13 @@ class_name PieceInput
 extends Node
 ## Handles input for controlling the player's piece.
 
-onready var left: FrameInput = $Left
-onready var right: FrameInput = $Right
-onready var cw: FrameInput = $Cw
-onready var ccw: FrameInput = $Ccw
-onready var soft_drop: FrameInput = $SoftDrop
-onready var hard_drop: FrameInput = $HardDrop
-onready var swap_hold_piece: FrameInput = $SwapHoldPiece
+@onready var left: FrameInput = $Left
+@onready var right: FrameInput = $Right
+@onready var cw: FrameInput = $Cw
+@onready var ccw: FrameInput = $Ccw
+@onready var soft_drop: FrameInput = $SoftDrop
+@onready var hard_drop: FrameInput = $HardDrop
+@onready var swap_hold_piece: FrameInput = $SwapHoldPiece
 
 ## Records any inputs to a buffer to be replayed later.
 func buffer_inputs() -> void:

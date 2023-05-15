@@ -13,7 +13,7 @@ const SPIN := TechType.SPIN
 const SQUISH := TechType.SQUISH
 
 ## Velocity applied to the food when in the 'floating' state
-export (Vector2) var velocity: Vector2
+@export (Vector2) var velocity: Vector2
 
 ## key: (int) Number of lines cleared
 ## value: (String) Word for the number of lines like 'Single' or 'Double'
@@ -33,13 +33,13 @@ var _suffix_by_tech_type := {
 }
 
 ## Piece type, such as 'J-Block' or 'P-Block'
-var piece_type: PieceType setget set_piece_type
+var piece_type: PieceType: set = set_piece_type
 
 ## Enum from TechType such as 'Spin' or 'Squish'
-var tech_type: int setget set_burst_type
+var tech_type: int: set = set_burst_type
 
 ## Number of lines cleared by this tech move
-var lines_cleared: int setget set_lines_cleared
+var lines_cleared: int: set = set_lines_cleared
 
 ## Colors to use; these are automatically assigned based on the number of lines cleared
 var _font_color: Color
@@ -47,17 +47,17 @@ var _accent_color: Color # darker version of the font color
 var _particle_color: Color # lighter version of the font color
 
 ## particles which explode from the center of the burst
-onready var _particles: Particles2D = $Particles2D
-onready var _particles_material: ParticlesMaterial = $Particles2D.process_material
+@onready var _particles: GPUParticles2D = $GPUParticles2D
+@onready var _particles_material: ParticleProcessMaterial = $GPUParticles2D.process_material
 
 ## text summarizing the tech move, like 'P-Spin Double'
-onready var _label: Label = $Label
+@onready var _label: Label = $Label
 
 ## colorful shape which goes behind the text
-onready var _accent: PackedSprite = $Accent
+@onready var _accent: PackedSprite = $Accent
 
 func _ready() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	_particles.emitting = true
 	_refresh()
 
@@ -105,8 +105,8 @@ func _calculate_colors() -> void:
 
 
 func _refresh_label() -> void:
-	_label.set("custom_colors/font_color", _font_color)
-	var font: DynamicFont = _label.get("custom_fonts/font")
+	_label.set("theme_override_colors/font_color", _font_color)
+	var font: FontFile = _label.get("theme_override_fonts/font")
 	font.outline_color = _accent_color
 	
 	# assign text like 'J-Squish' or 'P-Spin Double'
@@ -140,5 +140,5 @@ func _refresh_particles() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		queue_free()

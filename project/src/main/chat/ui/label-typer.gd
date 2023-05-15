@@ -23,9 +23,9 @@ var _pause := 0.0
 ## 1.0 = slow, 2.0 = normal, 3.0 = faster, 5.0 = fastest, 1000000.0 = fastestest
 var _text_speed := 2.0
 
-onready var _label := get_parent()
+@onready var _label := get_parent()
 ## plays a typewriter sound as text appears
-onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
+@onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
 
 func _process(delta: float) -> void:
 	# clamped to prevent underflow (leaving the game open) or large values (a malicious string with tons of pauses)
@@ -43,8 +43,8 @@ func _process(delta: float) -> void:
 	
 	if newly_visible_characters > 0:
 		# the number of visible letters increased. play a sound effect
-		_bebebe_sound.volume_db = rand_range(-22.0, -12.0)
-		_bebebe_sound.pitch_scale = rand_range(0.95, 1.05)
+		_bebebe_sound.volume_db = randf_range(-22.0, -12.0)
+		_bebebe_sound.pitch_scale = randf_range(0.95, 1.05)
 		_bebebe_sound.play()
 		if is_all_text_visible():
 			emit_signal("all_text_shown")

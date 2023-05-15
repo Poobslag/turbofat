@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/emote-sweat1.wav-a8f7c0daa4071ade87279d6de21d76e7.sample"
+type="AudioStreamWAV"
+uid="uid://bwi1m2jy62d4u"
+path="res://.godot/imported/emote-sweat1.wav-a8f7c0daa4071ade87279d6de21d76e7.sample"
 
 [deps]
 
 source_file="res://assets/main/chat/ui/emote-sweat1.wav"
-dest_files=[ "res://.import/emote-sweat1.wav-a8f7c0daa4071ade87279d6de21d76e7.sample" ]
+dest_files=["res://.godot/imported/emote-sweat1.wav-a8f7c0daa4071ade87279d6de21d76e7.sample"]
 
 [params]
 

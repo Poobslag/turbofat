@@ -37,4 +37,4 @@ func to_json_array() -> Array:
 
 
 func is_default() -> bool:
-	return timers.empty()
+	return timers.is_empty()

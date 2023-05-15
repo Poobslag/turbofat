@@ -5,7 +5,7 @@ extends AnimationPlayer
 ## While this is an AnimationPlayer, the animation is only used to rearrange their body parts. It shouldn't ever be
 ## played as an animation.
 
-export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
+@export (NodePath) var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 
@@ -23,16 +23,16 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
-		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
-		_creature_visuals.disconnect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+		_creature_visuals.disconnect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
+		_creature_visuals.disconnect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+		_creature_visuals.disconnect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
 	
-	_creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
-	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
-	_creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+	_creature_visuals.connect("visual_fatness_changed", Callable(self, "_on_CreatureVisuals_visual_fatness_changed"))
+	_creature_visuals.connect("orientation_changed", Callable(self, "_on_CreatureVisuals_orientation_changed"))
+	_creature_visuals.connect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
 
 
 func _refresh_sprite_positions() -> void:

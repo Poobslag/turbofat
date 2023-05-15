@@ -5,7 +5,7 @@
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( -1.70483, 18.231, 1.70483, -18.231, -39.3643, -55.6221, -10.1422, -18.545, 10.1422, 18.545, 10.3942, -61.6493 )
+"points": PackedVector2Array( -1.70483, 18.231, 1.70483, -18.231, -39.3643, -55.6221, -10.1422, -18.545, 10.1422, 18.545, 10.3942, -61.6493 )
 }
 
 [node name="NeckBlend" type="Path2D"]

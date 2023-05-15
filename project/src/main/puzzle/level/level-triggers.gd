@@ -46,7 +46,7 @@ func to_json_array() -> Array:
 
 
 func is_default() -> bool:
-	return triggers.empty()
+	return triggers.is_empty()
 
 
 ## Returns 'true' if this level contains a trigger with the specified effect.

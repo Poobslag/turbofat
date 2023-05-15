@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/move-bonk.wav-ad37177c57f753ea80df8774cdeb8501.sample"
+type="AudioStreamWAV"
+uid="uid://dspjgi18ysym7"
+path="res://.godot/imported/move-bonk.wav-ad37177c57f753ea80df8774cdeb8501.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/move-bonk.wav"
-dest_files=[ "res://.import/move-bonk.wav-ad37177c57f753ea80df8774cdeb8501.sample" ]
+dest_files=["res://.godot/imported/move-bonk.wav-ad37177c57f753ea80df8774cdeb8501.sample"]
 
 [params]
 

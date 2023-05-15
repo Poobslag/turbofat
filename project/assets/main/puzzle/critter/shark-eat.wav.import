@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shark-eat.wav-ac096b9b79904a75828dc4b820532f40.sample"
+type="AudioStreamWAV"
+uid="uid://cv1r3m67x82s0"
+path="res://.godot/imported/shark-eat.wav-ac096b9b79904a75828dc4b820532f40.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/shark-eat.wav"
-dest_files=[ "res://.import/shark-eat.wav-ac096b9b79904a75828dc4b820532f40.sample" ]
+dest_files=["res://.godot/imported/shark-eat.wav-ac096b9b79904a75828dc4b820532f40.sample"]
 
 [params]
 

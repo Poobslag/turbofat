@@ -1,12 +1,12 @@
 extends HBoxContainer
 ## UI control for editing a creature's size.
 
-export (NodePath) var creature_editor_path: NodePath
+@export (NodePath) var creature_editor_path: NodePath
 
-onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
+@onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
 func _ready() -> void:
-	_creature_editor.connect("center_creature_changed", self, "_on_CreatureEditor_center_creature_changed")
+	_creature_editor.connect("center_creature_changed", Callable(self, "_on_CreatureEditor_center_creature_changed"))
 
 
 ## Update the creature's size.

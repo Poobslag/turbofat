@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/build-snack-box1.wav-42b60ad208dcfb11a70c8ce777de57d5.sample"
+type="AudioStreamWAV"
+uid="uid://meiff1an34vy"
+path="res://.godot/imported/build-snack-box1.wav-42b60ad208dcfb11a70c8ce777de57d5.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/build-snack-box1.wav"
-dest_files=[ "res://.import/build-snack-box1.wav-42b60ad208dcfb11a70c8ce777de57d5.sample" ]
+dest_files=["res://.godot/imported/build-snack-box1.wav-42b60ad208dcfb11a70c8ce777de57d5.sample"]
 
 [params]
 

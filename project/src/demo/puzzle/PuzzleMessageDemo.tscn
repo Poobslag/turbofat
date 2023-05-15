@@ -10,7 +10,7 @@ script = ExtResource( 2 )
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-rect_min_size = Vector2( 10, 10 )
+custom_minimum_size = Vector2( 10, 10 )
 size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 
@@ -18,7 +18,7 @@ color = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-rect_min_size = Vector2( 10, 10 )
+custom_minimum_size = Vector2( 10, 10 )
 size_flags_horizontal = 3
 color = Color( 0, 0, 0, 1 )
 

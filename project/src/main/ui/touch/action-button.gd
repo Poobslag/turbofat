@@ -23,22 +23,22 @@ extends TextureRect
 signal pressed
 
 ## action activated by this button. also affects its appearance
-export (String) var action: String setget set_action
+@export (String) var action: String: set = set_action
 
 ## if false, pressing the button won't emit any actions.
-export (bool) var emit_actions: bool = true
+@export (bool) var emit_actions: bool = true
 
-var pressed := false setget set_pressed
+var pressed := false: set = set_pressed
 
 ## current textures this button toggles between when pressed/unpressed
-var _normal_texture: Texture
-var _pressed_texture: Texture
+var _normal_texture: Texture2D
+var _pressed_texture: Texture2D
 
 ## default textures to use when our action has no icon
-onready var _empty_texture := preload("res://assets/main/ui/touch/empty.png")
-onready var _empty_pressed_texture := preload("res://assets/main/ui/touch/empty-pressed.png")
+@onready var _empty_texture := preload("res://assets/main/ui/touch/empty.png")
+@onready var _empty_pressed_texture := preload("res://assets/main/ui/touch/empty-pressed.png")
 
-onready var _normal_textures := {
+@onready var _normal_textures := {
 	"ui_up": preload("res://assets/main/ui/touch/move-up.png"),
 	"ui_down": preload("res://assets/main/ui/touch/move-down.png"),
 	"ui_left": preload("res://assets/main/ui/touch/move-left.png"),
@@ -54,7 +54,7 @@ onready var _normal_textures := {
 	"ui_menu": preload("res://assets/main/ui/touch/menu.png"),
 }
 
-onready var _pressed_textures := {
+@onready var _pressed_textures := {
 	"move_piece_left": preload("res://assets/main/ui/touch/move-left-pressed.png"),
 	"move_piece_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
 	"hard_drop": preload("res://assets/main/ui/touch/move-up-pressed.png"),
@@ -87,7 +87,7 @@ func set_pressed(new_pressed: bool) -> void:
 		# fire the appropriate events
 		var ev := InputEventAction.new()
 		ev.action = action
-		ev.pressed = pressed
+		ev.button_pressed = pressed
 		Input.parse_input_event(ev)
 	emit_signal("pressed")
 

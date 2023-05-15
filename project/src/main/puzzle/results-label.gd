@@ -24,7 +24,7 @@ var _unshown_text := ""
 var _unshown_index := 0
 
 ## plays a typewriter sound as text appears
-onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
+@onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
 
 func _ready() -> void:
 	hide_text()
@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 	
 	if new_text:
 		# play a sound; repeatedly increase the pitch for a 'counting up' sound
-		_bebebe_sound.volume_db = rand_range(-7.0, -12.0)
+		_bebebe_sound.volume_db = randf_range(-7.0, -12.0)
 		_bebebe_sound.pitch_scale = lerp(_bebebe_sound.pitch_scale, 3.0, 0.004)
 		_bebebe_sound.play()
 		emit_signal("text_shown", new_text)

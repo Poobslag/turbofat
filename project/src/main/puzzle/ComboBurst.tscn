@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/main/ui/font/modak-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/main/ui/font/modak-regular.ttf" type="FontFile" id=3]
 [ext_resource path="res://src/main/puzzle/combo-burst.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/BurstAccent.tscn" type="PackedScene" id=5]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 resource_local_to_scene = true
 size = 24
 outline_size = 2
@@ -20,8 +20,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
@@ -32,8 +32,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ) ]
 }
@@ -44,8 +44,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
@@ -60,8 +60,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -72,8 +72,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 1.3, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ), Vector2( 0, -5 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
@@ -84,20 +84,20 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.96, 0.96 ), Vector2( 1.04, 1.04 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.43913 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.43913 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture2D" id=4]
 gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -118,12 +118,12 @@ scale = Vector2( 0.25, 0.25 )
 base_scale = Vector2( 0.25, 0.25 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -32.0
-margin_top = -30.0
-margin_right = 32.0
-margin_bottom = 34.0
-custom_colors/font_color = Color( 0.847059, 1, 0.290196, 1 )
-custom_fonts/font = SubResource( 1 )
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 32.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color( 0.847059, 1, 0.290196, 1 )
+theme_override_fonts/font = SubResource( 1 )
 text = "3x"
 align = 1
 valign = 1
@@ -135,7 +135,7 @@ autoplay = "fade"
 anims/RESET = SubResource( 6 )
 anims/fade = SubResource( 2 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 12
 lifetime = 0.8

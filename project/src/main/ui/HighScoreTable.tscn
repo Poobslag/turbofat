@@ -4,112 +4,112 @@
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=3]
 
 [node name="HighScoreTable" type="VBoxContainer"]
-margin_right = 412.0
-margin_bottom = 152.0
+offset_right = 412.0
+offset_bottom = 152.0
 size_flags_horizontal = 3
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_right = 412.0
-margin_bottom = 20.0
+offset_right = 412.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "Today's Best"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_top = 24.0
-margin_right = 412.0
-margin_bottom = 92.0
+offset_top = 24.0
+offset_right = 412.0
+offset_bottom = 92.0
 size_flags_horizontal = 3
-custom_constants/hseparation = 20
+theme_override_constants/h_separation = 20
 columns = 4
 
 [node name="Time1" type="Label" parent="GridContainer"]
-margin_right = 88.0
-margin_bottom = 20.0
+offset_right = 88.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "08:15"
 
 [node name="Lines1" type="Label" parent="GridContainer"]
-margin_left = 108.0
-margin_right = 196.0
-margin_bottom = 20.0
+offset_left = 108.0
+offset_right = 196.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "116"
 
 [node name="Overall1" type="Label" parent="GridContainer"]
-margin_left = 216.0
-margin_right = 304.0
-margin_bottom = 20.0
+offset_left = 216.0
+offset_right = 304.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "5,231"
 
 [node name="Grade1" type="Label" parent="GridContainer"]
-margin_left = 324.0
-margin_right = 412.0
-margin_bottom = 20.0
+offset_left = 324.0
+offset_right = 412.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "(SSS)"
 
 [node name="Time2" type="Label" parent="GridContainer"]
-margin_top = 24.0
-margin_right = 38.0
-margin_bottom = 44.0
+offset_top = 24.0
+offset_right = 38.0
+offset_bottom = 44.0
 size_flags_horizontal = 2
 text = "08:15"
 
 [node name="Lines2" type="Label" parent="GridContainer"]
-margin_left = 108.0
-margin_top = 24.0
-margin_right = 196.0
-margin_bottom = 44.0
+offset_left = 108.0
+offset_top = 24.0
+offset_right = 196.0
+offset_bottom = 44.0
 size_flags_horizontal = 3
 text = "116"
 
 [node name="Overall2" type="Label" parent="GridContainer"]
-margin_left = 216.0
-margin_top = 24.0
-margin_right = 304.0
-margin_bottom = 44.0
+offset_left = 216.0
+offset_top = 24.0
+offset_right = 304.0
+offset_bottom = 44.0
 size_flags_horizontal = 3
 text = "5,231"
 
 [node name="Grade2" type="Label" parent="GridContainer"]
-margin_left = 324.0
-margin_top = 24.0
-margin_right = 412.0
-margin_bottom = 44.0
+offset_left = 324.0
+offset_top = 24.0
+offset_right = 412.0
+offset_bottom = 44.0
 size_flags_horizontal = 3
 text = "(SSS)"
 
 [node name="Time3" type="Label" parent="GridContainer"]
-margin_top = 48.0
-margin_right = 88.0
-margin_bottom = 68.0
+offset_top = 48.0
+offset_right = 88.0
+offset_bottom = 68.0
 size_flags_horizontal = 3
 text = "08:15"
 
 [node name="Lines3" type="Label" parent="GridContainer"]
-margin_left = 108.0
-margin_top = 48.0
-margin_right = 196.0
-margin_bottom = 68.0
+offset_left = 108.0
+offset_top = 48.0
+offset_right = 196.0
+offset_bottom = 68.0
 size_flags_horizontal = 3
 text = "116"
 
 [node name="Overall3" type="Label" parent="GridContainer"]
-margin_left = 216.0
-margin_top = 48.0
-margin_right = 304.0
-margin_bottom = 68.0
+offset_left = 216.0
+offset_top = 48.0
+offset_right = 304.0
+offset_bottom = 68.0
 size_flags_horizontal = 3
 text = "5,231"
 
 [node name="Grade3" type="Label" parent="GridContainer"]
-margin_left = 324.0
-margin_top = 48.0
-margin_right = 412.0
-margin_bottom = 68.0
+offset_left = 324.0
+offset_top = 48.0
+offset_right = 412.0
+offset_bottom = 68.0
 size_flags_horizontal = 3
 text = "(SSS)"

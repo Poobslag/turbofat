@@ -2,7 +2,7 @@ class_name CreatureShadows
 extends Node2D
 ## Manages shadows for all creatures in a scene.
 
-export (PackedScene) var CreatureShadowScene: PackedScene
+@export (PackedScene) var CreatureShadowScene: PackedScene
 
 func _ready() -> void:
 	for creature in get_tree().get_nodes_in_group("creatures"):
@@ -10,11 +10,11 @@ func _ready() -> void:
 
 
 func create_shadow(creature: Creature) -> void:
-	var creature_shadow: CreatureShadow = CreatureShadowScene.instance()
+	var creature_shadow: CreatureShadow = CreatureShadowScene.instantiate()
 	creature_shadow.shadow_scale = creature.scale * Global.CREATURE_SCALE
 	add_child(creature_shadow)
 	creature_shadow.creature_path = creature_shadow.get_path_to(creature)
-	creature.connect("tree_exited", self, "_on_Creature_tree_exited", [creature_shadow])
+	creature.connect("tree_exited", Callable(self, "_on_Creature_tree_exited").bind(creature_shadow))
 
 
 func _on_Creature_tree_exited(creature_shadow: CreatureShadow) -> void:

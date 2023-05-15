@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/lock.wav-36f41ae6f0ea9b6c8323a068f5eb2aa5.sample"
+type="AudioStreamWAV"
+uid="uid://d4kf3npweex5e"
+path="res://.godot/imported/lock.wav-36f41ae6f0ea9b6c8323a068f5eb2aa5.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/lock.wav"
-dest_files=[ "res://.import/lock.wav-36f41ae6f0ea9b6c8323a068f5eb2aa5.sample" ]
+dest_files=["res://.godot/imported/lock.wav-36f41ae6f0ea9b6c8323a068f5eb2aa5.sample"]
 
 [params]
 

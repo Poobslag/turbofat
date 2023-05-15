@@ -8,15 +8,15 @@ const CAMERA_BOUNDARY := 240
 const MANUAL_CAMERA_SPEED := 3000
 
 ## The camera drifts slightly. This field is used to calculate the drift amount
-var _total_time := rand_range(0.0, 10.0)
+var _total_time := randf_range(0.0, 10.0)
 
 ## base zoom value before drift is applied
 var _base_zoom := Vector2.ONE
 
 ## period for offset/zoom drift, in seconds
-var offset_h_drift_period := 6.450 * rand_range(0.666, 1.333)
-var offset_v_drift_period := 8.570 * rand_range(0.666, 1.333)
-var zoom_drift_period := 15.020 * rand_range(0.666, 1.333)
+var offset_h_drift_period := 6.450 * randf_range(0.666, 1.333)
+var offset_v_drift_period := 8.570 * randf_range(0.666, 1.333)
+var zoom_drift_period := 15.020 * randf_range(0.666, 1.333)
 
 ## 'true' if the camera is being moved manually with a cheat code
 var manual_mode := false
@@ -61,8 +61,8 @@ func zoom_in_on_creatures(creatures: Array) -> void:
 
 ## Pans and zooms the camera slightly
 func _apply_camera_drift() -> void:
-	offset_h = 0.01 * sin(_total_time * PI / offset_h_drift_period)
-	offset_v = 0.03 * sin(_total_time * PI / offset_v_drift_period)
+	drag_horizontal_offset = 0.01 * sin(_total_time * PI / offset_h_drift_period)
+	drag_vertical_offset = 0.03 * sin(_total_time * PI / offset_v_drift_period)
 	zoom = _base_zoom + _base_zoom * 0.01 * sin(_total_time * PI / zoom_drift_period)
 
 

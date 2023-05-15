@@ -1,9 +1,9 @@
 extends Panel
 ## Panel on the level select screen which shows level descriptions.
 
-var text: String setget set_text
+var text: String: set = set_text
 
-onready var _label := $MarginContainer/Label
+@onready var _label := $MarginContainer/Label
 
 func _ready() -> void:
 	_refresh_text()

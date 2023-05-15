@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/level-change.wav-0a2e6f1b5829ff95e969436f6088da24.sample"
+type="AudioStreamWAV"
+uid="uid://cexhtl3cqg8e6"
+path="res://.godot/imported/level-change.wav-0a2e6f1b5829ff95e969436f6088da24.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/level-change.wav"
-dest_files=[ "res://.import/level-change.wav-0a2e6f1b5829ff95e969436f6088da24.sample" ]
+dest_files=["res://.godot/imported/level-change.wav-0a2e6f1b5829ff95e969436f6088da24.sample"]
 
 [params]
 

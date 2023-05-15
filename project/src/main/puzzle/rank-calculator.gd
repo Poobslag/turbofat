@@ -376,9 +376,9 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		if rank_result.lost:
 			rank_result.seconds_rank = WORST_RANK
 		else:
-			rank_result.seconds_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
+			rank_result.seconds_rank = snapped((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	else:
-		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
+		rank_result.score_rank = snapped((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	
 	if MilestoneManager.is_met(CurrentLevel.settings.success_condition):
 		if rank_result.compare == "-seconds":

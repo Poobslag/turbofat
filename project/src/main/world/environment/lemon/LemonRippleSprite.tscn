@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-ripples-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-ripples-sheet.png" type="Texture2D" id=1]
 [ext_resource path="res://src/main/world/environment/ripple-sprite.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=7]
@@ -121,7 +121,7 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[node name="RippleSprite" type="AnimatedSprite"]
+[node name="RippleSprite" type="AnimatedSprite2D"]
 position = Vector2( 97.5439, 65.5899 )
 frames = SubResource( 19 )
 animation = "connected_none"

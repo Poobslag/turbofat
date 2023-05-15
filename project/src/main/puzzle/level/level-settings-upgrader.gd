@@ -117,7 +117,7 @@ func _increment_phase_string(phase: String, condition: String) -> String:
 		
 		if phase_fragment.begins_with("%s=" % [condition]):
 			split[i_split] = increment_string(phase_fragment)
-			result = PoolStringArray(split).join(" ")
+			result = " ".join(PackedStringArray(split))
 			break
 	
 	return result

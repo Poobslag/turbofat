@@ -1,4 +1,4 @@
-tool
+@tool
 class_name Stool
 extends OverworldObstacle
 ## Stool which appears on the overworld.
@@ -9,15 +9,15 @@ extends OverworldObstacle
 const MAX_STOOL_DISTANCE := 4
 
 ## texture to use when the stool has a creature sitting on it
-export (Texture) var occupied_texture: Texture
+@export (Texture2D) var occupied_texture: Texture2D
 
 ## texture to use when the stool does not have a creature sitting on it
-export (Texture) var unoccupied_texture: Texture
+@export (Texture2D) var unoccupied_texture: Texture2D
 
 ## 'true' if the stool has a creature sitting on it
-export (bool) var occupied := false setget set_occupied
+@export (bool) var occupied := false: set = set_occupied
 
-onready var _sprite := $Sprite
+@onready var _sprite := $Sprite2D
 
 func _ready() -> void:
 	_refresh_occupied()
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
-	_sprite = $Sprite
+	_sprite = $Sprite2D
 
 
 func _refresh_occupied() -> void:

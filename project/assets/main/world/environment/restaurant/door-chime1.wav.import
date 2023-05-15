@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/door-chime1.wav-e476d0171a9d479d81790b0bdf5dc8fc.sample"
+type="AudioStreamWAV"
+uid="uid://dkaue7ecgb0vt"
+path="res://.godot/imported/door-chime1.wav-e476d0171a9d479d81790b0bdf5dc8fc.sample"
 
 [deps]
 
 source_file="res://assets/main/world/environment/restaurant/door-chime1.wav"
-dest_files=[ "res://.import/door-chime1.wav-e476d0171a9d479d81790b0bdf5dc8fc.sample" ]
+dest_files=["res://.godot/imported/door-chime1.wav-e476d0171a9d479d81790b0bdf5dc8fc.sample"]
 
 [params]
 

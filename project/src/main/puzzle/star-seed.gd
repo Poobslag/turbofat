@@ -2,10 +2,10 @@ class_name StarSeed
 extends Node2D
 ## Draws a shadowy star or seed inside a snack box or cake box.
 
-var food_type := 0 setget set_food_type
+var food_type := 0: set = set_food_type
 
-onready var _seed := $Seed
-onready var _star := $Star
+@onready var _seed := $Seed
+@onready var _star := $Star
 
 func _ready() -> void:
 	_refresh_appearance()

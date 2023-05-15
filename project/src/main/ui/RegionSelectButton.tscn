@@ -2,13 +2,13 @@
 
 [ext_resource path="res://src/main/ui/region-select-button.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonNormal.tres" type="StyleBox" id=2]
-[ext_resource path="res://assets/main/career/ui/region-lemon.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/career/ui/region-lemon.png" type="Texture2D" id=3]
 [ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonFocus.tres" type="StyleBox" id=4]
-[ext_resource path="res://assets/main/ui/font/blogger-sans-medium.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/main/ui/font/blogger-sans-medium.otf" type="FontFile" id=5]
 [ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonPressed.tres" type="StyleBox" id=6]
 [ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonDisabled.tres" type="StyleBox" id=7]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 resource_local_to_scene = true
 size = 14
 outline_size = 2
@@ -17,20 +17,20 @@ use_filter = true
 font_data = ExtResource( 5 )
 
 [node name="RegionSelectButton" type="MarginContainer"]
-margin_right = 100.0
-margin_bottom = 290.0
-custom_constants/margin_bottom = 40
+offset_right = 100.0
+offset_bottom = 290.0
+theme_override_constants/margin_bottom = 40
 script = ExtResource( 1 )
 
 [node name="Button" type="Button" parent="."]
-margin_right = 100.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 100, 250 )
-custom_styles/hover = ExtResource( 2 )
-custom_styles/pressed = ExtResource( 6 )
-custom_styles/focus = ExtResource( 4 )
-custom_styles/disabled = ExtResource( 7 )
-custom_styles/normal = ExtResource( 2 )
+offset_right = 100.0
+offset_bottom = 250.0
+custom_minimum_size = Vector2( 100, 250 )
+theme_override_styles/hover = ExtResource( 2 )
+theme_override_styles/pressed = ExtResource( 6 )
+theme_override_styles/focus = ExtResource( 4 )
+theme_override_styles/disabled = ExtResource( 7 )
+theme_override_styles/normal = ExtResource( 2 )
 clip_text = true
 
 [node name="GradeHook" type="RemoteTransform2D" parent="Button"]
@@ -42,18 +42,18 @@ scale = Vector2( 0.7, 0.7 )
 show_behind_parent = true
 texture = ExtResource( 3 )
 texture_scale = Vector2( 2, 2 )
-polygon = PoolVector2Array( 1.74444, 11.2386, 5.02201, 4.40256, 10.547, 1.49959, 89.3018, 1.96782, 95.1077, 4.87079, 98.3853, 11.5195, 98.6662, 238.7, 95.5759, 245.255, 89.9573, 248.439, 11.3898, 248.346, 4.64742, 245.255, 1.55716, 239.449 )
+polygon = PackedVector2Array( 1.74444, 11.2386, 5.02201, 4.40256, 10.547, 1.49959, 89.3018, 1.96782, 95.1077, 4.87079, 98.3853, 11.5195, 98.6662, 238.7, 95.5759, 245.255, 89.9573, 248.439, 11.3898, 248.346, 4.64742, 245.255, 1.55716, 239.449 )
 
 [node name="NameLabel" type="Label" parent="Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 12.0
-margin_right = -8.0
-margin_bottom = -13.0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = -8.0
+offset_bottom = -13.0
 size_flags_horizontal = 4
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_fonts/font = SubResource( 1 )
 text = "Lemony Thickets"
 align = 1
 autowrap = true

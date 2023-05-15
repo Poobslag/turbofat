@@ -21,8 +21,8 @@ var _hints := [
 ]
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("after_game_ended", Callable(self, "_on_PuzzleState_after_game_ended"))
 
 
 func hide_results_message() -> void:

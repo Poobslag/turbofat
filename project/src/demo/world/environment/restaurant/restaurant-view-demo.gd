@@ -33,8 +33,8 @@ const NAMES := [
 
 var _current_name_index := 4
 
-onready var _view: RestaurantView = $RestaurantView
-onready var _restaurant_scene := $RestaurantView/RestaurantViewport/Scene
+@onready var _view: RestaurantView = $RestaurantView
+@onready var _restaurant_scene := $RestaurantView/RestaurantViewport/Scene
 
 func _ready() -> void:
 	for i in range(_view.get_customers().size()):

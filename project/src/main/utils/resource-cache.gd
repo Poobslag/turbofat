@@ -23,23 +23,23 @@ const CHUNK_SECONDS := 0.01667
 const RESOURCE_DIRS := ["res://assets/main", "res://src/main"]
 
 ## enables logging paths and durations for loaded resources
-export (bool) var verbose := false
+@export (bool) var verbose := false
 
 ## reduces the number of textures loaded throughout the game
-export (bool) var minimal_resources := false
+@export (bool) var minimal_resources := false
 
 ## resources which should be cached last. some resources are complex and depend on other resources, if we load them
 ## first it causes a big lag spike on the loading screen
-export (Array, String) var low_priority_resource_paths: Array
+@export (Array, String) var low_priority_resource_paths: Array
 
 ## resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
-export (Array, String) var skipped_resource_paths: Array
+@export (Array, String) var skipped_resource_paths: Array
 
 ## if true, the caching process will be threaded on platforms which support it
-export (bool) var threaded := false
+@export (bool) var threaded := false
 
 ## minimum amount of time the game should take to load
-export (float) var load_seconds := 0.0
+@export (float) var load_seconds := 0.0
 
 ## maintains references to all resources to prevent them from being cleaned up
 ## key: (String) resource path
@@ -100,7 +100,7 @@ func start_load() -> void:
 		else:
 			for _i in range(THREAD_COUNT):
 				var thread := Thread.new()
-				thread.start(self, "_preload_all_resources")
+				thread.start(Callable(self, "_preload_all_resources"))
 				_load_threads.append(thread)
 
 
@@ -238,7 +238,7 @@ func _preload_all_resources(_userdata: Object) -> void:
 		
 		# If we're ahead of schedule, we wait until the next idle frame to load more resources
 		if _overworked():
-			yield(get_tree(), "idle_frame")
+			await get_tree().idle_frame
 
 
 ## Loads a single resource and stores the resulting resource in our cache.
@@ -278,7 +278,7 @@ func _find_resource_paths() -> Array:
 	# directories remaining to be traversed
 	var dir_queue := RESOURCE_DIRS.duplicate()
 	
-	var dir: Directory
+	var dir: DirAccess
 	var file: String
 	while true:
 		if file:
@@ -300,12 +300,12 @@ func _find_resource_paths() -> Array:
 		else:
 			if dir:
 				dir.list_dir_end()
-			if dir_queue.empty():
+			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = Directory.new()
+			dir = DirAccess.new()
 			dir.open(dir_queue.pop_front())
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	
 	seed(253686)
@@ -339,7 +339,9 @@ func _find_resource_paths() -> Array:
 func _load_json_resource(json_path: String) -> void:
 	# parse json
 	var json: String = FileUtils.get_file_as_text(json_path)
-	var json_root: Dictionary = parse_json(json)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(json)
+	var json_root: Dictionary = test_json_conv.get_data()
 	if not json_root.has("frames"):
 		# the specified json resource is not an Aseprite json resource; do nothing
 		return

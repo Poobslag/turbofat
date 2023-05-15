@@ -24,7 +24,7 @@ const INCREMENTABLE_LANDMARKS := [
 	Landmark.MYSTERY,
 ]
 
-onready var _map_row := $MapRow
+@onready var _map_row := $MapRow
 
 func _ready() -> void:
 	_map_row.landmark_count = 5

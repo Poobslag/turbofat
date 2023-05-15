@@ -27,7 +27,7 @@ func get_bus_volume_linear(volume_type: int) -> float:
 		user_volume_linear = 0.0
 	else:
 		var volume_db := AudioServer.get_bus_volume_db(bus_index)
-		var bus_volume_linear: float = db2linear(volume_db)
+		var bus_volume_linear: float = db_to_linear(volume_db)
 		user_volume_linear = bus_volume_linear / MAX_LINEAR_VOLUME_BY_TYPE.get(volume_type, 1.0)
 		user_volume_linear = clamp(user_volume_linear, 0.0, 1.0)
 	return user_volume_linear
@@ -40,7 +40,7 @@ func get_bus_volume_linear(volume_type: int) -> float:
 func set_bus_volume_linear(volume_type: int, new_user_volume_linear: float) -> void:
 	var bus_index := _bus_index(volume_type)
 	var bus_volume_linear: float = new_user_volume_linear * MAX_LINEAR_VOLUME_BY_TYPE.get(volume_type, 1.0)
-	AudioServer.set_bus_volume_db(bus_index, linear2db(bus_volume_linear))
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(bus_volume_linear))
 	AudioServer.set_bus_mute(bus_index, new_user_volume_linear <= 0)
 
 

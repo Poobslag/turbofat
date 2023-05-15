@@ -5,7 +5,7 @@ extends Node2D
 ## Shadow casters are objects which cast shadows. This doesn't include environment tiles and creatures, which have
 ## special shadow casting logic.
 
-export (PackedScene) var OvalShadowScene: PackedScene
+@export (PackedScene) var OvalShadowScene: PackedScene
 
 func _ready() -> void:
 	for shadow_caster in get_tree().get_nodes_in_group("shadow_casters"):
@@ -13,10 +13,10 @@ func _ready() -> void:
 
 
 func create_shadow(shadow_caster: Node2D) -> void:
-	var oval_shadow: OvalShadow = OvalShadowScene.instance()
+	var oval_shadow: OvalShadow = OvalShadowScene.instantiate()
 	add_child(oval_shadow)
 	oval_shadow.shadow_caster_path = oval_shadow.get_path_to(shadow_caster)
-	shadow_caster.connect("tree_exited", self, "_on_Node2D_tree_exited", [oval_shadow])
+	shadow_caster.connect("tree_exited", Callable(self, "_on_Node2D_tree_exited").bind(oval_shadow))
 
 
 func _on_Node2D_tree_exited(oval_shadow: OvalShadow) -> void:

@@ -21,7 +21,7 @@ const BG_SHADOW_COLOR_BY_NAME := {
 }
 
 ## Nodes showing shadows to recolor when the background changes.
-export (Array, NodePath) var shadow_paths: Array
+@export (Array, NodePath) var shadow_paths: Array
 
 func _ready() -> void:
 	_remove_bg()
@@ -41,7 +41,7 @@ func _remove_bg() -> void:
 func _add_bg() -> void:
 	var bg_scene_path: String = BG_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, DEFAULT_BG_PATH)
 	var bg_scene: PackedScene = load(bg_scene_path)
-	var bg := bg_scene.instance()
+	var bg := bg_scene.instantiate()
 	bg.name = "Bg"
 	add_child(bg)
 

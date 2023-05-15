@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 			if y > 0 and is_cell_obstructed(cell_pos + Vector2.UP):
 				color_x = PuzzleConnect.set_u(color_x)
 			if y < ROW_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.DOWN):
-				color_x = PuzzleConnect.set_d(color_x)
+				color_x = PuzzleConnect.set_distance(color_x)
 			if x > 0 and is_cell_obstructed(cell_pos + Vector2.LEFT):
 				color_x = PuzzleConnect.set_l(color_x)
 			if x < COL_COUNT - 1 and is_cell_obstructed(cell_pos + Vector2.RIGHT):

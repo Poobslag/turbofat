@@ -1,11 +1,11 @@
 class_name CritterPoof
-extends Sprite
+extends Sprite2D
 ## Poof cloud which appears when a critter appears/disappears.
 
 ## emitted when the 'poof' animation finishes
 signal animation_finished
 
-onready var _animation_player := $AnimationPlayer
+@onready var _animation_player := $AnimationPlayer
 
 func _ready() -> void:
 	visible = false

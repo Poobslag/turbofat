@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/frame-pop-out.wav-5ae0a5dd38b7c081c5016352adf4ab06.sample"
+type="AudioStreamWAV"
+uid="uid://ci6uvjlbfykw5"
+path="res://.godot/imported/frame-pop-out.wav-5ae0a5dd38b7c081c5016352adf4ab06.sample"
 
 [deps]
 
 source_file="res://assets/main/chat/ui/frame-pop-out.wav"
-dest_files=[ "res://.import/frame-pop-out.wav-5ae0a5dd38b7c081c5016352adf4ab06.sample" ]
+dest_files=["res://.godot/imported/frame-pop-out.wav-5ae0a5dd38b7c081c5016352adf4ab06.sample"]
 
 [params]
 

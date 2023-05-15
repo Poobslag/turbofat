@@ -64,7 +64,7 @@ func is_default() -> bool:
 	var result := true
 	result = result && (type == MilestoneType.NONE)
 	result = result && (value == 0)
-	result = result && (get_meta_list().empty())
+	result = result && (get_meta_list().is_empty())
 	return result
 
 

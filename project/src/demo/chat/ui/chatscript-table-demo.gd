@@ -11,7 +11,7 @@ var _table_width := 1
 var _prefixes_by_mood := {}
 
 ## TextEdit containing the BBCode table
-onready var _text_edit := $TextEdit
+@onready var _text_edit := $TextEdit
 
 func _ready() -> void:
 	_recalculate_prefixes_by_mood()
@@ -74,10 +74,10 @@ func _add_mood_rows() -> void:
 ## 	'row': An array of strings corresponding to the row's contents. Empty columns will be filled in if the array has
 ## 		fewer entries than the number of columns in the table.
 func _add_table_row(row: Array) -> void:
-	var pool_array := PoolStringArray(row)
+	var pool_array := PackedStringArray(row)
 	
 	# fill the array if it has fewer entries than the number of columns in the table
 	while pool_array.size() < _table_width:
 		pool_array.append("")
 	
-	_text_edit.text += "| " + pool_array.join(" | ") + " |\n"
+	_text_edit.text += "| " + " | ".join(pool_array) + " |\n"

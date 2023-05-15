@@ -10,8 +10,8 @@ signal level_chosen(settings)
 ## CareerRegion/OtherRegion instance for the region whose levels should be shown
 var _region: Object
 
-onready var _level_buttons: PagedLevelButtons = $VBoxContainer/Top/LevelButtons
-onready var _cheat_code_detector: CheatCodeDetector = $CheatCodeDetector
+@onready var _level_buttons: PagedLevelButtons = $VBoxContainer/Top/LevelButtons
+@onready var _cheat_code_detector: CheatCodeDetector = $CheatCodeDetector
 
 ## Populates this submenu with levels in to show it to the player.
 ##

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/matchend.wav-3215d9ff2520c127f2f13671392e90a5.sample"
+type="AudioStreamWAV"
+uid="uid://dtee8nka8tqfe"
+path="res://.godot/imported/matchend.wav-3215d9ff2520c127f2f13671392e90a5.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/matchend.wav"
-dest_files=[ "res://.import/matchend.wav-3215d9ff2520c127f2f13671392e90a5.sample" ]
+dest_files=["res://.godot/imported/matchend.wav-3215d9ff2520c127f2f13671392e90a5.sample"]
 
 [params]
 

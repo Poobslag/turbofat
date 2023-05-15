@@ -3,11 +3,11 @@ extends Panel
 ## UI elements for 'skill tally items' which provides feedback during tutorials when the player performs an action,
 ## such as rotating a piece or clearing a line.
 
-onready var _grid_container := $GridContainer
+@onready var _grid_container := $GridContainer
 
 func _ready() -> void:
 	visible = false
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
 
 
 ## Returns a specific SkillTallyItem instance in the panel.

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/puzzle/piece/next-piece-display.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=3]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

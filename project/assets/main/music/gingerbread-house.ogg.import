@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/gingerbread-house.ogg-cd522cd24e7d92d56fd9a730b576e281.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cv0y84osl27dw"
+path="res://.godot/imported/gingerbread-house.ogg-cd522cd24e7d92d56fd9a730b576e281.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/gingerbread-house.ogg"
-dest_files=[ "res://.import/gingerbread-house.ogg-cd522cd24e7d92d56fd9a730b576e281.oggstr" ]
+dest_files=["res://.godot/imported/gingerbread-house.ogg-cd522cd24e7d92d56fd9a730b576e281.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

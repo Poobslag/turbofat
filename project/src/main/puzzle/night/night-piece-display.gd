@@ -7,7 +7,7 @@ extends Node2D
 ## display to synchronize with
 var source_display: PieceDisplay
 
-onready var _tile_map := $TileMap
+@onready var _tile_map := $TileMap
 
 func initialize(init_source_display: PieceDisplay) -> void:
 	source_display = init_source_display

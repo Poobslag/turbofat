@@ -6,17 +6,17 @@ extends Button
 ## sometimes.
 
 ## icon which appears next to the button text when the allele is locked
-export (Texture) var locked_texture: Texture
+@export (Texture2D) var locked_texture: Texture2D
 
 ## icon which appears next to the button text when the allele is unlocked
-export (Texture) var unlocked_texture: Texture
+@export (Texture2D) var unlocked_texture: Texture2D
 
 ## Allele property used internally when updating the creature. Not shown to the player
-export (String) var allele: String
+@export (String) var allele: String
 
 ## By default the button toggles between three states: locked/unlocked/flexible. The 'two_states' property can be
 ## enabled to make the button toggle between locked/unlocked instead.
-export (bool) var two_states: bool = false
+@export (bool) var two_states: bool = false
 
 func is_locked() -> bool:
 	return icon == locked_texture

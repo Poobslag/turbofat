@@ -6,10 +6,10 @@ extends Button
 const PADDING := 6
 
 ## Different fonts to try. Should be ordered from largest to smallest.
-export (Array, Font) var fonts := [] setget set_fonts
+@export (Array, Font) var fonts := []: set = set_fonts
 
 func _ready() -> void:
-	SystemData.misc_settings.connect("locale_changed", self, "_on_MiscSettings_locale_changed")
+	SystemData.misc_settings.connect("locale_changed", Callable(self, "_on_MiscSettings_locale_changed"))
 	pick_largest_font()
 
 
@@ -31,11 +31,11 @@ func pick_largest_font() -> void:
 		# start with the largest font, and try smaller and smaller fonts
 		chosen_font = fonts[i]
 		var string_width := chosen_font.get_string_size(shown_text).x
-		if string_width < rect_size.x - 2 * PADDING:
+		if string_width < size.x - 2 * PADDING:
 			# this font is small enough to accommodate all of the text
 			break
 	
-	set("custom_fonts/font", chosen_font)
+	set("theme_override_fonts/font", chosen_font)
 
 
 func _on_MiscSettings_locale_changed(_value: String) -> void:

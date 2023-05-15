@@ -3,4 +3,4 @@ extends AudioStreamPlayer
 
 func play(from_position = 0.0) -> void:
 	if SfxDeconflicter.should_play(self):
-		.play(from_position)
+		super.play(from_position)

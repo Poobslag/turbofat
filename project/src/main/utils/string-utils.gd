@@ -54,7 +54,7 @@ static func comma_sep(n: int) -> String:
 ##
 ## 	'precision': The number of decimal places to show. Rounding is used.
 static func comma_sep_float(n: float, precision: int) -> String:
-	var result := str(stepify(abs(n) - int(abs(n)), pow(0.1, precision))).substr(1)
+	var result := str(snapped(abs(n) - int(abs(n)), pow(0.1, precision))).substr(1)
 	var i: int = abs(n)
 	
 	while i > 999:
@@ -171,7 +171,7 @@ static func parse_duration(s: String) -> float:
 ## they're short, lower-case, and don't include unusual characters.
 static func sanitize_file_root(file_root: String) -> String:
 	var result := ""
-	var utf8 := file_root.to_lower().to_utf8()
+	var utf8 := file_root.to_lower().to_utf8_buffer()
 	
 	# sanitize characters we don't want in filenames
 	for i in range(file_root.length()):
@@ -201,7 +201,7 @@ static func substring_after(s: String, sep: String) -> String:
 static func substring_after_last(s: String, sep: String) -> String:
 	if not sep:
 		return s
-	var pos := s.find_last(sep)
+	var pos := s.rfind(sep)
 	return "" if pos == -1 else s.substr(pos + sep.length())
 
 
@@ -217,7 +217,7 @@ static func substring_before(s: String, sep: String) -> String:
 static func substring_before_last(s: String, sep: String) -> String:
 	if not sep:
 		return s
-	var pos := s.find_last(sep)
+	var pos := s.rfind(sep)
 	return s if pos == -1 else s.substr(0, pos)
 
 

@@ -13,4 +13,4 @@ corner_radius_bottom_left = 25
 [node name="HookableNametag" type="Node2D"]
 
 [node name="Nametag" parent="." instance=ExtResource( 1 )]
-custom_styles/panel = SubResource( 1 )
+theme_override_styles/panel = SubResource( 1 )

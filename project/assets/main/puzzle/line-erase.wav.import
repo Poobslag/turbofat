@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/line-erase.wav-3d1fe1c1b77fdf7b93b5fcdd05ac9520.sample"
+type="AudioStreamWAV"
+uid="uid://bub163ifsxry0"
+path="res://.godot/imported/line-erase.wav-3d1fe1c1b77fdf7b93b5fcdd05ac9520.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/line-erase.wav"
-dest_files=[ "res://.import/line-erase.wav-3d1fe1c1b77fdf7b93b5fcdd05ac9520.sample" ]
+dest_files=["res://.godot/imported/line-erase.wav-3d1fe1c1b77fdf7b93b5fcdd05ac9520.sample"]
 
 [params]
 

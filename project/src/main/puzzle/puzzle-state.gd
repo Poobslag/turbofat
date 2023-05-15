@@ -75,7 +75,7 @@ var level_performance := PuzzlePerformance.new()
 var customer_scores := [0]
 
 ## Number of lines the player has cleared without dropping their combo
-var combo := 0 setget set_combo
+var combo := 0: set = set_combo
 
 ## Bonus points awarded during the current combo. This only includes bonuses
 ## and should be a round number like +55 or +130 for visual aesthetics.
@@ -98,19 +98,19 @@ var finish_triggered: bool
 var game_ended: bool
 
 ## speed the player is currently on, if the level has different speeds.
-var speed_index: int setget set_speed_index
+var speed_index: int: set = set_speed_index
 
 ## This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
 ## for tutorials to prevent the sensei from leaving.
 var no_more_customers: bool
 
 ## 'True' if the player is going through the non-terminal top out process where lines are deleted and re-filled
-var topping_out: bool setget set_topping_out
+var topping_out: bool: set = set_topping_out
 
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the puzzle is interrupted. Otherwise for example, we might schedule a victory screen to appear 3 seconds from
 ## now, but then the player restarts the level, and the victory screen is shown after they've restarted.
-onready var _timers: TimerGroup = $Timers
+@onready var _timers: TimerGroup = $Timers
 
 func _physics_process(_delta: float) -> void:
 	if input_frame < 0:
@@ -155,7 +155,7 @@ func prepare_and_start_game() -> void:
 		# when skipping the intro, we don't pause between preparing/starting the game
 		_start_game()
 	else:
-		start_timer(READY_DURATION).connect("timeout", self, "_on_Timer_timeout_start_game")
+		start_timer(READY_DURATION).connect("timeout", Callable(self, "_on_Timer_timeout_start_game"))
 
 
 func set_speed_index(new_speed_index: int) -> void:
@@ -241,7 +241,7 @@ func end_game() -> void:
 			wait_time = 0.0
 	
 	if wait_time > 0.0:
-		start_timer(wait_time).connect("timeout", self, "_on_Timer_timeout_emit_after_game_ended")
+		start_timer(wait_time).connect("timeout", Callable(self, "_on_Timer_timeout_emit_after_game_ended"))
 	else:
 		emit_signal("after_game_ended")
 

@@ -2,7 +2,7 @@ extends RichTextLabel
 ## Label for tutorials which shows the keybinds.
 
 func _ready() -> void:
-	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
+	SystemData.keybind_settings.connect("changed", Callable(self, "_on_KeybindSettings_settings_changed"))
 	_refresh_message()
 
 
@@ -22,7 +22,7 @@ func _refresh_message() -> void:
 		# If the player unbinds all of their keys, they can't play.
 		text = tr("What have you done!? Click 'Settings' to reconfigure your controls, you silly goose!")
 	
-	rect_size = Vector2(238, 0)
+	size = Vector2(238, 0)
 
 
 ## Appends a single keybind line to the message, like 'Move: Left, Right'
@@ -40,7 +40,7 @@ func _append_keybind_line(desc: String, action_names: Array) -> void:
 		if text:
 			text += "\n"
 		if keybind_strings:
-			text += "%s: %s" % [desc, PoolStringArray(keybind_strings).join(", ")]
+			text += "%s: %s" % [desc, ", ".join(PackedStringArray(keybind_strings))]
 
 
 ## Translates a list of action names like 'rotate_cw' and 'rotate_ccw' into human-readable inputs like 'Z' and 'X'.
@@ -62,7 +62,7 @@ func _keybind_strings(action_names: Array) -> Array:
 ## defined this will return an empty dictionary.
 func _input_event_json(action_name: String) -> Dictionary:
 	var result := {}
-	var action_list := InputMap.get_action_list(action_name)
+	var action_list := InputMap.action_get_events(action_name)
 	if action_list:
 		for input_event in action_list:
 			result = KeybindManager.input_event_to_json(input_event)

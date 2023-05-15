@@ -5,21 +5,21 @@ extends Control
 ## This stripped down class excludes gameplay code for sound effects and scoring. It only includes logic required for
 ## the level editor.
 
-export (PackedScene) var PickupScene: PackedScene
-export (NodePath) var puzzle_tile_map_path: NodePath
+@export (PackedScene) var PickupScene: PackedScene
+@export (NodePath) var puzzle_tile_map_path: NodePath
 
 ## key: (Vector2) playfield cell positions
 ## value: (Pickup) Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+@onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 ## Adds or replaces a pickup in a playfield cell.
 func set_pickup(cell: Vector2, box_type: int) -> void:
 	remove_pickup(cell)
 	
 	if box_type != -1:
-		var pickup: Pickup = PickupScene.instance()
+		var pickup: Pickup = PickupScene.instantiate()
 		pickup.food_type = _food_type_for_cell(box_type, cell)
 	
 		pickup.position = Utils.map_to_world_centered(_puzzle_tile_map, cell)

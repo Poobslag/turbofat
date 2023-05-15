@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/go-voice2.wav-a70a68e472464762b44d0ab05aa82e8c.sample"
+type="AudioStreamWAV"
+uid="uid://b6km8r8sg1ax3"
+path="res://.godot/imported/go-voice2.wav-a70a68e472464762b44d0ab05aa82e8c.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/go-voice2.wav"
-dest_files=[ "res://.import/go-voice2.wav-a70a68e472464762b44d0ab05aa82e8c.sample" ]
+dest_files=["res://.godot/imported/go-voice2.wav-a70a68e472464762b44d0ab05aa82e8c.sample"]
 
 [params]
 

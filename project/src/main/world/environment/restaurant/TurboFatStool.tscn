@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/environment/stool.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/world/environment/restaurant/stool.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/world/environment/restaurant/stool-occupied.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/world/environment/restaurant/stool.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/main/world/environment/restaurant/stool-occupied.png" type="Texture2D" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -13,9 +13,9 @@ shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/edge_fix_factor = 1.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 28, 14 )
+size = Vector2( 28, 14 )
 
-[node name="Stool" type="KinematicBody2D" groups=["stools"]]
+[node name="Stool" type="CharacterBody2D" groups=["stools"]]
 script = ExtResource( 2 )
 __meta__ = {
 "shadow_scale": 0.5
@@ -24,7 +24,7 @@ shadow_scale = 0.5
 occupied_texture = ExtResource( 4 )
 unoccupied_texture = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource( 1 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )

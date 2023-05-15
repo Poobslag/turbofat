@@ -4,18 +4,18 @@
 [ext_resource path="res://src/main/career/ui/career-win-world.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/theme/chalkboard-54.theme" type="Theme" id=6]
-[ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture" id=7]
-[ext_resource path="res://assets/main/career/ui/chalkboard-separator-bottom.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/main/career/ui/chalkboard-separator-bottom.png" type="Texture2D" id=8]
 [ext_resource path="res://src/main/world/environment/EmptyEnvironment.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/main/career/ui/chalkboard-title-0b.png" type="Texture" id=10]
-[ext_resource path="res://assets/main/career/ui/chalkboard-title-0a.png" type="Texture" id=11]
-[ext_resource path="res://assets/main/career/ui/chalkboard-distance.png" type="Texture" id=12]
-[ext_resource path="res://assets/main/career/ui/chalkboard-customer-3.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/career/ui/chalkboard-separator-top.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/career/ui/chalkboard-money.png" type="Texture" id=15]
-[ext_resource path="res://assets/main/career/ui/chalkboard-time.png" type="Texture" id=16]
+[ext_resource path="res://assets/main/career/ui/chalkboard-title-0b.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/main/career/ui/chalkboard-title-0a.png" type="Texture2D" id=11]
+[ext_resource path="res://assets/main/career/ui/chalkboard-distance.png" type="Texture2D" id=12]
+[ext_resource path="res://assets/main/career/ui/chalkboard-customer-3.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/main/career/ui/chalkboard-separator-top.png" type="Texture2D" id=14]
+[ext_resource path="res://assets/main/career/ui/chalkboard-money.png" type="Texture2D" id=15]
+[ext_resource path="res://assets/main/career/ui/chalkboard-time.png" type="Texture2D" id=16]
 [ext_resource path="res://src/main/career/ui/ChalkboardMapRow.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/main/ui/font/schoolbell-regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/main/ui/font/schoolbell-regular.ttf" type="FontFile" id=18]
 [ext_resource path="res://src/main/career/ui/map-row-updater.gd" type="Script" id=31]
 [ext_resource path="res://assets/main/puzzle/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/career/ui/chalkboard-served.gd" type="Script" id=35]
@@ -25,7 +25,7 @@
 [ext_resource path="res://src/main/career/ui/chalkboard-steps.gd" type="Script" id=39]
 [ext_resource path="res://src/main/career/ui/chalkboard-title.gd" type="Script" id=40]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 32
 font_data = ExtResource( 18 )
 
@@ -89,10 +89,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -480.0
-margin_top = -291.2
-margin_right = 480.0
-margin_bottom = 291.2
+offset_left = -480.0
+offset_top = -291.2
+offset_right = 480.0
+offset_bottom = 291.2
 texture = ExtResource( 7 )
 expand = true
 
@@ -100,28 +100,28 @@ expand = true
 show_behind_parent = true
 color = Color( 0, 0, 0, 0.392157 )
 antialiased = true
-polygon = PoolVector2Array( 1, 0, 10, -10, 970, -10, 970, 572.4, 960, 581.4, 1, 581.4 )
+polygon = PackedVector2Array( 1, 0, 10, -10, 970, -10, 970, 572.4, 960, 581.4, 1, 581.4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Bg/Chalkboard"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
-custom_constants/separation = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+theme_override_constants/separation = 0
 
 [node name="Spacer1" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
-margin_right = 930.0
-margin_bottom = 6.0
-rect_min_size = Vector2( 0, 6 )
+offset_right = 930.0
+offset_bottom = 6.0
+custom_minimum_size = Vector2( 0, 6 )
 
 [node name="TitleRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 1, 0.5, 0.945313, 1 )
-margin_top = 6.0
-margin_right = 930.0
-margin_bottom = 81.0
-rect_min_size = Vector2( 0, 75 )
+offset_top = 6.0
+offset_right = 930.0
+offset_bottom = 81.0
+custom_minimum_size = Vector2( 0, 75 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/TitleRow"]
 anchor_right = 1.0
@@ -129,8 +129,8 @@ anchor_bottom = 1.0
 script = ExtResource( 40 )
 
 [node name="Control1" type="Control" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
-margin_right = 246.0
-margin_bottom = 75.0
+offset_right = 246.0
+offset_bottom = 75.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -140,24 +140,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.5
-margin_top = -37.5
-margin_right = 38.5
-margin_bottom = 32.5
+offset_left = -38.5
+offset_top = -37.5
+offset_right = 38.5
+offset_bottom = 32.5
 texture = ExtResource( 11 )
 expand = true
 
 [node name="Label" type="Label" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
-margin_left = 250.0
-margin_right = 679.0
-margin_bottom = 75.0
+offset_left = 250.0
+offset_right = 679.0
+offset_bottom = 75.0
 theme = ExtResource( 6 )
 text = "LOOK WHAT WE DID"
 
 [node name="Control2" type="Control" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
-margin_left = 683.0
-margin_right = 930.0
-margin_bottom = 75.0
+offset_left = 683.0
+offset_right = 930.0
+offset_bottom = 75.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -167,19 +167,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.5
-margin_top = -37.5
-margin_right = 38.5
-margin_bottom = 32.5
+offset_left = -38.5
+offset_top = -37.5
+offset_right = 38.5
+offset_bottom = 32.5
 texture = ExtResource( 10 )
 expand = true
 
 [node name="Separator1" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 0.726563, 0.5, 1, 1 )
-margin_top = 81.0
-margin_right = 930.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 81.0
+offset_right = 930.0
+offset_bottom = 106.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/Separator1"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -187,44 +187,44 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -432.0
-margin_top = -23.0
-margin_right = 432.0
-margin_bottom = 13.0
+offset_left = -432.0
+offset_top = -23.0
+offset_right = 432.0
+offset_bottom = 13.0
 texture = ExtResource( 14 )
 expand = true
 
 [node name="ServedStepsRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
-margin_top = 106.0
-margin_right = 930.0
-margin_bottom = 196.0
-rect_min_size = Vector2( 0, 90 )
+offset_top = 106.0
+offset_right = 930.0
+offset_bottom = 196.0
+custom_minimum_size = Vector2( 0, 90 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Served" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
-margin_right = 463.0
-margin_bottom = 90.0
+offset_right = 463.0
+offset_bottom = 90.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
 script = ExtResource( 35 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 458.0
-margin_bottom = 85.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 458.0
+offset_bottom = 85.0
 
 [node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
-margin_right = 80.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 80 )
+offset_right = 80.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 80, 80 )
 
 [node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -232,18 +232,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.5
-margin_top = -35.0
-margin_right = 38.5
-margin_bottom = 35.0
+offset_left = -38.5
+offset_top = -35.0
+offset_right = 38.5
+offset_bottom = 35.0
 texture = ExtResource( 13 )
 expand = true
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 modulate = Color( 0.5, 0.883333, 1, 1 )
-margin_left = 84.0
-margin_right = 266.0
-margin_bottom = 80.0
+offset_left = 84.0
+offset_right = 266.0
+offset_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -251,37 +251,37 @@ text = "Served:"
 valign = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
-margin_left = 270.0
-margin_top = 2.0
-margin_right = 453.0
-margin_bottom = 77.0
+offset_left = 270.0
+offset_top = 2.0
+offset_right = 453.0
+offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "132"
 align = 2
 
 [node name="Steps" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
-margin_left = 467.0
-margin_right = 930.0
-margin_bottom = 90.0
+offset_left = 467.0
+offset_right = 930.0
+offset_bottom = 90.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 20
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
 script = ExtResource( 39 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 443.0
-margin_bottom = 85.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 443.0
+offset_bottom = 85.0
 
 [node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
-margin_right = 80.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 80 )
+offset_right = 80.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 80, 80 )
 
 [node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -289,18 +289,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.5
-margin_top = -35.0
-margin_right = 38.5
-margin_bottom = 35.0
+offset_left = -38.5
+offset_top = -35.0
+offset_right = 38.5
+offset_bottom = 35.0
 texture = ExtResource( 12 )
 expand = true
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
-margin_left = 84.0
-margin_right = 259.0
-margin_bottom = 80.0
+offset_left = 84.0
+offset_right = 259.0
+offset_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -308,46 +308,46 @@ text = "Steps:"
 valign = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
-margin_left = 263.0
-margin_top = 2.0
-margin_right = 438.0
-margin_bottom = 77.0
+offset_left = 263.0
+offset_top = 2.0
+offset_right = 438.0
+offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "23"
 align = 2
 
 [node name="EarnedTimeRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
-margin_top = 196.0
-margin_right = 930.0
-margin_bottom = 286.0
-rect_min_size = Vector2( 0, 90 )
+offset_top = 196.0
+offset_right = 930.0
+offset_bottom = 286.0
+custom_minimum_size = Vector2( 0, 90 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Earned" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
-margin_right = 463.0
-margin_bottom = 90.0
+offset_right = 463.0
+offset_bottom = 90.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
 script = ExtResource( 36 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 458.0
-margin_bottom = 85.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 458.0
+offset_bottom = 85.0
 
 [node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 modulate = Color( 0.550781, 1, 0.5, 1 )
-margin_right = 80.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 80 )
+offset_right = 80.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 80, 80 )
 
 [node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -355,18 +355,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.5
-margin_top = -35.0
-margin_right = 38.5
-margin_bottom = 35.0
+offset_left = -38.5
+offset_top = -35.0
+offset_right = 38.5
+offset_bottom = 35.0
 texture = ExtResource( 15 )
 expand = true
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
-margin_left = 84.0
-margin_right = 262.0
-margin_bottom = 80.0
+offset_left = 84.0
+offset_right = 262.0
+offset_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -374,37 +374,37 @@ text = "Earned:"
 valign = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
-margin_left = 266.0
-margin_top = 2.0
-margin_right = 453.0
-margin_bottom = 77.0
+offset_left = 266.0
+offset_top = 2.0
+offset_right = 453.0
+offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "¥999,999"
 align = 2
 
 [node name="Time" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
-margin_left = 467.0
-margin_right = 930.0
-margin_bottom = 90.0
+offset_left = 467.0
+offset_right = 930.0
+offset_bottom = 90.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 20
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
 script = ExtResource( 38 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 443.0
-margin_bottom = 85.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 443.0
+offset_bottom = 85.0
 
 [node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
-margin_right = 80.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 80 )
+offset_right = 80.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 80, 80 )
 
 [node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -412,18 +412,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -38.5
-margin_top = -35.0
-margin_right = 38.5
-margin_bottom = 35.0
+offset_left = -38.5
+offset_top = -35.0
+offset_right = 38.5
+offset_bottom = 35.0
 texture = ExtResource( 16 )
 expand = true
 
 [node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
-margin_left = 84.0
-margin_right = 259.0
-margin_bottom = 80.0
+offset_left = 84.0
+offset_right = 259.0
+offset_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -431,10 +431,10 @@ text = "Time:"
 valign = 1
 
 [node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
-margin_left = 263.0
-margin_top = 2.0
-margin_right = 438.0
-margin_bottom = 77.0
+offset_left = 263.0
+offset_top = 2.0
+offset_right = 438.0
+offset_bottom = 77.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "15:03"
@@ -449,17 +449,17 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 286.0
-margin_right = 930.0
-margin_bottom = 446.0
+offset_left = 0.0
+offset_top = 286.0
+offset_right = 930.0
+offset_bottom = 446.0
 
 [node name="Separator2" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 1, 0.580392, 0.501961, 1 )
-margin_top = 446.0
-margin_right = 930.0
-margin_bottom = 471.0
-rect_min_size = Vector2( 0, 25 )
+offset_top = 446.0
+offset_right = 930.0
+offset_bottom = 471.0
+custom_minimum_size = Vector2( 0, 25 )
 
 [node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/Separator2"]
 modulate = Color( 1, 1, 1, 0.784314 )
@@ -467,42 +467,42 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -432.0
-margin_top = -9.0
-margin_right = 432.0
-margin_bottom = 9.0
+offset_left = -432.0
+offset_top = -9.0
+offset_right = 432.0
+offset_bottom = 9.0
 texture = ExtResource( 8 )
 expand = true
 
 [node name="ButtonRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
-margin_top = 471.0
-margin_right = 930.0
-margin_bottom = 534.0
-rect_min_size = Vector2( 0, 63 )
+offset_top = 471.0
+offset_right = 930.0
+offset_bottom = 534.0
+custom_minimum_size = Vector2( 0, 63 )
 
 [node name="Button" type="Button" parent="Bg/Chalkboard/VBoxContainer/ButtonRow"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -25.0
-margin_right = 50.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 100, 0 )
-custom_fonts/font = SubResource( 1 )
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/focus = SubResource( 11 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 10 )
+offset_left = -50.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 100, 0 )
+theme_override_fonts/font = SubResource( 1 )
+theme_override_styles/hover = SubResource( 13 )
+theme_override_styles/pressed = SubResource( 12 )
+theme_override_styles/focus = SubResource( 11 )
+theme_override_styles/disabled = SubResource( 7 )
+theme_override_styles/normal = SubResource( 10 )
 text = "Ok"
 
 [node name="Spacer2" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
-margin_top = 534.0
-margin_right = 930.0
-margin_bottom = 540.0
-rect_min_size = Vector2( 0, 6 )
+offset_top = 534.0
+offset_right = 930.0
+offset_bottom = 540.0
+custom_minimum_size = Vector2( 0, 6 )
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="Bg"]
 stream = ExtResource( 33 )

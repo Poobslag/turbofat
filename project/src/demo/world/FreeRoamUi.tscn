@@ -4,8 +4,8 @@
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
-[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=7]
-[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture2D" id=8]
 [ext_resource path="res://src/demo/world/FreeRoamTouchButtons.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=14]
@@ -28,7 +28,7 @@
 [sub_resource type="InputEventAction" id=15]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=9]
+[sub_resource type="Shortcut" id=9]
 shortcut = SubResource( 15 )
 
 [node name="FreeRoamUi" type="CanvasLayer" groups=["overworld_ui"]]
@@ -43,10 +43,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -502.0
-margin_top = -290.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_left = -502.0
+offset_top = -290.0
+offset_right = -10.0
+offset_bottom = -10.0
 mouse_filter = 2
 theme = ExtResource( 5 )
 alignment = 2
@@ -57,31 +57,31 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 236.0
-margin_right = 492.0
-margin_bottom = 256.0
+offset_left = 0.0
+offset_top = 236.0
+offset_right = 492.0
+offset_bottom = 256.0
 
 [node name="VersionLabel" parent="Labels/SoutheastLabels" instance=ExtResource( 14 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 260.0
-margin_right = 492.0
-margin_bottom = 280.0
+offset_left = 0.0
+offset_top = 260.0
+offset_right = 492.0
+offset_bottom = 280.0
 
 [node name="NorthwestLabels" type="VBoxContainer" parent="Labels"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 512.0
-margin_bottom = 300.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 512.0
+offset_bottom = 300.0
 mouse_filter = 2
 theme = ExtResource( 5 )
 
 [node name="MoneyLabel" parent="Labels/NorthwestLabels" instance=ExtResource( 15 )]
-margin_right = 502.0
+offset_right = 502.0
 compact = true
 
 [node name="ChatUi" parent="." instance=ExtResource( 16 )]
@@ -99,27 +99,27 @@ script = ExtResource( 2 )
 [node name="Northeast" type="HBoxContainer" parent="Buttons"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -512.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 100, 100 )
+offset_left = -512.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 110.0
+custom_minimum_size = Vector2( 100, 100 )
 mouse_filter = 2
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="SettingsButton" parent="Buttons/Northeast" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 402.0
-margin_right = 502.0
-margin_bottom = 100.0
+offset_left = 402.0
+offset_right = 502.0
+offset_bottom = 100.0
 focus_mode = 0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/focus = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 shortcut = SubResource( 9 )
 icon = ExtResource( 7 )
 expand_icon = true

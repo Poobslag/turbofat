@@ -24,13 +24,13 @@ const TOO_CLOSE_THRESHOLD := 200.0
 const TOO_FAR_THRESHOLD := 600.0
 
 ## path to the other creature whom this creature is walking with
-export (NodePath) var buddy_path: NodePath
+@export (NodePath) var buddy_path: NodePath
 
 ## path to the destination. the leader stops walking if they reach this destination
-export (NodePath) var destination_path: NodePath
+@export (NodePath) var destination_path: NodePath
 
 ## designates this creature as either a leader or follower
-export (LeaderOrFollower) var leader_or_follower: int
+@export (LeaderOrFollower) var leader_or_follower: int
 
 ## creature's walking state. they start out in the WALKING state, but might change to the SITTING state if they
 ## reach their destination or if the cutscene specifies to stop.
@@ -40,18 +40,18 @@ var _walk_state: int = WalkState.WALKING
 var _desired_walk_direction: Vector2
 
 ## other creature whom this creature is walking with
-onready var buddy: Creature = get_node(buddy_path)
+@onready var buddy: Creature = get_node(buddy_path)
 
 ## leader stops walking if they reach this destination
-onready var destination: Node2D = get_node(destination_path)
+@onready var destination: Node2D = get_node(destination_path)
 
 ## creature reevaluates whether they should continue walking when this timer times out
-onready var _move_timer: Timer = $MoveTimer
+@onready var _move_timer: Timer = $MoveTimer
 
 ## Note: Some superclass method calls are implicit in gdscript for notifications. This is planned to require explicit
 ## super() calls in Godot 4.0
 func _ready() -> void:
-	_move_timer.connect("timeout", self, "_on_MoveTimer_timeout")
+	_move_timer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))
 	
 	# calculate the desired walk direction based on the relative position of the destination
 	_desired_walk_direction = Vector2(0.70710678118, 0.70710678118)

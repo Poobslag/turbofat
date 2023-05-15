@@ -11,18 +11,18 @@ var _total_time: float
 var _squish_amount: float
 
 ## Calculates how much the piece should flash and shake as it's squished
-export (Curve) var squish_curve: Curve
+@export (Curve) var squish_curve: Curve
 
-onready var squish_map: SquishMap = $SquishMap
-onready var sweat_drops: Particles2D = $SweatDrops
+@onready var squish_map: SquishMap = $SquishMap
+@onready var sweat_drops: GPUParticles2D = $SweatDrops
 
 ## Cannot statically type as 'PieceManager' because of cyclic reference
-onready var _piece_manager = get_parent()
+@onready var _piece_manager = get_parent()
 
-onready var _presquish_sfx: PresquishSfx = $PresquishSfx
+@onready var _presquish_sfx: PresquishSfx = $PresquishSfx
 
 func _ready() -> void:
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 	_prepare_tileset()
 
 
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 		squish_map.hide()
 		_piece_manager.tile_map.show()
 	
-	_squish_amount = squish_curve.interpolate(_piece_manager.squish_percent())
+	_squish_amount = squish_curve.sample(_piece_manager.squish_percent())
 	
 	_handle_shake()
 	_handle_flash()

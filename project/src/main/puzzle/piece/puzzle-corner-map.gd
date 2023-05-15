@@ -7,7 +7,7 @@ extends TileMap
 ## This tilemap assumes tiles are arranged so that the X coordinates of the tiles correspond to the directions they're
 ## connected. This type of tilemap is used for puzzle pieces.
 
-onready var _parent_map: TileMap = get_parent()
+@onready var _parent_map: TileMap = get_parent()
 
 var dirty := false
 

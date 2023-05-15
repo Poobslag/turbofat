@@ -4,9 +4,9 @@ extends Label
 ## size where the text does not overrun its boundaries.
 
 ## Different label sizes to try, ordered from smallest to largest.
-export (Array, Vector2) var sizes := [] setget set_sizes
+@export (Array, Vector2) var sizes := []: set = set_sizes
 
-var chosen_size_index := -1 setget set_chosen_size_index
+var chosen_size_index := -1: set = set_chosen_size_index
 
 func _ready() -> void:
 	pick_smallest_size()
@@ -38,17 +38,17 @@ func set_chosen_size_index(new_index: int) -> void:
 	
 	# Workaround for Godot #19329; keeping a control centered in its parent is a hassle
 	# https://github.com/godotengine/godot/issues/19329
-	margin_left = -sizes[chosen_size_index].x / 2
-	margin_right = sizes[chosen_size_index].x / 2
-	margin_top = -sizes[chosen_size_index].y / 2
-	margin_bottom = sizes[chosen_size_index].y / 2
+	offset_left = -sizes[chosen_size_index].x / 2
+	offset_right = sizes[chosen_size_index].x / 2
+	offset_top = -sizes[chosen_size_index].y / 2
+	offset_bottom = sizes[chosen_size_index].y / 2
 	
 	text = old_text
 
 
 func _lines_fit() -> bool:
-	max_lines_visible = (rect_size.y + get_constant("line_spacing")) \
-			/ (get("custom_fonts/font").get_height() + get_constant("line_spacing"))
+	max_lines_visible = (size.y + get_constant("line_spacing")) \
+			/ (get("theme_override_fonts/font").get_height() + get_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
 
 

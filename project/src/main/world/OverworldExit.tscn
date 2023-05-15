@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/overworld-exit.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/world/environment/exit-n-sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/exit-n-sheet.png" type="Texture2D" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ 4 ]
 }
@@ -37,13 +37,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1, 1.16667, 1.33333 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1, 1.16667, 1.33333 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7, 0, 1, 2, 3, 4 ]
 }
 
-[node name="Sprite" type="Sprite"]
+[node name="Sprite2D" type="Sprite2D"]
 modulate = Color( 1, 1, 1, 0.752941 )
 material = SubResource( 1 )
 scale = Vector2( 0.539476, 0.539476 )

@@ -60,13 +60,13 @@ const PITCH_SCALE_BY_SHARK_SIZE := {
 }
 
 ## Enum from SharkConfig.SharkSize for the size of the shark sprite.
-var shark_size: int = SharkConfig.SharkSize.MEDIUM setget set_shark_size
+var shark_size: int = SharkConfig.SharkSize.MEDIUM: set = set_shark_size
 
 ## Duration in seconds the shark takes to eat.
-var eat_duration: float = DEFAULT_EAT_DURATION setget set_eat_duration
+var eat_duration: float = DEFAULT_EAT_DURATION: set = set_eat_duration
 
 ## Enum from States for the shark's current animation state.
-var state: int = NONE setget set_state
+var state: int = NONE: set = set_state
 
 ## 'true' if the shark will be queued for deletion after the 'poof' animation completes.
 var _free_after_poof := false
@@ -78,28 +78,28 @@ var _next_states := []
 ## accidentally popping two states from the queue when the shark first spawns.
 var _already_popped_state := false
 
-onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 ## Shark sprite
-onready var shark := $Shark
+@onready var shark := $Shark
 
 ## Eating effects including the cyclone of teeth and dust cloud which appear while a shark is eating.
-onready var tooth_cloud := $ToothCloud
+@onready var tooth_cloud := $ToothCloud
 
 ## Poof cloud which covers the shark when they appear or disappear
-onready var poof: CritterPoof = $Poof
+@onready var poof: CritterPoof = $Poof
 
 ## Speech bubble which appears in the shark's place when the shark is waiting to appear
-onready var wait_low := $WaitLow
+@onready var wait_low := $WaitLow
 
 ## Speech bubble which appears over the shark's head when they're about to vanish
-onready var wait_high := $WaitHigh
+@onready var wait_high := $WaitHigh
 
-onready var sfx := $SharkSfx
+@onready var sfx := $SharkSfx
 
 ## key: (int) Enum from States
 ## value: (Node) State node from the _states StateMachine
-onready var _state_nodes_by_enum := {
+@onready var _state_nodes_by_enum := {
 	NONE: $States/None,
 	WAITING: $States/Waiting,
 	DANCING: $States/Dancing,
@@ -109,7 +109,7 @@ onready var _state_nodes_by_enum := {
 	SQUISHED: $States/Squished,
 }
 
-onready var _states: StateMachine = $States
+@onready var _states: StateMachine = $States
 
 func _ready() -> void:
 	# The state machine defaults to the 'none' state and not the 'null' state to avoid edge cases
@@ -145,7 +145,7 @@ func append_next_state(next_state: int, count: int = 1) -> void:
 
 ## Returns 'true' if there are states remaining in the shark's queue of upcoming animation states.
 func has_next_state() -> bool:
-	return not _next_states.empty()
+	return not _next_states.is_empty()
 
 
 ## Dequeues the next state from the shark's queue of upcoming animation states.
@@ -161,7 +161,7 @@ func has_next_state() -> bool:
 ## Returns:
 ## 	Enum from States for the shark's new state.
 func pop_next_state(force: bool = false) -> int:
-	if _next_states.empty():
+	if _next_states.is_empty():
 		return NONE
 	
 	if _already_popped_state and not force:

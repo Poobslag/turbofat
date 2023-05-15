@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/critter-squish.wav-6a6003c5570fc541476ee730d9a17c36.sample"
+type="AudioStreamWAV"
+uid="uid://bpguub1ffdqhd"
+path="res://.godot/imported/critter-squish.wav-6a6003c5570fc541476ee730d9a17c36.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/critter-squish.wav"
-dest_files=[ "res://.import/critter-squish.wav-6a6003c5570fc541476ee730d9a17c36.sample" ]
+dest_files=["res://.godot/imported/critter-squish.wav-6a6003c5570fc541476ee730d9a17c36.sample"]
 
 [params]
 

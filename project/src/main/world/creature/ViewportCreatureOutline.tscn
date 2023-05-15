@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
+[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=23]
 [ext_resource path="res://src/main/world/creature/viewport-creature-outline.gd" type="Script" id=24]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -13,12 +13,12 @@ shader_param/edge_fix_factor = 0.001
 
 [sub_resource type="ViewportTexture" id=2]
 flags = 5
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("SubViewport")
 
 [node name="CreatureOutline" type="Node2D"]
 script = ExtResource( 24 )
 
-[node name="Viewport" type="Viewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2( 1200, 1200 )
 transparent_bg = true
 handle_input_locally = false
@@ -26,17 +26,17 @@ usage = 0
 render_target_update_mode = 3
 audio_listener_enable_2d = true
 
-[node name="Visuals" parent="Viewport" instance=ExtResource( 9 )]
+[node name="Visuals" parent="SubViewport" instance=ExtResource( 9 )]
 position = Vector2( 512, 912 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 light_mask = 2
 material = SubResource( 1 )
-margin_left = -200.0
-margin_top = -366.0
-margin_right = 1000.0
-margin_bottom = 834.0
-rect_scale = Vector2( 0.4, 0.4 )
+offset_left = -200.0
+offset_top = -366.0
+offset_right = 1000.0
+offset_bottom = 834.0
+scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
 texture = SubResource( 2 )
 flip_v = true

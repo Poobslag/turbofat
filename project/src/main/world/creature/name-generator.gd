@@ -4,9 +4,9 @@ class_name NameGenerator
 ## Accepts as input a list of words like 'banana' and 'anabelle', and mixes them into names like 'banabelle'.
 
 var markov_model := MarkovModel.new()
-var min_length: int setget set_min_length
-var max_length: int setget set_max_length
-var order: float setget set_order
+var min_length: int: set = set_min_length
+var max_length: int: set = set_max_length
+var order: float: set = set_order
 
 ## key: (string) Word from the source material
 ## value: (bool) true

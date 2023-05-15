@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/move-hop.wav-135edce9d325d30683388d7661600e6c.sample"
+type="AudioStreamWAV"
+uid="uid://b43dltpth0cve"
+path="res://.godot/imported/move-hop.wav-135edce9d325d30683388d7661600e6c.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/move-hop.wav"
-dest_files=[ "res://.import/move-hop.wav-135edce9d325d30683388d7661600e6c.sample" ]
+dest_files=["res://.godot/imported/move-hop.wav-135edce9d325d30683388d7661600e6c.sample"]
 
 [params]
 

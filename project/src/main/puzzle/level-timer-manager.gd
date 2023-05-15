@@ -23,15 +23,15 @@ const PHASES_BY_TIMER_INDEX := {
 }
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
 	
 	# create placeholder timers. different levels might start some, all or none of these timers
 	for i in range(MAX_TIMER_COUNT):
 		var timer := Timer.new()
 		timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
-		timer.connect("timeout", self, "_on_Timer_timeout", [i])
+		timer.connect("timeout", Callable(self, "_on_Timer_timeout").bind(i))
 		add_child(timer)
 
 

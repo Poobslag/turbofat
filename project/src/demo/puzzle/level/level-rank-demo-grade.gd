@@ -3,7 +3,7 @@ extends HBoxContainer
 
 ## Level to open
 ## Virtual property; value is only exposed through getters/setters
-var value: String setget set_value, get_value
+var value: String: get = get_value, set = set_value
 
 ## key: (String) letter grade such as 'SSS' or 'AA+'
 ## value: (int) OptionButton index

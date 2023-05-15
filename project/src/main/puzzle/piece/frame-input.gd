@@ -5,11 +5,11 @@ extends Node
 ## Also provides support for buffered inputs. The buffer duration is dictated by the child timer.
 
 ## Action to track
-export (String) var action: String
+@export (String) var action: String
 
 ## Action which negates this one if pressed. For example if the player holds move_piece_left and presses
 ## move_piece_right, move_piece_left no longer gets triggered.
-export (String) var cancel_action: String
+@export (String) var cancel_action: String
 
 var pressed_frames: int
 
@@ -21,10 +21,10 @@ var _buffer: bool
 var _print_inputs := false
 
 ## If this timer is active, the input was recently pressed and can be popped with pop_buffered_input
-onready var _buffer_timer: Timer = $BufferTimer
+@onready var _buffer_timer: Timer = $BufferTimer
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not CurrentLevel.settings.input_replay.empty():
+	if not CurrentLevel.settings.input_replay.is_empty():
 		# don't process button presses when replaying prerecorded input
 		return
 	
@@ -56,7 +56,7 @@ func _physics_process(_delta: float) -> void:
 	_just_pressed = false
 	
 	# process the input replay last; this way just_pressed remains true for a frame
-	if not CurrentLevel.settings.input_replay.empty():
+	if not CurrentLevel.settings.input_replay.is_empty():
 		_process_input_replay()
 
 

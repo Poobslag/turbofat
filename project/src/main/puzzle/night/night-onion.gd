@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 ## Onion shown during nighttime. Hovers in the sky wiggling its tentacles.
 
 ## Position where the onion hovers about.

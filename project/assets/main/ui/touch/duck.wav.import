@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/duck.wav-1a394a807f8bc2ff9ec238cf1ab726db.sample"
+type="AudioStreamWAV"
+uid="uid://btiok2urd0aog"
+path="res://.godot/imported/duck.wav-1a394a807f8bc2ff9ec238cf1ab726db.sample"
 
 [deps]
 
 source_file="res://assets/main/ui/touch/duck.wav"
-dest_files=[ "res://.import/duck.wav-1a394a807f8bc2ff9ec238cf1ab726db.sample" ]
+dest_files=["res://.godot/imported/duck.wav-1a394a807f8bc2ff9ec238cf1ab726db.sample"]
 
 [params]
 

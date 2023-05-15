@@ -1,4 +1,4 @@
-tool
+@tool
 extends OverworldObstacle
 ## Tree which appears in the overworld for Lemony Thickets.
 ##
@@ -8,26 +8,26 @@ extends OverworldObstacle
 const LEMON_ANIMATION_NAMES := ["default-0", "default-1", "default-2"]
 
 ## Editor toggle which randomizes the tree's appearance
-export (bool) var shuffle: bool setget set_shuffle
+@export (bool) var shuffle: bool: set = set_shuffle
 
 ## Controls the shape of the tree's leaves. Modifying this in the editor has no effect until the scene is reloaded.
 ## There are only three leaf shapes, odd leaf types are mirrored versions of even leaf types.
-export (int, 0, 5) var leaf_type: int setget set_leaf_type
+@export (int, 0, 5) var leaf_type: int: set = set_leaf_type
 
 ## Controls the shape of the tree's mouth. Modifying this in the editor has no effect until the scene is reloaded.
 ## There are only three mouth shapes, odd mouth types are mirrored versions of even leaf types.
-export (int, 0, 9) var mouth_type: int setget set_mouth_type
+@export (int, 0, 9) var mouth_type: int: set = set_mouth_type
 
-onready var _leaves := $Leaves
-onready var _lemons := $Lemons
-onready var _mouth := $Mouth
+@onready var _leaves := $Leaves
+@onready var _lemons := $Lemons
+@onready var _mouth := $Mouth
 
-onready var _leaf_player := $LeafPlayer
-onready var _lemon_player := $LemonPlayer
-onready var _mouth_player := $MouthPlayer
+@onready var _leaf_player := $LeafPlayer
+@onready var _lemon_player := $LemonPlayer
+@onready var _mouth_player := $MouthPlayer
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		# update the tree's appearance, but don't play any animations
 		_refresh_tree_in_editor()
 	else:
@@ -54,7 +54,7 @@ func set_shuffle(value: bool) -> void:
 	
 	_refresh_tree_in_editor()
 	
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 func set_leaf_type(new_leaf_type: int) -> void:
@@ -74,7 +74,7 @@ func _refresh_tree_in_editor() -> void:
 	if not is_inside_tree():
 		return
 	
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		if not _leaves:
 			_initialize_onready_variables()
 	
@@ -129,7 +129,7 @@ func advance_lemon_animation_randomly() -> void:
 ## 	'anim_name': The name of the animation to play.
 func _play_randomly_from_middle(player: AnimationPlayer, anim_name: String) -> void:
 	player.play(anim_name)
-	player.advance(rand_range(0, player.get_current_animation_length()))
+	player.advance(randf_range(0, player.get_current_animation_length()))
 
 
 ## When this timer elapses we point the tree's lemon eyes in a new direction.

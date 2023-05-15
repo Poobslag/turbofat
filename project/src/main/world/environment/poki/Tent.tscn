@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/world/environment/poki/tent-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/poki/tent-sheet.png" type="Texture2D" id=1]
 [ext_resource path="res://src/main/world/environment/outline-material-15.tres" type="Material" id=2]
 [ext_resource path="res://src/main/world/environment/frame-overworld-obstacle.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 120, 14 )
+size = Vector2( 120, 14 )
 
-[node name="Tent" type="KinematicBody2D"]
+[node name="Tent" type="CharacterBody2D"]
 position = Vector2( 486.489, 339.411 )
 script = ExtResource( 3 )
 shadow_scale = 1.2
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource( 2 )
 scale = Vector2( 0.539476, 0.539476 )
 texture = ExtResource( 1 )

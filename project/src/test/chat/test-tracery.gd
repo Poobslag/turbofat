@@ -25,11 +25,11 @@ func test_replace() -> void:
 func test_replace_es() -> void:
 	var original_locale := TranslationServer.get_locale()
 	TranslationServer.set_locale("es")
-	var translation: Translation = Translation.new()
-	translation.add_message("My favorite color is #favorite_color#.", "Mi color favorito es el #favorite_color#.")
-	translation.add_message("blue", "azul")
-	translation.locale = "es"
-	TranslationServer.add_translation(translation)
+	var position: Translation = Translation.new()
+	position.add_message("My favorite color is #favorite_color#.", "Mi color favorito es el #favorite_color#.")
+	position.add_message("blue", "azul")
+	position.locale = "es"
+	TranslationServer.add_translation(position)
 	
 	rules["favorite_color"] = ["blue"]
 	assert_flatten("My favorite color is #favorite_color#.", "Mi color favorito es el azul.")
@@ -43,10 +43,10 @@ func test_replace_es() -> void:
 func test_dont_translate_player_name() -> void:
 	var original_locale := TranslationServer.get_locale()
 	TranslationServer.set_locale("es")
-	var translation: Translation = Translation.new()
-	translation.add_message("Sue", "Demandar")
-	translation.locale = "es"
-	TranslationServer.add_translation(translation)
+	var position: Translation = Translation.new()
+	position.add_message("Sue", "Demandar")
+	position.locale = "es"
+	TranslationServer.add_translation(position)
 	
 	rules["bad_restaurant_name"] = ["Sue"]
 	assert_flatten("Bottle support #bad_restaurant_name#", "Bottle support Demandar")

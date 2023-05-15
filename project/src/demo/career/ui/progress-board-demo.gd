@@ -12,8 +12,8 @@ extends Node
 ## 	[shift+Z-M]: Animate the player going backward 0-25 steps.
 ## 	[=/-]: Move the player forward/backward on the progress board.
 
-onready var _progress_board := $ProgressBoard
-onready var _player := $ProgressBoard/ChalkboardRegion/Player
+@onready var _progress_board := $ProgressBoard
+@onready var _player := $ProgressBoard/ChalkboardRegion/Player
 
 func _ready() -> void:
 	PlayerData.career.hours_passed = 2

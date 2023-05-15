@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/career/ui/progress-board-lines.gd" type="Script" id=3]
 [ext_resource path="res://src/main/career/ui/ProgressBoardSpot.tscn" type="PackedScene" id=4]
 
-[node name="Path" type="Control"]
+[node name="Path3D" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -26,64 +26,64 @@ script = ExtResource( 2 )
 spot_scene = ExtResource( 4 )
 
 [node name="Spot" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 93.3381
-margin_top = 161.927
-margin_right = 93.3381
-margin_bottom = 161.927
+offset_left = 93.3381
+offset_top = 161.927
+offset_right = 93.3381
+offset_bottom = 161.927
 frame = 8
 
 [node name="Spot2" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 145.664
-margin_top = 173.241
-margin_right = 145.664
-margin_bottom = 173.241
+offset_left = 145.664
+offset_top = 173.241
+offset_right = 145.664
+offset_bottom = 173.241
 frame = 4
 
 [node name="Spot3" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 199.404
-margin_top = 170.413
-margin_right = 199.404
-margin_bottom = 170.413
+offset_left = 199.404
+offset_top = 170.413
+offset_right = 199.404
+offset_bottom = 170.413
 frame = 4
 
 [node name="Spot4" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 256.68
-margin_top = 156.271
-margin_right = 256.68
-margin_bottom = 156.271
+offset_left = 256.68
+offset_top = 156.271
+offset_right = 256.68
+offset_bottom = 156.271
 frame = 4
 
 [node name="Spot5" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 325.976
-margin_top = 167.584
-margin_right = 325.976
-margin_bottom = 167.584
+offset_left = 325.976
+offset_top = 167.584
+offset_right = 325.976
+offset_bottom = 167.584
 frame = 4
 
 [node name="Spot6" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 369.817
-margin_top = 202.233
-margin_right = 369.817
-margin_bottom = 202.233
+offset_left = 369.817
+offset_top = 202.233
+offset_right = 369.817
+offset_bottom = 202.233
 frame = 4
 
 [node name="Spot7" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 410.829
-margin_top = 240.416
-margin_right = 410.829
-margin_bottom = 240.416
+offset_left = 410.829
+offset_top = 240.416
+offset_right = 410.829
+offset_bottom = 240.416
 frame = 4
 
 [node name="Spot8" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 465.302
-margin_top = 265.788
-margin_right = 465.302
-margin_bottom = 265.788
+offset_left = 465.302
+offset_top = 265.788
+offset_right = 465.302
+offset_bottom = 265.788
 frame = 4
 
 [node name="Spot9" parent="Spots" instance=ExtResource( 4 )]
-margin_left = 526.068
-margin_top = 266.148
-margin_right = 526.068
-margin_bottom = 266.148
+offset_left = 526.068
+offset_top = 266.148
+offset_right = 526.068
+offset_bottom = 266.148
 frame = 12

@@ -5,7 +5,7 @@ extends Node
 ## 	[=/-]: Increase/decrease the number of spots on the trail.
 ## 	[T]: Toggle whether or not the number of spots on the board is truncated.
 
-onready var path := $ColorRect/Trail
+@onready var path := $ColorRect/Trail
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

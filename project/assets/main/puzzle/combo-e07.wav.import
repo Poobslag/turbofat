@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/combo-e07.wav-8915378cb2b3c38717da3e79508510f0.sample"
+type="AudioStreamWAV"
+uid="uid://dj7jqm8yl516j"
+path="res://.godot/imported/combo-e07.wav-8915378cb2b3c38717da3e79508510f0.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/combo-e07.wav"
-dest_files=[ "res://.import/combo-e07.wav-8915378cb2b3c38717da3e79508510f0.sample" ]
+dest_files=["res://.godot/imported/combo-e07.wav-8915378cb2b3c38717da3e79508510f0.sample"]
 
 [params]
 

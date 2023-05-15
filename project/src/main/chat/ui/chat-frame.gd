@@ -14,13 +14,13 @@ signal all_text_shown
 var _popped_in := false
 var _squished := false
 
-onready var _chat_line_label := $ChatLineLabel
-onready var _chat_line_panel := $ChatLinePanel
-onready var _nametag_panel := $ChatLinePanel/NametagPanel
-onready var _pop_in_sound := $PopInSound
-onready var _pop_out_sound := $PopOutSound
-onready var _pop_tween := $PopTween
-onready var _squish_tween := $SquishTween
+@onready var _chat_line_label := $ChatLineLabel
+@onready var _chat_line_panel := $ChatLinePanel
+@onready var _nametag_panel := $ChatLinePanel/NametagPanel
+@onready var _pop_in_sound := $PopInSound
+@onready var _pop_out_sound := $PopOutSound
+@onready var _pop_tween := $PopTween
+@onready var _squish_tween := $SquishTween
 
 func _ready() -> void:
 	_chat_line_label.hide_message()

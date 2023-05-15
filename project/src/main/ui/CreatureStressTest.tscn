@@ -21,65 +21,65 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = -148.0
-margin_right = 75.0
-margin_bottom = 247.0
-rect_min_size = Vector2( 150, 200 )
-custom_constants/separation = 10
+offset_left = -75.0
+offset_top = -148.0
+offset_right = 75.0
+offset_bottom = 247.0
+custom_minimum_size = Vector2( 150, 200 )
+theme_override_constants/separation = 10
 
 [node name="PlusTen" type="Button" parent="Ui/Control"]
-margin_right = 150.0
-margin_bottom = 51.0
+offset_right = 150.0
+offset_bottom = 51.0
 theme = ExtResource( 4 )
 text = "+10"
 
 [node name="PlusOne" type="Button" parent="Ui/Control"]
-margin_top = 61.0
-margin_right = 150.0
-margin_bottom = 112.0
+offset_top = 61.0
+offset_right = 150.0
+offset_bottom = 112.0
 theme = ExtResource( 4 )
 text = "+1"
 
 [node name="CreatureCount" type="Label" parent="Ui/Control"]
-margin_top = 122.0
-margin_right = 150.0
-margin_bottom = 167.0
+offset_top = 122.0
+offset_right = 150.0
+offset_bottom = 167.0
 theme = ExtResource( 4 )
 text = "2"
 align = 1
 
 [node name="MinusOne" type="Button" parent="Ui/Control"]
-margin_top = 177.0
-margin_right = 150.0
-margin_bottom = 228.0
+offset_top = 177.0
+offset_right = 150.0
+offset_bottom = 228.0
 theme = ExtResource( 4 )
 text = "-1"
 
 [node name="MinusTen" type="Button" parent="Ui/Control"]
-margin_top = 238.0
-margin_right = 150.0
-margin_bottom = 289.0
+offset_top = 238.0
+offset_right = 150.0
+offset_bottom = 289.0
 theme = ExtResource( 4 )
 text = "-10"
 
 [node name="Spacer" type="Control" parent="Ui/Control"]
-margin_top = 299.0
-margin_right = 150.0
-margin_bottom = 349.0
-rect_min_size = Vector2( 0, 50 )
+offset_top = 299.0
+offset_right = 150.0
+offset_bottom = 349.0
+custom_minimum_size = Vector2( 0, 50 )
 
 [node name="QuitButton" type="Button" parent="Ui/Control"]
-margin_top = 359.0
-margin_right = 150.0
-margin_bottom = 395.0
+offset_top = 359.0
+offset_right = 150.0
+offset_bottom = 395.0
 theme = ExtResource( 5 )
 text = "Quit"
 
 [node name="FpsLabel" parent="Ui" instance=ExtResource( 3 )]
-margin_top = -30.0
-margin_right = -10.0002
-margin_bottom = 0.0
+offset_top = -30.0
+offset_right = -10.0002
+offset_bottom = 0.0
 
 [connection signal="pressed" from="Ui/Control/PlusTen" to="." method="_on_CreatureButton_pressed" binds= [ 10 ]]
 [connection signal="pressed" from="Ui/Control/PlusOne" to="." method="_on_CreatureButton_pressed" binds= [ 1 ]]

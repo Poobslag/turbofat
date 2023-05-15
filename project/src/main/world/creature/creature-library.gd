@@ -20,8 +20,8 @@ const MAX_FILLER_FATNESS := 2.5
 var forced_fatness := 0.0
 
 ## Virtual properties; values are only exposed through getters/setters
-var player_def: CreatureDef setget set_player_def, get_player_def
-var sensei_def: CreatureDef setget set_sensei_def, get_sensei_def
+var player_def: CreatureDef: get = get_player_def, set = set_player_def
+var sensei_def: CreatureDef: get = get_sensei_def, set = set_sensei_def
 
 ## fatnesses by creature id
 var _fatnesses: Dictionary
@@ -214,9 +214,9 @@ func _normalize_filler_fatnesses() -> void:
 ## 	'file_suffix': (Optional) Suffix to append to each returned file path.
 func _file_paths(dir_path: String, file_suffix: String = "") -> Array:
 	var result := []
-	var dir := Directory.new()
+	var dir := DirAccess.new()
 	dir.open(dir_path)
-	dir.list_dir_begin(true, true)
+	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	while true:
 		var file := dir.get_next()
 		if file:

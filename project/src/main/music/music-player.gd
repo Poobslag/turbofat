@@ -23,7 +23,7 @@ var all_bgms: Array
 var current_bgm: CheckpointSong
 
 ## true if the music should have a low-pass filter applied; used during nighttime
-var night_filter: bool = false setget set_night_filter
+var night_filter: bool = false: set = set_night_filter
 
 ## volume_db changes when we fade in/fade out so we cache the original value.
 ##
@@ -31,19 +31,19 @@ var night_filter: bool = false setget set_night_filter
 ## value: (float) desired volume_db for playing music
 var _max_volume_db_by_bgm := {}
 
-onready var _chill_bgms := [
+@onready var _chill_bgms := [
 		$ChubHub, $DessertCourse, $HarderButter,
 		$HotFunkSundae, $LoFiChill, $RainbowSherbeat]
 
-onready var _upbeat_bgms := [
+@onready var _upbeat_bgms := [
 		$AcidReflux, $ChocolateChip, $ChubNBass, $ChunkyObake,
 		$DooDooDoo, $ExtraSprinkles, $GingerbreadHouse, $JuicerMixerGrinder,
 		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake,
 		]
 
-onready var _tutorial_bgms := [$MyFatnessPal]
-onready var _music_tween := $MusicTween
-onready var _filter_tween: SceneTreeTween
+@onready var _tutorial_bgms := [$MyFatnessPal]
+@onready var _music_tween := $MusicTween
+@onready var _filter_tween: Tween
 
 func _ready() -> void:
 	all_bgms = _chill_bgms + _upbeat_bgms + _tutorial_bgms
@@ -135,13 +135,13 @@ func set_night_filter(new_night_filter: bool) -> void:
 		# Gradually reduce the cutoff_hz to muffle the music
 		_filter_tween = Utils.recreate_tween(self, _filter_tween)
 		_filter_tween.tween_property(low_pass_filter, "cutoff_hz", MIN_FILTER_HZ, 0.3) \
-				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+				super.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 	else:
 		# Gradually increase the cutoff_hz to unmuffle the music
 		_filter_tween = Utils.recreate_tween(self, _filter_tween)
 		_filter_tween.tween_property(low_pass_filter, "cutoff_hz", MAX_FILTER_HZ, 0.3) \
-				.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
-		_filter_tween.tween_callback(self, "_on_Tween_unfilter_completed")
+				super.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+		_filter_tween.tween_callback(Callable(self, "_on_Tween_unfilter_completed"))
 
 
 ## Plays the first song from the specified list, and reorders the songs.

@@ -6,18 +6,18 @@
 [ext_resource path="res://src/main/ui/settings/keybind/custom-keybind-row.gd" type="Script" id=4]
 
 [node name="MovePiece" type="HBoxContainer"]
-margin_right = 490.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 420, 24 )
+offset_right = 490.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 420, 24 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_constants/separation = 2
+theme_override_constants/separation = 2
 script = ExtResource( 4 )
 
 [node name="Description" type="Label" parent="."]
-margin_right = 140.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 140, 20 )
+offset_right = 140.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 140, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.74
@@ -26,55 +26,55 @@ valign = 1
 autowrap = true
 
 [node name="Control" type="Control" parent="."]
-margin_left = 142.0
-margin_right = 158.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 16, 0 )
+offset_left = 142.0
+offset_right = 158.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 16, 0 )
 size_flags_horizontal = 0
 
 [node name="Value0" type="Button" parent="." groups=["custom_keybind_buttons"]]
-margin_left = 160.0
-margin_right = 260.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 20 )
+offset_left = 160.0
+offset_right = 260.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 20 )
 size_flags_horizontal = 0
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+theme_override_colors/font_color = Color( 1, 1, 1, 0.501961 )
 toggle_mode = true
 clip_text = true
 script = ExtResource( 3 )
 
 [node name="Value1" type="Button" parent="." groups=["custom_keybind_buttons"]]
-margin_left = 262.0
-margin_right = 362.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 20 )
+offset_left = 262.0
+offset_right = 362.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 20 )
 size_flags_horizontal = 0
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+theme_override_colors/font_color = Color( 1, 1, 1, 0.501961 )
 toggle_mode = true
 clip_text = true
 script = ExtResource( 3 )
 action_index = 1
 
 [node name="Value2" type="Button" parent="." groups=["custom_keybind_buttons"]]
-margin_left = 364.0
-margin_right = 464.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 20 )
+offset_left = 364.0
+offset_right = 464.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 20 )
 size_flags_horizontal = 0
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+theme_override_colors/font_color = Color( 1, 1, 1, 0.501961 )
 toggle_mode = true
 clip_text = true
 script = ExtResource( 3 )
 action_index = 2
 
 [node name="Delete" type="Button" parent="."]
-margin_left = 466.0
-margin_right = 490.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 24, 0 )
+offset_left = 466.0
+offset_right = 490.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 24, 0 )
 size_flags_horizontal = 0
 theme = ExtResource( 2 )
 text = "X"

@@ -10,7 +10,7 @@ const DEFAULT_OTHER_REGIONS_PATH := "res://assets/main/puzzle/other-regions.json
 const BEGINNER_TUTORIAL := "tutorial/basics_0"
 
 ## Path to the json file with the list of levels. Can be changed for tests.
-var other_regions_path := DEFAULT_OTHER_REGIONS_PATH setget set_other_regions_path
+var other_regions_path := DEFAULT_OTHER_REGIONS_PATH: set = set_other_regions_path
 
 ## List of OtherRegion instances containing region and level data
 var regions: Array = []
@@ -48,7 +48,9 @@ func _load_raw_json_data() -> void:
 	regions.clear()
 	
 	var other_regions_text := FileUtils.get_file_as_text(other_regions_path)
-	var other_regions_json: Dictionary = parse_json(other_regions_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(other_regions_text)
+	var other_regions_json: Dictionary = test_json_conv.get_data()
 	for region_json in other_regions_json.get("regions", []):
 		var region := OtherRegion.new()
 		region.from_json_dict(region_json)

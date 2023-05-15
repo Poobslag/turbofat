@@ -6,13 +6,13 @@
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=4]
 
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.695652 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.695652 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=10]
+[sub_resource type="GradientTexture2D" id=10]
 gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 flag_disable_z = true
 direction = Vector3( -100, -40, 0 )
 spread = 15.0
@@ -24,7 +24,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id=7]
 flag_disable_z = true
 direction = Vector3( 100, -40, 0 )
 spread = 15.0
@@ -36,7 +36,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticleProcessMaterial" id=8]
 flag_disable_z = true
 direction = Vector3( -100, 40, 0 )
 spread = 15.0
@@ -48,7 +48,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id=9]
 flag_disable_z = true
 direction = Vector3( 100, 40, 0 )
 spread = 15.0
@@ -61,14 +61,14 @@ scale = 5.0
 color_ramp = SubResource( 10 )
 
 [node name="Score" type="Control" groups=["night_mode_light"]]
-margin_right = 250.0
-margin_bottom = 74.0
+offset_right = 250.0
+offset_bottom = 74.0
 
 [node name="ScoreValueLabel" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -79.0
-margin_bottom = 45.0
+offset_left = -79.0
+offset_bottom = 45.0
 size_flags_horizontal = 4
 theme = ExtResource( 4 )
 text = "¥616"
@@ -81,7 +81,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="Nw" type="Particles2D" parent="ScoreValueLabel/TopOutParticles"]
+[node name="Nw" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
 lifetime = 0.6
@@ -89,7 +89,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 6 )
 
-[node name="Ne" type="Particles2D" parent="ScoreValueLabel/TopOutParticles"]
+[node name="Ne" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
 lifetime = 0.6
@@ -97,7 +97,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 7 )
 
-[node name="Sw" type="Particles2D" parent="ScoreValueLabel/TopOutParticles"]
+[node name="Sw" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
 lifetime = 0.6
@@ -105,7 +105,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 8 )
 
-[node name="Se" type="Particles2D" parent="ScoreValueLabel/TopOutParticles"]
+[node name="Se" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
 lifetime = 0.6
@@ -119,9 +119,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -55.0
-margin_top = -38.0
-margin_bottom = -7.99456
+offset_left = -55.0
+offset_top = -38.0
+offset_bottom = -7.99456
 size_flags_horizontal = 4
 theme = ExtResource( 2 )
 text = "+¥55"

@@ -5,7 +5,8 @@ class_name RankRules
 class ShowRankPropertyParser extends RuleParser.PropertyParser:
 	var _hide_string: String
 	
-	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String) -> void:
+		super(init_target, init_name)
 		default = []
 		_hide_string = "hide%s" % [init_name.trim_prefix("show")]
 		keys.append(_hide_string)

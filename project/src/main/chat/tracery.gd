@@ -1,5 +1,5 @@
 class_name Tracery
-extends Reference
+extends RefCounted
 ## Implementation of Kate Compton's Tracery.
 ##
 ## Tracery is a JavaScript library by GalaxyKate that uses grammars to generate text. This specific implementation is
@@ -11,7 +11,7 @@ extends Reference
 ##
 ## A Tracery modifier is a function that takes a string (and optionally parameters) and returns a string. A set of
 ## these is included in mods-eng-basic.js. Modifiers are applied, in order, after a tag is fully expanded.
-class Modifiers extends Reference:
+class Modifiers extends RefCounted:
 	
 	## Returns a collection of Tracery modifiers for the current locale.
 	static func get_modifiers() -> Dictionary:
@@ -60,7 +60,7 @@ class Modifiers extends Reference:
 ## Grammars are usually created by feeding in a raw JSON grammar, which is then parsed into symbols and rules. You can
 ## also build your own Grammar objects from scratch, without using this utility function, and can always edit the
 ## grammar after creating it.
-class Grammar extends Reference:
+class Grammar extends RefCounted:
 	var rng: RandomNumberGenerator
 	
 	## Lookup table for Tracery modifiers such as 's' or 'possessive'.
@@ -134,7 +134,7 @@ class Grammar extends Reference:
 		rule = tr(rule)
 		
 		var expansion_matches := _expansion_regex.search_all(rule)
-		if expansion_matches.empty():
+		if expansion_matches.is_empty():
 			_resolve_save_symbols(rule)
 		
 		for match_result in expansion_matches:
@@ -197,13 +197,13 @@ class Grammar extends Reference:
 				_save_data[name] = data
 
 
-	func _get_modifiers(symbol: String) -> PoolStringArray:
+	func _get_modifiers(symbol: String) -> PackedStringArray:
 		var modifiers := symbol.replace("#", "").split(".")
 		modifiers.remove(0)
 		return modifiers
 
 
-	func _apply_modifiers(resolved: String, modifiers: PoolStringArray) -> String:
+	func _apply_modifiers(resolved: String, modifiers: PackedStringArray) -> String:
 		for m in modifiers:
 			if _modifier_lookup.has(m):
 				var object: Object = _modifier_lookup[m][0]

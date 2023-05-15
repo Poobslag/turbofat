@@ -26,7 +26,7 @@ signal showed_chat_choices
 ## try to keep them all in frame and facing each other.
 var chatters := []
 
-var _show_version := true setget set_show_version, is_show_version
+var _show_version := true: get = is_show_version, set = set_show_version
 
 ## These two fields store details for the upcoming level. We store the level details during the chat sequence
 ## and launch the level when the chat window closes.
@@ -124,7 +124,7 @@ func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 ## Updates the different UI components to be visible/invisible based on the UI's current state.
 func _update_visible() -> void:
 	$ChatUi.visible = true if chatters else false
-	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and chatters.empty()
+	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and chatters.is_empty()
 
 
 ## Applies the specified ChatEvent metadata to the scene.
@@ -155,8 +155,8 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var creature_id := meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
 			creature.fade_out()
-			if not creature.is_connected("fade_out_finished", self, "_on_Creature_fade_out_finished"):
-				creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [creature])
+			if not creature.is_connected("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished")):
+				creature.connect("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished").bind(creature))
 		"creature_mood":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
@@ -208,8 +208,8 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 
 
 func _on_Creature_fade_out_finished(_creature: Creature) -> void:
-	if _creature.is_connected("fade_out_finished", self, "_on_Creature_fade_out_finished"):
-		_creature.disconnect("fade_out_finished", self, "_on_Creature_fade_out_finished")
+	if _creature.is_connected("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished")):
+		_creature.disconnect("fade_out_finished", Callable(self, "_on_Creature_fade_out_finished"))
 	emit_signal("visible_chatters_changed")
 
 

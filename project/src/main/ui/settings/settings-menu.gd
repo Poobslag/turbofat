@@ -19,21 +19,21 @@ const GIVE_UP := QuitType.GIVE_UP
 const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
 
 ## Text on the menu's quit button
-export (QuitType) var quit_type: int setget set_quit_type
+@export (QuitType) var quit_type: int: set = set_quit_type
 
 ## method name and parameters for a method to call after system data is saved
 var _post_save_method: String
 var _post_save_args_array: Array
 
-onready var _controls_control := $Window/UiArea/TabContainer/Controls
-onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot
-onready var _touch_control := $Window/UiArea/TabContainer/Touch
+@onready var _controls_control := $Window/UiArea/TabContainer/Controls
+@onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot
+@onready var _touch_control := $Window/UiArea/TabContainer/Touch
 
-onready var _bg := $Bg
-onready var _bottom := $Window/UiArea/Bottom
-onready var _dialogs := $Dialogs
-onready var _touch_buttons := $TouchButtons
-onready var _window := $Window
+@onready var _bg := $Bg
+@onready var _bottom := $Window/UiArea/Bottom
+@onready var _dialogs := $Dialogs
+@onready var _touch_buttons := $TouchButtons
+@onready var _window := $Window
 
 func _ready() -> void:
 	# starts invisible

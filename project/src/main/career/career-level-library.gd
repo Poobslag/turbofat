@@ -9,7 +9,7 @@ extends Node
 const DEFAULT_REGIONS_PATH := "res://assets/main/puzzle/career-regions.json"
 
 ## Path to the json file with the list of levels. Can be changed for tests.
-var regions_path := DEFAULT_REGIONS_PATH setget set_regions_path
+var regions_path := DEFAULT_REGIONS_PATH: set = set_regions_path
 
 ## List of CareerRegion instances containing region and level data, sorted by distance
 var regions: Array = []
@@ -258,7 +258,9 @@ func _load_raw_json_data() -> void:
 	regions.clear()
 	
 	var worlds_text := FileUtils.get_file_as_text(regions_path)
-	var worlds_json: Dictionary = parse_json(worlds_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(worlds_text)
+	var worlds_json: Dictionary = test_json_conv.get_data()
 	for region_json in worlds_json.get("regions", []):
 		var region := CareerRegion.new()
 		region.from_json_dict(region_json)

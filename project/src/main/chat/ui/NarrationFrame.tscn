@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/chat/ui/label-typer.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/chat/ui/frame-pop-out.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/main/chat/ui/frame-pop-in.wav" type="AudioStream" id=4]
-[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="FontFile" id=5]
 [ext_resource path="res://src/main/chat/ui/ChatPopTween.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/chat/ui/narration-frame.gd" type="Script" id=7]
 [ext_resource path="res://assets/main/chat/ui/bebebe.wav" type="AudioStream" id=8]
@@ -13,12 +13,12 @@
 [node name="NarrationFrame" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 400.0
-rect_pivot_offset = Vector2( 362, 79 )
+offset_top = 400.0
+pivot_offset = Vector2( 362, 79 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "Defines the extents of the chat area."
+"_editor_description_": "Defines the size of the chat area."
 }
 
 [node name="PopTween" parent="." instance=ExtResource( 6 )]
@@ -26,20 +26,20 @@ __meta__ = {
 [node name="NarrationPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
-custom_styles/panel = ExtResource( 1 )
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_styles/panel = ExtResource( 1 )
 script = ExtResource( 9 )
 
 [node name="NarrationLabel" type="Label" parent="NarrationPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_right = -20.0
-custom_colors/font_color = Color( 0.94902, 0.831373, 0.584314, 1 )
-custom_fonts/font = ExtResource( 5 )
+offset_left = 20.0
+offset_right = -20.0
+theme_override_colors/font_color = Color( 0.94902, 0.831373, 0.584314, 1 )
+theme_override_fonts/font = ExtResource( 5 )
 text = "Most of the Turbo Fat locations gradually developed a loyal following of hungry customers, except for Merrymellow Marsh where business was unusually slow. Fat Sensei and Spira were on their way to get to the bottom of this mystery."
 align = 1
 valign = 1

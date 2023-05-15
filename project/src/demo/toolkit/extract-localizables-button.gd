@@ -9,7 +9,7 @@ extends Button
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
 const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
 
-export (NodePath) var output_label_path: NodePath
+@export (NodePath) var output_label_path: NodePath
 
 ## localizable strings extracted from levels and chats
 var _localizables := []
@@ -18,7 +18,7 @@ var _localizables := []
 var _scancode_localizables := []
 
 ## label for outputting messages to the user
-onready var _output_label := get_node(output_label_path)
+@onready var _output_label := get_node(output_label_path)
 
 ## Extracts localizable strings from levels and chats and writes them to a file.
 func _extract_and_write_localizables() -> void:
@@ -109,13 +109,13 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 						push_warning("Invalid token count for set_phrase call. Expected 2 but was %s"
 								% [args.size()])
 					
-					_localizables.append(PoolStringArray(args.slice(1, args.size())).join(" "))
+					_localizables.append(PackedStringArray(args.slice(1, args." ".join(size()))))
 				"default_phrase":
 					if args.size() < 2:
 						push_warning("Invalid token count for default_phrase call. Expected 2 but was %s"
 								% [args.size()])
 					
-					_localizables.append(PoolStringArray(args.slice(1, args.size())).join(" "))
+					_localizables.append(PackedStringArray(args.slice(1, args." ".join(size()))))
 
 
 ## Extract localizables from OS.get_scancode_string()
@@ -125,13 +125,13 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 func _extract_localizables_from_scancode_strings() -> void:
 	# ascii printable characters: space, comma, period, slash...
 	for i in range(256):
-		var scancode_string := OS.get_scancode_string(i)
+		var scancode_string := OS.get_keycode_string(i)
 		if scancode_string.length() > 1:
 			_scancode_localizables.append(scancode_string)
 	
 	# non-ascii printable characters: F1, left, caps lock...
 	for i in range(16777217, 16777359):
-		var scancode_string := OS.get_scancode_string(i)
+		var scancode_string := OS.get_keycode_string(i)
 		if scancode_string.length() > 1:
 			_scancode_localizables.append(scancode_string)
 
@@ -143,7 +143,7 @@ func _write_localizables(output_path: String, localizables: Array) -> void:
 	f.store_string("# Localizable strings extracted by LocalizationDemo.tscn\n")
 	for localizable_string_obj in localizables:
 		var localizable_string: String = localizable_string_obj
-		if localizable_string.empty():
+		if localizable_string.is_empty():
 			continue
 		
 		var sanitized_string := localizable_string

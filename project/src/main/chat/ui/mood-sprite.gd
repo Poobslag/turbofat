@@ -2,7 +2,7 @@ extends Control
 ## Shows a little 'happy face' icon next to each chat choice.
 
 ## location of the mood icon; the right or left side of the chat window
-export (bool) var mood_right: bool setget set_mood_right
+@export (bool) var mood_right: bool: set = set_mood_right
 
 var textures := {
 	Creatures.Mood.DEFAULT: preload("res://assets/main/chat/ui/choice-mood-default.png"),
@@ -45,25 +45,25 @@ var textures := {
 ## 		mood being shown.
 func set_mood(new_mood: int) -> void:
 	if textures.has(new_mood):
-		$Texture.texture = textures[new_mood]
+		$Texture2D.texture = textures[new_mood]
 	else:
-		$Texture.texture = null
+		$Texture2D.texture = null
 
 
 ## Sets the location of the mood icon.
 func set_mood_right(new_mood_right: bool) -> void:
 	mood_right = new_mood_right
 	if mood_right:
-		$Texture.rect_rotation = 8
+		$Texture2D.rotation = 8
 		anchor_left = 1
 		anchor_right = 1
-		margin_left = -18
-		margin_top = 1 + randi() % 16
+		offset_left = -18
+		offset_top = 1 + randi() % 16
 	else:
-		$Texture.rect_rotation = -8
+		$Texture2D.rotation = -8
 		anchor_left = 0
 		anchor_right = 0
-		margin_left = -11
-		margin_top = 4 + randi() % 16
-	margin_right = margin_left + 28
-	margin_bottom = margin_top + 28
+		offset_left = -11
+		offset_top = 4 + randi() % 16
+	offset_right = offset_left + 28
+	offset_bottom = offset_top + 28

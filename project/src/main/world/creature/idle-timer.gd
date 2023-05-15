@@ -31,22 +31,22 @@ const IDLE_ANIMS := [
 ]
 
 ## animationplayer which is monitored to see if the creature is in the 'ambient' state
-export (NodePath) var emote_player_path: NodePath
+@export (NodePath) var emote_player_path: NodePath
 
-export (NodePath) var creature_visuals_path: NodePath
+@export (NodePath) var creature_visuals_path: NodePath
 
-onready var _emote_player: AnimationPlayer = get_node(emote_player_path)
+@onready var _emote_player: AnimationPlayer = get_node(emote_player_path)
 
-onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
+@onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
-	_emote_player.connect("animation_started", self, "_on_EmotePlayer_animation_started")
-	_emote_player.connect("animation_stopped", self, "_on_EmotePlayer_animation_stopped")
-	_emote_player.connect("animation_changed", self, "_on_EmotePlayer_animation_changed")
-	_emote_player.connect("animation_finished", self, "_on_EmotePlayer_animation_finished")
-	_creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
-	_creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
-	connect("timeout", self, "_on_timeout")
+	_emote_player.connect("animation_started", Callable(self, "_on_EmotePlayer_animation_started"))
+	_emote_player.connect("animation_stopped", Callable(self, "_on_EmotePlayer_animation_stopped"))
+	_emote_player.connect("animation_changed", Callable(self, "_on_EmotePlayer_animation_changed"))
+	_emote_player.connect("animation_finished", Callable(self, "_on_EmotePlayer_animation_finished"))
+	_creature_visuals.connect("talking_changed", Callable(self, "_on_CreatureVisuals_talking_changed"))
+	_creature_visuals.connect("movement_mode_changed", Callable(self, "_on_CreatureVisuals_movement_mode_changed"))
+	connect("timeout", Callable(self, "_on_timeout"))
 	
 	_update_state(true)
 
@@ -75,7 +75,7 @@ func stop_idle_animation() -> void:
 ## If the current animation is not 'ambient' state, the timer pauses and does not launch idle animations.
 func _update_state(start: bool = false) -> void:
 	if start:
-		start(rand_range(IDLE_FREQUENCY * 0.5, IDLE_FREQUENCY * 1.5))
+		start(randf_range(IDLE_FREQUENCY * 0.5, IDLE_FREQUENCY * 1.5))
 	if _emote_player.current_animation != "ambient":
 		# no idle animations when emoting
 		paused = true

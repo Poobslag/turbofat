@@ -5,9 +5,9 @@ extends Node
 const REGIONS_BEFORE := 2
 const REGIONS_AFTER := 3
 
-export (NodePath) var map_path: NodePath
+@export (NodePath) var map_path: NodePath
 
-onready var _map: ChalkboardMapRow = get_node(map_path)
+@onready var _map: ChalkboardMapRow = get_node(map_path)
 
 func _ready() -> void:
 	# calculate the values needed to update the chalkboard map

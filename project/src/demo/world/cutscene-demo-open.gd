@@ -13,15 +13,15 @@ signal valid_changed
 
 ## Cutscene to open
 ## Virtual property; value is only exposed through getters/setters
-var value: String setget set_value, get_value
+var value: String: get = get_value, set = set_value
 
 ## False if the player selects an invalid chat path.
 ##
 ## Invalid chat path could be a file which doesn't exist, doesn't have the correct suffix, or isn't in the
 ## expected location.
-var valid: bool setget ,is_valid
+var valid: bool: get = is_valid
 
-onready var _line_edit := $LineEdit
+@onready var _line_edit := $LineEdit
 
 func is_valid() -> bool:
 	return valid

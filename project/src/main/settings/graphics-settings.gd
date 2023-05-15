@@ -14,11 +14,11 @@ enum FeedingAnimation {
 }
 
 ## enum from CreatureDetail describing how detailed the creatures should look
-var creature_detail: int = _default_creature_detail() setget set_creature_detail
+var creature_detail: int = _default_creature_detail(): set = set_creature_detail
 
-var feeding_animation: int = _default_feeding_animation() setget set_feeding_animation
+var feeding_animation: int = _default_feeding_animation(): set = set_feeding_animation
 
-var use_vsync: bool = _default_use_vsync() setget set_use_vsync
+var use_vsync: bool = _default_use_vsync(): set = set_use_vsync
 
 func set_creature_detail(new_creature_detail: int) -> void:
 	if creature_detail == new_creature_detail:
@@ -29,7 +29,7 @@ func set_creature_detail(new_creature_detail: int) -> void:
 
 func set_use_vsync(new_use_vsync: bool) -> void:
 	use_vsync = new_use_vsync
-	OS.set_use_vsync(new_use_vsync)
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if (new_use_vsync) else DisplayServer.VSYNC_DISABLED)
 
 
 func set_feeding_animation(new_feeding_animation: int) -> void:

@@ -10,7 +10,7 @@ const BASE_SPEED := 92.0
 const LETTERS := ["タ", "ル", "ボ", "フ", "ト"]
 
 ## How fast the letter should move relative to the base speed. 1.0 = 100% speed. 0.0 = 0% speed.
-export (float) var speed_scale := 1.0
+@export (float) var speed_scale := 1.0
 
 ## Direction the letter should move, in radians
 var angle := 0.0
@@ -29,9 +29,9 @@ var speed := BASE_SPEED
 ##
 ## 	'init_angle': The approximate direction the letter should move, in radians
 func initialize(init_index: int, init_position: Vector2, init_angle: float) -> void:
-	position = init_position + Vector2(rand_range(-4.0, 4.0), rand_range(-4.0, 4.0))
-	angle = init_angle + rand_range(0.04, 0.10) * (1.0 if init_index % 2 == 0 else -1.0)
-	speed = BASE_SPEED * rand_range(0.92, 1.08)
+	position = init_position + Vector2(randf_range(-4.0, 4.0), randf_range(-4.0, 4.0))
+	angle = init_angle + randf_range(0.04, 0.10) * (1.0 if init_index % 2 == 0 else -1.0)
+	speed = BASE_SPEED * randf_range(0.92, 1.08)
 	$Letter.text = LETTERS[init_index % LETTERS.size()]
 
 

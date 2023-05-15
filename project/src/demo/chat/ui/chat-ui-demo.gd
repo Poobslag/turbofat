@@ -56,7 +56,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			if Input.is_key_pressed(KEY_CONTROL):
+			if Input.is_key_pressed(KEY_CTRL):
 				_choice_override = CHOICES[Utils.key_num(event)]
 			else:
 				_text_override = CHAT_LINE[Utils.key_num(event)]

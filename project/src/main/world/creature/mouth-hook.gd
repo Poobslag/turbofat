@@ -1,9 +1,9 @@
 extends Node2D
 ## Defines the position so that words and food can target the creature's mouth.
 
-var creature_visuals: CreatureVisuals setget set_creature_visuals
+var creature_visuals: CreatureVisuals: set = set_creature_visuals
 
-var elevation: float setget set_elevation
+var elevation: float: set = set_elevation
 
 func _ready() -> void:
 	_connect_creature_visuals_listeners()
@@ -17,7 +17,7 @@ func set_elevation(new_elevation: float) -> void:
 
 func set_creature_visuals(new_creature_visuals: CreatureVisuals) -> void:
 	if creature_visuals:
-		creature_visuals.disconnect("head_moved", self, "_on_CreatureVisuals_head_moved")
+		creature_visuals.disconnect("head_moved", Callable(self, "_on_CreatureVisuals_head_moved"))
 	creature_visuals = new_creature_visuals
 	_connect_creature_visuals_listeners()
 
@@ -26,7 +26,7 @@ func _connect_creature_visuals_listeners() -> void:
 	if not creature_visuals:
 		return
 	
-	creature_visuals.connect("head_moved", self, "_on_CreatureVisuals_head_moved")
+	creature_visuals.connect("head_moved", Callable(self, "_on_CreatureVisuals_head_moved"))
 
 
 ## Reposition the icon next to the creature's head.

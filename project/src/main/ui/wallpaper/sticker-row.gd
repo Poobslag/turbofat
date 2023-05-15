@@ -3,13 +3,13 @@ extends Control
 ## Row of wallpaper sprites which slowly scroll by.
 
 ## scroll velocity. only the x component is used
-export (PackedScene) var StickerScene: PackedScene
-export (Vector2) var velocity: Vector2 setget set_velocity
-export (Color) var color: Color
+@export (PackedScene) var StickerScene: PackedScene
+@export (Vector2) var velocity: Vector2: set = set_velocity
+@export (Color) var color: Color
 
 ## sprite textures. we alternate between these textures and flip them horizontally. the second texture is optional.
-export (Texture) var texture_0: Texture setget set_texture_0
-export (Texture) var texture_1: Texture setget set_texture_1
+@export (Texture2D) var texture_0: Texture2D: set = set_texture_0
+@export (Texture2D) var texture_1: Texture2D: set = set_texture_1
 var _textures: Array
 var _texture_index := 0
 
@@ -17,7 +17,7 @@ var _texture_index := 0
 var _blank_texture_countdown := randi() % 7
 
 ## sticker furthest back in the row. when it moves enough a new sticker is created to take its place
-var _back_sticker: Sprite
+var _back_sticker: Sprite2D
 
 func _physics_process(delta: float) -> void:
 	if velocity == Vector2.ZERO:
@@ -27,18 +27,18 @@ func _physics_process(delta: float) -> void:
 	# recalculate the back sticker
 	if get_child_count() and not _back_sticker:
 		var children := get_children()
-		if is_inside_tree() and not children.empty():
+		if is_inside_tree() and not children.is_empty():
 			_back_sticker = children[0]
 			for child_obj in children:
-				var child: Sprite = child_obj
+				var child: Sprite2D = child_obj
 				if velocity.x < 0 and child.position.x > _back_sticker.position.x:
 					_back_sticker = child
 				elif velocity.x > 0 and child.position.x < _back_sticker.position.x:
 					_back_sticker = child
 	
 	# add stickers if we need more
-	if rect_size.y == 0:
-		push_warning("Illegal sticker row rect size (%s)" % [rect_size])
+	if size.y == 0:
+		push_warning("Illegal sticker row rect size (%s)" % [size])
 	elif velocity.x == 0:
 		push_warning("Illegal velocity (%s)" % [velocity])
 	else:
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 			while not _back_sticker or _back_sticker.position.x > 0:
 				_add_sticker()
 		elif velocity.x < 0:
-			while not _back_sticker or _back_sticker.position.x < rect_size.x + rect_size.x:
+			while not _back_sticker or _back_sticker.position.x < size.x + size.x:
 				_add_sticker()
 	
 	# remove stickers if we have too many
@@ -54,19 +54,19 @@ func _physics_process(delta: float) -> void:
 		var child: Sticker = child_obj
 		child.position += delta * velocity
 		if velocity.x > 0:
-			if child.position.x > rect_size.x + rect_size.y:
+			if child.position.x > size.x + size.y:
 				child.queue_free()
 		if velocity.x < 0:
-			if child.position.x < 0 - rect_size.x * 2:
+			if child.position.x < 0 - size.x * 2:
 				child.queue_free()
 
 
-func set_texture_0(new_texture_0: Texture) -> void:
+func set_texture_0(new_texture_0: Texture2D) -> void:
 	texture_0 = new_texture_0
 	_refresh_textures()
 
 
-func set_texture_1(new_texture_1: Texture) -> void:
+func set_texture_1(new_texture_1: Texture2D) -> void:
 	texture_1 = new_texture_1
 	_refresh_textures()
 
@@ -81,26 +81,26 @@ func set_velocity(new_velocity: Vector2) -> void:
 ##
 ## The new sticker is placed behind the back sticker.
 func _add_sticker() -> void:
-	var new_sticker: Sticker = StickerScene.instance()
+	var new_sticker: Sticker = StickerScene.instantiate()
 	
 	if _blank_texture_countdown == 0:
 		_blank_texture_countdown = Utils.randi_range(2, 6)
 	else:
 		_blank_texture_countdown -= 1
 		new_sticker.texture = _textures[_texture_index]
-	new_sticker.base_scale = Vector2(rect_size.y / 256.0, rect_size.y / 256.0)
+	new_sticker.base_scale = Vector2(size.y / 256.0, size.y / 256.0)
 	if velocity.x > 0:
 		if _back_sticker == null:
-			new_sticker.position.x = rect_size.x
+			new_sticker.position.x = size.x
 		else:
-			new_sticker.position.x = _back_sticker.position.x - rect_size.y * 2
+			new_sticker.position.x = _back_sticker.position.x - size.y * 2
 	else:
 		if _back_sticker == null:
 			new_sticker.position.x = 0
 		else:
-			new_sticker.position.x = _back_sticker.position.x + rect_size.y * 2
-	new_sticker.position.y = rect_size.y * 0.5
-	new_sticker.position.x += rand_range(-0.2, 0.2) * rect_size.y
+			new_sticker.position.x = _back_sticker.position.x + size.y * 2
+	new_sticker.position.y = size.y * 0.5
+	new_sticker.position.x += randf_range(-0.2, 0.2) * size.y
 	
 	new_sticker.flip_h = randf() > 0.5
 	new_sticker.modulate = color

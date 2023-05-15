@@ -7,7 +7,7 @@ extends Node
 ## index of the next AudioStreamPlayer to use
 var _splat_player_index := 0
 
-onready var _splat_sfx := [
+@onready var _splat_sfx := [
 	preload("res://assets/main/puzzle/goop-splat0.wav"),
 	preload("res://assets/main/puzzle/goop-splat1.wav"),
 	preload("res://assets/main/puzzle/goop-splat2.wav"),
@@ -17,7 +17,7 @@ onready var _splat_sfx := [
 ]
 
 ## AudioStreamPlayers to use. We cycle between multiple players to handle concurrent sound effects
-onready var _splat_players := [
+@onready var _splat_players := [
 	$SplatPlayer0,
 	$SplatPlayer1,
 	$SplatPlayer2,
@@ -29,8 +29,8 @@ onready var _splat_players := [
 func _play_sfx(glob_alpha: float, max_volume: float) -> void:
 	var player: AudioStreamPlayer = _splat_players[_splat_player_index]
 	player.stream = Utils.rand_value(_splat_sfx)
-	player.pitch_scale = rand_range(1.90, 2.10)
-	player.volume_db = rand_range(max_volume, max_volume - 8.0)
+	player.pitch_scale = randf_range(1.90, 2.10)
+	player.volume_db = randf_range(max_volume, max_volume - 8.0)
 	if glob_alpha < 0.7:
 		player.pitch_scale += 0.5
 		player.volume_db -= 6.0

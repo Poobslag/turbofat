@@ -21,7 +21,7 @@ enum ChatLineSize {
 	XL # 3 lines at 100% capacity
 }
 
-const DEFAULT_COLOR := Color.gray
+const DEFAULT_COLOR := Color.GRAY
 const DEFAULT_ACCENT_SCALE := 8.0
 const DEFAULT_ACCENT_AMOUNT_DARK := 0.24
 const DEFAULT_ACCENT_AMOUNT_LIGHT := 0.18
@@ -48,26 +48,26 @@ var accent_swapped: bool
 var accent_texture_index: int
 
 ## Color of the chat window
-var color: Color = DEFAULT_COLOR setget set_color
+var color: Color = DEFAULT_COLOR: set = set_color
 
 ## If 'true', the backgrond will be black instead of white
-var dark: bool setget set_dark
+var dark: bool: set = set_dark
 
 ## Color for the nametag font; black or white.
 ## virtual property; value is only exposed through getters/setters
-var nametag_font_color setget ,get_nametag_font_color
+var nametag_font_color : get = get_nametag_font_color
 
 ## Scale of the accent's background texture
 ## virtual property; value is only exposed through getters/setters
-var accent_color: Color setget ,get_accent_color
+var accent_color: Color: get = get_accent_color
 
 ## Color for the frame border, nametag background and text.
 ## virtual property; value is only exposed through getters/setters
-var border_color: Color setget ,get_border_color
+var border_color: Color: get = get_border_color
 
 ## Opacity of the accent's background texture.
 ## virtual property; value is only exposed through getters/setters
-var accent_amount: float setget ,get_accent_amount
+var accent_amount: float: get = get_accent_amount
 
 func from_json_dict(dict: Dictionary) -> void:
 	accent_scale = dict.get("accent_scale", DEFAULT_ACCENT_SCALE)
@@ -101,7 +101,7 @@ func to_json_dict() -> Dictionary:
 
 
 func get_nametag_font_color() -> Color:
-	return Color.black if dark else Color.white
+	return Color.BLACK if dark else Color.WHITE
 
 
 func get_accent_amount() -> float:

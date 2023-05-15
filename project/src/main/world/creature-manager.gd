@@ -3,11 +3,11 @@ extends Node
 
 ## Player's sprite
 ## virtual property; value is only exposed through getters/setters
-var player: Creature setget ,get_player
+var player: Creature: get = get_player
 
 ## Sensei's sprite
 ## virtual property; value is only exposed through getters/setters
-var sensei: Creature setget ,get_sensei
+var sensei: Creature: get = get_sensei
 
 
 ## Returns the Creature object corresponding to the specified creature id.

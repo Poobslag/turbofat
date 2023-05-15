@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/puzzle/food-item.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/puzzle/food/food-packed.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/puzzle/food/food-packed.png" type="Texture2D" id=2]
 
 [sub_resource type="Animation" id=2]
 resource_name = "RESET"
@@ -12,8 +12,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -24,8 +24,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
@@ -36,8 +36,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.999999 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.999999 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0 ]
 }
@@ -53,8 +53,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.051, 0.133333, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.051, 0.133333, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.6, 0.6 ), Vector2( 0.9, 1.5 ), Vector2( 1.5, 0.9 ), Vector2( 1, 1 ) ]
 }
@@ -63,7 +63,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"
-rect_size = Vector2( 128, 128 )
+size = Vector2( 128, 128 )
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

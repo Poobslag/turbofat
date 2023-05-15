@@ -14,34 +14,34 @@ const ANIMATED_HIDE_DELAY := 1.2
 const STATIC_HIDE_DELAY := 2.0
 
 ## If 'true', the board will not hide itself. Used for demos/debugging.
-export (bool) var suppress_hide := false
+@export (bool) var suppress_hide := false
 
 ## Backdrop which darkens parts of the scene behind the progress board.
-onready var _backdrop := $Backdrop
+@onready var _backdrop := $Backdrop
 
 ## Analog clock and digital text which appear above the progress board.
-onready var _clock := $Clock
+@onready var _clock := $Clock
 
 ## Timer which hides the progress board.
-onready var _hide_timer := $HideTimer
+@onready var _hide_timer := $HideTimer
 
 ## Timer which triggers the animation of the player advancing and clock moving forward.
-onready var _animate_start_timer := $AnimateStartTimer
+@onready var _animate_start_timer := $AnimateStartTimer
 
 ## Spots and lines drawn to show a trail across the progress board.
-onready var _trail := $ChalkboardRegion/Trail
+@onready var _trail := $ChalkboardRegion/Trail
 
 ## Title at the top of the progress board.
-onready var _title := $ChalkboardRegion/Title
+@onready var _title := $ChalkboardRegion/Title
 
 ## Player's chalk graphics on the progress board.
-onready var _player := $ChalkboardRegion/Player
+@onready var _player := $ChalkboardRegion/Player
 
 ## Chalk drawing of the region.
-onready var _map_holder := $ChalkboardRegion/MapHolder
+@onready var _map_holder := $ChalkboardRegion/MapHolder
 
 ## Animation player which makes the progress board 'pop in' and 'pop out' animations.
-onready var _show_animation_player := $ShowAnimationPlayer
+@onready var _show_animation_player := $ShowAnimationPlayer
 
 func _ready() -> void:
 	show_progress()

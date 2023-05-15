@@ -413,7 +413,7 @@ class InsertLineEffect extends LevelTriggerEffect:
 			1:
 				result["tiles_key"] = tiles_keys[0]
 			_:
-				result["tiles_keys"] = PoolStringArray(tiles_keys).join(",")
+				result["tiles_keys"] = ",".join(PackedStringArray(tiles_keys))
 		if y != PuzzleTileMap.ROW_COUNT - 1:
 			result["y"] = str(ConfigStringUtils.invert_puzzle_row_index(y))
 		if count != 1:

@@ -1,12 +1,12 @@
-extends Particles2D
+extends GPUParticles2D
 ## Manages the sweat drops which slide down the creature's body.
 
-export var creature_visuals_path: NodePath
+@export var creature_visuals_path: NodePath
 
-onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
+@onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
-	_creature_visuals.connect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
+	_creature_visuals.connect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:

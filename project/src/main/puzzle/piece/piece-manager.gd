@@ -52,8 +52,8 @@ const TILE_MAP_DEFAULT_Z_INDEX := 3
 ## z index the piece manager's tilemap switches to temporarily when topping out
 const TILE_MAP_TOP_OUT_Z_INDEX := 4
 
-export (NodePath) var playfield_path: NodePath
-export (NodePath) var piece_queue_path: NodePath
+@export (NodePath) var playfield_path: NodePath
+@export (NodePath) var piece_queue_path: NodePath
 
 ## settings and state for the currently active piece.
 var piece: ActivePiece
@@ -64,25 +64,25 @@ var drawn_piece_pos: Vector2
 var drawn_piece_orientation: int
 
 ## TileMap containing the puzzle blocks which make up the active piece
-onready var tile_map: PuzzleTileMap = $TileMap
-onready var input: PieceInput = $Input
-onready var tech_move_detector: TechMoveDetector = $TechMoveDetector
+@onready var tile_map: PuzzleTileMap = $TileMap
+@onready var input: PieceInput = $Input
+@onready var tech_move_detector: TechMoveDetector = $TechMoveDetector
 
-onready var _physics: PiecePhysics = $Physics
-onready var _playfield: Playfield = get_node(playfield_path)
-onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
-onready var states: PieceStates = $States
+@onready var _physics: PiecePhysics = $Physics
+@onready var _playfield: Playfield = get_node(playfield_path)
+@onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
+@onready var states: PieceStates = $States
 
 func _ready() -> void:
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
-	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("topping_out_changed", self, "_on_PuzzleState_topping_out_changed")
-	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
+	PuzzleState.connect("before_level_changed", Callable(self, "_on_PuzzleState_before_level_changed"))
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	PuzzleState.connect("finish_triggered", Callable(self, "_on_PuzzleState_finish_triggered"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.connect("topping_out_changed", Callable(self, "_on_PuzzleState_topping_out_changed"))
+	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
 	
 	_clear_piece()
 	

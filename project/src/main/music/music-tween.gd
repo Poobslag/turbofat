@@ -39,9 +39,9 @@ func _fade(player: AudioStreamPlayer, new_volume_db: float, duration: float) -> 
 	if _tweens_by_song.has(player):
 		_tweens_by_song[player].kill()
 	_tweens_by_song[player] = create_tween()
-	var fade_tween: SceneTreeTween = _tweens_by_song[player]
+	var fade_tween: Tween = _tweens_by_song[player]
 	fade_tween.tween_property(player, "volume_db", new_volume_db, duration)
-	fade_tween.tween_callback(self, "_on_Tween_completed", [player])
+	fade_tween.tween_callback(Callable(self, "_on_Tween_completed").bind(player))
 
 
 ## When a music track is faded out, we stop it from playing.

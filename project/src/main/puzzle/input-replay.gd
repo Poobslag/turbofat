@@ -12,8 +12,8 @@ var _pressed_actions: Dictionary
 var action_timings: Dictionary
 
 ## Returns true if there is no replay data.
-func empty() -> bool:
-	return action_timings.empty()
+func is_empty() -> bool:
+	return action_timings.is_empty()
 
 
 ## Clears the replay data, removing all action timings.
@@ -66,4 +66,4 @@ func to_json_array() -> Array:
 ##
 ## Note: This method is called 'is_default' for consistency with other similar methods related to LevelSettings.
 func is_default() -> bool:
-	return action_timings.empty()
+	return action_timings.is_empty()

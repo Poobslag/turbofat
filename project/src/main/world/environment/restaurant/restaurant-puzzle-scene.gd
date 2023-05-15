@@ -7,16 +7,16 @@ signal food_eaten(food_type)
 signal current_customer_index_changed(value)
 
 ## index of the customer being served
-var current_customer_index := 0 setget set_current_customer_index
+var current_customer_index := 0: set = set_current_customer_index
 
-onready var _world := $World
-onready var _door_chime := $DoorChime
+@onready var _world := $World
+@onready var _door_chime := $DoorChime
 
 func _ready() -> void:
 	for customer_obj in _world.customers:
 		var customer: Creature = customer_obj
-		customer.connect("food_eaten", self, "_on_Creature_food_eaten")
-		customer.connect("dna_loaded", _door_chime, "_on_CreatureVisuals_dna_loaded")
+		customer.connect("food_eaten", Callable(self, "_on_Creature_food_eaten"))
+		customer.connect("dna_loaded", Callable(_door_chime, "_on_CreatureVisuals_dna_loaded"))
 
 
 func set_current_customer_index(new_index: int) -> void:

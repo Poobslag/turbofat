@@ -5,18 +5,18 @@ extends Node2D
 ## This code is identical to the daytime pickup, but without the logic for cycling between different colors. Onion
 ## pickups are always light blue.
 
-var food_type := 0 setget set_food_type
+var food_type := 0: set = set_food_type
 
 ## 'true' if the food item should be shown, 'false' if the star or seed should be shown
-var food_shown: bool = false setget set_food_shown
+var food_shown: bool = false: set = set_food_shown
 
 ## array of Colors the star should cycle between
 var _star_colors: Array = []
 var _star_color_index := 0
 
-onready var _seed := $Seed
-onready var _star := $Star
-onready var _food_item := $FoodItem
+@onready var _seed := $Seed
+@onready var _star := $Star
+@onready var _food_item := $FoodItem
 
 func _ready() -> void:
 	_seed.visible = true

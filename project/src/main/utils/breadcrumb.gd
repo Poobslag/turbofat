@@ -33,7 +33,7 @@ func pop_trail() -> void:
 	emit_signal("trail_popped", prev_path)
 	if not "::" in prev_path:
 		# '::' is used as a separator for breadcrumb items which do not result in a scene change
-		change_scene()
+		change_scene_to_file()
 
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail.
@@ -44,7 +44,7 @@ func pop_trail() -> void:
 func push_trail(path: String) -> void:
 	trail.push_front(path)
 	if not "::" in path:
-		change_scene()
+		change_scene_to_file()
 
 
 ## Stays at the current level in the breadcrumb trail, but replaces the current navigation path.
@@ -56,11 +56,11 @@ func replace_trail(path: String) -> void:
 	trail.pop_front()
 	trail.push_front(path)
 	if not "::" in path:
-		change_scene()
+		change_scene_to_file()
 
 
 ## Changes the running scene to the one at the front of the breadcrumb trail.
-func change_scene() -> void:
+func change_scene_to_file() -> void:
 	emit_signal("before_scene_changed")
 	var scene_path: String
 	if trail:
@@ -70,4 +70,4 @@ func change_scene() -> void:
 		# exit to loading screen and load all resources
 		ResourceCache.minimal_resources = false
 		scene_path = "res://src/main/ui/menu/LoadingScreen.tscn"
-	get_tree().change_scene_to(ResourceCache.get_resource(scene_path))
+	get_tree().change_scene_to_packed(ResourceCache.get_resource(scene_path))

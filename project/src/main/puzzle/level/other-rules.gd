@@ -46,9 +46,9 @@ func _init() -> void:
 	_rule_parser.add_bool("enhance_combo_fx")
 	_rule_parser.add_bool("non_interactive")
 	_rule_parser.add_enum("suppress_piece_rotation", SuppressPieceRotation) \
-			.implied(SuppressPieceRotation.ROTATION)
+			super.implied(SuppressPieceRotation.ROTATION)
 	_rule_parser.add_enum("suppress_piece_initial_rotation", SuppressPieceRotation) \
-			.implied(SuppressPieceRotation.ROTATION)
+			super.implied(SuppressPieceRotation.ROTATION)
 	_rule_parser.add_bool("skip_intro")
 	_rule_parser.add_string("start_level")
 	_rule_parser.add_enum("tile_set", PuzzleTileMap.TileSetType)

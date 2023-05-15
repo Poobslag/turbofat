@@ -3,10 +3,10 @@ extends HBoxContainer
 
 func _ready() -> void:
 	if PlayerData.creature_library.forced_fatness:
-		$CheckBox.pressed = true
+		$CheckBox.button_pressed = true
 		$HSlider.value = PlayerData.creature_library.forced_fatness
 	else:
-		$CheckBox.pressed = false
+		$CheckBox.button_pressed = false
 		$HSlider.value = 10.0
 	
 	_refresh()

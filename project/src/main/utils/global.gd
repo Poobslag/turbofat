@@ -39,8 +39,8 @@ const FATNESSES := [
 const ISO_FACTOR := Vector2(1.0, 0.5)
 
 ## Game's main viewport width, as specified in the project settings
-var window_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/width"), \
-		ProjectSettings.get_setting("display/window/size/height"))
+var window_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), \
+		ProjectSettings.get_setting("display/window/size/viewport_height"))
 
 ## Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()

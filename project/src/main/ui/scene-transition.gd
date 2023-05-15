@@ -27,12 +27,12 @@ const TYPE_DEFAULT := TransitionType.DEFAULT
 const TYPE_PUZZLE := TransitionType.PUZZLE
 const TYPE_NONE := TransitionType.NONE
 
-onready var _animation_player: AnimationPlayer = $AnimationPlayer
-onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-onready var _mask: Node = $MaskHolder/Mask
+@onready var _animation_player: AnimationPlayer = $AnimationPlayer
+@onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var _mask: Node = $MaskHolder/Mask
 
 ## Color to fade to during scene transitions.
-var fade_color: Color = ProjectSettings.get_setting("rendering/environment/default_clear_color")
+var fade_color: Color = ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color")
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail after a scene transition.
 ##
@@ -71,12 +71,12 @@ func replace_trail(path: String, flags: Dictionary = {}) -> void:
 ##
 ## Parameters:
 ## 	'flags': Flags which affect the scene transition's duration and appearance
-func change_scene(flags: Dictionary = {}) -> void:
+func change_scene_to_file(flags: Dictionary = {}) -> void:
 	if flags.get(FLAG_TYPE) == TransitionType.NONE \
 			or not get_tree().get_nodes_in_group("scene_transition_covers"):
-		Breadcrumb.change_scene()
+		Breadcrumb.change_scene_to_file()
 	else:
-		fade_out(flags, funcref(Breadcrumb, "change_scene"), [])
+		fade_out(flags, funcref(Breadcrumb, "change_scene_to_file"), [])
 
 
 ## Navigates back one level in the breadcrumb trail after a scene transition.
@@ -102,7 +102,7 @@ func fade_in(flags: Dictionary = {}) -> void:
 	
 	# play a random part of the scene transition sound effect so it's not as repetitive
 	var max_audio_start := max(0.0, _audio_stream_player.stream.get_length() - _fade_out_duration(flags))
-	_audio_stream_player.play(rand_range(0.0, max_audio_start))
+	_audio_stream_player.play(randf_range(0.0, max_audio_start))
 	
 	emit_signal("fade_in_started")
 
@@ -117,11 +117,11 @@ func fade_out(flags: Dictionary = {}, breadcrumb_method: FuncRef = null, breadcr
 	
 	# play a random part of the scene transition sound effect so it's not as repetitive
 	var max_audio_start := max(0.0, _audio_stream_player.stream.get_length() - _fade_out_duration(flags))
-	_audio_stream_player.play(rand_range(0.0, max_audio_start))
+	_audio_stream_player.play(randf_range(0.0, max_audio_start))
 	
 	if _animation_player.is_connected(
 			"animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene"):
-		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
+		_animation_player.disconnect("animation_finished", Callable(self, "_on_AnimationPlayer_animation_finished_change_scene"))
 	_animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene", \
 			[flags, breadcrumb_method, breadcrumb_arg_array])
 	emit_signal("fade_out_started")
@@ -141,7 +141,7 @@ func _on_AnimationPlayer_animation_finished_change_scene(
 		breadcrumb_arg_array: Array = []) -> void:
 	if _animation_player.is_connected(
 			"animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene"):
-		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
+		_animation_player.disconnect("animation_finished", Callable(self, "_on_AnimationPlayer_animation_finished_change_scene"))
 	
 	if breadcrumb_method:
 		breadcrumb_method.call_funcv(breadcrumb_arg_array)

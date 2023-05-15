@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/world/environment/stool.gd" type="Script" id=1]
-[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=2]
+[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -11,16 +11,16 @@ shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/edge_fix_factor = 1.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 38, 18 )
+size = Vector2( 38, 18 )
 
-[node name="Stool" type="KinematicBody2D" groups=["stools"]]
+[node name="Stool" type="CharacterBody2D" groups=["stools"]]
 script = ExtResource( 1 )
 __meta__ = {
 "shadow_scale": 0.5
 }
 shadow_scale = 0.5
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource( 1 )
 scale = Vector2( 0.4, 0.4 )
 centered = false

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sugar-crash.ogg-a431da89c8977a693a52184bd89cd960.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bk5nbdhsbck4x"
+path="res://.godot/imported/sugar-crash.ogg-a431da89c8977a693a52184bd89cd960.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/sugar-crash.ogg"
-dest_files=[ "res://.import/sugar-crash.ogg-a431da89c8977a693a52184bd89cd960.oggstr" ]
+dest_files=["res://.godot/imported/sugar-crash.ogg-a431da89c8977a693a52184bd89cd960.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

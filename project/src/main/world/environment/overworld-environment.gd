@@ -4,16 +4,16 @@ extends Node
 
 const SCENE_EMPTY_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
-export (NodePath) var environment_shadows_path: NodePath
-export (NodePath) var obstacles_path: NodePath
-export (PackedScene) var CreatureScene: PackedScene
+@export (NodePath) var environment_shadows_path: NodePath
+@export (NodePath) var obstacles_path: NodePath
+@export (PackedScene) var CreatureScene: PackedScene
 
-onready var _obstacles: Node2D = get_node(obstacles_path)
-onready var _environment_shadows: OutdoorShadows = get_node(environment_shadows_path)
+@onready var _obstacles: Node2D = get_node(obstacles_path)
+@onready var _environment_shadows: OutdoorShadows = get_node(environment_shadows_path)
 
 ## Adds a new obstacle. The obstacle is placed below the given node in the list of children.
 func add_obstacle_below_node(node: Node2D, child_node: Node2D) -> void:
-	_obstacles.add_child_below_node(node, child_node)
+	_obstacles.add_sibling(node, child_node)
 	process_new_obstacle(child_node)
 
 
@@ -48,7 +48,7 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 ##
 ## 	'_chattable': Unused.
 func add_creature(creature_id: String = "") -> Creature:
-	var creature: Creature = CreatureScene.instance()
+	var creature: Creature = CreatureScene.instantiate()
 	creature.creature_id = creature_id
 	_obstacles.add_child(creature)
 	process_new_obstacle(creature)

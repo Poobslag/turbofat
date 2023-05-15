@@ -31,10 +31,10 @@ extends Node
 var _creature_type: int = Creatures.Type.DEFAULT
 
 ## local path to a json creature resource to demo
-export (String, FILE, "*.json") var creature_path: String
+@export (String, FILE, "*.json") var creature_path: String
 
-onready var _creature := $Creature
-onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
+@onready var _creature := $Creature
+@onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
 
 func _ready() -> void:
 	if creature_path:
@@ -42,7 +42,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_CONTROL):
+	if Input.is_key_pressed(KEY_CTRL):
 		match Utils.key_scancode(event):
 			KEY_0: _change_demographic(Creatures.Type.DEFAULT)
 			KEY_1: _change_demographic(Creatures.Type.SQUIRREL)
@@ -57,7 +57,7 @@ func _input(event: InputEvent) -> void:
 			KEY_D: _creature_animations.play_idle_animation("idle-ear-wiggle0")
 			KEY_F: _creature_animations.play_idle_animation("idle-ear-wiggle1")
 			KEY_T: _creature.talk()
-			KEY_SLASH: print(to_json(_creature.dna))
+			KEY_SLASH: print(JSON.new().stringify(_creature.dna))
 	else:
 		match Utils.key_scancode(event):
 			KEY_BRACKETLEFT, KEY_BRACKETRIGHT:

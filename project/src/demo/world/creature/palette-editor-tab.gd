@@ -2,8 +2,8 @@ class_name PaletteEditorTab
 extends VBoxContainer
 ## Tab which lets the player pick and edit different creature palettes.
 
-export (PackedScene) var PaletteButtonScene: PackedScene
-export (NodePath) var creature_editor_path: NodePath setget set_creature_editor_path
+@export (PackedScene) var PaletteButtonScene: PackedScene
+@export (NodePath) var creature_editor_path: NodePath: set = set_creature_editor_path
 
 var _rng := RandomNumberGenerator.new()
 var _creature_editor: CreatureEditor
@@ -25,10 +25,10 @@ func get_center_creature() -> Creature:
 
 
 func _add_palette(palette: Dictionary) -> void:
-	var palette_button: PaletteButton = PaletteButtonScene.instance()
+	var palette_button: PaletteButton = PaletteButtonScene.instantiate()
 	palette_button.set_palette(palette)
 	$GridContainer.add_child(palette_button)
-	palette_button.connect("pressed", self, "_on_PaletteButton_pressed", [palette])
+	palette_button.connect("pressed", Callable(self, "_on_PaletteButton_pressed").bind(palette))
 	_creature_palettes.append(palette)
 
 

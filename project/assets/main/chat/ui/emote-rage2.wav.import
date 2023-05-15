@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/emote-rage2.wav-1c8b25781ef52e18fee3e3cbe6891840.sample"
+type="AudioStreamWAV"
+uid="uid://baf0icltf1mwh"
+path="res://.godot/imported/emote-rage2.wav-1c8b25781ef52e18fee3e3cbe6891840.sample"
 
 [deps]
 
 source_file="res://assets/main/chat/ui/emote-rage2.wav"
-dest_files=[ "res://.import/emote-rage2.wav-1c8b25781ef52e18fee3e3cbe6891840.sample" ]
+dest_files=["res://.godot/imported/emote-rage2.wav-1c8b25781ef52e18fee3e3cbe6891840.sample"]
 
 [params]
 

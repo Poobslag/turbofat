@@ -9,7 +9,7 @@ extends Node
 ## [4]: Disappear
 ## [N]: Skip to night mode
 
-onready var _onion := $Onion
+@onready var _onion := $Onion
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

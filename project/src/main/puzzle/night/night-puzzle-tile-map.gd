@@ -8,10 +8,10 @@ extends TileMap
 const TILE_COLOR := Color("aed8d1")
 
 ## tilemap to synchronize with
-var source_tile_map: PuzzleTileMap setget set_source_tile_map
+var source_tile_map: PuzzleTileMap: set = set_source_tile_map
 
 ## number in the range [0, 1] which can be set to make the tilemap flash or blink.
-var whiteness := 0.0 setget set_whiteness
+var whiteness := 0.0: set = set_whiteness
 
 func _process(_delta: float) -> void:
 	if not source_tile_map:
@@ -47,4 +47,4 @@ func set_whiteness(new_whiteness: float) -> void:
 		return
 	whiteness = new_whiteness
 	
-	modulate = lerp(TILE_COLOR, Color.white, whiteness)
+	modulate = lerp(TILE_COLOR, Color.WHITE, whiteness)

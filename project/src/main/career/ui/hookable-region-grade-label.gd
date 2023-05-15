@@ -5,9 +5,9 @@ extends Node2D
 ## If a region has been cleared, we show something like 'S' or 'B+'. If it hasn't been cleared we show nothing.
 
 ## region button this grade label applies to
-var button: RegionSelectButton setget set_button
+var button: RegionSelectButton: set = set_button
 
-onready var _grade_label: GradeLabel = $GradeLabel
+@onready var _grade_label: GradeLabel = $GradeLabel
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
@@ -22,12 +22,12 @@ func set_button(new_button: RegionSelectButton) -> void:
 	
 	if button:
 		button.grade_hook.remote_path = null
-		button.disconnect("tree_exited", self, "_on_LevelSelectButton_tree_exited")
+		button.disconnect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
 	
 	button = new_button
 	
 	button.grade_hook.remote_path = button.grade_hook.get_path_to(self)
-	button.connect("tree_exited", self, "_on_LevelSelectButton_tree_exited")
+	button.connect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
 	
 	_refresh_appearance()
 

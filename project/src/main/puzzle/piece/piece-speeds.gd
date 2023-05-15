@@ -86,10 +86,10 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("FFF", 20*G,  2, 2, 7,  8, 12, 3, 3))
 	
 	current_speed = PieceSpeeds.speed("0")
-	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
 	
-	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
+	SystemData.gameplay_settings.connect("speed_changed", Callable(self, "_on_GameplaySettings_speed_changed"))
 
 
 func speed(string: String) -> PieceSpeed:

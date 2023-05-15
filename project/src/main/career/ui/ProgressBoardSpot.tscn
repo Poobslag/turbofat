@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=1]
-[ext_resource path="res://assets/main/career/ui/chalkboard-spot-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/utils/icon-outline.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/main/career/ui/chalkboard-spot-sheet.png" type="Texture2D" id=2]
 [ext_resource path="res://src/main/career/ui/progress-board-spot.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=29]
@@ -16,13 +16,13 @@ script = ExtResource( 3 )
 
 [node name="Hole" type="ColorRect" parent="."]
 visible = false
-margin_left = -9.0
-margin_top = -6.0
-margin_right = 9.0
-margin_bottom = 6.0
+offset_left = -9.0
+offset_top = -6.0
+offset_right = 9.0
+offset_bottom = 6.0
 color = Color( 0.121569, 0.0941176, 0.0941176, 1 )
 
-[node name="SpotSprite" type="Sprite" parent="."]
+[node name="SpotSprite" type="Sprite2D" parent="."]
 material = SubResource( 29 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )

@@ -13,13 +13,13 @@ const SAVE_KEY_OPEN := "level-rank-demo.open"
 
 var _rank_calculator := RankCalculator.new()
 
-onready var _error_dialog := $Dialogs/Error
-onready var _open_dialog := $Dialogs/OpenFile
-onready var _open_input := $Input/Open
-onready var _grade_input := $Input/PlayerGrade
-onready var _text_edit := $Input/Output
-onready var _demo_save := $DemoSave
-onready var _calculate_button := $Input/CalculateButton
+@onready var _error_dialog := $Dialogs/Error
+@onready var _open_dialog := $Dialogs/OpenFile
+@onready var _open_input := $Input/Open
+@onready var _grade_input := $Input/PlayerGrade
+@onready var _text_edit := $Input/Output
+@onready var _demo_save := $DemoSave
+@onready var _calculate_button := $Input/CalculateButton
 
 func _ready() -> void:
 	_load_demo_data()

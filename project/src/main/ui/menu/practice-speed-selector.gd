@@ -6,10 +6,10 @@ extends VBoxContainer
 signal speed_changed(speed)
 
 ## speeds which appear as tick mark labels
-var speed_names: Array setget set_speed_names
+var speed_names: Array: set = set_speed_names
 
 ## If true, the slider can be interacted with. If false, the value can be changed only by code.
-var editable: bool = false setget set_editable
+var editable: bool = false: set = set_editable
 
 func set_editable(new_editable: bool) -> void:
 	editable = new_editable
@@ -59,14 +59,14 @@ func _refresh_labels() -> void:
 		var name: String = name_obj
 		var label := Label.new()
 		label.text = name
-		label.align = Label.ALIGN_CENTER
+		label.align = Label.ALIGNMENT_CENTER
 		label.size_flags_horizontal = Label.SIZE_EXPAND_FILL
 		$Labels.add_child(label)
 	
 	# toggle color based on editable property
 	for i in range($Labels.get_child_count()):
 		var label: Label = $Labels.get_child(i)
-		label.set("custom_colors/font_color", Color.white if editable else Color.black)
+		label.set("theme_override_colors/font_color", Color.WHITE if editable else Color.BLACK)
 	
 	# outermost labels take up less space; this helps the ticks align better
 	if $Labels.get_child_count() > 0:

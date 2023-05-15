@@ -5,7 +5,7 @@ render_mode unshaded;
  */
 
 // Gradient used in the mapping; light and dark tones are mapped to colors in this gradient.
-uniform sampler2D gradient: hint_black;
+uniform sampler2D gradient: hint_default_black;
 
 void fragment() {
 	vec4 input_color = texture(TEXTURE, UV);

@@ -11,8 +11,8 @@
 [ext_resource path="res://src/main/ui/RegionSelectButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=11]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
-[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture2D" id=14]
 [ext_resource path="res://src/main/ui/menu/career-region-select-menu.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/menu/region-description-panel.gd" type="Script" id=16]
 [ext_resource path="res://src/main/ui/menu/region-info-panel.gd" type="Script" id=17]
@@ -39,13 +39,13 @@ corner_radius_bottom_left = 4
 [sub_resource type="InputEventAction" id=3]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=2]
+[sub_resource type="Shortcut" id=2]
 shortcut = SubResource( 3 )
 
 [node name="CareerRegionSelectMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 1024, 600 )
+custom_minimum_size = Vector2( 1024, 600 )
 script = ExtResource( 15 )
 region_buttons_path = NodePath("RegionSelect/VBoxContainer/Top/RegionButtons")
 
@@ -54,42 +54,42 @@ region_buttons_path = NodePath("RegionSelect/VBoxContainer/Top/RegionButtons")
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-custom_styles/panel = ExtResource( 11 )
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = ExtResource( 11 )
 
 [node name="RegionSelect" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
-custom_styles/panel = SubResource( 1 )
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+theme_override_styles/panel = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RegionSelect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_min_size = Vector2( -10, 0 )
-custom_constants/separation = 20
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+custom_minimum_size = Vector2( -10, 0 )
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer"]
-margin_right = 904.0
-margin_bottom = 45.0
+offset_right = 904.0
+offset_bottom = 45.0
 theme = ExtResource( 1 )
 text = "Chapter Select"
 align = 1
 
 [node name="Top" type="Control" parent="RegionSelect/VBoxContainer"]
-margin_top = 65.0
-margin_right = 904.0
-margin_bottom = 360.0
+offset_top = 65.0
+offset_right = 904.0
+offset_bottom = 360.0
 size_flags_vertical = 3
 
 [node name="RegionButtons" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Top"]
@@ -97,40 +97,40 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -452.0
-margin_top = -145.0
-margin_right = 452.0
-margin_bottom = 145.0
+offset_left = -452.0
+offset_top = -145.0
+offset_right = 452.0
+offset_bottom = 145.0
 alignment = 1
 script = ExtResource( 19 )
 RegionButtonScene = ExtResource( 10 )
 
 [node name="LeftArrow" type="Button" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
-margin_left = 374.0
-margin_top = 132.0
-margin_right = 398.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 24, 24 )
+offset_left = 374.0
+offset_top = 132.0
+offset_right = 398.0
+offset_bottom = 158.0
+custom_minimum_size = Vector2( 24, 24 )
 size_flags_vertical = 4
 theme = ExtResource( 20 )
 text = "<"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
-margin_left = 402.0
-margin_right = 502.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 0, 290 )
+offset_left = 402.0
+offset_right = 502.0
+offset_bottom = 290.0
+custom_minimum_size = Vector2( 0, 290 )
 size_flags_vertical = 3
-custom_constants/separation = 5
+theme_override_constants/separation = 5
 
 [node name="RegionButton" parent="RegionSelect/VBoxContainer/Top/RegionButtons/HBoxContainer" instance=ExtResource( 10 )]
 
 [node name="RightArrow" type="Button" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
-margin_left = 506.0
-margin_top = 132.0
-margin_right = 530.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 24, 24 )
+offset_left = 506.0
+offset_top = 132.0
+offset_right = 530.0
+offset_bottom = 158.0
+custom_minimum_size = Vector2( 24, 24 )
 size_flags_vertical = 4
 theme = ExtResource( 20 )
 text = ">"
@@ -143,35 +143,35 @@ script = ExtResource( 18 )
 GradeLabelScene = ExtResource( 3 )
 
 [node name="Bottom" type="Control" parent="RegionSelect/VBoxContainer"]
-margin_top = 380.0
-margin_right = 904.0
-margin_bottom = 480.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 380.0
+offset_right = 904.0
+offset_bottom = 480.0
+custom_minimum_size = Vector2( 0, 100 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Description" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
-margin_right = 450.0
-margin_bottom = 100.0
+offset_right = 450.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 12 )
+theme_override_styles/panel = ExtResource( 12 )
 script = ExtResource( 16 )
 
 [node name="MarginContainer" type="MarginContainer" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 5
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
-margin_left = 20.0
-margin_top = 5.0
-margin_right = 430.0
-margin_bottom = 95.0
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 430.0
+offset_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )
 align = 1
@@ -179,26 +179,26 @@ valign = 1
 autowrap = true
 
 [node name="Info" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
-margin_left = 454.0
-margin_right = 904.0
-margin_bottom = 100.0
+offset_left = 454.0
+offset_right = 904.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 12 )
+theme_override_styles/panel = ExtResource( 12 )
 script = ExtResource( 17 )
 
 [node name="MarginContainer" type="MarginContainer" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 5
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
-margin_left = 20.0
-margin_top = 5.0
-margin_right = 430.0
-margin_bottom = 95.0
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 430.0
+offset_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )
 valign = 1
@@ -212,21 +212,21 @@ mouse_filter = 2
 [node name="Northeast" type="HBoxContainer" parent="Buttons"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -512.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 100, 100 )
+offset_left = -512.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 110.0
+custom_minimum_size = Vector2( 100, 100 )
 mouse_filter = 2
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="BackButton" parent="Buttons/Northeast" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 402.0
-margin_right = 502.0
-margin_bottom = 100.0
+offset_left = 402.0
+offset_right = 502.0
+offset_bottom = 100.0
 size_flags_horizontal = 0
 shortcut = SubResource( 2 )
 icon = ExtResource( 13 )

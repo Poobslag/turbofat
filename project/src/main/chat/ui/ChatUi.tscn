@@ -12,21 +12,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 1024, 600 )
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 512.0
+offset_bottom = 300.0
+custom_minimum_size = Vector2( 1024, 600 )
 script = ExtResource( 16 )
 
 [node name="ChatFrame" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-margin_left = -512.0
-margin_top = -200.0
-margin_right = 512.0
-margin_bottom = -0.000732422
+offset_left = -512.0
+offset_top = -200.0
+offset_right = 512.0
+offset_bottom = -0.000732422
 
 [node name="ChatChoices" parent="." instance=ExtResource( 2 )]
 
@@ -36,8 +36,8 @@ margin_bottom = -0.000732422
 script = ExtResource( 3 )
 
 [node name="TouchTranslator" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource( 4 )
 chat_frame_path = NodePath("../ChatFrame")
 narration_frame_path = NodePath("../NarrationFrame")

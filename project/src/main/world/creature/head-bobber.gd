@@ -1,6 +1,6 @@
 #tool #uncomment to view creature in editor
 class_name HeadBobber
-extends Sprite
+extends Sprite2D
 ## Bobs the character's head up and down.
 ##
 ## Provides a few different 'bob modes', so that the character can shudder, nod, or laugh in different situations.
@@ -19,9 +19,9 @@ const BOB_BOUNCE := HeadBobMode.BOUNCE
 const BOB_SHUDDER := HeadBobMode.SHUDDER
 
 ## these three fields control the creature's head motion: how it's moving, as well as how much/how fast
-export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB setget set_head_bob_mode
-export (float) var head_motion_pixels := 2.0
-export (float) var head_motion_seconds := 6.5
+@export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB: set = set_head_bob_mode
+@export (float) var head_motion_pixels := 2.0
+@export (float) var head_motion_seconds := 6.5
 
 ## these constants control how much the creature's head bobs up and down
 const HEAD_BOB_SECONDS := 6.5
@@ -31,7 +31,7 @@ const HEAD_BOB_PIXELS := 2.0
 var _total_seconds := 0.0
 
 func _process(delta: float) -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	_total_seconds += delta

@@ -41,16 +41,16 @@ var _texture_pairs_by_type := {
 }
 
 ## text to show at the top of the button, like 'Merrymellow Marsh'
-var region_name := "" setget set_region_name
+var region_name := "": set = set_region_name
 
 ## button's visual index, the leftmost shown button has an index of '0'
-var button_index := 0 setget set_button_index
+var button_index := 0: set = set_button_index
 
 ## 'true' if the button is disabled
-var disabled := false setget set_disabled
+var disabled := false: set = set_disabled
 
 ## Image shown on the button.
-var button_type: int = Type.NONE setget set_button_type
+var button_type: int = Type.NONE: set = set_button_type
 
 ## Array of level ranks for levels in this region. Incomplete levels are treated as rank 999.
 var ranks := []
@@ -58,11 +58,11 @@ var ranks := []
 ## Number in the range [0.0, 1.0] for how close the player is to completing the region.
 var completion_percent := 0.0
 
-onready var grade_hook := $Button/GradeHook
+@onready var grade_hook := $Button/GradeHook
 
-onready var _button := $Button
-onready var _button_name_label := $Button/NameLabel
-onready var _button_polygon2d := $Button/Polygon2D
+@onready var _button := $Button
+@onready var _button_name_label := $Button/NameLabel
+@onready var _button_polygon2d := $Button/Polygon2D
 
 func _ready() -> void:
 	_refresh()
@@ -76,9 +76,9 @@ func set_button_index(new_button_index: int) -> void:
 	button_index = new_button_index
 	
 	# align top for buttons #1/3/5..., bottom for buttons #2/4/6...
-	set("custom_constants/margin_top", null)
-	set("custom_constants/margin_bottom", null)
-	set("custom_constants/margin_bottom" if posmod(button_index, 2) == 0 else "custom_constants/margin_top", 40)
+	set("theme_override_constants/margin_top", null)
+	set("theme_override_constants/margin_bottom", null)
+	set("theme_override_constants/margin_bottom" if posmod(button_index, 2) == 0 else "theme_override_constants/margin_top", 40)
 
 
 func set_button_type(new_button_type: int) -> void:
@@ -120,7 +120,7 @@ func _refresh() -> void:
 		new_outline_color = Color("41281e")
 	else:
 		new_outline_color = Color("6c4331")
-	var font: DynamicFont = _button_name_label.get("custom_fonts/font")
+	var font: FontFile = _button_name_label.get("theme_override_fonts/font")
 	font.outline_color = new_outline_color
 
 

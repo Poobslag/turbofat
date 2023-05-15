@@ -1,7 +1,7 @@
 extends Node
 ## Moves the ghost piece when the piece or playfield changes.
 
-export (NodePath) var tile_map_path: NodePath
+@export (NodePath) var tile_map_path: NodePath
 
 ## Stores the offset used when drawing the ghost piece.
 ##
@@ -9,10 +9,10 @@ export (NodePath) var tile_map_path: NodePath
 ## disabling the ghost piece during a puzzle.
 var _ghost_shadow_offset := Vector2.ZERO
 
-onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
+@onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("ghost_piece_changed", self, "_on_GameplaySettings_ghost_piece_changed")
+	SystemData.gameplay_settings.connect("ghost_piece_changed", Callable(self, "_on_GameplaySettings_ghost_piece_changed"))
 	_refresh_ghost_piece()
 
 

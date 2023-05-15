@@ -2,45 +2,45 @@
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/editor/creature/tweak-dna-button.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/editor/creature/edit.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/editor/creature/edit.png" type="Texture2D" id=3]
 [ext_resource path="res://src/main/editor/creature/tweak-color-row.gd" type="Script" id=4]
-[ext_resource path="res://assets/main/editor/creature/edit-rainbow.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/editor/creature/edit-rainbow.png" type="Texture2D" id=5]
 
 [node name="Row" type="HBoxContainer"]
-margin_right = 186.0
-margin_bottom = 26.0
-custom_constants/separation = 10
+offset_right = 186.0
+offset_bottom = 26.0
+theme_override_constants/separation = 10
 script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
-margin_top = 3.0
-margin_right = 100.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 100, 0 )
+offset_top = 3.0
+offset_right = 100.0
+offset_bottom = 23.0
+custom_minimum_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
 text = "Allele Color:"
 align = 2
 
 [node name="Edit" type="ColorPickerButton" parent="."]
-pause_mode = 2
-margin_left = 110.0
-margin_right = 150.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 40, 0 )
+process_mode = 2
+offset_left = 110.0
+offset_right = 150.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 40, 0 )
 theme = ExtResource( 1 )
 color = Color( 0.8, 0.32, 0.32, 1 )
 
 [node name="RainbowDna" type="MarginContainer" parent="."]
-margin_left = 160.0
-margin_right = 186.0
-margin_bottom = 26.0
-custom_constants/margin_top = -1
-custom_constants/margin_bottom = -1
+offset_left = 160.0
+offset_right = 186.0
+offset_bottom = 26.0
+theme_override_constants/margin_top = -1
+theme_override_constants/margin_bottom = -1
 
 [node name="Button" type="Button" parent="RainbowDna"]
-margin_right = 26.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 26, 26 )
+offset_right = 26.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 26, 26 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 1 )
@@ -51,25 +51,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 20, 20 )
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+custom_minimum_size = Vector2( 20, 20 )
 texture = ExtResource( 5 )
 expand = true
 
 [node name="PurpleDna" type="MarginContainer" parent="."]
-margin_left = 196.0
-margin_right = 222.0
-margin_bottom = 26.0
-custom_constants/margin_top = -1
-custom_constants/margin_bottom = -1
+offset_left = 196.0
+offset_right = 222.0
+offset_bottom = 26.0
+theme_override_constants/margin_top = -1
+theme_override_constants/margin_bottom = -1
 
 [node name="Button" type="Button" parent="PurpleDna"]
-margin_right = 26.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 26, 26 )
+offset_right = 26.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 26, 26 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 1 )
@@ -80,25 +80,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 20, 20 )
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+custom_minimum_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
 
 [node name="GrayDna" type="MarginContainer" parent="."]
-margin_left = 232.0
-margin_right = 258.0
-margin_bottom = 26.0
-custom_constants/margin_top = -1
-custom_constants/margin_bottom = -1
+offset_left = 232.0
+offset_right = 258.0
+offset_bottom = 26.0
+theme_override_constants/margin_top = -1
+theme_override_constants/margin_bottom = -1
 
 [node name="Button" type="Button" parent="GrayDna"]
-margin_right = 26.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 26, 26 )
+offset_right = 26.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 26, 26 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 1 )
@@ -111,11 +111,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 20, 20 )
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+custom_minimum_size = Vector2( 20, 20 )
 texture = ExtResource( 3 )
 expand = true
 

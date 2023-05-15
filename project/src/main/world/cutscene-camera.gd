@@ -15,7 +15,7 @@ const ZOOM_AMOUNT_FAR := Vector2.ONE
 ## fixed zoom amount for cutscenes which should not zoom in and out
 var fixed_zoom := 0.0
 
-onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
+@onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _process(_delta: float) -> void:
 	var new_position := _calculate_position()

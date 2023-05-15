@@ -1,7 +1,7 @@
 extends HBoxContainer
 ## UI control for toggling the creature detail level.
 
-onready var _option_button: OptionButton = $OptionButton
+@onready var _option_button: OptionButton = $OptionButton
 
 func _ready() -> void:
 	_option_button.add_item(tr("Low"))

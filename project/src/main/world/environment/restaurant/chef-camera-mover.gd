@@ -4,19 +4,19 @@ extends AnimationPlayer
 ## While this is an AnimationPlayer, the animation is only used to calculate the camera position. It shouldn't ever be
 ## played as an animation.
 
-export (NodePath) var restaurant_scene_path: NodePath
-export (NodePath) var chef_camera_path: NodePath
+@export (NodePath) var restaurant_scene_path: NodePath
+@export (NodePath) var chef_camera_path: NodePath
 
 ## Amount of empty space over the creature's head.
-export (float, 0, 1) var headroom := 1.0 setget set_headroom
+@export (float, 0, 1) var headroom := 1.0: set = set_headroom
 
 ## position that the restaurant scene's camera lerps to
 var _target_camera_position: Vector2
 
 var _target_camera_position_dirty := true
 
-onready var _restaurant_scene: RestaurantPuzzleScene = get_node(restaurant_scene_path)
-onready var _chef_camera: Camera2D = get_node(chef_camera_path)
+@onready var _restaurant_scene: RestaurantPuzzleScene = get_node(restaurant_scene_path)
+@onready var _chef_camera: Camera2D = get_node(chef_camera_path)
 
 func _ready() -> void:
 	_refresh_zoom_and_headroom()

@@ -2,18 +2,18 @@ extends HBoxContainer
 ## UI control for editing one of a creature's colors.
 
 ## Allele property used internally when updating the creature. Not shown to the player
-export (String) var allele: String
+@export (String) var allele: String
 
 ## Allele property used internally when updating the creature. Not shown to the player
-export (String) var text: String
+@export (String) var text: String
 
-export (NodePath) var creature_editor_path: NodePath
+@export (NodePath) var creature_editor_path: NodePath
 
-onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
+@onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
 func _ready() -> void:
 	$Label.text = "%s:" % text
-	_creature_editor.connect("center_creature_changed", self, "_on_CreatureEditor_center_creature_changed")
+	_creature_editor.connect("center_creature_changed", Callable(self, "_on_CreatureEditor_center_creature_changed"))
 	if allele == "all_rgb":
 		$Edit.visible = false
 

@@ -289,7 +289,7 @@ func _process_default_phrase_statement(args: Array) -> void:
 	
 	if not PlayerData.chat_history.has_phrase(args[0]):
 		PlayerData.chat_history.set_phrase(
-				args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
+				args[0], PackedStringArray(args.slice(1, args." ".join(size()))))
 
 
 ## Processes a set_flag statement like 'set_flag foo' or 'set_flag foo bar'
@@ -323,7 +323,7 @@ func _process_set_phrase_statement(args: Array) -> void:
 		return
 	
 	PlayerData.chat_history.set_phrase(
-			args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
+			args[0], PackedStringArray(args.slice(1, args." ".join(size()))))
 
 
 ## Processes an unset_flag statement like 'unset_flag foo'

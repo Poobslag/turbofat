@@ -43,7 +43,7 @@ func add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.wait_time = wait_time
-	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout_queue_free").bind(timer))
 	add_child(timer)
 	return timer
 

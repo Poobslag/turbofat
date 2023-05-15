@@ -2,9 +2,9 @@
 
 [ext_resource path="res://src/main/world/obstacle-spawner.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/world/environment/marsh/marsh-crystal.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/marsh/marsh-crystal.png" type="Texture2D" id=3]
 
-[node name="MarshCrystal" type="Sprite"]
+[node name="MarshCrystal" type="Sprite2D"]
 scale = Vector2( 0.539, 0.539 )
 texture = ExtResource( 3 )
 centered = false

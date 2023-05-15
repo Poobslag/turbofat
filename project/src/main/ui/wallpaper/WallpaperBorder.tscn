@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/main/ui/wallpaper/wallpaper-gradient-texture.tres" type="Texture" id=1]
-[ext_resource path="res://assets/main/ui/wallpaper/bg00.png" type="Texture" id=2]
+[ext_resource path="res://src/main/ui/wallpaper/wallpaper-gradient-texture.tres" type="Texture2D" id=1]
+[ext_resource path="res://assets/main/ui/wallpaper/bg00.png" type="Texture2D" id=2]
 [ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.gd" type="Script" id=3]
-[ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.shader" type="Shader" id=4]
+[ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.gdshader" type="Shader" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

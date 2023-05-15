@@ -10,29 +10,29 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -294.0
-margin_top = -245.0
-margin_right = -13.9999
-margin_bottom = -5.00018
+offset_left = -294.0
+offset_top = -245.0
+offset_right = -13.9999
+offset_bottom = -5.00018
 columns = 2
 script = ExtResource( 2 )
 ChatChoiceButtonScene = ExtResource( 6 )
 
 [node name="Button0" parent="." instance=ExtResource( 6 )]
-margin_right = 138.0
-margin_bottom = 115.0
+offset_right = 138.0
+offset_bottom = 115.0
 choice_text = "That's neat"
 
 [node name="Button1" parent="." instance=ExtResource( 6 )]
-margin_left = 142.0
-margin_right = 280.0
-margin_bottom = 115.0
+offset_left = 142.0
+offset_right = 280.0
+offset_bottom = 115.0
 choice_text = "That's an interesting choice"
 
 [node name="Button2" parent="." instance=ExtResource( 6 )]
-margin_top = 119.0
-margin_right = 138.0
-margin_bottom = 234.0
+offset_top = 119.0
+offset_right = 138.0
+offset_bottom = 234.0
 choice_text = "I wouldn't choose this one!"
 
 [node name="EnableInputTimer" type="Timer" parent="."]

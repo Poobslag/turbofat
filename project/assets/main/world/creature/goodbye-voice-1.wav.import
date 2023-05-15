@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/goodbye-voice-1.wav-ba3cc5f95c1bac158d6ba618e920c5cc.sample"
+type="AudioStreamWAV"
+uid="uid://bnjbycaqst3ry"
+path="res://.godot/imported/goodbye-voice-1.wav-ba3cc5f95c1bac158d6ba618e920c5cc.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/goodbye-voice-1.wav"
-dest_files=[ "res://.import/goodbye-voice-1.wav-ba3cc5f95c1bac158d6ba618e920c5cc.sample" ]
+dest_files=["res://.godot/imported/goodbye-voice-1.wav-ba3cc5f95c1bac158d6ba618e920c5cc.sample"]
 
 [params]
 

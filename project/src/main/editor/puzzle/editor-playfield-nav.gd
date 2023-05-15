@@ -14,11 +14,11 @@ signal remove_tiles_key_pressed
 ## emitted when the 'add tiles key' button is pressed
 signal add_tiles_key_pressed
 
-onready var next_button := $NextPrev/Next
-onready var prev_button := $NextPrev/Prev
-onready var add_button := $AddRemove/Add
-onready var remove_button := $AddRemove/Remove
-onready var tiles_name_label := $TilesName
+@onready var next_button := $NextPrev/Next
+@onready var prev_button := $NextPrev/Prev
+@onready var add_button := $AddRemove/Add
+@onready var remove_button := $AddRemove/Remove
+@onready var tiles_name_label := $TilesName
 
 func _ready() -> void:
 	_refresh_buttons(["start"], "start")

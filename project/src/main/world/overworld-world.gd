@@ -1,15 +1,15 @@
-tool
+@tool
 class_name OverworldWorld
 extends Node
 ## Populates/unpopulates creatures and obstacles for various overworld scenes.
 
 ## Creatures and obstacles to show
-export (Resource) var EnvironmentScene: Resource setget set_environment_scene
+@export (Resource) var EnvironmentScene: Resource: set = set_environment_scene
 
-onready var overworld_environment: OverworldEnvironment = $Environment
+@onready var overworld_environment: OverworldEnvironment = $Environment
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	var initial_environment_path := initial_environment_path()
@@ -46,10 +46,10 @@ func _refresh_environment_scene() -> void:
 	
 	# insert new environment node
 	if EnvironmentScene:
-		overworld_environment = EnvironmentScene.instance()
+		overworld_environment = EnvironmentScene.instantiate()
 	else:
 		var empty_environment_scene := load(OverworldEnvironment.SCENE_EMPTY_ENVIRONMENT)
-		overworld_environment = empty_environment_scene.instance()
+		overworld_environment = empty_environment_scene.instantiate()
 	add_child(overworld_environment)
 	move_child(overworld_environment, 0)
 	overworld_environment.owner = get_tree().get_edited_scene_root()

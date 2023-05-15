@@ -11,7 +11,7 @@ var _target_value
 ## 	result: [4, 5, 2, 1, 7, 8, 10]
 func sort(values: Array, target_value: float) -> void:
 	_target_value = target_value
-	values.sort_custom(self, "compare")
+	values.sort_custom(Callable(self, "compare"))
 
 
 func compare(a: float, b: float) -> bool:

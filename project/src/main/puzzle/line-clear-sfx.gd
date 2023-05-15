@@ -1,7 +1,7 @@
 extends Node
 ## Plays sound effects when lines are cleared.
 
-onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
+@onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
 		preload("res://assets/main/puzzle/combo-00.wav"),
 		preload("res://assets/main/puzzle/combo-01.wav"),
 		preload("res://assets/main/puzzle/combo-02.wav"),
@@ -28,7 +28,7 @@ onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
 		preload("res://assets/main/puzzle/combo-23.wav"),
 	]
 
-onready var _combo_endless_sounds := [
+@onready var _combo_endless_sounds := [
 		preload("res://assets/main/puzzle/combo-e00.wav"),
 		preload("res://assets/main/puzzle/combo-e01.wav"),
 		preload("res://assets/main/puzzle/combo-e02.wav"),
@@ -43,12 +43,12 @@ onready var _combo_endless_sounds := [
 		preload("res://assets/main/puzzle/combo-e11.wav"),
 	]
 
-onready var _all_clear_sound := $AllClearSound
-onready var _clear_cake_piece_sound := $ClearCakePieceSound
-onready var _clear_snack_piece_sound := $ClearSnackPieceSound
-onready var _combo_sound := $ComboSound
-onready var _line_erase_sounds := [$LineEraseSound1, $LineEraseSound2, $LineEraseSound3]
-onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSound3]
+@onready var _all_clear_sound := $AllClearSound
+@onready var _clear_cake_piece_sound := $ClearCakePieceSound
+@onready var _clear_snack_piece_sound := $ClearSnackPieceSound
+@onready var _combo_sound := $ComboSound
+@onready var _line_erase_sounds := [$LineEraseSound1, $LineEraseSound2, $LineEraseSound3]
+@onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSound3]
 
 func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	var sound_index := clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
@@ -58,7 +58,7 @@ func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints
 	else:
 		sound = _veg_erase_sounds[sound_index]
 	if sound:
-		sound.pitch_scale = rand_range(0.90, 1.10)
+		sound.pitch_scale = randf_range(0.90, 1.10)
 		sound.play()
 
 
@@ -84,7 +84,7 @@ func _play_box_sound(_y: int, _total_lines: int, _remaining_lines: int, box_ints
 	var sound: AudioStreamPlayer
 	if PuzzleTileMap.has_cake_box(box_ints):
 		sound = _clear_cake_piece_sound
-	elif not box_ints.empty():
+	elif not box_ints.is_empty():
 		sound = _clear_snack_piece_sound
 	if sound: sound.play()
 

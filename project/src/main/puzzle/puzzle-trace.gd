@@ -1,12 +1,12 @@
 extends Label
 ## Shows diagnostics for the piece physics. Enabled with the cheat code 'delays'.
 
-export (NodePath) var puzzle_path: NodePath
+@export (NodePath) var puzzle_path: NodePath
 
-onready var _puzzle:Puzzle = get_node(puzzle_path)
-onready var _playfield:Playfield = _puzzle.get_playfield()
-onready var _combo_tracker:ComboTracker = _puzzle.get_node("Fg/Playfield/ComboTracker")
-onready var _piece_manager:PieceManager= _puzzle.get_piece_manager()
+@onready var _puzzle:Puzzle = get_node(puzzle_path)
+@onready var _playfield:Playfield = _puzzle.get_playfield()
+@onready var _combo_tracker:ComboTracker = _puzzle.get_node("Fg/Playfield/ComboTracker")
+@onready var _piece_manager:PieceManager= _puzzle.get_piece_manager()
 
 func _process(_delta: float) -> void:
 	if visible:

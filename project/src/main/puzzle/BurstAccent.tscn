@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/main/puzzle/combo-accents-packed.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/puzzle/combo-accents-packed.png" type="Texture2D" id=1]
 [ext_resource path="res://src/main/puzzle/burst-accent.gd" type="Script" id=2]
 
 [node name="Accent" type="Node2D"]
@@ -8,5 +8,5 @@ modulate = Color( 0.054902, 0.309804, 0.6, 1 )
 script = ExtResource( 2 )
 texture = ExtResource( 1 )
 frame_data = "res://assets/main/puzzle/combo-accents-packed.json"
-rect_size = Vector2( 128, 128 )
+size = Vector2( 128, 128 )
 offset = Vector2( -64, -64 )

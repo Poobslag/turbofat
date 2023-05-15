@@ -11,8 +11,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ 1 ]
 }
@@ -23,8 +23,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ 1 ]
 }
@@ -40,8 +40,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 2 ]
 }
@@ -52,8 +52,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.00001 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4.00001 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 2, 2 ]
 }
@@ -69,8 +69,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.66667, 3.33333, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 1.66667, 3.33333, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 3, 4, 3, 1 ]
 }
@@ -81,8 +81,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.00001 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4.00001 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 1, 1 ]
 }
@@ -98,8 +98,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.66667, 3.33333, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 1.66667, 3.33333, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 3, 4, 3, 1 ]
 }
@@ -110,8 +110,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.00001 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4.00001 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 1, 1 ]
 }
@@ -126,8 +126,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366666, 0.433333, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366666, 0.433333, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 5, 6, 7, 8, 9, 5, 10, 11, 1, 12, 13, 1 ]
 }
@@ -138,8 +138,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.0666667 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.0666667 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "show_food_effects"
@@ -152,8 +152,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366666, 0.433333, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366666, 0.433333, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 5, 8, 7, 7, 6, 5, 4, 3, 1, 3, 3, 1 ]
 }
@@ -168,8 +168,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.033, 0.066, 0.099, 0.132, 0.165, 0.198, 0.231, 0.297, 0.363, 0.429, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.033, 0.066, 0.099, 0.132, 0.165, 0.198, 0.231, 0.297, 0.363, 0.429, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 6, 7, 8, 9, 5, 10, 11, 1, 12, 13, 1, 1 ]
 }
@@ -180,8 +180,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "show_food_effects"
@@ -194,8 +194,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.033, 0.066, 0.099, 0.132, 0.165, 0.198, 0.231, 0.297, 0.363, 0.429, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.033, 0.066, 0.099, 0.132, 0.165, 0.198, 0.231, 0.297, 0.363, 0.429, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 8, 7, 7, 6, 5, 4, 3, 1, 3, 3, 1, 1 ]
 }
@@ -210,8 +210,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266667, 0.633333, 0.7, 0.766667, 0.833333, 1.5, 1.63333, 2.46666, 2.53333, 2.6, 2.66666, 2.73333, 2.8, 2.86666, 2.9, 2.93333, 2.96667, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266667, 0.633333, 0.7, 0.766667, 0.833333, 1.5, 1.63333, 2.46666, 2.53333, 2.6, 2.66666, 2.73333, 2.8, 2.86666, 2.9, 2.93333, 2.96667, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 3, 11, 9, 8, 7, 6, 7, 8, 7, 6, 7, 6, 7, 8, 9, 5, 10, 11, 12, 14, 13, 1, 1 ]
 }
@@ -222,8 +222,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266666, 0.633333, 0.699999, 0.766666, 0.833333, 1.5, 1.63333, 2.46666, 2.53333, 2.6, 2.66666, 2.73333, 2.8, 2.86666, 2.9, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266666, 0.633333, 0.699999, 0.766666, 0.833333, 1.5, 1.63333, 2.46666, 2.53333, 2.6, 2.66666, 2.73333, 2.8, 2.86666, 2.9, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 4, 6, 7, 7, 8, 7, 7, 7, 8, 7, 8, 7, 7, 6, 5, 5, 4, 3, 1, 1 ]
 }
@@ -238,8 +238,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266667, 0.833333, 0.966667, 1.1, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.16667, 2.2, 2.23333, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266667, 0.833333, 0.966667, 1.1, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.16667, 2.2, 2.23333, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 3, 11, 9, 8, 7, 6, 7, 8, 7, 7, 8, 9, 5, 10, 11, 12, 14, 13, 1, 1 ]
 }
@@ -250,8 +250,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266666, 0.833333, 0.966667, 1.1, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.16667, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266666, 0.833333, 0.966667, 1.1, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.16667, 4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 4, 6, 7, 7, 8, 7, 7, 7, 7, 7, 6, 5, 5, 4, 3, 1, 1 ]
 }
@@ -267,8 +267,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 5, 14, 11, 5, 11, 5, 14, 5, 14, 11, 14, 11, 5 ]
 }
@@ -279,8 +279,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 5, 1, 4, 5, 4, 5, 1, 5, 1, 4, 1, 4, 5 ]
 }

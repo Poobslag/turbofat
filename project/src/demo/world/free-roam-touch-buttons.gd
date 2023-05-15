@@ -3,7 +3,7 @@ extends Control
 
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
-		SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+		SystemData.touch_settings.connect("changed", Callable(self, "_on_TouchSettings_settings_changed"))
 		show()
 	else:
 		hide()
@@ -16,8 +16,8 @@ func _refresh_buttons() -> void:
 	if visible and OS.has_touchscreen_ui_hint():
 		# stop ignoring touch input
 		$ButtonsSw.show()
-		$ButtonsSw.rect_scale = Vector2.ONE * SystemData.touch_settings.size
-		$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+		$ButtonsSw.scale = Vector2.ONE * SystemData.touch_settings.size
+		$ButtonsSw.position.y = size.y - 10 - $ButtonsSw.size.y * $ButtonsSw.scale.y
 	else:
 		# release any held buttons, and ignore touch input
 		$ButtonsSw.hide()

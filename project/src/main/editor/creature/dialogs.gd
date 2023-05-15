@@ -1,13 +1,13 @@
 extends Control
 ## Shows popup dialogs for the creature editor.
 
-export (NodePath) var creature_editor_path: NodePath
+@export (NodePath) var creature_editor_path: NodePath
 
-onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
-onready var _error_dialog := $Error
-onready var _import_dialog := $Import
-onready var _export_dialog := $Export
-onready var _save_confirmation := $SaveConfirmation
+@onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
+@onready var _error_dialog := $Error
+@onready var _import_dialog := $Import
+@onready var _export_dialog := $Export
+@onready var _save_confirmation := $SaveConfirmation
 
 func _show_import_export_not_supported_error() -> void:
 	_error_dialog.dialog_text = "Import/export isn't supported over the web. Sorry!"

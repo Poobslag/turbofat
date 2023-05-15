@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 36.4254, 235.054, -97.3677, -2.30793, 97.3677, 2.30793, 218.984, 42.2843, -92.7283, -1.05946, 92.7283, 1.05946, 598.376, 438.513, 0, 0, 0, 0, 791.823, 237.173 )
+"points": PackedVector2Array( 0, 0, 0, 0, 36.4254, 235.054, -97.3677, -2.30793, 97.3677, 2.30793, 218.984, 42.2843, -92.7283, -1.05946, 92.7283, 1.05946, 598.376, 438.513, 0, 0, 0, 0, 791.823, 237.173 )
 }
 
 [node name="Node" type="Node"]
@@ -16,10 +16,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -409.6
-margin_top = -240.0
-margin_right = 409.6
-margin_bottom = 240.0
+offset_left = -409.6
+offset_top = -240.0
+offset_right = 409.6
+offset_bottom = 240.0
 color = Color( 0.0784314, 0.0862745, 0.14902, 1 )
 
 [node name="Path2D" type="Path2D" parent="ColorRect"]

@@ -1,12 +1,12 @@
-tool
+@tool
 class_name CutsceneWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during cutscenes.
 
-onready var _camera: CutsceneCamera = $Camera
+@onready var _camera: CutsceneCamera = $Camera3D
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	if CurrentCutscene.chat_tree.meta.has("fixed_zoom"):
@@ -28,7 +28,7 @@ func _launch_cutscene() -> void:
 	_add_cutscene_creatures()
 	_arrange_creatures()
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 
 	Global.get_overworld_ui().start_chat(CurrentCutscene.chat_tree)
 	_camera.snap_into_position()

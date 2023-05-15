@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shark-voice-short-2.wav-796a4d9fe8f7e3e004302faa04d71dd7.sample"
+type="AudioStreamWAV"
+uid="uid://dy7dt0mqsq53x"
+path="res://.godot/imported/shark-voice-short-2.wav-796a4d9fe8f7e3e004302faa04d71dd7.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/shark-voice-short-2.wav"
-dest_files=[ "res://.import/shark-voice-short-2.wav-796a4d9fe8f7e3e004302faa04d71dd7.sample" ]
+dest_files=["res://.godot/imported/shark-voice-short-2.wav-796a4d9fe8f7e3e004302faa04d71dd7.sample"]
 
 [params]
 

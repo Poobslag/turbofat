@@ -94,5 +94,5 @@ func size() -> int:
 	return pos_arr[0].size() if pos_arr and pos_arr[0] else 0
 
 
-func empty() -> bool:
+func is_empty() -> bool:
 	return size() == 0

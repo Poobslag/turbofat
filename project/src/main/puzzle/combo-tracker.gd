@@ -10,7 +10,7 @@ signal combo_break_changed(value)
 const COMBO_SCORE_ARR := [0, 0, 5, 5, 10, 10, 15, 15, 20]
 
 ## Number of pieces the player has dropped without clearing a line or making a box.
-var combo_break := 0 setget set_combo_break
+var combo_break := 0: set = set_combo_break
 
 ## 'true' if the player drops a piece which continues the combo (typically, making a box or clearing a line)
 var piece_continued_combo := false
@@ -20,11 +20,11 @@ var piece_continued_combo := false
 var piece_broke_combo := false
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 
 
 func set_combo_break(new_combo_break: int) -> void:
@@ -70,7 +70,7 @@ func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
 
 func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	if CurrentLevel.settings.combo_break.veg_row:
-		if box_ints.empty():
+		if box_ints.is_empty():
 			piece_broke_combo = true
 	piece_continued_combo = true
 	if combo_break != 0:

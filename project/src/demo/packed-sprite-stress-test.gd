@@ -9,10 +9,10 @@ extends Node
 const CHUNK_SECONDS := 0.01
 
 ## Node2D scene to test
-export (PackedScene) var SpriteScene: PackedScene
+@export (PackedScene) var SpriteScene: PackedScene
 
-onready var _sprite_container := $SpriteContainer
-onready var _count := $Ui/Control/Count
+@onready var _sprite_container := $SpriteContainer
+@onready var _count := $Ui/Control/Count
 
 ## desired number of sprites to show
 var _target_sprite_count := 10
@@ -30,9 +30,9 @@ func _physics_process(_delta: float) -> void:
 
 ## Adds a Node2D to the test, increasing the load on the system.
 func _add_sprite() -> void:
-	var new_child: Node2D = SpriteScene.instance()
-	new_child.position.x = rand_range(0, Global.window_size.x)
-	new_child.position.y = rand_range(0, Global.window_size.y)
+	var new_child: Node2D = SpriteScene.instantiate()
+	new_child.position.x = randf_range(0, Global.window_size.x)
+	new_child.position.y = randf_range(0, Global.window_size.y)
 	_sprite_container.add_child(new_child)
 
 

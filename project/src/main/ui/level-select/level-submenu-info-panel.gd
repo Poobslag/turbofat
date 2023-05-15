@@ -9,11 +9,11 @@ const DURATIONS := [
 	90, 120, 150, 180, 270, 360, 480, 600
 ]
 
-var text: String setget set_text
+var text: String: set = set_text
 
 var _duration_calculator := DurationCalculator.new()
 
-onready var _label := $MarginContainer/Label
+@onready var _label := $MarginContainer/Label
 
 func _ready() -> void:
 	_refresh_text()
@@ -60,11 +60,11 @@ func _update_unlocked_level_text(settings: LevelSettings) -> void:
 	
 	var prev_result := PlayerData.level_history.prev_result(settings.id)
 	if prev_result:
-		new_text += tr("New: %s") % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
+		new_text += tr("New: %s") % [PackedStringArray(HighScoreTable."   ".join(rank_result_row(prev_result)))]
 	new_text += "\n"
 	var best_result := PlayerData.level_history.best_result(settings.id)
 	if best_result:
-		new_text += tr("Top: %s") % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
+		new_text += tr("Top: %s") % [PackedStringArray(HighScoreTable."   ".join(rank_result_row(best_result)))]
 	set_text(new_text)
 
 

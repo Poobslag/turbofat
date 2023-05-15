@@ -17,11 +17,11 @@
 [ext_resource path="res://assets/main/puzzle/fanfare1.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/puzzle/fanfare2.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/puzzle/fanfare3.wav" type="AudioStream" id=17]
-[ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=18]
+[ext_resource path="res://src/main/puzzle/texture-metaball.gdshader" type="Shader" id=18]
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=20]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=20]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=21]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=22]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=22]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/puzzle/tutorial-keybinds-label.gd" type="Script" id=24]
 [ext_resource path="res://src/main/puzzle/line-inserter.gd" type="Script" id=25]
@@ -30,19 +30,19 @@
 [ext_resource path="res://assets/main/puzzle/pickup.wav" type="AudioStream" id=28]
 [ext_resource path="res://src/main/puzzle/line-filler.gd" type="Script" id=29]
 [ext_resource path="res://assets/main/puzzle/tech-move.wav" type="AudioStream" id=30]
-[ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
+[ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture2D" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
-[ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
-[ext_resource path="res://assets/main/puzzle/playfield-light.png" type="Texture" id=63]
+[ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture2D" id=62]
+[ext_resource path="res://assets/main/puzzle/playfield-light.png" type="Texture2D" id=63]
 [ext_resource path="res://src/main/puzzle/playfield-fx.gd" type="Script" id=64]
 
 [sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("BgGlobViewports/Viewport")
+viewport_path = NodePath("BgGlobViewports/SubViewport")
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="FastNoiseLite" id=2]
 resource_local_to_scene = true
 seed = -2097381222
-octaves = 1
+fractal_octaves = 1
 
 [sub_resource type="NoiseTexture" id=3]
 width = 1024
@@ -114,13 +114,13 @@ viewport_path = NodePath("TileMapClip/TileMap/ShadowViewport")
 viewport_path = NodePath("TileMapClip/TileMap/GhostPieceViewport")
 
 [node name="Playfield" type="Control" groups=["night_mode_invisible"]]
-margin_right = 324.0
-margin_bottom = 544.0
+offset_right = 324.0
+offset_bottom = 544.0
 script = ExtResource( 1 )
 
 [node name="BgGlobViewports" parent="." instance=ExtResource( 19 )]
-margin_right = 324.0
-margin_bottom = 544.0
+offset_right = 324.0
+offset_bottom = 544.0
 glob_max_scale = 1.5
 
 [node name="BgSprite" type="TextureRect" parent="."]
@@ -131,24 +131,24 @@ texture = ExtResource( 37 )
 expand = true
 
 [node name="BgColor" type="ColorRect" parent="."]
-margin_right = 324.0
-margin_bottom = 544.0
+offset_right = 324.0
+offset_bottom = 544.0
 color = Color( 0, 0, 0, 0.627451 )
 
 [node name="TileMapClip" type="Control" parent="."]
-margin_right = 324.0
-margin_bottom = 544.0
-rect_clip_content = true
+offset_right = 324.0
+offset_bottom = 544.0
+clip_contents = true
 
 [node name="Pickups" type="Control" parent="TileMapClip"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -162.0
-margin_top = -272.0
-margin_right = 162.0
-margin_bottom = 272.0
+offset_left = -162.0
+offset_top = -272.0
+offset_right = 162.0
+offset_bottom = 272.0
 script = ExtResource( 27 )
 puzzle_tile_map_path = NodePath("../TileMap")
 PickupScene = ExtResource( 26 )
@@ -210,9 +210,9 @@ format = 1
 
 [node name="BgStrobe" type="ColorRect" parent="TileMapClip/PlayfieldFx"]
 material = SubResource( 11 )
-margin_top = 96.0
-margin_right = 324.0
-margin_bottom = 640.0
+offset_top = 96.0
+offset_right = 324.0
+offset_bottom = 640.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="LeafPoofs" type="Node2D" parent="TileMapClip"]
@@ -240,12 +240,12 @@ flip_v = true
 modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -119.0
-margin_top = 86.0
-margin_right = 119.0
-margin_bottom = 176.0
-custom_fonts/normal_font = ExtResource( 22 )
-custom_styles/normal = ExtResource( 21 )
+offset_left = -119.0
+offset_top = 86.0
+offset_right = 119.0
+offset_bottom = 176.0
+theme_override_fonts/normal_font = ExtResource( 22 )
+theme_override_styles/normal = ExtResource( 21 )
 text = "Arrows: Move
 Down: Soft drop
 Space: Hard drop

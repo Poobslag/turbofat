@@ -3,15 +3,15 @@ extends Control
 ##
 ## This includes a text label like '16 (+3)' and a static icon.
 
-export (NodePath) var level_select_path: NodePath
+@export (NodePath) var level_select_path: NodePath
 
-onready var _label := $Label
+@onready var _label := $Label
 
 ## UI components for career mode's level select buttons
-onready var _level_select: CareerLevelSelect = get_node(level_select_path)
+@onready var _level_select: CareerLevelSelect = get_node(level_select_path)
 
 func _ready() -> void:
-	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
+	PlayerData.career.connect("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed"))
 	_refresh_label()
 
 

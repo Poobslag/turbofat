@@ -3,11 +3,11 @@ extends Control
 ##
 ## The shape of this shadow changes based on whether the hold piece cheat is enabled.
 
-onready var _normal_shadow: Polygon2D = $NormalShadow
-onready var _hold_piece_shadow: Polygon2D = $HoldPieceShadow
+@onready var _normal_shadow: Polygon2D = $NormalShadow
+@onready var _hold_piece_shadow: Polygon2D = $HoldPieceShadow
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
+	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
 	_refresh()
 
 

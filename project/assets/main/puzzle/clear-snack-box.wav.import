@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/clear-snack-box.wav-e6f7f6907c7465aa10517e8e0b0ef1bb.sample"
+type="AudioStreamWAV"
+uid="uid://8bc44863b3lu"
+path="res://.godot/imported/clear-snack-box.wav-e6f7f6907c7465aa10517e8e0b0ef1bb.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/clear-snack-box.wav"
-dest_files=[ "res://.import/clear-snack-box.wav-e6f7f6907c7465aa10517e8e0b0ef1bb.sample" ]
+dest_files=["res://.godot/imported/clear-snack-box.wav-e6f7f6907c7465aa10517e8e0b0ef1bb.sample"]
 
 [params]
 

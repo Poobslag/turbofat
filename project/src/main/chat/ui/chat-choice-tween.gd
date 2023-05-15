@@ -2,12 +2,12 @@ extends Node
 ## Tweens pop-in/pop-out effects for chat choices.
 
 ## applies scale/modulate effects
-var _tween: SceneTreeTween
+var _tween: Tween
 
 ## size the chat shrinks to when it disappears
 const POP_OUT_SCALE := Vector2(0.5, 0.5)
 
-onready var _chat_choice := get_parent()
+@onready var _chat_choice := get_parent()
 
 func _ready() -> void:
 	_reset_chat_choice()
@@ -19,7 +19,7 @@ func _ready() -> void:
 func pop_in() -> void:
 	# All container controls in Godot reset the scale of their children to their own scale. If we don't reassign the
 	# scale before launching the tween then the rect_scale property won't be interpolated.
-	_chat_choice.rect_scale = POP_OUT_SCALE
+	_chat_choice.scale = POP_OUT_SCALE
 	
 	_interpolate_pop(true)
 
@@ -39,14 +39,14 @@ func remove_all() -> void:
 func _interpolate_pop(popping_in: bool) -> void:
 	_tween = Utils.recreate_tween(self, _tween).set_parallel()
 	
-	var chat_choice_modulate := Color.white if popping_in else Color.transparent
+	var chat_choice_modulate := Color.WHITE if popping_in else Color.TRANSPARENT
 	var chat_choice_scale := Vector2.ONE if popping_in else POP_OUT_SCALE
 	
 	_tween.tween_property(_chat_choice, "modulate",
 			chat_choice_modulate, 0.1).set_trans(Tween.TRANS_LINEAR)
-	_tween.tween_property(_chat_choice, "rect_scale:x",
+	_tween.tween_property(_chat_choice, "scale:x",
 			chat_choice_scale.x, 0.4).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	_tween.tween_property(_chat_choice, "rect_scale:y",
+	_tween.tween_property(_chat_choice, "scale:y",
 			chat_choice_scale.y, 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 
@@ -56,5 +56,5 @@ func _interpolate_pop(popping_in: bool) -> void:
 func _reset_chat_choice() -> void:
 	remove_all()
 	
-	_chat_choice.modulate = Color.transparent
-	_chat_choice.rect_scale = POP_OUT_SCALE
+	_chat_choice.modulate = Color.TRANSPARENT
+	_chat_choice.scale = POP_OUT_SCALE

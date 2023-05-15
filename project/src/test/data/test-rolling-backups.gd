@@ -9,7 +9,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var dir := Directory.new()
+	var dir := DirAccess.new()
 	dir.remove(_backups.rolling_filename(RollingBackups.CURRENT))
 	dir.remove(_backups.rolling_filename(RollingBackups.THIS_HOUR))
 	dir.remove(_backups.rolling_filename(RollingBackups.PREV_HOUR))

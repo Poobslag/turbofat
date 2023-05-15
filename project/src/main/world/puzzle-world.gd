@@ -1,4 +1,4 @@
-tool
+@tool
 class_name PuzzleWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during puzzles.
@@ -21,7 +21,7 @@ var customers := []
 var chef: Creature
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	_remove_all_creatures()

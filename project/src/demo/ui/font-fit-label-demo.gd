@@ -13,7 +13,7 @@ const CHOICES := [
 	"This is not a productive line of discussion.",
 ]
 
-onready var _label := $ColorRect/Label
+@onready var _label := $ColorRect/Label
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

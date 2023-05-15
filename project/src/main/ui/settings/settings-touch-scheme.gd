@@ -3,7 +3,7 @@ extends Control
 ##
 ## The control scheme decides which buttons appear where.
 
-onready var _option_button := $OptionButton
+@onready var _option_button := $OptionButton
 
 func _ready() -> void:
 	_option_button.add_item(tr("Easy Console"))

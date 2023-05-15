@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/go.wav-f453241318729dfe24985d0ce1951103.sample"
+type="AudioStreamWAV"
+uid="uid://bkvbqqw6ucjau"
+path="res://.godot/imported/go.wav-f453241318729dfe24985d0ce1951103.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/go.wav"
-dest_files=[ "res://.import/go.wav-f453241318729dfe24985d0ce1951103.sample" ]
+dest_files=["res://.godot/imported/go.wav-f453241318729dfe24985d0ce1951103.sample"]
 
 [params]
 

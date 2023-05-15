@@ -12,7 +12,7 @@ signal entered_state(prev_state, state)
 var _state: State
 
 ## host object which is passed into each state
-onready var _host := get_parent()
+@onready var _host := get_parent()
 
 ## Calls 'update' on the currently active state, and changes the current state if necessary.
 func update() -> void:

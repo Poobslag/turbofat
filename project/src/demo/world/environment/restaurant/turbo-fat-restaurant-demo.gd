@@ -4,7 +4,7 @@ extends Node
 ## Keys:
 ## 	[C]: Shows/hides the closed sign.
 
-onready var _restaurant := $TurboFatRestaurant
+@onready var _restaurant := $TurboFatRestaurant
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

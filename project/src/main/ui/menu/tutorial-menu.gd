@@ -1,7 +1,7 @@
 extends Control
 ## Scene which lets the player launch tutorials.
 
-onready var _paged_level_panel := $Panel
+@onready var _paged_level_panel := $Panel
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()

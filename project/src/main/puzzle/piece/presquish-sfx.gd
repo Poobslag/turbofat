@@ -9,9 +9,9 @@ var sfx_started := false
 ## Starts playing a sound effect for a squish move.
 func start_presquish_sfx() -> void:
 	sfx_started = true
-	pitch_scale = rand_range(0.8, 1.3)
-	volume_db = rand_range(-15.0, -9.0)
-	play(rand_range(0.0, 0.2))
+	pitch_scale = randf_range(0.8, 1.3)
+	volume_db = randf_range(-15.0, -9.0)
+	play(randf_range(0.0, 0.2))
 
 
 ## Stops the current sound effect.

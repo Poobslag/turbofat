@@ -4,11 +4,11 @@ extends AnimationPlayer
 ## While this is an AnimationPlayer, the animation is only used to calculate the camera position. It shouldn't ever be
 ## played as an animation.
 
-export (NodePath) var restaurant_scene_path: NodePath
-export (NodePath) var customer_camera_path: NodePath
+@export (NodePath) var restaurant_scene_path: NodePath
+@export (NodePath) var customer_camera_path: NodePath
 
 ## Amount of empty space over the customer's head.
-export (float, 0, 1) var headroom := 1.0 setget set_headroom
+@export (float, 0, 1) var headroom := 1.0: set = set_headroom
 
 ## position that the restaurant scene's camera lerps to
 var _target_camera_position: Vector2
@@ -22,13 +22,13 @@ var _shake_position := Vector2.ZERO
 ## if 'true', the target camera position needs to be recalculated because something about the customer changed
 var _target_camera_position_dirty := true
 
-onready var _restaurant_scene: RestaurantPuzzleScene = get_node(restaurant_scene_path)
-onready var _customer_camera: Camera2D = get_node(customer_camera_path)
+@onready var _restaurant_scene: RestaurantPuzzleScene = get_node(restaurant_scene_path)
+@onready var _customer_camera: Camera2D = get_node(customer_camera_path)
 
 func _ready() -> void:
 	var customers := _restaurant_scene.get_customers()
 	for i in range(customers.size()):
-		customers[i].connect("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed", [i])
+		customers[i].connect("visual_fatness_changed", Callable(self, "_on_Creature_visual_fatness_changed").bind(i))
 	_refresh_zoom_and_headroom()
 	_refresh_target_camera_position()
 	_customer_camera.position = _target_camera_position
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 			_shake_position = Vector2.ZERO
 		else:
 			var max_shake := _shake_magnitude * _shake_remaining_seconds / _shake_total_seconds
-			_shake_position = Vector2(rand_range(-max_shake, max_shake), rand_range(-max_shake, max_shake))
+			_shake_position = Vector2(randf_range(-max_shake, max_shake), randf_range(-max_shake, max_shake))
 		_customer_camera.position += _shake_position
 
 

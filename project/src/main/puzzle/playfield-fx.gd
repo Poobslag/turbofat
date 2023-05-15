@@ -48,7 +48,7 @@ const OFF_PATTERN := [
 	".........",
 ]
 
-export (NodePath) var combo_tracker_path: NodePath
+@export (NodePath) var combo_tracker_path: NodePath
 
 ## light pattern being shown.
 var _pattern := OFF_PATTERN
@@ -71,30 +71,30 @@ var _pulse_amount := 0.0
 var _glow_duration := 0.0
 
 ## current background light color
-var _color := Color.transparent
+var _color := Color.TRANSPARENT
 
 ## tile indexes by food/vegetable color
 var _color_tile_indexes: Dictionary
 
-onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
+@onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 
 ## lights which turn on and off
-onready var light_map: TileMap = $LightMap
+@onready var light_map: TileMap = $LightMap
 
 ## glowy effect around the lights
-onready var glow_map: TileMap = $GlowMap
+@onready var glow_map: TileMap = $GlowMap
 
 ## bright flash when the player clears a line
-onready var bg_strobe: ColorRect = $BgStrobe
+@onready var bg_strobe: ColorRect = $BgStrobe
 
 ## gradually dims the glowiness
-onready var _glow_tween: SceneTreeTween
+@onready var _glow_tween: Tween
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	_combo_tracker.connect("combo_break_changed", self, "_on_ComboTracker_combo_break_changed")
-	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
-	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	_combo_tracker.connect("combo_break_changed", Callable(self, "_on_ComboTracker_combo_break_changed"))
+	PuzzleState.connect("combo_changed", Callable(self, "_on_PuzzleState_combo_changed"))
+	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
 	_init_tile_set()
 	_init_color_tile_indexes()
 	reset()
@@ -108,8 +108,8 @@ func _process(delta: float) -> void:
 func reset() -> void:
 	_pattern = OFF_PATTERN
 	_color = RAINBOW_LIGHT_COLOR
-	light_map.modulate = Color.transparent
-	glow_map.modulate = Color.transparent
+	light_map.modulate = Color.TRANSPARENT
+	glow_map.modulate = Color.TRANSPARENT
 	_calculate_brightness(0)
 	_refresh_tile_maps()
 
@@ -125,7 +125,7 @@ func _init_tile_set() -> void:
 	_init_tile(VEGETABLE_LIGHT_COLOR)
 	
 	for i in range(RAINBOW_COLOR_COUNT):
-		var rainbow_color := Utils.to_transparent(Color.red, 0.60)
+		var rainbow_color := Utils.to_transparent(Color.RED, 0.60)
 		rainbow_color.h += i / float(RAINBOW_COLOR_COUNT)
 		_init_tile(rainbow_color)
 
@@ -165,7 +165,7 @@ func _start_glow_tween() -> void:
 
 ## Calculates the light color for a row in the playfield.
 func _calculate_line_color(box_ints: Array) -> void:
-	if box_ints.empty():
+	if box_ints.is_empty():
 		# vegetable
 		_color = VEGETABLE_LIGHT_COLOR
 	elif PuzzleTileMap.has_cake_box(box_ints):

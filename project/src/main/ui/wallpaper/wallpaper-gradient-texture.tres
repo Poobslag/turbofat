@@ -1,8 +1,8 @@
-[gd_resource type="GradientTexture" load_steps=2 format=2]
+[gd_resource type="GradientTexture2D" load_steps=2 format=2]
 
 [sub_resource type="Gradient" id=1]
 resource_local_to_scene = true
-colors = PoolColorArray( 0, 0, 1, 1, 1, 0, 0, 1 )
+colors = PackedColorArray( 0, 0, 1, 1, 1, 0, 0, 1 )
 
 [resource]
 resource_local_to_scene = true

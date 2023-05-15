@@ -9,13 +9,13 @@ extends RectFitLabel
 signal all_text_shown
 
 ## Amount of empty space between the text borders and panel borders.
-export (Vector2) var panel_padding: Vector2
+@export (Vector2) var panel_padding: Vector2
 
-export (NodePath) var chat_line_panel_path: NodePath
+@export (NodePath) var chat_line_panel_path: NodePath
 
-onready var chat_line_panel: ChatLinePanel = get_node(chat_line_panel_path)
+@onready var chat_line_panel: ChatLinePanel = get_node(chat_line_panel_path)
 
-onready var _label_typer := $LabelTyper
+@onready var _label_typer := $LabelTyper
 
 func _ready() -> void:
 	# Populate the chat line sizes based on the chat line panel sizes.
@@ -43,7 +43,7 @@ func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> int:
 
 ## Recolors the chat line label based on the specified chat appearance.
 func update_appearance(chat_theme: ChatTheme) -> void:
-	set("custom_colors/font_color", chat_theme.border_color)
+	set("theme_override_colors/font_color", chat_theme.border_color)
 
 
 func hide_message() -> void:

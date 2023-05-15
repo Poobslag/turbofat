@@ -4,18 +4,18 @@ extends Node2D
 ## Any occupied cell which isn't used in a box risks spawning a leaf poof. The more unused cells there are, the greater
 ## the chance of a poof.
 
-export (PackedScene) var LeafPoofScene: PackedScene
+@export (PackedScene) var LeafPoofScene: PackedScene
 
-export (NodePath) var puzzle_tile_map_path: NodePath
+@export (NodePath) var puzzle_tile_map_path: NodePath
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+@onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 ## Spawns a single leaf poof near the specified cell.
 func _spawn_poof(type: int, cell_x: int, cell_y: int) -> void:
 	# poof can appear half-way into horizontally adjacent cells, or in the cell above this one
-	var cell_offset := Vector2(rand_range(-0.5, 1.5), rand_range(-1.0, 1.0))
+	var cell_offset := Vector2(randf_range(-0.5, 1.5), randf_range(-1.0, 1.0))
 	var poof_position := _puzzle_tile_map.somewhere_near_cell(Vector2(cell_x, cell_y), cell_offset)
-	var poof: LeafPoof = LeafPoofScene.instance()
+	var poof: LeafPoof = LeafPoofScene.instantiate()
 	add_child(poof)
 	poof.initialize(type, poof_position)
 

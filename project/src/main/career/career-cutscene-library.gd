@@ -46,14 +46,14 @@ const SPECIAL_CHAT_KEY_NAMES := [
 ]
 
 ## Resource path containing career cutscenes. Can be changed for tests.
-var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_career_cutscene_root_path
+var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH: set = set_career_cutscene_root_path
 
 ## Ordered list of interlude ChatKeyPairs, from earliest cutscenes to latest cutscenes
 ##
 ## Each entry in this array is a ChatKeyPair defining preroll and postroll cutscenes.
 ##
 ## This is calculated based on the contents of the filesystem, but can be overridden for tests.
-var all_chat_key_pairs := [] setget set_all_chat_key_pairs
+var all_chat_key_pairs := []: set = set_all_chat_key_pairs
 
 ## key: (String) Interlude preroll chat key like 'chat/career/general_00_a'. For the case where a level has a
 ## 	postroll cutscene but no preroll cutscene, this chat key may actually correspond to a non-existent preroll
@@ -193,7 +193,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 			var key_part: String = key_parts[i]
 			var prefix: String = key_parts[0]
 			if i >= 2:
-				prefix += "/" + PoolStringArray(key_parts.slice(1, i - 1)).join("_")
+				prefix += "/" + PackedStringArray(key_parts.slice(1, i - "_".join(1)))
 			if not _preroll_tree.has(prefix):
 				_preroll_tree[prefix] = []
 			if not _preroll_tree[prefix].has(key_part):
@@ -324,7 +324,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 				if search_flags.excluded_chat_keys.has(child_key):
 					# don't include these chat keys; the player's already seen these cutscenes
 					pass
-				elif not search_flags.include_all_numeric_children and child.is_valid_integer():
+				elif not search_flags.include_all_numeric_children and child.is_valid_int():
 					if not min_numeric_child or int(child) < int(min_numeric_child):
 						# track lowest-numbered numeric key
 						min_numeric_child = child
@@ -428,7 +428,7 @@ func _child_key(chat_key_roots: Array, chat_key: String, child_suffix: String) -
 ## 	_parent_key("chat/career/general_00_a")  = "chat/career/general_00"
 ## 	_parent_key("chat/career/general")       = "chat/career"
 func _parent_key(chat_key: String) -> String:
-	return chat_key.substr(0, max(chat_key.find_last("_"), chat_key.find_last("/")))
+	return chat_key.substr(0, max(chat_key.rfind("_"), chat_key.rfind("/")))
 
 
 ## Returns the preroll key for the specified ChatKeyPair.
@@ -500,7 +500,7 @@ static func _find_resource_paths(path: String) -> Array:
 	
 	# queue of directories remaining to be traversed
 	var dir_queue := [path]
-	var dir: Directory
+	var dir: DirAccess
 	var file: String
 	while true:
 		if file:
@@ -512,12 +512,12 @@ static func _find_resource_paths(path: String) -> Array:
 		else:
 			if dir:
 				dir.list_dir_end()
-			if dir_queue.empty():
+			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = Directory.new()
+			dir = DirAccess.new()
 			dir.open(dir_queue.pop_front())
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	
 	return resource_paths

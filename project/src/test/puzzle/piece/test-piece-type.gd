@@ -29,8 +29,8 @@ func test_set_box_type() -> void:
 
 
 func test_empty() -> void:
-	assert_eq(PieceTypes.piece_t.empty(), false)
-	assert_eq(PieceTypes.piece_null.empty(), true)
+	assert_eq(PieceTypes.piece_t.is_empty(), false)
+	assert_eq(PieceTypes.piece_null.is_empty(), true)
 
 
 func test_size() -> void:

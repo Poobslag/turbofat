@@ -15,14 +15,14 @@
 [node name="Button" type="Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -924.0
-margin_bottom = -500.0
-rect_min_size = Vector2( 100, 100 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+offset_right = -924.0
+offset_bottom = -500.0
+custom_minimum_size = Vector2( 100, 100 )
+theme_override_styles/hover = SubResource( 1 )
+theme_override_styles/pressed = SubResource( 2 )
+theme_override_styles/focus = SubResource( 3 )
+theme_override_styles/disabled = SubResource( 4 )
+theme_override_styles/normal = SubResource( 5 )
 shortcut_in_tooltip = false
 flat = true
 script = ExtResource( 1 )

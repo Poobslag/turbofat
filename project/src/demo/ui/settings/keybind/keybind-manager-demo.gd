@@ -10,7 +10,7 @@ func _ready() -> void:
 	actions.sort()
 	for action in actions:
 		json_dict[action] = []
-		for action_item in InputMap.get_action_list(action):
+		for action_item in InputMap.action_get_events(action):
 			var json_action_item := KeybindManager.input_event_to_json(action_item)
 			if json_action_item:
 				json_dict[action].append(json_action_item)

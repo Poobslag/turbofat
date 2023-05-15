@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=2]
 [ext_resource path="res://src/main/puzzle/results-hud.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/results-label.gd" type="Script" id=4]
 [ext_resource path="res://assets/main/chat/ui/bebebe.wav" type="AudioStream" id=5]
@@ -15,12 +15,12 @@ script = ExtResource( 3 )
 
 [node name="ResultsLabel" type="RichTextLabel" parent="."]
 visible = false
-margin_left = 774.0
-margin_top = 10.0
-margin_right = 1014.0
-margin_bottom = 590.0
-custom_fonts/normal_font = ExtResource( 2 )
-custom_styles/normal = ExtResource( 1 )
+offset_left = 774.0
+offset_top = 10.0
+offset_right = 1014.0
+offset_bottom = 590.0
+theme_override_fonts/normal_font = ExtResource( 2 )
+theme_override_styles/normal = ExtResource( 1 )
 scroll_following = true
 script = ExtResource( 4 )
 

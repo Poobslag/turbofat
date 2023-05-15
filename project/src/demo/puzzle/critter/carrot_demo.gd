@@ -7,7 +7,7 @@ extends Node
 ## [Q]: Toggle smoke amount
 ## [W]: Toggle carrot size
 
-onready var _carrot := $Carrot
+@onready var _carrot := $Carrot
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

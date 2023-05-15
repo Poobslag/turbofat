@@ -83,7 +83,7 @@ func load_newest_save(target: Object, method: String) -> void:
 		break
 	
 	if bad_filenames:
-		var dir := Directory.new()
+		var dir := DirAccess.new()
 		# loaded successfully, but there were some save files that couldn't be loaded
 		for bad_filename in bad_filenames:
 			# copy each bad file to a filename like 'foo.save.corrupt'
@@ -143,13 +143,13 @@ func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
 	if not FileUtils.file_exists(data_filename):
 		return
 	
-	var dir := Directory.new()
+	var dir := DirAccess.new()
 	var this_filename := rolling_filename(this_save)
 	var prev_filename := rolling_filename(prev_save)
 	
 	var file_age := 0
 	if dir.file_exists(this_filename):
-		file_age = OS.get_unix_time() - File.new().get_modified_time(this_filename)
+		file_age = Time.get_unix_time_from_system() - File.new().get_modified_time(this_filename)
 	if file_age >= rotate_millis:
 		# replace the 'prev-xxx' backup with the 'this-xxx' backup
 		var copy_result := dir.copy(this_filename, prev_filename)

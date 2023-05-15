@@ -17,7 +17,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var dir := Directory.new()
+	var dir := DirAccess.new()
 	for backup in [
 			RollingBackups.CURRENT,
 			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
@@ -47,5 +47,5 @@ func test_one_bad_file() -> void:
 	assert_true(FileUtils.file_exists("user://test936.save.corrupt"), "user://test936.save.corrupt")
 	assert_true(FileUtils.file_exists("user://test936.save"), "user://test936.save")
 	
-	var dir := Directory.new()
+	var dir := DirAccess.new()
 	dir.remove("user://test936.save.corrupt")

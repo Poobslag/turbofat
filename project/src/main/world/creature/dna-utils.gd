@@ -212,7 +212,7 @@ const ALLELE_NAMES := {
 	"eye-4": "Ping Pong",
 	"eye-5": "Multi",
 	"eye-6": "Hollow",
-	"eye-7": "Skeleton",
+	"eye-7": "Skeleton3D",
 	"eye-8": "Plug",
 	
 	"hair-0": "(none)",

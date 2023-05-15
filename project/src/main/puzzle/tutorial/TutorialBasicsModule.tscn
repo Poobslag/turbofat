@@ -34,60 +34,60 @@ script = ExtResource( 4 )
 
 [node name="MoveLeft" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 1569.27
-margin_top = 155.158
-margin_right = 1677.27
-margin_bottom = 219.158
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 1569.27
+offset_top = 155.158
+offset_right = 1677.27
+offset_bottom = 219.158
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 6.0
 label_text = "Move Left"
 signal_names = [ "moved_left", "das_moved_left", "initial_das_moved_left" ]
 
 [node name="MoveRight" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 155.158
-margin_right = 1004.0
-margin_bottom = 219.158
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 155.158
+offset_right = 1004.0
+offset_bottom = 219.158
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 6.0
 label_text = "Move Right"
 signal_names = [ "moved_right", "das_moved_right", "initial_das_moved_right" ]
 
 [node name="RotateLeft" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 1569.27
-margin_top = 200.0
-margin_right = 1677.27
-margin_bottom = 264.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 1569.27
+offset_top = 200.0
+offset_right = 1677.27
+offset_bottom = 264.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Rotate Left"
 signal_names = [ "rotated_ccw", "initial_rotated_ccw" ]
 
 [node name="RotateRight" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 1569.27
-margin_top = 155.158
-margin_right = 1677.27
-margin_bottom = 219.158
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 1569.27
+offset_top = 155.158
+offset_right = 1677.27
+offset_bottom = 219.158
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Rotate Right"
 signal_names = [ "rotated_cw", "initial_rotated_cw" ]
 
 [node name="SoftDrop" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 1569.27
-margin_top = 268.0
-margin_right = 1677.27
-margin_bottom = 332.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 1569.27
+offset_top = 268.0
+offset_right = 1677.27
+offset_bottom = 332.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 30.0
 show_as_percent = true
 label_text = "Soft Drop"
@@ -95,70 +95,70 @@ signal_names = [ "soft_dropped" ]
 
 [node name="HardDrop" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 155.158
-margin_right = 1004.0
-margin_bottom = 219.158
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 155.158
+offset_right = 1004.0
+offset_bottom = 219.158
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Hard Drop"
 signal_names = [ "hard_dropped" ]
 
 [node name="LineClear" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 155.158
-margin_right = 1004.0
-margin_bottom = 219.158
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 155.158
+offset_right = 1004.0
+offset_bottom = 219.158
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Line Clear"
 signal_names = [ "line_cleared" ]
 
 [node name="SnackBox" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 336.0
-margin_right = 1004.0
-margin_bottom = 400.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 336.0
+offset_right = 1004.0
+offset_bottom = 400.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Snack Box"
 signal_names = [ "box_built" ]
 
 [node name="BoxClear" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 336.0
-margin_right = 1004.0
-margin_bottom = 400.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 336.0
+offset_right = 1004.0
+offset_bottom = 400.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Box Clear"
 
 [node name="SquishMove" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 1569.27
-margin_top = 404.0
-margin_right = 1677.27
-margin_bottom = 468.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 1569.27
+offset_top = 404.0
+offset_right = 1677.27
+offset_bottom = 468.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Squish Move"
 signal_names = [ "squish_moved" ]
 
 [node name="SnackStack" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 784.0
-margin_top = 132.0
-margin_right = 892.0
-margin_bottom = 196.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 784.0
+offset_top = 132.0
+offset_right = 892.0
+offset_bottom = 196.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Snack Stack"

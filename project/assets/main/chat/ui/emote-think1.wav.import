@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/emote-think1.wav-a0cc1b1b2de8456ffc7ba886a261ab3b.sample"
+type="AudioStreamWAV"
+uid="uid://jo4ugpqdyein"
+path="res://.godot/imported/emote-think1.wav-a0cc1b1b2de8456ffc7ba886a261ab3b.sample"
 
 [deps]
 
 source_file="res://assets/main/chat/ui/emote-think1.wav"
-dest_files=[ "res://.import/emote-think1.wav-a0cc1b1b2de8456ffc7ba886a261ab3b.sample" ]
+dest_files=["res://.godot/imported/emote-think1.wav-a0cc1b1b2de8456ffc7ba886a261ab3b.sample"]
 
 [params]
 

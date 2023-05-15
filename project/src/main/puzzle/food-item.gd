@@ -1,4 +1,4 @@
-tool
+@tool
 class_name FoodItem
 extends PackedSprite
 ## Food item which appears when the player clears a box in puzzle mode.
@@ -8,12 +8,12 @@ extends PackedSprite
 signal ready_to_fly
 
 ## Scale/rotation modifiers applied by our animation
-export (Vector2) var scale_modifier := Vector2.ONE
-export (float) var rotation_modifier := 0.0
+@export (Vector2) var scale_modifier := Vector2.ONE
+@export (float) var rotation_modifier := 0.0
 
 ## Unmodified scale/rotation before pulsing/spinning
-var base_scale := Vector2.ONE setget set_base_scale
-var base_rotation := 0.0 setget set_base_rotation
+var base_scale := Vector2.ONE: set = set_base_scale
+var base_rotation := 0.0: set = set_base_rotation
 
 ## Velocity applied to the food when in the 'floating' state
 var velocity := Vector2(0, -25)
@@ -25,7 +25,7 @@ var customer: Creature
 var customer_index: int
 
 ## Enum from FoodType corresponding to the food to show
-var food_type: int setget set_food_type
+var food_type: int: set = set_food_type
 
 ## Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
@@ -47,23 +47,23 @@ var _flight_percent := 0.0
 var _floating_upward := false
 
 ## How far the sprite should rotate; 1.0 = one full circle forward and backward
-onready var _spin_amount := 0.08 * rand_range(0.8, 1.2)
+@onready var _spin_amount := 0.08 * randf_range(0.8, 1.2)
 
 ## How many seconds the sprite should take to rotate back and forth once
-onready var _spin_period := 2.50 * rand_range(0.8, 1.2)
+@onready var _spin_period := 2.50 * randf_range(0.8, 1.2)
 
 func _ready() -> void:
 	# randomly increment the total time so items don't spin/pulse in sync
-	_total_time += rand_range(0.0, _spin_period)
+	_total_time += randf_range(0.0, _spin_period)
 	
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		# preserve default position/rotation/scale in the editor
 		_refresh_scale()
 		_refresh_rotation()
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		# preserve default position/rotation/scale in the editor
 		return
 	
@@ -93,7 +93,7 @@ func jiggle() -> void:
 	# restart the jiggle animation if the item was already jiggling
 	$AnimationPlayer.stop()
 	# vary the jiggle animation so that items don't stay in sync when jiggling simultaneously
-	$AnimationPlayer.play("jiggle", -1, rand_range(0.5, 1.5))
+	$AnimationPlayer.play("jiggle", -1, randf_range(0.5, 1.5))
 
 
 ## Launches the 'food was collected' animation.
@@ -139,7 +139,7 @@ func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
 	_source_pos = position
 	var flying_tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	flying_tween.tween_property(self, "_flight_percent", 1.0, duration)
-	flying_tween.tween_callback(self, "queue_free").set_delay(0.03)
+	flying_tween.tween_callback(Callable(self, "queue_free")).set_delay(0.03)
 
 
 func _refresh_scale() -> void:

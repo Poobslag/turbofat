@@ -3,11 +3,11 @@ extends Control
 ##
 ## This includes a text label like '8:00 am' and a clock icon which changes.
 
-onready var _label := $Label
-onready var _icon_sprite := $Icon/IconSprite
+@onready var _label := $Label
+@onready var _icon_sprite := $Icon/IconSprite
 
 func _ready() -> void:
-	PlayerData.career.connect("hours_passed_changed", self, "_on_CareerData_hours_passed_changed")
+	PlayerData.career.connect("hours_passed_changed", Callable(self, "_on_CareerData_hours_passed_changed"))
 	_refresh()
 
 

@@ -5,13 +5,13 @@ extends Control
 ## Money can be shown in an compact form like '17.2 b' or an expanded form like '17,213,529,312'.
 
 ## 'true' if the money should be shown in a compact form like '17.2 b' to save on space.
-export (bool) var compact: bool setget set_compact
+@export (bool) var compact: bool: set = set_compact
 
 ## Amount of money shown by this label. Might differ from the player's actual money during animations.
 var shown_money: int
 
 func _ready() -> void:
-	PlayerData.connect("money_changed", self, "on_PlayerData_money_changed")
+	PlayerData.connect("money_changed", Callable(self, "on_PlayerData_money_changed"))
 	set_shown_money(PlayerData.money)
 
 

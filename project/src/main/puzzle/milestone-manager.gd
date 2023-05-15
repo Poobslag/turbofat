@@ -7,10 +7,10 @@ extends Node
 ## Reaching a milestone can increase the speed, end the level, or trigger a success condition.
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
-	PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")
-	PuzzleState.connect("combo_ended", self, "_on_PuzzleState_combo_ended")
+	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	PuzzleState.connect("score_changed", Callable(self, "_on_PuzzleState_score_changed"))
+	PuzzleState.connect("combo_ended", Callable(self, "_on_PuzzleState_combo_ended"))
 
 
 func _physics_process(_delta: float) -> void:

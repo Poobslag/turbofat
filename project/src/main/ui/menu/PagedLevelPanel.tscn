@@ -9,7 +9,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=9]
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/level-select/level-submenu-description-panel.gd" type="Script" id=11]
-[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=12]
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=13]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=14]
 
@@ -29,7 +29,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 outline_size = 2
 outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 font_data = ExtResource( 12 )
@@ -50,33 +50,33 @@ corner_radius_bottom_left = 8
 [node name="Panel" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
-custom_styles/panel = SubResource( 2 )
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+theme_override_styles/panel = SubResource( 2 )
 script = ExtResource( 7 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_min_size = Vector2( -10, 0 )
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+custom_minimum_size = Vector2( -10, 0 )
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 904.0
-margin_bottom = 45.0
+offset_right = 904.0
+offset_bottom = 45.0
 theme = ExtResource( 13 )
 text = "Level Select"
 align = 1
 
 [node name="Top" type="Control" parent="VBoxContainer"]
-margin_top = 49.0
-margin_right = 904.0
-margin_bottom = 376.0
+offset_top = 49.0
+offset_right = 904.0
+offset_bottom = 376.0
 size_flags_vertical = 3
 
 [node name="LevelButtons" type="HBoxContainer" parent="VBoxContainer/Top"]
@@ -84,46 +84,46 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -452.0
-margin_top = -145.0
-margin_right = 452.0
-margin_bottom = 145.0
+offset_left = -452.0
+offset_top = -145.0
+offset_right = 452.0
+offset_bottom = 145.0
 alignment = 1
 script = ExtResource( 5 )
 LevelButtonScene = ExtResource( 1 )
 
 [node name="LeftArrow" type="Button" parent="VBoxContainer/Top/LevelButtons"]
-margin_left = 354.0
-margin_top = 132.0
-margin_right = 378.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 24, 24 )
+offset_left = 354.0
+offset_top = 132.0
+offset_right = 378.0
+offset_bottom = 158.0
+custom_minimum_size = Vector2( 24, 24 )
 size_flags_vertical = 4
 theme = ExtResource( 14 )
 text = "<"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/Top/LevelButtons"]
-margin_left = 382.0
-margin_top = 115.0
-margin_right = 522.0
-margin_bottom = 175.0
+offset_left = 382.0
+offset_top = 115.0
+offset_right = 522.0
+offset_bottom = 175.0
 size_flags_vertical = 4
 columns = 6
 
 [node name="Button" parent="VBoxContainer/Top/LevelButtons/GridContainer" instance=ExtResource( 1 )]
-margin_right = 140.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 140, 60 )
-custom_fonts/font = SubResource( 1 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
+offset_right = 140.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2( 140, 60 )
+theme_override_fonts/font = SubResource( 1 )
+theme_override_styles/hover = SubResource( 3 )
+theme_override_styles/normal = SubResource( 3 )
 
 [node name="RightArrow" type="Button" parent="VBoxContainer/Top/LevelButtons"]
-margin_left = 526.0
-margin_top = 132.0
-margin_right = 550.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 24, 24 )
+offset_left = 526.0
+offset_top = 132.0
+offset_right = 550.0
+offset_bottom = 158.0
+custom_minimum_size = Vector2( 24, 24 )
 size_flags_vertical = 4
 theme = ExtResource( 14 )
 text = ">"
@@ -136,35 +136,35 @@ script = ExtResource( 10 )
 GradeLabelScene = ExtResource( 2 )
 
 [node name="Bottom" type="Control" parent="VBoxContainer"]
-margin_top = 380.0
-margin_right = 904.0
-margin_bottom = 480.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 380.0
+offset_right = 904.0
+offset_bottom = 480.0
+custom_minimum_size = Vector2( 0, 100 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Description" type="Panel" parent="VBoxContainer/Bottom/HBoxContainer"]
-margin_right = 450.0
-margin_bottom = 100.0
+offset_right = 450.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 9 )
+theme_override_styles/panel = ExtResource( 9 )
 script = ExtResource( 11 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/Description"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 5
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
-margin_left = 20.0
-margin_top = 5.0
-margin_right = 430.0
-margin_bottom = 95.0
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 430.0
+offset_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 14 )
 align = 1
@@ -172,26 +172,26 @@ valign = 1
 autowrap = true
 
 [node name="Info" type="Panel" parent="VBoxContainer/Bottom/HBoxContainer"]
-margin_left = 454.0
-margin_right = 904.0
-margin_bottom = 100.0
+offset_left = 454.0
+offset_right = 904.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 9 )
+theme_override_styles/panel = ExtResource( 9 )
 script = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/Info"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 5
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
-margin_left = 20.0
-margin_top = 5.0
-margin_right = 430.0
-margin_bottom = 95.0
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 430.0
+offset_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 14 )
 valign = 1

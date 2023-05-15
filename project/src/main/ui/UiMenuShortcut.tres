@@ -1,4 +1,4 @@
-[gd_resource type="ShortCut" load_steps=2 format=2]
+[gd_resource type="Shortcut" load_steps=2 format=2]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_menu"

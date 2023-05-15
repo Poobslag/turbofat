@@ -4,7 +4,7 @@ extends Node
 ##  [A, S, D]: Wide good/neutral/bad message
 ##  [Z, X, C]: Multiline good/neutral/bad message
 
-onready var _message := $PuzzleMessage
+@onready var _message := $PuzzleMessage
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

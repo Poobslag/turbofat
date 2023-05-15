@@ -18,14 +18,14 @@ var _did_build_cake := false
 var _did_squish_move := false
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
-	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
+	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
+	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
 	
-	playfield.connect("box_built", self, "_on_Playfield_box_built")
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
-	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
-	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
-	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
+	playfield.connect("box_built", Callable(self, "_on_Playfield_box_built"))
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	playfield.connect("line_cleared", Callable(self, "_on_Playfield_line_cleared"))
+	piece_manager.connect("squish_moved", Callable(self, "_on_PieceManager_squish_moved"))
+	piece_manager.connect("piece_spawned", Callable(self, "_on_PieceManager_piece_spawned"))
 	
 	if CurrentLevel.settings.other.skip_intro:
 		puzzle.hide_buttons()
@@ -36,7 +36,7 @@ func _ready() -> void:
 
 
 func prepare_tutorial_level() -> void:
-	.prepare_tutorial_level()
+	super.prepare_tutorial_level()
 	match CurrentLevel.settings.id:
 		"tutorial/basics_1":
 			hud.skill_tally_item("SnackBox").visible = true

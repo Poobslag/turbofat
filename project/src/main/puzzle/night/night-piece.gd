@@ -4,13 +4,13 @@ extends Control
 ## This piece is synchronized with the daytime piece, and rendered over it.
 
 ## Path to the daytime piece manager to synchronize with.
-export (NodePath) var piece_manager_path: NodePath setget set_piece_manager_path
+@export (NodePath) var piece_manager_path: NodePath: set = set_piece_manager_path
 
 ## daytime piece manager to synchronize with
 var _piece_manager: PieceManager
 
-onready var _tile_map: NightPuzzleTileMap = $TileMap
-onready var _squish_fx: NightSquishFx = $SquishFx
+@onready var _tile_map: NightPuzzleTileMap = $TileMap
+@onready var _squish_fx: NightSquishFx = $SquishFx
 
 func _ready() -> void:
 	_refresh_piece_manager_path()

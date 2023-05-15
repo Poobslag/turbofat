@@ -1,4 +1,4 @@
-tool
+@tool
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles in the career mode's world.
 
@@ -30,7 +30,7 @@ const ENVIRONMENT_PATH_BY_NAME := {
 	"poki": "res://src/main/world/environment/poki/PokiEnvironment.tscn",
 }
 
-export (PackedScene) var MileMarkerScene: PackedScene
+@export (PackedScene) var MileMarkerScene: PackedScene
 
 ## Creature instances for 'level creatures', chefs and customers associated with each level.
 var _level_creatures := []
@@ -43,12 +43,12 @@ var _focused_level_creature_index := -1
 var _move_cheat_enabled := false
 
 ## path on which which the player and sensei are placed
-onready var _player_path2d: Path2D
+@onready var _player_path2d: Path2D
 
-onready var _camera: Camera2D = $Camera
+@onready var _camera: Camera2D = $Camera3D
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	_fill_environment_scene()
@@ -363,7 +363,7 @@ func _add_mile_markers_to_path() -> void:
 
 ## Places a mile marker at the specified position.
 func _add_mile_marker(position: Vector2, mile_number: int) -> void:
-		var marker: MileMarker = MileMarkerScene.instance()
+		var marker: MileMarker = MileMarkerScene.instantiate()
 		overworld_environment.add_obstacle(marker)
 		
 		marker.position = position

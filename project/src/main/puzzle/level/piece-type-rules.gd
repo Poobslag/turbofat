@@ -8,7 +8,8 @@ class_name PieceTypeRules
 class PieceTypesPropertyParser extends RuleParser.PropertyParser:
 	var start_name: String = "start_types"
 	
-	func _init(init_target: Object).(init_target, "types") -> void:
+	func _init(init_target: Object) -> void:
+		super(init_target, "types")
 		default = []
 		keys = []
 		for piece_string in PieceTypes.pieces_by_string:
@@ -37,7 +38,7 @@ class PieceTypesPropertyParser extends RuleParser.PropertyParser:
 	
 	
 	func is_default() -> bool:
-		return target().get(name).empty() and target().get(start_name).empty()
+		return target().get(name).is_empty() and target().get(start_name).is_empty()
 
 ## if 'true', the start pieces always appear in the same order instead of being shuffled.
 var ordered_start: bool = false

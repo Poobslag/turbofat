@@ -4,14 +4,14 @@ extends CanvasLayer
 
 signal level_button_focused(button_index)
 
-export (PackedScene) var LevelSelectButtonScene: PackedScene
+@export (PackedScene) var LevelSelectButtonScene: PackedScene
 
 var _duration_calculator := DurationCalculator.new()
 var _prev_focused_level_button_index := -1
 
-onready var _control := $Control
-onready var _grade_labels := $Control/GradeLabels
-onready var _level_buttons_container := $Control/LevelButtons
+@onready var _control := $Control
+@onready var _grade_labels := $Control/GradeLabels
+@onready var _level_buttons_container := $Control/LevelButtons
 
 func _ready() -> void:
 	# If the day is over, we show the career map briefly so the player can see their progress, but we hide the level
@@ -24,7 +24,7 @@ func _ready() -> void:
 ##
 ## For a boss level where only one level is available, this will return '0' if the level button is selected.
 func focused_level_button_index() -> int:
-	_prev_focused_level_button_index = _level_buttons_container.get_children().find(_control.get_focus_owner())
+	_prev_focused_level_button_index = _level_buttons_container.get_children().find(_control.get_viewport().gui_get_focus_owner())
 	return _prev_focused_level_button_index
 
 
@@ -43,8 +43,8 @@ func clear_level_select_buttons() -> void:
 ## Parameters:
 ## 	'settings': The level settings which control the button's appearance.
 func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
-	var button: LevelSelectButton = LevelSelectButtonScene.instance()
-	button.rect_min_size = Vector2(200, 120)
+	var button: LevelSelectButton = LevelSelectButtonScene.instantiate()
+	button.custom_minimum_size = Vector2(200, 120)
 	button.size_flags_horizontal = 6
 	button.size_flags_vertical = 4
 	button.level_name = settings.name
@@ -92,5 +92,5 @@ func _on_SettingsMenu_show() -> void:
 
 func _on_SettingsMenu_hide() -> void:
 	_control.show()
-	if not _control.get_focus_owner():
+	if not _control.get_viewport().gui_get_focus_owner():
 		focus_button()

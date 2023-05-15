@@ -16,15 +16,15 @@ const LEVEL_COLOR_3 := Color("b95c48")
 const LEVEL_COLOR_4 := Color("b94878")
 const LEVEL_COLOR_5 := Color("b948b9")
 
-onready var _progress_bar: ProgressBar = $ProgressBar
-onready var _desc: Label = $Desc
-onready var _value: FontFitLabel = $Value
-onready var _progress_bar_particles: Control = $ProgressBarParticles
+@onready var _progress_bar: ProgressBar = $ProgressBar
+@onready var _desc: Label = $Desc
+@onready var _value: FontFitLabel = $Value
+@onready var _progress_bar_particles: Control = $ProgressBarParticles
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
 			_desc.text = tr("Customers")
@@ -87,7 +87,7 @@ func update_milebar_color() -> void:
 		level_color = LEVEL_COLOR_1
 	else:
 		level_color = LEVEL_COLOR_0
-	_progress_bar.get("custom_styles/fg").set_bg_color(Utils.to_transparent(level_color, 0.333))
+	_progress_bar.get("theme_override_styles/fg").set_bg_color(Utils.to_transparent(level_color, 0.333))
 
 
 ## Initializes the milestone progress bar's value and boundaries, and locks in the font size.
@@ -110,15 +110,15 @@ func update_milebar() -> void:
 ##
 ## All of the Particles2D share the same GradientTexture so we only need to modify one.
 func _update_particle_colors() -> void:
-	var particles_material: ParticlesMaterial = _progress_bar_particles.get_child(0).process_material
-	var progress_bar_color: Color = _progress_bar.get("custom_styles/fg").bg_color
+	var particles_material: ParticleProcessMaterial = _progress_bar_particles.get_child(0).process_material
+	var progress_bar_color: Color = _progress_bar.get("theme_override_styles/fg").bg_color
 	particles_material.color_ramp.gradient.colors[0] = Utils.to_transparent(progress_bar_color, 1.0)
 	particles_material.color_ramp.gradient.colors[1] = Utils.to_transparent(progress_bar_color, 0.0)
 
 ## Emit particles from the progress bar.
 func _emit_particles() -> void:
 	for particles_2d_node in _progress_bar_particles.get_children():
-		var particles_2d: Particles2D = particles_2d_node
+		var particles_2d: GPUParticles2D = particles_2d_node
 		particles_2d.restart()
 		particles_2d.emitting = true
 

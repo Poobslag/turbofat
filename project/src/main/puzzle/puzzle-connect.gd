@@ -19,7 +19,7 @@ static func is_r(input: int) -> bool: return input & RIGHT > 0
 
 ## functions which enable a specific directional bitmask
 static func set_u(input: int) -> int: return input | UP
-static func set_d(input: int) -> int: return input | DOWN
+static func set_distance(input: int) -> int: return input | DOWN
 static func set_l(input: int) -> int: return input | LEFT
 static func set_r(input: int) -> int: return input | RIGHT
 static func set_dirs(input: int, bitmask: int) -> int: return input | bitmask

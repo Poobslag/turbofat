@@ -1,8 +1,8 @@
-extends Particles2D
+extends GPUParticles2D
 ## Emits crumb particles as a piece is eaten.
 
 ## Tile map for the pieces the shark is eating.
-var tile_map: PuzzleTileMap setget set_tile_map
+var tile_map: PuzzleTileMap: set = set_tile_map
 
 func set_tile_map(new_tile_map: PuzzleTileMap) -> void:
 	tile_map = new_tile_map

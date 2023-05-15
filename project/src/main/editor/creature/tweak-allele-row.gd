@@ -2,21 +2,21 @@ extends HBoxContainer
 ## UI control for editing a creature's allele, such their nose or mouth.
 
 ## Allele property used internally when updating the creature. Not shown to the player
-export (String) var allele: String
+@export (String) var allele: String
 
 ## Allele property used internally when updating the creature. Not shown to the player
-export (String) var text: String
+@export (String) var text: String
 
-export (NodePath) var creature_editor_path: NodePath
+@export (NodePath) var creature_editor_path: NodePath
 
-onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
+@onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
 ## Allele values corresponding to the option button items. Used when updating the creature, not shown to the player.
 var _allele_values: Array
 
 func _ready() -> void:
 	$Label.text = "%s:" % text
-	_creature_editor.connect("center_creature_changed", self, "_on_CreatureEditor_center_creature_changed")
+	_creature_editor.connect("center_creature_changed", Callable(self, "_on_CreatureEditor_center_creature_changed"))
 
 
 ## Update the creature with the player's chosen allele value.

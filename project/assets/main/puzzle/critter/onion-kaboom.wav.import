@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/onion-kaboom.wav-6b2da7c06bc33534c0acb094c69e7e4a.sample"
+type="AudioStreamWAV"
+uid="uid://qwvdfu4sp5dq"
+path="res://.godot/imported/onion-kaboom.wav-6b2da7c06bc33534c0acb094c69e7e4a.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/onion-kaboom.wav"
-dest_files=[ "res://.import/onion-kaboom.wav-6b2da7c06bc33534c0acb094c69e7e4a.sample" ]
+dest_files=["res://.godot/imported/onion-kaboom.wav-6b2da7c06bc33534c0acb094c69e7e4a.sample"]
 
 [params]
 

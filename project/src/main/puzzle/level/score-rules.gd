@@ -8,7 +8,8 @@ class_name ScoreRules
 class PointsPropertyParser extends RuleParser.PropertyParser:
 	var _all_string: String
 	
-	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String) -> void:
+		super(init_target, init_name)
 		default = 0
 		_all_string = "%sall" % [init_name.trim_suffix("points")]
 		keys = [_all_string]

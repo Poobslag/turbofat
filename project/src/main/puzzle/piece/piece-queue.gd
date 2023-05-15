@@ -43,9 +43,9 @@ var _cheat_bag_line_pieces_remaining := 0
 var _cheat_bag_pieces_remaining := 0
 
 func _ready() -> void:
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	SystemData.gameplay_settings.connect("line_piece_changed", self, "_on_GameplaySettings_line_piece_changed")
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	SystemData.gameplay_settings.connect("line_piece_changed", Callable(self, "_on_GameplaySettings_line_piece_changed"))
 	_fill()
 
 
@@ -94,7 +94,7 @@ func _apply_piece_limit() -> void:
 ## have fewer constraints, but still use a bagging algorithm to ensure fairness.
 func _fill() -> void:
 	_reset_cheat_bag()
-	if pieces.empty():
+	if pieces.is_empty():
 		_fill_initial_pieces()
 	_fill_remaining_pieces()
 	_apply_piece_limit()
@@ -104,7 +104,7 @@ func _fill() -> void:
 func _fill_initial_pieces() -> void:
 	var old_piece_count := pieces.size()
 	
-	if CurrentLevel.settings.piece_types.types.empty() and CurrentLevel.settings.piece_types.start_types.empty():
+	if CurrentLevel.settings.piece_types.types.is_empty() and CurrentLevel.settings.piece_types.start_types.is_empty():
 		# Default starting pieces:
 		# 1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
 		# 2. Append a piece which can't build a snack box or a cake box
@@ -171,7 +171,7 @@ func _reset_cheat_bag() -> void:
 
 func _shuffled_piece_types() -> Array:
 	var result: Array = CurrentLevel.settings.piece_types.types
-	if result.empty():
+	if result.is_empty():
 		result = _default_piece_types
 	result = result.duplicate()
 	result.shuffle()

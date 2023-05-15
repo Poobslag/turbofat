@@ -1,15 +1,15 @@
 extends Control
 ## UI control for enabling line pieces to all levels
 
-onready var _check_box := $CheckBox
+@onready var _check_box := $CheckBox
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("line_piece_changed", self, "_on_GameplaySettings_line_piece_changed")
+	SystemData.gameplay_settings.connect("line_piece_changed", Callable(self, "_on_GameplaySettings_line_piece_changed"))
 	_refresh()
 
 
 func _refresh() -> void:
-	_check_box.pressed = SystemData.gameplay_settings.line_piece
+	_check_box.button_pressed = SystemData.gameplay_settings.line_piece
 
 
 func _on_OptionButton_toggled(_button_pressed: bool) -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/puzzle/hold-piece-display.gd" type="Script" id=3]
 

@@ -5,7 +5,7 @@ enum EditorPiece {
 	PIECE_J, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
 }
 
-export (EditorPiece) var editor_piece: int setget set_editor_piece
+@export (EditorPiece) var editor_piece: int: set = set_editor_piece
 
 var _editor_pieces := {
 	EditorPiece.PIECE_J: PieceTypes.piece_j,
@@ -22,7 +22,7 @@ var _orientation := 0
 var _type: PieceType = PieceTypes.piece_j
 
 func _ready() -> void:
-	$"../../Buttons/RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
+	$"../../Buttons/RotateButton".connect("pressed", Callable(self, "_on_RotateButton_pressed"))
 
 
 func set_editor_piece(new_editor_piece: int) -> void:
@@ -34,11 +34,11 @@ func set_editor_piece(new_editor_piece: int) -> void:
 
 ## Calculates the extents of the piece's used cells.
 func _piece_extents() -> Rect2:
-	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
-	extents.position = _type.get_cell_position(_orientation, 0)
+	var size := Rect2(Vector2.ZERO, Vector2.ZERO)
+	size.position = _type.get_cell_position(_orientation, 0)
 	for pos in _type.pos_arr[_orientation]:
-		extents = extents.expand(pos)
-	return extents
+		size = size.expand(pos)
+	return size
 
 
 func _refresh_tile_map() -> void:

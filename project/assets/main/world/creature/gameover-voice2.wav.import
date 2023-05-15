@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/gameover-voice2.wav-f3cc61d6a5260db05f408535d49d72d8.sample"
+type="AudioStreamWAV"
+uid="uid://dbaiur30n3bbs"
+path="res://.godot/imported/gameover-voice2.wav-f3cc61d6a5260db05f408535d49d72d8.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/gameover-voice2.wav"
-dest_files=[ "res://.import/gameover-voice2.wav-f3cc61d6a5260db05f408535d49d72d8.sample" ]
+dest_files=["res://.godot/imported/gameover-voice2.wav-f3cc61d6a5260db05f408535d49d72d8.sample"]
 
 [params]
 

@@ -3,7 +3,7 @@ extends VBoxContainer
 
 ## Describes flags to assign or unassign during cutscenes
 ## Virtual property; value is only exposed through getters/setters
-var value: String setget set_value, get_value
+var value: String: get = get_value, set = set_value
 
 ## Applies the text contents to the player's data.
 ##
@@ -31,7 +31,7 @@ func apply_flags() -> void:
 			PlayerData.chat_history.delete_history_item(chat_key)
 		elif line.begins_with("level_finished "):
 			var level_key := StringUtils.substring_after(line, "level_finished ")
-			PlayerData.level_history.finished_levels[level_key] = OS.get_datetime()
+			PlayerData.level_history.finished_levels[level_key] = Time.get_datetime_dict_from_system()
 		elif line.begins_with("not level_finished "):
 			var level_key := StringUtils.substring_after(line, "level_finished ")
 			PlayerData.level_history.delete_results(level_key)

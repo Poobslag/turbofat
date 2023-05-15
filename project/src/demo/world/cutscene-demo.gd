@@ -7,13 +7,13 @@ extends Node
 const SAVE_KEY_FLAGS := "cutscene-demo.flags"
 const SAVE_KEY_OPEN := "cutscene-demo.open"
 
-onready var _demo_save := $DemoSave
-onready var _flags_input := $Input/Flags
-onready var _open_input := $Input/Open
-onready var _open_button := $Input/Open/Button
-onready var _start_button := $Input/StartButton
-onready var _error_dialog := $Dialogs/Error
-onready var _open_dialog := $Dialogs/OpenFile
+@onready var _demo_save := $DemoSave
+@onready var _flags_input := $Input/Flags
+@onready var _open_input := $Input/Open
+@onready var _open_button := $Input/Open/Button
+@onready var _start_button := $Input/StartButton
+@onready var _error_dialog := $Dialogs/Error
+@onready var _open_dialog := $Dialogs/OpenFile
 
 func _ready() -> void:
 	# Initialize the Breadcrumb trail so that cutscenes will return to this demo after they finish.

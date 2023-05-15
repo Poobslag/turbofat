@@ -1,4 +1,4 @@
-tool
+@tool
 class_name PokiCrowd
 extends OverworldObstacle
 ## Poki desert crowd member which appears in the overworld.
@@ -13,35 +13,35 @@ const CROWD_COLORS := [
 ]
 
 ## Current frame to display from the sprite sheet.
-export (int) var frame: int setget set_frame
+@export (int) var frame: int: set = set_frame
 
 ## If true, the sprite's texture is flipped horizontally.
-export (bool) var flip_h: bool setget set_flip_h
+@export (bool) var flip_h: bool: set = set_flip_h
 
 ## Editor toggle which randomizes the obstacle's appearance
-export (bool) var shuffle: bool setget set_shuffle
+@export (bool) var shuffle: bool: set = set_shuffle
 
-export (int, 0, 3) var crowd_color_index: int setget set_crowd_color_index
+@export (int, 0, 3) var crowd_color_index: int: set = set_crowd_color_index
 
-onready var _sprite := $Sprite
+@onready var _sprite := $Sprite2D
 
 ## Timer which makes the crowd member animate slightly, alternating between two frames
-onready var _wiggle_timer := $WiggleTimer
+@onready var _wiggle_timer := $WiggleTimer
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		# don't animate the crowd member in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
 		# polluting version control
 		pass
 	else:
-		_wiggle_timer.start(rand_range(0.0, 7.0))
+		_wiggle_timer.start(randf_range(0.0, 7.0))
 	
 	_refresh()
 
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
-	_sprite = $Sprite
+	_sprite = $Sprite2D
 
 
 func set_frame(new_frame: int) -> void:
@@ -78,7 +78,7 @@ func set_shuffle(value: bool) -> void:
 	set_crowd_color_index(Utils.randi_range(0, CROWD_COLORS.size() - 1))
 	scale = Vector2.ONE
 	
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 ## When the WiggleTimer times out, we animate the crowd member slightly.
@@ -92,4 +92,4 @@ func _on_WiggleTimer_timeout() -> void:
 		set_frame(frame - 1)
 	
 	# randomly vary the wiggle timer slightly
-	_wiggle_timer.start(rand_range(6.0, 7.0))
+	_wiggle_timer.start(randf_range(6.0, 7.0))

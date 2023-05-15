@@ -75,7 +75,7 @@ func to_json_dict() -> Dictionary:
 
 
 func is_default() -> bool:
-	return bunches.empty()
+	return bunches.is_empty()
 
 
 ## Returns the initial set of tiles.

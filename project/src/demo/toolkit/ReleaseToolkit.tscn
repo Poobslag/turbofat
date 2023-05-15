@@ -17,18 +17,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -384.0
-margin_top = -225.0
-margin_right = 384.0
-margin_bottom = 225.0
-rect_min_size = Vector2( 768, 450 )
+offset_left = -384.0
+offset_top = -225.0
+offset_right = 384.0
+offset_bottom = 225.0
+custom_minimum_size = Vector2( 768, 450 )
 alignment = 1
 
 [node name="ExtractLocalizables" type="Button" parent="VBoxContainer"]
-margin_left = 199.0
-margin_top = 61.0
-margin_right = 569.0
-margin_bottom = 112.0
+offset_left = 199.0
+offset_top = 61.0
+offset_right = 569.0
+offset_bottom = 112.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Extract Localizables"
@@ -36,10 +36,10 @@ script = ExtResource( 2 )
 output_label_path = NodePath("../Output")
 
 [node name="FixChats" type="Button" parent="VBoxContainer"]
-margin_left = 297.0
-margin_top = 116.0
-margin_right = 471.0
-margin_bottom = 167.0
+offset_left = 297.0
+offset_top = 116.0
+offset_right = 471.0
+offset_bottom = 167.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Fix Chats"
@@ -47,10 +47,10 @@ script = ExtResource( 5 )
 output_label_path = NodePath("../Output")
 
 [node name="FixCreatures" type="Button" parent="VBoxContainer"]
-margin_left = 260.0
-margin_top = 171.0
-margin_right = 508.0
-margin_bottom = 222.0
+offset_left = 260.0
+offset_top = 171.0
+offset_right = 508.0
+offset_bottom = 222.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Fix Creatures"
@@ -58,10 +58,10 @@ script = ExtResource( 6 )
 output_label_path = NodePath("../Output")
 
 [node name="FixLevels" type="Button" parent="VBoxContainer"]
-margin_left = 289.0
-margin_top = 226.0
-margin_right = 478.0
-margin_bottom = 277.0
+offset_left = 289.0
+offset_top = 226.0
+offset_right = 478.0
+offset_bottom = 277.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Fix Levels"
@@ -69,15 +69,15 @@ script = ExtResource( 1 )
 output_label_path = NodePath("../Output")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 281.0
-margin_right = 768.0
-margin_bottom = 285.0
+offset_top = 281.0
+offset_right = 768.0
+offset_bottom = 285.0
 
 [node name="Output" type="Label" parent="VBoxContainer"]
-margin_top = 289.0
-margin_right = 768.0
-margin_bottom = 389.0
-rect_min_size = Vector2( 0, 100 )
+offset_top = 289.0
+offset_right = 768.0
+offset_bottom = 389.0
+custom_minimum_size = Vector2( 0, 100 )
 theme = ExtResource( 4 )
 align = 1
 autowrap = true

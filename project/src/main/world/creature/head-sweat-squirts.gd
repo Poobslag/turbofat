@@ -1,8 +1,8 @@
 #tool #uncomment to view creature in editor
-extends Particles2D
+extends GPUParticles2D
 ## Manages the sweat drops which leap from the creature's head.
 
-export var creature_visuals_path: NodePath setget set_creature_visuals_path
+@export var creature_visuals_path: NodePath: set = set_creature_visuals_path
 
 var _creature_visuals: CreatureVisuals
 
@@ -20,14 +20,14 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
-		_creature_visuals.disconnect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+		_creature_visuals.disconnect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
+		_creature_visuals.disconnect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
 	
 	_creature_visuals = get_node(creature_visuals_path)
 	
 	if _creature_visuals:
-		_creature_visuals.connect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
-		_creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+		_creature_visuals.connect("comfort_changed", Callable(self, "_on_CreatureVisuals_comfort_changed"))
+		_creature_visuals.connect("dna_loaded", Callable(self, "_on_CreatureVisuals_dna_loaded"))
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:
@@ -38,5 +38,5 @@ func _on_CreatureVisuals_comfort_changed() -> void:
 
 
 func _on_CreatureVisuals_dna_loaded() -> void:
-	var particles_material: ParticlesMaterial = process_material
+	var particles_material: ParticleProcessMaterial = process_material
 	particles_material.scale = _creature_visuals.scale.x * 1.7

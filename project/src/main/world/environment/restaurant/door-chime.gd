@@ -2,7 +2,7 @@ extends AudioStreamPlayer2D
 ## Door chime which rings when a customer enters the restaurant.
 
 ## sounds which get played when a creature shows up
-onready var _chime_sounds := [
+@onready var _chime_sounds := [
 	preload("res://assets/main/world/environment/restaurant/door-chime0.wav"),
 	preload("res://assets/main/world/environment/restaurant/door-chime1.wav"),
 	preload("res://assets/main/world/environment/restaurant/door-chime2.wav"),
@@ -10,8 +10,8 @@ onready var _chime_sounds := [
 	preload("res://assets/main/world/environment/restaurant/door-chime4.wav"),
 ]
 
-onready var _suppress_sfx_timer := $SuppressSfxTimer
-onready var _chime_timer := $ChimeTimer
+@onready var _suppress_sfx_timer := $SuppressSfxTimer
+@onready var _chime_timer := $ChimeTimer
 
 func _ready() -> void:
 	# suppress door chime at the start of a level

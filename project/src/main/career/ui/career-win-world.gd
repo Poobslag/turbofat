@@ -1,4 +1,4 @@
-tool
+@tool
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles which appear on the career mode's victory screen.
 
@@ -16,7 +16,7 @@ const ENVIRONMENT_PATH_BY_NAME := {
 }
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):

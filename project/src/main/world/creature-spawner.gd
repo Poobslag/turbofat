@@ -5,19 +5,19 @@ extends Node2D
 ##
 ## The creature's creature_id, properties and groups can be managed by the target_properties and target_groups fields.
 
-export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
+@export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
 ## properties of the spawned creature
-export (Dictionary) var target_properties: Dictionary
+@export (Dictionary) var target_properties: Dictionary
 
 ## boolean expression which, if evaluated to 'true', will result in the creature being spawned
-export (String) var spawn_if: String
+@export (String) var spawn_if: String
 
 ## Maximum fatness for a spawned creature.
 ## If a fatter creature spawns here, they will spontaneously and permanently slim down.
-export (float, 1.0, 10.0) var max_fatness := 10.0
+@export (float, 1.0, 10.0) var max_fatness := 10.0
 
-export (PackedScene) var CreatureScene: PackedScene
+@export (PackedScene) var CreatureScene: PackedScene
 
 ## Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
 var _stool: Node2D
@@ -25,12 +25,12 @@ var _stool: Node2D
 ## spawned creature, or 'null' if the creature has not yet spawned
 var _target_creature: Creature
 
-onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
+@onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
 func _ready() -> void:
 	_update_stool_occupied()
 	
-	if not spawn_if.empty() and BoolExpressionEvaluator.evaluate(spawn_if):
+	if not spawn_if.is_empty() and BoolExpressionEvaluator.evaluate(spawn_if):
 		# Spawn the creature and remove the spawner from the scene tree.
 		# This call is deferred to avoid a 'Parent node is busy setting up children' error.
 		call_deferred("_spawn_target")

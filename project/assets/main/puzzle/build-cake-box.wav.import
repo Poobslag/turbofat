@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/build-cake-box.wav-d60e1b89edd461a08fa6618f4d05a16d.sample"
+type="AudioStreamWAV"
+uid="uid://cwls5spy5hgv2"
+path="res://.godot/imported/build-cake-box.wav-d60e1b89edd461a08fa6618f4d05a16d.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/build-cake-box.wav"
-dest_files=[ "res://.import/build-cake-box.wav-d60e1b89edd461a08fa6618f4d05a16d.sample" ]
+dest_files=["res://.godot/imported/build-cake-box.wav-d60e1b89edd461a08fa6618f4d05a16d.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/bebebe.wav-fa8700870ee8e0680bc0060c124373c3.sample"
+type="AudioStreamWAV"
+uid="uid://ch6nyivc3ndm7"
+path="res://.godot/imported/bebebe.wav-fa8700870ee8e0680bc0060c124373c3.sample"
 
 [deps]
 
 source_file="res://assets/main/chat/ui/bebebe.wav"
-dest_files=[ "res://.import/bebebe.wav-fa8700870ee8e0680bc0060c124373c3.sample" ]
+dest_files=["res://.godot/imported/bebebe.wav-fa8700870ee8e0680bc0060c124373c3.sample"]
 
 [params]
 

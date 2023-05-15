@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/fanfare2.wav-006ea9d0bbfdfb9a7f3e2e5dd0cc9aec.sample"
+type="AudioStreamWAV"
+uid="uid://dqfvq226or4o5"
+path="res://.godot/imported/fanfare2.wav-006ea9d0bbfdfb9a7f3e2e5dd0cc9aec.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/fanfare2.wav"
-dest_files=[ "res://.import/fanfare2.wav-006ea9d0bbfdfb9a7f3e2e5dd0cc9aec.sample" ]
+dest_files=["res://.godot/imported/fanfare2.wav-006ea9d0bbfdfb9a7f3e2e5dd0cc9aec.sample"]
 
 [params]
 

@@ -2,7 +2,7 @@ class_name HudFlash
 extends ColorRect
 ## Flashes the screen briefly. Used to transition between tutorial sections.
 
-var _tween: SceneTreeTween
+var _tween: Tween
 
 ## Flashes the screen briefly. Used to transition between tutorial sections.
 func flash() -> void:

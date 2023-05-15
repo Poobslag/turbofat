@@ -4,18 +4,18 @@ extends Control
 ## These piece displays are synchronized with daytime piece displays, and rendered over them.
 
 ## Path to the daytime next piece displays to synchronize with.
-export (NodePath) var next_piece_displays_path: NodePath
+@export (NodePath) var next_piece_displays_path: NodePath
 
-export (PackedScene) var NightPieceDisplayScene
+@export (PackedScene) var NightPieceDisplayScene
 
 ## array of NightNextPieceDisplays which are shown to the player
 var _onion_piece_displays := []
 
 ## next piece displays to synchronize with
-onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
+@onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
 
 func _ready() -> void:
-	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
 	for i in range(NextPieceDisplays.DISPLAY_COUNT):
 		_add_display(i)
 
@@ -35,7 +35,7 @@ func _refresh_display(display: NightPieceDisplay) -> void:
 
 ## Adds a new next piece display.
 func _add_display(piece_index: int) -> void:
-	var new_display: NightPieceDisplay = NightPieceDisplayScene.instance()
+	var new_display: NightPieceDisplay = NightPieceDisplayScene.instantiate()
 	new_display.initialize(_next_piece_displays.get_display(piece_index))
 	new_display.scale = new_display.source_display.scale
 	new_display.position = new_display.source_display.position

@@ -8,7 +8,7 @@ const WALK_REACTION_DELAY := 0.4
 ## Extends the parent class's _apply_chat_event_meta() method to add support for the 'start_walking' and 'stop_walking'
 ## metadata items.
 func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:
-	._apply_chat_event_meta(chat_event, meta_item)
+	super._apply_chat_event_meta(chat_event, meta_item)
 	match(meta_item):
 		"stop_walking":
 			for creature in get_tree().get_nodes_in_group("creatures"):

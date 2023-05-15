@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/puzzle/lemon-bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/puzzle/lemon-bg.png" type="Texture2D" id=1]
 [ext_resource path="res://src/main/ui/ScaledTextureRect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/puzzle/lemon-bg-grass-sheet.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/puzzle/lemon-bg-pebbles-sheet.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/puzzle/lemon-bg-grass-sheet.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/main/puzzle/lemon-bg-pebbles-sheet.png" type="Texture2D" id=4]
 
 [node name="Bg" type="Control"]
 anchor_right = 1.0
@@ -17,34 +17,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 1024, 600 )
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 512.0
+offset_bottom = 300.0
+custom_minimum_size = Vector2( 1024, 600 )
 
-[node name="Pebble1" type="Sprite" parent="Details"]
+[node name="Pebble1" type="Sprite2D" parent="Details"]
 position = Vector2( 614.331, 589.333 )
 texture = ExtResource( 4 )
 hframes = 2
 vframes = 2
 frame = 3
 
-[node name="Pebble2" type="Sprite" parent="Details"]
+[node name="Pebble2" type="Sprite2D" parent="Details"]
 position = Vector2( 944.431, 279.393 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 4 )
 hframes = 2
 vframes = 2
 
-[node name="Pebble3" type="Sprite" parent="Details"]
+[node name="Pebble3" type="Sprite2D" parent="Details"]
 position = Vector2( 332.109, 158.44 )
 texture = ExtResource( 4 )
 hframes = 2
 vframes = 2
 frame = 1
 
-[node name="Pebble4" type="Sprite" parent="Details"]
+[node name="Pebble4" type="Sprite2D" parent="Details"]
 position = Vector2( 95.2439, 327.27 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
@@ -53,7 +53,7 @@ hframes = 2
 vframes = 2
 frame = 2
 
-[node name="Pebble5" type="Sprite" parent="Details"]
+[node name="Pebble5" type="Sprite2D" parent="Details"]
 position = Vector2( 1239.25, 417.984 )
 rotation = 3.14159
 texture = ExtResource( 4 )
@@ -61,34 +61,34 @@ hframes = 2
 vframes = 2
 frame = 2
 
-[node name="Grass1" type="Sprite" parent="Details"]
+[node name="Grass1" type="Sprite2D" parent="Details"]
 position = Vector2( 72.5655, 571.695 )
 texture = ExtResource( 3 )
 hframes = 2
 vframes = 2
 frame = 2
 
-[node name="Grass2" type="Sprite" parent="Details"]
+[node name="Grass2" type="Sprite2D" parent="Details"]
 position = Vector2( 937.504, 452.62 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
 hframes = 2
 vframes = 2
 
-[node name="Grass6" type="Sprite" parent="Details"]
+[node name="Grass6" type="Sprite2D" parent="Details"]
 position = Vector2( -88.0715, 344.267 )
 texture = ExtResource( 3 )
 hframes = 2
 vframes = 2
 
-[node name="Grass3" type="Sprite" parent="Details"]
+[node name="Grass3" type="Sprite2D" parent="Details"]
 position = Vector2( 735.916, -11.0311 )
 texture = ExtResource( 3 )
 hframes = 2
 vframes = 2
 frame = 1
 
-[node name="Grass4" type="Sprite" parent="Details"]
+[node name="Grass4" type="Sprite2D" parent="Details"]
 position = Vector2( 289.904, 152.759 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
@@ -96,7 +96,7 @@ hframes = 2
 vframes = 2
 frame = 3
 
-[node name="Grass5" type="Sprite" parent="Details"]
+[node name="Grass5" type="Sprite2D" parent="Details"]
 position = Vector2( 984.749, 171.04 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )

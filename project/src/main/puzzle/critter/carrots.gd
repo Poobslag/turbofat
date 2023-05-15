@@ -19,9 +19,9 @@ const MIN_VOLUME := -40.0
 ## volume of the carrot's movement sound
 const MOVE_SOUND_DB := -4.0
 
-export (PackedScene) var CarrotScene: PackedScene
+@export (PackedScene) var CarrotScene: PackedScene
 
-var playfield_path: NodePath setget set_playfield_path
+var playfield_path: NodePath: set = set_playfield_path
 
 var _playfield: Playfield
 
@@ -29,16 +29,16 @@ var _playfield: Playfield
 var _move_sfx_state: int = MoveSfxState.STOPPED
 
 ## node which contains all of the child carrot nodes
-onready var _carrot_holder: Node2D = $CarrotHolder
+@onready var _carrot_holder: Node2D = $CarrotHolder
 
 ## sound which plays when the carrot appears/disappears
-onready var _carrot_poof_sound: AudioStreamPlayer = $CarrotPoofSound
+@onready var _carrot_poof_sound: AudioStreamPlayer = $CarrotPoofSound
 
 ## sound which plays while at least one carrot is moving
-onready var _carrot_move_sound: AudioStreamPlayer = $CarrotMoveSound
+@onready var _carrot_move_sound: AudioStreamPlayer = $CarrotMoveSound
 
 ## tweens carrot sfx
-onready var _tween: SceneTreeTween
+@onready var _tween: Tween
 
 func _ready() -> void:
 	_refresh_playfield_path()
@@ -94,12 +94,12 @@ func _refresh_playfield_path() -> void:
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
+		_playfield.disconnect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
 	
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
+		_playfield.connect("blocks_prepared", Callable(self, "_on_Playfield_blocks_prepared"))
 
 
 ## Adds a carrot to the specified cell.
@@ -113,12 +113,12 @@ func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
 	var carrot_dimensions: Vector2 = CarrotConfig.DIMENSIONS_BY_CARROT_SIZE[config.size]
 	
 	# initialize the carrot and add it to the scene
-	var carrot: Carrot = CarrotScene.instance()
+	var carrot: Carrot = CarrotScene.instantiate()
 	
 	carrot.z_index = 5
 	carrot.scale = _playfield.tile_map.scale
 	
-	carrot.position = _playfield.tile_map.map_to_world(cell + Vector2(0, -3))
+	carrot.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
 	carrot.position += _playfield.tile_map.cell_size * Vector2(carrot_dimensions.x * 0.5, 0.5)
 	carrot.position *= _playfield.tile_map.scale
 	
@@ -127,12 +127,12 @@ func _add_carrot(cell: Vector2, config: CarrotConfig) -> void:
 	
 	_carrot_holder.add_child(carrot)
 	
-	carrot.connect("started_hiding", self, "_on_Carrot_started_hiding")
+	carrot.connect("started_hiding", Callable(self, "_on_Carrot_started_hiding"))
 	
 	# launch the carrot towards its destination at the top of the screen
 	var destination_cell := Vector2(cell.x, 0)
 	var destination_position: Vector2
-	destination_position = _playfield.tile_map.map_to_world(destination_cell + Vector2(0, -carrot_dimensions.y))
+	destination_position = _playfield.tile_map.map_to_local(destination_cell + Vector2(0, -carrot_dimensions.y))
 	destination_position += _playfield.tile_map.cell_size * Vector2(carrot_dimensions.x * 0.5, 0.5)
 	destination_position *= _playfield.tile_map.scale
 	
@@ -181,14 +181,14 @@ func _refresh_carrot_move_sound() -> void:
 		_tween = Utils.recreate_tween(self, _tween)
 		_tween.tween_property(_carrot_move_sound, "volume_db", MOVE_SOUND_DB,
 				0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-		_tween.tween_callback(self, "_on_Tween_completed")
+		_tween.tween_callback(Callable(self, "_on_Tween_completed"))
 		_carrot_move_sound.play()
 	elif not active_carrots and _move_sfx_state in [MoveSfxState.PLAYING, MoveSfxState.STARTING]:
 		_move_sfx_state = MoveSfxState.STOPPING
 		_tween = Utils.recreate_tween(self, _tween)
 		_tween.tween_property(_carrot_move_sound, "volume_db", MIN_VOLUME,
 				0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-		_tween.tween_callback(self, "_on_Tween_completed")
+		_tween.tween_callback(Callable(self, "_on_Tween_completed"))
 
 
 func _on_Playfield_blocks_prepared() -> void:

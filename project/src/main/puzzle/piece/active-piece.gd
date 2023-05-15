@@ -61,7 +61,7 @@ func _init(init_type: PieceType, init_cell_obstructed_func: FuncRef) -> void:
 ## This calculates the center of the smallest rectangle encompassing the piece. It does not care if the piece has more
 ## cells on one side. If the piece's dimensions are even, this will return a fractional result.
 func center() -> Vector2:
-	if get_pos_arr().empty():
+	if get_pos_arr().is_empty():
 		return Vector2.ZERO
 	var cell_bounds: Rect2 = Rect2(get_pos_arr()[0], Vector2.ZERO)
 	for cell_pos in get_pos_arr():
@@ -119,7 +119,7 @@ func get_target_pos_arr() -> Array:
 ## 	'new_orientation': The desired orientation to rotate the piece to
 func can_move_to(new_pos: Vector2, new_orientation: int) -> bool:
 	var valid_target_pos := true
-	if type.empty():
+	if type.is_empty():
 		# Return 'false' for an empty piece to avoid an infinite loop
 		valid_target_pos = false
 	else:

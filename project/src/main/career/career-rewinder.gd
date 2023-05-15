@@ -9,16 +9,16 @@ const CHAPTER_CHEATS := [
 	"chap03",
 ]
 
-export (NodePath) var cheat_code_detector_path: NodePath
+@export (NodePath) var cheat_code_detector_path: NodePath
 
-onready var _cheat_code_detector: CheatCodeDetector = get_node(cheat_code_detector_path)
+@onready var _cheat_code_detector: CheatCodeDetector = get_node(cheat_code_detector_path)
 
 func _ready() -> void:
 	for chapter_cheat in CHAPTER_CHEATS:
 		if not chapter_cheat in _cheat_code_detector.codes:
 			_cheat_code_detector.codes.append(chapter_cheat)
-	if not _cheat_code_detector.is_connected("cheat_detected", self, "_on_CheatCodeDetector_cheat_detected"):
-		_cheat_code_detector.connect("cheat_detected", self, "_on_CheatCodeDetector_cheat_detected")
+	if not _cheat_code_detector.is_connected("cheat_detected", Callable(self, "_on_CheatCodeDetector_cheat_detected")):
+		_cheat_code_detector.connect("cheat_detected", Callable(self, "_on_CheatCodeDetector_cheat_detected"))
 
 
 ## Skips forward or backward to the specified region.
@@ -60,6 +60,6 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			Global.SCENE_SPLASH,
 		]
 
-		SceneTransition.change_scene()
+		SceneTransition.change_scene_to_file()
 	
 	detector.play_cheat_sound(cheat_successful)

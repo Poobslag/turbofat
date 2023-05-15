@@ -17,8 +17,8 @@ class_name PuzzleTileMapReader
 ## 		'box_type' (int): Enum from Foods.BoxType defining the pickup's color
 static func read(json_tiles: Array, set_block: FuncRef, set_pickup: FuncRef = null) -> void:
 	for json_tile in json_tiles:
-		var json_pos_arr: PoolStringArray = json_tile.get("pos", "").split(" ")
-		var json_tile_arr: PoolStringArray = json_tile.get("tile", "").split(" ")
+		var json_pos_arr: PackedStringArray = json_tile.get("pos", "").split(" ")
+		var json_tile_arr: PackedStringArray = json_tile.get("tile", "").split(" ")
 		var json_pickup_str: String = json_tile.get("pickup", "")
 		if json_pos_arr.size() < 2:
 			continue

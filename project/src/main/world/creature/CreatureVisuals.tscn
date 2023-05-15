@@ -1,35 +1,35 @@
 [gd_scene load_steps=58 format=2]
 
-[ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/world/rgb-palette.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/main/utils/packed-sprite.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/creature/EmotePlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture2D" id=4]
 [ext_resource path="res://src/main/world/creature/creature-animations.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/creature/dna-loader.gd" type="Script" id=8]
 [ext_resource path="res://src/main/world/creature/head-bobber.gd" type="Script" id=9]
-[ext_resource path="res://assets/main/world/creature/1/emote-brain-packed.png" type="Texture" id=10]
+[ext_resource path="res://assets/main/world/creature/1/emote-brain-packed.png" type="Texture2D" id=10]
 [ext_resource path="res://src/main/world/creature/Body.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/main/world/creature/1/emote-arm-z1-packed.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/world/creature/1/emote-body-packed.png" type="Texture" id=15]
-[ext_resource path="res://assets/main/world/creature/1/emote-head-packed.png" type="Texture" id=21]
-[ext_resource path="res://assets/main/world/creature/1/emote-arm-z0-packed.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/world/creature/1/emote-arm-z1-packed.png" type="Texture2D" id=14]
+[ext_resource path="res://assets/main/world/creature/1/emote-body-packed.png" type="Texture2D" id=15]
+[ext_resource path="res://assets/main/world/creature/1/emote-head-packed.png" type="Texture2D" id=21]
+[ext_resource path="res://assets/main/world/creature/1/emote-arm-z0-packed.png" type="Texture2D" id=25]
 [ext_resource path="res://src/main/world/creature/TailPlayer.tscn" type="PackedScene" id=29]
 [ext_resource path="res://src/main/world/creature/MovementPlayer.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/creature/idle-timer.gd" type="Script" id=33]
 [ext_resource path="res://src/main/world/creature/creature-visuals.gd" type="Script" id=37]
-[ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=42]
+[ext_resource path="res://assets/main/filled-circle-8.png" type="Texture2D" id=42]
 [ext_resource path="res://src/main/world/creature/head-sweat-squirts.gd" type="Script" id=43]
-[ext_resource path="res://assets/main/world/creature/downward-sweat.png" type="Texture" id=44]
+[ext_resource path="res://assets/main/world/creature/downward-sweat.png" type="Texture2D" id=44]
 [ext_resource path="res://src/main/world/creature/head-sweat-drops.gd" type="Script" id=45]
 [ext_resource path="res://src/main/world/creature/body-sweat.gd" type="Script" id=46]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=49]
+[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture2D" id=49]
 [ext_resource path="res://src/main/world/creature/sprint.gd" type="Script" id=50]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=51]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=52]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=56]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=57]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=58]
+[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture2D" id=51]
+[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture2D" id=52]
+[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture2D" id=56]
+[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture2D" id=57]
+[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture2D" id=58]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -62,13 +62,13 @@ particles_anim_v_frames = 2
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.255924, 0.796209, 0.976303 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.501961, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0, 0.255924, 0.796209, 0.976303 )
+colors = PackedColorArray( 1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.501961, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture2D" id=6]
 gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id=7]
 resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 50.0
@@ -188,13 +188,13 @@ shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Gradient" id=21]
-offsets = PoolRealArray( 0.00473934, 0.390947 )
-colors = PoolColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0.00473934, 0.390947 )
+colors = PackedColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=22]
+[sub_resource type="GradientTexture2D" id=22]
 gradient = SubResource( 21 )
 
-[sub_resource type="ParticlesMaterial" id=23]
+[sub_resource type="ParticleProcessMaterial" id=23]
 emission_shape = 1
 emission_sphere_radius = 120.0
 flag_disable_z = true
@@ -206,7 +206,7 @@ orbit_velocity_random = 0.0
 scale = 1.7
 color_ramp = SubResource( 22 )
 
-[sub_resource type="ParticlesMaterial" id=24]
+[sub_resource type="ParticleProcessMaterial" id=24]
 emission_shape = 1
 emission_sphere_radius = 45.0
 flag_disable_z = true
@@ -309,7 +309,7 @@ scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
 texture = ExtResource( 49 )
 frame_data = "res://assets/main/world/creature/1/arm-z0-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
@@ -321,7 +321,7 @@ scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
 texture = ExtResource( 58 )
 frame_data = "res://assets/main/world/creature/1/leg-z0-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
@@ -334,7 +334,7 @@ scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 50 )
 texture = ExtResource( 51 )
 frame_data = "res://assets/main/world/creature/1/sprint-z0-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 
@@ -343,7 +343,7 @@ light_mask = 2
 material = SubResource( 3 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 
@@ -360,7 +360,7 @@ scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
 texture = ExtResource( 57 )
 frame_data = "res://assets/main/world/creature/1/leg-z1-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
@@ -372,12 +372,12 @@ scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
 texture = ExtResource( 52 )
 frame_data = "res://assets/main/world/creature/1/arm-z1-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
 
-[node name="BodySweat" type="Particles2D" parent="."]
+[node name="BodySweat" type="GPUParticles2D" parent="."]
 material = SubResource( 4 )
 position = Vector2( -10, -50 )
 scale = Vector2( 1, 0.9 )
@@ -395,7 +395,7 @@ light_mask = 2
 material = SubResource( 8 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
@@ -406,15 +406,15 @@ material = SubResource( 9 )
 position = Vector2( 0, -100 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
-[node name="Neck0" type="Sprite" parent="."]
+[node name="Neck0" type="Sprite2D" parent="."]
 __meta__ = {
 "_editor_description_": "Neck0 offsets the head's position as the creature grows in size."
 }
 
-[node name="HeadBobber" type="Sprite" parent="Neck0"]
+[node name="HeadBobber" type="Sprite2D" parent="Neck0"]
 light_mask = 2
 position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
@@ -431,7 +431,7 @@ light_mask = 2
 material = SubResource( 10 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="HairZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -440,7 +440,7 @@ light_mask = 2
 material = SubResource( 11 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -449,7 +449,7 @@ light_mask = 2
 material = SubResource( 12 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="HornZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -458,7 +458,7 @@ light_mask = 2
 material = SubResource( 13 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="CheekZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -467,7 +467,7 @@ light_mask = 2
 material = SubResource( 14 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="Head" type="Node2D" parent="Neck0/HeadBobber"]
@@ -476,7 +476,7 @@ light_mask = 2
 material = SubResource( 15 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="Chin" type="Node2D" parent="Neck0/HeadBobber"]
@@ -487,7 +487,7 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 56 )
 frame_data = "res://assets/main/world/creature/1/chin-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EarZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -496,7 +496,7 @@ light_mask = 2
 material = SubResource( 12 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="CheekZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -505,7 +505,7 @@ light_mask = 2
 material = SubResource( 14 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="Mouth" type="Node2D" parent="Neck0/HeadBobber"]
@@ -515,7 +515,7 @@ material = SubResource( 17 )
 scale = Vector2( 2, 2 )
 z_index = 1
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -524,7 +524,7 @@ light_mask = 2
 material = SubResource( 18 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EmoteEyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -534,7 +534,7 @@ material = SubResource( 19 )
 position = Vector2( 0, 256 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 offset = Vector2( 0, -128 )
 
 [node name="EmoteArmZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -546,7 +546,7 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 25 )
 frame_data = "res://assets/main/world/creature/1/emote-arm-z0-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 offset = Vector2( 0, -119 )
 
 [node name="AccessoryZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -555,7 +555,7 @@ light_mask = 2
 material = SubResource( 10 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="HairZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -564,7 +564,7 @@ light_mask = 2
 material = SubResource( 11 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="HornZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -573,7 +573,7 @@ light_mask = 2
 material = SubResource( 13 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="Nose" type="Node2D" parent="Neck0/HeadBobber"]
@@ -582,7 +582,7 @@ light_mask = 2
 material = SubResource( 20 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -591,7 +591,7 @@ light_mask = 2
 material = SubResource( 18 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EmoteEyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -602,7 +602,7 @@ position = Vector2( 0, 256 )
 rotation = 0.139626
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 offset = Vector2( 0, -128 )
 
 [node name="EarZ2" type="Node2D" parent="Neck0/HeadBobber"]
@@ -611,7 +611,7 @@ light_mask = 2
 material = SubResource( 12 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="CheekZ2" type="Node2D" parent="Neck0/HeadBobber"]
@@ -620,7 +620,7 @@ light_mask = 2
 material = SubResource( 14 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="HairZ2" type="Node2D" parent="Neck0/HeadBobber"]
@@ -630,7 +630,7 @@ material = SubResource( 11 )
 scale = Vector2( 2, 2 )
 z_index = 1
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="AccessoryZ2" type="Node2D" parent="Neck0/HeadBobber"]
@@ -639,7 +639,7 @@ light_mask = 2
 material = SubResource( 10 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 frame = 1
 
 [node name="EmoteArmZ1" type="Node2D" parent="Neck0/HeadBobber"]
@@ -651,10 +651,10 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 14 )
 frame_data = "res://assets/main/world/creature/1/emote-arm-z1-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 offset = Vector2( 0, -119 )
 
-[node name="SweatSquirts" type="Particles2D" parent="Neck0/HeadBobber"]
+[node name="SweatSquirts" type="GPUParticles2D" parent="Neck0/HeadBobber"]
 z_index = 1
 emitting = false
 local_coords = false
@@ -663,7 +663,7 @@ texture = ExtResource( 42 )
 script = ExtResource( 43 )
 creature_visuals_path = NodePath("../../..")
 
-[node name="SweatDrops" type="Particles2D" parent="Neck0/HeadBobber"]
+[node name="SweatDrops" type="GPUParticles2D" parent="Neck0/HeadBobber"]
 material = SubResource( 4 )
 position = Vector2( 6, -60 )
 scale = Vector2( 2.8, 2.4 )
@@ -676,7 +676,7 @@ texture = ExtResource( 44 )
 script = ExtResource( 45 )
 creature_visuals_path = NodePath("../../..")
 
-[node name="EmoteGlow" type="Sprite" parent="Neck0/HeadBobber"]
+[node name="EmoteGlow" type="Sprite2D" parent="Neck0/HeadBobber"]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 25 )
@@ -695,7 +695,7 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 10 )
 frame_data = "res://assets/main/world/creature/1/emote-brain-packed.json"
-rect_size = Vector2( 256, 256 )
+size = Vector2( 256, 256 )
 offset = Vector2( 0, -119 )
 
 [node name="EmoteHead" type="Node2D" parent="Neck0/HeadBobber"]
@@ -706,7 +706,7 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 21 )
 frame_data = "res://assets/main/world/creature/1/emote-head-packed.json"
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 offset = Vector2( 0, -128 )
 
 [node name="EmoteBody" type="Node2D" parent="."]
@@ -724,11 +724,11 @@ light_mask = 2
 material = SubResource( 3 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
-rect_size = Vector2( 512, 512 )
+size = Vector2( 512, 512 )
 offset = Vector2( 0, -119 )
 
 [node name="DnaLoader" type="Node" parent="."]
-pause_mode = 2
+process_mode = 2
 script = ExtResource( 8 )
 
 [node name="Animations" type="Node" parent="."]

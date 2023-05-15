@@ -53,11 +53,11 @@ var _title_icon_resources := [
 ]
 
 ## Labels which show the current day's information
-onready var _title := $Label
+@onready var _title := $Label
 
 ## Icons which change randomly each time
-onready var _left_title_icon := $Control1/TextureRect
-onready var _right_title_icon := $Control2/TextureRect
+@onready var _left_title_icon := $Control1/TextureRect
+@onready var _right_title_icon := $Control2/TextureRect
 
 func _ready() -> void:
 	if PlayerData.career.daily_steps >= 25:

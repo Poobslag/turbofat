@@ -26,7 +26,7 @@ var cutscene_queue := CutsceneQueue.new()
 var career: CareerData
 var practice := PracticeData.new()
 
-var money := 0 setget set_money
+var money := 0: set = set_money
 
 ## player's playtime in seconds
 var seconds_played := 0.0
@@ -40,7 +40,7 @@ func _ready() -> void:
 	
 	seconds_played_timer = Timer.new()
 	seconds_played_timer.wait_time = SECONDS_PLAYED_INCREMENT
-	seconds_played_timer.connect("timeout", self, "_on_SecondsPlayedTimer_timeout")
+	seconds_played_timer.connect("timeout", Callable(self, "_on_SecondsPlayedTimer_timeout"))
 	add_child(seconds_played_timer)
 	seconds_played_timer.start()
 

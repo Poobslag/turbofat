@@ -10,20 +10,20 @@ signal pressed
 const RADIUS := 180
 
 ## actions associated with each cardinal direction. if omitted, the button will not be shown
-export (String) var up_action: String setget set_up_action
-export (String) var down_action: String setget set_down_action
-export (String) var left_action: String setget set_left_action
-export (String) var right_action: String setget set_right_action
+@export (String) var up_action: String: set = set_up_action
+@export (String) var down_action: String: set = set_down_action
+@export (String) var left_action: String: set = set_left_action
+@export (String) var right_action: String: set = set_right_action
 
 ## these values influence how easy it is to press two buttons at once
 ## 0.0 = impossible; 1.0 = as easy as pressing a single button
-export (float, 0, 1) var up_right_weight := 0.0
-export (float, 0, 1) var up_left_weight := 0.0
-export (float, 0, 1) var down_right_weight := 0.0
-export (float, 0, 1) var down_left_weight := 0.0
+@export (float, 0, 1) var up_right_weight := 0.0
+@export (float, 0, 1) var up_left_weight := 0.0
+@export (float, 0, 1) var down_right_weight := 0.0
+@export (float, 0, 1) var down_left_weight := 0.0
 
 ## if false, pressing the buttons won't emit any actions.
-export (bool) var emit_actions := true setget set_emit_actions
+@export (bool) var emit_actions := true: set = set_emit_actions
 
 ## position relative to our center of the most recent touch event
 var _touch_dir: Vector2
@@ -31,11 +31,11 @@ var _touch_dir: Vector2
 ## index of the most recent touch event
 var _touch_index := -1
 
-onready var _up := $HBoxContainer/VBoxContainer/Up
-onready var _down := $HBoxContainer/VBoxContainer/Down
-onready var _left := $VBoxContainer/HBoxContainer/Left
-onready var _right := $VBoxContainer/HBoxContainer/Right
-onready var _buttons := [_up, _down, _left, _right]
+@onready var _up := $HBoxContainer/VBoxContainer/Up
+@onready var _down := $HBoxContainer/VBoxContainer/Down
+@onready var _left := $VBoxContainer/HBoxContainer/Left
+@onready var _right := $VBoxContainer/HBoxContainer/Right
+@onready var _buttons := [_up, _down, _left, _right]
 
 func _ready() -> void:
 	_refresh_up_action()
@@ -52,8 +52,8 @@ func _input(event: InputEvent) -> void:
 	# Process the touch event, but don't mark it as handled. Other touch buttons might need to handle the same touch
 	# event, such as when dragging a finger from one EightWay into another.
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.pressed):
-		var center := rect_position + rect_size * rect_scale / 2
-		_touch_dir = (event.position as Vector2 - center) / rect_scale
+		var center := position + size * scale / 2
+		_touch_dir = (event.position as Vector2 - center) / scale
 		if _touch_dir.length() < RADIUS:
 			_touch_index = event.index
 			_press_buttons()
@@ -128,7 +128,7 @@ func _refresh_right_action() -> void:
 ## This also emits InputEvents for any action buttons released.
 func _release_buttons() -> void:
 	for button in _buttons:
-		button.pressed = false
+		button.button_pressed = false
 
 
 ## Press the buttons associated with the newest touch event.
@@ -143,10 +143,10 @@ func _press_buttons() -> void:
 	var down_right_pressed := _diagonalness(Vector2(1.0, 1.0)) < down_right_weight
 	var down_left_pressed := _diagonalness(Vector2(-1.0, 1.0)) < down_left_weight
 	
-	_right.pressed = touch_cardinal_dir == 0 or up_right_pressed or down_right_pressed
-	_down.pressed = touch_cardinal_dir == 1 or down_right_pressed or down_left_pressed
-	_left.pressed = touch_cardinal_dir == 2 or up_left_pressed or down_left_pressed
-	_up.pressed = touch_cardinal_dir == 3 or up_left_pressed or up_right_pressed
+	_right.button_pressed = touch_cardinal_dir == 0 or up_right_pressed or down_right_pressed
+	_down.button_pressed = touch_cardinal_dir == 1 or down_right_pressed or down_left_pressed
+	_left.button_pressed = touch_cardinal_dir == 2 or up_left_pressed or down_left_pressed
+	_up.button_pressed = touch_cardinal_dir == 3 or up_left_pressed or up_right_pressed
 
 
 ## Returns a number [0.0, 4.0] for how close the touch is to the specified diagonal.

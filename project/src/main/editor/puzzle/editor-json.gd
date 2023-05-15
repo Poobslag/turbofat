@@ -6,9 +6,9 @@ extends TextEdit
 ## these fields store different parts of the parsed json
 var _json_tree: Dictionary
 
-export (NodePath) var playfield_editor_path: NodePath
-export (NodePath) var properties_editor_path: NodePath
-export (NodePath) var test_button_path: NodePath
+@export (NodePath) var playfield_editor_path: NodePath
+@export (NodePath) var properties_editor_path: NodePath
+@export (NodePath) var test_button_path: NodePath
 
 var _tile_map: PuzzleTileMap
 var _pickups: EditorPickups
@@ -17,9 +17,9 @@ var _pickups: EditorPickups
 var _score_rules := ScoreRules.new()
 var _calculated_pickup_score := 0
 
-onready var _playfield_editor: PlayfieldEditorControl = get_node(playfield_editor_path)
-onready var _properties_editor: PropertiesEditorControl = get_node(properties_editor_path)
-onready var _test_button: Button = get_node(test_button_path)
+@onready var _playfield_editor: PlayfieldEditorControl = get_node(playfield_editor_path)
+@onready var _properties_editor: PropertiesEditorControl = get_node(properties_editor_path)
+@onready var _test_button: Button = get_node(test_button_path)
 
 func _ready() -> void:
 	_tile_map = _playfield_editor.get_tile_map()
@@ -29,20 +29,26 @@ func _ready() -> void:
 ## Parses our text as json, storing the results in the various _json properties.
 ##
 ## Returns 'false' if the json cannot be parsed.
-func can_parse_json() -> bool:
-	var parsed = parse_json(text)
+var test_json_conv = JSON.new()
+test_json_conv.parse() -> bool:
+func can_test_json_conv.get_data()
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(text)
+	var parsed = test_json_conv.get_data()
 	_json_tree = parsed if typeof(parsed) == TYPE_DICTIONARY else {}
-	if _json_tree.empty():
-		set("custom_colors/font_color", Color.red)
+	if _json_tree.is_empty():
+		set("theme_override_colors/font_color", Color.RED)
 	else:
-		set("custom_colors/font_color", null)
+		set("theme_override_colors/font_color", null)
 	
-	return not _json_tree.empty()
+	return not _json_tree.is_empty()
 
 
 ## Refreshes the playfield editor based on our json text.
 func refresh_playfield_editor() -> void:
-	if not can_parse_json():
+	var test_json_conv = JSON.new()
+	test_json_conv.parse():
+	if not can_test_json_conv.get_data()
 		return
 	
 	# update the playfield editor's list of 'tiles keys'
@@ -57,7 +63,9 @@ func refresh_playfield_editor() -> void:
 
 ## Refreshes the properties editor based on our json text.
 func refresh_properties_editor() -> void:
-	if not can_parse_json():
+	var test_json_conv = JSON.new()
+	test_json_conv.parse():
+	if not can_test_json_conv.get_data()
 		_test_button.disabled = true
 		return
 	
@@ -78,7 +86,9 @@ func reset_editors() -> void:
 ##
 ## This occurs when new tiles keys are added or removed.
 func _refresh_json_tiles_keys() -> void:
-	if not can_parse_json():
+	var test_json_conv = JSON.new()
+	test_json_conv.parse():
+	if not can_test_json_conv.get_data()
 		return
 	
 	var json_tiles_keys: Array = _json_tree.get("tiles", {}).keys()
@@ -103,7 +113,7 @@ func _refresh_json_tiles_keys() -> void:
 		_json_tree["tiles"][tiles_key_to_add] = []
 	
 	# remove the 'tiles' entry entirely if we don't need it
-	if _json_tree.has("tiles") and _json_tree["tiles"].empty():
+	if _json_tree.has("tiles") and _json_tree["tiles"].is_empty():
 		_json_tree.erase("tiles")
 	
 	_refresh_text_from_json_tree()
@@ -113,7 +123,9 @@ func _refresh_json_tiles_keys() -> void:
 ##
 ## This occurs when new blocks are added or removed from the tilemap.
 func _refresh_json_tile_map() -> void:
-	if not can_parse_json():
+	var test_json_conv = JSON.new()
+	test_json_conv.parse():
+	if not can_test_json_conv.get_data()
 		return
 	
 	# calculate the json representation of the current playfield tiles set
@@ -132,7 +144,7 @@ func _refresh_json_tile_map() -> void:
 		new_json_tiles_set.append(json_tile)
 	
 	# store the new json tiles set in the json tree
-	if _playfield_editor.tiles_key == "start" and new_json_tiles_set.empty():
+	if _playfield_editor.tiles_key == "start" and new_json_tiles_set.is_empty():
 		# clear 'start' tiles
 		_json_tree.get("tiles", {}).erase("start")
 		if not _json_tree.get("tiles"):
@@ -152,7 +164,9 @@ func _refresh_text_from_json_tree() -> void:
 
 ## Refreshes our json tree based on the data from the properties editor.
 func _refresh_json_tree_from_properties() -> void:
-	if not can_parse_json():
+	var test_json_conv = JSON.new()
+	test_json_conv.parse():
+	if not can_test_json_conv.get_data()
 		return
 	
 	var new_master_pickup_score: float = _properties_editor.get_master_pickup_score()
@@ -180,7 +194,7 @@ func _refresh_json_tree_from_properties() -> void:
 					_json_tree["rank"].remove(i)
 					break
 			
-			if _json_tree["rank"].empty():
+			if _json_tree["rank"].is_empty():
 				_json_tree.erase("rank")
 	
 	_refresh_text_from_json_tree()
@@ -214,7 +228,7 @@ func _playfield_editor_used_cells() -> Array:
 	for used_cell in _pickups.get_used_cells():
 		used_cells[used_cell] = true
 	var sorted_used_cells := used_cells.keys()
-	sorted_used_cells.sort_custom(self, "_compare_by_y")
+	sorted_used_cells.sort_custom(Callable(self, "_compare_by_y"))
 	return sorted_used_cells
 
 

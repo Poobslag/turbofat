@@ -1,7 +1,7 @@
 extends TileMap
 ## Draws shadows under tiles from an obstacle tilemap.
 
-export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path
+@export (NodePath) var obstacle_map_path: NodePath: set = set_obstacle_map_path
 
 ## Maps tile indexes to their grid size. This allows us to generate larger shadows for tiles which span multiple cells.
 ##
@@ -9,7 +9,7 @@ export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path
 ##
 ## key: (int) tile index corresponding to a tile in the obstacle map
 ## value: (Rect2) tile's grid size, in cells
-export (Dictionary) var cell_shadow_mapping setget set_cell_shadow_mapping
+@export (Dictionary) var cell_shadow_mapping : set = set_cell_shadow_mapping
 
 var _obstacle_map: TileMap
 

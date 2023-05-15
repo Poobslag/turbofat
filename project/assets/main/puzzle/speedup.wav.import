@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/speedup.wav-9db989d589571c19a0989cc9b907d29f.sample"
+type="AudioStreamWAV"
+uid="uid://ymjvqnlnwhit"
+path="res://.godot/imported/speedup.wav-9db989d589571c19a0989cc9b907d29f.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/speedup.wav"
-dest_files=[ "res://.import/speedup.wav-9db989d589571c19a0989cc9b907d29f.sample" ]
+dest_files=["res://.godot/imported/speedup.wav-9db989d589571c19a0989cc9b907d29f.sample"]
 
 [params]
 

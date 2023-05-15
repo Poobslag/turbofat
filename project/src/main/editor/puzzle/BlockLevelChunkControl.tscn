@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/editor/puzzle/block-level-chunk-control.gd" type="Script" id=3]
 
@@ -10,13 +10,13 @@ shader = ExtResource( 1 )
 shader_param/mix_color = Color( 1, 1, 1, 0 )
 
 [node name="BlockLevelChunkControl" type="Control"]
-rect_min_size = Vector2( 72, 64 )
+custom_minimum_size = Vector2( 72, 64 )
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 72, 64 )
+custom_minimum_size = Vector2( 72, 64 )
 mouse_filter = 2
 color = Color( 0.113725, 0.101961, 0.101961, 1 )
 
@@ -24,4 +24,4 @@ color = Color( 0.113725, 0.101961, 0.101961, 1 )
 material = SubResource( 1 )
 scale = Vector2( 1, 1 )
 z_index = 0
-tile_data = PoolIntArray( 0, 1, 0, 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0 )
+tile_data = PackedInt32Array( 0, 1, 0, 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0 )

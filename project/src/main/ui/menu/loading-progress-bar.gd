@@ -13,7 +13,7 @@ var LINE_SCROLL_SPEED := 60.0
 var DOTTED_LINE_PIXELS := 64.0
 
 ## Number in the range of [0.0, 1.0] for the current progress bar value
-var value := 0.0 setget set_value
+var value := 0.0: set = set_value
 
 ## Extents of the progress bar
 var _extents := Rect2(Vector2(40, Global.window_size.y - 40), Vector2(Global.window_size.x - 80, 0))
@@ -23,10 +23,10 @@ var _extents := Rect2(Vector2(40, Global.window_size.y - 40), Vector2(Global.win
 var _dotted_line_offset: float = 0
 
 ## Full part of the progress bar.
-onready var _full: Line2D = $Full
+@onready var _full: Line2D = $Full
 
 ## Empty part of the progress bar.
-onready var _empty: Line2D = $Empty
+@onready var _empty: Line2D = $Empty
 
 func _ready() -> void:
 	_full.points = [_extents.position, _extents.position]

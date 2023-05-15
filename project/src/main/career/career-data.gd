@@ -34,7 +34,7 @@ var time_of_day_by_hours := {
 var banked_steps := 0
 
 ## Distance the player has travelled in the current career session.
-var distance_travelled := 0 setget set_distance_travelled
+var distance_travelled := 0: set = set_distance_travelled
 
 ## Distance the progress board should start from when moving the player
 var progress_board_start_distance_travelled := 0
@@ -43,7 +43,7 @@ var progress_board_start_distance_travelled := 0
 var distance_earned := 0
 
 ## Number of levels played in the current career session.
-var hours_passed := 0 setget set_hours_passed
+var hours_passed := 0: set = set_hours_passed
 
 ## Number of customers served in the current career session.
 var daily_customers := 0
@@ -95,11 +95,11 @@ var _career_calendar
 var _career_flow
 
 func _ready() -> void:
-	CurrentCutscene.connect("cutscene_played", self, "_on_CurrentCutscene_cutscene_played")
+	CurrentCutscene.connect("cutscene_played", Callable(self, "_on_CurrentCutscene_cutscene_played"))
 	
 	_daily_seconds_played_timer = Timer.new()
 	_daily_seconds_played_timer.wait_time = PlayerData.SECONDS_PLAYED_INCREMENT
-	_daily_seconds_played_timer.connect("timeout", self, "_on_DailySecondsPlayedTimer_timeout")
+	_daily_seconds_played_timer.connect("timeout", Callable(self, "_on_DailySecondsPlayedTimer_timeout"))
 	add_child(_daily_seconds_played_timer)
 	_daily_seconds_played_timer.start()
 	

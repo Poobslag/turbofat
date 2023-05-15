@@ -1,4 +1,4 @@
-tool
+@tool
 extends CreatureOutline
 ## Implementation of CreatureOutline which is optimized for performance, specifically on web and mobile targets.
 ##
@@ -8,7 +8,7 @@ extends CreatureOutline
 func _ready() -> void:
 	creature_visuals = $Holder/Visuals
 	$Holder.scale = Vector2(Global.CREATURE_SCALE, Global.CREATURE_SCALE)
-	connect("elevation_changed", self, "_on_elevation_changed")
+	connect("elevation_changed", Callable(self, "_on_elevation_changed"))
 
 
 func _on_elevation_changed(_new_elevation: float) -> void:

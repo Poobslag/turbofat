@@ -2,11 +2,11 @@ extends BlockLevelChunkControl
 ## Level editor chunk which contains a vegetable block.
 
 ## Increasing this size allows you to draw vegetable blocks as a cluster, instead of one at a time.
-export (Vector2) var veg_size: Vector2 = Vector2.ONE setget set_veg_size
+@export (Vector2) var veg_size: Vector2 = Vector2.ONE: set = set_veg_size
 
 func _ready() -> void:
-	$"../../Buttons/RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
-	$"../../Buttons/ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
+	$"../../Buttons/RotateButton".connect("pressed", Callable(self, "_on_RotateButton_pressed"))
+	$"../../Buttons/ChangeButton".connect("pressed", Callable(self, "_on_ChangeButton_pressed"))
 
 
 func set_veg_size(new_veg_size: Vector2) -> void:

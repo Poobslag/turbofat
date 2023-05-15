@@ -101,7 +101,8 @@ class BoolPropertyParser extends PropertyParser:
 	##
 	## 	'init_false_string': (Optional) Json string corresponding to a value of 'false', such as
 	## 		'no_clear_on_finish'
-	func _init(init_target: Object, init_name: String, init_false_string: String = "").(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String, init_false_string: String = "") -> void:
+		super(init_target, init_name)
 		default = false
 		implied = true
 		_false_string = init_false_string
@@ -171,7 +172,8 @@ class BoolPropertyParser extends PropertyParser:
 
 ## Parses a json string like 'box_factor 0.5' into a float.
 class FloatPropertyParser extends PropertyParser:
-	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String) -> void:
+		super(init_target, init_name)
 		default = 0.0
 	
 	
@@ -190,7 +192,8 @@ class FloatPropertyParser extends PropertyParser:
 
 ## Parses a json string like 'veg_points 10' into an int.
 class IntPropertyParser extends PropertyParser:
-	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String) -> void:
+		super(init_target, init_name)
 		default = 0
 	
 	
@@ -205,7 +208,8 @@ class IntPropertyParser extends PropertyParser:
 
 ## Parses a json string like 'start_level level_10' into a string like "level_10".
 class StringPropertyParser extends PropertyParser:
-	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String) -> void:
+		super(init_target, init_name)
 		default = ""
 
 
@@ -224,7 +228,8 @@ class EnumPropertyParser extends PropertyParser:
 	## 	'init_name': The name of the property and json key to parse.
 	##
 	## 	'init_enum_dict': The property's enum type, such as 'PuzzleTileMap.TileSetType'
-	func _init(init_target: Object, init_name: String, init_enum_dict).(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String, init_enum_dict) -> void:
+		super(init_target, init_name)
 		_enum_dict = init_enum_dict
 		default = 0
 		implied = 0

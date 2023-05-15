@@ -2,12 +2,12 @@ extends TileMap
 ## Tilemap which draws the shadows behind the blocks on the playfield, as well as the shadow behind the currently
 ## active piece.
 
-export (NodePath) var playfield_tile_map_path: NodePath
+@export (NodePath) var playfield_tile_map_path: NodePath
 
 ## Tilemap for the active piece
 var piece_tile_map: TileMap
 
-onready var _playfield_tile_map := get_node(playfield_tile_map_path)
+@onready var _playfield_tile_map := get_node(playfield_tile_map_path)
 
 func _process(_delta: float) -> void:
 	clear()

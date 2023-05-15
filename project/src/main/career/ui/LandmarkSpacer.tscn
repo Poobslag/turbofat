@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
 [node name="Spacer" type="Control" groups=["landmark_spacers"]]
-margin_right = 75.0
-margin_bottom = 150.0
+offset_right = 75.0
+offset_bottom = 150.0
 size_flags_horizontal = 3

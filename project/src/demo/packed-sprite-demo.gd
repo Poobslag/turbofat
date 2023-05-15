@@ -5,7 +5,7 @@ extends Node
 ## 	[Z]: Cycle to the next frame
 ## 	Arrows: Move the sprite and print its offset.
 
-onready var _packed_sprite: PackedSprite = $PackedSprite
+@onready var _packed_sprite: PackedSprite = $PackedSprite
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

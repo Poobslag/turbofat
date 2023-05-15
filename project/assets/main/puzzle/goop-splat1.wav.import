@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/goop-splat1.wav-fced7f3418c6b594134fd7b55c873b22.sample"
+type="AudioStreamWAV"
+uid="uid://d2nv6gifyldrt"
+path="res://.godot/imported/goop-splat1.wav-fced7f3418c6b594134fd7b55c873b22.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/goop-splat1.wav"
-dest_files=[ "res://.import/goop-splat1.wav-fced7f3418c6b594134fd7b55c873b22.sample" ]
+dest_files=["res://.godot/imported/goop-splat1.wav-fced7f3418c6b594134fd7b55c873b22.sample"]
 
 [params]
 

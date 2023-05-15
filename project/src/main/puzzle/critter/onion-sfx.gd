@@ -2,13 +2,13 @@ extends Node
 ## Sound effects for onions, puzzle critters which darken things making it hard to see.
 
 ## AudioStreamPlayers to use for rooster sound effects. We randomize these for variety.
-onready var _roosters := [
+@onready var _roosters := [
 	$Rooster0,
 	$Rooster1,
 ]
 
 ## AudioStreamPlayers to use for the onion's voice when dancing. We randomize these for variety.
-onready var _voices := [
+@onready var _voices := [
 	$Voice00,
 	$Voice01,
 	$Voice02,
@@ -24,7 +24,7 @@ onready var _voices := [
 	$Voice12,
 ]
 
-onready var _crickets := $Crickets
+@onready var _crickets := $Crickets
 
 ## Plays a sound for the onion's voice when dancing.
 func play_voice_sound() -> void:

@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/main/puzzle/puzzle-touch-buttons.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture2D" id=4]
 [ext_resource path="res://assets/main/ui/touch/duck.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=6]
 
@@ -19,26 +19,26 @@ anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -250.0
-margin_right = 250.0
-margin_bottom = -10.0
+offset_left = 10.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = -10.0
 
 [node name="ButtonsSe" parent="." instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -250.0
-margin_top = -250.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = -10.0
+offset_bottom = -10.0
 
 [node name="MenuButtonHolder" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -116.0
-margin_bottom = 116.0
+offset_left = -116.0
+offset_bottom = 116.0
 
 [node name="MenuButton" type="TouchScreenButton" parent="MenuButtonHolder"]
 position = Vector2( 10, 10 )

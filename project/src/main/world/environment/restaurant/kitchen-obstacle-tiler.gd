@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 ## Autotiles a tilemap for kitchen obstacles.
 ##
@@ -164,25 +164,25 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 }
 
 ## Parent tilemap's tile ID for bare countertops
-export (int) var bare_countertop_tile_index: int
+@export (int) var bare_countertop_tile_index: int
 
 ## Parent tilemap's tile ID for countertops with a grill
-export (int) var grill_tile_index: int
+@export (int) var grill_tile_index: int
 
 ## Parent tilemap's tile ID for countertops with a sink
-export (int) var sink_tile_index: int
+@export (int) var sink_tile_index: int
 
 ## Parent tilemap's tile ID for countertops with plates
-export (int) var countertop_plates_tile_index: int
+@export (int) var countertop_plates_tile_index: int
 
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-export (bool) var _autotile: bool setget autotile
+@export (bool) var _autotile: bool: set = autotile
 
 ## tilemap containing obstacles
-onready var _tile_map: TileMap = get_parent()
+@onready var _tile_map: TileMap = get_parent()
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
@@ -199,7 +199,7 @@ func autotile(value: bool) -> void:
 		# only autotile in the editor when the 'Autotile' property is toggled
 		return
 	
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		if not _tile_map:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mole-dig.wav-3942b5b652331506b9d5be733e52aa1c.sample"
+type="AudioStreamWAV"
+uid="uid://d1u6mx6jk2yuk"
+path="res://.godot/imported/mole-dig.wav-3942b5b652331506b9d5be733e52aa1c.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/mole-dig.wav"
-dest_files=[ "res://.import/mole-dig.wav-3942b5b652331506b9d5be733e52aa1c.sample" ]
+dest_files=["res://.godot/imported/mole-dig.wav-3942b5b652331506b9d5be733e52aa1c.sample"]
 
 [params]
 

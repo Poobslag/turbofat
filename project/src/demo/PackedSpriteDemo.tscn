@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/demo/ball-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/demo/ball-sheet.png" type="Texture2D" id=2]
 [ext_resource path="res://src/demo/packed-sprite-demo.gd" type="Script" id=3]
 [ext_resource path="res://src/main/utils/packed-sprite.gd" type="Script" id=4]
 
@@ -8,18 +8,18 @@
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 220.0
-margin_bottom = 220.0
-rect_rotation = 30.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 220.0
+rotation = 30.0
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = 300.0
-margin_top = 100.0
-margin_right = 420.0
-margin_bottom = 220.0
-rect_rotation = 30.0
+offset_left = 300.0
+offset_top = 100.0
+offset_right = 420.0
+offset_bottom = 220.0
+rotation = 30.0
 
 [node name="PackedSprite" type="Node2D" parent="."]
 position = Vector2( 100, 100 )
@@ -28,11 +28,11 @@ scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 4 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/demo/ball-sheet.json"
-rect_size = Vector2( 80, 80 )
+size = Vector2( 80, 80 )
 frame = 1
 offset = Vector2( 40, 40 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 300, 100 )
 rotation = 0.523599
 scale = Vector2( 1.5, 1.5 )

@@ -36,10 +36,10 @@ const FOUND_SEED := States.FOUND_SEED
 const FOUND_STAR := States.FOUND_STAR
 
 ## Enum from States for the mole's current animation state.
-var state: int = NONE setget set_state
+var state: int = NONE: set = set_state
 
 ## 'true' if the mole is temporarily hidden by the piece.
-var hidden: bool setget set_hidden
+var hidden: bool: set = set_hidden
 
 ## Enum from States for the mole's previous animation state, if they are temporarily hidden by the player's piece.
 var hidden_mole_state: int = NONE
@@ -56,7 +56,7 @@ var _already_popped_state := false
 
 ## key: (int) Enum from States
 ## value: (Node) State node from the _states StateMachine
-onready var _state_nodes_by_enum := {
+@onready var _state_nodes_by_enum := {
 	NONE: $States/None,
 	WAITING: $States/Waiting,
 	DIGGING: $States/Digging,
@@ -65,23 +65,23 @@ onready var _state_nodes_by_enum := {
 	FOUND_STAR: $States/FoundStar,
 }
 
-onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 ## Mole sprite
-onready var mole := $Mole
+@onready var mole := $Mole
 
 ## Poof cloud which covers the mole when they appear or disappear
-onready var poof: CritterPoof = $Poof
+@onready var poof: CritterPoof = $Poof
 
 ## Speech bubble which appears in the mole's place when the mole is waiting to appear
-onready var wait_low := $WaitLow
+@onready var wait_low := $WaitLow
 
 ## Speech bubble which appears over the mole's head when the mole is digging
-onready var wait_high := $WaitHigh
+@onready var wait_high := $WaitHigh
 
-onready var sfx := $MoleSfx
+@onready var sfx := $MoleSfx
 
-onready var _states: StateMachine = $States
+@onready var _states: StateMachine = $States
 
 func _ready() -> void:
 	# The state machine defaults to the 'none' state and not the 'null' state to avoid edge cases
@@ -125,7 +125,7 @@ func append_next_state(next_state: int, count: int = 1) -> void:
 
 ## Returns 'true' if there are states remaining in the mole's queue of upcoming animation states.
 func has_next_state() -> bool:
-	return not _next_states.empty()
+	return not _next_states.is_empty()
 
 
 ## Dequeues the next state from the mole's queue of upcoming animation states.
@@ -138,7 +138,7 @@ func has_next_state() -> bool:
 ## Returns:
 ## 	Enum from States for the mole's new state.
 func pop_next_state() -> int:
-	if _next_states.empty():
+	if _next_states.is_empty():
 		return NONE
 	
 	if _already_popped_state:

@@ -18,9 +18,9 @@ func _ready() -> void:
 	playfield = puzzle.get_playfield()
 	piece_manager = puzzle.get_piece_manager()
 	
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
 	
 	for skill_tally_item in $SkillTallyItems.get_children():
 		if skill_tally_item is SkillTallyItem:
@@ -33,8 +33,8 @@ func _ready() -> void:
 ##
 ## This prevents the tutorial from behaving unexpectedly if the player restarts at an unusual time.
 func cleanup_listeners() -> void:
-	if hud.messages.is_connected("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer"):
-		hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
+	if hud.messages.is_connected("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_start_timer")):
+		hud.messages.disconnect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_start_timer"))
 
 
 ## Starts a countdown and switches from tutorial music to regular music.
@@ -78,7 +78,7 @@ func prepare_tutorial_level() -> void:
 func change_level(level_id: String, delay_between_levels: float = Tutorials.DELAY_SHORT) -> void:
 	PuzzleState.prepare_level_change(level_id)
 	start_timer_after_all_messages_shown(delay_between_levels) \
-			.connect("timeout", self, "_on_Timer_timeout_change_level", [level_id])
+			super.connect("timeout", Callable(self, "_on_Timer_timeout_change_level").bind(level_id))
 
 
 ## Creates and starts a timer after all tutorial messages are shown.
@@ -93,7 +93,7 @@ func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
 	var timer := PuzzleState.add_timer(wait_time)
 	
 	if not hud.messages.is_all_messages_visible():
-		hud.messages.connect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer", [timer])
+		hud.messages.connect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_start_timer").bind(timer))
 	else:
 		timer.start()
 	
@@ -101,7 +101,7 @@ func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
 
 
 func _on_TutorialMessages_all_messages_shown_start_timer(timer: Timer) -> void:
-	hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
+	hud.messages.disconnect("all_messages_shown", Callable(self, "_on_TutorialMessages_all_messages_shown_start_timer"))
 	timer.start()
 
 

@@ -34,36 +34,36 @@ script = ExtResource( 2 )
 
 [node name="SquishMove" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 1569.27
-margin_top = 404.0
-margin_right = 1677.27
-margin_bottom = 468.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 1569.27
+offset_top = 404.0
+offset_right = 1677.27
+offset_bottom = 468.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 2.0
 label_text = "Squish Move"
 signal_names = [ "squish_moved" ]
 
 [node name="SnackBox" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 336.0
-margin_right = 1004.0
-margin_bottom = 400.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 336.0
+offset_right = 1004.0
+offset_bottom = 400.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Snack Box"
 signal_names = [ "box_built" ]
 
 [node name="LineClear" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
-margin_left = 896.0
-margin_top = 155.158
-margin_right = 1004.0
-margin_bottom = 219.158
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 155.158
+offset_right = 1004.0
+offset_bottom = 219.158
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Line Clear"
 signal_names = [ "line_cleared" ]

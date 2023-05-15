@@ -44,21 +44,21 @@ signal blocks_prepared
 ## remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
 
-onready var tile_map: PuzzleTileMap = $TileMapClip/TileMap
-onready var pickups: Pickups = $TileMapClip/Pickups
-onready var playfield_fx: PlayfieldFx = $TileMapClip/PlayfieldFx
-onready var line_inserter: LineInserter = $LineInserter
-onready var line_clearer: LineClearer = $LineClearer
+@onready var tile_map: PuzzleTileMap = $TileMapClip/TileMap
+@onready var pickups: Pickups = $TileMapClip/Pickups
+@onready var playfield_fx: PlayfieldFx = $TileMapClip/PlayfieldFx
+@onready var line_inserter: LineInserter = $LineInserter
+@onready var line_clearer: LineClearer = $LineClearer
 
-onready var _bg_glob_viewports: GoopViewports = $BgGlobViewports
-onready var _box_builder: BoxBuilder = $BoxBuilder
-onready var _combo_tracker: ComboTracker = $ComboTracker
+@onready var _bg_glob_viewports: GoopViewports = $BgGlobViewports
+@onready var _box_builder: BoxBuilder = $BoxBuilder
+@onready var _combo_tracker: ComboTracker = $ComboTracker
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
-	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
 	_prepare_tileset()
 	_prepare_level_blocks()
 

@@ -9,7 +9,7 @@ extends Node
 
 const FATNESS_KEYS := [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
-onready var _scene: RestaurantPuzzleScene = $RestaurantPuzzleScene
+@onready var _scene: RestaurantPuzzleScene = $RestaurantPuzzleScene
 
 func _ready() -> void:
 	for i in range(_scene.get_customers().size()):

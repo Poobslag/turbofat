@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/poof-in.wav-ca8e268fc1a22a48789f33c68438703d.sample"
+type="AudioStreamWAV"
+uid="uid://ppq2cx3dig31"
+path="res://.godot/imported/poof-in.wav-ca8e268fc1a22a48789f33c68438703d.sample"
 
 [deps]
 
 source_file="res://assets/main/world/environment/poof-in.wav"
-dest_files=[ "res://.import/poof-in.wav-ca8e268fc1a22a48789f33c68438703d.sample" ]
+dest_files=["res://.godot/imported/poof-in.wav-ca8e268fc1a22a48789f33c68438703d.sample"]
 
 [params]
 

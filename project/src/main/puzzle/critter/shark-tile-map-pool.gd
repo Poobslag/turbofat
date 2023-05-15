@@ -11,7 +11,7 @@ extends Node
 ## eating different parts of a pentomino.
 const POOL_SIZE := 5
 
-export (PackedScene) var PuzzleTileMapScene: PackedScene
+@export (PackedScene) var PuzzleTileMapScene: PackedScene
 
 ## Pooled PuzzleTileMap instances which are available to borrow
 var _tilemaps := []
@@ -20,7 +20,7 @@ var _tilemaps := []
 var _load_thread: Thread
 
 func _ready() -> void:
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 
 
 func _exit_tree() -> void:
@@ -39,7 +39,7 @@ func borrow_tilemap() -> PuzzleTileMap:
 	if _tilemaps:
 		tilemap = _tilemaps.pop_front()
 	else:
-		tilemap = PuzzleTileMapScene.instance()
+		tilemap = PuzzleTileMapScene.instantiate()
 	tilemap.clear()
 	return tilemap
 
@@ -58,7 +58,7 @@ func return_tilemap(tilemap: PuzzleTileMap) -> void:
 ## gameplay.
 func _fill_pool() -> void:
 	while _tilemaps.size() < POOL_SIZE:
-		var new_tile_map: PuzzleTileMap = PuzzleTileMapScene.instance()
+		var new_tile_map: PuzzleTileMap = PuzzleTileMapScene.instantiate()
 		_tilemaps.append(new_tile_map)
 
 
@@ -73,4 +73,4 @@ func _on_Level_settings_changed() -> void:
 		_fill_pool()
 	else:
 		_load_thread = Thread.new()
-		_load_thread.start(self, "_fill_pool")
+		_load_thread.start(Callable(self, "_fill_pool"))

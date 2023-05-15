@@ -1,7 +1,7 @@
 extends Node
 ## Plays sound effects when boxes are built.
 
-onready var _build_snack_box_sounds := [
+@onready var _build_snack_box_sounds := [
 		preload("res://assets/main/puzzle/build-snack-box0.wav"),
 		preload("res://assets/main/puzzle/build-snack-box1.wav"),
 		preload("res://assets/main/puzzle/build-snack-box2.wav"),

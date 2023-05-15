@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/rotate1.wav-a40caa31ca8094972a8f72f85e2a7492.sample"
+type="AudioStreamWAV"
+uid="uid://cgncgbcx0u1v6"
+path="res://.godot/imported/rotate1.wav-a40caa31ca8094972a8f72f85e2a7492.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/rotate1.wav"
-dest_files=[ "res://.import/rotate1.wav-a40caa31ca8094972a8f72f85e2a7492.sample" ]
+dest_files=["res://.godot/imported/rotate1.wav-a40caa31ca8094972a8f72f85e2a7492.sample"]
 
 [params]
 

@@ -8,13 +8,13 @@ extends Node2D
 var source_playfield_fx: PlayfieldFx
 
 ## lights which turn on and off
-onready var _light_map: TileMap = $LightMap
+@onready var _light_map: TileMap = $LightMap
 
 ## glowy effect around the lights
-onready var _glow_map: TileMap = $GlowMap
+@onready var _glow_map: TileMap = $GlowMap
 
 ## bright flash when the player clears a line
-onready var _bg_strobe: ColorRect = $BgStrobe
+@onready var _bg_strobe: ColorRect = $BgStrobe
 
 func _process(_delta: float) -> void:
 	# synchronize our modulate property; playfield_fx adjusts its modulate property for a pulsing effect

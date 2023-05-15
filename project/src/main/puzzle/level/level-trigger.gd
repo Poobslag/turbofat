@@ -123,7 +123,7 @@ func to_json_dict() -> Dictionary:
 			var phase_string: String
 			if phase_config_dict:
 				var phase_config_array := dict_config_to_array(phase_config_dict)
-				var phase_config_string := PoolStringArray(phase_config_array).join(" ")
+				var phase_config_string := " ".join(PackedStringArray(phase_config_array))
 				phase_string = "%s %s" % [phase_key, phase_config_string]
 			else:
 				phase_string = phase_key
@@ -133,7 +133,7 @@ func to_json_dict() -> Dictionary:
 	var dict_config := effect.get_config()
 	var effect_key: String = LevelTriggerEffects.effect_key(effect)
 	if dict_config:
-		var string_config := PoolStringArray(dict_config_to_array(dict_config)).join(" ")
+		var string_config := " ".join(PackedStringArray(dict_config_to_array(dict_config)))
 		result["effect"] = "%s %s" % [effect_key, string_config]
 	else:
 		result["effect"] = effect_key

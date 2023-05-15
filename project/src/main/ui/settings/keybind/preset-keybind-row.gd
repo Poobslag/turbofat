@@ -1,11 +1,11 @@
-tool
+@tool
 extends HBoxContainer
 ## Row which shows the player the keybinds for a specific action, such as 'Move Piece Left'.
 ##
 ## This row is used for presets like 'Guideline' and 'WASD', and is non-interactive.
 
-export (String) var description: String setget set_description
-export (String) var keybind_value: String setget set_keybind_value
+@export (String) var description: String: set = set_description
+@export (String) var keybind_value: String: set = set_keybind_value
 
 func _ready() -> void:
 	_refresh_description_label()

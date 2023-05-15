@@ -9,21 +9,21 @@ signal back_button_pressed
 
 var all_clear_message_text := tr("All\nClear!")
 
-onready var _back_button := $Buttons/Back
-onready var _hide_message_timer := $HideMessageTimer
-onready var _puzzle_message: PuzzleMessage = $PuzzleMessage
-onready var _start_button := $Buttons/Start
-onready var _settings_button := $Buttons/Settings
+@onready var _back_button := $Buttons/Back
+@onready var _hide_message_timer := $HideMessageTimer
+@onready var _puzzle_message: PuzzleMessage = $PuzzleMessage
+@onready var _start_button := $Buttons/Start
+@onready var _settings_button := $Buttons/Settings
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
-	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
-	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
-	CurrentLevel.connect("best_result_changed", self, "_on_Level_best_result_changed")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
+	PuzzleState.connect("before_level_changed", Callable(self, "_on_PuzzleState_before_level_changed"))
+	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.connect("after_game_ended", Callable(self, "_on_PuzzleState_after_game_ended"))
+	CurrentLevel.connect("best_result_changed", Callable(self, "_on_Level_best_result_changed"))
 	
 	if PlayerData.career.is_career_mode():
 		# they can't go back in career mode
@@ -89,7 +89,7 @@ func _on_Settings_pressed() -> void:
 
 func _on_Back_pressed() -> void:
 	# disconnect signal to prevent the back button from changing its label
-	CurrentLevel.disconnect("best_result_changed", self, "_on_Level_best_result_changed")
+	CurrentLevel.disconnect("best_result_changed", Callable(self, "_on_Level_best_result_changed"))
 	
 	emit_signal("back_button_pressed")
 
@@ -106,7 +106,7 @@ func _on_PuzzleState_game_started() -> void:
 
 
 func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
-	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.empty():
+	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.is_empty():
 		# non interactive levels don't show a success/failure message
 		return
 	

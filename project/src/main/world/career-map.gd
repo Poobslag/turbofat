@@ -23,9 +23,9 @@ var _pickable_chat_key_pairs := []
 ## PieceSpeed for all levels the player can select.
 var _piece_speed: String
 
-onready var _world := $World
-onready var _distance_label := $Ui/Control/StatusBar/Distance
-onready var _level_select_control := $LevelSelect
+@onready var _world := $World
+@onready var _distance_label := $Ui/Control/StatusBar/Distance
+@onready var _level_select_control := $LevelSelect
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -36,7 +36,7 @@ func _ready() -> void:
 		Breadcrumb.initialize_trail()
 	
 	MusicPlayer.play_chill_bgm()
-	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
+	PlayerData.career.connect("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed"))
 	
 	var redirected := false
 	
@@ -111,7 +111,7 @@ func _refresh_level_select_buttons() -> void:
 	for i in range(_pickable_level_settings.size()):
 		var level_settings: LevelSettings = _pickable_level_settings[i]
 		var level_select_button: LevelSelectButton = _level_select_control.add_level_select_button(level_settings)
-		level_select_button.connect("level_chosen", self, "_on_LevelSelectButton_level_chosen", [i])
+		level_select_button.connect("level_chosen", Callable(self, "_on_LevelSelectButton_level_chosen").bind(i))
 
 
 ## Return a list of random CareerLevels for the player to choose from.
@@ -181,7 +181,7 @@ func _intro_chat_key_pair() -> ChatKeyPair:
 		result.preroll = preroll_key
 	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
 		result.postroll = postroll_key
-	if not result.empty():
+	if not result.is_empty():
 		result.type = ChatKeyPair.INTRO_LEVEL
 		
 	return result
@@ -201,7 +201,7 @@ func _boss_chat_key_pair() -> ChatKeyPair:
 		result.preroll = preroll_key
 	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
 		result.postroll = postroll_key
-	if not result.empty():
+	if not result.is_empty():
 		result.type = ChatKeyPair.BOSS_LEVEL
 	
 	return result
@@ -234,11 +234,11 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 		# find a region-specific cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
 				[region.cutscene_path], chef_id, customer_id, observer_id)
-	if result.empty():
+	if result.is_empty():
 		# no region-specific cutscene available; find a general cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
 				[Careers.GENERAL_CHAT_KEY_ROOT], chef_id, customer_id, observer_id)
-	if not result.empty():
+	if not result.is_empty():
 		result.type = ChatKeyPair.INTERLUDE
 	
 	return result
@@ -254,15 +254,15 @@ func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 
 	# if it's an intro level, return any intro level cutscenes
-	if result.empty() and PlayerData.career.is_intro_level():
+	if result.is_empty() and PlayerData.career.is_intro_level():
 		result = _intro_chat_key_pair()
 	
 	# if it's a boss level, return any boss level cutscenes
-	if result.empty() and PlayerData.career.is_boss_level():
+	if result.is_empty() and PlayerData.career.is_boss_level():
 		result = _boss_chat_key_pair()
 	
 	# if it's the 3rd or 6th level, return any interludes
-	if result.empty() and PlayerData.career.hours_passed in PlayerData.career.career_interlude_hours() \
+	if result.is_empty() and PlayerData.career.hours_passed in PlayerData.career.career_interlude_hours() \
 			and not PlayerData.career.skipped_previous_level:
 		result = _interlude_chat_key_pair(career_level)
 	
@@ -364,9 +364,9 @@ func _after_progress_board() -> void:
 
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
-	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
+	if PlayerData.career.is_connected("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed")):
 		# avoid changing the level button names when you pick an earlier level
-		PlayerData.career.disconnect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
+		PlayerData.career.disconnect("distance_travelled_changed", Callable(self, "_on_CareerData_distance_travelled_changed"))
 	
 	# apply a distance penalty if they select an earlier level
 	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]

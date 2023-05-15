@@ -16,7 +16,7 @@ const MAX_SHADER_USEC_PER_FRAME := 120
 ## these gradually over time. Setting shader params is slow and setting too many at once causes frame drops.
 var _pending_shader_keys: Array
 
-onready var _creature_visuals: CreatureVisuals = get_parent()
+@onready var _creature_visuals: CreatureVisuals = get_parent()
 
 func _process(_delta: float) -> void:
 	if _pending_shader_keys:
@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 			# Creature data from old versions of the game might try to update shaders on nonexistent nodes or
 			# nonexistent materials. We check for null to avoid a crash.
 			if _creature_visuals.has_node(node_path) and _creature_visuals.get_node(node_path).material:
-				_creature_visuals.get_node(node_path).material.set_shader_param(shader_param, shader_value)
+				_creature_visuals.get_node(node_path).material.set_shader_parameter(shader_param, shader_value)
 
 
 ## Unassigns the textures and animations for the creature.
@@ -83,10 +83,10 @@ func unload_dna() -> void:
 				packed_sprite.texture = null
 				packed_sprite.frame_data = ""
 			if node.get("material"):
-				node.material.set_shader_param("red", Color.black)
-				node.material.set_shader_param("green", Color.black)
-				node.material.set_shader_param("blue", Color.black)
-				node.material.set_shader_param("black", Color.black)
+				node.material.set_shader_parameter("red", Color.BLACK)
+				node.material.set_shader_parameter("green", Color.BLACK)
+				node.material.set_shader_parameter("blue", Color.BLACK)
+				node.material.set_shader_parameter("black", Color.BLACK)
 	
 	_creature_visuals.get_node("Neck0/HeadBobber").position = Vector2(0, -100)
 	_creature_visuals.rescale(1.00)

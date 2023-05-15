@@ -1,21 +1,21 @@
 class_name LeafPoof
-extends Sprite
+extends Sprite2D
 ## Leaf poof spawned when the player clears a row containing vegetables.
 
 ## duration the leaf poof remains visible.
 const LIFETIME := 1.5
 
 ## leaf animations alternate between two frames; leaf_frame is always 0 or 1
-var leaf_frame: int setget set_leaf_frame
+var leaf_frame: int: set = set_leaf_frame
 
 ## leaf_type controls which pair of frames are selected from the sprite sheet
 var leaf_type: int
 
 ## turns the leaf invisible
-onready var _tween: SceneTreeTween
+@onready var _tween: Tween
 
 ## animates and flips the leaf
-onready var _animation_player: AnimationPlayer = $AnimationPlayer
+@onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	# The leaf is invisible and disabled from processing until initialized
@@ -29,7 +29,7 @@ func _ready() -> void:
 ## The leaf poof appears at the specified location, falls and sways back and forth, fades out and disables itself.
 func initialize(init_leaf_type: int, init_position: Vector2) -> void:
 	visible = true
-	modulate = Color.white
+	modulate = Color.WHITE
 	set_physics_process(true)
 	position = init_position
 	leaf_type = init_leaf_type
@@ -50,7 +50,7 @@ func _update_tween_and_animation() -> void:
 	_animation_player.advance(randf() * 10)
 	_tween = Utils.recreate_tween(self, _tween).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), LIFETIME)
-	_tween.tween_callback(self, "queue_free")
+	_tween.tween_callback(Callable(self, "queue_free"))
 
 
 func _refresh_frame() -> void:

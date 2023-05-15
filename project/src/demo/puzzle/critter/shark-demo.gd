@@ -24,7 +24,7 @@ const EATEN_PIECE_SHAPES := [
 	[Vector2(-1, 0), Vector2(0, 0), Vector2(0, -1), Vector2(1, -1), Vector2(1, -2)], # crazy piece
 ]
 
-onready var _shark := $Shark
+@onready var _shark := $Shark
 
 func _ready() -> void:
 	_shark.set_eaten_cell(Vector2.ZERO)

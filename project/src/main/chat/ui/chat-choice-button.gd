@@ -6,7 +6,7 @@ extends Button
 signal pop_choose_completed
 
 ## Text to show the player. We cannot use the button's text property because it does not support multiline text.
-export (String) var choice_text: String setget set_choice_text
+@export (String) var choice_text: String: set = set_choice_text
 
 func _ready() -> void:
 	$FontFitLabel.text = choice_text
@@ -60,25 +60,25 @@ func get_class() -> String:
 
 ## Workaround for Godot #21789 to make is_class match class_name
 func is_class(name: String) -> bool:
-	return name == "ChatChoiceButton" or .is_class(name)
+	return name == "ChatChoiceButton" or super.is_class(name)
 
 
 ## Centers the pivot in the button's rectangle.
 func _set_pivot_to_center() -> void:
-	rect_pivot_offset = rect_size * 0.5
+	pivot_offset = size * 0.5
 
 
 ## When the chat choice is focused, it animates more visibly. The MoodSprite also becomes more transparent so the
 ## player can read the text behind it.
 func _on_focus_entered() -> void:
-	$FontFitLabel.set("custom_colors/font_color", Color.white)
+	$FontFitLabel.set("theme_override_colors/font_color", Color.WHITE)
 	$MoodSprite/AnimationPlayer.play("focus")
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 
 
 ## When the chat choice is unfocused, its animations are subtler.
 func _on_focus_exited() -> void:
-	$FontFitLabel.set("custom_colors/font_color", Color("6c4331"))
+	$FontFitLabel.set("theme_override_colors/font_color", Color("6c4331"))
 	$MoodSprite/AnimationPlayer.play("default")
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 

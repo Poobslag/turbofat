@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/choice-pop.wav-5b3221c7c71be353a39922fd4e1d1341.sample"
+type="AudioStreamWAV"
+uid="uid://bicrtkeosfx48"
+path="res://.godot/imported/choice-pop.wav-5b3221c7c71be353a39922fd4e1d1341.sample"
 
 [deps]
 
 source_file="res://assets/main/chat/ui/choice-pop.wav"
-dest_files=[ "res://.import/choice-pop.wav-5b3221c7c71be353a39922fd4e1d1341.sample" ]
+dest_files=["res://.godot/imported/choice-pop.wav-5b3221c7c71be353a39922fd4e1d1341.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/tech-move.wav-e67b1220280c9bad8a2303d048b62d51.sample"
+type="AudioStreamWAV"
+uid="uid://dvdbi38cicvxb"
+path="res://.godot/imported/tech-move.wav-e67b1220280c9bad8a2303d048b62d51.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/tech-move.wav"
-dest_files=[ "res://.import/tech-move.wav-e67b1220280c9bad8a2303d048b62d51.sample" ]
+dest_files=["res://.godot/imported/tech-move.wav-e67b1220280c9bad8a2303d048b62d51.sample"]
 
 [params]
 

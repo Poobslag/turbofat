@@ -34,23 +34,23 @@ script = ExtResource( 1 )
 
 [node name="SnackBox" parent="SkillTallyItems" instance=ExtResource( 2 )]
 visible = false
-margin_left = 896.0
-margin_top = 336.0
-margin_right = 1004.0
-margin_bottom = 400.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 336.0
+offset_right = 1004.0
+offset_bottom = 400.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Snack Box"
 signal_names = [ "box_built" ]
 
 [node name="CakeBox" parent="SkillTallyItems" instance=ExtResource( 2 )]
 visible = false
-margin_left = 896.0
-margin_top = 336.0
-margin_right = 1004.0
-margin_bottom = 400.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+offset_left = 896.0
+offset_top = 336.0
+offset_right = 1004.0
+offset_bottom = 400.0
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 8.0
 label_text = "Cake Box"

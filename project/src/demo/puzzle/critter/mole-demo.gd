@@ -10,7 +10,7 @@ extends Node
 ## [5]: Found a star animation
 ## [6]: Disappear
 
-onready var _mole := $Mole
+@onready var _mole := $Mole
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

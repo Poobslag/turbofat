@@ -12,8 +12,8 @@ func show_label(chat_theme: ChatTheme, nametag_right: bool) -> void:
 		return
 	
 	refresh_chat_theme(chat_theme)
-	rect_position.y = 2 - rect_size.y
+	position.y = 2 - size.y
 	if nametag_right:
-		rect_position.x = get_parent().rect_size.x - rect_size.x - 12
+		position.x = get_parent().size.x - size.x - 12
 	else:
-		rect_position.x = 12
+		position.x = 12

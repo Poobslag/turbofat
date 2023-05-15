@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ready.wav-f8d7ddd9fd37c61b4e3947cfb0806bac.sample"
+type="AudioStreamWAV"
+uid="uid://bkq24g8j8vo8i"
+path="res://.godot/imported/ready.wav-f8d7ddd9fd37c61b4e3947cfb0806bac.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/ready.wav"
-dest_files=[ "res://.import/ready.wav-f8d7ddd9fd37c61b4e3947cfb0806bac.sample" ]
+dest_files=["res://.godot/imported/ready.wav-f8d7ddd9fd37c61b4e3947cfb0806bac.sample"]
 
 [params]
 

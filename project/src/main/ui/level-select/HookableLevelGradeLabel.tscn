@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/main/ui/level-select/crown.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=1]
+[ext_resource path="res://assets/main/ui/level-select/crown.png" type="Texture2D" id=2]
 [ext_resource path="res://src/main/ui/outline-material-80.tres" type="Material" id=3]
 [ext_resource path="res://src/main/ui/level-select/hookable-level-grade-label.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/level-select/grade-label.gd" type="Script" id=5]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 resource_local_to_scene = true
 size = 24
 outline_size = 3
@@ -18,12 +18,12 @@ font_data = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="GradeLabel" type="Label" parent="."]
-margin_left = -30.0
-margin_top = -20.0
-margin_right = 30.0
-margin_bottom = 20.0
-custom_colors/font_color = Color( 0.305882, 1, 0.286275, 1 )
-custom_fonts/font = SubResource( 1 )
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 30.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color( 0.305882, 1, 0.286275, 1 )
+theme_override_fonts/font = SubResource( 1 )
 text = "S++"
 align = 1
 valign = 1
@@ -32,9 +32,9 @@ script = ExtResource( 5 )
 [node name="StatusIcon" type="TextureRect" parent="."]
 modulate = Color( 0.4, 0.4, 0.4, 1 )
 material = ExtResource( 3 )
-margin_left = -24.0
-margin_top = -24.0
-margin_right = 24.0
-margin_bottom = 24.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 texture = ExtResource( 2 )
 expand = true

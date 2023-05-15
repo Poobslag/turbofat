@@ -5,13 +5,13 @@ extends VBoxContainer
 ## Scores are separated by mode and difficulty. We also keep daily scores separate.
 
 ## level to display high scores for
-var _level: LevelSettings setget set_level
+var _level: LevelSettings: set = set_level
 
 ## if true, only performances with today's date are included
-export (bool) var daily := false setget set_daily
+@export (bool) var daily := false: set = set_daily
 
-onready var _label: Label = $Label
-onready var _grid_container: GridContainer = $GridContainer
+@onready var _label: Label = $Label
+@onready var _grid_container: GridContainer = $GridContainer
 
 func _ready() -> void:
 	_refresh_contents()

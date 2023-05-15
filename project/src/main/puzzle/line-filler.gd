@@ -14,9 +14,9 @@ signal line_filled(y, tiles_key, src_y)
 ## emitted after a set of lines are filled, either following a topout/refresh or line clear
 signal after_lines_filled
 
-export (NodePath) var pickups_path: NodePath
+@export (NodePath) var pickups_path: NodePath
 
-export (NodePath) var tile_map_path: NodePath
+@export (NodePath) var tile_map_path: NodePath
 
 ## key: (String) tiles key for tiles referenced by level rules
 ## value: (int) next row to fill from the referenced tiles
@@ -42,15 +42,15 @@ var _filled_line_index := 0
 ## Index of the next line fill sound to play.
 var _line_fill_sfx_index := 0
 
-onready var _pickups: Pickups = get_node(pickups_path)
-onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
-onready var _line_fill_sounds := [$LineFillSound1, $LineFillSound2, $LineFillSound3]
-onready var _line_fill_sfx_reset_timer := $LineFillSfxResetTimer
+@onready var _pickups: Pickups = get_node(pickups_path)
+@onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
+@onready var _line_fill_sounds := [$LineFillSound1, $LineFillSound2, $LineFillSound3]
+@onready var _line_fill_sfx_reset_timer := $LineFillSfxResetTimer
 
 func _ready() -> void:
 	set_physics_process(false)
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 
 
 func _physics_process(_delta: float) -> void:
@@ -94,7 +94,7 @@ func _schedule_playfield_refill() -> void:
 ## 	'filled_line_count': The number of lines at the top of the playfield to fill. Empty lines are filled, non-empty
 ## 		lines are skipped.
 func _fill_empty_lines(filled_line_count: int) -> void:
-	if _fill_lines_tiles_key().empty():
+	if _fill_lines_tiles_key().is_empty():
 		return
 	
 	# fill the empty rows from bottom to top
@@ -141,7 +141,7 @@ func _play_line_fill_sound() -> void:
 	
 	var sound_index := clamp(_line_fill_sfx_index, 0, _line_fill_sounds.size() - 1)
 	var sound: AudioStreamPlayer = _line_fill_sounds[sound_index]
-	sound.pitch_scale = rand_range(0.90, 1.10)
+	sound.pitch_scale = randf_range(0.90, 1.10)
 	sound.play()
 	
 	_line_fill_sfx_index += 1
@@ -170,7 +170,7 @@ func _tiles_src_y(tiles_key: String) -> int:
 		
 		# obtain the row bag
 		var row_bag: Array = _row_bag_by_tiles_key.get(tiles_key, [])
-		if row_bag.empty():
+		if row_bag.is_empty():
 			# refill the row bag
 			for i in range(_row_count_by_tiles_key[tiles_key]):
 				row_bag.append(i)

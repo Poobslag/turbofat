@@ -23,14 +23,14 @@ var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagr
 var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
 func _ready() -> void:
-	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
 	
-	playfield.connect("box_built", self, "_on_Playfield_box_built")
-	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
-	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
-	hud.diagram.connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
-	hud.diagram.connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
+	playfield.connect("box_built", Callable(self, "_on_Playfield_box_built"))
+	piece_manager.connect("squish_moved", Callable(self, "_on_PieceManager_squish_moved"))
+	piece_manager.connect("piece_spawned", Callable(self, "_on_PieceManager_piece_spawned"))
+	hud.diagram.connect("ok_chosen", Callable(self, "_on_TutorialDiagram_ok_chosen"))
+	hud.diagram.connect("help_chosen", Callable(self, "_on_TutorialDiagram_help_chosen"))
 	
 	# display a welcome message before the game starts
 	hud.set_message(tr("Today we'll cover some advanced squish move techniques!"
@@ -38,7 +38,7 @@ func _ready() -> void:
 
 
 func prepare_tutorial_level() -> void:
-	.prepare_tutorial_level()
+	super.prepare_tutorial_level()
 	## 'true' if the player is retrying a failed tutorial section. We display different messages the second time.
 	var failed_section: bool = _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 1
 	
@@ -150,7 +150,7 @@ func _show_next_diagram() -> void:
 					+ " because one tiny chunk of the piece has a clear path.\n\nIt just needs one."))
 	hud.set_messages(hud_messages)
 	
-	var hud_diagram: Texture
+	var hud_diagram: Texture2D
 	match _show_diagram_count % 2:
 		0: hud_diagram = _squish_diagram_0
 		1: hud_diagram = _squish_diagram_1
@@ -202,7 +202,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 					messages = [tr("Oops! Look at the mess you made. ...Can you clean this up using squish moves?"
 								+ "\n\nTry to clear three lines.")]
 				start_timer_after_all_messages_shown(1.5)\
-						.connect("timeout", self, "_on_Timer_timeout_set_messages", [messages])
+						super.connect("timeout", Callable(self, "_on_Timer_timeout_set_messages").bind(messages))
 			
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleState.level_performance.lines >= 3:
@@ -218,7 +218,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 					messages = [tr("Oh no! Now you've done it.\n\nLook at how clumsy you are!"),
 						tr("That's okay.\n\nI'm sure you'll think of a clever way to clean this up, too.")]
 				start_timer_after_all_messages_shown(1.5)\
-						.connect("timeout", self, "_on_Timer_timeout_set_messages", [messages])
+						super.connect("timeout", Callable(self, "_on_Timer_timeout_set_messages").bind(messages))
 			
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleState.level_performance.lines >= 3:

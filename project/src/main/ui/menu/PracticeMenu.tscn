@@ -7,7 +7,7 @@
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=6]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=8]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="Shortcut" id=8]
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=9]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
@@ -16,24 +16,24 @@
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
 [ext_resource path="res://src/main/ui/menu/PagedLevelPanel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=17]
+[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=17]
 [ext_resource path="res://src/main/ui/menu/region-submenu.gd" type="Script" id=22]
 [ext_resource path="res://src/main/ui/menu/level-submenu.gd" type="Script" id=24]
-[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=31]
-[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=32]
+[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture2D" id=31]
+[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture2D" id=32]
 [ext_resource path="res://src/main/ui/menu/practice-menu.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/menu/practice-speed-selector.gd" type="Script" id=34]
 
 [sub_resource type="InputEventAction" id=4]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=5]
+[sub_resource type="Shortcut" id=5]
 shortcut = SubResource( 4 )
 
 [node name="PracticeMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 1024, 600 )
+custom_minimum_size = Vector2( 1024, 600 )
 script = ExtResource( 33 )
 high_scores_path = NodePath("MainMenu/VBoxContainer/HighScores")
 level_button_path = NodePath("MainMenu/VBoxContainer/Level/ButtonHolder/Button")
@@ -50,60 +50,60 @@ anchor_bottom = 1.0
 [node name="Panel" type="Panel" parent="MainMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 10.0
-margin_right = -50.0
-margin_bottom = -10.0
-custom_styles/panel = ExtResource( 10 )
+offset_left = 50.0
+offset_top = 10.0
+offset_right = -50.0
+offset_bottom = -10.0
+theme_override_styles/panel = ExtResource( 10 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -25.0
-custom_constants/separation = 20
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -25.0
+theme_override_constants/separation = 20
 
 [node name="Level" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_right = 984.0
-margin_bottom = 109.0
+offset_right = 984.0
+offset_bottom = 109.0
 
 [node name="Title" type="Label" parent="MainMenu/VBoxContainer/Level"]
-margin_right = 984.0
-margin_bottom = 45.0
+offset_right = 984.0
+offset_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 17 )
+theme_override_fonts/font = ExtResource( 17 )
 text = "Level"
 align = 1
 valign = 1
 
 [node name="ButtonHolder" type="Control" parent="MainMenu/VBoxContainer/Level"]
-margin_top = 49.0
-margin_right = 984.0
-margin_bottom = 85.0
-rect_min_size = Vector2( 0, 36 )
+offset_top = 49.0
+offset_right = 984.0
+offset_bottom = 85.0
+custom_minimum_size = Vector2( 0, 36 )
 
 [node name="Button" type="Button" parent="MainMenu/VBoxContainer/Level/ButtonHolder" groups=["main_practice_inputs"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -18.0
-margin_right = 300.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 600, 0 )
+offset_left = -300.0
+offset_top = -18.0
+offset_right = 300.0
+offset_bottom = 18.0
+custom_minimum_size = Vector2( 600, 0 )
 theme = ExtResource( 9 )
 shortcut_in_tooltip = false
 group = ExtResource( 14 )
 text = "Sprint: Normal"
 
 [node name="Desc" type="Label" parent="MainMenu/VBoxContainer/Level"]
-margin_top = 89.0
-margin_right = 984.0
-margin_bottom = 109.0
+offset_top = 89.0
+offset_right = 984.0
+offset_bottom = 109.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -112,87 +112,87 @@ align = 1
 valign = 1
 
 [node name="Speed" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 155.0
-margin_right = 984.0
-margin_bottom = 244.0
+offset_top = 155.0
+offset_right = 984.0
+offset_bottom = 244.0
 size_flags_vertical = 6
 script = ExtResource( 34 )
 
 [node name="Title" type="Label" parent="MainMenu/VBoxContainer/Speed"]
-margin_right = 984.0
-margin_bottom = 45.0
+offset_right = 984.0
+offset_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 17 )
+theme_override_fonts/font = ExtResource( 17 )
 text = "Speed"
 align = 1
 valign = 1
 
 [node name="Slider" type="HSlider" parent="MainMenu/VBoxContainer/Speed" groups=["main_practice_inputs"]]
-margin_left = 192.0
-margin_top = 49.0
-margin_right = 792.0
-margin_bottom = 65.0
-rect_min_size = Vector2( 600, 0 )
+offset_left = 192.0
+offset_top = 49.0
+offset_right = 792.0
+offset_bottom = 65.0
+custom_minimum_size = Vector2( 600, 0 )
 size_flags_horizontal = 4
 theme = ExtResource( 6 )
 max_value = 3.0
 tick_count = 4
 
 [node name="Labels" type="HBoxContainer" parent="MainMenu/VBoxContainer/Speed"]
-margin_left = 188.0
-margin_top = 69.0
-margin_right = 796.0
-margin_bottom = 89.0
-rect_min_size = Vector2( 608, 0 )
+offset_left = 188.0
+offset_top = 69.0
+offset_right = 796.0
+offset_bottom = 89.0
+custom_minimum_size = Vector2( 608, 0 )
 size_flags_horizontal = 4
 theme = ExtResource( 6 )
 
 [node name="Normal" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
-margin_right = 99.0
-margin_bottom = 20.0
+offset_right = 99.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "0"
 
 [node name="Hard" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
-margin_left = 103.0
-margin_right = 302.0
-margin_bottom = 20.0
+offset_left = 103.0
+offset_right = 302.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "1"
 align = 1
 
 [node name="Expert" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
-margin_left = 306.0
-margin_right = 504.0
-margin_bottom = 20.0
+offset_left = 306.0
+offset_right = 504.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 text = "2"
 align = 1
 
 [node name="Master" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
-margin_left = 508.0
-margin_right = 608.0
-margin_bottom = 20.0
+offset_left = 508.0
+offset_right = 608.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "3"
 align = 2
 
 [node name="System" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 295.0
-margin_right = 984.0
-margin_bottom = 431.0
+offset_top = 295.0
+offset_right = 984.0
+offset_bottom = 431.0
 size_flags_vertical = 10
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 script = ExtResource( 5 )
 
 [node name="Start" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
-margin_left = 402.0
-margin_right = 582.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 180, 60 )
+offset_left = 402.0
+offset_right = 582.0
+offset_bottom = 60.0
+custom_minimum_size = Vector2( 180, 60 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 9 )
@@ -200,11 +200,11 @@ shortcut_in_tooltip = false
 text = "Start"
 
 [node name="Settings" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
-margin_left = 434.0
-margin_top = 70.0
-margin_right = 550.0
-margin_bottom = 98.0
-rect_min_size = Vector2( 116, 28 )
+offset_left = 434.0
+offset_top = 70.0
+offset_right = 550.0
+offset_bottom = 98.0
+custom_minimum_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 6 )
@@ -216,11 +216,11 @@ text = "Settings"
 action = "ui_cancel"
 
 [node name="Quit" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
-margin_left = 434.0
-margin_top = 108.0
-margin_right = 550.0
-margin_bottom = 136.0
-rect_min_size = Vector2( 116, 28 )
+offset_left = 434.0
+offset_top = 108.0
+offset_right = 550.0
+offset_bottom = 136.0
+custom_minimum_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 6 )
@@ -228,34 +228,34 @@ shortcut_in_tooltip = false
 text = "Quit"
 
 [node name="HighScores" type="Panel" parent="MainMenu/VBoxContainer"]
-margin_left = 92.0
-margin_top = 451.0
-margin_right = 892.0
-margin_bottom = 555.0
-rect_min_size = Vector2( 800, 104 )
+offset_left = 92.0
+offset_top = 451.0
+offset_right = 892.0
+offset_bottom = 555.0
+custom_minimum_size = Vector2( 800, 104 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_styles/panel = ExtResource( 12 )
+theme_override_styles/panel = ExtResource( 12 )
 script = ExtResource( 3 )
 
 [node name="Tables" type="HBoxContainer" parent="MainMenu/VBoxContainer/HighScores"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 5.0
-margin_right = -20.0
-margin_bottom = -5.0
-custom_constants/separation = 200
+offset_left = 20.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = -5.0
+theme_override_constants/separation = 200
 
 [node name="DailyTable" parent="MainMenu/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
-margin_right = 280.0
-margin_bottom = 94.0
+offset_right = 280.0
+offset_bottom = 94.0
 daily = true
 
 [node name="AllTimeTable" parent="MainMenu/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
-margin_left = 480.0
-margin_right = 760.0
-margin_bottom = 94.0
+offset_left = 480.0
+offset_right = 760.0
+offset_bottom = 94.0
 
 [node name="RegionSubmenu" type="Control" parent="."]
 visible = false
@@ -280,21 +280,21 @@ mouse_filter = 2
 [node name="Northeast" type="HBoxContainer" parent="RegionSubmenu/Buttons"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -512.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 100, 100 )
+offset_left = -512.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 110.0
+custom_minimum_size = Vector2( 100, 100 )
 mouse_filter = 2
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="BackButton" parent="RegionSubmenu/Buttons/Northeast" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 402.0
-margin_right = 502.0
-margin_bottom = 100.0
+offset_left = 402.0
+offset_right = 502.0
+offset_bottom = 100.0
 size_flags_horizontal = 0
 shortcut = SubResource( 5 )
 icon = ExtResource( 31 )
@@ -327,21 +327,21 @@ mouse_filter = 2
 [node name="Northeast" type="HBoxContainer" parent="LevelSubmenu/Buttons"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -512.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 100, 100 )
+offset_left = -512.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 110.0
+custom_minimum_size = Vector2( 100, 100 )
 mouse_filter = 2
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="BackButton" parent="LevelSubmenu/Buttons/Northeast" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 402.0
-margin_right = 502.0
-margin_bottom = 100.0
+offset_left = 402.0
+offset_right = 502.0
+offset_bottom = 100.0
 size_flags_horizontal = 0
 shortcut = SubResource( 5 )
 icon = ExtResource( 31 )

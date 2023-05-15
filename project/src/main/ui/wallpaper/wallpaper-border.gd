@@ -10,23 +10,23 @@ extends Control
 const TEXTURE_SIZE := Vector2(512, 512)
 
 ## scroll velocity. only the x component is used
-export (Vector2) var velocity: Vector2
+@export (Vector2) var velocity: Vector2
 
 ## desired width and height of the border.
 ## a value of [200, 50] means that the texture will be 200 pixels wide and 50 pixels high.
-export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0) setget set_texture_scale
+@export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0): set = set_texture_scale
 
-onready var _texture_rect: TextureRect = $TextureRect
+@onready var _texture_rect: TextureRect = $TextureRect
 
 func _ready() -> void:
-	connect("resized", self, "_on_resized")
+	connect("resized", Callable(self, "_on_resized"))
 	_recalculate_texture_rect_size()
 
 
 func _physics_process(delta: float) -> void:
-	_texture_rect.rect_position += delta * velocity
-	_texture_rect.rect_position.x = wrapf(_texture_rect.rect_position.x,
-			-TEXTURE_SIZE.x * _texture_rect.rect_scale.x, 0)
+	_texture_rect.position += delta * velocity
+	_texture_rect.position.x = wrapf(_texture_rect.position.x,
+			-TEXTURE_SIZE.x * _texture_rect.scale.x, 0)
 
 
 func set_texture_scale(new_texture_scale: Vector2) -> void:
@@ -37,7 +37,7 @@ func set_texture_scale(new_texture_scale: Vector2) -> void:
 ## Assigns the two colors used for this border.
 func set_gradient_colors(color_0: Color, color_1: Color) -> void:
 	var shader_material: ShaderMaterial = _texture_rect.material
-	var gradient_texture: GradientTexture = shader_material.get("shader_param/gradient")
+	var gradient_texture: GradientTexture2D = shader_material.get("shader_param/gradient")
 	gradient_texture.gradient.colors[0] = color_0
 	gradient_texture.gradient.colors[1] = color_1
 
@@ -50,9 +50,9 @@ func _recalculate_texture_rect_size() -> void:
 	if not is_inside_tree():
 		return
 	
-	_texture_rect.rect_scale = texture_scale / TEXTURE_SIZE
-	_texture_rect.rect_size.x = (rect_size.x + TEXTURE_SIZE.x) / _texture_rect.rect_scale.x
-	_texture_rect.rect_size.y = TEXTURE_SIZE.y
+	_texture_rect.scale = texture_scale / TEXTURE_SIZE
+	_texture_rect.size.x = (size.x + TEXTURE_SIZE.x) / _texture_rect.scale.x
+	_texture_rect.size.y = TEXTURE_SIZE.y
 
 
 func _on_resized() -> void:

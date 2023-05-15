@@ -3,7 +3,7 @@ extends HBoxContainer
 
 const DEFAULT_LOCALE := "en"
 
-onready var _option_button: OptionButton = $OptionButton
+@onready var _option_button: OptionButton = $OptionButton
 
 func _ready() -> void:
 	# populate the dropdown with the names of available locales

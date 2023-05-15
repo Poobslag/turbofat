@@ -19,24 +19,24 @@ mouse_filter = 2
 script = ExtResource( 5 )
 
 [node name="Messages" type="Control" parent="."]
-margin_right = 360.0
-margin_bottom = 370.0
-rect_pivot_offset = Vector2( 180, 185 )
+offset_right = 360.0
+offset_bottom = 370.0
+pivot_offset = Vector2( 180, 185 )
 script = ExtResource( 4 )
 
 [node name="Panel" parent="Messages" instance=ExtResource( 7 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_pivot_offset = Vector2( 170, 175 )
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+pivot_offset = Vector2( 170, 175 )
 panel_sizes = [ Vector2( 340, 110 ), Vector2( 340, 145 ), Vector2( 340, 215 ), Vector2( 340, 300 ), Vector2( 340, 350 ) ]
 
 [node name="Label" parent="Messages" instance=ExtResource( 2 )]
-margin_left = -140.0
-margin_right = 140.0
+offset_left = -140.0
+offset_right = 140.0
 panel_padding = Vector2( 40, 40 )
 chat_line_panel_path = NodePath("../Panel")
 
@@ -57,9 +57,9 @@ volume_db = -14.0
 bus = "Sound Bus"
 
 [node name="Diagram" type="Control" parent="."]
-margin_left = 355.0
-margin_right = 760.0
-margin_bottom = 600.0
+offset_left = 355.0
+offset_right = 760.0
+offset_bottom = 600.0
 script = ExtResource( 8 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Diagram"]
@@ -67,29 +67,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="TextureMarginContainer" type="MarginContainer" parent="Diagram/VBoxContainer"]
-margin_right = 405.0
-margin_bottom = 446.0
+offset_right = 405.0
+offset_bottom = 446.0
 size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="TexturePanel" type="Panel" parent="Diagram/VBoxContainer/TextureMarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 395.0
-margin_bottom = 436.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 395.0
+offset_bottom = 436.0
 size_flags_vertical = 3
-custom_styles/panel = ExtResource( 3 )
+theme_override_styles/panel = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="Diagram/VBoxContainer/TextureMarginContainer/TexturePanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
 size_flags_vertical = 3
 expand = true
 stretch_mode = 6
@@ -99,18 +99,18 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 450.0
-margin_right = 405.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 0, 150 )
+offset_left = 0.0
+offset_top = 450.0
+offset_right = 405.0
+offset_bottom = 600.0
+custom_minimum_size = Vector2( 0, 150 )
 
 [node name="SkillTallyPanel" type="Panel" parent="."]
-margin_left = 774.0
-margin_top = 10.0
-margin_right = 1014.0
-margin_bottom = 590.0
-custom_styles/panel = ExtResource( 3 )
+offset_left = 774.0
+offset_top = 10.0
+offset_right = 1014.0
+offset_bottom = 590.0
+theme_override_styles/panel = ExtResource( 3 )
 script = ExtResource( 9 )
 
 [node name="GridContainer" type="GridContainer" parent="SkillTallyPanel"]
@@ -118,10 +118,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -168.0
-margin_right = 110.0
-margin_bottom = 168.0
+offset_left = -110.0
+offset_top = -168.0
+offset_right = 110.0
+offset_bottom = 168.0
 columns = 2
 
 [connection signal="all_text_shown" from="Messages/Label" to="Messages" method="_on_Label_all_text_shown"]

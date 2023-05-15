@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/progress-board-player-move.wav-f047bccb7c6c4887c4273b656fe54afc.sample"
+type="AudioStreamWAV"
+uid="uid://b4ipc0a71rme4"
+path="res://.godot/imported/progress-board-player-move.wav-f047bccb7c6c4887c4273b656fe54afc.sample"
 
 [deps]
 
 source_file="res://assets/main/career/ui/progress-board-player-move.wav"
-dest_files=[ "res://.import/progress-board-player-move.wav-f047bccb7c6c4887c4273b656fe54afc.sample" ]
+dest_files=["res://.godot/imported/progress-board-player-move.wav-f047bccb7c6c4887c4273b656fe54afc.sample"]
 
 [params]
 

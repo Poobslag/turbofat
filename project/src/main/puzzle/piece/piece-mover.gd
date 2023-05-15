@@ -15,12 +15,12 @@ signal moved_left(piece)
 # warning-ignore:unused_signal
 signal moved_right(piece)
 
-export (NodePath) var input_path: NodePath
+@export (NodePath) var input_path: NodePath
 
 ## how many times the piece has moved horizontally this frame
 var _horizontal_movement_count := 0
 
-onready var input: PieceInput = get_node(input_path)
+@onready var input: PieceInput = get_node(input_path)
 
 func _physics_process(_delta: float) -> void:
 	_horizontal_movement_count = 0
@@ -75,7 +75,7 @@ func apply_initial_move_input(piece: ActivePiece) -> String:
 
 
 func emit_initial_move_signal(movement_signal: String, piece: ActivePiece) -> void:
-	if movement_signal.empty():
+	if movement_signal.is_empty():
 		return
 	
 	emit_signal(movement_signal, piece)

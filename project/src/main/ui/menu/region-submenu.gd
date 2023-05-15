@@ -7,9 +7,9 @@ extends Control
 ## 	'region': A CareerRegion or OtherRegion instance for the chosen region.
 signal region_chosen(region)
 
-export (NodePath) var region_buttons_path: NodePath
+@export (NodePath) var region_buttons_path: NodePath
 
-onready var _region_buttons: PagedRegionButtons = get_node(region_buttons_path)
+@onready var _region_buttons: PagedRegionButtons = get_node(region_buttons_path)
 
 ## Shows the region submenu.
 ##

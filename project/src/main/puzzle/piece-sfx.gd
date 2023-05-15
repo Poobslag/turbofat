@@ -2,7 +2,7 @@ extends Node
 ## Plays sound effects when the player piece is moved.
 
 func _ready() -> void:
-	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
+	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
 
 
 func _play_move_sfx() -> void:

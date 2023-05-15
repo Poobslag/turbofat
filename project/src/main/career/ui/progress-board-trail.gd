@@ -2,24 +2,24 @@ class_name ProgressBoardTrail
 extends Control
 ## Spots and lines drawn to show a trail across the progress board.
 
-export (NodePath) var path2d_path: NodePath setget set_path2d_path
+@export (NodePath) var path2d_path: NodePath: set = set_path2d_path
 
 ## Number of spots on the trail, including the start and ending spot.
-export (int) var spot_count := 8 setget set_spot_count
+@export (int) var spot_count := 8: set = set_spot_count
 
 ## True if the number of spots on the board is truncated. Normally the player's start space is bigger, but when
 ## truncated the start space looks like just another spot. This way it looks like the player's already travelled a
 ## great distance.
-export (bool) var spots_truncated := false setget set_spots_truncated
+@export (bool) var spots_truncated := false: set = set_spots_truncated
 
 ## Shape of the trail.
-onready var path2d: Path2D
+@onready var path2d: Path2D
 
 ## Lines between the spots on the trail.
-onready var _lines := $Lines
+@onready var _lines := $Lines
 
 ## Spots drawn along the trail.
-onready var _spots := $Spots
+@onready var _spots := $Spots
 
 func _ready() -> void:
 	_refresh_path2d_path()

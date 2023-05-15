@@ -1,26 +1,26 @@
-tool
+@tool
 extends Node
 ## Refreshes the position of invisible obstacles which keep the player from stepping off the edge.
 ##
 ## These invisible obstacles are placed wherever there's an 'unwalkable cell' like a cliff next to a 'walkable cell'
 ## like a patch of ground.
 
-export (NodePath) var ground_map_path: NodePath
+@export (NodePath) var ground_map_path: NodePath
 
 ## tile index in this tilemap which should be used to make tiles impassable
-export (int) var impassable_tile_index := -1
+@export (int) var impassable_tile_index := -1
 
 ## tilemap containing data on which cells are walkable
-onready var _ground_map: TileMap = get_node(ground_map_path)
+@onready var _ground_map: TileMap = get_node(ground_map_path)
 
 ## tilemap containing obstacles
-onready var _tile_map: TileMap = get_parent()
+@onready var _tile_map: TileMap = get_parent()
 
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-export (bool) var _autotile: bool setget autotile
+@export (bool) var _autotile: bool: set = autotile
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
@@ -36,7 +36,7 @@ func autotile(value: bool) -> void:
 		# only autotile in the editor when the 'Autotile' property is toggled
 		return
 	
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		if not _tile_map:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()

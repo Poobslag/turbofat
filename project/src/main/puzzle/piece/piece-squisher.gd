@@ -18,7 +18,7 @@ const UNKNOWN := SquishState.UNKNOWN
 const INVALID := SquishState.INVALID
 const VALID := SquishState.VALID
 
-export (NodePath) var input_path: NodePath
+@export (NodePath) var input_path: NodePath
 
 ## 'true' if the player did a squish drop this frame
 var did_squish_drop: bool
@@ -27,7 +27,7 @@ var did_squish_drop: bool
 var squish_state: int = SquishState.UNKNOWN
 var _squish_target_pos: Vector2
 
-onready var input: PieceInput = get_node(input_path)
+@onready var input: PieceInput = get_node(input_path)
 
 func _physics_process(_delta: float) -> void:
 	did_squish_drop = false

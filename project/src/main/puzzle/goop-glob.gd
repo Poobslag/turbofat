@@ -1,5 +1,5 @@
 class_name GoopGlob
-extends Sprite
+extends Sprite2D
 ## Goop glob which appears when the player clears a line or builds a box.
 
 ## emitted when the glob collides with one of the four outer walls
@@ -42,8 +42,8 @@ var velocity := Vector2.ZERO
 ## time in milliseconds between the engine starting and this node being initialized
 var _creation_time := 0.0
 
-onready var _tween: SceneTreeTween
-onready var _fade_timer: Timer = $FadeTimer
+@onready var _tween: Tween
+@onready var _fade_timer: Timer = $FadeTimer
 
 ## Populates this object from another GoopGlob instance.
 ##
@@ -79,7 +79,7 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 	
 	# calculate color, launch opacity tween
 	if is_rainbow():
-		modulate = Color.white
+		modulate = Color.WHITE
 	elif Foods.is_snack_box(new_box_type):
 		modulate = Foods.COLORS_ALL[new_box_type]
 	
@@ -88,9 +88,9 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 	rotation = 0
 	velocity = Vector2.ZERO
 	# add x velocity twice so that its distribution is more of a bell curve
-	velocity.x += rand_range(-MAX_INITIAL_VELOCITY.x * 0.5, MAX_INITIAL_VELOCITY.x * 0.5)
-	velocity.x += rand_range(-MAX_INITIAL_VELOCITY.x * 0.5, MAX_INITIAL_VELOCITY.x * 0.5)
-	velocity.y = MAX_INITIAL_VELOCITY.y * rand_range(0.4, 1.0)
+	velocity.x += randf_range(-MAX_INITIAL_VELOCITY.x * 0.5, MAX_INITIAL_VELOCITY.x * 0.5)
+	velocity.x += randf_range(-MAX_INITIAL_VELOCITY.x * 0.5, MAX_INITIAL_VELOCITY.x * 0.5)
+	velocity.y = MAX_INITIAL_VELOCITY.y * randf_range(0.4, 1.0)
 	
 	scale = Vector2(0.25, 0.25)
 	# randomly flip the sprite vertically/horizontally for variance
@@ -105,11 +105,11 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 ## Called when a goop glob is first spawned.
 func fall() -> void:
 	falling = true
-	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
+	smear_time = min(randf_range(0.0, FALL_DURATION * 0.7), randf_range(0.0, FALL_DURATION * 1.2))
 	
 	_tween = Utils.recreate_tween(self, _tween).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
-	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), FALL_DURATION * rand_range(0.8, 1.2))
-	_tween.tween_callback(self, "queue_free")
+	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), FALL_DURATION * randf_range(0.8, 1.2))
+	_tween.tween_callback(Callable(self, "queue_free"))
 
 
 ## Makes this goop glob fade away and disappear.
@@ -117,7 +117,7 @@ func fall() -> void:
 ## Called when a goop glob hits a wall or smears against the background.
 func fade() -> void:
 	falling = false
-	_fade_timer.start(FADE_DELAY * rand_range(0.8, 1.2))
+	_fade_timer.start(FADE_DELAY * randf_range(0.8, 1.2))
 
 
 ## Applies gravity and checks for collisions.
@@ -143,5 +143,5 @@ func _process(delta: float) -> void:
 func _on_FadeTimer_timeout() -> void:
 	_tween = Utils.recreate_tween(self, _tween).set_ease(Tween.EASE_IN)
 	_tween.tween_property(self, "modulate", Utils.to_transparent(modulate), \
-			FADE_DURATION * rand_range(0.8, 1.2))
-	_tween.tween_callback(self, "queue_free")
+			FADE_DURATION * randf_range(0.8, 1.2))
+	_tween.tween_callback(Callable(self, "queue_free"))

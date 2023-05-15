@@ -42,27 +42,27 @@ const SCHEMES := {
 }
 
 ## if false, pressing the buttons won't emit any actions.
-export (bool) var emit_actions := true setget set_emit_actions
+@export (bool) var emit_actions := true: set = set_emit_actions
 
-onready var _close := preload("res://assets/main/ui/touch/menu.png")
-onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
+@onready var _close := preload("res://assets/main/ui/touch/menu.png")
+@onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
 
 ## when the player is testing buttons, we replace the icon so we don't confuse players trying to quit
 ## (although... there's an argument that replacing the close button with a duck might confuse them more...)
-onready var _duck := preload("res://assets/main/ui/touch/duck.png")
-onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.png")
+@onready var _duck := preload("res://assets/main/ui/touch/duck.png")
+@onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.png")
 
-onready var _menu_button := $MenuButtonHolder/MenuButton
+@onready var _menu_button := $MenuButtonHolder/MenuButton
 
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
-		SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+		SystemData.touch_settings.connect("changed", Callable(self, "_on_TouchSettings_settings_changed"))
 		_refresh_emit_actions()
 		_refresh_settings()
 		show()
 	else:
 		hide()
-	_menu_button.connect("pressed", self, "_on_MenuButton_pressed")
+	_menu_button.connect("pressed", Callable(self, "_on_MenuButton_pressed"))
 
 
 func set_emit_actions(new_emit_actions: bool) -> void:
@@ -82,28 +82,28 @@ func _refresh_emit_actions() -> void:
 	if emit_actions:
 		_menu_button.action = "ui_menu"
 		_menu_button.normal = _close
-		_menu_button.pressed = _close_pressed
+		_menu_button.button_pressed = _close_pressed
 	else:
 		# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying
 		# to quit. (there's an argument that replacing the close button with a duck might confuse them more...)
 		_menu_button.action = ""
 		_menu_button.normal = _duck
-		_menu_button.pressed = _duck_pressed
+		_menu_button.button_pressed = _duck_pressed
 
 
 ## Updates the buttons based on the player's settings.
 ##
 ## This updates their location and size.
 func _refresh_button_positions() -> void:
-	$ButtonsSw.rect_scale = Vector2.ONE * SystemData.touch_settings.size
-	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	$ButtonsSw.scale = Vector2.ONE * SystemData.touch_settings.size
+	$ButtonsSw.position.y = size.y - 10 - $ButtonsSw.size.y * $ButtonsSw.scale.y
 	
-	$ButtonsSe.rect_scale = Vector2.ONE * SystemData.touch_settings.size
-	$ButtonsSe.rect_position.x = rect_size.x - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
-	$ButtonsSe.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	$ButtonsSe.scale = Vector2.ONE * SystemData.touch_settings.size
+	$ButtonsSe.position.x = size.x - 10 - $ButtonsSw.size.x * $ButtonsSw.scale.x
+	$ButtonsSe.position.y = size.y - 10 - $ButtonsSw.size.y * $ButtonsSw.scale.y
 	
 	_menu_button.scale = Vector2(0.375, 0.375) * SystemData.touch_settings.size
-	$MenuButtonHolder.rect_position.x = rect_size.x - 20 - _menu_button.pressed.get_size().x * _menu_button.scale.x
+	$MenuButtonHolder.position.x = size.x - 20 - _menu_button.pressed.get_size().x * _menu_button.scale.x
 
 
 ## Updates the buttons based on the player's settings.

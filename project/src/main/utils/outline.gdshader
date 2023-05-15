@@ -6,7 +6,7 @@
 shader_type canvas_item;
 
 uniform float width: hint_range(0.0, 16.0);
-uniform vec4 black: hint_color;
+uniform vec4 black: source_color;
 
 // 1.0 for most textures, 0.001 for viewport textures. Fixes aliasing artifacts specific to viewport textures.
 uniform float edge_fix_factor = 1.0;

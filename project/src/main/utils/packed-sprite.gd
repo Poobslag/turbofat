@@ -1,4 +1,4 @@
-tool
+@tool
 class_name PackedSprite
 extends Node2D
 ## Sprite whose contents are packed with Aseprite.
@@ -11,22 +11,22 @@ extends Node2D
 
 signal frame_changed
 
-export (Texture) var texture: Texture
+@export (Texture2D) var texture: Texture2D
 
 ## path of the Aseprite json file containing spatial data for the packed texture
-export (String, FILE) var frame_data setget set_frame_data
+@export (String, FILE) var frame_data : set = set_frame_data
 
 ## our width/height. affects our position when we're centered
-export (Vector2) var rect_size := Vector2(100, 100) setget set_rect_size
+@export (Vector2) var size := Vector2(100, 100): set = set_rect_size
 
-export (int) var frame: int setget set_frame
+@export (int) var frame: int: set = set_frame
 
-export (bool) var centered: bool = true setget set_centered
+@export (bool) var centered: bool = true: set = set_centered
 
-export (Vector2) var offset: Vector2 setget set_offset
+@export (Vector2) var offset: Vector2: set = set_offset
 
 ## number of animation frames parsed from the Aseprite json file.
-var frame_count setget ,get_frame_count
+var frame_count : get = get_frame_count
 
 ## Rect2 instances representing sprite sheet regions where each frame can be read
 var _frame_src_rects := []
@@ -39,13 +39,13 @@ var _frame_dest_rects := []
 ## Loads the file and recalculates the frame data. Updates our region and offset based on the file contents.
 func set_frame_data(new_frame_data: String) -> void:
 	frame_data = new_frame_data
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		_load_rects_from_json()
 	else:
 		_frame_src_rects = ResourceCache.get_frame_src_rects(frame_data)
 		_frame_dest_rects = ResourceCache.get_frame_dest_rects(frame_data)
 
-		if _frame_src_rects.empty():
+		if _frame_src_rects.is_empty():
 			# if the ResourceCache is unavailable (possibly during demos) we load things the slow way
 			_load_rects_from_json()
 	update()
@@ -56,9 +56,9 @@ func get_frame_count() -> int:
 
 
 func set_rect_size(new_rect_size: Vector2) -> void:
-	if rect_size == new_rect_size:
+	if size == new_rect_size:
 		return
-	rect_size = new_rect_size
+	size = new_rect_size
 	update()
 
 
@@ -85,14 +85,14 @@ func set_offset(new_offset: Vector2) -> void:
 
 
 func _draw() -> void:
-	if _frame_dest_rects.empty():
+	if _frame_dest_rects.is_empty():
 		# frame data not loaded
 		return
 	
 	var rect: Rect2 = _frame_dest_rects[min(frame, _frame_dest_rects.size() - 1)]
 	rect.position += offset
 	if centered:
-		rect.position -= rect_size * 0.5
+		rect.position -= size * 0.5
 	if frame < 0 or frame >= _frame_src_rects.size():
 		push_warning("Frame data '%s' does not define a frame #%s" % [frame_data, frame])
 	else:
@@ -108,7 +108,9 @@ func _load_rects_from_json() -> void:
 	
 	# parse json
 	var json: String = FileUtils.get_file_as_text(frame_data)
-	var json_root: Dictionary = parse_json(json)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(json)
+	var json_root: Dictionary = test_json_conv.get_data()
 	if not json_root.has("frames"):
 		# the specified json resource is not an Aseprite json resource; do nothing
 		return

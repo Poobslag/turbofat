@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
-[ext_resource path="res://assets/main/world/environment/poki/we-accept.png" type="Texture" id=2]
+[ext_resource path="res://src/main/utils/outline.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/main/world/environment/poki/we-accept.png" type="Texture2D" id=2]
 [ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -12,9 +12,9 @@ shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/edge_fix_factor = 1.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 138, 50 )
+size = Vector2( 138, 50 )
 
-[node name="WeAccept" type="KinematicBody2D"]
+[node name="WeAccept" type="CharacterBody2D"]
 position = Vector2( 508.542, 419.547 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -22,7 +22,7 @@ __meta__ = {
 }
 shadow_scale = 2.5
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource( 1 )
 scale = Vector2( 0.539, 0.539 )
 texture = ExtResource( 2 )

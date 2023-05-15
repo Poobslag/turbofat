@@ -5,21 +5,21 @@ extends Node2D
 ## duration in seconds between star color changes
 const STAR_COLOR_CHANGE_DURATION := 0.8
 
-var food_type := 0 setget set_food_type
+var food_type := 0: set = set_food_type
 
 ## 'true' if the food item should be shown, 'false' if the star or seed should be shown
-var food_shown: bool = false setget set_food_shown
+var food_shown: bool = false: set = set_food_shown
 
 ## array of Colors the star should cycle between
 var _star_colors: Array = []
 var _star_color_index := 0
 
-onready var _seed := $Seed
-onready var _star := $Star
-onready var _food_item := $FoodItem
+@onready var _seed := $Seed
+@onready var _star := $Star
+@onready var _food_item := $FoodItem
 
 ## tween used to update the star's color
-onready var _star_color_tween: SceneTreeTween
+@onready var _star_color_tween: Tween
 
 func _ready() -> void:
 	_seed.visible = true
@@ -75,7 +75,7 @@ func _refresh_appearance() -> void:
 
 
 ## Gradually changes the star to a new color.
-func _launch_star_color_tween(var initial_launch := false) -> void:
+func _launch_star_color_tween(initial_launch := false) -> void:
 	var new_star_color_index := (_star_color_index + 1) % _star_colors.size()
 	
 	_star_color_tween = Utils.recreate_tween(self, _star_color_tween).set_trans(Tween.TRANS_SINE)
@@ -83,6 +83,6 @@ func _launch_star_color_tween(var initial_launch := false) -> void:
 	var duration_min := STAR_COLOR_CHANGE_DURATION * (0.0 if initial_launch else 0.8)
 	var duration_max := STAR_COLOR_CHANGE_DURATION * 1.2
 	_star_color_tween.tween_property(_star, "modulate", \
-			_star_colors[new_star_color_index], rand_range(duration_min, duration_max))
-	_star_color_tween.tween_callback(self, "_launch_star_color_tween")
+			_star_colors[new_star_color_index], randf_range(duration_min, duration_max))
+	_star_color_tween.tween_callback(Callable(self, "_launch_star_color_tween"))
 	_star_color_index = new_star_color_index

@@ -13,7 +13,7 @@ const PULSE_AMOUNT := Vector2(0.015, 0.030)
 const CHAT_TEXTURE_COUNT := 16
 
 ## Different panel sizes to try, ordered from smallest to largest.
-export (Array, Vector2) var panel_sizes
+@export (Array, Vector2) var panel_sizes
 
 ## The panel squishes over time. This field is used to calculate the squish amount
 var _total_time := 0.0
@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 	_total_time += delta
 	
 	# stretch the chat window vertically/horizontally in a circular way which preserves its area
-	rect_scale.x = 1.00 + PULSE_AMOUNT.x * sin((_total_time + 8.96) * TAU / PULSE_PERIOD)
-	rect_scale.y = 1.00 + PULSE_AMOUNT.y * cos((_total_time + 8.96) * TAU / PULSE_PERIOD)
+	scale.x = 1.00 + PULSE_AMOUNT.x * sin((_total_time + 8.96) * TAU / PULSE_PERIOD)
+	scale.y = 1.00 + PULSE_AMOUNT.y * cos((_total_time + 8.96) * TAU / PULSE_PERIOD)
 
 
 ## Recolors and repositions the panel based on the current chat appearance.
@@ -41,14 +41,14 @@ func _process(delta: float) -> void:
 ## 	'chat_line_size': The size of the chat line window. This is needed for the panel to update its texture to show a
 ## 		smaller/larger window.
 func update_appearance(chat_theme: ChatTheme, chat_line_size: int) -> void:
-	rect_size = panel_sizes[chat_line_size]
-	rect_pivot_offset = rect_size * 0.5
-	rect_position = get_parent().rect_size / 2 - rect_size / 2
+	size = panel_sizes[chat_line_size]
+	pivot_offset = size * 0.5
+	position = get_parent().size / 2 - size / 2
 	
-	material.set_shader_param("accent_amount", chat_theme.accent_amount)
-	material.set_shader_param("accent_color", chat_theme.accent_color)
-	material.set_shader_param("accent_scale", chat_theme.accent_scale)
-	material.set_shader_param("accent_swapped", chat_theme.accent_swapped)
-	material.set_shader_param("accent_texture", _accent_textures[chat_theme.accent_texture_index])
-	material.set_shader_param("border_color", chat_theme.border_color)
-	material.set_shader_param("center_color", Color.black if chat_theme.dark else Color.white)
+	material.set_shader_parameter("accent_amount", chat_theme.accent_amount)
+	material.set_shader_parameter("accent_color", chat_theme.accent_color)
+	material.set_shader_parameter("accent_scale", chat_theme.accent_scale)
+	material.set_shader_parameter("accent_swapped", chat_theme.accent_swapped)
+	material.set_shader_parameter("accent_texture", _accent_textures[chat_theme.accent_texture_index])
+	material.set_shader_parameter("border_color", chat_theme.border_color)
+	material.set_shader_parameter("center_color", Color.BLACK if chat_theme.dark else Color.WHITE)

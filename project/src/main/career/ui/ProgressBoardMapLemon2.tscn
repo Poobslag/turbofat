@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/main/career/ui/progress-board-map-lemon-2.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/career/ui/progress-board-map-lemon-2.png" type="Texture2D" id=1]
 
 [sub_resource type="Curve2D" id=28]
 _data = {
-"points": PoolVector2Array( -33.9458, -9.33296, 33.9458, 9.33296, 109.678, 249.109, -35.7997, -8.15956, 35.7997, 8.15956, 233.29, 330.676, -25.2892, -1.41364, 25.2892, 1.41364, 320.743, 323.948, -32.2736, 2.61159, 32.2736, -2.61159, 401.47, 339.084, -27.1586, 15.6936, 27.1586, -15.6936, 485.559, 309.653, -27.4529, 19.4225, 27.4529, -19.4225, 559.558, 260.881 )
+"points": PackedVector2Array( -33.9458, -9.33296, 33.9458, 9.33296, 109.678, 249.109, -35.7997, -8.15956, 35.7997, 8.15956, 233.29, 330.676, -25.2892, -1.41364, 25.2892, 1.41364, 320.743, 323.948, -32.2736, 2.61159, 32.2736, -2.61159, 401.47, 339.084, -27.1586, 15.6936, 27.1586, -15.6936, 485.559, 309.653, -27.4529, 19.4225, 27.4529, -19.4225, 559.558, 260.881 )
 }
 
 [node name="Map" type="TextureRect"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -343.597
-margin_bottom = -132.792
+offset_right = -343.597
+offset_bottom = -132.792
 texture = ExtResource( 1 )
 expand = true
 

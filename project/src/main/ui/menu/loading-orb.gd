@@ -1,5 +1,5 @@
 class_name LoadingOrb
-extends Sprite
+extends Sprite2D
 ## Orb which floats around the loading screen, launching puzzle pieces.
 ##
 ## The player can control the launched puzzle pieces with the direction/rotate buttons.
@@ -22,7 +22,7 @@ var _orientation: float
 
 func _ready() -> void:
 	# initialize total_time so the wobble/position isn't always the same
-	_total_time = rand_range(0, 100)
+	_total_time = randf_range(0, 100)
 	
 	if randf() < 0.5:
 		# 50% of the time, the pieces are oriented to spell out 'T' 'u' 'r' 'b' 'o'...

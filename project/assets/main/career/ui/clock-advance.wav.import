@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/clock-advance.wav-83652f51d4952121db5de24c2d9a8ce3.sample"
+type="AudioStreamWAV"
+uid="uid://bok4tne2ynh6c"
+path="res://.godot/imported/clock-advance.wav-83652f51d4952121db5de24c2d9a8ce3.sample"
 
 [deps]
 
 source_file="res://assets/main/career/ui/clock-advance.wav"
-dest_files=[ "res://.import/clock-advance.wav-83652f51d4952121db5de24c2d9a8ce3.sample" ]
+dest_files=["res://.godot/imported/clock-advance.wav-83652f51d4952121db5de24c2d9a8ce3.sample"]
 
 [params]
 

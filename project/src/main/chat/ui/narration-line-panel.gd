@@ -5,8 +5,8 @@ extends Panel
 ## emitted after the full chat line is typed out onscreen
 signal all_text_shown
 
-onready var _label: Label = $NarrationLabel
-onready var _label_typer: LabelTyper = $NarrationLabel/LabelTyper
+@onready var _label: Label = $NarrationLabel
+@onready var _label_typer: LabelTyper = $NarrationLabel/LabelTyper
 
 func _ready() -> void:
 	# hidden by default to avoid firing signals and playing sounds

@@ -2,26 +2,26 @@ extends Node
 ## Plays sound effects at the start and end of a level.
 
 ## sounds played at the start of a level
-onready var _go_sound := $GoSound
-onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
-onready var _ready_sound := $ReadySound
+@onready var _go_sound := $GoSound
+@onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
+@onready var _ready_sound := $ReadySound
 
 ## sounds played during tutorials
-onready var _level_change_sound := $LevelChangeSound
-onready var _section_complete_sound := $SectionCompleteSound
-onready var _section_fail_sound := $SectionFailSound
+@onready var _level_change_sound := $LevelChangeSound
+@onready var _section_complete_sound := $SectionCompleteSound
+@onready var _section_fail_sound := $SectionFailSound
 
 ## sounds played at the end of a level
-onready var _excellent_sound := $ExcellentSound
-onready var _game_over_sound := $GameOverSound
-onready var _match_end_sound := $MatchEndSound
+@onready var _excellent_sound := $ExcellentSound
+@onready var _game_over_sound := $GameOverSound
+@onready var _match_end_sound := $MatchEndSound
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
-	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
+	PuzzleState.connect("before_level_changed", Callable(self, "_on_PuzzleState_before_level_changed"))
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
 
 
 func play_ready_sound() -> void:
@@ -50,7 +50,7 @@ func _on_PuzzleState_game_started() -> void:
 
 
 func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
-	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.empty():
+	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.is_empty():
 		# no sound effect or fanfare for non-interactive levels
 		return
 	

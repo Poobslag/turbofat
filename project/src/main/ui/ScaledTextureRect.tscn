@@ -3,8 +3,8 @@
 [ext_resource path="res://src/main/puzzle/scaled-texture-rect.gd" type="Script" id=2]
 
 [node name="ScaledTextureRect" type="TextureRect"]
-margin_right = 2048.0
-margin_bottom = 1200.0
-rect_scale = Vector2( 0.5, 0.5 )
+offset_right = 2048.0
+offset_bottom = 1200.0
+scale = Vector2( 0.5, 0.5 )
 stretch_mode = 2
 script = ExtResource( 2 )

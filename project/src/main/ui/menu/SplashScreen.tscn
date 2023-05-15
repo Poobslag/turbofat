@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=3]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=6]
@@ -12,7 +12,7 @@
 [ext_resource path="res://src/main/ui/menu/bad-save-data-control.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 72
 outline_size = 6
 outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
@@ -21,7 +21,7 @@ font_data = ExtResource( 3 )
 [node name="SplashScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 1024, 600 )
+custom_minimum_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
 
 [node name="Wallpaper" parent="." instance=ExtResource( 11 )]
@@ -29,16 +29,16 @@ script = ExtResource( 1 )
 [node name="DropPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
-custom_styles/panel = ExtResource( 4 )
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+theme_override_styles/panel = ExtResource( 4 )
 
 [node name="TurboFat" type="Label" parent="DropPanel"]
 anchor_right = 1.0
-margin_bottom = 150.0
-custom_fonts/font = SubResource( 1 )
+offset_bottom = 150.0
+theme_override_fonts/font = SubResource( 1 )
 text = "turbo fat"
 align = 1
 valign = 1
@@ -46,20 +46,20 @@ valign = 1
 [node name="PlayHolder" type="CenterContainer" parent="DropPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 150.0
-margin_bottom = -100.0
+offset_top = 150.0
+offset_bottom = -100.0
 
 [node name="Play" type="Button" parent="DropPanel/PlayHolder"]
-margin_left = 365.0
-margin_top = 92.0
-margin_right = 558.0
-margin_bottom = 157.0
-rect_min_size = Vector2( 193, 47 )
+offset_left = 365.0
+offset_top = 92.0
+offset_right = 558.0
+offset_bottom = 157.0
+custom_minimum_size = Vector2( 193, 47 )
 theme = ExtResource( 7 )
 text = "Play"
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
-margin_top = -100.0
+offset_top = -100.0
 alignment = 1
 quit_on_cancel = false
 
@@ -74,31 +74,31 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.752941 )
 script = ExtResource( 10 )
 
-[node name="Popup" type="PopupDialog" parent="BadSaveDataControl"]
+[node name="Popup" type="Popup" parent="BadSaveDataControl"]
 visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -200.0
-margin_right = 300.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 600, 400 )
-popup_exclusive = true
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+custom_minimum_size = Vector2( 600, 400 )
+exclusive = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BadSaveDataControl/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_min_size = Vector2( 580, 380 )
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+custom_minimum_size = Vector2( 580, 380 )
 
 [node name="Label" type="Label" parent="BadSaveDataControl/Popup/VBoxContainer"]
-margin_right = 580.0
-margin_bottom = 336.0
+offset_right = 580.0
+offset_bottom = 336.0
 size_flags_vertical = 7
 theme = ExtResource( 9 )
 text = "There was a problem loading your save data. Your old save data from 3 days ago works, so we've loaded that instead.
@@ -111,11 +111,11 @@ Sorry."
 autowrap = true
 
 [node name="Button" type="Button" parent="BadSaveDataControl/Popup/VBoxContainer"]
-margin_left = 215.0
-margin_top = 340.0
-margin_right = 365.0
-margin_bottom = 380.0
-rect_min_size = Vector2( 150, 40 )
+offset_left = 215.0
+offset_top = 340.0
+offset_right = 365.0
+offset_bottom = 380.0
+custom_minimum_size = Vector2( 150, 40 )
 size_flags_horizontal = 4
 theme = ExtResource( 8 )
 text = "Well, crap"

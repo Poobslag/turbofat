@@ -21,13 +21,13 @@ const ROW_COUNT := 20
 const COL_COUNT := 9
 
 ## number in the range [0, 1] which can be set to make the tilemap flash or blink.
-var whiteness := 0.0 setget set_whiteness
+var whiteness := 0.0: set = set_whiteness
 
 ## offset used to draw the 'ghost piece'
 var ghost_shadow_offset: Vector2
 
 ## enum from TileSetType referencing the tileset used to render blocks
-var puzzle_tile_set_type: int = TileSetType.DEFAULT setget set_puzzle_tile_set_type
+var puzzle_tile_set_type: int = TileSetType.DEFAULT: set = set_puzzle_tile_set_type
 
 ## fields used to roll the tilemap back to a previous state
 var _saved_used_cells := []
@@ -35,9 +35,9 @@ var _saved_tiles := []
 var _saved_autotile_coords := []
 
 ## tilemap which covers the corners of this tilemap
-onready var corner_map: TileMap = $CornerMap
-onready var _ghost_piece_shadow_map: TileMap = $GhostPieceViewport/ShadowMap
-onready var _ghost_piece_corner_map: TileMap = $GhostPieceViewport/ShadowMap/CornerMap
+@onready var corner_map: TileMap = $CornerMap
+@onready var _ghost_piece_shadow_map: TileMap = $GhostPieceViewport/ShadowMap
+@onready var _ghost_piece_corner_map: TileMap = $GhostPieceViewport/ShadowMap/CornerMap
 
 var _puzzle_tile_sets_by_enum := {
 	TileSetType.DEFAULT: preload("res://src/main/puzzle/puzzle-tile-set.tres"),
@@ -63,7 +63,7 @@ func set_ghost_shadow_offset(new_ghost_shadow_offset: Vector2) -> void:
 
 
 func clear() -> void:
-	.clear()
+	super.clear()
 	if is_inside_tree():
 		corner_map.clear()
 
@@ -200,8 +200,8 @@ func set_whiteness(new_whiteness: float) -> void:
 	if whiteness == new_whiteness:
 		return
 	whiteness = new_whiteness
-	material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
-	corner_map.material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
+	material.set_shader_parameter("mix_color", Utils.to_transparent(Color.WHITE, whiteness))
+	corner_map.material.set_shader_parameter("mix_color", Utils.to_transparent(Color.WHITE, whiteness))
 
 
 ## Returns a position randomly near a cell.

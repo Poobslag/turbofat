@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/chat/ui/chat-line-label.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/chat/ui/bebebe.wav" type="AudioStream" id=2]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-36.tres" type="FontFile" id=3]
 [ext_resource path="res://src/main/chat/ui/label-typer.gd" type="Script" id=4]
 
 [node name="ChatLineLabel" type="Label"]
@@ -10,12 +10,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -180.0
-margin_top = -40.0
-margin_right = 180.0
-margin_bottom = 40.0
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-custom_fonts/font = ExtResource( 3 )
+offset_left = -180.0
+offset_top = -40.0
+offset_right = 180.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "Hello"
 align = 1
 valign = 1

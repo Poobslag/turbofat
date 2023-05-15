@@ -8,9 +8,9 @@ script = ExtResource( 4 )
 
 [node name="RestaurantPuzzleScene" parent="." instance=ExtResource( 3 )]
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera3D" type="Camera2D" parent="."]
 offset = Vector2( 1000, 0 )
 current = true
 zoom = Vector2( 3, 3 )
-smoothing_enabled = true
-smoothing_speed = 12.5
+position_smoothing_enabled = true
+position_smoothing_speed = 12.5

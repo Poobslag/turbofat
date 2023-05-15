@@ -1,4 +1,4 @@
-tool
+@tool
 extends Control
 
 const RUNNER_JSON_PATH = 'res://.gut_editor_config.json'
@@ -20,9 +20,9 @@ var _panel_button = null
 var _last_selected_path = null
 
 
-onready var _ctrls = {
-	output = $layout/RSplit/CResults/Tabs/OutputText.get_rich_text_edit(),
-	output_ctrl = $layout/RSplit/CResults/Tabs/OutputText,
+@onready var _ctrls = {
+	output = $layout/RSplit/CResults/TabBar/OutputText.get_rich_text_edit(),
+	output_ctrl = $layout/RSplit/CResults/TabBar/OutputText,
 	run_button = $layout/ControlBar/RunAll,
 	shortcuts_button = $layout/ControlBar/Shortcuts,
 
@@ -32,7 +32,7 @@ onready var _ctrls = {
 
 	settings = $layout/RSplit/sc/Settings,
 	shortcut_dialog = $BottomPanelShortcuts,
-	light = $layout/RSplit/CResults/ControlBar/Light,
+	light = $layout/RSplit/CResults/ControlBar/Light3D,
 	results = {
 		bar = $layout/RSplit/CResults/ControlBar,
 		passing = $layout/RSplit/CResults/ControlBar/Passing/value,
@@ -43,7 +43,7 @@ onready var _ctrls = {
 		orphans = $layout/RSplit/CResults/ControlBar/Orphans/value
 	},
 	run_at_cursor = $layout/ControlBar/RunAtCursor,
-	run_results = $layout/RSplit/CResults/Tabs/RunResults
+	run_results = $layout/RSplit/CResults/TabBar/RunResults
 }
 
 
@@ -52,14 +52,14 @@ func _init():
 
 
 func _ready():
-	_ctrls.results.bar.connect('draw', self, '_on_results_bar_draw', [_ctrls.results.bar])
+	_ctrls.results.bar.connect('draw', Callable(self, '_on_results_bar_draw').bind(_ctrls.results.bar))
 	hide_settings(!_ctrls.settings_button.pressed)
 	_gut_config_gui = GutConfigGui.new(_ctrls.settings)
 	_gut_config_gui.set_options(_gut_config.options)
 
 	_apply_options_to_controls()
 
-	_ctrls.shortcuts_button.icon = get_icon('ShortCut', 'EditorIcons')
+	_ctrls.shortcuts_button.icon = get_icon('Shortcut', 'EditorIcons')
 	_ctrls.settings_button.icon = get_icon('Tools', 'EditorIcons')
 	_ctrls.run_results_button.icon = get_icon('AnimationTrackGroup', 'EditorIcons') # Tree
 	_ctrls.output_button.icon = get_icon('Font', 'EditorIcons')
@@ -185,12 +185,12 @@ func _run_all():
 # Events
 # ---------------
 func _on_results_bar_draw(bar):
-	bar.draw_rect(Rect2(Vector2(0, 0), bar.rect_size), Color(0, 0, 0, .2))
+	bar.draw_rect(Rect2(Vector2(0, 0), bar.size), Color(0, 0, 0, .2))
 
 
 func _on_Light_draw():
 	var l = _ctrls.light
-	l.draw_circle(Vector2(l.rect_size.x / 2, l.rect_size.y / 2), l.rect_size.x / 2, _light_color)
+	l.draw_circle(Vector2(l.size.x / 2, l.size.y / 2), l.size.x / 2, _light_color)
 
 
 func _on_editor_script_changed(script):
@@ -244,7 +244,7 @@ func _on_UseColors_pressed():
 # ---------------
 func hide_result_tree(should):
 	_ctrls.run_results.visible = !should
-	_ctrls.run_results_button.pressed = !should
+	_ctrls.run_results_button.button_pressed = !should
 
 
 func hide_settings(should):
@@ -259,19 +259,21 @@ func hide_settings(should):
 		s_scroll.get_parent().move_child(s_scroll, 1)
 
 	$layout/RSplit.collapsed = should
-	_ctrls.settings_button.pressed = !should
+	_ctrls.settings_button.button_pressed = !should
 
 
 func hide_output_text(should):
-	$layout/RSplit/CResults/Tabs/OutputText.visible = !should
-	_ctrls.output_button.pressed = !should
+	$layout/RSplit/CResults/TabBar/OutputText.visible = !should
+	_ctrls.output_button.button_pressed = !should
 
 
 func load_result_output():
 	_ctrls.output_ctrl.load_file(RESULT_FILE)
 
 	var summary = get_file_as_text(RESULT_JSON)
-	var results = JSON.parse(summary)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(summary)
+	var results = test_json_conv.get_data()
 	if(results.error != OK):
 		return
 
@@ -318,7 +320,7 @@ func set_current_script(script):
 
 func set_interface(value):
 	_interface = value
-	_interface.get_script_editor().connect("editor_script_changed", self, '_on_editor_script_changed')
+	_interface.get_script_editor().connect("editor_script_changed", Callable(self, '_on_editor_script_changed'))
 
 	var ste = ScriptTextEditors.new(_interface.get_script_editor())
 	_ctrls.run_results.set_interface(_interface)

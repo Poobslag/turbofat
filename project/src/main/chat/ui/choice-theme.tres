@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=2]
 
-[ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="FontFile" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 0.901961 )

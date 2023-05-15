@@ -8,7 +8,7 @@ const DEFAULT_MUTAGEN := 1.00
 
 ## A higher mutagen level means more alleles will be mutated.
 ## Virtual property; value is only exposed through getters/setters
-var mutagen: float setget set_mutagen, get_mutagen
+var mutagen: float: get = get_mutagen, set = set_mutagen
 
 func _ready() -> void:
 	$HSlider.value = DEFAULT_MUTAGEN

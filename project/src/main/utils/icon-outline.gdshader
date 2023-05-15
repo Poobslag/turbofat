@@ -12,10 +12,10 @@ const float TAU = 6.28318530718;
 uniform float width: hint_range(0.0, 128.0);
 
 // the color to use when drawing the sprite
-uniform vec4 white: hint_color;
+uniform vec4 white: source_color;
 
 // the color to use when drawing the outline
-uniform vec4 black: hint_color;
+uniform vec4 black: source_color;
 
 // To draw the outline, we sample pixels in a circle around the current pixel. This value correspond to the number of
 // sampled pixels. Higher values are slower but result in a smoother outline.

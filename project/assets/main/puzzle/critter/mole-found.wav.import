@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mole-found.wav-97c09d31e560405bbc184aec3f575f33.sample"
+type="AudioStreamWAV"
+uid="uid://6dnb5pd4c1we"
+path="res://.godot/imported/mole-found.wav-97c09d31e560405bbc184aec3f575f33.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/mole-found.wav"
-dest_files=[ "res://.import/mole-found.wav-97c09d31e560405bbc184aec3f575f33.sample" ]
+dest_files=["res://.godot/imported/mole-found.wav-97c09d31e560405bbc184aec3f575f33.sample"]
 
 [params]
 

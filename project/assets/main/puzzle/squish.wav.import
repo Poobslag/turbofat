@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/squish.wav-b68507f6317f3ccc5e97666fc842daf0.sample"
+type="AudioStreamWAV"
+uid="uid://cu441kwameiwy"
+path="res://.godot/imported/squish.wav-b68507f6317f3ccc5e97666fc842daf0.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/squish.wav"
-dest_files=[ "res://.import/squish.wav-b68507f6317f3ccc5e97666fc842daf0.sample" ]
+dest_files=["res://.godot/imported/squish.wav-b68507f6317f3ccc5e97666fc842daf0.sample"]
 
 [params]
 

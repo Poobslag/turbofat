@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/pressure-cooker.ogg-b31715b2c34e5f974c80b0e278cf535e.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://22ex71jyu33r"
+path="res://.godot/imported/pressure-cooker.ogg-b31715b2c34e5f974c80b0e278cf535e.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/pressure-cooker.ogg"
-dest_files=[ "res://.import/pressure-cooker.ogg-b31715b2c34e5f974c80b0e278cf535e.oggstr" ]
+dest_files=["res://.godot/imported/pressure-cooker.ogg-b31715b2c34e5f974c80b0e278cf535e.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

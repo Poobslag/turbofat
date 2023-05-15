@@ -13,11 +13,11 @@ signal tile_map_changed
 signal pickups_changed
 
 ## tiles keys which can be selected. 'start' is always the first item in this array
-var tiles_keys := ["start"] setget set_tiles_keys
+var tiles_keys := ["start"]: set = set_tiles_keys
 ## currently selected tiles key
-var tiles_key := "start" setget set_tiles_key
+var tiles_key := "start": set = set_tiles_key
 
-onready var _playfield_nav := $PlayfieldNav
+@onready var _playfield_nav := $PlayfieldNav
 
 ## Updates the list of selectable tiles keys.
 ##
@@ -73,7 +73,7 @@ func _on_PlayfieldNav_add_tiles_key_pressed() -> void:
 			new_key = potential_new_key
 			break
 	
-	if new_key.empty():
+	if new_key.is_empty():
 		push_error("Couldn't add tiles key: Too many conflicts")
 		return
 	

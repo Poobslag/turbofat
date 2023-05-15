@@ -53,7 +53,7 @@ func enqueue_level(level_properties: Dictionary) -> void:
 
 ## Returns 'true' if there is a pending cutscene/level in the queue.
 func is_queue_empty() -> bool:
-	return _queue.empty()
+	return _queue.is_empty()
 
 
 ## Returns 'true' if the first item in the queue represents a cutscene.

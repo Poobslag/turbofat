@@ -5,7 +5,7 @@ class_name KeybindSettings
 ## these are ignored unless the player selects the 'Custom' preset.
 
 ## emitted if new settings are loaded, or the preset changes, or the player rebinds a key
-signal settings_changed
+signal changed
 
 enum KeybindPreset {
 	GUIDELINE,
@@ -54,7 +54,7 @@ const OVERWORLD_ACTION_NAMES := {
 }
 
 ## Player's selected keybind preset, or 'Custom' if they've defined their own
-var preset := GUIDELINE setget set_preset
+var preset := GUIDELINE: set = set_preset
 
 ## Json representation of the player's custom keybinds
 var custom_keybinds: Dictionary
@@ -65,7 +65,7 @@ func reset() -> void:
 
 func set_preset(new_preset: int) -> void:
 	preset = new_preset
-	emit_signal("settings_changed")
+	emit_signal("changed")
 
 
 ## Updates the custom keybind for a specific action.
@@ -87,7 +87,7 @@ func set_custom_keybind(action_name: String, index: int, json: Dictionary) -> vo
 	if not custom_keybinds.has(action_name):
 		custom_keybinds[action_name] = [{}, {}, {}]
 	custom_keybinds[action_name][index] = json
-	emit_signal("settings_changed")
+	emit_signal("changed")
 
 
 ## Returns a json reprentation of the specified keybind.
@@ -114,17 +114,19 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	preset = int(json.get("preset", GUIDELINE))
 	custom_keybinds = json.get("custom_keybinds", {})
-	if custom_keybinds.empty():
+	if custom_keybinds.is_empty():
 		restore_default_custom_keybinds()
-	emit_signal("settings_changed")
+	emit_signal("changed")
 
 
 ## Resets the custom keybinds to a sensible set of defaults.
 func restore_default_custom_keybinds() -> void:
 	var json_text := FileUtils.get_file_as_text(DEFAULT_CUSTOM_PATH)
-	var json_dict: Dictionary = parse_json(json_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(json_text)
+	var json_dict: Dictionary = test_json_conv.get_data()
 	custom_keybinds = json_dict
-	emit_signal("settings_changed")
+	emit_signal("changed")
 
 
 ## Unbinds any keybinds which conflict with the specified keybind.

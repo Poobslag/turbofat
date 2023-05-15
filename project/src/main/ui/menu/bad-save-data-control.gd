@@ -42,7 +42,7 @@ func popup() -> void:
 	var corrupt_filenames := []
 	for corrupt_filename in PlayerSave.corrupt_filenames:
 		corrupt_filenames.append(StringUtils.substring_after(corrupt_filename, "user://"))
-	message += "%s (%s)" % [OS.get_user_data_dir(), PoolStringArray(corrupt_filenames).join(", ")]
+	message += "%s (%s)" % [OS.get_user_data_dir(), ", ".join(PackedStringArray(corrupt_filenames))]
 	message += "\n\n"
 	message += "I'm really sorry."
 	

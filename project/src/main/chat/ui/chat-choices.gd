@@ -10,7 +10,7 @@ const MAX_LABELS := 6
 ## Time in seconds for all of the chat choices to pop up.
 const TOTAL_POP_IN_DELAY := 0.3
 
-export (PackedScene) var ChatChoiceButtonScene
+@export (PackedScene) var ChatChoiceButtonScene
 
 ## Strings to show the player for each chat branch.
 var _choices := []
@@ -33,14 +33,14 @@ func _ready() -> void:
 func reposition(chat_line_size: int) -> void:
 	match chat_line_size:
 		ChatTheme.LINE_SMALL:
-			rect_position = Vector2(659, 355)
-			rect_size = Vector2(325, 240)
+			position = Vector2(659, 355)
+			size = Vector2(325, 240)
 		ChatTheme.LINE_MEDIUM, ChatTheme.LINE_LARGE:
-			rect_position = Vector2(729, 355)
-			rect_size = Vector2(280, 240)
+			position = Vector2(729, 355)
+			size = Vector2(280, 240)
 		ChatTheme.LINE_XL:
-			rect_position = Vector2(819, 355)
-			rect_size = Vector2(200, 240)
+			position = Vector2(819, 355)
+			size = Vector2(200, 240)
 
 
 ## Displays a set of buttons corresponding to chat choices.
@@ -71,14 +71,14 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 		$EnableInputTimer.start()
 		
 		# wait for old chat choices to be deleted before grabbing focus
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		for button in get_tree().get_nodes_in_group("chat_choices"):
 			button.grab_focus()
 			break
 
 
 func is_showing_choices() -> bool:
-	return not _choices.empty()
+	return not _choices.is_empty()
 
 
 ## Makes all the chat choice buttons disappear.
@@ -98,7 +98,7 @@ func _delete_old_buttons(old_buttons: Array) -> void:
 			chosen_button = button
 			break
 	if chosen_button:
-		yield(chosen_button, "pop_choose_completed")
+		await chosen_button.pop_choose_completed
 	for button_object in old_buttons:
 		var button: ChatChoiceButton = button_object
 		button.queue_free()
@@ -117,15 +117,15 @@ func _refresh_child_buttons() -> void:
 	var new_buttons := []
 	
 	for i in range(_choices.size()):
-		var button: ChatChoiceButton = ChatChoiceButtonScene.instance()
+		var button: ChatChoiceButton = ChatChoiceButtonScene.instantiate()
 		var choice_text: String = _choices[i]
 		choice_text = PlayerData.creature_library.substitute_variables(choice_text)
 		button.set_choice_text(choice_text)
 		button.set_mood(_moods[i])
 		button.set_mood_right(i % 2 == 1)
-		button.connect("focus_entered", self, "_on_ChatChoiceButton_focus_entered")
-		button.connect("gui_input", self, "_on_ChatChoiceButton_gui_input")
-		button.connect("pressed", self, "_on_ChatChoiceButton_pressed")
+		button.connect("focus_entered", Callable(self, "_on_ChatChoiceButton_focus_entered"))
+		button.connect("gui_input", Callable(self, "_on_ChatChoiceButton_gui_input"))
+		button.connect("pressed", Callable(self, "_on_ChatChoiceButton_pressed"))
 		add_child(button)
 		new_buttons.append(button)
 	
@@ -144,7 +144,7 @@ func _refresh_child_buttons() -> void:
 			var button: ChatChoiceButton = button_object
 			button.pop_in()
 			$PopSound.play()
-			yield(get_tree().create_timer(pop_in_delay), "timeout")
+			await get_tree().create_timer(pop_in_delay).timeout
 
 
 func _on_ChatChoiceButton_focus_entered() -> void:
@@ -153,7 +153,7 @@ func _on_ChatChoiceButton_focus_entered() -> void:
 
 func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
 	# swallow input; player shouldn't move when answering chat prompts
-	get_tree().set_input_as_handled()
+	get_viewport().set_input_as_handled()
 
 
 ## Makes all the chat choice buttons disappear and emits a signal with the player's selected choice.
@@ -188,4 +188,4 @@ func _on_ChatChoiceButton_pressed() -> void:
 	_choices = []
 	
 	emit_signal("chat_choice_chosen", choice_index)
-	get_tree().set_input_as_handled()
+	get_viewport().set_input_as_handled()

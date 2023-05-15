@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/onion-voice-04.wav-3eef215bca3db65b1a0b7cd85577ff40.sample"
+type="AudioStreamWAV"
+uid="uid://duj3hljjpv20l"
+path="res://.godot/imported/onion-voice-04.wav-3eef215bca3db65b1a0b7cd85577ff40.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/onion-voice-04.wav"
-dest_files=[ "res://.import/onion-voice-04.wav-3eef215bca3db65b1a0b7cd85577ff40.sample" ]
+dest_files=["res://.godot/imported/onion-voice-04.wav-3eef215bca3db65b1a0b7cd85577ff40.sample"]
 
 [params]
 

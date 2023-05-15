@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/hello-voice-0.wav-e5f7500f77c7e3dc3c9c73684dc9d6ce.sample"
+type="AudioStreamWAV"
+uid="uid://bajhym15j8jfy"
+path="res://.godot/imported/hello-voice-0.wav-e5f7500f77c7e3dc3c9c73684dc9d6ce.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/hello-voice-0.wav"
-dest_files=[ "res://.import/hello-voice-0.wav-e5f7500f77c7e3dc3c9c73684dc9d6ce.sample" ]
+dest_files=["res://.godot/imported/hello-voice-0.wav-e5f7500f77c7e3dc3c9c73684dc9d6ce.sample"]
 
 [params]
 

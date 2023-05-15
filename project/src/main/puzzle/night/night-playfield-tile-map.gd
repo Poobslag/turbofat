@@ -12,7 +12,7 @@ extends NightPuzzleTileMap
 var _silhouettes_by_cell := {}
 
 func _ready() -> void:
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
 	_reset()
 
 
@@ -24,7 +24,7 @@ func _reset() -> void:
 ##
 ## This allows the silhouettes to be visible when a puzzle is first loaded, so the player can't see any gaps.
 func set_source_tile_map(new_source_tile_map: PuzzleTileMap) -> void:
-	.set_source_tile_map(new_source_tile_map)
+	super.set_source_tile_map(new_source_tile_map)
 	_refresh_silhouettes()
 
 
@@ -52,7 +52,7 @@ func _refresh_tiles_from_source() -> void:
 		if get_cellv(cell + Vector2.DOWN) == INVALID_CELL:
 			autotile_coord.x = PuzzleConnect.unset_d(autotile_coord.x)
 		if cell.y == PuzzleTileMap.ROW_COUNT - 1:
-			autotile_coord.x = PuzzleConnect.set_d(autotile_coord.x)
+			autotile_coord.x = PuzzleConnect.set_distance(autotile_coord.x)
 		set_cellv(cell, 0, false, false, false, autotile_coord)
 
 

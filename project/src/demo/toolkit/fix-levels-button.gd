@@ -7,7 +7,7 @@ extends Button
 const LEVEL_DIRS := ["res://assets/main/puzzle/levels"]
 const CAREER_LEVEL_DIRS := ["res://assets/main/puzzle/levels/career"]
 
-export (NodePath) var output_label_path: NodePath
+@export (NodePath) var output_label_path: NodePath
 
 var _upgrader := LevelSettingsUpgrader.new()
 
@@ -15,7 +15,7 @@ var _upgrader := LevelSettingsUpgrader.new()
 var _converted := []
 
 ## label for outputting messages to the user
-onready var _output_label: Label = get_node(output_label_path)
+@onready var _output_label: Label = get_node(output_label_path)
 
 ## Upgrades all levels to the newest version.
 func _upgrade_levels() -> void:
@@ -35,7 +35,9 @@ func _upgrade_levels() -> void:
 ## 	'path': Path to a json resource containing level data to upgrade.
 func _upgrade_settings(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
-	var old_json: Dictionary = parse_json(old_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(old_text)
+	var old_json: Dictionary = test_json_conv.get_data()
 	if _upgrader.needs_upgrade(old_json):
 		var new_json := _upgrader.upgrade(old_json)
 		var new_text := Utils.print_json(new_json)
@@ -54,7 +56,7 @@ func _find_level_paths(dirs: Array) -> Array:
 	var dir_queue := dirs.duplicate()
 	
 	# recursively look for json files under the specified paths
-	var dir: Directory
+	var dir: DirAccess
 	var file: String
 	while true:
 		if file:
@@ -66,12 +68,12 @@ func _find_level_paths(dirs: Array) -> Array:
 		else:
 			if dir:
 				dir.list_dir_end()
-			if dir_queue.empty():
+			if dir_queue.is_empty():
 				break
 			# there are more directories. open the next directory
-			dir = Directory.new()
+			dir = DirAccess.new()
 			dir.open(dir_queue.pop_front())
-			dir.list_dir_begin(true, true)
+			dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		file = dir.get_next()
 	
 	return result
@@ -149,12 +151,14 @@ func _alphabetize_career_levels() -> void:
 	var sorted_region_ids := {}
 	
 	var old_text := FileUtils.get_file_as_text(CareerLevelLibrary.DEFAULT_REGIONS_PATH)
-	var old_json: Dictionary = parse_json(old_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(old_text)
+	var old_json: Dictionary = test_json_conv.get_data()
 	var new_json := old_json.duplicate(true)
 	for region in new_json.get("regions", []):
 		var old_levels: Array = region.get("levels", [])
 		var new_levels := old_levels.duplicate()
-		new_levels.sort_custom(self, "_compare_by_id")
+		new_levels.sort_custom(Callable(self, "_compare_by_id"))
 		if not new_levels == old_levels:
 			sorted_region_ids[region.get("id", "(unknown)")] = true
 			region["levels"] = new_levels
@@ -162,7 +166,7 @@ func _alphabetize_career_levels() -> void:
 	if sorted_region_ids:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(CareerLevelLibrary.DEFAULT_REGIONS_PATH, new_text)
-		_output_label.add_line("Sorted career level ids: %s" % [PoolStringArray(sorted_region_ids.keys()).join(", ")])
+		_output_label.add_line("Sorted career level ids: %s" % [PackedStringArray(sorted_region_ids.", ".join(keys()))])
 
 
 func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:

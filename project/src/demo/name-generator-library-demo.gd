@@ -1,7 +1,7 @@
 extends Node
 ## Demonstrates the name generator.
 
-onready var _creature_type_button: OptionButton = $HBoxContainer/CreatureType
+@onready var _creature_type_button: OptionButton = $HBoxContainer/CreatureType
 
 func _ready() -> void:
 	for i in range(Creatures.Type.size()):

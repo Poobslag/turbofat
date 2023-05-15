@@ -22,46 +22,46 @@ const HIDE_SCALE := Vector2(0.1, 2.0)
 const FACE_ANIMATIONS := ["face-1", "face-2", "face-3", "face-4", "face-5", "face-6", "face-7", "face-8", "face-9"]
 
 ## CarrotVisuals scenes for each carrot size.
-export (Array, PackedScene) var carrot_visuals_by_size: Array
+@export (Array, PackedScene) var carrot_visuals_by_size: Array
 
 ## If 'true', the carrot will not be queued when hidden. Used for demos and testing.
-export (bool) var suppress_queue_free: bool = false
+@export (bool) var suppress_queue_free: bool = false
 
 ## Enum from CarrotConfig.Smoke for the size of the carrot's smoke cloud.
-var smoke: int = CarrotConfig.Smoke.SMALL setget set_smoke
+var smoke: int = CarrotConfig.Smoke.SMALL: set = set_smoke
 
 ## Enum from CarrotConfig.CarrotSize for the size of the carrot sprite.
-var carrot_size: int = CarrotConfig.CarrotSize.MEDIUM setget set_carrot_size
+var carrot_size: int = CarrotConfig.CarrotSize.MEDIUM: set = set_carrot_size
 
 ## 'true' if hide() has been called and the carrot will soon be freed.
 var hiding := false
 
 ## Turns the carrot a solid color. Used to turn the carrot solid white during the show animation.
-var _mix_color: Color = Color.transparent setget set_mix_color
+var _mix_color: Color = Color.TRANSPARENT: set = set_mix_color
 
 ## Handles the show/hide animations.
-onready var _show_tween: SceneTreeTween
+@onready var _show_tween: Tween
 
 ## Moves the carrot to the top of the screen.
-onready var _move_tween: SceneTreeTween
+@onready var _move_tween: Tween
 
 ## Stores details about the carrot's visuals, such as which sprites to use and the smoke location.
-onready var _visuals: Node2D = $Visuals
+@onready var _visuals: Node2D = $Visuals
 
 ## Carrot's face sprite. This is distinct from the back sprite.
-onready var _face: Sprite = $Visuals/Face
+@onready var _face: Sprite2D = $Visuals/Face
 
 ## Material shared between the carrot's back sprite and face sprite.
-onready var _sprite_material: Material = $Visuals/Sprite.material
+@onready var _sprite_material: Material = $Visuals/Sprite2D.material
 
 ## Smoke particles.
-onready var _particles_2d: Particles2D = $Particles2D
+@onready var _particles_2d: GPUParticles2D = $GPUParticles2D
 
 ## Timer which makes the carrot free itself from memory.
-onready var _free_timer := $FreeTimer
+@onready var _free_timer := $FreeTimer
 
 ## AnimationPlayer which toggles the face sprite's frames.
-onready var _face_animation_player := $FaceAnimationPlayer
+@onready var _face_animation_player := $FaceAnimationPlayer
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -90,14 +90,14 @@ func set_carrot_size(new_carrot_size: int) -> void:
 ##
 ## Blinks the carrot into view with an animation.
 func show() -> void:
-	_visuals.modulate = Color.transparent
-	_mix_color = Color.white
+	_visuals.modulate = Color.TRANSPARENT
+	_mix_color = Color.WHITE
 	_visuals.scale = HIDE_SCALE
 	
 	_show_tween = Utils.recreate_tween(self, _show_tween).set_parallel()
-	_show_tween.tween_property(_visuals, "modulate", Color.white,
+	_show_tween.tween_property(_visuals, "modulate", Color.WHITE,
 			SHOW_DURATION)
-	_show_tween.tween_property(self, "_mix_color", Color.transparent,
+	_show_tween.tween_property(self, "_mix_color", Color.TRANSPARENT,
 			SHOW_DURATION * 3.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	_show_tween.tween_property(_visuals, "scale", Vector2.ONE,
 			SHOW_DURATION)
@@ -112,9 +112,9 @@ func hide() -> void:
 	emit_signal("started_hiding")
 	
 	_show_tween = Utils.recreate_tween(self, _show_tween).set_parallel()
-	_show_tween.tween_property(_visuals, "modulate", Color.transparent, HIDE_DURATION)
+	_show_tween.tween_property(_visuals, "modulate", Color.TRANSPARENT, HIDE_DURATION)
 	_show_tween.tween_property(_visuals, "scale", HIDE_SCALE, HIDE_DURATION)
-	_show_tween.chain().tween_callback(self, "_on_Tween_hide_completed")
+	_show_tween.chain().tween_callback(Callable(self, "_on_Tween_hide_completed"))
 
 
 ## Moves the carrot to the specified location (somewhere near the top of the screen.)
@@ -127,7 +127,7 @@ func launch(destination: Vector2, duration: float) -> void:
 	_move_tween = Utils.recreate_tween(self, _move_tween)
 	_move_tween.tween_property(self, "position", destination, duration)
 	## When the carrot reaches its destination, we hide it.
-	_move_tween.chain().tween_callback(self, "hide")
+	_move_tween.chain().tween_callback(Callable(self, "hide"))
 
 
 ## Updates the shader parameters based on our 'mix_color' property.
@@ -135,7 +135,7 @@ func _refresh_mix_color() -> void:
 	if not is_inside_tree():
 		return
 	
-	_sprite_material.set_shader_param("mix_color", _mix_color)
+	_sprite_material.set_shader_parameter("mix_color", _mix_color)
 
 
 ## Updates the smoke Particles2D based on our 'smoke' property.
@@ -174,9 +174,9 @@ func _refresh_carrot_size() -> void:
 	
 	# add the new visuals node to the same location in the tree
 	var new_visuals_scene: PackedScene = carrot_visuals_by_size[carrot_size]
-	_visuals = new_visuals_scene.instance()
+	_visuals = new_visuals_scene.instantiate()
 	_face = _visuals.get_node("Face")
-	_sprite_material = _visuals.get_node("Sprite").material
+	_sprite_material = _visuals.get_node("Sprite2D").material
 	add_child(_visuals)
 	move_child(_visuals, old_visuals_index)
 	
@@ -197,8 +197,8 @@ func _randomize_face() -> void:
 	# Choose a random face animation, weighting towards the earlier animations. The later animations are wacky and
 	# should only come up once in a while.
 	var face_animation_index := int(min(
-		rand_range(0, FACE_ANIMATIONS.size()),
-		rand_range(0, FACE_ANIMATIONS.size())))
+		randf_range(0, FACE_ANIMATIONS.size()),
+		randf_range(0, FACE_ANIMATIONS.size())))
 	var face_animation: String = FACE_ANIMATIONS[face_animation_index]
 	
 	_face_animation_player.play(face_animation)

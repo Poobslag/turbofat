@@ -78,7 +78,7 @@ func remove_cell(orientation: int, cell_to_remove: Vector2) -> void:
 			if next_pos_arr[color_arr_index] + Vector2.UP in next_pos_arr:
 				color_x = PuzzleConnect.set_u(color_x)
 			if next_pos_arr[color_arr_index] + Vector2.DOWN in next_pos_arr:
-				color_x = PuzzleConnect.set_d(color_x)
+				color_x = PuzzleConnect.set_distance(color_x)
 			if next_pos_arr[color_arr_index] + Vector2.LEFT in next_pos_arr:
 				color_x = PuzzleConnect.set_l(color_x)
 			if next_pos_arr[color_arr_index] + Vector2.RIGHT in next_pos_arr:

@@ -3,7 +3,7 @@ class_name CreaturePackedSprite
 extends PackedSprite
 ## Sprite which toggles between a single 'toward the camera' and 'away from the camera' frame
 
-export (bool) var invisible_while_sprinting := false
+@export (bool) var invisible_while_sprinting := false
 
 func update_orientation(orientation: int) -> void:
 	if Creatures.oriented_south(orientation):

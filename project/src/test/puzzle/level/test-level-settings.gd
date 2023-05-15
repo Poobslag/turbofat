@@ -8,7 +8,9 @@ func before_each() -> void:
 
 func load_level(filename: String) -> void:
 	var json_text := FileUtils.get_file_as_text("res://assets/test/puzzle/levels/%s.json" % [filename])
-	var json_dict: Dictionary = parse_json(json_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(json_text)
+	var json_dict: Dictionary = test_json_conv.get_data()
 	settings.from_json_dict("test_5952", json_dict)
 
 

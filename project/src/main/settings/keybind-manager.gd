@@ -2,8 +2,8 @@ extends Node
 ## Binds the player's input settings to the input map.
 
 func _ready() -> void:
-	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
-	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
+	SystemData.keybind_settings.connect("changed", Callable(self, "_on_KeybindSettings_settings_changed"))
+	SystemData.gameplay_settings.connect("hold_piece_changed", Callable(self, "_on_GameplaySettings_hold_piece_changed"))
 
 
 ## Converts a json dictionary to an InputEvent instance.
@@ -17,7 +17,7 @@ func input_event_from_json(json: Dictionary) -> InputEvent:
 	match json.get("type"):
 		"key":
 			var input_event_key := InputEventKey.new()
-			input_event_key.scancode = json.get("scancode")
+			input_event_key.keycode = json.get("keycode")
 			input_event = input_event_key
 		"joypad_button":
 			var input_event_joypad_button := InputEventJoypadButton.new()
@@ -36,7 +36,7 @@ func input_event_to_json(input_event: InputEvent) -> Dictionary:
 	var json := {}
 	if input_event is InputEventKey:
 		json["type"] = "key"
-		json["scancode"] = input_event.scancode
+		json["keycode"] = input_event.keycode
 	elif input_event is InputEventJoypadButton:
 		json["type"] = "joypad_button"
 		json["device"] = input_event.device
@@ -55,7 +55,7 @@ func pretty_string(input_json: Dictionary) -> String:
 	var result: String
 	match input_json["type"]:
 		"key":
-			result = OS.get_scancode_string(input_json["scancode"])
+			result = OS.get_keycode_string(input_json["keycode"])
 		"joypad_button":
 			result = Input.get_joy_button_string(input_json["button_index"])
 			result = result.replace("Face Button", "Face")
@@ -65,7 +65,9 @@ func pretty_string(input_json: Dictionary) -> String:
 ## Updates the InputMap with the bindings in the specified json file
 func _bind_keys_from_file(path: String) -> void:
 	var json_text := FileUtils.get_file_as_text(path)
-	var json_dict: Dictionary = parse_json(json_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(json_text)
+	var json_dict: Dictionary = test_json_conv.get_data()
 	_bind_keys_from_json_dict(json_dict)
 
 

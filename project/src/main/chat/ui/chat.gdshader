@@ -13,13 +13,13 @@ shader_type canvas_item;
 const float PI = 3.14159265358979;
 
 // The color of the border around the chat window, which is black in the source texture
-uniform vec4 border_color : hint_color;
+uniform vec4 border_color : source_color;
 
 // The color of the chat window's middle area, which is red in the source texture
-uniform vec4 center_color : hint_color;
+uniform vec4 center_color : source_color;
 
 // The color of the accents drawn in the chat window's middle
-uniform vec4 accent_color : hint_color;
+uniform vec4 accent_color : source_color;
 
 // A monochrome texture containing the accents to draw in the chat window's middle
 uniform sampler2D accent_texture;

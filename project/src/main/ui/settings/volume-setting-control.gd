@@ -4,19 +4,19 @@ extends Control
 ## Updates the player's stored settings, and also updates the audio server.
 
 ## Type of volume which is controlled by this slider: music, sounds or voices
-export (VolumeSettings.VolumeType) var volume_type: int setget set_volume_type
+@export (VolumeSettings.VolumeType) var volume_type: int: set = set_volume_type
 
 ## Text description of this volume setting, 'Master Volume'
-onready var _setting_label: Label = $Label
+@onready var _setting_label: Label = $Label
 
 ## UI controls for the volume slider
-onready var _slider: HSlider = $HBoxContainer/HSlider
-onready var _percent_label: Label = $HBoxContainer/Percent
+@onready var _slider: HSlider = $HBoxContainer/HSlider
+@onready var _percent_label: Label = $HBoxContainer/Percent
 
 ## Timers and sounds to play an sfx sample after the slider is dragged
-onready var _sample_timer: Timer = $SampleTimer
-onready var _sample_sound: AudioStreamPlayer = $SampleSound
-onready var _sample_voice: AudioStreamPlayer = $SampleVoice
+@onready var _sample_timer: Timer = $SampleTimer
+@onready var _sample_sound: AudioStreamPlayer = $SampleSound
+@onready var _sample_voice: AudioStreamPlayer = $SampleVoice
 
 func _ready() -> void:
 	_slider.value = SystemData.volume_settings.get_bus_volume_linear(volume_type)
@@ -26,8 +26,8 @@ func _ready() -> void:
 	# don't play sample sounds during initialization
 	_sample_timer.stop()
 	
-	_slider.connect("value_changed", self, "_on_HSlider_value_changed")
-	_sample_timer.connect("timeout", self, "_on_SampleTimer_timeout")
+	_slider.connect("value_changed", Callable(self, "_on_HSlider_value_changed"))
+	_sample_timer.connect("timeout", Callable(self, "_on_SampleTimer_timeout"))
 
 
 func set_volume_type(new_volume_type: int) -> void:

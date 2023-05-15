@@ -14,10 +14,10 @@ enum TileMode {
 	TILE_Y,
 }
 
-export (TileMode) var tile_mode: int = TileMode.TILE_BOTH
+@export (TileMode) var tile_mode: int = TileMode.TILE_BOTH
 
 func _ready() -> void:
-	get_parent().connect("resized", self, "_on_Control_resized")
+	get_parent().connect("resized", Callable(self, "_on_Control_resized"))
 
 
 func _on_Control_resized() -> void:
@@ -26,11 +26,11 @@ func _on_Control_resized() -> void:
 		TileMode.TILE_BOTH:
 			pass
 		TileMode.TILE_Y:
-			rect_scale.x = get_parent().rect_size.x / texture.get_size().x
-			rect_scale.y = rect_scale.x
+			scale.x = get_parent().size.x / texture.get_size().x
+			scale.y = scale.x
 		TileMode.TILE_X:
-			rect_scale.y = get_parent().rect_size.y / texture.get_size().y
-			rect_scale.x = rect_scale.y
+			scale.y = get_parent().size.y / texture.get_size().y
+			scale.x = scale.y
 	
 	# Adjust the size to match its parent, adjusting for scaling.
-	rect_size = get_parent().rect_size / rect_scale
+	size = get_parent().size / scale

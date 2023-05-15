@@ -3,21 +3,21 @@ extends OverworldObstacle
 ##
 ## This script toggles the restaurant's appearance based on the player's story progression.
 
-export (PackedScene) var SmokeClusterScene: PackedScene
+@export (PackedScene) var SmokeClusterScene: PackedScene
 
 ## Disable cutscene sound effects. This is useful for environments which have multiple copies of the restaurant
-export (bool) var sfx_disabled: bool = false
+@export (bool) var sfx_disabled: bool = false
 
 ## A 'closed' sign used at the start of the game and during certain cutscenes.
-onready var closed_sign: Sprite = $ClosedSign
+@onready var closed_sign: Sprite2D = $ClosedSign
 
 ## Regular restaurant sprite.
-onready var _restaurant := $Restaurant
+@onready var _restaurant := $Restaurant
 
 ## Undecorated restaurant sprite, used at the start of the game.
-onready var _undecorated_restaurant := $UndecoratedRestaurant
+@onready var _undecorated_restaurant := $UndecoratedRestaurant
 
-onready var _poof_in_sfx := $PoofInSfx
+@onready var _poof_in_sfx := $PoofInSfx
 
 func _ready() -> void:
 	if PlayerData.career.is_restaurant_decorated():
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 	
 	if Global.get_overworld_ui():
-		Global.get_overworld_ui().connect("chat_event_meta_played", self, "_on_OverworldUi_chat_event_meta_played")
+		Global.get_overworld_ui().connect("chat_event_meta_played", Callable(self, "_on_OverworldUi_chat_event_meta_played"))
 
 
 func hide_closed_sign() -> void:
@@ -52,7 +52,7 @@ func show_closed_sign() -> void:
 func _emit_smoke() -> void:
 	for flip_x in [false, true]:
 		for flip_y in [false, true]:
-			var smoke_cluster: SmokeCluster = SmokeClusterScene.instance()
+			var smoke_cluster: SmokeCluster = SmokeClusterScene.instantiate()
 			smoke_cluster.scale = closed_sign.scale * 0.6
 			smoke_cluster.position = closed_sign.position + Vector2(0, 5)
 			smoke_cluster.velocity.x = -40 if flip_x else 40

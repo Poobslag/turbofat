@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/presquish.wav-9d4874649068d76616c86b503107f0a8.sample"
+type="AudioStreamWAV"
+uid="uid://igvcssuphofn"
+path="res://.godot/imported/presquish.wav-9d4874649068d76616c86b503107f0a8.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/presquish.wav"
-dest_files=[ "res://.import/presquish.wav-9d4874649068d76616c86b503107f0a8.sample" ]
+dest_files=["res://.godot/imported/presquish.wav-9d4874649068d76616c86b503107f0a8.sample"]
 
 [params]
 

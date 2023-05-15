@@ -18,10 +18,10 @@ const COMBO_THRESHOLD_2 := 20
 const COMBO_THRESHOLD_3 := 30
 const COMBO_THRESHOLD_4 := 50
 
-export (Vector2) var velocity: Vector2
+@export (Vector2) var velocity: Vector2
 
 ## Combo to display. This controls our text, color and particle properties.
-var combo: int setget set_combo
+var combo: int: set = set_combo
 
 ## Colors to use; these are automatically assigned based on the combo value
 var _font_color: Color
@@ -29,17 +29,17 @@ var _accent_color: Color # darker version of the font color
 var _particle_color: Color # lighter version of the font color
 
 ## particles which explode from the center of the combo
-onready var _particles: Particles2D = $Particles2D
-onready var _particles_material: ParticlesMaterial = $Particles2D.process_material
+@onready var _particles: GPUParticles2D = $GPUParticles2D
+@onready var _particles_material: ParticleProcessMaterial = $GPUParticles2D.process_material
 
 ## text showing the current combo, like '12x'
-onready var _label: Label = $Label
+@onready var _label: Label = $Label
 
 ## colorful shape which goes behind the text
-onready var _accent: PackedSprite = $Accent
+@onready var _accent: PackedSprite = $Accent
 
 func _ready() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	_particles.emitting = true
 	_refresh_combo()
 
@@ -86,8 +86,8 @@ func _calculate_colors() -> void:
 
 
 func _refresh_label() -> void:
-	_label.set("custom_colors/font_color", _font_color)
-	var font: DynamicFont = _label.get("custom_fonts/font")
+	_label.set("theme_override_colors/font_color", _font_color)
+	var font: FontFile = _label.get("theme_override_fonts/font")
 	font.outline_color = _accent_color
 	if combo < COMBO_THRESHOLD_0:
 		font.size = 20
@@ -146,5 +146,5 @@ func _refresh_particles() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		queue_free()

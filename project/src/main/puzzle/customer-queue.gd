@@ -11,7 +11,7 @@ const DEFAULT_CUSTOMER_DIRS := [
 ]
 
 ## Path to the directory with standard customers. Can be changed for tests.
-var customer_dirs := DEFAULT_CUSTOMER_DIRS setget set_customer_dirs
+var customer_dirs := DEFAULT_CUSTOMER_DIRS: set = set_customer_dirs
 
 ## Queue of creatures who show up at the start of a puzzle.
 var priority_queue := []
@@ -114,9 +114,9 @@ func pop_standard_customers(creature_ids: Array) -> void:
 ## Loads all standard customer data from a directory of json files.
 func _load_customers() -> void:
 	for customer_dir in customer_dirs:
-		var dir := Directory.new()
+		var dir := DirAccess.new()
 		dir.open(customer_dir)
-		dir.list_dir_begin(true, true)
+		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		while true:
 			var file := dir.get_next()
 			if not file:

@@ -6,7 +6,7 @@ extends Node2D
 signal should_play_sfx_changed
 
 ## sounds the creatures make when they enter the restaurant
-onready var hello_voices := [
+@onready var hello_voices := [
 	preload("res://assets/main/world/creature/hello-voice-0.wav"),
 	preload("res://assets/main/world/creature/hello-voice-1.wav"),
 	preload("res://assets/main/world/creature/hello-voice-2.wav"),
@@ -14,7 +14,7 @@ onready var hello_voices := [
 ]
 
 ## sounds which get played when the creature eats
-onready var _munch_sounds := [
+@onready var _munch_sounds := [
 	preload("res://assets/main/world/creature/munch0.wav"),
 	preload("res://assets/main/world/creature/munch1.wav"),
 	preload("res://assets/main/world/creature/munch2.wav"),
@@ -23,7 +23,7 @@ onready var _munch_sounds := [
 ]
 
 ## satisfied sounds the creatures make when a player builds a big combo
-onready var _combo_voices := [
+@onready var _combo_voices := [
 	preload("res://assets/main/world/creature/combo-voice-00.wav"),
 	preload("res://assets/main/world/creature/combo-voice-01.wav"),
 	preload("res://assets/main/world/creature/combo-voice-02.wav"),
@@ -47,7 +47,7 @@ onready var _combo_voices := [
 ]
 
 ## sounds the creatures make when they ask for their check
-onready var _goodbye_voices := [
+@onready var _goodbye_voices := [
 	preload("res://assets/main/world/creature/goodbye-voice-0.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-1.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-2.wav"),
@@ -58,19 +58,19 @@ onready var _goodbye_voices := [
 var _combo_voice_index := 0
 
 ## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
-var suppress_sfx := false setget set_suppress_sfx
+var suppress_sfx := false: set = set_suppress_sfx
 
 var should_play_sfx := false
 
 ## AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
 ## things at once.
-onready var _voice_player := $VoicePlayer
+@onready var _voice_player := $VoicePlayer
 
-onready var _munch_sound := $MunchSound
-onready var _hop_sound := $HopSound
-onready var _bonk_sound := $BonkSound
+@onready var _munch_sound := $MunchSound
+@onready var _hop_sound := $HopSound
+@onready var _bonk_sound := $BonkSound
 
-onready var _suppress_sfx_timer := $SuppressSfxTimer
+@onready var _suppress_sfx_timer := $SuppressSfxTimer
 
 func _ready() -> void:
 	_refresh_should_play_sfx()
@@ -139,7 +139,7 @@ func _refresh_should_play_sfx() -> void:
 	
 	var old_should_play_sfx := should_play_sfx
 	
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
 		should_play_sfx = false
 	elif not _suppress_sfx_timer.is_stopped():
@@ -169,7 +169,7 @@ func _on_Creature_food_eaten(_food_type: int) -> void:
 		return
 	
 	_munch_sound.stream = Utils.rand_value(_munch_sounds)
-	_munch_sound.pitch_scale = rand_range(0.96, 1.04)
+	_munch_sound.pitch_scale = randf_range(0.96, 1.04)
 	_munch_sound.play()
 
 

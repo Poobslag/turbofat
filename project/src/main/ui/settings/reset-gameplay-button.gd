@@ -4,7 +4,7 @@ extends Button
 ## This button provides an easy way to disable all cheats.
 
 func _ready() -> void:
-	connect("pressed", self, "_on_pressed")
+	connect("pressed", Callable(self, "_on_pressed"))
 
 
 func _on_pressed() -> void:

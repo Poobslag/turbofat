@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/my-fatness-pal.ogg-3cb316913e852d74795b0f0c494a8ffd.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b04agp0a28yx3"
+path="res://.godot/imported/my-fatness-pal.ogg-3cb316913e852d74795b0f0c494a8ffd.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/my-fatness-pal.ogg"
-dest_files=[ "res://.import/my-fatness-pal.ogg-3cb316913e852d74795b0f0c494a8ffd.oggstr" ]
+dest_files=["res://.godot/imported/my-fatness-pal.ogg-3cb316913e852d74795b0f0c494a8ffd.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -18,10 +18,10 @@ signal landmark_count_changed
 const MAX_LANDMARK_COUNT := 6
 
 ## Number of landmarks to show. The circles on the left side of the map count as one landmark.
-var landmark_count: int = 2 setget set_landmark_count
+var landmark_count: int = 2: set = set_landmark_count
 
 ## Distance the player has travelled in the current career session.
-var player_distance: int = 0 setget set_player_distance
+var player_distance: int = 0: set = set_player_distance
 
 ## Assigns a new LandmarkType for the specified landmark.
 ##

@@ -6,13 +6,13 @@ extends Control
 var _rank_calculator: RankCalculator = RankCalculator.new()
 
 ## Timer which periodically triggers rank recalculation
-onready var _recalculate_timer: Timer = $RecalculateTimer
+@onready var _recalculate_timer: Timer = $RecalculateTimer
 
 func _ready() -> void:
 	if PlayerData.career.is_career_mode():
-		PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
-		PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")
-		PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+		PuzzleState.connect("after_game_prepared", Callable(self, "_on_PuzzleState_after_game_prepared"))
+		PuzzleState.connect("score_changed", Callable(self, "_on_PuzzleState_score_changed"))
+		PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
 	
 	if PlayerData.career.is_career_mode():
 		visible = true
@@ -105,8 +105,8 @@ func _recalculate() -> void:
 ## 	'next_progress_value': A number in the range [0.0, 1.0] describing how close the player is to reaching the
 ## 		next milestone. A high value means they've almost reached the next milestone.
 func _update_ui(rank_milestone: Dictionary, next_progress_value: float) -> void:
-	$Fill.get("custom_styles/panel").set_bg_color(rank_milestone.color)
-	$Fill.margin_top = lerp(75, 5, next_progress_value)
+	$Fill.get("theme_override_styles/panel").set_bg_color(rank_milestone.color)
+	$Fill.offset_top = lerp(75, 5, next_progress_value)
 	$Label.text = str(rank_milestone.distance)
 
 

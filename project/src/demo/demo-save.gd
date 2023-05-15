@@ -30,7 +30,9 @@ func load_demo_data() -> void:
 	var open_result := file.open(FILENAME, File.READ)
 	if open_result == OK:
 		var save_json_text := FileUtils.get_file_as_text(FILENAME)
-		demo_data = parse_json(save_json_text)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(save_json_text)
+		demo_data = test_json_conv.get_data()
 	else:
 		# validation failed; couldn't open file
 		push_warning("Couldn't open file '%s' for reading: %s" % [FILENAME, open_result])

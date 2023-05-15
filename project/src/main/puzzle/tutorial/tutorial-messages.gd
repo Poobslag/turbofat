@@ -29,7 +29,7 @@ func _ready() -> void:
 
 ## Returns 'true' if the full chat line is typed out onscreen, and no messages remain in the queue
 func is_all_messages_visible() -> bool:
-	return _message_queue.empty() and $Label.is_all_text_visible()
+	return _message_queue.is_empty() and $Label.is_all_text_visible()
 
 
 ## Displays a sequence of messages from the sensei.
@@ -90,7 +90,7 @@ func _show_message(message: String, font: Font = _normal_font) -> void:
 		$PopInSound.play()
 	
 	$Panel.show()
-	$Label.set("custom_fonts/font", font)
+	$Label.set("theme_override_fonts/font", font)
 	
 	var message_with_lulls := ChatLibrary.add_lull_characters(message)
 	

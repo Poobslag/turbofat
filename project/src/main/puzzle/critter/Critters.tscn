@@ -15,10 +15,10 @@
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=13]
 
 [node name="Critters" type="Control"]
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
+offset_left = 364.0
+offset_top = 28.0
+offset_right = 688.0
+offset_bottom = 572.0
 script = ExtResource( 2 )
 
 [node name="Moles" type="Node2D" parent="." groups=["night_mode_light"]]

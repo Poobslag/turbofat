@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/clock-ring.wav-19fea1a253aeddefb71937345018c5ab.sample"
+type="AudioStreamWAV"
+uid="uid://btxxxljou3axu"
+path="res://.godot/imported/clock-ring.wav-19fea1a253aeddefb71937345018c5ab.sample"
 
 [deps]
 
 source_file="res://assets/main/career/ui/clock-ring.wav"
-dest_files=[ "res://.import/clock-ring.wav-19fea1a253aeddefb71937345018c5ab.sample" ]
+dest_files=["res://.godot/imported/clock-ring.wav-19fea1a253aeddefb71937345018c5ab.sample"]
 
 [params]
 

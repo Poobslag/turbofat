@@ -10,16 +10,16 @@ signal hit_wall(glob)
 signal hit_playfield(glob)
 signal hit_next_pieces(glob)
 
-export (NodePath) var puzzle_tile_map_path: NodePath
-export (NodePath) var playfield_path: NodePath
-export (NodePath) var next_piece_displays_path: NodePath
-export (PackedScene) var GoopGlobScene: PackedScene
+@export (NodePath) var puzzle_tile_map_path: NodePath
+@export (NodePath) var playfield_path: NodePath
+@export (NodePath) var next_piece_displays_path: NodePath
+@export (PackedScene) var GoopGlobScene: PackedScene
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
-onready var _puzzle_areas: PuzzleAreas
+@onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+@onready var _puzzle_areas: PuzzleAreas
 
 ## relative position of the PuzzleTileMap, used for positioning goop
-onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
+@onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
 		- get_global_transform().origin
 
 func _ready() -> void:
@@ -37,11 +37,11 @@ func _ready() -> void:
 ## 	'glob_count': The number of goop globs to launch
 ## 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha: float = 1.0) -> void:
-	var viewport: Viewport
+	var viewport: SubViewport
 	if Foods.is_cake_box(box_type):
 		viewport = $GlobViewports/RainbowViewport
 	else:
-		viewport = $GlobViewports/Viewport
+		viewport = $GlobViewports/SubViewport
 	
 	for _i in range(glob_count):
 		var glob: GoopGlob = _instance_glob(viewport)
@@ -52,11 +52,11 @@ func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha:
 
 
 func _instance_glob(new_parent: Node = null) -> GoopGlob:
-	var glob: GoopGlob = GoopGlobScene.instance()
+	var glob: GoopGlob = GoopGlobScene.instantiate()
 	glob.puzzle_areas = _puzzle_areas
-	glob.connect("hit_wall", self, "_on_GoopGlob_hit_wall")
-	glob.connect("hit_playfield", self, "_on_GoopGlob_hit_playfield")
-	glob.connect("hit_next_pieces", self, "_on_GoopGlob_hit_next_pieces")
+	glob.connect("hit_wall", Callable(self, "_on_GoopGlob_hit_wall"))
+	glob.connect("hit_playfield", Callable(self, "_on_GoopGlob_hit_playfield"))
+	glob.connect("hit_next_pieces", Callable(self, "_on_GoopGlob_hit_next_pieces"))
 	new_parent.add_child(glob)
 	return glob
 

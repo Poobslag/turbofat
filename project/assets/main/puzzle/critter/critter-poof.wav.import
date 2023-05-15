@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/critter-poof.wav-f40090b6d24f7b947f898a30dc479ada.sample"
+type="AudioStreamWAV"
+uid="uid://dw25cs6mv17vx"
+path="res://.godot/imported/critter-poof.wav-f40090b6d24f7b947f898a30dc479ada.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/critter/critter-poof.wav"
-dest_files=[ "res://.import/critter-poof.wav-f40090b6d24f7b947f898a30dc479ada.sample" ]
+dest_files=["res://.godot/imported/critter-poof.wav-f40090b6d24f7b947f898a30dc479ada.sample"]
 
 [params]
 

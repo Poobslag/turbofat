@@ -10,15 +10,15 @@ signal hovered_creature_changed(value)
 signal creature_clicked(value)
 
 ## cache the list of creatures; we don't want to call `get_nodes_in_group` every frame for mouseover events
-onready var creatures: Array = get_tree().get_nodes_in_group("creatures")
+@onready var creatures: Array = get_tree().get_nodes_in_group("creatures")
 
-var hovered_creature: Creature setget set_hovered_creature
+var hovered_creature: Creature: set = set_hovered_creature
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventMouse: return
 	if not get_rect().has_point(event.position): return
 	
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
 		# mouse click; select the nearest creature
 		var mouse_event: InputEventMouseButton = event
 		var closest_creature := _find_closest_creature(mouse_event.position)

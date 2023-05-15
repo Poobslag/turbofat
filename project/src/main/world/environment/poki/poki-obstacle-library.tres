@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=3 format=2]
 
-[ext_resource path="res://assets/main/empty-600.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/empty-600.png" type="Texture2D" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
+points = PackedVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
 
 [resource]
 1/name = "Impassable"

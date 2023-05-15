@@ -1,4 +1,4 @@
-extends Particles2D
+extends GPUParticles2D
 ## Emits sweat particles for a piece during a squish move.
 
 ## local coordinates to emit sweat from

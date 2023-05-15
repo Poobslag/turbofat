@@ -2,17 +2,17 @@ class_name Onions
 extends Node2D
 ## Handles onions, puzzle critters which darken things making it hard to see.
 
-export (PackedScene) var OnionScene: PackedScene
+@export (PackedScene) var OnionScene: PackedScene
 
-var playfield_path: NodePath setget set_playfield_path
+var playfield_path: NodePath: set = set_playfield_path
 
 ## Onion currently in the playfield, if any. The playfield can only have one onion.
 var _onion: Onion
 var _playfield: Playfield
 
 func _ready() -> void:
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
 	_refresh_playfield_path()
 
 
@@ -33,11 +33,11 @@ func add_onion(onion_config: OnionConfig) -> void:
 	if _onion:
 		return
 	
-	_onion = OnionScene.instance()
+	_onion = OnionScene.instantiate()
 	_onion.z_index = 4
 	_onion.scale = _playfield.tile_map.scale
 	_onion.sky_position = Vector2(162, 92)
-	_onion.connect("float_animation_playing_changed", self, "_on_Onion_float_animation_playing_changed")
+	_onion.connect("float_animation_playing_changed", Callable(self, "_on_Onion_float_animation_playing_changed"))
 	_update_onion_position(_onion, Vector2(4, PuzzleTileMap.ROW_COUNT - 1))
 	add_child(_onion)
 	
@@ -102,7 +102,7 @@ func _initial_add_onion_effect() -> LevelTriggerEffects.AddOnionEffect:
 ##
 ## 	'cell': The onion's playfield cell
 func _update_onion_position(onion: Onion, cell: Vector2) -> void:
-	onion.position = _playfield.tile_map.map_to_world(cell + Vector2(0, -3))
+	onion.position = _playfield.tile_map.map_to_local(cell + Vector2(0, -3))
 	onion.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
 	onion.position *= _playfield.tile_map.scale
 

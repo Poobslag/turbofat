@@ -23,8 +23,8 @@ var postroll: String
 var type: int = NONE
 
 ## Returns 'true' if this ChatKeyPair does not define any cutscenes.
-func empty() -> bool:
-	return preroll.empty() and postroll.empty()
+func is_empty() -> bool:
+	return preroll.is_empty() and postroll.is_empty()
 
 
 ## Returns an ordered list of all cutscenes defined by this ChatKeyPair.

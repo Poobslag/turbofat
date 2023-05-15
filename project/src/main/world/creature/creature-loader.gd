@@ -136,7 +136,7 @@ func chat_theme(dna: Dictionary) -> ChatTheme:
 func new_mouth_player(mouth_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _mouth_player_scenes.has(mouth_key):
-		result = _mouth_player_scenes[mouth_key].instance()
+		result = _mouth_player_scenes[mouth_key].instantiate()
 	return result
 
 
@@ -144,7 +144,7 @@ func new_mouth_player(mouth_key: String) -> AnimationPlayer:
 func new_ear_player(ear_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _ear_player_scenes.has(ear_key):
-		result = _ear_player_scenes[ear_key].instance()
+		result = _ear_player_scenes[ear_key].instantiate()
 	return result
 
 
@@ -152,7 +152,7 @@ func new_ear_player(ear_key: String) -> AnimationPlayer:
 func new_body_shape(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	if _body_shape_scenes.has(body_key):
-		result = _body_shape_scenes[body_key].instance()
+		result = _body_shape_scenes[body_key].instantiate()
 	return result
 
 
@@ -161,7 +161,7 @@ func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	var key := "%s %s" % [body_key, body_colors_key]
 	if _belly_scenes.has(key):
-		result = _belly_scenes[key].instance()
+		result = _belly_scenes[key].instantiate()
 	return result
 
 
@@ -169,7 +169,7 @@ func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
 func new_shadows(body_key: String) -> Node2D:
 	var result: Node2D
 	if _shadows_scenes.has(body_key):
-		result = _shadows_scenes[body_key].instance()
+		result = _shadows_scenes[body_key].instantiate()
 	return result
 
 
@@ -177,7 +177,7 @@ func new_shadows(body_key: String) -> Node2D:
 func new_neck_blend(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	if _neck_blend_scenes_new.has(body_key):
-		result = _neck_blend_scenes_new[body_key].instance()
+		result = _neck_blend_scenes_new[body_key].instantiate()
 	return result
 
 
@@ -185,7 +185,7 @@ func new_neck_blend(body_key: String) -> CreatureCurve:
 func new_fat_sprite_mover(body_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _fat_sprite_mover_scenes.has(body_key):
-		result = _fat_sprite_mover_scenes[body_key].instance()
+		result = _fat_sprite_mover_scenes[body_key].instantiate()
 	return result
 
 
@@ -235,7 +235,7 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
 			# but also throws an error.
 			pass
-		elif Engine.editor_hint:
+		elif Engine.is_editor_hint():
 			resource = load(resource_path)
 		else:
 			resource = ResourceCache.get_resource(resource_path)
@@ -361,8 +361,8 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "Neck0/HeadBobber/EmoteArmZ0", line_color, body_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EmoteArmZ1", line_color, body_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EmoteBrain", line_color)
-	_set_krgb(dna, "Neck0/HeadBobber/EmoteEyeZ0", line_color, Color.white)
-	_set_krgb(dna, "Neck0/HeadBobber/EmoteEyeZ1", line_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/EmoteEyeZ0", line_color, Color.WHITE)
+	_set_krgb(dna, "Neck0/HeadBobber/EmoteEyeZ1", line_color, Color.WHITE)
 	_set_krgb(dna, "Neck0/HeadBobber/HairZ0", line_color, hair_color)
 	_set_krgb(dna, "Neck0/HeadBobber/HairZ1", line_color, hair_color)
 	_set_krgb(dna, "Neck0/HeadBobber/HairZ2", line_color, hair_color)
@@ -373,9 +373,9 @@ func _load_colors(dna: Dictionary) -> void:
 	var accessory_plastic_color := plastic_color
 	if dna.get("accessory") in ["4", "5"]:
 		accessory_plastic_color = horn_color
-	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ0", line_color, accessory_plastic_color, glass_color, Color.white)
-	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ1", line_color, accessory_plastic_color, glass_color, Color.white)
-	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ2", line_color, accessory_plastic_color, glass_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ0", line_color, accessory_plastic_color, glass_color, Color.WHITE)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ1", line_color, accessory_plastic_color, glass_color, Color.WHITE)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ2", line_color, accessory_plastic_color, glass_color, Color.WHITE)
 	
 	var bellybutton_color := body_color if dna.get("belly") in ["0"] else belly_color
 	_set_krgb(dna, "Bellybutton", line_color, bellybutton_color)
@@ -416,7 +416,7 @@ func _load_colors(dna: Dictionary) -> void:
 
 ## Assigns shader colors for the specified creature node.
 func _set_krgb(dna: Dictionary, path: String, black: Color,
-		red: Color = Color.black, green: Color = Color.black, blue: Color = Color.black):
+		red: Color = Color.BLACK, green: Color = Color.BLACK, blue: Color = Color.BLACK):
 	dna["shader:%s:black" % path] = black
 	if red: dna["shader:%s:red" % path] = red
 	if green: dna["shader:%s:green" % path] = green

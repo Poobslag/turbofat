@@ -7,7 +7,7 @@ extends Node
 ## 	[R]: Resets the level
 ## 	[T]: Tops out
 
-onready var _score := $ColorRect/Score
+@onready var _score := $ColorRect/Score
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):

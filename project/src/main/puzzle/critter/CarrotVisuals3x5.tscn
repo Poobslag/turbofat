@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/main/puzzle/critter/carrot-face-sheet.png" type="Texture" id=1]
-[ext_resource path="res://assets/main/puzzle/critter/carrot-3x5.png" type="Texture" id=2]
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=3]
+[ext_resource path="res://assets/main/puzzle/critter/carrot-face-sheet.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/main/puzzle/critter/carrot-3x5.png" type="Texture2D" id=2]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -18,12 +18,12 @@ particles_anim_loop = false
 [node name="Visuals" type="Node2D"]
 position = Vector2( 0, 104.4 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource( 3 )
 position = Vector2( 0, 39.0478 )
 texture = ExtResource( 2 )
 
-[node name="Face" type="Sprite" parent="."]
+[node name="Face" type="Sprite2D" parent="."]
 material = SubResource( 3 )
 position = Vector2( 0, 179.145 )
 texture = ExtResource( 1 )

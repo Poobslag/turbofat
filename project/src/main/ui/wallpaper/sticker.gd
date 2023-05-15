@@ -1,25 +1,25 @@
 class_name Sticker
-extends Sprite
+extends Sprite2D
 ## Image which scrolls by on the wallpaper.
 
 ## Unmodified scale/rotation before pulsing/spinning
-var base_scale := Vector2.ONE setget set_base_scale
-var base_rotation := 0.0 setget set_base_rotation
+var base_scale := Vector2.ONE: set = set_base_scale
+var base_rotation := 0.0: set = set_base_rotation
 
 ## Stickers pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
 ## How much the sticker should grow and shrink; 1.0 = grow from 0% to 200%
-onready var _rescale_amount := 0.04 * rand_range(0.8, 1.2)
+@onready var _rescale_amount := 0.04 * randf_range(0.8, 1.2)
 
 ## How many seconds the sticker should take to grow and shrink once
-onready var _rescale_period := 4.50 * rand_range(0.8, 1.2)
+@onready var _rescale_period := 4.50 * randf_range(0.8, 1.2)
 
 ## How far the sticker should rotate; 1.0 = one full circle forward and backward
-onready var _spin_amount := 0.04 * rand_range(0.8, 1.2)
+@onready var _spin_amount := 0.04 * randf_range(0.8, 1.2)
 
 ## How many seconds the sticker should take to rotate back and forth once
-onready var _spin_period := 4.50 * rand_range(0.8, 1.2)
+@onready var _spin_period := 4.50 * randf_range(0.8, 1.2)
 
 func _ready() -> void:
 	# ensure the scale and spin period aren't too similar
@@ -27,13 +27,13 @@ func _ready() -> void:
 		_spin_period += 0.5
 	
 	# randomly increment the total time so items don't spin/pulse in sync
-	_total_time += rand_range(0, _spin_period)
+	_total_time += randf_range(0, _spin_period)
 	_refresh_scale()
 	_refresh_rotation()
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		return
 	
 	_total_time += delta
@@ -68,5 +68,5 @@ func _refresh_rotation() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		queue_free()

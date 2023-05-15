@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 ## Puzzle piece which appears on the loading screen.
 ##
 ## The puzzle piece has a 3-part lifecycle:
@@ -45,9 +45,9 @@ var _target_rotation: float
 var _total_time: float
 
 ## How the piece should wobble on the loading bar
-var _wobble_amount := rand_range(0.15, 0.30)
-var _wobble_period := rand_range(0.98, 1.63)
-var _wobble_offset := rand_range(0, 10)
+var _wobble_amount := randf_range(0.15, 0.30)
+var _wobble_period := randf_range(0.98, 1.63)
+var _wobble_offset := randf_range(0, 10)
 
 ## 'true' if the piece is colored, having landed on the loading bar
 var _colored := false
@@ -59,7 +59,7 @@ var _fading := false
 var _progress_bar: LoadingProgressBar
 
 ## particles emitted when the piece hits the loading bar
-onready var _particles := $Particles
+@onready var _particles := $Particles
 
 ## Parameters:
 ## 	'init_orb': The orb which is launching this puzzle piece
@@ -112,4 +112,4 @@ func _refresh() -> void:
 		_fading = true
 		var tween := create_tween()
 		tween.tween_property(self, "modulate", Utils.to_transparent(modulate), FADE_OUT_DURATION)
-		tween.tween_callback(self, "queue_free")
+		tween.tween_callback(Callable(self, "queue_free"))

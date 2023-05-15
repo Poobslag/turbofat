@@ -5,8 +5,8 @@ extends Control
 ## emitted when the player edits level property values using the UI.
 signal properties_changed
 
-onready var _button: Button = $Pickups/Button
-onready var _line_edit: LineEdit = $Pickups/HBoxContainer1/LineEdit
+@onready var _button: Button = $Pickups/Button
+@onready var _line_edit: LineEdit = $Pickups/HBoxContainer1/LineEdit
 
 func get_master_pickup_score() -> int:
 	return int(_line_edit.text)

@@ -4,22 +4,22 @@ extends Control
 ## These piece displays are synchronized with daytime piece displays, and rendered over them.
 
 ## Path to the daytime hold piece displays to synchronize with.
-export (NodePath) var hold_piece_displays_path: NodePath
+@export (NodePath) var hold_piece_displays_path: NodePath
 
-export (PackedScene) var NightPieceDisplayScene
+@export (PackedScene) var NightPieceDisplayScene
 
 var _display: NightPieceDisplay
 
 ## daytime hold piece displays to synchronize with
-onready var _hold_piece_displays: HoldPieceDisplays = get_node(hold_piece_displays_path)
+@onready var _hold_piece_displays: HoldPieceDisplays = get_node(hold_piece_displays_path)
 
 ## Contains visual elements for the hold piece. Only visible if the hold piece cheat is enabled.
-onready var holder := $Holder
+@onready var holder := $Holder
 
 func _ready() -> void:
-	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
 	
-	_display = NightPieceDisplayScene.instance()
+	_display = NightPieceDisplayScene.instantiate()
 	_display.initialize(_hold_piece_displays.display)
 	_display.scale = _display.source_display.scale
 	_display.position = _display.source_display.position

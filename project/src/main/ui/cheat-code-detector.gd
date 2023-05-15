@@ -31,9 +31,9 @@ const CODE_KEYS := {
 
 ## List of cheat codes. Cheat codes should be lower-case, and should not be contained within one another or the shorter
 ## cheat code will take precedence.
-export (Array, String) var codes := []
+@export (Array, String) var codes := []
 
-export (bool) var cheat_sounds_enabled := true
+@export (bool) var cheat_sounds_enabled := true
 
 ## Buffer of key strings which were previously pressed.
 var _previous_keypresses := ""
@@ -51,8 +51,8 @@ func play_cheat_sound(enabled: bool) -> void:
 ## Processes an input event, delegating to the appropriate 'key_pressed', 'key_just_pressed', 'key_released',
 ## 'key_just_released' functions.
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.scancode in CODE_KEYS:
-		var key_string: String = CODE_KEYS[event.scancode]
+	if event is InputEventKey and event.keycode in CODE_KEYS:
+		var key_string: String = CODE_KEYS[event.keycode]
 		if event.pressed and not event.is_echo():
 			_key_just_pressed(key_string)
 

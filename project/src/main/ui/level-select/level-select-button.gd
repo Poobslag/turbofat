@@ -46,15 +46,15 @@ const VERTICAL_SPACING := 6
 var level_id: String
 
 ## Enum from LevelSize for the duration of the level. This affects the button size
-var level_duration: int = LevelSize.MEDIUM setget set_level_duration
+var level_duration: int = LevelSize.MEDIUM: set = set_level_duration
 
 ## status whether or not this level is locked/unlocked
-var lock_status: int = STATUS_NONE setget set_lock_status
+var lock_status: int = STATUS_NONE: set = set_lock_status
 
 ## number of remaining levels the player needs to play to unlock this level
-var keys_needed := -1 setget set_keys_needed
+var keys_needed := -1: set = set_keys_needed
 
-var level_name: String setget set_level_name
+var level_name: String: set = set_level_name
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'level
 ## started' event
@@ -64,9 +64,9 @@ var _focus_just_entered := false
 var _emit_level_chosen := false
 
 ## Button's background color. If omitted, the button will use a pseudo-random background color based on its id
-var bg_color: Color setget set_bg_color
+var bg_color: Color: set = set_bg_color
 
-onready var _label := $Label
+@onready var _label := $Label
 
 func _ready() -> void:
 	text = ""
@@ -83,8 +83,8 @@ func set_bg_color(new_bg_color: Color) -> void:
 
 
 func _set_style_color(color: Color) -> void:
-	get("custom_styles/normal").bg_color = color
-	get("custom_styles/hover").bg_color = color
+	get("theme_override_styles/normal").bg_color = color
+	get("theme_override_styles/hover").bg_color = color
 
 
 func set_lock_status(new_lock_status: int) -> void:
@@ -113,9 +113,9 @@ func _refresh_appearance() -> void:
 		return
 	
 	match level_duration:
-		LevelSize.SHORT: rect_min_size.y = MAX_BUTTON_HEIGHT * 0.5
-		LevelSize.MEDIUM: rect_min_size.y = MAX_BUTTON_HEIGHT * 0.75 + VERTICAL_SPACING * 0.5
-		LevelSize.LONG: rect_min_size.y = MAX_BUTTON_HEIGHT + VERTICAL_SPACING
+		LevelSize.SHORT: custom_minimum_size.y = MAX_BUTTON_HEIGHT * 0.5
+		LevelSize.MEDIUM: custom_minimum_size.y = MAX_BUTTON_HEIGHT * 0.75 + VERTICAL_SPACING * 0.5
+		LevelSize.LONG: custom_minimum_size.y = MAX_BUTTON_HEIGHT + VERTICAL_SPACING
 	
 	_label.text = StringUtils.default_if_empty(level_name, "-")
 	
@@ -145,12 +145,12 @@ func _on_pressed() -> void:
 
 func _on_focus_entered() -> void:
 	_focus_just_entered = true
-	var font: DynamicFont = _label.get("custom_fonts/font")
+	var font: FontFile = _label.get("theme_override_fonts/font")
 	font.outline_color = Color("007a99")
 
 
 func _on_focus_exited() -> void:
-	var font: DynamicFont = _label.get("custom_fonts/font")
+	var font: FontFile = _label.get("theme_override_fonts/font")
 	font.outline_color = Color("6c4331")
 
 

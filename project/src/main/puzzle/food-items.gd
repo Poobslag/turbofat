@@ -1,9 +1,9 @@
 extends Node2D
 ## Food items which appear when the player clears boxes in puzzle mode.
 
-export (NodePath) var puzzle_path: NodePath
-export (NodePath) var restaurant_view_path: NodePath
-export (PackedScene) var FoodScene: PackedScene
+@export (NodePath) var puzzle_path: NodePath
+@export (NodePath) var restaurant_view_path: NodePath
+@export (PackedScene) var FoodScene: PackedScene
 
 ## Array of floats corresponding to how fat the creature should become after eating each upcoming food item.
 var _pending_food_fatness := []
@@ -26,27 +26,27 @@ var _max_food_repeat_delay := 1.0
 ## Caches the coordinate of the customer's mouth relative to the FoodItems viewport
 var _target_pos_cache := {}
 
-onready var _puzzle: Puzzle = get_node(puzzle_path)
-onready var _puzzle_tile_map: PuzzleTileMap = _puzzle.get_playfield().tile_map
+@onready var _puzzle: Puzzle = get_node(puzzle_path)
+@onready var _puzzle_tile_map: PuzzleTileMap = _puzzle.get_playfield().tile_map
 
 ## relative position of the PuzzleTileMap, used for positioning food
-onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
+@onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
 		- get_global_transform().origin
 
-onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
+@onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
 
 ## Food items are rendered in a Viewport and TextureRect so that they can use an outline shader.
-onready var _viewport := $Viewport
-onready var _texture_rect := $TextureRect
+@onready var _viewport := $SubViewport
+@onready var _texture_rect := $TextureRect
 
 ## Timer which causes food items to be repeatedly launched.
-onready var _food_flight_timer := $FoodFlightTimer
+@onready var _food_flight_timer := $FoodFlightTimer
 
 ## Timer which starts decrementing after a customer change.
-onready var _customer_change_timer := $CustomerChangeTimer
+@onready var _customer_change_timer := $CustomerChangeTimer
 
 func _ready() -> void:
-	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
+	PuzzleState.connect("speed_index_changed", Callable(self, "_on_PuzzleState_speed_index_changed"))
 
 
 func _physics_process(_delta: float) -> void:
@@ -66,21 +66,21 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	var fatness_pct: float = 1.0 / (remaining_food + 1)
 	_pending_food_fatness.append(lerp(old_fatness, target_fatness, fatness_pct))
 	
-	var food_item: FoodItem = FoodScene.instance()
+	var food_item: FoodItem = FoodScene.instantiate()
 	food_item.collect()
 	food_item.food_type = food_type
 	food_item.position = Utils.map_to_world_centered(_puzzle_tile_map, cell)
-	food_item.position *= _puzzle_tile_map.scale / _texture_rect.rect_scale
-	food_item.position += _puzzle_tile_map_position / _texture_rect.rect_scale
-	food_item.base_scale = _puzzle_tile_map.scale / _texture_rect.rect_scale
+	food_item.position *= _puzzle_tile_map.scale / _texture_rect.scale
+	food_item.position += _puzzle_tile_map_position / _texture_rect.scale
+	food_item.base_scale = _puzzle_tile_map.scale / _texture_rect.scale
 	food_item.customer = _puzzle.get_customer()
 	food_item.customer_index = _customer_index
-	food_item.connect("ready_to_fly", self, "_on_FoodItem_ready_to_fly", [food_item])
+	food_item.connect("ready_to_fly", Callable(self, "_on_FoodItem_ready_to_fly").bind(food_item))
 	_viewport.add_child(food_item)
 	
 	# float for a moment
 	# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
-	get_tree().create_timer(_food_float_duration).connect("timeout", self, "_on_FoodItem_float_done", [food_item])
+	get_tree().create_timer(_food_float_duration).connect("timeout", Callable(self, "_on_FoodItem_float_done").bind(food_item))
 
 
 ## Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
@@ -108,9 +108,9 @@ func get_target_pos(target_customer: Creature, target_customer_index: int) -> Ve
 							_customer_change_timer.time_left / _customer_change_timer.wait_time)
 			
 			# calculate the position within the global viewport
-			target_pos = get_global_transform_with_canvas().xform_inv(target_pos)
+			target_pos = get_global_transform_with_canvas()(target_pos) * 
 			# calculate the position within the FoodItems viewport texture
-			target_pos = target_pos / _texture_rect.rect_scale
+			target_pos = target_pos / _texture_rect.scale
 		
 		_target_pos_cache[target_customer] = target_pos
 	
@@ -143,7 +143,7 @@ func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
 	
 	# trigger the eating animation just before we arrive at the creature's mouth
 	var adjusted_flight_duration := _food_flight_duration - food_item.customer.get_eating_delay()
-	get_tree().create_timer(adjusted_flight_duration).connect("timeout", self, "_on_FoodItem_flight_done", [food_item])
+	get_tree().create_timer(adjusted_flight_duration).connect("timeout", Callable(self, "_on_FoodItem_flight_done").bind(food_item))
 
 
 func _on_FoodItem_flight_done(food_item: FoodItem) -> void:

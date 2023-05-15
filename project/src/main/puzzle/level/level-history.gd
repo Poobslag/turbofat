@@ -85,7 +85,7 @@ func best_results(level_id: String, daily: bool = false) -> Array:
 	var results: Array = rank_results[level_id].duplicate()
 	if daily:
 		# only include items with today's date
-		var now := OS.get_datetime()
+		var now := Time.get_datetime_dict_from_system()
 		var daily_results := []
 		for result_obj in results:
 			var result: RankResult = result_obj
@@ -100,15 +100,15 @@ func best_results(level_id: String, daily: bool = false) -> Array:
 		var result: RankResult = results[0]
 		match result.compare:
 			"-seconds":
-				results.sort_custom(self, "_compare_by_low_seconds")
+				results.sort_custom(Callable(self, "_compare_by_low_seconds"))
 			_:
-				results.sort_custom(self, "_compare_by_high_score")
+				results.sort_custom(Callable(self, "_compare_by_high_score"))
 	return results.slice(0, max_size - 1)
 
 
 ## Returns the most recent result for a specific level.
 func prev_result(level_id: String) -> RankResult:
-	if not rank_results.has(level_id) or rank_results[level_id].empty():
+	if not rank_results.has(level_id) or rank_results[level_id].is_empty():
 		return null
 	return rank_results[level_id][0]
 
@@ -125,9 +125,9 @@ func add_result(level_id: String, rank_result: RankResult) -> void:
 		rank_results[level_id] = []
 	rank_results[level_id].push_front(rank_result)
 	if rank_result.success and not successful_levels.has(level_id):
-		successful_levels[level_id] = OS.get_datetime()
+		successful_levels[level_id] = Time.get_datetime_dict_from_system()
 	if not rank_result.lost and not finished_levels.has(level_id):
-		finished_levels[level_id] = OS.get_datetime()
+		finished_levels[level_id] = Time.get_datetime_dict_from_system()
 
 
 ## Deletes all records of the specified level from the player's history.

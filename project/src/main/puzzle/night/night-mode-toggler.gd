@@ -28,7 +28,7 @@ var _night_mode := false
 var _nodes_modulated_to_transparent := {}
 
 ## Adjusts node colors and visibility during day/night transitions.
-onready var _tween: SceneTreeTween
+@onready var _tween: Tween
 
 func _exit_tree() -> void:
 	# unset night filter if it was enabled
@@ -69,10 +69,10 @@ func _start_night_tween(duration := TWEEN_DURATION) -> void:
 		_tween = Utils.recreate_tween(self, _tween).set_parallel()
 	
 	for node in get_tree().get_nodes_in_group("night_mode_dark"):
-		_tween_property(node, "modulate", DARK_BLUE if _night_mode else Color.white, duration)
+		_tween_property(node, "modulate", DARK_BLUE if _night_mode else Color.WHITE, duration)
 	
 	for node in get_tree().get_nodes_in_group("night_mode_dark_self"):
-		_tween_property(node, "self_modulate", DARK_BLUE if _night_mode else Color.white, duration)
+		_tween_property(node, "self_modulate", DARK_BLUE if _night_mode else Color.WHITE, duration)
 	
 	for node in get_tree().get_nodes_in_group("night_mode_invisible"):
 		if duration == 0.0 and _night_mode:
@@ -82,13 +82,13 @@ func _start_night_tween(duration := TWEEN_DURATION) -> void:
 			# make the node visible and gradually tween its modulate property
 			node.visible = true
 		
-		_tween_property(node, "modulate", Color.transparent if _night_mode else Color.white, duration)
+		_tween_property(node, "modulate", Color.TRANSPARENT if _night_mode else Color.WHITE, duration)
 	
 	for node in get_tree().get_nodes_in_group("night_mode_light"):
-		_tween_property(node, "modulate", LIGHT_BLUE if _night_mode else Color.white, duration)
+		_tween_property(node, "modulate", LIGHT_BLUE if _night_mode else Color.WHITE, duration)
 	
 	for node in get_tree().get_nodes_in_group("night_mode_light_self"):
-		_tween_property(node, "self_modulate", LIGHT_BLUE if _night_mode else Color.white, duration)
+		_tween_property(node, "self_modulate", LIGHT_BLUE if _night_mode else Color.WHITE, duration)
 	
 	for node in get_tree().get_nodes_in_group("night_mode_visible"):
 		if duration == 0.0 and not _night_mode:
@@ -97,12 +97,12 @@ func _start_night_tween(duration := TWEEN_DURATION) -> void:
 		else:
 			# make the node visible and gradually tween its modulate property
 			node.visible = true
-		_tween_property(node, "modulate", Color.white if _night_mode else Color.transparent, duration)
+		_tween_property(node, "modulate", Color.WHITE if _night_mode else Color.TRANSPARENT, duration)
 	
 	if duration == 0.0:
 		_turn_modulated_nodes_invisible()
 	else:
-		_tween.chain().tween_callback(self, "_turn_modulated_nodes_invisible")
+		_tween.chain().tween_callback(Callable(self, "_turn_modulated_nodes_invisible"))
 
 
 ## Interpolates a node's property, or sets it instantly if duration is zero.
@@ -115,7 +115,7 @@ func _tween_property(node: Node, property: String, final_val, duration: float) -
 	else:
 		_tween.tween_property(node, property, final_val, duration)
 	
-	if property == "modulate" and final_val == Color.transparent:
+	if property == "modulate" and final_val == Color.TRANSPARENT:
 		_nodes_modulated_to_transparent[node] = true
 
 

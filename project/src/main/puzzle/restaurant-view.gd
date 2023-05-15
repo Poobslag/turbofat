@@ -17,7 +17,7 @@ const MOUTH_POSITIONS_BY_ORIENTATION := {
 const SWOOP_DURATION := 0.8
 
 ## virtual property; value is only exposed through getters/setters
-var current_customer_index: int setget set_current_customer_index, get_current_customer_index
+var current_customer_index: int: get = get_current_customer_index, set = set_current_customer_index
 
 ## bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
@@ -37,33 +37,33 @@ var _next_customer_indexes := []
 ## value: (SceneTreeTween) Tween adjusting the control node's position
 var _tweens_by_bubble_path := {}
 
-onready var _chef := $Chef
-onready var _chef_nametag_panel := $Chef/Nametag/Panel
+@onready var _chef := $Chef
+@onready var _chef_nametag_panel := $Chef/Nametag/Panel
 
-onready var _customer := $Customer
-onready var _customer_nametag_panel := $Customer/Nametag/Panel
-onready var _customer_view_viewport := $Customer/View/Viewport
-onready var _customer_view := $Customer/View
+@onready var _customer := $Customer
+@onready var _customer_nametag_panel := $Customer/Nametag/Panel
+@onready var _customer_view_viewport := $Customer/View/SubViewport
+@onready var _customer_view := $Customer/View
 
-onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
-onready var _hello_timer := $HelloTimer
-onready var _summon_customer_timers: TimerGroup = $SummonCustomerTimers
+@onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
+@onready var _hello_timer := $HelloTimer
+@onready var _summon_customer_timers: TimerGroup = $SummonCustomerTimers
 
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
 	# these values in the editor. Otherwise it keeps changing the values back.
-	_customer_view_viewport.size = _customer_view.rect_size * 4
+	_customer_view_viewport.size = _customer_view.size * 4
 	
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
-	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
-	PuzzleState.connect("added_line_score", self, "_on_PuzzleState_added_line_score")
-	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.connect("combo_changed", Callable(self, "_on_PuzzleState_combo_changed"))
+	PuzzleState.connect("topped_out", Callable(self, "_on_PuzzleState_topped_out"))
+	PuzzleState.connect("added_line_score", Callable(self, "_on_PuzzleState_added_line_score"))
+	PuzzleState.connect("added_pickup_score", Callable(self, "_on_PuzzleState_added_pickup_score"))
 	
-	get_chef().connect("creature_name_changed", self, "_on_Chef_creature_name_changed")
+	get_chef().connect("creature_name_changed", Callable(self, "_on_Chef_creature_name_changed"))
 	for customer in get_customers():
-		customer.connect("creature_name_changed", self, "_on_Customer_creature_name_changed")
-		customer.connect("dna_loaded", self, "_on_Customer_dna_loaded", [customer])
+		customer.connect("creature_name_changed", Callable(self, "_on_Customer_creature_name_changed"))
+		customer.connect("dna_loaded", Callable(self, "_on_Customer_dna_loaded").bind(customer))
 	_refresh_chef_name()
 	_refresh_creature_name()
 	
@@ -81,15 +81,15 @@ func reset() -> void:
 ## We record their current position and relocate them offscreen. The bubbles are tweened onscreen later by an
 ## AnimationPlayer.
 func _reset_bubbles_offscreen() -> void:
-	_chef_onscreen_rect_position = _chef.rect_position
-	_chef_offscreen_rect_position = _chef_onscreen_rect_position + Vector2(2 * _chef.rect_size.x, 0)
-	_chef.rect_position = _chef_offscreen_rect_position
-	_chef.modulate = Color.transparent
+	_chef_onscreen_rect_position = _chef.position
+	_chef_offscreen_rect_position = _chef_onscreen_rect_position + Vector2(2 * _chef.size.x, 0)
+	_chef.position = _chef_offscreen_rect_position
+	_chef.modulate = Color.TRANSPARENT
 	
-	_customer_onscreen_rect_position = _customer.rect_position
-	_customer_offscreen_rect_position = _customer_onscreen_rect_position - Vector2(1.5 * _customer.rect_size.x, 0)
-	_customer.rect_position = _customer_offscreen_rect_position
-	_customer.modulate = Color.transparent
+	_customer_onscreen_rect_position = _customer.position
+	_customer_offscreen_rect_position = _customer_onscreen_rect_position - Vector2(1.5 * _customer.size.x, 0)
+	_customer.position = _customer_offscreen_rect_position
+	_customer.modulate = Color.TRANSPARENT
 
 
 func swoop_chef_bubble_onscreen() -> void:
@@ -142,9 +142,9 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 	var mouth_position: Vector2 = MOUTH_POSITIONS_BY_ORIENTATION[customer.get_orientation()]
 	target_pos = customer.body_pos_from_head_pos(mouth_position)
 	# calculate the position within the customer viewport
-	target_pos = _customer_view_viewport.canvas_transform.xform(target_pos)
+	target_pos = _customer_view_viewport.canvas_transform * (target_pos)
 	# calculate the position within the customer viewport texture
-	target_pos = _customer_view.get_global_transform_with_canvas().xform(target_pos / _customer_view.stretch_shrink)
+	target_pos = _customer_view.get_global_transform_with_canvas() * (target_pos / _customer_view.stretch_shrink)
 	return target_pos
 
 
@@ -186,7 +186,7 @@ func scroll_to_new_customer() -> void:
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	
 	var summon_customer_timer := _summon_customer_timers.start_timer(0.5)
-	summon_customer_timer.connect("timeout", self, "_on_Timer_timeout_summon_customer", [old_customer_index])
+	summon_customer_timer.connect("timeout", Callable(self, "_on_Timer_timeout_summon_customer").bind(old_customer_index))
 
 
 ## Returns a random customer index different from the current customer index.
@@ -216,14 +216,14 @@ func _swoop_bubble(bubble: Control, onscreen: bool) -> void:
 		target_pos = _chef_onscreen_rect_position if onscreen else _chef_offscreen_rect_position
 	elif bubble == _customer:
 		target_pos = _customer_onscreen_rect_position if onscreen else _customer_offscreen_rect_position
-	var target_opacity := Color.white if onscreen else Color.transparent
+	var target_opacity := Color.WHITE if onscreen else Color.TRANSPARENT
 	
 	_tweens_by_bubble_path[bubble.get_path()] = \
 			Utils.recreate_tween(self, _tweens_by_bubble_path.get(bubble.get_path())).parallel()
-	var swoop_tween: SceneTreeTween = _tweens_by_bubble_path[bubble.get_path()]
+	var swoop_tween: Tween = _tweens_by_bubble_path[bubble.get_path()]
 	swoop_tween.tween_property(bubble, "modulate", target_opacity,
 			SWOOP_DURATION)
-	swoop_tween.tween_property(bubble, "rect_position", target_pos,
+	swoop_tween.tween_property(bubble, "position", target_pos,
 			SWOOP_DURATION).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 
 
@@ -284,7 +284,7 @@ func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 
 ## When collecting pickups, the chef smiles if they're scoring a lot of bonus points.
 func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
-	if _recent_bonuses.empty():
+	if _recent_bonuses.is_empty():
 		_recent_bonuses.append(0)
 	_recent_bonuses[_recent_bonuses.size() - 1] += pickup_score
 	_react_to_total_bonus()

@@ -12,11 +12,11 @@ const TOO_FAR_THRESHOLD := 280.0
 var free_roam := false
 
 ## Cannot statically type as 'OverworldUi' because of cyclic reference
-onready var _overworld_ui: Node = Global.get_overworld_ui()
+@onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
 	set_creature_id(CreatureLibrary.SENSEI_ID)
-	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
+	$MoveTimer.connect("timeout", Callable(self, "_on_MoveTimer_timeout"))
 
 
 func _on_MoveTimer_timeout() -> void:
@@ -29,7 +29,7 @@ func _on_MoveTimer_timeout() -> void:
 	
 	var player_relative_pos: Vector2 = Global.from_iso(CreatureManager.player.position - position)
 	# the sensei runs at isometric 45 degree angles to mimic the player's inputs
-	var player_angle := stepify(player_relative_pos.normalized().angle(), PI / 4)
+	var player_angle := snapped(player_relative_pos.normalized().angle(), PI / 4)
 	
 	var move_dir := Vector2.ZERO
 	if player_relative_pos.length() > TOO_FAR_THRESHOLD:

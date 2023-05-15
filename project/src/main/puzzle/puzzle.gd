@@ -2,18 +2,18 @@ class_name Puzzle
 extends Control
 ## Puzzle scene where a player drops pieces into a playfield of blocks.
 
-onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
-onready var _settings_menu: SettingsMenu = $SettingsMenu
-onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
+@onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
+@onready var _settings_menu: SettingsMenu = $SettingsMenu
+@onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	
-	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
-	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	PuzzleState.connect("game_started", Callable(self, "_on_PuzzleState_game_started"))
+	PuzzleState.connect("game_ended", Callable(self, "_on_PuzzleState_game_ended"))
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 	
 	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/Playfield/TileMapClip/TileMap/GhostPieceViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
@@ -37,7 +37,7 @@ func _ready() -> void:
 	
 	if CurrentLevel.settings.other.skip_intro:
 		$PuzzleMusicManager.start_puzzle_music()
-		yield(get_tree().create_timer(0.8), "timeout")
+		await get_tree().create_timer(0.8).timeout
 		_start_puzzle()
 	else:
 		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu") and not $Hud/Center/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		_settings_menu.show()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 	
 	if event.is_action_pressed("retry"):
 		if not PuzzleState.game_active and not PuzzleState.game_ended:
@@ -70,7 +70,7 @@ func _input(event: InputEvent) -> void:
 			var rank_result := RankCalculator.new().calculate_rank()
 			_save_level_result(rank_result)
 			_start_puzzle()
-			get_tree().set_input_as_handled()
+			get_viewport().set_input_as_handled()
 
 
 func get_playfield() -> Playfield:
@@ -118,7 +118,7 @@ func start_level_countdown() -> void:
 	$Fg/PieceManager.set_physics_process(false)
 	$Hud/Center/PuzzleMessages.show_message(PuzzleMessage.NEUTRAL, tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
-	yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
+	await get_tree().create_timer(PuzzleState.READY_DURATION).timeout
 	$Hud/Center/PuzzleMessages.hide_message()
 	$Fg/PieceManager.set_physics_process(true)
 	$Fg/PieceManager.skip_prespawn()
@@ -306,7 +306,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	# Calculate whether or not the customer should say something positive about the combo.
 	# They say something after clearing [6, 12, 18, 24...] lines.
 	if remaining_lines == 0 and PuzzleState.combo >= 6 and total_lines > PuzzleState.combo % 6:
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		customer.play_combo_voice()
 
 

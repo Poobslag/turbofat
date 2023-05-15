@@ -5,10 +5,10 @@
 [ext_resource path="res://src/main/puzzle/piece/PuzzleCornerMap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/puzzle/piece/puzzle-shadow-map.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-tile-map.gd" type="Script" id=5]
-[ext_resource path="res://assets/main/puzzle/blocks/blocks-boxes-shadows.png" type="Texture" id=6]
-[ext_resource path="res://assets/main/puzzle/blocks/blocks-veggie-cube-shadows.png" type="Texture" id=7]
-[ext_resource path="res://assets/main/puzzle/blocks/blocks-shadows.png" type="Texture" id=8]
-[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=9]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-boxes-shadows.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-veggie-cube-shadows.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-shadows.png" type="Texture2D" id=8]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -98,7 +98,7 @@ script = ExtResource( 5 )
 material = SubResource( 2 )
 tile_set = ExtResource( 2 )
 
-[node name="ShadowViewport" type="Viewport" parent="."]
+[node name="ShadowViewport" type="SubViewport" parent="."]
 size = Vector2( 324, 544 )
 transparent_bg = true
 usage = 0
@@ -114,7 +114,7 @@ format = 1
 script = ExtResource( 4 )
 playfield_tile_map_path = NodePath("../..")
 
-[node name="GhostPieceViewport" type="Viewport" parent="."]
+[node name="GhostPieceViewport" type="SubViewport" parent="."]
 size = Vector2( 324, 544 )
 transparent_bg = true
 usage = 0

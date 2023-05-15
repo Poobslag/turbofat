@@ -36,7 +36,7 @@ var length := 0
 ## Furthest distance the player can travel while remaining within this region.
 ##
 ## Immutable value. Calculated by combining 'start' and 'length'
-var end := 0 setget ,get_end
+var end := 0: get = get_end
 
 ## Final level which must be cleared to advance past this region.
 var boss_level: CareerLevel

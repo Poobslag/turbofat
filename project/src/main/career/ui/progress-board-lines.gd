@@ -5,18 +5,18 @@ extends Control
 ## a dark outline.
 
 ## Width in pixels of the main part of the trail
-export (float) var line_width := 8.0
+@export (float) var line_width := 8.0
 
 ## Width in pixels of the trail's outline
-export (float) var outline_width := 8.0
+@export (float) var outline_width := 8.0
 
 ## Color for the main part of the trail
-export (Color) var path_color := Color.white
+@export (Color) var path_color := Color.WHITE
 
 ## Color for the trail's outline
-export (Color) var outline_color := Color.transparent
+@export (Color) var outline_color := Color.TRANSPARENT
 
-var path2d: Path2D setget set_path2d
+var path2d: Path2D: set = set_path2d
 
 ## Draws the line and outline.
 func _draw() -> void:

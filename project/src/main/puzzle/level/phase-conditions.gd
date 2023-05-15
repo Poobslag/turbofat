@@ -20,7 +20,8 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 	var required_pickup_type: int = RequiredPickupType.ANY
 	
 	## Creates a new PickupCollectedPhaseCondition instance with the specified configuration.
-	func _init(phase_config: Dictionary).(phase_config) -> void:
+	func _init(phase_config: Dictionary) -> void:
+		super(phase_config)
 		if phase_config.has("0"):
 			required_pickup_type = Utils.enum_from_snake_case(RequiredPickupType, phase_config["0"])
 	
@@ -65,7 +66,8 @@ class ComboEndedPhaseCondition extends PhaseCondition:
 	##
 	## Parameters:
 	## 	'phase_config.combo': (Optional) Expression defining which combo values will fire this trigger.
-	func _init(phase_config: Dictionary).(phase_config) -> void:
+	func _init(phase_config: Dictionary) -> void:
+		super(phase_config)
 		var combos_string: String = phase_config.get("combo", "")
 		combos_to_run = ConfigStringUtils.ints_from_config_string(combos_string, MAX_PIECE_INDEX)
 	
@@ -119,7 +121,8 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 	## 	'phase_config.n': (Optional) Expression defining which pieces will fire this trigger.
 	##
 	## 	'phase_config.combo': (Optional) Expression defining which combo values will fire this trigger.
-	func _init(phase_config: Dictionary).(phase_config) -> void:
+	func _init(phase_config: Dictionary) -> void:
+		super(phase_config)
 		var indexes_string: String = phase_config.get("n", "")
 		indexes_to_run = ConfigStringUtils.ints_from_config_string(indexes_string, MAX_PIECE_INDEX)
 		
@@ -165,7 +168,8 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 	var required_box_type: int = RequiredBoxType.ANY
 	
 	## Creates a new BoxBuiltPhaseCondition instance with the specified configuration.
-	func _init(phase_config: Dictionary).(phase_config) -> void:
+	func _init(phase_config: Dictionary) -> void:
+		super(phase_config)
 		if phase_config.has("0"):
 			required_box_type = Utils.enum_from_snake_case(RequiredBoxType, phase_config["0"])
 	
@@ -231,7 +235,8 @@ class LineClearedPhaseCondition extends PhaseCondition:
 	## 	'phase_config.n': (Optional) Expression defining how many line clears will fire this trigger.
 	## 	'phase_config.combo': (Optional) Expression defining how many combos will fire this trigger.
 	## 	'phase_config.score': (Optional) Expression defining which score milestones will fire this trigger.
-	func _init(phase_config: Dictionary).(phase_config) -> void:
+	func _init(phase_config: Dictionary) -> void:
+		super(phase_config)
 		var y_expression: String = phase_config.get("y", "")
 		var inverted_rows := ConfigStringUtils.ints_from_config_string(y_expression)
 		for row in inverted_rows:

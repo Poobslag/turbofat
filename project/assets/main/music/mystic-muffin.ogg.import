@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/mystic-muffin.ogg-15de3269f89850598c67cdc3c5c2a07b.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cu2mj8442bn1l"
+path="res://.godot/imported/mystic-muffin.ogg-15de3269f89850598c67cdc3c5c2a07b.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/mystic-muffin.ogg"
-dest_files=[ "res://.import/mystic-muffin.ogg-15de3269f89850598c67cdc3c5c2a07b.oggstr" ]
+dest_files=["res://.godot/imported/mystic-muffin.ogg-15de3269f89850598c67cdc3c5c2a07b.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

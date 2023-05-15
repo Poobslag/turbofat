@@ -6,15 +6,15 @@ extends Node2D
 ## which haven't yet been cleared.
 
 ## LevelSelectButton this grade label applies to
-var button: Button setget set_button
+var button: Button: set = set_button
 
-var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")
-var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")
-var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
-var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
+var _cleared_texture: Texture2D = preload("res://assets/main/ui/level-select/cleared.png")
+var _crown_texture: Texture2D = preload("res://assets/main/ui/level-select/crown.png")
+var _key_texture: Texture2D = preload("res://assets/main/ui/level-select/key.png")
+var _locked_texture: Texture2D = preload("res://assets/main/ui/level-select/locked.png")
 
-onready var _grade_label: GradeLabel = $GradeLabel
-onready var _status_icon := $StatusIcon
+@onready var _grade_label: GradeLabel = $GradeLabel
+@onready var _status_icon := $StatusIcon
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
@@ -30,12 +30,12 @@ func set_button(new_button: LevelSelectButton) -> void:
 	
 	if button:
 		button.get_node("GradeHook").remote_path = null
-		button.disconnect("tree_exited", self, "_on_LevelSelectButton_tree_exited")
+		button.disconnect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
 	
 	button = new_button
 	
 	button.get_node("GradeHook").remote_path = button.get_node("GradeHook").get_path_to(self)
-	button.connect("tree_exited", self, "_on_LevelSelectButton_tree_exited")
+	button.connect("tree_exited", Callable(self, "_on_LevelSelectButton_tree_exited"))
 	
 	_refresh_appearance()
 
@@ -68,7 +68,7 @@ func _refresh_status_icon(lock_status: int) -> void:
 	match lock_status:
 		LevelSelectButton.STATUS_NONE:
 			_status_icon.texture = null
-			icon_color = Color.white
+			icon_color = Color.WHITE
 		LevelSelectButton.STATUS_CLEARED:
 			_status_icon.texture = _cleared_texture
 			icon_color = GradeLabel.GRADE_COLOR_GREEN

@@ -3,6 +3,6 @@
 [ext_resource path="res://src/main/world/environment/restaurant/layout-container.gd" type="Script" id=3]
 
 [node name="LayoutContainer" type="Control"]
-margin_right = 240.0
-margin_bottom = 90.0
+offset_right = 240.0
+offset_bottom = 90.0
 script = ExtResource( 3 )

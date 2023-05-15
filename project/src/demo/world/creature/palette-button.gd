@@ -14,6 +14,6 @@ func set_palette(palette: Dictionary) -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
-		get_tree().set_input_as_handled()
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
+		get_viewport().set_input_as_handled()
 		emit_signal("pressed")

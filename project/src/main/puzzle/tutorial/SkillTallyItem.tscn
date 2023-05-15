@@ -4,9 +4,9 @@
 [ext_resource path="res://src/main/puzzle/tutorial/skill-tally-item.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-task-complete.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/main/ui/FontFitLabel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-12.tres" type="DynamicFont" id=6]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="FontFile" id=5]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-12.tres" type="FontFile" id=6]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
@@ -41,14 +41,14 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="SkillTallyItem" type="ProgressBar"]
-margin_left = 785.266
-margin_top = 23.158
-margin_right = 893.266
-margin_bottom = 87.158
-rect_min_size = Vector2( 108, 64 )
+offset_left = 785.266
+offset_top = 23.158
+offset_right = 893.266
+offset_bottom = 87.158
+custom_minimum_size = Vector2( 108, 64 )
 theme = ExtResource( 1 )
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+theme_override_styles/fg = SubResource( 1 )
+theme_override_styles/bg = SubResource( 2 )
 max_value = 5.0
 percent_visible = false
 script = ExtResource( 2 )
@@ -58,17 +58,17 @@ label_text = "abc"
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 54, 32 )
-custom_styles/panel = SubResource( 3 )
+pivot_offset = Vector2( 54, 32 )
+theme_override_styles/panel = SubResource( 3 )
 
 [node name="Label" parent="." instance=ExtResource( 4 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -4.0
-custom_fonts/font = ExtResource( 7 )
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+theme_override_fonts/font = ExtResource( 7 )
 text = "abc
 (0/5)"
 align = 1

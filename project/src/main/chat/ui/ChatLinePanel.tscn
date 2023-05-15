@@ -6,10 +6,10 @@
 
 [node name="ChatLinePanel" type="Panel"]
 material = ExtResource( 3 )
-margin_left = 218.0
-margin_top = 38.0
-margin_right = 807.0
-margin_bottom = 158.0
-rect_pivot_offset = Vector2( 294, 60 )
-custom_styles/panel = ExtResource( 1 )
+offset_left = 218.0
+offset_top = 38.0
+offset_right = 807.0
+offset_bottom = 158.0
+pivot_offset = Vector2( 294, 60 )
+theme_override_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )

@@ -8,12 +8,12 @@ extends Node2D
 const SPEED_PERIOD := 6.0
 
 ## wave movement speed
-export (float) var speed: float = 100.0
+@export (float) var speed: float = 100.0
 
-export (PackedScene) var RippleSpriteScene: PackedScene
+@export (PackedScene) var RippleSpriteScene: PackedScene
 
 ## ground tile ids which a ripple can appear over
-export (Array, int) var rippleable_tile_ids := []
+@export (Array, int) var rippleable_tile_ids := []
 
 ## Tilemap where waves should appear. Ripples appear and disappear based on the occupied cells of this tilemap.
 var _tile_map: TileMap
@@ -22,10 +22,10 @@ var _tile_map: TileMap
 var _direction: int = Ripples.RippleDirection.SOUTHEAST
 
 ## current position in the speed adjustment curve
-var _speed_phase := rand_range(0, SPEED_PERIOD)
+var _speed_phase := randf_range(0, SPEED_PERIOD)
 
 ## controls how frequently this wave speeds up and slows down, in seconds
-var _speed_period := rand_range(SPEED_PERIOD * 0.5, SPEED_PERIOD * 1.5)
+var _speed_period := randf_range(SPEED_PERIOD * 0.5, SPEED_PERIOD * 1.5)
 
 func _ready() -> void:
 	_add_ripple_sprites()
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	_speed_phase += delta
 	if _speed_phase > _speed_period:
 		_speed_phase -= _speed_period
-		_speed_period = rand_range(SPEED_PERIOD * 0.5, SPEED_PERIOD * 1.5)
+		_speed_period = randf_range(SPEED_PERIOD * 0.5, SPEED_PERIOD * 1.5)
 	
 	# update the wave's position
 	var velocity: Vector2 = Ripples.ISO_VECTOR_BY_RIPPLE_DIRECTION[_direction] * speed * delta
@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 	position += lerp(velocity * 0.2, velocity * 1.8, \
 			0.5 + 0.5 * cos(PI * 2 * _speed_phase / _speed_period))
 	
-	var cell_position := _tile_map.world_to_map(position)
-	if cell_position != _tile_map.world_to_map(old_position):
+	var cell_position := _tile_map.local_to_map(position)
+	if cell_position != _tile_map.local_to_map(old_position):
 		# the wave's tilemap position changed; refresh which ripples are visible/invisible
 		_refresh_ripple_sprites()
 	
@@ -70,7 +70,7 @@ func _add_ripple_sprites() -> void:
 	# calculate which cells are on the edge of the tilemap
 	# all cells get a ripplesprite. unoccupied cells get a ripplesprite which starts invisible
 	var used_rect := _tile_map.get_used_rect()
-	var cell_position := _tile_map.world_to_map(position)
+	var cell_position := _tile_map.local_to_map(position)
 	match _direction:
 		Ripples.RippleDirection.SOUTHWEST, Ripples.RippleDirection.NORTHEAST:
 			for x in range(used_rect.position.x, used_rect.end.x):
@@ -82,11 +82,11 @@ func _add_ripple_sprites() -> void:
 
 ## Adds a ripple sprite overlaying the specified position in the tilemap.
 func _add_ripple_sprite(cell_pos: Vector2) -> void:
-	var ripple_sprite: RippleSprite = RippleSpriteScene.instance()
+	var ripple_sprite: RippleSprite = RippleSpriteScene.instantiate()
 	
 	# position the ripple sprite relative to the wave
 	ripple_sprite.position = Utils.map_to_world_centered(_tile_map, cell_pos) \
-			- Utils.map_to_world_centered(_tile_map, _tile_map.world_to_map(position))
+			- Utils.map_to_world_centered(_tile_map, _tile_map.local_to_map(position))
 	
 	# the default wave sprite points southeast. flip it for other directions
 	match _direction:
@@ -113,7 +113,7 @@ func _refresh_ripple_sprites() -> void:
 			# We may have other types of children (timers, debug sprites)
 			continue
 		
-		var used_cell := _tile_map.world_to_map(ripple_sprite.position + position)
+		var used_cell := _tile_map.local_to_map(ripple_sprite.position + position)
 		
 		# if there's no floor in front or behind, this ripple is off
 		var ripple_off := not _is_rippleable(used_cell + cell_forward_vector) \

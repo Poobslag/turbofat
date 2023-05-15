@@ -3,16 +3,16 @@ extends Node2D
 ## Cluster of crumbs which appears when the customer eats.
 
 ## Lifetime of the particles in seconds. The CrumbCluster also deletes itself after this duration.
-export (float) var lifetime := 1.0
+@export (float) var lifetime := 1.0
 
 ## int corresponding to a FoodItem frame
-var food_type setget set_food_type
+var food_type : set = set_food_type
 
 ## Timer which causes the CrumbCluster to free itself
-onready var _timer := $Timer
+@onready var _timer := $Timer
 
 ## This cluster is made up of multiple CPUParticles2D instances so that multiple colors can be shown.
-onready var _particles := [$Particles0, $Particles1, $Particles2]
+@onready var _particles := [$Particles0, $Particles1, $Particles2]
 
 func _ready() -> void:
 	_timer.start(lifetime)
@@ -37,9 +37,9 @@ func _refresh_food_type() -> void:
 	crumb_colors.shuffle()
 	
 	for i in range(_particles.size()):
-		var particles: Particles2D = _particles[i]
+		var particles: GPUParticles2D = _particles[i]
 		# if max_crumb_count is 9.0, rand_range(1, 4) returns a float from 1.00 to 3.999
-		particles.amount = rand_range(1, 1 + crumb_definition.max_crumb_count / 3.0)
+		particles.amount = randf_range(1, 1 + crumb_definition.max_crumb_count / 3.0)
 		particles.modulate = crumb_colors[i % crumb_colors.size()]
 
 

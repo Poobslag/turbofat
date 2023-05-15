@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/tutorial-section-fail.wav-cbb3cd324fb6748cea936b542c4ef63e.sample"
+type="AudioStreamWAV"
+uid="uid://c315emy0xccem"
+path="res://.godot/imported/tutorial-section-fail.wav-cbb3cd324fb6748cea936b542c4ef63e.sample"
 
 [deps]
 
 source_file="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav"
-dest_files=[ "res://.import/tutorial-section-fail.wav-cbb3cd324fb6748cea936b542c4ef63e.sample" ]
+dest_files=["res://.godot/imported/tutorial-section-fail.wav-cbb3cd324fb6748cea936b542c4ef63e.sample"]
 
 [params]
 

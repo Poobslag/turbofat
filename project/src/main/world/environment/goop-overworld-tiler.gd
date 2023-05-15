@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 ## Autotiles a tilemap for goopy/goopless overworld cakes.
 ##
@@ -219,22 +219,22 @@ const CORNER_COVERS_BY_BINDING := {
 }
 
 ## Parent tilemap's tile ID for goopless cells
-export (int) var no_goop_tile_index: int setget set_block_tile_index
+@export (int) var no_goop_tile_index: int: set = set_block_tile_index
 
 ## Parent tilemap's tile ID for partially goopy cells
-export (int) var some_goop_tile_index: int setget set_some_goop_tile_index
+@export (int) var some_goop_tile_index: int: set = set_some_goop_tile_index
 
 ## Parent tilemap's tile ID for goopy cells
-export (int) var all_goop_tile_index: int setget set_goop_tile_index
+@export (int) var all_goop_tile_index: int: set = set_goop_tile_index
 
 ## corner tilemap's tile ID for goopless/partially goopy/goopy corner covers
-export (int) var corner_tile_index: int
+@export (int) var corner_tile_index: int
 
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
-export (bool) var _autotile: bool setget autotile
+@export (bool) var _autotile: bool: set = autotile
 
 ## key: (TileTypes)
 ## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
@@ -252,13 +252,13 @@ var _cake_indexes := []
 var _goop_indexes := []
 
 ## tilemap with goopy/goopless overworld cakes which we should autotile
-onready var _tile_map := get_parent()
+@onready var _tile_map := get_parent()
 
 ## Tilemap of corner covers which cover the corners of an overworld tilemap.
 ##
 ## Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area.
 ## This tilemap fills in the holes.
-onready var _corner_map := $"../CornerMap"
+@onready var _corner_map := $"../CornerMap"
 
 func _ready() -> void:
 	_autotile_corner_tiles()
@@ -279,7 +279,7 @@ func autotile(value: bool) -> void:
 		# only autotile in the editor when the 'Autotile' property is toggled
 		return
 	
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		if not _tile_map or not _corner_map:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()

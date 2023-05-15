@@ -40,32 +40,32 @@ signal head_moved
 const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)
 
 ## toggle to assign default animation frames based on the creature's orientation
-export (bool) var _reset_frames setget reset_frames
+@export (bool) var _reset_frames : set = reset_frames
 
 ## toggle to remove the creature's textures
-export (bool) var _reset_creature setget reset_creature
+@export (bool) var _reset_creature : set = reset_creature
 
 ## toggle to generate a creature with a random appearance
-export (bool) var _random_creature setget random_creature
+@export (bool) var _random_creature : set = random_creature
 
 ## state of whether the creature is walking, running or idle
-export (Creatures.MovementMode) var movement_mode := Creatures.IDLE setget set_movement_mode
+@export (Creatures.MovementMode) var movement_mode := Creatures.IDLE: set = set_movement_mode
 
 ## direction the creature is facing
-export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST setget set_orientation
+@export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST: set = set_orientation
 
 ## colors and textures used to draw the creature
-export (Dictionary) var dna: Dictionary setget set_dna
+@export (Dictionary) var dna: Dictionary: set = set_dna
 
 ## how fat the creature looks right now; gradually approaches the 'fatness' property
-export (float, 1.0, 10.0) var visual_fatness := 1.0 setget set_visual_fatness
+@export (float, 1.0, 10.0) var visual_fatness := 1.0: set = set_visual_fatness
 
 ## how fat the creature will become eventually; visual_fatness gradually approaches this value
-var fatness := 1.0 setget set_fatness, get_fatness
+var fatness := 1.0: get = get_fatness, set = set_fatness
 
 ## comfort improves as the creature eats, and degrades as they overeat. comfort is a number from [-1.0, 1.0]. -1.0 is
 ## very uncomfortable, 1.0 is very comfortable
-var comfort := 0.0 setget set_comfort
+var comfort := 0.0: set = set_comfort
 
 ## MouthPlayer instance which animates mouths
 var mouth_player
@@ -84,21 +84,21 @@ var _force_orientation_change := false
 ## food type the creature is eating
 var _food_type: int
 
-var creature_sfx: CreatureSfx setget set_creature_sfx
+var creature_sfx: CreatureSfx: set = set_creature_sfx
 
 ## CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
-onready var _animations: Node = $Animations
+@onready var _animations: Node = $Animations
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
 	set_orientation(orientation)
-	$DnaLoader.connect("dna_loaded", self, "_on_DnaLoader_dna_loaded")
-	$TalkTimer.connect("timeout", self, "_on_TalkTimer_timeout")
+	$DnaLoader.connect("dna_loaded", Callable(self, "_on_DnaLoader_dna_loaded"))
+	$TalkTimer.connect("timeout", Callable(self, "_on_TalkTimer_timeout"))
 	_refresh_creature_sfx()
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		# don't move stuff in the editor
 		return
 	update_fattening_animation(delta)

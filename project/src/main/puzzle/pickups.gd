@@ -14,9 +14,9 @@ const PICKUP_DEFAULT: int = BlocksDuringRules.PickupType.DEFAULT
 const PICKUP_FLOAT: int = BlocksDuringRules.PickupType.FLOAT
 const PICKUP_FLOAT_REGEN: int = BlocksDuringRules.PickupType.FLOAT_REGEN
 
-export (NodePath) var piece_manager_path: NodePath setget set_piece_manager_path
-export (NodePath) var puzzle_tile_map_path: NodePath
-export (PackedScene) var PickupScene: PackedScene
+@export (NodePath) var piece_manager_path: NodePath: set = set_piece_manager_path
+@export (NodePath) var puzzle_tile_map_path: NodePath
+@export (PackedScene) var PickupScene: PackedScene
 
 ## key: (Vector2) playfield cell positions
 ## value: (Pickup) Pickup node contained within that cell
@@ -28,26 +28,26 @@ var _pickup_sfx_index := 0
 ## how many more pickup sounds should play after the current one
 var _remaining_pickup_sfx := 0
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+@onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 ## Cannot statically type as 'PieceManager' because of cyclic reference
-onready var _piece_manager: Node
+@onready var _piece_manager: Node
 
 ## parent node for the pickup graphics
-onready var _visuals := $Visuals
+@onready var _visuals := $Visuals
 
 ## timer which triggers playing consecutive pickup sounds. we don't want to play them all simultaneously
-onready var _pickup_sfx_timer := $CollectSfxTimer
+@onready var _pickup_sfx_timer := $CollectSfxTimer
 
 ## array of AudioStreamPlayer instances which play pickup sounds
-onready var _pickup_sfx_players := [$PickupSfx0, $PickupSfx1, $PickupSfx2, $PickupSfx3, $PickupSfx4, $PickupSfx5]
+@onready var _pickup_sfx_players := [$PickupSfx0, $PickupSfx1, $PickupSfx2, $PickupSfx3, $PickupSfx4, $PickupSfx5]
 
 func _ready() -> void:
-	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
-	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	PuzzleState.connect("before_piece_written", Callable(self, "_on_PuzzleState_before_piece_written"))
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("after_piece_written", Callable(self, "_on_PuzzleState_after_piece_written"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
+	Pauser.connect("paused_changed", Callable(self, "_on_Pauser_paused_changed"))
 	_refresh_piece_manager_path()
 	_prepare_pickups_for_level()
 
@@ -75,7 +75,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 	remove_pickup(cell)
 	
 	if box_type != -1:
-		var pickup: Pickup = PickupScene.instance()
+		var pickup: Pickup = PickupScene.instantiate()
 		pickup.food_type = _food_type_for_box_type(box_type, cell)
 
 		pickup.position = Utils.map_to_world_centered(_puzzle_tile_map, cell + Vector2(0, -3))
@@ -126,12 +126,12 @@ func _refresh_piece_manager_path() -> void:
 		return
 	
 	if _piece_manager:
-		_piece_manager.disconnect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
+		_piece_manager.disconnect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
 	
 	_piece_manager = get_node(piece_manager_path) if piece_manager_path else null
 	
 	if _piece_manager:
-		_piece_manager.connect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
+		_piece_manager.connect("piece_disturbed", Callable(self, "_on_PieceManager_piece_disturbed"))
 
 
 ## Spawns any pickups necessary for starting the current level.

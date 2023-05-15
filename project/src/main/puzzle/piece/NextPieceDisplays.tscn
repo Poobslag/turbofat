@@ -2,11 +2,11 @@
 
 [ext_resource path="res://src/main/puzzle/piece/next-piece-displays.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/piece/NextPieceDisplay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/puzzle/next-piece-bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/puzzle/next-piece-bg.png" type="Texture2D" id=3]
 
 [node name="NextPieceDisplays" type="Control" groups=["night_mode_invisible"]]
-margin_right = 64.0
-margin_bottom = 544.0
+offset_right = 64.0
+offset_bottom = 544.0
 script = ExtResource( 1 )
 NextPieceDisplayScene = ExtResource( 2 )
 
@@ -17,8 +17,8 @@ texture = ExtResource( 3 )
 expand = true
 
 [node name="Shadow" type="ColorRect" parent="."]
-margin_right = 6.0
-margin_bottom = 544.0
+offset_right = 6.0
+offset_bottom = 544.0
 color = Color( 0, 0, 0, 0.196078 )
 
 [node name="BgColor" type="ColorRect" parent="."]

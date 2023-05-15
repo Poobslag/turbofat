@@ -6,10 +6,10 @@ extends Node2D
 var _displayed_type: PieceType
 var _displayed_orientation: int
 
-onready var tile_map: PuzzleTileMap = $TileMap
+@onready var tile_map: PuzzleTileMap = $TileMap
 
 func _ready() -> void:
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 	_prepare_tileset()
 
 

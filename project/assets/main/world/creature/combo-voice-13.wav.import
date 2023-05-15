@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/combo-voice-13.wav-885653342750e936c1338fbebd9fe670.sample"
+type="AudioStreamWAV"
+uid="uid://1hv6r2d7u76q"
+path="res://.godot/imported/combo-voice-13.wav-885653342750e936c1338fbebd9fe670.sample"
 
 [deps]
 
 source_file="res://assets/main/world/creature/combo-voice-13.wav"
-dest_files=[ "res://.import/combo-voice-13.wav-885653342750e936c1338fbebd9fe670.sample" ]
+dest_files=["res://.godot/imported/combo-voice-13.wav-885653342750e936c1338fbebd9fe670.sample"]
 
 [params]
 

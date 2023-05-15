@@ -5,14 +5,14 @@ extends Node
 ## Some of this logic is pushed out into child nodes such as Rotator and Mover. This class only contains reusable code
 ## and code requiring coordination from different child nodes.
 
-export (NodePath) var piece_states_path: NodePath
+@export (NodePath) var piece_states_path: NodePath
 
-onready var rotator := $Rotator
-onready var mover := $Mover
-onready var dropper := $Dropper
-onready var squisher := $Squisher
+@onready var rotator := $Rotator
+@onready var mover := $Mover
+@onready var dropper := $Dropper
+@onready var squisher := $Squisher
 
-onready var _states: PieceStates = get_node(piece_states_path)
+@onready var _states: PieceStates = get_node(piece_states_path)
 
 ## Positions a new piece at the top of the playfield.
 ##

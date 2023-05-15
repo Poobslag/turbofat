@@ -5,22 +5,22 @@ extends Control
 ## emitted when the HUD should be refreshed during initial setup or for a level change.
 signal refreshed
 
-export (NodePath) var puzzle_path: NodePath
+@export (NodePath) var puzzle_path: NodePath
 
-export (NodePath) var hud_flash_path: NodePath
+@export (NodePath) var hud_flash_path: NodePath
 
-onready var messages: TutorialMessages = $Messages
-onready var diagram: TutorialDiagram = $Diagram
-onready var skill_tally_panel: SkillTallyPanel = $SkillTallyPanel
+@onready var messages: TutorialMessages = $Messages
+@onready var diagram: TutorialDiagram = $Diagram
+@onready var skill_tally_panel: SkillTallyPanel = $SkillTallyPanel
 
-onready var puzzle: Puzzle = get_node(puzzle_path)
-onready var _hud_flash: HudFlash = get_node(hud_flash_path)
+@onready var puzzle: Puzzle = get_node(puzzle_path)
+@onready var _hud_flash: HudFlash = get_node(hud_flash_path)
 
 func _ready() -> void:
 	visible = false
-	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
-	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	PuzzleState.connect("game_prepared", Callable(self, "_on_PuzzleState_game_prepared"))
+	PuzzleState.connect("after_level_changed", Callable(self, "_on_PuzzleState_after_level_changed"))
+	CurrentLevel.connect("changed", Callable(self, "_on_Level_settings_changed"))
 	replace_tutorial_module()
 
 
@@ -45,13 +45,13 @@ func replace_tutorial_module() -> void:
 	
 	if module_path:
 		var tutorial_module_scene: PackedScene = ResourceCache.get_resource(module_path)
-		var tutorial_module: Node = tutorial_module_scene.instance()
+		var tutorial_module: Node = tutorial_module_scene.instantiate()
 		tutorial_module.hud = self
 		tutorial_module.name = "TutorialModule"
 		add_child(tutorial_module)
 	
 	# pause to ensure the 'ready' signal is emitted before the 'refreshed' signal
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	refresh()
 
 
