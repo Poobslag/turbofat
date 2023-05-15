@@ -23,7 +23,7 @@ const BOB_SHUDDER := HeadBobMode.SHUDDER
 @export var head_motion_pixels := 2.0
 @export var head_motion_seconds := 6.5
 
-## these constants control how much the creature's head bobs up and down
+## these constants control how much the creature's head bobs up and down 
 const HEAD_BOB_SECONDS := 6.5
 const HEAD_BOB_PIXELS := 2.0
 

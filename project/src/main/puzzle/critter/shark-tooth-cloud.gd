@@ -88,7 +88,7 @@ func clear_eaten_cells() -> void:
 ## Updates the tileset for the eaten piece tilemap.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': enum from PuzzleTileMap.TileSetType referencing the tileset used to render blocks
+## 	'new_puzzle_tile_set_type': tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: PuzzleTileMap.TileSetType) -> void:
 	_check_for_tilemap()
 	_tile_map.set_puzzle_tile_set_type(new_puzzle_tile_set_type)

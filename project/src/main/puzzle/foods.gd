@@ -56,7 +56,7 @@ const COLORS_VEG_ALL := [COLOR_VEG_GREEN, COLOR_VEG_RED, COLOR_VEG_BREAD, COLOR_
 
 
 ## key: (FoodType)
-## value: (BoxType) corresponding box
+## value: (BoxType) the corresponding box
 const BOX_TYPE_BY_FOOD_TYPE := {
 	FoodType.BROWN_0: BoxType.BROWN,
 	FoodType.BROWN_1: BoxType.BROWN,

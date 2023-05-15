@@ -26,7 +26,7 @@ var whiteness := 0.0: set = set_whiteness
 ## offset used to draw the 'ghost piece'
 var ghost_shadow_offset: Vector2i
 
-## enum from TileSetType referencing the tileset used to render blocks
+## tileset used to render blocks
 var puzzle_tile_set_type := TileSetType.DEFAULT: set = set_puzzle_tile_set_type
 
 ## fields used to roll the tilemap back to a previous state
@@ -222,7 +222,7 @@ func somewhere_near_cell(cell_pos: Vector2i, cell_offset: Vector2 = Vector2.ZERO
 ## Updates our tile set and the tileset of the corner map.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': enum from TileSetType referencing the tileset used to render blocks
+## 	'new_puzzle_tile_set_type': tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: TileSetType) -> void:
 	puzzle_tile_set_type = new_puzzle_tile_set_type
 	tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]

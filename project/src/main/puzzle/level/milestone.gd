@@ -22,7 +22,7 @@ const SCORE := MilestoneType.SCORE
 const TIME_OVER := MilestoneType.TIME_OVER
 const TIME_UNDER := MilestoneType.TIME_UNDER
 
-## enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+## milestone criteria (lines, score, time)
 var type := MilestoneType.NONE
 
 ## value describing the milestone criteria (number of lines, points, seconds)

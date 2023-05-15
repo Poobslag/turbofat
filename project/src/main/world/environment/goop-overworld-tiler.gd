@@ -49,7 +49,7 @@ const CAKE_CENTER := 1024
 ##
 ## key: (int) bitmask of surrounding tiles
 ## value: (Vector2i) array of two elements which define a 'binding value':
-##  value[0]: (int) enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
+##  value[0]: (TileTypes) TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
 ##  value[1]: (Vector2i) autotile coordinate of the new tile
 const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 	# goopless tiles
@@ -237,12 +237,12 @@ const CORNER_COVERS_BY_BINDING := {
 @export var _autotile: bool: set = autotile
 
 ## key: (TileTypes)
-## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
+## value: (int) a tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_indexes_by_type := {}
 
-## key: (int) tile index from the parent tilemap
-## value: (TileTypes) tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
+## key: (int) a tile index from the parent tilemap
+## value: (TileTypes) specified tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
 var _tile_types_by_index := {}
 
 ## indexes of cake tiles in the parent tilemap, both goopy and goopless

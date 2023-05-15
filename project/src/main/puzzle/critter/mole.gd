@@ -155,7 +155,7 @@ func pop_next_state() -> States:
 
 
 ## Parameters:
-## 	'new_state': enum from States for the mole's new animation state.
+## 	'new_state': mole's new animation state.
 func set_state(new_state: States) -> void:
 	state = new_state
 	_refresh_state()

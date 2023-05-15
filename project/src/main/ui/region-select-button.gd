@@ -26,7 +26,7 @@ var _focus_just_entered := false
 var _emit_region_chosen := false
 
 ## key: (Type)
-## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
+## value: (Array, Resource) a pair of texture resources to use when the button is enabled or disabled
 var _texture_pairs_by_type := {
 	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),
 			preload("res://assets/main/career/ui/region-default-off.png")],

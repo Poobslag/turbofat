@@ -58,7 +58,7 @@ const TIMER_7 := LevelTriggerPhase.TIMER_7
 const TIMER_8 := LevelTriggerPhase.TIMER_8
 const TIMER_9 := LevelTriggerPhase.TIMER_9
 
-## key: (LevelTriggerPhase) enum from LevelTriggerPhase
+## key: (LevelTriggerPhase)
 ## value: (Array, PhaseCondition) Conditions for whether the trigger should fire
 var phases := {}
 

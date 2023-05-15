@@ -203,13 +203,13 @@ func set_eat_duration(new_eat_duration: float) -> void:
 ## Updates the tileset for the eaten piece tilemap.
 ##
 ## Parameters:
-## 	'new_puzzle_tile_set_type': enum from PuzzleTileMap.TileSetType referencing the tileset used to render blocks
+## 	'new_puzzle_tile_set_type': tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: PuzzleTileMap.TileSetType) -> void:
 	tooth_cloud.set_puzzle_tile_set_type(new_puzzle_tile_set_type)
 
 
 ## Parameters:
-## 	'new_state': enum from States for the shark's new animation state.
+## 	'new_state': shark's new animation state.
 func set_state(new_state: States) -> void:
 	if state == new_state:
 		return

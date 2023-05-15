@@ -14,7 +14,7 @@ enum TransitionType {
 const DEFAULT_FADE_IN_DURATION := 0.6
 const DEFAULT_FADE_OUT_DURATION := 1.2
 
-## (TransitionType) animation to play. Defaults to a puzzle piece animation
+# (TransitionType) animation to play. Defaults to a puzzle piece animation
 const FLAG_TYPE := "transition-type"
 
 ## (float) duration in seconds of the fade in animation. Defaults to DEFAULT_FADE_IN_DURATION

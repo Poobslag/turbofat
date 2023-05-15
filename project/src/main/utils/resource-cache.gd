@@ -38,7 +38,7 @@ const RESOURCE_DIRS := ["res://assets/main", "res://src/main"]
 ## if true, the caching process will be threaded on platforms which support it
 @export var threaded := false
 
-## the minimum amount of time the game should take to load
+## minimum amount of time the game should take to load
 @export var load_seconds := 0.0
 
 ## maintains references to all resources to prevent them from being cleaned up
