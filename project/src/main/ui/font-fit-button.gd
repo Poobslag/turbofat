@@ -10,19 +10,19 @@ const PADDING := 6
 
 func _ready() -> void:
 	SystemData.misc_settings.locale_changed.connect(_on_MiscSettings_locale_changed)
-	pick_largest_font()
+	pick_largest_font_size()
 
 
 func set_fonts(new_fonts: Array) -> void:
 	fonts = new_fonts
-	pick_largest_font()
+	pick_largest_font_size()
 
 
 ## Sets the button's font to the largest font which will accommodate its text.
 ##
 ## If the button's text is modified this should be called manually. This class cannot respond to text changes or
 ## override set_text because of Godot #29390 (https://github.com/godotengine/godot/issues/29390)
-func pick_largest_font() -> void:
+func pick_largest_font_size() -> void:
 	# our shown text is translated; the translated text needs to fit in the button
 	var shown_text := tr(text)
 	
@@ -39,4 +39,4 @@ func pick_largest_font() -> void:
 
 
 func _on_MiscSettings_locale_changed(_value: String) -> void:
-	pick_largest_font()
+	pick_largest_font_size()

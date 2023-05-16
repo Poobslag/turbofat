@@ -33,6 +33,41 @@ game starts up, but has bugs
 -code tweaks and runtime errors
  *replace 'await get_tree().idle_frame' with 'await get_tree().process_frame'
  *update all 'Array.slice()' calls: slice is now exclusive, not inclusive
+ -update all font scene references to include size
+  -h1-font.tres (48)
+  -h1-font-outline.tres (48)
+  -h2-font.tres (36)
+  -h2-font-outline.tres (36)
+  -h3-font.tres (24)
+  -h4-font.tres (16)
+  -h5-font.tres (14)
+  -h6-font.tres (12)
+  -h7-font.tres (10)
+  -h8-font.tres (8)
+  -blogger-sans-bold-18.tres
+  -blogger-sans-bold-24.tres
+  -blogger-sans-bold-30.tres
+  -blogger-sans-bold-36.tres
+  -blogger-sans-bold-72.tres
+  -blogger-sans-medium-12.tres
+  -blogger-sans-medium-14.tres
+  -blogger-sans-medium-18.tres
+  -blogger-sans-medium-24.tres
+  -blogger-sans-medium-30.tres
+  -blogger-sans-medium-36.tres
+  -fredoka-48-outline.tres
+  -letter-projectile-font.tres (12)
+  -money-font.tres (24)
+ -fix fonts
+  -update FontFitLabelDemo so it works
+  -update uses of FontFitLabel to set font_sizes property
+  -update themes
+  -remove references to FontFitLabel.fonts
+  -remove FontFitLabel.fonts property
+  -remove other references to h1.tscn, h2.tscn, etc...
+  -remove references to other font .tscn files
+  -remove all font scene files
+ -game crashes when loading PuzzleTileMap.tscn
  -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
  -avoid assigning constants to fields; they can't be mutated anymore
  -assigning your own fields now calls setters
@@ -94,6 +129,8 @@ Demos
 *./project/src/demo/career/ui/ChalkboardMapRowDemo.tscn
  *bug: landmark lines are aliased
 -./project/src/demo/ui/FontFitLabelDemo.tscn
+ -bug: swapping in fonts doesn't change size
+ -fix FontFitButton too
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
@@ -132,3 +169,15 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
+
+
+
+
+h1: 48
+h2: 36
+h3: 24
+h4: 16
+h5: 14
+h6: 12
+h7: 10
+h8: 8

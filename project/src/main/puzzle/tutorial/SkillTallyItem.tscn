@@ -76,7 +76,7 @@ vertical_alignment = 1
 __meta__ = {
 "_editor_description_": ""
 }
-fonts = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ]
+font_sizes = [ 18, 14, 12 ]
 
 [node name="TaskCompleteSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

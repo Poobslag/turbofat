@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://5r1wekdm81p0"]
+[gd_scene load_steps=4 format=3 uid="uid://5r1wekdm81p0"]
 
 [ext_resource type="Script" path="res://src/demo/ui/font-fit-label-demo.gd" id="1"]
 [ext_resource type="PackedScene" path="res://src/main/ui/FontFitLabel.tscn" id="2"]
-[ext_resource type="FontFile" uid="uid://o4k0npot1h04" path="res://src/main/ui/theme/h1-font.tres" id="3"]
-[ext_resource type="FontFile" path="res://src/main/ui/theme/h3-font.tres" id="4"]
-[ext_resource type="FontFile" path="res://src/main/ui/theme/h5-font.tres" id="5"]
-[ext_resource type="FontFile" path="res://src/main/ui/theme/h4-font.tres" id="6"]
-[ext_resource type="FontFile" uid="uid://sl7klm1ugiga" path="res://src/main/ui/theme/h2-font.tres" id="7"]
+[ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="3_eprgr"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1")
@@ -29,7 +25,8 @@ color = Color(1, 1, 1, 0.196078)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme_override_fonts/font = ExtResource("3_eprgr")
 text = "hello"
 horizontal_alignment = 1
 vertical_alignment = 1
-fonts = Array[Font]([ExtResource("3"), ExtResource("7"), ExtResource("4"), ExtResource("6"), ExtResource("5")])
+font_sizes = Array[float]([48.0, 36.0, 24.0, 16.0, 14.0])

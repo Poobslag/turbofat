@@ -96,7 +96,7 @@ func update_milebar_color() -> void:
 ## start of each level when the text should be at its longest value.
 func init_milebar() -> void:
 	update_milebar()
-	_value.pick_largest_font()
+	_value.pick_largest_font_size()
 
 
 ## Update the milestone hud's content during a game.

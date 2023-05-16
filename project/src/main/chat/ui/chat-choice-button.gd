@@ -10,7 +10,7 @@ signal pop_choose_completed
 
 func _ready() -> void:
 	$FontFitLabel.text = choice_text
-	$FontFitLabel.pick_largest_font()
+	$FontFitLabel.pick_largest_font_size()
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 	_set_pivot_to_center()
 
@@ -23,7 +23,7 @@ func set_choice_text(new_choice_text: String) -> void:
 	choice_text = new_choice_text
 	if has_node("FontFitLabel"):
 		$FontFitLabel.text = choice_text
-		$FontFitLabel.pick_largest_font()
+		$FontFitLabel.pick_largest_font_size()
 
 
 ## Makes the chat choice appear.

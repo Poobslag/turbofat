@@ -250,10 +250,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 max_lines_visible = 1
-__meta__ = {
-"_editor_description_": ""
-}
-fonts = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ]
+font_sizes = Array[float]([30.0, 24.0, 18.0, 14.0, 12.0])
 
 [node name="MoodSprite" type="Control" parent="."]
 offset_left = -11.0

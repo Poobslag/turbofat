@@ -330,7 +330,7 @@ max_lines_visible = 1
 __meta__ = {
 "_editor_description_": ""
 }
-fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
+font_sizes = [ 36.0, 24.0, 16.0 ]
 
 [node name="ProgressBarParticles" type="Control" parent="Fg/Chalkboard/MilestoneHud"]
 offset_left = 150.0
