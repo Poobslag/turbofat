@@ -276,7 +276,7 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	
 	# find a new position for it
 	var to_index := from_index
-	var piece_positions := non_adjacent_indexes(pieces, duplicate_piece.type, min_to_index)
+	var piece_positions := PieceQueue.non_adjacent_indexes(pieces, duplicate_piece.type, min_to_index)
 	if piece_positions:
 		to_index = Utils.rand_value(piece_positions)
 	

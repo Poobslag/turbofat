@@ -32,7 +32,7 @@ func test_save_and_load() -> void:
 	PlayerData.reset()
 	PlayerSave.load_player_data()
 	assert_true(PlayerData.level_history.has_result("level_895"))
-	assert_eq(PlayerData.level_history.results("level_895")[0].score, 7890)
+	assert_eq(PlayerData.level_history.get_results("level_895")[0].score, 7890)
 
 
 func test_one_bad_file() -> void:
@@ -42,7 +42,7 @@ func test_one_bad_file() -> void:
 	FileUtils.write_file(PlayerSave.data_filename, "invalid-772")
 	PlayerSave.load_player_data()
 	assert_true(PlayerData.level_history.has_result("level_895"))
-	assert_eq(PlayerData.level_history.results("level_895")[0].score, 7890)
+	assert_eq(PlayerData.level_history.get_results("level_895")[0].score, 7890)
 	assert_true(FileUtils.file_exists("user://test936.save.corrupt"), "user://test936.save.corrupt")
 	assert_true(FileUtils.file_exists("user://test936.save"), "user://test936.save")
 	

@@ -38,7 +38,7 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_PuzzleState_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.level_history.prev_result(CurrentLevel.settings.id)
+	var rank_result: RankResult = PlayerData.level_history.get_prev_result(CurrentLevel.settings.id)
 	if not rank_result or CurrentLevel.settings.rank.skip_results:
 		return
 	

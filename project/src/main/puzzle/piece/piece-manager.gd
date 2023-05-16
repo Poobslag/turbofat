@@ -86,7 +86,7 @@ func _ready() -> void:
 	
 	_clear_piece()
 	
-	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
+	PieceSpeeds.current_speed = PieceSpeeds.get_speed("0")
 	_clear_piece()
 	states.set_state(states.none)
 	_prepare_tileset()

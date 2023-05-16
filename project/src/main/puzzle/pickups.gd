@@ -113,12 +113,12 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 
 ## Returns true if the specified row has no pickups.
 func row_is_empty(y: int) -> bool:
-	var row_is_empty := true
+	var result := true
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if not get_pickup_food_type(Vector2i(x, y)) == -1:
-			row_is_empty = false
+			result = false
 			break
-	return row_is_empty
+	return result
 
 
 func _refresh_piece_manager_path() -> void:

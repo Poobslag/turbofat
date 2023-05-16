@@ -66,7 +66,7 @@ func _update_career_region_text(region: CareerRegion) -> void:
 		var ranks := []
 		for level_obj in region.levels:
 			var level: CareerLevel = level_obj
-			ranks.append(PlayerData.level_history.best_overall_rank(level.level_id))
+			ranks.append(PlayerData.level_history.get_best_overall_rank(level.level_id))
 		
 		# calculate the worst rank
 		var worst_rank := 0.0
@@ -76,7 +76,7 @@ func _update_career_region_text(region: CareerRegion) -> void:
 		# count the total number of 'stars' for all of the levels
 		var star_count := 0
 		for rank in ranks:
-			match RankCalculator.grade(rank):
+			match RankCalculator.grade_from_rank(rank):
 				"S-": star_count += 1
 				"S": star_count += 2
 				"S+": star_count += 3
@@ -88,14 +88,14 @@ func _update_career_region_text(region: CareerRegion) -> void:
 		# calculate the percent of levels where the player's rank is already high enough to rank up
 		var worst_rank_count := 0
 		for rank in ranks:
-			if RankCalculator.grade(worst_rank) == RankCalculator.grade(rank):
+			if RankCalculator.grade_from_rank(worst_rank) == RankCalculator.grade_from_rank(rank):
 				worst_rank_count += 1
 		var next_rank_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 		
-		new_text += tr("Overall grade: %s") % [RankCalculator.grade(worst_rank)]
-		if RankCalculator.grade(worst_rank) != RankCalculator.HIGHEST_GRADE:
+		new_text += tr("Overall grade: %s") % [RankCalculator.grade_from_rank(worst_rank)]
+		if RankCalculator.grade_from_rank(worst_rank) != RankCalculator.HIGHEST_GRADE:
 			new_text += "\n" + tr("Promotion to %s: %.1f%%") % [
-					RankCalculator.next_grade(RankCalculator.grade(worst_rank)), 100 * next_rank_pct]
+					RankCalculator.next_grade(RankCalculator.grade_from_rank(worst_rank)), 100 * next_rank_pct]
 		if star_count > 0:
 			new_text += "\n" + tr("Total stars: %s") % [star_count]
 	else:
@@ -128,7 +128,7 @@ func _update_rank_region_text(region: OtherRegion) -> void:
 	if last_successful_level_index != region.level_ids.size() - 1:
 		var next_level_id: String = region.level_ids[last_successful_level_index + 1]
 		var next_rank: String = rank_by_level_id.get(next_level_id, "-")
-		var best_result := PlayerData.level_history.best_result(next_level_id)
+		var best_result := PlayerData.level_history.get_best_result(next_level_id)
 		var promotion_percent := 0.0
 		if best_result:
 			var level_settings := LevelSettings.new()
@@ -162,7 +162,7 @@ func _update_other_region_text(region: OtherRegion) -> void:
 		# include grade details -- how the player can get a better grade
 		var ranks := []
 		for level_id in region.level_ids:
-			ranks.append(PlayerData.level_history.best_overall_rank(level_id))
+			ranks.append(PlayerData.level_history.get_best_overall_rank(level_id))
 		
 		# calculate the worst rank
 		var worst_rank := 0.0
@@ -172,7 +172,7 @@ func _update_other_region_text(region: OtherRegion) -> void:
 		# count the total number of 'stars' for all of the levels
 		var star_count := 0
 		for rank in ranks:
-			match RankCalculator.grade(rank):
+			match RankCalculator.grade_from_rank(rank):
 				"S-": star_count += 1
 				"S": star_count += 2
 				"S+": star_count += 3
@@ -184,14 +184,14 @@ func _update_other_region_text(region: OtherRegion) -> void:
 		# calculate the percent of levels where the player's rank is already high enough to rank up
 		var worst_rank_count := 0
 		for rank in ranks:
-			if RankCalculator.grade(worst_rank) == RankCalculator.grade(rank):
+			if RankCalculator.grade_from_rank(worst_rank) == RankCalculator.grade_from_rank(rank):
 				worst_rank_count += 1
 		var next_rank_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 		
-		new_text += tr("Overall grade: %s") % [RankCalculator.grade(worst_rank)]
-		if RankCalculator.grade(worst_rank) != RankCalculator.HIGHEST_GRADE:
+		new_text += tr("Overall grade: %s") % [RankCalculator.grade_from_rank(worst_rank)]
+		if RankCalculator.grade_from_rank(worst_rank) != RankCalculator.HIGHEST_GRADE:
 			new_text += "\n" + tr("Promotion to %s: %.1f%%") % [
-					RankCalculator.next_grade(RankCalculator.grade(worst_rank)), 100 * next_rank_pct]
+					RankCalculator.next_grade(RankCalculator.grade_from_rank(worst_rank)), 100 * next_rank_pct]
 		if star_count > 0:
 			new_text += "\n" + tr("Total stars: %s") % [star_count]
 	else:

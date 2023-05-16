@@ -34,7 +34,7 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 	var new_json := json_settings
 	while needs_upgrade(new_json):
 		# upgrade the old save file to a new format
-		var old_version := _get_version_string(new_json)
+		var old_version := LevelSettingsUpgrader.get_version_string(new_json)
 		
 		if not _upgrade_methods.has(old_version):
 			push_warning("Couldn't upgrade old settings version '%s'" % old_version)
@@ -50,7 +50,7 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 				_:
 					call(upgrade_method.method, old_json, old_key, new_json)
 		
-		if _get_version_string(new_json) == old_version:
+		if LevelSettingsUpgrader.get_version_string(new_json) == old_version:
 			# failed to upgrade, but the data might still load
 			push_warning("Couldn't upgrade old settings '%s'" % old_version)
 			break
@@ -61,7 +61,7 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 ## Returns 'true' if the specified json settings are from an older version of the game.
 func needs_upgrade(json_settings: Dictionary) -> bool:
 	var result: bool = false
-	var version := _get_version_string(json_settings)
+	var version := LevelSettingsUpgrader.get_version_string(json_settings)
 	if version == current_version:
 		result = false
 	elif _upgrade_methods.has(version):
@@ -116,7 +116,7 @@ func _increment_phase_string(phase: String, condition: String) -> String:
 		var phase_fragment: String = split[i_split]
 		
 		if phase_fragment.begins_with("%s=" % [condition]):
-			split[i_split] = increment_string(phase_fragment)
+			split[i_split] = LevelSettingsUpgrader.increment_string(phase_fragment)
 			result = " ".join(PackedStringArray(split))
 			break
 	
@@ -220,5 +220,5 @@ func _upgrade_1922(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 
 
 ## Extracts a version string from the specified json settings.
-static func _get_version_string(json_settings: Dictionary) -> String:
+static func get_version_string(json_settings: Dictionary) -> String:
 	return json_settings.get("version")

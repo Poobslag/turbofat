@@ -202,16 +202,25 @@ func get_visual_fatness() -> float:
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
 	non_iso_walk_direction = new_direction
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	iso_walk_direction = Global.to_iso(new_direction)
 
 
 func set_iso_velocity(new_velocity: Vector2) -> void:
 	_iso_velocity = new_velocity
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	_non_iso_velocity = Global.from_iso(new_velocity)
 
 
 func set_non_iso_velocity(new_velocity: Vector2) -> void:
 	_non_iso_velocity = new_velocity
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	_iso_velocity = Global.to_iso(new_velocity)
 
 

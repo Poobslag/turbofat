@@ -42,7 +42,7 @@ func _add_rows() -> void:
 	if not _level:
 		return
 	
-	for best_result in PlayerData.level_history.best_results(_level.id, daily):
+	for best_result in PlayerData.level_history.get_best_results(_level.id, daily):
 		_add_row(rank_result_row(best_result, daily))
 
 
@@ -91,12 +91,12 @@ static func rank_result_row(result: RankResult, daily_result: bool = false) -> A
 		if result.lost:
 			seconds_string = "-"
 		row.append(seconds_string)
-		row.append(RankCalculator.grade(result.seconds_rank))
+		row.append(RankCalculator.grade_from_rank(result.seconds_rank))
 	else:
 		var score_string := StringUtils.format_money(result.score)
 		if result.lost:
 			score_string += "*"
 		row.append(score_string)
-		row.append(RankCalculator.grade(result.score_rank))
+		row.append(RankCalculator.grade_from_rank(result.score_rank))
 
 	return row

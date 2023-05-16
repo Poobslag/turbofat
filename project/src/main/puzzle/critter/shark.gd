@@ -272,7 +272,7 @@ func play_shark_anim(anim_prefix: String) -> void:
 	if old_animation:
 		old_animation_position = animation_player.current_animation_position
 	
-	animation_player.play(_shark_anim_name(anim_prefix, shark_size))
+	animation_player.play(Shark.shark_anim_name(anim_prefix, shark_size))
 	
 	# preserve old animation position when transitioning from 'dance' to 'dance-end' or vice-versa
 	if old_animation.begins_with("dance-") and animation_player.current_animation.begins_with("dance-"):
@@ -292,7 +292,7 @@ func _refresh_shark_size() -> void:
 	# detect if a 'shark animation' is playing, and obtain its suffix
 	var old_anim_suffix: String
 	for next_shark_size in SharkConfig.SharkSize.values():
-		var next_anim_suffix := _shark_anim_name("", next_shark_size)
+		var next_anim_suffix := Shark.shark_anim_name("", next_shark_size)
 		if animation_player.current_animation.ends_with(next_anim_suffix):
 			old_anim_suffix = next_anim_suffix
 			break
@@ -300,7 +300,7 @@ func _refresh_shark_size() -> void:
 	# update the 'shark animation' to the new suffix
 	if old_anim_suffix:
 		var anim_prefix := StringUtils.substring_before_last(animation_player.current_animation, old_anim_suffix)
-		var anim_name := _shark_anim_name(anim_prefix, shark_size)
+		var anim_name := Shark.shark_anim_name(anim_prefix, shark_size)
 		var old_animation_position := animation_player.current_animation_position
 		animation_player.play(anim_name)
 		animation_player.seek(old_animation_position, true)
@@ -333,5 +333,5 @@ func _on_ToothCloud_finished_eating() -> void:
 ## 		player.
 ##
 ## 	'in_shark_size': Enum from SharkConfig.SharkSize for the animation to return.
-static func _shark_anim_name(anim_prefix: String, in_shark_size: SharkConfig.SharkSize) -> String:
+static func shark_anim_name(anim_prefix: String, in_shark_size: SharkConfig.SharkSize) -> String:
 	return "%s-%s" % [anim_prefix, Utils.enum_to_snake_case(SharkConfig.SharkSize, in_shark_size)]

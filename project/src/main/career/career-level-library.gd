@@ -132,9 +132,9 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	var chef_ids := []
 	var customer_ids := []
 	var observer_ids := []
-	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.potential_chat_key_pairs([region.cutscene_path])
+	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.get_potential_chat_key_pairs([region.cutscene_path])
 	for chat_key_pair in potential_chat_key_pairs:
-		for chat_key in chat_key_pair.chat_keys():
+		for chat_key in chat_key_pair.get_chat_keys():
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 			var has_quirky_chef := false
 			var has_quirky_customer := false

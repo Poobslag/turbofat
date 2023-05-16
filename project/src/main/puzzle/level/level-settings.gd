@@ -156,7 +156,7 @@ func to_json_dict() -> Dictionary:
 
 
 func load_from_resource(new_id: String) -> void:
-	var text := FileUtils.get_file_as_text(path_from_level_key(new_id))
+	var text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(new_id))
 	
 	if text.is_empty():
 		push_error("Level not found: %s" % [new_id])

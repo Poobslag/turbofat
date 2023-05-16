@@ -108,7 +108,7 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 ## 	A ChatKeyPair defining preroll and postroll cutscenes.
 func next_interlude_chat_key_pair(chat_key_roots: Array,
 		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> ChatKeyPair:
-	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots, chef_id, customer_id, observer_id)
+	var potential_chat_key_pairs := get_potential_chat_key_pairs(chat_key_roots, chef_id, customer_id, observer_id)
 	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else ChatKeyPair.new()
 
 
@@ -127,7 +127,7 @@ func next_interlude_chat_key_pair(chat_key_roots: Array,
 ##
 ## Returns:
 ## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.
-func potential_chat_key_pairs(chat_key_roots: Array,
+func get_potential_chat_key_pairs(chat_key_roots: Array,
 		chef_id: String = "", customer_id: String = "", observer_id: String = "") -> Array:
 	
 	var search_flags := CutsceneSearchFlags.new()
@@ -203,7 +203,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	_general_sensei_chat_keys.clear()
 	_general_restaurant_chat_keys.clear()
 	for chat_key_pair in all_chat_key_pairs:
-		for chat_key in chat_key_pair.chat_keys():
+		for chat_key in chat_key_pair.get_chat_keys():
 			if not chat_key.begins_with(Careers.GENERAL_CHAT_KEY_ROOT):
 				continue
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
@@ -226,7 +226,7 @@ func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	var excluded_chat_keys := {}
 	
 	# branches are only exhausted when their leaves are exhausted, so leaves must be traversed first (postorder)
-	var chat_key_queue := chat_keys(chat_key_roots)
+	var chat_key_queue := get_chat_keys(chat_key_roots)
 	while chat_key_queue:
 		var chat_key: String = chat_key_queue.pop_front()
 		var chat_key_pair: ChatKeyPair = _chat_key_pairs_by_preroll.get(chat_key, ChatKeyPair.new())
@@ -263,7 +263,7 @@ func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 ##
 ## Returns:
 ## 	An array of String chat keys in postorder (leaves first)
-func chat_keys(chat_key_roots: Array) -> Array:
+func get_chat_keys(chat_key_roots: Array) -> Array:
 	var chat_keys := []
 	var chat_key_queue := chat_key_roots.duplicate()
 	while chat_key_queue:
@@ -347,6 +347,9 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 
 ## Returns a list of all file paths in the career cutscene root path, performing a tree traversal.
 func find_career_cutscene_resource_paths() -> Array:
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	return _find_resource_paths(career_cutscene_root_path)
 
 
@@ -355,7 +358,7 @@ func _chat_key_pair_is_nonquirky(chat_key_pair: ChatKeyPair) -> bool:
 	var quirky := false
 	var region: CareerRegion = PlayerData.career.current_region()
 	
-	for chat_key in chat_key_pair.chat_keys():
+	for chat_key in chat_key_pair.get_chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 		
 		if not quirky and not chat_tree.chef_id.is_empty():
@@ -386,7 +389,7 @@ func _chat_key_pair_has_creatures(chat_key_pair: ChatKeyPair,
 		chef_id: String, customer_id: String, observer_id: String) -> bool:
 	var matches := false
 	
-	for chat_key in chat_key_pair.chat_keys():
+	for chat_key in chat_key_pair.get_chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 		
 		if not matches and not chef_id.is_empty():

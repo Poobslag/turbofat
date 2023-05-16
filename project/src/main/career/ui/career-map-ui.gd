@@ -21,7 +21,7 @@ func _force_cutscene() -> bool:
 		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([Careers.GENERAL_CHAT_KEY_ROOT])
 	if chat_key_pair.is_empty():
 		# no general cutscene available; make one available
-		var chat_keys := CareerCutsceneLibrary.chat_keys([Careers.GENERAL_CHAT_KEY_ROOT])
+		var chat_keys := CareerCutsceneLibrary.get_chat_keys([Careers.GENERAL_CHAT_KEY_ROOT])
 		var min_chat_age := ChatHistory.CHAT_AGE_NEVER
 		var newest_chat_key := ""
 		for chat_key in chat_keys:

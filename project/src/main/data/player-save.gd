@@ -77,9 +77,9 @@ func save_player_data() -> void:
 	player_info["money"] = PlayerData.money
 	player_info["seconds_played"] = PlayerData.seconds_played
 	save_json.append(_save_item("player_info", player_info).to_json_dict())
-	for level_name in PlayerData.level_history.level_names():
+	for level_name in PlayerData.level_history.get_level_names():
 		var rank_results_json := []
-		for rank_result in PlayerData.level_history.results(level_name):
+		for rank_result in PlayerData.level_history.get_results(level_name):
 			rank_results_json.append(rank_result.to_json_dict())
 		save_json.append(_save_item("level_history", rank_results_json, level_name).to_json_dict())
 	save_json.append(_save_item("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())

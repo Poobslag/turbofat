@@ -47,7 +47,7 @@ func add_link(link: String, link_text: String, link_mood: Creatures.Mood) -> voi
 
 
 func enabled_link_indexes() -> Array:
-	var enabled_link_indexes := []
+	var result := []
 	for i in range(links.size()):
 		var link_condition: String
 		for meta_item in link_metas[i]:
@@ -56,8 +56,8 @@ func enabled_link_indexes() -> Array:
 				break
 		
 		if link_condition.is_empty() or BoolExpressionEvaluator.evaluate(link_condition):
-			enabled_link_indexes.append(i)
-	return enabled_link_indexes
+			result.append(i)
+	return result
 
 
 ## Returns 'true' if this chat event represents something the player is thinking.

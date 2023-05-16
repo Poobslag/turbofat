@@ -88,14 +88,5 @@ gold plating
 
 
 
-# warning-ignore:unused_signal
-@warning_ignore("integer_division")
 
 130 warnings/errors running tests
-*Explicitly cast all 'enum_from_snake_case' calls
-*Explicitly cast other things (run tests)
-*update '(int) an enum' comments
-*'referencing the'
-*'describing'
-*'## the'
-

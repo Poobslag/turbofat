@@ -28,7 +28,7 @@ func is_empty() -> bool:
 
 
 ## Returns an ordered list of all cutscenes defined by this ChatKeyPair.
-func chat_keys() -> Array:
+func get_chat_keys() -> Array:
 	var result := []
 	if preroll: result.append(preroll)
 	if postroll: result.append(postroll)

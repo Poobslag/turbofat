@@ -82,7 +82,7 @@ func add_carrots(config: CarrotConfig) -> void:
 			range(PuzzleTileMap.COL_COUNT - carrot_dimensions.x + 1))
 	potential_carrot_x_coords.shuffle()
 	
-	potential_carrot_x_coords = deconflict_carrots(potential_carrot_x_coords, carrot_dimensions)
+	potential_carrot_x_coords = Carrots.deconflict_carrots(potential_carrot_x_coords, carrot_dimensions)
 	
 	for i in range(min(config.count, potential_carrot_x_coords.size())):
 		_add_carrot(Vector2i(potential_carrot_x_coords[i], PuzzleTileMap.ROW_COUNT), config)

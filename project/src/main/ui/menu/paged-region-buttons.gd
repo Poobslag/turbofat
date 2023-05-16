@@ -166,7 +166,7 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 		var ranks := []
 		for career_level_obj in region.levels:
 			var career_level: CareerLevel = career_level_obj
-			var rank := PlayerData.level_history.best_overall_rank(career_level.level_id)
+			var rank := PlayerData.level_history.get_best_overall_rank(career_level.level_id)
 			ranks.append(rank)
 		region_button.ranks = ranks
 		region_button.completion_percent = PlayerData.career.region_completion(region).completion_percent()
@@ -183,7 +183,7 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 					level_completion += 1
 			elif PlayerData.level_history.is_level_finished(level_id):
 				level_completion += 1
-			ranks.append(PlayerData.level_history.best_overall_rank(level_id))
+			ranks.append(PlayerData.level_history.get_best_overall_rank(level_id))
 		region_button.ranks = ranks
 		region_button.completion_percent = level_completion / float(potential_completion)
 		region_button.region_name = region.name

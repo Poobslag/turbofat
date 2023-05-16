@@ -53,7 +53,7 @@ func _refresh_appearance() -> void:
 		_refresh_status_icon(button.lock_status)
 	else:
 		# cleared levels show a grade
-		_refresh_grade_text(PlayerData.level_history.best_overall_rank(button.level_id))
+		_refresh_grade_text(PlayerData.level_history.get_best_overall_rank(button.level_id))
 
 
 ## Updates the icon based on the level's status.
@@ -92,7 +92,7 @@ func _refresh_status_icon(lock_status: LevelSelectButton.LockStatus) -> void:
 func _refresh_grade_text(rank: float) -> void:
 	_status_icon.visible = false
 	
-	_grade_label.text = RankCalculator.grade(rank)
+	_grade_label.text = RankCalculator.grade_from_rank(rank)
 	_grade_label.visible = false if _grade_label.text == "-" else true
 	_grade_label.refresh_color_from_text()
 

@@ -280,7 +280,7 @@ func _new_level_posse(level_index: int) -> LevelPosse:
 	var level_posse := LevelPosse.new()
 	
 	# add customers/chefs from the cutscene
-	for chat_key in chat_key_pair.chat_keys():
+	for chat_key in chat_key_pair.get_chat_keys():
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 		if not chat_tree.chef_id.is_empty():
 			level_posse.chef_id = chat_tree.chef_id

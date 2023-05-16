@@ -56,7 +56,7 @@ func _boss_level_percent() -> float:
 		result = min(result, _milestone_met_percent(CurrentLevel.settings.finish_condition))
 	elif CurrentLevel.settings.success_condition.type == Milestone.TIME_UNDER:
 		# For modes graded on time, we predict their success based on their points per second.
-		var current_points_per_second := float( \
+		var current_points_per_second: float = float( \
 				MilestoneManager.progress_value(CurrentLevel.settings.finish_condition)) / \
 				max(1.0, MilestoneManager.progress_value(CurrentLevel.settings.success_condition))
 		var target_points_per_second := float( \
@@ -119,7 +119,7 @@ func _overall_rank() -> float:
 	
 	if CurrentLevel.settings.finish_condition.type == Milestone.SCORE:
 		# for modes graded on time, we predict their final time based on their current performance
-		var rank_result := _rank_calculator.unranked_result()
+		var rank_result := _rank_calculator.get_unranked_result()
 		var percent_complete := float(rank_result.score) / CurrentLevel.settings.finish_condition.value
 		percent_complete = clamp(percent_complete, 0.0, 1.0)
 		

@@ -77,14 +77,14 @@ func adjusted_value() -> int:
 		# 2 pieces would ruin the tutorial
 		return value
 	
-	var adjusted_value := value
+	var result := value
 	match type:
 		LINES:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_line_milestone(adjusted_value)
+			result = GameplayDifficultyAdjustments.adjust_line_milestone(result)
 		PIECES:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_piece_milestone(adjusted_value)
+			result = GameplayDifficultyAdjustments.adjust_piece_milestone(result)
 		SCORE:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_score_milestone(adjusted_value)
+			result = GameplayDifficultyAdjustments.adjust_score_milestone(result)
 		TIME_OVER:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_time_over_milestone(adjusted_value)
-	return adjusted_value
+			result = GameplayDifficultyAdjustments.adjust_time_over_milestone(result)
+	return result

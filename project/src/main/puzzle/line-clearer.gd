@@ -136,7 +136,7 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 
 ## Schedules any filled lines to be cleared later.
 func schedule_filled_line_clears(force: bool = false) -> void:
-	var lines_to_clear := calculate_lines_to_clear(filled_lines(), force)
+	var lines_to_clear := calculate_lines_to_clear(calculate_filled_lines(), force)
 	
 	if lines_to_clear:
 		schedule_line_clears(lines_to_clear, PieceSpeeds.current_speed.line_clear_delay)
@@ -190,7 +190,7 @@ func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array
 	return lines_to_clear
 
 
-func filled_lines() -> Array:
+func calculate_filled_lines() -> Array:
 	var filled_lines := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		if _tile_map.row_is_full(y):

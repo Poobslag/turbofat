@@ -33,8 +33,8 @@ func update() -> void:
 ## Resets the state's internal variables and notifies any listeners.
 func set_state(new_state: State) -> void:
 	var prev_state := _state
-	var prev_state_name: String = "" if _state == null else _state.name
-	var new_state_name: String = "" if new_state == null else new_state.name
+	var prev_state_name: String = "" if _state == null else _state.name as String
+	var new_state_name: String = "" if new_state == null else new_state.name as String
 	if _state:
 		_state.exit(_host, new_state_name)
 	_state = new_state

@@ -16,7 +16,7 @@ class AbstractState:
 		chat_tree = init_chat_tree
 	
 	
-	func line(_line: String) -> String:
+	func parse_line(_line: String) -> String:
 		return ""
 
 
@@ -34,7 +34,7 @@ class DefaultState extends AbstractState:
 		pass
 	
 	
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line.is_empty():
 			pass
@@ -52,7 +52,7 @@ class DefaultState extends AbstractState:
 			result = line.trim_prefix("[").trim_suffix("]")
 		else:
 			# unrecognized text; parse as chat lines and change state
-			result = chat_state.line(line)
+			result = chat_state.parse_line(line)
 			result = StringUtils.default_if_empty(result, CHAT)
 		return result
 
@@ -69,7 +69,7 @@ class LocationState extends AbstractState:
 	## Syntax:
 	## 	[location]
 	## 	inside_turbo_fat
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line:
 			chat_tree.location_id = line
@@ -93,7 +93,7 @@ class CharactersState extends AbstractState:
 		_character_aliases = init_chat_aliases
 	
 	
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line:
 			_parse_creature_id(line)
@@ -186,7 +186,7 @@ class ChatState extends AbstractState:
 	## 	[no]
 	## 	p1: Never mind, I don't want to.
 	## 	s: u_u Oh...
-	func line(line: String) -> String:
+	func parse_line(line: String) -> String:
 		var result := ""
 		if line:
 			if line.begins_with("["):
@@ -451,7 +451,7 @@ func chat_tree_from_file(path: String) -> ChatTree:
 			if line.begins_with("//"):
 				# comment; ignore line
 				continue
-			var new_state_name := _state.line(line)
+			var new_state_name := _state.parse_line(line)
 			if new_state_name:
 				if not _states_by_name.has(new_state_name):
 					_chat_tree.warn("Invalid header line: %s" % [line])

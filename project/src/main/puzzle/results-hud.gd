@@ -73,31 +73,31 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 	if _speed_shown(finish_condition_type):
 		text += "|||||" + tr("Speed: %d") % round(rank_result.speed * 200 / 60)
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.speed_rank)
 		text += "\n"
 	
 	if _pieces_shown(finish_condition_type):
 		text += "|||||" + tr("Pieces: %d") % rank_result.pieces
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.pieces_rank)
 		text += "\n"
 	
 	if _lines_shown(finish_condition_type):
 		text += "|||||" + tr("Lines: %d") % rank_result.lines
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.lines_rank)
 		text += "\n"
 	
 	if _boxes_shown():
 		text += "|||||" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.box_score_per_line_rank)
 		text += "\n"
 	
 	if _combos_shown():
 		text += "|||||" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.combo_score_per_line_rank)
 		text += "\n"
 	
 	if _pickups_shown():
@@ -111,7 +111,7 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 		
 		text += "|||||" + tr("Pickups: %d") % shown_pickup_score
 		if not CurrentLevel.settings.rank.unranked:
-			text += " (%s)" % RankCalculator.grade(rank_result.pickup_score_rank)
+			text += " (%s)" % RankCalculator.grade_from_rank(rank_result.pickup_score_rank)
 		text += "\n"
 	
 	if not CurrentLevel.settings.rank.unranked:
@@ -119,9 +119,9 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 		text += "||||||||||"
 		if finish_condition_type == Milestone.SCORE:
 			var duration := StringUtils.format_duration(rank_result.seconds)
-			text += "%s (%s)\n" % [duration, RankCalculator.grade(rank_result.seconds_rank)]
+			text += "%s (%s)\n" % [duration, RankCalculator.grade_from_rank(rank_result.seconds_rank)]
 		else:
-			text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
+			text += "(%s)\n" % RankCalculator.grade_from_rank(rank_result.score_rank)
 	return text
 
 
@@ -182,7 +182,7 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_PuzzleState_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.level_history.prev_result(CurrentLevel.settings.id)
+	var rank_result: RankResult = PlayerData.level_history.get_prev_result(CurrentLevel.settings.id)
 	if not rank_result or CurrentLevel.settings.rank.skip_results:
 		return
 	

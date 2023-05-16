@@ -169,22 +169,22 @@ func is_cell_obstructed(pos: Vector2i) -> bool:
 
 ## Returns true if the specified row has no empty cells.
 func row_is_full(y: int) -> bool:
-	var row_is_full := true
+	var result := true
 	for x in range(COL_COUNT):
 		if is_cell_empty(Vector2i(x, y)):
-			row_is_full = false
+			result = false
 			break
-	return row_is_full
+	return result
 
 
 ## Returns true if the specified row has only empty cells.
 func row_is_empty(y: int) -> bool:
-	var row_is_empty := true
+	var result := true
 	for x in range(COL_COUNT):
 		if not is_cell_empty(Vector2i(x, y)):
-			row_is_empty = false
+			result = false
 			break
-	return row_is_empty
+	return result
 
 
 ## Erases all cells in the specified row.

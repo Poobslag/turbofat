@@ -31,8 +31,8 @@ func load_player_data(filename: String) -> void:
 func test_15d2_rank_success() -> void:
 	load_legacy_player_data("turbofat-15d2.json")
 	
-	assert_true(PlayerData.level_history.results("rank/7k").size() >= 1)
-	var history_rank_7k: RankResult = PlayerData.level_history.results("rank/7k")[0]
+	assert_true(PlayerData.level_history.get_results("rank/7k").size() >= 1)
+	var history_rank_7k: RankResult = PlayerData.level_history.get_results("rank/7k")[0]
 	
 	# we didn't used to store 'success', but it should be calculated based on how well they did
 	assert_eq(history_rank_7k.success, true)
@@ -42,11 +42,11 @@ func test_163e_lost_erases_success() -> void:
 	load_legacy_player_data("turbofat-163e.json")
 	
 	# rank-6d was a success, and the player didn't lose
-	assert_true(PlayerData.level_history.results("rank/6d").size() >= 1)
-	assert_eq(PlayerData.level_history.results("rank/6d")[0].success, true)
+	assert_true(PlayerData.level_history.get_results("rank/6d").size() >= 1)
+	assert_eq(PlayerData.level_history.get_results("rank/6d")[0].success, true)
 	# rank-7d was recorded as a success, but the player lost
-	assert_true(PlayerData.level_history.results("rank/7d").size() >= 1)
-	assert_eq(PlayerData.level_history.results("rank/7d")[0].success, false)
+	assert_true(PlayerData.level_history.get_results("rank/7d").size() >= 1)
+	assert_eq(PlayerData.level_history.get_results("rank/7d")[0].success, false)
 
 
 ## Note: There is no test for save data version 1682. The updater performs some chat history renames, but these chat
@@ -70,17 +70,17 @@ func test_19c5() -> void:
 	assert_eq(PlayerData.level_history.is_level_finished("tutorial/basics_0"), true)
 	assert_eq(PlayerData.level_history.is_level_finished("practice/ultra_normal"), true)
 	
-	assert_eq(PlayerData.level_history.best_result("tutorial/basics_0").score, 158)
-	assert_eq(PlayerData.level_history.best_result("rank/7k").score, 230)
-	assert_almost_eq(PlayerData.level_history.best_result("practice/ultra_normal").seconds, 40.81, 0.1)
+	assert_eq(PlayerData.level_history.get_best_result("tutorial/basics_0").score, 158)
+	assert_eq(PlayerData.level_history.get_best_result("rank/7k").score, 230)
+	assert_almost_eq(PlayerData.level_history.get_best_result("practice/ultra_normal").seconds, 40.81, 0.1)
 
 
 func test_1b3c() -> void:
 	load_legacy_player_data("turbofat-1b3c.json")
 	
 	# 'survival mode' was renamed to 'marathon mode'
-	assert_true(PlayerData.level_history.level_names().has("practice/marathon_hard"))
-	var history_marathon: RankResult = PlayerData.level_history.results("practice/marathon_hard")[0]
+	assert_true(PlayerData.level_history.get_level_names().has("practice/marathon_hard"))
+	var history_marathon: RankResult = PlayerData.level_history.get_results("practice/marathon_hard")[0]
 	assert_eq(history_marathon.lost, false)
 	assert_eq(history_marathon.score, 5115)
 
@@ -134,7 +134,7 @@ func test_375c() -> void:
 	assert_eq(PlayerData.level_history.finished_levels.keys(), ["practice/marathon_normal"])
 	
 	# update sandbox data to 'm' rank
-	var best_result := PlayerData.level_history.best_result("practice/sandbox_normal")
+	var best_result := PlayerData.level_history.get_best_result("practice/sandbox_normal")
 	assert_eq(best_result.score_rank, 0.0)
 
 
