@@ -142,10 +142,6 @@ func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
 	flying_tween.tween_callback(self, "queue_free").set_delay(0.03)
 
 
-func queue_free() -> void:
-	.queue_free()
-
-
 func _refresh_scale() -> void:
 	scale = base_scale * scale_modifier
 

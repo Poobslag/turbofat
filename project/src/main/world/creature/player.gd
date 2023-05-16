@@ -8,9 +8,6 @@ var ui_has_focus := false setget set_ui_has_focus
 ## if 'true' the player is in free roam mode and can move with the arrow keys.
 var free_roam := false
 
-## Cannot statically type as 'OverworldUi' because of cyclic reference
-onready var _overworld_ui: Node = Global.get_overworld_ui()
-
 func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	set_creature_id(CreatureLibrary.PLAYER_ID)

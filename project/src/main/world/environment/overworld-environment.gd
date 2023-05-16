@@ -1,4 +1,3 @@
-
 class_name OverworldEnvironment
 extends Node
 ## Maintains creatures and obstacles for an overworld scene

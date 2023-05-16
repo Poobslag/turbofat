@@ -4,8 +4,6 @@ const TEMP_PLAYER_FILENAME := "test253.save"
 const TEMP_SYSTEM_FILENAME := "test254.json"
 const TEMP_LEGACY_FILENAME := "test255.save"
 
-var _rank_result: RankResult
-
 func before_each() -> void:
 	PlayerSave.data_filename = "user://%s" % TEMP_PLAYER_FILENAME
 	SystemSave.data_filename = "user://%s" % TEMP_SYSTEM_FILENAME
