@@ -6,10 +6,12 @@ extends Control
 signal all_messages_shown
 
 ## huge font used for easter eggs
-var _huge_font := preload("res://src/main/ui/blogger-sans-bold-72.tres")
+var _huge_font := preload("res://assets/main/ui/font/blogger-sans-bold.otf")
+var _huge_font_size := 72
 
 ## normal font used for regular chat
-var _normal_font := preload("res://src/main/ui/blogger-sans-medium-30.tres")
+var _normal_font := preload("res://assets/main/ui/font/blogger-sans-medium.otf")
+var _normal_font_size := 30
 
 ## Queue of sensei messages which will be shown one at a time after a delay. This can also include empty strings
 ## which hide the current message.
@@ -48,7 +50,7 @@ func set_message(message: String) -> void:
 ## Displays a BIG message from the sensei, for use in easter eggs.
 func set_big_message(message: String) -> void:
 	_clear_message_queue()
-	_show_or_hide_message(message, _huge_font)
+	_show_or_hide_message(message, _huge_font, _huge_font_size)
 
 
 ## Displays a message after a short delay.
@@ -72,9 +74,9 @@ func _clear_message_queue() -> void:
 	$QueueTimer.stop()
 
 
-func _show_or_hide_message(message: String, font: Font = _normal_font) -> void:
+func _show_or_hide_message(message: String, font: Font = _normal_font, font_size: float = _normal_font_size) -> void:
 	if message:
-		_show_message(message, font)
+		_show_message(message, font, font_size)
 	else:
 		_hide_message()
 
@@ -82,7 +84,7 @@ func _show_or_hide_message(message: String, font: Font = _normal_font) -> void:
 ## Updates the message text and panel size to display the specified message.
 ##
 ## If no message is currently shown, we also play a sound effect and a 'pop in' animation.
-func _show_message(message: String, font: Font = _normal_font) -> void:
+func _show_message(message: String, font: Font = _normal_font, font_size: float = _normal_font_size) -> void:
 	if not _popped_in:
 		# play a sound effect and 'pop in' animation
 		_popped_in = true
@@ -91,6 +93,7 @@ func _show_message(message: String, font: Font = _normal_font) -> void:
 	
 	$Panel.show()
 	$Label.set("theme_override_fonts/font", font)
+	$Label.set("theme_override_font_sizes/font_size", font_size)
 	
 	var message_with_lulls := ChatLibrary.add_lull_characters(message)
 	

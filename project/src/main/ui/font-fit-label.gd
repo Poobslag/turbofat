@@ -3,9 +3,7 @@ extends Label
 ## This label changes its font dynamically based on the amount of text it needs to display. It chooses the largest font
 ## which will not overrun its boundaries.
 
-## Different fonts to try. Should be ordered from largest to smallest.
-@export var _fonts: Array[Font]
-
+## Different font sizes to try. Should be ordered from largest to smallest.
 @export var font_sizes: Array[float]: set = set_font_sizes
 
 var chosen_font_size_index := -1: set = set_chosen_font_size_index
@@ -39,7 +37,8 @@ func set_chosen_font_size_index(new_index: int) -> void:
 
 func _lines_fit() -> bool:
 	max_lines_visible = (size.y + get_theme_constant("line_spacing")) \
-			/ (get_theme_font("font").get_height(font_sizes[chosen_font_size_index]) + get_theme_constant("line_spacing"))
+			/ (get_theme_font("font").get_height(get("theme_override_font_sizes/font_size"))
+				+ get_theme_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
 
 

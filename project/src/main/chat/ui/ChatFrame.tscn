@@ -1,52 +1,54 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://c4i15qx5lv3wy"]
 
-[ext_resource path="res://src/main/chat/ui/chat-nametag-panel.gd" type="Script" id=1]
-[ext_resource path="res://src/main/chat/ui/ChatLineLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/chat/ui/ChatLinePanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/chat/ui/chat-frame.gd" type="Script" id=4]
-[ext_resource path="res://src/main/chat/ui/ChatPopTween.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/chat/ui/chat-squish-tween.gd" type="Script" id=6]
-[ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="FontFile" id=8]
-[ext_resource path="res://assets/main/chat/ui/frame-pop-in.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/main/chat/ui/frame-pop-out.wav" type="AudioStream" id=14]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-nametag-panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/main/chat/ui/ChatLineLabel.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://src/main/chat/ui/ChatLinePanel.tscn" id="3"]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-frame.gd" id="4"]
+[ext_resource type="PackedScene" path="res://src/main/chat/ui/ChatPopTween.tscn" id="5"]
+[ext_resource type="Script" path="res://src/main/chat/ui/chat-squish-tween.gd" id="6"]
+[ext_resource type="FontFile" uid="uid://cew0mqs2pg5bi" path="res://assets/main/ui/font/blogger-sans-bold.otf" id="6_qd4rl"]
+[ext_resource type="AudioStream" uid="uid://crd007u5qrk2r" path="res://assets/main/chat/ui/frame-pop-in.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://ci6uvjlbfykw5" path="res://assets/main/chat/ui/frame-pop-out.wav" id="14"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 resource_local_to_scene = true
-bg_color = Color( 0.188235, 0.188235, 0.376471, 1 )
+bg_color = Color(0.188235, 0.188235, 0.376471, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [node name="ChatFrame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 400.0
-pivot_offset = Vector2( 362, 79 )
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_description_": "Defines the size of the chat area."
-}
+pivot_offset = Vector2(362, 79)
+script = ExtResource("4")
 
-[node name="PopTween" parent="." instance=ExtResource( 5 )]
+[node name="PopTween" parent="." instance=ExtResource("5")]
 
 [node name="SquishTween" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
-[node name="ChatLinePanel" parent="." instance=ExtResource( 3 )]
-panel_sizes = [ Vector2( 420, 120 ), Vector2( 600, 120 ), Vector2( 600, 160 ), Vector2( 780, 160 ) ]
+[node name="ChatLinePanel" parent="." instance=ExtResource("3")]
+layout_mode = 0
+panel_sizes = Array[Vector2]([Vector2(420, 120), Vector2(600, 120), Vector2(600, 160), Vector2(780, 160)])
 
 [node name="NametagPanel" type="Panel" parent="ChatLinePanel"]
+layout_mode = 0
 offset_left = 180.0
 offset_top = -60.0
 offset_right = 540.0
 offset_bottom = 4.57764e-05
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 1 )
-panel_sizes = [ Vector2( 180, 60 ), Vector2( 360, 60 ), Vector2( 360, 60 ), Vector2( 240, 60 ), Vector2( 360, 60 ) ]
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("1")
+panel_sizes = Array[Vector2]([Vector2(180, 60), Vector2(360, 60), Vector2(360, 60), Vector2(240, 60), Vector2(360, 60)])
 
 [node name="Small" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -55,9 +57,10 @@ offset_left = -82.0
 offset_top = -16.0
 offset_right = 98.0
 offset_bottom = 21.0
-scale = Vector2( 0.909, 0.909 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 8 )
+scale = Vector2(0.909, 0.909)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_qd4rl")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsu"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -65,6 +68,7 @@ max_lines_visible = 1
 
 [node name="Medium" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -73,9 +77,10 @@ offset_left = -160.0
 offset_top = -16.0
 offset_right = 190.0
 offset_bottom = 21.0
-scale = Vector2( 0.909, 0.909 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 8 )
+scale = Vector2(0.909, 0.909)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_qd4rl")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor s"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -84,6 +89,7 @@ max_lines_visible = 1
 
 [node name="Large" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -92,9 +98,10 @@ offset_left = -160.0
 offset_top = -16.0
 offset_right = 365.0
 offset_bottom = 21.0
-scale = Vector2( 0.606, 0.909 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 8 )
+scale = Vector2(0.606, 0.909)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_qd4rl")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor sit amet"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -103,6 +110,8 @@ max_lines_visible = 1
 
 [node name="ExtraLarge" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -111,10 +120,10 @@ offset_left = -100.0
 offset_top = -23.0
 offset_right = 400.0
 offset_bottom = 57.0
-custom_minimum_size = Vector2( 500, 80 )
-scale = Vector2( 0.4, 0.6 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 8 )
+scale = Vector2(0.4, 0.6)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_qd4rl")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -122,6 +131,8 @@ clip_text = true
 max_lines_visible = 2
 
 [node name="ExtraExtraLarge" type="Label" parent="ChatLinePanel/NametagPanel"]
+custom_minimum_size = Vector2(750, 80)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -130,10 +141,10 @@ offset_left = -150.0
 offset_top = -23.0
 offset_right = 600.0
 offset_bottom = 57.0
-custom_minimum_size = Vector2( 750, 80 )
-scale = Vector2( 0.4, 0.6 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 8 )
+scale = Vector2(0.4, 0.6)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_qd4rl")
+theme_override_font_sizes/font_size = 36
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -141,19 +152,20 @@ autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2
 
-[node name="ChatLineLabel" parent="." instance=ExtResource( 2 )]
-panel_padding = Vector2( 60, 40 )
+[node name="ChatLineLabel" parent="." instance=ExtResource("2")]
+layout_mode = 0
+panel_padding = Vector2(60, 40)
 chat_line_panel_path = NodePath("../ChatLinePanel")
 
 [node name="PopInSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource("12")
 volume_db = -14.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="PopOutSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
+stream = ExtResource("14")
 volume_db = -14.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [connection signal="pop_out_completed" from="PopTween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="all_text_shown" from="ChatLineLabel" to="." method="_on_ChatLineLabel_all_text_shown"]

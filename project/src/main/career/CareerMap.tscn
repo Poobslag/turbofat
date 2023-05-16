@@ -19,7 +19,7 @@
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
 [ext_resource path="res://src/main/career/ui/career-map-level-select.gd" type="Script" id=28]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=42]
-[ext_resource path="res://src/main/ui/money-font.tres" type="FontFile" id=43]
+[ext_resource path="res://assets/main/ui/font/blogger-sans-bold.otf" type="FontFile" id=43]
 [ext_resource path="res://src/main/career/ui/career-map-ui.gd" type="Script" id=45]
 [ext_resource path="res://assets/main/career/ui/icon-distance.png" type="Texture2D" id=46]
 [ext_resource path="res://assets/main/career/ui/icon-time-of-day-sheet.png" type="Texture2D" id=47]
@@ -137,6 +137,10 @@ offset_bottom = 34.5
 custom_minimum_size = Vector2( 84, 0 )
 theme_override_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 theme_override_fonts/font = ExtResource( 43 )
+theme_override_colors/font_color = Color(1, 0.942667, 0.92, 1)
+theme_override_colors/font_outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
 text = "999,999"
 vertical_alignment = 1
 

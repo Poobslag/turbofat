@@ -1,27 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ctv6qm73hjstg"]
 
-[ext_resource path="res://src/main/ui/blogger-sans-bold-24.tres" type="FontFile" id=1]
-[ext_resource path="res://src/main/ui/nametag-panel.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/blogger-sans-bold-18.tres" type="FontFile" id=3]
+[ext_resource type="Script" path="res://src/main/ui/nametag-panel.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://cew0mqs2pg5bi" path="res://assets/main/ui/font/blogger-sans-bold.otf" id="2_xeflg"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 resource_local_to_scene = true
-bg_color = Color( 0.172549, 0.666667, 0.32549, 1 )
+bg_color = Color(0.172549, 0.666667, 0.32549, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [node name="Panel" type="Panel"]
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -120.0
 offset_bottom = 30.0
-theme_override_styles/panel = SubResource( 1 )
-script = ExtResource( 2 )
-panel_sizes = [ Vector2( 120, 30 ), Vector2( 240, 30 ), Vector2( 240, 24 ), Vector2( 240, 48 ), Vector2( 240, 72 ) ]
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("2")
+panel_sizes = Array[Vector2]([Vector2(120, 30), Vector2(240, 30), Vector2(240, 24), Vector2(240, 48), Vector2(240, 72)])
 
 [node name="Small" type="Label" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -30,8 +31,9 @@ offset_left = -48.0
 offset_top = -11.0
 offset_right = 48.0
 offset_bottom = 15.0
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_xeflg")
+theme_override_font_sizes/font_size = 24
 text = "Bug"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -41,6 +43,7 @@ max_lines_visible = 1
 
 [node name="Medium" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -49,8 +52,9 @@ offset_left = -108.0
 offset_top = -11.0
 offset_right = 108.0
 offset_bottom = 15.0
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 1 )
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_xeflg")
+theme_override_font_sizes/font_size = 24
 text = "Lorem ipsum do"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -60,6 +64,7 @@ max_lines_visible = 1
 
 [node name="Large" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -68,9 +73,10 @@ offset_left = -108.0
 offset_top = -11.0
 offset_right = 252.0
 offset_bottom = 15.0
-scale = Vector2( 0.6, 1 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 3 )
+scale = Vector2(0.6, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_xeflg")
+theme_override_font_sizes/font_size = 18
 text = "Lorem ipsum dolor sit ame"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -80,6 +86,7 @@ max_lines_visible = 1
 
 [node name="ExtraLarge" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -88,9 +95,10 @@ offset_left = -108.0
 offset_top = -20.0
 offset_right = 252.0
 offset_bottom = 24.0
-scale = Vector2( 0.6, 1 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 3 )
+scale = Vector2(0.6, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_xeflg")
+theme_override_font_sizes/font_size = 18
 text = "Lorem ipsum dolor sit amet, consectetur adipisci"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -100,6 +108,7 @@ max_lines_visible = 2
 
 [node name="ExtraExtraLarge" type="Label" parent="."]
 visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -108,9 +117,10 @@ offset_left = -108.0
 offset_top = -32.0
 offset_right = 252.0
 offset_bottom = 36.0
-scale = Vector2( 0.6, 1 )
-theme_override_colors/font_color = Color( 1, 1, 1, 1 )
-theme_override_fonts/font = ExtResource( 3 )
+scale = Vector2(0.6, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_xeflg")
+theme_override_font_sizes/font_size = 18
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
 horizontal_alignment = 1
 vertical_alignment = 1

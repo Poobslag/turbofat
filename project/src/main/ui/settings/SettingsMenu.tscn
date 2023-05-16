@@ -1,93 +1,93 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=38 format=3 uid="uid://dw3n3uvccampk"]
 
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
-[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=3]
-[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/ui/settings/settings-menu.gd" type="Script" id=5]
-[ext_resource path="res://src/main/ui/settings/VolumeSetting.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="Shortcut" id=7]
-[ext_resource path="res://src/main/ui/settings/settings-touch-size.gd" type="Script" id=8]
-[ext_resource path="res://src/main/puzzle/PuzzleTouchButtons.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/ui/settings/settings-touch-scheme.gd" type="Script" id=10]
-[ext_resource path="res://src/main/ui/settings/settings-touch-fat-finger.gd" type="Script" id=11]
-[ext_resource path="res://src/main/ui/settings/settings-ghost-piece.gd" type="Script" id=12]
-[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="FontFile" id=13]
-[ext_resource path="res://src/main/ui/settings/keybind/KeybindPreset.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/ui/settings/keybind/settings-keybinds-control.gd" type="Script" id=15]
-[ext_resource path="res://src/main/ui/settings/keybind/KeybindCustom.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/settings/settings-language.gd" type="Script" id=17]
-[ext_resource path="res://src/main/ui/settings/settings-tab-container.gd" type="Script" id=18]
-[ext_resource path="res://src/main/ui/settings/settings-creature-detail.gd" type="Script" id=19]
-[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=20]
-[ext_resource path="res://src/main/ui/settings/settings-warning.gd" type="Script" id=21]
-[ext_resource path="res://src/main/ui/settings/settings-save-slot.gd" type="Script" id=22]
-[ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=23]
-[ext_resource path="res://src/main/ui/settings/settings-dialogs.gd" type="Script" id=24]
-[ext_resource path="res://src/main/ui/settings/settings-use-vsync.gd" type="Script" id=25]
-[ext_resource path="res://src/main/ui/settings/settings-open-user-folder.gd" type="Script" id=26]
-[ext_resource path="res://src/main/ui/settings/settings-copy-save-data.gd" type="Script" id=27]
-[ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
-[ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
-[ext_resource path="res://src/main/ui/settings/settings-gameplay-speed.gd" type="Script" id=30]
-[ext_resource path="res://src/main/ui/settings/settings-line-piece.gd" type="Script" id=31]
-[ext_resource path="res://src/main/ui/settings/settings-hold-piece.gd" type="Script" id=32]
-[ext_resource path="res://src/main/ui/settings/reset-gameplay-button.gd" type="Script" id=33]
-[ext_resource path="res://src/main/ui/settings/settings-feeding-animation.gd" type="Script" id=34]
-[ext_resource path="res://src/main/ui/theme/h5-font.tres" type="FontFile" id=35]
-[ext_resource path="res://src/main/ui/theme/h6-font.tres" type="FontFile" id=36]
-[ext_resource path="res://src/main/ui/theme/h7-font.tres" type="FontFile" id=37]
-[ext_resource path="res://src/main/ui/theme/h8-font.tres" type="FontFile" id=38]
-[ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
+[ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="1"]
+[ext_resource type="StyleBox" path="res://src/main/puzzle/PuzzleHudStyleBox.tres" id="2"]
+[ext_resource type="Theme" uid="uid://164bawekogs6" path="res://src/main/ui/theme/h3.theme" id="3"]
+[ext_resource type="PackedScene" path="res://src/main/ui/ButtonShortcutHelper.tscn" id="4"]
+[ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="4_jwsyk"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-menu.gd" id="5"]
+[ext_resource type="PackedScene" path="res://src/main/ui/settings/VolumeSetting.tscn" id="6"]
+[ext_resource type="Shortcut" path="res://src/main/ui/UiMenuShortcut.tres" id="7"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-size.gd" id="8"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/PuzzleTouchButtons.tscn" id="9"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-scheme.gd" id="10"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-fat-finger.gd" id="11"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-ghost-piece.gd" id="12"]
+[ext_resource type="PackedScene" path="res://src/main/ui/settings/keybind/KeybindPreset.tscn" id="14"]
+[ext_resource type="Script" path="res://src/main/ui/settings/keybind/settings-keybinds-control.gd" id="15"]
+[ext_resource type="PackedScene" path="res://src/main/ui/settings/keybind/KeybindCustom.tscn" id="16"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-language.gd" id="17"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-tab-container.gd" id="18"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-creature-detail.gd" id="19"]
+[ext_resource type="Theme" uid="uid://dqgnja13agfn0" path="res://src/main/ui/theme/h5.theme" id="20"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-warning.gd" id="21"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-save-slot.gd" id="22"]
+[ext_resource type="PackedScene" path="res://src/main/ui/DialogBackdrop.tscn" id="23"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-dialogs.gd" id="24"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-use-vsync.gd" id="25"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-open-user-folder.gd" id="26"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-copy-save-data.gd" id="27"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-lock-cancel.gd" id="28"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-menu-bottom.gd" id="29"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-gameplay-speed.gd" id="30"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-line-piece.gd" id="31"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-hold-piece.gd" id="32"]
+[ext_resource type="Script" path="res://src/main/ui/settings/reset-gameplay-button.gd" id="33"]
+[ext_resource type="Script" path="res://src/main/ui/settings/settings-feeding-animation.gd" id="34"]
+[ext_resource type="PackedScene" uid="uid://l3yvalfyq85w" path="res://src/main/ui/FontFitButton.tscn" id="39"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.2, 0.176471, 0.176471, 1 )
+bg_color = Color(0.2, 0.176471, 0.176471, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id="2"]
 content_margin_left = 5.0
-content_margin_right = 5.0
 content_margin_top = 5.0
+content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.2, 0.176471, 0.176471, 1 )
+bg_color = Color(0.2, 0.176471, 0.176471, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="ButtonGroup" id=3]
-
 [node name="SettingsMenu" type="CanvasLayer"]
 process_mode = 2
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="Bg" type="ColorRect" parent="."]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.752941 )
+color = Color(0, 0, 0, 0.752941)
 
-[node name="TouchButtons" parent="." instance=ExtResource( 9 )]
+[node name="TouchButtons" parent="." instance=ExtResource("9")]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
+custom_minimum_size = Vector2(530, 360)
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -96,10 +96,10 @@ offset_left = -290.0
 offset_top = -180.0
 offset_right = 290.0
 offset_bottom = 180.0
-custom_minimum_size = Vector2( 530, 360 )
-theme_override_styles/panel = ExtResource( 2 )
+theme_override_styles/panel = ExtResource("2")
 
 [node name="UiArea" type="VBoxContainer" parent="Window"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
@@ -108,729 +108,553 @@ offset_right = -5.0
 offset_bottom = -5.0
 
 [node name="TabContainer" type="TabContainer" parent="Window/UiArea"]
-offset_right = 570.0
-offset_bottom = 246.0
+layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource( 13 )
-theme_override_styles/tab_selected = SubResource( 1 )
-theme_override_styles/tab_disabled = ExtResource( 2 )
-theme_override_styles/tab_unselected = ExtResource( 2 )
-theme_override_styles/panel = SubResource( 2 )
-script = ExtResource( 18 )
+theme_override_fonts/font = ExtResource("4_jwsyk")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/tab_selected = SubResource("1")
+theme_override_styles/tab_unselected = ExtResource("2")
+theme_override_styles/tab_disabled = ExtResource("2")
+theme_override_styles/panel = SubResource("2")
+script = ExtResource("18")
 
 [node name="SoundAndGraphics" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 35.0
-offset_right = -5.0
-offset_bottom = -5.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
-offset_right = 560.0
-offset_bottom = 240.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Volume" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-offset_right = 548.0
-offset_bottom = 20.0
-theme = ExtResource( 1 )
+layout_mode = 2
+theme = ExtResource("1")
 text = "Sound + Music"
 horizontal_alignment = 1
 
-[node name="Master" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 24.0
-offset_right = 548.0
-offset_bottom = 44.0
+[node name="Master" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
 
-[node name="Music" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 48.0
-offset_right = 548.0
-offset_bottom = 68.0
+[node name="Music" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
 volume_type = 1
 
-[node name="Sounds" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 72.0
-offset_right = 548.0
-offset_bottom = 92.0
+[node name="Sounds" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
 volume_type = 2
 
-[node name="Voices" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource( 6 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 96.0
-offset_right = 548.0
-offset_bottom = 116.0
+[node name="Voices" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource("6")]
+layout_mode = 2
 volume_type = 3
 
 [node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-offset_top = 120.0
-offset_right = 548.0
-offset_bottom = 124.0
+layout_mode = 2
 
 [node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-offset_top = 128.0
-offset_right = 548.0
-offset_bottom = 148.0
-theme = ExtResource( 1 )
+layout_mode = 2
+theme = ExtResource("1")
 text = "Graphics"
 horizontal_alignment = 1
 
 [node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-offset_top = 152.0
-offset_right = 548.0
-offset_bottom = 178.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 19 )
+script = ExtResource("19")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
-offset_right = 212.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Creature detail"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
-offset_left = 232.0
-offset_right = 392.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="FeedingAnimation" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-offset_top = 182.0
-offset_right = 548.0
-offset_bottom = 208.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 34 )
+script = ExtResource("34")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
-offset_right = 212.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Feeding Animation"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
-offset_left = 232.0
-offset_right = 392.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="UseVsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-offset_top = 182.0
-offset_right = 548.0
-offset_bottom = 210.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 25 )
+script = ExtResource("25")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
-offset_right = 212.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Use Vsync"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
-offset_left = 232.0
-offset_right = 392.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="Gameplay" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 35.0
-offset_right = -5.0
-offset_bottom = -5.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
-offset_right = 560.0
-offset_bottom = 232.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_right = 548.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 12 )
+script = ExtResource("12")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece"]
-offset_right = 211.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 120, 28 )
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Ghost Piece"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece"]
-offset_left = 231.0
-offset_right = 548.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 160, 26 )
+custom_minimum_size = Vector2(160, 26)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
 
 [node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_top = 32.0
-offset_right = 548.0
-offset_bottom = 60.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 28 )
+script = ExtResource("28")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel"]
-offset_right = 211.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 120, 28 )
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Soft Drop Lock Cancel"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel"]
-offset_left = 231.0
-offset_right = 548.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 160, 26 )
+custom_minimum_size = Vector2(160, 26)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_top = 64.0
-offset_right = 548.0
-offset_bottom = 84.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Cheats" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_top = 88.0
-offset_right = 548.0
-offset_bottom = 108.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Cheats"
 horizontal_alignment = 1
 
 [node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_top = 112.0
-offset_right = 548.0
-offset_bottom = 138.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 30 )
+script = ExtResource("30")
 
 [node name="Speed" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
-offset_right = 212.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Speed"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
-offset_left = 232.0
-offset_right = 392.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="LinePiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_top = 142.0
-offset_right = 548.0
-offset_bottom = 170.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 31 )
+script = ExtResource("31")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
-offset_right = 211.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 120, 28 )
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Line Piece"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
-offset_left = 231.0
-offset_right = 548.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 160, 26 )
+custom_minimum_size = Vector2(160, 26)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
 
 [node name="HoldPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_top = 174.0
-offset_right = 548.0
-offset_bottom = 202.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 32 )
+script = ExtResource("32")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
-offset_right = 211.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 120, 28 )
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.63
 text = "Hold Piece"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
-offset_left = 231.0
-offset_right = 548.0
-offset_bottom = 28.0
-custom_minimum_size = Vector2( 160, 26 )
+custom_minimum_size = Vector2(160, 26)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
 
 [node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-offset_left = 204.0
-offset_top = 206.0
-offset_right = 343.0
-offset_bottom = 232.0
+layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Reset to Default"
-script = ExtResource( 33 )
+script = ExtResource("33")
 
 [node name="Controls" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 35.0
-offset_right = -5.0
-offset_bottom = -5.0
-script = ExtResource( 15 )
+layout_mode = 2
+script = ExtResource("15")
 
 [node name="Presets" type="HBoxContainer" parent="Window/UiArea/TabContainer/Controls"]
-offset_right = 560.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Guideline" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
-offset_left = 110.0
-offset_right = 210.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 100, 0 )
-theme = ExtResource( 1 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1")
 toggle_mode = true
-pressed = true
-group = SubResource( 3 )
 text = "Guideline"
 
 [node name="Wasd" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
-offset_left = 230.0
-offset_right = 330.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 100, 0 )
-theme = ExtResource( 1 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1")
 toggle_mode = true
-group = SubResource( 3 )
 text = "WASD"
 
 [node name="Custom" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
-offset_left = 350.0
-offset_right = 450.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 100, 0 )
-theme = ExtResource( 1 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1")
 toggle_mode = true
-group = SubResource( 3 )
 text = "Custom"
 
 [node name="PresetScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 visible = false
-offset_right = 560.0
-offset_bottom = 206.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
-offset_right = 420.0
-offset_bottom = 260.0
-custom_minimum_size = Vector2( 419, 0 )
+custom_minimum_size = Vector2(419, 0)
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MovePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 0.0
-offset_bottom = 20.0
+[node name="MovePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Move Piece"
 keybind_value = "Left, Right"
 
-[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 20.0
-offset_bottom = 40.0
+[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Soft Drop"
 keybind_value = "Down"
 
-[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 40.0
-offset_bottom = 60.0
+[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Hard Drop"
 keybind_value = "Space, Up, Shift"
 
-[node name="RotatePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 60.0
-offset_bottom = 80.0
+[node name="RotatePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Rotate Piece"
 keybind_value = "Z, X"
 
-[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 60.0
-offset_bottom = 80.0
+[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Swap Hold Piece"
 
-[node name="Retry" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 80.0
-offset_bottom = 100.0
+[node name="Retry" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Retry"
 keybind_value = "R"
 
-[node name="Menu" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 100.0
-offset_bottom = 120.0
+[node name="Menu" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Menu"
 keybind_value = "Escape"
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer"]
-offset_top = 120.0
-offset_right = 420.0
-offset_bottom = 140.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
-[node name="MoveInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 140.0
-offset_bottom = 160.0
+[node name="MoveInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Move in Menus"
 keybind_value = "Arrows, WASD"
 
-[node name="ConfirmInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 160.0
-offset_bottom = 180.0
+[node name="ConfirmInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Confirm in Menus"
 keybind_value = "Space"
 
-[node name="BackInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 180.0
-offset_bottom = 200.0
+[node name="BackInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Back in Menus"
 keybind_value = "Escape"
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer"]
-offset_top = 200.0
-offset_right = 420.0
-offset_bottom = 220.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
-[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-offset_top = 220.0
-offset_bottom = 240.0
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource("14")]
+layout_mode = 2
 description = "Rewind Text"
 keybind_value = "Shift"
 
 [node name="CustomScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 visible = false
-offset_right = 560.0
-offset_bottom = 206.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer"]
-offset_right = 490.0
-offset_bottom = 508.0
-custom_minimum_size = Vector2( 419, 0 )
+custom_minimum_size = Vector2(419, 0)
+layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="MovePieceLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MovePieceLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Move Piece Left"
 action_name = "move_piece_left"
 
-[node name="MovePieceRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 26.0
-offset_bottom = 50.0
+[node name="MovePieceRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Move Piece Right"
 action_name = "move_piece_right"
 
-[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 52.0
-offset_bottom = 76.0
+[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Soft Drop"
 action_name = "soft_drop"
 
-[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 78.0
-offset_bottom = 102.0
+[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Hard Drop"
 action_name = "hard_drop"
 
-[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 78.0
-offset_bottom = 102.0
+[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Swap Hold Piece"
 action_name = "swap_hold_piece"
 
-[node name="RotateCcw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 104.0
-offset_bottom = 128.0
+[node name="RotateCcw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Rotate Ccw"
 action_name = "rotate_ccw"
 
-[node name="RotateCw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 130.0
-offset_bottom = 154.0
+[node name="RotateCw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Rotate Cw"
 action_name = "rotate_cw"
 
-[node name="Retry" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 156.0
-offset_bottom = 180.0
+[node name="Retry" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Retry"
 action_name = "retry"
 
-[node name="Menu" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 182.0
-offset_bottom = 206.0
+[node name="Menu" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Menu"
 action_name = "ui_menu"
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-offset_top = 208.0
-offset_right = 490.0
-offset_bottom = 228.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
-[node name="MenuUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 230.0
-offset_bottom = 254.0
+[node name="MenuUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Up in Menus"
 action_name = "ui_up"
 
-[node name="MenuDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 256.0
-offset_bottom = 280.0
+[node name="MenuDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Down in Menus"
 action_name = "ui_down"
 
-[node name="MenuLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 282.0
-offset_bottom = 306.0
+[node name="MenuLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Left in Menus"
 action_name = "ui_left"
 
-[node name="MenuRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 308.0
-offset_bottom = 332.0
+[node name="MenuRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Right in Menus"
 action_name = "ui_right"
 
-[node name="Confirm" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 334.0
-offset_bottom = 358.0
+[node name="Confirm" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Confirm in Menus"
 action_name = "ui_accept"
 
-[node name="Back" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 360.0
-offset_bottom = 384.0
+[node name="Back" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Back in Menus"
 action_name = "ui_cancel"
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-offset_top = 386.0
-offset_right = 490.0
-offset_bottom = 406.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
-[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-offset_top = 408.0
-offset_bottom = 432.0
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource("16")]
+layout_mode = 2
 description = "Rewind Text"
 action_name = "rewind_text"
 
 [node name="Spacer3" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-offset_top = 434.0
-offset_right = 490.0
-offset_bottom = 454.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-offset_left = 175.0
-offset_top = 456.0
-offset_right = 314.0
-offset_bottom = 482.0
+layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Reset to Default"
 
 [node name="Touch" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 35.0
-offset_right = -5.0
-offset_bottom = -5.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
-offset_right = 560.0
-offset_bottom = 80.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Size" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
-offset_right = 560.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 400, 20 )
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 8 )
+script = ExtResource("8")
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
-offset_right = 29.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
-offset_left = 49.0
-offset_right = 196.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Size"
-horizontal_alignment =2
+horizontal_alignment = 2
 autowrap_mode = 3
 
 [node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
-offset_left = 216.0
-offset_right = 510.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 140, 20 )
+custom_minimum_size = Vector2(140, 20)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
-offset_top = 2.0
-offset_right = 224.0
-offset_bottom = 18.0
-custom_minimum_size = Vector2( 80, 16 )
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 11.0
@@ -838,260 +662,206 @@ value = 1.0
 tick_count = 12
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
-offset_left = 234.0
-offset_right = 294.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 60, 0 )
-theme = ExtResource( 1 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme = ExtResource("1")
 text = "1.00x"
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
-offset_left = 530.0
-offset_right = 560.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Scheme" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
-offset_top = 24.0
-offset_right = 560.0
-offset_bottom = 50.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 10 )
+script = ExtResource("10")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme"]
-offset_right = 217.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Scheme"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme"]
-offset_left = 237.0
-offset_right = 397.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
-offset_top = 54.0
-offset_right = 560.0
-offset_bottom = 80.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 11 )
+script = ExtResource("11")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger"]
-offset_right = 217.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Fat Finger"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger"]
-offset_left = 237.0
-offset_right = 397.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="Misc" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 35.0
-offset_right = -5.0
-offset_bottom = -5.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
-offset_right = 560.0
-offset_bottom = 140.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-offset_right = 560.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 17 )
+script = ExtResource("17")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Language"]
-offset_right = 217.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Language"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Language"]
-offset_left = 237.0
-offset_right = 397.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-offset_top = 30.0
-offset_right = 560.0
-offset_bottom = 50.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="SaveSlot" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-offset_top = 54.0
-offset_right = 560.0
-offset_bottom = 80.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 22 )
+script = ExtResource("22")
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
-offset_right = 217.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 text = "Save Slot"
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot"]
-offset_left = 237.0
-offset_right = 441.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
-focus_mode = 2
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+focus_mode = 2
 theme_override_constants/separation = 20
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
-offset_right = 160.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 0 )
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-text = "Slot A"
 
 [node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
-offset_left = 180.0
-offset_right = 204.0
-offset_bottom = 26.0
+layout_mode = 2
 size_flags_vertical = 4
 text = "X"
 
 [node name="OpenUserFolder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-offset_top = 84.0
-offset_right = 560.0
-offset_bottom = 110.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 26 )
+script = ExtResource("26")
 
 [node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder"]
-offset_right = 204.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 
-[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" instance=ExtResource( 39 )]
-offset_left = 224.0
-offset_right = 384.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 26 )
+[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" instance=ExtResource("39")]
+custom_minimum_size = Vector2(160, 26)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Open User Folder"
-fonts = [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ) ]
+font_sizes = Array[float]([14.0, 12.0, 10.0, 8.0])
 
 [node name="CopySaveData" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-offset_top = 114.0
-offset_right = 560.0
-offset_bottom = 140.0
-custom_minimum_size = Vector2( 400, 26 )
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 27 )
+script = ExtResource("27")
 save_slot_control_path = NodePath("../SaveSlot")
 
 [node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData"]
-offset_right = 217.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.74
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData"]
-offset_left = 237.0
-offset_right = 521.0
-offset_bottom = 26.0
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
-[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer" instance=ExtResource( 39 )]
-offset_right = 160.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 160, 26 )
+[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer" instance=ExtResource("39")]
+custom_minimum_size = Vector2(160, 26)
+layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 text = "Copy to Clipboard"
-fonts = [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ) ]
+font_sizes = Array[float]([14.0, 12.0, 10.0, 8.0])
 
 [node name="Copied" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/CopySaveData/HBoxContainer"]
-offset_left = 164.0
-offset_right = 284.0
-offset_bottom = 26.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.74
 text = "Copied!"
@@ -1099,29 +869,28 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
-offset_top = 250.0
-offset_right = 570.0
-offset_bottom = 350.0
-custom_minimum_size = Vector2( 0, 100 )
-script = ExtResource( 29 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+script = ExtResource("29")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/Bottom"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/separation = 0
 
 [node name="VBoxContainer1" type="VBoxContainer" parent="Window/UiArea/Bottom/HBoxContainer"]
-offset_right = 190.0
-offset_bottom = 100.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="Holder1" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1"]
-offset_right = 190.0
-offset_bottom = 50.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Quit1" type="Button" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1"]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1130,20 +899,19 @@ offset_left = -40.0
 offset_top = -15.0
 offset_right = 40.0
 offset_bottom = 15.0
-custom_minimum_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 shortcut_in_tooltip = false
 text = "Quit"
 
 [node name="Holder2" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1"]
-offset_top = 50.0
-offset_right = 190.0
-offset_bottom = 100.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Quit2" type="Button" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2"]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1152,32 +920,28 @@ offset_left = -40.0
 offset_top = -15.0
 offset_right = 40.0
 offset_bottom = 15.0
-custom_minimum_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 shortcut_in_tooltip = false
 text = "Quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Window/UiArea/Bottom/HBoxContainer"]
-offset_left = 190.0
-offset_right = 380.0
-offset_bottom = 100.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="Spacer" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2"]
-offset_right = 190.0
-offset_bottom = 50.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Holder" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2"]
-offset_top = 50.0
-offset_right = 190.0
-offset_bottom = 100.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Ok" type="Button" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1186,36 +950,31 @@ offset_left = -60.0
 offset_top = -20.0
 offset_right = 60.0
 offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 40 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 3 )
+theme = ExtResource("3")
+shortcut = ExtResource("7")
 shortcut_in_tooltip = false
-shortcut = ExtResource( 7 )
 text = "Ok"
 
-[node name="ShortcutHelper" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" instance=ExtResource( 4 )]
+[node name="ShortcutHelper" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" instance=ExtResource("4")]
 action = "ui_cancel"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Window/UiArea/Bottom/HBoxContainer"]
-offset_left = 380.0
-offset_right = 570.0
-offset_bottom = 100.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="Spacer" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer3"]
-offset_right = 190.0
-offset_bottom = 50.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Holder" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer3"]
-offset_top = 50.0
-offset_right = 190.0
-offset_bottom = 100.0
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="SettingsWarning" type="Label" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer3/Holder"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1224,68 +983,43 @@ offset_left = -90.0
 offset_top = -19.5
 offset_right = 90.0
 offset_bottom = 19.5
-theme = ExtResource( 20 )
+theme = ExtResource("20")
 text = "* Your settings will take effect in the next scene."
-horizontal_alignment =2
+horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 3
-script = ExtResource( 21 )
+script = ExtResource("21")
 
 [node name="Dialogs" type="Control" parent="."]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-script = ExtResource( 24 )
+script = ExtResource("24")
 save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot")
 
-[node name="Backdrop" parent="Dialogs" instance=ExtResource( 23 )]
+[node name="Backdrop" parent="Dialogs" instance=ExtResource("23")]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="ChangeSaveConfirmation" type="ConfirmationDialog" parent="Dialogs"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -35.0
-offset_right = 100.0
-offset_bottom = 35.0
-theme = ExtResource( 20 )
-exclusive = true
-window_title = "Confirm"
+theme = ExtResource("20")
 dialog_text = "Change save slot?"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
-visible = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -35.0
-offset_right = 100.0
-offset_bottom = 35.0
-theme = ExtResource( 20 )
-exclusive = true
-window_title = "Confirm"
+theme = ExtResource("20")
 dialog_text = "Delete save slot?
 Slot A (34.2 hours)"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
-visible = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -35.0
-offset_right = 100.0
-offset_bottom = 35.0
-theme = ExtResource( 20 )
-exclusive = true
-window_title = "Confirm"
+theme = ExtResource("20")
 dialog_text = "Are you sure?
 Slot A (34.2 hours)"
 dialog_autowrap = true
@@ -1314,12 +1048,6 @@ dialog_autowrap = true
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
-[connection signal="change_save_cancelled" from="Dialogs" to="." method="_on_Dialogs_change_save_cancelled"]
-[connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
-[connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
 [connection signal="about_to_popup" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_popup" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_popup" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]

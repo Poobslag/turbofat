@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://5ntnqxs4r55b"]
 
-[ext_resource type="FontFile" path="res://src/main/ui/blogger-sans-medium-14.tres" id="1"]
+[ext_resource type="FontFile" uid="uid://djvi5vhe42qcp" path="res://assets/main/ui/font/blogger-sans-medium.otf" id="1_hekja"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.423529, 0.262745, 0.192157, 0.901961)
@@ -40,8 +40,9 @@ corner_radius_bottom_left = 12
 draw_center = false
 
 [resource]
+default_font_size = 14
 Button/styles/focus = SubResource("1")
 Button/styles/hover = SubResource("2")
 Button/styles/normal = SubResource("3")
 Button/styles/pressed = SubResource("4")
-Label/fonts/font = ExtResource("1")
+Label/fonts/font = ExtResource("1_hekja")

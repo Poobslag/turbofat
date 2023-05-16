@@ -12,8 +12,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleTouchButtons.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/puzzle/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/puzzle/wall-goop-sfx.gd" type="Script" id=12]
-[ext_resource path="res://src/main/ui/theme/h2-font.tres" type="FontFile" id=13]
-[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="FontFile" id=14]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=14]
 [ext_resource path="res://src/main/puzzle/texture-metaball.gdshader" type="Shader" id=15]
 [ext_resource path="res://src/main/puzzle/wall-glob-viewports.gd" type="Script" id=16]
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=17]
@@ -72,7 +71,7 @@
 [ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
 [ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=73]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=73]
 [ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
 [ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
@@ -322,6 +321,7 @@ offset_right = 250.0
 offset_bottom = 75.0
 custom_minimum_size = Vector2( 100, 45 )
 theme_override_fonts/font = ExtResource( 14 )
+theme_override_font_sizes/font_size = 16
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -577,7 +577,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 34 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_constants/outline_size = 3
+theme_override_constants/outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 theme_override_fonts/font = ExtResource( 73 )
+theme_override_font_sizes/font_size = 36
+
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

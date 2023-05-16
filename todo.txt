@@ -44,26 +44,26 @@ game starts up, but has bugs
   -h6-font.tres (12)
   -h7-font.tres (10)
   -h8-font.tres (8)
-  -blogger-sans-bold-18.tres
-  -blogger-sans-bold-24.tres
-  -blogger-sans-bold-30.tres
-  -blogger-sans-bold-36.tres
-  -blogger-sans-bold-72.tres
-  -blogger-sans-medium-12.tres
-  -blogger-sans-medium-14.tres
-  -blogger-sans-medium-18.tres
-  -blogger-sans-medium-24.tres
-  -blogger-sans-medium-30.tres
-  -blogger-sans-medium-36.tres
-  -fredoka-48-outline.tres
-  -letter-projectile-font.tres (12)
-  -money-font.tres (24)
+  *blogger-sans-bold-18.tres
+  *blogger-sans-bold-24.tres
+  *blogger-sans-bold-30.tres
+  *blogger-sans-bold-36.tres
+  *blogger-sans-bold-72.tres
+  *blogger-sans-medium-12.tres
+  *blogger-sans-medium-14.tres
+  *blogger-sans-medium-18.tres
+  *blogger-sans-medium-24.tres
+  *blogger-sans-medium-30.tres
+  *blogger-sans-medium-36.tres
+  *fredoka-48-outline.tres
+  *letter-projectile-font.tres (12)
+  *money-font.tres (24)
  -fix fonts
-  -update FontFitLabelDemo so it works
-  -update uses of FontFitLabel to set font_sizes property
-  -update themes
-  -remove references to FontFitLabel.fonts
-  -remove FontFitLabel.fonts property
+  *update FontFitLabelDemo so it works
+  *update uses of FontFitLabel to set font_sizes property
+  *update themes
+  *remove references to FontFitLabel.fonts
+  *remove FontFitLabel.fonts property
   -remove other references to h1.tscn, h2.tscn, etc...
   -remove references to other font .tscn files
   -remove all font scene files
@@ -103,8 +103,11 @@ game starts up, but has bugs
  -tilers
  -carrot cells
  -all tests pass, including the new test-keybind-manager
+ -localization; settings menu, puzzles, dialog
  -monitor nodes over time; no leaks?
  -assigning an input to something weird like the '`' or '=' key shows up OK
+ -settings menu in spanish; 'open user folder' button should shrink its font size
+ -big font in easter egg
 
 game runs, but can't export it
 
