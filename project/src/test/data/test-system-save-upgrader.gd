@@ -16,12 +16,12 @@ func after_each() -> void:
 
 
 func load_player_data(filename: String) -> void:
-	var dir := DirAccess.copy_absolute("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
+	DirAccess.copy_absolute("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
 	SystemSave.load_system_data()
 
 
 func load_legacy_player_data(filename: String) -> void:
-	var dir := DirAccess.copy_absolute("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
+	DirAccess.copy_absolute("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
 	SystemSave.load_system_data()
 
 

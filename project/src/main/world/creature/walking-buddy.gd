@@ -97,10 +97,16 @@ func _start_move_timer(delay: float) -> void:
 ## creature moves faster than the other. As long as they're an appropriate distance apart, this method will make them
 ## walk towards their destination.
 func _walk() -> void:
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	var buddy_relative_pos: Vector2 = Global.from_iso(buddy.position - position)
 	
 	var new_non_iso_walk_direction := non_iso_walk_direction
 	if leader_or_follower == LeaderOrFollower.LEADER:
+		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		# https://github.com/godotengine/godot/issues/69282
+		@warning_ignore("static_called_on_instance")
 		if _desired_walk_direction.x > 0 and Global.from_iso(position).x > Global.from_iso(destination.position).x \
 				or _desired_walk_direction.x < 0 and Global.from_iso(position).x < Global.from_iso(destination.position).x:
 			# we're past our destination. stop moving, and face our buddy

@@ -23,7 +23,7 @@ func after_each() -> void:
 			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
 			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK,
 			RollingBackups.LEGACY]:
-		DirAccess.remove_absolute(PlayerSave.rolling_backups.rolling_filename(backup))
+		DirAccess.remove_absolute(PlayerSave.rolling_backups.get_rolling_filename(backup))
 
 
 func test_save_and_load() -> void:

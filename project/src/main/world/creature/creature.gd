@@ -275,6 +275,10 @@ func play_mood(mood: Creatures.Mood) -> void:
 ## Orients this creature so they're facing the specified target.
 func orient_toward(target_position: Vector2) -> void:
 	# calculate the relative direction of the object this creature should face
+	
+	# Workaround for Godot #69282; calling static function from within a class generates a warning
+	# https://github.com/godotengine/godot/issues/69282
+	@warning_ignore("static_called_on_instance")
 	var direction: Vector2 = Global.from_iso(position.direction_to(target_position))
 	var direction_dot := 0.0
 	if direction:

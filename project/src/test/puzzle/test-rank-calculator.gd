@@ -432,11 +432,11 @@ func test_target_leftover_score_low_combo_factor() -> void:
 
 
 func test_master_leftover_lines_veggie() -> void:
-	assert_eq(_rank_calculator.master_leftover_lines(CurrentLevel.settings), 12)
+	assert_eq(RankCalculator.master_leftover_lines(CurrentLevel.settings), 12)
 	
 	# it's impossible to have leftovers if you can't make boxes
 	CurrentLevel.settings.other.tile_set = PuzzleTileMap.TileSetType.VEGGIE
-	assert_eq(_rank_calculator.master_leftover_lines(CurrentLevel.settings), 0)
+	assert_eq(RankCalculator.master_leftover_lines(CurrentLevel.settings), 0)
 
 
 func test_target_lines_for_score() -> void:

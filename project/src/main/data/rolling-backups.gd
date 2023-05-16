@@ -67,7 +67,7 @@ func load_newest_save(target: Object, method: String) -> void:
 	
 	var load_successful := false
 	for backup in [CURRENT, THIS_HOUR, PREV_HOUR, THIS_DAY, PREV_DAY, THIS_WEEK, PREV_WEEK, LEGACY]:
-		var rolling_filename := rolling_filename(backup)
+		var rolling_filename := get_rolling_filename(backup)
 		if not FileUtils.file_exists(rolling_filename):
 			# file not found; try next file
 			continue
@@ -87,14 +87,14 @@ func load_newest_save(target: Object, method: String) -> void:
 		# loaded successfully, but there were some save files that couldn't be loaded
 		for bad_filename in bad_filenames:
 			# copy each bad file to a filename like 'foo.save.corrupt'
-			var corrupt_filename := corrupt_filename(bad_filename)
+			var corrupt_filename := get_corrupt_filename(bad_filename)
 			DirAccess.copy_absolute(bad_filename, corrupt_filename)
 			DirAccess.remove_absolute(bad_filename)
 			corrupt_filenames.append(corrupt_filename)
 		
 		if load_successful:
 			# copy the good file back to 'foo.save'
-			DirAccess.copy_absolute(rolling_filename(loaded_backup), data_filename)
+			DirAccess.copy_absolute(get_rolling_filename(loaded_backup), data_filename)
 
 
 ## Deletes any old backup saves, replacing it with newer data.
@@ -105,7 +105,7 @@ func rotate_backups() -> void:
 
 
 ## Returns a filename with a '.corrupt' suffix to flag saves which couldn't be loaded.
-func corrupt_filename(in_filename: String) -> String:
+func get_corrupt_filename(in_filename: String) -> String:
 	return StringUtils.substring_before_last(in_filename, ".save") + ".save.corrupt"
 
 
@@ -113,7 +113,7 @@ func corrupt_filename(in_filename: String) -> String:
 ##
 ## Parameters:
 ## 	'backup': Enum from Backup for the filename to return.
-func rolling_filename(backup: Backup) -> String:
+func get_rolling_filename(backup: Backup) -> String:
 	if backup == Backup.LEGACY:
 		return legacy_filename
 	
@@ -143,8 +143,8 @@ func _rotate_backup(this_save: RollingBackups.Backup, prev_save: RollingBackups.
 	if not FileUtils.file_exists(data_filename):
 		return
 	
-	var this_filename := rolling_filename(this_save)
-	var prev_filename := rolling_filename(prev_save)
+	var this_filename := get_rolling_filename(this_save)
+	var prev_filename := get_rolling_filename(prev_save)
 	
 	var file_age := 0
 	if FileUtils.file_exists(this_filename):

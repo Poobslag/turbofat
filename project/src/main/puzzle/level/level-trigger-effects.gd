@@ -459,5 +459,5 @@ func create(effect_key: String, effect_config: Dictionary = {}) -> LevelTriggerE
 	return effect
 
 
-func effect_key(effect: LevelTriggerEffect) -> String:
+func get_effect_key(effect: LevelTriggerEffect) -> String:
 	return effects_by_string.keys()[effects_by_string.values().find(effect.get_script())]

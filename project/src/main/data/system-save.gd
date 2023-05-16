@@ -151,7 +151,7 @@ func delete_save_slot(save_slot: MiscSettings.SaveSlot) -> void:
 			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
 			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
 			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK]:
-		var rolling_filename := rolling_backups.rolling_filename(backup)
+		var rolling_filename := rolling_backups.get_rolling_filename(backup)
 		DirAccess.remove_absolute(rolling_filename)
 	
 	emit_signal("save_slot_deleted")

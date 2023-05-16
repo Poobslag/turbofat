@@ -180,6 +180,6 @@ func test_clear_filled_lines_get_config() -> void:
 	assert_eq({"force": "true"}, effect.get_config())
 
 
-func test_effect_key() -> void:
-	assert_eq(LevelTriggerEffects.effect_key(LevelTriggerEffects.InsertLineEffect.new()), "insert_line")
-	assert_eq(LevelTriggerEffects.effect_key(LevelTriggerEffects.RotateNextPiecesEffect.new()), "rotate_next_pieces")
+func test_get_effect_key() -> void:
+	assert_eq(LevelTriggerEffects.get_effect_key(LevelTriggerEffects.InsertLineEffect.new()), "insert_line")
+	assert_eq(LevelTriggerEffects.get_effect_key(LevelTriggerEffects.RotateNextPiecesEffect.new()), "rotate_next_pieces")

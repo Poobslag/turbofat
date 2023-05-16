@@ -33,15 +33,15 @@ class PickupCollectedPhaseCondition extends PhaseCondition:
 	## 	'event_params': 'type' is a Foods.FoodType defining the pickup's color
 	func should_run(event_params: Dictionary) -> bool:
 		var actual_pickup_type: Foods.FoodType = event_params["type"]
-		var should_run := false
+		var result := false
 		match required_pickup_type:
 			RequiredPickupType.ANY:
-				should_run = true
+				result = true
 			RequiredPickupType.SNACK:
-				should_run = Foods.is_snack_food(actual_pickup_type)
+				result = Foods.is_snack_food(actual_pickup_type)
 			RequiredPickupType.CAKE:
-				should_run = Foods.is_cake_food(actual_pickup_type)
-		return should_run
+				result = Foods.is_cake_food(actual_pickup_type)
+		return result
 	
 	
 	## Extracts a set of phase configuration strings from this phase condition.
@@ -182,15 +182,15 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 	## 	'event_params': 'type' is an enum from Foods.BoxType defining the box's color
 	func should_run(event_params: Dictionary) -> bool:
 		var actual_box_type: Foods.BoxType = event_params["type"]
-		var should_run := false
+		var result := false
 		match required_box_type:
 			RequiredBoxType.ANY:
-				should_run = true
+				result = true
 			RequiredBoxType.SNACK:
-				should_run = Foods.is_snack_box(actual_box_type)
+				result = Foods.is_snack_box(actual_box_type)
 			RequiredBoxType.CAKE:
-				should_run = Foods.is_cake_box(actual_box_type)
-		return should_run
+				result = Foods.is_cake_box(actual_box_type)
+		return result
 	
 	
 	## Extracts a set of phase configuration strings from this phase condition.
