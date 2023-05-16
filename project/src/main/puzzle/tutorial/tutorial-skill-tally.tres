@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://1yrh2q33j8xw"]
 
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=1]
+[ext_resource type="FontFile" uid="uid://djvi5vhe42qcp" path="res://assets/main/ui/font/blogger-sans-medium.otf" id="1_s7x0f"]
 
 [resource]
-default_font = ExtResource( 1 )
+default_font = ExtResource("1_s7x0f")
+default_font_size = 18

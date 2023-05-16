@@ -21,7 +21,7 @@
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=20]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=21]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=22]
+[ext_resource path="res://assets/main/ui/font/blogger-sans-medium.otf" type="FontFile" id=22]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/puzzle/tutorial-keybinds-label.gd" type="Script" id=24]
 [ext_resource path="res://src/main/puzzle/line-inserter.gd" type="Script" id=25]
@@ -245,6 +245,7 @@ offset_top = 86.0
 offset_right = 119.0
 offset_bottom = 176.0
 theme_override_fonts/normal_font = ExtResource( 22 )
+theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = ExtResource( 21 )
 text = "Arrows: Move
 Down: Soft drop

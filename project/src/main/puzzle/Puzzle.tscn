@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/theme/h3-font.tres" type="FontFile" id=3]
 [ext_resource path="res://src/main/puzzle/metaball.gdshader" type="Shader" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
 [ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]

@@ -8,7 +8,7 @@
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=6]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=9]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=9]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=11]
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
@@ -60,6 +60,9 @@ offset_top = 17.0
 offset_right = 462.0
 offset_bottom = 62.0
 theme_override_fonts/font = ExtResource( 9 )
+theme_override_font_sizes/font_size = 36
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 text = "Play"
 horizontal_alignment = 1
 

@@ -16,7 +16,7 @@
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
 [ext_resource path="res://src/main/ui/menu/PagedLevelPanel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="FontFile" id=17]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="FontFile" id=17]
 [ext_resource path="res://src/main/ui/menu/region-submenu.gd" type="Script" id=22]
 [ext_resource path="res://src/main/ui/menu/level-submenu.gd" type="Script" id=24]
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture2D" id=31]
@@ -75,6 +75,9 @@ offset_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource( 17 )
+theme_override_font_sizes/font_size = 36
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 text = "Level"
 horizontal_alignment = 1
 vertical_alignment = 1

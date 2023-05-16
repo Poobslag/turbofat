@@ -1,35 +1,39 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://3bnwvwe5g2x1"]
 
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="FontFile" id=2]
-[ext_resource path="res://src/main/puzzle/results-hud.gd" type="Script" id=3]
-[ext_resource path="res://src/main/puzzle/results-label.gd" type="Script" id=4]
-[ext_resource path="res://assets/main/chat/ui/bebebe.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/main/ui/cheat-enable.wav" type="AudioStream" id=8]
+[ext_resource type="StyleBox" path="res://src/main/puzzle/PuzzleHudStyleBox.tres" id="1"]
+[ext_resource type="FontFile" uid="uid://djvi5vhe42qcp" path="res://assets/main/ui/font/blogger-sans-medium.otf" id="2_jm8ew"]
+[ext_resource type="Script" path="res://src/main/puzzle/results-hud.gd" id="3"]
+[ext_resource type="Script" path="res://src/main/puzzle/results-label.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://ch6nyivc3ndm7" path="res://assets/main/chat/ui/bebebe.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://sjpvl7avgyjj" path="res://assets/main/ui/cheat-enable.wav" id="8"]
 
 [node name="ResultsHud" type="Control" groups=["night_mode_light"]]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="ResultsLabel" type="RichTextLabel" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 774.0
 offset_top = 10.0
 offset_right = 1014.0
 offset_bottom = 590.0
-theme_override_fonts/normal_font = ExtResource( 2 )
-theme_override_styles/normal = ExtResource( 1 )
+theme_override_fonts/normal_font = ExtResource("2_jm8ew")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = ExtResource("1")
 scroll_following = true
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="BebebeSound" type="AudioStreamPlayer" parent="ResultsLabel"]
-stream = ExtResource( 5 )
+stream = ExtResource("5")
 volume_db = -12.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="ShowResultsSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource("8")
 volume_db = -8.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
