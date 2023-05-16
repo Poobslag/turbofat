@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends ObstacleSpawner
 ## Conditionally spawns a Poki Desert crowd member on the overworld.
 ##

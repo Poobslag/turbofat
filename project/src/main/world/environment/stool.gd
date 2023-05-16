@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name Stool
 extends OverworldObstacle
 ## Stool which appears on the overworld.

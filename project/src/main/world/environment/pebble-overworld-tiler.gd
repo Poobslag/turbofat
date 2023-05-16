@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Adds pebble tiles to an overworld terrain map.
 ##

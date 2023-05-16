@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends OverworldObstacle
 ## Overworld obstacle with different cosmetic variations in a sprite sheet.
 

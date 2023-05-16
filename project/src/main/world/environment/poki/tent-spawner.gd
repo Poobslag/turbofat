@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends ObstacleSpawner
 ## Conditionally spawns a tent on the overworld.
 ##

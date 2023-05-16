@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Autotiles a tilemap for goopy/goopless overworld cakes.
 ##

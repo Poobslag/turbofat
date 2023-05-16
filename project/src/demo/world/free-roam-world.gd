@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name FreeRoamWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles on the free roam overworld.

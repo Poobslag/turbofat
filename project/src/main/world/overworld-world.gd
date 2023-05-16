@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name OverworldWorld
 extends Node
 ## Populates/unpopulates creatures and obstacles for various overworld scenes.

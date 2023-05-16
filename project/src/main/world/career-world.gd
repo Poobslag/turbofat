@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles in the career mode's world.
 

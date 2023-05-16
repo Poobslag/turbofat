@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends OverworldObstacle
 ## Tree which appears in the overworld for Lemony Thickets.
 ##

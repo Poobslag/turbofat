@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Applies autotiling rules to all cells in a TileMap.
 ##

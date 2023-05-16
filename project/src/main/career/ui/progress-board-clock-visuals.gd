@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name ProgressBoardClockVisuals
 extends Node2D
 ## Draws the analog clock which appears above the progress board.

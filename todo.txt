@@ -59,6 +59,7 @@ game starts up, but has bugs
  -add '@warning_ignore' annotations for self static method calls; Godot #69282
 -investigate 'ChatChoiceButton' get_class workaround; is_class is used by ChatChoices
 -investigate 'Creature' get_class workaround
+-restore @tool scripts
 -regression test
  -#59683; polygon antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
  -Demos
@@ -102,9 +103,9 @@ Demos
 
 *./project/src/demo/career/ui/ChalkboardMapRowDemo.tscn
  *bug: landmark lines are aliased
--./project/src/demo/ui/FontFitLabelDemo.tscn
- -bug: swapping in fonts doesn't change size
- -fix FontFitButton too
+*./project/src/demo/ui/FontFitLabelDemo.tscn
+ *bug: swapping in fonts doesn't change size
+ *fix FontFitButton too
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn

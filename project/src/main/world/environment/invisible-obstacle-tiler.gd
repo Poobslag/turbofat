@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Refreshes the position of invisible obstacles which keep the player from stepping off the edge.
 ##

@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name FoodItem
 extends PackedSprite
 ## Food item which appears when the player clears a box in puzzle mode.

@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Sprite2D
 ## Exit on the floor which the player can step on to go somewhere else.
 ##

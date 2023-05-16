@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name CutsceneWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during cutscenes.

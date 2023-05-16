@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends HBoxContainer
 ## Row which shows the player the keybinds for a specific action, such as 'Move Piece Left'.
 ##

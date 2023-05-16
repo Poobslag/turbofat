@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name PuzzleWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during puzzles.

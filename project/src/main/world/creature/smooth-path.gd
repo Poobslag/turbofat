@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name SmoothPath
 extends Path2D
 ## Utility class which allows developers to draw curves in the Godot editor. Use the path tool to define line

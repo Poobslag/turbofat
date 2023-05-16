@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name PackedSprite
 extends Node2D
 ## Sprite whose contents are packed with Aseprite.

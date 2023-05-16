@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Adds puddle tiles to an overworld terrain map.
 ##

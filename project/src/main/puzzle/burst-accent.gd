@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends PackedSprite
 ## Colored accent sprite which appears behind a combo/spin/squish indicator.
 

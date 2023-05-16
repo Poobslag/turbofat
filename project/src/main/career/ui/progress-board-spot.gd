@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name ProgressBoardSpot
 extends Control
 ## Draws a spot on the progress board trail.

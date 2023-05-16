@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node
 ## Adds grass tiles to an overworld obstacle map.
 ##

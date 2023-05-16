@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name PokiCrowd
 extends OverworldObstacle
 ## Poki desert crowd member which appears in the overworld.

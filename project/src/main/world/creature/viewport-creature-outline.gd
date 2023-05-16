@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends CreatureOutline
 ## Implementation of CreatureOutline which is optimized for graphics quality.
 ##

@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name Utils
 ## Contains global utilities.
 
