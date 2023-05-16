@@ -234,6 +234,8 @@ translation_remaps={}
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.12549, 0.12549, 0.12549, 1)
+anti_aliasing/quality/msaa_2d=2
+anti_aliasing/quality/screen_space_aa=1
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 threads/thread_model=2

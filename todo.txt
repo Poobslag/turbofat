@@ -88,5 +88,46 @@ gold plating
 
 
 
+Demos
 
-130 warnings/errors running tests
+*./project/src/demo/career/ui/ChalkboardMapRowDemo.tscn
+ *bug: landmark lines are aliased
+-./project/src/demo/career/ui/ProgressBoardDemo.tscn
+-./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
+-./project/src/demo/chat/ui/ChatFrameDemo.tscn
+-./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
+-./project/src/demo/chat/ui/ChatUiDemo.tscn
+-./project/src/demo/chat/ui/MoodDemo.tscn
+-./project/src/demo/music/MusicPlayerDemo.tscn
+-./project/src/demo/NameGeneratorLibraryDemo.tscn
+-./project/src/demo/PackedSpriteDemo.tscn
+-./project/src/demo/puzzle/critter/CarrotDemo.tscn
+-./project/src/demo/puzzle/critter/MoleDemo.tscn
+-./project/src/demo/puzzle/critter/OnionDemo.tscn
+-./project/src/demo/puzzle/critter/SharkDemo.tscn
+-./project/src/demo/puzzle/level/LevelRankDemo.tscn
+-./project/src/demo/puzzle/level/RankModeDemo.tscn
+-./project/src/demo/puzzle/pan/FryingPansUiDemo.tscn
+-./project/src/demo/puzzle/PlayfieldDemo.tscn
+-./project/src/demo/puzzle/PuzzleCritterDemo.tscn
+-./project/src/demo/puzzle/PuzzleDemo.tscn
+-./project/src/demo/puzzle/PuzzleMessageDemo.tscn
+-./project/src/demo/puzzle/ResultsHudDemo.tscn
+-./project/src/demo/puzzle/ScoreDemo.tscn
+-./project/src/demo/puzzle/tutorial/TutorialHudDemo.tscn
+-./project/src/demo/ui/FontFitLabelDemo.tscn
+-./project/src/demo/ui/level-select/LevelSelectButtonDemo.tscn
+-./project/src/demo/ui/SceneTransitionDemo.tscn
+-./project/src/demo/ui/settings/keybind/KeybindManagerDemo.tscn
+-./project/src/demo/ui/settings/SettingsMenuDemo.tscn
+-./project/src/demo/ui/touch/EightWayDemo.tscn
+-./project/src/demo/world/creature/CreaturePaletteDemo.tscn
+-./project/src/demo/world/CutsceneDemo.tscn
+-./project/src/demo/world/environment/restaurant/RestaurantPuzzleSceneDemo.tscn
+-./project/src/demo/world/environment/restaurant/RestaurantViewDemo.tscn
+-./project/src/demo/world/environment/restaurant/TurboFatRestaurantDemo.tscn
+-./project/src/demo/world/environment/RippleWavesDemo.tscn
+-./project/src/demo/world/environment/SmokeClusterDemo.tscn
+-./project/src/demo/world/LetterShooterDemo.tscn
+
+
