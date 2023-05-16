@@ -40,6 +40,7 @@ game starts up, but has bugs
  -update save files
   -update save files to use RGBA instead of ARGB
   -update save files to use new scancodes
+ -remove/cleanup h1-font-new.tres
 -tilemap updates
  -replace 'autotilers' with 'terrain... things'
  -replace 'get_cellv' with 'get_something'? get_cell_source_id? get_cell_tile_data?
@@ -92,6 +93,7 @@ Demos
 
 *./project/src/demo/career/ui/ChalkboardMapRowDemo.tscn
  *bug: landmark lines are aliased
+-./project/src/demo/ui/FontFitLabelDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
@@ -115,7 +117,6 @@ Demos
 -./project/src/demo/puzzle/ResultsHudDemo.tscn
 -./project/src/demo/puzzle/ScoreDemo.tscn
 -./project/src/demo/puzzle/tutorial/TutorialHudDemo.tscn
--./project/src/demo/ui/FontFitLabelDemo.tscn
 -./project/src/demo/ui/level-select/LevelSelectButtonDemo.tscn
 -./project/src/demo/ui/SceneTransitionDemo.tscn
 -./project/src/demo/ui/settings/keybind/KeybindManagerDemo.tscn

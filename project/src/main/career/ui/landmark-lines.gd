@@ -18,7 +18,7 @@ func _refresh_lines() -> void:
 	for i in range(1, landmarks.size()):
 		# draw a line connecting the previous landmark to this landmark
 		var landmark_line: Line2D = LandmarkLineScene.instantiate()
-		landmark_line.points = landmark_line_points(landmarks, i)
+		landmark_line.points = LandmarkLines.landmark_line_points(landmarks, i)
 		add_child(landmark_line)
 
 

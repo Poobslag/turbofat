@@ -21,5 +21,3 @@ texture = ExtResource("2")
 expand_mode = 1
 
 [node name="MapRow" parent="." instance=ExtResource("1")]
-grow_horizontal = 2
-grow_vertical = 2
