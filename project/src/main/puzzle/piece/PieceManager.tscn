@@ -39,7 +39,7 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 10 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0.131034, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.875862, 1 ), 0.0, 0.0, 0, 0 ]
@@ -47,7 +47,7 @@ _data = [ Vector2( 0.131034, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.875862, 1 ), 0.0, 0
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 10 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PackedFloat32Array( 0, 0.390947 )

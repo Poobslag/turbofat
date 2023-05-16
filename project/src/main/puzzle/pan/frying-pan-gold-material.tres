@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/width = 30.0
-shader_param/white = Color( 1, 0.8, 0.2, 1 )
-shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
-shader_param/sample_count = 24
+shader_parameter/width = 30.0
+shader_parameter/white = Color( 1, 0.8, 0.2, 1 )
+shader_parameter/black = Color( 0.254902, 0.156863, 0.117647, 1 )
+shader_parameter/sample_count = 24

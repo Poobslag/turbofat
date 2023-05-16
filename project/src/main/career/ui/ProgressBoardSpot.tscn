@@ -6,10 +6,10 @@
 
 [sub_resource type="ShaderMaterial" id=29]
 shader = ExtResource( 1 )
-shader_param/width = 8.0
-shader_param/white = Color( 0.811765, 0.772549, 0.415686, 1 )
-shader_param/black = Color( 0.121569, 0.0941176, 0.0941176, 1 )
-shader_param/sample_count = 24
+shader_parameter/width = 8.0
+shader_parameter/white = Color( 0.811765, 0.772549, 0.415686, 1 )
+shader_parameter/black = Color( 0.121569, 0.0941176, 0.0941176, 1 )
+shader_parameter/sample_count = 24
 
 [node name="Spot" type="Control"]
 script = ExtResource( 3 )

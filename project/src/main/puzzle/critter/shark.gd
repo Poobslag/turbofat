@@ -185,8 +185,8 @@ func set_eaten_color(tile: int, autotile_y: int) -> void:
 
 
 ## Adds a cell to the eaten piece tilemap.
-func set_eaten_cell(position: Vector2i) -> void:
-	tooth_cloud.set_eaten_cell(position)
+func set_eaten_cell(cell_position: Vector2i) -> void:
+	tooth_cloud.set_eaten_cell(cell_position)
 
 
 ## Clears the eaten piece tilemap.

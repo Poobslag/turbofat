@@ -19,12 +19,12 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 14 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 14 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [node name="Playfield" type="HBoxContainer"]
 anchor_right = 1.0

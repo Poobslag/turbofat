@@ -37,7 +37,7 @@ func set_texture_scale(new_texture_scale: Vector2) -> void:
 ## Assigns the two colors used for this border.
 func set_gradient_colors(color_0: Color, color_1: Color) -> void:
 	var shader_material: ShaderMaterial = _texture_rect.material
-	var gradient_texture: GradientTexture2D = shader_material.get("shader_param/gradient")
+	var gradient_texture: GradientTexture2D = shader_material.get("shader_parameter/gradient")
 	gradient_texture.gradient.colors[0] = color_0
 	gradient_texture.gradient.colors[1] = color_1
 

@@ -7,7 +7,9 @@ extends Path2D
 ## Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a-curve-in-2d?show=57123#a57123
 
 @export var spline_length := 25.0
+@warning_ignore("unused_private_class_variable")
 @export var _smooth: bool: set = smooth
+@warning_ignore("unused_private_class_variable")
 @export var _straighten: bool: set = straighten
 @export var closed := true
 

@@ -6,12 +6,12 @@
 [ext_resource path="res://assets/main/ui/transition-pieces.wav" type="AudioStream" id=5]
 [ext_resource path="res://src/main/ui/scene-transition.gd" type="Script" id=6]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 shader = ExtResource( 3 )
-shader_param/cutoff = 0.0
-shader_param/smooth_size = 0.06
-shader_param/harshness = 0.48
-shader_param/invert = false
+shader_parameter/cutoff = 0.0
+shader_parameter/smooth_size = 0.06
+shader_parameter/harshness = 0.48
+shader_parameter/invert = false
 
 [sub_resource type="Animation" id=3]
 length = 0.001

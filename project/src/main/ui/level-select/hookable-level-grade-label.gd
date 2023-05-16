@@ -85,7 +85,7 @@ func _refresh_status_icon(lock_status: LevelSelectButton.LockStatus) -> void:
 			push_warning("Unexpected lock status: %s" % [lock_status])
 	
 	_status_icon.modulate = icon_color
-	_status_icon.material.set("shader_param/black", outline_color)
+	_status_icon.material.set("shader_parameter/black", outline_color)
 
 
 ## Updates the text based on the player's grade on a level.

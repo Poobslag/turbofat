@@ -58,22 +58,22 @@ func _ready() -> void:
 ## free roam overworld.
 ##
 ## If a chill song is already playing, this method has no effect.
-func play_chill_bgm(fade_in: bool = true) -> void:
-	_play_next_bgm(_chill_bgms, fade_in)
+func play_chill_bgm(fade_in_bgm: bool = true) -> void:
+	_play_next_bgm(_chill_bgms, fade_in_bgm)
 
 
 ## Plays an 'upbeat' song; something suitable when the player's playing a puzzle level.
 ##
 ## If an upbeat song is already playing, this method has no effect.
-func play_upbeat_bgm(fade_in: bool = true) -> void:
-	_play_next_bgm(_upbeat_bgms, fade_in)
+func play_upbeat_bgm(fade_in_bgm: bool = true) -> void:
+	_play_next_bgm(_upbeat_bgms, fade_in_bgm)
 
 
 ## Plays a 'tutorial song'; something suitable when the player is following a puzzle tutorial.
 ##
 ## If a tutorial song is already playing, this method has no effect.
-func play_tutorial_bgm(fade_in: bool = true) -> void:
-	_play_next_bgm(_tutorial_bgms, fade_in)
+func play_tutorial_bgm(fade_in_bgm: bool = true) -> void:
+	_play_next_bgm(_tutorial_bgms, fade_in_bgm)
 
 
 ## Gradually fades a track in.
@@ -153,7 +153,7 @@ func set_night_filter(new_night_filter: bool) -> void:
 ## 	'bgms': Array of CheckpointSong instances to play
 ##
 ## 	'fade_in': 'true' if the music should fade in
-func _play_next_bgm(bgms: Array, fade_in: bool) -> void:
+func _play_next_bgm(bgms: Array, fade_in_bgm: bool) -> void:
 	if current_bgm in bgms:
 		# a song from the specified list is already playing; don't interrupt it
 		return
@@ -161,7 +161,7 @@ func _play_next_bgm(bgms: Array, fade_in: bool) -> void:
 	var new_bgm: CheckpointSong = bgms.pop_front()
 	bgms.append(new_bgm)
 	play_bgm(new_bgm)
-	if fade_in:
+	if fade_in_bgm:
 		fade_in()
 
 

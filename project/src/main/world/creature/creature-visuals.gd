@@ -40,12 +40,15 @@ signal head_moved
 const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)
 
 ## toggle to assign default animation frames based on the creature's orientation
+@warning_ignore("unused_private_class_variable")
 @export var _reset_frames: bool: set = reset_frames
 
 ## toggle to remove the creature's textures
+@warning_ignore("unused_private_class_variable")
 @export var _reset_creature: bool: set = reset_creature
 
 ## toggle to generate a creature with a random appearance
+@warning_ignore("unused_private_class_variable")
 @export var _random_creature: bool: set = random_creature
 
 ## state of whether the creature is walking, running or idle

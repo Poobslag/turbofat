@@ -101,7 +101,7 @@ tracks/0/keys = {
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
 shader = ExtResource( 8 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="CanvasItemMaterial" id=16]
 blend_mode = 1

@@ -56,15 +56,15 @@ viewport_path = NodePath("BgGlobViewports/RainbowViewport")
 [sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
 shader = ExtResource( 18 )
-shader_param/goop_alpha = 0.6
-shader_param/noise = SubResource( 3 )
-shader_param/goop_texture = SubResource( 1 )
-shader_param/rainbow_texture = SubResource( 4 )
+shader_parameter/goop_alpha = 0.6
+shader_parameter/noise = SubResource( 3 )
+shader_parameter/goop_texture = SubResource( 1 )
+shader_parameter/rainbow_texture = SubResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 20 )
-shader_param/mix_color = Color( 1, 1, 1, 0 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 1

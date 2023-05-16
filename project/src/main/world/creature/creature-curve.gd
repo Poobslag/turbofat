@@ -14,6 +14,7 @@ signal appearance_changed
 @export var editing := true
 
 ## toggle to save the currently edited curve in this node's 'curve_defs'
+@warning_ignore("unused_private_class_variable")
 @export var _save_curve: bool: set = save_curve
 
 ## defines the shadow curve coordinates for each of the creature's levels of fatness.

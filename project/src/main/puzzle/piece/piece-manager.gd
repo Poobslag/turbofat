@@ -203,8 +203,8 @@ func swap_hold_piece() -> void:
 
 
 func move_piece() -> void:
-	var piece_disturbed := _physics.move_piece(piece)
-	if piece_disturbed:
+	var piece_moved := _physics.move_piece(piece)
+	if piece_moved:
 		emit_signal("piece_disturbed", piece)
 
 

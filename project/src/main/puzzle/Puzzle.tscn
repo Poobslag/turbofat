@@ -179,10 +179,10 @@ viewport_path = NodePath("Fg/WallGlobViewports/RainbowViewport")
 [sub_resource type="ShaderMaterial" id=13]
 resource_local_to_scene = true
 shader = ExtResource( 15 )
-shader_param/goop_alpha = 0.6
-shader_param/noise = SubResource( 11 )
-shader_param/goop_texture = SubResource( 9 )
-shader_param/rainbow_texture = SubResource( 12 )
+shader_parameter/goop_alpha = 0.6
+shader_parameter/noise = SubResource( 11 )
+shader_parameter/goop_texture = SubResource( 9 )
+shader_parameter/rainbow_texture = SubResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.254902, 0.156863, 0.117647, 1 )
@@ -221,7 +221,7 @@ noise = SubResource( 16 )
 
 [sub_resource type="ShaderMaterial" id=18]
 shader = ExtResource( 7 )
-shader_param/noise = SubResource( 17 )
+shader_parameter/noise = SubResource( 17 )
 
 [sub_resource type="ViewportTexture" id=19]
 flags = 5
@@ -230,9 +230,9 @@ viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/RainbowViewport")
 [sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
 shader = ExtResource( 22 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-shader_param/edge_fix_factor = 0.001
+shader_parameter/width = 6.0
+shader_parameter/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_parameter/edge_fix_factor = 0.001
 
 [sub_resource type="ViewportTexture" id=21]
 viewport_path = NodePath("Fg/FoodItems/SubViewport")

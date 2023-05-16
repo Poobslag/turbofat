@@ -73,8 +73,8 @@ func stop_idle_animation() -> void:
 ## If the current animation is 'ambient', the timer counts down to launch idle animations.
 ##
 ## If the current animation is not 'ambient' state, the timer pauses and does not launch idle animations.
-func _update_state(start: bool = false) -> void:
-	if start:
+func _update_state(start_timer: bool = false) -> void:
+	if start_timer:
 		start(randf_range(IDLE_FREQUENCY * 0.5, IDLE_FREQUENCY * 1.5))
 	if _emote_player.current_animation != "ambient":
 		# no idle animations when emoting

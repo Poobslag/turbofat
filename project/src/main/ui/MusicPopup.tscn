@@ -21,10 +21,10 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
-shader_param/width = 6.0
-shader_param/white = Color( 1, 1, 1, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-shader_param/sample_count = 24
+shader_parameter/width = 6.0
+shader_parameter/white = Color( 1, 1, 1, 1 )
+shader_parameter/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_parameter/sample_count = 24
 
 [node name="MusicPopup" type="Control" groups=["night_mode_light", "singletons"]]
 process_mode = 2

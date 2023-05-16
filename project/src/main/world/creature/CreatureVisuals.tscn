@@ -34,26 +34,26 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CanvasItemMaterial" id=4]
 particles_animation = true
@@ -86,106 +86,106 @@ color_ramp = SubResource( 6 )
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 1, 1, 1, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 1, 1, 1, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=12]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=13]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=14]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=16]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=17]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=18]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=19]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 1, 1, 1, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Gradient" id=21]
 offsets = PackedFloat32Array( 0.00473934, 0.390947 )
@@ -227,18 +227,18 @@ blend_mode = 1
 [sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 1, 1, 1, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=27]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
+shader_parameter/red = Color( 0, 0, 0, 1 )
+shader_parameter/green = Color( 0, 0, 0, 1 )
+shader_parameter/blue = Color( 0, 0, 0, 1 )
+shader_parameter/black = Color( 0, 0, 0, 1 )
 
 [node name="Visuals" type="Node2D"]
 position = Vector2( 580, 850 )
