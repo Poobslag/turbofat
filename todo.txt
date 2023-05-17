@@ -35,7 +35,7 @@ game starts up, but has bugs
  *update all 'Array.slice()' calls: slice is now exclusive, not inclusive
  *update all font scene references to include size
  *fix fonts
- -game crashes when loading PuzzleTileMap.tscn
+ *game crashes when loading PuzzleTileMap.tscn
  -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
  -avoid assigning constants to fields; they can't be mutated anymore
  -assigning your own fields now calls setters
@@ -45,6 +45,9 @@ game starts up, but has bugs
   -update save files to use new scancodes
  -remove/cleanup h1-font-new.tres
 -tilemap updates
+ -fix 'Cannot create tile. The tile is outside the texture...' errors
+  *PuzzleTileMap.tscn
+  -Puzzle.tscn?
  -rewrite tilemaps from scratch (ugh)
   -puzzle stuff
    -FryingPansUi.tscn
@@ -203,14 +206,3 @@ ERROR: The TileSetAtlasSource atlas has no tile at (0, 32).
 Maybe "some tiles have a selected region size larger than the tile's atlas texture"? yes!
 blocks-shadows.png 0: texture is 2368x528, 
 
-128 + 2 + 2 + 128 + 2 + 2 + 128 + 2 + 2 + 128 + 2
-
-128 * 12 + 4 * 12 - 4
-1536 + 48 - 4
-
-
-Before, TileMaps had:
-cell_size = Vector2( 72, 64 )
-
-now, TileSets have:
-tile_size = Vector2i(55, 66)

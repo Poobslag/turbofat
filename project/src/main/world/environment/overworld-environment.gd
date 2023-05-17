@@ -13,7 +13,7 @@ const SCENE_EMPTY_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironm
 
 ## Adds a new obstacle. The obstacle is placed below the given node in the list of children.
 func add_obstacle_below_node(node: Node2D, child_node: Node2D) -> void:
-	_obstacles.add_sibling(node, child_node)
+	node.add_sibling(child_node)
 	process_new_obstacle(child_node)
 
 
