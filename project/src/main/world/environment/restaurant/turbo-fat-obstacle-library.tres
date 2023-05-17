@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=19 format=2]
 
 [ext_resource path="res://assets/main/world/environment/restaurant/red-wall-3.png" type="Texture" id=1]
-[ext_resource path="res://assets/main/empty-8.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/empty-600.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/world/environment/restaurant/red-wall-wide-1.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/world/environment/restaurant/red-wall-wide-4.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/world/environment/restaurant/red-wall-wide-2.png" type="Texture" id=5]
@@ -154,7 +154,7 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 8/texture = ExtResource( 8 )
 8/tex_offset = Vector2( 46, -38 )
 8/modulate = Color( 1, 1, 1, 1 )
-8/region = Rect2( 0, 0, 1000, 660 )
+8/region = Rect2( 0, 0, 1000, 600 )
 8/tile_mode = 2
 8/autotile/icon_coordinate = Vector2( 0, 0 )
 8/autotile/tile_size = Vector2( 250, 200 )
