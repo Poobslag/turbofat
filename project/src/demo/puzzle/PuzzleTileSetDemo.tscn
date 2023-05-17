@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3nv5darfkh68"]
+
+[ext_resource type="TileSet" uid="uid://nmk2el4lfco0" path="res://src/main/puzzle/puzzle-tile-set-g4.tres" id="1_ruled"]
+[ext_resource type="TileSet" uid="uid://dah2oa0jyk7ue" path="res://src/main/puzzle/puzzle-corner-tile-set-g4.tres" id="2_8vcog"]
+
+[node name="Node" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+tile_set = ExtResource("1_ruled")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 524288, 0, 1, 393216, 0, 65537, 65536, 0)
+
+[node name="CornerMap" type="TileMap" parent="TileMap"]
+tile_set = ExtResource("2_8vcog")
+format = 2
+layer_0/tile_data = PackedInt32Array(65538, 5, 1)

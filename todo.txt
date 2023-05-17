@@ -45,6 +45,40 @@ game starts up, but has bugs
   -update save files to use new scancodes
  -remove/cleanup h1-font-new.tres
 -tilemap updates
+ -rewrite tilemaps from scratch (ugh)
+  -puzzle stuff
+   -FryingPansUi.tscn
+   -Playfield.tscn
+   -PuzzleTileMap.tscn
+   -NightPlayfield.tscn
+   -NightPuzzleTileMap.tscn
+   -PuzzleCornerMap.tscn
+  -environment stuff
+   -EmptyEnvironment.tscn
+   -Lemon2FreeRoamEnvironment.tscn
+   -LemonFreeRoamEnvironment.tscn
+   -MarshFreeRoamEnvironment.tscn
+   -PokiFreeRoamEnvironment.tscn
+   -TurboFatFreeRoamEnvironment.tscn
+   -UndecoratedTurboFatFreeRoamEnvironment.tscn
+   -IndoorShadows.tscn
+   -LemonWalkEnvironment.tscn
+   -OutdoorShadows.tscn
+   -Lemon2Environment.tscn
+   -LemonGroundMap.tscn
+   -LemonRestaurantEnvironment.tscn
+   -LemonWinEnvironment.tscn
+   -MarshEnvironment.tscn
+   -MarshGroundMap.tscn
+   -MarshWalkEnvironment.tscn
+   -MarshWinEnvironment.tscn
+   -PokiEnvironment.tscn
+   -PokiGroundMap.tscn
+   -PokiWalkEnvironment.tscn
+   -PokiWinEnvironment.tscn
+   -TurboFatEnvironment.tscn
+   -UndecoratedTurboFatEnvironment.tscn
+ *fix out-of-bounds atlas cell definitions; these will cause crashes in Godot 4.x
  -replace 'autotilers' with 'terrain... things'
  -replace 'get_cellv' with 'get_something'? get_cell_source_id? get_cell_tile_data?
 -particle updates
@@ -167,3 +201,16 @@ ERROR: The TileSetAtlasSource atlas has no tile at (0, 32).
    at: (scene/resources/tile_set.cpp:4515)
 
 Maybe "some tiles have a selected region size larger than the tile's atlas texture"? yes!
+blocks-shadows.png 0: texture is 2368x528, 
+
+128 + 2 + 2 + 128 + 2 + 2 + 128 + 2 + 2 + 128 + 2
+
+128 * 12 + 4 * 12 - 4
+1536 + 48 - 4
+
+
+Before, TileMaps had:
+cell_size = Vector2( 72, 64 )
+
+now, TileSets have:
+tile_size = Vector2i(55, 66)

@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dah2oa0jyk7ue"]
+
+[ext_resource type="Texture2D" uid="uid://bvadnf5wmdmwd" path="res://assets/main/puzzle/blocks/blocks-corners.png" id="4_6y652"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kf0ca"]
+texture = ExtResource("4_6y652")
+margins = Vector2i(2, 2)
+separation = Vector2i(4, 4)
+texture_region_size = Vector2i(36, 32)
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+0:2/0 = 0
+0:1/0 = 0
+
+[resource]
+tile_size = Vector2i(36, 32)
+sources/5 = SubResource("TileSetAtlasSource_kf0ca")
