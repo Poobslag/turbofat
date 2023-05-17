@@ -39,9 +39,6 @@ var hiding := false
 ## Turns the carrot a solid color. Used to turn the carrot solid white during the show animation.
 var _mix_color: Color = Color.transparent setget set_mix_color
 
-## 'true' if the Mole will be queued for deletion after the 'poof' animation completes.
-var _free_after_hide := false
-
 ## Handles the show/hide animations.
 onready var _show_tween: SceneTreeTween
 
