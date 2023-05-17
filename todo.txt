@@ -156,3 +156,14 @@ h5: 14
 h6: 12
 h7: 10
 h8: 8
+
+
+https://github.com/godotengine/godot/issues/67556
+
+
+ERROR: Cannot create tile. The tile is outside the texture or tiles are already present in the space the tile would cover.
+   at: (scene/resources/tile_set.cpp:4113)
+ERROR: The TileSetAtlasSource atlas has no tile at (0, 32).
+   at: (scene/resources/tile_set.cpp:4515)
+
+Maybe "some tiles have a selected region size larger than the tile's atlas texture"? yes!
