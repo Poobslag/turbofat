@@ -5,7 +5,7 @@ extends Control
 const DISPLAY_COUNT := 9
 
 @export var piece_queue_path: NodePath
-@export var NextPieceDisplayScene
+@export var NextPieceDisplayScene: PackedScene
 
 ## array of NextPieceDisplays which are shown to the player
 var _next_piece_displays := []

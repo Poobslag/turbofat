@@ -47,9 +47,9 @@ game starts up, but has bugs
 -tilemap updates
  -fix 'Cannot create tile. The tile is outside the texture...' errors
   *PuzzleTileMap.tscn
-  -NightPlayfield.tscn
-   -expand blocks-veggie-cubes-onion to be wider
-  -Puzzle.tscn?
+  *NightPlayfield.tscn
+   *expand blocks-veggie-cubes-onion to be wider
+  -Puzzle.tscn
  -rewrite tilemaps from scratch (ugh)
   -puzzle stuff
    -can open Puzzle.tscn without crashing

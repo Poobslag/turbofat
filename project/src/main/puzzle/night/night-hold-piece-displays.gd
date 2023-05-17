@@ -6,7 +6,7 @@ extends Control
 ## Path to the daytime hold piece displays to synchronize with.
 @export var hold_piece_displays_path: NodePath
 
-@export var NightPieceDisplayScene
+@export var NightPieceDisplayScene: PackedScene
 
 var _display: NightPieceDisplay
 

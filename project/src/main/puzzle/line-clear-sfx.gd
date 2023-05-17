@@ -51,7 +51,7 @@ extends Node
 @onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSound3]
 
 func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	var sound_index := clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
+	var sound_index: int = clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
 	var sound: AudioStreamPlayer
 	if box_ints:
 		sound = _line_erase_sounds[sound_index]

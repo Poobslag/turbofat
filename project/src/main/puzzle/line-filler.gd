@@ -76,10 +76,10 @@ func _schedule_playfield_refill() -> void:
 	_remaining_line_fill_frames = max(1, PieceSpeeds.current_speed.playfield_refill_delay())
 	_filled_line_index = PuzzleTileMap.ROW_COUNT - 1
 	
-	var visible_row_count := clamp(_row_count_by_tiles_key.get("start", 0),
+	var visible_row_count: int = clamp(_row_count_by_tiles_key.get("start", 0),
 			0, PuzzleTileMap.ROW_COUNT - PuzzleTileMap.FIRST_VISIBLE_ROW)
 	var line_fill_timing_window := PieceSpeeds.current_speed.playfield_refill_delay()
-	var per_line_fill_delay := floor(line_fill_timing_window / max(1, visible_row_count))
+	var per_line_fill_delay: int = floor(line_fill_timing_window / max(1, visible_row_count))
 	
 	for i in range(_row_count_by_tiles_key.get("start", 0)):
 		_lines_being_filled.append(max(1, (visible_row_count - i) * per_line_fill_delay))
@@ -139,7 +139,7 @@ func _fill_line(tiles_key: String, dest_y: int) -> void:
 func _play_line_fill_sound() -> void:
 	_line_fill_sfx_reset_timer.start()
 	
-	var sound_index := clamp(_line_fill_sfx_index, 0, _line_fill_sounds.size() - 1)
+	var sound_index: int = clamp(_line_fill_sfx_index, 0, _line_fill_sounds.size() - 1)
 	var sound: AudioStreamPlayer = _line_fill_sounds[sound_index]
 	sound.pitch_scale = randf_range(0.90, 1.10)
 	sound.play()

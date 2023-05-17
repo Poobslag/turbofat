@@ -94,8 +94,11 @@ func _calculate_pan_cells() -> Array:
 		if cell_pos.x >= 2 * pans_per_row:
 			cell_pos = Vector2i(0, cell_pos.y + 1)
 	
-	# center the bottom row horizontally
-	for i in range(pans_max - cell_pos.x / 2, min(pans_max, 50)):
+	@warning_ignore("integer_division")
+	# Workaround for Godot #73222; @warning_ignore doesn't work for conditions
+	var godot_73222_workaround := range(pans_max - cell_pos.x / 2, min(pans_max, 50))
+	for i in godot_73222_workaround:
+		@warning_ignore("integer_division")
 		pan_cells[i].x += pans_per_row - cell_pos.x / 2
 	
 	return pan_cells
@@ -139,5 +142,5 @@ func _add_frying_pan_ghost() -> void:
 	frying_pan_ghost.texture = _tile_map.tile_set.tile_get_texture(tile_id)
 	frying_pan_ghost.material = _tile_map.tile_set.tile_get_material(tile_id)
 	frying_pan_ghost.scale = _tile_map.scale
-	frying_pan_ghost.position = _tile_map.cell_size * _tile_map.scale * (_first_dead_cell + Vector2(1.0, 0.5))
+	frying_pan_ghost.position = _tile_map.cell_size * _tile_map.scale * (Vector2(_first_dead_cell) + Vector2(1.0, 0.5))
 	add_child(frying_pan_ghost)

@@ -6,7 +6,7 @@ extends Control
 ## Path to the daytime next piece displays to synchronize with.
 @export var next_piece_displays_path: NodePath
 
-@export var NightPieceDisplayScene
+@export var NightPieceDisplayScene: PackedScene
 
 ## array of NightNextPieceDisplays which are shown to the player
 var _onion_piece_displays := []

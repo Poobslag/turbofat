@@ -18,9 +18,9 @@ func _on_resized() -> void:
 		return
 	
 	# Avoid a Stack Overflow where changing our margins triggers another _on_resized() event, see #1810
-	disconnect(resized, _on_resized)
+	resized.disconnect(_on_resized)
 	offset_left = -size.x
-	connect(resized, _on_resized)
+	resized.connect(_on_resized)
 	
 	_top_out_particles.position = size * 0.5
 
