@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_expected_visual_msec += _seconds_per_frame * 1000
-	_actual_visual_msec = OS.get_system_time_msecs()
+	_actual_visual_msec = Time.get_ticks_msec()
 	
 	var disparity := (_actual_visual_msec - _expected_visual_msec) / 1000.0
 	if disparity > _seconds_per_frame:
@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	_expected_physics_msec += _seconds_per_frame * 1000
-	_actual_physics_msec = OS.get_system_time_msecs()
+	_actual_physics_msec = Time.get_ticks_msec()
 	
 	var disparity := (_actual_physics_msec - _expected_physics_msec) / 1000.0
 	if disparity > _seconds_per_frame:
@@ -64,7 +64,7 @@ func _refresh_text() -> void:
 
 
 func _reset() -> void:
-	var system_time_msec := OS.get_system_time_msecs()
+	var system_time_msec := Time.get_ticks_msec()
 	
 	_expected_physics_msec = system_time_msec
 	_actual_physics_msec = system_time_msec

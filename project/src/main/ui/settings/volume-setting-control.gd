@@ -30,7 +30,7 @@ func _ready() -> void:
 	_sample_timer.timeout.connect(_on_SampleTimer_timeout)
 
 
-func set_volume_type(new_volume_type: VolumeType) -> void:
+func set_volume_type(new_volume_type: VolumeSettings.VolumeType) -> void:
 	volume_type = new_volume_type
 	_refresh_setting_label()
 

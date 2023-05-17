@@ -64,7 +64,7 @@ func confirm_new_save_slot() -> void:
 func _delete_confirmation_dialog_text(message: String) -> String:
 	var selected_save_slot := _save_slot_control.get_selected_save_slot()
 	var playtime_in_seconds: float = SystemSave.get_save_slot_playtime(selected_save_slot)
-	var playtime_in_hours := clamp(playtime_in_seconds / 3600, 0, 9999.9)
+	var playtime_in_hours: float = clamp(playtime_in_seconds / 3600, 0, 9999.9)
 	var playtime_message := tr("%.1f hours") % [playtime_in_hours]
 	var save_slot_name: String = SystemSave.get_save_slot_name(selected_save_slot)
 	return "%s\n%s (%s)" % [message, save_slot_name, playtime_message]
