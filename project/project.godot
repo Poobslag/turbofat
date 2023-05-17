@@ -72,6 +72,10 @@ window/vsync/vsync_mode=false
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [gui]
 
 common/snap_controls_to_pixels=false
