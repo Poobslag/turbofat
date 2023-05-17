@@ -47,9 +47,13 @@ game starts up, but has bugs
 -tilemap updates
  -fix 'Cannot create tile. The tile is outside the texture...' errors
   *PuzzleTileMap.tscn
+  -NightPlayfield.tscn
+   -expand blocks-veggie-cubes-onion to be wider
   -Puzzle.tscn?
  -rewrite tilemaps from scratch (ugh)
   -puzzle stuff
+   -can open Puzzle.tscn without crashing
+    -crashes opening NightPlayfield.tscn (Playfield.tscn is fine)
    -FryingPansUi.tscn
    -Playfield.tscn
    -PuzzleTileMap.tscn
@@ -206,3 +210,4 @@ ERROR: The TileSetAtlasSource atlas has no tile at (0, 32).
 Maybe "some tiles have a selected region size larger than the tile's atlas texture"? yes!
 blocks-shadows.png 0: texture is 2368x528, 
 
+Crashes loading NightPlayfield? puzzle-tile-set-onion.tres?
