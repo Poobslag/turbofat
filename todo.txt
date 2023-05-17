@@ -49,6 +49,7 @@ game starts up, but has bugs
   *PuzzleTileMap.tscn
   *NightPlayfield.tscn
    *expand blocks-veggie-cubes-onion to be wider
+  -EmptyEnvironment.tscn
   -Puzzle.tscn
  -rewrite tilemaps from scratch (ugh)
   -puzzle stuff
@@ -211,3 +212,25 @@ Maybe "some tiles have a selected region size larger than the tile's atlas textu
 blocks-shadows.png 0: texture is 2368x528, 
 
 Crashes loading NightPlayfield? puzzle-tile-set-onion.tres?
+
+
+SCRIPT ERROR: Parse Error: Could not find type "VolumeType" in the current scope.
+          at: GDScript::reload (res://src/main/ui/settings/volume-setting-control.gd:33)
+SCRIPT ERROR: Parse Error: Invalid operand of type "String" for unary operator "not".
+          at: GDScript::reload (res://src/main/ui/settings/settings-language.gd:38)
+SCRIPT ERROR: Parse Error: Invalid operand of type "String" for unary operator "not".
+          at: GDScript::reload (res://src/main/ui/settings/settings-language.gd:45)
+SCRIPT ERROR: Parse Error: The variable type is being inferred from a Variant value, so it will be typed as Variant. (Warning treated as error.)
+          at: GDScript::reload (res://src/main/ui/settings/settings-dialogs.gd:67)
+SCRIPT ERROR: Parse Error: Static function "get_system_time_msecs()" not found in base "OS".
+          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:37)
+SCRIPT ERROR: Parse Error: Static function "get_system_time_msecs()" not found in base "OS".
+          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:49)
+SCRIPT ERROR: Parse Error: Static function "get_system_time_msecs()" not found in base "OS".
+          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:67)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "system_time_msec" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:67)
+SCRIPT ERROR: Parse Error: Cannot assign a value of type "Timer.TimerProcessCallback" as "Node.ProcessMode".
+          at: GDScript::reload (res://src/main/puzzle/level-timer-manager.gd:33)
+SCRIPT ERROR: Parse Error: Value of type "Timer.TimerProcessCallback" cannot be assigned to a variable of type "Node.ProcessMode".
+          at: GDScript::reload (res://src/main/puzzle/level-timer-manager.gd:33)
