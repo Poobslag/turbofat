@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b2subt4jflscm"]
 
-[ext_resource path="res://src/demo/puzzle/playfield-demo.gd" type="Script" id=1]
-[ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://src/demo/puzzle/playfield-demo.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/main/puzzle/Playfield.tscn" id="2"]
 
 [node name="PlayfieldDemo" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Playfield" parent="." instance=ExtResource( 2 )]
+[node name="Playfield" parent="." instance=ExtResource("2")]
+layout_mode = 3
+anchors_preset = 0

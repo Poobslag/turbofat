@@ -55,7 +55,7 @@ game starts up, but has bugs
   -puzzle stuff
    *can open Puzzle.tscn without crashing
     *crashes opening NightPlayfield.tscn (Playfield.tscn is fine)
-   -FryingPansUi.tscn
+   *FryingPansUi.tscn
    -Playfield.tscn
    -PuzzleTileMap.tscn
    -NightPlayfield.tscn
@@ -154,6 +154,13 @@ Demos
  *bug: ghost tiles don't fade out
  *bug: golden pans don't use golden ghost tile (material?)
  *fix 'tile ghost logic'
+-./project/src/demo/puzzle/PlayfieldDemo.tscn
+ -doesn't crash on startup
+ -looks vaguely ok on startup
+ -'QWERT'
+ -'ASDFG'
+ -'ZXCVB'
+ -'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
@@ -169,7 +176,6 @@ Demos
 -./project/src/demo/puzzle/critter/SharkDemo.tscn
 -./project/src/demo/puzzle/level/LevelRankDemo.tscn
 -./project/src/demo/puzzle/level/RankModeDemo.tscn
--./project/src/demo/puzzle/PlayfieldDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
 -./project/src/demo/puzzle/PuzzleDemo.tscn
 -./project/src/demo/puzzle/PuzzleMessageDemo.tscn
