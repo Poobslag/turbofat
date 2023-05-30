@@ -1,115 +1,40 @@
 [gd_scene load_steps=13 format=3 uid="uid://qu7jspcgvm28"]
 
-[ext_resource type="Material" path="res://src/main/puzzle/pan/frying-pan-gold-material.tres" id="1"]
+[ext_resource type="Material" uid="uid://2teey2sa80bb" path="res://src/main/puzzle/pan/frying-pan-gold-material.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://b5s77y5frnu50" path="res://assets/main/puzzle/pan/frying-pan.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://cn7ipv4myvfvp" path="res://assets/main/puzzle/pan/frying-pan-dead.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://dq2fy7itgldxd" path="res://assets/main/puzzle/pan/frying-pan-gold.png" id="4"]
 [ext_resource type="Script" path="res://src/main/puzzle/pan/frying-pans-ui.gd" id="5"]
 [ext_resource type="Material" path="res://src/main/puzzle/pan/frying-pan-dead-material.tres" id="6"]
-[ext_resource type="Material" path="res://src/main/puzzle/pan/frying-pan-material.tres" id="7"]
-[ext_resource type="PackedScene" path="res://src/main/puzzle/pan/FryingPanGhost.tscn" id="8"]
+[ext_resource type="Material" uid="uid://dkak0j3ulky6a" path="res://src/main/puzzle/pan/frying-pan-material.tres" id="7"]
+[ext_resource type="PackedScene" uid="uid://d337teo8kgwyj" path="res://src/main/puzzle/pan/FryingPanGhost.tscn" id="8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ml204"]
 texture = ExtResource("2")
 texture_region_size = Vector2i(256, 256)
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-55, 0)
 0:0/0/material = ExtResource("7")
-0:0/1 = 1
-0:0/1/flip_h = true
-0:0/1/material = ExtResource("7")
-0:0/2 = 2
-0:0/2/flip_v = true
-0:0/2/material = ExtResource("7")
-0:0/3 = 3
-0:0/3/flip_h = true
-0:0/3/flip_v = true
-0:0/3/material = ExtResource("7")
-0:0/4 = 4
-0:0/4/transpose = true
-0:0/4/material = ExtResource("7")
-0:0/5 = 5
-0:0/5/flip_h = true
-0:0/5/transpose = true
-0:0/5/material = ExtResource("7")
-0:0/6 = 6
-0:0/6/flip_v = true
-0:0/6/transpose = true
-0:0/6/material = ExtResource("7")
-0:0/7 = 7
-0:0/7/flip_h = true
-0:0/7/flip_v = true
-0:0/7/transpose = true
-0:0/7/material = ExtResource("7")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_76qji"]
 texture = ExtResource("4")
 texture_region_size = Vector2i(256, 256)
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-55, 0)
 0:0/0/material = ExtResource("1")
-0:0/1 = 1
-0:0/1/flip_h = true
-0:0/1/material = ExtResource("1")
-0:0/2 = 2
-0:0/2/flip_v = true
-0:0/2/material = ExtResource("1")
-0:0/3 = 3
-0:0/3/flip_h = true
-0:0/3/flip_v = true
-0:0/3/material = ExtResource("1")
-0:0/4 = 4
-0:0/4/transpose = true
-0:0/4/material = ExtResource("1")
-0:0/5 = 5
-0:0/5/flip_h = true
-0:0/5/transpose = true
-0:0/5/material = ExtResource("1")
-0:0/6 = 6
-0:0/6/flip_v = true
-0:0/6/transpose = true
-0:0/6/material = ExtResource("1")
-0:0/7 = 7
-0:0/7/flip_h = true
-0:0/7/flip_v = true
-0:0/7/transpose = true
-0:0/7/material = ExtResource("1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c65m6"]
 texture = ExtResource("3")
 texture_region_size = Vector2i(256, 256)
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-55, 0)
 0:0/0/material = ExtResource("6")
-0:0/1 = 1
-0:0/1/flip_h = true
-0:0/1/material = ExtResource("6")
-0:0/2 = 2
-0:0/2/flip_v = true
-0:0/2/material = ExtResource("6")
-0:0/3 = 3
-0:0/3/flip_h = true
-0:0/3/flip_v = true
-0:0/3/material = ExtResource("6")
-0:0/4 = 4
-0:0/4/transpose = true
-0:0/4/material = ExtResource("6")
-0:0/5 = 5
-0:0/5/flip_h = true
-0:0/5/transpose = true
-0:0/5/material = ExtResource("6")
-0:0/6 = 6
-0:0/6/flip_v = true
-0:0/6/transpose = true
-0:0/6/material = ExtResource("6")
-0:0/7 = 7
-0:0/7/flip_h = true
-0:0/7/flip_v = true
-0:0/7/transpose = true
-0:0/7/material = ExtResource("6")
 
 [sub_resource type="TileSet" id="1"]
-tile_size = Vector2i(256, 256)
+tile_size = Vector2i(110, 220)
 sources/0 = SubResource("TileSetAtlasSource_ml204")
 sources/1 = SubResource("TileSetAtlasSource_76qji")
 sources/2 = SubResource("TileSetAtlasSource_c65m6")
@@ -121,6 +46,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5")
 FryingPanGhostScene = ExtResource("8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(0.3, 0.3)

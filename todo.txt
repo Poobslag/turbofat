@@ -45,16 +45,16 @@ game starts up, but has bugs
   -update save files to use new scancodes
  -remove/cleanup h1-font-new.tres
 -tilemap updates
- -fix 'Cannot create tile. The tile is outside the texture...' errors
+ *fix 'Cannot create tile. The tile is outside the texture...' errors
   *PuzzleTileMap.tscn
   *NightPlayfield.tscn
    *expand blocks-veggie-cubes-onion to be wider
-  -EmptyEnvironment.tscn
-  -Puzzle.tscn
+  *EmptyEnvironment.tscn
+  *Puzzle.tscn
  -rewrite tilemaps from scratch (ugh)
   -puzzle stuff
-   -can open Puzzle.tscn without crashing
-    -crashes opening NightPlayfield.tscn (Playfield.tscn is fine)
+   *can open Puzzle.tscn without crashing
+    *crashes opening NightPlayfield.tscn (Playfield.tscn is fine)
    -FryingPansUi.tscn
    -Playfield.tscn
    -PuzzleTileMap.tscn
@@ -148,6 +148,12 @@ Demos
 *./project/src/demo/ui/FontFitLabelDemo.tscn
  *bug: swapping in fonts doesn't change size
  *fix FontFitButton too
+*./project/src/demo/puzzle/pan/FryingPansUiDemo.tscn
+ *bug: tiles aren't visible?
+ *bug: tiles are offset to the left
+ *bug: ghost tiles don't fade out
+ *bug: golden pans don't use golden ghost tile (material?)
+ *fix 'tile ghost logic'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
@@ -163,7 +169,6 @@ Demos
 -./project/src/demo/puzzle/critter/SharkDemo.tscn
 -./project/src/demo/puzzle/level/LevelRankDemo.tscn
 -./project/src/demo/puzzle/level/RankModeDemo.tscn
--./project/src/demo/puzzle/pan/FryingPansUiDemo.tscn
 -./project/src/demo/puzzle/PlayfieldDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
 -./project/src/demo/puzzle/PuzzleDemo.tscn
@@ -187,50 +192,12 @@ Demos
 
 
 
+replace tile_map.cell_size with tile_map.tile_set.tile_size
+replace tile_map.clear with tile_map.clear_layer(0)
+update tile_map.set_cell calls to include 'Vector2.ZERO'
+  _tile_map.set_cell(0, pan_cell, tile, Vector2.ZERO)
+replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).texture
+replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
 
-
-
-h1: 48
-h2: 36
-h3: 24
-h4: 16
-h5: 14
-h6: 12
-h7: 10
-h8: 8
-
-
-https://github.com/godotengine/godot/issues/67556
-
-
-ERROR: Cannot create tile. The tile is outside the texture or tiles are already present in the space the tile would cover.
-   at: (scene/resources/tile_set.cpp:4113)
-ERROR: The TileSetAtlasSource atlas has no tile at (0, 32).
-   at: (scene/resources/tile_set.cpp:4515)
-
-Maybe "some tiles have a selected region size larger than the tile's atlas texture"? yes!
-blocks-shadows.png 0: texture is 2368x528, 
-
-Crashes loading NightPlayfield? puzzle-tile-set-onion.tres?
-
-
-SCRIPT ERROR: Parse Error: Could not find type "VolumeType" in the current scope.
-          at: GDScript::reload (res://src/main/ui/settings/volume-setting-control.gd:33)
-SCRIPT ERROR: Parse Error: Invalid operand of type "String" for unary operator "not".
-          at: GDScript::reload (res://src/main/ui/settings/settings-language.gd:38)
-SCRIPT ERROR: Parse Error: Invalid operand of type "String" for unary operator "not".
-          at: GDScript::reload (res://src/main/ui/settings/settings-language.gd:45)
-SCRIPT ERROR: Parse Error: The variable type is being inferred from a Variant value, so it will be typed as Variant. (Warning treated as error.)
-          at: GDScript::reload (res://src/main/ui/settings/settings-dialogs.gd:67)
-SCRIPT ERROR: Parse Error: Static function "get_system_time_msecs()" not found in base "OS".
-          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:37)
-SCRIPT ERROR: Parse Error: Static function "get_system_time_msecs()" not found in base "OS".
-          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:49)
-SCRIPT ERROR: Parse Error: Static function "get_system_time_msecs()" not found in base "OS".
-          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:67)
-SCRIPT ERROR: Parse Error: Cannot infer the type of "system_time_msec" variable because the value doesn't have a set type.
-          at: GDScript::reload (res://src/main/puzzle/frame-drops-label.gd:67)
-SCRIPT ERROR: Parse Error: Cannot assign a value of type "Timer.TimerProcessCallback" as "Node.ProcessMode".
-          at: GDScript::reload (res://src/main/puzzle/level-timer-manager.gd:33)
-SCRIPT ERROR: Parse Error: Value of type "Timer.TimerProcessCallback" cannot be assigned to a variable of type "Node.ProcessMode".
-          at: GDScript::reload (res://src/main/puzzle/level-timer-manager.gd:33)
+removed unnecessary tile alternatives
+shaders no longer apply modulate property

@@ -65,7 +65,7 @@ func set_pans_remaining(new_pans_remaining: int) -> void:
 ## Recalculates the tilemap cells, tilemap scale, and _first_dead_cell field.
 func refresh_tilemap() -> void:
 	var pan_cells := _calculate_pan_cells()
-	_tile_map.clear_puzzle()
+	_tile_map.clear_layer(0)
 	_add_pans_to_tilemap(pan_cells)
 	_update_tilemap_scale()
 
@@ -121,14 +121,14 @@ func _add_pans_to_tilemap(pan_cells: Array) -> void:
 			tile = TILE_INDEX_PAN_GOLD
 		else:
 			tile = TILE_INDEX_PAN
-		_tile_map.set_cell(0, pan_cell, tile)
+		_tile_map.set_cell(0, pan_cell, tile, Vector2.ZERO)
 
 
 ## Updates the tilemap scale based on its contents.
 ##
 ## The tilemap is rescaled so that its contents will fit into its parent control horizontally.
 func _update_tilemap_scale() -> void:
-	var total_width: float = max(10, _tile_map.get_used_rect().size.x + 1) * _tile_map.cell_size.x
+	var total_width: float = max(10, _tile_map.get_used_rect().size.x + 1) * _tile_map.tile_set.tile_size.x
 	_tile_map.scale = Vector2.ONE * (size.x / total_width)
 
 
@@ -139,8 +139,14 @@ func _update_tilemap_scale() -> void:
 func _add_frying_pan_ghost() -> void:
 	var frying_pan_ghost: Sprite2D = FryingPanGhostScene.instantiate()
 	var tile_id := TILE_INDEX_PAN_GOLD if gold else TILE_INDEX_PAN
-	frying_pan_ghost.texture = _tile_map.tile_set.tile_get_texture(tile_id)
-	frying_pan_ghost.material = _tile_map.tile_set.tile_get_material(tile_id)
+	var tile_source: TileSetAtlasSource = _tile_map.tile_set.get_source(tile_id)
+	frying_pan_ghost.texture = tile_source.texture
+	
+	var source_material:ShaderMaterial = tile_source.get_tile_data(Vector2i.ZERO, 0).material
+	var target_material:ShaderMaterial = frying_pan_ghost.material
+	for shader_parameter in ["width", "white", "black", "modulate", "sample_count"]:
+		target_material.set_shader_parameter(shader_parameter, source_material.get_shader_parameter(shader_parameter))
+	
 	frying_pan_ghost.scale = _tile_map.scale
-	frying_pan_ghost.position = _tile_map.cell_size * _tile_map.scale * (Vector2(_first_dead_cell) + Vector2(1.0, 0.5))
+	frying_pan_ghost.position = Vector2(_tile_map.tile_set.tile_size) * _tile_map.scale * (Vector2(_first_dead_cell) + Vector2(1.0, 0.5))
 	add_child(frying_pan_ghost)

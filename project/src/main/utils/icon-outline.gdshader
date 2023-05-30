@@ -15,6 +15,10 @@ uniform vec4 white: source_color;
 // the color to use when drawing the outline
 uniform vec4 black: source_color;
 
+// The color applied to this texture. Godot's 'modulate' property does not apply to shaders in Godot 4.x, so this
+// shader parameter replaces the modulate functionality
+uniform vec4 modulate: source_color = vec4(1.0);
+
 // To draw the outline, we sample pixels in a circle around the current pixel. This value correspond to the number of
 // sampled pixels. Higher values are slower but result in a smoother outline.
 uniform int sample_count = 24;
@@ -31,5 +35,5 @@ void fragment() {
 	}
 	
 	vec3 final_color = mix(black.rgb, white.rgb, sprite_alpha);
-	COLOR = vec4(final_color, final_alpha);
+	COLOR = vec4(final_color, final_alpha) * modulate;
 }
