@@ -40,7 +40,7 @@ var _saved_autotile_coords := []
 @onready var _ghost_piece_corner_map: TileMap = $GhostPieceViewport/ShadowMap/CornerMap
 
 var _puzzle_tile_sets_by_enum := {
-	TileSetType.DEFAULT: preload("res://src/main/puzzle/puzzle-tile-set.tres"),
+	TileSetType.DEFAULT: preload("res://src/main/puzzle/old-puzzle-tile-set.tres"),
 	TileSetType.VEGGIE: preload("res://src/main/puzzle/puzzle-tile-set-veggies.tres"),
 	TileSetType.DIAGRAM: preload("res://src/main/puzzle/puzzle-tile-set-diagram.tres"),
 }

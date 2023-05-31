@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/main/puzzle/piece/ghost-piece-shadow-map.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/old-puzzle-tile-set.tres" type="TileSet" id=2]
+[ext_resource path="res://src/main/puzzle/piece/PuzzleCornerMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/puzzle/piece/puzzle-shadow-map.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/puzzle-tile-map.gd" type="Script" id=5]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-boxes-shadows.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-veggie-cube-shadows.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-shadows.png" type="Texture2D" id=8]
+[ext_resource path="res://src/main/puzzle/flat-mix.gdshader" type="Shader" id=9]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
+shader_parameter/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "blocks-shadows.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, -64 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 2, 2, 2364, 524 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 144, 128 )
+0/autotile/spacing = 4
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "blocks-boxes-shadows.png 1"
+1/texture = ExtResource( 6 )
+1/tex_offset = Vector2( 0, -64 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 2, 2, 2364, 1580 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 144, 128 )
+1/autotile/spacing = 4
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "blocks-veggie-cube-shadows.png 2"
+2/texture = ExtResource( 7 )
+2/tex_offset = Vector2( 0, -64 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 2, 2, 2660, 524 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 144, 128 )
+2/autotile/spacing = 4
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[node name="TileMap" type="TileMap"]
+material = SubResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 72, 64 )
+format = 1
+script = ExtResource( 5 )
+
+[node name="CornerMap" parent="." instance=ExtResource( 3 )]
+material = SubResource( 2 )
+tile_set = ExtResource( 2 )
+
+[node name="ShadowViewport" type="SubViewport" parent="."]
+size = Vector2( 324, 544 )
+transparent_bg = true
+usage = 0
+
+[node name="ShadowMap" type="TileMap" parent="ShadowViewport"]
+modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 3 )
+cell_size = Vector2( 72, 64 )
+format = 1
+script = ExtResource( 4 )
+playfield_tile_map_path = NodePath("../..")
+
+[node name="GhostPieceViewport" type="SubViewport" parent="."]
+size = Vector2( 324, 544 )
+transparent_bg = true
+usage = 0
+
+[node name="ShadowMap" type="TileMap" parent="GhostPieceViewport"]
+show_behind_parent = true
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 72, 64 )
+format = 1
+script = ExtResource( 1 )
+
+[node name="CornerMap" parent="GhostPieceViewport/ShadowMap" instance=ExtResource( 3 )]
+material = SubResource( 2 )
+tile_set = ExtResource( 2 )

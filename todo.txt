@@ -160,6 +160,7 @@ Demos
   *replace 'tile_set.get_tiles_ids()' calls
  -looks vaguely ok on startup
  -'QWERT'
+  -PuzzleTileMap tiles appear OK
  -'ASDFG'
  -'ZXCVB'
  -'.'
@@ -209,22 +210,3 @@ update tile_map.set_cell calls to include 'Vector2.ZERO'
 replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).texture
 replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
 
-removed unnecessary tile alternatives
-shaders no longer apply modulate property
-
-
-Godot demos take about 10-15 seconds to start?
-update Wacom driver (no effect)
-install Corsair iCue (no effect)
-upgrade to iCue 5, update harpoon RGB pro firmware, reboot (no effect)
-decrease polling rate from 1000 to 125 (no effect, 13 s)
-enable editor -> update continuously (no effect)
-unplug corsair mouse, reboot (18s, 17s)
-uninstalled Corsair iCUE, reboot (18s)
-update black mamba to newest version, reboot (no effect)
-reinstall NVidia driver 535.98
-ReleaseToolkit: 6s 6s
-PlayfieldDemo: 10s 10s
-Plugged in corsair mouse; no effect
-Frog Finder: 3s
-PlayfieldDemo in Godot 3: 2.5s
