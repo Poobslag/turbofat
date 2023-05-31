@@ -35,7 +35,7 @@ func _spawn_poofs(y: int) -> void:
 func _veg_columns(y: int) -> Array:
 	var veg_columns := []
 	for x in range(PuzzleTileMap.COL_COUNT):
-		if source_tile_map.get_cell(x, y) in [PuzzleTileMap.TILE_VEG, PuzzleTileMap.TILE_PIECE]:
+		if source_tile_map.get_cell_source_id(0, Vector2i(x, y)) in [PuzzleTileMap.TILE_VEG, PuzzleTileMap.TILE_PIECE]:
 			veg_columns.append(x)
 	return veg_columns
 

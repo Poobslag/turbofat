@@ -88,7 +88,8 @@ game starts up, but has bugs
    -UndecoratedTurboFatEnvironment.tscn
  *fix out-of-bounds atlas cell definitions; these will cause crashes in Godot 4.x
  -replace 'autotilers' with 'terrain... things'
- -replace 'get_cellv' with 'get_something'? get_cell_source_id? get_cell_tile_data?
+ -replace 'get_cellv' with get_cell_source_id
+ -replace 'get_cell' with 'get_cell_source_id
 -particle updates
  -randomization
 -scene tweaks
@@ -155,7 +156,8 @@ Demos
  *bug: golden pans don't use golden ghost tile (material?)
  *fix 'tile ghost logic'
 -./project/src/demo/puzzle/PlayfieldDemo.tscn
- -doesn't crash on startup
+ *doesn't crash on startup
+  *replace 'tile_set.get_tiles_ids()' calls
  -looks vaguely ok on startup
  -'QWERT'
  -'ASDFG'
@@ -198,6 +200,8 @@ Demos
 
 
 
+ -replace 'get_cellv' with get_cell_source_id
+ -replace 'get_cell' with 'get_cell_source_id
 replace tile_map.cell_size with tile_map.tile_set.tile_size
 replace tile_map.clear with tile_map.clear_layer(0)
 update tile_map.set_cell calls to include 'Vector2.ZERO'
@@ -207,3 +211,20 @@ replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).
 
 removed unnecessary tile alternatives
 shaders no longer apply modulate property
+
+
+Godot demos take about 10-15 seconds to start?
+update Wacom driver (no effect)
+install Corsair iCue (no effect)
+upgrade to iCue 5, update harpoon RGB pro firmware, reboot (no effect)
+decrease polling rate from 1000 to 125 (no effect, 13 s)
+enable editor -> update continuously (no effect)
+unplug corsair mouse, reboot (18s, 17s)
+uninstalled Corsair iCUE, reboot (18s)
+update black mamba to newest version, reboot (no effect)
+reinstall NVidia driver 535.98
+ReleaseToolkit: 6s 6s
+PlayfieldDemo: 10s 10s
+Plugged in corsair mouse; no effect
+Frog Finder: 3s
+PlayfieldDemo in Godot 3: 2.5s

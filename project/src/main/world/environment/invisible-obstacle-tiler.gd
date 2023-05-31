@@ -56,11 +56,11 @@ func autotile(value: bool) -> void:
 					# already added an entry to the map
 					continue
 				
-				if _ground_map.get_cell(neighbor_x, neighbor_y) != -1:
+				if _ground_map.get_cell_source_id(0, Vector2i(neighbor_x, neighbor_y)) != -1:
 					# walkable; the ground map has terrain at that cell
 					continue
 				
-				if _tile_map.get_cell(neighbor_x, neighbor_y) != -1:
+				if _tile_map.get_cell_source_id(0, Vector2i(neighbor_x, neighbor_y)) != -1:
 					# the obstacle map already has an obstacle at that cell; don't overwrite it
 					continue
 				

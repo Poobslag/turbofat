@@ -122,7 +122,7 @@ func _filled_columns() -> Array:
 	var db := _int_matrix()
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var piece_color: int = _tile_map.get_cell(x, y)
+			var piece_color: int = _tile_map.get_cell_source_id(0, Vector2i(x, y))
 			match piece_color:
 				-1:
 					# empty space
