@@ -1,54 +1,35 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bm8wk5ees3xsj"]
 
-[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=2]
-[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/world/environment/lemon/environment-shadows.gd" type="Script" id=5]
-[ext_resource path="res://assets/main/world/environment/restaurant/interior-shadow.png" type="Texture2D" id=6]
+[ext_resource type="Script" path="res://src/main/world/environment/obstacle-map-shadows.gd" id="1"]
+[ext_resource type="Script" path="res://src/main/world/shadow-caster-shadows.gd" id="2"]
+[ext_resource type="PackedScene" path="res://src/main/world/environment/OvalShadow.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/CreatureShadows.tscn" id="4"]
+[ext_resource type="Script" path="res://src/main/world/environment/lemon/environment-shadows.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://cwffdppcbamj0" path="res://assets/main/world/environment/restaurant/interior-shadow.png" id="6"]
 
-[sub_resource type="TileSet" id=1]
-0/name = "interior-shadow.png 0"
-0/texture = ExtResource( 6 )
-0/tex_offset = Vector2( 39, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 1, 1, 16, 16 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l467q"]
+texture = ExtResource("6")
+margins = Vector2i(1, 1)
+texture_region_size = Vector2i(286, 144)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(128, 104)
+sources/0 = SubResource("TileSetAtlasSource_l467q")
 
 [node name="Shadows" type="Node2D"]
-modulate = Color( 1, 1, 1, 0.627451 )
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": ""
-}
+modulate = Color(1, 1, 1, 0.627451)
+script = ExtResource("5")
 
 [node name="ObstacleMapShadows" type="TileMap" parent="."]
-scale = Vector2( 0.5, 0.5 )
-mode = 2
-tile_set = SubResource( 1 )
-cell_size = Vector2( 128, 104 )
-cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
-cell_tile_origin = 1
-centered_textures = true
-format = 1
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
+scale = Vector2(0.5, 0.5)
+tile_set = SubResource("1")
+format = 2
+script = ExtResource("1")
 
-[node name="CreatureShadows" parent="." instance=ExtResource( 4 )]
+[node name="CreatureShadows" parent="." instance=ExtResource("4")]
 
 [node name="ShadowCasterShadows" type="Node2D" parent="."]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
-OvalShadowScene = ExtResource( 3 )
+script = ExtResource("2")
+OvalShadowScene = ExtResource("3")

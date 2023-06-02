@@ -3,20 +3,23 @@ extends EditorScript
 
 func _run() -> void:
 	var all_nodes := get_all_children(get_editor_interface().get_edited_scene_root())
-	var tilemap_nodes: Array = filter(all_nodes, TileMap)
-	for tilemap in tilemap_nodes:
-		remove_all_alternative_tiles(tilemap.tile_set)
+	var tile_map_nodes: Array = filter(all_nodes, TileMap)
+	if tile_map_nodes.is_empty():
+		print("no TileMap nodes found")
+	for tile_map in tile_map_nodes:
+		remove_all_alternative_tiles(tile_map)
 
 
 ## There is seemingly no way to update the next_alternative_id on a TileSetSource, so perform the following regex to
 ## reset them to their default:
 ##
 ## ^[0-9]*:[0-9]*/next_alternative_id = [0-9]*\n
-func remove_all_alternative_tiles(tileset: TileSet) -> void:
+func remove_all_alternative_tiles(tile_map: TileMap) -> void:
+	var tile_set: TileSet = tile_map.tile_set
 	var stats := {}
-	for source_idx in tileset.get_source_count():
+	for source_idx in tile_set.get_source_count():
 		stats["sources"] = stats.get("sources", 0) + 1
-		var source := tileset.get_source(tileset.get_source_id(source_idx))
+		var source := tile_set.get_source(tile_set.get_source_id(source_idx))
 		for tile_idx in source.get_tiles_count():
 			stats["tiles"] = stats.get("tiles", 0) + 1
 			var coord := source.get_tile_id(tile_idx)
@@ -26,7 +29,8 @@ func remove_all_alternative_tiles(tileset: TileSet) -> void:
 				if alt != 0: # don't remove main
 					stats["removed_alternative_tiles"] = stats.get("removed_alternative_tiles", 0) + 1
 					source.remove_alternative_tile(coord, alt)
-	print("alternative_tile_remover: %s" % [stats])
+	var tile_map_path: String = get_editor_interface().get_edited_scene_root().get_path_to(tile_map)
+	print("alternative_tile_remover: %s %s" % [tile_map_path, stats])
 
 
 func get_all_children(in_node: Node, arr := []) -> Array:

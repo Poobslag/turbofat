@@ -1,28 +1,51 @@
-[gd_resource type="TileSet" load_steps=2 format=2]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://ch6wuh58m1maq"]
 
-[ext_resource path="res://assets/main/world/environment/marsh/marsh-path-sheet.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://y320itdj0ahh" path="res://assets/main/world/environment/marsh/marsh-path-sheet.png" id="1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_05m31"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(135, 75)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
 
 [resource]
-0/name = "marsh-path-sheet.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 16, 16 )
-0/tile_mode = 1
-0/autotile/bitmask_mode = 2
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 21299218, Vector2( 0, 1 ), 21299346, Vector2( 0, 2 ), 21299224, Vector2( 0, 3 ), 21299352, Vector2( 0, 4 ), 21299248, Vector2( 0, 5 ), 21299376, Vector2( 0, 6 ), 21299256, Vector2( 0, 7 ), 21299258, Vector2( 0, 8 ), 21299386, Vector2( 0, 9 ), 21299386, Vector2( 1, 0 ), 21299218, Vector2( 1, 1 ), 21299346, Vector2( 1, 2 ), 21299224, Vector2( 1, 3 ), 21299352, Vector2( 1, 4 ), 21299248, Vector2( 1, 5 ), 21299376, Vector2( 1, 6 ), 21299256, Vector2( 1, 7 ), 21299258, Vector2( 1, 8 ), 21299386, Vector2( 1, 9 ), 21299386, Vector2( 2, 0 ), 21299344, Vector2( 2, 1 ), 21299346, Vector2( 2, 2 ), 21299226, Vector2( 2, 3 ), 21299354, Vector2( 2, 4 ), 21299250, Vector2( 2, 5 ), 21299378, Vector2( 2, 6 ), 21299256, Vector2( 2, 7 ), 21299384, Vector2( 2, 8 ), 21299386, Vector2( 2, 9 ), 21299386, Vector2( 3, 0 ), 21299344, Vector2( 3, 1 ), 21299346, Vector2( 3, 2 ), 21299226, Vector2( 3, 3 ), 21299354, Vector2( 3, 4 ), 21299250, Vector2( 3, 5 ), 21299378, Vector2( 3, 6 ), 21299256, Vector2( 3, 7 ), 21299384, Vector2( 3, 8 ), 21299386, Vector2( 3, 9 ), 21299386 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 135, 75 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
+tile_size = Vector2i(128, 64)
+sources/0 = SubResource("TileSetAtlasSource_05m31")

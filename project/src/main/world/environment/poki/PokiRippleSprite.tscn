@@ -1,128 +1,164 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=22 format=3 uid="uid://b8ba4yr5deo2b"]
 
-[ext_resource path="res://assets/main/world/environment/poki/poki-ripples-sheet.png" type="Texture2D" id=1]
-[ext_resource path="res://src/main/world/environment/ripple-sprite.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://f1yll7bj8o04" path="res://assets/main/world/environment/poki/poki-ripples-sheet.png" id="1"]
+[ext_resource type="Script" path="res://src/main/world/environment/ripple-sprite.gd" id="2"]
 
-[sub_resource type="AtlasTexture" id=7]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id=8]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 135, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("1")
+region = Rect2(135, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id=9]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 270, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("1")
+region = Rect2(270, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id=10]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 0, 70, 16, 16 )
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("1")
+region = Rect2(0, 70, 16, 16)
 
-[sub_resource type="AtlasTexture" id=11]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 135 , 70, 16, 16 )
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("1")
+region = Rect2(135, 70, 16, 16)
 
-[sub_resource type="AtlasTexture" id=12]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 270, 70, 16, 16 )
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("1")
+region = Rect2(270, 70, 16, 16)
 
-[sub_resource type="AtlasTexture" id=13]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 0, 140, 16, 16 )
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("1")
+region = Rect2(0, 140, 16, 16)
 
-[sub_resource type="AtlasTexture" id=14]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 135, 140, 16, 16 )
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("1")
+region = Rect2(135, 140, 16, 16)
 
-[sub_resource type="AtlasTexture" id=15]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 270, 140, 16, 16 )
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("1")
+region = Rect2(270, 140, 16, 16)
 
-[sub_resource type="AtlasTexture" id=4]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 0, 210, 16, 16 )
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("1")
+region = Rect2(0, 210, 16, 16)
 
-[sub_resource type="AtlasTexture" id=5]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 135, 210, 16, 16 )
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("1")
+region = Rect2(135, 210, 16, 16)
 
-[sub_resource type="AtlasTexture" id=6]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 270, 210, 16, 16 )
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("1")
+region = Rect2(270, 210, 16, 16)
 
-[sub_resource type="AtlasTexture" id=1]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 0, 350, 16, 16 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("1")
+region = Rect2(0, 350, 16, 16)
 
-[sub_resource type="AtlasTexture" id=2]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 135, 350, 16, 16 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("1")
+region = Rect2(135, 350, 16, 16)
 
-[sub_resource type="AtlasTexture" id=3]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 270, 350, 16, 16 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(270, 350, 16, 16)
 
-[sub_resource type="AtlasTexture" id=16]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 0, 280, 16, 16 )
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("1")
+region = Rect2(0, 280, 16, 16)
 
-[sub_resource type="AtlasTexture" id=17]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 135, 280, 16, 16 )
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("1")
+region = Rect2(135, 280, 16, 16)
 
-[sub_resource type="AtlasTexture" id=18]
-flags = 13
-atlas = ExtResource( 1 )
-region = Rect2( 270, 280, 16, 16 )
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource("1")
+region = Rect2(270, 280, 16, 16)
 
-[sub_resource type="SpriteFrames" id=19]
-animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+[sub_resource type="SpriteFrames" id="19"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}, {
+"duration": 1.0,
+"texture": SubResource("15")
+}],
 "loop": true,
-"name": "connected_both",
+"name": &"connected_both",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}],
 "loop": true,
-"name": "connected_left",
+"name": &"connected_left",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}],
 "loop": true,
-"name": "connected_none",
+"name": &"connected_none",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}],
 "loop": true,
-"name": "connected_right",
+"name": &"connected_right",
 "speed": 2.0
 }, {
-"frames": [  ],
+"frames": [],
 "loop": true,
-"name": "off",
+"name": &"off",
 "speed": 2.0
-} ]
+}]
 
 [node name="RippleSprite" type="AnimatedSprite2D"]
-position = Vector2( 97.5439, 65.5899 )
-frames = SubResource( 19 )
-animation = "connected_none"
-script = ExtResource( 2 )
+position = Vector2(97.5439, 65.5899)
+sprite_frames = SubResource("19")
+animation = &"connected_none"
+script = ExtResource("2")

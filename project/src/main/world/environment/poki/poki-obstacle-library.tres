@@ -1,29 +1,16 @@
-[gd_resource type="TileSet" load_steps=3 format=2]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://nhtifh2e20m7"]
 
-[ext_resource path="res://assets/main/empty-600.png" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://cd2y37eentdx3" path="res://assets/main/empty-600.png" id="2"]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PackedVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4bpom"]
+texture = ExtResource("2")
+texture_region_size = Vector2i(74, 166)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [resource]
-1/name = "Impassable"
-1/texture = ExtResource( 2 )
-1/tex_offset = Vector2( 0, -60 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 16, 16 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 74, 166 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 74, 166 )
-1/shape = SubResource( 1 )
-1/shape_one_way = false
-1/shape_one_way_margin = 1.0
-1/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 74, 166 )
-} ]
-1/z_index = 0
+tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_4bpom")

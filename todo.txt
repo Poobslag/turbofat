@@ -214,11 +214,52 @@ replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).
 what if all tilesets were temporarily just 16x16 pixels, or something?
 
 
+* project/src/main/puzzle/OldPuzzleTileMap.tscn      |  6 ++--
+* project/src/main/puzzle/old-puzzle-tile-set.tres   |  8 ++---
+* .../src/main/puzzle/puzzle-tile-set-diagram.tres   |  8 ++---
+* project/src/main/puzzle/puzzle-tile-set-onion.tres |  8 ++---
+* .../src/main/puzzle/puzzle-tile-set-veggies.tres   |  8 ++---
+* .../environment/lemon/lemon-ground-library.tres    |  8 ++---
+* .../environment/lemon/lemon-obstacle-library.tres  | 14 ++++-----
+* .../environment/lemon/lemon-terrain-library.tres   |  4 +--
+* .../environment/marsh/marsh-ground-library.tres    |  8 ++---
+* .../environment/marsh/marsh-obstacle-library.tres  | 12 ++++----
+* .../environment/marsh/marsh-terrain-library.tres   |  2 +-
+* .../environment/poki/poki-ground-library.tres      |  8 ++---
+* .../environment/poki/poki-obstacle-library.tres    |  2 +-
+* .../environment/poki/poki-terrain-library.tres     |  4 +--
+* .../environment/restaurant/floor-library.tres      |  4 +--
+* .../restaurant/turbo-fat-obstacle-library.tres     | 32 +++++++++----------
+* .../restaurant/undecorated-floor-library.tres      |  6 ++--
+* .../undecorated-turbo-fat-obstacle-library.tres    | 34 ++++++++++----------
+* project/src/main/puzzle/night/NightPlayfield.tscn  |  4 +--
+* .../src/main/puzzle/night/NightPuzzleTileMap.tscn  |  6 ++--
+* .../src/main/world/environment/IndoorShadows.tscn  |  2 +-
+* .../src/main/world/environment/OutdoorShadows.tscn |  2 +-
+% .../world/environment/lemon/LemonRippleSprite.tscn | 36 +++++++++++-----------
+% .../world/environment/marsh/MarshRippleSprite.tscn | 36 +++++++++++-----------
+% .../world/environment/poki/PokiRippleSprite.tscn   | 36 +++++++++++-----------
+
+
+
 fix tilemap alternatives
 -apply EditorScript fix to OldPuzzleTileMap
 -apply EditorScript fix to all similar files
 
-update tileset texture region
+update all tilemap regions project-wide using regex
+ (^.*region \= Rect2\( 0\, 0\, )([0-9]*\, [0-9]*)( \))
+ $116, 16$3
+in each affected .tscn, .tres file...
+run alternative-tile-remover.gd
 update margins -> 2
 update separation -> 4
-update tilemap tile size
+update texture_region_size to match the old autotile/tile_size
+create tiles in non-transparent texture regions
+update the tileset's tile size to match the old cell_size
+
+74,166
+135,165
+67,45
+90,120
+128,104 (indoor cell size)
+210,108 (indoor floor size)
