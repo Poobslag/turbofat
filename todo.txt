@@ -51,41 +51,7 @@ game starts up, but has bugs
    *expand blocks-veggie-cubes-onion to be wider
   *EmptyEnvironment.tscn
   *Puzzle.tscn
- -rewrite tilemaps from scratch (ugh)
-  -puzzle stuff
-   *can open Puzzle.tscn without crashing
-    *crashes opening NightPlayfield.tscn (Playfield.tscn is fine)
-   *FryingPansUi.tscn
-   -Playfield.tscn
-   -PuzzleTileMap.tscn
-   -NightPlayfield.tscn
-   -NightPuzzleTileMap.tscn
-   -PuzzleCornerMap.tscn
-  -environment stuff
-   -EmptyEnvironment.tscn
-   -Lemon2FreeRoamEnvironment.tscn
-   -LemonFreeRoamEnvironment.tscn
-   -MarshFreeRoamEnvironment.tscn
-   -PokiFreeRoamEnvironment.tscn
-   -TurboFatFreeRoamEnvironment.tscn
-   -UndecoratedTurboFatFreeRoamEnvironment.tscn
-   -IndoorShadows.tscn
-   -LemonWalkEnvironment.tscn
-   -OutdoorShadows.tscn
-   -Lemon2Environment.tscn
-   -LemonGroundMap.tscn
-   -LemonRestaurantEnvironment.tscn
-   -LemonWinEnvironment.tscn
-   -MarshEnvironment.tscn
-   -MarshGroundMap.tscn
-   -MarshWalkEnvironment.tscn
-   -MarshWinEnvironment.tscn
-   -PokiEnvironment.tscn
-   -PokiGroundMap.tscn
-   -PokiWalkEnvironment.tscn
-   -PokiWinEnvironment.tscn
-   -TurboFatEnvironment.tscn
-   -UndecoratedTurboFatEnvironment.tscn
+ *rewrite tilemaps from scratch
  *fix out-of-bounds atlas cell definitions; these will cause crashes in Godot 4.x
  -replace 'autotilers' with 'terrain... things'
  -replace 'get_cellv' with get_cell_source_id

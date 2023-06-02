@@ -10,7 +10,6 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4dhg"]
 texture = ExtResource("2")
 texture_region_size = Vector2i(74, 166)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -19,7 +18,6 @@ texture_region_size = Vector2i(74, 166)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c77b0"]
 texture = ExtResource("1")
 texture_region_size = Vector2i(135, 165)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -91,7 +89,6 @@ texture_region_size = Vector2i(135, 165)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuj8a"]
 texture = ExtResource("4")
 texture_region_size = Vector2i(135, 165)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -245,7 +242,6 @@ texture_region_size = Vector2i(90, 120)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvx58"]
 texture = ExtResource("3")
 texture_region_size = Vector2i(135, 165)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -374,7 +370,6 @@ texture_region_size = Vector2i(135, 165)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4nyfg"]
 texture = ExtResource("6")
 texture_region_size = Vector2i(67, 45)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0

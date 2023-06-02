@@ -8,7 +8,6 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qma1b"]
 texture = ExtResource("1")
 texture_region_size = Vector2i(135, 165)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -35,7 +34,6 @@ texture_region_size = Vector2i(135, 165)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rv4c3"]
 texture = ExtResource("2")
 texture_region_size = Vector2i(135, 165)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -76,7 +74,6 @@ texture_region_size = Vector2i(135, 165)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5o3yg"]
 texture = ExtResource("3")
 texture_region_size = Vector2i(135, 165)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -122,7 +119,6 @@ texture_region_size = Vector2i(135, 165)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xn67i"]
 texture = ExtResource("4")
 texture_region_size = Vector2i(67, 45)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

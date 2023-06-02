@@ -13,7 +13,6 @@ func _run() -> void:
 ## There is seemingly no way to update the next_alternative_id on a TileSetSource, so perform the following regex to
 ## reset them to their default:
 ##
-## ^[0-9]*:[0-9]*/next_alternative_id = [0-9]*\n
 func remove_all_alternative_tiles(tile_map: TileMap) -> void:
 	var tile_set: TileSet = tile_map.tile_set
 	var stats := {}

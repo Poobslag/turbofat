@@ -1,12 +1,12 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://btnp1onq6dy3d"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://wq3yx848rat5"]
 
-[ext_resource type="Texture2D" uid="uid://bw8wt53dofqmh" path="res://assets/main/puzzle/blocks/blocks.png" id="1_vpo2j"]
-[ext_resource type="Texture2D" uid="uid://cx1rfhllap0tl" path="res://assets/main/puzzle/blocks/blocks-boxes.png" id="2_vgfte"]
-[ext_resource type="Texture2D" uid="uid://b6fof5cvs8at2" path="res://assets/main/puzzle/blocks/blocks-veggie-cubes.png" id="3_4hhlr"]
-[ext_resource type="Texture2D" uid="uid://bvadnf5wmdmwd" path="res://assets/main/puzzle/blocks/blocks-corners.png" id="4_a3mj6"]
+[ext_resource type="Texture2D" uid="uid://cx1rfhllap0tl" path="res://assets/main/puzzle/blocks/blocks-boxes.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b6fof5cvs8at2" path="res://assets/main/puzzle/blocks/blocks-veggie-cubes.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bw8wt53dofqmh" path="res://assets/main/puzzle/blocks/blocks.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bvadnf5wmdmwd" path="res://assets/main/puzzle/blocks/blocks-corners.png" id="4"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axod0"]
-texture = ExtResource("1_vpo2j")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc5os"]
+texture = ExtResource("3")
 margins = Vector2i(2, 2)
 separation = Vector2i(4, 4)
 texture_region_size = Vector2i(72, 64)
@@ -75,8 +75,8 @@ texture_region_size = Vector2i(72, 64)
 14:3/0 = 0
 15:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jk7j7"]
-texture = ExtResource("2_vgfte")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7g6l"]
+texture = ExtResource("1")
 margins = Vector2i(2, 2)
 separation = Vector2i(4, 4)
 texture_region_size = Vector2i(72, 64)
@@ -273,8 +273,8 @@ texture_region_size = Vector2i(72, 64)
 14:11/0 = 0
 15:11/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g8pn6"]
-texture = ExtResource("3_4hhlr")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fojeb"]
+texture = ExtResource("2")
 margins = Vector2i(2, 2)
 separation = Vector2i(4, 4)
 texture_region_size = Vector2i(72, 64)
@@ -351,8 +351,8 @@ texture_region_size = Vector2i(72, 64)
 16:3/0 = 0
 17:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qhmg"]
-texture = ExtResource("4_a3mj6")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1a82p"]
+texture = ExtResource("4")
 margins = Vector2i(2, 2)
 separation = Vector2i(4, 4)
 texture_region_size = Vector2i(36, 32)
@@ -374,8 +374,8 @@ texture_region_size = Vector2i(36, 32)
 1:7/0 = 0
 
 [resource]
-tile_size = Vector2i(72, 64)
-sources/0 = SubResource("TileSetAtlasSource_axod0")
-sources/1 = SubResource("TileSetAtlasSource_jk7j7")
-sources/2 = SubResource("TileSetAtlasSource_g8pn6")
-sources/3 = SubResource("TileSetAtlasSource_8qhmg")
+tile_size = Vector2i(36, 32)
+sources/0 = SubResource("TileSetAtlasSource_fc5os")
+sources/1 = SubResource("TileSetAtlasSource_y7g6l")
+sources/2 = SubResource("TileSetAtlasSource_fojeb")
+sources/3 = SubResource("TileSetAtlasSource_1a82p")

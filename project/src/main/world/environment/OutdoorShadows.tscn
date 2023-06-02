@@ -10,7 +10,6 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtgu7"]
 texture = ExtResource("6")
 texture_region_size = Vector2i(212, 212)
-0:0/next_alternative_id = 8
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="2"]
