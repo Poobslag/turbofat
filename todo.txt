@@ -211,6 +211,8 @@ replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).t
 replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
 
 
+what if all tilesets were temporarily just 16x16 pixels, or something?
+
 
 fix tilemap alternatives
 -apply EditorScript fix to OldPuzzleTileMap
