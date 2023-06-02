@@ -210,3 +210,13 @@ update tile_map.set_cell calls to include 'Vector2.ZERO'
 replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).texture
 replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
 
+
+
+fix tilemap alternatives
+-apply EditorScript fix to OldPuzzleTileMap
+-apply EditorScript fix to all similar files
+
+update tileset texture region
+update margins -> 2
+update separation -> 4
+update tilemap tile size
