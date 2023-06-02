@@ -126,7 +126,8 @@ Demos
   *replace 'tile_set.get_tiles_ids()' calls
  -looks vaguely ok on startup
  -'QWERT'
-  -PuzzleTileMap tiles appear OK
+  *PuzzleTileMap tiles appear OK
+  -bug: shadows are in the wrong place
  -'ASDFG'
  -'ZXCVB'
  -'.'
@@ -229,3 +230,7 @@ update the tileset's tile size to match the old cell_size
 90,120
 128,104 (indoor cell size)
 210,108 (indoor floor size)
+
+restore old-puzzle-tile-set
+restore OldPuzzleCornerMap
+restore OldPuzzleTileMap

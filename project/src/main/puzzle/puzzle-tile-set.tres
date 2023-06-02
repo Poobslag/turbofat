@@ -374,7 +374,7 @@ texture_region_size = Vector2i(36, 32)
 1:7/0 = 0
 
 [resource]
-tile_size = Vector2i(36, 32)
+tile_size = Vector2i(72, 64)
 sources/0 = SubResource("TileSetAtlasSource_fc5os")
 sources/1 = SubResource("TileSetAtlasSource_y7g6l")
 sources/2 = SubResource("TileSetAtlasSource_fojeb")
