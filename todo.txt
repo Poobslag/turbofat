@@ -62,7 +62,7 @@ game starts up, but has bugs
  *animation looping; replace 'loop = true' in .tscn files with 'loop_mode=1'
  *label alignment; replace 'align = 2' in .tscn files with 'horizontal_alignment = 2'
  -restore 'y_sort_enabled' property for ysort nodes
- -set project's stretch mode; Godot #3939
+ *set project's stretch mode; Godot #3939
 -code warnings
  *replace '# warning-ignore' comments with '@warning_ignore' annotations
  -add '@warning_ignore' annotations for self static method calls; Godot #69282
@@ -99,7 +99,7 @@ gold plating
 -remove redundant 'enum from...' comments
 -add strong typing to arrays
 *replace 'randi_range' with native call
--remove 'FileUtils', replace with native calls
+*remove 'FileUtils', replace with native calls
 -free-roam-touch-buttons might have extra logic for 'menu shown' 'menu hidden' stuff
 
 later
