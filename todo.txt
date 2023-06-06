@@ -101,6 +101,7 @@ gold plating
 *replace 'randi_range' with native call
 *remove 'FileUtils', replace with native calls
 -free-roam-touch-buttons might have extra logic for 'menu shown' 'menu hidden' stuff
+-add 'code smell detection' for next_alternative_id
 
 later
 
@@ -136,6 +137,8 @@ Demos
   *combo lights don't show up
   *combo lights are the wrong color (purple for vegetables?)
   -rainbow lights don't appear
+  -clean up 'color == ' commented out code
+  -clean up tool/export PlayfieldFx stuff
  -background is light grey in editor?
  -'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn

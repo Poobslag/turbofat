@@ -72,7 +72,6 @@ blend_mode = 1
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v862h"]
 texture = ExtResource("63")
 texture_region_size = Vector2i(36, 32)
-0:0/next_alternative_id = 19
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="8"]
@@ -85,7 +84,6 @@ blend_mode = 1
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbe7k"]
 texture = ExtResource("62")
 texture_region_size = Vector2i(128, 128)
-0:0/next_alternative_id = 13
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="10"]
