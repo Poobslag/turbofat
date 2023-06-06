@@ -1,7 +1,7 @@
 [gd_scene load_steps=51 format=3 uid="uid://cy2cns7kcf1si"]
 
 [ext_resource type="Script" path="res://src/main/puzzle/playfield.gd" id="1"]
-[ext_resource type="PackedScene" path="res://src/main/puzzle/PuzzleTileMap.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b26ll8bae76ns" path="res://src/main/puzzle/PuzzleTileMap.tscn" id="2"]
 [ext_resource type="Script" path="res://src/main/puzzle/line-clearer.gd" id="3"]
 [ext_resource type="Script" path="res://src/main/puzzle/box-builder.gd" id="4"]
 [ext_resource type="Script" path="res://src/main/puzzle/leaf-poofs.gd" id="5"]
@@ -61,7 +61,7 @@ shader_parameter/noise = SubResource("3")
 shader_parameter/goop_texture = SubResource("1")
 shader_parameter/rainbow_texture = SubResource("4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hm2y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdqoj"]
 resource_local_to_scene = true
 shader = ExtResource("20")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
@@ -72,8 +72,8 @@ blend_mode = 1
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v862h"]
 texture = ExtResource("63")
 texture_region_size = Vector2i(36, 32)
+0:0/next_alternative_id = 2
 0:0/0 = 0
-0:0/1 = 1
 
 [sub_resource type="TileSet" id="8"]
 tile_size = Vector2i(36, 32)
@@ -182,9 +182,8 @@ one_shot = true
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource("2")]
 z_index = 4
-material = SubResource("ShaderMaterial_7hm2y")
+material = SubResource("ShaderMaterial_hdqoj")
 position = Vector2(0, -96)
-format = 2
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
 position = Vector2(0, -96)
@@ -195,6 +194,7 @@ combo_tracker_path = NodePath("../../ComboTracker")
 material = SubResource("7")
 tile_set = SubResource("8")
 format = 2
+layer_0/tile_data = PackedInt32Array(65538, 1, 0, 131074, 1, 0)
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
 z_index = 3

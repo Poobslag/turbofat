@@ -116,7 +116,7 @@ func reset() -> void:
 
 ## Initializes the different colored tiles in LightMap/GlowMap.
 func _init_tile_set() -> void:
-	if light_map.tile_set.get_source(1).get_alternative_tiles_count(Vector2i(0, 0)) > 0:
+	if light_map.tile_set.get_source(1).get_alternative_tiles_count(Vector2i(0, 0)) > 1:
 		return
 	
 	for food_light_color in FOOD_LIGHT_COLORS:
@@ -136,18 +136,18 @@ func _init_color_alternative_ids() -> void:
 		return
 	
 	var tile_set_source: TileSetAtlasSource = light_map.tile_set.get_source(1)
-	for alternative_id in range(1, tile_set_source.get_alternative_tiles_count(Vector2i(0, 0))):
+	for alternative_id_index in range(1, tile_set_source.get_alternative_tiles_count(Vector2i(0, 0))):
+		var alternative_id: int = tile_set_source.get_alternative_tile_id(Vector2i(0, 0), alternative_id_index)
 		var color: Color = tile_set_source.get_tile_data(Vector2i(0, 0), alternative_id).modulate
 		_color_alternative_ids[color] = alternative_id
 
 
 func _init_tile(color: Color) -> void:
-	var tile_set_source: TileSetAtlasSource = light_map.tile_set.get_source(1)
-	var original_tile_data: TileData = tile_set_source.get_tile_data(Vector2i(0, 0), 0)
-	
 	for tile_set in [light_map.tile_set, glow_map.tile_set]:
-		var alternative_id: int = tile_set_source.create_alternative_tile(Vector2i(0, 0))
-		var alternative_tile_data: TileData = tile_set_source.get_tile_data(Vector2i(0, 0), alternative_id)
+		var original_tile_data: TileData = tile_set.get_source(1).get_tile_data(Vector2i(0, 0), 0)
+		
+		var alternative_id: int = tile_set.get_source(1).create_alternative_tile(Vector2i(0, 0))
+		var alternative_tile_data: TileData = tile_set.get_source(1).get_tile_data(Vector2i(0, 0), alternative_id)
 		alternative_tile_data.material = original_tile_data.material
 		alternative_tile_data.modulate = color
 		alternative_tile_data.texture_origin = original_tile_data.texture_origin
@@ -228,14 +228,16 @@ func _refresh_tile_maps() -> void:
 		for y in range(PuzzleTileMap.ROW_COUNT):
 			for x in range(PuzzleTileMap.COL_COUNT):
 				var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
-				var tile: int = 0
+				var alternative_tile: int = -1
 				if s[x] == '#':
 					if _color == RAINBOW_LIGHT_COLOR:
-						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
+						alternative_tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
 					elif _color_alternative_ids.has(_color):
-						tile = _color_alternative_ids[_color]
-				light_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), tile)
-				glow_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), tile)
+						alternative_tile = _color_alternative_ids[_color]
+				light_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), alternative_tile)
+				if alternative_tile != -1:
+					print("237: set_cell %s %s" % [Vector2i(x, y), alternative_tile])
+				glow_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), alternative_tile)
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:

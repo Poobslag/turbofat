@@ -124,16 +124,17 @@ Demos
 -./project/src/demo/puzzle/PlayfieldDemo.tscn
  *doesn't crash on startup
   *replace 'tile_set.get_tiles_ids()' calls
- -looks vaguely ok on startup
- -'QWERT'
+ *looks vaguely ok on startup
+ *'QWERT'
   *PuzzleTileMap tiles appear OK
-  -bug: shadows are in the wrong place
+  *bug: shadows are in the wrong place
    *offset?
    *inverted Y?
-   -unset 'v_flip' globally?
+   *unset 'v_flip' globally?
  *'ASDFG'
  -'ZXCVB'
   -combo lights don't show up right
+ -background is light grey in editor?
  -'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
