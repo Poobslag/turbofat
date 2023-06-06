@@ -170,6 +170,10 @@ func _hours_passed_finish() -> int:
 
 ## When the AnimationPlayer toggles the backdrop visibility, we emit signals so other parts of the UI can refresh.
 func _on_Backdrop_visibility_changed() -> void:
+	if not _backdrop:
+		# A visibility_changed signal is emitted before this node's onready variables are initialized.
+		return
+	
 	if _backdrop.visible:
 		emit_signal("progress_board_shown")
 	else:

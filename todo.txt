@@ -143,6 +143,18 @@ Demos
   %GhostPieceTexture and ShadowTexture are grey?
  *'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
+ -font is too small, not outlined
+ -clock hands are aliased
+ -wooden frame is too thick, not scaled correctly
+ -[0-9]
+ -[Q]
+ -[W]
+ -[E]
+ -[R]
+ -[S]
+ -[Z-M]
+ -[shift+Z-M]
+ -[=/-]
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
 -./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
