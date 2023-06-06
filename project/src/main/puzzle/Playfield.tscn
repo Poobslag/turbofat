@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cy2cns7kcf1si"]
+[gd_scene load_steps=52 format=3 uid="uid://cy2cns7kcf1si"]
 
 [ext_resource type="Script" path="res://src/main/puzzle/playfield.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b26ll8bae76ns" path="res://src/main/puzzle/PuzzleTileMap.tscn" id="2"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cwls5spy5hgv2" path="res://assets/main/puzzle/build-cake-box.wav" id="10"]
 [ext_resource type="AudioStream" uid="uid://6hrpxl3i6pox" path="res://assets/main/puzzle/veg-erase.wav" id="11"]
 [ext_resource type="AudioStream" uid="uid://8bc44863b3lu" path="res://assets/main/puzzle/clear-snack-box.wav" id="12"]
+[ext_resource type="Script" path="res://src/main/puzzle/immense-clammy.gd" id="12_5q7da"]
 [ext_resource type="AudioStream" uid="uid://chgc7es15d1kj" path="res://assets/main/puzzle/clear-cake-box.wav" id="13"]
 [ext_resource type="AudioStream" uid="uid://c0nh1kb5p7mqk" path="res://assets/main/puzzle/combo-00.wav" id="14"]
 [ext_resource type="AudioStream" uid="uid://cyvydn13p1uy4" path="res://assets/main/puzzle/fanfare1.wav" id="15"]
@@ -61,7 +62,7 @@ shader_parameter/noise = SubResource("3")
 shader_parameter/goop_texture = SubResource("1")
 shader_parameter/rainbow_texture = SubResource("4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdqoj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfe4v"]
 resource_local_to_scene = true
 shader = ExtResource("20")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
@@ -72,7 +73,7 @@ blend_mode = 1
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v862h"]
 texture = ExtResource("63")
 texture_region_size = Vector2i(36, 32)
-0:0/next_alternative_id = 2
+0:0/next_alternative_id = 7
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="8"]
@@ -182,7 +183,7 @@ one_shot = true
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource("2")]
 z_index = 4
-material = SubResource("ShaderMaterial_hdqoj")
+material = SubResource("ShaderMaterial_qfe4v")
 position = Vector2(0, -96)
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
@@ -195,6 +196,7 @@ material = SubResource("7")
 tile_set = SubResource("8")
 format = 2
 layer_0/tile_data = PackedInt32Array(65538, 1, 0, 131074, 1, 0)
+script = ExtResource("12_5q7da")
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
 z_index = 3
