@@ -139,8 +139,9 @@ Demos
   *rainbow lights don't appear
   *clean up 'color == ' commented out code
   *clean up tool/export PlayfieldFx stuff
- -background is light grey in editor?
- -'.'
+ %background is light grey in editor?
+  %GhostPieceTexture and ShadowTexture are grey?
+ *'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn

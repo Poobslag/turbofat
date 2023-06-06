@@ -61,7 +61,7 @@ shader_parameter/noise = SubResource("3")
 shader_parameter/goop_texture = SubResource("1")
 shader_parameter/rainbow_texture = SubResource("4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6noey"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6jaml"]
 resource_local_to_scene = true
 shader = ExtResource("20")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
@@ -93,10 +93,10 @@ sources/1 = SubResource("TileSetAtlasSource_gbe7k")
 [sub_resource type="CanvasItemMaterial" id="11"]
 blend_mode = 1
 
-[sub_resource type="ViewportTexture" id="12"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4fw2g"]
 viewport_path = NodePath("TileMapClip/TileMap/ShadowViewport")
 
-[sub_resource type="ViewportTexture" id="14"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iqv3p"]
 viewport_path = NodePath("TileMapClip/TileMap/GhostPieceViewport")
 
 [node name="Playfield" type="Control" groups=["night_mode_invisible"]]
@@ -181,7 +181,7 @@ one_shot = true
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource("2")]
 z_index = 4
-material = SubResource("ShaderMaterial_6noey")
+material = SubResource("ShaderMaterial_6jaml")
 position = Vector2(0, -96)
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
@@ -220,14 +220,14 @@ modulate = Color(1, 1, 1, 0.313726)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource("12")
+texture = SubResource("ViewportTexture_4fw2g")
 
 [node name="GhostPieceTexture" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.235294)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource("14")
+texture = SubResource("ViewportTexture_iqv3p")
 
 [node name="TutorialKeybindsLabel" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0.392157)
