@@ -79,7 +79,11 @@ var _color := Color.TRANSPARENT
 
 ## Key: (String) Food/vegetable color string in html format
 ## Value: Tile alternative id
-var _color_alternative_ids: Dictionary
+var _light_map_alternative_ids_by_color: Dictionary
+
+## Key: (String) Food/vegetable color string in html format
+## Value: Tile alternative id
+var _glow_map_alternative_ids_by_color: Dictionary
 
 @onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 
@@ -101,7 +105,8 @@ func _ready() -> void:
 	PuzzleState.combo_changed.connect(_on_PuzzleState_combo_changed)
 	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
 	init_tile_set()
-	_init_color_alternative_ids()
+	_init_alternative_ids_by_color(_light_map_alternative_ids_by_color, light_map)
+	_init_alternative_ids_by_color(_glow_map_alternative_ids_by_color, glow_map)
 	reset()
 
 
@@ -120,7 +125,7 @@ func reset() -> void:
 
 
 ## Initializes the different colored tiles in LightMap/GlowMap.
-func init_tile_set(value: bool = false) -> void:
+func init_tile_set(value: bool = true) -> void:
 	if not value:
 		return
 	
@@ -139,15 +144,15 @@ func init_tile_set(value: bool = false) -> void:
 
 
 ## Initializes the mapping of tile indexes by food/vegetable color.
-func _init_color_alternative_ids() -> void:
-	if _color_alternative_ids:
+func _init_alternative_ids_by_color(target_dict: Dictionary, tile_map: TileMap) -> void:
+	if not target_dict.is_empty():
 		return
 	
-	var tile_set_source: TileSetAtlasSource = light_map.tile_set.get_source(1)
+	var tile_set_source: TileSetAtlasSource = tile_map.tile_set.get_source(1)
 	for alternative_id_index in range(1, tile_set_source.get_alternative_tiles_count(Vector2i(0, 0))):
 		var alternative_id: int = tile_set_source.get_alternative_tile_id(Vector2i(0, 0), alternative_id_index)
 		var color: Color = tile_set_source.get_tile_data(Vector2i(0, 0), alternative_id).modulate
-		_color_alternative_ids[color.to_html(true)] = alternative_id
+		target_dict[color.to_html(true)] = alternative_id
 
 
 func _init_tile(color: Color) -> void:
@@ -233,24 +238,30 @@ func _refresh_tile_maps() -> void:
 		pass
 	else:
 		_pattern = new_pattern
-		var pushed_color_not_found_warning := false
 		for y in range(PuzzleTileMap.ROW_COUNT):
 			for x in range(PuzzleTileMap.COL_COUNT):
 				if x > 4:
 					continue
-				var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
-				var alternative_tile: int = -1
-				if s[x] == '#':
-					if _color == RAINBOW_LIGHT_COLOR:
-						alternative_tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
-					elif _color_alternative_ids.has(_color.to_html(true)):
-						alternative_tile = _color_alternative_ids[_color.to_html(true)]
-					else:
-						if not pushed_color_not_found_warning:
-							pushed_color_not_found_warning = true
-							push_warning("Color not found %s (%s, %s)" % [_color, RAINBOW_LIGHT_COLOR, _color_alternative_ids])
-				light_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), alternative_tile)
-				glow_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), alternative_tile)
+				
+				var light_map_alternative_tile := find_alternative_tile(light_map, Vector2i(x, y))
+				light_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), light_map_alternative_tile)
+				
+				var glow_map_alternative_tile := find_alternative_tile(glow_map, Vector2i(x, y))
+				glow_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), glow_map_alternative_tile)
+
+
+func find_alternative_tile(tile_map: TileMap, coords: Vector2i) -> int:
+	var result: int = -1
+	var alternative_ids_by_color: Dictionary = \
+			_light_map_alternative_ids_by_color if tile_map == light_map else _glow_map_alternative_ids_by_color
+	var s: String = _pattern[(coords.y + _pattern_y) % _pattern.size()]
+	if s[coords.x] == '#':
+#		if _color.to_html(true) == RAINBOW_LIGHT_COLOR.to_html(true):
+		if _color.to_html(true) == RAINBOW_LIGHT_COLOR.to_html(true):
+			result = 6 + ((coords.x + _pattern_y) % RAINBOW_COLOR_COUNT)
+		elif alternative_ids_by_color.has(_color.to_html(true)):
+			result = alternative_ids_by_color[_color.to_html(true)]
+	return result
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:

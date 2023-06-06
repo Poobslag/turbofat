@@ -61,7 +61,7 @@ shader_parameter/noise = SubResource("3")
 shader_parameter/goop_texture = SubResource("1")
 shader_parameter/rainbow_texture = SubResource("4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdnxl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxsoi"]
 resource_local_to_scene = true
 shader = ExtResource("20")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
@@ -74,30 +74,6 @@ texture = ExtResource("63")
 texture_region_size = Vector2i(36, 32)
 0:0/next_alternative_id = 19
 0:0/0 = 0
-0:0/7 = 7
-0:0/7/modulate = Color(0.956863, 0.466667, 0, 0.752941)
-0:0/8 = 8
-0:0/8/modulate = Color(1, 0.364706, 0.407843, 0.690196)
-0:0/9 = 9
-0:0/9/modulate = Color(1, 0.764706, 0.341176, 0.752941)
-0:0/10 = 10
-0:0/10/modulate = Color(1, 0.964706, 0.607843, 0.627451)
-0:0/11 = 11
-0:0/11/modulate = Color(0.454902, 0.639216, 0.12549, 0.376471)
-0:0/12 = 12
-0:0/12/modulate = Color(1, 0, 0, 0.6)
-0:0/13 = 13
-0:0/13/modulate = Color(1, 0.857143, 0, 0.6)
-0:0/14 = 14
-0:0/14/modulate = Color(0.285714, 1, 0, 0.6)
-0:0/15 = 15
-0:0/15/modulate = Color(0, 1, 0.571429, 0.6)
-0:0/16 = 16
-0:0/16/modulate = Color(0, 0.571428, 1, 0.6)
-0:0/17 = 17
-0:0/17/modulate = Color(0.285714, 0, 1, 0.6)
-0:0/18 = 18
-0:0/18/modulate = Color(1, 0, 0.857143, 0.6)
 
 [sub_resource type="TileSet" id="8"]
 tile_size = Vector2i(36, 32)
@@ -111,30 +87,6 @@ texture = ExtResource("62")
 texture_region_size = Vector2i(128, 128)
 0:0/next_alternative_id = 13
 0:0/0 = 0
-0:0/1 = 1
-0:0/1/modulate = Color(0.956863, 0.466667, 0, 0.752941)
-0:0/2 = 2
-0:0/2/modulate = Color(1, 0.364706, 0.407843, 0.690196)
-0:0/3 = 3
-0:0/3/modulate = Color(1, 0.764706, 0.341176, 0.752941)
-0:0/4 = 4
-0:0/4/modulate = Color(1, 0.964706, 0.607843, 0.627451)
-0:0/5 = 5
-0:0/5/modulate = Color(0.454902, 0.639216, 0.12549, 0.376471)
-0:0/6 = 6
-0:0/6/modulate = Color(1, 0, 0, 0.6)
-0:0/7 = 7
-0:0/7/modulate = Color(1, 0.857143, 0, 0.6)
-0:0/8 = 8
-0:0/8/modulate = Color(0.285714, 1, 0, 0.6)
-0:0/9 = 9
-0:0/9/modulate = Color(0, 1, 0.571429, 0.6)
-0:0/10 = 10
-0:0/10/modulate = Color(0, 0.571428, 1, 0.6)
-0:0/11 = 11
-0:0/11/modulate = Color(0.285714, 0, 1, 0.6)
-0:0/12 = 12
-0:0/12/modulate = Color(1, 0, 0.857143, 0.6)
 
 [sub_resource type="TileSet" id="10"]
 tile_size = Vector2i(36, 32)
@@ -231,7 +183,7 @@ one_shot = true
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource("2")]
 z_index = 4
-material = SubResource("ShaderMaterial_jdnxl")
+material = SubResource("ShaderMaterial_yxsoi")
 position = Vector2(0, -96)
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
@@ -243,14 +195,14 @@ combo_tracker_path = NodePath("../../ComboTracker")
 material = SubResource("7")
 tile_set = SubResource("8")
 format = 2
-layer_0/tile_data = PackedInt32Array(65538, 1, 0, 131074, 1, 0, 1179648, 1, 458752, 1114113, 1, 458752, 1179650, 1, 458752, 1245185, 1, 458752, 1245187, 1, 458752, 1114115, 1, 458752, 1179652, 1, 458752, 1114117, 1, 458752, 1245189, 1, 458752, 1179654, 1, 458752, 1114119, 1, 458752, 1245191, 1, 458752, 1179656, 1, 458752)
+layer_0/tile_data = PackedInt32Array(65538, 1, 0, 131074, 1, 0, 1245188, 1, 720896, 1179653, 1, 720896, 1114118, 1, 720896, 1048581, 1, 720896, 983044, 1, 720896, 1048583, 1, 720896, 983048, 1, 720896, 1179655, 1, 720896, 1245192, 1, 720896)
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
 z_index = 3
 material = SubResource("9")
 tile_set = SubResource("10")
 format = 2
-layer_0/tile_data = PackedInt32Array(1048576, 1, 786432, 983041, 1, 786432, 1048578, 1, 786432, 983043, 1, 786432, 1048580, 1, 786432, 983045, 1, 786432, 1048582, 1, 786432, 983047, 1, 786432, 1048584, 1, 786432, 917512, 1, 786432, 917510, 1, 786432, 917508, 1, 786432, 917506, 1, 786432, 917504, 1, 786432)
+layer_0/tile_data = PackedInt32Array(1245188, 1, 327680, 1179653, 1, 327680, 1114118, 1, 327680, 1179655, 1, 327680, 1245192, 1, 327680, 1048583, 1, 327680, 983048, 1, 327680, 1048581, 1, 327680, 983044, 1, 327680)
 
 [node name="BgStrobe" type="ColorRect" parent="TileMapClip/PlayfieldFx"]
 material = SubResource("11")

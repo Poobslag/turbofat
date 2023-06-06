@@ -41,7 +41,7 @@ game starts up, but has bugs
  -assigning your own fields now calls setters
  -fix 'flipx, flipy, transpose' code in tilers
  -update save files
-  -update save files to use RGBA instead of ARGB
+  -update save files to use RGBA instead of ARGB color
   -update save files to use new scancodes
  -remove/cleanup h1-font-new.tres
 -tilemap updates
@@ -133,7 +133,9 @@ Demos
    *unset 'v_flip' globally?
  *'ASDFG'
  -'ZXCVB'
-  -combo lights don't show up right
+  *combo lights don't show up
+  *combo lights are the wrong color (purple for vegetables?)
+  -rainbow lights don't appear
  -background is light grey in editor?
  -'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
