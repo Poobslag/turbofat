@@ -1,4 +1,3 @@
-#@tool
 class_name PlayfieldFx
 extends Node2D
 ## Generates visual lighting effects for the playfield.
@@ -51,9 +50,6 @@ const OFF_PATTERN := [
 
 @export var combo_tracker_path: NodePath
 
-@warning_ignore("unused_private_class_variable")
-@export var _init_tile_set: bool: set = init_tile_set
-
 ## light pattern being shown.
 var _pattern := OFF_PATTERN
 
@@ -104,7 +100,7 @@ func _ready() -> void:
 	_combo_tracker.combo_break_changed.connect(_on_ComboTracker_combo_break_changed)
 	PuzzleState.combo_changed.connect(_on_PuzzleState_combo_changed)
 	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
-	init_tile_set()
+	_init_tile_set()
 	_init_alternative_ids_by_color(_light_map_alternative_ids_by_color, light_map)
 	_init_alternative_ids_by_color(_glow_map_alternative_ids_by_color, glow_map)
 	reset()
@@ -125,10 +121,7 @@ func reset() -> void:
 
 
 ## Initializes the different colored tiles in LightMap/GlowMap.
-func init_tile_set(value: bool = true) -> void:
-	if not value:
-		return
-	
+func _init_tile_set() -> void:
 	if light_map.tile_set.get_source(1).get_alternative_tiles_count(Vector2i(0, 0)) > 1:
 		return
 	
@@ -240,9 +233,6 @@ func _refresh_tile_maps() -> void:
 		_pattern = new_pattern
 		for y in range(PuzzleTileMap.ROW_COUNT):
 			for x in range(PuzzleTileMap.COL_COUNT):
-				if x > 4:
-					continue
-				
 				var light_map_alternative_tile := find_alternative_tile(light_map, Vector2i(x, y))
 				light_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), light_map_alternative_tile)
 				
@@ -250,14 +240,22 @@ func _refresh_tile_maps() -> void:
 				glow_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), glow_map_alternative_tile)
 
 
+## Finds an alternative tile with the current color.
+##
+## Parameters:
+## 	tile_map: 'light_map' or 'glow_map', the TileMap whose alternative tile id should be returned
+##
+## 	coords: The tile coordinates of the tile whose alternative tile id should be returned
+##
+## Returns:
+## 	The alternative tile ID for the specified TileMap and cell, or -1 if the cell should be empty
 func find_alternative_tile(tile_map: TileMap, coords: Vector2i) -> int:
 	var result: int = -1
 	var alternative_ids_by_color: Dictionary = \
 			_light_map_alternative_ids_by_color if tile_map == light_map else _glow_map_alternative_ids_by_color
 	var s: String = _pattern[(coords.y + _pattern_y) % _pattern.size()]
 	if s[coords.x] == '#':
-#		if _color.to_html(true) == RAINBOW_LIGHT_COLOR.to_html(true):
-		if _color.to_html(true) == RAINBOW_LIGHT_COLOR.to_html(true):
+		if _color == RAINBOW_LIGHT_COLOR:
 			result = 6 + ((coords.x + _pattern_y) % RAINBOW_COLOR_COUNT)
 		elif alternative_ids_by_color.has(_color.to_html(true)):
 			result = alternative_ids_by_color[_color.to_html(true)]

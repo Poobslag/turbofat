@@ -61,7 +61,7 @@ shader_parameter/noise = SubResource("3")
 shader_parameter/goop_texture = SubResource("1")
 shader_parameter/rainbow_texture = SubResource("4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxsoi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6noey"]
 resource_local_to_scene = true
 shader = ExtResource("20")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
@@ -181,7 +181,7 @@ one_shot = true
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource("2")]
 z_index = 4
-material = SubResource("ShaderMaterial_yxsoi")
+material = SubResource("ShaderMaterial_6noey")
 position = Vector2(0, -96)
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
@@ -193,14 +193,13 @@ combo_tracker_path = NodePath("../../ComboTracker")
 material = SubResource("7")
 tile_set = SubResource("8")
 format = 2
-layer_0/tile_data = PackedInt32Array(65538, 1, 0, 131074, 1, 0, 1245188, 1, 720896, 1179653, 1, 720896, 1114118, 1, 720896, 1048581, 1, 720896, 983044, 1, 720896, 1048583, 1, 720896, 983048, 1, 720896, 1179655, 1, 720896, 1245192, 1, 720896)
+layer_0/tile_data = PackedInt32Array(65538, 1, 0, 131074, 1, 0)
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
 z_index = 3
 material = SubResource("9")
 tile_set = SubResource("10")
 format = 2
-layer_0/tile_data = PackedInt32Array(1245188, 1, 327680, 1179653, 1, 327680, 1114118, 1, 327680, 1179655, 1, 327680, 1245192, 1, 327680, 1048583, 1, 327680, 983048, 1, 327680, 1048581, 1, 327680, 983044, 1, 327680)
 
 [node name="BgStrobe" type="ColorRect" parent="TileMapClip/PlayfieldFx"]
 material = SubResource("11")
