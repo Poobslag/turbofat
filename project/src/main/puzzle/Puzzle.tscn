@@ -616,7 +616,6 @@ offset_right = 1024.0
 offset_bottom = 600.0
 custom_minimum_size = Vector2( 1024, 600 )
 texture = SubResource( 15 )
-flip_v = true
 
 [node name="RainbowTextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
 material = SubResource( 18 )
@@ -624,7 +623,6 @@ offset_right = 1024.0
 offset_bottom = 600.0
 custom_minimum_size = Vector2( 1024, 600 )
 texture = SubResource( 19 )
-flip_v = true
 
 [node name="FoodCrumbs" type="Node2D" parent="Fg"]
 script = ExtResource( 63 )
@@ -650,7 +648,6 @@ offset_bottom = 1500.0
 custom_minimum_size = Vector2( 2560, 1500 )
 scale = Vector2( 0.4, 0.4 )
 texture = SubResource( 21 )
-flip_v = true
 
 [node name="FoodFlightTimer" type="Timer" parent="Fg/FoodItems"]
 wait_time = 0.08

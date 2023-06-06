@@ -39,4 +39,3 @@ offset_bottom = 834.0
 scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
 texture = SubResource( 2 )
-flip_v = true
