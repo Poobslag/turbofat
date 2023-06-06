@@ -1,3 +1,4 @@
+#@tool
 class_name PlayfieldFx
 extends Node2D
 ## Generates visual lighting effects for the playfield.
@@ -50,6 +51,9 @@ const OFF_PATTERN := [
 
 @export var combo_tracker_path: NodePath
 
+@warning_ignore("unused_private_class_variable")
+@export var _init_tile_set: bool: set = init_tile_set
+
 ## light pattern being shown.
 var _pattern := OFF_PATTERN
 
@@ -73,7 +77,8 @@ var _glow_duration := 0.0
 ## current background light color
 var _color := Color.TRANSPARENT
 
-## tile indexes by food/vegetable color
+## Key: (String) Food/vegetable color string in html format
+## Value: Tile alternative id
 var _color_alternative_ids: Dictionary
 
 @onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
@@ -95,7 +100,7 @@ func _ready() -> void:
 	_combo_tracker.combo_break_changed.connect(_on_ComboTracker_combo_break_changed)
 	PuzzleState.combo_changed.connect(_on_PuzzleState_combo_changed)
 	PuzzleState.added_pickup_score.connect(_on_PuzzleState_added_pickup_score)
-	_init_tile_set()
+	init_tile_set()
 	_init_color_alternative_ids()
 	reset()
 
@@ -115,7 +120,10 @@ func reset() -> void:
 
 
 ## Initializes the different colored tiles in LightMap/GlowMap.
-func _init_tile_set() -> void:
+func init_tile_set(value: bool = false) -> void:
+	if not value:
+		return
+	
 	if light_map.tile_set.get_source(1).get_alternative_tiles_count(Vector2i(0, 0)) > 1:
 		return
 	
@@ -139,7 +147,7 @@ func _init_color_alternative_ids() -> void:
 	for alternative_id_index in range(1, tile_set_source.get_alternative_tiles_count(Vector2i(0, 0))):
 		var alternative_id: int = tile_set_source.get_alternative_tile_id(Vector2i(0, 0), alternative_id_index)
 		var color: Color = tile_set_source.get_tile_data(Vector2i(0, 0), alternative_id).modulate
-		_color_alternative_ids[color] = alternative_id
+		_color_alternative_ids[color.to_html(true)] = alternative_id
 
 
 func _init_tile(color: Color) -> void:
@@ -225,19 +233,24 @@ func _refresh_tile_maps() -> void:
 		pass
 	else:
 		_pattern = new_pattern
+		var pushed_color_not_found_warning := false
 		for y in range(PuzzleTileMap.ROW_COUNT):
 			for x in range(PuzzleTileMap.COL_COUNT):
+				if x > 4:
+					continue
 				var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
 				var alternative_tile: int = -1
 				if s[x] == '#':
 					if _color == RAINBOW_LIGHT_COLOR:
 						alternative_tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
-					elif _color_alternative_ids.has(_color):
-						alternative_tile = _color_alternative_ids[_color]
-				light_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), alternative_tile)
-				if alternative_tile != -1:
-					print("237: set_cell %s %s" % [Vector2i(x, y), alternative_tile])
-				glow_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), alternative_tile)
+					elif _color_alternative_ids.has(_color.to_html(true)):
+						alternative_tile = _color_alternative_ids[_color.to_html(true)]
+					else:
+						if not pushed_color_not_found_warning:
+							pushed_color_not_found_warning = true
+							push_warning("Color not found %s (%s, %s)" % [_color, RAINBOW_LIGHT_COLOR, _color_alternative_ids])
+				light_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), alternative_tile)
+				glow_map.set_cell(0, Vector2i(x, y), 1, Vector2i(0, 0), alternative_tile)
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
