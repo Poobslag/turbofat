@@ -128,8 +128,12 @@ Demos
  -'QWERT'
   *PuzzleTileMap tiles appear OK
   -bug: shadows are in the wrong place
- -'ASDFG'
+   *offset?
+   *inverted Y?
+   -unset 'v_flip' globally?
+ *'ASDFG'
  -'ZXCVB'
+  -combo lights don't show up right
  -'.'
 -./project/src/demo/career/ui/ProgressBoardDemo.tscn
 -./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
