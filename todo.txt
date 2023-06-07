@@ -112,50 +112,37 @@ later
 Demos
 
 *./project/src/demo/career/ui/ChalkboardMapRowDemo.tscn
- *bug: landmark lines are aliased
 *./project/src/demo/ui/FontFitLabelDemo.tscn
- *bug: swapping in fonts doesn't change size
- *fix FontFitButton too
 *./project/src/demo/puzzle/pan/FryingPansUiDemo.tscn
- *bug: tiles aren't visible?
- *bug: tiles are offset to the left
- *bug: ghost tiles don't fade out
- *bug: golden pans don't use golden ghost tile (material?)
- *fix 'tile ghost logic'
--./project/src/demo/puzzle/PlayfieldDemo.tscn
- *doesn't crash on startup
-  *replace 'tile_set.get_tiles_ids()' calls
- *looks vaguely ok on startup
- *'QWERT'
-  *PuzzleTileMap tiles appear OK
-  *bug: shadows are in the wrong place
-   *offset?
-   *inverted Y?
-   *unset 'v_flip' globally?
- *'ASDFG'
- *'ZXCVB'
-  *combo lights don't show up
-  *combo lights are the wrong color (purple for vegetables?)
-  *rainbow lights don't appear
-  *clean up 'color == ' commented out code
-  *clean up tool/export PlayfieldFx stuff
- %background is light grey in editor?
-  %GhostPieceTexture and ShadowTexture are grey?
- *'.'
--./project/src/demo/career/ui/ProgressBoardDemo.tscn
- -font is too small, not outlined
- -clock hands are aliased
- -wooden frame is too thick, not scaled correctly
- -[0-9]
- -[Q]
- -[W]
- -[E]
- -[R]
- -[S]
- -[Z-M]
- -[shift+Z-M]
- -[=/-]
--./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
+*./project/src/demo/puzzle/PlayfieldDemo.tscn
+*./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
+ *spaces aren't evenly spaced
+*./project/src/demo/career/ui/ProgressBoardDemo.tscn
+ *font is too small, not outlined
+ *wooden frame is too thick, not scaled correctly
+ *clock hands are aliased
+ *top of clock has a bump
+ *[0-9]
+ *[Q]
+ *[W]
+ *[E]
+ *[R]
+ *[S]
+ *[Z-M]
+  *clock does not wind forward
+  *clock doesn't wind because assigning the hours on line 55 now calls the setter!
+  *minute hand moves, hour hand stays the same?
+  *crash assigning outline color
+  *people teleport forward instead of hopping
+  *no particles
+  *path landmarks are not evenly spaced
+  *path landmarks use 'dot' instead of 'oval'
+  *universally change particles2d 'scale'
+  *universally change particles2d 'initial velocity'
+ *[shift+Z-M]
+ *[=/-]
+ *particles?
+ *sfx?
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
 -./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
@@ -201,59 +188,4 @@ replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).t
 replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
 
 
-what if all tilesets were temporarily just 16x16 pixels, or something?
 
-
-* project/src/main/puzzle/OldPuzzleTileMap.tscn      |  6 ++--
-* project/src/main/puzzle/old-puzzle-tile-set.tres   |  8 ++---
-* .../src/main/puzzle/puzzle-tile-set-diagram.tres   |  8 ++---
-* project/src/main/puzzle/puzzle-tile-set-onion.tres |  8 ++---
-* .../src/main/puzzle/puzzle-tile-set-veggies.tres   |  8 ++---
-* .../environment/lemon/lemon-ground-library.tres    |  8 ++---
-* .../environment/lemon/lemon-obstacle-library.tres  | 14 ++++-----
-* .../environment/lemon/lemon-terrain-library.tres   |  4 +--
-* .../environment/marsh/marsh-ground-library.tres    |  8 ++---
-* .../environment/marsh/marsh-obstacle-library.tres  | 12 ++++----
-* .../environment/marsh/marsh-terrain-library.tres   |  2 +-
-* .../environment/poki/poki-ground-library.tres      |  8 ++---
-* .../environment/poki/poki-obstacle-library.tres    |  2 +-
-* .../environment/poki/poki-terrain-library.tres     |  4 +--
-* .../environment/restaurant/floor-library.tres      |  4 +--
-* .../restaurant/turbo-fat-obstacle-library.tres     | 32 +++++++++----------
-* .../restaurant/undecorated-floor-library.tres      |  6 ++--
-* .../undecorated-turbo-fat-obstacle-library.tres    | 34 ++++++++++----------
-* project/src/main/puzzle/night/NightPlayfield.tscn  |  4 +--
-* .../src/main/puzzle/night/NightPuzzleTileMap.tscn  |  6 ++--
-* .../src/main/world/environment/IndoorShadows.tscn  |  2 +-
-* .../src/main/world/environment/OutdoorShadows.tscn |  2 +-
-% .../world/environment/lemon/LemonRippleSprite.tscn | 36 +++++++++++-----------
-% .../world/environment/marsh/MarshRippleSprite.tscn | 36 +++++++++++-----------
-% .../world/environment/poki/PokiRippleSprite.tscn   | 36 +++++++++++-----------
-
-
-
-fix tilemap alternatives
--apply EditorScript fix to OldPuzzleTileMap
--apply EditorScript fix to all similar files
-
-update all tilemap regions project-wide using regex
- (^.*region \= Rect2\( 0\, 0\, )([0-9]*\, [0-9]*)( \))
- $116, 16$3
-in each affected .tscn, .tres file...
-run alternative-tile-remover.gd
-update margins -> 2
-update separation -> 4
-update texture_region_size to match the old autotile/tile_size
-create tiles in non-transparent texture regions
-update the tileset's tile size to match the old cell_size
-
-74,166
-135,165
-67,45
-90,120
-128,104 (indoor cell size)
-210,108 (indoor floor size)
-
-restore old-puzzle-tile-set
-restore OldPuzzleCornerMap
-restore OldPuzzleTileMap

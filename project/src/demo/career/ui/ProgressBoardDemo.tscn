@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cw76ue3yhc37d"]
 
-[ext_resource type="PackedScene" uid="uid://cggd1clw5irj4" path="res://src/main/career/ui/ProgressBoard.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://klji683kvjk5" path="res://src/main/career/ui/ProgressBoard.tscn" id="1"]
 [ext_resource type="Script" path="res://src/demo/career/ui/progress-board-demo.gd" id="2"]
 
 [node name="Demo" type="Node"]

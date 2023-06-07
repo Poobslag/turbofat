@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cggd1clw5irj4"]
+[gd_scene load_steps=36 format=3 uid="uid://klji683kvjk5"]
 
 [ext_resource type="Script" path="res://src/main/career/ui/progress-board-clock-label.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dcwnopl8soxhp" path="res://assets/main/career/ui/map/landmark-forest.png" id="2"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/main/career/ui/progress-board-clock-visuals.gd" id="5"]
 [ext_resource type="Script" path="res://src/main/career/ui/progress-board-player.gd" id="6"]
 [ext_resource type="Script" path="res://src/main/career/ui/progress-board-clock.gd" id="7"]
-[ext_resource type="PackedScene" path="res://src/main/career/ui/ProgressBoardTrail.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://b013ovmriubt8" path="res://src/main/career/ui/ProgressBoardTrail.tscn" id="8"]
 [ext_resource type="Shader" path="res://src/main/utils/icon-outline.gdshader" id="9"]
 [ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="10"]
 [ext_resource type="Texture2D" uid="uid://wyri4lv1f2fj" path="res://assets/main/career/ui/map/player-sheet.png" id="11"]
@@ -96,21 +96,14 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="42"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("10"), ExtResource("10")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/36/0 = Vector2(0, 0)
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+cache/0/36/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/36/0/kerning_overrides/36/0 = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="37"]
 offsets = PackedFloat32Array(0, 0.695652)
@@ -119,28 +112,44 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="4"]
 gradient = SubResource("37")
 
-[sub_resource type="ParticleProcessMaterial" id="38"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s0wto"]
 direction = Vector3(-100, -40, 0)
 spread = 15.0
 gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource("4")
 
 [sub_resource type="ParticleProcessMaterial" id="39"]
 direction = Vector3(100, -40, 0)
 spread = 15.0
 gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource("4")
 
-[sub_resource type="ParticleProcessMaterial" id="40"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ulw6"]
 direction = Vector3(-100, 40, 0)
 spread = 15.0
 gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource("4")
 
-[sub_resource type="ParticleProcessMaterial" id="41"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n2pjg"]
 direction = Vector3(100, 40, 0)
 spread = 15.0
 gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource("4")
 
 [sub_resource type="Animation" id="34"]
@@ -545,10 +554,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -340.2
-offset_top = -233.604
-offset_right = 340.203
-offset_bottom = 233.604
+offset_left = 171.8
+offset_top = 66.396
+offset_right = 852.203
+offset_bottom = 533.604
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(340.2, 233.604)
@@ -568,11 +577,12 @@ anchor_bottom = 1.0
 script = ExtResource("19")
 
 [node name="Map" parent="ChalkboardRegion/MapHolder" instance=ExtResource("12")]
-layout_mode = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
+anchors_preset = 15
 offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 
 [node name="Trail" parent="ChalkboardRegion" instance=ExtResource("8")]
@@ -612,7 +622,10 @@ offset_left = -25.0
 offset_top = -92.0
 offset_right = 25.0
 offset_bottom = -42.0
+theme = ExtResource("14")
 theme_override_colors/font_color = Color(0.811765, 0.803922, 0.803922, 1)
+theme_override_colors/font_outline_color = Color(0.121569, 0.0941176, 0.0941176, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = SubResource("26")
 text = "0"
 horizontal_alignment = 1
@@ -692,9 +705,9 @@ layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -90.0
+offset_left = 422.0
 offset_top = 8.0
-offset_right = 90.0029
+offset_right = 602.003
 offset_bottom = 58.0
 grow_horizontal = 2
 mouse_filter = 2
@@ -716,7 +729,7 @@ filled_color = Color(0.894118, 0.709804, 0.584314, 1)
 line_color = Color(0.423529, 0.262745, 0.192157, 1)
 
 [node name="MinuteHand" type="Line2D" parent="Clock/VisualsHolder/Visuals"]
-points = PackedVector2Array(0, 0, -6.55671e-07, -15)
+points = PackedVector2Array(0, 0, 0, -15)
 width = 3.4
 default_color = Color(0.423529, 0.262745, 0.192157, 1)
 begin_cap_mode = 2
@@ -724,7 +737,7 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="HourHand" type="Line2D" parent="Clock/VisualsHolder/Visuals"]
-points = PackedVector2Array(0, 0, -4.37114e-07, -10)
+points = PackedVector2Array(0, 0, 0, -10)
 width = 3.4
 default_color = Color(0.423529, 0.262745, 0.192157, 1)
 begin_cap_mode = 2
@@ -737,7 +750,10 @@ anchor_bottom = 1.0
 offset_left = 60.0
 offset_right = 109.0
 size_flags_vertical = 7
-theme_override_fonts/font = SubResource("42")
+theme_override_colors/font_outline_color = Color(0.423529, 0.262745, 0.192157, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10")
+theme_override_font_sizes/font_size = 28
 text = "10:15 am"
 vertical_alignment = 1
 script = ExtResource("1")
@@ -752,7 +768,7 @@ anchor_bottom = 0.5
 [node name="Nw" type="GPUParticles2D" parent="Clock/Label/Particles"]
 emitting = false
 amount = 2
-process_material = SubResource("38")
+process_material = SubResource("ParticleProcessMaterial_s0wto")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
@@ -768,7 +784,7 @@ explosiveness = 1.0
 [node name="Sw" type="GPUParticles2D" parent="Clock/Label/Particles"]
 emitting = false
 amount = 2
-process_material = SubResource("40")
+process_material = SubResource("ParticleProcessMaterial_3ulw6")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
@@ -776,7 +792,7 @@ explosiveness = 1.0
 [node name="Se" type="GPUParticles2D" parent="Clock/Label/Particles"]
 emitting = false
 amount = 2
-process_material = SubResource("41")
+process_material = SubResource("ParticleProcessMaterial_n2pjg")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0

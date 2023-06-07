@@ -19,6 +19,8 @@ const PLAYER_MOVE_SOUND_PITCH_SCALE_MAX := 1.1
 ## When animating, this represents the player's target position.
 var spots_travelled: int: set = set_spots_travelled
 
+var _spots_travelled_internal: int
+
 ## Visual spot where the player's chalk graphic should be drawn.
 ##
 ## When animating, this represents the player's current position. It can fall between two points, which is why it is a
@@ -62,7 +64,7 @@ func _ready() -> void:
 ## 	'duration': The duration in seconds the player should take to advance.
 func play(new_spots_travelled: int, duration: float) -> void:
 	# immediately assign spots_travelled; we use this for calculating the label
-	spots_travelled = new_spots_travelled
+	_spots_travelled_internal = new_spots_travelled
 	
 	# calculate bounce height
 	var bounce_factor := inverse_lerp(5.0, 1.0, clamp(duration, 1.0, 4.0))
@@ -74,6 +76,7 @@ func play(new_spots_travelled: int, duration: float) -> void:
 	# launch the movement tween, causing the player sprite to move along the path
 	_tween = Utils.recreate_tween(self, _tween)
 	_tween.tween_property(self, "visual_spots_travelled", new_spots_travelled, duration)
+	_tween.chain().tween_callback(Callable(self, "_on_Tween_completed"))
 	
 	var starting_pitch := \
 			PLAYER_MOVE_SOUND_PITCH_SCALE_MAX if _moving_backward() else PLAYER_MOVE_SOUND_PITCH_SCALE_MIN
@@ -100,6 +103,7 @@ func refresh() -> void:
 
 func set_spots_travelled(new_spots_travelled: int) -> void:
 	spots_travelled = new_spots_travelled
+	_spots_travelled_internal = new_spots_travelled
 	visual_spots_travelled = new_spots_travelled
 	_refresh_visual_spots_travelled()
 
@@ -113,7 +117,7 @@ func set_visual_spots_travelled(new_visual_spots_travelled: float) -> void:
 ##
 ## When moving backwards, different sounds play and the number label is shown in red.
 func _moving_backward() -> bool:
-	return spots_travelled < visual_spots_travelled
+	return _spots_travelled_internal < visual_spots_travelled
 
 
 ## Updates the player's position and number label based on the 'visual_spots_travelled' value.
@@ -135,10 +139,10 @@ func _refresh_visual_spots_travelled() -> void:
 	# update the label's text
 	var old_text: String = _label.text
 	var new_text: String
-	if spots_travelled < visual_spots_travelled:
-		new_text = str(floor(spots_travelled - visual_spots_travelled))
+	if _spots_travelled_internal < visual_spots_travelled:
+		new_text = str(floor(_spots_travelled_internal - visual_spots_travelled))
 	else:
-		new_text = str(ceil(spots_travelled - visual_spots_travelled))
+		new_text = str(ceil(_spots_travelled_internal - visual_spots_travelled))
 	if old_text != new_text:
 		_label.text = new_text
 	
@@ -149,3 +153,7 @@ func _refresh_visual_spots_travelled() -> void:
 				PLAYER_MOVE_SOUND_PITCH_SCALE_MIN if _moving_backward() else PLAYER_MOVE_SOUND_PITCH_SCALE_MAX
 		_player_move_sound.pitch_scale = lerp(_player_move_sound.pitch_scale, target_pitch, 0.05)
 		_player_move_sound.play()
+
+
+func _on_Tween_completed() -> void:
+	spots_travelled = _spots_travelled_internal

@@ -24,8 +24,7 @@ func flash() -> void:
 		particles_2d.restart()
 		particles_2d.emitting = true
 	
-	var font: FontFile = get("theme_override_fonts/font")
-	font.outline_color = Color.WHITE
+	set("theme_override_colors/font_outline_color", Color.WHITE)
 	_flash_tween = Utils.recreate_tween(self, _flash_tween)
-	_flash_tween.tween_property(font, "outline_color", OUTLINE_COLOR, 1.5) \
+	_flash_tween.tween_property(self, "theme_override_colors/font_outline_color", OUTLINE_COLOR, 1.5) \
 			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)

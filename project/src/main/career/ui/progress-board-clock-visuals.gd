@@ -1,4 +1,4 @@
-#@tool
+@tool
 class_name ProgressBoardClockVisuals
 extends Node2D
 ## Draws the analog clock which appears above the progress board.
@@ -155,9 +155,7 @@ func _draw_filled_area() -> void:
 
 ## Draws the clock's outline.
 func _draw_outline() -> void:
-	# add a little extra to avoid a visible gap with wide outlines
-	var percent := 1.0 + 1.0 / sample_count
-	
+	var percent := 1.0
 	var points := _circle_points(percent)
 	draw_polyline(points, line_color, line_width, true)
 

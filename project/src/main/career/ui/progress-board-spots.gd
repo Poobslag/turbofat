@@ -63,17 +63,8 @@ func get_spot_position(i: float) -> Vector2:
 	if path2d == null:
 		return Vector2.ZERO
 	
-	var baked_points := path2d.curve.get_baked_points()
-	var baked_point_float_index: float = lerp(0, baked_points.size() - 1, \
-			inverse_lerp(0, spot_count - 1, i))
-	
-	# avoid baked_points OOB issues by bounding baked_point_float_index
-	baked_point_float_index = clamp(baked_point_float_index, 0, baked_points.size() - 1)
-	
-	return lerp(
-			baked_points[int(floor(baked_point_float_index))],
-			baked_points[int(ceil(baked_point_float_index))],
-			baked_point_float_index - int(baked_point_float_index))
+	var spot_length: float = lerp(0.0, path2d.curve.get_baked_length(), inverse_lerp(0, spot_count - 1, i))
+	return path2d.curve.sample_baked(spot_length)
 
 
 ## Deletes and recreates all spots on the trail, assigning their positions and frames.
