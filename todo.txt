@@ -150,7 +150,3 @@ Demos
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
 
-
-
-add 'repeat_enable' hint to uniform sampler2Ds
-change 'visible_characters_behavior' to 'characters_after_shaping' where necessary

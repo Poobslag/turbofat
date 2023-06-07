@@ -18,7 +18,7 @@ const float SCROLL_SPEED = 0.0080;
 // speed at which the rainbow pattern cycles its hues
 const float CYCLE_SPEED = 0.0240;
 
-uniform sampler2D noise;
+uniform sampler2D noise : repeat_enable;
 
 // texture for flat-color metaballs
 uniform sampler2D goop_texture : source_color;

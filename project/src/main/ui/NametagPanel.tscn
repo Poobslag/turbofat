@@ -37,6 +37,7 @@ text = "Lorem ipsu"
 horizontal_alignment = 1
 autowrap_mode = 3
 max_lines_visible = 1
+visible_characters_behavior = 1
 
 [node name="Medium" type="Label" parent="."]
 visible = false
@@ -58,6 +59,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 clip_text = true
 max_lines_visible = 1
+visible_characters_behavior = 1
 
 [node name="Large" type="Label" parent="."]
 visible = false
@@ -79,6 +81,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 clip_text = true
 max_lines_visible = 1
+visible_characters_behavior = 1
 
 [node name="ExtraLarge" type="Label" parent="."]
 visible = false
@@ -101,6 +104,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2
+visible_characters_behavior = 1
 
 [node name="ExtraExtraLarge" type="Label" parent="."]
 custom_minimum_size = Vector2(750, 80)
@@ -123,3 +127,4 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 max_lines_visible = 2
+visible_characters_behavior = 1

@@ -16,7 +16,7 @@ const float SCROLL_SPEED = 0.040;
 // speed at which the rainbow pattern cycles its hues
 const float CYCLE_SPEED = 0.240;
 
-uniform sampler2D noise;
+uniform sampler2D noise : repeat_enable;
 
 // Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
 vec3 hsv2rgb_smooth(in vec3 c) {
