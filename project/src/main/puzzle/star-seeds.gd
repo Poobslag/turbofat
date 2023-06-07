@@ -231,7 +231,7 @@ func _spawn_star_seeds(rect: Rect2i, box_type: Foods.BoxType, star_seed_position
 			star_seed.food_type = food_types[int(cell.y) % food_types.size()]
 			
 			star_seed.position = _puzzle_tile_map.map_to_local(cell + Vector2i(0, -3))
-			star_seed.position += _puzzle_tile_map.cell_size * Vector2i(0.5, 0.5)
+			star_seed.position += Vector2(_puzzle_tile_map.tile_set.tile_size) * Vector2(0.5, 0.5)
 			star_seed.position *= _puzzle_tile_map.scale
 			star_seed.scale = _puzzle_tile_map.scale
 			star_seed.z_index = 4
@@ -306,7 +306,7 @@ func _shift_rows(bottom_row: int, direction: Vector2i) -> void:
 			# star_seeds below the specified bottom row are left alone
 			continue
 		# star_seeds above the specified bottom row are shifted
-		_star_seeds_by_cell[cell].position += direction * _puzzle_tile_map.cell_size * _puzzle_tile_map.scale
+		_star_seeds_by_cell[cell].position += Vector2(direction) * Vector2(_puzzle_tile_map.tile_set.tile_size) * _puzzle_tile_map.scale
 		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
 			_star_seeds_by_cell[cell].visible = true
 		shifted[cell + direction] = _star_seeds_by_cell[cell]

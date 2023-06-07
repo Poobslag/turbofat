@@ -43,5 +43,5 @@ func _erase_all_footprints() -> void:
 
 func _add_player_and_sensei_footprints() -> void:
 	for cell in _player_and_sensei_footprint_cells:
-		_tile_map.set_cell(0, cell, footprint_tile_index)
+		_tile_map.set_cell(0, cell, footprint_tile_index, Vector2.ZERO)
 		_tile_map.update_bitmask_area(cell)

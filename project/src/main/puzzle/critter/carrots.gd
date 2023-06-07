@@ -119,7 +119,7 @@ func _add_carrot(cell: Vector2i, config: CarrotConfig) -> void:
 	carrot.scale = _playfield.tile_map.scale
 	
 	carrot.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
-	carrot.position += _playfield.tile_map.cell_size * Vector2(carrot_dimensions.x * 0.5, 0.5)
+	carrot.position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(carrot_dimensions.x * 0.5, 0.5)
 	carrot.position *= _playfield.tile_map.scale
 	
 	carrot.smoke = config.smoke
@@ -133,7 +133,7 @@ func _add_carrot(cell: Vector2i, config: CarrotConfig) -> void:
 	var destination_cell := Vector2i(cell.x, 0)
 	var destination_position: Vector2
 	destination_position = _playfield.tile_map.map_to_local(destination_cell + Vector2i(0, -carrot_dimensions.y))
-	destination_position += _playfield.tile_map.cell_size * Vector2(carrot_dimensions.x * 0.5, 0.5)
+	destination_position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(carrot_dimensions.x * 0.5, 0.5)
 	destination_position *= _playfield.tile_map.scale
 	
 	var duration := config.duration

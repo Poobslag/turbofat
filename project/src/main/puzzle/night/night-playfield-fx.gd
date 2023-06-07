@@ -23,13 +23,13 @@ func _process(_delta: float) -> void:
 	# synchronize light map
 	_light_map.clear()
 	for cell in source_playfield_fx.light_map.get_used_cells(0):
-		_light_map.set_cell(0, cell, 0)
+		_light_map.set_cell(0, cell, 0, Vector2.ZERO)
 	_light_map.modulate.a = source_playfield_fx.light_map.modulate.a
 	
 	# synchronize glow map
 	_glow_map.clear()
 	for cell in source_playfield_fx.glow_map.get_used_cells(0):
-		_glow_map.set_cell(0, cell, 0)
+		_glow_map.set_cell(0, cell, 0, Vector2.ZERO)
 	_glow_map.modulate.a = source_playfield_fx.glow_map.modulate.a
 	
 	# synchronize strobe

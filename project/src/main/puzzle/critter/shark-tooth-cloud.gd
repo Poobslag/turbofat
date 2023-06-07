@@ -139,7 +139,7 @@ func _connect_eaten_cells() -> void:
 
 ## Makes the eaten piece tilemap descend into the shark's mouth.
 func _start_eat_tween() -> void:
-	var piece_height: float = _tile_map.get_used_rect().size.y * _tile_map.cell_size.y
+	var piece_height: float = _tile_map.get_used_rect().size.y * _tile_map.tile_set.tile_size.y
 	_tile_map.position = TILE_MAP_START_POSITION
 	_eat_tween = Utils.recreate_tween(self, _eat_tween)
 	_eat_tween.tween_property(_tile_map, "position",

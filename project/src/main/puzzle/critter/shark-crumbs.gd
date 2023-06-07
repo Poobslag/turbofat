@@ -23,7 +23,7 @@ func refresh() -> void:
 	modulate = Utils.rand_value(tile_map.crumb_colors_for_cell(used_cell))
 	
 	# assign width, position, scale
-	process_material.emission_box_extents.x = max(1.0, tile_map.get_used_rect().size.x) * tile_map.cell_size.x * 0.5
+	process_material.emission_box_extents.x = max(1.0, tile_map.get_used_rect().size.x) * tile_map.tile_set.tile_size.x * 0.5
 	position.x = tile_map.get_used_rect().get_center().x
 	process_material.scale = tile_map.global_scale.x
 	

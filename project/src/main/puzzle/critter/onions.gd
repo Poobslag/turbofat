@@ -103,7 +103,7 @@ func _initial_add_onion_effect() -> LevelTriggerEffects.AddOnionEffect:
 ## 	'cell': The onion's playfield cell
 func _update_onion_position(onion: Onion, cell: Vector2i) -> void:
 	onion.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
-	onion.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
+	onion.position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(0.5, 0.5)
 	onion.position *= _playfield.tile_map.scale
 
 

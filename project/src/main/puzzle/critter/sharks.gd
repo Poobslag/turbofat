@@ -430,7 +430,7 @@ func _refresh_piece_manager_path() -> void:
 ## 	'cell': The shark's playfield cell
 func _update_shark_position(shark: Shark, cell: Vector2i) -> void:
 	shark.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
-	shark.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
+	shark.position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(0.5, 0.5)
 	shark.position *= _playfield.tile_map.scale
 
 
@@ -623,7 +623,7 @@ func _shift_rows(bottom_y: int, direction: Vector2i) -> void:
 			# sharks below the specified bottom row are left alone
 			continue
 		# sharks above the specified bottom row are shifted
-		_sharks_by_cell[cell].position += direction * _playfield.tile_map.cell_size * _playfield.tile_map.scale
+		_sharks_by_cell[cell].position += Vector2(direction) * Vector2(_playfield.tile_map.tile_set.tile_size) * _playfield.tile_map.scale
 		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
 			_sharks_by_cell[cell].visible = true
 		shifted[cell + direction] = _sharks_by_cell[cell]

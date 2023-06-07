@@ -116,31 +116,7 @@ Demos
 *./project/src/demo/puzzle/pan/FryingPansUiDemo.tscn
 *./project/src/demo/puzzle/PlayfieldDemo.tscn
 *./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
- *spaces aren't evenly spaced
 *./project/src/demo/career/ui/ProgressBoardDemo.tscn
- *font is too small, not outlined
- *wooden frame is too thick, not scaled correctly
- *clock hands are aliased
- *top of clock has a bump
- *[0-9]
- *[Q]
- *[W]
- *[E]
- *[R]
- *[S]
- *[Z-M]
-  *clock does not wind forward
-  *clock doesn't wind because assigning the hours on line 55 now calls the setter!
-  *minute hand moves, hour hand stays the same?
-  *crash assigning outline color
-  *people teleport forward instead of hopping
-  *no particles
-  *path landmarks are not evenly spaced
-  *path landmarks use 'dot' instead of 'oval'
- *[shift+Z-M]
- *[=/-]
- *particles?
- *sfx?
 -./project/src/demo/chat/ui/ChatFrameDemo.tscn
 -./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
@@ -173,18 +149,3 @@ Demos
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
-
-
- -universally change particles2d 'scale'
- -universally change particles2d 'initial velocity'
- -universally look for 'baked point' calculations
-
- -replace 'get_cellv' with get_cell_source_id
- -replace 'get_cell' with 'get_cell_source_id
-replace tile_map.cell_size with tile_map.tile_set.tile_size
-replace tile_map.clear with tile_map.clear_layer(0)
-update tile_map.set_cell calls to include 'Vector2.ZERO'
-  _tile_map.set_cell(0, pan_cell, tile, Vector2.ZERO)
-replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).texture
-replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
-

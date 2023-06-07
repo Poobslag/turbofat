@@ -20,7 +20,7 @@ signal all_text_shown
 func _ready() -> void:
 	# Populate the chat line sizes based on the chat line panel sizes.
 	# They're the same except for a little padding on the outside.
-	var new_sizes := []
+	var new_sizes: Array[Vector2] = []
 	for panel_size in chat_line_panel.panel_sizes:
 		new_sizes.append(panel_size - panel_padding)
 	set_sizes(new_sizes)

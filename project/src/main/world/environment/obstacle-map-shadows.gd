@@ -47,6 +47,6 @@ func _refresh_shadows() -> void:
 			var cell_rect: Rect2i = cell_shadow_mapping[cell_id]
 			for x in range(cell_rect.position.x + cell.x, cell_rect.end.x + cell.x):
 				for y in range(cell_rect.position.y + cell.y, cell_rect.end.y + cell.y):
-					set_cell(0, Vector2i(x, y), 0)
+					set_cell(0, Vector2i(x, y), 0, Vector2.ZERO)
 		else:
-			set_cell(0, cell, 0)
+			set_cell(0, cell, 0, Vector2.ZERO)

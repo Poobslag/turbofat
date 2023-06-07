@@ -89,4 +89,4 @@ func _add_random_grass() -> void:
 			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_GOOPLESS_GRASS)
 		else:
 			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_GOOPY_GRASS)
-		_tile_map.set_cell(0, cell, grass_tile_index, autotile_coord)
+		_tile_map.set_cell(0, cell, grass_tile_index, autotile_coord, Vector2.ZERO)

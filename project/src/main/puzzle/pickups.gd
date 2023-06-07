@@ -221,7 +221,7 @@ func _shift_rows(bottom_row: int, direction: Vector2i) -> void:
 			# pickups below the specified bottom row are left alone
 			continue
 		# pickups above the specified bottom row are shifted
-		_pickups_by_cell[cell].position += direction * _puzzle_tile_map.cell_size * _puzzle_tile_map.scale
+		_pickups_by_cell[cell].position += Vector2(direction) * Vector2(_puzzle_tile_map.tile_set.tile_size) * _puzzle_tile_map.scale
 		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
 			_pickups_by_cell[cell].visible = true
 		shifted[cell + direction] = _pickups_by_cell[cell]

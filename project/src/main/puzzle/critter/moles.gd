@@ -257,7 +257,7 @@ func remove_mole(cell: Vector2i) -> void:
 ## 	'cell': The mole's playfield cell
 func _update_mole_position(mole: Mole, cell: Vector2i) -> void:
 	mole.position = _playfield.tile_map.map_to_local(cell + Vector2i(0, -3))
-	mole.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
+	mole.position += Vector2(_playfield.tile_map.tile_set.tile_size) * Vector2(0.5, 0.5)
 	mole.position *= _playfield.tile_map.scale
 
 
@@ -369,7 +369,7 @@ func _shift_rows(bottom_y: int, direction: Vector2i) -> void:
 			# moles below the specified bottom row are left alone
 			continue
 		# moles above the specified bottom row are shifted
-		_moles_by_cell[cell].position += direction * _playfield.tile_map.cell_size * _playfield.tile_map.scale
+		_moles_by_cell[cell].position += Vector2(direction) * Vector2(_playfield.tile_map.tile_set.tile_size) * _playfield.tile_map.scale
 		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
 			_moles_by_cell[cell].visible = true
 		shifted[cell + direction] = _moles_by_cell[cell]

@@ -70,7 +70,7 @@ func refresh() -> void:
 	
 	for cell_x in range(start_cell_x, end_cell_x):
 		var new_cloud_part: Sprite2D = CloudPartScene.instantiate()
-		new_cloud_part.position.x = tile_map.cell_size.x * cell_x
+		new_cloud_part.position.x = tile_map.tile_set.tile_size.x * cell_x
 		add_child(new_cloud_part)
 	
 	shuffle()

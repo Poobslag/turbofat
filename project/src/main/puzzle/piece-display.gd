@@ -35,8 +35,8 @@ func refresh_tile_map(next_piece: NextPiece) -> void:
 		# grow to accommodate bigger pieces
 		var bounding_box_longest_dimension: float = max(bounding_box.size.x, bounding_box.size.y)
 		tile_map.scale = Vector2(1.5, 1.5) / max(bounding_box_longest_dimension, 3)
-		tile_map.position = tile_map.cell_size * Vector2(0.75, 0.75) \
-				- tile_map.cell_size * tile_map.scale * (Vector2(bounding_box.position) + bounding_box.size / 2.0)
+		tile_map.position = Vector2(tile_map.tile_set.tile_size) * Vector2(0.75, 0.75) \
+				- Vector2(tile_map.tile_set.tile_size) * tile_map.scale * (Vector2(bounding_box.position) + bounding_box.size / 2.0)
 	
 	tile_map.corner_map.dirty = true
 	_displayed_type = next_piece.type
