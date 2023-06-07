@@ -48,7 +48,7 @@ func set_chosen_size_index(new_index: int) -> void:
 
 func _lines_fit() -> bool:
 	max_lines_visible = (size.y + get_theme_constant("line_spacing")) \
-			/ (get("theme_override_fonts/font").get_height() + get_theme_constant("line_spacing"))
+			/ (get("theme_override_fonts/font").get_height(get("theme_override_font_sizes/font_size")) + get_theme_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
 
 

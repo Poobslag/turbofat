@@ -92,7 +92,7 @@ func _input(event: InputEvent) -> void:
 			_chat_theme.dark = not _chat_theme.dark
 			_play_chat_event()
 		KEY_L:
-			_nametag_side = (_nametag_side + 1) % 3
+			_nametag_side = (_nametag_side + 1) % 3 as ChatEvent.NametagSide
 			_play_chat_event()
 		KEY_P:
 			print(_chat_theme.to_json_dict())

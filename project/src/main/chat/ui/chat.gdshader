@@ -20,7 +20,7 @@ uniform vec4 center_color : source_color;
 uniform vec4 accent_color : source_color;
 
 // A monochrome texture containing the accents to draw in the chat window's middle
-uniform sampler2D accent_texture;
+uniform sampler2D accent_texture : repeat_enable;
 
 uniform float accent_scale = 2.0;
 

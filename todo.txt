@@ -117,7 +117,7 @@ Demos
 *./project/src/demo/puzzle/PlayfieldDemo.tscn
 *./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 *./project/src/demo/career/ui/ProgressBoardDemo.tscn
--./project/src/demo/chat/ui/ChatFrameDemo.tscn
+*./project/src/demo/chat/ui/ChatFrameDemo.tscn
 -./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
 -./project/src/demo/chat/ui/MoodDemo.tscn
@@ -149,3 +149,8 @@ Demos
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
+
+
+
+add 'repeat_enable' hint to uniform sampler2Ds
+change 'visible_characters_behavior' to 'characters_after_shaping' where necessary
