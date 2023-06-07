@@ -114,11 +114,12 @@ flag_disable_z = true
 direction = Vector3( -100, -40, 0 )
 spread = 15.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 5.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource( 25 )
 
 [sub_resource type="ParticleProcessMaterial" id=6]
@@ -126,11 +127,12 @@ flag_disable_z = true
 direction = Vector3( 100, -40, 0 )
 spread = 15.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 5.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource( 25 )
 
 [sub_resource type="ParticleProcessMaterial" id=7]
@@ -138,11 +140,12 @@ flag_disable_z = true
 direction = Vector3( -100, 40, 0 )
 spread = 15.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 5.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource( 25 )
 
 [sub_resource type="ParticleProcessMaterial" id=8]
@@ -150,11 +153,12 @@ flag_disable_z = true
 direction = Vector3( 100, 40, 0 )
 spread = 15.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 5.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource( 25 )
 
 [sub_resource type="ViewportTexture" id=9]

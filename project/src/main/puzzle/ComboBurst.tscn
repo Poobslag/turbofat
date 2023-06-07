@@ -101,11 +101,12 @@ gradient = SubResource( 3 )
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 1.0
+initial_velocity_min = 0.0
+initial_velocity_max = 600.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 5.0
+scale_min = 5.0
+scale_max = 5.0
 color_ramp = SubResource( 4 )
 
 [node name="ComboBurst" type="Node2D"]

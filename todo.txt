@@ -137,8 +137,6 @@ Demos
   *no particles
   *path landmarks are not evenly spaced
   *path landmarks use 'dot' instead of 'oval'
-  *universally change particles2d 'scale'
-  *universally change particles2d 'initial velocity'
  *[shift+Z-M]
  *[=/-]
  *particles?
@@ -177,6 +175,9 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
+ -universally change particles2d 'scale'
+ -universally change particles2d 'initial velocity'
+ -universally look for 'baked point' calculations
 
  -replace 'get_cellv' with get_cell_source_id
  -replace 'get_cell' with 'get_cell_source_id
@@ -186,6 +187,4 @@ update tile_map.set_cell calls to include 'Vector2.ZERO'
   _tile_map.set_cell(0, pan_cell, tile, Vector2.ZERO)
 replace 'tile_set.tile_get_texture(tile_id)' with tile_set.get_source(tile_id).texture
 replace 'tile_set.tile_get_material(tile_id)' with tile_set.get_source(tile_id).get_tile_data(Vector2i.ZERO, 0).texture
-
-
 

@@ -76,11 +76,13 @@ flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 50.0
-scale = 0.7
+scale_min = 0.7
+scale_max = 0.7
 color_ramp = SubResource( 6 )
 
 [sub_resource type="ShaderMaterial" id=8]
@@ -200,10 +202,12 @@ emission_sphere_radius = 120.0
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 gravity = Vector3( 0, 2400, 0 )
-initial_velocity = -800.0
+initial_velocity_min = -800.0
+initial_velocity_max = -800.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 1.7
+scale_min = 1.7
+scale_max = 1.7
 color_ramp = SubResource( 22 )
 
 [sub_resource type="ParticleProcessMaterial" id=24]
@@ -213,11 +217,13 @@ flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 50.0
-scale = 0.7
+scale_min = 0.7
+scale_max = 0.7
 color_ramp = SubResource( 6 )
 
 [sub_resource type="CanvasItemMaterial" id=25]
