@@ -9,7 +9,7 @@ var _touch_index := -1
 
 ## keycode which triggers a ui_accept action.
 ## echo events cannot be emitted without an InputEventKey instance which requires a keycode
-var _ui_accept_keycode: int
+var _ui_accept_keycode: Key
 
 @onready var _chat_frame: ChatFrame = get_node(chat_frame_path)
 @onready var _narration_frame: NarrationFrame = get_node(narration_frame_path)

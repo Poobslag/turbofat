@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/demo/toolkit/fix-levels-button.gd" id="1"]
 [ext_resource type="Script" path="res://src/demo/toolkit/extract-localizables-button.gd" id="2"]
-[ext_resource type="Theme" uid="uid://c0p12qckaqsds" path="res://src/main/ui/theme/h2.theme" id="3"]
-[ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="4"]
+[ext_resource type="Theme" path="res://src/main/ui/theme/h2.theme" id="3"]
+[ext_resource type="Theme" path="res://src/main/ui/theme/h4.theme" id="4"]
 [ext_resource type="Script" path="res://src/demo/toolkit/fix-chats-button.gd" id="5"]
 [ext_resource type="Script" path="res://src/demo/toolkit/fix-creatures-button.gd" id="6"]
 [ext_resource type="Script" path="res://src/demo/toolkit/release_toolkit_output.gd" id="7"]

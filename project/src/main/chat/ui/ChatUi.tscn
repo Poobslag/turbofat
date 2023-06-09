@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://66jg21ym183i"]
 
 [ext_resource type="PackedScene" uid="uid://c4i15qx5lv3wy" path="res://src/main/chat/ui/ChatFrame.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/main/chat/ui/ChatChoices.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://7ronexsj66wq" path="res://src/main/chat/ui/ChatChoices.tscn" id="2"]
 [ext_resource type="Script" path="res://src/main/chat/chat-advancer.gd" id="3"]
 [ext_resource type="Script" path="res://src/main/chat/ui/touch-translator.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://by5n628xv15w8" path="res://src/main/chat/ui/NarrationFrame.tscn" id="5"]
@@ -37,6 +37,7 @@ grow_vertical = 0
 
 [node name="ChatChoices" parent="." instance=ExtResource("2")]
 layout_mode = 0
+anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

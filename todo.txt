@@ -37,6 +37,7 @@ game starts up, but has bugs
  *fix fonts
  *game crashes when loading PuzzleTileMap.tscn
  *update math for 'Control.rect_rotation()' calls
+ -fix input keycodes
  -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
  -avoid assigning constants to fields; they can't be mutated anymore
  -assigning your own fields now calls setters
@@ -87,6 +88,8 @@ game starts up, but has bugs
  -assigning an input to something weird like the '`' or '=' key shows up OK
  -settings menu in spanish; 'open user folder' button should shrink its font size
  -big font in easter egg
+ -alternate input settings: WASD
+ -alternate input settings: custom
 
 game runs, but can't export it
 
@@ -122,6 +125,7 @@ Demos
 *./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
  *bug: moods rotate WAY too much
+ -bug: keys don't work
  -bug: can't pick chat choices
 -./project/src/demo/chat/ui/MoodDemo.tscn
 -./project/src/demo/music/MusicPlayerDemo.tscn
@@ -152,4 +156,6 @@ Demos
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
+
+
 
