@@ -73,6 +73,8 @@ game starts up, but has bugs
 -restore @tool scripts
 -regression test
  -#59683; polygon antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
+ -keyboard controls should be preserved
+ -ensure backwards compatibility files were not changed
  -Demos
  -EmotePlayer's 'update_animation_keys' behavior
  -ChatFrameDemo's 'nametag side toggle' (L)
@@ -89,7 +91,6 @@ game starts up, but has bugs
  -settings menu in spanish; 'open user folder' button should shrink its font size
  -big font in easter egg
  -alternate input settings: WASD
- -alternate input settings: custom
 
 game runs, but can't export it
 
@@ -156,6 +157,3 @@ Demos
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
-
-
-

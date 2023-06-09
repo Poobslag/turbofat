@@ -1,4 +1,7 @@
 extends Control
+## Demonstrates the project's input map.
+##
+## Any keys, mouse actions or joystick inputs will be printed to the screen.
 
 func _process(delta: float) -> void:
 	var action_string := ""
@@ -11,3 +14,6 @@ func _process(delta: float) -> void:
 		if not $Label.text.is_empty():
 			$Label.text += "\n"
 		$Label.text += action_string
+		
+		while $Label.get_line_count() > $Label.get_visible_line_count():
+			$Label.text = StringUtils.substring_after($Label.text, "\n")

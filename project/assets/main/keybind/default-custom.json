@@ -2,7 +2,7 @@
   "move_piece_left": [
     {
       "type": "key",
-      "scancode": 16777231
+      "scancode": 4194319
     },
     {
     },
@@ -12,7 +12,7 @@
   "move_piece_right": [
     {
       "type": "key",
-      "scancode": 16777233
+      "scancode": 4194321
     },
     {
     },
@@ -22,7 +22,7 @@
   "soft_drop": [
     {
       "type": "key",
-      "scancode": 16777234
+      "scancode": 4194322
     },
     {
     },
@@ -72,7 +72,7 @@
   "swap_hold_piece": [
     {
       "type": "key",
-      "scancode": 16777237
+      "scancode": 4194325
     },
     {
     },
@@ -82,7 +82,7 @@
   "ui_up": [
     {
       "type": "key",
-      "scancode": 16777232
+      "scancode": 4194320
     },
     {
     },
@@ -92,7 +92,7 @@
   "ui_down": [
     {
       "type": "key",
-      "scancode": 16777234
+      "scancode": 4194322
     },
     {
     },
@@ -102,7 +102,7 @@
   "ui_left": [
     {
       "type": "key",
-      "scancode": 16777231
+      "scancode": 4194319
     },
     {
     },
@@ -112,7 +112,7 @@
   "ui_right": [
     {
       "type": "key",
-      "scancode": 16777233
+      "scancode": 4194321
     },
     {
     },
@@ -132,7 +132,7 @@
   "ui_cancel": [
     {
       "type": "key",
-      "scancode": 16777217
+      "scancode": 4194305
     },
     {
     },
@@ -142,7 +142,7 @@
   "ui_menu": [
     {
       "type": "key",
-      "scancode": 16777217
+      "scancode": 4194305
     },
     {
     },
@@ -152,7 +152,7 @@
   "rewind_text": [
     {
       "type": "key",
-      "scancode": 16777237
+      "scancode": 4194325
     },
     {
     },
