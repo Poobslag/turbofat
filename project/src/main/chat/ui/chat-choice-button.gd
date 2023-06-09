@@ -13,6 +13,27 @@ func _ready() -> void:
 	$FontFitLabel.pick_largest_font_size()
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 	_set_pivot_to_center()
+	print("16: connect")
+	pressed.connect(_on_pressed)
+	button_down.connect(_on_button_down)
+	button_up.connect(_on_button_up)
+	toggled.connect(_on_toggled)
+
+
+func _on_pressed() -> void:
+	print("20: _on_pressed")
+
+
+func _on_button_down() -> void:
+	print("20: _on_button_down")
+
+
+func _on_button_up() -> void:
+	print("20: _on_button_up")
+
+
+func _on_toggled() -> void:
+	print("20: _on_toggled")
 
 
 ## Sets the text corresponding to the chat branch.

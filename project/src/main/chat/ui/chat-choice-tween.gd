@@ -10,7 +10,8 @@ const POP_OUT_SCALE := Vector2(0.5, 0.5)
 @onready var _chat_choice := get_parent()
 
 func _ready() -> void:
-	_reset_chat_choice()
+	#	_reset_chat_choice()
+	pass
 
 
 ## Makes the chat choice appear.

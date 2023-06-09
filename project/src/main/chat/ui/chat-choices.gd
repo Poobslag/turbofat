@@ -20,7 +20,8 @@ var _moods := []
 
 func _ready() -> void:
 	# Remove placeholder buttons
-	_refresh_child_buttons()
+	# _refresh_child_buttons()
+	pass
 
 
 ## Repositions the buttons based on the amount of chat text shown.

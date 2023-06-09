@@ -124,6 +124,7 @@ Demos
 *./project/src/demo/career/ui/ProgressBoardDemo.tscn
 *./project/src/demo/chat/ui/ChatFrameDemo.tscn
 *./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
+*./project/src/demo/InputMapDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
  *bug: moods rotate WAY too much
  -bug: keys don't work
