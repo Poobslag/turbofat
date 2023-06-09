@@ -24,6 +24,12 @@ func _ready() -> void:
 	pass
 
 
+func _input(event: InputEvent) -> void:
+	match Utils.key_keycode(event):
+		KEY_MINUS:
+			show_choices(["Yes", "No"], [Creatures.Mood.DEFAULT, Creatures.Mood.DEFAULT])
+
+
 ## Repositions the buttons based on the amount of chat text shown.
 ##
 ## If a lot of chat text is displayed, the buttons are flush against the right side of the window and narrow. If less

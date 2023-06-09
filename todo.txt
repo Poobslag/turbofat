@@ -127,8 +127,9 @@ Demos
 *./project/src/demo/InputMapDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
  *bug: moods rotate WAY too much
- -bug: keys don't work
+ *bug: keys don't work
  -bug: can't pick chat choices
+ -revert everything from bfabe6a9
 -./project/src/demo/chat/ui/MoodDemo.tscn
 -./project/src/demo/music/MusicPlayerDemo.tscn
 -./project/src/demo/NameGeneratorLibraryDemo.tscn
