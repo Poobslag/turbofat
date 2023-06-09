@@ -15,3 +15,4 @@ func _input(event: InputEvent) -> void:
 			path.spot_count += 1
 		KEY_T:
 			path.spots_truncated = not path.spots_truncated
+		

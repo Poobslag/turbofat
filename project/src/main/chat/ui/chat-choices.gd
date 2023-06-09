@@ -20,14 +20,7 @@ var _moods := []
 
 func _ready() -> void:
 	# Remove placeholder buttons
-	# _refresh_child_buttons()
-	pass
-
-
-func _input(event: InputEvent) -> void:
-	match Utils.key_keycode(event):
-		KEY_MINUS:
-			show_choices(["Yes", "No"], [Creatures.Mood.DEFAULT, Creatures.Mood.DEFAULT])
+	_refresh_child_buttons()
 
 
 ## Repositions the buttons based on the amount of chat text shown.
@@ -158,9 +151,14 @@ func _on_ChatChoiceButton_focus_entered() -> void:
 	$PopSound.play()
 
 
-func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
-	# swallow input; player shouldn't move when answering chat prompts
-	get_viewport().set_input_as_handled()
+func _on_ChatChoiceButton_gui_input(event: InputEvent) -> void:
+	if InputMap.event_is_action(event, "ui_up") \
+			or InputMap.event_is_action(event, "ui_down") \
+			or InputMap.event_is_action(event, "ui_left") \
+			or InputMap.event_is_action(event, "ui_right"):
+		
+		# swallow input; player shouldn't move when answering chat prompts
+		get_viewport().set_input_as_handled()
 
 
 ## Makes all the chat choice buttons disappear and emits a signal with the player's selected choice.

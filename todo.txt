@@ -124,12 +124,10 @@ Demos
 *./project/src/demo/career/ui/ProgressBoardDemo.tscn
 *./project/src/demo/chat/ui/ChatFrameDemo.tscn
 *./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
-*./project/src/demo/InputMapDemo.tscn
--./project/src/demo/chat/ui/ChatUiDemo.tscn
+*./project/src/demo/chat/ui/ChatUiDemo.tscn
  *bug: moods rotate WAY too much
  *bug: keys don't work
- -bug: can't pick chat choices
- -revert everything from bfabe6a9
+ *bug: can't pick chat choices
 -./project/src/demo/chat/ui/MoodDemo.tscn
 -./project/src/demo/music/MusicPlayerDemo.tscn
 -./project/src/demo/NameGeneratorLibraryDemo.tscn
