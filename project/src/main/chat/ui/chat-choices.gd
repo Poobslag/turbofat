@@ -140,7 +140,7 @@ func _refresh_child_buttons() -> void:
 		# 'chat-choice-label.gd' to a variable of type 'chat-choice-button.gd'"
 		#
 		# For these two reasons, we check the type of the object, and check that it's not null
-		if is_instance_valid(button_object) and button_object.is_class("ChatChoiceButton"):
+		if is_instance_valid(button_object) and button_object is ChatChoiceButton:
 			var button: ChatChoiceButton = button_object
 			button.pop_in()
 			$PopSound.play()

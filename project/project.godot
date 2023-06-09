@@ -237,6 +237,7 @@ translation_remaps={}
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.12549, 0.12549, 0.12549, 1)
 anti_aliasing/quality/msaa_2d=2
 anti_aliasing/quality/screen_space_aa=1

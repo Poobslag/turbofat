@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://djvi5vhe42qcp" path="res://assets/main/ui/font/blogger-sans-medium.otf" id="4_q3a6w"]
 [ext_resource type="Script" path="res://src/main/chat/ui/chat-choice-tween.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://cx208c1ihewhf" path="res://assets/main/chat/ui/choice-mood-cry0.png" id="7"]
-[ext_resource type="PackedScene" path="res://src/main/ui/FontFitLabel.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://djmx8ic0x6ywq" path="res://src/main/ui/FontFitLabel.tscn" id="11"]
 
 [sub_resource type="Animation" id="5"]
 resource_name = "RESET"
@@ -60,7 +60,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 120.0]
+"values": [0.0, 2.0944]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -100,7 +100,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 1.8, 2.1, 3.8, 4.1, 5.8, 6.1, 7.7, 8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [6.0, 6.0, -6.0, -6.0, 6.0, 6.0, -6.0, -6.0, 6.0, 6.0]
+"values": [0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -140,7 +140,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 1, 1.3, 2.2, 2.5, 3.5, 3.8, 4.7, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [6.0, 6.0, -6.0, -6.0, 6.0, 6.0, -6.0, -6.0, 6.0, 6.0]
+"values": [0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472, -0.10472, -0.10472, 0.10472, 0.10472]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -280,7 +280,7 @@ offset_left = -49.0
 offset_top = -49.0
 offset_right = 79.0
 offset_bottom = 79.0
-rotation = -8.0
+rotation = -0.139626
 scale = Vector2(0.33, 0.33)
 pivot_offset = Vector2(64, 64)
 texture = ExtResource("7")

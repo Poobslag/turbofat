@@ -53,16 +53,6 @@ func set_mood_right(new_mood_right: bool) -> void:
 	$MoodSprite.set_mood_right(new_mood_right)
 
 
-## Workaround for Godot #21789 to make get_class return class_name
-#func get_class() -> String:
-#	return "ChatChoiceButton"
-
-
-## Workaround for Godot #21789 to make is_class match class_name
-#func is_class(name: String) -> bool:
-#	return name == "ChatChoiceButton" or super.is_class(name)
-
-
 ## Centers the pivot in the button's rectangle.
 func _set_pivot_to_center() -> void:
 	pivot_offset = size * 0.5

@@ -54,13 +54,13 @@ func set_mood(new_mood: Creatures.Mood) -> void:
 func set_mood_right(new_mood_right: bool) -> void:
 	mood_right = new_mood_right
 	if mood_right:
-		$Texture2D.rotation = 8
+		$Texture2D.rotation = 0.139626
 		anchor_left = 1
 		anchor_right = 1
 		offset_left = -18
 		offset_top = 1 + randi() % 16
 	else:
-		$Texture2D.rotation = -8
+		$Texture2D.rotation = -0.139626
 		anchor_left = 0
 		anchor_right = 0
 		offset_left = -11

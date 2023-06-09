@@ -36,6 +36,7 @@ game starts up, but has bugs
  *update all font scene references to include size
  *fix fonts
  *game crashes when loading PuzzleTileMap.tscn
+ *update math for 'Control.rect_rotation()' calls
  -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
  -avoid assigning constants to fields; they can't be mutated anymore
  -assigning your own fields now calls setters
@@ -66,8 +67,8 @@ game starts up, but has bugs
 -code warnings
  *replace '# warning-ignore' comments with '@warning_ignore' annotations
  -add '@warning_ignore' annotations for self static method calls; Godot #69282
--investigate 'ChatChoiceButton' get_class workaround; is_class is used by ChatChoices
--investigate 'Creature' get_class workaround
+*investigate 'ChatChoiceButton' get_class workaround; is_class is used by ChatChoices
+*investigate 'Creature' get_class workaround
 -restore @tool scripts
 -regression test
  -#59683; polygon antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
@@ -118,8 +119,10 @@ Demos
 *./project/src/demo/career/ui/ProgressBoardTrailDemo.tscn
 *./project/src/demo/career/ui/ProgressBoardDemo.tscn
 *./project/src/demo/chat/ui/ChatFrameDemo.tscn
--./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
+*./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 -./project/src/demo/chat/ui/ChatUiDemo.tscn
+ *bug: moods rotate WAY too much
+ -bug: can't pick chat choices
 -./project/src/demo/chat/ui/MoodDemo.tscn
 -./project/src/demo/music/MusicPlayerDemo.tscn
 -./project/src/demo/NameGeneratorLibraryDemo.tscn
