@@ -127,6 +127,8 @@ Demos
 *./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 *./project/src/demo/chat/ui/ChatUiDemo.tscn
 -./project/src/demo/chat/ui/MoodDemo.tscn
+ -bug: creature sprites are black
+ -bug: 'think' emote's head rotates way too much
 -./project/src/demo/music/MusicPlayerDemo.tscn
 -./project/src/demo/NameGeneratorLibraryDemo.tscn
 -./project/src/demo/PackedSpriteDemo.tscn
@@ -157,4 +159,7 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
--sfx is played
+
+fix 'tool uncomment...' lines
+fix scripts
+fix rotation degrees for think emote

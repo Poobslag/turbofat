@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends AnimationPlayer
 ## Moves the creature's body parts around as they become fatter.
 ##

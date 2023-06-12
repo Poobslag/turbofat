@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 class_name HeadBobber
 extends Sprite2D
 ## Bobs the character's head up and down.

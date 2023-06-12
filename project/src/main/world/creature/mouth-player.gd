@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 class_name MouthPlayer
 extends AnimationPlayer
 ## AnimationPlayer which animates mouths.

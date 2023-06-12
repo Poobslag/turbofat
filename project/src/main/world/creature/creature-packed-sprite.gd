@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 class_name CreaturePackedSprite
 extends PackedSprite
 ## Sprite which toggles between a single 'toward the camera' and 'away from the camera' frame

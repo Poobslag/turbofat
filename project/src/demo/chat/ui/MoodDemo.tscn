@@ -15,3 +15,8 @@ color = Color(0, 0, 0, 0.329412)
 [node name="Creature" parent="." instance=ExtResource("24")]
 position = Vector2(512, 420)
 scale = Vector2(3, 3)
+creature_id = null
+suppress_sfx = null
+suppress_fatness = null
+elevation = null
+orientation = null

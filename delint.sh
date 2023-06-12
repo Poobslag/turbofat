@@ -145,7 +145,7 @@ then
 fi
 
 # enabled creature tool scripts; these should be disabled before merging
-RESULT=$(grep -lR "^tool #uncomment to view creature in editor" project/src/main/world/creature)
+RESULT=$(grep -lR "^@tool #uncomment to view creature in editor" project/src/main/world/creature)
 if [ -n "$RESULT" ]
 then
   echo ""

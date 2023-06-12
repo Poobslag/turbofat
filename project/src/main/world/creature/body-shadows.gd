@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends Node2D
 
 @export var creature_visuals_path: NodePath: set = set_creature_visuals_path

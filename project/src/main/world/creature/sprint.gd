@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends PackedSprite
 ## Draws the creature's arms, legs and torso when sprinting.
 

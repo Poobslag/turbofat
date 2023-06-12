@@ -1,5 +1,5 @@
 class_name Body
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends Node2D
 ## Draws the creature's torso. This includes the body shape, a belly, shadows and an outline.
 ##

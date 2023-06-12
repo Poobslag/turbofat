@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends GPUParticles2D
 ## Manages the sweat drops which leap from the creature's head.
 

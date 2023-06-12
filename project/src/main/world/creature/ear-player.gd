@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends AnimationPlayer
 ## AnimationPlayer which animates ears.
 

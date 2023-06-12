@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 class_name Creature
 extends CharacterBody2D
 ## Script for representing a creature in the 2D overworld.

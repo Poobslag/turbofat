@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 class_name CreatureVisuals
 extends Node2D
 ## Handles animations and audio/visual effects for a creature.

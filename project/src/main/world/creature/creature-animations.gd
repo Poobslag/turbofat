@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 class_name CreatureAnimations
 extends Node
 ## Animates the creature's limbs, facial expressions and movement.

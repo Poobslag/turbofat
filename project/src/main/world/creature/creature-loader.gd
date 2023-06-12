@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends Node
 ## Loads creature resources based on creature definitions. For example, a creature definition might describe high-level
 ## information about the creature's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This

@@ -4495,6 +4495,7 @@ libraries = {
 }
 script = ExtResource("12")
 creature_visuals_path = NodePath("../..")
+creature_animations_path = null
 
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11")

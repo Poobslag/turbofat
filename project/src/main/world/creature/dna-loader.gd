@@ -1,4 +1,4 @@
-#tool #uncomment to view creature in editor
+@tool #uncomment to view creature in editor
 extends Node
 ## Assigns and unassigns textures and animations based on a creature's dna.
 ##
