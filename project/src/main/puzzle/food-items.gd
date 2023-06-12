@@ -124,7 +124,7 @@ func _update_food_speed() -> void:
 	# calculate the 'speed factor': a number from 0.0 to 1.0 corresponding to
 	# how quickly the player can drop pieces
 	var min_frames_per_line := RankCalculator.min_frames_per_line(PieceSpeeds.current_speed)
-	var speed_factor := clamp(inverse_lerp(40, 120, min_frames_per_line), 0.0, 1.0)
+	var speed_factor: float = clamp(inverse_lerp(40, 120, min_frames_per_line), 0.0, 1.0)
 	
 	# update the food timings based on the speed factor
 	_food_float_duration = lerp(0.2, 1.3, speed_factor)

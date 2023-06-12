@@ -103,7 +103,7 @@ func _draw() -> void:
 ##
 ## This is slow and should only be used for editor tools where the ResourceCache is inaccessible.
 func _load_rects_from_json() -> void:
-	if not frame_data:
+	if frame_data.is_empty():
 		return
 	
 	# parse json

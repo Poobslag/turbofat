@@ -399,7 +399,8 @@ func refresh_dna() -> void:
 		return
 
 	if dna:
-		dna = DnaUtils.fill_dna(dna)
+		# avoid assigning dna directly, as this calls set_dna resulting in an infinite loop
+		dna.merge(DnaUtils.fill_dna(dna))
 	creature_visuals.dna = dna
 
 

@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bhswfaj137cp8"]
 
-[ext_resource path="res://src/demo/chat/ui/mood-demo.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=24]
+[ext_resource type="Script" path="res://src/demo/chat/ui/mood-demo.gd" id="3"]
+[ext_resource type="PackedScene" path="res://src/main/world/creature/Creature.tscn" id="24"]
 
 [node name="MoodDemo" type="Node"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.329412 )
+color = Color(0, 0, 0, 0.329412)
 
-[node name="Creature" parent="." instance=ExtResource( 24 )]
-position = Vector2( 512, 420 )
-scale = Vector2( 3, 3 )
+[node name="Creature" parent="." instance=ExtResource("24")]
+position = Vector2(512, 420)
+scale = Vector2(3, 3)
