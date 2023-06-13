@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhswfaj137cp8"]
+[gd_scene load_steps=4 format=3 uid="uid://bhswfaj137cp8"]
 
 [ext_resource type="Script" path="res://src/demo/chat/ui/mood-demo.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://212da705ytk0" path="res://src/main/world/creature/Creature.tscn" id="24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1juk"]
+resource_local_to_scene = true
+size = Vector2(28, 14)
 
 [node name="MoodDemo" type="Node"]
 script = ExtResource("3")
@@ -15,3 +19,8 @@ color = Color(0, 0, 0, 0.329412)
 [node name="Creature" parent="." instance=ExtResource("24")]
 position = Vector2(512, 420)
 scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" parent="Creature" index="3"]
+shape = SubResource("RectangleShape2D_s1juk")
+
+[editable path="Creature"]
