@@ -126,9 +126,9 @@ Demos
 *./project/src/demo/chat/ui/ChatFrameDemo.tscn
 *./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 *./project/src/demo/chat/ui/ChatUiDemo.tscn
--./project/src/demo/chat/ui/MoodDemo.tscn
+*./project/src/demo/chat/ui/MoodDemo.tscn
  *bug: creature sprites are black
- -bug: 'think' emote's head rotates way too much
+ *bug: 'think' emote's head rotates way too much
 -./project/src/demo/music/MusicPlayerDemo.tscn
 -./project/src/demo/NameGeneratorLibraryDemo.tscn
 -./project/src/demo/PackedSpriteDemo.tscn
@@ -164,7 +164,7 @@ Demos
 *fix scripts
 *fix insane body rendering in editor
 *eyes don't load
--fix rotation degrees for think emote
+*fix rotation degrees for think emote
 *'random creature' button adds TONS of animation players
 *many, many errors on load
  *nonexistent function get_resource
