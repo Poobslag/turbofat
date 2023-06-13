@@ -127,9 +127,7 @@ Demos
 *./project/src/demo/chat/ui/ChatscriptTableDemo.tscn
 *./project/src/demo/chat/ui/ChatUiDemo.tscn
 *./project/src/demo/chat/ui/MoodDemo.tscn
- *bug: creature sprites are black
- *bug: 'think' emote's head rotates way too much
--./project/src/demo/music/MusicPlayerDemo.tscn
+*./project/src/demo/music/MusicPlayerDemo.tscn
 -./project/src/demo/NameGeneratorLibraryDemo.tscn
 -./project/src/demo/PackedSpriteDemo.tscn
 -./project/src/demo/puzzle/critter/CarrotDemo.tscn
@@ -157,31 +155,3 @@ Demos
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
-
-
-
-*fix 'tool uncomment...' lines
-*fix scripts
-*fix insane body rendering in editor
-*eyes don't load
-*fix rotation degrees for think emote
-*'random creature' button adds TONS of animation players
-*many, many errors on load
- *nonexistent function get_resource
- *SubViewportContainer to creature-visuals
- *node not found 'emote_eye_frame'
- *invalid get index 'idle_animation_started'
-
-
-
-shader parameters aren't being set
-
-
-
-	var target_material:ShaderMaterial = frying_pan_ghost.material
-	for shader_parameter in ["width", "white", "black", "modulate", "sample_count"]:
-		target_material.set_shader_parameter(shader_parameter, source_material.get_shader_parameter(shader_parameter))
-
-pause mode = 2 -> process_mode = 2 -> process_mode = 3
-pauser.gd too
-

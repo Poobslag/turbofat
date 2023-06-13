@@ -55,7 +55,7 @@ func _refresh_creature_path() -> void:
 func _refresh_creature_shadow_scale() -> void:
 	_fat_player.play("fat")
 	_fat_player.advance(_creature.get_visual_fatness())
-	_fat_player.stop()
+	_fat_player.stop(true)
 
 
 func _on_Creature_visual_fatness_changed() -> void:
