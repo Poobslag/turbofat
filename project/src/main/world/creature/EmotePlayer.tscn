@@ -598,7 +598,7 @@ tracks/31/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_rhsfv"]
+[sub_resource type="Animation" id="2"]
 length = 7.99999
 loop_mode = 1
 step = 0.0333333
@@ -629,7 +629,7 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_w5tie"]
+[sub_resource type="Animation" id="3"]
 loop_mode = 1
 step = 1.0
 tracks/0/type = "value"
@@ -659,7 +659,7 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_wmayt"]
+[sub_resource type="Animation" id="4"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -674,7 +674,7 @@ tracks/0/keys = {
 "values": [1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_m1q50"]
+[sub_resource type="Animation" id="5"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -689,7 +689,7 @@ tracks/0/keys = {
 "values": [2, 2]
 }
 
-[sub_resource type="Animation" id="Animation_g6te2"]
+[sub_resource type="Animation" id="6"]
 resource_name = "awkward0"
 length = 6.0
 step = 0.05
@@ -730,7 +730,7 @@ tracks/2/keys = {
 "values": [0, 0, -0.1047197551, -0.034906585, -0.1047197551, -0.034906585, -0.1047197551, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_c7hp0"]
+[sub_resource type="Animation" id="7"]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -791,7 +791,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("29_nbm7f")
+"stream": ExtResource("9")
 }],
 "times": PackedFloat32Array(0.15)
 }
@@ -821,7 +821,7 @@ tracks/6/keys = {
 "values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_pwbce"]
+[sub_resource type="Animation" id="8"]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -965,13 +965,13 @@ tracks/11/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("30_sqqbc")
+"stream": ExtResource("6")
 }],
 "times": PackedFloat32Array(0.2)
 }
 tracks/11/use_blend = true
 
-[sub_resource type="Animation" id="Animation_fa8q1"]
+[sub_resource type="Animation" id="9"]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -1059,7 +1059,7 @@ tracks/6/keys = {
 "values": [2.0, 3.0, 3.0]
 }
 
-[sub_resource type="Animation" id="Animation_kya2b"]
+[sub_resource type="Animation" id="10"]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -1075,7 +1075,7 @@ tracks/0/keys = {
 "values": [1, 3, 4, 4, 3, 1]
 }
 
-[sub_resource type="Animation" id="Animation_mi2ma"]
+[sub_resource type="Animation" id="11"]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -1091,7 +1091,7 @@ tracks/0/keys = {
 "values": [4, 4, 3, 1]
 }
 
-[sub_resource type="Animation" id="Animation_s0nns"]
+[sub_resource type="Animation" id="12"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1143,7 +1143,7 @@ tracks/3/keys = {
 "values": [0.6, 0.6]
 }
 
-[sub_resource type="Animation" id="Animation_d73nj"]
+[sub_resource type="Animation" id="13"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1303,7 +1303,7 @@ tracks/12/keys = {
 "values": [Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964)]
 }
 
-[sub_resource type="Animation" id="Animation_gqtvn"]
+[sub_resource type="Animation" id="14"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1439,7 +1439,7 @@ tracks/10/keys = {
 "values": [0, 0, 0.0523598776, -0.0523598776, 0.0523598776, -0.0523598776, 0.0523598776, 0]
 }
 
-[sub_resource type="Animation" id="Animation_4kouv"]
+[sub_resource type="Animation" id="15"]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -1527,7 +1527,7 @@ tracks/6/keys = {
 "values": [0, 0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, 0]
 }
 
-[sub_resource type="Animation" id="Animation_dxgd5"]
+[sub_resource type="Animation" id="16"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1651,7 +1651,7 @@ tracks/9/keys = {
 "values": [0.1, 0.1]
 }
 
-[sub_resource type="Animation" id="Animation_wbwkt"]
+[sub_resource type="Animation" id="17"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1703,7 +1703,7 @@ tracks/3/keys = {
 "values": [6.5, 0.6, 0.6]
 }
 
-[sub_resource type="Animation" id="Animation_n1cjt"]
+[sub_resource type="Animation" id="18"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1863,7 +1863,7 @@ tracks/12/keys = {
 "values": [Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964), Vector2(-18.259, -42.964), Vector2(-18.259, -72.964)]
 }
 
-[sub_resource type="Animation" id="Animation_hvitv"]
+[sub_resource type="Animation" id="19"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1999,7 +1999,7 @@ tracks/10/keys = {
 "values": [0, 0, 0.0523598776, -0.0523598776, 0.0523598776, -0.0523598776, 0.0523598776, 0]
 }
 
-[sub_resource type="Animation" id="Animation_cesid"]
+[sub_resource type="Animation" id="20"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2087,7 +2087,7 @@ tracks/6/keys = {
 "values": [0, 0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, 0]
 }
 
-[sub_resource type="Animation" id="Animation_fytl5"]
+[sub_resource type="Animation" id="21"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2199,7 +2199,7 @@ tracks/8/keys = {
 "values": [0.1, 0.1]
 }
 
-[sub_resource type="Animation" id="Animation_flfv1"]
+[sub_resource type="Animation" id="22"]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2227,7 +2227,7 @@ tracks/1/keys = {
 "values": [0, 0.0523598776, 0.0174532925, 0.0523598776, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_682wv"]
+[sub_resource type="Animation" id="23"]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2255,7 +2255,7 @@ tracks/1/keys = {
 "values": [0, 0.0872664626, 0.034906585, 0.0872664626, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_0sack"]
+[sub_resource type="Animation" id="24"]
 length = 2.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2283,7 +2283,7 @@ tracks/1/keys = {
 "values": [1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_86tcg"]
+[sub_resource type="Animation" id="25"]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2299,7 +2299,7 @@ tracks/0/keys = {
 "values": [0, 0, 0.0523598776, 0.0523598776, -0.0698131701, -0.0698131701, 0.1047197551, 0.1047197551, -0.1047197551, -0.1047197551, 0.0698131701, 0.0698131701, -0.0523598776, -0.0523598776, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_k2k1a"]
+[sub_resource type="Animation" id="26"]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2326,7 +2326,7 @@ tracks/1/keys = {
 "values": [0, 0, -0.1745329252, -0.1396263402, -0.1745329252, -0.1396263402, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_0ll7w"]
+[sub_resource type="Animation" id="27"]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2556,7 +2556,7 @@ tracks/9/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("31_m042m")
+"stream": ExtResource("11")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -2671,7 +2671,7 @@ tracks/8/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("32_2b3tv")
+"stream": ExtResource("1")
 }],
 "times": PackedFloat32Array(0.066)
 }
@@ -2762,7 +2762,7 @@ tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("33_xxdv5")
+"stream": ExtResource("8")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -2974,7 +2974,7 @@ tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("33_xxdv5")
+"stream": ExtResource("8")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -3328,7 +3328,7 @@ tracks/12/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("34_4ow0d")
+"stream": ExtResource("4")
 }],
 "times": PackedFloat32Array(0.2)
 }
@@ -3490,7 +3490,7 @@ tracks/12/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("35_v53if")
+"stream": ExtResource("7")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -3664,7 +3664,7 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("31_m042m")
+"stream": ExtResource("11")
 }],
 "times": PackedFloat32Array(0.15)
 }
@@ -3853,7 +3853,7 @@ tracks/13/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("33_xxdv5")
+"stream": ExtResource("8")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -3983,7 +3983,7 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("29_nbm7f")
+"stream": ExtResource("9")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -4085,7 +4085,7 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("36_xiu5h")
+"stream": ExtResource("10")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -4188,7 +4188,7 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("37_cldfb")
+"stream": ExtResource("5")
 }],
 "times": PackedFloat32Array(0.1)
 }
@@ -4231,7 +4231,7 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("38_furrd")
+"stream": ExtResource("2")
 }],
 "times": PackedFloat32Array(0.05)
 }
@@ -4287,7 +4287,7 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("38_furrd")
+"stream": ExtResource("2")
 }],
 "times": PackedFloat32Array(0.05)
 }
@@ -4391,7 +4391,7 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("39_4el7n")
+"stream": ExtResource("3")
 }],
 "times": PackedFloat32Array(0.15)
 }
