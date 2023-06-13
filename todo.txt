@@ -165,3 +165,17 @@ Demos
 -fix insane body rendering in editor
 -fix rotation degrees for think emote
 -'random creature' button adds TONS of animation players
+-many, many errors
+ -nonexistent function get_resource
+ -SubViewportContainer to creature-visuals
+ -node not found 'emote_eye_frame'
+ -invalid get index 'idle_animation_started'
+
+
+
+res://src/main/world/creature/creature.gd:114 - Invalid call. Nonexistent function 'get_resource' in base 'Node ()'.
+res://src/main/world/creature/emote-player.gd:573 - Trying to assign value of type 'SubViewportContainer' to a variable of type 'creature-visuals.gd'.
+Node not found: "Animations:emote_eye_frame" (relative to "/root/@@16579/@@655/@@656/@@664/@@667/@@675/@@683/@@684/@@686/@@712/@@713/@@752/MainScreen/@@9766/@@9593/@@9595/@@9597/@@9598/@@9599").
+On Animation: '...love1...', couldn't resolve track:  'Animations:emote_eye_frame'.
+res://src/main/world/creature/mouth-player.gd:90 - Invalid get index 'idle_animation_started' (on base: 'Timer (IdleTimer)').
+core/object/object.cpp:1058 - Error calling from signal 'dna_loaded' to callable: 'Timer(idle-timer.gd)::_on_CreatureVisuals_dna_loaded': Method not found.
