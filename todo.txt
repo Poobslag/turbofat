@@ -160,6 +160,8 @@ Demos
 
 
 
-fix 'tool uncomment...' lines
-fix scripts
-fix rotation degrees for think emote
+*fix 'tool uncomment...' lines
+*fix scripts
+-fix insane body rendering in editor
+-fix rotation degrees for think emote
+-'random creature' button adds TONS of animation players
