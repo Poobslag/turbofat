@@ -346,9 +346,9 @@ func unemote(anim_name: String = "") -> void:
 		play("ambient-sweat")
 	
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
-	_reset_tween.tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
-		_reset_tween.parallel().tween_property(emote_sprite, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+		_reset_tween.parallel().tween_property(emote_sprite, "rotation", 0.0, UNEMOTE_DURATION)
 		_reset_tween.parallel().tween_property(emote_sprite, "modulate",
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
@@ -382,7 +382,7 @@ func _unemote_non_tweened_properties() -> void:
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
 		eye_sprite.scale = Vector2(2, 2)
 		eye_sprite.frame = 0
-		eye_sprite.rotation_degrees = 0
+		eye_sprite.rotation = 0
 		eye_sprite.position = Vector2(0, 256)
 
 
@@ -393,9 +393,9 @@ func unemote_immediate() -> void:
 	stop_emote_player()
 	_unemote_non_tweened_properties()
 	_creature_visuals.reset_eye_frames()
-	_head_bobber.rotation_degrees = 0
+	_head_bobber.rotation = 0
 	for emote_sprite in _emote_sprites:
-		emote_sprite.rotation_degrees = 0
+		emote_sprite.rotation = 0
 		emote_sprite.modulate = Color.TRANSPARENT
 	_head_bobber.reset_head_bob()
 	_prev_mood = Creatures.Mood.DEFAULT
@@ -431,7 +431,7 @@ func _post_unemote() -> void:
 	for emote_sprite in _emote_sprites:
 		emote_sprite.frame = 0
 		emote_sprite.modulate = Color.TRANSPARENT
-		emote_sprite.rotation_degrees = 0.0
+		emote_sprite.rotation = 0.0
 		emote_sprite.scale = Vector2(2.0, 2.0)
 		emote_sprite.position = Vector2.ZERO
 		if emote_sprite.material:
@@ -499,7 +499,7 @@ func _transition_love0_love1() -> void:
 ## Transitions from 'love1' to 'love0', hiding the hearts and blush.
 func _transition_love1_love0() -> void:
 	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
-		eye_sprite.rotation_degrees = 0
+		eye_sprite.rotation = 0
 		eye_sprite.position = Vector2(0, 256)
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
@@ -516,13 +516,13 @@ func _transition_rage1_rage0() -> void:
 func _transition_sigh1_sigh0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
-	_reset_tween.tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 
 
 ## Transitions from 'sly0' to 'sly1', resetting the head's rotation
 func _transition_sly0_sly1() -> void:
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
-	_reset_tween.tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 
 
 ## Transitions from 'sly1' to 'sly0', removing the laughing head bob effect
@@ -534,7 +534,7 @@ func _transition_sly1_sly0() -> void:
 func _transition_smile1_any() -> void:
 	_reset_tween = Utils.recreate_tween(self, _reset_tween)
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
-	_reset_tween.parallel().tween_property(_head_bobber, "rotation_degrees", 0.0, UNEMOTE_DURATION)
+	_reset_tween.parallel().tween_property(_head_bobber, "rotation", 0.0, UNEMOTE_DURATION)
 
 
 ## Transitions from 'sweat1' to 'sweat0', hiding the white sweat circles.

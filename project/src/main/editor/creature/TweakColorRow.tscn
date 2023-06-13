@@ -22,7 +22,7 @@ text = "Allele Color:"
 horizontal_alignment =2
 
 [node name="Edit" type="ColorPickerButton" parent="."]
-process_mode = 2
+process_mode = 3
 offset_left = 110.0
 offset_right = 150.0
 offset_bottom = 26.0

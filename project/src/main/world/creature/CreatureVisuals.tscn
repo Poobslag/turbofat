@@ -289,14 +289,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation_degrees")
+tracks/3/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-4.0, 4.0, -4.0, 4.0, -4.0, 4.0, -4.0]
+"values": [-0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -349,14 +349,14 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation_degrees")
+tracks/8/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0, 1, 2, 3.1, 4.1, 5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [8.0, -10.0, 10.0, -8.0, 10.0, -3.0, 8.0]
+"values": [0.1396263402, -0.1745329252, 0.1745329252, -0.1396263402, 0.1745329252, -0.0523598776, 0.1396263402]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -385,14 +385,14 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation_degrees")
+tracks/11/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation")
 tracks/11/interp = 2
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [7.0, -5.0, 5.0, -7.0, 7.0, -2.0, 7.0]
+"values": [0.1221730476, -0.0872664626, 0.0872664626, -0.1221730476, 0.1221730476, -0.034906585, 0.1221730476]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -556,7 +556,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation_degrees")
+tracks/9/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -604,7 +604,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation_degrees")
+tracks/13/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation")
 tracks/13/interp = 2
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -652,14 +652,14 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation_degrees")
+tracks/17/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation")
 tracks/17/interp = 2
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [8.0]
+"values": [0.1396263402]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
@@ -712,7 +712,7 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation_degrees")
+tracks/22/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation")
 tracks/22/interp = 2
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -808,7 +808,7 @@ tracks/29/keys = {
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/30/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/30/interp = 2
 tracks/30/loop_wrap = true
 tracks/30/keys = {
@@ -952,14 +952,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/2/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.95, 1.95, 2.95, 3.95, 4.9, 5.75, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -6.0, -2.0, -6.0, -2.0, -6.0, 0.0, 0.0]
+"values": [0, 0, -0.1047197551, -0.034906585, -0.1047197551, -0.034906585, -0.1047197551, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_c7hp0"]
@@ -1031,14 +1031,14 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/5/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1, 1, 2.05, 3.05, 4, 4.9, 5.8, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -9.0, -4.0, -9.0, -4.0, -9.0, 0.0, 0.0]
+"values": [0, 0, -0.1570796327, -0.0698131701, -0.1570796327, -0.0698131701, -0.1570796327, 0, 0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1154,26 +1154,26 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/8/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.3, 2, 4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 8.0, 4.0, 8.0, 4.0]
+"values": [0, 0.1396263402, 0.0698131701, 0.1396263402, 0.0698131701]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation_degrees")
+tracks/9/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.3, 2, 4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -8.0, -4.0, -8.0, -4.0]
+"values": [0, -0.1396263402, -0.0698131701, -0.1396263402, -0.0698131701]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1661,14 +1661,14 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/10/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/10/interp = 2
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.999999, 2, 3, 4, 5, 5.99999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 3.0, -3.0, 3.0, -3.0, 3.0, 0.0]
+"values": [0, 0, 0.0523598776, -0.0523598776, 0.0523598776, -0.0523598776, 0.0523598776, 0]
 }
 
 [sub_resource type="Animation" id="Animation_4kouv"]
@@ -1749,14 +1749,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/6/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.999999, 2, 3, 4, 5, 5.99999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0]
+"values": [0, 0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, 0]
 }
 
 [sub_resource type="Animation" id="Animation_dxgd5"]
@@ -1837,14 +1837,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/6/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.999999, 2, 3, 4, 5, 5.99999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0]
+"values": [0, 0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, 0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -2221,14 +2221,14 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/10/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/10/interp = 2
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.999999, 2, 3, 4, 5, 5.99999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 3.0, -3.0, 3.0, -3.0, 3.0, 0.0]
+"values": [0, 0, 0.0523598776, -0.0523598776, 0.0523598776, -0.0523598776, 0.0523598776, 0]
 }
 
 [sub_resource type="Animation" id="Animation_cesid"]
@@ -2309,14 +2309,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/6/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.999999, 2, 3, 4, 5, 5.99999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0]
+"values": [0, 0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, 0]
 }
 
 [sub_resource type="Animation" id="Animation_fytl5"]
@@ -2385,14 +2385,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/5/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.999999, 2, 3, 4, 5, 5.99999),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0]
+"values": [0, 0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, 0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -2449,14 +2449,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.933333, 1.8, 2.7, 3.56667, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 3.0, 1.0, 3.0, 0.0, 0.0]
+"values": [0, 0.0523598776, 0.0174532925, 0.0523598776, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_682wv"]
@@ -2477,14 +2477,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.5, 2.5, 3.6, 4.53333, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 5.0, 2.0, 5.0, 0.0, 0.0]
+"values": [0, 0.0872664626, 0.034906585, 0.0872664626, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_0sack"]
@@ -2521,14 +2521,14 @@ step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/0/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1, 1.3, 1.5, 1.8, 2, 2.3, 2.5, 2.8, 3, 3.3, 3.5, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 3.0, 3.0, -4.0, -4.0, 6.0, 6.0, -6.0, -6.0, 4.0, 4.0, -3.0, -3.0, 0.0, 0.0]
+"values": [0, 0, 0.0523598776, 0.0523598776, -0.0698131701, -0.0698131701, 0.1047197551, 0.1047197551, -0.1047197551, -0.1047197551, 0.0698131701, 0.0698131701, -0.0523598776, -0.0523598776, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_k2k1a"]
@@ -2548,14 +2548,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3, 1, 2, 2.5, 2.6, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -10.0, -8.0, -10.0, -8.0, 0.0, 0.0]
+"values": [0, 0, -0.1745329252, -0.1396263402, -0.1745329252, -0.1396263402, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_0ll7w"]
@@ -2575,14 +2575,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3, 1.1, 1.8, 1.9, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -10.0, -8.0, -10.0, 0.0, 0.0]
+"values": [0, 0, -0.1745329252, -0.1396263402, -0.1745329252, 0, 0, 0]
 }
 
 [sub_resource type="Animation" id="28"]
@@ -2603,14 +2603,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.8, 1.8, 2.23333, 2.6, 2.96667, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -6.0, -4.0, -6.0, -6.0, 2.0, 0.0, 0.0]
+"values": [0, -0.1047197551, -0.0698131701, -0.1047197551, -0.1047197551, 0.034906585, 0, 0]
 }
 
 [sub_resource type="Animation" id="29"]
@@ -2631,14 +2631,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.6, 1.13333, 1.56667, 1.93333, 2.3, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -6.0, -4.0, -6.0, -6.0, 2.0, 0.0, 0.0]
+"values": [0, -0.1047197551, -0.0698131701, -0.1047197551, -0.1047197551, 0.034906585, 0, 0]
 }
 
 [sub_resource type="Animation" id="30"]
@@ -2951,14 +2951,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation_degrees")
+tracks/3/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0, -4.0]
+"values": [0, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -3026,14 +3026,14 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation_degrees")
+tracks/9/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation")
 tracks/9/interp = 2
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.7, 1.6, 2.6, 3.7, 4.7, 5.6, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 8.0, -10.0, 10.0, -8.0, 10.0, -3.0, 0.0]
+"values": [0, 0, 0.1396263402, -0.1745329252, 0.1745329252, -0.1396263402, 0.1745329252, -0.0523598776, 0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -3062,14 +3062,14 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation_degrees")
+tracks/12/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation")
 tracks/12/interp = 2
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.5, 1.2, 2.2, 3.2, 4.2, 5.2, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 7.0, -5.0, 5.0, -7.0, 7.0, -2.0, 0.0]
+"values": [0, 0, 0.1221730476, -0.0872664626, 0.0872664626, -0.1221730476, 0.1221730476, -0.034906585, 0]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -3163,14 +3163,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation_degrees")
+tracks/3/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0, -4.0]
+"values": [0, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -3238,14 +3238,14 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation_degrees")
+tracks/9/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:rotation")
 tracks/9/interp = 2
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.7, 1.6, 2.6, 3.7, 4.7, 5.6, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 8.0, -10.0, 10.0, -8.0, 10.0, -3.0, 8.0]
+"values": [0, 0, 0.1396263402, -0.1745329252, 0.1745329252, -0.1396263402, 0.1745329252, -0.0523598776, 0.1396263402]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -3274,14 +3274,14 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation_degrees")
+tracks/12/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:rotation")
 tracks/12/interp = 2
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.5, 1.2, 2.2, 3.2, 4.2, 5.2, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 7.0, -5.0, 5.0, -7.0, 7.0, -2.0, 7.0]
+"values": [0, 0, 0.1221730476, -0.0872664626, 0.0872664626, -0.1221730476, 0.1221730476, -0.034906585, 0.1221730476]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -3761,14 +3761,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/1/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.366667, 0.766667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -18.0, 0.0]
+"values": [0, 0, -0.3141592654, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -3813,14 +3813,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/2/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -12.0, -16.0, -12.0, -16.0, -12.0, -16.0, -16.0]
+"values": [0, 0, -0.2094395102, -0.2792526803, -0.2094395102, -0.2792526803, -0.2094395102, -0.2792526803, -0.2792526803]
 }
 
 [sub_resource type="Animation" id="60"]
@@ -3994,26 +3994,26 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/6/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 4.0, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0]
+"values": [0, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation_degrees")
+tracks/7/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation")
 tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0, -4.0]
+"values": [0, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -4042,14 +4042,14 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation_degrees")
+tracks/10/path = NodePath("Neck0/HeadBobber/EmoteGlow:rotation")
 tracks/10/interp = 2
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0, -4.0]
+"values": [0, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701, 0.0698131701, -0.0698131701]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -4286,26 +4286,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/5/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1, 1.5, 3, 4.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -16.0, -12.0, -16.0, -12.0, -16.0]
+"values": [0, -0.2792526803, -0.2094395102, -0.2792526803, -0.2094395102, -0.2792526803]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation_degrees")
+tracks/6/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.1, 1.5, 3, 4.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 16.0, 12.0, 16.0, 12.0, 16.0]
+"values": [0, 0.2792526803, 0.2094395102, 0.2792526803, 0.2094395102, 0.2792526803]
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
@@ -4377,26 +4377,26 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/4/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4, 1.4, 2.4, 3.4, 4.4, 5.4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -6.0, 6.0, -6.0, 6.0, -6.0, 6.0, -6.0]
+"values": [0, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation_degrees")
+tracks/5/path = NodePath("Neck0/HeadBobber/EmoteBrain:rotation")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.4, 1.4, 2.4, 3.4, 4.4, 5.4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 6.0, -6.0, 6.0, -6.0, 6.0, -6.0, 6.0]
+"values": [0, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551, -0.1047197551, 0.1047197551]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -4634,14 +4634,14 @@ resource_name = "yes0"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/0/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 10.0, 12.0, 0.0, 0.0]
+"values": [0, 0.1745329252, 0.2094395102, 0, 0]
 }
 
 [sub_resource type="Animation" id="62"]
@@ -4651,14 +4651,14 @@ step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/0/path = NodePath("Neck0/HeadBobber:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.3, 0.4, 0.466667, 0.533333, 0.633333, 0.733333, 0.8, 0.866667, 0.966667, 1.33333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 10.0, 12.0, 2.0, 0.0, 10.0, 12.0, 2.0, 0.0, 10.0, 12.0, 2.0, 0.0, 0.0]
+"values": [0, 0.1745329252, 0.2094395102, 0.034906585, 0, 0.1745329252, 0.2094395102, 0.034906585, 0, 0.1745329252, 0.2094395102, 0.034906585, 0, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vuaur"]
@@ -4749,7 +4749,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Collar:rotation_degrees")
+tracks/2/path = NodePath("Collar:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -5286,14 +5286,14 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Collar:rotation_degrees")
+tracks/4/path = NodePath("Collar:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [-22.4144, -22.837, -17.5703, -17.5703, -22.837, -22.837, -36.4778, -29.6574]
+"values": [-0.3912050799, -0.3985808413, -0.3066595856, -0.3066595856, -0.3985808413, -0.3985808413, -0.6366577139, -0.5176192776]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -6426,7 +6426,7 @@ size = Vector2(512, 512)
 offset = Vector2(0, -119)
 
 [node name="DnaLoader" type="Node" parent="."]
-process_mode = 2
+process_mode = 3
 script = ExtResource("8")
 
 [node name="Animations" type="Node" parent="."]

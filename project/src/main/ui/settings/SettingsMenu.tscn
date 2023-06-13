@@ -67,7 +67,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="SettingsMenu" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 script = ExtResource("5")
 
 [node name="Bg" type="ColorRect" parent="."]
