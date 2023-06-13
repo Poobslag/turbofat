@@ -305,6 +305,7 @@ func set_dna(new_dna: Dictionary) -> void:
 	CreatureLoader.load_details(dna)
 	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
 	var dna_loader: DnaLoader = $DnaLoader
+	dna_loader.unload_dna()
 	dna_loader.load_dna()
 	emit_signal("dna_changed", dna)
 

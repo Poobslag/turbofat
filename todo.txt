@@ -164,12 +164,12 @@ Demos
 *fix scripts
 -fix insane body rendering in editor
 -fix rotation degrees for think emote
--'random creature' button adds TONS of animation players
--many, many errors
- -nonexistent function get_resource
- -SubViewportContainer to creature-visuals
- -node not found 'emote_eye_frame'
- -invalid get index 'idle_animation_started'
+*'random creature' button adds TONS of animation players
+*many, many errors on load
+ *nonexistent function get_resource
+ *SubViewportContainer to creature-visuals
+ *node not found 'emote_eye_frame'
+ *invalid get index 'idle_animation_started'
 
 
 

@@ -157,7 +157,6 @@ var _emote_sprites: Array
 @onready var _volume_db_tween: Tween
 
 func _ready() -> void:
-	print("160: (ready)")
 	_refresh_creature_visuals_path()
 	_refresh_creature_animations_path()
 
@@ -189,7 +188,6 @@ func fade_out_sfx() -> void:
 
 func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	creature_visuals_path = new_creature_visuals_path
-	print("160: (set)")
 	_refresh_creature_visuals_path()
 
 
@@ -565,24 +563,20 @@ func _apply_tool_script_workaround() -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
-	print("566: refreshing path")
 	if not (is_inside_tree() and not creature_visuals_path.is_empty()):
-		print("567: not inside tree...")
 		return
-	print("570: inside tree, creature_visuals_path not empty")
 	
 	if _creature_visuals:
 		_creature_visuals.orientation_changed.disconnect(_on_CreatureVisuals_orientation_changed)
 	
 	root_node = creature_visuals_path
 	var new_creature_visuals := get_node(creature_visuals_path)
-	print("574: %s %s" % [new_creature_visuals.get_path(), new_creature_visuals.get_script()])
 	if Engine.is_editor_hint() and new_creature_visuals.get_script() == null:
-		# workaround for bug introduced in Godot 4.0 where nodes are initialized before scripts are attached
+		# workaround for bug introduced in Godot 4.0 where EmotePlayer's _ready() function is called before
+		# CreatureVisuals' script is attached
 		_creature_visuals = null
 	else:
 		_creature_visuals = new_creature_visuals
-	print("585: _creature_visuals = %s" % [_creature_visuals])
 	
 	if _creature_visuals:
 		_creature_visuals.orientation_changed.connect(_on_CreatureVisuals_orientation_changed)
