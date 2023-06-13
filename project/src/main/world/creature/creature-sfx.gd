@@ -1,3 +1,4 @@
+#tool #uncomment to view creature in editor
 class_name CreatureSfx
 extends Node2D
 ## Plays creature-related sound effects.
