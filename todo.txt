@@ -108,11 +108,6 @@ gold plating
 -free-roam-touch-buttons might have extra logic for 'menu shown' 'menu hidden' stuff
 -add 'code smell detection' for next_alternative_id
 
-later
-
--refactor: money font 'outline of 3, etc' stuff used to be centralized in money-font.tres; centralized it again
--refactor: avoid @warning_ignore("native_method_override")
-
 
 
 Demos
@@ -128,9 +123,11 @@ Demos
 *./project/src/demo/chat/ui/ChatUiDemo.tscn
 *./project/src/demo/chat/ui/MoodDemo.tscn
 *./project/src/demo/music/MusicPlayerDemo.tscn
--./project/src/demo/NameGeneratorLibraryDemo.tscn
--./project/src/demo/PackedSpriteDemo.tscn
+*./project/src/demo/NameGeneratorLibraryDemo.tscn
+*./project/src/demo/PackedSpriteDemo.tscn
 -./project/src/demo/puzzle/critter/CarrotDemo.tscn
+ -bug: smoke scale isn't working
+ -bug: smoke damping isn't working
 -./project/src/demo/puzzle/critter/MoleDemo.tscn
 -./project/src/demo/puzzle/critter/OnionDemo.tscn
 -./project/src/demo/puzzle/critter/SharkDemo.tscn
@@ -155,3 +152,18 @@ Demos
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
+
+
+-color ramp
+ -fix carrot color ramp more precisely
+ -fix all other color ramps
+-angular velocity
+ -fix all angular velocity properties
+-damping
+ -fix all damping properties
+-disable z
+ -restore 'disable z' properties
+-emission shape
+ -restore 'emission shape' properties
+-anim offset
+ -restore 'anim_offset_min', 'anim_offset_max' properties

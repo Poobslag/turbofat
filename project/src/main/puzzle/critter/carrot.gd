@@ -151,15 +151,18 @@ func _refresh_smoke() -> void:
 		CarrotConfig.Smoke.SMALL:
 			_particles_2d.amount = 9
 			_particles_2d.lifetime = 0.4
-			_particles_2d.process_material.scale = 1.00 * scale.x
+			_particles_2d.process_material.scale_max = 1.00 * scale.x
+			_particles_2d.process_material.scale_min = _particles_2d.process_material.scale_max
 		CarrotConfig.Smoke.MEDIUM:
 			_particles_2d.amount = 64
 			_particles_2d.lifetime = 2.5
-			_particles_2d.process_material.scale = 1.25 * scale.x
+			_particles_2d.process_material.scale_max = 1.25 * scale.x
+			_particles_2d.process_material.scale_min = _particles_2d.process_material.scale_max
 		CarrotConfig.Smoke.LARGE:
 			_particles_2d.amount = 128
 			_particles_2d.lifetime = 5.0
-			_particles_2d.process_material.scale = 1.50 * scale.x
+			_particles_2d.process_material.scale_max = 1.50 * scale.x
+			_particles_2d.process_material.scale_min = _particles_2d.process_material.scale_max
 
 
 ## Updates our Sprites and our Particles2D position based on our 'carrot_size' property.

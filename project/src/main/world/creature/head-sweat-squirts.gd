@@ -39,5 +39,5 @@ func _on_CreatureVisuals_comfort_changed() -> void:
 
 func _on_CreatureVisuals_dna_loaded() -> void:
 	var particles_material: ParticleProcessMaterial = process_material
-	particles_material.scale_min = _creature_visuals.scale.x * 1.7
 	particles_material.scale_max = _creature_visuals.scale.x * 1.7
+	particles_material.scale_min = particles_material.scale_max

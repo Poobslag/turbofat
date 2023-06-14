@@ -25,7 +25,8 @@ func refresh() -> void:
 	# assign width, position, scale
 	process_material.emission_box_extents.x = max(1.0, tile_map.get_used_rect().size.x) * tile_map.tile_set.tile_size.x * 0.5
 	position.x = tile_map.get_used_rect().get_center().x
-	process_material.scale = tile_map.global_scale.x
+	process_material.scale_max = tile_map.global_scale.x
+	process_material.scale_min = process_material.scale_max * 0.5
 	
 	# assign particle count (6 * cell width)
 	amount = 6 * max(1.0, tile_map.get_used_rect().size.x)
