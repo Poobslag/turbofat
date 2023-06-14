@@ -1,1433 +1,1441 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=3 uid="uid://83xhwtdao55a"]
 
-[ext_resource path="res://src/main/puzzle/critter/OnionStateMachine.tres" type="AnimationNodeStateMachine" id=1]
-[ext_resource path="res://src/main/puzzle/critter/onion.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/puzzle/critter/critter-poof.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-11.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/main/puzzle/critter/onion-dirt-clod-sheet.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-10.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-12.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-05.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-02.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-04.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/main/puzzle/critter/onion-sheet.png" type="Texture2D" id=11]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-07.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-03.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-01.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-06.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/main/puzzle/critter/onion-soil.png" type="Texture2D" id=16]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-08.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-09.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/main/puzzle/critter/onion-voice-00.wav" type="AudioStream" id=19]
-[ext_resource path="res://src/main/puzzle/critter/onion-sfx.gd" type="Script" id=20]
-[ext_resource path="res://assets/main/puzzle/critter/onion-wow.wav" type="AudioStream" id=21]
-[ext_resource path="res://assets/main/puzzle/critter/onion-zap.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/main/puzzle/critter/onion-up.wav" type="AudioStream" id=23]
-[ext_resource path="res://assets/main/puzzle/critter/onion-down.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/main/puzzle/critter/onion-rooster1.wav" type="AudioStream" id=25]
-[ext_resource path="res://assets/main/puzzle/critter/onion-rooster0.wav" type="AudioStream" id=26]
-[ext_resource path="res://assets/main/puzzle/critter/onion-thump.wav" type="AudioStream" id=27]
-[ext_resource path="res://assets/main/puzzle/critter/onion-kaboom.wav" type="AudioStream" id=28]
-[ext_resource path="res://assets/main/puzzle/critter/onion-crickets.wav" type="AudioStream" id=29]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bvcigctti4npj" path="res://src/main/puzzle/critter/OnionStateMachine.tres" id="1"]
+[ext_resource type="Script" path="res://src/main/puzzle/critter/onion.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://dw25cs6mv17vx" path="res://assets/main/puzzle/critter/critter-poof.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://b3q30h7iyfkaj" path="res://assets/main/puzzle/critter/onion-voice-11.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://dmqbov8nwdl3g" path="res://assets/main/puzzle/critter/onion-dirt-clod-sheet.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://br8yurstyvp7w" path="res://assets/main/puzzle/critter/onion-voice-10.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://cc77ks0srqswq" path="res://assets/main/puzzle/critter/onion-voice-12.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://cepghtho0dmh5" path="res://assets/main/puzzle/critter/onion-voice-05.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://dwesc3os4dk5o" path="res://assets/main/puzzle/critter/onion-voice-02.wav" id="9"]
+[ext_resource type="AudioStream" uid="uid://duj3hljjpv20l" path="res://assets/main/puzzle/critter/onion-voice-04.wav" id="10"]
+[ext_resource type="Texture2D" uid="uid://wd1poihu7eqv" path="res://assets/main/puzzle/critter/onion-sheet.png" id="11"]
+[ext_resource type="AudioStream" uid="uid://27ojflujojvm" path="res://assets/main/puzzle/critter/onion-voice-07.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://bm3beij1gluna" path="res://assets/main/puzzle/critter/onion-voice-03.wav" id="13"]
+[ext_resource type="AudioStream" uid="uid://bi4vnkhqjdjbi" path="res://assets/main/puzzle/critter/onion-voice-01.wav" id="14"]
+[ext_resource type="AudioStream" uid="uid://bok76adm81hei" path="res://assets/main/puzzle/critter/onion-voice-06.wav" id="15"]
+[ext_resource type="Texture2D" uid="uid://bt5sxg0f6nn7d" path="res://assets/main/puzzle/critter/onion-soil.png" id="16"]
+[ext_resource type="AudioStream" uid="uid://c2q7mubj4bep1" path="res://assets/main/puzzle/critter/onion-voice-08.wav" id="17"]
+[ext_resource type="AudioStream" uid="uid://drsgob62bi4jl" path="res://assets/main/puzzle/critter/onion-voice-09.wav" id="18"]
+[ext_resource type="AudioStream" uid="uid://buhahq10mrndi" path="res://assets/main/puzzle/critter/onion-voice-00.wav" id="19"]
+[ext_resource type="Script" path="res://src/main/puzzle/critter/onion-sfx.gd" id="20"]
+[ext_resource type="AudioStream" uid="uid://c1pxm1prxspgg" path="res://assets/main/puzzle/critter/onion-wow.wav" id="21"]
+[ext_resource type="AudioStream" uid="uid://5kcg1jrx4l21" path="res://assets/main/puzzle/critter/onion-zap.wav" id="22"]
+[ext_resource type="AudioStream" uid="uid://ugufk3to2h4c" path="res://assets/main/puzzle/critter/onion-up.wav" id="23"]
+[ext_resource type="AudioStream" uid="uid://dusw18htaksar" path="res://assets/main/puzzle/critter/onion-down.wav" id="24"]
+[ext_resource type="AudioStream" uid="uid://cuxsi0e8bbctm" path="res://assets/main/puzzle/critter/onion-rooster1.wav" id="25"]
+[ext_resource type="AudioStream" uid="uid://x1lhyw78ngut" path="res://assets/main/puzzle/critter/onion-rooster0.wav" id="26"]
+[ext_resource type="AudioStream" uid="uid://btaupuhhn7mw5" path="res://assets/main/puzzle/critter/onion-thump.wav" id="27"]
+[ext_resource type="AudioStream" uid="uid://qwvdfu4sp5dq" path="res://assets/main/puzzle/critter/onion-kaboom.wav" id="28"]
+[ext_resource type="AudioStream" uid="uid://o4hysmpdbttu" path="res://assets/main/puzzle/critter/onion-crickets.wav" id="29"]
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="CanvasItemMaterial" id="4"]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=5]
-offsets = PackedFloat32Array( 0, 0.526316, 0.991228, 1 )
-colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.368421, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="5"]
+offsets = PackedFloat32Array(0, 0.526316, 0.991228, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.368421, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id=8]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture1D" id="8"]
+gradient = SubResource("5")
 
-[sub_resource type="Curve" id=7]
-_data = [ Vector2( 0, 1 ), 0.0, -0.29535, 0, 1, Vector2( 0.864542, 0.744658 ), -0.29535, -5.49732, 1, 1, Vector2( 1, 0 ), -5.49732, 0.0, 1, 0 ]
+[sub_resource type="Curve" id="7"]
+_data = [Vector2(0, 1), 0.0, -0.29535, 0, 1, Vector2(0.864542, 0.744658), -0.29535, -5.49732, 1, 1, Vector2(1, 0), -5.49732, 0.0, 1, 0]
+point_count = 3
 
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 7 )
+[sub_resource type="CurveTexture" id="9"]
+curve = SubResource("7")
 
-[sub_resource type="ParticleProcessMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id="3"]
 emission_shape = 3
-emission_box_extents = Vector3( 30, 0, 0 )
+emission_box_extents = Vector3(30, 0, 0)
 particle_flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
+direction = Vector3(0, -1, 0)
 spread = 60.0
-gravity = Vector3( 0, 1800, 0 )
+gravity = Vector3(0, 1800, 0)
 initial_velocity_min = 480.0
 initial_velocity_max = 480.0
 angular_velocity_max = 360.0
-angular_velocity_min = 0.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.7
 scale_max = 0.7
-scale_curve = SubResource( 9 )
-color_ramp = SubResource( 8 )
+scale_curve = SubResource("9")
+color_ramp = SubResource("8")
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ 0 ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ true ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Soil:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Onion:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ Vector2( -3, 0 ) ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-3, 0)]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:onion_location")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath(".:float_animation_playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("Sfx/Crickets:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("Sfx/Kaboom:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
 tracks/7/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
 tracks/8/path = NodePath("Sfx/Zap:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
 tracks/8/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
 tracks/9/path = NodePath("Sfx/Thump:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
 tracks/9/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
 tracks/10/path = NodePath("Sfx/Up:playing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
 tracks/10/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
 tracks/11/path = NodePath("Sfx/Down:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
 tracks/11/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
 tracks/12/path = NodePath("Sfx/VoiceWow:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
 tracks/12/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 0,
-"values": [ false ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "dance"
 length = 4.0
 loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7 ]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Sfx/Crickets:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("Sfx")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PackedFloat32Array( 0, 0.5, 1, 1.25, 1.5, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "play_voice_sound"
+"times": PackedFloat32Array(0, 0.5, 1, 1.25, 1.5, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
+"args": [],
+"method": &"play_voice_sound"
 }, {
-"args": [  ],
-"method": "play_voice_sound"
-} ]
+"args": [],
+"method": &"play_voice_sound"
+}]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id="10"]
 resource_name = "dance-end"
 length = 0.5
 loop_mode = 1
 step = 0.125
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.125, 0.25, 0.375 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 8, 9, 8, 9 ]
+"values": [8, 9, 8, 9]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Sfx/Crickets:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id="25"]
 resource_name = "dance-end-start"
 length = 0.5
 step = 0.125
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.125, 0.25, 0.375 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 8, 9, 8, 9 ]
+"values": [8, 9, 8, 9]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Sfx/Crickets:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("Sfx/VoiceWow:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id="16"]
 resource_name = "float"
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Soil:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:onion_location")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 2 ]
+"values": [2]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:float_animation_playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Sfx/Crickets:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0.1 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id="15"]
 resource_name = "land"
 length = 0.8
 step = 1.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Soil:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"values": [ {
-"args": [  ],
-"method": "emit_dirt_particles"
-} ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_dirt_particles"
+}]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Sfx/Thump:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id="11"]
 resource_name = "launch"
 length = 0.5
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.0333333, 0.0666667, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 9, 10, 11, 12, 13, 14, 15 ]
+"values": [9, 10, 11, 12, 13, 14, 15]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.1 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [0, 1]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Sfx/Thump:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0.1 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("Sfx/Up:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PackedFloat32Array( 0.166667 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id="23"]
 resource_name = "none"
 step = 0.25
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Soil:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:onion_location")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:float_animation_playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Sfx/Crickets:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id="13"]
 resource_name = "plummet"
 length = 0.533333
 loop_mode = 1
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 29, 30, 31, 32, 33, 34, 35, 36 ]
+"values": [29, 30, 31, 32, 33, 34, 35, 36]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 3 ]
+"values": [3]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id="27"]
 resource_name = "skip-to-float"
 length = 0.1
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Soil:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:onion_location")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 2 ]
+"values": [2]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:float_animation_playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id="12"]
 resource_name = "soar"
 length = 0.4
 loop_mode = 1
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 16, 17, 18, 19 ]
+"values": [16, 17, 18, 19]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 1 ]
+"values": [1]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id="26"]
 resource_name = "start-float"
 length = 0.1
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Soil:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:onion_location")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 2 ]
+"values": [2]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:float_animation_playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Sfx/Kaboom:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id="24"]
 resource_name = "start-plummet"
 length = 0.533333
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 29, 30, 31, 32, 33, 34, 35, 36 ]
+"values": [29, 30, 31, 32, 33, 34, 35, 36]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:onion_location")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 3 ]
+"values": [3]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Sfx/Down:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0.1 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id="14"]
 resource_name = "stun"
 length = 0.4
 step = 0.0333333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Onion:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 28 ]
+"values": [28]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Soil:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Onion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Onion:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.0333333, 0.0666667, 0.1, 0.133333 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ Vector2( -3, 0 ), Vector2( 3, 0 ), Vector2( -3, 0 ), Vector2( 3, 0 ), Vector2( 0, 0 ) ]
+"values": [Vector2(-3, 0), Vector2(3, 0), Vector2(-3, 0), Vector2(3, 0), Vector2(0, 0)]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:onion_location")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 2 ]
+"values": [2]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath(".:float_animation_playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
 tracks/6/path = NodePath("Sfx/Crickets:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
 tracks/6/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ false ]
+"values": [false]
 }
 tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("Sfx/Zap:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
 tracks/7/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
 tracks/8/path = NodePath("Sfx")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
 tracks/8/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"values": [ {
-"args": [  ],
-"method": "play_rooster_sound"
-} ]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_rooster_sound"
+}]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ufcwx"]
+_data = {
+"RESET": SubResource("1"),
+"dance": SubResource("2"),
+"dance-end": SubResource("10"),
+"dance-end-start": SubResource("25"),
+"float": SubResource("16"),
+"land": SubResource("15"),
+"launch": SubResource("11"),
+"none": SubResource("23"),
+"plummet": SubResource("13"),
+"skip-to-float": SubResource("27"),
+"soar": SubResource("12"),
+"start-float": SubResource("26"),
+"start-plummet": SubResource("24"),
+"stun": SubResource("14")
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="22"]
 
 [node name="Onion" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Soil" type="Sprite2D" parent="."]
-position = Vector2( 0, -6.93842 )
-texture = ExtResource( 16 )
+position = Vector2(0, -6.93842)
+texture = ExtResource("16")
 
 [node name="Onion" type="Sprite2D" parent="."]
-position = Vector2( 0, -6.93842 )
-texture = ExtResource( 11 )
-offset = Vector2( -3, 0 )
+position = Vector2(0, -6.93842)
+texture = ExtResource("11")
+offset = Vector2(-3, 0)
 hframes = 6
 vframes = 7
 
 [node name="DirtParticles" type="GPUParticles2D" parent="."]
-material = SubResource( 4 )
-position = Vector2( 0, 23.8105 )
+visible = false
+material = SubResource("4")
+position = Vector2(0, 23.8105)
 emitting = false
 amount = 6
+process_material = SubResource("3")
+texture = ExtResource("5")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.9
-visibility_rect = Rect2( -100, -100, 250, 200 )
-process_material = SubResource( 3 )
-texture = ExtResource( 5 )
+visibility_rect = Rect2(-100, -100, 250, 200)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 1 )
-anims/dance = SubResource( 2 )
-anims/dance-end = SubResource( 10 )
-anims/dance-end-start = SubResource( 25 )
-anims/float = SubResource( 16 )
-anims/land = SubResource( 15 )
-anims/launch = SubResource( 11 )
-anims/none = SubResource( 23 )
-anims/plummet = SubResource( 13 )
-anims/skip-to-float = SubResource( 27 )
-anims/soar = SubResource( 12 )
-anims/start-float = SubResource( 26 )
-anims/start-plummet = SubResource( 24 )
-anims/stun = SubResource( 14 )
+libraries = {
+"": SubResource("AnimationLibrary_ufcwx")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = ExtResource( 1 )
+tree_root = ExtResource("1")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 22 )
+parameters/playback = SubResource("22")
 parameters/conditions/dancing = false
-parameters/conditions/dancing_end = false
+parameters/conditions/dancing_end = true
 parameters/conditions/floating = false
 parameters/conditions/location_sky = false
 parameters/conditions/location_soil = false
 parameters/conditions/not_floating = false
 
 [node name="Sfx" type="Node" parent="."]
-script = ExtResource( 20 )
+script = ExtResource("20")
 
 [node name="Crickets" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 29 )
+stream = ExtResource("29")
 volume_db = 4.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Down" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 24 )
+stream = ExtResource("24")
 volume_db = -8.0
 pitch_scale = 0.73
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Kaboom" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 28 )
+stream = ExtResource("28")
 volume_db = 4.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Poof" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 3 )
+stream = ExtResource("3")
 volume_db = -4.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Rooster0" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 26 )
+stream = ExtResource("26")
 volume_db = -12.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Rooster1" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 25 )
+stream = ExtResource("25")
 volume_db = -12.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Thump" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 27 )
+stream = ExtResource("27")
 volume_db = 2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Up" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 23 )
+stream = ExtResource("23")
 volume_db = -8.0
 pitch_scale = 0.8
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice00" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 19 )
+stream = ExtResource("19")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice01" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 14 )
+stream = ExtResource("14")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice02" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 9 )
+stream = ExtResource("9")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice03" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 13 )
+stream = ExtResource("13")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice04" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 10 )
+stream = ExtResource("10")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice05" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 8 )
+stream = ExtResource("8")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice06" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 15 )
+stream = ExtResource("15")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice07" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 12 )
+stream = ExtResource("12")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice08" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 17 )
+stream = ExtResource("17")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice09" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 18 )
+stream = ExtResource("18")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice10" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 6 )
+stream = ExtResource("6")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice11" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Voice12" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 7 )
+stream = ExtResource("7")
 volume_db = -2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="VoiceWow" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 21 )
+stream = ExtResource("21")
 volume_db = 2.0
-bus = "Sound Bus"
+bus = &"Sound Bus"
 
 [node name="Zap" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 22 )
-bus = "Sound Bus"
+stream = ExtResource("22")
+bus = &"Sound Bus"

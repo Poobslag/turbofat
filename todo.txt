@@ -46,6 +46,8 @@ game starts up, but has bugs
  -update save files
   -update save files to use RGBA instead of ARGB color
   -update save files to use new scancodes
+*particle updates
+ *randomization
 -tilemap updates
  *fix 'Cannot create tile. The tile is outside the texture...' errors
   *PuzzleTileMap.tscn
@@ -58,8 +60,6 @@ game starts up, but has bugs
  *replace 'get_cellv' with get_cell_source_id
  *replace 'get_cell' with 'get_cell_source_id
  -replace 'autotilers' with 'terrain... things'
--particle updates
- -randomization
 -scene tweaks
  *animation looping; replace 'loop = true' in .tscn files with 'loop_mode=1'
  *label alignment; replace 'align = 2' in .tscn files with 'horizontal_alignment = 2'
@@ -126,8 +126,11 @@ Demos
 *./project/src/demo/NameGeneratorLibraryDemo.tscn
 *./project/src/demo/PackedSpriteDemo.tscn
 *./project/src/demo/puzzle/critter/CarrotDemo.tscn
--./project/src/demo/puzzle/critter/MoleDemo.tscn
+*./project/src/demo/puzzle/critter/MoleDemo.tscn
+ *bug: doesn't disappear
 -./project/src/demo/puzzle/critter/OnionDemo.tscn
+ -tons of warnings
+ -doesn't do anything
 -./project/src/demo/puzzle/critter/SharkDemo.tscn
 -./project/src/demo/puzzle/level/LevelRankDemo.tscn
 -./project/src/demo/puzzle/level/RankModeDemo.tscn
@@ -152,28 +155,27 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
-*color ramp
- *fix carrot color ramp more precisely
- *fix all other color ramps
-*angular velocity
- *fix all angular velocity properties
-*damping
- *fix all damping properties
--disable z
- -restore 'disable z' properties
--emission shape
- -restore 'emission shape' properties
--anim offset
- -restore 'anim_offset_min', 'anim_offset_max' properties
 
 
-
-*initial_velocity -> initial_velocity_min/max
-*scale -> scale_min/max
-*GradientTexture2D -> GradientTexture1D
-*flag_disable_z -> particle_flag_disable_z
-*orbit_velocity -> orbit_velocity_min/max
-*anim_offset -> anim_offset_max
-*mission_shape = 2 -> emission_shape = 3
-*angle -> angle_min/max
-*damping -> damping_min/max
+  scene/animation/animation_tree.cpp:850 - Value track: Onion:frame with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Onion:visible with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: .:float_animation_playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Crickets:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/VoiceWow:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Thump:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Up:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Kaboom:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Down:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Onion:offset with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Zap:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Onion:frame with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Onion:visible with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: .:float_animation_playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Crickets:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/VoiceWow:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Thump:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Up:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Kaboom:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Down:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Onion:offset with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Zap:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)

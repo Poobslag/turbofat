@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://byv7s0flbsfnw"]
 
-[ext_resource path="res://src/main/puzzle/critter/Mole.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/demo/puzzle/critter/mole-demo.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://dd7mfrhiqo5cv" path="res://src/main/puzzle/critter/Mole.tscn" id="1"]
+[ext_resource type="Script" path="res://src/demo/puzzle/critter/mole-demo.gd" id="2"]
 
 [node name="MoleDemo" type="Node"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="Mole" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 300 )
-scale = Vector2( 2, 2 )
+[node name="Mole" parent="." instance=ExtResource("1")]
+position = Vector2(512, 300)
+scale = Vector2(2, 2)
