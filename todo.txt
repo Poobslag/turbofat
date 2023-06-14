@@ -125,9 +125,7 @@ Demos
 *./project/src/demo/music/MusicPlayerDemo.tscn
 *./project/src/demo/NameGeneratorLibraryDemo.tscn
 *./project/src/demo/PackedSpriteDemo.tscn
--./project/src/demo/puzzle/critter/CarrotDemo.tscn
- -bug: smoke scale isn't working
- -bug: smoke damping isn't working
+*./project/src/demo/puzzle/critter/CarrotDemo.tscn
 -./project/src/demo/puzzle/critter/MoleDemo.tscn
 -./project/src/demo/puzzle/critter/OnionDemo.tscn
 -./project/src/demo/puzzle/critter/SharkDemo.tscn
@@ -154,16 +152,28 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
--color ramp
- -fix carrot color ramp more precisely
- -fix all other color ramps
--angular velocity
- -fix all angular velocity properties
--damping
- -fix all damping properties
+*color ramp
+ *fix carrot color ramp more precisely
+ *fix all other color ramps
+*angular velocity
+ *fix all angular velocity properties
+*damping
+ *fix all damping properties
 -disable z
  -restore 'disable z' properties
 -emission shape
  -restore 'emission shape' properties
 -anim offset
  -restore 'anim_offset_min', 'anim_offset_max' properties
+
+
+
+*initial_velocity -> initial_velocity_min/max
+*scale -> scale_min/max
+*GradientTexture2D -> GradientTexture1D
+*flag_disable_z -> particle_flag_disable_z
+*orbit_velocity -> orbit_velocity_min/max
+*anim_offset -> anim_offset_max
+*mission_shape = 2 -> emission_shape = 3
+*angle -> angle_min/max
+*damping -> damping_min/max

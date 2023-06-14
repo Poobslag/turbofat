@@ -109,48 +109,60 @@ cache/0/36/0/kerning_overrides/36/0 = Vector2(0, 0)
 offsets = PackedFloat32Array(0, 0.695652)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="4"]
+[sub_resource type="GradientTexture1D" id="4"]
 gradient = SubResource("37")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s0wto"]
-direction = Vector3(-100, -40, 0)
+particle_flag_disable_z = true
+direction = Vector3( -100, -40, 0 )
 spread = 15.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3( 0, 0, 0 )
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource("4")
+color_ramp = SubResource( 4 )
 
 [sub_resource type="ParticleProcessMaterial" id="39"]
-direction = Vector3(100, -40, 0)
+particle_flag_disable_z = true
+direction = Vector3( 100, -40, 0 )
 spread = 15.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3( 0, 0, 0 )
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource("4")
+color_ramp = SubResource( 4 )
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ulw6"]
-direction = Vector3(-100, 40, 0)
+particle_flag_disable_z = true
+direction = Vector3( -100, 40, 0 )
 spread = 15.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3( 0, 0, 0 )
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource("4")
+color_ramp = SubResource( 4 )
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n2pjg"]
-direction = Vector3(100, 40, 0)
+particle_flag_disable_z = true
+direction = Vector3( 100, 40, 0 )
 spread = 15.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3( 0, 0, 0 )
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource("4")
+color_ramp = SubResource( 4 )
 
 [sub_resource type="Animation" id="34"]
 length = 0.001

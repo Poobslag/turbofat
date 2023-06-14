@@ -114,7 +114,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.255924, 0.796209, 0.976303)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.501961, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="6"]
+[sub_resource type="GradientTexture1D" id="6"]
 gradient = SubResource("5")
 
 [sub_resource type="ParticleProcessMaterial" id="7"]
@@ -126,6 +126,10 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
 scale_min = 0.7
 scale_max = 0.7
 color_ramp = SubResource("6")
@@ -238,7 +242,7 @@ shader_parameter/black = Color(0.423529, 0.262745, 0.192157, 1)
 offsets = PackedFloat32Array(0.00473934, 0.390947)
 colors = PackedColorArray(1, 1, 1, 0.752941, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="22"]
+[sub_resource type="GradientTexture1D" id="22"]
 gradient = SubResource("21")
 
 [sub_resource type="ParticleProcessMaterial" id="23"]
@@ -248,6 +252,8 @@ direction = Vector3(0, 1, 0)
 gravity = Vector3(0, 2400, 0)
 initial_velocity_min = -800.0
 initial_velocity_max = -800.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 1.7
 scale_max = 1.7
 color_ramp = SubResource("22")
@@ -260,6 +266,10 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
 scale_min = 0.7
 scale_max = 0.7
 color_ramp = SubResource("6")
