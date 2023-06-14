@@ -192,9 +192,10 @@ offset_left = 192.0
 offset_top = 80.0
 offset_right = 792.0
 offset_bottom = 480.0
+size = Vector2i(600, 400)
 exclusive = true
 window_title = "Open a File"
-mode = 0
+file_mode = 0
 access = 2
 filters = PackedStringArray( "*.json" )
 
@@ -207,9 +208,10 @@ offset_left = 192.0
 offset_top = 80.0
 offset_right = 792.0
 offset_bottom = 480.0
+size = Vector2i(600, 400)
 exclusive = true
 window_title = "Open a File"
-mode = 0
+file_mode = 0
 filters = PackedStringArray( "*.json" )
 
 [node name="Save" type="FileDialog" parent="Ui/Dialogs"]
@@ -221,6 +223,7 @@ offset_left = 192.0
 offset_top = 80.0
 offset_right = 792.0
 offset_bottom = 480.0
+size = Vector2i(600, 400)
 exclusive = true
 access = 2
 filters = PackedStringArray( "*.json" )
@@ -228,6 +231,7 @@ filters = PackedStringArray( "*.json" )
 [node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
 offset_right = 250.0
 offset_bottom = 58.0
+size = Vector2i(250, 58)
 exclusive = true
 window_title = "Error"
 dialog_autowrap = true

@@ -162,7 +162,6 @@ func _on_OpenFileDialog_file_selected(path: String) -> void:
 		_open_input.value = LevelSettings.level_key_from_path(path)
 	else:
 		_error_dialog.dialog_text = "%s doesn't seem like the path to a level file." % [path]
-#		_error_dialog.popup_centered(Vector2i(640, 400))
 		_error_dialog.popup_centered()
 	
 	_refresh_level()
@@ -170,5 +169,4 @@ func _on_OpenFileDialog_file_selected(path: String) -> void:
 
 func _on_OpenButton_pressed() -> void:
 	_open_dialog.current_path = LevelSettings.path_from_level_key(_open_input.value)
-#	_open_dialog.popup_centered(Vector2i(250, 92))
 	_open_dialog.popup_centered()

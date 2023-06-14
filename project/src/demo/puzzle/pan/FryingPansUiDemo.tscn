@@ -1,30 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cng35eec0lk13"]
 
 [ext_resource type="PackedScene" uid="uid://qu7jspcgvm28" path="res://src/main/puzzle/pan/FryingPansUi.tscn" id="1"]
-[ext_resource type="Theme" uid="uid://c0p12qckaqsds" path="res://src/main/ui/theme/h2.theme" id="2"]
+[ext_resource type="Theme" path="res://src/main/ui/theme/h2.theme" id="2"]
+[ext_resource type="PackedScene" uid="uid://c2cokhomohvvm" path="res://src/demo/DemoBackdrop.tscn" id="2_j3xmg"]
 [ext_resource type="Script" path="res://src/demo/puzzle/pan/frying-pans-ui-demo.gd" id="3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7meu"]
-bg_color = Color(0.109804, 0.219608, 0.32549, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
 
 [node name="FryingPansDemo" type="Node"]
 script = ExtResource("3")
 
-[node name="DemoBackdrop" type="Panel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x7meu")
+[node name="DemoBackdrop" parent="." instance=ExtResource("2_j3xmg")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

@@ -26,10 +26,10 @@ func save_demo_data() -> void:
 
 ## Populates the player's in-memory data based on their save files.
 func load_demo_data() -> void:
-	var file := FileAccess.open(FILENAME, FileAccess.READ)
-	if file.get_open_error() == OK:
+	FileAccess.open(FILENAME, FileAccess.READ)
+	if FileAccess.get_open_error() == OK:
 		var save_json_text := FileUtils.get_file_as_text(FILENAME)
 		demo_data = JSON.parse_string(save_json_text)
 	else:
 		# validation failed; couldn't open file
-		push_warning("Couldn't open file '%s' for reading: %s" % [FILENAME, file.get_open_error()])
+		push_warning("Couldn't open file '%s' for reading: %s" % [FILENAME, FileAccess.get_open_error()])

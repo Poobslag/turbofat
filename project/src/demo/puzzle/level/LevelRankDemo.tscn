@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://8prfeim4ig42"]
+[gd_scene load_steps=9 format=3 uid="uid://8prfeim4ig42"]
 
 [ext_resource type="Theme" uid="uid://dqgnja13agfn0" path="res://src/main/ui/theme/h5.theme" id="1"]
 [ext_resource type="Script" path="res://src/demo/puzzle/level/level-rank-demo.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://c2cokhomohvvm" path="res://src/demo/DemoBackdrop.tscn" id="2_gennc"]
 [ext_resource type="PackedScene" path="res://src/main/ui/DialogBackdrop.tscn" id="3"]
 [ext_resource type="Script" path="res://src/demo/puzzle/level/level-rank-demo-open.gd" id="4"]
 [ext_resource type="Script" path="res://src/demo/puzzle/level/level-rank-demo-grade.gd" id="5"]
@@ -10,6 +11,8 @@
 
 [node name="LevelRankDemo" type="Node"]
 script = ExtResource("2")
+
+[node name="DemoBackdrop" parent="." instance=ExtResource("2_gennc")]
 
 [node name="Input" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 0)
@@ -74,6 +77,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource("3")]
@@ -83,7 +88,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OpenFile" type="FileDialog" parent="Dialogs"]
+title = "Open a File"
 size = Vector2i(640, 400)
+ok_button_text = "Open"
+file_mode = 0
 filters = PackedStringArray("*.json")
 
 [node name="PopupHideSignalEmitter" parent="Dialogs/OpenFile" instance=ExtResource("6_3bbbf")]

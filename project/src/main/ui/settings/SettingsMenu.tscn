@@ -1009,17 +1009,20 @@ anchor_bottom = 0.0
 
 [node name="ChangeSaveConfirmation" type="ConfirmationDialog" parent="Dialogs"]
 theme = ExtResource("20")
+size = Vector2i(200, 70)
 dialog_text = "Change save slot?"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
 theme = ExtResource("20")
+size = Vector2i(200, 70)
 dialog_text = "Delete save slot?
 Slot A (34.2 hours)"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
 theme = ExtResource("20")
+size = Vector2i(200, 70)
 dialog_text = "Are you sure?
 Slot A (34.2 hours)"
 dialog_autowrap = true

@@ -136,14 +136,16 @@ offset_left = -320.0
 offset_top = -200.0
 offset_right = 320.0
 offset_bottom = 200.0
+size = Vector2i(640, 400)
 exclusive = true
 window_title = "Open a File"
-mode = 0
+file_mode = 0
 filters = PackedStringArray( "*.chat" )
 
 [node name="Error" type="AcceptDialog" parent="Dialogs"]
 offset_right = 250.0
 offset_bottom = 58.0
+size = Vector2i(250, 58)
 exclusive = true
 window_title = "Error"
 dialog_autowrap = true

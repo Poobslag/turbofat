@@ -130,11 +130,12 @@ Demos
 *./project/src/demo/puzzle/critter/OnionDemo.tscn
 *./project/src/demo/puzzle/critter/SharkDemo.tscn
 -./project/src/demo/puzzle/level/LevelRankDemo.tscn
- -dialog signals aren't connected
- -needs backdrop; hard to see inputs
- -popup file picker is ugly
- -popup_centered no longer applies a sensible minimum size
- -popup error dialog?
+ *dialog signals aren't connected
+ *popup file picker is ugly
+ *popup_centered no longer applies a sensible minimum size
+ *popup error dialog?
+ *needs backdrop; hard to see inputs
+ *prompts for overwrite (nothing is being overwritten)
 -./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
 -./project/src/demo/puzzle/PuzzleDemo.tscn
@@ -171,6 +172,12 @@ submit RFE
 apply hilariously stupid 'PopupHideSignalEmitter' kludge throughout project (ugh)
 
 
-type="FileDialog"
-type="AcceptDialog"
-add 'size'
+*add backdrop
+*globally apply size to dialogs
+ *type="FileDialog"
+ *type="AcceptDialog"
+ *type="ConfirmationDialog"
+*globally fix 'FileDialog mode' (mode -> file_mode)
+*document PopupHideSignalEmitter (ugh)
+-merge Godot 3 changes into main
+-merge main into Godot 4 changes
