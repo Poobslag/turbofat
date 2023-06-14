@@ -1281,10 +1281,12 @@ _data = {
 script = ExtResource("2")
 
 [node name="Soil" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -6.93842)
 texture = ExtResource("16")
 
 [node name="Onion" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -6.93842)
 texture = ExtResource("11")
 offset = Vector2(-3, 0)
@@ -1292,7 +1294,6 @@ hframes = 6
 vframes = 7
 
 [node name="DirtParticles" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("4")
 position = Vector2(0, 23.8105)
 emitting = false
@@ -1315,7 +1316,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("22")
 parameters/conditions/dancing = false
-parameters/conditions/dancing_end = true
+parameters/conditions/dancing_end = false
 parameters/conditions/floating = false
 parameters/conditions/location_sky = false
 parameters/conditions/location_soil = false
