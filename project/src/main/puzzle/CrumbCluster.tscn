@@ -32,6 +32,7 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 100.0
+angle = 360.0
 angle_random = 1.0
 scale_random = 0.5
 scale_curve = SubResource( 5 )
