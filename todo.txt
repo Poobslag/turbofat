@@ -130,6 +130,11 @@ Demos
 *./project/src/demo/puzzle/critter/OnionDemo.tscn
 *./project/src/demo/puzzle/critter/SharkDemo.tscn
 -./project/src/demo/puzzle/level/LevelRankDemo.tscn
+ -dialog signals aren't connected
+ -needs backdrop; hard to see inputs
+ -popup file picker is ugly
+ -popup_centered no longer applies a sensible minimum size
+ -popup error dialog?
 -./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
 -./project/src/demo/puzzle/PuzzleDemo.tscn
@@ -152,27 +157,20 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
+Verify error dialog hides backdrop
+Globally update 'popup_hide' signals
+Remove 'popup_hide' method
 
 
-  scene/animation/animation_tree.cpp:850 - Value track: Onion:frame with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Onion:visible with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: .:float_animation_playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Crickets:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/VoiceWow:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Thump:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Up:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Kaboom:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Down:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Onion:offset with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Zap:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Onion:frame with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Onion:visible with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: .:float_animation_playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Crickets:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/VoiceWow:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Thump:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Up:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Kaboom:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Down:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Onion:offset with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
-  scene/animation/animation_tree.cpp:850 - Value track: Sfx/Zap:playing with different update modes are blended. Blending prioritizes Discrete mode, so other update mode tracks will not be blended. (User)
+2e1fcbe14b3385b89b1cb5b026df69214f09d2ef - exists
+74ff592 -- exists
+fc076ec -- exists
+5869d05 -- exists
+
+submit RFE
+apply hilariously stupid 'PopupHideSignalEmitter' kludge throughout project (ugh)
+
+
+type="FileDialog"
+type="AcceptDialog"
+add 'size'

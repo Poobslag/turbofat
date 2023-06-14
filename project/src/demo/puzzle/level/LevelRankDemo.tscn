@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://8prfeim4ig42"]
 
-[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=1]
-[ext_resource path="res://src/demo/puzzle/level/level-rank-demo.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/demo/puzzle/level/level-rank-demo-open.gd" type="Script" id=4]
-[ext_resource path="res://src/demo/puzzle/level/level-rank-demo-grade.gd" type="Script" id=5]
-[ext_resource path="res://src/demo/DemoSave.tscn" type="PackedScene" id=6]
+[ext_resource type="Theme" uid="uid://dqgnja13agfn0" path="res://src/main/ui/theme/h5.theme" id="1"]
+[ext_resource type="Script" path="res://src/demo/puzzle/level/level-rank-demo.gd" id="2"]
+[ext_resource type="PackedScene" path="res://src/main/ui/DialogBackdrop.tscn" id="3"]
+[ext_resource type="Script" path="res://src/demo/puzzle/level/level-rank-demo-open.gd" id="4"]
+[ext_resource type="Script" path="res://src/demo/puzzle/level/level-rank-demo-grade.gd" id="5"]
+[ext_resource type="PackedScene" path="res://src/demo/DemoSave.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dsog4bkmkh6g3" path="res://src/main/ui/PopupHideSignalEmitter.tscn" id="6_3bbbf"]
 
 [node name="LevelRankDemo" type="Node"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Input" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -19,108 +22,84 @@ offset_left = -200.0
 offset_top = -146.0
 offset_right = 200.0
 offset_bottom = 146.0
-custom_minimum_size = Vector2( 400, 0 )
 
 [node name="PlayerGrade" type="HBoxContainer" parent="Input"]
-offset_right = 400.0
-offset_bottom = 24.0
-script = ExtResource( 5 )
+layout_mode = 2
+script = ExtResource("5")
 
 [node name="Label" type="Label" parent="Input/PlayerGrade"]
-offset_top = 3.0
-offset_right = 88.0
-offset_bottom = 21.0
-theme = ExtResource( 1 )
+layout_mode = 2
+theme = ExtResource("1")
 text = "Player Grade"
-horizontal_alignment =2
+horizontal_alignment = 2
 
 [node name="OptionButton" type="OptionButton" parent="Input/PlayerGrade"]
-offset_left = 92.0
-offset_right = 192.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 100, 0 )
-theme = ExtResource( 1 )
-text = "SSS"
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1")
 
 [node name="Open" type="HBoxContainer" parent="Input"]
-offset_top = 28.0
-offset_right = 400.0
-offset_bottom = 56.0
-script = ExtResource( 4 )
+layout_mode = 2
+script = ExtResource("4")
 
 [node name="Button" type="Button" parent="Input/Open"]
-offset_right = 47.0
-offset_bottom = 28.0
-theme = ExtResource( 1 )
+layout_mode = 2
+theme = ExtResource("1")
 text = "Open"
 
 [node name="LineEdit" type="LineEdit" parent="Input/Open"]
-offset_left = 51.0
-offset_right = 400.0
-offset_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "experiment/000"
 caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="CalculateButton" type="Button" parent="Input"]
-offset_top = 60.0
-offset_right = 400.0
-offset_bottom = 84.0
-theme = ExtResource( 1 )
+layout_mode = 2
+theme = ExtResource("1")
 text = "Calculate"
 
 [node name="Output" type="TextEdit" parent="Input"]
-offset_top = 88.0
-offset_right = 400.0
-offset_bottom = 292.0
-custom_minimum_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "Oh!
 What an output"
-readonly = true
 
 [node name="Dialogs" type="Control" parent="."]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="Backdrop" parent="Dialogs" instance=ExtResource( 3 )]
+[node name="Backdrop" parent="Dialogs" instance=ExtResource("3")]
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OpenFile" type="FileDialog" parent="Dialogs"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -200.0
-offset_right = 320.0
-offset_bottom = 200.0
-exclusive = true
-window_title = "Open a File"
-mode = 0
-filters = PackedStringArray( "*.json" )
+size = Vector2i(640, 400)
+filters = PackedStringArray("*.json")
+
+[node name="PopupHideSignalEmitter" parent="Dialogs/OpenFile" instance=ExtResource("6_3bbbf")]
 
 [node name="Error" type="AcceptDialog" parent="Dialogs"]
-offset_right = 250.0
-offset_bottom = 58.0
-exclusive = true
-window_title = "Error"
+size = Vector2i(250, 80)
 dialog_autowrap = true
 
-[node name="DemoSave" parent="." instance=ExtResource( 6 )]
+[node name="PopupHideSignalEmitter" parent="Dialogs/Error" instance=ExtResource("6_3bbbf")]
+
+[node name="DemoSave" parent="." instance=ExtResource("6")]
 
 [connection signal="pressed" from="Input/Open/Button" to="." method="_on_OpenButton_pressed"]
 [connection signal="pressed" from="Input/CalculateButton" to="." method="_on_CalculateButton_pressed"]
 [connection signal="about_to_popup" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Dialogs/OpenFile" to="." method="_on_OpenFileDialog_file_selected"]
-[connection signal="popup_hide" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="popup_hide" from="Dialogs/OpenFile/PopupHideSignalEmitter" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_popup" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="popup_hide" from="Dialogs/Error/PopupHideSignalEmitter" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
