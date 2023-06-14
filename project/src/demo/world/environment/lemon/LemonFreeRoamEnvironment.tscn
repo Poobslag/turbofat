@@ -106,6 +106,7 @@ cell_shadow_mapping = {
 }
 
 [node name="Obstacles" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
 tile_set = ExtResource("1")

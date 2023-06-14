@@ -37,7 +37,8 @@ game starts up, but has bugs
  *fix fonts
  *game crashes when loading PuzzleTileMap.tscn
  *update math for 'Control.rect_rotation()' calls
- -fix input keycodes
+ *fix input keycodes
+ *remove/cleanup h1-font-new.tres
  -add '...as Array[int]', '...as Array[float]' suffix when assigning to typed arrays; Godot #58285
  -avoid assigning constants to fields; they can't be mutated anymore
  -assigning your own fields now calls setters
@@ -45,7 +46,6 @@ game starts up, but has bugs
  -update save files
   -update save files to use RGBA instead of ARGB color
   -update save files to use new scancodes
- -remove/cleanup h1-font-new.tres
 -tilemap updates
  *fix 'Cannot create tile. The tile is outside the texture...' errors
   *PuzzleTileMap.tscn
@@ -55,15 +55,15 @@ game starts up, but has bugs
   *Puzzle.tscn
  *rewrite tilemaps from scratch
  *fix out-of-bounds atlas cell definitions; these will cause crashes in Godot 4.x
+ *replace 'get_cellv' with get_cell_source_id
+ *replace 'get_cell' with 'get_cell_source_id
  -replace 'autotilers' with 'terrain... things'
- -replace 'get_cellv' with get_cell_source_id
- -replace 'get_cell' with 'get_cell_source_id
 -particle updates
  -randomization
 -scene tweaks
  *animation looping; replace 'loop = true' in .tscn files with 'loop_mode=1'
  *label alignment; replace 'align = 2' in .tscn files with 'horizontal_alignment = 2'
- -restore 'y_sort_enabled' property for ysort nodes
+ *restore 'y_sort_enabled' property for ysort nodes
  *set project's stretch mode; Godot #3939
 -code warnings
  *replace '# warning-ignore' comments with '@warning_ignore' annotations

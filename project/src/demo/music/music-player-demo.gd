@@ -47,9 +47,6 @@ func next_checkpoint() -> void:
 
 
 func _on_Timer_timeout() -> void:
-	$RichTextLabel.clear()
-	
-	## Workaround for Godot #78196; RichTextLabel.clear() is supposed to set 'text' to an empty string, but it doesn't
 	$RichTextLabel.text = ""
 	
 	for bgm in MusicPlayer.all_bgms:
