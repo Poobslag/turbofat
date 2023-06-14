@@ -128,7 +128,7 @@ Demos
 *./project/src/demo/puzzle/critter/CarrotDemo.tscn
 *./project/src/demo/puzzle/critter/MoleDemo.tscn
 *./project/src/demo/puzzle/critter/OnionDemo.tscn
--./project/src/demo/puzzle/critter/SharkDemo.tscn
+*./project/src/demo/puzzle/critter/SharkDemo.tscn
 -./project/src/demo/puzzle/level/LevelRankDemo.tscn
 -./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn

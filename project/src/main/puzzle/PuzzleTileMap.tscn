@@ -710,7 +710,6 @@ script = ExtResource("5")
 
 [node name="CornerMap" parent="." instance=ExtResource("3")]
 material = SubResource("2")
-tile_set = ExtResource("2")
 
 [node name="ShadowViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -740,4 +739,3 @@ script = ExtResource("1")
 
 [node name="CornerMap" parent="GhostPieceViewport/ShadowMap" instance=ExtResource("3")]
 material = SubResource("2")
-tile_set = ExtResource("2")

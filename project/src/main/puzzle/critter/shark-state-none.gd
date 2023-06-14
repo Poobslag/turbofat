@@ -10,5 +10,5 @@ func enter(shark: Shark, prev_state_name: String) -> void:
 		shark.poof.play_poof_animation()
 		if shark.visible:
 			shark.sfx.play_poof_sound()
-	shark.animation_player.stop()
+	shark.animation_player.stop(true)
 	shark.tooth_cloud.eating = false

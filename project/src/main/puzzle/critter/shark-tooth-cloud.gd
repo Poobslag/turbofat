@@ -74,9 +74,9 @@ func set_eaten_color(tile: int, autotile_y: int) -> void:
 
 
 ## Adds a cell to the eaten piece tilemap.
-func set_eaten_cell(position: Vector2i) -> void:
+func set_eaten_cell(block_pos: Vector2i) -> void:
 	_check_for_tilemap()
-	_tile_map.set_block(position, eaten_tile, Vector2i(0, eaten_autotile_y))
+	_tile_map.set_block(block_pos, eaten_tile, Vector2i(0, eaten_autotile_y))
 
 
 ## Clears the eaten piece tilemap.
