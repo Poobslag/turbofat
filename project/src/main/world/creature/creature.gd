@@ -111,7 +111,12 @@ func _ready() -> void:
 	if not Engine.editor_hint \
 			and SystemData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
 		creature_outline_scene_path = "res://src/main/world/creature/FastCreatureOutline.tscn"
-	var creature_outline_scene: PackedScene = ResourceCache.get_resource(creature_outline_scene_path)
+	var creature_outline_scene: PackedScene
+	if Engine.editor_hint:
+		# ResourceCache is not available in tool scripts
+		creature_outline_scene = load(creature_outline_scene_path)
+	else:
+		creature_outline_scene = ResourceCache.get_resource(creature_outline_scene_path)
 	_creature_outline = creature_outline_scene.instance()
 	add_child(_creature_outline)
 	
@@ -455,6 +460,9 @@ func _refresh_creature_id() -> void:
 
 func _refresh_elevation() -> void:
 	if not is_inside_tree():
+		return
+	if Engine.editor_hint:
+		# MouthHook.set_elevation is not available in tool scripts
 		return
 	_creature_outline.set_elevation(elevation)
 	_mouth_hook.set_elevation(elevation)
