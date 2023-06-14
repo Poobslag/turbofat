@@ -1,4 +1,4 @@
-@tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name DnaAlternatives
 ## Provides alternatives for alleles which conflict.
 ##

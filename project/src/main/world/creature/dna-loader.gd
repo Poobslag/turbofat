@@ -1,4 +1,4 @@
-@tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 class_name DnaLoader
 extends Node
 ## Assigns and unassigns textures and animations based on a creature's dna.

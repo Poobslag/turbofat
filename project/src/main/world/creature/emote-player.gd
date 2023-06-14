@@ -1,4 +1,4 @@
-@tool #uncomment to view creature in editor
+#@tool #uncomment to view creature in editor
 extends AnimationPlayer
 ## Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
 
