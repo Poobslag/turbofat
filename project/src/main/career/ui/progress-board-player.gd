@@ -17,8 +17,9 @@ const PLAYER_MOVE_SOUND_PITCH_SCALE_MAX := 1.1
 ## Visual spot where the player has advanced.
 ##
 ## When animating, this represents the player's target position.
-var spots_travelled: int: set = set_spots_travelled
+var spots_travelled: int: set = set_spots_travelled, get = get_spots_travelled
 
+## internal version of 'spots_travelled' which can be assigned without invoking the setter
 var _spots_travelled_internal: int
 
 ## Visual spot where the player's chalk graphic should be drawn.
@@ -106,6 +107,10 @@ func set_spots_travelled(new_spots_travelled: int) -> void:
 	_spots_travelled_internal = new_spots_travelled
 	visual_spots_travelled = new_spots_travelled
 	_refresh_visual_spots_travelled()
+
+
+func get_spots_travelled() -> int:
+	return _spots_travelled_internal
 
 
 func set_visual_spots_travelled(new_visual_spots_travelled: float) -> void:

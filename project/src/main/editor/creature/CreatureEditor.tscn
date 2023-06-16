@@ -1,7 +1,7 @@
 [gd_scene load_steps=76 format=3 uid="uid://duonsr7p1etnd"]
 
 [ext_resource type="PackedScene" uid="uid://212da705ytk0" path="res://src/main/world/creature/Creature.tscn" id="1"]
-[ext_resource type="Theme" path="res://src/main/ui/theme/h4.theme" id="2"]
+[ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="2"]
 [ext_resource type="Script" path="res://src/main/editor/creature/creature-editor-nametags.gd" id="3"]
 [ext_resource type="PackedScene" path="res://src/main/editor/creature/HookableNametag.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://src/main/world/creature/CreatureShadows.tscn" id="5"]
@@ -1738,12 +1738,16 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("18")
 creature_editor_path = NodePath("../..")
 
 [node name="Backdrop" parent="Ui/Dialogs" instance=ExtResource("17")]
 layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="SaveConfirmation" type="ConfirmationDialog" parent="Ui/Dialogs"]
 size = Vector2i(232, 80)

@@ -101,6 +101,7 @@ game runs, but can't export it
 
 gold plating
 
+-document '_foo_internal' convention in wiki
 -remove redundant 'enum from...' comments
 -add strong typing to arrays
 *replace 'randi_range' with native call
@@ -130,8 +131,11 @@ Demos
 *./project/src/demo/puzzle/critter/OnionDemo.tscn
 *./project/src/demo/puzzle/critter/SharkDemo.tscn
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
--./project/src/demo/puzzle/level/RankModeDemo.tscn
+*./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
+ -infinite recursion error
+ -about 20 warnings
+ -regression test progress board; travelling
 -./project/src/demo/puzzle/PuzzleDemo.tscn
 -./project/src/demo/puzzle/PuzzleMessageDemo.tscn
 -./project/src/demo/puzzle/ResultsHudDemo.tscn
@@ -152,3 +156,6 @@ Demos
 -./project/src/demo/world/LetterShooterDemo.tscn
 
 
+progress board bugs:
+-doesn't 'ding' when you reach the destination
+-clock hands don't move in response to number keys

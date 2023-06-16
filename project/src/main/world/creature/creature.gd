@@ -37,7 +37,11 @@ const MAX_RUN_ACCELERATION := 2250
 const CREATURE_FADE_IN_DURATION := 0.6
 const CREATURE_FADE_OUT_DURATION := 0.3
 
-@export var creature_id: String: set = set_creature_id
+@export var creature_id: String: set = set_creature_id, get = get_creature_id
+
+## internal version of 'creature_id' which can be assigned without invoking the setter
+var _creature_id_internal: String
+
 @export var dna: Dictionary: set = set_dna
 
 ## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
@@ -135,7 +139,7 @@ func _ready() -> void:
 	
 	SceneTransition.fade_in_started.connect(_on_SceneTransition_fade_in_started)
 	
-	if creature_id:
+	if _creature_id_internal:
 		_refresh_creature_id()
 	else:
 		refresh_dna()
@@ -239,8 +243,14 @@ func set_chat_selectors(new_chat_selectors: Array) -> void:
 
 func set_creature_id(new_creature_id: String) -> void:
 	creature_id = new_creature_id
-	set_meta("chat_id", creature_id)
+	_creature_id_internal = new_creature_id
+	
+	set_meta("chat_id", _creature_id_internal)
 	_refresh_creature_id()
+
+
+func get_creature_id() -> String:
+	return _creature_id_internal
 
 
 func set_creature_name(new_creature_name: String) -> void:
@@ -309,7 +319,7 @@ func get_orientation() -> int:
 ## 	'stored_fatness': The fatness to save in the creature library. This can be higher than the creature's current
 ## 		fatness if they're still eating.
 func save_fatness(stored_fatness: float) -> void:
-	if creature_id.is_empty():
+	if _creature_id_internal.is_empty():
 		# randomly-generated creatures have no creature id; their fatness isn't stored
 		return
 	
@@ -319,7 +329,7 @@ func save_fatness(stored_fatness: float) -> void:
 	metabolism = pow(metabolism, metabolism_scale)
 	stored_fatness *= metabolism
 	stored_fatness = clamp(stored_fatness, min_fatness, Creatures.MAX_FATNESS)
-	PlayerData.creature_library.set_fatness(creature_id, stored_fatness)
+	PlayerData.creature_library.set_fatness(_creature_id_internal, stored_fatness)
 
 
 ## Plays a 'hello!' voice sample for when a creature enters the restaurant.
@@ -352,7 +362,7 @@ func feed(food_type: Foods.FoodType) -> void:
 func rename(new_creature_name: String) -> void:
 	set_creature_name(new_creature_name)
 	creature_short_name = NameUtils.sanitize_short_name(creature_name)
-	creature_id = NameUtils.short_name_to_id(creature_short_name)
+	_creature_id_internal = NameUtils.short_name_to_id(creature_short_name)
 
 
 func restart_idle_timer() -> void:
@@ -360,7 +370,7 @@ func restart_idle_timer() -> void:
 
 
 func set_creature_def(new_creature_def: CreatureDef) -> void:
-	creature_id = new_creature_def.creature_id
+	_creature_id_internal = new_creature_def.creature_id
 	set_dna(new_creature_def.dna)
 	set_chat_theme(new_creature_def.chat_theme)
 	set_creature_name(new_creature_def.creature_name)
@@ -381,7 +391,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 
 func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
-	result.creature_id = creature_id
+	result.creature_id = _creature_id_internal
 	result.dna = DnaUtils.trim_dna(dna)
 	# create a copy to prevent our chat theme from being modified accidentally
 	result.chat_theme.from_json_dict(chat_theme.to_json_dict())
@@ -459,7 +469,7 @@ func _refresh_creature_id() -> void:
 	if not is_inside_tree():
 		return
 	
-	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
+	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(_creature_id_internal)
 	if new_creature_def:
 		set_creature_def(new_creature_def)
 

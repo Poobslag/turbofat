@@ -24,9 +24,9 @@ const HAND_POSITIONS_BY_HOURS := {
 ##
 ## This is stored independently of the player's career data because this clock might animate to show a time in the past
 ## or future.
-var hours_passed := 0: set = set_hours_passed
+var hours_passed := 0: set = set_hours_passed, get = get_hours_passed
 
-## Redundant with 'hours_passed' which can be assigned without invoking the setter
+## internal version of 'hours_passed' which can be assigned without invoking the setter
 var _hours_passed_internal := 0
 
 ## Digital text which shows the time using text like '8:50 pm'
@@ -81,9 +81,13 @@ func play(new_hours_passed: int, duration: float) -> void:
 
 func set_hours_passed(new_hours_passed: int = 0) -> void:
 	hours_passed = new_hours_passed
-	_hours_passed_internal = hours_passed
+	_hours_passed_internal = new_hours_passed
 	
 	_refresh()
+
+
+func get_hours_passed() -> int:
+	return _hours_passed_internal
 
 
 ## Calculates the desired minute hand position.
