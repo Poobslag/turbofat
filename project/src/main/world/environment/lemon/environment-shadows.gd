@@ -12,7 +12,6 @@ export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path
 ## value: (Rect2) rectangle which measures tile's grid size, in cells
 export (Dictionary) var cell_shadow_mapping setget set_cell_shadow_mapping
 
-onready var _obstacle_map_shadows := $ObstacleMapShadows
 onready var _creature_shadows := $CreatureShadows
 onready var _shadow_caster_shadows := $ShadowCasterShadows
 

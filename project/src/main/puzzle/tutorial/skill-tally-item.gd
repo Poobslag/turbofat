@@ -24,7 +24,6 @@ var _tween: SceneTreeTween
 
 onready var _blink_panel := $Blink
 onready var _label := $Label
-onready var _task_complete_sound := $TaskCompleteSound
 
 func _ready() -> void:
 	reset()
