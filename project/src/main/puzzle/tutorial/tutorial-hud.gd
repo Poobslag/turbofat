@@ -64,8 +64,8 @@ func refresh() -> void:
 
 
 ## Returns a specific SkillTallyItem instance in the panel.
-func skill_tally_item(name: String) -> SkillTallyItem:
-	return skill_tally_panel.skill_tally_item(name)
+func skill_tally_item(item_name: String) -> SkillTallyItem:
+	return skill_tally_panel.skill_tally_item(item_name)
 
 
 ## Returns all SkillTallyItem instances in the panel.

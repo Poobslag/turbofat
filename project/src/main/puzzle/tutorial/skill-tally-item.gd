@@ -24,7 +24,6 @@ var _tween: Tween
 
 @onready var _blink_panel := $Blink
 @onready var _label := $Label
-@onready var _task_complete_sound := $TaskCompleteSound
 
 func _ready() -> void:
 	reset()
@@ -96,7 +95,14 @@ func _refresh_puzzle() -> void:
 			"squish_moved":
 				_piece_manager.connect(signal_name, _on_PieceManager_squish_moved)
 			_:
-				if signal_name in _get_signal_names(_piece_manager):
+				# Workaround for Godot #69282; calling static function from within a class generates a warning
+				# https://github.com/godotengine/godot/issues/69282
+				#
+				# Workaround for Godot #73222; @warning_ignore doesn't work for conditions
+				# https://github.com/godotengine/godot/issues/73222
+				@warning_ignore("static_called_on_instance")
+				var godot_73222_workaround := _get_signal_names(_piece_manager)
+				if signal_name in godot_73222_workaround:
 					_piece_manager.connect(signal_name, _on_skill_performed)
 				else:
 					push_warning("Could not find sender for signal '%s'" % signal_name)

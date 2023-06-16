@@ -10,10 +10,6 @@ var food_type := 0: set = set_food_type
 ## 'true' if the food item should be shown, 'false' if the star or seed should be shown
 var food_shown: bool = false: set = set_food_shown
 
-## array of Colors the star should cycle between
-var _star_colors: Array = []
-var _star_color_index := 0
-
 @onready var _seed := $Seed
 @onready var _star := $Star
 @onready var _food_item := $FoodItem

@@ -5,7 +5,6 @@ extends HBoxContainer
 signal delete_pressed
 
 @onready var _option_button := $HBoxContainer/OptionButton
-@onready var _delete_button := $HBoxContainer/Delete
 
 func _ready() -> void:
 	SystemSave.save_slot_deleted.connect(_on_SystemSave_save_slot_deleted)

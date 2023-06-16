@@ -11,7 +11,6 @@ var money: int: set = set_money
 
 ## particles which explode from the center of the money
 @onready var _particles: GPUParticles2D = $GPUParticles2D
-@onready var _particles_material: ParticleProcessMaterial = $GPUParticles2D.process_material
 
 ## text showing the earned money, like '¥20'
 @onready var _label: Label = $Label

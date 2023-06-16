@@ -10,3 +10,5 @@ level_path = "res://assets/main/puzzle/levels/practice/marathon-normal.json"
 [node name="Puzzle" parent="." instance=ExtResource("2")]
 layout_mode = 3
 anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2

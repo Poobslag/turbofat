@@ -11,8 +11,8 @@ func _ready() -> void:
 
 
 ## Returns a specific SkillTallyItem instance in the panel.
-func skill_tally_item(name: String) -> SkillTallyItem:
-	return _grid_container.get_node(name) as SkillTallyItem
+func skill_tally_item(item_name: String) -> SkillTallyItem:
+	return _grid_container.get_node(item_name) as SkillTallyItem
 
 
 ## Returns all SkillTallyItem instances in the panel.
@@ -28,8 +28,8 @@ func add_skill_tally_item(item: SkillTallyItem) -> void:
 ## Shows the panel containing skill tally items.
 func show_skill_tally_items() -> void:
 	show()
-	for skill_tally_item in skill_tally_items():
-		skill_tally_item.visible = true
+	for next_skill_tally_item in skill_tally_items():
+		next_skill_tally_item.visible = true
 
 
 ## Pauses and plays a camera flash effect for transitions.

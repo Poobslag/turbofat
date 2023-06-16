@@ -24,8 +24,6 @@ extends Node
 	$Voice12,
 ]
 
-@onready var _crickets := $Crickets
-
 ## Plays a sound for the onion's voice when dancing.
 func play_voice_sound() -> void:
 	SfxDeconflicter.play(Utils.rand_value(_voices))

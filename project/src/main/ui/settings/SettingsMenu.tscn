@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://src/main/ui/settings/VolumeSetting.tscn" id="6"]
 [ext_resource type="Shortcut" path="res://src/main/ui/UiMenuShortcut.tres" id="7"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-size.gd" id="8"]
-[ext_resource type="PackedScene" path="res://src/main/puzzle/PuzzleTouchButtons.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cr4qehiw07ekh" path="res://src/main/puzzle/PuzzleTouchButtons.tscn" id="9"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-scheme.gd" id="10"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-fat-finger.gd" id="11"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-ghost-piece.gd" id="12"]
@@ -79,13 +79,12 @@ color = Color(0, 0, 0, 0.752941)
 
 [node name="TouchButtons" parent="." instance=ExtResource("9")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(530, 360)
 anchors_preset = 8
 anchor_left = 0.5
@@ -1008,21 +1007,21 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 
 [node name="ChangeSaveConfirmation" type="ConfirmationDialog" parent="Dialogs"]
+size = Vector2i(200, 80)
 theme = ExtResource("20")
-size = Vector2i(200, 70)
 dialog_text = "Change save slot?"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
+size = Vector2i(200, 80)
 theme = ExtResource("20")
-size = Vector2i(200, 70)
 dialog_text = "Delete save slot?
 Slot A (34.2 hours)"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
+size = Vector2i(200, 80)
 theme = ExtResource("20")
-size = Vector2i(200, 70)
 dialog_text = "Are you sure?
 Slot A (34.2 hours)"
 dialog_autowrap = true

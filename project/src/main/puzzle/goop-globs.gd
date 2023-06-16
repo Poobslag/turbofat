@@ -69,7 +69,7 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 		var box_type: Foods.BoxType
 		var glob_count: int
 		if _puzzle_tile_map.get_cell_source_id(0, Vector2i(x, y)) == PuzzleTileMap.TILE_BOX:
-			box_type = _puzzle_tile_map.get_cell_atlas_coords(0, Vector2i(x, y)).y
+			box_type = _puzzle_tile_map.get_cell_atlas_coords(0, Vector2i(x, y)).y as Foods.BoxType
 			if Foods.is_snack_box(box_type):
 				glob_count = 2
 			elif Foods.is_cake_box(box_type):

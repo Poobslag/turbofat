@@ -27,7 +27,7 @@ func _refresh() -> void:
 
 func _on_OptionButton_item_selected(index: int) -> void:
 	var item_id := _option_button.get_item_id(index)
-	SystemData.gameplay_settings.speed = item_id
+	SystemData.gameplay_settings.speed = item_id as GameplaySettings.Speed
 
 
 func _on_GameplaySettings_speed_changed(_value: GameplaySettings.Speed) -> void:

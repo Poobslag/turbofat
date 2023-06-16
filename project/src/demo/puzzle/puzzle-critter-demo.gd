@@ -90,10 +90,10 @@ func _carrot_input(event: InputEvent) -> void:
 		KEY_1:
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_2:
-			_carrot_config.smoke = (_carrot_config.smoke + 1) % CarrotConfig.Smoke.size()
+			_carrot_config.smoke = (_carrot_config.smoke + 1) % CarrotConfig.Smoke.size() as CarrotConfig.Smoke
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_3:
-			_carrot_config.size = (_carrot_config.size + 1) % CarrotConfig.CarrotSize.size()
+			_carrot_config.size = (_carrot_config.size + 1) % CarrotConfig.CarrotSize.size() as CarrotConfig.CarrotSize
 			$Puzzle/Fg/Critters/Carrots.add_carrots(_carrot_config)
 		KEY_EQUAL:
 			_carrot_config.count = 99

@@ -29,7 +29,7 @@ func _ready() -> void:
 	_spawn_customers()
 
 
-func initial_environment_path() -> String:
+func get_initial_environment_path() -> String:
 	var result: String = ENVIRONMENT_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, \
 			DECORATED_PUZZLE_ENVIRONMENT_PATH)
 	

@@ -133,9 +133,12 @@ Demos
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
- -infinite recursion error
  -about 20 warnings
- -regression test progress board; travelling
+ -crashes when launching
+  *infinite recursion error
+  -PuzzleWorld.customers is empty
+ -visual problems
+ -merge warning fixes into main branch
 -./project/src/demo/puzzle/PuzzleDemo.tscn
 -./project/src/demo/puzzle/PuzzleMessageDemo.tscn
 -./project/src/demo/puzzle/ResultsHudDemo.tscn

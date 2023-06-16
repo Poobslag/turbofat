@@ -76,7 +76,7 @@ func _input(event: InputEvent) -> void:
 			_move_objects_to_path()
 
 
-func initial_environment_path() -> String:
+func get_initial_environment_path() -> String:
 	return _career_environment_path()
 
 
@@ -86,7 +86,7 @@ func initial_environment_path() -> String:
 ## 	'level_posses': LevelPosse instances for creatures which should appear for each level.
 func refresh_from_career_data(level_posses: Array) -> void:
 	if EnvironmentScene.resource_path != _career_environment_path():
-		set_environment_scene(load(initial_environment_path()))
+		set_environment_scene(load(get_initial_environment_path()))
 		_fill_environment_scene()
 	_move_objects_to_path()
 	

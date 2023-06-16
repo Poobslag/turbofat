@@ -26,7 +26,7 @@ func _ready() -> void:
 	_refresh_mood()
 
 
-func initial_environment_path() -> String:
+func get_initial_environment_path() -> String:
 	var environment_name := PlayerData.career.current_region().overworld_environment_name
 	return ENVIRONMENT_PATH_BY_NAME.get(environment_name, DEFAULT_ENVIRONMENT_PATH)
 

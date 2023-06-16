@@ -16,7 +16,7 @@ func _ready() -> void:
 	_launch_cutscene()
 
 
-func initial_environment_path() -> String:
+func get_initial_environment_path() -> String:
 	return CurrentCutscene.chat_tree.chat_environment_path()
 
 

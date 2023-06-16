@@ -12,7 +12,6 @@ extends Node2D
 ## value: (Rect2i) tile's grid size, in cells
 @export var cell_shadow_mapping: Dictionary: set = set_cell_shadow_mapping
 
-@onready var _obstacle_map_shadows := $ObstacleMapShadows
 @onready var _creature_shadows := $CreatureShadows
 @onready var _shadow_caster_shadows := $ShadowCasterShadows
 

@@ -96,6 +96,7 @@ func _calculate_pan_cells() -> Array:
 	
 	@warning_ignore("integer_division")
 	# Workaround for Godot #73222; @warning_ignore doesn't work for conditions
+	# https://github.com/godotengine/godot/issues/73222
 	var godot_73222_workaround := range(pans_max - cell_pos.x / 2, min(pans_max, 50))
 	for i in godot_73222_workaround:
 		@warning_ignore("integer_division")

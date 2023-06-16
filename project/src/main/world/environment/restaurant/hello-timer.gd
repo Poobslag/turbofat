@@ -25,12 +25,12 @@ func _process(delta: float) -> void:
 ## associated with positive reinforcement (big combos), but they could get annoyed if creatures say hello/goodbye too
 ## frequently because those sounds are associated with negative reinforcement (broken combos).
 func _should_chat() -> bool:
-	var _should_chat := true
+	var result := true
 	if greetiness + randf() > 1.0:
 		greetiness -= 1.0 / GREETINGS_PER_MINUTE
 	else:
-		_should_chat = false
-	return _should_chat
+		result = false
+	return result
 
 
 ## Conditionally schedules a 'hello!' voice sample for when a creature enters the restaurant.

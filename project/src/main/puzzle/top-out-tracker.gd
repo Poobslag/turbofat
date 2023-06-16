@@ -5,7 +5,6 @@ const LINES_CLEARED_ON_TOP_OUT := 10
 @onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 @onready var _puzzle: Puzzle = $".."
 @onready var _playfield: Playfield = _puzzle.get_playfield()
-@onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func _ready() -> void:
 	PuzzleState.topped_out.connect(_on_PuzzleState_topped_out)
