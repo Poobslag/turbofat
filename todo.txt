@@ -134,11 +134,13 @@ Demos
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
  -about 20 warnings
- -crashes when launching
+ *crashes when launching
   *infinite recursion error
-  -PuzzleWorld.customers is empty
+  *PuzzleWorld.customers is empty
  -visual problems
  -merge warning fixes into main branch
+ -Restore 'get_close_button' functionality for settings menu
+ -Sporadic 'can't store GradientTexture2D' errors
 -./project/src/demo/puzzle/PuzzleDemo.tscn
 -./project/src/demo/puzzle/PuzzleMessageDemo.tscn
 -./project/src/demo/puzzle/ResultsHudDemo.tscn
@@ -158,7 +160,10 @@ Demos
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
 -./project/src/demo/world/LetterShooterDemo.tscn
 
+PuzzleWorld.get_initial_environment_path wasn't called?
+Need to explicitly call 'super.ready'
+physics_ticks_per_second
 
-progress board bugs:
--doesn't 'ding' when you reach the destination
--clock hands don't move in response to number keys
+globally call 'super.ready'
+globally call other 'super.' methods
+

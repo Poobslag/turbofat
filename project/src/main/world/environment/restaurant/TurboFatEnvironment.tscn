@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/WoodTable.tscn" id="31"]
 [ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/WoodPillar.tscn" id="32"]
 [ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/TurboFatStool.tscn" id="33"]
-[ext_resource type="PackedScene" path="res://src/main/world/creature/Creature.tscn" id="34"]
+[ext_resource type="PackedScene" uid="uid://212da705ytk0" path="res://src/main/world/creature/Creature.tscn" id="34"]
 [ext_resource type="PackedScene" path="res://src/main/world/OverworldExit.tscn" id="35"]
 [ext_resource type="PackedScene" path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" id="37"]
 [ext_resource type="Script" path="res://src/main/world/environment/overworld-environment.gd" id="41"]

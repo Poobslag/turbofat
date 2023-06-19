@@ -32,21 +32,21 @@ func _ready() -> void:
 	_change_save_confirmation.get_cancel_button().text = tr("No")
 	_change_save_confirmation.confirmed.connect(_on_ChangeSaveConfirmation_confirmed)
 	_change_save_confirmation.get_cancel_button().pressed.connect(_on_ChangeSaveConfirmation_cancelled)
-	_change_save_confirmation.get_close_button().pressed.connect(_on_ChangeSaveConfirmation_cancelled)
+#	_change_save_confirmation.get_close_button().pressed.connect(_on_ChangeSaveConfirmation_cancelled)
 	
 	_delete_confirmation_1.get_ok_button().text = tr("Yes")
 	_delete_confirmation_1.get_cancel_button().text = tr("No")
 	_delete_confirmation_1.get_label().add_theme_color_override("font_color", Color.RED)
 	_delete_confirmation_1.confirmed.connect(_on_DeleteConfirmation1_confirmed)
 	_delete_confirmation_1.get_cancel_button().pressed.connect(_on_DeleteConfirmation_cancelled)
-	_delete_confirmation_1.get_close_button().pressed.connect(_on_DeleteConfirmation_cancelled)
+#	_delete_confirmation_1.get_close_button().pressed.connect(_on_DeleteConfirmation_cancelled)
 	
 	_delete_confirmation_2.get_ok_button().text = tr("Yes")
 	_delete_confirmation_2.get_cancel_button().text = tr("No")
 	_delete_confirmation_2.get_label().add_theme_color_override("font_color", Color.RED)
 	_delete_confirmation_2.confirmed.connect(_on_DeleteConfirmation2_confirmed)
 	_delete_confirmation_2.get_cancel_button().pressed.connect(_on_DeleteConfirmation_cancelled)
-	_delete_confirmation_2.get_close_button().pressed.connect(_on_DeleteConfirmation_cancelled)
+#	_delete_confirmation_2.get_close_button().pressed.connect(_on_DeleteConfirmation_cancelled)
 
 
 ## Displays a dialog prompting the player if they want to change their save slot

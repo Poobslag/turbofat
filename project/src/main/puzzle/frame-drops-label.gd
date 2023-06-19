@@ -25,7 +25,7 @@ var _actual_visual_msec := 0.0
 var _visual_frame_drops := 0
 
 func _ready() -> void:
-	var physics_fps: int = ProjectSettings.get_setting("physics/common/physics_fps")
+	var physics_fps: int = ProjectSettings.get_setting("physics/common/physics_ticks_per_second")
 	_seconds_per_frame = 1.0 / physics_fps
 	
 	_reset()

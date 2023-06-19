@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cqj2q0dsekv8t" path="res://src/main/world/environment/OutdoorShadows.tscn" id="2"]
 [ext_resource type="Script" path="res://src/main/world/environment/overworld-environment.gd" id="15"]
-[ext_resource type="PackedScene" path="res://src/main/world/creature/Creature.tscn" id="19"]
+[ext_resource type="PackedScene" uid="uid://212da705ytk0" path="res://src/main/world/creature/Creature.tscn" id="19"]
 [ext_resource type="TileSet" uid="uid://dl5uq5f6b2u7k" path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" id="40"]
 [ext_resource type="TileSet" uid="uid://biuufj6ghvjr2" path="res://src/main/world/environment/restaurant/floor-library.tres" id="41"]
 
