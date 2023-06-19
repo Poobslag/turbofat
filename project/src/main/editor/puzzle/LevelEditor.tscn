@@ -142,7 +142,10 @@ script = ExtResource("16")
 level_editor_path = NodePath("../..")
 
 [node name="Backdrop" parent="Ui/Dialogs" instance=ExtResource("15")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OpenFile" type="FileDialog" parent="Ui/Dialogs"]
 title = "Open a File"

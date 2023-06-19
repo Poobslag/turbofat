@@ -105,7 +105,10 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource("3")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OpenFile" type="FileDialog" parent="Dialogs"]
 title = "Open a File"

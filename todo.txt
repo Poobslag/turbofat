@@ -92,6 +92,7 @@ game starts up, but has bugs
  -settings menu in spanish; 'open user folder' button should shrink its font size
  -big font in easter egg
  -alternate input settings: WASD
+ -open and save all .tscn files
 
 game runs, but can't export it
 
@@ -133,11 +134,11 @@ Demos
 *./project/src/demo/puzzle/critter/SharkDemo.tscn
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
--./project/src/demo/ui/settings/SettingsMenuDemo.tscn
+*./project/src/demo/ui/settings/SettingsMenuDemo.tscn
  *delete save slot button is narrower
  *sliders are taller
- -Restore 'get_close_button' functionality for settings menu
- -delete save slot button doesn't show backdrop
+ *Restore 'get_close_button' functionality for settings menu
+ *delete save slot button doesn't show backdrop
  *Works with touch enabled
   *'Invalid set index normal' crash
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn

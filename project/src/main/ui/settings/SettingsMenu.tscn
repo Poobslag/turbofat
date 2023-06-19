@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dw3n3uvccampk"]
+[gd_scene load_steps=40 format=3 uid="uid://dw3n3uvccampk"]
 
 [ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="1"]
 [ext_resource type="StyleBox" path="res://src/main/puzzle/PuzzleHudStyleBox.tres" id="2"]
@@ -23,7 +23,7 @@
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-warning.gd" id="21"]
 [ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-0.tres" id="21_rumld"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-save-slot.gd" id="22"]
-[ext_resource type="PackedScene" path="res://src/main/ui/DialogBackdrop.tscn" id="23"]
+[ext_resource type="PackedScene" uid="uid://cv4fl1a6tkxed" path="res://src/main/ui/DialogBackdrop.tscn" id="23"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-dialogs.gd" id="24"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-use-vsync.gd" id="25"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-open-user-folder.gd" id="26"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-hold-piece.gd" id="32"]
 [ext_resource type="Script" path="res://src/main/ui/settings/reset-gameplay-button.gd" id="33"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-feeding-animation.gd" id="34"]
+[ext_resource type="PackedScene" uid="uid://dsog4bkmkh6g3" path="res://src/main/ui/PopupHideSignalEmitter.tscn" id="37_tkvus"]
 [ext_resource type="PackedScene" uid="uid://l3yvalfyq85w" path="res://src/main/ui/FontFitButton.tscn" id="39"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
@@ -1022,15 +1023,17 @@ script = ExtResource("24")
 save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot")
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource("23")]
-layout_mode = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ChangeSaveConfirmation" type="ConfirmationDialog" parent="Dialogs"]
 size = Vector2i(200, 80)
 theme = ExtResource("20")
 dialog_text = "Change save slot?"
 dialog_autowrap = true
+
+[node name="PopupHideSignalEmitter" parent="Dialogs/ChangeSaveConfirmation" instance=ExtResource("37_tkvus")]
 
 [node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
 size = Vector2i(200, 80)
@@ -1039,12 +1042,16 @@ dialog_text = "Delete save slot?
 Slot A (34.2 hours)"
 dialog_autowrap = true
 
+[node name="PopupHideSignalEmitter" parent="Dialogs/DeleteConfirmation1" instance=ExtResource("37_tkvus")]
+
 [node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
 size = Vector2i(200, 80)
 theme = ExtResource("20")
 dialog_text = "Are you sure?
 Slot A (34.2 hours)"
 dialog_autowrap = true
+
+[node name="PopupHideSignalEmitter" parent="Dialogs/DeleteConfirmation2" instance=ExtResource("37_tkvus")]
 
 [connection signal="hidden" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hidden"]
 [connection signal="shown" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_shown"]
@@ -1071,5 +1078,8 @@ dialog_autowrap = true
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
 [connection signal="about_to_popup" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/ChangeSaveConfirmation/PopupHideSignalEmitter" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_popup" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/DeleteConfirmation1/PopupHideSignalEmitter" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_popup" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/DeleteConfirmation2/PopupHideSignalEmitter" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]

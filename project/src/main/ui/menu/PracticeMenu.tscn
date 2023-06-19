@@ -268,8 +268,10 @@ script = ExtResource( 22 )
 region_buttons_path = NodePath("Panel/VBoxContainer/Top/RegionButtons")
 
 [node name="Backdrop" type="ColorRect" parent="RegionSubmenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 color = Color( 0, 0, 0, 0.752941 )
 
 [node name="Panel" parent="RegionSubmenu" instance=ExtResource( 1 )]
@@ -315,8 +317,10 @@ anchor_bottom = 1.0
 script = ExtResource( 24 )
 
 [node name="Backdrop" type="ColorRect" parent="LevelSubmenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 1
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 color = Color( 0, 0, 0, 0.752941 )
 
 [node name="Panel" parent="LevelSubmenu" instance=ExtResource( 15 )]
