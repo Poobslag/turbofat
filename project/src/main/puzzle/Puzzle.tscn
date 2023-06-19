@@ -90,16 +90,16 @@
 [ext_resource type="PackedScene" path="res://src/main/puzzle/night/NightStarSeed.tscn" id="91"]
 [ext_resource type="PackedScene" path="res://src/main/puzzle/MoneyBurst.tscn" id="92"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncge3"]
-bg_color = Color(1, 1, 1, 0.333333)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkeas"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0o4i"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncge3"]
+bg_color = Color(1, 1, 1, 0.333333)
 
 [sub_resource type="Gradient" id="3"]
 offsets = PackedFloat32Array(0, 0.695652)
@@ -315,8 +315,9 @@ offset_left = 150.0
 offset_top = 30.0
 offset_right = 250.0
 offset_bottom = 75.0
-theme_override_styles/background = SubResource("StyleBoxFlat_ncge3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_fkeas")
+theme_override_styles/background = SubResource("StyleBoxFlat_v0o4i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ncge3")
+show_percentage = false
 
 [node name="Desc" type="Label" parent="Fg/Chalkboard/MilestoneHud"]
 layout_mode = 0
@@ -776,8 +777,6 @@ offset_top = -32.0
 offset_bottom = 0.0
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource("10")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hud"]
 anchors_preset = 3
