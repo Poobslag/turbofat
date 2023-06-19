@@ -9,6 +9,7 @@ extends Node
 ## rules to all tiles in the TileMap.
 
 ## Editor toggle which manually applies autotiling.
+@warning_ignore("unused_private_class_variable")
 @export var _autotile: bool: set = autotile
 
 ## Applies autotiling rules to all cells in a TileMap.

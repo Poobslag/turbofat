@@ -37,9 +37,6 @@ var _exit_n_sheet := preload("res://assets/main/world/environment/exit-n-sheet.p
 ## sprite sheet for when the exit faces northeast, southeast, southwest or northwest
 var _exit_ne_sheet := preload("res://assets/main/world/environment/exit-ne-sheet.png")
 
-## We embed the get_overworld_ui() call in a conditional to avoid errors in the editor
-@onready var _overworld_ui: OverworldUi = null if Engine.is_editor_hint() else Global.get_overworld_ui()
-
 func _ready() -> void:
 	_refresh_exit_direction()
 

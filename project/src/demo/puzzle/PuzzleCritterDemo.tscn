@@ -1,14 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3s3wlkuv26lw"]
 
 [ext_resource type="Script" path="res://src/demo/puzzle/puzzle-critter-demo.gd" id="1"]
-[ext_resource type="PackedScene" path="res://src/main/puzzle/Puzzle.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c0fpymdml0rwo" path="res://src/main/puzzle/Puzzle.tscn" id="2"]
 
 [node name="PuzzleCritterDemo" type="Node"]
 script = ExtResource("1")
 level_path = "res://assets/main/puzzle/levels/practice/marathon-normal.json"
 
 [node name="Puzzle" parent="." instance=ExtResource("2")]
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2

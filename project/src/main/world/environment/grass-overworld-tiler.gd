@@ -31,6 +31,7 @@ const AUTOTILE_COORDS_GOOPY_GRASS := [
 @export var grass_tile_index: int
 
 ## Editor toggle which adds grass to a random selection of goopy/goopless cake tiles
+@warning_ignore("unused_private_class_variable")
 @export var _autotile: bool: set = autotile
 
 ## Obstacle tilemap with grass tiles to place

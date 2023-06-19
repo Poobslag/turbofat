@@ -235,6 +235,10 @@ swap_hold_piece={
 "events": []
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/main/locale/en.po", "res://assets/main/locale/es.po")
+
 [locale]
 
 translations=PackedStringArray("res://assets/main/locale/en.po", "res://assets/main/locale/es.po")

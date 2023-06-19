@@ -87,7 +87,7 @@ func update_milebar_color() -> void:
 		level_color = LEVEL_COLOR_1
 	else:
 		level_color = LEVEL_COLOR_0
-	_progress_bar.get("theme_override_styles/fg").set_bg_color(Utils.to_transparent(level_color, 0.333))
+	_progress_bar.get("theme_override_styles/fill").set_bg_color(Utils.to_transparent(level_color, 0.333))
 
 
 ## Initializes the milestone progress bar's value and boundaries, and locks in the font size.
@@ -111,7 +111,7 @@ func update_milebar() -> void:
 ## All of the Particles2D share the same GradientTexture so we only need to modify one.
 func _update_particle_colors() -> void:
 	var particles_material: ParticleProcessMaterial = _progress_bar_particles.get_child(0).process_material
-	var progress_bar_color: Color = _progress_bar.get("theme_override_styles/fg").bg_color
+	var progress_bar_color: Color = _progress_bar.get("theme_override_styles/fill").bg_color
 	particles_material.color_ramp.gradient.colors[0] = Utils.to_transparent(progress_bar_color, 1.0)
 	particles_material.color_ramp.gradient.colors[1] = Utils.to_transparent(progress_bar_color, 0.0)
 

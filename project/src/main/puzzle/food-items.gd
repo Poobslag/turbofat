@@ -108,7 +108,7 @@ func get_target_pos(target_customer: Creature, target_customer_index: int) -> Ve
 							_customer_change_timer.time_left / _customer_change_timer.wait_time)
 			
 			# calculate the position within the global viewport
-			target_pos = get_global_transform_with_canvas()(target_pos) * 
+			target_pos = get_global_transform_with_canvas().basis_xform_inv(target_pos)
 			# calculate the position within the FoodItems viewport texture
 			target_pos = target_pos / _texture_rect.scale
 		
@@ -170,7 +170,7 @@ func _on_Playfield_food_spawned(cell, remaining_food, food_type) -> void:
 ## When the FoodFlightTimer times out, we check the queue for the next food item which should fly into the customer's
 ## mouth.
 func _on_FoodFlightTimer_timeout() -> void:
-	if not _food_waiting_to_fly:
+	if _food_waiting_to_fly.is_empty():
 		return
 	
 	_food_flight_timer.start(_max_food_repeat_delay * randf())

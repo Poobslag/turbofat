@@ -19,6 +19,7 @@ extends Node
 @export var pebble_tile_index: int
 
 ## Editor toggle which adds pebbles to a random selection of goopy/goopless cake tiles
+@warning_ignore("unused_private_class_variable")
 @export var _autotile: bool: set = autotile
 
 ## Terrain tilemap with pebble tiles to place

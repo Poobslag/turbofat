@@ -16,6 +16,7 @@ extends Node
 @export var puddle_tile_index: int
 
 ## Editor toggle which adds puddles to a random selection of goopy/goopless cake tiles
+@warning_ignore("unused_private_class_variable")
 @export var _autotile: bool: set = autotile
 
 ## Terrain tilemap with puddle tiles to place

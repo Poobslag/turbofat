@@ -234,6 +234,7 @@ const CORNER_COVERS_BY_BINDING := {
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
+@warning_ignore("unused_private_class_variable")
 @export var _autotile: bool: set = autotile
 
 ## key: (TileTypes)

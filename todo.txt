@@ -71,6 +71,7 @@ game starts up, but has bugs
 *investigate 'ChatChoiceButton' get_class workaround; is_class is used by ChatChoices
 *investigate 'Creature' get_class workaround
 -restore @tool scripts
+-localization
 -regression test
  -#59683; polygon antialiasing is disabled; this used to be specified as a parameter to draw_colored_polygon but 'Normal maps are now specified as part of the CanvasTexture rather than specifying them on the Canvasitem itself' https://github.com/godotengine/godot/issues/59683
  -keyboard controls should be preserved
@@ -133,7 +134,7 @@ Demos
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
- -about 20 warnings
+ *about 20 warnings
  *crashes when launching
   *infinite recursion error
   *PuzzleWorld.customers is empty
