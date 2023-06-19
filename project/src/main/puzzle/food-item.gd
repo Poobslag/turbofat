@@ -53,6 +53,7 @@ var _floating_upward := false
 @onready var _spin_period := 2.50 * randf_range(0.8, 1.2)
 
 func _ready() -> void:
+	super()
 	# randomly increment the total time so items don't spin/pulse in sync
 	_total_time += randf_range(0.0, _spin_period)
 	
@@ -63,6 +64,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	super(delta)
 	if Engine.is_editor_hint():
 		# preserve default position/rotation/scale in the editor
 		return

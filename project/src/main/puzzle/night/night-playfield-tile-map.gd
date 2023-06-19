@@ -12,6 +12,7 @@ extends NightPuzzleTileMap
 var _silhouettes_by_cell := {}
 
 func _ready() -> void:
+	super()
 	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	_reset()
 

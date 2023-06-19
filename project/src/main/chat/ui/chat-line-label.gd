@@ -18,6 +18,7 @@ signal all_text_shown
 @onready var _label_typer := $LabelTyper
 
 func _ready() -> void:
+	super()
 	# Populate the chat line sizes based on the chat line panel sizes.
 	# They're the same except for a little padding on the outside.
 	var new_sizes: Array[Vector2] = []

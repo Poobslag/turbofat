@@ -28,6 +28,7 @@ const TEXT_ROTATION_BY_FRAME := {
 @onready var _text := $Text
 
 func _ready() -> void:
+	super()
 	_randomize_sprite()
 	_refresh_label()
 

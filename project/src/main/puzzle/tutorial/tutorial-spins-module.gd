@@ -38,6 +38,7 @@ var _prev_piece_orientation: int
 var _prev_piece_pos: Vector2i
 
 func _ready() -> void:
+	super()
 	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
 	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	
@@ -46,6 +47,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	super()
 	_refresh_last_piece_movement()
 
 

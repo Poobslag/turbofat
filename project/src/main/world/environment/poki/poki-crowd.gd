@@ -29,6 +29,7 @@ const CROWD_COLORS := [
 @onready var _wiggle_timer := $WiggleTimer
 
 func _ready() -> void:
+	super()
 	if Engine.is_editor_hint():
 		# don't animate the crowd member in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
 		# polluting version control
@@ -41,6 +42,7 @@ func _ready() -> void:
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
+	super()
 	_sprite = $Sprite2D
 
 

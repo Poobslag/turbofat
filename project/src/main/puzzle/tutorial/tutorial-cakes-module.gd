@@ -17,6 +17,7 @@ var _cakes_diagram_0 := preload("res://assets/main/puzzle/tutorial/cakes-diagram
 var _cakes_diagram_1 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-1.png")
 
 func _ready() -> void:
+	super()
 	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
 	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	playfield.box_built.connect(_on_Playfield_box_built)

@@ -10,5 +10,6 @@ func initialize(piece_queue: PieceQueue) -> void:
 	_piece_queue = piece_queue
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	super(delta)
 	refresh_tile_map(_piece_queue.hold_piece)

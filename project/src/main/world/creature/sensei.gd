@@ -15,6 +15,7 @@ var free_roam := false
 @onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
+	super()
 	set_creature_id(CreatureLibrary.SENSEI_ID)
 	$MoveTimer.timeout.connect(_on_MoveTimer_timeout)
 

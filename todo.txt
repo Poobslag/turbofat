@@ -135,12 +135,6 @@ Demos
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
 *./project/src/demo/ui/settings/SettingsMenuDemo.tscn
- *delete save slot button is narrower
- *sliders are taller
- *Restore 'get_close_button' functionality for settings menu
- *delete save slot button doesn't show backdrop
- *Works with touch enabled
-  *'Invalid set index normal' crash
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
  *about 20 warnings
  *crashes when launching

@@ -27,6 +27,7 @@ const LEMON_ANIMATION_NAMES := ["default-0", "default-1", "default-2"]
 @onready var _mouth_player := $MouthPlayer
 
 func _ready() -> void:
+	super()
 	if Engine.is_editor_hint():
 		# update the tree's appearance, but don't play any animations
 		_refresh_tree_in_editor()
@@ -41,6 +42,7 @@ func _ready() -> void:
 
 ## Preemptively initializes onready variables to avoid null references
 func _enter_tree() -> void:
+	super()
 	_initialize_onready_variables()
 
 

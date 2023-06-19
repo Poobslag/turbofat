@@ -9,12 +9,14 @@ var ui_has_focus := false: set = set_ui_has_focus
 var free_roam := false
 
 func _ready() -> void:
+	super()
 	SceneTransition.fade_out_started.connect(_on_SceneTransition_fade_out_started)
 	set_creature_id(CreatureLibrary.PLAYER_ID)
 	refresh_collision_extents()
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	super(event)
 	if not free_roam:
 		# disable movement outside of free roam mode
 		return

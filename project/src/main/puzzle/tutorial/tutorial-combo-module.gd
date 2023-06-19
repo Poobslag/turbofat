@@ -24,6 +24,7 @@ var _prepared_levels: Dictionary
 var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")
 
 func _ready() -> void:
+	super()
 	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
 	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	PuzzleState.combo_ended.connect(_on_PuzzleState_combo_ended)

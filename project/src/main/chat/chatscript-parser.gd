@@ -31,7 +31,6 @@ class DefaultState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree) -> void:
 		super(init_chat_tree)
-		pass
 	
 	
 	func parse_line(line: String) -> String:
@@ -63,7 +62,6 @@ class LocationState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree) -> void:
 		super(init_chat_tree)
-		pass
 	
 	
 	## Syntax:

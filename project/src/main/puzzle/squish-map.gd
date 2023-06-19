@@ -17,10 +17,12 @@ var _max_distance := 0
 var _color_y: int
 
 func _ready() -> void:
+	super()
 	set_process(false)
 
 
 func _process(delta: float) -> void:
+	super(delta)
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
 			var cell_pos := Vector2i(x, y)

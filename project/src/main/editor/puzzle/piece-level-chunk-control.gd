@@ -22,6 +22,7 @@ var _orientation := 0
 var _type: PieceType = PieceTypes.piece_j
 
 func _ready() -> void:
+	super()
 	$"../../Buttons/RotateButton".pressed.connect(_on_RotateButton_pressed)
 
 

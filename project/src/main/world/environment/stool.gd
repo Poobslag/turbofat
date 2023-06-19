@@ -20,11 +20,13 @@ const MAX_STOOL_DISTANCE := 4
 @onready var _sprite := $Sprite2D
 
 func _ready() -> void:
+	super()
 	_refresh_occupied()
 
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
+	super()
 	_sprite = $Sprite2D
 
 

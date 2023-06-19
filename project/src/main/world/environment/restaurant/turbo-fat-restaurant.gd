@@ -20,6 +20,7 @@ extends OverworldObstacle
 @onready var _poof_in_sfx := $PoofInSfx
 
 func _ready() -> void:
+	super()
 	if PlayerData.career.is_restaurant_decorated():
 		_restaurant.visible = true
 		_undecorated_restaurant.visible = false

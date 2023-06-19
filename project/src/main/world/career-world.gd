@@ -48,6 +48,7 @@ var _move_cheat_enabled := false
 @onready var _camera: Camera2D = $Camera3D
 
 func _ready() -> void:
+	super()
 	if Engine.is_editor_hint():
 		return
 	
@@ -56,6 +57,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	super(event)
 	if not _move_cheat_enabled:
 		# input handling is only for move cheat
 		return

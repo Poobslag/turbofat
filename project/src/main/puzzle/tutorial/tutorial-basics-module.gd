@@ -18,6 +18,7 @@ var _did_build_cake := false
 var _did_squish_move := false
 
 func _ready() -> void:
+	super()
 	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
 	PuzzleState.game_started.connect(_on_PuzzleState_game_started)
 	

@@ -6,6 +6,7 @@ extends BlockLevelChunkControl
 @export var box_size: Vector2i = Vector2i(3, 3): set = set_box_size
 
 func _ready() -> void:
+	super()
 	$"../../Buttons/RotateButton".pressed.connect(_on_RotateButton_pressed)
 	$"../../Buttons/ChangeButton".pressed.connect(_on_ChangeButton_pressed)
 

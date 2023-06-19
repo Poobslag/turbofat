@@ -23,6 +23,7 @@ var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagr
 var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
 func _ready() -> void:
+	super()
 	PuzzleState.after_game_prepared.connect(_on_PuzzleState_after_game_prepared)
 	PuzzleState.after_piece_written.connect(_on_PuzzleState_after_piece_written)
 	
