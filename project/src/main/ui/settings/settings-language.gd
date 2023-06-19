@@ -7,6 +7,7 @@ const DEFAULT_LOCALE := "en"
 
 func _ready() -> void:
 	# populate the dropdown with the names of available locales
+	_option_button.clear()
 	for locale in TranslationServer.get_loaded_locales():
 		_option_button.add_item(TranslationServer.get_locale_name(locale))
 	

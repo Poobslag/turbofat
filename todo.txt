@@ -133,6 +133,13 @@ Demos
 *./project/src/demo/puzzle/critter/SharkDemo.tscn
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
+-./project/src/demo/ui/settings/SettingsMenuDemo.tscn
+ *delete save slot button is narrower
+ *sliders are taller
+ -Restore 'get_close_button' functionality for settings menu
+ -delete save slot button doesn't show backdrop
+ *Works with touch enabled
+  *'Invalid set index normal' crash
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
  *about 20 warnings
  *crashes when launching
@@ -140,7 +147,6 @@ Demos
   *PuzzleWorld.customers is empty
  -visual problems
  -merge warning fixes into main branch
- -Restore 'get_close_button' functionality for settings menu
  -Sporadic 'can't store GradientTexture2D' errors
 -./project/src/demo/puzzle/PuzzleDemo.tscn
 -./project/src/demo/puzzle/PuzzleMessageDemo.tscn
@@ -150,7 +156,6 @@ Demos
 -./project/src/demo/ui/level-select/LevelSelectButtonDemo.tscn
 -./project/src/demo/ui/SceneTransitionDemo.tscn
 -./project/src/demo/ui/settings/keybind/KeybindManagerDemo.tscn
--./project/src/demo/ui/settings/SettingsMenuDemo.tscn
 -./project/src/demo/ui/touch/EightWayDemo.tscn
 -./project/src/demo/world/creature/CreaturePaletteDemo.tscn
 -./project/src/demo/world/CutsceneDemo.tscn
@@ -165,6 +170,9 @@ PuzzleWorld.get_initial_environment_path wasn't called?
 Need to explicitly call 'super.ready'
 physics_ticks_per_second
 
+restore font size
+
 globally call 'super.ready'
 globally call other 'super.' methods
+*disable 'line spacing'
 

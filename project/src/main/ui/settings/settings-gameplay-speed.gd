@@ -6,6 +6,7 @@ extends Control
 @onready var _option_button: OptionButton = $OptionButton
 
 func _ready() -> void:
+	_option_button.clear()
 	_option_button.add_item(tr("Slowestest"), GameplaySettings.Speed.SLOWESTEST)
 	_option_button.add_item(tr("Slowest"), GameplaySettings.Speed.SLOWEST)
 	_option_button.add_item(tr("Slower"), GameplaySettings.Speed.SLOWER)

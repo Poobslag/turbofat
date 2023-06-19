@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dw3n3uvccampk"]
+[gd_scene load_steps=39 format=3 uid="uid://dw3n3uvccampk"]
 
 [ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="1"]
 [ext_resource type="StyleBox" path="res://src/main/puzzle/PuzzleHudStyleBox.tres" id="2"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" path="res://src/main/ui/ButtonShortcutHelper.tscn" id="4"]
 [ext_resource type="FontFile" uid="uid://bhbkx0m6hdh58" path="res://assets/main/ui/font/fredoka-one-regular.ttf" id="4_jwsyk"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-menu.gd" id="5"]
-[ext_resource type="PackedScene" path="res://src/main/ui/settings/VolumeSetting.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://djr45gc70ol05" path="res://src/main/ui/settings/VolumeSetting.tscn" id="6"]
 [ext_resource type="Shortcut" path="res://src/main/ui/UiMenuShortcut.tres" id="7"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-touch-size.gd" id="8"]
 [ext_resource type="PackedScene" uid="uid://cr4qehiw07ekh" path="res://src/main/puzzle/PuzzleTouchButtons.tscn" id="9"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-creature-detail.gd" id="19"]
 [ext_resource type="Theme" uid="uid://dqgnja13agfn0" path="res://src/main/ui/theme/h5.theme" id="20"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-warning.gd" id="21"]
+[ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-0.tres" id="21_rumld"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-save-slot.gd" id="22"]
 [ext_resource type="PackedScene" path="res://src/main/ui/DialogBackdrop.tscn" id="23"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-dialogs.gd" id="24"]
@@ -79,12 +80,9 @@ color = Color(0, 0, 0, 0.752941)
 
 [node name="TouchButtons" parent="." instance=ExtResource("9")]
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(530, 360)
 anchors_preset = 8
 anchor_left = 0.5
@@ -130,6 +128,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme = ExtResource("1")
 text = "Sound + Music"
+label_settings = ExtResource("21_rumld")
 horizontal_alignment = 1
 
 [node name="Master" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer" instance=ExtResource("6")]
@@ -154,6 +153,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("1")
 text = "Graphics"
+label_settings = ExtResource("21_rumld")
 horizontal_alignment = 1
 
 [node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
@@ -309,6 +309,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 theme = ExtResource("1")
 text = "Cheats"
+label_settings = ExtResource("21_rumld")
 horizontal_alignment = 1
 
 [node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
@@ -336,6 +337,9 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+item_count = 1
+popup/item_0/text = "Default"
+popup/item_0/id = 0
 
 [node name="LinePiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 custom_minimum_size = Vector2(400, 26)
@@ -641,6 +645,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Size"
+label_settings = ExtResource("21_rumld")
 horizontal_alignment = 2
 autowrap_mode = 3
 
@@ -665,6 +670,7 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme = ExtResource("1")
 text = "1.00x"
+label_settings = ExtResource("21_rumld")
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size"]
 layout_mode = 2
@@ -696,6 +702,9 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+item_count = 1
+popup/item_0/text = "Easy Console"
+popup/item_0/id = 0
 
 [node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/VBoxContainer"]
 custom_minimum_size = Vector2(400, 26)
@@ -722,6 +731,9 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+item_count = 1
+popup/item_0/text = "Off"
+popup/item_0/id = 0
 
 [node name="Misc" type="ScrollContainer" parent="Window/UiArea/TabContainer"]
 visible = false
@@ -758,6 +770,9 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+item_count = 1
+popup/item_0/text = "English"
+popup/item_0/id = 0
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -797,10 +812,15 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+item_count = 1
+popup/item_0/text = "Slot A"
+popup/item_0/id = 0
 
 [node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
 text = "X"
 
 [node name="OpenUserFolder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]

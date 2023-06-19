@@ -6,6 +6,7 @@ extends Control
 @onready var _option_button := $OptionButton
 
 func _ready() -> void:
+	_option_button.clear()
 	_option_button.add_item(tr("Easy Console"))
 	_option_button.add_item(tr("Easy Desktop"))
 	_option_button.add_item(tr("Ambi Console"))

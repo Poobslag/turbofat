@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://djr45gc70ol05"]
 
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
-[ext_resource path="res://src/main/ui/settings/volume-setting-control.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=4]
+[ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="1"]
+[ext_resource type="Script" path="res://src/main/ui/settings/volume-setting-control.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://cu441kwameiwy" path="res://assets/main/puzzle/squish.wav" id="3"]
+[ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-0.tres" id="3_puwgj"]
+[ext_resource type="AudioStream" uid="uid://d2ufevw16dj2y" path="res://assets/main/world/creature/combo-voice-00.wav" id="4"]
 
 [node name="Setting" type="HBoxContainer"]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -14,41 +16,35 @@ offset_left = -200.0
 offset_top = -10.0
 offset_right = 200.0
 offset_bottom = 10.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 theme_override_constants/separation = 20
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Spacer1" type="Control" parent="."]
-offset_right = 18.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Label" type="Label" parent="."]
-offset_left = 38.0
-offset_right = 158.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "Music"
-horizontal_alignment =2
+label_settings = ExtResource("3_puwgj")
+horizontal_alignment = 2
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 178.0
-offset_right = 361.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 140, 20 )
+custom_minimum_size = Vector2(140, 20)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer"]
-offset_top = 2.0
-offset_right = 113.0
-offset_bottom = 18.0
-custom_minimum_size = Vector2( 80, 0 )
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
@@ -56,16 +52,13 @@ step = 0.01
 tick_count = 11
 
 [node name="Percent" type="Label" parent="HBoxContainer"]
-offset_left = 123.0
-offset_right = 183.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 60, 0 )
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 text = "100%"
+label_settings = ExtResource("3_puwgj")
 
 [node name="Spacer2" type="Control" parent="."]
-offset_left = 381.0
-offset_right = 400.0
-offset_bottom = 20.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
@@ -74,10 +67,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="SampleSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "Sound Bus"
+stream = ExtResource("3")
+bus = &"Sound Bus"
 
 [node name="SampleVoice" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = 6.0
-bus = "Voice Bus"
+bus = &"Voice Bus"
