@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dl5uq5f6b2u7k" path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" id="1"]
 [ext_resource type="TileSet" uid="uid://biuufj6ghvjr2" path="res://src/main/world/environment/restaurant/floor-library.tres" id="2"]
-[ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/RestaurantSpawns.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://csrsqn7ghca47" path="res://src/main/world/environment/restaurant/RestaurantSpawns.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/KitchenFloorTiler.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" id="26"]
 [ext_resource type="Script" path="res://src/main/world/environment/restaurant/kitchen-obstacle-tiler.gd" id="27"]

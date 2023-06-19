@@ -819,7 +819,7 @@ popup/item_0/text = "Slot A"
 popup/item_0/id = 0
 
 [node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
-custom_minimum_size = Vector2(24, 0)
+custom_minimum_size = Vector2(26, 28)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 14
