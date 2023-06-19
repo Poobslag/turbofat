@@ -1,85 +1,92 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://nmr8auer4fyi"]
 
-[ext_resource path="res://src/main/puzzle/score-value-label.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=2]
-[ext_resource path="res://src/main/puzzle/combo-score-value-label.gd" type="Script" id=3]
-[ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=4]
+[ext_resource type="Script" path="res://src/main/puzzle/score-value-label.gd" id="1"]
+[ext_resource type="Theme" uid="uid://164bawekogs6" path="res://src/main/ui/theme/h3.theme" id="2"]
+[ext_resource type="LabelSettings" uid="uid://cu2wyag0bqawh" path="res://src/main/ui/line-spacing-36px-0.tres" id="2_wuqh2"]
+[ext_resource type="Script" path="res://src/main/puzzle/combo-score-value-label.gd" id="3"]
+[ext_resource type="Theme" uid="uid://c0p12qckaqsds" path="res://src/main/ui/theme/h2.theme" id="4"]
+[ext_resource type="LabelSettings" uid="uid://cmytvngrxo81f" path="res://src/main/ui/line-spacing-24px-0.tres" id="5_kh2j2"]
 
-[sub_resource type="Gradient" id=5]
-offsets = PackedFloat32Array( 0, 0.695652 )
-colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="5"]
+offsets = PackedFloat32Array(0, 0.695652)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id=10]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture1D" id="10"]
+gradient = SubResource("5")
 
-[sub_resource type="ParticleProcessMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id="6"]
 particle_flag_disable_z = true
-direction = Vector3( -100, -40, 0 )
+direction = Vector3(-100, -40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource( 10 )
+color_ramp = SubResource("10")
 
-[sub_resource type="ParticleProcessMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id="7"]
 particle_flag_disable_z = true
-direction = Vector3( 100, -40, 0 )
+direction = Vector3(100, -40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource( 10 )
+color_ramp = SubResource("10")
 
-[sub_resource type="ParticleProcessMaterial" id=8]
+[sub_resource type="ParticleProcessMaterial" id="8"]
 particle_flag_disable_z = true
-direction = Vector3( -100, 40, 0 )
+direction = Vector3(-100, 40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource( 10 )
+color_ramp = SubResource("10")
 
-[sub_resource type="ParticleProcessMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id="9"]
 particle_flag_disable_z = true
-direction = Vector3( 100, 40, 0 )
+direction = Vector3(100, 40, 0)
 spread = 15.0
-gravity = Vector3( 0, 0, 0 )
+gravity = Vector3(0, 0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 600.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource( 10 )
+color_ramp = SubResource("10")
 
 [node name="Score" type="Control" groups=["night_mode_light"]]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 250.0
 offset_bottom = 74.0
 
 [node name="ScoreValueLabel" type="Label" parent="."]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -79.0
 offset_bottom = 45.0
 size_flags_horizontal = 4
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 text = "¥616"
-horizontal_alignment =2
-script = ExtResource( 1 )
+label_settings = ExtResource("2_wuqh2")
+horizontal_alignment = 2
+script = ExtResource("1")
 
 [node name="TopOutParticles" type="Control" parent="ScoreValueLabel"]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -88,37 +95,38 @@ anchor_bottom = 0.5
 [node name="Nw" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
+process_material = SubResource("6")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 6 )
 
 [node name="Ne" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
+process_material = SubResource("7")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 7 )
 
 [node name="Sw" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
+process_material = SubResource("8")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 8 )
 
 [node name="Se" type="GPUParticles2D" parent="ScoreValueLabel/TopOutParticles"]
 emitting = false
 amount = 2
+process_material = SubResource("9")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 9 )
 
 [node name="ComboScoreValueLabel" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.501961 )
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -127,10 +135,11 @@ offset_left = -55.0
 offset_top = -38.0
 offset_bottom = -7.99456
 size_flags_horizontal = 4
-theme = ExtResource( 2 )
+theme = ExtResource("2")
 text = "+¥55"
-horizontal_alignment =2
-script = ExtResource( 3 )
+label_settings = ExtResource("5_kh2j2")
+horizontal_alignment = 2
+script = ExtResource("3")
 
 [node name="PenaltyTimer" type="Timer" parent="ComboScoreValueLabel"]
 wait_time = 2.0

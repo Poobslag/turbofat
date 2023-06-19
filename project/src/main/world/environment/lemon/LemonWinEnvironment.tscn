@@ -83,7 +83,7 @@ impassable_tile_index = 1
 position = Vector2(956.203, 478.918)
 creature_id = "#player#"
 dna = {}
-orientation = 1
+orientation = 2
 
 [node name="Sensei" parent="Obstacles" instance=ExtResource("4")]
 position = Vector2(68.6856, 477.653)

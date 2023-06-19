@@ -135,6 +135,24 @@ Demos
 *./project/src/demo/puzzle/level/LevelRankDemo.tscn
 *./project/src/demo/puzzle/level/RankModeDemo.tscn
 *./project/src/demo/ui/settings/SettingsMenuDemo.tscn
+-./project/src/demo/world/environment/restaurant/RestaurantViewDemo.tscn
+ -visuals look very pixelly
+ -characters are zoomed out
+ *chef is facing wrong direction
+ -[D]
+  -doorbell sound doesn't play
+ -[F]
+ -[I]
+ -[V]
+ -[N]
+ -[1-9,0]
+ -SHIFT+[1-9,0]
+  -body-sweat.gd crashes when changing comfort; 'cannot lerp from int to float'
+ -[Q,W,E,R]
+ -[comma, period]
+ -SHIFT+[comma, period]
+ -arrows
+ -brace keys
 -./project/src/demo/puzzle/PuzzleCritterDemo.tscn
  *about 20 warnings
  *crashes when launching
@@ -155,7 +173,6 @@ Demos
 -./project/src/demo/world/creature/CreaturePaletteDemo.tscn
 -./project/src/demo/world/CutsceneDemo.tscn
 -./project/src/demo/world/environment/restaurant/RestaurantPuzzleSceneDemo.tscn
--./project/src/demo/world/environment/restaurant/RestaurantViewDemo.tscn
 -./project/src/demo/world/environment/restaurant/TurboFatRestaurantDemo.tscn
 -./project/src/demo/world/environment/RippleWavesDemo.tscn
 -./project/src/demo/world/environment/SmokeClusterDemo.tscn
@@ -171,3 +188,6 @@ globally call 'super.ready'
 globally call other 'super.' methods
 *disable 'line spacing'
 
+
+-add super calls
+-scrutinize super() doesn't need parameters (oops)

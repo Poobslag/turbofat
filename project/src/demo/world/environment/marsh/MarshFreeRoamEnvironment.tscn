@@ -123,26 +123,26 @@ dna = {}
 position = Vector2(1637.98, 1219.1)
 creature_id = "skins"
 dna = {}
-orientation = 1
+orientation = 2
 
 [node name="Bones" parent="Obstacles" instance=ExtResource("54")]
 position = Vector2(1822.2, 1109.49)
 creature_id = "bones"
 dna = {}
-orientation = 1
+orientation = 2
 
 [node name="Shirts" parent="Obstacles" instance=ExtResource("54")]
 position = Vector2(1209.78, 822.065)
 creature_id = "shirts"
 dna = {}
-orientation = 1
+orientation = 2
 
 [node name="Diota" parent="Obstacles" instance=ExtResource("34")]
 position = Vector2(454.437, 1395.6)
 target_properties = {
 "creature_id": "diota",
 "elevation": 0.0,
-"orientation": 0
+"orientation": 1
 }
 
 [node name="Phthalo" parent="Obstacles" instance=ExtResource("54")]
@@ -156,7 +156,7 @@ offset = Vector2(0, -100)
 target_properties = {
 "creature_id": "jayton",
 "elevation": 80.0,
-"orientation": 0
+"orientation": 1
 }
 
 [node name="MarshTree1" parent="Obstacles" instance=ExtResource("38")]

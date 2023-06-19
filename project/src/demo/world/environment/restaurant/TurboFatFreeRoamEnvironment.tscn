@@ -269,7 +269,7 @@ dna = {
 "tail": "5"
 }
 suppress_fatness = true
-orientation = 3
+orientation = 4
 
 [node name="Sensei" parent="Obstacles" instance=ExtResource("8")]
 position = Vector2(40.3875, 201.013)
@@ -625,7 +625,7 @@ flip_h = true
 target_properties = {
 "creature_id": "richie",
 "elevation": 0.0,
-"orientation": 1
+"orientation": 2
 }
 
 [node name="Terpion" parent="Obstacles" instance=ExtResource("2")]
@@ -634,7 +634,7 @@ offset = Vector2(0, -140)
 target_properties = {
 "creature_id": "terpion",
 "elevation": 150.0,
-"orientation": 0
+"orientation": 1
 }
 max_fatness = 4.0
 
@@ -645,7 +645,7 @@ flip_h = true
 target_properties = {
 "creature_id": "pandon",
 "elevation": 150.0,
-"orientation": 1
+"orientation": 2
 }
 max_fatness = 4.0
 
@@ -655,7 +655,7 @@ offset = Vector2(0, -140)
 target_properties = {
 "creature_id": "nictor",
 "elevation": 150.0,
-"orientation": 0
+"orientation": 1
 }
 max_fatness = 3.0
 
@@ -666,7 +666,7 @@ flip_h = true
 target_properties = {
 "creature_id": "beats",
 "elevation": 150.0,
-"orientation": 1
+"orientation": 2
 }
 max_fatness = 4.0
 

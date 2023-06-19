@@ -44,11 +44,6 @@ offset_bottom = 40.0
 script = ExtResource("5")
 FryingPanGhostScene = ExtResource("8")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(0.3, 0.3)
 tile_set = SubResource("1")

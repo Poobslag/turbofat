@@ -348,7 +348,7 @@ offset = Vector2(0, -100)
 target_properties = {
 "creature_id": "jayton",
 "elevation": 80.0,
-"orientation": 0
+"orientation": 1
 }
 spawn_if = "not chat_finished chat/career/marsh/60_end"
 

@@ -261,7 +261,7 @@ dna = {
 "tail": "5"
 }
 suppress_fatness = true
-orientation = 3
+orientation = 4
 
 [node name="Sensei" parent="Obstacles" instance=ExtResource("4")]
 position = Vector2(40.3875, 201.013)

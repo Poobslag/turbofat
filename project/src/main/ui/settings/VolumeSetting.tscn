@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b4yh30me1t8bj" path="res://src/main/ui/theme/h4.theme" id="1"]
 [ext_resource type="Script" path="res://src/main/ui/settings/volume-setting-control.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://cu441kwameiwy" path="res://assets/main/puzzle/squish.wav" id="3"]
-[ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-0.tres" id="3_puwgj"]
+[ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-16px-0.tres" id="3_puwgj"]
 [ext_resource type="AudioStream" uid="uid://d2ufevw16dj2y" path="res://assets/main/world/creature/combo-voice-00.wav" id="4"]
 
 [node name="Setting" type="HBoxContainer"]

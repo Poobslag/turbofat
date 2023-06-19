@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-creature-detail.gd" id="19"]
 [ext_resource type="Theme" uid="uid://dqgnja13agfn0" path="res://src/main/ui/theme/h5.theme" id="20"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-warning.gd" id="21"]
-[ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-0.tres" id="21_rumld"]
+[ext_resource type="LabelSettings" uid="uid://b2ycowafh5y6k" path="res://src/main/ui/line-spacing-16px-0.tres" id="21_rumld"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-save-slot.gd" id="22"]
 [ext_resource type="PackedScene" uid="uid://cv4fl1a6tkxed" path="res://src/main/ui/DialogBackdrop.tscn" id="23"]
 [ext_resource type="Script" path="res://src/main/ui/settings/settings-dialogs.gd" id="24"]
@@ -84,6 +84,7 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(530, 360)
 anchors_preset = 8
 anchor_left = 0.5

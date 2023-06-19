@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://c0fpymdml0rwo"]
+[gd_scene load_steps=115 format=3 uid="uid://c0fpymdml0rwo"]
 
 [ext_resource type="Theme" uid="uid://164bawekogs6" path="res://src/main/ui/theme/h3.theme" id="1"]
 [ext_resource type="PackedScene" path="res://src/main/puzzle/tutorial/TutorialHud.tscn" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://3bnwvwe5g2x1" path="res://src/main/puzzle/ResultsHud.tscn" id="6"]
 [ext_resource type="Shader" path="res://src/main/puzzle/rainbow-metaball.gdshader" id="7"]
 [ext_resource type="PackedScene" path="res://src/main/ui/CheatCodeDetector.tscn" id="8"]
+[ext_resource type="LabelSettings" uid="uid://cmytvngrxo81f" path="res://src/main/ui/line-spacing-24px-0.tres" id="8_j75by"]
 [ext_resource type="PackedScene" uid="uid://d1o3jugrwwre7" path="res://src/main/puzzle/piece/PieceManager.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cr4qehiw07ekh" path="res://src/main/puzzle/PuzzleTouchButtons.tscn" id="10"]
 [ext_resource type="AudioStream" uid="uid://281xeg0htyrm" path="res://assets/main/puzzle/applause.wav" id="11"]
@@ -57,7 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://qu7jspcgvm28" path="res://src/main/puzzle/pan/FryingPansUi.tscn" id="58"]
 [ext_resource type="Script" path="res://src/main/puzzle/pan/puzzle-frying-pans-ui.gd" id="59"]
 [ext_resource type="PackedScene" path="res://src/main/puzzle/CrumbCluster.tscn" id="60"]
-[ext_resource type="PackedScene" path="res://src/main/puzzle/Score.tscn" id="61"]
+[ext_resource type="PackedScene" uid="uid://nmr8auer4fyi" path="res://src/main/puzzle/Score.tscn" id="61"]
 [ext_resource type="PackedScene" path="res://src/main/puzzle/PuzzleMessages.tscn" id="62"]
 [ext_resource type="Script" path="res://src/main/puzzle/food-crumbs.gd" id="63"]
 [ext_resource type="PackedScene" path="res://src/main/puzzle/piece/NextPieceDisplays.tscn" id="64"]
@@ -287,7 +288,6 @@ antialiased = true
 polygon = PackedVector2Array(-129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761)
 
 [node name="Score" parent="Fg/Chalkboard" instance=ExtResource("61")]
-anchors_preset = 0
 offset_left = 58.0
 offset_top = 25.0
 offset_right = 308.0
@@ -299,6 +299,7 @@ offset_left = 58.0
 offset_top = 110.0
 offset_right = 308.0
 offset_bottom = 140.0
+label_settings = ExtResource("8_j75by")
 
 [node name="MilestoneHud" type="Control" parent="Fg/Chalkboard" groups=["night_mode_light"]]
 custom_minimum_size = Vector2(250, 40)
@@ -325,6 +326,7 @@ anchor_right = 1.0
 offset_bottom = 30.0
 theme = ExtResource("1")
 text = "Goal"
+label_settings = ExtResource("8_j75by")
 horizontal_alignment = 2
 
 [node name="Value" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource("36")]

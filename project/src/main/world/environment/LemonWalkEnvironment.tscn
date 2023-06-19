@@ -81,7 +81,7 @@ destination_path = NodePath("../Destination")
 leader_or_follower = 1
 creature_id = "#player#"
 dna = {}
-orientation = 1
+orientation = 2
 
 [node name="MoveTimer" type="Timer" parent="Obstacles/Player"]
 wait_time = 0.3
@@ -95,7 +95,7 @@ destination_path = NodePath("../Destination")
 leader_or_follower = 2
 creature_id = "#sensei#"
 dna = {}
-orientation = 1
+orientation = 2
 
 [node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
 wait_time = 0.3
