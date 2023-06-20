@@ -32,14 +32,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Customer/View/SubViewport/Camera2D:zoom")
+tracks/1/path = NodePath("Customer/Clip/View/SubViewport/Camera2D:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.18, 0.18)]
+"values": [Vector2(1.33, 1.33)]
 }
 
 [sub_resource type="Animation" id="1"]
@@ -48,14 +48,14 @@ length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Customer/View/SubViewport/Camera2D:zoom")
+tracks/0/path = NodePath("Customer/Clip/View/SubViewport/Camera2D:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 4, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.18, 0.18), Vector2(0.18, 0.18), Vector2(0.25, 0.25)]
+"values": [Vector2(1.33, 1.33), Vector2(1.33, 1.33), Vector2(1.847, 1.847)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -76,7 +76,7 @@ _data = {
 "fat-se": SubResource("1")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxaqi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f35wh"]
 resource_local_to_scene = true
 bg_color = Color(0.172549, 0.666667, 0.32549, 1)
 corner_radius_top_left = 25
@@ -89,14 +89,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Chef/View/SubViewport/Camera2D:zoom")
+tracks/0/path = NodePath("Chef/Clip/View/SubViewport/Camera2D:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.18, 0.18)]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -117,14 +117,14 @@ length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Chef/View/SubViewport/Camera2D:zoom")
+tracks/0/path = NodePath("Chef/Clip/View/SubViewport/Camera2D:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 4, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.18, 0.18), Vector2(0.18, 0.18), Vector2(0.4, 0.4)]
+"values": [Vector2(1.33, 1.33), Vector2(1.33, 1.33), Vector2(0.4, 0.4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,7 +145,7 @@ _data = {
 "fat-se": SubResource("2")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5h5a"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmr08"]
 resource_local_to_scene = true
 bg_color = Color(0.172549, 0.666667, 0.32549, 1)
 corner_radius_top_left = 25
@@ -198,34 +198,35 @@ offset_top = 310.109
 offset_right = 324.254
 offset_bottom = 580.109
 
-[node name="Clip" type="PointLight2D" parent="Customer"]
+[node name="Clip" type="Sprite2D" parent="Customer"]
+clip_children = 1
 position = Vector2(145.578, 134.648)
-range_item_cull_mask = 2
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("7")
-texture_scale = 0.5
 
-[node name="View" type="SubViewportContainer" parent="Customer" groups=["night_mode_dark"]]
+[node name="View" type="SubViewportContainer" parent="Customer/Clip" groups=["night_mode_dark"]]
 light_mask = 2
-layout_mode = 0
-offset_right = 290.0
-offset_bottom = 270.0
+offset_left = -291.156
+offset_top = -269.296
+offset_right = -1.15601
+offset_bottom = 0.703979
+scale = Vector2(2, 2)
 stretch = true
-stretch_shrink = 4
 script = ExtResource("5")
-restaurant_viewport_path = NodePath("../../RestaurantViewport")
+restaurant_viewport_path = NodePath("../../../RestaurantViewport")
 
-[node name="SubViewport" type="SubViewport" parent="Customer/View"]
+[node name="SubViewport" type="SubViewport" parent="Customer/Clip/View"]
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(72, 67)
+size = Vector2i(290, 270)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Bg" parent="Customer/View/SubViewport" instance=ExtResource("13")]
+[node name="Bg" parent="Customer/Clip/View/SubViewport" instance=ExtResource("13")]
 
-[node name="Camera2D" type="Camera2D" parent="Customer/View/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="Customer/Clip/View/SubViewport"]
 position = Vector2(200, 600)
-zoom = Vector2(0.18, 0.18)
+zoom = Vector2(1.33, 1.33)
 
 [node name="Outline" type="TextureRect" parent="Customer" groups=["night_mode_dark"]]
 self_modulate = Color(0.254902, 0.156863, 0.117647, 1)
@@ -242,7 +243,7 @@ libraries = {
 }
 script = ExtResource("9")
 restaurant_scene_path = NodePath("../../RestaurantViewport/Scene")
-customer_camera_path = NodePath("../View/SubViewport/Camera2D")
+customer_camera_path = NodePath("../Clip/View/SubViewport/Camera2D")
 headroom = 0.0
 
 [node name="Nametag" parent="Customer" groups=["night_mode_light"] instance=ExtResource("11")]
@@ -254,15 +255,17 @@ offset_bottom = 279.138
 layout = 7
 
 [node name="Panel" parent="Customer/Nametag" instance=ExtResource("10")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 7
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = -60.0
 offset_top = -30.0
 offset_right = 60.0
 offset_bottom = 0.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_lxaqi")
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f35wh")
 
 [node name="Chef" type="Control" parent="."]
 light_mask = 4
@@ -272,33 +275,31 @@ offset_top = 155.187
 offset_right = 966.277
 offset_bottom = 295.187
 
-[node name="Clip" type="PointLight2D" parent="Chef"]
+[node name="Clip" type="Sprite2D" parent="Chef"]
+clip_children = 1
 position = Vector2(75.713, 69.956)
-range_item_cull_mask = 4
+scale = Vector2(0.26, 0.26)
 texture = ExtResource("7")
-texture_scale = 0.26
 
-[node name="View" type="SubViewportContainer" parent="Chef" groups=["night_mode_dark"]]
-light_mask = 4
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 140.0
-stretch = true
-stretch_shrink = 4
+[node name="View" type="SubViewportContainer" parent="Chef/Clip" groups=["night_mode_dark"]]
+offset_left = -291.204
+offset_top = -269.062
+offset_right = -141.204
+offset_bottom = -129.062
+scale = Vector2(3.85, 3.85)
 script = ExtResource("3")
-restaurant_viewport_path = NodePath("../../RestaurantViewport")
+restaurant_viewport_path = NodePath("../../../RestaurantViewport")
 
-[node name="SubViewport" type="SubViewport" parent="Chef/View"]
+[node name="SubViewport" type="SubViewport" parent="Chef/Clip/View"]
 handle_input_locally = false
-size = Vector2i(37, 35)
+size = Vector2i(150, 140)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Bg" parent="Chef/View/SubViewport" instance=ExtResource("13")]
+[node name="Bg" parent="Chef/Clip/View/SubViewport" instance=ExtResource("13")]
 
-[node name="Camera2D" type="Camera2D" parent="Chef/View/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="Chef/Clip/View/SubViewport"]
 position = Vector2(6780, 960)
-zoom = Vector2(0.18, 0.18)
 
 [node name="Outline" type="TextureRect" parent="Chef" groups=["night_mode_dark"]]
 self_modulate = Color(0.254902, 0.156863, 0.117647, 1)
@@ -317,7 +318,7 @@ libraries = {
 }
 script = ExtResource("1")
 restaurant_scene_path = NodePath("../../RestaurantViewport/Scene")
-chef_camera_path = NodePath("../View/SubViewport/Camera2D")
+chef_camera_path = NodePath("../Clip/View/SubViewport/Camera2D")
 
 [node name="Nametag" parent="Chef" groups=["night_mode_light"] instance=ExtResource("11")]
 anchors_preset = 0
@@ -327,11 +328,11 @@ offset_right = 195.723
 offset_bottom = 211.813
 
 [node name="Panel" parent="Chef/Nametag" instance=ExtResource("10")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 offset_left = -60.0
 offset_right = 60.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_e5h5a")
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qmr08")
 
 [node name="HelloTimer" type="Timer" parent="."]
 one_shot = true

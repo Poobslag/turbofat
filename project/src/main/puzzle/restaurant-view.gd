@@ -42,8 +42,8 @@ var _tweens_by_bubble_path := {}
 
 @onready var _customer := $Customer
 @onready var _customer_nametag_panel := $Customer/Nametag/Panel
-@onready var _customer_view_viewport := $Customer/View/SubViewport
-@onready var _customer_view := $Customer/View
+@onready var _customer_view_viewport := $Customer/Clip/View/SubViewport
+@onready var _customer_view := $Customer/Clip/View
 
 @onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 @onready var _hello_timer := $HelloTimer

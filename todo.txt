@@ -159,8 +159,18 @@ Demos
   *infinite recursion error
   *PuzzleWorld.customers is empty
  -visual problems
+  *very pixelly (stretch shrink?)
+  *zoomed out
+  *weird colors
+   *clipping has changed
+  *chef nametag is out of position
+  -when you increase the size of the window, the characters should scale up too
+  -get back to https://discord.com/channels/212250894228652034/610347507222052867/1120718375820218521
+  -warning about 'can't change size'
+  -broken environment
  -merge warning fixes into main branch
  -Sporadic 'can't store GradientTexture2D' errors
+ -verify camera looks OK as it zooms out
 -./project/src/demo/puzzle/PuzzleDemo.tscn
 -./project/src/demo/puzzle/PuzzleMessageDemo.tscn
 -./project/src/demo/puzzle/ResultsHudDemo.tscn
