@@ -194,12 +194,11 @@ light_mask = 2
 margin_right = 290.0
 margin_bottom = 270.0
 stretch = true
-stretch_shrink = 4
 script = ExtResource( 5 )
 restaurant_viewport_path = NodePath("../../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="Customer/View"]
-size = Vector2( 72, 67 )
+size = Vector2( 290, 270 )
 size_override_stretch = true
 handle_input_locally = false
 usage = 0
@@ -267,12 +266,11 @@ light_mask = 4
 margin_right = 150.0
 margin_bottom = 140.0
 stretch = true
-stretch_shrink = 4
 script = ExtResource( 3 )
 restaurant_viewport_path = NodePath("../../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="Chef/View"]
-size = Vector2( 37, 35 )
+size = Vector2( 150, 140 )
 size_override_stretch = true
 handle_input_locally = false
 usage = 0
