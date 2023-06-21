@@ -7,4 +7,4 @@ func _ready() -> void:
 	CreatureManager.player.free_roam = true
 	CreatureManager.sensei.free_roam = true
 	
-	$Camera3D.position = CreatureManager.player.position
+	$Camera2D.position = CreatureManager.player.position

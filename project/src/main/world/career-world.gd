@@ -45,7 +45,7 @@ var _move_cheat_enabled := false
 ## path on which which the player and sensei are placed
 @onready var _player_path2d: Path2D
 
-@onready var _camera: Camera2D = $Camera3D
+@onready var _camera: Camera2D = $Camera2D
 
 func _ready() -> void:
 	super()

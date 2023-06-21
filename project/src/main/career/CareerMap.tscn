@@ -56,7 +56,7 @@ MileMarkerScene = ExtResource( 48 )
 
 [node name="Environment" parent="World" instance=ExtResource( 8 )]
 
-[node name="Camera3D" type="Camera2D" parent="World"]
+[node name="Camera2D" type="Camera2D" parent="World"]
 current = true
 zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 49 )

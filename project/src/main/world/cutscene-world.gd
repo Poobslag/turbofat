@@ -3,7 +3,7 @@ class_name CutsceneWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during cutscenes.
 
-@onready var _camera: CutsceneCamera = $Camera3D
+@onready var _camera: CutsceneCamera = $Camera2D
 
 func _ready() -> void:
 	super()
