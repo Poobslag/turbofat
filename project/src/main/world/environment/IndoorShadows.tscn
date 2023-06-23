@@ -24,7 +24,6 @@
 0/z_index = 0
 
 [node name="Shadows" type="Node2D"]
-modulate = Color( 1, 1, 1, 0.627451 )
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
