@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-02 14:28-0400\n"
+"POT-Creation-Date: 2023-06-23 10:37-0400\n"
 "PO-Revision-Date: 2022-11-20 16:50-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Poedit 3.2\n"
 
 #: project/assets/main/locale/localizables-extracted.py:2
-#: project/src/main/career/ui/ProgressBoard.tscn:648
+#: project/src/main/career/ui/ProgressBoard.tscn:646
 #: project/src/main/ui/RegionSelectButton.tscn:57
 msgid "Lemony Thickets"
 msgstr "Bosque Limonesco"
@@ -9706,14 +9706,14 @@ msgid "Chapter Select"
 msgstr "Selección de Capítulo"
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:116
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:260
+#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:271
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:103
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:85
 msgid "<"
 msgstr "<"
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:136
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:269
+#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:280
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:129
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:105
 msgid ">"
@@ -9757,7 +9757,7 @@ msgid "15:03"
 msgstr "15:03"
 
 #: project/src/main/career/ui/CareerWin.tscn:499
-#: project/src/main/ui/settings/SettingsMenu.tscn:1197
+#: project/src/main/ui/settings/SettingsMenu.tscn:1195
 msgid "Ok"
 msgstr "Ok"
 
@@ -9767,7 +9767,7 @@ msgstr "Ok"
 msgid "0"
 msgstr "0"
 
-#: project/src/main/career/ui/ProgressBoard.tscn:718
+#: project/src/main/career/ui/ProgressBoard.tscn:716
 msgid "10:15 am"
 msgstr "10:15 am"
 
@@ -9890,8 +9890,8 @@ msgstr "Configuración"
 #: project/src/main/ui/CreatureStressTest.tscn:77
 #: project/src/main/ui/menu/PracticeMenu.tscn:228
 #: project/src/main/ui/menu/SystemButtons.tscn:43
-#: project/src/main/ui/settings/SettingsMenu.tscn:1140
-#: project/src/main/ui/settings/SettingsMenu.tscn:1162
+#: project/src/main/ui/settings/SettingsMenu.tscn:1138
+#: project/src/main/ui/settings/SettingsMenu.tscn:1160
 #: project/src/main/ui/settings/settings-menu-bottom.gd:36
 msgid "Quit"
 msgstr "Salir"
@@ -10058,9 +10058,9 @@ msgid "Plastic"
 msgstr "Plástico"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1898
-#: project/src/main/ui/settings/SettingsMenu.tscn:1257
-#: project/src/main/ui/settings/SettingsMenu.tscn:1273
-#: project/src/main/ui/settings/SettingsMenu.tscn:1290
+#: project/src/main/ui/settings/SettingsMenu.tscn:1255
+#: project/src/main/ui/settings/SettingsMenu.tscn:1271
+#: project/src/main/ui/settings/SettingsMenu.tscn:1288
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -10138,21 +10138,21 @@ msgstr "Prueba"
 msgid "abc"
 msgstr "abc"
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:237
+#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:248
 msgid "blocks:"
 msgstr "bloques:"
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:245
+#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:256
 msgid "start"
 msgstr "comenzar"
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:287
+#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:298
 #: project/src/main/ui/settings/SettingsMenu.tscn:1022
 #: project/src/main/ui/settings/keybind/KeybindCustom.tscn:80
 msgid "X"
 msgstr "X"
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:296
+#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:307
 msgid "+"
 msgstr "+"
 
@@ -10363,7 +10363,7 @@ msgstr "¡Victoria!"
 msgid "Continue"
 msgstr "Continuar"
 
-#: project/src/main/puzzle/puzzle-money-hud.gd:51
+#: project/src/main/puzzle/puzzle-money-hud.gd:49
 #: project/src/main/puzzle/results-hud.gd:57
 #, python-format
 msgid "Customer #%s"
@@ -12191,6 +12191,59 @@ msgstr "3"
 msgid "Well, crap"
 msgstr "Bueno, mierda"
 
+#: project/src/main/ui/menu/bad-save-data-control.gd:19
+msgid ""
+"So... I had some kind of problem loading your save data. Unfortunately, none "
+"of the backups worked either, so I don't really know how to fix it."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:22
+msgid ""
+"So... I had some kind of problem loading your save data, which means you're "
+"going to lose some progress."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:27
+msgid ""
+"There was a backup, so at least you'll only lose the last half-hour or so."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:29
+msgid "There was a backup, so at least you'll only lose the last hour or so."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:31
+msgid "There was a backup, but you'll lose everything from the last few hours."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:33
+msgid "There was a backup, but you'll lose everything from the last day or so."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:35
+msgid ""
+"There was a backup, but it was pretty old. You'll lose everything from the "
+"last few days."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:37
+msgid ""
+"There was a backup, but it was very old. You'll lose everything from the "
+"last week or so."
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:44
+#, python-format
+msgid ""
+"The invalid save data is available in the following path:\n"
+"\n"
+"%s (%s)"
+msgstr ""
+
+#: project/src/main/ui/menu/bad-save-data-control.gd:48
+msgid "I'm really sorry."
+msgstr ""
+
 #: project/src/main/ui/menu/region-description-panel.gd:23
 msgid "Advance further into career mode to unlock new areas!"
 msgstr "¡Avanza más en el modo Carrera para desbloquear nuevas areas!"
@@ -12479,11 +12532,11 @@ msgstr "Copiar a Portapapeles"
 msgid "Copied!"
 msgstr "¡Copiado!"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1230
+#: project/src/main/ui/settings/SettingsMenu.tscn:1228
 msgid "* Your settings will take effect in the next scene."
 msgstr "* Tus cambios tendrán efecto en la siguiente escena."
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1258
+#: project/src/main/ui/settings/SettingsMenu.tscn:1256
 msgid "Change save slot?"
 msgstr "¿Cambiar espacio de guardado?"
 
