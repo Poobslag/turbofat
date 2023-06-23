@@ -24,10 +24,10 @@ func get_display(piece_index: int) -> NextPieceDisplay:
 
 
 ## Adds a new next piece display.
-func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
+func _add_display(piece_index: int, x: float, y: float, display_scale: float) -> void:
 	var new_display: NextPieceDisplay = NextPieceDisplayScene.instance()
 	new_display.initialize(_piece_queue, piece_index)
-	new_display.scale = Vector2(scale, scale)
+	new_display.scale = Vector2(display_scale, display_scale)
 	new_display.position = Vector2(x, y)
 	new_display.hide()
 	add_child(new_display)
