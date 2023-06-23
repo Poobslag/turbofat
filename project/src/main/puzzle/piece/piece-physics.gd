@@ -21,18 +21,25 @@ func initially_move_piece(piece: ActivePiece) -> bool:
 	piece.reset_target()
 	var rotation_signal: String = rotator.apply_initial_rotate_input(piece)
 	
-	# relocate piece to the top of the playfield
-	var highest_pos := 3
-	for pos_arr_item in piece.get_target_pos_arr():
-		if pos_arr_item.y < highest_pos:
-			highest_pos = pos_arr_item.y
-	piece.target_pos.y -= highest_pos
+	# Store the piece's initial position after rotation and vertical adjustment, but before player's input is applied.
+	# If the player tops out, we move the piece back to this position.
+	var initial_unmoved_pos := piece.target_pos
+	
+	if not piece.get_target_pos_arr().empty():
+		# relocate piece to the top of the playfield
+		var highest_pos: float = piece.get_target_pos_arr()[0].y
+		for pos_arr_item in piece.get_target_pos_arr():
+			if pos_arr_item.y < highest_pos:
+				highest_pos = pos_arr_item.y
+		initial_unmoved_pos = piece.target_pos + Vector2(0, 3 - highest_pos - piece.target_pos.y)
+		piece.target_pos = initial_unmoved_pos
 	
 	var movement_signal: String = mover.apply_initial_move_input(piece)
 	
 	var success := true
 	if not piece.can_move_to_target():
 		# apply initial rotation when topping the player out, so they can see why the piece didn't fit
+		piece.pos = initial_unmoved_pos
 		piece.orientation = piece.target_orientation
 		PuzzleState.top_out()
 		success = false
