@@ -831,7 +831,7 @@ tracks/0/keys = {
 "values": [ 29, 30, 31, 32, 33, 34, 35, 36 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Soil:visible")
+tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -840,10 +840,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Onion:visible")
+tracks/2/path = NodePath(".:onion_location")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -852,27 +852,15 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 3 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:onion_location")
+tracks/3/path = NodePath(".:float_animation_playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath(".:float_animation_playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -1157,7 +1145,7 @@ tracks/0/keys = {
 "values": [ 28 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Soil:visible")
+tracks/1/path = NodePath("Onion:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1169,31 +1157,31 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Onion:visible")
+tracks/2/path = NodePath("Onion:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Onion:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Vector2( -3, 0 ), Vector2( 3, 0 ), Vector2( -3, 0 ), Vector2( 3, 0 ), Vector2( 0, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:onion_location")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
 tracks/4/type = "value"
-tracks/4/path = NodePath(".:onion_location")
+tracks/4/path = NodePath(".:float_animation_playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1202,10 +1190,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 2 ]
+"values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath(".:float_animation_playing")
+tracks/5/path = NodePath("Sfx/Crickets:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -1217,7 +1205,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sfx/Crickets:playing")
+tracks/6/path = NodePath("Sfx/Zap:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1226,27 +1214,15 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("Sfx/Zap:playing")
+tracks/7/type = "method"
+tracks/7/path = NodePath("Sfx")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/8/type = "method"
-tracks/8/path = NodePath("Sfx")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
