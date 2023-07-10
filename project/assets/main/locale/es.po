@@ -3673,7 +3673,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:791
 msgid ""
 "Isn't this awfully quick? Our first restaurant just barely got off the "
-"round. Who's going to keep it running?"
+"ground. Who's going to keep it running?"
 msgstr ""
 "¿No es extrañamente rápido? Nuestro primer restaurante apenas comenzó. "
 "¿Quién lo va a mantener?"
