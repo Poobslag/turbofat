@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 config/icon="res://assets/main/ui/icon.png"
 config/windows_native_icon="res://assets/main/ui/icon.ico"
 config/version="0.6500"
@@ -56,8 +56,8 @@ PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
 
 [debug]
 
-gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/return_value_discarded=false
+gdscript/warnings/narrowing_conversion=false
 settings/fps/force_fps=120
 
 [display]
