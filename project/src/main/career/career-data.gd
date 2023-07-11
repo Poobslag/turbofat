@@ -20,7 +20,7 @@ var invalid_time_of_day := tr("?:?? zm")
 
 ## key: (int) corresonding to the number of levels the player has played
 ## value: (String) human-readable time of day
-var time_of_day_by_hours := {
+var times_of_day_by_hour := {
 	0: tr("11:00 am"),
 	1: tr("12:10 pm"),
 	2: tr("1:20 pm"),

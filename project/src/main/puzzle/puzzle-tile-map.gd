@@ -306,7 +306,7 @@ func crumb_colors_for_cell(cell_pos: Vector2) -> Array:
 				TileSetType.VEGGIE:
 					result = [Foods.COLORS_VEG_ALL[int(autotile_coord.y)]]
 		TILE_BOX:
-			result = Foods.COLORS_BY_BOX_TYPES[int(autotile_coord.y)]
+			result = Foods.COLORS_BY_BOX_TYPE[int(autotile_coord.y)]
 		TILE_VEG:
 			result = [Foods.COLOR_VEGETABLE]
 	

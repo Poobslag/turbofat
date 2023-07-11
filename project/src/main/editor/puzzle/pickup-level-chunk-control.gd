@@ -23,7 +23,7 @@ func get_drag_data(_pos: Vector2) -> Object:
 
 
 func _refresh_pickup() -> void:
-	_pickup.food_type = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type][0]
+	_pickup.food_type = Foods.FOOD_TYPES_BY_BOX_TYPE[box_type][0]
 
 
 func _on_ChangeButton_pressed() -> void:

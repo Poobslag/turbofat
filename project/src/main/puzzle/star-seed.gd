@@ -21,6 +21,6 @@ func _refresh_appearance() -> void:
 	if not is_inside_tree():
 		return
 	
-	var box_type: int = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
+	var box_type: int = Foods.BOX_TYPES_BY_FOOD_TYPE[food_type]
 	_seed.visible = Foods.is_snack_box(box_type)
 	_star.visible = Foods.is_cake_box(box_type)

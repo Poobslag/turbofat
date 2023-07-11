@@ -6,7 +6,7 @@ extends Node2D
 ## or if the player clears the row they are digging.
 
 ## States the mole goes through when digging up star seeds.
-enum States {
+enum State {
 	NONE,
 	WAITING,
 	DIGGING,
@@ -16,38 +16,38 @@ enum States {
 }
 
 ## The mole has not appeared yet, or has disappeared.
-const NONE := States.NONE
+const NONE := State.NONE
 
 ## The mole will appear soon. If the player crushes the mole with their piece when it is in this state, it relocates
 ## elsewhere in the playfield. This is so that players are not punished unfairly for crushing a mole which they did
 ## not see quickly enough.
-const WAITING := States.WAITING
+const WAITING := State.WAITING
 
 ## The mole is digging, searching for a star seed.
-const DIGGING := States.DIGGING
+const DIGGING := State.DIGGING
 
 ## The mole has found a star seed, and will finish digging it up very soon.
-const DIGGING_END := States.DIGGING_END
+const DIGGING_END := State.DIGGING_END
 
 ## The mole has found a seed pickup.
-const FOUND_SEED := States.FOUND_SEED
+const FOUND_SEED := State.FOUND_SEED
 
 ## The mole has found a star pickup.
-const FOUND_STAR := States.FOUND_STAR
+const FOUND_STAR := State.FOUND_STAR
 
-## Enum from States for the mole's current animation state.
+## Enum from State for the mole's current animation state.
 var state: int = NONE setget set_state
 
 ## 'true' if the mole is temporarily hidden by the piece.
 var hidden: bool setget set_hidden
 
-## Enum from States for the mole's previous animation state, if they are temporarily hidden by the player's piece.
+## Enum from State for the mole's previous animation state, if they are temporarily hidden by the player's piece.
 var hidden_mole_state: int = NONE
 
 ## 'true' if the Mole will be queued for deletion after the 'poof' animation completes.
 var _free_after_poof := false
 
-## Queue of enums from States for the mole's upcoming animation states.
+## Queue of enums from State for the mole's upcoming animation states.
 var _next_states := []
 
 ## 'true' if a state has already been popped from the _next_states queue this frame. We track this to avoid
@@ -70,7 +70,7 @@ onready var wait_high := $WaitHigh
 
 onready var sfx := $MoleSfx
 
-## key: (int) Enum from States
+## key: (int) Enum from State
 ## value: (Node) State node from the _states StateMachine
 onready var _state_nodes_by_enum := {
 	NONE: $States/None,
@@ -112,10 +112,10 @@ func set_hidden(new_hidden: bool) -> void:
 		hidden_mole_state = NONE
 
 
-## Enqueues an enums from States to the mole's upcoming animation states.
+## Enqueues an enums from State to the mole's upcoming animation states.
 ##
 ## Parameters:
-## 	'next_state': Enum from States
+## 	'next_state': Enum from State
 ##
 ## 	'count': (Optional) Number of instances of the state to enqueue.
 func append_next_state(next_state: int, count: int = 1) -> void:
@@ -136,7 +136,7 @@ func has_next_state() -> bool:
 ## dequeued state.
 ##
 ## Returns:
-## 	Enum from States for the mole's new state.
+## 	Enum from State for the mole's new state.
 func pop_next_state() -> int:
 	if _next_states.empty():
 		return NONE
@@ -155,7 +155,7 @@ func pop_next_state() -> int:
 
 
 ## Parameters:
-## 	'new_state': enum from States for the mole's new animation state.
+## 	'new_state': enum from State for the mole's new animation state.
 func set_state(new_state: int) -> void:
 	state = new_state
 	_refresh_state()

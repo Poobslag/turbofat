@@ -39,7 +39,7 @@ func get_food_type(cell: Vector2) -> int:
 	var result := -1
 	if _pickups_by_cell.has(cell):
 		var food_type: int = _pickups_by_cell.get(cell, -1).food_type
-		result = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
+		result = Foods.BOX_TYPES_BY_FOOD_TYPE[food_type]
 	return result
 
 
@@ -68,5 +68,5 @@ func get_used_cells() -> Array:
 ## The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard
 ## pattern.
 func _food_type_for_cell(box_type: int, cell: Vector2) -> int:
-	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
+	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPE[box_type]
 	return food_types[(int(cell.x + cell.y) % food_types.size())]
