@@ -280,7 +280,7 @@ func _replace_active_piece_with_domino() -> void:
 			if pos_arr.has(pos_arr_item + Vector2.RIGHT):
 				new_type = _to_domino(old_type)
 				new_orientation = 0
-				new_pos = old_pos + pos_arr_item + Vector2(0, -1)
+				new_pos = old_pos + pos_arr_item + Vector2.UP
 				break
 			
 			# next, try orienting our domino vertically

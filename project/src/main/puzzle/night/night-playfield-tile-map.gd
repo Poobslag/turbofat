@@ -1,6 +1,6 @@
 class_name NightPlayfieldTileMap
 extends NightPuzzleTileMap
-## Displays the playfield tile map during night mode.
+## Displays the playfield tilemap during night mode.
 ##
 ## Many other night mode tilemaps such as the active piece, next piece and hold piece use similar logic. The playfield
 ## tilemap is distinct because its pieces cast an opaque vertical shadow, making gameplay more difficult.

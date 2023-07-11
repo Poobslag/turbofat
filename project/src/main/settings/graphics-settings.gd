@@ -16,7 +16,7 @@ enum FeedingAnimation {
 ## enum from CreatureDetail describing how detailed the creatures should look
 var creature_detail: int = _default_creature_detail() setget set_creature_detail
 
-var feeding_animation: int = _default_feeding_animation() setget set_feeding_animation
+var feeding_animation: int = _default_feeding_animation()
 
 var use_vsync: bool = _default_use_vsync() setget set_use_vsync
 
@@ -30,10 +30,6 @@ func set_creature_detail(new_creature_detail: int) -> void:
 func set_use_vsync(new_use_vsync: bool) -> void:
 	use_vsync = new_use_vsync
 	OS.set_use_vsync(new_use_vsync)
-
-
-func set_feeding_animation(new_feeding_animation: int) -> void:
-	feeding_animation = new_feeding_animation
 
 
 ## Resets the gameplay settings to their default values.
@@ -52,7 +48,7 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	set_creature_detail(json.get("creature_detail", _default_creature_detail()))
 	set_use_vsync(json.get("use_vsync", _default_use_vsync()))
-	set_feeding_animation(json.get("feeding_animation", _default_feeding_animation()))
+	feeding_animation = json.get("feeding_animation", _default_feeding_animation())
 
 
 ## Returns the default creature detail setting value. Web and mobile targets use lower detail.
