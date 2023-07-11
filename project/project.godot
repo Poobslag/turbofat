@@ -324,6 +324,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/editor-playfield.gd"
 }, {
+"base": "Node2D",
+"class": "EnvironmentShadows",
+"language": "GDScript",
+"path": "res://src/main/world/environment/lemon/environment-shadows.gd"
+}, {
 "base": "Reference",
 "class": "FileUtils",
 "language": "GDScript",
@@ -778,11 +783,6 @@ _global_script_classes=[ {
 "class": "OtherRules",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/other-rules.gd"
-}, {
-"base": "Node2D",
-"class": "OutdoorShadows",
-"language": "GDScript",
-"path": "res://src/main/world/environment/lemon/environment-shadows.gd"
 }, {
 "base": "Sprite",
 "class": "OvalShadow",
@@ -1408,6 +1408,7 @@ _global_script_class_icons={
 "DurationCalculator": "",
 "EditorPickups": "",
 "EditorPlayfield": "",
+"EnvironmentShadows": "",
 "FileUtils": "",
 "FontFitLabel": "",
 "FoodItem": "",
@@ -1499,7 +1500,6 @@ _global_script_class_icons={
 "Onions": "",
 "OtherRegion": "",
 "OtherRules": "",
-"OutdoorShadows": "",
 "OvalShadow": "",
 "OverworldEnvironment": "",
 "OverworldObstacle": "",

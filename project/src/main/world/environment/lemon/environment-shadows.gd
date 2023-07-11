@@ -1,5 +1,5 @@
 tool
-class_name OutdoorShadows
+class_name EnvironmentShadows
 extends Node2D
 
 export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path

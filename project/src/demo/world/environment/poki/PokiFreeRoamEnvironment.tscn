@@ -20,7 +20,7 @@
 [ext_resource path="res://src/main/world/environment/poki/WeAccept.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/poki/Tent.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=20]
-[ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=24]
+[ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=28]
 
 [sub_resource type="Curve2D" id=1]
