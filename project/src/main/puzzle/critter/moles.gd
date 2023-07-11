@@ -242,6 +242,7 @@ func _add_mole(cell: Vector2, config: MoleConfig) -> void:
 			mole.append_next_state(Mole.FOUND_SEED)
 		MoleConfig.Reward.STAR:
 			mole.append_next_state(Mole.FOUND_STAR)
+	mole.append_next_state(Mole.NONE)
 	
 	mole.pop_next_state()
 	
@@ -400,6 +401,10 @@ func _inner_add_moles(config: MoleConfig) -> void:
 func _inner_advance_moles() -> void:
 	for cell in _moles_by_cell.duplicate():
 		var mole: Mole = _moles_by_cell[cell]
+		if not mole.has_next_state():
+			# Moles will not disappear just because they exhaust their state queue
+			continue
+
 		var new_state := mole.pop_next_state()
 		match new_state:
 			Mole.FOUND_SEED:
