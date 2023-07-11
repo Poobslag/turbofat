@@ -1,3 +1,4 @@
+class_name FryingPansUi
 extends Control
 ## UI control which shows a list of frying pans corresponding to the player's lives.
 ##
