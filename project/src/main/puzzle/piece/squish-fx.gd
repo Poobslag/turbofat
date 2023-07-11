@@ -4,14 +4,14 @@ extends Control
 ##
 ## Makes the piece shake, sweat, turn white, and plays a sound effect.
 
+## Calculates how much the piece should flash and shake as it's squished
+export (Curve) var squish_curve: Curve
+
 ## Squished pieces blink over time. This field is used to calculate the blink amount
 var _total_time: float
 
 ## How much the piece should flash and shake as it's squished
 var _squish_amount: float
-
-## Calculates how much the piece should flash and shake as it's squished
-export (Curve) var squish_curve: Curve
 
 onready var squish_map: SquishMap = $SquishMap
 onready var sweat_drops: Particles2D = $SweatDrops

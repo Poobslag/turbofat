@@ -28,10 +28,10 @@ extends Node
 ## 	[Ctrl + 0]: Change the creature's demographic to 'default'
 ## 	[Ctrl + 1]: Change the creature's demographic to 'squirrel'
 
-var _creature_type: int = Creatures.Type.DEFAULT
-
 ## local path to a json creature resource to demo
 export (String, FILE, "*.json") var creature_path: String
+
+var _creature_type: int = Creatures.Type.DEFAULT
 
 onready var _creature := $Creature
 onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")

@@ -10,6 +10,11 @@ var type: PieceType
 ## Pieces in the next queue are typically unrotated.
 var orientation := 0
 
+
+func _to_string() -> String:
+	return type.to_string()
+
+
 ## Returns the orientation the piece will be in if it rotates clockwise.
 func get_cw_orientation() -> int:
 	return type.get_cw_orientation(orientation)
@@ -23,7 +28,3 @@ func get_ccw_orientation() -> int:
 ## Returns the orientation the piece will be in if it rotates 180 degrees.
 func get_flip_orientation() -> int:
 	return type.get_flip_orientation(orientation)
-
-
-func _to_string() -> String:
-	return type.to_string()

@@ -50,16 +50,6 @@ func _init() -> void:
 	randomize()
 
 
-## Convert a coordinate from global coordinates to isometric (squashed) coordinates
-static func to_iso(vector: Vector2) -> Vector2:
-	return vector * ISO_FACTOR
-
-
-## Convert a coordinate from isometric coordinates to global (unsquashed) coordinates
-static func from_iso(vector: Vector2) -> Vector2:
-	return vector / ISO_FACTOR
-
-
 ## Sets the start time for a benchmark. Calling 'benchmark_start(foo)' and 'benchmark_finish(foo)' will display a
 ## message like 'foo took 123 milliseconds'.
 func benchmark_start(key: String = "") -> void:
@@ -78,3 +68,13 @@ func benchmark_end(key: String = "") -> void:
 func get_overworld_ui() -> OverworldUi:
 	var nodes := get_tree().get_nodes_in_group("overworld_ui")
 	return nodes[0] if nodes else null
+
+
+## Convert a coordinate from global coordinates to isometric (squashed) coordinates
+static func to_iso(vector: Vector2) -> Vector2:
+	return vector * ISO_FACTOR
+
+
+## Convert a coordinate from isometric coordinates to global (unsquashed) coordinates
+static func from_iso(vector: Vector2) -> Vector2:
+	return vector / ISO_FACTOR

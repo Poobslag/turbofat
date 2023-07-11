@@ -56,15 +56,15 @@ var keys_needed := -1 setget set_keys_needed
 
 var level_name: String setget set_level_name
 
+## Button's background color. If omitted, the button will use a pseudo-random background color based on its id
+var bg_color: Color setget set_bg_color
+
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'level
 ## started' event
 var _focus_just_entered := false
 
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
-
-## Button's background color. If omitted, the button will use a pseudo-random background color based on its id
-var bg_color: Color setget set_bg_color
 
 onready var _label := $Label
 

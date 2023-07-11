@@ -3,11 +3,13 @@ extends HBoxContainer
 
 export var save_slot_control_path: NodePath
 
+var _copied_tween: SceneTreeTween
+
 ## UI component for a changing the current save slot or deleting save slots
 onready var _save_slot_control: SaveSlotControl = get_node(save_slot_control_path)
 
 onready var _copied_label: Label = $HBoxContainer/Copied
-var _copied_tween: SceneTreeTween
+
 
 func _ready() -> void:
 	# hide the 'Copied!' message until we need to display it

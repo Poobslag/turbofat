@@ -15,16 +15,6 @@ signal moved_left(piece)
 # warning-ignore:unused_signal
 signal moved_right(piece)
 
-export (NodePath) var input_path: NodePath
-
-## how many times the piece has moved horizontally this frame
-var _horizontal_movement_count := 0
-
-onready var input: PieceInput = get_node(input_path)
-
-func _physics_process(_delta: float) -> void:
-	_horizontal_movement_count = 0
-
 ## locations the piece will spawn if the player holds left
 const SPAWN_LEFT := [
 		Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1),
@@ -44,6 +34,16 @@ const SPAWN_RIGHT := [
 		Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1),
 		Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
 	]
+
+export (NodePath) var input_path: NodePath
+
+## how many times the piece has moved horizontally this frame
+var _horizontal_movement_count := 0
+
+onready var input: PieceInput = get_node(input_path)
+
+func _physics_process(_delta: float) -> void:
+	_horizontal_movement_count = 0
 
 func apply_initial_move_input(piece: ActivePiece) -> String:
 	var movement_signal: String = ""

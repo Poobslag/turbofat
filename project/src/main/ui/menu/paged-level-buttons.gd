@@ -4,8 +4,6 @@ extends HBoxContainer
 ##
 ## These buttons are arranged in multiple pages which can be navigated with arrow buttons.
 
-const MAX_LEVELS_PER_PAGE := 18
-
 ## Emitted when the player finishes choosing a level to play.
 signal level_chosen(settings)
 
@@ -17,6 +15,8 @@ signal unlocked_level_focused(settings)
 
 ## Emitted when a new level button is added.
 signal button_added(button)
+
+const MAX_LEVELS_PER_PAGE := 18
 
 export (PackedScene) var LevelButtonScene: PackedScene
 

@@ -3,12 +3,12 @@ extends TextEdit
 ##
 ## This script includes logic for populating the json model from the level editor, and vice-versa.
 
-## these fields store different parts of the parsed json
-var _json_tree: Dictionary
-
 export (NodePath) var playfield_editor_path: NodePath
 export (NodePath) var properties_editor_path: NodePath
 export (NodePath) var test_button_path: NodePath
+
+## these fields store different parts of the parsed json
+var _json_tree: Dictionary
 
 var _tile_map: PuzzleTileMap
 var _pickups: EditorPickups

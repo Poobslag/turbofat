@@ -15,6 +15,15 @@ const SQUISH := TechType.SQUISH
 ## Velocity applied to the food when in the 'floating' state
 export (Vector2) var velocity: Vector2
 
+## Piece type, such as 'J-Block' or 'P-Block'
+var piece_type: PieceType setget set_piece_type
+
+## Enum from TechType such as 'Spin' or 'Squish'
+var tech_type: int setget set_burst_type
+
+## Number of lines cleared by this tech move
+var lines_cleared: int setget set_lines_cleared
+
 ## key: (int) Number of lines cleared
 ## value: (String) Word for the number of lines like 'Single' or 'Double'
 var _word_by_lines_cleared := {
@@ -31,15 +40,6 @@ var _suffix_by_tech_type := {
 	SPIN: tr("Spin"),
 	SQUISH: tr("Squish"),
 }
-
-## Piece type, such as 'J-Block' or 'P-Block'
-var piece_type: PieceType setget set_piece_type
-
-## Enum from TechType such as 'Spin' or 'Squish'
-var tech_type: int setget set_burst_type
-
-## Number of lines cleared by this tech move
-var lines_cleared: int setget set_lines_cleared
 
 ## Colors to use; these are automatically assigned based on the number of lines cleared
 var _font_color: Color

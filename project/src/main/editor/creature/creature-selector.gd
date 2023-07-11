@@ -1,18 +1,18 @@
 extends Control
 ## Emits signals as the player interacts with creatures in the creature editor.
 
-## how far away you can click and still trigger an event
-const MAX_MOUSE_DISTANCE := 120
-
 ## emitted when the player moves their mouse over a new creature
 signal hovered_creature_changed(value)
 
 signal creature_clicked(value)
 
-## cache the list of creatures; we don't want to call `get_nodes_in_group` every frame for mouseover events
-onready var creatures: Array = get_tree().get_nodes_in_group("creatures")
+## how far away you can click and still trigger an event
+const MAX_MOUSE_DISTANCE := 120
 
 var hovered_creature: Creature setget set_hovered_creature
+
+## cache the list of creatures; we don't want to call `get_nodes_in_group` every frame for mouseover events
+onready var creatures: Array = get_tree().get_nodes_in_group("creatures")
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventMouse: return

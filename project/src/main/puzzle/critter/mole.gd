@@ -54,17 +54,6 @@ var _next_states := []
 ## accidentally popping two states from the queue when the mole first spawns.
 var _already_popped_state := false
 
-## key: (int) Enum from States
-## value: (Node) State node from the _states StateMachine
-onready var _state_nodes_by_enum := {
-	NONE: $States/None,
-	WAITING: $States/Waiting,
-	DIGGING: $States/Digging,
-	DIGGING_END: $States/DiggingEnd,
-	FOUND_SEED: $States/FoundSeed,
-	FOUND_STAR: $States/FoundStar,
-}
-
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 ## Mole sprite
@@ -80,6 +69,17 @@ onready var wait_low := $WaitLow
 onready var wait_high := $WaitHigh
 
 onready var sfx := $MoleSfx
+
+## key: (int) Enum from States
+## value: (Node) State node from the _states StateMachine
+onready var _state_nodes_by_enum := {
+	NONE: $States/None,
+	WAITING: $States/Waiting,
+	DIGGING: $States/Digging,
+	DIGGING_END: $States/DiggingEnd,
+	FOUND_SEED: $States/FoundSeed,
+	FOUND_STAR: $States/FoundStar,
+}
 
 onready var _states: StateMachine = $States
 

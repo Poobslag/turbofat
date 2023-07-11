@@ -25,13 +25,6 @@ export (OnionLocation) var onion_location: int = OnionLocation.SOIL setget set_o
 ## True if the onion is currently playing their floating animation
 export (bool) var float_animation_playing: bool setget set_float_animation_playing
 
-onready var _animation_tree := $AnimationTree
-onready var _onion := $Onion
-onready var _soil := $Soil
-
-onready var _dirt_particles := $DirtParticles
-onready var _onion_location_tween: SceneTreeTween
-
 ## Enum from OnionConfig.OnionState for the onion's current gameplay state.
 var state: int = OnionConfig.OnionState.NONE setget set_state
 
@@ -44,6 +37,13 @@ var _current_state_index := -1
 ## 'true' if a state has already been popped from the _next_states queue this frame. We track this to avoid
 ## accidentally popping two states from the queue when the onion first spawns.
 var _already_popped_state := false
+
+onready var _animation_tree := $AnimationTree
+onready var _onion := $Onion
+onready var _soil := $Soil
+
+onready var _dirt_particles := $DirtParticles
+onready var _onion_location_tween: SceneTreeTween
 
 func _ready() -> void:
 	# The state machine defaults to the 'none' state and not the 'null' state to avoid edge cases

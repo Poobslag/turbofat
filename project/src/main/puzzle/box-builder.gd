@@ -8,13 +8,6 @@ signal after_boxes_built
 ## emitted when a new box is built
 signal box_built(rect, box_type)
 
-export (NodePath) var tile_map_path: NodePath
-
-## remaining frames to wait for making the current box
-var remaining_box_build_frames := 0
-
-onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
-
 ## Maps 'ingredient strings' to box colors. This lets us calculate which snack/cake tiles should be used for a box with
 ## certain pieces.
 ##
@@ -64,6 +57,13 @@ const BOX_TYPES_BY_INGREDIENTS := {
 	"l23": Foods.BoxType.CAKE_PQV,
 	"l3": Foods.BoxType.WHITE,
 }
+
+export (NodePath) var tile_map_path: NodePath
+
+## remaining frames to wait for making the current box
+var remaining_box_build_frames := 0
+
+onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 
 func _ready() -> void:
 	set_physics_process(false)

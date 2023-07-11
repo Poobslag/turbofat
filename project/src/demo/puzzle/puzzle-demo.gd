@@ -13,6 +13,9 @@ extends Node
 ## 	[T,Y]: Insert a line at different locations in the playfield
 ## 	[U,I,O]: Clear a line at different locations in the playfield
 
+## local path to a json level resource to demo
+export (String, FILE, "*.json") var level_path: String
+
 var _line_clear_count := 1
 var _box_type := 0
 var _food_item_index := 0
@@ -20,9 +23,6 @@ var _cake_box_type: int = Foods.BoxType.CAKE_JJO
 var _night_mode := false
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
-
-## local path to a json level resource to demo
-export (String, FILE, "*.json") var level_path: String
 
 func _ready() -> void:
 	var settings: LevelSettings = LevelSettings.new()

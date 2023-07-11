@@ -27,12 +27,12 @@ const TYPE_DEFAULT := TransitionType.DEFAULT
 const TYPE_PUZZLE := TransitionType.PUZZLE
 const TYPE_NONE := TransitionType.NONE
 
+## Color to fade to during scene transitions.
+var fade_color: Color = ProjectSettings.get_setting("rendering/environment/default_clear_color")
+
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var _mask: Node = $MaskHolder/Mask
-
-## Color to fade to during scene transitions.
-var fade_color: Color = ProjectSettings.get_setting("rendering/environment/default_clear_color")
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail after a scene transition.
 ##

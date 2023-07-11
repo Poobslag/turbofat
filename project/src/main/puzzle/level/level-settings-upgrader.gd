@@ -11,13 +11,13 @@ class UpgradeMethod:
 	## New save data version which the method upgrades to
 	var new_version: String
 
+## Newest version which everything should upgrade to.
+var current_version: String
+
 ## Internally defined methods which provide version-specific updates.
 ## key: (String) old save data version from which the method upgrades
 ## value: (UpgradeMethod) method to call
 var _upgrade_methods := {}
-
-## Newest version which everything should upgrade to.
-var current_version: String
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
@@ -123,35 +123,6 @@ func _increment_phase_string(phase: String, condition: String) -> String:
 	return result
 
 
-## Increments all integers in a string by one.
-##
-## 	increment_string(""):      ""
-## 	increment_string("1 2 3"): "2 3 4"
-## 	increment_string("1,200"): "2,201"
-## 	increment_string("-96"):   "-97"
-##
-## Symbols like '-' and ',' are treated as non-numeric data and ignored.
-static func increment_string(s: String) -> String:
-	var result := ""
-	var num_buffer := ""
-	for i in range(s.length()):
-		if StringUtils.is_digit(s[i]):
-			# digit; add to buffer
-			num_buffer += s[i]
-		elif num_buffer:
-			# non-digit;
-			result += str(int(num_buffer) + 1)
-			num_buffer = ""
-			result += s[i]
-		else:
-			result += s[i]
-	
-	if num_buffer:
-		result += str(int(num_buffer) + 1)
-	
-	return result
-
-
 func _upgrade_392b(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
 	match old_key:
 		"triggers":
@@ -217,6 +188,35 @@ func _upgrade_1922(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 		_:
 			new_json[old_key] = old_json[old_key]
 	return new_json
+
+
+## Increments all integers in a string by one.
+##
+## 	increment_string(""):      ""
+## 	increment_string("1 2 3"): "2 3 4"
+## 	increment_string("1,200"): "2,201"
+## 	increment_string("-96"):   "-97"
+##
+## Symbols like '-' and ',' are treated as non-numeric data and ignored.
+static func increment_string(s: String) -> String:
+	var result := ""
+	var num_buffer := ""
+	for i in range(s.length()):
+		if StringUtils.is_digit(s[i]):
+			# digit; add to buffer
+			num_buffer += s[i]
+		elif num_buffer:
+			# non-digit;
+			result += str(int(num_buffer) + 1)
+			num_buffer = ""
+			result += s[i]
+		else:
+			result += s[i]
+	
+	if num_buffer:
+		result += str(int(num_buffer) + 1)
+	
+	return result
 
 
 ## Extracts a version string from the specified json settings.

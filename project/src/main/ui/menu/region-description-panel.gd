@@ -1,9 +1,9 @@
 extends Panel
 ## Panel on the region select screen which shows region descriptions.
 
-onready var _label := $MarginContainer/Label
-
 var text: String setget set_text
+
+onready var _label := $MarginContainer/Label
 
 func _ready() -> void:
 	_refresh_text()

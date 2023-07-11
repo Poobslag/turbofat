@@ -1,5 +1,5 @@
-## Data about which parts of a region are complete/incomplete.
 class_name RegionCompletion
+## Data about which parts of a region are complete/incomplete.
 
 ## how many interlude cutscenes the player's viewed in a region
 var cutscene_completion: int = 0

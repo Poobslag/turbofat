@@ -34,16 +34,16 @@ var _saved_used_cells := []
 var _saved_tiles := []
 var _saved_autotile_coords := []
 
-## tilemap which covers the corners of this tilemap
-onready var corner_map: TileMap = $CornerMap
-onready var _ghost_piece_shadow_map: TileMap = $GhostPieceViewport/ShadowMap
-onready var _ghost_piece_corner_map: TileMap = $GhostPieceViewport/ShadowMap/CornerMap
-
 var _puzzle_tile_sets_by_enum := {
 	TileSetType.DEFAULT: preload("res://src/main/puzzle/puzzle-tile-set.tres"),
 	TileSetType.VEGGIE: preload("res://src/main/puzzle/puzzle-tile-set-veggies.tres"),
 	TileSetType.DIAGRAM: preload("res://src/main/puzzle/puzzle-tile-set-diagram.tres"),
 }
+
+## tilemap which covers the corners of this tilemap
+onready var corner_map: TileMap = $CornerMap
+onready var _ghost_piece_shadow_map: TileMap = $GhostPieceViewport/ShadowMap
+onready var _ghost_piece_corner_map: TileMap = $GhostPieceViewport/ShadowMap/CornerMap
 
 
 func _ready() -> void:

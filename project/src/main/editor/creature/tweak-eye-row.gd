@@ -3,10 +3,10 @@ extends HBoxContainer
 ##
 ## The eye uses two different colors, and requires a specialized tool.
 
+export (NodePath) var creature_editor_path: NodePath
+
 ## Allele property used internally when updating the creature. Not shown to the player
 var _allele := "eye_rgb"
-
-export (NodePath) var creature_editor_path: NodePath
 
 onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 

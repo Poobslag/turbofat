@@ -39,6 +39,11 @@ var link_metas: Array
 ## appearance, such as 'blue', 'soccer balls' and 'giant'.
 var chat_theme: ChatTheme = ChatTheme.new()
 
+
+func _to_string() -> String:
+	return ("%s:%s" % [who, text]) if who else text
+
+
 func add_link(link: String, link_text: String, link_mood: int) -> void:
 	links.append(link)
 	link_texts.append(link_text)
@@ -63,7 +68,3 @@ func enabled_link_indexes() -> Array:
 ## Returns 'true' if this chat event represents something the player is thinking.
 func is_thought() -> bool:
 	return text.begins_with("(") and text.ends_with(")") and who.empty()
-
-
-func _to_string() -> String:
-	return ("%s:%s" % [who, text]) if who else text

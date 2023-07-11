@@ -1,5 +1,5 @@
-class_name ProgressBoardSpot
 tool
+class_name ProgressBoardSpot
 extends Control
 ## Draws a spot on the progress board trail.
 ##

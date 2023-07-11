@@ -2,21 +2,21 @@ class_name ChatAdvancer
 extends Node
 ## Allows the player to advance through a chat tree, and rewind through past chat events.
 
-## tree of chat events the player can page through
-var chat_tree: ChatTree
-
-## historical array of ChatEvents the player can rewind through
-var _prev_chat_events := []
-var _prev_chat_event_index := 0
-
-## 'true' if the player is currently rewinding through the chat history
-var rewinding_text := false
-
 ## emitted when a chat event (new or historical) is shown to the player
 signal chat_event_shown(chat_event)
 
 ## emitted when the chat sequence ends, and the window should close
 signal chat_finished
+
+## tree of chat events the player can page through
+var chat_tree: ChatTree
+
+## 'true' if the player is currently rewinding through the chat history
+var rewinding_text := false
+
+## historical array of ChatEvents the player can rewind through
+var _prev_chat_events := []
+var _prev_chat_event_index := 0
 
 func play_chat_tree(new_chat_tree: ChatTree) -> void:
 	rewinding_text = false

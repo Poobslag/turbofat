@@ -1,8 +1,8 @@
 extends Node
 ## Manipulates Poki Desert's footprints so that they are not visible when the desert is empty.
 
-## Terrain tilemap with footprint tiles to place
-onready var _tile_map := get_parent()
+## Terrain tilemap's tile ID for footprint tiles
+export (int) var footprint_tile_index: int
 
 ## Limited set of footprint cells visible when the player and sensei are alone in the desert.
 var _player_and_sensei_footprint_cells := [
@@ -26,8 +26,8 @@ var _player_and_sensei_footprint_cells := [
 	Vector2(19, 22),
 ]
 
-## Terrain tilemap's tile ID for footprint tiles
-export (int) var footprint_tile_index: int
+## Terrain tilemap with footprint tiles to place
+onready var _tile_map := get_parent()
 
 func _ready() -> void:
 	if not PlayerData.chat_history.is_chat_finished("chat/career/poki/prologue"):

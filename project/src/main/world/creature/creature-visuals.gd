@@ -70,6 +70,8 @@ var comfort := 0.0 setget set_comfort
 ## MouthPlayer instance which animates mouths
 var mouth_player
 
+var creature_sfx: CreatureSfx setget set_creature_sfx
+
 ## For bouncy feeding animation, allowing inertia and acceleration.
 ## (See: enum GraphicsSettings.FeedingAnimation and creature_visuals.update_fattening_animation)
 var _fattening_inertia: float = 0
@@ -83,8 +85,6 @@ var _force_orientation_change := false
 
 ## food type the creature is eating
 var _food_type: int
-
-var creature_sfx: CreatureSfx setget set_creature_sfx
 
 ## CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
 onready var _animations: Node = $Animations

@@ -20,16 +20,16 @@ var _accept_action_duration := 0.0
 ## how long the player has been holding the 'rewind' button
 var _rewind_action_duration := 0.0
 
-onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
-onready var _chat_choices: ChatChoices = $ChatChoices
-onready var _chat_frame: ChatFrame = $ChatFrame
-onready var _narration_frame: NarrationFrame = $NarrationFrame
-
 ## chat tree currently being played.
 var _chat_tree: ChatTree
 
 ## true if the player has advanced past the last line in the chat tree
 var _chat_finished := false
+
+onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
+onready var _chat_choices: ChatChoices = $ChatChoices
+onready var _chat_frame: ChatFrame = $ChatFrame
+onready var _narration_frame: NarrationFrame = $NarrationFrame
 
 func _ready() -> void:
 	if Global.get_overworld_ui():

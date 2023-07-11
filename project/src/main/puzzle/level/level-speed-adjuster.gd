@@ -1,12 +1,12 @@
 class_name LevelSpeedAdjuster
 ## Adjusts a LevelSettings to use faster or slower piece speeds
 
+## settings to adjust
+var settings: LevelSettings
+
 ## key: (String) speed id
 ## value: (Vector2) x/y coordinates for an entry in PieceSpeeds.speed_id_matrix
 var _coordinates_by_speed := {}
-
-## settings to adjust
-var settings: LevelSettings
 
 func _init(init_settings: LevelSettings) -> void:
 	settings = init_settings

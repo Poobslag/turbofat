@@ -4,14 +4,14 @@ extends Node
 ##
 ## Subclasses can show messages and advances the player through the tutorial as they complete tasks.
 
-## if 'true', the next level change will be accompanied by a 'Ready? Go!' countdown
-var _start_customer_countdown := false
-
 ## generic nodes used by tutorial module subclasses
 var hud: TutorialHud
 var puzzle: Puzzle
 var playfield: Playfield
 var piece_manager: PieceManager
+
+## if 'true', the next level change will be accompanied by a 'Ready? Go!' countdown
+var _start_customer_countdown := false
 
 func _ready() -> void:
 	puzzle = hud.puzzle

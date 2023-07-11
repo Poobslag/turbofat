@@ -4,15 +4,15 @@ extends Timer
 ## Target number of creature greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
+## Number in the range [-1, 1] which corresponds to how many greetings we've given recently. If it's close to 1,
+## we're very unlikely to receive a greeting. If it's close to -1, we're very likely to receive a greeting.
+var greetiness := 0.0
+
 ## Creature who is about to say hello. We use a weak reference to avoid playing sound effects for creatures who
 ## leave the scene tree.
 ##
 ## Ref: (Creature) Creature who is about to say hello.
 var _hello_customer_ref: WeakRef
-
-## Number in the range [-1, 1] which corresponds to how many greetings we've given recently. If it's close to 1,
-## we're very unlikely to receive a greeting. If it's close to -1, we're very likely to receive a greeting.
-var greetiness := 0.0
 
 func _process(delta: float) -> void:
 	greetiness = clamp(greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)

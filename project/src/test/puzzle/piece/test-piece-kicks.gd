@@ -8,15 +8,15 @@ const FAILED_KICK := Vector2(-99, -99)
 var from_grid := []
 var to_grid := []
 
-var _from_piece: ActivePiece
-var _to_piece: ActivePiece
-
 ## A number [0-3] representing the piece's orientation.
 ##
 ## For some pieces (such as the O-Block) orientation is ambiguous but some tests might care which one is selected.
 ## These fields allow tests to force a specific orientation.
 var from_orientation := -1
 var to_orientation := -1
+
+var _from_piece: ActivePiece
+var _to_piece: ActivePiece
 
 func before_each() -> void:
 	from_orientation = -1

@@ -5,6 +5,14 @@ extends Node2D
 
 signal should_play_sfx_changed
 
+## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
+var suppress_sfx := false setget set_suppress_sfx
+
+var should_play_sfx := false
+
+## index of the most recent combo sound that was played
+var _combo_voice_index := 0
+
 ## sounds the creatures make when they enter the restaurant
 onready var hello_voices := [
 	preload("res://assets/main/world/creature/hello-voice-0.wav"),
@@ -53,14 +61,6 @@ onready var _goodbye_voices := [
 	preload("res://assets/main/world/creature/goodbye-voice-2.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-3.wav"),
 ]
-
-## index of the most recent combo sound that was played
-var _combo_voice_index := 0
-
-## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
-var suppress_sfx := false setget set_suppress_sfx
-
-var should_play_sfx := false
 
 ## AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
 ## things at once.
