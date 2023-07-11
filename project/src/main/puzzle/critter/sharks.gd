@@ -227,7 +227,7 @@ func _feed_shark_cells(shark_cell: Vector2, old_piece_cells: Array, new_piece_ce
 
 
 ## Returns:
-## 	Vector2 playfield tilemap coordintaes which contain piece cells
+## 	Vector2 playfield tilemap coordinates which contain piece cells
 func _playfield_piece_cells() -> Array:
 	var result := []
 	for cell in _piece_manager.piece.get_pos_arr():

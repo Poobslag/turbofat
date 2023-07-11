@@ -5,12 +5,14 @@ extends Node
 ## When playing a music track, it skips to the least stale parts of the track.
 ##
 ## Keys:
-##     C: Play chill song
+##     1: Play chill song
+##     2: Play upbeat song
+##     3: Play tutorial song
+##
 ##     N: Toggle night filter
-##     U: Play upbeat song
-##     T: Play tutorial song
-##     =: Fade in the current song
+##
 ##     -: Fade out the current song
+##     =: Fade in the current song
 ##     ]: Skip to next checkpoint in song
 
 func _ready() -> void:
@@ -19,15 +21,15 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_C: MusicPlayer.play_chill_bgm(false)
+		KEY_1: MusicPlayer.play_chill_bgm(false)
+		KEY_2: MusicPlayer.play_upbeat_bgm(false)
+		KEY_3: MusicPlayer.play_tutorial_bgm(false)
+		KEY_N: MusicPlayer.night_filter = not MusicPlayer.night_filter
+		KEY_MINUS: MusicPlayer.stop()
 		KEY_EQUAL:
 			if not MusicPlayer.current_bgm:
 				MusicPlayer.play_chill_bgm()
 			MusicPlayer.fade_in()
-		KEY_N: MusicPlayer.night_filter = not MusicPlayer.night_filter
-		KEY_U: MusicPlayer.play_upbeat_bgm(false)
-		KEY_T: MusicPlayer.play_tutorial_bgm(false)
-		KEY_MINUS: MusicPlayer.stop()
 		KEY_BRACKETRIGHT: next_checkpoint()
 
 

@@ -62,6 +62,7 @@ func _refresh_combo() -> void:
 	_refresh_accent()
 	_refresh_particles()
 
+
 func _calculate_colors() -> void:
 	var outline_darkness := 0.2
 	if combo < COMBO_THRESHOLD_0:
