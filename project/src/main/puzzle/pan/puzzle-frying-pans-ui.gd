@@ -1,4 +1,4 @@
-extends "res://src/main/puzzle/pan/frying-pans-ui.gd"
+extends FryingPansUi
 ## Updates the FryingPansUi based on the level's settings and how the player is doing.
 
 func _ready() -> void:

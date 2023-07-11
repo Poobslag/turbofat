@@ -13,9 +13,11 @@ export (NodePath) var creature_editor_path: NodePath
 var _allele_values: Array
 
 onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
+onready var _edit := $Edit
+onready var _label := $Label
 
 func _ready() -> void:
-	$Label.text = "%s:" % text
+	_label.text = "%s:" % text
 	_creature_editor.connect("center_creature_changed", self, "_on_CreatureEditor_center_creature_changed")
 
 
@@ -37,10 +39,10 @@ func _on_Edit_pressed() -> void:
 		else:
 			allele_index += 1
 	
-	$Edit.clear()
+	_edit.clear()
 	for value in _allele_values:
-		$Edit.add_item(DnaUtils.allele_name(allele, value))
-	$Edit.selected = _allele_values.find(_creature_editor.center_creature.dna[allele])
+		_edit.add_item(DnaUtils.allele_name(allele, value))
+	_edit.selected = _allele_values.find(_creature_editor.center_creature.dna[allele])
 
 
 func _on_Edit_item_selected(index: int) -> void:
@@ -58,6 +60,6 @@ func _on_Dna_pressed() -> void:
 ## Update the option button with the creature's allele value.
 func _on_CreatureEditor_center_creature_changed() -> void:
 	if _creature_editor.center_creature.dna[allele]:
-		$Edit.text = DnaUtils.allele_name(allele, _creature_editor.center_creature.dna[allele])
+		_edit.text = DnaUtils.allele_name(allele, _creature_editor.center_creature.dna[allele])
 	else:
-		$Edit.text = ""
+		_edit.text = ""
