@@ -68,10 +68,10 @@ onready var tile_map: PuzzleTileMap = $TileMap
 onready var input: PieceInput = $Input
 onready var tech_move_detector: TechMoveDetector = $TechMoveDetector
 
+onready var states: PieceStates = $States
 onready var _physics: PiecePhysics = $Physics
 onready var _playfield: Playfield = get_node(playfield_path)
 onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
-onready var states: PieceStates = $States
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")

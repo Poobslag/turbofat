@@ -10,10 +10,10 @@ export (PackedScene) var HoldPieceDisplayScene
 
 var display: HoldPieceDisplay
 
-onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
-
 ## Contains visual elements for the hold piece. Only visible if the hold piece cheat is enabled.
 onready var holder := $Holder
+
+onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")

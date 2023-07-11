@@ -7,12 +7,6 @@ const CAMERA_BOUNDARY := 240
 ## how fast the camera moves when being moved manually with a cheat code
 const MANUAL_CAMERA_SPEED := 3000
 
-## The camera drifts slightly. This field is used to calculate the drift amount
-var _total_time := rand_range(0.0, 10.0)
-
-## base zoom value before drift is applied
-var _base_zoom := Vector2.ONE
-
 ## period for offset/zoom drift, in seconds
 var offset_h_drift_period := 6.450 * rand_range(0.666, 1.333)
 var offset_v_drift_period := 8.570 * rand_range(0.666, 1.333)
@@ -20,6 +14,12 @@ var zoom_drift_period := 15.020 * rand_range(0.666, 1.333)
 
 ## 'true' if the camera is being moved manually with a cheat code
 var manual_mode := false
+
+## The camera drifts slightly. This field is used to calculate the drift amount
+var _total_time := rand_range(0.0, 10.0)
+
+## base zoom value before drift is applied
+var _base_zoom := Vector2.ONE
 
 func _process(delta: float) -> void:
 	_total_time += delta

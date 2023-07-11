@@ -9,10 +9,10 @@ export (String) var text: String
 
 export (NodePath) var creature_editor_path: NodePath
 
-onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
-
 ## Allele values corresponding to the option button items. Used when updating the creature, not shown to the player.
 var _allele_values: Array
+
+onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
 func _ready() -> void:
 	$Label.text = "%s:" % text

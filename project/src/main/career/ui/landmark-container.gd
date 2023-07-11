@@ -6,13 +6,13 @@ export (Resource) var LandmarkSpacerScene: Resource
 
 export (NodePath) var map_row_path: NodePath
 
-onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
-
 ## List of Control nodes which separate landmarks.
 var _landmark_spacers := []
 
 ## List of Landmark instances which show icons along the map.
 var _landmarks := []
+
+onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
 
 func _ready() -> void:
 	_map_row.connect("landmark_count_changed", self, "_on_MapRow_landmark_count_changed")

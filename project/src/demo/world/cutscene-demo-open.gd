@@ -1,15 +1,15 @@
 extends HBoxContainer
 ## UI input for specifying the cutscene to open
 
+## Emitted when the player toggles between picking a valid/invalid chat path.
+signal valid_changed
+
 ## Possible chat key root paths to toggle between based on the chosen cutscene.
 const CHAT_KEY_ROOT_PATHS := [
 	"res://assets/demo",
 	"res://assets/main",
 	"res://assets/test",
 ]
-
-## Emitted when the player toggles between picking a valid/invalid chat path.
-signal valid_changed
 
 ## Cutscene to open
 ## Virtual property; value is only exposed through getters/setters

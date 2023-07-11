@@ -7,15 +7,15 @@ extends Control
 ## Path to the tilemap containing the active piece shown during night mode.
 export (NodePath) var onion_tile_map_path: NodePath setget set_onion_tile_map_path
 
+## visual effects to synchronize with
+var source_squish_fx: SquishFx setget set_source_squish_fx
+
 ## tilemap containing the active piece shown during night mode
 onready var _squish_map: NightPuzzleTileMap = $SquishMap
 onready var _sweat_drops: Particles2D = $SweatDrops
 
 ## tilemap containing the active piece shown during night mode.
 onready var _onion_tile_map: NightPuzzleTileMap = get_node(onion_tile_map_path)
-
-## visual effects to synchronize with
-var source_squish_fx: SquishFx setget set_source_squish_fx
 
 func _ready() -> void:
 	_refresh_source_squish_fx()

@@ -38,6 +38,11 @@ enum CritterType {
 	SHARK,
 }
 
+## local path to a json level resource to demo
+export (String, FILE, "*.json") var level_path: String
+
+export (bool) var cache_resources := false
+
 var critter_type: int = CritterType.NONE
 
 var _carrot_config := CarrotConfig.new()
@@ -45,11 +50,6 @@ var _mole_config := MoleConfig.new()
 var _shark_config := SharkConfig.new()
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
-
-## local path to a json level resource to demo
-export (String, FILE, "*.json") var level_path: String
-
-export (bool) var cache_resources := false
 
 func _ready() -> void:
 	if cache_resources:

@@ -10,17 +10,17 @@ export (NodePath) var ground_map_path: NodePath
 ## tile index in this tilemap which should be used to make tiles impassable
 export (int) var impassable_tile_index := -1
 
-## tilemap containing data on which cells are walkable
-onready var _ground_map: TileMap = get_node(ground_map_path)
-
-## tilemap containing obstacles
-onready var _tile_map: TileMap = get_parent()
-
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
+
+## tilemap containing data on which cells are walkable
+onready var _ground_map: TileMap = get_node(ground_map_path)
+
+## tilemap containing obstacles
+onready var _tile_map: TileMap = get_parent()
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:

@@ -35,6 +35,10 @@ func _init(init_string: String = "", init_pos_arr: Array = [], init_color_arr: A
 				kicks[inverse_key].append(Vector2(-kick.x, -kick.y))
 
 
+func _to_string() -> String:
+	return string
+
+
 ## Populates this object from another PieceType instance.
 ##
 ## Parameters:
@@ -69,10 +73,6 @@ func set_box_type(new_type: int) -> void:
 	for i in range(color_arr.size()):
 		for j in range(color_arr[i].size()):
 			color_arr[i][j].y = new_type
-
-
-func _to_string() -> String:
-	return string
 
 
 ## Returns the orientation the piece will be in if it rotates clockwise.

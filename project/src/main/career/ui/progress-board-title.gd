@@ -28,6 +28,12 @@ const RAINBOW := IconType.RAINBOW
 const SKULL := IconType.SKULL
 const VOLCANO := IconType.VOLCANO
 
+## Text of the label showing the region name.
+var text: String setget set_text
+
+## Enum from IconType for the type of icon to show alongside the title.
+var icon_type: int setget set_icon_type
+
 var _icon_resources_by_type := {
 	NONE: null,
 	
@@ -40,12 +46,6 @@ var _icon_resources_by_type := {
 	SKULL: preload("res://assets/main/career/ui/map/landmark-skull.png"),
 	VOLCANO: preload("res://assets/main/career/ui/map/landmark-volcano.png"),
 }
-
-## Text of the label showing the region name.
-var text: String setget set_text
-
-## Enum from IconType for the type of icon to show alongside the title.
-var icon_type: int setget set_icon_type
 
 ## Label which shows the region name.
 onready var _label := $HBoxContainer/Label

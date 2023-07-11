@@ -10,11 +10,11 @@ export (PackedScene) var NightPieceDisplayScene
 
 var _display: NightPieceDisplay
 
-## daytime hold piece displays to synchronize with
-onready var _hold_piece_displays: HoldPieceDisplays = get_node(hold_piece_displays_path)
-
 ## Contains visual elements for the hold piece. Only visible if the hold piece cheat is enabled.
 onready var holder := $Holder
+
+## daytime hold piece displays to synchronize with
+onready var _hold_piece_displays: HoldPieceDisplays = get_node(hold_piece_displays_path)
 
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")

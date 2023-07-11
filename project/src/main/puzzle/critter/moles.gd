@@ -36,6 +36,45 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 	_refresh_piece_manager_path()
 
 
+## Adds moles to the playfield.
+##
+## Details like the number of moles to add, where to add them, how long they stay and what they dig are all specified
+## by the config parameter.
+##
+## Parameters:
+## 	'config': rules for how many moles to add, where to add them, how long they stay and what they dig.
+func add_moles(config: MoleConfig) -> void:
+	if _playfield.is_clearing_lines():
+		# We don't add moles during line clear events -- the playfield
+		_call_queue.defer(self, "_inner_add_moles", [config])
+	else:
+		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
+		_inner_add_moles(config)
+
+
+## Advances all moles by one state.
+func advance_moles() -> void:
+	if _playfield.is_clearing_lines():
+		# We don't add moles during line clear events -- the playfield
+		_call_queue.defer(self, "_inner_advance_moles", [])
+	else:
+		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
+		_inner_advance_moles()
+
+
+## Plays a 'poof' animation and queues a mole for deletion.
+##
+## Parameters:
+## 	'cell': A playfield cell containing a mole.
+func remove_mole(cell: Vector2) -> void:
+	if not _moles_by_cell.has(cell):
+		return
+	
+	var mole: Mole = _moles_by_cell[cell]
+	mole.poof_and_free()
+	_moles_by_cell.erase(cell)
+
+
 ## Connects playfield listeners.
 func _refresh_playfield_path() -> void:
 	if not (is_inside_tree() and playfield_path):
@@ -72,22 +111,6 @@ func _refresh_piece_manager_path() -> void:
 	
 	if _piece_manager:
 		_piece_manager.connect("piece_disturbed", self, "_on_PieceManager_piece_disturbed")
-
-
-## Adds moles to the playfield.
-##
-## Details like the number of moles to add, where to add them, how long they stay and what they dig are all specified
-## by the config parameter.
-##
-## Parameters:
-## 	'config': rules for how many moles to add, where to add them, how long they stay and what they dig.
-func add_moles(config: MoleConfig) -> void:
-	if _playfield.is_clearing_lines():
-		# We don't add moles during line clear events -- the playfield
-		_call_queue.defer(self, "_inner_add_moles", [config])
-	else:
-		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
-		_inner_add_moles(config)
 
 
 ## Returns potential cells to which a mole could be added.
@@ -224,29 +247,6 @@ func _add_mole(cell: Vector2, config: MoleConfig) -> void:
 	
 	add_child(mole)
 	_moles_by_cell[cell] = mole
-
-
-## Advances all moles by one state.
-func advance_moles() -> void:
-	if _playfield.is_clearing_lines():
-		# We don't add moles during line clear events -- the playfield
-		_call_queue.defer(self, "_inner_advance_moles", [])
-	else:
-		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
-		_inner_advance_moles()
-
-
-## Plays a 'poof' animation and queues a mole for deletion.
-##
-## Parameters:
-## 	'cell': A playfield cell containing a mole.
-func remove_mole(cell: Vector2) -> void:
-	if not _moles_by_cell.has(cell):
-		return
-	
-	var mole: Mole = _moles_by_cell[cell]
-	mole.poof_and_free()
-	_moles_by_cell.erase(cell)
 
 
 ## Recalculates a mole's position based on their playfield cell.

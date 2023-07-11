@@ -1,10 +1,10 @@
+class_name CallQueue
 ## Queue of deferred method calls, for scenarios where we need to call methods in the future.
 ##
 ## A typical use case scenario for this queue involves three steps:
 ## 	1. Repeatedly deferring methods using defer(). This schedules calls to occur in the future.
 ## 	2. Repeatedly popping deferred calls using pop_deferred().
 ## 	3. Verifying the queue is empty using assert_empty().
-class_name CallQueue
 
 ## List of Dictionary items defining method calls and arguments.
 ## 	'target': (String) object whose method should be called

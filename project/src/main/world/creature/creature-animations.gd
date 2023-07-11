@@ -15,6 +15,8 @@ export (int) var emote_arm_frame: int setget set_emote_arm_frame
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
+var creature_sfx: CreatureSfx setget set_creature_sfx
+
 var _creature_visuals: CreatureVisuals
 
 var _emote_arm_z0: PackedSprite
@@ -28,8 +30,6 @@ var _head_bobber: HeadBobber
 var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
-
-var creature_sfx: CreatureSfx setget set_creature_sfx
 
 ## IdleTimer which launches idle animations periodically
 onready var _idle_timer: Timer = $IdleTimer

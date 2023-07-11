@@ -6,11 +6,11 @@ export (NodePath) var restaurant_view_path: NodePath
 ## Cluster of crumbs which appears when the customer eats.
 export (PackedScene) var CrumbClusterScene: PackedScene
 
-onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
-
 ## Crumb clusters are pooled for performance reasons. Spawning the first crumb cluster sometimes causes a performance
 ## hiccup, and it's better for this to happen on load rather than during gameplay.
 var _crumb_cluster_pool := []
+
+onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
 
 func _ready() -> void:
 	for customer_obj in _restaurant_view.get_customers():

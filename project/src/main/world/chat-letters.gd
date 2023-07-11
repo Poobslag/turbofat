@@ -17,10 +17,10 @@ const LETTER_ANGLES_BY_ORIENTATION := {
 	Creatures.NORTHEAST: -0.16667 * PI,
 }
 
-onready var _letter_shooter: LetterShooter = $LetterShooter
-
 ## creature currently emitting letters
 var _chatter: Creature
+
+onready var _letter_shooter: LetterShooter = $LetterShooter
 
 func _ready() -> void:
 	var overworld_ui: OverworldUi = Global.get_overworld_ui()

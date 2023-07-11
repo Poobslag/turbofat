@@ -11,11 +11,11 @@ const CHUNK_SECONDS := 0.01
 ## Node2D scene to test
 export (PackedScene) var SpriteScene: PackedScene
 
-onready var _sprite_container := $SpriteContainer
-onready var _count := $Ui/Control/Count
-
 ## desired number of sprites to show
 var _target_sprite_count := 10
+
+onready var _sprite_container := $SpriteContainer
+onready var _count := $Ui/Control/Count
 
 func _physics_process(_delta: float) -> void:
 	var start_msec := Time.get_ticks_msec()

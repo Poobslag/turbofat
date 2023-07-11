@@ -78,11 +78,11 @@ const STAR_SEED_POSITIONS_BY_SIZE_DOUBLE := {
 
 export (NodePath) var puzzle_tile_map_path: NodePath
 
+export (PackedScene) var StarSeedScene: PackedScene
+
 ## key: (Vector2) playfield cell positions
 ## value: (StarSeed) StarSeed node contained within that cell
 var _star_seeds_by_cell: Dictionary
-
-export (PackedScene) var StarSeedScene: PackedScene
 
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 

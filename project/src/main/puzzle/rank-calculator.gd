@@ -113,31 +113,6 @@ func _max_combo_score(lines: int) -> int:
 	return result
 
 
-## Calculates the minimum theoretical frames per line for a given piece speed.
-##
-## This assumes a perfect player who is making many boxes, clearing lines one at a time, and moving pieces with TAS
-## level efficiency.
-static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
-	var movement_frames := 1 + MASTER_MVMT_FRAMES
-	var frames_per_line := 0.0
-	
-	# eight pieces form three boxes and clear four lines
-
-	# time spent spawning eight pieces
-	frames_per_line += piece_speed.line_appearance_delay * 4 # four 'line clear' pieces spawned
-	frames_per_line += piece_speed.appearance_delay * 4 # four 'regular pieces' spawned
-	
-	# time spent moving nine pieces
-	frames_per_line += movement_frames * 8
-	
-	# time spent while pieces lock into the playfield
-	frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
-	frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
-	frames_per_line += piece_speed.box_delay * 3 # three boxes formed
-	frames_per_line /= 4
-	return frames_per_line
-
-
 ## Calculates the lines per minute for a specific rank.
 ##
 ## The lines per minute (lpm) and seconds per line (spl) are limited based on current level's speeds, such as its line
@@ -444,6 +419,31 @@ func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	rank_result.score_rank = clamp(rank_result.score_rank, min_rank, max_rank)
 	rank_result.seconds_rank = clamp(rank_result.seconds_rank, min_rank, max_rank)
 	rank_result.pickup_score_rank = clamp(rank_result.pickup_score_rank, min_rank, max_rank)
+
+
+## Calculates the minimum theoretical frames per line for a given piece speed.
+##
+## This assumes a perfect player who is making many boxes, clearing lines one at a time, and moving pieces with TAS
+## level efficiency.
+static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
+	var movement_frames := 1 + MASTER_MVMT_FRAMES
+	var frames_per_line := 0.0
+	
+	# eight pieces form three boxes and clear four lines
+
+	# time spent spawning eight pieces
+	frames_per_line += piece_speed.line_appearance_delay * 4 # four 'line clear' pieces spawned
+	frames_per_line += piece_speed.appearance_delay * 4 # four 'regular pieces' spawned
+	
+	# time spent moving nine pieces
+	frames_per_line += movement_frames * 8
+	
+	# time spent while pieces lock into the playfield
+	frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
+	frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
+	frames_per_line += piece_speed.box_delay * 3 # three boxes formed
+	frames_per_line /= 4
+	return frames_per_line
 
 
 ## Converts a numeric grade such as '12.6' into a grade string such as 'S+'.

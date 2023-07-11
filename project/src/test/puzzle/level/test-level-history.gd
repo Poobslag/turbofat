@@ -6,16 +6,6 @@ func before_each() -> void:
 	_level_history.reset()
 
 
-static func rank_result(score: int = 7890) -> RankResult:
-	var result := RankResult.new()
-	result.seconds = 600.0
-	result.lines = 300
-	result.box_score_per_line = 9.3
-	result.combo_score_per_line = 17.0
-	result.score = score
-	return result
-
-
 func test_prune_one() -> void:
 	_level_history.add_result("level_895", rank_result(7890))
 	_level_history.prune("level_895")
@@ -79,3 +69,13 @@ func test_finished_successful() -> void:
 	_level_history.add_result("level_895", result)
 	assert_eq(_level_history.finished_levels.keys(), ["level_895"])
 	assert_eq(_level_history.successful_levels.keys(), ["level_895"])
+
+
+static func rank_result(score: int = 7890) -> RankResult:
+	var result := RankResult.new()
+	result.seconds = 600.0
+	result.lines = 300
+	result.box_score_per_line = 9.3
+	result.combo_score_per_line = 17.0
+	result.score = score
+	return result

@@ -4,11 +4,11 @@ extends VBoxContainer
 ##
 ## Scores are separated by mode and difficulty. We also keep daily scores separate.
 
-## level to display high scores for
-var _level: LevelSettings setget set_level
-
 ## if true, only performances with today's date are included
 export (bool) var daily := false setget set_daily
+
+## level to display high scores for
+var _level: LevelSettings setget set_level
 
 onready var _label: Label = $Label
 onready var _grid_container: GridContainer = $GridContainer

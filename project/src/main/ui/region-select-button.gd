@@ -6,6 +6,9 @@ extends MarginContainer
 ## it. However, it supports several button behaviors such as the disabled property and focus_entered/focus_exited
 ## signals.
 
+## Emitted when the player launches a career region.
+signal region_chosen
+
 ## List of different button types which decide the image shown on the button.
 enum Type {
 	NONE,
@@ -14,16 +17,6 @@ enum Type {
 	POKI,
 	MARSH,
 }
-
-## Emitted when the player launches a career region.
-signal region_chosen
-
-## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
-## started' event
-var _focus_just_entered := false
-
-## 'true' if the 'region started' signal should be emitted in response to a button click.
-var _emit_region_chosen := false
 
 ## key: (Type)
 ## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
@@ -57,6 +50,13 @@ var ranks := []
 
 ## Number in the range [0.0, 1.0] for how close the player is to completing the region.
 var completion_percent := 0.0
+
+## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
+## started' event
+var _focus_just_entered := false
+
+## 'true' if the 'region started' signal should be emitted in response to a button click.
+var _emit_region_chosen := false
 
 onready var grade_hook := $Button/GradeHook
 

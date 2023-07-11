@@ -1,5 +1,5 @@
-extends Node
 tool
+extends Node
 ## Applies autotiling rules to all cells in a TileMap.
 ##
 ## After editing a TileSet, there's no easy way to reapply its autotile rules across an entire TileMap. This

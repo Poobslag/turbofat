@@ -29,6 +29,9 @@ const FONT_COLOR_BY_TYPE := {
 	MessageType.BAD: Color("e7d6ff"),
 }
 
+## Raw message text currently shown on the label. Empty if the label is invisible or turning invisible.
+var shown_message_text := ""
+
 ## accent textures for different types of messages
 var _word_accent_bad := preload("res://assets/main/puzzle/word-accent-bad.png")
 var _word_accent_bad_wide := preload("res://assets/main/puzzle/word-accent-bad-wide.png")
@@ -50,9 +53,6 @@ onready var _accent := $Accent
 
 ## animates the text popping in/out
 onready var _animation_player := $AnimationPlayer
-
-## Raw message text currently shown on the label. Empty if the label is invisible or turning invisible.
-var shown_message_text := ""
 
 func _ready() -> void:
 	_text_holder.visible = false

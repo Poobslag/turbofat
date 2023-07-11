@@ -76,8 +76,6 @@ var _color := Color.transparent
 ## tile indexes by food/vegetable color
 var _color_tile_indexes: Dictionary
 
-onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
-
 ## lights which turn on and off
 onready var light_map: TileMap = $LightMap
 
@@ -86,6 +84,8 @@ onready var glow_map: TileMap = $GlowMap
 
 ## bright flash when the player clears a line
 onready var bg_strobe: ColorRect = $BgStrobe
+
+onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 
 ## gradually dims the glowiness
 onready var _glow_tween: SceneTreeTween
