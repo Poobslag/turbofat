@@ -105,7 +105,6 @@ func _add_cluster(cluster: String) -> void:
 	if not frequency.has(cluster):
 		frequency[cluster] = 0
 		var prefix := cluster.substr(0, cluster.length() - 1)
-		if not connections.has(prefix):
-			connections[prefix] = {}
+		Utils.put_if_absent(connections, prefix, {})
 		connections[prefix][cluster] = true
 	frequency[cluster] += 1

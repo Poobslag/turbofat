@@ -194,10 +194,8 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 			var prefix: String = key_parts[0]
 			if i >= 2:
 				prefix += "/" + PoolStringArray(key_parts.slice(1, i - 1)).join("_")
-			if not _preroll_tree.has(prefix):
-				_preroll_tree[prefix] = []
-			if not _preroll_tree[prefix].has(key_part):
-				_preroll_tree[prefix].append(key_part)
+			Utils.put_if_absent(_preroll_tree, prefix, [])
+			Utils.append_if_absent(_preroll_tree[prefix], key_part)
 	
 	# populate _general_sensei_chat_keys, _general_restaurant_chat_keys
 	_general_sensei_chat_keys.clear()

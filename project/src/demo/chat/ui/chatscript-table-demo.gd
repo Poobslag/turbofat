@@ -24,8 +24,7 @@ func _recalculate_prefixes_by_mood() -> void:
 	_prefixes_by_mood.clear()
 	for mood_prefix in ChatscriptParser.MOOD_PREFIXES:
 		var mood: int = ChatscriptParser.MOOD_PREFIXES[mood_prefix]
-		if not _prefixes_by_mood.has(mood):
-			_prefixes_by_mood[mood] = []
+		Utils.put_if_absent(_prefixes_by_mood, mood, [])
 		_prefixes_by_mood[mood].append(mood_prefix)
 
 

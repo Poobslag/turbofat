@@ -84,8 +84,7 @@ func _report_problems_for_chat(chat_path: String) -> void:
 	
 	var warnings: Array = chat_tree.meta.get("warnings", [])
 	if warnings:
-		if not _problems.has(chat_path):
-			_problems.append(chat_path)
+		Utils.append_if_absent(_problems, chat_path)
 		for warning in warnings:
 			push_warning("%s - %s" % [chat_path, warning])
 

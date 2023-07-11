@@ -282,8 +282,7 @@ func schedule_finish_line_clears() -> void:
 		
 		# preserve full lines which were already being deleted
 		for line in old_lines_being_deleted:
-			if not lines_being_deleted.has(line):
-				lines_being_deleted.append(line)
+			Utils.append_if_absent(lines_being_deleted, line)
 		
 		# if we were already clearing lines, we pause before triggering additional line clears
 		if was_clearing_lines:

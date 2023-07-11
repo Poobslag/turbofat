@@ -119,8 +119,14 @@ static func find_closest(values: Array, target: float) -> int:
 
 
 ## If the specified key does not exist, this method associates it with the given value.
-static func put_if_absent(dict: Dictionary, key: String, value) -> void:
+static func put_if_absent(dict: Dictionary, key, value) -> void:
 	dict[key] = dict.get(key, value)
+
+
+## If the specified array item does not exist, this method appends it.
+static func append_if_absent(array: Array, value) -> void:
+	if not array.has(value):
+		array.append(value)
 
 
 ## Removes all occurrences of the specified element from the specified array
@@ -139,8 +145,7 @@ static func subtract(a: Array, b: Array) -> Array:
 	var result := []
 	var bag := {}
 	for item in b:
-		if not bag.has(item):
-			bag[item] = 0
+		put_if_absent(bag, item, 0)
 		bag[item] += 1
 	for item in a:
 		if bag.has(item):
@@ -157,8 +162,7 @@ static func intersection(a: Array, b: Array) -> Array:
 	var result := []
 	var bag := {}
 	for item in b:
-		if not bag.has(item):
-			bag[item] = 0
+		put_if_absent(bag, item, 0)
 		bag[item] += 1
 	for item in a:
 		if bag.has(item):
@@ -176,12 +180,10 @@ static func disjunction(a: Array, b: Array) -> Array:
 	var result := []
 	var bag := {}
 	for item in a:
-		if not bag.has(item):
-			bag[item] = 0
+		put_if_absent(bag, item, 0)
 		bag[item] += 1
 	for item in b:
-		if not bag.has(item):
-			bag[item] = 0
+		put_if_absent(bag, item, 0)
 		bag[item] -= 1
 	for item in bag:
 		for _i in range(abs(bag[item])):
@@ -321,11 +323,11 @@ static func ui_pressed_dir(event: InputEvent = null) -> Vector2:
 	return ui_dir.normalized()
 
 
-## Returns 'true' if the user just released a direction key.
+## Returns a unit vector corresponding to the direction the user just released.
 ##
 ## Parameters:
 ## 	'event': (Optional) Input event to be evaluated. If null, this method will evaluate all current inputs.
-static func ui_released_dir(event: InputEvent = null) -> bool:
+static func ui_released_dir(event: InputEvent = null) -> Vector2:
 	var ui_dir := Vector2.ZERO
 	if event:
 		if event.is_action_released("ui_up"):
@@ -345,7 +347,7 @@ static func ui_released_dir(event: InputEvent = null) -> bool:
 			ui_dir += Vector2.LEFT
 		if Input.is_action_just_released("ui_right"):
 			ui_dir += Vector2.RIGHT
-	return ui_dir.length() > 0
+	return ui_dir.normalized()
 
 
 ## Creates/recreates a tween, invalidating it if it is already active.

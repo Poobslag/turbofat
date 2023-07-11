@@ -84,8 +84,7 @@ func set_preset(new_preset: int) -> void:
 func set_custom_keybind(action_name: String, index: int, json: Dictionary) -> void:
 	_unbind_conflicting_actions(action_name, json)
 	
-	if not custom_keybinds.has(action_name):
-		custom_keybinds[action_name] = [{}, {}, {}]
+	Utils.put_if_absent(custom_keybinds, action_name, [{}, {}, {}])
 	custom_keybinds[action_name][index] = json
 	emit_signal("settings_changed")
 

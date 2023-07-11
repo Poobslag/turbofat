@@ -63,8 +63,7 @@ func alternative(dna: Dictionary, key: String, value: String) -> String:
 func _add_alternative(conflicting_allele: String, conflicting_values: Array,
 		allele: String, allele_value: String, alternative_value: String) -> void:
 	var allele_value_key := _allele_value_key(allele, allele_value)
-	if not _alternatives.has(allele_value_key):
-		_alternatives[allele_value_key] = []
+	Utils.put_if_absent(_alternatives, allele_value_key, [])
 	_alternatives[allele_value_key].append([conflicting_allele, conflicting_values, alternative_value])
 
 
