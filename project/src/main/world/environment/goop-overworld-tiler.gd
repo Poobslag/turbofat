@@ -8,7 +8,7 @@ extends Node
 ##
 ## This class also assigns appropriate 'corner covers', tiles which cover the corners of an overworld tilemap.
 
-enum TileTypes {
+enum TileType {
 	NONE,
 	NO_GOOP,
 	SOME_GOOP,
@@ -49,143 +49,143 @@ const CAKE_CENTER := 1024
 ##
 ## key: (int) bitmask of surrounding tiles
 ## value: (Vector2) array of two elements which define a 'binding value':
-##  value[0]: (int) enum from TileTypes defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
+##  value[0]: (int) enum from TileType defining the new tile type, such as 'ALL_GOOP' or 'SOME_GOOP'
 ##  value[1]: (Vector2) autotile coordinate of the new tile
 const NO_GOOP_AUTOTILE_COORDS_BY_BINDING := {
 	# goopless tiles
-	0: [TileTypes.NO_GOOP,
+	0: [TileType.NO_GOOP,
 			[Vector2(0, 0), Vector2(1, 0)]],
-	CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(2, 0), Vector2(3, 0)]],
-	CAKE_BOTTOM: [TileTypes.NO_GOOP,
+	CAKE_BOTTOM: [TileType.NO_GOOP,
 			[Vector2(4, 0), Vector2(5, 0)]],
-	CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_BOTTOM | CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(0, 1), Vector2(1, 1)]],
-	CAKE_LEFT: [TileTypes.NO_GOOP,
+	CAKE_LEFT: [TileType.NO_GOOP,
 			[Vector2(2, 1), Vector2(3, 1)]],
-	CAKE_LEFT | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_LEFT | CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(4, 1), Vector2(5, 1)]],
-	CAKE_LEFT | CAKE_BOTTOM: [TileTypes.NO_GOOP,
+	CAKE_LEFT | CAKE_BOTTOM: [TileType.NO_GOOP,
 			[Vector2(0, 2), Vector2(1, 2)]],
-	CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(2, 2), Vector2(3, 2)]],
-	CAKE_RIGHT: [TileTypes.NO_GOOP,
+	CAKE_RIGHT: [TileType.NO_GOOP,
 			[Vector2(4, 2), Vector2(5, 2)]],
-	CAKE_RIGHT | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(0, 3), Vector2(1, 3)]],
-	CAKE_RIGHT | CAKE_BOTTOM: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_BOTTOM: [TileType.NO_GOOP,
 			[Vector2(2, 3), Vector2(3, 3)]],
-	CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(4, 3), Vector2(5, 3)]],
-	CAKE_RIGHT | CAKE_LEFT: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_LEFT: [TileType.NO_GOOP,
 			[Vector2(0, 4), Vector2(1, 4)]],
-	CAKE_RIGHT | CAKE_LEFT | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_LEFT | CAKE_TOP: [TileType.NO_GOOP,
 			[Vector2(2, 4), Vector2(3, 4)]],
-	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM: [TileType.NO_GOOP,
 			[Vector2(4, 4), Vector2(5, 4)]],
-	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.NO_GOOP,
+	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileType.NO_GOOP,
 			# This first 4-way goopless tile is blank. We repeat it to increase its likelihood of being selected.
 			[Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5),
 			Vector2(1, 5), Vector2(2, 5), Vector2(3, 5), Vector2(4, 5), Vector2(5, 5)]],
 	
 	# fully goopy tiles, where all adjacent cells are also goopy
 	GOOP_CENTER:
-			[TileTypes.ALL_GOOP, [Vector2(0, 0)]],
+			[TileType.ALL_GOOP, [Vector2(0, 0)]],
 	GOOP_CENTER | CAKE_TOP | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(1, 0)]],
+			[TileType.ALL_GOOP, [Vector2(1, 0)]],
 	GOOP_CENTER | CAKE_BOTTOM | GOOP_BOTTOM:
-			[TileTypes.ALL_GOOP, [Vector2(2, 0)]],
+			[TileType.ALL_GOOP, [Vector2(2, 0)]],
 	GOOP_CENTER | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(3, 0)]],
+			[TileType.ALL_GOOP, [Vector2(3, 0)]],
 	GOOP_CENTER | CAKE_LEFT | GOOP_LEFT:
-			[TileTypes.ALL_GOOP, [Vector2(4, 0)]],
+			[TileType.ALL_GOOP, [Vector2(4, 0)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_TOP | GOOP_LEFT | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(5, 0)]],
+			[TileType.ALL_GOOP, [Vector2(5, 0)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT | GOOP_BOTTOM:
-			[TileTypes.ALL_GOOP, [Vector2(0, 1)]],
+			[TileType.ALL_GOOP, [Vector2(0, 1)]],
 	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(1, 1)], Vector2(2, 1), Vector2(3, 1), Vector2(4, 1)],
+			[TileType.ALL_GOOP, [Vector2(1, 1)], Vector2(2, 1), Vector2(3, 1), Vector2(4, 1)],
 	GOOP_CENTER | CAKE_RIGHT | GOOP_RIGHT:
-			[TileTypes.ALL_GOOP, [Vector2(5, 1)]],
+			[TileType.ALL_GOOP, [Vector2(5, 1)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_TOP | GOOP_RIGHT | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(0, 2)]],
+			[TileType.ALL_GOOP, [Vector2(0, 2)]],
 	GOOP_CENTER | CAKE_BOTTOM | CAKE_RIGHT | GOOP_BOTTOM | GOOP_RIGHT:
-			[TileTypes.ALL_GOOP, [Vector2(1, 2)]],
+			[TileType.ALL_GOOP, [Vector2(1, 2)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(2, 2)]],
+			[TileType.ALL_GOOP, [Vector2(2, 2)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | GOOP_RIGHT | GOOP_LEFT:
-			[TileTypes.ALL_GOOP, [Vector2(3, 2)]],
+			[TileType.ALL_GOOP, [Vector2(3, 2)]],
 	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT | GOOP_LEFT | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(4, 2), Vector2(5, 2), Vector2(0, 3), Vector2(1, 3)]],
+			[TileType.ALL_GOOP, [Vector2(4, 2), Vector2(5, 2), Vector2(0, 3), Vector2(1, 3)]],
 	GOOP_CENTER | CAKE_BOTTOM | CAKE_RIGHT | CAKE_LEFT | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM:
-			[TileTypes.ALL_GOOP, [Vector2(2, 3)]],
+			[TileType.ALL_GOOP, [Vector2(2, 3)]],
 	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP:
-			[TileTypes.ALL_GOOP, [Vector2(3, 3)]],
+			[TileType.ALL_GOOP, [Vector2(3, 3)]],
 	
 	# partially goopy tiles, where some adjacent cells are goopless
 	GOOP_CENTER | CAKE_ALL:
-			[TileTypes.SOME_GOOP, [Vector2(0, 0)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_TOP: [TileTypes.SOME_GOOP,
+			[TileType.SOME_GOOP, [Vector2(0, 0)]],
+	GOOP_CENTER | CAKE_ALL | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(1, 0)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(2, 0)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_BOTTOM | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_BOTTOM | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(3, 0), Vector2(4, 0)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_LEFT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_LEFT: [TileType.SOME_GOOP,
 			[Vector2(5, 0)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(6, 0), Vector2(7, 0)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(0, 1), Vector2(1, 1)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_LEFT | GOOP_BOTTOM | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(2, 1), Vector2(3, 1)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT: [TileType.SOME_GOOP,
 			[Vector2(4, 1)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(5, 1), Vector2(6, 1)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(7, 1), Vector2(0, 2)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_BOTTOM | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_BOTTOM | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(1, 2), Vector2(2, 2)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT: [TileType.SOME_GOOP,
 			[Vector2(3, 2), Vector2(4, 2)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(5, 2), Vector2(6, 2)]],
-	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_ALL | GOOP_RIGHT | GOOP_LEFT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(7, 2), Vector2(0, 3)]],
 	
 	# partially goopy tiles on an edge
-	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(1, 3)]],
-	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(2, 3)]],
-	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(3, 3)]],
-	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | GOOP_LEFT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(4, 3)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(5, 3)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(6, 3)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(7, 3)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | GOOP_RIGHT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(0, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_LEFT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_LEFT: [TileType.SOME_GOOP,
 			[Vector2(1, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_LEFT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_LEFT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(2, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT: [TileType.SOME_GOOP,
 			[Vector2(3, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT | GOOP_TOP: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | GOOP_RIGHT | GOOP_TOP: [TileType.SOME_GOOP,
 			[Vector2(4, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT: [TileType.SOME_GOOP,
 			[Vector2(5, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_LEFT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(6, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_RIGHT: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_RIGHT: [TileType.SOME_GOOP,
 			[Vector2(7, 4)]],
-	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_RIGHT | GOOP_BOTTOM: [TileTypes.SOME_GOOP,
+	GOOP_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | GOOP_RIGHT | GOOP_BOTTOM: [TileType.SOME_GOOP,
 			[Vector2(0, 5)]],
 }
 
@@ -236,13 +236,13 @@ export (int) var corner_tile_index: int
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
-## key: (TileTypes)
+## key: (TileType)
 ## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_indexes_by_type := {}
 
 ## key: (int) tile index from the parent tilemap
-## value: (TileTypes) tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
+## value: (TileType) tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
 var _tile_types_by_index := {}
 
 ## indexes of cake tiles in the parent tilemap, both goopy and goopless
@@ -315,14 +315,14 @@ func _initialize_onready_variables() -> void:
 ## function initializes the internal helper fields when the tiler is initialized or when the export fields change.
 func _refresh_tile_indexes() -> void:
 	_tile_indexes_by_type = {
-		TileTypes.NO_GOOP: no_goop_tile_index,
-		TileTypes.SOME_GOOP: some_goop_tile_index,
-		TileTypes.ALL_GOOP: all_goop_tile_index,
+		TileType.NO_GOOP: no_goop_tile_index,
+		TileType.SOME_GOOP: some_goop_tile_index,
+		TileType.ALL_GOOP: all_goop_tile_index,
 	}
 	_tile_types_by_index = {
-		no_goop_tile_index: TileTypes.NO_GOOP,
-		some_goop_tile_index: TileTypes.SOME_GOOP,
-		all_goop_tile_index: TileTypes.ALL_GOOP,
+		no_goop_tile_index: TileType.NO_GOOP,
+		some_goop_tile_index: TileType.SOME_GOOP,
+		all_goop_tile_index: TileType.ALL_GOOP,
 	}
 	_cake_indexes = [no_goop_tile_index, some_goop_tile_index, all_goop_tile_index]
 	_goop_indexes = [some_goop_tile_index, all_goop_tile_index]
@@ -332,7 +332,7 @@ func _refresh_tile_indexes() -> void:
 func _autotile_ground_tiles() -> void:
 	for cell in _tile_map.get_used_cells():
 		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
-			TileTypes.NO_GOOP, TileTypes.SOME_GOOP, TileTypes.ALL_GOOP: _autotile_ground_tile(cell)
+			TileType.NO_GOOP, TileType.SOME_GOOP, TileType.ALL_GOOP: _autotile_ground_tile(cell)
 
 
 ## Autotiles the cake tile at the specified coordinates.
@@ -353,7 +353,7 @@ func _autotile_corner_tiles() -> void:
 	_corner_map.clear()
 	for cell in _tile_map.get_used_cells():
 		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
-			TileTypes.NO_GOOP, TileTypes.SOME_GOOP, TileTypes.ALL_GOOP: _autotile_corner_tile(cell)
+			TileType.NO_GOOP, TileType.SOME_GOOP, TileType.ALL_GOOP: _autotile_corner_tile(cell)
 
 
 ## Autotiles the corner cover at the specified coordinates.

@@ -171,7 +171,7 @@ func _prepare_pickups_for_level() -> void:
 ## The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard
 ## pattern.
 func _food_type_for_box_type(box_type: int, cell: Vector2) -> int:
-	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
+	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPE[box_type]
 	return food_types[(int(cell.x + cell.y) % food_types.size())]
 
 

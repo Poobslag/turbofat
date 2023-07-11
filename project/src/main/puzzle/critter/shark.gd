@@ -6,7 +6,7 @@ extends Node2D
 ## from the piece, a big bite from the piece, or eat the entire piece.
 
 ## States the shark goes through when eating a piece.
-enum States {
+enum State {
 	NONE,
 	WAITING,
 	DANCING,
@@ -20,25 +20,25 @@ enum States {
 const DEFAULT_EAT_DURATION := 0.8
 
 ## The shark has not appeared yet, or has disappeared.
-const NONE := States.NONE
+const NONE := State.NONE
 
 ## The shark will appear soon.
-const WAITING := States.WAITING
+const WAITING := State.WAITING
 
 ## The shark is dancing, waiting to be fed.
-const DANCING := States.DANCING
+const DANCING := State.DANCING
 
 ## The shark is dancing, but will stop dancing very soon.
-const DANCING_END := States.DANCING_END
+const DANCING_END := State.DANCING_END
 
 ## The shark is eating a piece.
-const EATING := States.EATING
+const EATING := State.EATING
 
 ## The shark has been fed, and looks happy.
-const FED := States.FED
+const FED := State.FED
 
 ## The shark has been squished by a piece.
-const SQUISHED := States.SQUISHED
+const SQUISHED := State.SQUISHED
 
 ## Shorter sharks need the tooth cloud moved lower so it will line up with their mouth. This constant stores the tooth
 ## cloud height for different shark types.
@@ -65,13 +65,13 @@ var shark_size: int = SharkConfig.SharkSize.MEDIUM setget set_shark_size
 ## Duration in seconds the shark takes to eat.
 var eat_duration: float = DEFAULT_EAT_DURATION setget set_eat_duration
 
-## Enum from States for the shark's current animation state.
+## Enum from State for the shark's current animation state.
 var state: int = NONE setget set_state
 
 ## 'true' if the shark will be queued for deletion after the 'poof' animation completes.
 var _free_after_poof := false
 
-## Queue of enums from States for the shark's upcoming animation states.
+## Queue of enums from State for the shark's upcoming animation states.
 var _next_states := []
 
 ## 'true' if a state has already been popped from the _next_states queue this frame. We track this to avoid
@@ -97,7 +97,7 @@ onready var wait_high := $WaitHigh
 
 onready var sfx := $SharkSfx
 
-## key: (int) Enum from States
+## key: (int) Enum from State
 ## value: (Node) State node from the _states StateMachine
 onready var _state_nodes_by_enum := {
 	NONE: $States/None,
@@ -132,10 +132,10 @@ func set_shark_size(new_shark_size: int) -> void:
 	_refresh_shark_size()
 
 
-## Enqueues an enums from States to the shark's upcoming animation states.
+## Enqueues an enums from State to the shark's upcoming animation states.
 ##
 ## Parameters:
-## 	'next_state': Enum from States
+## 	'next_state': Enum from State
 ##
 ## 	'count': (Optional) Number of instances of the state to enqueue.
 func append_next_state(next_state: int, count: int = 1) -> void:
@@ -159,7 +159,7 @@ func has_next_state() -> bool:
 ## 	'force': If 'true', the shark will be updated again even if it was already updated this frame.
 ##
 ## Returns:
-## 	Enum from States for the shark's new state.
+## 	Enum from State for the shark's new state.
 func pop_next_state(force: bool = false) -> int:
 	if _next_states.empty():
 		return NONE
@@ -209,7 +209,7 @@ func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 
 
 ## Parameters:
-## 	'new_state': enum from States for the shark's new animation state.
+## 	'new_state': enum from State for the shark's new animation state.
 func set_state(new_state: int) -> void:
 	if state == new_state:
 		return

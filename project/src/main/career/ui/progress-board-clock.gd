@@ -10,7 +10,7 @@ const INVALID_HAND_POSITIONS := [11.0, 0.0]
 ##
 ## key: (int) corresonding to the number of levels the player has played
 ## value: (Array, float) Array with two entries for the position of the analog clock's hour and minute hands.
-const HAND_POSITIONS_BY_HOURS := {
+const HAND_POSITIONS_BY_HOUR := {
 	0: [11.0, 0.0], # 11:00 am
 	1: [12.0, 10.0], # 12:10 pm
 	2: [13.0, 20.0], # 1:20 pm
@@ -87,7 +87,7 @@ func set_hours_passed(new_hours_passed: int = 0) -> void:
 ## Parameters:
 ## 	'new_hours_passed': The number of hours passed in career mode.
 func _minute_hand_position(new_hours_passed: int) -> float:
-	var hand_positions: Array = HAND_POSITIONS_BY_HOURS.get(new_hours_passed, INVALID_HAND_POSITIONS)
+	var hand_positions: Array = HAND_POSITIONS_BY_HOUR.get(new_hours_passed, INVALID_HAND_POSITIONS)
 	return hand_positions[1]
 
 
@@ -100,7 +100,7 @@ func _minute_hand_position(new_hours_passed: int) -> float:
 ## 		two numbers on an analog clock. If false, the hour hand will ignore the minute hand, pointing directly to one
 ## 		of the twelve numbers on an analog clock.
 func _hour_hand_position(new_hours_passed: int, advance_for_minutes: bool = true) -> float:
-	var hand_positions: Array = HAND_POSITIONS_BY_HOURS.get(new_hours_passed, INVALID_HAND_POSITIONS)
+	var hand_positions: Array = HAND_POSITIONS_BY_HOUR.get(new_hours_passed, INVALID_HAND_POSITIONS)
 	var new_hours: float = hand_positions[0]
 	if advance_for_minutes:
 		new_hours += _minute_hand_position(new_hours_passed) / 60.0
@@ -125,7 +125,7 @@ func _filled_percent(new_hours_passed: int) -> float:
 
 ## Calculates the text of the digital clock, like '12:30 pm'
 func _clock_text(new_hours_passed: int) -> String:
-	return PlayerData.career.time_of_day_by_hours.get(new_hours_passed, PlayerData.career.invalid_time_of_day)
+	return PlayerData.career.times_of_day_by_hour.get(new_hours_passed, PlayerData.career.invalid_time_of_day)
 
 
 ## Updates the clock visuals based on the number of hours passed.

@@ -40,7 +40,7 @@ func set_food_type(new_food_type: int) -> void:
 
 ## Returns 'true' if this pickup will spawn a cake when collected.
 func is_cake() -> bool:
-	var box_type: int = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
+	var box_type: int = Foods.BOX_TYPES_BY_FOOD_TYPE[food_type]
 	return Foods.is_cake_box(box_type)
 
 
@@ -49,7 +49,7 @@ func _refresh_appearance() -> void:
 	if not (is_inside_tree() and _food_item):
 		return
 	
-	var box_type: int = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
+	var box_type: int = Foods.BOX_TYPES_BY_FOOD_TYPE[food_type]
 	
 	# refresh seed appearance
 	_seed.visible = not food_shown and Foods.is_snack_box(box_type)

@@ -57,7 +57,7 @@ const COLORS_VEG_ALL := [COLOR_VEG_GREEN, COLOR_VEG_RED, COLOR_VEG_BREAD, COLOR_
 
 ## key: (FoodType)
 ## value: (BoxType) corresponding box
-const BOX_TYPE_BY_FOOD_TYPE := {
+const BOX_TYPES_BY_FOOD_TYPE := {
 	FoodType.BROWN_0: BoxType.BROWN,
 	FoodType.BROWN_1: BoxType.BROWN,
 	FoodType.PINK_0: BoxType.PINK,
@@ -97,7 +97,7 @@ const COLORS_BY_FOOD_TYPE := {
 
 ## key: (BoxType)
 ## value: (Array, FoodType) FoodTypes for the corresponding food items
-const FOOD_TYPES_BY_BOX_TYPES := {
+const FOOD_TYPES_BY_BOX_TYPE := {
 	BoxType.BROWN: [FoodType.BROWN_0, FoodType.BROWN_1],
 	BoxType.PINK: [FoodType.PINK_0, FoodType.PINK_1],
 	BoxType.BREAD: [FoodType.BREAD_0, FoodType.BREAD_1],
@@ -114,7 +114,7 @@ const FOOD_TYPES_BY_BOX_TYPES := {
 
 ## key: (BoxType)
 ## value: (Array, Color) Food colors for the corresponding food items
-const COLORS_BY_BOX_TYPES := {
+const COLORS_BY_BOX_TYPE := {
 	BoxType.BROWN: [COLOR_BROWN],
 	BoxType.PINK: [COLOR_PINK],
 	BoxType.BREAD: [COLOR_BREAD],

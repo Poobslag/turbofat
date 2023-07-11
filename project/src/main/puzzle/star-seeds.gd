@@ -225,7 +225,7 @@ func _spawn_star_seeds(rect: Rect2, box_type: int, star_seed_positions: Array) -
 			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
 				star_seed.visible = false
 			
-			var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
+			var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPE[box_type]
 			
 			# alternate snack foods in a horizontal stripe pattern
 			star_seed.food_type = food_types[int(cell.y) % food_types.size()]
