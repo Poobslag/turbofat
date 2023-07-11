@@ -4,9 +4,9 @@ extends Node
 ## Emitted when the hard drop destination for the current piece changes. Used for drawing the ghost piece.
 signal hard_drop_target_pos_changed(piece, hard_drop_target_pos)
 
-signal soft_dropped # emitted when the player presses the soft drop key
-signal hard_dropped # emitted when the player presses the hard drop key
-signal dropped # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
+signal soft_dropped(dropped_piece) # emitted when the player presses the soft drop key
+signal hard_dropped(dropped_piece) # emitted when the player presses the hard drop key
+signal dropped(dropped_piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 
 export (NodePath) var input_path: NodePath
 export (NodePath) var piece_mover_path: NodePath
@@ -27,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 ## Recalculates the hard drop destination for the current piece.
 func calculate_hard_drop_target(piece: ActivePiece) -> void:
 	piece.reset_target()
-	while piece.can_move_to(piece.target_pos + Vector2(0, 1), piece.orientation):
+	while piece.can_move_to(piece.target_pos + Vector2.DOWN, piece.orientation):
 		piece.target_pos.y += 1
 	hard_drop_target_pos = piece.target_pos
 	emit_signal("hard_drop_target_pos_changed", piece, hard_drop_target_pos)

@@ -104,14 +104,14 @@ func get_drag_data(_pos: Vector2) -> Object:
 	return _prev_dropped_data
 
 
-## Adds a dragged chunk of blocks to a tile map.
+## Adds a dragged chunk of blocks to a tilemap.
 ##
 ## Parameters:
-## 	'target_tile_map': The tile map to modify
+## 	'target_tile_map': The tilemap to modify
 ##
 ## 	'pos': An x/y control coordinate like '58, 132'
 ##
-## 	'data': The data to apply to the tile map
+## 	'data': The data to apply to the tilemap
 func _store_block_level_chunk(target_tile_map: PuzzleTileMap, pos: Vector2, data: BlockLevelChunk) -> void:
 	for cell in data.used_cells:
 		var target_pos: Vector2 = _cell_pos(pos) + cell

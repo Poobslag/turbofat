@@ -73,8 +73,9 @@ var _glow_duration := 0.0
 ## current background light color
 var _color := Color.transparent
 
-## tile indexes by food/vegetable color
-var _color_tile_indexes: Dictionary
+## key: (Color) Food/vegetable color
+## value: (int) Index of a tile in light_map or glow_map
+var _tile_index_by_color: Dictionary
 
 ## lights which turn on and off
 onready var light_map: TileMap = $LightMap
@@ -96,7 +97,7 @@ func _ready() -> void:
 	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
 	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
 	_init_tile_set()
-	_init_color_tile_indexes()
+	_init_tile_index_by_color()
 	reset()
 
 
@@ -131,13 +132,13 @@ func _init_tile_set() -> void:
 
 
 ## Initializes the mapping of tile indexes by food/vegetable color.
-func _init_color_tile_indexes() -> void:
-	if _color_tile_indexes:
+func _init_tile_index_by_color() -> void:
+	if _tile_index_by_color:
 		return
 	
 	for tile_index in light_map.tile_set.get_tiles_ids():
 		var color: Color = light_map.tile_set.tile_get_modulate(tile_index)
-		_color_tile_indexes[color] = tile_index
+		_tile_index_by_color[color] = tile_index
 
 
 func _init_tile(color: Color) -> void:
@@ -205,7 +206,7 @@ func _calculate_brightness(combo: int) -> void:
 	modulate.a = _brightness
 
 
-## Calculates the new light pattern and refreshes the tile maps.
+## Calculates the new light pattern and refreshes the tilemaps.
 func _refresh_tile_maps() -> void:
 	bg_strobe.color = Utils.to_transparent(_color)
 	
@@ -229,8 +230,8 @@ func _refresh_tile_maps() -> void:
 				if s[x] == '#':
 					if _color == RAINBOW_LIGHT_COLOR:
 						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
-					elif _color_tile_indexes.has(_color):
-						tile = _color_tile_indexes[_color]
+					elif _tile_index_by_color.has(_color):
+						tile = _tile_index_by_color[_color]
 				light_map.set_cell(x, y, tile)
 				glow_map.set_cell(x, y, tile)
 

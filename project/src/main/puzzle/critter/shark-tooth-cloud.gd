@@ -164,7 +164,7 @@ func _check_for_tilemap() -> void:
 	if not _tile_map:
 		_borrow_tilemap()
 		_tile_map.position = TILE_MAP_START_POSITION
-		_tile_map.scale = Vector2(1.0, 1.0)
+		_tile_map.scale = Vector2.ONE
 		_tile_map.z_index = 0
 
 
