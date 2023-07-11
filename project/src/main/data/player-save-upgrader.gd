@@ -333,8 +333,7 @@ func _upgrade_375c(old_save_items: Array, save_item: SaveItem) -> SaveItem:
 			
 			# copy over any missing successful_levels entries to finished_levels
 			for key in successful_levels:
-				if not save_item.value.has(key):
-					save_item.value[key] = successful_levels[key]
+				Utils.put_if_absent(save_item.value, key, successful_levels[key])
 		
 		"level_history":
 			# Older versions of the sandbox levels would give the player an unranked grade instead of a master rank.

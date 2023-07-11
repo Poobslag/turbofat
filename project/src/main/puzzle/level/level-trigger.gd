@@ -152,8 +152,7 @@ func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 		push_warning("Unrecognized phase: %s" % [phase_key])
 	var phase_condition: PhaseCondition = PhaseConditions.create(phase_key, phase_config)
 	var phase: int = Utils.enum_from_snake_case(LevelTriggerPhase, phase_key)
-	if not phases.has(phase):
-		phases[phase] = []
+	Utils.put_if_absent(phases, phase, [])
 	phases[phase].append(phase_condition)
 
 

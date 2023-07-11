@@ -89,8 +89,7 @@ func _calculate_pauses(text_with_lulls: String, initial_pause: float = 0.0) -> v
 	var visible_chars_to_left := 0
 	for c in text_with_lulls:
 		# calculate the amount to pause after displaying this character
-		if not _visible_character_pauses.has(visible_chars_to_left):
-			_visible_character_pauses[visible_chars_to_left] = 0
+		Utils.put_if_absent(_visible_character_pauses, visible_chars_to_left, 0)
 		
 		if c in PAUSE_CHARACTERS:
 			_visible_character_pauses[visible_chars_to_left] += PAUSE_CHARACTERS[c]

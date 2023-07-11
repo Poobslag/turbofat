@@ -71,6 +71,5 @@ func has_effect(effect_type) -> bool:
 
 func _add_trigger(trigger: LevelTrigger) -> void:
 	for phase in trigger.phases:
-		if not triggers.has(phase):
-			triggers[phase] = []
+		Utils.put_if_absent(triggers, phase, [])
 		triggers[phase].append(trigger)

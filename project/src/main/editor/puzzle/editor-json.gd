@@ -98,8 +98,7 @@ func _refresh_json_tiles_keys() -> void:
 			# 'start' tiles key is added conditionally in _refresh_json_tile_map()
 			continue
 		
-		if not _json_tree.has("tiles"):
-			_json_tree["tiles"] = {}
+		Utils.put_if_absent(_json_tree, "tiles", {})
 		_json_tree["tiles"][tiles_key_to_add] = []
 	
 	# remove the 'tiles' entry entirely if we don't need it
@@ -139,8 +138,7 @@ func _refresh_json_tile_map() -> void:
 			_json_tree.erase("tiles")
 	else:
 		# populate
-		if not _json_tree.has("tiles"):
-			_json_tree["tiles"] = {}
+		Utils.put_if_absent(_json_tree, "tiles", {})
 		_json_tree["tiles"][_playfield_editor.tiles_key] = new_json_tiles_set
 	
 	_refresh_text_from_json_tree()
@@ -159,8 +157,7 @@ func _refresh_json_tree_from_properties() -> void:
 	
 	if new_master_pickup_score != 0.0:
 		# add a 'rank' node if necessary, and populate it with the new master pickup score
-		if not _json_tree.has("rank"):
-			_json_tree["rank"] = []
+		Utils.put_if_absent(_json_tree, "rank", [])
 		
 		var master_pickup_score_index: int = _json_tree["rank"].size()
 		for i in range(_json_tree["rank"].size()):

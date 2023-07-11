@@ -91,8 +91,7 @@ var _did_prepare := false
 ##
 ## 	'event': The chat event to append.
 func append(key: String, event: ChatEvent) -> void:
-	if not events.has(key):
-		events[key] = []
+	Utils.put_if_absent(events, key, [])
 	events[key].append(event)
 
 
@@ -211,8 +210,7 @@ func suppress_warnings() -> void:
 ##
 ## This could be something like a line spoken by a character who isn't in the scene.
 func warn(warning: String) -> void:
-	if not meta.has("warnings"):
-		meta["warnings"] = []
+	Utils.put_if_absent(meta, "warnings", [])
 	meta["warnings"].append(warning)
 	
 	if not meta.get("suppress_warnings", false):

@@ -121,8 +121,7 @@ func add_result(level_id: String, rank_result: RankResult) -> void:
 		# can't store history without a level id
 		return
 	
-	if not rank_results.has(level_id):
-		rank_results[level_id] = []
+	Utils.put_if_absent(rank_results, level_id, [])
 	rank_results[level_id].push_front(rank_result)
 	if rank_result.success and not successful_levels.has(level_id):
 		successful_levels[level_id] = OS.get_datetime()
