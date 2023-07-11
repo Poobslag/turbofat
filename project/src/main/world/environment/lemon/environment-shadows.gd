@@ -14,6 +14,7 @@ export (Dictionary) var cell_shadow_mapping setget set_cell_shadow_mapping
 
 onready var _creature_shadows := $CreatureShadows
 onready var _shadow_caster_shadows := $ShadowCasterShadows
+onready var _obstacle_map_shadows := $ObstacleMapShadows
 
 func _ready() -> void:
 	_refresh_obstacle_map_path()
@@ -48,12 +49,12 @@ func _refresh_obstacle_map_path() -> void:
 		return
 	
 	if obstacle_map_path:
-		$ObstacleMapShadows.obstacle_map_path = $ObstacleMapShadows.get_path_to(get_node(obstacle_map_path))
-	$ObstacleMapShadows.property_list_changed_notify()
+		_obstacle_map_shadows.obstacle_map_path = _obstacle_map_shadows.get_path_to(get_node(obstacle_map_path))
+	_obstacle_map_shadows.property_list_changed_notify()
 
 
 func _refresh_cell_shadow_mapping() -> void:
 	if not is_inside_tree():
 		return
-	$ObstacleMapShadows.cell_shadow_mapping = cell_shadow_mapping
-	$ObstacleMapShadows.property_list_changed_notify()
+	_obstacle_map_shadows.cell_shadow_mapping = cell_shadow_mapping
+	_obstacle_map_shadows.property_list_changed_notify()
