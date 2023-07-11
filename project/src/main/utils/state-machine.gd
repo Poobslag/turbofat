@@ -5,7 +5,7 @@ extends Node
 ## State nodes can be added to this node as children. This class provides logic for switching between its child states,
 ## invoking their methods, and emitting signals.
 
-## emitted once when a state is entered
+## emitted when a state is entered
 signal entered_state(prev_state, state)
 
 ## currently active state
