@@ -75,8 +75,6 @@
 
 [node name="TileMap" type="TileMap"]
 modulate = Color( 0.682353, 0.847059, 0.819608, 1 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 72, 64 )
 format = 1
