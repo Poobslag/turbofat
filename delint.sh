@@ -95,6 +95,26 @@ then
   echo "$RESULT"
 fi
 
+# functions missing type hint
+RESULT=$(grep -R -n "func [a-zA-Z0-9_]*([a-zA-Z0-9_]\+[,)]" --include="*.gd" project/src \
+  | grep -v "current-level\\.gd.*func has_customer(customer_obj)" \
+  | grep -v "current-level\\.gd.*func _customers_match(customer1, customer2)" \
+  | grep -v "level-triggers\\.gd.*func has_effect(effect_type)" \
+  | grep -v "rule-parser\\.gd.*func default(new_default)" \
+  | grep -v "rule-parser\\.gd.*func implied(new_implied)" \
+  | grep -v "rule-parser\\.gd.*func implied(new_implied)" \
+  | grep -v "state\\.gd.*func enter(_host" \
+  | grep -v "state\\.gd.*func exit(_host" \
+  | grep -v "state\\.gd.*func update(_host" \
+  | grep -v "utils\\.gd.*func print_json(value)" \
+  )
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Functions missing type hint:"
+  echo "$RESULT"
+fi
+
 # temporary files
 RESULT=$(find project/src -name "*.TMP" -o -name "*.gd~")
 if [ -n "$RESULT" ]

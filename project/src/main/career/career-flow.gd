@@ -101,7 +101,7 @@ func _on_PlayerSave_before_save() -> void:
 	PlayerSave.disconnect("before_save", self, "_on_PlayerSave_before_save")
 
 
-func _on_PlayerSave_after_save(distance_earned, distance_travelled, hours_passed) -> void:
+func _on_PlayerSave_after_save(distance_earned: int, distance_travelled: int, hours_passed: int) -> void:
 	# Restore the player's distance earned, distance travelled and hours passed. The 'skipped_previous_level' flag is
 	# still set to true; this is reset to false after the player finishes a puzzle.
 	career_data.distance_earned = distance_earned
