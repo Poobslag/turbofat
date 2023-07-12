@@ -24,14 +24,14 @@ func _ready() -> void:
 	# initialize total_time so the wobble/position isn't always the same
 	_total_time = rand_range(0, 100)
 	
-	if randf() < 0.5:
+	if randf() <= 0.5:
 		# 50% of the time, the pieces are oriented to spell out 'T' 'u' 'r' 'b' 'o'...
 		_orientation = 0.0
 	else:
 		# 50% of the time, their orientation is randomized
 		_orientation = Utils.rand_value([0.0 * PI, 0.5 * PI, 1.0 * PI, 1.5 * PI])
 	
-	if randf() < 0.5:
+	if randf() <= 0.5:
 		# 50% of the time, the pieces are ordered with the 'T' piece first.
 		frame = 0
 	else:

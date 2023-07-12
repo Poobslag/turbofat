@@ -88,7 +88,7 @@ func random_customer_def(include_predefined_customers: bool = false,
 	var result: CreatureDef
 	if include_predefined_customers \
 			and PlayerData.customer_queue.has_standard_customer() \
-			and randf() < 0.2:
+			and randf() <= 0.2:
 		
 		# We check the next 8 creatures for one which matches the specified type. If we check too few creatures, we
 		# won't find one. If we check too many, we'll aggressively advance the creature queue. 8 feels about right.
@@ -125,10 +125,10 @@ func chat_theme(dna: Dictionary) -> ChatTheme:
 			4.00, 4.60, 5.33, 6.00, 7.00,
 			8.00
 	])
-	new_theme.accent_swapped = randf() > 0.5
+	new_theme.accent_swapped = randf() <= 0.5
 	new_theme.accent_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
 	new_theme.color = dna.body_rgb
-	new_theme.dark = randf() > 0.5
+	new_theme.dark = randf() <= 0.5
 	return new_theme
 
 

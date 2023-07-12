@@ -94,9 +94,9 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 	
 	scale = Vector2(0.25, 0.25)
 	# randomly flip the sprite vertically/horizontally for variance
-	if randf() > 0.5:
+	if randf() <= 0.5:
 		scale *= Vector2(-1.0, 1.0)
-	if randf() > 0.5:
+	if randf() <= 0.5:
 		scale *= Vector2(1.0, -1.0)
 
 

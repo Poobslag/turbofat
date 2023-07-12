@@ -13,6 +13,6 @@ func set_shuffle(value: bool) -> void:
 		return
 	
 	target_properties["frame"] = randi() % 6
-	target_properties["flip_h"] = randf() > 0.5
+	target_properties["flip_h"] = randf() <= 0.5
 	
 	property_list_changed_notify()

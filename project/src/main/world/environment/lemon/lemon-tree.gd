@@ -36,7 +36,7 @@ func _ready() -> void:
 		_play_randomly_from_middle(_mouth_player, _mouth_animation_name())
 		
 		_play_randomly_from_middle(_lemon_player, Utils.rand_value(LEMON_ANIMATION_NAMES))
-		_lemons.scale.x = 1 if randf() > 0.5 else -1
+		_lemons.scale.x = 1 if randf() <= 0.5 else -1
 
 
 ## Preemptively initializes onready variables to avoid null references
@@ -92,7 +92,7 @@ func _refresh_tree_in_editor() -> void:
 	# update the lemon appearance (only affects the editor)
 	_lemon_player.play(Utils.rand_value(LEMON_ANIMATION_NAMES))
 	_lemon_player.advance(0)
-	_lemons.flip_h = randf() > 0.5
+	_lemons.flip_h = randf() <= 0.5
 	_lemon_player.stop()
 
 
@@ -136,4 +136,4 @@ func _play_randomly_from_middle(player: AnimationPlayer, anim_name: String) -> v
 func _on_LemonChangeTimer_timeout() -> void:
 	var possible_animations := Utils.subtract(LEMON_ANIMATION_NAMES, [_lemon_player.current_animation])
 	_play_randomly_from_middle(_lemon_player, Utils.rand_value(possible_animations))
-	_lemons.flip_h = randf() > 0.5
+	_lemons.flip_h = randf() <= 0.5

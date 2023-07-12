@@ -25,7 +25,7 @@ func shuffle() -> void:
 	
 	var old_frame: int = get_child(0).frame % CLOUD_VARIANT_COUNT
 	var new_frame: int = (old_frame + Utils.randi_range(1, CLOUD_VARIANT_COUNT - 1)) % CLOUD_VARIANT_COUNT
-	var new_flip_h: bool = randf() > 0.5
+	var new_flip_h: bool = randf() <= 0.5
 	
 	for i in range(get_child_count()):
 		var cloud_part := get_child(i)
