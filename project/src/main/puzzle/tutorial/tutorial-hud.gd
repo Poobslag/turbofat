@@ -29,7 +29,9 @@ func _ready() -> void:
 ## Tutorial modules show messages and advance the player through the tutorial as they complete tasks.
 func replace_tutorial_module() -> void:
 	if has_node("TutorialModule"):
-		remove_child(get_node("TutorialModule"))
+		var child := get_node("TutorialModule")
+		remove_child(child)
+		child.queue_free()
 	
 	var module_path: String
 	if CurrentLevel.settings.id.begins_with("tutorial/basics_"):

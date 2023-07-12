@@ -34,8 +34,8 @@ func _remove_bg() -> void:
 		return
 	
 	var bg := get_node("Bg")
-	bg.queue_free()
 	remove_child(bg)
+	bg.queue_free()
 
 
 func _add_bg() -> void:

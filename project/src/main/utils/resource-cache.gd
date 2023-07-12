@@ -141,20 +141,21 @@ func _exit_tree() -> void:
 func substitute_singletons() -> void:
 	for non_singleton_obj in get_tree().get_nodes_in_group("singletons"):
 		var non_singleton: Node = non_singleton_obj
+		var singleton_name := non_singleton.name
 		
 		var parent := non_singleton.get_parent()
-		if _singletons_by_name.has(non_singleton.name):
+		if _singletons_by_name.has(singleton_name):
 			# we have a singleton value to substitute; remove the non-singleton value
 			var wallpaper_index := parent.get_children().find(non_singleton)
-			non_singleton.queue_free()
 			parent.remove_child(non_singleton)
+			non_singleton.queue_free()
 			
 			# add the singleton value
-			parent.add_child(_singletons_by_name[non_singleton.name])
-			parent.move_child(_singletons_by_name[non_singleton.name], wallpaper_index)
+			parent.add_child(_singletons_by_name[singleton_name])
+			parent.move_child(_singletons_by_name[singleton_name], wallpaper_index)
 		else:
 			# we have no singleton value stored; store a new singleton value
-			_singletons_by_name[non_singleton.name] = non_singleton
+			_singletons_by_name[singleton_name] = non_singleton
 
 
 ## Removes singletons from their parent nodes to prevent them from being freed.

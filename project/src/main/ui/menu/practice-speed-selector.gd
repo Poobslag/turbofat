@@ -51,6 +51,7 @@ func _refresh_labels() -> void:
 	for child in _labels.get_children():
 		# remove_child to ensure old labels don't affect lowlight calculations
 		_labels.remove_child(child)
+		child.queue_free()
 	
 	# add the new labels
 	var label_values := speed_names

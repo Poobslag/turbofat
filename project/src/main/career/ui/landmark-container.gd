@@ -42,13 +42,13 @@ func _refresh_landmarks() -> void:
 	while _landmarks.size() > _map_row.landmark_count:
 		# remove landmark from scene tree
 		var removed_landmark: Landmark = _landmarks.pop_back()
-		removed_landmark.queue_free()
 		remove_child(removed_landmark)
+		removed_landmark.queue_free()
 		
 		# remove spacer from scene tree
 		var removed_spacer: Control = _landmark_spacers.pop_back()
-		removed_spacer.queue_free()
 		remove_child(removed_spacer)
+		removed_spacer.queue_free()
 
 
 func _on_MapRow_landmark_count_changed() -> void:
