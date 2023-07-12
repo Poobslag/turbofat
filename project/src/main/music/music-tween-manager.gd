@@ -1,4 +1,4 @@
-class_name MusicTween
+class_name MusicTweenManager
 extends Node
 ## Tweens the volumes of music tracks.
 

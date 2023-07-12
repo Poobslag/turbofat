@@ -42,7 +42,7 @@ onready var _upbeat_bgms := [
 		]
 
 onready var _tutorial_bgms := [$MyFatnessPal]
-onready var _music_tween := $MusicTween
+onready var _music_tween_manager := $MusicTweenManager
 onready var _filter_tween: SceneTreeTween
 
 func _ready() -> void:
@@ -79,21 +79,21 @@ func play_tutorial_bgm(fade_in: bool = true) -> void:
 ## Gradually fades a track in.
 ##
 ## Usually it's OK for a track to start abrubtly, but sometimes we want to fade music in more gradually.
-func fade_in(duration: float = MusicTween.FADE_IN_DURATION) -> void:
+func fade_in(duration: float = MusicTweenManager.FADE_IN_DURATION) -> void:
 	current_bgm.volume_db = MIN_VOLUME
-	_music_tween.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name], duration)
+	_music_tween_manager.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name], duration)
 
 
 func is_fading_in() -> bool:
-	return _music_tween.fading_state == MusicTween.FADING_IN
+	return _music_tween_manager.fading_state == MusicTweenManager.FADING_IN
 
 
 ## Fades out the currently playing track.
-func stop(duration: float = MusicTween.FADE_OUT_DURATION) -> void:
+func stop(duration: float = MusicTweenManager.FADE_OUT_DURATION) -> void:
 	if current_bgm == null:
 		return
 	
-	_music_tween.fade_out(current_bgm, MIN_VOLUME, duration)
+	_music_tween_manager.fade_out(current_bgm, MIN_VOLUME, duration)
 	current_bgm = null
 
 

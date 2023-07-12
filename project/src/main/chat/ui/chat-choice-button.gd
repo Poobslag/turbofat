@@ -28,17 +28,17 @@ func set_choice_text(new_choice_text: String) -> void:
 
 ## Makes the chat choice appear.
 func pop_in() -> void:
-	$PopTween.pop_in()
+	$PopTweenManager.pop_in()
 
 
 ## Makes the chat choice disappear.
 func pop_out() -> void:
-	$PopTween.pop_out()
+	$PopTweenManager.pop_out()
 
 
 ## Called when this chat choice is chosen by the player. Animates it and makes it disappear.
 func pop_choose() -> void:
-	$PopTween.remove_all()
+	$PopTweenManager.remove_all()
 	$PopAnimation.play("choose")
 	$MoodSprite/AnimationPlayer.play("choose")
 

@@ -19,8 +19,8 @@ onready var _chat_line_panel := $ChatLinePanel
 onready var _nametag_panel := $ChatLinePanel/NametagPanel
 onready var _pop_in_sound := $PopInSound
 onready var _pop_out_sound := $PopOutSound
-onready var _pop_tween := $PopTween
-onready var _squish_tween := $SquishTween
+onready var _pop_tween_manager := $PopTweenManager
+onready var _squish_tween_manager := $SquishTweenManager
 
 func _ready() -> void:
 	_chat_line_label.hide_message()
@@ -35,7 +35,7 @@ func pop_in() -> void:
 	_popped_in = true
 	_chat_line_label.hide_message()
 	_nametag_panel.hide_labels()
-	_pop_tween.pop_in()
+	_pop_tween_manager.pop_in()
 	_pop_in_sound.play()
 
 
@@ -45,7 +45,7 @@ func pop_out() -> void:
 		# chat window is already popped out
 		return
 	_popped_in = false
-	_pop_tween.pop_out()
+	_pop_tween_manager.pop_out()
 	_pop_out_sound.play()
 
 
@@ -61,10 +61,10 @@ func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	if squished != _squished:
 		if squished:
 			# Squish the chat window to the side
-			_squish_tween.squish()
+			_squish_tween_manager.squish()
 		else:
 			# Unsquish the chat window
-			_squish_tween.unsquish()
+			_squish_tween_manager.unsquish()
 		_squished = squished
 	
 	# substitute variables and add lull characters

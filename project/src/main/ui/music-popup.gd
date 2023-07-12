@@ -6,7 +6,7 @@ var _shown_bgm: CheckpointSong
 
 onready var _music_label := $Panel/HBoxContainer/Label
 onready var _music_panel := $Panel
-onready var _popup_tween := $PopupTween
+onready var _popup_tween_manager := $PopupTweenManager
 
 func _ready() -> void:
 	MusicPlayer.connect("current_bgm_changed", self, "_on_MusicPlayer_current_bgm_changed")
@@ -37,7 +37,7 @@ func _refresh_panel(value: CheckpointSong) -> void:
 		
 		# we delay a few seconds if the music is fading in slowly
 		var pop_in_delay := 2.0 if MusicPlayer.is_fading_in() else 0.0
-		_popup_tween.pop_in_and_out(pop_in_delay)
+		_popup_tween_manager.pop_in_and_out(pop_in_delay)
 		_music_panel.get("custom_styles/panel").set("bg_color", _shown_bgm.song_color)
 
 
