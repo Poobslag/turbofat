@@ -58,7 +58,7 @@ func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientat
 		stop()
 
 
-func _on_IdleTimer_idle_animation_started(anim_name) -> void:
+func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 	if anim_name in get_animation_list():
 		play(anim_name)
 
