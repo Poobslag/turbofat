@@ -306,22 +306,17 @@ func emote(mood: int) -> void:
 		else:
 			# reset to the default mood, and wait for the tween to complete
 			unemote()
-			yield(_reset_tween, "finished")
-			_post_unemote()
+			_reset_tween.chain().tween_callback(self, "_post_unemote")
 	else:
 		# initialize eye frames in case the eyes were previously invisible, such as for north-facing creatures
 		_creature_visuals.reset_eye_frames()
-
-	if _mood == mood and mood in EMOTE_ANIMS:
-		# we double-check that the mood we were passed is still the current mood. this invariant can be violated
-		# if we're called multiple times in quick succession. in those cases, we want the newest mood to 'win'.
-		
-		play(EMOTE_ANIMS[mood])
-		
-		if TRANSITIONS.has([_prev_mood, mood]):
-			# skip ahead in the animation; we played a custom transition
-			advance(0.1)
-		_prev_mood = mood
+	
+	if _reset_tween and _reset_tween.is_running():
+		# transition to the new mood after the creature's appearance resets
+		_reset_tween.chain().tween_callback(self, "_transition_to_new_mood", [mood])
+	else:
+		# transition to the new mood; the creature's appearance has already been reset
+		_transition_to_new_mood(mood)
 
 
 ## Starts resetting the creature to a default neutral mood.
@@ -451,6 +446,19 @@ func _post_unemote() -> void:
 	_creature_visuals.get_node("EmoteBody").scale = Vector2(0.836, 0.836)
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead").position = Vector2( 0, 256 )
 	_creature_visuals.get_node("Neck0").scale = Vector2.ONE
+
+
+func _transition_to_new_mood(mood: int) -> void:
+	if _mood == mood and mood in EMOTE_ANIMS:
+		# we double-check that the mood we were passed is still the current mood. this invariant can be violated
+		# if we're called multiple times in quick succession. in those cases, we want the newest mood to 'win'.
+		
+		play(EMOTE_ANIMS[mood])
+		
+		if TRANSITIONS.has([_prev_mood, mood]):
+			# skip ahead in the animation; we played a custom transition
+			advance(0.1)
+		_prev_mood = mood
 
 
 ## Transition function for moods which don't need a transition.
@@ -599,8 +607,7 @@ func _on_animation_finished(anim_name: String) -> void:
 		play("...%s..." % [anim_name.trim_suffix("...")])
 	elif _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:
 		unemote(anim_name)
-		yield(_reset_tween, "finished")
-		_post_unemote()
+		_reset_tween.chain().tween_callback(self, "_post_unemote")
 
 
 func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
