@@ -6,17 +6,18 @@ extends TextureRect
 ## because of several unique and exciting decisions regarding the design of TouchscreenButton, as well as some
 ## bugs and limitations in its current implementation.
 ##
-## 1. https://github.com/godotengine/godot/issues/18654 The absence of Godot #18654 prevents setters from being
+## 1. The absence of Godot #18654 (https://github.com/godotengine/godot/issues/18654) prevents setters from being
 ## overridden. This makes it difficult to change the button's icon when its action changes.
 ##
-## 2. https://github.com/godotengine/godot/issues/171 Most buttons and UI elements are controls, but TouchscreenButton
-## does not behave like a control. There are workarounds for this, but in the end it is easier to embed touchscreen
-## functionality within a control node, rather than to force a Node2D to behave like a control.
+## 2. Most buttons and UI elements are controls, but because of Godot #171
+## (https://github.com/godotengine/godot/issues/171) TouchscreenButton does not behave like a control. There are
+## workarounds for this, but in the end it is easier to embed touchscreen functionality within a control node, rather
+## than to force a Node2D to behave like a control.
 ##
 ## 3. TouchscreenButton does not have a way to set its state as pressed/unpressed. This makes it impossible to have
 ## business logic pulled out into a controller class such as EightWay.
 ##
-## 4. https://github.com/godotengine/godot/issues/39693 Godot #36963 prevents TouchscreenButton from accepting input
+## 4. Godot #36963 (https://github.com/godotengine/godot/issues/39693) prevents TouchscreenButton from accepting input
 ## outside of its boundaries. This makes it difficult to arrange TouchscreenButtons with overlapping collision shapes
 ## for diagonal presses.
 

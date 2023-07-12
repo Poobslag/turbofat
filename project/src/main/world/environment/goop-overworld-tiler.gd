@@ -233,7 +233,7 @@ export (int) var corner_tile_index: int
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
-## https://github.com/godotengine/godot/issues/11855
+## (https://github.com/godotengine/godot/issues/11855)
 export (bool) var _autotile: bool setget autotile
 
 ## key: (TileType)

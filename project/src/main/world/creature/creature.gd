@@ -388,12 +388,12 @@ func refresh_dna() -> void:
 	creature_visuals.dna = dna
 
 
-## Workaround for Godot #21789 to make get_class return class_name
+## Workaround for Godot #21789 (https://github.com/godotengine/godot/issues/21789) to make get_class return class_name
 func get_class() -> String:
 	return "Creature"
 
 
-## Workaround for Godot #21789 to make is_class match class_name
+## Workaround for Godot #21789 (https://github.com/godotengine/godot/issues/21789) to make is_class match class_name
 func is_class(name: String) -> bool:
 	return name == "Creature" or .is_class(name)
 

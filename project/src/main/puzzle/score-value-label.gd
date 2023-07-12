@@ -8,8 +8,8 @@ func _ready() -> void:
 	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	text = StringUtils.format_money(0)
 	
-	# Workaround for Godot #40357 to force the label to shrink to its minimum size. Otherwise, the ScoreParticles
-	# will be positioned incorrectly if the text ever shrinks.
+	# Workaround for Godot #40357 (https://github.com/godotengine/godot/issues/40357) to force the label to shrink to
+	# its minimum size. Otherwise, the ScoreParticles will be positioned incorrectly if the text ever shrinks.
 	rect_size = Vector2.ZERO
 
 
@@ -28,8 +28,8 @@ func _on_resized() -> void:
 func _on_PuzzleState_score_changed() -> void:
 	text = StringUtils.format_money(PuzzleState.get_score())
 	
-	# Workaround for Godot #40357 to force the label to shrink to its minimum size. Otherwise, the ScoreParticles
-	# will be positioned incorrectly if the text ever shrinks.
+	# Workaround for Godot #40357 (https://github.com/godotengine/godot/issues/40357) to force the label to shrink to
+	# its minimum size. Otherwise, the ScoreParticles will be positioned incorrectly if the text ever shrinks.
 	rect_size = Vector2.ZERO
 
 

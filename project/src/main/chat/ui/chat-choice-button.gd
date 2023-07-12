@@ -53,12 +53,12 @@ func set_mood_right(new_mood_right: bool) -> void:
 	$MoodSprite.set_mood_right(new_mood_right)
 
 
-## Workaround for Godot #21789 to make get_class return class_name
+## Workaround for Godot #21789 (https://github.com/godotengine/godot/issues/21789) to make get_class return class_name
 func get_class() -> String:
 	return "ChatChoiceButton"
 
 
-## Workaround for Godot #21789 to make is_class match class_name
+## Workaround for Godot #21789 (https://github.com/godotengine/godot/issues/21789) to make is_class match class_name
 func is_class(name: String) -> bool:
 	return name == "ChatChoiceButton" or .is_class(name)
 
