@@ -44,13 +44,13 @@ func _ready() -> void:
 ## Writes the system's in-memory data to a save file.
 func save_system_data() -> void:
 	var save_json := []
-	save_json.append(_save_item("version", SYSTEM_DATA_VERSION).to_json_dict())
-	save_json.append(_save_item("gameplay_settings", SystemData.gameplay_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("graphics_settings", SystemData.graphics_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("volume_settings", SystemData.volume_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("touch_settings", SystemData.touch_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("keybind_settings", SystemData.keybind_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("misc_settings", SystemData.misc_settings.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("version", SYSTEM_DATA_VERSION).to_json_dict())
+	save_json.append(SaveItem.new("gameplay_settings", SystemData.gameplay_settings.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("graphics_settings", SystemData.graphics_settings.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("volume_settings", SystemData.volume_settings.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("touch_settings", SystemData.touch_settings.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("keybind_settings", SystemData.keybind_settings.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("misc_settings", SystemData.misc_settings.to_json_dict()).to_json_dict())
 	FileUtils.write_file(data_filename, Utils.print_json(save_json))
 	
 	if FileUtils.file_exists(legacy_filename):
@@ -156,18 +156,6 @@ func delete_save_slot(save_slot: int) -> void:
 		Directory.new().remove(rolling_filename)
 	
 	emit_signal("save_slot_deleted")
-
-
-## Creates a granular save item. The system's configuration data includes many of these.
-##
-## Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
-## due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-func _save_item(type: String, value, key: String = "") -> SaveItem:
-	var save_item := SaveItem.new()
-	save_item.type = type
-	save_item.key = key
-	save_item.value = value
-	return save_item
 
 
 ## Populates the player's in-memory data based on a single line from their save file.

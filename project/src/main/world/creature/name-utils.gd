@@ -34,7 +34,7 @@ static func sanitize_name(name: String) -> String:
 
 ## Sorts an array of strings by length.
 ##
-## In GDScript this requires an internal class because of Godot #30668.
+## In GDScript this requires an internal class because of Godot #25252.
 static func sort_by_length(strings: Array) -> void:
 	strings.sort_custom(LengthSorter, '_compare_by_length')
 

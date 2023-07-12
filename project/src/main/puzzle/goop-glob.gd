@@ -47,12 +47,9 @@ onready var _fade_timer: Timer = $FadeTimer
 
 ## Populates this object from another GoopGlob instance.
 ##
-## Note: While the 'glob' parameter should always be a GoopGlob object, statically typing it as such causes errors
-## at game close due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-##
 ## Parameters:
 ## 	'glob': The GoopGlob instance to copy from.
-func copy_from(glob: Node) -> void:
+func copy_from(glob: GoopGlob) -> void:
 	initialize(glob.box_type, glob.position)
 	puzzle_areas = glob.puzzle_areas
 	falling = glob.falling
