@@ -72,23 +72,23 @@ func schedule_save() -> void:
 func save_player_data() -> void:
 	emit_signal("before_save")
 	var save_json := []
-	save_json.append(_save_item("version", PLAYER_DATA_VERSION).to_json_dict())
+	save_json.append(SaveItem.new("version", PLAYER_DATA_VERSION).to_json_dict())
 	var player_info := {}
 	player_info["money"] = PlayerData.money
 	player_info["seconds_played"] = PlayerData.seconds_played
-	save_json.append(_save_item("player_info", player_info).to_json_dict())
+	save_json.append(SaveItem.new("player_info", player_info).to_json_dict())
 	for level_name in PlayerData.level_history.level_names():
 		var rank_results_json := []
 		for rank_result in PlayerData.level_history.results(level_name):
 			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(_save_item("level_history", rank_results_json, level_name).to_json_dict())
-	save_json.append(_save_item("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("career", PlayerData.career.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("practice", PlayerData.practice.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("successful_levels",
+		save_json.append(SaveItem.new("level_history", rank_results_json, level_name).to_json_dict())
+	save_json.append(SaveItem.new("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("career", PlayerData.career.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("practice", PlayerData.practice.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("successful_levels",
 			PlayerData.level_history.successful_levels).to_json_dict())
-	save_json.append(_save_item("finished_levels",
+	save_json.append(SaveItem.new("finished_levels",
 			PlayerData.level_history.finished_levels).to_json_dict())
 	FileUtils.write_file(data_filename, Utils.print_json(save_json))
 	rolling_backups.rotate_backups()
@@ -132,18 +132,6 @@ func get_save_slot_player_short_name(filename: String) -> String:
 				player_short_name = player_creature_data.get("short_name", "")
 	
 	return player_short_name
-
-
-## Creates a granular save item. The player's save data includes many of these.
-##
-## Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
-## due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-func _save_item(type: String, value, key: String = "") -> SaveItem:
-	var save_item := SaveItem.new()
-	save_item.type = type
-	save_item.key = key
-	save_item.value = value
-	return save_item
 
 
 ## Populates the player's in-memory data based on a save file.

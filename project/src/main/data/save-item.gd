@@ -14,6 +14,13 @@ var key: String
 ## Value object (array, dictionary, string) containing the data
 var value
 
+
+func _init(init_type: String = "", init_value = null, init_key: String = "") -> void:
+	type = init_type
+	key = init_key
+	value = init_value
+
+
 func from_json_dict(json: Dictionary) -> void:
 	type = json.get("type", "")
 	key = json.get("key", "")

@@ -134,12 +134,9 @@ func to_json_dict() -> Dictionary:
 
 ## Loads creature data from a json path. Substitutes any missing data.
 ##
-## Note: This method signature should specify a return type of 'CreatureDef', but that causes console errors due to
-## Godot #30668 (https://github.com/godotengine/godot/issues/30668).
-##
 ## Returns:
 ## 	The newly loaded creature data, or 'null' if there was a problem loading the json data.
-func from_json_path(path: String) -> Object:
+func from_json_path(path: String) -> CreatureDef:
 	var result := self
 	var creature_def_text: String = FileUtils.get_file_as_text(path)
 	var parsed = parse_json(creature_def_text)
