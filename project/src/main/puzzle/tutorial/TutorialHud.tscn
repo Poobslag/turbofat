@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=3]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-messages.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.gd" type="Script" id=5]
-[ext_resource path="res://src/main/chat/ui/ChatPopTween.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/chat/ui/ChatPopTweenManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/chat/ui/ChatLinePanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-diagram.gd" type="Script" id=8]
 [ext_resource path="res://src/main/puzzle/tutorial/skill-tally-panel.gd" type="Script" id=9]
@@ -44,7 +44,7 @@ chat_line_panel_path = NodePath("../Panel")
 wait_time = 4.0
 one_shot = true
 
-[node name="Tween" parent="Messages" instance=ExtResource( 6 )]
+[node name="TweenManager" parent="Messages" instance=ExtResource( 6 )]
 
 [node name="PopInSound" type="AudioStreamPlayer" parent="Messages"]
 stream = ExtResource( 12 )
@@ -126,5 +126,5 @@ columns = 2
 
 [connection signal="all_text_shown" from="Messages/Label" to="Messages" method="_on_Label_all_text_shown"]
 [connection signal="timeout" from="Messages/QueueTimer" to="Messages" method="_on_QueueTimer_timeout"]
-[connection signal="pop_out_completed" from="Messages/Tween" to="Messages" method="_on_Tween_pop_out_completed"]
+[connection signal="pop_out_completed" from="Messages/TweenManager" to="Messages" method="_on_Tween_pop_out_completed"]
 [connection signal="chat_choice_chosen" from="Diagram/VBoxContainer/ChatChoices" to="Diagram" method="_on_ChatChoices_chat_choice_chosen"]

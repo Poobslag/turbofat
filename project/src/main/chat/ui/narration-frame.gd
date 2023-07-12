@@ -16,7 +16,7 @@ func pop_in() -> void:
 		# chat window is already popped in
 		return
 	_popped_in = true
-	$PopTween.pop_in()
+	$PopTweenManager.pop_in()
 	$PopInSound.play()
 
 
@@ -26,7 +26,7 @@ func pop_out() -> void:
 		# chat window is already popped out
 		return
 	_popped_in = false
-	$PopTween.pop_out()
+	$PopTweenManager.pop_out()
 	$PopOutSound.play()
 
 

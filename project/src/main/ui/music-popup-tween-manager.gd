@@ -81,7 +81,7 @@ func _pop_out() -> void:
 		_popup_state = PopupState.POPPED_OUT
 
 
-## Restores the MusicPopupTween and Timer to the state before they exited the tree.
+## Restores the MusicPopupTweenManager and Timer to the state before they exited the tree.
 ##
 ## The MusicPopup is a singleton so that it maintains its position as the player navigates menus. However, timers and
 ## tweens stop running when they exit the scene tree. This method restores the timers and tweens so that they're
@@ -98,17 +98,17 @@ func _restore_tween_and_timer_state(tree: SceneTree) -> void:
 	if is_inside_tree():
 		match _popup_state:
 			PopupState.POPPING_IN:
-				# PopupTween was interrupted while popping in.
+				# PopupTweenManager was interrupted while popping in.
 				# Pop in, wait a few seconds and then pop out.
 				pop_in_and_out(0.0)
 			
 			PopupState.POPPING_OUT:
-				# PopupTween was interrupted while popping out.
+				# PopupTweenManager was interrupted while popping out.
 				# Finish popping out.
 				_pop_out()
 			
 			PopupState.POPPED_IN:
-				# PopupTween was interrupted while popped in.
+				# PopupTweenManager was interrupted while popped in.
 				# Wait for however long was left on the timer, and then pop out.
 				$PopOutTimer.start($PopOutTimer.time_left)
 

@@ -655,9 +655,9 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/mouth-player.gd"
 }, {
 "base": "Node",
-"class": "MusicTween",
+"class": "MusicTweenManager",
 "language": "GDScript",
-"path": "res://src/main/music/music-tween.gd"
+"path": "res://src/main/music/music-tween-manager.gd"
 }, {
 "base": "Panel",
 "class": "MutateUi",
@@ -1479,7 +1479,7 @@ _global_script_class_icons={
 "MoneyBurst": "",
 "MoneyLabel": "",
 "MouthPlayer": "",
-"MusicTween": "",
+"MusicTweenManager": "",
 "MutateUi": "",
 "NameGenerator": "",
 "NameUtils": "",

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/main/ui/music-popup-tween.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/music-popup-tween-manager.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/music-popup.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/ui/icon-music.png" type="Texture" id=5]
 [ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=6]
@@ -85,9 +85,9 @@ size_flags_vertical = 4
 texture = ExtResource( 5 )
 expand = true
 
-[node name="PopupTween" type="Node" parent="."]
+[node name="PopupTweenManager" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="PopOutTimer" type="Timer" parent="PopupTween"]
+[node name="PopOutTimer" type="Timer" parent="PopupTweenManager"]
 wait_time = 4.0
 one_shot = true
