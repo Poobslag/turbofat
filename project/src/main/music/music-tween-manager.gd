@@ -47,5 +47,5 @@ func _fade(player: AudioStreamPlayer, new_volume_db: float, duration: float) -> 
 ## When a music track is faded out, we stop it from playing.
 func _on_Tween_completed(player: AudioStreamPlayer) -> void:
 	fading_state = FADING_NONE
-	if player.volume_db == MusicPlayer.MIN_VOLUME:
+	if is_equal_approx(player.volume_db, MusicPlayer.MIN_VOLUME):
 		player.stop()

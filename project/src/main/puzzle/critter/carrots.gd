@@ -202,7 +202,7 @@ func _on_Carrot_started_hiding() -> void:
 
 
 func _on_Tween_completed() -> void:
-	if abs(_carrot_move_sound.volume_db - MIN_VOLUME) < 0.01:
+	if is_equal_approx(_carrot_move_sound.volume_db, MIN_VOLUME):
 		_carrot_move_sound.stop()
 		_move_sfx_state = MoveSfxState.STOPPED
 	else:
