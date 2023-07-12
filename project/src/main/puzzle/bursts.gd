@@ -100,7 +100,7 @@ func _combo_burst_cell(y: int) -> Vector2:
 			target_cell.x = floor(target_cell.x) if _previous_cell_x == ceil(target_cell.x) else ceil(target_cell.x)
 		else:
 			# decide randomly between the two blocks
-			target_cell.x = floor(target_cell.x) if randf() > 0.5 else ceil(target_cell.x)
+			target_cell.x = floor(target_cell.x) if randf() <= 0.5 else ceil(target_cell.x)
 	elif target_cell.x == _previous_cell_x:
 		# if a combo burst vertically aligns with the previous counter, we move it horizontally
 		if target_cell.x == 0:
@@ -118,8 +118,8 @@ func _combo_burst_cell(y: int) -> Vector2:
 ## Tech move bursts appear in the middle of the current piece.
 func _tech_move_cell(piece: ActivePiece) -> Vector2:
 	var center := piece.center()
-	center.x = floor(center.x) if randf() < 0.5 else ceil(center.x)
-	center.y = floor(center.y) if randf() < 0.5 else ceil(center.y)
+	center.x = floor(center.x) if randf() <= 0.5 else ceil(center.x)
+	center.y = floor(center.y) if randf() <= 0.5 else ceil(center.y)
 	return center
 
 

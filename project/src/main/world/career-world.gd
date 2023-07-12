@@ -258,9 +258,9 @@ func _add_level_creature() -> void:
 	_level_creatures.append(creature)
 	
 	var mood: int
-	if randf() < 0.8:
+	if randf() <= 0.8:
 		mood = Utils.rand_value(MOODS_COMMON)
-	elif randf() < 0.8:
+	elif randf() <= 0.8:
 		mood = Utils.rand_value(MOODS_UNCOMMON)
 	else:
 		mood = Utils.rand_value(MOODS_RARE)

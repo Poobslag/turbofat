@@ -23,8 +23,8 @@ func _ready() -> void:
 func _randomize_sky_sprites() -> void:
 	for sprite in _sky_sprites:
 		sprite.frame = (sprite.frame + Utils.randi_range(1, 2)) % 3
-		sprite.flip_h = randf() > 0.5
-		sprite.flip_v = randf() > 0.5
+		sprite.flip_h = randf() <= 0.5
+		sprite.flip_v = randf() <= 0.5
 		sprite.offset = Vector2(rand_range(-2, 2), rand_range(-2, 2))
 
 

@@ -41,7 +41,7 @@ func set_mile_number(new_mile_number: int) -> void:
 func _randomize_sprite() -> void:
 	# randomize the sprite's appearance
 	_sprite.frame = randi() % 4
-	_sprite.flip_h = randf() > 0.5
+	_sprite.flip_h = randf() <= 0.5
 	
 	# align the text based on the sprite's appearance
 	_text.position = TEXT_POSITION_BY_FRAME[_sprite.frame]

@@ -66,7 +66,7 @@ func _add_random_puddles() -> void:
 			continue
 		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue
-		if randf() >= puddle_density:
+		if not randf() <= puddle_density:
 			# only add puddles to a random selection of tiles
 			continue
 		var autotile_coord := Vector2(randi() % 4, randi() % 3)

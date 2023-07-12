@@ -69,7 +69,7 @@ func _add_random_pebbles() -> void:
 			continue
 		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue
-		if randf() >= pebble_density:
+		if not randf() <= pebble_density:
 			# only add pebbles to a random selection of tiles
 			continue
 		var autotile_coord := Vector2(randi() % 4, randi() % 3)

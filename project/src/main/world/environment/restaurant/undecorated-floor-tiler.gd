@@ -66,7 +66,7 @@ func _autotile_undecorated_floor(cell: Vector2) -> void:
 		# we have only one (or zero!) candidates for this cell. this is unusual so we push a warning
 		push_warning("Insufficient candidates for cell at %s (autotile_coord=%s)" % [cell, autotile_coord])
 		return
-	elif randf() < UNDECORATED_QUALITY:
+	elif randf() <= UNDECORATED_QUALITY:
 		# replace the cell with a perfect undecorated floor tile
 		_set_cell_autotile_coord(cell, tile_alternatives[0])
 	else:
