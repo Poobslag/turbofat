@@ -31,11 +31,10 @@ func focused_level_button_index() -> int:
 ## Removes all level select button nodes from the scene tree.
 func clear_level_select_buttons() -> void:
 	for child in _level_buttons_container.get_children():
-		child.queue_free()
-		
 		# Immediately remove the child. Our business logic assumes the first child of the level_buttons_container is
 		# the leftmost child, so having freed children introduces bugs
 		_level_buttons_container.remove_child(child)
+		child.queue_free()
 
 
 ## Adds a new level select button to the scene tree.

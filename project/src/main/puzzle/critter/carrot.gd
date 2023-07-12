@@ -169,8 +169,8 @@ func _refresh_carrot_size() -> void:
 	
 	# remove the old visuals node
 	var old_visuals_index := _visuals.get_index()
-	_visuals.queue_free()
 	remove_child(_visuals)
+	_visuals.queue_free()
 	
 	# add the new visuals node to the same location in the tree
 	var new_visuals_scene: PackedScene = carrot_visuals_by_size[carrot_size]

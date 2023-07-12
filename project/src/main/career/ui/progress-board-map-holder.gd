@@ -32,8 +32,8 @@ func _refresh() -> void:
 	# remove old map node from tree
 	var old_map_node: Node = get_node_or_null("Map")
 	if old_map_node:
-		old_map_node.queue_free()
 		remove_child(old_map_node)
+		old_map_node.queue_free()
 	
 	# instance new map node
 	var map_scene_path: String = MAP_SCENE_PATHS_BY_REGION_ID.get(region_id, DEFAULT_MAP_SCENE_PATH)

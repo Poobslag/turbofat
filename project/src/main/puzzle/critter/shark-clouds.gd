@@ -56,8 +56,8 @@ func refresh() -> void:
 		return
 	
 	for child in get_children():
-		child.queue_free()
 		remove_child(child)
+		child.queue_free()
 	
 	var used_rect := tile_map.get_used_rect()
 	

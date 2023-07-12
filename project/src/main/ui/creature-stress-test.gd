@@ -63,8 +63,8 @@ func _remove_creature() -> void:
 		return
 	
 	var creature: Creature = _creature_container.get_children().back()
-	creature.queue_free()
 	_creature_container.remove_child(creature)
+	creature.queue_free()
 
 
 ## When the player presses a button, we add or remove creatures from the scene.

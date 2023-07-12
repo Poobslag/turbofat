@@ -80,6 +80,7 @@ func get_spot_position(i: float) -> Vector2:
 func _refresh_spots() -> void:
 	for child in get_children():
 		remove_child(child)
+		child.queue_free()
 	
 	# position children
 	if path2d != null:
