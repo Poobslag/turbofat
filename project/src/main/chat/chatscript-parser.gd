@@ -84,10 +84,10 @@ class CharactersState extends AbstractState:
 	##
 	## key: (String) creature id
 	## value: (String) alias used in chatscript chat lines
-	var _character_aliases: Dictionary
+	var _aliases_by_creature_id: Dictionary
 	
-	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
-		_character_aliases = init_chat_aliases
+	func _init(init_chat_tree: ChatTree, init_aliases_by_creature_id: Dictionary).(init_chat_tree) -> void:
+		_aliases_by_creature_id = init_aliases_by_creature_id
 	
 	
 	func line(line: String) -> String:
@@ -146,7 +146,7 @@ class CharactersState extends AbstractState:
 		# parse alias
 		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
 		if creature_id and character_alias:
-			_character_aliases[character_alias] = creature_id
+			_aliases_by_creature_id[character_alias] = creature_id
 
 ## -----------------------------------------------------------------------------
 
@@ -158,7 +158,7 @@ class ChatState extends AbstractState:
 	##
 	## key: (String) creature id
 	## value: (String) alias used in chatscript chat lines
-	var _character_aliases: Dictionary
+	var _aliases_by_creature_id: Dictionary
 	
 	## Current chat event being parsed. Any parsed metadata and links will be attached to this event.
 	var _event: ChatEvent
@@ -166,8 +166,8 @@ class ChatState extends AbstractState:
 	## Current branch key being parsed. Any additional chat events will be attached to this branch.
 	var _branch_key := ""
 	
-	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
-		_character_aliases = init_chat_aliases
+	func _init(init_chat_tree: ChatTree, init_aliases_by_creature_id: Dictionary).(init_chat_tree) -> void:
+		_aliases_by_creature_id = init_aliases_by_creature_id
 	
 	
 	## Syntax:
@@ -212,8 +212,8 @@ class ChatState extends AbstractState:
 		
 		var who := StringUtils.substring_before(line, ": ")
 		who = _unalias(who)
-		if _character_aliases:
-			if not who in _character_aliases and not who in _character_aliases.values():
+		if _aliases_by_creature_id:
+			if not who in _aliases_by_creature_id and not who in _aliases_by_creature_id.values():
 				chat_tree.warn("Unrecognized creature id: %s" % [who])
 		_event.who = who
 		
@@ -332,7 +332,7 @@ class ChatState extends AbstractState:
 	## 	The name or constant corresponding to the specified alias.
 	func _unalias(s: String) -> String:
 		var result := s
-		result = _character_aliases.get(result, result)
+		result = _aliases_by_creature_id.get(result, result)
 		result = StringUtils.hashwrap_constants(result)
 		return result
 
@@ -415,14 +415,14 @@ var _state: AbstractState
 
 ## key: (String) creature id
 ## value: (String) alias used in chatscript chat lines
-var _character_aliases := {}
+var _aliases_by_creature_id := {}
 
 func _init() -> void:
 	_states_by_name = {
 		DEFAULT: DefaultState.new(_chat_tree),
 		LOCATION: LocationState.new(_chat_tree),
-		CHARACTERS: CharactersState.new(_chat_tree, _character_aliases),
-		CHAT: ChatState.new(_chat_tree, _character_aliases),
+		CHARACTERS: CharactersState.new(_chat_tree, _aliases_by_creature_id),
+		CHAT: ChatState.new(_chat_tree, _aliases_by_creature_id),
 	}
 	_states_by_name[DEFAULT].chat_state = _states_by_name[CHAT]
 	_state = _states_by_name[DEFAULT]
@@ -434,7 +434,7 @@ func _init() -> void:
 ## once, the previously parsed chat_tree will be erased.
 func chat_tree_from_file(path: String) -> ChatTree:
 	_chat_tree.reset()
-	_character_aliases.clear()
+	_aliases_by_creature_id.clear()
 	
 	if not FileUtils.file_exists(path):
 		push_error("File not found: %s" % [path])

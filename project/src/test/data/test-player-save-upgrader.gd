@@ -175,10 +175,10 @@ func test_3776_chat_history_purged() -> void:
 	load_player_data("turbofat-3776.json")
 	
 	# chat history
-	assert_eq(PlayerData.chat_history.chat_history.has("chat/career/marsh/010_b"), true)
-	assert_eq(PlayerData.chat_history.chat_history.has("chat/level_select"), false)
-	assert_eq(PlayerData.chat_history.chat_history.has("creature/bort/filler_000"), false)
-	assert_eq(PlayerData.chat_history.chat_history.has("level/marsh/pulling_for_everyone_100"), false)
+	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("chat/career/marsh/010_b"), true)
+	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("chat/level_select"), false)
+	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("creature/bort/filler_000"), false)
+	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("level/marsh/pulling_for_everyone_100"), false)
 
 
 func test_37b3_chat_history_migrated() -> void:

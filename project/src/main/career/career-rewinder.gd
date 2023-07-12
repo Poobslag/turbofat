@@ -38,7 +38,7 @@ func skip_to_region(region_index: int) -> bool:
 	PlayerData.career.best_distance_travelled = region.start
 
 	# remove chapter cutscene history
-	for key in PlayerData.chat_history.chat_history.duplicate():
+	for key in PlayerData.chat_history.history_index_by_chat_key.duplicate():
 		if region.cutscene_path and key.begins_with(region.cutscene_path + "/"):
 			PlayerData.chat_history.delete_history_item(key)
 	

@@ -9,8 +9,9 @@ const NAMETAG_LOWLIGHT := Color.darkgray
 
 export (PackedScene) var HookableNametagScene: PackedScene
 
-## mapping from Creatures to NametagPanels
-var _creature_to_nametag: Dictionary
+## key: (Creature) Creature shown in the creature editor
+## value: (Panel) Creature's nametag
+var _nametags_by_creature: Dictionary
 
 func _ready() -> void:
 	# create nametags for all creatures in the scene
@@ -21,7 +22,7 @@ func _ready() -> void:
 		add_child(hookable_nametag)
 		creature.get_node("NametagHook").remote_path = creature.get_node("NametagHook").get_path_to(hookable_nametag)
 		creature.connect("creature_name_changed", self, "_on_Creature_creature_name_changed", [creature, nametag])
-		_creature_to_nametag[creature] = nametag
+		_nametags_by_creature[creature] = nametag
 
 
 ## When a creature is renamed, the corresponding nametag changes its text and position.
@@ -39,11 +40,11 @@ func _on_Creature_creature_name_changed(creature: Creature, nametag: Panel) -> v
 func _on_CreatureSelector_hovered_creature_changed(value: Creature) -> void:
 	if value:
 		# creature is highlighted; their nametag is blue, others are gray
-		for nametag in _creature_to_nametag.values():
+		for nametag in _nametags_by_creature.values():
 			nametag.set_bg_color(NAMETAG_LOWLIGHT)
-		_creature_to_nametag[value].set_bg_color(NAMETAG_HIGHLIGHT)
+		_nametags_by_creature[value].set_bg_color(NAMETAG_HIGHLIGHT)
 	else:
 		# no creature is highlighted; main nametag is blue, others are gray
-		for creature in _creature_to_nametag:
-			var nametag: Panel = _creature_to_nametag[creature]
+		for creature in _nametags_by_creature:
+			var nametag: Panel = _nametags_by_creature[creature]
 			nametag.set_bg_color(NAMETAG_HIGHLIGHT if creature.has_meta("main_creature") else NAMETAG_LOWLIGHT)

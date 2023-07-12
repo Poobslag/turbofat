@@ -41,6 +41,6 @@ func test_skip_to_region_erases_chat_history() -> void:
 	
 	career_rewinder.skip_to_region(1)
 	
-	var chat_history_keys := PlayerData.chat_history.chat_history.keys()
+	var chat_history_keys := PlayerData.chat_history.history_index_by_chat_key.keys()
 	chat_history_keys.sort()
 	assert_eq(chat_history_keys, ["chat/career/diege_2/a", "chat/career/remis/a"])

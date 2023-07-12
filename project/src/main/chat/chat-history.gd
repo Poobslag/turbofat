@@ -13,7 +13,7 @@ const CHAT_AGE_NEVER := 99999999
 ##
 ## key: (String) chat key
 ## value: (int) ordering of when the chat happened (smaller is older)
-var chat_history: Dictionary
+var history_index_by_chat_key: Dictionary
 
 ## Flags which can be stored/retreived from chatscript. Flags represent chat choices the player made, such as the
 ## answer to a yes or no question. They are persisted alongside the player's chat history.
@@ -32,7 +32,7 @@ var phrases: Dictionary
 var _chat_count := 0
 
 func reset() -> void:
-	chat_history.clear()
+	history_index_by_chat_key.clear()
 	flags.clear()
 	phrases.clear()
 	_chat_count = 0
@@ -40,7 +40,7 @@ func reset() -> void:
 
 func add_history_item(chat_key: String) -> void:
 	_chat_count += 1
-	chat_history[chat_key] = _chat_count
+	history_index_by_chat_key[chat_key] = _chat_count
 
 
 ## Deletes an item from the chat history.
@@ -48,7 +48,7 @@ func add_history_item(chat_key: String) -> void:
 ## Returns:
 ## 	'true' if the key was present in the chat history, 'false' otherwise.
 func delete_history_item(chat_key: String) -> bool:
-	return chat_history.erase(chat_key)
+	return history_index_by_chat_key.erase(chat_key)
 
 
 ## Returns how long ago the player had the specified chat.
@@ -56,13 +56,13 @@ func delete_history_item(chat_key: String) -> bool:
 ## Used to avoid repeating conversations too frequently.
 func chat_age(chat_key: String) -> int:
 	var result := CHAT_AGE_NEVER
-	if chat_history.has(chat_key):
-		result = _chat_count - chat_history.get(chat_key)
+	if history_index_by_chat_key.has(chat_key):
+		result = _chat_count - history_index_by_chat_key.get(chat_key)
 	return result
 
 
 func is_chat_finished(chat_key: String) -> bool:
-	return chat_history.has(chat_key)
+	return history_index_by_chat_key.has(chat_key)
 
 
 func set_flag(key: String, value: String = "true") -> void:
@@ -117,19 +117,19 @@ func is_flag(flag: String, value: String) -> bool:
 func to_json_dict() -> Dictionary:
 	return {
 		"flags": flags,
-		"history_items": chat_history,
+		"history_items": history_index_by_chat_key,
 		"phrases": phrases,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
 	flags = json.get("flags", {})
-	chat_history = json.get("history_items", {})
+	history_index_by_chat_key = json.get("history_items", {})
 	phrases = json.get("phrases", {})
-	_convert_float_values_to_ints(chat_history)
+	_convert_float_values_to_ints(history_index_by_chat_key)
 	
 	# calculate _chat_count instead of storing it
-	for value in chat_history.values():
+	for value in history_index_by_chat_key.values():
 		_chat_count = int(max(value, _chat_count))
 
 

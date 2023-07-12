@@ -73,7 +73,7 @@ var _remaining_scene_paths := []
 ## singleton nodes, cached to preserve their appearance during scene transitions
 ## key: (String) singleton names
 ## value: (Node) singleton nodes
-var _singletons: Dictionary
+var _singletons_by_name: Dictionary
 
 ## System time when we initialized the resource load.
 var _start_load_begin_msec: float
@@ -128,7 +128,7 @@ func _process(_delta: float) -> void:
 
 
 func _exit_tree() -> void:
-	for singleton in _singletons.values():
+	for singleton in _singletons_by_name.values():
 		# singletons are not freed when their parent scene is removed from the tree, we have to free them manually
 		singleton.free()
 	if _load_threads:
@@ -143,23 +143,23 @@ func substitute_singletons() -> void:
 		var non_singleton: Node = non_singleton_obj
 		
 		var parent := non_singleton.get_parent()
-		if _singletons.has(non_singleton.name):
+		if _singletons_by_name.has(non_singleton.name):
 			# we have a singleton value to substitute; remove the non-singleton value
 			var wallpaper_index := parent.get_children().find(non_singleton)
 			non_singleton.queue_free()
 			parent.remove_child(non_singleton)
 			
 			# add the singleton value
-			parent.add_child(_singletons[non_singleton.name])
-			parent.move_child(_singletons[non_singleton.name], wallpaper_index)
+			parent.add_child(_singletons_by_name[non_singleton.name])
+			parent.move_child(_singletons_by_name[non_singleton.name], wallpaper_index)
 		else:
 			# we have no singleton value stored; store a new singleton value
-			_singletons[non_singleton.name] = non_singleton
+			_singletons_by_name[non_singleton.name] = non_singleton
 
 
 ## Removes singletons from their parent nodes to prevent them from being freed.
 func remove_singletons() -> void:
-	for singleton_obj in _singletons.values():
+	for singleton_obj in _singletons_by_name.values():
 		if singleton_obj.get_parent():
 			singleton_obj.get_parent().remove_child(singleton_obj)
 
