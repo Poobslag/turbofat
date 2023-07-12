@@ -26,7 +26,7 @@ export (int) var kitchen_tile_index: int = -1
 ## Editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
-## https://github.com/godotengine/godot/issues/11855
+## (https://github.com/godotengine/godot/issues/11855)
 export (bool) var _autotile: bool setget autotile
 
 ## tilemap containing floors

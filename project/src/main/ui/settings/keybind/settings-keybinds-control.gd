@@ -25,8 +25,8 @@ func _refresh_keybind_labels() -> void:
 	$PresetScrollContainer.visible = false
 	$CustomScrollContainer.visible = false
 	
-	# Workaround for Godot #42224 (https://github.com/godotengine/godot/issues/42224)
-	# The following match statement does not work unless this field is explicitly cast to an int
+	# Workaround for Godot #42224 (https://github.com/godotengine/godot/issues/42224). The following match statement
+	# does not work unless this field is explicitly cast to an int
 	var preset: int = SystemData.keybind_settings.preset
 	
 	match preset:

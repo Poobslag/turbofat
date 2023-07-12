@@ -136,7 +136,7 @@ func from_json_dict(json: Dictionary) -> void:
 ## Converts the float values in a Dictionary to int values.
 ##
 ## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
-## https://github.com/godotengine/godot/issues/9499
+## (https://github.com/godotengine/godot/issues/9499)
 func _convert_float_values_to_ints(dict: Dictionary) -> void:
 	for key in dict:
 		if dict[key] is float:

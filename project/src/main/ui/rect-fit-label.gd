@@ -36,8 +36,8 @@ func set_chosen_size_index(new_index: int) -> void:
 	var old_text := text
 	text = ""
 	
-	# Workaround for Godot #19329; keeping a control centered in its parent is a hassle
-	# https://github.com/godotengine/godot/issues/19329
+	# Workaround for Godot #19329 (https://github.com/godotengine/godot/issues/19329); keeping a control centered in
+	# its parent is a hassle
 	margin_left = -sizes[chosen_size_index].x / 2
 	margin_right = sizes[chosen_size_index].x / 2
 	margin_top = -sizes[chosen_size_index].y / 2
