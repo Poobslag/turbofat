@@ -24,10 +24,10 @@ var player_def: CreatureDef setget set_player_def, get_player_def
 var sensei_def: CreatureDef setget set_sensei_def, get_sensei_def
 
 ## fatnesses by creature id
-var _fatnesses: Dictionary
+var _fatnesses_by_creature_id: Dictionary
 
 ## fatnesses saved to roll the tilemap back to a previous state
-var _saved_fatnesses: Dictionary
+var _saved_fatnesses_by_creature_id: Dictionary
 
 ## In addition to storing known fatness attributes like "Ebe's weight is 2.5", we store fatnesses for randomly
 ## generated filler creatures. We rotate their IDs to avoid edge cases where two creatures have the same ID.
@@ -44,7 +44,7 @@ var _filler_ids: Array
 var _creature_defs_by_id: Dictionary
 
 func _init() -> void:
-	_normalize_filler_fatnesses()
+	_normalize_filler_fatnesses_by_creature_id()
 
 
 func creature_ids() -> Array:
@@ -81,7 +81,7 @@ func get_sensei_def() -> CreatureDef:
 
 func reset() -> void:
 	_creature_defs_by_id.clear()
-	_fatnesses.clear()
+	_fatnesses_by_creature_id.clear()
 	
 	# default player appearance and name
 	var new_player_def := CreatureDef.new()
@@ -105,7 +105,7 @@ func reset() -> void:
 
 ## Saves the current fatness state so that we can roll back later.
 func save_fatness_state() -> void:
-	_saved_fatnesses = _fatnesses.duplicate()
+	_saved_fatnesses_by_creature_id = _fatnesses_by_creature_id.duplicate()
 
 
 ## Restores the previously saved fatness state.
@@ -113,7 +113,7 @@ func save_fatness_state() -> void:
 ## This prevents a creature from gaining weight when retrying a level over and over.
 ## Thematically, we're turning back time.
 func restore_fatness_state() -> void:
-	_fatnesses = _saved_fatnesses.duplicate()
+	_fatnesses_by_creature_id = _saved_fatnesses_by_creature_id.duplicate()
 
 
 func has_fatness(creature_id: String) -> bool:
@@ -122,7 +122,7 @@ func has_fatness(creature_id: String) -> bool:
 	if forced_fatness:
 		return true
 	
-	return _fatnesses.has(creature_id)
+	return _fatnesses_by_creature_id.has(creature_id)
 
 
 func get_fatness(creature_id: String) -> float:
@@ -131,7 +131,7 @@ func get_fatness(creature_id: String) -> float:
 	if forced_fatness:
 		return forced_fatness
 	
-	return _fatnesses[creature_id]
+	return _fatnesses_by_creature_id[creature_id]
 
 
 func set_fatness(creature_id: String, fatness: float) -> void:
@@ -143,13 +143,13 @@ func set_fatness(creature_id: String, fatness: float) -> void:
 	
 	if creature_id.begins_with("#filler"):
 		fatness = min(fatness, MAX_FILLER_FATNESS)
-	_fatnesses[creature_id] = fatness
+	_fatnesses_by_creature_id[creature_id] = fatness
 
 
 func to_json_dict() -> Dictionary:
 	return {
 		PLAYER_ID: get_player_def().to_json_dict(),
-		"fatnesses": _fatnesses,
+		"fatnesses": _fatnesses_by_creature_id,
 	}
 
 
@@ -160,8 +160,8 @@ func from_json_dict(json: Dictionary) -> void:
 		new_player_def.from_json_dict(json.get(PLAYER_ID, {}))
 		set_player_def(new_player_def)
 	if json.has("fatnesses"):
-		_fatnesses = json.get("fatnesses")
-		_normalize_filler_fatnesses()
+		_fatnesses_by_creature_id = json.get("fatnesses")
+		_normalize_filler_fatnesses_by_creature_id()
 
 
 func get_creature_def(creature_id: String) -> CreatureDef:
@@ -192,14 +192,14 @@ func substitute_variables(string: String) -> String:
 
 
 ## Populates the fatness for randomly generated filler creatures.
-func _normalize_filler_fatnesses() -> void:
+func _normalize_filler_fatnesses_by_creature_id() -> void:
 	for i in range(GENERIC_FATNESS_COUNT):
 		var filler_id := "#filler_%03d#" % i
 		_filler_ids.append(filler_id)
-		if not _fatnesses.has(filler_id):
+		if not _fatnesses_by_creature_id.has(filler_id):
 			# The initial creature generation is biased toward the thin side of things. That way the progression is
 			# more noticable as the generic creatures fatten up.
-			_fatnesses[filler_id] = min(Utils.rand_value(Global.FATNESSES), Utils.rand_value(Global.FATNESSES))
+			_fatnesses_by_creature_id[filler_id] = min(Utils.rand_value(Global.FATNESSES), Utils.rand_value(Global.FATNESSES))
 	
 	_filler_ids.shuffle()
 
