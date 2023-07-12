@@ -14,3 +14,4 @@ script = ExtResource( 3 )
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 material = SubResource( 1 )
+scale = Vector2( 0.5, 0.5 )
