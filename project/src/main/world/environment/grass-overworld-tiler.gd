@@ -81,7 +81,7 @@ func _add_random_grass() -> void:
 			continue
 		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue
-		if not randf() <= grass_density:
+		if not randf() < grass_density:
 			# only add grass to a random selection of tiles
 			continue
 		var autotile_coord: Vector2

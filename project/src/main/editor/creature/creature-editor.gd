@@ -173,7 +173,7 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 		
 		# blend the belly color with the body color
 		belly = lerp(belly, body, rand_range(0.0, 1.0))
-		if randf() <= 0.5:
+		if randf() < 0.5:
 			# light belly
 			belly.s -= _rng.randfn(0.3, 0.15)
 			belly.v += _rng.randfn(0.3, 0.15)
@@ -309,7 +309,7 @@ func _alleles_to_mutate() -> Array:
 		var allele: String = allele_obj
 		if allele.ends_with("_rgb"):
 			some_rgb_locked = true
-	if not some_rgb_locked and randf() <= 0.5:
+	if not some_rgb_locked and randf() < 0.5:
 		var new_flexible_alleles := ["all_rgb"]
 		for allele in flexible_alleles:
 			if not allele.ends_with("_rgb"):
@@ -324,7 +324,7 @@ func _alleles_to_mutate() -> Array:
 	# determine how many alleles to mutate based on the 'mutagen' value
 	var extra_mutations_float: float = lerp(0, flexible_alleles.size(), _reroll_ui.mutagen)
 	var extra_mutations := int(extra_mutations_float)
-	if randf() <= (extra_mutations_float - extra_mutations):
+	if randf() < (extra_mutations_float - extra_mutations):
 		# numbers like 2.35 are rounded down 35% of the time, and rounded up 65% of the time
 		extra_mutations += 1
 	

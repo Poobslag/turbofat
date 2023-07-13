@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 ## frequently because those sounds are associated with negative reinforcement (broken combos).
 func _should_chat() -> bool:
 	var result := true
-	if randf() <= greetiness:
+	if randf() < greetiness:
 		greetiness -= 1.0 / GREETINGS_PER_MINUTE
 	else:
 		result = false
