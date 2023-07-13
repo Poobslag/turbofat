@@ -18,21 +18,6 @@ func _process(delta: float) -> void:
 	greetiness = clamp(greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)
 
 
-## Returns 'true' if the creature should greet us. We calculate this based on how many times we've been greeted
-## recently.
-##
-## Novice players or fast players won't mind receiving a lot of sounds related to combos because those sounds are
-## associated with positive reinforcement (big combos), but they could get annoyed if creatures say hello/goodbye too
-## frequently because those sounds are associated with negative reinforcement (broken combos).
-func _should_chat() -> bool:
-	var result := true
-	if randf() < greetiness:
-		greetiness -= 1.0 / GREETINGS_PER_MINUTE
-	else:
-		result = false
-	return result
-
-
 ## Conditionally schedules a 'hello!' voice sample for when a creature enters the restaurant.
 ##
 ## If there have been too many greetings recently, the 'hello!' voice sample is not scheduled.
@@ -48,6 +33,21 @@ func maybe_play_hello_voice(customer: Creature) -> void:
 func maybe_play_goodbye_voice(customer: Creature) -> void:
 	if _should_chat():
 		customer.play_goodbye_voice()
+
+
+## Returns 'true' if the creature should greet us. We calculate this based on how many times we've been greeted
+## recently.
+##
+## Novice players or fast players won't mind receiving a lot of sounds related to combos because those sounds are
+## associated with positive reinforcement (big combos), but they could get annoyed if creatures say hello/goodbye too
+## frequently because those sounds are associated with negative reinforcement (broken combos).
+func _should_chat() -> bool:
+	var result := true
+	if randf() < greetiness:
+		greetiness -= 1.0 / GREETINGS_PER_MINUTE
+	else:
+		result = false
+	return result
 
 
 func _on_timeout() -> void:

@@ -11,27 +11,6 @@ func after_each() -> void:
 	CareerCutsceneLibrary.career_cutscene_root_path = CareerCutsceneLibrary.DEFAULT_CAREER_CUTSCENE_ROOT_PATH
 
 
-func _interlude(preroll: String, postroll: String) -> ChatKeyPair:
-	var result := ChatKeyPair.new()
-	result.from_json_dict({
-		"type": "interlude",
-		"preroll": preroll,
-		"postroll": postroll,
-	})
-	return result
-
-
-## Compares two ChatKeyPair arrays.
-func _assert_eq_ckp(actual_chat_key_pairs: Array, expected_chat_key_pairs: Array) -> void:
-	var actual_dicts := []
-	for actual_pair in actual_chat_key_pairs:
-		actual_dicts.append(actual_pair.to_json_dict())
-	var expected_dicts := []
-	for expected_pair in expected_chat_key_pairs:
-		expected_dicts.append(expected_pair.to_json_dict())
-	assert_eq_deep(actual_dicts, expected_dicts)
-
-
 func test_load_all_chat_keys() -> void:
 	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/career/fake-career"
 	
@@ -249,3 +228,24 @@ func test_potential_chat_keys_excludes_boss_levels() -> void:
 	]), [
 		# player hasn't cleared the boss level, post-boss cutscenes are excluded
 	])
+
+
+func _interlude(preroll: String, postroll: String) -> ChatKeyPair:
+	var result := ChatKeyPair.new()
+	result.from_json_dict({
+		"type": "interlude",
+		"preroll": preroll,
+		"postroll": postroll,
+	})
+	return result
+
+
+## Compares two ChatKeyPair arrays.
+func _assert_eq_ckp(actual_chat_key_pairs: Array, expected_chat_key_pairs: Array) -> void:
+	var actual_dicts := []
+	for actual_pair in actual_chat_key_pairs:
+		actual_dicts.append(actual_pair.to_json_dict())
+	var expected_dicts := []
+	for expected_pair in expected_chat_key_pairs:
+		expected_dicts.append(expected_pair.to_json_dict())
+	assert_eq_deep(actual_dicts, expected_dicts)

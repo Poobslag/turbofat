@@ -76,22 +76,6 @@ func reset() -> void:
 	_next_customer_indexes.clear()
 
 
-## Moves the chef/customer bubbles offscreen, recording their position for later
-##
-## We record their current position and relocate them offscreen. The bubbles are tweened onscreen later by an
-## AnimationPlayer.
-func _reset_bubbles_offscreen() -> void:
-	_chef_onscreen_rect_position = _chef.rect_position
-	_chef_offscreen_rect_position = _chef_onscreen_rect_position + Vector2(2 * _chef.rect_size.x, 0)
-	_chef.rect_position = _chef_offscreen_rect_position
-	_chef.modulate = Color.transparent
-	
-	_customer_onscreen_rect_position = _customer.rect_position
-	_customer_offscreen_rect_position = _customer_onscreen_rect_position - Vector2(1.5 * _customer.rect_size.x, 0)
-	_customer.rect_position = _customer_offscreen_rect_position
-	_customer.modulate = Color.transparent
-
-
 func swoop_chef_bubble_onscreen() -> void:
 	_swoop_bubble(_chef, true)
 
@@ -208,6 +192,22 @@ func briefly_suppress_sfx(duration: float = 1.0) -> void:
 	for customer in get_customers():
 		customer.briefly_suppress_sfx(duration)
 	_restaurant_viewport_scene.briefly_suppress_sfx(duration)
+
+
+## Moves the chef/customer bubbles offscreen, recording their position for later
+##
+## We record their current position and relocate them offscreen. The bubbles are tweened onscreen later by an
+## AnimationPlayer.
+func _reset_bubbles_offscreen() -> void:
+	_chef_onscreen_rect_position = _chef.rect_position
+	_chef_offscreen_rect_position = _chef_onscreen_rect_position + Vector2(2 * _chef.rect_size.x, 0)
+	_chef.rect_position = _chef_offscreen_rect_position
+	_chef.modulate = Color.transparent
+	
+	_customer_onscreen_rect_position = _customer.rect_position
+	_customer_offscreen_rect_position = _customer_onscreen_rect_position - Vector2(1.5 * _customer.rect_size.x, 0)
+	_customer.rect_position = _customer_offscreen_rect_position
+	_customer.modulate = Color.transparent
 
 
 func _swoop_bubble(bubble: Control, onscreen: bool) -> void:

@@ -59,15 +59,6 @@ func set_crowd_color_index(new_crowd_color_index: int) -> void:
 	_refresh()
 
 
-func _refresh() -> void:
-	if not is_inside_tree():
-		return
-	
-	_sprite.frame = frame
-	_sprite.flip_h = flip_h
-	_sprite.modulate = CROWD_COLORS[crowd_color_index]
-
-
 ## Randomizes the obstacle's appearance.
 func set_shuffle(value: bool) -> void:
 	if not value:
@@ -79,6 +70,15 @@ func set_shuffle(value: bool) -> void:
 	scale = Vector2.ONE
 	
 	property_list_changed_notify()
+
+
+func _refresh() -> void:
+	if not is_inside_tree():
+		return
+	
+	_sprite.frame = frame
+	_sprite.flip_h = flip_h
+	_sprite.modulate = CROWD_COLORS[crowd_color_index]
 
 
 ## When the WiggleTimer times out, we animate the crowd member slightly.

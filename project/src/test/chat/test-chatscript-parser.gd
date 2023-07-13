@@ -23,13 +23,6 @@ func after_all() -> void:
 	PlayerData.chat_history.reset()
 
 
-func _chat_tree_from_file(path: String) -> ChatTree:
-	var parser := ChatscriptParser.new()
-	var chat_tree := parser.chat_tree_from_file(path)
-	chat_tree.prepare_first_chat_event()
-	return chat_tree
-
-
 func test_cutscene_location() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
@@ -315,3 +308,10 @@ func test_default_phrase_doesnt_overwrite() -> void:
 	# the 'default_phrase' meta item should not overwrite a phrase which is already saved
 	chat_tree.advance()
 	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Wreck Lean")
+
+
+func _chat_tree_from_file(path: String) -> ChatTree:
+	var parser := ChatscriptParser.new()
+	var chat_tree := parser.chat_tree_from_file(path)
+	chat_tree.prepare_first_chat_event()
+	return chat_tree

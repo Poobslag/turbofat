@@ -46,12 +46,12 @@ func set_chosen_size_index(new_index: int) -> void:
 	text = old_text
 
 
+func set_sizes(new_sizes: Array) -> void:
+	sizes = new_sizes
+	pick_smallest_size()
+
+
 func _lines_fit() -> bool:
 	max_lines_visible = (rect_size.y + get_constant("line_spacing")) \
 			/ (get("custom_fonts/font").get_height() + get_constant("line_spacing"))
 	return get_line_count() <= max_lines_visible
-
-
-func set_sizes(new_sizes: Array) -> void:
-	sizes = new_sizes
-	pick_smallest_size()

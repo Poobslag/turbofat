@@ -35,12 +35,6 @@ func set_chosen_font_index(new_index: int) -> void:
 	set("custom_fonts/font", fonts[chosen_font_index])
 
 
-func _lines_fit() -> bool:
-	max_lines_visible = (rect_size.y + get_constant("line_spacing")) \
-			/ (get("custom_fonts/font").get_height() + get_constant("line_spacing"))
-	return get_line_count() <= max_lines_visible
-
-
 func set_fonts(new_fonts: Array) -> void:
 	fonts = new_fonts
 	pick_largest_font()
@@ -48,3 +42,9 @@ func set_fonts(new_fonts: Array) -> void:
 
 func _on_resized() -> void:
 	pick_largest_font()
+
+
+func _lines_fit() -> bool:
+	max_lines_visible = (rect_size.y + get_constant("line_spacing")) \
+			/ (get("custom_fonts/font").get_height() + get_constant("line_spacing"))
+	return get_line_count() <= max_lines_visible

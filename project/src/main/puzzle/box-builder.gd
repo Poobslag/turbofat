@@ -91,6 +91,36 @@ func build_box(rect: Rect2, box_type: int) -> void:
 	emit_signal("box_built", rect, box_type)
 
 
+## Builds any possible 3x3, 3x4 or 3x5 'boxes' in the playfield, returning 'true' if a box was built.
+func process_boxes() -> bool:
+	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
+		# veggie blocks cannot make boxes
+		return false
+	
+	# Calculate the possible locations for a (w x h) rectangle in the playfield
+	var db := _filled_columns()
+	var dt3 := _filled_rectangles(db, 3)
+	var dt4 := _filled_rectangles(db, 4)
+	var dt5 := _filled_rectangles(db, 5)
+	
+	for hi_y in range(PuzzleTileMap.ROW_COUNT):
+		for x in range(PuzzleTileMap.COL_COUNT):
+			# Process boxes from bottom to top, to hopefully match a typical player's intent. If multiple boxes can
+			# be made, it's better to leave an incomplete box at the top of the playfield rather than being buried at
+			# the bottom.
+			
+			# If multiple boxes can be made at the same height, we prioritize larger horizontal boxes. They're worth
+			# more points.
+			var lo_y := PuzzleTileMap.ROW_COUNT - hi_y - 1
+			if dt3[lo_y][x] >= 5 and _process_box(x, lo_y, 5, 3): return true
+			if dt5[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 5): return true
+			if dt3[lo_y][x] >= 4 and _process_box(x, lo_y, 4, 3): return true
+			if dt4[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 4): return true
+			if dt3[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 3): return true
+	return false
+
+
+
 ## Creates a new integer matrix of the same dimensions as the playfield.
 func _int_matrix() -> Array:
 	var matrix := []
@@ -136,36 +166,6 @@ func _filled_columns() -> Array:
 				_:
 					db[y][x] = 1 if y == 0 else db[y - 1][x] + 1
 	return db
-
-
-## Builds any possible 3x3, 3x4 or 3x5 'boxes' in the playfield, returning 'true' if a box was built.
-func process_boxes() -> bool:
-	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
-		# veggie blocks cannot make boxes
-		return false
-	
-	# Calculate the possible locations for a (w x h) rectangle in the playfield
-	var db := _filled_columns()
-	var dt3 := _filled_rectangles(db, 3)
-	var dt4 := _filled_rectangles(db, 4)
-	var dt5 := _filled_rectangles(db, 5)
-	
-	for hi_y in range(PuzzleTileMap.ROW_COUNT):
-		for x in range(PuzzleTileMap.COL_COUNT):
-			# Process boxes from bottom to top, to hopefully match a typical player's intent. If multiple boxes can
-			# be made, it's better to leave an incomplete box at the top of the playfield rather than being buried at
-			# the bottom.
-			
-			# If multiple boxes can be made at the same height, we prioritize larger horizontal boxes. They're worth
-			# more points.
-			var lo_y := PuzzleTileMap.ROW_COUNT - hi_y - 1
-			if dt3[lo_y][x] >= 5 and _process_box(x, lo_y, 5, 3): return true
-			if dt5[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 5): return true
-			if dt3[lo_y][x] >= 4 and _process_box(x, lo_y, 4, 3): return true
-			if dt4[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 4): return true
-			if dt3[lo_y][x] >= 3 and _process_box(x, lo_y, 3, 3): return true
-	return false
-
 
 ## Calculates an 'ingredient string' for a specific box.
 ##

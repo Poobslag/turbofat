@@ -133,6 +133,11 @@ func briefly_suppress_sfx(duration: float = 1.0) -> void:
 	_refresh_should_play_sfx()
 
 
+func set_suppress_sfx(new_suppress_sfx: bool) -> void:
+	suppress_sfx = new_suppress_sfx
+	_refresh_should_play_sfx()
+
+
 func _refresh_should_play_sfx() -> void:
 	if not is_inside_tree():
 		return
@@ -153,11 +158,6 @@ func _refresh_should_play_sfx() -> void:
 	
 	if should_play_sfx != old_should_play_sfx:
 		emit_signal("should_play_sfx_changed")
-
-
-func set_suppress_sfx(new_suppress_sfx: bool) -> void:
-	suppress_sfx = new_suppress_sfx
-	_refresh_should_play_sfx()
 
 
 ## Use a different AudioStreamPlayer for munch sounds, to avoid interrupting speech.

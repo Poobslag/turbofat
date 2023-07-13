@@ -24,6 +24,13 @@ func _ready() -> void:
 	_update_tween_and_animation()
 
 
+func _physics_process(delta: float) -> void:
+	# sway left and right based on the animation state
+	var velocity := Vector2(180 if leaf_frame == 0 else 90, 80)
+	velocity.x *= -1 if flip_h else 1
+	position += delta * velocity
+
+
 ## Makes the leaf poof visible and enables its physics processing.
 ##
 ## The leaf poof appears at the specified location, falls and sways back and forth, fades out and disables itself.
@@ -55,10 +62,3 @@ func _update_tween_and_animation() -> void:
 
 func _refresh_frame() -> void:
 	frame = 2 * leaf_type + leaf_frame
-
-
-func _physics_process(delta: float) -> void:
-	# sway left and right based on the animation state
-	var velocity := Vector2(180 if leaf_frame == 0 else 90, 80)
-	velocity.x *= -1 if flip_h else 1
-	position += delta * velocity

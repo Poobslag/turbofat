@@ -82,11 +82,6 @@ func set_bg_color(new_bg_color: Color) -> void:
 	_set_style_color(bg_color)
 
 
-func _set_style_color(color: Color) -> void:
-	get("custom_styles/normal").bg_color = color
-	get("custom_styles/hover").bg_color = color
-
-
 func set_lock_status(new_lock_status: int) -> void:
 	lock_status = new_lock_status
 	_refresh_appearance()
@@ -105,6 +100,11 @@ func set_level_name(new_level_name: String) -> void:
 func set_level_duration(new_level_duration: int) -> void:
 	level_duration = new_level_duration
 	_refresh_appearance()
+
+
+func _set_style_color(color: Color) -> void:
+	get("custom_styles/normal").bg_color = color
+	get("custom_styles/hover").bg_color = color
 
 
 ## Updates the button's text, colors, size and icon based on the level and its status.
