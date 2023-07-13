@@ -40,4 +40,4 @@ func spawn_target() -> void:
 		flip_chance = 0.1
 	
 	var poki_crowd: PokiCrowd = spawned_object
-	poki_crowd.flip_h = randf() <= flip_chance
+	poki_crowd.flip_h = randf() < flip_chance

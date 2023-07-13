@@ -53,7 +53,7 @@ func _initialize_onready_variables() -> void:
 ## Parameters:
 ## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_carpet(cell: Vector2) -> void:
-	if randf() <= CARPET_QUALITY:
+	if randf() < CARPET_QUALITY:
 		# replace the cell with a perfect carpet tile
 		_set_cell_autotile_coord(cell, CARPET_FLAWLESS_CELL)
 	else:

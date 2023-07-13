@@ -74,7 +74,7 @@ func set_shuffle(value: bool) -> void:
 		return
 	
 	set_frame(randi() % (_sprite.hframes * _sprite.vframes))
-	set_flip_h(randf() <= 0.5)
+	set_flip_h(randf() < 0.5)
 	set_crowd_color_index(Utils.randi_range(0, CROWD_COLORS.size() - 1))
 	scale = Vector2.ONE
 	

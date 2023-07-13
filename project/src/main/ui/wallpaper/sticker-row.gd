@@ -102,7 +102,7 @@ func _add_sticker() -> void:
 	new_sticker.position.y = rect_size.y * 0.5
 	new_sticker.position.x += rand_range(-0.2, 0.2) * rect_size.y
 	
-	new_sticker.flip_h = randf() <= 0.5
+	new_sticker.flip_h = randf() < 0.5
 	new_sticker.modulate = color
 	add_child(new_sticker)
 	_texture_index = (_texture_index + 1) % _textures.size()

@@ -103,9 +103,9 @@ func _input(event: InputEvent) -> void:
 			_scale_index = randi() % SCALES.size()
 			_chat_theme.accent_scale = SCALES[_scale_index]
 			
-			_chat_theme.accent_swapped = randf() <= 0.5
+			_chat_theme.accent_swapped = randf() < 0.5
 			_chat_theme.accent_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
-			_chat_theme.dark = randf() <= 0.5
+			_chat_theme.dark = randf() < 0.5
 			_play_chat_event()
 		KEY_S:
 			_chat_theme.accent_swapped = not _chat_theme.accent_swapped

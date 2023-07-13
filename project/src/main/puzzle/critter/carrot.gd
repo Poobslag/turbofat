@@ -191,7 +191,7 @@ func _refresh_carrot_size() -> void:
 ##
 ## This face animation is played when the carrot appears and loops forever. It decides the carrot's facial expression.
 func _randomize_face() -> void:
-	if randf() <= 0.5:
+	if randf() < 0.5:
 		_face.flip_h = true
 	
 	# Choose a random face animation, weighting towards the earlier animations. The later animations are wacky and

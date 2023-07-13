@@ -60,7 +60,7 @@ func _autotile_kitchen_floor(cell: Vector2) -> void:
 	if _tile_map.get_cell_autotile_coord(cell.x, cell.y) == KITCHEN_DRAIN_CELL:
 		# cell contains a drain; leave it alone
 		pass
-	elif randf() <= KITCHEN_QUALITY:
+	elif randf() < KITCHEN_QUALITY:
 		# replace the cell with a perfect kitchen floor tile
 		_set_cell_autotile_coord(cell, KITCHEN_FLAWLESS_CELL)
 	else:
