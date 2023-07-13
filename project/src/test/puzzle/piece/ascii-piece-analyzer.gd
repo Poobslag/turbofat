@@ -27,23 +27,6 @@ func _init(init_ascii_grid: Array) -> void:
 	ascii_grid = init_ascii_grid
 
 
-## Determines the piece type by browsing the ascii grid for letters.
-##
-## Returns:
-## 	The discovered piece type, or 'null' if no piece could be found
-func _determine_piece_type() -> PieceType:
-	var piece_type: PieceType
-	for row_index in range(ascii_grid.size()):
-		var row_string: String = ascii_grid[row_index]
-		# can we determine the piece type from this row?
-		for piece_string in PieceTypes.pieces_by_string.keys():
-			if row_string.find(piece_string) != -1:
-				piece_type = PieceTypes.pieces_by_string[piece_string]
-		if piece_type:
-			break
-	return piece_type
-
-
 ## Creates an piece based on an ascii drawing.
 ##
 ## Calculates the piece's type, position and orientation.
@@ -96,6 +79,23 @@ func create_active_piece(forced_piece_orientation: int = -1) -> ActivePiece:
 		push_warning("Could not find piece position/orientation in '%s' ascii_grid"\
 				% ("from" if ascii_grid == ascii_grid else "to"))
 	return _active_piece
+
+
+## Determines the piece type by browsing the ascii grid for letters.
+##
+## Returns:
+## 	The discovered piece type, or 'null' if no piece could be found
+func _determine_piece_type() -> PieceType:
+	var piece_type: PieceType
+	for row_index in range(ascii_grid.size()):
+		var row_string: String = ascii_grid[row_index]
+		# can we determine the piece type from this row?
+		for piece_string in PieceTypes.pieces_by_string.keys():
+			if row_string.find(piece_string) != -1:
+				piece_type = PieceTypes.pieces_by_string[piece_string]
+		if piece_type:
+			break
+	return piece_type
 
 
 ## Returns 'true' if the specified cell has a block in it or if it's outside the ascii drawing's boundaries.

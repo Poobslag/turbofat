@@ -13,6 +13,10 @@ func _ready() -> void:
 		_populate_level_buttons(tutorial_region)
 
 
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
+
+
 func _find_tutorial_region() -> OtherRegion:
 	var tutorial_region: OtherRegion
 	for region in OtherLevelLibrary.regions:
@@ -37,10 +41,6 @@ func _assign_default_recent_data(tutorial_region: OtherRegion) -> void:
 
 func _populate_level_buttons(tutorial_region: OtherRegion) -> void:
 	_paged_level_panel.populate(tutorial_region, PlayerData.practice.tutorial_level_id)
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 func _on_BackButton_pressed() -> void:

@@ -101,18 +101,6 @@ func calculate_rank(unranked_result: RankResult = null) -> RankResult:
 	return rank_result
 
 
-## Calculates the maximum combo score for the specified number of lines.
-##
-## If it only takes 3 lines to clear a stage, the most combo points you can get is 5 (0 + 0 + 5). On the surface, 5
-## combo points for 3 lines seems like a bad score, but it's actually the maximum. We calculate the maximum when
-## figuring out the player's performance.
-func _max_combo_score(lines: int) -> int:
-	var result := lines * 20
-	result -= COMBO_DEFICIT[min(lines, COMBO_DEFICIT.size() - 1)]
-	result = max(result, 0)
-	return result
-
-
 ## Calculates the lines per minute for a specific rank.
 ##
 ## The lines per minute (lpm) and seconds per line (spl) are limited based on current level's speeds, such as its line
@@ -203,6 +191,56 @@ func unranked_result() -> RankResult:
 	rank_result.pickup_score_per_line = float(rank_result.pickup_score) / max(rank_result.lines, 1)
 	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
 	return rank_result
+
+
+## calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
+func target_leftover_score(leftover_lines: int) -> float:
+	var box_score := master_box_score(CurrentLevel.settings) * leftover_lines
+	var combo_score := 20 * leftover_lines
+	
+	# if the combo factor is 0, they will be starting a new combo for the leftovers
+	if CurrentLevel.settings.rank.combo_factor == 0.0:
+		combo_score = max(0, combo_score - COMBO_DEFICIT[min(ceil(leftover_lines), COMBO_DEFICIT.size() - 1)])
+	
+	return box_score + combo_score + leftover_lines
+
+
+## calculate the number of lines needed to reach a target score
+func target_lines_for_score(box_score_per_line: float, combo_score_per_line: float) -> int:
+	if CurrentLevel.settings.finish_condition.value == 0:
+		return 0
+	
+	var combo_efficiency := combo_score_per_line / 20.0
+	
+	var result := 0
+	for i in range(1, COMBO_DEFICIT.size()):
+		if (1 + box_score_per_line) * i + _max_combo_score(i) * combo_efficiency \
+				>= CurrentLevel.settings.finish_condition.value:
+			result = i
+			break
+	
+	if not result:
+		var tmp_scoring_target: float = CurrentLevel.settings.finish_condition.value \
+				+ COMBO_DEFICIT[COMBO_DEFICIT.size() - 1] * combo_efficiency
+		result = ceil(tmp_scoring_target / (1 + box_score_per_line + combo_score_per_line))
+	
+	# factor in preplaced pieces
+	if CurrentLevel.settings.rank.preplaced_pieces:
+		result = max(1, result - (CurrentLevel.settings.rank.preplaced_pieces / 2.0))
+	
+	return result
+
+
+## Calculates the maximum combo score for the specified number of lines.
+##
+## If it only takes 3 lines to clear a stage, the most combo points you can get is 5 (0 + 0 + 5). On the surface, 5
+## combo points for 3 lines seems like a bad score, but it's actually the maximum. We calculate the maximum when
+## figuring out the player's performance.
+func _max_combo_score(lines: int) -> int:
+	var result := lines * 20
+	result -= COMBO_DEFICIT[min(lines, COMBO_DEFICIT.size() - 1)]
+	result = max(result, 0)
+	return result
 
 
 ## Calculates the player's rank.
@@ -362,44 +400,6 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			rank_result.score_rank -= CurrentLevel.settings.rank.success_bonus
 	
 	_clamp_result(rank_result, lenient)
-
-
-## calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
-func target_leftover_score(leftover_lines: int) -> float:
-	var box_score := master_box_score(CurrentLevel.settings) * leftover_lines
-	var combo_score := 20 * leftover_lines
-	
-	# if the combo factor is 0, they will be starting a new combo for the leftovers
-	if CurrentLevel.settings.rank.combo_factor == 0.0:
-		combo_score = max(0, combo_score - COMBO_DEFICIT[min(ceil(leftover_lines), COMBO_DEFICIT.size() - 1)])
-	
-	return box_score + combo_score + leftover_lines
-
-
-## calculate the number of lines needed to reach a target score
-func target_lines_for_score(box_score_per_line: float, combo_score_per_line: float) -> int:
-	if CurrentLevel.settings.finish_condition.value == 0:
-		return 0
-	
-	var combo_efficiency := combo_score_per_line / 20.0
-	
-	var result := 0
-	for i in range(1, COMBO_DEFICIT.size()):
-		if (1 + box_score_per_line) * i + _max_combo_score(i) * combo_efficiency \
-				>= CurrentLevel.settings.finish_condition.value:
-			result = i
-			break
-	
-	if not result:
-		var tmp_scoring_target: float = CurrentLevel.settings.finish_condition.value \
-				+ COMBO_DEFICIT[COMBO_DEFICIT.size() - 1] * combo_efficiency
-		result = ceil(tmp_scoring_target / (1 + box_score_per_line + combo_score_per_line))
-	
-	# factor in preplaced pieces
-	if CurrentLevel.settings.rank.preplaced_pieces:
-		result = max(1, result - (CurrentLevel.settings.rank.preplaced_pieces / 2.0))
-	
-	return result
 
 
 ## Clamps the player's ranks within [0, 999] to avoid edge cases.

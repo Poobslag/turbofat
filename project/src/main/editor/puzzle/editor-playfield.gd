@@ -104,6 +104,22 @@ func get_drag_data(_pos: Vector2) -> Object:
 	return _prev_dropped_data
 
 
+func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+	_set_tile_map_block(_tile_map, pos, tile, autotile_coord)
+
+
+func set_pickup(pos: Vector2, box_type: int) -> void:
+	_pickups.set_pickup(pos, box_type)
+
+
+func get_tile_map() -> TileMap:
+	return $Bg/TileMap as TileMap
+
+
+func get_pickups() -> EditorPickups:
+	return $Bg/Pickups as EditorPickups
+
+
 ## Adds a dragged chunk of blocks to a tilemap.
 ##
 ## Parameters:
@@ -140,22 +156,6 @@ func _clear_previews() -> void:
 	_pickups_drop_preview.clear()
 	_prev_can_drop_pos = Vector2(-808, -949)
 	_prev_can_drop_data = null
-
-
-func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
-	_set_tile_map_block(_tile_map, pos, tile, autotile_coord)
-
-
-func set_pickup(pos: Vector2, box_type: int) -> void:
-	_pickups.set_pickup(pos, box_type)
-
-
-func get_tile_map() -> TileMap:
-	return $Bg/TileMap as TileMap
-
-
-func get_pickups() -> EditorPickups:
-	return $Bg/Pickups as EditorPickups
 
 
 ## Converts an x/y control coordinate like '58, 132' into a tile_map coordinate like '3, 2'

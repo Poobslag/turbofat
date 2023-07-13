@@ -442,6 +442,48 @@ func get_eating_delay() -> float:
 	return creature_visuals.get_eating_delay()
 
 
+## Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0]
+func score_to_fatness(in_score: float) -> float:
+	var result: float
+	if weight_gain_scale == 0.0:
+		# tutorial sensei doesn't gain weight
+		result = base_fatness
+	else:
+		result = sqrt(1 + in_score * weight_gain_scale / 50.0)
+	return result
+
+
+func score_to_comfort(combo: float, customer_score: float) -> float:
+	var comfort := 0.0
+	if weight_gain_scale == 0.0:
+		# tutorial sensei doesn't become comfortable
+		pass
+	else:
+		# ate five things; comfortable
+		comfort += clamp(inverse_lerp(5, 15, combo), 0.0, 1.0)
+		# starting to overeat; less comfortable
+		comfort -= clamp(inverse_lerp(400, 600, customer_score * weight_gain_scale), 0.0, 1.0)
+		# overate; uncomfortable
+		comfort -= clamp(inverse_lerp(600, 1200, customer_score * weight_gain_scale), 0.0, 1.0)
+	return comfort
+
+
+## Converts the creature's fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0]
+func fatness_to_score(in_fatness: float) -> float:
+	return (50 / max(weight_gain_scale, 0.01)) * (pow(in_fatness, 2) - 1)
+
+
+## Converts a coordinate relative to the creature's head into a coordinate relative to the creature's body.
+##
+## Parameters:
+## 	'v': A coordinate relative to the creature's head.
+##
+## Returns:
+## 	A coordinate relative to the creature's body.
+func body_pos_from_head_pos(v: Vector2) -> Vector2:
+	return _mouth_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
+
+
 ## Starts a tween which changes this creature's opacity.
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	_fade_tween = Utils.recreate_tween(self, _fade_tween)
@@ -530,48 +572,6 @@ func _update_animation() -> void:
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
 	elif creature_visuals.movement_mode != Creatures.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
-
-
-## Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0]
-func score_to_fatness(in_score: float) -> float:
-	var result: float
-	if weight_gain_scale == 0.0:
-		# tutorial sensei doesn't gain weight
-		result = base_fatness
-	else:
-		result = sqrt(1 + in_score * weight_gain_scale / 50.0)
-	return result
-
-
-func score_to_comfort(combo: float, customer_score: float) -> float:
-	var comfort := 0.0
-	if weight_gain_scale == 0.0:
-		# tutorial sensei doesn't become comfortable
-		pass
-	else:
-		# ate five things; comfortable
-		comfort += clamp(inverse_lerp(5, 15, combo), 0.0, 1.0)
-		# starting to overeat; less comfortable
-		comfort -= clamp(inverse_lerp(400, 600, customer_score * weight_gain_scale), 0.0, 1.0)
-		# overate; uncomfortable
-		comfort -= clamp(inverse_lerp(600, 1200, customer_score * weight_gain_scale), 0.0, 1.0)
-	return comfort
-
-
-## Converts the creature's fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0]
-func fatness_to_score(in_fatness: float) -> float:
-	return (50 / max(weight_gain_scale, 0.01)) * (pow(in_fatness, 2) - 1)
-
-
-## Converts a coordinate relative to the creature's head into a coordinate relative to the creature's body.
-##
-## Parameters:
-## 	'v': A coordinate relative to the creature's head.
-##
-## Returns:
-## 	A coordinate relative to the creature's body.
-func body_pos_from_head_pos(v: Vector2) -> Vector2:
-	return _mouth_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
 
 
 func _on_Creature_fatness_changed() -> void:

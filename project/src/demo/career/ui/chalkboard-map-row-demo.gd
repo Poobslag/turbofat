@@ -34,18 +34,6 @@ func _ready() -> void:
 		_map_row.set_landmark_type(i, _random_landmark_type())
 
 
-func _random_landmark_type() -> int:
-	return Utils.rand_value([
-			Landmark.CACTUS,
-			Landmark.FOREST,
-			Landmark.GEAR,
-			Landmark.ISLAND,
-			Landmark.RAINBOW,
-			Landmark.SKULL,
-			Landmark.VOLCANO,
-		])
-
-
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_1:
@@ -80,6 +68,18 @@ func _input(event: InputEvent) -> void:
 			
 		KEY_MINUS: _map_row.player_distance -= 10 if Input.is_key_pressed(KEY_SHIFT) else 1
 		KEY_EQUAL: _map_row.player_distance += 10 if Input.is_key_pressed(KEY_SHIFT) else 1
+
+
+func _random_landmark_type() -> int:
+	return Utils.rand_value([
+			Landmark.CACTUS,
+			Landmark.FOREST,
+			Landmark.GEAR,
+			Landmark.ISLAND,
+			Landmark.RAINBOW,
+			Landmark.SKULL,
+			Landmark.VOLCANO,
+		])
 
 
 ## Changes the icon for the specified landmark.

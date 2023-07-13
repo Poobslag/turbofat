@@ -64,6 +64,20 @@ func mutate_all_creatures() -> void:
 		_mutate_creature(creature_obj)
 
 
+## Regenerates all of the outer creatures to be variations of the center creature.
+##
+## Only one aspect of the creature is changed. We select a value which is different from the creature's current value,
+## and which hasn't been selected recently.
+func tweak_all_creatures(allele: String, color_mode: int = THEME_COLORS) -> void:
+	for creature_obj in outer_creatures:
+		_tweak_creature(creature_obj, allele, color_mode)
+
+
+func set_center_creature_def(creature_def: CreatureDef) -> void:
+	center_creature.creature_def = creature_def
+	emit_signal("center_creature_changed")
+
+
 ## Regenerates a creature to be a variation of the center creature.
 ##
 ## The amount of variance depends on the 'mutagen' level. The mutated alleles are randomly chosen depend on the
@@ -134,20 +148,6 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 					new_alleles.erase(dna[property])
 			if new_alleles:
 				dna[property] = Utils.weighted_rand_value(new_alleles)
-
-
-## Regenerates all of the outer creatures to be variations of the center creature.
-##
-## Only one aspect of the creature is changed. We select a value which is different from the creature's current value,
-## and which hasn't been selected recently.
-func tweak_all_creatures(allele: String, color_mode: int = THEME_COLORS) -> void:
-	for creature_obj in outer_creatures:
-		_tweak_creature(creature_obj, allele, color_mode)
-
-
-func set_center_creature_def(creature_def: CreatureDef) -> void:
-	center_creature.creature_def = creature_def
-	emit_signal("center_creature_changed")
 
 
 ## Generates a palette.

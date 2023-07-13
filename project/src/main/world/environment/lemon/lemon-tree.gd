@@ -69,6 +69,11 @@ func set_mouth_type(new_mouth_type: int) -> void:
 	_refresh_tree_in_editor()
 
 
+## Randomly advance the current animation up to 2.0 seconds to ensure trees don't blink in unison.
+func advance_lemon_animation_randomly() -> void:
+	_lemon_player.advance(randf() * 2.0)
+
+
 ## Updates the tree's appearance without animating it.
 func _refresh_tree_in_editor() -> void:
 	if not is_inside_tree():
@@ -114,11 +119,6 @@ func _leaf_animation_name() -> String:
 func _mouth_animation_name() -> String:
 	# warning-ignore:integer_division
 	return "default-%s" % [int(mouth_type / 2)]
-
-
-## Randomly advance the current animation up to 2.0 seconds to ensure trees don't blink in unison.
-func advance_lemon_animation_randomly() -> void:
-	_lemon_player.advance(randf() * 2.0)
 
 
 ## Play an animation from a random point of time in the middle.

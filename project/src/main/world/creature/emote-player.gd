@@ -356,6 +356,22 @@ func unemote(anim_name: String = "") -> void:
 	_prev_mood = Creatures.Mood.DEFAULT
 
 
+## Immediately resets the creature to a default neutral mood.
+##
+## This takes place immediately, callers do not need to wait for $ResetTween.
+func unemote_immediate() -> void:
+	stop()
+	_unemote_non_tweened_properties()
+	_creature_visuals.reset_eye_frames()
+	_head_bobber.rotation_degrees = 0
+	for emote_sprite in _emote_sprites:
+		emote_sprite.rotation_degrees = 0
+		emote_sprite.modulate = Color.transparent
+	_head_bobber.reset_head_bob()
+	_prev_mood = Creatures.Mood.DEFAULT
+	_post_unemote()
+
+
 ## Adjusts the volume for all mood-related sound effects for this creature.
 func _tween_sfx_volume(new_value: float) -> void:
 	_volume_db_tween = Utils.recreate_tween(self, _volume_db_tween)
@@ -381,22 +397,6 @@ func _unemote_non_tweened_properties() -> void:
 		eye_sprite.frame = 0
 		eye_sprite.rotation_degrees = 0
 		eye_sprite.position = Vector2(0, 256)
-
-
-## Immediately resets the creature to a default neutral mood.
-##
-## This takes place immediately, callers do not need to wait for $ResetTween.
-func unemote_immediate() -> void:
-	stop()
-	_unemote_non_tweened_properties()
-	_creature_visuals.reset_eye_frames()
-	_head_bobber.rotation_degrees = 0
-	for emote_sprite in _emote_sprites:
-		emote_sprite.rotation_degrees = 0
-		emote_sprite.modulate = Color.transparent
-	_head_bobber.reset_head_bob()
-	_prev_mood = Creatures.Mood.DEFAULT
-	_post_unemote()
 
 
 ## Updates the values for a set of animation keys.

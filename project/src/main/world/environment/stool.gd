@@ -28,6 +28,11 @@ func _enter_tree() -> void:
 	_sprite = $Sprite
 
 
+func set_occupied(new_occupied: bool) -> void:
+	occupied = new_occupied
+	_refresh_occupied()
+
+
 func _refresh_occupied() -> void:
 	if not is_inside_tree():
 		return
@@ -42,11 +47,6 @@ func _refresh_occupied() -> void:
 		collision_layer = 1
 		collision_mask = 1
 		_sprite.texture = unoccupied_texture
-
-
-func set_occupied(new_occupied: bool) -> void:
-	occupied = new_occupied
-	_refresh_occupied()
 
 
 ## Finds a stool at the specified Node2D's location.

@@ -21,13 +21,6 @@ func set_playfield_path(new_playfield_path: NodePath) -> void:
 	_refresh_playfield_path()
 
 
-func _refresh_playfield_path() -> void:
-	if not (is_inside_tree() and playfield_path):
-		return
-	
-	_playfield = get_node(playfield_path) if playfield_path else null
-
-
 ## Adds an onion to the playfield.
 func add_onion(onion_config: OnionConfig) -> void:
 	if _onion:
@@ -71,6 +64,13 @@ func remove_onion() -> void:
 func starts_in_night_mode() -> bool:
 	var initial_add_onion_effect := _initial_add_onion_effect()
 	return initial_add_onion_effect and initial_add_onion_effect.config.get_state(0) == OnionConfig.OnionState.NIGHT
+
+
+func _refresh_playfield_path() -> void:
+	if not (is_inside_tree() and playfield_path):
+		return
+	
+	_playfield = get_node(playfield_path) if playfield_path else null
 
 
 ## Initializes the onion's states with the specified onion config.

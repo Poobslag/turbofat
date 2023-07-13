@@ -121,12 +121,6 @@ func test_level_key_from_path_files() -> void:
 			"level_894")
 
 
-func _convert_to_json_and_back() -> void:
-	var json_dict := settings.to_json_dict()
-	settings = LevelSettings.new()
-	settings.from_json_dict("id_873", json_dict)
-
-
 func test_to_json_version() -> void:
 	var json_dict := settings.to_json_dict()
 	assert_eq(json_dict.get("version"), Levels.LEVEL_DATA_VERSION)
@@ -185,3 +179,9 @@ func test_to_json_rules() -> void:
 	assert_eq(settings.speed.get_start_speed(), "6")
 	assert_eq_deep(settings.timers.timers, [{"interval": 5}])
 	assert_eq(settings.triggers.triggers.keys(), [LevelTrigger.LINE_CLEARED])
+
+
+func _convert_to_json_and_back() -> void:
+	var json_dict := settings.to_json_dict()
+	settings = LevelSettings.new()
+	settings.from_json_dict("id_873", json_dict)
