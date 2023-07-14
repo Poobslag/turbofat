@@ -18,6 +18,12 @@ var tiles_keys := ["start"] setget set_tiles_keys
 var tiles_key := "start" setget set_tiles_key
 
 onready var _playfield_nav := $PlayfieldNav
+onready var _rotate_button := $Palette/VBoxContainer/Buttons/RotateButton
+onready var _change_button := $Palette/VBoxContainer/Buttons/ChangeButton
+
+func _ready() -> void:
+	_connect_chunk_control_listeners()
+
 
 ## Updates the list of selectable tiles keys.
 ##
@@ -45,6 +51,14 @@ func get_tile_map() -> TileMap:
 
 func get_pickups() -> EditorPickups:
 	return $CenterPanel/Playfield.get_pickups()
+
+
+func _connect_chunk_control_listeners() -> void:
+	for chunk_control in get_tree().get_nodes_in_group("chunk_controls"):
+		if chunk_control.has_method("_on_RotateButton_pressed"):
+			_rotate_button.connect("pressed", chunk_control, "_on_RotateButton_pressed")
+		if chunk_control.has_method("_on_ChangeButton_pressed"):
+			_change_button.connect("pressed", chunk_control, "_on_ChangeButton_pressed")
 
 
 ## Ensure the tiles keys are sorted, and that they always include a 'start' key.

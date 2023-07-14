@@ -5,11 +5,6 @@ export (Foods.BoxType) var box_type: int setget set_box_type
 
 export (Vector2) var box_size: Vector2 = Vector2(3, 3) setget set_box_size
 
-func _ready() -> void:
-	$"../../Buttons/RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
-	$"../../Buttons/ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
-
-
 func set_box_type(new_box_type: int) -> void:
 	box_type = new_box_type
 	_refresh_tile_map()

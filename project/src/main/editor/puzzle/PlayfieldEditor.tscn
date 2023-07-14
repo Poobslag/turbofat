@@ -226,7 +226,7 @@ script = ExtResource( 11 )
 box_type = 0
 box_size = Vector2( 3, 5 )
 
-[node name="Pickup" type="Control" parent="Palette/VBoxContainer/LevelChunks"]
+[node name="Pickup" type="Control" parent="Palette/VBoxContainer/LevelChunks" groups=["chunk_controls"]]
 margin_left = 152.0
 margin_top = 272.0
 margin_right = 224.0
