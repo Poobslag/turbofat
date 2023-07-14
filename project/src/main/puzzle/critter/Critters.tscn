@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/moles.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/critter/critters.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/main/puzzle/critter/Shark.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/puzzle/critter/shark-tile-map-pool.gd" type="Script" id=12]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/puzzle/critter/critter-manager.gd" type="Script" id=14]
 
 [node name="Critters" type="Control"]
 margin_left = 364.0
@@ -24,6 +25,7 @@ script = ExtResource( 2 )
 [node name="Moles" type="Node2D" parent="." groups=["night_mode_light"]]
 script = ExtResource( 1 )
 MoleScene = ExtResource( 3 )
+critter_manager_path = NodePath("../CellCritterManager")
 
 [node name="Onions" type="Node2D" parent="." groups=["night_mode_invisible"]]
 script = ExtResource( 8 )
@@ -32,6 +34,7 @@ OnionScene = ExtResource( 9 )
 [node name="Sharks" type="Node2D" parent="." groups=["night_mode_light"]]
 script = ExtResource( 10 )
 SharkScene = ExtResource( 11 )
+critter_manager_path = NodePath("../CellCritterManager")
 
 [node name="SharkHolder" type="Node2D" parent="Sharks"]
 
@@ -54,3 +57,6 @@ bus = "Sound Bus"
 stream = ExtResource( 6 )
 volume_db = -2.0
 bus = "Sound Bus"
+
+[node name="CellCritterManager" type="Node" parent="."]
+script = ExtResource( 14 )

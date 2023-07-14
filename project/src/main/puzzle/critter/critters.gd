@@ -16,6 +16,8 @@ onready var _onions: Onions = $Onions
 ## Draws sharks, puzzle critters which eat pieces.
 onready var _sharks: Sharks = $Sharks
 
+onready var _cell_critter_manager: CellCritterManager = $CellCritterManager
+
 func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	_refresh_playfield_path()
@@ -36,6 +38,8 @@ func _refresh_playfield_path() -> void:
 	if not (is_inside_tree() and _moles):
 		return
 	
+	_cell_critter_manager.playfield_path = _cell_critter_manager.get_path_to(get_node(playfield_path))
+	
 	_moles.playfield_path = _moles.get_path_to(get_node(playfield_path))
 	_onions.playfield_path = _onions.get_path_to(get_node(playfield_path))
 	_sharks.playfield_path = _sharks.get_path_to(get_node(playfield_path))
@@ -45,6 +49,8 @@ func _refresh_playfield_path() -> void:
 func _refresh_piece_manager_path() -> void:
 	if not (is_inside_tree() and _moles):
 		return
+	
+	_cell_critter_manager.piece_manager_path = _cell_critter_manager.get_path_to(get_node(piece_manager_path))
 	
 	_moles.piece_manager_path = _moles.get_path_to(get_node(piece_manager_path))
 	_sharks.piece_manager_path = _sharks.get_path_to(get_node(piece_manager_path))

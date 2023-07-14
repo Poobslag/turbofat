@@ -97,6 +97,7 @@ fi
 
 # functions missing type hint
 RESULT=$(grep -R -n "func [a-zA-Z0-9_]*([a-zA-Z0-9_]\+[,)]" --include="*.gd" project/src \
+  | grep -v "critter-manager\\.gd.*func get_critter_cells(critter_type)" \
   | grep -v "current-level\\.gd.*func has_customer(customer_obj)" \
   | grep -v "current-level\\.gd.*func _customers_match(customer1, customer2)" \
   | grep -v "level-triggers\\.gd.*func has_effect(effect_type)" \

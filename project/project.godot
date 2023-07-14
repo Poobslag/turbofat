@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/critter/carrots.gd"
 }, {
+"base": "Node",
+"class": "CellCritterManager",
+"language": "GDScript",
+"path": "res://src/main/puzzle/critter/critter-manager.gd"
+}, {
 "base": "Control",
 "class": "ChalkboardMapRow",
 "language": "GDScript",
@@ -1370,6 +1375,7 @@ _global_script_class_icons={
 "Carrot": "",
 "CarrotConfig": "",
 "Carrots": "",
+"CellCritterManager": "",
 "ChalkboardMapRow": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",

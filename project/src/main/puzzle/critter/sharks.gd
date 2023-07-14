@@ -6,6 +6,7 @@ extends Node2D
 ## from the piece, a big bite from the piece, or eat the entire piece.
 
 export (PackedScene) var SharkScene: PackedScene
+export (NodePath) var critter_manager_path: NodePath
 
 var piece_manager_path: NodePath setget set_piece_manager_path
 var playfield_path: NodePath setget set_playfield_path
@@ -18,12 +19,9 @@ var _did_hard_drop := false
 var _piece_manager: PieceManager
 var _playfield: Playfield
 
-## key: (Vector2) cell containing a shark
-## value: (Shark) shark at that cell location
-var _sharks_by_cell: Dictionary
-
 ## node which contains all of the child shark nodes
 onready var _shark_holder := $SharkHolder
+onready var _critter_manager: CellCritterManager = get_node(critter_manager_path)
 
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
@@ -66,12 +64,9 @@ func add_sharks(config: SharkConfig) -> void:
 ## Parameters:
 ## 	'cell': A playfield cell containing a shark.
 func remove_shark(cell: Vector2) -> void:
-	if not _sharks_by_cell.has(cell):
-		return
-	
-	var shark: Shark = _sharks_by_cell[cell]
+	var shark: Shark = _critter_manager.critters_by_cell[cell]
 	shark.poof_and_free()
-	_sharks_by_cell.erase(cell)
+	_critter_manager.remove_critter(cell)
 
 
 ## Advances all sharks by one state.
@@ -104,8 +99,8 @@ func _inner_add_sharks(config: SharkConfig) -> void:
 
 ## Advances all sharks by one state.
 func _inner_advance_sharks() -> void:
-	for cell in _sharks_by_cell.duplicate():
-		var shark: Shark = _sharks_by_cell[cell]
+	for cell in _critter_manager.get_critter_cells(Shark):
+		var shark: Shark = _critter_manager.critters_by_cell[cell]
 		if not shark.has_next_state():
 			# Sharks will not stop dancing just because they exhaust their state queue
 			continue
@@ -134,18 +129,18 @@ func _compare_by_y_then_x(a: Vector2, b: Vector2) -> bool:
 ##
 ## Moving a piece can cause a shark to eat the piece, or to get squished.
 func _refresh_sharks_for_piece() -> void:
-	var shark_cells := _sharks_by_cell.keys().duplicate()
+	var shark_cells := _critter_manager.get_critter_cells(Shark)
 	
 	## If multiple sharks touch a piece, the highest shark takes precedence
 	shark_cells.sort_custom(self, "_compare_by_y_then_x")
 	
 	for shark_cell in shark_cells:
-		if not shark_cell in _sharks_by_cell:
+		if not _critter_manager.cell_has_critter_of_type(shark_cell, Shark):
 			# this shark was removed as a result of another shark eating
 			continue
 		
-		var shark: Shark = _sharks_by_cell[shark_cell]
-		var piece_overlaps_shark := _shark_cell_overlaps_piece(shark_cell)
+		var shark: Shark = _critter_manager.critters_by_cell[shark_cell]
+		var piece_overlaps_shark: bool = _critter_manager.cell_overlaps_piece(shark_cell)
 		
 		if shark.state == Shark.WAITING:
 			shark.visible = not piece_overlaps_shark
@@ -205,7 +200,7 @@ func _refresh_sharks_for_piece() -> void:
 ## 	'old_piece_cells': Vector2 playfield tilemap coordinates which which contained piece cells, after the piece was
 ## 		eaten
 func _feed_shark_cells(shark_cell: Vector2, old_piece_cells: Array, new_piece_cells: Array) -> void:
-	var shark: Shark = _sharks_by_cell[shark_cell]
+	var shark: Shark = _critter_manager.critters_by_cell[shark_cell]
 	
 	# update the tileset to match the piece's current tileset, so that veggie pieces appear correctly
 	shark.set_puzzle_tile_set_type(_piece_manager.tile_map.puzzle_tile_set_type)
@@ -335,11 +330,11 @@ func _to_domino(piece_type: PieceType) -> PieceType:
 ##
 ## As the player clears lines, sharks may disappear if they were sitting on those rows.
 func _refresh_sharks_for_playfield(include_waiting_sharks: bool = true) -> void:
-	for shark_cell in _sharks_by_cell.keys().duplicate():
-		var shark: Shark = _sharks_by_cell[shark_cell]
+	for shark_cell in _critter_manager.get_critter_cells(Shark):
+		var shark: Shark = _critter_manager.critters_by_cell[shark_cell]
 		
-		if _shark_cell_has_floor(shark_cell) \
-				and not _shark_cell_has_block(shark_cell):
+		if _critter_manager.cell_has_floor(shark_cell) \
+				and not _critter_manager.cell_has_block(shark_cell):
 			continue
 		
 		shark.visible = true
@@ -347,63 +342,14 @@ func _refresh_sharks_for_playfield(include_waiting_sharks: bool = true) -> void:
 		if shark.state == Shark.WAITING:
 			# shark hasn't appeared yet; relocate the shark
 			if include_waiting_sharks:
-				_relocate_shark(shark_cell)
+				_critter_manager.vertically_relocate_critter(shark_cell)
 		elif shark.state == Shark.SQUISHED:
-			if not _shark_cell_has_floor(shark_cell):
+			if not _critter_manager.cell_has_floor(shark_cell):
 				# shark's floor was removed; remove the shark
 				remove_shark(shark_cell)
 		else:
 			# shark was squished; remove the shark
 			remove_shark(shark_cell)
-
-
-## Relocates a shark, if they're interrupted but haven't appeared yet.
-##
-## If the player crushes the shark with their piece when it is hasn't appeared yet, it relocates elsewhere in the
-## playfield. This is so that players are not punished unfairly for crushing a shark which they did not see quickly
-## enough.
-##
-## We first search for cells above their current cell, all the way to the top of the playfield. If none are found, we
-## search for cells below their current cell, and then we give up.
-##
-## Parameters:
-## 	'old_cell': The shark's previous position.
-func _relocate_shark(old_cell: Vector2) -> void:
-	var shark: Shark = _sharks_by_cell[old_cell]
-	var found_new_cell := false
-	
-	var new_cell := old_cell
-	
-	if not found_new_cell:
-		# search for cells above the shark's current cell
-		new_cell = old_cell + Vector2.UP
-		while not found_new_cell and new_cell.y > PuzzleTileMap.FIRST_VISIBLE_ROW:
-			if _shark_cell_has_floor(new_cell) \
-					and not _shark_cell_has_block(new_cell) \
-					and not _shark_cell_has_pickup(new_cell) \
-					and not _shark_cell_has_shark(new_cell):
-				found_new_cell = true
-			else:
-				new_cell += Vector2.UP
-	
-	if not found_new_cell:
-		# search for cells below the shark's current cell
-		new_cell = old_cell + Vector2.DOWN
-		while not found_new_cell and new_cell.y < PuzzleTileMap.ROW_COUNT:
-			if _shark_cell_has_floor(new_cell) \
-					and not _shark_cell_has_block(new_cell) \
-					and not _shark_cell_has_pickup(new_cell) \
-					and not _shark_cell_has_shark(new_cell):
-				found_new_cell = true
-			else:
-				new_cell += Vector2.DOWN
-	
-	if found_new_cell:
-		_update_shark_position(shark, new_cell)
-		_sharks_by_cell[new_cell] = _sharks_by_cell[old_cell]
-		_sharks_by_cell.erase(old_cell)
-	else:
-		remove_shark(old_cell)
 
 
 ## Connects piece manager listeners.
@@ -422,33 +368,12 @@ func _refresh_piece_manager_path() -> void:
 		_piece_manager.connect("hard_dropped", self, "_on_PieceManager_hard_dropped")
 
 
-## Recalculates a shark's position based on their playfield cell.
-##
-## Parameters:
-## 	'shark': The shark whose position should be recalculated
-##
-## 	'cell': The shark's playfield cell
-func _update_shark_position(shark: Shark, cell: Vector2) -> void:
-	shark.position = _playfield.tile_map.map_to_world(cell + Vector2(0, -3))
-	shark.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
-	shark.position *= _playfield.tile_map.scale
-
-
-## Removes all sharks from all playfield cells.
-func _clear_sharks() -> void:
-	for shark in _shark_holder.get_children():
-		shark.queue_free()
-	_sharks_by_cell.clear()
-
-
 ## Connects playfield listeners.
 func _refresh_playfield_path() -> void:
 	if not (is_inside_tree() and playfield_path):
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-		_playfield.disconnect("line_deleted", self, "_on_Playfield_line_deleted")
 		_playfield.disconnect("line_erased", self, "_on_Playfield_line_erased")
 		_playfield.disconnect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.disconnect("line_filled", self, "_on_Playfield_line_filled")
@@ -457,8 +382,6 @@ func _refresh_playfield_path() -> void:
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-		_playfield.connect("line_deleted", self, "_on_Playfield_line_deleted")
 		_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
 		_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
@@ -479,7 +402,7 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 	var ceiling_x_coords := {}
 	
 	# Columns which have a shark overhead
-	var midair_shark_x_coords := {}
+	var midair_critter_x_coords := {}
 	
 	for y in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
@@ -487,14 +410,13 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 			
 			if _playfield.tile_map.get_cellv(shark_cell) != TileMap.INVALID_CELL:
 				ceiling_x_coords[x] = true
-				if midair_shark_x_coords.has(x):
-					midair_shark_x_coords.erase(x)
+				midair_critter_x_coords.erase(x)
 			
-			if _sharks_by_cell.has(shark_cell):
+			if _critter_manager.cell_has_critter(shark_cell):
 				# don't place a shark beneath a mid-air shark; this can happen during line clears
-				midair_shark_x_coords[x] = true
+				midair_critter_x_coords[x] = true
 			
-			if midair_shark_x_coords.has(x):
+			if midair_critter_x_coords.has(x):
 				continue
 			
 			# check if the shark is in an appropriate row
@@ -507,11 +429,11 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 				if not int(shark_cell.x) in config.columns:
 					continue
 			
-			if _shark_cell_has_floor(shark_cell) \
-					and not _shark_cell_has_block(shark_cell) \
-					and not _shark_cell_has_pickup(shark_cell) \
-					and not _shark_cell_has_shark(shark_cell) \
-					and not _shark_cell_overlaps_piece(shark_cell):
+			if _critter_manager.cell_has_floor(shark_cell) \
+					and not _critter_manager.cell_has_block(shark_cell) \
+					and not _critter_manager.cell_has_pickup(shark_cell) \
+					and not _critter_manager.cell_has_critter(shark_cell) \
+					and not _critter_manager.cell_overlaps_piece(shark_cell):
 				
 				# check if the shark is at his 'home terrain'; cakes, holes, etc
 				var at_home := true
@@ -538,37 +460,6 @@ func _potential_shark_cells(config: SharkConfig) -> Array:
 	return potential_shark_cells
 
 
-## Returns 'true' if the specified cell has a non-empty cell beneath it.
-func _shark_cell_has_floor(shark_cell: Vector2) -> bool:
-	return shark_cell.y == PuzzleTileMap.ROW_COUNT - 1 \
-			or _playfield.tile_map.get_cellv(shark_cell + Vector2.DOWN) != TileMap.INVALID_CELL
-
-
-## Returns 'true' if the specified cell is non-empty.
-func _shark_cell_has_block(shark_cell: Vector2) -> bool:
-	return _playfield.tile_map.get_cellv(shark_cell) != TileMap.INVALID_CELL
-
-
-## Returns 'true' if the specified cell has a pickup.
-func _shark_cell_has_pickup(shark_cell: Vector2) -> bool:
-	return _playfield.pickups.get_pickup_food_type(shark_cell) != TileMap.INVALID_CELL
-
-
-## Returns 'true' if the specified cell has a shark.
-func _shark_cell_has_shark(shark_cell: Vector2) -> bool:
-	return _sharks_by_cell.has(shark_cell)
-
-
-## Returns 'true' if the specified cell overlaps the currently active piece.
-func _shark_cell_overlaps_piece(shark_cell: Vector2) -> bool:
-	var result := false
-	for pos_arr_item_obj in _piece_manager.piece.get_pos_arr():
-		if shark_cell == pos_arr_item_obj + _piece_manager.piece.pos:
-			result = true
-			break
-	return result
-
-
 ## Adds a shark to the specified cell.
 ##
 ## Details like how long they stay and much they eat are all specified by the config parameter.
@@ -576,15 +467,13 @@ func _shark_cell_overlaps_piece(shark_cell: Vector2) -> bool:
 ## Parameters:
 ## 	'config': rules for how long sharks should stay and much they eat.
 func _add_shark(cell: Vector2, config: SharkConfig) -> void:
-	if _sharks_by_cell.has(cell):
+	if _critter_manager.cell_has_critter(cell):
 		return
 	
 	var shark: Shark = SharkScene.instance()
 	shark.z_index = 4
 	shark.scale = _playfield.tile_map.scale
 	shark.shark_size = config.size
-	
-	_update_shark_position(shark, cell)
 	
 	shark.append_next_state(Shark.WAITING)
 	if config.patience <= 0:
@@ -600,44 +489,7 @@ func _add_shark(cell: Vector2, config: SharkConfig) -> void:
 	shark.pop_next_state()
 	
 	_shark_holder.add_child(shark)
-	_sharks_by_cell[cell] = shark
-
-
-## Removes all sharks from a playfield row.
-func _erase_row(y: int) -> void:
-	for x in range(PuzzleTileMap.COL_COUNT):
-		remove_shark(Vector2(x, y))
-
-
-## Shifts a group of sharks up or down.
-##
-## Parameters:
-## 	'bottom_y': The lowest row to shift. All sharks at or above this row will be shifted.
-##
-## 	'direction': The direction to shift the sharks, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_y: int, direction: Vector2) -> void:
-	# First, erase and store all the old sharks which are shifting
-	var shifted := {}
-	for cell in _sharks_by_cell.keys():
-		if cell.y > bottom_y:
-			# sharks below the specified bottom row are left alone
-			continue
-		# sharks above the specified bottom row are shifted
-		_sharks_by_cell[cell].position += direction * _playfield.tile_map.cell_size * _playfield.tile_map.scale
-		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
-			_sharks_by_cell[cell].visible = true
-		shifted[cell + direction] = _sharks_by_cell[cell]
-		_sharks_by_cell.erase(cell)
-	
-	# Next, write the old sharks in their new locations
-	for cell in shifted.keys():
-		if _sharks_by_cell.has(cell):
-			remove_shark(cell)
-		_sharks_by_cell[cell] = shifted[cell]
-
-
-func _on_Playfield_blocks_prepared() -> void:
-	_clear_sharks()
+	_critter_manager.add_critter(cell, shark)
 
 
 func _on_PieceManager_piece_disturbed(_piece: ActivePiece) -> void:
@@ -651,18 +503,9 @@ func _on_PieceManager_hard_dropped(_piece: ActivePiece) -> void:
 func _on_PuzzleState_before_piece_written() -> void:
 	_refresh_sharks_for_playfield()
 	
-	for shark_cell in _sharks_by_cell:
+	for shark_cell in _critter_manager.get_critter_cells(Shark):
 		# restore any remaining sharks which were hidden by the active piece
-		_sharks_by_cell[shark_cell].visible = true
-
-
-func _on_Playfield_line_deleted(y: int) -> void:
-	# don't erase sharks; sharks can be added during the line clear process, which includes erase/delete events
-	
-	# drop all sharks above the specified row to fill the gap
-	_shift_rows(y - 1, Vector2.DOWN)
-	
-	# don't refresh the playfield sharks when a single line is deleted; wait until all lines are deleted
+		_critter_manager.critters_by_cell[shark_cell].visible = true
 
 
 func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
@@ -677,10 +520,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 		_refresh_sharks_for_playfield()
 
 
-func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
-	# raise all sharks at or above the specified row
-	_shift_rows(y, Vector2.UP)
-	
+func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate sharks until all lines are deleted.
 		pass

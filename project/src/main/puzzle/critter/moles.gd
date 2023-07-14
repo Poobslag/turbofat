@@ -6,6 +6,7 @@ extends Node2D
 ## or if the player clears the row they are digging.
 
 export (PackedScene) var MoleScene: PackedScene
+export (NodePath) var critter_manager_path: NodePath
 
 var piece_manager_path: NodePath setget set_piece_manager_path
 var playfield_path: NodePath setget set_playfield_path
@@ -13,12 +14,10 @@ var playfield_path: NodePath setget set_playfield_path
 ## Queue of calls to defer until after line clears are finished
 var _call_queue: CallQueue = CallQueue.new()
 
-## key: (Vector2) cell containing a mole
-## value: (Mole) mole at that cell location
-var _moles_by_cell: Dictionary
-
 var _piece_manager: PieceManager
 var _playfield: Playfield
+
+onready var _critter_manager: CellCritterManager = get_node(critter_manager_path)
 
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
@@ -67,12 +66,9 @@ func advance_moles() -> void:
 ## Parameters:
 ## 	'cell': A playfield cell containing a mole.
 func remove_mole(cell: Vector2) -> void:
-	if not _moles_by_cell.has(cell):
-		return
-	
-	var mole: Mole = _moles_by_cell[cell]
+	var mole: Mole = _critter_manager.critters_by_cell[cell]
 	mole.poof_and_free()
-	_moles_by_cell.erase(cell)
+	_critter_manager.remove_critter(cell)
 
 
 ## Connects playfield listeners.
@@ -81,8 +77,6 @@ func _refresh_playfield_path() -> void:
 		return
 	
 	if _playfield:
-		_playfield.disconnect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-		_playfield.disconnect("line_deleted", self, "_on_Playfield_line_deleted")
 		_playfield.disconnect("line_erased", self, "_on_Playfield_line_erased")
 		_playfield.disconnect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.disconnect("line_filled", self, "_on_Playfield_line_filled")
@@ -91,8 +85,6 @@ func _refresh_playfield_path() -> void:
 	_playfield = get_node(playfield_path) if playfield_path else null
 	
 	if _playfield:
-		_playfield.connect("blocks_prepared", self, "_on_Playfield_blocks_prepared")
-		_playfield.connect("line_deleted", self, "_on_Playfield_line_deleted")
 		_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
 		_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
@@ -127,7 +119,7 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 	var ceiling_x_coords := {}
 	
 	# Columns which have a mole overhead
-	var midair_mole_x_coords := {}
+	var midair_critter_x_coords := {}
 	
 	for y in range(PuzzleTileMap.FIRST_VISIBLE_ROW, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
@@ -135,13 +127,13 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 			
 			if _playfield.tile_map.get_cellv(mole_cell) != TileMap.INVALID_CELL:
 				ceiling_x_coords[x] = true
-				midair_mole_x_coords.erase(x)
+				midair_critter_x_coords.erase(x)
 			
-			if _moles_by_cell.has(mole_cell):
-				# don't place a mole beneath a mid-air mole; this can happen during line clears
-				midair_mole_x_coords[x] = true
+			if _critter_manager.cell_has_critter(mole_cell):
+				# don't place a mole beneath a mid-air critter; this can happen during line clears
+				midair_critter_x_coords[x] = true
 			
-			if midair_mole_x_coords.has(x):
+			if midair_critter_x_coords.has(x):
 				continue
 			
 			# check if the mole is in an appropriate row
@@ -154,11 +146,11 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 				if not int(mole_cell.x) in config.columns:
 					continue
 			
-			if _mole_cell_has_floor(mole_cell) \
-					and not _mole_cell_has_block(mole_cell) \
-					and not _mole_cell_has_pickup(mole_cell) \
-					and not _mole_cell_has_mole(mole_cell) \
-					and not _mole_cell_overlaps_piece(mole_cell):
+			if _critter_manager.cell_has_floor(mole_cell) \
+					and not _critter_manager.cell_has_block(mole_cell) \
+					and not _critter_manager.cell_has_pickup(mole_cell) \
+					and not _critter_manager.cell_has_critter(mole_cell) \
+					and not _critter_manager.cell_overlaps_piece(mole_cell):
 				
 				# check if the mole is at his 'home terrain'; cakes, holes, etc
 				var at_home := true
@@ -185,37 +177,6 @@ func _potential_mole_cells(config: MoleConfig) -> Array:
 	return potential_mole_cells
 
 
-## Returns 'true' if the specified cell has a non-empty cell beneath it.
-func _mole_cell_has_floor(mole_cell: Vector2) -> bool:
-	return mole_cell.y == PuzzleTileMap.ROW_COUNT - 1 \
-			or _playfield.tile_map.get_cellv(mole_cell + Vector2.DOWN) != TileMap.INVALID_CELL
-
-
-## Returns 'true' if the specified cell is non-empty.
-func _mole_cell_has_block(mole_cell: Vector2) -> bool:
-	return _playfield.tile_map.get_cellv(mole_cell) != TileMap.INVALID_CELL
-
-
-## Returns 'true' if the specified cell has a pickup.
-func _mole_cell_has_pickup(mole_cell: Vector2) -> bool:
-	return _playfield.pickups.get_pickup_food_type(mole_cell) != TileMap.INVALID_CELL
-
-
-## Returns 'true' if the specified cell has a mole.
-func _mole_cell_has_mole(mole_cell: Vector2) -> bool:
-	return _moles_by_cell.has(mole_cell)
-
-
-## Returns 'true' if the specified cell overlaps the currently active piece.
-func _mole_cell_overlaps_piece(mole_cell: Vector2) -> bool:
-	var result := false
-	for pos_arr_item_obj in _piece_manager.piece.get_pos_arr():
-		if mole_cell == pos_arr_item_obj + _piece_manager.piece.pos:
-			result = true
-			break
-	return result
-
-
 ## Adds a mole to the specified cell.
 ##
 ## Details like how long they should dig for and what they should dig up are specified by the config parameter.
@@ -223,14 +184,12 @@ func _mole_cell_overlaps_piece(mole_cell: Vector2) -> bool:
 ## Parameters:
 ## 	'config': rules for how long moles should dig for and what they should dig up.
 func _add_mole(cell: Vector2, config: MoleConfig) -> void:
-	if _moles_by_cell.has(cell):
+	if _critter_manager.critters_by_cell.has(cell):
 		return
 	
 	var mole: Mole = MoleScene.instance()
 	mole.z_index = 4
 	mole.scale = _playfield.tile_map.scale
-	
-	_update_mole_position(mole, cell)
 	
 	mole.append_next_state(Mole.WAITING)
 	if config.dig_duration >= 2:
@@ -247,33 +206,17 @@ func _add_mole(cell: Vector2, config: MoleConfig) -> void:
 	mole.pop_next_state()
 	
 	add_child(mole)
-	_moles_by_cell[cell] = mole
-
-
-## Recalculates a mole's position based on their playfield cell.
-##
-## Parameters:
-## 	'mole': The mole whose position should be recalculated
-##
-## 	'cell': The mole's playfield cell
-func _update_mole_position(mole: Mole, cell: Vector2) -> void:
-	mole.position = _playfield.tile_map.map_to_world(cell + Vector2(0, -3))
-	mole.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
-	mole.position *= _playfield.tile_map.scale
-
-
-## Removes all moles from all playfield cells.
-func _clear_moles() -> void:
-	for mole in get_children():
-		mole.queue_free()
-	_moles_by_cell.clear()
+	_critter_manager.add_critter(cell, mole)
 
 
 ## Updates the overlapped moles as the player moves their piece.
 func _refresh_moles_for_piece() -> void:
-	for mole_cell in _moles_by_cell:
-		var mole: Mole = _moles_by_cell[mole_cell]
-		var piece_overlaps_mole := _mole_cell_overlaps_piece(mole_cell)
+	for mole_cell in _critter_manager.critters_by_cell:
+		if not _critter_manager.critters_by_cell[mole_cell] is Mole:
+			continue
+		
+		var mole: Mole = _critter_manager.critters_by_cell[mole_cell]
+		var piece_overlaps_mole: bool = _critter_manager.cell_overlaps_piece(mole_cell)
 		
 		if piece_overlaps_mole and not mole.hidden:
 			mole.hidden = true
@@ -285,102 +228,20 @@ func _refresh_moles_for_piece() -> void:
 ##
 ## As the player clears lines, moles may disappear if they were digging through those rows.
 func _refresh_moles_for_playfield(include_waiting_moles: bool = true) -> void:
-	for mole_cell in _moles_by_cell.duplicate():
-		var mole: Mole = _moles_by_cell[mole_cell]
+	for mole_cell in _critter_manager.get_critter_cells(Mole):
+		var mole: Mole = _critter_manager.critters_by_cell[mole_cell]
 		
-		if _mole_cell_has_floor(mole_cell) \
-				and not _mole_cell_has_block(mole_cell):
+		if _critter_manager.cell_has_floor(mole_cell) \
+				and not _critter_manager.cell_has_block(mole_cell):
 			continue
 		
 		if mole.state == Mole.WAITING or mole.hidden and mole.hidden_mole_state == Mole.WAITING:
 			# mole hasn't appeared yet; relocate the mole
 			if include_waiting_moles:
-				_relocate_mole(mole_cell)
+				_critter_manager.vertically_relocate_critter(mole_cell)
 		else:
 			# mole was squished; remove the mole
 			remove_mole(mole_cell)
-
-
-## Relocates a mole, if they're interrupted but haven't appeared yet.
-##
-## If the player crushes the mole with their piece when it is hasn't appeared yet, it relocates elsewhere in the
-## playfield. This is so that players are not punished unfairly for crushing a mole which they did not see quickly
-## enough.
-##
-## We first search for cells above their current cell, all the way to the top of the playfield. If none are found, we
-## search for cells below their current cell, and then we give up.
-##
-## Parameters:
-## 	'old_cell': The mole's previous position.
-func _relocate_mole(old_cell: Vector2) -> void:
-	var mole: Mole = _moles_by_cell[old_cell]
-	var found_new_cell := false
-	
-	var new_cell := old_cell
-	
-	if not found_new_cell:
-		# search for cells above the mole's current cell
-		new_cell = old_cell + Vector2.UP
-		while not found_new_cell and new_cell.y > PuzzleTileMap.FIRST_VISIBLE_ROW:
-			if _mole_cell_has_floor(new_cell) \
-					and not _mole_cell_has_block(new_cell) \
-					and not _mole_cell_has_pickup(new_cell) \
-					and not _mole_cell_has_mole(new_cell):
-				found_new_cell = true
-			else:
-				new_cell += Vector2.UP
-	
-	if not found_new_cell:
-		# search for cells below the mole's current cell
-		new_cell = old_cell + Vector2.DOWN
-		while not found_new_cell and new_cell.y < PuzzleTileMap.ROW_COUNT:
-			if _mole_cell_has_floor(new_cell) \
-					and not _mole_cell_has_block(new_cell) \
-					and not _mole_cell_has_pickup(new_cell) \
-					and not _mole_cell_has_mole(new_cell):
-				found_new_cell = true
-			else:
-				new_cell += Vector2.DOWN
-	
-	if found_new_cell:
-		_update_mole_position(mole, new_cell)
-		_moles_by_cell[new_cell] = _moles_by_cell[old_cell]
-		_moles_by_cell.erase(old_cell)
-	else:
-		remove_mole(old_cell)
-
-
-## Removes all moles from a playfield row.
-func _erase_row(y: int) -> void:
-	for x in range(PuzzleTileMap.COL_COUNT):
-		remove_mole(Vector2(x, y))
-
-
-## Shifts a group of moles up or down.
-##
-## Parameters:
-## 	'bottom_y': The lowest row to shift. All moles at or above this row will be shifted.
-##
-## 	'direction': The direction to shift the moles, such as Vector2.UP or Vector2.DOWN.
-func _shift_rows(bottom_y: int, direction: Vector2) -> void:
-	# First, erase and store all the old moles which are shifting
-	var shifted := {}
-	for cell in _moles_by_cell.keys():
-		if cell.y > bottom_y:
-			# moles below the specified bottom row are left alone
-			continue
-		# moles above the specified bottom row are shifted
-		_moles_by_cell[cell].position += direction * _playfield.tile_map.cell_size * _playfield.tile_map.scale
-		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
-			_moles_by_cell[cell].visible = true
-		shifted[cell + direction] = _moles_by_cell[cell]
-		_moles_by_cell.erase(cell)
-	
-	# Next, write the old moles in their new locations
-	for cell in shifted.keys():
-		if _moles_by_cell.has(cell):
-			remove_mole(cell)
-		_moles_by_cell[cell] = shifted[cell]
 
 
 ## Adds moles to the playfield.
@@ -399,8 +260,8 @@ func _inner_add_moles(config: MoleConfig) -> void:
 
 ## Advances all moles by one state.
 func _inner_advance_moles() -> void:
-	for cell in _moles_by_cell.duplicate():
-		var mole: Mole = _moles_by_cell[cell]
+	for cell in _critter_manager.get_critter_cells(Mole):
+		var mole: Mole = _critter_manager.critters_by_cell[cell]
 		if not mole.has_next_state():
 			# Moles will not disappear just because they exhaust their state queue
 			continue
@@ -415,10 +276,6 @@ func _inner_advance_moles() -> void:
 				remove_mole(cell)
 
 
-func _on_Playfield_blocks_prepared() -> void:
-	_clear_moles()
-
-
 func _on_PieceManager_piece_disturbed(_piece: ActivePiece) -> void:
 	_refresh_moles_for_piece()
 
@@ -427,17 +284,8 @@ func _on_PuzzleState_before_piece_written() -> void:
 	_refresh_moles_for_playfield()
 	
 	# restore any remaining moles which were hidden by the active piece
-	for mole_cell in _moles_by_cell:
-		_moles_by_cell[mole_cell].hidden = false
-
-
-func _on_Playfield_line_deleted(y: int) -> void:
-	# don't erase moles; moles can be added during the line clear process, which includes erase/delete events
-	
-	# drop all moles above the specified row to fill the gap
-	_shift_rows(y - 1, Vector2.DOWN)
-	
-	# don't refresh the playfield moles when a single line is deleted; wait until all lines are deleted
+	for mole_cell in _critter_manager.get_critter_cells(Mole):
+		_critter_manager.critters_by_cell[mole_cell].hidden = false
 
 
 func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
@@ -452,10 +300,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 		_refresh_moles_for_playfield()
 
 
-func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
-	# raise all moles at or above the specified row
-	_shift_rows(y, Vector2.UP)
-	
+func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate moles until all lines are deleted.
 		pass
