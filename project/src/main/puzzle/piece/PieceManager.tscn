@@ -96,6 +96,7 @@ squish_curve = SubResource( 2 )
 [node name="SquishMap" parent="SquishFx" instance=ExtResource( 9 )]
 material = SubResource( 3 )
 position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 15 )
 
 [node name="SweatDrops" type="Particles2D" parent="SquishFx"]
