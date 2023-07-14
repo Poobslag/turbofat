@@ -8,7 +8,6 @@ onready var _pickup := $Pickup
 
 func _ready() -> void:
 	_pickup.position = rect_size * 0.5
-	$"../../Buttons/ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
 
 
 func set_box_type(new_box_type: int) -> void:

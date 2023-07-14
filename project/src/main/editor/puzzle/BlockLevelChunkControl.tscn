@@ -9,7 +9,7 @@ resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/mix_color = Color( 1, 1, 1, 0 )
 
-[node name="BlockLevelChunkControl" type="Control"]
+[node name="BlockLevelChunkControl" type="Control" groups=["chunk_controls"]]
 rect_min_size = Vector2( 72, 64 )
 script = ExtResource( 3 )
 
