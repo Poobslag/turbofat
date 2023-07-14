@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/ui/menu/bad-save-data-control.gd" type="Script" id=1]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=2]
+[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=3]
+
+[node name="BadSaveDataControl" type="ColorRect"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.752941 )
+script = ExtResource( 1 )
+
+[node name="Popup" type="PopupDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 600, 400 )
+popup_exclusive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+rect_min_size = Vector2( 580, 380 )
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+margin_right = 580.0
+margin_bottom = 336.0
+size_flags_vertical = 7
+theme = ExtResource( 2 )
+text = "There was a problem loading your save data. Your old save data from 3 days ago works, so we've loaded that instead.
+
+The invalid save data is available at the following path:
+
+\"C:\\Users\\Aaron\\AppData\\Roaming\\Godot\\app_userdata\\Turbo Fat\\turbofat0.this-day.save.bak\"
+
+Sorry."
+autowrap = true
+
+[node name="Button" type="Button" parent="Popup/VBoxContainer"]
+margin_left = 215.0
+margin_top = 340.0
+margin_right = 365.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 150, 40 )
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+text = "Well, crap"
+
+[connection signal="pressed" from="Popup/VBoxContainer/Button" to="." method="_on_Button_pressed"]

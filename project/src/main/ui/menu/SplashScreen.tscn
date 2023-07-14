@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
@@ -7,9 +7,7 @@
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/theme/h1.theme" type="Theme" id=7]
-[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=8]
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=9]
-[ext_resource path="res://src/main/ui/menu/bad-save-data-control.gd" type="Script" id=10]
+[ext_resource path="res://src/main/ui/menu/BadSaveDataControl.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
@@ -67,61 +65,9 @@ quit_on_cancel = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 6 )]
 
-[node name="BadSaveDataControl" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.752941 )
-script = ExtResource( 10 )
-
-[node name="Popup" type="PopupDialog" parent="BadSaveDataControl"]
-visible = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -200.0
-margin_right = 300.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 600, 400 )
-popup_exclusive = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BadSaveDataControl/Popup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_min_size = Vector2( 580, 380 )
-
-[node name="Label" type="Label" parent="BadSaveDataControl/Popup/VBoxContainer"]
-margin_right = 580.0
-margin_bottom = 336.0
-size_flags_vertical = 7
-theme = ExtResource( 9 )
-text = "There was a problem loading your save data. Your old save data from 3 days ago works, so we've loaded that instead.
-
-The invalid save data is available at the following path:
-
-\"C:\\Users\\Aaron\\AppData\\Roaming\\Godot\\app_userdata\\Turbo Fat\\turbofat0.this-day.save.bak\"
-
-Sorry."
-autowrap = true
-
-[node name="Button" type="Button" parent="BadSaveDataControl/Popup/VBoxContainer"]
-margin_left = 215.0
-margin_top = 340.0
-margin_right = 365.0
-margin_bottom = 380.0
-rect_min_size = Vector2( 150, 40 )
-size_flags_horizontal = 4
-theme = ExtResource( 8 )
-text = "Well, crap"
+[node name="BadSaveDataControl" parent="." instance=ExtResource( 8 )]
 
 [connection signal="pressed" from="DropPanel/PlayHolder/Play" to="." method="_on_Play_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="DropPanel/System" method="_on_Quit_pressed"]
-[connection signal="pressed" from="BadSaveDataControl/Popup/VBoxContainer/Button" to="BadSaveDataControl" method="_on_Button_pressed"]

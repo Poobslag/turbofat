@@ -50,6 +50,10 @@ func popup() -> void:
 	$Popup/VBoxContainer/Label.text = message
 
 
+func hide() -> void:
+	.hide()
+	$Popup.hide()
+
+
 func _on_Button_pressed() -> void:
 	hide()
-	$Popup.hide()
