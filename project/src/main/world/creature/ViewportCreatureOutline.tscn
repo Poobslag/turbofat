@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
@@ -10,10 +10,6 @@ shader = ExtResource( 23 )
 shader_param/width = 2.5
 shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
 shader_param/edge_fix_factor = 0.001
-
-[sub_resource type="ViewportTexture" id=2]
-flags = 5
-viewport_path = NodePath("Viewport")
 
 [node name="CreatureOutline" type="Node2D"]
 script = ExtResource( 24 )
@@ -38,5 +34,4 @@ margin_right = 1000.0
 margin_bottom = 834.0
 rect_scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
-texture = SubResource( 2 )
 flip_v = true

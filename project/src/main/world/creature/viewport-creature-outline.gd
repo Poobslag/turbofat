@@ -12,6 +12,10 @@ func _ready() -> void:
 	_texture_rect.rect_scale = Vector2(Global.CREATURE_SCALE, Global.CREATURE_SCALE)
 	creature_visuals.connect("dna_changed", self, "_on_CreatureVisuals_dna_changed")
 	connect("elevation_changed", self, "_on_elevation_changed")
+	
+	# Workaround for Godot #27790 (https://github.com/godotengine/godot/issues/27790)
+	$TextureRect.texture = $Viewport.get_texture()
+	$TextureRect.texture.flags = Texture.FLAG_MIPMAPS | Texture.FLAG_FILTER
 
 
 func _on_elevation_changed(_new_elevation: float) -> void:

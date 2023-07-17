@@ -180,6 +180,16 @@ then
   fi
 fi
 
+# ViewportTexture is assigned; this causes an error because of Godot #27790
+# (https://github.com/godotengine/godot/issues/27790)
+RESULT=$(grep "texture = SubResource" project/src/main/world/creature/ViewportCreatureOutline.tscn)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "ViewportTexture is assigned:"
+  echo "$RESULT"
+fi
+
 # print statements that got left in by mistake
 RESULT=$(git diff main | grep print\()
 RESULT=$(git diff main | grep print_debug\()

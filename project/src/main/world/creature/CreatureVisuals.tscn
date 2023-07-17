@@ -513,7 +513,6 @@ show_behind_parent = true
 light_mask = 2
 material = SubResource( 17 )
 scale = Vector2( 2, 2 )
-z_index = 1
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
 frame = 1
@@ -754,7 +753,6 @@ creature_visuals_path = NodePath("../..")
 wait_time = 2.5
 one_shot = true
 
-[connection signal="dna_loaded" from="." to="Animations/IdleTimer" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
