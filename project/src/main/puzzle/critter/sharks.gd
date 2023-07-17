@@ -171,9 +171,7 @@ func _refresh_sharks_for_piece() -> void:
 				_:
 					shark.set_eat_duration(PieceSpeeds.current_speed.lock_delay / 60.0)
 			
-			# Change the shark, setting them into the 'eating' state
 			var old_piece_cells := _playfield_piece_cells()
-			shark.eat()
 			
 			# Change the piece, removing any eaten cells
 			match shark.shark_size:
@@ -187,6 +185,9 @@ func _refresh_sharks_for_piece() -> void:
 			
 			# Add any eaten cells to the shark
 			_feed_shark_cells(shark_cell, old_piece_cells, new_piece_cells)
+			
+			# Change the shark, setting them into the 'eating' state
+			shark.eat()
 
 
 ## Updates a shark's eaten cells based on how a piece changed.
