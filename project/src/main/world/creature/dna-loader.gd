@@ -88,6 +88,7 @@ func unload_dna() -> void:
 				node.material.set_shader_param("blue", Color.black)
 				node.material.set_shader_param("black", Color.black)
 	
+	_creature_visuals.get_node("Neck0/HeadBobber/Mouth").z_index = 0
 	_creature_visuals.get_node("Neck0/HeadBobber").position = Vector2(0, -100)
 	_creature_visuals.rescale(1.00)
 	

@@ -85,10 +85,10 @@ func set_offset(new_offset: Vector2) -> void:
 
 
 func _draw() -> void:
-	if _frame_dest_rects.empty():
-		# frame data not loaded
+	if _frame_dest_rects.empty() or texture == null:
+		# nothing to draw
 		return
-	
+
 	var rect: Rect2 = _frame_dest_rects[min(frame, _frame_dest_rects.size() - 1)]
 	rect.position += offset
 	if centered:

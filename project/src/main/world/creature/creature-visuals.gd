@@ -92,6 +92,11 @@ onready var _animations: Node = $Animations
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
 	set_orientation(orientation)
+	
+	if not Engine.editor_hint:
+		# Don't connect IdleTimer signal in the editor; it is not a tool script and produces an error
+		connect("dna_loaded", $Animations/IdleTimer, "_on_CreatureVisuals_dna_loaded")
+	
 	$DnaLoader.connect("dna_loaded", self, "_on_DnaLoader_dna_loaded")
 	$TalkTimer.connect("timeout", self, "_on_TalkTimer_timeout")
 	_refresh_creature_sfx()
