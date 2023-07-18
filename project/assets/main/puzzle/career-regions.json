@@ -243,6 +243,20 @@
       "boss_level": {
         "id": "career/boss_4k"
       },
+      "population": {
+        "chefs": [
+          "bart 10%"
+        ],
+        "customers": [
+          "bundles 5%",
+          "helleslie 3%",
+          "magpird 4%",
+          "shew 6%",
+          "terpion 3%",
+          "tork 3%",
+          "trough 3%"
+        ]
+      },
       "levels": [
         {
           "id": "career/1000_race"
