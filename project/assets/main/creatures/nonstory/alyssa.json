@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "alyssa",
+  "name": "Alyssa",
+  "short_name": "Alyssa",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "3",
+    "body": "1",
+    "cheek": "2",
+    "collar": "1",
+    "ear": "13",
+    "eye": "4",
+    "hair": "0",
+    "head": "2",
+    "horn": "2",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "9a7f5d",
+    "belly_rgb": "c9dac6",
+    "cloth_rgb": "25291b",
+    "glass_rgb": "1f201e",
+    "plastic_rgb": "e5e6e0",
+    "hair_rgb": "40342d",
+    "eye_rgb": "25291b 606060",
+    "horn_rgb": "b9b9b9"
+  },
+  "chat_theme": {
+    "accent_scale": 2,
+    "accent_texture": 11,
+    "color": "9a7f5d",
+    "dark": true
+  },
+  "fatness": 1.4
+}

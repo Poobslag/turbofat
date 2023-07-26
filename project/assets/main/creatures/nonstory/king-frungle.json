@@ -1,0 +1,38 @@
+{
+  "version": "375c",
+  "id": "frungle",
+  "name": "King Frungle Lumps III",
+  "short_name": "Frungle",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "4",
+    "ear": "9",
+    "eye": "8",
+    "hair": "0",
+    "head": "4",
+    "horn": "0",
+    "mouth": "2",
+    "nose": "4",
+    "tail": "1",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "025d28",
+    "belly_rgb": "67aa0f",
+    "cloth_rgb": "ffd256",
+    "glass_rgb": "508e44",
+    "plastic_rgb": "d4aa4d",
+    "hair_rgb": "2c3c2b",
+    "eye_rgb": "ccd44d ffffd9",
+    "horn_rgb": "959f78"
+  },
+  "chat_theme": {
+    "accent_scale": 1.15,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "025d28"
+  },
+  "fatness": 1.4
+}

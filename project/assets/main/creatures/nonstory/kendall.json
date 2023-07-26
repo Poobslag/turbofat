@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "kendall",
+  "name": "Kendall",
+  "short_name": "Kendall",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "9",
+    "eye": "4",
+    "hair": "1",
+    "head": "1",
+    "horn": "2",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "f6bd44",
+    "belly_rgb": "fde8c9",
+    "cloth_rgb": "ecdf32",
+    "glass_rgb": "f4ec80",
+    "plastic_rgb": "f28c2a",
+    "hair_rgb": "477d5b",
+    "eye_rgb": "91e6ff ffffff",
+    "horn_rgb": "f7ecf1"
+  },
+  "chat_theme": {
+    "accent_scale": 1.75,
+    "accent_texture": 5,
+    "color": "f6bd44"
+  },
+  "fatness": 1.2
+}
