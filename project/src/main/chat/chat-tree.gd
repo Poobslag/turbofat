@@ -40,6 +40,8 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"marsh/walk": "res://src/main/world/environment/marsh/MarshWalkEnvironment.tscn",
 	"poki": "res://src/main/world/environment/poki/PokiEnvironment.tscn",
 	"poki/walk": "res://src/main/world/environment/poki/PokiWalkEnvironment.tscn",
+	"sand": "res://src/main/world/environment/sand/SandEnvironment.tscn",
+	"sand/walk": "res://src/main/world/environment/sand/SandWalkEnvironment.tscn",
 }
 
 ## unique key to identify this conversation in the chat history
