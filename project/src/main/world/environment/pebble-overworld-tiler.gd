@@ -73,4 +73,4 @@ func _add_random_pebbles() -> void:
 			# only add pebbles to a random selection of tiles
 			continue
 		var autotile_coord := Vector2(randi() % 4, randi() % 3)
-		_tile_map.set_cellv(cell, pebble_tile_index, false, false, false, autotile_coord)
+		_tile_map.set_cellv(cell, pebble_tile_index, randf() < 0.5, false, false, autotile_coord)
