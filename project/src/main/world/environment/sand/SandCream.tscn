@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/world/environment/frame-overworld-obstacle.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/environment/sand/sand-cream-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 56, 28 )
+
+[node name="Cream" type="KinematicBody2D"]
+position = Vector2( 84.9487, 113.265 )
+script = ExtResource( 1 )
+shadow_scale = 0.7
+frame = 4
+flip_h = true
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -36 )
+flip_h = true
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

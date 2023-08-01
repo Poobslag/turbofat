@@ -6,7 +6,7 @@
 [ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/demo/world/FreeRoamUi.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/demo/world/environment/lemon/Lemon2FreeRoamEnvironment.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/demo/world/environment/sand/SandFreeRoamEnvironment.tscn" type="PackedScene" id=9]
 
 [node name="FreeRoam" type="Node"]
 script = ExtResource( 1 )
