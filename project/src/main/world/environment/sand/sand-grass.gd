@@ -13,7 +13,7 @@ export (bool) var shuffle: bool setget set_shuffle
 
 onready var _animation_player := $AnimationPlayer
 
-func _ready():
+func _ready() -> void:
 	if Engine.editor_hint:
 		# update the tree's appearance, but don't play any animations
 		_refresh_grass_in_editor()
