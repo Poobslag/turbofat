@@ -427,10 +427,10 @@ func _adjacencies(cell: Vector2) -> int:
 ## 	An int bitmask of cell directions containing goop (GOOP_CENTER, GOOP_TOP, GOOP_LEFT, GOOP_TOPLEFT)
 func _corner_cover_adjacencies(cell: Vector2) -> int:
 	var binding := -1
-	if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL \
-			and _tile_map.get_cellv(cell + Vector2.UP) != TileMap.INVALID_CELL \
-			and _tile_map.get_cellv(cell + Vector2.LEFT) != TileMap.INVALID_CELL \
-			and _tile_map.get_cellv(cell + Vector2.UP + Vector2.LEFT) != TileMap.INVALID_CELL:
+	if _tile_map.get_cellv(cell) in _cake_indexes \
+			and _tile_map.get_cellv(cell + Vector2.UP) in _cake_indexes \
+			and _tile_map.get_cellv(cell + Vector2.LEFT) in _cake_indexes \
+			and _tile_map.get_cellv(cell + Vector2.UP + Vector2.LEFT) in _cake_indexes:
 		binding = 0
 		binding |= GOOP_CENTER if _tile_map.get_cellv(cell) in _goop_indexes else 0
 		binding |= GOOP_TOP if _tile_map.get_cellv(cell + Vector2.UP) in _goop_indexes else 0
