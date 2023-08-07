@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/main/world/environment/sand/banana-hq-floor-library.tres" type="TileSet" id=1]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/sand/banana-hq-obstacle-library.tres" type="TileSet" id=3]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/environment/restaurant/RestaurantSpawns.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=12]
+
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 2 )
+environment_shadows_path = NodePath("Ground/Shadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 6 )
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -1
+
+[node name="GroundMap" type="TileMap" parent="Ground"]
+scale = Vector2( 0.5, 0.5 )
+mode = 2
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 104 )
+cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( 0, 82455, 1, 1, 82455, 65538, 2, 82455, 0, 3, 82455, 65538, 4, 82455, 0, 5, 82455, 0, 6, 82455, 0, 7, 82455, 0, 8, 82455, 0, 65536, 82455, 0, 65537, 82455, 0, 65538, 82455, 196609, 65539, 82455, 0, 65540, 82455, 196608, 65541, 82455, 0, 65542, 82455, 0, 65543, 82455, 0, 65544, 82455, 0, 131072, 82455, 196610, 131073, 82455, 0, 131074, 82455, 131072, 131075, 82455, 0, 131076, 82455, 0, 131077, 82455, 0, 131078, 82455, 0, 131079, 82455, 0, 131080, 82455, 0, 196608, 82455, 0, 196609, 82455, 0, 196610, 82455, 0, 196611, 82455, 196608, 196612, 82455, 0, 196613, 82455, 0, 196614, 82455, 65536, 196615, 82455, 0, 196616, 82455, 0, 262144, 82455, 0, 262145, 82455, 0, 262146, 82455, 0, 262147, 82455, 0, 262148, 82455, 0, 262149, 82455, 65538, 262150, 82455, 0, 262151, 82455, 196608, 262152, 82455, 0, 327680, 82455, 196610, 327681, 82455, 0, 327682, 82455, 0, 327683, 82455, 65537, 327684, 82455, 0, 327685, 82455, 0, 327686, 82455, 0, 327687, 82455, 0, 327688, 82455, 0, 393216, 82455, 0, 393217, 82455, 0, 393218, 82455, 196610, 393219, 82455, 0, 393220, 82455, 0, 393221, 82455, 0, 393222, 82455, 0, 393223, 82455, 0, 393224, 82455, 0 )
+
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 10 )]
+position = Vector2( 130.547, 315.908 )
+scale = Vector2( 0.539476, -0.539476 )
+exit_direction = 4
+
+[node name="Shadows" parent="Ground" instance=ExtResource( 12 )]
+obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+cell_shadow_mapping = {
+1: Rect2( 0, 0, 0, 0 ),
+3: Rect2( -1, 0, 3, 1 ),
+4: Rect2( -1, 0, 3, 1 ),
+5: Rect2( -1, 0, 3, 1 ),
+6: Rect2( -1, 0, 3, 1 ),
+7: Rect2( -1, 0, 3, 1 )
+}
+
+[node name="Obstacles" type="YSort" parent="."]
+
+[node name="ObstacleMap" type="TileMap" parent="Obstacles"]
+scale = Vector2( 0.5, 0.5 )
+mode = 2
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 128, 104 )
+cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
+cell_tile_origin = 1
+cell_y_sort = true
+show_collision = true
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( -1, 1, 0, -65536, 13, 0, -65535, 13, 0, -65534, 13, 0, -65533, 13, 0, -65532, 13, 0, -65531, 13, 0, -65530, 13, 0, -65529, 13, 0, -65528, 13, 0, -65527, 1, 0, 65535, 16, 0, 9, 1, 0, 131071, 14, 0, 65545, 1, 0, 196607, 14, 0, 131081, 1, 0, 262143, 14, 0, 196617, 1, 0, 327679, 14, 0, 262153, 1, 0, 393215, 14, 0, 327689, 1, 0, 458751, 14, 0, 393225, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0 )
+
+[node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 9 )]
+ground_map_path = NodePath("../../../Ground/GroundMap")
+impassable_tile_index = 1
+
+[node name="Spawns" parent="." instance=ExtResource( 8 )]

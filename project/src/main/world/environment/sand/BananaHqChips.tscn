@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/environment/frame-overworld-sprite.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/environment/sand/sand-chips-sheet.png" type="Texture" id=2]
+
+[node name="Chips" type="Sprite"]
+position = Vector2( -81.3174, 243.109 )
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 4
+vframes = 3
+frame = 1
+script = ExtResource( 1 )

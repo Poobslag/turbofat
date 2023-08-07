@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" load_steps=2 format=2]
+
+[ext_resource path="res://assets/main/world/environment/sand/banana-hq-floor-sheet.png" type="Texture" id=2]
+
+[resource]
+82455/name = "floor-carpet-sheet.png 2"
+82455/texture = ExtResource( 2 )
+82455/tex_offset = Vector2( 39, 0 )
+82455/modulate = Color( 1, 1, 1, 1 )
+82455/region = Rect2( 0, 0, 640, 447 )
+82455/tile_mode = 2
+82455/autotile/icon_coordinate = Vector2( 0, 0 )
+82455/autotile/tile_size = Vector2( 210, 108 )
+82455/autotile/spacing = 5
+82455/autotile/occluder_map = [  ]
+82455/autotile/navpoly_map = [  ]
+82455/autotile/priority_map = [  ]
+82455/autotile/z_index_map = [  ]
+82455/occluder_offset = Vector2( 0, 0 )
+82455/navigation_offset = Vector2( 0, 0 )
+82455/shape_offset = Vector2( 0, 0 )
+82455/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+82455/shape_one_way = false
+82455/shape_one_way_margin = 0.0
+82455/shapes = [  ]
+82455/z_index = 0
