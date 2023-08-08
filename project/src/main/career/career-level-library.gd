@@ -167,6 +167,7 @@ func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 				# without quirks.
 				if not CareerLevel.NONQUIRKY_CUSTOMER in customer_ids:
 					customer_ids.append(CareerLevel.NONQUIRKY_CUSTOMER)
+	
 	return {
 		"chef_ids": chef_ids,
 		"customer_ids": customer_ids,

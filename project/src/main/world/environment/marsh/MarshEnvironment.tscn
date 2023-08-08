@@ -113,7 +113,7 @@ cell_tile_origin = 1
 cell_y_sort = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -196577, 6, 1, 393239, 6, 0, 524309, 6, 0, 655383, 6, 0, 1179675, 6, 0, 1179679, 6, 0, 1179683, 6, 0, 1310749, 6, 0, 1310753, 6, 0, 1441827, 6, 0 )
+tile_data = PoolIntArray( 393239, 6, 0, 524309, 6, 0, 655383, 6, 0, 1179675, 6, 0, 1179679, 6, 0, 1179683, 6, 0, 1310749, 6, 0, 1310753, 6, 0, 1441827, 6, 0 )
 
 [node name="GoopOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 7 )]
 no_goop_tile_index = 3
