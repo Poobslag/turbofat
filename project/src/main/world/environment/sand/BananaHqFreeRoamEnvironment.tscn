@@ -126,7 +126,7 @@ impassable_tile_index = 1
 position = Vector2( 76.8907, 86.1184 )
 
 [node name="CreatureSpawner1" parent="Obstacles" instance=ExtResource( 35 )]
-position = Vector2( 76.8907, 86.1184 )
+position = Vector2( 76.891, 87.118 )
 target_properties = {
 "creature_id": "kendall",
 "elevation": 90.0,
@@ -138,7 +138,7 @@ spawn_if = "true"
 position = Vector2( 332.655, 92.418 )
 
 [node name="CreatureSpawner2" parent="Obstacles" instance=ExtResource( 35 )]
-position = Vector2( 332.655, 92.418 )
+position = Vector2( 332.655, 93.418 )
 target_properties = {
 "creature_id": "frungle",
 "elevation": 130.0,
