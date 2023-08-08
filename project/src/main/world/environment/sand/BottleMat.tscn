@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=1]
+[ext_resource path="res://assets/main/world/environment/sand/bottle-mat.png" type="Texture" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[node name="BottleMat" type="Sprite"]
+material = SubResource( 1 )
+position = Vector2( 177.429, 159.77 )
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 2 )

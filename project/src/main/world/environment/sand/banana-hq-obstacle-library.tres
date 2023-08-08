@@ -1,0 +1,139 @@
+[gd_resource type="TileSet" load_steps=8 format=2]
+
+[ext_resource path="res://assets/main/empty-600.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/sand/banana-hq-wall-3.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/world/environment/sand/banana-hq-wall-2.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/world/environment/sand/banana-hq-wall-5.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/world/environment/sand/banana-hq-wall-4.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/world/environment/sand/banana-hq-wall-1.png" type="Texture" id=16]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 78, 0, 0, 104, 128, 104, 206, 0 )
+
+[resource]
+1/name = "Impassable"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 224, 128 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 48, 12 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 48, 12 )
+1/shape = SubResource( 1 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 48, 12 )
+} ]
+1/z_index = 0
+13/name = "banana-hq-wall-1.png 13"
+13/texture = ExtResource( 16 )
+13/tex_offset = Vector2( 0, -327 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 0, 128, 800 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 675 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 675 )
+13/shape = SubResource( 1 )
+13/shape_one_way = false
+13/shape_one_way_margin = 1.0
+13/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 675 )
+} ]
+13/z_index = 0
+14/name = "banana-hq-wall-2.png 14"
+14/texture = ExtResource( 6 )
+14/tex_offset = Vector2( 100, -376 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 0, 84, 900 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( -122, 774 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, -122, 774 )
+14/shape = SubResource( 1 )
+14/shape_one_way = false
+14/shape_one_way_margin = 1.0
+14/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -122, 774 )
+} ]
+14/z_index = 0
+15/name = "banana-hq-wall-3.png 15"
+15/texture = ExtResource( 2 )
+15/tex_offset = Vector2( 41, -383 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 212, 900 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 1, 781 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 1, 781 )
+15/shape = SubResource( 1 )
+15/shape_one_way = false
+15/shape_one_way_margin = 1.0
+15/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 1, 781 )
+} ]
+15/z_index = 0
+16/name = "banana-hq-wall-4.png 16"
+16/texture = ExtResource( 9 )
+16/tex_offset = Vector2( 104, -382 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 84, 900 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( -126, 780 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, -126, 780 )
+16/shape = SubResource( 1 )
+16/shape_one_way = false
+16/shape_one_way_margin = 1.0
+16/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -126, 780 )
+} ]
+16/z_index = 0
+17/name = "banana-hq-wall-5.png 17"
+17/texture = ExtResource( 8 )
+17/tex_offset = Vector2( 41, -383 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 212, 900 )
+17/tile_mode = 0
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 1, 781 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 1, 781 )
+17/shape = SubResource( 1 )
+17/shape_one_way = false
+17/shape_one_way_margin = 1.0
+17/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 1, 781 )
+} ]
+17/z_index = 0
