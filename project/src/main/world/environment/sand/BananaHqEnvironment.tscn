@@ -1,13 +1,35 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/world/environment/sand/banana-hq-floor-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/environment/sand/banana-hq-obstacle-library.tres" type="TileSet" id=3]
+[ext_resource path="res://src/main/world/CreatureSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantSpawns.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=11]
 [ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/world/environment/sand/BottleMat.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/sand/Bottle.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/world/environment/restaurant/BananaStoolBig.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/sand/BananaHqChips.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/world/environment/sand/SandTiler.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/world/environment/restaurant/BananaStool.tscn" type="PackedScene" id=18]
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 2 )
@@ -27,7 +49,9 @@ cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
 cell_tile_origin = 1
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 0, 82455, 1, 1, 82455, 65538, 2, 82455, 0, 3, 82455, 65538, 4, 82455, 0, 5, 82455, 0, 6, 82455, 0, 7, 82455, 0, 8, 82455, 0, 65536, 82455, 0, 65537, 82455, 0, 65538, 82455, 196609, 65539, 82455, 0, 65540, 82455, 196608, 65541, 82455, 0, 65542, 82455, 0, 65543, 82455, 0, 65544, 82455, 0, 131072, 82455, 196610, 131073, 82455, 0, 131074, 82455, 131072, 131075, 82455, 0, 131076, 82455, 0, 131077, 82455, 0, 131078, 82455, 0, 131079, 82455, 0, 131080, 82455, 0, 196608, 82455, 0, 196609, 82455, 0, 196610, 82455, 0, 196611, 82455, 196608, 196612, 82455, 0, 196613, 82455, 0, 196614, 82455, 65536, 196615, 82455, 0, 196616, 82455, 0, 262144, 82455, 0, 262145, 82455, 0, 262146, 82455, 0, 262147, 82455, 0, 262148, 82455, 0, 262149, 82455, 65538, 262150, 82455, 0, 262151, 82455, 196608, 262152, 82455, 0, 327680, 82455, 196610, 327681, 82455, 0, 327682, 82455, 0, 327683, 82455, 65537, 327684, 82455, 0, 327685, 82455, 0, 327686, 82455, 0, 327687, 82455, 0, 327688, 82455, 0, 393216, 82455, 0, 393217, 82455, 0, 393218, 82455, 196610, 393219, 82455, 0, 393220, 82455, 0, 393221, 82455, 0, 393222, 82455, 0, 393223, 82455, 0, 393224, 82455, 0 )
+tile_data = PoolIntArray( 0, 82455, 2, 1, 82455, 0, 2, 82455, 196608, 3, 82455, 0, 4, 82455, 0, 5, 82455, 0, 6, 82455, 0, 7, 82455, 0, 8, 82455, 0, 65536, 82455, 0, 65537, 82455, 65538, 65538, 82455, 0, 65539, 82455, 0, 65540, 82455, 0, 65541, 82455, 0, 65542, 82455, 0, 65543, 82455, 2, 65544, 82455, 0, 131072, 82455, 0, 131073, 82455, 0, 131074, 82455, 0, 131075, 82455, 0, 131076, 82455, 196609, 131077, 82455, 0, 131078, 82455, 0, 131079, 82455, 0, 131080, 82455, 0, 196608, 82455, 0, 196609, 82455, 0, 196610, 82455, 1, 196611, 82455, 0, 196612, 82455, 0, 196613, 82455, 0, 196614, 82455, 0, 196615, 82455, 0, 196616, 82455, 0, 262144, 82455, 0, 262145, 82455, 0, 262146, 82455, 0, 262147, 82455, 0, 262148, 82455, 0, 262149, 82455, 0, 262150, 82455, 0, 262151, 82455, 0, 262152, 82455, 0, 327680, 82455, 0, 327681, 82455, 0, 327682, 82455, 0, 327683, 82455, 131074, 327684, 82455, 0, 327685, 82455, 0, 327686, 82455, 0, 327687, 82455, 0, 327688, 82455, 0, 393216, 82455, 0, 393217, 82455, 0, 393218, 82455, 131072, 393219, 82455, 196609, 393220, 82455, 0, 393221, 82455, 0, 393222, 82455, 0, 393223, 82455, 0, 393224, 82455, 0 )
+
+[node name="SandTiler" parent="Ground/GroundMap" instance=ExtResource( 17 )]
 
 [node name="Exits" type="Node2D" parent="Ground"]
 
@@ -47,6 +71,15 @@ cell_shadow_mapping = {
 7: Rect2( -1, 0, 3, 1 )
 }
 
+[node name="BottleMat" parent="Ground" instance=ExtResource( 13 )]
+material = SubResource( 2 )
+
+[node name="Chips1" parent="Ground" instance=ExtResource( 16 )]
+
+[node name="Chips2" parent="Ground" instance=ExtResource( 16 )]
+position = Vector2( 354.122, 190.136 )
+frame = 8
+
 [node name="Obstacles" type="YSort" parent="."]
 
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
@@ -65,5 +98,33 @@ tile_data = PoolIntArray( -1, 1, 0, -65536, 13, 0, -65535, 13, 0, -65534, 13, 0,
 [node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 9 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
+
+[node name="BananaStool" parent="Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 76.8907, 86.1184 )
+
+[node name="CreatureSpawner1" parent="Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 76.891, 87.118 )
+target_properties = {
+"creature_id": "kendall",
+"elevation": 90.0,
+"orientation": 0
+}
+spawn_if = "true"
+
+[node name="BananaStoolBig" parent="Obstacles" instance=ExtResource( 15 )]
+position = Vector2( 332.655, 92.418 )
+
+[node name="CreatureSpawner2" parent="Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 332.655, 93.418 )
+target_properties = {
+"creature_id": "frungle",
+"elevation": 130.0,
+"orientation": 1
+}
+spawn_if = "true"
+
+[node name="Bottle" parent="Obstacles" instance=ExtResource( 14 )]
+material = SubResource( 1 )
+position = Vector2( 177.429, 159.77 )
 
 [node name="Spawns" parent="." instance=ExtResource( 8 )]
