@@ -9,6 +9,7 @@ const CHAT_FULL := "res://assets/test/chat/chat-full.chat"
 const CHAT_LINK_MOOD := "res://assets/test/chat/chat-link-mood.chat"
 const CHAT_NEWLINES := "res://assets/test/chat/chat-newlines.chat"
 const CHAT_SET_PHRASE := "res://assets/test/chat/chat-set-phrase.chat"
+const CHAT_UNSET_PHRASE := "res://assets/test/chat/chat-unset-phrase.chat"
 const CHAT_SET_FLAG_STRING := "res://assets/test/chat/chat-set-flag-string.chat"
 const CHAT_SET_FLAG_BOOL := "res://assets/test/chat/chat-set-flag-bool.chat"
 const CHAT_THOUGHT := "res://assets/test/chat/chat-thought.chat"
@@ -277,6 +278,14 @@ func test_set_phrase() -> void:
 	
 	chat_tree.advance()
 	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "Frequent Straw")
+
+
+func test_unset_phrase() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_UNSET_PHRASE)
+	PlayerData.chat_history.set_phrase("tall_cluttered", "Frequent Straw")
+	
+	chat_tree.advance()
+	assert_eq(PlayerData.chat_history.get_phrase("tall_cluttered"), "")
 
 
 func test_has_phrase() -> void:
