@@ -420,6 +420,7 @@ func fade_in() -> void:
 		modulate.a = 0.0
 	
 	_launch_fade_tween(1.0, CREATURE_FADE_IN_DURATION)
+	Stool.update_stool_occupied(self, true)
 
 
 ## Launches a talking animation, opening and closes the creature's mouth for a few seconds.
@@ -435,6 +436,7 @@ func is_talking() -> bool:
 ## Gradually adjust this creature's alpha down to 0.0 and make them invisible.
 func fade_out() -> void:
 	_launch_fade_tween(0.0, CREATURE_FADE_OUT_DURATION)
+	Stool.update_stool_occupied(self, false)
 
 
 ## Returns the number of seconds between the beginning of the eating animation and the 'chomp' noise.
