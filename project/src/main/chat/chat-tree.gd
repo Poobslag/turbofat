@@ -41,6 +41,7 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"poki": "res://src/main/world/environment/poki/PokiEnvironment.tscn",
 	"poki/walk": "res://src/main/world/environment/poki/PokiWalkEnvironment.tscn",
 	"sand": "res://src/main/world/environment/sand/SandEnvironment.tscn",
+	"banana_hq": "res://src/main/world/environment/sand/BananaHqEnvironment.tscn",
 	"sand/walk": "res://src/main/world/environment/sand/SandWalkEnvironment.tscn",
 }
 
@@ -273,6 +274,7 @@ func _assign_flags_and_phrases() -> void:
 				"set_flag": _process_set_flag_statement(args)
 				"set_phrase": _process_set_phrase_statement(args)
 				"unset_flag": _process_unset_flag_statement(args)
+				"unset_phrase": _process_unset_phrase_statement(args)
 
 
 ## Processes a default_phrase statement like 'default_phrase dog_breed Labrador Retriever'
@@ -324,6 +326,21 @@ func _process_set_phrase_statement(args: Array) -> void:
 	
 	PlayerData.chat_history.set_phrase(
 			args[0], PoolStringArray(args.slice(1, args.size())).join(" "))
+
+
+## Processes an unset_phrase statement like 'unset_phrase dog_breed'
+##
+## Unassigns the specified value from the specified chat history phrase.
+##
+## Parameters:
+## 	'args': The statement's arguments, such as ['dog_breed']
+func _process_unset_phrase_statement(args: Array) -> void:
+	if args.size() != 1:
+		warn("Invalid argument count for unset_phrase call. Expected 1 but was %s"
+				% [args.size()])
+		return
+	
+	PlayerData.chat_history.set_phrase(args[0], "")
 
 
 ## Processes an unset_flag statement like 'unset_flag foo'
