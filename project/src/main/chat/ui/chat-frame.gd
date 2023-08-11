@@ -74,13 +74,19 @@ func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	
 	# set the text and calculate how big of a frame we need
 	var chat_line_size: int = _chat_line_label.show_message(text_to_show, 0.5)
-	var creature_name := ""
-	if chat_event.who:
+	
+	# calculate the nametag text
+	var nametag_text := ""
+	var nametag_text_meta := _get_nametag_text_meta(chat_event)
+	if not nametag_text and nametag_text_meta:
+		# the 'nametag_text' meta item has priority, and overrides the creature's name
+		nametag_text = nametag_text_meta
+	if not nametag_text and chat_event.who:
 		var creature_def := PlayerData.creature_library.get_creature_def(chat_event.who)
 		if not creature_def:
 			push_error("creature_def not found with id '%s'" % [chat_event.who])
-		creature_name = creature_def.creature_name
-	_nametag_panel.set_nametag_text(creature_name)
+		nametag_text = creature_def.creature_name
+	_nametag_panel.set_nametag_text(nametag_text)
 	
 	# update the UI's appearance
 	_chat_line_label.update_appearance(chat_event.chat_theme)
@@ -104,6 +110,17 @@ func make_all_text_visible() -> void:
 ## Returns the size of the chat line window needed to display the chat line text.
 func get_chat_line_size() -> int:
 	return _chat_line_label.chosen_size_index
+
+
+## Returns the value of the 'nametag_text' meta item.
+func _get_nametag_text_meta(chat_event: ChatEvent) -> String:
+	var nametag_text: String
+	for meta_item_obj in chat_event.meta:
+		var meta_item: String = meta_item_obj
+		if meta_item.begins_with("nametag_text "):
+			nametag_text = meta_item.trim_prefix("nametag_text ")
+			break
+	return nametag_text
 
 
 func _on_Tween_pop_out_completed() -> void:

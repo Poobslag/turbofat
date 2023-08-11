@@ -9,6 +9,7 @@ extends Node
 ## 	[A]: Make the chat window appear/disappear
 ## 	[D]: Toggle 'dark mode' for the accent
 ## 	[L]: Toggle 'left' and 'right' and 'no preference' for the nametag position
+## 	[N]: Toggle 'nametag_text' metadata which overrides the name
 ## 	[P]: Print the json accent definition
 ## 	[R]: Generate a random accent definition
 ## 	[S]: Swap the accent's colors
@@ -71,6 +72,9 @@ var _scale_index := 5
 var _nametag_side: int = ChatEvent.NametagSide.LEFT
 var _squished := false
 
+## Metadata about the chat event, such as the 'nametag_text' override
+var _meta := []
+
 func _ready() -> void:
 	_play_chat_event()
 
@@ -93,6 +97,12 @@ func _input(event: InputEvent) -> void:
 			_play_chat_event()
 		KEY_L:
 			_nametag_side = (_nametag_side + 1) % 3
+			_play_chat_event()
+		KEY_N:
+			if _meta.has("nametag_text Form Clap"):
+				_meta.erase("nametag_text Form Clap")
+			else:
+				_meta.append("nametag_text Form Clap")
 			_play_chat_event()
 		KEY_P:
 			print(_chat_theme.to_json_dict())
@@ -156,4 +166,5 @@ func _play_chat_event() -> void:
 	chat_event.text = TEXTS[_text_index]
 	chat_event.chat_theme = _chat_theme
 	chat_event.nametag_side = _nametag_side
+	chat_event.meta = _meta
 	$ChatFrame.play_chat_event(chat_event, _squished)
