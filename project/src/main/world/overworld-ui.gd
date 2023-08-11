@@ -93,14 +93,16 @@ func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2
 			continue
 		if not chatter.visible:
 			continue
+		
+		var adjusted_chatter_position: Vector2 = chatter.position
+		if "elevation" in chatter:
+			adjusted_chatter_position += chatter.elevation * Vector2.UP * Global.CREATURE_SCALE
 		if bounding_box:
 			var chat_extents: Vector2 = chatter.chat_extents if "chat_extents" in chatter else Vector2.ZERO
-			var chatter_elevation: float = chatter.elevation if "elevation" in chatter else 0.0
-			var chatter_box := Rect2(chatter.position + chatter_elevation * Vector2.UP * Global.CREATURE_SCALE - chat_extents / 2, chat_extents)
+			var chatter_box := Rect2(adjusted_chatter_position - chat_extents / 2, chat_extents)
 			bounding_box = bounding_box.merge(chatter_box)
 		else:
-			var chatter_elevation: float = chatter.elevation if "elevation" in chatter else 0.0
-			bounding_box = Rect2(chatter.position + chatter_elevation * Vector2.UP * Global.CREATURE_SCALE, Vector2.ZERO)
+			bounding_box = Rect2(adjusted_chatter_position, Vector2.ZERO)
 	return bounding_box
 
 
