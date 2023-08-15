@@ -43,6 +43,7 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"sand": "res://src/main/world/environment/sand/SandEnvironment.tscn",
 	"banana_hq": "res://src/main/world/environment/sand/BananaHqEnvironment.tscn",
 	"sand/walk": "res://src/main/world/environment/sand/SandWalkEnvironment.tscn",
+	"filming": "res://src/main/world/environment/sand/FilmingEnvironment.tscn",
 }
 
 ## unique key to identify this conversation in the chat history

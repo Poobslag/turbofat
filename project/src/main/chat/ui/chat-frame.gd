@@ -84,8 +84,10 @@ func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	if not nametag_text and chat_event.who:
 		var creature_def := PlayerData.creature_library.get_creature_def(chat_event.who)
 		if not creature_def:
+			nametag_text = ""
 			push_error("creature_def not found with id '%s'" % [chat_event.who])
-		nametag_text = creature_def.creature_name
+		else:
+			nametag_text = creature_def.creature_name
 	_nametag_panel.set_nametag_text(nametag_text)
 	
 	# update the UI's appearance
