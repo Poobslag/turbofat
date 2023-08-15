@@ -169,7 +169,11 @@ func _process(_delta: float) -> void:
 		return
 	
 	if _creature_visuals.oriented_south():
-		if not is_playing():
+		if _reset_tween and _reset_tween.is_running():
+			# don't play an ambient animation if the reset tween is active, otherwise the creature's eyes will open
+			# awkwardly for a split second during mood transitions
+			pass
+		elif not is_playing():
 			play("ambient")
 			advance(randf() * current_animation_length)
 	if _creature_visuals.oriented_north():
@@ -384,6 +388,7 @@ func _tween_sfx_volume(new_value: float) -> void:
 ## tweened into place.
 func _unemote_non_tweened_properties() -> void:
 	# unflip the creature's head; the scale itself can be tweened later
+	_creature_visuals.reset_eye_frames()
 	_creature_visuals.get_node("Neck0").scale = \
 			Vector2(abs(_creature_visuals.get_node("Neck0").scale.x),
 			abs(_creature_visuals.get_node("Neck0").scale.y))
@@ -457,7 +462,7 @@ func _transition_to_new_mood(mood: int) -> void:
 		
 		if TRANSITIONS.has([_prev_mood, mood]):
 			# skip ahead in the animation; we played a custom transition
-			advance(0.1)
+			advance(0.10001)
 		_prev_mood = mood
 
 
