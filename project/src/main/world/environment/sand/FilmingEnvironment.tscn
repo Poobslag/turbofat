@@ -1,28 +1,28 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/world/environment/restaurant/kitchen-obstacle-tiler.gd" type="Script" id=2]
-[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=4]
-[ext_resource path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" type="TileSet" id=5]
-[ext_resource path="res://src/main/world/environment/restaurant/KitchenFloorTiler.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/main/world/environment/restaurant/TurboFatStool.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/world/environment/sand/RobotDog.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/world/environment/restaurant/WoodPillar.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/main/world/environment/restaurant/WoodTable.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/world/environment/sand/Mic2.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/main/world/environment/sand/Mic1.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/world/CreatureSpawner.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/restaurant/kitchen-obstacle-tiler.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/environment/restaurant/KitchenFloorTiler.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/environment/restaurant/WoodTable.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/world/environment/sand/Mic1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/world/environment/restaurant/TurboFatStool.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/world/environment/sand/Mic2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/restaurant/WoodPillar.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/sand/RobotDog.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=17]
+[ext_resource path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" type="TileSet" id=18]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
-CreatureScene = ExtResource( 1 )
+CreatureScene = ExtResource( 15 )
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1
@@ -30,7 +30,7 @@ z_index = -1
 [node name="GroundMap" type="TileMap" parent="Ground"]
 scale = Vector2( 0.5, 0.5 )
 mode = 2
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 17 )
 cell_size = Vector2( 128, 104 )
 cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
 cell_tile_origin = 1
@@ -38,20 +38,20 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -196588, 82455, 0, -196587, 82455, 0, -196586, 82455, 1, -196585, 82455, 0, -196584, 82455, 0, -196583, 82455, 0, -196582, 82455, 0, -196581, 82455, 0, -196580, 82455, 0, -196579, 82455, 0, -196578, 82455, 196609, -196577, 82455, 196608, -196576, 82455, 0, -196575, 82455, 0, -196574, 82455, 65538, -196573, 82455, 0, -131052, 82455, 0, -131051, 82455, 131074, -131050, 82455, 131073, -131049, 82455, 0, -131048, 82455, 0, -131047, 82455, 0, -131046, 82455, 1, -131045, 82455, 0, -131044, 82455, 0, -131043, 82455, 0, -131042, 82455, 0, -131041, 82455, 65536, -131040, 82455, 0, -131039, 82455, 0, -131038, 82455, 0, -131037, 82455, 0, -65516, 82455, 0, -65515, 82455, 0, -65514, 82455, 2, -65513, 82455, 131073, -65512, 82455, 0, -65511, 54907, 0, -65510, 54907, 0, -65509, 54907, 0, -65508, 54907, 0, -65507, 54907, 0, -65506, 54907, 0, -65505, 54907, 0, -65504, 54907, 0, -65503, 54907, 0, -65502, 54907, 0, -65501, 54907, 0, 0, 82455, 1, 1, 82455, 65538, 2, 82455, 0, 3, 82455, 65538, 4, 82455, 0, 5, 82455, 0, 6, 82455, 0, 7, 82455, 0, 8, 82455, 0, 9, 82455, 131074, 10, 82455, 0, 11, 82455, 0, 12, 82455, 196609, 13, 82455, 0, 14, 82455, 0, 15, 82455, 0, 16, 82455, 0, 17, 82455, 1, 18, 82455, 0, 19, 82455, 196609, 20, 82455, 0, 21, 82455, 0, 22, 82455, 0, 23, 82455, 0, 24, 82455, 0, 25, 54907, 0, 26, 54907, 65538, 27, 54907, 0, 28, 54907, 0, 29, 54907, 0, 30, 54907, 0, 31, 54907, 0, 32, 54907, 0, 33, 54907, 0, 34, 54907, 0, 35, 54907, 0, 65536, 82455, 0, 65537, 82455, 0, 65538, 82455, 196609, 65539, 82455, 0, 65540, 82455, 196608, 65541, 82455, 0, 65542, 82455, 0, 65543, 82455, 0, 65544, 82455, 0, 65545, 82455, 0, 65546, 82455, 1, 65547, 82455, 0, 65548, 82455, 0, 65549, 82455, 0, 65550, 82455, 131073, 65551, 82455, 65538, 65552, 82455, 0, 65553, 82455, 0, 65554, 82455, 0, 65555, 82455, 131073, 65556, 82455, 196610, 65557, 82455, 0, 65558, 82455, 0, 65559, 82455, 0, 65560, 82455, 2, 65561, 54907, 196608, 65562, 54907, 0, 65563, 54907, 0, 65564, 54907, 0, 65565, 54907, 131073, 65566, 54907, 0, 65567, 54907, 0, 65568, 54907, 0, 65569, 54907, 0, 65570, 54907, 0, 65571, 54907, 0, 131072, 82455, 196610, 131073, 82455, 0, 131074, 82455, 131072, 131075, 82455, 0, 131076, 82455, 0, 131077, 82455, 0, 131078, 82455, 0, 131079, 82455, 0, 131080, 82455, 65536, 131081, 82455, 65538, 131082, 82455, 0, 131083, 82455, 0, 131084, 82455, 1, 131085, 82455, 0, 131086, 82455, 0, 131087, 82455, 0, 131088, 82455, 196609, 131089, 82455, 2, 131090, 82455, 0, 131091, 82455, 0, 131092, 82455, 0, 131093, 82455, 0, 131094, 82455, 196610, 131095, 82455, 0, 131096, 82455, 0, 131097, 54907, 0, 131098, 54907, 0, 131099, 54907, 0, 131100, 54907, 196608, 131101, 54907, 0, 131102, 54907, 0, 131103, 54907, 0, 131104, 54907, 0, 131105, 54907, 0, 131106, 54907, 0, 131107, 54907, 65538, 196608, 82455, 0, 196609, 82455, 0, 196610, 82455, 0, 196611, 82455, 196608, 196612, 82455, 0, 196613, 82455, 0, 196614, 82455, 65536, 196615, 82455, 0, 196616, 82455, 0, 196617, 82455, 0, 196618, 82455, 0, 196619, 82455, 0, 196620, 82455, 0, 196621, 82455, 0, 196622, 82455, 1, 196623, 82455, 0, 196624, 82455, 0, 196625, 82455, 196610, 196626, 82455, 0, 196627, 82455, 0, 196628, 82455, 0, 196629, 82455, 0, 196630, 82455, 0, 196631, 82455, 65537, 196632, 82455, 0, 196633, 54907, 0, 196634, 54907, 0, 196635, 54907, 0, 196636, 54907, 0, 196637, 54907, 0, 196638, 54907, 1, 196639, 54907, 0, 196640, 54907, 0, 196641, 54907, 0, 196642, 54907, 0, 196643, 54907, 0, 262144, 82455, 0, 262145, 82455, 0, 262146, 82455, 0, 262147, 82455, 0, 262148, 82455, 0, 262149, 82455, 65538, 262150, 82455, 0, 262151, 82455, 196608, 262152, 82455, 0, 262153, 82455, 196608, 262154, 82455, 0, 262155, 82455, 0, 262156, 82455, 0, 262157, 82455, 0, 262158, 82455, 0, 262159, 82455, 0, 262160, 82455, 2, 262161, 82455, 0, 262162, 82455, 0, 262163, 82455, 2, 262164, 82455, 0, 262165, 82455, 131072, 262166, 82455, 0, 262167, 82455, 0, 262168, 82455, 0, 262169, 54907, 0, 262170, 54907, 0, 262171, 54907, 0, 262172, 54907, 0, 262173, 54907, 0, 262174, 54907, 0, 262175, 54907, 0, 262176, 54907, 131072, 262177, 54907, 0, 262178, 54907, 0, 262179, 54907, 0, 327680, 82455, 196610, 327681, 82455, 0, 327682, 82455, 0, 327683, 82455, 65537, 327684, 82455, 0, 327685, 82455, 0, 327686, 82455, 0, 327687, 82455, 0, 327688, 82455, 0, 327689, 82455, 0, 327690, 82455, 0, 327691, 82455, 0, 327692, 82455, 0, 327693, 82455, 0, 327694, 82455, 0, 327695, 82455, 0, 327696, 82455, 0, 327697, 82455, 0, 327698, 82455, 0, 327699, 82455, 0, 327700, 82455, 65538, 327701, 82455, 1, 327702, 82455, 0, 327703, 82455, 0, 327704, 82455, 0, 327705, 54907, 0, 327706, 54907, 0, 327707, 54907, 0, 327708, 54907, 0, 327709, 54907, 0, 327710, 54907, 0, 327711, 54907, 0, 327712, 54907, 0, 327713, 54907, 0, 327714, 54907, 0, 327715, 54907, 0, 393216, 82455, 0, 393217, 82455, 0, 393218, 82455, 196610, 393219, 82455, 0, 393220, 82455, 0, 393221, 82455, 0, 393222, 82455, 0, 393223, 82455, 0, 393224, 82455, 131073, 393225, 82455, 65537, 393226, 82455, 0, 393227, 82455, 196609, 393228, 82455, 65536, 393229, 82455, 0, 393230, 82455, 0, 393231, 82455, 0, 393232, 82455, 0, 393233, 82455, 0, 393234, 82455, 0, 393235, 82455, 0, 393236, 82455, 65536, 393237, 82455, 0, 393238, 82455, 2, 393239, 82455, 0, 393240, 82455, 0, 393241, 54907, 0, 393242, 54907, 0, 393243, 54907, 0, 393244, 54907, 65537, 393245, 54907, 0, 393246, 54907, 0, 393247, 54907, 0, 393248, 54907, 0, 393249, 54907, 0, 393250, 54907, 0, 393251, 54907, 0 )
 
-[node name="CarpetTiler" parent="Ground/GroundMap" instance=ExtResource( 12 )]
+[node name="CarpetTiler" parent="Ground/GroundMap" instance=ExtResource( 13 )]
 carpet_tile_index = 82455
 
-[node name="KitchenFloorTiler" parent="Ground/GroundMap" instance=ExtResource( 6 )]
+[node name="KitchenFloorTiler" parent="Ground/GroundMap" instance=ExtResource( 4 )]
 kitchen_tile_index = 54907
 
 [node name="Exits" type="Node2D" parent="Ground"]
 
-[node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 11 )]
+[node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 7 )]
 position = Vector2( 130.547, 315.908 )
 scale = Vector2( 0.539476, -0.539476 )
 exit_direction = 4
 
-[node name="Shadows" parent="Ground" instance=ExtResource( 7 )]
+[node name="Shadows" parent="Ground" instance=ExtResource( 6 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
@@ -67,7 +67,7 @@ cell_shadow_mapping = {
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
 scale = Vector2( 0.5, 0.5 )
 mode = 2
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 18 )
 cell_size = Vector2( 128, 104 )
 cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
 cell_tile_origin = 1
@@ -77,87 +77,97 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -262125, 1, 0, -262124, 13, 0, -262123, 13, 0, -262122, 1, 0, -262121, 4, 0, -262120, 1, 0, -262119, 1, 0, -262118, 5, 0, -262117, 1, 0, -262116, 13, 0, -262115, 1, 0, -262114, 3, 0, -262113, 1, 0, -262112, 13, 0, -262111, 13, 0, -262110, 13, 0, -262109, 13, 0, -262108, 1, 0, -196589, 16, 0, -196572, 1, 0, -131053, 14, 0, -131036, 1, 0, -1, 1, 0, -65536, 13, 0, -65535, 13, 0, -65534, 1, 0, -65533, 4, 0, -65532, 1, 0, -65531, 1, 0, -65530, 5, 0, -65529, 1, 0, -65528, 13, 0, -65527, 1, 0, -65526, 3, 0, -65525, 1, 0, -65524, 1, 0, -65523, 7, 0, -65522, 1, 0, -65521, 13, 0, -65520, 1, 0, -65519, 6, 0, -65518, 1, 0, -65517, 15, 0, -65511, 11, 196610, -65510, 8, 131074, -65509, 9, 131075, -65508, 8, 65536, -65507, 10, 65538, -65506, 10, 65537, -65505, 11, 1, -65500, 1, 0, 65535, 16, 0, 25, 11, 3, 36, 1, 0, 131071, 14, 0, 65561, 10, 196608, 65572, 1, 0, 196607, 14, 0, 131096, 18, 2, 131097, 8, 2, 131108, 1, 0, 262143, 14, 0, 196632, 18, 3, 196633, 8, 3, 196644, 1, 0, 327679, 14, 0, 262168, 18, 3, 262169, 9, 458755, 262180, 1, 0, 393215, 14, 0, 327704, 18, 3, 327705, 9, 458753, 327716, 1, 0, 458751, 14, 0, 393240, 18, 1, 393241, 8, 1, 393252, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 1, 0, 458772, 1, 0, 458773, 1, 0, 458774, 1, 0, 458775, 1, 0, 458776, 1, 0, 458777, 1, 0, 458778, 1, 0, 458779, 1, 0, 458780, 1, 0, 458781, 1, 0, 458782, 1, 0, 458783, 1, 0, 458784, 1, 0, 458785, 1, 0, 458786, 1, 0, 458787, 1, 0, 458788, 1, 0 )
 
-[node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 9 )]
+[node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 11 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
 [node name="KitchenObstacleTiler" type="Node" parent="Obstacles/ObstacleMap"]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 bare_countertop_tile_index = 8
 grill_tile_index = 9
 sink_tile_index = 10
 countertop_plates_tile_index = 11
 
-[node name="RobotDog" parent="Obstacles" instance=ExtResource( 10 )]
+[node name="RobotDog" parent="Obstacles" instance=ExtResource( 16 )]
 position = Vector2( 1259.2, 264.534 )
 
-[node name="Mic1" parent="Obstacles" instance=ExtResource( 16 )]
+[node name="Mic1" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 1623.46, 328.468 )
 
-[node name="Mic2" parent="Obstacles" instance=ExtResource( 15 )]
+[node name="Mic2" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( 1649.42, 234.088 )
 
-[node name="WoodPillar" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="WoodPillar" parent="Obstacles" instance=ExtResource( 14 )]
 position = Vector2( 498, 9 )
 
-[node name="WoodPillar3" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="WoodPillar3" parent="Obstacles" instance=ExtResource( 14 )]
 position = Vector2( 1873.73, -148.773 )
 
-[node name="Stool1" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool1" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 768, 35 )
 
-[node name="WoodTable" parent="Obstacles" instance=ExtResource( 14 )]
+[node name="WoodTable" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 680, 35 )
 
-[node name="Stool2" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool2" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 592, 35 )
 collision_layer = 0
 collision_mask = 0
 occupied = true
 
-[node name="Stool7" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool7" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 1168, 35 )
 
-[node name="WoodTable4" parent="Obstacles" instance=ExtResource( 14 )]
+[node name="WoodTable4" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 1080, 35 )
 
-[node name="Stool8" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool8" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 992, 35 )
 
-[node name="Stool3" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool3" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 525, 322 )
 
-[node name="WoodTable2" parent="Obstacles" instance=ExtResource( 14 )]
+[node name="WoodTable2" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 437.285, 321.719 )
 
-[node name="Stool4" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool4" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 349, 322 )
 
-[node name="Stool5" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool5" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 925.285, 321.719 )
 
-[node name="WoodTable3" parent="Obstacles" instance=ExtResource( 14 )]
+[node name="WoodTable3" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 837.285, 321.719 )
 
-[node name="Stool6" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool6" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 749.285, 321.719 )
 
-[node name="Stool9" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool9" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 1240.04, 320.938 )
 
-[node name="Stool10" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool10" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 1313.39, 219 )
 
-[node name="Stool11" parent="Obstacles" instance=ExtResource( 8 )]
+[node name="Stool11" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 1383.76, 123.852 )
 
-[node name="CreatureSpawner1" parent="Obstacles" instance=ExtResource( 17 )]
-position = Vector2( 1185.68, 224.937 )
-target_properties = {
-"creature_id": "alyssa",
-"elevation": 0.0,
-"orientation": 0
-}
-spawn_if = "true"
-
 [node name="Spawns" type="Node2D" parent="."]
+
+[node name="Chef" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 1512, 255 )
+orientation = 1
+id = "chef"
+
+[node name="Camera" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 1165.17, 264.535 )
+__meta__ = {
+"_editor_description_": ""
+}
+id = "camera"
+
+[node name="CameraLeft" parent="Spawns" instance=ExtResource( 8 )]
+position = Vector2( 1108.61, 223.523 )
+__meta__ = {
+"_editor_description_": ""
+}
+id = "camera-left"

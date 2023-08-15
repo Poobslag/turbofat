@@ -3,9 +3,9 @@
 [ext_resource path="res://src/main/world/environment/sand/banana-hq-floor-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/environment/sand/banana-hq-obstacle-library.tres" type="TileSet" id=3]
-[ext_resource path="res://src/main/world/CreatureSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/world/environment/restaurant/RestaurantSpawns.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=7]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=11]
@@ -49,16 +49,17 @@ cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
 cell_tile_origin = 1
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 0, 82455, 2, 1, 82455, 0, 2, 82455, 196608, 3, 82455, 0, 4, 82455, 0, 5, 82455, 0, 6, 82455, 0, 7, 82455, 0, 8, 82455, 0, 65536, 82455, 0, 65537, 82455, 65538, 65538, 82455, 0, 65539, 82455, 0, 65540, 82455, 0, 65541, 82455, 0, 65542, 82455, 0, 65543, 82455, 2, 65544, 82455, 0, 131072, 82455, 0, 131073, 82455, 0, 131074, 82455, 0, 131075, 82455, 0, 131076, 82455, 196609, 131077, 82455, 0, 131078, 82455, 0, 131079, 82455, 0, 131080, 82455, 0, 196608, 82455, 0, 196609, 82455, 0, 196610, 82455, 1, 196611, 82455, 0, 196612, 82455, 0, 196613, 82455, 0, 196614, 82455, 0, 196615, 82455, 0, 196616, 82455, 0, 262144, 82455, 0, 262145, 82455, 0, 262146, 82455, 0, 262147, 82455, 0, 262148, 82455, 0, 262149, 82455, 0, 262150, 82455, 0, 262151, 82455, 0, 262152, 82455, 0, 327680, 82455, 0, 327681, 82455, 0, 327682, 82455, 0, 327683, 82455, 131074, 327684, 82455, 0, 327685, 82455, 0, 327686, 82455, 0, 327687, 82455, 0, 327688, 82455, 0, 393216, 82455, 0, 393217, 82455, 0, 393218, 82455, 131072, 393219, 82455, 196609, 393220, 82455, 0, 393221, 82455, 0, 393222, 82455, 0, 393223, 82455, 0, 393224, 82455, 0 )
+tile_data = PoolIntArray( -65534, 82455, 0, -65533, 82455, 0, -65532, 82455, 0, -65531, 82455, 0, -65530, 82455, 196609, -65529, 82455, 0, -65528, 82455, 131073, -65527, 82455, 0, 0, 82455, 0, 1, 82455, 0, 2, 82455, 0, 3, 82455, 0, 4, 82455, 0, 5, 82455, 0, 6, 82455, 0, 7, 82455, 0, 8, 82455, 0, 9, 82455, 0, 10, 82455, 0, 11, 82455, 0, 131071, 82455, 196608, 65536, 82455, 0, 65537, 82455, 0, 65538, 82455, 0, 65539, 82455, 0, 65540, 82455, 0, 65541, 82455, 0, 65542, 82455, 0, 65543, 82455, 0, 65544, 82455, 0, 65545, 82455, 2, 65546, 82455, 0, 65547, 82455, 0, 65548, 82455, 0, 196607, 82455, 0, 131072, 82455, 0, 131073, 82455, 0, 131074, 82455, 0, 131075, 82455, 131074, 131076, 82455, 0, 131077, 82455, 0, 131078, 82455, 0, 131079, 82455, 0, 131080, 82455, 0, 131081, 82455, 0, 131082, 82455, 0, 131083, 82455, 0, 131084, 82455, 0, 131085, 82455, 0, 262143, 82455, 0, 196608, 82455, 0, 196609, 82455, 0, 196610, 82455, 0, 196611, 82455, 0, 196612, 82455, 0, 196613, 82455, 0, 196614, 82455, 0, 196615, 82455, 0, 196616, 82455, 0, 196617, 82455, 0, 196618, 82455, 0, 196619, 82455, 0, 196620, 82455, 0, 196621, 82455, 0, 327679, 82455, 0, 262144, 82455, 0, 262145, 82455, 0, 262146, 82455, 0, 262147, 82455, 0, 262148, 82455, 0, 262149, 82455, 0, 262150, 82455, 0, 262151, 82455, 0, 262152, 82455, 0, 262153, 82455, 0, 262154, 82455, 0, 262155, 82455, 0, 262156, 82455, 0, 262157, 82455, 0, 393215, 82455, 0, 327680, 82455, 0, 327681, 82455, 1, 327682, 82455, 0, 327683, 82455, 0, 327684, 82455, 0, 327685, 82455, 0, 327686, 82455, 0, 327687, 82455, 0, 327688, 82455, 0, 327689, 82455, 0, 327690, 82455, 0, 327691, 82455, 0, 327692, 82455, 0, 327693, 82455, 0, 393216, 82455, 0, 393217, 82455, 196608, 393218, 82455, 0, 393219, 82455, 0, 393220, 82455, 0, 393221, 82455, 0, 393222, 82455, 0, 393223, 82455, 131074, 393224, 82455, 0, 393225, 82455, 0, 393226, 82455, 0, 393227, 82455, 0, 393228, 82455, 0, 458754, 82455, 0, 458755, 82455, 0, 458756, 82455, 0, 458757, 82455, 196610, 458758, 82455, 131074, 458759, 82455, 0, 458760, 82455, 0, 458761, 82455, 0, 458762, 82455, 0 )
 
 [node name="SandTiler" parent="Ground/GroundMap" instance=ExtResource( 17 )]
 
 [node name="Exits" type="Node2D" parent="Ground"]
 
 [node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 10 )]
-position = Vector2( 130.547, 315.908 )
+position = Vector2( 493.716, 304.762 )
 scale = Vector2( 0.539476, -0.539476 )
-exit_direction = 4
+texture = ExtResource( 7 )
+exit_direction = 3
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 12 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
@@ -73,12 +74,33 @@ cell_shadow_mapping = {
 
 [node name="BottleMat" parent="Ground" instance=ExtResource( 13 )]
 material = SubResource( 2 )
+position = Vector2( 261.334, 177.75 )
 
 [node name="Chips1" parent="Ground" instance=ExtResource( 16 )]
+flip_h = false
+frame = 4
 
 [node name="Chips2" parent="Ground" instance=ExtResource( 16 )]
 position = Vector2( 354.122, 190.136 )
+flip_h = false
+frame = 9
+
+[node name="Chips3" parent="Ground" instance=ExtResource( 16 )]
+position = Vector2( 141.93, 355.482 )
+flip_h = false
+frame = 9
+
+[node name="Chips4" parent="Ground" instance=ExtResource( 16 )]
+position = Vector2( 650.787, 61.2816 )
+frame = 4
+
+[node name="Chips5" parent="Ground" instance=ExtResource( 16 )]
+position = Vector2( 179.388, 31.8477 )
 frame = 8
+
+[node name="Chips6" parent="Ground" instance=ExtResource( 16 )]
+position = Vector2( 301.681, 317.492 )
+frame = 0
 
 [node name="Obstacles" type="YSort" parent="."]
 
@@ -93,38 +115,56 @@ cell_y_sort = true
 show_collision = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -1, 1, 0, -65536, 13, 0, -65535, 13, 0, -65534, 13, 0, -65533, 13, 0, -65532, 13, 0, -65531, 13, 0, -65530, 13, 0, -65529, 13, 0, -65528, 13, 0, -65527, 1, 0, 65535, 16, 0, 9, 1, 0, 131071, 14, 0, 65545, 1, 0, 196607, 14, 0, 131081, 1, 0, 262143, 14, 0, 196617, 1, 0, 327679, 14, 0, 262153, 1, 0, 393215, 14, 0, 327689, 1, 0, 458751, 14, 0, 393225, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0 )
+tile_data = PoolIntArray( -131071, 1, 0, -131070, 13, 0, -131069, 13, 0, -131068, 13, 0, -131067, 13, 0, -131066, 13, 0, -131065, 13, 0, -131064, 13, 0, -131063, 13, 0, -131062, 1, 0, -1, 1, 0, -65536, 13, 0, -65535, 17, 0, 65534, 1, 0, 65535, 17, 0, 131070, 16, 0, 196606, 14, 0, 131086, 1, 0, 262142, 14, 0, 196622, 1, 0, 327678, 14, 0, 262158, 1, 0, 393214, 14, 0, 327694, 1, 0, 458750, 1, 0, 458751, 1, 0, 393229, 1, 0, 393230, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0 )
 
 [node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 9 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="BananaStool" parent="Obstacles" instance=ExtResource( 18 )]
-position = Vector2( 76.8907, 86.1184 )
+[node name="StoolLeft" parent="Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 76, 86 )
 
-[node name="CreatureSpawner1" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 76.891, 87.118 )
-target_properties = {
-"creature_id": "kendall",
-"elevation": 90.0,
-"orientation": 0
-}
-spawn_if = "true"
+[node name="StoolCenter" parent="Obstacles" instance=ExtResource( 15 )]
+position = Vector2( 234, 58 )
 
-[node name="BananaStoolBig" parent="Obstacles" instance=ExtResource( 15 )]
-position = Vector2( 332.655, 92.418 )
-
-[node name="CreatureSpawner2" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 332.655, 93.418 )
-target_properties = {
-"creature_id": "frungle",
-"elevation": 130.0,
-"orientation": 1
-}
-spawn_if = "true"
+[node name="StoolRight" parent="Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 400, 59 )
 
 [node name="Bottle" parent="Obstacles" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 177.429, 159.77 )
+position = Vector2( 261.334, 177.75 )
 
-[node name="Spawns" parent="." instance=ExtResource( 8 )]
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="StoolLeft" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( 76, 87 )
+id = "stool_left"
+elevation = 90.0
+
+[node name="StoolCenter" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( 234, 59 )
+id = "stool_center"
+elevation = 130.0
+
+[node name="StoolRight" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( 400, 60 )
+id = "stool_right"
+elevation = 90.0
+
+[node name="Floor1" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( 516.542, 102.811 )
+orientation = 1
+id = "floor_1"
+
+[node name="Floor3" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( 581.949, 184.867 )
+orientation = 1
+id = "floor_3"
+
+[node name="Floor9" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( -29.3037, 164.65 )
+id = "floor_9"
+
+[node name="Floor12" parent="Spawns" instance=ExtResource( 5 )]
+position = Vector2( 317.141, 115.915 )
+id = "floor_12"
