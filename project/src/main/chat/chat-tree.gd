@@ -41,7 +41,7 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"poki": "res://src/main/world/environment/poki/PokiEnvironment.tscn",
 	"poki/walk": "res://src/main/world/environment/poki/PokiWalkEnvironment.tscn",
 	"sand": "res://src/main/world/environment/sand/SandEnvironment.tscn",
-	"banana_hq": "res://src/main/world/environment/sand/BananaHqEnvironment.tscn",
+	"sand/banana_hq": "res://src/main/world/environment/sand/BananaHqEnvironment.tscn",
 	"sand/walk": "res://src/main/world/environment/sand/SandWalkEnvironment.tscn",
 	"filming": "res://src/main/world/environment/sand/FilmingEnvironment.tscn",
 }

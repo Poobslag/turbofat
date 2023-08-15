@@ -1,7 +1,28 @@
 extends Node
-## Generates a BBCode Chatscript mood table for the wiki.
+## Generates BBCode Chatscript tables for the wiki.
 ##
-## This process is automated because the list of emoticons is likely to expand or change.
+## This process is automated because the list of emoticons and locations is likely to expand or change.
+##
+## Keys:
+## 	[L]: Generates a BBCode Chatscript location table.
+## 	[M]: Generates a BBCode Chatscript mood table.
+
+## key: (String) location ID corresponding to an entry in ChatTree.ENVIRONMENT_SCENE_PATHS_BY_ID
+## value: (String) location description for the ChatScript wiki page
+const LOCATION_DESCRIPTIONS_BY_ID := {
+	"filming": "Generic Turbo Fat restaurant interior with cameras",
+	"inside_turbo_fat": "Generic Turbo Fat restaurant interior",
+	"lemon": "\"Lemony Thickets\" environment",
+	"lemon/walk": "\"Lemony Thickets\" walking environment",
+	"lemon_2": "\"Welcome To Turbo Fat\" environment",
+	"marsh": "\"Merrymellow Marsh\" environment",
+	"marsh/walk": "\"Merrymellow Marsh\" walking environment",
+	"poki": "\"Poki Desert\" environment",
+	"poki/walk": "\"Poki Desert\" walking environment",
+	"sand": "\"Cannoli Sandbar\" environment",
+	"sand/banana_hq": "\"Cannoli Sandbar\" Banana HQ interior",
+	"sand/walk": "\"Cannoli Sandbar\" walking environment",
+}
 
 ## Number of columns in the BBCode table
 var _table_width := 1
@@ -14,9 +35,33 @@ var _prefixes_by_mood := {}
 onready var _text_edit := $TextEdit
 
 func _ready() -> void:
+	_show_mood_table()
+
+
+func _input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_M:
+			_show_mood_table()
+		KEY_L:
+			_show_location_table()
+
+
+func _show_location_table() -> void:
+	_text_edit.text = ""
+	_table_width = 2
+	_add_table_row(["location", "description"])
+	_add_table_row(["---", "---"])
+	var location_ids := ChatTree.ENVIRONMENT_SCENE_PATHS_BY_ID.keys()
+	location_ids.sort()
+	for location in location_ids:
+		_add_table_row([location, LOCATION_DESCRIPTIONS_BY_ID.get(location, "")])
+
+
+func _show_mood_table() -> void:
+	_text_edit.text = ""
 	_recalculate_prefixes_by_mood()
-	_recalculate_table_width()
-	_add_header_row()
+	_recalculate_mood_table_width()
+	_add_mood_header_row()
 	_add_mood_rows()
 
 
@@ -28,15 +73,13 @@ func _recalculate_prefixes_by_mood() -> void:
 		_prefixes_by_mood[mood].append(mood_prefix)
 
 
-func _recalculate_table_width() -> void:
+func _recalculate_mood_table_width() -> void:
 	_table_width = 1
 	for mood in _prefixes_by_mood:
 		_table_width = max(_table_width, _prefixes_by_mood[mood].size() + 1)
 
 
-func _add_header_row() -> void:
-	_text_edit.text = ""
-	
+func _add_mood_header_row() -> void:
 	# | mood | 1 | 2 | 3 |
 	var header_row := ["mood"]
 	while header_row.size() < _table_width:
