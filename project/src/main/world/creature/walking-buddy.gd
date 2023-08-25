@@ -111,12 +111,12 @@ func _walk() -> void:
 			# we're too far from our buddy, and they're following us. stop moving
 			new_non_iso_walk_direction = Vector2.ZERO
 		elif non_iso_walk_direction == Vector2.ZERO \
-				and buddy_relative_pos.length() < lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.2):
+				and buddy_relative_pos.length() < lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.5):
 			# we're too close to our buddy, and they're following us. start moving
 			new_non_iso_walk_direction = _desired_walk_direction
 	elif leader_or_follower == LeaderOrFollower.FOLLOWER:
 		if non_iso_walk_direction == Vector2.ZERO \
-				and buddy_relative_pos.length() > lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.8):
+				and buddy_relative_pos.length() > lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.5):
 			# we're too far from our buddy, and they're leading us. start moving
 			new_non_iso_walk_direction = _desired_walk_direction
 		elif non_iso_walk_direction != Vector2.ZERO and buddy_relative_pos.length() < TOO_CLOSE_THRESHOLD:
