@@ -12,9 +12,14 @@ id = "bar_10"
 position = Vector2( 1212.97, 121.172 )
 id = "bar_11"
 
-[node name="BarStool" parent="." instance=ExtResource( 2 )]
+[node name="BarstoolMiddle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1313, 220 )
-id = "bar_stool"
+id = "barstool_middle"
+elevation = 140.0
+
+[node name="BarstoolDown" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1240, 322 )
+id = "barstool_down"
 elevation = 140.0
 
 [node name="Chef" parent="." instance=ExtResource( 2 )]
