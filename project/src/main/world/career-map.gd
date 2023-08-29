@@ -273,6 +273,8 @@ func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 ##
 ## This can potentially include creatures which are important to a level, creatures which appear in a cutscene, or
 ## creatures which randomly show up sometimes in a region.
+##
+## This can also include special characters like the player or Fat Sensei.
 func _new_level_posse(level_index: int) -> LevelPosse:
 	var career_level: CareerLevel = _pickable_career_levels[level_index]
 	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
