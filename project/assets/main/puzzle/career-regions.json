@@ -239,6 +239,7 @@
       "name": "Cannoli Sandbar",
       "start": 32,
       "icon": "island",
+      "overworld_environment": "sand",
       "piece_speed": "2-5",
       "boss_level": {
         "id": "career/boss_4k"
