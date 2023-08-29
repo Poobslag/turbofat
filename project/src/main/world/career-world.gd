@@ -173,12 +173,12 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 	var remaining_customer_ids: Array = level_posse.customer_ids.duplicate()
 	var remaining_creature_indexes := [1, 0, 2]
 	
-	if level_posse.chef_id:
+	if level_posse.chef_id and not _is_excluded_from_level_creatures(level_posse.chef_id):
 		# if there's a chef_id, add the chef
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.creature_id = level_posse.chef_id
 	
-	if level_posse.observer_id:
+	if level_posse.observer_id and not _is_excluded_from_level_creatures(level_posse.observer_id):
 		# if there's an observer_id, add the observer
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.creature_id = level_posse.observer_id
@@ -187,6 +187,11 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 		# assign/randomize the remaining customer appearances
 		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
 		creature.add_to_group("customers")
+		
+		# skip any excluded level creatures
+		while remaining_customer_ids and _is_excluded_from_level_creatures(remaining_customer_ids.front()):
+			remaining_customer_ids.pop_front()
+		
 		if remaining_customer_ids:
 			# assign the next customer
 			creature.creature_id = remaining_customer_ids.pop_front()
@@ -195,6 +200,17 @@ func _refresh_single_level_creatures(level_posse: LevelPosse) -> void:
 			creature.creature_def = PlayerData.random_customer_def()
 	
 	_hide_duplicate_creatures()
+
+
+## Returns 'true' if the specified creature shouldn't appear on the career map.
+func _is_excluded_from_level_creatures(creature_id: String) -> bool:
+	var result := false
+	if creature_id == CreatureLibrary.PLAYER_ID:
+		result = true
+	if creature_id == CreatureLibrary.SENSEI_ID \
+			and not PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
+		result = true
+	return result
 
 
 ## Updates the creature/chef IDs for a non-boss level, where the player has three choices.
@@ -209,14 +225,23 @@ func _refresh_multi_level_creatures(level_posses: Array) -> void:
 		var chef_id: String = level_posses[i].chef_id
 		var customer_ids: Array = level_posses[i].customer_ids
 		var creature: Creature = _level_creatures[i]
-		if chef_id:
+		var refreshed_creature := false
+		
+		if chef_id and not _is_excluded_from_level_creatures(chef_id):
 			# if there's a chef_id, show the level's chef
 			creature.creature_id = chef_id
-		elif customer_ids:
+			refreshed_creature = true
+		
+		if not refreshed_creature and customer_ids:
 			# if there's a customer_id, show the level's customer
-			creature.add_to_group("customers")
-			creature.creature_id = customer_ids[0]
-		else:
+			for next_customer_id in customer_ids:
+				if not _is_excluded_from_level_creatures(next_customer_id):
+					creature.add_to_group("customers")
+					creature.creature_id = next_customer_id
+					refreshed_creature = true
+					break
+		
+		if not refreshed_creature:
 			# randomize the customer
 			creature.add_to_group("customers")
 			creature.creature_def = PlayerData.random_customer_def()
