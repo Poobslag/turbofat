@@ -46,7 +46,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-shadow_scale = 1.2
+shadow_scale = 1.4
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 2 )
