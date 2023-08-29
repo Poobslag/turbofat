@@ -7,6 +7,9 @@ extends Node
 
 export (NodePath) var ground_map_path: NodePath
 
+## tile indexes in the ground tilemap which should be impassible (water, sinkholes, etc...)
+export (Array, int) var impassible_ground_indexes := []
+
 ## tile index in this tilemap which should be used to make tiles impassable
 export (int) var impassable_tile_index := -1
 
@@ -50,13 +53,17 @@ func autotile(value: bool) -> void:
 	var unwalkable_cells := {}
 	for cell_obj in _ground_map.get_used_cells():
 		var cell: Vector2 = cell_obj
+		
+		if not _is_walkable(cell):
+			continue
+		
 		for neighbor_x in range(cell.x - 1, cell.x + 2):
 			for neighbor_y in range(cell.y - 1, cell.y + 2):
 				if unwalkable_cells.has(Vector2(neighbor_x, neighbor_y)):
 					# already added an entry to the map
 					continue
 				
-				if _ground_map.get_cell(neighbor_x, neighbor_y) != TileMap.INVALID_CELL:
+				if _is_walkable(Vector2(neighbor_x, neighbor_y)):
 					# walkable; the ground map has terrain at that cell
 					continue
 				
@@ -70,6 +77,13 @@ func autotile(value: bool) -> void:
 	for unwalkable_cell_obj in unwalkable_cells:
 		var unwalkable_cell: Vector2 = unwalkable_cell_obj
 		_tile_map.set_cellv(unwalkable_cell, impassable_tile_index)
+
+
+## Returns true if the specified ground cell is walkable, or false if it has something like water or empty space where
+## the player can't walk.
+func _is_walkable(cell: Vector2) -> bool:
+	var cell_contents: int = _ground_map.get_cellv(cell)
+	return cell_contents != TileMap.INVALID_CELL and not cell_contents in impassible_ground_indexes
 
 
 ## Preemptively initializes onready variables to avoid null references.
