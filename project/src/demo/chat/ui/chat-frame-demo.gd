@@ -4,6 +4,7 @@ extends Node
 ## Keys:
 ## 	[0-9]: Prints a chat line; 1 = short, 9 = long, 0 = longest
 ## 	SHIFT+[0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
+## 	SHIFT+[L]: Changes the locale (english, spanish)
 ## 	'[', ']': Change the accent texture
 ## 	Arrows: Change the color and scale
 ## 	[A]: Make the chat window appear/disappear
@@ -96,8 +97,16 @@ func _input(event: InputEvent) -> void:
 			_chat_theme.dark = not _chat_theme.dark
 			_play_chat_event()
 		KEY_L:
-			_nametag_side = (_nametag_side + 1) % 3
-			_play_chat_event()
+			if Input.is_key_pressed(KEY_SHIFT):
+				var old_locale := TranslationServer.get_locale()
+				var locales := TranslationServer.get_loaded_locales()
+				var new_locale_index := (locales.find(old_locale) + 1) % locales.size()
+				var new_locale: String = locales[new_locale_index]
+				SystemData.misc_settings.set_locale(new_locale)
+				_play_chat_event()
+			else:
+				_nametag_side = (_nametag_side + 1) % 3
+				_play_chat_event()
 		KEY_N:
 			if _meta.has("nametag_text Form Clap"):
 				_meta.erase("nametag_text Form Clap")

@@ -116,6 +116,12 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 								% [args.size()])
 					
 					_localizables.append(PoolStringArray(args.slice(1, args.size())).join(" "))
+				"nametag_text":
+					if args.size() < 1:
+						push_warning("Invalid token count for nametag_text call. Expected 1 but was %s"
+								% [args.size()])
+					
+					_localizables.append(PoolStringArray(args.slice(0, args.size())).join(" "))
 
 
 ## Extract localizables from OS.get_scancode_string()
