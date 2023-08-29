@@ -140,7 +140,18 @@ func random_creature_type() -> int:
 ##
 ## Returns null if this region does not define any nonquirky chefs.
 func random_chef() -> CreatureAppearance:
-	return _random_creature(chefs)
+	var result := _random_creature(chefs)
+	
+	if result:
+		# Omit creatures if their 'chef_if' flag hasn't been met yet.
+		#
+		# Cannot statically type as 'CreatureDef' because of cyclic reference.
+		var creature_def = PlayerData.creature_library.get_creature_def(result.id)
+		
+		if not creature_def.is_chef():
+			result = null
+	
+	return result
 
 
 ## Returns a random nonquirky customer from this region's list of customers.
