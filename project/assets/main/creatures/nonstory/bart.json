@@ -35,5 +35,7 @@
     "color": "171419",
     "dark": true
   },
+  "chef_if": "chat_finished chat/career/sand/010_a_end",
+  "customer_if": "region_cleared sand",
   "fatness": 1.3
 }

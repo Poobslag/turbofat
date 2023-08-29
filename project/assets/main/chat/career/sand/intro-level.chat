@@ -1,0 +1,27 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_3
+sensei, s1, floor_1
+frungle, f, stool_center
+alyssa, a, stool_left
+bart, b, stool_right
+kendall, k, floor_9
+
+k: ^__^ Ohhh #player#! Welcome to our island, we're happy to have you. How was your flight?
+p1: We didn't fly! We just ehhh, ran here... ...
+a: /._. ... ...You ran? That's an odd choice for an island destination. You must have had to run... VERY far.
+s1: ^o^ Yes yes well, we needed the exercise. Have to keep up my girlish figure, you know~
+s1: Although I must say, there's a remarkable lack of tourists on the Kflab Islands?
+b: ^n^ Mmm technically not "The Kflab Islands". It's just "Kflab".
+p1: /._. "Kflab"... How is that pronounced?
+b: -_- It's pronounced... exactly how I just pronounced it. What kind of question is that??
+b: -u- It's the kind of question that only makes sense if you were reading my words on a screen. Unless. Oh. Okay. I see.
+s1: ^_^ Ahh anyway... If you'll excuse us, we have some cooking to take care of.
+ (p1 mood ._., p1 faces right)
+a: In the middle of our council meeting!? I mean, that's kind of rude.
+s1: <__< Ah, sorry yes! Force of habit. We'll be right back~
+ (s1 faces right, p1 exits)

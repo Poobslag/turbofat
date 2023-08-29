@@ -1,0 +1,70 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+(chef) player, p1, table_1
+sensei, s1, table_2
+(customer) xoxoxo, x, table_seat_left
+
+x: ^_^ Wow, this food is one-of-a-kind!
+[a-lot-of-practice] Thanks, I practiced so much!
+[anybody-could-do-it] Oh, anybody could do it...
+[fat-senseis-recipes] Thanks, it's Sensei's recipes!
+
+
+[fat-senseis-recipes]
+p1: ^_^ Thanks, it's all because of Fat Sensei's recipes!
+ (sensei mood <_<)
+[im-being-serious]
+
+[a-lot-of-practice]
+p1: ^_^ Thanks, I've put in a lot of practice!
+[im-being-serious]
+
+[anybody-could-do-it]
+p1: <_< Oh, it's really nothing special... Anybody could do it!
+[im-being-serious]
+
+
+[im-being-serious]
+x: ^__^ I'm being serious. These cakes are so soft and fluffy and cutting into them it's... it's like cutting into a kitten.
+s1: ._.; Ew. I mean... thank you. I think.
+p1: So you're really King Frungle Lumps III's dad?
+s1: /._. Mmm, I can see the resemblance. But your name... What happened to King Frungle Lumps II?
+x: ^O^ King Frungle Lumps II? Ha ha ha. No, no, there's a reason behind that silly name. Their mom wanted to name them Dillon!
+x: But I thought, "King Frungle Lumps III", here's a name that'll toughen them up a little you know.
+x: ^o^ If you can survive grade school with a name like that, you'll go on to do great things! It was just something I wanted to try.
+[how-did-that-work-out] How did that work out?
+[fun-experiment] What a fun experiment!
+[your-kids-a-jerk] Congrats, you raised a jerk
+[putting-your-kid] Do you regret it?
+
+
+[putting-your-kid]
+p1: -_- Well, do you... regret putting them through that?
+x: Mmmm well, you know. They're wealthy and powerful, buuuut I don't think they have many friends.
+[that-seems-great]
+
+[your-kids-a-jerk]
+p1: -__- Well, they're a total jerk now so... I mean, good job I guess.
+x: ^O^ Ahhaha! Thank you. You're right, they're wealthy and powerful buuuut I don't think they have many friends.
+[that-seems-great]
+
+[how-did-that-work-out]
+p1: /._. How did that work out?
+x: Mmmm well, you know. They're wealthy and powerful, buuuut I don't think they have many friends.
+[that-seems-great]
+
+[fun-experiment]
+p1: ^__^ Wow, what a fun experiment!
+x: ^O^ Ahhaha! Thank you. As far as whether it worked, ahh...
+x: ...They're wealthy and powerful, buuuut I don't think they have many friends.
+[that-seems-great]
+
+
+[that-seems-great]
+s1: .__.; Ehh!? That seems great! I have friends out the ass, but what does that get you in life? I'll take wealth and power any day.
+s1: /._. Hmm. Maybe I should change my name...
+ (p1 faces right, p1 mood -_-)

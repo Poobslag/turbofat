@@ -1,0 +1,68 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_3
+sensei, s1, floor_1
+frungle, f, stool_center
+alyssa, a, stool_left
+bart, b, stool_right
+kendall, k, floor_9
+
+p1: /._. So, you're not quite the hot tourist spot you want to be huh?
+k: u_u Well sadly - tourism has been pretty close to zero since we founded this island a few years ago!
+k: But the four of us are looking at our options for improving things. We're open to any ideas you have of course!
+s1: <__< Well, first of all... "Kflab" is a very... unconventional name. Does it mean anything?
+b: ._./ It's the first letter of our names. Kendall, King Frungle Lumps III, Alyssa and Bart. K-F-L-A-B.
+k: ._.; You see we all – well, some of us had different ideas for the island's name. So this was the compromise we agreed upon.
+s1: ^Y^ Hm. Hm. I see. Well... ...At least your island's stupid name acts as a helpful mnemonic so I can remember your less-stupid names.
+p1: Um! Well...
+[all_fine] Your names are fine!
+[frungle] Frungle, your name is dumb
+[kendall] Kendall, your name is pretty
+[bart] Bart, your name is normal
+
+
+[bart]
+p1: ._.; Bart, your name is perfectly normal. It's just these other names are a little out there!
+ (a mood -_-, f mood -_-, k mood -_-)
+p1: Anyway it's nice to meet all of you umm... Shoot let's see, was it...
+p1: /._. Kringle...?
+ (k mood >__<)
+p1: Alopecia...?
+ (a mood >__<)
+ (s1 faces right)
+p1: .__.; ...And... Kung Fu Hustle 3?
+ (f mood >__<)
+s1: ^N^ That... that wasn't even particularly close.
+ (a mood >__<, f mood >__<, k mood >__<)
+p1: ...Sorry! I'm probably just groggy from our long flight.
+[long_run]
+
+[kendall]
+p1: ^__^ Kendall, your name is pretty! It makes me think of Kringles, or gumballs!
+k: @_@ ...Gwuh? Gumballs!?
+p1: ._.; Umm, sorry! I'm probably just hungry from our long flight.
+[long_run]
+
+[frungle]
+p1: -_- King Frungle Lumps, your name is the only dumb one! I don't know why Fat Sensei... "lumped" you all together.
+ (f mood >_<)
+f: >__< THE ONLY DUMB ONE!? Your name's dumber than MY name!
+f: What is a "#player#" anyways? Some kind of fig!?
+s1: ...Ahh, sorry don't mind us. We're probably just grumpy because of our long flight.
+p1: >_< You mean our long run.
+s1: <__< Yes... Long flight, long run, whatever...
+
+[all_fine]
+p1: ^_^ All your names are just fine! Fat Sensei's not usually THIS bad with first impressions.
+p1: ...Maybe they're just grumpy because of our long flight.
+[long_run]
+
+
+[long_run]
+s1: >_< You mean our long run.
+ (s1 faces right)
+p1: <__< Yes... Long flight, long run, whatever...

@@ -1,0 +1,53 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_1
+sensei, s1, floor_3
+alyssa, a, stool_left
+kendall, k, floor_9
+
+k: ^__^ So Fat Senseiiiii! ...Did you want to share with Alyssa that one idea we brainstormed?
+k: /._. You remember, that one ummm... serendipitous rump idea?
+[kendall_what] Kendall what's wrong with you!?
+[sensei_what] Fat Sensei what's wrong with you!?
+[i_remember] I remember that idea!
+
+
+[i_remember]
+p1: ^O^ Oh yeah! The serendipitous rump idea. I remember that one!
+ (p1 faces right, s1 mood ._.;)
+s1: ._.; No you don't!!! ...What serendipitous rump idea!?
+[kendall_are_you_talking_about]
+
+[kendall_what]
+p1: >__< Kendall, what's wrong with you!?
+ (p1 faces left, a faces left, k mood ._.;)
+k: ._.; That's what I remember! Something about serendipity? ...And rumps?
+[kendall_are_you_talking_about]
+
+[sensei_what]
+p1: >__< Fat Sensei, what's wrong with you!?
+ (p1 faces right, s1 mood ._.;)
+s1: ._.; That's not what I said!!! ...What serendipitous rump idea!?
+[kendall_are_you_talking_about]
+
+[kendall_are_you_talking_about]
+s1: /._. Kendall, are you talking about our 'serendipitous circumstances' in Poki Desert?
+s1: That was tongue in cheek. ...Serendipitous circumstances is a long-winded way of saying we got lucky.
+[that_would_be_great]
+
+
+[that_would_be_great]
+a: ^Y^ Sure - something like that would be great! But I don't think we can count on it.
+ (p1 faces left)
+s1: -_- Ah yes, thank you!! ...See? That's sound advice from the person who thinks I'm rude, poorly grammared, and thin skinned.
+ (say_if not has_flag dumpy_sensei)
+s1: -_- Ah yes, thank you!! ...See? That's sound advice from the person who thinks I'm rude, dumpy, poorly grammared, and thin skinned.
+ (say_if has_flag dumpy_sensei)
+a: ._.; Wh-what!? Is it something I said!?
+ (a faces right)
+s1: -__- Sorry, what was that? I couldn't understand your perfect grammar through your remarkably fat skin.
+a: .__.; What did I do to you...

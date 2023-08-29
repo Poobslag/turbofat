@@ -1,0 +1,172 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_1
+sensei, s1, floor_3
+frungle, f, stool_center
+alyssa, a, stool_left
+bart, b, stool_right
+kendall, k, floor_9
+
+p1: So hmm... IF we were to change the name...
+f: ^y^ Yes, that's a great idea! We can change it to something like... Frungleton! Or Frungle Lump Isle.
+ (b faces left)
+s1: <_< Mmmm well, it's unfair to name it after just one of the four council members...
+b: THREE council members.
+ (b faces right)
+s1: /._. Three?
+a: -_- Yyyyyyep. Three actual council members and a self-proclaimed "king".
+p1: Self-proclaimed!? Well, why don't we just name it after...
+ (unset_flag made_bad_island_suggestion)
+ (unset_phrase bad_island_name)
+[four_names] You four, but different
+[three_names] You three
+[two_names] Us two
+[one_name] Fat Sensei
+
+
+[four_names]
+p1: Name it after you four... but just in a punchier way!
+s1: Or I was thinking, if w-
+f: ^_^ I like #player.possessive# idea! How about a name like... Frungle and Friends? King Frungle and the Lumps!
+ (b faces left)
+a: -__- ...'King Frungle And The Lumps'? We're naming an island. Not a pop music act from the ancient 20th century.
+ (set_phrase bad_island_name King Frungle And The Lumps)
+[so_anyways]
+
+[three_names]
+p1: /._. Name it after you three... If we remove King Frungle's letters from the name, that leaves us with what. K-A-B? Hmm...
+[kab]
+
+[two_names]
+p1: ^_^ Name it after the two of us... Fat Sensei and #player#!
+b: -_- ...What?
+p1: ^__^ #player#-Fat Isle! Or... Fat-#player#-sei-burg!
+s1: -__- #player#, you already stuck us with the name 'Turbo Fat'. Please stop making up names. You're terrible at it.
+p1: u_u But it's so fun...
+ (set_flag made_bad_island_suggestion)
+[so_anyways]
+
+[one_name]
+p1: ^__^ Name it after Fat Sensei! I have the perfect name too!
+b: -_- ...The perfect name?
+s1: Yes please, enlighten us. What do YOU want to call it?
+ (p1 faces right)
+[fatten_island] Fatten Island
+[fatsmania] Fatsmania
+[fatagascar] Fatagascar
+[the_isle_of_fats] The Isle Of Fats
+
+
+[fatten_island]
+p1: ^O^ We'll call it Fatten Island! You know?
+ (set_phrase bad_island_name Fatten Island)
+[are_you_quite_done]
+
+[fatagascar]
+p1: ^O^ We'll call it Fatagascar! You know?
+ (set_phrase bad_island_name Fatagascar)
+[are_you_quite_done]
+
+[the_isle_of_fats]
+p1: ^O^ We'll call it The Isle Of Fats! You know?
+ (set_phrase bad_island_name The Isle Of Fats)
+[are_you_quite_done]
+
+[fatsmania]
+p1: ^O^ We'll call it Fatsmania! You know?
+ (set_phrase bad_island_name Fatsmania)
+[are_you_quite_done]
+
+
+[are_you_quite_done]
+s1: -__- (cough) ...Are you quite done?
+p1: ._. Yeah, sure.
+ (p1 faces left)
+[so_anyways]
+
+[so_anyways]
+s1: /._. So anyways... I was thinking if we remove King Frungle's letters from the name, that leaves us with what. K-A-B? Hmm...
+ (b faces right)
+[kab]
+
+[kab]
+k: /._. Kendall, Alyssa and Bart...
+ (b faces left, a faces left, f faces left)
+k: Kend-all-al-liss-sa-an-bart... Ken-uh-lee-sa-and-bart...
+k: /._. ...Cannoli Sandbar?
+a: ^o^ Cannoli Sandbar? Oh that's much better!
+f: .__.; What? No! What about... Cannoli Sandblumps? Or Canfrungle Alyssabar?
+b: ^Y^ Hm. Everything works out if we just take out King Frungle's name. Thoughts?
+ (a faces right, f faces right)
+ (k mood ^y^)
+f: >__< THOUGHTS!?! I have a few THOUGHTS!!! Is a string of profanities a THOUGHT!?
+[i_like_cannoli_sandbar] I like Cannoli Sandbar
+[i_like_specific_name] I still like #bad_island_name#
+ (link_if has_phrase bad_island_name)
+[i_like_cannoli_sandblumps] I like Cannoli Sandblumps
+[i_like_generic_name] I still like my other name
+ (link_if has_flag made_bad_island_suggestion)
+[i_like_canfrungle_alyssabar] I like Canfrungle Alyssabar
+
+
+[i_like_cannoli_sandbar]
+p1: ^o^ Ooh, I like the sound of Cannoli Sandbar! Let's call it that.
+ (set_flag player_in_favor)
+b: ^Y^ Fair enough, Let's vote.
+[vote]
+
+[i_like_specific_name]
+p1: ^O^ I still like #bad_island_name#! C'mon who's with me? #bad_island_name#!!! Let's call it that.
+ (unset_flag player_in_favor)
+b: ^Y^ How about this, let's take a vote.
+[vote]
+
+[i_like_cannoli_sandblumps]
+p1: ^n^ Actually, I like the sound of Cannoli Sandblumps! Let's call it that.
+ (unset_flag player_in_favor)
+b: ^Y^ Fair enough, Let's vote.
+[vote]
+
+[i_like_generic_name]
+p1: ^n^ I still like that other name I came up with...
+ (unset_flag player_in_favor)
+b: ^Y^ Fair enough, Let's vote.
+[vote]
+
+[i_like_canfrungle_alyssabar]
+p1: ^n^ Actually, I like the sound of Canfrungle Alyssabar! Let's call it that.
+ (unset_flag player_in_favor)
+b: ^Y^ How about this, let's take a vote.
+[vote]
+
+
+[vote]
+b: ._./ All in favor of Cannoli Sandbar?
+ (b faces left)
+[vote_five_vs_one]
+ (link_if has_flag player_in_favor)
+[vote_four_vs_two]
+ (link_if not has_flag player_in_favor)
+
+
+[vote_five_vs_one]
+f: ...
+ (k mood ._./, s1 mood ._./, b mood ._./, a mood ._./, p1 mood ._./)
+k: <_< Oooh sorry, that's five against one...
+ (f mood u__u)
+f: You're all so mean!
+ (f exits, k mood ._.;, a mood ^_^)
+b: ^_^ Ooh. five against zero. Hey cool, haha. Two birds with one stone.
+
+[vote_four_vs_two]
+f: ...
+ (k mood ._./, s1 mood ._./, b mood ._./, a mood ._./)
+k: <_< Oooh sorry, that's four against two...
+ (f mood u__u)
+f: You're all so mean!
+ (f exits, k mood ._.;, a mood ^_^)
+b: ^_^ Ooh. Four against one. Hey cool, haha. Two birds with one stone.

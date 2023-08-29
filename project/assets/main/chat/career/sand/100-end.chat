@@ -1,0 +1,58 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) frungle, f, table_seat_left
+
+p1: So... How was your food? It looks like you enjoyed it~
+f: >__< Don't tell me what I enjoyed! The food was terrible. Everything is terrible!!! You're both terrible!
+ (f faces left)
+p1: ...
+ (p1 mood <_<, s1 mood <_<)
+s1: ._. ...I have some advice for you, King Frungle Lumps III. You're not going to like it, but it's important that you hear it from me first.
+f: Hmph, well fine. Give me your stupid advice.
+ (f faces right)
+s1: /._. You see, King Frungle, the thing is, how do I put this...
+s1: The word 'Boob' looks like boobs in three different ways.
+ (p1 faces right)
+s1: ^Y^ The upper-case 'B' looks like boobs from above. The middle 'oo' looks like boobs from the front. And the last 'b' looks like boobs from the side.
+f: ...!?
+f: >__< WHAT!? You're right, I didn't like that advice at ALL! Get out of here, you filthy jagoon!!!
+p1: ._.; Umm. Okay. I have some ACTUAL advice.
+ (p1 faces left)
+[being_alone_hurts] It's no fun being alone
+[you_suck] >__< WHERE do I BEGIN!
+[treat_people_better] Be nicer to people
+
+
+[treat_people_better]
+p1: ^y^ Your life will improve when you learn how to treat people better.
+[you_filthy_jagoon]
+
+[being_alone_hurts]
+p1: /._. It hurts when nobody wants you around, doesn't it?
+p1: But if people treated you the way you treat them, you wouldn't want them around either.
+[you_filthy_jagoon]
+
+[you_suck]
+p1: >_< I can't stand you. You're selfish, you complain and insult people all the time-
+p1: >__< You're even rude to Kendall, the only friend you actually have! But they're kind of everyone's friend, so maybe they don't count-
+p1: >___< Also you're an annoying customer, and umm your handwriting sucks and... did I miss anything?
+s1: <_< Ahh... I think that covers it.
+ (p1 faces right)
+p1: ^O^ Oh yeah and what the heck is with your stupid name!? Your drivers license must be like a mile long.
+ (p1 faces left)
+[you_filthy_jagoon]
+
+
+[you_filthy_jagoon]
+p1: -_- ...You filthy jagoon.
+f: u__u F-filthy jagoon!? Th-that was uncalled for! Oww! ...Owwwwww!!!
+ (p1 faces right, s1 exits)
+f: /._. Wait just a minute... Is THAT what I've been doing to people?
+ (p1 exits)
+f: ...Wow! ... ...I suck.

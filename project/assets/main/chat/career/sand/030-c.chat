@@ -1,0 +1,64 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_1
+sensei, s1, floor_3
+frungle, f, stool_center
+alyssa, a, stool_left
+bart, b, stool_right
+kendall, k, floor_9
+
+k: ^__^/ Oh, Fat Sensei! We just finished up our daily council meeting.
+s1: ^_^/ Ah yes! Nice to see you again, Kendall. ...Alyssa. ...Bart. ...And, umm... really weird named person.
+f: >__< ...WEIRD NAMED PERSON??
+ (nametag_text ???)
+p1: /._. It started with an F didn't it? I think it was...
+[frumble_lunks] /._. Frumble Lunks
+[flumble_lonks] /._. Flumble Lonks
+[frungle_lumps] /._. Frungle Lumps
+[flumgle_lomps] /._. Flumgle Lomps
+[flabbo] /._. Flabbo
+
+[frumble_lunks]
+p1: I think it was Frumble Lunks?
+[my_name_is]
+
+[flabbo]
+p1: I think it was Flabbo?
+[my_name_is]
+
+[flumble_lonks]
+p1: I think it was Flumble Lonks?
+[my_name_is]
+
+[frungle_lumps]
+p1: I think it was Frungle Lumps?
+[my_name_is]
+
+[flumgle_lomps]
+p1: I think it was Flumgle Lomps?
+[my_name_is]
+
+[my_name_is]
+f: >__< My name is King Frungle Lumps III!
+f: >_< And you're just pretending to forget it!! ...You're probably just jealous it's so much bigger than yours!!!
+k: ^__^ What King Frungle Lumps III means is umm, it's nice to see you too!
+a: ^N^ No they don't.
+ (b mood ^N^)
+f: No I don't! And stop doing that, I HATE when you translate for me.
+ (f faces left)
+f: >_< How am I supposed to hurt people's feelings when you keep cushioning my insults!
+k: ^o^ Ohh ha ha! They umm... they mean well.
+b: ^N^ Nope, no they don't.
+ (a mood ^N^)
+k: /._. They're ummm... an acquired taste?
+a: ^N^ Aaand that's strike three. Trust me I've known them forever? Same icky taste.
+ (b mood ^N^)
+f: ^O^ Haw haw, three strikes! Serves you right for sticking up for me, Kendall. Go ahead and take your stupid base.
+ (b exits, a exits)
+ (k mood ._.;)
+p1: ._.; I don't think that's how baseball works...
+ (f exits)

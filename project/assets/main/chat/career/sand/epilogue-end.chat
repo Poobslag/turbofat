@@ -1,0 +1,79 @@
+{"version": "2476", "advance_region": true}
+
+[location]
+sand/walk
+
+[characters]
+narrator, n
+player, p1
+sensei, s1
+
+n: Following Kendall's suggestion, the three remaining council members renamed 'Kflab' to 'Cannoli Sandbar'.
+n: A flood of tourists overwhelmed their airports, in addition to a few health-conscious visitors who arrived to the island on foot, in a completely sensible manner.
+p1: ^O^ Wow, tourism skyrocketed after we handled the problem with Cannoli Sandbar's incredibly dumb name!
+s1: ^_^ Yes, this should really help the prospects for...
+s1: ._. (sigh) ...the "Turbo Fat" franchise....
+[said-im-sorry] I already apologized for "Turbo Fat"
+[dont-sigh-at-me] "Turbo Fat" is a great name
+[your-fault] "Turbo Fat" is your fault
+[tunathys-fault] "Turbo Fat" is Tunathy's fault
+
+[dont-sigh-at-me]
+p1: ^o^ Don't sigh at me! Turbo Fat is a great name!!!
+ (stop_walking)
+s1: I'll sigh all I want! If Cannoli Sandbar put you in charge, you'd probably call it...
+s1: ...'Slovenly Chubsters' or something like that.
+[bad-for-frungle]
+
+[said-im-sorry]
+p1: ._.; Hey, I already apologized for the whole "Turbo Fat" mistake!
+ (stop_walking)
+s1: -_- Hmph, if Cannoli Sandbar put you in charge, you'd probably call it... 'Slovenly Chubsters' or something like that.
+[bad-for-frungle]
+
+[your-fault]
+p1: >__< Hey, that name is your fault!
+ (stop_walking)
+s1: -_- Hmph, if Cannoli Sandbar put you in charge, you'd probably call it... 'Slovenly Chubsters' or something like that.
+[bad-for-frungle]
+
+[tunathys-fault]
+p1: >_< Hey, that name is Tunathy's fault!
+ (stop_walking)
+s1: -_- Hmph, if Cannoli Sandbar put you in charge, you'd probably call it... 'Slovenly Chubsters' or something like that.
+[bad-for-frungle]
+
+[bad-for-frungle]
+p1: I feel a little bad for King Frungle though.
+ (start_walking)
+s1: Yes, well there's no point in feeling sad about things like that.
+ (p1 mood u_u)
+s1: It's human nature to look back on things like that and wonder how things could have gone differently.
+s1: ^n^ But the past is in the past, nothing can be done.
+[cheer-them-up] We could cheer them up
+[its-impossible] There's nothing we can do
+[its-only-frungle] Oh it's only King Frungle...
+
+[cheer-them-up]
+p1: ^_^ We could always visit King Frungle and cheer them up!
+s1: ^N^ Ahh, I'm afraid it's simply out of our hands.
+p1: ^__^ ...
+s1: ._.; Well... I suppose it's TECHNICALLY possible.
+ (stop_walking)
+s1: .__.; ... ...Do we have to???
+
+[its-impossible]
+p1: -_- You're right, there's nothing we can possibly do...
+p1: -__- ...We definitely can't like... visit them and cheer them up. I can't even imagine! (judgy head tilt)
+s1: ._.; There's just no way! ...Right? It's beyond our reach.
+p1: -__- ... (judgy head tilt)
+ (stop_walking)
+p1: -__- ... ... (judgy head tilt)
+s1: .__.; ... ...Please don't make me go!
+
+[its-only-frungle]
+p1: <_< I mean it's only King Frungle!
+p1: If it were anyone else, maybe we'd have to like... visit them and cheer them up.
+s1: ._.; Mmm... I suppose, technically.
+ (stop_walking)
+s1: .__.; ... ...I really don't want to do that though!

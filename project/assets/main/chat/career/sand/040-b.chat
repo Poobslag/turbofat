@@ -1,0 +1,54 @@
+{"version": "2476"}
+
+[location]
+filming
+
+[characters]
+(chef) player, p1, camera-left
+alyssa, a, camera
+
+a: So before we start shooting today, I wanted to show you something. Look at all these views you're getting!
+p1: ^O^ Wow! It's really taking off.
+a: ._./ Yeah! And look, your most popular episode was this one, where you had a big eye booger the whole time.
+p1: ._. Big eye booger!?
+[embarrassing] That's embarrassing
+[amazing] That's amazing
+[internet] That's the internet
+[disgusting] That's disgusting
+[weird] That's really weird
+
+
+[embarrassing]
+p1: <_< That's kind of embarrassing, actually...
+[bella]
+
+[amazing]
+p1: ^_^ That's kind of amazing, actually...
+[bella]
+
+[internet]
+p1: -_- That's the internet for you...
+[bella]
+
+[disgusting]
+p1: >_< That's kind of disgusting, actually...
+[bella]
+
+[weird]
+p1: @_@ That's umm... really weird.
+[bella]
+
+
+[bella]
+a: ^o^ Yeah, people in the comment section named her Bella!
+ (a faces left)
+a: I made an entire followup episode about her with nothing but close-ups of the booger.
+a: ^O^ Hah hah, you should see it! Hold on, I'll show you.
+ (a faces right)
+p1: .__.; I don't want to see that!!!
+ (a mood ^o^)
+a: /._. Hah hah! So I was thinking about a followup episode, maybe if, hmmm... Hey come here, can I see something real quick?
+ (a faces left)
+p1: I'm going to go wash my face...
+ (p1 exits)
+a: u__u Oh no! Bella!!!
