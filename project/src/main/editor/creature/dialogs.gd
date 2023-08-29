@@ -57,6 +57,7 @@ func _on_ExportButton_pressed() -> void:
 func _on_ExportDialog_file_selected(path: String) -> void:
 	var exported_creature: Creature = _creature_editor.center_creature
 	var exported_creature_def := exported_creature.creature_def
+	exported_creature_def.chef_if = "true"
 	exported_creature_def.customer_if = "true"
 	var exported_json := exported_creature_def.to_json_dict()
 	FileUtils.write_file(path, Utils.print_json(exported_json))
@@ -70,6 +71,7 @@ func _on_SaveButton_pressed() -> void:
 ## Updates the player character and writes it to their save file.
 func _on_SaveConfirmation_confirmed() -> void:
 	var saved_creature_def := _creature_editor.center_creature.creature_def
+	saved_creature_def.chef_if = "true"
 	saved_creature_def.customer_if = "false"
 	PlayerData.creature_library.player_def = saved_creature_def
 	PlayerSave.schedule_save()
