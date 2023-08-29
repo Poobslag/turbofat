@@ -130,13 +130,15 @@ position = Vector2( 837.285, 321.719 )
 [node name="Stool6" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 749.285, 321.719 )
 
-[node name="Stool9" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="BarstoolDown" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 1240.04, 320.938 )
 
-[node name="Stool10" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="BarstoolMiddle" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 1313.39, 219 )
 
-[node name="Stool11" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="BarstoolUp" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 1383.76, 123.852 )
 
 [node name="Spawns" parent="." instance=ExtResource( 3 )]
+
+[editable path="Spawns"]
