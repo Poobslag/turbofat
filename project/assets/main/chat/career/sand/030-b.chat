@@ -1,0 +1,67 @@
+{"version": "2476"}
+
+[location]
+filming
+
+[characters]
+(chef) player, p1, chef
+alyssa, a, camera
+
+p1: So these sugary globs have a little fruit and sugar, or sometimes cream cheese...
+a: @_@ Ugh cream cheese! In desserts!?
+a: I can't stand cream cheese, it tastes like armpits! ...And not in the cute way.
+[should_we_cut]
+[cute_way]
+[i_like_cream_cheese]
+
+
+[should_we_cut]
+p1: ._.; Should we cut?
+a: What do you mean 'cut'? ...This isn't a 20th century sitcom where we're trying to skimp on film.
+a: We just record everything and cut stuff out afterward!
+p1: /._. I see...
+a: ^n^ If you'd like me to cut the cheese later, you can-
+p1: ^N^ N-no! No thank you, that won't be necessary.
+a: ^Y^ Anyway keep going, what other ingredients?
+[a_little_butter]
+
+[cute_way]
+p1: <_< There's a cute way!?
+a: -o- You tell me if there's a cute way, you're the one using armpit cheese in your desserts!
+p1: -_- Please tell me this part isn't going on the internet?
+a: ^N^ Don't worry about that, just keep going. What other ingredients?
+[a_little_butter]
+
+[i_like_cream_cheese]
+p1: >_< Hey, I like cream cheese!
+a: ^n^ Okay, no thanks. I'm not going down THAT rabbit hole right now.
+p1: >__< Just because I like cream cheese doesn't mean I like armpits!
+a: ^N^ I'm not here to judge! I'm just here to film, just keep going. What other ingredients?
+[a_little_butter]
+
+
+[a_little_butter]
+p1: /._. Um yeah, a little butter, and sometimes this semisweet chocolate, for the...
+a: ^o^ Ugh, no way! I know that chocolate. You know what my friends call that brand? Dog vomit chocolate.
+a: ^O^ I can't belieeeeve such good food has such bad content! Eyeuucchh.
+[your_first_time] Is this your first time doing this?
+[we_dont_have_to] Maybe this was a bad idea
+[easy_on_the_insults] Please don't insult our food
+
+
+[your_first_time]
+p1: -_- I take it this is your first time doing this sort of thing. ...Can you NOT talk about our food's bad content?
+[dont_worry]
+
+[we_dont_have_to]
+p1: <__< Maybe this was a bad idea! I didn't know you had such strong objections to our food's bad content...
+[dont_worry]
+
+[easy_on_the_insults]
+p1: >_< Can you take it easy on the insults? I don't think our food has bad content...
+[dont_worry]
+
+
+[dont_worry]
+a: ^_^ Oh don't worry, this is all going great! ...I can see the arguments in the comment sections now, it'll make for good content.
+p1: @_@ Bad content is good content!?

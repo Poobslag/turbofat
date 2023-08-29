@@ -1,0 +1,64 @@
+{"version": "2476", "advance_region": true}
+
+[location]
+sand/walk
+
+[characters]
+player, p1
+sensei, s1
+
+p1: So we're already leaving, even though our restaurant in Kflab is struggling?
+s1: Ahh they'll get by on the few customers they have. It'll be tough for them but...
+s1: For now, we should focus our attention on other locations that are doing even worse!
+ (stop_walking)
+[where_to_next] Ooh, Sounds fun!
+[oh_sounds_fun] Oh. Sounds fun...
+[do_we_have_to] Do we have to?
+
+[post_epilogue_start]
+p1: ^__^ Wow, things really turned around for Cannoli Sandbar!
+ (start_if chat_finished chat/career/sand/epilogue)
+s1: ^__^ Yes, they'll have no problems with all those new customers they have! It should be smooth sailing for a while.
+s1: For now, we should focus our attention on other locations that are doing much, much worse.
+[where_to_next] Ooh, Sounds fun!
+[oh_sounds_fun] Oh. Sounds fun...
+[do_we_have_to] Do we have to?
+
+[where_to_next]
+p1: ^_^ Ooh! Sounds fun, where are we going next?
+s1: /._. Mmm yes, I forget! Was this next one the stinky swamp... or the active volcano?
+[dot_dot_dot]
+
+[oh_sounds_fun]
+p1: -_- Oh. Sounds fun...
+s1: /._. Yes, now off to our next restaurant! I forget, was this one the stinky swamp... or the active volcano?
+[dot_dot_dot]
+
+[do_we_have_to]
+p1: .__.; I mean... Do we have to?
+s1: /._. Yes yes, off to our next restaurant! I forget, was this one the stinky swamp... or the active volcano?
+[dot_dot_dot]
+
+[dot_dot_dot]
+p1: -_- ... ...
+[get_to_that_volcano] -__- I'm tossing you in that volcano
+[get_to_that_swamp] -__- I'm knocking you into the mud
+[its_a_joke] ._.; That's a joke, right?
+
+[get_to_that_volcano]
+p1: When we get to that volcano, I'm tossing you in.
+ (start_walking)
+[haha]
+
+[get_to_that_swamp]
+p1: When we get to that stinky swamp, I'm knocking you into the mud.
+ (start_walking)
+[haha]
+
+[its_a_joke]
+p1: I'm just going to pretend that's a joke. ...It's a joke, right?
+ (start_walking)
+[haha]
+
+[haha]
+s1: ^O^ Ah-ha hahahaha~

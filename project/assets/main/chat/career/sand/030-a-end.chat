@@ -1,0 +1,48 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_1
+sensei, s1, floor_3
+frungle, f, stool_center
+kendall, k, stool_left
+
+k: So how did Turbo Fat get so popular anyway? ...Was it anything we can imitate here?
+p1: ^y^ Oh just the usual stuff, marketing, word of mouth... Patience...
+k: <_< Mmm, yes, marketing! King Frungle's been umm... reaching out to people! It's been going... alright.
+f: >_< Yes yes, we're OBVIOUSLY already doing that stuff! We're not stupid, you know.
+s1: ^o^ Perhaps you could try some kind of a fun banana mascot? You obviously like bananas...
+f: >___< Ugh, I HATE bananas!
+[youre_a_banana] You're a banana
+[bananas_everywhere] But they're everywhere
+[sitting_on_banana] But you're sitting on one
+
+[sitting_on_banana]
+p1: /._. But... but you're sitting on a banana!
+f: >_< Does this banana look COMFORTABLE to you!? Do you want to sit on my banana and tell me how comfortable it is!?!
+f: .__.; It's rough, and it's coarse, and it gets everywhere!!
+[anything_else]
+
+[bananas_everywhere]
+p1: /._. But... they're so pervasive here!
+f: >_< Oh of course! How could I hate them when they're everywhere?? I bet you're also a big fan of mosquitos and... and sand!
+f: >__< Well, I hate bananas!! They're rough, and they're coarse, and they get everywhere!!
+[anything_else]
+
+[youre_a_banana]
+p1: -u- But... YOU'RE a banana! ...You've been a banana this whole time!
+f: ._.; What!? I'm not a banana!
+f: .__.; Kendall, don't listen to #player#, they're calling me a banana! I think THEY'RE secretly a banana!!
+ (f faces left)
+ (p1 mood -o-, p1 faces right, s1 mood ^_^)
+s1: ^Y^ Okay, that's enough. You're not a banana. Nobody's a banana. ... ...Bananas aren't real.
+[anything_else]
+
+[anything_else]
+k: Was there anything else? What about your Poki Desert location, you were mentioning that earlier.
+ (f faces right, p1 faces left)
+s1: ^_^ Ah-ha hahaha. Yes, the success of our Poki Desert location.
+s1: ^O^ Well, that one was more a matter of falling rump-first into serendipitous circumstances.
+k: /._. Oh we haven't done THAT yet. ...Which body part did you mention?

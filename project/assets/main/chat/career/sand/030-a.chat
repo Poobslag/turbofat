@@ -1,0 +1,65 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_1
+sensei, s1, floor_3
+frungle, f, stool_center
+kendall, k, stool_left
+
+s1: /._. So, I'm slightly confused by the name Kflab... After all, your names are Kendall and King Frumble Lumps III.
+p1: Yeah I was thinking that too. Shouldn't it be...
+[kkab] Kkab
+[kkflab] Kkflab
+[kkfliab] Kkfliab
+[kkfliiiab] Kklfliiiab
+
+[kkflab]
+p1: /._. Shouldn't it be Kkflab? For 'Kendall' and 'King Frungle Lumps'?
+[well]
+
+[kkfliab]
+p1: /._. Shouldn't it be Kkfliab? For 'Kendall' and 'King Frungle Lumps Ihh'?
+f: @_@ King Frungle Lumps 'IHH'? What the heck is 'Ihh'!?
+f: III is a roman numeral, it means 'The Third'! You're saying it like it's a word...
+p1: /._. It isn't!? I thought it was just three letter I's! 'Ihh!' I kind of like it that way better.
+[anyways]
+
+[kkfliiiab]
+p1: /._. Shouldn't it be Kkfliiiab? For 'Kendall' and 'King Frungle Lumps III'?
+f: ^O^ Yeah! ...That's what I said!
+ (f faces left)
+[well]
+
+[kkab]
+p1: /._. Shouldn't it be Kkab? for 'Kendall' and 'King'?
+s1: -_- #player#, 'King' is just an honorific. It's not technically a part of their name.
+ (p1 faces right)
+f: >_< 'King' is an honorific AND a part of my name!
+ (p1 faces left)
+s1: Your... Your parents named you 'King'?
+f: ^y^ Yes! 'Frungle' is an honorific too. And 'Lumps' is even more honorific! And the 'III' is the cherry on the honor cake!
+f: ._./ Come to think of it, you should be WAY more honored to say my name!
+s1: <__< Ahh yes. I'm starting to fully appreciate your... onerousness.
+ (p1 mood ^o^)
+[anyways]
+
+[well]
+k: ^_^ Well, King Frungle Lumps III has such an... ample name! We decided to just use the 'Fl' from their name, and the 'K' from my name.
+[my_k]
+
+[anyways]
+k: ^_^ Anyways, King Frungle Lumps III has such an... ample name! We decided to just use the 'Fl' from their name, and the 'K' from my name.
+[my_k]
+
+[my_k]
+f: >_< The 'K' is from my name too!!!
+ (f faces left)
+k: <_< Oh sure – well that's true! The 'K' is from both our names. We both share the 'K' part of 'Kflab'.
+f: >__< No! The 'K' is from my name, and NOT yours! Your 'K' isn't in the name.
+k: u_u It... Ohhhhh...
+ (k faces left)
+s1: <_< ...
+ (p1 mood <_<)

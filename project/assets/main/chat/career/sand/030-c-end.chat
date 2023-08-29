@@ -1,0 +1,24 @@
+{"version": "2476"}
+
+[location]
+sand/banana_hq
+
+[characters]
+player, p1, floor_1
+sensei, s1, floor_3
+kendall, k, floor_12
+
+s1: King Frungle seems... difficult to get along with.
+k: Ohhh hmm... how can I put this into words. Are you a cat person?
+[well] ^y^ Yes
+[well] ^n^ No
+[well] >_< Don't you dare drag cats into this!
+
+[well]
+k: Well I'm a cat person, and I have a few cats at home.
+k: <_< And I have one cat in particular who scratches me every time I pet it. Every time!
+k: ^_^ But I love all my cats and I still pet that cat anyway, even if it scratches me.
+s1: -_- Mmm... Maybe you shouldn't pet that cat.
+k: ._.; What! That's the saddest thing I ever heard.
+k: Is that how you live your life? Not petting cats because they might scratch you?
+k: .__.; ...What will you do when you run out of things to pet!?

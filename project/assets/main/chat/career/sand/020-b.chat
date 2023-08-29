@@ -1,0 +1,73 @@
+{"version": "2476"}
+
+[location]
+sand
+
+[characters]
+player, p1, restaurant_9
+sensei, s1, restaurant_10
+alyssa, a, restaurant_3
+
+p1: ^_^/ Oh hey Alyssa! How'd your date go with the tennis player?
+a: -__- Ohhhh you know how it goes. They're nice enough and all, but nobody wants to commit to commit, if that makes sense.
+s1: ^N^ Ahh yes, that's the problem with tennis players. Love means nothing to them.
+a: Anyway, I'm sort of surprised you ended up here of all places.
+a: ^o^ I thought you'd be way too popular for a dumpy place like this, #player#!
+[dumpy_island] You mean this island?
+[dumpy_turbo_fat] You mean this restaurant?
+[dumpy_fat_sensei] You mean Fat Sensei?
+
+[dumpy_island]
+p1: /._. A dumpy place like this? ...Are you talking about this island?
+a: <_< Well yeah I mean what's here? You've got four nerds in a big banana. A popular chef like you, well-
+a: -I figured you'd be hitting bigger cities with wealthier clientele, things like that.
+p1: /._. A popular chef like me? ...Wait since when am I popular? I'm honestly surprised you've even heard of me.
+[heard_of_you]
+
+[dumpy_turbo_fat]
+p1: /._. A dumpy place like this? ...Are you talking about this restaurant?
+a: .__.; What!? No!
+s1: -_- Wow Alyssa! Turbo Fat? Dumpy?? ...That's an incredibly brash statement.
+p1: /._. Yeah, and since when am I popular? I'm honestly surprised you've even heard of me.
+[heard_of_you]
+
+[dumpy_fat_sensei]
+p1: /._. A dumpy place like this? ...Are you talking about Fat Sensei?
+a: .__.; Why would I be talking about Fat Sensei!?
+s1: ._.; What!? ...I'm not a place! And I'm certainly not dumpy.
+ (set_flag dumpy_sensei)
+p1: /._. Yeah, they're not dumpy! ...And since when am I popular? I'm honestly surprised you've even heard of me!
+[heard_of_you]
+
+[heard_of_you]
+a: ^O^ Heard of you!? After the whole Desert Q thing you're actually pretty legendary in certain circles!
+a: ^_^ ...You should get your name out there more. How do you feel about filming a cooking show? Just a few episodes! No pressure.
+[yes] Yeah, let's do it
+[maybe] I'll think about it
+[no] No, I'm not interested
+
+[yes]
+p1: ^__^ Sure, I'd love to do a cooking show! Well, when I'm here anyways.
+ (set_flag agree_to_cooking_show)
+a: When you're here? ...I mean... were you planning to be somewhere else?
+p1: /._. Well we've got a bunch of other locations! But I'll set aside the time whenever we're nearby.
+[figured_as_much]
+
+[maybe]
+p1: <_< Hmm I'll think about it. It sounds like a lot of work...
+[figured_as_much]
+
+[no]
+p1: ^N^ Hmm no thanks, I'm already busy enough as is. I don't know where I'd find the time!
+[figured_as_much]
+
+[figured_as_much]
+a: -__- Hmph yeah, figured as much. Why commit to something when you can just float through life? You're just like that tennis player...
+s1: >__< WHAT!? #player#, you should never let ANYBODY call you a tennis player!!! Stand up for yourself!
+ (s1 faces left)
+p1: .__.; I... ...what!?
+s1: >_< You're doing this cooking show. No matter what!!! That will show them who's a tennis player!
+p1: @_@ I... I am!?!?!
+ (say_if not has_flag agree_to_cooking_show)
+p1: @_@ I... I was already planning to!?!?!
+ (say_if has_flag agree_to_cooking_show)

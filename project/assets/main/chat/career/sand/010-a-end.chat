@@ -1,0 +1,23 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, entrance_2
+sensei, s1, entrance_5
+alyssa, a, entrance_10
+bart, b, entrance_8
+
+p1: That went pretty smoothly!
+s1: ^y^ Mhm, it seems they've sort of got a handle on things around here. I suppose they could use a LITTLE extra help.
+s1: Not too much extra help but hmm...
+s1: /._. How about you, Bart? You seem nonremarkable. Do you want to help out in the kitchen?
+b: /._. Hm. Kitchens, kitchens. ...Are there knives?
+b: I don't like when knives are left sitting around. I'm always nervous I'll get Final Destinationed.
+a: ^__^ I mean... if Bart doesn't want to do it I'll do it! I can be unremarkable. Or I guess, "NON-remarkable"!
+s1: -_- Nonremarkable? Oh you've already made quite a mark Alyssa.
+s1: There was that time you called us rude for leaving during a council meeting! Or just now when you highlighted my poor grammar.
+a: ._.; Your... your poor grammar? Oh come on, that's unfair! I didn't mean anything by it, I just didn't realize you had such thin skin.
+s1: -__- Mhm mhm. I'm rude, with poor grammar, and unfair, and thin skinned. Did I miss any?
+a: .__.; Don't... Are you trying to memorize this? Please don't make a list!!!

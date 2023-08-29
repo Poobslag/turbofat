@@ -1,0 +1,52 @@
+{"version": "2476"}
+
+[location]
+sand/walk
+
+[characters]
+player, p1
+sensei, s1
+narrator, n
+
+n: Following the immense popularity of Turbo Fat's Poki Desert location, word spread and the pair opened more and more locations.
+n: With their budgetary constraints, they still had to selectively open in less popular locations.
+p1: /._. So where did you say our next restaurant was opening? A stinky swamp? An active volcano?
+s1: Hmph, I don't appreciate your candor. And it's unwarranted, because our next location is a tropical island paradise~
+p1: -_- Oh that's right, the "Kflab Islands". NOW I remember.
+s1: ^_^ Ahh beach life! Overcrowded beaches, sand in your sneakers... Partying so hard it permanently increases your risk of melanoma!
+p1: >__< Riiight, I'm sure I'll have a blast. Partying in K-Flab. FLAB!!!
+s1: ^N^ You're focusing too much on the flab part! And not enough on the cool island part.
+ (stop_walking)
+[correct_on_each] Both parts are important
+[flab_part] The flab part is important too
+[island_part] The island part is important too
+[beach_life] You're making beach life sound awful
+
+[correct_on_each]
+p1: -_- I think I'm focusing the correct amount on each part.
+s1: This from the person who named our restaurant "Turbo Fat"! Hmph, you're suddenly so picky about names.
+p1: ._.; "Fat" is cute! "Flab" is weird...
+[okay]
+
+[flab_part]
+p1: >_< The flab part is a major factor!
+s1: This from the person who named our restaurant "Turbo Fat"! Hmph, you're suddenly so picky about names.
+p1: ._.; "Fat" is cute! "Flab" is weird...
+[okay]
+
+[island_part]
+p1: >_< The island part is a major factor! Crowded beaches? Sand in my sneakers?
+s1: ^__^ Ahh yes, that sneaky sneaker sand! You can never quite get rid of all of it, it's like a fun little souvenir~
+p1: -_- ...I'm starting to understand why the name "Kflab" doesn't bother you very much.
+[okay]
+
+[beach_life]
+p1: <_< And besides, crowded beaches? Sand in my sneakers? You're not making beach life sound very appealing.
+s1: ^__^ Ahh yes, that sneaky sneaker sand! You can never quite get rid of all of it, it's like a fun little souvenir~
+p1: -_- ...I'm starting to understand why the name "Kflab" doesn't bother you very much.
+[okay]
+
+[okay]
+s1: Okay yes, yes fine. I admit, the name "Kflab" is incredibly off-putting.
+ (start_walking)
+s1: /._. I'm sure there's a profound meaning or... something. There just has to be.

@@ -241,6 +241,7 @@
       "icon": "island",
       "overworld_environment": "sand",
       "piece_speed": "2-5",
+      "cutscene_path": "chat/career/sand",
       "boss_level": {
         "id": "career/boss_4k"
       },
@@ -257,6 +258,9 @@
           "tork 3%",
           "trough 3%"
         ]
+      },
+      "intro_level": {
+        "id": "career/1000_race"
       },
       "levels": [
         {

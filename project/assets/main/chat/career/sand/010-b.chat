@@ -1,0 +1,45 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+(chef) player, p1, chef
+sensei, s1, kitchen_7
+alyssa, a, kitchen_3
+
+a: Hey #player#! ...Just checking in on the business. Everything going alright?
+ (s1 faces left)
+[great] It's great
+[fine] It's so/so
+[struggling] It's a struggle
+
+[great]
+p1: ^_^ Everything's going great in the kitchen! There's only a few customers, though...
+ (p1 faces right)
+[ah-yes]
+
+[fine]
+p1: /._. Hmm it's going fine, I guess! But there's only a few customers...
+ (p1 faces right)
+[ah-yes]
+
+[struggling]
+p1: ._.; Oh, we're struggling a little bit. There's only a few customers...
+ (p1 faces right)
+[ah-yes]
+
+[ah-yes]
+s1: ^y^ Ah yes, it's just a steady trickle of customers. But at least it's better than no customers at all!
+ (s1 faces right)
+a: /._. Hmm I see. So you'll probably be stuck with this 'steady trickle' thing for a while?
+s1: ^N^ Oh it should pick up once word spreads! Any minute now.
+ (p1 faces left)
+a: -_- Oh that's cool.
+ (a faces right, s1 faces left)
+s1: ...
+a: ...
+a: -__- Sooooo how much longer is this gonna take? I have a date with a tennis player –
+ (a faces left)
+s1: .__.; Well I can't do it if you're watching!
+ (s1 faces right)

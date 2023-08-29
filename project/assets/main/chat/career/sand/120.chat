@@ -1,0 +1,57 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+sensei, s1, table_2
+(chef) player, p1, table_1
+(customer) frungle, f, table_seat_left
+(customer) bart, b, table_seat_right
+
+s1: ^_^ King Frungle... and Bart! Ahh hello! I didn't realize you'd brought a friend.
+s1: ^o^ So Bart, how are things from this side of the kitchen? Ahha ha ha~
+b: Oh you don't need to address me directly, I'm just here as a token indicator of King Frungle's personal growth.
+ (b faces right)
+p1: ^_^ Wow, personal growth! Good for you, King Frungle~
+ (b faces left)
+f: ^__^ It IS good for me! I can't thank you enough, your advice was exactly what I needed to hear.
+[filthy_jagoon] Sorry I called you a filthy jagoon
+[im_usually_bad] I'm usually so bad at advice
+[dont_thank_me] You don't have to thank me
+[i_hate_you] Advice? It was meant as an insult
+
+[filthy_jagoon]
+p1: u_u I'm sorry for calling you a filthy jagoon... But I'm glad you're doing better!
+[you_were_right]
+
+[im_usually_bad]
+p1: ^__^ That's great, I'm usually so bad at giving advice!
+[you_were_right]
+
+[dont_thank_me]
+p1: <_< I was just saying what everyone else was thinking! You don't need to thank me for it.
+[you_were_right]
+
+[i_hate_you]
+p1: >__< Exactly what you needed to hear!? ...I wasn't trying to help, I was trying to draw blood.
+[you_were_right]
+
+
+[you_were_right]
+f: /._. ... ...
+f: ._. Anyway you were right, the word 'Boob' DOES look like boobs three different ways. It really got me thinking.
+p1: @_@ ...Wait, what!?
+f: We can control our actions, but we can't control how others around us perceive those actions. You know?
+f: /._. All those times I thought I was being playful and fun, others were just seeing a boob three different ways.
+ (s1 mood ^Y^)
+f: I'm going to concentrate more during social situations about how my actions affect other people-
+f: ^_^ Then maybe they'll see me as King Frungle three different ways! Until then I'll apologize for acting like a boob~
+f: ^o^ I'm so sorry, Bart!
+b: ^o^ Hey no worries. It's like water off a token friend's back, ha ha.
+ (f exits)
+p1: >_< YOUR advice? YOUR advice helped him?
+ (p1 faces right, b exits)
+s1: ^y^ Hey, that profound nugget of wisdom has gotten me through some tough times.
+s1: /._. ...You know #player#, I have some advice for you. The word 'boy' looks like a boy wearing glasses...
+p1: >__< That's not helpful!
