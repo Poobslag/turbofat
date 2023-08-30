@@ -240,6 +240,7 @@
       "start": 32,
       "icon": "island",
       "overworld_environment": "sand",
+      "region_button": "sand",
       "piece_speed": "2-5",
       "cutscene_path": "chat/career/sand",
       "boss_level": {
