@@ -8,14 +8,15 @@ player, p1
 sensei, s1
 narrator, n
 
-n: Most of the Turbo Fat locations gradually developed a loyal following of hungry customers, except for Merrymellow Marsh where business was unusually slow. Fat Sensei and #player# were on their way to get to the bottom of this mystery.
+n: At the Merrymellow Marsh Turbo Fat location, business was once again unusually slow. This situation was starting to feel familiar...
+n: ...However unlike the other Turbo Fat locations, there were plenty of people around!\n\nIt just seemed like none of them were very hungry.
 p1: /._. So we're supposed to get more customers to show up? Like, with advertising or specials or something?
 p1: .__.; ...Fat Sensei, I don't know anything about that stuff!
  (stop_walking)
 s1: ^y^ Oh don't worry, it's probably just something simple they messed up.
 s1: Maybe they're not following our recipes, or they're treating their customers poorly.
  (start_walking)
-[skunk_cemetery] ...Or a skunk cemetery?
+[skunk_cemetery] ...Or there's a skunk cemetery?
 [cooking_bad_on_purpose] ...Or they're faking it?
 [hate_sweets] ...Or they hate sweets?
 
