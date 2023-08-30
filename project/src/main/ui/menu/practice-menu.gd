@@ -110,7 +110,7 @@ func _refresh_input_focus_mode() -> void:
 ## Updates the level button to show the current level's name.
 func _refresh_level_button() -> void:
 	if _region is CareerRegion:
-		_level_button.text = "%s: %s" % [_region.name, _level_settings.name]
+		_level_button.text = "%s: %s" % [PlayerData.career.obfuscated_region_name(_region), _level_settings.name]
 	else:
 		if _region.has_flag(OtherRegion.FLAG_TRAINING):
 			_level_button.text = _level_settings.name

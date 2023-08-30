@@ -101,7 +101,7 @@ func play() -> void:
 func refresh() -> void:
 	# refresh region
 	var region := PlayerData.career.current_region()
-	_title.set_text(region.name)
+	_title.set_text(PlayerData.career.obfuscated_region_name(region))
 	var icon_type := Utils.enum_from_snake_case(ProgressBoardTitle.IconType, region.icon_name, ProgressBoardTitle.NONE)
 	_title.set_icon_type(icon_type)
 	_map_holder.set_region_id(region.id)

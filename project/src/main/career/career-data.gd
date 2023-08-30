@@ -415,6 +415,20 @@ func is_sensei_turbo() -> bool:
 		and best_distance_travelled <= first_region.get_end()
 
 
+## Returns the name of the region which should be shown to the player.
+##
+## While Cannoli Sandbar changes its name during Career mode, its region data always stores the name 'Cannoli Sandbar'.
+## This method should be called to conditionally display a different name.
+##
+## Returns: The name of the region which should be shown to the player. This is usually the value of the region.name
+## 	field but is obfuscated for Cannoli Sandbar.
+func obfuscated_region_name(region: CareerRegion) -> String:
+	var result := region.name
+	if region.id == "sand" and not PlayerData.career.is_region_cleared(region):
+		result = tr("Kflab")
+	return result
+
+
 ## When a cutscene shows the player advancing to the next region, we automatically advance them through career mode
 ##
 ## This is an important gameplay consideration if the player is stuck in a difficult area -- finishing every cutscene

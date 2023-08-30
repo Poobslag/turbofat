@@ -23,6 +23,9 @@ const EPILOGUE_CHAT_KEY_NAME := "epilogue"
 var id: String
 
 ## Human-readable region name, such as 'Lemony Thickets'
+##
+## Note that while Cannoli Sandbar changes its name during Career mode, this variable always stores the name 'Cannoli
+## Sandbar'. The CareerData.obfuscated_region_name() method should be called to conditionally display a different name.
 var name: String
 
 ## Smallest distance the player must travel to enter this region.

@@ -159,7 +159,7 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 	
 	if region_obj is CareerRegion:
 		var region: CareerRegion = region_obj
-		region_button.region_name = region.name
+		region_button.region_name = PlayerData.career.obfuscated_region_name(region)
 		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
 		
 		var ranks := []
