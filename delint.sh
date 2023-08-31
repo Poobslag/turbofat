@@ -126,7 +126,7 @@ then
   if [ "$CLEAN" ]
   then
     # remove temporary files
-    find project/src \( -name "*.TMP" -o -name "*.gd~" \) -exec rm {} +
+    find project \( -name "*.TMP" -o -name "*.gd~" -o -name "*.tmp" \) -exec rm {} +
     echo "...Temporary files deleted."
   fi
 fi
