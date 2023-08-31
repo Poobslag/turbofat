@@ -117,7 +117,7 @@ then
 fi
 
 # temporary files
-RESULT=$(find project/src -name "*.TMP" -o -name "*.gd~")
+RESULT=$(find project -name "*.TMP" -o -name "*.gd~" -o -name "*.tmp")
 if [ -n "$RESULT" ]
 then
   echo ""
