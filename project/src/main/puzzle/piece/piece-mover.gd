@@ -37,14 +37,26 @@ const SPAWN_RIGHT := [
 
 export (NodePath) var input_path: NodePath
 
-## how many times the piece has moved horizontally this frame
-var _horizontal_movement_count := 0
+## how many times the piece has moved horizontally this frame, as a result of normal movement (not mid-drop movement)
+var _normal_horizontal_movement_count := 0
 
 onready var input: PieceInput = get_node(input_path)
 
 func _physics_process(_delta: float) -> void:
-	_horizontal_movement_count = 0
+	_normal_horizontal_movement_count = 0
 
+
+## Applies initial move input to the specified piece.
+##
+## The player can hold left or right to apply initial DAS and shift the piece all the way to the left or right sides of
+## the playfield.
+##
+## The player can also buffer a left or right tap to initiall shift the piece one cell to the left or right, but that
+## functionality is handled by the standard piece movement rules.
+##
+## Returns:
+## 	The movement signal which should be emitted as a result of the piece movement, or an empty string if the piece did
+## 	not move.
 func apply_initial_move_input(piece: ActivePiece) -> String:
 	var movement_signal: String = ""
 	var initial_das_dir := 0
@@ -81,9 +93,28 @@ func emit_initial_move_signal(movement_signal: String, piece: ActivePiece) -> vo
 	emit_signal(movement_signal, piece)
 
 
-func apply_move_input(piece: ActivePiece) -> void:
+## Applies the player's input to the piece to move it left and right.
+##
+## Tapping left and right shifts the piece, while holding left and right enables 'DAS' allowing the piece to rapidly
+## shift.
+##
+## This method also applies move inputs in between frames during 20G, to allow the player to slide pieces sideways into
+## nooks.
+##
+## Parameters:
+## 	'piece': The piece to move
+##
+## 	'mid_drop': If true, this movement is being applied in between frames during 20G, to allow the player to slide
+## 		pieces sideways into narrow nooks. If false, this is normal movement.
+##
+## Returns:
+## 	The movement signal which was emitted as a result of the piece movement, or an empty string if the piece did not
+## 	move.
+func apply_move_input(piece: ActivePiece, mid_drop: bool = false) -> String:
+	var movement_signal: String = ""
+	
 	if not input.is_left_pressed() and not input.is_right_pressed():
-		return
+		return movement_signal
 	
 	piece.reset_target()
 	if input.is_left_just_pressed() or input.is_left_das_active():
@@ -93,7 +124,6 @@ func apply_move_input(piece: ActivePiece) -> void:
 		piece.target_pos.x += 1
 	
 	if piece.target_pos.x != piece.pos.x:
-		var movement_signal: String
 		if piece.target_pos.x > piece.pos.x:
 			if input.is_right_das_active():
 				movement_signal = "das_moved_right"
@@ -107,7 +137,8 @@ func apply_move_input(piece: ActivePiece) -> void:
 		
 		if piece.can_move_to_target():
 			piece.move_to_target()
-			_horizontal_movement_count += 1
+			if not mid_drop:
+				_normal_horizontal_movement_count += 1
 			emit_signal(movement_signal, piece)
 	
 	# To prevent pieces from slipping past nooks before DAS, we automatically trigger DAS if you're pushing a
@@ -120,9 +151,21 @@ func apply_move_input(piece: ActivePiece) -> void:
 		input.set_left_das_active()
 	if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2.RIGHT, piece.orientation):
 		input.set_right_das_active()
+	
+	return movement_signal
 
 
-## Move piece once per frame to allow pieces to slide into nooks during 20G.
+## Move piece during 20G to allow pieces to slide into nooks.
 func attempt_mid_drop_movement(piece: ActivePiece) -> void:
-	if _horizontal_movement_count == 0:
-		apply_move_input(piece)
+	if _normal_horizontal_movement_count > 0:
+		# piece moved normally this frame, do not apply mid-drop movement
+		return
+	
+	# attempt a single mid-drop movement
+	var movement_signal := apply_move_input(piece, true)
+	
+	# if the player is shifting the piece with DAS, attempt up to 7 extra moves
+	var remaining_moves := 7
+	while movement_signal in ["das_moved_left", "das_moved_right"] and remaining_moves > 0:
+		movement_signal = apply_move_input(piece, true)
+		remaining_moves -= 1
