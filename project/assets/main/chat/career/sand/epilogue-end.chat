@@ -44,10 +44,9 @@ s1: -_- Hmph, if Cannoli Sandbar put you in charge, you'd probably call it... 'S
 [bad-for-frungle]
 
 [bad-for-frungle]
-p1: I feel a little bad for King Frungle though.
+p1: u_u I feel a little bad for King Frungle though.
  (start_walking)
 s1: Yes, well there's no point in feeling sad about things like that.
- (p1 mood u_u)
 s1: It's human nature to look back on things like that and wonder how things could have gone differently.
 s1: ^n^ But the past is in the past, nothing can be done.
 [cheer-them-up] We could cheer them up

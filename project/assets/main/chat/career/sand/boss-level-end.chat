@@ -41,22 +41,22 @@ s1: /._. Yes yes, off to our next restaurant! I forget, was this one the stinky 
 
 [dot_dot_dot]
 p1: -_- ... ...
-[get_to_that_volcano] -__- I'm tossing you in that volcano
-[get_to_that_swamp] -__- I'm knocking you into the mud
-[its_a_joke] ._.; That's a joke, right?
+[get_to_that_volcano] I'm tossing you in that volcano
+[get_to_that_swamp] I'm knocking you into the mud
+[its_a_joke] That's a joke, right?
 
 [get_to_that_volcano]
-p1: When we get to that volcano, I'm tossing you in.
+p1: -__- When we get to that volcano, I'm tossing you in.
  (start_walking)
 [haha]
 
 [get_to_that_swamp]
-p1: When we get to that stinky swamp, I'm knocking you into the mud.
+p1: -__- When we get to that stinky swamp, I'm knocking you into the mud.
  (start_walking)
 [haha]
 
 [its_a_joke]
-p1: I'm just going to pretend that's a joke. ...It's a joke, right?
+p1: ._.; I'm just going to pretend that's a joke. ...It's a joke, right?
  (start_walking)
 [haha]
 
