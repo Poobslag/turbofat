@@ -19,6 +19,7 @@ extends Node
 ## 	[space bar]: Feed
 ## 	[brace keys]: Change the creature's appearance
 ## 	[Shift + /]: Print DNA
+## 	[right]: Toggle creature movement
 ##
 ## 	[Shift + Q, W]: Look over shoulder
 ## 	[Shift + E, R]: Yawn
@@ -39,6 +40,12 @@ onready var _creature_animations: CreatureAnimations = $Creature.creature_visual
 func _ready() -> void:
 	if creature_path:
 		_creature.creature_def = CreatureDef.new().from_json_path(creature_path)
+
+
+func _physics_process(_delta: float) -> void:
+	if _creature.non_iso_walk_direction:
+		# The creature movement toggle actually moves the creature. Reset the creature to a central position
+		_creature.position = Vector2(512, 420)
 
 
 func _input(event: InputEvent) -> void:
@@ -96,6 +103,11 @@ func _input(event: InputEvent) -> void:
 			KEY_PERIOD: _creature.play_mood(Creatures.Mood.YES1)
 			KEY_SPACE: _creature.feed(Foods.FoodType.BROWN_0)
 			KEY_EQUAL: _creature.set_fatness(3)
+			KEY_RIGHT:
+				if _creature.non_iso_walk_direction == Vector2.ZERO:
+					_creature.non_iso_walk_direction = Vector2(1.0, 1.0)
+				else:
+					_creature.non_iso_walk_direction = Vector2.ZERO
 
 
 func _change_demographic(demographic_type: int) -> void:

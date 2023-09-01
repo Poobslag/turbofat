@@ -369,7 +369,10 @@ func set_movement_mode(new_mode: int) -> void:
 ## Parameters:
 ## 	'mood': The creature's new mood from Creatures.Mood
 func play_mood(mood: int) -> void:
-	_animations.play_mood(mood)
+	if oriented_south():
+		# Only play moods for south-facing creatures. Creatures do not have north-facing emotes, and playing them
+		# causes glitches (eyes on the back of the head, etc)
+		_animations.play_mood(mood)
 
 
 func restart_idle_timer() -> void:

@@ -127,8 +127,9 @@ func play_movement_animation(animation_name: String) -> void:
 		# prevent emotes from conflicting with movement animations
 		if not _emote_player.current_animation.begins_with("ambient") \
 				and not animation_name.begins_with("idle"):
-			# don't unemote during sitting-still animations; only when changing movement stances
-			_emote_player.unemote_immediate()
+			
+			# if the creature starts moving, they can't emote with their arms
+			set_emote_arm_frame(0)
 		
 		# play the animation
 		if _movement_player.current_animation.begins_with(animation_prefix):
