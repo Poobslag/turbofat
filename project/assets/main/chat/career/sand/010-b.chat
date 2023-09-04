@@ -17,19 +17,19 @@ a: Hey #player#! ...Just checking in on the business. Everything going alright?
 [great]
 p1: ^_^ Everything's going great in the kitchen! There's only a few customers, though...
  (p1 faces right)
-[ah-yes]
+[ah_yes]
 
 [fine]
 p1: /._. Hmm it's going fine, I guess! But there's only a few customers...
  (p1 faces right)
-[ah-yes]
+[ah_yes]
 
 [struggling]
 p1: ._.; Oh, we're struggling a little bit. There's only a few customers...
  (p1 faces right)
-[ah-yes]
+[ah_yes]
 
-[ah-yes]
+[ah_yes]
 s1: ^y^ Ah yes, it's just a steady trickle of customers. But at least it's better than no customers at all!
  (s1 faces right)
 a: /._. Hmm I see. So you'll probably be stuck with this 'steady trickle' thing for a while?

@@ -20,28 +20,28 @@ f: -_- You're not FACEBLIND, you just never LOOK at people!
  (b faces left)
 b: /._. Ha. An interesting segue... Is someone blind if they keep their eyes closed all the time?
  (b faces right)
-[yes-blind] Yes, definitely
-[maybe-blind] Hmm, maybe
-[not-really-blind] No, not really
-[not-blind] No, not at all
+[yes_blind] Yes, definitely
+[maybe_blind] Hmm, maybe
+[not_really_blind] No, not really
+[not_blind] No, not at all
 
-[yes-blind]
+[yes_blind]
 p1: ^Y^ Yeah, that makes sense! ...If they can't see, they're blind. If their eyes are closed, that still counts.
-[just-a-moron]
+[just_a_moron]
 
-[maybe-blind]
+[maybe_blind]
 p1: /._. Hmm kind of. I mean their eyes still work, they're just not using them. I guess they're kind of blind.
-[just-a-moron]
+[just_a_moron]
 
-[not-really-blind]
+[not_really_blind]
 p1: ._. Ohh they're not technically blind if their eyes still work. I don't think you can use that word.
-[just-a-moron]
+[just_a_moron]
 
-[not-blind]
+[not_blind]
 p1: ^N^ No, they're definitely not blind! Blindness is a medical thing, you can't use the word that way.
-[just-a-moron]
+[just_a_moron]
 
-[just-a-moron]
+[just_a_moron]
 f: >__< You mean... If they just CHOOSE to keep their eyes closed? No they're not blind. They're just a MORON!
  (b faces left)
 b: ^_^ Haha. "Moron". Touche I guess. Well, let's just call my condition selective faceblindness for now.
