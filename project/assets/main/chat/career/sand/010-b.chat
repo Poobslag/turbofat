@@ -11,7 +11,7 @@ alyssa, a, kitchen_3
 a: Hey #player#! ...Just checking in on the business. Everything going alright?
  (s1 faces left)
 [great] It's great
-[fine] It's so/so
+[fine] It's so-so
 [struggling] It's a struggle
 
 [great]

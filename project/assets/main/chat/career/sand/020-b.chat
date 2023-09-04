@@ -13,6 +13,7 @@ a: -__- Ohhhh you know how it goes. They're nice enough and all, but nobody want
 s1: ^N^ Ahh yes, that's the problem with tennis players. Love means nothing to them.
 a: Anyway, I'm sort of surprised you ended up here of all places.
 a: ^o^ I thought you'd be way too popular for a dumpy place like this, #player#!
+ (unset_flag dumpy_sensei)
 [dumpy_island] You mean this island?
 [dumpy_turbo_fat] You mean this restaurant?
 [dumpy_fat_sensei] You mean Fat Sensei?
@@ -33,15 +34,16 @@ p1: /._. Yeah, and since when am I popular? I'm honestly surprised you've even h
 
 [dumpy_fat_sensei]
 p1: /._. A dumpy place like this? ...Are you talking about Fat Sensei?
+ (set_flag dumpy_sensei)
 a: .__.; Why would I be talking about Fat Sensei!?
 s1: ._.; What!? ...I'm not a place! And I'm certainly not dumpy.
- (set_flag dumpy_sensei)
 p1: /._. Yeah, they're not dumpy! ...And since when am I popular? I'm honestly surprised you've even heard of me!
 [heard_of_you]
 
 [heard_of_you]
 a: ^O^ Heard of you!? After the whole Desert Q thing you're actually pretty legendary in certain circles!
 a: ^_^ ...You should get your name out there more. How do you feel about filming a cooking show? Just a few episodes! No pressure.
+ (unset_flag agree_to_cooking_show)
 [yes] Yeah, let's do it
 [maybe] I'll think about it
 [no] No, I'm not interested
