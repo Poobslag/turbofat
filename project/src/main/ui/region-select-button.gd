@@ -19,23 +19,6 @@ enum Type {
 	MARSH,
 }
 
-## key: (Type)
-## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
-var _texture_pairs_by_type := {
-	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),
-			preload("res://assets/main/career/ui/region-default-off.png")],
-	Type.LEMON: [preload("res://assets/main/career/ui/region-lemon.png"),
-			preload("res://assets/main/career/ui/region-lemon-off.png")],
-	Type.LEMON_2: [preload("res://assets/main/career/ui/region-lemon-2.png"),
-			preload("res://assets/main/career/ui/region-lemon-2-off.png")],
-	Type.POKI: [preload("res://assets/main/career/ui/region-poki.png"),
-			preload("res://assets/main/career/ui/region-poki-off.png")],
-	Type.SAND: [preload("res://assets/main/career/ui/region-sand.png"),
-			preload("res://assets/main/career/ui/region-sand-off.png")],
-	Type.MARSH: [preload("res://assets/main/career/ui/region-marsh.png"),
-			preload("res://assets/main/career/ui/region-marsh-off.png")],
-}
-
 ## text to show at the top of the button, like 'Merrymellow Marsh'
 var region_name := "" setget set_region_name
 
@@ -53,6 +36,23 @@ var ranks := []
 
 ## Number in the range [0.0, 1.0] for how close the player is to completing the region.
 var completion_percent := 0.0
+
+## key: (Type)
+## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
+var _texture_pairs_by_type := {
+	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),
+			preload("res://assets/main/career/ui/region-default-off.png")],
+	Type.LEMON: [preload("res://assets/main/career/ui/region-lemon.png"),
+			preload("res://assets/main/career/ui/region-lemon-off.png")],
+	Type.LEMON_2: [preload("res://assets/main/career/ui/region-lemon-2.png"),
+			preload("res://assets/main/career/ui/region-lemon-2-off.png")],
+	Type.POKI: [preload("res://assets/main/career/ui/region-poki.png"),
+			preload("res://assets/main/career/ui/region-poki-off.png")],
+	Type.SAND: [preload("res://assets/main/career/ui/region-sand.png"),
+			preload("res://assets/main/career/ui/region-sand-off.png")],
+	Type.MARSH: [preload("res://assets/main/career/ui/region-marsh.png"),
+			preload("res://assets/main/career/ui/region-marsh-off.png")],
+}
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
 ## started' event

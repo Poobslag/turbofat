@@ -26,12 +26,6 @@ func _process(_delta: float) -> void:
 		_star_seeds_by_cell[cell].food_type = _source_star_seeds.get_star_seed(cell).food_type
 
 
-## Removes a star seed from a playfield cell.
-func _remove_star_seed(cell: Vector2) -> void:
-	_star_seeds_by_cell[cell].queue_free()
-	_star_seeds_by_cell.erase(cell)
-
-
 ## Adds a star seed to a playfield cell.
 func _add_star_seed(cell: Vector2) -> void:
 	var star_seed: StarSeed = StarSeedScene.instance()
@@ -45,3 +39,9 @@ func _add_star_seed(cell: Vector2) -> void:
 	
 	_star_seeds_by_cell[cell] = star_seed
 	add_child(star_seed)
+
+
+## Removes a star seed from a playfield cell.
+func _remove_star_seed(cell: Vector2) -> void:
+	_star_seeds_by_cell[cell].queue_free()
+	_star_seeds_by_cell.erase(cell)
