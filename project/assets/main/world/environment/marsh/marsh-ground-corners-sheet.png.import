@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marsh-corners-sheet.png-c45f95fbecbf54f7836d5e2422ce0059.stex"
+path="res://.import/marsh-ground-corners-sheet.png-e7e0e5487d65a65d23a5f8b803d25ee0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/marsh/marsh-corners-sheet.png"
-dest_files=[ "res://.import/marsh-corners-sheet.png-c45f95fbecbf54f7836d5e2422ce0059.stex" ]
+source_file="res://assets/main/world/environment/marsh/marsh-ground-corners-sheet.png"
+dest_files=[ "res://.import/marsh-ground-corners-sheet.png-e7e0e5487d65a65d23a5f8b803d25ee0.stex" ]
 
 [params]
 
