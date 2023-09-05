@@ -16,6 +16,9 @@ extents = Vector2( 105, 10 )
 
 [node name="ButtercupSign" type="KinematicBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 shadow_scale = 1.5
 
 [node name="Sprite" type="Sprite" parent="."]

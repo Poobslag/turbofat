@@ -10,4 +10,7 @@ texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -125, -200 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 TargetScene = ExtResource( 3 )

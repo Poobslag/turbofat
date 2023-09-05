@@ -9,5 +9,8 @@ scale = Vector2( 0.539, 0.539 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -100 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 TargetScene = ExtResource( 3 )
 spawn_if = "false"

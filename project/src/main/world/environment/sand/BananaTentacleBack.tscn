@@ -17,6 +17,9 @@ extents = Vector2( 86, 24 )
 [node name="BananaTentacleBack" type="KinematicBody2D"]
 position = Vector2( 171.378, 140.204 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

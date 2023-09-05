@@ -9,6 +9,9 @@ extents = Vector2( 28, 14 )
 [node name="Crowd" type="KinematicBody2D"]
 position = Vector2( 561.443, 360.624 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 shadow_scale = 0.4
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -17,6 +17,9 @@ extents = Vector2( 56, 28 )
 [node name="Cream" type="KinematicBody2D"]
 position = Vector2( 84.9487, 113.265 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 shadow_scale = 0.7
 frame = 4
 flip_h = true

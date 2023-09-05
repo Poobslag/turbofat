@@ -17,6 +17,9 @@ extents = Vector2( 80, 26 )
 [node name="ButtercupTable" type="KinematicBody2D"]
 position = Vector2( -209.971, 976.928 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 shadow_scale = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]

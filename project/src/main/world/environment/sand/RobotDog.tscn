@@ -360,6 +360,9 @@ tracks/4/keys = {
 
 [node name="RobotDog" type="KinematicBody2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 shadow_scale = 0.5
 
 [node name="Tail" type="Sprite" parent="."]

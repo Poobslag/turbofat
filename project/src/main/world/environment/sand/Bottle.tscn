@@ -14,3 +14,6 @@ shader_param/edge_fix_factor = 1.0
 material = SubResource( 1 )
 scale = Vector2( 0.539, 0.539 )
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
