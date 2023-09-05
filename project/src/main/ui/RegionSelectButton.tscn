@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/ui/region-select-button.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonNormal.tres" type="StyleBox" id=2]
+[ext_resource path="res://src/main/career/ui/CareerRegionSelectButtonNormal.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/main/career/ui/region-lemon.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonFocus.tres" type="StyleBox" id=4]
+[ext_resource path="res://src/main/career/ui/CareerRegionSelectButtonFocus.tres" type="StyleBox" id=4]
 [ext_resource path="res://assets/main/ui/font/blogger-sans-medium.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonPressed.tres" type="StyleBox" id=6]
-[ext_resource path="res://assets/main/career/ui/CareerRegionSelectButtonDisabled.tres" type="StyleBox" id=7]
+[ext_resource path="res://src/main/career/ui/CareerRegionSelectButtonPressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://src/main/career/ui/CareerRegionSelectButtonDisabled.tres" type="StyleBox" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
