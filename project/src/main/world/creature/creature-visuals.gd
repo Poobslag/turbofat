@@ -416,12 +416,20 @@ func _compute_orientation(direction: Vector2) -> int:
 		# we default to the current orientation if given a zero-length vector
 		return orientation
 	
-	# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
-	# when our direction puts us between two orientations.
+	var adjusted_direction := direction
+	
+	# we adjust creatures facing directly west/east to face southwest/southeast so we can see their face
+	if is_equal_approx(adjusted_direction.y, 0.0):
+		adjusted_direction.y = 0.01
+	
 	var new_orientation: int = orientation
 	# unrounded orientation is a float in the range [-2.0, 2.0]
-	var unrounded_orientation := -2 * direction.angle_to(SOUTHEAST_DIR) / PI
-	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
+	var unrounded_orientation := -2 * adjusted_direction.angle_to(SOUTHEAST_DIR) / PI
+	if abs(unrounded_orientation - orientation) < 0.6 or abs(unrounded_orientation + 4 - orientation) < 0.6:
+		# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
+		# when our direction puts us between two orientations.
+		pass
+	else:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
 		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
 	return new_orientation
