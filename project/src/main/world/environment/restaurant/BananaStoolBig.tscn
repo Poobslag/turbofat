@@ -18,6 +18,7 @@ extents = Vector2( 28, 14 )
 [node name="BananaStoolBig" type="KinematicBody2D" groups=["stools"]]
 script = ExtResource( 3 )
 __meta__ = {
+"_edit_group_": true,
 "shadow_scale": 0.5
 }
 shadow_scale = 0.5
