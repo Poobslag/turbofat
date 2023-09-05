@@ -3,9 +3,9 @@
 [ext_resource path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=2]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantSpawns.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/environment/restaurant/KitchenObstacleTiler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/restaurant/KitchenFloorTiler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" type="PackedScene" id=26]
-[ext_resource path="res://src/main/world/environment/restaurant/kitchen-obstacle-tiler.gd" type="Script" id=27]
 [ext_resource path="res://src/main/world/environment/restaurant/WoodTable.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/world/environment/restaurant/WoodPillar.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/main/world/environment/restaurant/TurboFatStool.tscn" type="PackedScene" id=33]
@@ -78,12 +78,7 @@ tile_data = PoolIntArray( -262125, 1, 0, -262124, 13, 0, -262123, 13, 0, -262122
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="KitchenObstacleTiler" type="Node" parent="Obstacles/ObstacleMap"]
-script = ExtResource( 27 )
-bare_countertop_tile_index = 8
-grill_tile_index = 9
-sink_tile_index = 10
-countertop_plates_tile_index = 11
+[node name="KitchenObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 4 )]
 
 [node name="WoodPillar" parent="Obstacles" instance=ExtResource( 32 )]
 position = Vector2( 498, 9 )

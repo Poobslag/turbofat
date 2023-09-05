@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/environment/sand/water-overworld-tiler.gd" type="Script" id=1]
+
+[node name="WaterOverworldTiler" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+water_tile_indexes = [ 4, 5, 6, 7 ]

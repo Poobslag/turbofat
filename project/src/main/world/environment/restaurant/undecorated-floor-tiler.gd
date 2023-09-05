@@ -41,7 +41,7 @@ func _enter_tree() -> void:
 ## The floor autotiling logic applies probabilities and cannot be handled by Godot's built-in autotiling.
 func autotile(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'unautotile' property is toggled
+		# only autotile in the editor when the 'autotile' property is toggled
 		return
 	
 	if Engine.editor_hint:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/environment/restaurant/kitchen-obstacle-tiler.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/environment/restaurant/KitchenObstacleTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/restaurant/KitchenFloorTiler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/restaurant/WoodTable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=6]
@@ -81,12 +81,7 @@ tile_data = PoolIntArray( -262125, 1, 0, -262124, 13, 0, -262123, 13, 0, -262122
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="KitchenObstacleTiler" type="Node" parent="Obstacles/ObstacleMap"]
-script = ExtResource( 3 )
-bare_countertop_tile_index = 8
-grill_tile_index = 9
-sink_tile_index = 10
-countertop_plates_tile_index = 11
+[node name="KitchenObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 2 )]
 
 [node name="RobotDog" parent="Obstacles" instance=ExtResource( 16 )]
 position = Vector2( 1259.2, 264.534 )

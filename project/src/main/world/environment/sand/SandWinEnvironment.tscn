@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/environment/pebble-overworld-tiler.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/sand/SandGroundMap.tscn" type="PackedScene" id=5]
@@ -10,8 +10,8 @@
 [ext_resource path="res://src/main/world/environment/sand/SandTree.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/sand/sand-terrain-library.tres" type="TileSet" id=9]
 [ext_resource path="res://src/main/world/environment/sand/sand-obstacle-library.tres" type="TileSet" id=10]
-[ext_resource path="res://src/main/world/environment/sand/chip-overworld-tiler.gd" type="Script" id=11]
-[ext_resource path="res://src/main/world/environment/sand/water-ripple-overworld-tiler.gd" type="Script" id=12]
+[ext_resource path="res://src/main/world/environment/sand/ChipOverworldTiler.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/world/environment/sand/WaterRippleOverworldTiler.tscn" type="PackedScene" id=12]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 1 )
@@ -46,26 +46,16 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -393198, 536870919, 0, -393197, 536870917, 0, -327663, 3, 65538, -327660, 6, 0, -262130, 1, 131072, -262126, 6, 0, -262122, 536870917, 0, -131058, 536870915, 65538, -131052, 536870916, 0, -131048, 536870916, 0, 22, 536870917, 0, 24, 6, 0, 65552, 1, 65539, 65559, 536870919, 0, 65560, 536870917, 0, 65561, 5, 0, 131092, 536870917, 0, 131094, 4, 0, 131097, 4, 0, 196626, 3, 65539, 196634, 7, 0, 262162, 1, 65536, 327701, 536870917, 0, 327704, 6, 0, 393221, 2, 65536, 393222, 536870914, 0, 393235, 7, 0, 393239, 5, 0, 458769, 5, 0, 458772, 5, 0, 458773, 7, 0, 458777, 536870918, 0, 458778, 7, 0, 524291, 2, 65539, 524295, 536870913, 2, 524296, 2, 131075, 524303, 536870917, 0, 524305, 536870917, 0, 524307, 7, 0, 524308, 7, 0, 524313, 4, 0, 524314, 4, 0, 589831, 2, 131074, 589842, 4, 0, 589843, 7, 0, 589845, 536870916, 0, 589847, 4, 0, 655366, 5, 0, 655376, 6, 0, 655379, 7, 0, 655383, 536870916, 0, 655384, 536870916, 0, 720900, 7, 0, 720901, 536870917, 0, 720908, 536870914, 65539, 720918, 536870919, 0, 786453, 536870919, 0, 851990, 7, 0, 851991, 536870918, 0, 851993, 4, 0, 917513, 6, 0, 917519, 6, 0, 917520, 536870919, 0, 917521, 536870918, 0, 917526, 5, 0, 917527, 5, 0, 983045, 4, 0, 983048, 5, 0, 983057, 536870916, 0, 983060, 6, 0, 983061, 6, 0, 1048592, 6, 0, 1114120, 536870918, 0, 1114126, 7, 0, 1114129, 536870916, 0, 1114131, 4, 0, 1114134, 536870917, 0, 1114135, 7, 0, 1179658, 536870916, 0, 1179665, 536870919, 0, 1179670, 536870916, 0, 1245193, 7, 0, 1245195, 536870919, 0, 1245196, 6, 0, 1245201, 536870918, 0, 1310732, 536870919, 0, 1376270, 6, 0, 1441806, 536870919, 0 )
 
-[node name="PebbleOverworldTiler" type="Node" parent="Ground/Terrain"]
-script = ExtResource( 2 )
-ground_map_path = NodePath("../../GroundMap")
+[node name="PebbleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 2 )]
+__meta__ = {
+"_editor_description_": ""
+}
 ground_no_goop_tile_index = 1
 pebble_tile_index = 1
 
-[node name="ChipOverworldTiler" type="Node" parent="Ground/Terrain"]
-script = ExtResource( 11 )
-ground_map_path = NodePath("../../GroundMap")
-chip_density = 0.06
-ground_no_goop_tile_index = 1
-chip_no_goop_tile_index = 3
-chip_goop_tile_index = 2
+[node name="ChipOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 11 )]
 
-[node name="WaterRippleOverworldTiler" type="Node" parent="Ground/Terrain"]
-script = ExtResource( 12 )
-ground_map_path = NodePath("../../GroundMap")
-water_tile_indexes = [ 4, 5, 6, 7 ]
-ripple_tile_indexes = [ 4, 5, 6, 7 ]
-ripple_density = 0.25
+[node name="WaterRippleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 12 )]
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 4 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")

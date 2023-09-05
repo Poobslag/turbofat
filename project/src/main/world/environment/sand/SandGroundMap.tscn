@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/world/environment/sand/sand-ground-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/world/environment/sand/water-overworld-tiler.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/environment/sand/WaterOverworldTiler.tscn" type="PackedScene" id=3]
 
 [node name="GroundMap" type="TileMap"]
 position = Vector2( -2, 1 )
@@ -28,6 +28,4 @@ tile_data = PoolIntArray( -65505, 3, 0, 196628, 3, 0, 262164, 3, 0, 262165, 3, 0
 [node name="GoopOverworldTiler" parent="." instance=ExtResource( 2 )]
 corner_tile_index = 3
 
-[node name="WaterOverworldTiler" type="Node" parent="."]
-script = ExtResource( 3 )
-water_tile_indexes = [ 4, 5, 6, 7 ]
+[node name="WaterOverworldTiler" parent="." instance=ExtResource( 3 )]

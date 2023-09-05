@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/environment/restaurant/kitchen-obstacle-tiler.gd" type="Script" id=1]
+
+[node name="KitchenObstacleTiler" type="Node"]
+script = ExtResource( 1 )
+bare_countertop_tile_index = 8
+grill_tile_index = 9
+sink_tile_index = 10
+countertop_plates_tile_index = 11
