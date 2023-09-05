@@ -59,11 +59,12 @@ func autotile(value: bool) -> void:
 		
 		for neighbor_x in range(cell.x - 1, cell.x + 2):
 			for neighbor_y in range(cell.y - 1, cell.y + 2):
-				if unwalkable_cells.has(Vector2(neighbor_x, neighbor_y)):
+				var neighbor_cell := Vector2(neighbor_x, neighbor_y)
+				if unwalkable_cells.has(neighbor_cell):
 					# already added an entry to the map
 					continue
 				
-				if _is_walkable(Vector2(neighbor_x, neighbor_y)):
+				if _is_walkable(neighbor_cell):
 					# walkable; the ground map has terrain at that cell
 					continue
 				
@@ -71,7 +72,7 @@ func autotile(value: bool) -> void:
 					# the obstacle map already has an obstacle at that cell; don't overwrite it
 					continue
 				
-				unwalkable_cells[Vector2(neighbor_x, neighbor_y)] = true
+				unwalkable_cells[neighbor_cell] = true
 	
 	# place an invisible obstacle on each unwalkable cell
 	for unwalkable_cell_obj in unwalkable_cells:
