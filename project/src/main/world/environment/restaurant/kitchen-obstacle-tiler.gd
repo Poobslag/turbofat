@@ -196,7 +196,7 @@ func _enter_tree() -> void:
 ## dictionary constants defined in this script.
 func autotile(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'Autotile' property is toggled
+		# only autotile in the editor when the 'autotile' property is toggled
 		return
 	
 	if Engine.editor_hint:

@@ -40,7 +40,7 @@ func _enter_tree() -> void:
 ## other water tiles, as water tiles can overlay neighboring non-water ground tiles in an ugly way.
 func autotile(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'Autotile' property is toggled
+		# only autotile in the editor when the 'autotile' property is toggled
 		return
 	
 	if Engine.editor_hint:

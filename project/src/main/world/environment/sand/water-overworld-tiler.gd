@@ -22,7 +22,7 @@ func _enter_tree() -> void:
 ## Autotiles water, applying a random water texture to each water cell.
 func autotile(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'Autotile' property is toggled
+		# only autotile in the editor when the 'autotile' property is toggled
 		return
 	
 	if Engine.editor_hint:

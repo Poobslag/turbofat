@@ -36,7 +36,7 @@ func _enter_tree() -> void:
 ## like a patch of ground.
 func autotile(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'Autotile' property is toggled
+		# only autotile in the editor when the 'autotile' property is toggled
 		return
 	
 	if Engine.editor_hint:
@@ -44,11 +44,18 @@ func autotile(value: bool) -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
+	_erase_all_invisible_obstacles()
+	_add_invisible_obstacles()
+
+
+func _erase_all_invisible_obstacles() -> void:
 	# remove all invisible obstacles
 	for cell_obj in _tile_map.get_used_cells_by_id(impassable_tile_index):
 		var cell: Vector2 = cell_obj
 		_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
-	
+
+
+func _add_invisible_obstacles() -> void:
 	# calculate empty unwalkable cells which are adjacent to walkable cells
 	var unwalkable_cells := {}
 	for cell_obj in _ground_map.get_used_cells():

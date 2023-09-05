@@ -39,7 +39,16 @@ func _enter_tree() -> void:
 ## Autotiles floors, applying imperfections.
 ##
 ## The floor autotiling logic applies probabilities and cannot be handled by Godot's built-in autotiling.
-func autotile(_value: bool) -> void:
+func autotile(value: bool) -> void:
+	if not value:
+		# only autotile in the editor when the 'unautotile' property is toggled
+		return
+	
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
 	for cell in _tile_map.get_used_cells_by_id(undecorated_tile_index):
 		_autotile_undecorated_floor(cell)
 
