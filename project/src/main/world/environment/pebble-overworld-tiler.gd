@@ -37,7 +37,7 @@ func _enter_tree() -> void:
 ## Pebble tiles are added to a random selection of goopy/goopless cake tiles.
 func autotile(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'Autotile' property is toggled
+		# only autotile in the editor when the 'autotile' property is toggled
 		return
 	
 	if Engine.editor_hint:
