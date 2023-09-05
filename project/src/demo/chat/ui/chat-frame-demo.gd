@@ -98,11 +98,7 @@ func _input(event: InputEvent) -> void:
 			_play_chat_event()
 		KEY_L:
 			if Input.is_key_pressed(KEY_SHIFT):
-				var old_locale := TranslationServer.get_locale()
-				var locales := TranslationServer.get_loaded_locales()
-				var new_locale_index := (locales.find(old_locale) + 1) % locales.size()
-				var new_locale: String = locales[new_locale_index]
-				SystemData.misc_settings.set_locale(new_locale)
+				SystemData.misc_settings.advance_locale()
 				_play_chat_event()
 			else:
 				_nametag_side = (_nametag_side + 1) % 3
