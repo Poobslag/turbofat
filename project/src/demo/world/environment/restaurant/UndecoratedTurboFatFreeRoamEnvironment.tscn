@@ -1,11 +1,11 @@
 [gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/restaurant/UndecoratedFloorTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=6]
-[ext_resource path="res://src/main/world/environment/restaurant/undecorated-floor-tiler.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/world/creature/5/tail-z0-packed.png" type="Texture" id=10]
@@ -61,9 +61,7 @@ tile_data = PoolIntArray( -196588, 82456, 0, -196587, 82456, 0, -196586, 82456, 
 [node name="KitchenFloorTiler" parent="Ground/GroundMap" instance=ExtResource( 37 )]
 kitchen_tile_index = 54907
 
-[node name="UndecoratedFloorTiler" type="Node" parent="Ground/GroundMap"]
-script = ExtResource( 7 )
-undecorated_tile_index = 82456
+[node name="UndecoratedFloorTiler" parent="Ground/GroundMap" instance=ExtResource( 2 )]
 
 [node name="Exits" type="Node2D" parent="Ground"]
 

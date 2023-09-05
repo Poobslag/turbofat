@@ -9,8 +9,8 @@
 [ext_resource path="res://src/main/world/environment/lemon/LemonGroundMap.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/world/environment/lemon/LemonRippleWaves.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/GrassOverworldTiler.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=11]
-[ext_resource path="res://src/main/world/environment/pebble-overworld-tiler.gd" type="Script" id=13]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/environment/lemon/LemonCookieSmall.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/lemon/LemonTree.tscn" type="PackedScene" id=18]
@@ -47,9 +47,10 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -917495, 0, 2, -917493, 1, 0, -851960, 0, 327680, -851959, 0, 196611, -851950, 1, 1, -786424, 0, 262146, -786423, 0, 196611, -786419, 1, 65536, -786411, 0, 2, -720887, 0, 65539, -720878, 0, 327680, -720877, 0, 393219, -720876, 0, 393216, -720875, 0, 131075, -655351, 0, 65539, -655343, 0, 327680, -655342, 0, 131075, -589822, 1, 65536, -589815, 0, 65537, -589808, 0, 327681, -589807, 0, 131075, -524279, 0, 65538, -524274, 1, 131075, -524272, 0, 65536, -458743, 0, 327683, -458742, 0, 196609, -458736, 0, 65538, -458733, 1, 3, -393207, 0, 327683, -393206, 0, 196610, -393201, 0, 327680, -393200, 0, 196610, -327671, 0, 327683, -327670, 0, 589824, -327669, 0, 393216, -327668, 0, 393216, -327667, 0, 393219, -327666, 0, 393218, -327665, 0, 458752, -327664, 0, 131074, -262135, 0, 327682, -262134, 0, 131075, -196606, 1, 131075, -196599, 0, 65538, -131063, 0, 65536, -6, 1, 131073, -65527, 0, 65536, 0, 1, 65538, 2, 1, 131075, 5, 1, 131072, 8, 0, 327681, 9, 0, 196611, 15, 1, 65536, 131065, 1, 3, 65542, 0, 327681, 65543, 0, 458754, 65544, 0, 524290, 65545, 0, 196611, 196607, 1, 0, 131075, 0, 327681, 131076, 0, 393216, 131077, 0, 393216, 131078, 0, 458753, 131079, 0, 458752, 131080, 0, 458752, 131081, 0, 196611, 196609, 1, 1, 196610, 0, 327681, 196611, 0, 131074, 196617, 0, 65538, 262145, 0, 327680, 262146, 0, 131074, 262153, 0, 65536, 327680, 0, 327680, 327681, 0, 196610, 327689, 0, 65539, 327692, 1, 131074, 393216, 0, 327682, 393217, 0, 131075, 393225, 0, 65539, 524287, 0, 327681, 458752, 0, 196610, 458761, 0, 65539, 458765, 1, 65539, 589822, 0, 327680, 589823, 0, 589824, 524288, 0, 131074, 524296, 0, 327681, 524297, 0, 196611, 655356, 0, 327680, 655357, 0, 458755, 655358, 0, 589827, 655359, 0, 131075, 589832, 0, 327683, 589833, 0, 196611, 720892, 0, 262147, 720893, 0, 458752, 720894, 0, 131075, 655368, 0, 262147, 655369, 0, 131074 )
 
-[node name="PebbleOverworldTiler" type="Node" parent="Ground/Terrain"]
-script = ExtResource( 13 )
-ground_map_path = NodePath("../../GroundMap")
+[node name="PebbleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 10 )]
+__meta__ = {
+"_editor_description_": ""
+}
 ground_no_goop_tile_index = 1
 pebble_tile_index = 1
 

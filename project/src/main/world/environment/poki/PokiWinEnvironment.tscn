@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/environment/poki/puddle-overworld-tiler.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/poki/poki-obstacle-library.tres" type="TileSet" id=3]
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=4]
 [ext_resource path="res://src/main/world/environment/poki/PokiMarshmallow.tscn" type="PackedScene" id=5]
@@ -44,11 +44,7 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( 65552, 1, 65539, 524302, 1, 65538, 589827, 1, 131072 )
 
-[node name="PuddleOverworldTiler" type="Node" parent="Ground/Terrain"]
-script = ExtResource( 2 )
-ground_map_path = NodePath("../../GroundMap")
-ground_no_goop_tile_index = 1
-puddle_tile_index = 1
+[node name="PuddleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 2 )]
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 11 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
