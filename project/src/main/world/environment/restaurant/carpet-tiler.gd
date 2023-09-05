@@ -27,6 +27,9 @@ export (int) var carpet_tile_index: int = -1
 ## (https://github.com/godotengine/godot/issues/11855)
 export (bool) var _autotile: bool setget autotile
 
+## Editor toggle which undoes autotiling, removing all carpet imperfections.
+export (bool) var _unautotile: bool setget unautotile
+
 ## tilemap containing floors
 onready var _tile_map: TileMap = get_parent()
 
@@ -50,6 +53,21 @@ func autotile(value: bool) -> void:
 	
 	for cell in _tile_map.get_used_cells_by_id(carpet_tile_index):
 		_autotile_carpet(cell)
+
+
+## Removes all carpet imperfections.
+func unautotile(value: bool) -> void:
+	if not value:
+		# only unautotile in the editor when the 'unautotile' property is toggled
+		return
+	
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
+	for cell in _tile_map.get_used_cells_by_id(carpet_tile_index):
+		_set_cell_autotile_coord(cell, CARPET_FLAWLESS_CELL)
 
 
 ## Preemptively initializes onready variables to avoid null references.

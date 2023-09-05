@@ -33,6 +33,9 @@ export (int) var grass_tile_index: int
 ## Editor toggle which adds grass to a random selection of goopy/goopless cake tiles
 export (bool) var _autotile: bool setget autotile
 
+## Editor toggle which undoes autotiling, removing all grass.
+export (bool) var _unautotile: bool setget unautotile
+
 ## Obstacle tilemap with grass tiles to place
 onready var _tile_map := get_parent()
 
@@ -59,6 +62,20 @@ func autotile(value: bool) -> void:
 	
 	_erase_all_grass()
 	_add_random_grass()
+
+
+## Removes all grass tiles.
+func unautotile(value: bool) -> void:
+	if not value:
+		# only unautotile in the editor when the 'unautotile' property is toggled
+		return
+	
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
+	_erase_all_grass()
 
 
 ## Preemptively initializes onready variables to avoid null references.
