@@ -1,6 +1,6 @@
 {
   "version": "4373",
-  "start_speed": "FA",
+  "start_speed": "0",
   "name": "Ultra: Normal (200¥)",
   "description": "Earn ¥200 as fast as possible!",
   "finish_condition": {
