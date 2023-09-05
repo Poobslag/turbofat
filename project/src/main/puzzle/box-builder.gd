@@ -16,7 +16,7 @@ signal box_built(rect, box_type)
 ## with pink and white pieces, where 'l123' is a 5x3 box with pink, bread and white pieces. 's0' is a 3x3 box with
 ## brown pieces.
 ##
-## key: (string) Ingredient string describing the box's size and color
+## key: (String) Ingredient string describing the box's size and color
 ## value: (int) Enum from Foods.BoxType for the resulting snack/cake
 const BOX_TYPES_BY_INGREDIENTS := {
 	# 3x3

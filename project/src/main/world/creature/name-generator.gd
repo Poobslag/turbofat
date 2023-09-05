@@ -8,11 +8,11 @@ var min_length: int setget set_min_length
 var max_length: int setget set_max_length
 var order: float setget set_order
 
-## key: (string) Word from the source material
+## key: (String) Word from the source material
 ## value: (bool) true
 var _seed_words := {}
 
-## cached list of generated names; we generate many names at once at cache them
+## cached list of generated names; we generate many names at once and cache them
 var _generated_names := []
 
 ## resource paths containing input names (one word per line)
@@ -80,9 +80,7 @@ func _mix_seed_lists() -> Array:
 	for word_list in _seed_word_lists:
 		word_count = min(word_count, word_list.size())
 	for word_list in _seed_word_lists:
-		var new_words := []
-		for word in word_list:
-			new_words.append(word)
+		var new_words: Array = word_list.duplicate()
 		new_words.shuffle()
 		words += new_words.slice(0, word_count - 1)
 	return words
