@@ -164,3 +164,10 @@ func test_syntax_error_misplaced_keyword() -> void:
 	parse_expression("or chat_finished abc")
 	
 	assert_eq(parser._parse_error, "Error parsing \"or chat_finished abc\"(0): Unexpected token 'or'")
+
+
+func test_syntax_error_too_few_arguments() -> void:
+	parse_expression("is_flag abc")
+	
+	assert_eq(parser._parse_error,
+			"Error parsing \"is_flag abc\"(0): Too few arguments for 'is_flag' expression. Expected 2 but was 1.")

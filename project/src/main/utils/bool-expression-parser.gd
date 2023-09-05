@@ -241,18 +241,25 @@ func _parse_function() -> BoolExpression:
 	var expression: BoolExpression
 	match _peek_next_token_string():
 		"chat_finished":
+			_expect_token_count(2)
 			expression = ChatFinishedExpression.new(_get_next_token(), _get_next_token())
 		"has_flag":
+			_expect_token_count(2)
 			expression = HasFlagExpression.new(_get_next_token(), _get_next_token())
 		"has_phrase":
+			_expect_token_count(2)
 			expression = HasPhraseExpression.new(_get_next_token(), _get_next_token())
 		"is_flag":
+			_expect_token_count(3)
 			expression = IsFlagExpression.new(_get_next_token(), _get_next_token(), _get_next_token())
 		"level_finished":
+			_expect_token_count(2)
 			expression = LevelFinishedExpression.new(_get_next_token(), _get_next_token())
 		"region_cleared":
+			_expect_token_count(2)
 			expression = RegionClearedExpression.new(_get_next_token(), _get_next_token())
 		"region_started":
+			_expect_token_count(2)
 			expression = RegionStartedExpression.new(_get_next_token(), _get_next_token())
 		"true", "True", "TRUE", "1", "false", "False", "FALSE", "0":
 			expression = TruthyExpression.new(_get_next_token())
@@ -281,7 +288,7 @@ func _parse_atom() -> BoolExpression:
 	return expression
 
 
-## Advances to the next token, throwing an error if it does not match the specified token string.
+## Advances to the next token, reporting an error if it does not match the specified token string.
 func _expect_token(token_string: String) -> void:
 	var next_token := _peek_next_token()
 	if not next_token:
@@ -292,6 +299,17 @@ func _expect_token(token_string: String) -> void:
 		return
 	
 	_get_next_token()
+
+
+## Reports an error if there are too few tokens for an expression.
+func _expect_token_count(expected_token_count: int) -> void:
+	var next_token := _peek_next_token()
+	var expected_argument_count := expected_token_count - 1
+	var actual_argument_count := _tokens.size() - 1
+	if actual_argument_count < expected_argument_count:
+		_report_error(next_token.position,
+				"Too few arguments for '%s' expression. Expected %s but was %s."
+					% [next_token.string, expected_argument_count, actual_argument_count])
 
 
 ## Returns the next token without advancing the token index.
