@@ -13,11 +13,11 @@ const POOL_SIZE := 5
 
 export (PackedScene) var PuzzleTileMapScene: PackedScene
 
-## Pooled PuzzleTileMap instances which are available to borrow
-var _tilemaps := []
-
 ## Thread which fills the pool
 var _load_thread: Thread
+
+## Pooled PuzzleTileMap instances which are available to borrow
+var _tilemaps := []
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")

@@ -14,14 +14,14 @@ const TILE_INDEX_PAN_GOLD := 1
 ## tileset index for dead pans (red with a slash)
 const TILE_INDEX_PAN_DEAD := 2
 
+## if true, the pans are shown as gold pans. golden pans are used shown if topping out clears the playfield
+export (bool) var gold := false setget set_gold
+
 ## maximum number of frying pans to display (the number of lives the player starts with)
 export (int) var pans_max := 3 setget set_pans_max
 
 ## number of remaining non-dead pans (the number of lives the player has left)
 export (int) var pans_remaining := 3 setget set_pans_remaining
-
-## if true, the pans are shown as gold pans. golden pans are used shown if topping out clears the playfield
-export (bool) var gold := false setget set_gold
 
 export (PackedScene) var FryingPanGhostScene: PackedScene
 

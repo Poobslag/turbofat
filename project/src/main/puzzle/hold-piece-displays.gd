@@ -6,6 +6,7 @@ extends Control
 ## Next Piece Display functionality, since they have a lot in common.
 
 export (NodePath) var piece_queue_path: NodePath
+
 export (PackedScene) var HoldPieceDisplayScene
 
 var display: HoldPieceDisplay
