@@ -29,6 +29,9 @@ export (int) var kitchen_tile_index: int = -1
 ## (https://github.com/godotengine/godot/issues/11855)
 export (bool) var _autotile: bool setget autotile
 
+## Editor toggle which undoes autotiling, removing all floor imperfections.
+export (bool) var _unautotile: bool setget unautotile
+
 ## tilemap containing floors
 onready var _tile_map: TileMap = get_parent()
 
@@ -54,6 +57,21 @@ func autotile(value: bool) -> void:
 		_autotile_kitchen_floor(cell)
 
 
+## Removes all floor imperfections.
+func unautotile(value: bool) -> void:
+	if not value:
+		# only unautotile in the editor when the 'unautotile' property is toggled
+		return
+	
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
+	for cell in _tile_map.get_used_cells_by_id(kitchen_tile_index):
+		_unautotile_kitchen_floor(cell)
+
+
 ## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_tile_map = get_parent()
@@ -75,6 +93,19 @@ func _autotile_kitchen_floor(cell: Vector2) -> void:
 	else:
 		# replace the cell with a blemished kitchen floor tile
 		_set_cell_autotile_coord(cell, Utils.rand_value(KITCHEN_FLAWED_CELLS))
+
+
+## Removes floor imperfections from a cell containing a tiled kitchen floor.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be unautotiled.
+func _unautotile_kitchen_floor(cell: Vector2) -> void:
+	if _tile_map.get_cell_autotile_coord(cell.x, cell.y) == KITCHEN_DRAIN_CELL:
+		# cell contains a drain; leave it alone
+		pass
+	else:
+		# replace the cell with a perfect kitchen floor tile
+		_set_cell_autotile_coord(cell, KITCHEN_FLAWLESS_CELL)
 
 
 ## Updates the autotile coordinate for a TileMap cell.

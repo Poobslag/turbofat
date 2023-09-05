@@ -23,6 +23,9 @@ export (float, 0.0, 1.0) var ripple_density := 0.15
 ## Editor toggle which adds ripples to a random selection of water tiles
 export (bool) var _autotile: bool setget autotile
 
+## Editor toggle which undoes autotiling, removing all ripples
+export (bool) var _unautotile: bool setget unautotile
+
 ## Terrain tilemap with ripple tiles to place
 onready var _tile_map := get_parent()
 
@@ -50,6 +53,20 @@ func autotile(value: bool) -> void:
 	
 	_erase_all_ripples()
 	_add_random_ripples()
+
+
+## Removes all ripple tiles.
+func unautotile(value: bool) -> void:
+	if not value:
+		# only unautotile in the editor when the 'unautotile' property is toggled
+		return
+	
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
+	_erase_all_ripples()
 
 
 ## Preemptively initializes onready variables to avoid null references.

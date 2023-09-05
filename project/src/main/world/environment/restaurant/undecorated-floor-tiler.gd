@@ -27,6 +27,9 @@ export (int) var undecorated_tile_index: int = -1
 ## (https://github.com/godotengine/godot/issues/11855)
 export (bool) var _autotile: bool setget autotile
 
+## Editor toggle which undoes autotiling, removing all floor imperfections.
+export (bool) var _unautotile: bool setget unautotile
+
 ## tilemap containing floors
 onready var _tile_map: TileMap = get_parent()
 
@@ -51,6 +54,21 @@ func autotile(value: bool) -> void:
 	
 	for cell in _tile_map.get_used_cells_by_id(undecorated_tile_index):
 		_autotile_undecorated_floor(cell)
+
+
+## Removes all floor imperfections.
+func unautotile(value: bool) -> void:
+	if not value:
+		# only unautotile in the editor when the 'unautotile' property is toggled
+		return
+	
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
+	for cell in _tile_map.get_used_cells_by_id(undecorated_tile_index):
+		_unautotile_undecorated_floor(cell)
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -81,6 +99,26 @@ func _autotile_undecorated_floor(cell: Vector2) -> void:
 	else:
 		# replace the cell with a blemished undecorated floor tile
 		_set_cell_autotile_coord(cell, tile_alternatives[Utils.randi_range(1, tile_alternatives.size() - 1)])
+
+
+## Removes imperfections from a tile containing a tiled undecorated floor.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be unautotiled.
+func _unautotile_undecorated_floor(cell: Vector2) -> void:
+	var autotile_coord := _tile_map.get_cell_autotile_coord(cell.x, cell.y)
+	var tile_alternatives := []
+	for possible_autotile_alternatives in ALL_AUTOTILE_ALTERNATIVES:
+		if autotile_coord in possible_autotile_alternatives:
+			tile_alternatives = possible_autotile_alternatives
+			break
+	if tile_alternatives.size() < 2:
+		# we have only one (or zero!) candidates for this cell. this is unusual so we push a warning
+		push_warning("Insufficient candidates for cell at %s (autotile_coord=%s)" % [cell, autotile_coord])
+		return
+	else:
+		# replace the cell with a perfect undecorated floor tile
+		_set_cell_autotile_coord(cell, tile_alternatives[0])
 
 
 ## Updates the autotile coordinate for a TileMap cell.
