@@ -22,7 +22,7 @@
 [ext_resource path="res://src/main/world/environment/sand/SandBanana.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/environment/sand/BananaHq.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/sand/BananaTentacleFront.tscn" type="PackedScene" id=22]
-[ext_resource path="res://src/demo/world/environment/sand/water-ripple-overworld-tiler.gd" type="Script" id=23]
+[ext_resource path="res://src/main/world/environment/sand/water-ripple-overworld-tiler.gd" type="Script" id=23]
 [ext_resource path="res://src/main/world/environment/sand/SandHouse.tscn" type="PackedScene" id=25]
 
 [sub_resource type="ShaderMaterial" id=1]

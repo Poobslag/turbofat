@@ -11,7 +11,7 @@
 [ext_resource path="res://src/main/world/environment/sand/sand-terrain-library.tres" type="TileSet" id=9]
 [ext_resource path="res://src/main/world/environment/sand/sand-obstacle-library.tres" type="TileSet" id=10]
 [ext_resource path="res://src/main/world/environment/sand/chip-overworld-tiler.gd" type="Script" id=11]
-[ext_resource path="res://src/demo/world/environment/sand/water-ripple-overworld-tiler.gd" type="Script" id=12]
+[ext_resource path="res://src/main/world/environment/sand/water-ripple-overworld-tiler.gd" type="Script" id=12]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 1 )
