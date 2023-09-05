@@ -21,11 +21,7 @@ func _input(event: InputEvent) -> void:
 			PlayerSave.rolling_backups.loaded_backup = new_loaded_backup
 			_control.popup()
 		KEY_L:
-			var old_locale := TranslationServer.get_locale()
-			var locales := TranslationServer.get_loaded_locales()
-			var new_locale_index := (locales.find(old_locale) + 1) % locales.size()
-			var new_locale: String = locales[new_locale_index]
-			SystemData.misc_settings.set_locale(new_locale)
+			SystemData.misc_settings.advance_locale()
 		KEY_P:
 			if _control.visible:
 				_control.hide()

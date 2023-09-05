@@ -40,6 +40,18 @@ func set_locale(new_locale: String) -> void:
 	emit_signal("locale_changed", locale)
 
 
+## Advance to the next locale.
+##
+## In the game, the user selects the locale from a menu, but some demos just want a fast and dirty way to change
+## locales without a UI.
+func advance_locale() -> void:
+	var old_locale := TranslationServer.get_locale()
+	var locales := TranslationServer.get_loaded_locales()
+	var new_locale_index := (locales.find(old_locale) + 1) % locales.size()
+	var new_locale: String = locales[new_locale_index]
+	SystemData.misc_settings.set_locale(new_locale)
+
+
 func set_save_slot(new_save_slot: int) -> void:
 	if save_slot == new_save_slot:
 		return
