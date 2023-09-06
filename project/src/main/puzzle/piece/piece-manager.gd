@@ -464,7 +464,7 @@ func _on_Squisher_lock_cancelled(cancelled_piece: ActivePiece) -> void: emit_sig
 func _on_Squisher_squish_moved(squished_piece: ActivePiece, old_pos: Vector2) -> void: emit_signal("squish_moved", \
 		squished_piece, old_pos)
 
-func _on_Mover_initial_das_moved_left(moved_piece: ActivePiece) -> void:emit_signal("initial_das_moved_left", \
+func _on_Mover_initial_das_moved_left(moved_piece: ActivePiece) -> void: emit_signal("initial_das_moved_left", \
 		moved_piece)
 func _on_Mover_initial_das_moved_right(moved_piece: ActivePiece) -> void: emit_signal("initial_das_moved_right", \
 		moved_piece)

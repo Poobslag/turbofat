@@ -90,7 +90,7 @@ func current_chat_event() -> ChatEvent:
 ## Returns 'true' if we're at a chat branch and should prompt the player.
 func should_prompt() -> bool:
 	var result := true
-	var chat_event:ChatEvent = current_chat_event()
+	var chat_event: ChatEvent = current_chat_event()
 	if not chat_event:
 		result = false
 	if rewinding_text and _prev_chat_event_index < _prev_chat_events.size() - 1:
