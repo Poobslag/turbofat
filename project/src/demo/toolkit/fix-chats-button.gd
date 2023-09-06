@@ -31,7 +31,7 @@ func _report_problems_for_chats() -> void:
 func _report_broken_chat_links(chat_tree: ChatTree) -> void:
 	for chat_key in chat_tree.events:
 		for event_obj in chat_tree.events[chat_key]:
-			var chat_event:ChatEvent = event_obj
+			var chat_event: ChatEvent = event_obj
 			if chat_event.links:
 				for link in chat_event.links:
 					if not chat_tree.events.has(link):
