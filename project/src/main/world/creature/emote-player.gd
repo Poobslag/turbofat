@@ -315,8 +315,8 @@ func emote(mood: int) -> void:
 		# initialize eye frames in case the eyes were previously invisible, such as for north-facing creatures
 		_creature_visuals.reset_eye_frames()
 	
-	if _reset_tween and _reset_tween.is_running():
-		# transition to the new mood after the creature's appearance resets
+	if _reset_tween and _reset_tween.is_running() and _reset_tween.get_total_elapsed_time() == 0:
+		# We just launched a reset tween. Transition to the new mood after the creature's appearance resets.
 		_reset_tween.chain().tween_callback(self, "_transition_to_new_mood", [mood])
 	else:
 		# transition to the new mood; the creature's appearance has already been reset
