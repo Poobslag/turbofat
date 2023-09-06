@@ -24,7 +24,11 @@ const TWEEN_DURATION := 0.3
 
 var _night_mode := false
 
-## Set of Node instances which are being gradually modulated to transparent.
+## Nodes being tweened to transparent. After the tween completes, we set the 'visible' property on these nodes to
+## 'false'.
+##
+## key: (Node) node being modulated to transparent
+## kalue: (bool) true
 var _nodes_modulated_to_transparent := {}
 
 ## Adjusts node colors and visibility during day/night transitions.

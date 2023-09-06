@@ -26,7 +26,3 @@ offset = Vector2( 0, -75 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
-[node name="ChatIconHook" type="RemoteTransform2D" parent="."]
-position = Vector2( -20, 0 )
-scale = Vector2( -1, 1 )
