@@ -10424,7 +10424,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2495
 msgid ""
-"Ahh beach life! Overcrowded beaches, sand in your sneakers... Partying so"
+"Ahh beach life! Crowded shorelines, sand in your sneakers... Partying so"
 " hard it permanently increases your risk of melanoma!"
 msgstr ""
 
@@ -10475,7 +10475,7 @@ msgid "The flab part is a major factor!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2508
-msgid "The island part is a major factor! Crowded beaches? Sand in my sneakers?"
+msgid "The island part is a major factor! Crowded shorelines? Sand in my sneakers?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2509
@@ -10494,7 +10494,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2511
 msgid ""
-"And besides, crowded beaches? Sand in my sneakers? You're not making "
+"And besides, crowded shorelines? Sand in my sneakers? You're not making "
 "beach life sound very appealing."
 msgstr ""
 

@@ -13,7 +13,7 @@ n: With their budgetary constraints, they still had to selectively open in less 
 p1: /._. So where did you say our next restaurant was opening? A stinky swamp? An active volcano?
 s1: Hmph, I don't appreciate your candor. And it's unwarranted, because our next location is a tropical island paradise~
 p1: -_- Oh that's right, the "Kflab Islands". NOW I remember.
-s1: ^_^ Ahh beach life! Overcrowded beaches, sand in your sneakers... Partying so hard it permanently increases your risk of melanoma!
+s1: ^_^ Ahh beach life! Crowded shorelines, sand in your sneakers... Partying so hard it permanently increases your risk of melanoma!
 p1: >__< Riiight, I'm sure I'll have a blast. Partying in K-Flab. FLAB!!!
 s1: ^N^ You're focusing too much on the flab part! And not enough on the cool island part.
  (stop_walking)
@@ -35,13 +35,13 @@ p1: ._.; "Fat" is cute! "Flab" is weird...
 [okay]
 
 [island_part]
-p1: >_< The island part is a major factor! Crowded beaches? Sand in my sneakers?
+p1: >_< The island part is a major factor! Crowded shorelines? Sand in my sneakers?
 s1: ^__^ Ahh yes, that sneaky sneaker sand! You can never quite get rid of all of it, it's like a fun little souvenir~
 p1: -_- ...I'm starting to understand why the name "Kflab" doesn't bother you very much.
 [okay]
 
 [beach_life]
-p1: <_< And besides, crowded beaches? Sand in my sneakers? You're not making beach life sound very appealing.
+p1: <_< And besides, crowded shorelines? Sand in my sneakers? You're not making beach life sound very appealing.
 s1: ^__^ Ahh yes, that sneaky sneaker sand! You can never quite get rid of all of it, it's like a fun little souvenir~
 p1: -_- ...I'm starting to understand why the name "Kflab" doesn't bother you very much.
 [okay]
