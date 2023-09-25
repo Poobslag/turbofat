@@ -2,6 +2,11 @@ class_name CellCritterManager
 extends Node
 ## Common logic for puzzle critters like moles and sharks who sit on blocks in the playfield.
 
+# Some critters like moles and sharks need to react to the playfield moving after the critter manager. This signal is a
+# 1:1 replacement for the Playfield's 'line_inserted' signal which is always emitted after the critter manager shifts
+# critters around.
+signal line_inserted(y, tiles_key, src_y)
+
 var piece_manager_path: NodePath setget set_piece_manager_path
 var playfield_path: NodePath setget set_playfield_path
 
@@ -206,9 +211,13 @@ func _on_Playfield_blocks_prepared() -> void:
 	_clear_critters()
 
 
-func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
+func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 	# raise all critters at or above the specified row
 	_shift_rows(y, Vector2.UP)
+	
+	# Some critters like moles and sharks need to react to the playfield moving after the critter manager. Emit the
+	# corresponding 'line_inserted' signal to ensure they react after us.
+	emit_signal("line_inserted", y, tiles_key, src_y)
 
 
 func _on_Playfield_line_deleted(y: int) -> void:

@@ -60,3 +60,6 @@ bus = "Sound Bus"
 
 [node name="CellCritterManager" type="Node" parent="."]
 script = ExtResource( 14 )
+
+[connection signal="line_inserted" from="CellCritterManager" to="Moles" method="_on_CritterManager_line_inserted"]
+[connection signal="line_inserted" from="CellCritterManager" to="Sharks" method="_on_CritterManager_line_inserted"]

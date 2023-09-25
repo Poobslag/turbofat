@@ -376,7 +376,6 @@ func _refresh_playfield_path() -> void:
 	
 	if _playfield:
 		_playfield.disconnect("line_erased", self, "_on_Playfield_line_erased")
-		_playfield.disconnect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.disconnect("line_filled", self, "_on_Playfield_line_filled")
 		_playfield.disconnect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
 	
@@ -384,7 +383,6 @@ func _refresh_playfield_path() -> void:
 	
 	if _playfield:
 		_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
-		_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
 		_playfield.connect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
 
@@ -521,7 +519,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 		_refresh_sharks_for_playfield()
 
 
-func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
+func _on_CritterManager_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate sharks until all lines are deleted.
 		pass

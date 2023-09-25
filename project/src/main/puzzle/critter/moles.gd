@@ -300,7 +300,7 @@ func _on_Playfield_line_erased(_y: int, _total_lines: int, _remaining_lines: int
 		_refresh_moles_for_playfield()
 
 
-func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
+func _on_CritterManager_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
 	if _playfield.is_clearing_lines():
 		# If lines are being erased as a part of line clears, we wait to relocate moles until all lines are deleted.
 		pass
