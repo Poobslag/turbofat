@@ -238,6 +238,56 @@ class AddSharksEffect extends LevelTriggerEffect:
 		return result
 
 
+## Adds one or more spears to the playfield.
+class AddSpearsEffect extends LevelTriggerEffect:
+	var config: SpearConfig = SpearConfig.new()
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [sizes]: (Optional) List of String sizes, like 'x5', 'l3', 'l2r4' or 'R8'. The letters 'l' and 'r' refer to
+	## 	spears emerging from the left or right sides. Capital letters are used for wide spears. The number corresponds
+	## 	to the spear's length in cells.
+	## [count]: (Optional) How many spears appear during a single 'add spears' effect. Defaults to 1.
+	## [duration]: (Optional) How long the spears wait before disappearing. Defaults to 'forever'
+	## [y]: (Optional) Restricts which rows the spears appear on, where '0' is the bottom row of the playfield and '16'
+	## 	is the top.
+	##
+	## Example: ["add_spears sizes=X6,l4r4 y=12-16"]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("sizes"):
+			config.sizes = new_config["sizes"].split(",")
+		if new_config.has("count"):
+			config.count = new_config["count"].to_int()
+		if new_config.has("duration"):
+			config.duration = new_config["duration"].to_int()
+		if new_config.has("y"):
+			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
+			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
+	
+	
+	## Adds one or more spears to the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_spears().add_spears(config)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		
+		if config.sizes != SpearConfig.DEFAULT_SIZES:
+			result["sizes"] = ",".join(config.sizes)
+		if config.count != 1:
+			result["count"] = str(config.count)
+		if config.duration != -1:
+			result["duration"] = str(config.duration)
+		if config.lines:
+			var inverted_lines: Array = ConfigStringUtils.invert_puzzle_row_indexes(config.lines)
+			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_lines)
+		
+		return result
+
+
 ## Advances the day/night cycle of any onions on the playfield.
 class AdvanceOnionEffect extends LevelTriggerEffect:
 	
@@ -260,6 +310,14 @@ class AdvanceSharksEffect extends LevelTriggerEffect:
 	## Advances all sharks on the playfield, making them appear/disappear
 	func run() -> void:
 		CurrentLevel.puzzle.get_sharks().advance_sharks()
+
+
+## Advances all spears on the playfield, making them appear/disappear.
+class AdvanceSpearsEffect extends LevelTriggerEffect:
+	
+	## Advances all spears on the playfield, making them appear/disappear.
+	func run() -> void:
+		CurrentLevel.puzzle.get_spears().advance_spears()
 
 
 ## Removes one or more carrots from the playfield.
@@ -296,6 +354,36 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 class RemoveOnionEffect extends LevelTriggerEffect:
 	func run() -> void:
 		CurrentLevel.puzzle.get_onions().remove_onion()
+
+
+## Removes one or more carrots from the playfield.
+class RemoveSpearsEffect extends LevelTriggerEffect:
+	var count := 1
+	
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [0]: (Optional) Number of spears to remove. Defaults to 1.
+	##
+	## Example: ["remove_spears 2"]
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("0"):
+			count = new_config["0"].to_int()
+	
+	
+	## Removes one or more spears from the playfield.
+	func run() -> void:
+		CurrentLevel.puzzle.get_spears().pop_out_spears(count)
+
+
+	func get_config() -> Dictionary:
+		var result := {}
+
+		if count != 1:
+			result["0"] = str(count)
+
+		return result
 
 
 ## Rotates one or more pieces in the piece queue.
@@ -426,12 +514,15 @@ var effects_by_string := {
 	"add_moles": AddMolesEffect,
 	"add_onion": AddOnionEffect,
 	"add_sharks": AddSharksEffect,
+	"add_spears": AddSpearsEffect,
 	"advance_moles": AdvanceMolesEffect,
 	"advance_onion": AdvanceOnionEffect,
 	"advance_sharks": AdvanceSharksEffect,
+	"advance_spears": AdvanceSpearsEffect,
 	"clear_filled_lines": ClearFilledLinesEffect,
 	"remove_carrots": RemoveCarrotsEffect,
 	"remove_onion": RemoveOnionEffect,
+	"remove_spears": RemoveSpearsEffect,
 	"rotate_next_pieces": RotateNextPiecesEffect,
 	"insert_line": InsertLineEffect,
 }

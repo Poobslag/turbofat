@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/moles.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/critter/critters.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://src/main/puzzle/critter/shark-tile-map-pool.gd" type="Script" id=12]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/puzzle/critter/critter-manager.gd" type="Script" id=14]
+[ext_resource path="res://src/main/puzzle/critter/spears.gd" type="Script" id=15]
+[ext_resource path="res://src/main/puzzle/critter/Spear.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/puzzle/critter/SpearWide.tscn" type="PackedScene" id=18]
 
 [node name="Critters" type="Control"]
 margin_left = 364.0
@@ -41,6 +44,14 @@ critter_manager_path = NodePath("../CellCritterManager")
 [node name="SharkTileMapPool" type="Node" parent="Sharks" groups=["shark_tilemap_pools"]]
 script = ExtResource( 12 )
 PuzzleTileMapScene = ExtResource( 13 )
+
+[node name="Spears" type="Node2D" parent="." groups=["night_mode_light"]]
+script = ExtResource( 15 )
+critter_manager_path = NodePath("../CellCritterManager")
+SpearScene = ExtResource( 16 )
+SpearWideScene = ExtResource( 18 )
+
+[node name="SpearHolder" type="Node2D" parent="Spears"]
 
 [node name="Carrots" type="Node2D" parent="." groups=["night_mode_light"]]
 script = ExtResource( 4 )

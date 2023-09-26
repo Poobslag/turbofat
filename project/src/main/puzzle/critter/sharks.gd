@@ -248,7 +248,7 @@ func _nibble_piece(shark_cell: Vector2) -> void:
 	
 	PieceTypeMutator.new(new_type).remove_cell(new_orientation, shark_cell - new_pos)
 	
-	_update_piece_manager_piece(new_type, new_pos, new_orientation)
+	_critter_manager.update_piece_manager_piece(new_type, new_pos, new_orientation)
 
 
 ## Reduces the active piece to a domino; a 2-cell piece. This is the effect of a medium shark.
@@ -286,7 +286,7 @@ func _replace_active_piece_with_domino() -> void:
 				new_pos = old_pos + pos_arr_item
 				break
 	
-	_update_piece_manager_piece(new_type, new_pos, new_orientation)
+	_critter_manager.update_piece_manager_piece(new_type, new_pos, new_orientation)
 
 
 ## Removes all blocks from the active piece. This is the effect of a large shark.
@@ -294,25 +294,7 @@ func _eat_entire_piece() -> void:
 	var old_pos := _piece_manager.piece.pos
 	var old_orientation := _piece_manager.piece.orientation
 	
-	_update_piece_manager_piece(PieceTypes.piece_null, old_pos, old_orientation)
-
-
-## Updates the piece manager with the specified piece type, possibly cycling to the next piece.
-##
-## If all blocks were removed from the specified piece, we cycle to the next piece after a brief pause.
-func _update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orientation: int) -> void:
-	_piece_manager.piece.type = new_type
-	_piece_manager.piece.pos = new_pos
-	_piece_manager.piece.orientation = new_orientation
-	
-	if _piece_manager.piece.type.empty():
-		# null piece type only has one orientation
-		_piece_manager.piece.orientation = 0
-		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
-		
-		# fire 'piece_written' triggers to ensure sharks get advanced
-		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
-		_piece_manager.set_state(_piece_manager.states.wait_for_playfield)
+	_critter_manager.update_piece_manager_piece(PieceTypes.piece_null, old_pos, old_orientation)
 
 
 ## Returns a new 'domino' piece type which preserves the color of the specified piece.

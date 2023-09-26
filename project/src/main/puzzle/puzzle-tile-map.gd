@@ -313,6 +313,20 @@ func crumb_colors_for_cell(cell_pos: Vector2) -> Array:
 	return result
 
 
+## Disconnects a block from its specified neighbors.
+##
+## Parameters:
+## 	'dir_mask': (Optional) Neighboring directions to be disconnected. Defaults to 15 which disconnects it from all
+## 		four directions.
+func disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
+	if not get_cellv(pos) in [TILE_PIECE, TILE_BOX]:
+		# only boxes/pieces have connections between blocks
+		return
+	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
+	autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, dir_mask)
+	set_block(pos, get_cellv(pos), autotile_coord)
+
+
 ## Disconnects a row from any empty neighbors.
 ##
 ## Disconnected boxes have their connections updated. Disconnected pieces are converted to vegetable blocks.
@@ -380,27 +394,13 @@ func _convert_piece_if_broken(pos: Vector2) -> void:
 ## the bottom of a bread box looks like a delicious goopy snack and the player can tell it's special.
 func _disconnect_box_from_empty_neighbors(pos: Vector2) -> void:
 	if get_cellv(pos + Vector2.UP) == TileMap.INVALID_CELL:
-		_disconnect_block(pos, PuzzleConnect.UP)
+		disconnect_block(pos, PuzzleConnect.UP)
 	if get_cellv(pos + Vector2.DOWN) == TileMap.INVALID_CELL:
-		_disconnect_block(pos, PuzzleConnect.DOWN)
+		disconnect_block(pos, PuzzleConnect.DOWN)
 	if get_cellv(pos + Vector2.LEFT) == TileMap.INVALID_CELL:
-		_disconnect_block(pos, PuzzleConnect.LEFT)
+		disconnect_block(pos, PuzzleConnect.LEFT)
 	if get_cellv(pos + Vector2.RIGHT) == TileMap.INVALID_CELL:
-		_disconnect_block(pos, PuzzleConnect.RIGHT)
-
-
-## Disconnects a block from its specified neighbors.
-##
-## Parameters:
-## 	'dir_mask': (Optional) Neighboring directions to be disconnected. Defaults to 15 which disconnects it from all
-## 		four directions.
-func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
-	if not get_cellv(pos) in [TILE_PIECE, TILE_BOX]:
-		# only boxes/pieces have connections between blocks
-		return
-	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
-	autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, dir_mask)
-	set_block(pos, get_cellv(pos), autotile_coord)
+		disconnect_block(pos, PuzzleConnect.RIGHT)
 
 
 ## Returns 'true' if the specified array contains a cake box type.

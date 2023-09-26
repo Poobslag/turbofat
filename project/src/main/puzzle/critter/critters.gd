@@ -16,6 +16,9 @@ onready var _onions: Onions = $Onions
 ## Draws sharks, puzzle critters which eat pieces.
 onready var _sharks: Sharks = $Sharks
 
+## Draws spears, puzzle critters which add veggie blocks from the sides.
+onready var _spears: Spears = $Spears
+
 onready var _cell_critter_manager: CellCritterManager = $CellCritterManager
 
 func _ready() -> void:
@@ -40,10 +43,11 @@ func _refresh_playfield_path() -> void:
 	
 	_cell_critter_manager.playfield_path = _cell_critter_manager.get_path_to(get_node(playfield_path))
 	
+	_carrots.playfield_path = _carrots.get_path_to(get_node(playfield_path))
 	_moles.playfield_path = _moles.get_path_to(get_node(playfield_path))
 	_onions.playfield_path = _onions.get_path_to(get_node(playfield_path))
 	_sharks.playfield_path = _sharks.get_path_to(get_node(playfield_path))
-	_carrots.playfield_path = _carrots.get_path_to(get_node(playfield_path))
+	_spears.playfield_path = _spears.get_path_to(get_node(playfield_path))
 
 
 func _refresh_piece_manager_path() -> void:
@@ -54,6 +58,7 @@ func _refresh_piece_manager_path() -> void:
 	
 	_moles.piece_manager_path = _moles.get_path_to(get_node(piece_manager_path))
 	_sharks.piece_manager_path = _sharks.get_path_to(get_node(piece_manager_path))
+	_spears.piece_manager_path = _spears.get_path_to(get_node(piece_manager_path))
 
 
 ## When the player pauses, we hide the playfield so they can't cheat.

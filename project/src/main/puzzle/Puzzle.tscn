@@ -886,6 +886,7 @@ script = ExtResource( 89 )
 [connection signal="blocks_prepared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Fg/Playfield" to="Fg/GoopGlobs" method="_on_Playfield_box_built"]
+[connection signal="cells_consumed" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_cells_consumed"]
 [connection signal="food_spawned" from="Fg/Playfield" to="Fg/FoodItems" method="_on_Playfield_food_spawned"]
 [connection signal="line_cleared" from="Fg/Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_deleted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_deleted"]

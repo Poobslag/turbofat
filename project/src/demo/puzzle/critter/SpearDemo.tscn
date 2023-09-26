@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/puzzle/critter/Spear.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/demo/puzzle/critter/spear-demo.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/critter/SpearWide.tscn" type="PackedScene" id=3]
+
+[node name="SpearDemo" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Spear" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 196.762 )
+
+[node name="SpearWide" parent="." instance=ExtResource( 3 )]
+position = Vector2( 100.409, 379.009 )

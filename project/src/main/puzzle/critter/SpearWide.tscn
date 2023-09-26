@@ -1,0 +1,310 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://src/main/puzzle/critter/spear.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/critter/spear-sfx.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/critter/spear-state-none.gd" type="Script" id=3]
+[ext_resource path="res://src/main/puzzle/critter/spear-crumbs.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=5]
+[ext_resource path="res://assets/main/puzzle/critter/spear-face-sheet.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/puzzle/critter/spear-soil-back-wide-sheet.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/puzzle/critter/spear-pop.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/main/puzzle/critter/spear-soil-front-wide-sheet.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/puzzle/crumbs.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/puzzle/critter/spear-stalk-wide.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/puzzle/critter/onion-dirt-clod-sheet.png" type="Texture" id=14]
+[ext_resource path="res://src/main/utils/CritterPoof.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/puzzle/critter/spear-state-popped-out.gd" type="Script" id=17]
+[ext_resource path="res://src/main/puzzle/critter/spear-state-popped-in.gd" type="Script" id=18]
+[ext_resource path="res://src/main/puzzle/critter/spear-face.gd" type="Script" id=19]
+[ext_resource path="res://src/main/puzzle/critter/spear-waiting.gd" type="Script" id=20]
+[ext_resource path="res://assets/main/puzzle/critter/critter-wait-sheet.png" type="Texture" id=21]
+[ext_resource path="res://assets/main/puzzle/critter/critter-poof.wav" type="AudioStream" id=22]
+[ext_resource path="res://src/main/utils/state-machine.gd" type="Script" id=23]
+[ext_resource path="res://src/main/puzzle/critter/spear-wait-sprite.gd" type="Script" id=25]
+[ext_resource path="res://src/main/puzzle/critter/spear-waiting-end.gd" type="Script" id=26]
+[ext_resource path="res://assets/main/puzzle/critter/spear-voice-hello.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/main/puzzle/critter/spear-voice-warn.wav" type="AudioStream" id=28]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=10]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.526316, 0.991228, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.368421, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, -0.29535, 0, 1, Vector2( 0.864542, 0.744658 ), -0.29535, -5.49732, 1, 1, Vector2( 1, 0 ), -5.49732, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 2
+emission_box_extents = Vector3( 5, 120, 0 )
+flag_disable_z = true
+direction = Vector3( 0.5, -1, 0 )
+spread = 90.0
+gravity = Vector3( 0, 1800, 0 )
+initial_velocity = 480.0
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.7
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wait:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "wait"
+length = 3.0
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wait:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 2, 3, 1, 2, 1, 0, 3 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "wait-end"
+length = 3.0
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wait:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 4, 6, 7, 5, 6, 5, 4, 7 ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=16]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 0, 0.665217, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 17 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.735178, 0.768182 ), -0.985714, -0.985714, 0, 0, Vector2( 1, 0 ), -7.40866, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=19]
+emission_shape = 2
+emission_box_extents = Vector3( 64, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 90.0
+gravity = Vector3( 0, 2000, 0 )
+initial_velocity = 360.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+angle = 360.0
+angle_random = 1.0
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="Spear" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="SoilBack" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+hframes = 3
+
+[node name="SpearHolder" type="Control" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -100.0
+margin_right = 1000.0
+margin_bottom = 100.0
+rect_clip_content = true
+
+[node name="Spear" type="Sprite" parent="SpearHolder"]
+material = SubResource( 1 )
+position = Vector2( 0, 100 )
+texture = ExtResource( 13 )
+
+[node name="Face" type="Sprite" parent="SpearHolder/Spear"]
+material = SubResource( 1 )
+position = Vector2( 360, 36 )
+texture = ExtResource( 6 )
+hframes = 6
+vframes = 2
+script = ExtResource( 19 )
+
+[node name="WiggleTimer" type="Timer" parent="SpearHolder/Spear/Face"]
+wait_time = 0.333
+autostart = true
+
+[node name="OpenEyesTimer" type="Timer" parent="SpearHolder/Spear/Face"]
+one_shot = true
+
+[node name="StartBlinkTimer" type="Timer" parent="SpearHolder/Spear/Face"]
+wait_time = 10.0
+one_shot = true
+
+[node name="SoilFront" type="Sprite" parent="."]
+texture = ExtResource( 9 )
+hframes = 3
+
+[node name="DirtParticlesBurst" type="Particles2D" parent="SoilFront"]
+material = SubResource( 10 )
+position = Vector2( 10, 0 )
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+visibility_rect = Rect2( -100, -100, 250, 200 )
+process_material = SubResource( 13 )
+texture = ExtResource( 14 )
+
+[node name="DirtParticlesContinuous" type="Particles2D" parent="SoilFront"]
+material = SubResource( 10 )
+position = Vector2( 10, 0 )
+emitting = false
+lifetime = 0.5
+visibility_rect = Rect2( -100, -100, 250, 200 )
+process_material = SubResource( 13 )
+texture = ExtResource( 14 )
+
+[node name="Wait" type="Sprite" parent="."]
+visible = false
+position = Vector2( 54, 0 )
+texture = ExtResource( 21 )
+hframes = 4
+vframes = 2
+script = ExtResource( 25 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wait"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 20 )
+anims/wait = SubResource( 21 )
+anims/wait-end = SubResource( 22 )
+
+[node name="Poof" parent="." instance=ExtResource( 16 )]
+position = Vector2( 36, 0 )
+
+[node name="CrumbHolder" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CrumbsHigh" type="Particles2D" parent="CrumbHolder"]
+material = SubResource( 16 )
+position = Vector2( 0, -36 )
+emitting = false
+amount = 6
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2( -600, -200, 1200, 600 )
+process_material = SubResource( 19 )
+texture = ExtResource( 12 )
+script = ExtResource( 4 )
+
+[node name="CrumbsLow" type="Particles2D" parent="CrumbHolder"]
+material = SubResource( 16 )
+position = Vector2( 0, 36 )
+emitting = false
+amount = 6
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2( -600, -200, 1200, 600 )
+process_material = SubResource( 19 )
+texture = ExtResource( 12 )
+script = ExtResource( 4 )
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 23 )
+
+[node name="None" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="Waiting" type="Node" parent="States"]
+script = ExtResource( 20 )
+
+[node name="WaitingEnd" type="Node" parent="States"]
+script = ExtResource( 26 )
+
+[node name="PoppedIn" type="Node" parent="States"]
+script = ExtResource( 18 )
+
+[node name="PoppedOut" type="Node" parent="States"]
+script = ExtResource( 17 )
+
+[node name="SpearSfx" type="Node" parent="."]
+script = ExtResource( 2 )
+wide = true
+
+[node name="Poof" type="AudioStreamPlayer" parent="SpearSfx"]
+stream = ExtResource( 22 )
+volume_db = -8.0
+
+[node name="Pop" type="AudioStreamPlayer" parent="SpearSfx"]
+stream = ExtResource( 8 )
+
+[node name="VoiceWarn" type="AudioStreamPlayer" parent="SpearSfx"]
+stream = ExtResource( 28 )
+volume_db = 4.0
+bus = "Sound Bus"
+
+[node name="VoiceHello" type="AudioStreamPlayer" parent="SpearSfx"]
+stream = ExtResource( 27 )
+volume_db = 4.0
+bus = "Sound Bus"
+
+[connection signal="timeout" from="SpearHolder/Spear/Face/WiggleTimer" to="SpearHolder/Spear/Face" method="_on_WiggleTimer_timeout"]
+[connection signal="timeout" from="SpearHolder/Spear/Face/OpenEyesTimer" to="SpearHolder/Spear/Face" method="_on_OpenEyesTimer_timeout"]
+[connection signal="animation_finished" from="Poof" to="." method="_on_Poof_animation_finished"]

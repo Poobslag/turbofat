@@ -1,213 +1,36 @@
 {
   "version": "4373",
   "start_speed": "0",
-  "name": "Ultra: Normal (200¥)",
-  "description": "Earn ¥200 as fast as possible!",
+  "name": "Experiment",
+  "description": "Just goofing around",
   "finish_condition": {
-    "type": "score",
-    "value": "200"
+    "type": "time_over",
+    "value": "900"
   },
-  "piece_types": [
-    "piece_p"
-  ],
-  "tiles": {
-    "start": [
-      {
-        "pos": "6 2",
-        "tile": "1 10 1"
-      },
-      {
-        "pos": "7 2",
-        "tile": "1 14 1"
-      },
-      {
-        "pos": "8 2",
-        "tile": "1 6 1"
-      },
-      {
-        "pos": "6 3",
-        "tile": "1 11 1"
-      },
-      {
-        "pos": "7 3",
-        "tile": "1 15 1"
-      },
-      {
-        "pos": "8 3",
-        "tile": "1 7 1"
-      },
-      {
-        "pos": "6 4",
-        "tile": "1 9 1"
-      },
-      {
-        "pos": "7 4",
-        "tile": "1 13 1"
-      },
-      {
-        "pos": "8 4",
-        "tile": "1 5 1"
-      },
-      {
-        "pos": "6 5",
-        "tile": "1 10 1"
-      },
-      {
-        "pos": "7 5",
-        "tile": "1 14 1"
-      },
-      {
-        "pos": "8 5",
-        "tile": "1 6 1"
-      },
-      {
-        "pos": "6 6",
-        "tile": "1 11 1"
-      },
-      {
-        "pos": "7 6",
-        "tile": "1 15 1"
-      },
-      {
-        "pos": "8 6",
-        "tile": "1 7 1"
-      },
-      {
-        "pos": "6 7",
-        "tile": "1 9 1"
-      },
-      {
-        "pos": "7 7",
-        "tile": "1 13 1"
-      },
-      {
-        "pos": "8 7",
-        "tile": "1 5 1"
-      },
-      {
-        "pos": "6 8",
-        "tile": "1 10 1"
-      },
-      {
-        "pos": "7 8",
-        "tile": "1 14 1"
-      },
-      {
-        "pos": "8 8",
-        "tile": "1 6 1"
-      },
-      {
-        "pos": "6 9",
-        "tile": "1 11 1"
-      },
-      {
-        "pos": "7 9",
-        "tile": "1 15 1"
-      },
-      {
-        "pos": "8 9",
-        "tile": "1 7 1"
-      },
-      {
-        "pos": "6 10",
-        "tile": "1 9 1"
-      },
-      {
-        "pos": "7 10",
-        "tile": "1 13 1"
-      },
-      {
-        "pos": "8 10",
-        "tile": "1 5 1"
-      },
-      {
-        "pos": "6 11",
-        "tile": "1 10 1"
-      },
-      {
-        "pos": "7 11",
-        "tile": "1 14 1"
-      },
-      {
-        "pos": "8 11",
-        "tile": "1 6 1"
-      },
-      {
-        "pos": "6 12",
-        "tile": "1 11 1"
-      },
-      {
-        "pos": "7 12",
-        "tile": "1 15 1"
-      },
-      {
-        "pos": "8 12",
-        "tile": "1 7 1"
-      },
-      {
-        "pos": "6 13",
-        "tile": "1 9 1"
-      },
-      {
-        "pos": "7 13",
-        "tile": "1 13 1"
-      },
-      {
-        "pos": "8 13",
-        "tile": "1 5 1"
-      },
-      {
-        "pos": "8 14",
-        "tile": "0 2 1"
-      },
-      {
-        "pos": "8 15",
-        "tile": "0 3 1"
-      },
-      {
-        "pos": "7 16",
-        "tile": "0 8 1"
-      },
-      {
-        "pos": "8 16",
-        "tile": "0 5 1"
-      },
-      {
-        "pos": "6 17",
-        "tile": "1 10 1"
-      },
-      {
-        "pos": "7 17",
-        "tile": "1 14 1"
-      },
-      {
-        "pos": "8 17",
-        "tile": "1 6 1"
-      },
-      {
-        "pos": "6 18",
-        "tile": "1 11 1"
-      },
-      {
-        "pos": "7 18",
-        "tile": "1 15 1"
-      },
-      {
-        "pos": "8 18",
-        "tile": "1 7 1"
-      },
-      {
-        "pos": "6 19",
-        "tile": "1 9 1"
-      },
-      {
-        "pos": "7 19",
-        "tile": "1 13 1"
-      },
-      {
-        "pos": "8 19",
-        "tile": "1 5 1"
-      }
-    ]
-  }
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=6,24..."
+      ],
+      "effect": "add_spears sizes=l2r2,x3,x5"
+    },
+    {
+      "phases": [
+        "piece_written n=12,30..."
+      ],
+      "effect": "add_spears sizes=l3r3,x5,x8"
+    },
+    {
+      "phases": [
+        "piece_written n=18,36..."
+      ],
+      "effect": "add_spears sizes=L2R2,X3,X5"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

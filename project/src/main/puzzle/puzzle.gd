@@ -105,6 +105,11 @@ func get_sharks() -> Sharks:
 	return $Fg/Critters/Sharks as Sharks
 
 
+## Returns the node which handles spears, puzzle critters which add veggie blocks from the sides.
+func get_spears() -> Spears:
+	return $Fg/Critters/Spears as Spears
+
+
 func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 

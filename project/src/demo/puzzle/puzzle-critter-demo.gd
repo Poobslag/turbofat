@@ -5,6 +5,12 @@ extends Node
 ## example, you can add a mole to the playfield by pressing 'M' for mole, and then '1' to add a mole.
 ##
 ## Keys:
+## 	[A]: Manipulate spears (asparagus)
+## 	[A] -> [0]: Remove a spear
+## 	[A] -> [1]: Add a spear
+## 	[A] -> [2]: Toggle spear size
+## 	[A] -> [3]: Toggle spear width
+## 	[A] -> ']': Advance spears
 ## 	[C]: Manipulate carrots
 ## 	[C] -> [0]: Remove a carrot
 ## 	[C] -> [1]: Add a carrot
@@ -39,7 +45,15 @@ enum CritterType {
 	ONION,
 	PLAYFIELD,
 	SHARK,
+	SPEAR,
 }
+
+const SPEAR_CONFIG_SIZES := [
+	"l4",
+	"r4",
+	"l3r3",
+	"x4",
+]
 
 ## local path to a json level resource to demo
 export (String, FILE, "*.json") var level_path: String
@@ -51,6 +65,7 @@ var critter_type: int = CritterType.NONE
 var _carrot_config := CarrotConfig.new()
 var _mole_config := MoleConfig.new()
 var _shark_config := SharkConfig.new()
+var _spear_config := SpearConfig.new()
 
 onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/Center/TutorialHud
 
@@ -74,6 +89,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
+		KEY_A: critter_type = CritterType.SPEAR
 		KEY_C: critter_type = CritterType.CARROT
 		KEY_M: critter_type = CritterType.MOLE
 		KEY_O: critter_type = CritterType.ONION
@@ -86,6 +102,7 @@ func _input(event: InputEvent) -> void:
 		CritterType.ONION: _onion_input(event)
 		CritterType.PLAYFIELD: _playfield_input(event)
 		CritterType.SHARK: _shark_input(event)
+		CritterType.SPEAR: _spear_input(event)
 
 
 func _carrot_input(event: InputEvent) -> void:
@@ -162,3 +179,42 @@ func _shark_input(event: InputEvent) -> void:
 			$Puzzle/Fg/Critters/Sharks.advance_sharks()
 		KEY_EQUAL:
 			_shark_config.count = 99
+
+
+func _spear_input(event: InputEvent) -> void:
+	_spear_config.lines = [PuzzleTileMap.ROW_COUNT - 4]
+	
+	match Utils.key_scancode(event):
+		KEY_0:
+			$Puzzle/Fg/Critters/Spears.pop_out_spears(1)
+		KEY_1:
+			$Puzzle/Fg/Critters/Spears.add_spears(_spear_config)
+		KEY_2:
+			var wide := _is_spear_config_wide()
+			var spear_config_size_index := _spear_config_size_index()
+			spear_config_size_index = (spear_config_size_index + 1) % SPEAR_CONFIG_SIZES.size()
+			_spear_config.sizes = [SPEAR_CONFIG_SIZES[spear_config_size_index]]
+			
+			if wide:
+				# preserve 'wideness'
+				_spear_config.sizes[0] = _spear_config.sizes[0].to_upper()
+		KEY_3:
+			if _spear_config_size_index() == -1:
+				_spear_config.sizes = [SPEAR_CONFIG_SIZES[0]]
+			
+			var wide := _is_spear_config_wide()
+			if wide:
+				_spear_config.sizes[0] = _spear_config.sizes[0].to_lower()
+			else:
+				_spear_config.sizes[0] = _spear_config.sizes[0].to_upper()
+			
+		KEY_BRACKETRIGHT:
+			$Puzzle/Fg/Critters/Spears.advance_spears()
+
+
+func _spear_config_size_index() -> int:
+	return SPEAR_CONFIG_SIZES.find(_spear_config.sizes[0].to_lower())
+
+
+func _is_spear_config_wide() -> bool:
+	return SpearConfig.is_wide(_spear_config.sizes[0])
