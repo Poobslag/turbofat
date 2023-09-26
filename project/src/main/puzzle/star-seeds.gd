@@ -317,6 +317,27 @@ func _shift_rows(bottom_row: int, direction: Vector2) -> void:
 		_star_seeds_by_cell[cell] = shifted[cell]
 
 
+## Immediately eliminates stars in the specified cells, and generates food items.
+##
+## This is caused by certain unusual levels which can destroy boxes. We don't want to waste them, so the player still
+## get points and customers still get fed.
+func _consume_star_seeds_for_cells(cells: Array) -> void:
+	var remaining_food_for_line_clear := 0
+	for cell in cells:
+		if _star_seeds_by_cell.has(cell):
+			remaining_food_for_line_clear += 1
+	
+	for cell in cells:
+		if _star_seeds_by_cell.has(cell):
+			remaining_food_for_line_clear -= 1
+			
+			emit_signal("food_spawned", cell, remaining_food_for_line_clear,
+					_star_seeds_by_cell[cell].food_type)
+	
+	for cell in cells:
+		_remove_star_seed(cell)
+
+
 func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 	_add_star_seeds_for_box(rect, box_type)
 
@@ -341,17 +362,10 @@ func _on_Playfield_blocks_prepared() -> void:
 
 
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
-	var remaining_food_for_line_clear := 0
+	var cells := []
 	for x in range(PuzzleTileMap.COL_COUNT):
-		if _star_seeds_by_cell.has(Vector2(x, y)):
-			remaining_food_for_line_clear += 1
-	
-	for x in range(PuzzleTileMap.COL_COUNT):
-		if _star_seeds_by_cell.has(Vector2(x, y)):
-			remaining_food_for_line_clear -= 1
-			
-			emit_signal("food_spawned", Vector2(x, y), remaining_food_for_line_clear,
-					_star_seeds_by_cell[Vector2(x, y)].food_type)
+		cells.append(Vector2(x, y))
+	_consume_star_seeds_for_cells(cells)
 
 
 ## When the player pauses, we hide the playfield so they can't cheat.
@@ -367,3 +381,7 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 
 func _on_Playfield_line_filled(y: int, _tiles_key: String, _src_y: int) -> void:
 	_add_star_seeds_for_boxes(Rect2(0, y, PuzzleTileMap.COL_COUNT, 1))
+
+
+func _on_Playfield_cells_consumed(cells: Array, _box_ints: Array) -> void:
+	_consume_star_seeds_for_cells(cells)

@@ -9,6 +9,10 @@ signal all_lines_cleared
 ## emitted when a new box is built
 signal box_built(rect, box_type)
 
+# warning-ignore:unused_signal
+## emitted when blocks are erased by playfield hazards such as spears
+signal cells_consumed(cells, box_ints)
+
 ## emitted shortly before a set of lines are cleared
 signal line_clears_scheduled(y_coords)
 
