@@ -193,7 +193,7 @@ class AddSharksEffect extends LevelTriggerEffect:
 	## [y]: (Optional) Restricts which rows the sharks appear on, where '0' is the bottom row of the playfield and '16'
 	## 	is the top.
 	## [x]: (Optional) Restricts which columns the sharks appear on, where '0' is the leftmost column of the playfield.
-	## [patience]: (Optional) Reward the sharks dig up: 'seed' or 'star'. Defaults to 'star'.
+	## [patience]: (Optional) How long the shark waits before disappearing. Defaults to 'forever'.
 	## [size]: (Optional) Size (and appetite) of the shark: 'small', 'medium' or 'large'. Defaults to 'medium'.
 	##
 	## Example: ["add_sharks size=small count=3 patience=5"]
@@ -336,7 +336,7 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 			count = new_config["0"].to_int()
 	
 	
-	## Adds one or more carrots to the playfield.
+	## Removes one or more carrots from the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_carrots().remove_carrots(count)
 	
