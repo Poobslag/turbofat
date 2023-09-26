@@ -143,6 +143,30 @@ func test_add_sharks_set_config() -> void:
 	assert_eq(effect.config.lines, [19, 11])
 
 
+func test_add_spears_set_config() -> void:
+	var effect: LevelTriggerEffects.AddSpearsEffect
+	
+	effect = LevelTriggerEffects.create("add_spears", {})
+	assert_eq(effect.config.duration, -1)
+	assert_eq(effect.config.lines, [])
+	assert_eq(effect.config.sizes, ["x4"])
+	
+	effect = LevelTriggerEffects.create("add_spears", {"duration": "2", "y": "3-5", "sizes": "x2,x4,x6"})
+	assert_eq(effect.config.duration, 2)
+	assert_eq(effect.config.lines, [16, 15, 14])
+	assert_eq(effect.config.sizes, ["x2", "x4", "x6"])
+
+
+func test_add_spears_get_config() -> void:
+	var effect: LevelTriggerEffects.AddSpearsEffect
+	
+	effect = LevelTriggerEffects.create("add_spears", {})
+	assert_eq_shallow({}, effect.get_config())
+	
+	effect = LevelTriggerEffects.create("add_spears", {"duration": "2", "y": "3-5", "sizes": "x2,x4,x6"})
+	assert_eq_shallow({"duration": "2", "y": "3-5", "sizes": "x2,x4,x6"}, effect.get_config())
+
+
 func test_remove_carrots_set_config() -> void:
 	var effect: LevelTriggerEffects.RemoveCarrotsEffect
 	
@@ -168,6 +192,26 @@ func test_remove_onion_get_config() -> void:
 	
 	effect = LevelTriggerEffects.create("remove_onion")
 	assert_eq_shallow(effect.get_config(), {})
+
+
+func test_remove_spears_set_config() -> void:
+	var effect: LevelTriggerEffects.RemoveSpearsEffect
+	
+	effect = LevelTriggerEffects.create("remove_spears", {})
+	assert_eq(effect.count, 1)
+	
+	effect = LevelTriggerEffects.create("remove_spears", {"0": "2"})
+	assert_eq(effect.count, 2)
+
+
+func test_remove_spears_get_config() -> void:
+	var effect: LevelTriggerEffects.RemoveSpearsEffect
+	
+	effect = LevelTriggerEffects.create("remove_spears", {})
+	assert_eq_shallow({}, effect.get_config())
+	
+	effect = LevelTriggerEffects.create("remove_spears", {"0": "2"})
+	assert_eq_shallow({"0": "2"}, effect.get_config())
 
 
 func test_clear_filled_lines_get_config() -> void:

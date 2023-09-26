@@ -317,6 +317,20 @@ func add_pickup_score(pickup_score: int) -> void:
 	emit_signal("score_changed")
 
 
+## Add points for clearing part of a box.
+##
+## This occurs during very specific levels with gimmicks like spears, which let you clear a part of a box without
+## performing a line clear.
+func add_box_score(box_score: int) -> void:
+	if game_active:
+		level_performance.box_score += box_score
+	
+	_add_customer_score(box_score)
+	_add_bonus_score(box_score)
+	
+	emit_signal("score_changed")
+
+
 ## Adds points for doing something unusual in a cell.
 ##
 ## This occurs during very specific levels with gimmicks like sharks. It mostly gets treated the same way as pickups,

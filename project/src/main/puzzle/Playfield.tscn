@@ -386,6 +386,7 @@ one_shot = true
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
+[connection signal="cells_consumed" from="." to="LineClearSfx" method="_on_Playfield_cells_consumed"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_deleted" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_deleted"]
 [connection signal="line_erased" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_erased"]
