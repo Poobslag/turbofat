@@ -86,7 +86,8 @@ func _play_box_sound(_y: int, _total_lines: int, _remaining_lines: int, box_ints
 		sound = _clear_cake_piece_sound
 	elif not box_ints.empty():
 		sound = _clear_snack_piece_sound
-	if sound: sound.play()
+	if sound:
+		sound.play()
 
 
 ## Clearing a line results in three overlapping sounds:
@@ -112,3 +113,8 @@ func _on_Playfield_all_lines_cleared() -> void:
 		return
 	
 	_all_clear_sound.play()
+
+
+func _on_Playfield_cells_consumed(_cells: Array, box_ints: Array) -> void:
+	_play_thump_sound(0, 1, 0, box_ints)
+	_play_box_sound(0, 0, 0, box_ints)
