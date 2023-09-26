@@ -1,0 +1,36 @@
+{
+  "version": "375c",
+  "id": "posh",
+  "name": "Posh",
+  "short_name": "Posh",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "1",
+    "ear": "12",
+    "eye": "8",
+    "hair": "0",
+    "head": "3",
+    "horn": "1",
+    "mouth": "2",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "ffb12c",
+    "belly_rgb": "ffffff",
+    "cloth_rgb": "cb5340",
+    "glass_rgb": "f66451",
+    "plastic_rgb": "f5dfdc",
+    "hair_rgb": "ffffff",
+    "eye_rgb": "fad4cf ffffff",
+    "horn_rgb": "fde9e7"
+  },
+  "chat_theme": {
+    "accent_scale": 1,
+    "accent_texture": 9,
+    "color": "ffb12c"
+  }
+}
