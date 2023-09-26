@@ -13,7 +13,7 @@
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, -64 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 2364, 524 )
+0/region = Rect2( 2, 2, 2364, 788 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 0, 0 )
 0/autotile/tile_size = Vector2( 144, 128 )
@@ -34,7 +34,7 @@
 1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 0, -64 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 2, 2, 2364, 1580 )
+1/region = Rect2( 2, 2, 2364, 1844 )
 1/tile_mode = 2
 1/autotile/icon_coordinate = Vector2( 0, 0 )
 1/autotile/tile_size = Vector2( 144, 128 )
@@ -55,7 +55,7 @@
 2/texture = ExtResource( 2 )
 2/tex_offset = Vector2( 0, -64 )
 2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 2, 2, 2660, 524 )
+2/region = Rect2( 2, 2, 2660, 788 )
 2/tile_mode = 2
 2/autotile/icon_coordinate = Vector2( 0, 0 )
 2/autotile/tile_size = Vector2( 144, 128 )
