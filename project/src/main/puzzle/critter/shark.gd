@@ -150,11 +150,6 @@ func has_next_state() -> bool:
 
 ## Dequeues the next state from the shark's queue of upcoming animation states.
 ##
-## If the shark is currently visible, this updates the shark's animation and returns the dequeued state.
-##
-## If the shark is currently hidden, they remain invisible. But this still updates their hidden state and returns the
-## dequeued state.
-##
 ## Parameters:
 ## 	'force': If 'true', the shark will be updated again even if it was already updated this frame.
 ##
