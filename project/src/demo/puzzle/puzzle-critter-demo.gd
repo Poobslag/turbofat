@@ -22,6 +22,8 @@ extends Node
 ## 	[O] -> [4]: Force day end
 ## 	[O] -> [5]: Force night
 ## 	[O] -> [6]: Force 'none'
+## 	[Q]: Manipulate the playfield
+## 	[Q] -> [1,2]: Insert a line at different locations in the playfield
 ## 	[S]: Manipulate sharks
 ## 	[S] -> [1]: Add a small shark
 ## 	[S] -> [2]: Add a medium shark
@@ -35,6 +37,7 @@ enum CritterType {
 	CARROT,
 	MOLE,
 	ONION,
+	PLAYFIELD,
 	SHARK,
 }
 
@@ -74,12 +77,14 @@ func _input(event: InputEvent) -> void:
 		KEY_C: critter_type = CritterType.CARROT
 		KEY_M: critter_type = CritterType.MOLE
 		KEY_O: critter_type = CritterType.ONION
+		KEY_Q: critter_type = CritterType.PLAYFIELD
 		KEY_S: critter_type = CritterType.SHARK
 	
 	match critter_type:
 		CritterType.CARROT: _carrot_input(event)
 		CritterType.MOLE: _mole_input(event)
 		CritterType.ONION: _onion_input(event)
+		CritterType.PLAYFIELD: _playfield_input(event)
 		CritterType.SHARK: _shark_input(event)
 
 
@@ -130,6 +135,14 @@ func _onion_input(event: InputEvent) -> void:
 		KEY_6:
 			$Puzzle/Fg/Critters/Onions.remove_onion()
 			$Puzzle/Fg/Critters/Onions.add_onion(OnionConfig.new(".."))
+
+
+func _playfield_input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_1:
+			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([""], PuzzleTileMap.ROW_COUNT - 1)
+		KEY_2:
+			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line([""], PuzzleTileMap.ROW_COUNT - 5)
 
 
 func _shark_input(event: InputEvent) -> void:
