@@ -3,6 +3,9 @@ class_name LevelTriggerEffect
 ##
 ## A LevelTriggerEffect might subtract points from the player's score, rotate a piece or turn the playfield invisible.
 
+## Priority field for triggers which occur in the same phase. Lower triggers occur first.
+var priority: int = 100
+
 ## Executes this level trigger effect.
 func run() -> void:
 	pass
