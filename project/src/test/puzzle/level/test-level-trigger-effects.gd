@@ -151,11 +151,16 @@ func test_add_spears_set_config() -> void:
 	assert_eq(effect.config.lines, [])
 	assert_eq(effect.config.sizes, ["x4"])
 	
-	effect = LevelTriggerEffects.create("add_spears", {"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6"})
+	effect = LevelTriggerEffects.create("add_spears", {"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6",
+			"wait": "3"})
 	assert_eq(effect.config.count, 5)
 	assert_eq(effect.config.duration, 2)
 	assert_eq(effect.config.lines, [16, 15, 14])
 	assert_eq(effect.config.sizes, ["x2", "x4", "x6"])
+	assert_eq(effect.config.wait, 3)
+	
+	effect = LevelTriggerEffects.create("add_spears", {"y": "2,4..."})
+	assert_eq(effect.config.lines, [17, 15, 13, 11, 9, 7, 5, 3])
 
 
 func test_add_spears_get_config() -> void:
@@ -164,8 +169,9 @@ func test_add_spears_get_config() -> void:
 	effect = LevelTriggerEffects.create("add_spears", {})
 	assert_eq_shallow({}, effect.get_config())
 	
-	effect = LevelTriggerEffects.create("add_spears", {"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6"})
-	assert_eq_shallow({"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6"}, effect.get_config())
+	effect = LevelTriggerEffects.create("add_spears", {"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6",
+			"wait": "3"})
+	assert_eq_shallow({"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6", "wait": "3"}, effect.get_config())
 
 
 func test_remove_carrots_set_config() -> void:

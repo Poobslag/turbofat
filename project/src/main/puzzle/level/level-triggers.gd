@@ -19,7 +19,10 @@ func run_triggers(phase: int, event_params: Dictionary = {}) -> void:
 	if not triggers.has(phase):
 		return
 	
-	for trigger in triggers.get(phase, []):
+	var phase_triggers: Array = triggers.get(phase, []).duplicate()
+	phase_triggers.sort_custom(self, "_compare_by_priority")
+	
+	for trigger in phase_triggers:
 		if trigger.should_run(phase, event_params):
 			trigger.run()
 
@@ -73,3 +76,7 @@ func _add_trigger(trigger: LevelTrigger) -> void:
 	for phase in trigger.phases:
 		Utils.put_if_absent(triggers, phase, [])
 		triggers[phase].append(trigger)
+
+
+func _compare_by_priority(a: LevelTrigger, b: LevelTrigger) -> bool:
+	return a.effect.priority < b.effect.priority

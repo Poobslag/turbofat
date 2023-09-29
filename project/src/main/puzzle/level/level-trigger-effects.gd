@@ -61,7 +61,7 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 		if new_config.has("smoke"):
 			config.smoke = Utils.enum_from_snake_case(CarrotConfig.Smoke, new_config["smoke"])
 		if new_config.has("x"):
-			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"], 8).keys()
 	
 	
 	## Adds one or more carrots to the playfield.
@@ -144,10 +144,10 @@ class AddMolesEffect extends LevelTriggerEffect:
 		if new_config.has("home"):
 			config.home = Utils.enum_from_snake_case(MoleConfig.Home, new_config["home"])
 		if new_config.has("y"):
-			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
+			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"], 16)
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
 		if new_config.has("x"):
-			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"], 8).keys()
 		if new_config.has("dig_duration"):
 			config.dig_duration = new_config["dig_duration"].to_int()
 		if new_config.has("reward"):
@@ -203,10 +203,10 @@ class AddSharksEffect extends LevelTriggerEffect:
 		if new_config.has("home"):
 			config.home = Utils.enum_from_snake_case(SharkConfig.Home, new_config["home"])
 		if new_config.has("y"):
-			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
+			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"], 16)
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
 		if new_config.has("x"):
-			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"]).keys()
+			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"], 8).keys()
 		if new_config.has("patience"):
 			config.patience = new_config["patience"].to_int()
 		if new_config.has("size"):
@@ -265,7 +265,7 @@ class AddSpearsEffect extends LevelTriggerEffect:
 		if new_config.has("wait"):
 			config.wait = new_config["wait"].to_int()
 		if new_config.has("y"):
-			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
+			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"], 16)
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
 	
 	
@@ -294,6 +294,8 @@ class AddSpearsEffect extends LevelTriggerEffect:
 
 ## Advances the day/night cycle of any onions on the playfield.
 class AdvanceOnionEffect extends LevelTriggerEffect:
+	func _init() -> void:
+		priority = 86
 	
 	## Advances the day/night cycle of any onions on the playfield.
 	func run() -> void:
@@ -302,6 +304,8 @@ class AdvanceOnionEffect extends LevelTriggerEffect:
 
 ## Advances all moles on the playfield, allowing them to dig up pickups.
 class AdvanceMolesEffect extends LevelTriggerEffect:
+	func _init() -> void:
+		priority = 86
 	
 	## Advances all moles on the playfield, allowing them to dig up pickups.
 	func run() -> void:
@@ -310,6 +314,8 @@ class AdvanceMolesEffect extends LevelTriggerEffect:
 
 ## Advances all sharks on the playfield, making them appear/disappear.
 class AdvanceSharksEffect extends LevelTriggerEffect:
+	func _init() -> void:
+		priority = 86
 	
 	## Advances all sharks on the playfield, making them appear/disappear
 	func run() -> void:
@@ -318,6 +324,8 @@ class AdvanceSharksEffect extends LevelTriggerEffect:
 
 ## Advances all spears on the playfield, making them appear/disappear.
 class AdvanceSpearsEffect extends LevelTriggerEffect:
+	func _init() -> void:
+		priority = 86
 	
 	## Advances all spears on the playfield, making them appear/disappear.
 	func run() -> void:
@@ -327,6 +335,9 @@ class AdvanceSpearsEffect extends LevelTriggerEffect:
 ## Removes one or more carrots from the playfield.
 class RemoveCarrotsEffect extends LevelTriggerEffect:
 	var count := 1
+	
+	func _init() -> void:
+		priority = 53
 	
 	## Updates the effect's configuration.
 	##
@@ -356,6 +367,9 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 
 ## Removes the onion from the playfield.
 class RemoveOnionEffect extends LevelTriggerEffect:
+	func _init():
+		priority = 53
+	
 	func run() -> void:
 		CurrentLevel.puzzle.get_onions().remove_onion()
 
@@ -363,6 +377,9 @@ class RemoveOnionEffect extends LevelTriggerEffect:
 ## Removes one or more carrots from the playfield.
 class RemoveSpearsEffect extends LevelTriggerEffect:
 	var count := 1
+	
+	func _init() -> void:
+		priority = 53
 	
 	## Updates the effect's configuration.
 	##
@@ -372,6 +389,7 @@ class RemoveSpearsEffect extends LevelTriggerEffect:
 	##
 	## Example: ["remove_spears 2"]
 	func set_config(new_config: Dictionary = {}) -> void:
+		priority = 53
 		if new_config.has("0"):
 			count = new_config["0"].to_int()
 	
