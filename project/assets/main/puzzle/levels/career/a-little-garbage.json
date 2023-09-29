@@ -1,12 +1,19 @@
 {
   "version": "49db",
-  "start_speed": "1",
+  "start_speed": "4",
   "name": "A Little Garbage",
   "description": "Nothing to worry about.",
   "finish_condition": {
     "type": "time_over",
     "value": "90"
   },
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "40",
+      "speed": "6"
+    }
+  ],
   "timers": [
     {
       "interval": 6

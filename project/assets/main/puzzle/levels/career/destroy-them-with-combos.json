@@ -7,6 +7,13 @@
     "type": "time_over",
     "value": "165"
   },
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "120",
+      "speed": "7"
+    }
+  ],
   "timers": [
     {
       "interval": 3.2,
