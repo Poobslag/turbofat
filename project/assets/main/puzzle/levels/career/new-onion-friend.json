@@ -1,6 +1,6 @@
 {
   "version": "49db",
-  "start_speed": "3",
+  "start_speed": "1",
   "name": "Your New Onion Friend",
   "description": "Who could ever say no to a new friend?",
   "finish_condition": {
@@ -10,6 +10,13 @@
   "rank": [
     "extra_seconds_per_piece 0.38",
     "box_factor 0.77"
+  ],
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "15",
+      "speed": "3"
+    }
   ],
   "triggers": [
     {

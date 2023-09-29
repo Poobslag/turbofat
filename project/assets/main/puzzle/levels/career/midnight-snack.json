@@ -11,6 +11,18 @@
     "extra_seconds_per_piece 0.21",
     "box_factor 0.81"
   ],
+  "speed_ups": [
+    {
+      "type": "customers",
+      "value": "1",
+      "speed": "2"
+    },
+    {
+      "type": "customers",
+      "value": "2",
+      "speed": "3"
+    }
+  ],
   "triggers": [
     {
       "phases": [

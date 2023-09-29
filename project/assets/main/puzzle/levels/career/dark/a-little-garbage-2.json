@@ -1,6 +1,6 @@
 {
   "version": "49db",
-  "start_speed": "1",
+  "start_speed": "4",
   "name": "EX A Little Garbage 2",
   "description": "Is that food? Don't eat out of the garbage!",
   "blocks_during": [
@@ -15,6 +15,18 @@
     "combo_factor 0.48",
     "master_pickup_score_per_line 9.57",
     "show_pickups_rank"
+  ],
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "40",
+      "speed": "6"
+    },
+    {
+      "type": "time_over",
+      "value": "80",
+      "speed": "8"
+    }
   ],
   "timers": [
     {
