@@ -34,7 +34,7 @@
       "phases": [
         "line_cleared y=0-2"
       ],
-      "effect": "add_spears wait=1 y=3,4,5 count=3 sizes=l1r6,l1r7,l2r7,l6r1,l6r2,l7r1"
+      "effect": "add_spears wait=1 y=3,4,5,6,7 count=5 sizes=l1r6,l1r7,l2r6,l6r1,l6r2,l7r1"
     },
     {
       "phases": [
