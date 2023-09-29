@@ -262,6 +262,8 @@ class AddSpearsEffect extends LevelTriggerEffect:
 			config.count = new_config["count"].to_int()
 		if new_config.has("duration"):
 			config.duration = new_config["duration"].to_int()
+		if new_config.has("wait"):
+			config.wait = new_config["wait"].to_int()
 		if new_config.has("y"):
 			var inverted_lines := ConfigStringUtils.ints_from_config_string(new_config["y"])
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
@@ -281,6 +283,8 @@ class AddSpearsEffect extends LevelTriggerEffect:
 			result["count"] = str(config.count)
 		if config.duration != -1:
 			result["duration"] = str(config.duration)
+		if config.wait != 2:
+			result["wait"] = str(config.wait)
 		if config.lines:
 			var inverted_lines: Array = ConfigStringUtils.invert_puzzle_row_indexes(config.lines)
 			result["y"] = ConfigStringUtils.config_string_from_ints(inverted_lines)

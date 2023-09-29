@@ -149,15 +149,23 @@ func _add_spear(config: SpearConfig, spear_y: int, spear_wide: bool, spear_lengt
 	_veg_cells_by_spear[spear] = veg_cells
 	
 	# populate the spear's states
-	spear.append_next_state(Spear.WAITING)
-	spear.append_next_state(Spear.WAITING_END)
+	if config.wait <= 1:
+		# 'waiting end' -> 'popped in' -> ...
+		spear.state = Spear.WAITING_END
+	else:
+		# 'waiting' -> ... -> 'waiting end' -> 'popped in' -> ...
+		spear.state = Spear.WAITING
+		for _i in range(config.wait - 2):
+			spear.append_next_state(Spear.WAITING)
+		spear.append_next_state(Spear.WAITING_END)
+	
 	if config.duration >= 1:
-		# 'waiting' -> 'popped in' -> 'popped in' -> ... -> 'popped out' -> 'none'
+		# ... -> 'popped in' -> 'popped in' -> ... -> 'popped out' -> 'none'
 		spear.append_next_state(Spear.POPPED_IN, config.duration)
 		spear.append_next_state(Spear.POPPED_OUT)
 		spear.append_next_state(Spear.NONE)
 	else:
-		# 'waiting' -> 'popped in' forever
+		# ... -> 'popped in' forever
 		spear.append_next_state(Spear.POPPED_IN)
 	
 	_spear_holder.add_child(spear)
@@ -180,16 +188,11 @@ func _determine_spear_size_string(config: SpearConfig) -> String:
 		spear_size_strings.remove(spear_size_strings.find(_previous_spear_size_string))
 	
 	var spear_size_string: String = Utils.rand_value(spear_size_strings)
-	if "x" in spear_size_string or "X" in spear_size_string:
-		if randf() < 0.5:
-			spear_size_string = spear_size_string.replace("x", "l")
-			spear_size_string = spear_size_string.replace("X", "L")
-		else:
-			spear_size_string = spear_size_string.replace("x", "r")
-			spear_size_string = spear_size_string.replace("X", "R")
+	spear_size_string = resolve_spear_size_x(spear_size_string)
+	
+	_previous_spear_size_string = spear_size_string
 	
 	return spear_size_string
-
 
 ## Determine the row for the specified spear.
 ##
@@ -611,3 +614,32 @@ func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
 func _on_Playfield_blocks_prepared() -> void:
 	_previous_spear_size_string = ""
 	_clear_spears()
+
+
+## Replaces any 'x' values in a spear size string with 'l' or 'r' values.
+##
+## A size string can contain values like 'x5' for a spear which can potentially emerge from either side. This method
+## converts those 'x' lengths to 'l' or 'r'.
+##
+## Parameters:
+## 	'spear_size_string': A value like 'l2r4' for or 'X6' for the length and width of the spear.
+##
+## 	'r': (Optional) A random number in the range [0.0, 1.0] for whether randomized spears should resolve to to left or
+## 		right. If omitted, a random value will be generated. (This is used to seed tests.)
+##
+## Returns:
+## 	A spear size string with any 'x' values replaced with 'l' or 'r'.
+static func resolve_spear_size_x(spear_size_string: String, r: float = randf()) -> String:
+	var result := spear_size_string
+	
+	if result.length() >= 2:
+		# Replace the first 'x'. 'x3' -> 'l3', 'x3x5' -> 'l3x5'
+		if result[0] == "x": result[0] = "l" if r < 0.5 else "r"
+		if result[0] == "X": result[0] = "L" if r < 0.5 else "R"
+	
+	if result.length() >= 4:
+		# Replace the second 'x', if any. 'l3x5' -> 'l3r5'
+		if result[2] == "x": result[2] = "l" if result[0].to_lower() == "r" else "r"
+		if result[2] == "X": result[2] = "L" if result[0].to_lower() == "r" else "R"
+	
+	return result

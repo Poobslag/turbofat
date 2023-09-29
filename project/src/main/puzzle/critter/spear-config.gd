@@ -10,6 +10,9 @@ var count: int = 1
 ## how many turns/seconds/cycles the spears emerge for, or '-1' if they should emerge indefinitely
 var duration: int = -1
 
+# how many turns/seconds/cycles the spears wait for, or '0' if they should emerge immediately
+var wait: int = 2
+
 ## which rows the spears appear on
 var lines: Array = []
 

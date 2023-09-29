@@ -86,6 +86,9 @@ func _ready() -> void:
 	_states.set_state(_state_nodes_by_enum[NONE])
 	spear_sprite.position.x = -450
 	
+	# avoid a case where we initialize a spear and it's immediately advanced
+	_already_popped_state = true
+	
 	_refresh_side()
 	_refresh_state()
 
@@ -156,6 +159,10 @@ func pop_in_immediately() -> void:
 ## 	'new_state': enum from State for the spear's new animation state.
 func set_state(new_state: int) -> void:
 	state = new_state
+	
+	# avoid a case where we set a spear's state, and it's immediately advanced
+	_already_popped_state = true
+	
 	_refresh_state()
 
 
@@ -171,7 +178,7 @@ func poof_and_free() -> void:
 
 # Tweens the spear into view, or out of view.
 func tween_and_pop(target_x: float, squint_duration: float) -> void:
-	sfx.play_pop_sound(pop_anim_duration)
+	sfx.play_pop_sound()
 	
 	_dirt_particles_burst.restart()
 	_dirt_particles_burst.emitting = true
