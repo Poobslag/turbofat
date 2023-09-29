@@ -261,7 +261,7 @@
         ]
       },
       "intro_level": {
-        "id": "career/1000_race"
+        "id": "career/block_blockers"
       },
       "levels": [
         {
@@ -271,7 +271,19 @@
           "id": "career/a_little_extra"
         },
         {
+          "id": "career/asparagus_trio"
+        },
+        {
+          "id": "career/asparagus_vault"
+        },
+        {
+          "id": "career/block_blockers"
+        },
+        {
           "id": "career/bottomless_pit_2"
+        },
+        {
+          "id": "career/chunky_greens"
         },
         {
           "id": "career/cocoa_canyon"
@@ -395,6 +407,9 @@
         },
         {
           "id": "career/tempting_jellies"
+        },
+        {
+          "id": "career/wall_greens"
         }
       ]
     },
@@ -410,6 +425,9 @@
       "levels": [
         {
           "id": "career/90_second_sprint"
+        },
+        {
+          "id": "career/blindy_asparagus"
         },
         {
           "id": "career/carrot_cake_2"
@@ -493,6 +511,9 @@
           "id": "career/mystery_box"
         },
         {
+          "id": "career/shoots_and_leaves"
+        },
+        {
           "id": "career/slow_service_2"
         },
         {
@@ -500,6 +521,9 @@
         },
         {
           "id": "career/too_fast_to_fast"
+        },
+        {
+          "id": "career/tunnel_snakes"
         },
         {
           "id": "career/veggie_patty"
@@ -530,6 +554,12 @@
         },
         {
           "id": "career/dark/all_nighter"
+        },
+        {
+          "id": "career/dark/asparagus_gang"
+        },
+        {
+          "id": "career/dark/block_blockers"
         },
         {
           "id": "career/dark/boxing_day"
