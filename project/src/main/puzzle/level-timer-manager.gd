@@ -22,6 +22,9 @@ const PHASES_BY_TIMER_INDEX := {
 	9: LevelTrigger.TIMER_9,
 }
 
+# The elapsed time in seconds since the timers were started.
+var _total_time: float = 0.0
+
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
@@ -35,10 +38,16 @@ func _ready() -> void:
 		add_child(timer)
 
 
+func _physics_process(delta: float) -> void:
+	_total_time += delta
+
+
 func _start_all() -> void:
+	_total_time = 0.0
+	
 	for timer_index in range(CurrentLevel.settings.timers.get_timer_count()):
 		var timer: Timer = get_child(timer_index)
-		timer.start(CurrentLevel.settings.timers.get_timer_initial_interval(timer_index))
+		timer.start(CurrentLevel.settings.timers.get_timer_start(timer_index))
 
 
 func _stop_all() -> void:
@@ -65,7 +74,11 @@ func _on_PuzzleState_game_prepared() -> void:
 ## Runs all triggers for the specified timer.
 func _on_Timer_timeout(timer_index: int) -> void:
 	CurrentLevel.settings.triggers.run_triggers(PHASES_BY_TIMER_INDEX[timer_index])
-	if CurrentLevel.settings.timers.get_timer_initial_interval(timer_index) \
+	var timer: Timer = get_child(timer_index)
+	if CurrentLevel.settings.timers.get_timer_start(timer_index) \
 			!= CurrentLevel.settings.timers.get_timer_interval(timer_index):
-		var timer: Timer = get_child(timer_index)
 		timer.start(CurrentLevel.settings.timers.get_timer_interval(timer_index))
+	
+	if CurrentLevel.settings.timers.is_timer_end(timer_index):
+		if _total_time + timer.time_left + 0.01 >= CurrentLevel.settings.timers.get_timer_end(timer_index):
+			timer.stop()

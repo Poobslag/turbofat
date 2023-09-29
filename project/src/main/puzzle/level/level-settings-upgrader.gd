@@ -21,6 +21,7 @@ var _upgrade_methods := {}
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_4373", "4373", "49db")
 	_add_upgrade_method("_upgrade_39e5", "39e5", "4373")
 	_add_upgrade_method("_upgrade_392b", "392b", "39e5")
 	_add_upgrade_method("_upgrade_2cb4", "2cb4", "392b")
@@ -92,6 +93,20 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+func _upgrade_4373(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
+	match old_key:
+		"timers":
+			var new_value: Array = old_json[old_key].duplicate(true)
+			for timer in new_value:
+				if timer.has("initial_interval"):
+					timer["start"] = timer["initial_interval"]
+					timer.erase("initial_interval")
+			new_json[old_key] = new_value
+		_:
+			new_json[old_key] = old_json[old_key]
+	return new_json
 
 
 func _upgrade_39e5(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:

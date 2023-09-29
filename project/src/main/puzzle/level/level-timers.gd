@@ -12,13 +12,22 @@ func get_timer_interval(timer_index: int) -> float:
 
 
 ## Returns how long the timer should wait to fire the first time, measured in seconds.
-func get_timer_initial_interval(timer_index: int) -> float:
+func get_timer_start(timer_index: int) -> float:
 	var result: float
-	if timers[timer_index].has("initial_interval"):
-		result = timers[timer_index]["initial_interval"]
+	if timers[timer_index].has("start"):
+		result = timers[timer_index]["start"]
 	else:
 		result = timers[timer_index].get("interval", 1.0)
 	return result
+
+
+## Returns 'true' if the timer should eventually stop firing.
+func is_timer_end(timer_index: int) -> bool:
+	return timers[timer_index].has("end")
+
+
+func get_timer_end(timer_index: int) -> float:
+	return timers[timer_index].get("end", 0.0)
 
 
 ## Returns the number of timers used by this level.
