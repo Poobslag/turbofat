@@ -78,7 +78,6 @@ func _refresh_playfield_path() -> void:
 	
 	if _playfield:
 		_playfield.disconnect("line_erased", self, "_on_Playfield_line_erased")
-		_playfield.disconnect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.disconnect("line_filled", self, "_on_Playfield_line_filled")
 		_playfield.disconnect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
 	
@@ -86,7 +85,6 @@ func _refresh_playfield_path() -> void:
 	
 	if _playfield:
 		_playfield.connect("line_erased", self, "_on_Playfield_line_erased")
-		_playfield.connect("line_inserted", self, "_on_Playfield_line_inserted")
 		_playfield.connect("line_filled", self, "_on_Playfield_line_filled")
 		_playfield.connect("after_lines_deleted", self, "_on_Playfield_after_lines_deleted")
 
