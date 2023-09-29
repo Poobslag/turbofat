@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "49db",
   "start_speed": "7",
   "name": "It's Nibbler",
   "description": "Aww, they take such tiny bites. ...Oww! My finger!",
@@ -17,15 +17,15 @@
   "timers": [
     {
       "interval": 1.25,
-      "initial_interval": 5
+      "start": 5
     },
     {
       "interval": 15,
-      "initial_interval": 5
+      "start": 5
     },
     {
       "interval": 15,
-      "initial_interval": 12.5
+      "start": 12.5
     }
   ],
   "triggers": [

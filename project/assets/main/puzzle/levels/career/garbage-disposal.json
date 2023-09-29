@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "49db",
   "start_speed": "2",
   "name": "Garbage Disposal",
   "description": "These pieces are garbage. Lucky thing we've got a garbage disposal! Om nom nom nom nom.",
@@ -16,24 +16,24 @@
   ],
   "timers": [
     {
-      "initial_interval": 1,
-      "interval": 2
+      "interval": 2,
+      "start": 1
     },
     {
-      "initial_interval": 1,
-      "interval": 32
+      "interval": 32,
+      "start": 1
     },
     {
-      "initial_interval": 9,
-      "interval": 32
+      "interval": 32,
+      "start": 9
     },
     {
-      "initial_interval": 17,
-      "interval": 32
+      "interval": 32,
+      "start": 17
     },
     {
-      "initial_interval": 25,
-      "interval": 32
+      "interval": 32,
+      "start": 25
     }
   ],
   "triggers": [

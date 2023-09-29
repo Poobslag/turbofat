@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "49db",
   "start_speed": "A4",
   "name": "No Smoking Section II",
   "description": "Cough! Cough! ...Carrots! Too many!",
@@ -9,20 +9,20 @@
   },
   "timers": [
     {
-      "initial_interval": 2,
-      "interval": 18
+      "interval": 18,
+      "start": 2
     },
     {
-      "initial_interval": 3,
-      "interval": 18
+      "interval": 18,
+      "start": 3
     },
     {
-      "initial_interval": 12,
-      "interval": 18
+      "interval": 18,
+      "start": 12
     },
     {
-      "initial_interval": 13,
-      "interval": 18
+      "interval": 18,
+      "start": 13
     }
   ],
   "speed_ups": [

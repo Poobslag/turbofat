@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "49db",
   "start_speed": "7",
   "name": "Left Shark",
   "description": "Fins to the left, pentominos to the right. And no tetrominos in sight!",
@@ -22,7 +22,7 @@
   ],
   "timers": [
     {
-      "interval": 1.10
+      "interval": 1.1
     }
   ],
   "triggers": [
