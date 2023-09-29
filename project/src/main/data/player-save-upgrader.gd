@@ -4,6 +4,21 @@ class_name PlayerSaveUpgrader
 ## This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
 ## backwards compatibility for older versions.
 
+## Level ids to prune when upgrading from version 38C3
+const LEVEL_PRUNE_LIST_38C3 := {
+	"career/bottomless_pit_2": true,
+	"career/cleaning_duty": true,
+	"career/creeping_crevice": true,
+	"career/lets_all_get_merry": true,
+	"career/muffin_impossible_2": true,
+	"career/dark/muffin_impossible_2": true,
+	"career/muffin_impossible_3": true,
+	"career/pineapple_on_its_side_cake": true,
+	"career/too_fast_to_fast": true,
+	"career/veggie_haters": true,
+	"career/wedding_cake_for_one": true,
+}
+
 ## Level ids to prune when upgrading from version 3776
 const LEVEL_PRUNE_LIST_3776 := {
 	"002": true,
@@ -154,7 +169,7 @@ const LEVEL_PRUNE_LIST_3776 := {
 	"unfresh_fruits_2": true,
 	"veggie_patty": true,
 	"veggie_puzzle": true,
-	"wedge": true
+	"wedge": true,
 }
 
 ## Chat ids to prune when upgrading from version 3776
@@ -247,9 +262,10 @@ var _third_zero_regex: RegEx
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "38c3"
-	upgrader.add_upgrade_method(self, "_upgrade_38c3", "37b3", "38c3")
-	upgrader.add_upgrade_method(self, "_upgrade_37b3", "3776", "37b3")
+	upgrader.current_version = "49eb"
+	upgrader.add_upgrade_method(self, "_upgrade_38c3", "38c3", "49eb")
+	upgrader.add_upgrade_method(self, "_upgrade_37b3", "37b3", "38c3")
+	upgrader.add_upgrade_method(self, "_upgrade_3776", "3776", "37b3")
 	upgrader.add_upgrade_method(self, "_upgrade_375c", "375c", "3776")
 	upgrader.add_upgrade_method(self, "_upgrade_36c3", "36c3", "375c")
 	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "36c3")
@@ -279,6 +295,21 @@ func prepend_third_zero(s: String) -> String:
 
 func _upgrade_38c3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
+		"level_history":
+			# Remove level keys for levels which were pruned on 2023-09-29
+			if save_item.key in LEVEL_PRUNE_LIST_38C3:
+				save_item = null
+		"finished_levels", "successful_levels":
+			# Remove level keys for levels which were pruned on 2023-09-29
+			for level_id in save_item.value.keys():
+				if level_id in LEVEL_PRUNE_LIST_38C3:
+					save_item.value.erase(level_id)
+			
+	return save_item
+
+
+func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
 		"chat_history":
 			# prepend a third zero to any chat keys with two-digit numbers
 			var history_items: Dictionary = save_item.value.get("history_items", {})
@@ -290,7 +321,7 @@ func _upgrade_38c3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+func _upgrade_3776(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
 			# Convert hyphens to underscores
