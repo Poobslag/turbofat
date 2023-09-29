@@ -15,7 +15,7 @@ func play_poof_sound() -> void:
 	SfxDeconflicter.play(_poof)
 
 
-func play_pop_sound(pop_anim_duration: float) -> void:
+func play_pop_sound() -> void:
 	_pop.pitch_scale = rand_range(0.95, 1.05)
 	SfxDeconflicter.play(_pop)
 
