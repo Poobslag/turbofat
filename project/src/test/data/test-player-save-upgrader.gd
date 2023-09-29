@@ -150,22 +150,28 @@ func test_3776_level_history_purged() -> void:
 	load_player_data("turbofat-3776.json")
 	
 	# finished levels
-	assert_eq(PlayerData.level_history.finished_levels.has("tutorial/basics_0"), true)
-	assert_eq(PlayerData.level_history.finished_levels.has("boatricia"), false)
-	assert_eq(PlayerData.level_history.finished_levels.has("practice/sandbox_hard"), false)
-	assert_eq(PlayerData.level_history.finished_levels.has("marsh/hello_everyone"), false)
-	assert_eq(PlayerData.level_history.finished_levels.has("five-customers-no-vegetables"), false)
+	var finished_levels := PlayerData.level_history.finished_levels
+	assert_eq(finished_levels.has("tutorial/basics_0"), true)
+	assert_eq(finished_levels.has("boatricia"), false)
+	assert_eq(finished_levels.has("practice/sandbox_hard"), false)
+	assert_eq(finished_levels.has("marsh/hello_everyone"), false)
+	assert_eq(finished_levels.has("five-customers-no-vegetables"), false)
+	assert_eq(finished_levels.has("career/bottomless_pit_2"), false) # removed later in 49eb
 	
 	# successful levels
-	assert_eq(PlayerData.level_history.successful_levels.has("practice/marathon_hard"), true)
-	assert_eq(PlayerData.level_history.successful_levels.has("bogus_level"), false)
+	var successful_levels := PlayerData.level_history.successful_levels
+	assert_eq(successful_levels.has("practice/marathon_hard"), true)
+	assert_eq(successful_levels.has("bogus_level"), false)
+	assert_eq(successful_levels.has("career/bottomless_pit_2"), false) # removed later in 49eb
 	
 	# level history
-	assert_eq(PlayerData.level_history.rank_results.has("practice/marathon_hard"), true)
-	assert_eq(PlayerData.level_history.rank_results.has("boatricia"), false)
-	assert_eq(PlayerData.level_history.rank_results.has("practice/sandbox_hard"), false)
-	assert_eq(PlayerData.level_history.rank_results.has("marsh/hello_everyone"), false)
-	assert_eq(PlayerData.level_history.rank_results.has("five-customers-no-vegetables"), false)
+	var rank_results := PlayerData.level_history.rank_results
+	assert_eq(rank_results.has("practice/marathon_hard"), true)
+	assert_eq(rank_results.has("boatricia"), false)
+	assert_eq(rank_results.has("practice/sandbox_hard"), false)
+	assert_eq(rank_results.has("marsh/hello_everyone"), false)
+	assert_eq(rank_results.has("five-customers-no-vegetables"), false)
+	assert_eq(rank_results.has("career/bottomless_pit_2"), false) # removed later in 49eb
 
 
 ## With the removal of free roam mode, we also remove all of the old chat history items.
@@ -175,10 +181,11 @@ func test_3776_chat_history_purged() -> void:
 	load_player_data("turbofat-3776.json")
 	
 	# chat history
-	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("chat/career/marsh/010_b"), true)
-	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("chat/level_select"), false)
-	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("creature/bort/filler_000"), false)
-	assert_eq(PlayerData.chat_history.history_index_by_chat_key.has("level/marsh/pulling_for_everyone_100"), false)
+	var history_index_by_chat_key := PlayerData.chat_history.history_index_by_chat_key
+	assert_eq(history_index_by_chat_key.has("chat/career/marsh/010_b"), true)
+	assert_eq(history_index_by_chat_key.has("chat/level_select"), false)
+	assert_eq(history_index_by_chat_key.has("creature/bort/filler_000"), false)
+	assert_eq(history_index_by_chat_key.has("level/marsh/pulling_for_everyone_100"), false)
 
 
 func test_37b3_chat_history_migrated() -> void:

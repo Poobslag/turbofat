@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "49db",
   "start_speed": "0",
   "name": "Up In Smoke",
   "description": "I don't love carrots, but I promise to hate them slightly less if they stay over there...",
@@ -21,16 +21,16 @@
   ],
   "timers": [
     {
-      "initial_interval": 6,
-      "interval": 19
+      "interval": 19,
+      "start": 6
     },
     {
-      "initial_interval": 8,
-      "interval": 15.5
+      "interval": 15.5,
+      "start": 8
     },
     {
-      "initial_interval": 10,
-      "interval": 13.5
+      "interval": 13.5,
+      "start": 10
     }
   ],
   "triggers": [

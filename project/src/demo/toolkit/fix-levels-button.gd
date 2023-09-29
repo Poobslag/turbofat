@@ -4,7 +4,12 @@ extends Button
 ## Recursively searches for levels, upgrading them if they are out of date.
 
 ## directories containing levels which should be upgraded
-const LEVEL_DIRS := ["res://assets/main/puzzle/levels"]
+const LEVEL_DIRS := [
+	"res://assets/main/puzzle/levels",
+	"res://assets/demo/puzzle/levels",
+	"res://assets/demo/puzzle/levels/retired",
+]
+
 const CAREER_LEVEL_DIRS := ["res://assets/main/puzzle/levels/career"]
 
 export (NodePath) var output_label_path: NodePath

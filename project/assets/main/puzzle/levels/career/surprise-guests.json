@@ -1,5 +1,5 @@
 {
-  "version": "4373",
+  "version": "49db",
   "start_speed": "7",
   "name": "Surprise Guests",
   "description": "Surpriiiise! ...We just thought we'd drop in.",
@@ -16,8 +16,8 @@
   ],
   "timers": [
     {
-      "initial_interval": 6.4,
-      "interval": 12.8
+      "interval": 12.8,
+      "start": 6.4
     },
     {
       "interval": 1.6

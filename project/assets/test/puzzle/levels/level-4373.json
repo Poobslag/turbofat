@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4373",
   "start_speed": "9",
   "name": "Destroy Them With Boxes!",
   "description": "Ack, sweets! My only weakness!",
@@ -9,12 +9,12 @@
   },
   "timers": [
     {
-      "interval": 7.2,
-      "start": 28.2
+      "initial_interval": 28.2,
+      "interval": 7.2
     },
     {
-      "interval": 7.2,
-      "start": 10.2
+      "initial_interval": 10.2,
+      "interval": 7.2
     }
   ],
   "triggers": [
