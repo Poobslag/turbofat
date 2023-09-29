@@ -1,0 +1,94 @@
+{
+  "version": "49db",
+  "start_speed": "6",
+  "name": "Shoots and Leaves",
+  "description": "Stop me if you've heard this one before...",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "130"
+  },
+  "rank": [
+    "box_factor 0.83",
+    "combo_factor 0.67",
+    "master_pickup_score 90"
+  ],
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "30",
+      "speed": "7"
+    },
+    {
+      "type": "time_over",
+      "value": "60",
+      "speed": "8"
+    },
+    {
+      "type": "time_over",
+      "value": "90",
+      "speed": "9"
+    }
+  ],
+  "timers": [
+    {
+      "interval": 30,
+      "start": 20
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_spears wait=3 count=6 y=0,2,4,6,8,10,12 sizes=l3,l4,l5,l6"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "remove_spears 1"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "1 11",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 12",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 12",
+        "pickup": "11"
+      },
+      {
+        "pos": "2 12",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 13",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 15",
+        "pickup": "2"
+      },
+      {
+        "pos": "1 17",
+        "pickup": "2"
+      },
+      {
+        "pos": "1 19",
+        "pickup": "2"
+      }
+    ]
+  }
+}

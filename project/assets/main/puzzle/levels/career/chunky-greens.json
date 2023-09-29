@@ -1,0 +1,230 @@
+{
+  "version": "49db",
+  "start_speed": "5",
+  "name": "Chunky Greens",
+  "description": "Just pile them beside my plate, where I can ignore them.",
+  "finish_condition": {
+    "type": "lines",
+    "value": "25"
+  },
+  "piece_types": [
+    "piece_j",
+    "piece_j",
+    "piece_o",
+    "piece_p",
+    "piece_p",
+    "piece_t",
+    "piece_u",
+    "piece_v"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.30",
+    "master_pickup_score 120"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_spears count=2 sizes=L3 y=10,14"
+    },
+    {
+      "phases": [
+        "line_cleared n=5"
+      ],
+      "effect": "add_spears count=3 sizes=L3 y=4,6..."
+    },
+    {
+      "phases": [
+        "line_cleared n=15"
+      ],
+      "effect": "add_spears count=4 sizes=L3 y=4,6..."
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "6 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 11",
+        "tile": "0 2 1"
+      },
+      {
+        "pos": "6 12",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 12",
+        "tile": "0 10 1"
+      },
+      {
+        "pos": "8 12",
+        "tile": "0 7 1"
+      },
+      {
+        "pos": "6 13",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 13",
+        "tile": "0 9 1"
+      },
+      {
+        "pos": "8 13",
+        "tile": "0 5 1"
+      },
+      {
+        "pos": "6 14",
+        "tile": "1 8 1"
+      },
+      {
+        "pos": "7 14",
+        "tile": "1 12 1"
+      },
+      {
+        "pos": "8 14",
+        "tile": "1 4 1"
+      },
+      {
+        "pos": "5 15",
+        "pickup": "1"
+      },
+      {
+        "pos": "6 15",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "7 15",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "8 15",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "3 16",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 16",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 16",
+        "pickup": "1"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "2 17",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "2 18",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 11 1"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 15 1"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 7 1"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 1"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 1"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 1"
+      },
+      {
+        "pos": "1 19",
+        "pickup": "1"
+      },
+      {
+        "pos": "2 19",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "version": "49db",
+  "start_speed": "A9",
+  "name": "EX Block Blockers",
+  "description": "They're still here to get in the way... and they have some new tricks!",
+  "finish_condition": {
+    "type": "score",
+    "value": "2500"
+  },
+  "blocks_during": [
+    "fill_lines 0",
+    "refresh_on_top_out"
+  ],
+  "piece_types": [
+    "piece_j",
+    "piece_p",
+    "piece_o",
+    "piece_t",
+    "piece_u",
+    "piece_v"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.14",
+    "box_factor 0.76",
+    "master_pickup_score_per_line 11.10",
+    "show_pickups_rank"
+  ],
+  "timers": [
+    {
+      "interval": 0.9
+    },
+    {
+      "interval": 6.3,
+      "start": 8
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_spears sizes=l8,l4r4,r8 y=9-13"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_spears"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 3",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 3",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 7",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 7",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 9",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 9",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 15",
+        "tile": "0 10 1"
+      },
+      {
+        "pos": "1 15",
+        "tile": "0 4 1"
+      },
+      {
+        "pos": "8 15",
+        "tile": "0 2 1"
+      },
+      {
+        "pos": "0 16",
+        "tile": "0 3 1"
+      },
+      {
+        "pos": "7 16",
+        "tile": "0 10 1"
+      },
+      {
+        "pos": "8 16",
+        "tile": "0 7 1"
+      },
+      {
+        "pos": "0 17",
+        "tile": "0 1 1"
+      },
+      {
+        "pos": "7 17",
+        "tile": "0 9 1"
+      },
+      {
+        "pos": "8 17",
+        "tile": "0 5 1"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 8 1"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 12 1"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 4 1"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 8 1"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 12 1"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 4 1"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 8 1"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 12 1"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 4 1"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 8 1"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 12 1"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 4 1"
+      }
+    ],
+    "0": [
+      {
+        "pos": "0 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 3",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 3",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "1"
+      }
+    ]
+  }
+}

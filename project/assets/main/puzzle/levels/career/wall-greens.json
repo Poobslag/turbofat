@@ -1,0 +1,200 @@
+{
+  "version": "49db",
+  "start_speed": "7",
+  "name": "Wall Greens",
+  "description": "Asparagus evolved its disgusting spines as a defense against being eaten.",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "95"
+  },
+  "blocks_during": [
+    "fill_lines 0"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.38",
+    "box_factor 1.15",
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 12.15",
+    "show_pickups_rank"
+  ],
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "30",
+      "speed": "8"
+    },
+    {
+      "type": "time_over",
+      "value": "60",
+      "speed": "9"
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=4,26..."
+      ],
+      "effect": "add_spears sizes=l2r2,x3,x5 y=4-11 duration=8"
+    },
+    {
+      "phases": [
+        "piece_written n=10,34..."
+      ],
+      "effect": "add_spears sizes=l3r3,x5,x8 y=4-11 duration=8"
+    },
+    {
+      "phases": [
+        "piece_written n=18,42..."
+      ],
+      "effect": "add_spears sizes=L2R2,X3,X5 y=5-11 duration=8"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 5",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 7",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 7",
+        "pickup": "2"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 8 8"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 4 8"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 8 8"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 4 8"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 8 8"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 4 8"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 8 8"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 4 8"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 8 8"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 4 8"
+      },
+      {
+        "pos": "3 19",
+        "pickup": "8"
+      },
+      {
+        "pos": "4 19",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "8"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 8 8"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 12 8"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 4 8"
+      }
+    ],
+    "0": [
+      {
+        "pos": "0 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "2"
+      }
+    ]
+  }
+}

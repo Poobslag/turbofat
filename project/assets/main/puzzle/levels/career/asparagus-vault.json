@@ -1,0 +1,328 @@
+{
+  "version": "49db",
+  "start_speed": "2",
+  "name": "Asparagus Vault",
+  "description": "Are you planning a robbery? I'm onto you!",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "120"
+  },
+  "blocks_during": [
+    "shuffle_inserted_lines"
+  ],
+  "other": [
+    "tile_set veggie"
+  ],
+  "piece_types": [
+    "start_piece_q",
+    "start_piece_t"
+  ],
+  "rank": [
+    "box_factor 0.62",
+    "combo_factor 0.66",
+    "master_pickup_score_per_line 7.94",
+    "show_pickups_rank"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-2"
+      ],
+      "effect": "insert_line tiles_key=0"
+    },
+    {
+      "phases": [
+        "line_cleared y=0-2"
+      ],
+      "effect": "add_spears wait=1 y=3,4,5 count=3 sizes=l1r6,l1r7,l2r7,l6r1,l6r2,l7r1"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 14",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "1 14",
+        "tile": "2 1 3"
+      },
+      {
+        "pos": "2 14",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "3 14",
+        "tile": "2 11 3"
+      },
+      {
+        "pos": "4 14",
+        "tile": "2 13 3"
+      },
+      {
+        "pos": "5 14",
+        "tile": "2 10 1"
+      },
+      {
+        "pos": "8 14",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "0 15",
+        "tile": "2 11 0"
+      },
+      {
+        "pos": "1 15",
+        "tile": "2 6 1"
+      },
+      {
+        "pos": "2 15",
+        "tile": "2 10 0"
+      },
+      {
+        "pos": "3 15",
+        "tile": "2 9 2"
+      },
+      {
+        "pos": "4 15",
+        "tile": "2 16 0"
+      },
+      {
+        "pos": "5 15",
+        "tile": "2 13 3"
+      },
+      {
+        "pos": "6 15",
+        "tile": "2 0 1"
+      },
+      {
+        "pos": "8 15",
+        "tile": "2 14 2"
+      },
+      {
+        "pos": "0 16",
+        "tile": "2 0 0"
+      },
+      {
+        "pos": "2 16",
+        "tile": "2 7 3"
+      },
+      {
+        "pos": "3 16",
+        "tile": "2 7 3"
+      },
+      {
+        "pos": "4 16",
+        "tile": "2 9 1"
+      },
+      {
+        "pos": "5 16",
+        "tile": "2 13 0"
+      },
+      {
+        "pos": "6 16",
+        "tile": "2 12 1"
+      },
+      {
+        "pos": "7 16",
+        "tile": "2 11 3"
+      },
+      {
+        "pos": "8 16",
+        "tile": "2 1 0"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 10 10"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 10"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 6 10"
+      },
+      {
+        "pos": "3 17",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 17",
+        "pickup": "1"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 10"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 10"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 10"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 11 10"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 15 10"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 7 10"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "10"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 10"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 10"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 10"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 10"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 10"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 10"
+      },
+      {
+        "pos": "3 19",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "2"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 10"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 10"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 10"
+      }
+    ],
+    "0": [
+      {
+        "pos": "0 0",
+        "tile": "1 8 10"
+      },
+      {
+        "pos": "1 0",
+        "tile": "1 12 10"
+      },
+      {
+        "pos": "2 0",
+        "tile": "1 4 10"
+      },
+      {
+        "pos": "3 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "1"
+      },
+      {
+        "pos": "6 0",
+        "tile": "1 8 10"
+      },
+      {
+        "pos": "7 0",
+        "tile": "1 12 10"
+      },
+      {
+        "pos": "8 0",
+        "tile": "1 4 10"
+      },
+      {
+        "pos": "0 1",
+        "tile": "1 8 10"
+      },
+      {
+        "pos": "1 1",
+        "tile": "1 12 10"
+      },
+      {
+        "pos": "2 1",
+        "tile": "1 4 10"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "6 1",
+        "tile": "1 8 10"
+      },
+      {
+        "pos": "7 1",
+        "tile": "1 12 10"
+      },
+      {
+        "pos": "8 1",
+        "tile": "1 4 10"
+      },
+      {
+        "pos": "0 2",
+        "tile": "1 8 10"
+      },
+      {
+        "pos": "1 2",
+        "tile": "1 12 10"
+      },
+      {
+        "pos": "2 2",
+        "tile": "1 4 10"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 2",
+        "pickup": "2"
+      },
+      {
+        "pos": "6 2",
+        "tile": "1 8 10"
+      },
+      {
+        "pos": "7 2",
+        "tile": "1 12 10"
+      },
+      {
+        "pos": "8 2",
+        "tile": "1 4 10"
+      }
+    ]
+  }
+}

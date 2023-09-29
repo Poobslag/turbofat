@@ -1,0 +1,316 @@
+{
+  "version": "49db",
+  "start_speed": "8",
+  "name": "Tunnel Snakes",
+  "description": "Asparagus. Why'd it have to be asparagus?",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "160"
+  },
+  "blocks_during": [
+    "shuffle_inserted_lines"
+  ],
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_t",
+    "piece_t"
+  ],
+  "rank": [
+    "box_factor 0.64",
+    "combo_factor 1.21",
+    "master_pickup_score 80"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared combo=7"
+      ],
+      "effect": "add_spears sizes=l1r2,l2r1 y=0-6"
+    },
+    {
+      "phases": [
+        "line_cleared combo=11"
+      ],
+      "effect": "add_spears sizes=l1r3,l3r1 y=0-6"
+    },
+    {
+      "phases": [
+        "line_cleared combo=15"
+      ],
+      "effect": "add_spears sizes=l2r3,l3r2 y=0-6"
+    },
+    {
+      "phases": [
+        "line_cleared combo=19,23..."
+      ],
+      "effect": "add_spears sizes=L3R3,X2X4 y=0-6"
+    },
+    {
+      "phases": [
+        "combo_ended"
+      ],
+      "effect": "remove_spears 999999"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    },
+    {
+      "phases": [
+        "line_cleared y=0-7"
+      ],
+      "effect": "insert_line tiles_key=0"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 13",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 13",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 13",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "6 13",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 13",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 13",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 14",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 14",
+        "pickup": "3"
+      },
+      {
+        "pos": "2 14",
+        "tile": "2 16 1"
+      },
+      {
+        "pos": "6 14",
+        "tile": "2 10 2"
+      },
+      {
+        "pos": "7 14",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 14",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 15",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 15",
+        "pickup": "3"
+      },
+      {
+        "pos": "2 15",
+        "tile": "2 8 0"
+      },
+      {
+        "pos": "6 15",
+        "tile": "2 17 1"
+      },
+      {
+        "pos": "7 15",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 15",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 16",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "7 16",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "8 16",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 5 3"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 5 3"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 3"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 4 3"
+      }
+    ],
+    "0": [
+      {
+        "pos": "0 0",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 0",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 0",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "6 0",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 0",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 0",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 1",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 1",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 1",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "6 1",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 1",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 1",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "0 2",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "1 2",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "2 2",
+        "tile": "1 4 3"
+      },
+      {
+        "pos": "6 2",
+        "tile": "1 8 3"
+      },
+      {
+        "pos": "7 2",
+        "tile": "1 12 3"
+      },
+      {
+        "pos": "8 2",
+        "tile": "1 4 3"
+      }
+    ]
+  }
+}
