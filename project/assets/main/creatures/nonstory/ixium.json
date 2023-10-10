@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "ixium",
+  "name": "Ixium",
+  "short_name": "Ixium",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "1",
+    "collar": "5",
+    "ear": "11",
+    "eye": "1",
+    "hair": "0",
+    "head": "4",
+    "horn": "1",
+    "mouth": "1",
+    "nose": "4",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "725e96",
+    "belly_rgb": "e8fa95",
+    "cloth_rgb": "41f2ff",
+    "glass_rgb": "f9c0f9",
+    "plastic_rgb": "e5e6e0",
+    "hair_rgb": "b47922",
+    "eye_rgb": "f5d561 fcf3cd",
+    "horn_rgb": "5a635d"
+  },
+  "chat_theme": {
+    "accent_scale": 0.88,
+    "accent_texture": 5,
+    "color": "725e96",
+    "dark": true
+  }
+}
