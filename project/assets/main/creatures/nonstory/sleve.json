@@ -1,0 +1,37 @@
+{
+  "version": "375c",
+  "id": "sleve",
+  "name": "Sleve",
+  "short_name": "Sleve",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "2",
+    "cheek": "4",
+    "collar": "3",
+    "ear": "5",
+    "eye": "3",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "6",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "ffb12c",
+    "belly_rgb": "ffffff",
+    "cloth_rgb": "ce4224",
+    "glass_rgb": "202020",
+    "plastic_rgb": "b5c4f2",
+    "hair_rgb": "d37725",
+    "eye_rgb": "cb5340 ffb597",
+    "horn_rgb": "d2c9cd"
+  },
+  "chat_theme": {
+    "accent_scale": 0.5,
+    "accent_texture": 8,
+    "color": "ffb12c"
+  },
+  "fatness": 1.3
+}
