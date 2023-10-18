@@ -12,7 +12,7 @@
 [ext_resource path="res://src/main/world/environment/sand/SandRippleWaves.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/sand/sand-terrain-library.tres" type="TileSet" id=12]
-[ext_resource path="res://src/main/world/environment/sand/WaterRippleOverworldTiler.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/WaterRippleOverworldTiler.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/sand/ChipOverworldTiler.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/sand/SandTree.tscn" type="PackedScene" id=15]
 
