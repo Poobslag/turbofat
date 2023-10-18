@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main/world/environment/sand/SandRippleWaves.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/world/environment/sand/SandGroundMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/environment/lava/LavaGroundMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/environment/lava/LavaRippleWave.tscn" type="PackedScene" id=4]
 
 [node name="Node" type="Node"]
 
@@ -11,6 +12,7 @@ tile_data = PoolIntArray( -262139, 0, 131073, -262138, 0, 196610, -262137, 2, 26
 [node name="RippleWaves" parent="." instance=ExtResource( 1 )]
 tile_map_path = NodePath("../GroundMap")
 direction = 2
+RippleWaveScene = ExtResource( 4 )
 speed = 50.0
 wait_time = 4.0
 rippleable_tile_ids = [ 0 ]
