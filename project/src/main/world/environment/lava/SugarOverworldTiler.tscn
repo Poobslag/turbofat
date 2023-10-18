@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/environment/lava/sugar-overworld-tiler.gd" type="Script" id=1]
+
+[node name="SugarOverworldTiler" type="Node"]
+script = ExtResource( 1 )
+sugar_tile_index = 9
