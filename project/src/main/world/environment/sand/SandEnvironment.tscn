@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/environment/sand/sand-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/main/world/environment/sand/BananaTentacleFront.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/sand/BananaTentacleBack.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/sand/SandGroundMap.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=23]
@@ -82,6 +83,15 @@ pebble_tile_index = 1
 
 [node name="Exits" type="Node2D" parent="Ground"]
 position = Vector2( -2, 1 )
+
+[node name="Exit1" parent="Ground/Exits" instance=ExtResource( 18 )]
+position = Vector2( 1802.69, 2626.74 )
+
+[node name="Exit2" parent="Ground/Exits" instance=ExtResource( 18 )]
+position = Vector2( 3885.48, 2178.17 )
+
+[node name="Exit3" parent="Ground/Exits" instance=ExtResource( 18 )]
+position = Vector2( 5462.08, 1366.7 )
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 11 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")

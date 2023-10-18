@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://src/main/world/environment/sand/BananaHq.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/sand/BananaTentacleFront.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/main/world/environment/WaterRippleOverworldTiler.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/environment/sand/SandHouse.tscn" type="PackedScene" id=25]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -83,6 +84,15 @@ pebble_tile_index = 1
 
 [node name="Exits" type="Node2D" parent="Ground"]
 position = Vector2( -2, 1 )
+
+[node name="Exit1" parent="Ground/Exits" instance=ExtResource( 24 )]
+position = Vector2( 1802.69, 2626.74 )
+
+[node name="Exit2" parent="Ground/Exits" instance=ExtResource( 24 )]
+position = Vector2( 3885.48, 2178.17 )
+
+[node name="Exit3" parent="Ground/Exits" instance=ExtResource( 24 )]
+position = Vector2( 5462.08, 1366.7 )
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 8 )]
 obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")

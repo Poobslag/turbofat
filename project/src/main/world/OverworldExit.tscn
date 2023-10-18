@@ -43,7 +43,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7, 0, 1, 2, 3, 4 ]
 }
 
-[node name="Sprite" type="Sprite"]
+[node name="Exit" type="Sprite"]
 modulate = Color( 1, 1, 1, 0.752941 )
 material = SubResource( 1 )
 scale = Vector2( 0.539476, 0.539476 )
