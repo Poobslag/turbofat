@@ -24,6 +24,7 @@ const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshE
 ## value: (String) Path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
 const ENVIRONMENT_PATH_BY_NAME := {
+	"lava": "res://src/main/world/environment/lava/LavaEnvironment.tscn",
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
 	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",

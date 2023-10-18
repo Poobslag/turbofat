@@ -454,6 +454,7 @@
       "name": "Chocolava Canyon",
       "start": 80,
       "icon": "volcano",
+      "overworld_environment": "lava",
       "piece_speed": "6-9",
       "boss_level": {
         "id": "career/boss_1k"
