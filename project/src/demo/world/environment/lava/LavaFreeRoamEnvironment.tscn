@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/main/world/environment/lava/lava-terrain-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/sand/SandHouse.tscn" type="PackedScene" id=2]
@@ -25,6 +25,13 @@
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=25]
+[ext_resource path="res://src/main/world/environment/lava/LavaCake.tscn" type="PackedScene" id=26]
+[ext_resource path="res://src/main/world/environment/lava/MushroomSmall.tscn" type="PackedScene" id=27]
+[ext_resource path="res://src/main/world/environment/lava/VolcanoBig.tscn" type="PackedScene" id=28]
+[ext_resource path="res://src/main/world/environment/lava/MushroomBig.tscn" type="PackedScene" id=29]
+[ext_resource path="res://src/main/world/environment/lava/MushroomBigFire.tscn" type="PackedScene" id=30]
+[ext_resource path="res://src/main/world/environment/lava/VolcanoSmall.tscn" type="PackedScene" id=31]
+[ext_resource path="res://src/main/world/environment/lava/VolcanoSmallActive.tscn" type="PackedScene" id=32]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -376,6 +383,57 @@ position = Vector2( 5191.82, 1314.91 )
 
 [node name="SandHouse" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3874.78, 2066.76 )
+
+[node name="VolcanoBig" parent="Obstacles" instance=ExtResource( 28 )]
+position = Vector2( 3678.02, 2749.87 )
+
+[node name="Mushroom" parent="Obstacles" instance=ExtResource( 27 )]
+position = Vector2( 3181.58, 2439.34 )
+frame = 3
+
+[node name="Mushroom2" parent="Obstacles" instance=ExtResource( 27 )]
+position = Vector2( 3241.51, 2514.26 )
+frame = 4
+
+[node name="Mushroom3" parent="Obstacles" instance=ExtResource( 27 )]
+position = Vector2( 3154.61, 2506.76 )
+frame = 3
+flip_h = true
+
+[node name="MushroomBig" parent="Obstacles" instance=ExtResource( 29 )]
+position = Vector2( 2952.86, 2525.11 )
+frame = 5
+
+[node name="MushroomBig2" parent="Obstacles" instance=ExtResource( 29 )]
+position = Vector2( 3033.77, 2568.56 )
+frame = 5
+flip_h = true
+
+[node name="MushroomBigFire" parent="Obstacles" instance=ExtResource( 30 )]
+position = Vector2( 3329.58, 2479.7 )
+variant = 1
+
+[node name="LavaCake" parent="Obstacles" instance=ExtResource( 26 )]
+position = Vector2( 2738.79, 2847.55 )
+frame = 2
+flip_h = true
+
+[node name="LavaCake2" parent="Obstacles" instance=ExtResource( 26 )]
+position = Vector2( 2786.73, 2910.48 )
+frame = 3
+
+[node name="LavaCake3" parent="Obstacles" instance=ExtResource( 26 )]
+position = Vector2( 2891.61, 2891 )
+frame = 1
+
+[node name="VolcanoSmallActive" parent="Obstacles" instance=ExtResource( 32 )]
+position = Vector2( 3350.4, 2888.8 )
+variant = 0
+
+[node name="VolcanoSmall" parent="Obstacles" instance=ExtResource( 31 )]
+position = Vector2( 2852.77, 2685.27 )
+frame = 1
+flip_h = true
 
 [node name="Spawns" type="Node2D" parent="."]
 
