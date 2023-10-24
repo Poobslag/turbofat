@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/environment/ripple-waves.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/lava/LavaRippleWave.tscn" type="PackedScene" id=2]
+
+[node name="RippleWaves" type="Node2D"]
+script = ExtResource( 1 )
+tile_map_path = NodePath("../GroundMap")
+direction = 3
+RippleWaveScene = ExtResource( 2 )
+speed = 20.0
+wait_time = 18.0
+rippleable_tile_ids = [ 0 ]
+
+[node name="WaveSpawnTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[connection signal="timeout" from="WaveSpawnTimer" to="." method="_on_RippleSpawnTimer_timeout"]
