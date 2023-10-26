@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=1]
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=2]
+[ext_resource path="res://assets/main/world/environment/lava/carbcraft-restaurant.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[node name="Carbcraft" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+shadow_scale = 5.5
+
+[node name="Restaurant" type="Sprite" parent="."]
+material = SubResource( 5 )
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -400 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.630005, 0 )
+polygon = PoolVector2Array( -325.625, 97.4858, -327.515, -97.802, 323.234, -99.062, 325.124, 96.2257, 296.146, 139.063, 151.885, 139.063, 110.938, 98.1156 )

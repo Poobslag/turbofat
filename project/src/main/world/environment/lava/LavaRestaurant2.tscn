@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=1]
+[ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=2]
+[ext_resource path="res://assets/main/world/environment/lava/lava-restaurant-2.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[node name="LavaRestaurant2" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+shadow_scale = 3.0
+
+[node name="Restaurant" type="Sprite" parent="."]
+material = SubResource( 5 )
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -850 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -200.252, -11.6312, -177.56, 32.4185, -106.813, 63.1199, -4.03052, 77.803, 106.761, 67.1243, 178.843, 33.7534, 200.2, -16.9706, 182.847, -66.3596, 102.757, -90.3867, 10.6528, -107.74, -93.4648, -101.065, -177.56, -69.0293 )
