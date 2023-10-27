@@ -19,7 +19,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-shadow_scale = 6.5
+shadow_scale = 5.5
 
 [node name="Restaurant" type="Sprite" parent="."]
 material = SubResource( 5 )

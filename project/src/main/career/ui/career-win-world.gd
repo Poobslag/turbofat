@@ -14,6 +14,7 @@ const ENVIRONMENT_PATH_BY_NAME := {
 	"marsh": "res://src/main/world/environment/marsh/MarshWinEnvironment.tscn",
 	"poki": "res://src/main/world/environment/poki/PokiWinEnvironment.tscn",
 	"sand": "res://src/main/world/environment/sand/SandWinEnvironment.tscn",
+	"lava": "res://src/main/world/environment/lava/LavaWinEnvironment.tscn",
 }
 
 func _ready() -> void:
