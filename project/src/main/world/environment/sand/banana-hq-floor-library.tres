@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/main/world/environment/sand/banana-hq-floor-sheet.png" type="Texture" id=2]
 
 [resource]
-82455/name = "floor-carpet-sheet.png 2"
+82455/name = "banana-hq-floor-sheet.png 2"
 82455/texture = ExtResource( 2 )
 82455/tex_offset = Vector2( 39, 0 )
 82455/modulate = Color( 1, 1, 1, 1 )

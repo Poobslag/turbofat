@@ -50,7 +50,7 @@ func set_playfield_path(new_playfield_path: NodePath) -> void:
 ## Adds spears in response to a level event.
 func add_spears(config: SpearConfig) -> void:
 	if _playfield.is_clearing_lines():
-		# We don't add spears during line clear events -- the playfield
+		# If spears are being added as a part of line clears, we wait to add spears until all lines are deleted.
 		_call_queue.defer(self, "_inner_add_spears", [config])
 	else:
 		_inner_add_spears(config)
@@ -92,7 +92,7 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 ## Advances all spears by one state.
 func advance_spears() -> void:
 	if _playfield.is_clearing_lines():
-		# We don't advance spears during line clear events -- the playfield
+		# If spears are being advanced as a part of line clears, we wait to advance spears until all lines are deleted.
 		_call_queue.defer(self, "_inner_advance_spears", [])
 	else:
 		_inner_advance_spears()
