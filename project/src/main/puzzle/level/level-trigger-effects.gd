@@ -23,7 +23,6 @@ class ClearFilledLinesEffect extends LevelTriggerEffect:
 			force = Utils.to_bool(new_config["force"])
 	
 	
-	## Clears any filled lines on the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_playfield().line_clearer.schedule_filled_line_clears(force)
 	
@@ -64,7 +63,6 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 			config.columns = ConfigStringUtils.ints_from_config_string(new_config["x"], 8).keys()
 	
 	
-	## Adds one or more carrots to the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_carrots().add_carrots(config)
 	
@@ -106,7 +104,6 @@ class AddOnionEffect extends LevelTriggerEffect:
 			config.day_string = new_config["0"]
 	
 	
-	## Adds an onion to the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_onions().add_onion(config)
 	
@@ -154,7 +151,6 @@ class AddMolesEffect extends LevelTriggerEffect:
 			config.reward = Utils.enum_from_snake_case(MoleConfig.Reward, new_config["reward"])
 	
 	
-	## Adds one or more moles to the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().add_moles(config)
 	
@@ -213,7 +209,6 @@ class AddSharksEffect extends LevelTriggerEffect:
 			config.size = Utils.enum_from_snake_case(SharkConfig.SharkSize, new_config["size"])
 	
 	
-	## Adds one or more moles to the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_sharks().add_sharks(config)
 	
@@ -269,7 +264,6 @@ class AddSpearsEffect extends LevelTriggerEffect:
 			config.lines = ConfigStringUtils.invert_puzzle_row_indexes(inverted_lines.keys())
 	
 	
-	## Adds one or more spears to the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_spears().add_spears(config)
 	
@@ -297,7 +291,6 @@ class AdvanceOnionEffect extends LevelTriggerEffect:
 	func _init() -> void:
 		priority = 86
 	
-	## Advances the day/night cycle of any onions on the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_onions().advance_onion()
 
@@ -307,7 +300,6 @@ class AdvanceMolesEffect extends LevelTriggerEffect:
 	func _init() -> void:
 		priority = 86
 	
-	## Advances all moles on the playfield, allowing them to dig up pickups.
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().advance_moles()
 
@@ -317,7 +309,6 @@ class AdvanceSharksEffect extends LevelTriggerEffect:
 	func _init() -> void:
 		priority = 86
 	
-	## Advances all sharks on the playfield, making them appear/disappear
 	func run() -> void:
 		CurrentLevel.puzzle.get_sharks().advance_sharks()
 
@@ -327,7 +318,6 @@ class AdvanceSpearsEffect extends LevelTriggerEffect:
 	func _init() -> void:
 		priority = 86
 	
-	## Advances all spears on the playfield, making them appear/disappear.
 	func run() -> void:
 		CurrentLevel.puzzle.get_spears().advance_spears()
 
@@ -351,7 +341,6 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 			count = new_config["0"].to_int()
 	
 	
-	## Removes one or more carrots from the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_carrots().remove_carrots(count)
 	
@@ -394,7 +383,6 @@ class RemoveSpearsEffect extends LevelTriggerEffect:
 			count = new_config["0"].to_int()
 	
 	
-	## Removes one or more spears from the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_spears().pop_out_spears(count)
 
@@ -447,7 +435,6 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 			next_piece_to_index = new_config["2"].to_int()
 	
 	
-	## Rotates one or more pieces in the piece queue.
 	func run() -> void:
 		var pieces: Array = CurrentLevel.puzzle.get_piece_queue().pieces
 		for i in range(next_piece_from_index, next_piece_to_index + 1):
@@ -509,7 +496,6 @@ class InsertLineEffect extends LevelTriggerEffect:
 			count = new_config["count"].to_int()
 	
 	
-	## Inserts a new line at the bottom of the playfield.
 	func run() -> void:
 		for _i in range(count):
 			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys, y)
