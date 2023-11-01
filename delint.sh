@@ -132,11 +132,20 @@ then
 fi
 
 # filenames with bad capitalization
-RESULT=$(find project/src -name "[A-Z]*.gd" -o -name "[a-z]*.tscn")
+RESULT=$(find project/src -name "*[A-Z]*.gd" -o -name "[a-z]*.tscn")
 if [ -n "$RESULT" ]
 then
   echo ""
   echo "Filenames with bad capitalization:"
+  echo "$RESULT"
+fi
+
+# filenames with disallowed characters
+RESULT=$(find project/src -name "*_*.gd" -o -name "*[-_]*.tscn")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Filenames with disallowed characters:"
   echo "$RESULT"
 fi
 
