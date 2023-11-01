@@ -206,7 +206,7 @@ amount = 6
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.9
-visibility_rect = Rect2( -100, -100, 250, 200 )
+visibility_rect = Rect2( -1500, -150, 3500, 550 )
 process_material = SubResource( 13 )
 texture = ExtResource( 13 )
 
@@ -215,7 +215,7 @@ material = SubResource( 10 )
 position = Vector2( 10, 0 )
 emitting = false
 lifetime = 0.5
-visibility_rect = Rect2( -100, -100, 250, 200 )
+visibility_rect = Rect2( -1500, -150, 3500, 550 )
 process_material = SubResource( 13 )
 texture = ExtResource( 13 )
 
