@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/main/world/environment/lemon/environment-shadows.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/environment-shadows.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=3]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=4]
