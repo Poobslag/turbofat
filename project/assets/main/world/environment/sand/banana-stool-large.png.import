@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/volcano-big-3.png-8d9b72d20239ae35a916f6bd96eeba6b.stex"
+path="res://.import/banana-stool-large.png-c8d4e4f66744f9d79713730976b77081.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/lava/volcano-big-3.png"
-dest_files=[ "res://.import/volcano-big-3.png-8d9b72d20239ae35a916f6bd96eeba6b.stex" ]
+source_file="res://assets/main/world/environment/sand/banana-stool-large.png"
+dest_files=[ "res://.import/banana-stool-large.png-c8d4e4f66744f9d79713730976b77081.stex" ]
 
 [params]
 

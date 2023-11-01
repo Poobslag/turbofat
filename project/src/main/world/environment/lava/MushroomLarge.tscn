@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/main/world/environment/lava/mushroom-big-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lava/mushroom-large-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/environment/frame-overworld-obstacle.gd" type="Script" id=2]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=3]
 
@@ -14,7 +14,7 @@ shader_param/edge_fix_factor = 1.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 18, 12 )
 
-[node name="MushroomBig" type="KinematicBody2D"]
+[node name="MushroomLarge" type="KinematicBody2D"]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

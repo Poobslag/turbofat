@@ -23,7 +23,7 @@ EnvironmentScene = ExtResource( 7 )
 
 [node name="Camera" type="Camera2D" parent="World"]
 current = true
-zoom = Vector2( 3, 3 )
+zoom = Vector2( 2, 2 )
 smoothing_enabled = true
 smoothing_speed = 12.5
 script = ExtResource( 3 )

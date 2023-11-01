@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/banana-stool-big-occupied.png-452ba7e95c85662e4f83d8a87743d289.stex"
+path="res://.import/volcano-large-1.png-495d592942eefe43e301da2246682889.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/sand/banana-stool-big-occupied.png"
-dest_files=[ "res://.import/banana-stool-big-occupied.png-452ba7e95c85662e4f83d8a87743d289.stex" ]
+source_file="res://assets/main/world/environment/lava/volcano-large-1.png"
+dest_files=[ "res://.import/volcano-large-1.png-495d592942eefe43e301da2246682889.stex" ]
 
 [params]
 

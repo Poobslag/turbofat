@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/banana-stool-big.png-c352206028da1b2d9b00ed0392256a8a.stex"
+path="res://.import/banana-stool-large-occupied.png-b0eb0d02addb647ba1cad4aac3203637.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/sand/banana-stool-big.png"
-dest_files=[ "res://.import/banana-stool-big.png-c352206028da1b2d9b00ed0392256a8a.stex" ]
+source_file="res://assets/main/world/environment/sand/banana-stool-large-occupied.png"
+dest_files=[ "res://.import/banana-stool-large-occupied.png-b0eb0d02addb647ba1cad4aac3203637.stex" ]
 
 [params]
 
