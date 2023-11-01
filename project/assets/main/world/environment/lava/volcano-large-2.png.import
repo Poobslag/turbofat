@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/volcano-big-1.png-d05305453382745319caa30e7038fa71.stex"
+path="res://.import/volcano-large-2.png-a5accf229bfd83a6942bcffe8450cee8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/lava/volcano-big-1.png"
-dest_files=[ "res://.import/volcano-big-1.png-d05305453382745319caa30e7038fa71.stex" ]
+source_file="res://assets/main/world/environment/lava/volcano-large-2.png"
+dest_files=[ "res://.import/volcano-large-2.png-a5accf229bfd83a6942bcffe8450cee8.stex" ]
 
 [params]
 

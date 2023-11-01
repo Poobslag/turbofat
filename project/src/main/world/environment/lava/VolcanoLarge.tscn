@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/world/environment/lava/volcano-big-1.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/world/environment/lava/volcano-big-4.png" type="Texture" id=4]
-[ext_resource path="res://assets/main/world/environment/lava/volcano-big-2.png" type="Texture" id=5]
-[ext_resource path="res://assets/main/world/environment/lava/volcano-big-3.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/world/environment/lava/volcano-large-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/lava/volcano-large-4.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/world/environment/lava/volcano-large-2.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/world/environment/lava/volcano-large-3.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -14,7 +14,7 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[node name="VolcanoBig" type="KinematicBody2D"]
+[node name="VolcanoLarge" type="KinematicBody2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

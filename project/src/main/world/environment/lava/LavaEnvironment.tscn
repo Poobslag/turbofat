@@ -12,18 +12,18 @@
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/lava/LavaRestaurant3.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/lava/LavaRippleWaves.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/world/environment/lava/MushroomBig.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/lava/MushroomLarge.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/restaurant/TurboFatRestaurant.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/lava/LavaRestaurant2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/lava/LavaGroundMap.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/environment/WaterRippleOverworldTiler.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/lava/LavaFlag.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/main/world/environment/lava/VolcanoBig.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/world/environment/lava/VolcanoLarge.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/environment/lava/MushroomSmall.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/lava/lava-obstacle-library.tres" type="TileSet" id=22]
 [ext_resource path="res://src/main/world/environment/lava/SugarOverworldTiler.tscn" type="PackedScene" id=23]
-[ext_resource path="res://src/main/world/environment/lava/MushroomBigFire.tscn" type="PackedScene" id=24]
+[ext_resource path="res://src/main/world/environment/lava/MushroomLargeFire.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/environment/lava/LavaCake.tscn" type="PackedScene" id=25]
 [ext_resource path="res://src/main/world/environment/lava/VolcanoSmallActive.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/world/environment/lava/VolcanoSmall.tscn" type="PackedScene" id=27]
@@ -173,10 +173,10 @@ flip_h = true
 [node name="Flag3" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 3721.75, 1405.13 )
 
-[node name="VolcanoBig" parent="Obstacles" instance=ExtResource( 19 )]
+[node name="VolcanoLarge" parent="Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 80.8665, 1416.17 )
 
-[node name="VolcanoBig2" parent="Obstacles" instance=ExtResource( 19 )]
+[node name="VolcanoLarge2" parent="Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 5644.31, 1258.56 )
 
 [node name="Mushroom" parent="Obstacles" instance=ExtResource( 21 )]
@@ -284,127 +284,127 @@ flip_h = true
 position = Vector2( 6208.01, 1536 )
 frame = 3
 
-[node name="MushroomBig" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 771.656, 1845.02 )
 
-[node name="MushroomBig2" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge2" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1597.61, 1785.78 )
 
-[node name="MushroomBig3" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge3" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 2204.83, 1250.37 )
 flip_h = true
 
-[node name="MushroomBig4" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge4" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 2692.02, 1234.73 )
 
-[node name="MushroomBig5" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge5" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 3753.78, 1357.88 )
 
-[node name="MushroomBig6" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge6" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 6312.86, 1852.98 )
 
-[node name="MushroomBig7" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge7" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 6538.79, 1775.99 )
 flip_h = true
 
-[node name="MushroomBig8" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge8" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 3638.63, 2120.11 )
 frame = 5
 
-[node name="MushroomBig9" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge9" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 2197.27, 2647.13 )
 flip_h = true
 
-[node name="MushroomBig10" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge10" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1352.77, 2450.29 )
 frame = 5
 flip_h = true
 
-[node name="MushroomBig11" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge11" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 559.07, 2520.14 )
 frame = 5
 
-[node name="MushroomBig12" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge12" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( -69.5408, 2037.57 )
 frame = 5
 
-[node name="MushroomBig13" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge13" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( -18.7439, 716.848 )
 
-[node name="MushroomBig14" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge14" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 660.664, 462.864 )
 frame = 5
 
-[node name="MushroomBig15" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge15" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 2063.93, 151.734 )
 frame = 5
 
-[node name="MushroomBig16" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="MushroomLarge16" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 2984.62, 564.458 )
 frame = 5
 flip_h = true
 
-[node name="MushroomBigFire" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 330.815, 1537.13 )
 variant = 1
 flip_h = true
 
-[node name="MushroomBigFire2" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire2" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 1063.13, 1494.37 )
 variant = 1
 flip_h = true
 
-[node name="MushroomBigFire3" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire3" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 1747.34, 1456.62 )
 variant = 1
 
-[node name="MushroomBigFire4" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire4" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 2161.61, 1230.66 )
 variant = 1
 flip_h = true
 
-[node name="MushroomBigFire5" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire5" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 4270.37, 1513.97 )
 variant = 1
 flip_h = true
 
-[node name="MushroomBigFire6" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire6" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 6249.95, 1529.11 )
 flip_h = true
 
-[node name="MushroomBigFire7" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire7" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 6519, 1532.67 )
 variant = 1
 
-[node name="MushroomBigFire8" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire8" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 3495.12, 2090.97 )
 variant = 1
 flip_h = true
 
-[node name="MushroomBigFire9" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire9" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 2456.39, 2683.68 )
 
-[node name="MushroomBigFire10" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire10" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 1291.17, 2597.31 )
 flip_h = true
 
-[node name="MushroomBigFire11" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire11" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 882.336, 2631.52 )
 
-[node name="MushroomBigFire12" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire12" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( -259.433, 2124.01 )
 
-[node name="MushroomBigFire13" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire13" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 304.522, 949.399 )
 
-[node name="MushroomBigFire14" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire14" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 1126.47, 257.092 )
 flip_h = true
 
-[node name="MushroomBigFire15" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire15" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 2476.28, 184.723 )
 
-[node name="MushroomBigFire16" parent="Obstacles" instance=ExtResource( 24 )]
+[node name="MushroomLargeFire16" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 3236.61, 675.846 )
 variant = 1
 
