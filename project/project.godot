@@ -329,10 +329,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/editor-playfield.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "EnvironmentShadows",
 "language": "GDScript",
-"path": "res://src/main/world/environment/lemon/environment-shadows.gd"
+"path": "res://src/main/world/environment/environment-shadows.gd"
 }, {
 "base": "Reference",
 "class": "FileUtils",
@@ -1079,7 +1079,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/region-select-button.gd"
 }, {
-"base": "Reference",
+"base": "Label",
 "class": "ReleaseToolkitOutput",
 "language": "GDScript",
 "path": "res://src/demo/toolkit/release-toolkit-output.gd"
