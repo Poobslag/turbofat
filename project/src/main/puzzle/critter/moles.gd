@@ -44,20 +44,18 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 ## 	'config': rules for how many moles to add, where to add them, how long they stay and what they dig.
 func add_moles(config: MoleConfig) -> void:
 	if _playfield.is_clearing_lines():
-		# We don't add moles during line clear events -- the playfield
+		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
 		_call_queue.defer(self, "_inner_add_moles", [config])
 	else:
-		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
 		_inner_add_moles(config)
 
 
 ## Advances all moles by one state.
 func advance_moles() -> void:
 	if _playfield.is_clearing_lines():
-		# We don't add moles during line clear events -- the playfield
+		# If moles are being advanced as a part of line clears, we wait to advance moles until all lines are deleted.
 		_call_queue.defer(self, "_inner_advance_moles", [])
 	else:
-		# If moles are being added as a part of line clears, we wait to add moles until all lines are deleted.
 		_inner_advance_moles()
 
 

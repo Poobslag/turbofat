@@ -52,10 +52,9 @@ func set_piece_manager_path(new_piece_manager_path: NodePath) -> void:
 ## 	'config': rules for how many sharks to add, where to add them, how long they stay and how much they eat.
 func add_sharks(config: SharkConfig) -> void:
 	if _playfield.is_clearing_lines():
-		# We don't add sharks during line clear events -- the playfield
+		# If sharks are being added as a part of line clears, we wait to add sharks until all lines are deleted.
 		_call_queue.defer(self, "_inner_add_sharks", [config])
 	else:
-		# If sharks are being added as a part of line clears, we wait to add sharks until all lines are deleted.
 		_inner_add_sharks(config)
 
 
@@ -72,9 +71,9 @@ func remove_shark(cell: Vector2) -> void:
 ## Advances all sharks by one state.
 func advance_sharks() -> void:
 	if _playfield.is_clearing_lines():
+		# If sharks are being advanced as a part of line clears, we wait to advance sharks until all lines are deleted.
 		_call_queue.defer(self, "_inner_advance_sharks", [])
 	else:
-		# If sharks are being advanced as a part of line clears, we wait to advance sharks until all lines are deleted.
 		_inner_advance_sharks()
 
 

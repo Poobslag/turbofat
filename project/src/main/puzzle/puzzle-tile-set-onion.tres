@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-corners-onion.png" type="Texture" id=4]
 
 [resource]
-0/name = "blocks.png"
+0/name = "blocks-onion.png"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -27,7 +27,7 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "blocks-boxes.png"
+1/name = "blocks-boxes-onion.png"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -48,7 +48,7 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "blocks-veggie-cubes.png"
+2/name = "blocks-veggie-cubes-onion.png"
 2/texture = ExtResource( 1 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -69,7 +69,7 @@
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "blocks-corners.png 2"
+3/name = "blocks-corners-onion.png 2"
 3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
