@@ -139,6 +139,14 @@ static func has_non_parentheses_letter(string: String) -> bool:
 	return result
 
 
+## Wraps 'player' and 'sensei' in hash symbols so their names will be translated.
+static func hashwrap_constants(s: String) -> String:
+	var result := s
+	if s in ["player", "sensei", "narrator"]:
+		result = "#%s#" % [s]
+	return result
+
+
 ## Replaces hyphens with underscores in a string.
 ##
 ## JSON keys and values use underscores to separate words, for consistency with Python conventions.
@@ -240,11 +248,3 @@ static func substring_between(s: String, open: String, close: String) -> String:
 ## Filenames use kebab-case.
 static func underscores_to_hyphens(s: String) -> String:
 	return s.replace("_", "-")
-
-
-## Wraps 'player' and 'sensei' in hash symbols so their names will be translated.
-static func hashwrap_constants(s: String) -> String:
-	var result := s
-	if s in ["player", "sensei", "narrator"]:
-		result = "#%s#" % [s]
-	return result
