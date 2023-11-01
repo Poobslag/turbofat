@@ -606,8 +606,8 @@ func _on_Playfield_line_deleted(y: int) -> void:
 
 
 func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
-	_call_queue.pop_deferred(self, "_inner_add_spears")
 	_call_queue.pop_deferred(self, "_inner_advance_spears")
+	_call_queue.pop_deferred(self, "_inner_add_spears")
 	_call_queue.assert_empty()
 
 

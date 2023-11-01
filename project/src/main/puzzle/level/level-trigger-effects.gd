@@ -38,6 +38,11 @@ class ClearFilledLinesEffect extends LevelTriggerEffect:
 class AddCarrotsEffect extends LevelTriggerEffect:
 	var config: CarrotConfig = CarrotConfig.new()
 	
+	func _init() -> void:
+		# remove -> add
+		priority = 86
+	
+	
 	## Updates the effect's configuration.
 	##
 	## This effect's configuration accepts the following parameters:
@@ -88,6 +93,11 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 class AddOnionEffect extends LevelTriggerEffect:
 	var config: OnionConfig = OnionConfig.new()
 	
+	func _init() -> void:
+		# remove -> advance -> add
+		priority = 86
+	
+	
 	## Updates the effect's configuration.
 	##
 	## This effect's configuration accepts the following parameters:
@@ -120,6 +130,11 @@ class AddOnionEffect extends LevelTriggerEffect:
 ## Adds one or more moles to the playfield.
 class AddMolesEffect extends LevelTriggerEffect:
 	var config: MoleConfig = MoleConfig.new()
+	
+	func _init() -> void:
+		# remove -> advance -> add
+		priority = 86
+	
 	
 	## Updates the effect's configuration.
 	##
@@ -179,6 +194,11 @@ class AddMolesEffect extends LevelTriggerEffect:
 class AddSharksEffect extends LevelTriggerEffect:
 	var config: SharkConfig = SharkConfig.new()
 	
+	func _init() -> void:
+		# remove -> advance -> add
+		priority = 86
+	
+	
 	## Updates the effect's configuration.
 	##
 	## This effect's configuration accepts the following parameters:
@@ -237,6 +257,11 @@ class AddSharksEffect extends LevelTriggerEffect:
 class AddSpearsEffect extends LevelTriggerEffect:
 	var config: SpearConfig = SpearConfig.new()
 	
+	func _init() -> void:
+		# remove -> advance -> add
+		priority = 86
+	
+	
 	## Updates the effect's configuration.
 	##
 	## This effect's configuration accepts the following parameters:
@@ -289,7 +314,9 @@ class AddSpearsEffect extends LevelTriggerEffect:
 ## Advances the day/night cycle of any onions on the playfield.
 class AdvanceOnionEffect extends LevelTriggerEffect:
 	func _init() -> void:
-		priority = 86
+		# remove -> advance -> add
+		priority = 67
+	
 	
 	func run() -> void:
 		CurrentLevel.puzzle.get_onions().advance_onion()
@@ -298,7 +325,9 @@ class AdvanceOnionEffect extends LevelTriggerEffect:
 ## Advances all moles on the playfield, allowing them to dig up pickups.
 class AdvanceMolesEffect extends LevelTriggerEffect:
 	func _init() -> void:
-		priority = 86
+		# remove -> advance -> add
+		priority = 67
+	
 	
 	func run() -> void:
 		CurrentLevel.puzzle.get_moles().advance_moles()
@@ -307,7 +336,9 @@ class AdvanceMolesEffect extends LevelTriggerEffect:
 ## Advances all sharks on the playfield, making them appear/disappear.
 class AdvanceSharksEffect extends LevelTriggerEffect:
 	func _init() -> void:
-		priority = 86
+		# remove -> advance -> add
+		priority = 67
+	
 	
 	func run() -> void:
 		CurrentLevel.puzzle.get_sharks().advance_sharks()
@@ -316,7 +347,9 @@ class AdvanceSharksEffect extends LevelTriggerEffect:
 ## Advances all spears on the playfield, making them appear/disappear.
 class AdvanceSpearsEffect extends LevelTriggerEffect:
 	func _init() -> void:
-		priority = 86
+		# remove -> advance -> add
+		priority = 67
+	
 	
 	func run() -> void:
 		CurrentLevel.puzzle.get_spears().advance_spears()
@@ -327,7 +360,9 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 	var count := 1
 	
 	func _init() -> void:
+		# remove -> add
 		priority = 53
+	
 	
 	## Updates the effect's configuration.
 	##
@@ -357,7 +392,9 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 ## Removes the onion from the playfield.
 class RemoveOnionEffect extends LevelTriggerEffect:
 	func _init():
+		# remove -> advance -> add
 		priority = 53
+	
 	
 	func run() -> void:
 		CurrentLevel.puzzle.get_onions().remove_onion()
@@ -368,7 +405,9 @@ class RemoveSpearsEffect extends LevelTriggerEffect:
 	var count := 1
 	
 	func _init() -> void:
+		# remove -> advance -> add
 		priority = 53
+	
 	
 	## Updates the effect's configuration.
 	##
@@ -378,7 +417,6 @@ class RemoveSpearsEffect extends LevelTriggerEffect:
 	##
 	## Example: ["remove_spears 2"]
 	func set_config(new_config: Dictionary = {}) -> void:
-		priority = 53
 		if new_config.has("0"):
 			count = new_config["0"].to_int()
 	
