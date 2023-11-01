@@ -90,10 +90,6 @@ func _ready() -> void:
 	_refresh_state()
 
 
-func _enter_tree() -> void:
-	_states = $States
-
-
 func _process(_delta: float) -> void:
 	_already_popped_state = false
 

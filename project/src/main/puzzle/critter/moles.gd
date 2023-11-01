@@ -313,8 +313,8 @@ func _on_Playfield_line_filled(_y: int, _tiles_key: String, _src_y: int) -> void
 
 
 func _on_Playfield_after_lines_deleted(_lines: Array) -> void:
-	_call_queue.pop_deferred(self, "_inner_add_moles")
 	_call_queue.pop_deferred(self, "_inner_advance_moles")
+	_call_queue.pop_deferred(self, "_inner_add_moles")
 	_call_queue.assert_empty()
 
 	_refresh_moles_for_playfield()
