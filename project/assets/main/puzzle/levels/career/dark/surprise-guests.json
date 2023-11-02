@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX Surprise Guests",
+  "name": "Surprise Guests EX",
   "description": "Surpriiiise! ...We just thought we'd drop in.",
   "finish_condition": {
     "type": "time_over",

@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX It's Square to be Square",
+  "name": "It's Square to be Square EX",
   "description": "Can you handle all this sugar, or will you go down swinging?",
   "finish_condition": {
     "type": "score",

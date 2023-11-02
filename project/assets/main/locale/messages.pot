@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-03 13:06-0400\n"
+"POT-Creation-Date: 2023-11-02 13:00-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -425,7 +425,7 @@ msgid "They won't stop spinning! This is hurting my head a little..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:103
-msgid "EX 3,000¥ Race"
+msgid "3,000¥ Race EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:104
@@ -433,15 +433,15 @@ msgid "Earn 3,000¥ as fast as possible. No tricks!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:105
-msgid "EX A Little Extra"
+msgid "A Little Extra EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:107
-msgid "EX A Little Garbage 2"
+msgid "A Little Garbage EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:109
-msgid "EX Above and Below"
+msgid "Above and Below EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:111
@@ -461,7 +461,7 @@ msgid "People called them 'bad seeds', but they're all grown up now!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:115
-msgid "EX Block Blockers"
+msgid "Block Blockers EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:116
@@ -469,7 +469,7 @@ msgid "They're still here to get in the way... and they have some new tricks!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:117
-msgid "EX Boxing Day"
+msgid "Boxing Day EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:118
@@ -477,7 +477,7 @@ msgid "Don't get boxed in!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:119
-msgid "EX Fruit on the Top"
+msgid "Fruit on the Top EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:120
@@ -486,7 +486,7 @@ msgid "It needs to settle first."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:121
-msgid "EX Fruit Salad"
+msgid "Fruit Salad EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:122
@@ -495,7 +495,7 @@ msgid "Ick! Salad. ...You said there would be fruit!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:123
-msgid "EX Garbage Disposal"
+msgid "Garbage Disposal EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:124
@@ -506,7 +506,7 @@ msgid ""
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:125
-msgid "EX Hungry Moles"
+msgid "Hungry Moles EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:126
@@ -523,7 +523,7 @@ msgid "What takes two? ...Oh please no, not that..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:129
-msgid "EX It's Square to be Square"
+msgid "It's Square to be Square EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:130
@@ -548,7 +548,7 @@ msgid "This looks just like another level! The resemblance is onion-cranny."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:135
-msgid "EX Secret Brownies"
+msgid "Secret Brownies EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:136
@@ -557,7 +557,7 @@ msgid "Secret brownies? Where? ...I must have them!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:137
-msgid "EX Strawberry Shortcut"
+msgid "Strawberry Shortcut EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:138
@@ -566,7 +566,7 @@ msgid "Take a shortcut. ...A strawberry shortcut!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:139
-msgid "EX Surprise Guests"
+msgid "Surprise Guests EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:140
@@ -583,11 +583,11 @@ msgid "Who left these chocolates under my pillow? They're all melted now!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:143
-msgid "EX Three Minute Sprint"
+msgid "Three Minute Sprint EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:145
-msgid "EX Too Fast to Fast II"
+msgid "Too Fast to Fast EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:146

@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX Above and Below",
+  "name": "Above and Below EX",
   "description": "Build some delicious snack boxes above while befriending some moles below.",
   "finish_condition": {
     "type": "lines",

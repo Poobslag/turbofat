@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX Too Fast to Fast II",
+  "name": "Too Fast to Fast EX",
   "description": "It was already too fast before! This is nonsense...",
   "finish_condition": {
     "type": "time_over",
