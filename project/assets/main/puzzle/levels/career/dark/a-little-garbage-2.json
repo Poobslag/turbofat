@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "4",
-  "name": "EX A Little Garbage 2",
+  "name": "A Little Garbage EX",
   "description": "Is that food? Don't eat out of the garbage!",
   "blocks_during": [
     "shuffle_inserted_lines slice"

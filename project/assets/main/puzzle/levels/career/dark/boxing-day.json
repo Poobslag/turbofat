@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX Boxing Day",
+  "name": "Boxing Day EX",
   "description": "Don't get boxed in!",
   "finish_condition": {
     "type": "score",

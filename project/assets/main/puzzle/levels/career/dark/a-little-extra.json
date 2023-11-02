@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX A Little Extra",
+  "name": "A Little Extra EX",
   "description": "Some fun little bonuses at the bottom. But you have to work for it!",
   "finish_condition": {
     "type": "time_over",

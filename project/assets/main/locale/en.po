@@ -444,24 +444,24 @@ msgid "They won't stop spinning! This is hurting my head a little..."
 msgstr "They won't stop spinning! This is hurting my head a little..."
 
 #: project/assets/main/locale/localizables-extracted.py:103
-msgid "EX 3,000¥ Race"
-msgstr "EX 3,000¥ Race"
+msgid "3,000¥ Race EX"
+msgstr "3,000¥ Race EX"
 
 #: project/assets/main/locale/localizables-extracted.py:104
 msgid "Earn 3,000¥ as fast as possible. No tricks!"
 msgstr "Earn 3,000¥ as fast as possible. No tricks!"
 
 #: project/assets/main/locale/localizables-extracted.py:105
-msgid "EX A Little Extra"
-msgstr "EX A Little Extra"
+msgid "A Little Extra EX"
+msgstr "A Little Extra EX"
 
 #: project/assets/main/locale/localizables-extracted.py:107
-msgid "EX A Little Garbage 2"
-msgstr "EX A Little Garbage 2"
+msgid "A Little Garbage EX"
+msgstr "A Little Garbage EX"
 
 #: project/assets/main/locale/localizables-extracted.py:109
-msgid "EX Above and Below"
-msgstr "EX Above and Below"
+msgid "Above and Below EX"
+msgstr "Above and Below EX"
 
 #: project/assets/main/locale/localizables-extracted.py:111
 msgid "All Nighter"
@@ -480,7 +480,7 @@ msgid "People called them 'bad seeds', but they're all grown up now!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:115
-msgid "EX Block Blockers"
+msgid "Block Blockers EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:116
@@ -488,16 +488,16 @@ msgid "They're still here to get in the way... and they have some new tricks!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:117
-msgid "EX Boxing Day"
-msgstr "EX Boxing Day"
+msgid "Boxing Day EX"
+msgstr "Boxing Day EX"
 
 #: project/assets/main/locale/localizables-extracted.py:118
 msgid "Don't get boxed in!"
 msgstr "Don't get boxed in!"
 
 #: project/assets/main/locale/localizables-extracted.py:119
-msgid "EX Fruit on the Top"
-msgstr "EX Fruit on the Top"
+msgid "Fruit on the Top EX"
+msgstr "Fruit on the Top EX"
 
 #: project/assets/main/locale/localizables-extracted.py:120
 #: project/assets/main/locale/localizables-extracted.py:162
@@ -505,8 +505,8 @@ msgid "It needs to settle first."
 msgstr "It needs to settle first."
 
 #: project/assets/main/locale/localizables-extracted.py:121
-msgid "EX Fruit Salad"
-msgstr "EX Fruit Salad"
+msgid "Fruit Salad EX"
+msgstr "Fruit Salad EX"
 
 #: project/assets/main/locale/localizables-extracted.py:122
 #: project/assets/main/locale/localizables-extracted.py:164
@@ -514,7 +514,7 @@ msgid "Ick! Salad. ...You said there would be fruit!"
 msgstr "Ick! Salad. ...You said there would be fruit!"
 
 #: project/assets/main/locale/localizables-extracted.py:123
-msgid "EX Garbage Disposal"
+msgid "Garbage Disposal EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:124
@@ -525,8 +525,8 @@ msgid ""
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:125
-msgid "EX Hungry Moles"
-msgstr "EX Hungry Moles"
+msgid "Hungry Moles EX"
+msgstr "Hungry Moles EX"
 
 #: project/assets/main/locale/localizables-extracted.py:126
 #: project/assets/main/locale/localizables-extracted.py:168
@@ -542,8 +542,8 @@ msgid "What takes two? ...Oh please no, not that..."
 msgstr "What takes two? ...Oh please no, not that..."
 
 #: project/assets/main/locale/localizables-extracted.py:129
-msgid "EX It's Square to be Square"
-msgstr "EX It's Square to be Square"
+msgid "It's Square to be Square EX"
+msgstr "It's Square to be Square EX"
 
 #: project/assets/main/locale/localizables-extracted.py:130
 #: project/assets/main/locale/localizables-extracted.py:172
@@ -567,8 +567,8 @@ msgid "This looks just like another level! The resemblance is onion-cranny."
 msgstr "This looks just like another level! The resemblance is onion-cranny."
 
 #: project/assets/main/locale/localizables-extracted.py:135
-msgid "EX Secret Brownies"
-msgstr "EX Secret Brownies"
+msgid "Secret Brownies EX"
+msgstr "Secret Brownies EX"
 
 #: project/assets/main/locale/localizables-extracted.py:136
 #: project/assets/main/locale/localizables-extracted.py:214
@@ -576,8 +576,8 @@ msgid "Secret brownies? Where? ...I must have them!"
 msgstr "Secret brownies? Where? ...I must have them!"
 
 #: project/assets/main/locale/localizables-extracted.py:137
-msgid "EX Strawberry Shortcut"
-msgstr "EX Strawberry Shortcut"
+msgid "Strawberry Shortcut EX"
+msgstr "Strawberry Shortcut EX"
 
 #: project/assets/main/locale/localizables-extracted.py:138
 #: project/assets/main/locale/localizables-extracted.py:234
@@ -585,8 +585,8 @@ msgid "Take a shortcut. ...A strawberry shortcut!"
 msgstr "Take a shortcut. ...A strawberry shortcut!"
 
 #: project/assets/main/locale/localizables-extracted.py:139
-msgid "EX Surprise Guests"
-msgstr "EX Surprise Guests"
+msgid "Surprise Guests EX"
+msgstr "Surprise Guests EX"
 
 #: project/assets/main/locale/localizables-extracted.py:140
 #: project/assets/main/locale/localizables-extracted.py:238
@@ -602,12 +602,12 @@ msgid "Who left these chocolates under my pillow? They're all melted now!"
 msgstr "Who left these chocolates under my pillow? They're all melted now!"
 
 #: project/assets/main/locale/localizables-extracted.py:143
-msgid "EX Three Minute Sprint"
-msgstr "EX Three Minute Sprint"
+msgid "Three Minute Sprint EX"
+msgstr "Three Minute Sprint EX"
 
 #: project/assets/main/locale/localizables-extracted.py:145
-msgid "EX Too Fast to Fast II"
-msgstr "EX Too Fast to Fast II"
+msgid "Too Fast to Fast EX"
+msgstr "Too Fast to Fast EX"
 
 #: project/assets/main/locale/localizables-extracted.py:146
 msgid "It was already too fast before! This is nonsense..."
@@ -15327,8 +15327,8 @@ msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
 #~ msgid "It'll sneak up on you!"
 #~ msgstr "It'll sneak up on you!"
 
-#~ msgid "EX Muffin Impossible II"
-#~ msgstr "EX Muffin Impossible II"
+#~ msgid "Muffin Impossible EX"
+#~ msgstr "Muffin Impossible EX"
 
 #~ msgid "More awkward mismatched pieces!? When will the pain stop?"
 #~ msgstr "More awkward mismatched pieces!? When will the pain stop?"

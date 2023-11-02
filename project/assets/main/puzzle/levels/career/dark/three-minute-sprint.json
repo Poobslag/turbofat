@@ -1,7 +1,7 @@
 {
   "version": "49db",
   "start_speed": "A1",
-  "name": "EX Three Minute Sprint",
+  "name": "Three Minute Sprint EX",
   "description": "Nothing fancy, let's just cook!",
   "finish_condition": {
     "type": "time_over",
