@@ -22,7 +22,7 @@ const PHASES_BY_TIMER_INDEX := {
 	9: LevelTrigger.TIMER_9,
 }
 
-# The elapsed time in seconds since the timers were started.
+## The elapsed time in seconds since the timers were started.
 var _total_time: float = 0.0
 
 func _ready() -> void:

@@ -2,9 +2,9 @@ class_name CellCritterManager
 extends Node
 ## Common logic for puzzle critters like moles and sharks who sit on blocks in the playfield.
 
-# Some critters like moles and sharks need to react to the playfield moving after the critter manager. This signal is a
-# 1:1 replacement for the Playfield's 'line_inserted' signal which is always emitted after the critter manager shifts
-# critters around.
+## Some critters like moles and sharks need to react to the playfield moving after the critter manager. This signal is
+## a 1:1 replacement for the Playfield's 'line_inserted' signal which is always emitted after the critter manager
+## shifts critters around.
 signal line_inserted(y, tiles_key, src_y)
 
 var piece_manager_path: NodePath setget set_piece_manager_path
