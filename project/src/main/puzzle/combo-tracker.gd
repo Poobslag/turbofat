@@ -105,14 +105,7 @@ func _on_PuzzleState_game_ended() -> void:
 ## Increments the combo and score for the specified line clear.
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	var combo_score: int = COMBO_SCORE_ARR[clamp(PuzzleState.combo, 0, COMBO_SCORE_ARR.size() - 1)]
-	var box_score := 0
-	for box_int in box_ints:
-		if Foods.is_snack_box(box_int):
-			box_score += CurrentLevel.settings.score.snack_points
-		elif Foods.is_cake_box(box_int):
-			box_score += CurrentLevel.settings.score.cake_points
-		else:
-			box_score += CurrentLevel.settings.score.veg_points
+	var box_score: int = CurrentLevel.settings.score.box_score_for_box_ints(box_ints)
 	PuzzleState.add_line_score(combo_score, box_score)
 
 

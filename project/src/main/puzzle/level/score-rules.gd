@@ -61,3 +61,21 @@ func to_json_array() -> Array:
 
 func is_default() -> bool:
 	return _rule_parser.is_default()
+
+## Calculate the points awarded for clearing a set of boxes.
+##
+## Parameters:
+## 	'box_ints': Enums from Foods.BoxType for the cleared boxes.
+##
+## Returns:
+## 	The points awarded for clearing a set of boxes.
+func box_score_for_box_ints(box_ints: Array) -> int:
+	var box_score := 0
+	for box_int in box_ints:
+		if Foods.is_snack_box(box_int):
+			box_score += CurrentLevel.settings.score.snack_points
+		elif Foods.is_cake_box(box_int):
+			box_score += CurrentLevel.settings.score.cake_points
+		else:
+			box_score += CurrentLevel.settings.score.veg_points
+	return box_score

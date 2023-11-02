@@ -339,7 +339,8 @@ func _inner_advance_spears() -> void:
 		_piece_manager.emit_signal("playfield_disturbed", _piece_manager.piece)
 	
 	if box_ints:
-		_award_points(box_ints)
+		var box_score: int = CurrentLevel.settings.score.box_score_for_box_ints(box_ints)
+		PuzzleState.add_box_score(box_score)
 
 
 ## Returns the rows for the spear's 'veg_cells_by_spear' entry.
@@ -459,22 +460,6 @@ func _remove_veg_cells_for_spear(spear: Spear, erased_y: int = -1) -> void:
 		else:
 			# remove invisible veggie cells
 			_playfield.tile_map.set_block(cell, -1)
-
-
-## Award points for speared boxes.
-##
-## Parameters:
-## 	'box_ints': Enums from Foods.BoxType for the boxes speared
-func _award_points(box_ints: Array) -> void:
-	var box_score := 0
-	for box_int in box_ints:
-		if Foods.is_snack_box(box_int):
-			box_score += CurrentLevel.settings.score.snack_points
-		elif Foods.is_cake_box(box_int):
-			box_score += CurrentLevel.settings.score.cake_points
-		else:
-			box_score += CurrentLevel.settings.score.veg_points
-	PuzzleState.add_box_score(box_score)
 
 
 ## Breaks the box occupying the specified cell.
