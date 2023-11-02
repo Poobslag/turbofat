@@ -20,7 +20,6 @@
 
 if [ "$1" ]
 then
-  # uncomment 'tool' lines to allow editing
   version="$1"
 else
 # Calculate version string
