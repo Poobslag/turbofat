@@ -77,6 +77,17 @@ then
   echo "$RESULT"
 fi
 
+# malformed block comments
+RESULT=$(grep -R -n "^#[^#]" --include="*.gd" project/src \
+  | grep -v "warning-ignore" \
+  | grep -v "uncomment to view creature in editor")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Malformed block comments:"
+  echo "$RESULT"
+fi
+
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \

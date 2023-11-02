@@ -176,7 +176,7 @@ func poof_and_free() -> void:
 		queue_free()
 
 
-# Tweens the spear into view, or out of view.
+## Tweens the spear into view, or out of view.
 func tween_and_pop(target_x: float, squint_duration: float) -> void:
 	sfx.play_pop_sound()
 	
