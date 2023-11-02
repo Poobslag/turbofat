@@ -160,26 +160,32 @@ anchor_bottom = 1.0
 [node name="PickupSfx0" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
 pitch_scale = 0.5
+bus = "Sound Bus"
 
 [node name="PickupSfx1" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
 pitch_scale = 0.54
+bus = "Sound Bus"
 
 [node name="PickupSfx2" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
 pitch_scale = 0.58
+bus = "Sound Bus"
 
 [node name="PickupSfx3" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
 pitch_scale = 0.62
+bus = "Sound Bus"
 
 [node name="PickupSfx4" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
 pitch_scale = 0.66
+bus = "Sound Bus"
 
 [node name="PickupSfx5" type="AudioStreamPlayer" parent="TileMapClip/Pickups"]
 stream = ExtResource( 28 )
 pitch_scale = 0.7
+bus = "Sound Bus"
 
 [node name="CollectSfxTimer" type="Timer" parent="TileMapClip/Pickups"]
 wait_time = 0.04

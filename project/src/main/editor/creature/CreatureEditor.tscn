@@ -1269,10 +1269,12 @@ script = ExtResource( 7 )
 [node name="HoverSound" type="AudioStreamPlayer" parent="Ui/CreatureSelector"]
 stream = ExtResource( 9 )
 volume_db = -8.0
+bus = "Sound Bus"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="Ui/CreatureSelector"]
 stream = ExtResource( 16 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [node name="Settings" type="Button" parent="Ui"]
 margin_left = 839.0

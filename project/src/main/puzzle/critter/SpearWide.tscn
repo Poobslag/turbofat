@@ -291,9 +291,11 @@ wide = true
 [node name="Poof" type="AudioStreamPlayer" parent="SpearSfx"]
 stream = ExtResource( 22 )
 volume_db = -8.0
+bus = "Sound Bus"
 
 [node name="Pop" type="AudioStreamPlayer" parent="SpearSfx"]
 stream = ExtResource( 8 )
+bus = "Sound Bus"
 
 [node name="VoiceWarn" type="AudioStreamPlayer" parent="SpearSfx"]
 stream = ExtResource( 28 )
