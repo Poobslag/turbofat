@@ -561,15 +561,19 @@ script = ExtResource( 12 )
 [node name="Poof" type="AudioStreamPlayer" parent="MoleSfx"]
 stream = ExtResource( 13 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [node name="Dig0" type="AudioStreamPlayer" parent="MoleSfx"]
 stream = ExtResource( 14 )
+bus = "Sound Bus"
 
 [node name="Dig1" type="AudioStreamPlayer" parent="MoleSfx"]
 stream = ExtResource( 14 )
+bus = "Sound Bus"
 
 [node name="Found" type="AudioStreamPlayer" parent="MoleSfx"]
 stream = ExtResource( 15 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [connection signal="animation_finished" from="Poof" to="." method="_on_Poof_animation_finished"]

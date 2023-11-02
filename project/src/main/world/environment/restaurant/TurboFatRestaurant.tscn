@@ -51,3 +51,4 @@ shape = SubResource( 2 )
 [node name="PoofInSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -4.0
+bus = "Sound Bus"

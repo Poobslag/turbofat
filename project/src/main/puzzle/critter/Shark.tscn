@@ -1372,25 +1372,31 @@ script = ExtResource( 2 )
 [node name="Bite" type="AudioStreamPlayer" parent="SharkSfx"]
 stream = ExtResource( 27 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [node name="Eat" type="AudioStreamPlayer" parent="SharkSfx"]
 stream = ExtResource( 25 )
 volume_db = -12.0
+bus = "Sound Bus"
 
 [node name="Poof" type="AudioStreamPlayer" parent="SharkSfx"]
 stream = ExtResource( 11 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [node name="Squish" type="AudioStreamPlayer" parent="SharkSfx"]
 stream = ExtResource( 24 )
+bus = "Sound Bus"
 
 [node name="VoiceFriendly" type="AudioStreamPlayer" parent="SharkSfx"]
 stream = ExtResource( 23 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [node name="VoiceShort" type="AudioStreamPlayer" parent="SharkSfx"]
 stream = ExtResource( 26 )
 volume_db = -4.0
+bus = "Sound Bus"
 
 [connection signal="finished_eating" from="ToothCloud" to="." method="_on_ToothCloud_finished_eating"]
 [connection signal="timeout" from="ToothCloud/CloudTimer" to="ToothCloud" method="_on_CloudTimer_timeout"]

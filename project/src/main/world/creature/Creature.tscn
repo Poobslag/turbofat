@@ -355,7 +355,7 @@ volume_db = 6.0
 bus = "Voice Bus"
 
 [node name="MunchSound" type="AudioStreamPlayer" parent="CreatureSfx"]
-bus = "Voice Bus"
+bus = "Sound Bus"
 
 [node name="HopSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 stream = ExtResource( 7 )
