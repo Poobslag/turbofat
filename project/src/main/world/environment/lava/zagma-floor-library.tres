@@ -1,0 +1,70 @@
+[gd_resource type="TileSet" load_steps=4 format=2]
+
+[ext_resource path="res://assets/main/world/environment/lava/zagma-floor-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lava/zagma-floor-kitchen-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/world/environment/lava/zagma-floor-2x2-sheet.png" type="Texture" id=3]
+
+[resource]
+54907/name = "floor-kitchen-sheet.png 3"
+54907/texture = ExtResource( 2 )
+54907/tex_offset = Vector2( 39, 0 )
+54907/modulate = Color( 1, 1, 1, 1 )
+54907/region = Rect2( 0, 0, 640, 447 )
+54907/tile_mode = 2
+54907/autotile/icon_coordinate = Vector2( 0, 0 )
+54907/autotile/tile_size = Vector2( 210, 108 )
+54907/autotile/spacing = 5
+54907/autotile/occluder_map = [  ]
+54907/autotile/navpoly_map = [  ]
+54907/autotile/priority_map = [  ]
+54907/autotile/z_index_map = [  ]
+54907/occluder_offset = Vector2( 0, 0 )
+54907/navigation_offset = Vector2( 0, 0 )
+54907/shape_offset = Vector2( 0, 0 )
+54907/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+54907/shape_one_way = false
+54907/shape_one_way_margin = 0.0
+54907/shapes = [  ]
+54907/z_index = 0
+81239/name = "zagma-floor-sheet.png 2"
+81239/texture = ExtResource( 1 )
+81239/tex_offset = Vector2( 39, 0 )
+81239/modulate = Color( 1, 1, 1, 1 )
+81239/region = Rect2( 0, 0, 640, 447 )
+81239/tile_mode = 2
+81239/autotile/icon_coordinate = Vector2( 0, 0 )
+81239/autotile/tile_size = Vector2( 210, 108 )
+81239/autotile/spacing = 5
+81239/autotile/occluder_map = [  ]
+81239/autotile/navpoly_map = [  ]
+81239/autotile/priority_map = [  ]
+81239/autotile/z_index_map = [  ]
+81239/occluder_offset = Vector2( 0, 0 )
+81239/navigation_offset = Vector2( 0, 0 )
+81239/shape_offset = Vector2( 0, 0 )
+81239/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+81239/shape_one_way = false
+81239/shape_one_way_margin = 0.0
+81239/shapes = [  ]
+81239/z_index = 0
+81240/name = "zagma-floor-2x2-sheet.png 81240"
+81240/texture = ExtResource( 3 )
+81240/tex_offset = Vector2( 64, 52 )
+81240/modulate = Color( 1, 1, 1, 1 )
+81240/region = Rect2( 0, 0, 1255, 863 )
+81240/tile_mode = 2
+81240/autotile/icon_coordinate = Vector2( 0, 0 )
+81240/autotile/tile_size = Vector2( 415, 212 )
+81240/autotile/spacing = 5
+81240/autotile/occluder_map = [  ]
+81240/autotile/navpoly_map = [  ]
+81240/autotile/priority_map = [  ]
+81240/autotile/z_index_map = [  ]
+81240/occluder_offset = Vector2( 0, 0 )
+81240/navigation_offset = Vector2( 0, 0 )
+81240/shape_offset = Vector2( 0, 0 )
+81240/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+81240/shape_one_way = false
+81240/shape_one_way_margin = 0.0
+81240/shapes = [  ]
+81240/z_index = 0

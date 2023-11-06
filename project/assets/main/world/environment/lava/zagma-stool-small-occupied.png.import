@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mushrooms-sheet.png-f489158a3ff9be57ee33552c00ba7aa0.stex"
+path="res://.import/zagma-stool-small-occupied.png-635593eead74c28758249c8efcb3a49b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/lava/mushrooms-sheet.png"
-dest_files=[ "res://.import/mushrooms-sheet.png-f489158a3ff9be57ee33552c00ba7aa0.stex" ]
+source_file="res://assets/main/world/environment/lava/zagma-stool-small-occupied.png"
+dest_files=[ "res://.import/zagma-stool-small-occupied.png-635593eead74c28758249c8efcb3a49b.stex" ]
 
 [params]
 

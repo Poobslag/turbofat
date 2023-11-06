@@ -1,0 +1,646 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/environment/restaurant/KitchenObstacleTiler.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaFloorTiler.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaStoolSmall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaWallDecorationA.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaStool.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/main/world/creature/3/cheek-z1-packed.png" type="Texture" id=12]
+[ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/flawed-tiler.gd" type="Script" id=14]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=15]
+[ext_resource path="res://src/main/world/environment/lava/zagma-floor-library.tres" type="TileSet" id=16]
+[ext_resource path="res://src/main/world/environment/lava/zagma-obstacle-library.tres" type="TileSet" id=17]
+[ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=18]
+[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=19]
+[ext_resource path="res://assets/main/world/creature/3/cheek-z0-packed.png" type="Texture" id=20]
+[ext_resource path="res://assets/main/world/creature/4/accessory-z2-packed.png" type="Texture" id=21]
+[ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=22]
+[ext_resource path="res://assets/main/world/creature/5/tail-z0-packed.png" type="Texture" id=23]
+[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=24]
+[ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=26]
+[ext_resource path="res://assets/main/world/creature/10/ear-z0-packed.png" type="Texture" id=27]
+[ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=28]
+[ext_resource path="res://assets/main/world/creature/10/ear-z2-packed.png" type="Texture" id=29]
+[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=30]
+[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=31]
+[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=32]
+[ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=33]
+[ext_resource path="res://assets/main/world/creature/5/tail-z1-packed.png" type="Texture" id=34]
+[ext_resource path="res://assets/main/world/creature/4/mouth-packed.png" type="Texture" id=35]
+[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=36]
+[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=37]
+[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=38]
+[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=39]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaTable.tscn" type="PackedScene" id=40]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaWallDecorationC.tscn" type="PackedScene" id=41]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaWallDecorationB.tscn" type="PackedScene" id=42]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaWallDecorationE.tscn" type="PackedScene" id=43]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaWallDecorationSide.tscn" type="PackedScene" id=46]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaIndoorSign.tscn" type="PackedScene" id=48]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaMiniWallLight.tscn" type="PackedScene" id=49]
+
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 15 )
+environment_shadows_path = NodePath("Ground/Shadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 3 )
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -1
+
+[node name="GroundMap" type="TileMap" parent="Ground"]
+scale = Vector2( 0.5, 0.5 )
+mode = 2
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 128, 104 )
+cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( 20, 81239, 0, 21, 81239, 1, 22, 81239, 2, 23, 81239, 0, 24, 54907, 0, 25, 54907, 0, 26, 54907, 0, 27, 54907, 0, 28, 54907, 196609, 65536, 81239, 0, 65537, 81239, 0, 65538, 81239, 0, 65539, 81239, 0, 65540, 81239, 0, 65541, 81239, 0, 65542, 81239, 0, 65543, 81239, 0, 65544, 81239, 0, 65545, 81239, 0, 65546, 81239, 0, 65547, 81239, 196608, 65548, 81239, 0, 65549, 81239, 0, 65550, 81239, 0, 65551, 81239, 0, 65552, 81239, 0, 65553, 81239, 0, 65554, 81239, 0, 65555, 81239, 0, 65556, 81239, 131074, 65557, 81239, 0, 65558, 81239, 0, 65559, 81239, 0, 65560, 54907, 0, 65561, 54907, 0, 65562, 54907, 0, 65563, 54907, 0, 65564, 54907, 0, 65565, 54907, 0, 131072, 81239, 0, 131073, 81239, 0, 131074, 81239, 0, 131075, 81239, 0, 131076, 81239, 0, 131077, 81239, 0, 131078, 81240, 196608, 131080, 81239, 0, 131081, 81239, 0, 131082, 81239, 0, 131083, 81239, 131072, 131084, 81239, 0, 131085, 81239, 0, 131086, 81239, 0, 131087, 81239, 0, 131088, 81239, 0, 131089, 81239, 0, 131090, 81239, 0, 131091, 81239, 0, 131092, 81239, 0, 131093, 81239, 1, 131094, 81239, 0, 131095, 81239, 0, 131096, 54907, 0, 131097, 54907, 131073, 131098, 54907, 0, 131099, 54907, 0, 131100, 54907, 0, 131101, 54907, 0, 196608, 81239, 0, 196609, 81239, 0, 196610, 81239, 0, 196611, 81239, 0, 196612, 81239, 0, 196613, 81239, 0, 196616, 81239, 0, 196617, 81239, 0, 196618, 81239, 0, 196619, 81239, 0, 196620, 81239, 0, 196621, 81239, 0, 196622, 81239, 131073, 196623, 81239, 196610, 196624, 81239, 0, 196625, 81239, 0, 196626, 81239, 0, 196627, 81239, 0, 196628, 54907, 0, 196629, 54907, 0, 196630, 54907, 0, 196631, 54907, 0, 196632, 54907, 0, 196633, 54907, 0, 196634, 54907, 0, 196635, 54907, 0, 196636, 54907, 0, 196637, 54907, 0, 262144, 81239, 0, 262145, 81239, 0, 262146, 81239, 0, 262147, 81239, 0, 262148, 81239, 0, 262149, 81239, 0, 262150, 81239, 0, 262151, 81239, 0, 262152, 81239, 0, 262153, 81239, 0, 262154, 81239, 0, 262155, 81239, 0, 262156, 81239, 0, 262157, 81239, 0, 262158, 81239, 0, 262159, 81240, 65537, 262161, 81239, 0, 262162, 81239, 0, 262163, 81239, 0, 262164, 54907, 0, 262165, 54907, 131073, 262166, 54907, 0, 262167, 54907, 0, 262168, 54907, 0, 262169, 54907, 0, 262170, 54907, 0, 262171, 54907, 0, 262172, 54907, 0, 262173, 54907, 0, 327680, 81239, 0, 327681, 81239, 0, 327682, 81239, 0, 327683, 81239, 131074, 327684, 81239, 0, 327685, 81239, 0, 327686, 81239, 0, 327687, 81239, 0, 327688, 81240, 131074, 327690, 81239, 0, 327691, 81239, 0, 327692, 81239, 0, 327693, 81239, 0, 327694, 81239, 65538, 327697, 81239, 0, 327698, 81239, 0, 327699, 81239, 0, 327700, 54907, 0, 327701, 54907, 0, 327702, 54907, 0, 327703, 54907, 0, 327704, 54907, 131072, 327705, 54907, 0, 327706, 54907, 0, 327707, 54907, 0, 327708, 54907, 0, 327709, 54907, 0, 393216, 81239, 0, 393217, 81239, 0, 393218, 81239, 0, 393219, 81239, 0, 393220, 81239, 0, 393221, 81239, 0, 393222, 81239, 0, 393223, 81239, 0, 393226, 81240, 196608, 393228, 81239, 0, 393229, 81239, 0, 393230, 81239, 0, 393231, 81239, 0, 393232, 81239, 0, 393233, 81239, 0, 393234, 81239, 0, 393235, 81239, 0, 393236, 54907, 0, 393237, 54907, 0, 393238, 54907, 0, 393239, 54907, 1, 393240, 54907, 0, 393241, 54907, 0, 393242, 54907, 0, 393243, 54907, 0, 393244, 54907, 0, 393245, 54907, 0, 458752, 81239, 1, 458753, 81240, 1, 458755, 81239, 0, 458756, 81239, 0, 458757, 81239, 0, 458758, 81239, 0, 458759, 81239, 131074, 458760, 81239, 0, 458761, 81239, 196610, 458764, 81239, 0, 458765, 81239, 0, 458766, 81239, 0, 458767, 81239, 0, 458768, 81239, 0, 458769, 81239, 0, 458770, 81239, 0, 458771, 81239, 0, 458772, 54907, 0, 458773, 54907, 0, 458774, 54907, 0, 458775, 54907, 0, 458776, 54907, 0, 458777, 54907, 0, 458778, 54907, 0, 458779, 54907, 0, 458780, 54907, 0, 458781, 54907, 0, 524288, 81239, 65538, 524291, 81239, 0, 524292, 81239, 0, 524293, 81239, 0, 524294, 81239, 0, 524295, 81239, 0, 524296, 81239, 0, 524297, 81239, 0, 524298, 81239, 0, 524299, 81239, 0, 524300, 81239, 0, 524301, 81239, 0, 524302, 81239, 0, 524303, 81239, 0, 524304, 81239, 0, 524305, 81239, 0, 524306, 81239, 131073, 524307, 81239, 0, 524308, 54907, 0, 524309, 54907, 0, 524310, 54907, 0, 524311, 54907, 0, 524312, 54907, 0, 524313, 54907, 0, 524314, 54907, 0, 524315, 54907, 0, 524316, 54907, 0, 524317, 54907, 65537, 589824, 81239, 0, 589825, 81239, 0, 589826, 81239, 196610, 589827, 81239, 0, 589828, 81239, 196609, 589829, 81239, 0, 589830, 81239, 131074, 589831, 81239, 0, 589832, 81239, 0, 589833, 81239, 0, 589834, 81239, 0, 589835, 81239, 0, 589836, 81239, 0, 589837, 81239, 0, 589838, 81239, 0, 589839, 81239, 0, 589840, 81239, 0, 589841, 81239, 0, 589842, 81239, 0, 589843, 81239, 131073, 589844, 54907, 0, 589845, 54907, 0, 589846, 54907, 0, 589847, 54907, 0, 589848, 54907, 0, 589849, 54907, 0, 589850, 54907, 0, 589851, 54907, 0, 589852, 54907, 0, 589853, 54907, 0, 655360, 81239, 0, 655361, 81239, 0, 655362, 81239, 0, 655363, 81239, 0, 655364, 81239, 0, 655365, 81239, 0, 655366, 81239, 0, 655367, 81239, 0, 655368, 81239, 196609, 655369, 81239, 0, 655370, 81239, 0, 655371, 81239, 0, 655372, 81239, 0, 655373, 81239, 0, 655374, 81239, 0, 655375, 81239, 0, 655376, 81239, 0, 655377, 81239, 0, 655378, 81239, 0, 655379, 81239, 0, 655380, 81239, 0, 655381, 81239, 0, 655382, 81239, 0, 655383, 81239, 0, 655384, 54907, 0, 655385, 54907, 0, 655386, 54907, 131073, 655387, 54907, 0, 655388, 54907, 0, 655389, 54907, 0, 720896, 81239, 0, 720897, 81239, 0, 720898, 81239, 0, 720899, 81239, 0, 720900, 81239, 2, 720901, 81239, 0, 720902, 81239, 0, 720903, 81239, 1, 720904, 81239, 0, 720905, 81239, 0, 720906, 81239, 0, 720907, 81239, 0, 720908, 81239, 131072, 720909, 81239, 0, 720910, 81239, 0, 720911, 81239, 0, 720912, 81239, 65537, 720913, 81239, 0, 720914, 81239, 0, 720915, 81239, 0, 720916, 81239, 0, 720917, 81239, 0, 720918, 81239, 0, 720919, 81239, 0, 720920, 54907, 0, 720921, 54907, 0, 720922, 54907, 0, 720923, 54907, 0, 720924, 54907, 0, 720925, 54907, 0, 786452, 81239, 65536, 786453, 81239, 0, 786454, 81239, 0, 786455, 81239, 0, 786456, 54907, 196608, 786457, 54907, 0, 786458, 54907, 0, 786459, 54907, 0, 786460, 54907, 0 )
+
+[node name="CarpetTiler" parent="Ground/GroundMap" instance=ExtResource( 5 )]
+
+[node name="ZagmaFloorTiler" parent="Ground/GroundMap" instance=ExtResource( 7 )]
+
+[node name="KitchenFloorTiler" type="Node" parent="Ground/GroundMap"]
+script = ExtResource( 14 )
+target_tile_index = 54907
+good_cells = [ Vector2( 0, 0 ) ]
+bad_cells = [ Vector2( 2, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 0, 2 ), Vector2( 1, 2 ), Vector2( 2, 2 ), Vector2( 0, 3 ), Vector2( 1, 3 ), Vector2( 2, 3 ) ]
+quality = 0.93
+
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="FreeRoamExit" parent="Ground/Exits" instance=ExtResource( 1 )]
+position = Vector2( -243.453, 567.908 )
+scale = Vector2( 0.539476, -0.539476 )
+exit_direction = 4
+
+[node name="Shadows" parent="Ground" instance=ExtResource( 13 )]
+obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+cell_shadow_mapping = {
+1: Rect2( 0, 0, 0, 0 ),
+3: Rect2( -1, 0, 3, 1 ),
+4: Rect2( -1, 0, 3, 1 ),
+5: Rect2( -1, 0, 3, 1 ),
+6: Rect2( -1, 0, 3, 1 ),
+7: Rect2( -1, 0, 3, 1 )
+}
+
+[node name="Obstacles" type="YSort" parent="."]
+
+[node name="ObstacleMap" type="TileMap" parent="Obstacles"]
+scale = Vector2( 0.5, 0.5 )
+mode = 2
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 128, 104 )
+cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
+cell_tile_origin = 1
+cell_y_sort = true
+show_collision = true
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( -65517, 1, 0, -65516, 13, 0, -65515, 13, 0, -65514, 13, 0, -65513, 13, 0, -65512, 13, 0, -65511, 13, 0, -65510, 13, 0, -65509, 13, 0, -65508, 13, 0, -65507, 1, 0, 65535, 1, 0, 0, 13, 0, 1, 13, 0, 2, 13, 0, 3, 13, 0, 4, 13, 0, 5, 13, 0, 6, 13, 0, 7, 13, 0, 8, 13, 0, 9, 13, 0, 10, 13, 0, 11, 13, 0, 12, 13, 0, 13, 13, 0, 14, 13, 0, 15, 13, 0, 16, 13, 0, 17, 13, 0, 18, 13, 0, 19, 17, 0, 29, 27, 0, 30, 1, 0, 131071, 16, 0, 65537, 19, 5, 65538, 19, 2, 65539, 19, 0, 65540, 19, 1, 65541, 19, 1, 65542, 19, 0, 65543, 19, 0, 65544, 19, 3, 65545, 19, 0, 65546, 19, 1, 65547, 19, 0, 65548, 19, 2, 65549, 19, 0, 65550, 19, 3, 65551, 19, 2, 65552, 19, 4, 65566, 1, 0, 196607, 14, 0, 131074, 20, 0, 131075, 21, 0, 131076, 22, 0, 131102, 1, 0, 262143, 14, 0, 196609, 23, 0, 196628, 8, 131073, 196629, 9, 196611, 196630, 9, 196609, 196631, 8, 65536, 196632, 10, 65536, 196633, 11, 131076, 196634, 8, 65538, 196638, 1, 0, 327679, 14, 0, 262145, 24, 0, 262149, 18, 2, 262164, 11, 65538, 262170, 8, 1, 262174, 1, 0, 393215, 14, 0, 327681, 25, 0, 327685, 18, 3, 327700, 8, 3, 327710, 1, 0, 458751, 14, 0, 393217, 26, 0, 393221, 18, 3, 393236, 8, 3, 393246, 1, 0, 524287, 14, 0, 458757, 18, 3, 458772, 8, 3, 458782, 1, 0, 589823, 14, 0, 524293, 18, 1, 524308, 11, 65537, 524314, 11, 5, 524318, 1, 0, 655359, 14, 0, 589844, 8, 131072, 589845, 9, 65539, 589846, 9, 65537, 589847, 8, 65536, 589848, 10, 2, 589849, 10, 1, 589850, 8, 1, 589854, 1, 0, 720895, 14, 0, 655390, 1, 0, 786431, 14, 0, 720926, 1, 0, 851967, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 1, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 1, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 786446, 1, 0, 786447, 1, 0, 786448, 1, 0, 786449, 1, 0, 786450, 1, 0, 786451, 1, 0, 786461, 1, 0, 786462, 1, 0, 851987, 1, 0, 851988, 1, 0, 851989, 1, 0, 851990, 1, 0, 851991, 1, 0, 851992, 1, 0, 851993, 1, 0, 851994, 1, 0, 851995, 1, 0, 851996, 1, 0, 851997, 1, 0 )
+
+[node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 2 )]
+ground_map_path = NodePath("../../../Ground/GroundMap")
+impassable_tile_index = 1
+
+[node name="KitchenObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 4 )]
+
+[node name="Player" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 371.98, 343.868 )
+script = ExtResource( 39 )
+creature_id = "#player#"
+dna = {
+"accessory": "4",
+"belly": "2",
+"belly_rgb": "838382",
+"bellybutton": "0",
+"body": "1",
+"body_rgb": "8f1b21",
+"cheek": "3",
+"cloth_rgb": "546127",
+"collar": "0",
+"ear": "10",
+"emote-eye": "1",
+"eye": "1",
+"eye_rgb": "546127 a8ad89",
+"glass_rgb": "cbde88",
+"hair": "0",
+"hair_rgb": "1e1e1e",
+"head": "1",
+"horn": "0",
+"horn_rgb": "2b2b2b",
+"line_rgb": "41281e",
+"mouth": "4",
+"nose": "0",
+"plastic_rgb": "546127",
+"property:Body:belly_color": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"property:Body:body_color": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"property:Body:line_color": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"property:Body:shadow_color": Color( 0.254902, 0.156863, 0.117647, 0.25 ),
+"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
+"property:FarArm:texture": ExtResource( 30 ),
+"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
+"property:FarLeg:texture": ExtResource( 36 ),
+"property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
+"property:NearArm:texture": ExtResource( 31 ),
+"property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
+"property:NearLeg:texture": ExtResource( 19 ),
+"property:Neck0/HeadBobber/AccessoryZ0:frame_data": "res://assets/main/world/creature/4/accessory-z0-packed.json",
+"property:Neck0/HeadBobber/AccessoryZ0:texture": ExtResource( 22 ),
+"property:Neck0/HeadBobber/AccessoryZ2:frame_data": "res://assets/main/world/creature/4/accessory-z2-packed.json",
+"property:Neck0/HeadBobber/AccessoryZ2:texture": ExtResource( 21 ),
+"property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/3/cheek-z0-packed.json",
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 20 ),
+"property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/3/cheek-z1-packed.json",
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 12 ),
+"property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/3/cheek-z2-packed.json",
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 26 ),
+"property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
+"property:Neck0/HeadBobber/Chin:texture": ExtResource( 32 ),
+"property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/10/ear-z0-packed.json",
+"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 27 ),
+"property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/10/ear-z2-packed.json",
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 29 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 28 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 25 ),
+"property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/1/eye-z0-packed.json",
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 18 ),
+"property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 33 ),
+"property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 37 ),
+"property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/4/mouth-packed.json",
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 35 ),
+"property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
+"property:Sprint:texture": ExtResource( 24 ),
+"property:TailZ0:frame_data": "res://assets/main/world/creature/5/tail-z0-packed.json",
+"property:TailZ0:texture": ExtResource( 23 ),
+"property:TailZ1:frame_data": "res://assets/main/world/creature/5/tail-z1-packed.json",
+"property:TailZ1:texture": ExtResource( 34 ),
+"shader:Bellybutton:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Bellybutton:red": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:Collar:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Collar:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Collar:red": Color( 0.329412, 0.380392, 0.152941, 1 ),
+"shader:EmoteBody:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:FarArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:FarArm:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:FarLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:FarLeg:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:NearArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:NearArm:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:NearLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:NearLeg:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:green": Color( 0.796078, 0.870588, 0.533333, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:green": Color( 0.796078, 0.870588, 0.533333, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:green": Color( 0.796078, 0.870588, 0.533333, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:green": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:green": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:green": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/Chin:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Chin:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:red": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:red": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:blue": Color( 0.658824, 0.678431, 0.537255, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:green": Color( 0.329412, 0.380392, 0.152941, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:blue": Color( 0.658824, 0.678431, 0.537255, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:green": Color( 0.329412, 0.380392, 0.152941, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:red": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:red": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:red": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Head:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Head:green": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:Neck0/HeadBobber/Head:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:green": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:green": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/Mouth:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Mouth:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/Mouth:green": Color( 0.952941, 0.572549, 0.454902, 1 ),
+"shader:Neck0/HeadBobber/Mouth:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/Nose:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Nose:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:TailZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:TailZ0:blue": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:TailZ0:green": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:TailZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:TailZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:TailZ1:blue": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:TailZ1:green": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:TailZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"tail": "5"
+}
+suppress_fatness = true
+orientation = 3
+
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 3 )]
+position = Vector2( 258.19, 259.823 )
+script = ExtResource( 38 )
+dna = {
+"accessory": "4",
+"belly": "2",
+"belly_rgb": "838382",
+"bellybutton": "0",
+"body": "1",
+"body_rgb": "8f1b21",
+"cheek": "3",
+"cloth_rgb": "546127",
+"collar": "0",
+"ear": "10",
+"emote-eye": "1",
+"eye": "1",
+"eye_rgb": "546127 a8ad89",
+"glass_rgb": "cbde88",
+"hair": "0",
+"hair_rgb": "1e1e1e",
+"head": "1",
+"horn": "0",
+"horn_rgb": "2b2b2b",
+"line_rgb": "41281e",
+"mouth": "4",
+"nose": "0",
+"plastic_rgb": "546127",
+"property:Body:belly_color": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"property:Body:body_color": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"property:Body:line_color": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"property:Body:shadow_color": Color( 0.254902, 0.156863, 0.117647, 0.25 ),
+"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
+"property:FarArm:texture": ExtResource( 30 ),
+"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
+"property:FarLeg:texture": ExtResource( 36 ),
+"property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
+"property:NearArm:texture": ExtResource( 31 ),
+"property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
+"property:NearLeg:texture": ExtResource( 19 ),
+"property:Neck0/HeadBobber/AccessoryZ0:frame_data": "res://assets/main/world/creature/4/accessory-z0-packed.json",
+"property:Neck0/HeadBobber/AccessoryZ0:texture": ExtResource( 22 ),
+"property:Neck0/HeadBobber/AccessoryZ2:frame_data": "res://assets/main/world/creature/4/accessory-z2-packed.json",
+"property:Neck0/HeadBobber/AccessoryZ2:texture": ExtResource( 21 ),
+"property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/3/cheek-z0-packed.json",
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 20 ),
+"property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/3/cheek-z1-packed.json",
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 12 ),
+"property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/3/cheek-z2-packed.json",
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 26 ),
+"property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
+"property:Neck0/HeadBobber/Chin:texture": ExtResource( 32 ),
+"property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/10/ear-z0-packed.json",
+"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 27 ),
+"property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/10/ear-z2-packed.json",
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 29 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 28 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 25 ),
+"property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/1/eye-z0-packed.json",
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 18 ),
+"property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 33 ),
+"property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 37 ),
+"property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/4/mouth-packed.json",
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 35 ),
+"property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
+"property:Sprint:texture": ExtResource( 24 ),
+"property:TailZ0:frame_data": "res://assets/main/world/creature/5/tail-z0-packed.json",
+"property:TailZ0:texture": ExtResource( 23 ),
+"property:TailZ1:frame_data": "res://assets/main/world/creature/5/tail-z1-packed.json",
+"property:TailZ1:texture": ExtResource( 34 ),
+"shader:Bellybutton:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Bellybutton:red": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:Collar:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Collar:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Collar:red": Color( 0.329412, 0.380392, 0.152941, 1 ),
+"shader:EmoteBody:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:FarArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:FarArm:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:FarLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:FarLeg:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:NearArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:NearArm:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:NearLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:NearLeg:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:green": Color( 0.796078, 0.870588, 0.533333, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:green": Color( 0.796078, 0.870588, 0.533333, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:green": Color( 0.796078, 0.870588, 0.533333, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:green": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:green": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:green": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/Chin:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Chin:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:green": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteArmZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:red": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:red": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:blue": Color( 0.658824, 0.678431, 0.537255, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:green": Color( 0.329412, 0.380392, 0.152941, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:blue": Color( 0.658824, 0.678431, 0.537255, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:green": Color( 0.329412, 0.380392, 0.152941, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:red": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:red": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:red": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Head:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Head:green": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:Neck0/HeadBobber/Head:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:green": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:green": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:Neck0/HeadBobber/Mouth:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Mouth:blue": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/Mouth:green": Color( 0.952941, 0.572549, 0.454902, 1 ),
+"shader:Neck0/HeadBobber/Mouth:red": Color( 0.168627, 0.168627, 0.168627, 1 ),
+"shader:Neck0/HeadBobber/Nose:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Nose:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:TailZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:TailZ0:blue": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:TailZ0:green": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:TailZ0:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"shader:TailZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:TailZ1:blue": Color( 0.117647, 0.117647, 0.117647, 1 ),
+"shader:TailZ1:green": Color( 0.513726, 0.513726, 0.509804, 1 ),
+"shader:TailZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
+"tail": "5"
+}
+suppress_fatness = true
+
+[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
+wait_time = 0.3
+autostart = true
+
+[node name="StoolJudge1" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( -85.2307, 438.837 )
+
+[node name="StoolJudge2" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( -35.2606, 365.657 )
+
+[node name="StoolJudge3" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 16.0246, 293.929 )
+
+[node name="StoolJudge4" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 67.1735, 223.538 )
+
+[node name="StoolContestant" parent="Obstacles" instance=ExtResource( 8 )]
+position = Vector2( 249.452, 341.438 )
+
+[node name="Table1" parent="Obstacles" instance=ExtResource( 40 )]
+position = Vector2( 445.809, 238.166 )
+
+[node name="Stool1R" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 533.809, 238.166 )
+
+[node name="Stool1U" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 480.633, 192.735 )
+
+[node name="Stool1D" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 411.04, 283.654 )
+
+[node name="Stool1L" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 357.809, 238.166 )
+
+[node name="Table2" parent="Obstacles" instance=ExtResource( 40 )]
+position = Vector2( 279.685, 477.25 )
+
+[node name="Stool2R" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 367.685, 477.25 )
+
+[node name="Stool2U" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 314.508, 431.819 )
+
+[node name="Stool2D" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 244.916, 522.739 )
+
+[node name="Stool2L" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 191.685, 477.25 )
+
+[node name="Table3" parent="Obstacles" instance=ExtResource( 40 )]
+position = Vector2( 812.891, 238.166 )
+
+[node name="Stool3R" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 900.891, 238.166 )
+
+[node name="Stool3U" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 847.715, 192.735 )
+
+[node name="Stool3D" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 778.122, 283.654 )
+
+[node name="Stool3L" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 724.891, 238.166 )
+
+[node name="Table4" parent="Obstacles" instance=ExtResource( 40 )]
+position = Vector2( 646.767, 477.25 )
+
+[node name="Stool4R" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 734.767, 477.25 )
+
+[node name="Stool4U" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 681.59, 431.819 )
+
+[node name="Stool4D" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 611.997, 522.739 )
+
+[node name="Stool4L" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 558.767, 477.25 )
+
+[node name="WallDecorationA" parent="Obstacles" instance=ExtResource( 9 )]
+position = Vector2( 1557.48, 0.412598 )
+
+[node name="MiniWallLight1" parent="Obstacles" instance=ExtResource( 49 )]
+position = Vector2( -71.1943, 288.657 )
+offset = Vector2( 0, -240 )
+phase = 3
+
+[node name="MiniWallLight2" parent="Obstacles" instance=ExtResource( 49 )]
+position = Vector2( -42.8842, 235.763 )
+offset = Vector2( 0, -190 )
+phase = 4
+
+[node name="MiniWallLight3" parent="Obstacles" instance=ExtResource( 49 )]
+position = Vector2( -31.2642, 236.415 )
+offset = Vector2( 0, -250 )
+phase = 11
+
+[node name="MiniWallLight4" parent="Obstacles" instance=ExtResource( 49 )]
+position = Vector2( -18.9842, 200.464 )
+offset = Vector2( 0, -300 )
+phase = 2
+
+[node name="MiniWallLight5" parent="Obstacles" instance=ExtResource( 49 )]
+position = Vector2( 64.0657, 156.867 )
+offset = Vector2( 0, -300 )
+phase = 1
+
+[node name="MiniWallLight6" parent="Obstacles" instance=ExtResource( 49 )]
+position = Vector2( 121.006, 156.773 )
+phase = 8
+
+[node name="WallDecorationB" parent="Obstacles" instance=ExtResource( 42 )]
+position = Vector2( 1335.02, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="WallDecorationC" parent="Obstacles" instance=ExtResource( 41 )]
+position = Vector2( 1335.02, 1 )
+offset = Vector2( 0, -190 )
+
+[node name="WallDecorationE" parent="Obstacles" instance=ExtResource( 43 )]
+position = Vector2( 1078, 52 )
+offset = Vector2( 0, -275 )
+
+[node name="WallDecorationSide" parent="Obstacles" instance=ExtResource( 46 )]
+position = Vector2( -215, 290 )
+
+[node name="Sign" parent="Obstacles" instance=ExtResource( 48 )]
+position = Vector2( 312.194, 212.5 )
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Chef" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 1068.41, 437.193 )
+orientation = 1
+id = "chef"
+
+[node name="Contestant" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 249.452, 341.438 )
+id = "contestant"
+elevation = 35.0
+
+[node name="Customer1" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 357.809, 238.166 )
+id = "customer_1"
+elevation = 140.0
+
+[node name="Customer2" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 191.685, 477.25 )
+id = "customer_2"
+elevation = 140.0
+
+[node name="Customer3" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 724.891, 238.166 )
+id = "customer_3"
+elevation = 140.0
+
+[node name="Customer4" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 558.767, 477.25 )
+id = "customer_4"
+elevation = 140.0
+
+[node name="Judge1" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( -85.2307, 438.837 )
+id = "judge_1"
+elevation = 140.0
+
+[node name="Judge2" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( -35.2606, 365.657 )
+id = "judge_2"
+elevation = 140.0
+
+[node name="Judge3" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 16.0246, 293.929 )
+id = "judge_3"
+elevation = 140.0
+
+[node name="Judge4" parent="Spawns" instance=ExtResource( 10 )]
+position = Vector2( 67.1735, 223.538 )
+id = "judge_4"
+elevation = 140.0
