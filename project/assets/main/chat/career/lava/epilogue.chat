@@ -1,0 +1,68 @@
+{"version": "2476", "fixed_zoom": 1.0}
+
+[location]
+lava
+
+[characters]
+player, p1, restaurant_2
+sensei, s1, restaurant_10
+narrator, n
+
+s1: ^_^/ Everyone really liked the plaque you picked out!
+ (player faces right)
+p1: /._. Well, it feels like the plaque loses some meaning if just anyone can buy one...
+s1: Yes, life is like that. Anyone can buy a plaque in the store!
+s1: And you can get it engraved to say anything you want.
+s1: ^o^ "World's least offensive smelling chef!" It doesn't even have to be true.
+ (player faces left, player mood ._.; )
+p1: .__.; H-hey! I don't smell...
+s1: /._. The plaque's meaning is the meaning you assign it personally. ...What does that plaque mean to you?
+[major_accomplishment] It's a major accomplishment
+[nice_trophy] It's a nice trophy
+[nothing_special] It's nothing special
+[waste_of_time] It was a waste of time
+
+[waste_of_time]
+p1: >__< It was a waste of time! When I look at it, I think of how much weight I put in it before.
+ (p1 faces right)
+p1: How I thought all those other restaurants were more prestigious, with better chefs.
+p1: But they were just like us! They just had a little extra money to blow on a meaningless plaque.
+ (p1 faces left)
+s1: ^y^ See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't change the meaning!
+s1: Now you can look at the plaque and think, "I'm just as special as those other guys!"
+[i_guess]
+
+[nothing_special]
+p1: -_- It was nothing special! When I look at it, I remember how intimidating those plaques were before.
+ (p1 faces right)
+p1: How I thought all those other restaurants were more prestigious, with better chefs.
+p1: >_< But they were just like us! They just had a little extra money to blow on a meaningless plaque.
+ (p1 faces left)
+s1: ^y^ See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't change the meaning!
+s1: Now you can look at the plaque and think, "I'm just as special as those other guys!"
+[i_guess]
+
+[nice_trophy]
+p1: ^_^ It's a nice trophy! When I look at it, I remember how it felt finally being deemed plaque-worthy.
+ (p1 faces right)
+p1: Cooking in front of a panel of judges, worrying cooking too slowly or my food not being good enough.
+p1: ^__^ And then everyone said I did a good job, and well... It just nice to be accepted~
+ (p1 faces left)
+s1: ^y^ See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't change the meaning!
+s1: Now you can look at the plaque and think, "People accept me."
+[i_guess]
+
+[major_accomplishment]
+p1: ^__^ Earning that plaque was a major accomplishment! When I look at it, I remember how I didn't give up.
+ (p1 faces right)
+p1: ._. And I guess on some level, if there's another harder challenge some day...
+p1: ^_^ Well, it instills me with the confidence that I won't give up next time either.
+ (p1 faces left)
+s1: ^y^ See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't change the meaning!
+s1: Now you can look at the plaque and think, "I didn't give up."
+[i_guess]
+
+[i_guess]
+p1: /._. I guess! It still feels a little hollow in a way.
+s1: That's sort of a good thing. Set your own harder goals! Buy yourself bigger plaques!
+s1: ^o^ I bet there's some tougher challenges left if you look for them.

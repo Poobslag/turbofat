@@ -456,8 +456,12 @@
       "icon": "volcano",
       "overworld_environment": "lava",
       "piece_speed": "6-9",
+      "cutscene_path": "chat/career/lava",
       "boss_level": {
         "id": "career/boss_1k"
+      },
+      "intro_level": {
+        "id": "career/five_course_meal"
       },
       "levels": [
         {

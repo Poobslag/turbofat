@@ -1,0 +1,52 @@
+{"version": "2476", "fixed_zoom": 1.2}
+
+[location]
+lava/zagma
+
+[characters]
+player, p1, contestant
+(observer) wendrea, w, judge_1
+chelle, c, judge_2
+sensei, s1, judge_3
+sleve, s, judge_4
+
+s1: Well here it is, the ultimate test to prove your skills as a world class chef!
+p1: ...
+w: ^y^ This one's gonna take awhile!
+s: ^n^ Don't worry, there's no cheese pieces or any tricks like that.
+c: ^y^ Mmm, but it gets pretty fast too! So keep your wits up.
+s1: >___< Yes yes, and worst of all, you only get ONE chance! Ah-hahaha!
+[only_one_chance] What happens if I mess up?
+[wait_really] One chance... FOREVER?
+[yeah_right] Mmm, yeah right
+
+[only_one_chance]
+p1: ._.; Only one chance!? ...What happens if I mess up?
+c: ^y^ Oh, don't worry, this is fine. If you can't do it, then we give you another chance tomorrow.
+[one_chance]
+
+[wait_really]
+p1: ._.; What? ...Like one chance today, or one chance forever?
+s1: One chance FOREVER! No more chances! This is it!
+c: ^y^ Oh, don't worry, this is fine. If you can't do it, then we give you another chance tomorrow.
+[one_chance]
+
+[yeah_right]
+p1: -_- Mmm, yeah right.. Is this one of those things where I screw up, and you let me try again later anyway?
+c: ^y^ Yes yes don't worry, this is fine. If you can't do it, then we give you another chance tomorrow.
+[one_chance]
+
+
+[one_chance]
+s1: >_< No! ONE chance! Just one, we have to remain impartial.
+c: <_< Impartial!? I don't even know them, why do I have to be impartial?
+s1: >__< (glare)
+ (s1 faces left)
+c: ._. Ahh... Okay! Okay fine. One chance. ...Good luck!!!
+ (s1 faces right, s1 mood ._.)
+s1: >__< (glare)
+ (s1 faces left)
+c: <__< I can't even say "Good Luck!?" Good luck isn't impartial? Fine!
+ (s1 faces right, s1 mood ._.)
+c: ... ...I wish you... Average luck.
+p1: ._.; Umm... I'll do my average-est.

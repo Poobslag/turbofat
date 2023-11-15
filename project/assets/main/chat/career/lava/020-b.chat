@@ -1,0 +1,34 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+(customer) wendrea, w, table_seat_left
+
+p1: Oh hello Wendrea! You're back.
+w: ^y^ Yes yes, I thought I'd help myself to more of your... microwave cuisine.
+[throw_you] I'll put YOU in a microwave...
+[ill_make_sure] Okay, no microwaves this time
+[we_dont] We don't use a microwave
+
+[we_dont]
+p1: ._.; I don't know what you're tasting but we definitely don't use a microwave.
+w: >__< Tsk I ain't talking about your kitchen, I'm talking about YOU, microwave!!!
+[you_remind_me]
+
+[ill_make_sure]
+p1: <_< Mmmm okay, I'll make doubly sure no microwaves touch your food.
+w: >__< Tsk 'course there's gonna be a microwave touchin' my food if you're making it, microwave!
+[you_remind_me]
+
+[throw_you]
+p1: >__< I've like to throw YOU inside a microwave...
+w: OwO Ohhhhh heh heh heh. Whyyy I bet you say that to all the microwaves.
+[you_remind_me]
+
+[you_remind_me]
+w: Y'know you remind me of myself, back when I was a young microwave.
+w: /._. Maybe if you wave less and micro more, you might learn a micro something outside of your microwave world.
+p1: <__< I'll... just get your food!

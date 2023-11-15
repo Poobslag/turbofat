@@ -1,0 +1,25 @@
+{"version": "2476", "fixed_zoom": 1.2}
+
+[location]
+lava/zagma
+
+[characters]
+player, p1, contestant
+(observer) wendrea, w, judge_1
+chelle, c, judge_2
+sensei, s1, judge_3
+sleve, s, judge_4
+
+w: ^o^ Wow! I'd say you've officially proven your skills as a world class chef. Well done!!
+ (c mood ^o^, s mood ^o^, s1 mood ^o^, p1 mood ^_^)
+c: ^o^ Yes definitely! Congratulations!
+s: ^o^ I knew you had it in you!
+s1: ^o^ Ah-hahaha. Congratulations #player#~
+p1: ^o^ Thanks, Fat Sensei.
+s1: ^__^ Oh! You still remember my name.
+p1: ^O^ Your name!? Of course I remember your name.
+s1: ^O^ ...Ha ha. You forget sometimes.
+p1: You're so weird! ...Don't worry. I'll try not to forget.
+p1: /._. ...So when do I get my plaque?
+w: ^N^ Plaque? Mm-mm, we can't just go givin' away plaques! ...They sell those in the gift shop though.
+p1: @_@ Gift shop!?!

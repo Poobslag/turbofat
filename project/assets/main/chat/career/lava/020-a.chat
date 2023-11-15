@@ -1,0 +1,64 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, table_2
+(customer) bart, b, table_seat_left
+
+p1: Oh hey, it's Bart! Our chef from Cannoli Sandbar! What are you doing here?
+[well_i_came]
+
+[awkward_start]
+p1: Oh hey, it's Bart! Our chef from Cannoli Sandbar! What are you doing here?
+ (start_if not chat_finished chat/career/sand/010_a_end)
+b: @_@ I'm your... chef?
+b: Are you two from the future, or did I jump timelines again?
+s1: <_< Ah-hahaha. I'll... talk to you about it later.
+[well_i_came]
+
+[well_i_came]
+b: /._. Well. I came under the assumption that there was a second, more successful restaurant chain named "Turbo Fat"...
+b: And that this alternate Turbo Fat restaurant had opened a location at this venue.
+b: ...As farfetched as it sounds, it seemed more likely than you two reaching this level of success.
+b: <_< It's nothing personal, it's just you two always struck me as more of the underdog type.
+[thats_a_compliment] Underdog? That's a compliment!
+[has_its_underday] It's like the saying goes...
+[plucky_up_and_comers] We're not underdogs!
+
+[plucky_up_and_comers]
+p1: ^o^ H-hey! We're not underdogs. We're... plucky up-and-comers!
+s1: -__- Plucky up-and-comer!? Hmph. I didn't agree to this.
+p1: -_- Okay then. ...We're one plucky up-and-comer, and one... frumpy dump-and-downer.
+ (p1 faces right)
+s1: /._. Yes, that's better. ... ...I think.
+[without_a_cost]
+
+[thats_a_compliment]
+p1: >_< Well... since when is being an underdog a bad thing!? It's like they say uhh... every underdog has its under-day.
+s1: ^n^ They... don't say that.
+p1: ._./ It's an underdog eat underdog world out there!
+ (p1 faces right)
+s1: @_@ Please stop.
+[without_a_cost]
+
+[has_its_underday]
+p1: ^_^ Well it's just like that saying goes... every underdog has its under-day.
+s1: ^n^ They... don't say that.
+p1: ._./ It's an underdog eat underdog world out there!
+ (p1 faces right)
+s1: @_@ Please stop.
+[without_a_cost]
+
+[without_a_cost]
+b: /._. Anyway I see your success didn't come without a cost. ...Why is there cheese in this brownie?
+ (p1 faces left, p1 mood ._.)
+s1: ._. Oh it's like they say mmm...
+s1: "When in Roquefort, do as the Roque-mans do."
+ (s1 faces right)
+b: I... ...see.
+ (s1 exits)
+b: ._.; (Psst... I'm not going to have to add cheese to my menu too, am I?)
+p1: <_< (No, that's okay...)

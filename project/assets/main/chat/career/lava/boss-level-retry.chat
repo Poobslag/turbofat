@@ -1,0 +1,41 @@
+{"version": "2476", "fixed_zoom": 1.2}
+
+[location]
+lava/zagma
+
+[characters]
+player, p1, contestant
+wendrea, w, judge_1
+(observer) chelle, c, judge_2
+sensei, s1, judge_3
+sleve, s, judge_4
+
+s1: Once again, it's time for... The ultimate test! To prove your skills as a world class chef!
+s1: >__< A trial renowned both for its brutal duration! And blinding speeds! With just... ONE chance!
+[only_one_chance] What happens if I mess up?
+[was_it_a_practice] So that was a practice before?
+[like_last_time] You said that last time
+
+[only_one_chance]
+p1: ._.; Only one chance!? ...What happens if I mess up?
+s1: >_< One chance! Just one!!! If you mess up, that's it!
+p1: .__.; Waaugh!
+[insane_laughter]
+
+[was_it_a_practice]
+p1: ._.; Wait, so was last time a practice, and this is it?
+s1: >_< Last time? Practice? Stop talking nonsense! THIS is your last time! There is no practice!
+p1: Oh, um... Okay! I'll do better this time.
+[insane_laughter]
+
+[like_last_time]
+p1: -_- You said I only got one chance last time.
+s1: >_< Well this time... It's REALLY your last chance! No more chances after this one!
+p1: -__- I don't think I believe you...
+[insane_laughter]
+
+
+[insane_laughter]
+s1: >___< Ah-hahahaha!
+c: ^_^ Once again I wish you... average luck!
+p1: ^_^ Thank you, you're too k— ... You're... average kind.

@@ -1,0 +1,94 @@
+{"version": "2476"}
+
+[location]
+lava
+
+[characters]
+player, p1, restaurant_10
+(customer) shirts, s, restaurant_2
+
+p1: ^__^ Oh Shirts! I haven't seen you since leaving Merrymellow Marsh!
+s: ^_^ Oh yeah, hey!
+p1: /._. Are you here to check out the Chocolava Canyon location? I gotta warn you it's pretty much the same food.
+s: -u- Ha ha pshh yeah, I see! ...I'm within a 2 meter radius of your restaurant, so I must be planning to eat here, is that it?
+s: It's a big canyon! Lots of cool crap to do other than like, hang out with my amazingly successful friend. Ha ha.
+ (s faces right)
+[pleeease] Pleeeease?
+[cool_crap] Sure, go do your cool crap
+[cooler_friends] I'm busy with my cooler friends anyway
+
+[cool_crap]
+p1: -o- Yeah sounds good, I'll just let you get on with your cool crap.
+ (p1 faces left)
+s: ^O^ No no, I'm just playing around! I want to catch up, ha ha. How've you been anyway?
+ (p1 faces right, p1 mood ^_^)
+ (s faces left)
+s: I see you're trying this whole um... ultra-successful, responsible, rich restaurant owner thing. That seems pretty alright.
+[yeah_you_know]
+
+[pleeease]
+p1: T__T Awww pleeeease? PLEEEEEEASE!?
+s: ^o^ C'mon have some self respect, ha ha ha!
+ (s faces left)
+s: -u- If I knew you were THIS desperate to see me I'd have never come by in the first place.
+ (p1 mood ^_^)
+s: So anyway how's this whole um... ultra-successful, responsible, rich restaurant owner thing going? That seems pretty alright.
+[yeah_you_know]
+
+[cooler_friends]
+p1: -o- Yeah, come to think of it I'm busy all day hanging out with my cooler friends.
+ (p1 faces left)
+s: ^o^ No no, I'm just playing around! I want to catch up, ha ha. How've you been anyway?
+ (p1 faces right, p1 mood ^_^)
+ (s faces left)
+s: I see you're trying this whole um... ultra-successful, responsible, rich restaurant owner thing. That seems pretty alright.
+[yeah_you_know]
+
+
+[yeah_you_know]
+p1: ^y^ Yeah you know! It comes with a little responsibility, and it's stressful at times. But overall it's going well.
+p1: /._. How about you, how are things in Merrymellow Marsh?
+s: ^_^ Oh yeah, don't worry. Things got WAYYY better after you left! Oh, like, no offense.
+[thanks_1] Um, thanks
+[ha_ha_1] Ha ha, c'mon
+[awkward_1] ...
+
+[thanks_1]
+p1: ._.;  Um...
+[no_no]
+
+[ha_ha_1]
+p1: ^o^ Ha ha, sounds like I was really holding that place back!
+[no_no]
+
+[awkward_1]
+p1: <_< ...
+[no_no]
+
+
+[no_no]
+s: <_< No no, like – don't get the wrong idea. Things were just rough while you were there and, I was in kind of a bad place...
+s: Like wait, not BECAUSE you were there! You're great! Umm, hold on... (sigh)
+[thanks_2] Y-yeah...
+[ha_ha_2] Ha ha, c'mon
+[awkward_2] ...
+
+[thanks_2]
+p1: ._.;  Y-yeah, I get it...
+[one_last_time]
+
+[ha_ha_2]
+p1: ^O^ Geez c'mon, go easy on me here!
+[one_last_time]
+
+[awkward_2]
+p1: <__< ...
+[one_last_time]
+
+
+[one_last_time]
+s: <__< Okay. One last time.
+s: ._. It's nice to see you. I'm doing great. ...There, did I do it?
+p1: ^__^ Got it in one!
+s: ^o^ Ha ha anyway I'm gonna go eat something! See you inside~
+ (p1 mood ^_^/)

@@ -1,0 +1,67 @@
+{"version": "2476", "fixed_zoom": 1.2}
+
+[location]
+lava/zagma
+
+[characters]
+player, p1, contestant
+wendrea, w, judge_1
+(observer) chelle, c, judge_2
+sensei, s1, judge_3
+sleve, s, judge_4
+
+s1: Well this is it, you've used up all your other... ONE chances.
+s1: >__< This is your TRUE last chance!
+[only_one_chance] What happens if I mess up?
+[wait_really] You seem serious this time
+[still_doing_this] We're still doing this?
+
+[only_one_chance]
+p1: ._.; Only one chance!? ...What happens if I mess up?
+s1: >_< Then that's it! No more chances!! Sorry, we have to remain impartial.
+[you_can_cheat]
+
+[wait_really]
+p1: ._.; Wait, really? ...You seem serious this time!
+s1: Of course I seem serious! No more chances! This is it!
+p1: Wow! O-okay.
+[you_can_cheat]
+
+[still_doing_this]
+p1: -_- We're still doing this?
+s1: Still doing this? You don't seem very intimidated. No more chances! This is it!
+p1: Yes yes, okay.
+[you_can_cheat]
+
+
+[you_can_cheat]
+s1: ._. Also, you can turn on cheats if you want to, over in the Settings menu.
+[is_that_cheating] Isn't that cheating?
+[will_it_count] Will it really count?
+[im_so_close] But I'm so close!
+
+[is_that_cheating]
+p1: /._. Turn on cheats? Isn't that cheating?
+s1: Yes, cheating is cheating. But that's okay, everybody cheats.
+c: <_< I don't remember agreeing to this, that they could cheat!
+[shh]
+
+[im_so_close]
+p1: ^_^ I want to do it without cheating! I'm so close!
+s1: ^n^ Mmm that's very honorable of you. But sometimes, it's honorable to know when to cheat, and to know when to not cheat.
+c: <_< I don't remember agreeing to this, this kind of 'honorable cheat'!
+[shh]
+
+[will_it_count]
+p1: ._.; Oh,I don't know... Will it really count if I cheat?
+s1: Yes, don't worry, it still counts. Everybody cheats a little sometimes.
+c: <_< I don't remember agreeing to this, that they could cheat!
+[shh]
+
+
+[shh]
+s1: >__< Shh! We're staying impartial!
+ (s1 faces left)
+c: /._. Can I at least wish them good luck then?
+s1: ^N^ Mmm, you may not.
+ (s1 faces right)

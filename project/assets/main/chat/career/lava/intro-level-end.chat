@@ -1,0 +1,57 @@
+{"version": "2476", "fixed_zoom": 1.2}
+
+[location]
+lava/zagma
+
+[characters]
+player, p1, contestant
+wendrea, w, judge_1
+chelle, c, judge_2
+sensei, s1, judge_3
+(observer) sleve, s, judge_4
+
+c: <_< Ohh, so. Hmm... How do YOU think you did?
+[that_was_hard] That was hard!
+[that_was_bad] I blew it
+[that_was_okay] I did okay
+[that_was_great] I did great
+
+[that_was_hard]
+p1: .__.; That was so hard!
+s1: >__< Hard!? That was disgraceful! I've seen dogs that poop better than you cook.
+[ive_never_seen]
+
+[that_was_great]
+p1: ^O^ I think I did great!
+s1: >__< Great!? That was disgraceful! I've seen dogs that poop better than you cook.
+[ive_never_seen]
+
+[that_was_okay]
+p1: /._. I think I did... okay?
+s1: >__< Okay!? That was disgraceful! I've seen dogs that poop better than you cook.
+[ive_never_seen]
+
+[that_was_bad]
+p1: u_u I think I sort of blew it.
+s1: >__< Sort of blew it!? That was disgraceful! I've seen dogs that poop better than you cook.
+[ive_never_seen]
+
+
+[ive_never_seen]
+p1: <_< I've never used those cheese pieces before! I guess I'll have to start practicing with them.
+s: ^_^ Hahaaaa yeah, those pieces get easier with a little practice!
+s: ^__^/ My restaurant Carbcraft is next door to yours, so just gimme a shout if you need any advice.
+s1: >__< I have some advice, #player#! ...Have you considered a career in medicine?
+ (p1 mood <_<)
+c: ^n^ Fat Sensei you're so rude sometimes! #player#, you did great for your first time.
+s1: -_- GREAT!? They did GREAT? Kkkh, be honest!
+ (s1 faces left)
+s1: A bowl of cereal is "great"! #player# served some Grade-A horse molasses, there was nothing great about it...
+ (s1 faces right)
+c: /._. Fine yes, you didn't do great. You did mmm...
+c: ... You did okay for your first time.
+ (p1 mood ._.;)
+c: ... ...You did your first time.
+s1: Thank you. I'm sorry, I have to remain impartial.
+c: <_< Yeah good job, extremely impartial. I think you broke their heart! Good job.
+ (p1 mood u_u)

@@ -1,0 +1,56 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_2
+sensei, s1, table_1
+(customer) dreadhark, d, table_seat_left
+(customer) goris, g, table_seat_right
+
+p1: Oh wow, Dreadhark and Goris! You're a long way from Poki Desert.
+p1: ...What are you doing here? Aren't you missing Desert Q?
+g: Aww man, you can't MISS Desert Q. Desert Q is everywhere!
+ (g faces right)
+[in_a_desert] Umm, it's in a desert
+[logistical_nightmare] Umm, that's a logistical nightmare
+[change_the_name] Umm, desert is in the name
+
+[in_a_desert]
+p1: /._. Everywhere? I'm pretty sure it's in... a desert?
+g: >_< Tsk Desert Q isn't about the desert... it's about the whole like... desert vibe!
+d: Yeah! And I mean volcanoes are like... the desert's distant cousin, am I right?
+g: I mean we're both sweaty, uncomfortable and in desperate need of a shower...
+g: ^__^ ...Sounds like a desert to me! Desert KYUUUU!
+d: ^O^ Desert KYUUUUUU!
+[end_of_the_line]
+
+[change_the_name]
+p1: /._. Everywhere? Then maybe you should take the 'Desert' part out of the name...
+g: >_< Change the NAME!?
+d: ^__^ No way, it's so fun to yell! Desert KYUUUUUU!!
+g: ^O^ Desert KYUUUU!!!
+[end_of_the_line]
+
+[logistical_nightmare]
+p1: /._. Everywhere? That must be a logistical nightmare.
+g: Pshh Desert Q isn't about logistics... it's about a union of like umm... man I forget!
+p1: /._. I'm just saying, with billions of attendees, keeping track of-
+d: ^__^ Desert KYUUUUUU!
+g: ^O^ Desert KYUUUU!!!
+p1: <_< ... ...
+[end_of_the_line]
+
+
+[end_of_the_line]
+p1: ._. But anyway... you'll still have to go back to the end of the line at some point, right?
+d: ^n^ We're still IN line. Open your mind, the world is just... one big line! ...I mean queue!!
+g: >_< Dude you called it a line again!
+ (g faces left, d mood <_<)
+p1: /._. The world is one big line? Hmm that's an... interesting philosophy.
+s1: -__- Philosophy? More like an interesting loophole.
+s1: Although, at least now they don't have to worry about leaving the line to eat... or to use the bathroom.
+d: ^__^ To use the bathroom? Open your mind, the world is just... one big bathroom!
+g: >__< Dude. ...Kind of ruining my appetite here.
+d: u_u S-sorry...
