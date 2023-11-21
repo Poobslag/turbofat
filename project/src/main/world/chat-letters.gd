@@ -28,12 +28,26 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if _chatter and not _letter_shooter.is_stopped():
+	if not _chatter:
+		return
+	
+	_refresh_letter_shooter()
+
+
+## Updates the letter shooter's position, angle and visibility based on the chatter.
+func _refresh_letter_shooter() -> void:
+	if _chatter.is_talking() and _chatter.visible:
+		if _letter_shooter.is_stopped():
+			$LetterShooter.start()
+		
 		_letter_shooter.letter_position = _chatter.position \
 				+ _chatter.get_node("MouthHook").position \
 				+ VOICE_POSITIONS_BY_ORIENTATION[_chatter.orientation] * _chatter.creature_visuals.scale.y
 		
 		_letter_shooter.letter_angle = LETTER_ANGLES_BY_ORIENTATION[_chatter.orientation]
+	else:
+		if not _letter_shooter.is_stopped():
+			$LetterShooter.stop()
 
 
 func _on_OverworldUi_chatter_talked(new_chatter: Creature) -> void:
@@ -50,7 +64,4 @@ func _on_OverworldUi_chatter_talked(new_chatter: Creature) -> void:
 
 
 func _on_Creature_talking_changed() -> void:
-	if _chatter.is_talking():
-		$LetterShooter.start()
-	else:
-		$LetterShooter.stop()
+	_refresh_letter_shooter()
