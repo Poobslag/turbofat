@@ -9,9 +9,9 @@ player, p1, restaurant_1
 
 s: /._. So are they driving you crazy yet?
 [bones_drives_me_crazy] Bones is clingy
- (link_if chat_finished chat/career/marsh/30_a_end)
+ (link_if chat_finished chat/career/marsh/030_a_end)
 [skins_drives_me_crazy] Skins is a bit much
- (link_if chat_finished chat/career/marsh/30_c_end)
+ (link_if chat_finished chat/career/marsh/030_c_end)
 [who_drives_me_crazy] Who do you mean?
 
 [skins_drives_me_crazy]

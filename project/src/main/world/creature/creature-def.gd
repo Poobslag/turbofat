@@ -58,13 +58,13 @@ var chat_selectors: Array
 var chat_theme := ChatTheme.new()
 
 ## Boolean condition which enables this creature to appear as a random chef, such as
-## 'chat_finished chat/career/marsh/30_c_end'
+## 'chat_finished chat/career/marsh/030_c_end'
 ##
 ## 'false' if they should never be a chef.
 var chef_if := "true"
 
 ## Boolean condition which enables this creature to appear as a random customer, such as
-## 'chat_finished chat/career/marsh/30_c_end'
+## 'chat_finished chat/career/marsh/030_c_end'
 ##
 ## 'false' if they should never be a customer.
 var customer_if := "true"

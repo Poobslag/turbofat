@@ -9,9 +9,9 @@ player, p1, restaurant_1
 
 s: ^O^ Remember when you said, like, there's more than one way to bone a dog? Ha ha! That was really funny~
 p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
- (say_if not chat_finished chat/career/marsh/30_a_end)
+ (say_if not chat_finished chat/career/marsh/030_a_end)
 p1: <__< Why does everyone keep asking me that!?
- (say_if chat_finished chat/career/marsh/30_a_end)
+ (say_if chat_finished chat/career/marsh/030_a_end)
 s: /._. Umm! I don't know. I don't remember now! ...So what are you doing later? Did you want to see a movie together?
 [yes] OwO It's a date!
 [no_movie_0] No, I've seen it
