@@ -1,0 +1,17 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+(customer) wendrea, w, table_seat_left
+
+p1: Oh Wendrea, it's you! From the Zagma Chef Of The Year committee.
+p1: ^_^ Hmm well, I hope for my sake you're enjoying your food! Ha ha~
+w: -_- Hmph, it tastes like a microwave.
+p1: We don't use microwaves... I cooked that on a stove!
+w: -__- Well then, you might take a closer look at your stove. Because I think your stove is a microwave.
+p1: /._. Do... Did you want me to make you something else?
+w: Nah, don't trouble yourself. I'll just take the microcheck.
+p1: Microcheck?

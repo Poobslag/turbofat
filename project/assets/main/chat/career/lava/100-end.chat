@@ -1,0 +1,39 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, chef
+sleve, s, kitchen_7
+
+s: Ahh, still struggling with those cheese pieces? They're tricky at first.
+ (s faces left)
+p1: >__< Half of them are too BIG and half of them are too SMALL! These are impossible!!
+s: ^y^ Oh I know all about that! But I can tell you some advice that helped me.
+p1: /._. Okay, what's your advice?
+ (p1 faces right)
+s: You see, the word 'Boob' looks like boobs in three different ways.
+[first_time]
+ (link_if not chat_finished chat/career/sand/010_a_end)
+[heard_it_before]
+ (link_if chat_finished chat/career/sand/010_a_end)
+ 
+
+[first_time]
+s: The upper-case 'B' looks like boobs from above. The middle 'oo' looks like boobs from the front. And the last 'b' looks like boobs from the side.
+p1: >__< That's... NOT helpful advice!
+[oh_really]
+
+[heard_it_before]
+s: The upper-case 'B' look-
+p1: >__< -Stop! STOP! I've already HEARD this advice before!!!
+ (s mood @_@)
+[oh_really]
+
+
+[oh_really]
+s: ._.; Oh really? Well, I don't know what else to tell you, I'm sorry!
+ (s faces right)
+p1: (sigh) I need to stop listening to people's advice...
+ (p1 faces left, s exits)

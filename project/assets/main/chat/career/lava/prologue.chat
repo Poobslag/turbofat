@@ -1,0 +1,57 @@
+{"version": "2476", "fixed_zoom": 1.1}
+
+[location]
+lava
+
+[characters]
+player, p1, carbcraft_10
+sensei, s1, carbcraft_9
+narrator, n
+
+n: As Turbo Fat grew more and more popular, they were finally able to branch out into more competitive venues.
+n: Their Chocolava Canyon location was their most successful location, always bustling with customers.\n\nBut, they struggled to stand out among other prestigious restaurants nearby.
+s1: /._. Mmm? Did something catch your eye?
+p1: ._./ Look at this! This CarbCraft restaurant apparently won "Zagma Chef Of The Year" too.
+p1: ...I've seen this same plaque at every restaurant here! What the heck is a Zagma Chef of the Year?
+ (p1 faces left)
+s1: ^y^ Oh, you haven't heard of Zagma? Because I know everything about Zagma.
+p1: /._. ...Really?
+s1: -o- Go on, ask me about Zagma.
+p1: ._./ I just don't want our customers thinking that somehow we're bad chefs because we don't have a silly plaque.
+ (p1 faces right)
+s1: ._. Mmm... Well.
+ (p1 faces left)
+s1: <_< Getting one of those plaques isn't easy. It will require a considerable investment. But, I can point you in the right direction.
+[you_do_it] Can't you win it for me?
+[investment] A considerable investment?
+[point_me] The right direction?
+[i_can_do_it] I can do it myself!
+
+[you_do_it]
+p1: ._.; Can't you just win 'Chef Of The Year' yourself instead? You're already a great chef!
+s1: No no. I have a conflict of interest, it's best if you do it yourself.
+ (s1 faces left)
+p1: -_- Conflict of interest hmm? I think you're just lazy.
+s1: .__.; H-hey! Being lazy is a conflict too...
+ (s1 faces right)
+
+[investment]
+p1: /._. A considerable investment? I've been practicing every day for weeks now!! What kind of investment do you mean?
+s1: ^_^ Ohhh, about ¥3000 should cover it. Cash is fine~
+p1: ^O^ Ha ha, nice try...
+s1: ...
+
+[point_me]
+p1: ^__^/ Point me in the right direction? ...Because I figured I'd blindly head East again.
+ (p1 faces right)
+s1: -__- "Blindly head East again!?" Hmph don't be so naive. You can't wandering in a random direction and expect to find anything.
+s1: ._./ ...But... ...Yes, East is fine.
+p1: ^o^ Lucky guess~
+ (p1 faces left)
+
+[i_can_do_it]
+p1: ^O^ Oh I don't need your help! I'll just blindly head East again.
+s1: -__- "Blindly head East again!?" Hmph don't be so naive. You can't wandering in a random direction and expect to find anything.
+s1: ._./ ...But... ...Yes, East is fine.
+ (p1 faces right)
+p1: ^o^ Lucky guess~

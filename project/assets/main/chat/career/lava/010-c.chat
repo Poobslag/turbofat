@@ -1,0 +1,46 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, kitchen_1
+sensei, s1, kitchen_11
+
+p1: Fat Sensei, I can't believe you're already on the Zagma Chef Of The Year committee!
+ (s1 faces left)
+s1: Mmm?
+ (s1 faces right)
+p1: /._. I mean... is that just something you volunteered for? Can anybody do it?
+s1: ^n^ Oh no no, it requires decades of training, personal study, grueling trials...
+s1: Culinary versatility, immaculate grooming habits, not to mention the prerequisite of being renowned in the world of gourmet!
+s1: ^Y^ It's one of the most prestigious honors a chef can aspire to.
+p1: Well... if it's so prestigious, why don't we put THAT on the plaque?
+[wouldnt_have_to] That's way easier
+[thats_better] That's way more impressive
+[our_plaque] Our plaque could say...
+
+[wouldnt_have_to]
+p1: ._.; Then I wouldn't have to go through all of this chef of the year stuff!
+[ohh]
+
+[thats_better]
+p1: ^O^ That's way better than being one of a dozen restaurants with an identical plaque!
+[ohh]
+
+[our_plaque]
+p1: ^_^ Our plaque could say, "Our chef is so good, they INVENTED chef of the year!"
+[ohh]
+
+
+[ohh]
+s1: /._. Ohh, I don't know. If we hang up a flattering plaque like that, people might assume we're talking about you!
+s1: ._. I wouldn't want it to go to your head.
+ (s1 faces left)
+p1: -_- Oh. I guess.
+s1: We could put up a plaque that applies to both of us! "Adequate Chef?"
+ (s1 faces right)
+p1: >_< ...
+s1: "Unmotivated Chef?" "Too Lazy To Get Their Own Plaque Chef?"
+p1: >__< Okay! Okay!! I get it...
+ (p1 faces right)

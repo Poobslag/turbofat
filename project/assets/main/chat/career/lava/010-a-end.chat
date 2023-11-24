@@ -1,0 +1,48 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_2
+(customer) dusty, d, table_seat_left
+
+d: @_@ Ohhh well... That was more than I should have eaten today.
+d: It's taking all my energy just to sit up, I don't know HOW I'll manage the walk home...
+p1: -__- I'm not taking you home to your tree, so don't even ask.
+d: ^_^ Oh no worries, I've engineered a complex system of satellites, receivers, remotes and contraptions to take me home.
+p1: /._. Oh?
+d: ._. Why with just a few flicks on this touch screen, a motorized vehicle can pick me up in oh, let's see...
+d: ^o^ About eight to twelve minutes. Oh, my driver's name is Logan!
+[internet] You didn't invent the internet.
+[cell_phones] You didn't invent cell phones.
+[uber] You didn't invent uber.
+[nuts] You're nuts!
+
+[internet]
+p1: -_- Ha ha. Nice try, Dusty. You didn't invent the internet.
+d: -o- ...Didn't I?
+ (d faces left)
+p1: ... ...
+ (d exits)
+
+[cell_phones]
+p1: -_- Ha ha. Nice try, Dusty. You didn't invent cell phones.
+d: -o- ...Didn't I?
+ (d faces left)
+p1: ... ...
+ (d exits)
+
+[uber]
+p1: -_- Ha ha. Nice try, Dusty. You didn't invent Uber.
+d: -o- ...Didn't I?
+ (d faces left)
+p1: ... ...
+ (d exits)
+
+[nuts]
+p1: ^O^ Dusty, you're totally nuts. Get it? Nuts! Ha ha ha~
+d: >__< For your benefit, I'm going to pretend I didn't hear that remark.
+ (d faces left)
+p1: /._. ... ...
+ (d exits)

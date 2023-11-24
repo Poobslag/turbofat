@@ -1,0 +1,27 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+sensei, s1, !table_2
+(customer) tunathy, t, table_seat_left
+
+t: ^_^ Wowww look at that! It's JUST like the restaurant in Lemony Thickets!
+p1: ^_^ Oh hi Tunathy! Yeah, everything's still following all of your designs!
+p1: All the tables, the chairs, the decorations...
+ (p1 faces_right)
+t: Wow, and you have how many locations now?
+t: ^__^ Maybe I should have charged more money... The sign even looks the same! "Turbo Fat".
+ (p1 faces left, s1 enters)
+s1: >__< Hmph yes, and it's thanks to you that we're stuck with that dumb name!
+t: <__< Ack!!!
+s1: >_< Maybe we should charge YOU more money!
+t: Please, I already gave you your money back!
+s1: >__< Hmph well that isn't enough! Give me... Give me #player.possessive# money too!!
+ (p1 mood ._.;)
+t: <_< Player, can you, umm... If you have some money I could maybe...
+ (p1 faces right, p1 exits)
+ (s1 faces right, s1 mood ._.)
+t: u_u Ohhhhhh...

@@ -1,0 +1,54 @@
+{"version": "2476", "fixed_zoom": 1.2}
+
+[location]
+lava/zagma
+
+[characters]
+player, p1, contestant
+wendrea, w, judge_1
+chelle, c, judge_2
+sensei, s1, !judge_3
+(observer) sleve, s, judge_4
+
+s1: Ahh sorry I'm late. I had to use the loo.
+p1: @_@ FAT SENSEI!? You're on the committee?
+ (s1 enters, s1 faces left)
+s1: -_- Ahh... ... yes? And I had to use the loo. I don't hear you making a fuss about that.
+ (s1 faces right)
+[go_easy_on_me] Go easy on me
+[could_have_told] You could have told me
+[used_the_loo] I can't believe you used the loo!
+[win_from_ourselves] We're giving ourselves a plaque?
+
+[used_the_loo]
+p1: >__< The loo? The LOO!?! I can't BELIEVE you used the loo! THIS IS AN OUTRAGE!!
+s1: -__- Hmph, too little too late.
+s1: ...Just wait and see the muted celebration I deliver next time YOU use the loo!
+[is_it_okay]
+
+[could_have_told]
+p1: <_< ...I feel like this is something you could have told me five minutes ago.
+s1: ^O^ Ah-haha, come now. Where's the theater in that! Let me have my fun~
+[is_it_okay]
+
+[win_from_ourselves]
+p1: /._. So we're jumping through all these hoops, so that we can win a Zagma Chef Of The Year plaque... from OURSELVES?
+p1: I hope you'll at least go easy on me!
+s1: -o- Mwah-hahaha. You'd like that wouldn't you!
+[is_it_okay]
+
+[go_easy_on_me]
+p1: ^_^ Well, I hope you'll at least go easy on me!
+s1: -o- Mwah-hahaha. You'd like that wouldn't you!
+[is_it_okay]
+
+
+[is_it_okay]
+c: <_< Oh, do you two know each other already? Will this still be okay?
+s1: ^y^ Yes yes, don't worry. I'm entirely capable of being impartial.
+c: <__< Mmmm, I'm not so sure...
+s: Oh it's no big deal! We weren't actually going to judge them this time anyways.
+s: ^_^ #player#, why don't you show us what you can do? This one's just for practice.
+c: ^y^ Yes well, I will maybe judge you a little. But maybe not JUDGING you judging you.
+s1: >___< I'LL be judging you judging you! Ah-hahahah!!!
+p1: .__.; D-don't be like that!

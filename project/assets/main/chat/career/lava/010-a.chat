@@ -1,0 +1,73 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_2
+(customer) dusty, d, table_seat_left
+
+p1: ^__^ Dusty, is that you? From Lemony Thickets? ...You're an awfully long way from your tree!
+[yes_well]
+
+[have_not_met]
+p1: /._. Have we met? You look oddly familiar...
+ (start_if not chat_finished chat/career/lemon/010_b_end)
+d: You don't remember? ...I was one of the squirrels you fed at the start of your journey!
+d: <_< Although now that you mention it, that does feel like eons ago...
+p1: ^__^ Oh, right! You're Dusty, aren't you? From Lemony Thickets. ...You're an awfully long way from your tree!
+[yes_well]
+
+[yes_well]
+d: /._. Yes well, I found myself rather hungry, and you never come to visit your squirrel friends anymore!
+p1: Hey, I just visited you -
+[five_minutes_lie] Five minutes ago
+ (link_if chat_finished chat/career/lemon/010_b_end)
+[yesterday_lie] Yesterday
+ (link_if not chat_finished chat/career/lemon/010_b_end)
+[yesterday] Yesterday
+ (link_if chat_finished chat/career/lemon/010_b_end)
+[weeks_ago] A few weeks ago
+[months_ago] A few months ago
+[eons_ago] A few eons ago
+ (link_if not chat_finished chat/career/lemon/010_b_end)
+
+[five_minutes_lie]
+p1: <_< I visited you five minutes ago!
+[bald_faced_lies]
+
+[yesterday_lie]
+p1: <_< I visited you yesterday!
+[bald_faced_lies]
+
+[yesterday]
+p1: <_< I visited you yesterday!
+d: -__- Hmph well. I don't want to bore you with the details of squirrel biology, but we have to eat nearly every day.
+[sounds_cumbersome]
+
+[weeks_ago]
+p1: <_< I visited you a few weeks ago!
+d: -__- Hmph well. I don't want to bore you with the details of squirrel biology, but we have to eat nearly every week.
+[sounds_cumbersome]
+
+[months_ago]
+p1: <_< I visited you a month or two ago!
+d: -__- Hmph well. I don't want to bore you with the details of squirrel biology, but we have to eat nearly every month.
+[sounds_cumbersome]
+
+[eons_ago]
+p1: <_< I visited you ehh... a few eons ago!
+d: -__- Hmph well. I don't want to bore you with the details of squirrel biology, but we have to eat nearly every eon.
+[sounds_cumbersome]
+
+
+[sounds_cumbersome]
+p1: Sounds cumbersome.
+d: ^N^ You don't know the half of it...
+
+
+[bald_faced_lies]
+d: ^Y^ Oh yes, of course! Of course you did. So anyway for my meal, I'll have three chocolate puffs.
+d: >___< Which, I presume, comes with a complimentary side of BALD-FACED LIES.
+p1: -o- Bald-faced lies. Yes of course! I'll go put in your order... you handsome devil.
+d: >__< ...

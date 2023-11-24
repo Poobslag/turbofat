@@ -1,0 +1,31 @@
+{"version": "2476"}
+
+[location]
+inside_turbo_fat
+
+[characters]
+player, p1, table_1
+(customer) wendrea, w, table_seat_left
+
+w: ^__^ Mmmm, that was microlicious! I'll waive any disdain I had for this microplace.
+[micro_thank] Microthank you
+[waive_or_wave] Was that 'waive' or 'wave'?
+[ambulance] Should I call an ambulance?
+
+[micro_thank]
+p1: ._.; Umm... microthank you.
+[if_you_dont_mind]
+
+[waive_or_wave]
+p1: ._.; Wait, did you mean 'waive' or 'wave'?
+[if_you_dont_mind]
+
+[ambulance]
+p1: ._.; Umm... Should I call an ambulance?
+[if_you_dont_mind]
+
+
+[if_you_dont_mind]
+w: /._. If you don't mind micro saying, your waveshave looks very micro. Do you like it that wave?
+w: I've kinda been thinking about shaving MY microwave, y'know, my micro keeps wavin' me about it. Wave wave micro, wave microwave.
+p1: <__< I... I hope you get the help you need.
