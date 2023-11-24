@@ -282,7 +282,10 @@ func _find_resource_paths() -> Array:
 	var dir: Directory
 	var file: String
 	while true:
-		if file:
+		if file and file.begins_with("."):
+			# ignore .gitkeep
+			pass
+		elif file:
 			var resource_path: String
 			if file.ends_with(".import"):
 				resource_path = "%s/%s" % [dir.get_current_dir(), file.get_basename()]
