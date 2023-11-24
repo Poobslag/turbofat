@@ -37,6 +37,9 @@ extends Node
 ## Default resource path containing career cutscenes.
 const DEFAULT_CAREER_CUTSCENE_ROOT_PATH := "res://assets/main/chat/career"
 
+## Default chat key root for non-region-specific cutscenes
+const DEFAULT_GENERAL_CHAT_KEY_ROOT := "chat/career/general"
+
 ## List of specially named chat keys which should be excluded when browsing for interludes to play
 const SPECIAL_CHAT_KEY_NAMES := [
 	"prologue",
@@ -54,6 +57,9 @@ var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_ca
 ##
 ## This is calculated based on the contents of the filesystem, but can be overridden for tests.
 var all_chat_key_pairs := [] setget set_all_chat_key_pairs
+
+## Chat key root for non-region-specific cutscenes
+var general_chat_key_root := DEFAULT_GENERAL_CHAT_KEY_ROOT setget set_general_chat_key_root
 
 ## key: (String) Interlude preroll chat key like 'chat/career/general_00_a'. For the case where a level has a
 ## 	postroll cutscene but no preroll cutscene, this chat key may actually correspond to a non-existent preroll
@@ -86,6 +92,14 @@ func _ready() -> void:
 ## Also regenerates all internal fields such as the ChatKeyPairs and preroll tree.
 func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> void:
 	career_cutscene_root_path = new_career_cutscene_root_path
+	_refresh_chat_key_pairs()
+
+
+## Updates the location for career cutscenes.
+##
+## Also regenerates all internal fields such as the ChatKeyPairs and preroll tree.
+func set_general_chat_key_root(new_general_chat_key_root: String) -> void:
+	general_chat_key_root = new_general_chat_key_root
 	_refresh_chat_key_pairs()
 
 
@@ -202,7 +216,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	_general_restaurant_chat_keys.clear()
 	for chat_key_pair in all_chat_key_pairs:
 		for chat_key in chat_key_pair.chat_keys():
-			if not chat_key.begins_with(Careers.GENERAL_CHAT_KEY_ROOT):
+			if not chat_key.begins_with(general_chat_key_root):
 				continue
 			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
 			if chat_tree.has_sensei():
