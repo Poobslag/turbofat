@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/main/world/environment/turbofat-restaurant.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/turbo-fat-restaurant.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/main/world/environment/turbofat-closed-sign.png" type="Texture" id=5]
 [ext_resource path="res://src/main/world/environment/SmokeCluster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/main/world/environment/poof-in.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/main/world/environment/turbofat-plaque.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -41,9 +42,17 @@ texture = ExtResource( 4 )
 offset = Vector2( 0, -200 )
 
 [node name="ClosedSign" type="Sprite" parent="."]
+visible = false
 position = Vector2( -178, 2 )
 scale = Vector2( 0.539476, 0.539476 )
 texture = ExtResource( 5 )
+
+[node name="ZagmaPlaque" type="Sprite" parent="."]
+visible = false
+position = Vector2( -113.082, 89.3893 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, -180 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
