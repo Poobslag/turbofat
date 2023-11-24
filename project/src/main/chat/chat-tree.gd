@@ -34,6 +34,7 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"inside_turbo_fat": "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn",
 	
 	"lava": "res://src/main/world/environment/lava/LavaEnvironment.tscn",
+	"lava/zagma": "res://src/main/world/environment/lava/ZagmaEnvironment.tscn",
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",

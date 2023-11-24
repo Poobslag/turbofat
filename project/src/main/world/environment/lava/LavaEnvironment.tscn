@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://src/main/world/environment/lava/ZagmaMainBuilding.tscn" type="PackedScene" id=29]
 [ext_resource path="res://src/main/world/environment/lava/ZagmaTower1.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/lava/ZagmaBridge.tscn" type="PackedScene" id=31]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -617,6 +618,32 @@ position = Vector2( 6841.3, 1424.42 )
 position = Vector2( 6493.87, 1451.57 )
 
 [node name="Spawns" type="Node2D" parent="."]
+
+[node name="Carbcraft10" parent="Spawns" instance=ExtResource( 32 )]
+position = Vector2( 1444.29, 1485.94 )
+id = "carbcraft_10"
+
+[node name="Carbcraft9" parent="Spawns" instance=ExtResource( 32 )]
+position = Vector2( 1380.67, 1510.31 )
+id = "carbcraft_9"
+
+[node name="Restaurant9" parent="Spawns" instance=ExtResource( 32 )]
+position = Vector2( 340.474, 1630.49 )
+id = "restaurant_9"
+
+[node name="Restaurant10" parent="Spawns" instance=ExtResource( 32 )]
+position = Vector2( 391.264, 1588.43 )
+id = "restaurant_10"
+
+[node name="Restaurant2" parent="Spawns" instance=ExtResource( 32 )]
+position = Vector2( 548.864, 1584.95 )
+orientation = 1
+id = "restaurant_2"
+
+[node name="Restaurant3" parent="Spawns" instance=ExtResource( 32 )]
+position = Vector2( 596.484, 1634.16 )
+orientation = 1
+id = "restaurant_3"
 
 [node name="PlayerPath" type="Path2D" parent="."]
 position = Vector2( 475.371, 923.074 )

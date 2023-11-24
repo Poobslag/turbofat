@@ -22,7 +22,7 @@
 [ext_resource path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/main/world/environment/restaurant/KitchenObstacleTiler.tscn" type="PackedScene" id=46]
 
-[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+[node name="Environment2" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 26 )
 environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
@@ -89,16 +89,16 @@ tile_data = PoolIntArray( -65516, 13, 0, -65515, 13, 0, -65514, 13, 0, -65513, 1
 [node name="KitchenObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 46 )]
 
 [node name="StoolJudge1" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( -85.2307, 438.837 )
+position = Vector2( -55.1968, 438.837 )
 
 [node name="StoolJudge2" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( -35.2606, 365.657 )
+position = Vector2( -5.2267, 365.657 )
 
 [node name="StoolJudge3" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 16.0246, 293.929 )
+position = Vector2( 46.0585, 293.929 )
 
 [node name="StoolJudge4" parent="Obstacles" instance=ExtResource( 30 )]
-position = Vector2( 67.1735, 223.538 )
+position = Vector2( 97.2074, 223.538 )
 
 [node name="StoolContestant" parent="Obstacles" instance=ExtResource( 36 )]
 position = Vector2( 249.452, 341.438 )
@@ -224,8 +224,9 @@ id = "chef"
 
 [node name="Contestant" parent="Spawns" instance=ExtResource( 2 )]
 position = Vector2( 249.452, 341.438 )
+orientation = 1
 id = "contestant"
-elevation = 35.0
+elevation = 60.0
 
 [node name="Customer1" parent="Spawns" instance=ExtResource( 2 )]
 position = Vector2( 357.809, 238.166 )
@@ -248,21 +249,21 @@ id = "customer_4"
 elevation = 140.0
 
 [node name="Judge1" parent="Spawns" instance=ExtResource( 2 )]
-position = Vector2( -85.2307, 438.837 )
+position = Vector2( -55.1968, 438.837 )
 id = "judge_1"
-elevation = 140.0
+elevation = 125.0
 
 [node name="Judge2" parent="Spawns" instance=ExtResource( 2 )]
-position = Vector2( -35.2606, 365.657 )
+position = Vector2( -5.2267, 365.657 )
 id = "judge_2"
-elevation = 140.0
+elevation = 125.0
 
 [node name="Judge3" parent="Spawns" instance=ExtResource( 2 )]
-position = Vector2( 16.0246, 293.929 )
+position = Vector2( 46.0585, 293.929 )
 id = "judge_3"
-elevation = 140.0
+elevation = 125.0
 
 [node name="Judge4" parent="Spawns" instance=ExtResource( 2 )]
-position = Vector2( 67.1735, 223.538 )
+position = Vector2( 97.2074, 223.538 )
 id = "judge_4"
-elevation = 140.0
+elevation = 125.0
