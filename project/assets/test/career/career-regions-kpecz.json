@@ -1,0 +1,69 @@
+{
+  "regions": [
+    {
+      "id": "krlaa",
+      "name": "Krlaa World",
+      "start": 0,
+      "cutscene_path": "career/fake_career_kpecz/krlaa",
+      "intro_level":
+      {
+        "id": "intro_211"
+      },
+      "boss_level":
+      {
+        "id": "boss_211"
+      },
+      "levels": [
+        {
+          "id": "level_211"
+        },
+        {
+          "id": "level_212"
+        }
+      ]
+    },
+    {
+      "id": "krlbb",
+      "name": "Krlbb World",
+      "start": 10,
+      "cutscene_path": "career/fake_career_kpecz/krlbb",
+      "intro_level":
+      {
+        "id": "intro_311"
+      },
+      "boss_level":
+      {
+        "id": "boss_311"
+      },
+      "levels": [
+        {
+          "id": "level_311"
+        },
+        {
+          "id": "level_312"
+        },
+        {
+          "id": "level_313"
+        }
+      ]
+    },
+    {
+      "id": "krlcc",
+      "name": "Krlcc World",
+      "start": 20,
+      "cutscene_path": "career/fake_career_kpecz/krlcc",
+      "intro_level":
+      {
+        "id": "intro_411"
+      },
+      "levels": [
+        {
+          "id": "level_411"
+        },
+        {
+          "id": "level_412"
+        }
+      ]
+    }
+  ]
+}

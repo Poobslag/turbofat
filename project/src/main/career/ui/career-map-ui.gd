@@ -18,10 +18,10 @@ func _force_cutscene() -> bool:
 		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
 	if chat_key_pair.empty():
 		# no region-specific cutscene available; find a general cutscene
-		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([Careers.GENERAL_CHAT_KEY_ROOT])
+		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerCutsceneLibrary.general_chat_key_root])
 	if chat_key_pair.empty():
 		# no general cutscene available; make one available
-		var chat_keys := CareerCutsceneLibrary.chat_keys([Careers.GENERAL_CHAT_KEY_ROOT])
+		var chat_keys := CareerCutsceneLibrary.chat_keys([CareerCutsceneLibrary.general_chat_key_root])
 		var min_chat_age := ChatHistory.CHAT_AGE_NEVER
 		var newest_chat_key := ""
 		for chat_key in chat_keys:
@@ -30,7 +30,7 @@ func _force_cutscene() -> bool:
 				min_chat_age = chat_age
 				newest_chat_key = chat_key
 		PlayerData.chat_history.delete_history_item(newest_chat_key)
-		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([Careers.GENERAL_CHAT_KEY_ROOT])
+		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerCutsceneLibrary.general_chat_key_root])
 	
 	if chat_key_pair:
 		# reload the CareerMap scene

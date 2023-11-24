@@ -8,9 +8,6 @@ enum ShowProgress {
 	ANIMATED, # Animate the progress board to show the player advancing
 }
 
-## Chat key root for non-region-specific cutscenes
-const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
-
 ## Number of days worth of records which are stored.
 const MAX_DAILY_HISTORY := 40
 
