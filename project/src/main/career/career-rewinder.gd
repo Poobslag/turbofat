@@ -9,6 +9,9 @@ const CHAPTER_CHEATS := [
 	"chap03",
 	"chap04",
 	"chap05",
+	"chap06",
+	"chap07",
+	"chap08",
 ]
 
 export (NodePath) var cheat_code_detector_path: NodePath
