@@ -48,16 +48,33 @@ func _intro_chat_key_pair() -> ChatKeyPair:
 
 ## Returns a ChatKeyPair with any unplayed boss cutscenes for the current region.
 ##
-## If the region does not have boss  cutscenes or the player has already viewed them, this returns an empty
+## If the region does not have boss cutscenes or the player has already viewed them, this returns an empty
 ## ChatKeyPair.
 func _boss_chat_key_pair() -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 	
 	var region := PlayerData.career.current_region()
 	var preroll_key := region.get_boss_level_preroll_chat_key()
+	var retry_preroll_key := region.get_boss_level_retry_preroll_chat_key()
+	var reretry_preroll_key := region.get_boss_level_reretry_preroll_chat_key()
 	var postroll_key := region.get_boss_level_postroll_chat_key()
-	if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
+	
+	if result.preroll.empty() \
+			and ChatLibrary.chat_exists(preroll_key) \
+			and not PlayerData.chat_history.is_chat_finished(preroll_key):
+		# if the preroll is unplayed, play it
 		result.preroll = preroll_key
+	if result.preroll.empty() \
+			and ChatLibrary.chat_exists(retry_preroll_key) \
+			and not PlayerData.chat_history.is_chat_finished(retry_preroll_key):
+		# if the retry preroll is unplayed, play it
+		result.preroll = retry_preroll_key
+	if result.preroll.empty() \
+			and ChatLibrary.chat_exists(reretry_preroll_key):
+		# Play the reretry preroll even if they've seen it before. In Chocolava Canyon, this includes advice to enable
+		# cheats and even if it's slightly patronizing, it's important the player sees this message more than once.
+		result.preroll = reretry_preroll_key
+	
 	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
 		result.postroll = postroll_key
 	if not result.empty():

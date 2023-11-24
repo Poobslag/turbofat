@@ -16,6 +16,14 @@ const INTRO_LEVEL_CHAT_KEY_NAME := "intro_level"
 ## Chat key containing each region's boss level cutscene, which plays before/after the boss level
 const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
 
+## Chat key containing each region's boss level retry cutscene, which plays before/after the second attempt at the boss
+## level
+const BOSS_LEVEL_RETRY_CHAT_KEY_NAME := "boss_level_retry"
+
+## Chat key containing each region's boss level cutscene, which plays before/after the third, fourth, fifth, etc...
+## attempt at the boss level
+const BOSS_LEVEL_RERETRY_CHAT_KEY_NAME := "boss_level_reretry"
+
 ## Chat key containing each region's epilogue cutscene, which plays after all other cutscenes/levels
 const EPILOGUE_CHAT_KEY_NAME := "epilogue"
 
@@ -129,6 +137,14 @@ func get_intro_level_postroll_chat_key() -> String:
 
 func get_boss_level_preroll_chat_key() -> String:
 	return "%s/%s" % [cutscene_path, BOSS_LEVEL_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_boss_level_retry_preroll_chat_key() -> String:
+	return "%s/%s" % [cutscene_path, BOSS_LEVEL_RETRY_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_boss_level_reretry_preroll_chat_key() -> String:
+	return "%s/%s" % [cutscene_path, BOSS_LEVEL_RERETRY_CHAT_KEY_NAME] if cutscene_path else ""
 
 
 func get_boss_level_postroll_chat_key() -> String:
