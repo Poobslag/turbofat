@@ -29,7 +29,7 @@
 [ext_resource path="res://src/main/world/environment/lava/VolcanoSmall.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=28]
 [ext_resource path="res://src/main/world/environment/lava/ZagmaMainBuilding.tscn" type="PackedScene" id=29]
-[ext_resource path="res://src/main/world/environment/lava/ZagmaTower1.tscn" type="PackedScene" id=30]
+[ext_resource path="res://src/main/world/environment/lava/ZagmaTower.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/lava/ZagmaBridge.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=32]
 
