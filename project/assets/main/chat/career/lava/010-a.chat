@@ -13,7 +13,7 @@ p1: ^__^ Dusty, is that you? From Lemony Thickets? ...You're an awfully long way
 [have_not_met]
 p1: /._. Have we met? You look oddly familiar...
  (start_if not chat_finished chat/career/lemon/010_b_end)
-d: You don't remember? ...I was one of the squirrels you fed at the start of your journey!
+d: You don't remember? ...I was one of the squirrels you fed when you were just getting started!
 d: <_< Although now that you mention it, that does feel like eons ago...
 p1: ^__^ Oh, right! You're Dusty, aren't you? From Lemony Thickets. ...You're an awfully long way from your tree!
 [yes_well]
