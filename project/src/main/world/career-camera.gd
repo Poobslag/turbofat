@@ -5,7 +5,7 @@ extends Camera2D
 const CAMERA_BOUNDARY := 240
 
 ## how fast the camera moves when being moved manually with a cheat code
-const MANUAL_CAMERA_SPEED := 3000
+const MANUAL_CAMERA_SPEED := 750
 
 ## period for offset/zoom drift, in seconds
 var offset_h_drift_period := 6.450 * rand_range(0.666, 1.333)
@@ -30,8 +30,11 @@ func _physics_process(delta: float) -> void:
 	if manual_mode:
 		# if the camera is being moved manually with a cheat code, adjust its position
 		var dir := Utils.ui_pressed_dir()
+		var distance := delta * MANUAL_CAMERA_SPEED
+		if Input.is_key_pressed(KEY_SHIFT):
+			distance *= 4
 		if dir:
-			position += dir * delta * MANUAL_CAMERA_SPEED
+			position += dir * distance
 
 
 ## Pans and zooms the camera to encompass the specified creatures
