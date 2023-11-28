@@ -14,7 +14,7 @@ shader_param/edge_fix_factor = 1.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 100, 52 )
 
-[node name="ZagmaTower1" type="KinematicBody2D"]
+[node name="ZagmaTower" type="KinematicBody2D"]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

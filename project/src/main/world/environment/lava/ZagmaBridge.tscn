@@ -15,7 +15,6 @@ shader_param/edge_fix_factor = 1.0
 extents = Vector2( 100, 52 )
 
 [node name="ZagmaBridge" type="KinematicBody2D"]
-position = Vector2( 4190.9, 2119.11 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
