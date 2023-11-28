@@ -16,7 +16,7 @@ d: ._. Why with just a few flicks on this touch screen, a motorized vehicle can 
 d: ^o^ About eight to twelve minutes. Oh, my driver's name is Logan!
 [internet] You didn't invent the internet.
 [cell_phones] You didn't invent cell phones.
-[uber] You didn't invent uber.
+[taxi] You didn't invent the digital taxi.
 [nuts] You're nuts!
 
 [internet]
@@ -33,8 +33,8 @@ d: -o- ...Didn't I?
 p1: ... ...
  (d exits)
 
-[uber]
-p1: -_- Ha ha. Nice try, Dusty. You didn't invent Uber.
+[taxi]
+p1: -_- Ha ha. Nice try, Dusty. You didn't invent the digital taxi.
 d: -o- ...Didn't I?
  (d faces left)
 p1: ... ...

@@ -42,16 +42,16 @@ p1: ^O^ Ha ha, nice try...
 s1: ...
 
 [point_me]
-p1: ^__^/ Point me in the right direction? ...Because I figured I'd blindly head East again.
+p1: ^__^/ Point me in the right direction? ...Because I figured I'd blindly head east again.
  (p1 faces right)
-s1: -__- "Blindly head East again!?" Hmph don't be so naive. You can't wandering in a random direction and expect to find anything.
-s1: ._./ ...But... ...Yes, East is fine.
+s1: -__- "Blindly head east again!?" Hmph don't be so naive. You can't wandering in a random direction and expect to find anything.
+s1: ._./ ...But... ...Yes, east is fine.
 p1: ^o^ Lucky guess~
  (p1 faces left)
 
 [i_can_do_it]
-p1: ^O^ Oh I don't need your help! I'll just blindly head East again.
-s1: -__- "Blindly head East again!?" Hmph don't be so naive. You can't wandering in a random direction and expect to find anything.
-s1: ._./ ...But... ...Yes, East is fine.
+p1: ^O^ Oh I don't need your help! I'll just blindly head east again.
+s1: -__- "Blindly head east again!?" Hmph don't be so naive. You can't wandering in a random direction and expect to find anything.
+s1: ._./ ...But... ...Yes, east is fine.
  (p1 faces right)
 p1: ^o^ Lucky guess~
