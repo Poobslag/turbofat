@@ -455,6 +455,7 @@
       "start": 80,
       "icon": "volcano",
       "overworld_environment": "lava",
+      "region_button": "lava",
       "piece_speed": "6-9",
       "cutscene_path": "chat/career/lava",
       "boss_level": {

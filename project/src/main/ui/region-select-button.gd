@@ -17,6 +17,7 @@ enum Type {
 	POKI,
 	SAND,
 	MARSH,
+	LAVA,
 }
 
 ## text to show at the top of the button, like 'Merrymellow Marsh'
@@ -52,6 +53,8 @@ var _texture_pairs_by_type := {
 			preload("res://assets/main/career/ui/region-sand-off.png")],
 	Type.MARSH: [preload("res://assets/main/career/ui/region-marsh.png"),
 			preload("res://assets/main/career/ui/region-marsh-off.png")],
+	Type.LAVA: [preload("res://assets/main/career/ui/region-lava.png"),
+			preload("res://assets/main/career/ui/region-lava-off.png")],
 }
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
