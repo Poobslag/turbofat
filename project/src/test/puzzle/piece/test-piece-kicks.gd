@@ -94,4 +94,5 @@ func _kick_piece() -> Vector2:
 		result = FAILED_KICK
 	else:
 		result = piece.target_pos - piece.pos
+	print("97: %s->%s %s" % [_from_piece.orientation, _to_piece.orientation, _to_piece.pos - _from_piece.pos])
 	return result

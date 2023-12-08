@@ -1,6 +1,7 @@
 -new pieces
  -c piece
   -shape (3 pieces)
+  -color data
   -piece kicks
  -k piece
   -shape (6 pieces)
