@@ -1,0 +1,50 @@
+-new pieces
+ -c piece
+  -shape (3 pieces)
+  -piece kicks
+ -k piece
+  -shape (6 pieces)
+  -piece kicks (V kicks)
+-cheese piece cosmetics
+ -draw cosmetics
+ -add cosmetics to sprite sheet
+  -blocks-corners-onion.png
+  -blocks-corners.png
+  -blocks-diagram-boxes.png
+  -blocks-diagram-corners.png
+  -blocks-diagram.png
+  -blocks-onion.png
+  -blocks-shadows.png
+  -blocks-veggie-corners.png
+  -blocks-veggie-cube-shadows.png
+  -blocks-veggie-cubes-onion.png
+  -blocks-veggie-cubes.png
+  -blocks-veggies.png
+  -blocks.png
+ -change sprite sheet references / constants
+-draw cheese snack block, cake block cosmetics
+ -'kc', 'kk' snack block (just cheese)
+ -'ccpt', 'cju', 'kpt' cake block (cheese + fruit)
+ -'ccqt', 'clu', 'kqt' cake block (cheese + chocolate)
+ -'cctu' cake block (cheese + bread)
+  -blocks-boxes-onion.png
+  -blocks-boxes-shadows.png
+  -blocks-boxes.png
+-add new snack blocks/cake blocks to game
+ -level editor
+ -boxbuilder
+ -box types
+-update 'fruit/food spraying logic' to use yellow particles for cheese
+ -goo when making a snack box
+ -crumbs when eating
+ -crumbs when shark eats a piece
+ -crumbs when asparagus skewers a cake
+-draw cheese snacks.
+ -'just cheese' x2 (cheese cube, cheese puff)
+ -'cheese + fruit' (jumbo cheese + fruit skewers)
+ -'cheese + chocolate' (chocolate snack cake filled with cheese)
+ -'cheese + bread' (cheese pie)
+-add new snacks to the game
+ -add to sprite sheet
+ -correlate with boxes
+
