@@ -3,10 +3,10 @@ extends Node
 ## how they 'kick' when they're obstructed from rotating.
 
 const KICKS_C := {
-		01: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2(-1, -1)],
-		12: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  1)],
-		23: [Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 1,  1)],
-		30: [Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2(-1, -1)],
+		01: [Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 1,  1)],
+		12: [Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2(-1, -1)],
+		23: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2(-1, -1)],
+		30: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  1)],
 	}
 
 ## Piece kicks for a 2 block domino piece, featured in Dr. Mario and Puyo Puyo
@@ -107,17 +107,17 @@ const KICKS_NONE := {}
 var piece_c := PieceType.new("c",
 		# shape data
 		[
-			[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1)],
-			[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
 			[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1)],
 			[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1)],
+			[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
 		],
 		# color data
 		[
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
+			[Vector2( 2, 3), Vector2( 9, 3), Vector2( 4, 3)],
+			[Vector2(10, 3), Vector2( 4, 3), Vector2( 1, 3)],
+			[Vector2( 8, 3), Vector2( 6, 3), Vector2( 1, 3)],
+			[Vector2( 2, 3), Vector2( 8, 3), Vector2( 5, 3)],
 		],
 		KICKS_C
 	)
@@ -187,10 +187,10 @@ var piece_k := PieceType.new("k",
 		],
 		# color data
 		[
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
-			[Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3), Vector2( 0, 3)],
+			[Vector2( 8, 3), Vector2(14, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2( 7, 3), Vector2( 1, 3)],
+			[Vector2( 2, 3), Vector2(10, 3), Vector2( 7, 3), Vector2( 8, 3), Vector2(13, 3), Vector2( 5, 3)],
+			[Vector2( 2, 3), Vector2(11, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2(13, 3), Vector2( 4, 3)],
+			[Vector2(10, 3), Vector2(14, 3), Vector2( 4, 3), Vector2(11, 3), Vector2( 5, 3), Vector2( 1, 3)],
 		],
 		KICKS_V
 	)
