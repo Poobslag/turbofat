@@ -14,6 +14,7 @@ const FOOD_LIGHT_COLORS := [
 	Color("b0ff5d68"), # pink
 	Color("c0ffc357"), # bread
 	Color("a0fff69b"), # white
+	Color("a0fff69b"), # cheese
 ]
 
 ## Rainbows are modulated white, because the tiles themselves have a color to them.

@@ -418,7 +418,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 ##
 ## The resulting array can be any of the following:
 ## 	1. an empty array, [], for a row of vegetables or disjointed pieces
-## 	2. [BROWN], [PINK], [BREAD] or [WHITE] if the row has a snack box
+## 	2. [BROWN], [PINK], [BREAD], [WHITE] or [CHEESE] if the row has a snack box
 ## 	3. [CAKE] if the row has a cake box
 ## 	4. an array with multiple items, if the row has many boxes
 ##
