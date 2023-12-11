@@ -1,4 +1,4 @@
--new pieces
+*new pieces
  *c piece
   *shape (3 pieces)
   *color data
@@ -9,7 +9,7 @@
 -cheese piece cosmetics
  *draw cosmetics
  *'kc', 'kk' snack block (just cheese)
- -add cosmetics to sprite sheet
+ *add cosmetics to sprite sheet
   *blocks-corners-onion.png
   *blocks-corners.png
   *blocks-diagram-boxes.png
@@ -27,6 +27,7 @@
   *blocks-boxes-shadows.png
   *blocks-boxes.png
  -change sprite sheet references / constants
+  -change levels with preexisting boxes, pickups
 -draw cheese snack block, cake block cosmetics
   -frosting
   -frosting shadow

@@ -68,6 +68,10 @@ func test_load_4373_data() -> void:
 	assert_eq(settings.timers.get_timer_interval(1), 7.2)
 
 
+func test_load_49db_data() -> void:
+	pass
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
