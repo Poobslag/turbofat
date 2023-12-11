@@ -7,27 +7,33 @@
   *shape (6 pieces)
   *piece kicks (V kicks)
 -cheese piece cosmetics
- -draw cosmetics
+ *draw cosmetics
+ *'kc', 'kk' snack block (just cheese)
  -add cosmetics to sprite sheet
-  -blocks-corners-onion.png
-  -blocks-corners.png
-  -blocks-diagram-boxes.png
-  -blocks-diagram-corners.png
-  -blocks-diagram.png
-  -blocks-onion.png
-  -blocks-shadows.png
-  -blocks-veggie-corners.png
-  -blocks-veggie-cube-shadows.png
-  -blocks-veggie-cubes-onion.png
-  -blocks-veggie-cubes.png
-  -blocks-veggies.png
-  -blocks.png
+  *blocks-corners-onion.png
+  *blocks-corners.png
+  *blocks-diagram-boxes.png
+  *blocks-diagram-corners.png
+  *blocks-diagram.png
+  *blocks-onion.png
+  *blocks-shadows.png
+  *blocks-veggie-corners.png
+  *blocks-veggie-cube-shadows.png
+  *blocks-veggie-cubes-onion.png
+  *blocks-veggie-cubes.png
+  *blocks-veggies.png
+  *blocks.png
+  *blocks-boxes-onion.png
+  *blocks-boxes-shadows.png
+  *blocks-boxes.png
  -change sprite sheet references / constants
 -draw cheese snack block, cake block cosmetics
- -'kc', 'kk' snack block (just cheese)
+  -frosting
+  -frosting shadow
  -'ccpt', 'cju', 'kpt' cake block (cheese + fruit)
  -'ccqt', 'clu', 'kqt' cake block (cheese + chocolate)
  -'cctu' cake block (cheese + bread)
+ -add cosmetics to sprite sheet
   -blocks-boxes-onion.png
   -blocks-boxes-shadows.png
   -blocks-boxes.png
