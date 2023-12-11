@@ -29,15 +29,15 @@
  *change sprite sheet references / constants
   *change levels with preexisting boxes, pickups
   *fix sprite sheet boundaries
- -regression test
-  -PuzzleDemo
+ *regression test
+  *PuzzleDemo
   *snacks
   *cakes
   *foods
   *cheese cake box has derped out shadows
--draw cheese snack block, cake block cosmetics
-  -frosting
-  -frosting shadow
+*draw cheese snack block, cake block cosmetics
+  *frosting
+  *frosting shadow
  -'ccpt', 'cju', 'kpt' cake block (cheese + fruit)
  -'ccqt', 'clu', 'kqt' cake block (cheese + chocolate)
  -'cctu' cake block (cheese + bread)
