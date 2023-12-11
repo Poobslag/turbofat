@@ -21,6 +21,7 @@ var _upgrade_methods := {}
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_49db", "49db", "4c5c")
 	_add_upgrade_method("_upgrade_4373", "4373", "49db")
 	_add_upgrade_method("_upgrade_39e5", "39e5", "4373")
 	_add_upgrade_method("_upgrade_392b", "392b", "39e5")
@@ -93,6 +94,33 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+func _upgrade_49db(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
+	match old_key:
+		"tiles":
+			var new_value: Dictionary = old_json[old_key].duplicate(true)
+			for block_bunch in new_value.values():
+				for block_obj in block_bunch:
+					_upgrade_block_obj_49db(block_obj)
+			new_json[old_key] = new_value
+		_:
+			new_json[old_key] = old_json[old_key]
+	return new_json
+
+
+## Increases block bunch autotile coordinates.
+##
+## Version 4c5c added cheese pieces to row 5 of the sprite sheet. Any autotile coordinates at or below row 5 need to
+## be incremented.
+func _upgrade_block_obj_49db(block_dict: Dictionary) -> void:
+	if block_dict.has("tile"):
+		var pos_array: Array = block_dict["tile"].split(" ")
+		pos_array[2] = int(pos_array[2]) + 1
+		block_dict["tile"] = PoolStringArray(pos_array).join(" ")
+	if block_dict.has("pickup"):
+		var pickup_int := int(block_dict["pickup"])
+		block_dict["pickup"] = String(pickup_int + 1)
 
 
 func _upgrade_4373(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:

@@ -27,7 +27,7 @@
   *blocks-boxes-shadows.png
   *blocks-boxes.png
  -change sprite sheet references / constants
-  -change levels with preexisting boxes, pickups
+  *change levels with preexisting boxes, pickups
 -draw cheese snack block, cake block cosmetics
   -frosting
   -frosting shadow
@@ -55,4 +55,6 @@
 -add new snacks to the game
  -add to sprite sheet
  -correlate with boxes
+
+-upgrade all levels
 
