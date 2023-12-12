@@ -38,6 +38,7 @@
 *draw cheese snack block, cake block cosmetics
   *frosting
   *frosting shadow
+ -'kc', 'kk' snack block (change to cheese)
  -'ccpt', 'cju', 'kpt' cake block (cheese + fruit)
  -'ccqt', 'clu', 'kqt' cake block (cheese + chocolate)
  -'cctu' cake block (cheese + bread)
@@ -52,7 +53,7 @@
 -verify 3x5s with two 'C' blocks are processed correctly, even though they have a snack box too
 -verify nothing happens if you put two 'C' blocks next to a cake box?
 -update 'fruit/food spraying logic' to use yellow particles for cheese
- -goo when making a snack box
+ *goo when making a snack box
  -crumbs when eating
  -crumbs when shark eats a piece
  -crumbs when asparagus skewers a cake
