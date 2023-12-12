@@ -38,25 +38,26 @@
 *draw cheese snack block, cake block cosmetics
   *frosting
   *frosting shadow
- -'kc', 'kk' snack block (change to cheese)
- -'ccpt', 'cju', 'kpt' cake block (cheese + fruit)
- -'ccqt', 'clu', 'kqt' cake block (cheese + chocolate)
- -'cctu' cake block (cheese + bread)
- -add cosmetics to sprite sheet
-  -blocks-boxes-onion.png
-  -blocks-boxes-shadows.png
-  -blocks-boxes.png
--add new snack blocks/cake blocks to game
- -level editor
+ *'kc', 'kk' snack block (change to cheese)
+ *'ccpt', 'cju', 'kpt' cake block (cheese + fruit)
+ *'ccqt', 'clu', 'kqt' cake block (cheese + chocolate)
+ *'cctu' cake block (cheese + bread)
+ *add cosmetics to sprite sheet
+  *blocks-boxes-onion.png
+  *blocks-boxes-shadows.png
+  *blocks-boxes.png
+*change cheese color
+*add new snack blocks/cake blocks to game
+ *level editor
  *boxbuilder
- -box types
--verify 3x5s with two 'C' blocks are processed correctly, even though they have a snack box too
--verify nothing happens if you put two 'C' blocks next to a cake box?
+ *box types
+*verify 3x5s with two 'C' blocks are processed correctly, even though they have a snack box too
+*verify nothing happens if you put two 'C' blocks next to a cake box?
 -update 'fruit/food spraying logic' to use yellow particles for cheese
  *goo when making a snack box
- -crumbs when eating
- -crumbs when shark eats a piece
- -crumbs when asparagus skewers a cake
+ *crumbs when eating
+ *crumbs when shark eats a piece
+ *crumbs when asparagus skewers a cake
 -draw cheese snacks.
  -'just cheese' x2 (cheese cube, cheese puff)
  -'cheese + fruit' (jumbo cheese + fruit skewers)
@@ -65,10 +66,10 @@
 -add new snacks to the game
  -add to sprite sheet
  -correlate with boxes
--regression test
- -puzzle-demo
-  -pickups
-  -making different boxes (cheese, cake)
+*regression test
+ *puzzle-demo
+  *pickups
+  *making different boxes (cheese, cake)
 
 -upgrade all levels
 

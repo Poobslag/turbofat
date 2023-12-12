@@ -54,7 +54,7 @@ const COLOR_BROWN := Color("a4470b")
 const COLOR_PINK := Color("ff5d68")
 const COLOR_BREAD := Color("ffa357")
 const COLOR_WHITE := Color("fff6eb")
-const COLOR_CHEESE := Color("f2debb")
+const COLOR_CHEESE := Color("fbc457")
 const COLORS_ALL := [COLOR_BROWN, COLOR_PINK, COLOR_BREAD, COLOR_WHITE, COLOR_CHEESE]
 
 ## Food colors for veggie crumbs and goop, for levels which use the 'veggie' tileset.
