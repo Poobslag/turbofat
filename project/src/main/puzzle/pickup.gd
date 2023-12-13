@@ -25,6 +25,7 @@ func _ready() -> void:
 	_seed.visible = true
 	_star.visible = false
 	_food_item.visible = false
+	_food_item.base_scale = Vector2(0.5, 0.5)
 	_refresh_appearance()
 
 
