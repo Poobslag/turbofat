@@ -72,15 +72,18 @@ func test_load_49db_data() -> void:
 	load_level("level-49db")
 	
 	assert_eq_deep({
-		Vector2(0, 19): 1
+		Vector2(0, 18): 1,
+		Vector2(0, 19): 1,
 	}, settings.tiles.blocks_start().block_tiles)
 	
 	assert_eq_deep({
-		Vector2(0, 19): Vector2(0, 5)
+		Vector2(0, 18): Vector2(0, 3),
+		Vector2(0, 19): Vector2(0, 5),
 	}, settings.tiles.blocks_start().block_autotile_coords)
 	
 	assert_eq_deep({
-		Vector2(1, 19): 5
+		Vector2(1, 18): 3,
+		Vector2(1, 19): 5,
 	}, settings.tiles.blocks_start().pickups)
 
 

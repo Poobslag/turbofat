@@ -116,11 +116,14 @@ func _upgrade_49db(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 func _upgrade_block_obj_49db(block_dict: Dictionary) -> void:
 	if block_dict.has("tile"):
 		var pos_array: Array = block_dict["tile"].split(" ")
-		pos_array[2] = int(pos_array[2]) + 1
+		if int(pos_array[2]) >= 4:
+			pos_array[2] = int(pos_array[2]) + 1
 		block_dict["tile"] = PoolStringArray(pos_array).join(" ")
 	if block_dict.has("pickup"):
 		var pickup_int := int(block_dict["pickup"])
-		block_dict["pickup"] = String(pickup_int + 1)
+		if pickup_int >= 4:
+			pickup_int += 1
+		block_dict["pickup"] = String(pickup_int)
 
 
 func _upgrade_4373(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
