@@ -19,31 +19,32 @@ signal box_built(rect, box_type)
 ## key: (String) Ingredient string describing the box's size and color
 ## value: (int) Enum from Foods.BoxType for the resulting snack/cake
 const BOX_TYPES_BY_INGREDIENTS := {
-	# 3x3
+	# standard recipes (jlopqtuv)
+	# (3x3)
 	"s0": Foods.BoxType.BROWN,
 	"s1": Foods.BoxType.PINK,
 	"s2": Foods.BoxType.BREAD,
 	"s3": Foods.BoxType.WHITE,
-	
-	# 4x3
+	# (4x3)
 	"s013": Foods.BoxType.CAKE_JLO,
 	"s02": Foods.BoxType.CAKE_LTT,
 	"s03": Foods.BoxType.CAKE_LLO,
 	"s12": Foods.BoxType.CAKE_JTT,
 	"s13": Foods.BoxType.CAKE_JJO,
-	
-	# 5x3
+	# (5x3)
 	"l013": Foods.BoxType.CAKE_PQV,
 	"l023": Foods.BoxType.CAKE_QUV,
 	"l123": Foods.BoxType.CAKE_PUV,
 	
-	# nonstandard recipes
+	# additional nonstandard recipes with half-eaten pieces, dominos or other pieces
+	# (3x3, 4x3)
 	"s01": Foods.BoxType.CAKE_JLO,
 	"s012": Foods.BoxType.CAKE_JLO,
 	"s0123": Foods.BoxType.CAKE_JLO,
 	"s023": Foods.BoxType.CAKE_LTT,
 	"s123": Foods.BoxType.CAKE_JTT,
 	"s23": Foods.BoxType.CAKE_JLO,
+	# (5x3)
 	"l0": Foods.BoxType.BROWN,
 	"l01": Foods.BoxType.CAKE_PQV,
 	"l012": Foods.BoxType.CAKE_PQV,

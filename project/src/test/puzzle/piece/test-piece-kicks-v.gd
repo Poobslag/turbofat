@@ -208,7 +208,7 @@ func test_climb_r0_1() -> void:
 	]
 	to_grid = [
 		" v  ",
-		" v  ",
+		":v  ",
 		" vvv",
 		": : ",
 	]
@@ -385,7 +385,7 @@ func test_climb_2l_1() -> void:
 	]
 	to_grid = [
 		"  v ",
-		"  v ",
+		"  v:",
 		"vvv ",
 		" : :",
 	]
