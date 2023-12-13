@@ -17,7 +17,12 @@ onready var _level_json := $HBoxContainer/SideButtons/Json
 
 func _ready() -> void:
 	var level_text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(DEFAULT_LEVEL_ID))
-	_level_json.text = level_text
+	
+	# immediately parse and upgrade the level; LevelEditor will behave strangely with older level formats
+	var settings := LevelSettings.new()
+	settings.load_from_text(DEFAULT_LEVEL_ID, level_text)
+	_level_json.text = Utils.print_json(settings.to_json_dict())
+	
 	_level_json.reset_editors()
 	level_id_label.text = DEFAULT_LEVEL_ID
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
@@ -30,7 +35,12 @@ func save_level(path: String) -> void:
 
 func load_level(path: String) -> void:
 	var level_text := FileUtils.get_file_as_text(path)
-	_level_json.text = level_text
+	
+	# immediately parse and upgrade the level; LevelEditor will behave strangely with older level formats
+	var settings := LevelSettings.new()
+	settings.load_from_text(LevelSettings.level_key_from_path(path), level_text)
+	_level_json.text = Utils.print_json(settings.to_json_dict())
+	
 	_level_json.reset_editors()
 	level_id_label.text = LevelSettings.level_key_from_path(path)
 
