@@ -36,27 +36,64 @@ const BOX_TYPES_BY_INGREDIENTS := {
 	"l023": Foods.BoxType.CAKE_QUV,
 	"l123": Foods.BoxType.CAKE_PUV,
 	
+	# additional cheese recipes (cjklopqv)
+	# (3x3)
+	"s4": Foods.BoxType.CHEESE,
+	# (4x3)
+	"s024": Foods.BoxType.CAKE_CLU,
+	"s124": Foods.BoxType.CAKE_CJU,
+	"s24": Foods.BoxType.CAKE_CTU,
+	# (5x3)
+	"l024": Foods.BoxType.CAKE_CLU,
+	"l04": Foods.BoxType.CAKE_CLU,
+	"l14": Foods.BoxType.CAKE_CJU,
+	"l124": Foods.BoxType.CAKE_CJU,
+	"l24": Foods.BoxType.CAKE_CTU,
+	"l34": Foods.BoxType.CAKE_CTU,
+	
 	# additional nonstandard recipes with half-eaten pieces, dominos or other pieces
 	# (3x3, 4x3)
 	"s01": Foods.BoxType.CAKE_JLO,
 	"s012": Foods.BoxType.CAKE_JLO,
 	"s0123": Foods.BoxType.CAKE_JLO,
+	"s01234": Foods.BoxType.CAKE_CTU,
+	"s0124": Foods.BoxType.CAKE_CTU,
+	"s0134": Foods.BoxType.CAKE_CTU,
+	"s014": Foods.BoxType.CAKE_CTU,
 	"s023": Foods.BoxType.CAKE_LTT,
+	"s0234": Foods.BoxType.CAKE_CLU,
+	"s034": Foods.BoxType.CAKE_CLU,
+	"s04": Foods.BoxType.CAKE_CLU,
 	"s123": Foods.BoxType.CAKE_JTT,
+	"s1234": Foods.BoxType.CAKE_CJU,
+	"s134": Foods.BoxType.CAKE_CJU,
+	"s14": Foods.BoxType.CAKE_CJU,
 	"s23": Foods.BoxType.CAKE_JLO,
+	"s234": Foods.BoxType.CAKE_CTU,
+	"s34": Foods.BoxType.CAKE_CTU,
 	# (5x3)
 	"l0": Foods.BoxType.BROWN,
 	"l01": Foods.BoxType.CAKE_PQV,
 	"l012": Foods.BoxType.CAKE_PQV,
 	"l0123": Foods.BoxType.CAKE_PQV,
+	"l01234": Foods.BoxType.CAKE_CTU,
+	"l0124": Foods.BoxType.CAKE_CTU,
+	"l0134": Foods.BoxType.CAKE_CTU,
+	"l014": Foods.BoxType.CAKE_CTU,
 	"l02": Foods.BoxType.CAKE_QUV,
+	"l0234": Foods.BoxType.CAKE_CLU,
 	"l03": Foods.BoxType.CAKE_QUV,
+	"l034": Foods.BoxType.CAKE_CLU,
 	"l1": Foods.BoxType.PINK,
 	"l12": Foods.BoxType.CAKE_PUV,
+	"l1234": Foods.BoxType.CAKE_CJU,
 	"l13": Foods.BoxType.CAKE_PUV,
+	"l134": Foods.BoxType.CAKE_CJU,
 	"l2": Foods.BoxType.BREAD,
 	"l23": Foods.BoxType.CAKE_PQV,
+	"l234": Foods.BoxType.CAKE_CTU,
 	"l3": Foods.BoxType.WHITE,
+	"l4": Foods.BoxType.CHEESE,
 }
 
 export (NodePath) var tile_map_path: NodePath

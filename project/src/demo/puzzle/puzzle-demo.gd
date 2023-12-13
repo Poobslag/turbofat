@@ -2,7 +2,7 @@ extends Node
 ## Shows off the visual effects for the puzzle.
 ##
 ## Keys:
-## 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
+## 	[A,S,D,F,C,G]: Change the box color to brown, pink, bread, white, cheese, cake
 ## 	[H]: Change the cake box variation used to make cake boxes
 ## 	[J]: Generate a food item
 ## 	[K]: Cycle to the next food item
@@ -52,11 +52,12 @@ func _input(event: InputEvent) -> void:
 		KEY_S: _box_type = Foods.BoxType.PINK
 		KEY_D: _box_type = Foods.BoxType.BREAD
 		KEY_F: _box_type = Foods.BoxType.WHITE
+		KEY_C: _box_type = Foods.BoxType.CHEESE
 		
 		KEY_G: _box_type = _cake_box_type
 		KEY_H:
 			_cake_box_type = wrapi(_cake_box_type + 1,
-					Foods.BoxType.CAKE_JJO, Foods.BoxType.CAKE_QUV)
+					Foods.BoxType.CAKE_JJO, Foods.BoxType.CAKE_CTU)
 			_box_type = _cake_box_type
 		
 		KEY_U: _clear_line(3)
@@ -92,7 +93,7 @@ func _clear_line(cleared_line: int) -> void:
 
 func _add_pickups() -> void:
 	var cells := []
-	for y in range(PuzzleTileMap.ROW_COUNT - 5, PuzzleTileMap.ROW_COUNT):
+	for y in range(PuzzleTileMap.ROW_COUNT - 6, PuzzleTileMap.ROW_COUNT):
 		for x in range(PuzzleTileMap.COL_COUNT):
 			cells.append(Vector2(x, y))
 	
@@ -102,7 +103,8 @@ func _add_pickups() -> void:
 			Foods.BoxType.PINK,
 			Foods.BoxType.BREAD,
 			Foods.BoxType.WHITE,
+			Foods.BoxType.CHEESE,
 			Foods.BoxType.CAKE_JLO,
-		][int(cell.y) % 5]
+		][int(cell.y) % 6]
 		if $Puzzle/Fg/Playfield.tile_map.is_cell_empty(cell):
 			$Puzzle/Fg/Playfield.pickups.set_pickup(cell, box_type)

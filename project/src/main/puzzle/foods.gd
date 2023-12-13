@@ -7,6 +7,7 @@ enum BoxType {
 	PINK,
 	BREAD,
 	WHITE,
+	CHEESE,
 	CAKE_JJO,
 	CAKE_JLO,
 	CAKE_JTT,
@@ -15,6 +16,9 @@ enum BoxType {
 	CAKE_PQV,
 	CAKE_PUV,
 	CAKE_QUV,
+	CAKE_CJU,
+	CAKE_CLU,
+	CAKE_CTU,
 }
 
 ## Different food varieties.
@@ -29,6 +33,8 @@ enum FoodType {
 	BREAD_1,
 	WHITE_0,
 	WHITE_1,
+	CHEESE_0,
+	CHEESE_1,
 	CAKE_JJO,
 	CAKE_JLO,
 	CAKE_JTT,
@@ -37,6 +43,9 @@ enum FoodType {
 	CAKE_PQV,
 	CAKE_PUV,
 	CAKE_QUV,
+	CAKE_CJU,
+	CAKE_CLU,
+	CAKE_CTU,
 }
 
 ## Food colors for food crumbs and goop.
@@ -45,14 +54,16 @@ const COLOR_BROWN := Color("a4470b")
 const COLOR_PINK := Color("ff5d68")
 const COLOR_BREAD := Color("ffa357")
 const COLOR_WHITE := Color("fff6eb")
-const COLORS_ALL := [COLOR_BROWN, COLOR_PINK, COLOR_BREAD, COLOR_WHITE ]
+const COLOR_CHEESE := Color("fbc457")
+const COLORS_ALL := [COLOR_BROWN, COLOR_PINK, COLOR_BREAD, COLOR_WHITE, COLOR_CHEESE]
 
 ## Food colors for veggie crumbs and goop, for levels which use the 'veggie' tileset.
 const COLOR_VEG_GREEN := Color("839f43")
 const COLOR_VEG_RED := Color("a21d24")
 const COLOR_VEG_BREAD := Color("af884d")
 const COLOR_VEG_WHITE := Color("c1a57e")
-const COLORS_VEG_ALL := [COLOR_VEG_GREEN, COLOR_VEG_RED, COLOR_VEG_BREAD, COLOR_VEG_WHITE]
+const COLOR_VEG_CHEESE := Color("c1a57e")
+const COLORS_VEG_ALL := [COLOR_VEG_GREEN, COLOR_VEG_RED, COLOR_VEG_BREAD, COLOR_VEG_WHITE, COLOR_VEG_CHEESE]
 
 
 ## key: (FoodType)
@@ -66,6 +77,8 @@ const BOX_TYPES_BY_FOOD_TYPE := {
 	FoodType.BREAD_1: BoxType.BREAD,
 	FoodType.WHITE_0: BoxType.WHITE,
 	FoodType.WHITE_1: BoxType.WHITE,
+	FoodType.CHEESE_0: BoxType.CHEESE,
+	FoodType.CHEESE_1: BoxType.CHEESE,
 	FoodType.CAKE_JJO: BoxType.CAKE_JJO,
 	FoodType.CAKE_JLO: BoxType.CAKE_JLO,
 	FoodType.CAKE_JTT: BoxType.CAKE_JTT,
@@ -74,6 +87,9 @@ const BOX_TYPES_BY_FOOD_TYPE := {
 	FoodType.CAKE_PQV: BoxType.CAKE_PQV,
 	FoodType.CAKE_PUV: BoxType.CAKE_PUV,
 	FoodType.CAKE_QUV: BoxType.CAKE_QUV,
+	FoodType.CAKE_CJU: BoxType.CAKE_CJU,
+	FoodType.CAKE_CLU: BoxType.CAKE_CLU,
+	FoodType.CAKE_CTU: BoxType.CAKE_CTU,
 }
 
 const COLORS_BY_FOOD_TYPE := {
@@ -85,6 +101,8 @@ const COLORS_BY_FOOD_TYPE := {
 	FoodType.BREAD_1: [COLOR_BREAD],
 	FoodType.WHITE_0: [COLOR_WHITE],
 	FoodType.WHITE_1: [COLOR_WHITE],
+	FoodType.CHEESE_0: [COLOR_CHEESE],
+	FoodType.CHEESE_1: [COLOR_CHEESE],
 	FoodType.CAKE_JJO: [COLOR_PINK, COLOR_PINK, COLOR_WHITE],
 	FoodType.CAKE_JLO: [COLOR_PINK, COLOR_BROWN, COLOR_WHITE],
 	FoodType.CAKE_JTT: [COLOR_PINK, COLOR_BREAD, COLOR_BREAD],
@@ -93,6 +111,9 @@ const COLORS_BY_FOOD_TYPE := {
 	FoodType.CAKE_PQV: [COLOR_PINK, COLOR_BROWN, COLOR_WHITE],
 	FoodType.CAKE_PUV: [COLOR_PINK, COLOR_BREAD, COLOR_WHITE],
 	FoodType.CAKE_QUV: [COLOR_BROWN, COLOR_BREAD, COLOR_WHITE],
+	FoodType.CAKE_CJU: [COLOR_CHEESE, COLOR_PINK, COLOR_BREAD],
+	FoodType.CAKE_CLU: [COLOR_CHEESE, COLOR_BROWN, COLOR_BREAD],
+	FoodType.CAKE_CTU: [COLOR_CHEESE, COLOR_BREAD, COLOR_BREAD],
 }
 
 ## key: (BoxType)
@@ -102,6 +123,7 @@ const FOOD_TYPES_BY_BOX_TYPE := {
 	BoxType.PINK: [FoodType.PINK_0, FoodType.PINK_1],
 	BoxType.BREAD: [FoodType.BREAD_0, FoodType.BREAD_1],
 	BoxType.WHITE: [FoodType.WHITE_0, FoodType.WHITE_1],
+	BoxType.CHEESE: [FoodType.CHEESE_0, FoodType.CHEESE_1],
 	BoxType.CAKE_JJO: [FoodType.CAKE_JJO],
 	BoxType.CAKE_JLO: [FoodType.CAKE_JLO],
 	BoxType.CAKE_JTT: [FoodType.CAKE_JTT],
@@ -110,6 +132,9 @@ const FOOD_TYPES_BY_BOX_TYPE := {
 	BoxType.CAKE_PQV: [FoodType.CAKE_PQV],
 	BoxType.CAKE_PUV: [FoodType.CAKE_PUV],
 	BoxType.CAKE_QUV: [FoodType.CAKE_QUV],
+	BoxType.CAKE_CJU: [FoodType.CAKE_CJU],
+	BoxType.CAKE_CLU: [FoodType.CAKE_CLU],
+	BoxType.CAKE_CTU: [FoodType.CAKE_CTU],
 }
 
 ## key: (BoxType)
@@ -119,6 +144,7 @@ const COLORS_BY_BOX_TYPE := {
 	BoxType.PINK: [COLOR_PINK],
 	BoxType.BREAD: [COLOR_BREAD],
 	BoxType.WHITE: [COLOR_WHITE],
+	BoxType.CHEESE: [COLOR_CHEESE],
 	BoxType.CAKE_JJO: [COLOR_PINK, COLOR_PINK, COLOR_WHITE],
 	BoxType.CAKE_JLO: [COLOR_PINK, COLOR_BROWN, COLOR_WHITE],
 	BoxType.CAKE_JTT: [COLOR_PINK, COLOR_BREAD, COLOR_BREAD],
@@ -127,6 +153,9 @@ const COLORS_BY_BOX_TYPE := {
 	BoxType.CAKE_PQV: [COLOR_PINK, COLOR_BROWN, COLOR_WHITE],
 	BoxType.CAKE_PUV: [COLOR_PINK, COLOR_BREAD, COLOR_WHITE],
 	BoxType.CAKE_QUV: [COLOR_BROWN, COLOR_BREAD, COLOR_WHITE],
+	BoxType.CAKE_CJU: [COLOR_CHEESE, COLOR_PINK, COLOR_BREAD],
+	BoxType.CAKE_CLU: [COLOR_CHEESE, COLOR_BROWN, COLOR_BREAD],
+	BoxType.CAKE_CTU: [COLOR_CHEESE, COLOR_BREAD, COLOR_BREAD],
 }
 
 
@@ -138,7 +167,8 @@ static func is_snack_box(box_type: int) -> bool:
 		BoxType.BROWN,
 		BoxType.PINK,
 		BoxType.BREAD,
-		BoxType.WHITE
+		BoxType.WHITE,
+		BoxType.CHEESE,
 	]
 
 
@@ -155,6 +185,9 @@ static func is_cake_box(box_type: int) -> bool:
 		BoxType.CAKE_PQV,
 		BoxType.CAKE_PUV,
 		BoxType.CAKE_QUV,
+		BoxType.CAKE_CJU,
+		BoxType.CAKE_CLU,
+		BoxType.CAKE_CTU,
 	]
 
 
@@ -171,6 +204,8 @@ static func is_snack_food(food_type: int) -> bool:
 		FoodType.BREAD_1,
 		FoodType.WHITE_0,
 		FoodType.WHITE_1,
+		FoodType.CHEESE_0,
+		FoodType.CHEESE_1,
 	]
 
 
@@ -187,4 +222,7 @@ static func is_cake_food(food_type: int) -> bool:
 		FoodType.CAKE_PQV,
 		FoodType.CAKE_PUV,
 		FoodType.CAKE_QUV,
+		FoodType.CAKE_CJU,
+		FoodType.CAKE_CLU,
+		FoodType.CAKE_CTU,
 	]
