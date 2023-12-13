@@ -63,8 +63,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"
-rect_size = Vector2( 128, 128 )
-frame = 1
+rect_size = Vector2( 256, 256 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )

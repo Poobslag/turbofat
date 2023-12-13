@@ -72,7 +72,7 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	food_item.position = Utils.map_to_world_centered(_puzzle_tile_map, cell)
 	food_item.position *= _puzzle_tile_map.scale / _texture_rect.rect_scale
 	food_item.position += _puzzle_tile_map_position / _texture_rect.rect_scale
-	food_item.base_scale = _puzzle_tile_map.scale / _texture_rect.rect_scale
+	food_item.base_scale = 0.5 * _puzzle_tile_map.scale / _texture_rect.rect_scale
 	food_item.customer = _puzzle.get_customer()
 	food_item.customer_index = _customer_index
 	food_item.connect("ready_to_fly", self, "_on_FoodItem_ready_to_fly", [food_item])
