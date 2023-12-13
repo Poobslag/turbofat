@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "F0",
   "name": "Fruit on the Top EX",
   "description": "It needs to settle first.",
@@ -85,7 +85,7 @@
       },
       {
         "pos": "4 2",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "6 2",
@@ -211,7 +211,7 @@
       },
       {
         "pos": "4 2",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "6 2",

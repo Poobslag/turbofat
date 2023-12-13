@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "0",
   "name": "Wedge",
   "description": "A fun shape to climb, if only it wasn't so sticky...",
@@ -34,15 +34,15 @@
       },
       {
         "pos": "0 17",
-        "tile": "1 10 6"
+        "tile": "1 10 7"
       },
       {
         "pos": "1 17",
-        "tile": "1 14 6"
+        "tile": "1 14 7"
       },
       {
         "pos": "2 17",
-        "tile": "1 6 6"
+        "tile": "1 6 7"
       },
       {
         "pos": "3 17",
@@ -50,15 +50,15 @@
       },
       {
         "pos": "0 18",
-        "tile": "1 11 6"
+        "tile": "1 11 7"
       },
       {
         "pos": "1 18",
-        "tile": "1 15 6"
+        "tile": "1 15 7"
       },
       {
         "pos": "2 18",
-        "tile": "1 7 6"
+        "tile": "1 7 7"
       },
       {
         "pos": "3 18",
@@ -70,15 +70,15 @@
       },
       {
         "pos": "0 19",
-        "tile": "1 9 6"
+        "tile": "1 9 7"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 6"
+        "tile": "1 13 7"
       },
       {
         "pos": "2 19",
-        "tile": "1 5 6"
+        "tile": "1 5 7"
       },
       {
         "pos": "3 19",

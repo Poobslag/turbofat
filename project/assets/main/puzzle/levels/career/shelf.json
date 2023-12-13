@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "0",
   "name": "Shelf",
   "description": "Who came up with this stupid shelf anyway!? ...Ooh! Cookies!",
@@ -103,7 +103,7 @@
       },
       {
         "pos": "4 13",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "5 13",
@@ -136,7 +136,7 @@
       },
       {
         "pos": "2 0",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "3 0",
@@ -176,7 +176,7 @@
       },
       {
         "pos": "3 1",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "4 1",
@@ -216,7 +216,7 @@
       },
       {
         "pos": "4 2",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "5 2",
@@ -248,7 +248,7 @@
       },
       {
         "pos": "3 3",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "4 3",
@@ -288,7 +288,7 @@
       },
       {
         "pos": "4 4",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "5 4",
@@ -324,7 +324,7 @@
       },
       {
         "pos": "4 5",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "5 5",
@@ -360,7 +360,7 @@
       },
       {
         "pos": "4 6",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "5 6",
@@ -400,7 +400,7 @@
       },
       {
         "pos": "5 7",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "6 7",
@@ -436,7 +436,7 @@
       },
       {
         "pos": "5 8",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "6 8",
@@ -468,7 +468,7 @@
       },
       {
         "pos": "4 9",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "5 9",
@@ -512,7 +512,7 @@
       },
       {
         "pos": "6 10",
-        "pickup": "7"
+        "pickup": "8"
       },
       {
         "pos": "7 10",

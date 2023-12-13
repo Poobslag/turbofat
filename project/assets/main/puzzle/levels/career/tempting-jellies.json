@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "3",
   "speed_ups": [
     {
@@ -48,43 +48,43 @@
     "start": [
       {
         "pos": "3 0",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "4 0",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "5 0",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "3 1",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "4 1",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "5 1",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "3 2",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "4 2",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "5 2",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "3 3",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "4 3",
@@ -92,7 +92,7 @@
       },
       {
         "pos": "5 3",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "3 4",
@@ -100,7 +100,7 @@
       },
       {
         "pos": "4 4",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "5 4",

@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "A1",
   "name": "Fruit Salad EX",
   "description": "Ick! Salad. ...You said there would be fruit!",
@@ -37,291 +37,291 @@
     "0": [
       {
         "pos": "0 0",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "1 0",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "2 0",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "3 0",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "4 0",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "5 0",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "6 0",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "7 0",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "8 0",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "0 1",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "1 1",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "2 1",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "3 1",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "4 1",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "5 1",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "6 1",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "7 1",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "8 1",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "0 2",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "1 2",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "2 2",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "3 2",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "4 2",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "5 2",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "6 2",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "7 2",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "8 2",
-        "tile": "1 0 4"
+        "tile": "1 0 5"
       },
       {
         "pos": "0 3",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "1 3",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "2 3",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "3 3",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "4 3",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "5 3",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "6 3",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "7 3",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "8 3",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "0 4",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "1 4",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "2 4",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "3 4",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "4 4",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "5 4",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "6 4",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "7 4",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "8 4",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "0 5",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "1 5",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "2 5",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "3 5",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "4 5",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "5 5",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "6 5",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "7 5",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "8 5",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "0 6",
-        "tile": "1 0 4"
+        "tile": "1 0 5"
       },
       {
         "pos": "1 6",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "2 6",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "3 6",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "4 6",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "5 6",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "6 6",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "7 6",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "8 6",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "0 7",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "1 7",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "2 7",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "3 7",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "4 7",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "5 7",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "6 7",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "7 7",
-        "tile": "1 12 4"
+        "tile": "1 12 5"
       },
       {
         "pos": "8 7",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       }
     ],
     "start": [

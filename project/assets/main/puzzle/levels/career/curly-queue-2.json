@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "1",
   "name": "Curly Queue II",
   "description": "They won't stop spinning! This is hurting my head a little...",
@@ -57,15 +57,15 @@
       },
       {
         "pos": "3 16",
-        "tile": "1 10 5"
+        "tile": "1 10 6"
       },
       {
         "pos": "4 16",
-        "tile": "1 14 5"
+        "tile": "1 14 6"
       },
       {
         "pos": "5 16",
-        "tile": "1 6 5"
+        "tile": "1 6 6"
       },
       {
         "pos": "6 16",
@@ -73,15 +73,15 @@
       },
       {
         "pos": "3 17",
-        "tile": "1 11 5"
+        "tile": "1 11 6"
       },
       {
         "pos": "4 17",
-        "tile": "1 15 5"
+        "tile": "1 15 6"
       },
       {
         "pos": "5 17",
-        "tile": "1 7 5"
+        "tile": "1 7 6"
       },
       {
         "pos": "6 17",
@@ -101,15 +101,15 @@
       },
       {
         "pos": "3 18",
-        "tile": "1 11 5"
+        "tile": "1 11 6"
       },
       {
         "pos": "4 18",
-        "tile": "1 15 5"
+        "tile": "1 15 6"
       },
       {
         "pos": "5 18",
-        "tile": "1 7 5"
+        "tile": "1 7 6"
       },
       {
         "pos": "2 19",
@@ -117,15 +117,15 @@
       },
       {
         "pos": "3 19",
-        "tile": "1 9 5"
+        "tile": "1 9 6"
       },
       {
         "pos": "4 19",
-        "tile": "1 13 5"
+        "tile": "1 13 6"
       },
       {
         "pos": "5 19",
-        "tile": "1 5 5"
+        "tile": "1 5 6"
       },
       {
         "pos": "6 19",

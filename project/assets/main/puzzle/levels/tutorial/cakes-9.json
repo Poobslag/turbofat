@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "finish_condition": {
     "type": "time_over",
     "value": "45"

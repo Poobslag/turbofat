@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "A4",
   "name": "No Smoking Section II",
   "description": "Cough! Cough! ...Carrots! Too many!",
@@ -77,11 +77,11 @@
     "start": [
       {
         "pos": "7 17",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "4 18",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "6 18",

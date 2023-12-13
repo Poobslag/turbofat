@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "3",
   "name": "Carrot Alley",
   "description": "Carrots... Why did it have to be carrots?",
@@ -222,23 +222,23 @@
       },
       {
         "pos": "1 6",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "2 6",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "4 6",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "6 6",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "7 6",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "8 6",
@@ -756,23 +756,23 @@
       },
       {
         "pos": "1 10",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "2 10",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "4 10",
-        "pickup": "4"
+        "pickup": "5"
       },
       {
         "pos": "6 10",
-        "tile": "1 8 4"
+        "tile": "1 8 5"
       },
       {
         "pos": "7 10",
-        "tile": "1 4 4"
+        "tile": "1 4 5"
       },
       {
         "pos": "8 10",

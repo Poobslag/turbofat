@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "2",
   "name": "Unfresh Fruits",
   "description": "This fruit's going bad soon! Maybe someone will eat it...",
@@ -93,19 +93,19 @@
       },
       {
         "pos": "0 17",
-        "tile": "1 10 4"
+        "tile": "1 10 5"
       },
       {
         "pos": "1 17",
-        "tile": "1 14 4"
+        "tile": "1 14 5"
       },
       {
         "pos": "2 17",
-        "tile": "1 14 4"
+        "tile": "1 14 5"
       },
       {
         "pos": "3 17",
-        "tile": "1 6 4"
+        "tile": "1 6 5"
       },
       {
         "pos": "8 17",
@@ -113,19 +113,19 @@
       },
       {
         "pos": "0 18",
-        "tile": "1 11 4"
+        "tile": "1 11 5"
       },
       {
         "pos": "1 18",
-        "tile": "1 15 4"
+        "tile": "1 15 5"
       },
       {
         "pos": "2 18",
-        "tile": "1 15 4"
+        "tile": "1 15 5"
       },
       {
         "pos": "3 18",
-        "tile": "1 7 4"
+        "tile": "1 7 5"
       },
       {
         "pos": "7 18",
@@ -137,19 +137,19 @@
       },
       {
         "pos": "0 19",
-        "tile": "1 9 4"
+        "tile": "1 9 5"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 4"
+        "tile": "1 13 5"
       },
       {
         "pos": "2 19",
-        "tile": "1 13 4"
+        "tile": "1 13 5"
       },
       {
         "pos": "3 19",
-        "tile": "1 5 4"
+        "tile": "1 5 5"
       },
       {
         "pos": "7 19",

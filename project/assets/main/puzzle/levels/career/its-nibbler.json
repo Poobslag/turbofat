@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "7",
   "name": "It's Nibbler",
   "description": "Aww, they take such tiny bites. ...Oww! My finger!",
@@ -108,19 +108,19 @@
       },
       {
         "pos": "5 17",
-        "tile": "1 10 6"
+        "tile": "1 10 7"
       },
       {
         "pos": "6 17",
-        "tile": "1 14 6"
+        "tile": "1 14 7"
       },
       {
         "pos": "7 17",
-        "tile": "1 14 6"
+        "tile": "1 14 7"
       },
       {
         "pos": "8 17",
-        "tile": "1 6 6"
+        "tile": "1 6 7"
       },
       {
         "pos": "0 18",
@@ -140,19 +140,19 @@
       },
       {
         "pos": "5 18",
-        "tile": "1 11 6"
+        "tile": "1 11 7"
       },
       {
         "pos": "6 18",
-        "tile": "1 15 6"
+        "tile": "1 15 7"
       },
       {
         "pos": "7 18",
-        "tile": "1 15 6"
+        "tile": "1 15 7"
       },
       {
         "pos": "8 18",
-        "tile": "1 7 6"
+        "tile": "1 7 7"
       },
       {
         "pos": "0 19",
@@ -168,19 +168,19 @@
       },
       {
         "pos": "5 19",
-        "tile": "1 9 6"
+        "tile": "1 9 7"
       },
       {
         "pos": "6 19",
-        "tile": "1 13 6"
+        "tile": "1 13 7"
       },
       {
         "pos": "7 19",
-        "tile": "1 13 6"
+        "tile": "1 13 7"
       },
       {
         "pos": "8 19",
-        "tile": "1 5 6"
+        "tile": "1 5 7"
       }
     ]
   }

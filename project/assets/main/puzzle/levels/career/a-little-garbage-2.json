@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "1",
   "name": "A Little Garbage 2",
   "description": "Is that food? Don't eat out of the garbage!",
@@ -123,7 +123,7 @@
       },
       {
         "pos": "1 0",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "2 0",
@@ -159,15 +159,15 @@
       },
       {
         "pos": "1 1",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "2 1",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "3 1",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "4 1",
@@ -203,7 +203,7 @@
       },
       {
         "pos": "3 2",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "4 2",
@@ -239,15 +239,15 @@
       },
       {
         "pos": "3 3",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "4 3",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "5 3",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 3",
@@ -283,7 +283,7 @@
       },
       {
         "pos": "5 4",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 4",
@@ -319,15 +319,15 @@
       },
       {
         "pos": "5 5",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "6 5",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "7 5",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "8 5",
@@ -363,7 +363,7 @@
       },
       {
         "pos": "7 6",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "8 6",
@@ -391,15 +391,15 @@
       },
       {
         "pos": "5 7",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 7",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "7 7",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "8 7",
@@ -427,7 +427,7 @@
       },
       {
         "pos": "5 8",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 8",
@@ -455,15 +455,15 @@
       },
       {
         "pos": "3 9",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "4 9",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "5 9",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "6 9",
@@ -491,7 +491,7 @@
       },
       {
         "pos": "3 10",
-        "pickup": "8"
+        "pickup": "9"
       },
       {
         "pos": "4 10",
@@ -519,15 +519,15 @@
       },
       {
         "pos": "1 11",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "2 11",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "3 11",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "4 11",
