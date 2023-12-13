@@ -2,6 +2,13 @@ extends Node
 ## Stores information on the various piece shapes. This includes information on their appearance, how they rotate, and
 ## how they 'kick' when they're obstructed from rotating.
 
+const KICKS_C := {
+		01: [Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 1,  1)],
+		12: [Vector2( 0, -1), Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2(-1, -1)],
+		23: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2(-1, -1)],
+		30: [Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  1)],
+	}
+
 ## Piece kicks for a 2 block domino piece, featured in Dr. Mario and Puyo Puyo
 const KICKS_DOMINO := {
 		01: [Vector2( 1,  0), Vector2( 0,  1), Vector2( 1,  1)],
@@ -97,6 +104,24 @@ const KICKS_V := {
 
 const KICKS_NONE := {}
 
+var piece_c := PieceType.new("c",
+		# shape data
+		[
+			[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1)],
+			[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1)],
+		],
+		# color data
+		[
+			[Vector2( 2, 3), Vector2( 9, 3), Vector2( 4, 3)],
+			[Vector2(10, 3), Vector2( 4, 3), Vector2( 1, 3)],
+			[Vector2( 8, 3), Vector2( 6, 3), Vector2( 1, 3)],
+			[Vector2( 2, 3), Vector2( 8, 3), Vector2( 5, 3)],
+		],
+		KICKS_C
+	)
+
 ## 2 block domino piece featured in Dr. Mario and Puyo Puyo
 var piece_domino := PieceType.new("d",
 		# shape data
@@ -150,6 +175,24 @@ var piece_j := PieceType.new("j",
 			[Vector2( 2, 1), Vector2( 3, 1), Vector2( 8, 1), Vector2( 5, 1)],
 		],
 		KICKS_JLSZ
+	)
+
+var piece_k := PieceType.new("k",
+		# shape data
+		[
+			[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(2, 2)],
+			[Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
+			[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
+			[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(0, 2)],
+		],
+		# color data
+		[
+			[Vector2( 8, 3), Vector2(14, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2( 7, 3), Vector2( 1, 3)],
+			[Vector2( 2, 3), Vector2(10, 3), Vector2( 7, 3), Vector2( 8, 3), Vector2(13, 3), Vector2( 5, 3)],
+			[Vector2( 2, 3), Vector2(11, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2(13, 3), Vector2( 4, 3)],
+			[Vector2(10, 3), Vector2(14, 3), Vector2( 4, 3), Vector2(11, 3), Vector2( 5, 3), Vector2( 1, 3)],
+		],
+		KICKS_V
 	)
 
 var piece_l := PieceType.new("l",
@@ -318,9 +361,11 @@ var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE)
 var default_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
 var pieces_by_string := {
+	"c": piece_c,
 	"d": piece_domino,
 	"i": piece_i,
 	"j": piece_j,
+	"k": piece_k,
 	"l": piece_l,
 	"o": piece_o,
 	"p": piece_p,
