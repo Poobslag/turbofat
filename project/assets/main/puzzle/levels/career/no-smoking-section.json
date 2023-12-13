@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "1",
   "name": "No Smoking Section",
   "description": "Carrot smoke is the healthiest kind of smoke! But, we still don't like it very much.",
@@ -45,7 +45,7 @@
     "start": [
       {
         "pos": "4 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "3 18",
@@ -61,7 +61,7 @@
       },
       {
         "pos": "7 18",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "3 19",

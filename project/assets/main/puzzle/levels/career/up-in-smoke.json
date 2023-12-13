@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "0",
   "name": "Up In Smoke",
   "description": "I don't love carrots, but I promise to hate them slightly less if they stay over there...",
@@ -47,23 +47,23 @@
     "start": [
       {
         "pos": "0 17",
-        "tile": "1 10 10"
+        "tile": "1 10 11"
       },
       {
         "pos": "1 17",
-        "tile": "1 14 10"
+        "tile": "1 14 11"
       },
       {
         "pos": "2 17",
-        "tile": "1 14 10"
+        "tile": "1 14 11"
       },
       {
         "pos": "3 17",
-        "tile": "1 14 10"
+        "tile": "1 14 11"
       },
       {
         "pos": "4 17",
-        "tile": "1 6 10"
+        "tile": "1 6 11"
       },
       {
         "pos": "5 17",
@@ -75,23 +75,23 @@
       },
       {
         "pos": "0 18",
-        "tile": "1 11 10"
+        "tile": "1 11 11"
       },
       {
         "pos": "1 18",
-        "tile": "1 15 10"
+        "tile": "1 15 11"
       },
       {
         "pos": "2 18",
-        "tile": "1 15 10"
+        "tile": "1 15 11"
       },
       {
         "pos": "3 18",
-        "tile": "1 15 10"
+        "tile": "1 15 11"
       },
       {
         "pos": "4 18",
-        "tile": "1 7 10"
+        "tile": "1 7 11"
       },
       {
         "pos": "5 18",
@@ -103,23 +103,23 @@
       },
       {
         "pos": "0 19",
-        "tile": "1 9 10"
+        "tile": "1 9 11"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 10"
+        "tile": "1 13 11"
       },
       {
         "pos": "2 19",
-        "tile": "1 13 10"
+        "tile": "1 13 11"
       },
       {
         "pos": "3 19",
-        "tile": "1 13 10"
+        "tile": "1 13 11"
       },
       {
         "pos": "4 19",
-        "tile": "1 5 10"
+        "tile": "1 5 11"
       },
       {
         "pos": "7 19",

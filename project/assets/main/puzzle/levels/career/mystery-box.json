@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "9",
   "name": "Mystery Box",
   "description": "Can you guess what's inside? Hey, no peeking!",
@@ -43,27 +43,27 @@
     "start": [
       {
         "pos": "0 16",
-        "tile": "1 8 5"
+        "tile": "1 8 6"
       },
       {
         "pos": "1 16",
-        "tile": "1 12 5"
+        "tile": "1 12 6"
       },
       {
         "pos": "2 16",
-        "tile": "1 4 5"
+        "tile": "1 4 6"
       },
       {
         "pos": "0 17",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "1 17",
-        "tile": "1 8 5"
+        "tile": "1 8 6"
       },
       {
         "pos": "2 17",
-        "tile": "1 4 5"
+        "tile": "1 4 6"
       },
       {
         "pos": "6 17",
@@ -79,15 +79,15 @@
       },
       {
         "pos": "0 18",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "1 18",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "2 18",
-        "tile": "1 0 5"
+        "tile": "1 0 6"
       },
       {
         "pos": "6 18",
@@ -103,15 +103,15 @@
       },
       {
         "pos": "0 19",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "1 19",
-        "pickup": "5"
+        "pickup": "6"
       },
       {
         "pos": "2 19",
-        "tile": "1 0 5"
+        "tile": "1 0 6"
       },
       {
         "pos": "6 19",

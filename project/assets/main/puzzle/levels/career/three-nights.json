@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "8",
   "name": "Three Nights",
   "description": "I'm not afraid of the dark! It's just very annoying...",
@@ -52,15 +52,15 @@
       },
       {
         "pos": "3 17",
-        "tile": "1 10 10"
+        "tile": "1 10 11"
       },
       {
         "pos": "4 17",
-        "tile": "1 14 10"
+        "tile": "1 14 11"
       },
       {
         "pos": "5 17",
-        "tile": "1 6 10"
+        "tile": "1 6 11"
       },
       {
         "pos": "6 17",
@@ -84,15 +84,15 @@
       },
       {
         "pos": "3 18",
-        "tile": "1 11 10"
+        "tile": "1 11 11"
       },
       {
         "pos": "4 18",
-        "tile": "1 15 10"
+        "tile": "1 15 11"
       },
       {
         "pos": "5 18",
-        "tile": "1 7 10"
+        "tile": "1 7 11"
       },
       {
         "pos": "6 18",
@@ -108,15 +108,15 @@
       },
       {
         "pos": "3 19",
-        "tile": "1 9 10"
+        "tile": "1 9 11"
       },
       {
         "pos": "4 19",
-        "tile": "1 13 10"
+        "tile": "1 13 11"
       },
       {
         "pos": "5 19",
-        "tile": "1 5 10"
+        "tile": "1 5 11"
       },
       {
         "pos": "6 19",

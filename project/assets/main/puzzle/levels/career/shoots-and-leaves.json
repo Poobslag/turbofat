@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "6",
   "name": "Shoots and Leaves",
   "description": "Stop me if you've heard this one before...",
@@ -67,7 +67,7 @@
       },
       {
         "pos": "1 12",
-        "pickup": "11"
+        "pickup": "12"
       },
       {
         "pos": "2 12",

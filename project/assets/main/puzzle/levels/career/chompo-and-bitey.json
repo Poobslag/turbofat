@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "3",
   "name": "Chompo and Bitey",
   "description": "I call the red one Bitey! They like snack boxes... but who doesn't?",
@@ -86,19 +86,19 @@
       },
       {
         "pos": "2 17",
-        "tile": "1 8 9"
+        "tile": "1 8 10"
       },
       {
         "pos": "3 17",
-        "tile": "1 12 9"
+        "tile": "1 12 10"
       },
       {
         "pos": "4 17",
-        "tile": "1 12 9"
+        "tile": "1 12 10"
       },
       {
         "pos": "5 17",
-        "tile": "1 4 9"
+        "tile": "1 4 10"
       },
       {
         "pos": "6 17",
@@ -110,19 +110,19 @@
       },
       {
         "pos": "2 18",
-        "tile": "1 10 9"
+        "tile": "1 10 10"
       },
       {
         "pos": "3 18",
-        "tile": "1 14 9"
+        "tile": "1 14 10"
       },
       {
         "pos": "4 18",
-        "tile": "1 14 9"
+        "tile": "1 14 10"
       },
       {
         "pos": "5 18",
-        "tile": "1 6 9"
+        "tile": "1 6 10"
       },
       {
         "pos": "1 19",
@@ -130,19 +130,19 @@
       },
       {
         "pos": "2 19",
-        "tile": "1 9 9"
+        "tile": "1 9 10"
       },
       {
         "pos": "3 19",
-        "tile": "1 13 9"
+        "tile": "1 13 10"
       },
       {
         "pos": "4 19",
-        "tile": "1 13 9"
+        "tile": "1 13 10"
       },
       {
         "pos": "5 19",
-        "tile": "1 5 9"
+        "tile": "1 5 10"
       }
     ]
   }

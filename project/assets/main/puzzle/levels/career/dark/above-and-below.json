@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "A1",
   "name": "Above and Below EX",
   "description": "Build some delicious snack boxes above while befriending some moles below.",
@@ -85,47 +85,47 @@
       },
       {
         "pos": "0 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "1 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "2 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "3 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "4 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "7 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "8 17",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "0 18",
-        "tile": "1 10 6"
+        "tile": "1 10 7"
       },
       {
         "pos": "1 18",
-        "tile": "1 14 6"
+        "tile": "1 14 7"
       },
       {
         "pos": "2 18",
-        "tile": "1 6 6"
+        "tile": "1 6 7"
       },
       {
         "pos": "3 18",
@@ -137,27 +137,27 @@
       },
       {
         "pos": "6 18",
-        "tile": "1 10 6"
+        "tile": "1 10 7"
       },
       {
         "pos": "7 18",
-        "tile": "1 14 6"
+        "tile": "1 14 7"
       },
       {
         "pos": "8 18",
-        "tile": "1 6 6"
+        "tile": "1 6 7"
       },
       {
         "pos": "0 19",
-        "tile": "1 9 6"
+        "tile": "1 9 7"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 6"
+        "tile": "1 13 7"
       },
       {
         "pos": "2 19",
-        "tile": "1 5 6"
+        "tile": "1 5 7"
       },
       {
         "pos": "3 19",
@@ -165,23 +165,23 @@
       },
       {
         "pos": "4 19",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "5 19",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 19",
-        "tile": "1 9 6"
+        "tile": "1 9 7"
       },
       {
         "pos": "7 19",
-        "tile": "1 13 6"
+        "tile": "1 13 7"
       },
       {
         "pos": "8 19",
-        "tile": "1 5 6"
+        "tile": "1 5 7"
       }
     ],
     "0": [

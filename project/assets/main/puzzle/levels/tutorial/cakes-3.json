@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "T",
   "finish_condition": {
     "type": "pieces",
@@ -41,15 +41,15 @@
       },
       {
         "pos": "0 18",
-        "tile": "1 10 8"
+        "tile": "1 10 9"
       },
       {
         "pos": "1 18",
-        "tile": "1 14 8"
+        "tile": "1 14 9"
       },
       {
         "pos": "2 18",
-        "tile": "1 6 8"
+        "tile": "1 6 9"
       },
       {
         "pos": "7 18",
@@ -61,15 +61,15 @@
       },
       {
         "pos": "0 19",
-        "tile": "1 9 8"
+        "tile": "1 9 9"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 8"
+        "tile": "1 13 9"
       },
       {
         "pos": "2 19",
-        "tile": "1 5 8"
+        "tile": "1 5 9"
       },
       {
         "pos": "5 19",

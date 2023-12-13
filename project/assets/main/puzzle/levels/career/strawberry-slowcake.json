@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "6",
   "name": "Strawberry Slowcake",
   "description": "It says in this cookbook it takes a long time to rise.",
@@ -82,7 +82,7 @@
       },
       {
         "pos": "4 1",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 1",
@@ -158,7 +158,7 @@
       },
       {
         "pos": "1 4",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "3 4",
@@ -260,7 +260,7 @@
       },
       {
         "pos": "4 1",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 1",
@@ -360,7 +360,7 @@
       },
       {
         "pos": "7 4",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "0 5",
@@ -422,7 +422,7 @@
       },
       {
         "pos": "1 12",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "3 12",
@@ -522,7 +522,7 @@
       },
       {
         "pos": "4 15",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "6 15",
@@ -622,7 +622,7 @@
       },
       {
         "pos": "7 18",
-        "pickup": "6"
+        "pickup": "7"
       },
       {
         "pos": "0 19",

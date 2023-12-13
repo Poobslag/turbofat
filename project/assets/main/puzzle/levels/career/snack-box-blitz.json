@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "name": "Snack Box Blitz",
   "description": "Everyone's in a hurry today. Get those cakes out!",
   "start_speed": "5",
@@ -40,7 +40,7 @@
       },
       {
         "pos": "4 0",
-        "pickup": "10"
+        "pickup": "11"
       },
       {
         "pos": "5 0",
@@ -220,7 +220,7 @@
       },
       {
         "pos": "4 5",
-        "pickup": "10"
+        "pickup": "11"
       },
       {
         "pos": "5 5",
@@ -386,27 +386,27 @@
     "start": [
       {
         "pos": "0 16",
-        "tile": "1 10 4"
+        "tile": "1 10 5"
       },
       {
         "pos": "1 16",
-        "tile": "1 14 4"
+        "tile": "1 14 5"
       },
       {
         "pos": "2 16",
-        "tile": "1 6 4"
+        "tile": "1 6 5"
       },
       {
         "pos": "0 17",
-        "tile": "1 11 4"
+        "tile": "1 11 5"
       },
       {
         "pos": "1 17",
-        "tile": "1 15 4"
+        "tile": "1 15 5"
       },
       {
         "pos": "2 17",
-        "tile": "1 7 4"
+        "tile": "1 7 5"
       },
       {
         "pos": "6 17",
@@ -422,15 +422,15 @@
       },
       {
         "pos": "0 18",
-        "tile": "1 11 4"
+        "tile": "1 11 5"
       },
       {
         "pos": "1 18",
-        "tile": "1 15 4"
+        "tile": "1 15 5"
       },
       {
         "pos": "2 18",
-        "tile": "1 7 4"
+        "tile": "1 7 5"
       },
       {
         "pos": "6 18",
@@ -446,15 +446,15 @@
       },
       {
         "pos": "0 19",
-        "tile": "1 9 4"
+        "tile": "1 9 5"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 4"
+        "tile": "1 13 5"
       },
       {
         "pos": "2 19",
-        "tile": "1 5 4"
+        "tile": "1 5 5"
       },
       {
         "pos": "6 19",

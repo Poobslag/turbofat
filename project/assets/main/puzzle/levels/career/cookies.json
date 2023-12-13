@@ -1,5 +1,5 @@
 {
-  "version": "49db",
+  "version": "4c5c",
   "start_speed": "0",
   "name": "Cookies",
   "description": "Let's make some cookies! Who brought the U-Blocks?",
@@ -40,7 +40,7 @@
       },
       {
         "pos": "0 19",
-        "pickup": "10"
+        "pickup": "11"
       },
       {
         "pos": "2 19",
@@ -52,7 +52,7 @@
       },
       {
         "pos": "8 19",
-        "pickup": "10"
+        "pickup": "11"
       }
     ]
   }
