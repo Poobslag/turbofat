@@ -3,7 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[Q,W,E,R,T]: Build a box at different locations in the playfield
-## 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
+## 	[A,S,D,F,G,H]: Change the box color to brown, pink, bread, white, cheese, cake
 ## 	[Z,X,C,V,B]: Clear a line at different locations in the playfield
 ## 	[.]: Place a piece without continuing the combo
 
@@ -25,6 +25,7 @@ func _input(event: InputEvent) -> void:
 		KEY_D: _box_type = 2
 		KEY_F: _box_type = 3
 		KEY_G: _box_type = 4
+		KEY_H: _box_type = 5
 		
 		KEY_Z: _clear_line(3)
 		KEY_X: _clear_line(6)

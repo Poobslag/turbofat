@@ -68,6 +68,22 @@ func test_load_4373_data() -> void:
 	assert_eq(settings.timers.get_timer_interval(1), 7.2)
 
 
+func test_load_49db_data() -> void:
+	load_level("level-49db")
+	
+	assert_eq_deep({
+		Vector2(0, 19): 1
+	}, settings.tiles.blocks_start().block_tiles)
+	
+	assert_eq_deep({
+		Vector2(0, 19): Vector2(0, 5)
+	}, settings.tiles.blocks_start().block_autotile_coords)
+	
+	assert_eq_deep({
+		Vector2(1, 19): 5
+	}, settings.tiles.blocks_start().pickups)
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	

@@ -114,10 +114,10 @@ var piece_c := PieceType.new("c",
 		],
 		# color data
 		[
-			[Vector2( 2, 3), Vector2( 9, 3), Vector2( 4, 3)],
-			[Vector2(10, 3), Vector2( 4, 3), Vector2( 1, 3)],
-			[Vector2( 8, 3), Vector2( 6, 3), Vector2( 1, 3)],
-			[Vector2( 2, 3), Vector2( 8, 3), Vector2( 5, 3)],
+			[Vector2( 2, 4), Vector2( 9, 4), Vector2( 4, 4)],
+			[Vector2(10, 4), Vector2( 4, 4), Vector2( 1, 4)],
+			[Vector2( 8, 4), Vector2( 6, 4), Vector2( 1, 4)],
+			[Vector2( 2, 4), Vector2( 8, 4), Vector2( 5, 4)],
 		],
 		KICKS_C
 	)
@@ -187,10 +187,10 @@ var piece_k := PieceType.new("k",
 		],
 		# color data
 		[
-			[Vector2( 8, 3), Vector2(14, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2( 7, 3), Vector2( 1, 3)],
-			[Vector2( 2, 3), Vector2(10, 3), Vector2( 7, 3), Vector2( 8, 3), Vector2(13, 3), Vector2( 5, 3)],
-			[Vector2( 2, 3), Vector2(11, 3), Vector2( 6, 3), Vector2( 9, 3), Vector2(13, 3), Vector2( 4, 3)],
-			[Vector2(10, 3), Vector2(14, 3), Vector2( 4, 3), Vector2(11, 3), Vector2( 5, 3), Vector2( 1, 3)],
+			[Vector2( 8, 4), Vector2(14, 4), Vector2( 6, 4), Vector2( 9, 4), Vector2( 7, 4), Vector2( 1, 4)],
+			[Vector2( 2, 4), Vector2(10, 4), Vector2( 7, 4), Vector2( 8, 4), Vector2(13, 4), Vector2( 5, 4)],
+			[Vector2( 2, 4), Vector2(11, 4), Vector2( 6, 4), Vector2( 9, 4), Vector2(13, 4), Vector2( 4, 4)],
+			[Vector2(10, 4), Vector2(14, 4), Vector2( 4, 4), Vector2(11, 4), Vector2( 5, 4), Vector2( 1, 4)],
 		],
 		KICKS_V
 	)

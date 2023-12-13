@@ -1,7 +1,7 @@
 { "frames": [
    {
     "filename": "food-1 0.png",
-    "frame": { "x": 401, "y": 524, "w": 88, "h": 90 },
+    "frame": { "x": 193, "y": 515, "w": 88, "h": 90 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 80, "y": 76, "w": 88, "h": 90 },
@@ -10,7 +10,7 @@
    },
    {
     "filename": "food-1 1.png",
-    "frame": { "x": 0, "y": 395, "w": 102, "h": 101 },
+    "frame": { "x": 784, "y": 383, "w": 102, "h": 101 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 83, "y": 73, "w": 102, "h": 101 },
@@ -19,7 +19,7 @@
    },
    {
     "filename": "food-1 2.png",
-    "frame": { "x": 508, "y": 381, "w": 121, "h": 115 },
+    "frame": { "x": 658, "y": 383, "w": 121, "h": 115 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 68, "y": 71, "w": 121, "h": 115 },
@@ -28,7 +28,7 @@
    },
    {
     "filename": "food-1 3.png",
-    "frame": { "x": 508, "y": 501, "w": 86, "h": 100 },
+    "frame": { "x": 784, "y": 489, "w": 86, "h": 100 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 84, "y": 69, "w": 86, "h": 100 },
@@ -37,7 +37,7 @@
    },
    {
     "filename": "food-1 4.png",
-    "frame": { "x": 0, "y": 501, "w": 107, "h": 90 },
+    "frame": { "x": 0, "y": 395, "w": 107, "h": 90 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 70, "y": 81, "w": 107, "h": 90 },
@@ -46,7 +46,7 @@
    },
    {
     "filename": "food-1 5.png",
-    "frame": { "x": 212, "y": 515, "w": 91, "h": 88 },
+    "frame": { "x": 658, "y": 503, "w": 91, "h": 88 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 81, "y": 80, "w": 91, "h": 88 },
@@ -55,7 +55,7 @@
    },
    {
     "filename": "food-1 6.png",
-    "frame": { "x": 308, "y": 524, "w": 88, "h": 91 },
+    "frame": { "x": 100, "y": 515, "w": 88, "h": 91 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 84, "y": 83, "w": 88, "h": 91 },
@@ -64,7 +64,7 @@
    },
    {
     "filename": "food-1 7.png",
-    "frame": { "x": 112, "y": 515, "w": 95, "h": 87 },
+    "frame": { "x": 0, "y": 490, "w": 95, "h": 87 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 81, "y": 80, "w": 95, "h": 87 },
@@ -73,7 +73,25 @@
    },
    {
     "filename": "food-1 8.png",
-    "frame": { "x": 438, "y": 187, "w": 199, "h": 189 },
+    "frame": { "x": 286, "y": 524, "w": 89, "h": 73 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 78, "y": 94, "w": 89, "h": 73 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "food-1 9.png",
+    "frame": { "x": 380, "y": 524, "w": 65, "h": 86 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 98, "y": 86, "w": 65, "h": 86 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "food-1 10.png",
+    "frame": { "x": 666, "y": 0, "w": 199, "h": 189 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 31, "y": 43, "w": 199, "h": 189 },
@@ -81,7 +99,7 @@
     "duration": 100
    },
    {
-    "filename": "food-1 9.png",
+    "filename": "food-1 11.png",
     "frame": { "x": 0, "y": 212, "w": 157, "h": 178 },
     "rotated": false,
     "trimmed": true,
@@ -90,7 +108,7 @@
     "duration": 100
    },
    {
-    "filename": "food-1 10.png",
+    "filename": "food-1 12.png",
     "frame": { "x": 217, "y": 206, "w": 192, "h": 158 },
     "rotated": false,
     "trimmed": true,
@@ -99,8 +117,8 @@
     "duration": 100
    },
    {
-    "filename": "food-1 11.png",
-    "frame": { "x": 358, "y": 381, "w": 145, "h": 138 },
+    "filename": "food-1 13.png",
+    "frame": { "x": 508, "y": 383, "w": 145, "h": 138 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 56, "y": 63, "w": 145, "h": 138 },
@@ -108,7 +126,7 @@
     "duration": 100
    },
    {
-    "filename": "food-1 12.png",
+    "filename": "food-1 14.png",
     "frame": { "x": 162, "y": 369, "w": 191, "h": 141 },
     "rotated": false,
     "trimmed": true,
@@ -117,7 +135,7 @@
     "duration": 100
    },
    {
-    "filename": "food-1 13.png",
+    "filename": "food-1 15.png",
     "frame": { "x": 217, "y": 0, "w": 216, "h": 201 },
     "rotated": false,
     "trimmed": true,
@@ -126,7 +144,7 @@
     "duration": 100
    },
    {
-    "filename": "food-1 14.png",
+    "filename": "food-1 16.png",
     "frame": { "x": 438, "y": 0, "w": 223, "h": 182 },
     "rotated": false,
     "trimmed": true,
@@ -135,11 +153,38 @@
     "duration": 100
    },
    {
-    "filename": "food-1 15.png",
+    "filename": "food-1 17.png",
     "frame": { "x": 0, "y": 0, "w": 212, "h": 207 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 16, "y": 15, "w": 212, "h": 207 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "food-1 18.png",
+    "frame": { "x": 438, "y": 187, "w": 199, "h": 186 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 30, "y": 38, "w": 199, "h": 186 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "food-1 19.png",
+    "frame": { "x": 358, "y": 378, "w": 145, "h": 141 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 56, "y": 60, "w": 145, "h": 141 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "food-1 20.png",
+    "frame": { "x": 642, "y": 194, "w": 192, "h": 184 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 30, "y": 38, "w": 192, "h": 184 },
     "sourceSize": { "w": 256, "h": 256 },
     "duration": 100
    }
@@ -149,7 +194,7 @@
   "version": "1.3.2-x64",
   "image": "food-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 661, "h": 615 },
+  "size": { "w": 886, "h": 610 },
   "scale": "1"
  }
 }
