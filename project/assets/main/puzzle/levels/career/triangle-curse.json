@@ -1,0 +1,41 @@
+{
+  "version": "4c5c",
+  "name": "Triangle Curse",
+  "description": "Squares and triangles. Together at last!",
+  "start_speed": "8",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "120"
+  },
+  "piece_types": [
+    "no_suppress_o_piece",
+    "no_suppress_repeat_piece",
+    "piece_o",
+    "piece_o",
+    "piece_o",
+    "piece_k",
+    "piece_k",
+    "piece_k",
+    "piece_k"
+  ],
+  "rank": [
+    "box_factor 1.66",
+    "combo_factor 0.80"
+  ],
+  "score": [
+    "snack_all 10",
+    "cake_all 20"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 19",
+        "tile": "1 0 4"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 0 4"
+      }
+    ]
+  }
+}
