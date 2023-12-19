@@ -443,6 +443,7 @@ func _check_for_speared_piece(spear: Spear) -> void:
 		# The piece was speared. Update the piece manager with the new piece type, possibly cycling to the next piece.
 		spear.emit_crumbs(crumb_colors.keys(), 0)
 		_critter_manager.update_piece_manager_piece(new_type, new_pos, new_orientation)
+		_critter_manager.check_for_empty_piece()
 
 
 ## Removes veggie cells from the playfield for the specified spear.

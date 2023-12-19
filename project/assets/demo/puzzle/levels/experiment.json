@@ -1,20 +1,23 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Experiment",
   "description": "Just goofing around",
   "finish_condition": {
     "type": "time_over",
-    "value": "900"
+    "value": 900
   },
-  "piece_types": [
-    "piece_c",
-    "piece_j",
-    "piece_k",
-    "piece_l",
-    "piece_p",
-    "piece_q",
-    "piece_t",
-    "piece_u"
+  "triggers": [
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "add_sharks size=large patience=2"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
   ]
 }
