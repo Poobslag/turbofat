@@ -134,19 +134,22 @@ func vertically_relocate_critter(old_cell: Vector2) -> void:
 		remove_critter(old_cell)
 
 
-## Updates the piece manager with the specified piece type, possibly cycling to the next piece.
+## Updates the piece manager with the specified piece type.
 ##
-## If all blocks were removed from the specified piece, we cycle to the next piece.
+## check_for_empty_piece() should be called afterwards to cycle to the next piece if the new piece is empty. It is not
+## called here to avoid edge cases where we'd cycle prematurely or fire triggers at bad times.
 func update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orientation: int) -> void:
 	_piece_manager.piece.type = new_type
 	_piece_manager.piece.pos = new_pos
-	_piece_manager.piece.orientation = new_orientation
 	
-	# If all blocks were removed from a piece while being moved, we manually apply some steps which usually happen
-	# automatically such as pausing and running certain triggers. This occurs when sharks eat an entire piece.
+	# The null piece type only has one orientation. Illegal orientations can cause errors.
+	_piece_manager.piece.orientation = new_orientation % _piece_manager.piece.type.pos_arr.size()
+
+
+## If all blocks were removed from a piece while being moved, we manually apply some steps which usually happen
+## automatically such as pausing and running certain triggers. This occurs when sharks eat an entire piece.
+func check_for_empty_piece() -> void:
 	if _piece_manager.piece.type.empty() and _piece_manager.get_state() == _piece_manager.states.move_piece:
-		# null piece type only has one orientation
-		_piece_manager.piece.orientation = 0
 		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
 		
 		# fire 'piece_written' triggers to ensure critters get advanced
