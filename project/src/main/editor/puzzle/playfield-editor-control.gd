@@ -19,7 +19,8 @@ var tiles_key := "start" setget set_tiles_key
 
 onready var _playfield_nav := $PlayfieldNav
 onready var _rotate_button := $Palette/VBoxContainer/Buttons/RotateButton
-onready var _change_button := $Palette/VBoxContainer/Buttons/ChangeButton
+onready var _next_button := $Palette/VBoxContainer/Buttons/NextButton
+onready var _prev_button := $Palette/VBoxContainer/Buttons/PrevButton
 
 func _ready() -> void:
 	_connect_chunk_control_listeners()
@@ -57,8 +58,10 @@ func _connect_chunk_control_listeners() -> void:
 	for chunk_control in get_tree().get_nodes_in_group("chunk_controls"):
 		if chunk_control.has_method("_on_RotateButton_pressed"):
 			_rotate_button.connect("pressed", chunk_control, "_on_RotateButton_pressed")
-		if chunk_control.has_method("_on_ChangeButton_pressed"):
-			_change_button.connect("pressed", chunk_control, "_on_ChangeButton_pressed")
+		if chunk_control.has_method("_on_NextButton_pressed"):
+			_next_button.connect("pressed", chunk_control, "_on_NextButton_pressed")
+		if chunk_control.has_method("_on_PrevButton_pressed"):
+			_prev_button.connect("pressed", chunk_control, "_on_PrevButton_pressed")
 
 
 ## Ensure the tiles keys are sorted, and that they always include a 'start' key.

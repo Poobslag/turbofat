@@ -25,5 +25,9 @@ func _refresh_pickup() -> void:
 	_pickup.food_type = Foods.FOOD_TYPES_BY_BOX_TYPE[box_type][0]
 
 
-func _on_ChangeButton_pressed() -> void:
+func _on_NextButton_pressed() -> void:
 	set_box_type((box_type + 1) % Foods.BoxType.size())
+
+
+func _on_PrevButton_pressed() -> void:
+	set_box_type(int(fposmod(box_type - 1, Foods.BoxType.size())))

@@ -26,5 +26,9 @@ func _on_RotateButton_pressed() -> void:
 		set_box_size(Vector2(box_size.y, box_size.x))
 
 
-func _on_ChangeButton_pressed() -> void:
+func _on_NextButton_pressed() -> void:
 	set_box_type((box_type + 1) % Foods.BoxType.size())
+
+
+func _on_PrevButton_pressed() -> void:
+	set_box_type(int(fposmod(box_type - 1, Foods.BoxType.size())))
