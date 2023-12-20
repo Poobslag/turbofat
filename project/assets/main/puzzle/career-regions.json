@@ -462,7 +462,7 @@
         "id": "career/boss_1k"
       },
       "intro_level": {
-        "id": "career/five_course_meal"
+        "id": "career/nice_and_cheesy"
       },
       "levels": [
         {
@@ -475,19 +475,25 @@
           "id": "career/accelerator"
         },
         {
+          "id": "career/cheese_mountain"
+        },
+        {
           "id": "career/creeping_crevice_2"
         },
         {
           "id": "career/destroy_them_with_boxes"
         },
         {
-          "id": "career/five_course_meal"
-        },
-        {
           "id": "career/left_shark"
         },
         {
-          "id": "career/mystery_box"
+          "id": "career/mozzarella_sticks"
+        },
+        {
+          "id": "career/nice_and_cheesy"
+        },
+        {
+          "id": "career/sharp_curds"
         },
         {
           "id": "career/shoots_and_leaves"
@@ -499,13 +505,10 @@
           "id": "career/surprise_guests"
         },
         {
+          "id": "career/triangle_curse"
+        },
+        {
           "id": "career/tunnel_snakes"
-        },
-        {
-          "id": "career/veggie_patty"
-        },
-        {
-          "id": "career/zero_gravity"
         }
       ]
     },
@@ -532,6 +535,9 @@
           "id": "career/dark/all_nighter"
         },
         {
+          "id": "career/dark/asparagus_fondue"
+        },
+        {
           "id": "career/dark/asparagus_gang"
         },
         {
@@ -539,6 +545,15 @@
         },
         {
           "id": "career/dark/boxing_day"
+        },
+        {
+          "id": "career/dark/cheddarbox_blitz"
+        },
+        {
+          "id": "career/dark/five_course_meal"
+        },
+        {
+          "id": "career/dark/fondue_chasm"
         },
         {
           "id": "career/dark/fruit_on_the_top"
@@ -566,6 +581,9 @@
         },
         {
           "id": "career/dark/secret_brownies"
+        },
+        {
+          "id": "career/dark/sharky_cheese_2"
         },
         {
           "id": "career/dark/strawberry_shortcut"

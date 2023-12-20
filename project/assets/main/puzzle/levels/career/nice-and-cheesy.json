@@ -1,0 +1,261 @@
+{
+  "version": "4c5c",
+  "name": "Nice and Cheesy",
+  "description": "Let's learn to cook with cheese!",
+  "start_speed": "4",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "10",
+      "speed": "5"
+    },
+    {
+      "type": "lines",
+      "value": "20",
+      "speed": "6"
+    },
+    {
+      "type": "lines",
+      "value": "30",
+      "speed": "7"
+    }
+  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": "40"
+  },
+  "piece_types": [
+    "piece_c",
+    "piece_j",
+    "piece_k",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_t",
+    "piece_u"
+  ],
+  "rank": [
+    "master_pickup_score 120",
+    "show_pickups_rank"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 10",
+        "tile": "0 2 4"
+      },
+      {
+        "pos": "8 10",
+        "tile": "0 2 4"
+      },
+      {
+        "pos": "0 11",
+        "tile": "0 9 4"
+      },
+      {
+        "pos": "1 11",
+        "tile": "0 4 4"
+      },
+      {
+        "pos": "7 11",
+        "tile": "0 10 4"
+      },
+      {
+        "pos": "8 11",
+        "tile": "0 7 4"
+      },
+      {
+        "pos": "0 12",
+        "tile": "0 2 4"
+      },
+      {
+        "pos": "6 12",
+        "tile": "0 8 4"
+      },
+      {
+        "pos": "7 12",
+        "tile": "0 13 4"
+      },
+      {
+        "pos": "8 12",
+        "tile": "0 5 4"
+      },
+      {
+        "pos": "0 13",
+        "tile": "0 11 4"
+      },
+      {
+        "pos": "1 13",
+        "tile": "0 6 4"
+      },
+      {
+        "pos": "8 13",
+        "tile": "0 2 4"
+      },
+      {
+        "pos": "0 14",
+        "tile": "0 9 4"
+      },
+      {
+        "pos": "1 14",
+        "tile": "0 13 4"
+      },
+      {
+        "pos": "2 14",
+        "tile": "0 4 4"
+      },
+      {
+        "pos": "7 14",
+        "tile": "0 8 4"
+      },
+      {
+        "pos": "8 14",
+        "tile": "0 5 4"
+      },
+      {
+        "pos": "0 15",
+        "tile": "0 2 4"
+      },
+      {
+        "pos": "8 15",
+        "tile": "0 2 4"
+      },
+      {
+        "pos": "0 16",
+        "tile": "0 9 4"
+      },
+      {
+        "pos": "1 16",
+        "tile": "0 4 4"
+      },
+      {
+        "pos": "7 16",
+        "tile": "0 10 4"
+      },
+      {
+        "pos": "8 16",
+        "tile": "0 7 4"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 10 15"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 15"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 6 15"
+      },
+      {
+        "pos": "6 17",
+        "tile": "0 8 4"
+      },
+      {
+        "pos": "7 17",
+        "tile": "0 13 4"
+      },
+      {
+        "pos": "8 17",
+        "tile": "0 5 4"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 9 15"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 13 15"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 5 15"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 10 14"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 14 14"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 6 14"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 8 13"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 12 13"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 4 13"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 14"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 14"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 14"
+      },
+      {
+        "pos": "0 9",
+        "pickup": "4"
+      },
+      {
+        "pos": "8 9",
+        "pickup": "4"
+      },
+      {
+        "pos": "1 10",
+        "pickup": "4"
+      },
+      {
+        "pos": "7 10",
+        "pickup": "4"
+      },
+      {
+        "pos": "6 11",
+        "pickup": "4"
+      },
+      {
+        "pos": "1 12",
+        "pickup": "4"
+      },
+      {
+        "pos": "2 13",
+        "pickup": "4"
+      },
+      {
+        "pos": "7 13",
+        "pickup": "4"
+      },
+      {
+        "pos": "1 15",
+        "pickup": "4"
+      },
+      {
+        "pos": "7 15",
+        "pickup": "4"
+      },
+      {
+        "pos": "2 16",
+        "pickup": "4"
+      },
+      {
+        "pos": "6 16",
+        "pickup": "4"
+      }
+    ]
+  }
+}

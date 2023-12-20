@@ -1,0 +1,64 @@
+{
+  "version": "4c5c",
+  "name": "Mozzarella Sticks",
+  "description": "Speak softly and eat a big mozzarella stick.",
+  "start_speed": "7",
+  "blocks_during": [
+    "pickup_type float_regen"
+  ],
+  "finish_condition": {
+    "type": "score",
+    "value": "1100"
+  },
+  "piece_types": [
+    "piece_c",
+    "piece_j",
+    "piece_k",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_t",
+    "piece_u"
+  ],
+  "rank": [
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 15.30",
+    "show_pickups_rank"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "2 9",
+        "pickup": "15"
+      },
+      {
+        "pos": "3 9",
+        "pickup": "4"
+      },
+      {
+        "pos": "4 9",
+        "pickup": "15"
+      },
+      {
+        "pos": "5 9",
+        "pickup": "4"
+      },
+      {
+        "pos": "6 9",
+        "pickup": "15"
+      },
+      {
+        "pos": "3 15",
+        "pickup": "4"
+      },
+      {
+        "pos": "4 15",
+        "pickup": "15"
+      },
+      {
+        "pos": "5 15",
+        "pickup": "4"
+      }
+    ]
+  }
+}
