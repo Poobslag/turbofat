@@ -20,5 +20,9 @@ func _on_RotateButton_pressed() -> void:
 	_refresh_tile_map()
 
 
-func _on_ChangeButton_pressed() -> void:
+func _on_NextButton_pressed() -> void:
+	_refresh_tile_map()
+
+
+func _on_PrevButton_pressed() -> void:
 	_refresh_tile_map()

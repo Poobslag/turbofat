@@ -2,13 +2,15 @@ extends BlockLevelChunkControl
 ## Level editor chunk which contains several blocks which make up a single piece, such as a T-Block.
 
 enum EditorPiece {
-	PIECE_J, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
+	PIECE_C, PIECE_J, PIECE_K, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
 }
 
 export (EditorPiece) var editor_piece: int setget set_editor_piece
 
 var _editor_pieces := {
+	EditorPiece.PIECE_C: PieceTypes.piece_c,
 	EditorPiece.PIECE_J: PieceTypes.piece_j,
+	EditorPiece.PIECE_K: PieceTypes.piece_k,
 	EditorPiece.PIECE_L: PieceTypes.piece_l,
 	EditorPiece.PIECE_O: PieceTypes.piece_o,
 	EditorPiece.PIECE_P: PieceTypes.piece_p,
