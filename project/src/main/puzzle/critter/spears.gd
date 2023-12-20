@@ -403,7 +403,7 @@ func _add_veg_cells_for_spear(spear: Spear, cells_consumed: Dictionary, box_ints
 		_playfield.tile_map.erase_cell(cell)
 		
 		# popping in; add invisible veggie cells
-		_playfield.tile_map.set_block(cell, PuzzleTileMap.TILE_VEG, Vector2(0, 5))
+		_playfield.tile_map.set_block(cell, PuzzleTileMap.TILE_VEG, Vector2(0, 6))
 
 
 ## Checks whether the player's active piece was hit by a spear.
