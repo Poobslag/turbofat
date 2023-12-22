@@ -186,7 +186,15 @@ func apply_top_out_score_penalty() -> void:
 ##
 ## If the player is not out of lives, the game will still continue.
 func top_out() -> void:
-	if level_performance.top_out_count + 1 >= CurrentLevel.settings.lose_condition.top_out:
+	var lost_last_life := false
+	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+		lost_last_life = level_performance.top_out_count + PlayerData.career.top_out_count + 1 \
+				>= CurrentLevel.settings.lose_condition.top_out
+	else:
+		lost_last_life = level_performance.top_out_count + 1 \
+				>= CurrentLevel.settings.lose_condition.top_out
+	
+	if lost_last_life:
 		PuzzleState.level_performance.top_out_count += 1
 		make_player_lose()
 	else:
@@ -212,6 +220,8 @@ func make_player_lose() -> void:
 		
 		# trigger the visual effects for topping out, such as making the player go swirly eyed
 		apply_top_out_score_penalty()
+		# use up all of the players lives; especially for career mode, we don't want to reward players who give up
+		PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
 		emit_signal("topped_out")
 		emit_signal("score_changed")
 	end_game()

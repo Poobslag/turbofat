@@ -68,6 +68,8 @@ func _input(event: InputEvent) -> void:
 				PuzzleState.game_active = false
 				PuzzleState.game_ended = true
 				PuzzleState.apply_top_out_score_penalty()
+				# use up all of the players lives; especially for career mode, we don't want to reward players who give up
+				PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
 			if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 				PuzzleState.end_game()
 			var rank_result := RankCalculator.new().calculate_rank()
@@ -263,7 +265,8 @@ func _update_career_data(rank_result: RankResult) -> void:
 	var distance_to_advance: int = Careers.RANK_MILESTONES[milestone_index].distance
 	
 	PlayerData.career.daily_steps += distance_to_advance
-	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
+	PlayerData.career.top_out_count += PuzzleState.level_performance.top_out_count
+	PlayerData.career.advance_clock(distance_to_advance, rank_result.success, rank_result.lost)
 
 
 ## Stores the rank result for later.
