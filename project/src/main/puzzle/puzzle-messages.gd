@@ -29,6 +29,8 @@ func _ready() -> void:
 		# they can't go back in career mode
 		_back_button.text = tr("Skip")
 	
+	_refresh_start_button(0)
+	
 	# grab focus so the player can start a new game or navigate with the keyboard
 	_start_button.grab_focus()
 
@@ -61,14 +63,14 @@ func hide_buttons() -> void:
 
 
 ## Updates the start button's text after the player finishes the level.
-func _refresh_start_button() -> void:
+func _refresh_start_button(new_attempt_count: int) -> void:
 	if PlayerData.career.is_career_mode():
-		match CurrentLevel.attempt_count:
+		match new_attempt_count:
 			0: _start_button.text = tr("Start")
 			1: _start_button.text = tr("Practice")
 			_: _start_button.text = tr("Retry")
 	else:
-		match CurrentLevel.attempt_count:
+		match new_attempt_count:
 			0: _start_button.text = tr("Start")
 			_: _start_button.text = tr("Retry")
 
@@ -162,7 +164,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	if PlayerData.career.is_career_mode():
 		# in career mode, the back (continue) button is the default. but after retrying in career mode, the default
 		# is to retry
-		if CurrentLevel.attempt_count >= 2:
+		if CurrentLevel.attempt_count >= 1:
 			buttons_to_focus.push_front(_start_button)
 	elif CurrentLevel.keep_retrying:
 		buttons_to_focus.push_front(_start_button)
@@ -170,7 +172,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 		buttons_to_focus.push_front(_start_button)
 	
 	# update the start button's text after the player finishes the level
-	_refresh_start_button()
+	_refresh_start_button(CurrentLevel.attempt_count + 1)
 	
 	# grab focus so the player can retry or navigate with the keyboard
 	for button_to_focus_obj in buttons_to_focus:
