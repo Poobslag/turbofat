@@ -84,6 +84,9 @@ var skipped_previous_level := false
 ## Whether the career map should show the player's progress.
 var show_progress: int = Careers.ShowProgress.STATIC
 
+## Number of times the player has topped out in the current career session.
+var top_out_count := 0
+
 ## periodically increments the 'daily_seconds_played' value
 var _daily_seconds_played_timer: Timer
 
@@ -124,6 +127,7 @@ func reset() -> void:
 	best_distance_travelled = 0
 	remain_in_region = false
 	skipped_previous_level = false
+	top_out_count = 0
 	emit_signal("distance_travelled_changed")
 
 
@@ -143,6 +147,7 @@ func from_json_dict(json: Dictionary) -> void:
 	best_distance_travelled = int(json.get("best_distance_travelled", 0))
 	remain_in_region = bool(json.get("remain_in_region", false))
 	skipped_previous_level = bool(json.get("skipped_previous_level", false))
+	top_out_count = int(json.get("top_out_count", 0))
 	emit_signal("distance_travelled_changed")
 
 
@@ -163,6 +168,7 @@ func to_json_dict() -> Dictionary:
 	results["best_distance_travelled"] = best_distance_travelled
 	results["remain_in_region"] = remain_in_region
 	results["skipped_previous_level"] = skipped_previous_level
+	results["top_out_count"] = top_out_count
 	return results
 
 
@@ -315,8 +321,10 @@ func distance_penalties() -> Array:
 ## 	'new_distance_earned': The maximum distance the player will travel.
 ##
 ## 	'success': 'True' if the player met the success criteria for the current level.
-func advance_clock(new_distance_earned: int, success: bool) -> void:
-	_career_calendar.advance_clock(new_distance_earned, success)
+##
+## 	'lost': 'True' if the player gave up or lost all their lives.
+func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
+	_career_calendar.advance_clock(new_distance_earned, success, lost)
 
 
 ## Advances the calendar day and resets all daily variables.

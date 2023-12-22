@@ -18,7 +18,9 @@ func _init(init_career_data: CareerData) -> void:
 ## 	'new_distance_earned': The maximum distance the player will travel.
 ##
 ## 	'success': 'True' if the player met the success criteria for the current level.
-func advance_clock(new_distance_earned: int, success: bool) -> void:
+##
+## 	'lost': 'True' if the player gave up or lost all their lives.
+func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
 	if career_data.remain_in_region:
 		# don't show progress; the player is not trying to beat the region
 		pass
@@ -29,7 +31,10 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 	career_data.distance_earned = new_distance_earned
 	career_data.skipped_previous_level = false
 	
-	career_data.hours_passed += 1
+	if lost:
+		career_data.hours_passed = Careers.HOURS_PER_CAREER_DAY
+	else:
+		career_data.hours_passed += 1
 	
 	if career_data.is_boss_level():
 		var region: CareerRegion = career_data.current_region()
@@ -78,6 +83,7 @@ func advance_calendar() -> void:
 	career_data.daily_seconds_played = 0.0
 	career_data.daily_steps = 0
 	career_data.day = min(career_data.day + 1, Careers.MAX_DAY)
+	career_data.top_out_count = 0
 	
 	# Put the player at the start of their current region and trigger the 'distance_travelled_changed' signal
 	career_data.distance_travelled = career_data.current_region().start

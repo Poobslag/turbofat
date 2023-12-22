@@ -51,7 +51,7 @@ func process_puzzle_result() -> void:
 	if not PuzzleState.game_ended:
 		# player skipped a level
 		skip_remaining_cutscenes = true
-		career_data.advance_clock(0, false)
+		career_data.advance_clock(0, false, false)
 		career_data.skipped_previous_level = true
 	
 	if PlayerData.cutscene_queue.has_cutscene_flag("intro_level") \
@@ -85,27 +85,20 @@ func _preapply_failure_penalties() -> void:
 	
 	if PlayerSave.is_connected("after_save", self, "_on_PlayerSave_after_save"):
 		PlayerSave.disconnect("after_save", self, "_on_PlayerSave_after_save")
-	PlayerSave.connect("after_save", self, "_on_PlayerSave_after_save",
-			[career_data.distance_earned, career_data.distance_travelled, career_data.hours_passed])
+	PlayerSave.connect("after_save", self, "_on_PlayerSave_after_save", [career_data.hours_passed])
 	
 	PlayerSave.schedule_save()
 
 
 func _on_PlayerSave_before_save() -> void:
 	# Temporarily sabotage the player's career progress to punish them if they try to savescum when losing a puzzle.
-	career_data.advance_clock(0, false)
-	
-	# Set the 'skipped_previous_level' flag; this will be reset to false if the player finishes a puzzle.
-	career_data.skipped_previous_level = true
+	career_data.hours_passed = Careers.HOURS_PER_CAREER_DAY
 	
 	PlayerSave.disconnect("before_save", self, "_on_PlayerSave_before_save")
 
 
-func _on_PlayerSave_after_save(distance_earned: int, distance_travelled: int, hours_passed: int) -> void:
-	# Restore the player's distance earned, distance travelled and hours passed. The 'skipped_previous_level' flag is
-	# still set to true; this is reset to false after the player finishes a puzzle.
-	career_data.distance_earned = distance_earned
-	career_data.distance_travelled = distance_travelled
+func _on_PlayerSave_after_save(hours_passed: int) -> void:
+	# Restore the player's hours passed.
 	career_data.hours_passed = hours_passed
 	
 	PlayerSave.disconnect("after_save", self, "_on_PlayerSave_after_save")

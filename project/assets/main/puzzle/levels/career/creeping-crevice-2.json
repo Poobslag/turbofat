@@ -13,9 +13,6 @@
   "rank": [
     "box_factor 0.80"
   ],
-  "lose_condition": [
-    "top_out 2"
-  ],
   "triggers": [
     {
       "phases": [
