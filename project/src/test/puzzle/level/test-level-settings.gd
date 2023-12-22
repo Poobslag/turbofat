@@ -100,7 +100,7 @@ func test_load_tiles() -> void:
 	assert_eq(blocks_0.block_tiles.get(Vector2(3, 2)), 2, "0.block_tiles[(3, 2)]")
 	assert_eq(blocks_0.block_autotile_coords.get(Vector2(3, 2)), Vector2(6, 3), "0.block_autotile_coords[(3, 2)]")
 	assert_eq(Vector2(4, 2) in blocks_0.pickups, true, "0.pickups[(4, 2)]")
-	assert_eq(blocks_0.pickups.get(Vector2(4, 2)), 4, "0.pickups[(4, 2)]")
+	assert_eq(blocks_0.pickups.get(Vector2(4, 2)), 5, "0.pickups[(4, 2)]")
 
 
 func test_path_from_level_key() -> void:
