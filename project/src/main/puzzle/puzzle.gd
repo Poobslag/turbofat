@@ -6,6 +6,9 @@ onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
 onready var _settings_menu: SettingsMenu = $SettingsMenu
 onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
 
+## Number of time the player has started the puzzle.
+var _start_puzzle_count := 0
+
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
@@ -156,6 +159,10 @@ func is_night_mode() -> bool:
 
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
 func _start_puzzle() -> void:
+	# increment the attempt count
+	_start_puzzle_count += 1
+	CurrentLevel.attempt_count = _start_puzzle_count - 1
+	
 	PlayerData.customer_queue.reset_standard_customer_queue()
 	var current_customer_ids := []
 	_restaurant_view.reset()
@@ -270,7 +277,6 @@ func _save_level_result(rank_result: RankResult) -> void:
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 		_update_career_data(rank_result)
 	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
-	CurrentLevel.attempt_count += 1
 	
 	PlayerSave.schedule_save()
 
