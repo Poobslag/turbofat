@@ -7,3 +7,4 @@ class_name LevelPosse
 var chef_id := ""
 var customer_ids := []
 var observer_id := ""
+var puzzle_environment_name: String

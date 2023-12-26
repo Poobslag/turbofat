@@ -15,6 +15,7 @@ const UNDECORATED_PUZZLE_ENVIRONMENT_PATH \
 const ENVIRONMENT_PATH_BY_NAME := {
 	"lemon": "res://src/main/world/environment/lemon/LemonRestaurantEnvironment.tscn",
 	"marsh": "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn",
+	"lava/zagma": "res://src/main/world/environment/lava/ZagmaEnvironment.tscn"
 }
 
 var customers := []
