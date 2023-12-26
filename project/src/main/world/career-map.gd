@@ -151,20 +151,21 @@ func _random_levels() -> Array:
 					required_cutscene_characters.customer_ids,
 					required_cutscene_characters.observer_ids])
 	
+	# calculate a list of levels the player hasn't played in this career session
+	var unplayed_levels := []
+	for i in range(levels.size()):
+		if not levels[i].level_id in PlayerData.career.daily_level_ids:
+			unplayed_levels.append(levels[i])
+	
+	# calculate a random set of levels for the player, and replace any the player's played if possible
 	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))
-	var random_level_index := 0
-	for level in levels:
-		random_levels[random_level_index] = level
-		if level.level_id in PlayerData.career.daily_level_ids:
-			# this level has been played in the current session; try the next one
-			pass
-		else:
-			# this level hasn't been played in the current session; add it to the list
-			random_level_index += 1
-		
-		if random_level_index >= random_levels.size():
-			# we've found enough levels
+	unplayed_levels = Utils.subtract(unplayed_levels, random_levels)
+	for random_level_index in range(random_levels.size()):
+		if unplayed_levels.empty():
 			break
+		
+		if random_levels[random_level_index].level_id in PlayerData.career.daily_level_ids:
+			random_levels[0] = unplayed_levels.pop_front()
 	
 	return random_levels
 
