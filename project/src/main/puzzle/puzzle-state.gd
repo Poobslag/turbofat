@@ -187,12 +187,16 @@ func apply_top_out_score_penalty() -> void:
 ## If the player is not out of lives, the game will still continue.
 func top_out() -> void:
 	var lost_last_life := false
+	
+	var new_top_out_count := level_performance.top_out_count + 1
+	var max_top_out_count := CurrentLevel.settings.lose_condition.top_out
+	
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
-		lost_last_life = level_performance.top_out_count + PlayerData.career.top_out_count + 1 \
-				>= CurrentLevel.settings.lose_condition.top_out
-	else:
-		lost_last_life = level_performance.top_out_count + 1 \
-				>= CurrentLevel.settings.lose_condition.top_out
+		if not CurrentLevel.hardcore:
+			max_top_out_count += PlayerData.career.extra_life_count
+		new_top_out_count += PlayerData.career.top_out_count
+	
+	lost_last_life = new_top_out_count >= max_top_out_count
 	
 	if lost_last_life:
 		PuzzleState.level_performance.top_out_count += 1

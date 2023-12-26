@@ -67,6 +67,14 @@ func process_puzzle_result() -> void:
 	if skip_remaining_cutscenes:
 		# skip career cutscenes if they skip a level, or if they fail a boss level
 		PlayerData.cutscene_queue.reset()
+	
+	if PuzzleState.game_ended and CurrentLevel.hardcore:
+		# completing a hardcore level gives the player an extra life
+		career_data.extra_life_count += 1
+	
+	if not PuzzleState.game_ended and CurrentLevel.hardcore:
+		# skipping a hardcore level ends the career day
+		career_data.hours_passed = Careers.HOURS_PER_CAREER_DAY
 
 
 ## Returns 'true' if the current career region has a prologue the player hasn't seen.

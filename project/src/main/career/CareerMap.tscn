@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/career/ui/career-distance-label.gd" type="Script" id=13]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/ui/level-select/HardcoreLevelSelectButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/career/ui/career-time-label.gd" type="Script" id=16]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
@@ -64,6 +65,7 @@ script = ExtResource( 49 )
 [node name="LevelSelect" type="CanvasLayer" parent="."]
 script = ExtResource( 28 )
 LevelSelectButtonScene = ExtResource( 6 )
+HardcoreLevelSelectButtonScene = ExtResource( 15 )
 
 [node name="Control" type="Control" parent="LevelSelect"]
 anchor_right = 1.0
@@ -202,7 +204,7 @@ quit_type = 3
 [node name="MusicPopup" parent="Ui" instance=ExtResource( 24 )]
 
 [node name="CheatCodeDetector" parent="Ui" instance=ExtResource( 5 )]
-codes = [ "bossio", "cambra", "cutsio", "cyclio", "epilio", "moveme" ]
+codes = [ "bossio", "cambra", "cutsio", "cyclio", "epilio", "hardio", "moveme" ]
 
 [node name="CareerRewinder" parent="." instance=ExtResource( 7 )]
 cheat_code_detector_path = NodePath("../Ui/CheatCodeDetector")

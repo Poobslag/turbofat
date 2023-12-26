@@ -5,6 +5,7 @@ extends CanvasLayer
 signal level_button_focused(button_index)
 
 export (PackedScene) var LevelSelectButtonScene: PackedScene
+export (PackedScene) var HardcoreLevelSelectButtonScene: PackedScene
 
 var _duration_calculator := DurationCalculator.new()
 var _prev_focused_level_button_index := -1
@@ -42,7 +43,11 @@ func clear_level_select_buttons() -> void:
 ## Parameters:
 ## 	'settings': The level settings which control the button's appearance.
 func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
-	var button: LevelSelectButton = LevelSelectButtonScene.instance()
+	var button: LevelSelectButton
+	if settings.lose_condition.top_out == 1:
+		button = HardcoreLevelSelectButtonScene.instance()
+	else:
+		button = LevelSelectButtonScene.instance()
 	button.rect_min_size = Vector2(200, 120)
 	button.size_flags_horizontal = 6
 	button.size_flags_vertical = 4

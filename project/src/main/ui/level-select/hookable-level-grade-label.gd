@@ -6,7 +6,7 @@ extends Node2D
 ## which haven't yet been cleared.
 
 ## LevelSelectButton this grade label applies to
-var button: Button setget set_button
+var button: Control setget set_button
 
 var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")
 var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")

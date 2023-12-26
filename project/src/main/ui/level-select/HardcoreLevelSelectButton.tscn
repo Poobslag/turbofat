@@ -1,0 +1,251 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://src/main/ui/level-select/hardcore-level-select-button.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/main/career/ui/HardcoreFgSkulls.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/career/ui/HardcoreBgSkulls.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFocus.tres" type="StyleBox" id=5]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonPressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonNormal.tres" type="StyleBox" id=8]
+[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=9]
+[ext_resource path="res://src/main/ui/level-select/hardcore-button-halo.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 2
+outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.683824, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 19.8455, 0, 0, Vector2( 0.105085, 1 ), -0.0924758, -0.0924758, 0, 0, Vector2( 1, 0.645455 ), -0.914257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.33
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.683824, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0 ), 0.0, 19.8455, 0, 0, Vector2( 0.105085, 1 ), -0.0924758, -0.0924758, 0, 0, Vector2( 1, 0.645455 ), -0.914257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+resource_local_to_scene = true
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.4
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0, 0.683824, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
+
+[sub_resource type="Curve" id=21]
+_data = [ Vector2( 0, 0 ), 0.0, 19.8455, 0, 0, Vector2( 0.105085, 1 ), -0.0924758, -0.0924758, 0, 0, Vector2( 1, 0.645455 ), -0.914257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=22]
+curve = SubResource( 21 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.33
+scale_curve = SubResource( 22 )
+color_ramp = SubResource( 20 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="ParticlesMaterial" id=15]
+resource_local_to_scene = true
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.4
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+[node name="Control" type="Control"]
+margin_right = 120.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 120, 80 )
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ButtonControlHolder" type="Node2D" parent="."]
+z_index = 1
+
+[node name="ButtonControl" type="Button" parent="ButtonControlHolder" groups=["level_select_buttons"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 120.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/normal = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="ButtonControlHolder/ButtonControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 6 )
+text = "Just getting started"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Decorations" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="BottomLeft" type="Control" parent="Decorations"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+
+[node name="FgSkulls" parent="Decorations/BottomLeft" instance=ExtResource( 3 )]
+position = Vector2( -5, 10 )
+z_index = 2
+process_material = SubResource( 18 )
+
+[node name="BgSkulls" parent="Decorations/BottomLeft" instance=ExtResource( 4 )]
+process_material = SubResource( 13 )
+
+[node name="BottomRight" type="Control" parent="Decorations"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FgSkulls" parent="Decorations/BottomRight" instance=ExtResource( 3 )]
+position = Vector2( 5, 10 )
+z_index = 2
+preprocess = 0.75
+process_material = SubResource( 17 )
+
+[node name="BgSkulls" parent="Decorations/BottomRight" instance=ExtResource( 4 )]
+position = Vector2( 5, 10 )
+preprocess = 0.75
+process_material = SubResource( 15 )
+
+[node name="GradeHook" type="RemoteTransform2D" parent="."]
+position = Vector2( 12, 6 )
+rotation = -0.261799
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+
+[node name="Halo" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="Halo"]
+modulate = Color( 0, 0, 0, 0.627451 )
+material = SubResource( 2 )
+position = Vector2( 60, 40 )
+scale = Vector2( 2, 0.8 )
+texture = ExtResource( 9 )
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="button_down" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_button_down"]
+[connection signal="focus_entered" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_focus_entered"]
+[connection signal="focus_exited" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_focus_exited"]
+[connection signal="pressed" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_pressed"]
+[connection signal="resized" from="Halo" to="Halo" method="_on_resized"]
+
+[editable path="Decorations/BottomLeft/FgSkulls"]
+[editable path="Decorations/BottomRight/FgSkulls"]
