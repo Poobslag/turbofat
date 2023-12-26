@@ -459,10 +459,12 @@
       "piece_speed": "6-9",
       "cutscene_path": "chat/career/lava",
       "boss_level": {
-        "id": "career/boss_1k"
+        "id": "career/boss_1k",
+        "puzzle_environment": "lava/zagma"
       },
       "intro_level": {
-        "id": "career/nice_and_cheesy"
+        "id": "career/nice_and_cheesy",
+        "puzzle_environment": "lava/zagma"
       },
       "levels": [
         {
