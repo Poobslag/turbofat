@@ -83,7 +83,9 @@ func advance_calendar() -> void:
 	career_data.daily_seconds_played = 0.0
 	career_data.daily_steps = 0
 	career_data.day = min(career_data.day + 1, Careers.MAX_DAY)
+	career_data.extra_life_count = 0
 	career_data.top_out_count = 0
+	career_data.randomize_forced_hardcore_level_hours()
 	
 	# Put the player at the start of their current region and trigger the 'distance_travelled_changed' signal
 	career_data.distance_travelled = career_data.current_region().start

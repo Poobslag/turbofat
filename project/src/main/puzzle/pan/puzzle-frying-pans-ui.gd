@@ -17,6 +17,12 @@ func _refresh_lives() -> void:
 		pans_remaining = CurrentLevel.settings.lose_condition.top_out - PuzzleState.level_performance.top_out_count
 		
 		if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+			# adjust pans based on extra lives earned
+			if not CurrentLevel.hardcore:
+				pans_max += max(0, PlayerData.career.extra_life_count - PlayerData.career.top_out_count)
+				pans_remaining += PlayerData.career.extra_life_count
+			
+			# adjust pans based on top outs
 			pans_remaining = int(max(0, pans_remaining - PlayerData.career.top_out_count))
 			if pans_remaining == 0 and PuzzleState.level_performance.top_out_count == 0:
 				# the player always starts with at least one life in career mode, even if they've topped out a lot on
@@ -31,7 +37,8 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_PuzzleState_game_ended() -> void:
-	_refresh_lives()
+	if PuzzleState.level_performance.lost:
+		_refresh_lives()
 
 
 ## Updates the state of the FryingPansUi when the player loses a life.

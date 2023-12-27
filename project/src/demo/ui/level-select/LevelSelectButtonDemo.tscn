@@ -1,13 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/demo/ui/level-select/level-select-button-demo.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/level-select/HardcoreLevelSelectButton.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.807843, 0.407843, 0.85098, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Demo" type="Node"]
 script = ExtResource( 1 )
 LevelButtonScene = ExtResource( 2 )
+HardcoreLevelButtonScene = ExtResource( 5 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

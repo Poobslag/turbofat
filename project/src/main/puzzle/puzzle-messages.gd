@@ -27,7 +27,10 @@ func _ready() -> void:
 	
 	if PlayerData.career.is_career_mode():
 		# they can't go back in career mode
-		_back_button.text = tr("Skip")
+		if CurrentLevel.hardcore:
+			_back_button.text = tr("Give Up")
+		else:
+			_back_button.text = tr("Skip")
 	
 	_refresh_start_button(0)
 	

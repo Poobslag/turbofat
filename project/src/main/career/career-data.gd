@@ -15,6 +15,14 @@ signal distance_travelled_changed
 ## mid-scene, and really only happens when using cheat codes.
 signal hours_passed_changed
 
+## Array of possible arrays of ints for the hours_passed values where the player will be offered a hardcore level.
+const HARDCORE_LEVEL_HOURS_OPTIONS := [
+	[1, 3],
+	[1, 4],
+	[2, 4],
+]
+
+
 ## time to show when the number of levels the player has played is an unexpected value
 var invalid_time_of_day := tr("?:?? zm")
 
@@ -62,6 +70,12 @@ var daily_steps := 0
 
 ## Number of days the player has completed.
 var day := 0
+
+## Number of extra lives awarded in the current career session.
+var extra_life_count := 0
+
+## Array of ints for the hours_passed values where the player will be offered a hardcore level.
+var forced_hardcore_level_hours := []
 
 ## Array of ints for previous daily earnings. Index 0 holds the most recent data.
 var prev_daily_earnings := []
@@ -122,13 +136,20 @@ func reset() -> void:
 	daily_seconds_played = 0.0
 	daily_steps = 0
 	day = 0
+	extra_life_count = 0
+	forced_hardcore_level_hours = []
 	prev_daily_earnings.clear()
 	prev_distance_travelled.clear()
 	best_distance_travelled = 0
 	remain_in_region = false
 	skipped_previous_level = false
 	top_out_count = 0
+	randomize_forced_hardcore_level_hours()
 	emit_signal("distance_travelled_changed")
+
+
+func randomize_forced_hardcore_level_hours() -> void:
+	forced_hardcore_level_hours = Utils.rand_value(HARDCORE_LEVEL_HOURS_OPTIONS)
 
 
 func from_json_dict(json: Dictionary) -> void:
@@ -142,6 +163,8 @@ func from_json_dict(json: Dictionary) -> void:
 	daily_seconds_played = float(json.get("daily_seconds_played", 0.0))
 	daily_steps = int(json.get("daily_steps", 0))
 	day = int(json.get("day", 0))
+	extra_life_count = int(json.get("extra_life_count", 0))
+	forced_hardcore_level_hours = json.get("forced_hardcore_level_hours", [])
 	prev_daily_earnings = json.get("prev_daily_earnings", [])
 	prev_distance_travelled = json.get("prev_distance_travelled", [])
 	best_distance_travelled = int(json.get("best_distance_travelled", 0))
@@ -163,6 +186,8 @@ func to_json_dict() -> Dictionary:
 	results["daily_seconds_played"] = daily_seconds_played
 	results["daily_steps"] = daily_steps
 	results["day"] = day
+	results["extra_life_count"] = extra_life_count
+	results["forced_hardcore_level_hours"] = forced_hardcore_level_hours
 	results["prev_daily_earnings"] = prev_daily_earnings
 	results["prev_distance_travelled"] = prev_distance_travelled
 	results["best_distance_travelled"] = best_distance_travelled

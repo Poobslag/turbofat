@@ -14,6 +14,9 @@ var keep_retrying := false
 ## Settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level
 
+## If 'true' the player only gets one life.
+var hardcore := false
+
 var puzzle: Puzzle
 
 ## The level which was originally launched. Some tutorial levels transition
@@ -48,6 +51,7 @@ func _ready() -> void:
 func reset() -> void:
 	keep_retrying = false
 	settings = LevelSettings.new()
+	hardcore = false
 	puzzle = null
 	level_id = ""
 	piece_speed = ""
@@ -92,6 +96,8 @@ func push_level_trail() -> void:
 	level_settings.load_from_resource(level_id)
 	if piece_speed:
 		LevelSpeedAdjuster.new(level_settings).adjust(piece_speed)
+	if hardcore:
+		level_settings.lose_condition.top_out = 1
 	
 	# When the player first launches the game and does the tutorial, we skip the typical puzzle intro.
 	if level_id == OtherLevelLibrary.BEGINNER_TUTORIAL \

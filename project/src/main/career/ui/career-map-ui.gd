@@ -90,6 +90,23 @@ func _force_boss_level() -> bool:
 	return true if new_region else false
 
 
+## Alters the player's career mode data to make a hardcore level available.
+##
+## This is triggered by a cheat code.
+##
+## Returns:
+## 	'true' if the we successfully made a hardcore level available, 'false' if we failed
+func _force_hardcore_level() -> bool:
+	if PlayerData.career.forced_hardcore_level_hours.empty():
+		PlayerData.career.randomize_forced_hardcore_level_hours()
+	PlayerData.career.hours_passed = PlayerData.career.forced_hardcore_level_hours[0]
+	
+	# reload the CareerMap scene
+	SceneTransition.change_scene()
+	
+	return true
+
+
 ## Finds a region we can send the player to that has an epilogue.
 ##
 ## This is used by a cheat code. Ideally we send the player backwards to an older region, but if we can't find one we
@@ -198,6 +215,9 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			detector.play_cheat_sound(cheat_successful)
 		"epilio":
 			var cheat_successful := _force_epilogue_level()
+			detector.play_cheat_sound(cheat_successful)
+		"hardio":
+			var cheat_successful := _force_hardcore_level()
 			detector.play_cheat_sound(cheat_successful)
 		"cyclio":
 			_cycle_levels()

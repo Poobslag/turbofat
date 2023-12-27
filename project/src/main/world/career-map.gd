@@ -100,6 +100,12 @@ func _load_level_settings() -> void:
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
 		_pickable_level_settings.append(level_settings)
 	
+	# twice per career day, we let the player pick a hardcore level
+	if PlayerData.career.hours_passed in PlayerData.career.forced_hardcore_level_hours \
+			and _pickable_career_levels.size() > 1:
+		var level_settings: LevelSettings = _pickable_level_settings.back()
+		level_settings.lose_condition.top_out = 1
+	
 	_level_posses = []
 	for i in range(_pickable_career_levels.size()):
 		_level_posses.append(_new_level_posse(i))
@@ -290,6 +296,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	PlayerData.career.daily_level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
+	CurrentLevel.hardcore = level_settings.lose_condition.top_out == 1
 	
 	var level_posse: LevelPosse = _level_posses[level_index]
 	CurrentLevel.customers = level_posse.customer_ids
@@ -325,6 +332,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 		"piece_speed": _piece_speed,
 		"chef_id": CurrentLevel.chef_id,
 		"customers": CurrentLevel.customers,
+		"hardcore": CurrentLevel.hardcore,
 		"puzzle_environment_name": CurrentLevel.puzzle_environment_name,
 	})
 	

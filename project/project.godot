@@ -514,7 +514,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/level-posse.gd"
 }, {
-"base": "Button",
+"base": "Control",
 "class": "LevelSelectButton",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/level-select-button.gd"

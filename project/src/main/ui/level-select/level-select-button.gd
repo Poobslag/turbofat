@@ -1,5 +1,5 @@
 class_name LevelSelectButton
-extends Button
+extends Control
 ## Button on the level select screen which launches a level.
 ##
 ## The button adjusts its rect_min_size based on level duration.
@@ -66,10 +66,13 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
 
-onready var _label := $Label
+onready var _button_control := $ButtonControlHolder/ButtonControl
+onready var _label := $ButtonControlHolder/ButtonControl/Label
 
 func _ready() -> void:
-	text = ""
+	_button_control.text = ""
+	_button_control.rect_size = rect_size
+	_refresh_size()
 	_refresh_appearance()
 
 
@@ -79,7 +82,7 @@ func _process(_delta: float) -> void:
 
 func set_bg_color(new_bg_color: Color) -> void:
 	bg_color = new_bg_color
-	_set_style_color(bg_color)
+	refresh_style_color(bg_color)
 
 
 func set_lock_status(new_lock_status: int) -> void:
@@ -102,9 +105,10 @@ func set_level_duration(new_level_duration: int) -> void:
 	_refresh_appearance()
 
 
-func _set_style_color(color: Color) -> void:
-	get("custom_styles/normal").bg_color = color
-	get("custom_styles/hover").bg_color = color
+## Updates the button's style colors. Can be overridden by child buttons who use different styles.
+func refresh_style_color(color: Color) -> void:
+	_button_control.get("custom_styles/normal").bg_color = color
+	_button_control.get("custom_styles/hover").bg_color = color
 
 
 ## Updates the button's text, colors, size and icon based on the level and its status.
@@ -130,10 +134,21 @@ func _refresh_appearance() -> void:
 			3: new_style_color = BUTTON_COLOR_GREEN
 			4: new_style_color = BUTTON_COLOR_BLUE
 			5: new_style_color = BUTTON_COLOR_PURPLE
-	_set_style_color(new_style_color)
+	refresh_style_color(new_style_color)
 
 
-func _on_pressed() -> void:
+func _refresh_size() -> void:
+	if not _button_control:
+		return
+	
+	_button_control.rect_size = rect_size
+
+
+func _on_resized() -> void:
+	_refresh_size()
+
+
+func _on_ButtonControl_pressed() -> void:
 	if lock_status == STATUS_LOCKED:
 		# level is locked, don't launch the level
 		return
@@ -143,18 +158,18 @@ func _on_pressed() -> void:
 		emit_signal("level_chosen")
 
 
-func _on_focus_entered() -> void:
+func _on_ButtonControl_focus_entered() -> void:
 	_focus_just_entered = true
 	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("007a99")
 
 
-func _on_focus_exited() -> void:
+func _on_ButtonControl_focus_exited() -> void:
 	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("6c4331")
 
 
-func _on_button_down() -> void:
+func _on_ButtonControl_button_down() -> void:
 	if _focus_just_entered:
 		pass
 	else:
