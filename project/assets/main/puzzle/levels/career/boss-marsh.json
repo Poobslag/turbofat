@@ -4,19 +4,13 @@
   "description": "Opening a new restaurant can be tough!",
   "success_condition": {
     "type": "score",
-    "value": "999"
+    "value": "1000"
   },
-  "blocks_during": [
-    "clear_on_top_out"
-  ],
   "start_speed": "5",
   "finish_condition": {
-    "type": "time_over",
-    "value": "540"
+    "type": "pieces",
+    "value": "150"
   },
-  "lose_condition": [
-    "top_out 9"
-  ],
   "rank": [
     "success_bonus 2"
   ]

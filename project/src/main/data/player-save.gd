@@ -9,7 +9,7 @@ signal after_save
 
 ## Current version for saved player data. Should be updated if and only if the player format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "49eb"
+const PLAYER_DATA_VERSION := "4ceb"
 
 var rolling_backups := RollingBackups.new()
 

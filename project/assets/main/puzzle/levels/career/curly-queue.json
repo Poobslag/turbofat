@@ -13,9 +13,6 @@
   "piece_types": [
     "start_piece_j"
   ],
-  "lose_condition": [
-    "top_out 9"
-  ],
   "rank": [
     "extra_seconds_per_piece 0.25",
     "box_factor 1.10",

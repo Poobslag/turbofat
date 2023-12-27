@@ -195,6 +195,25 @@ func test_37b3_chat_history_migrated() -> void:
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/010_c_end"), 7)
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/060_end"), 1)
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/epilogue"), 0)
+	
+func test_49eb_level_history_purged() -> void:
+	load_player_data("turbofat-49eb.json")
+	
+	# finished levels
+	var finished_levels := PlayerData.level_history.finished_levels
+	assert_eq(finished_levels.has("career/chompo_and_bitey"), true)
+	assert_eq(finished_levels.has("career/boss_6k"), false)
+	assert_eq(finished_levels.has("career/five_course_meal"), false)
+	
+	# successful levels
+	var successful_levels := PlayerData.level_history.successful_levels
+	assert_eq(successful_levels.has("rank/5d"), true)
+	assert_eq(successful_levels.has("career/boss_6k"), false)
+	
+	# level history
+	var rank_results := PlayerData.level_history.rank_results
+	assert_eq(rank_results.has("career/chompo_and_bitey"), true)
+	assert_eq(rank_results.has("career/boss_6k"), false)
 
 
 func test_prepend_third_zero() -> void:

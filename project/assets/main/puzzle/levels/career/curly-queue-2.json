@@ -7,9 +7,6 @@
     "type": "time_over",
     "value": "120"
   },
-  "lose_condition": [
-    "top_out 9"
-  ],
   "rank": [
     "extra_seconds_per_piece 0.4",
     "preplaced_pieces 3"
