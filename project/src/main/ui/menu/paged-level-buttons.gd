@@ -237,8 +237,9 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		_unlock_cheat_enabled = !_unlock_cheat_enabled
 		detector.play_cheat_sound(_unlock_cheat_enabled)
 		var button_index_to_focus := -1
-		if get_focus_owner() in _grid_container.get_children():
-			button_index_to_focus = get_focus_owner().get_index()
+		for child_index in range(_grid_container.get_children().size()):
+			if _grid_container.get_child(child_index).has_focus():
+				button_index_to_focus = child_index
 		_refresh()
 		if button_index_to_focus != -1:
 			yield(get_tree(), "idle_frame")

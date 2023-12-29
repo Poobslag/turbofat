@@ -111,6 +111,20 @@ func refresh_style_color(color: Color) -> void:
 	_button_control.get("custom_styles/hover").bg_color = color
 
 
+## Returns true if this button is currently focused.
+##
+## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
+func has_focus() -> bool:
+	return _button_control.has_focus()
+
+
+## Steals the focus from another control and becomes the focused control.
+##
+## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
+func grab_focus() -> void:
+	_button_control.grab_focus()
+
+
 ## Updates the button's text, colors, size and icon based on the level and its status.
 func _refresh_appearance() -> void:
 	if not is_inside_tree():
