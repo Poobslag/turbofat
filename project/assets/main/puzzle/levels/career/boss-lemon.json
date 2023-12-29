@@ -6,7 +6,7 @@
     "type": "time_under",
     "value": "300"
   },
-  "start_speed": "1",
+  "start_speed": "3",
   "finish_condition": {
     "type": "score",
     "value": "300"

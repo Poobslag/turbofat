@@ -4,6 +4,21 @@ class_name PlayerSaveUpgrader
 ## This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
 ## backwards compatibility for older versions.
 
+## Level ids to prune when upgrading from version 49EB
+const LEVEL_PRUNE_LIST_49EB := {
+	"career/boss_1k": true,
+	"career/boss_2k": true,
+	"career/boss_3k": true,
+	"career/boss_4k": true,
+	"career/boss_5k": true,
+	"career/boss_6k": true,
+	"career/boss_7k": true,
+	"career/five_course_meal": true,
+	"career/veggie_patty": true,
+	"career/mystery_box": true,
+	"career/zero_gravity": true,
+}
+
 ## Level ids to prune when upgrading from version 38C3
 const LEVEL_PRUNE_LIST_38C3 := {
 	"career/bottomless_pit_2": true,
@@ -262,7 +277,8 @@ var _third_zero_regex: RegEx
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "49eb"
+	upgrader.current_version = "4ceb"
+	upgrader.add_upgrade_method(self, "_upgrade_49eb", "49eb", "4ceb")
 	upgrader.add_upgrade_method(self, "_upgrade_38c3", "38c3", "49eb")
 	upgrader.add_upgrade_method(self, "_upgrade_37b3", "37b3", "38c3")
 	upgrader.add_upgrade_method(self, "_upgrade_3776", "3776", "37b3")
@@ -282,6 +298,21 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_49eb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			# Remove level keys for levels which were pruned on 2023-12-29
+			if save_item.key in LEVEL_PRUNE_LIST_49EB:
+				save_item = null
+		"finished_levels", "successful_levels":
+			# Remove level keys for levels which were pruned on 2023-12-29
+			for level_id in save_item.value.keys():
+				if level_id in LEVEL_PRUNE_LIST_49EB:
+					save_item.value.erase(level_id)
+			
+	return save_item
 
 
 ## Prepends a third zero to any two-digit numbers in the specified string.

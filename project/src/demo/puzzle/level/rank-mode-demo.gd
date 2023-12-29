@@ -7,25 +7,40 @@ extends Node
 ##
 ## This was used to assign a roughly increasing level of difficulty for rank levels.
 
+## key: (String) level name
+## value: (Array) array containing 3 elements representing the level difficulty:
+## 	value[0]: (String) The desired rank like "2" or "48" for the player's expected skill. These correspond to the
+## 		integers in RankCalculator.GRADE_RANKS
+## 	value[1]: (String) The slowest piece speed like "3" or "FA" which the player is constrained to. Levels with
+## 		higher speeds expect higher scores
+## 	value[2]: (String) The duration string like "3:00".
 var _data_per_rank := {
-	"7k": ["48", "1", "5:00"],
-	"6k": ["40", "2", "3:00"],
-	"5k": ["36", "3", "6:00"],
-	"4k": ["32", "4", "2:56"],
-	"3k": ["30", "5", "9:00"],
-	"2k": ["28", "6", "3:00"],
-	"1k": ["26", "0", "10:00"],
-	"1d": ["24", "A1", "6:00"],
-	"2d": ["20", "A5", "5:00"],
-	"3d": ["20", "A1", "4:00"],
-	"4d": ["16", "AA", "5:00"],
-	"5d": ["16", "AA", "6:00"],
-	"6d": ["10", "AE", "3:00"],
-	"7d": ["10", "A0", "10:00"],
-	"8d": ["10", "FA", "4:00"], # 'FA' requires much faster play than 'AA'
-	"9d": ["8", "FB", "5:00"],
-	"10d": ["6", "FC", "6:00"],
-	"M": ["4", "FA", "10:00"],
+	"rank 7k": ["48", "1", "5:00"],
+	"rank 6k": ["40", "2", "3:00"],
+	"rank 5k": ["36", "3", "6:00"],
+	"rank 4k": ["32", "4", "2:56"],
+	"rank 3k": ["30", "5", "9:00"],
+	"rank 2k": ["28", "6", "3:00"],
+	"rank 1k*": ["26", "0", "10:00"],
+	"rank 1d": ["24", "A1", "6:00"],
+	"rank 2d": ["20", "A5", "5:00"],
+	"rank 3d": ["20", "A1", "4:00"],
+	"rank 4d": ["16", "AA", "5:00"],
+	"rank 5d": ["16", "AA", "6:00"],
+	"rank 6d": ["10", "AE", "3:00"],
+	"rank 7d*": ["10", "A0", "10:00"],
+	"rank 8d": ["10", "FA", "4:00"], # 'FA' requires much faster play than 'AA'
+	"rank 9d": ["8", "FB", "5:00"],
+	"rank 10d": ["6", "FC", "6:00"],
+	"rank M*": ["4", "FA", "10:00"],
+	
+	"boss 1": ["36", "3", "5:00"],
+	"boss 2": ["30", "4", "3:00"],
+	"boss 3*": ["28", "5", "6:00"],
+	"boss 4": ["26", "7", "3:30"],
+	"boss 5*": ["24", "8", "8:00"],
+	"boss 6": ["22", "8", "4:00"],
+	"boss 7*": ["20", "0", "10:00"],
 }
 
 var _rank_calculator := RankCalculator.new()
@@ -44,15 +59,14 @@ func _ready() -> void:
 		var target_lines := _target_lines(target_rank)
 		
 		# print the resulting lines and score
-		$Label.text += "Rank %s: %s points in %s" % [data_key, target_score, duration_string]
+		$Label.text += "%s: %s points in %s" % [data_key, target_score, duration_string]
 		$Label.text += " (%s lines, %01d ppm, %01d ppl)\n" \
 				% [target_lines, (2 * target_lines) / (seconds / 60.0), target_score / target_lines]
 		
 		# for marathon levels, also print a diminished score which is more realistic to reach under pressure
-		match data_key:
-			"1k", "7d", "M":
-				var marathon_points := (target_score - target_lines) * 0.6 + target_lines
-				$Label.text += "  (%s marathon: %s points)\n" % [data_key, marathon_points]
+		if data_key.ends_with("*"):
+			var marathon_points := (target_score - target_lines) * 0.6 + target_lines
+			$Label.text += "  (%s marathon: %s points)\n" % [data_key.rstrip("*"), marathon_points]
 
 
 ## Creates a level with the specified duration.

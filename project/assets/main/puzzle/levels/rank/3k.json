@@ -15,9 +15,6 @@
     "type": "time_over",
     "value": "540"
   },
-  "lose_condition": [
-    "top_out 9"
-  ],
   "rank": [
     "success_bonus 2"
   ]

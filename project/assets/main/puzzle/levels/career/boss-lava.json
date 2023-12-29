@@ -4,7 +4,7 @@
   "description": "Opening a new restaurant can be tough!",
   "success_condition": {
     "type": "score",
-    "value": "1000"
+    "value": "2000"
   },
   "start_speed": "0",
   "speed_ups": [
@@ -52,11 +52,21 @@
       "type": "lines",
       "value": "90",
       "speed": "9"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "speed": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "110",
+      "speed": "A4"
     }
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "150"
+    "value": "120"
   },
   "lose_condition": [
     "top_out 1"

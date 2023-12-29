@@ -15,9 +15,6 @@
   "piece_types": [
     "start_piece_v"
   ],
-  "lose_condition": [
-    "top_out 9"
-  ],
   "triggers": [
     {
       "phases": [
