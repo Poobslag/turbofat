@@ -240,6 +240,7 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		for child_index in range(_grid_container.get_children().size()):
 			if _grid_container.get_child(child_index).has_focus():
 				button_index_to_focus = child_index
+				break
 		_refresh()
 		if button_index_to_focus != -1:
 			yield(get_tree(), "idle_frame")
