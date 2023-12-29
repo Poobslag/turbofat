@@ -23,7 +23,8 @@
   "rank": [
     "box_factor 0.85",
     "combo_factor 0.71",
-    "master_pickup_score_per_line 11.90"
+    "master_pickup_score_per_line 11.90",
+    "show_pickups_rank"
   ],
   "speed_ups": [
     {
