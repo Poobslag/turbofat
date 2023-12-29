@@ -78,6 +78,9 @@ var _color := Color.transparent
 ## value: (int) Index of a tile in light_map or glow_map
 var _tile_index_by_color: Dictionary
 
+## Array of integer index of rainbow tiles in light_map or glow_map
+var _rainbow_tile_indexes := []
+
 ## lights which turn on and off
 onready var light_map: TileMap = $LightMap
 
@@ -129,7 +132,8 @@ func _init_tile_set() -> void:
 	for i in range(RAINBOW_COLOR_COUNT):
 		var rainbow_color := Utils.to_transparent(Color.red, 0.60)
 		rainbow_color.h += i / float(RAINBOW_COLOR_COUNT)
-		_init_tile(rainbow_color)
+		var rainbow_tile_index := _init_tile(rainbow_color)
+		_rainbow_tile_indexes.append(rainbow_tile_index)
 
 
 ## Initializes the mapping of tile indexes by food/vegetable color.
@@ -142,7 +146,14 @@ func _init_tile_index_by_color() -> void:
 		_tile_index_by_color[color] = tile_index
 
 
-func _init_tile(color: Color) -> void:
+## Initializes a light tile with the specified color.
+##
+## Parameters:
+## 	'color': The desired light color.
+##
+## Returns:
+## 	The tile index for the newly created tile.
+func _init_tile(color: Color) -> int:
 	for tile_set in [light_map.tile_set, glow_map.tile_set]:
 		var tile_index := len(tile_set.get_tiles_ids())
 		tile_set.create_tile(tile_index)
@@ -150,6 +161,7 @@ func _init_tile(color: Color) -> void:
 		tile_set.tile_set_material(tile_index, tile_set.tile_get_material(0))
 		tile_set.tile_set_modulate(tile_index, color)
 		tile_set.tile_set_texture_offset(tile_index, tile_set.tile_get_texture_offset(0))
+	return len(light_map.tile_set.get_tiles_ids()) - 1
 
 
 ## Starts the glow tween, causing the lights to slowly dim.
@@ -230,7 +242,7 @@ func _refresh_tile_maps() -> void:
 				var tile: int = -1
 				if s[x] == '#':
 					if _color == RAINBOW_LIGHT_COLOR:
-						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
+						tile = _rainbow_tile_indexes[(x + _pattern_y) % _rainbow_tile_indexes.size()]
 					elif _tile_index_by_color.has(_color):
 						tile = _tile_index_by_color[_color]
 				light_map.set_cell(x, y, tile)
