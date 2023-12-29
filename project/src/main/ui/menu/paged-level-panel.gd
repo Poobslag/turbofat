@@ -28,6 +28,10 @@ func populate(new_region: Object, default_level_id: String = "") -> void:
 	if _region is CareerRegion:
 		for career_level in _region.levels:
 			level_ids.append(career_level.level_id)
+		if _region.boss_level and not _region.boss_level.level_id in level_ids:
+			level_ids.append(_region.boss_level.level_id)
+		if _region.intro_level and not _region.intro_level.level_id in level_ids:
+			level_ids.append(_region.intro_level.level_id)
 	else:
 		level_ids.append_array(_region.level_ids)
 	
