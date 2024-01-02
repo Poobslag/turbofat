@@ -221,6 +221,9 @@ func _calculate_brightness(combo: int) -> void:
 
 ## Calculates the new light pattern and refreshes the tilemaps.
 func _refresh_tile_maps() -> void:
+	if not _rainbow_tile_indexes:
+		return
+	
 	bg_strobe.color = Utils.to_transparent(_color)
 	
 	var old_pattern := _pattern
