@@ -39,7 +39,8 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 	text = _append_customer_scores(rank_result, customer_scores, finish_condition_type, text)
 	text = _append_grade_information(rank_result, customer_scores, finish_condition_type, text)
 	text += "||||||||||\n"
-	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 and CurrentLevel.hardcore:
+	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 and CurrentLevel.hardcore \
+			and CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		text += tr("Hardcore level cleared. Extra life awarded!")
 	else:
 		text += tr("Hint: %s") % Utils.rand_value(_hints)

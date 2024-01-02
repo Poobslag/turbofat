@@ -68,7 +68,8 @@ func process_puzzle_result() -> void:
 		# skip career cutscenes if they skip a level, or if they fail a boss level
 		PlayerData.cutscene_queue.reset()
 	
-	if PuzzleState.game_ended and CurrentLevel.hardcore:
+	if PuzzleState.game_ended and CurrentLevel.hardcore \
+			and CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		# completing a hardcore level gives the player an extra life
 		career_data.extra_life_count += 1
 	
