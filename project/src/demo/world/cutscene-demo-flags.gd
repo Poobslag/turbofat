@@ -35,12 +35,12 @@ func apply_flags() -> void:
 		elif line.begins_with("not level_finished "):
 			var level_key := StringUtils.substring_after(line, "level_finished ")
 			PlayerData.level_history.delete_results(level_key)
-		elif line.begins_with("region_cleared "):
-			var region_key := StringUtils.substring_after(line, "region_cleared ")
+		elif line.begins_with("region_finished "):
+			var region_key := StringUtils.substring_after(line, "region_finished ")
 			PlayerData.career.best_distance_travelled = \
 				CareerLevelLibrary.region_for_id(region_key).get_end() + 1
-		elif line.begins_with("not region_cleared "):
-			var region_key := StringUtils.substring_after(line, "region_cleared ")
+		elif line.begins_with("not region_finished "):
+			var region_key := StringUtils.substring_after(line, "region_finished ")
 			PlayerData.career.best_distance_travelled = \
 				CareerLevelLibrary.region_for_id(region_key).start
 		elif line.begins_with("has_flag "):

@@ -99,7 +99,7 @@ class RegionClearedExpression extends BoolExpression:
 		var result := false
 		var region: CareerRegion = CareerLevelLibrary.region_for_id(args[0].string)
 		if region:
-			result = PlayerData.career.is_region_cleared(region)
+			result = PlayerData.career.is_region_finished(region)
 		else:
 			push_warning("region not found: %s" % [args[0].string])
 		return result
@@ -255,7 +255,7 @@ func _parse_function() -> BoolExpression:
 		"level_finished":
 			_expect_token_count(2)
 			expression = LevelFinishedExpression.new(_get_next_token(), _get_next_token())
-		"region_cleared":
+		"region_finished":
 			_expect_token_count(2)
 			expression = RegionClearedExpression.new(_get_next_token(), _get_next_token())
 		"region_started":

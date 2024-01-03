@@ -32,7 +32,7 @@ func _ready() -> void:
 		_undecorated_restaurant.visible = true
 		closed_sign.visible = PlayerData.chat_history.is_chat_finished("chat/career/lemon_2/intro_level")
 	
-	if PlayerData.career.is_region_cleared(CareerLevelLibrary.region_for_id("lava")):
+	if PlayerData.career.is_region_finished(CareerLevelLibrary.region_for_id("lava")):
 		_zagma_plaque.visible = true
 	
 	if Global.get_overworld_ui():

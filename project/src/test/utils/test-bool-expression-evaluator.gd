@@ -56,17 +56,17 @@ func test_level_finished() -> void:
 	assert_evaluate(false, "level_finished level_404")
 
 
-func test_region_cleared() -> void:
+func test_region_finished() -> void:
 	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
 	
 	PlayerData.career.best_distance_travelled = 9
-	assert_evaluate(false, "region_cleared permissible")
+	assert_evaluate(false, "region_finished permissible")
 	
 	PlayerData.career.best_distance_travelled = 10
-	assert_evaluate(true, "region_cleared permissible")
+	assert_evaluate(true, "region_finished permissible")
 	
 	PlayerData.career.best_distance_travelled = 11
-	assert_evaluate(true, "region_cleared permissible")
+	assert_evaluate(true, "region_finished permissible")
 
 
 func test_region_started() -> void:
