@@ -655,7 +655,7 @@ func test_plant_kick_l2() -> void:
 		"::   ",
 		":  ::",
 		"kkk  ",
-		":kk::",
-		"::k::",
+		":kk  ",
+		"::k  ",
 	]
 	assert_kick()

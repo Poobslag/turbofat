@@ -513,7 +513,7 @@ func test_l_gold_kick_l2() -> void:
 	]
 	to_grid = [
 		"     ",
-		"     ",
+		"::   ",
 		"lll  ",
 		"l:   ",
 		"::   ",
@@ -678,7 +678,7 @@ func test_j_climb_l2() -> void:
 	]
 	to_grid = [
 		"     ",
-		" jjj ",
+		":jjj ",
 		":: j ",
 		":    ",
 	]
@@ -1059,7 +1059,7 @@ func test_j_tip_kick_r2() -> void:
 	]
 	to_grid = [
 		"     ",
-		":  ::",
+		":    ",
 		":  ::",
 		"jjj::",
 		"::j::",

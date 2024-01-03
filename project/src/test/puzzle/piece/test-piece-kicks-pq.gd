@@ -238,7 +238,7 @@ func test_p_pump_flip_02() -> void:
 	]
 	to_grid = [
 		"  pp  ",
-		"  ppp ",
+		" :ppp ",
 	]
 	assert_kick()
 
@@ -349,7 +349,7 @@ func test_q_pump_kick3() -> void:
 	]
 	to_grid = [
 		"    ",
-		"   :",
+		":   ",
 		" qqq",
 		":qq:",
 		":: :",

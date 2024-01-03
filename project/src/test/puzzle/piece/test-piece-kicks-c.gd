@@ -44,7 +44,7 @@ func test_wall_kick_r0() -> void:
 		":   ",
 		":cc ",
 		"  c ",
-		"::  ",
+		":   ",
 	]
 	assert_kick()
 

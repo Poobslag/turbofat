@@ -5,14 +5,14 @@ extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
 func test_wall_kick_0r() -> void:
 	from_grid = [
 		"    :",
-		"    :",
+		" :  :",
 		"  v :",
 		"  v  ",
 		"  vvv",
 	]
 	to_grid = [
 		"    :",
-		"    :",
+		" :  :",
 		" vvv:",
 		" v   ",
 		" v   ",
@@ -730,7 +730,7 @@ func test_plant_kick_l2() -> void:
 		"::   ",
 		":: ::",
 		"vvv  ",
-		"::v::",
-		"::v::",
+		"::v  ",
+		"::v  ",
 	]
 	assert_kick()
