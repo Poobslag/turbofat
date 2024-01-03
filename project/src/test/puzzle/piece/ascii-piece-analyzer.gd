@@ -68,7 +68,7 @@ func create_active_piece(forced_piece_orientation: int = -1) -> ActivePiece:
 				shape_match = false
 				break
 		if shape_match:
-			_active_piece = ActivePiece.new(piece_type, funcref(self, "_is_cell_obstructed"))
+			_active_piece = ActivePiece.new(piece_type, funcref(self, "is_cell_obstructed"))
 			_active_piece.pos = position
 			_active_piece.orientation = pos_arr_index
 			break
@@ -99,7 +99,7 @@ func _determine_piece_type() -> PieceType:
 
 
 ## Returns 'true' if the specified cell has a block in it or if it's outside the ascii drawing's boundaries.
-func _is_cell_obstructed(pos: Vector2) -> bool:
+func is_cell_obstructed(pos: Vector2) -> bool:
 	var obstructed := false
 	if pos.y < 0 or pos.y >= ascii_grid.size(): obstructed = true
 	elif pos.x < 0 or pos.x >= ascii_grid[pos.y].length(): obstructed = true
