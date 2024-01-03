@@ -213,15 +213,15 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		"cutsio":
 			var cheat_successful := _force_cutscene()
 			detector.play_cheat_sound(cheat_successful)
+		"cyclio":
+			_cycle_levels()
+			detector.play_cheat_sound(true)
 		"epilio":
 			var cheat_successful := _force_epilogue_level()
 			detector.play_cheat_sound(cheat_successful)
 		"hardio":
 			var cheat_successful := _force_hardcore_level()
 			detector.play_cheat_sound(cheat_successful)
-		"cyclio":
-			_cycle_levels()
-			detector.play_cheat_sound(true)
 
 
 ## The status bar is temporarily hidden when the progress board is shown.
