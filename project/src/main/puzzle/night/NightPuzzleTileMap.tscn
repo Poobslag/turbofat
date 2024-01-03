@@ -11,12 +11,12 @@
 [sub_resource type="TileSet" id=3]
 0/name = "blocks-shadows.png 0"
 0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, -64 )
+0/tex_offset = Vector2( 0, -12 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 2364, 920 )
+0/region = Rect2( 2, 2, 1404, 476 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 144, 128 )
+0/autotile/tile_size = Vector2( 84, 76 )
 0/autotile/spacing = 4
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
@@ -32,12 +32,12 @@
 0/z_index = 0
 1/name = "blocks-boxes-shadows.png 1"
 1/texture = ExtResource( 3 )
-1/tex_offset = Vector2( 0, -64 )
+1/tex_offset = Vector2( 0, -12 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 2, 2, 2364, 2372 )
+1/region = Rect2( 2, 2, 1404, 1436 )
 1/tile_mode = 2
 1/autotile/icon_coordinate = Vector2( 0, 0 )
-1/autotile/tile_size = Vector2( 144, 128 )
+1/autotile/tile_size = Vector2( 84, 76 )
 1/autotile/spacing = 4
 1/autotile/occluder_map = [  ]
 1/autotile/navpoly_map = [  ]
@@ -53,12 +53,12 @@
 1/z_index = 0
 2/name = "blocks-veggie-cube-shadows.png 2"
 2/texture = ExtResource( 2 )
-2/tex_offset = Vector2( 0, -64 )
+2/tex_offset = Vector2( 0, -12 )
 2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 2, 2, 2660, 920 )
+2/region = Rect2( 2, 2, 1580, 556 )
 2/tile_mode = 2
 2/autotile/icon_coordinate = Vector2( 0, 0 )
-2/autotile/tile_size = Vector2( 144, 128 )
+2/autotile/tile_size = Vector2( 84, 76 )
 2/autotile/spacing = 4
 2/autotile/occluder_map = [  ]
 2/autotile/navpoly_map = [  ]
