@@ -248,7 +248,7 @@ func is_region_locked(region: CareerRegion) -> bool:
 
 
 ## Returns 'true' if the player has completed the boss level in the specified region
-func is_region_cleared(region: CareerRegion) -> bool:
+func is_region_finished(region: CareerRegion) -> bool:
 	return best_distance_travelled > region.end
 
 
@@ -267,7 +267,7 @@ func is_boss_level() -> bool:
 	elif not region.boss_level:
 		# the region has no boss level
 		result = false
-	elif is_region_cleared(region):
+	elif is_region_finished(region):
 		# the player has already cleared this boss level
 		result = false
 	return result
@@ -457,7 +457,7 @@ func is_sensei_turbo() -> bool:
 ## 	field but is obfuscated for Cannoli Sandbar.
 func obfuscated_region_name(region: CareerRegion) -> String:
 	var result := region.name
-	if region.id == "sand" and not PlayerData.career.is_region_cleared(region):
+	if region.id == "sand" and not PlayerData.career.is_region_finished(region):
 		result = tr("Kflab")
 	return result
 

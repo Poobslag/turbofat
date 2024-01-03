@@ -108,7 +108,7 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 	var newly_banked_steps := 0
 	var newly_travelled_distance := unapplied_distance_earned
 	
-	if not career_data.is_region_cleared(region) and region.intro_level \
+	if not career_data.is_region_finished(region) and region.intro_level \
 			and not career_data.is_intro_level_finished(region):
 		# The player can't advance further into this region, they haven't cleared its intro level. Move them to
 		# the start of the region and forbid movement.
@@ -116,7 +116,7 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 	elif career_data.distance_travelled + unapplied_distance_earned >= region.end + 1:
 		# The player is trying to cross into the next region
 		var distance_to_next_region := region.end + 1 - career_data.distance_travelled
-		if career_data.is_region_cleared(region) and not career_data.remain_in_region:
+		if career_data.is_region_finished(region) and not career_data.remain_in_region:
 			# The player can cross into the next region. Move them to the start of the next region and allow
 			# movement.
 			newly_travelled_distance = distance_to_next_region

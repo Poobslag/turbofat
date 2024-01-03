@@ -35,5 +35,5 @@
     "color": "63426b",
     "dark": true
   },
-  "customer_if": "region_cleared poki"
+  "customer_if": "region_finished poki"
 }

@@ -169,7 +169,7 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 		if accept_chat_key_pair \
 				and key_parts.size() >= 2 and int(key_parts[1]) >= 100:
 			# post-boss cutscene; only play it if the player has cleared the region
-			accept_chat_key_pair = PlayerData.career.is_region_cleared(PlayerData.career.current_region())
+			accept_chat_key_pair = PlayerData.career.is_region_finished(PlayerData.career.current_region())
 		
 		if accept_chat_key_pair \
 				and (chef_id or customer_id or observer_id) \

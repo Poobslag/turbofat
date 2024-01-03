@@ -34,6 +34,6 @@
     "accent_texture": 14,
     "color": "025d28"
   },
-  "customer_if": "region_cleared sand",
+  "customer_if": "region_finished sand",
   "fatness": 1.5
 }
