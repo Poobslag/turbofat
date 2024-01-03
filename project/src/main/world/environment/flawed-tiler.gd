@@ -26,7 +26,7 @@ export (bool) var _autotile: bool setget autotile
 ## Editor toggle which undoes autotiling, removing all imperfections.
 export (bool) var _unautotile: bool setget unautotile
 
-## tilemap to apply imperfections too
+## tilemap to apply imperfections to
 onready var _tile_map: TileMap = get_parent()
 
 ## Preemptively initializes onready variables to avoid null references.
