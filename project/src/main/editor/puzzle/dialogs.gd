@@ -9,6 +9,22 @@ onready var _open_file_dialog := $OpenFile
 onready var _open_resource_dialog := $OpenResource
 onready var _save_dialog := $Save
 
+func _ready() -> void:
+	# Assign default dialog paths. These path properties were removed in Godot 3.5 in 2022 as a security precaution
+	# and can no longer be assigned in the Godot editor, so we assign them here. See Godot #29674
+	# (https://github.com/godotengine/godot/issues/29674)
+	_open_file_dialog.current_dir = "/"
+	_open_file_dialog.current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
+	_open_file_dialog.current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
+	
+	_open_resource_dialog.current_dir = "res://assets/main/puzzle/levels"
+	_open_resource_dialog.current_path = "res://assets/main/puzzle/levels/"
+	
+	_save_dialog.current_dir = "/"
+	_save_dialog.current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
+	_save_dialog.current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
+
+
 func _show_save_load_not_supported_error() -> void:
 	$Error.dialog_text = "Saving/loading files isn't supported over the web. Sorry!"
 	$Error.popup_centered()
