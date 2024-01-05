@@ -80,14 +80,14 @@ var levels := []
 var min_piece_speed := "0"
 var max_piece_speed := "0"
 
-## Human-readable environment name, such as 'lemon' or 'marsh' for the overworld environment
-var overworld_environment_name: String
+## Human-readable id such as 'lemon' or 'marsh' for the overworld environment
+var overworld_environment_id: String
 
-## Human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
-var puzzle_environment_name: String
+## Human-readable id such as 'lemon' or 'marsh' for the puzzle environment
+var puzzle_environment_id: String
 
-## Human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
-var region_button_name: String
+## Human-readable id such as 'lemon' or 'marsh' for the button on the region select screen
+var region_button_id: String
 
 func from_json_dict(json: Dictionary) -> void:
 	id = json.get("id", "")
@@ -111,8 +111,8 @@ func from_json_dict(json: Dictionary) -> void:
 		var level: CareerLevel = CareerLevel.new()
 		level.from_json_dict(level_json)
 		levels.append(level)
-	overworld_environment_name = json.get("overworld_environment", "")
-	region_button_name = json.get("region_button", "")
+	overworld_environment_id = json.get("overworld_environment", "")
+	region_button_id = json.get("region_button", "")
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:
 		min_piece_speed = StringUtils.substring_before(piece_speed_string, "-")
@@ -120,7 +120,7 @@ func from_json_dict(json: Dictionary) -> void:
 	else:
 		min_piece_speed = piece_speed_string
 		max_piece_speed = piece_speed_string
-	puzzle_environment_name = json.get("puzzle_environment", "")
+	puzzle_environment_id = json.get("puzzle_environment", "")
 
 
 func get_prologue_chat_key() -> String:

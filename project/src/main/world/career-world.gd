@@ -20,10 +20,10 @@ const MOODS_RARE := [Creatures.Mood.AWKWARD1, Creatures.Mood.SIGH0, Creatures.Mo
 ## environment, or regions which specify an invalid environment
 const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshEnvironment.tscn"
 
-## key: (String) an Environment name which appears in the json definitions
+## key: (String) an Environment id which appears in the json definitions
 ## value: (String) Path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
-const ENVIRONMENT_PATH_BY_NAME := {
+const ENVIRONMENT_PATH_BY_ID := {
 	"lava": "res://src/main/world/environment/lava/LavaEnvironment.tscn",
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",
@@ -159,8 +159,8 @@ func _remove_mile_markers() -> void:
 
 
 func _career_environment_path() -> String:
-	var environment_name := PlayerData.career.current_region().overworld_environment_name
-	return ENVIRONMENT_PATH_BY_NAME.get(environment_name, DEFAULT_ENVIRONMENT_PATH)
+	var environment_id := PlayerData.career.current_region().overworld_environment_id
+	return ENVIRONMENT_PATH_BY_ID.get(environment_id, DEFAULT_ENVIRONMENT_PATH)
 
 
 ## Updates the creature/chef IDs for a boss/intro level, where the player only has one choice.

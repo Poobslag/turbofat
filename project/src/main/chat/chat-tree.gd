@@ -83,7 +83,7 @@ var observer_id: String
 
 ## Puzzle environment applicable to this cutscene, if any. A cutscene might take place at another restaurant for
 ## example, in which case the puzzle should happen in that restaurant as well.
-var puzzle_environment_name: String
+var puzzle_environment_id: String
 
 ## Creatures in this cutscene.
 var creature_ids: Array
@@ -190,7 +190,7 @@ func reset() -> void:
 	chef_id = ""
 	customer_ids = []
 	observer_id = ""
-	puzzle_environment_name = ""
+	puzzle_environment_id = ""
 	creature_ids = []
 	_position.reset()
 	_did_prepare = false

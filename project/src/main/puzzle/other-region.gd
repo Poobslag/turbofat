@@ -30,11 +30,11 @@ var flags: Dictionary = {}
 ## List of string level ids for levels in this region
 var level_ids := []
 
-## Human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
-var puzzle_environment_name: String
+## Human-readable id such as 'lemon' or 'marsh' for the puzzle environment
+var puzzle_environment_id: String
 
-## Human-readable name, such as 'lemon' or 'marsh' for the button on the region select screen
-var region_button_name: String
+## Human-readable id such as 'lemon' or 'marsh' for the button on the region select screen
+var region_button_id: String
 
 func from_json_dict(json: Dictionary) -> void:
 	id = json.get("id", "")
@@ -44,8 +44,8 @@ func from_json_dict(json: Dictionary) -> void:
 	for flags_string in json.get("flags", []):
 		flags[flags_string] = true
 	level_ids = json.get("level_ids", "")
-	puzzle_environment_name = json.get("puzzle_environment", "")
-	region_button_name = json.get("region_button", "")
+	puzzle_environment_id = json.get("puzzle_environment", "")
+	region_button_id = json.get("region_button", "")
 
 
 ## Returns 'true' if this region has the specified flag.

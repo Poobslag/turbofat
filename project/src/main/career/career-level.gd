@@ -10,7 +10,7 @@ var level_id: String
 var chef_id: String
 var customer_ids: Array
 var observer_id: String
-var puzzle_environment_name: String
+var puzzle_environment_id: String
 
 ## Boolean condition which enables this level, such as 'chat_finished chat/career/marsh/030_c_end'
 var available_if: String
@@ -22,6 +22,6 @@ func from_json_dict(json: Dictionary) -> void:
 	for i in range(customer_ids.size()):
 		customer_ids[i] = StringUtils.hashwrap_constants(customer_ids[i])
 	observer_id = StringUtils.hashwrap_constants(json.get("observer_id", ""))
-	puzzle_environment_name = json.get("puzzle_environment", "")
+	puzzle_environment_id = json.get("puzzle_environment", "")
 	available_if = json.get("available_if", "")
  

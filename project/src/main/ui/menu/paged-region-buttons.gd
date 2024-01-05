@@ -160,7 +160,7 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 	if region_obj is CareerRegion:
 		var region: CareerRegion = region_obj
 		region_button.region_name = PlayerData.career.obfuscated_region_name(region)
-		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
+		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_id)
 		
 		var ranks := []
 		for career_level_obj in region.levels:
@@ -186,7 +186,7 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 		region_button.ranks = ranks
 		region_button.completion_percent = level_completion / float(potential_completion)
 		region_button.region_name = region.name
-		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_name)
+		region_button.button_type = Utils.enum_from_snake_case(RegionSelectButton.Type, region.region_button_id)
 	
 	region_button.connect("focus_entered", self, "_on_RegionButton_focus_entered", [region_button, region_obj])
 	region_button.connect("region_chosen", self, "_on_RegionButton_region_chosen", [region_obj])
