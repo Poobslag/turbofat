@@ -91,12 +91,12 @@ func _refresh_spots() -> void:
 	
 	# calculate minimum distance between two adjacent spots
 	var min_dist := 999999.0
-	for child_index in range(1, get_children().size()):
+	for child_index in range(1, get_child_count()):
 		var dist: float = get_child(child_index - 1).rect_position.distance_to(get_child(child_index).rect_position)
 		min_dist = min(dist, min_dist)
 	
 	# assign frames; make each spot a circle, dot, or star
-	for child_index in range(get_children().size()):
+	for child_index in range(get_child_count()):
 		var child: ProgressBoardSpot = get_child(child_index)
 		var possible_frames := []
 		if child_index == get_child_count() - 1:

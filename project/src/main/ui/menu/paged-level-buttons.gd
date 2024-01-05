@@ -237,7 +237,7 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		_unlock_cheat_enabled = !_unlock_cheat_enabled
 		detector.play_cheat_sound(_unlock_cheat_enabled)
 		var button_index_to_focus := -1
-		for child_index in range(_grid_container.get_children().size()):
+		for child_index in range(_grid_container.get_child_count()):
 			if _grid_container.get_child(child_index).has_focus():
 				button_index_to_focus = child_index
 				break
