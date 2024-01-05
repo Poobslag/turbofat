@@ -18,6 +18,41 @@ func test_brightness() -> void:
 	assert_almost_eq(Utils.brightness(Color("000080")), 0.05, 0.1)
 
 
+func test_convert_floats_to_ints_in_array() -> void:
+	var input := ["a", 2, 3.0]
+	var result := Utils.convert_floats_to_ints_in_array(input)
+	assert_eq_shallow(result, ["a", 2, 3])
+
+
+func test_convert_floats_to_ints_in_array_input_unmodified() -> void:
+	var input := ["a", 2, 3.0]
+	Utils.convert_floats_to_ints_in_array(input)
+	assert_eq_shallow(input, ["a", 2, 3.0])
+
+
+func test_convert_floats_to_ints_in_dict_keys() -> void:
+	var input := {"a": "b", 2: "c", 3.0: "d"}
+	var result := Utils.convert_floats_to_ints_in_dict(input)
+	assert_eq_shallow(result, {"a": "b", 2: "c", 3: "d"})
+
+
+func test_convert_floats_to_ints_in_dict_values() -> void:
+	var input := {"b": "a", "c": 2, "d": 3.0}
+	var result := Utils.convert_floats_to_ints_in_dict(input)
+	assert_eq_shallow(result, {"b": "a", "c": 2, "d": 3})
+
+
+func test_convert_floats_to_ints_in_dict_keys_and_values() -> void:
+	var input := {62: 94, 48.0: 54, 44: 90.0, 38.0: 73.0}
+	var result := Utils.convert_floats_to_ints_in_dict(input)
+	assert_eq_shallow(result, {62: 94, 48: 54, 44: 90, 38: 73})
+
+
+func test_convert_floats_to_ints_in_dict_input_unmodified() -> void:
+	var input := {62: 94, 48.0: 54, 44: 90.0, 38.0: 73.0}
+	Utils.convert_floats_to_ints_in_dict(input)
+	assert_eq_shallow(input, {62: 94, 48.0: 54, 44: 90.0, 38.0: 73.0})
+
 
 func test_disjunction() -> void:
 	assert_eq(Utils.disjunction([1, 2, 3], [2, 3, 4]), [1, 4])

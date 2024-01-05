@@ -126,18 +126,8 @@ func from_json_dict(json: Dictionary) -> void:
 	flags = json.get("flags", {})
 	history_index_by_chat_key = json.get("history_items", {})
 	phrases = json.get("phrases", {})
-	_convert_float_values_to_ints(history_index_by_chat_key)
+	history_index_by_chat_key = Utils.convert_floats_to_ints_in_dict(history_index_by_chat_key)
 	
 	# calculate _chat_count instead of storing it
 	for value in history_index_by_chat_key.values():
 		_chat_count = int(max(value, _chat_count))
-
-
-## Converts the float values in a Dictionary to int values.
-##
-## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
-## (https://github.com/godotengine/godot/issues/9499)
-func _convert_float_values_to_ints(dict: Dictionary) -> void:
-	for key in dict:
-		if dict[key] is float:
-			dict[key] = int(dict[key])
