@@ -277,7 +277,8 @@ var _third_zero_regex: RegEx
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "4ceb"
+	upgrader.current_version = "512b"
+	upgrader.add_upgrade_method(self, "_upgrade_4ceb", "4ceb", "512b")
 	upgrader.add_upgrade_method(self, "_upgrade_49eb", "49eb", "4ceb")
 	upgrader.add_upgrade_method(self, "_upgrade_38c3", "38c3", "49eb")
 	upgrader.add_upgrade_method(self, "_upgrade_37b3", "37b3", "38c3")
@@ -298,6 +299,29 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_4ceb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	var career_properties := [
+		["daily_customers", "customers"],
+		["daily_level_ids", "level_ids"],
+		["daily_earnings", "money"],
+		["prev_daily_earnings", "prev_money"],
+		["daily_seconds_played", "seconds_played"],
+		["daily_steps", "steps"],
+	]
+	
+	match save_item.type:
+		"career":
+			for career_property_item in career_properties:
+				var old_property: String = career_property_item[0]
+				var new_property: String = career_property_item[1]
+				
+				if save_item.value.has(old_property):
+					save_item.value[new_property] = save_item.value[old_property]
+					save_item.value.erase(old_property)
+	
+	return save_item
 
 
 func _upgrade_49eb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:

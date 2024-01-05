@@ -176,7 +176,7 @@ func _force_epilogue_level() -> bool:
 ##
 ## This works by adjusting the daily earnings which affects the random seed.
 func _cycle_levels() -> void:
-	PlayerData.career.daily_earnings += 1
+	PlayerData.career.money += 1
 	SceneTransition.change_scene()
 
 

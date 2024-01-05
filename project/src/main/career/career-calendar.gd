@@ -65,9 +65,9 @@ func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
 
 ## Advances the calendar day and resets all daily variables.
 func advance_calendar() -> void:
-	career_data.prev_daily_earnings.push_front(career_data.daily_earnings)
-	if career_data.prev_daily_earnings.size() > Careers.MAX_DAILY_HISTORY:
-		career_data.prev_daily_earnings = career_data.prev_daily_earnings.slice(0, Careers.MAX_DAILY_HISTORY - 1)
+	career_data.prev_money.push_front(career_data.money)
+	if career_data.prev_money.size() > Careers.MAX_DAILY_HISTORY:
+		career_data.prev_money = career_data.prev_money.slice(0, Careers.MAX_DAILY_HISTORY - 1)
 	
 	career_data.best_distance_travelled = max(career_data.best_distance_travelled, career_data.distance_travelled)
 	career_data.prev_distance_travelled.push_front(career_data.distance_travelled)
@@ -75,15 +75,15 @@ func advance_calendar() -> void:
 		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, Careers.MAX_DAILY_HISTORY - 1)
 	
 	career_data.banked_steps = 0
-	career_data.distance_earned = 0
-	career_data.hours_passed = 0
-	career_data.daily_customers = 0
-	career_data.daily_earnings = 0
-	career_data.daily_level_ids.clear()
-	career_data.daily_seconds_played = 0.0
-	career_data.daily_steps = 0
+	career_data.customers = 0
 	career_data.day = min(career_data.day + 1, Careers.MAX_DAY)
+	career_data.distance_earned = 0
 	career_data.extra_life_count = 0
+	career_data.hours_passed = 0
+	career_data.level_ids.clear()
+	career_data.money = 0
+	career_data.seconds_played = 0.0
+	career_data.steps = 0
 	career_data.top_out_count = 0
 	career_data.randomize_forced_hardcore_level_hours()
 	

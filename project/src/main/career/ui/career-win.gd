@@ -25,7 +25,7 @@ func _exit_tree() -> void:
 
 ## Plays an applause sound if the player did well.
 func _refresh_mood() -> void:
-	if PlayerData.career.daily_steps >= Careers.DAILY_STEPS_GOOD:
+	if PlayerData.career.steps >= Careers.DAILY_STEPS_GOOD:
 		_applause_sound.play()
 
 

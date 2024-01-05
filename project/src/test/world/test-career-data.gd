@@ -23,14 +23,14 @@ func after_each() -> void:
 	_data.free()
 
 
-func test_prev_daily_earnings() -> void:
+func test_prev_money() -> void:
 	for i in range(10, 100):
-		_data.daily_earnings = i
+		_data.money = i
 		_data.advance_calendar()
 	
-	assert_eq(_data.prev_daily_earnings.size(), Careers.MAX_DAILY_HISTORY)
-	assert_eq(99, _data.prev_daily_earnings[0])
-	assert_eq(60, _data.prev_daily_earnings[Careers.MAX_DAILY_HISTORY - 1])
+	assert_eq(_data.prev_money.size(), Careers.MAX_DAILY_HISTORY)
+	assert_eq(99, _data.prev_money[0])
+	assert_eq(60, _data.prev_money[Careers.MAX_DAILY_HISTORY - 1])
 
 
 func test_advance_clock_stops_at_boss_level_0() -> void:

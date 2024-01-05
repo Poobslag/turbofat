@@ -248,7 +248,7 @@ func _overall_rank(rank_result: RankResult) -> float:
 
 ## Records the player's performance for career mode.
 func _update_career_data(rank_result: RankResult) -> void:
-	PlayerData.career.daily_earnings = min(PlayerData.career.daily_earnings + rank_result.score,
+	PlayerData.career.money = min(PlayerData.career.money + rank_result.score,
 			PlayerData.MAX_MONEY)
 	
 	for customer_score in PuzzleState.customer_scores:
@@ -256,7 +256,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 			# If the player tops out without serving a customer, the customer is not included
 			pass
 		else:
-			PlayerData.career.daily_customers += 1
+			PlayerData.career.customers += 1
 	
 	# Calculate the player's distance to travel based on their overall rank
 	var overall_rank := _overall_rank(rank_result)
@@ -264,7 +264,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 	var milestone_index := CareerData.rank_milestone_index(overall_rank)
 	var distance_to_advance: int = Careers.RANK_MILESTONES[milestone_index].distance
 	
-	PlayerData.career.daily_steps += distance_to_advance
+	PlayerData.career.steps += distance_to_advance
 	PlayerData.career.top_out_count += PuzzleState.level_performance.top_out_count
 	PlayerData.career.advance_clock(distance_to_advance, rank_result.success, rank_result.lost)
 
