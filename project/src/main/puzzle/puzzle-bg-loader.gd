@@ -8,15 +8,15 @@ const DEFAULT_BG_PATH := "res://src/main/puzzle/WoodBg.tscn"
 ## Shadow color for levels which do not specify a color, or which specify an invalid color
 const DEFAULT_BG_COLOR := Color("582612")
 
-## key: (String) an Environment name which appears in the json definitions
+## key: (String) an Environment id which appears in the json definitions
 ## value: (String) Path to the scene resource defining a puzzle background for that environment
-const BG_PATH_BY_NAME := {
+const BG_PATH_BY_ID := {
 	"lemon": "res://src/main/puzzle/LemonBg.tscn",
 }
 
-## key: (String) an Environment name which appears in the json definitions
+## key: (String) an Environment id which appears in the json definitions
 ## value: (Color) Color for shadows in the puzzle scene
-const BG_SHADOW_COLOR_BY_NAME := {
+const BG_SHADOW_COLOR_BY_ID := {
 	"lemon": Color("3d291f"),
 }
 
@@ -39,7 +39,7 @@ func _remove_bg() -> void:
 
 
 func _add_bg() -> void:
-	var bg_scene_path: String = BG_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, DEFAULT_BG_PATH)
+	var bg_scene_path: String = BG_PATH_BY_ID.get(CurrentLevel.puzzle_environment_id, DEFAULT_BG_PATH)
 	var bg_scene: PackedScene = load(bg_scene_path)
 	var bg := bg_scene.instance()
 	bg.name = "Bg"
@@ -47,7 +47,7 @@ func _add_bg() -> void:
 
 
 func _refresh_shadow_color() -> void:
-	var shadow_color: Color = BG_SHADOW_COLOR_BY_NAME.get(CurrentLevel.puzzle_environment_name, DEFAULT_BG_COLOR)
+	var shadow_color: Color = BG_SHADOW_COLOR_BY_ID.get(CurrentLevel.puzzle_environment_id, DEFAULT_BG_COLOR)
 	for shadow_path in shadow_paths:
 		var shadow_node: Node = get_node(shadow_path)
 		if "color" in shadow_node:

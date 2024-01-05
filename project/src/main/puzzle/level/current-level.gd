@@ -40,8 +40,8 @@ var best_result: int = Levels.Result.NONE setget set_best_result
 ## How many times the player has tried the level in this session.
 var attempt_count := 0
 
-## Human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
-var puzzle_environment_name: String
+## Human-readable id such as 'lemon' or 'marsh' for the puzzle environment
+var puzzle_environment_id: String
 
 func _ready() -> void:
 	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
@@ -59,7 +59,7 @@ func reset() -> void:
 	chef_id = ""
 	best_result = Levels.Result.NONE
 	attempt_count = 0
-	puzzle_environment_name = ""
+	puzzle_environment_id = ""
 
 
 ## Stores the launched level data, so the level can be played later.

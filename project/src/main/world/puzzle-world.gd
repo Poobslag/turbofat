@@ -9,10 +9,10 @@ const DECORATED_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/res
 const UNDECORATED_PUZZLE_ENVIRONMENT_PATH \
 		:= "res://src/main/world/environment/restaurant/UndecoratedTurboFatEnvironment.tscn"
 
-## key: (String) an Environment name which appears in the json definitions
+## key: (String) an Environment id which appears in the json definitions
 ## value: (String) Path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
-const ENVIRONMENT_PATH_BY_NAME := {
+const ENVIRONMENT_PATH_BY_ID := {
 	"lemon": "res://src/main/world/environment/lemon/LemonRestaurantEnvironment.tscn",
 	"marsh": "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn",
 	"lava/zagma": "res://src/main/world/environment/lava/ZagmaEnvironment.tscn"
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func initial_environment_path() -> String:
-	var result: String = ENVIRONMENT_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, \
+	var result: String = ENVIRONMENT_PATH_BY_ID.get(CurrentLevel.puzzle_environment_id, \
 			DECORATED_PUZZLE_ENVIRONMENT_PATH)
 	
 	# if the player hasn't gotten far enough in the story, they don't have a nice decorated restaurant

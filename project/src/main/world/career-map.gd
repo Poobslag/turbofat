@@ -197,8 +197,8 @@ func _new_level_posse(level_index: int) -> LevelPosse:
 			level_posse.customer_ids = chat_tree.customer_ids.duplicate()
 		if chat_tree.observer_id:
 			level_posse.observer_id = chat_tree.observer_id
-		if chat_tree.puzzle_environment_name:
-			level_posse.puzzle_environment_name = chat_tree.puzzle_environment_name
+		if chat_tree.puzzle_environment_id:
+			level_posse.puzzle_environment_id = chat_tree.puzzle_environment_id
 	
 	# add customers/chefs from the level if the cutscene doesn't define any
 	if not level_posse.chef_id:
@@ -207,8 +207,8 @@ func _new_level_posse(level_index: int) -> LevelPosse:
 		level_posse.customer_ids = career_level.customer_ids.duplicate()
 	if not level_posse.observer_id:
 		level_posse.observer_id = career_level.observer_id
-	if not level_posse.puzzle_environment_name:
-		level_posse.puzzle_environment_name = career_level.puzzle_environment_name
+	if not level_posse.puzzle_environment_id:
+		level_posse.puzzle_environment_id = career_level.puzzle_environment_id
 	
 	# add customers/chefs from the region if the level doesn't define any
 	var region := PlayerData.career.current_region()
@@ -224,8 +224,8 @@ func _new_level_posse(level_index: int) -> LevelPosse:
 		var observer: Population.CreatureAppearance = region.population.random_observer()
 		if observer:
 			level_posse.observer_id = observer.id
-	if not level_posse.puzzle_environment_name:
-		level_posse.puzzle_environment_name = region.puzzle_environment_name
+	if not level_posse.puzzle_environment_id:
+		level_posse.puzzle_environment_id = region.puzzle_environment_id
 	
 	return level_posse
 
@@ -301,7 +301,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	var level_posse: LevelPosse = _level_posses[level_index]
 	CurrentLevel.customers = level_posse.customer_ids
 	CurrentLevel.chef_id = level_posse.chef_id
-	CurrentLevel.puzzle_environment_name = level_posse.puzzle_environment_name
+	CurrentLevel.puzzle_environment_id = level_posse.puzzle_environment_id
 	
 	if _pickable_career_levels.size() == 1 or not CurrentLevel.customers:
 		# Append filler customers for the selected level.
@@ -333,7 +333,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 		"chef_id": CurrentLevel.chef_id,
 		"customers": CurrentLevel.customers,
 		"hardcore": CurrentLevel.hardcore,
-		"puzzle_environment_name": CurrentLevel.puzzle_environment_name,
+		"puzzle_environment_id": CurrentLevel.puzzle_environment_id,
 	})
 	
 	if postroll_key:
