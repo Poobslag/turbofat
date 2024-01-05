@@ -176,6 +176,10 @@ func _on_ButtonControl_focus_entered() -> void:
 	_focus_just_entered = true
 	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("007a99")
+	
+	# Propagate the focus_entered signal. This control cannot be focused, but other scenes such as the career map and
+	# level select screen need to react to our focus events
+	emit_signal("focus_entered")
 
 
 func _on_ButtonControl_focus_exited() -> void:

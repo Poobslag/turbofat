@@ -25,7 +25,12 @@ func _ready() -> void:
 ##
 ## For a boss level where only one level is available, this will return '0' if the level button is selected.
 func focused_level_button_index() -> int:
-	_prev_focused_level_button_index = _level_buttons_container.get_children().find(_control.get_focus_owner())
+	var focused_child_index := -1
+	for child_index in range(_level_buttons_container.get_child_count()):
+		if _level_buttons_container.get_child(child_index).has_focus():
+			focused_child_index = child_index
+			break
+	_prev_focused_level_button_index = focused_child_index
 	return _prev_focused_level_button_index
 
 
