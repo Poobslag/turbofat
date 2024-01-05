@@ -16,4 +16,4 @@ func _ready() -> void:
 	var customer_icon_resource: Texture = Utils.rand_value(_customer_icon_resources)
 	_customer_icon.texture = customer_icon_resource
 	
-	_value_label.text = StringUtils.comma_sep(min(PlayerData.career.daily_customers, 99999))
+	_value_label.text = StringUtils.comma_sep(min(PlayerData.career.customers, 99999))

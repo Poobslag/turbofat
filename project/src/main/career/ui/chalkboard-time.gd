@@ -4,4 +4,4 @@ extends MarginContainer
 onready var _value_label := $HBoxContainer/Label3
 
 func _ready() -> void:
-	_value_label.text = StringUtils.format_duration(min(PlayerData.career.daily_seconds_played, 5999)) # 99:59
+	_value_label.text = StringUtils.format_duration(min(PlayerData.career.seconds_played, 5999)) # 99:59

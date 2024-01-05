@@ -195,7 +195,20 @@ func test_37b3_chat_history_migrated() -> void:
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/010_c_end"), 7)
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/060_end"), 1)
 	assert_eq(PlayerData.chat_history.chat_age("chat/career/marsh/epilogue"), 0)
-	
+
+
+func test_prepend_third_zero() -> void:
+	var upgrader: PlayerSaveUpgrader = PlayerSaveUpgrader.new()
+	assert_eq(upgrader.prepend_third_zero("ilesa/sin/00_ibo_suture"), "ilesa/sin/000_ibo_suture")
+	assert_eq(upgrader.prepend_third_zero("ilesa_40"), "ilesa_040")
+	assert_eq(upgrader.prepend_third_zero("ilesa_21_sin"), "ilesa_021_sin")
+	assert_eq(upgrader.prepend_third_zero("93_ilesa"), "093_ilesa")
+	assert_eq(upgrader.prepend_third_zero("36_ilesa_72"), "036_ilesa_072")
+	assert_eq(upgrader.prepend_third_zero("ilesa"), "ilesa")
+	assert_eq(upgrader.prepend_third_zero("ilesa_443_sin"), "ilesa_443_sin")
+	assert_eq(upgrader.prepend_third_zero("ilesa_8_sin"), "ilesa_8_sin")
+
+
 func test_49eb_level_history_purged() -> void:
 	load_player_data("turbofat-49eb.json")
 	
@@ -216,13 +229,25 @@ func test_49eb_level_history_purged() -> void:
 	assert_eq(rank_results.has("career/boss_6k"), false)
 
 
-func test_prepend_third_zero() -> void:
-	var upgrader: PlayerSaveUpgrader = PlayerSaveUpgrader.new()
-	assert_eq(upgrader.prepend_third_zero("ilesa/sin/00_ibo_suture"), "ilesa/sin/000_ibo_suture")
-	assert_eq(upgrader.prepend_third_zero("ilesa_40"), "ilesa_040")
-	assert_eq(upgrader.prepend_third_zero("ilesa_21_sin"), "ilesa_021_sin")
-	assert_eq(upgrader.prepend_third_zero("93_ilesa"), "093_ilesa")
-	assert_eq(upgrader.prepend_third_zero("36_ilesa_72"), "036_ilesa_072")
-	assert_eq(upgrader.prepend_third_zero("ilesa"), "ilesa")
-	assert_eq(upgrader.prepend_third_zero("ilesa_443_sin"), "ilesa_443_sin")
-	assert_eq(upgrader.prepend_third_zero("ilesa_8_sin"), "ilesa_8_sin")
+func test_512b_career_data() -> void:
+	load_player_data("turbofat-512b.json")
+	
+	assert_eq(PlayerData.career.banked_steps, 9)
+	assert_eq(PlayerData.career.best_distance_travelled, 134)
+	assert_eq(PlayerData.career.customers, 13)
+	assert_eq(PlayerData.career.day, 67)
+	assert_eq(PlayerData.career.distance_earned, 5)
+	assert_eq(PlayerData.career.distance_travelled, 98)
+	assert_eq(PlayerData.career.money, 1210)
+	assert_eq(PlayerData.career.extra_life_count, 2)
+	assert_eq(PlayerData.career.forced_hardcore_level_hours, [1, 4])
+	assert_eq(PlayerData.career.hours_passed, 2)
+	assert_eq(PlayerData.career.level_ids,
+			["career/dark/a_little_extra", "career/dark/muffin_impossible_2", "career/dark/boxing_day"])
+	assert_eq(PlayerData.career.prev_distance_travelled, [134, 114])
+	assert_eq(PlayerData.career.prev_money, [4156, 2268])
+	assert_eq(PlayerData.career.remain_in_region, false)
+	assert_eq(PlayerData.career.seconds_played, 525)
+	assert_eq(PlayerData.career.skipped_previous_level, false)
+	assert_eq(PlayerData.career.steps, 25)
+	assert_eq(PlayerData.career.top_out_count, 1)

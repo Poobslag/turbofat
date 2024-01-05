@@ -133,10 +133,10 @@ func _random_levels() -> Array:
 	# We use a seeded shuffle which always gives the player the same random levels. Otherwise they can relaunch career
 	# mode over and over until they get the exact levels they want to play.
 	var seed_int := 0
-	seed_int += PlayerData.career.daily_earnings
+	seed_int += PlayerData.career.money
 	seed_int += PlayerData.career.hours_passed
-	if PlayerData.career.prev_daily_earnings:
-		seed_int += PlayerData.career.prev_daily_earnings[0]
+	if PlayerData.career.prev_money:
+		seed_int += PlayerData.career.prev_money[0]
 	Utils.seeded_shuffle(levels, seed_int)
 	
 	# filter the levels based on which ones the player's unlocked
@@ -160,7 +160,7 @@ func _random_levels() -> Array:
 	# calculate a list of levels the player hasn't played in this career session
 	var unplayed_levels := []
 	for i in range(levels.size()):
-		if not levels[i].level_id in PlayerData.career.daily_level_ids:
+		if not levels[i].level_id in PlayerData.career.level_ids:
 			unplayed_levels.append(levels[i])
 	
 	# calculate a random set of levels for the player, and replace any the player's played if possible
@@ -170,7 +170,7 @@ func _random_levels() -> Array:
 		if unplayed_levels.empty():
 			break
 		
-		if random_levels[random_level_index].level_id in PlayerData.career.daily_level_ids:
+		if random_levels[random_level_index].level_id in PlayerData.career.level_ids:
 			random_levels[0] = unplayed_levels.pop_front()
 	
 	return random_levels
@@ -286,14 +286,14 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	# apply a distance penalty if they select an earlier level
 	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
 	PlayerData.career.distance_travelled -= distance_penalty
-	PlayerData.career.daily_steps -= distance_penalty
+	PlayerData.career.steps -= distance_penalty
 	PlayerData.career.progress_board_start_distance_travelled = PlayerData.career.distance_travelled
 	_distance_label.suppress_distance_penalty()
 	
 	var level_settings: LevelSettings = _pickable_level_settings[level_index]
 	var chat_key_pair: ChatKeyPair = _pickable_chat_key_pairs[level_index]
 	
-	PlayerData.career.daily_level_ids.append(level_settings.id)
+	PlayerData.career.level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
 	CurrentLevel.hardcore = level_settings.lose_condition.top_out == 1

@@ -6,7 +6,6 @@ class_name CareerData
 ## travelled today", as well as historical information like "how many days have they played" and "how much money did
 ## they earn three days ago"
 
-
 ## Emitted when the player's distance changes, particularly at the start of career mode when they're picking their
 ## starting distance
 signal distance_travelled_changed
@@ -21,7 +20,6 @@ const HARDCORE_LEVEL_HOURS_OPTIONS := [
 	[1, 4],
 	[2, 4],
 ]
-
 
 ## time to show when the number of levels the player has played is an unexpected value
 var invalid_time_of_day := tr("?:?? zm")
@@ -41,35 +39,20 @@ var times_of_day_by_hour := {
 ## Number of steps the player couldn't take because they were stopped by a boss/intro level.
 var banked_steps := 0
 
-## Distance the player has travelled in the current career session.
-var distance_travelled := 0 setget set_distance_travelled
+## Furthest total distance the player has travelled in a single session.
+var best_distance_travelled := 0
 
-## Distance the progress board should start from when moving the player
-var progress_board_start_distance_travelled := 0
+## Number of customers served in the current career session.
+var customers := 0
+
+## Number of days the player has completed.
+var day := 0
 
 ## Distance earned from the previously completed puzzle, plus any banked steps from earlier puzzles.
 var distance_earned := 0
 
-## Number of levels played in the current career session.
-var hours_passed := 0 setget set_hours_passed
-
-## Number of customers served in the current career session.
-var daily_customers := 0
-
-## Amount of money earned in the current career session.
-var daily_earnings := 0
-
-## Level IDs played in the current career session. This is tracked to avoid repeating levels.
-var daily_level_ids := []
-
-## Amount of time played in the current career session.
-var daily_seconds_played := 0.0
-
-## Number of steps taken in the current career session (not including initial level selection)
-var daily_steps := 0
-
-## Number of days the player has completed.
-var day := 0
+## Distance the player has travelled in the current career session.
+var distance_travelled := 0 setget set_distance_travelled
 
 ## Number of extra lives awarded in the current career session.
 var extra_life_count := 0
@@ -77,14 +60,23 @@ var extra_life_count := 0
 ## Array of ints for the hours_passed values where the player will be offered a hardcore level.
 var forced_hardcore_level_hours := []
 
-## Array of ints for previous daily earnings. Index 0 holds the most recent data.
-var prev_daily_earnings := []
+## Number of levels played in the current career session.
+var hours_passed := 0 setget set_hours_passed
+
+## Level IDs played in the current career session. This is tracked to avoid repeating levels.
+var level_ids := []
+
+## Amount of money earned in the current career session.
+var money := 0
 
 ## Array of ints for previous distance travelled. Index 0 holds the most recent data.
 var prev_distance_travelled := []
 
-## Furthest total distance the player has travelled in a single session.
-var best_distance_travelled := 0
+## Array of ints for previous daily earnings. Index 0 holds the most recent data.
+var prev_money := []
+
+## Distance the progress board should start from when moving the player
+var progress_board_start_distance_travelled := 0
 
 ## 'true' if the player should not advance to the next region.
 ##
@@ -92,8 +84,14 @@ var best_distance_travelled := 0
 ## earlier regions is necessary to view certain cutscenes and finish the game.
 var remain_in_region := false
 
+## Amount of time played in the current career session.
+var seconds_played := 0.0
+
 ## 'true' if the player skipped or gave up on the previous level, instead of finishing it or topping out.
 var skipped_previous_level := false
+
+## Number of steps taken in the current career session (not including initial level selection)
+var steps := 0
 
 ## Whether the career map should show the player's progress.
 var show_progress: int = Careers.ShowProgress.STATIC
@@ -101,8 +99,8 @@ var show_progress: int = Careers.ShowProgress.STATIC
 ## Number of times the player has topped out in the current career session.
 var top_out_count := 0
 
-## periodically increments the 'daily_seconds_played' value
-var _daily_seconds_played_timer: Timer
+## periodically increments the 'seconds_played' value
+var _seconds_played_timer: Timer
 
 ## CareerCalendar instance which advances the calendar and clock in career mode.
 var _career_calendar
@@ -114,11 +112,11 @@ var _career_flow
 func _ready() -> void:
 	CurrentCutscene.connect("cutscene_played", self, "_on_CurrentCutscene_cutscene_played")
 	
-	_daily_seconds_played_timer = Timer.new()
-	_daily_seconds_played_timer.wait_time = PlayerData.SECONDS_PLAYED_INCREMENT
-	_daily_seconds_played_timer.connect("timeout", self, "_on_DailySecondsPlayedTimer_timeout")
-	add_child(_daily_seconds_played_timer)
-	_daily_seconds_played_timer.start()
+	_seconds_played_timer = Timer.new()
+	_seconds_played_timer.wait_time = PlayerData.SECONDS_PLAYED_INCREMENT
+	_seconds_played_timer.connect("timeout", self, "_on_SecondsPlayedTimer_timeout")
+	add_child(_seconds_played_timer)
+	_seconds_played_timer.start()
 	
 	## We avoid cyclic reference errors by loading these scripts with 'load' instead of 'preload'
 	_career_calendar = load("res://src/main/career/career-calendar.gd").new(self)
@@ -130,15 +128,15 @@ func reset() -> void:
 	distance_travelled = 0
 	distance_earned = 0
 	hours_passed = 0
-	daily_customers = 0
-	daily_earnings = 0
-	daily_level_ids.clear()
-	daily_seconds_played = 0.0
-	daily_steps = 0
+	customers = 0
+	money = 0
+	level_ids.clear()
+	seconds_played = 0.0
+	steps = 0
 	day = 0
 	extra_life_count = 0
 	forced_hardcore_level_hours = []
-	prev_daily_earnings.clear()
+	prev_money.clear()
 	prev_distance_travelled.clear()
 	best_distance_travelled = 0
 	remain_in_region = false
@@ -154,22 +152,22 @@ func randomize_forced_hardcore_level_hours() -> void:
 
 func from_json_dict(json: Dictionary) -> void:
 	banked_steps = int(json.get("banked_steps", 0))
-	distance_travelled = int(json.get("distance_travelled", 0))
-	distance_earned = int(json.get("distance_earned", 0))
-	hours_passed = int(json.get("hours_passed", 0))
-	daily_customers = int(json.get("daily_customers", 0))
-	daily_earnings = int(json.get("daily_earnings", 0))
-	daily_level_ids = json.get("daily_level_ids", [])
-	daily_seconds_played = float(json.get("daily_seconds_played", 0.0))
-	daily_steps = int(json.get("daily_steps", 0))
+	best_distance_travelled = int(json.get("best_distance_travelled", 0))
+	customers = int(json.get("customers", 0))
 	day = int(json.get("day", 0))
+	distance_earned = int(json.get("distance_earned", 0))
+	distance_travelled = int(json.get("distance_travelled", 0))
 	extra_life_count = int(json.get("extra_life_count", 0))
 	forced_hardcore_level_hours = Utils.convert_floats_to_ints_in_array(json.get("forced_hardcore_level_hours", []))
-	prev_daily_earnings = Utils.convert_floats_to_ints_in_array(json.get("prev_daily_earnings", []))
+	hours_passed = int(json.get("hours_passed", 0))
+	level_ids = json.get("level_ids", [])
+	money = int(json.get("money", 0))
 	prev_distance_travelled = Utils.convert_floats_to_ints_in_array(json.get("prev_distance_travelled", []))
-	best_distance_travelled = int(json.get("best_distance_travelled", 0))
+	prev_money = Utils.convert_floats_to_ints_in_array(json.get("prev_money", []))
 	remain_in_region = bool(json.get("remain_in_region", false))
+	seconds_played = float(json.get("seconds_played", 0.0))
 	skipped_previous_level = bool(json.get("skipped_previous_level", false))
+	steps = int(json.get("steps", 0))
 	top_out_count = int(json.get("top_out_count", 0))
 	emit_signal("distance_travelled_changed")
 
@@ -177,22 +175,22 @@ func from_json_dict(json: Dictionary) -> void:
 func to_json_dict() -> Dictionary:
 	var results := {}
 	results["banked_steps"] = banked_steps
-	results["distance_travelled"] = distance_travelled
-	results["distance_earned"] = distance_earned
-	results["hours_passed"] = hours_passed
-	results["daily_customers"] = daily_customers
-	results["daily_earnings"] = daily_earnings
-	results["daily_level_ids"] = daily_level_ids
-	results["daily_seconds_played"] = daily_seconds_played
-	results["daily_steps"] = daily_steps
+	results["best_distance_travelled"] = best_distance_travelled
+	results["customers"] = customers
 	results["day"] = day
+	results["distance_earned"] = distance_earned
+	results["distance_travelled"] = distance_travelled
 	results["extra_life_count"] = extra_life_count
 	results["forced_hardcore_level_hours"] = forced_hardcore_level_hours
-	results["prev_daily_earnings"] = prev_daily_earnings
+	results["hours_passed"] = hours_passed
+	results["level_ids"] = level_ids
+	results["money"] = money
 	results["prev_distance_travelled"] = prev_distance_travelled
-	results["best_distance_travelled"] = best_distance_travelled
+	results["prev_money"] = prev_money
 	results["remain_in_region"] = remain_in_region
+	results["seconds_played"] = seconds_played
 	results["skipped_previous_level"] = skipped_previous_level
+	results["steps"] = steps
 	results["top_out_count"] = top_out_count
 	return results
 
@@ -475,9 +473,9 @@ func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
 		advance_past_chat_region(chat_key)
 
 
-func _on_DailySecondsPlayedTimer_timeout() -> void:
+func _on_SecondsPlayedTimer_timeout() -> void:
 	if is_career_mode():
-		daily_seconds_played += PlayerData.SECONDS_PLAYED_INCREMENT
+		seconds_played += PlayerData.SECONDS_PLAYED_INCREMENT
 
 
 ## Calculates the highest rank milestone the player's reached.

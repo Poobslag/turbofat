@@ -1,0 +1,42 @@
+[
+  {
+    "type": "version",
+    "value": "4ceb"
+  },
+  {
+    "type": "career",
+    "value": {
+      "banked_steps": 9,
+      "distance_travelled": 98,
+      "distance_earned": 5,
+      "hours_passed": 2,
+      "daily_customers": 13,
+      "daily_earnings": 1210,
+      "daily_level_ids": [
+        "career/dark/a_little_extra",
+        "career/dark/muffin_impossible_2",
+        "career/dark/boxing_day"
+      ],
+      "daily_seconds_played": 525,
+      "daily_steps": 25,
+      "day": 67,
+      "extra_life_count": 2,
+      "forced_hardcore_level_hours": [
+        1,
+        4
+      ],
+      "prev_daily_earnings": [
+        4156,
+        2268
+      ],
+      "prev_distance_travelled": [
+        134,
+        114
+      ],
+      "best_distance_travelled": 134,
+      "remain_in_region": false,
+      "skipped_previous_level": false,
+      "top_out_count": 1
+    }
+  }
+]

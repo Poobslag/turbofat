@@ -60,9 +60,9 @@ onready var _left_title_icon := $Control1/TextureRect
 onready var _right_title_icon := $Control2/TextureRect
 
 func _ready() -> void:
-	if PlayerData.career.daily_steps >= 25:
+	if PlayerData.career.steps >= 25:
 		_title.text = Utils.rand_value(_great_titles)
-	elif PlayerData.career.daily_steps >= 8:
+	elif PlayerData.career.steps >= 8:
 		_title.text = Utils.rand_value(_good_titles)
 	else:
 		_title.text = Utils.rand_value(_bad_titles)
