@@ -43,6 +43,30 @@ static func brightness(color: Color) -> float:
 	return clamp(color.r * 0.2990 + color.g * 0.5871 + color.b * 0.1140, 0.0, 1.0)
 
 
+## Converts the float values in an array to int values.
+##
+## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
+## (https://github.com/godotengine/godot/issues/9499)
+static func convert_floats_to_ints_in_array(a: Array) -> Array:
+	var result := []
+	for i in range(a.size()):
+		result.append(int(a[i]) if a[i] is float else a[i])
+	return result
+
+
+## Converts the float keys and values in a Dictionary to int values.
+##
+## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
+## (https://github.com/godotengine/godot/issues/9499)
+static func convert_floats_to_ints_in_dict(dict: Dictionary) -> Dictionary:
+	var result := {}
+	for in_key in dict:
+		var out_key := int(in_key) if in_key is float else in_key
+		var out_value := int(dict[in_key]) if dict[in_key] is float else dict[in_key]
+		result[out_key] = out_value
+	return result
+
+
 ## Returns a new array containing the disjunction of the given arrays.
 ##
 ## This is equivalent to union(subtract(a, b), subtract(b, a)).
