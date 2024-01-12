@@ -35,6 +35,7 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	
 	"lava": "res://src/main/world/environment/lava/LavaEnvironment.tscn",
 	"lava/zagma": "res://src/main/world/environment/lava/ZagmaEnvironment.tscn",
+	"lava/gift_shop": "res://src/main/world/environment/lava/GiftShopEnvironment.tscn",
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",

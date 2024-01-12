@@ -26,6 +26,9 @@ signal showed_chat_choices
 ## try to keep them all in frame and facing each other.
 var chatters := []
 
+## true if there is an active chat tree
+var chatting := false
+
 var _show_version := true setget set_show_version, is_show_version
 
 ## These two fields store details for the upcoming level. We store the level details during the chat sequence
@@ -49,6 +52,7 @@ func start_chat(new_chat_tree: ChatTree) -> void:
 	_current_chat_tree = new_chat_tree
 	
 	chatters = _find_creatures_in_chat_tree(new_chat_tree)
+	chatting = true
 	
 	# We always add the player and target to the list of chatters. The player might talk to someone who says a
 	# one-liner, but the camera should still include the player. The player might also 'talk' to an inanimate object
@@ -127,8 +131,8 @@ func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 
 ## Updates the different UI components to be visible/invisible based on the UI's current state.
 func _update_visible() -> void:
-	$ChatUi.visible = true if chatters else false
-	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and chatters.empty()
+	$ChatUi.visible = true if chatting else false
+	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatting
 
 
 ## Applies the specified ChatEvent metadata to the scene.
@@ -176,10 +180,11 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 
 
 func _on_ChatUi_chat_finished() -> void:
+	chatting = false
 	PlayerData.chat_history.add_history_item(_current_chat_tree.chat_key)
 	CurrentCutscene.clear_launched_cutscene()
 	if not CurrentCutscene.chat_tree \
-			and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
+			and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] in [Global.SCENE_CUTSCENE_DEMO]:
 		# go back to CutsceneDemo after playing the cutscene
 		if PlayerData.cutscene_queue.is_front_cutscene():
 			PlayerData.cutscene_queue.replace_trail()
