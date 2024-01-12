@@ -1,0 +1,355 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/environment/restaurant/turbo-fat-obstacle-library.tres" type="TileSet" id=4]
+[ext_resource path="res://src/main/world/environment/restaurant/floor-library.tres" type="TileSet" id=5]
+[ext_resource path="res://assets/main/credits/gift-shop-bg-rest.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/credits/gift-shop-bg-counter.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/credits/gift-shop-sensei-body.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/credits/gift-shop-sensei-head-sheet.png" type="Texture" id=10]
+[ext_resource path="res://assets/main/credits/gift-shop-plaque.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/credits/gift-shop-jaco-head-sheet.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/credits/gift-shop-jaco-body.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/credits/gift-shop-sign-sheet.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -114, -68 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+length = 13.0
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.83333, 3.33333, 5, 6.5, 8.16667, 9.83333, 11.5, 13 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -114, -68 ), Vector2( -114, -69 ), Vector2( -114, -68 ), Vector2( -114, -67 ), Vector2( -114, -68 ), Vector2( -114, -69 ), Vector2( -114, -68 ), Vector2( -114, -67 ), Vector2( -114, -68 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66667, 3, 3.33333, 3.66667, 4, 4.33333, 4.66667, 5, 5.33333, 5.66667, 6, 6.33333, 6.66667, 7, 7.33333, 7.66667, 8, 8.33333, 8.66667, 9, 9.33333, 9.66667, 10, 10.3333, 10.6667, 11, 11.3333, 11.6667, 12, 12.3333, 12.6667, 13 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 1, 0, 1, 2, 0, 2, 0, 1, 0, 2, 1, 0, 2, 1, 2, 1, 0, 3, 0, 2, 0, 1, 2, 0, 1, 2, 1, 3, 0, 1, 0, 2, 0, 2, 1, 2, 0, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "default"
+length = 5.33333
+loop = true
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66667, 3, 3.33333, 3.66667, 4, 4.33333, 4.66667, 5, 5.33333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 1, 2, 0, 3, 1, 2, 3, 0, 2, 3, 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 137.5, 52 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "default"
+length = 14.0
+loop = true
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.33333, 3, 4.66667, 6.16667, 8.16667, 9.83333, 11.5, 14 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 137.5, 52 ), Vector2( 137.5, 51 ), Vector2( 137.5, 52 ), Vector2( 137.5, 53 ), Vector2( 137.5, 52 ), Vector2( 137.5, 51 ), Vector2( 137.5, 52 ), Vector2( 137.5, 53 ), Vector2( 137.5, 52 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66667, 3, 3.33333, 3.66667, 4, 4.33333, 4.66667, 5, 5.33333, 5.66667, 6, 6.33333, 6.66667, 7, 7.33333, 7.66667, 8, 8.33333, 8.66667, 9, 9.33333, 9.66667, 10, 10.3333, 10.6667, 11, 11.3333, 11.6667, 12, 12.3333, 12.6667, 13, 13.3333, 13.6667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 2, 1, 0, 1, 2, 3, 1, 2, 3, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 0, 3, 1, 2, 0, 1, 3, 1, 3, 0, 3, 0, 2, 1, 0, 3, 0, 1, 2, 3, 1 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.5, 178 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "default"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4.2, 6.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.5, 178 ), Vector2( -2.5, 176 ), Vector2( -2.5, 178 ), Vector2( -2.5, 180 ), Vector2( -2.5, 178 ) ]
+}
+
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 1 )
+environment_shadows_path = NodePath("Ground/Shadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 3 )
+
+[node name="Decorations" type="Node2D" parent="."]
+position = Vector2( 0, -32 )
+
+[node name="BgRest" type="Sprite" parent="Decorations"]
+position = Vector2( 11.5, 34.5 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 6 )
+
+[node name="JacoBody" type="Sprite" parent="Decorations"]
+position = Vector2( -114.5, 58.25 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 13 )
+
+[node name="JacoHead" type="Sprite" parent="Decorations"]
+position = Vector2( -114, -68 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 12 )
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/JacoHead"]
+autoplay = "default"
+anims/RESET = SubResource( 2 )
+anims/default = SubResource( 1 )
+
+[node name="Sign" type="Sprite" parent="Decorations"]
+position = Vector2( 37, -62.5 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 14 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/Sign"]
+autoplay = "default"
+anims/RESET = SubResource( 3 )
+anims/default = SubResource( 4 )
+
+[node name="BgCounter" type="Sprite" parent="Decorations"]
+position = Vector2( 11.5, 34.5 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 8 )
+
+[node name="SenseiBody" type="Sprite" parent="Decorations"]
+position = Vector2( 128.5, 132.5 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 9 )
+
+[node name="SenseiHead" type="Sprite" parent="Decorations"]
+position = Vector2( 137.5, 52 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 10 )
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/SenseiHead"]
+autoplay = "default"
+anims/RESET = SubResource( 5 )
+anims/default = SubResource( 6 )
+
+[node name="Plaque" type="Sprite" parent="Decorations"]
+position = Vector2( -2.5, 178 )
+scale = Vector2( 0.24, 0.24 )
+texture = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decorations/Plaque"]
+autoplay = "default"
+anims/RESET = SubResource( 7 )
+anims/default = SubResource( 8 )
+
+[node name="MaskN" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -324.0
+margin_top = -227.75
+margin_right = 376.0
+margin_bottom = -127.75
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[node name="MaskW" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -372.0
+margin_top = -227.75
+margin_right = -272.0
+margin_bottom = 272.25
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[node name="MaskE" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 272.0
+margin_top = -227.0
+margin_right = 372.0
+margin_bottom = 273.0
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[node name="MaskS" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -324.0
+margin_top = 191.75
+margin_right = 376.0
+margin_bottom = 291.75
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -1
+
+[node name="GroundMap" type="TileMap" parent="Ground"]
+scale = Vector2( 0.5, 0.5 )
+mode = 2
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 128, 104 )
+cell_custom_transform = Transform2D( 128, 0.01, -78, 104, 0, 0 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+
+[node name="Exits" type="Node2D" parent="Ground"]
+
+[node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
+obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+
+[node name="Obstacles" type="YSort" parent="."]
+sort_enabled = false
+
+[node name="ObstacleMap" type="TileMap" parent="Obstacles"]
+scale = Vector2( 0.5, 0.5 )
+mode = 2
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 128, 104 )
+cell_custom_transform = Transform2D( 128, 0.01, -78, 104, 0, 0 )
+cell_tile_origin = 1
+cell_y_sort = true
+show_collision = true
+centered_textures = true
+format = 1
+
+[node name="Spawns" type="Node2D" parent="."]
