@@ -32,6 +32,10 @@ var _previous_spear_size_string: String
 ## value: (Array, Vector2) playfield cells which will be occupied by this spear when it is popped in.
 var _veg_cells_by_spear := {}
 
+## key: (Spear) spear which is currently on the playfield
+## value: (Vector2) spear width/height measured in playfield cells
+var _dimensions_by_spear := {}
+
 ## node which contains all of the child spear nodes
 onready var _spear_holder: Node2D = $SpearHolder
 onready var _critter_manager: CellCritterManager = get_node(critter_manager_path)
@@ -138,6 +142,9 @@ func _add_spear(config: SpearConfig, spear_y: int, spear_wide: bool, spear_lengt
 		# reposition/lengthen spears to cover the next queue
 		spear.position += Vector2(64.0, 0.0)
 		spear.pop_length += 64 / spear.scale.x
+	
+	# populate _dimensions_by_spear
+	_dimensions_by_spear[spear] = Vector2(spear_length, 2 if spear_wide else 1)
 	
 	# populate _veg_cells_by_spear
 	var veg_cells := []
@@ -366,6 +373,7 @@ func _remove_spear(spear: Spear, erased_y: int = -1) -> void:
 	
 	spear.poof_and_free()
 	_veg_cells_by_spear.erase(spear)
+	_dimensions_by_spear.erase(spear)
 
 
 ## Updates the playfield's cells with invisible veggie cells for a spear.
@@ -426,7 +434,7 @@ func _check_for_speared_piece(spear: Spear) -> void:
 	# value: (bool) true
 	var crumb_colors := {}
 	
-	# Check for any collisions, storing the results in
+	# Check for any collisions
 	for spear_cell in _veg_cells_by_spear[spear]:
 		if _critter_manager.cell_overlaps_piece(spear_cell):
 			if new_type == old_type:
@@ -568,6 +576,50 @@ func _shift_rows(bottom_y: int, direction: Vector2) -> void:
 		for spear_line in _rows_for_spear(spear):
 			spear_bottom_row = max(spear_line, spear_bottom_row)
 		spear.visible = spear_bottom_row >= PuzzleTileMap.FIRST_VISIBLE_ROW
+	
+	_detect_and_resolve_spear_conflicts()
+
+
+## Detects any spear overlaps, removing any small spears which overlap larger spears.
+##
+## Line clears do not remove spears which haven't popped out yet, so it's possible for two spears to end up in the
+## same row overlapping the same cells. In this unlikely scenario, we remove the smaller of the overlapping spears.
+func _detect_and_resolve_spear_conflicts() -> void:
+	# key: (Vector2) playfield cell which will be occupied by a spear when it is popped in
+	# value: (Spear) spear which is currently on the playfield
+	var spears_by_veg_cell: Dictionary = {}
+	
+	for spear in _veg_cells_by_spear.keys():
+		for i in range(_veg_cells_by_spear[spear].size()):
+			var veg_cell: Vector2 = _veg_cells_by_spear[spear][i]
+			var conflicting_spear: Spear = spears_by_veg_cell.get(veg_cell)
+			if not conflicting_spear:
+				spears_by_veg_cell[veg_cell] = spear
+				continue
+			
+			# Calculate which spear is larger; the larger spear wins the conflict.
+			var _spears_by_size := [spear, conflicting_spear]
+			_spears_by_size.sort_custom(self, "_compare_spears_by_size")
+			var large_spear: Spear = _spears_by_size[0]
+			var small_spear: Spear = _spears_by_size[1]
+			
+			# write the large spear to spears_by_veg_cell, and remove references to the small spear
+			spears_by_veg_cell[veg_cell] = large_spear
+			for small_cell in _veg_cells_by_spear[small_spear]:
+				if spears_by_veg_cell[small_cell] == small_spear:
+					spears_by_veg_cell.erase(small_cell)
+			_remove_spear(small_spear)
+			
+			if spear == small_spear:
+				# if this spear was removed due to a conflict, we don't check the rest of its cells
+				break
+
+
+func _compare_spears_by_size(a: Spear, b: Spear) -> bool:
+	## Spears are compared by width, then length.
+	if _dimensions_by_spear[a].y != _dimensions_by_spear[b].y:
+		return _dimensions_by_spear[a].y > _dimensions_by_spear[b].y
+	return _dimensions_by_spear[a].x > _dimensions_by_spear[b].x
 
 
 func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
