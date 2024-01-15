@@ -86,7 +86,7 @@ func _show_message(message: String, font: Font = _normal_font) -> void:
 	if not _popped_in:
 		# play a sound effect and 'pop in' animation
 		_popped_in = true
-		$Tween.pop_in()
+		$TweenManager.pop_in()
 		$PopInSound.play()
 	
 	$Panel.show()
@@ -106,7 +106,7 @@ func _hide_message() -> void:
 	if _popped_in:
 		# play a sound effect and 'pop out' animation
 		_popped_in = false
-		$Tween.pop_out()
+		$TweenManager.pop_out()
 		$PopOutSound.play()
 	
 	_refresh_queue_timer()
