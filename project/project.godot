@@ -209,6 +209,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/combo-tracker.gd"
 }, {
+"base": "OverworldObstacle",
+"class": "ConfettiCannon",
+"language": "GDScript",
+"path": "res://src/main/world/environment/lava/confetti-cannon.gd"
+}, {
 "base": "Reference",
 "class": "ConfigStringUtils",
 "language": "GDScript",
@@ -1425,6 +1430,7 @@ _global_script_class_icons={
 "ComboBreakRules": "",
 "ComboBurst": "",
 "ComboTracker": "",
+"ConfettiCannon": "",
 "ConfigStringUtils": "",
 "Creature": "",
 "CreatureAnimations": "",

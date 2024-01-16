@@ -13,7 +13,27 @@ sleve, s, judge_4
 w: ^o^ Wow! I'd say you've officially proven your skills as a world class chef. Well done!!
  (c mood ^o^, s mood ^o^, s1 mood ^o^, p1 mood ^_^)
 c: ^o^ Yes definitely! Congratulations!
-s: ^o^ I knew you had it in you!
+[holy_smokes] That was an ordeal
+[phew_finally] Phew, finally
+[thats_it] That's it? That was easy
+ (confetti)
+
+[thats_it]
+p1: /._. Wait, that's it? Because I thought it was gonna be, you know, difficult...
+s: ^o^ Ohh, it's harder for most people. I knew you'd blow through it!
+[congratulations]
+
+[phew_finally]
+p1: ^_^ Phew, finally! ...So that's really it? No more surprise challenges?
+s: ^o^ That's really it. I knew you had it in you!
+[congratulations]
+
+[holy_smokes]
+p1: <__< Holy smokes that was an ordeal! ...Did you have to make it so difficult!?
+s: ^o^ Ohh, I knew you'd blow through it!
+[congratulations]
+
+[congratulations]
 s1: ^o^ Ah-hahaha. Congratulations #player#~
 p1: ^o^ Thanks, Fat Sensei.
 s1: ^__^ Oh! You still remember my name.
