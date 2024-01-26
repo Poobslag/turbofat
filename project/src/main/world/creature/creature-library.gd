@@ -146,6 +146,11 @@ func set_fatness(creature_id: String, fatness: float) -> void:
 	_fatnesses_by_creature_id[creature_id] = fatness
 
 
+## Reset all creatures to their default fatness.
+func clear_all_fatness() -> void:
+	_fatnesses_by_creature_id.clear()
+
+
 func to_json_dict() -> Dictionary:
 	return {
 		PLAYER_ID: get_player_def().to_json_dict(),

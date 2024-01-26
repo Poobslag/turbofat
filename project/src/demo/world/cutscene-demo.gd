@@ -25,6 +25,8 @@ func _ready() -> void:
 	_load_demo_data()
 	
 	_assign_focus()
+	
+	PlayerData.creature_library.clear_all_fatness()
 
 
 func _assign_focus() -> void:
