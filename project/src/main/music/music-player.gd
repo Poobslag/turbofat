@@ -41,6 +41,7 @@ onready var _upbeat_bgms := [
 		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake,
 		]
 
+onready var _credits_bgm := $SugarCrash
 onready var _tutorial_bgms := [$MyFatnessPal]
 onready var _music_tween_manager := $MusicTweenManager
 onready var _filter_tween: SceneTreeTween
@@ -74,6 +75,10 @@ func play_upbeat_bgm(fade_in: bool = true) -> void:
 ## If a tutorial song is already playing, this method has no effect.
 func play_tutorial_bgm(fade_in: bool = true) -> void:
 	_play_next_bgm(_tutorial_bgms, fade_in)
+
+
+func play_credits_bgm() -> void:
+	play_bgm(_credits_bgm, false)
 
 
 ## Gradually fades a track in.

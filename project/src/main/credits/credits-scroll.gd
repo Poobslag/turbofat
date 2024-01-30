@@ -29,16 +29,28 @@ var velocity: Vector2 = Vector2(0, -50)
 var _horizontal_tween: SceneTreeTween
 var _vertical_tween: SceneTreeTween
 
+## Header which says 'Turbo Fat' over the scrolling lines.
+onready var header: CreditsHeader = $FixedContainer/ScrollingContainer/Header
+
+## Orb which floats around the credits screen, launching puzzle pieces.
+onready var orb: CreditsOrb = $FixedContainer/OrbHolder/Orb
+
 ## A point near the top of the screen where lines fade out.
 onready var _fade_out_point := $FixedContainer/FadeOutPoint
 ## A point near the bottom of the screen where lines fade in.
 onready var _fade_in_point := $FixedContainer/FadeInPoint
 
-## Container for scrolling lines.
-onready var _lines := $FixedContainer/Lines
+## Scrolling area with lines, header and the orb
+onready var _scrolling_container := $FixedContainer/ScrollingContainer
 
-## Header which says 'Turbo Fat' over the scrolling lines.
-onready var _header := $FixedContainer/Header
+## Container for scrolling lines.
+onready var _lines := $FixedContainer/ScrollingContainer/Lines
+
+onready var _credits_pieces: CreditsPieces = $FixedContainer/OrbHolder/Pieces
+
+func _ready() -> void:
+	MusicPlayer.play_credits_bgm()
+
 
 ## Adds a text line like 'Directed by:'
 func add_line(text: String) -> void:
@@ -101,10 +113,14 @@ func set_credits_position(new_credits_position: int) -> void:
 		_shift_credits_horizontally(LINES_POSITION_RIGHT)
 
 
+func set_target_header_letter_for_piece(piece_index: int, header_letter_index: int) -> void:
+	_credits_pieces.set_target_header_letter_for_piece(piece_index, header_letter_index)
+
+
 ## Adjusts the fade_out_point and shows or hides the header.
 func _shift_credits_vertically(header_visible: bool) -> void:
 	_vertical_tween = Utils.recreate_tween(self, _vertical_tween).set_parallel(true)
-	_vertical_tween.tween_property(_header, "modulate", \
+	_vertical_tween.tween_property(header, "modulate", \
 			Color.white if header_visible else Color.transparent, 0.3).set_delay(0.7)
 	_vertical_tween.tween_property(_fade_out_point, "position", \
 			FADE_OUT_POINT_POSITION_BOTTOM if header_visible else FADE_OUT_POINT_POSITION_TOP, 1.5)
@@ -114,8 +130,7 @@ func _shift_credits_vertically(header_visible: bool) -> void:
 func _shift_credits_horizontally(new_lines_position: Vector2) -> void:
 	_horizontal_tween = Utils.recreate_tween(self, _horizontal_tween) \
 			.set_parallel(true).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
-	_horizontal_tween.tween_property(_header, "rect_position", new_lines_position, 0.5)
-	_horizontal_tween.tween_property(_lines, "rect_position", new_lines_position, 0.5)
+	_horizontal_tween.tween_property(_scrolling_container, "rect_position", new_lines_position, 0.5)
 
 
 func _initialize_line(credits_line: CreditsLine) -> void:

@@ -1,3 +1,4 @@
+class_name CreditsDirector
 extends Node
 ## Schedules all of the events for the credits.
 ##
@@ -5,6 +6,9 @@ extends Node
 ## 	PART_1: Initial credits scroll
 ## 	PART_2: A few walls of text which summarize the player's journey
 ## 	PART_3: Additional credits scroll
+
+## Threshold where the credits adjust their visuals to sync back up with the music.
+const DESYNC_THRESHOLD_MSEC := 100
 
 ## Duration in seconds for the first part of the credits, the initial credits scroll.
 const PART_1_DURATION := 40.0
@@ -73,6 +77,15 @@ var part_3 := [
 	"#made_with_godot#",
 ]
 
+## True if this script is currently altering Engine.time_scale to sync up the music.
+var adjusting_time_scale := false
+
+## Schedules event synchronized with the music.
+onready var _music_sync_player: AnimationPlayer = $MusicSyncPlayer
+
+## Periodically triggers a check that the music is synchronized.
+onready var _timer: Timer = $Timer
+
 onready var _credits_scroll: CreditsScroll = get_parent()
 
 ## Loading this scene immediately schedules all of the credits events.
@@ -81,6 +94,31 @@ func _ready() -> void:
 	_schedule_part_1(credits_tween)
 	_schedule_part_2(credits_tween)
 	_schedule_part_3(credits_tween)
+	
+	# wait for CreditsScroll to initialize
+	yield(get_tree(), "idle_frame")
+	
+	# assign the letters which poof into the title; these correspond to kick drums in the music
+	_credits_scroll.set_target_header_letter_for_piece(348, 0)
+	_credits_scroll.set_target_header_letter_for_piece(349, 1)
+	_credits_scroll.set_target_header_letter_for_piece(350, 2)
+	_credits_scroll.set_target_header_letter_for_piece(351, 3)
+	_credits_scroll.set_target_header_letter_for_piece(352, 4)
+	_credits_scroll.set_target_header_letter_for_piece(353, 6)
+	
+	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
+	_credits_scroll.orb.total_time = 2.92682
+
+
+## Returns the number of seconds the music is ahead of the animation.
+##
+## If the game logic lags, the music will end up ahead and this will be a positive number. If the AudioStreamPlayer
+## lags, the game will end up ahead and this will be a negative number.
+func get_desync_amount() -> float:
+	var result := 0.0
+	if _music_sync_player.current_animation == "play" and _music_sync_player.is_playing() and MusicPlayer.current_bgm:
+		result = MusicPlayer.current_bgm.get_playback_position() - _music_sync_player.current_animation_position
+	return result
 
 
 ## Schedules events for the first part of the credits, the initial credits scroll.
@@ -156,3 +194,30 @@ func _add_credit_line(line: String) -> void:
 
 func _set_credits_scroll_velocity(new_velocity_y: float) -> void:
 	_credits_scroll.velocity = Vector2(0, -new_velocity_y)
+
+
+## Every once in awhile, we check to make sure the music is in sync with our credits.
+##
+## These can fall out of sync if the game runs too slow for some reason. I can force it to happen by dragging the
+## window around. If the music falls out of sync, we modify Engine.time_scale to make the game run faster or slower.
+## This doesn't affect audio playback rate.
+func _on_Timer_timeout() -> void:
+	if not adjusting_time_scale and Engine.time_scale != 1.0:
+		# Something else is adjusting the time scale, so we shouldn't interfere with it.
+		return
+	
+	if adjusting_time_scale:
+		Engine.time_scale = 1.0
+		adjusting_time_scale = false
+	
+	var desync_amount := get_desync_amount()
+	if abs(desync_amount * 1000) > DESYNC_THRESHOLD_MSEC:
+		# To calculate the ideal time scale to get us back in sync, we take the amount of time we need to simulate and
+		# divide it by the amount of time until the next desync check. (This may be negative.)
+		var new_time_scale := (_timer.wait_time + desync_amount) / _timer.wait_time
+		
+		# We clamp the timescale to avoid negative numbers, and to smooth any jerky speed ups or slowdowns.
+		new_time_scale = clamp(new_time_scale, 0.33333, 3.0)
+		
+		Engine.time_scale = new_time_scale
+		adjusting_time_scale = true

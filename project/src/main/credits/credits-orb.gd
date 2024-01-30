@@ -1,8 +1,10 @@
-class_name LoadingOrb
+class_name CreditsOrb
 extends Sprite
-## Orb which floats around the loading screen, launching puzzle pieces.
+## Orb which floats around the credits screen, launching puzzle pieces.
 ##
 ## The player can control the launched puzzle pieces with the direction/rotate buttons.
+##
+## This must be placed inside a container defining the orb's boundaries.
 
 ## Number of frames in our animation. Each frame launches a different puzzle piece.
 const FRAME_COUNT := 8
@@ -11,7 +13,7 @@ const FRAME_COUNT := 8
 const PIECES_PER_SECOND := 4.10000
 
 ## The loading orb rotates and moves. This field is used to calculate the rotation/position
-var _total_time := 0.0
+var total_time := 0.0
 
 ## Sequential pieces launch in different directions. This field influences the launch direction.
 var _launched_piece_count := randi() % 4
@@ -20,23 +22,22 @@ var _launched_piece_count := randi() % 4
 var _pressed_dir := Vector2.ZERO
 var _orientation: float
 
+## The position the orb should be at when it is floating around over the credits.
+var _onscreen_position: Vector2
+
+## The position the orb should hide when it is hiding offscreen.
+var _offscreen_position: Vector2
+
+## A number from [0.0, 1.0] corresponding to whether the orb should be offscreen or onscreen.
+var _offscreen_amount: float
+
+var _tween: SceneTreeTween
+
 func _ready() -> void:
-	# initialize total_time so the wobble/position isn't always the same
-	_total_time = rand_range(0, 100)
-	
-	if randf() < 0.5:
-		# 50% of the time, the pieces are oriented to spell out 'T' 'u' 'r' 'b' 'o'...
-		_orientation = 0.0
-	else:
-		# 50% of the time, their orientation is randomized
-		_orientation = Utils.rand_value([0.0 * PI, 0.5 * PI, 1.0 * PI, 1.5 * PI])
-	
-	if randf() < 0.5:
-		# 50% of the time, the pieces are ordered with the 'T' piece first.
-		frame = 0
-	else:
-		# 50% of the time, their order is random
-		frame = randi() % FRAME_COUNT
+	# start offscreen
+	_offscreen_position = Vector2(-500, 500)
+	_offscreen_amount = 1.0
+	modulate = Color.transparent
 	
 	_refresh()
 
@@ -61,9 +62,16 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	_total_time += delta
+	total_time += delta
 	
 	_refresh()
+
+
+## Returns 'true' if the orb is more than halfway out of the credits area.
+##
+## The player can resize the window in very silly ways, so this might not literally be offscreen.
+func is_offscreen() -> bool:
+	return _offscreen_amount > 0.5
 
 
 ## Calculates the direction to launch the piece.
@@ -79,17 +87,35 @@ func pop_launch_dir() -> Vector2:
 	return launch_dir
 
 
+## Moves the orb onscreen from the specified location, making it visible.
+func show_onscreen(new_offscreen_position: Vector2) -> void:
+	_offscreen_position = new_offscreen_position
+	_tween = Utils.recreate_tween(self, _tween)
+	_tween.tween_property(self, "_offscreen_amount", 0.0, 3.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_tween.parallel().tween_property(self, "modulate", Color.white, 1.0)
+
+
+## Moves the orb offscreen from the specified location, making it transparent.
+func hide_offscreen(new_offscreen_position: Vector2) -> void:
+	_offscreen_position = new_offscreen_position
+	_tween = Utils.recreate_tween(self, _tween)
+	_tween.tween_property(self, "_offscreen_amount", 1.0, 3.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_tween.parallel().tween_property(self, "modulate", Color.transparent, 1.0).set_delay(2.0)
+
+
 ## Recalculates the orb's position, rotation and frame based on the elapsed time.
 func _refresh() -> void:
-	position = Global.window_size * 0.5
+	_onscreen_position = get_parent().rect_position + get_parent().rect_size * 0.5
 	
 	# The orb's path follows a small circle within a big circle like a spirograph
-	position += Vector2(40 * sin(2.3 * _total_time), 40 * cos(2.3 * _total_time)) # small circle
-	position += Vector2(120 * sin(0.8 * _total_time), -60 * cos(0.8 * _total_time)) # big circle
+	_onscreen_position += Vector2(40 * sin(2.3 * total_time), 40 * cos(2.3 * total_time)) # small circle
+	_onscreen_position += Vector2(120 * sin(0.8 * total_time), -60 * cos(0.8 * total_time)) # big circle
 	
-	var wobble_amount := 0.09 + 0.06 * sin(0.97 * _total_time)
-	rotation = PI * wobble_amount * sin(1.3 * _total_time) + _orientation
+	position = lerp(_onscreen_position, _offscreen_position, _offscreen_amount)
 	
-	var new_frame := int(_total_time * PIECES_PER_SECOND) % FRAME_COUNT
+	var wobble_amount := 0.09 + 0.06 * sin(0.97 * total_time)
+	rotation = PI * wobble_amount * sin(1.3 * total_time) + _orientation
+	
+	var new_frame := int(total_time * PIECES_PER_SECOND) % FRAME_COUNT
 	if frame != new_frame:
 		frame = new_frame

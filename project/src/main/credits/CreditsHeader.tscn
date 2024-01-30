@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/credits/credits-header.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/main/credits/CreditsLetter.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+outline_size = 6
+outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 95.2876, 52.8645, 0, 0, 0, 0, 144.008, 58.0739, 0, 0, 0, 0, 194.45, 64.7984, 0, 0, 0, 0, 224.274, 52.1219, 0, 0, 0, 0, 260.499, 53.5568, 0, 0, 0, 0, 336.114, 51.7751, 0, 0, 0, 0, 369.634, 54.3364, 0, 0, 0, 0, 415.46, 61.6862 )
+}
+
+[node name="Header" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -512.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+rect_pivot_offset = Vector2( -686.241, -129.519 )
+script = ExtResource( 1 )
+CreditsLetterScene = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 96.0
+margin_right = -96.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+text = "turbo fat"
+align = 2
+valign = 1
+
+[node name="LetterSprites" type="Node2D" parent="."]
+
+[node name="LetterCenterPath" type="Path2D" parent="."]
+curve = SubResource( 2 )

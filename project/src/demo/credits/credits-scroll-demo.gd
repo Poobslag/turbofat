@@ -6,7 +6,10 @@ extends Node
 ## 	[W,E]: Add an indented line.
 ## 	[A]: Add a "Proudly made with godot" line.
 ## 	[S]: Add a centered "Turbo Fat" line.
-## 	[Z]: Show a wall of text.
+## 	[D]: Show a wall of text.
+## 	[F]: Transform a header letter into a bubbly block.
+## 	[M]: Toggles music.
+## 	[shift+F]: Transform all header letters into bubbly blocks.
 ## 	[Keypad 7,8,9]: Move the credits to the left, top, or right position and hide the header.
 ## 	[Keypad 1,2,3]: Move the credits to the left, bottom, or right position and show the header.
 ## 	[Shift]: Hold to speed up the credits.
@@ -15,6 +18,7 @@ extends Node
 var _total_time := 0.0
 
 onready var _scroll := $CreditsScroll
+onready var _credits_director := $CreditsScroll/CreditsDirector
 onready var _time_label := $TimeLabel
 
 func _input(event: InputEvent) -> void:
@@ -29,10 +33,20 @@ func _input(event: InputEvent) -> void:
 			_scroll.add_godot_line()
 		KEY_S:
 			_scroll.add_turbo_fat_line()
-		KEY_Z:
+		KEY_D:
 			_scroll.show_wall_of_text("#player# mowesi #sensei# riveniv sitasot mer se na. Pa cedike nu ruciber"
 					+ " natud bir tasucel taf setomud. Gateb ehaseti se dag rip repelie teqitit. Kotep wesesan nime"
 					+ " padun: Ra taroki semet re se ko nutole motaca.", 10.0)
+		KEY_F:
+			if event.shift:
+				_scroll.header.transform_all_letters()
+			else:
+				_scroll.header.transform_next_letter()
+		KEY_M:
+			if SystemData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC) == 0.0:
+				SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.7)
+			else:
+				SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.0)
 		KEY_KP_7:
 			_scroll.credits_position = Credits.CreditsPosition.TOP_LEFT
 		KEY_KP_8:
@@ -48,14 +62,24 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventKey and event.scancode == KEY_SHIFT and not event.is_echo():
 		if event.is_pressed():
+			# disable 'adjusting_time_scale' so that CreditsDirector doesn't take change the time_scale while we're
+			# fast-forwarding
+			_credits_director.adjusting_time_scale = false
+			
 			Engine.time_scale = 20.0
+			MusicPlayer.current_bgm.pitch_scale = 20.0
+			MusicPlayer.current_bgm.play(_total_time)
 		else:
 			Engine.time_scale = 1.0
+			MusicPlayer.current_bgm.pitch_scale = 1.0
+			MusicPlayer.current_bgm.play(_total_time)
 
 
 func _physics_process(delta: float) -> void:
 	_total_time += delta
 	# warning-ignore:integer_division
-	var result := "%01d:%02d.%02d" % [int(_total_time) / 60, int(_total_time) % 60, 100*(_total_time - int(_total_time))]
-	_time_label.text = result
+	_time_label.text = "%01d:%02d.%02d" % [
+			int(_total_time) / 60, int(_total_time) % 60, 100*(_total_time - int(_total_time))]
 	
+	if abs(_credits_director.get_desync_amount() * 1000) > CreditsDirector.DESYNC_THRESHOLD_MSEC:
+		_time_label.text += " %0.2f" % [_credits_director.get_desync_amount()]
