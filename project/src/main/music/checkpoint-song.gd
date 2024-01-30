@@ -61,7 +61,10 @@ func get_nearest_checkpoint(start: float) -> float:
 func _increase_staleness() -> void:
 	if playing:
 		_played = true
-		_staleness_record[int(get_playback_position() / CHUNK_SIZE)] += 1
+		var staleness_index := int(get_playback_position() / CHUNK_SIZE)
+		if staleness_index < _staleness_record.size():
+			# in some edge cases, playback position can go past the end of a song
+			_staleness_record[staleness_index] += 1
 
 
 ## Calculates the ideal position to start playing the specified song.
