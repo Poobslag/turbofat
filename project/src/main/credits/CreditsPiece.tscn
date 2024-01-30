@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/credits/credits-piece.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/ui/menu/loading-piece-sheet.png" type="Texture" id=2]
+
+[node name="CreditsPiece" type="Sprite"]
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 3
+script = ExtResource( 1 )

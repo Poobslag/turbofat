@@ -1,20 +1,72 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/credits/CreditsHeader.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/main/ui/menu/loading-orb-sheet.png" type="Texture" id=2]
 [ext_resource path="res://src/main/credits/credits-scroll.gd" type="Script" id=3]
 [ext_resource path="res://src/main/credits/CreditsWallOfText.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/credits/TextCreditsLine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/credits/TurboFatCreditsLine.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/credits/credits-orb.gd" type="Script" id=7]
 [ext_resource path="res://src/main/credits/TextCreditsIndentLine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/credits/credits-pieces.gd" type="Script" id=9]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/credits/GodotCreditsLine.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/credits/credits-director.gd" type="Script" id=12]
+[ext_resource path="res://src/main/credits/CreditsPiece.tscn" type="PackedScene" id=13]
 
-[sub_resource type="DynamicFont" id=1]
-size = 72
-outline_size = 6
-outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="Animation" id=1]
+resource_name = "play"
+length = 240.0
+step = 1.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("FixedContainer/ScrollingContainer/Header")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 85.85, 86.1, 86.34, 86.59, 86.83, 87.07 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "transform_next_letter"
+}, {
+"args": [  ],
+"method": "transform_next_letter"
+}, {
+"args": [  ],
+"method": "transform_next_letter"
+}, {
+"args": [  ],
+"method": "transform_next_letter"
+}, {
+"args": [  ],
+"method": "transform_next_letter"
+}, {
+"args": [  ],
+"method": "transform_all_letters"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("FixedContainer/OrbHolder/Orb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 10.1009, 37.672, 56.3383 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ Vector2( -600, 80 ) ],
+"method": "show_onscreen"
+}, {
+"args": [ Vector2( 1600, 600 ) ],
+"method": "hide_offscreen"
+}, {
+"args": [ Vector2( 1600, 80 ) ],
+"method": "show_onscreen"
+} ]
+}
 
 [node name="CreditsScroll" type="Control"]
 anchor_right = 1.0
@@ -44,7 +96,25 @@ position = Vector2( 0, 110 )
 [node name="FadeInPoint" type="Node2D" parent="FixedContainer"]
 position = Vector2( 0, 600 )
 
-[node name="Lines" type="Control" parent="FixedContainer"]
+[node name="OrbHolder" type="Control" parent="FixedContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Orb" type="Sprite" parent="FixedContainer/OrbHolder"]
+position = Vector2( 517.03, 303.396 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 3
+script = ExtResource( 7 )
+
+[node name="Pieces" type="Node2D" parent="FixedContainer/OrbHolder"]
+script = ExtResource( 9 )
+header_path = NodePath("../../ScrollingContainer/Header")
+orb_path = NodePath("../Orb")
+piece_scene = ExtResource( 13 )
+
+[node name="ScrollingContainer" type="Control" parent="FixedContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -53,23 +123,29 @@ margin_left = -256.0
 margin_top = -300.0
 margin_right = 256.0
 margin_bottom = 300.0
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="Header" type="Control" parent="FixedContainer"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -256.0
-margin_right = 256.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 0, 100 )
-rect_pivot_offset = Vector2( -686.241, -129.519 )
-
-[node name="TurboFat" type="Label" parent="FixedContainer/Header"]
+[node name="Lines" type="Control" parent="FixedContainer/ScrollingContainer"]
 anchor_right = 1.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 1 )
-text = "turbo fat"
-align = 1
-valign = 1
+anchor_bottom = 1.0
+
+[node name="Header" parent="FixedContainer/ScrollingContainer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_right = 1.0
+margin_left = 0.0
 
 [node name="CreditsDirector" type="Node" parent="."]
 script = ExtResource( 12 )
+
+[node name="MusicSyncPlayer" type="AnimationPlayer" parent="CreditsDirector"]
+root_node = NodePath("../..")
+autoplay = "play"
+anims/play = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="CreditsDirector"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="CreditsDirector/Timer" to="CreditsDirector" method="_on_Timer_timeout"]
