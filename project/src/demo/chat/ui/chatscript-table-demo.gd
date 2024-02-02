@@ -12,6 +12,9 @@ extends Node
 const LOCATION_DESCRIPTIONS_BY_ID := {
 	"filming": "Generic Turbo Fat restaurant interior with cameras",
 	"inside_turbo_fat": "Generic Turbo Fat restaurant interior",
+	"lava": "\"Chocolava Canyon\" environment",
+	"lava/gift_shop": "\"Chocolava Canyon\" Zagma HQ gift shop",
+	"lava/zagma": "\"Chocolava Canyon\" Zagma HQ interior",
 	"lemon": "\"Lemony Thickets\" environment",
 	"lemon/walk": "\"Lemony Thickets\" walking environment",
 	"lemon_2": "\"Welcome To Turbo Fat\" environment",
