@@ -1,0 +1,29 @@
+{"version": "2476"}
+
+[location]
+lava
+
+[characters]
+player, p1, zagma_12
+sensei, s1, zagma_1
+bones, b, !zagma_2
+mara, m, !zagma_10
+unknown, ?
+
+?: Hooray! Yay! You did it! Wow!!!
+ (lava_crowd spawn)
+ (lava_crowd start_bouncing)
+ (play_sfx lava_cheer_1)
+ (s1 mood ^_^)
+b: ^o^ Chef of the year? Wow, that's amazing!
+ (s1 faces right, p1 faces right)
+ (b enters)
+m: ^o^ Wow, they gave you a plaque and everything!?
+ (s1 faces left, p1 faces left)
+ (m enters)
+p1: <__< I bought it in the gift shop...
+ (lava_crowd stop_bouncing)
+?: Yaaaay! New plaque! New plaque!!
+ (m mood ^_^, b mood ^_^)
+ (play_sfx lava_cheer_2)
+ (lava_crowd start_bouncing)

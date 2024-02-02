@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/main/world/environment/lava/lava-crowd.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/environment/lava/lava-crowd-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/world/environment/lava/lava-crowd-laugh-sheet.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 13
+atlas = ExtResource( 3 )
+region = Rect2( 125, 0, 125, 150 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 13
+atlas = ExtResource( 3 )
+region = Rect2( 250, 0, 125, 150 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.5
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28, 14 )
+
+[node name="Crowd" type="KinematicBody2D" groups=["lava_crowds"]]
+position = Vector2( 561.443, 360.624 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+shadow_scale = 0.4
+
+[node name="SpriteHolder" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="SpriteHolder"]
+modulate = Color( 0.239216, 0.160784, 0.121569, 1 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -195, -410 )
+hframes = 8
+vframes = 5
+
+[node name="CheerSprite" type="AnimatedSprite" parent="SpriteHolder"]
+visible = false
+position = Vector2( 45, -85 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 1
+frames = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="WiggleTimer" type="Timer" parent="."]
+wait_time = 7.0
+
+[node name="BounceTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GazeTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="WiggleTimer" to="." method="_on_WiggleTimer_timeout"]
+[connection signal="timeout" from="BounceTimer" to="." method="_on_BounceTimer_timeout"]
+[connection signal="timeout" from="GazeTimer" to="." method="_on_GazeTimer_timeout"]
