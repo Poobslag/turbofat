@@ -539,6 +539,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/career/ui/landmark-lines.gd"
 }, {
+"base": "OverworldObstacle",
+"class": "LavaCrowd",
+"language": "GDScript",
+"path": "res://src/main/world/environment/lava/lava-crowd.gd"
+}, {
 "base": "Sprite",
 "class": "LeafPoof",
 "language": "GDScript",
@@ -1551,6 +1556,7 @@ _global_script_class_icons={
 "LabelTyper": "",
 "Landmark": "",
 "LandmarkLines": "",
+"LavaCrowd": "",
 "LeafPoof": "",
 "LetterProjectile": "",
 "LetterShooter": "",
