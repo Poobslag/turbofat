@@ -1,0 +1,12 @@
+{
+  "version": "375c",
+  "id": "unknown",
+  "name": "",
+  "chat_theme": {
+    "accent_scale": 1.15,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b23823"
+  },
+  "customer_if": "false",
+}
