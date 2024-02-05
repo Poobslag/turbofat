@@ -9,6 +9,7 @@ extends Node
 ## 	[D]: Show a wall of text.
 ## 	[F]: Transform a header letter into a bubbly block.
 ## 	[M]: Toggles music.
+## 	[=,-]: Make the credits movie visible/invisible.
 ## 	[shift+F]: Transform all header letters into bubbly blocks.
 ## 	[Keypad 7,8,9]: Move the credits to the left, top, or right position and hide the header.
 ## 	[Keypad 1,2,3]: Move the credits to the left, bottom, or right position and show the header.
@@ -47,6 +48,10 @@ func _input(event: InputEvent) -> void:
 				SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.7)
 			else:
 				SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.0)
+		KEY_EQUAL:
+			_scroll.movie_visible = true
+		KEY_MINUS:
+			_scroll.movie_visible = false
 		KEY_KP_7:
 			_scroll.credits_position = Credits.CreditsPosition.TOP_LEFT
 		KEY_KP_8:
