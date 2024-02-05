@@ -26,8 +26,8 @@ export (Credits.CreditsPosition) var credits_position := Credits.CreditsPosition
 
 var velocity: Vector2 = Vector2(0, -50)
 
-var _horizontal_tween: SceneTreeTween
-var _vertical_tween: SceneTreeTween
+var _lines_tween_x: SceneTreeTween
+var _lines_tween_y: SceneTreeTween
 
 ## Header which says 'Turbo Fat' over the scrolling lines.
 onready var header: CreditsHeader = $FixedContainer/ScrollingContainer/Header
@@ -46,6 +46,7 @@ onready var _scrolling_container := $FixedContainer/ScrollingContainer
 ## Container for scrolling lines.
 onready var _lines := $FixedContainer/ScrollingContainer/Lines
 
+## Puzzle pieces which fly out of the floating orb.
 onready var _credits_pieces: CreditsPieces = $FixedContainer/OrbHolder/Pieces
 
 func _ready() -> void:
@@ -92,45 +93,46 @@ func set_credits_position(new_credits_position: int) -> void:
 	var old_credits_position := credits_position
 	credits_position = new_credits_position
 	
+	_shift_credits(old_credits_position, new_credits_position)
+
+
+## Shifts the title credits lines based on the credits position.
+func _shift_credits(old_credits_position: int, new_credits_position: int) -> void:
 	if Credits.is_position_top(credits_position) and not Credits.is_position_top(old_credits_position):
 		# move credits to a top position; hide the header and raise the fade out point
-		_shift_credits_vertically(false)
+		_shift_lines_vertically(false)
 	
 	if not Credits.is_position_top(credits_position) and Credits.is_position_top(old_credits_position):
 		# move credits to a low position; show the header and lower the fade out point
-		_shift_credits_vertically(true)
+		_shift_lines_vertically(true)
 	
 	if Credits.is_position_left(credits_position) and not Credits.is_position_left(old_credits_position):
 		# move credits to a left position; shift everything horizontally
-		_shift_credits_horizontally(LINES_POSITION_LEFT)
+		_shift_lines_horizontally(LINES_POSITION_LEFT)
 	
 	if Credits.is_position_center(credits_position) and not Credits.is_position_center(old_credits_position):
 		# move credits to a center position; shift everything horizontally
-		_shift_credits_horizontally(LINES_POSITION_CENTER)
+		_shift_lines_horizontally(LINES_POSITION_CENTER)
 	
 	if Credits.is_position_right(credits_position) and not Credits.is_position_right(old_credits_position):
 		# move credits to a right position; shift everything horizontally
-		_shift_credits_horizontally(LINES_POSITION_RIGHT)
-
-
-func set_target_header_letter_for_piece(piece_index: int, header_letter_index: int) -> void:
-	_credits_pieces.set_target_header_letter_for_piece(piece_index, header_letter_index)
+		_shift_lines_horizontally(LINES_POSITION_RIGHT)
 
 
 ## Adjusts the fade_out_point and shows or hides the header.
-func _shift_credits_vertically(header_visible: bool) -> void:
-	_vertical_tween = Utils.recreate_tween(self, _vertical_tween).set_parallel(true)
-	_vertical_tween.tween_property(header, "modulate", \
+func _shift_lines_vertically(header_visible: bool) -> void:
+	_lines_tween_y = Utils.recreate_tween(self, _lines_tween_y).set_parallel(true)
+	_lines_tween_y.tween_property(header, "modulate", \
 			Color.white if header_visible else Color.transparent, 0.3).set_delay(0.7)
-	_vertical_tween.tween_property(_fade_out_point, "position", \
+	_lines_tween_y.tween_property(_fade_out_point, "position", \
 			FADE_OUT_POINT_POSITION_BOTTOM if header_visible else FADE_OUT_POINT_POSITION_TOP, 1.5)
 
 
 ## Smoothly moves the credits horizontally to a new position.
-func _shift_credits_horizontally(new_lines_position: Vector2) -> void:
-	_horizontal_tween = Utils.recreate_tween(self, _horizontal_tween) \
+func _shift_lines_horizontally(new_lines_position: Vector2) -> void:
+	_lines_tween_x = Utils.recreate_tween(self, _lines_tween_x) \
 			.set_parallel(true).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
-	_horizontal_tween.tween_property(_scrolling_container, "rect_position", new_lines_position, 0.5)
+	_lines_tween_x.tween_property(_scrolling_container, "rect_position", new_lines_position, 0.5)
 
 
 func _initialize_line(credits_line: CreditsLine) -> void:
