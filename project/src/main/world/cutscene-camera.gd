@@ -44,7 +44,8 @@ func _calculate_camera_bounding_box() -> Rect2:
 ## value is used in making camera adjustments.
 func _max_fatness_weight() -> float:
 	var max_visual_fatness := 1.0
-	for creature in get_tree().get_nodes_in_group("creatures"):
+	
+	for creature in _overworld_ui.chatters:
 		max_visual_fatness = max(max_visual_fatness, creature.get_visual_fatness())
 	return inverse_lerp(1.0, 10.0, clamp(max_visual_fatness, 1.0, 10.0))
 
