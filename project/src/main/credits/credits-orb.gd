@@ -14,8 +14,9 @@ const PIECES_PER_SECOND := 4.10000
 
 export (NodePath) var wallpaper_path: NodePath
 
-## The loading orb rotates and moves. This field is used to calculate the rotation/position
-var total_time := 0.0
+## The loading orb rotates and moves. These fields are used to calculate the rotation/position.
+var _total_time := 0.0
+var _time_offset := 0.0
 
 ## Sequential pieces launch in different directions. This field influences the launch direction.
 var _launched_piece_count := randi() % 4
@@ -46,6 +47,11 @@ func _ready() -> void:
 	_refresh()
 
 
+func initialize_time(time_offset: float) -> void:
+	_total_time = 0.0
+	_time_offset = time_offset
+
+
 ## The player can control the direction/orientation of launched puzzle pieces with the rotate buttons.
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -66,7 +72,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	total_time += delta
+	_total_time += delta
 	
 	_refresh()
 
@@ -76,6 +82,13 @@ func _process(delta: float) -> void:
 ## The player can resize the window in very silly ways, so this might not literally be offscreen.
 func is_offscreen() -> bool:
 	return _offscreen_amount > 0.5
+
+
+## Returns the number of times a piece should have been launched since the orb was created.
+##
+## The orb launches a piece at regular launch intervals, synced with music.
+func elapsed_launch_intervals() -> int:
+	return int(floor(PIECES_PER_SECOND * (_total_time + fmod(_time_offset, 1.0 / PIECES_PER_SECOND))))
 
 
 ## Calculates the direction to launch the piece.
@@ -109,17 +122,19 @@ func hide_offscreen(new_offscreen_position: Vector2) -> void:
 
 ## Recalculates the orb's position, rotation and frame based on the elapsed time.
 func _refresh() -> void:
+	var time_with_offset := _total_time + _time_offset
+	
 	_onscreen_position = get_parent().rect_position + get_parent().rect_size * 0.5
 	
 	# The orb's path follows a small circle within a big circle like a spirograph
-	_onscreen_position += Vector2(40 * sin(2.3 * total_time), 40 * cos(2.3 * total_time)) # small circle
-	_onscreen_position += Vector2(120 * sin(0.8 * total_time), -60 * cos(0.8 * total_time)) # big circle
+	_onscreen_position += Vector2(40 * sin(2.3 * time_with_offset), 40 * cos(2.3 * time_with_offset)) # small circle
+	_onscreen_position += Vector2(120 * sin(0.8 * time_with_offset), -60 * cos(0.8 * time_with_offset)) # big circle
 	
 	position = lerp(_onscreen_position, _offscreen_position, _offscreen_amount)
 	
-	var wobble_amount := 0.09 + 0.06 * sin(0.97 * total_time)
-	rotation = PI * wobble_amount * sin(1.3 * total_time) + _orientation
+	var wobble_amount := 0.09 + 0.06 * sin(0.97 * time_with_offset)
+	rotation = PI * wobble_amount * sin(1.3 * time_with_offset) + _orientation
 	
-	var new_frame := int(total_time * PIECES_PER_SECOND) % FRAME_COUNT
+	var new_frame := int(time_with_offset * PIECES_PER_SECOND) % FRAME_COUNT
 	if frame != new_frame:
 		frame = new_frame

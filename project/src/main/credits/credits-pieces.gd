@@ -30,6 +30,16 @@ func set_target_header_letter_for_piece(piece_index: int, letter_index: int) -> 
 	_target_letters_by_piece_index[piece_index] = letter_index
 
 
+## Refreshes our state for a single launch interval, incrementing counter and launching a piece.
+func _process_launch_interval() -> void:
+	var piece_index := _next_piece_index
+	_next_piece_index += 1
+	
+	# Avoid adding pieces when the orb is offscreen -- otherwise they fly onscreen even when the orb isn't visible.
+	if not _orb.is_offscreen():
+		_add_credits_piece(piece_index)
+
+
 ## Initialize a CreditsPiece and adds it to the scene tree.
 func _add_credits_piece(piece_index: int) -> void:
 	var piece: CreditsPiece = piece_scene.instance()
@@ -54,10 +64,26 @@ func _letter_target_position(header_letter_index: int) -> Vector2:
 
 
 ## When the orb advances to the next frame, we launch a puzzle piece.
+##
+## These puzzle pieces are synced with music, but can also be delayed by scenes loading. We include some extra checks
+## to ensure an exact number of pieces has been launched to stay synced with the music.
 func _on_Orb_frame_changed() -> void:
-	var piece_index := _next_piece_index
-	_next_piece_index += 1
+	# calculate the number of pieces we should have launched, if the orb was onscreen and there was no lag
+	var elapsed_launch_intervals := _orb.elapsed_launch_intervals()
 	
-	# Avoid adding pieces when the orb is offscreen -- otherwise they fly onscreen even when the orb isn't visible.
-	if not _orb.is_offscreen():
-		_add_credits_piece(piece_index)
+	# If we've launched too many pieces, we skip this one. I've never seen this happen, but I guess it could.
+	if _next_piece_index >= elapsed_launch_intervals:
+		push_warning("launched too many pieces; next_piece_index=%s expected_piece_count=%s"
+				% [_next_piece_index, elapsed_launch_intervals])
+		return
+	
+	if _next_piece_index < elapsed_launch_intervals:
+		_process_launch_interval()
+	
+	# If we've launched too few pieces, we keep launching extra pieces to catch up. This happens sometimes if there's
+	# lag when loading a new scene.
+	if _next_piece_index < elapsed_launch_intervals:
+		push_warning("launched too few pieces; next_piece_index=%s expected_piece_count=%s"
+				% [_next_piece_index, elapsed_launch_intervals])
+		for _i in range(elapsed_launch_intervals - _next_piece_index):
+			_process_launch_interval()
