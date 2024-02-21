@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
@@ -17,7 +17,9 @@ script = ExtResource( 24 )
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1200, 1200 )
 transparent_bg = true
+size_override_stretch = true
 handle_input_locally = false
+hdr = false
 usage = 0
 render_target_update_mode = 3
 audio_listener_enable_2d = true
