@@ -28,6 +28,8 @@ export (bool) var shuffle: bool setget set_shuffle
 
 export (int, 0, 3) var crowd_color_index: int setget set_crowd_color_index
 
+export (bool) var collision_disabled: bool = false setget set_collision_disabled
+
 ## 'true' if this crowd member should jump up and down with their arms raised.
 var bouncing: bool setget set_bouncing
 
@@ -39,6 +41,7 @@ var _tween: SceneTreeTween
 onready var _sprite_holder := $SpriteHolder
 onready var _sprite := $SpriteHolder/Sprite
 onready var _cheer_sprite := $SpriteHolder/CheerSprite
+onready var _collision_shape := $CollisionShape2D
 
 ## Timer which makes the crowd member animate slightly, alternating between two frames
 onready var _wiggle_timer := $WiggleTimer
@@ -53,7 +56,7 @@ func _ready() -> void:
 	else:
 		_wiggle_timer.start(rand_range(0.0, 7.0))
 	
-	if Global.get_overworld_ui():
+	if not Engine.editor_hint and Global.get_overworld_ui():
 		Global.get_overworld_ui().connect("chat_event_meta_played", self, "_on_OverworldUi_chat_event_meta_played")
 	
 	_refresh()
@@ -62,6 +65,11 @@ func _ready() -> void:
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
+
+
+func set_collision_disabled(new_collision_disabled: bool) -> void:
+	collision_disabled = new_collision_disabled
+	_refresh()
 
 
 func set_frame(new_frame: int) -> void:
@@ -111,6 +119,7 @@ func _initialize_onready_variables() -> void:
 	_cheer_sprite = $SpriteHolder/CheerSprite
 	_wiggle_timer = $WiggleTimer
 	_bounce_timer = $BounceTimer
+	_collision_shape = $CollisionShape2D
 
 
 ## Starts/stops the crowd member bouncing based on the 'bouncing' field.
@@ -125,9 +134,7 @@ func _refresh_bouncing() -> void:
 	_cheer_sprite.visible = false
 	_cheer_sprite.playing = false
 	
-	# reset to a non-bouncing (arms lowered) frame
-	# warning-ignore:integer_division
-	set_frame(int(frame / 4) * 4 + frame % 2)
+	lower_arms()
 	
 	if bouncing:
 		# make the creature start bouncing continuously, after a short randomized delay
@@ -135,6 +142,18 @@ func _refresh_bouncing() -> void:
 	else:
 		# prevent the creature from bouncing, in case a bounce was already scheduled
 		_bounce_timer.stop()
+
+
+## Changes to a non-bouncing (arms lowered) frame.
+func lower_arms() -> void:
+	# warning-ignore:integer_division
+	set_frame(int(frame / 4) * 4 + frame % 2)
+
+
+## Changes to a bouncing (arms raised) frame.
+func raise_arms() -> void:
+	# warning-ignore:integer_division
+	set_frame(int(frame / 4) * 4 + 2 + frame % 2)
 
 
 func _refresh() -> void:
@@ -147,6 +166,8 @@ func _refresh() -> void:
 	_gaze_target = get_node(gaze_target_path) if gaze_target_path else null
 	_sprite.frame = frame
 	_sprite.modulate = CROWD_COLORS[crowd_color_index]
+	# call_deferred to avoid error: 'Can't change this state while flushing queries...'
+	_collision_shape.call_deferred("set", "disabled", collision_disabled)
 
 
 ## When the WiggleTimer times out, we animate the crowd member slightly.
@@ -165,9 +186,7 @@ func _on_WiggleTimer_timeout() -> void:
 
 ## When the BounceTimer times out, we animate the creature to bounce up and down.
 func _on_BounceTimer_timeout() -> void:
-	# change to a bouncing (arms raised) frame
-	# warning-ignore:integer_division
-	set_frame(int(frame / 4) * 4 + 2 + frame % 2)
+	raise_arms()
 	
 	_cheer_sprite.visible = randf() < CHEER_PROBABILITY
 	_cheer_sprite.playing = true
