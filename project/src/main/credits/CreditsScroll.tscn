@@ -159,24 +159,6 @@ position = Vector2( 0, 110 )
 [node name="FadeInPoint" type="Node2D" parent="FixedContainer"]
 position = Vector2( 0, 600 )
 
-[node name="OrbHolder" type="Control" parent="FixedContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Orb" type="Sprite" parent="FixedContainer/OrbHolder"]
-position = Vector2( 517.03, 303.396 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-hframes = 3
-vframes = 3
-script = ExtResource( 7 )
-
-[node name="Pieces" type="Node2D" parent="FixedContainer/OrbHolder"]
-script = ExtResource( 9 )
-header_path = NodePath("../../ScrollingContainer/Header")
-orb_path = NodePath("../Orb")
-piece_scene = ExtResource( 13 )
-
 [node name="ScrollingContainer" type="Control" parent="FixedContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -198,6 +180,25 @@ anchor_bottom = 1.0
 anchor_left = 0.0
 anchor_right = 1.0
 margin_left = 0.0
+
+[node name="OrbHolder" type="Control" parent="FixedContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Orb" type="Sprite" parent="FixedContainer/OrbHolder"]
+position = Vector2( 517.03, 303.396 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 3
+script = ExtResource( 7 )
+wallpaper_path = NodePath("../../../Wallpaper")
+
+[node name="Pieces" type="Node2D" parent="FixedContainer/OrbHolder"]
+script = ExtResource( 9 )
+header_path = NodePath("../../ScrollingContainer/Header")
+orb_path = NodePath("../Orb")
+piece_scene = ExtResource( 13 )
 
 [node name="CreditsDirector" type="Node" parent="."]
 script = ExtResource( 12 )
