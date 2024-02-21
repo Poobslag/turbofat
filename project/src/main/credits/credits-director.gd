@@ -107,7 +107,7 @@ func _ready() -> void:
 	_credits_scroll.set_target_header_letter_for_piece(353, 6)
 	
 	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
-	_credits_scroll.orb.total_time = 2.92682
+	_credits_scroll.orb.initialize_time(2.92682)
 
 
 ## Returns the number of seconds the music is ahead of the animation.
