@@ -1,3 +1,4 @@
+class_name Wallpaper
 extends Control
 ## Background wallpaper with colored areas, borders and shapes.
 
