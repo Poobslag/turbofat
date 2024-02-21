@@ -16,6 +16,7 @@
 [ext_resource path="res://src/main/world/environment/lava/LavaEnvironment.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/main/credits/credits-view-mask.png" type="Texture" id=16]
+[ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -113,10 +114,12 @@ margin_top = 52.5
 margin_right = 459.5
 margin_bottom = 547.5
 stretch = true
+stretch_shrink = 4
+script = ExtResource( 17 )
+restaurant_viewport_path = NodePath("Viewport")
 
 [node name="Viewport" type="Viewport" parent="Movie/ViewportContainer"]
-size = Vector2( 407, 495 )
-size_override_stretch = true
+size = Vector2( 101, 123 )
 handle_input_locally = false
 hdr = false
 usage = 0
