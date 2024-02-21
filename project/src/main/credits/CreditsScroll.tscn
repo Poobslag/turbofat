@@ -13,8 +13,8 @@
 [ext_resource path="res://src/main/credits/GodotCreditsLine.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/credits/credits-director.gd" type="Script" id=12]
 [ext_resource path="res://src/main/credits/CreditsPiece.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/main/world/environment/lava/LavaEnvironment.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/lava/CrowdWalkCutscene.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/credits/credits-movie.gd" type="Script" id=15]
 [ext_resource path="res://assets/main/credits/credits-view-mask.png" type="Texture" id=16]
 [ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=17]
 
@@ -70,7 +70,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 10.1009, 37.672, 56.3383 ),
+"times": PoolRealArray( 10.1009, 31, 63 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ Vector2( -600, 80 ) ],
@@ -81,6 +81,43 @@ tracks/1/keys = {
 }, {
 "args": [ Vector2( 1600, 80 ) ],
 "method": "show_onscreen"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movie")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 31.22 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 29.261 ],
+"method": "play_crowd_walk_cutscene"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 31.0016, 32, 63, 64 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_movie_visible"
+}, {
+"args": [ 3 ],
+"method": "set_credits_position"
+}, {
+"args": [ 5 ],
+"method": "set_credits_position"
+}, {
+"args": [ false ],
+"method": "set_movie_visible"
 } ]
 }
 
@@ -97,6 +134,8 @@ TurboFatCreditsLineScene = ExtResource( 6 )
 [node name="Wallpaper" parent="." instance=ExtResource( 10 )]
 
 [node name="Movie" type="Node2D" parent="."]
+script = ExtResource( 15 )
+CrowdWalkCutsceneScene = ExtResource( 14 )
 
 [node name="Clip" type="Light2D" parent="Movie"]
 position = Vector2( 256, 300 )
@@ -127,14 +166,6 @@ render_target_update_mode = 3
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="Bg" parent="Movie/ViewportContainer/Viewport" instance=ExtResource( 15 )]
-
-[node name="Environment" parent="Movie/ViewportContainer/Viewport" instance=ExtResource( 14 )]
-
-[node name="Camera2D" type="Camera2D" parent="Movie/ViewportContainer/Viewport"]
-position = Vector2( 6450, 1500 )
-current = true
 
 [node name="Panel" type="Panel" parent="Movie"]
 margin_left = 50.0

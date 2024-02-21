@@ -22,6 +22,11 @@ onready var _scroll := $CreditsScroll
 onready var _credits_director := $CreditsScroll/CreditsDirector
 onready var _time_label := $TimeLabel
 
+func _ready() -> void:
+	# cache resources to provide a realistic expectation of lag during scene transitions
+	ResourceCache.start_load()
+
+
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_Q:

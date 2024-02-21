@@ -339,6 +339,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/critter/poof-sprite.gd"
 }, {
+"base": "Node",
+"class": "CrowdWalkDirector",
+"language": "GDScript",
+"path": "res://src/main/world/environment/lava/crowd-walk-director.gd"
+}, {
 "base": "Node2D",
 "class": "CrumbCluster",
 "language": "GDScript",
@@ -1521,6 +1526,7 @@ _global_script_class_icons={
 "CreditsScroll": "",
 "CreditsWallOfText": "",
 "CritterPoof": "",
+"CrowdWalkDirector": "",
 "CrumbCluster": "",
 "CustomerQueue": "",
 "CutsceneCamera": "",
