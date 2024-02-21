@@ -129,23 +129,23 @@ func set_target_header_letter_for_piece(piece_index: int, header_letter_index: i
 
 ## Shifts the title credits lines based on the credits position.
 func _shift_credits(old_credits_position: int, new_credits_position: int) -> void:
-	if Credits.is_position_top(credits_position) and not Credits.is_position_top(old_credits_position):
+	if Credits.is_position_top(new_credits_position) and not Credits.is_position_top(old_credits_position):
 		# move credits to a top position; hide the header and raise the fade out point
 		_shift_lines_vertically(false)
 	
-	if not Credits.is_position_top(credits_position) and Credits.is_position_top(old_credits_position):
+	if not Credits.is_position_top(new_credits_position) and Credits.is_position_top(old_credits_position):
 		# move credits to a low position; show the header and lower the fade out point
 		_shift_lines_vertically(true)
 	
-	if Credits.is_position_left(credits_position) and not Credits.is_position_left(old_credits_position):
+	if Credits.is_position_left(new_credits_position) and not Credits.is_position_left(old_credits_position):
 		# move credits to a left position; shift everything horizontally
 		_shift_lines_horizontally(LINES_POSITION_LEFT)
 	
-	if Credits.is_position_center(credits_position) and not Credits.is_position_center(old_credits_position):
+	if Credits.is_position_center(new_credits_position) and not Credits.is_position_center(old_credits_position):
 		# move credits to a center position; shift everything horizontally
 		_shift_lines_horizontally(LINES_POSITION_CENTER)
 	
-	if Credits.is_position_right(credits_position) and not Credits.is_position_right(old_credits_position):
+	if Credits.is_position_right(new_credits_position) and not Credits.is_position_right(old_credits_position):
 		# move credits to a right position; shift everything horizontally
 		_shift_lines_horizontally(LINES_POSITION_RIGHT)
 
