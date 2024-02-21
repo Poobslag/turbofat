@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/world/environment/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/puzzle/chef-view.gd" type="Script" id=3]
+[ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/restaurant-view.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/customer-view.gd" type="Script" id=5]
 [ext_resource path="res://assets/main/puzzle/chef-view-outline.png" type="Texture" id=6]
