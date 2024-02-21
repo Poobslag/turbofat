@@ -95,9 +95,6 @@ var _friction := false
 var _iso_velocity := Vector2.ZERO
 var _non_iso_velocity := Vector2.ZERO
 
-## number from [0.0 - 1.0] based on how fast the creature can move with their current animation
-var _run_anim_speed := 1.0
-
 ## handles animations and audio/visual effects for a creature
 var _creature_outline: CreatureOutline
 
@@ -486,6 +483,10 @@ func body_pos_from_head_pos(v: Vector2) -> Vector2:
 	return _mouth_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
 
 
+func get_run_speed() -> float:
+	return MAX_RUN_SPEED * _run_anim_speed()
+
+
 ## Starts a tween which changes this creature's opacity.
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	_fade_tween = Utils.recreate_tween(self, _fade_tween)
@@ -520,13 +521,13 @@ func _apply_friction() -> void:
 	
 	if _friction:
 		set_non_iso_velocity(lerp(_non_iso_velocity, Vector2.ZERO, FRICTION))
-		if _non_iso_velocity.length() < MIN_RUN_SPEED * _run_anim_speed:
+		if _non_iso_velocity.length() < MIN_RUN_SPEED * _run_anim_speed():
 			set_non_iso_velocity(Vector2.ZERO)
 
 
 func _apply_walk(delta: float) -> void:
 	if iso_walk_direction:
-		_accelerate_xy(delta, non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED * _run_anim_speed)
+		_accelerate_xy(delta, non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED * _run_anim_speed())
 
 
 ## Accelerates the creature horizontally.
@@ -547,7 +548,7 @@ func _accelerate_xy(delta: float, _non_iso_push_direction: Vector2,
 ## Plays a bonk sound if a creature bumps into a wall.
 func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 	var velocity_diff := _non_iso_velocity - old_non_iso_velocity
-	if velocity_diff.length() > MAX_RUN_SPEED * _run_anim_speed * 0.9:
+	if velocity_diff.length() > MAX_RUN_SPEED * _run_anim_speed() * 0.9:
 		_creature_sfx.play_bonk_sound()
 
 
@@ -557,23 +558,32 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 func _update_animation() -> void:
 	if non_iso_walk_direction.length() > 0:
 		var animation_prefix: String
-		_run_anim_speed = creature_visuals.scale.y
 		if creature_visuals.fatness >= 3.5:
 			animation_prefix = "wiggle"
-			_run_anim_speed *= 0.200
 		elif creature_visuals.fatness >= 2.2:
 			animation_prefix = "walk"
-			_run_anim_speed *= 0.400
 		elif creature_visuals.fatness >= 1.1:
 			animation_prefix = "run"
-			_run_anim_speed *= 0.700
 		else:
 			animation_prefix = "sprint"
-			_run_anim_speed *= 1.000
 		
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
 	elif creature_visuals.movement_mode != Creatures.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
+
+
+## number from [0.0 - 1.0] based on how fast the creature can move with their current animation
+func _run_anim_speed() -> float:
+	var result := creature_visuals.scale.y
+	if creature_visuals.fatness >= 3.5:
+		result *= 0.200
+	elif creature_visuals.fatness >= 2.2:
+		result *= 0.400
+	elif creature_visuals.fatness >= 1.1:
+		result *= 0.700
+	else:
+		result *= 1.000
+	return result
 
 
 func _on_Creature_fatness_changed() -> void:
