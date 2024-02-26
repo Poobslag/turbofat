@@ -340,6 +340,16 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/critter/poof-sprite.gd"
 }, {
 "base": "Node",
+"class": "CrowdSurfDirector",
+"language": "GDScript",
+"path": "res://src/main/world/environment/lava/crowd-surf-director.gd"
+}, {
+"base": "Creature",
+"class": "CrowdSurfingBuddy",
+"language": "GDScript",
+"path": "res://src/main/credits/crowd-surfing-buddy.gd"
+}, {
+"base": "Node",
 "class": "CrowdWalkDirector",
 "language": "GDScript",
 "path": "res://src/main/world/environment/lava/crowd-walk-director.gd"
@@ -1526,6 +1536,8 @@ _global_script_class_icons={
 "CreditsScroll": "",
 "CreditsWallOfText": "",
 "CritterPoof": "",
+"CrowdSurfDirector": "",
+"CrowdSurfingBuddy": "",
 "CrowdWalkDirector": "",
 "CrumbCluster": "",
 "CustomerQueue": "",
