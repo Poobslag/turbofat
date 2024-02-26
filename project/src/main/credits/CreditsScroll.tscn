@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/credits/CreditsHeader.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/ui/menu/loading-orb-sheet.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/main/credits/credits-movie.gd" type="Script" id=15]
 [ext_resource path="res://assets/main/credits/credits-view-mask.png" type="Texture" id=16]
 [ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=17]
+[ext_resource path="res://src/main/world/environment/lava/CrowdSurfCutscene.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -70,8 +71,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 10.1009, 31, 63 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 10.1009, 31, 63, 93.38 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [ Vector2( -600, 80 ) ],
 "method": "show_onscreen"
@@ -81,6 +82,9 @@ tracks/1/keys = {
 }, {
 "args": [ Vector2( 1600, 80 ) ],
 "method": "show_onscreen"
+}, {
+"args": [ Vector2( 1600, 600 ) ],
+"method": "hide_offscreen"
 } ]
 }
 tracks/2/type = "method"
@@ -90,11 +94,14 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 31.22 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 31.22, 93.71 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ 29.261 ],
 "method": "play_crowd_walk_cutscene"
+}, {
+"args": [  ],
+"method": "play_crowd_surf_cutscene"
 } ]
 }
 tracks/3/type = "method"
@@ -104,8 +111,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 31.0016, 32, 63, 64 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 31.0016, 32, 63, 64, 93, 94 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ true ],
 "method": "set_movie_visible"
@@ -118,6 +125,12 @@ tracks/3/keys = {
 }, {
 "args": [ false ],
 "method": "set_movie_visible"
+}, {
+"args": [ true ],
+"method": "set_movie_visible"
+}, {
+"args": [ 1 ],
+"method": "set_credits_position"
 } ]
 }
 
@@ -136,6 +149,7 @@ TurboFatCreditsLineScene = ExtResource( 6 )
 [node name="Movie" type="Node2D" parent="."]
 script = ExtResource( 15 )
 CrowdWalkCutsceneScene = ExtResource( 14 )
+CrowdSurfCutsceneScene = ExtResource( 18 )
 
 [node name="Clip" type="Light2D" parent="Movie"]
 position = Vector2( 256, 300 )
