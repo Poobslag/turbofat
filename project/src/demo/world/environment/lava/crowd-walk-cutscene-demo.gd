@@ -18,13 +18,13 @@ func _input(event: InputEvent) -> void:
 		KEY_MINUS:
 			_director.bouncing_crowd_percent = clamp(_director.bouncing_crowd_percent - 0.1, 0.0, 1.0)
 		KEY_Q:
-			_director.prepare_launch_timer(10)
+			restart_cutscene(10)
 		KEY_W:
-			_director.prepare_launch_timer(5)
+			restart_cutscene(5)
 		KEY_E:
-			_director.prepare_launch_timer(3)
+			restart_cutscene(3)
 		KEY_R:
-			_director.prepare_launch_timer(1)
+			restart_cutscene(1)
 
 
 func _process(delta: float) -> void:
@@ -32,3 +32,8 @@ func _process(delta: float) -> void:
 	# warning-ignore:integer_division
 	_time_label.text = "%01d:%02d.%02d" % [
 			int(_total_time) / 60, int(_total_time) % 60, 100*(_total_time - int(_total_time))]
+
+
+func restart_cutscene(time_until_launch: float) -> void:
+	_total_time = 0.0
+	_director.play(time_until_launch)
