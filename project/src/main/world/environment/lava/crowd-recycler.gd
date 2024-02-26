@@ -15,7 +15,7 @@ var _move_direction: Vector2
 ## moving them a second time, which would result in them overshooting the camera area.
 var _just_creatures_arranged := false
 
-## When the crowd walk director moves all crowd members, we temporarily disable collisions. This timer reenables
+## When the crowd walk director moves all crowd members, we temporarily ignore collisions. This timer reenables
 ## collisions afterward.
 onready var _reenable_collision_timer := $ReenableCollisionTimer
 
@@ -35,19 +35,24 @@ func _move_crowd(crowd: Node2D) -> void:
 
 ## When the player runs past a crowd member, we move the crowd member and change their appearance.
 func _on_body_entered(body: Node2D) -> void:
+	if _just_creatures_arranged:
+		return
+	
 	_move_crowd(body)
 
 
-## When the crowd walk director moves all crowd members, we temporarily disable collisions.
+## When the crowd walk director moves all crowd members, we temporarily ignore collisions.
 func _on_CrowdWalkDirector_creatures_arranged() -> void:
 	_just_creatures_arranged = true
 	_reenable_collision_timer.start()
 
 
-## When the crowd walk director moves all crowd members, we temporarily disable collisions. This method reenables
+## When the crowd walk director moves all crowd members, we temporarily ignore collisions. This method reenables
 ## collisions afterward.
 func _on_ReenableCollisionTimer_timeout() -> void:
 	_just_creatures_arranged = false
+	
+	# move all overlapping crowd members
 	for crowd in get_tree().get_nodes_in_group("recyclable_crowds"):
 		if overlaps_body(crowd):
 			_move_crowd(crowd)
