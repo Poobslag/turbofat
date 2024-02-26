@@ -5,7 +5,7 @@ extends Node
 ##
 ## Keys:
 ## 	[=/-]: Increase/decrease the number of crowd members.
-## 	[SPACE]: Toggle the crowd bouncing and cheering.
+## 	[Space]: Toggle the crowd bouncing and cheering.
 
 export (PackedScene) var LavaCrowdScene: PackedScene
 
