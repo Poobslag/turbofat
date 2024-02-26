@@ -31,7 +31,7 @@ export (int, 0, 3) var crowd_color_index: int setget set_crowd_color_index
 export (bool) var collision_disabled: bool = false setget set_collision_disabled
 
 ## 'true' if this crowd member should jump up and down with their arms raised.
-var bouncing: bool setget set_bouncing
+export (bool) var bouncing: bool setget set_bouncing
 
 ## Node which this crowd member should orient towards.
 var _gaze_target: Node
@@ -60,6 +60,7 @@ func _ready() -> void:
 		Global.get_overworld_ui().connect("chat_event_meta_played", self, "_on_OverworldUi_chat_event_meta_played")
 	
 	_refresh()
+	_refresh_bouncing()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -124,6 +125,9 @@ func _initialize_onready_variables() -> void:
 
 ## Starts/stops the crowd member bouncing based on the 'bouncing' field.
 func _refresh_bouncing() -> void:
+	if not is_inside_tree():
+		return
+	
 	# set the creature back on the ground
 	_tween = Utils.recreate_tween(self, _tween)
 	
