@@ -295,7 +295,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="VolcanoLarge" parent="Obstacles" instance=ExtResource( 21 )]
-visible = false
 position = Vector2( -9325.18, 4769.24 )
 
 [node name="VolcanoSmall" parent="Obstacles" instance=ExtResource( 15 )]
@@ -1462,7 +1461,7 @@ crowd_color_index = 3
 collision_disabled = true
 
 [node name="FixedCrowd16" parent="Obstacles" instance=ExtResource( 4 )]
-position = Vector2( -9189.33, 5094.8 )
+position = Vector2( -9067.31, 4991.19 )
 collision_layer = 0
 collision_mask = 0
 gaze_target_path = NodePath("../Player")
