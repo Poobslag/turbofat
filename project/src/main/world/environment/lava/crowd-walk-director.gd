@@ -16,6 +16,10 @@ export (NodePath) var destination_path: NodePath
 
 var _tween: SceneTreeTween
 
+## key: (Node2D) node whose position should be initialized
+## value: (Vector2) initial position
+var _initial_positions_by_node: Dictionary
+
 onready var _animation_player := $AnimationPlayer
 onready var _player: WalkingBuddy = get_node(player_path)
 onready var _sensei: WalkingBuddy = get_node(sensei_path)
@@ -26,13 +30,32 @@ onready var _destination: Node2D = get_node(destination_path)
 
 func _ready() -> void:
 	_refresh_bouncing_crowd_percent()
+	_save_initial_positions()
+
+
+## Saves all creature positions to _initial_positions_by_node
+func _save_initial_positions() -> void:
+	var repositionable_nodes := []
+	repositionable_nodes.append(_player)
+	repositionable_nodes.append(_sensei)
+	for crowd in get_tree().get_nodes_in_group("recyclable_crowds"):
+		repositionable_nodes.append(crowd)
+	
+	for node in repositionable_nodes:
+		_initial_positions_by_node[node] = node.position
+
+
+## Initializes all creature positions from _initial_positions_by_node
+func _load_initial_positions() -> void:
+	for node in _initial_positions_by_node.keys():
+		node.position = _initial_positions_by_node[node]
 
 
 ## Moves all creatures to their starting positions, and schedules the cutscene events.
 ##
 ## The starting positions are calculated by taking the destination, calculating how far the player and Fat Sensei can
 ## run in the alotted time, and placing all creatures that far from the destination.
-func prepare_launch_timer(time_until_launch: float) -> void:
+func play(time_until_launch: float) -> void:
 	var look_around_duration := min(time_until_launch / 0.5, 1.5)
 	
 	# reset the player and fat sensei to an appropriate elevation, in case they were midair
@@ -50,15 +73,13 @@ func prepare_launch_timer(time_until_launch: float) -> void:
 	var run_velocity := min_speed * Vector2(-0.7071, 0.7071)
 	var run_duration := max(0.5, time_until_launch - look_around_duration - 0.25)
 	var new_center_position := _destination.position - run_duration * run_velocity
-	var old_player_position := _player.position
+	var distance_to_move_everyone := Global.to_iso(
+			(new_center_position.x - _initial_positions_by_node[_player].x) * Vector2(1, -1))
 	
 	# reposition the player, fat sensei, the crowds and so that they'll run the appropriate distance
-	_player.position += Global.to_iso(
-			(new_center_position.x - old_player_position.x) * Vector2(1, -1))
-	_sensei.position += Global.to_iso(
-			(new_center_position.x - old_player_position.x) * Vector2(1, -1))
-	for crowd in get_tree().get_nodes_in_group("recyclable_crowds"):
-		crowd.position += _player.position - old_player_position
+	_load_initial_positions()
+	for node in _initial_positions_by_node:
+		node.position += distance_to_move_everyone
 	
 	# crowd gradually becomes calmer, until they toss the player and sensei into the air
 	_tween = Utils.recreate_tween(self, _tween).set_parallel(true)

@@ -3,5 +3,5 @@ extends Node
 
 onready var _crowd_walk_director: CrowdWalkDirector = $Environment/CrowdWalkDirector
 
-func prepare_launch_timer(time_until_launch: float) -> void:
-	_crowd_walk_director.prepare_launch_timer(time_until_launch)
+func play(time_until_launch: float) -> void:
+	_crowd_walk_director.play(time_until_launch)
