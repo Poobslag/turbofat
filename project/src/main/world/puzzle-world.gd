@@ -44,11 +44,11 @@ func initial_environment_path() -> String:
 
 ## Removes all creatures from the overworld.
 func _remove_all_creatures() -> void:
-	for node in get_tree().get_nodes_in_group("creatures"):
+	for node in overworld_environment.get_creatures():
 		node.get_parent().remove_child(node)
 		node.queue_free()
 	
-	for node in get_tree().get_nodes_in_group("creature_spawners"):
+	for node in overworld_environment.get_creature_spawners():
 		node.get_parent().remove_child(node)
 		node.queue_free()
 
@@ -67,6 +67,8 @@ func _spawn_chef() -> void:
 ## The chef creature is spawned at the spawn with ids like 'customer_1', 'customer_2'. The numbers are not used.
 func _spawn_customers() -> void:
 	for spawn_obj in get_tree().get_nodes_in_group("spawns"):
+		if not overworld_environment.is_a_parent_of(spawn_obj):
+			continue
 		var spawn: Spawn = spawn_obj
 		if not spawn.id.begins_with("customer_"):
 			continue

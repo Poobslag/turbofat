@@ -48,7 +48,7 @@ scale = Vector2( 0.539476, -0.539476 )
 exit_direction = 4
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 34 )]
-obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+obstacles_path = NodePath("../../Obstacles")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 3: Rect2( -1, 0, 3, 1 ),

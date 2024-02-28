@@ -22,6 +22,8 @@ signal visible_chatters_changed()
 ## emitted when we present the player with a chat choice
 signal showed_chat_choices
 
+export (NodePath) var overworld_environment_path: NodePath setget set_overworld_environment_path
+
 ## Characters involved in the current conversation. This includes the player, sensei and any other participants. We
 ## try to keep them all in frame and facing each other.
 var chatters := []
@@ -35,13 +37,28 @@ var _show_version := true setget set_show_version, is_show_version
 ## and launch the level when the chat window closes.
 var _current_chat_tree: ChatTree
 
+var _overworld_environment: OverworldEnvironment
+
+## if 'true' the ui has focus and the player shouldn't move when keys are pressed.
+var _ui_has_focus: bool = false
+
+onready var _chat_ui := $ChatUi
+
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	_refresh_overworld_environment_path()
+	_refresh_ui_has_focus()
 	_update_visible()
 
 
 func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
+
+
+func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
+	overworld_environment_path = new_overworld_environment_path
+	_refresh_overworld_environment_path()
+	_refresh_ui_has_focus()
 
 
 ## Plays the specified chat tree.
@@ -57,8 +74,8 @@ func start_chat(new_chat_tree: ChatTree) -> void:
 	# We always add the player and target to the list of chatters. The player might talk to someone who says a
 	# one-liner, but the camera should still include the player. The player might also 'talk' to an inanimate object
 	# which doesn't talk back, but the camera should still include the object.
-	if CreatureManager.player:
-		chatters.append(CreatureManager.player)
+	if _overworld_environment.player:
+		chatters.append(_overworld_environment.player)
 	
 	_update_visible()
 	# emit 'chat_started' event first to prepare chatters before emoting
@@ -110,6 +127,31 @@ func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2
 	return bounding_box
 
 
+func _refresh_overworld_environment_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	if not _chat_ui:
+		return
+	
+	_overworld_environment = \
+			get_node(overworld_environment_path) if overworld_environment_path else null
+	
+	_chat_ui.overworld_environment_path = \
+			_chat_ui.get_path_to(_overworld_environment) if overworld_environment_path else NodePath()
+
+
+func _refresh_ui_has_focus() -> void:
+	if not is_inside_tree():
+		return
+	
+	if not _overworld_environment:
+		return
+	
+	if _overworld_environment.player is Player:
+		_overworld_environment.player.ui_has_focus = _ui_has_focus
+
+
 func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 	var creatures := []
 	# calculate which creature ids are involved in this chat
@@ -122,7 +164,7 @@ func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 	
 	# find the creatures associated with the creature ids
 	for chatter_id in chatter_ids:
-		var chatter: Creature = CreatureManager.get_creature_by_id(chatter_id)
+		var chatter: Creature = _overworld_environment.get_creature_by_id(chatter_id)
 		if chatter and not creatures.has(chatter):
 			creatures.append(chatter)
 	
@@ -156,23 +198,23 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			PlayerData.cutscene_queue.insert_cutscene(0, next_scene_chat_tree)
 		"creature_enter":
 			var creature_id := meta_item_split[1]
-			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
+			var creature: Creature = _overworld_environment.get_creature_by_id(creature_id)
 			creature.fade_in()
 			emit_signal("visible_chatters_changed")
 		"creature_exit":
 			var creature_id := meta_item_split[1]
-			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
+			var creature: Creature = _overworld_environment.get_creature_by_id(creature_id)
 			creature.fade_out()
 			if not creature.is_connected("fade_out_finished", self, "_on_Creature_fade_out_finished"):
 				creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [creature])
 		"creature_mood":
 			var creature_id: String = meta_item_split[1]
-			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
+			var creature: Creature = _overworld_environment.get_creature_by_id(creature_id)
 			var mood: int = int(meta_item_split[2])
 			creature.play_mood(mood)
 		"creature_orientation":
 			var creature_id: String = meta_item_split[1]
-			var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
+			var creature: Creature = _overworld_environment.get_creature_by_id(creature_id)
 			var orientation: int = int(meta_item_split[2])
 			creature.set_orientation(orientation)
 	
@@ -208,7 +250,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 		_apply_chat_event_meta(chat_event, meta_item)
 	
 	# update the chatter's mood
-	var chatter: Creature = CreatureManager.get_creature_by_id(chat_event.who)
+	var chatter: Creature = _overworld_environment.get_creature_by_id(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
 	if chatter and StringUtils.has_non_parentheses_letter(chat_event.text):
@@ -224,13 +266,13 @@ func _on_Creature_fade_out_finished(_creature: Creature) -> void:
 
 func _on_ChatUi_showed_choices() -> void:
 	emit_signal("showed_chat_choices")
-	if CreatureManager.player is Player:
-		CreatureManager.player.ui_has_focus = true
+	_ui_has_focus = true
+	_refresh_ui_has_focus()
 
 
 func _on_ChatUi_chat_choice_chosen(_chat_choice: int) -> void:
-	if CreatureManager.player is Player:
-		CreatureManager.player.ui_has_focus = false
+	_ui_has_focus = false
+	_refresh_ui_has_focus()
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
@@ -242,10 +284,14 @@ func _on_SettingsButton_pressed() -> void:
 
 
 func _on_SettingsMenu_show() -> void:
-	if CreatureManager.player is Player:
-		CreatureManager.player.ui_has_focus = true
+	_ui_has_focus = true
+	_refresh_ui_has_focus()
 
 
 func _on_SettingsMenu_hide() -> void:
-	if CreatureManager.player is Player:
-		CreatureManager.player.ui_has_focus = false
+	_ui_has_focus = false
+	_refresh_ui_has_focus()
+
+
+func _on_OverworldWorld_overworld_environment_changed(value: OverworldEnvironment) -> void:
+	set_overworld_environment_path(get_path_to(value))

@@ -8,15 +8,32 @@ extends Creature
 const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 
+export (NodePath) var overworld_environment_path: NodePath = NodePath("../..") setget set_overworld_environment_path
+
 ## if 'true' the sensei is in free roam mode and will follow the player
 var free_roam := false
+
+var _overworld_environment: OverworldEnvironment
 
 ## Cannot statically type as 'OverworldUi' because of cyclic reference
 onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
 	set_creature_id(CreatureLibrary.SENSEI_ID)
+	_refresh_overworld_environment_path()
 	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
+
+
+func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
+	overworld_environment_path = new_overworld_environment_path
+	_refresh_overworld_environment_path()
+
+
+func _refresh_overworld_environment_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	_overworld_environment = get_node(overworld_environment_path) if overworld_environment_path else null
 
 
 func _on_MoveTimer_timeout() -> void:
@@ -24,10 +41,10 @@ func _on_MoveTimer_timeout() -> void:
 		# disable movement outside of free roam mode
 		return
 	
-	if not CreatureManager.player:
+	if not _overworld_environment.player:
 		return
 	
-	var player_relative_pos: Vector2 = Global.from_iso(CreatureManager.player.position - position)
+	var player_relative_pos: Vector2 = Global.from_iso(_overworld_environment.player.position - position)
 	# the sensei runs at isometric 45 degree angles to mimic the player's inputs
 	var player_angle := stepify(player_relative_pos.normalized().angle(), PI / 4)
 	

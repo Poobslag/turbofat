@@ -2,7 +2,7 @@ tool
 class_name EnvironmentShadows
 extends Node2D
 
-export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path
+export (NodePath) var obstacles_path: NodePath setget set_obstacles_path
 
 ## Maps tile indexes to their grid size. This allows us to generate larger shadows for tiles which span multiple cells.
 ##
@@ -17,13 +17,13 @@ onready var _shadow_caster_shadows := $ShadowCasterShadows
 onready var _obstacle_map_shadows := $ObstacleMapShadows
 
 func _ready() -> void:
-	_refresh_obstacle_map_path()
+	_refresh_obstacles_path()
 	_refresh_cell_shadow_mapping()
 
 
-func set_obstacle_map_path(new_obstacle_map_path: NodePath) -> void:
-	obstacle_map_path = new_obstacle_map_path
-	_refresh_obstacle_map_path()
+func set_obstacles_path(new_obstacles_path: NodePath) -> void:
+	obstacles_path = new_obstacles_path
+	_refresh_obstacles_path()
 
 
 func set_cell_shadow_mapping(new_cell_shadow_mapping: Dictionary) -> void:
@@ -44,13 +44,21 @@ func create_shadow_caster_shadow(shadow_caster: Node2D) -> void:
 	_shadow_caster_shadows.create_shadow(shadow_caster)
 
 
-func _refresh_obstacle_map_path() -> void:
+func _refresh_obstacles_path() -> void:
 	if not is_inside_tree():
 		return
 	
-	if obstacle_map_path:
-		_obstacle_map_shadows.obstacle_map_path = _obstacle_map_shadows.get_path_to(get_node(obstacle_map_path))
-	_obstacle_map_shadows.property_list_changed_notify()
+	# assign the CreatureShadows.CreatureParentPath property
+	if obstacles_path:
+		var obstacles := get_node(obstacles_path)
+		_creature_shadows.creature_parent_path = _creature_shadows.get_path_to(obstacles)
+		_creature_shadows.property_list_changed_notify()
+	
+	# assign the ObstacleMapShadows.ObstacleMapPath property
+	if obstacles_path and get_node(obstacles_path).has_node("ObstacleMap"):
+		var obstacle_map := get_node(obstacles_path).get_node("ObstacleMap")
+		_obstacle_map_shadows.obstacle_map_path = _obstacle_map_shadows.get_path_to(obstacle_map)
+		_obstacle_map_shadows.property_list_changed_notify()
 
 
 func _refresh_cell_shadow_mapping() -> void:

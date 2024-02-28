@@ -49,6 +49,7 @@ tile_data = PoolIntArray( -65488, 1, 131074, -65452, 1, 2, 65526, 1, 0, 1, 1, 3,
 script = ExtResource( 4 )
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 7 )]
+obstacles_path = NodePath("../../Obstacles")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 7: Rect2( 0, 0, 0, 0 )

@@ -11,7 +11,7 @@ func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:
 	._apply_chat_event_meta(chat_event, meta_item)
 	match(meta_item):
 		"stop_walking":
-			for creature in get_tree().get_nodes_in_group("creatures"):
+			for creature in _overworld_environment.get_creatures():
 				if not creature is WalkingBuddy:
 					continue
 				var walking_buddy: WalkingBuddy = creature
@@ -20,7 +20,7 @@ func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:
 					delay = 0.0
 				walking_buddy.stop_walking(delay)
 		"start_walking":
-			for creature in get_tree().get_nodes_in_group("creatures"):
+			for creature in _overworld_environment.get_creatures():
 				if not creature is WalkingBuddy:
 					continue
 				var walking_buddy: WalkingBuddy = creature

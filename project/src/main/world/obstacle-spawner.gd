@@ -6,7 +6,7 @@ extends Sprite
 ##
 ## The obstacle's properties and groups can be managed by the target_properties and target_groups fields.
 
-export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
+export (NodePath) var overworld_environment_path: NodePath = NodePath("../..") setget set_overworld_environment_path
 
 ## PackedScene of the spawned obstacle
 export (PackedScene) var TargetScene: PackedScene
@@ -20,7 +20,7 @@ export (String) var spawn_if: String
 ## spawned object, or 'null' if the object has not yet spawned
 var spawned_object: Node2D
 
-onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
+var _overworld_environment: OverworldEnvironment
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -33,6 +33,8 @@ func _ready() -> void:
 	else:
 		# Don't spawn the obstacle. Remove the spawner from the scene tree.
 		queue_free()
+	
+	_refresh_overworld_environment_path()
 
 
 ## Assigns a new property, updating the spawned object if it has already been spawned.
@@ -65,3 +67,15 @@ func spawn_target() -> void:
 	
 	# remove the spawner from the scene tree
 	queue_free()
+
+
+func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
+	overworld_environment_path = new_overworld_environment_path
+	_refresh_overworld_environment_path()
+
+
+func _refresh_overworld_environment_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	_overworld_environment = get_node(overworld_environment_path) if overworld_environment_path else null

@@ -22,7 +22,7 @@ func _ready() -> void:
 		return
 	
 	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
-		var sensei := CreatureManager.get_creature_by_id(CreatureLibrary.SENSEI_ID)
+		var sensei := overworld_environment.get_creature_by_id(CreatureLibrary.SENSEI_ID)
 		sensei.visible = false
 	
 	_refresh_mood()
@@ -35,8 +35,8 @@ func initial_environment_path() -> String:
 
 ## Updates the creature moods based on the player's performance.
 func _refresh_mood() -> void:
-	var player := CreatureManager.get_player()
-	var sensei := CreatureManager.get_sensei()
+	var player := overworld_environment.player
+	var sensei := overworld_environment.sensei
 	if PlayerData.career.steps >= Careers.DAILY_STEPS_GOOD:
 		player.play_mood(Creatures.Mood.LAUGH0)
 		if sensei:

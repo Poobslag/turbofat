@@ -23,3 +23,6 @@ current = true
 script = ExtResource( 3 )
 
 [node name="CutsceneUi" parent="." instance=ExtResource( 4 )]
+overworld_environment_path = NodePath("../World/Environment")
+
+[connection signal="overworld_environment_changed" from="World" to="CutsceneUi" method="_on_OverworldWorld_overworld_environment_changed"]

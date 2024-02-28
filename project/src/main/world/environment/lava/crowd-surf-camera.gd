@@ -14,7 +14,12 @@ const LERP_WEIGHT := 0.10
 const ZOOM_AMOUNT_NEAR := Vector2(0.10, 0.10)
 const ZOOM_AMOUNT_FAR := Vector2(0.20, 0.20)
 
+export (NodePath) var overworld_environment_path: NodePath setget set_overworld_environment_path
+
+onready var _overworld_environment: OverworldEnvironment
+
 func _ready() -> void:
+	_refresh_overworld_environment_path()
 	position = _calculate_position()
 	zoom = _calculate_zoom()
 
@@ -32,10 +37,22 @@ func _process(_delta: float) -> void:
 	zoom = lerp(zoom, new_zoom, LERP_WEIGHT)
 
 
+func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
+	overworld_environment_path = new_overworld_environment_path
+	_refresh_overworld_environment_path()
+
+
+func _refresh_overworld_environment_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	_overworld_environment = get_node(overworld_environment_path) if overworld_environment_path else null
+
+
 ## Returns a rectangle representing the area which should be captured by the camera.
 func _calculate_camera_bounding_box() -> Rect2:
 	var bounding_box: Rect2
-	for creature in get_tree().get_nodes_in_group("creatures"):
+	for creature in _overworld_environment.get_creatures():
 		var adjusted_creature_position: Vector2 = creature.position
 		adjusted_creature_position += (CrowdSurfingBuddy.SURF_HEIGHT + CrowdSurfingBuddy.BOUNCE_HEIGHT) \
 				* Vector2.UP * Global.CREATURE_SCALE
@@ -83,6 +100,6 @@ func _calculate_zoom() -> Vector2:
 ## value is used in making camera adjustments.
 func _max_fatness_weight() -> float:
 	var max_visual_fatness := 1.0
-	for creature in get_tree().get_nodes_in_group("creatures"):
+	for creature in _overworld_environment.get_creatures():
 		max_visual_fatness = max(max_visual_fatness, creature.get_visual_fatness())
 	return inverse_lerp(1.0, 10.0, clamp(max_visual_fatness, 1.0, 10.0))

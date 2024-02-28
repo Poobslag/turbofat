@@ -14,6 +14,8 @@ signal chat_finished
 ## how long the player needs to hold the button to skip all chat lines
 const HOLD_TO_SKIP_DURATION := 0.6
 
+export (NodePath) var overworld_environment_path: NodePath setget set_overworld_environment_path
+
 ## how long the player has been holding the 'interact' button
 var _accept_action_duration := 0.0
 
@@ -26,12 +28,15 @@ var _chat_tree: ChatTree
 ## true if the player has advanced past the last line in the chat tree
 var _chat_finished := false
 
+var _overworld_environment: OverworldEnvironment
+
 onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
 onready var _chat_choices: ChatChoices = $ChatChoices
 onready var _chat_frame: ChatFrame = $ChatFrame
 onready var _narration_frame: NarrationFrame = $NarrationFrame
 
 func _ready() -> void:
+	_refresh_overworld_environment_path()
 	if Global.get_overworld_ui():
 		Global.get_overworld_ui().connect("visible_chatters_changed", self, "_on_OverworldUi_visible_chatters_changed")
 
@@ -54,12 +59,24 @@ func _input(event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 
 
+func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
+	overworld_environment_path = new_overworld_environment_path
+	_refresh_overworld_environment_path()
+
+
 func play_chat_tree(chat_tree: ChatTree) -> void:
 	_chat_tree = chat_tree
 	_chat_finished = false
 	_assign_nametag_sides()
 	_chat_advancer.play_chat_tree(chat_tree)
 	emit_signal("popped_in")
+
+
+func _refresh_overworld_environment_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	_overworld_environment = get_node(overworld_environment_path) if overworld_environment_path else null
 
 
 ## Process the result of the player pressing the 'rewind' button.
@@ -177,7 +194,7 @@ func _assign_nametag_sides() -> void:
 			var chat_event: ChatEvent = chat_event_obj
 			if not chat_event.who:
 				continue
-			var chatter: Creature = CreatureManager.get_creature_by_id(chat_event.who)
+			var chatter: Creature = _overworld_environment.get_creature_by_id(chat_event.who)
 			if not chatter:
 				continue
 			if chatter.position.x > center_of_chatters.x:

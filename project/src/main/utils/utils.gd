@@ -407,3 +407,14 @@ static func weighted_rand_value(weights_map: Dictionary):
 			break
 	
 	return selected_value
+
+
+static func get_child_members(parent: Node, group: String) -> Array:
+	if not parent:
+		return []
+	
+	var child_members := []
+	for member in parent.get_tree().get_nodes_in_group(group):
+		if parent.is_a_parent_of(member):
+			child_members.append(member)
+	return child_members

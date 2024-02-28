@@ -5,7 +5,7 @@ extends Node2D
 ##
 ## The creature's creature_id, properties and groups can be managed by the target_properties and target_groups fields.
 
-export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
+export (NodePath) var overworld_environment_path: NodePath = NodePath("../..") setget set_overworld_environment_path
 
 ## properties of the spawned creature
 export (Dictionary) var target_properties: Dictionary
@@ -25,9 +25,10 @@ var _stool: Node2D
 ## spawned creature, or 'null' if the creature has not yet spawned
 var _target_creature: Creature
 
-onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
+var _overworld_environment: OverworldEnvironment
 
 func _ready() -> void:
+	_refresh_overworld_environment_path()
 	_update_stool_occupied()
 	
 	if not spawn_if.empty() and BoolExpressionEvaluator.evaluate(spawn_if):
@@ -37,6 +38,18 @@ func _ready() -> void:
 	else:
 		# Don't spawn the creature. Remove the spawner from the scene tree.
 		queue_free()
+
+
+func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
+	overworld_environment_path = new_overworld_environment_path
+	_refresh_overworld_environment_path()
+
+
+func _refresh_overworld_environment_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	_overworld_environment = get_node(overworld_environment_path) if overworld_environment_path else null
 
 
 ## Updates the spawned creature's stool to be occupied or unoccupied.

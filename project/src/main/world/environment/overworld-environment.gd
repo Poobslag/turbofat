@@ -8,6 +8,14 @@ export (NodePath) var environment_shadows_path: NodePath
 export (NodePath) var obstacles_path: NodePath
 export (PackedScene) var CreatureScene: PackedScene
 
+## Player's sprite
+## virtual property; value is only exposed through getters/setters
+var player: Creature setget ,get_player
+
+## Sensei's sprite
+## virtual property; value is only exposed through getters/setters
+var sensei: Creature setget ,get_sensei
+
 onready var _obstacles: Node2D = get_node(obstacles_path)
 onready var _environment_shadows: EnvironmentShadows = get_node(environment_shadows_path)
 
@@ -53,6 +61,36 @@ func add_creature(creature_id: String = "") -> Creature:
 	_obstacles.add_child(creature)
 	process_new_obstacle(creature)
 	return creature
+
+
+func get_creatures() -> Array:
+	return Utils.get_child_members(self, "creatures")
+
+
+func get_creature_spawners() -> Array:
+	return Utils.get_child_members(self, "creature_spawners")
+
+
+## Returns the Creature object corresponding to the specified creature id.
+##
+## An id of SENSEI_ID or PLAYER_ID will return the sensei or player object.
+func get_creature_by_id(creature_id: String) -> Creature:
+	var creature: Creature
+	
+	for creature_node in get_tree().get_nodes_in_group("creatures"):
+		if is_a_parent_of(creature_node) and creature_node.creature_id == creature_id:
+			creature = creature_node
+			break
+	
+	return creature
+
+
+func get_player() -> Creature:
+	return get_creature_by_id(CreatureLibrary.PLAYER_ID)
+
+
+func get_sensei() -> Creature:
+	return get_creature_by_id(CreatureLibrary.SENSEI_ID)
 
 
 ## Creates shadows and chat icons when an obstacle is added to the world.
