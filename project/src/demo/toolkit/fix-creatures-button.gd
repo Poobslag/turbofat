@@ -119,6 +119,15 @@ func _career_creature_ids() -> Array:
 ## Returns a list of creature ids in all creature files in a directory.
 func _creature_ids_from_directory(dir_string: String) -> Array:
 	var result := {}
+	var creature_defs := _creature_defs_from_directory(dir_string)
+	for creature_def in creature_defs:
+		result[creature_def.creature_id] = true
+	return result.keys()
+
+
+## Returns a list of creature defs in a directory.
+func _creature_defs_from_directory(dir_string: String) -> Array:
+	var result := []
 	var dir := Directory.new()
 	dir.open(dir_string)
 	dir.list_dir_begin(true, true)
@@ -129,9 +138,9 @@ func _creature_ids_from_directory(dir_string: String) -> Array:
 		else:
 			var creature_def: CreatureDef = CreatureDef.new()
 			creature_def = creature_def.from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
-			result[creature_def.creature_id] = true
+			result.append(creature_def)
 	dir.list_dir_end()
-	return result.keys()
+	return result
 
 
 ## Reports any career regions whose population has bad creature ids.
@@ -150,10 +159,37 @@ func _report_population_creatures() -> void:
 			_output_label.add_line("Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()])
 
 
+## Reports any creature files without a creature id.
+func _report_creatures_without_id() -> void:
+	var missing_creature_ids := []
+	
+	var creature_defs := []
+	creature_defs.append_array(_creature_defs_from_directory("res://assets/main/creatures/story"))
+	creature_defs.append_array(_creature_defs_from_directory("res://assets/main/creatures/nonstory"))
+	for creature_def in creature_defs:
+		if creature_def.get("creature_id"):
+			# creature has a creature id
+			continue
+		
+		var identifier := ""
+		if not identifier and creature_def.creature_name:
+			identifier = creature_def.creature_name
+		if not identifier and creature_def.creature_short_name:
+			identifier = creature_def.creature_short_name
+		if not identifier:
+			identifier = "<unknown>"
+		
+		missing_creature_ids.append(identifier)
+	
+	if missing_creature_ids:
+		_output_label.add_line("Missing creature ids: %s" % [missing_creature_ids])
+
+
 func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_creatures()
 	_report_story_creatures()
 	_report_population_creatures()
+	_report_creatures_without_id()
 	if _output_label.text.empty():
 		_output_label.text = "No creature files have problems."
