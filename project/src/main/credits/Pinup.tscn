@@ -1,0 +1,186 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/main/credits/pinup-view-mask.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/credits/pinup-view-outline.png" type="Texture" id=2]
+[ext_resource path="res://src/main/credits/pinup.gd" type="Script" id=3]
+[ext_resource path="res://src/main/credits/pinup-camera.gd" type="Script" id=4]
+[ext_resource path="res://src/main/credits/pinup-camera-mover.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/environment/restaurant/LayoutContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/world/environment/restaurant/RestaurantNametagPanel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=17]
+
+[sub_resource type="CanvasItemMaterial" id=13]
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Customer/View/Viewport/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.18, 0.18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Customer/View/Viewport/Camera2D:headroom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "fat-se"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Customer/View/Viewport/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.18, 0.18 ), Vector2( 0.18, 0.18 ), Vector2( 0.3, 0.3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Customer/View/Viewport/Camera2D:headroom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+bg_color = Color( 0.172549, 0.666667, 0.32549, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Pinup" type="Control"]
+light_mask = 2
+margin_left = 454.669
+margin_top = 229.533
+margin_right = 654.669
+margin_bottom = 404.533
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Customer" type="Control" parent="."]
+light_mask = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -87.5
+margin_right = 100.0
+margin_bottom = 87.5
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Clip" type="Light2D" parent="Customer"]
+position = Vector2( 100, 87.5 )
+texture = ExtResource( 1 )
+texture_scale = 0.51
+mode = 3
+range_item_cull_mask = 4
+
+[node name="View" type="ViewportContainer" parent="Customer" groups=["night_mode_dark"]]
+light_mask = 4
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+stretch_shrink = 4
+script = ExtResource( 17 )
+
+[node name="Viewport" type="Viewport" parent="Customer/View"]
+size = Vector2( 50, 43 )
+size_override_stretch = true
+handle_input_locally = false
+hdr = false
+usage = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+
+[node name="Bg" type="CanvasLayer" parent="Customer/View/Viewport"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Customer/View/Viewport/Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.772549, 0.266667, 0.466667, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Customer/View/Viewport/Bg"]
+modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
+self_modulate = Color( 1, 1, 1, 0.313726 )
+material = SubResource( 13 )
+margin_left = 20.0
+margin_top = 300.0
+margin_right = 920.0
+margin_bottom = 900.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Creature" parent="Customer/View/Viewport" instance=ExtResource( 8 )]
+
+[node name="Camera2D" type="Camera2D" parent="Customer/View/Viewport"]
+position = Vector2( 0, -50 )
+current = true
+zoom = Vector2( 0.18, 0.18 )
+script = ExtResource( 4 )
+creature_path = NodePath("../Creature")
+
+[node name="Outline" type="TextureRect" parent="Customer" groups=["night_mode_dark"]]
+self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="CameraMover" type="AnimationPlayer" parent="Customer"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 11 )
+anims/fat-se = SubResource( 12 )
+script = ExtResource( 5 )
+creature_path = NodePath("../View/Viewport/Creature")
+
+[node name="Nametag" parent="Customer" groups=["night_mode_light"] instance=ExtResource( 6 )]
+margin_left = -20.0
+margin_top = 90.0
+margin_right = 220.0
+margin_bottom = 180.0
+layout = 7
+
+[node name="Panel" parent="Customer/Nametag" instance=ExtResource( 9 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -60.0
+margin_top = -30.0
+margin_right = 60.0
+margin_bottom = 0.0
+custom_styles/panel = SubResource( 3 )
+
+[connection signal="visual_fatness_changed" from="Customer/View/Viewport/Creature" to="Customer/CameraMover" method="_on_Creature_visual_fatness_changed"]

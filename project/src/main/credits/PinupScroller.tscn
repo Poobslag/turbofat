@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/credits/pinup-scroller.gd" type="Script" id=1]
+[ext_resource path="res://src/main/credits/Pinup.tscn" type="PackedScene" id=3]
+
+[node name="PinupScroller" type="Node2D"]
+script = ExtResource( 1 )
+line_height = 175.0
+
+[node name="Pinup" parent="." instance=ExtResource( 3 )]
+margin_left = -100.0
+margin_top = -87.0
+margin_right = 100.0
+margin_bottom = 88.0
