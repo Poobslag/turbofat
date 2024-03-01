@@ -139,6 +139,24 @@ static func find_closest(values: Array, target: float) -> int:
 	return result
 
 
+## Returns a list of all of a node's descendants assigned to the given group.
+##
+## Parameters:
+## 	'parent': The parent node to search
+##
+## 	'group': The group name to search for
+static func get_child_members(parent: Node, group: String) -> Array:
+	if not parent:
+		return []
+	
+	var child_members := []
+	for member in parent.get_tree().get_nodes_in_group(group):
+		if parent.is_a_parent_of(member):
+			child_members.append(member)
+	return child_members
+
+
+
 ## Returns a new array containing the intersection of the given arrays.
 static func intersection(a: Array, b: Array) -> Array:
 	var result := []
@@ -407,14 +425,3 @@ static func weighted_rand_value(weights_map: Dictionary):
 			break
 	
 	return selected_value
-
-
-static func get_child_members(parent: Node, group: String) -> Array:
-	if not parent:
-		return []
-	
-	var child_members := []
-	for member in parent.get_tree().get_nodes_in_group(group):
-		if parent.is_a_parent_of(member):
-			child_members.append(member)
-	return child_members
