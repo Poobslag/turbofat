@@ -68,7 +68,6 @@ func _input(event: InputEvent) -> void:
 	else:
 		match Utils.key_scancode(event):
 			KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
-				_creature.dna = DnaUtils.random_dna(_creature_type)
 				_randomize_creature()
 			
 			KEY_1: _creature.play_mood(Creatures.Mood.DEFAULT)

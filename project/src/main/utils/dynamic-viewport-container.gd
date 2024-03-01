@@ -8,7 +8,8 @@ onready var _viewport := $Viewport
 func _ready() -> void:
 	connect("item_rect_changed", self, "_on_item_rect_changed")
 	
-	_viewport.world_2d = get_node(restaurant_viewport_path).world_2d if restaurant_viewport_path else null
+	if restaurant_viewport_path:
+		_viewport.world_2d = get_node(restaurant_viewport_path).world_2d
 	_refresh_viewport_size()
 
 
