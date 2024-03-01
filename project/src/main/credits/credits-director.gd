@@ -22,6 +22,8 @@ const PART_2_DURATION := 20.0
 ## Duration in seconds for the third part of the credits, the additional credits scroll.
 const PART_3_DURATION := 60.0
 
+export (NodePath) var PinupScrollersPath: NodePath
+
 ## Contents of the first part of the credits, the initial credits scroll.
 var part_1 := [
 	"#turbo_fat#",
@@ -85,6 +87,8 @@ onready var _music_sync_player: AnimationPlayer = $MusicSyncPlayer
 
 ## Periodically triggers a check that the music is synchronized.
 onready var _timer: Timer = $Timer
+
+onready var _pinup_scrollers := get_node(PinupScrollersPath)
 
 onready var _credits_scroll: CreditsScroll = get_parent()
 

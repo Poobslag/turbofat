@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/main/credits/CreditsHeader.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/ui/menu/loading-orb-sheet.png" type="Texture" id=2]
@@ -17,7 +17,9 @@
 [ext_resource path="res://src/main/credits/credits-movie.gd" type="Script" id=15]
 [ext_resource path="res://assets/main/credits/credits-view-mask.png" type="Texture" id=16]
 [ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=17]
-[ext_resource path="res://src/main/world/environment/lava/CrowdSurfCutscene.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/credits/pinup-scrollers.gd" type="Script" id=18]
+[ext_resource path="res://src/main/credits/PinupScroller.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/world/environment/lava/CrowdSurfCutscene.tscn" type="PackedScene" id=20]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -34,7 +36,7 @@ corner_radius_bottom_left = 50
 [sub_resource type="Animation" id=1]
 resource_name = "play"
 length = 240.0
-step = 1.0
+step = 0.976
 tracks/0/type = "method"
 tracks/0/path = NodePath("FixedContainer/ScrollingContainer/Header")
 tracks/0/interp = 1
@@ -133,6 +135,47 @@ tracks/3/keys = {
 "method": "set_credits_position"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("FixedContainer/ScrollingContainer/PinupScrollers")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 12.688, 16.592, 20.496, 59.536, 63.44, 67.344, 71.248, 75.152, 79.056, 82.96 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ "goris", 1 ],
+"method": "add_pinup"
+}, {
+"args": [ "chelle", 0 ],
+"method": "add_pinup"
+}, {
+"args": [ "shirts", 1 ],
+"method": "add_pinup"
+}, {
+"args": [ "tunathy", 1 ],
+"method": "add_pinup"
+}, {
+"args": [ "frungle", 0 ],
+"method": "add_pinup"
+}, {
+"args": [ "bones", 1 ],
+"method": "add_pinup"
+}, {
+"args": [ "namory", 0 ],
+"method": "add_pinup"
+}, {
+"args": [ "#sensei#", 1 ],
+"method": "add_pinup"
+}, {
+"args": [ "#player#", 0 ],
+"method": "add_pinup"
+}, {
+"args": [ "mara", 1 ],
+"method": "add_pinup"
+} ]
+}
 
 [node name="CreditsScroll" type="Control"]
 anchor_right = 1.0
@@ -149,7 +192,7 @@ TurboFatCreditsLineScene = ExtResource( 6 )
 [node name="Movie" type="Node2D" parent="."]
 script = ExtResource( 15 )
 CrowdWalkCutsceneScene = ExtResource( 14 )
-CrowdSurfCutsceneScene = ExtResource( 18 )
+CrowdSurfCutsceneScene = ExtResource( 20 )
 
 [node name="Clip" type="Light2D" parent="Movie"]
 position = Vector2( 256, 300 )
@@ -226,6 +269,16 @@ anchor_left = 0.0
 anchor_right = 1.0
 margin_left = 0.0
 
+[node name="PinupScrollers" type="Control" parent="FixedContainer/ScrollingContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+PinupScrollerScene = ExtResource( 19 )
+
+[node name="PinupHolder" type="Control" parent="FixedContainer/ScrollingContainer/PinupScrollers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="OrbHolder" type="Control" parent="FixedContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -247,6 +300,7 @@ piece_scene = ExtResource( 13 )
 
 [node name="CreditsDirector" type="Node" parent="."]
 script = ExtResource( 12 )
+PinupScrollersPath = NodePath("../FixedContainer/ScrollingContainer/PinupScrollers")
 
 [node name="MusicSyncPlayer" type="AnimationPlayer" parent="CreditsDirector"]
 root_node = NodePath("../..")
