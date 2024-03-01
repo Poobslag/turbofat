@@ -47,7 +47,7 @@ tile_data = PoolIntArray( 65552, 1, 65539, 524302, 1, 65538, 589827, 1, 131072 )
 [node name="PuddleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 2 )]
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 11 )]
-obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+obstacles_path = NodePath("../../Obstacles")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 7: Rect2( 0, 0, 0, 0 )

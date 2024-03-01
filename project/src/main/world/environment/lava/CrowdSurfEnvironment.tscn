@@ -69,6 +69,7 @@ puddle_tile_index = 8
 [node name="SugarOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 14 )]
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 1 )]
+obstacles_path = NodePath("../../Obstacles")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 7: Rect2( 0, 0, 0, 0 )

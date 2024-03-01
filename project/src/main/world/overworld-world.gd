@@ -3,6 +3,9 @@ class_name OverworldWorld
 extends Node
 ## Populates/unpopulates creatures and obstacles for various overworld scenes.
 
+## Emitted when we load a new environment, replacing the current one in the scene tree.
+signal overworld_environment_changed(value)
+
 ## Creatures and obstacles to show
 export (Resource) var EnvironmentScene: Resource setget set_environment_scene
 
@@ -53,3 +56,5 @@ func _refresh_environment_scene() -> void:
 	add_child(overworld_environment)
 	move_child(overworld_environment, 0)
 	overworld_environment.owner = get_tree().get_edited_scene_root()
+	
+	emit_signal("overworld_environment_changed", overworld_environment)

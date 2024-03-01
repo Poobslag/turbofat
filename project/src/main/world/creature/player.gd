@@ -2,7 +2,7 @@ class_name Player
 extends Creature
 ## Script for manipulating the player-controlled character in the overworld.
 
-## if 'true' the ui has focus and the player shouldn't move.
+## if 'true' the ui has focus and the player shouldn't move when keys are pressed.
 var ui_has_focus := false setget set_ui_has_focus
 
 ## if 'true' the player is in free roam mode and can move with the arrow keys.

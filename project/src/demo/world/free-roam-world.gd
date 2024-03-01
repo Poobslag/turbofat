@@ -4,7 +4,7 @@ extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles on the free roam overworld.
 
 func _ready() -> void:
-	CreatureManager.player.free_roam = true
-	CreatureManager.sensei.free_roam = true
+	overworld_environment.player.free_roam = true
+	overworld_environment.sensei.free_roam = true
 	
-	$Camera.position = CreatureManager.player.position
+	$Camera.position = overworld_environment.player.position

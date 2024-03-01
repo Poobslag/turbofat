@@ -55,7 +55,7 @@ ground_no_goop_tile_index = 1
 pebble_tile_index = 1
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 5 )]
-obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+obstacles_path = NodePath("../../Obstacles")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 7: Rect2( 0, 0, 0, 0 )

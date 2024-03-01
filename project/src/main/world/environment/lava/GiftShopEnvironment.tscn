@@ -335,7 +335,7 @@ format = 1
 [node name="Exits" type="Node2D" parent="Ground"]
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
-obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+obstacles_path = NodePath("../../Obstacles")
 
 [node name="Obstacles" type="YSort" parent="."]
 sort_enabled = false

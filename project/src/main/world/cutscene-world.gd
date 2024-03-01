@@ -36,7 +36,7 @@ func _launch_cutscene() -> void:
 
 ## Removes all creatures from the overworld except for the player and sensei.
 func _remove_all_creatures() -> void:
-	for node in get_tree().get_nodes_in_group("creatures"):
+	for node in overworld_environment.get_creatures():
 		if node is WalkingBuddy:
 			# don't remove 'walking buddies'
 			continue
@@ -45,7 +45,7 @@ func _remove_all_creatures() -> void:
 		node.get_parent().remove_child(node)
 		node.queue_free()
 	
-	for node in get_tree().get_nodes_in_group("creature_spawners"):
+	for node in overworld_environment.get_creature_spawners():
 		node.get_parent().remove_child(node)
 		node.queue_free()
 
@@ -53,7 +53,7 @@ func _remove_all_creatures() -> void:
 ## Adds all creatures referenced by the cutscene's chat tree.
 func _add_cutscene_creatures() -> void:
 	for creature_id in CurrentCutscene.chat_tree.spawn_locations:
-		var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
+		var creature: Creature = overworld_environment.get_creature_by_id(creature_id)
 		if not creature:
 			creature = overworld_environment.add_creature(creature_id)
 		creature.set_collision_disabled(true)
@@ -62,7 +62,7 @@ func _add_cutscene_creatures() -> void:
 ## Moves all cutscene creatures to their proper locations.
 func _arrange_creatures() -> void:
 	for creature_id in CurrentCutscene.chat_tree.spawn_locations:
-		var creature: Creature = CreatureManager.get_creature_by_id(creature_id)
+		var creature: Creature = overworld_environment.get_creature_by_id(creature_id)
 		var spawn_id: String = CurrentCutscene.chat_tree.spawn_locations[creature_id]
 		
 		# move the creature to its spawn location

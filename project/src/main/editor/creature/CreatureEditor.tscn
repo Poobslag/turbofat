@@ -81,6 +81,7 @@ script = ExtResource( 8 )
 [node name="World" type="Node" parent="."]
 
 [node name="CreatureShadows" parent="World" instance=ExtResource( 5 )]
+creature_parent_path = NodePath("../Creatures")
 
 [node name="Creatures" type="Node2D" parent="World"]
 

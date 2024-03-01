@@ -102,7 +102,7 @@ position = Vector2( 1364.91, 1496.94 )
 position = Vector2( 4468.65, 2463.38 )
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 8 )]
-obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
+obstacles_path = NodePath("../../Obstacles")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 7: Rect2( 0, 0, 0, 0 )

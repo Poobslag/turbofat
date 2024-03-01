@@ -123,7 +123,7 @@ func get_visible_customers(level_index: int) -> Array:
 func _fill_environment_scene() -> void:
 	_level_creatures.clear()
 	
-	if not CreatureManager.get_player():
+	if not overworld_environment.player:
 		var player := overworld_environment.add_creature()
 		player.creature_id = CreatureLibrary.PLAYER_ID
 	
@@ -131,7 +131,7 @@ func _fill_environment_scene() -> void:
 		# don't add the sensei if they're not present in this region
 		pass
 	else:
-		if not CreatureManager.get_sensei():
+		if not overworld_environment.sensei:
 			var sensei := overworld_environment.add_creature()
 			sensei.creature_id = CreatureLibrary.SENSEI_ID
 	
@@ -316,7 +316,7 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 		creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
 	
 	# turn creature towards player
-	var player := CreatureManager.get_player()
+	var player := overworld_environment.player
 	creature.orientation = Creatures.SOUTHEAST if player.position.x > creature.position.x else Creatures.SOUTHWEST
 
 
@@ -325,7 +325,7 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 ## Parameters:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the player should be positioned.
 func _move_player_to_path(percent: float) -> void:
-	var player := CreatureManager.get_player()
+	var player := overworld_environment.player
 	var player_range := _camera_x_range()
 	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
 		# move player slightly left of the center creature
@@ -343,7 +343,7 @@ func _move_player_to_path(percent: float) -> void:
 ## Parameters:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the sensei should be positioned.
 func _move_sensei_to_path(percent: float) -> void:
-	var sensei := CreatureManager.get_sensei()
+	var sensei := overworld_environment.sensei
 	if sensei:
 		var sensei_range := _camera_x_range()
 		sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent) \
@@ -354,10 +354,10 @@ func _move_sensei_to_path(percent: float) -> void:
 ## Moves the camera so all creatures are visible.
 func _move_camera() -> void:
 	var creatures := []
-	var sensei := CreatureManager.get_sensei()
+	var sensei := overworld_environment.sensei
 	if sensei:
-		creatures.append(CreatureManager.get_sensei())
-	creatures.append(CreatureManager.get_player())
+		creatures.append(overworld_environment.sensei)
+	creatures.append(overworld_environment.player)
 	creatures.append_array(_level_creatures)
 	_camera.zoom_in_on_creatures(creatures)
 
@@ -468,9 +468,9 @@ func _update_focused_level_creature_index(button_index: int) -> void:
 func _turn_towards_level_creature() -> void:
 	var level_creature: Creature = _level_creatures[_focused_level_creature_index]
 	
-	var player := CreatureManager.get_player()
+	var player := overworld_environment.player
 	player.orientation = Creatures.SOUTHEAST if level_creature.position.x > player.position.x else Creatures.SOUTHWEST
-	var sensei := CreatureManager.get_sensei()
+	var sensei := overworld_environment.sensei
 	if sensei:
 		sensei.orientation = Creatures.SOUTHEAST if level_creature.position.x > sensei.position.x else Creatures.SOUTHWEST
 
