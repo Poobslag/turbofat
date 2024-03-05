@@ -10,9 +10,10 @@ var orientation: int = Creatures.SOUTHEAST setget set_orientation
 ## The velocity that the pinup moves up the screen.
 var velocity := Vector2(0, -50)
 
+onready var creature := $Customer/View/Viewport/Creature
+
 onready var _bg_color_rect := $Customer/View/Viewport/Bg/ColorRect
 onready var _nametag_panel := $Customer/Nametag/Panel
-onready var creature := $Customer/View/Viewport/Creature
 
 func _ready() -> void:
 	_refresh()

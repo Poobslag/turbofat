@@ -11,12 +11,12 @@ export (NodePath) var fade_out_point_path: NodePath setget set_fade_out_point_pa
 ## Height in units. Used for calculating the scroll speed.
 export (float) var line_height: float
 
+var velocity := Vector2(0, -50)
+
 ## A point near the top of the screen where lines fade out.
 onready var fade_out_point: Node2D
 ## A point near the bottom of the screen where lines fade in.
 onready var fade_in_point: Node2D
-
-var velocity := Vector2(0, -50)
 
 func _ready() -> void:
 	add_to_group("credits_lines")

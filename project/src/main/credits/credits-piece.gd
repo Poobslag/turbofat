@@ -45,6 +45,14 @@ var _target_position: Vector2
 ## Number of seconds elapsed since the piece was launched
 var _total_time: float
 
+func _process(delta: float) -> void:
+	_total_time += delta
+	
+	# update source position/rotation
+	_source_position += _source_velocity * delta
+	_move()
+
+
 ## Parameters:
 ## 	'init_orb': The orb which is launching this puzzle piece
 ##
@@ -58,14 +66,6 @@ func initialize(init_orb: CreditsOrb) -> void:
 	rotation = _source_rotation
 	frame = init_orb.frame
 	position = _source_position
-
-
-func _process(delta: float) -> void:
-	_total_time += delta
-	
-	# update source position/rotation
-	_source_position += _source_velocity * delta
-	_move()
 
 
 func set_target_node(new_target_node: Node) -> void:

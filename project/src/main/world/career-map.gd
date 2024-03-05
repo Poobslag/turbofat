@@ -23,11 +23,11 @@ var _pickable_chat_key_pairs := []
 ## PieceSpeed for all levels the player can select.
 var _piece_speed: String
 
+var _career_cutscene_librarian := CareerCutsceneLibrarian.new()
+
 onready var _world := $World
 onready var _distance_label := $Ui/Control/StatusBar/Distance
 onready var _level_select_control := $LevelSelect
-
-var _career_cutscene_librarian := CareerCutsceneLibrarian.new()
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()

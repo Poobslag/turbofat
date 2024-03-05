@@ -57,16 +57,6 @@ var _next_states := []
 ## Schedules events for the spear's pop in/pop out animations.
 var _pop_tween: SceneTreeTween
 
-## key: (int) Enum from State
-## value: (Node) State node from the _states StateMachine
-onready var _state_nodes_by_enum := {
-	NONE: $States/None,
-	WAITING: $States/Waiting,
-	WAITING_END: $States/WaitingEnd,
-	POPPED_IN: $States/PoppedIn,
-	POPPED_OUT: $States/PoppedOut,
-}
-
 onready var poof: Sprite = $Poof
 onready var sfx: SpearSfx = $SpearSfx
 onready var spear_holder: Control = $SpearHolder
@@ -80,6 +70,16 @@ onready var _face: Sprite = $SpearHolder/Spear/Face
 onready var _soil_back: Sprite = $SoilFront
 onready var _soil_front: Sprite = $SoilBack
 onready var _states: StateMachine = $States
+
+## key: (int) Enum from State
+## value: (Node) State node from the _states StateMachine
+onready var _state_nodes_by_enum := {
+	NONE: $States/None,
+	WAITING: $States/Waiting,
+	WAITING_END: $States/WaitingEnd,
+	POPPED_IN: $States/PoppedIn,
+	POPPED_OUT: $States/PoppedOut,
+}
 
 func _ready() -> void:
 	# The state machine defaults to the 'none' state and not the 'null' state to avoid edge cases
