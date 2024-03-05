@@ -17,7 +17,6 @@ script = ExtResource( 24 )
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1200, 1200 )
 transparent_bg = true
-size_override_stretch = true
 handle_input_locally = false
 hdr = false
 usage = 0

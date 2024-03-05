@@ -165,7 +165,6 @@ script = ExtResource( 4 )
 
 [node name="RestaurantViewport" type="Viewport" parent="."]
 size = Vector2( 1, 1 )
-size_override_stretch = true
 handle_input_locally = false
 hdr = false
 usage = 0
@@ -201,7 +200,6 @@ world_viewport_path = NodePath("../../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="Customer/View"]
 size = Vector2( 72, 67 )
-size_override_stretch = true
 handle_input_locally = false
 hdr = false
 usage = 0
@@ -275,7 +273,6 @@ world_viewport_path = NodePath("../../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="Chef/View"]
 size = Vector2( 37, 35 )
-size_override_stretch = true
 handle_input_locally = false
 hdr = false
 usage = 0
