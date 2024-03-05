@@ -3,9 +3,9 @@ extends Node
 ##
 ## Keys:
 ## 	[0-9]: Prints a chat line; 1 = short, 9 = long, 0 = longest
-## 	SHIFT+[0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
-## 	SHIFT+[L]: Changes the locale (english, spanish)
-## 	'[', ']': Change the accent texture
+## 	Shift + [0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
+## 	Shift + [L]: Changes the locale (english, spanish)
+## 	Brace keys: Change the accent texture
 ## 	Arrows: Change the color and scale
 ## 	[A]: Make the chat window appear/disappear
 ## 	[D]: Toggle 'dark mode' for the accent

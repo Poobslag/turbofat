@@ -4,7 +4,7 @@ extends Node
 ## Keys:
 ## 	[0-9]: Changes chat line length; 1 = short, 9 = long, 0 = longest
 ## 	[Control + 0-9]: Changes response length; 1 = short, 9 = long, 0 = longest
-## 	[Q, W, E]: Shows questions with more and more options.
+## 	[Q,W,E]: Shows questions with few/more/most options.
 ## 	[R]: Shows a chat tree showing off narration.
 ## 	[T]: Shows a chat tree showing off the different moods.
 ## 	[A]: Shows a chat line with no choices.

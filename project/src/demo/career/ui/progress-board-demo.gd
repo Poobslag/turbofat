@@ -9,7 +9,7 @@ extends Node
 ## 	[R]: Permanently show the progress board.
 ## 	[S]: Toggle whether or not the sensei accompanies the player in this chapter.
 ## 	[Z-M]: Animate the player advancing 0-25 steps.
-## 	[shift+Z-M]: Animate the player going backward 0-25 steps.
+## 	[Shift + Z-M]: Animate the player going backward 0-25 steps.
 ## 	[=/-]: Move the player forward/backward on the progress board.
 
 onready var _progress_board := $ProgressBoard

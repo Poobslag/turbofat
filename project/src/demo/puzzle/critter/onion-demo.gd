@@ -2,12 +2,12 @@ extends Node
 ## Demo which shows off the onion puzzle critter.
 ##
 ## Keys:
-## [0]: Disappear
-## [1]: Dance
-## [2]: Dance End
-## [3]: Night
-## [4]: Disappear
-## [N]: Skip to night mode
+## 	[0]: Disappear
+## 	[1]: Dance
+## 	[2]: Dance End
+## 	[3]: Night
+## 	[4]: Disappear
+## 	[N]: Skip to night mode
 
 onready var _onion := $Onion
 

@@ -1,8 +1,8 @@
 extends Node
 ## Keys:
-##  [Q, W, E]: Short good/neutral/bad message
-##  [A, S, D]: Wide good/neutral/bad message
-##  [Z, X, C]: Multiline good/neutral/bad message
+## 	[Q,W,E]: Short good/neutral/bad message
+## 	[A,S,D]: Wide good/neutral/bad message
+## 	[Z,X,C]: Multiline good/neutral/bad message
 
 onready var _message := $PuzzleMessage
 

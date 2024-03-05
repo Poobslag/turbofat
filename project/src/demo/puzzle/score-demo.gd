@@ -3,7 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[1-4]: Adds ¥10, ¥200, ¥300, or ¥4,000 to the current combo
-## 	[Enter]: Ends the current combo, incrementing the score
+## 	Enter: Ends the current combo, incrementing the score
 ## 	[R]: Resets the level
 ## 	[T]: Tops out
 

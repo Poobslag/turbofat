@@ -2,13 +2,13 @@ extends Node
 ## Demo which shows off the mole puzzle critter.
 ##
 ## Keys:
-## [0]: Disappear
-## [1]: Wait, with a '...' speech bubble
-## [2]: Dig animation, with a '...' speech bubble
-## [3]: Final dig animation, with a '!' speech bubble
-## [4]: Found a seed animation
-## [5]: Found a star animation
-## [6]: Disappear
+## 	[0]: Disappear
+## 	[1]: Wait, with a '...' speech bubble
+## 	[2]: Dig animation, with a '...' speech bubble
+## 	[3]: Final dig animation, with a '!' speech bubble
+## 	[4]: Found a seed animation
+## 	[5]: Found a star animation
+## 	[6]: Disappear
 
 onready var _mole := $Mole
 

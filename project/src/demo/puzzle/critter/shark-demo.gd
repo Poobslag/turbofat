@@ -2,19 +2,19 @@ extends Node
 ## Demo which shows off the shark puzzle critter.
 ##
 ## Keys:
-## [0]: Disappear
-## [1]: Wait, with a '...' speech bubble
-## [2]: Dance animation
-## [3]: Dance animation with a '...' speech bubble
-## [4]: Eating animation, which also triggers fed animation afterwards
-## [5]: Fed animation
-## [6]: Squished animation
-## [7]: Disappear
+## 	[0]: Disappear
+## 	[1]: Wait, with a '...' speech bubble
+## 	[2]: Dance animation
+## 	[3]: Dance animation with a '...' speech bubble
+## 	[4]: Eating animation, which also triggers fed animation afterwards
+## 	[5]: Fed animation
+## 	[6]: Squished animation
+## 	[7]: Disappear
 ##
-## [S]: Change the shark size to small/medium/large
-## [H]: Change the shape of the eaten piece to empty/small/tall/wide/crazy
-## [C]: Change the color of the eaten piece to brown/pink/bread/white/cake
-## [D]: Change the eating duration to short/medium/long
+## 	[S]: Change the shark size to small/medium/large
+## 	[H]: Change the shape of the eaten piece to empty/small/tall/wide/crazy
+## 	[C]: Change the color of the eaten piece to brown/pink/bread/white/cake
+## 	[D]: Change the eating duration to short/medium/long
 
 const EATEN_COLORS := [
 	[0, 0], [0, 1], [0, 2], [0, 3], [1, 4]
