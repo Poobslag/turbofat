@@ -1,14 +1,14 @@
 tool
-class_name LavaCrowd
+class_name LavaCrowdie
 extends OverworldObstacle
-## Chocolava canyon crowd member which appears in the credits.
+## Chocolava canyon crowdie which appears in the credits.
 ##
-## This script randomizes the crowd member's appearance and animates them.
+## This script randomizes the crowdie's appearance and animates them.
 
 const BOUNCE_DURATION := 0.48780
 const BOUNCE_HEIGHT := 30
 
-## Percent of crowd members who have cheer lines over their head
+## Percent of crowdies who have cheer lines over their head
 const CHEER_PROBABILITY := 0.35
 
 const CROWD_COLORS := [
@@ -30,10 +30,10 @@ export (int, 0, 3) var crowd_color_index: int setget set_crowd_color_index
 
 export (bool) var collision_disabled: bool = false setget set_collision_disabled
 
-## 'true' if this crowd member should jump up and down with their arms raised.
+## 'true' if this crowdie should jump up and down with their arms raised.
 export (bool) var bouncing: bool setget set_bouncing
 
-## Node which this crowd member should orient towards.
+## Node which this crowdie should orient towards.
 var _gaze_target: Node
 
 var _tween: SceneTreeTween
@@ -43,14 +43,14 @@ onready var _sprite := $SpriteHolder/Sprite
 onready var _cheer_sprite := $SpriteHolder/CheerSprite
 onready var _collision_shape := $CollisionShape2D
 
-## Timer which makes the crowd member animate slightly, alternating between two frames
+## Timer which makes the crowdie animate slightly, alternating between two frames
 onready var _wiggle_timer := $WiggleTimer
 
 onready var _bounce_timer := $BounceTimer
 
 func _ready() -> void:
 	if Engine.editor_hint:
-		# don't animate the crowd member in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
+		# don't animate the crowdie in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
 		# polluting version control
 		pass
 	else:
@@ -96,8 +96,8 @@ func set_shuffle(value: bool) -> void:
 	if not _sprite:
 		_initialize_onready_variables()
 	
-	var crowd_member_index: int = randi() % (_sprite.hframes * _sprite.vframes / 4)
-	set_frame(crowd_member_index * 4 + randi() % 2)
+	var crowdie_index: int = randi() % (_sprite.hframes * _sprite.vframes / 4)
+	set_frame(crowdie_index * 4 + randi() % 2)
 	set_crowd_color_index(Utils.randi_range(0, CROWD_COLORS.size() - 1))
 	scale = Vector2.ONE
 	
@@ -123,7 +123,7 @@ func _initialize_onready_variables() -> void:
 	_collision_shape = $CollisionShape2D
 
 
-## Starts/stops the crowd member bouncing based on the 'bouncing' field.
+## Starts/stops the crowdie bouncing based on the 'bouncing' field.
 func _refresh_bouncing() -> void:
 	if not is_inside_tree():
 		return
@@ -174,11 +174,11 @@ func _refresh() -> void:
 	_collision_shape.call_deferred("set", "disabled", collision_disabled)
 
 
-## When the WiggleTimer times out, we animate the crowd member slightly.
+## When the WiggleTimer times out, we animate the crowdie slightly.
 ##
-## Crowd members each have two frames. When the timer times out we switch to their other frame.
+## Crowdies each have two frames. When the timer times out we switch to their other frame.
 func _on_WiggleTimer_timeout() -> void:
-	# switch the crowd member to their other frame
+	# switch the crowdie to their other frame
 	if frame % 2 == 0:
 		set_frame(frame + 1)
 	else:
@@ -206,7 +206,7 @@ func _on_BounceTimer_timeout() -> void:
 	_tween.set_loops()
 
 
-## Periodically orient the crowd member towards the gaze target.
+## Periodically orient the crowdie towards the gaze target.
 func _on_GazeTimer_timeout() -> void:
 	if not _gaze_target:
 		return
@@ -224,7 +224,7 @@ func _on_GazeTimer_timeout() -> void:
 		_cheer_sprite.position.x = -abs(_cheer_sprite.position.x)
 
 
-## Listen for 'lava_crowd' chat events and spawn LavaCrowd instances.
+## Listen for 'lava_crowd' chat events and spawn LavaCrowdie instances.
 func _on_OverworldUi_chat_event_meta_played(meta_item: String) -> void:
 	match meta_item:
 		"lava_crowd start_bouncing":

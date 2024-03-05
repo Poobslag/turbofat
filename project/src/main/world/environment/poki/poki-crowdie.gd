@@ -1,9 +1,9 @@
 tool
-class_name PokiCrowd
+class_name PokiCrowdie
 extends OverworldObstacle
-## Poki desert crowd member which appears in the overworld.
+## Poki desert crowdie which appears in the overworld.
 ##
-## This script randomizes the crowd member's color, appearance and direction.
+## This script randomizes the crowdie's color, appearance and direction.
 
 const CROWD_COLORS := [
 	Color("3d291f"),
@@ -25,12 +25,12 @@ export (int, 0, 3) var crowd_color_index: int setget set_crowd_color_index
 
 onready var _sprite := $Sprite
 
-## Timer which makes the crowd member animate slightly, alternating between two frames
+## Timer which makes the crowdie animate slightly, alternating between two frames
 onready var _wiggle_timer := $WiggleTimer
 
 func _ready() -> void:
 	if Engine.editor_hint:
-		# don't animate the crowd member in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
+		# don't animate the crowdie in the editor, otherwise it randomizes the 'frame' and 'wait_time' fields
 		# polluting version control
 		pass
 	else:
@@ -81,11 +81,11 @@ func _refresh() -> void:
 	_sprite.modulate = CROWD_COLORS[crowd_color_index]
 
 
-## When the WiggleTimer times out, we animate the crowd member slightly.
+## When the WiggleTimer times out, we animate the crowdie slightly.
 ##
 ## Crowd members each have two frames. When the timer times out we switch to their other frame.
 func _on_WiggleTimer_timeout() -> void:
-	# switch the crowd member to their other frame
+	# switch the crowdie to their other frame
 	if frame % 2 == 0:
 		set_frame(frame + 1)
 	else:

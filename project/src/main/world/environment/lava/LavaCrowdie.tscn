@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/main/world/environment/lava/lava-crowd.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/lava/lava-crowdie.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/lava/lava-crowd-sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/world/environment/lava/lava-crowd-laugh-sheet.png" type="Texture" id=3]
 
@@ -25,7 +25,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 14 )
 
-[node name="Crowd" type="KinematicBody2D" groups=["lava_crowds"]]
+[node name="Crowdie" type="KinematicBody2D" groups=["lava_crowdies"]]
 position = Vector2( 561.443, 360.624 )
 script = ExtResource( 1 )
 __meta__ = {

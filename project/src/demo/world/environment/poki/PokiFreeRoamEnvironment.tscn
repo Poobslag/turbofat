@@ -12,7 +12,7 @@
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusLarge.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/poki/PokiMarshmallow.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/world/environment/poki/PokiCrowd.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/poki/PokiCrowdie.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/poki/PokiRippleWaves.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusHuge.tscn" type="PackedScene" id=16]
@@ -165,23 +165,23 @@ position = Vector2( 1442.47, 1312.77 )
 [node name="CactusPlaque" parent="Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 1468.78, 1366.21 )
 
-[node name="Crowd1" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowdie1" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1632.33, 1525.74 )
 frame = 13
 crowd_color_index = 3
 
-[node name="Crowd2" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowdie2" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1670.94, 1555.92 )
 frame = 12
 flip_h = true
 crowd_color_index = 1
 
-[node name="Crowd3" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowdie3" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1715.15, 1526.66 )
 frame = 12
 crowd_color_index = 1
 
-[node name="Crowd4" parent="Obstacles" instance=ExtResource( 13 )]
+[node name="Crowdie4" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1757.75, 1557.88 )
 crowd_color_index = 3
 

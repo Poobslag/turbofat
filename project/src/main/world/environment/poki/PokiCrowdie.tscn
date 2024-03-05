@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/main/world/environment/poki/poki-crowd.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/poki/poki-crowdie.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/world/environment/poki/poki-crowd-sheet.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 14 )
 
-[node name="Crowd" type="KinematicBody2D"]
+[node name="Crowdie" type="KinematicBody2D"]
 position = Vector2( 561.443, 360.624 )
 script = ExtResource( 2 )
 __meta__ = {
