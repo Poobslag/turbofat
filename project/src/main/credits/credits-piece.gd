@@ -28,7 +28,7 @@ const PIECE_COLORS_BY_FRAME := [
 	Color("ff7afb"), # t (T-Block)
 ]
 
-## The pieces's position/velocity/rotation as launched from the orb
+## The piece's position/velocity/rotation as launched from the orb
 var _source_position: Vector2
 var _source_velocity: Vector2
 var _source_rotation: float
