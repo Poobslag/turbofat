@@ -2,7 +2,7 @@ extends Node
 ## Demo which shows off smoke clusters.
 ##
 ## Keys:
-## 	[space bar]: Emits a smoke cluster.
+## 	Space: Emits a smoke cluster.
 
 export (PackedScene) var SmokeClusterScene: PackedScene
 

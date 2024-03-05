@@ -4,27 +4,27 @@ extends Node
 ## Keys:
 ## 	[1]: Default mood
 ##
-## 	[Q, W, E, R]: Awkward0 (Uncomfortable), Awkward1 (Embarrassed), Cry0 (Disappointed), Cry1 (Distraught)
-## 	[T, Y, U, I, 8]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love), Love1 Forever
-## 	[O, P]: No0 (Head Shake), No1 (More Shakes)
+## 	[Q,W,E,R]: Awkward0 (Uncomfortable), Awkward1 (Embarrassed), Cry0 (Disappointed), Cry1 (Distraught)
+## 	[T,Y,U,I,8]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love), Love1 Forever
+## 	[O,P]: No0 (Head Shake), No1 (More Shakes)
 ##
-## 	[A, S, D, F, G]: Rage0 (Annoyed), Rage1 (Angry), Rage2 (Murderous), Sigh0 (Ugh), Sigh1 (Eyeroll)
-## 	[H, J, K, L]: Sly0 (Scheming), Sly1 (Malicious), Smile0 (Happy), Smile1 (Sweet)
+## 	[A,S,D,F,G]: Rage0 (Annoyed), Rage1 (Angry), Rage2 (Murderous), Sigh0 (Ugh), Sigh1 (Eyeroll)
+## 	[H,J,K,L]: Sly0 (Scheming), Sly1 (Malicious), Smile0 (Happy), Smile1 (Sweet)
 ##
-## 	[Z, X, C, V]: Sweat0 (Nervous), Sweat1 (Fidgety), Think0 (Pensive), Think1 (Confused)
-## 	[B, N, M, comma, period]: Wave0 (neutral), Wave1 (Polite), Wave2 (Friendly), Yes0 (Nod), Yes1 (More Nods)
+## 	[Z,X,C,V]: Sweat0 (Nervous), Sweat1 (Fidgety), Think0 (Pensive), Think1 (Confused)
+## 	[B,N,M, comma, period]: Wave0 (neutral), Wave1 (Polite), Wave2 (Friendly), Yes0 (Nod), Yes1 (More Nods)
 ##
 ## 	[Shift + T]: Talk
 ## 	[=]: Make the creature fat
-## 	[space bar]: Feed
-## 	[brace keys]: Change the creature's appearance
+## 	Space: Feed
+## 	Brace keys: Change the creature's appearance
 ## 	[Shift + /]: Print DNA
-## 	[right]: Toggle creature movement
+## 	Right: Toggle creature movement
 ##
-## 	[Shift + Q, W]: Look over shoulder
-## 	[Shift + E, R]: Yawn
-## 	[Shift + A, S]: Close eyes
-## 	[Shift + D, F]: Wiggle ears
+## 	Shift + [Q,W]: Look over shoulder
+## 	Shift + [E,R]: Yawn
+## 	Shift + [A,S]: Close eyes
+## 	Shift + [D,F]: Wiggle ears
 ##
 ## 	[Ctrl + 0]: Change the creature's demographic to 'default'
 ## 	[Ctrl + 1]: Change the creature's demographic to 'squirrel'

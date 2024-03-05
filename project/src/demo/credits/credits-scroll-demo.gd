@@ -9,11 +9,11 @@ extends Node
 ## 	[D]: Show a wall of text.
 ## 	[F]: Transform a header letter into a bubbly block.
 ## 	[M]: Toggles music.
-## 	[=,-]: Make the credits movie visible/invisible.
-## 	[shift+F]: Transform all header letters into bubbly blocks.
+## 	[=/-]: Make the credits movie visible/invisible.
+## 	[Shift + F]: Transform all header letters into bubbly blocks.
 ## 	[Keypad 7,8,9]: Move the credits to the left, top, or right position and hide the header.
 ## 	[Keypad 1,2,3]: Move the credits to the left, bottom, or right position and show the header.
-## 	[Shift]: Hold to speed up the credits.
+## 	Shift: Hold to speed up the credits.
 
 ## Number of seconds the demo has been running, shown on the time label
 var _total_time := 0.0

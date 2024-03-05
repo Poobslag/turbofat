@@ -8,12 +8,12 @@ extends Node
 ## 	[V]: Say something
 ## 	[N]: Change the nametag names
 ## 	[1-9,0]: Change the customer's size from 10% to 100%
-## 	SHIFT+[1-9,0]: Change the customer's comfort from 0.0 -> 1.0 -> -1.0
+## 	Shift + [1-9,0]: Change the customer's comfort from 0.0 -> 1.0 -> -1.0
 ## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th customer.
-## 	[comma, period]: Swoop the customer/chef to be onscreen
-## 	SHIFT+[comma, period]: Swoop the customer/chef to be offscreen
-## 	arrows: Change the customer's orientation
-## 	brace keys: Change the customer's appearance
+## 	Shift + [,/.]: Swoop the customer/chef to be onscreen
+## 	Shift + [,/.]: Swoop the customer/chef to be offscreen
+## 	Arrows: Change the customer's orientation
+## 	Brace keys: Change the customer's appearance
 
 const FATNESS_KEYS := [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 const NAMES := [

@@ -3,7 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[0-9]: Prints a message; 1 = short, 0 = long
-## 	[shift+0-9]: Enqueues a message; 1 = short, 0 = long
+## 	[Shift + 0-9]: Enqueues a message; 1 = short, 0 = long
 ## 	[O]: Prints a message in a big font
 ## 	[H]: Hides the message after a short delay
 ## 	[F]: Flashes the screen

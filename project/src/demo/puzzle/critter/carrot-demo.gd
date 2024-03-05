@@ -2,10 +2,10 @@ extends Node
 ## Demo which shows off the carrot puzzle critter.
 ##
 ## Keys:
-## [1]: Show
-## [2]: Hide
-## [Q]: Toggle smoke amount
-## [W]: Toggle carrot size
+## 	[1]: Show
+## 	[2]: Hide
+## 	[Q]: Toggle smoke amount
+## 	[W]: Toggle carrot size
 
 onready var _carrot := $Carrot
 

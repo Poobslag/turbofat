@@ -3,7 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[F]: Fire the cannon
-## 	arrows: Change the cannon's orientation
+## 	Arrows: Change the cannon's orientation
 
 onready var _cannon := $ConfettiCannon
 

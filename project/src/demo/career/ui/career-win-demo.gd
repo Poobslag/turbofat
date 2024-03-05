@@ -2,7 +2,7 @@ extends Node
 ## Demonstrates different Career Win screens.
 ##
 ## Keys:
-## 	[-/=]: Select the previous/next career region
+## 	[=/-]: Select the next/previous career region
 
 export (PackedScene) var CareerWinScene: PackedScene
 

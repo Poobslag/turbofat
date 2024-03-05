@@ -4,9 +4,9 @@ extends Node
 ## Keys:
 ## 	[1]: Toggle the sensei
 ## 	[Q,W,E,R,T,Y,U]: Toggle the number of circles on the left side of the map
-## 	[brace keys]: Increase/decrease the number of landmarks
+## 	Brace keys: Increase/decrease the number of landmarks
 ## 	[A,S,D,F,G,H]: Switch between different landmarks
-## 	[-, =]: Move the player left/right
+## 	[-/=]: Move the player left/right
 ## 	[Shift + -, Shift + =]: Move the player left right faster
 
 ## Array of landmark types chosen when the user switches between different landmarks

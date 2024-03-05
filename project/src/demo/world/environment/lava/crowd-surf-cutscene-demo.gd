@@ -2,7 +2,7 @@ extends Node
 ## Demonstrates a unique cutscene where the player and Fat Sensei crowd surf on a cheering crowd.
 ##
 ## Keys:
-## 	[Space]: Restart the cutscene.
+## 	Space: Restart the cutscene.
 
 ## Number of seconds the demo has been running, shown on the time label
 var _total_time := 0.0

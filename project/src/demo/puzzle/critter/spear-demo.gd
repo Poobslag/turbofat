@@ -2,15 +2,15 @@ extends Node
 ## Demo which shows off the spear (asparagus) puzzle critter.
 ##
 ## Keys:
-## [0]: Disappear
-## [1]: Wait with a '...' bubble
-## [2]: Wait with a '!' bubble
-## [3]: Pop into view
-## [4]: Pop out of view
-## [5]: Disappear
-## [D]: Toggle the spear's pop animation duration
-## [L]: Toggle the spear's length
-## Arrows: Change the spear's orientation
+## 	[0]: Disappear
+## 	[1]: Wait with a '...' bubble
+## 	[2]: Wait with a '!' bubble
+## 	[3]: Pop into view
+## 	[4]: Pop out of view
+## 	[5]: Disappear
+## 	[D]: Toggle the spear's pop animation duration
+## 	[L]: Toggle the spear's length
+## 	Arrows: Change the spear's orientation
 
 const POP_ANIM_DURATIONS := [
 	0.1, 0.35, 0.75

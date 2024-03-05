@@ -2,7 +2,7 @@ extends Node
 ## Demo which shows off the bubbly letters that poof in during the credits.
 ##
 ## Keys:
-## 	[Space]: Add a letter.
+## 	Space: Add a letter.
 ## 	[X]: Remove all letters.
 
 export (PackedScene) var CreditsLetterScene: PackedScene
