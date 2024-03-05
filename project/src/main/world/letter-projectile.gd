@@ -17,6 +17,10 @@ var angle := 0.0
 
 var speed := BASE_SPEED
 
+func _physics_process(delta: float) -> void:
+	position += Vector2(speed * speed_scale, 0).rotated(angle) * delta
+
+
 ## Initializes the letter's text, position and angle.
 ##
 ## A small amount of noise is applied to the position and angle so that the letters don't move in a perfectly uniform
@@ -33,7 +37,3 @@ func initialize(init_index: int, init_position: Vector2, init_angle: float) -> v
 	angle = init_angle + rand_range(0.04, 0.10) * (1.0 if init_index % 2 == 0 else -1.0)
 	speed = BASE_SPEED * rand_range(0.92, 1.08)
 	$Letter.text = LETTERS[init_index % LETTERS.size()]
-
-
-func _physics_process(delta: float) -> void:
-	position += Vector2(speed * speed_scale, 0).rotated(angle) * delta

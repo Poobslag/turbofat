@@ -2,12 +2,12 @@ class_name Puzzle
 extends Control
 ## Puzzle scene where a player drops pieces into a playfield of blocks.
 
+## Number of time the player has started the puzzle.
+var _start_puzzle_count := 0
+
 onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
 onready var _settings_menu: SettingsMenu = $SettingsMenu
 onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
-
-## Number of time the player has started the puzzle.
-var _start_puzzle_count := 0
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()

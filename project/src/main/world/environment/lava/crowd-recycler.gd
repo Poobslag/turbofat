@@ -6,14 +6,14 @@ extends Area2D
 
 export (NodePath) var target_path: NodePath
 
-onready var _target: Node2D = get_node(target_path)
-
 ## The direction and distance which crowd members should move after the player runs past them.
 var _move_direction: Vector2
 
 ## 'True' if the crowd walk director just moved all of the crowd members. When this happens, we take measures to avoid
 ## moving them a second time, which would result in them overshooting the camera area.
 var _just_creatures_arranged := false
+
+onready var _target: Node2D = get_node(target_path)
 
 ## When the crowd walk director moves all crowd members, we temporarily ignore collisions. This timer reenables
 ## collisions afterward.

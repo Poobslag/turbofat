@@ -47,11 +47,6 @@ func _ready() -> void:
 	_refresh()
 
 
-func initialize_time(time_offset: float) -> void:
-	_total_time = 0.0
-	_time_offset = time_offset
-
-
 ## The player can control the direction/orientation of launched puzzle pieces with the rotate buttons.
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -75,6 +70,11 @@ func _process(delta: float) -> void:
 	_total_time += delta
 	
 	_refresh()
+
+
+func initialize_time(time_offset: float) -> void:
+	_total_time = 0.0
+	_time_offset = time_offset
 
 
 ## Returns 'true' if the orb is more than halfway out of the credits area.

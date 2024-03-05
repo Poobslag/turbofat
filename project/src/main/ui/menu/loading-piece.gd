@@ -61,6 +61,21 @@ var _progress_bar: LoadingProgressBar
 ## particles emitted when the piece hits the loading bar
 onready var _particles := $Particles
 
+func _process(delta: float) -> void:
+	_total_time += delta
+	
+	# update source position/rotation
+	_source_position += _source_velocity * delta
+	
+	# update target position/rotation
+	if _total_time > PIECE_FLIGHT_DURATION:
+		_target_position += Vector2.LEFT * CRAWL_SPEED * delta
+	else:
+		_target_position = _progress_bar.progress_point()
+	
+	_refresh()
+
+
 ## Parameters:
 ## 	'init_orb': The orb which is launching this puzzle piece
 ##
@@ -73,21 +88,6 @@ func initialize(init_orb: LoadingOrb, init_progress_bar: LoadingProgressBar) -> 
 	_source_velocity = init_orb.pop_launch_dir() * INITIAL_SPEED
 	_source_rotation = init_orb.rotation
 	frame = init_orb.frame
-	
-	_refresh()
-
-
-func _process(delta: float) -> void:
-	_total_time += delta
-	
-	# update source position/rotation
-	_source_position += _source_velocity * delta
-	
-	# update target position/rotation
-	if _total_time > PIECE_FLIGHT_DURATION:
-		_target_position += Vector2.LEFT * CRAWL_SPEED * delta
-	else:
-		_target_position = _progress_bar.progress_point()
 	
 	_refresh()
 
