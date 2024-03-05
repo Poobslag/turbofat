@@ -59,6 +59,9 @@ func _refresh_obstacles_path() -> void:
 		var obstacle_map := get_node(obstacles_path).get_node("ObstacleMap")
 		_obstacle_map_shadows.obstacle_map_path = _obstacle_map_shadows.get_path_to(obstacle_map)
 		_obstacle_map_shadows.property_list_changed_notify()
+	
+	if not obstacles_path:
+		push_warning("EnvironmentShadows obstacles_path is unset. Shadows will not be rendered.")
 
 
 func _refresh_cell_shadow_mapping() -> void:
