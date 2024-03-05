@@ -3,7 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[Q,W,E,R]: Restart the cutscene with 10, 5, 3 or 1 second until the player is tossed into the air.
-## 	[=/-]: Change the number of bouncing crowd members.
+## 	[=/-]: Change the number of bouncing crowdies.
 
 ## Number of seconds the demo has been running, shown on the time label
 var _total_time := 0.0

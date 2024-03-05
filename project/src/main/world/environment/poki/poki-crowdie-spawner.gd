@@ -1,24 +1,24 @@
 tool
 extends ObstacleSpawner
-## Conditionally spawns a Poki Desert crowd member on the overworld.
+## Conditionally spawns a Poki Desert crowdie on the overworld.
 ##
-## Provides a utility method in the editor for shuffling the crowd member's appearance.
+## Provides a utility method in the editor for shuffling the crowdie's appearance.
 
-## Editor toggle which randomizes the crowd member's appearance
+## Editor toggle which randomizes the crowdie's appearance
 export (bool) var shuffle: bool setget set_shuffle
 
-## Randomizes the crowd member's appearance.
+## Randomizes the crowdie's appearance.
 func set_shuffle(value: bool) -> void:
 	if not value:
 		return
 	
 	target_properties["frame"] = randi() % 20
-	target_properties["crowd_color_index"] = Utils.randi_range(0, PokiCrowd.CROWD_COLORS.size() - 1)
+	target_properties["crowd_color_index"] = Utils.randi_range(0, PokiCrowdie.CROWD_COLORS.size() - 1)
 	
 	property_list_changed_notify()
 
 
-## Spawns and orients the crowd member and removes the spawner from the scene tree.
+## Spawns and orients the crowdie and removes the spawner from the scene tree.
 func spawn_target() -> void:
 	.spawn_target()
 	
@@ -39,5 +39,5 @@ func spawn_target() -> void:
 		# people face right
 		flip_chance = 0.1
 	
-	var poki_crowd: PokiCrowd = spawned_object
-	poki_crowd.flip_h = randf() < flip_chance
+	var poki_crowdie: PokiCrowdie = spawned_object
+	poki_crowdie.flip_h = randf() < flip_chance

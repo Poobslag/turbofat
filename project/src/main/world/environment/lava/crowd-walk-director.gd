@@ -105,14 +105,14 @@ func set_bouncing_crowd_percent(new_bouncing_crowd_percent: float) -> void:
 	_refresh_bouncing_crowd_percent()
 
 
-## Makes all crowd members jump up and down with their arms raised.
+## Makes all crowdies jump up and down with their arms raised.
 func crowd_launch() -> void:
-	for crowd in get_tree().get_nodes_in_group("lava_crowds"):
+	for crowd in get_tree().get_nodes_in_group("lava_crowdies"):
 		crowd.bouncing = true
 		crowd.raise_arms()
 
 
-## Updates the number of crowd members who jump up and down with their arms raised.
+## Updates the number of crowdies who jump up and down with their arms raised.
 func _refresh_bouncing_crowd_percent() -> void:
 	if not is_inside_tree():
 		return
@@ -120,7 +120,7 @@ func _refresh_bouncing_crowd_percent() -> void:
 	var bouncing_crowd_count := 0
 	var total_crowd_count := 0
 	
-	for crowd in get_tree().get_nodes_in_group("lava_crowds"):
+	for crowd in get_tree().get_nodes_in_group("lava_crowdies"):
 		total_crowd_count += 1
 		if crowd.bouncing:
 			bouncing_crowd_count += 1
@@ -133,21 +133,21 @@ func _refresh_bouncing_crowd_percent() -> void:
 		_toggle_bouncing(bouncing_crowd_count - desired_bouncing_crowd_count, false)
 
 
-## Changes a specific number of crowd members to start or stop jumping up and down.
+## Changes a specific number of crowdies to start or stop jumping up and down.
 ##
 ## Parameters:
-## 	'count': The number of crowd members to toggle
+## 	'count': The number of crowdies to toggle
 ##
-## 	'new_bouncing': True if the crowd members should start jumping up and down, false if they should stop.
+## 	'new_bouncing': True if the crowdies should start jumping up and down, false if they should stop.
 func _toggle_bouncing(count: int, new_bouncing: bool) -> void:
 	if count == 0:
 		return
 	
 	var remaining_toggle_count := count
-	var lava_crowds := get_tree().get_nodes_in_group("lava_crowds")
-	lava_crowds.shuffle()
+	var lava_crowdies := get_tree().get_nodes_in_group("lava_crowdies")
+	lava_crowdies.shuffle()
 	
-	for crowd in lava_crowds:
+	for crowd in lava_crowdies:
 		if crowd.bouncing != new_bouncing:
 			crowd.bouncing = new_bouncing
 			remaining_toggle_count -= 1

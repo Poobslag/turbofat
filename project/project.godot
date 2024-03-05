@@ -555,9 +555,9 @@ _global_script_classes=[ {
 "path": "res://src/main/career/ui/landmark-lines.gd"
 }, {
 "base": "OverworldObstacle",
-"class": "LavaCrowd",
+"class": "LavaCrowdie",
 "language": "GDScript",
-"path": "res://src/main/world/environment/lava/lava-crowd.gd"
+"path": "res://src/main/world/environment/lava/lava-crowdie.gd"
 }, {
 "base": "Sprite",
 "class": "LeafPoof",
@@ -1055,9 +1055,9 @@ _global_script_classes=[ {
 "path": "res://src/main/editor/puzzle/editor-playfield-nav.gd"
 }, {
 "base": "OverworldObstacle",
-"class": "PokiCrowd",
+"class": "PokiCrowdie",
 "language": "GDScript",
-"path": "res://src/main/world/environment/poki/poki-crowd.gd"
+"path": "res://src/main/world/environment/poki/poki-crowdie.gd"
 }, {
 "base": "Reference",
 "class": "Population",
@@ -1594,7 +1594,7 @@ _global_script_class_icons={
 "LabelTyper": "",
 "Landmark": "",
 "LandmarkLines": "",
-"LavaCrowd": "",
+"LavaCrowdie": "",
 "LeafPoof": "",
 "LetterProjectile": "",
 "LetterShooter": "",
@@ -1694,7 +1694,7 @@ _global_script_class_icons={
 "PlayfieldEditorControl": "",
 "PlayfieldFx": "",
 "PlayfieldNav": "",
-"PokiCrowd": "",
+"PokiCrowdie": "",
 "Population": "",
 "PracticeData": "",
 "PracticeSpeedSelector": "",

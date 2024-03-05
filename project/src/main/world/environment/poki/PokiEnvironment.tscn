@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=1]
-[ext_resource path="res://src/main/world/environment/poki/PokiCrowdSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/environment/poki/PokiCrowdieSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=4]
 [ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=5]
@@ -537,674 +537,674 @@ offset = Vector2( 0, -190 )
 TargetScene = ExtResource( 20 )
 spawn_if = "chat_finished chat/career/poki/030_c"
 
-[node name="Crowd1" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie1" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 273.219, 1428.16 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 15
 }
 
-[node name="Crowd2" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie2" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 341.916, 1479.35 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 8
 }
 
-[node name="Crowd3" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie3" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 271.752, 1494.81 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 10
 }
 
-[node name="Crowd4" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie4" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 386.125, 1450.09 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 13
 }
 
-[node name="Crowd5" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie5" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 425.729, 1488.06 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 19
 }
 
-[node name="Crowd6" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie6" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 686.14, 1483.57 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 16
 }
 
-[node name="Crowd7" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie7" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 754.531, 1475.12 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 16
 }
 
-[node name="Crowd8" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie8" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 532.729, 1509.79 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 17
 }
 
-[node name="Crowd9" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie9" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -266.404, 1296.46 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 11
 }
 
-[node name="Crowd10" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie10" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -176.39, 1294.51 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 19
 }
 
-[node name="Crowd11" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie11" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -137.78, 1324.69 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 4
 }
 
-[node name="Crowd12" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie12" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -49.7943, 1332.22 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 4
 }
 
-[node name="Crowd13" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie13" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( -20.5911, 1371.04 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 5
 }
 
-[node name="Crowd14" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie14" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 19.0125, 1409 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 15
 }
 
-[node name="Crowd15" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie15" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 90.0594, 1432.58 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 9
 }
 
-[node name="Crowd16" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie16" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 174.493, 1427.83 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 17
 }
 
-[node name="Crowd17" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie17" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 192.887, 1472.28 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 0
 }
 
-[node name="Crowd18" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie18" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 577.883, 1472.97 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 3
 }
 
-[node name="Crowd19" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie19" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 619.54, 1507.03 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 12
 }
 
-[node name="Crowd20" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie20" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2078.92, 1299 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 4
 }
 
-[node name="Crowd21" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie21" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1993.04, 1298.75 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 0
 }
 
-[node name="Crowd22" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie22" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2136.6, 1323.62 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 17
 }
 
-[node name="Crowd23" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie23" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2456.38, 1402.03 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 2
 }
 
-[node name="Crowd24" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie24" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1528.75, 1238.02 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 12
 }
 
-[node name="Crowd25" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie25" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2283.2, 1383.31 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 12
 }
 
-[node name="Crowd26" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie26" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2212.36, 1300.52 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 10
 }
 
-[node name="Crowd27" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie27" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1478.34, 1277.94 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 15
 }
 
-[node name="Crowd28" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie28" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1631.02, 1228.51 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 10
 }
 
-[node name="Crowd29" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie29" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1567.36, 1268.2 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 3
 }
 
-[node name="Crowd30" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie30" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1725.82, 1227.25 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 13
 }
 
-[node name="Crowd31" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie31" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1765.43, 1265.21 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 9
 }
 
-[node name="Crowd32" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie32" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1820.33, 1223.05 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 8
 }
 
-[node name="Crowd33" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie33" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1858.94, 1253.23 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 14
 }
 
-[node name="Crowd34" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie34" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1343.3, 1292.12 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 7
 }
 
-[node name="Crowd35" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie35" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1398.2, 1249.96 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 9
 }
 
-[node name="Crowd36" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie36" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1904.76, 1218.29 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 5
 }
 
-[node name="Crowd37" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie37" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 912.619, 1455.28 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 4
 }
 
-[node name="Crowd38" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie38" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 963.03, 1415.37 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 17
 }
 
-[node name="Crowd39" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie39" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1065.3, 1405.86 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 2
 }
 
-[node name="Crowd40" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie40" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 832.276, 1478.43 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 19
 }
 
-[node name="Crowd41" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie41" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1112.96, 1368.68 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 14
 }
 
-[node name="Crowd42" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie42" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1189.5, 1330.8 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 6
 }
 
-[node name="Crowd43" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie43" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1228.11, 1360.98 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 0
 }
 
-[node name="Crowd44" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie44" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1267.2, 1287.88 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 0
 }
 
-[node name="Crowd45" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie45" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 1285.6, 1332.33 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 0
 }
 
-[node name="Crowd46" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie46" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2328.35, 1346.5 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 2
 }
 
-[node name="Crowd47" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie47" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2370.01, 1380.55 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 10
 }
 
-[node name="Crowd48" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie48" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3086.41, 1714.85 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 3
 }
 
-[node name="Crowd49" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie49" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3155.1, 1766.05 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 8
 }
 
-[node name="Crowd50" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie50" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3084.94, 1781.51 )
 
-[node name="Crowd51" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie51" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3169.35, 1850.66 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 0
 }
 
-[node name="Crowd52" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie52" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3208.95, 1888.62 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 12
 }
 
-[node name="Crowd53" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie53" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3281.58, 1947.98 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 10
 }
 
-[node name="Crowd54" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie54" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3473.6, 1951.94 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 12
 }
 
-[node name="Crowd55" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie55" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3556.76, 2028.32 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 14
 }
 
-[node name="Crowd56" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie56" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2552.78, 1451.3 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 1
 }
 
-[node name="Crowd57" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie57" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2592.38, 1489.27 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 14
 }
 
-[node name="Crowd58" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie58" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2664.17, 1524.19 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 15
 }
 
-[node name="Crowd59" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie59" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2752.16, 1516.26 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 3
 }
 
-[node name="Crowd60" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie60" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2702.78, 1554.37 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 15
 }
 
-[node name="Crowd61" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie61" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2790.77, 1561.9 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 6
 }
 
-[node name="Crowd62" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie62" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2841.19, 1602.8 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 3
 }
 
-[node name="Crowd63" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie63" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2912.24, 1641.37 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 6
 }
 
-[node name="Crowd64" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie64" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 2950.85, 1671.55 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 11
 }
 
-[node name="Crowd65" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie65" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3365.34, 1941.34 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 8
 }
 
-[node name="Crowd66" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie66" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3407, 1975.4 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 6
 }
 
-[node name="Crowd67" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie67" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4856.07, 1692.06 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 5
 }
 
-[node name="Crowd68" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie68" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4940.48, 1758.97 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 15
 }
 
-[node name="Crowd69" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie69" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4854.6, 1758.71 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 17
 }
 
-[node name="Crowd70" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie70" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5015.31, 1779.57 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 16
 }
 
-[node name="Crowd71" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie71" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5347.69, 1770.42 )
 
-[node name="Crowd72" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie72" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5135.9, 1721.52 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 12
 }
 
-[node name="Crowd73" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie73" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5174.51, 1751.7 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 7
 }
 
-[node name="Crowd74" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie74" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5087.07, 1765.81 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 12
 }
 
-[node name="Crowd75" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie75" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4354, 1797.19 )
 
-[node name="Crowd76" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie76" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4404.41, 1757.28 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 13
 }
 
-[node name="Crowd77" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie77" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4488.81, 1722.45 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 19
 }
 
-[node name="Crowd78" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie78" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4527.42, 1768.09 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 5
 }
 
-[node name="Crowd79" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie79" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4583.61, 1721.19 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 0
 }
 
-[node name="Crowd80" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie80" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4623.21, 1759.15 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 0
 }
 
-[node name="Crowd81" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie81" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4656.53, 1696.36 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 1
 }
 
-[node name="Crowd82" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie82" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4720.5, 1713.19 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 19
 }
 
-[node name="Crowd83" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie83" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4230.28, 1828.36 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 16
 }
 
-[node name="Crowd84" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie84" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4285.18, 1786.2 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 2
 }
 
-[node name="Crowd85" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie85" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4766.32, 1678.26 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 2
 }
 
-[node name="Crowd86" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie86" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4784.71, 1722.71 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 14
 }
 
-[node name="Crowd87" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie87" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3675.25, 1970.52 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 15
 }
 
-[node name="Crowd88" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie88" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3714.85, 2008.48 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 6
 }
 
-[node name="Crowd89" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie89" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3765.26, 1968.57 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 3
 }
 
-[node name="Crowd90" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie90" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3867.53, 1959.06 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 9
 }
 
-[node name="Crowd91" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie91" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3634.51, 2031.63 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 8
 }
 
-[node name="Crowd92" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie92" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3915.19, 1921.87 )
 target_properties = {
 "crowd_color_index": 1,
 "frame": 8
 }
 
-[node name="Crowd93" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie93" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 3991.73, 1884 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 10
 }
 
-[node name="Crowd94" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie94" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4030.34, 1914.18 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 12
 }
 
-[node name="Crowd95" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie95" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4154.19, 1824.13 )
 target_properties = {
 "crowd_color_index": 3,
 "frame": 14
 }
 
-[node name="Crowd96" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie96" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 4087.83, 1885.53 )
 target_properties = {
 "crowd_color_index": 0,
 "frame": 14
 }
 
-[node name="Crowd97" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie97" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5219.66, 1714.89 )
 target_properties = {
 "crowd_color_index": 2,
 "frame": 6
 }
 
-[node name="Crowd98" parent="Obstacles" instance=ExtResource( 2 )]
+[node name="Crowdie98" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 5261.32, 1748.94 )
 target_properties = {
 "crowd_color_index": 1,

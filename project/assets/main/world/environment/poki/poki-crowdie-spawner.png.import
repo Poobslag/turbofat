@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/poki-crowd-spawner.png-619e560f437c6e134174122cb333f038.stex"
+path="res://.import/poki-crowdie-spawner.png-5cfd56fc73b0915510e0b7e3c7d7dff4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/poki/poki-crowd-spawner.png"
-dest_files=[ "res://.import/poki-crowd-spawner.png-619e560f437c6e134174122cb333f038.stex" ]
+source_file="res://assets/main/world/environment/poki/poki-crowdie-spawner.png"
+dest_files=[ "res://.import/poki-crowdie-spawner.png-5cfd56fc73b0915510e0b7e3c7d7dff4.stex" ]
 
 [params]
 

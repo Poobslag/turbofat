@@ -32,7 +32,7 @@
 [ext_resource path="res://src/main/world/environment/lava/ZagmaTower.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/lava/ZagmaBridge.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=32]
-[ext_resource path="res://src/main/world/environment/lava/LavaCrowdSpawner.tscn" type="PackedScene" id=33]
+[ext_resource path="res://src/main/world/environment/lava/LavaCrowdieSpawner.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/world/environment/lava/lava-sfx.gd" type="Script" id=34]
 [ext_resource path="res://assets/main/world/environment/lava/lava_cheer_1.wav" type="AudioStream" id=35]
 [ext_resource path="res://assets/main/world/environment/lava/lava_cheer_2.wav" type="AudioStream" id=36]
@@ -621,64 +621,64 @@ position = Vector2( 6841.3, 1424.42 )
 [node name="ZagmaMainBuilding" parent="Obstacles" instance=ExtResource( 29 )]
 position = Vector2( 6493.87, 1451.57 )
 
-[node name="Crowd1" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie1" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6283.5, 1679.26 )
 
-[node name="Crowd2" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie2" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6567.77, 1684.3 )
 
-[node name="Crowd3" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie3" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6645.14, 1659.92 )
 
-[node name="Crowd4" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie4" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6204.51, 1665.8 )
 
-[node name="Crowd5" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie5" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6146.48, 1615.35 )
 
-[node name="Crowd6" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie6" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6234.78, 1730.55 )
 
-[node name="Crowd7" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie7" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6123.78, 1684.3 )
 
-[node name="Crowd8" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie8" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6344.78, 1734.3 )
 
-[node name="Crowd9" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie9" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6493.78, 1727.3 )
 
-[node name="Crowd10" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie10" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6425.78, 1774.3 )
 
-[node name="Crowd11" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie11" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6153.78, 1743.3 )
 
-[node name="Crowd12" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie12" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6020.76, 1670.37 )
 
-[node name="Crowd13" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie13" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6051.15, 1547.45 )
 
-[node name="Crowd14" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie14" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 5955.15, 1568.45 )
 
-[node name="Crowd15" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie15" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6624.78, 1600.3 )
 
-[node name="Crowd16" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie16" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6717.78, 1611.3 )
 
-[node name="Crowd17" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie17" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 6411.35, 1792.02 )
 
-[node name="Crowd18" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie18" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 5866.96, 1647.22 )
 
-[node name="Crowd19" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie19" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 5849, 1468.75 )
 
-[node name="Crowd20" parent="Obstacles" instance=ExtResource( 33 )]
+[node name="Crowdie20" parent="Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 5651.44, 1533.85 )
 
 [node name="Spawns" type="Node2D" parent="."]
