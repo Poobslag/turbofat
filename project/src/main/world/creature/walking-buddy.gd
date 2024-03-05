@@ -40,10 +40,10 @@ var _walk_state: int = WalkState.WALKING
 var _desired_walk_direction: Vector2
 
 ## other creature whom this creature is walking with
-onready var buddy: Creature = get_node(buddy_path)
+onready var _buddy: Creature = get_node(buddy_path)
 
 ## leader stops walking if they reach this destination
-onready var destination: Node2D = get_node(destination_path)
+onready var _destination: Node2D = get_node(destination_path)
 
 ## creature reevaluates whether they should continue walking when this timer times out
 onready var _move_timer: Timer = $MoveTimer
@@ -55,9 +55,9 @@ func _ready() -> void:
 	
 	# calculate the desired walk direction based on the relative position of the destination
 	_desired_walk_direction = Vector2(0.70710678118, 0.70710678118)
-	if destination.position.y < position.y:
+	if _destination.position.y < position.y:
 		_desired_walk_direction *= Vector2(1, -1)
-	if destination.position.x < position.x:
+	if _destination.position.x < position.x:
 		_desired_walk_direction *= Vector2(-1, 1)
 	
 	set_non_iso_walk_direction(_desired_walk_direction)
@@ -97,12 +97,12 @@ func _start_move_timer(delay: float) -> void:
 ## creature moves faster than the other. As long as they're an appropriate distance apart, this method will make them
 ## walk towards their destination.
 func _walk() -> void:
-	var buddy_relative_pos: Vector2 = Global.from_iso(buddy.position - position)
+	var buddy_relative_pos: Vector2 = Global.from_iso(_buddy.position - position)
 	
 	var new_non_iso_walk_direction := non_iso_walk_direction
 	if leader_or_follower == LeaderOrFollower.LEADER:
-		if _desired_walk_direction.x > 0 and Global.from_iso(position).x > Global.from_iso(destination.position).x \
-				or _desired_walk_direction.x < 0 and Global.from_iso(position).x < Global.from_iso(destination.position).x:
+		if _desired_walk_direction.x > 0 and Global.from_iso(position).x > Global.from_iso(_destination.position).x \
+				or _desired_walk_direction.x < 0 and Global.from_iso(position).x < Global.from_iso(_destination.position).x:
 			# we're past our destination. stop moving, and face our buddy
 			_walk_state = WalkState.SITTING
 			_sit_and_reorient()
@@ -132,7 +132,7 @@ func _sit_and_reorient() -> void:
 	set_non_iso_walk_direction(Vector2.ZERO)
 	# If we don't zero out the creature's velocity, CreatureVisuals overwrites our assigned orientation
 	set_non_iso_velocity(Vector2.ZERO)
-	orient_toward(buddy.position)
+	orient_toward(_buddy.position)
 
 
 ## When the move timer times out, we evaluate our walk state and change the creature's behavior.
