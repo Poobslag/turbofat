@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/main/world/environment/lava/crowd-walk-environment.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/environment/lava/crowd-walking-buddy.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/lava/CrowdWalkingBuddy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/lava/lava-terrain-library.tres" type="TileSet" id=3]
 [ext_resource path="res://src/main/world/environment/lava/LavaCrowd.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=5]
@@ -245,37 +245,23 @@ cell_shadow_mapping = {
 
 [node name="Obstacles" type="YSort" parent="."]
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 10 )]
+[node name="Player" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 360.692, 301.109 )
-script = ExtResource( 2 )
 creature_id = "#player#"
-dna = {
-}
 suppress_sfx = true
 orientation = 1
 buddy_path = NodePath("../Sensei")
 destination_path = NodePath("../Destination")
 leader_or_follower = 1
 
-[node name="MoveTimer" type="Timer" parent="Obstacles/Player"]
-wait_time = 0.3
-autostart = true
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 10 )]
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 638.26, 212.479 )
-script = ExtResource( 2 )
 creature_id = "#sensei#"
-dna = {
-}
 suppress_sfx = true
 orientation = 1
 buddy_path = NodePath("../Player")
 destination_path = NodePath("../Destination")
 leader_or_follower = 2
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="CrowdRecycler" type="Area2D" parent="Obstacles"]
 position = Vector2( 360.692, 301.109 )

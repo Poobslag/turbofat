@@ -51,8 +51,6 @@ onready var _move_timer: Timer = $MoveTimer
 ## Note: Some superclass method calls are implicit in gdscript for notifications. This is planned to require explicit
 ## super() calls in Godot 4.0
 func _ready() -> void:
-	_move_timer.connect("timeout", self, "_on_MoveTimer_timeout")
-	
 	# calculate the desired walk direction based on the relative position of the destination
 	_desired_walk_direction = Vector2(0.70710678118, 0.70710678118)
 	if _destination.position.y < position.y:

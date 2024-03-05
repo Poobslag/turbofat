@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=3]
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/world/creature/walking-buddy.gd" type="Script" id=9]
+[ext_resource path="res://src/main/world/creature/WalkingBuddy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" type="TileSet" id=12]
 [ext_resource path="res://src/main/world/environment/marsh/MarshTree.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=17]
@@ -81,33 +81,19 @@ corner_tile_index = 6
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 17 )]
+[node name="Player" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 212.551, 135.24 )
-script = ExtResource( 9 )
 creature_id = "#player#"
-dna = {
-}
 buddy_path = NodePath("../Sensei")
 destination_path = NodePath("../Destination")
 leader_or_follower = 1
 
-[node name="MoveTimer" type="Timer" parent="Obstacles/Player"]
-wait_time = 0.3
-autostart = true
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 17 )]
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 46.1187, 46.6094 )
-script = ExtResource( 9 )
 creature_id = "#sensei#"
-dna = {
-}
 buddy_path = NodePath("../Player")
 destination_path = NodePath("../Destination")
 leader_or_follower = 2
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="Destination" type="Node2D" parent="Obstacles"]
 position = Vector2( 6392.25, 3218.75 )
