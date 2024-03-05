@@ -4,7 +4,7 @@ extends Node2D
 
 export (NodePath) var header_path: NodePath
 export (NodePath) var orb_path: NodePath
-export (PackedScene) var piece_scene: PackedScene
+export (PackedScene) var PieceScene: PackedScene
 
 ## key: (int) index of a piece launched by the CreditsOrb
 ## value: (int) index of a letter in the text 'turbo fat' in CreditsHeader
@@ -42,7 +42,7 @@ func _process_launch_interval() -> void:
 
 ## Initialize a CreditsPiece and adds it to the scene tree.
 func _add_credits_piece(piece_index: int) -> void:
-	var piece: CreditsPiece = piece_scene.instance()
+	var piece: CreditsPiece = PieceScene.instance()
 	piece.initialize(_orb)
 	if _target_letters_by_piece_index.has(piece_index):
 		var target_position := _letter_target_position(_target_letters_by_piece_index[piece_index])
