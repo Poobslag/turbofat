@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/world/environment/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/utils/dynamic-viewport-container.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/restaurant-view.gd" type="Script" id=4]
-[ext_resource path="res://src/main/puzzle/customer-view.gd" type="Script" id=5]
 [ext_resource path="res://assets/main/puzzle/chef-view-outline.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/puzzle/customer-view-mask.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/puzzle/customer-view-outline.png" type="Texture" id=8]
@@ -197,8 +196,8 @@ margin_right = 290.0
 margin_bottom = 270.0
 stretch = true
 stretch_shrink = 4
-script = ExtResource( 5 )
-restaurant_viewport_path = NodePath("../../RestaurantViewport")
+script = ExtResource( 3 )
+world_viewport_path = NodePath("../../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="Customer/View"]
 size = Vector2( 72, 67 )
@@ -272,7 +271,7 @@ margin_bottom = 140.0
 stretch = true
 stretch_shrink = 4
 script = ExtResource( 3 )
-restaurant_viewport_path = NodePath("../../RestaurantViewport")
+world_viewport_path = NodePath("../../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="Chef/View"]
 size = Vector2( 37, 35 )

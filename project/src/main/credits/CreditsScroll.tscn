@@ -212,7 +212,7 @@ margin_bottom = 547.5
 stretch = true
 stretch_shrink = 4
 script = ExtResource( 17 )
-restaurant_viewport_path = NodePath("Viewport")
+world_viewport_path = NodePath("Viewport")
 
 [node name="Viewport" type="Viewport" parent="Movie/ViewportContainer"]
 size = Vector2( 101, 123 )
