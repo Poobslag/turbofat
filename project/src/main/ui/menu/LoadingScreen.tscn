@@ -60,4 +60,4 @@ end_cap_mode = 2
 script = ExtResource( 6 )
 orb_path = NodePath("../Orb")
 progress_bar_path = NodePath("../ProgressBar")
-piece_scene = ExtResource( 3 )
+PieceScene = ExtResource( 3 )

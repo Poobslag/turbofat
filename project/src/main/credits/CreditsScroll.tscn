@@ -296,7 +296,7 @@ wallpaper_path = NodePath("../../../Wallpaper")
 script = ExtResource( 9 )
 header_path = NodePath("../../ScrollingContainer/Header")
 orb_path = NodePath("../Orb")
-piece_scene = ExtResource( 13 )
+PieceScene = ExtResource( 13 )
 
 [node name="CreditsDirector" type="Node" parent="."]
 script = ExtResource( 12 )
