@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/environment/poki/footprint-eraser.gd" type="Script" id=4]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusSmall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=7]
@@ -44,9 +43,6 @@ format = 1
 tile_data = PoolIntArray( -65488, 1, 131074, -65452, 1, 2, 65526, 1, 0, 1, 1, 3, 17, 1, 131072, 27, 1, 65539, 65, 1, 65536, 82, 1, 1, 84, 1, 0, 131051, 1, 131072, 65538, 1, 0, 65541, 1, 65536, 65624, 1, 1, 65633, 1, 131073, 131073, 1, 131073, 131100, 1, 3, 131121, 1, 65539, 131134, 1, 65538, 131143, 1, 3, 131164, 1, 65536, 196659, 1, 131075 )
 
 [node name="PuddleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 3 )]
-
-[node name="FootprintEraser" type="Node" parent="Ground/Terrain"]
-script = ExtResource( 4 )
 
 [node name="Shadows" parent="Ground" instance=ExtResource( 7 )]
 obstacles_path = NodePath("../../Obstacles")
