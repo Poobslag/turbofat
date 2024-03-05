@@ -7138,8 +7138,8 @@ msgid "Wait... No. No, I'm sorry. Can we talk in private for a moment?"
 msgstr "Wait... No. No, I'm sorry. Can we talk in private for a moment?"
 
 #: project/assets/main/locale/localizables-extracted.py:1596
-msgid "Ehh yeah! Yeah sure. C'mon guys, lets's take five."
-msgstr "Ehh yeah! Yeah sure. C'mon guys, lets's take five."
+msgid "Ehh yeah! Yeah sure. C'mon guys, let's take five."
+msgstr "Ehh yeah! Yeah sure. C'mon guys, let's take five."
 
 #: project/assets/main/locale/localizables-extracted.py:1597
 msgid ""

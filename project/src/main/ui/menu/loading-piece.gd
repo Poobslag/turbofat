@@ -32,12 +32,12 @@ const PIECE_COLORS_BY_FRAME := [
 	Color("ff7afb"), # t (T-Block)
 ]
 
-## The pieces's position/velocity/rotation as launched from the orb, without homing them towards the loading bar
+## The piece's position/velocity/rotation as launched from the orb, without homing them towards the loading bar
 var _source_position: Vector2
 var _source_velocity: Vector2
 var _source_rotation: float
 
-## Pieces's target position/rotation on the loading bar, ignoring how they were originally launched
+## Piece's target position/rotation on the loading bar, ignoring how they were originally launched
 var _target_position: Vector2
 var _target_rotation: float
 

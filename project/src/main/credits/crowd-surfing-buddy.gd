@@ -18,7 +18,7 @@ const AVERAGE_TRAVEL_SPEED := 60.0
 ## Rate at which to bounce. This is synchronized with the song "Sugar Crash" for the end credits.
 const BOUNCES_PER_SECOND := 2.05000
 
-## Creatures's elevation at the bottom of their bounce.
+## Creature's elevation at the bottom of their bounce.
 const SURF_HEIGHT := 230
 ## Distance from the lowest to the highest point of the creature's bounce.
 const BOUNCE_HEIGHT := 60

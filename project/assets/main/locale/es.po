@@ -7177,7 +7177,7 @@ msgid "Wait... No. No, I'm sorry. Can we talk in private for a moment?"
 msgstr "Esperen... No. No, perdón. ¿Podemos hablar en privado un momento?"
 
 #: project/assets/main/locale/localizables-extracted.py:1596
-msgid "Ehh yeah! Yeah sure. C'mon guys, lets's take five."
+msgid "Ehh yeah! Yeah sure. C'mon guys, let's take five."
 msgstr "¡Ehh si! Claro. Vamos todos, tomemos cinco minutos."
 
 #: project/assets/main/locale/localizables-extracted.py:1597
