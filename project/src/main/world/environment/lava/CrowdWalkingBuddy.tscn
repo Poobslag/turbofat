@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/world/creature/WalkingBuddy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/environment/lava/crowd-walking-buddy.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 28, 14 )
+
+[node name="Creature" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource( 1 )

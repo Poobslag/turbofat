@@ -1,7 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/walking-buddy.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/poki/footprint-eraser.gd" type="Script" id=4]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusSmall.tscn" type="PackedScene" id=5]
@@ -12,6 +11,7 @@
 [ext_resource path="res://src/main/world/environment/poki/PokiRippleWaves.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusLarge.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=12]
+[ext_resource path="res://src/main/world/creature/WalkingBuddy.tscn" type="PackedScene" id=13]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 1 )
@@ -57,33 +57,19 @@ cell_shadow_mapping = {
 
 [node name="Obstacles" type="YSort" parent="."]
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 6 )]
+[node name="Player" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 213.135, 133.62 )
-script = ExtResource( 2 )
 creature_id = "#player#"
-dna = {
-}
 buddy_path = NodePath("../Sensei")
 destination_path = NodePath("../Destination")
 leader_or_follower = 1
 
-[node name="MoveTimer" type="Timer" parent="Obstacles/Player"]
-wait_time = 0.3
-autostart = true
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 6 )]
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 46.7032, 44.9899 )
-script = ExtResource( 2 )
 creature_id = "#sensei#"
-dna = {
-}
 buddy_path = NodePath("../Player")
 destination_path = NodePath("../Destination")
 leader_or_follower = 2
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="Destination" type="Node2D" parent="Obstacles"]
 position = Vector2( 6408.65, 3211.55 )

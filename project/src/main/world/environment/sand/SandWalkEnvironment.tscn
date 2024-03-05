@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/walking-buddy.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/creature/WalkingBuddy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/sand/SandCream.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/sand/SandBanana.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/sand/SandGrass.tscn" type="PackedScene" id=5]
@@ -76,33 +76,19 @@ cell_shadow_mapping = {
 
 [node name="Obstacles" type="YSort" parent="."]
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 6 )]
+[node name="Player" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 23.5878, 34.8418 )
-script = ExtResource( 2 )
 creature_id = "#player#"
-dna = {
-}
 buddy_path = NodePath("../Sensei")
 destination_path = NodePath("../Destination")
 leader_or_follower = 2
 
-[node name="MoveTimer" type="Timer" parent="Obstacles/Player"]
-wait_time = 0.3
-autostart = true
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 6 )]
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 198.875, 135.759 )
-script = ExtResource( 2 )
 creature_id = "#sensei#"
-dna = {
-}
 buddy_path = NodePath("../Player")
 destination_path = NodePath("../Destination")
 leader_or_follower = 1
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="Destination" type="Node2D" parent="Obstacles"]
 position = Vector2( 10746.9, 5390.18 )
