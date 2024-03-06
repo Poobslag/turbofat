@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/main/credits/pinup-view-mask.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/credits/pinup-view-outline.png" type="Texture" id=2]
 [ext_resource path="res://src/main/credits/pinup.gd" type="Script" id=3]
-[ext_resource path="res://src/main/credits/pinup-camera.gd" type="Script" id=4]
 [ext_resource path="res://src/main/credits/pinup-camera-mover.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/environment/restaurant/LayoutContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=8]
@@ -27,7 +26,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.18, 0.18 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Customer/View/Viewport/Camera2D:headroom")
+tracks/1/path = NodePath("Customer/CameraMover:headroom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -55,7 +54,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.18, 0.18 ), Vector2( 0.18, 0.18 ), Vector2( 0.3, 0.3 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Customer/View/Viewport/Camera2D:headroom")
+tracks/1/path = NodePath("Customer/CameraMover:headroom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -149,8 +148,6 @@ expand = true
 position = Vector2( 0, -50 )
 current = true
 zoom = Vector2( 0.18, 0.18 )
-script = ExtResource( 4 )
-creature_path = NodePath("../Creature")
 
 [node name="Outline" type="TextureRect" parent="Customer" groups=["night_mode_dark"]]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
@@ -165,6 +162,7 @@ anims/RESET = SubResource( 11 )
 anims/fat-se = SubResource( 12 )
 script = ExtResource( 5 )
 creature_path = NodePath("../View/Viewport/Creature")
+customer_camera_path = NodePath("../View/Viewport/Camera2D")
 
 [node name="Nametag" parent="Customer" groups=["night_mode_light"] instance=ExtResource( 6 )]
 margin_left = -20.0
