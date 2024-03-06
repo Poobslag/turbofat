@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://assets/main/puzzle/critter/shark-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/main/puzzle/critter/shark-sfx.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/main/puzzle/critter/shark-tooth-sheet.png" type="Texture" id=16]
 [ext_resource path="res://src/main/puzzle/critter/shark-tooth-cloud.gd" type="Script" id=17]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/puzzle/critter/SharkCloudPart.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/main/puzzle/crumbs.png" type="Texture" id=21]
 [ext_resource path="res://src/main/puzzle/critter/shark-crumbs.gd" type="Script" id=22]
@@ -1369,34 +1370,28 @@ anims/wait = SubResource( 4 )
 [node name="SharkSfx" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Bite" type="AudioStreamPlayer" parent="SharkSfx"]
+[node name="Bite" parent="SharkSfx" instance=ExtResource( 19 )]
 stream = ExtResource( 27 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="Eat" type="AudioStreamPlayer" parent="SharkSfx"]
+[node name="Eat" parent="SharkSfx" instance=ExtResource( 19 )]
 stream = ExtResource( 25 )
 volume_db = -12.0
-bus = "Sound Bus"
 
-[node name="Poof" type="AudioStreamPlayer" parent="SharkSfx"]
+[node name="Poof" parent="SharkSfx" instance=ExtResource( 19 )]
 stream = ExtResource( 11 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="Squish" type="AudioStreamPlayer" parent="SharkSfx"]
+[node name="Squish" parent="SharkSfx" instance=ExtResource( 19 )]
 stream = ExtResource( 24 )
-bus = "Sound Bus"
 
-[node name="VoiceFriendly" type="AudioStreamPlayer" parent="SharkSfx"]
+[node name="VoiceFriendly" parent="SharkSfx" instance=ExtResource( 19 )]
 stream = ExtResource( 23 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="VoiceShort" type="AudioStreamPlayer" parent="SharkSfx"]
+[node name="VoiceShort" parent="SharkSfx" instance=ExtResource( 19 )]
 stream = ExtResource( 26 )
 volume_db = -4.0
-bus = "Sound Bus"
 
 [connection signal="finished_eating" from="ToothCloud" to="." method="_on_ToothCloud_finished_eating"]
 [connection signal="timeout" from="ToothCloud/CloudTimer" to="ToothCloud" method="_on_CloudTimer_timeout"]

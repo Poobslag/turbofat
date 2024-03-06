@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/moles.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/critter/critters.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://src/main/puzzle/critter/critter-manager.gd" type="Script" id=14]
 [ext_resource path="res://src/main/puzzle/critter/spears.gd" type="Script" id=15]
 [ext_resource path="res://src/main/puzzle/critter/Spear.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/puzzle/critter/SpearWide.tscn" type="PackedScene" id=18]
 
 [node name="Critters" type="Control"]
@@ -59,15 +60,13 @@ CarrotScene = ExtResource( 5 )
 
 [node name="CarrotHolder" type="Node2D" parent="Carrots"]
 
-[node name="CarrotPoofSound" type="AudioStreamPlayer" parent="Carrots"]
+[node name="CarrotPoofSound" parent="Carrots" instance=ExtResource( 17 )]
 stream = ExtResource( 7 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="CarrotMoveSound" type="AudioStreamPlayer" parent="Carrots"]
+[node name="CarrotMoveSound" parent="Carrots" instance=ExtResource( 17 )]
 stream = ExtResource( 6 )
 volume_db = -2.0
-bus = "Sound Bus"
 
 [node name="CellCritterManager" type="Node" parent="."]
 script = ExtResource( 14 )

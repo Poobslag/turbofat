@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/creature.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=7]
@@ -357,15 +358,13 @@ bus = "Voice Bus"
 [node name="MunchSound" type="AudioStreamPlayer" parent="CreatureSfx"]
 bus = "Sound Bus"
 
-[node name="HopSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+[node name="HopSound" parent="CreatureSfx" instance=ExtResource( 1 )]
 stream = ExtResource( 7 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="BonkSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+[node name="BonkSound" parent="CreatureSfx" instance=ExtResource( 1 )]
 stream = ExtResource( 5 )
 volume_db = -4.0
-bus = "Sound Bus"
 
 [node name="SuppressSfxTimer" type="Timer" parent="CreatureSfx"]
 one_shot = true

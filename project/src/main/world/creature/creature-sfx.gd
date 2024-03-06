@@ -108,14 +108,14 @@ func play_bonk_sound() -> void:
 	if not should_play_sfx:
 		return
 	
-	SfxDeconflicter.play(_bonk_sound)
+	_bonk_sound.play()
 
 
 func play_hop_sound() -> void:
 	if not should_play_sfx:
 		return
 	
-	SfxDeconflicter.play(_hop_sound)
+	_hop_sound.play()
 
 
 ## Temporarily suppresses creature-related sound effects.
