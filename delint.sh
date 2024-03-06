@@ -259,3 +259,19 @@ then
   echo "Node names with spaces:"
   echo "$RESULT"
 fi
+
+# orphaned .import files
+RESULT=""
+while IFS= read -r import_file; do
+    filename="${import_file%.import}"
+    if [ ! -f "$filename" ]; then
+        RESULT="${RESULT}${filename}
+"
+    fi
+done < <(find project -type f -name "*.import")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Orphaned import files:"
+  echo "$RESULT"
+fi
