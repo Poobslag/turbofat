@@ -138,6 +138,8 @@ func update_fattening_animation(delta: float) -> void:
 			_fattening_inertia = -_fattening_inertia
 		# dampening (reduces jiggle)
 		visual_fatness = lerp(visual_fatness, fatness, 0.04)
+		# behavior for values outside the range [1.0, 10.0] is undefined and results in visual errors
+		visual_fatness = clamp(visual_fatness, 1.0, 10.0)
 		set_visual_fatness(visual_fatness)
 		# squash n' stretch
 		var squash_amount: float = 1.0
