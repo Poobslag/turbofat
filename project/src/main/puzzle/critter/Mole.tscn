@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/main/puzzle/critter/mole-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/puzzle/critter/critter-wait-sheet.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/main/puzzle/critter/critter-poof.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/puzzle/critter/mole-dig.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/main/puzzle/critter/mole-found.wav" type="AudioStream" id=15]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -558,22 +559,18 @@ anims/wait = SubResource( 4 )
 [node name="MoleSfx" type="Node" parent="."]
 script = ExtResource( 12 )
 
-[node name="Poof" type="AudioStreamPlayer" parent="MoleSfx"]
+[node name="Poof" parent="MoleSfx" instance=ExtResource( 16 )]
 stream = ExtResource( 13 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="Dig0" type="AudioStreamPlayer" parent="MoleSfx"]
+[node name="Dig0" parent="MoleSfx" instance=ExtResource( 16 )]
 stream = ExtResource( 14 )
-bus = "Sound Bus"
 
-[node name="Dig1" type="AudioStreamPlayer" parent="MoleSfx"]
+[node name="Dig1" parent="MoleSfx" instance=ExtResource( 16 )]
 stream = ExtResource( 14 )
-bus = "Sound Bus"
 
-[node name="Found" type="AudioStreamPlayer" parent="MoleSfx"]
+[node name="Found" parent="MoleSfx" instance=ExtResource( 16 )]
 stream = ExtResource( 15 )
 volume_db = -4.0
-bus = "Sound Bus"
 
 [connection signal="animation_finished" from="Poof" to="." method="_on_Poof_animation_finished"]

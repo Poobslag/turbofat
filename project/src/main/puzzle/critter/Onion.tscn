@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/OnionStateMachine.tres" type="AnimationNodeStateMachine" id=1]
 [ext_resource path="res://src/main/puzzle/critter/onion.gd" type="Script" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/main/puzzle/critter/onion-thump.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/main/puzzle/critter/onion-kaboom.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/main/puzzle/critter/onion-crickets.wav" type="AudioStream" id=29]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=30]
 
 [sub_resource type="CanvasItemMaterial" id=4]
 particles_animation = true
@@ -1290,118 +1291,95 @@ parameters/conditions/not_floating = false
 [node name="Sfx" type="Node" parent="."]
 script = ExtResource( 20 )
 
-[node name="Crickets" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Crickets" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 29 )
 volume_db = 4.0
-bus = "Sound Bus"
 
-[node name="Down" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Down" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 24 )
 volume_db = -8.0
 pitch_scale = 0.73
-bus = "Sound Bus"
 
-[node name="Kaboom" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Kaboom" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 28 )
 volume_db = 4.0
-bus = "Sound Bus"
 
-[node name="Poof" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Poof" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 3 )
 volume_db = -4.0
-bus = "Sound Bus"
 
-[node name="Rooster0" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Rooster0" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 26 )
 volume_db = -12.0
-bus = "Sound Bus"
 
-[node name="Rooster1" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Rooster1" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 25 )
 volume_db = -12.0
-bus = "Sound Bus"
 
-[node name="Thump" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Thump" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 27 )
 volume_db = 2.0
-bus = "Sound Bus"
 
-[node name="Up" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Up" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 23 )
 volume_db = -8.0
 pitch_scale = 0.8
-bus = "Sound Bus"
 
-[node name="Voice00" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice00" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 19 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice01" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice01" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 14 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice02" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice02" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 9 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice03" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice03" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 13 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice04" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice04" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 10 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice05" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice05" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 8 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice06" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice06" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 15 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice07" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice07" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 12 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice08" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice08" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 17 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice09" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice09" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 18 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice10" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice10" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 6 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice11" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice11" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 4 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="Voice12" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Voice12" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 7 )
 volume_db = -2.0
-bus = "Sound Bus"
 
-[node name="VoiceWow" type="AudioStreamPlayer" parent="Sfx"]
+[node name="VoiceWow" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 21 )
 volume_db = 2.0
-bus = "Sound Bus"
 
-[node name="Zap" type="AudioStreamPlayer" parent="Sfx"]
+[node name="Zap" parent="Sfx" instance=ExtResource( 30 )]
 stream = ExtResource( 22 )
-bus = "Sound Bus"

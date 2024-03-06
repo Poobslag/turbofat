@@ -86,7 +86,7 @@ func add_carrots(config: CarrotConfig) -> void:
 	
 	for i in range(min(config.count, potential_carrot_x_coords.size())):
 		_add_carrot(Vector2(potential_carrot_x_coords[i], PuzzleTileMap.ROW_COUNT), config)
-	SfxDeconflicter.play(_carrot_poof_sound)
+	_carrot_poof_sound.play()
 
 
 func _refresh_playfield_path() -> void:
@@ -197,7 +197,7 @@ func _on_Playfield_blocks_prepared() -> void:
 
 
 func _on_Carrot_started_hiding() -> void:
-	SfxDeconflicter.play(_carrot_poof_sound)
+	_carrot_poof_sound.play()
 	_refresh_carrot_move_sound()
 
 

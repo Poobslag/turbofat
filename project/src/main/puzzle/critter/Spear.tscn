@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/main/puzzle/critter/spear-stalk.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/puzzle/critter/spear-face-sheet.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/main/utils/state-machine.gd" type="Script" id=12]
 [ext_resource path="res://assets/main/puzzle/critter/onion-dirt-clod-sheet.png" type="Texture" id=13]
 [ext_resource path="res://assets/main/puzzle/critter/spear-pop.wav" type="AudioStream" id=14]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/puzzle/critter/spear-sfx.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/critter/spear-face.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/critter/spear-waiting.gd" type="Script" id=21]
@@ -273,24 +274,20 @@ script = ExtResource( 10 )
 [node name="SpearSfx" type="Node" parent="."]
 script = ExtResource( 18 )
 
-[node name="Poof" type="AudioStreamPlayer" parent="SpearSfx"]
+[node name="Poof" parent="SpearSfx" instance=ExtResource( 15 )]
 stream = ExtResource( 24 )
 volume_db = -8.0
-bus = "Sound Bus"
 
-[node name="Pop" type="AudioStreamPlayer" parent="SpearSfx"]
+[node name="Pop" parent="SpearSfx" instance=ExtResource( 15 )]
 stream = ExtResource( 14 )
-bus = "Sound Bus"
 
-[node name="VoiceWarn" type="AudioStreamPlayer" parent="SpearSfx"]
+[node name="VoiceWarn" parent="SpearSfx" instance=ExtResource( 15 )]
 stream = ExtResource( 27 )
 volume_db = 4.0
-bus = "Sound Bus"
 
-[node name="VoiceHello" type="AudioStreamPlayer" parent="SpearSfx"]
+[node name="VoiceHello" parent="SpearSfx" instance=ExtResource( 15 )]
 stream = ExtResource( 28 )
 volume_db = 4.0
-bus = "Sound Bus"
 
 [connection signal="timeout" from="SpearHolder/Spear/Face/WiggleTimer" to="SpearHolder/Spear/Face" method="_on_WiggleTimer_timeout"]
 [connection signal="timeout" from="SpearHolder/Spear/Face/OpenEyesTimer" to="SpearHolder/Spear/Face" method="_on_OpenEyesTimer_timeout"]

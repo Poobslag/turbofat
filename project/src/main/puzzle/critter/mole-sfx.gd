@@ -13,17 +13,17 @@ onready var _poof := $Poof
 
 func play_poof_sound() -> void:
 	_poof.pitch_scale = rand_range(0.95, 1.05)
-	SfxDeconflicter.play(_poof)
+	_poof.play()
 
 
 func play_dig_sound() -> void:
 	var dig: AudioStreamPlayer = _digs[_dig_index]
 	dig.volume_db = rand_range(0.0, -4.0)
 	dig.pitch_scale = rand_range(0.95, 1.05)
-	SfxDeconflicter.play(dig)
+	dig.play()
 	_dig_index = (_dig_index + 1) % _digs.size()
 
 
 func play_found_sound() -> void:
 	_found.pitch_scale = rand_range(0.95, 1.05)
-	SfxDeconflicter.play(_found)
+	_found.play()

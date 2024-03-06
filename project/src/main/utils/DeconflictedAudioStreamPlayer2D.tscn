@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/utils/deconflicted-audio-stream-player-2d.gd" type="Script" id=1]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+bus = "Sound Bus"
+script = ExtResource( 1 )

@@ -47,19 +47,19 @@ onready var _voice_short := $VoiceShort
 
 func play_poof_sound() -> void:
 	_poof.pitch_scale = rand_range(0.95, 1.05)
-	SfxDeconflicter.play(_poof)
+	_poof.play()
 
 
 func play_voice_friendly_sound() -> void:
 	_voice_friendly.stream = Utils.rand_value(_voice_friendly_sounds)
 	_voice_friendly.pitch_scale = rand_range(pitch_scale * 0.9, pitch_scale * 1.1)
-	SfxDeconflicter.play(_voice_friendly)
+	_voice_friendly.play()
 
 
 func play_voice_short_sound() -> void:
 	_voice_short.stream = Utils.rand_value(_voice_short_sounds)
 	_voice_short.pitch_scale = rand_range(pitch_scale * 0.9, pitch_scale * 1.1)
-	SfxDeconflicter.play(_voice_short)
+	_voice_short.play()
 
 
 ## Plays a sustained eating sound, like a grinding saw.
@@ -73,13 +73,13 @@ func play_eat_sound() -> void:
 			pitch_scale_end, eat_duration) \
 			.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 	
-	SfxDeconflicter.play(_eat, rand_range(0.0, 0.2))
+	_eat.play(rand_range(0.0, 0.2))
 
 
 ## Plays a brief eating sound, like a cartoony "chomp" noise.
 func play_bite_sound() -> void:
 	_bite.pitch_scale = rand_range(pitch_scale * 0.95, pitch_scale * 1.05)
-	SfxDeconflicter.play(_bite)
+	_bite.play()
 
 
 func stop_eat_sound() -> void:
@@ -87,4 +87,4 @@ func stop_eat_sound() -> void:
 
 
 func play_squish_sound() -> void:
-	SfxDeconflicter.play(_squish)
+	_squish.play()
