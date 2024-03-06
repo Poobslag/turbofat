@@ -77,9 +77,9 @@ func _spawn_target() -> void:
 	_target_creature.position = position
 	for key in target_properties:
 		_target_creature.set(key, target_properties[key])
-	if _target_creature.get_fatness() > max_fatness:
-		_target_creature.set_fatness(max_fatness)
-		_target_creature.set_visual_fatness(max_fatness)
+	if _target_creature.fatness > max_fatness:
+		_target_creature.fatness = max_fatness
+		_target_creature.visual_fatness = max_fatness
 		_target_creature.save_fatness(max_fatness)
 	
 	# mark the creature's stool as occupied

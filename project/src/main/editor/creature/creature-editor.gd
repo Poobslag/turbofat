@@ -120,12 +120,12 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 			creature.rename(NameGeneratorLibrary.generate_name())
 		"fatness":
 			var new_fatnesses := Global.FATNESSES.duplicate()
-			while new_fatnesses.has(creature.get_visual_fatness()):
-				new_fatnesses.erase(creature.get_visual_fatness())
+			while new_fatnesses.has(creature.visual_fatness):
+				new_fatnesses.erase(creature.visual_fatness)
 			var new_fatness: float = Utils.rand_value(new_fatnesses)
 			creature.min_fatness = new_fatness
-			creature.set_fatness(new_fatness)
-			creature.set_visual_fatness(new_fatness)
+			creature.fatness = new_fatness
+			creature.visual_fatness = new_fatness
 		"body_rgb":
 			dna["line_rgb"] = new_palette["line_rgb"]
 			dna["body_rgb"] = new_palette["body_rgb"]
@@ -242,12 +242,12 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			creature.rename(NameGeneratorLibrary.generate_name())
 		"fatness":
 			var new_fatnesses := Global.FATNESSES.duplicate()
-			while new_fatnesses.has(creature.get_visual_fatness()):
-				new_fatnesses.erase(creature.get_visual_fatness())
+			while new_fatnesses.has(creature.visual_fatness):
+				new_fatnesses.erase(creature.visual_fatness)
 			var new_fatness: float = Utils.rand_value(new_fatnesses)
 			creature.min_fatness = new_fatness
-			creature.set_fatness(new_fatness)
-			creature.set_visual_fatness(new_fatness)
+			creature.fatness = new_fatness
+			creature.visual_fatness = new_fatness
 		"body_rgb":
 			dna["line_rgb"] = palette["line_rgb"]
 			dna["body_rgb"] = palette["body_rgb"]

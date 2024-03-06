@@ -59,7 +59,7 @@ func _physics_process(_delta: float) -> void:
 func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> void:
 	# calculate and store 'food fatness' for customer; how fat the customer will be after eating each item
 	var customer := _puzzle.get_customer()
-	var old_fatness: float = _pending_food_fatness.back() if _pending_food_fatness else customer.get_fatness()
+	var old_fatness: float = _pending_food_fatness.back() if _pending_food_fatness else customer.fatness
 	var base_score := customer.fatness_to_score(customer.base_fatness)
 	var target_fatness := customer.score_to_fatness(base_score + PuzzleState.fatness_score)
 	
@@ -156,7 +156,7 @@ func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
 		_puzzle.feed_customer(food_item.customer, food_item.food_type)
 		
 		var new_fatness: float = _pending_food_fatness.pop_front()
-		food_item.customer.set_fatness(new_fatness)
+		food_item.customer.fatness = new_fatness
 
 
 func _on_StarSeeds_food_spawned(cell: Vector2, remaining_food: int, food_type: int) -> void:

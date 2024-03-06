@@ -88,6 +88,12 @@ var base_fatness := 1.0
 
 var creature_visuals: CreatureVisuals
 
+## Virtual property; value is only exposed through getters/setters
+var fatness: float setget set_fatness, get_fatness
+
+## Virtual property; value is only exposed through getters/setters
+var visual_fatness: float setget set_visual_fatness, get_visual_fatness
+
 ## 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
 
@@ -180,11 +186,11 @@ func set_comfort(new_comfort: float) -> void:
 
 
 func set_fatness(new_fatness: float) -> void:
-	creature_visuals.set_fatness(new_fatness)
+	creature_visuals.fatness = new_fatness
 
 
 func get_fatness() -> float:
-	return creature_visuals.get_fatness() if creature_visuals else 1.0
+	return creature_visuals.fatness if creature_visuals else 1.0
 
 
 func set_visual_fatness(new_visual_fatness: float) -> void:
@@ -356,7 +362,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	else:
 		set_fatness(min_fatness)
 	base_fatness = get_fatness()
-	creature_visuals.set_visual_fatness(get_fatness())
+	creature_visuals.visual_fatness = get_fatness()
 	feed_count = 0
 	box_feed_count = 0
 

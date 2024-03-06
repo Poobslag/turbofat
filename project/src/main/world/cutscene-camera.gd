@@ -46,7 +46,7 @@ func _max_fatness_weight() -> float:
 	var max_visual_fatness := 1.0
 	
 	for creature in _overworld_ui.chatters:
-		max_visual_fatness = max(max_visual_fatness, creature.get_visual_fatness())
+		max_visual_fatness = max(max_visual_fatness, creature.visual_fatness)
 	return inverse_lerp(1.0, 10.0, clamp(max_visual_fatness, 1.0, 10.0))
 
 

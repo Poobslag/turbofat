@@ -54,7 +54,7 @@ func _refresh_creature_path() -> void:
 ## Recalculates the CreatureShadow scale property based on the creature's fatness.
 func _refresh_creature_shadow_scale() -> void:
 	_fat_player.play("fat")
-	_fat_player.advance(_creature.get_visual_fatness())
+	_fat_player.advance(_creature.visual_fatness)
 	_fat_player.stop()
 
 
