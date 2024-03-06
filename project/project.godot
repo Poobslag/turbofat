@@ -434,6 +434,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
 }, {
+"base": "Creature",
+"class": "FreeRoamPlayer",
+"language": "GDScript",
+"path": "res://src/main/world/creature/free-roam-player.gd"
+}, {
 "base": "OverworldWorld",
 "class": "FreeRoamWorld",
 "language": "GDScript",
@@ -1024,11 +1029,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/credits/pinup-scrollers.gd"
 }, {
-"base": "Creature",
-"class": "Player",
-"language": "GDScript",
-"path": "res://src/main/world/creature/player.gd"
-}, {
 "base": "Reference",
 "class": "PlayerSaveUpgrader",
 "language": "GDScript",
@@ -1242,7 +1242,7 @@ _global_script_classes=[ {
 "base": "Creature",
 "class": "Sensei",
 "language": "GDScript",
-"path": "res://src/main/world/creature/sensei.gd"
+"path": "res://src/main/world/creature/free-roam-sensei.gd"
 }, {
 "base": "CanvasLayer",
 "class": "SettingsMenu",
@@ -1570,6 +1570,7 @@ _global_script_class_icons={
 "FoodItem": "",
 "Foods": "",
 "FrameInput": "",
+"FreeRoamPlayer": "",
 "FreeRoamWorld": "",
 "FryingPansUi": "",
 "GameplayDifficultyAdjustments": "",
@@ -1688,7 +1689,6 @@ _global_script_class_icons={
 "Pinup": "",
 "PinupScroller": "",
 "PinupScrollers": "",
-"Player": "",
 "PlayerSaveUpgrader": "",
 "Playfield": "",
 "PlayfieldEditorControl": "",

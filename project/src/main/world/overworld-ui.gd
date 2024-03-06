@@ -148,7 +148,7 @@ func _refresh_ui_has_focus() -> void:
 	if not _overworld_environment:
 		return
 	
-	if _overworld_environment.player is Player:
+	if _overworld_environment.player is FreeRoamPlayer:
 		_overworld_environment.player.ui_has_focus = _ui_has_focus
 
 

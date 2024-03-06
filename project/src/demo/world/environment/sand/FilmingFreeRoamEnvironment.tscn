@@ -16,8 +16,8 @@
 [ext_resource path="res://src/main/world/environment/restaurant/WoodTable.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/sand/RobotDog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/sand/Mic1.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=38]
-[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=39]
+[ext_resource path="res://src/main/world/creature/FreeRoamSensei.tscn" type="PackedScene" id=38]
+[ext_resource path="res://src/main/world/creature/FreeRoamPlayer.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=40]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
