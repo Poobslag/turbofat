@@ -42,7 +42,7 @@ func set_headroom(new_headroom: float) -> void:
 func _refresh_zoom_and_headroom() -> void:
 	var customer := _restaurant_scene.get_chef()
 	play("fat-se")
-	advance(customer.get_visual_fatness())
+	advance(customer.visual_fatness)
 	stop()
 	_target_camera_position_dirty = true
 

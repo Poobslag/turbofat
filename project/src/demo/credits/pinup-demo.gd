@@ -60,5 +60,5 @@ func _randomize_creature() -> void:
 	_pinup.creature.creature_name = NameGeneratorLibrary.generate_name()
 	_pinup.creature.dna = DnaUtils.random_dna()
 	_pinup.creature.chat_theme = CreatureLoader.chat_theme(_pinup.creature.dna)
-	_pinup.creature.set_fatness(Utils.rand_value(Global.FATNESSES))
-	_pinup.creature.set_visual_fatness(_pinup.creature.get_fatness())
+	_pinup.creature.fatness = Utils.rand_value(Global.FATNESSES)
+	_pinup.creature.visual_fatness = _pinup.creature.fatness

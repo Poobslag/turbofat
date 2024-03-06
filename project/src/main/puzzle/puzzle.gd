@@ -194,7 +194,7 @@ func _start_puzzle() -> void:
 			if PlayerData.creature_library.has_fatness(starting_customer_creature_id):
 				# restore their fatness so they start skinny again when replaying a puzzle
 				var fatness: float = PlayerData.creature_library.get_fatness(starting_customer_creature_id)
-				_restaurant_view.get_customer(starting_customer_index).set_fatness(fatness)
+				_restaurant_view.get_customer(starting_customer_index).fatness = fatness
 		
 		# summon the other customers
 		for i in range(_restaurant_view.get_customers().size()):

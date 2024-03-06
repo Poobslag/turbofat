@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 					KEY_0: _view.get_customer().set_comfort(-1.00) # ate way too much
 			else:
 				# shift not pressed; change customer's fatness
-				_view.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
+				_view.get_customer().fatness = FATNESS_KEYS[Utils.key_num(event)]
 		KEY_Q: _view.set_current_customer_index(0)
 		KEY_W: _view.set_current_customer_index(1)
 		KEY_E: _view.set_current_customer_index(2)

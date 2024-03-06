@@ -60,8 +60,8 @@ export (Dictionary) var dna: Dictionary setget set_dna
 ## how fat the creature looks right now; gradually approaches the 'fatness' property
 export (float, 1.0, 10.0) var visual_fatness := 1.0 setget set_visual_fatness
 
-## how fat the creature will become eventually; visual_fatness gradually approaches this value
-var fatness := 1.0 setget set_fatness, get_fatness
+## how fat the creature should be; 5.0 = 5x normal size
+var fatness := 1.0 setget set_fatness
 
 ## comfort improves as the creature eats, and degrades as they overeat. comfort is a number from [-1.0, 1.0]. -1.0 is
 ## very uncomfortable, 1.0 is very comfortable
@@ -167,12 +167,6 @@ func set_comfort(new_comfort: float) -> void:
 func set_visual_fatness(new_visual_fatness: float) -> void:
 	visual_fatness = new_visual_fatness
 	emit_signal("visual_fatness_changed")
-
-
-## Returns the creature's fatness, a float which determines how fat the creature
-## should be; 5.0 = 5x normal size
-func get_fatness() -> float:
-	return fatness
 
 
 ## Increases/decreases the creature's fatness, a float which determines how fat

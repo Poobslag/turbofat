@@ -20,7 +20,7 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_F: _scene.get_customer().feed(Foods.FoodType.BROWN_0)
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			_scene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
+			_scene.get_customer().fatness = FATNESS_KEYS[Utils.key_num(event)]
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 			_scene.summon_customer(CreatureLoader.random_customer_def())
 		KEY_Q: _scene.current_customer_index = 0

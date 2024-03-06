@@ -20,7 +20,7 @@ func _refresh_zoom_and_headroom() -> void:
 		return
 	
 	play("fat-se")
-	advance(_creature.get_visual_fatness())
+	advance(_creature.visual_fatness)
 	stop()
 
 

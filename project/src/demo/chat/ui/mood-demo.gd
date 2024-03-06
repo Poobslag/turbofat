@@ -101,7 +101,7 @@ func _input(event: InputEvent) -> void:
 			KEY_COMMA: _creature.play_mood(Creatures.Mood.YES0)
 			KEY_PERIOD: _creature.play_mood(Creatures.Mood.YES1)
 			KEY_SPACE: _creature.feed(Foods.FoodType.BROWN_0)
-			KEY_EQUAL: _creature.set_fatness(3)
+			KEY_EQUAL: _creature.fatness = 3
 			KEY_RIGHT:
 				if _creature.non_iso_walk_direction == Vector2.ZERO:
 					_creature.non_iso_walk_direction = Vector2(1.0, 1.0)
@@ -116,4 +116,4 @@ func _change_demographic(demographic_type: int) -> void:
 
 func _randomize_creature() -> void:
 	_creature.dna = DnaUtils.random_dna(_creature_type)
-	_creature.set_fatness(Utils.rand_value(Global.FATNESSES))
+	_creature.fatness = Utils.rand_value(Global.FATNESSES)
