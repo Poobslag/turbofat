@@ -12,7 +12,7 @@
 [ext_resource path="res://src/main/world/environment/sand/SandGroundMap.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/sand/SandRippleWaves.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/sand/sand-terrain-library.tres" type="TileSet" id=12]
-[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/creature/FreeRoamPlayer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/sand/SandGrass.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=16]
 [ext_resource path="res://src/main/world/environment/sand/SandTree.tscn" type="PackedScene" id=17]
@@ -24,7 +24,7 @@
 [ext_resource path="res://src/main/world/environment/WaterRippleOverworldTiler.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/environment/sand/SandHouse.tscn" type="PackedScene" id=25]
-[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=26]
+[ext_resource path="res://src/main/world/creature/FreeRoamSensei.tscn" type="PackedScene" id=26]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

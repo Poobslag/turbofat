@@ -1,4 +1,4 @@
-class_name Player
+class_name FreeRoamPlayer
 extends Creature
 ## Script for manipulating the player-controlled character in the overworld.
 

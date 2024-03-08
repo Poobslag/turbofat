@@ -1,4 +1,3 @@
-class_name Sensei
 extends Creature
 ## Script for manipulating the sensei in the overworld.
 ##

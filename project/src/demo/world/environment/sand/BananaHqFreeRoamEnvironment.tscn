@@ -12,11 +12,11 @@
 [ext_resource path="res://src/main/world/environment/IndoorShadows.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/sand/BananaStoolLarge.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/creature/FreeRoamSensei.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=35]
 [ext_resource path="res://src/main/world/environment/sand/banana-hq-floor-library.tres" type="TileSet" id=36]
 [ext_resource path="res://src/main/world/environment/sand/banana-hq-obstacle-library.tres" type="TileSet" id=37]
-[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=38]
+[ext_resource path="res://src/main/world/creature/FreeRoamPlayer.tscn" type="PackedScene" id=38]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=39]
 
 [sub_resource type="ShaderMaterial" id=1]

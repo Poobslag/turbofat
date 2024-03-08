@@ -6,7 +6,7 @@
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusSmall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/world/creature/FreeRoamSensei.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/world/environment/poki/poki-obstacle-library.tres" type="TileSet" id=8]
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=9]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=10]
@@ -20,7 +20,7 @@
 [ext_resource path="res://src/main/world/environment/poki/WeAccept.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/poki/Tent.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=20]
-[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/world/creature/FreeRoamPlayer.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Curve2D" id=1]
