@@ -77,6 +77,18 @@ then
   echo "$RESULT"
 fi
 
+# illegal references to demo/test code
+REGEX="\(src\/test\|src\/demo\)"
+RESULT=$(grep -R -n "$REGEX" --include="*.gd" --include="*.tscn" project/src/main \
+  | grep -v "global\\.gd.*const SCENE_CUTSCENE_DEMO" \
+  )
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Illegal references to demo/test code in main:"
+  echo "$RESULT"
+fi
+
 # malformed block comments
 RESULT=$(grep -R -n "^#[^#]" --include="*.gd" project/src \
   | grep -v "warning-ignore" \
