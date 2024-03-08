@@ -17,7 +17,7 @@ signal chatter_talked(chatter)
 signal chat_event_meta_played(meta_item)
 
 ## emitted when creatures enter or exit a conversation
-signal visible_chatters_changed()
+signal visible_chatters_changed
 
 ## emitted when we present the player with a chat choice
 signal showed_chat_choices

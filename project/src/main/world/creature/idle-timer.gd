@@ -13,7 +13,7 @@ signal idle_animation_started(anim_name)
 ## notifies AnimationPlayers that any current idle animation should be interrupted. this class has no concept of how
 ## long each animation takes or whether they're still playing, so it's possible this signal will be emitted when no
 ## idle animation is active.
-signal idle_animation_stopped()
+signal idle_animation_stopped
 
 ## average amount of seconds to wait before launching an idle animation
 const IDLE_FREQUENCY := 24.0
