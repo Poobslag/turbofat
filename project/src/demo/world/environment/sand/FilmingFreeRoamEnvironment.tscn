@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/KitchenObstacleTiler.tscn" type="PackedScene" id=2]
@@ -16,29 +16,8 @@
 [ext_resource path="res://src/main/world/environment/restaurant/WoodTable.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/sand/RobotDog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/sand/Mic1.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=17]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=18]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z0-packed.png" type="Texture" id=19]
-[ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=20]
-[ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=21]
-[ext_resource path="res://assets/main/world/creature/10/ear-z2-packed.png" type="Texture" id=22]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=23]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=24]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=25]
-[ext_resource path="res://assets/main/world/creature/4/mouth-packed.png" type="Texture" id=26]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=27]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=28]
-[ext_resource path="res://assets/main/world/creature/10/ear-z0-packed.png" type="Texture" id=29]
-[ext_resource path="res://assets/main/world/creature/5/tail-z0-packed.png" type="Texture" id=30]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=31]
-[ext_resource path="res://assets/main/world/creature/5/tail-z1-packed.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/world/creature/4/accessory-z2-packed.png" type="Texture" id=33]
-[ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=34]
-[ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=35]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z1-packed.png" type="Texture" id=36]
-[ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=37]
-[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=38]
-[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=39]
+[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=38]
+[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=40]
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
@@ -104,6 +83,13 @@ impassable_tile_index = 1
 
 [node name="KitchenObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 2 )]
 
+[node name="Player" parent="Obstacles" instance=ExtResource( 39 )]
+position = Vector2( 1859.72, 203.034 )
+orientation = 3
+
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 38 )]
+position = Vector2( 1745.93, 118.989 )
+
 [node name="RobotDog" parent="Obstacles" instance=ExtResource( 15 )]
 position = Vector2( 1259.2, 264.534 )
 
@@ -163,23 +149,6 @@ position = Vector2( 1313.39, 219 )
 
 [node name="Stool11" parent="Obstacles" instance=ExtResource( 8 )]
 position = Vector2( 1383.76, 123.852 )
-
-[node name="Player" parent="Obstacles" instance=ExtResource( 1 )]
-position = Vector2( 1859.72, 203.034 )
-script = ExtResource( 39 )
-creature_id = "#player#"
-suppress_fatness = true
-orientation = 3
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 1 )]
-position = Vector2( 1745.93, 118.989 )
-script = ExtResource( 38 )
-suppress_fatness = true
-overworld_environment_path = NodePath("../..")
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="Spawns" type="Node2D" parent="."]
 

@@ -12,13 +12,13 @@
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/environment/restaurant/TurboFatRestaurant.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/lava/LavaRippleWaves.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/WaterRippleOverworldTiler.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/lava/LavaGroundMap.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/environment/lava/lava-obstacle-library.tres" type="TileSet" id=21]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=22]
-[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=24]
-[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=25]
 [ext_resource path="res://src/main/world/environment/lava/LavaCake.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/world/environment/lava/MushroomSmall.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/main/world/environment/lava/VolcanoLarge.tscn" type="PackedScene" id=28]
@@ -144,21 +144,11 @@ some_goop_tile_index = 5
 all_goop_tile_index = 2
 corner_tile_index = 6
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 3 )]
+[node name="Player" parent="Obstacles" instance=ExtResource( 15 )]
 position = Vector2( 2101.65, 1512.42 )
-script = ExtResource( 25 )
-creature_id = "#player#"
-suppress_fatness = true
 
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 3 )]
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 2040.81, 1368.19 )
-script = ExtResource( 24 )
-suppress_fatness = true
-overworld_environment_path = NodePath("../..")
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="TurboFatRestaurant" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( 680.675, 1451.43 )

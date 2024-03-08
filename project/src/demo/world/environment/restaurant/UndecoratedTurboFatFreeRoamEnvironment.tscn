@@ -1,33 +1,12 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/restaurant/UndecoratedFloorTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=6]
-[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=8]
-[ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=9]
-[ext_resource path="res://assets/main/world/creature/5/tail-z0-packed.png" type="Texture" id=10]
-[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=11]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=12]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=15]
-[ext_resource path="res://assets/main/world/creature/10/ear-z2-packed.png" type="Texture" id=16]
-[ext_resource path="res://assets/main/world/creature/4/accessory-z2-packed.png" type="Texture" id=17]
-[ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=18]
-[ext_resource path="res://assets/main/world/creature/10/ear-z0-packed.png" type="Texture" id=19]
-[ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=20]
-[ext_resource path="res://assets/main/world/creature/4/mouth-packed.png" type="Texture" id=21]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=22]
-[ext_resource path="res://assets/main/world/creature/5/tail-z1-packed.png" type="Texture" id=23]
-[ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=24]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=25]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z1-packed.png" type="Texture" id=26]
-[ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=27]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=28]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z0-packed.png" type="Texture" id=29]
+[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/world/environment/restaurant/undecorated-turbo-fat-obstacle-library.tres" type="TileSet" id=30]
 [ext_resource path="res://src/main/world/environment/restaurant/undecorated-floor-library.tres" type="TileSet" id=31]
 [ext_resource path="res://src/main/world/environment/restaurant/BoxStool2.tscn" type="PackedScene" id=32]
@@ -99,22 +78,12 @@ tile_data = PoolIntArray( -262125, 1, 0, -262124, 13, 0, -262123, 13, 0, -262122
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="Player" parent="Obstacles" instance=ExtResource( 4 )]
+[node name="Player" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 154.174, 285.058 )
-script = ExtResource( 6 )
-creature_id = "#player#"
-suppress_fatness = true
 orientation = 3
 
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 4 )]
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 40.3875, 201.013 )
-script = ExtResource( 8 )
-suppress_fatness = true
-overworld_environment_path = NodePath("../..")
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="WoodPillar" parent="Obstacles" instance=ExtResource( 36 )]
 position = Vector2( 498, 9 )

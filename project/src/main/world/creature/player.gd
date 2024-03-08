@@ -10,7 +10,6 @@ var free_roam := false
 
 func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
-	set_creature_id(CreatureLibrary.PLAYER_ID)
 	refresh_collision_extents()
 
 

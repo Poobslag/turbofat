@@ -6,7 +6,7 @@
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/poki/PokiCactusSmall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/poki/PuddleOverworldTiler.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=7]
+[ext_resource path="res://src/main/world/creature/Sensei.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/world/environment/poki/poki-obstacle-library.tres" type="TileSet" id=8]
 [ext_resource path="res://src/main/world/environment/poki/poki-terrain-library.tres" type="TileSet" id=9]
 [ext_resource path="res://src/main/world/environment/InvisibleObstacleTiler.tscn" type="PackedScene" id=10]
@@ -20,8 +20,8 @@
 [ext_resource path="res://src/main/world/environment/poki/WeAccept.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/environment/poki/Tent.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/main/world/environment/exit-ne-sheet.png" type="Texture" id=20]
+[ext_resource path="res://src/main/world/creature/Player.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=24]
-[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=28]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -104,24 +104,14 @@ tile_data = PoolIntArray( -851925, 1, 0, -851924, 1, 0, -851923, 1, 0, -851922, 
 ground_map_path = NodePath("../../../Ground/GroundMap")
 impassable_tile_index = 1
 
+[node name="Player" parent="Obstacles" instance=ExtResource( 21 )]
+position = Vector2( 3002.58, 1817.63 )
+
+[node name="Sensei" parent="Obstacles" instance=ExtResource( 7 )]
+position = Vector2( 2941.74, 1673.4 )
+
 [node name="TurboFatRestaurant" parent="Obstacles" instance=ExtResource( 3 )]
 position = Vector2( 581.884, 1354.79 )
-
-[node name="Player" parent="Obstacles" instance=ExtResource( 15 )]
-position = Vector2( 3002.58, 1817.63 )
-script = ExtResource( 28 )
-creature_id = "#player#"
-suppress_fatness = true
-
-[node name="Sensei" parent="Obstacles" instance=ExtResource( 15 )]
-position = Vector2( 2941.74, 1673.4 )
-script = ExtResource( 7 )
-suppress_fatness = true
-overworld_environment_path = NodePath("../..")
-
-[node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="Tent" parent="Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 3219.37, 1644.62 )
