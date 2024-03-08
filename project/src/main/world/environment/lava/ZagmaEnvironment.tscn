@@ -203,9 +203,6 @@ phase = 8
 
 [node name="WallDecorationB" parent="Obstacles" instance=ExtResource( 41 )]
 position = Vector2( 1335.02, 0 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="WallDecorationC" parent="Obstacles" instance=ExtResource( 34 )]
 position = Vector2( 1335.02, 1 )
@@ -220,15 +217,9 @@ position = Vector2( -215, 290 )
 
 [node name="ConfettiAirParticles2" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 249.56, 366.488 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ConfettiAirParticles1" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 249.875, 314.339 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ConfettiCannon1" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( -31.5114, 509.458 )

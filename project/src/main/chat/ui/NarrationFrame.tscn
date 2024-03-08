@@ -17,7 +17,6 @@ margin_top = 400.0
 rect_pivot_offset = Vector2( 362, 79 )
 script = ExtResource( 7 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "Defines the extents of the chat area."
 }
 

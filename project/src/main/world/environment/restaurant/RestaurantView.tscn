@@ -178,9 +178,6 @@ margin_left = 34.2544
 margin_top = 310.109
 margin_right = 324.254
 margin_bottom = 580.109
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Clip" type="Light2D" parent="Customer"]
 position = Vector2( 145.578, 134.648 )
@@ -251,9 +248,6 @@ margin_left = 816.277
 margin_top = 155.187
 margin_right = 966.277
 margin_bottom = 295.187
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Clip" type="Light2D" parent="Chef"]
 position = Vector2( 75.713, 69.956 )

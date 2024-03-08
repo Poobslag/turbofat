@@ -23,9 +23,6 @@ margin_bottom = 25.0
 mouse_filter = 2
 size_flags_vertical = 4
 color = Color( 1, 1, 1, 0.196078 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Label" parent="ColorRect" instance=ExtResource( 2 )]
 anchor_right = 1.0

@@ -327,9 +327,6 @@ align = 1
 valign = 1
 autowrap = true
 max_lines_visible = 1
-__meta__ = {
-"_editor_description_": ""
-}
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
 [node name="ProgressBarParticles" type="Control" parent="Fg/Chalkboard/MilestoneHud"]
@@ -376,9 +373,6 @@ margin_top = -72.0
 margin_right = 788.0
 margin_bottom = 672.0
 script = ExtResource( 84 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="NormalShadow" type="Polygon2D" parent="Fg/PlayfieldShadow"]
 visible = false
@@ -546,9 +540,6 @@ margin_right = 76.0
 margin_bottom = 76.0
 texture = ExtResource( 81 )
 expand = true
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="StepMeter" type="Control" parent="Fg" groups=["night_mode_light"]]
 margin_left = 786.626

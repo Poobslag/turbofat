@@ -73,9 +73,6 @@ text = "abc
 (0/5)"
 align = 1
 valign = 1
-__meta__ = {
-"_editor_description_": ""
-}
 fonts = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="TaskCompleteSound" type="AudioStreamPlayer" parent="."]

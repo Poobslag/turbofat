@@ -173,9 +173,6 @@ theme = ExtResource( 5 )
 valign = 1
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 7 )]
-__meta__ = {
-"_editor_description_": ""
-}
 codes = [ "unlock" ]
 
 [connection signal="button_added" from="VBoxContainer/Top/RegionButtons" to="VBoxContainer/Top/GradeLabels" method="_on_RegionButtons_button_added"]

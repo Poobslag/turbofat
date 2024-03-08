@@ -150,14 +150,8 @@ id = "chef"
 
 [node name="Camera" parent="Spawns" instance=ExtResource( 8 )]
 position = Vector2( 1165.17, 264.535 )
-__meta__ = {
-"_editor_description_": ""
-}
 id = "camera"
 
 [node name="CameraLeft" parent="Spawns" instance=ExtResource( 8 )]
 position = Vector2( 1108.61, 223.523 )
-__meta__ = {
-"_editor_description_": ""
-}
 id = "camera-left"

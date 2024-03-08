@@ -41,9 +41,6 @@ _data = {
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 22 )
-__meta__ = {
-"_edit_vertical_guides_": [  ]
-}
 environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
 CreatureScene = ExtResource( 3 )
@@ -73,9 +70,6 @@ tile_data = PoolIntArray( -2359224, 1, 65539, -2359220, 536870918, 0, -2293689, 
 [node name="WaterRippleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 18 )]
 
 [node name="PebbleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 4 )]
-__meta__ = {
-"_editor_description_": ""
-}
 pebble_density = 0.06
 ground_no_goop_tile_index = 1
 pebble_tile_index = 1

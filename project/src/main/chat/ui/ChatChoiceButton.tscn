@@ -250,9 +250,6 @@ align = 1
 valign = 1
 autowrap = true
 max_lines_visible = 1
-__meta__ = {
-"_editor_description_": ""
-}
 fonts = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ]
 
 [node name="MoodSprite" type="Control" parent="."]
