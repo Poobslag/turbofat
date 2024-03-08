@@ -40,6 +40,8 @@ onready var _creature_animations: CreatureAnimations = $Creature.creature_visual
 func _ready() -> void:
 	if creature_path:
 		_creature.creature_def = CreatureDef.new().from_json_path(creature_path)
+	else:
+		_creature.dna = DnaUtils.random_dna()
 
 
 func _physics_process(_delta: float) -> void:

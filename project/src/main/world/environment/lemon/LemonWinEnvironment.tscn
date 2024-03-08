@@ -95,15 +95,11 @@ impassable_tile_index = 1
 [node name="Player" parent="Obstacles" instance=ExtResource( 4 )]
 position = Vector2( 956.203, 478.918 )
 creature_id = "#player#"
-dna = {
-}
 orientation = 1
 
 [node name="Sensei" parent="Obstacles" instance=ExtResource( 4 )]
 position = Vector2( 68.6856, 477.653 )
 creature_id = "#sensei#"
-dna = {
-}
 
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( 4.17288, 464.939 )

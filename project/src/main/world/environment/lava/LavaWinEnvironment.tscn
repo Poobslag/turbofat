@@ -101,15 +101,11 @@ corner_tile_index = 6
 [node name="Player" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 956.203, 478.918 )
 creature_id = "#player#"
-dna = {
-}
 orientation = 1
 
 [node name="Sensei" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 68.6856, 477.653 )
 creature_id = "#sensei#"
-dna = {
-}
 
 [node name="Mushroom" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 79.8061, 587.102 )

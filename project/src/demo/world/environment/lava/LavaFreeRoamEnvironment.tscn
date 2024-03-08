@@ -148,15 +148,11 @@ corner_tile_index = 6
 position = Vector2( 2101.65, 1512.42 )
 script = ExtResource( 25 )
 creature_id = "#player#"
-dna = {
-}
 suppress_fatness = true
 
 [node name="Sensei" parent="Obstacles" instance=ExtResource( 3 )]
 position = Vector2( 2040.81, 1368.19 )
 script = ExtResource( 24 )
-dna = {
-}
 suppress_fatness = true
 overworld_environment_path = NodePath("../..")
 
