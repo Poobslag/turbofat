@@ -25,9 +25,6 @@
 
 [node name="Shadows" type="Node2D"]
 script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ObstacleMapShadows" type="TileMap" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -39,15 +36,9 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="CreatureShadows" parent="." instance=ExtResource( 4 )]
 
 [node name="ShadowCasterShadows" type="Node2D" parent="."]
 script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
 OvalShadowScene = ExtResource( 3 )

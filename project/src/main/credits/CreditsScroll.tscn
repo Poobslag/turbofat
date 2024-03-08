@@ -220,9 +220,6 @@ handle_input_locally = false
 hdr = false
 usage = 0
 render_target_update_mode = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Panel" type="Panel" parent="Movie"]
 margin_left = 50.0
@@ -256,9 +253,6 @@ margin_left = -256.0
 margin_top = -300.0
 margin_right = 256.0
 margin_bottom = 300.0
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Lines" type="Control" parent="FixedContainer/ScrollingContainer"]
 anchor_right = 1.0

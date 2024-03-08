@@ -73,9 +73,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Career"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Practice" type="Button" parent="DropPanel/Play"]
 margin_left = 134.0

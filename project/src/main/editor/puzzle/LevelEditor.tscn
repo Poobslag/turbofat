@@ -116,9 +116,6 @@ margin_bottom = 128.0
 theme = ExtResource( 11 )
 shortcut_in_tooltip = false
 text = "Save"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/SideButtons"]
 margin_top = 132.0
@@ -132,9 +129,6 @@ margin_bottom = 166.0
 theme = ExtResource( 11 )
 shortcut_in_tooltip = false
 text = "Test"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Json" type="TextEdit" parent="HBoxContainer/SideButtons"]
 margin_top = 170.0
@@ -156,9 +150,6 @@ theme = ExtResource( 11 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 10 )
 text = "Settings"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Quit" type="Button" parent="HBoxContainer/SideButtons"]
 margin_top = 564.0
@@ -167,9 +158,6 @@ margin_bottom = 590.0
 theme = ExtResource( 11 )
 shortcut_in_tooltip = false
 text = "Quit"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Ui" type="CanvasLayer" parent="."]
 

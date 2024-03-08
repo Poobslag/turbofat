@@ -81,9 +81,6 @@ margin_top = 229.533
 margin_right = 654.669
 margin_bottom = 404.533
 script = ExtResource( 3 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Customer" type="Control" parent="."]
 light_mask = 2
@@ -95,9 +92,6 @@ margin_left = -100.0
 margin_top = -87.5
 margin_right = 100.0
 margin_bottom = 87.5
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Clip" type="Light2D" parent="Customer"]
 position = Vector2( 100, 87.5 )

@@ -1286,10 +1286,6 @@ theme = ExtResource( 2 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 14 )
 text = "Settings"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="Quit" type="Button" parent="Ui"]
 margin_left = 839.0
@@ -1299,10 +1295,6 @@ margin_bottom = 595.0
 theme = ExtResource( 2 )
 shortcut_in_tooltip = false
 text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="Reroll" type="VBoxContainer" parent="Ui"]
 margin_left = 220.0
@@ -1322,10 +1314,6 @@ theme = ExtResource( 2 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 14 )
 text = "Reroll (100%)"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="HSlider" type="HSlider" parent="Ui/Reroll"]
 margin_top = 56.0

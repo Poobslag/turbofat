@@ -4499,8 +4499,5 @@ creature_visuals_path = NodePath("../..")
 
 [node name="EmoteSfx" parent="." instance=ExtResource( 14 )]
 stream = ExtResource( 11 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

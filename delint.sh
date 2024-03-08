@@ -260,6 +260,23 @@ then
   echo "$RESULT"
 fi
 
+# unnecessary metadata in .tscn files
+RESULT=""
+RESULT+=Ê$(grep -R -n "\"_edit_use_anchors_\": false" --include="*.tscn" project/src)
+RESULT+=Ê$(grep -R -n "\"_editor_description_\": \"\"" --include="*.tscn" project/src)
+RESULT+=Ê$(grep -R -n "\"_edit_vertical_guides_\": \[  \]" --include="*.tscn" project/src)
+RESULT=$(echo "${RESULT}" |
+  sed 's/ÊÊÊ*/Ê/g' | # remove consecutive newline placeholders
+  sed 's/^Ê\(.*\)$/\1/g' | # remove trailing newline placeholders
+  sed 's/^\(.*\)Ê$/\1/g' | # remove following newline placeholders
+  sed 's/Ê/\n/g') # convert newline placeholders to newlines
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Unnecessary metadata:"
+  echo "$RESULT"
+fi
+
 # orphaned .import files
 RESULT=""
 while IFS= read -r import_file; do

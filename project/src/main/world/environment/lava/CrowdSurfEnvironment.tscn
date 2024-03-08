@@ -55,9 +55,6 @@ tile_data = PoolIntArray( -1769468, 536870913, 65539, -1769467, 8, 65537, -17694
 [node name="WaterRippleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 16 )]
 
 [node name="PebbleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 2 )]
-__meta__ = {
-"_editor_description_": ""
-}
 pebble_density = 0.06
 ground_no_goop_tile_index = 1
 pebble_tile_index = 1

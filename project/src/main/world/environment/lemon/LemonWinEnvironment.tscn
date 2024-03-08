@@ -44,9 +44,6 @@ format = 1
 tile_data = PoolIntArray( 393221, 1, 65537, 720907, 1, 1, 1048590, 1, 2 )
 
 [node name="PebbleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 8 )]
-__meta__ = {
-"_editor_description_": ""
-}
 pebble_density = 0.015
 ground_no_goop_tile_index = 1
 pebble_tile_index = 1

@@ -537,9 +537,6 @@ margin_right = 340.203
 margin_bottom = 233.604
 rect_pivot_offset = Vector2( 340.2, 233.604 )
 mouse_filter = 2
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Chalkboard" type="TextureRect" parent="ChalkboardRegion"]
 anchor_right = 1.0

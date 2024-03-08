@@ -15,12 +15,6 @@ margin_right = -343.597
 margin_bottom = -132.792
 texture = ExtResource( 1 )
 expand = true
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 28 )
-__meta__ = {
-"_editor_description_": ""
-}

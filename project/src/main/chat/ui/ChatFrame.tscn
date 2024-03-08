@@ -43,9 +43,6 @@ margin_right = 540.0
 margin_bottom = 4.57764e-05
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ChatLineLabel" parent="." instance=ExtResource( 2 )]
 panel_padding = Vector2( 60, 40 )

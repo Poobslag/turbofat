@@ -21,9 +21,6 @@ shape = SubResource( 1 )
 [node name="MoveTimer" type="Timer" parent="." index="4"]
 wait_time = 1.5
 autostart = true
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="MoodTimer" type="Timer" parent="." index="5"]
 wait_time = 5.5

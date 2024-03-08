@@ -127,9 +127,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
 margin_right = 560.0
@@ -302,9 +299,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
 margin_right = 560.0
@@ -421,10 +415,6 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="LinePiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 142.0
@@ -782,9 +772,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
 margin_right = 560.0
@@ -924,9 +911,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
 margin_right = 560.0
@@ -1001,9 +985,6 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 custom_constants/separation = 20
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer"]
 margin_right = 160.0

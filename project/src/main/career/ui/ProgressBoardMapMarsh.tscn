@@ -18,6 +18,3 @@ expand = true
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 28 )
-__meta__ = {
-"_editor_description_": ""
-}
