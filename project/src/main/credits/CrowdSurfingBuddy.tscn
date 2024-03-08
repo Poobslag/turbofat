@@ -9,8 +9,6 @@ extents = Vector2( 28, 14 )
 
 [node name="Creature" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-dna = {
-}
 buddy_path = NodePath("")
 destination_path = NodePath("")
 leader_or_follower = 0
