@@ -53,3 +53,32 @@ func add_pinup(creature_id: String, pinup_side: int) -> void:
 	
 	# initialize velocity
 	scroller.velocity = velocity
+
+
+## Animates the creature's appearance according to the specified mood: happy, angry, etc...
+##
+## Parameters:
+## 	'creature_id': The creature to animate
+##
+## 	'mood_name': A snake-case enum from Creatures.Mood such as 'think0'
+func play_pinup_mood(creature_id: String, mood_name: String) -> void:
+	var scroller: PinupScroller = _find_scroller_for_creature_id(creature_id)
+	if not scroller:
+		push_warning("Unrecognized creature id: %s" % [creature_id])
+		return
+	
+	var mood_int: int = Utils.enum_from_snake_case(Creatures.Mood, mood_name, 0)
+	if mood_int == 0:
+		push_warning("Unrecognized mood: %s" % [mood_name])
+		return
+	
+	scroller.pinup.play_mood(mood_int)
+
+
+func _find_scroller_for_creature_id(creature_id: String) -> PinupScroller:
+	var result: PinupScroller
+	for pinup_scroller_obj in _pinup_holder.get_children():
+		var pinup_scroller: PinupScroller = pinup_scroller_obj
+		if pinup_scroller.pinup.creature_id == creature_id:
+			result = pinup_scroller
+	return result

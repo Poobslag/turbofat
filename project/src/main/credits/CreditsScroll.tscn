@@ -142,8 +142,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 12.688, 16.592, 20.496, 59.536, 63.44, 67.344, 71.248, 75.152, 79.056, 82.96 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 12.688, 16.592, 17.86, 20.496, 21.77, 25.57, 59.536, 63.44, 65.34, 67.344, 69.05, 71.248, 72.95, 75.152, 77.05, 79.056, 80.91, 82.96, 84.71, 86.864, 88.62 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ "goris", 1 ],
 "method": "add_pinup"
@@ -151,8 +151,17 @@ tracks/4/keys = {
 "args": [ "chelle", 0 ],
 "method": "add_pinup"
 }, {
+"args": [ "goris", "wave2" ],
+"method": "play_pinup_mood"
+}, {
 "args": [ "shirts", 1 ],
 "method": "add_pinup"
+}, {
+"args": [ "chelle", "think0" ],
+"method": "play_pinup_mood"
+}, {
+"args": [ "shirts", "sigh1" ],
+"method": "play_pinup_mood"
 }, {
 "args": [ "tunathy", 1 ],
 "method": "add_pinup"
@@ -160,20 +169,44 @@ tracks/4/keys = {
 "args": [ "frungle", 0 ],
 "method": "add_pinup"
 }, {
+"args": [ "tunathy", "sweat0" ],
+"method": "play_pinup_mood"
+}, {
 "args": [ "bones", 1 ],
 "method": "add_pinup"
+}, {
+"args": [ "frungle", "rage1" ],
+"method": "play_pinup_mood"
 }, {
 "args": [ "namory", 0 ],
 "method": "add_pinup"
 }, {
+"args": [ "bones", "love0" ],
+"method": "play_pinup_mood"
+}, {
 "args": [ "#sensei#", 1 ],
 "method": "add_pinup"
+}, {
+"args": [ "namory", "sly0" ],
+"method": "play_pinup_mood"
 }, {
 "args": [ "#player#", 0 ],
 "method": "add_pinup"
 }, {
+"args": [ "#sensei#", "yes1" ],
+"method": "play_pinup_mood"
+}, {
 "args": [ "mara", 1 ],
 "method": "add_pinup"
+}, {
+"args": [ "#player#", "think0" ],
+"method": "play_pinup_mood"
+}, {
+"args": [ "#player#", "cry1" ],
+"method": "play_pinup_mood"
+}, {
+"args": [ "mara", "laugh0" ],
+"method": "play_pinup_mood"
 } ]
 }
 

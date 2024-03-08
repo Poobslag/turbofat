@@ -137,6 +137,7 @@ texture = ExtResource( 1 )
 expand = true
 
 [node name="Creature" parent="Customer/View/Viewport" instance=ExtResource( 8 )]
+suppress_sfx = true
 
 [node name="Camera2D" type="Camera2D" parent="Customer/View/Viewport"]
 position = Vector2( 0, -50 )
