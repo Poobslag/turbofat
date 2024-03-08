@@ -16,9 +16,6 @@ extents = Vector2( 215, 70 )
 
 [node name="SandHouse" type="KinematicBody2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 5.1
 
 [node name="Sprite" type="Sprite" parent="."]

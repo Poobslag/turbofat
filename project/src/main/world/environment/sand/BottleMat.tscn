@@ -15,6 +15,3 @@ material = SubResource( 1 )
 position = Vector2( 177.429, 159.77 )
 scale = Vector2( 0.539, 0.539 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}

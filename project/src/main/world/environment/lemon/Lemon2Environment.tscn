@@ -239,10 +239,6 @@ mouth_type = 4
 
 [node name="LemonTree13" parent="Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 1486.32, 1849.77 )
-__meta__ = {
-"_edit_group_": true,
-"shadow_scale": 1.0
-}
 mouth_type = 7
 
 [node name="LemonTree14" parent="Obstacles" instance=ExtResource( 23 )]

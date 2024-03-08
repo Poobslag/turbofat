@@ -43,9 +43,6 @@ extents = Vector2( 40, 28 )
 [node name="Tree" type="KinematicBody2D"]
 position = Vector2( 531.162, 536.052 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 1.4
 
 [node name="Sprite" type="Sprite" parent="."]

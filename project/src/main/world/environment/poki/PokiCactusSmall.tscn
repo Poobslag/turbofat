@@ -10,9 +10,6 @@ extents = Vector2( 28, 14 )
 [node name="CactusSmall" type="KinematicBody2D"]
 position = Vector2( 480.957, 462.977 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.4
 
 [node name="Sprite" type="Sprite" parent="."]

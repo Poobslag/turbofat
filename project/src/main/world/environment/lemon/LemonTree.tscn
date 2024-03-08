@@ -301,10 +301,6 @@ extents = Vector2( 28, 14 )
 [node name="LemonTree" type="KinematicBody2D"]
 position = Vector2( 531.162, 536.052 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true,
-"shadow_scale": 1.0
-}
 
 [node name="Leaves" type="Sprite" parent="."]
 material = ExtResource( 2 )

@@ -49,9 +49,6 @@ extents = Vector2( 40, 28 )
 
 [node name="Flag" type="KinematicBody2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]

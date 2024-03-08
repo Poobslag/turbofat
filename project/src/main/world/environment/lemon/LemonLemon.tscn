@@ -16,9 +16,6 @@ extents = Vector2( 36, 18 )
 
 [node name="LemonLemon" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.4
 
 [node name="Sprite" type="Sprite" parent="."]

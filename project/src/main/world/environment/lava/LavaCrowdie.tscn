@@ -28,9 +28,6 @@ extents = Vector2( 28, 14 )
 [node name="Crowdie" type="KinematicBody2D" groups=["lava_crowdies"]]
 position = Vector2( 561.443, 360.624 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.4
 
 [node name="SpriteHolder" type="Node2D" parent="."]

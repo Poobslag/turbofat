@@ -17,9 +17,6 @@ extents = Vector2( 210, 97.262 )
 [node name="ButtercupRestaurant" type="KinematicBody2D"]
 position = Vector2( -554.999, 704.673 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 4.7
 
 [node name="Sprite" type="Sprite" parent="."]

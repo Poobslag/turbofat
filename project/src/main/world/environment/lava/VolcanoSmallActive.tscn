@@ -67,9 +67,6 @@ tracks/0/keys = {
 
 [node name="VolcanoSmallActive" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 1.6
 variant = 1
 

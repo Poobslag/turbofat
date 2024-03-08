@@ -43,9 +43,6 @@ extents = Vector2( 28, 14 )
 [node name="MarshTree" type="KinematicBody2D"]
 position = Vector2( 531.162, 536.052 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 1 )

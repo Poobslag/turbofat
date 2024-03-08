@@ -17,9 +17,6 @@ extents = Vector2( 60, 20 )
 [node name="CrateTable" type="KinematicBody2D"]
 position = Vector2( 380, 405 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]

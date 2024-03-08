@@ -16,9 +16,6 @@ extents = Vector2( 125, 60 )
 
 [node name="PlayerHouse" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 2.5
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -16,9 +16,6 @@ extents = Vector2( 20, 10 )
 
 [node name="GravesiteGrave" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.3
 
 [node name="Sprite" type="Sprite" parent="."]
