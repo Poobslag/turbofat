@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/main/world/environment/lava/zagma-mini-wall-light-sheet.png" type="Texture" id=1]
-[ext_resource path="res://src/demo/world/environment/lava/mini-wall-light.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/lava/mini-wall-light.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
