@@ -19,9 +19,7 @@ var _overworld_environment: OverworldEnvironment
 onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
-	set_creature_id(CreatureLibrary.SENSEI_ID)
 	_refresh_overworld_environment_path()
-	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
 
 
 func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
