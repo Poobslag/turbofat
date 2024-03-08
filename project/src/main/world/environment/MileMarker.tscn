@@ -15,9 +15,6 @@ font_data = ExtResource( 4 )
 [node name="MileMarker" type="KinematicBody2D" groups=["mile_markers"]]
 position = Vector2( 60.0678, 68.7442 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.25
 mile_number = 100
 

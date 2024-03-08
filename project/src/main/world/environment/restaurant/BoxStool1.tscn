@@ -17,10 +17,6 @@ extents = Vector2( 28, 14 )
 
 [node name="BoxStool" type="KinematicBody2D" groups=["stools"]]
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true,
-"shadow_scale": 0.5
-}
 shadow_scale = 0.5
 occupied_texture = ExtResource( 5 )
 unoccupied_texture = ExtResource( 2 )

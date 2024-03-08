@@ -171,9 +171,6 @@ sfx_disabled = true
 
 [node name="TurboFatRestaurant3" parent="Obstacles" instance=ExtResource( 27 )]
 position = Vector2( 4889.83, 2387.49 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="BrotSpot" parent="Obstacles" instance=ExtResource( 32 )]
 position = Vector2( 3134.11, 3031.79 )

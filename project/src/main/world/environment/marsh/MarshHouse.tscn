@@ -17,9 +17,6 @@ extents = Vector2( 140, 70 )
 [node name="MarshHouse" type="KinematicBody2D"]
 position = Vector2( -672.062, 948.923 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 2.2
 
 [node name="Sprite" type="Sprite" parent="."]

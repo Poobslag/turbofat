@@ -15,7 +15,6 @@ extents = Vector2( 28, 14 )
 [node name="Creature" type="KinematicBody2D" groups=["creatures"]]
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_group_": true,
 "chat_id": "",
 "dna": {
 "accessory": "0",

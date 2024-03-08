@@ -22,9 +22,6 @@ extents = Vector2( 325.999, 97.2622 )
 [node name="TurboFatRestaurant" type="KinematicBody2D"]
 position = Vector2( 903.99, 1070.05 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 5.5
 SmokeClusterScene = ExtResource( 6 )
 

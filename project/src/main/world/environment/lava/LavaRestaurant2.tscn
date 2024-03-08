@@ -13,9 +13,6 @@ shader_param/edge_fix_factor = 1.0
 
 [node name="LavaRestaurant2" type="KinematicBody2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 3.0
 
 [node name="Restaurant" type="Sprite" parent="."]

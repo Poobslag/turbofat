@@ -10,9 +10,6 @@ extents = Vector2( 50, 14 )
 [node name="Marshmallow" type="KinematicBody2D"]
 position = Vector2( 536.121, 330.356 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 0.6
 
 [node name="Sprite" type="Sprite" parent="."]

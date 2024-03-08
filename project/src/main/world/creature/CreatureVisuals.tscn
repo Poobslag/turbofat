@@ -682,9 +682,6 @@ material = SubResource( 25 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -239 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="EmoteBrain" type="Node2D" parent="Neck0/HeadBobber"]
 modulate = Color( 1, 1, 1, 0 )

@@ -16,9 +16,6 @@ animations = [ {
 
 [node name="VolcanoLarge" type="KinematicBody2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 3.2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

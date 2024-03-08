@@ -8,9 +8,6 @@
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 target_properties = {
 "creature_id": "",
 "elevation": 0.0,

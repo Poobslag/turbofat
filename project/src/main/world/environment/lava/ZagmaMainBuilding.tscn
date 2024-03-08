@@ -51,9 +51,6 @@ extents = Vector2( 270, 60 )
 [node name="ZagmaMainBuilding" type="KinematicBody2D"]
 position = Vector2( 3843.47, 2146.26 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 4.0
 
 [node name="Building" type="Sprite" parent="."]

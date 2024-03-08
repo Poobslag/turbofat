@@ -16,9 +16,6 @@ extents = Vector2( 270, 85 )
 
 [node name="BrotSpot" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 shadow_scale = 4.5
 
 [node name="Sprite" type="Sprite" parent="."]

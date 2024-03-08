@@ -4,6 +4,3 @@
 
 [node name="ObstacleSpawner" type="Sprite"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
