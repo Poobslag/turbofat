@@ -272,6 +272,15 @@ then
   echo "$RESULT"
 fi
 
+# 'Environment2' nodes; the Godot editor randomly creates these when running FreeRoam mode
+RESULT=$(grep -R -n "node name=\"Environment2\"" --include="*.tscn" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "'Environment2' nodes:"
+  echo "$RESULT"
+fi
+
 # unnecessary metadata in .tscn files
 RESULT=""
 RESULT+=Ê$(grep -R -n "\"_edit_use_anchors_\": false" --include="*.tscn" project/src)
