@@ -25,7 +25,7 @@
 [ext_resource path="res://src/main/world/environment/restaurant/CarpetTiler.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/main/world/environment/restaurant/KitchenObstacleTiler.tscn" type="PackedScene" id=46]
 
-[node name="Environment2" type="Node2D" groups=["overworld_environments"]]
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 26 )
 environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
