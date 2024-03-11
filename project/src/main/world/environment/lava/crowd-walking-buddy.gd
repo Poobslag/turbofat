@@ -7,11 +7,10 @@ func _ready() -> void:
 	stop_walking()
 
 
-func play_mood_think0() -> void:
-	stop_walking()
-	play_mood(Creatures.Mood.THINK0)
-
-
-func play_mood_smile0() -> void:
-	stop_walking()
-	play_mood(Creatures.Mood.SMILE0)
+## Animates the creature's appearance according to the specified mood: happy, angry, etc...
+##
+## Parameters:
+## 	'mood_name': A snake-case enum from Creatures.Mood such as 'think0'
+func play_mood_by_name(mood_name: String) -> void:
+	var mood := Utils.enum_from_snake_case(Creatures.Mood, mood_name)
+	play_mood(mood)
