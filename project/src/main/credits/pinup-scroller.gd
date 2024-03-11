@@ -18,7 +18,7 @@ export (float) var line_height: float
 var velocity := Vector2(0, -50)
 var _tween: SceneTreeTween
 
-onready var _pinup := $Pinup
+onready var pinup := $Pinup
 
 func _physics_process(delta: float) -> void:
 	if Engine.editor_hint:

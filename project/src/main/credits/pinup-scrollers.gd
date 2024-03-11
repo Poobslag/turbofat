@@ -47,8 +47,8 @@ func add_pinup(creature_id: String, pinup_side: int) -> void:
 		 scroller.position.x = 512 - scroller.position.x
 	
 	# initialize it to the correct creature ID
-	scroller._pinup.creature_id = creature_id
-	scroller._pinup.orientation = \
+	scroller.pinup.creature_id = creature_id
+	scroller.pinup.orientation = \
 			Creatures.SOUTHEAST if pinup_side == PinupScroller.SIDE_LEFT else Creatures.SOUTHWEST
 	
 	# initialize velocity
