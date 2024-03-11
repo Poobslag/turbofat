@@ -1239,11 +1239,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/score-rules.gd"
 }, {
-"base": "Creature",
-"class": "Sensei",
-"language": "GDScript",
-"path": "res://src/main/world/creature/free-roam-sensei.gd"
-}, {
 "base": "CanvasLayer",
 "class": "SettingsMenu",
 "language": "GDScript",
@@ -1731,7 +1726,6 @@ _global_script_class_icons={
 "SaveItemUpgrader": "",
 "SaveSlotControl": "",
 "ScoreRules": "",
-"Sensei": "",
 "SettingsMenu": "",
 "ShadowCasterShadows": "",
 "Shark": "",
