@@ -40,6 +40,7 @@ func stop() -> void:
 func start() -> void:
 	visible = true
 	
+	pinup.reset()
 	modulate = Color.transparent
 	_tween = Utils.recreate_tween(self, _tween)
 	_tween.tween_property(self, "modulate", Color.white, FADE_DURATION)

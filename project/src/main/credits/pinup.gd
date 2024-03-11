@@ -10,10 +10,26 @@ var orientation: int = Creatures.SOUTHEAST setget set_orientation
 ## The velocity that the pinup moves up the screen.
 var velocity := Vector2(0, -50)
 
-onready var creature := $Customer/View/Viewport/Creature
+onready var creature := $Untransformed/View/Viewport/Creature
 
-onready var _bg_color_rect := $Customer/View/Viewport/Bg/ColorRect
-onready var _nametag_panel := $Customer/Nametag/Panel
+onready var _bg_color_rect := $Untransformed/View/Viewport/Bg/ColorRect
+onready var _nametag_panel := $Nametag/Panel
+onready var _transformed := $Transformed
+onready var _transformed_player := $Transformed/AnimationPlayer
+onready var _transformed_sprite := $Transformed/Sprite
+onready var _untransformed := $Untransformed
+
+onready var _transformed_sprites_by_creature_id := {
+	"#sensei#": preload("res://assets/main/credits/pinup-sensei.png"),
+	"bones": preload("res://assets/main/credits/pinup-bones.png"),
+	"chelle": preload("res://assets/main/credits/pinup-chelle.png"),
+	"frungle": preload("res://assets/main/credits/pinup-frungle.png"),
+	"goris": preload("res://assets/main/credits/pinup-goris.png"),
+	"mara": preload("res://assets/main/credits/pinup-mara.png"),
+	"namory": preload("res://assets/main/credits/pinup-namory.png"),
+	"shirts": preload("res://assets/main/credits/pinup-shirts.png"),
+	"tunathy": preload("res://assets/main/credits/pinup-tunathy.png"),
+}
 
 func _ready() -> void:
 	_refresh()
@@ -40,6 +56,27 @@ func set_orientation(new_orientation: int) -> void:
 ## 	'mood': The creature's new mood from Creatures.Mood
 func play_mood(mood: int) -> void:
 	creature.play_mood(mood)
+
+
+## Restores the pinup to its default untransformed state.
+func reset() -> void:
+	_transformed_player.play("RESET")
+	_untransformed.visible = true
+	_transformed.visible = false
+
+
+## Replaces the pinup with a stylish transformed image.
+func transform(flip_h: bool = false) -> void:
+	_untransformed.visible = false
+	_transformed.visible = true
+	_transformed_sprite.flip_h = flip_h
+	_transformed_player.play("play")
+	
+	# initialize the mix_color shader param, otherwise there will be one non-white frame visible
+	_transformed_sprite.material.set_shader_param("mix_color", Color.white)
+	
+	if creature_id in _transformed_sprites_by_creature_id:
+		_transformed_sprite.texture = _transformed_sprites_by_creature_id[creature_id]
 
 
 func _refresh() -> void:

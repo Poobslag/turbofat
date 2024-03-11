@@ -9,6 +9,8 @@ extends Node
 ## 	[D]: Show a wall of text.
 ## 	[F]: Transform a header letter into a bubbly block.
 ## 	[M]: Toggles music.
+## 	[T]: Make all pieces target the right transformation target.
+## 	[Shift + T]: Make all pieces target the left transformation target.
 ## 	[=/-]: Make the credits movie visible/invisible.
 ## 	[Shift + F]: Transform all header letters into bubbly blocks.
 ## 	[Keypad 7,8,9]: Move the credits to the left, top, or right position and hide the header.
@@ -53,6 +55,12 @@ func _input(event: InputEvent) -> void:
 				SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.7)
 			else:
 				SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.0)
+		KEY_T:
+			for i in range(500):
+				if event.shift:
+					_scroll.set_left_transformation_target_for_piece(i)
+				else:
+					_scroll.set_right_transformation_target_for_piece(i)
 		KEY_EQUAL:
 			_scroll.movie_visible = true
 		KEY_MINUS:
