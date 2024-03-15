@@ -12,7 +12,7 @@ const BOUNCE_HEIGHT := 30
 const CHEER_PROBABILITY := 0.35
 
 const CROWD_COLORS := [
-	Color("3d291f"),
+	Color("41281e"),
 	Color("4c3125"),
 	Color("5d3b2b"),
 	Color("6c4331"),

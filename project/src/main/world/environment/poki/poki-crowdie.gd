@@ -6,7 +6,7 @@ extends OverworldObstacle
 ## This script randomizes the crowdie's color, appearance and direction.
 
 const CROWD_COLORS := [
-	Color("3d291f"),
+	Color("41281e"),
 	Color("4c3125"),
 	Color("5d3b2b"),
 	Color("6c4331"),
