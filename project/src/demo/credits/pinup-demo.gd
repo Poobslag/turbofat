@@ -9,10 +9,16 @@ extends Node
 
 const FATNESS_KEYS := [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
+export (String) var creature_id: String
+
 onready var _pinup := $Pinup
 
 func _ready() -> void:
-	_randomize_creature()
+	if creature_id:
+		_pinup.creature.suppress_fatness = true
+		_pinup.creature_id = creature_id
+	else:
+		_randomize_creature()
 
 
 func _input(event: InputEvent) -> void:
