@@ -8,7 +8,7 @@ extends Node
 ## 	PART_3: Additional credits scroll
 
 ## Threshold where the credits adjust their visuals to sync back up with the music.
-const DESYNC_THRESHOLD_MSEC := 100
+const DESYNC_THRESHOLD_MSEC := 40
 
 ## Duration in seconds for the first part of the credits, the initial credits scroll.
 const PART_1_DURATION := 40.0
