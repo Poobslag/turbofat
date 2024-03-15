@@ -17,7 +17,7 @@ const BG_PATH_BY_ID := {
 ## key: (String) an Environment id which appears in the json definitions
 ## value: (Color) Color for shadows in the puzzle scene
 const BG_SHADOW_COLOR_BY_ID := {
-	"lemon": Color("3d291f"),
+	"lemon": Color("41281e"),
 }
 
 ## Nodes showing shadows to recolor when the background changes.
