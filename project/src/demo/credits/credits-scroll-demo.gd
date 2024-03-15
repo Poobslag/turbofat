@@ -13,7 +13,7 @@ extends Node
 ## 	[Shift + F]: Transform all header letters into bubbly blocks.
 ## 	[Keypad 7,8,9]: Move the credits to the left, top, or right position and hide the header.
 ## 	[Keypad 1,2,3]: Move the credits to the left, bottom, or right position and show the header.
-## 	Shift: Hold to speed up the credits.
+## 	[Space]: Hold to speed up the credits.
 
 ## Number of seconds the demo has been running, shown on the time label
 var _total_time := 0.0
@@ -70,7 +70,7 @@ func _input(event: InputEvent) -> void:
 		KEY_KP_3:
 			_scroll.credits_position = Credits.CreditsPosition.BOTTOM_RIGHT
 	
-	if event is InputEventKey and event.scancode == KEY_SHIFT and not event.is_echo():
+	if event is InputEventKey and event.scancode == KEY_SPACE and not event.is_echo():
 		if event.is_pressed():
 			# disable 'adjusting_time_scale' so that CreditsDirector doesn't take change the time_scale while we're
 			# fast-forwarding
