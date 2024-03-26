@@ -20,7 +20,7 @@ const BUFFER_LINE_COUNT := 17
 const PART_2_DURATION := 20.0
 
 ## Duration in seconds for the third part of the credits, the additional credits scroll.
-const PART_3_DURATION := 60.0
+const PART_3_DURATION := 37.0
 
 export (NodePath) var PinupScrollersPath: NodePath
 
@@ -98,6 +98,7 @@ func _ready() -> void:
 	_schedule_part_1(credits_tween)
 	_schedule_part_2(credits_tween)
 	_schedule_part_3(credits_tween)
+	_schedule_part_4(credits_tween)
 	
 	# wait for CreditsScroll to initialize
 	yield(get_tree(), "idle_frame")
@@ -168,6 +169,14 @@ func _schedule_part_3(credits_tween: SceneTreeTween) -> void:
 	for i in range(part_3.size()):
 		credits_tween.tween_callback(self, "_add_credit_line", [part_3[i]])
 		credits_tween.tween_interval(PART_3_DURATION / (part_3.size() + BUFFER_LINE_COUNT))
+	
+	# Don't start part 4 until a certain number of empty lines scroll by.
+	credits_tween.tween_interval(BUFFER_LINE_COUNT * PART_3_DURATION / (part_3.size() + BUFFER_LINE_COUNT))
+
+
+## Schedules events for the fourth part of the credits, the end screen.
+func _schedule_part_4(credits_tween: SceneTreeTween) -> void:
+	credits_tween.tween_callback(self, "_add_credit_line", ["#end_text#"])
 
 
 ## Calculates the height in units of all combined credits lines.
@@ -198,6 +207,8 @@ func _add_credit_line(line: String) -> void:
 		_credits_scroll.add_turbo_fat_line()
 	elif line.begins_with("#wall_of_text# "):
 		_credits_scroll.show_wall_of_text(line.trim_prefix("#wall_of_text# "), 10.0)
+	elif line == "#end_text#":
+		_credits_scroll.show_end_text()
 	elif line.begins_with(" "):
 		_credits_scroll.add_indent_line(line.trim_prefix(" "))
 	elif line == "":

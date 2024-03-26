@@ -93,7 +93,7 @@ destination_path = NodePath("../Destination")
 leader_or_follower = 2
 
 [node name="Destination" type="Node2D" parent="Obstacles"]
-position = Vector2( -9225.37, 5112.16 )
+position = Vector2( -8254.98, 4631.72 )
 
 [node name="CrowdRecycler" type="Area2D" parent="Obstacles"]
 position = Vector2( 360.692, 301.109 )
