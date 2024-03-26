@@ -34,7 +34,7 @@ func _ready() -> void:
 ## 	'creature_id': The creature to show
 ##
 ## 	'pinup_side': An enum from PinupScroller.Side for the side of the screen the pinup appears on
-func add_pinup(creature_id: String, pinup_side: int) -> void:
+func add_pinup(creature_id: String, pinup_side: int, bg_color: Color) -> void:
 	# grab the oldest pinup out of the pool
 	var scroller: PinupScroller = _pinup_scroller_pool.pop_front()
 	_pinup_scroller_pool.push_back(scroller)
@@ -50,9 +50,20 @@ func add_pinup(creature_id: String, pinup_side: int) -> void:
 	scroller.pinup.creature_id = creature_id
 	scroller.pinup.orientation = \
 			Creatures.SOUTHEAST if pinup_side == PinupScroller.SIDE_LEFT else Creatures.SOUTHWEST
+	scroller.pinup.bg_color = bg_color
 	
 	# initialize velocity
 	scroller.velocity = velocity
+
+
+## Replaces the pinup with a stylish transformed image.
+func transform_pinup(creature_id: String, flip_h: bool = false) -> void:
+	var scroller: PinupScroller = _find_scroller_for_creature_id(creature_id)
+	if not scroller:
+		push_warning("Unrecognized creature id: %s" % [creature_id])
+		return
+	
+	scroller.pinup.transform(flip_h)
 
 
 ## Animates the creature's appearance according to the specified mood: happy, angry, etc...

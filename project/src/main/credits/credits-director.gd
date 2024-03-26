@@ -110,6 +110,17 @@ func _ready() -> void:
 	_credits_scroll.set_target_header_letter_for_piece(352, 4)
 	_credits_scroll.set_target_header_letter_for_piece(353, 6)
 	
+	_credits_scroll.set_right_transformation_target_for_piece(76)
+	_credits_scroll.set_left_transformation_target_for_piece(92)
+	_credits_scroll.set_right_transformation_target_for_piece(108)
+	_credits_scroll.set_left_transformation_target_for_piece(252)
+	_credits_scroll.set_right_transformation_target_for_piece(268)
+	_credits_scroll.set_left_transformation_target_for_piece(284)
+	_credits_scroll.set_right_transformation_target_for_piece(300)
+	_credits_scroll.set_left_transformation_target_for_piece(316)
+	_credits_scroll.set_right_transformation_target_for_piece(332)
+	_credits_scroll.set_right_transformation_target_for_piece(364)
+	
 	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
 	_credits_scroll.orb.initialize_time(2.92682)
 

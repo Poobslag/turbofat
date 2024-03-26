@@ -54,6 +54,8 @@ onready var _fade_in_point := $FixedContainer/FadeInPoint
 
 ## Scrolling area with lines, header and the orb
 onready var _scrolling_container := $FixedContainer/ScrollingContainer
+onready var _left_transformation_target := $FixedContainer/ScrollingContainer/LeftTransformationTarget
+onready var _right_transformation_target := $FixedContainer/ScrollingContainer/RightTransformationTarget
 
 ## Container for scrolling lines.
 onready var _lines := $FixedContainer/ScrollingContainer/Lines
@@ -123,8 +125,29 @@ func set_movie_visible(new_movie_visible: bool) -> void:
 	_shift_movie(old_movie_visible, new_movie_visible, credits_position, credits_position)
 
 
+## Makes a piece target a letter in the header.
 func set_target_header_letter_for_piece(piece_index: int, header_letter_index: int) -> void:
 	_credits_pieces.set_target_header_letter_for_piece(piece_index, header_letter_index)
+
+
+## Makes a piece target a pinup on the left side.
+func set_left_transformation_target_for_piece(piece_index: int) -> void:
+	# calculate the position of the left transformation target relative to the orb holder
+	var target_position: Vector2 = \
+			_left_transformation_target.get_global_transform().origin \
+			- orb.get_parent().get_global_transform().origin
+	
+	_credits_pieces.set_target_position_for_piece(piece_index, target_position)
+
+
+## Makes a piece target a pinup on the right side.
+func set_right_transformation_target_for_piece(piece_index: int) -> void:
+	# calculate the position of the left transformation target relative to the orb holder
+	var target_position: Vector2 = \
+			_right_transformation_target.get_global_transform().origin \
+			- orb.get_parent().get_global_transform().origin
+	
+	_credits_pieces.set_target_position_for_piece(piece_index, target_position)
 
 
 ## Shifts the title credits lines based on the credits position.

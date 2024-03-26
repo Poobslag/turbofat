@@ -2,6 +2,8 @@ extends Node
 ## Keys:
 ## 	[0-9]: Change the creature's fatness
 ## 	[B]: Assign a random background color
+## 	[R]: Reset
+## 	[T]: Transform
 ## 	[C]: Load a random creature
 ## 	[M]: Play a random mood
 ## 	Arrows: Change the creature's orientation
@@ -52,6 +54,10 @@ func _input(event: InputEvent) -> void:
 					Creatures.Mood.SWEAT1,
 					Creatures.Mood.WAVE0,
 					]))
+		KEY_R:
+			_pinup.reset()
+		KEY_T:
+			_pinup.transform()
 		KEY_LEFT:
 			_pinup.orientation = Creatures.Orientation.SOUTHWEST
 		KEY_RIGHT:

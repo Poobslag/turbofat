@@ -10,6 +10,10 @@ export (PackedScene) var PieceScene: PackedScene
 ## value: (int) index of a letter in the text 'turbo fat' in CreditsHeader
 var _target_letters_by_piece_index: Dictionary = {}
 
+## key: (int) index of a piece launched by the CreditsOrb
+## value: (Vector2) location to aim the piece
+var _target_position_by_piece_index: Dictionary = {}
+
 ## index of the next unlaunched piece
 var _next_piece_index := 0
 
@@ -30,6 +34,10 @@ func set_target_header_letter_for_piece(piece_index: int, letter_index: int) -> 
 	_target_letters_by_piece_index[piece_index] = letter_index
 
 
+func set_target_position_for_piece(piece_index: int, target_position: Vector2) -> void:
+	_target_position_by_piece_index[piece_index] = target_position
+
+
 ## Refreshes our state for a single launch interval, incrementing counter and launching a piece.
 func _process_launch_interval() -> void:
 	var piece_index := _next_piece_index
@@ -44,6 +52,9 @@ func _process_launch_interval() -> void:
 func _add_credits_piece(piece_index: int) -> void:
 	var piece: CreditsPiece = PieceScene.instance()
 	piece.initialize(_orb)
+	if _target_position_by_piece_index.has(piece_index):
+		var target_position: Vector2 = _target_position_by_piece_index[piece_index]
+		piece.set_target_position(target_position)
 	if _target_letters_by_piece_index.has(piece_index):
 		var target_position := _letter_target_position(_target_letters_by_piece_index[piece_index])
 		piece.set_target_position(target_position)
