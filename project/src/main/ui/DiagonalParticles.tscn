@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/main/ui/diagonal-particles.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=37]
+offsets = PoolRealArray( 0, 0.695652 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=42]
+gradient = SubResource( 37 )
+
+[sub_resource type="ParticlesMaterial" id=38]
+flag_disable_z = true
+direction = Vector3( -100, -40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 42 )
+
+[sub_resource type="ParticlesMaterial" id=39]
+flag_disable_z = true
+direction = Vector3( 100, -40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 42 )
+
+[sub_resource type="ParticlesMaterial" id=40]
+flag_disable_z = true
+direction = Vector3( -100, 40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 42 )
+
+[sub_resource type="ParticlesMaterial" id=41]
+flag_disable_z = true
+direction = Vector3( 100, 40, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 42 )
+
+[node name="Particles" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 1 )
+
+[node name="Nw" type="Particles2D" parent="."]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 38 )
+
+[node name="Ne" type="Particles2D" parent="."]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 39 )
+
+[node name="Sw" type="Particles2D" parent="."]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 40 )
+
+[node name="Se" type="Particles2D" parent="."]
+emitting = false
+amount = 2
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 41 )

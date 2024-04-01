@@ -294,6 +294,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/credits/credits-director.gd"
 }, {
+"base": "Node2D",
+"class": "CreditsEndText",
+"language": "GDScript",
+"path": "res://src/main/credits/credits-end-text.gd"
+}, {
 "base": "Control",
 "class": "CreditsHeader",
 "language": "GDScript",
@@ -403,6 +408,11 @@ _global_script_classes=[ {
 "class": "EditorPlayfield",
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/editor-playfield.gd"
+}, {
+"base": "Node2D",
+"class": "EndTextTitle",
+"language": "GDScript",
+"path": "res://src/main/credits/end-text-title.gd"
 }, {
 "base": "Node2D",
 "class": "EnvironmentShadows",
@@ -1537,6 +1547,7 @@ _global_script_class_icons={
 "Creatures": "",
 "Credits": "",
 "CreditsDirector": "",
+"CreditsEndText": "",
 "CreditsHeader": "",
 "CreditsLetter": "",
 "CreditsLine": "",
@@ -1559,6 +1570,7 @@ _global_script_class_icons={
 "DurationCalculator": "",
 "EditorPickups": "",
 "EditorPlayfield": "",
+"EndTextTitle": "",
 "EnvironmentShadows": "",
 "FileUtils": "",
 "FontFitLabel": "",

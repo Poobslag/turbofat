@@ -5,6 +5,17 @@ extends Control
 ## Contains methods for adding visual elements to the credits and moving them around, which are called by a
 ## CreditsDirector.
 
+## key: (String) region ID required for 100% game completion
+## value: (bool) true
+const REGION_IDS_FOR_COMPLETION := {
+	"lemon": true,
+	"lemon2": true,
+	"poki": true,
+	"sand": true,
+	"marsh": true,
+	"lava": true,
+}
+
 ## The vertical position where the credits fade out in TOP or BOTTOM positions.
 const FADE_OUT_POINT_POSITION_TOP := Vector2.ZERO
 const FADE_OUT_POINT_POSITION_BOTTOM := Vector2(0, 110)
@@ -20,6 +31,7 @@ const LINES_POSITION_LEFT := Vector2.ZERO
 const LINES_POSITION_CENTER := Vector2(256, 0)
 const LINES_POSITION_RIGHT := Vector2(512, 0)
 
+export (PackedScene) var CreditsEndTextScene: PackedScene
 export (PackedScene) var CreditsWallOfTextScene: PackedScene
 export (PackedScene) var GodotCreditsLineScene: PackedScene
 export (PackedScene) var TextCreditsLineScene: PackedScene
@@ -69,6 +81,8 @@ onready var _movie: Node2D = $Movie
 func _ready() -> void:
 	MusicPlayer.play_credits_bgm()
 	
+	_movie.position = MOVIE_POSITION_OFFSCREEN_LEFT
+	
 	# initialize the movie to visible but transparent; this way the tweens don't have to toggle the 'visible' property
 	_movie.visible = true
 	_movie.modulate = Color.transparent
@@ -107,6 +121,58 @@ func show_wall_of_text(text: String, duration: float) -> void:
 	wall_of_text.text = text
 	wall_of_text.position = Vector2(20, _fade_in_point.position.y * 0.5 + _fade_out_point.position.y * 0.5)
 	_lines.add_child(wall_of_text)
+
+
+## Shows a non-scrolling status message at the end of the credits.
+func show_end_text() -> void:
+	var end_text: CreditsEndText = CreditsEndTextScene.instance()
+	end_text.position = Vector2(20, _fade_in_point.position.y * 0.5 + _fade_out_point.position.y * 0.5)
+	_lines.add_child(end_text)
+	
+	var completion_percent := _completion_percent()
+	var average_grade := _average_grade()
+	end_text.play(completion_percent, average_grade)
+
+## Returns a percent for how close the player is to completing all regions.
+##
+## This is the arithmetic mean of the completion percent for the main regions in career mode. It doesn't include
+## things like tutorials, practice levels or the bonus Starberry Mountain levels.
+##
+## Returns:
+## 	A number in the range [0.0, 1.0] for how close the player is to completing all regions.
+func _completion_percent() -> float:
+	var max_completion_value: float = REGION_IDS_FOR_COMPLETION.size()
+	var player_completion_value: float = 0.0
+	for region in CareerLevelLibrary.regions:
+		if not region.id in REGION_IDS_FOR_COMPLETION:
+			continue
+		
+		player_completion_value += PlayerData.career.region_completion(region).completion_percent()
+	return player_completion_value / max_completion_value
+
+
+## Returns the overall letter grade for all regions.
+##
+## This is the arithmetic mean of the player's best grade for each level in the game. It doesn't include things like
+## tutorials, practice levels or the bonus Starberry Mountain levels.
+##
+## Returns:
+## 	Overall letter grade for all regions such as 'SSS' or 'AA+'
+func _average_grade() -> String:
+	var ranks := []
+	for region in CareerLevelLibrary.regions:
+		if not region.id in REGION_IDS_FOR_COMPLETION:
+			continue
+		
+		for career_level_obj in region.levels:
+			var career_level: CareerLevel = career_level_obj
+			var rank := PlayerData.level_history.best_overall_rank(career_level.level_id)
+			ranks.append(rank)
+	var sum := 0
+	for rank in ranks:
+		sum += rank
+	var mean_rank := sum / float(ranks.size())
+	return RankCalculator.grade(mean_rank)
 
 
 ## Smoothly moves the credits to a new position, showing or hiding the header.
