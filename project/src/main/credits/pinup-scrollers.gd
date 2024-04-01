@@ -6,7 +6,7 @@ extends Control
 
 ## Number of creatures stored in the pinup pool. Higher values require more resources, but ensure we won't recycle a
 ## pinup which is still visible.
-const PINUP_POOL_SIZE := 5
+const PINUP_POOL_SIZE := 4
 
 export (PackedScene) var PinupScrollerScene: PackedScene
 
