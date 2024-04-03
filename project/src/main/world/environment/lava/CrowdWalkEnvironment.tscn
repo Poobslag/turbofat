@@ -276,6 +276,7 @@ leader_or_follower = 2
 position = Vector2( 360.692, 301.109 )
 collision_layer = 0
 collision_mask = 2
+monitoring = false
 script = ExtResource( 13 )
 target_path = NodePath("../Player")
 
@@ -1632,5 +1633,6 @@ anims/look_around = SubResource( 1 )
 [connection signal="timeout" from="Obstacles/CrowdRecycler/ReenableCollisionTimer" to="Obstacles/CrowdRecycler" method="_on_ReenableCollisionTimer_timeout"]
 [connection signal="played" from="CrowdWalkDirector" to="." method="_on_Director_played"]
 [connection signal="played" from="CrowdWalkDirector" to="Obstacles/CrowdRecycler" method="_on_Director_played"]
+[connection signal="stopped" from="CrowdWalkDirector" to="Obstacles/CrowdRecycler" method="_on_Director_stopped"]
 
 [editable path="Ground/GroundMap"]
