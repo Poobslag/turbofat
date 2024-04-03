@@ -34,14 +34,14 @@
 [ext_resource path="res://assets/main/puzzle/combo-07.wav" type="AudioStream" id=32]
 [ext_resource path="res://assets/main/puzzle/combo-08.wav" type="AudioStream" id=33]
 [ext_resource path="res://assets/main/puzzle/combo-09.wav" type="AudioStream" id=34]
-[ext_resource path="res://assets/main/world/environment/lava/lava_cheer_2.wav" type="AudioStream" id=35]
 [ext_resource path="res://assets/main/world/creature/gameover-voice2.wav" type="AudioStream" id=36]
 [ext_resource path="res://assets/main/world/creature/hello-voice-1.wav" type="AudioStream" id=37]
 [ext_resource path="res://assets/main/world/creature/hello-voice-2.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/world/creature/hello-voice-3.wav" type="AudioStream" id=39]
 [ext_resource path="res://assets/main/world/creature/hello-voice-0.wav" type="AudioStream" id=40]
-[ext_resource path="res://assets/main/world/environment/lava/lava_cheer_1.wav" type="AudioStream" id=41]
 [ext_resource path="res://src/main/credits/CreditsEndText.tscn" type="PackedScene" id=42]
+[ext_resource path="res://assets/main/world/environment/lava/lava-cheer.wav" type="AudioStream" id=43]
+[ext_resource path="res://assets/main/world/environment/lava/lava-applause.wav" type="AudioStream" id=44]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -94,10 +94,22 @@ anim_offset_random = 1.0
 
 [sub_resource type="Animation" id=10]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CreditsSfx/VoiceSfxQuiet1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -8.0 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "play"
-length = 240.0
+length = 109.0
 step = 0.243902
 tracks/0/type = "method"
 tracks/0/path = NodePath("FixedContainer/ScrollingContainer/Header")
@@ -477,17 +489,51 @@ tracks/9/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 41 )
+"stream": ExtResource( 43 )
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 35 )
+"stream": null
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 41 )
+"stream": ExtResource( 43 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 43 )
 } ],
-"times": PoolRealArray( 32.2876, 60.2014, 94.3165 )
+"times": PoolRealArray( 32.2876, 58.56, 60.7288, 65.0305, 94.3165 )
+}
+tracks/10/type = "audio"
+tracks/10/path = NodePath("CreditsSfx/VoiceSfxQuiet2")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 44 )
+} ],
+"times": PoolRealArray( 60.2153 )
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("CreditsSfx/VoiceSfxQuiet1:volume_db")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 46.3414, 57.828, 57.829, 57.83, 58.56, 59.5582, 62.3803, 64.2943, 64.9324, 65.9468 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -8.0, -8.0, -23.0, -38.0, -38.0, -80.0, -8.0, -8.0, -23.0, -80.0, -8.0 ]
 }
 
 [node name="CreditsScroll" type="Control"]
@@ -645,16 +691,21 @@ PieceScene = ExtResource( 13 )
 [node name="CreditsSfx" type="Node" parent="."]
 
 [node name="ComboSfx" type="AudioStreamPlayer" parent="CreditsSfx"]
-stream = ExtResource( 24 )
+stream = ExtResource( 25 )
 bus = "Sound Bus"
 
 [node name="VoiceSfx" type="AudioStreamPlayer" parent="CreditsSfx"]
-stream = ExtResource( 35 )
+stream = ExtResource( 39 )
 bus = "Voice Bus"
 
 [node name="VoiceSfxQuiet1" type="AudioStreamPlayer" parent="CreditsSfx"]
-stream = ExtResource( 41 )
+stream = ExtResource( 43 )
 volume_db = -8.0
+bus = "Voice Bus"
+
+[node name="VoiceSfxQuiet2" type="AudioStreamPlayer" parent="CreditsSfx"]
+stream = ExtResource( 44 )
+volume_db = -4.0
 bus = "Voice Bus"
 
 [node name="CreditsDirector" type="Node" parent="."]

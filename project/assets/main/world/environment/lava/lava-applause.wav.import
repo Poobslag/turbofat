@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/lava_cheer_2.wav-989cb00426b9c67e398d6790990f8de7.sample"
+path="res://.import/lava-applause.wav-b8271115d9abd29b3bf1ed5b757f65c0.sample"
 
 [deps]
 
-source_file="res://assets/main/world/environment/lava/lava_cheer_2.wav"
-dest_files=[ "res://.import/lava_cheer_2.wav-989cb00426b9c67e398d6790990f8de7.sample" ]
+source_file="res://assets/main/world/environment/lava/lava-applause.wav"
+dest_files=[ "res://.import/lava-applause.wav-b8271115d9abd29b3bf1ed5b757f65c0.sample" ]
 
 [params]
 

@@ -13,7 +13,7 @@ unknown, ?
 ?: Hooray! Yay! You did it! Wow!!!
  (lava_crowd spawn)
  (lava_crowd start_bouncing)
- (play_sfx lava_cheer_1)
+ (play_sfx lava_cheer)
  (s1 mood ^_^)
 b: ^o^ Chef of the year? Wow, that's amazing!
  (s1 faces right, p1 faces right)
@@ -23,7 +23,8 @@ m: ^o^ Wow, they gave you a plaque and everything!?
  (m enters)
 p1: <__< I bought it in the gift shop...
  (lava_crowd stop_bouncing)
+ (stop_sfx lava_cheer)
 ?: Yaaaay! New plaque! New plaque!!
  (m mood ^_^, b mood ^_^)
- (play_sfx lava_cheer_2)
+ (play_sfx lava_cheer)
  (lava_crowd start_bouncing)
