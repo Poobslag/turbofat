@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=2]
@@ -34,8 +34,7 @@
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/main/world/environment/lava/LavaCrowdieSpawner.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/world/environment/lava/lava-sfx.gd" type="Script" id=34]
-[ext_resource path="res://assets/main/world/environment/lava/lava_cheer_1.wav" type="AudioStream" id=35]
-[ext_resource path="res://assets/main/world/environment/lava/lava_cheer_2.wav" type="AudioStream" id=36]
+[ext_resource path="res://assets/main/world/environment/lava/lava-cheer.wav" type="AudioStream" id=35]
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -725,12 +724,9 @@ id = "zagma_12"
 [node name="LavaSfx" type="Node" parent="."]
 script = ExtResource( 34 )
 
-[node name="Cheer1" type="AudioStreamPlayer" parent="LavaSfx"]
+[node name="Cheer" type="AudioStreamPlayer" parent="LavaSfx"]
 stream = ExtResource( 35 )
-bus = "Sound Bus"
-
-[node name="Cheer2" type="AudioStreamPlayer" parent="LavaSfx"]
-stream = ExtResource( 36 )
+volume_db = -8.0
 bus = "Sound Bus"
 
 [node name="PlayerPath" type="Path2D" parent="."]
