@@ -5,7 +5,7 @@ extends Node
 ## Arranges nodes and schedules events to synchronize the cutscene with the music.
 
 ## Emitted when creatures are moved to their starting positions for the cutscene.
-signal creatures_arranged
+signal played
 
 ## Number in the range [0.0, 1.0] for how many creatures should jump up and down with their arms raised.
 export (float, 0.0, 1.0) var bouncing_crowd_percent := 0.0 setget set_bouncing_crowd_percent
@@ -96,7 +96,7 @@ func play(time_until_launch: float) -> void:
 	_tween.tween_callback(_animation_player, "play", ["launch"]).set_delay(time_until_launch)
 	_tween.tween_callback(self, "crowd_launch").set_delay(time_until_launch)
 	
-	emit_signal("creatures_arranged")
+	emit_signal("played")
 
 
 func set_bouncing_crowd_percent(new_bouncing_crowd_percent: float) -> void:

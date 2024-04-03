@@ -1630,7 +1630,7 @@ anims/look_around = SubResource( 1 )
 
 [connection signal="body_entered" from="Obstacles/CrowdRecycler" to="Obstacles/CrowdRecycler" method="_on_body_entered"]
 [connection signal="timeout" from="Obstacles/CrowdRecycler/ReenableCollisionTimer" to="Obstacles/CrowdRecycler" method="_on_ReenableCollisionTimer_timeout"]
-[connection signal="creatures_arranged" from="CrowdWalkDirector" to="." method="_on_CrowdWalkDirector_creatures_arranged"]
-[connection signal="creatures_arranged" from="CrowdWalkDirector" to="Obstacles/CrowdRecycler" method="_on_CrowdWalkDirector_creatures_arranged"]
+[connection signal="played" from="CrowdWalkDirector" to="." method="_on_Director_played"]
+[connection signal="played" from="CrowdWalkDirector" to="Obstacles/CrowdRecycler" method="_on_Director_played"]
 
 [editable path="Ground/GroundMap"]
