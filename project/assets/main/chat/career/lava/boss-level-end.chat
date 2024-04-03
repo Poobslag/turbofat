@@ -43,3 +43,4 @@ p1: You're so weird! ...Don't worry. I'll try not to forget.
 p1: /._. ...So when do I get my plaque?
 w: ^N^ Plaque? Mm-mm, we can't just go givin' away plaques! ...They sell those in the gift shop though.
 p1: @_@ Gift shop!?!
+ (next_scene chat/career/credits/precredits_1)

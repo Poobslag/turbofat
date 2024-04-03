@@ -28,3 +28,4 @@ p1: <__< I bought it in the gift shop...
  (m mood ^_^, b mood ^_^)
  (play_sfx lava_cheer)
  (lava_crowd start_bouncing)
+ (play_credits)

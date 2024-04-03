@@ -217,6 +217,14 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var creature: Creature = _overworld_environment.get_creature_by_id(creature_id)
 			var orientation: int = int(meta_item_split[2])
 			creature.set_orientation(orientation)
+		"play_credits":
+			# the credits lead directly into the main menu, so we immediately end the current career day and advance
+			# the calendar.
+			PlayerData.career.hours_passed = Careers.HOURS_PER_CAREER_DAY
+			PlayerData.career.advance_calendar()
+			PlayerSave.schedule_save()
+			
+			PlayerData.cutscene_queue.insert_credits(0)
 	
 	emit_signal("chat_event_meta_played", meta_item)
 
