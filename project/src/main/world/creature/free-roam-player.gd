@@ -41,6 +41,6 @@ func _on_OverworldUi_showed_chat_choices() -> void:
 		set_non_iso_walk_direction(Vector2.ZERO)
 
 
-func _on_SceneTransition_fade_out_started() -> void:
+func _on_SceneTransition_fade_out_started(_duration: float) -> void:
 	# suppress 'bonk' sound effects, otherwise it sounds like the player bumps into the door
 	set_suppress_sfx(true)

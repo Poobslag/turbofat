@@ -2,8 +2,8 @@ extends CanvasLayer
 ## Plays scene transition animations.
 
 ## Scene transition emits these two signals in order as the screen fades out and fades back in
-signal fade_in_started
-signal fade_out_started
+signal fade_in_started(duration)
+signal fade_out_started(duration)
 
 enum TransitionType {
 	DEFAULT,
@@ -104,7 +104,7 @@ func fade_in(flags: Dictionary = {}) -> void:
 	var max_audio_start := max(0.0, _audio_stream_player.stream.get_length() - _fade_out_duration(flags))
 	_audio_stream_player.play(rand_range(0.0, max_audio_start))
 	
-	emit_signal("fade_in_started")
+	emit_signal("fade_in_started", _fade_in_duration(flags))
 
 
 ## Launches the 'fade out' visual transition.
@@ -124,7 +124,7 @@ func fade_out(flags: Dictionary = {}, breadcrumb_method: FuncRef = null, breadcr
 		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
 	_animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene", \
 			[flags, breadcrumb_method, breadcrumb_arg_array])
-	emit_signal("fade_out_started")
+	emit_signal("fade_out_started", _fade_out_duration(flags))
 
 
 func _fade_out_duration(flags: Dictionary) -> float:
