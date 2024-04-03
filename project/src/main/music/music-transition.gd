@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 ## When the scene fades back in, we un-fade any music we previously faded out.
-func _on_SceneTransition_fade_in_started() -> void:
+func _on_SceneTransition_fade_in_started(_duration: float) -> void:
 	if _faded_bgm:
 		# If we faded the music out, we fade it back in
 		MusicPlayer.play_bgm(_faded_bgm, _faded_bgm.get_playback_position())
@@ -25,7 +25,7 @@ func _on_SceneTransition_fade_in_started() -> void:
 ## When fading out the scene, we fade out the music for web targets.
 ##
 ## On web targets, the music sounds choppy and bad if we leave it running during scene transitions.
-func _on_SceneTransition_fade_out_started() -> void:
+func _on_SceneTransition_fade_out_started(duration: float) -> void:
 	if OS.has_feature("web"):
 		_faded_bgm = MusicPlayer.current_bgm
-		MusicPlayer.stop(SceneTransition.next_fade_out_duration * 0.5)
+		MusicPlayer.stop(duration * 0.5)
