@@ -2,7 +2,8 @@ extends Node
 ## Demonstrates a unique cutscene where the player and Fat Sensei crowd surf on a cheering crowd.
 ##
 ## Keys:
-## 	Space: Restart the cutscene.
+## 	[P]: Play the cutscene.
+## 	[S]: Stop the cutscene.
 
 ## Number of seconds the demo has been running, shown on the time label
 var _total_time := 0.0
@@ -12,9 +13,11 @@ onready var _time_label := $TimeLabel
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_SPACE:
+		KEY_P:
 			_total_time = 0.0
 			_director.play()
+		KEY_S:
+			_director.stop()
 
 
 func _process(delta: float) -> void:

@@ -51,12 +51,28 @@ onready var _elevation_tween: SceneTreeTween
 onready var _mood_timer := $MoodTimer
 
 func _ready() -> void:
-	set_elevation(SURF_HEIGHT)
+	stop()
 
 
 func _process(delta: float) -> void:
 	_velocity = lerp(_velocity, _desired_velocity, 0.01)
 	position += _velocity * delta
+
+
+## Stops the timers and tweens which handle the creature's mood and movement.
+func stop() -> void:
+	# stop bounce animation
+	_elevation_tween = Utils.kill_tween(_elevation_tween)
+	set_elevation(SURF_HEIGHT)
+	
+	# stop mood timer
+	_mood_timer.stop()
+	play_mood(Creatures.Mood.DEFAULT)
+	
+	# stop movement
+	set_process(false)
+	_desired_velocity = Vector2.ZERO
+	_velocity = Vector2.ZERO
 
 
 ## Initializes the timers and tweens which handle the creature's mood and movement.
@@ -73,7 +89,8 @@ func play_bounce_animation() -> void:
 	_randomize_mood()
 	_mood_timer.start(MOOD_TIMER_MAX_DURATION * randf())
 	
-	# initialize velocity
+	# start movement
+	set_process(true)
 	_refresh_desired_velocity()
 	_velocity = _desired_velocity
 

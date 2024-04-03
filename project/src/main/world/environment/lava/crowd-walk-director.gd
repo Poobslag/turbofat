@@ -7,6 +7,9 @@ extends Node
 ## Emitted when creatures are moved to their starting positions for the cutscene.
 signal played
 
+## Emitted when the cutscenes animations are stopped.
+signal stopped
+
 ## Number in the range [0.0, 1.0] for how many creatures should jump up and down with their arms raised.
 export (float, 0.0, 1.0) var bouncing_crowd_percent := 0.0 setget set_bouncing_crowd_percent
 
@@ -97,6 +100,15 @@ func play(time_until_launch: float) -> void:
 	_tween.tween_callback(self, "crowd_launch").set_delay(time_until_launch)
 	
 	emit_signal("played")
+
+
+## Stops any cutscene animations.
+func stop() -> void:
+	_player.stop_walking()
+	_sensei.stop_walking()
+	_animation_player.stop()
+	_tween = Utils.kill_tween(_tween)
+	emit_signal("stopped")
 
 
 func set_bouncing_crowd_percent(new_bouncing_crowd_percent: float) -> void:

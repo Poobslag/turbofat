@@ -22,6 +22,7 @@ func hide() -> void:
 	_launch_bg.visible = false
 	_environment.visible = false
 	_camera.current = false
+	_crowd_surf_director.stop()
 
 
 ## Plays the cutscene animation.

@@ -99,6 +99,7 @@ position = Vector2( -8254.98, 4631.72 )
 position = Vector2( 360.692, 301.109 )
 collision_layer = 0
 collision_mask = 2
+monitoring = false
 script = ExtResource( 18 )
 target_path = NodePath("../Player")
 
@@ -1921,5 +1922,6 @@ sensei_path = NodePath("../Obstacles/Sensei")
 [connection signal="timeout" from="Obstacles/CrowdRecycler/ReenableCollisionTimer" to="Obstacles/CrowdRecycler" method="_on_ReenableCollisionTimer_timeout"]
 [connection signal="played" from="CrowdSurfDirector" to="." method="_on_Director_played"]
 [connection signal="played" from="CrowdSurfDirector" to="Obstacles/CrowdRecycler" method="_on_Director_played"]
+[connection signal="stopped" from="CrowdSurfDirector" to="Obstacles/CrowdRecycler" method="_on_Director_stopped"]
 
 [editable path="Ground/GroundMap"]

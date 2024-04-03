@@ -11,6 +11,10 @@ var _move_direction: Vector2
 
 ## 'True' if the crowd walk director just moved all of the crowdies. When this happens, we take measures to avoid
 ## moving them a second time, which would result in them overshooting the camera area.
+##
+## Intuitively this property seems redundant with the 'monitoring' property but toggling the monitoring flag while
+## shifting creatures around results in race conditions which can trigger collisions twice. We use this flag and leave
+## it enabled for several frames to avoid race conditions.
 var _just_arranged_creatures := false
 
 onready var _target: Node2D = get_node(target_path)
@@ -43,8 +47,17 @@ func _on_body_entered(body: Node2D) -> void:
 
 ## When the crowd walk director moves all crowdies, we temporarily ignore collisions.
 func _on_Director_played() -> void:
+	# reenable monitoring; creatures will still not be recycled until the timer elapses
+	monitoring = true
+	
 	_just_arranged_creatures = true
 	_reenable_collision_timer.start()
+
+
+func _on_Director_stopped() -> void:
+	# disable monitoring to avoid conflicts between CrowdSurfEnvironment and CrowdWalkEnvironment. They both use this
+	# recycler, and if both are active they can interact with crowdies in the other environment
+	monitoring = false
 
 
 ## When the crowd walk director moves all crowdies, we temporarily ignore collisions. This method reenables

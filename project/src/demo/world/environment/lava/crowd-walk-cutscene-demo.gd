@@ -3,6 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[Q,W,E,R]: Restart the cutscene with 10, 5, 3 or 1 second until the player is tossed into the air.
+## 	[S]: Stop the cutscene.
 ## 	[=/-]: Change the number of bouncing crowdies.
 
 ## Number of seconds the demo has been running, shown on the time label
@@ -25,6 +26,8 @@ func _input(event: InputEvent) -> void:
 			restart_cutscene(3)
 		KEY_R:
 			restart_cutscene(1)
+		KEY_S:
+			_director.stop()
 
 
 func _process(delta: float) -> void:

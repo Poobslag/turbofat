@@ -5,6 +5,9 @@ extends Node
 ## Emitted when creatures are moved to their starting positions for the cutscene.
 signal played
 
+## Emitted when the cutscenes animations are stopped.
+signal stopped
+
 export (NodePath) var player_path: NodePath
 export (NodePath) var sensei_path: NodePath
 
@@ -27,6 +30,13 @@ func play() -> void:
 	_sensei.play_bounce_animation()
 	
 	emit_signal("played")
+
+
+## Stops any cutscene animations.
+func stop() -> void:
+	_player.stop()
+	_sensei.stop()
+	emit_signal("stopped")
 
 
 ## Saves all creature positions to _initial_positions_by_node
