@@ -3,12 +3,10 @@ extends Node
 ## Orchestrates a unique cutscene where the player and Fat Sensei crowd surf on a cheering crowd.
 
 ## Emitted when creatures are moved to their starting positions for the cutscene.
-signal creatures_arranged
+signal played
 
 export (NodePath) var player_path: NodePath
 export (NodePath) var sensei_path: NodePath
-
-var _tween: SceneTreeTween
 
 ## key: (Node2D) node whose position should be initialized
 ## value: (Vector2) initial position
@@ -28,7 +26,7 @@ func play() -> void:
 	_player.play_bounce_animation()
 	_sensei.play_bounce_animation()
 	
-	emit_signal("creatures_arranged")
+	emit_signal("played")
 
 
 ## Saves all creature positions to _initial_positions_by_node

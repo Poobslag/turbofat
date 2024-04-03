@@ -17,5 +17,5 @@ func set_midair(new_midair: bool) -> void:
 ## When the CrowdWalkDirector initializes the character positions, we reset the 'midair' value to false.
 ##
 ## This is mostly useful for demo and debugging purposes, as the animation should only play once during the credits.
-func _on_CrowdWalkDirector_creatures_arranged() -> void:
+func _on_Director_played() -> void:
 	set_midair(false)

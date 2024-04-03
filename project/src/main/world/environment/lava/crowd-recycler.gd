@@ -11,7 +11,7 @@ var _move_direction: Vector2
 
 ## 'True' if the crowd walk director just moved all of the crowdies. When this happens, we take measures to avoid
 ## moving them a second time, which would result in them overshooting the camera area.
-var _just_creatures_arranged := false
+var _just_arranged_creatures := false
 
 onready var _target: Node2D = get_node(target_path)
 
@@ -35,22 +35,22 @@ func _move_crowd(crowd: Node2D) -> void:
 
 ## When the player runs past a crowdie, we move the crowdie and change their appearance.
 func _on_body_entered(body: Node2D) -> void:
-	if _just_creatures_arranged:
+	if _just_arranged_creatures:
 		return
 	
 	_move_crowd(body)
 
 
 ## When the crowd walk director moves all crowdies, we temporarily ignore collisions.
-func _on_CrowdWalkDirector_creatures_arranged() -> void:
-	_just_creatures_arranged = true
+func _on_Director_played() -> void:
+	_just_arranged_creatures = true
 	_reenable_collision_timer.start()
 
 
 ## When the crowd walk director moves all crowdies, we temporarily ignore collisions. This method reenables
 ## collisions afterward.
 func _on_ReenableCollisionTimer_timeout() -> void:
-	_just_creatures_arranged = false
+	_just_arranged_creatures = false
 	
 	# move all overlapping crowdies
 	for crowd in get_tree().get_nodes_in_group("recyclable_crowds"):
