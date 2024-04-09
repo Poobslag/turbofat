@@ -14,6 +14,10 @@ func _ready() -> void:
 
 ## Fade out and stop the sound effect
 func _stop_sfx(duration: float) -> void:
+	if not is_inside_tree():
+		# avoid errors from null tween
+		return
+	
 	_tween = Utils.recreate_tween(self, _tween)
 	_tween.set_parallel(true)
 	_tween.tween_property(_cheer, "volume_db", -23.0, duration)
