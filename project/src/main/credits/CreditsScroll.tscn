@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://src/main/credits/CreditsHeader.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/ui/menu/loading-orb-sheet.png" type="Texture" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://assets/main/puzzle/combo-07.wav" type="AudioStream" id=32]
 [ext_resource path="res://assets/main/puzzle/combo-08.wav" type="AudioStream" id=33]
 [ext_resource path="res://assets/main/puzzle/combo-09.wav" type="AudioStream" id=34]
+[ext_resource path="res://src/main/ui/ExitCreditsPopup.tscn" type="PackedScene" id=35]
 [ext_resource path="res://assets/main/world/creature/gameover-voice2.wav" type="AudioStream" id=36]
 [ext_resource path="res://assets/main/world/creature/hello-voice-1.wav" type="AudioStream" id=37]
 [ext_resource path="res://assets/main/world/creature/hello-voice-2.wav" type="AudioStream" id=38]
@@ -702,6 +703,8 @@ header_path = NodePath("../../ScrollingContainer/Header")
 orb_path = NodePath("../Orb")
 PieceScene = ExtResource( 13 )
 
+[node name="ExitCreditsPopup" parent="." instance=ExtResource( 35 )]
+
 [node name="CreditsSfx" type="Node" parent="."]
 
 [node name="ComboSfx" type="AudioStreamPlayer" parent="CreditsSfx"]
@@ -736,4 +739,5 @@ anims/play = SubResource( 1 )
 wait_time = 0.5
 autostart = true
 
+[connection signal="exit_pressed" from="ExitCreditsPopup" to="." method="_on_ExitCreditsPopup_exit_pressed"]
 [connection signal="timeout" from="CreditsDirector/Timer" to="CreditsDirector" method="_on_Timer_timeout"]

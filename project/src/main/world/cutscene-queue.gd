@@ -35,6 +35,13 @@ func enqueue_cutscene(chat_tree: ChatTree) -> void:
 	})
 
 
+## Inserts a credits scroll in the given position in the queue.
+func insert_credits(position: int) -> void:
+	_queue.insert(position, {
+		"type": "credits"
+	})
+
+
 ## Inserts a cutscene in the given position in the queue.
 func insert_cutscene(position: int, chat_tree: ChatTree) -> void:
 	_queue.insert(position, {
@@ -56,6 +63,11 @@ func is_queue_empty() -> bool:
 	return _queue.empty()
 
 
+## Returns 'true' if the first item in the queue represents the credits scroll.
+func is_front_credits() -> bool:
+	return _queue and _queue.front().get("type") == "credits"
+
+
 ## Returns 'true' if the first item in the queue represents a cutscene.
 func is_front_cutscene() -> bool:
 	return _queue and _queue.front().get("type") == "cutscene"
@@ -68,6 +80,9 @@ func is_front_level() -> bool:
 
 ## Removes the next scene from the queue and transitions to it, staying at the current level in the breadcrumb trail.
 func replace_trail() -> void:
+	if is_front_credits():
+		_pop_credits()
+		SceneTransition.replace_trail(Global.SCENE_CREDITS)
 	if is_front_cutscene():
 		_pop_cutscene()
 		CurrentCutscene.replace_cutscene_trail()
@@ -80,7 +95,10 @@ func replace_trail() -> void:
 
 ## Removes the next scene from the queue and transitions to it, extending the breadcrumb trail.
 func push_trail() -> void:
-	if is_front_cutscene():
+	if is_front_credits():
+		_pop_credits()
+		SceneTransition.push_trail(Global.SCENE_CREDITS)
+	elif is_front_cutscene():
 		_pop_cutscene()
 		CurrentCutscene.push_cutscene_trail()
 	elif is_front_level():
@@ -88,6 +106,11 @@ func push_trail() -> void:
 		CurrentLevel.push_level_trail()
 	else:
 		push_error("Cannot transition to next item in queue: %s" % [_queue])
+
+
+## Removes the credits from the queue.
+func _pop_credits() -> void:
+	_queue.pop_front()
 
 
 ## Removes the next cutscene from the queue and assigns it as the current cutscene.

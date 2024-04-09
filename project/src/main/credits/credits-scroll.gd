@@ -307,3 +307,11 @@ func _initialize_line(credits_line: CreditsLine) -> void:
 	credits_line.fade_out_point_path = _fade_out_point.get_path()
 	credits_line.position = Vector2(20, _fade_in_point.position.y + Credits.FADE_RANGE)
 	_lines.add_child(credits_line)
+
+
+## When the player hits escape/enter, we exit the credits and go to the main menu.
+##
+## We sidestep the career map and victory screen which would be anticlimactic after the cool ending credits.
+func _on_ExitCreditsPopup_exit_pressed() -> void:
+	Breadcrumb.initialize_trail()
+	SceneTransition.push_trail(Global.SCENE_MAIN_MENU)
