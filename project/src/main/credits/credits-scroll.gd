@@ -76,12 +76,12 @@ onready var _lines := $FixedContainer/ScrollingContainer/Lines
 onready var _credits_pieces: CreditsPieces = $FixedContainer/OrbHolder/Pieces
 
 ## Movie which plays alongside the credits lines.
-onready var _movie: Node2D = $Movie
+onready var _movie: Control = $FixedContainer/Movie
 
 func _ready() -> void:
 	MusicPlayer.play_credits_bgm()
 	
-	_movie.position = MOVIE_POSITION_OFFSCREEN_LEFT
+	_movie.rect_position = MOVIE_POSITION_OFFSCREEN_LEFT
 	
 	# initialize the movie to visible but transparent; this way the tweens don't have to toggle the 'visible' property
 	_movie.visible = true
@@ -259,7 +259,7 @@ func _shift_movie(old_movie_visible: bool, new_movie_visible: bool, \
 			new_movie_position = MOVIE_POSITION_OFFSCREEN_RIGHT
 		else:
 			new_movie_position = MOVIE_POSITION_OFFSCREEN_LEFT
-		_movie_tween_x.parallel().tween_property(_movie, "position", new_movie_position, 0.5) \
+		_movie_tween_x.parallel().tween_property(_movie, "rect_position", new_movie_position, 0.5) \
 				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	
 	if tweening_in:
@@ -267,13 +267,13 @@ func _shift_movie(old_movie_visible: bool, new_movie_visible: bool, \
 			_movie_tween_x = Utils.recreate_tween(self, _movie_tween_x)
 		
 		# Set the movie position so that it swoops in from the correct direction offscreen
-		if tweening_out or _movie.position in [MOVIE_POSITION_OFFSCREEN_LEFT, MOVIE_POSITION_OFFSCREEN_RIGHT]:
+		if tweening_out or _movie.rect_position in [MOVIE_POSITION_OFFSCREEN_LEFT, MOVIE_POSITION_OFFSCREEN_RIGHT]:
 			var new_source_movie_position: Vector2
 			if Credits.is_position_right(new_credits_position):
 				new_source_movie_position = MOVIE_POSITION_OFFSCREEN_LEFT
 			else:
 				new_source_movie_position = MOVIE_POSITION_OFFSCREEN_RIGHT
-			_movie_tween_x.tween_callback(_movie, "set", ["position", new_source_movie_position])
+			_movie_tween_x.tween_callback(_movie, "set", ["rect_position", new_source_movie_position])
 		
 		_movie_tween_x.tween_property(_movie, "modulate", Color.white, 0.1).set_delay(0.2)
 		var new_movie_position: Vector2
@@ -281,7 +281,7 @@ func _shift_movie(old_movie_visible: bool, new_movie_visible: bool, \
 			new_movie_position = MOVIE_POSITION_RIGHT
 		else:
 			new_movie_position = MOVIE_POSITION_LEFT
-		_movie_tween_x.parallel().tween_property(_movie, "position", new_movie_position, 0.5) \
+		_movie_tween_x.parallel().tween_property(_movie, "rect_position", new_movie_position, 0.5) \
 				.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 
 

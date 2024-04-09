@@ -164,7 +164,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("Movie")
+tracks/2/path = NodePath("FixedContainer/Movie")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -549,45 +549,6 @@ TurboFatCreditsLineScene = ExtResource( 6 )
 
 [node name="Wallpaper" parent="." instance=ExtResource( 10 )]
 
-[node name="Movie" type="Node2D" parent="."]
-script = ExtResource( 15 )
-CrowdWalkCutsceneScene = ExtResource( 14 )
-CrowdSurfCutsceneScene = ExtResource( 20 )
-
-[node name="Clip" type="Light2D" parent="Movie"]
-position = Vector2( 256, 300 )
-texture = ExtResource( 16 )
-texture_scale = 0.5
-mode = 3
-range_item_cull_mask = 2
-
-[node name="ViewportContainer" type="ViewportContainer" parent="Movie"]
-light_mask = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 52.5
-margin_top = 52.5
-margin_right = 459.5
-margin_bottom = 547.5
-stretch = true
-stretch_shrink = 4
-script = ExtResource( 17 )
-world_viewport_path = NodePath("Viewport")
-
-[node name="Viewport" type="Viewport" parent="Movie/ViewportContainer"]
-size = Vector2( 101, 123 )
-handle_input_locally = false
-hdr = false
-usage = 0
-render_target_update_mode = 3
-
-[node name="Panel" type="Panel" parent="Movie"]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 462.0
-margin_bottom = 550.0
-custom_styles/panel = SubResource( 2 )
-
 [node name="FixedContainer" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -597,6 +558,59 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
+
+[node name="Movie" type="Control" parent="FixedContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 15 )
+CrowdWalkCutsceneScene = ExtResource( 14 )
+CrowdSurfCutsceneScene = ExtResource( 20 )
+
+[node name="Clip" type="Light2D" parent="FixedContainer/Movie"]
+position = Vector2( 256, 300 )
+texture = ExtResource( 16 )
+texture_scale = 0.5
+mode = 3
+range_item_cull_mask = 2
+
+[node name="ViewportContainer" type="ViewportContainer" parent="FixedContainer/Movie"]
+light_mask = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -459.5
+margin_top = -247.5
+margin_right = -52.5
+margin_bottom = 247.5
+stretch = true
+stretch_shrink = 4
+script = ExtResource( 17 )
+world_viewport_path = NodePath("Viewport")
+
+[node name="Viewport" type="Viewport" parent="FixedContainer/Movie/ViewportContainer"]
+size = Vector2( 101, 123 )
+handle_input_locally = false
+hdr = false
+usage = 0
+render_target_update_mode = 3
+
+[node name="Panel" type="Panel" parent="FixedContainer/Movie"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -250.0
+margin_right = -50.0
+margin_bottom = 250.0
+custom_styles/panel = SubResource( 2 )
 
 [node name="FadeOutPoint" type="Node2D" parent="FixedContainer"]
 position = Vector2( 0, 110 )

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 ## Plays different movies during the credits scroll.
 
 export (PackedScene) var CrowdWalkCutsceneScene: PackedScene
