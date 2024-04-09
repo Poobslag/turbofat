@@ -20,7 +20,7 @@ onready var _pinup_holder := $PinupHolder
 func _ready() -> void:
 	for _i in range(PINUP_POOL_SIZE):
 		var pinup_scroller: PinupScroller = PinupScrollerScene.instance()
-		pinup_scroller.stop()
+		pinup_scroller.reset()
 		_pinup_holder.add_child(pinup_scroller)
 		_pinup_scroller_pool.append(pinup_scroller)
 
