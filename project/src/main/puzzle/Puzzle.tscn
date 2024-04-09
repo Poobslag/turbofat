@@ -859,7 +859,7 @@ stream = ExtResource( 11 )
 bus = "Sound Bus"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]
-codes = [ "delays", "bigfps", "finish" ]
+codes = [ "delays", "bigfps", "finish", "winish" ]
 
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )

@@ -291,6 +291,23 @@ func _initialize_night_mode() -> void:
 		get_onions().skip_to_night_mode()
 
 
+## Add the necessary lines/pieces/score to complete the necessary milestone
+func _complete_milestone(milestone: Milestone) -> void:
+	match milestone.type:
+		Milestone.CUSTOMERS:
+			while PuzzleState.customer_scores.size() <= milestone.adjusted_value():
+				PuzzleState.customer_scores.insert(0, 100)
+		Milestone.LINES:
+			PuzzleState.level_performance.lines = milestone.adjusted_value()
+		Milestone.PIECES:
+			PuzzleState.level_performance.pieces = milestone.adjusted_value()
+		Milestone.SCORE:
+			PuzzleState.level_performance.score = milestone.adjusted_value()
+			PuzzleState.level_performance.seconds += 9999
+		Milestone.TIME_OVER, Milestone.TIME_UNDER:
+			PuzzleState.level_performance.seconds = milestone.adjusted_value()
+
+
 func _on_Hud_start_button_pressed() -> void:
 	_start_puzzle()
 
@@ -355,21 +372,13 @@ func _on_SettingsMenu_quit_pressed() -> void:
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "finish" and PuzzleState.game_active:
 		# finish the current level
-		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
-		match finish_condition.type:
-			Milestone.CUSTOMERS:
-				while PuzzleState.customer_scores.size() <= finish_condition.adjusted_value():
-					PuzzleState.customer_scores.insert(0, 100)
-			Milestone.LINES:
-				PuzzleState.level_performance.lines = finish_condition.adjusted_value()
-			Milestone.PIECES:
-				PuzzleState.level_performance.pieces = finish_condition.adjusted_value()
-			Milestone.SCORE:
-				PuzzleState.level_performance.score = finish_condition.adjusted_value()
-				PuzzleState.level_performance.seconds += 9999
-			Milestone.TIME_OVER, Milestone.TIME_UNDER:
-				PuzzleState.level_performance.seconds = finish_condition.adjusted_value()
-		
+		_complete_milestone(CurrentLevel.settings.finish_condition)
+		detector.play_cheat_sound(true)
+	
+	if cheat == "winish" and PuzzleState.game_active:
+		# finish the current level, and complete any success criteria
+		_complete_milestone(CurrentLevel.settings.finish_condition)
+		_complete_milestone(CurrentLevel.settings.success_condition)
 		detector.play_cheat_sound(true)
 
 
