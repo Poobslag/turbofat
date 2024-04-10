@@ -12,12 +12,21 @@ signal region_chosen
 ## List of different button types which decide the image shown on the button.
 enum Type {
 	NONE,
+	
+	# career regions
 	LEMON,
 	LEMON_2,
 	POKI,
 	SAND,
 	MARSH,
 	LAVA,
+	
+	# training modes
+	MARATHON,
+	ULTRA,
+	SPRINT,
+	RANK,
+	SANDBOX,
 }
 
 ## text to show at the top of the button, like 'Merrymellow Marsh'
@@ -55,6 +64,17 @@ var _texture_pairs_by_type := {
 			preload("res://assets/main/career/ui/region-marsh-off.png")],
 	Type.LAVA: [preload("res://assets/main/career/ui/region-lava.png"),
 			preload("res://assets/main/career/ui/region-lava-off.png")],
+	
+	Type.MARATHON: [preload("res://assets/main/career/ui/training-marathon.png"),
+			preload("res://assets/main/career/ui/training-marathon-off.png")],
+	Type.ULTRA: [preload("res://assets/main/career/ui/training-ultra.png"),
+			preload("res://assets/main/career/ui/training-ultra-off.png")],
+	Type.SPRINT: [preload("res://assets/main/career/ui/training-sprint.png"),
+			preload("res://assets/main/career/ui/training-sprint-off.png")],
+	Type.RANK: [preload("res://assets/main/career/ui/training-rank.png"),
+			preload("res://assets/main/career/ui/training-rank-off.png")],
+	Type.SANDBOX: [preload("res://assets/main/career/ui/training-sandbox.png"),
+			preload("res://assets/main/career/ui/training-sandbox-off.png")],
 }
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
