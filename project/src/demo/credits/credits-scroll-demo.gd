@@ -17,6 +17,9 @@ extends Node
 ## 	[Keypad 1,2,3]: Move the credits to the left, bottom, or right position and show the header.
 ## 	[Right brace]: Hold to speed up the credits.
 
+## 'true' to show the "cool credits" after the player beats the game. 'false' to show the "boring credits".
+export (bool) var cool_credits: bool = true
+
 ## Number of seconds the demo has been running, shown on the time label
 var _total_time := 0.0
 
@@ -25,6 +28,13 @@ onready var _credits_director := $CreditsScroll/CreditsDirector
 onready var _time_label := $TimeLabel
 
 func _ready() -> void:
+	if cool_credits:
+		PlayerData.career.best_distance_travelled = \
+			CareerLevelLibrary.region_for_id("lava").get_end() + 1
+	else:
+		PlayerData.career.best_distance_travelled = \
+			CareerLevelLibrary.region_for_id("lava").start
+	
 	# cache resources to provide a realistic expectation of lag during scene transitions
 	ResourceCache.start_load()
 
@@ -84,13 +94,16 @@ func _input(event: InputEvent) -> void:
 			# fast-forwarding
 			_credits_director.adjusting_time_scale = false
 			
-			Engine.time_scale = 20.0
-			MusicPlayer.current_bgm.pitch_scale = 20.0
-			MusicPlayer.current_bgm.play(_total_time)
+			_set_time_scale(20.0)
 		else:
-			Engine.time_scale = 1.0
-			MusicPlayer.current_bgm.pitch_scale = 1.0
-			MusicPlayer.current_bgm.play(_total_time)
+			_set_time_scale(1.0)
+
+
+func _set_time_scale(new_time_scale: float) -> void:
+	Engine.time_scale = new_time_scale
+	if MusicPlayer.current_bgm:
+		MusicPlayer.current_bgm.pitch_scale = new_time_scale
+		MusicPlayer.current_bgm.play(_total_time)
 
 
 func _physics_process(delta: float) -> void:

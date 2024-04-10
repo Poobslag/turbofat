@@ -6,6 +6,7 @@
 
 [node name="Demo" type="Node"]
 script = ExtResource( 5 )
+cool_credits = false
 
 [node name="CreditsScroll" parent="." instance=ExtResource( 1 )]
 

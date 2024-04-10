@@ -731,7 +731,6 @@ PinupScrollersPath = NodePath("../FixedContainer/ScrollingContainer/PinupScrolle
 
 [node name="MusicSyncPlayer" type="AnimationPlayer" parent="CreditsDirector"]
 root_node = NodePath("../..")
-autoplay = "play"
 anims/RESET = SubResource( 10 )
 anims/play = SubResource( 1 )
 
