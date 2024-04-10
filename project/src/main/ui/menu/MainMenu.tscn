@@ -137,7 +137,6 @@ theme = ExtResource( 2 )
 text = "Creatures"
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
-margin_top = -100.0
 alignment = 1
 quit_on_cancel = false
 

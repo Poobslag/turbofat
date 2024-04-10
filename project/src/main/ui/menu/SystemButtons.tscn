@@ -10,7 +10,7 @@
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -86.0
+margin_top = -124.0
 theme = ExtResource( 1 )
 custom_constants/separation = 10
 script = ExtResource( 2 )
@@ -30,7 +30,7 @@ text = "Settings"
 action = "ui_cancel"
 overridden_action = "ui_menu"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Credits" type="Button" parent="."]
 margin_left = 454.0
 margin_top = 38.0
 margin_right = 570.0
@@ -40,7 +40,26 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 shortcut = ExtResource( 4 )
+text = "Credits"
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 454.0
+margin_top = 76.0
+margin_right = 570.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 116, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+shortcut_in_tooltip = false
+shortcut = ExtResource( 4 )
 text = "Quit"
 
+[node name="Spacer" type="Control" parent="."]
+margin_top = 114.0
+margin_right = 1024.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 0, 10 )
+
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
