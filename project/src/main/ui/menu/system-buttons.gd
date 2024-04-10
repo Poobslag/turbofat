@@ -9,6 +9,8 @@ onready var _ui_cancel_shortcut := preload("res://src/main/ui/UiCancelShortcut.t
 
 signal settings_pressed
 
+signal credits_pressed
+
 signal quit_pressed
 
 func _ready() -> void:
@@ -39,3 +41,8 @@ func _on_Quit_pressed() -> void:
 
 func _on_Settings_pressed() -> void:
 	emit_signal("settings_pressed")
+
+
+func _on_Credits_pressed():
+	emit_signal("credits_pressed")
+	SceneTransition.push_trail(Global.SCENE_CREDITS)
