@@ -79,8 +79,6 @@ onready var _credits_pieces: CreditsPieces = $FixedContainer/OrbHolder/Pieces
 onready var _movie: Control = $FixedContainer/Movie
 
 func _ready() -> void:
-	MusicPlayer.play_credits_bgm()
-	
 	_movie.rect_position = MOVIE_POSITION_OFFSCREEN_LEFT
 	
 	# initialize the movie to visible but transparent; this way the tweens don't have to toggle the 'visible' property

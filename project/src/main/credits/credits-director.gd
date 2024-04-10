@@ -92,8 +92,19 @@ onready var _pinup_scrollers := get_node(PinupScrollersPath)
 
 onready var _credits_scroll: CreditsScroll = get_parent()
 
-## Loading this scene immediately schedules all of the credits events.
 func _ready() -> void:
+	yield(get_tree(), "idle_frame")
+	if PlayerData.career.is_region_finished(CareerLevelLibrary.region_for_id("lava")):
+		play_cool_credits()
+	else:
+		play_boring_credits()
+
+
+## Schedules all of the credits events for the "cool credits" after the player beats the game.
+func play_cool_credits() -> void:
+	MusicPlayer.play_credits_bgm()
+	_music_sync_player.play("play")
+	
 	var credits_tween := get_tree().create_tween()
 	_schedule_part_1(credits_tween)
 	_schedule_part_2(credits_tween)
@@ -124,6 +135,27 @@ func _ready() -> void:
 	
 	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
 	_credits_scroll.orb.initialize_time(2.92682)
+
+
+## Schedules all of the credits events for the "boring credits" before the player beats the game.
+func play_boring_credits() -> void:
+	MusicPlayer.play_chill_bgm()
+	var credits_tween := get_tree().create_tween()
+	
+	var boring_credits := []
+	boring_credits.append_array(part_1)
+	boring_credits.append_array([""])
+	boring_credits.append_array(part_3)
+	for _i in range(BUFFER_LINE_COUNT):
+		boring_credits.append_array([""])
+	
+	_set_credits_scroll_velocity(30)
+	
+	# Add all of the credit lines.
+	for credit in boring_credits:
+		credits_tween.tween_callback(self, "_add_credit_line", [credit])
+		credits_tween.tween_interval(_line_height(credit) / abs(_credits_scroll.velocity.y))
+	credits_tween.set_loops()
 
 
 ## Returns the number of seconds the music is ahead of the animation.
@@ -185,12 +217,16 @@ func _schedule_part_4(credits_tween: SceneTreeTween) -> void:
 func _total_credits_height(lines: Array) -> float:
 	var total := 0.0
 	for line in lines:
-		if line == "#made_with_godot#":
-			total += 144.0
-		else:
-			total += 30
+		total += _line_height(line)
 	total += 30 * BUFFER_LINE_COUNT
 	return total
+
+
+## Calculates the height in units of a credits line.
+##
+## This determines how fast the credits need to scroll.
+func _line_height(line: String) -> float:
+	return 144.0 if line == "#made_with_godot#" else 30.0
 
 
 ## Adds a line to the CreditsScroll based on the specified script event.
