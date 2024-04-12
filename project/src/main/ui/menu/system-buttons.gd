@@ -43,6 +43,6 @@ func _on_Settings_pressed() -> void:
 	emit_signal("settings_pressed")
 
 
-func _on_Credits_pressed():
+func _on_Credits_pressed() -> void:
 	emit_signal("credits_pressed")
 	SceneTransition.push_trail(Global.SCENE_CREDITS)
