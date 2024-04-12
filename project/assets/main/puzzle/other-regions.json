@@ -17,6 +17,7 @@
       "name": "Training: Marathon",
       "branch_name": "Marathon",
       "description": "A test of endurance where you survive as long as you can against increasing speeds.",
+      "region_button": "marathon",
       "flags": [
         "training"
       ],
@@ -32,6 +33,7 @@
       "name": "Training: Ultra",
       "branch_name": "Ultra",
       "description": "A test of speed where you race to a target amount of money. How fast can you finish?",
+      "region_button": "ultra",
       "flags": [
         "training"
       ],
@@ -46,6 +48,7 @@
       "name": "Training: Sprint",
       "branch_name": "Sprint",
       "description": "A test of speed where you earn as much money as you can within a time limit. How much can you earn?",
+      "region_button": "sprint",
       "flags": [
         "training"
       ],
@@ -59,6 +62,7 @@
       "name": "Training: Rank",
       "branch_name": "Rank",
       "description": "An escalating set of challenges. How high can you get?",
+      "region_button": "rank",
       "level_ids": [
         "rank/7k",
         "rank/6k",
@@ -85,6 +89,7 @@
       "name": "Training: Sandbox",
       "branch_name": "Sandbox",
       "description": "An endless mode with no way to win or lose.",
+      "region_button": "sandbox",
       "flags": [
         "training"
       ],
