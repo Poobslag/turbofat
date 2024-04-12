@@ -38,6 +38,8 @@ onready var _creature := $Creature
 onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
 
 func _ready() -> void:
+	PlayerData.creature_library.clear_all_fatness()
+	
 	if creature_path:
 		_creature.creature_def = CreatureDef.new().from_json_path(creature_path)
 	else:
