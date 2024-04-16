@@ -7,8 +7,9 @@
 # combines them into a zip file. Some exports only produce a single file, so
 # those are left alone.
 
-# Calculate the version string
-version=$(grep "config/version=" project/project.godot | awk -F "\"" '{print $2}')
+# Calculate the version string from project.godot, trimming off any suffix
+# such as '-steam'
+version=$(grep "config/version=" project/project.godot | awk -F "[\"-]" '{print $2}')
 echo "version=$version"
 
 ################################################################################
