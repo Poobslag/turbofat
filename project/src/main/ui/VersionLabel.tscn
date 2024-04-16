@@ -8,10 +8,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -110.0
+margin_left = -68.0
 margin_top = -30.0
-margin_right = -9.99988
+margin_right = -10.0
+margin_bottom = -10.0
 theme = ExtResource( 2 )
 text = "v1.2.3.4"
 align = 2
 script = ExtResource( 1 )
+
+[connection signal="resized" from="." to="." method="_on_resized"]
