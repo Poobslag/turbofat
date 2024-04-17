@@ -737,6 +737,7 @@ margin_bottom = 480.0
 popup_exclusive = true
 window_title = "Export Creature"
 access = 2
+filters = PoolStringArray( "*.json" )
 
 [node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
 margin_right = 250.0
