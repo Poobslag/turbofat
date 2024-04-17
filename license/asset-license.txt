@@ -43,6 +43,7 @@ $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project
 $$ Gut by Tom "Butch" Wesley (MIT License)
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)
+$ Zip Exec by Ronnie Hedlund (https://sourceforge.net/p/galaxyv2/code/HEAD/tree/other/zip_exec/) (Public Domain)
 
 Sounds
 --------------------------------------------------------------------------------

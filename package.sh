@@ -44,6 +44,9 @@ fi
 echo "Packaging $linux_zip_filename"
 zip "$linux_zip_filename" "$linux_export_path/turbofat-linux-v$version.*" -x "*.zip" -j
 
+# Enable the +x flag
+bin/zip_exec/zip_exec.exe "$linux_zip_filename" turbofat-linux-v$version.x86_64
+
 ################################################################################
 # Package the html5 release
 
