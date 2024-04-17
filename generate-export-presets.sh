@@ -42,5 +42,5 @@ sed -i "s/##ANDROID_KEYSTORE_RELEASE_PASSWORD##/$ANDROID_KEYSTORE_RELEASE_PASSWO
 echo "Updated export_presets.cfg"
 
 # Update project.godot
-sed -i "s/^config\/version=\".*\"$/config\/version=\"$version\"/g" project/project.godot
+sed -i "s/^config\/version=\".*\"$/config\/version=\"$version-steam\"/g" project/project.godot
 echo "Updated project.godot"
