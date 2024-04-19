@@ -171,7 +171,7 @@ func _random_levels() -> Array:
 			break
 		
 		if random_levels[random_level_index].level_id in PlayerData.career.level_ids:
-			random_levels[0] = unplayed_levels.pop_front()
+			random_levels[random_level_index] = unplayed_levels.pop_front()
 	
 	return random_levels
 
