@@ -1,0 +1,61 @@
+*bug: picking rank mode threw an error
+*bug: getting repeated levels a lot; picked wedge and wedge still showed up later
+
+achievements
+
+CAREER_MODE_FINISH Complete career mode.
+TUTORIAL_FINISH Complete all tutorials.
+CREATE_CREATURE Customize your creature's appearance.
+CREATE_LEVEL Create a level in the level editor.
+MARATHON_HARD_RANK_S In training mode, get an "S" rank on Marathon: Hard.
+ULTRA_HARD_RANK_S In training mode, get an "S" rank on Ultra: Hard.
+SPRINT_NORMAL_RANK_S In training mode, get an "S" rank on Sprint: Normal.
+Get an S rank for Chapter 1 (Lemony Thickets).
+CHAPTER_1_STORY_FINISH Complete the story for Chapter 1 (Lemony Thickets).
+CHAPTER_2_START Reach Chapter 2 (Welcome to Turbo Fat)
+CHAPTER_2_RANK_S Get an S rank for Chapter 2 (Welcome to Turbo Fat)
+CHAPTER_2_STORY_FINISH omplete the story for Chapter 2 (Welcome to Turbo Fat).
+CHAPTER_3_START Reach Chapter 3 (Poki Desert)
+CHAPTER_3_RANK_S Get an S rank for Chapter 3 (Poki Desert).
+CHAPTER_3_STORY_FINISH Complete the story for Chapter 3 (Poki Desert).
+CHAPTER_4_START Reach Chapter 4 (Kflab)
+CHAPTER_4_RANK_S Get an S rank for Chapter 4 (Kflab).
+CHAPTER_4_STORY_FINISH Complete the story for Chapter 4 (Kflab).
+CHAPTER_5_START Reach Chapter 5 (Merrymellow Marsh)
+CHAPTER_5_RANK_S Get an S rank for Chapter 5 (Merrymellow Marsh).
+CHAPTER_5_STORY_FINISH Complete the story for Chapter 5 (Merrymellow Marsh).
+CHAPTER_6_START Reach Chapter 6 (Chocolava Canyon)
+CHAPTER_6_RANK_S Get an S rank for Chapter 6 (Chocolava Canyon).
+CHAPTER_6_STORY_FINISH Complete the story for Chapter 6 (Chocolava Canyon).
+OVERALL_RANK_S Get an S rank on all six chapters.
+RANK_M Earn an M rank on any level from any chapter.
+COMBO_50 Get a combo of 50 lines or more.
+COMBO_100 Get a combo of 100 lines or more.
+ONE_CUSTOMER_2000_POINTS Earn ¥2,000 from a single customer.
+LEFTOVERS_300_POINTS Earn ¥300 from leftovers after a level is complete.
+
+SHARK_SMUSH Smush a yellow shark.
+CARROT_MANY In the level "Cheerleaders", have ten or more carrots onscreen at once.
+ONION_500_POINTS In the level "Midnight Snack", earn ¥500 or more from your first customer.
+SPEAR_VAULT In the level "Asparagus Vault", earn ¥300 or more from pickups.
+MOLE_MANY In the level "Rice Bear Island", earn ¥150 or more from pickups.
+
+
+(rank mode?)
+
+
+stats:
+-# levels cleared
+-# levels cleared with S rank
+-# levels cleared with SS rank
+-# levels cleared with SSS rank
+-# levels cleared with M rank
+
+
+
+CHAPTER_1_STORY_FINISH Complete the story for Chapter 1 (Lemony Thickets).
+MARATHON_HARD_RANK_S In training mode, get an "S" rank on Marathon: Hard.
+CHAPTER_3_START Reach Chapter 3 (Poki Desert)
+
+
+Localize Steam achievements and stats
