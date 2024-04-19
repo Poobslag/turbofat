@@ -107,6 +107,9 @@ func set_level_duration(new_level_duration: int) -> void:
 
 ## Updates the button's style colors. Can be overridden by child buttons who use different styles.
 func refresh_style_color(color: Color) -> void:
+	if not is_inside_tree():
+		return
+	
 	_button_control.get("custom_styles/normal").bg_color = color
 	_button_control.get("custom_styles/hover").bg_color = color
 
