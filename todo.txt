@@ -1,5 +1,13 @@
 *bug: picking rank mode threw an error
 *bug: getting repeated levels a lot; picked wedge and wedge still showed up later
+-pop test achievement (by hitting a key, or something trivial)
+-unpop test achievement?
+-add actual achievement triggers
+-assign achievement stats
+-add achievement: CHAPTER_1_STORY_FINISH
+-add achievement: MARATHON_HARD_RANK_S
+-add achievement: CHAPTER_3_START
+
 
 achievements
 
