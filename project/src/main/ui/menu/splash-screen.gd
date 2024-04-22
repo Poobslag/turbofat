@@ -14,6 +14,14 @@ func _ready() -> void:
 		$DropPanel/System/Quit.hide()
 
 
+func _input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_EQUAL:
+			GodotSteam.set_achievement("CHAPTER_1_STORY_FINISH")
+		KEY_MINUS:
+			GodotSteam.clear_achievement("CHAPTER_1_STORY_FINISH")
+
+
 func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
 

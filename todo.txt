@@ -1,7 +1,7 @@
 *bug: picking rank mode threw an error
 *bug: getting repeated levels a lot; picked wedge and wedge still showed up later
--pop test achievement (by hitting a key, or something trivial)
--unpop test achievement?
+*pop test achievement (by hitting a key, or something trivial)
+*unpop test achievement?
 -add actual achievement triggers
 -assign achievement stats
 -add achievement: CHAPTER_1_STORY_FINISH
@@ -11,6 +11,10 @@
 -add to license
 -add to credits
 -create issue: localize steam achievements, localize steam stat names
+-merge
+ -enable file logging
+ -integrate steam plugin
+ -add steam achievements
 
 
 achievements
