@@ -1837,6 +1837,7 @@ SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
 PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
+GodotSteam="*res://src/main/utils/godot-steam.gd"
 
 [debug]
 
@@ -2013,6 +2014,10 @@ translations=PoolStringArray( "res://assets/main/locale/en.po", "res://assets/ma
 locale_filter=[ 1, [ "en", "es" ] ]
 translation_remaps={
 }
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [rendering]
 

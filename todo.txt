@@ -7,6 +7,10 @@
 -add achievement: CHAPTER_1_STORY_FINISH
 -add achievement: MARATHON_HARD_RANK_S
 -add achievement: CHAPTER_3_START
+-document in wiki
+-add to license
+-add to credits
+-create issue: localize steam achievements, localize steam stat names
 
 
 achievements
@@ -66,4 +70,9 @@ MARATHON_HARD_RANK_S In training mode, get an "S" rank on Marathon: Hard.
 CHAPTER_3_START Reach Chapter 3 (Poki Desert)
 
 
-Localize Steam achievements and stats
+--------------------------------------------------------------------------------
+
+Installed GodotSteam plugin 3.23.1
+
+Obtained Win64 precompiles from https://github.com/GodotSteam/GodotSteam/releases/tag/v3.23.1
+
