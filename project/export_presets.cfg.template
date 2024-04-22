@@ -13,8 +13,8 @@ script_encryption_key=""
 
 [preset.0.options]
 
-custom_template/debug="c:/workspace/steam/godotsteam/win64-g353-s159-gs3231/godotsteam.353.debug.template.windows.64.exe"
-custom_template/release="c:/workspace/steam/godotsteam/win64-g353-s159-gs3231/godotsteam.353.template.windows.64.exe"
+custom_template/debug="##GODOTSTEAM_WIN_DEBUG_TEMPLATE##"
+custom_template/release="##GODOTSTEAM_WIN_TEMPLATE##"
 binary_format/64_bits=true
 binary_format/embed_pck=false
 texture_format/bptc=false
@@ -56,8 +56,8 @@ script_encryption_key=""
 
 [preset.1.options]
 
-custom_template/debug="c:/workspace/steam/godotsteam/linux64-g353-s159-gs3231/godotsteam.353.debug.template.linux.64"
-custom_template/release="c:/workspace/steam/godotsteam/linux64-g353-s159-gs3231/godotsteam.353.template.linux.64"
+custom_template/debug="##GODOTSTEAM_LINUX_DEBUG_TEMPLATE##"
+custom_template/release="##GODOTSTEAM_LINUX_TEMPLATE##"
 binary_format/64_bits=true
 binary_format/embed_pck=false
 texture_format/bptc=false
