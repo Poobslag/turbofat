@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/utils/chapter-story-finished.gd" type="Script" id=1]
+[ext_resource path="res://src/main/utils/chapter-story-finished-achievement.gd" type="Script" id=1]
+[ext_resource path="res://src/main/utils/chapter-started-achievement.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/utils/steam-achievements.gd" type="Script" id=4]
 
 [node name="SteamAchievements" type="Node"]
+script = ExtResource( 4 )
 
 [node name="Chapter1StoryFinish" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -11,3 +15,11 @@ stat_id = "CHAPTER_1_STORY_PERCENT"
 region_id = "lemon"
 
 [node name="Chapter3Start" type="Node" parent="."]
+script = ExtResource( 2 )
+achievement_id = "CHAPTER_3_START"
+region_id = "poki"
+
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 3 )]
+codes = [ "pain-whistle-elastic-union" ]
+
+[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]

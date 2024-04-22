@@ -13,6 +13,10 @@ func refresh_achievement() -> void:
 	pass
 
 
+func clear_achievement() -> void:
+	GodotSteam.clear_achievement(achievement_id)
+
+
 func _on_PlayerSave_after_load() -> void:
 	refresh_achievement()
 
