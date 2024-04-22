@@ -2,6 +2,10 @@
 *bug: getting repeated levels a lot; picked wedge and wedge still showed up later
 *pop test achievement (by hitting a key, or something trivial)
 *unpop test achievement?
+-add custom templates
+ *test export/package works with new templates, paths
+ -update export presets template
+ -add secrets for special paths
 -add actual achievement triggers
 -assign achievement stats
 -add achievement: CHAPTER_1_STORY_FINISH
@@ -11,6 +15,10 @@
 -add to license
 -add to credits
 -create issue: localize steam achievements, localize steam stat names
+-configure steamworks configuration -- 64-bit only
+-add steps to Steam configuration
+ -download precompiled GodotSteam editor, templates, DLLs
+ -configure DLLs in templates
 -merge
  -enable file logging
  -integrate steam plugin
@@ -80,3 +88,4 @@ Installed GodotSteam plugin 3.23.1
 
 Obtained Win64 precompiles from https://github.com/GodotSteam/GodotSteam/releases/tag/v3.23.1
 
+requested template binary godot osx release 64 not found

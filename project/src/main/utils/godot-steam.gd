@@ -26,9 +26,6 @@ func _initialize_steam() -> void:
 func set_achievement(id: String) -> void:
 	print("[STEAM] Setting Steam achievement: %s" % id)
 	
-	var request_current_stats_response: bool = Steam.requestCurrentStats()
-	print("[STEAM] requestCurrentStats response: %s" % [request_current_stats_response])
-	
 	var set_achievement_response: bool = Steam.setAchievement(id)
 	print("[STEAM] setAchievement(%s) response: %s" % [id, set_achievement_response])
 	
@@ -38,9 +35,6 @@ func set_achievement(id: String) -> void:
 
 func clear_achievement(id: String) -> void:
 	print("[STEAM] Clearing Steam achievement: %s" % id)
-	
-	var request_current_stats_response: bool = Steam.requestCurrentStats()
-	print("[STEAM] requestCurrentStats response: %s" % [request_current_stats_response])
 	
 	var clear_achievement_response: bool = Steam.clearAchievement(id)
 	print("[STEAM] clearAchievement(%s) response: %s" % [id, clear_achievement_response])
