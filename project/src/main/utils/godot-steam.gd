@@ -20,11 +20,11 @@ func _initialize_steam() -> void:
 	print("[STEAM] Initializing Steam: %s" % [STEAM_APP_ID])
 	
 	var steam_init_ex_response: Dictionary = Steam.steamInitEx(true, STEAM_APP_ID)
-	print("[STEAM] steamInitEx response: %s" % steam_init_ex_response)
+	print("[STEAM] steamInitEx response: %s" % [steam_init_ex_response])
 
 
 func set_achievement(id: String) -> void:
-	print("[STEAM] Setting Steam achievement: %s" % id)
+	print("[STEAM] Setting Steam achievement: %s" % [id])
 	
 	var set_achievement_response: bool = Steam.setAchievement(id)
 	print("[STEAM] setAchievement(%s) response: %s" % [id, set_achievement_response])
@@ -33,8 +33,15 @@ func set_achievement(id: String) -> void:
 	print("[STEAM] storeStats response: %s" % [store_stats_response])
 
 
+func set_stat_float(id: String, value: float) -> void:
+	print("[STEAM] Setting Steam stat: %s -> %s" % [id, value])
+	
+	var set_stat_float_response: bool = Steam.setStatFloat(id, value)
+	print("[STEAM] setStatFloat(%s, %s) response: %s" % [id, value, set_stat_float_response])
+
+
 func clear_achievement(id: String) -> void:
-	print("[STEAM] Clearing Steam achievement: %s" % id)
+	print("[STEAM] Clearing Steam achievement: %s" % [id])
 	
 	var clear_achievement_response: bool = Steam.clearAchievement(id)
 	print("[STEAM] clearAchievement(%s) response: %s" % [id, clear_achievement_response])

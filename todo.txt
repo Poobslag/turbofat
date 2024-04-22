@@ -20,6 +20,7 @@
  -download precompiled GodotSteam editor, templates, DLLs
  -configure secrets/steam.properties
  -configure DLLs in templates
+-comments, delint
 -merge
  -enable file logging
  -integrate steam plugin

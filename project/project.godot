@@ -1379,6 +1379,11 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godotsteam/godotsteam.gdns"
 }, {
+"base": "Node",
+"class": "SteamAchievement",
+"language": "GDScript",
+"path": "res://src/main/utils/steam-achievement.gd"
+}, {
 "base": "Sprite",
 "class": "Sticker",
 "language": "GDScript",
@@ -1769,6 +1774,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "Steam": "",
+"SteamAchievement": "",
 "Sticker": "",
 "StickerRow": "",
 "Stool": "",
@@ -1809,6 +1815,7 @@ default_bus_layout="res://src/main/settings/default-bus-layout.tres"
 [autoload]
 
 Global="*res://src/main/utils/global.gd"
+GodotSteam="*res://src/main/utils/godot-steam.gd"
 LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
@@ -1833,11 +1840,11 @@ PlayerSave="*res://src/main/data/player-save.gd"
 PuzzleState="*res://src/main/puzzle/PuzzleState.tscn"
 ResourceCache="*res://src/main/utils/ResourceCache.tscn"
 SceneTransition="*res://src/main/utils/SceneTransition.tscn"
+SteamAchievements="*res://src/main/utils/SteamAchievements.tscn"
 SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
 PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
-GodotSteam="*res://src/main/utils/godot-steam.gd"
 
 [debug]
 

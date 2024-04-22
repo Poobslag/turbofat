@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/utils/chapter-story-finished.gd" type="Script" id=1]
+
+[node name="SteamAchievements" type="Node"]
+
+[node name="Chapter1StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_1_STORY_FINISH"
+stat_id = "CHAPTER_1_STORY_PERCENT"
+region_id = "lemon"
+
+[node name="Chapter3Start" type="Node" parent="."]

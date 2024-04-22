@@ -393,6 +393,22 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 		
 		region_completion.cutscene_completion = all_chat_count - unexhausted_chat_count
 	
+	var special_chat_keys := [
+		region.get_epilogue_chat_key(),
+		region.get_prologue_chat_key(),
+		region.get_boss_level_postroll_chat_key(),
+		region.get_boss_level_preroll_chat_key(),
+		region.get_intro_level_preroll_chat_key(),
+		region.get_intro_level_postroll_chat_key(),
+	]
+	for special_chat_key in special_chat_keys:
+		if not ChatLibrary.chat_exists(special_chat_key):
+			continue
+		
+		region_completion.potential_cutscene_completion += 1
+		if PlayerData.chat_history.is_chat_finished(special_chat_key):
+			region_completion.cutscene_completion += 1
+	
 	# include the percent of levels which have been completed
 	region_completion.potential_level_completion = region.levels.size()
 	for level_obj in region.levels:

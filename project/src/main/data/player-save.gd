@@ -7,6 +7,8 @@ signal before_save
 
 signal after_save
 
+signal after_load
+
 ## Current version for saved player data. Should be updated if and only if the player format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const PLAYER_DATA_VERSION := "512b"
@@ -99,6 +101,7 @@ func save_player_data() -> void:
 func load_player_data() -> void:
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
+	emit_signal("after_load")
 
 
 ## Returns the playtime in seconds from the specified save file.
