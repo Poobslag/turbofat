@@ -2,6 +2,9 @@ extends Node
 
 const STEAM_APP_ID: int = 2213410
 
+## toggle to view detailed steam messages
+var verbose := false
+
 # Steam variables
 onready var Steam = preload("res://addons/godotsteam/godotsteam.gdns").new()
 
@@ -13,38 +16,45 @@ func _process(_delta: float) -> void:
 	Steam.run_callbacks()
 
 
+func _log(message: String) -> void:
+	if not verbose:
+		return
+	
+	print("[STEAM] %s" % [message])
+
+
 func _initialize_steam() -> void:
 	OS.set_environment("SteamAppId", str(STEAM_APP_ID))
 	OS.set_environment("SteamGameId", str(STEAM_APP_ID))
 	
-	print("[STEAM] Initializing Steam: %s" % [STEAM_APP_ID])
+	_log("Initializing Steam: %s" % [STEAM_APP_ID])
 	
 	var steam_init_ex_response: Dictionary = Steam.steamInitEx(true, STEAM_APP_ID)
-	print("[STEAM] steamInitEx response: %s" % [steam_init_ex_response])
+	_log("steamInitEx response: %s" % [steam_init_ex_response])
 
 
 func set_achievement(id: String) -> void:
-	print("[STEAM] Setting Steam achievement: %s" % [id])
+	_log("Setting Steam achievement: %s" % [id])
 	
 	var set_achievement_response: bool = Steam.setAchievement(id)
-	print("[STEAM] setAchievement(%s) response: %s" % [id, set_achievement_response])
+	_log("setAchievement(%s) response: %s" % [id, set_achievement_response])
 	
 	var store_stats_response: bool = Steam.storeStats()
-	print("[STEAM] storeStats response: %s" % [store_stats_response])
+	_log("storeStats response: %s" % [store_stats_response])
 
 
 func set_stat_float(id: String, value: float) -> void:
-	print("[STEAM] Setting Steam stat: %s -> %s" % [id, value])
+	_log("Setting Steam stat: %s -> %s" % [id, value])
 	
 	var set_stat_float_response: bool = Steam.setStatFloat(id, value)
-	print("[STEAM] setStatFloat(%s, %s) response: %s" % [id, value, set_stat_float_response])
+	_log("setStatFloat(%s, %s) response: %s" % [id, value, set_stat_float_response])
 
 
 func clear_achievement(id: String) -> void:
-	print("[STEAM] Clearing Steam achievement: %s" % [id])
+	_log("Clearing Steam achievement: %s" % [id])
 	
 	var clear_achievement_response: bool = Steam.clearAchievement(id)
-	print("[STEAM] clearAchievement(%s) response: %s" % [id, clear_achievement_response])
+	_log("clearAchievement(%s) response: %s" % [id, clear_achievement_response])
 	
 	var store_stats_response: bool = Steam.storeStats()
-	print("[STEAM] storeStats response: %s" % [store_stats_response])
+	_log("storeStats response: %s" % [store_stats_response])

@@ -6,12 +6,12 @@
  *test export/package works with new templates, paths
  *update export presets template
  *add secrets for special paths
--add actual achievement triggers
--assign achievement stats
--add achievement: CHAPTER_1_STORY_FINISH
--add achievement: MARATHON_HARD_RANK_S
--add achievement: CHAPTER_3_START
--document in wiki
+*add actual achievement triggers
+*assign achievement stats
+*add achievement: CHAPTER_1_STORY_FINISH
+*add achievement: MARATHON_HARD_RANK_S
+*add achievement: CHAPTER_3_START
+-organize steam stuff into '/utils/steam', or maybe just '/steam'
 -add to license
 -add to credits
 -create issue: localize steam achievements, localize steam stat names
@@ -20,6 +20,7 @@
  -download precompiled GodotSteam editor, templates, DLLs
  -configure secrets/steam.properties
  -configure DLLs in templates
+ -document new cheat code to reset all achievements
 -comments, delint
 -merge
  -enable file logging
