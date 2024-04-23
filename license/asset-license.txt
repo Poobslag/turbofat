@@ -39,6 +39,7 @@ Other:
 $ GDTracery by Althar93 (https://github.com/Althar93/GDTracery) (Apache-2.0 license)
 $$$ Godot Engine (MIT license)
 $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (MIT License) (Their code served as a reference for implementation, rather than being directly utilized.) 
+$$ GodotSteam by GP Garcia (https://github.com/GodotSteam/GodotSteam) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)

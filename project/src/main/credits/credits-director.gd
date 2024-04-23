@@ -69,6 +69,7 @@ var part_3 := [
 	" " + tr("\"Doorbell Pull Store Bell\" by Maisonsonique at FreeSound.org"),
 	" " + tr("\"FilmCow Royalty Free Sound Effects Library\" by FilmCow"),
 	" " + tr("\"Fredoka One\" by Milena Brandao"),
+	" " + tr("\"GodotSteam\" by GP Garcia"),
 	" " + tr("\"Gut\" by Tom \"Butch\" Wesley"),
 	" " + tr("\"Hanna Barbera SoundFX Library\" by Hanna Barbera"),
 	" " + tr("\"Modak\" by Ek Type"),
