@@ -34,10 +34,15 @@ echo "version=$version"
 
 # Load sensitive information from secrets files
 . secrets/android.properties
+. secrets/steam.properties
 
 # Update export presets
 cp project/export_presets.cfg.template project/export_presets.cfg
 sed -i "s/##VERSION##/$version/g" project/export_presets.cfg
+sed -i "s|##GODOTSTEAM_LINUX_TEMPLATE##|$GODOTSTEAM_LINUX_TEMPLATE|g" project/export_presets.cfg
+sed -i "s|##GODOTSTEAM_LINUX_DEBUG_TEMPLATE##|$GODOTSTEAM_LINUX_DEBUG_TEMPLATE|g" project/export_presets.cfg
+sed -i "s|##GODOTSTEAM_WIN_TEMPLATE##|$GODOTSTEAM_WIN_TEMPLATE|g" project/export_presets.cfg
+sed -i "s|##GODOTSTEAM_WIN_DEBUG_TEMPLATE##|$GODOTSTEAM_WIN_DEBUG_TEMPLATE|g" project/export_presets.cfg
 sed -i "s/##ANDROID_KEYSTORE_RELEASE_PASSWORD##/$ANDROID_KEYSTORE_RELEASE_PASSWORD/g" project/export_presets.cfg
 echo "Updated export_presets.cfg"
 
