@@ -3,9 +3,13 @@ extends Node
 ##
 ## This data includes how well they've done on each level and how much money they've earned.
 
+signal save_scheduled
+
 signal before_save
 
 signal after_save
+
+signal after_load
 
 ## Current version for saved player data. Should be updated if and only if the player format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
@@ -66,6 +70,7 @@ func set_legacy_filename(new_legacy_filename: String) -> void:
 ## stuttering or frame drops, we do this during scene transitions.
 func schedule_save() -> void:
 	_save_scheduled = true
+	emit_signal("save_scheduled")
 
 
 ## Writes the player's in-memory data to a save file.
@@ -99,6 +104,7 @@ func save_player_data() -> void:
 func load_player_data() -> void:
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
+	emit_signal("after_load")
 
 
 ## Returns the playtime in seconds from the specified save file.
