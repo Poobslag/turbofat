@@ -1374,6 +1374,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/utils/state-machine.gd"
 }, {
+"base": "Object",
+"class": "Steam",
+"language": "NativeScript",
+"path": "res://addons/godotsteam/godotsteam.gdns"
+}, {
 "base": "Sprite",
 "class": "Sticker",
 "language": "GDScript",
@@ -1763,6 +1768,7 @@ _global_script_class_icons={
 "StarSeeds": "",
 "State": "",
 "StateMachine": "",
+"Steam": "",
 "Sticker": "",
 "StickerRow": "",
 "Stool": "",
@@ -1807,6 +1813,7 @@ Global="*res://src/main/utils/global.gd"
 LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
+Steam="*res://addons/godotsteam/steam.gd"
 Breadcrumb="*res://src/main/utils/breadcrumb.gd"
 CareerLevelLibrary="*res://src/main/career/career-level-library.gd"
 CareerCutsceneLibrary="*res://src/main/career/career-cutscene-library.gd"
@@ -1828,6 +1835,7 @@ PlayerSave="*res://src/main/data/player-save.gd"
 PuzzleState="*res://src/main/puzzle/PuzzleState.tscn"
 ResourceCache="*res://src/main/utils/ResourceCache.tscn"
 SceneTransition="*res://src/main/utils/SceneTransition.tscn"
+SteamAchievements="*res://src/main/steam/SteamAchievements.tscn"
 SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
@@ -1847,7 +1855,11 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godotsteam/plugin.cfg", "res://addons/gut/plugin.cfg" )
+
+[global]
+
+"file logging"=false
 
 [gui]
 
