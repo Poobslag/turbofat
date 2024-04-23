@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/steam/chapter-story-finished-achievement.gd" type="Script" id=1]
+[ext_resource path="res://src/main/steam/chapter-unlocked-achievement.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/steam/steam-achievements.gd" type="Script" id=4]
+[ext_resource path="res://src/main/steam/level-rank-achievement.gd" type="Script" id=5]
+
+[node name="SteamAchievements" type="Node"]
+script = ExtResource( 4 )
+
+[node name="Chapter1StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_1_STORY_FINISH"
+stat_id = "CHAPTER_1_STORY_PERCENT"
+region_id = "lemon"
+
+[node name="Chapter3Start" type="Node" parent="."]
+script = ExtResource( 2 )
+achievement_id = "CHAPTER_3_START"
+region_id = "poki"
+
+[node name="MarathonHardRankS" type="Node" parent="."]
+script = ExtResource( 5 )
+achievement_id = "MARATHON_HARD_RANK_S"
+level_id = "practice/marathon_hard"
+target_grade = "S"
+
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 3 )]
+codes = [ "pain-whistle-elastic-union" ]
+
+[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
