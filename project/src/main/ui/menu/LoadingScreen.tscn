@@ -61,3 +61,8 @@ script = ExtResource( 6 )
 orb_path = NodePath("../Orb")
 progress_bar_path = NodePath("../ProgressBar")
 PieceScene = ExtResource( 3 )
+
+[node name="FadeCover" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
