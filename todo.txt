@@ -1,2 +1,6 @@
 -evaluate 'full controller support' checklist
-
+-creature editor
+ *should be able to switch tabs (up past top?)
+ *should be able to select settings/quit (down past bottom?)
+ -assign top/bottom focus based on which tab is active
+ -refactor
