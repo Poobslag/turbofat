@@ -14,9 +14,13 @@ var _test_scene: Node
 
 onready var level_id_label := $HBoxContainer/SideButtons/LevelId
 onready var _level_json := $HBoxContainer/SideButtons/Json
+onready var _test_button := $HBoxContainer/SideButtons/Test
 
 func _ready() -> void:
 	var level_text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(DEFAULT_LEVEL_ID))
+	
+	# grab initial focus for controller/keyboard
+	_test_button.grab_focus()
 	
 	# immediately parse and upgrade the level; LevelEditor will behave strangely with older level formats
 	_parse_level(DEFAULT_LEVEL_ID, level_text)
