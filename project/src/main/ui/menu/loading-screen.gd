@@ -5,12 +5,23 @@ onready var _wallpaper := $Wallpaper
 onready var _orb := $Holder/Orb
 onready var _progress_bar := $Holder/ProgressBar
 
+# covers the loading screen with a dark color, and immediately fades out
+onready var _fade_cover: ColorRect = $FadeCover
+
 func _ready() -> void:
 	ResourceCache.connect("finished_loading", self, "_on_ResourceCache_finished_loading")
-	ResourceCache.start_load()
 	
 	_orb.modulate = _wallpaper.light_color.lightened(0.5)
 	_progress_bar.modulate = _orb.modulate
+	
+	var _fade_cover_tween: SceneTreeTween = create_tween()
+	_fade_cover_tween.tween_property(_fade_cover, "modulate", Utils.to_transparent(_fade_cover.color), 0.3)
+	if SystemData.fast_mode:
+		# immediately start loading
+		ResourceCache.start_load()
+	else:
+		# load after the fade effect finishes
+		_fade_cover_tween.tween_callback(ResourceCache, "start_load")
 
 
 func _process(_delta: float) -> void:
