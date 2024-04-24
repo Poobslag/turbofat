@@ -5,7 +5,7 @@ onready var _wallpaper := $Wallpaper
 onready var _orb := $Holder/Orb
 onready var _progress_bar := $Holder/ProgressBar
 
-# covers the loading screen with a dark color, and immediately fades out
+## covers the loading screen with a dark color, and immediately fades out
 onready var _fade_cover: ColorRect = $FadeCover
 
 func _ready() -> void:
