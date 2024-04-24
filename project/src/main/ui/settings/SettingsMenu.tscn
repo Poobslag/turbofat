@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://src/main/ui/theme/h7-font.tres" type="DynamicFont" id=37]
 [ext_resource path="res://src/main/ui/theme/h8-font.tres" type="DynamicFont" id=38]
 [ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
+[ext_resource path="res://src/main/ui/settings/settings-fullscreen.gd" type="Script" id=40]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -130,7 +131,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
 margin_right = 560.0
-margin_bottom = 240.0
+margin_bottom = 272.0
 size_flags_horizontal = 3
 
 [node name="Volume" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
@@ -196,10 +197,72 @@ theme = ExtResource( 1 )
 text = "Graphics"
 align = 1
 
-[node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
+[node name="Fullscreen" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 152.0
 margin_right = 548.0
-margin_bottom = 178.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 40 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen"]
+margin_right = 212.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Fullscreen"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen"]
+margin_left = 232.0
+margin_right = 392.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+
+[node name="UseVsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
+margin_top = 184.0
+margin_right = 548.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 25 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
+margin_right = 212.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Use Vsync"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
+margin_left = 232.0
+margin_right = 392.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+
+[node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
+margin_top = 216.0
+margin_right = 548.0
+margin_bottom = 242.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -228,9 +291,9 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
 [node name="FeedingAnimation" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-margin_top = 182.0
+margin_top = 246.0
 margin_right = 548.0
-margin_bottom = 208.0
+margin_bottom = 272.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -253,37 +316,6 @@ autowrap = true
 margin_left = 232.0
 margin_right = 392.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 160, 0 )
-size_flags_horizontal = 2
-size_flags_vertical = 4
-size_flags_stretch_ratio = 1.1
-
-[node name="UseVsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-margin_top = 182.0
-margin_right = 548.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 400, 26 )
-size_flags_horizontal = 3
-theme = ExtResource( 1 )
-custom_constants/separation = 20
-script = ExtResource( 25 )
-
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
-margin_right = 212.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 120, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 0.74
-text = "Use Vsync"
-align = 2
-valign = 1
-autowrap = true
-
-[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
-margin_left = 232.0
-margin_right = 392.0
-margin_bottom = 28.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
@@ -1273,9 +1305,10 @@ dialog_autowrap = true
 
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen" method="_on_CheckBox_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_OptionButton_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_OptionButton_toggled"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
