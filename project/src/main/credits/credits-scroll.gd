@@ -240,7 +240,6 @@ func _shift_credits(old_credits_position: int, new_credits_position: int) -> voi
 ## Shifts the credits movie based on the credits position.
 func _shift_movie(old_movie_visible: bool, new_movie_visible: bool, \
 		old_credits_position: int, new_credits_position: int) -> void:
-	
 	# The movie swoops offscreen if it's set invisible or blocked by the credit scroll.
 	var tweening_out := old_movie_visible and not Credits.is_position_center(old_credits_position) \
 			and (new_credits_position != old_credits_position or new_movie_visible == false)

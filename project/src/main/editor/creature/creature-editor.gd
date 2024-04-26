@@ -40,7 +40,6 @@ onready var _mutate_ui := $Ui/TabContainer/Mutate
 onready var _reroll_ui := $Ui/Reroll
 
 func _ready() -> void:
-	
 	for allele in DnaUtils.BODY_PART_ALLELES:
 		_recent_tweaked_allele_values[allele] = []
 	
