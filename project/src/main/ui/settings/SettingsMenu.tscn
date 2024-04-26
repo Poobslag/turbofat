@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://src/main/ui/theme/h8-font.tres" type="DynamicFont" id=38]
 [ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/main/ui/settings/settings-fullscreen.gd" type="Script" id=40]
+[ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=41]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -111,6 +112,7 @@ margin_bottom = -5.0
 [node name="TabContainer" type="TabContainer" parent="Window/UiArea"]
 margin_right = 570.0
 margin_bottom = 246.0
+focus_mode = 2
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 13 )
 custom_styles/tab_fg = SubResource( 1 )
@@ -1017,7 +1019,6 @@ margin_left = 237.0
 margin_right = 441.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
-focus_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
@@ -1115,6 +1116,9 @@ size_flags_stretch_ratio = 0.74
 text = "Copied!"
 valign = 1
 autowrap = true
+
+[node name="TabInputEnabler" parent="Window/UiArea/TabContainer" instance=ExtResource( 41 )]
+focusable_nodes_below = [ [ NodePath("../../Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1"), NodePath("../../Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2") ], [ NodePath("../../Bottom/HBoxContainer/VBoxContainer2/Holder/Ok") ] ]
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 margin_top = 250.0
