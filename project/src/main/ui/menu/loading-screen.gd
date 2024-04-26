@@ -15,6 +15,7 @@ func _ready() -> void:
 	_progress_bar.modulate = _orb.modulate
 	
 	var _fade_cover_tween: SceneTreeTween = create_tween()
+	_fade_cover.visible = true
 	_fade_cover_tween.tween_property(_fade_cover, "modulate", Utils.to_transparent(_fade_cover.color), 0.3)
 	if SystemData.fast_mode:
 		# immediately start loading
