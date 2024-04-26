@@ -54,6 +54,8 @@ func _ready() -> void:
 	new_center_creature_def.creature_id = NameUtils.short_name_to_id(new_center_creature_def.creature_short_name)
 	set_center_creature_def(new_center_creature_def)
 	mutate_all_creatures()
+	
+	$Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/Name.grab_focus()
 
 
 ## Regenerates all of the outer creatures to be variations of the center creature.
