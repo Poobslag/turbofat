@@ -167,6 +167,7 @@ margin_bottom = -4.0
 [node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/Tweak"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Tweak/ScrollContainer"]
@@ -438,6 +439,7 @@ script = ExtResource( 12 )
 [node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/Mutate"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Mutate/ScrollContainer"]
