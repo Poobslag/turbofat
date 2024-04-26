@@ -11,6 +11,13 @@ func _ready() -> void:
 	$Edit/ShortName.max_length = NameUtils.MAX_CREATURE_SHORT_NAME_LENGTH
 
 
+## Steals the focus from another control and becomes the focused control.
+##
+## This control itself doesn't have focus, so we delegate to a child control.
+func grab_focus() -> void:
+	$Edit/Name.grab_focus()
+
+
 ## Update the creature's name and short name.
 func _finish_name_edit(text: String) -> void:
 	var new_name: String = NameUtils.sanitize_name(text)
