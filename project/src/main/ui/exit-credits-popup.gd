@@ -32,21 +32,32 @@ var _popup_state: int = PopupState.POPPED_OUT
 var _tween: SceneTreeTween
 
 onready var _panel := $Panel
+onready var _label := $Panel/Label
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept", true):
-		match _popup_state:
-			POPPING_OUT, POPPED_OUT:
-				_pop_in()
-			POPPED_IN:
-				emit_signal("exit_pressed")
-			POPPING_IN:
-				# we ignore additional button presses until we're fully popped in, so that the player doesn't
-				# accidentally mash through the credits
-				pass
+		_handle_press_event()
+		if _popup_state != POPPED_IN:
+			_label.text = tr("Press again to exit")
+	elif event.is_action_pressed("ui_click"):
+		_handle_press_event()
+		if _popup_state != POPPED_IN:
+			_label.text = tr("Click again to exit")
 	
 	if event.is_action_pressed("ui_cancel", true):
 		emit_signal("exit_pressed")
+
+
+func _handle_press_event() -> void:
+	match _popup_state:
+		POPPING_OUT, POPPED_OUT:
+			_pop_in()
+		POPPED_IN:
+			emit_signal("exit_pressed")
+		POPPING_IN:
+			# we ignore additional button presses until we're fully popped in, so that the player doesn't
+			# accidentally mash through the credits
+			pass
 
 
 func _pop_in() -> void:
