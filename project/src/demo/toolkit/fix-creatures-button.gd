@@ -90,6 +90,10 @@ func _report_story_creatures() -> void:
 	
 	# report any story creatures who are not in our list of career creature ids
 	var move_to_nonstory_ids := Utils.subtract(story_ids, career_creature_ids)
+	
+	# jaco appears in the credits, even though they have no lines and no cutscenes
+	move_to_nonstory_ids = Utils.subtract(move_to_nonstory_ids, ["jaco"])
+	
 	move_to_nonstory_ids.sort()
 	if move_to_nonstory_ids:
 		_output_label.add_line("%s creatures should be moved from /story to /nonstory: %s" \
