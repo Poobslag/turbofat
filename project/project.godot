@@ -1795,7 +1795,7 @@ run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 boot_splash/show_image=false
 config/icon="res://assets/main/ui/icon.png"
 config/windows_native_icon="res://assets/main/ui/icon.ico"
-config/version="0.8305"
+config/version="0.8500"
 
 [audio]
 
