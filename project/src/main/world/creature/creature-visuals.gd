@@ -150,7 +150,8 @@ func update_fattening_animation(delta: float) -> void:
 			# we won't see _fattening_inertia <= 0 often as it's only a little bit of rubber-banding that get us there
 			stretch_amount = 1 + abs(_fattening_inertia)
 		var normalized_squash_stretch: Vector2 = Vector2(squash_amount, stretch_amount).normalized()
-		var squash_stretch: Vector2 = normalized_squash_stretch / 0.7107 * _base_scale * max(stretch_amount, squash_amount)
+		var squash_stretch: Vector2 = normalized_squash_stretch / 0.7107 * _base_scale\
+				* max(stretch_amount, squash_amount)
 		self.rescale(squash_stretch.x, squash_stretch.y, false)
 
 

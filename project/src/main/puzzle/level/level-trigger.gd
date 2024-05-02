@@ -91,7 +91,8 @@ func from_json_dict(json: Dictionary) -> void:
 	for phase_expression in json.get("phases", []):
 		var phase_expression_split: Array = phase_expression.split(" ")
 		var phase_key: String = phase_expression_split[0]
-		var phase_config: Dictionary = dict_config_from_array(phase_expression_split.slice(1, phase_expression_split.size()))
+		var phase_config: Dictionary = dict_config_from_array(phase_expression_split.slice(1,
+				phase_expression_split.size()))
 		_add_phase(phase_key, phase_config)
 	
 	# parse the effect from json

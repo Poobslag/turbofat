@@ -96,11 +96,12 @@ func _start_move_timer(delay: float) -> void:
 ## walk towards their destination.
 func _walk() -> void:
 	var buddy_relative_pos: Vector2 = Global.from_iso(_buddy.position - position)
+	var destination_relative_pos: Vector2 = Global.from_iso(_destination.position - position)
 	
 	var new_non_iso_walk_direction := non_iso_walk_direction
 	if leader_or_follower == LeaderOrFollower.LEADER:
-		if _desired_walk_direction.x > 0 and Global.from_iso(position).x > Global.from_iso(_destination.position).x \
-				or _desired_walk_direction.x < 0 and Global.from_iso(position).x < Global.from_iso(_destination.position).x:
+		if _desired_walk_direction.x > 0 and destination_relative_pos.x < 0 \
+				or _desired_walk_direction.x < 0 and destination_relative_pos.x > 0:
 			# we're past our destination. stop moving, and face our buddy
 			_walk_state = WalkState.SITTING
 			_sit_and_reorient()

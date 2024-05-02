@@ -80,7 +80,8 @@ func prepare_tutorial_level() -> void:
 		"tutorial/spins_1_fixed":
 			_prepare_box_tally_item()
 			if _failure_count == 0:
-				hud.set_message(tr("Here, now your squish move won't work.\n\nSee if you can do it by spinning this time."))
+				hud.set_message(tr("Here, now your squish move won't work."
+						+ "\n\nSee if you can do it by spinning this time."))
 			else:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 		"tutorial/spins_2":
@@ -283,7 +284,8 @@ func _advance_level() -> void:
 							hud.set_message(tr("That's right! Good job."))
 					new_level_id = "tutorial/spins_5" if _annoying_flip_count < 3 else "tutorial/spins_secret"
 				else:
-					hud.set_message(tr("Oh, that was a good try but this one's a little special!\n\nLet me show you something."))
+					hud.set_message(tr("Oh, that was a good try but this one's a little special!"
+							+ "\n\nLet me show you something."))
 					new_level_id = "tutorial/spins_4_example"
 					PuzzleState.level_performance.lost = true
 		"tutorial/spins_4_example":
@@ -305,7 +307,8 @@ func _advance_level() -> void:
 								_annoying_flip_count += 1
 						new_level_id = "tutorial/spins_6" if _annoying_flip_count < 3 else "tutorial/spins_secret"
 					_:
-						hud.set_message(tr("Good job!\n\nYou could just squish that in, too. You don't always need spin moves."))
+						hud.set_message(tr("Good job!\n\nYou could just squish that in, too."
+								+ " You don't always need spin moves."))
 			else:
 				hud.set_message(tr("Oops! That wasn't it."))
 				PuzzleState.level_performance.lost = true
@@ -313,7 +316,8 @@ func _advance_level() -> void:
 			if hud.skill_tally_item("Box").value >= 1:
 				hud.set_message(tr("What!? Pieces can't just rotate through walls! That's cheating."))
 			else:
-				hud.set_message(tr("Well of course you can't.\n\nPieces can't just rotate through walls! That would be cheating."))
+				hud.set_message(tr("Well of course you can't."
+						+ "\n\nPieces can't just rotate through walls! That would be cheating."))
 				PuzzleState.level_performance.lost = true
 				new_level_id = "tutorial/spins_7"
 		"tutorial/spins_7":
@@ -327,7 +331,8 @@ func _advance_level() -> void:
 			if hud.skill_tally_item("Box").value >= 1:
 				if _failure_count <= 1:
 					# first or second try
-					hud.set_message(tr("What is a person like you doing with tutorials anyways? Get out of here, you clown!"))
+					hud.set_message(tr("What is a person like you doing with tutorials anyways?"
+							+ " Get out of here, you clown!"))
 				else:
 					# took a few tries
 					hud.set_message(tr("Good job! I knew you could do it."))

@@ -25,7 +25,8 @@ onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_tra
 func _ready() -> void:
 	_puzzle_areas = PuzzleAreas.new()
 	_puzzle_areas.playfield_area = get_node(playfield_path).get_rect() if playfield_path else null
-	_puzzle_areas.next_pieces_area = get_node(next_piece_displays_path).get_rect() if next_piece_displays_path else null
+	_puzzle_areas.next_pieces_area = \
+			get_node(next_piece_displays_path).get_rect() if next_piece_displays_path else null
 	_puzzle_areas.walled_area = _puzzle_areas.playfield_area.merge(_puzzle_areas.next_pieces_area)
 
 

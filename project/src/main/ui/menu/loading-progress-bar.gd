@@ -55,4 +55,5 @@ func _refresh_lines() -> void:
 	_full.points[1].x = clamp(_full.points[1].x, _extents.position.x + DOTTED_LINE_PIXELS, _extents.end.x)
 	
 	# calculate the leftmost point of the empty part
-	_empty.points[0] = Vector2(_extents.position.x + DOTTED_LINE_PIXELS + _dotted_line_offset, Global.window_size.y - 40)
+	_empty.points[0] = Vector2(_extents.position.x + DOTTED_LINE_PIXELS + _dotted_line_offset,
+			Global.window_size.y - 40)

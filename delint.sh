@@ -29,11 +29,11 @@ fi
 RESULT=""
 # cannot split a string literal across multiple lines in bash; must use a variable
 REGEX="\(^.\{120,\}$"
-REGEX+="\|^"$'\t'"{1}.\{116,\}$"
-REGEX+="\|^"$'\t'"{2}.\{112,\}$"
-REGEX+="\|^"$'\t'"{3}.\{108,\}$"
-REGEX+="\|^"$'\t'"{4}.\{104,\}$"
-REGEX+="\|^"$'\t'"{5}.\{100,\}$\)"
+REGEX+="\|^"$'\t'"\{1\}.\{116,\}$"
+REGEX+="\|^"$'\t'"\{2\}.\{112,\}$"
+REGEX+="\|^"$'\t'"\{3\}.\{108,\}$"
+REGEX+="\|^"$'\t'"\{4\}.\{104,\}$"
+REGEX+="\|^"$'\t'"\{5\}.\{100,\}$\)"
 RESULT="${RESULT}$(grep -R -n "$REGEX" --include="*.gd" project/src)"
 if [ -n "$RESULT" ]
 then

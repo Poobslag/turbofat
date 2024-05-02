@@ -101,7 +101,8 @@ class BoolPropertyParser extends PropertyParser:
 	##
 	## 	'init_false_string': (Optional) Json string corresponding to a value of 'false', such as
 	## 		'no_clear_on_finish'
-	func _init(init_target: Object, init_name: String, init_false_string: String = "").(init_target, init_name) -> void:
+	func _init(init_target: Object, init_name: String, init_false_string: String = "") \
+			.(init_target, init_name) -> void:
 		default = false
 		implied = true
 		_false_string = init_false_string
