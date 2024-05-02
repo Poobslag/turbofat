@@ -31,7 +31,8 @@ func _upgrade_levels() -> void:
 		_upgrade_settings(level_path)
 	
 	if _converted:
-		_output_label.add_line("Upgraded %d levels to settings version %s." % [_converted.size(), Levels.LEVEL_DATA_VERSION])
+		_output_label.add_line("Upgraded %d levels to settings version %s." % [_converted.size(),
+				Levels.LEVEL_DATA_VERSION])
 
 
 ## Upgrades a level to the newest version.

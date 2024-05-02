@@ -181,7 +181,8 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 				and (chef_id or customer_id or observer_id) \
 				and customer_id != CareerLevel.NONQUIRKY_CUSTOMER:
 			# only accept chat key pairs with a matching quirky chef/customer/observer
-			accept_chat_key_pair = _chat_key_pair_has_creatures(potential_chat_key_pair, chef_id, customer_id, observer_id)
+			accept_chat_key_pair = _chat_key_pair_has_creatures(potential_chat_key_pair, chef_id, customer_id,
+					observer_id)
 		
 		if accept_chat_key_pair:
 			trimmed_chat_key_pairs.append(potential_chat_key_pair)

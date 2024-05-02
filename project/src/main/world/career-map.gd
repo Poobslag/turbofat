@@ -91,7 +91,8 @@ func _load_level_settings() -> void:
 			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
 		else:
 			var weight: float = float(PlayerData.career.hours_passed) / (Careers.HOURS_PER_CAREER_DAY - 1)
-			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed, weight)
+			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed,
+					weight)
 	
 	# initialize level settings
 	for level in _pickable_career_levels:
@@ -256,7 +257,8 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 		search_flags.include_all_numeric_children = true
 		search_flags.excluded_chat_keys = CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
 		search_flags.exclude_chat_key(preroll_key)
-		var remaining_chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path], search_flags)
+		var remaining_chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path],
+				search_flags)
 		
 		if remaining_chat_key_pairs:
 			# this is not the last cutscene; do not play epilogue

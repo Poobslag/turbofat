@@ -80,7 +80,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				# The y coordinate changes at a constant rate while the x coordinate follows a parabolic path
 				position.y = lerp(_source_pos.y, _target_pos.y, _flight_percent)
-				position.x = lerp(_source_pos.x, _target_pos.x, 2.1 * pow(_flight_percent, 1.6) - 1.1 * _flight_percent)
+				position.x = lerp(_source_pos.x, _target_pos.x, 2.1 \
+						* pow(_flight_percent, 1.6) - 1.1 * _flight_percent)
 		else:
 			position += velocity * delta
 	

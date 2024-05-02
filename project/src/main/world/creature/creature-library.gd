@@ -204,7 +204,8 @@ func _normalize_filler_fatnesses_by_creature_id() -> void:
 		if not _fatnesses_by_creature_id.has(filler_id):
 			# The initial creature generation is biased toward the thin side of things. That way the progression is
 			# more noticable as the generic creatures fatten up.
-			_fatnesses_by_creature_id[filler_id] = min(Utils.rand_value(Global.FATNESSES), Utils.rand_value(Global.FATNESSES))
+			_fatnesses_by_creature_id[filler_id] = min(Utils.rand_value(Global.FATNESSES),
+					Utils.rand_value(Global.FATNESSES))
 	
 	_filler_ids.shuffle()
 
