@@ -227,8 +227,7 @@ static func deconflict_carrots(potential_columns: Array, carrot_dimensions: Vect
 	var overlapping_columns: Dictionary = {}
 	
 	var next_non_overlapping_column_index := 0
-	for i in range(potential_columns.size()):
-		var potential_column: int = potential_columns[i]
+	for potential_column in potential_columns:
 		if overlapping_columns.has(potential_column):
 			# column overlaps; push it to the back of the results array
 			results.append(potential_column)
@@ -238,8 +237,8 @@ static func deconflict_carrots(potential_columns: Array, carrot_dimensions: Vect
 			next_non_overlapping_column_index += 1
 			
 			# append neighboring columns to the overlapping_columns set
-			var min_overlapping_column := potential_column - carrot_dimensions.x + 1
-			var max_overlapping_column := potential_column + carrot_dimensions.x - 1
+			var min_overlapping_column: int = potential_column - carrot_dimensions.x + 1
+			var max_overlapping_column: int = potential_column + carrot_dimensions.x - 1
 			for overlapping_column in range(min_overlapping_column, max_overlapping_column + 1):
 				overlapping_columns[overlapping_column] = true
 	

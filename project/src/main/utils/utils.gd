@@ -49,8 +49,8 @@ static func brightness(color: Color) -> float:
 ## (https://github.com/godotengine/godot/issues/9499)
 static func convert_floats_to_ints_in_array(a: Array) -> Array:
 	var result := []
-	for i in range(a.size()):
-		result.append(int(a[i]) if a[i] is float else a[i])
+	for in_float in a:
+		result.append(int(in_float) if in_float is float else in_float)
 	return result
 
 
