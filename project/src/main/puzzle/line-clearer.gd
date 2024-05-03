@@ -408,8 +408,8 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 	if play_sound:
 		_line_fall_sound.play()
 	
-	for i in range(lines_being_deleted_during_trigger.size()):
-		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
+	for y in lines_being_deleted_during_trigger:
+		emit_signal("line_deleted", y)
 	
 	emit_signal("after_lines_deleted", lines_being_deleted_during_trigger)
 

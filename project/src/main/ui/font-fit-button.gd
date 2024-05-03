@@ -27,9 +27,9 @@ func pick_largest_font() -> void:
 	var shown_text := tr(text)
 	
 	var chosen_font: Font
-	for i in range(fonts.size()):
+	for next_font in fonts:
 		# start with the largest font, and try smaller and smaller fonts
-		chosen_font = fonts[i]
+		chosen_font = next_font
 		var string_width := chosen_font.get_string_size(shown_text).x
 		if string_width < rect_size.x - 2 * PADDING:
 			# this font is small enough to accommodate all of the text

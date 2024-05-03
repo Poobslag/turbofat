@@ -80,8 +80,8 @@ func _load_level_settings() -> void:
 		_pickable_career_levels = _random_levels()
 	
 	# decide available cutscenes
-	for i in range(_pickable_career_levels.size()):
-		_pickable_chat_key_pairs.append(_career_cutscene_librarian.chat_key_pair(_pickable_career_levels[i]))
+	for pickable_career_level in _pickable_career_levels:
+		_pickable_chat_key_pairs.append(_career_cutscene_librarian.chat_key_pair(pickable_career_level))
 	
 	# decide piece speed
 	if PlayerData.career.is_boss_level():
@@ -160,9 +160,9 @@ func _random_levels() -> Array:
 	
 	# calculate a list of levels the player hasn't played in this career session
 	var unplayed_levels := []
-	for i in range(levels.size()):
-		if not levels[i].level_id in PlayerData.career.level_ids:
-			unplayed_levels.append(levels[i])
+	for level in levels:
+		if not level.level_id in PlayerData.career.level_ids:
+			unplayed_levels.append(level)
 	
 	# calculate a random set of levels for the player, and replace any the player's played if possible
 	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))

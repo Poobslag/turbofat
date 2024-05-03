@@ -590,8 +590,7 @@ func _detect_and_resolve_spear_conflicts() -> void:
 	var spears_by_veg_cell: Dictionary = {}
 	
 	for spear in _veg_cells_by_spear.keys():
-		for i in range(_veg_cells_by_spear[spear].size()):
-			var veg_cell: Vector2 = _veg_cells_by_spear[spear][i]
+		for veg_cell in _veg_cells_by_spear[spear]:
 			var conflicting_spear: Spear = spears_by_veg_cell.get(veg_cell)
 			if not conflicting_spear:
 				spears_by_veg_cell[veg_cell] = spear
