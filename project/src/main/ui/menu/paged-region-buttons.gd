@@ -115,8 +115,7 @@ func _add_buttons() -> void:
 	
 	# create and add the region buttons
 	for i in range(_regions_by_page[_page].size()):
-		var new_region_button: RegionSelectButton = _region_select_button(
-				i, _regions_by_page[_page][i])
+		var new_region_button: RegionSelectButton = _region_select_button(i, _regions_by_page[_page][i])
 		_hbox_container.add_child(new_region_button)
 		emit_signal("button_added", new_region_button)
 	
