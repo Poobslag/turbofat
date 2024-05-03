@@ -107,6 +107,9 @@ func play_cool_credits() -> void:
 	MusicPlayer.play_credits_bgm()
 	_music_sync_player.play("play")
 	
+	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
+	_credits_scroll.orb.initialize_time(2.92682)
+	
 	var credits_tween := get_tree().create_tween()
 	_schedule_part_1(credits_tween)
 	_schedule_part_2(credits_tween)
@@ -134,9 +137,6 @@ func play_cool_credits() -> void:
 	_credits_scroll.set_left_transformation_target_for_piece(316)
 	_credits_scroll.set_right_transformation_target_for_piece(332)
 	_credits_scroll.set_right_transformation_target_for_piece(364)
-	
-	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
-	_credits_scroll.orb.initialize_time(2.92682)
 
 
 ## Schedules all of the credits events for the "boring credits" before the player beats the game.
