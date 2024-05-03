@@ -36,8 +36,8 @@ var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
 	load_system_data()
-	SystemData.misc_settings.connect("save_slot_changed", self, "_on_MiscSettings_save_slot_changed")
 	_refresh_save_slot()
+	SystemData.misc_settings.connect("save_slot_changed", self, "_on_MiscSettings_save_slot_changed")
 	PlayerSave.load_player_data()
 
 
