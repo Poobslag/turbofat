@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 	if not event is InputEventMouse: return
 	if not get_rect().has_point(event.position): return
 	
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
+	if event.is_action_pressed("ui_click"):
 		# mouse click; select the nearest creature
 		var mouse_event: InputEventMouseButton = event
 		var closest_creature := _find_closest_creature(mouse_event.position)
