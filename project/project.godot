@@ -447,7 +447,7 @@ _global_script_classes=[ {
 "base": "Creature",
 "class": "FreeRoamPlayer",
 "language": "GDScript",
-"path": "res://src/main/world/creature/free-roam-player.gd"
+"path": "res://src/demo/world/creature/free-roam-player.gd"
 }, {
 "base": "OverworldWorld",
 "class": "FreeRoamWorld",

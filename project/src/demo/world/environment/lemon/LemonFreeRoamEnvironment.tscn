@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/main/world/environment/lemon/lemon-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/lemon/lemon-terrain-library.tres" type="TileSet" id=2]
-[ext_resource path="res://src/main/world/creature/FreeRoamPlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/creature/FreeRoamSensei.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/demo/world/creature/FreeRoamPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/demo/world/creature/FreeRoamSensei.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=7]
