@@ -34,7 +34,7 @@
 [ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=32]
 [ext_resource path="res://src/main/world/environment/lava/LavaCrowdieSpawner.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/world/environment/lava/lava-sfx.gd" type="Script" id=34]
-[ext_resource path="res://assets/main/world/environment/lava/lava-cheer.wav" type="AudioStream" id=35]
+[ext_resource path="res://src/main/world/environment/lava/lava-cheer.wav" type="AudioStream" id=35]
 
 [sub_resource type="Curve2D" id=4]
 _data = {

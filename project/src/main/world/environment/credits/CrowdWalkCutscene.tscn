@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/world/environment/credits/crowd-walk-cutscene.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/credits/crowd-walk-camera.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/environment/credits/LaunchBg.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/environment/credits/CrowdWalkEnvironment.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=5]
+
+[node name="Cutscene" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Bg" parent="." instance=ExtResource( 5 )]
+
+[node name="LaunchBg" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Environment" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 506.77, 255.477 )
+current = true
+zoom = Vector2( 0.25, 0.25 )
+script = ExtResource( 2 )
+overworld_environment_path = NodePath("../Environment")
+
+[connection signal="midair_changed" from="Environment" to="LaunchBg" method="_on_Environment_midair_changed"]
