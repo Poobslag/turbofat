@@ -57,7 +57,6 @@ codes = [ "bigfps" ]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 13 )]
 
-[connection signal="chat_choice_chosen" from="ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="chat_finished" from="ChatUi" to="." method="_on_ChatUi_chat_finished"]
 [connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
