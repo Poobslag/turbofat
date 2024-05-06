@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=2]
+[gd_scene load_steps=112 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -92,6 +92,7 @@
 [ext_resource path="res://src/main/puzzle/night/night-star-seeds.gd" type="Script" id=90]
 [ext_resource path="res://src/main/puzzle/night/NightStarSeed.tscn" type="PackedScene" id=91]
 [ext_resource path="res://src/main/puzzle/MoneyBurst.tscn" type="PackedScene" id=92]
+[ext_resource path="res://src/main/ui/DiagonalParticles.tscn" type="PackedScene" id=93]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -103,61 +104,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.695652 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=25]
-gradient = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=5]
-flag_disable_z = true
-direction = Vector3( -100, -40, 0 )
-spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
-
-[sub_resource type="ParticlesMaterial" id=6]
-flag_disable_z = true
-direction = Vector3( 100, -40, 0 )
-spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
-
-[sub_resource type="ParticlesMaterial" id=7]
-flag_disable_z = true
-direction = Vector3( -100, 40, 0 )
-spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
-
-[sub_resource type="ParticlesMaterial" id=8]
-flag_disable_z = true
-direction = Vector3( 100, 40, 0 )
-spread = 15.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 5.0
-color_ramp = SubResource( 25 )
 
 [sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("Fg/WallGlobViewports/Viewport")
@@ -329,43 +275,12 @@ autowrap = true
 max_lines_visible = 1
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
-[node name="ProgressBarParticles" type="Control" parent="Fg/Chalkboard/MilestoneHud"]
+[node name="ProgressBarParticles" parent="Fg/Chalkboard/MilestoneHud" instance=ExtResource( 93 )]
 margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
-
-[node name="Nw" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 5 )
-
-[node name="Ne" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 6 )
-
-[node name="Sw" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 7 )
-
-[node name="Se" type="Particles2D" parent="Fg/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 8 )
+amount = 12
 
 [node name="PlayfieldShadow" type="Control" parent="Fg" groups=["night_mode_dark"]]
 margin_left = 264.0
