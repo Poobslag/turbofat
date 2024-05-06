@@ -62,6 +62,10 @@ text = "100%"
 align = 1
 
 [node name="Particles" parent="VBoxContainer/HBoxContainer/CompletionContainer/Value" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="GradeContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 238.0
@@ -85,6 +89,10 @@ text = "S+"
 align = 1
 
 [node name="Particles" parent="VBoxContainer/HBoxContainer/GradeContainer/Value" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="Spacer" type="Control" parent="VBoxContainer"]
 margin_top = 68.0

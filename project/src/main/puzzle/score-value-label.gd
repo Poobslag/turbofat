@@ -34,7 +34,4 @@ func _on_PuzzleState_score_changed() -> void:
 
 
 func _on_PuzzleState_topped_out() -> void:
-	for particles_2d_node in _top_out_particles.get_children():
-		var particles_2d: Particles2D = particles_2d_node
-		particles_2d.restart()
-		particles_2d.emitting = true
+	_top_out_particles.emit()
