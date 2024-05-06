@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/demo/world/free-roam-world.gd" type="Script" id=1]
-[ext_resource path="res://src/demo/world/free-roam.gd" type="Script" id=2]
+[ext_resource path="res://src/demo/world/free-roam-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/demo/world/free-roam-camera.gd" type="Script" id=3]
 [ext_resource path="res://src/demo/world/environment/lava/LavaFreeRoamEnvironment.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/demo/world/FreeRoamUi.tscn" type="PackedScene" id=5]

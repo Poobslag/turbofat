@@ -1,6 +1,5 @@
 extends Node
-## Demo which performs some complex calculations to determine how fast someone would need to play to achieve a rank on
-## a particular level.
+## Calculates how fast someone would need to play to achieve a particular rank on a particular level.
 ##
 ## For example, to get rank 28 on the '2 kyu' level, a player would need to score 432 points. This is based on the
 ## rank requirements, the duration of the level, the piece speed and other factors.

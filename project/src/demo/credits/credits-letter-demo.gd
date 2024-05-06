@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the bubbly letters that poof in during the credits.
+## Demonstrates the bubbly letters that poof in during the credits.
 ##
 ## Keys:
 ## 	Space: Add a letter.
