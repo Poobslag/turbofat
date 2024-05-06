@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the confetti cannon's orientations and animations
+## Demonstrates the confetti cannon's orientations and animations.
 ##
 ## Keys:
 ## 	[F]: Fire the cannon

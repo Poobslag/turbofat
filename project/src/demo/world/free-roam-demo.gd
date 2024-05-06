@@ -1,5 +1,5 @@
 extends Node
-## Scene which lets the player freely run around, talk to creatures and interact with objects.
+## Lets the player freely run around, talk to creatures and interact with objects.
 
 func _ready() -> void:
 	if Engine.editor_hint:

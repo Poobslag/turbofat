@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the carrot puzzle critter.
+## Demonstrates the carrot puzzle critter.
 ##
 ## Keys:
 ## 	[1]: Show

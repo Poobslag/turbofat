@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the turbo fat restaurant.
+## Demonstrates the turbo fat restaurant.
 ##
 ## Keys:
 ## 	[C]: Shows/hides the closed sign.

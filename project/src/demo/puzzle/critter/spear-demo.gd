@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the spear (asparagus) puzzle critter.
+## Demonstrates the spear (asparagus) puzzle critter.
 ##
 ## Keys:
 ## 	[0]: Disappear

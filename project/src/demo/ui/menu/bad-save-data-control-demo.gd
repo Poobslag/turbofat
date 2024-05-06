@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the popup window which is shown if there is a problem loading the save data
+## Demonstrates the popup window which is shown if there is a problem loading the save data.
 ##
 ## Keys:
 ## 	[B]: Changes which backup was loaded (hourly, daily...)

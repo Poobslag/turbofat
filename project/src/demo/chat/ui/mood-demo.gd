@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the creature's range of emotions and idle animations
+## Demonstrates the creature's range of emotions and idle animations.
 ##
 ## Keys:
 ## 	[1]: Default mood
