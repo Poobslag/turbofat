@@ -39,15 +39,11 @@ var _current_chat_tree: ChatTree
 
 var _overworld_environment: OverworldEnvironment
 
-## if 'true' the ui has focus and the player shouldn't move when keys are pressed.
-var _ui_has_focus: bool = false
-
 onready var _chat_ui := $ChatUi
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	_refresh_overworld_environment_path()
-	_refresh_ui_has_focus()
 	_update_visible()
 
 
@@ -58,7 +54,6 @@ func _exit_tree() -> void:
 func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
 	overworld_environment_path = new_overworld_environment_path
 	_refresh_overworld_environment_path()
-	_refresh_ui_has_focus()
 
 
 ## Plays the specified chat tree.
@@ -139,17 +134,6 @@ func _refresh_overworld_environment_path() -> void:
 	
 	_chat_ui.overworld_environment_path = \
 			_chat_ui.get_path_to(_overworld_environment) if overworld_environment_path else NodePath()
-
-
-func _refresh_ui_has_focus() -> void:
-	if not is_inside_tree():
-		return
-	
-	if not _overworld_environment:
-		return
-	
-	if _overworld_environment.player is FreeRoamPlayer:
-		_overworld_environment.player.ui_has_focus = _ui_has_focus
 
 
 func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
@@ -274,13 +258,6 @@ func _on_Creature_fade_out_finished(_creature: Creature) -> void:
 
 func _on_ChatUi_showed_choices() -> void:
 	emit_signal("showed_chat_choices")
-	_ui_has_focus = true
-	_refresh_ui_has_focus()
-
-
-func _on_ChatUi_chat_choice_chosen(_chat_choice: int) -> void:
-	_ui_has_focus = false
-	_refresh_ui_has_focus()
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
@@ -289,16 +266,6 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 func _on_SettingsButton_pressed() -> void:
 	$SettingsMenu.show()
-
-
-func _on_SettingsMenu_show() -> void:
-	_ui_has_focus = true
-	_refresh_ui_has_focus()
-
-
-func _on_SettingsMenu_hide() -> void:
-	_ui_has_focus = false
-	_refresh_ui_has_focus()
 
 
 func _on_OverworldWorld_overworld_environment_changed(value: OverworldEnvironment) -> void:
