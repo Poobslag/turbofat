@@ -221,7 +221,13 @@ func poof_and_free() -> void:
 
 ## Synchronizes this shark's dancing with another onscreen shark. All sharks dance in unison.
 func sync_dance() -> void:
-	var dancing_shark: Shark
+	# Workaround for Godot #56576 (https://github.com/godotengine/godot/issues/56576).
+	#
+	# Originally, this variable was explicitly typed as a 'Shark'. However, typing it as a 'Shark' introduces a memory
+	# leak causing several 'Resources still in use at exit' errors when exiting the game. Changing the variable to a
+	# 'Node2D' type resolves this issue.
+	var dancing_shark: Node2D
+	
 	for next_shark in get_tree().get_nodes_in_group("sharks"):
 		if next_shark != self and next_shark.state in [DANCING, DANCING_END]:
 			dancing_shark = next_shark
