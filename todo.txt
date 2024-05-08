@@ -1,0 +1,47 @@
+*draw mockups
+ *icons
+ *background textures
+ *different colors
+ *different backgrounds
+ *incorporate creatures
+-candy button
+ *image
+  *default
+  *hover
+  *pressed
+ *gradient map
+  *default
+  *hover
+  *pressed
+ *text
+  *default
+  *hover
+  *pressed
+ *icon
+  *default
+  *hover
+  *pressed
+ *tiled texture variations
+  *8 variations
+ -color variations
+  -5+ colors; avoid highlighted blue color
+-localizes text
+-document shader; https://www.gdquest.com/tutorial/godot/shaders/gradient-map/
+-add assets to assets.txt
+ -https://www.flaticon.com/free-icon/games_13973?term=controller&page=1&position=2&origin=search&related_id=13973
+
+consider renaming/adding a level, 'asparagus in the material world'
+
+vulqojpt
+
+t:    12
+u:    -36
+r:    -24
+b:    36
+o:    -18
+f:   -12
+a:    30
+t:    24
+    18
+    -30
+

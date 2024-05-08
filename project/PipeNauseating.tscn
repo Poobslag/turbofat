@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/main/ui/touch/duck-pressed.png" type="Texture" id=1]
+[ext_resource path="res://src/main/ui/theme/scientific-fireman.theme" type="Theme" id=2]
+[ext_resource path="res://src/main/ui/theme/scientific-fireman2.theme" type="Theme" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="PipeNauseating" type="Node"]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 363.076
+margin_top = 339.049
+margin_right = 440.076
+margin_bottom = 381.049
+rect_pivot_offset = Vector2( 18.7234, -14.6005 )
+theme = ExtResource( 2 )
+text = "Hello"
+
+[node name="Button4" type="Button" parent="."]
+margin_left = 470.082
+margin_top = 315.741
+margin_right = 784.082
+margin_bottom = 629.741
+rect_pivot_offset = Vector2( 18.7234, -14.6005 )
+theme = ExtResource( 2 )
+text = "Hello this is a long button"
+
+[node name="Button5" type="Button" parent="."]
+margin_left = 363.076
+margin_top = 270.184
+margin_right = 738.076
+margin_bottom = 312.184
+rect_pivot_offset = Vector2( 18.7234, -14.6005 )
+theme = ExtResource( 2 )
+text = "Hello this is a very long button"
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 261.687
+margin_top = 282.877
+margin_right = 307.687
+margin_bottom = 302.877
+text = "Hello"
+
+[node name="Button6" type="Button" parent="."]
+margin_left = 413.19
+margin_top = 102.768
+margin_right = 613.19
+margin_bottom = 152.768
+text = "Hello"
+
+[node name="SimpleButton" type="Button" parent="."]
+margin_left = 146.0
+margin_top = 340.0
+margin_right = 276.0
+margin_bottom = 382.0
+theme = ExtResource( 3 )
+text = "Hello"
+icon = ExtResource( 1 )
+expand_icon = true
+
+[node name="Button2" type="Button" parent="."]
+margin_right = 200.0
+margin_bottom = 200.0
+
+[node name="Panel" type="Panel" parent="Button2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+theme = ExtResource( 2 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Button2/Panel"]
+margin_left = -18.3848
+margin_top = 111.723
+margin_right = 493.615
+margin_bottom = 367.723
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
