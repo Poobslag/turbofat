@@ -8,7 +8,7 @@ const INVALID_HAND_POSITIONS := [11.0, 0.0]
 
 ## Positions of the analog clock's hour and minute hands for different times of day.
 ##
-## key: (int) corresonding to the number of levels the player has played
+## key: (int) number of levels the player has played
 ## value: (Array, float) Array with two entries for the position of the analog clock's hour and minute hands.
 const HAND_POSITIONS_BY_HOUR := {
 	0: [11.0, 0.0], # 11:00 am
