@@ -40,7 +40,9 @@ $ GDTracery by Althar93 (https://github.com/Althar93/GDTracery) (Apache-2.0 lice
 $$$ Godot Engine (MIT license)
 $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (MIT License) (Their code served as a reference for implementation, rather than being directly utilized.) 
 $$ GodotSteam by GP Garcia (https://github.com/GodotSteam/GodotSteam) (MIT License)
+$ Gradient Map by GDQuest (https://www.gdquest.com/tutorial/godot/shaders/gradient-map/) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
+$ Outline Shader by GDQuest (https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/outline.shader) (MIT License)
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)
 $ Zip Exec by Ronnie Hedlund (https://sourceforge.net/p/galaxyv2/code/HEAD/tree/other/zip_exec/) (Public Domain)
@@ -132,6 +134,7 @@ project/assets/main/puzzle/pan/frying-pan-dead.png 'Frying pan' by Creative Stal
 project/assets/main/puzzle/pan/frying-pan-gold.png 'Frying pan' by Creative Stall Premium, 'Reload' by DinosoftLabs
 project/assets/main/puzzle/pan/frying-pan.png 'Frying pan' by Creative Stall Premium
 project/assets/main/ui/icon-music.png 'Musical Notes' by Freepik
+project/assets/main/ui/icon-play.png 'Games free icon' by Freepik
 project/assets/main/ui/level-select/cleared.png 'Verification checkmark symbol' by Catalin Fertu
 project/assets/main/ui/level-select/crown.png 'Crown' by Freepik
 project/assets/main/ui/level-select/key.png 'Old Key' by Freepik
@@ -173,3 +176,5 @@ Other
 project/addons/gut "Gut" by Tom "Butch" Wesley
 project/src/main/chat/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
 project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+project/src/main/ui/candy-button/gradient-map.shader "Gradient map" by GDQuest (https://www.gdquest.com/tutorial/godot/shaders/gradient-map/)
+project/src/main/utils/outline.shader "outline.shader" by GDQuest (https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/outline.shader)
