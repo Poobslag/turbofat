@@ -105,6 +105,8 @@ project/assets/main/puzzle/tutorial/tutorial-section-complete.wav "GameBurp - 20
 project/assets/main/puzzle/tutorial/tutorial-section-fail.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\BONGS - TIMERS - BELLS - (72)\BONG Bell Timer Hit Deep Long 03.wav"
 project/assets/main/puzzle/tutorial/tutorial-task-complete.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
 project/assets/main/puzzle/veg-erase.wav "Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav"
+project/assets/main/ui/button-click.wav "Cooking_Game_16bit\Cooking_Game_16bit\UI\Cooking_Game_UI_Menu_Click_03.wav"
+project/assets/main/ui/button-hover.wav "Cooking_Game_16bit\Cooking_Game_16bit\UI\Cooking_Game_UI_Menu_Click_03.wav"
 project/assets/main/ui/cheat-disable.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 project/assets/main/ui/cheat-enable.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 project/assets/main/ui/touch/duck.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Chef_A_03_Cartoon_Voice.wav"

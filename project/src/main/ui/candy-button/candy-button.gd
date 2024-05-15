@@ -127,14 +127,18 @@ var _textures_by_button_shape := {
 		preload("res://assets/main/ui/candy-button/candy-button-v-pressed.png")],
 }
 
-## Label containing the button's text
-onready var _label := $HBoxContainer/Label
+
+onready var _click_sound := $ClickSound
+onready var _hover_sound := $HoverSound
 
 ## Icon shown to the left of the button's text
 onready var _icon_node_left := $HBoxContainer/IconLeft
 
 ## Icon shown to the right of the button's text
 onready var _icon_node_right := $HBoxContainer/IconRight
+
+## Label containing the button's text
+onready var _label := $HBoxContainer/Label
 
 ## Shiny reflection effect which overlays the button and text
 onready var _shine := $Shine
@@ -151,6 +155,11 @@ func _ready() -> void:
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
+
+
+func _pressed() -> void:
+	_click_sound.pitch_scale = rand_range(0.95, 1.05)
+	SfxKeeper.copy(_click_sound).play()
 
 
 func set_icon_left(new_icon_left: Texture) -> void:
@@ -328,6 +337,8 @@ func _on_mouse_entered() -> void:
 	if not disabled:
 		yield(get_tree(), "idle_frame")
 		_refresh_color()
+		_hover_sound.pitch_scale = rand_range(0.95, 1.05)
+		SfxKeeper.copy(_hover_sound).play()
 
 
 ## When the player hovers away from us, we reapply the normal color for our texture, text and icons.
