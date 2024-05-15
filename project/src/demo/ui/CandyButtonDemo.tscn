@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/demo/ui/icon-play.png" type="Texture" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-orange-normal.tres" type="Gradient" id=2]
@@ -26,173 +26,75 @@
 [ext_resource path="res://assets/main/ui/candy-button/candy-button-l-pressed.png" type="Texture" id=24]
 [ext_resource path="res://src/main/ui/candy-button/gradient-focused.tres" type="Gradient" id=25]
 
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=10]
+[sub_resource type="GradientTexture2D" id=9]
+resource_local_to_scene = true
 gradient = ExtResource( 3 )
 
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
 shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 10 )
+shader_param/gradient = SubResource( 9 )
 
-[sub_resource type="Shader" id=12]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=13]
+[sub_resource type="GradientTexture2D" id=11]
+resource_local_to_scene = true
 gradient = ExtResource( 2 )
 
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 11 )
+
+[sub_resource type="GradientTexture2D" id=13]
+resource_local_to_scene = true
+gradient = ExtResource( 15 )
+
 [sub_resource type="ShaderMaterial" id=14]
-shader = SubResource( 12 )
+resource_local_to_scene = true
+shader = ExtResource( 10 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 13 )
 
-[sub_resource type="Shader" id=15]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=16]
-gradient = ExtResource( 15 )
-
-[sub_resource type="ShaderMaterial" id=17]
-shader = SubResource( 15 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 16 )
-
-[sub_resource type="Shader" id=18]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=19]
+[sub_resource type="GradientTexture2D" id=15]
+resource_local_to_scene = true
 gradient = ExtResource( 11 )
 
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 15 )
+
+[sub_resource type="GradientTexture2D" id=17]
+resource_local_to_scene = true
+gradient = ExtResource( 14 )
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 17 )
+
+[sub_resource type="GradientTexture2D" id=19]
+resource_local_to_scene = true
+gradient = ExtResource( 12 )
+
 [sub_resource type="ShaderMaterial" id=20]
-shader = SubResource( 18 )
+resource_local_to_scene = true
+shader = ExtResource( 10 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 19 )
 
-[sub_resource type="Shader" id=21]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=22]
-gradient = ExtResource( 14 )
-
-[sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 21 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 22 )
-
-[sub_resource type="Shader" id=24]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=25]
-gradient = ExtResource( 12 )
-
-[sub_resource type="ShaderMaterial" id=26]
-shader = SubResource( 24 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 25 )
-
-[sub_resource type="Shader" id=27]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=28]
+[sub_resource type="GradientTexture2D" id=21]
+resource_local_to_scene = true
 gradient = ExtResource( 13 )
 
-[sub_resource type="ShaderMaterial" id=29]
-shader = SubResource( 27 )
+[sub_resource type="ShaderMaterial" id=22]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
 shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 28 )
+shader_param/gradient = SubResource( 21 )
 
 [sub_resource type="GradientTexture" id=7]
 gradient = ExtResource( 25 )
@@ -229,7 +131,7 @@ margin_right = 257.625
 margin_bottom = 74.487
 
 [node name="CandyButton1" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 11 )
+material = SubResource( 10 )
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 200.0
@@ -243,7 +145,7 @@ color = 1
 shape = 1
 
 [node name="CandyButton2" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 14 )
+material = SubResource( 12 )
 margin_left = 0.0
 margin_top = 54.0
 margin_right = 200.0
@@ -256,7 +158,7 @@ color = 2
 shape = 2
 
 [node name="CandyButton3" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 17 )
+material = SubResource( 14 )
 margin_left = 0.0
 margin_top = 108.0
 margin_right = 200.0
@@ -270,7 +172,7 @@ color = 3
 shape = 3
 
 [node name="CandyButton4" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 20 )
+material = SubResource( 16 )
 margin_left = 0.0
 margin_top = 162.0
 margin_right = 200.0
@@ -283,7 +185,7 @@ color = 4
 shape = 4
 
 [node name="CandyButton5" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 23 )
+material = SubResource( 18 )
 margin_left = 0.0
 margin_top = 216.0
 margin_right = 200.0
@@ -297,7 +199,7 @@ color = 5
 shape = 5
 
 [node name="CandyButton6" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 26 )
+material = SubResource( 20 )
 margin_left = 0.0
 margin_top = 270.0
 margin_right = 200.0
@@ -310,7 +212,7 @@ color = 6
 shape = 6
 
 [node name="CandyButton7" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
-material = SubResource( 29 )
+material = SubResource( 22 )
 margin_left = 0.0
 margin_top = 324.0
 margin_right = 200.0
