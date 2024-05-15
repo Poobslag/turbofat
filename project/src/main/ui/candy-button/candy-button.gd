@@ -47,17 +47,17 @@ export (Array, Font) var fonts := [
 ]
 
 ## Gradient which colors the button bright cyan when the button is focused.
-var gradient_focused: Gradient = preload("res://src/main/ui/candy-button/gradient-focused.tres")
+var _gradient_focused: Gradient = preload("res://src/main/ui/candy-button/gradient-focused.tres")
 
 ## Gradient which colors the button bright cyan when the button is focused and hovered.
-var gradient_focused_hover: Gradient = preload("res://src/main/ui/candy-button/gradient-focused-hover.tres")
+var _gradient_focused_hover: Gradient = preload("res://src/main/ui/candy-button/gradient-focused-hover.tres")
 
 ## Gradients for the various ButtonColor presets.
 ##
 ## key: (int) Enum from ButtonColor
 ## value: (Array) Array with two entries for the gradients for the specified color:
-## 	value[0]: (Gradient) Gradient to use when the button is not hovered 
-## 	value[1]: (Gradient) Gradient to use when the button is hovered 
+## 	value[0]: (Gradient) Gradient to use when the button is not hovered.
+## 	value[1]: (Gradient) Gradient to use when the button is hovered.
 var _gradients_by_button_color := {
 	ButtonColor.NONE: [
 		preload("res://src/main/ui/candy-button/gradient-none.tres"),
@@ -89,8 +89,8 @@ var _gradients_by_button_color := {
 ##
 ## key: (int) Enum from ButtonShape
 ## value: (Array) Array with two entries for the textures for the specified shape:
-## 	value[0]: (Texture2D) texture to use when the button is not pressed 
-## 	value[1]: (Texture2D) texture to use when the button is pressed 
+## 	value[0]: (Texture) texture to use when the button is not pressed.
+## 	value[1]: (Texture) texture to use when the button is pressed.
 var _textures_by_button_shape := {
 	ButtonShape.NONE: [
 		preload("res://assets/main/ui/candy-button/candy-button.png"),
@@ -194,7 +194,7 @@ func _gradient() -> Gradient:
 	var result: Gradient
 	if has_focus():
 		# if the button is focused, we use a bright cyan color
-		result = gradient_focused_hover if is_hovered() else gradient_focused
+		result = _gradient_focused_hover if is_hovered() else _gradient_focused
 	else:
 		# if the button is not focused, we use the user-specified color
 		var gradients: Array = _gradients_by_button_color[color]
