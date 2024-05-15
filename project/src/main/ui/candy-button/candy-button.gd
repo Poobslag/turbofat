@@ -140,9 +140,6 @@ onready var _icon_node_right := $HBoxContainer/IconRight
 onready var _shine := $Shine
 
 func _ready() -> void:
-	# Give each button to have a unique material so that we can set unique shader params on each one
-	material = material.duplicate(true)
-	
 	_refresh_icons()
 	_refresh_font_size()
 	_refresh_text()

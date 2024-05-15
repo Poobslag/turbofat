@@ -8,28 +8,15 @@
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=6]
 [ext_resource path="res://assets/main/ui/candy-button/candy-button-shine-normal.png" type="Texture" id=7]
 [ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=8]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=9]
 
-[sub_resource type="Shader" id=8]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D gradient: hint_black;
-uniform float mix_amount = 1.0;
-
-void fragment() {
-	vec4 input_color = texture(TEXTURE, UV);
-	float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
-	vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
-
-	COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
-	COLOR.a = input_color.a;
-}"
-
-[sub_resource type="GradientTexture" id=9]
+[sub_resource type="GradientTexture2D" id=9]
+resource_local_to_scene = true
 gradient = ExtResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 9 )
 
@@ -41,7 +28,7 @@ shader_param/white = Color( 1, 1, 1, 1 )
 shader_param/black = Color( 0.149412, 0.135882, 0.15, 1 )
 shader_param/sample_count = 24
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 resource_local_to_scene = true
 size = 24
 outline_size = 2
@@ -49,7 +36,7 @@ outline_color = Color( 0.149412, 0.135882, 0.15, 1 )
 font_data = ExtResource( 4 )
 
 [node name="CandyButton" type="TextureButton"]
-material = SubResource( 10 )
+material = SubResource( 8 )
 margin_left = 235.173
 margin_top = 84.7441
 margin_right = 435.173
@@ -98,7 +85,7 @@ margin_top = 10.0
 margin_right = 123.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 text = "Text"
 align = 1
 valign = 1
