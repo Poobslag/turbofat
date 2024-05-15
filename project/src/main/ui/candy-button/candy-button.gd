@@ -52,6 +52,12 @@ var _gradient_focused: Gradient = preload("res://src/main/ui/candy-button/gradie
 ## Gradient which colors the button bright cyan when the button is focused and hovered.
 var _gradient_focused_hover: Gradient = preload("res://src/main/ui/candy-button/gradient-focused-hover.tres")
 
+## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
+var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/candy-button-shine-normal.png")
+
+## Less shiny reflection texture which overlays the button and text when the button is pressed.
+var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/candy-button-shine-pressed.png")
+
 ## Gradients for the various ButtonColor presets.
 ##
 ## key: (int) Enum from ButtonColor
@@ -124,17 +130,14 @@ var _textures_by_button_shape := {
 ## Label containing the button's text
 onready var _label := $HBoxContainer/Label
 
-## Holds the icon shown to the left of the button's text
-onready var _icon_holder_left := $HBoxContainer/IconHolderLeft
-
-## Holds the icon shown to the right of the button's text
-onready var _icon_holder_right := $HBoxContainer/IconHolderRight
-
 ## Icon shown to the left of the button's text
-onready var _icon_node_left := $HBoxContainer/IconHolderLeft/Icon
+onready var _icon_node_left := $HBoxContainer/IconLeft
 
 ## Icon shown to the right of the button's text
-onready var _icon_node_right := $HBoxContainer/IconHolderRight/Icon
+onready var _icon_node_right := $HBoxContainer/IconRight
+
+## Shiny reflection effect which overlays the button and text
+onready var _shine := $Shine
 
 func _ready() -> void:
 	# Give each button to have a unique material so that we can set unique shader params on each one
@@ -145,6 +148,7 @@ func _ready() -> void:
 	_refresh_text()
 	_refresh_shape()
 	_refresh_color()
+	_refresh_shine()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -183,10 +187,9 @@ func set_shape(new_shape: int) -> void:
 ## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_label = $HBoxContainer/Label
-	_icon_holder_left = $HBoxContainer/IconHolderLeft
-	_icon_holder_right = $HBoxContainer/IconHolderRight
-	_icon_node_left = $HBoxContainer/IconHolderLeft/Icon
-	_icon_node_right = $HBoxContainer/IconHolderRight/Icon
+	_icon_node_left = $HBoxContainer/IconLeft
+	_icon_node_right = $HBoxContainer/IconRight
+	_shine = $Shine
 
 
 ## Calculates the gradient which should color the button based on its color and state.
@@ -230,11 +233,11 @@ func _refresh_font_size() -> void:
 	# our shown text is translated; the translated text needs to fit in the button
 	var shown_text := tr(text)
 	
-	var available_size := 180
+	var available_size := 190
 	if icon_left:
-		available_size -= 50
+		available_size -= 35
 	if icon_right:
-		available_size -= 50
+		available_size -= 35
 	
 	var chosen_font: Font
 	for next_font in fonts:
@@ -266,9 +269,9 @@ func _refresh_icons() -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	_icon_holder_left.visible = true if icon_left else false
+	_icon_node_left.visible = true if icon_left else false
 	_icon_node_left.texture = icon_left
-	_icon_holder_right.visible = true if icon_right else false
+	_icon_node_right.visible = true if icon_right else false
 	_icon_node_right.texture = icon_right
 	
 	_refresh_icon_color()
@@ -293,6 +296,11 @@ func _refresh_shape() -> void:
 	texture_normal = textures[0]
 	texture_pressed = textures[1]
 	texture_hover = textures[0]
+
+
+## Updates the shine texture for our button.
+func _refresh_shine() -> void:
+	_shine.texture = _shine_texture_pressed if pressed else _shine_texture_normal
 
 
 ## Updates our label's text.
@@ -330,3 +338,11 @@ func _on_mouse_exited() -> void:
 	if not disabled:
 		yield(get_tree(), "idle_frame")
 		_refresh_color()
+
+
+func _on_button_down() -> void:
+	_refresh_shine()
+
+
+func _on_button_up() -> void:
+	_refresh_shine()
