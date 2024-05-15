@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the interactive scrolling credits.
+## Demonstrates the interactive scrolling credits.
 ##
 ## Keys:
 ## 	[Q]: Add a short line.

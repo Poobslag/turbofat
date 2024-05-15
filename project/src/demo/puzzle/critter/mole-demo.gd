@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the mole puzzle critter.
+## Demonstrates the mole puzzle critter.
 ##
 ## Keys:
 ## 	[0]: Disappear

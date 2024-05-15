@@ -40,7 +40,9 @@ $ GDTracery by Althar93 (https://github.com/Althar93/GDTracery) (Apache-2.0 lice
 $$$ Godot Engine (MIT license)
 $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (MIT License) (Their code served as a reference for implementation, rather than being directly utilized.) 
 $$ GodotSteam by GP Garcia (https://github.com/GodotSteam/GodotSteam) (MIT License)
+$ Gradient Map by GDQuest (https://www.gdquest.com/tutorial/godot/shaders/gradient-map/) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
+$ Outline Shader by GDQuest (https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/outline.shader) (MIT License)
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Tracery by Kate Compton (https://github.com/galaxykate/tracery/tree/tracery2) (Apache-2.0 license)
 $ Zip Exec by Ronnie Hedlund (https://sourceforge.net/p/galaxyv2/code/HEAD/tree/other/zip_exec/) (Public Domain)
@@ -103,6 +105,8 @@ project/assets/main/puzzle/tutorial/tutorial-section-complete.wav "GameBurp - 20
 project/assets/main/puzzle/tutorial/tutorial-section-fail.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\BONGS - TIMERS - BELLS - (72)\BONG Bell Timer Hit Deep Long 03.wav"
 project/assets/main/puzzle/tutorial/tutorial-task-complete.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
 project/assets/main/puzzle/veg-erase.wav "Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav"
+project/assets/main/ui/button-click.wav "Cooking_Game_16bit\Cooking_Game_16bit\UI\Cooking_Game_UI_Menu_Click_03.wav"
+project/assets/main/ui/button-hover.wav "Cooking_Game_16bit\Cooking_Game_16bit\UI\Cooking_Game_UI_Menu_Click_03.wav"
 project/assets/main/ui/cheat-disable.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 project/assets/main/ui/cheat-enable.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 project/assets/main/ui/touch/duck.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Chef_A_03_Cartoon_Voice.wav"
@@ -115,7 +119,7 @@ project/assets/main/world/creature/hello-*.wav "Cartoon Voices\Male\Designed"
 project/assets/main/world/creature/move-bonk.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Pop_05.wav"
 project/assets/main/world/creature/move-hop.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_02.wav"
 project/assets/main/world/creature/munch*.wav "Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
-project/assets/main/world/environment/lava/confetti-bang.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\WEAPONS - GUNSHOTS - (76)\WEAPON GUNSHOT Bullet Hit 14.wav"
+project/assets/main/world/environment/credits/confetti-bang.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\WEAPONS - GUNSHOTS - (76)\WEAPON GUNSHOT Bullet Hit 14.wav"
 project/assets/main/world/environment/lava/lava-applause.wav "2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 project/assets/main/world/environment/lava/lava-cheer.wav "2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal 01.wav"
 project/assets/main/world/environment/poof-in.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Pop_05.wav"
@@ -123,6 +127,7 @@ project/assets/main/world/environment/restaurant/door-chime*.wav Doorbell Pull S
 
 Graphics
 --------------------------------------------------------------------------------
+project/assets/demo/ui/icon-play.png 'Games free icon' by Freepik
 project/assets/main/career/ui/icon-distance.png 'Paws' by Solid icon Co
 project/assets/main/career/ui/icon-time-of-day-sheet.png 'Clock' by Ilhan Fitrotul Hayat
 project/assets/main/editor/creature/edit.png 'Dna' by Freepik
@@ -131,7 +136,12 @@ project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
 project/assets/main/puzzle/pan/frying-pan-dead.png 'Frying pan' by Creative Stall Premium
 project/assets/main/puzzle/pan/frying-pan-gold.png 'Frying pan' by Creative Stall Premium, 'Reload' by DinosoftLabs
 project/assets/main/puzzle/pan/frying-pan.png 'Frying pan' by Creative Stall Premium
+project/assets/main/ui/icon-career.png 'Cake Slice free icon' by Freepik
+project/assets/main/ui/icon-create-creatures.png 'Dna free icon' by ranksol graphics at Freepik
+project/assets/main/ui/icon-create-levels.png 'Hammer free icon' by Pixel perfect at Freepik
 project/assets/main/ui/icon-music.png 'Musical Notes' by Freepik
+project/assets/main/ui/icon-practice.png 'Fitness free icon' by Pixel perfect at Freepik
+project/assets/main/ui/icon-tutorials.png 'Graduate free icon' by Hilmy Abiyyu A. at Freepik
 project/assets/main/ui/level-select/cleared.png 'Verification checkmark symbol' by Catalin Fertu
 project/assets/main/ui/level-select/crown.png 'Crown' by Freepik
 project/assets/main/ui/level-select/key.png 'Old Key' by Freepik
@@ -173,3 +183,5 @@ Other
 project/addons/gut "Gut" by Tom "Butch" Wesley
 project/src/main/chat/tracery.gd "GDTracery" by Althar93, an adaptation of Tracery by Kate Compton (https://github.com/Althar93/GDTracery) (https://github.com/galaxykate/tracery/tree/tracery2)
 project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+project/src/main/ui/candy-button/gradient-map.shader "Gradient map" by GDQuest (https://www.gdquest.com/tutorial/godot/shaders/gradient-map/)
+project/src/main/utils/outline.shader "outline.shader" by GDQuest (https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/outline.shader)

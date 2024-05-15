@@ -2,10 +2,10 @@ class_name GameplaySettings
 ## Manages settings which control the gameplay.
 
 signal ghost_piece_changed(value)
+signal hold_piece_changed(value)
+signal line_piece_changed(value)
 signal soft_drop_lock_cancel_changed(value)
 signal speed_changed(value)
-signal line_piece_changed(value)
-signal hold_piece_changed(value)
 
 enum Speed {
 	DEFAULT,
@@ -57,20 +57,6 @@ func set_ghost_piece(new_ghost_piece: bool) -> void:
 	emit_signal("ghost_piece_changed", new_ghost_piece)
 
 
-func set_soft_drop_lock_cancel(new_soft_drop_lock_cancel: bool) -> void:
-	if soft_drop_lock_cancel == new_soft_drop_lock_cancel:
-		return
-	soft_drop_lock_cancel = new_soft_drop_lock_cancel
-	emit_signal("soft_drop_lock_cancel_changed", new_soft_drop_lock_cancel)
-
-
-func set_speed(new_speed: int) -> void:
-	if speed == new_speed:
-		return
-	speed = new_speed
-	emit_signal("speed_changed", new_speed)
-
-
 func set_hold_piece(new_hold_piece: bool) -> void:
 	if hold_piece == new_hold_piece:
 		return
@@ -83,6 +69,20 @@ func set_line_piece(new_line_piece: bool) -> void:
 		return
 	line_piece = new_line_piece
 	emit_signal("line_piece_changed", new_line_piece)
+
+
+func set_soft_drop_lock_cancel(new_soft_drop_lock_cancel: bool) -> void:
+	if soft_drop_lock_cancel == new_soft_drop_lock_cancel:
+		return
+	soft_drop_lock_cancel = new_soft_drop_lock_cancel
+	emit_signal("soft_drop_lock_cancel_changed", new_soft_drop_lock_cancel)
+
+
+func set_speed(new_speed: int) -> void:
+	if speed == new_speed:
+		return
+	speed = new_speed
+	emit_signal("speed_changed", new_speed)
 
 
 ## Resets the gameplay settings to their default values.

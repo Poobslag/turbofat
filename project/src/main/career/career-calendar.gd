@@ -72,7 +72,8 @@ func advance_calendar() -> void:
 	career_data.best_distance_travelled = max(career_data.best_distance_travelled, career_data.distance_travelled)
 	career_data.prev_distance_travelled.push_front(career_data.distance_travelled)
 	if career_data.prev_distance_travelled.size() > Careers.MAX_DAILY_HISTORY:
-		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0, Careers.MAX_DAILY_HISTORY - 1)
+		career_data.prev_distance_travelled = career_data.prev_distance_travelled.slice(0,
+				Careers.MAX_DAILY_HISTORY - 1)
 	
 	career_data.banked_steps = 0
 	career_data.customers = 0

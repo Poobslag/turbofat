@@ -218,8 +218,8 @@ func _feed_shark_cells(shark: Shark, shark_cell: Vector2, old_piece_cells: Array
 		var max_eaten_piece_cells_y: float = eaten_piece_cells[0].y
 		for eaten_piece_cell in eaten_piece_cells:
 			max_eaten_piece_cells_y = max(max_eaten_piece_cells_y, eaten_piece_cell.y)
-		for i in range(eaten_piece_cells.size()):
-			eaten_piece_cells[i].y += (shark_cell.y - max_eaten_piece_cells_y)
+		for eaten_piece_cell in eaten_piece_cells:
+			eaten_piece_cell.y += (shark_cell.y - max_eaten_piece_cells_y)
 	
 	for eaten_piece_cell in eaten_piece_cells:
 		shark.set_eaten_cell(eaten_piece_cell - shark_cell)

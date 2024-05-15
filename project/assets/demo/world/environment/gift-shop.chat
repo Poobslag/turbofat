@@ -1,10 +1,10 @@
 {"version": "2476"}
 
 [location]
-lava/gift_shop
+credits/gift_shop
 
 [characters]
 narrator, n
 
-n: And so #player# and Fat Sensei proceeded to the Zagma gift shop, where #player# purchased their very own Zagma Chef Of The Year plaque for $3000.
-n: Fat Sensei refused to help pay for the plaque. "$3000 is a considerable investment, it's best you do it yourself."
+n: And so #player# and Fat Sensei proceeded to the Zagma gift shop, where #player# purchased their very own Zagma Chef Of The Year plaque for ¥3000.
+n: Fat Sensei refused to help pay for the plaque. "¥3000 is a considerable investment, it's best you do it yourself."

@@ -33,9 +33,9 @@ const UNDECORATED_RESTAURANT_PATH := "res://src/main/world/environment/restauran
 const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"inside_turbo_fat": "res://src/main/world/environment/restaurant/TurboFatEnvironment.tscn",
 	
+	"credits/gift_shop": "res://src/main/world/environment/credits/GiftShopEnvironment.tscn",
 	"lava": "res://src/main/world/environment/lava/LavaEnvironment.tscn",
 	"lava/zagma": "res://src/main/world/environment/lava/ZagmaEnvironment.tscn",
-	"lava/gift_shop": "res://src/main/world/environment/lava/GiftShopEnvironment.tscn",
 	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
 	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
 	"lemon_2": "res://src/main/world/environment/lemon/Lemon2Environment.tscn",

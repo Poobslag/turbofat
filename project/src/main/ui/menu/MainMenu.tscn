@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=2]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-p.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
@@ -14,12 +14,83 @@
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/menu/main-menu-play.gd" type="Script" id=13]
 [ext_resource path="res://src/main/ui/menu/main-menu-create.gd" type="Script" id=14]
+[ext_resource path="res://src/main/ui/candy-button/CandyButton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-o-pressed.png" type="Texture" id=16]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-q.png" type="Texture" id=17]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-t.png" type="Texture" id=18]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-t-pressed.png" type="Texture" id=19]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-o.png" type="Texture" id=20]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-q-pressed.png" type="Texture" id=21]
+[ext_resource path="res://src/main/ui/candy-button/gradient-green-normal.tres" type="Gradient" id=22]
+[ext_resource path="res://src/main/ui/candy-button/gradient-orange-normal.tres" type="Gradient" id=23]
+[ext_resource path="res://src/main/ui/candy-button/gradient-violet-normal.tres" type="Gradient" id=24]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-u-pressed.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-u.png" type="Texture" id=26]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-p-pressed.png" type="Texture" id=27]
+[ext_resource path="res://src/main/ui/candy-button/gradient-yellow-normal.tres" type="Gradient" id=28]
+[ext_resource path="res://src/main/ui/candy-button/gradient-indigo-normal.tres" type="Gradient" id=29]
+[ext_resource path="res://assets/main/ui/icon-practice.png" type="Texture" id=30]
+[ext_resource path="res://assets/main/ui/icon-tutorials.png" type="Texture" id=31]
+[ext_resource path="res://assets/main/ui/icon-career.png" type="Texture" id=32]
+[ext_resource path="res://assets/main/ui/icon-create-levels.png" type="Texture" id=33]
+[ext_resource path="res://assets/main/ui/icon-create-creatures.png" type="Texture" id=34]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=35]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
 outline_size = 6
 outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="GradientTexture2D" id=2]
+resource_local_to_scene = true
+gradient = ExtResource( 22 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 2 )
+
+[sub_resource type="GradientTexture2D" id=4]
+resource_local_to_scene = true
+gradient = ExtResource( 29 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 4 )
+
+[sub_resource type="GradientTexture2D" id=6]
+resource_local_to_scene = true
+gradient = ExtResource( 23 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 6 )
+
+[sub_resource type="GradientTexture2D" id=8]
+resource_local_to_scene = true
+gradient = ExtResource( 24 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 8 )
+
+[sub_resource type="GradientTexture2D" id=10]
+resource_local_to_scene = true
+gradient = ExtResource( 28 )
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 10 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -56,45 +127,60 @@ alignment = 1
 script = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="DropPanel/Play"]
-margin_top = 17.0
+margin_top = 12.0
 margin_right = 462.0
-margin_bottom = 62.0
+margin_bottom = 57.0
 custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
 
-[node name="Career" type="Button" parent="DropPanel/Play"]
-margin_left = 134.0
-margin_top = 72.0
-margin_right = 327.0
-margin_bottom = 119.0
-rect_min_size = Vector2( 193, 47 )
+[node name="Career" parent="DropPanel/Play" instance=ExtResource( 15 )]
+material = SubResource( 3 )
+margin_left = 131.0
+margin_top = 67.0
+margin_right = 331.0
+margin_bottom = 117.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 2 )
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 20 )
 text = "Career"
+icon_left = ExtResource( 32 )
+color = 4
+shape = 3
 
-[node name="Practice" type="Button" parent="DropPanel/Play"]
-margin_left = 134.0
-margin_top = 129.0
-margin_right = 327.0
-margin_bottom = 176.0
-rect_min_size = Vector2( 193, 47 )
+[node name="Practice" parent="DropPanel/Play" instance=ExtResource( 15 )]
+material = SubResource( 5 )
+margin_left = 131.0
+margin_top = 127.0
+margin_right = 331.0
+margin_bottom = 177.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 2 )
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 18 )
 text = "Practice"
+icon_left = ExtResource( 30 )
+color = 6
+shape = 6
 
-[node name="Tutorials" type="Button" parent="DropPanel/Play"]
-margin_left = 134.0
-margin_top = 186.0
-margin_right = 327.0
-margin_bottom = 233.0
-rect_min_size = Vector2( 193, 47 )
+[node name="Tutorials" parent="DropPanel/Play" instance=ExtResource( 15 )]
+material = SubResource( 7 )
+margin_left = 131.0
+margin_top = 187.0
+margin_right = 331.0
+margin_bottom = 237.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 2 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 2 )
 text = "Tutorials"
+icon_left = ExtResource( 31 )
+color = 2
+shape = 4
 
 [node name="Create" type="VBoxContainer" parent="DropPanel"]
 anchor_left = 0.5
@@ -107,34 +193,44 @@ alignment = 1
 script = ExtResource( 14 )
 
 [node name="Label" type="Label" parent="DropPanel/Create"]
-margin_top = 45.0
+margin_top = 42.0
 margin_right = 462.0
-margin_bottom = 90.0
+margin_bottom = 87.0
 custom_fonts/font = ExtResource( 9 )
 text = "Create"
 align = 1
 
-[node name="Levels" type="Button" parent="DropPanel/Create"]
-margin_left = 134.0
-margin_top = 100.0
-margin_right = 327.0
+[node name="Creatures" parent="DropPanel/Create" instance=ExtResource( 15 )]
+material = SubResource( 9 )
+margin_left = 131.0
+margin_top = 97.0
+margin_right = 331.0
 margin_bottom = 147.0
-rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 2 )
-text = "Levels"
-
-[node name="Creatures" type="Button" parent="DropPanel/Create"]
-margin_left = 134.0
-margin_top = 157.0
-margin_right = 327.0
-margin_bottom = 204.0
-rect_min_size = Vector2( 193, 47 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource( 2 )
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 26 )
 text = "Creatures"
+icon_left = ExtResource( 34 )
+color = 7
+shape = 7
+
+[node name="Levels" parent="DropPanel/Create" instance=ExtResource( 15 )]
+material = SubResource( 11 )
+margin_left = 131.0
+margin_top = 157.0
+margin_right = 331.0
+margin_bottom = 207.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 21 )
+texture_hover = ExtResource( 17 )
+text = "Levels"
+icon_left = ExtResource( 33 )
+color = 3
+shape = 5
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
 alignment = 1
@@ -167,8 +263,8 @@ text = "Stress Test"
 [connection signal="pressed" from="DropPanel/Play/Career" to="DropPanel/Play" method="_on_Career_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Practice" to="DropPanel/Play" method="_on_Practice_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Tutorials" to="DropPanel/Play" method="_on_Tutorials_pressed"]
-[connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Creatures" to="DropPanel/Create" method="_on_Creatures_pressed"]
+[connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]

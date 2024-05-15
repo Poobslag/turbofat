@@ -80,8 +80,8 @@ func _load_level_settings() -> void:
 		_pickable_career_levels = _random_levels()
 	
 	# decide available cutscenes
-	for i in range(_pickable_career_levels.size()):
-		_pickable_chat_key_pairs.append(_career_cutscene_librarian.chat_key_pair(_pickable_career_levels[i]))
+	for pickable_career_level in _pickable_career_levels:
+		_pickable_chat_key_pairs.append(_career_cutscene_librarian.chat_key_pair(pickable_career_level))
 	
 	# decide piece speed
 	if PlayerData.career.is_boss_level():
@@ -91,7 +91,8 @@ func _load_level_settings() -> void:
 			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
 		else:
 			var weight: float = float(PlayerData.career.hours_passed) / (Careers.HOURS_PER_CAREER_DAY - 1)
-			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed, weight)
+			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed,
+					weight)
 	
 	# initialize level settings
 	for level in _pickable_career_levels:
@@ -159,9 +160,9 @@ func _random_levels() -> Array:
 	
 	# calculate a list of levels the player hasn't played in this career session
 	var unplayed_levels := []
-	for i in range(levels.size()):
-		if not levels[i].level_id in PlayerData.career.level_ids:
-			unplayed_levels.append(levels[i])
+	for level in levels:
+		if not level.level_id in PlayerData.career.level_ids:
+			unplayed_levels.append(level)
 	
 	# calculate a random set of levels for the player, and replace any the player's played if possible
 	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))
@@ -256,7 +257,8 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 		search_flags.include_all_numeric_children = true
 		search_flags.excluded_chat_keys = CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
 		search_flags.exclude_chat_key(preroll_key)
-		var remaining_chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path], search_flags)
+		var remaining_chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path],
+				search_flags)
 		
 		if remaining_chat_key_pairs:
 			# this is not the last cutscene; do not play epilogue

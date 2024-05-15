@@ -57,7 +57,8 @@ func test_add_carrots_get_config() -> void:
 	
 	effect = LevelTriggerEffects.create("add_carrots", {"x": "0-2", "count": "2", "duration": "12.0", "size": "large",
 			"smoke": "none"})
-	assert_eq_shallow({"count": "2", "duration": "12", "size": "large", "smoke": "none", "x": "0-2"}, effect.get_config())
+	assert_eq_shallow({"count": "2", "duration": "12", "size": "large", "smoke": "none", "x": "0-2"},
+			effect.get_config())
 
 
 func test_add_moles_set_config() -> void:
@@ -171,7 +172,8 @@ func test_add_spears_get_config() -> void:
 	
 	effect = LevelTriggerEffects.create("add_spears", {"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6",
 			"wait": "3"})
-	assert_eq_shallow({"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6", "wait": "3"}, effect.get_config())
+	assert_eq_shallow({"count": "5", "duration": "2", "y": "3-5", "sizes": "x2,x4,x6", "wait": "3"},
+			effect.get_config())
 
 
 func test_remove_carrots_set_config() -> void:

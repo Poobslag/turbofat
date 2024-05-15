@@ -24,8 +24,8 @@ func _on_PuzzleState_topped_out() -> void:
 			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT),
 					PieceSpeeds.current_speed.playfield_clear_delay(), false)
 		else:
-			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT - LINES_CLEARED_ON_TOP_OUT, PuzzleTileMap.ROW_COUNT),
-					PieceSpeeds.current_speed.playfield_clear_delay(), false)
+			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT - LINES_CLEARED_ON_TOP_OUT,
+					PuzzleTileMap.ROW_COUNT), PieceSpeeds.current_speed.playfield_clear_delay(), false)
 
 
 func _on_Playfield_after_lines_deleted(_lines: Array) -> void:

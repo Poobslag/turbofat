@@ -31,6 +31,18 @@ func _ready() -> void:
 	_schedule_refresh_graphics_settings()
 
 
+## Prevents the player's settings from triggering fullscreen mode or vsync.
+##
+## This is called when running Gut tests to prevent the Gut window from becoming fullscreen. This could happen if the
+## developer enables fullscreen mode, or when a test loads system data with fullscreen mode enabled.
+func disallow_graphics_customization() -> void:
+	graphics_settings.disconnect("fullscreen_changed", self, "_on_GraphicsSettings_fullscreen_changed")
+	graphics_settings.disconnect("use_vsync_changed", self, "_on_GraphicsSettings_use_vsync_changed")
+	if _refresh_graphics_settings_timer:
+		_refresh_graphics_settings_timer.disconnect("timeout", self, "_on_RefreshGraphicsSettingsTimer_timeout")
+		_refresh_graphics_settings_timer = null
+
+
 ## Resets the system's in-memory data to a default state.
 func reset() -> void:
 	gameplay_settings.reset()

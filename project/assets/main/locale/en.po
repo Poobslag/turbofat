@@ -1475,12 +1475,12 @@ msgstr "Learn how squish moves work and when to use them."
 #: project/assets/main/locale/localizables-extracted.py:354
 msgid ""
 "And so #player# and Fat Sensei proceeded to the Zagma gift shop, where "
-"#player# purchased their very own Zagma Chef Of The Year plaque for $3000."
+"#player# purchased their very own Zagma Chef Of The Year plaque for ¥3000."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:355
 msgid ""
-"Fat Sensei refused to help pay for the plaque. \"$3000 is a considerable "
+"Fat Sensei refused to help pay for the plaque. \"¥3000 is a considerable "
 "investment, it's best you do it yourself.\""
 msgstr ""
 

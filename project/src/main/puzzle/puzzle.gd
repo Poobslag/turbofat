@@ -68,7 +68,8 @@ func _input(event: InputEvent) -> void:
 				PuzzleState.game_active = false
 				PuzzleState.game_ended = true
 				PuzzleState.apply_top_out_score_penalty()
-				# use up all of the players lives; especially for career mode, we don't want to reward players who give up
+				# use up all of the players lives; especially for career mode, we don't want to reward players who
+				# give up
 				PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
 			if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 				PuzzleState.end_game()

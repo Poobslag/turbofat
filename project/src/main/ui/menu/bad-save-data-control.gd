@@ -32,9 +32,11 @@ func popup() -> void:
 			RollingBackups.PREV_DAY:
 				message += tr("There was a backup, but you'll lose everything from the last day or so.")
 			RollingBackups.THIS_WEEK:
-				message += tr("There was a backup, but it was pretty old. You'll lose everything from the last few days.")
+				message += tr("There was a backup, but it was pretty old."
+						+ " You'll lose everything from the last few days.")
 			RollingBackups.PREV_WEEK:
-				message += tr("There was a backup, but it was very old. You'll lose everything from the last week or so.")
+				message += tr("There was a backup, but it was very old."
+						+ " You'll lose everything from the last week or so.")
 	message += "\n\n"
 	
 	# convert the 'user://foo1.txt' paths into a useful message like 'C:/abc/def (foo1.txt, foo2.txt)'

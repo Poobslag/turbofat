@@ -1,0 +1,237 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://assets/demo/ui/icon-play.png" type="Texture" id=1]
+[ext_resource path="res://src/main/ui/candy-button/gradient-orange-normal.tres" type="Gradient" id=2]
+[ext_resource path="res://src/main/ui/candy-button/gradient-red-normal.tres" type="Gradient" id=3]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-o-pressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-q-pressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-o.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-q.png" type="Texture" id=7]
+[ext_resource path="res://src/main/ui/candy-button/CandyButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-l.png" type="Texture" id=9]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=10]
+[ext_resource path="res://src/main/ui/candy-button/gradient-green-normal.tres" type="Gradient" id=11]
+[ext_resource path="res://src/main/ui/candy-button/gradient-indigo-normal.tres" type="Gradient" id=12]
+[ext_resource path="res://src/main/ui/candy-button/gradient-violet-normal.tres" type="Gradient" id=13]
+[ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=14]
+[ext_resource path="res://src/main/ui/candy-button/gradient-yellow-normal.tres" type="Gradient" id=15]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-p.png" type="Texture" id=16]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-t-pressed.png" type="Texture" id=17]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-p-pressed.png" type="Texture" id=18]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-j.png" type="Texture" id=19]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-t.png" type="Texture" id=20]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-u.png" type="Texture" id=21]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-j-pressed.png" type="Texture" id=22]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-u-pressed.png" type="Texture" id=23]
+[ext_resource path="res://assets/main/ui/candy-button/candy-button-l-pressed.png" type="Texture" id=24]
+[ext_resource path="res://src/main/ui/candy-button/gradient-focused.tres" type="Gradient" id=25]
+
+[sub_resource type="GradientTexture2D" id=9]
+resource_local_to_scene = true
+gradient = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 9 )
+
+[sub_resource type="GradientTexture2D" id=11]
+resource_local_to_scene = true
+gradient = ExtResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 11 )
+
+[sub_resource type="GradientTexture2D" id=13]
+resource_local_to_scene = true
+gradient = ExtResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 13 )
+
+[sub_resource type="GradientTexture2D" id=15]
+resource_local_to_scene = true
+gradient = ExtResource( 11 )
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 15 )
+
+[sub_resource type="GradientTexture2D" id=17]
+resource_local_to_scene = true
+gradient = ExtResource( 14 )
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 17 )
+
+[sub_resource type="GradientTexture2D" id=19]
+resource_local_to_scene = true
+gradient = ExtResource( 12 )
+
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 19 )
+
+[sub_resource type="GradientTexture2D" id=21]
+resource_local_to_scene = true
+gradient = ExtResource( 13 )
+
+[sub_resource type="ShaderMaterial" id=22]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 21 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = ExtResource( 25 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 10 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 7 )
+
+[node name="Demo" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Button" type="Button" parent="Control"]
+margin_left = 582.483
+margin_top = 95.4836
+margin_right = 782.483
+margin_bottom = 145.484
+text = "Instrument"
+
+[node name="Button2" type="Button" parent="Control"]
+margin_left = 582.483
+margin_top = 187.053
+margin_right = 782.483
+margin_bottom = 237.053
+text = "Cars"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+margin_left = 217.625
+margin_top = 34.487
+margin_right = 257.625
+margin_bottom = 74.487
+
+[node name="CandyButton1" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 10 )
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 200.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 19 )
+text = "Instrument"
+icon_left = ExtResource( 1 )
+color = 1
+shape = 1
+
+[node name="CandyButton2" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 12 )
+margin_left = 0.0
+margin_top = 54.0
+margin_right = 200.0
+margin_bottom = 104.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 24 )
+texture_hover = ExtResource( 9 )
+text = "Cars"
+color = 2
+shape = 2
+
+[node name="CandyButton3" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 14 )
+margin_left = 0.0
+margin_top = 108.0
+margin_right = 200.0
+margin_bottom = 158.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 6 )
+text = "Trousers"
+icon_right = ExtResource( 1 )
+color = 3
+shape = 3
+
+[node name="CandyButton4" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 16 )
+margin_left = 0.0
+margin_top = 162.0
+margin_right = 200.0
+margin_bottom = 212.0
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 16 )
+text = "Melt"
+color = 4
+shape = 4
+
+[node name="CandyButton5" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 18 )
+margin_left = 0.0
+margin_top = 216.0
+margin_right = 200.0
+margin_bottom = 266.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 7 )
+text = "Wound"
+icon_left = ExtResource( 1 )
+color = 5
+shape = 5
+
+[node name="CandyButton6" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 20 )
+margin_left = 0.0
+margin_top = 270.0
+margin_right = 200.0
+margin_bottom = 320.0
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 20 )
+text = "Plastic"
+color = 6
+shape = 6
+
+[node name="CandyButton7" parent="Control/VBoxContainer" instance=ExtResource( 8 )]
+material = SubResource( 22 )
+margin_left = 0.0
+margin_top = 324.0
+margin_right = 200.0
+margin_bottom = 374.0
+texture_normal = ExtResource( 21 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 21 )
+text = "Magenta"
+icon_right = ExtResource( 1 )
+color = 7
+shape = 7
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 331.618
+margin_top = 484.129
+margin_right = -292.382
+margin_bottom = -15.871
+texture = ExtResource( 9 )
+expand = true

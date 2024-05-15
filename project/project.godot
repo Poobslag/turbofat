@@ -212,7 +212,7 @@ _global_script_classes=[ {
 "base": "OverworldObstacle",
 "class": "ConfettiCannon",
 "language": "GDScript",
-"path": "res://src/main/world/environment/lava/confetti-cannon.gd"
+"path": "res://src/main/world/environment/credits/confetti-cannon.gd"
 }, {
 "base": "Reference",
 "class": "ConfigStringUtils",
@@ -347,17 +347,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "CrowdSurfDirector",
 "language": "GDScript",
-"path": "res://src/main/world/environment/lava/crowd-surf-director.gd"
+"path": "res://src/main/world/environment/credits/crowd-surf-director.gd"
 }, {
 "base": "Creature",
 "class": "CrowdSurfingBuddy",
 "language": "GDScript",
-"path": "res://src/main/credits/crowd-surfing-buddy.gd"
+"path": "res://src/main/world/environment/credits/crowd-surfing-buddy.gd"
 }, {
 "base": "Node",
 "class": "CrowdWalkDirector",
 "language": "GDScript",
-"path": "res://src/main/world/environment/lava/crowd-walk-director.gd"
+"path": "res://src/main/world/environment/credits/crowd-walk-director.gd"
 }, {
 "base": "Node2D",
 "class": "CrumbCluster",
@@ -447,7 +447,7 @@ _global_script_classes=[ {
 "base": "Creature",
 "class": "FreeRoamPlayer",
 "language": "GDScript",
-"path": "res://src/main/world/creature/free-roam-player.gd"
+"path": "res://src/demo/world/creature/free-roam-player.gd"
 }, {
 "base": "OverworldWorld",
 "class": "FreeRoamWorld",
@@ -1843,6 +1843,7 @@ ResourceCache="*res://src/main/utils/ResourceCache.tscn"
 SceneTransition="*res://src/main/utils/SceneTransition.tscn"
 SteamAchievements="*res://src/main/steam/SteamAchievements.tscn"
 SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
+SfxKeeper="*res://src/main/utils/sfx-keeper.gd"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
 PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"

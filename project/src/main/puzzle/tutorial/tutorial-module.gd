@@ -93,7 +93,8 @@ func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
 	var timer := PuzzleState.add_timer(wait_time)
 	
 	if not hud.messages.is_all_messages_visible():
-		hud.messages.connect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer", [timer])
+		hud.messages.connect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer",
+				[timer])
 	else:
 		timer.start()
 	

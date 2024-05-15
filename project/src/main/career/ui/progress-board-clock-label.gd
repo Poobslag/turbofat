@@ -19,10 +19,7 @@ onready var _particles := $Particles
 ##
 ## This is called when the text changes to get the player's attention.
 func flash() -> void:
-	for particles_2d_node in _particles.get_children():
-		var particles_2d: Particles2D = particles_2d_node
-		particles_2d.restart()
-		particles_2d.emitting = true
+	_particles.emit()
 	
 	var font: DynamicFont = get("custom_fonts/font")
 	font.outline_color = Color.white

@@ -24,7 +24,7 @@ const HARDCORE_LEVEL_HOURS_OPTIONS := [
 ## time to show when the number of levels the player has played is an unexpected value
 var invalid_time_of_day := tr("?:?? zm")
 
-## key: (int) corresonding to the number of levels the player has played
+## key: (int) number of levels the player has played
 ## value: (String) human-readable time of day
 var times_of_day_by_hour := {
 	0: tr("11:00 am"),

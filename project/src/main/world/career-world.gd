@@ -472,7 +472,8 @@ func _turn_towards_level_creature() -> void:
 	player.orientation = Creatures.SOUTHEAST if level_creature.position.x > player.position.x else Creatures.SOUTHWEST
 	var sensei := overworld_environment.sensei
 	if sensei:
-		sensei.orientation = Creatures.SOUTHEAST if level_creature.position.x > sensei.position.x else Creatures.SOUTHWEST
+		sensei.orientation = Creatures.SOUTHEAST if level_creature.position.x > sensei.position.x \
+				else Creatures.SOUTHWEST
 
 
 ## Makes the currently focused level creature emote.

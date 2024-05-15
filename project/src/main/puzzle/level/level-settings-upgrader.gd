@@ -247,17 +247,17 @@ func _upgrade_1922(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 static func increment_string(s: String) -> String:
 	var result := ""
 	var num_buffer := ""
-	for i in range(s.length()):
-		if StringUtils.is_digit(s[i]):
+	for c in s:
+		if StringUtils.is_digit(c):
 			# digit; add to buffer
-			num_buffer += s[i]
+			num_buffer += c
 		elif num_buffer:
 			# non-digit;
 			result += str(int(num_buffer) + 1)
 			num_buffer = ""
-			result += s[i]
+			result += c
 		else:
-			result += s[i]
+			result += c
 	
 	if num_buffer:
 		result += str(int(num_buffer) + 1)

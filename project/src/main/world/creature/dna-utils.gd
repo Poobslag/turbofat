@@ -427,7 +427,8 @@ func fill_dna(dna: Dictionary, creature_type: int = Creatures.Type.DEFAULT) -> D
 		var alleles := BODY_PART_ALLELES.duplicate()
 		alleles.shuffle()
 		for allele in alleles:
-			Utils.put_if_absent(result, allele, Utils.weighted_rand_value(allele_weights(result, allele, creature_type)))
+			Utils.put_if_absent(result, allele,
+					Utils.weighted_rand_value(allele_weights(result, allele, creature_type)))
 		Utils.put_if_absent(result, "emote-eye", "0" if result.get("eye", "0") == "0" else "1")
 	return result
 

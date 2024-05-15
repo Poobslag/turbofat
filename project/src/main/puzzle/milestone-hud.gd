@@ -115,13 +115,6 @@ func _update_particle_colors() -> void:
 	particles_material.color_ramp.gradient.colors[0] = Utils.to_transparent(progress_bar_color, 1.0)
 	particles_material.color_ramp.gradient.colors[1] = Utils.to_transparent(progress_bar_color, 0.0)
 
-## Emit particles from the progress bar.
-func _emit_particles() -> void:
-	for particles_2d_node in _progress_bar_particles.get_children():
-		var particles_2d: Particles2D = particles_2d_node
-		particles_2d.restart()
-		particles_2d.emitting = true
-
 
 func _on_PuzzleState_game_prepared() -> void:
 	init_milebar()
@@ -136,7 +129,7 @@ func _on_PuzzleState_speed_index_changed(value: int) -> void:
 		return
 	
 	_update_particle_colors()
-	_emit_particles()
+	_progress_bar_particles.emit()
 
 
 func _on_Level_settings_changed() -> void:

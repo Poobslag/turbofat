@@ -107,6 +107,9 @@ func play_cool_credits() -> void:
 	MusicPlayer.play_credits_bgm()
 	_music_sync_player.play("play")
 	
+	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
+	_credits_scroll.orb.initialize_time(2.92682)
+	
 	var credits_tween := get_tree().create_tween()
 	_schedule_part_1(credits_tween)
 	_schedule_part_2(credits_tween)
@@ -134,9 +137,6 @@ func play_cool_credits() -> void:
 	_credits_scroll.set_left_transformation_target_for_piece(316)
 	_credits_scroll.set_right_transformation_target_for_piece(332)
 	_credits_scroll.set_right_transformation_target_for_piece(364)
-	
-	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
-	_credits_scroll.orb.initialize_time(2.92682)
 
 
 ## Schedules all of the credits events for the "boring credits" before the player beats the game.
@@ -178,8 +178,8 @@ func _schedule_part_1(credits_tween: SceneTreeTween) -> void:
 	credits_tween.tween_callback(self, "_set_credits_scroll_velocity", [part_1_height / PART_1_DURATION])
 	
 	# Add all of the credit lines.
-	for i in range(part_1.size()):
-		credits_tween.tween_callback(self, "_add_credit_line", [part_1[i]])
+	for credit_line in part_1:
+		credits_tween.tween_callback(self, "_add_credit_line", [credit_line])
 		credits_tween.tween_interval(PART_1_DURATION / (part_1.size() + BUFFER_LINE_COUNT))
 	
 	# Don't start part 2 until a certain number of empty lines scroll by.
@@ -188,8 +188,8 @@ func _schedule_part_1(credits_tween: SceneTreeTween) -> void:
 
 ## Schedules events for the second part of the credits, the walls of text which summarize the player's journey.
 func _schedule_part_2(credits_tween: SceneTreeTween) -> void:
-	for i in range(part_2.size()):
-		credits_tween.tween_callback(self, "_add_credit_line", [part_2[i]])
+	for credit_line in part_2:
+		credits_tween.tween_callback(self, "_add_credit_line", [credit_line])
 		credits_tween.tween_interval(PART_2_DURATION / part_2.size())
 
 
@@ -200,8 +200,8 @@ func _schedule_part_3(credits_tween: SceneTreeTween) -> void:
 	credits_tween.tween_callback(self, "_set_credits_scroll_velocity", [part_3_height / PART_3_DURATION])
 	
 	# Add all of the credit lines.
-	for i in range(part_3.size()):
-		credits_tween.tween_callback(self, "_add_credit_line", [part_3[i]])
+	for credit_line in part_3:
+		credits_tween.tween_callback(self, "_add_credit_line", [credit_line])
 		credits_tween.tween_interval(PART_3_DURATION / (part_3.size() + BUFFER_LINE_COUNT))
 	
 	# Don't start part 4 until a certain number of empty lines scroll by.

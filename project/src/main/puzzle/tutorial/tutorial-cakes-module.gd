@@ -55,7 +55,8 @@ func prepare_tutorial_level() -> void:
 			if _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make a rectangle."))
 			else:
-				hud.set_message(tr("Next let's try double-decker brownies.\n\nCan you make another cake box with this?"))
+				hud.set_message(tr("Next let's try double-decker brownies."
+						+ "\n\nCan you make another cake box with this?"))
 		"tutorial/cakes_4":
 			_prepare_cake_tally_item(2)
 			if _failure_count >= 3:
@@ -135,7 +136,8 @@ func _advance_level() -> void:
 		"tutorial/cakes_4":
 			if _cakes_built >= 2:
 				_schedule_finish_line_clears()
-				hud.set_message(tr("Wow, color me impressed!\n\nBut, there's one more thing you should know about cake boxes."))
+				hud.set_message(tr("Wow, color me impressed!"
+						+ "\n\nBut, there's one more thing you should know about cake boxes."))
 			elif _cakes_built == 1:
 				hud.set_message(tr("Oh, you're half way there! ...Now try for the other one."))
 				PuzzleState.level_performance.lost = true
@@ -247,7 +249,8 @@ func _on_PuzzleState_game_ended() -> void:
 	if not PuzzleState.level_performance.lost and CurrentLevel.settings.id == "tutorial/cakes_9":
 		# show end-of-tutorial message
 		if _cakes_built == 0:
-			hud.set_message(tr("Ahhh... you didn't make any cakes!\n\nWell, cake boxes can be tricky. Keep practicing!"))
+			hud.set_message(tr("Ahhh... you didn't make any cakes!"
+					+ "\n\nWell, cake boxes can be tricky. Keep practicing!"))
 		elif _cakes_built == 1:
 			hud.set_message(tr("Ahhh... you only made one cake?\n\nWell, cake boxes can be tricky. Keep practicing!"))
 		elif _cakes_built <= 4:

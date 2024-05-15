@@ -1,5 +1,5 @@
 extends Node
-## Demo which lets you test the puzzle scoreboard.
+## Demonstrates the puzzle scoreboard.
 ##
 ## Keys:
 ## 	[1-4]: Adds ¥10, ¥200, ¥300, or ¥4,000 to the current combo

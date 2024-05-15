@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off the progress board's trail of dots and lines.
+## Demonstrates the progress board's trail of dots and lines.
 ##
 ## Keys:
 ## 	[=/-]: Increase/decrease the number of spots on the trail.

@@ -1,5 +1,5 @@
 extends Node
-## Demo which shows off smoke clusters.
+## Demonstrates smoke clusters.
 ##
 ## Keys:
 ## 	Space: Emits a smoke cluster.
