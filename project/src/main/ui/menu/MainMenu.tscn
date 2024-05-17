@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=11]
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/menu/main-menu-play.gd" type="Script" id=13]
 [ext_resource path="res://src/main/ui/menu/main-menu-create.gd" type="Script" id=14]
@@ -35,6 +34,9 @@
 [ext_resource path="res://assets/main/ui/icon-create-levels.png" type="Texture" id=33]
 [ext_resource path="res://assets/main/ui/icon-create-creatures.png" type="Texture" id=34]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=35]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=36]
+[ext_resource path="res://assets/main/ui/candy-button/h4-t.png" type="Texture" id=37]
+[ext_resource path="res://assets/main/ui/candy-button/h4-t-pressed.png" type="Texture" id=38]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -91,6 +93,16 @@ resource_local_to_scene = true
 shader = ExtResource( 35 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 10 )
+
+[sub_resource type="GradientTexture2D" id=12]
+resource_local_to_scene = true
+gradient = ExtResource( 22 )
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 12 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -247,12 +259,18 @@ margin_right = -19.9999
 margin_bottom = -20.0
 script = ExtResource( 12 )
 
-[node name="StressTest" type="Button" parent="DropPanel/Debug"]
-margin_right = 116.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 116, 28 )
-theme = ExtResource( 11 )
+[node name="StressTest" parent="DropPanel/Debug" instance=ExtResource( 36 )]
+material = SubResource( 13 )
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 120.0
+margin_bottom = 30.0
+texture_normal = ExtResource( 37 )
+texture_pressed = ExtResource( 38 )
+texture_hover = ExtResource( 37 )
 text = "Stress Test"
+color = 4
+shape = 6
 
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
