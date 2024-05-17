@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=3]
 [ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=4]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=6]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=7]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/main/ui/candy-button/h4-blank.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/ui/candy-button/h4-blank-pressed.png" type="Texture" id=10]
+
+[sub_resource type="GradientTexture2D" id=1]
+resource_local_to_scene = true
+gradient = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 1 )
 
 [node name="System" type="VBoxContainer"]
 anchor_top = 1.0
@@ -59,6 +74,42 @@ margin_top = 114.0
 margin_right = 1024.0
 margin_bottom = 124.0
 rect_min_size = Vector2( 0, 10 )
+
+[node name="CandyButton" parent="." instance=ExtResource( 8 )]
+material = SubResource( 2 )
+margin_left = 452.0
+margin_top = 134.0
+margin_right = 572.0
+margin_bottom = 164.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+
+[node name="CandyButton2" parent="." instance=ExtResource( 8 )]
+material = SubResource( 2 )
+margin_left = 452.0
+margin_top = 174.0
+margin_right = 572.0
+margin_bottom = 204.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+
+[node name="CandyButton3" parent="." instance=ExtResource( 8 )]
+material = SubResource( 2 )
+margin_left = 452.0
+margin_top = 214.0
+margin_right = 572.0
+margin_bottom = 244.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
 
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
