@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/candy-button-v-pressed.png-407b6493c634e7e65248e970e9bede86.stex"
+path="res://.import/h3-v-pressed.png-78e9c3f8c02737371d52daf10c511946.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/ui/candy-button/candy-button-v-pressed.png"
-dest_files=[ "res://.import/candy-button-v-pressed.png-407b6493c634e7e65248e970e9bede86.stex" ]
+source_file="res://assets/main/ui/candy-button/h3-v-pressed.png"
+dest_files=[ "res://.import/h3-v-pressed.png-78e9c3f8c02737371d52daf10c511946.stex" ]
 
 [params]
 

@@ -53,10 +53,10 @@ var _gradient_focused: Gradient = preload("res://src/main/ui/candy-button/gradie
 var _gradient_focused_hover: Gradient = preload("res://src/main/ui/candy-button/gradient-focused-hover.tres")
 
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/candy-button-shine-normal.png")
+var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/h3-shine.png")
 
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/candy-button-shine-pressed.png")
+var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/h3-shine-pressed.png")
 
 ## Gradients for the various ButtonColor presets.
 ##
@@ -99,32 +99,32 @@ var _gradients_by_button_color := {
 ## 	value[1]: (Texture) texture to use when the button is pressed.
 var _textures_by_button_shape := {
 	ButtonShape.NONE: [
-		preload("res://assets/main/ui/candy-button/candy-button.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-blank.png"),
+		preload("res://assets/main/ui/candy-button/h3-blank-pressed.png")],
 	ButtonShape.PIECE_J: [
-		preload("res://assets/main/ui/candy-button/candy-button-j.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-j-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-j.png"),
+		preload("res://assets/main/ui/candy-button/h3-j-pressed.png")],
 	ButtonShape.PIECE_L: [
-		preload("res://assets/main/ui/candy-button/candy-button-l.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-l-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-l.png"),
+		preload("res://assets/main/ui/candy-button/h3-l-pressed.png")],
 	ButtonShape.PIECE_O: [
-		preload("res://assets/main/ui/candy-button/candy-button-o.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-o-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-o.png"),
+		preload("res://assets/main/ui/candy-button/h3-o-pressed.png")],
 	ButtonShape.PIECE_P: [
-		preload("res://assets/main/ui/candy-button/candy-button-p.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-p-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-p.png"),
+		preload("res://assets/main/ui/candy-button/h3-p-pressed.png")],
 	ButtonShape.PIECE_Q: [
-		preload("res://assets/main/ui/candy-button/candy-button-q.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-q-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-q.png"),
+		preload("res://assets/main/ui/candy-button/h3-q-pressed.png")],
 	ButtonShape.PIECE_T: [
-		preload("res://assets/main/ui/candy-button/candy-button-t.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-t-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-t.png"),
+		preload("res://assets/main/ui/candy-button/h3-t-pressed.png")],
 	ButtonShape.PIECE_U: [
-		preload("res://assets/main/ui/candy-button/candy-button-u.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-u-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-u.png"),
+		preload("res://assets/main/ui/candy-button/h3-u-pressed.png")],
 	ButtonShape.PIECE_V: [
-		preload("res://assets/main/ui/candy-button/candy-button-v.png"),
-		preload("res://assets/main/ui/candy-button/candy-button-v-pressed.png")],
+		preload("res://assets/main/ui/candy-button/h3-v.png"),
+		preload("res://assets/main/ui/candy-button/h3-v-pressed.png")],
 }
 
 
