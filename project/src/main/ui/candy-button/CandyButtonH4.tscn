@@ -1,0 +1,75 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/main/ui/candy-button/candy-button-h4.gd" type="Script" id=1]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=2]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/main/ui/candy-button/h4-focused.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/ui/candy-button/h4-v-pressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/ui/candy-button/h4-v.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/ui/candy-button/h4-shine.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/main/ui/button-click.wav" type="AudioStream" id=10]
+[ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=11]
+
+[sub_resource type="GradientTexture2D" id=9]
+resource_local_to_scene = true
+gradient = ExtResource( 11 )
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=10]
+resource_local_to_scene = true
+outline_size = 2
+outline_color = Color( 0.149412, 0.135882, 0.15, 1 )
+font_data = ExtResource( 8 )
+
+[node name="CandyButton" type="TextureButton"]
+material = SubResource( 8 )
+margin_left = 95.6823
+margin_top = 66.0563
+margin_right = 215.682
+margin_bottom = 96.0563
+rect_min_size = Vector2( 120, 30 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+texture_focused = ExtResource( 4 )
+expand = true
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 10 )
+align = 1
+valign = 1
+
+[node name="Shine" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.831373 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "Sound Bus"
+
+[node name="HoverSound" parent="." instance=ExtResource( 3 )]
+stream = ExtResource( 9 )
+volume_db = -4.0
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
