@@ -144,6 +144,17 @@ onready var _label := $HBoxContainer/Label
 onready var _shine := $Shine
 
 func _ready() -> void:
+	# Connect signals in code to prevent them from showing up in the Godot editor.
+	#
+	# This is a generic button used in many places, we want to be able to quickly see the unique signals connected to
+	# each button instance, not the generic signals connected to all button instances.
+	connect("button_down", self, "_on_button_down")
+	connect("button_up", self, "_on_button_up")
+	connect("focus_entered", self, "_on_focus_entered")
+	connect("focus_exited", self, "_on_focus_exited")
+	connect("mouse_entered", self, "_on_mouse_entered")
+	connect("mouse_exited", self, "_on_mouse_exited")
+	
 	_refresh_icons()
 	_refresh_font_size()
 	_refresh_text()
