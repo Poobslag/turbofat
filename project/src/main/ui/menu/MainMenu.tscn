@@ -27,7 +27,7 @@
 [ext_resource path="res://assets/main/ui/candy-button/h3-u-pressed.png" type="Texture" id=25]
 [ext_resource path="res://assets/main/ui/candy-button/h3-u.png" type="Texture" id=26]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p-pressed.png" type="Texture" id=27]
-[ext_resource path="res://src/main/ui/candy-button/gradient-yellow-normal.tres" type="Gradient" id=28]
+[ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=28]
 [ext_resource path="res://src/main/ui/candy-button/gradient-indigo-normal.tres" type="Gradient" id=29]
 [ext_resource path="res://assets/main/ui/icon-practice.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/ui/icon-tutorials.png" type="Texture" id=31]
@@ -54,7 +54,7 @@ shader_param/gradient = SubResource( 2 )
 
 [sub_resource type="GradientTexture2D" id=4]
 resource_local_to_scene = true
-gradient = ExtResource( 29 )
+gradient = ExtResource( 24 )
 
 [sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
@@ -74,7 +74,7 @@ shader_param/gradient = SubResource( 6 )
 
 [sub_resource type="GradientTexture2D" id=8]
 resource_local_to_scene = true
-gradient = ExtResource( 24 )
+gradient = ExtResource( 29 )
 
 [sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
@@ -163,7 +163,7 @@ texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 18 )
 text = "Practice"
 icon_left = ExtResource( 30 )
-color = 6
+color = 7
 shape = 6
 
 [node name="Tutorials" parent="DropPanel/Play" instance=ExtResource( 15 )]
@@ -213,7 +213,7 @@ texture_pressed = ExtResource( 25 )
 texture_hover = ExtResource( 26 )
 text = "Creatures"
 icon_left = ExtResource( 34 )
-color = 7
+color = 6
 shape = 7
 
 [node name="Levels" parent="DropPanel/Create" instance=ExtResource( 15 )]
@@ -229,7 +229,7 @@ texture_pressed = ExtResource( 21 )
 texture_hover = ExtResource( 17 )
 text = "Levels"
 icon_left = ExtResource( 33 )
-color = 3
+color = 5
 shape = 5
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
