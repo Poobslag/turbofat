@@ -4,8 +4,8 @@
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=2]
 [ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/main/ui/candy-button/h4-focused.png" type="Texture" id=4]
-[ext_resource path="res://assets/main/ui/candy-button/h4-v-pressed.png" type="Texture" id=5]
-[ext_resource path="res://assets/main/ui/candy-button/h4-v.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/ui/candy-button/h4-blank.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/ui/candy-button/h4-blank-pressed.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/ui/candy-button/h4-shine.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=9]
@@ -35,12 +35,13 @@ margin_top = 66.0563
 margin_right = 215.682
 margin_bottom = 96.0563
 rect_min_size = Vector2( 120, 30 )
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
 texture_focused = ExtResource( 4 )
 expand = true
 script = ExtResource( 1 )
+text = "Text"
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
@@ -49,6 +50,7 @@ margin_left = 5.0
 margin_right = -5.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 10 )
+text = "Text"
 align = 1
 valign = 1
 
@@ -66,10 +68,3 @@ bus = "Sound Bus"
 [node name="HoverSound" parent="." instance=ExtResource( 3 )]
 stream = ExtResource( 9 )
 volume_db = -4.0
-
-[connection signal="button_down" from="." to="." method="_on_button_down"]
-[connection signal="button_up" from="." to="." method="_on_button_up"]
-[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
-[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
