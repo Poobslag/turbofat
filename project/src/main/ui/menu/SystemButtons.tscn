@@ -1,25 +1,49 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=3]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=4]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=6]
+[ext_resource path="res://assets/main/ui/candy-button/h4-o.png" type="Texture" id=6]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/main/ui/candy-button/h4-blank.png" type="Texture" id=9]
-[ext_resource path="res://assets/main/ui/candy-button/h4-blank-pressed.png" type="Texture" id=10]
+[ext_resource path="res://src/main/ui/candy-button/gradient-violet-normal.tres" type="Gradient" id=9]
+[ext_resource path="res://src/main/ui/candy-button/gradient-red-normal.tres" type="Gradient" id=10]
+[ext_resource path="res://src/main/ui/candy-button/gradient-yellow-normal.tres" type="Gradient" id=11]
+[ext_resource path="res://assets/main/ui/candy-button/h4-o-pressed.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/ui/candy-button/h4-q.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/ui/candy-button/h4-q-pressed.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/ui/candy-button/h4-p.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/ui/candy-button/h4-p-pressed.png" type="Texture" id=16]
 
 [sub_resource type="GradientTexture2D" id=1]
 resource_local_to_scene = true
-gradient = ExtResource( 6 )
+gradient = ExtResource( 9 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 7 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 1 )
+
+[sub_resource type="GradientTexture2D" id=3]
+resource_local_to_scene = true
+gradient = ExtResource( 11 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 3 )
+
+[sub_resource type="GradientTexture2D" id=5]
+resource_local_to_scene = true
+gradient = ExtResource( 10 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 5 )
 
 [node name="System" type="VBoxContainer"]
 anchor_top = 1.0
@@ -30,86 +54,60 @@ theme = ExtResource( 1 )
 custom_constants/separation = 10
 script = ExtResource( 2 )
 
-[node name="Settings" type="Button" parent="."]
-margin_left = 454.0
-margin_right = 570.0
-margin_bottom = 28.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Settings" parent="." instance=ExtResource( 8 )]
+material = SubResource( 2 )
+margin_left = 452.0
+margin_top = 0.0
+margin_right = 572.0
+margin_bottom = 30.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-shortcut_in_tooltip = false
-shortcut = ExtResource( 3 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 6 )
 text = "Settings"
+color = 7
+shape = 3
 
 [node name="ShortcutHelper" parent="Settings" instance=ExtResource( 5 )]
 action = "ui_cancel"
 overridden_action = "ui_menu"
 
-[node name="Credits" type="Button" parent="."]
-margin_left = 454.0
-margin_top = 38.0
-margin_right = 570.0
-margin_bottom = 66.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Credits" parent="." instance=ExtResource( 8 )]
+material = SubResource( 4 )
+margin_left = 452.0
+margin_top = 40.0
+margin_right = 572.0
+margin_bottom = 70.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-shortcut_in_tooltip = false
-shortcut = ExtResource( 4 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
 text = "Credits"
+color = 3
+shape = 5
 
-[node name="Quit" type="Button" parent="."]
-margin_left = 454.0
-margin_top = 76.0
-margin_right = 570.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Quit" parent="." instance=ExtResource( 8 )]
+material = SubResource( 6 )
+margin_left = 452.0
+margin_top = 80.0
+margin_right = 572.0
+margin_bottom = 110.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-shortcut_in_tooltip = false
-shortcut = ExtResource( 4 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 15 )
 text = "Quit"
+color = 1
+shape = 4
 
 [node name="Spacer" type="Control" parent="."]
-margin_top = 114.0
+margin_top = 120.0
 margin_right = 1024.0
-margin_bottom = 124.0
+margin_bottom = 130.0
 rect_min_size = Vector2( 0, 10 )
-
-[node name="CandyButton" parent="." instance=ExtResource( 8 )]
-material = SubResource( 2 )
-margin_left = 452.0
-margin_top = 134.0
-margin_right = 572.0
-margin_bottom = 164.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
-
-[node name="CandyButton2" parent="." instance=ExtResource( 8 )]
-material = SubResource( 2 )
-margin_left = 452.0
-margin_top = 174.0
-margin_right = 572.0
-margin_bottom = 204.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
-
-[node name="CandyButton3" parent="." instance=ExtResource( 8 )]
-material = SubResource( 2 )
-margin_left = 452.0
-margin_top = 214.0
-margin_right = 572.0
-margin_bottom = 244.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
 
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
