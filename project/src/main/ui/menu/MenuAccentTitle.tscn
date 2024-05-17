@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/main/ui/menu/title-accent.png" type="Texture" id=34]
+
+[node name="TextureRect" type="TextureRect"]
+modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -408.571
+margin_top = -219.234
+margin_right = 91.4291
+margin_bottom = -69.2341
+texture = ExtResource( 34 )
+expand = true

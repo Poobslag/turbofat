@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-m1.png" type="Texture" id=1]
+[ext_resource path="res://src/main/ui/menu/menu-accent-h2.gd" type="Script" id=37]
+
+[node name="MenuAccentH2" type="TextureRect"]
+modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 42.2719
+margin_top = -74.0377
+margin_right = 217.272
+margin_bottom = 0.96228
+texture = ExtResource( 1 )
+expand = true
+script = ExtResource( 37 )
