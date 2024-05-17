@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p.png" type="Texture" id=2]
@@ -34,9 +34,13 @@
 [ext_resource path="res://assets/main/ui/icon-create-levels.png" type="Texture" id=33]
 [ext_resource path="res://assets/main/ui/icon-create-creatures.png" type="Texture" id=34]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=35]
-[ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=36]
-[ext_resource path="res://assets/main/ui/candy-button/h4-t.png" type="Texture" id=37]
-[ext_resource path="res://assets/main/ui/candy-button/h4-t-pressed.png" type="Texture" id=38]
+[ext_resource path="res://src/main/ui/menu/MenuAccentH2.tscn" type="PackedScene" id=36]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-s1.png" type="Texture" id=37]
+[ext_resource path="res://src/main/ui/menu/MenuAccentTitle.tscn" type="PackedScene" id=38]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-m2.png" type="Texture" id=39]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=40]
+[ext_resource path="res://assets/main/ui/candy-button/h4-t.png" type="Texture" id=41]
+[ext_resource path="res://assets/main/ui/candy-button/h4-t-pressed.png" type="Texture" id=42]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -129,6 +133,12 @@ text = "turbo fat"
 align = 1
 valign = 1
 
+[node name="TextureRect" parent="DropPanel/TurboFat" instance=ExtResource( 38 )]
+margin_left = -250.0
+margin_top = -75.0
+margin_right = 250.0
+margin_bottom = 75.0
+
 [node name="Play" type="VBoxContainer" parent="DropPanel"]
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -145,6 +155,13 @@ margin_bottom = 57.0
 custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
+
+[node name="MenuAccentH2" parent="DropPanel/Play/Label" instance=ExtResource( 36 )]
+margin_left = -87.5
+margin_top = -37.5
+margin_right = 87.5
+margin_bottom = 37.5
+texture = ExtResource( 37 )
 
 [node name="Career" parent="DropPanel/Play" instance=ExtResource( 15 )]
 material = SubResource( 3 )
@@ -212,6 +229,14 @@ custom_fonts/font = ExtResource( 9 )
 text = "Create"
 align = 1
 
+[node name="MenuAccentH2" parent="DropPanel/Create/Label" instance=ExtResource( 36 )]
+margin_left = -112.5
+margin_top = -37.5
+margin_right = 112.5
+margin_bottom = 37.5
+texture = ExtResource( 39 )
+_accent_index = 1
+
 [node name="Creatures" parent="DropPanel/Create" instance=ExtResource( 15 )]
 material = SubResource( 9 )
 margin_left = 131.0
@@ -259,15 +284,15 @@ margin_right = -19.9999
 margin_bottom = -20.0
 script = ExtResource( 12 )
 
-[node name="StressTest" parent="DropPanel/Debug" instance=ExtResource( 36 )]
+[node name="StressTest" parent="DropPanel/Debug" instance=ExtResource( 40 )]
 material = SubResource( 13 )
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 120.0
 margin_bottom = 30.0
-texture_normal = ExtResource( 37 )
-texture_pressed = ExtResource( 38 )
-texture_hover = ExtResource( 37 )
+texture_normal = ExtResource( 41 )
+texture_pressed = ExtResource( 42 )
+texture_hover = ExtResource( 41 )
 text = "Stress Test"
 color = 4
 shape = 6
