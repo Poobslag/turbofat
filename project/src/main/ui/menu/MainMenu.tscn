@@ -278,10 +278,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -136.0
+margin_left = -156.0
 margin_top = -48.0
-margin_right = -19.9999
-margin_bottom = -20.0
+margin_right = -36.0
+margin_bottom = -18.0
 script = ExtResource( 12 )
 
 [node name="StressTest" parent="DropPanel/Debug" instance=ExtResource( 40 )]
