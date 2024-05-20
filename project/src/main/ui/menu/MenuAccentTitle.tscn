@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/main/ui/menu/title-accent.png" type="Texture" id=34]
 
-[node name="TextureRect" type="TextureRect"]
+[node name="MenuAccentTitle" type="TextureRect"]
 modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
 show_behind_parent = true
 anchor_left = 0.5
