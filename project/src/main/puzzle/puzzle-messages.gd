@@ -29,8 +29,10 @@ func _ready() -> void:
 		# they can't go back in career mode
 		if CurrentLevel.hardcore:
 			_back_button.text = tr("Give Up")
+			_back_button.color = CandyButtons.ButtonColor.RED
 		else:
 			_back_button.text = tr("Skip")
+			_back_button.color = CandyButtons.ButtonColor.RED
 	
 	_refresh_start_button(0)
 	
@@ -69,13 +71,24 @@ func hide_buttons() -> void:
 func _refresh_start_button(new_attempt_count: int) -> void:
 	if PlayerData.career.is_career_mode():
 		match new_attempt_count:
-			0: _start_button.text = tr("Start")
-			1: _start_button.text = tr("Practice")
-			_: _start_button.text = tr("Retry")
+			0:
+				_start_button.text = tr("Start")
+				_start_button.color = CandyButtons.ButtonColor.BLUE
+			1:
+				# Practicing a level shouldn't be the default behavior, so we use a less welcoming indigo color.
+				_start_button.text = tr("Practice")
+				_start_button.color = CandyButtons.ButtonColor.INDIGO
+			_:
+				_start_button.text = tr("Retry")
+				_start_button.color = CandyButtons.ButtonColor.BLUE
 	else:
 		match new_attempt_count:
-			0: _start_button.text = tr("Start")
-			_: _start_button.text = tr("Retry")
+			0:
+				_start_button.text = tr("Start")
+				_start_button.color = CandyButtons.ButtonColor.BLUE
+			_:
+				_start_button.text = tr("Retry")
+				_start_button.color = CandyButtons.ButtonColor.BLUE
 
 
 func _hide_all_clear_message() -> void:
@@ -161,6 +174,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	
 	if PlayerData.career.is_career_mode():
 		_back_button.text = tr("Continue")
+		_back_button.color = CandyButtons.ButtonColor.BLUE
 	
 	# determine the default button to focus
 	var buttons_to_focus := [_back_button, _start_button]
@@ -179,7 +193,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	
 	# grab focus so the player can retry or navigate with the keyboard
 	for button_to_focus_obj in buttons_to_focus:
-		var button_to_focus: Button = button_to_focus_obj
+		var button_to_focus: BaseButton = button_to_focus_obj
 		if button_to_focus.is_visible_in_tree():
 			button_to_focus.grab_focus()
 			break
@@ -189,9 +203,15 @@ func _on_PuzzleState_after_game_ended() -> void:
 func _on_Level_best_result_changed() -> void:
 	match CurrentLevel.best_result:
 		Levels.Result.FINISHED, Levels.Result.WON:
-			_back_button.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
+			if CurrentLevel.keep_retrying:
+				_back_button.text = tr("Back")
+				_back_button.color = CandyButtons.ButtonColor.RED
+			else:
+				_back_button.text = tr("Continue")
+				_back_button.color = CandyButtons.ButtonColor.BLUE
 		_:
 			_back_button.text = tr("Back")
+			_back_button.color = CandyButtons.ButtonColor.RED
 
 
 func _on_Playfield_all_lines_cleared() -> void:
