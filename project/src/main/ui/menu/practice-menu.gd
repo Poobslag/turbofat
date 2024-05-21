@@ -24,7 +24,7 @@ onready var _high_scores: Panel = get_node(high_scores_path)
 onready var _level_button: Button = get_node(level_button_path)
 onready var _level_description_label: Label = get_node(level_description_label_path)
 onready var _speed_selector: PracticeSpeedSelector = get_node(speed_selector_path)
-onready var _start_button: Button = get_node(start_button_path)
+onready var _start_button: BaseButton = get_node(start_button_path)
 
 onready var _level_submenu := $LevelSubmenu
 onready var _region_submenu := $RegionSubmenu

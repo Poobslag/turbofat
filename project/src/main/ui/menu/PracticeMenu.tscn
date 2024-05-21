@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/main/ui/menu/PagedRegionPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=6]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=8]
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=9]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
@@ -19,12 +18,21 @@
 [ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/main/ui/menu/menu-accent-h2-m2.png" type="Texture" id=18]
 [ext_resource path="res://src/main/ui/menu/MenuAccentH2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/main/ui/candy-button/h3-t-pressed.png" type="Texture" id=20]
 [ext_resource path="res://src/main/ui/menu/region-submenu.gd" type="Script" id=22]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/ui/menu/level-submenu.gd" type="Script" id=24]
+[ext_resource path="res://assets/main/ui/candy-button/h3-t.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/ui/candy-button/h4-o.png" type="Texture" id=27]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/main/ui/candy-button/h4-q-pressed.png" type="Texture" id=29]
+[ext_resource path="res://assets/main/ui/candy-button/h4-q.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=32]
 [ext_resource path="res://src/main/ui/menu/practice-menu.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/menu/practice-speed-selector.gd" type="Script" id=34]
+[ext_resource path="res://assets/main/ui/candy-button/h4-o-pressed.png" type="Texture" id=35]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=37]
 
 [sub_resource type="InputEventAction" id=4]
 action = "ui_cancel"
@@ -197,51 +205,58 @@ text = "3"
 align = 2
 
 [node name="System" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 295.0
+margin_top = 301.0
 margin_right = 984.0
 margin_bottom = 431.0
 size_flags_vertical = 10
 custom_constants/separation = 10
 script = ExtResource( 5 )
 
-[node name="Start" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
-margin_left = 402.0
-margin_right = 582.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 180, 60 )
+[node name="Start" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 23 )]
+margin_left = 392.0
+margin_top = 0.0
+margin_right = 592.0
+margin_bottom = 50.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 9 )
-shortcut_in_tooltip = false
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 25 )
 text = "Start"
+color = 5
+shape = 6
 
-[node name="Settings" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
-margin_left = 434.0
-margin_top = 70.0
-margin_right = 550.0
-margin_bottom = 98.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Settings" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 28 )]
+margin_left = 432.0
+margin_top = 60.0
+margin_right = 552.0
+margin_bottom = 90.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 6 )
-shortcut_in_tooltip = false
-shortcut = ExtResource( 8 )
+shortcut = ExtResource( 37 )
+texture_normal = ExtResource( 27 )
+texture_pressed = ExtResource( 35 )
+texture_hover = ExtResource( 27 )
 text = "Settings"
+color = 7
+shape = 3
 
 [node name="ShortcutHelper" parent="MainMenu/VBoxContainer/System/Settings" instance=ExtResource( 7 )]
 action = "ui_cancel"
 
-[node name="Quit" type="Button" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"]]
-margin_left = 434.0
-margin_top = 108.0
-margin_right = 550.0
-margin_bottom = 136.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Quit" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 28 )]
+margin_left = 432.0
+margin_top = 100.0
+margin_right = 552.0
+margin_bottom = 130.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 6 )
-shortcut_in_tooltip = false
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 29 )
+texture_hover = ExtResource( 30 )
 text = "Quit"
+color = 1
+shape = 5
 
 [node name="HighScores" type="Panel" parent="MainMenu/VBoxContainer"]
 margin_left = 92.0

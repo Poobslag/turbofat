@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/ui/theme/h1.theme" type="Theme" id=7]
+[ext_resource path="res://assets/main/ui/candy-button/h3-v.png" type="Texture" id=7]
 [ext_resource path="res://src/main/ui/menu/BadSaveDataControl.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/menu/MenuAccentTitle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/main/ui/candy-button/h3-v-pressed.png" type="Texture" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -54,14 +56,17 @@ anchor_bottom = 1.0
 margin_top = 150.0
 margin_bottom = -100.0
 
-[node name="Play" type="Button" parent="DropPanel/PlayHolder"]
-margin_left = 365.0
-margin_top = 92.0
-margin_right = 558.0
-margin_bottom = 157.0
-rect_min_size = Vector2( 193, 47 )
-theme = ExtResource( 7 )
+[node name="Play" parent="DropPanel/PlayHolder" instance=ExtResource( 14 )]
+margin_left = 362.0
+margin_top = 100.0
+margin_right = 562.0
+margin_bottom = 150.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 7 )
 text = "Play"
+color = 4
+shape = 8
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
 alignment = 1
