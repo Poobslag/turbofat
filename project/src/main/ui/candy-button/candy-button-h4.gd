@@ -2,36 +2,12 @@ tool
 extends TextureButton
 ## An eye-catching button with customizable colors and textures.
 
-enum ButtonColor {
-	NONE,
-	RED,
-	ORANGE,
-	YELLOW,
-	GREEN,
-	BLUE,
-	INDIGO,
-	VIOLET,
-}
-
-## Repeating piece shapes which decorate the button.
-enum ButtonShape {
-	NONE,
-	PIECE_J,
-	PIECE_L,
-	PIECE_O,
-	PIECE_P,
-	PIECE_Q,
-	PIECE_T,
-	PIECE_U,
-	PIECE_V,
-}
-
 export (String) var text setget set_text
 
-export (ButtonColor) var color setget set_color
+export (CandyButtons.ButtonColor) var color setget set_color
 
 ## Repeating piece shapes which decorate the button.
-export (ButtonShape) var shape setget set_shape
+export (CandyButtons.ButtonShape) var shape setget set_shape
 
 ## Different fonts to try. Should be ordered from largest to smallest.
 export (Array, Font) var fonts := [
@@ -59,28 +35,28 @@ var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button
 ## 	value[0]: (Gradient) Gradient to use when the button is not hovered.
 ## 	value[1]: (Gradient) Gradient to use when the button is hovered.
 var _gradients_by_button_color := {
-	ButtonColor.NONE: [
+	CandyButtons.ButtonColor.NONE: [
 		preload("res://src/main/ui/candy-button/gradient-none.tres"),
 		preload("res://src/main/ui/candy-button/gradient-none.tres")],
-	ButtonColor.RED: [
+	CandyButtons.ButtonColor.RED: [
 		preload("res://src/main/ui/candy-button/gradient-red-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-red-hover.tres")],
-	ButtonColor.ORANGE: [
+	CandyButtons.ButtonColor.ORANGE: [
 		preload("res://src/main/ui/candy-button/gradient-orange-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-orange-hover.tres")],
-	ButtonColor.YELLOW: [
+	CandyButtons.ButtonColor.YELLOW: [
 		preload("res://src/main/ui/candy-button/gradient-yellow-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-yellow-hover.tres")],
-	ButtonColor.GREEN: [
+	CandyButtons.ButtonColor.GREEN: [
 		preload("res://src/main/ui/candy-button/gradient-green-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-green-hover.tres")],
-	ButtonColor.BLUE: [
+	CandyButtons.ButtonColor.BLUE: [
 		preload("res://src/main/ui/candy-button/gradient-blue-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-blue-hover.tres")],
-	ButtonColor.INDIGO: [
+	CandyButtons.ButtonColor.INDIGO: [
 		preload("res://src/main/ui/candy-button/gradient-indigo-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-indigo-hover.tres")],
-	ButtonColor.VIOLET: [
+	CandyButtons.ButtonColor.VIOLET: [
 		preload("res://src/main/ui/candy-button/gradient-violet-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-violet-hover.tres")],
 }
@@ -92,31 +68,31 @@ var _gradients_by_button_color := {
 ## 	value[0]: (Texture) texture to use when the button is not pressed.
 ## 	value[1]: (Texture) texture to use when the button is pressed.
 var _textures_by_button_shape := {
-	ButtonShape.NONE: [
+	CandyButtons.ButtonShape.NONE: [
 		preload("res://assets/main/ui/candy-button/h4-blank.png"),
 		preload("res://assets/main/ui/candy-button/h4-blank-pressed.png")],
-	ButtonShape.PIECE_J: [
+	CandyButtons.ButtonShape.PIECE_J: [
 		preload("res://assets/main/ui/candy-button/h4-j.png"),
 		preload("res://assets/main/ui/candy-button/h4-j-pressed.png")],
-	ButtonShape.PIECE_L: [
+	CandyButtons.ButtonShape.PIECE_L: [
 		preload("res://assets/main/ui/candy-button/h4-l.png"),
 		preload("res://assets/main/ui/candy-button/h4-l-pressed.png")],
-	ButtonShape.PIECE_O: [
+	CandyButtons.ButtonShape.PIECE_O: [
 		preload("res://assets/main/ui/candy-button/h4-o.png"),
 		preload("res://assets/main/ui/candy-button/h4-o-pressed.png")],
-	ButtonShape.PIECE_P: [
+	CandyButtons.ButtonShape.PIECE_P: [
 		preload("res://assets/main/ui/candy-button/h4-p.png"),
 		preload("res://assets/main/ui/candy-button/h4-p-pressed.png")],
-	ButtonShape.PIECE_Q: [
+	CandyButtons.ButtonShape.PIECE_Q: [
 		preload("res://assets/main/ui/candy-button/h4-q.png"),
 		preload("res://assets/main/ui/candy-button/h4-q-pressed.png")],
-	ButtonShape.PIECE_T: [
+	CandyButtons.ButtonShape.PIECE_T: [
 		preload("res://assets/main/ui/candy-button/h4-t.png"),
 		preload("res://assets/main/ui/candy-button/h4-t-pressed.png")],
-	ButtonShape.PIECE_U: [
+	CandyButtons.ButtonShape.PIECE_U: [
 		preload("res://assets/main/ui/candy-button/h4-u.png"),
 		preload("res://assets/main/ui/candy-button/h4-u-pressed.png")],
-	ButtonShape.PIECE_V: [
+	CandyButtons.ButtonShape.PIECE_V: [
 		preload("res://assets/main/ui/candy-button/h4-v.png"),
 		preload("res://assets/main/ui/candy-button/h4-v-pressed.png")],
 }
