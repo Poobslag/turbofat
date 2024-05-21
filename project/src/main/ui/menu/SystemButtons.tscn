@@ -89,7 +89,7 @@ texture_pressed = ExtResource( 16 )
 texture_hover = ExtResource( 15 )
 text = "Credits"
 color = 3
-shape = 5
+shape = 4
 
 [node name="Quit" parent="." instance=ExtResource( 8 )]
 material = SubResource( 6 )
@@ -105,7 +105,7 @@ texture_pressed = ExtResource( 14 )
 texture_hover = ExtResource( 13 )
 text = "Quit"
 color = 1
-shape = 4
+shape = 5
 
 [node name="Spacer" type="Control" parent="."]
 margin_top = 120.0
