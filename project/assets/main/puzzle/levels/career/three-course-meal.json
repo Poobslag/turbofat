@@ -1,21 +1,21 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
+  "start_speed": "0",
   "name": "Three Course Meal",
   "description": "It's important to bring out all three courses at once! ...Or is that something else...",
   "finish_condition": {
     "type": "lines",
-    "value": "30"
+    "value": "25"
   },
   "blocks_during": [
     "fill_lines 0",
     "filled_line_clear_min 3"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.64",
-    "box_factor 0.73",
-    "combo_factor 0.83",
-    "master_pickup_score_per_line 14.88",
+    "extra_seconds_per_piece 0.69",
+    "box_factor 0.90",
+    "combo_factor 1.05",
+    "master_pickup_score_per_line 14.31",
     "show_pickups_rank"
   ],
   "tiles": {

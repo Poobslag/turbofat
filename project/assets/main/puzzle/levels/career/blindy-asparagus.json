@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
+  "start_speed": "2",
   "name": "Blindy Asparagus",
   "description": "What you can't see CAN hurt you!",
   "finish_condition": {
     "type": "lines",
-    "value": "50"
+    "value": "40"
   },
   "piece_types": [
     "piece_l",
@@ -18,29 +18,26 @@
     "piece_v"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.76",
+    "extra_seconds_per_piece 0.25",
+    "box_factor 0.65",
+    "combo_factor 1.21",
     "master_pickup_score 120"
   ],
   "speed_ups": [
     {
       "type": "lines",
       "value": "10",
-      "speed": "5"
+      "speed": "3"
     },
     {
       "type": "lines",
       "value": "20",
-      "speed": "6"
+      "speed": "4"
     },
     {
       "type": "lines",
       "value": "30",
-      "speed": "7"
-    },
-    {
-      "type": "lines",
-      "value": "40",
-      "speed": "8"
+      "speed": "5"
     }
   ],
   "triggers": [
@@ -60,17 +57,11 @@
       "phases": [
         "line_cleared n=15"
       ],
-      "effect": "add_spears count=1 sizes=R3 y=16"
-    },
-    {
-      "phases": [
-        "line_cleared n=25"
-      ],
       "effect": "add_spears count=2 sizes=R3 y=16,14"
     },
     {
       "phases": [
-        "line_cleared n=35..."
+        "line_cleared n=25..."
       ],
       "effect": "add_spears count=3 sizes=R3 y=16,14,12"
     },

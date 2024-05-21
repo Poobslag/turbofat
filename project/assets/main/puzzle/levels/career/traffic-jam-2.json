@@ -1,6 +1,6 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
+  "start_speed": "2",
   "name": "Another Traffic Jam",
   "description": "An even bigger, and even slower H! ...But what does the H stand for?",
   "finish_condition": {
@@ -12,6 +12,18 @@
     "filled_line_clear_order highest",
     "no_clear_filled_lines",
     "refresh_on_top_out"
+  ],
+  "speed_ups": [
+    {
+      "type": "score",
+      "value": "200",
+      "speed": "3"
+    },
+    {
+      "type": "score",
+      "value": "400",
+      "speed": "4"
+    }
   ],
   "triggers": [
     {
