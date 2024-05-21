@@ -525,6 +525,9 @@
       "description": "A slew of insurmountable challenges sure to drive even the most seasoned chefs to the brink of insanity. The true Turbo Fat starts here!",
       "icon": "rainbow",
       "piece_speed": "A1-AD",
+      "flags": [
+        "new_page"
+      ],
       "levels": [
         {
           "id": "career/dark/3000_race"
