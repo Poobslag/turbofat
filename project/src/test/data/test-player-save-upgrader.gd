@@ -229,8 +229,8 @@ func test_49eb_level_history_purged() -> void:
 	assert_eq(rank_results.has("career/boss_6k"), false)
 
 
-func test_512b_career_data() -> void:
-	load_player_data("turbofat-512b.json")
+func test_4ceb_career_data() -> void:
+	load_player_data("turbofat-4ceb.json")
 	
 	assert_eq(PlayerData.career.banked_steps, 9)
 	assert_eq(PlayerData.career.best_distance_travelled, 134)
