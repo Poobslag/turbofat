@@ -45,6 +45,7 @@ margin_top = 84.7441
 margin_right = 435.173
 margin_bottom = 134.744
 rect_min_size = Vector2( 200, 50 )
+shortcut_in_tooltip = false
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 1 )
 texture_hover = ExtResource( 7 )
@@ -124,9 +125,11 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 11 )
 bus = "Sound Bus"
 
 [node name="HoverSound" parent="." instance=ExtResource( 12 )]
+pause_mode = 2
 stream = ExtResource( 10 )
 volume_db = -4.0
