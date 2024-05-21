@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=3]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=4]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/main/ui/candy-button/h4-o.png" type="Texture" id=6]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=7]
@@ -62,6 +64,7 @@ margin_right = 572.0
 margin_bottom = 30.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+shortcut = ExtResource( 4 )
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 6 )
@@ -81,9 +84,9 @@ margin_right = 572.0
 margin_bottom = 70.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 14 )
-texture_hover = ExtResource( 13 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 15 )
 text = "Credits"
 color = 3
 shape = 5
@@ -96,9 +99,10 @@ margin_right = 572.0
 margin_bottom = 110.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource( 15 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 15 )
+shortcut = ExtResource( 3 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
 text = "Quit"
 color = 1
 shape = 4
