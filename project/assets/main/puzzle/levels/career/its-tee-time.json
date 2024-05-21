@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "6",
+  "start_speed": "2",
   "name": "It's Tee Time",
   "description": "Augh, bread overload! And half the end pieces are missing...",
   "finish_condition": {
     "type": "time_over",
-    "value": "120"
+    "value": "75"
   },
   "piece_types": [
     "start_piece_t",
@@ -18,7 +18,10 @@
     "piece_u"
   ],
   "rank": [
-    "preplaced_pieces 3"
+    "preplaced_pieces 3",
+    "extra_seconds_per_piece 0.41",
+    "box_factor 1.19",
+    "combo_factor 1.21",
   ],
   "tiles": {
     "start": [

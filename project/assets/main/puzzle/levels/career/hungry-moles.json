@@ -1,16 +1,17 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
+  "start_speed": "7",
   "name": "Hungry Moles",
   "description": "You had my curiosity... but now you have my attention!",
   "finish_condition": {
     "type": "score",
-    "value": "600"
+    "value": "1000"
   },
   "rank": [
-    "extra_seconds_per_piece 0.20",
+    "extra_seconds_per_piece 0.55",
     "box_factor 0.00",
-    "master_pickup_score_per_line 15.41",
+    "combo_factor 1.21",
+    "master_pickup_score_per_line 22.89",
     "hide_boxes_rank",
     "show_pickups_rank"
   ],

@@ -2,10 +2,10 @@
   "version": "4c5c",
   "name": "Snack Box Blitz",
   "description": "Everyone's in a hurry today. Get those cakes out!",
-  "start_speed": "5",
+  "start_speed": "6",
   "finish_condition": {
     "type": "time_over",
-    "value": "60"
+    "value": "75"
   },
   "combo_break": [
     "pieces 0"
@@ -15,7 +15,8 @@
     "cake_all 20"
   ],
   "rank": [
-    "box_factor 3.00",
+    "extra_seconds_per_piece 0.47",
+    "box_factor 2.68",
     "combo_factor 0.00",
     "hide_combos_rank",
     "preplaced_pieces 5"
@@ -469,5 +470,28 @@
         "tile": "1 5 1"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "rotated_cw",
+        "initial_rotated_cw"
+      ],
+      "effect": "rotate_next_pieces cw"
+    },
+    {
+      "phases": [
+        "rotated_ccw",
+        "initial_rotated_ccw"
+      ],
+      "effect": "rotate_next_pieces ccw"
+    },
+    {
+      "phases": [
+        "rotated_180",
+        "initial_rotated_180"
+      ],
+      "effect": "rotate_next_pieces 180"
+    }
+  ]
 }

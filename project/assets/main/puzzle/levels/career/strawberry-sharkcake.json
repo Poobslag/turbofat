@@ -1,12 +1,8 @@
 {
   "version": "4c5c",
-  "start_speed": "6",
-  "name": "Strawberry Slowcake",
+  "name": "Strawberry Sharkcake",
   "description": "It says in this cookbook it takes a long time to rise.",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "165"
-  },
+  "start_speed": "2",
   "blocks_during": [
     "filled_line_clear_max 1",
     "filled_line_clear_order lowest"
@@ -14,24 +10,21 @@
   "combo_break": [
     "pieces 1"
   ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 85
+  },
   "piece_types": [
     "piece_j",
     "piece_l",
     "piece_p",
     "piece_q"
   ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0"
-      ],
-      "effect": "insert_line count=6 tiles_keys=0,1"
-    }
-  ],
   "rank": [
-    "box_factor 0.55",
-    "combo_factor 0.71",
-    "master_pickup_score_per_line 9.25",
+    "extra_seconds_per_piece 0.14",
+    "box_factor 0.94",
+    "combo_factor 0.96",
+    "master_pickup_score_per_line 22.10",
     "show_pickups_rank"
   ],
   "tiles": {
@@ -47,14 +40,6 @@
       {
         "pos": "2 0",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "3 0",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "2"
       },
       {
         "pos": "6 0",
@@ -81,10 +66,6 @@
         "tile": "1 4 1"
       },
       {
-        "pos": "4 1",
-        "pickup": "7"
-      },
-      {
         "pos": "6 1",
         "tile": "1 8 1"
       },
@@ -109,14 +90,6 @@
         "tile": "1 4 2"
       },
       {
-        "pos": "3 2",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 2",
-        "pickup": "2"
-      },
-      {
         "pos": "6 2",
         "tile": "1 8 2"
       },
@@ -127,10 +100,6 @@
       {
         "pos": "8 2",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "2 3",
-        "pickup": "1"
       },
       {
         "pos": "3 3",
@@ -157,10 +126,6 @@
         "tile": "1 4 2"
       },
       {
-        "pos": "1 4",
-        "pickup": "7"
-      },
-      {
         "pos": "3 4",
         "tile": "1 8 2"
       },
@@ -185,10 +150,6 @@
         "tile": "1 4 2"
       },
       {
-        "pos": "2 5",
-        "pickup": "1"
-      },
-      {
         "pos": "3 5",
         "tile": "1 8 1"
       },
@@ -211,6 +172,38 @@
       {
         "pos": "8 5",
         "tile": "1 4 2"
+      },
+      {
+        "pos": "3 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "7"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 2",
+        "pickup": "2"
+      },
+      {
+        "pos": "2 3",
+        "pickup": "1"
+      },
+      {
+        "pos": "1 4",
+        "pickup": "7"
+      },
+      {
+        "pos": "2 5",
+        "pickup": "1"
       }
     ],
     "1": [
@@ -225,14 +218,6 @@
       {
         "pos": "2 0",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "3 0",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "2"
       },
       {
         "pos": "6 0",
@@ -259,10 +244,6 @@
         "tile": "1 4 1"
       },
       {
-        "pos": "4 1",
-        "pickup": "7"
-      },
-      {
         "pos": "6 1",
         "tile": "1 8 1"
       },
@@ -285,14 +266,6 @@
       {
         "pos": "2 2",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "3 2",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 2",
-        "pickup": "2"
       },
       {
         "pos": "6 2",
@@ -331,10 +304,6 @@
         "tile": "1 4 1"
       },
       {
-        "pos": "6 3",
-        "pickup": "1"
-      },
-      {
         "pos": "0 4",
         "tile": "1 8 2"
       },
@@ -357,10 +326,6 @@
       {
         "pos": "5 4",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "7 4",
-        "pickup": "7"
       },
       {
         "pos": "0 5",
@@ -387,15 +352,39 @@
         "tile": "1 4 1"
       },
       {
+        "pos": "3 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "7"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 2",
+        "pickup": "2"
+      },
+      {
+        "pos": "6 3",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 4",
+        "pickup": "7"
+      },
+      {
         "pos": "6 5",
         "pickup": "1"
       }
     ],
     "start": [
-      {
-        "pos": "2 11",
-        "pickup": "1"
-      },
       {
         "pos": "3 11",
         "tile": "1 8 1"
@@ -421,10 +410,6 @@
         "tile": "1 4 2"
       },
       {
-        "pos": "1 12",
-        "pickup": "7"
-      },
-      {
         "pos": "3 12",
         "tile": "1 8 2"
       },
@@ -447,10 +432,6 @@
       {
         "pos": "8 12",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "2 13",
-        "pickup": "1"
       },
       {
         "pos": "3 13",
@@ -489,14 +470,6 @@
         "tile": "1 4 2"
       },
       {
-        "pos": "3 14",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 14",
-        "pickup": "2"
-      },
-      {
         "pos": "6 14",
         "tile": "1 8 2"
       },
@@ -521,10 +494,6 @@
         "tile": "1 4 1"
       },
       {
-        "pos": "4 15",
-        "pickup": "7"
-      },
-      {
         "pos": "6 15",
         "tile": "1 8 1"
       },
@@ -547,14 +516,6 @@
       {
         "pos": "2 16",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "3 16",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 16",
-        "pickup": "2"
       },
       {
         "pos": "6 16",
@@ -593,10 +554,6 @@
         "tile": "1 4 1"
       },
       {
-        "pos": "6 17",
-        "pickup": "1"
-      },
-      {
         "pos": "0 18",
         "tile": "1 8 2"
       },
@@ -619,10 +576,6 @@
       {
         "pos": "5 18",
         "tile": "1 4 2"
-      },
-      {
-        "pos": "7 18",
-        "pickup": "7"
       },
       {
         "pos": "0 19",
@@ -649,9 +602,69 @@
         "tile": "1 4 1"
       },
       {
+        "pos": "2 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "1 12",
+        "pickup": "7"
+      },
+      {
+        "pos": "2 13",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 14",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 14",
+        "pickup": "2"
+      },
+      {
+        "pos": "4 15",
+        "pickup": "7"
+      },
+      {
+        "pos": "3 16",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 16",
+        "pickup": "2"
+      },
+      {
+        "pos": "6 17",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 18",
+        "pickup": "7"
+      },
+      {
         "pos": "6 19",
         "pickup": "1"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0"
+      ],
+      "effect": "insert_line tiles_keys=0,1 count=6"
+    },
+    {
+      "phases": [
+        "box_built pink"
+      ],
+      "effect": "add_sharks home=box patience=0 size=large"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
+  ]
 }
