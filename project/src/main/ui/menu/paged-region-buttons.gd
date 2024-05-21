@@ -74,7 +74,8 @@ func set_regions(new_regions: Array) -> void:
 		if i == 0:
 			same_group = false
 		elif regions[i] is CareerRegion and regions[i - 1] is CareerRegion:
-			pass
+			if regions[i].has_flag(CareerRegion.FLAG_NEW_PAGE):
+				same_group = false
 		elif regions[i] is OtherRegion and regions[i - 1] is OtherRegion:
 			var curr_region_is_tutorial: bool = regions[i].id == OtherRegion.ID_TUTORIAL
 			var prev_region_is_tutorial: bool = regions[i - 1].id == OtherRegion.ID_TUTORIAL

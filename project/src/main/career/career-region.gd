@@ -1,6 +1,9 @@
 class_name CareerRegion
 ## Stores information about a group of levels for career mode.
 
+## Flag for regions which should appear separate from the previous region, such as Starberry Mountain
+const FLAG_NEW_PAGE := "new_page"
+
 ## Flag for regions where Fat Sensei is not following the player
 const FLAG_NO_SENSEI := "no_sensei"
 
