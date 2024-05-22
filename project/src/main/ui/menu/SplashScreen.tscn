@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://src/main/ui/menu/MenuAccentTitle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/ui/candy-button/h3-v-pressed.png" type="Texture" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/ui/candy-button/gradient-green-normal.tres" type="Gradient" id=12]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=13]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
@@ -18,6 +20,16 @@ size = 72
 outline_size = 6
 outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="GradientTexture2D" id=2]
+resource_local_to_scene = true
+gradient = ExtResource( 12 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 13 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 2 )
 
 [node name="SplashScreen" type="Control"]
 anchor_right = 1.0
@@ -57,6 +69,7 @@ margin_top = 150.0
 margin_bottom = -100.0
 
 [node name="Play" parent="DropPanel/PlayHolder" instance=ExtResource( 14 )]
+material = SubResource( 3 )
 margin_left = 362.0
 margin_top = 100.0
 margin_right = 562.0
