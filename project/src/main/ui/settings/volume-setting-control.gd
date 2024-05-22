@@ -51,10 +51,10 @@ func _refresh_setting_label() -> void:
 	
 	var label_text: String
 	match volume_type:
-		VolumeSettings.MASTER: label_text = tr("Master")
-		VolumeSettings.MUSIC: label_text = tr("Music")
-		VolumeSettings.SOUND: label_text = tr("Sounds")
-		VolumeSettings.VOICE: label_text = tr("Voices")
+		VolumeSettings.MASTER: label_text = tr("Master Volume")
+		VolumeSettings.MUSIC: label_text = tr("Music Volume")
+		VolumeSettings.SOUND: label_text = tr("SFX Volume")
+		VolumeSettings.VOICE: label_text = tr("Voice Volume")
 	_setting_label.text = label_text
 
 
