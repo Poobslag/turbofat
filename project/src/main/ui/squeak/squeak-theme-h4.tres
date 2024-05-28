@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=3 format=2]
+[gd_resource type="Theme" load_steps=13 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4-font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/main/ui/squeak/squeak-slider-scroll.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/ui/squeak/squeak-slider-grabber-normal.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/ui/squeak/squeak-slider-grabber-highlight.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/ui/squeak/squeak-slider-grabber-pressed.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=459]
 content_margin_left = 8.0
@@ -18,7 +22,80 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="ImageTexture" id=125]
+
+[sub_resource type="StyleBoxTexture" id=310]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 18, 24 )
+margin_left = 9.0
+margin_right = 9.0
+margin_top = 12.0
+margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id=311]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 18, 24 )
+margin_left = 9.0
+margin_right = 9.0
+margin_top = 12.0
+margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id=312]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 18, 24 )
+margin_left = 9.0
+margin_right = 9.0
+margin_top = 12.0
+margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id=313]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 18, 24 )
+margin_left = 9.0
+margin_right = 9.0
+margin_top = 12.0
+margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id=314]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 18, 24 )
+margin_left = 9.0
+margin_right = 9.0
+margin_top = 12.0
+margin_bottom = 12.0
+
 [resource]
 Label/colors/font_color = Color( 1, 0.866667, 0.6, 1 )
 Label/fonts/font = ExtResource( 1 )
 Panel/styles/panel = SubResource( 459 )
+VScrollBar/icons/decrement = SubResource( 125 )
+VScrollBar/icons/decrement_highlight = SubResource( 125 )
+VScrollBar/icons/decrement_pressed = SubResource( 125 )
+VScrollBar/icons/increment = SubResource( 125 )
+VScrollBar/icons/increment_highlight = SubResource( 125 )
+VScrollBar/icons/increment_pressed = SubResource( 125 )
+VScrollBar/styles/grabber = SubResource( 310 )
+VScrollBar/styles/grabber_highlight = SubResource( 311 )
+VScrollBar/styles/grabber_pressed = SubResource( 312 )
+VScrollBar/styles/scroll = SubResource( 313 )
+VScrollBar/styles/scroll_focus = SubResource( 314 )
