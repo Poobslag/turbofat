@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=1]
+[ext_resource path="res://src/demo/ui/squeak/squeak-theme-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/squeak/SqueakCheckBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.611765, 0.454902, 0.321569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_color = Color( 1, 0.866667, 0.6, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+expand_margin_bottom = 3.0
 
 [node name="Demo" type="Node"]
+script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -41,3 +59,42 @@ margin_top = 170.0
 margin_right = 162.0
 margin_bottom = 202.0
 text = "CheckBox"
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+margin_left = 36.0217
+margin_top = 225.666
+margin_right = 236.022
+margin_bottom = 289.666
+
+[node name="Tab1" type="Label" parent="Panel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 36.0
+margin_right = -8.0
+margin_bottom = -8.0
+text = "Label"
+
+[node name="Tab2" type="Label" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 36.0
+margin_right = -8.0
+margin_bottom = -8.0
+text = "Mabel"
+
+[node name="Tab3" type="Label" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 36.0
+margin_right = -8.0
+margin_bottom = -8.0
+text = "Nabel"
+
+[node name="TabInputEnabler" parent="Panel/TabContainer" instance=ExtResource( 6 )]
+tab_fg_focused = SubResource( 5 )
+font_color_fg_focused = Color( 1, 1, 1, 1 )
