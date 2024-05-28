@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/ui/squeak/squeak-option-button-helper.gd" type="Script" id=1]
+[ext_resource path="res://src/main/ui/squeak/squeak-option-button-pressed-focus.tres" type="StyleBox" id=2]
+[ext_resource path="res://src/main/ui/squeak/squeak-option-button-normal-focus.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-arrow-pressed-focus.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-arrow-normal-focus.png" type="Texture" id=6]
+
+[node name="SqueakOptionButtonHelper" type="Node"]
+script = ExtResource( 1 )
+_normal_focus = ExtResource( 3 )
+_pressed_focus = ExtResource( 2 )
+_arrow_normal_focus = ExtResource( 6 )
+_arrow_pressed = ExtResource( 5 )
