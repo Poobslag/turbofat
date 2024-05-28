@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/squeak/SqueakCheckBox.tscn" type="PackedScene" id=5]
 
 [node name="Demo" type="Node"]
 
@@ -30,14 +29,7 @@ margin_bottom = 260.636
 
 [node name="Label" type="Label" parent="Panel"]
 margin_left = 33.0
-margin_top = 126.0
+margin_top = 30.0
 margin_right = 75.0
-margin_bottom = 146.0
+margin_bottom = 50.0
 text = "Label"
-
-[node name="CheckBox" parent="Panel" instance=ExtResource( 5 )]
-margin_left = 29.0
-margin_top = 170.0
-margin_right = 162.0
-margin_bottom = 202.0
-text = "CheckBox"
