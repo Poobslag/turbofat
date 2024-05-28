@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=38 format=2]
+[gd_resource type="Theme" load_steps=59 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/main/ui/squeak/squeak-slider-scroll.png" type="Texture" id=2]
@@ -13,8 +13,14 @@
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-unchecked.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-checked-disabled.png" type="Texture" id=12]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-unchecked-disabled.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/ui/squeak/squeak-popup-menu-separator.png" type="Texture" id=14]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-radio-unchecked.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-normal.png" type="Texture" id=16]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-radio-checked.png" type="Texture" id=17]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-arrow-normal.png" type="Texture" id=18]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-disabled.png" type="Texture" id=19]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-hover.png" type="Texture" id=20]
+[ext_resource path="res://assets/main/ui/squeak/squeak-option-button-pressed.png" type="Texture" id=21]
 
 [sub_resource type="StyleBoxTexture" id=345]
 content_margin_left = 6.0
@@ -120,6 +126,72 @@ content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=364]
 
+[sub_resource type="StyleBoxTexture" id=373]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 3.0
+content_margin_bottom = 6.0
+texture = ExtResource( 19 )
+region_rect = Rect2( 0, 0, 36, 17 )
+margin_left = 7.0
+margin_right = 29.0
+margin_top = 7.0
+margin_bottom = 10.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id=391]
+
+[sub_resource type="StyleBoxTexture" id=379]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 3.0
+content_margin_bottom = 6.0
+texture = ExtResource( 20 )
+region_rect = Rect2( 0, 0, 36, 17 )
+margin_left = 7.0
+margin_right = 29.0
+margin_top = 7.0
+margin_bottom = 10.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=382]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 3.0
+content_margin_bottom = 6.0
+texture = ExtResource( 16 )
+region_rect = Rect2( 0, 0, 36, 17 )
+margin_left = 7.0
+margin_right = 29.0
+margin_top = 7.0
+margin_bottom = 10.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=385]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 6.0
+content_margin_bottom = 3.0
+texture = ExtResource( 21 )
+region_rect = Rect2( 0, 0, 36, 17 )
+margin_left = 7.0
+margin_right = 29.0
+margin_top = 10.0
+margin_bottom = 7.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
 [sub_resource type="StyleBoxFlat" id=459]
 content_margin_left = 8.0
 content_margin_right = 8.0
@@ -135,6 +207,89 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="Image" id=462]
+data = {
+"data": PoolByteArray( 224, 0, 224, 255, 224, 255, 224, 255, 223, 96, 0, 0, 0, 0, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 224, 244, 225, 43, 0, 0, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 224, 255, 224, 213, 232, 11, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 224, 255, 224, 255, 225, 159, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 224, 255, 224, 255, 225, 159, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 224, 255, 224, 213, 232, 11, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 224, 244, 225, 43, 0, 0, 0, 0, 224, 0, 224, 255, 224, 255, 224, 255, 223, 96, 0, 0, 0, 0, 0, 0 ),
+"format": "LumAlpha8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id=407]
+flags = 4
+flags = 4
+image = SubResource( 462 )
+size = Vector2( 8, 8 )
+
+[sub_resource type="StyleBoxFlat" id=446]
+bg_color = Color( 0.611765, 0.454902, 0.321569, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Image" id=463]
+data = {
+"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 115, 155, 170, 179, 206, 220, 225, 179, 206, 220, 225, 179, 206, 220, 225, 179, 206, 220, 225, 179, 206, 220, 225, 179, 206, 220, 225, 179, 115, 155, 170, 179, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"format": "RGBA8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id=414]
+flags = 4
+flags = 4
+image = SubResource( 463 )
+size = Vector2( 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=415]
+texture = SubResource( 414 )
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=416]
+texture = SubResource( 414 )
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="StyleBoxTexture" id=435]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 3.0
+content_margin_bottom = 6.0
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 16, 17 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 7.0
+margin_bottom = 10.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=422]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 3.0
+content_margin_bottom = 6.0
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 16, 17 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 7.0
+margin_bottom = 10.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=456]
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 6, 4 )
+margin_left = 3.0
+margin_right = 3.0
 
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 8.0
@@ -293,7 +448,41 @@ CheckBox/styles/normal = SubResource( 334 )
 CheckBox/styles/pressed = SubResource( 334 )
 Label/colors/font_color = Color( 1, 0.866667, 0.6, 1 )
 Label/fonts/font = ExtResource( 1 )
+OptionButton/colors/font_color = Color( 1, 0.866667, 0.6, 1 )
+OptionButton/colors/font_color_disabled = Color( 0.423529, 0.262745, 0.192157, 1 )
+OptionButton/colors/font_color_focus = Color( 1, 1, 1, 1 )
+OptionButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
+OptionButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+OptionButton/constants/arrow_margin = 6
+OptionButton/constants/hseparation = 10
+OptionButton/fonts/font = ExtResource( 1 )
+OptionButton/icons/arrow = ExtResource( 18 )
+OptionButton/styles/disabled = SubResource( 373 )
+OptionButton/styles/focus = SubResource( 391 )
+OptionButton/styles/hover = SubResource( 379 )
+OptionButton/styles/normal = SubResource( 382 )
+OptionButton/styles/pressed = SubResource( 385 )
 Panel/styles/panel = SubResource( 459 )
+PopupMenu/colors/font_color = Color( 1, 0.866667, 0.6, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.611765, 0.454902, 0.321569, 1 )
+PopupMenu/colors/font_color_disabled = Color( 0.423529, 0.262745, 0.192157, 1 )
+PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.611765, 0.454902, 0.321569, 1 )
+PopupMenu/constants/hseparation = 8
+PopupMenu/constants/vseparation = 8
+PopupMenu/fonts/font = ExtResource( 1 )
+PopupMenu/fonts/font_separator = ExtResource( 1 )
+PopupMenu/icons/checked = ExtResource( 10 )
+PopupMenu/icons/radio_checked = ExtResource( 17 )
+PopupMenu/icons/radio_unchecked = ExtResource( 15 )
+PopupMenu/icons/submenu = SubResource( 407 )
+PopupMenu/icons/unchecked = ExtResource( 11 )
+PopupMenu/styles/hover = SubResource( 446 )
+PopupMenu/styles/labeled_separator_left = SubResource( 415 )
+PopupMenu/styles/labeled_separator_right = SubResource( 416 )
+PopupMenu/styles/panel = SubResource( 435 )
+PopupMenu/styles/panel_disabled = SubResource( 422 )
+PopupMenu/styles/separator = SubResource( 456 )
 TabContainer/colors/font_color_bg = Color( 1, 0.866667, 0.6, 1 )
 TabContainer/colors/font_color_disabled = Color( 0.423529, 0.262745, 0.192157, 1 )
 TabContainer/colors/font_color_fg = Color( 1, 0.866667, 0.6, 1 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/demo/ui/squeak/squeak-theme-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/squeak/SqueakOptionButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/squeak/SqueakCheckBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=6]
 
@@ -32,6 +33,13 @@ margin_top = 25.0
 margin_right = -25.0
 margin_bottom = -25.0
 theme = ExtResource( 1 )
+
+[node name="OptionButton" parent="Panel" instance=ExtResource( 4 )]
+margin_left = 30.485
+margin_top = 19.3409
+margin_right = 171.485
+margin_bottom = 48.3409
+text = "OptionButton"
 
 [node name="Button" parent="Panel" instance=ExtResource( 3 )]
 margin_left = 30.1606
