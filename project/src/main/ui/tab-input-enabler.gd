@@ -86,7 +86,8 @@ func _refresh_focus_neighbours_for_current_tab() -> void:
 			tab_container.get_child(tab_container.current_tab), self, "_compare_by_max_y")
 	
 	## Navigating down from the TabContainer focuses the top item within the TabContainer.
-	tab_container.focus_neighbour_bottom = top_focusable_node.get_path()
+	if top_focusable_node:
+		tab_container.focus_neighbour_bottom = top_focusable_node.get_path()
 	
 	## Navigating up from the top item within the TabContainer focuses the TabContainer.
 	if top_focusable_node:
