@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -74,22 +74,33 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="ButtonGroup" id=3]
 
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.176471, 0.368627, 0.45098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+expand_margin_bottom = 2.0
+
 [node name="SettingsMenu" type="CanvasLayer"]
 pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="Bg" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.752941 )
 
 [node name="TouchButtons" parent="." instance=ExtResource( 9 )]
-visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -133,7 +144,7 @@ size_flags_vertical = 3
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
-margin_right = 560.0
+margin_right = 548.0
 margin_bottom = 272.0
 size_flags_horizontal = 3
 
@@ -1119,6 +1130,8 @@ autowrap = true
 
 [node name="TabInputEnabler" parent="Window/UiArea/TabContainer" instance=ExtResource( 41 )]
 focusable_nodes_below = [ [ NodePath("../../Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1"), NodePath("../../Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2") ], [ NodePath("../../Bottom/HBoxContainer/VBoxContainer2/Holder/Ok") ] ]
+tab_fg_focused = SubResource( 4 )
+font_color_fg_focused = Color( 0.941176, 0.941176, 0.941176, 1 )
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 margin_top = 250.0
