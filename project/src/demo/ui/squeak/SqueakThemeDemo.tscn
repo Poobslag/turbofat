@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=3]
 
 [node name="Demo" type="Node"]
 
@@ -12,6 +13,13 @@ margin_top = 25.0
 margin_right = -25.0
 margin_bottom = -25.0
 theme = ExtResource( 1 )
+
+[node name="Button" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 30.1606
+margin_top = 71.433
+margin_right = 96.1606
+margin_bottom = 100.433
+text = "Button"
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel"]
 margin_left = 298.431
