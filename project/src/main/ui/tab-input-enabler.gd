@@ -10,14 +10,29 @@ extends Node
 ## that the player can arrow up into our TabContainer from the nodes below.
 export (Array, Array, NodePath) var focusable_nodes_below: Array = []
 
+## Style for the foreground tab when focused
+export (StyleBox) var tab_fg_focused: StyleBox
+
+## Font color for the foreground tab when focused
+export (Color) var font_color_fg_focused: Color
+
 ## 'true' if our TabContainer is focused.
 var focused: bool = false setget set_focused
 
 onready var tab_container := get_parent()
 
+## Style for foreground tab when unfocused
+onready var tab_fg_normal: StyleBox
+
+## Font color for foreground tab when unfocused, or null if no font color is defined.
+onready var font_color_fg_normal
+
 func _ready() -> void:
+	tab_fg_normal = tab_container.get("custom_styles/tab_fg")
+	font_color_fg_normal = tab_container.get("custom_colors/font_color_fg")
+	
 	tab_container.focus_mode = Control.FOCUS_ALL
-	tab_container.connect("tab_changed", self, "_on_tab_changed")
+	tab_container.connect("tab_changed", self, "_on_TabContainer_tab_changed")
 	tab_container.get_viewport().connect("gui_focus_changed", self, "_on_Viewport_gui_focus_changed")
 	
 	_refresh_focused()
@@ -30,10 +45,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("ui_left"):
-		tab_container.current_tab = clamp(tab_container.current_tab - 1, 0, tab_container.get_child_count())
+		tab_container.current_tab = clamp(tab_container.current_tab - 1, 0, tab_container.get_tab_count() - 1)
 	
 	if event.is_action_pressed("ui_right"):
-		tab_container.current_tab = clamp(tab_container.current_tab + 1, 0, tab_container.get_child_count())
+		tab_container.current_tab = clamp(tab_container.current_tab + 1, 0, tab_container.get_tab_count() - 1)
 
 
 ## Refreshes our tab's appearance based on whether or not we're currently focused.
@@ -144,14 +159,14 @@ func _compare_by_max_y(a: Control, b: Control) -> bool:
 ## Refreshes our TabContainer's colors based on whether it's focused or not.
 func _refresh_focused() -> void:
 	if focused:
-		tab_container.set("custom_colors/font_color_fg", Color("f0f0f0"))
-		tab_container.get("custom_styles/tab_fg").bg_color = Color("2d5e73")
+		tab_container.set("custom_colors/font_color_fg", font_color_fg_focused)
+		tab_container.set("custom_styles/tab_fg", tab_fg_focused)
 	else:
-		tab_container.set("custom_colors/font_color_fg", null)
-		tab_container.get("custom_styles/tab_fg").bg_color = Color("332d2d")
+		tab_container.set("custom_colors/font_color_fg", font_color_fg_normal)
+		tab_container.set("custom_styles/tab_fg", tab_fg_normal)
 
 
-func _on_tab_changed(_tab: int) -> void:
+func _on_TabContainer_tab_changed(_tab: int) -> void:
 	_refresh_focus_neighbours_for_current_tab()
 
 
