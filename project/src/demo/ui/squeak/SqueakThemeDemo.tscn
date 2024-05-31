@@ -116,6 +116,12 @@ text = "Nabel"
 tab_fg_focused = SubResource( 5 )
 font_color_fg_focused = Color( 1, 1, 1, 1 )
 
+[node name="HSeparator" type="HSeparator" parent="Panel"]
+margin_left = 30.9543
+margin_top = 308.75
+margin_right = 280.954
+margin_bottom = 312.75
+
 [node name="HSlider" type="HSlider" parent="Panel"]
 margin_left = 52.8571
 margin_top = 325.75
