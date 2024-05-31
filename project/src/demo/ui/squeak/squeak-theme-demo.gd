@@ -1,11 +1,20 @@
 extends Node
 ## Demonstrates the 'squeak theme', a simpler compact UI used in the settings menu.
+##
+## Keys:
+## 	[Q]: Show confirmation dialog
 
 onready var _panel := $Panel
 
 func _ready() -> void:
 	_initialize_option_button()
 	_initialize_tab_container()
+
+
+func _input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_Q:
+			$Panel/ConfirmationDialog.popup()
 
 
 func _initialize_option_button() -> void:
