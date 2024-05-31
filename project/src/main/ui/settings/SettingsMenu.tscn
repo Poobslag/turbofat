@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/main/ui/settings/settings-fullscreen.gd" type="Script" id=40]
 [ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=41]
+[ext_resource path="res://src/main/ui/WarningDialog.tscn" type="PackedScene" id=45]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -75,18 +76,20 @@ corner_radius_bottom_left = 4
 [sub_resource type="ButtonGroup" id=3]
 
 [sub_resource type="StyleBoxFlat" id=4]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.176471, 0.368627, 0.45098, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_color = Color( 1, 1, 1, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-expand_margin_bottom = 2.0
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 0.866667, 0.6, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="SettingsMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -1309,37 +1312,37 @@ window_title = "Confirm"
 dialog_text = "Change save slot?"
 dialog_autowrap = true
 
-[node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
+[node name="DeleteConfirmation1" parent="Dialogs" instance=ExtResource( 45 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -35.0
+margin_top = -42.0
 margin_right = 100.0
-margin_bottom = 35.0
+margin_bottom = 42.0
 theme = ExtResource( 20 )
 popup_exclusive = true
 window_title = "Confirm"
-dialog_text = "Delete save slot?
+custom_text = "Delete save slot?
 Slot A (34.2 hours)"
-dialog_autowrap = true
+icon_color = Color( 1, 1, 1, 1 )
 
-[node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
+[node name="DeleteConfirmation2" parent="Dialogs" instance=ExtResource( 45 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -35.0
+margin_top = -44.0
 margin_right = 100.0
-margin_bottom = 35.0
+margin_bottom = 44.0
 theme = ExtResource( 20 )
 popup_exclusive = true
 window_title = "Confirm"
-dialog_text = "Are you sure?
+custom_text = "Are you sure?
 Slot A (34.2 hours)"
-dialog_autowrap = true
+icon_color = Color( 1, 1, 1, 1 )
 
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
