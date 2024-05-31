@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=70 format=2]
+[gd_resource type="Theme" load_steps=71 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/main/ui/squeak/squeak-vscroll-bar-grabber-pressed.png" type="Texture" id=2]
@@ -25,9 +25,9 @@
 [ext_resource path="res://assets/main/ui/squeak/squeak-hslider-grabber-highlight.png" type="Texture" id=23]
 [ext_resource path="res://assets/main/ui/squeak/squeak-hslider-grabber.png" type="Texture" id=24]
 [ext_resource path="res://assets/main/ui/squeak/squeak-hslider-tick.png" type="Texture" id=25]
-[ext_resource path="res://assets/main/ui/squeak/squeak-popup-menu-separator.png" type="Texture" id=26]
 [ext_resource path="res://assets/main/ui/squeak/squeak-window-dialog-close.png" type="Texture" id=27]
 [ext_resource path="res://assets/main/ui/squeak/squeak-window-dialog-panel.png" type="Texture" id=28]
+[ext_resource path="res://assets/main/ui/squeak/squeak-hseparator.png" type="Texture" id=29]
 
 [sub_resource type="StyleBoxTexture" id=345]
 content_margin_left = 6.0
@@ -132,6 +132,14 @@ content_margin_top = 4.0
 content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=364]
+
+[sub_resource type="StyleBoxTexture" id=479]
+texture = ExtResource( 29 )
+region_rect = Rect2( 0, 0, 6, 4 )
+margin_left = 3.0
+margin_right = 3.0
+margin_top = 2.0
+margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id=470]
 texture = ExtResource( 14 )
@@ -317,7 +325,7 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id=456]
-texture = ExtResource( 26 )
+texture = ExtResource( 29 )
 region_rect = Rect2( 0, 0, 6, 4 )
 margin_left = 3.0
 margin_right = 3.0
@@ -489,6 +497,8 @@ CheckBox/styles/hover = SubResource( 334 )
 CheckBox/styles/hover_pressed = SubResource( 334 )
 CheckBox/styles/normal = SubResource( 334 )
 CheckBox/styles/pressed = SubResource( 334 )
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = SubResource( 479 )
 HSlider/icons/grabber = ExtResource( 24 )
 HSlider/icons/grabber_disabled = ExtResource( 22 )
 HSlider/icons/grabber_highlight = ExtResource( 23 )
