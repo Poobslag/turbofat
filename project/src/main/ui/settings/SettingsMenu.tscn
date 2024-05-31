@@ -595,6 +595,7 @@ margin_right = 560.0
 margin_bottom = 206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+follow_focus = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
 margin_right = 560.0
@@ -1309,7 +1310,6 @@ dialog_text = "Change save slot?"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1326,7 +1326,6 @@ Slot A (34.2 hours)"
 dialog_autowrap = true
 
 [node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
