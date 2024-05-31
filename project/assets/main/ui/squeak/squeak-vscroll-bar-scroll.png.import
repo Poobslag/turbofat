@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/squeak-slider-scroll.png-54bcd857c8744abfc380523c345e457b.stex"
+path="res://.import/squeak-vscroll-bar-scroll.png-9d313b4b7a3bbfdda7ecb3ee5f1cfdbe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/ui/squeak/squeak-slider-scroll.png"
-dest_files=[ "res://.import/squeak-slider-scroll.png-54bcd857c8744abfc380523c345e457b.stex" ]
+source_file="res://assets/main/ui/squeak/squeak-vscroll-bar-scroll.png"
+dest_files=[ "res://.import/squeak-vscroll-bar-scroll.png-9d313b4b7a3bbfdda7ecb3ee5f1cfdbe.stex" ]
 
 [params]
 
