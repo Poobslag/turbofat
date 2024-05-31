@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-unchecked.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-checked-disabled.png" type="Texture" id=12]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-unchecked-disabled.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/ui/squeak/squeak-popup-menu-separator.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/ui/squeak/squeak-hslider-grabber-area.png" type="Texture" id=14]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-radio-unchecked.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/ui/squeak/squeak-option-button-normal.png" type="Texture" id=16]
 [ext_resource path="res://assets/main/ui/squeak/squeak-check-box-radio-checked.png" type="Texture" id=17]
@@ -25,7 +25,7 @@
 [ext_resource path="res://assets/main/ui/squeak/squeak-hslider-grabber-highlight.png" type="Texture" id=23]
 [ext_resource path="res://assets/main/ui/squeak/squeak-hslider-grabber.png" type="Texture" id=24]
 [ext_resource path="res://assets/main/ui/squeak/squeak-hslider-tick.png" type="Texture" id=25]
-[ext_resource path="res://assets/main/ui/squeak/squeak-hslider-grabber-area.png" type="Texture" id=26]
+[ext_resource path="res://assets/main/ui/squeak/squeak-popup-menu-separator.png" type="Texture" id=26]
 
 [sub_resource type="StyleBoxTexture" id=345]
 content_margin_left = 6.0
@@ -132,7 +132,7 @@ content_margin_bottom = 4.0
 [sub_resource type="StyleBoxEmpty" id=364]
 
 [sub_resource type="StyleBoxTexture" id=470]
-texture = ExtResource( 26 )
+texture = ExtResource( 14 )
 region_rect = Rect2( 0, 0, 16, 18 )
 margin_left = 8.0
 margin_right = 8.0
@@ -140,7 +140,7 @@ margin_top = 9.0
 margin_bottom = 9.0
 
 [sub_resource type="StyleBoxTexture" id=473]
-texture = ExtResource( 26 )
+texture = ExtResource( 14 )
 region_rect = Rect2( 0, 0, 16, 18 )
 margin_left = 8.0
 margin_right = 8.0
@@ -148,7 +148,7 @@ margin_top = 9.0
 margin_bottom = 9.0
 
 [sub_resource type="StyleBoxTexture" id=474]
-texture = ExtResource( 26 )
+texture = ExtResource( 14 )
 region_rect = Rect2( 0, 0, 16, 18 )
 margin_left = 8.0
 margin_right = 8.0
@@ -315,7 +315,7 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id=456]
-texture = ExtResource( 14 )
+texture = ExtResource( 26 )
 region_rect = Rect2( 0, 0, 6, 4 )
 margin_left = 3.0
 margin_right = 3.0
@@ -385,7 +385,7 @@ content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 18, 24 )
 margin_left = 9.0
 margin_right = 9.0
@@ -397,7 +397,7 @@ content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 18, 24 )
 margin_left = 9.0
 margin_right = 9.0
@@ -409,7 +409,7 @@ content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 content_margin_bottom = 2.0
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 18, 24 )
 margin_left = 9.0
 margin_right = 9.0
@@ -421,7 +421,7 @@ content_margin_left = 0.0
 content_margin_right = 0.0
 content_margin_top = 0.0
 content_margin_bottom = 0.0
-texture = ExtResource( 2 )
+texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 18, 24 )
 margin_left = 9.0
 margin_right = 9.0
@@ -433,7 +433,7 @@ content_margin_left = 0.0
 content_margin_right = 0.0
 content_margin_top = 0.0
 content_margin_bottom = 0.0
-texture = ExtResource( 2 )
+texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 18, 24 )
 margin_left = 9.0
 margin_right = 9.0
