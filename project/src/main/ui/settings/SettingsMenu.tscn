@@ -590,225 +590,239 @@ text = "Custom"
 
 [node name="PresetScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 visible = false
+margin_top = 30.0
 margin_right = 560.0
 margin_bottom = 206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
-margin_right = 420.0
+[node name="CenterContainer" type="CenterContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
+margin_right = 560.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer"]
+margin_left = 70.0
+margin_right = 490.0
 margin_bottom = 260.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 0
 
-[node name="MovePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="MovePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 0.0
 margin_bottom = 20.0
 description = "Move Piece"
 keybind_value = "Left, Right"
 
-[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 20.0
 margin_bottom = 40.0
 description = "Soft Drop"
 keybind_value = "Down"
 
-[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 40.0
 margin_bottom = 60.0
 description = "Hard Drop"
 keybind_value = "Space, Up, Shift"
 
-[node name="RotatePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="RotatePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 60.0
 margin_bottom = 80.0
 description = "Rotate Piece"
 keybind_value = "Z, X"
 
-[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 60.0
-margin_bottom = 80.0
-description = "Swap Hold Piece"
-
-[node name="Retry" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 80.0
 margin_bottom = 100.0
+description = "Swap Hold Piece"
+
+[node name="Retry" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+margin_top = 100.0
+margin_bottom = 120.0
 description = "Retry"
 keybind_value = "R"
 
-[node name="Menu" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 100.0
-margin_bottom = 120.0
+[node name="Menu" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+margin_top = 120.0
+margin_bottom = 140.0
 description = "Menu"
 keybind_value = "Escape"
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer"]
-margin_top = 120.0
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer"]
+margin_top = 140.0
 margin_right = 420.0
-margin_bottom = 140.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="MoveInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 140.0
-margin_bottom = 160.0
+[node name="MoveInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+margin_top = 160.0
+margin_bottom = 180.0
 description = "Move in Menus"
 keybind_value = "Arrows, WASD"
 
-[node name="ConfirmInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 160.0
-margin_bottom = 180.0
+[node name="ConfirmInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+margin_top = 180.0
+margin_bottom = 200.0
 description = "Confirm in Menus"
 keybind_value = "Space"
 
-[node name="BackInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 180.0
-margin_bottom = 200.0
+[node name="BackInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+margin_top = 200.0
+margin_bottom = 220.0
 description = "Back in Menus"
 keybind_value = "Escape"
 
-[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer"]
-margin_top = 200.0
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer"]
+margin_top = 220.0
 margin_right = 420.0
-margin_bottom = 220.0
+margin_bottom = 240.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 220.0
-margin_bottom = 240.0
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+margin_top = 240.0
+margin_bottom = 260.0
 description = "Rewind Text"
 keybind_value = "Shift"
 
 [node name="CustomScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 visible = false
+margin_top = 120.0
 margin_right = 560.0
 margin_bottom = 206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer"]
-margin_right = 490.0
+[node name="CenterContainer" type="CenterContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer"]
+margin_right = 560.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer"]
+margin_left = 35.0
+margin_right = 525.0
 margin_bottom = 508.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 2
 
-[node name="MovePieceLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MovePieceLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
 description = "Move Piece Left"
 action_name = "move_piece_left"
 
-[node name="MovePieceRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MovePieceRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 26.0
 margin_bottom = 50.0
 description = "Move Piece Right"
 action_name = "move_piece_right"
 
-[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 52.0
 margin_bottom = 76.0
 description = "Soft Drop"
 action_name = "soft_drop"
 
-[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 78.0
 margin_bottom = 102.0
 description = "Hard Drop"
 action_name = "hard_drop"
 
-[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 78.0
-margin_bottom = 102.0
+[node name="SwapHoldPiece" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 104.0
+margin_bottom = 128.0
 description = "Swap Hold Piece"
 action_name = "swap_hold_piece"
 
-[node name="RotateCcw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 104.0
-margin_bottom = 128.0
+[node name="RotateCcw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 130.0
+margin_bottom = 154.0
 description = "Rotate Ccw"
 action_name = "rotate_ccw"
 
-[node name="RotateCw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 130.0
-margin_bottom = 154.0
+[node name="RotateCw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 156.0
+margin_bottom = 180.0
 description = "Rotate Cw"
 action_name = "rotate_cw"
 
-[node name="Retry" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 156.0
-margin_bottom = 180.0
+[node name="Retry" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 182.0
+margin_bottom = 206.0
 description = "Retry"
 action_name = "retry"
 
-[node name="Menu" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 182.0
-margin_bottom = 206.0
+[node name="Menu" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 208.0
+margin_bottom = 232.0
 description = "Menu"
 action_name = "ui_menu"
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-margin_top = 208.0
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer"]
+margin_top = 234.0
 margin_right = 490.0
-margin_bottom = 228.0
+margin_bottom = 254.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="MenuUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 230.0
-margin_bottom = 254.0
+[node name="MenuUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 256.0
+margin_bottom = 280.0
 description = "Up in Menus"
 action_name = "ui_up"
 
-[node name="MenuDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 256.0
-margin_bottom = 280.0
+[node name="MenuDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 282.0
+margin_bottom = 306.0
 description = "Down in Menus"
 action_name = "ui_down"
 
-[node name="MenuLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 282.0
-margin_bottom = 306.0
+[node name="MenuLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 308.0
+margin_bottom = 332.0
 description = "Left in Menus"
 action_name = "ui_left"
 
-[node name="MenuRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 308.0
-margin_bottom = 332.0
+[node name="MenuRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 334.0
+margin_bottom = 358.0
 description = "Right in Menus"
 action_name = "ui_right"
 
-[node name="Confirm" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 334.0
-margin_bottom = 358.0
+[node name="Confirm" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 360.0
+margin_bottom = 384.0
 description = "Confirm in Menus"
 action_name = "ui_accept"
 
-[node name="Back" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 360.0
-margin_bottom = 384.0
+[node name="Back" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 386.0
+margin_bottom = 410.0
 description = "Back in Menus"
 action_name = "ui_cancel"
 
-[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-margin_top = 386.0
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer"]
+margin_top = 412.0
 margin_right = 490.0
-margin_bottom = 406.0
+margin_bottom = 432.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
-margin_top = 408.0
-margin_bottom = 432.0
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 16 )]
+margin_top = 434.0
+margin_bottom = 458.0
 description = "Rewind Text"
 action_name = "rewind_text"
 
-[node name="Spacer3" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
-margin_top = 434.0
+[node name="Spacer3" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer"]
+margin_top = 460.0
 margin_right = 490.0
-margin_bottom = 454.0
+margin_bottom = 480.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
+[node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/CenterContainer/VBoxContainer"]
 margin_left = 175.0
-margin_top = 456.0
+margin_top = 482.0
 margin_right = 314.0
-margin_bottom = 482.0
+margin_bottom = 508.0
 size_flags_horizontal = 4
 theme = ExtResource( 1 )
 text = "Reset to Default"
