@@ -32,6 +32,7 @@ $ Clock by Ilham Fitrotul Hayat (https://www.flaticon.com/authors/ilham-fitrotul
 $ Frying Pan by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
 $ Paws by Solid Icon Co (https://www.flaticon.com/authors/solid-icon-co) (Unlimited use without attribution)
 $ Reload by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
+$ Warning free icon by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) (Unlimited use without attribution)
 $ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
 $ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
 
@@ -142,6 +143,7 @@ project/assets/main/ui/icon-create-levels.png 'Hammer free icon' by Pixel perfec
 project/assets/main/ui/icon-music.png 'Musical Notes' by Freepik
 project/assets/main/ui/icon-practice.png 'Fitness free icon' by Pixel perfect at Freepik
 project/assets/main/ui/icon-tutorials.png 'Graduate free icon' by Hilmy Abiyyu A. at Freepik
+project/assets/main/ui/icon-warning.png "Warning free icon " by Gregor Cresnar
 project/assets/main/ui/level-select/cleared.png 'Verification checkmark symbol' by Catalin Fertu
 project/assets/main/ui/level-select/crown.png 'Crown' by Freepik
 project/assets/main/ui/level-select/key.png 'Old Key' by Freepik
