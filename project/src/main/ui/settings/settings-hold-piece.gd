@@ -12,7 +12,7 @@ func _refresh() -> void:
 	_check_box.pressed = SystemData.gameplay_settings.hold_piece
 
 
-func _on_OptionButton_toggled(_button_pressed: bool) -> void:
+func _on_CheckBox_toggled(_button_pressed: bool) -> void:
 	SystemData.gameplay_settings.hold_piece = _check_box.pressed
 
 
