@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=71 format=2]
 
-[ext_resource path="res://src/main/ui/theme/h4-font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/main/ui/squeak/squeak-vscroll-bar-grabber-pressed.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/ui/squeak/squeak-vscroll-bar-grabber-highlight.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/ui/squeak/squeak-vscroll-bar-grabber-normal.png" type="Texture" id=4]
