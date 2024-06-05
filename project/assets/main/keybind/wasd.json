@@ -269,5 +269,27 @@
       "device": 0,
       "button_index": 12
     }
+  ],
+  "next_tab": [
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 5
+    },
+    {
+      "type": "key",
+      "scancode": 88
+    }
+  ],
+  "prev_tab": [
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 4
+    },
+    {
+      "type": "key",
+      "scancode": 90
+    }
   ]
 }

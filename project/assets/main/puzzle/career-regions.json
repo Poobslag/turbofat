@@ -69,6 +69,9 @@
           "id": "career/perfect_fit"
         },
         {
+          "id": "career/secret_brownies"
+        },
+        {
           "id": "career/square_curse"
         },
         {
@@ -128,6 +131,9 @@
           "id": "career/fat_stacks"
         },
         {
+          "id": "career/its_tee_time"
+        },
+        {
           "id": "career/mole_money_mole_problems"
         },
         {
@@ -142,6 +148,9 @@
           "customer_ids": [
             "goldfince"
           ]
+        },
+        {
+          "id": "career/three_course_meal"
         },
         {
           "id": "career/traffic_jam",
@@ -210,6 +219,9 @@
           "id": "career/cookie_crevice"
         },
         {
+          "id": "career/destroy_them_with_combos"
+        },
+        {
           "id": "career/fruit_on_the_top"
         },
         {
@@ -231,7 +243,13 @@
           "id": "career/shark_bait"
         },
         {
+          "id": "career/strawberry_sharkcake"
+        },
+        {
           "id": "career/the_last_100"
+        },
+        {
+          "id": "career/three_nights"
         }
       ]
     },
@@ -279,7 +297,13 @@
           "id": "career/asparagus_vault"
         },
         {
+          "id": "career/blindy_asparagus"
+        },
+        {
           "id": "career/block_blockers"
+        },
+        {
+          "id": "career/carrot_cake_2"
         },
         {
           "id": "career/chunky_greens"
@@ -354,6 +378,9 @@
           "id": "career/carrot_alley"
         },
         {
+          "id": "career/checkerboard_vault"
+        },
+        {
           "id": "career/cocoa_canyon"
         },
         {
@@ -387,6 +414,10 @@
           "id": "career/real_meal"
         },
         {
+          "chef_id": "skins",
+          "id": "career/snack_box_blitz"
+        },
+        {
           "id": "career/strawberry_shortcut"
         },
         {
@@ -398,64 +429,9 @@
       ]
     },
     {
-      "id": "vega",
-      "name": "Vega Churn Twelve",
-      "start": 62,
-      "description": "Oops! We had some plans to open a restaurant here, but we changed our mind. ...Maybe on our next adventure!",
-      "icon": "gear",
-      "piece_speed": "5-8",
-      "boss_level": {
-        "id": "career/boss_vega"
-      },
-      "levels": [
-        {
-          "id": "career/90_second_sprint"
-        },
-        {
-          "id": "career/blindy_asparagus"
-        },
-        {
-          "id": "career/carrot_cake_2"
-        },
-        {
-          "id": "career/checkerboard_vault"
-        },
-        {
-          "id": "career/destroy_them_with_combos"
-        },
-        {
-          "id": "career/hungry_moles"
-        },
-        {
-          "id": "career/its_tee_time"
-        },
-        {
-          "id": "career/low_gravity"
-        },
-        {
-          "id": "career/secret_brownies"
-        },
-        {
-          "id": "career/sharky_cheese"
-        },
-        {
-          "id": "career/snack_box_blitz"
-        },
-        {
-          "id": "career/strawberry_slowcake"
-        },
-        {
-          "id": "career/three_course_meal"
-        },
-        {
-          "id": "career/three_nights"
-        }
-      ]
-    },
-    {
       "id": "lava",
       "name": "Chocolava Canyon",
-      "start": 80,
+      "start": 62,
       "description": "Can we complete the ultimate challenge to obtain the coveted 'Chef Of The Year' plaque!? All our hopes are riding on this!",
       "icon": "volcano",
       "overworld_environment": "lava",
@@ -490,6 +466,9 @@
           "id": "career/destroy_them_with_boxes"
         },
         {
+          "id": "career/hungry_moles"
+        },
+        {
           "id": "career/left_shark"
         },
         {
@@ -497,6 +476,9 @@
         },
         {
           "id": "career/nice_and_cheesy"
+        },
+        {
+          "id": "career/sharky_cheese"
         },
         {
           "id": "career/sharp_curds"
@@ -521,10 +503,13 @@
     {
       "id": "star",
       "name": "Starberry Mountain",
-      "start": 100,
+      "start": 82,
       "description": "A slew of insurmountable challenges sure to drive even the most seasoned chefs to the brink of insanity. The true Turbo Fat starts here!",
       "icon": "rainbow",
       "piece_speed": "A1-AD",
+      "flags": [
+        "new_page"
+      ],
       "levels": [
         {
           "id": "career/dark/3000_race"

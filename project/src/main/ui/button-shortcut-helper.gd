@@ -17,7 +17,7 @@ export (String) var action: String
 export (String) var overridden_action: String
 
 ## button this helper will activate
-onready var button: Button = get_parent()
+onready var button: BaseButton = get_parent()
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action(action):

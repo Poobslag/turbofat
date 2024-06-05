@@ -229,8 +229,8 @@ func test_49eb_level_history_purged() -> void:
 	assert_eq(rank_results.has("career/boss_6k"), false)
 
 
-func test_512b_career_data() -> void:
-	load_player_data("turbofat-512b.json")
+func test_4ceb_career_data() -> void:
+	load_player_data("turbofat-4ceb.json")
 	
 	assert_eq(PlayerData.career.banked_steps, 9)
 	assert_eq(PlayerData.career.best_distance_travelled, 134)
@@ -251,3 +251,20 @@ func test_512b_career_data() -> void:
 	assert_eq(PlayerData.career.skipped_previous_level, false)
 	assert_eq(PlayerData.career.steps, 25)
 	assert_eq(PlayerData.career.top_out_count, 1)
+
+
+## With the removal of Vega Churn Twelve, its levels were adjusted and moved to other areas. We purge the scores so
+## that players aren't left in an awkward situation where they have a high score of ¥2,000 for a level where ¥1,000
+## is a superhuman score.
+func test_512b_level_history_purged() -> void:
+	load_player_data("turbofat-512b.json")
+	
+	# finished levels
+	var finished_levels := PlayerData.level_history.finished_levels
+	assert_eq(finished_levels.has("career/square_curse"), true)
+	assert_eq(finished_levels.has("career/its_tee_time"), false)
+	
+	# level history
+	var rank_results := PlayerData.level_history.rank_results
+	assert_eq(rank_results.has("career/square_curse"), true)
+	assert_eq(rank_results.has("career/its_tee_time"), false)

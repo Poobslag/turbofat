@@ -1,42 +1,160 @@
 [
   {
     "type": "version",
-    "value": "4ceb"
+    "value": "512b"
   },
   {
-    "type": "career",
+    "type": "level_history",
+    "key": "career/square_curse",
+    "value": [
+      {
+        "box_score": 150,
+        "box_score_per_line": 12.5,
+        "box_score_per_line_rank": 0,
+        "combo_score": 140,
+        "combo_score_per_line": 20,
+        "combo_score_per_line_rank": 0,
+        "pickup_score": 0,
+        "pickup_score_per_line": 0,
+        "pickup_score_rank": 0,
+        "compare": "+score",
+        "leftover_score": 186,
+        "lines": 12,
+        "lines_rank": -0,
+        "pieces": 36,
+        "pieces_rank": 0,
+        "lost": false,
+        "score": 488,
+        "score_rank": 0.82,
+        "seconds": 36.633335,
+        "seconds_rank": 999,
+        "speed": 19.65423,
+        "speed_rank": 7.243954,
+        "success": false,
+        "timestamp": {
+          "year": 2024,
+          "month": 4,
+          "day": 24,
+          "weekday": 3,
+          "dst": true,
+          "hour": 10,
+          "minute": 33,
+          "second": 13
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "level_history",
+    "key": "career/its_tee_time",
+    "value": [
+      {
+        "box_score": 850,
+        "box_score_per_line": 17.708333,
+        "box_score_per_line_rank": 0,
+        "combo_score": 365,
+        "combo_score_per_line": 8.488372,
+        "combo_score_per_line_rank": 23.893603,
+        "pickup_score": 0,
+        "pickup_score_per_line": 0,
+        "pickup_score_rank": 0,
+        "compare": "+score",
+        "leftover_score": 418,
+        "lines": 48,
+        "lines_rank": 3.606337,
+        "pieces": 122,
+        "pieces_rank": 0,
+        "lost": false,
+        "score": 1681,
+        "score_rank": 10.08,
+        "seconds": 120.000006,
+        "seconds_rank": 999,
+        "speed": 23.999999,
+        "speed_rank": 4.015512,
+        "success": false,
+        "timestamp": {
+          "year": 2024,
+          "month": 5,
+          "day": 21,
+          "weekday": 2,
+          "dst": true,
+          "hour": 9,
+          "minute": 1,
+          "second": 37
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "successful_levels",
     "value": {
-      "banked_steps": 9,
-      "distance_travelled": 98,
-      "distance_earned": 5,
-      "hours_passed": 2,
-      "daily_customers": 13,
-      "daily_earnings": 1210,
-      "daily_level_ids": [
-        "career/dark/a_little_extra",
-        "career/dark/muffin_impossible_2",
-        "career/dark/boxing_day"
-      ],
-      "daily_seconds_played": 525,
-      "daily_steps": 25,
-      "day": 67,
-      "extra_life_count": 2,
-      "forced_hardcore_level_hours": [
-        1,
-        4
-      ],
-      "prev_daily_earnings": [
-        4156,
-        2268
-      ],
-      "prev_distance_travelled": [
-        134,
-        114
-      ],
-      "best_distance_travelled": 134,
-      "remain_in_region": false,
-      "skipped_previous_level": false,
-      "top_out_count": 1
+      "career/boss_lemon": {
+        "year": 2024,
+        "month": 4,
+        "day": 24,
+        "weekday": 3,
+        "dst": true,
+        "hour": 10,
+        "minute": 34,
+        "second": 6
+      },
+      "career/boss_welcome": {
+        "year": 2024,
+        "month": 5,
+        "day": 6,
+        "weekday": 1,
+        "dst": true,
+        "hour": 9,
+        "minute": 28,
+        "second": 43
+      },
+      "career/boss_poki": {
+        "year": 2024,
+        "month": 5,
+        "day": 6,
+        "weekday": 1,
+        "dst": true,
+        "hour": 9,
+        "minute": 36,
+        "second": 11
+      },
+      "career/boss_lava": {
+        "year": 2024,
+        "month": 5,
+        "day": 6,
+        "weekday": 1,
+        "dst": true,
+        "hour": 12,
+        "minute": 36,
+        "second": 33
+      }
+    }
+  },
+  {
+    "type": "finished_levels",
+    "value": {
+      "career/square_curse": {
+        "year": 2024,
+        "month": 4,
+        "day": 24,
+        "weekday": 3,
+        "dst": true,
+        "hour": 10,
+        "minute": 33,
+        "second": 13
+      },
+      "career/its_tee_time": {
+        "year": 2024,
+        "month": 5,
+        "day": 21,
+        "weekday": 2,
+        "dst": true,
+        "hour": 9,
+        "minute": 1,
+        "second": 37
+      }
     }
   }
 ]

@@ -1,27 +1,30 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
+  "start_speed": "1",
   "name": "Destroy Them With Combos!",
   "description": "No no, I was talking about the carrots! ...Please don't destroy the customers.",
   "finish_condition": {
     "type": "time_over",
-    "value": "165"
+    "value": "100"
   },
+  "rank": [
+    "extra_seconds_per_piece 0.10"
+  ],
   "speed_ups": [
     {
       "type": "time_over",
-      "value": "120",
-      "speed": "7"
+      "value": "60",
+      "speed": "2"
     }
   ],
   "timers": [
     {
       "interval": 3.2,
-      "start": 21.7
+      "start": 12.1
     },
     {
       "interval": 3.2,
-      "start": 10.5
+      "start": 7.3
     }
   ],
   "triggers": [

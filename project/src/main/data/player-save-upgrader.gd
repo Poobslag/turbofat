@@ -4,6 +4,22 @@ class_name PlayerSaveUpgrader
 ## This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
 ## backwards compatibility for older versions.
 
+const LEVEL_PRUNE_LIST_512B := {
+	"career/blindy_asparagus": true,
+	"career/carrot_cake_2": true,
+	"career/checkerboard_vault": true,
+	"career/destroy_them_with_combos": true,
+	"career/hungry_moles": true,
+	"career/its_tee_time": true,
+	"career/low_gravity": true,
+	"career/secret_brownies": true,
+	"career/sharky_cheese": true,
+	"career/snack_box_blitz": true,
+	"career/strawberry_slowcake": true,
+	"career/three_course_meal": true,
+	"career/three_nights": true,
+}
+
 ## Level ids to prune when upgrading from version 49EB
 const LEVEL_PRUNE_LIST_49EB := {
 	"career/boss_1k": true,
@@ -277,7 +293,8 @@ var _third_zero_regex: RegEx
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "512b"
+	upgrader.current_version = "55aa"
+	upgrader.add_upgrade_method(self, "_upgrade_512b", "512b", "55aa")
 	upgrader.add_upgrade_method(self, "_upgrade_4ceb", "4ceb", "512b")
 	upgrader.add_upgrade_method(self, "_upgrade_49eb", "49eb", "4ceb")
 	upgrader.add_upgrade_method(self, "_upgrade_38c3", "38c3", "49eb")
@@ -299,6 +316,21 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_512b(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			# Remove level keys for levels which were pruned on 2024-05-21
+			if save_item.key in LEVEL_PRUNE_LIST_512B:
+				save_item = null
+		"finished_levels", "successful_levels":
+			# Remove level keys for levels which were pruned on 2024-05-21
+			for level_id in save_item.value.keys():
+				if level_id in LEVEL_PRUNE_LIST_512B:
+					save_item.value.erase(level_id)
+	
+	return save_item
 
 
 func _upgrade_4ceb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
@@ -335,7 +367,7 @@ func _upgrade_49eb(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
 			for level_id in save_item.value.keys():
 				if level_id in LEVEL_PRUNE_LIST_49EB:
 					save_item.value.erase(level_id)
-			
+	
 	return save_item
 
 

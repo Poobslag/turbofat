@@ -1,6 +1,6 @@
 {
   "version": "4c5c",
-  "start_speed": "8",
+  "start_speed": "2",
   "name": "Three Nights",
   "description": "I'm not afraid of the dark! It's just very annoying...",
   "finish_condition": {
@@ -8,9 +8,9 @@
     "value": "110"
   },
   "rank": [
-    "extra_seconds_per_piece 0.06",
-    "box_factor 0.91",
-    "combo_factor 0.96"
+    "extra_seconds_per_piece 0.10",
+    "box_factor 0.95",
+    "combo_factor 1.06"
   ],
   "timers": [
     {

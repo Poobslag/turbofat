@@ -1,12 +1,52 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleMessage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=3]
-[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=4]
+[ext_resource path="res://assets/main/ui/candy-button/h4-o.png" type="Texture" id=2]
+[ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=3]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-messages.gd" type="Script" id=5]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=7]
-[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=8]
+[ext_resource path="res://src/main/ui/candy-button/gradient-red-normal.tres" type="Gradient" id=6]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=7]
+[ext_resource path="res://src/main/ui/candy-button/gradient-violet-normal.tres" type="Gradient" id=8]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/main/ui/candy-button/h3-v.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/ui/candy-button/h3-v-pressed.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/ui/candy-button/h4-o-pressed.png" type="Texture" id=14]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=15]
+[ext_resource path="res://assets/main/ui/candy-button/h4-q-pressed.png" type="Texture" id=17]
+[ext_resource path="res://assets/main/ui/candy-button/h4-q.png" type="Texture" id=18]
+
+[sub_resource type="GradientTexture2D" id=1]
+resource_local_to_scene = true
+gradient = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 1 )
+
+[sub_resource type="GradientTexture2D" id=3]
+resource_local_to_scene = true
+gradient = ExtResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 3 )
+
+[sub_resource type="GradientTexture2D" id=5]
+resource_local_to_scene = true
+gradient = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 5 )
 
 [node name="PuzzleMessages" type="Control"]
 margin_left = 364.0
@@ -22,44 +62,56 @@ anchor_bottom = 0.5
 margin_bottom = 136.0
 custom_constants/separation = 10
 
-[node name="Start" type="Button" parent="Buttons"]
-margin_left = 72.0
-margin_right = 252.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 180, 60 )
+[node name="Start" parent="Buttons" instance=ExtResource( 10 )]
+material = SubResource( 2 )
+margin_left = 62.0
+margin_top = 0.0
+margin_right = 262.0
+margin_bottom = 50.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource( 4 )
-shortcut_in_tooltip = false
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 12 )
 text = "Start"
+color = 5
+shape = 8
 
-[node name="Settings" type="Button" parent="Buttons"]
-margin_left = 104.0
-margin_top = 70.0
-margin_right = 220.0
-margin_bottom = 98.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Settings" parent="Buttons" instance=ExtResource( 11 )]
+material = SubResource( 4 )
+margin_left = 102.0
+margin_top = 60.0
+margin_right = 222.0
+margin_bottom = 90.0
 size_flags_horizontal = 4
-theme = ExtResource( 3 )
-shortcut_in_tooltip = false
-shortcut = ExtResource( 8 )
+size_flags_vertical = 4
+shortcut = ExtResource( 7 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 2 )
 text = "Settings"
+color = 7
+shape = 3
 
 [node name="ShortcutHelper" parent="Buttons/Settings" instance=ExtResource( 9 )]
 action = "ui_cancel"
 overridden_action = "ui_menu"
 
-[node name="Back" type="Button" parent="Buttons"]
-margin_left = 104.0
-margin_top = 108.0
-margin_right = 220.0
-margin_bottom = 136.0
-rect_min_size = Vector2( 116, 28 )
+[node name="Back" parent="Buttons" instance=ExtResource( 11 )]
+material = SubResource( 6 )
+margin_left = 102.0
+margin_top = 100.0
+margin_right = 222.0
+margin_bottom = 130.0
 size_flags_horizontal = 4
-theme = ExtResource( 3 )
-shortcut_in_tooltip = false
-shortcut = ExtResource( 7 )
+size_flags_vertical = 4
+shortcut = ExtResource( 4 )
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 18 )
 text = "Back"
+color = 1
+shape = 5
 
 [node name="PuzzleMessage" parent="." instance=ExtResource( 1 )]
 mouse_filter = 2

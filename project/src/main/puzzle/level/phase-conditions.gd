@@ -155,10 +155,54 @@ class PieceWrittenPhaseCondition extends PhaseCondition:
 
 class BoxBuiltPhaseCondition extends PhaseCondition:
 	
+	## Different box variety conditions. Levels can specify a unique box type like 'PINK', but more commonly specify
+	## generic varieties like 'ANY' or 'CAKE'.
 	enum RequiredBoxType {
 		ANY,
 		SNACK,
 		CAKE,
+		BROWN,
+		PINK,
+		BREAD,
+		WHITE,
+		CHEESE,
+		CAKE_JJO,
+		CAKE_JLO,
+		CAKE_JTT,
+		CAKE_LLO,
+		CAKE_LTT,
+		CAKE_PQV,
+		CAKE_PUV,
+		CAKE_QUV,
+		CAKE_CJU,
+		CAKE_CLU,
+		CAKE_CTU,
+	}
+	
+	## Maps enum keys one-to-one from 'RequiredBoxType' to 'Foods.BoxType'.
+	##
+	## Note: This dictionary does not have entries for one-to-many keys like RequiredBoxType.ANY or
+	## RequiredBoxType.CAKE.
+	##
+	## key: (RequiredBoxType)
+	## value: (Foods.BoxType)
+	const BOX_TYPE_BY_REQUIRED_BOX_TYPE := {
+		RequiredBoxType.BROWN: Foods.BoxType.BROWN,
+		RequiredBoxType.PINK: Foods.BoxType.PINK,
+		RequiredBoxType.BREAD: Foods.BoxType.BREAD,
+		RequiredBoxType.WHITE: Foods.BoxType.WHITE,
+		RequiredBoxType.CHEESE: Foods.BoxType.CHEESE,
+		RequiredBoxType.CAKE_JJO: Foods.BoxType.CAKE_JJO,
+		RequiredBoxType.CAKE_JLO: Foods.BoxType.CAKE_JLO,
+		RequiredBoxType.CAKE_JTT: Foods.BoxType.CAKE_JTT,
+		RequiredBoxType.CAKE_LLO: Foods.BoxType.CAKE_LLO,
+		RequiredBoxType.CAKE_LTT: Foods.BoxType.CAKE_LTT,
+		RequiredBoxType.CAKE_PQV: Foods.BoxType.CAKE_PQV,
+		RequiredBoxType.CAKE_PUV: Foods.BoxType.CAKE_PUV,
+		RequiredBoxType.CAKE_QUV: Foods.BoxType.CAKE_QUV,
+		RequiredBoxType.CAKE_CJU: Foods.BoxType.CAKE_CJU,
+		RequiredBoxType.CAKE_CLU: Foods.BoxType.CAKE_CLU,
+		RequiredBoxType.CAKE_CTU: Foods.BoxType.CAKE_CTU,
 	}
 	
 	## enum from RequiredBoxType defining the box's required type
@@ -184,6 +228,23 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 				should_run = Foods.is_snack_box(actual_box_type)
 			RequiredBoxType.CAKE:
 				should_run = Foods.is_cake_box(actual_box_type)
+			RequiredBoxType.BROWN, \
+			RequiredBoxType.PINK, \
+			RequiredBoxType.BREAD, \
+			RequiredBoxType.WHITE, \
+			RequiredBoxType.CHEESE, \
+			RequiredBoxType.CAKE_JJO, \
+			RequiredBoxType.CAKE_JLO, \
+			RequiredBoxType.CAKE_JTT, \
+			RequiredBoxType.CAKE_LLO, \
+			RequiredBoxType.CAKE_LTT, \
+			RequiredBoxType.CAKE_PQV, \
+			RequiredBoxType.CAKE_PUV, \
+			RequiredBoxType.CAKE_QUV, \
+			RequiredBoxType.CAKE_CJU, \
+			RequiredBoxType.CAKE_CLU, \
+			RequiredBoxType.CAKE_CTU:
+				should_run = actual_box_type == BOX_TYPE_BY_REQUIRED_BOX_TYPE[required_box_type]
 		return should_run
 	
 	

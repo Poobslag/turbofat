@@ -13,7 +13,7 @@ func _refresh() -> void:
 	_check_box.pressed = SystemData.gameplay_settings.soft_drop_lock_cancel
 
 
-func _on_OptionButton_toggled(_button_pressed: bool) -> void:
+func _on_CheckBox_toggled(_button_pressed: bool) -> void:
 	SystemData.gameplay_settings.soft_drop_lock_cancel = _check_box.pressed
 
 
