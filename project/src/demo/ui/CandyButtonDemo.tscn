@@ -309,7 +309,7 @@ shader_param/gradient = SubResource( 43 )
 
 [sub_resource type="GradientTexture2D" id=45]
 resource_local_to_scene = true
-gradient = ExtResource( 42 )
+gradient = ExtResource( 14 )
 
 [sub_resource type="ShaderMaterial" id=46]
 resource_local_to_scene = true

@@ -1,6 +1,8 @@
 tool
 extends TextureButton
 ## An eye-catching button with customizable colors and textures.
+##
+## This button is extremely narrow, and used for the collapsed categories in the creature editor.
 
 export (String) var text setget set_text
 
@@ -100,12 +102,6 @@ func _ready() -> void:
 	_refresh_shine()
 
 
-func set_disabled(new_disabled: bool) -> void:
-	if disabled != new_disabled:
-		disabled = new_disabled
-		_refresh_color()
-
-
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
@@ -114,6 +110,12 @@ func _enter_tree() -> void:
 func _pressed() -> void:
 	_click_sound.pitch_scale = rand_range(0.95, 1.05)
 	SfxKeeper.copy(_click_sound).play()
+
+
+func set_disabled(new_disabled: bool) -> void:
+	if disabled != new_disabled:
+		disabled = new_disabled
+		_refresh_color()
 
 
 func set_icon_left(new_icon_left: Texture) -> void:
@@ -281,6 +283,8 @@ func _refresh_text() -> void:
 ## When we gain focus, we reapply a bright cyan color for our texture, text and icons.
 func _on_focus_entered() -> void:
 	_refresh_color()
+	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
+	SfxKeeper.copy(_hover_sound).play()
 
 
 ## When we lose focus, we reapply the normal color for our texture, text and icons.

@@ -6,7 +6,7 @@ export (PackedScene) var PaletteButtonScene: PackedScene
 export (NodePath) var creature_editor_path: NodePath setget set_creature_editor_path
 
 var _rng := RandomNumberGenerator.new()
-var _creature_editor: CreatureEditor
+var _creature_editor: CreatureEditorOld
 var _creature_palettes := []
 
 func _ready() -> void:
@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 func set_creature_editor_path(new_creature_editor_path: NodePath) -> void:
-	_refresh_creature_editor_path()
 	creature_editor_path = new_creature_editor_path
+	_refresh_creature_editor_path()
 
 
 func get_center_creature() -> Creature:

@@ -1,0 +1,109 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=1]
+[ext_resource path="res://src/main/editor/creature/NamePickerPopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/main/ui/button-click.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=4]
+[ext_resource path="res://src/main/editor/creature/creature-name-button.gd" type="Script" id=5]
+[ext_resource path="res://assets/main/ui/candy-button/c3-shine.png" type="Texture" id=6]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=7]
+[ext_resource path="res://assets/main/editor/creature/icon-name.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/ui/candy-button/c3-blank.png" type="Texture" id=10]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/main/ui/candy-button/c3-blank-pressed.png" type="Texture" id=12]
+[ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=13]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=14]
+
+[sub_resource type="GradientTexture2D" id=9]
+resource_local_to_scene = true
+gradient = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 13 )
+shader_param/width = 15.0
+shader_param/white = Color( 1, 1, 1, 1 )
+shader_param/black = Color( 0.149412, 0.135882, 0.15, 1 )
+shader_param/sample_count = 24
+
+[sub_resource type="DynamicFont" id=10]
+resource_local_to_scene = true
+size = 14
+outline_size = 2
+outline_color = Color( 0.149412, 0.135882, 0.15, 1 )
+font_data = ExtResource( 14 )
+
+[node name="CreatureNameButton" type="TextureButton"]
+material = SubResource( 8 )
+margin_left = 235.173
+margin_top = 84.7441
+margin_right = 315.173
+margin_bottom = 148.744
+rect_min_size = Vector2( 80, 64 )
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 10 )
+texture_focused = ExtResource( 9 )
+expand = true
+script = ExtResource( 5 )
+icon = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer"]
+material = SubResource( 7 )
+margin_left = 10.0
+margin_top = 7.0
+margin_right = 60.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 8 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 17.0
+margin_right = 70.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 10 )
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Shine" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.831373 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 3 )
+bus = "Sound Bus"
+
+[node name="HoverSound" parent="." instance=ExtResource( 11 )]
+pause_mode = 2
+stream = ExtResource( 4 )
+volume_db = -12.0
+
+[node name="NamePickerPopup" parent="." instance=ExtResource( 2 )]
+
+[connection signal="name_changed" from="NamePickerPopup" to="." method="_on_NamePickerPopup_name_changed"]

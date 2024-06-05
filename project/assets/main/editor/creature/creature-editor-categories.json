@@ -1,0 +1,225 @@
+{
+  "categories": [
+    {
+      "name": "Face",
+      "allele_combos": [
+        "head_1",
+        "head_2",
+        "head_3",
+        "head_4",
+        "head_5"
+      ],
+      "colors": [
+        "body_rgb",
+        "belly_rgb head_2 head_3 head_4 head_5",
+        "line_rgb"
+      ]
+    },
+    {
+      "name": "Eyes",
+      "allele_combos": [
+        "eye_0",
+        "eye_1",
+        "eye_2",
+        "eye_3",
+        "eye_4",
+        "eye_5",
+        "eye_6",
+        "eye_7",
+        "eye_8"
+      ],
+      "colors": [
+        "eye_rgb_0 eye_1 eye_3 eye_4 eye_5",
+        "eye_rgb_1 eye_1 eye_3 eye_4 eye_5 eye_8"
+      ]
+    },
+    {
+      "name": "Nose",
+      "allele_combos": [
+        "nose_0",
+        "nose_1",
+        "nose_2",
+        "nose_3",
+        "nose_4"
+      ]
+    },
+    {
+      "name": "Mouth",
+      "allele_combos": [
+        "mouth_0",
+        "mouth_1",
+        "mouth_2",
+        "mouth_3",
+        "mouth_4",
+        "mouth_5",
+        "mouth_6",
+        "mouth_7"
+      ],
+      "colors": [
+        "horn_rgb mouth_4 mouth_5"
+      ]
+    },
+    {
+      "name": "Cheeks",
+      "allele_combos": [
+        "cheek_0",
+        "cheek_1",
+        "cheek_2",
+        "cheek_3",
+        "cheek_4"
+      ]
+    },
+    {
+      "name": "Ears",
+      "allele_combos": [
+        "ear_0",
+        "ear_1",
+        "ear_2",
+        "ear_3",
+        "ear_4",
+        "ear_5",
+        "ear_6",
+        "ear_7",
+        "ear_8",
+        "ear_9",
+        "ear_10",
+        "ear_11",
+        "ear_12",
+        "ear_13",
+        "ear_14",
+        "ear_15"
+      ],
+      "colors": [
+        "horn_rgb ear_7 ear_8 ear_10",
+        "hair_rgb ear_8"
+      ]
+    },
+    {
+      "name": "Forehead",
+      "allele_combos": [
+        "horn_0",
+        "horn_1",
+        "horn_2"
+      ],
+      "colors": [
+        "horn_rgb horn_2"
+      ]
+    },
+    {
+      "name": "Hair",
+      "allele_combos": [
+        "hair_0",
+        "hair_1",
+        "hair_2"
+      ],
+      "colors": [
+        "hair_rgb hair_1 hair_2"
+      ]
+    },
+    {
+      "name": "Accessory",
+      "allele_combos": [
+        "accessory_0",
+        "accessory_1",
+        "accessory_2",
+        "accessory_3",
+        "accessory_4",
+        "accessory_5"
+      ],
+      "colors": [
+        "glass_rgb accessory_1 accessory_2",
+        "plastic_rgb accessory_1 accessory_2 accessory_3",
+        "horn_rgb accessory_4 accessory_5"
+      ]
+    },
+    {
+      "name": "Body",
+      "allele_combos": [
+        "body_1 belly_0",
+        "body_1 belly_1",
+        "body_1 belly_2",
+        "body_2 belly_0",
+        "body_2 belly_1",
+        "body_2 belly_2"
+      ],
+      "colors": [
+        "body_rgb",
+        "belly_rgb belly_1 belly_2",
+        "line_rgb"
+      ]
+    },
+    {
+      "name": "Neck",
+      "allele_combos": [
+        "collar_0",
+        "collar_1",
+        "collar_2",
+        "collar_3",
+        "collar_4",
+        "collar_5"
+      ],
+      "colors": [
+        "cloth_rgb collar_1 collar_4",
+        "hair_rgb collar_2 collar_3 collar_5"
+      ]
+    },
+    {
+      "name": "Tail",
+      "allele_combos": [
+        "tail_0",
+        "tail_1",
+        "tail_2",
+        "tail_3",
+        "tail_4",
+        "tail_5",
+        "tail_6",
+        "tail_7"
+      ],
+      "colors": [
+        "belly_rgb tail_2",
+        "hair_rgb tail_4 tail_6"
+      ]
+    },
+    {
+      "name": "Belly",
+      "allele_combos": [
+        "bellybutton_0",
+        "bellybutton_1",
+        "bellybutton_2",
+        "bellybutton_3",
+        "bellybutton_4"
+      ],
+      "operations": [
+        {
+          "id": "fatness_down",
+          "grid": "right -1 0"
+        },
+        {
+          "id": "fatness_up",
+          "grid": "right 0 0"
+        }
+      ]
+    },
+    {
+      "name": "Finish",
+      "operations": [
+        {
+          "id": "name",
+          "grid": "left 0 0"
+        },
+        {
+          "id": "save",
+          "grid": "right 0 0"
+        },
+        {
+          "id": "export",
+          "grid": "right 0 1"
+        },
+        {
+          "id": "import",
+          "grid": "right -1 1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=2]
+[ext_resource path="res://src/main/ui/candy-button/candy-button-collapsible.gd" type="Script" id=3]
+[ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=4]
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=5]
+[ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/ui/candy-button/c3-blank.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/ui/candy-button/c3-blank-pressed.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/ui/candy-button/c3-shine.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/main/ui/button-click.wav" type="AudioStream" id=12]
+
+[sub_resource type="GradientTexture2D" id=9]
+resource_local_to_scene = true
+gradient = ExtResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/width = 15.0
+shader_param/white = Color( 1, 1, 1, 1 )
+shader_param/black = Color( 0.149412, 0.135882, 0.15, 1 )
+shader_param/sample_count = 24
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 50, 50 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Icon:rect_min_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 50, 50 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "collapse"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_min_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 64 ), Vector2( 30, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 64 ), Vector2( 30, 64 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "assign_uncollapsed_textures"
+}, {
+"args": [  ],
+"method": "assign_collapsed_textures"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Icon:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 50, 50 ), Vector2( 25, 25 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Icon:rect_min_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 50, 50 ), Vector2( 25, 25 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "uncollapse"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_min_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 64 ), Vector2( 80, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 64 ), Vector2( 80, 64 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "assign_uncollapsed_textures"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Icon:rect_min_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 25, 25 ), Vector2( 50, 50 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Icon:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 25, 25 ), Vector2( 50, 50 ) ]
+}
+
+[node name="CandyButton" type="TextureButton" groups=["candy_button_collapsibles"]]
+material = SubResource( 8 )
+margin_left = 235.173
+margin_top = 84.7441
+margin_right = 315.173
+margin_bottom = 148.744
+rect_min_size = Vector2( 80, 64 )
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 6 )
+expand = true
+script = ExtResource( 3 )
+
+[node name="Shine" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.831373 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="Icon" type="TextureRect" parent="."]
+visible = false
+material = SubResource( 7 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 15.0
+margin_top = 7.0
+margin_right = 65.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_vertical = 4
+expand = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 12 )
+bus = "Sound Bus"
+
+[node name="HoverSound" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
+stream = ExtResource( 10 )
+volume_db = -12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 10 )
+anims/collapse = SubResource( 11 )
+anims/uncollapse = SubResource( 12 )
+
+[connection signal="item_rect_changed" from="." to="." method="_on_CandyButton_item_rect_changed"]
+[connection signal="resized" from="Icon" to="." method="_on_Icon_resized"]

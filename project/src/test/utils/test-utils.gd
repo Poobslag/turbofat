@@ -160,3 +160,45 @@ func test_weighted_rand_value() -> void:
 		results[Utils.weighted_rand_value(weights_map)] = true
 	
 	assert_has(results, "item-575")
+
+
+func test_is_json_deep_equal_basic() -> void:
+	assert_eq(true, Utils.is_json_deep_equal({"a": "a"}, {"a": "a"}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": "a"}, {"a": "b"}))
+	assert_eq(false, Utils.is_json_deep_equal({"b": "a"}, {"a": "a"}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": "a"}, {"a": "a", "b": "b"}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": "a", "b": "b"}, {"a": "a"}))
+
+
+func test_is_json_deep_equal_data_types() -> void:
+	assert_eq(true, Utils.is_json_deep_equal({"a": 10}, {"a": 10}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": 10}, {"a": 10.0}))
+	assert_eq(true, Utils.is_json_deep_equal({10: "a"}, {10: "a"}))
+	assert_eq(false, Utils.is_json_deep_equal({10: "a"}, {10.0: "a"}))
+
+
+func test_is_json_deep_equal_dictionaries() -> void:
+	assert_eq(true, Utils.is_json_deep_equal({"z": {"a": "a"}}, {"z": {"a": "a"}}))
+	assert_eq(false, Utils.is_json_deep_equal({"z": {"a": "a"}}, {"z": {"a": "b"}}))
+	assert_eq(false, Utils.is_json_deep_equal({"z": {"b": "a"}}, {"z": {"a": "a"}}))
+	assert_eq(false, Utils.is_json_deep_equal({"z": {"a": "a"}}, {"z": {"a": "a", "b": "b"}}))
+	assert_eq(false, Utils.is_json_deep_equal({"z": {"a": "a", "b": "b"}}, {"z": {"a": "a"}}))
+
+
+func test_is_json_deep_equal_arrays() -> void:
+	assert_eq(true, Utils.is_json_deep_equal({"a": ["b"]}, {"a": ["b"]}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": ["b"]}, {"a": []}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": ["b"]}, {"a": ["b", "c"]}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": []}, {"a": ["b"]}))
+	assert_eq(false, Utils.is_json_deep_equal({"a": ["b", "c"]}, {"a": ["b"]}))
+
+
+func test_is_json_deep_equal_recursive() -> void:
+	var dict1 := {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2, 3]}}
+	assert_eq(true, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2, 3]}}))
+	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2]}}))
+	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2, 4]}}))
+	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2, 3, 4]}}))
+	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"e": [1, 2, 3]}}))
+	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2, 3], "f": 5}}))
+	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 5, "e": [1, 2, 3]}}))
