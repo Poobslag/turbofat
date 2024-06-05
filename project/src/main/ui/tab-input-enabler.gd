@@ -41,15 +41,18 @@ func _ready() -> void:
 
 ## Handle left/right inputs while the TabContainer is focused.
 func _unhandled_input(event: InputEvent) -> void:
-	if not focused:
-		return
+	if focused:
+		if event.is_action_pressed("ui_left"):
+			_select_prev_tab()
+		if event.is_action_pressed("ui_right"):
+			_select_next_tab()
 	
-	if event.is_action_pressed("ui_left"):
-		tab_container.current_tab = clamp(tab_container.current_tab - 1, 0, tab_container.get_tab_count() - 1)
-	
-	if event.is_action_pressed("ui_right"):
-		tab_container.current_tab = clamp(tab_container.current_tab + 1, 0, tab_container.get_tab_count() - 1)
-
+	if event.is_action_pressed("prev_tab"):
+		_select_prev_tab()
+		_focus_top_node_in_current_tab()
+	if event.is_action_pressed("next_tab"):
+		_select_next_tab()
+		_focus_top_node_in_current_tab()
 
 ## Refreshes our tab's appearance based on whether or not we're currently focused.
 ##
@@ -61,6 +64,14 @@ func set_focused(new_focused: bool) -> void:
 	focused = new_focused
 	
 	_refresh_focused()
+
+
+func _select_next_tab() -> void:
+	tab_container.current_tab = clamp(tab_container.current_tab + 1, 0, tab_container.get_tab_count() - 1)
+
+
+func _select_prev_tab() -> void:
+	tab_container.current_tab = clamp(tab_container.current_tab - 1, 0, tab_container.get_tab_count() - 1)
 
 
 ## Updates the focus_neighbor fields for the TabContainer, its children, and its neighbours.
@@ -79,11 +90,8 @@ func _refresh_focus_neighbours_for_current_tab() -> void:
 	if tab_container.current_tab == -1:
 		return
 	
-	var top_focusable_node: Control = _find_control_by_func(
-			tab_container.get_child(tab_container.current_tab), self, "_compare_by_min_y")
-	
-	var bottom_focusable_node: Control = _find_control_by_func(
-			tab_container.get_child(tab_container.current_tab), self, "_compare_by_max_y")
+	var top_focusable_node: Control = _find_top_focusable_node_in_current_tab()
+	var bottom_focusable_node: Control = _find_bottom_focusable_node_in_current_tab()
 	
 	## Navigating down from the TabContainer focuses the top item within the TabContainer.
 	if top_focusable_node:
@@ -105,6 +113,27 @@ func _refresh_focus_neighbours_for_current_tab() -> void:
 		if highest_node_in_column:
 			highest_node_in_column.focus_neighbour_top = bottom_focusable_node.get_path()
 
+
+## Focuses the top node in the current tab.
+##
+## When the player uses the keyboard or gamepad to hop between tabs, the currently focused tab becomes invisible and
+## unfocused. This method ensures a visible node remains focused when changing tabs.
+##
+## If no nodes are visible in the current tab, the tab container itself is focused.
+func _focus_top_node_in_current_tab() -> void:
+	var top_focusable_node: Control = _find_top_focusable_node_in_current_tab()
+	if top_focusable_node:
+		top_focusable_node.grab_focus()
+	else:
+		tab_container.grab_focus()
+
+
+func _find_top_focusable_node_in_current_tab() -> Node:
+	return _find_control_by_func(tab_container.get_child(tab_container.current_tab), self, "_compare_by_min_y")
+
+
+func _find_bottom_focusable_node_in_current_tab() -> Node:
+	return _find_control_by_func(tab_container.get_child(tab_container.current_tab), self, "_compare_by_max_y")
 
 ## Searches through all of a node's descendents for the best visible Control according to a custom method.
 ##
