@@ -37,7 +37,7 @@ var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button
 var _gradients_by_button_color := {
 	CandyButtons.ButtonColor.NONE: [
 		preload("res://src/main/ui/candy-button/gradient-none.tres"),
-		preload("res://src/main/ui/candy-button/gradient-none.tres")],
+		preload("res://src/main/ui/candy-button/gradient-none-hover.tres")],
 	CandyButtons.ButtonColor.RED: [
 		preload("res://src/main/ui/candy-button/gradient-red-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-red-hover.tres")],
