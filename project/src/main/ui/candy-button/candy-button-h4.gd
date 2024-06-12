@@ -16,50 +16,11 @@ export (Array, Font) var fonts := [
 	preload("res://src/main/ui/candy-button/candy-h6-font.tres"),
 ]
 
-## Gradient which colors the button bright cyan when the button is focused.
-var _gradient_focused: Gradient = preload("res://src/main/ui/candy-button/gradient-focused.tres")
-
-## Gradient which colors the button bright cyan when the button is focused and hovered.
-var _gradient_focused_hover: Gradient = preload("res://src/main/ui/candy-button/gradient-focused-hover.tres")
-
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
 var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/h4-shine.png")
 
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
 var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/h4-shine-pressed.png")
-
-## Gradients for the various ButtonColor presets.
-##
-## key: (int) Enum from ButtonColor
-## value: (Array) Array with two entries for the gradients for the specified color:
-## 	value[0]: (Gradient) Gradient to use when the button is not hovered.
-## 	value[1]: (Gradient) Gradient to use when the button is hovered.
-var _gradients_by_button_color := {
-	CandyButtons.ButtonColor.NONE: [
-		preload("res://src/main/ui/candy-button/gradient-none.tres"),
-		preload("res://src/main/ui/candy-button/gradient-none-hover.tres")],
-	CandyButtons.ButtonColor.RED: [
-		preload("res://src/main/ui/candy-button/gradient-red-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-red-hover.tres")],
-	CandyButtons.ButtonColor.ORANGE: [
-		preload("res://src/main/ui/candy-button/gradient-orange-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-orange-hover.tres")],
-	CandyButtons.ButtonColor.YELLOW: [
-		preload("res://src/main/ui/candy-button/gradient-yellow-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-yellow-hover.tres")],
-	CandyButtons.ButtonColor.GREEN: [
-		preload("res://src/main/ui/candy-button/gradient-green-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-green-hover.tres")],
-	CandyButtons.ButtonColor.BLUE: [
-		preload("res://src/main/ui/candy-button/gradient-blue-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-blue-hover.tres")],
-	CandyButtons.ButtonColor.INDIGO: [
-		preload("res://src/main/ui/candy-button/gradient-indigo-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-indigo-hover.tres")],
-	CandyButtons.ButtonColor.VIOLET: [
-		preload("res://src/main/ui/candy-button/gradient-violet-normal.tres"),
-		preload("res://src/main/ui/candy-button/gradient-violet-hover.tres")],
-}
 
 ## Textures for the various ButtonShape presets.
 ##
@@ -162,10 +123,10 @@ func _gradient() -> Gradient:
 	var result: Gradient
 	if has_focus():
 		# if the button is focused, we use a bright cyan color
-		result = _gradient_focused_hover if is_hovered() else _gradient_focused
+		result = CandyButtons.GRADIENT_FOCUSED_HOVER if is_hovered() else CandyButtons.GRADIENT_FOCUSED
 	else:
 		# if the button is not focused, we use the user-specified color
-		var gradients: Array = _gradients_by_button_color[color]
+		var gradients: Array = CandyButtons.GRADIENTS_BY_BUTTON_COLOR[color]
 		result = gradients[1] if is_hovered() else gradients[0]
 	return result
 
