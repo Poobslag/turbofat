@@ -41,6 +41,10 @@ func _ready() -> void:
 
 ## Handle left/right inputs while the TabContainer is focused.
 func _unhandled_input(event: InputEvent) -> void:
+	if not get_parent().is_visible_in_tree():
+		# ignore input unless our TabContainer is visible
+		return
+	
 	if focused:
 		if event.is_action_pressed("ui_left"):
 			_select_prev_tab()
