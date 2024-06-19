@@ -722,7 +722,8 @@ margin_top = 80.0
 margin_right = 792.0
 margin_bottom = 480.0
 popup_exclusive = true
-window_title = "Open a File"
+window_title = "Import Creature"
+mode_overrides_title = false
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json" )
@@ -738,6 +739,7 @@ margin_right = 792.0
 margin_bottom = 480.0
 popup_exclusive = true
 window_title = "Export Creature"
+mode_overrides_title = false
 access = 2
 filters = PoolStringArray( "*.json" )
 
