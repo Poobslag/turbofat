@@ -132,8 +132,6 @@ margin_right = 180.0
 margin_bottom = 52.0
 rect_min_size = Vector2( 180, 52 )
 theme = ExtResource( 2 )
-shortcut_in_tooltip = false
-shortcut = ExtResource( 14 )
 text = "Reroll (100%)"
 
 [node name="HSlider" type="HSlider" parent="Ui/Reroll"]
