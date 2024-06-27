@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-01 21:52-0400\n"
-"PO-Revision-Date: 2024-04-30 20:41-0300\n"
+"PO-Revision-Date: 2024-06-27 10:27-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -30,6 +30,8 @@ msgid ""
 "Locate the mysterious Fat Sensei and launch your first successful "
 "restaurant. ...And maybe make some woodland friends along the way!"
 msgstr ""
+"Encuentra al misterioso Fat Sensei y lanza tu primer restaurante exitoso. ..."
+"¡Y tal vez has algunos amigos del bosque por el camino!"
 
 #: project/assets/main/locale/localizables-extracted.py:4
 msgid "Welcome to Turbo Fat"
@@ -41,7 +43,7 @@ msgid ""
 "restaurant! ...Oh wait, there isn't? Never mind then!"
 msgstr ""
 "Aún no terminamos, ¡todavía hay muchísimo trabajo para preparar el "
-"restaurante! ...Oh, espera, ¿No lo hay? ¡Entonces olvídalo!"
+"restaurante! ...Oh, espera, ¿No lo hay? ¡Entonces no dije nada!"
 
 #: project/assets/main/locale/localizables-extracted.py:6
 msgid "Poki Desert"
@@ -52,6 +54,8 @@ msgid ""
 "Oh no, there's nobody here. ....Except for THOSE fifty billion people! Where "
 "did THEY all come from!?"
 msgstr ""
+"Oh no, no hay nadie aquí. ...¡Excepto por ESTOS cincuenta millones de "
+"personas! ¿¡De dónde salieron!?"
 
 #: project/assets/main/locale/localizables-extracted.py:8
 msgid "Cannoli Sandbar"
@@ -62,6 +66,8 @@ msgid ""
 "The wacky council members running this island might be able to help our "
 "restaurant! If they would only stop arguing..."
 msgstr ""
+"Los miembros de este consejo dirigen esta isla, ¡Son medio chiflados pero "
+"pueden ayudar al restaurante! Si tan solo dejaran de pelear..."
 
 #: project/assets/main/locale/localizables-extracted.py:10
 msgid "Merrymellow Marsh"
@@ -72,6 +78,8 @@ msgid ""
 "The quirky chefs at the Merrymellow Marsh location can't seem to do anything "
 "right. They really need our help!"
 msgstr ""
+"Estos chefs peculiares de Ciénaga de Malvaviscos no pueden hacer nada bien. "
+"¡Necesitan nuestra ayuda!"
 
 #: project/assets/main/locale/localizables-extracted.py:12
 msgid "Vega Churn Twelve"
@@ -82,6 +90,8 @@ msgid ""
 "Oops! We had some plans to open a restaurant here, but we changed our "
 "mind. ...Maybe on our next adventure!"
 msgstr ""
+"¡Ups! Pensábamos abrir un restaurante en este lugar, pero cambiamos de "
+"idea. ...¡Tal vez en nuestra próxima aventura!"
 
 #: project/assets/main/locale/localizables-extracted.py:14
 msgid "Chocolava Canyon"
@@ -92,6 +102,8 @@ msgid ""
 "Can we complete the ultimate challenge to obtain the coveted 'Chef Of The "
 "Year' plaque!? All our hopes are riding on this!"
 msgstr ""
+"¿¡Podremos completar el último reto para obtener la codiciada placa \"Chef "
+"del año\"!? ¡Todas nuestras esperanzas están en ti!"
 
 #: project/assets/main/locale/localizables-extracted.py:16
 msgid "Starberry Mountain"
@@ -102,6 +114,8 @@ msgid ""
 "A slew of insurmountable challenges sure to drive even the most seasoned "
 "chefs to the brink of insanity. The true Turbo Fat starts here!"
 msgstr ""
+"Un montón de retos insuperables que de seguro volverán loco incluso al chef "
+"más condimentado. ¡El verdadero Turbo Fat comienza aquí!"
 
 #: project/assets/main/locale/localizables-extracted.py:18
 #: project/src/main/ui/menu/MainMenu.tscn:97
@@ -209,7 +223,8 @@ msgstr "Algo Extra"
 #: project/assets/main/locale/localizables-extracted.py:113
 msgid "Some fun little bonuses at the bottom. But you have to work for it!"
 msgstr ""
-"Algunos pequeños extras en el fondo. ¡Pero tiene que trabajar para llegar!"
+"Algunos pequeños extras en el fondo. ¡Pero hay que trabajar para llegar a "
+"ellos!"
 
 #: project/assets/main/locale/localizables-extracted.py:40
 msgid "A Little Garbage"
@@ -871,7 +886,7 @@ msgstr "Palitos de Mozzarella"
 
 #: project/assets/main/locale/localizables-extracted.py:209
 msgid "Speak softly and eat a big mozzarella stick."
-msgstr "Habla suavemente y lleva un gran palo de mozzarella."
+msgstr "De tal palo, tal mozzarella."
 
 #: project/assets/main/locale/localizables-extracted.py:210
 msgid "Your New Onion Friend"
@@ -1131,11 +1146,11 @@ msgstr "Tulipán"
 
 #: project/assets/main/locale/localizables-extracted.py:273
 msgid "It belongs in a museum! Or maybe on the refrigerator."
-msgstr "¡Es una pieza de museo! O tal vez de un refrigerador."
+msgstr "¡Merece estar en un museo! O tal vez en un refrigerador."
 
 #: project/assets/main/locale/localizables-extracted.py:274
 msgid "Tunnel Snakes"
-msgstr "Serpientes de Tunel"
+msgstr "Serpientes de Túnel"
 
 #: project/assets/main/locale/localizables-extracted.py:275
 msgid "Asparagus. Why'd it have to be asparagus?"
@@ -1496,7 +1511,7 @@ msgid ""
 "Learn how combos work, and learn to make snack boxes and cake boxes during "
 "your combos."
 msgstr ""
-"Aprenda como funcionan los combos y a hacer cajas de snacks y torta durante "
+"Aprenda como funcionan los combos y a hacer cajas de snacks y tortas durante "
 "tus combos."
 
 #: project/assets/main/locale/localizables-extracted.py:350
@@ -1518,34 +1533,38 @@ msgstr "Aprenda como funciona la mecánica de aplastar piezas y cuando usarla."
 #: project/assets/main/locale/localizables-extracted.py:354
 msgid ""
 "And so #player# and Fat Sensei proceeded to the Zagma gift shop, where "
-"#player# purchased their very own Zagma Chef Of The Year plaque for ¥3000."
+"#player# purchased their very own Zagma Chef Of The Year plaque for $3000."
 msgstr ""
+"Y así, #player# y Fat Sensei fueron a la tienda de regalos de Zagma, donde "
+"#player# compró su propia placa de Zagma Chef del Año por $3000."
 
 #: project/assets/main/locale/localizables-extracted.py:355
 msgid ""
-"Fat Sensei refused to help pay for the plaque. \"¥3000 is a considerable "
+"Fat Sensei refused to help pay for the plaque. \"$3000 is a considerable "
 "investment, it's best you do it yourself.\""
 msgstr ""
+"Fat Sensei se negó a ayudar con el pago de la placa. \"$3000 es una "
+"inversión considerable, es mejor que lo hagas solo.\""
 
 #: project/assets/main/locale/localizables-extracted.py:356
 msgid "Hooray! Yay! You did it! Wow!!!"
-msgstr ""
+msgstr "¡Hurra! ¡Yay! ¡Lo hiciste! ¡¡¡Wow!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:357
 msgid "Chef of the year? Wow, that's amazing!"
-msgstr ""
+msgstr "¿Chef del año? ¡Wow, es genial!"
 
 #: project/assets/main/locale/localizables-extracted.py:358
 msgid "Wow, they gave you a plaque and everything!?"
-msgstr ""
+msgstr "¿¡Wow, te dieron una placa y todo!?"
 
 #: project/assets/main/locale/localizables-extracted.py:359
 msgid "I bought it in the gift shop..."
-msgstr ""
+msgstr "La compré en la tienda de regalos..."
 
 #: project/assets/main/locale/localizables-extracted.py:360
 msgid "Yaaaay! New plaque! New plaque!!"
-msgstr ""
+msgstr "¡Yaaaay! ¡Nueva placa! ¡¡Nueva placa!!"
 
 #: project/assets/main/locale/localizables-extracted.py:361
 msgid "You seem confused. Are you... looking for something?"
@@ -1722,610 +1741,686 @@ msgid ""
 "It's taking all my energy just to sit up, I don't know HOW I'll manage the "
 "walk home..."
 msgstr ""
-"Estoy usando toda mi energía solo para pararme, no se COMO voy a poder "
+"Estoy usando toda mi energía solo para sentarme derecho, no se COMO voy a "
 "caminar a casa..."
 
 #: project/assets/main/locale/localizables-extracted.py:387
 msgid "I'm not taking you home to your tree, so don't even ask."
-msgstr ""
+msgstr "No te voy a llevar a tu casa en el árbol, así que ni preguntes."
 
 #: project/assets/main/locale/localizables-extracted.py:388
 msgid ""
 "Oh no worries, I've engineered a complex system of satellites, receivers, "
 "remotes and contraptions to take me home."
 msgstr ""
+"Oh no te preocupes, he diseñado un sistema de satélites, recibidores remotos "
+"y artilugios para que me lleven a casa."
 
 #: project/assets/main/locale/localizables-extracted.py:389
 msgid "Oh?"
-msgstr ""
+msgstr "¿Oh?"
 
 #: project/assets/main/locale/localizables-extracted.py:390
 msgid ""
 "Why with just a few flicks on this touch screen, a motorized vehicle can "
 "pick me up in oh, let's see..."
 msgstr ""
+"Con solo un par de toques en esta pantalla táctil, un vehículo motorizado va "
+"a venir a buscarme, veamos..."
 
 #: project/assets/main/locale/localizables-extracted.py:391
 msgid "About eight to twelve minutes. Oh, my driver's name is Logan!"
-msgstr ""
+msgstr "Viene de 8 a 12 minutos. ¡Oh, el conductor se llama Logan!"
 
 #: project/assets/main/locale/localizables-extracted.py:392
 msgid "You didn't invent the internet."
-msgstr ""
+msgstr "No inventaste el Internet."
 
 #: project/assets/main/locale/localizables-extracted.py:393
 msgid "You didn't invent cell phones."
-msgstr ""
+msgstr "No inventaste los teléfonos celulares."
 
 #: project/assets/main/locale/localizables-extracted.py:394
 msgid "You didn't invent the digital taxi."
-msgstr ""
+msgstr "No inventaste el taxi digital."
 
 #: project/assets/main/locale/localizables-extracted.py:395
 msgid "You're nuts!"
-msgstr ""
+msgstr "¡Tus ideas vuelan alto!"
 
 #: project/assets/main/locale/localizables-extracted.py:396
 msgid "Ha ha. Nice try, Dusty. You didn't invent the internet."
-msgstr ""
+msgstr "Ja ja. Bue intento, Dusty. No inventaste el Internet."
 
 #: project/assets/main/locale/localizables-extracted.py:397
 #: project/assets/main/locale/localizables-extracted.py:400
 #: project/assets/main/locale/localizables-extracted.py:403
 msgid "...Didn't I?"
-msgstr ""
+msgstr "...¿Estás seguro?"
 
 #: project/assets/main/locale/localizables-extracted.py:399
 msgid "Ha ha. Nice try, Dusty. You didn't invent cell phones."
-msgstr ""
+msgstr "Ja ja. Bue intento, Dusty. No inventaste los teléfonos celulares."
 
 #: project/assets/main/locale/localizables-extracted.py:402
 msgid "Ha ha. Nice try, Dusty. You didn't invent the digital taxi."
-msgstr ""
+msgstr "Ja ja. Bue intento, Dusty. No inventaste el taxi digital."
 
 #: project/assets/main/locale/localizables-extracted.py:405
 msgid "Dusty, you're totally nuts. Get it? Nuts! Ha ha ha~"
-msgstr ""
+msgstr "Dusty, tus ideas vuelan alto. ¿Entiendes? ¡Ardilla, volar! Jajaja~"
 
 #: project/assets/main/locale/localizables-extracted.py:406
 msgid "For your benefit, I'm going to pretend I didn't hear that remark."
-msgstr ""
+msgstr "Por tu beneficio, voy a pretender que no escuché lo que dijiste."
 
 #: project/assets/main/locale/localizables-extracted.py:408
 msgid ""
 "Dusty, is that you? From Lemony Thickets? ...You're an awfully long way from "
 "your tree!"
 msgstr ""
+"¿Dusty, eres tú? ¿De Bosque Limonesco? ...¡Estás tremendamente lejos de tu "
+"árbol!"
 
 #: project/assets/main/locale/localizables-extracted.py:409
 msgid "Have we met? You look oddly familiar..."
-msgstr ""
+msgstr "¿Nos conocemos? Me pareces muy familiar..."
 
 #: project/assets/main/locale/localizables-extracted.py:410
 msgid ""
 "You don't remember? ...I was one of the squirrels you fed when you were just "
 "getting started!"
 msgstr ""
+"¿No te acuerdas? ...¡Era una de las ardillas que le diste de comer cuando "
+"recién comenzaste! "
 
 #: project/assets/main/locale/localizables-extracted.py:411
 msgid "Although now that you mention it, that does feel like eons ago..."
-msgstr ""
+msgstr "Ahora que lo mencionas, se siente como si fue hace eones..."
 
 #: project/assets/main/locale/localizables-extracted.py:412
 msgid ""
 "Oh, right! You're Dusty, aren't you? From Lemony Thickets. ...You're an "
 "awfully long way from your tree!"
 msgstr ""
+"¡Oh cierto! Eres Dusty, ¿no? De Bosque Limonesco. ...¡Estás tremendamente "
+"lejos de tu árbol!"
 
 #: project/assets/main/locale/localizables-extracted.py:413
 msgid ""
 "Yes well, I found myself rather hungry, and you never come to visit your "
 "squirrel friends anymore!"
 msgstr ""
+"Bueno, sí, es que me dio hambre, ¡y ya no visitas a tus amigas las ardillas!"
 
 #: project/assets/main/locale/localizables-extracted.py:414
 msgid "Hey, I just visited you -"
-msgstr ""
+msgstr "Hey, pero si te visité -"
 
 #: project/assets/main/locale/localizables-extracted.py:415
 msgid "Five minutes ago"
-msgstr ""
+msgstr "Hace cinco minutos"
 
 #: project/assets/main/locale/localizables-extracted.py:416
 #: project/assets/main/locale/localizables-extracted.py:417
 msgid "Yesterday"
-msgstr ""
+msgstr "Ayer"
 
 #: project/assets/main/locale/localizables-extracted.py:418
 msgid "A few weeks ago"
-msgstr ""
+msgstr "Hace unas semanas"
 
 #: project/assets/main/locale/localizables-extracted.py:419
 msgid "A few months ago"
-msgstr ""
+msgstr "Hace unos meses"
 
 #: project/assets/main/locale/localizables-extracted.py:420
 msgid "A few eons ago"
-msgstr ""
+msgstr "Hace algunos eones"
 
 #: project/assets/main/locale/localizables-extracted.py:421
 msgid "I visited you five minutes ago!"
-msgstr ""
+msgstr "¡Te visité hace cinco minutos!"
 
 #: project/assets/main/locale/localizables-extracted.py:422
 #: project/assets/main/locale/localizables-extracted.py:423
 msgid "I visited you yesterday!"
-msgstr ""
+msgstr "¡Te visité ayer!"
 
 #: project/assets/main/locale/localizables-extracted.py:424
 msgid ""
 "Hmph well. I don't want to bore you with the details of squirrel biology, "
 "but we have to eat nearly every day."
 msgstr ""
+"Hmph está bien. No te quiero aburrir con detalles sobre la biología de las "
+"ardillas, pero tenemos que comer casi todos los días."
 
 #: project/assets/main/locale/localizables-extracted.py:425
 msgid "I visited you a few weeks ago!"
-msgstr ""
+msgstr "¡Te visité hace unas semanas!"
 
 #: project/assets/main/locale/localizables-extracted.py:426
 msgid ""
 "Hmph well. I don't want to bore you with the details of squirrel biology, "
 "but we have to eat nearly every week."
 msgstr ""
+"Hmph está bien. No te quiero aburrir con detalles sobre la biología de las "
+"ardillas, pero tenemos que comer casi todas las semanas."
 
 #: project/assets/main/locale/localizables-extracted.py:427
 msgid "I visited you a month or two ago!"
-msgstr ""
+msgstr "¡Te visité hace uno o dos meses!"
 
 #: project/assets/main/locale/localizables-extracted.py:428
 msgid ""
 "Hmph well. I don't want to bore you with the details of squirrel biology, "
 "but we have to eat nearly every month."
 msgstr ""
+"Hmph está bien. No te quiero aburrir con detalles sobre la biología de las "
+"ardillas, pero tenemos que comer casi todos los meses."
 
 #: project/assets/main/locale/localizables-extracted.py:429
 msgid "I visited you ehh... a few eons ago!"
-msgstr ""
+msgstr "¡Te visité hace ehh... algunos eones!"
 
 #: project/assets/main/locale/localizables-extracted.py:430
 msgid ""
 "Hmph well. I don't want to bore you with the details of squirrel biology, "
 "but we have to eat nearly every eon."
 msgstr ""
+"Hmph está bien. No te quiero aburrir con detalles sobre la biología de las "
+"ardillas, pero tenemos que comer casi todos los eones."
 
 #: project/assets/main/locale/localizables-extracted.py:431
 msgid "Sounds cumbersome."
-msgstr ""
+msgstr "Suena complicado."
 
 #: project/assets/main/locale/localizables-extracted.py:432
 msgid "You don't know the half of it..."
-msgstr ""
+msgstr "No te das una idea..."
 
 #: project/assets/main/locale/localizables-extracted.py:433
 msgid ""
 "Oh yes, of course! Of course you did. So anyway for my meal, I'll have three "
 "chocolate puffs."
 msgstr ""
+"¡Sí, por supuesto! Claro que lo hiciste. Como sea, quiero ordenar tres "
+"tortitas de chocolate."
 
 #: project/assets/main/locale/localizables-extracted.py:434
 msgid "Which, I presume, comes with a complimentary side of BALD-FACED LIES."
-msgstr ""
+msgstr "Lo cual, presumo, viene acompañado con una porción de MENTIRAS OBVIAS."
 
 #: project/assets/main/locale/localizables-extracted.py:435
 msgid ""
 "Bald-faced lies. Yes of course! I'll go put in your order... you handsome "
 "devil."
-msgstr ""
+msgstr "Mentiras obvias, ¡Por supuesto! Ya te lo hago... Ardilla Diablilla."
 
 #: project/assets/main/locale/localizables-extracted.py:437
 msgid "Oh Wendrea, it's you! From the Zagma Chef Of The Year committee."
-msgstr ""
+msgstr "¡Oh Wendrea, eres tú! De los jueces de Zagma Chef Del Año."
 
 #: project/assets/main/locale/localizables-extracted.py:438
 msgid "Hmm well, I hope for my sake you're enjoying your food! Ha ha~"
 msgstr ""
+"Hmm ¡Bueno, espero que, por mi bien, estés disfrutando tu comida! Jaja~"
 
 #: project/assets/main/locale/localizables-extracted.py:439
 msgid "Hmph, it tastes like a microwave."
-msgstr ""
+msgstr "Hmph, sabe a microondas."
 
 #: project/assets/main/locale/localizables-extracted.py:440
 msgid "We don't use microwaves... I cooked that on a stove!"
-msgstr ""
+msgstr "Nosotros no usamos microondas... ¡Lo cociné en una cocina!"
 
 #: project/assets/main/locale/localizables-extracted.py:441
 msgid ""
 "Well then, you might take a closer look at your stove. Because I think your "
 "stove is a microwave."
 msgstr ""
+"Entonces, creo que necesitas mirar de cerca a tu cocina. Porque creo que tu "
+"cocina es un microondas."
 
 #: project/assets/main/locale/localizables-extracted.py:442
 msgid "Do... Did you want me to make you something else?"
-msgstr ""
+msgstr "¿Quieres... que te haga otra cosa?"
 
 #: project/assets/main/locale/localizables-extracted.py:443
 msgid "Nah, don't trouble yourself. I'll just take the microcheck."
-msgstr ""
+msgstr "Nah, no te molestes. Solo dame la microcuenta."
 
 #: project/assets/main/locale/localizables-extracted.py:444
 msgid "Microcheck?"
-msgstr ""
+msgstr "¿Microcuenta?"
 
 #: project/assets/main/locale/localizables-extracted.py:445
 msgid ""
 "Fat Sensei, I can't believe you're already on the Zagma Chef Of The Year "
 "committee!"
 msgstr ""
+"¡Fat Sensei, no puedo creer que eres uno de los jueces de Zagma Chef Del Año!"
 
 #: project/assets/main/locale/localizables-extracted.py:446
 msgid "Mmm?"
-msgstr ""
+msgstr "¿Mmm?"
 
 #: project/assets/main/locale/localizables-extracted.py:447
 msgid ""
 "I mean... is that just something you volunteered for? Can anybody do it?"
 msgstr ""
+"Me refiero... ¿Es algo en lo que eres voluntario? ¿Cualquiera puede hacerlo?"
 
 #: project/assets/main/locale/localizables-extracted.py:448
 msgid ""
 "Oh no no, it requires decades of training, personal study, grueling trials..."
 msgstr ""
+"Oh no no, requiere décadas de entrenamiento, estudio personal, pruebas "
+"agotadoras..."
 
 #: project/assets/main/locale/localizables-extracted.py:449
 msgid ""
 "Culinary versatility, immaculate grooming habits, not to mention the "
 "prerequisite of being renowned in the world of gourmet!"
 msgstr ""
+"Versatilidad culinaria, higiene perfecta, ¡y sin mencionar el prerrequisito "
+"de ser un renombrado miembro del mundo gourmet!"
 
 #: project/assets/main/locale/localizables-extracted.py:450
 msgid "It's one of the most prestigious honors a chef can aspire to."
-msgstr ""
+msgstr "Es uno de los honores más prestigiosos que un chef puede aspirar."
 
 #: project/assets/main/locale/localizables-extracted.py:451
 msgid "Well... if it's so prestigious, why don't we put THAT on the plaque?"
-msgstr ""
+msgstr "Bueno... Si es tan prestigioso, ¿por qué no ponemos ESO en la placa?"
 
 #: project/assets/main/locale/localizables-extracted.py:452
 msgid "That's way easier"
-msgstr ""
+msgstr "Así es más fácil"
 
 #: project/assets/main/locale/localizables-extracted.py:453
 msgid "That's way more impressive"
-msgstr ""
+msgstr "Así es más impresionante"
 
 #: project/assets/main/locale/localizables-extracted.py:454
 msgid "Our plaque could say..."
-msgstr ""
+msgstr "Nuestra placa podría decir..."
 
 #: project/assets/main/locale/localizables-extracted.py:455
 msgid "Then I wouldn't have to go through all of this chef of the year stuff!"
-msgstr ""
+msgstr "¡Entonces no tendría que hacer todas estas cosas del chef del año!"
 
 #: project/assets/main/locale/localizables-extracted.py:456
 msgid ""
 "That's way better than being one of a dozen restaurants with an identical "
 "plaque!"
 msgstr ""
+"¡Eso es más impresionante que ser uno de muchos restaurantes con la misma "
+"placa!"
 
 #: project/assets/main/locale/localizables-extracted.py:457
 msgid ""
 "Our plaque could say, \"Our chef is so good, they INVENTED chef of the year!"
 "\""
 msgstr ""
+"Nuestra placa podría decir, \"¡Nuestro chef es tan bueno, que INVENTÓ el "
+"chef del año!\""
 
 #: project/assets/main/locale/localizables-extracted.py:458
 msgid ""
 "Ohh, I don't know. If we hang up a flattering plaque like that, people might "
 "assume we're talking about you!"
 msgstr ""
+"Ohh, no se. ¡Si colgamos una placa tan privilegiada como esa, la gente "
+"podría pensar que estamos hablando de ti!"
 
 #: project/assets/main/locale/localizables-extracted.py:459
 msgid "I wouldn't want it to go to your head."
-msgstr ""
+msgstr "No quiero que se suba a la cabeza."
 
 #: project/assets/main/locale/localizables-extracted.py:460
 msgid "Oh. I guess."
-msgstr ""
+msgstr "Oh. Supongo."
 
 #: project/assets/main/locale/localizables-extracted.py:461
 msgid "We could put up a plaque that applies to both of us! \"Adequate Chef?\""
 msgstr ""
+"¡Podríamos poner una placa que aplique a ambos! ¿\"Suficiente para ser "
+"Chef\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:463
 msgid "\"Unmotivated Chef?\" \"Too Lazy To Get Their Own Plaque Chef?\""
 msgstr ""
+"¿\"Chef sin Motivación\"? ¿\"Muy vago para conseguir su propia placa de "
+"Chef\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:464
 msgid "Okay! Okay!! I get it..."
-msgstr ""
+msgstr "¡Bueno! ¡¡Bueno!! Ya entendí..."
 
 #: project/assets/main/locale/localizables-extracted.py:465
 #: project/assets/main/locale/localizables-extracted.py:466
 msgid ""
 "Oh hey, it's Bart! Our chef from Cannoli Sandbar! What are you doing here?"
-msgstr ""
+msgstr "¡Oh hey, es Bart! ¡Nuestro chef de Cannoli Sandbar! ¿Qué haces aquí?"
 
 #: project/assets/main/locale/localizables-extracted.py:467
 msgid "I'm your... chef?"
-msgstr ""
+msgstr "¿Yo soy tu... chef?"
 
 #: project/assets/main/locale/localizables-extracted.py:468
 msgid "Are you two from the future, or did I jump timelines again?"
-msgstr ""
+msgstr "¿Ustedes dos son del futuro, o salté líneas temporales otra vez?"
 
 #: project/assets/main/locale/localizables-extracted.py:469
 msgid "Ah-hahaha. I'll... talk to you about it later."
-msgstr ""
+msgstr "A-jajajaa. Creo que... te hablaré de eso luego."
 
 #: project/assets/main/locale/localizables-extracted.py:470
 msgid ""
 "Well. I came under the assumption that there was a second, more successful "
 "restaurant chain named \"Turbo Fat\"..."
 msgstr ""
+"Bueno. Vine aquí con la asunción de que había una segunda y más exitosa "
+"cadena de restaurantes llamada \"Turbo Fat\"..."
 
 #: project/assets/main/locale/localizables-extracted.py:471
 msgid ""
 "And that this alternate Turbo Fat restaurant had opened a location at this "
 "venue."
 msgstr ""
+"Y que este restaurante de Turbo Fat alterno abrió en un lugar más "
+"competitivo."
 
 #: project/assets/main/locale/localizables-extracted.py:472
 msgid ""
 "...As farfetched as it sounds, it seemed more likely than you two reaching "
 "this level of success."
 msgstr ""
+"...Por más exagerado que suene, parecía muy probable que ustedes dos "
+"alcancen este nivel de éxito."
 
 #: project/assets/main/locale/localizables-extracted.py:473
 msgid ""
 "It's nothing personal, it's just you two always struck me as more of the "
 "underdog type."
 msgstr ""
+"No lo tomen personal, pero pensé que ustedes dos eran algo como la última "
+"opción al elegir un restaurante."
 
 #: project/assets/main/locale/localizables-extracted.py:474
 msgid "Underdog? That's a compliment!"
-msgstr ""
+msgstr "¿Última opción? ¡Eso es un cumplido!"
 
 #: project/assets/main/locale/localizables-extracted.py:475
 msgid "It's like the saying goes..."
-msgstr ""
+msgstr "Como dice el dicho..."
 
 #: project/assets/main/locale/localizables-extracted.py:476
 msgid "We're not underdogs!"
-msgstr ""
+msgstr "¡No somos la última opción!"
 
 #: project/assets/main/locale/localizables-extracted.py:477
 msgid "H-hey! We're not underdogs. We're... plucky up-and-comers!"
 msgstr ""
+"¡Hey! No somos una última opción. Somos... ¡La opción segura cuando no hay "
+"más opciones!"
 
 #: project/assets/main/locale/localizables-extracted.py:478
 msgid "Plucky up-and-comer!? Hmph. I didn't agree to this."
-msgstr ""
+msgstr "Hmph. No me gustó como sonó eso."
 
 #: project/assets/main/locale/localizables-extracted.py:479
 msgid ""
 "Okay then. ...We're one plucky up-and-comer, and one... frumpy dump-and-"
 "downer."
-msgstr ""
+msgstr "Bueno, está bien. ...Los últimos serán los primeros."
 
 #: project/assets/main/locale/localizables-extracted.py:480
 msgid "Yes, that's better. ... ...I think."
-msgstr ""
+msgstr "Sí, eso es mejor. ... ...Creo."
 
 #: project/assets/main/locale/localizables-extracted.py:481
 msgid ""
 "Well... since when is being an underdog a bad thing!? It's like they say "
 "uhh... every underdog has its under-day."
 msgstr ""
+"¿¡Desde cuándo ser la última opciones algo malo!? Es como decir uhh... Que "
+"no hay que preparar postres con comida vencida."
 
 #: project/assets/main/locale/localizables-extracted.py:482
 #: project/assets/main/locale/localizables-extracted.py:486
 msgid "They... don't say that."
-msgstr ""
+msgstr "Emm... Por favor, no digas eso."
 
 #: project/assets/main/locale/localizables-extracted.py:483
 #: project/assets/main/locale/localizables-extracted.py:487
 msgid "It's an underdog eat underdog world out there!"
-msgstr ""
+msgstr "¡Los clientes nunca se quejaron de mis postres!"
 
 #: project/assets/main/locale/localizables-extracted.py:484
 #: project/assets/main/locale/localizables-extracted.py:488
 msgid "Please stop."
-msgstr ""
+msgstr "Por favor, ya no hables."
 
 #: project/assets/main/locale/localizables-extracted.py:485
 msgid ""
 "Well it's just like that saying goes... every underdog has its under-day."
 msgstr ""
+"Bueno, es como dice el dicho... Hasta la comida vencida tiene sus usos."
 
 #: project/assets/main/locale/localizables-extracted.py:489
 msgid ""
 "Anyway I see your success didn't come without a cost. ...Why is there cheese "
 "in this brownie?"
 msgstr ""
+"Como sea, veo que su éxito no vino con ningún costo. ...¿Por qué hay queso "
+"en este brownie?"
 
 #: project/assets/main/locale/localizables-extracted.py:490
 msgid "Oh it's like they say mmm..."
-msgstr ""
+msgstr "Oh, es como dice el dicho mmm..."
 
 #: project/assets/main/locale/localizables-extracted.py:491
 msgid "\"When in Roquefort, do as the Roque-mans do.\""
-msgstr ""
+msgstr "\"El Roquefort, mientras más viejo y echado a perder, mejor.\""
 
 #: project/assets/main/locale/localizables-extracted.py:492
 msgid "I... ...see."
-msgstr ""
+msgstr "Ya... ...veo."
 
 #: project/assets/main/locale/localizables-extracted.py:493
 msgid "(Psst... I'm not going to have to add cheese to my menu too, am I?)"
-msgstr ""
+msgstr "(Psst... No voy a tener que agregar queso a mi menú, ¿no?)"
 
 #: project/assets/main/locale/localizables-extracted.py:494
 msgid "(No, that's okay...)"
-msgstr ""
+msgstr "(No, está bien...)"
 
 #: project/assets/main/locale/localizables-extracted.py:495
 msgid "Oh hello Wendrea! You're back."
-msgstr ""
+msgstr "¡Oh hola Wendrea! Volviste."
 
 #: project/assets/main/locale/localizables-extracted.py:496
 msgid ""
 "Yes yes, I thought I'd help myself to more of your... microwave cuisine."
-msgstr ""
+msgstr "Si si, pensé en comer algo más de tu... cocina de microondas."
 
 #: project/assets/main/locale/localizables-extracted.py:497
 msgid "I'll put YOU in a microwave..."
-msgstr ""
+msgstr "Te voy a poner A TI en un microondas..."
 
 #: project/assets/main/locale/localizables-extracted.py:498
 msgid "Okay, no microwaves this time"
-msgstr ""
+msgstr "Okay, sin microondas esta vez"
 
 #: project/assets/main/locale/localizables-extracted.py:499
 msgid "We don't use a microwave"
-msgstr ""
+msgstr "No usamos un microondas"
 
 #: project/assets/main/locale/localizables-extracted.py:500
 msgid ""
 "I don't know what you're tasting but we definitely don't use a microwave."
 msgstr ""
+"No se qué es lo que probaste antes, pero nosotros definitivamente no usamos "
+"un microondas."
 
 #: project/assets/main/locale/localizables-extracted.py:501
 msgid ""
 "Tsk I ain't talking about your kitchen, I'm talking about YOU, microwave!!!"
 msgstr ""
+"Tsk, no estoy hablando de tu cocina, estoy hablando de TI, ¡¡¡Microondas!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:502
 msgid "Mmmm okay, I'll make doubly sure no microwaves touch your food."
 msgstr ""
+"Mmmm bueno, voy a doble asegurarme de que ningún microondas toque su comida."
 
 #: project/assets/main/locale/localizables-extracted.py:503
 msgid ""
 "Tsk 'course there's gonna be a microwave touchin' my food if you're making "
 "it, microwave!"
 msgstr ""
+"¡Tsk, por supuesto un microondas va a tocar mi comida, si es que tu la "
+"haces, microondas!"
 
 #: project/assets/main/locale/localizables-extracted.py:504
 msgid "I've like to throw YOU inside a microwave..."
-msgstr ""
+msgstr "Me encantaría tirarte A TI dentro de un microondas..."
 
 #: project/assets/main/locale/localizables-extracted.py:505
 msgid "Ohhhhh heh heh heh. Whyyy I bet you say that to all the microwaves."
 msgstr ""
+"Ohhhhh heh heh heh. Bueno, apuesto que le dices eso a todos los microondas."
 
 #: project/assets/main/locale/localizables-extracted.py:506
 msgid "Y'know you remind me of myself, back when I was a young microwave."
-msgstr ""
+msgstr "Sabes algo, me recuerdas a mi mismo, cuando era un pequeño microondas."
 
 #: project/assets/main/locale/localizables-extracted.py:507
 msgid ""
 "Maybe if you wave less and micro more, you might learn a micro something "
 "outside of your microwave world."
 msgstr ""
+"Tal vez con más ondas y menos micro, creo que podrías aprender algunas micro "
+"cosas de este microondas mundo."
 
 #: project/assets/main/locale/localizables-extracted.py:508
 msgid "I'll... just get your food!"
-msgstr ""
+msgstr "¡Creo que... solo voy a traerte la comida!"
 
 #: project/assets/main/locale/localizables-extracted.py:509
 msgid "Wowww look at that! It's JUST like the restaurant in Lemony Thickets!"
-msgstr ""
+msgstr "¡Wowww mira esto! ¡Es IGUAL al restaurante en Bosque Limonesco!"
 
 #: project/assets/main/locale/localizables-extracted.py:510
 msgid "Oh hi Tunathy! Yeah, everything's still following all of your designs!"
-msgstr ""
+msgstr "¡Oh hola Tunathy! ¡Sí, seguimos usando tus diseños!"
 
 #: project/assets/main/locale/localizables-extracted.py:511
 msgid "All the tables, the chairs, the decorations..."
-msgstr ""
+msgstr "Todas las mesas, las sillas, las decoraciones..."
 
 #: project/assets/main/locale/localizables-extracted.py:512
 msgid "Wow, and you have how many locations now?"
-msgstr ""
+msgstr "Wow, ¿y cuántas sucursales tienen ahora?"
 
 #: project/assets/main/locale/localizables-extracted.py:513
 msgid ""
 "Maybe I should have charged more money... The sign even looks the same! "
 "\"Turbo Fat\"."
 msgstr ""
+"Creo que debí de cobrar un poco más... ¡Hasta el cartel sigue igual! \"Turbo "
+"Fat\"."
 
 #: project/assets/main/locale/localizables-extracted.py:514
 msgid "Hmph yes, and it's thanks to you that we're stuck with that dumb name!"
-msgstr ""
+msgstr "¡Hmph sí, y es gracias a ti que seguimos con este nombre tonto!"
 
 #: project/assets/main/locale/localizables-extracted.py:515
 msgid "Ack!!!"
-msgstr ""
+msgstr "¡¡¡Ack!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:516
 msgid "Maybe we should charge YOU more money!"
-msgstr ""
+msgstr "¡Creo que TU nos tienes que devolver el dinero!"
 
 #: project/assets/main/locale/localizables-extracted.py:517
 msgid "Please, I already gave you your money back!"
-msgstr ""
+msgstr "¡Por favor, ya les devolví el dinero!"
 
 #: project/assets/main/locale/localizables-extracted.py:518
 msgid ""
 "Hmph well that isn't enough! Give me... Give me #player.possessive# money "
 "too!!"
-msgstr ""
+msgstr "¡Hmph no es suficiente! Dame... ¡¡Dame también el dinero de #player#!!"
 
 #: project/assets/main/locale/localizables-extracted.py:519
 msgid "#player#, can you, umm... If you have some money I could maybe..."
-msgstr ""
+msgstr "#player#, podrías, umm... Si tienes algo de dinero extra podría..."
 
 #: project/assets/main/locale/localizables-extracted.py:520
 msgid "Ohhhhhh..."
-msgstr ""
+msgstr "Ohhhhhh..."
 
 #: project/assets/main/locale/localizables-extracted.py:521
 msgid "Oh wow, Dreadhark and Goris! You're a long way from Poki Desert."
-msgstr ""
+msgstr "¡Oh wow, Dreadhark y Goris! Están muy lejos de Desierto Poki."
 
 #: project/assets/main/locale/localizables-extracted.py:522
 msgid "...What are you doing here? Aren't you missing Desert Q?"
 msgstr ""
+"...¿Qué están haciendo aquí? ¿No se están perdiendo de la Ola del Desierto?"
 
 #: project/assets/main/locale/localizables-extracted.py:523
 msgid "Aww man, you can't MISS Desert Q. Desert Q is everywhere!"
 msgstr ""
+"No, no puedes PERDER la Ola del Desierto. ¡La Ola del Desierto está en todos "
+"lados!"
 
 #: project/assets/main/locale/localizables-extracted.py:524
 msgid "Umm, it's in a desert"
-msgstr ""
+msgstr "Umm, es en un desierto"
 
 #: project/assets/main/locale/localizables-extracted.py:525
 msgid "Umm, that's a logistical nightmare"
-msgstr ""
+msgstr "Umm, es una pesadilla logística"
 
 #: project/assets/main/locale/localizables-extracted.py:526
 msgid "Umm, desert is in the name"
-msgstr ""
+msgstr "Umm, desierto está en el nombre"
 
 #: project/assets/main/locale/localizables-extracted.py:527
 msgid "Everywhere? I'm pretty sure it's in... a desert?"
 msgstr ""
+"¿En todos lados? Estoy muy seguro que tiene que ser en... ¿un desierto?"
 
 #: project/assets/main/locale/localizables-extracted.py:528
 msgid ""
 "Tsk Desert Q isn't about the desert... it's about the whole like... desert "
 "vibe!"
 msgstr ""
+"Tsk, Ola del Desierto no es sobre el desierto... es sobre... ¡La vibra del "
+"desierto!"
 
 #: project/assets/main/locale/localizables-extracted.py:529
 msgid ""
 "Yeah! And I mean volcanoes are like... the desert's distant cousin, am I "
 "right?"
 msgstr ""
+"¡Exacto! Y supongo que los volcanes son como... el primo lejano del "
+"desierto, ¿no?"
 
 #: project/assets/main/locale/localizables-extracted.py:530
 msgid ""
 "I mean we're both sweaty, uncomfortable and in desperate need of a shower..."
 msgstr ""
+"Digo, ambos estamos sudados, incómodos y con una desesperada necesidad de "
+"una ducha..."
 
 #: project/assets/main/locale/localizables-extracted.py:531
 msgid "...Sounds like a desert to me! Desert KYUUUU!"
-msgstr ""
+msgstr "...¡Para mi, me suena a un desierto! ¡Ola del Desierto!"
 
 #: project/assets/main/locale/localizables-extracted.py:532
 #: project/assets/main/locale/localizables-extracted.py:540
@@ -2338,14 +2433,16 @@ msgstr "¡Ola del Desierto!"
 msgid ""
 "Everywhere? Then maybe you should take the 'Desert' part out of the name..."
 msgstr ""
+"¿En todos lados? Entonces deberían de sacar la parte del \"Desierto\" del "
+"nombre..."
 
 #: project/assets/main/locale/localizables-extracted.py:534
 msgid "Change the NAME!?"
-msgstr ""
+msgstr "¿¡Cambiar el NOMBRE!?"
 
 #: project/assets/main/locale/localizables-extracted.py:535
 msgid "No way, it's so fun to yell! Desert KYUUUUUU!!"
-msgstr ""
+msgstr "¡No gracias, es divertido gritarlo! ¡¡Ola del Desierto!!"
 
 #: project/assets/main/locale/localizables-extracted.py:536
 #: project/assets/main/locale/localizables-extracted.py:541
@@ -2354,148 +2451,167 @@ msgstr "¡¡¡Ola del Desierto!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:537
 msgid "Everywhere? That must be a logistical nightmare."
-msgstr ""
+msgstr "¿En todos lados? Eso debe ser una pesadilla logística."
 
 #: project/assets/main/locale/localizables-extracted.py:538
 msgid ""
 "Pshh Desert Q isn't about logistics... it's about a union of like umm... man "
 "I forget!"
 msgstr ""
+"Pshh, Ola del Desierto no es sobre logística... Es sobre la unión de umm... "
+"¡Me olvidé!"
 
 #: project/assets/main/locale/localizables-extracted.py:539
 msgid "I'm just saying, with billions of attendees, keeping track of-"
 msgstr ""
+"Solo estoy diciendo, con billones de personas, tratando de seguir todos sus-"
 
 #: project/assets/main/locale/localizables-extracted.py:543
 msgid ""
 "But anyway... you'll still have to go back to the end of the line at some "
 "point, right?"
 msgstr ""
+"Como sea... Van a volver al final de la fila en algún momento, ¿cierto?"
 
 #: project/assets/main/locale/localizables-extracted.py:544
 msgid ""
 "We're still IN line. Open your mind, the world is just... one big line! ...I "
 "mean queue!!"
 msgstr ""
+"Todavía estamos EN la fila. Abre tu mente, el mundo es solo una... ¡Una gran "
+"fila! ...¡¡Digo una cola!!"
 
 #: project/assets/main/locale/localizables-extracted.py:545
 msgid "Dude you called it a line again!"
-msgstr ""
+msgstr "¡Le dijiste fila otra vez!"
 
 #: project/assets/main/locale/localizables-extracted.py:546
 msgid "The world is one big line? Hmm that's an... interesting philosophy."
-msgstr ""
+msgstr "¿Es mundo es una gran fila? Hmm eso es una... filosofía interesante."
 
 #: project/assets/main/locale/localizables-extracted.py:547
 msgid "Philosophy? More like an interesting loophole."
-msgstr ""
+msgstr "¿Filosofía? Más bien suena a un vacío legal."
 
 #: project/assets/main/locale/localizables-extracted.py:548
 msgid ""
 "Although, at least now they don't have to worry about leaving the line to "
 "eat... or to use the bathroom."
 msgstr ""
+"Aunque, al menos ahora no tienen que preocuparse de dejar la fila para "
+"comer... o para usar el baño."
 
 #: project/assets/main/locale/localizables-extracted.py:549
 msgid ""
 "To use the bathroom? Open your mind, the world is just... one big bathroom!"
-msgstr ""
+msgstr "¿Usar el baño? Abre tu mente, el mundo es solo un... ¡Un gran baño!"
 
 #: project/assets/main/locale/localizables-extracted.py:550
 msgid "Dude. ...Kind of ruining my appetite here."
-msgstr ""
+msgstr "...Estás arruinando el apetito."
 
 #: project/assets/main/locale/localizables-extracted.py:551
 msgid "S-sorry..."
-msgstr ""
+msgstr "P-perdón..."
 
 #: project/assets/main/locale/localizables-extracted.py:552
 msgid ""
 "Mmmm, that was microlicious! I'll waive any disdain I had for this "
 "microplace."
 msgstr ""
+"¡Mmmm, eso fue microdelicioso! Microfelicidades al microondas del chef."
 
 #: project/assets/main/locale/localizables-extracted.py:553
 msgid "Microthank you"
-msgstr ""
+msgstr "Microgracias"
 
 #: project/assets/main/locale/localizables-extracted.py:554
 msgid "Was that 'waive' or 'wave'?"
-msgstr ""
+msgstr "¿Gracias?"
 
 #: project/assets/main/locale/localizables-extracted.py:555
 msgid "Should I call an ambulance?"
-msgstr ""
+msgstr "¿Debería de llamar a una ambulancia?"
 
 #: project/assets/main/locale/localizables-extracted.py:556
 msgid "Umm... microthank you."
-msgstr ""
+msgstr "Umm... Microgracias."
 
 #: project/assets/main/locale/localizables-extracted.py:557
 msgid "Wait, did you mean 'waive' or 'wave'?"
-msgstr ""
+msgstr "Eso es algo bueno, ¿no?"
 
 #: project/assets/main/locale/localizables-extracted.py:558
 msgid "Umm... Should I call an ambulance?"
-msgstr ""
+msgstr "Umm... ¿Debería de llamar a una ambulancia?"
 
 #: project/assets/main/locale/localizables-extracted.py:559
 msgid ""
 "If you don't mind micro saying, your waveshave looks very micro. Do you like "
 "it that wave?"
 msgstr ""
+"Si no te molesta que lo microdiga, tus ondas se ven muy micro. ¿Te gusta esa "
+"onda?"
 
 #: project/assets/main/locale/localizables-extracted.py:560
 msgid ""
 "I've kinda been thinking about shaving MY microwave, y'know, my micro keeps "
 "wavin' me about it. Wave wave micro, wave microwave."
 msgstr ""
+"Estaba pensando en viajar en micromicro para buscar ondas con mejor ondas, "
+"pero creo que solo necesito un micromicroondas."
 
 #: project/assets/main/locale/localizables-extracted.py:561
 msgid "I... I hope you get the help you need."
-msgstr ""
+msgstr "Yo... Espero que encuentres la ayuda que necesites."
 
 #: project/assets/main/locale/localizables-extracted.py:562
 msgid "Oh Shirts! I haven't seen you since leaving Merrymellow Marsh!"
-msgstr ""
+msgstr "¡Oh Shirts! ¡No te veía desde que dejé Ciénaga de Malvaviscos!"
 
 #: project/assets/main/locale/localizables-extracted.py:563
 msgid "Oh yeah, hey!"
-msgstr ""
+msgstr "¡Oh hola!"
 
 #: project/assets/main/locale/localizables-extracted.py:564
 msgid ""
 "Are you here to check out the Chocolava Canyon location? I gotta warn you "
 "it's pretty much the same food."
 msgstr ""
+"¿Estás aquí para ver la sucursal de Volcán de Chocolava? Debo advertirte que "
+"la comida es básicamente la misma."
 
 #: project/assets/main/locale/localizables-extracted.py:565
 msgid ""
 "Ha ha pshh yeah, I see! ...I'm within a 2 meter radius of your restaurant, "
 "so I must be planning to eat here, is that it?"
 msgstr ""
+"¡Ja-ja, pshh, claro, ya veo! ...Como estoy a 2 metros de tu restaurante, "
+"estoy planeando comer aquí, ¿es eso?"
 
 #: project/assets/main/locale/localizables-extracted.py:566
 msgid ""
 "It's a big canyon! Lots of cool crap to do other than like, hang out with my "
 "amazingly successful friend. Ha ha."
 msgstr ""
+"¡Es un volcán muy grande! Hay muchas cosas para hacer, como pasar el tiempo "
+"con amigos increíblemente exitosos. Jaja."
 
 #: project/assets/main/locale/localizables-extracted.py:567
 msgid "Pleeeease?"
-msgstr ""
+msgstr "¿Por favoooor?"
 
 #: project/assets/main/locale/localizables-extracted.py:568
 msgid "Sure, go do your cool crap"
-msgstr ""
+msgstr "Claro, ve y haz tus cosas"
 
 #: project/assets/main/locale/localizables-extracted.py:569
 msgid "I'm busy with my cooler friends anyway"
-msgstr ""
+msgstr "Estoy ocupado con mis otros amigos exitosos"
 
 #: project/assets/main/locale/localizables-extracted.py:570
 msgid "Yeah sounds good, I'll just let you get on with your cool crap."
-msgstr ""
+msgstr "Claro, suena genial, te voy a dejar para que hagas tus cosas."
 
 #: project/assets/main/locale/localizables-extracted.py:571
 #: project/assets/main/locale/localizables-extracted.py:578
@@ -2503,6 +2619,7 @@ msgid ""
 "No no, I'm just playing around! I want to catch up, ha ha. How've you been "
 "anyway?"
 msgstr ""
+"¡No no, solo estoy bromeando! Quiero charlar un rato, jaja. ¿Cómo has estado?"
 
 #: project/assets/main/locale/localizables-extracted.py:572
 #: project/assets/main/locale/localizables-extracted.py:579
@@ -2510,128 +2627,145 @@ msgid ""
 "I see you're trying this whole um... ultra-successful, responsible, rich "
 "restaurant owner thing. That seems pretty alright."
 msgstr ""
+"Veo que estás ocupado con este um... ultra-exitoso, responsable y próspero "
+"restaurante. Parece que estás bien."
 
 #: project/assets/main/locale/localizables-extracted.py:573
 msgid "Awww pleeeease? PLEEEEEEASE!?"
-msgstr ""
+msgstr "Awww ¿por favoooor? ¿¡POR FAVOOOOOOR!?"
 
 #: project/assets/main/locale/localizables-extracted.py:574
 msgid "C'mon have some self respect, ha ha ha!"
-msgstr ""
+msgstr "¡Vamos, ten algo de autorespeto, jajaja!"
 
 #: project/assets/main/locale/localizables-extracted.py:575
 msgid ""
 "If I knew you were THIS desperate to see me I'd have never come by in the "
 "first place."
 msgstr ""
+"Si sabía que ibas a estar ASÍ de desesperado de verme, nunca habría "
+"aparecido en primer lugar."
 
 #: project/assets/main/locale/localizables-extracted.py:576
 msgid ""
 "So anyway how's this whole um... ultra-successful, responsible, rich "
 "restaurant owner thing going? That seems pretty alright."
 msgstr ""
+"Como sea, ¿cómo estás con este um... ultra-exitoso, responsable y próspero "
+"restaurante? Parece que estás muy bien."
 
 #: project/assets/main/locale/localizables-extracted.py:577
 msgid ""
 "Yeah, come to think of it I'm busy all day hanging out with my cooler "
 "friends."
 msgstr ""
+"Si, ahora que lo pienso, voy a estar ocupado con mis amigos mucho más "
+"exitosos."
 
 #: project/assets/main/locale/localizables-extracted.py:580
 msgid ""
 "Yeah you know! It comes with a little responsibility, and it's stressful at "
 "times. But overall it's going well."
 msgstr ""
+"¡Oh, ya sabes! Viene con un poco de responsabilidad, y es algo estresante de "
+"momentos. Pero en general, está bien."
 
 #: project/assets/main/locale/localizables-extracted.py:581
 msgid "How about you, how are things in Merrymellow Marsh?"
-msgstr ""
+msgstr "¿Qué hay de ti, cómo están las cosas en Ciénaga de Malvaviscos?"
 
 #: project/assets/main/locale/localizables-extracted.py:582
 msgid ""
 "Oh yeah, don't worry. Things got WAYYY better after you left! Oh, like, no "
 "offense."
 msgstr ""
+"Oh sí, no te preocupes. ¡Las cosas mejoraron MUCHO cuando te fuiste! Oh, sin "
+"ofender."
 
 #: project/assets/main/locale/localizables-extracted.py:583
 msgid "Um, thanks"
-msgstr ""
+msgstr "Um, gracias"
 
 #: project/assets/main/locale/localizables-extracted.py:584
 #: project/assets/main/locale/localizables-extracted.py:592
 msgid "Ha ha, c'mon"
-msgstr ""
+msgstr "Jaja, vamos"
 
 #: project/assets/main/locale/localizables-extracted.py:586
 msgid "Um..."
-msgstr ""
+msgstr "Um..."
 
 #: project/assets/main/locale/localizables-extracted.py:587
 msgid "Ha ha, sounds like I was really holding that place back!"
-msgstr ""
+msgstr "¡Jaja, suena a que yo era solo una molestia para el lugar!"
 
 #: project/assets/main/locale/localizables-extracted.py:589
 msgid ""
 "No no, like – don't get the wrong idea. Things were just rough while you "
 "were there and, I was in kind of a bad place..."
 msgstr ""
+"No no, es que - no lo malentiendas. Cuando estabas, las cosas eran muy "
+"malas, y yo estaba en un mal lugar..."
 
 #: project/assets/main/locale/localizables-extracted.py:590
 msgid ""
 "Like wait, not BECAUSE you were there! You're great! Umm, hold on... (sigh)"
-msgstr ""
+msgstr "¡Pero no porque TU estabas ahí! ¡Eres genial! Umm, espera... (suspiro)"
 
 #: project/assets/main/locale/localizables-extracted.py:591
 msgid "Y-yeah..."
-msgstr ""
+msgstr "S-sí..."
 
 #: project/assets/main/locale/localizables-extracted.py:594
 msgid "Y-yeah, I get it..."
-msgstr ""
+msgstr "S-sí, lo entiendo..."
 
 #: project/assets/main/locale/localizables-extracted.py:595
 msgid "Geez c'mon, go easy on me here!"
-msgstr ""
+msgstr "¡Oh, vamos, no me ataques así!"
 
 #: project/assets/main/locale/localizables-extracted.py:597
 msgid "Okay. One last time."
-msgstr ""
+msgstr "Bueno. Una última vez."
 
 #: project/assets/main/locale/localizables-extracted.py:598
 msgid "It's nice to see you. I'm doing great. ...There, did I do it?"
-msgstr ""
+msgstr "Es bueno volver a verte. Estoy bien. ...Ahí, ¿lo hice bien?"
 
 #: project/assets/main/locale/localizables-extracted.py:599
 msgid "Got it in one!"
-msgstr ""
+msgstr "¡Se entendió, y al primer intento!"
 
 #: project/assets/main/locale/localizables-extracted.py:600
 msgid "Ha ha anyway I'm gonna go eat something! See you inside~"
-msgstr ""
+msgstr "Jaja, bueno, ¡voy a comer algo! Nos vemos adentro~"
 
 #: project/assets/main/locale/localizables-extracted.py:601
 msgid ""
 "Ahh, still struggling with those cheese pieces? They're tricky at first."
 msgstr ""
+"Ahh, ¿sigues teniendo problemas con las piezas de queso? Es algo confuso al "
+"principio."
 
 #: project/assets/main/locale/localizables-extracted.py:602
 msgid ""
 "Half of them are too BIG and half of them are too SMALL! These are "
 "impossible!!"
-msgstr ""
+msgstr "¡La mitad es muy GRANDE y la otra mitad muy CHICA! ¡¡Son imposibles!!"
 
 #: project/assets/main/locale/localizables-extracted.py:603
 msgid ""
 "Oh I know all about that! But I can tell you some advice that helped me."
 msgstr ""
+"¡Oh, te entiendo perfectamente! Pero puedo decirte un consejo que me ayudó."
 
 #: project/assets/main/locale/localizables-extracted.py:604
 msgid "Okay, what's your advice?"
-msgstr ""
+msgstr "Bueno, ¿cuál es tu consejo?"
 
 #: project/assets/main/locale/localizables-extracted.py:605
 msgid "You see, the word 'Boob' looks like boobs in three different ways."
-msgstr ""
+msgstr "Mira, la palabra \"Banco\" puede verse de tres formas diferentes."
 
 #: project/assets/main/locale/localizables-extracted.py:606
 #: project/assets/main/locale/localizables-extracted.py:2691
@@ -2644,325 +2778,348 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:607
 msgid "That's... NOT helpful advice!"
-msgstr ""
+msgstr "Eso... ¡No me ayuda PARA NADA!"
 
 #: project/assets/main/locale/localizables-extracted.py:608
 msgid "The upper-case 'B' look-"
-msgstr ""
+msgstr "Un banco puede ser algo-"
 
 #: project/assets/main/locale/localizables-extracted.py:609
 msgid "-Stop! STOP! I've already HEARD this advice before!!!"
-msgstr ""
+msgstr "-¡Para! ¡DETENTE! ¡¡¡Ya ESCUCHÉ ese consejo antes!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:610
 msgid "Oh really? Well, I don't know what else to tell you, I'm sorry!"
-msgstr ""
+msgstr "Oh, ¿en serio? Entonces no se qué decirte, ¡perdón!"
 
 #: project/assets/main/locale/localizables-extracted.py:611
 msgid "(sigh) I need to stop listening to people's advice..."
-msgstr ""
+msgstr "(suspiro) Necesito dejar de escuchar los consejos de la gente..."
 
 #: project/assets/main/locale/localizables-extracted.py:612
 msgid ""
 "Wow! I'd say you've officially proven your skills as a world class chef. "
 "Well done!!"
 msgstr ""
+"¡Wow! Diría que oficialmente probaste tus habilidades como chef de clase "
+"mundial. ¡¡Enhorabuena!!"
 
 #: project/assets/main/locale/localizables-extracted.py:613
 msgid "Yes definitely! Congratulations!"
-msgstr ""
+msgstr "¡Sí, definitivamente! ¡Felicidades!"
 
 #: project/assets/main/locale/localizables-extracted.py:614
 msgid "That was an ordeal"
-msgstr ""
+msgstr "Fue una prueba difícil"
 
 #: project/assets/main/locale/localizables-extracted.py:615
 msgid "Phew, finally"
-msgstr ""
+msgstr "Phew, al fin"
 
 #: project/assets/main/locale/localizables-extracted.py:616
 msgid "That's it? That was easy"
-msgstr ""
+msgstr "¿Listo? Fue fácil"
 
 #: project/assets/main/locale/localizables-extracted.py:617
 msgid ""
 "Wait, that's it? Because I thought it was gonna be, you know, difficult..."
-msgstr ""
+msgstr "Espera, ¿ya está? Porque pensé que iba a ser, no se, difícil..."
 
 #: project/assets/main/locale/localizables-extracted.py:618
 msgid "Ohh, it's harder for most people. I knew you'd blow through it!"
-msgstr ""
+msgstr "Ohh, es difícil para mucha gente. ¡Sabía que podías pasarla!"
 
 #: project/assets/main/locale/localizables-extracted.py:619
 msgid "Phew, finally! ...So that's really it? No more surprise challenges?"
-msgstr ""
+msgstr "¡Phew, al fin! ...¿Entonces ya está? ¿No más desafíos sorpresa?"
 
 #: project/assets/main/locale/localizables-extracted.py:620
 msgid "That's really it. I knew you had it in you!"
-msgstr ""
+msgstr "Eso fue todo. ¡Sabía que podías pasarla!"
 
 #: project/assets/main/locale/localizables-extracted.py:621
 msgid ""
 "Holy smokes that was an ordeal! ...Did you have to make it so difficult!?"
 msgstr ""
+"¡Santo Cielo, fue una prueba muy difícil! ...¿¡Tienen que hacerla tan "
+"difícil!?"
 
 #: project/assets/main/locale/localizables-extracted.py:622
 msgid "Ohh, I knew you'd blow through it!"
-msgstr ""
+msgstr "¡Ohh, sabía que podías pasarla!"
 
 #: project/assets/main/locale/localizables-extracted.py:623
 msgid "Ah-hahaha. Congratulations #player#~"
-msgstr ""
+msgstr "Ah-jajaja. Felicidades #player#~"
 
 #: project/assets/main/locale/localizables-extracted.py:624
 msgid "Thanks, Fat Sensei."
-msgstr ""
+msgstr "Gracias, Fat Sensei."
 
 #: project/assets/main/locale/localizables-extracted.py:625
 msgid "Oh! You still remember my name."
-msgstr ""
+msgstr "¡Oh! Todavía recuerdas mi nombre."
 
 #: project/assets/main/locale/localizables-extracted.py:626
 msgid "Your name!? Of course I remember your name."
-msgstr ""
+msgstr "¿¡Tu nombre!? Por supuesto voy a recordar tu nombre."
 
 #: project/assets/main/locale/localizables-extracted.py:627
 msgid "...Ha ha. You forget sometimes."
-msgstr ""
+msgstr "...Jaja. A veces te olvidas."
 
 #: project/assets/main/locale/localizables-extracted.py:628
 msgid "You're so weird! ...Don't worry. I'll try not to forget."
-msgstr ""
+msgstr "¡A veces me preocupas! ...Pero no, no me voy a olvidar de tu nombre."
 
 #: project/assets/main/locale/localizables-extracted.py:629
 msgid "...So when do I get my plaque?"
-msgstr ""
+msgstr "...Entonces ¿Cuándo me dan mi placa?"
 
 #: project/assets/main/locale/localizables-extracted.py:630
 msgid ""
 "Plaque? Mm-mm, we can't just go givin' away plaques! ...They sell those in "
 "the gift shop though."
 msgstr ""
+"¿Placas? ¡Mm-mm, nosotros no damos placas! ...Vendemos algunas en la tienda "
+"de regalos."
 
 #: project/assets/main/locale/localizables-extracted.py:631
 msgid "Gift shop!?!"
-msgstr ""
+msgstr "¡¿¡Tienda de regalos!?!"
 
 #: project/assets/main/locale/localizables-extracted.py:632
 msgid "Well this is it, you've used up all your other... ONE chances."
-msgstr ""
+msgstr "Todo o nada, ya usaste todas tus otras... ÚLTIMAS oportunidades."
 
 #: project/assets/main/locale/localizables-extracted.py:633
 msgid "This is your TRUE last chance!"
-msgstr ""
+msgstr "¡Esta es la VERDADERA última oportunidad?"
 
 #: project/assets/main/locale/localizables-extracted.py:634
 #: project/assets/main/locale/localizables-extracted.py:663
 #: project/assets/main/locale/localizables-extracted.py:684
 msgid "What happens if I mess up?"
-msgstr ""
+msgstr "¿Qué pasa si la echo a perder?"
 
 #: project/assets/main/locale/localizables-extracted.py:635
 msgid "You seem serious this time"
-msgstr ""
+msgstr "Esta vez parece serio"
 
 #: project/assets/main/locale/localizables-extracted.py:636
 #: project/assets/main/locale/localizables-extracted.py:642
 msgid "We're still doing this?"
-msgstr ""
+msgstr "¿Todavía seguimos haciendo esto?"
 
 #: project/assets/main/locale/localizables-extracted.py:637
 #: project/assets/main/locale/localizables-extracted.py:666
 #: project/assets/main/locale/localizables-extracted.py:687
 msgid "Only one chance!? ...What happens if I mess up?"
-msgstr ""
+msgstr "¿¡Solo una!? ...¿Qué pasa si la echo a perder?"
 
 #: project/assets/main/locale/localizables-extracted.py:638
 msgid "Then that's it! No more chances!! Sorry, we have to remain impartial."
 msgstr ""
+"¡Entonces se acabó! ¡¡No más oportunidades!! Perdón, hay que mantenerse "
+"imparcial."
 
 #: project/assets/main/locale/localizables-extracted.py:639
 msgid "Wait, really? ...You seem serious this time!"
-msgstr ""
+msgstr "Espera, ¿en serio? ...¡Esta vez parece serio!"
 
 #: project/assets/main/locale/localizables-extracted.py:640
 msgid "Of course I seem serious! No more chances! This is it!"
-msgstr ""
+msgstr "¡Por supuesto! ¡Esto es serio! ¡No más oportunidades!"
 
 #: project/assets/main/locale/localizables-extracted.py:641
 msgid "Wow! O-okay."
-msgstr ""
+msgstr "¡Wow! B-bueno."
 
 #: project/assets/main/locale/localizables-extracted.py:643
 msgid ""
 "Still doing this? You don't seem very intimidated. No more chances! This is "
 "it!"
 msgstr ""
+"¿Si seguimos con esto? No pareces muy intimidado. ¡No más oportunidades!"
 
 #: project/assets/main/locale/localizables-extracted.py:644
 msgid "Yes yes, okay."
-msgstr ""
+msgstr "Sí sí, claro."
 
 #: project/assets/main/locale/localizables-extracted.py:645
 msgid "Also, you can turn on cheats if you want to, over in the Settings menu."
 msgstr ""
+"Antes que me olvide, puedes activar los trucos, en el menú de configuración."
 
 #: project/assets/main/locale/localizables-extracted.py:646
 msgid "Isn't that cheating?"
-msgstr ""
+msgstr "¿Eso no es hacer trampa?"
 
 #: project/assets/main/locale/localizables-extracted.py:647
 msgid "Will it really count?"
-msgstr ""
+msgstr "¿Va a contar?"
 
 #: project/assets/main/locale/localizables-extracted.py:648
 msgid "But I'm so close!"
-msgstr ""
+msgstr "¡Pero estoy muy cerca!"
 
 #: project/assets/main/locale/localizables-extracted.py:649
 msgid "Turn on cheats? Isn't that cheating?"
-msgstr ""
+msgstr "¿Activar trucos? ¿Eso no es hacer trampa?"
 
 #: project/assets/main/locale/localizables-extracted.py:650
 msgid "Yes, cheating is cheating. But that's okay, everybody cheats."
-msgstr ""
+msgstr "Sí, es hacer trampas. Pero está bien, todos hacen trampa."
 
 #: project/assets/main/locale/localizables-extracted.py:651
 #: project/assets/main/locale/localizables-extracted.py:657
 msgid "I don't remember agreeing to this, that they could cheat!"
-msgstr ""
+msgstr "¡No recuerdo aceptar esto, que podía hacer trampas!"
 
 #: project/assets/main/locale/localizables-extracted.py:652
 msgid "I want to do it without cheating! I'm so close!"
-msgstr ""
+msgstr "¡Lo quiero hacer sin trucos! ¡Estoy muy cerca!"
 
 #: project/assets/main/locale/localizables-extracted.py:653
 msgid ""
 "Mmm that's very honorable of you. But sometimes, it's honorable to know when "
 "to cheat, and to know when to not cheat."
 msgstr ""
+"Mmm, eres muy honorable. Pero a veces, es honorable saber cuándo usar "
+"trucos, y cuándo no usarlos."
 
 #: project/assets/main/locale/localizables-extracted.py:654
 msgid "I don't remember agreeing to this, this kind of 'honorable cheat'!"
-msgstr ""
+msgstr "¡No recuerdo acertar esto, estos \"trucos honorables\"!"
 
 #: project/assets/main/locale/localizables-extracted.py:655
 msgid "Oh, I don't know... Will it really count if I cheat?"
-msgstr ""
+msgstr "Oh, no se... ¿Va a contar si hago trampas?"
 
 #: project/assets/main/locale/localizables-extracted.py:656
 msgid "Yes, don't worry, it still counts. Everybody cheats a little sometimes."
 msgstr ""
+"Si, no te preocupes, va a contar. Todos hacen trampas de vez en cuando."
 
 #: project/assets/main/locale/localizables-extracted.py:658
 msgid "Shh! We're staying impartial!"
-msgstr ""
+msgstr "¡Shh! ¡Nos mantenemos imparciales!"
 
 #: project/assets/main/locale/localizables-extracted.py:659
 msgid "Can I at least wish them good luck then?"
-msgstr ""
+msgstr "¿Entonces puedo al menos decirle buena suerte?"
 
 #: project/assets/main/locale/localizables-extracted.py:660
 msgid "Mmm, you may not."
-msgstr ""
+msgstr "Mmm, no, no puedes."
 
 #: project/assets/main/locale/localizables-extracted.py:661
 msgid ""
 "Once again, it's time for... The ultimate test! To prove your skills as a "
 "world class chef!"
 msgstr ""
+"Otra vez, es hora de... ¡La última prueba! ¡Para probar tus habilidades de "
+"chef de clase mundial!"
 
 #: project/assets/main/locale/localizables-extracted.py:662
 msgid ""
 "A trial renowned both for its brutal duration! And blinding speeds! With "
 "just... ONE chance!"
 msgstr ""
+"¡Una prueba famosa por su brutal duración y su máxima velocidad! Con solo... "
+"¡UNA oportunidad!"
 
 #: project/assets/main/locale/localizables-extracted.py:664
 msgid "So that was a practice before?"
-msgstr ""
+msgstr "¿Entonces lo anterior era práctica?"
 
 #: project/assets/main/locale/localizables-extracted.py:665
 msgid "You said that last time"
-msgstr ""
+msgstr "Lo dijiste la última vez"
 
 #: project/assets/main/locale/localizables-extracted.py:667
 msgid "One chance! Just one!!! If you mess up, that's it!"
-msgstr ""
+msgstr "¡Una oportunidad! ¡¡¡Solo una!!! ¡Si no pasas la prueba, se acabó!"
 
 #: project/assets/main/locale/localizables-extracted.py:668
 msgid "Waaugh!"
-msgstr ""
+msgstr "¡Waaugh!"
 
 #: project/assets/main/locale/localizables-extracted.py:669
 msgid "Wait, so was last time a practice, and this is it?"
-msgstr ""
+msgstr "Espera, ¿entonces lo de la otra vez era solo práctica?"
 
 #: project/assets/main/locale/localizables-extracted.py:670
 msgid ""
 "Last time? Practice? Stop talking nonsense! THIS is your last time! There is "
 "no practice!"
 msgstr ""
+"¿La otra vez? ¿Práctica? ¡Deja de decir cosas sin sentido! ¡ESTA es tu "
+"última oportunidad! ¡No hay práctica!"
 
 #: project/assets/main/locale/localizables-extracted.py:671
 msgid "Oh, um... Okay! I'll do better this time."
-msgstr ""
+msgstr "Oh, um... ¡Bueno! Voy a hacerlo mejor esta vez."
 
 #: project/assets/main/locale/localizables-extracted.py:672
 msgid "You said I only got one chance last time."
-msgstr ""
+msgstr "El otro día dijiste que solo tenía una oportunidad."
 
 #: project/assets/main/locale/localizables-extracted.py:673
 msgid ""
 "Well this time... It's REALLY your last chance! No more chances after this "
 "one!"
 msgstr ""
+"Bueno, esta vez... ¡REALMENTE es tu última oportunidad! ¡No más después de "
+"esta!"
 
 #: project/assets/main/locale/localizables-extracted.py:674
 msgid "I don't think I believe you..."
-msgstr ""
+msgstr "No te creo para nada..."
 
 #: project/assets/main/locale/localizables-extracted.py:675
 msgid "Ah-hahahaha!"
-msgstr ""
+msgstr "¡Ah-jajajaja!"
 
 #: project/assets/main/locale/localizables-extracted.py:676
 msgid "Once again I wish you... average luck!"
-msgstr ""
+msgstr "Otra vez, te deseo... ¡suerte promedio!"
 
 #: project/assets/main/locale/localizables-extracted.py:677
 msgid "Thank you, you're too k— ... You're... average kind."
-msgstr ""
+msgstr "Gracias, eres muy amab- ... Eres... promedialmente amable."
 
 #: project/assets/main/locale/localizables-extracted.py:678
 msgid ""
 "Well here it is, the ultimate test to prove your skills as a world class "
 "chef!"
 msgstr ""
+"¡Bueno, aquí estamos, la última prueba para probar tus habilidades como un "
+"chef de clase mundial!"
 
 #: project/assets/main/locale/localizables-extracted.py:680
 msgid "This one's gonna take awhile!"
-msgstr ""
+msgstr "¡Esta va a tomar un buen rato!"
 
 #: project/assets/main/locale/localizables-extracted.py:681
 msgid "Don't worry, there's no cheese pieces or any tricks like that."
-msgstr ""
+msgstr "No te preocupes, que no hay piezas de queso o ninguna sorpresa."
 
 #: project/assets/main/locale/localizables-extracted.py:682
 msgid "Mmm, but it gets pretty fast too! So keep your wits up."
-msgstr ""
+msgstr "¡Mmm, pero agarra velocidad! Así que mantente alerta."
 
 #: project/assets/main/locale/localizables-extracted.py:683
 msgid "Yes yes, and worst of all, you only get ONE chance! Ah-hahaha!"
-msgstr ""
+msgstr "Sí sí, lo peor de todo, ¡solo tienes UNA oportunidad! ¡Ah,jajaja!"
 
 #: project/assets/main/locale/localizables-extracted.py:685
 msgid "One chance... FOREVER?"
-msgstr ""
+msgstr "Una oportunidad... ¿PARA SIEMPRE?"
 
 #: project/assets/main/locale/localizables-extracted.py:686
 msgid "Mmm, yeah right"
-msgstr ""
+msgstr "Mmm, sí, claro"
 
 #: project/assets/main/locale/localizables-extracted.py:688
 #: project/assets/main/locale/localizables-extracted.py:691
@@ -2970,110 +3127,125 @@ msgid ""
 "Oh, don't worry, this is fine. If you can't do it, then we give you another "
 "chance tomorrow."
 msgstr ""
+"Oh, no te preocupes, está bien. Si no puedes pasar la prueba, te daremos "
+"otra oportunidad mañana."
 
 #: project/assets/main/locale/localizables-extracted.py:689
 msgid "What? ...Like one chance today, or one chance forever?"
-msgstr ""
+msgstr "¿Qué? ...¿Una oportunidad hoy, o para siempre?"
 
 #: project/assets/main/locale/localizables-extracted.py:690
 msgid "One chance FOREVER! No more chances! This is it!"
 msgstr ""
+"¡Una oportunidad PARA SIEMPRE! ¡No hay más oportunidades! ¡Eso es todo!"
 
 #: project/assets/main/locale/localizables-extracted.py:692
 msgid ""
 "Mmm, yeah right.. Is this one of those things where I screw up, and you let "
 "me try again later anyway?"
 msgstr ""
+"Mmm, sí, claro... ¿Es una de esas cosas en las que si me equivoco, luego me "
+"dejan intentar otra vez?"
 
 #: project/assets/main/locale/localizables-extracted.py:693
 msgid ""
 "Yes yes don't worry, this is fine. If you can't do it, then we give you "
 "another chance tomorrow."
 msgstr ""
+"Si si, no te preocupes, está bien. Si no puedes pasar la prueba, te damos "
+"otra oportunidad mañana."
 
 #: project/assets/main/locale/localizables-extracted.py:694
 msgid "No! ONE chance! Just one, we have to remain impartial."
-msgstr ""
+msgstr "¡No! ¡UNA oportunidad! Solo una, tenemos que mantenernos imparciales."
 
 #: project/assets/main/locale/localizables-extracted.py:695
 msgid "Impartial!? I don't even know them, why do I have to be impartial?"
-msgstr ""
+msgstr "¿¡Imparcial!? Pero si ni le conozco, ¿por qué tengo que ser imparcial?"
 
 #: project/assets/main/locale/localizables-extracted.py:696
 #: project/assets/main/locale/localizables-extracted.py:698
 msgid "(glare)"
-msgstr ""
+msgstr "(mirada)"
 
 #: project/assets/main/locale/localizables-extracted.py:697
 msgid "Ahh... Okay! Okay fine. One chance. ...Good luck!!!"
 msgstr ""
+"Ahh... ¡Bueno! Bueno, está bien. Una oportunidad. ...¡¡¡Buena suerte!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:699
 msgid "I can't even say \"Good Luck!?\" Good luck isn't impartial? Fine!"
 msgstr ""
+"¿¡Ni siquiera puedo decir \"Buena suerte\"!? ¿Buena suerte no es imparcial? "
+"¡Bueno!"
 
 #: project/assets/main/locale/localizables-extracted.py:700
 msgid "... ...I wish you... Average luck."
-msgstr ""
+msgstr "... ...Te deseo... Suerte promedio."
 
 #: project/assets/main/locale/localizables-extracted.py:701
 msgid "Umm... I'll do my average-est."
-msgstr ""
+msgstr "Umm... Voy a hacer mi mejor promedio."
 
 #: project/assets/main/locale/localizables-extracted.py:702
 msgid "Everyone really liked the plaque you picked out!"
-msgstr ""
+msgstr "¡A todos les gustó la placa que elegiste!"
 
 #: project/assets/main/locale/localizables-extracted.py:703
 msgid ""
 "Well, it feels like the plaque loses some meaning if just anyone can buy "
 "one..."
 msgstr ""
+"Bueno, se siente como si la placa perdiese significado si cualquiera la "
+"puede comprar..."
 
 #: project/assets/main/locale/localizables-extracted.py:704
 msgid "Yes, life is like that. Anyone can buy a plaque in the store!"
-msgstr ""
+msgstr "Sí, se siente así. ¡Cualquiera puede comprar una placa en la tienda!"
 
 #: project/assets/main/locale/localizables-extracted.py:705
 msgid "And you can get it engraved to say anything you want."
-msgstr ""
+msgstr "Y también puedes ponerle un grabado que diga lo que tú quieras."
 
 #: project/assets/main/locale/localizables-extracted.py:706
 msgid ""
 "\"World's least offensive smelling chef!\" It doesn't even have to be true."
-msgstr ""
+msgstr "¡\"Chef con menor olor ofensivo del mundo\"! No tiene que ser cierta."
 
 #: project/assets/main/locale/localizables-extracted.py:707
 msgid "H-hey! I don't smell..."
-msgstr ""
+msgstr "¡H-hey! Yo no apesto..."
 
 #: project/assets/main/locale/localizables-extracted.py:708
 msgid ""
 "The plaque's meaning is the meaning you assign it personally. ...What does "
 "that plaque mean to you?"
 msgstr ""
+"El sentido de la placa es el sentido que le pone uno personalmente. ...¿Qué "
+"significa la placa para ti?"
 
 #: project/assets/main/locale/localizables-extracted.py:709
 msgid "It's a major accomplishment"
-msgstr ""
+msgstr "Es un logro mayor"
 
 #: project/assets/main/locale/localizables-extracted.py:710
 msgid "It's a nice trophy"
-msgstr ""
+msgstr "Es un lindo trofeo"
 
 #: project/assets/main/locale/localizables-extracted.py:711
 msgid "It's nothing special"
-msgstr ""
+msgstr "No es nada especial"
 
 #: project/assets/main/locale/localizables-extracted.py:712
 msgid "It was a waste of time"
-msgstr ""
+msgstr "Fue una pérdida de tiempo"
 
 #: project/assets/main/locale/localizables-extracted.py:713
 msgid ""
 "It was a waste of time! When I look at it, I think of how much weight I put "
 "in it before."
 msgstr ""
+"¡Fue una pérdida de tiempo! Cuando la veo, pienso en cuánto trabajo le puse."
 
 #: project/assets/main/locale/localizables-extracted.py:714
 #: project/assets/main/locale/localizables-extracted.py:719
@@ -3081,6 +3253,7 @@ msgid ""
 "How I thought all those other restaurants were more prestigious, with better "
 "chefs."
 msgstr ""
+"En como los otros restaurantes eran más prestigiosos, con mejores chefs."
 
 #: project/assets/main/locale/localizables-extracted.py:715
 #: project/assets/main/locale/localizables-extracted.py:720
@@ -3088,6 +3261,8 @@ msgid ""
 "But they were just like us! They just had a little extra money to blow on a "
 "meaningless plaque."
 msgstr ""
+"¡Pero son como nosotros! Solo tienen algo de dinero extra para quemar en "
+"placas sin sentido alguno."
 
 #: project/assets/main/locale/localizables-extracted.py:716
 #: project/assets/main/locale/localizables-extracted.py:721
@@ -3097,6 +3272,8 @@ msgid ""
 "See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't "
 "change the meaning!"
 msgstr ""
+"¿Ves? Ese es el significado. ¿A quién le importa si pagaste ¥3000 por ella? "
+"¡Eso no cambia el significado!"
 
 #: project/assets/main/locale/localizables-extracted.py:717
 #: project/assets/main/locale/localizables-extracted.py:722
@@ -3104,301 +3281,357 @@ msgid ""
 "Now you can look at the plaque and think, \"I'm just as special as those "
 "other guys!\""
 msgstr ""
+"Ahora puedes ver la placa y pensar, \"¡Soy tan especial como cualquiera de "
+"ellos!\""
 
 #: project/assets/main/locale/localizables-extracted.py:718
 msgid ""
 "It was nothing special! When I look at it, I remember how intimidating those "
 "plaques were before."
 msgstr ""
+"¡No tiene nada de especial! Cuando la veo, recuerdo que tan intimidantes "
+"eran las placas antes."
 
 #: project/assets/main/locale/localizables-extracted.py:723
 msgid ""
 "It's a nice trophy! When I look at it, I remember how it felt finally being "
 "deemed plaque-worthy."
 msgstr ""
+"¡Es un lindo trofeo! Cuando la veo, recuerdo que se siente ser finalmente "
+"digno de una placa."
 
 #: project/assets/main/locale/localizables-extracted.py:724
 msgid ""
 "Cooking in front of a panel of judges, worrying cooking too slowly or my "
 "food not being good enough."
 msgstr ""
+"Cocinar en frente del panel de jueces, preocupándome por mi velocidad o si "
+"mi comida no era suficientemente buena."
 
 #: project/assets/main/locale/localizables-extracted.py:725
 msgid ""
 "And then everyone said I did a good job, and well... It just nice to be "
 "accepted~"
 msgstr ""
+"Y después todos dijeron que hice un buen trabajo, y bueno... Es lindo "
+"sentirse aceptado~"
 
 #: project/assets/main/locale/localizables-extracted.py:727
 msgid "Now you can look at the plaque and think, \"People accept me.\""
-msgstr ""
+msgstr "Ahora puedes ver a la placa y pensar, \"La gente me acepta.\""
 
 #: project/assets/main/locale/localizables-extracted.py:728
 msgid ""
 "Earning that plaque was a major accomplishment! When I look at it, I "
 "remember how I didn't give up."
 msgstr ""
+"¡Conseguir esa placa fue un logro muy grande! Cuando la veo, recuerdo como "
+"no me rendí."
 
 #: project/assets/main/locale/localizables-extracted.py:729
 msgid ""
 "And I guess on some level, if there's another harder challenge some day..."
 msgstr ""
+"Y supongo que en cierto nivel, si en otro momento hay desafíos más "
+"difíciles..."
 
 #: project/assets/main/locale/localizables-extracted.py:730
 msgid ""
 "Well, it instills me with the confidence that I won't give up next time "
 "either."
 msgstr ""
+"Bueno, me llena de confianza de que no me voy a rendir en ningún desafío."
 
 #: project/assets/main/locale/localizables-extracted.py:732
 msgid "Now you can look at the plaque and think, \"I didn't give up.\""
-msgstr ""
+msgstr "Ahora puedes ver a la placa y pensar \"No me rendí.\""
 
 #: project/assets/main/locale/localizables-extracted.py:733
 msgid "I guess! It still feels a little hollow in a way."
-msgstr ""
+msgstr "¡Supongo! De cierta forma, todavía se siente un poco de vacío."
 
 #: project/assets/main/locale/localizables-extracted.py:734
 msgid ""
 "That's sort of a good thing. Set your own harder goals! Buy yourself bigger "
 "plaques!"
 msgstr ""
+"Eso puede ser algo bueno. ¡Ponte metas más difíciles! ¡Compra placas más "
+"grandes!"
 
 #: project/assets/main/locale/localizables-extracted.py:735
 msgid "I bet there's some tougher challenges left if you look for them."
-msgstr ""
+msgstr "Apuesto que hay más retos si los buscas."
 
 #: project/assets/main/locale/localizables-extracted.py:736
 msgid "Ohh, so. Hmm... How do YOU think you did?"
-msgstr ""
+msgstr "Ohh, entonces. Hmm... ¿Según TU opinión, cómo crees para te fue?"
 
 #: project/assets/main/locale/localizables-extracted.py:737
 msgid "That was hard!"
-msgstr ""
+msgstr "¡Eso fue difícil!"
 
 #: project/assets/main/locale/localizables-extracted.py:738
 msgid "I blew it"
-msgstr ""
+msgstr "Fui un asco"
 
 #: project/assets/main/locale/localizables-extracted.py:739
 msgid "I did okay"
-msgstr ""
+msgstr "Lo hice bien"
 
 #: project/assets/main/locale/localizables-extracted.py:740
 msgid "I did great"
-msgstr ""
+msgstr "Lo hice genial"
 
 #: project/assets/main/locale/localizables-extracted.py:741
 msgid "That was so hard!"
-msgstr ""
+msgstr "¡Eso fue difícil!"
 
 #: project/assets/main/locale/localizables-extracted.py:742
 msgid ""
 "Hard!? That was disgraceful! I've seen dogs that poop better than you cook."
 msgstr ""
+"¿¡Difícil!? ¡Eso fue una desgracia! Vi a perros hacer popo mejor que tú "
+"cocinando."
 
 #: project/assets/main/locale/localizables-extracted.py:743
 msgid "I think I did great!"
-msgstr ""
+msgstr "¡Creo que lo hice genial!"
 
 #: project/assets/main/locale/localizables-extracted.py:744
 msgid ""
 "Great!? That was disgraceful! I've seen dogs that poop better than you cook."
 msgstr ""
+"¿¡Genial!? ¡Eso fue una desgracia! Vi a perros hacer popo mejor que tú "
+"cocinando."
 
 #: project/assets/main/locale/localizables-extracted.py:745
 msgid "I think I did... okay?"
-msgstr ""
+msgstr "Creo que lo hice... ¿bien?"
 
 #: project/assets/main/locale/localizables-extracted.py:746
 msgid ""
 "Okay!? That was disgraceful! I've seen dogs that poop better than you cook."
 msgstr ""
+"¿¡Bien!? ¡Eso fue una desgracia! Vi a perros hacer popo mejor que tú "
+"cocinando."
 
 #: project/assets/main/locale/localizables-extracted.py:747
 msgid "I think I sort of blew it."
-msgstr ""
+msgstr "Creo que fui un asco."
 
 #: project/assets/main/locale/localizables-extracted.py:748
 msgid ""
 "Sort of blew it!? That was disgraceful! I've seen dogs that poop better than "
 "you cook."
 msgstr ""
+"¿¡Asco!? ¡Eso fue una desgracia! Vi a perros hacer popo mejor que tú "
+"cocinando."
 
 #: project/assets/main/locale/localizables-extracted.py:749
 msgid ""
 "I've never used those cheese pieces before! I guess I'll have to start "
 "practicing with them."
 msgstr ""
+"¡Nunca antes usé esas piezas de queso! Supongo que tengo que empezar a "
+"practicar con eso."
 
 #: project/assets/main/locale/localizables-extracted.py:750
 msgid "Hahaaaa yeah, those pieces get easier with a little practice!"
 msgstr ""
+"¡Por supuesto, usar esas piezas se vuelve más fácil con un poco de práctica!"
 
 #: project/assets/main/locale/localizables-extracted.py:751
 msgid ""
 "My restaurant Carbcraft is next door to yours, so just gimme a shout if you "
 "need any advice."
 msgstr ""
+"Mi restaurante CarbCraft está al lado del tuyo, así que si necesitas algún "
+"consejo, solo llámame."
 
 #: project/assets/main/locale/localizables-extracted.py:752
 msgid ""
 "I have some advice, #player#! ...Have you considered a career in medicine?"
 msgstr ""
+"¡Yo tengo un consejo, #player#! ...¿Consideraste hacer una carrera en "
+"medicina?"
 
 #: project/assets/main/locale/localizables-extracted.py:753
 msgid ""
 "Fat Sensei you're so rude sometimes! #player#, you did great for your first "
 "time."
 msgstr ""
+"¡Fat Sensei, a veces eres muy rudo! #player#, lo hiciste bien para ser tu "
+"primera vez."
 
 #: project/assets/main/locale/localizables-extracted.py:754
 msgid "GREAT!? They did GREAT? Kkkh, be honest!"
-msgstr ""
+msgstr "¿¡BIEN!? ¿Lo hizo BIEN? ¡Pfff, se honesto!"
 
 #: project/assets/main/locale/localizables-extracted.py:755
 msgid ""
 "A bowl of cereal is \"great\"! #player# served some Grade-A horse molasses, "
 "there was nothing great about it..."
 msgstr ""
+"¡Un tazón con cereal está \"bien\"! #player# acaba de servir un perfecto "
+"plato de engrudo, y no creo que eso sea para decir \"bien\"..."
 
 #: project/assets/main/locale/localizables-extracted.py:756
 msgid "Fine yes, you didn't do great. You did mmm..."
-msgstr ""
+msgstr "Bueno sí, no lo hiciste bien. Lo hiciste mmm..."
 
 #: project/assets/main/locale/localizables-extracted.py:757
 msgid "... You did okay for your first time."
-msgstr ""
+msgstr "... Aceptable para ser tu primera vez."
 
 #: project/assets/main/locale/localizables-extracted.py:758
 msgid "... ...You did your first time."
-msgstr ""
+msgstr "... ...Hiciste tu primera vez."
 
 #: project/assets/main/locale/localizables-extracted.py:759
 msgid "Thank you. I'm sorry, I have to remain impartial."
-msgstr ""
+msgstr "Gracias. Y perdón, tengo que mantenerme imparcial."
 
 #: project/assets/main/locale/localizables-extracted.py:760
 msgid ""
 "Yeah good job, extremely impartial. I think you broke their heart! Good job."
 msgstr ""
+"Sí, buen trabajo siendo extremadamente imparcial. ¡Creo que le rompiste el "
+"corazón! Buen trabajo."
 
 #: project/assets/main/locale/localizables-extracted.py:761
 msgid "Ahh sorry I'm late. I had to use the loo."
-msgstr ""
+msgstr "Ahh perdón por la tardanza. Tenía que usar el baño."
 
 #: project/assets/main/locale/localizables-extracted.py:762
 msgid "FAT SENSEI!? You're on the committee?"
-msgstr ""
+msgstr "¿¡¡FAT SENSEI!!? ¿Eres uno de los jueces?"
 
 #: project/assets/main/locale/localizables-extracted.py:763
 msgid ""
 "Ahh... ... yes? And I had to use the loo. I don't hear you making a fuss "
 "about that."
 msgstr ""
+"Ahh... ... ¿Sí? Y también usé el baño. No te escuché hacer un escándalo por "
+"eso."
 
 #: project/assets/main/locale/localizables-extracted.py:764
 msgid "Go easy on me"
-msgstr ""
+msgstr "No seas duro conmigo"
 
 #: project/assets/main/locale/localizables-extracted.py:765
 msgid "You could have told me"
-msgstr ""
+msgstr "Podrías habérmelo dicho"
 
 #: project/assets/main/locale/localizables-extracted.py:766
 msgid "I can't believe you used the loo!"
-msgstr ""
+msgstr "¡No puedo creer que fuiste al baño!"
 
 #: project/assets/main/locale/localizables-extracted.py:767
 msgid "We're giving ourselves a plaque?"
-msgstr ""
+msgstr "¿Nos estamos dando la placa?"
 
 #: project/assets/main/locale/localizables-extracted.py:768
 msgid ""
 "The loo? The LOO!?! I can't BELIEVE you used the loo! THIS IS AN OUTRAGE!!"
 msgstr ""
+"¿El baño? ¡¿¡El BAÑO!?! ¡No puedo CREER que también usaste el baño! ¡¡ESTO "
+"ES UN ULTRAJE!!"
 
 #: project/assets/main/locale/localizables-extracted.py:769
 msgid "Hmph, too little too late."
-msgstr ""
+msgstr "Hmpm, un poco tarde para eso."
 
 #: project/assets/main/locale/localizables-extracted.py:770
 msgid ""
 "...Just wait and see the muted celebration I deliver next time YOU use the "
 "loo!"
 msgstr ""
+"...¡Solo espera y ya vas a ver la celebración muda que haré la próxima ves "
+"que TU uses el baño!"
 
 #: project/assets/main/locale/localizables-extracted.py:771
 msgid ""
 "...I feel like this is something you could have told me five minutes ago."
 msgstr ""
+"...Creo que esto es algo que deberías de haberme dicho hace cinco minutos."
 
 #: project/assets/main/locale/localizables-extracted.py:772
 msgid "Ah-haha, come now. Where's the theater in that! Let me have my fun~"
 msgstr ""
+"Ah-jaja, vamos. ¡Dónde está el teatro en eso! Deja que también me divierta~"
 
 #: project/assets/main/locale/localizables-extracted.py:773
 msgid ""
 "So we're jumping through all these hoops, so that we can win a Zagma Chef Of "
 "The Year plaque... from OURSELVES?"
 msgstr ""
+"Entonces voy a hacer todo esto, así gano la placa Zagma Chef Del Año... "
+"¿Para NUESTRO restaurante?"
 
 #: project/assets/main/locale/localizables-extracted.py:774
 msgid "I hope you'll at least go easy on me!"
-msgstr ""
+msgstr "¡Al menos no vas a ser muy duro conmigo!"
 
 #: project/assets/main/locale/localizables-extracted.py:775
 #: project/assets/main/locale/localizables-extracted.py:777
 msgid "Mwah-hahaha. You'd like that wouldn't you!"
-msgstr ""
+msgstr "Muajajajaja. ¡Eso te gustaría, ¿no?!"
 
 #: project/assets/main/locale/localizables-extracted.py:776
 msgid "Well, I hope you'll at least go easy on me!"
-msgstr ""
+msgstr "¡Bueno, espero que al menos no seas muy duro conmigo!"
 
 #: project/assets/main/locale/localizables-extracted.py:778
 msgid "Oh, do you two know each other already? Will this still be okay?"
-msgstr ""
+msgstr "Oh, ¿ustedes dos se conocen? ¿Es correcto continuar sabiendo esto?"
 
 #: project/assets/main/locale/localizables-extracted.py:779
 msgid "Yes yes, don't worry. I'm entirely capable of being impartial."
-msgstr ""
+msgstr "Sí sí, no se preocupen. Soy muy capaz en ser imparcial."
 
 #: project/assets/main/locale/localizables-extracted.py:780
 msgid "Mmmm, I'm not so sure..."
-msgstr ""
+msgstr "Mmmmm, no estoy seguro..."
 
 #: project/assets/main/locale/localizables-extracted.py:781
 msgid ""
 "Oh it's no big deal! We weren't actually going to judge them this time "
 "anyways."
 msgstr ""
+"¡No hay problema! De todas formas, hoy no vamos a juzgar a ningún "
+"participante."
 
 #: project/assets/main/locale/localizables-extracted.py:782
 msgid ""
 "#player#, why don't you show us what you can do? This one's just for "
 "practice."
 msgstr ""
+"#player#, ¿por qué no nos muestras lo que puedes hacer? Esto es solo "
+"práctica."
 
 #: project/assets/main/locale/localizables-extracted.py:783
 msgid ""
 "Yes well, I will maybe judge you a little. But maybe not JUDGING you judging "
 "you."
 msgstr ""
+"Si, bueno, puede que yo te juzgue un poco. Pero no voy a JUZGARTE al "
+"juzgarte."
 
 #: project/assets/main/locale/localizables-extracted.py:784
 msgid "I'LL be judging you judging you! Ah-hahahah!!!"
-msgstr ""
+msgstr "¡Yo SÍ voy a juzgar juzgándote! ¡¡¡Muajajajaja!!!"
 
 #: project/assets/main/locale/localizables-extracted.py:785
 msgid "D-don't be like that!"
-msgstr ""
+msgstr "¡N-no seas así!"
 
 #: project/assets/main/locale/localizables-extracted.py:786
 msgid ""
 "As Turbo Fat grew more and more popular, they were finally able to branch "
 "out into more competitive venues."
 msgstr ""
+"Como Turbo Fat es más y más popular, finalmente podemos abrirnos a opciones "
+"más competitivas."
 
 #: project/assets/main/locale/localizables-extracted.py:787
 msgid ""
@@ -3407,104 +3640,123 @@ msgid ""
 "\n"
 "But, they struggled to stand out among other prestigious restaurants nearby."
 msgstr ""
+"La sucursal en Volcán de Chocolava era su sucursal más exitosa, siempre "
+"lleno de clientes\n"
+"\n"
+"Pero, les costaba destacar entre los otros restaurantes prestigiosos de al "
+"rededor."
 
 #: project/assets/main/locale/localizables-extracted.py:788
 msgid "Mmm? Did something catch your eye?"
-msgstr ""
+msgstr "¿Mmm? ¿Algo te llamó la atención?"
 
 #: project/assets/main/locale/localizables-extracted.py:789
 msgid ""
 "Look at this! This CarbCraft restaurant apparently won \"Zagma Chef Of The "
 "Year\" too."
 msgstr ""
+"¡Mira esto! Este restaurante CarbCraft aparentemente también ganó \"Zagma "
+"Chef Del Año\"."
 
 #: project/assets/main/locale/localizables-extracted.py:790
 msgid ""
 "...I've seen this same plaque at every restaurant here! What the heck is a "
 "Zagma Chef of the Year?"
 msgstr ""
+"...¡Ya vi esta placa en cada restaurante de la zona! ¿Qué se supone que es "
+"el Zagma Chef Del Año?"
 
 #: project/assets/main/locale/localizables-extracted.py:791
 msgid "Oh, you haven't heard of Zagma? Because I know everything about Zagma."
-msgstr ""
+msgstr "Oh, ¿no escuchaste hablar de Zagma? Porque yo se todo sobre Zagma."
 
 #: project/assets/main/locale/localizables-extracted.py:792
 msgid "...Really?"
-msgstr ""
+msgstr "...¿En serio?"
 
 #: project/assets/main/locale/localizables-extracted.py:793
 msgid "Go on, ask me about Zagma."
-msgstr ""
+msgstr "Adelante, pregúntame sobre Zagma."
 
 #: project/assets/main/locale/localizables-extracted.py:794
 msgid ""
 "I just don't want our customers thinking that somehow we're bad chefs "
 "because we don't have a silly plaque."
 msgstr ""
+"Solo no quiero que los clientes piensen que de alguna forma seamos malos "
+"chefs solo por no tener una tonta placa."
 
 #: project/assets/main/locale/localizables-extracted.py:795
 msgid "Mmm... Well."
-msgstr ""
+msgstr "Mmm... Bien."
 
 #: project/assets/main/locale/localizables-extracted.py:796
 msgid ""
 "Getting one of those plaques isn't easy. It will require a considerable "
 "investment. But, I can point you in the right direction."
 msgstr ""
+"Ganar una de esas placas no es fácil. Se requiere una dedicación "
+"considerable. Pero, te puedo apuntar en la dirección correcta."
 
 #: project/assets/main/locale/localizables-extracted.py:797
 msgid "Can't you win it for me?"
-msgstr ""
+msgstr "¿No lo puedes ganar por mi?"
 
 #: project/assets/main/locale/localizables-extracted.py:798
 msgid "A considerable investment?"
-msgstr ""
+msgstr "¿Una dedicación considerable?"
 
 #: project/assets/main/locale/localizables-extracted.py:799
 msgid "The right direction?"
-msgstr ""
+msgstr "¿La dirección correcta?"
 
 #: project/assets/main/locale/localizables-extracted.py:800
 msgid "I can do it myself!"
-msgstr ""
+msgstr "¡Lo puedo hacer solo!"
 
 #: project/assets/main/locale/localizables-extracted.py:801
 msgid ""
 "Can't you just win 'Chef Of The Year' yourself instead? You're already a "
 "great chef!"
 msgstr ""
+"¿Tu no puedes ganar la placa \"Chef Del Año\" por mi? ¡Ya eres un gran chef!"
 
 #: project/assets/main/locale/localizables-extracted.py:802
 msgid "No no. I have a conflict of interest, it's best if you do it yourself."
 msgstr ""
+"No no. Tengo un conflicto de intereses, es mejor que lo hagas por ti mismo."
 
 #: project/assets/main/locale/localizables-extracted.py:803
 msgid "Conflict of interest hmm? I think you're just lazy."
-msgstr ""
+msgstr "¿Conflicto de intereses, hmm? Creo que solo eres vago."
 
 #: project/assets/main/locale/localizables-extracted.py:804
 msgid "H-hey! Being lazy is a conflict too..."
-msgstr ""
+msgstr "¡H-hey! Ser vago también es un conflicto..."
 
 #: project/assets/main/locale/localizables-extracted.py:805
 msgid ""
 "A considerable investment? I've been practicing every day for weeks now!! "
 "What kind of investment do you mean?"
 msgstr ""
+"¿Una dedicación considerable? ¡¡Pero si practico todos los días desde hace "
+"varias semanas!! ¿Qué tipo de dedicación te refieres?"
 
 #: project/assets/main/locale/localizables-extracted.py:806
 msgid "Ohhh, about ¥3000 should cover it. Cash is fine~"
-msgstr ""
+msgstr "Ohhh, con solo ¥3000 debería de bastar. En efectivo está bien~"
 
 #: project/assets/main/locale/localizables-extracted.py:807
 msgid "Ha ha, nice try..."
-msgstr ""
+msgstr "Ja ja, buen intento..."
 
 #: project/assets/main/locale/localizables-extracted.py:809
 msgid ""
 "Point me in the right direction? ...Because I figured I'd blindly head east "
 "again."
 msgstr ""
+"¿Apuntar a la dirección correcta? ...Porque voy a ir ciegamente al este, "
+"otra vez."
 
 #: project/assets/main/locale/localizables-extracted.py:810
 #: project/assets/main/locale/localizables-extracted.py:814
@@ -3512,20 +3764,22 @@ msgid ""
 "\"Blindly head east again!?\" Hmph don't be so naive. You can't wandering in "
 "a random direction and expect to find anything."
 msgstr ""
+"¿¡\"Ciegamente al este, otra vez\"!? Hmph, no esperes caminar hacia una "
+"dirección cualquiera y encontrar todo lo que busques."
 
 #: project/assets/main/locale/localizables-extracted.py:811
 #: project/assets/main/locale/localizables-extracted.py:815
 msgid "...But... ...Yes, east is fine."
-msgstr ""
+msgstr "...Pero... ...Sí, al este está bien."
 
 #: project/assets/main/locale/localizables-extracted.py:812
 #: project/assets/main/locale/localizables-extracted.py:816
 msgid "Lucky guess~"
-msgstr ""
+msgstr "Solo es cuestión de suerte~"
 
 #: project/assets/main/locale/localizables-extracted.py:813
 msgid "Oh I don't need your help! I'll just blindly head east again."
-msgstr ""
+msgstr "¡No necesito tu ayuda! Voy a ir ciegamente al este, otra vez."
 
 #: project/assets/main/locale/localizables-extracted.py:817
 msgid ""
@@ -5378,8 +5632,8 @@ msgstr "Voy a consultar a mi compañero... de negocios para ayudarte. NEGOCIOS."
 #: project/assets/main/locale/localizables-extracted.py:1193
 msgid "Sorry, can you remind me why I have to keep saying 'business'?"
 msgstr ""
-"Perdón, pero ¿puedes recordarme por qué tengo que seguir diciendo \"negocios"
-"\"?"
+"Perdón, pero ¿puedes recordarme por qué tengo que seguir diciendo "
+"\"negocios\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:1194
 msgid "(whisper, whisper)"
@@ -6132,8 +6386,8 @@ msgid ""
 "Kshh, so unprofessional. We talked about the name '#bad_restaurant_name#' "
 "don't you remember?"
 msgstr ""
-"Pfff, que poco profesional. Hablamos sobre el nombre, \"#bad_restaurant_name#"
-"\" ¿No recuerdas?"
+"Pfff, que poco profesional. Hablamos sobre el nombre, "
+"\"#bad_restaurant_name#\" ¿No recuerdas?"
 
 #: project/assets/main/locale/localizables-extracted.py:1358
 msgid "I don't think they were there for that conversation, sensei."
@@ -6448,7 +6702,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:1429
 msgid "Yeah it's, actually it's a restaurant!"
-msgstr "¡Si, pero en realidad es un restaurante!"
+msgstr "¡Sí, pero en realidad es un restaurante!"
 
 #: project/assets/main/locale/localizables-extracted.py:1430
 msgid "Turbo Fat... restaurant? ... ... ...Did you name it that on purpose?"
@@ -7094,7 +7348,7 @@ msgstr "¿Ya estás en quiebra?"
 
 #: project/assets/main/locale/localizables-extracted.py:1575
 msgid "Hello! Butt's up with you?"
-msgstr "¡Hola! \"Butt's up\"?"
+msgstr "¡Hola! ¿\"Butt's up\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:1576
 msgid "Butt's... Butt's up? What?"
@@ -7225,7 +7479,7 @@ msgstr "Esperen... No. No, perdón. ¿Podemos hablar en privado un momento?"
 
 #: project/assets/main/locale/localizables-extracted.py:1603
 msgid "Ehh yeah! Yeah sure. C'mon guys, let's take five."
-msgstr ""
+msgstr "¡Claro! Por supuesto. Vamos, tomemos cinco minutos."
 
 #: project/assets/main/locale/localizables-extracted.py:1604
 msgid ""
@@ -7457,11 +7711,11 @@ msgstr "¡Quéeee! ¿Y qué hay de nosotros?"
 
 #: project/assets/main/locale/localizables-extracted.py:1658
 msgid "\"Us?\""
-msgstr ""
+msgstr "¿\"Nosotros\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:1659
 msgid "Our relationship!"
-msgstr ""
+msgstr "¡Nuestra relación!"
 
 #: project/assets/main/locale/localizables-extracted.py:1660
 msgid "What? We have a... relationship?"
@@ -8426,12 +8680,12 @@ msgstr "No. ¡No tan flotante!"
 #: project/assets/main/locale/localizables-extracted.py:1863
 #: project/assets/main/locale/localizables-extracted.py:1867
 msgid "Walnuts?"
-msgstr "¿Nueces?"
+msgstr "¿Cáscaras de nuez?"
 
 #: project/assets/main/locale/localizables-extracted.py:1864
 #: project/assets/main/locale/localizables-extracted.py:1869
 msgid "Rotting flesh?"
-msgstr "¿Carne podrida?"
+msgstr "¿Una alfombra de piel?"
 
 #: project/assets/main/locale/localizables-extracted.py:1865
 #: project/assets/main/locale/localizables-extracted.py:1872
@@ -8445,11 +8699,14 @@ msgstr "Esto no es nada útil para la discusión."
 
 #: project/assets/main/locale/localizables-extracted.py:1868
 msgid "There you go, well put! Like a anchor made of walnuts."
-msgstr "¡Eso es, bien dicho! Como un ancla hecha de nueces."
+msgstr ""
+"¡Eso es, bien dicho! Como un ancla hecha de cáscaras de nuez en el mar."
 
 #: project/assets/main/locale/localizables-extracted.py:1870
 msgid "There you go, well put! Like a anchor made of... wait what!?"
-msgstr "¡Eso es, bien dicho! Como un ancla hecha de... ¿¡Espera qué!?"
+msgstr ""
+"¡Eso es, bien dicho! Como un ancla hecha de una suavecita alfombra de... "
+"¿¡Espera qué!?"
 
 #: project/assets/main/locale/localizables-extracted.py:1871
 msgid ""
@@ -9381,8 +9638,8 @@ msgid ""
 "\"Real Eggs?\" Ohhhhhh so is that sort of like... like the \"Impossible "
 "Burger\" but for eggs?"
 msgstr ""
-"\"Huevos de Verdad\"? Ohhhhh, es como la... ¿Como la \"Hamburguesa Imposible"
-"\" pero con huevos?"
+"\"Huevos de Verdad\"? Ohhhhh, es como la... ¿Como la \"Hamburguesa "
+"Imposible\" pero con huevos?"
 
 #: project/assets/main/locale/localizables-extracted.py:2064
 msgid "Oooh sounds tasty. I'll have that!"
@@ -10030,7 +10287,7 @@ msgstr "Creo... Creo que voy a matar a alguien."
 
 #: project/assets/main/locale/localizables-extracted.py:2222
 msgid "I think this was like... the best Desert Q ever! So many memories..."
-msgstr "Creo que esta fue... ¡La mejor Cola del Desierto! Cuantas memorias..."
+msgstr "Creo que esta fue... ¡La mejor Ola del Desierto! Cuantas memorias..."
 
 #: project/assets/main/locale/localizables-extracted.py:2223
 msgid ""
@@ -10038,14 +10295,14 @@ msgid ""
 "Desert KYUUU!"
 msgstr ""
 "Hacer cola con todos... Volver a casa... ¡No puedo esperar para el próximo "
-"año! ¡Cola del Desierto!"
+"año! ¡Ola del Desierto!"
 
 #: project/assets/main/locale/localizables-extracted.py:2224
 msgid ""
 "Desert Q!! Y'know, I heard someone saying there was once a FESTIVAL at the "
 "front of the queue."
 msgstr ""
-"¡Cola del Desierto! Sabes, hasta escuché que alguien dijo que iba a haber un "
+"¡Ola del Desierto! Sabes, hasta escuché que alguien dijo que iba a haber un "
 "FESTIVAL al frente de la cola."
 
 #: project/assets/main/locale/localizables-extracted.py:2225
@@ -10463,7 +10720,7 @@ msgstr "¿Y nuestro personal?"
 
 #: project/assets/main/locale/localizables-extracted.py:2309
 msgid "What about our customers?"
-msgstr ""
+msgstr "¿Y nuestros clientes?"
 
 #: project/assets/main/locale/localizables-extracted.py:2310
 msgid "What happens next week, when Desert Q is over?"
@@ -10565,7 +10822,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2331
 msgid "...Oh, whatever."
-msgstr ""
+msgstr "...Oh, como sea."
 
 #: project/assets/main/locale/localizables-extracted.py:2332
 msgid "I heard someone say you'll save our place in line. Is that true?"
@@ -10985,8 +11242,8 @@ msgid ""
 "When you said 'desert' I assumed you meant 'Hot Place With People In It'... "
 "This place is literally deserted!"
 msgstr ""
-"Cuando dijiste \"desierto\", yo asumí que decías \"lugar caliente con gente"
-"\"... ¡Este lugar es literalmente desierto!"
+"Cuando dijiste \"desierto\", yo asumí que decías \"lugar caliente con "
+"gente\"... ¡Este lugar es literalmente desierto!"
 
 #: project/assets/main/locale/localizables-extracted.py:2426
 msgid "Oh come now. LITERALLY deserted?"
@@ -11788,8 +12045,8 @@ msgid ""
 "Oh sure – well that's true! The 'K' is from both our names. We both share "
 "the 'K' part of 'Kflab'."
 msgstr ""
-"Oh, claro - ¡Sí, es cierto! La \"K\" es de ambos nombres. Compartimos la \"K"
-"\" de \"Kflab\"."
+"Oh, claro - ¡Sí, es cierto! La \"K\" es de ambos nombres. Compartimos la "
+"\"K\" de \"Kflab\"."
 
 #: project/assets/main/locale/localizables-extracted.py:2573
 msgid "No! The 'K' is from my name, and NOT yours! Your 'K' isn't in the name."
@@ -14604,7 +14861,7 @@ msgstr "10:00 pm"
 
 #: project/src/main/career/career-data.gd:475
 msgid "Kflab"
-msgstr ""
+msgstr "Kflab"
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:86
 msgid "Chapter Select"
@@ -14754,7 +15011,7 @@ msgstr ""
 
 #: project/src/main/credits/CreditsEndText.tscn:54
 msgid "Completion:"
-msgstr ""
+msgstr "Completado:"
 
 #: project/src/main/credits/CreditsEndText.tscn:61
 #: project/src/main/ui/settings/VolumeSetting.tscn:63
@@ -14763,11 +15020,11 @@ msgstr "100%"
 
 #: project/src/main/credits/CreditsEndText.tscn:77
 msgid "Overall grade:"
-msgstr ""
+msgstr "Grado promedio:"
 
 #: project/src/main/credits/CreditsEndText.tscn:84
 msgid "S+"
-msgstr ""
+msgstr "S+"
 
 #: project/src/main/credits/CreditsHeader.tscn:34
 #: project/src/main/ui/menu/MainMenu.tscn:45
@@ -14777,57 +15034,57 @@ msgstr "turbo fat"
 
 #: project/src/main/credits/GodotCreditsLine.tscn:23
 msgid "Proudly made with"
-msgstr ""
+msgstr "Orgullosamente hecho con"
 
 #: project/src/main/credits/credits-director.gd:31
 msgid "Created by:"
-msgstr ""
+msgstr "Creado por:"
 
 #: project/src/main/credits/credits-director.gd:32
 #: project/src/main/credits/credits-director.gd:35
 msgid "Aaron \"Poobslag\" Pieper"
-msgstr ""
+msgstr "Aaron \"Poobslag\" Pieper"
 
 #: project/src/main/credits/credits-director.gd:34
 msgid "Game design, programming, graphics and sound:"
-msgstr ""
+msgstr "Diseño de juego, programación, gráficos y sonido:"
 
 #: project/src/main/credits/credits-director.gd:37
 msgid "Music:"
-msgstr ""
+msgstr "Música:"
 
 #: project/src/main/credits/credits-director.gd:38
 msgid "Pete Ellison"
-msgstr ""
+msgstr "Pete Ellison"
 
 #: project/src/main/credits/credits-director.gd:40
 msgid "Spanish Localization:"
-msgstr ""
+msgstr "Localización al Español:"
 
 #: project/src/main/credits/credits-director.gd:41
 #: project/src/main/credits/credits-director.gd:45
 msgid "Hish"
-msgstr ""
+msgstr "Hish"
 
 #: project/src/main/credits/credits-director.gd:43
 msgid "Testing:"
-msgstr ""
+msgstr "Testeo:"
 
 #: project/src/main/credits/credits-director.gd:44
 msgid "Blazingpelt"
-msgstr ""
+msgstr "Blazingpelt"
 
 #: project/src/main/credits/credits-director.gd:46
 msgid "TJ2024 \"Buggo\""
-msgstr ""
+msgstr "TJ2024 \"Buggo\""
 
 #: project/src/main/credits/credits-director.gd:48
 msgid "Special thanks:"
-msgstr ""
+msgstr "Agradecimientos especiales:"
 
 #: project/src/main/credits/credits-director.gd:49
 msgid "Cheeseness"
-msgstr ""
+msgstr "Cheeseness"
 
 #: project/src/main/credits/credits-director.gd:54
 msgid ""
@@ -14836,6 +15093,10 @@ msgid ""
 "journey, they had several more moderately successful restaurants. ...And a "
 "plaque."
 msgstr ""
+"#wall_of_text# #player# y #sensei# comenzaron su aventura con solo un "
+"restaurante moderadamente exitoso y un sueño. Pero luego de un largo e "
+"incansable viaje, obtuvieron más restaurantes moderadamente exitosos. ...Y "
+"una placa."
 
 #: project/src/main/credits/credits-director.gd:57
 msgid ""
@@ -14843,79 +15104,82 @@ msgid ""
 "loyal customers, they reflected on those special individuals. ...Without "
 "whom, they may have never thought to purchase a plaque!"
 msgstr ""
+"#wall_of_text# #player# miró al mar de grandes amigos y leales clientes, y "
+"se reflejó en aquellos individuos especiales. ...¡Sin ellos, #player# nunca "
+"podría haber pensado en comprar la placa!"
 
 #: project/src/main/credits/credits-director.gd:63
 msgid "Third party assets:"
-msgstr ""
+msgstr "Recursos de terceros:"
 
 #: project/src/main/credits/credits-director.gd:64
 msgid "\"2000 Game SFX Collection\" by GameBurp at Soniss"
-msgstr ""
+msgstr "\"2000 Game SFX Collection\" por GameBurp at Soniss"
 
 #: project/src/main/credits/credits-director.gd:65
 msgid "\"Blogger Sans\" by Sergiy Tkachenko"
-msgstr ""
+msgstr "\"Blogger Sans\" por Sergiy Tkachenko"
 
 #: project/src/main/credits/credits-director.gd:66
 msgid "\"Bosca Ceoil\" by Terry Cavanagh"
-msgstr ""
+msgstr "\"Bosca Ceoil\" por Terry Cavanagh"
 
 #: project/src/main/credits/credits-director.gd:67
 msgid "\"Cartoon Voices\" by Dawid Moroz, Soundholder Studio"
-msgstr ""
+msgstr "\"Cartoon Voices\" por Dawid Moroz, Soundholder Studio"
 
 #: project/src/main/credits/credits-director.gd:68
 msgid "\"Cooking Game\" by Epic Stock Media at Soniss"
-msgstr ""
+msgstr "\"Cooking Game\" por Epic Stock Media en Soniss"
 
 #: project/src/main/credits/credits-director.gd:69
 msgid "\"Doorbell Pull Store Bell\" by Maisonsonique at FreeSound.org"
-msgstr ""
+msgstr "\"Doorbell Pull Store Bell\" por Maisonsonique en FreeSound.org"
 
 #: project/src/main/credits/credits-director.gd:70
 msgid "\"FilmCow Royalty Free Sound Effects Library\" by FilmCow"
-msgstr ""
+msgstr "\"FilmCow Royalty Free Sound Effects Library\" por FilmCow"
 
 #: project/src/main/credits/credits-director.gd:71
 msgid "\"Fredoka One\" by Milena Brandao"
-msgstr ""
+msgstr "\"Fredoka One\" por Milena Brandao"
 
 #: project/src/main/credits/credits-director.gd:72
 msgid "\"GodotSteam\" by GP Garcia"
-msgstr ""
+msgstr "\"GodotSteam\" por GP Garcia"
 
 #: project/src/main/credits/credits-director.gd:73
 msgid "\"Gut\" by Tom \"Butch\" Wesley"
-msgstr ""
+msgstr "\"Gut\" por Tom \"Butch\" Wesley"
 
 #: project/src/main/credits/credits-director.gd:74
 msgid "\"Hanna Barbera SoundFX Library\" by Hanna Barbera"
-msgstr ""
+msgstr "\"Hanna Barbera SoundFX Library\" por Hanna Barbera"
 
 #: project/src/main/credits/credits-director.gd:75
 msgid "\"Modak\" by Ek Type"
-msgstr ""
+msgstr "\"Modak\" por Ek Type"
 
 #: project/src/main/credits/credits-director.gd:76
 msgid "\"Nikumaru\" by Kato Masashi"
-msgstr ""
+msgstr "\"Nikumaru\" por Kato Masashi"
 
 #: project/src/main/credits/credits-director.gd:77
 msgid "\"Schoolbell\" by Font Diner"
-msgstr ""
+msgstr "\"Schoolbell\" por Font Diner"
 
 #: project/src/main/credits/credits-director.gd:78
 msgid "\"TS-808 emulator\" by Jonathan Murphy/Tactile Sounds"
-msgstr ""
+msgstr "\"TS-808 emulator\" por Jonathan Murphy/Tactile Sounds"
 
 #: project/src/main/credits/credits-director.gd:79
 msgid "\"Tracery\" by Kate Compton"
-msgstr ""
+msgstr "\"Tracery\" por Kate Compton"
 
 #: project/src/main/credits/credits-end-text.gd:121
 #, python-format
 msgid "%.1f%%"
-msgstr ""
+msgstr "%.1f%%"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:109
 #: project/src/main/editor/puzzle/LevelEditor.tscn:152
@@ -15279,7 +15543,7 @@ msgstr "3x"
 
 #: project/src/main/puzzle/MoneyBurst.tscn:127
 msgid "¥20"
-msgstr ""
+msgstr "¥20"
 
 #: project/src/main/puzzle/Puzzle.tscn:315
 msgid "Goal"
@@ -17074,7 +17338,7 @@ msgstr "-10"
 #: project/src/main/ui/ExitCreditsPopup.tscn:52
 #: project/src/main/ui/exit-credits-popup.gd:41
 msgid "Press again to exit"
-msgstr ""
+msgstr "Tocar otra vez para salir"
 
 #: project/src/main/ui/FpsLabel.tscn:16
 msgid "60.00 fps"
@@ -17144,7 +17408,7 @@ msgstr "v1.2.3.4"
 
 #: project/src/main/ui/exit-credits-popup.gd:45
 msgid "Click again to exit"
-msgstr ""
+msgstr "Click otra vez para salir"
 
 #: project/src/main/ui/high-score-table.gd:34
 msgid "All-time Best"
@@ -17273,7 +17537,7 @@ msgstr "3"
 
 #: project/src/main/ui/menu/SystemButtons.tscn:43
 msgid "Credits"
-msgstr ""
+msgstr "Créditos"
 
 #: project/src/main/ui/menu/bad-save-data-control.gd:19
 msgid ""
@@ -17469,7 +17733,7 @@ msgstr "Gráficos"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:220
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla Completa"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:251
 msgid "Use Vsync"
@@ -17481,7 +17745,7 @@ msgstr "Detalle de Criatura"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:313
 msgid "Feeding Animation"
-msgstr ""
+msgstr "Animación al Comer"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:360
 msgid "Ghost Piece"
@@ -17493,7 +17757,7 @@ msgstr "Cancelar Asegurado con Caída Lenta"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:421
 msgid "Cheats"
-msgstr "Trampas"
+msgstr "Trucos"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:472
 msgid "Line Piece"
@@ -17543,7 +17807,7 @@ msgstr "Z, X"
 #: project/src/main/ui/settings/SettingsMenu.tscn:617
 #: project/src/main/ui/settings/SettingsMenu.tscn:706
 msgid "Swap Hold Piece"
-msgstr ""
+msgstr "Intercambiar Pieza Sostenida"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:623
 msgid "R"
@@ -17676,11 +17940,11 @@ msgstr "¿Estás seguro?"
 
 #: project/src/main/ui/settings/settings-feeding-animation.gd:7
 msgid "Linear"
-msgstr ""
+msgstr "Lineal"
 
 #: project/src/main/ui/settings/settings-feeding-animation.gd:8
 msgid "Bouncy"
-msgstr ""
+msgstr "Rebote"
 
 #: project/src/main/ui/settings/settings-gameplay-speed.gd:9
 msgid "Slowestest"
