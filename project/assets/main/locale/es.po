@@ -1533,17 +1533,17 @@ msgstr "Aprenda como funciona la mecánica de aplastar piezas y cuando usarla."
 #: project/assets/main/locale/localizables-extracted.py:354
 msgid ""
 "And so #player# and Fat Sensei proceeded to the Zagma gift shop, where "
-"#player# purchased their very own Zagma Chef Of The Year plaque for $3000."
+"#player# purchased their very own Zagma Chef Of The Year plaque for ¥3000."
 msgstr ""
 "Y así, #player# y Fat Sensei fueron a la tienda de regalos de Zagma, donde "
-"#player# compró su propia placa de Zagma Chef del Año por $3000."
+"#player# compró su propia placa de Zagma Chef del Año por ¥3000."
 
 #: project/assets/main/locale/localizables-extracted.py:355
 msgid ""
-"Fat Sensei refused to help pay for the plaque. \"$3000 is a considerable "
+"Fat Sensei refused to help pay for the plaque. \"¥3000 is a considerable "
 "investment, it's best you do it yourself.\""
 msgstr ""
-"Fat Sensei se negó a ayudar con el pago de la placa. \"$3000 es una "
+"Fat Sensei se negó a ayudar con el pago de la placa. \"¥3000 es una "
 "inversión considerable, es mejor que lo hagas solo.\""
 
 #: project/assets/main/locale/localizables-extracted.py:356
@@ -11942,7 +11942,7 @@ msgid "Kkfliab"
 msgstr "Kkflillab"
 
 #: project/assets/main/locale/localizables-extracted.py:2554
-msgid "Kklfliiiab"
+msgid "Kkfliiiab"
 msgstr "Kkfliiiab"
 
 #: project/assets/main/locale/localizables-extracted.py:2555

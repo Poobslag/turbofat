@@ -11509,7 +11509,7 @@ msgid "Kkfliab"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2554
-msgid "Kklfliiiab"
+msgid "Kkfliiiab"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2555
