@@ -100,6 +100,12 @@ func _ready() -> void:
 	_refresh_shine()
 
 
+func set_disabled(new_disabled: bool) -> void:
+	if disabled != new_disabled:
+		disabled = new_disabled
+		_refresh_color()
+
+
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
@@ -152,6 +158,8 @@ func _gradient() -> Gradient:
 	if has_focus():
 		# if the button is focused, we use a bright cyan color
 		result = CandyButtons.GRADIENT_FOCUSED_HOVER if is_hovered() else CandyButtons.GRADIENT_FOCUSED
+	elif disabled:
+		result = CandyButtons.GRADIENT_DISABLED_HOVER if is_hovered() else CandyButtons.GRADIENT_DISABLED
 	else:
 		# if the button is not focused, we use the user-specified color
 		var gradients: Array = CandyButtons.GRADIENTS_BY_BUTTON_COLOR[color]

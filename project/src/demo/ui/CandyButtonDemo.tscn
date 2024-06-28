@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://assets/demo/ui/icon-play.png" type="Texture" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-orange-normal.tres" type="Gradient" id=2]
@@ -41,6 +41,7 @@
 [ext_resource path="res://assets/main/ui/candy-button/h4-p-pressed.png" type="Texture" id=39]
 [ext_resource path="res://assets/main/ui/candy-button/h4-p.png" type="Texture" id=40]
 [ext_resource path="res://assets/main/ui/candy-button/h4-l-pressed.png" type="Texture" id=41]
+[ext_resource path="res://src/main/ui/candy-button/gradient-disabled.tres" type="Gradient" id=42]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -64,7 +65,7 @@ shader_param/gradient = SubResource( 11 )
 
 [sub_resource type="GradientTexture2D" id=13]
 resource_local_to_scene = true
-gradient = ExtResource( 15 )
+gradient = ExtResource( 42 )
 
 [sub_resource type="ShaderMaterial" id=14]
 resource_local_to_scene = true
@@ -144,7 +145,7 @@ shader_param/gradient = SubResource( 27 )
 
 [sub_resource type="GradientTexture2D" id=29]
 resource_local_to_scene = true
-gradient = ExtResource( 11 )
+gradient = ExtResource( 42 )
 
 [sub_resource type="ShaderMaterial" id=30]
 resource_local_to_scene = true
@@ -235,6 +236,7 @@ margin_left = 0.0
 margin_top = 108.0
 margin_right = 200.0
 margin_bottom = 158.0
+disabled = true
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 6 )
@@ -360,6 +362,7 @@ margin_right = 120.0
 margin_bottom = 132.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+disabled = true
 texture_normal = ExtResource( 40 )
 texture_pressed = ExtResource( 39 )
 texture_hover = ExtResource( 40 )
@@ -441,6 +444,7 @@ margin_top = 108.0
 margin_right = 200.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 200, 50 )
+disabled = true
 text = "Trousers"
 
 [node name="Button4" type="Button" parent="Control/DefaultButtons"]
