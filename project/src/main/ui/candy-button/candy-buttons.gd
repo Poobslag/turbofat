@@ -69,3 +69,41 @@ const GRADIENTS_BY_BUTTON_COLOR := {
 		preload("res://src/main/ui/candy-button/gradient-violet-normal.tres"),
 		preload("res://src/main/ui/candy-button/gradient-violet-hover.tres")],
 }
+
+
+
+## Textures for the various ButtonShape presets.
+##
+## key: (int) Enum from ButtonShape
+## value: (Array) Array with two entries for the textures for the specified shape:
+## 	value[0]: (Texture) texture to use when the button is not pressed.
+## 	value[1]: (Texture) texture to use when the button is pressed.
+const C3_TEXTURES_BY_BUTTON_SHAPE := {
+	ButtonShape.NONE: [
+		preload("res://assets/main/ui/candy-button/c3-blank.png"),
+		preload("res://assets/main/ui/candy-button/c3-blank-pressed.png")],
+	ButtonShape.PIECE_J: [
+		preload("res://assets/main/ui/candy-button/c3-j.png"),
+		preload("res://assets/main/ui/candy-button/c3-j-pressed.png")],
+	ButtonShape.PIECE_L: [
+		preload("res://assets/main/ui/candy-button/c3-l.png"),
+		preload("res://assets/main/ui/candy-button/c3-l-pressed.png")],
+	ButtonShape.PIECE_O: [
+		preload("res://assets/main/ui/candy-button/c3-o.png"),
+		preload("res://assets/main/ui/candy-button/c3-o-pressed.png")],
+	ButtonShape.PIECE_P: [
+		preload("res://assets/main/ui/candy-button/c3-p.png"),
+		preload("res://assets/main/ui/candy-button/c3-p-pressed.png")],
+	ButtonShape.PIECE_Q: [
+		preload("res://assets/main/ui/candy-button/c3-q.png"),
+		preload("res://assets/main/ui/candy-button/c3-q-pressed.png")],
+	ButtonShape.PIECE_T: [
+		preload("res://assets/main/ui/candy-button/c3-t.png"),
+		preload("res://assets/main/ui/candy-button/c3-t-pressed.png")],
+	ButtonShape.PIECE_U: [
+		preload("res://assets/main/ui/candy-button/c3-u.png"),
+		preload("res://assets/main/ui/candy-button/c3-u-pressed.png")],
+	ButtonShape.PIECE_V: [
+		preload("res://assets/main/ui/candy-button/c3-v.png"),
+		preload("res://assets/main/ui/candy-button/c3-v-pressed.png")],
+}
