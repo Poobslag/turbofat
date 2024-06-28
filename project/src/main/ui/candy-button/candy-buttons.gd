@@ -31,6 +31,12 @@ const GRADIENT_FOCUSED := preload("res://src/main/ui/candy-button/gradient-focus
 ## Gradient which colors the button bright cyan when the button is focused and hovered.
 const GRADIENT_FOCUSED_HOVER := preload("res://src/main/ui/candy-button/gradient-focused-hover.tres")
 
+## Gradient which colors the button beige when the button is disabled.
+const GRADIENT_DISABLED := preload("res://src/main/ui/candy-button/gradient-disabled.tres")
+
+## Gradient which colors the button bright beige when the button is disabled and hovered.
+const GRADIENT_DISABLED_HOVER := preload("res://src/main/ui/candy-button/gradient-disabled-hover.tres")
+
 ## Gradients for the various ButtonColor presets.
 ##
 ## key: (int) Enum from ButtonColor
