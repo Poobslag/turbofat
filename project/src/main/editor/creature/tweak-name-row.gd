@@ -22,6 +22,8 @@ func grab_focus() -> void:
 func _finish_name_edit(text: String) -> void:
 	var new_name: String = NameUtils.sanitize_name(text)
 	_creature_editor.center_creature.rename(new_name)
+	_creature_editor.center_creature.creature_id \
+		= NameUtils.short_name_to_id(_creature_editor.center_creature.creature_short_name)
 	_refresh_name_ui()
 
 
