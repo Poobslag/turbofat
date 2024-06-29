@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=2]
@@ -41,7 +41,6 @@
 [ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/main/ui/settings/settings-fullscreen.gd" type="Script" id=40]
 [ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=41]
-[ext_resource path="res://src/main/ui/squeak/squeak-button-normal-focus.tres" type="StyleBox" id=42]
 [ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/main/ui/squeak/SqueakCheckBox.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/main/ui/WarningDialog.tscn" type="PackedScene" id=45]
@@ -1219,7 +1218,6 @@ margin_bottom = 15.0
 rect_min_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_styles/normal = ExtResource( 42 )
 shortcut_in_tooltip = false
 text = "Quit"
 
