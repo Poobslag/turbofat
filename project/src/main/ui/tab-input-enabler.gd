@@ -6,7 +6,7 @@ extends Node
 
 ## Columns of focusable nodes below our TabContainer.
 ##
-## The first visible node of each of these arrays will have its its focus_neighbor_top assigned our TabContainer, so
+## The first visible node of each of these arrays will have its its focus_neighbour_top assigned our TabContainer, so
 ## that the player can arrow up into our TabContainer from the nodes below.
 export (Array, Array, NodePath) var focusable_nodes_below: Array = []
 
@@ -78,9 +78,9 @@ func _select_prev_tab() -> void:
 	tab_container.current_tab = clamp(tab_container.current_tab - 1, 0, tab_container.get_tab_count() - 1)
 
 
-## Updates the focus_neighbor fields for the TabContainer, its children, and its neighbours.
+## Updates the focus_neighbour fields for the TabContainer, its children, and its neighbours.
 ##
-## Assigns all of the focus_neighbor fields to accomplish the following:
+## Assigns all of the focus_neighbour fields to accomplish the following:
 ##
 ## 	1. Navigating down from the TabContainer focuses the top item within the TabContainer.
 ##
