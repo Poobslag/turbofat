@@ -128,12 +128,13 @@ project/assets/main/world/environment/restaurant/door-chime*.wav Doorbell Pull S
 
 Graphics
 --------------------------------------------------------------------------------
+project/assets/demo/editor/creature-old/locked.png 'Unlock' by Freepik
+project/assets/demo/editor/creature-old/unlocked.png 'Safe' by Freepik
+project/assets/demo/editor/creature-old/edit.png 'Dna' by Freepik
+project/assets/demo/editor/creature-old/edit-rainbow.png 'Dna' by Freepik
 project/assets/demo/ui/icon-play.png 'Games free icon' by Freepik
 project/assets/main/career/ui/icon-distance.png 'Paws' by Solid icon Co
 project/assets/main/career/ui/icon-time-of-day-sheet.png 'Clock' by Ilhan Fitrotul Hayat
-project/assets/main/editor/creature/edit.png 'Dna' by Freepik
-project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
-project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
 project/assets/main/puzzle/pan/frying-pan-dead.png 'Frying pan' by Creative Stall Premium
 project/assets/main/puzzle/pan/frying-pan-gold.png 'Frying pan' by Creative Stall Premium, 'Reload' by DinosoftLabs
 project/assets/main/puzzle/pan/frying-pan.png 'Frying pan' by Creative Stall Premium

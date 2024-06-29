@@ -30,6 +30,7 @@ func _extract_and_write_localizables() -> void:
 	TranslationServer.set_locale("en")
 	
 	_extract_localizables_from_career_regions()
+	_extract_localizables_from_creature_editor()
 	_extract_localizables_from_levels()
 	_extract_localizables_from_chat_trees()
 	_extract_localizables_from_scancode_strings()
@@ -52,6 +53,11 @@ func _extract_localizables_from_career_regions() -> void:
 		var region: OtherRegion = region_obj
 		_localizables.append(region.name)
 		_localizables.append(region.description)
+
+
+func _extract_localizables_from_creature_editor() -> void:
+	for category in CreatureEditorLibrary.categories:
+		_localizables.append(category.name)
 
 
 ## Extracts localizable strings from worlds/levels and adds them to the in-memory list of localizables.

@@ -224,6 +224,8 @@ func _refresh_text() -> void:
 ## When we gain focus, we reapply a bright cyan color for our texture, text and icons.
 func _on_focus_entered() -> void:
 	_refresh_color()
+	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
+	SfxKeeper.copy(_hover_sound).play()
 
 
 ## When we lose focus, we reapply the normal color for our texture, text and icons.

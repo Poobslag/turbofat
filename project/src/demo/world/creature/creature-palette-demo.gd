@@ -8,5 +8,5 @@ export (PackedScene) var PaletteEditorTabScene: PackedScene
 
 func _ready() -> void:
 	var palette_editor_tab: PaletteEditorTab = PaletteEditorTabScene.instance()
-	$CreatureEditor/Ui/TabContainer.add_child(palette_editor_tab)
-	palette_editor_tab.creature_editor_path = palette_editor_tab.get_path_to($CreatureEditor)
+	$CreatureEditorOld/Ui/TabContainer.add_child(palette_editor_tab)
+	palette_editor_tab.creature_editor_path = palette_editor_tab.get_path_to($CreatureEditorOld)

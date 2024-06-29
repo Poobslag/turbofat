@@ -17,7 +17,7 @@
 [ext_resource path="res://assets/main/ui/candy-button/h4-p.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/ui/candy-button/h4-p-pressed.png" type="Texture" id=16]
 
-[sub_resource type="GradientTexture2D" id=1]
+[sub_resource type="GradientTexture2D" id=7]
 resource_local_to_scene = true
 gradient = ExtResource( 10 )
 
@@ -25,9 +25,9 @@ gradient = ExtResource( 10 )
 resource_local_to_scene = true
 shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 1 )
+shader_param/gradient = SubResource( 7 )
 
-[sub_resource type="GradientTexture2D" id=3]
+[sub_resource type="GradientTexture2D" id=8]
 resource_local_to_scene = true
 gradient = ExtResource( 7 )
 
@@ -35,9 +35,9 @@ gradient = ExtResource( 7 )
 resource_local_to_scene = true
 shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 3 )
+shader_param/gradient = SubResource( 8 )
 
-[sub_resource type="GradientTexture2D" id=5]
+[sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
 gradient = ExtResource( 9 )
 
@@ -45,7 +45,7 @@ gradient = ExtResource( 9 )
 resource_local_to_scene = true
 shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 5 )
+shader_param/gradient = SubResource( 9 )
 
 [node name="System" type="VBoxContainer"]
 anchor_top = 1.0

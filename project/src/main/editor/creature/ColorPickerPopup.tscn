@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/editor/creature/color-picker-popup.gd" type="Script" id=1]
+
+[node name="ColorPickerPopup" type="PopupPanel"]
+margin_right = 316.0
+margin_bottom = 466.0
+script = ExtResource( 1 )
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+edit_alpha = false
+
+[connection signal="color_changed" from="ColorPicker" to="." method="_on_ColorPicker_color_changed"]

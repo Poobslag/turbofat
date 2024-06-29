@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/demo/editor/creature-old/lock-allele-button.gd" type="Script" id=2]
+[ext_resource path="res://assets/demo/editor/creature-old/unlocked.png" type="Texture" id=3]
+[ext_resource path="res://assets/demo/editor/creature-old/locked.png" type="Texture" id=4]
+
+[node name="Button" type="Button" groups=["lock_allele_buttons"]]
+margin_top = 25.0
+margin_right = 100.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 1 )
+text = "Allele"
+expand_icon = true
+script = ExtResource( 2 )
+locked_texture = ExtResource( 4 )
+unlocked_texture = ExtResource( 3 )
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
