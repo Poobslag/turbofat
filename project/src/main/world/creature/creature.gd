@@ -341,7 +341,6 @@ func feed(food_type: int) -> void:
 func rename(new_creature_name: String) -> void:
 	set_creature_name(new_creature_name)
 	creature_short_name = NameUtils.sanitize_short_name(creature_name)
-	creature_id = NameUtils.short_name_to_id(creature_short_name)
 
 
 func restart_idle_timer() -> void:

@@ -119,6 +119,7 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 	match property:
 		"name":
 			creature.rename(NameGeneratorLibrary.generate_name())
+			creature.creature_id = NameUtils.short_name_to_id(creature.creature_short_name)
 		"fatness":
 			var new_fatnesses := Global.FATNESSES.duplicate()
 			while new_fatnesses.has(creature.visual_fatness):
@@ -241,6 +242,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	match allele:
 		"name":
 			creature.rename(NameGeneratorLibrary.generate_name())
+			creature.creature_id = NameUtils.short_name_to_id(creature.creature_short_name)
 		"fatness":
 			var new_fatnesses := Global.FATNESSES.duplicate()
 			while new_fatnesses.has(creature.visual_fatness):
