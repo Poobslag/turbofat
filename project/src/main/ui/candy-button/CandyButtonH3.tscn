@@ -132,4 +132,4 @@ bus = "Sound Bus"
 [node name="HoverSound" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 stream = ExtResource( 10 )
-volume_db = -4.0
+volume_db = -12.0
