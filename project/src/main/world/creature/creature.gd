@@ -130,6 +130,7 @@ func _ready() -> void:
 	creature_visuals.creature_sfx = _creature_sfx
 	
 	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+	creature_visuals.connect("fatness_changed", self, "_on_CreatureVisuals_fatness_changed")
 	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
 	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
 	creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
@@ -592,7 +593,7 @@ func _run_anim_speed() -> float:
 	return result
 
 
-func _on_Creature_fatness_changed() -> void:
+func _on_CreatureVisuals_fatness_changed() -> void:
 	emit_signal("fatness_changed")
 
 

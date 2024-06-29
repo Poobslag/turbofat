@@ -79,7 +79,7 @@ var min_fatness := 1.0
 var weight_gain_scale := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
-	var version: String = json.get("version")
+	var version: String = json.get("version", "")
 	while version != Creatures.CREATURE_DATA_VERSION:
 		match version:
 			"19dd":
