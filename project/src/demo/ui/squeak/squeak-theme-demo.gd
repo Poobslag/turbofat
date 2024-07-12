@@ -3,6 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[Q]: Show confirmation dialog
+## 	[W]: Show file dialog
 
 onready var _panel := $Panel
 
@@ -14,7 +15,9 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_Q:
-			$Panel/ConfirmationDialog.popup()
+			$Panel/ConfirmationDialog.popup_centered()
+		KEY_W:
+			$Panel/FileDialog.popup_centered()
 
 
 func _initialize_option_button() -> void:

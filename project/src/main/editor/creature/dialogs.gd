@@ -1,77 +1,103 @@
+class_name CreatureEditorDialogs
 extends Control
 ## Shows popup dialogs for the creature editor.
 
-export (NodePath) var creature_editor_path: NodePath
+export (NodePath) var overworld_environment_path: NodePath
 
-onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
-onready var _error_dialog := $Error
-onready var _import_dialog := $Import
-onready var _export_dialog := $Export
-onready var _save_confirmation := $SaveConfirmation
+## Object and method to call after the player confirms or cancels the "unsaved changes" dialog
+var _unsaved_changes_confirmation_target: Object
+var _unsaved_changes_confirmation_method: String
 
-func _show_import_export_not_supported_error() -> void:
-	_error_dialog.dialog_text = "Import/export isn't supported over the web. Sorry!"
-	_error_dialog.popup_centered()
+onready var _error: AcceptDialog = $Error
+onready var _export: FileDialog = $Export
+onready var _import: FileDialog = $Import
+onready var _unsaved_changes_confirmation := $UnsavedChangesConfirmation
 
+onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
-func _preserve_file_dialog_paths(dialog: FileDialog) -> void:
-	for other_dialog in [_import_dialog, _export_dialog]:
-		other_dialog.current_file = dialog.current_file
-		other_dialog.current_path = dialog.current_path
-
-
-func _on_ImportButton_pressed() -> void:
-	if OS.has_feature("web"):
-		_show_import_export_not_supported_error()
-		return
+func _ready() -> void:
+	# Workaround for Godot #29674 (https://github.com/godotengine/godot/issues/29674).
+	#
+	# Assign default dialog paths. These path properties were removed in Godot 3.5 in 2022 as a security precaution
+	# and can no longer be assigned in the Godot editor, so we assign them here.
+	_export.current_dir = "/"
+	_export.current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
 	
-	Utils.assign_default_dialog_path(_import_dialog, "res://assets/main/creatures/nonstory/")
-	_import_dialog.popup_centered()
-
-
-## Imports the specified creature into the editor.
-func _on_ImportDialog_file_selected(path: String) -> void:
-	var loaded_def: CreatureDef = CreatureDef.new().from_json_path(path)
-	if loaded_def:
-		_creature_editor.set_center_creature_def(loaded_def)
-		_creature_editor.mutate_all_creatures()
-	else:
-		_error_dialog.dialog_text = "Error importing creature."
-		_error_dialog.popup_centered()
-	_preserve_file_dialog_paths(_import_dialog)
-
-
-func _on_ExportButton_pressed() -> void:
-	if OS.has_feature("web"):
-		_show_import_export_not_supported_error()
-		return
+	_import.current_dir = "/"
+	_import.current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
 	
-	Utils.assign_default_dialog_path(_export_dialog, "res://assets/main/creatures/nonstory/")
-	var exported_creature: Creature = _creature_editor.center_creature
-	var sanitized_creature_name := StringUtils.sanitize_file_root(exported_creature.creature_short_name)
-	_export_dialog.current_file = "%s.json" % sanitized_creature_name
-	_export_dialog.popup_centered()
+	_unsaved_changes_confirmation.get_ok().text = tr("Save")
+	_unsaved_changes_confirmation.get_cancel().text = tr("Discard")
+	_unsaved_changes_confirmation.connect("confirmed",
+			self, "_on_UnsavedChangesQuitConfirmation_save_pressed")
+	_unsaved_changes_confirmation.get_cancel().connect("pressed",
+			self, "_on_UnsavedChangesQuitConfirmation_discard_pressed")
+	_unsaved_changes_confirmation.get_close_button().connect("pressed",
+			self, "_on_UnsavedChangesQuitConfirmation_closed")
 
 
-## Imports the currently edited creature to a file.
-func _on_ExportDialog_file_selected(path: String) -> void:
-	var exported_creature: Creature = _creature_editor.center_creature
-	var exported_creature_def := exported_creature.creature_def
-	exported_creature_def.chef_if = "true"
-	exported_creature_def.customer_if = "true"
-	var exported_json := exported_creature_def.to_json_dict()
-	FileUtils.write_file(path, Utils.print_json(exported_json))
-	_preserve_file_dialog_paths(_export_dialog)
+## Pops up an "unsaved changes" dialog. After the player chooses "Save" or "Discard", the specified callback is
+## called.
+##
+## If the player closes the dialog, the callback is not called.
+##
+## Parameters:
+## 	'target': The class whose method should be called after the player selects "Save" or "Discard".
+##
+## 	'method': The method to call after the player selects "Save" or "Discard".
+func show_unsaved_changes_confirmation(target: Object, method: String) -> void:
+	_unsaved_changes_confirmation_target = target
+	_unsaved_changes_confirmation_method = method
+	_unsaved_changes_confirmation.popup_centered()
 
 
-func _on_SaveButton_pressed() -> void:
-	_save_confirmation.popup_centered()
+func show_import_dialog() -> void:
+	assign_default_dialog_dir(_import, OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS), "")
+	_import.popup_centered()
 
 
-## Updates the player character and writes it to their save file.
-func _on_SaveConfirmation_confirmed() -> void:
-	var saved_creature_def := _creature_editor.center_creature.creature_def
-	saved_creature_def.chef_if = "true"
-	saved_creature_def.customer_if = "false"
-	PlayerData.creature_library.player_def = saved_creature_def
-	PlayerSave.schedule_save()
+func show_export_dialog() -> void:
+	assign_default_dialog_dir(_export, OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS), "")
+	
+	var sanitized_creature_name := StringUtils.sanitize_file_root(_overworld_environment.player.creature_short_name)
+	_export.current_file = "%s.json" % sanitized_creature_name
+	_export.popup_centered()
+
+
+func show_error_dialog(text: String) -> void:
+	_error.dialog_text = text
+	_error.popup_centered()
+
+
+## Save the changes, and then perform the requested operation (quitting or importing)
+func _on_UnsavedChangesQuitConfirmation_save_pressed() -> void:
+	PlayerData.creature_library.player_def = _overworld_environment.player.get_creature_def()
+	PlayerSave.save_player_data()
+	
+	if _unsaved_changes_confirmation_target:
+		_unsaved_changes_confirmation_target.call(_unsaved_changes_confirmation_method)
+
+
+## Don't save the changes, perform the requested operation (quitting or importing)
+func _on_UnsavedChangesQuitConfirmation_discard_pressed() -> void:
+	if _unsaved_changes_confirmation_target:
+		_unsaved_changes_confirmation_target.call(_unsaved_changes_confirmation_method)
+
+
+## Don't save the changes, and don't perform the requested operation (quitting or importing)
+func _on_UnsavedChangesQuitConfirmation_closed() -> void:
+	pass
+
+
+## Assigns a default path for a FileDialog.
+##
+## At runtime, this will default to the user data directory. During development, this will default to a resource path
+## for convenience when authoring Turbo Fat's creature's/levels.
+##
+## Note: We only want to assign the path the first time, but we can't check 'is the path empty' because an empty path
+## is a valid choice -- a player can navigate to the root directory. So instead of checking 'is the path empty' we
+## check 'is the path this specific UUID' since that's something the user will never navigate to accidentally.
+static func assign_default_dialog_dir(dialog: FileDialog, default_dir: String, default_file) -> void:
+	if dialog.current_path == "/509e7c82-9399-425a-9f15-9370c2b3de8b":
+		dialog.current_dir = default_dir
+		dialog.current_file = default_file

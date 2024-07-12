@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/main/world/environment/lemon/LemonRippleWaves.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/environment/lemon/LemonGroundMap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/world/environment/PebbleOverworldTiler.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/lemon/lemon-terrain-library.tres" type="TileSet" id=21]
+[ext_resource path="res://src/main/world/environment/EnvironmentShadows.tscn" type="PackedScene" id=27]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=28]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=29]
+
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 29 )
+environment_shadows_path = NodePath("Ground/Shadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 28 )
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -1
+
+[node name="GroundMap" parent="Ground" instance=ExtResource( 8 )]
+tile_data = PoolIntArray( 0, 0, 0 )
+
+[node name="RippleWaves" parent="Ground" instance=ExtResource( 6 )]
+tile_map_path = NodePath("../GroundMap")
+direction = 2
+speed = 30.0
+wait_time = 12.0
+rippleable_tile_ids = [ 0 ]
+
+[node name="Terrain" type="TileMap" parent="Ground"]
+position = Vector2( -2, 1 )
+mode = 1
+tile_set = ExtResource( 21 )
+cell_size = Vector2( 128, 64 )
+cell_quadrant_size = 64
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+
+[node name="PebbleOverworldTiler" parent="Ground/Terrain" instance=ExtResource( 13 )]
+pebble_density = 0.015
+ground_no_goop_tile_index = 1
+pebble_tile_index = 1
+
+[node name="Shadows" parent="Ground" instance=ExtResource( 27 )]
+obstacles_path = NodePath("../../Obstacles")
+cell_shadow_mapping = {
+1: Rect2( 0, 0, 0, 0 ),
+7: Rect2( 0, 0, 0, 0 )
+}
+
+[node name="Obstacles" type="YSort" parent="."]
+
+[node name="Player" parent="Obstacles" instance=ExtResource( 28 )]
+position = Vector2( -2, 32 )
+creature_id = "#player#"
+orientation = 1

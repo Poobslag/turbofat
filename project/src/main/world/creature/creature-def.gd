@@ -79,7 +79,7 @@ var min_fatness := 1.0
 var weight_gain_scale := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
-	var version: String = json.get("version")
+	var version: String = json.get("version", "")
 	while version != Creatures.CREATURE_DATA_VERSION:
 		match version:
 			"19dd":
@@ -163,7 +163,6 @@ func from_json_path(path: String) -> CreatureDef:
 func rename(new_creature_name: String) -> void:
 	creature_name = new_creature_name
 	creature_short_name = NameUtils.sanitize_short_name(creature_name)
-	creature_id = NameUtils.short_name_to_id(creature_short_name)
 
 
 ## Returns true if this creature can show up as a random customer.

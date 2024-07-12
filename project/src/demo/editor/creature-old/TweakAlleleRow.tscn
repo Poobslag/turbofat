@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/demo/editor/creature-old/tweak-allele-row.gd" type="Script" id=2]
+[ext_resource path="res://src/demo/editor/creature-old/tweak-dna-button.gd" type="Script" id=3]
+[ext_resource path="res://assets/demo/editor/creature-old/edit.png" type="Texture" id=4]
+
+[node name="Row" type="HBoxContainer"]
+margin_right = 306.0
+margin_bottom = 26.0
+custom_constants/separation = 10
+script = ExtResource( 2 )
+text = "Allele"
+
+[node name="Label" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 100.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+theme = ExtResource( 1 )
+text = "Allele:"
+align = 2
+
+[node name="Edit" type="OptionButton" parent="."]
+margin_left = 110.0
+margin_right = 270.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+theme = ExtResource( 1 )
+
+[node name="DnaMargin" type="MarginContainer" parent="."]
+margin_left = 280.0
+margin_right = 306.0
+margin_bottom = 26.0
+custom_constants/margin_top = 1
+custom_constants/margin_bottom = -1
+
+[node name="Dna" type="Button" parent="DnaMargin"]
+margin_top = 1.0
+margin_right = 26.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 26, 26 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="DnaMargin/Dna"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 4 )
+expand = true
+
+[connection signal="item_focused" from="Edit" to="." method="_on_Edit_item_focused"]
+[connection signal="item_selected" from="Edit" to="." method="_on_Edit_item_selected"]
+[connection signal="pressed" from="Edit" to="." method="_on_Edit_pressed"]
+[connection signal="button_down" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_down"]
+[connection signal="button_up" from="DnaMargin/Dna" to="DnaMargin/Dna" method="_on_button_up"]
+[connection signal="pressed" from="DnaMargin/Dna" to="." method="_on_Dna_pressed"]

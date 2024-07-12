@@ -139,6 +139,32 @@ static func find_closest(values: Array, target: float) -> int:
 	return result
 
 
+## Finds and returns all focusable nodes within the specified parent node.
+##
+## This function traverses the node tree starting from the given parent node and collects all visible nodes capable of
+## receiving focus.
+##
+## Parameters:
+## 	'parent_node': The root node from which the search begins.
+##
+## Returns:
+## 	An array of nodes that can receive focus. These nodes meet the criteria of being focusable, visible, and not
+## 	scheduled for deletion.
+static func find_focusable_nodes(parent_node: Node) -> Array:
+	var focusable_nodes := []
+	var node_queue := [parent_node]
+	while not node_queue.empty():
+		var next_node: Node = node_queue.pop_front()
+		if next_node is Control \
+				and next_node.focus_mode != Control.FOCUS_NONE \
+				and next_node.is_visible_in_tree() \
+				and not next_node.is_queued_for_deletion():
+			focusable_nodes.append(next_node)
+		
+		node_queue.append_array(next_node.get_children())
+	return focusable_nodes
+
+
 ## Returns a list of all of a node's descendants assigned to the given group.
 ##
 ## Parameters:
@@ -156,7 +182,6 @@ static func get_child_members(parent: Node, group: String) -> Array:
 	return child_members
 
 
-
 ## Returns a new array containing the intersection of the given arrays.
 static func intersection(a: Array, b: Array) -> Array:
 	var result := []
@@ -170,6 +195,46 @@ static func intersection(a: Array, b: Array) -> Array:
 			if bag[item] == 0:
 				bag.erase(item)
 			result.append(item)
+	return result
+
+
+## Compares two dictionaries to determine if they are deeply equal.
+##
+## This function performs a deep comparison of two dictionaries, checking if they contain the same keys and
+## corresponding values. It handles nested dictionaries and arrays by recursively comparing their contents.
+##
+## Parameters:
+## 	'dict1': The first dictionary to compare.
+## 	'dict2': The second dictionary to compare.
+##
+## Returns:
+## 	'true' if both dictionaries contain the same keys and values, including nested structures.
+static func is_json_deep_equal(dict1: Dictionary, dict2: Dictionary) -> bool:
+	var result := true
+	var queue := [[dict1, dict2]]
+	while not queue.empty() and result:
+		var pair: Array = queue.pop_front()
+		if typeof(pair[0]) != typeof(pair[1]):
+			result = false
+		elif typeof(pair[0]) == TYPE_DICTIONARY:
+			if pair[0].size() != pair[1].size():
+				result = false
+			else:
+				for key in pair[0]:
+					if not pair[1].has(key):
+						result = false
+						break
+					queue.append([pair[0][key], pair[1][key]])
+		elif typeof(pair[0]) == TYPE_ARRAY:
+			if pair[0].size() != pair[1].size():
+				result = false
+			else:
+				for i in range(pair[0].size()):
+					queue.append([pair[0][i], pair[1][i]])
+		else:
+			if pair[0] != pair[1]:
+				result = false
+	
 	return result
 
 

@@ -142,3 +142,26 @@ margin_bottom = 319.218
 window_title = "Lorum ipsum..."
 dialog_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 dialog_autowrap = true
+
+[node name="FileDialog" type="FileDialog" parent="Panel"]
+margin_left = 265.0
+margin_top = 110.0
+margin_right = 665.0
+margin_bottom = 410.0
+rect_min_size = Vector2( 400, 300 )
+
+[node name="Panel" type="Panel" parent="Panel"]
+margin_left = 366.0
+margin_top = 26.0
+margin_right = 366.0
+margin_bottom = 26.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Panel"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 50, 50 )
+
+[node name="Control" type="Control" parent="Panel/Panel/ScrollContainer"]
+margin_right = 400.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 400, 400 )

@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _show_save_load_not_supported_error() -> void:
-	$Error.dialog_text = "Saving/loading files isn't supported over the web. Sorry!"
+	$Error.dialog_text = tr("Saving/loading files isn't supported over the web. Sorry!")
 	$Error.popup_centered()
 
 

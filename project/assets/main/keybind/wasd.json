@@ -149,10 +149,6 @@
       "scancode": 32
     },
     {
-      "type": "key",
-      "scancode": 90
-    },
-    {
       "type": "joypad_button",
       "device": 0,
       "button_index": 0

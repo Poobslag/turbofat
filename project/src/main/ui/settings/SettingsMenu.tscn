@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=2]
@@ -41,7 +41,6 @@
 [ext_resource path="res://src/main/ui/FontFitButton.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/main/ui/settings/settings-fullscreen.gd" type="Script" id=40]
 [ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=41]
-[ext_resource path="res://src/main/ui/squeak/squeak-button-normal-focus.tres" type="StyleBox" id=42]
 [ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/main/ui/squeak/SqueakCheckBox.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/main/ui/WarningDialog.tscn" type="PackedScene" id=45]
@@ -139,7 +138,7 @@ margin_bottom = 306.0
 size_flags_horizontal = 3
 
 [node name="Volume" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 20.0
 text = "Sound + Music"
 align = 1
@@ -151,7 +150,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 26.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 46.0
 theme = null
 
@@ -162,7 +161,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 52.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 72.0
 theme = null
 volume_type = 1
@@ -174,7 +173,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 78.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 98.0
 theme = null
 volume_type = 2
@@ -186,26 +185,26 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 104.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 124.0
 theme = null
 volume_type = 3
 
 [node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 130.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 134.0
 
 [node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 140.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 160.0
 text = "Graphics"
 align = 1
 
 [node name="Fullscreen" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 166.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 198.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -213,7 +212,7 @@ custom_constants/separation = 20
 script = ExtResource( 40 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen"]
-margin_right = 280.0
+margin_right = 278.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -225,8 +224,8 @@ valign = 1
 autowrap = true
 
 [node name="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen" instance=ExtResource( 44 )]
-margin_left = 300.0
-margin_right = 460.0
+margin_left = 298.0
+margin_right = 458.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -235,7 +234,7 @@ size_flags_stretch_ratio = 1.1
 
 [node name="UseVsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 204.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 236.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -243,7 +242,7 @@ custom_constants/separation = 20
 script = ExtResource( 25 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync"]
-margin_right = 280.0
+margin_right = 278.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -255,8 +254,8 @@ valign = 1
 autowrap = true
 
 [node name="CheckBox" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" instance=ExtResource( 44 )]
-margin_left = 300.0
-margin_right = 460.0
+margin_left = 298.0
+margin_right = 458.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -265,7 +264,7 @@ size_flags_stretch_ratio = 1.1
 
 [node name="CreatureDetail" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 242.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 271.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -273,7 +272,7 @@ custom_constants/separation = 20
 script = ExtResource( 19 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail"]
-margin_right = 280.0
+margin_right = 278.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -285,8 +284,8 @@ valign = 1
 autowrap = true
 
 [node name="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" instance=ExtResource( 3 )]
-margin_left = 300.0
-margin_right = 460.0
+margin_left = 298.0
+margin_right = 458.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -295,7 +294,7 @@ size_flags_stretch_ratio = 1.1
 
 [node name="FeedingAnimation" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 277.0
-margin_right = 718.0
+margin_right = 712.0
 margin_bottom = 306.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -303,7 +302,7 @@ custom_constants/separation = 20
 script = ExtResource( 34 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
-margin_right = 280.0
+margin_right = 278.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -315,8 +314,8 @@ valign = 1
 autowrap = true
 
 [node name="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" instance=ExtResource( 3 )]
-margin_left = 300.0
-margin_right = 460.0
+margin_left = 298.0
+margin_right = 458.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -562,7 +561,6 @@ group = SubResource( 3 )
 text = "Custom"
 
 [node name="PresetScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
-visible = false
 margin_top = 35.0
 margin_right = 736.0
 margin_bottom = 284.0
@@ -659,29 +657,29 @@ description = "Back in Menus"
 keybind_value = "Escape"
 
 [node name="NextTabInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 200.0
+margin_top = 220.0
 margin_right = 500.0
-margin_bottom = 220.0
+margin_bottom = 240.0
 description = "Next Tab"
 keybind_value = "X"
 
 [node name="PrevTabInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 200.0
+margin_top = 240.0
 margin_right = 500.0
-margin_bottom = 220.0
+margin_bottom = 260.0
 description = "Previous Tab"
 keybind_value = "Z"
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer"]
-margin_top = 220.0
+margin_top = 260.0
 margin_right = 500.0
-margin_bottom = 240.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
-margin_top = 240.0
+margin_top = 280.0
 margin_right = 500.0
-margin_bottom = 260.0
+margin_bottom = 300.0
 description = "Rewind Text"
 keybind_value = "Shift"
 
@@ -1220,7 +1218,6 @@ margin_bottom = 15.0
 rect_min_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_styles/normal = ExtResource( 42 )
 shortcut_in_tooltip = false
 text = "Quit"
 

@@ -1,0 +1,39 @@
+{
+  "version": "375c",
+  "id": "shelby",
+  "name": "Shelby",
+  "short_name": "Shelby",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "0",
+    "collar": "1",
+    "ear": "0",
+    "eye": "8",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "4",
+    "tail": "5",
+    "accessory": "1",
+    "line_rgb": "41281e",
+    "body_rgb": "206fd5",
+    "belly_rgb": "ede96b",
+    "cloth_rgb": "ff73e1",
+    "glass_rgb": "221b1b",
+    "plastic_rgb": "e699a1",
+    "hair_rgb": "696864",
+    "eye_rgb": "7aadf8 fffffb",
+    "horn_rgb": "404094"
+  },
+  "chat_theme": {
+    "accent_scale": 2.3,
+    "accent_swapped": true,
+    "accent_texture": 11,
+    "color": "206fd5",
+    "dark": true
+  },
+  "fatness": 1.4
+}
