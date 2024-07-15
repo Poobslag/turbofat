@@ -1,14 +1,14 @@
 extends ColorRect
 ## Draws the starry sky behind the playfield during night mode.
 
+## rapidly rotates the stars when the playfield shows up, for a time lapse effect
+var _sky_spin_tween: SceneTreeTween
+
 ## two large blue elliptical Sprites which add some texture to the sky
 onready var _sky_sprites := [$SkyA, $SkyB]
 
 ## Particle2Ds which draw a starfield of big, cartoony stars
 onready var _star_nodes := [$NightStarsDark, $NightStarsLight]
-
-## rapidly rotates the stars when the playfield shows up, for a time lapse effect
-onready var _sky_spin_tween: SceneTreeTween
 
 func _ready() -> void:
 	for sprite in _sky_sprites:

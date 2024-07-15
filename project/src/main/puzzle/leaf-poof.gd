@@ -12,7 +12,7 @@ var leaf_frame: int setget set_leaf_frame
 var leaf_type: int
 
 ## turns the leaf invisible
-onready var _tween: SceneTreeTween
+var _tween: SceneTreeTween
 
 ## animates and flips the leaf
 onready var _animation_player: AnimationPlayer = $AnimationPlayer

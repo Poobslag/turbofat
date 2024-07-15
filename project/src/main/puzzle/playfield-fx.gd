@@ -81,6 +81,9 @@ var _tile_index_by_color: Dictionary
 ## Array of integer index of rainbow tiles in light_map or glow_map
 var _rainbow_tile_indexes := []
 
+## gradually dims the glowiness
+var _glow_tween: SceneTreeTween
+
 ## lights which turn on and off
 onready var light_map: TileMap = $LightMap
 
@@ -91,9 +94,6 @@ onready var glow_map: TileMap = $GlowMap
 onready var bg_strobe: ColorRect = $BgStrobe
 
 onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
-
-## gradually dims the glowiness
-onready var _glow_tween: SceneTreeTween
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")

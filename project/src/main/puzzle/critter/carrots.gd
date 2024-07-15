@@ -28,6 +28,9 @@ var _playfield: Playfield
 ## tracks whether the carrot sfx are playing
 var _move_sfx_state: int = MoveSfxState.STOPPED
 
+## tweens carrot sfx
+var _tween: SceneTreeTween
+
 ## node which contains all of the child carrot nodes
 onready var _carrot_holder: Node2D = $CarrotHolder
 
@@ -36,9 +39,6 @@ onready var _carrot_poof_sound: AudioStreamPlayer = $CarrotPoofSound
 
 ## sound which plays while at least one carrot is moving
 onready var _carrot_move_sound: AudioStreamPlayer = $CarrotMoveSound
-
-## tweens carrot sfx
-onready var _tween: SceneTreeTween
 
 func _ready() -> void:
 	_refresh_playfield_path()

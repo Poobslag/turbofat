@@ -9,7 +9,7 @@ const FADE_DURATION := 0.3
 
 export (Ripples.RippleState) var ripple_state := Ripples.RippleState.OFF setget set_ripple_state
 
-onready var _fade_tween: SceneTreeTween
+var _fade_tween: SceneTreeTween
 
 func _ready() -> void:
 	modulate = Color.transparent
