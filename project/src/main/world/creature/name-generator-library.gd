@@ -1,7 +1,7 @@
 extends Node
 ## Generates names for different species using different algorithms.
 
-## key: (Creatures.Type) creature type such as 'squirrel'
+## key: (int) Enum from Creatures.Type such as 'squirrel'
 ## value: (NameGenerator) generator for the specified creature type
 var _generators_by_type := {}
 

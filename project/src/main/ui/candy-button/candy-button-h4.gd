@@ -25,7 +25,7 @@ var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button
 ## Textures for the various ButtonShape presets.
 ##
 ## key: (int) Enum from ButtonShape
-## value: (Array) Array with two entries for the textures for the specified shape:
+## value: (Array, Texture) Array with two entries for the textures for the specified shape:
 ## 	value[0]: (Texture) texture to use when the button is not pressed.
 ## 	value[1]: (Texture) texture to use when the button is pressed.
 var _textures_by_button_shape := {

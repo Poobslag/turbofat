@@ -1,5 +1,5 @@
 shader_type canvas_item;
-/*
+/**
  * Recolors and draws an outline around a single-color sprite.
  *
  * Opaque parts of the sprite are recolored as a single color. The icon outline is sampled in 24 directions by default,

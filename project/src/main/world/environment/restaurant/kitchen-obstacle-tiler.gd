@@ -87,7 +87,7 @@ const GRILL_ORIENTATION_BY_CELL := {
 	Vector2(3, 7): RIGHT,
 }
 
-## key: (Array) array containing 3 elements representing TileSet bindings and metadata:
+## key: (Array, int) array containing 3 elements representing TileSet bindings and metadata:
 ## 	key[0]: (int) direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
 ## 	key[1]: (int) union of TileSet bindings for adjacent cells containing grills
 ## 	key[2]: (int) union of TileSet bindings for adjacent cells containing grills and countertops
@@ -144,7 +144,7 @@ const SINK_ORIENTATION_BY_CELL := {
 	Vector2(2, 3): RIGHT,
 }
 
-## key: (Array) array containing 3 elements representing TileSet bindings and metadata:
+## key: (Array, int) array containing 3 elements representing TileSet bindings and metadata:
 ## 	key[0]: (int) direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
 ## 	key[1]: (int) union of TileSet bindings for adjacent cells containing sinks
 ## value: (Vector2) sink autotile coordinate

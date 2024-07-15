@@ -6,7 +6,7 @@ class_name LevelTriggers
 ## invisible every time the player places a piece.
 
 ## key: (int) Enum from LevelTrigger.LevelTriggerPhase
-## value: (Array) LevelTriggers which should happen during that phase
+## value: (Array, LevelTrigger) LevelTriggers which should happen during that phase
 var triggers := {}
 
 ## Runs all triggers for the specified phase.

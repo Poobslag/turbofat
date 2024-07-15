@@ -17,7 +17,7 @@ export (bool) var editing := true
 export (bool) var _save_curve: bool setget save_curve
 
 ## defines the shadow curve coordinates for each of the creature's levels of fatness.
-export (Array) var curve_defs: Array setget set_curve_defs
+export (Array, Dictionary) var curve_defs: Array setget set_curve_defs
 
 ## if false, the body will not render this curve when the creature faces away from the camera.
 export (bool) var drawn_when_facing_north: bool = true

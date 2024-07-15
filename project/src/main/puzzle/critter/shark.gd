@@ -43,7 +43,7 @@ const SQUISHED := State.SQUISHED
 ## Shorter sharks need the tooth cloud moved lower so it will line up with their mouth. This constant stores the tooth
 ## cloud height for different shark types.
 ##
-## key: (SharkConfig.SharkSize)
+## key: (int) Enum from SharkConfig.SharkSize
 ## value: (float) y coordinate for the tooth cloud for the specified shark size.
 const TOOTH_CLOUD_Y_BY_SHARK_SIZE := {
 	SharkConfig.SharkSize.SMALL: -12.0,
@@ -51,7 +51,7 @@ const TOOTH_CLOUD_Y_BY_SHARK_SIZE := {
 	SharkConfig.SharkSize.LARGE: -36.0,
 }
 
-## key: (SharkConfig.SharkSize)
+## key: (int) Enum from SharkConfig.SharkSize
 ## value: (float) pitch scale for the specified shark size
 const PITCH_SCALE_BY_SHARK_SIZE := {
 	SharkConfig.SharkSize.SMALL: 1.55,

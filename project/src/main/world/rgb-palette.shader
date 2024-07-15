@@ -1,4 +1,5 @@
-/*
+shader_type canvas_item;
+/**
  * A shader which takes an RGB image, and replaces the red component with one color, the green component with a second
  * color, and the blue component with a third color. Black pixels are also replaced with a fourth color. A pixel
  * which is mostly red but a little green will be replaced with the first and second colors.
@@ -7,7 +8,6 @@
  * graphics card. It's performant and looks reasonable even if the sprite is resized before being passed off to the
  * graphics card.
  */
-shader_type canvas_item;
 
 // replacement colors for red, green and blue channels
 uniform vec4 red : hint_color;

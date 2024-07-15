@@ -30,7 +30,7 @@ const LOCATION_DESCRIPTIONS_BY_ID := {
 ## Number of columns in the BBCode table
 var _table_width := 1
 
-## key: (Creatures.Mood)
+## key: (int) Enum from Creatures.Mood
 ## value: (Array, String) string chat prefixes (emoticons)
 var _prefixes_by_mood := {}
 
