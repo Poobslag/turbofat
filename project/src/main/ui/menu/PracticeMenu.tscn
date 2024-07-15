@@ -79,11 +79,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 33 )
-high_scores_path = NodePath("MainMenu/VBoxContainer/HighScores")
-level_button_path = NodePath("MainMenu/VBoxContainer/Level/ButtonHolder/Button")
-level_description_label_path = NodePath("MainMenu/VBoxContainer/Level/Desc")
-speed_selector_path = NodePath("MainMenu/VBoxContainer/Speed")
-start_button_path = NodePath("MainMenu/VBoxContainer/System/Start")
+high_scores_path = NodePath("MainMenu/DropPanel/VBoxContainer/HighScores")
+level_button_path = NodePath("MainMenu/DropPanel/VBoxContainer/Level/ButtonHolder/Button")
+level_description_label_path = NodePath("MainMenu/DropPanel/VBoxContainer/Level/Desc")
+speed_selector_path = NodePath("MainMenu/DropPanel/VBoxContainer/Speed")
+start_button_path = NodePath("MainMenu/DropPanel/VBoxContainer/System/Start")
 
 [node name="Wallpaper" parent="." instance=ExtResource( 11 )]
 
@@ -91,7 +91,7 @@ start_button_path = NodePath("MainMenu/VBoxContainer/System/Start")
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Panel" type="Panel" parent="MainMenu"]
+[node name="DropPanel" type="Panel" parent="MainMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -100,21 +100,21 @@ margin_right = -50.0
 margin_bottom = -10.0
 custom_styles/panel = ExtResource( 10 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/DropPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -25.0
+margin_left = 14.0
+margin_top = 14.0
+margin_right = -14.0
+margin_bottom = -14.0
 custom_constants/separation = 20
 
-[node name="Level" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_right = 984.0
+[node name="Level" type="VBoxContainer" parent="MainMenu/DropPanel/VBoxContainer"]
+margin_right = 896.0
 margin_bottom = 109.0
 
-[node name="Title" type="Label" parent="MainMenu/VBoxContainer/Level"]
-margin_right = 984.0
+[node name="Title" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Level"]
+margin_right = 896.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -123,19 +123,19 @@ text = "Level"
 align = 1
 valign = 1
 
-[node name="MenuAccentH2" parent="MainMenu/VBoxContainer/Level/Title" instance=ExtResource( 19 )]
+[node name="MenuAccentH2" parent="MainMenu/DropPanel/VBoxContainer/Level/Title" instance=ExtResource( 19 )]
 margin_left = -112.5
 margin_top = -37.5
 margin_right = 112.5
 margin_bottom = 37.5
 
-[node name="ButtonHolder" type="Control" parent="MainMenu/VBoxContainer/Level"]
+[node name="ButtonHolder" type="Control" parent="MainMenu/DropPanel/VBoxContainer/Level"]
 margin_top = 49.0
-margin_right = 984.0
+margin_right = 896.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 0, 36 )
 
-[node name="Button" type="Button" parent="MainMenu/VBoxContainer/Level/ButtonHolder" groups=["main_practice_inputs"]]
+[node name="Button" type="Button" parent="MainMenu/DropPanel/VBoxContainer/Level/ButtonHolder" groups=["main_practice_inputs"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -150,9 +150,9 @@ shortcut_in_tooltip = false
 group = ExtResource( 14 )
 text = "Sprint: Normal"
 
-[node name="Desc" type="Label" parent="MainMenu/VBoxContainer/Level"]
+[node name="Desc" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Level"]
 margin_top = 89.0
-margin_right = 984.0
+margin_right = 896.0
 margin_bottom = 109.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -161,15 +161,15 @@ text = "Score 200 points as quickly as possible!"
 align = 1
 valign = 1
 
-[node name="Speed" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 155.0
-margin_right = 984.0
-margin_bottom = 244.0
+[node name="Speed" type="VBoxContainer" parent="MainMenu/DropPanel/VBoxContainer"]
+margin_top = 154.0
+margin_right = 896.0
+margin_bottom = 243.0
 size_flags_vertical = 6
 script = ExtResource( 34 )
 
-[node name="Title" type="Label" parent="MainMenu/VBoxContainer/Speed"]
-margin_right = 984.0
+[node name="Title" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Speed"]
+margin_right = 896.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -178,7 +178,7 @@ text = "Speed"
 align = 1
 valign = 1
 
-[node name="MenuAccentH2" parent="MainMenu/VBoxContainer/Speed/Title" instance=ExtResource( 19 )]
+[node name="MenuAccentH2" parent="MainMenu/DropPanel/VBoxContainer/Speed/Title" instance=ExtResource( 19 )]
 margin_left = -112.5
 margin_top = -37.5
 margin_right = 112.5
@@ -186,10 +186,10 @@ margin_bottom = 37.5
 texture = ExtResource( 18 )
 _accent_index = 1
 
-[node name="Slider" type="HSlider" parent="MainMenu/VBoxContainer/Speed" groups=["main_practice_inputs"]]
-margin_left = 192.0
+[node name="Slider" type="HSlider" parent="MainMenu/DropPanel/VBoxContainer/Speed" groups=["main_practice_inputs"]]
+margin_left = 148.0
 margin_top = 49.0
-margin_right = 792.0
+margin_right = 748.0
 margin_bottom = 65.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_horizontal = 4
@@ -197,23 +197,23 @@ theme = ExtResource( 6 )
 max_value = 3.0
 tick_count = 4
 
-[node name="Labels" type="HBoxContainer" parent="MainMenu/VBoxContainer/Speed"]
-margin_left = 188.0
+[node name="Labels" type="HBoxContainer" parent="MainMenu/DropPanel/VBoxContainer/Speed"]
+margin_left = 144.0
 margin_top = 69.0
-margin_right = 796.0
+margin_right = 752.0
 margin_bottom = 89.0
 rect_min_size = Vector2( 608, 0 )
 size_flags_horizontal = 4
 theme = ExtResource( 6 )
 
-[node name="Normal" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
+[node name="Normal" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Speed/Labels"]
 margin_right = 99.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "0"
 
-[node name="Hard" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
+[node name="Hard" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Speed/Labels"]
 margin_left = 103.0
 margin_right = 302.0
 margin_bottom = 20.0
@@ -221,7 +221,7 @@ size_flags_horizontal = 3
 text = "1"
 align = 1
 
-[node name="Expert" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
+[node name="Expert" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Speed/Labels"]
 margin_left = 306.0
 margin_right = 504.0
 margin_bottom = 20.0
@@ -229,7 +229,7 @@ size_flags_horizontal = 3
 text = "2"
 align = 1
 
-[node name="Master" type="Label" parent="MainMenu/VBoxContainer/Speed/Labels"]
+[node name="Master" type="Label" parent="MainMenu/DropPanel/VBoxContainer/Speed/Labels"]
 margin_left = 508.0
 margin_right = 608.0
 margin_bottom = 20.0
@@ -238,19 +238,19 @@ size_flags_stretch_ratio = 0.5
 text = "3"
 align = 2
 
-[node name="System" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
-margin_top = 301.0
-margin_right = 984.0
-margin_bottom = 431.0
+[node name="System" type="VBoxContainer" parent="MainMenu/DropPanel/VBoxContainer"]
+margin_top = 298.0
+margin_right = 896.0
+margin_bottom = 428.0
 size_flags_vertical = 10
 custom_constants/separation = 10
 script = ExtResource( 5 )
 
-[node name="Start" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 23 )]
+[node name="Start" parent="MainMenu/DropPanel/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 23 )]
 material = SubResource( 7 )
-margin_left = 392.0
+margin_left = 348.0
 margin_top = 0.0
-margin_right = 592.0
+margin_right = 548.0
 margin_bottom = 50.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -261,11 +261,11 @@ text = "Start"
 color = 5
 shape = 6
 
-[node name="Settings" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 28 )]
+[node name="Settings" parent="MainMenu/DropPanel/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 28 )]
 material = SubResource( 9 )
-margin_left = 432.0
+margin_left = 388.0
 margin_top = 60.0
-margin_right = 552.0
+margin_right = 508.0
 margin_bottom = 90.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -277,14 +277,14 @@ text = "Settings"
 color = 7
 shape = 3
 
-[node name="ShortcutHelper" parent="MainMenu/VBoxContainer/System/Settings" instance=ExtResource( 7 )]
+[node name="ShortcutHelper" parent="MainMenu/DropPanel/VBoxContainer/System/Settings" instance=ExtResource( 7 )]
 action = "ui_cancel"
 
-[node name="Quit" parent="MainMenu/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 28 )]
+[node name="Quit" parent="MainMenu/DropPanel/VBoxContainer/System" groups=["main_practice_inputs"] instance=ExtResource( 28 )]
 material = SubResource( 11 )
-margin_left = 432.0
+margin_left = 388.0
 margin_top = 100.0
-margin_right = 552.0
+margin_right = 508.0
 margin_bottom = 130.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -295,18 +295,18 @@ text = "Quit"
 color = 1
 shape = 5
 
-[node name="HighScores" type="Panel" parent="MainMenu/VBoxContainer"]
-margin_left = 92.0
-margin_top = 451.0
-margin_right = 892.0
-margin_bottom = 555.0
+[node name="HighScores" type="Panel" parent="MainMenu/DropPanel/VBoxContainer"]
+margin_left = 48.0
+margin_top = 448.0
+margin_right = 848.0
+margin_bottom = 552.0
 rect_min_size = Vector2( 800, 104 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/panel = ExtResource( 12 )
 script = ExtResource( 3 )
 
-[node name="Tables" type="HBoxContainer" parent="MainMenu/VBoxContainer/HighScores"]
+[node name="Tables" type="HBoxContainer" parent="MainMenu/DropPanel/VBoxContainer/HighScores"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -315,12 +315,12 @@ margin_right = -20.0
 margin_bottom = -5.0
 custom_constants/separation = 200
 
-[node name="DailyTable" parent="MainMenu/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
+[node name="DailyTable" parent="MainMenu/DropPanel/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
 margin_right = 280.0
 margin_bottom = 94.0
 daily = true
 
-[node name="AllTimeTable" parent="MainMenu/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
+[node name="AllTimeTable" parent="MainMenu/DropPanel/VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
 margin_left = 480.0
 margin_right = 760.0
 margin_bottom = 94.0
@@ -424,12 +424,12 @@ action = "ui_cancel"
 
 [node name="MusicPopup" parent="." instance=ExtResource( 16 )]
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/Level/ButtonHolder/Button" to="." method="_on_LevelButton_pressed"]
-[connection signal="speed_changed" from="MainMenu/VBoxContainer/Speed" to="." method="_on_SpeedSelector_speed_changed"]
-[connection signal="value_changed" from="MainMenu/VBoxContainer/Speed/Slider" to="MainMenu/VBoxContainer/Speed" method="_on_Slider_value_changed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/System/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/System/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/System/Quit" to="MainMenu/VBoxContainer/System" method="_on_Quit_pressed"]
+[connection signal="pressed" from="MainMenu/DropPanel/VBoxContainer/Level/ButtonHolder/Button" to="." method="_on_LevelButton_pressed"]
+[connection signal="speed_changed" from="MainMenu/DropPanel/VBoxContainer/Speed" to="." method="_on_SpeedSelector_speed_changed"]
+[connection signal="value_changed" from="MainMenu/DropPanel/VBoxContainer/Speed/Slider" to="MainMenu/DropPanel/VBoxContainer/Speed" method="_on_Slider_value_changed"]
+[connection signal="pressed" from="MainMenu/DropPanel/VBoxContainer/System/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="MainMenu/DropPanel/VBoxContainer/System/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="MainMenu/DropPanel/VBoxContainer/System/Quit" to="MainMenu/DropPanel/VBoxContainer/System" method="_on_Quit_pressed"]
 [connection signal="region_chosen" from="RegionSubmenu" to="." method="_on_RegionSubmenu_region_chosen"]
 [connection signal="visibility_changed" from="RegionSubmenu" to="." method="_on_RegionSubmenu_visibility_changed"]
 [connection signal="region_chosen" from="RegionSubmenu/Panel" to="RegionSubmenu" method="_on_Panel_region_chosen"]
@@ -438,4 +438,4 @@ action = "ui_cancel"
 [connection signal="visibility_changed" from="LevelSubmenu" to="." method="_on_LevelSubmenu_visibility_changed"]
 [connection signal="level_chosen" from="LevelSubmenu/Panel" to="LevelSubmenu" method="_on_Panel_level_chosen"]
 [connection signal="pressed" from="LevelSubmenu/Buttons/Northeast/BackButton" to="LevelSubmenu" method="_on_BackButton_pressed"]
-[connection signal="quit_pressed" from="SettingsMenu" to="MainMenu/VBoxContainer/System" method="_on_Quit_pressed"]
+[connection signal="quit_pressed" from="SettingsMenu" to="MainMenu/DropPanel/VBoxContainer/System" method="_on_Quit_pressed"]
