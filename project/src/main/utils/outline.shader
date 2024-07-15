@@ -1,9 +1,9 @@
-/*
+shader_type canvas_item;
+/**
  * Draws an outline around a sprite. Adapted from outline.shader obtained from GDQuest's godot-demos, 2020-04-01
  *
  * https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/outline.shader
  */
-shader_type canvas_item;
 
 uniform float width: hint_range(0.0, 16.0);
 uniform vec4 black: hint_color;

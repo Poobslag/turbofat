@@ -47,7 +47,7 @@ var ranks := []
 ## Number in the range [0.0, 1.0] for how close the player is to completing the region.
 var completion_percent := 0.0
 
-## key: (Type)
+## key: (int) Enum from Type
 ## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
 var _texture_pairs_by_type := {
 	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),

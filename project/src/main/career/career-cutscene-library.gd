@@ -73,8 +73,8 @@ var _chat_key_pairs_by_preroll := {}
 ## key: (String) Interlude preroll chat key like 'chat/career/general_00_a', or a parent path like
 ## 	'chat/career/general'.
 ##
-## value: (Array) List of child chat key fragments, like ['00', '01', '02']. Each fragment corresponds to a suffix
-## 	which can be appended to the chat key, along with an appropriate delimeter, to create a new path.
+## value: (Array, String) List of child chat key fragments, like ['00', '01', '02']. Each fragment corresponds to a
+## 	suffix which can be appended to the chat key, along with an appropriate delimeter, to create a new path.
 var _preroll_tree := {}
 
 ## List of String interlude chat keys in the 'general' chat key root path featuring fat sensei

@@ -18,7 +18,7 @@ enum RippleState {
 	CONNECTED_BOTH,
 }
 
-## key: (RippleDirection)
+## key: (int) Enum from RippleDirection
 ## value: (Vector2) unit vector for use in tilemaps; northeast points up
 const TILEMAP_VECTOR_BY_RIPPLE_DIRECTION := {
 	RippleDirection.NORTHEAST: Vector2.UP,
@@ -27,7 +27,7 @@ const TILEMAP_VECTOR_BY_RIPPLE_DIRECTION := {
 	RippleDirection.NORTHWEST: Vector2.LEFT,
 }
 
-## key: (RippleDirection)
+## key: (int) Enum from RippleDirection
 ## value: (Vector2) unit vector where abs(x) = abs(2y); northeast points right and slightly up
 const ISO_VECTOR_BY_RIPPLE_DIRECTION := {
 	RippleDirection.NORTHEAST: Vector2(0.89443, -0.44721),

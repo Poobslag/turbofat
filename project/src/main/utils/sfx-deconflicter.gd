@@ -8,9 +8,9 @@ extends Node
 ## Number of milliseconds before the same sound can play a second time.
 const SUPPRESS_SFX_MSEC := 20
 
-## key: audio stream resource path
-## value: the amount of time passed in milliseconds between when the engine started and when the sound effect was last
-## 	played
+## key: (String) audio stream resource path
+## value: (int) the amount of time passed in milliseconds between when the engine started and when the sound effect was
+## 	last played
 var last_played_msec_by_resource_path := {}
 
 ## Plays the specified sound effect, unless it was recently played.
