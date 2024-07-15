@@ -96,7 +96,7 @@ func _gradient() -> Gradient:
 		result = CandyButtons.GRADIENT_DISABLED_HOVER if is_hovered() else CandyButtons.GRADIENT_DISABLED
 	else:
 		# if the button is not focused, we use the default color
-		var gradients: Array = CandyButtons.GRADIENTS_BY_BUTTON_COLOR[CandyButtons.ButtonColor.NONE]
+		var gradients: Array = CandyButtons.GRADIENTS_BY_COLOR[CandyButtons.ButtonColor.NONE]
 		result = gradients[1] if is_hovered() else gradients[0]
 	return result
 
@@ -147,7 +147,7 @@ func _refresh_shape() -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	var textures: Array = CandyButtons.C3_TEXTURES_BY_BUTTON_SHAPE[shape]
+	var textures: Array = CandyButtons.C3_TEXTURES_BY_SHAPE[shape]
 	texture_normal = textures[0]
 	texture_pressed = textures[1]
 	texture_hover = textures[0]

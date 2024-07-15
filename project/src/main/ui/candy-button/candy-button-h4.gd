@@ -28,7 +28,7 @@ var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button
 ## value: (Array, Texture) Array with two entries for the textures for the specified shape:
 ## 	value[0]: (Texture) texture to use when the button is not pressed.
 ## 	value[1]: (Texture) texture to use when the button is pressed.
-var _textures_by_button_shape := {
+var _textures_by_shape := {
 	CandyButtons.ButtonShape.NONE: [
 		preload("res://assets/main/ui/candy-button/h4-blank.png"),
 		preload("res://assets/main/ui/candy-button/h4-blank-pressed.png")],
@@ -134,7 +134,7 @@ func _gradient() -> Gradient:
 		result = CandyButtons.GRADIENT_DISABLED_HOVER if is_hovered() else CandyButtons.GRADIENT_DISABLED
 	else:
 		# if the button is not focused, we use the user-specified color
-		var gradients: Array = CandyButtons.GRADIENTS_BY_BUTTON_COLOR[color]
+		var gradients: Array = CandyButtons.GRADIENTS_BY_COLOR[color]
 		result = gradients[1] if is_hovered() else gradients[0]
 	return result
 
@@ -197,7 +197,7 @@ func _refresh_shape() -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	var textures: Array = _textures_by_button_shape[shape]
+	var textures: Array = _textures_by_shape[shape]
 	texture_normal = textures[0]
 	texture_pressed = textures[1]
 	texture_hover = textures[0]
