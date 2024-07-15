@@ -10,16 +10,16 @@ signal color_changed(color)
 ## Repeating piece shapes which decorate the button.
 export (CandyButtons.ButtonShape) var shape setget set_shape
 
+var creature_color: Color setget set_creature_color
+
+## List of String allele combos for which this button should be enabled. If unset, the button is always enabled.
+var enabled_if := []
+
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
 var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
 
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
 var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
-
-var creature_color: Color setget set_creature_color
-
-## List of String allele combos for which this button should be enabled. If unset, the button is always enabled.
-var enabled_if := []
 
 onready var _click_sound := $ClickSound
 onready var _hover_sound := $HoverSound

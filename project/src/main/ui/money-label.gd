@@ -15,10 +15,6 @@ func _ready() -> void:
 	set_shown_money(PlayerData.money)
 
 
-func _on_PlayerData_money_changed(value: int) -> void:
-	set_shown_money(value)
-
-
 func set_compact(new_compact: bool) -> void:
 	compact = new_compact
 	set_shown_money(PlayerData.money)
@@ -33,3 +29,7 @@ func set_shown_money(new_money: int) -> void:
 		$Label.text = StringUtils.compact(max(0, shown_money))
 	else:
 		$Label.text = StringUtils.comma_sep(max(0, shown_money))
+
+
+func _on_PlayerData_money_changed(value: int) -> void:
+	set_shown_money(value)

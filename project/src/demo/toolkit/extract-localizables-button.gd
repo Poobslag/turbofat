@@ -30,9 +30,9 @@ func _extract_and_write_localizables() -> void:
 	TranslationServer.set_locale("en")
 	
 	_extract_localizables_from_career_regions()
+	_extract_localizables_from_chat_trees()
 	_extract_localizables_from_creature_editor()
 	_extract_localizables_from_levels()
-	_extract_localizables_from_chat_trees()
 	_extract_localizables_from_scancode_strings()
 	_write_localizables(OUTPUT_PATH, _localizables)
 	_write_localizables(SCANCODE_OUTPUT_PATH, _scancode_localizables)
@@ -53,40 +53,6 @@ func _extract_localizables_from_career_regions() -> void:
 		var region: OtherRegion = region_obj
 		_localizables.append(region.name)
 		_localizables.append(region.description)
-
-
-func _extract_localizables_from_creature_editor() -> void:
-	for category in CreatureEditorLibrary.categories:
-		_localizables.append(category.name)
-
-
-## Extracts localizable strings from worlds/levels and adds them to the in-memory list of localizables.
-func _extract_localizables_from_levels() -> void:
-	# Create a sorted list of all level IDs
-	var level_id_set := {}
-	for level_id in CareerLevelLibrary.all_level_ids():
-		level_id_set[level_id] = true
-	for level_id in OtherLevelLibrary.all_level_ids():
-		level_id_set[level_id] = true
-	var level_ids := level_id_set.keys()
-	level_ids.sort()
-	
-	for level_id in level_ids:
-		var level_settings := LevelSettings.new()
-		level_settings.load_from_resource(level_id)
-		
-		# extract level's name and description as localizables
-		_localizables.append(level_settings.name)
-		_localizables.append(level_settings.description)
-
-
-## Extracts localizable strings from all cutscenes/chats and adds them to the in-memory list of localizables.
-func _extract_localizables_from_chat_trees() -> void:
-	for path in CareerCutsceneLibrary.find_career_cutscene_resource_paths():
-		var chat_tree := ChatLibrary.chat_tree_from_file(path)
-		for event_sequence in chat_tree.events.values():
-			for event_obj in event_sequence:
-				_extract_localizables_from_chat_event(event_obj)
 
 
 ## Extracts localizable strings from a chat event and adds them to the in-memory list of localizables.
@@ -128,6 +94,40 @@ func _extract_localizables_from_chat_event(event: ChatEvent) -> void:
 								% [args.size()])
 					
 					_localizables.append(PoolStringArray(args.slice(0, args.size())).join(" "))
+
+
+## Extracts localizable strings from all cutscenes/chats and adds them to the in-memory list of localizables.
+func _extract_localizables_from_chat_trees() -> void:
+	for path in CareerCutsceneLibrary.find_career_cutscene_resource_paths():
+		var chat_tree := ChatLibrary.chat_tree_from_file(path)
+		for event_sequence in chat_tree.events.values():
+			for event_obj in event_sequence:
+				_extract_localizables_from_chat_event(event_obj)
+
+
+func _extract_localizables_from_creature_editor() -> void:
+	for category in CreatureEditorLibrary.categories:
+		_localizables.append(category.name)
+
+
+## Extracts localizable strings from worlds/levels and adds them to the in-memory list of localizables.
+func _extract_localizables_from_levels() -> void:
+	# Create a sorted list of all level IDs
+	var level_id_set := {}
+	for level_id in CareerLevelLibrary.all_level_ids():
+		level_id_set[level_id] = true
+	for level_id in OtherLevelLibrary.all_level_ids():
+		level_id_set[level_id] = true
+	var level_ids := level_id_set.keys()
+	level_ids.sort()
+	
+	for level_id in level_ids:
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		
+		# extract level's name and description as localizables
+		_localizables.append(level_settings.name)
+		_localizables.append(level_settings.description)
 
 
 ## Extract localizables from OS.get_scancode_string()

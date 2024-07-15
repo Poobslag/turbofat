@@ -17,9 +17,6 @@ class_name FocusCoordinator
 ## 	3. Self. If no suitable focus neighbour is found, the control is assigned as its own focus neighbour. This prevents
 ## 		Godot's default focus behavior from taking over.
 
-## Controls to manage focus neighbours for.
-var _controls: Array
-
 ## key: (Vector2) Unit vector for a cardinal direction.
 ## value: (String) Focus neighbour control property for the specified cardinal direction.
 const FOCUS_NEIGHBOUR_PROPERTY_BY_DIRECTION := {
@@ -28,6 +25,9 @@ const FOCUS_NEIGHBOUR_PROPERTY_BY_DIRECTION := {
 	Vector2.RIGHT: "focus_neighbour_right",
 	Vector2.DOWN: "focus_neighbour_bottom",
 }
+
+## Controls to manage focus neighbours for.
+var _controls: Array
 
 ## Parameters:
 ## 	'init_controls': Control nodes to manage focus neighbours for.

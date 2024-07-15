@@ -1,9 +1,9 @@
 extends Node
 ## Plays sound effects for Chocolava Canyon's cutscenes.
 
-onready var _cheer := $Cheer
-
 var _tween: SceneTreeTween
+
+onready var _cheer := $Cheer
 
 func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
