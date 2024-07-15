@@ -11,11 +11,11 @@ export (bool) var compact: bool setget set_compact
 var shown_money: int
 
 func _ready() -> void:
-	PlayerData.connect("money_changed", self, "on_PlayerData_money_changed")
+	PlayerData.connect("money_changed", self, "_on_PlayerData_money_changed")
 	set_shown_money(PlayerData.money)
 
 
-func on_PlayerData_money_changed(value: int) -> void:
+func _on_PlayerData_money_changed(value: int) -> void:
 	set_shown_money(value)
 
 
