@@ -104,10 +104,11 @@ var _non_iso_velocity := Vector2.ZERO
 ## handles animations and audio/visual effects for a creature
 var _creature_outline: CreatureOutline
 
+var _fade_tween: SceneTreeTween
+
 onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 onready var _mouth_hook: Node2D = $MouthHook
-onready var _fade_tween: SceneTreeTween
 
 func _ready() -> void:
 	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"

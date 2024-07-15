@@ -14,12 +14,12 @@ var food_shown: bool = false setget set_food_shown
 var _star_colors: Array = []
 var _star_color_index := 0
 
+## tween used to update the star's color
+var _star_color_tween: SceneTreeTween
+
 onready var _seed := $Seed
 onready var _star := $Star
 onready var _food_item := $FoodItem
-
-## tween used to update the star's color
-onready var _star_color_tween: SceneTreeTween
 
 func _ready() -> void:
 	_seed.visible = true

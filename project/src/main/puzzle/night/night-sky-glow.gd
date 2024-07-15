@@ -3,11 +3,11 @@ extends Sprite
 
 export (NodePath) var onion_sprite_path: NodePath
 
+## Increases/decreases our size gradually.
+var _tween: SceneTreeTween
+
 ## Onion which we reference when updating our position.
 onready var onion_sprite: Node2D = get_node(onion_sprite_path)
-
-## Increases/decreases our size gradually.
-onready var _tween: SceneTreeTween
 
 func _ready() -> void:
 	_start_tween()

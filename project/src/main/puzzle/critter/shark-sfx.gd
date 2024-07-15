@@ -8,6 +8,12 @@ var pitch_scale := 1.00
 ## Duration in seconds the shark takes to eat.
 var eat_duration := Shark.DEFAULT_EAT_DURATION
 
+## Tweens properties of the eating sound as it plays.
+##
+## The eating sound is a long, sustained sound which is played for an arbitrary duration. We tween its pitch so that
+## it ends less abruptly.
+var _eat_tween: SceneTreeTween
+
 ## Friendly sounds the shark makes when it finishes eating.
 onready var _voice_friendly_sounds := [
 		preload("res://assets/main/puzzle/critter/shark-voice-friendly-0.wav"),
@@ -31,12 +37,6 @@ onready var _voice_short_sounds := [
 		preload("res://assets/main/puzzle/critter/shark-voice-short-6.wav"),
 		preload("res://assets/main/puzzle/critter/shark-voice-short-7.wav"),
 	]
-
-## Tweens properties of the eating sound as it plays.
-##
-## The eating sound is a long, sustained sound which is played for an arbitrary duration. We tween its pitch so that
-## it ends less abruptly.
-onready var _eat_tween: SceneTreeTween
 
 onready var _bite := $Bite
 onready var _eat := $Eat
