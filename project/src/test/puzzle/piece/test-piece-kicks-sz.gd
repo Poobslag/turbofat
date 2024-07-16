@@ -113,7 +113,6 @@ func test_s_wall_kick_r2() -> void:
 	assert_kick()
 
 
-
 func test_s_wall_kick_l0() -> void:
 	from_orientation = 3
 	from_grid = [
@@ -154,7 +153,6 @@ func test_s_wall_kick_l2() -> void:
 	assert_kick()
 
 
-
 func test_z_wall_kick_r0() -> void:
 	from_orientation = 1
 	from_grid = [
@@ -193,7 +191,6 @@ func test_z_wall_kick_r2() -> void:
 		"    ",
 	]
 	assert_kick()
-
 
 
 func test_z_wall_kick_l0() -> void:

@@ -206,7 +206,6 @@ func _random_creature(appearances: Array) -> CreatureAppearance:
 	return Utils.weighted_rand_value(weights_map)
 
 
-
 ## Parses an array of 'CreatureAppearance' values from json, storing them in this CareerRegion
 ##
 ## The specified property name corresponds both to the field name in json, as well as the CareerRegion array property
