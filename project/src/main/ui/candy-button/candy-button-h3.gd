@@ -4,31 +4,11 @@ extends TextureButton
 ##
 ## This button is extremely narrow, and used for the collapsed categories in the creature editor.
 
-export (String) var text setget set_text
-
-## Icon shown to the left of the button's text.
-export (Texture) var icon_left setget set_icon_left
-
-## Icon shown to the right of the button's text.
-export (Texture) var icon_right setget set_icon_right
-
-export (CandyButtons.ButtonColor) var color setget set_color
-
-## Repeating piece shapes which decorate the button.
-export (CandyButtons.ButtonShape) var shape setget set_shape
-
-## Different fonts to try. Should be ordered from largest to smallest.
-export (Array, Font) var fonts := [
-	preload("res://src/main/ui/candy-button/candy-h3-font.tres"),
-	preload("res://src/main/ui/candy-button/candy-h4-font.tres"),
-	preload("res://src/main/ui/candy-button/candy-h5-font.tres"),
-]
-
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/h3-shine.png")
+const SHINE_TEXTURE_NORMAL: Texture = preload("res://assets/main/ui/candy-button/h3-shine.png")
 
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/h3-shine-pressed.png")
+const SHINE_TEXTURE_PRESSED: Texture = preload("res://assets/main/ui/candy-button/h3-shine-pressed.png")
 
 ## Textures for the various ButtonShape presets.
 ##
@@ -36,7 +16,7 @@ var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button
 ## value: (Array, Texture) Array with two entries for the textures for the specified shape:
 ## 	value[0]: (Texture) texture to use when the button is not pressed.
 ## 	value[1]: (Texture) texture to use when the button is pressed.
-var _textures_by_shape := {
+const TEXTURES_BY_SHAPE := {
 	CandyButtons.ButtonShape.NONE: [
 		preload("res://assets/main/ui/candy-button/h3-blank.png"),
 		preload("res://assets/main/ui/candy-button/h3-blank-pressed.png")],
@@ -66,6 +46,25 @@ var _textures_by_shape := {
 		preload("res://assets/main/ui/candy-button/h3-v-pressed.png")],
 }
 
+export (String) var text setget set_text
+
+## Icon shown to the left of the button's text.
+export (Texture) var icon_left setget set_icon_left
+
+## Icon shown to the right of the button's text.
+export (Texture) var icon_right setget set_icon_right
+
+export (CandyButtons.ButtonColor) var color setget set_color
+
+## Repeating piece shapes which decorate the button.
+export (CandyButtons.ButtonShape) var shape setget set_shape
+
+## Different fonts to try. Should be ordered from largest to smallest.
+export (Array, Font) var fonts := [
+	preload("res://src/main/ui/candy-button/candy-h3-font.tres"),
+	preload("res://src/main/ui/candy-button/candy-h4-font.tres"),
+	preload("res://src/main/ui/candy-button/candy-h5-font.tres"),
+]
 
 onready var _click_sound := $ClickSound
 onready var _hover_sound := $HoverSound
@@ -256,7 +255,7 @@ func _refresh_shape() -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	var textures: Array = _textures_by_shape[shape]
+	var textures: Array = TEXTURES_BY_SHAPE[shape]
 	texture_normal = textures[0]
 	texture_pressed = textures[1]
 	texture_hover = textures[0]
@@ -264,7 +263,7 @@ func _refresh_shape() -> void:
 
 ## Updates the shine texture for our button.
 func _refresh_shine() -> void:
-	_shine.texture = _shine_texture_pressed if pressed else _shine_texture_normal
+	_shine.texture = SHINE_TEXTURE_PRESSED if pressed else SHINE_TEXTURE_NORMAL
 
 
 ## Updates our label's text.

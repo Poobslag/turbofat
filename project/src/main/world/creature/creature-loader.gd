@@ -11,7 +11,7 @@ const PINK_INSIDE_COLOR := Color("f39274")
 const SHADOW_ALPHA := 0.25
 
 ## AnimationPlayer scenes with animations for each type of mouth
-var _mouth_player_scenes := {
+const MOUTH_PLAYER_SCENES := {
 	"1": preload("res://src/main/world/creature/Mouth1Player.tscn"),
 	"2": preload("res://src/main/world/creature/Mouth2Player.tscn"),
 	"3": preload("res://src/main/world/creature/Mouth3Player.tscn"),
@@ -22,7 +22,7 @@ var _mouth_player_scenes := {
 }
 
 ## AnimationPlayer scenes with animations for each type of ear
-var _ear_player_scenes := {
+const EAR_PLAYER_SCENES := {
 	"1": preload("res://src/main/world/creature/Ear1Player.tscn"),
 	"2": preload("res://src/main/world/creature/Ear2Player.tscn"),
 	"3": preload("res://src/main/world/creature/Ear3Player.tscn"),
@@ -41,13 +41,13 @@ var _ear_player_scenes := {
 }
 
 ## Scenes which draw different bodies
-var _body_shape_scenes := {
+const BODY_SHAPE_SCENES := {
 	"1": preload("res://src/main/world/creature/Body1Shape.tscn"),
 	"2": preload("res://src/main/world/creature/Body2Shape.tscn"),
 }
 
 ## Scenes which draw belly colors for different bodies
-var _belly_scenes := {
+const BELLY_SCENES := {
 	"1 1": preload("res://src/main/world/creature/Body1Belly1.tscn"),
 	"1 2": preload("res://src/main/world/creature/Body1Belly2.tscn"),
 	"2 1": preload("res://src/main/world/creature/Body2Belly1.tscn"),
@@ -55,19 +55,19 @@ var _belly_scenes := {
 }
 
 ## Scenes which draw shadows for different bodies
-var _shadows_scenes := {
+const SHADOWS_SCENES := {
 	"1": preload("res://src/main/world/creature/Body1Shadows.tscn"),
 	"2": preload("res://src/main/world/creature/Body2Shadows.tscn"),
 }
 
 ## Scenes which draw 'neck blends' which blend the neck with the back of the head
-var _neck_blend_scenes_new := {
+const NECK_BLEND_SCENES_NEW := {
 	"1": preload("res://src/main/world/creature/Body1NeckBlend.tscn"),
 	"2": preload("res://src/main/world/creature/Body2NeckBlend.tscn"),
 }
 
 ## AnimationPlayers which rearrange body parts for different bodies
-var _fat_sprite_mover_scenes := {
+const FAT_SPRITE_MOVER_SCENES := {
 	"1": preload("res://src/main/world/creature/FatSpriteMover1.tscn"),
 	"2": preload("res://src/main/world/creature/FatSpriteMover2.tscn"),
 }
@@ -135,24 +135,24 @@ func chat_theme(dna: Dictionary) -> ChatTheme:
 ## Returns an AnimationPlayer for the specified type type of mouth.
 func new_mouth_player(mouth_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
-	if _mouth_player_scenes.has(mouth_key):
-		result = _mouth_player_scenes[mouth_key].instance()
+	if MOUTH_PLAYER_SCENES.has(mouth_key):
+		result = MOUTH_PLAYER_SCENES[mouth_key].instance()
 	return result
 
 
 ## Returns an AnimationPlayer for the specified type of ear.
 func new_ear_player(ear_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
-	if _ear_player_scenes.has(ear_key):
-		result = _ear_player_scenes[ear_key].instance()
+	if EAR_PLAYER_SCENES.has(ear_key):
+		result = EAR_PLAYER_SCENES[ear_key].instance()
 	return result
 
 
 ## Returns a CreatureCurve for drawing a type of body.
 func new_body_shape(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
-	if _body_shape_scenes.has(body_key):
-		result = _body_shape_scenes[body_key].instance()
+	if BODY_SHAPE_SCENES.has(body_key):
+		result = BODY_SHAPE_SCENES[body_key].instance()
 	return result
 
 
@@ -160,32 +160,32 @@ func new_body_shape(body_key: String) -> CreatureCurve:
 func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	var key := "%s %s" % [body_key, body_colors_key]
-	if _belly_scenes.has(key):
-		result = _belly_scenes[key].instance()
+	if BELLY_SCENES.has(key):
+		result = BELLY_SCENES[key].instance()
 	return result
 
 
 ## Returns a Node2D containing CreatureCurves for drawing shadows for a type of body.
 func new_shadows(body_key: String) -> Node2D:
 	var result: Node2D
-	if _shadows_scenes.has(body_key):
-		result = _shadows_scenes[body_key].instance()
+	if SHADOWS_SCENES.has(body_key):
+		result = SHADOWS_SCENES[body_key].instance()
 	return result
 
 
 ## Returns a CreatureCurve which blends the neck with the back of the head.
 func new_neck_blend(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
-	if _neck_blend_scenes_new.has(body_key):
-		result = _neck_blend_scenes_new[body_key].instance()
+	if NECK_BLEND_SCENES_NEW.has(body_key):
+		result = NECK_BLEND_SCENES_NEW[body_key].instance()
 	return result
 
 
 ## Returns an AnimationPlayer which rearranges body parts for a type of bodyq.
 func new_fat_sprite_mover(body_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
-	if _fat_sprite_mover_scenes.has(body_key):
-		result = _fat_sprite_mover_scenes[body_key].instance()
+	if FAT_SPRITE_MOVER_SCENES.has(body_key):
+		result = FAT_SPRITE_MOVER_SCENES[body_key].instance()
 	return result
 
 

@@ -5,40 +5,23 @@ extends TextureButton
 ##
 ## This button alternates between 'c3' and 'a3' sizes, and is used for the categories in the creature editor.
 
-## Icon shown to the top of the button's text.
-export (Texture) var icon setget set_icon
-
-export (CandyButtons.ButtonColor) var color setget set_color
-
-## Repeating piece shapes which decorate the button.
-export (CandyButtons.ButtonShape) var shape setget set_shape
-
-## 'true' if the button is in its narrow 'a3' size, or 'false' if the button is in its wider 'c3' size.
-export (bool) var collapsed := false setget set_collapsed
-
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_collapsed_normal: Texture = preload("res://assets/main/ui/candy-button/a3-shine.png")
+const SHINE_TEXTURE_COLLAPSED_NORMAL: Texture = preload("res://assets/main/ui/candy-button/a3-shine.png")
 
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_collapsed_pressed: Texture = preload("res://assets/main/ui/candy-button/a3-shine-pressed.png")
+const SHINE_TEXTURE_COLLAPSED_PRESSED: Texture = preload("res://assets/main/ui/candy-button/a3-shine-pressed.png")
 
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_uncollapsed_normal: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
+const SHINE_TEXTURE_UNCOLLAPSED_NORMAL: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
 
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_uncollapsed_pressed: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
+const SHINE_TEXTURE_UNCOLLAPSED_PRESSED: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
 
 ## Texture to display when the node has mouse or keyboard focus while the button is collapsed.
-var _texture_focused_collapsed: Texture = preload("res://assets/main/ui/candy-button/a3-focused.png")
+const TEXTURE_FOCUSED_COLLAPSED: Texture = preload("res://assets/main/ui/candy-button/a3-focused.png")
 
 ## Texture to display when the node has mouse or keyboard focus while the button is uncollapsed.
-var _texture_focused_uncollapsed: Texture = preload("res://assets/main/ui/candy-button/c3-focused.png")
-
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = _shine_texture_uncollapsed_normal
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = _shine_texture_uncollapsed_pressed
+const TEXTURE_FOCUSED_UNCOLLAPSED: Texture = preload("res://assets/main/ui/candy-button/c3-focused.png")
 
 ## Textures for the various ButtonShape presets.
 ##
@@ -46,7 +29,7 @@ var _shine_texture_pressed: Texture = _shine_texture_uncollapsed_pressed
 ## value: (Array, Texture) Array with two entries for the textures for the specified shape:
 ## 	value[0]: (Texture) texture to use when the button is not pressed.
 ## 	value[1]: (Texture) texture to use when the button is pressed.
-var _textures_by_shape_collapsed := {
+const TEXTURES_BY_SHAPE_COLLAPSED := {
 	CandyButtons.ButtonShape.NONE: [
 		preload("res://assets/main/ui/candy-button/a3-blank.png"),
 		preload("res://assets/main/ui/candy-button/a3-blank-pressed.png")],
@@ -75,6 +58,23 @@ var _textures_by_shape_collapsed := {
 		preload("res://assets/main/ui/candy-button/a3-v.png"),
 		preload("res://assets/main/ui/candy-button/a3-v-pressed.png")],
 }
+
+## Icon shown to the top of the button's text.
+export (Texture) var icon setget set_icon
+
+export (CandyButtons.ButtonColor) var color setget set_color
+
+## Repeating piece shapes which decorate the button.
+export (CandyButtons.ButtonShape) var shape setget set_shape
+
+## 'true' if the button is in its narrow 'a3' size, or 'false' if the button is in its wider 'c3' size.
+export (bool) var collapsed := false setget set_collapsed
+
+## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
+var _shine_texture_normal: Texture = SHINE_TEXTURE_UNCOLLAPSED_NORMAL
+
+## Less shiny reflection texture which overlays the button and text when the button is pressed.
+var _shine_texture_pressed: Texture = SHINE_TEXTURE_UNCOLLAPSED_PRESSED
 
 ## Textures for the various ButtonShape presets.
 ##
@@ -181,17 +181,17 @@ func collapse(animate: bool = false) -> void:
 
 
 func assign_collapsed_textures() -> void:
-	_shine_texture_normal = _shine_texture_collapsed_normal
-	_textures_by_shape = _textures_by_shape_collapsed
-	texture_focused = _texture_focused_collapsed
+	_shine_texture_normal = SHINE_TEXTURE_COLLAPSED_NORMAL
+	_textures_by_shape = TEXTURES_BY_SHAPE_COLLAPSED
+	texture_focused = TEXTURE_FOCUSED_COLLAPSED
 	_refresh_shine()
 	_refresh_shape()
 
 
 func assign_uncollapsed_textures() -> void:
-	_shine_texture_normal = _shine_texture_uncollapsed_normal
+	_shine_texture_normal = SHINE_TEXTURE_UNCOLLAPSED_NORMAL
 	_textures_by_shape = CandyButtons.C3_TEXTURES_BY_SHAPE
-	texture_focused = _texture_focused_uncollapsed
+	texture_focused = TEXTURE_FOCUSED_UNCOLLAPSED
 	_refresh_shine()
 	_refresh_shape()
 

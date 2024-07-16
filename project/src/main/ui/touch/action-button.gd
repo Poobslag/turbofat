@@ -23,23 +23,11 @@ extends TextureRect
 
 signal pressed
 
-## action activated by this button. also affects its appearance
-export (String) var action: String setget set_action
-
-## if false, pressing the button won't emit any actions.
-export (bool) var emit_actions: bool = true
-
-var pressed := false setget set_pressed
-
-## current textures this button toggles between when pressed/unpressed
-var _normal_texture: Texture
-var _pressed_texture: Texture
-
 ## default textures to use when our action has no icon
-onready var _empty_texture := preload("res://assets/main/ui/touch/empty.png")
-onready var _empty_pressed_texture := preload("res://assets/main/ui/touch/empty-pressed.png")
+const EMPTY_TEXTURE := preload("res://assets/main/ui/touch/empty.png")
+const EMPTY_PRESSED_TEXTURE := preload("res://assets/main/ui/touch/empty-pressed.png")
 
-onready var _normal_textures := {
+const NORMAL_TEXTURES := {
 	"ui_up": preload("res://assets/main/ui/touch/move-up.png"),
 	"ui_down": preload("res://assets/main/ui/touch/move-down.png"),
 	"ui_left": preload("res://assets/main/ui/touch/move-left.png"),
@@ -55,7 +43,7 @@ onready var _normal_textures := {
 	"ui_menu": preload("res://assets/main/ui/touch/menu.png"),
 }
 
-onready var _pressed_textures := {
+const PRESSED_TEXTURES := {
 	"move_piece_left": preload("res://assets/main/ui/touch/move-left-pressed.png"),
 	"move_piece_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
 	"hard_drop": preload("res://assets/main/ui/touch/move-up-pressed.png"),
@@ -65,6 +53,18 @@ onready var _pressed_textures := {
 
 	"ui_menu": preload("res://assets/main/ui/touch/menu-pressed.png"),
 }
+
+## action activated by this button. also affects its appearance
+export (String) var action: String setget set_action
+
+## if false, pressing the button won't emit any actions.
+export (bool) var emit_actions: bool = true
+
+var pressed := false setget set_pressed
+
+## current textures this button toggles between when pressed/unpressed
+var _normal_texture: Texture
+var _pressed_texture: Texture
 
 func _ready() -> void:
 	_refresh()
@@ -95,7 +95,7 @@ func set_pressed(new_pressed: bool) -> void:
 
 ## Updates the button's appearance based on its assigned action.
 func _refresh() -> void:
-	_normal_texture = _normal_textures.get(action, _empty_texture)
-	_pressed_texture = _pressed_textures.get(action, _empty_pressed_texture)
+	_normal_texture = NORMAL_TEXTURES.get(action, EMPTY_TEXTURE)
+	_pressed_texture = PRESSED_TEXTURES.get(action, EMPTY_PRESSED_TEXTURE)
 	texture = _pressed_texture if pressed else _normal_texture
 	visible = true if action else false

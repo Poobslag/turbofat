@@ -29,16 +29,16 @@ const FONT_COLOR_BY_TYPE := {
 	MessageType.BAD: Color("e7d6ff"),
 }
 
+## accent textures for different types of messages
+const WORD_ACCENT_BAD := preload("res://assets/main/puzzle/word-accent-bad.png")
+const WORD_ACCENT_BAD_WIDE := preload("res://assets/main/puzzle/word-accent-bad-wide.png")
+const WORD_ACCENT_GOOD := preload("res://assets/main/puzzle/word-accent-good.png")
+const WORD_ACCENT_GOOD_WIDE := preload("res://assets/main/puzzle/word-accent-good-wide.png")
+const WORD_ACCENT_NEUTRAL := preload("res://assets/main/puzzle/word-accent-neutral.png")
+const WORD_ACCENT_NEUTRAL_WIDE := preload("res://assets/main/puzzle/word-accent-neutral-wide.png")
+
 ## Raw message text currently shown on the label. Empty if the label is invisible or turning invisible.
 var shown_message_text := ""
-
-## accent textures for different types of messages
-var _word_accent_bad := preload("res://assets/main/puzzle/word-accent-bad.png")
-var _word_accent_bad_wide := preload("res://assets/main/puzzle/word-accent-bad-wide.png")
-var _word_accent_good := preload("res://assets/main/puzzle/word-accent-good.png")
-var _word_accent_good_wide := preload("res://assets/main/puzzle/word-accent-good-wide.png")
-var _word_accent_neutral := preload("res://assets/main/puzzle/word-accent-neutral.png")
-var _word_accent_neutral_wide := preload("res://assets/main/puzzle/word-accent-neutral-wide.png")
 
 ## Godot cannot vertically align text (!?) or render text with multiple outlines, so we use 3 different controls to
 ## align and render it
@@ -117,11 +117,11 @@ func _assign_accent_texture(message_type: int, text: String) -> void:
 	
 	match message_type:
 		GOOD:
-			_accent.texture = _word_accent_good_wide if wide_message else _word_accent_good
+			_accent.texture = WORD_ACCENT_GOOD_WIDE if wide_message else WORD_ACCENT_GOOD
 		NEUTRAL:
-			_accent.texture = _word_accent_neutral_wide if wide_message else _word_accent_neutral
+			_accent.texture = WORD_ACCENT_NEUTRAL_WIDE if wide_message else WORD_ACCENT_NEUTRAL
 		BAD:
-			_accent.texture = _word_accent_bad_wide if wide_message else _word_accent_bad
+			_accent.texture = WORD_ACCENT_BAD_WIDE if wide_message else WORD_ACCENT_BAD
 
 
 ## Moves the labels and accent sprite based on the message size.

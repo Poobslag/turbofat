@@ -1,17 +1,17 @@
 extends VBoxContainer
 ## Navigational buttons which occur on most menu screens.
 
-## If true, the `ui_cancel` action will activate the quit button. This should be unset in contexts where the 'quit'
-## button does something destructive such as quitting the game or abandoning an editor.
-export (bool) var quit_on_cancel: bool = true setget set_quit_on_cancel
-
-onready var _ui_cancel_shortcut := preload("res://src/main/ui/UiCancelShortcut.tres")
-
 signal settings_pressed
 
 signal credits_pressed
 
 signal quit_pressed
+
+const UI_CANCEL_SHORTCUT := preload("res://src/main/ui/UiCancelShortcut.tres")
+
+## If true, the `ui_cancel` action will activate the quit button. This should be unset in contexts where the 'quit'
+## button does something destructive such as quitting the game or abandoning an editor.
+export (bool) var quit_on_cancel: bool = true setget set_quit_on_cancel
 
 func _ready() -> void:
 	refresh()
@@ -27,7 +27,7 @@ func refresh() -> void:
 		return
 
 	if quit_on_cancel:
-		$Quit.shortcut = _ui_cancel_shortcut
+		$Quit.shortcut = UI_CANCEL_SHORTCUT
 		$Settings/ShortcutHelper.overridden_action = "ui_menu"
 	else:
 		$Quit.shortcut = null

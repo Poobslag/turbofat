@@ -7,6 +7,12 @@ extends TextureButton
 
 signal color_changed(color)
 
+## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
+const SHINE_TEXTURE_NORMAL: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
+
+## Less shiny reflection texture which overlays the button and text when the button is pressed.
+const SHINE_TEXTURE_PRESSED: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
+
 ## Repeating piece shapes which decorate the button.
 export (CandyButtons.ButtonShape) var shape setget set_shape
 
@@ -14,12 +20,6 @@ var creature_color: Color setget set_creature_color
 
 ## List of String allele combos for which this button should be enabled. If unset, the button is always enabled.
 var enabled_if := []
-
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
 
 onready var _click_sound := $ClickSound
 onready var _hover_sound := $HoverSound
@@ -155,7 +155,7 @@ func _refresh_shape() -> void:
 
 ## Updates the shine texture for our button.
 func _refresh_shine() -> void:
-	_shine.texture = _shine_texture_pressed if pressed else _shine_texture_normal
+	_shine.texture = SHINE_TEXTURE_PRESSED if pressed else SHINE_TEXTURE_NORMAL
 
 
 ## When we gain focus, we reapply a bright cyan color for our texture, text and icons.

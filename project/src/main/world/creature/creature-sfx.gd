@@ -5,16 +5,8 @@ extends Node2D
 
 signal should_play_sfx_changed
 
-## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
-var suppress_sfx := false setget set_suppress_sfx
-
-var should_play_sfx := false
-
-## index of the most recent combo sound that was played
-var _combo_voice_index := 0
-
 ## sounds the creatures make when they enter the restaurant
-onready var hello_voices := [
+const HELLO_VOICES := [
 	preload("res://assets/main/world/creature/hello-voice-0.wav"),
 	preload("res://assets/main/world/creature/hello-voice-1.wav"),
 	preload("res://assets/main/world/creature/hello-voice-2.wav"),
@@ -22,7 +14,7 @@ onready var hello_voices := [
 ]
 
 ## sounds which get played when the creature eats
-onready var _munch_sounds := [
+const MUNCH_SOUNDS := [
 	preload("res://assets/main/world/creature/munch0.wav"),
 	preload("res://assets/main/world/creature/munch1.wav"),
 	preload("res://assets/main/world/creature/munch2.wav"),
@@ -31,7 +23,7 @@ onready var _munch_sounds := [
 ]
 
 ## satisfied sounds the creatures make when a player builds a big combo
-onready var _combo_voices := [
+const COMBO_VOICES := [
 	preload("res://assets/main/world/creature/combo-voice-00.wav"),
 	preload("res://assets/main/world/creature/combo-voice-01.wav"),
 	preload("res://assets/main/world/creature/combo-voice-02.wav"),
@@ -55,12 +47,20 @@ onready var _combo_voices := [
 ]
 
 ## sounds the creatures make when they ask for their check
-onready var _goodbye_voices := [
+const GOODBYE_VOICES := [
 	preload("res://assets/main/world/creature/goodbye-voice-0.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-1.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-2.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-3.wav"),
 ]
+
+## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
+var suppress_sfx := false setget set_suppress_sfx
+
+var should_play_sfx := false
+
+## index of the most recent combo sound that was played
+var _combo_voice_index := 0
 
 ## AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
 ## things at once.
@@ -81,8 +81,8 @@ func play_combo_voice() -> void:
 	if not should_play_sfx:
 		return
 	
-	_combo_voice_index = (_combo_voice_index + 1 + randi() % (_combo_voices.size() - 1)) % _combo_voices.size()
-	_voice_player.stream = _combo_voices[_combo_voice_index]
+	_combo_voice_index = (_combo_voice_index + 1 + randi() % (COMBO_VOICES.size() - 1)) % COMBO_VOICES.size()
+	_voice_player.stream = COMBO_VOICES[_combo_voice_index]
 	_voice_player.play()
 
 
@@ -91,7 +91,7 @@ func play_hello_voice() -> void:
 	if not should_play_sfx:
 		return
 	
-	_voice_player.stream = Utils.rand_value(hello_voices)
+	_voice_player.stream = Utils.rand_value(HELLO_VOICES)
 	_voice_player.play()
 
 
@@ -100,7 +100,7 @@ func play_goodbye_voice() -> void:
 	if not should_play_sfx:
 		return
 	
-	_voice_player.stream = Utils.rand_value(_goodbye_voices)
+	_voice_player.stream = Utils.rand_value(GOODBYE_VOICES)
 	_voice_player.play()
 
 
@@ -168,7 +168,7 @@ func _on_Creature_food_eaten(_food_type: int) -> void:
 	if not should_play_sfx:
 		return
 	
-	_munch_sound.stream = Utils.rand_value(_munch_sounds)
+	_munch_sound.stream = Utils.rand_value(MUNCH_SOUNDS)
 	_munch_sound.pitch_scale = rand_range(0.96, 1.04)
 	_munch_sound.play()
 

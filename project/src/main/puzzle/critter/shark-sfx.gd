@@ -2,20 +2,8 @@ class_name SharkSfx
 extends Node
 ## Sound effects for sharks, puzzle critters which eat pieces.
 
-## Pitch scale to apply to most shark noises. Smaller sharks make higher pitched noises.
-var pitch_scale := 1.00
-
-## Duration in seconds the shark takes to eat.
-var eat_duration := Shark.DEFAULT_EAT_DURATION
-
-## Tweens properties of the eating sound as it plays.
-##
-## The eating sound is a long, sustained sound which is played for an arbitrary duration. We tween its pitch so that
-## it ends less abruptly.
-var _eat_tween: SceneTreeTween
-
 ## Friendly sounds the shark makes when it finishes eating.
-onready var _voice_friendly_sounds := [
+const VOICE_FRIENDLY_SOUNDS := [
 		preload("res://assets/main/puzzle/critter/shark-voice-friendly-0.wav"),
 		preload("res://assets/main/puzzle/critter/shark-voice-friendly-1.wav"),
 		preload("res://assets/main/puzzle/critter/shark-voice-friendly-2.wav"),
@@ -27,7 +15,7 @@ onready var _voice_friendly_sounds := [
 	]
 
 ## Brief sounds the shark makes when it is squished.
-onready var _voice_short_sounds := [
+const VOICE_SHORT_SOUNDS := [
 		preload("res://assets/main/puzzle/critter/shark-voice-short-0.wav"),
 		preload("res://assets/main/puzzle/critter/shark-voice-short-1.wav"),
 		preload("res://assets/main/puzzle/critter/shark-voice-short-2.wav"),
@@ -37,6 +25,18 @@ onready var _voice_short_sounds := [
 		preload("res://assets/main/puzzle/critter/shark-voice-short-6.wav"),
 		preload("res://assets/main/puzzle/critter/shark-voice-short-7.wav"),
 	]
+
+## Pitch scale to apply to most shark noises. Smaller sharks make higher pitched noises.
+var pitch_scale := 1.00
+
+## Duration in seconds the shark takes to eat.
+var eat_duration := Shark.DEFAULT_EAT_DURATION
+
+## Tweens properties of the eating sound as it plays.
+##
+## The eating sound is a long, sustained sound which is played for an arbitrary duration. We tween its pitch so that
+## it ends less abruptly.
+var _eat_tween: SceneTreeTween
 
 onready var _bite := $Bite
 onready var _eat := $Eat
@@ -51,13 +51,13 @@ func play_poof_sound() -> void:
 
 
 func play_voice_friendly_sound() -> void:
-	_voice_friendly.stream = Utils.rand_value(_voice_friendly_sounds)
+	_voice_friendly.stream = Utils.rand_value(VOICE_FRIENDLY_SOUNDS)
 	_voice_friendly.pitch_scale = rand_range(pitch_scale * 0.9, pitch_scale * 1.1)
 	_voice_friendly.play()
 
 
 func play_voice_short_sound() -> void:
-	_voice_short.stream = Utils.rand_value(_voice_short_sounds)
+	_voice_short.stream = Utils.rand_value(VOICE_SHORT_SOUNDS)
 	_voice_short.pitch_scale = rand_range(pitch_scale * 0.9, pitch_scale * 1.1)
 	_voice_short.play()
 
