@@ -42,10 +42,7 @@ const CIRCLES_4 := LandmarkType.CIRCLES_4
 const CIRCLES_5 := LandmarkType.CIRCLES_5
 const CIRCLES_6 := LandmarkType.CIRCLES_6
 
-export (LandmarkType) var type: int setget set_type
-export (int) var distance: int setget set_distance
-
-var _landmark_resources_by_type := {
+const LANDMARK_RESOURCES_BY_TYPE := {
 	NONE: null,
 	CACTUS: preload("res://assets/main/career/ui/map/landmark-cactus.png"),
 	FOREST: preload("res://assets/main/career/ui/map/landmark-forest.png"),
@@ -62,6 +59,9 @@ var _landmark_resources_by_type := {
 	CIRCLES_5: preload("res://assets/main/career/ui/map/circles-5.png"),
 	CIRCLES_6: preload("res://assets/main/career/ui/map/circles-6.png"),
 }
+
+export (LandmarkType) var type: int setget set_type
+export (int) var distance: int setget set_distance
 
 ## Shows the landmark's icon
 onready var _texture_rect := $TextureRect
@@ -128,7 +128,7 @@ func _refresh_type() -> void:
 	if not is_inside_tree():
 		return
 	
-	_texture_rect.texture = _landmark_resources_by_type.get(type)
+	_texture_rect.texture = LANDMARK_RESOURCES_BY_TYPE.get(type)
 	_texture_rect.rect_size = Vector2(120, 90) if _is_circles_type() else Vector2(90, 90)
 	_texture_rect.modulate = Color("64646e") if _is_circles_type() else Color("c8c8c8")
 

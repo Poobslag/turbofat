@@ -3,6 +3,8 @@ extends TutorialModule
 ##
 ## Shows messages and advances the player through the tutorial as they complete tasks.
 
+const COMBO_DIAGRAM := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")
+
 ## how many cakes the player has made during the current tutorial section
 var _cakes_built := 0
 
@@ -20,8 +22,6 @@ var _showed_end_of_level_message := false
 ## key: (String) level id
 ## value: (bool) true
 var _prepared_levels: Dictionary
-
-var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")
 
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
@@ -167,7 +167,7 @@ func _show_next_diagram() -> void:
 					+ "\n\nSo, you're allowed to make one mistake! Or, to use one piece to plan ahead."))
 	hud.set_messages(hud_messages)
 	
-	hud.diagram.show_diagram(_combo_diagram, true)
+	hud.diagram.show_diagram(COMBO_DIAGRAM, true)
 	_show_diagram_count += 1
 
 

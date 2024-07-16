@@ -3,6 +3,9 @@ extends TutorialModule
 ##
 ## Shows messages and advances the player through the tutorial as they complete tasks.
 
+const SQUISH_DIAGRAM_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")
+const SQUISH_DIAGRAM_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
+
 ## tracks what the player has done during the current tutorial section
 var _squish_moves := 0
 var _boxes_built := 0
@@ -18,9 +21,6 @@ var _show_diagram_count := 0
 ## key: (String) level id
 ## value: (int) number of attempts, initialized to '1' during the player's first attempt
 var _level_attempt_count: Dictionary
-
-var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")
-var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
@@ -152,8 +152,8 @@ func _show_next_diagram() -> void:
 	
 	var hud_diagram: Texture
 	match _show_diagram_count % 2:
-		0: hud_diagram = _squish_diagram_0
-		1: hud_diagram = _squish_diagram_1
+		0: hud_diagram = SQUISH_DIAGRAM_0
+		1: hud_diagram = SQUISH_DIAGRAM_1
 	hud.diagram.show_diagram(hud_diagram, true)
 	_show_diagram_count += 1
 

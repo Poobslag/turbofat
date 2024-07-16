@@ -5,6 +5,12 @@ extends TextureButton
 ##
 ## This button is small and squareish, and is used throughout the creature editor.
 
+## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
+const SHINE_TEXTURE_NORMAL: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
+
+## Less shiny reflection texture which overlays the button and text when the button is pressed.
+const SHINE_TEXTURE_PRESSED: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
+
 export (String) var text setget set_text
 
 ## Icon shown to the top of the button's text.
@@ -28,12 +34,6 @@ export (Array, Font) var icon_fonts := [
 	preload("res://src/main/ui/candy-button/candy-h6-font.tres"),
 	preload("res://src/main/ui/candy-button/candy-h7-font.tres"),
 ]
-
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
 
 onready var _click_sound := $ClickSound
 onready var _hover_sound := $HoverSound
@@ -219,7 +219,7 @@ func _refresh_shape() -> void:
 
 ## Updates the shine texture for our button.
 func _refresh_shine() -> void:
-	_shine.texture = _shine_texture_pressed if pressed else _shine_texture_normal
+	_shine.texture = SHINE_TEXTURE_PRESSED if pressed else SHINE_TEXTURE_NORMAL
 
 
 ## Updates our label's text.

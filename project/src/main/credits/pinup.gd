@@ -2,6 +2,18 @@ class_name Pinup
 extends Control
 ## Shows a creature in the credits scene.
 
+const TRANSFORMED_SPRITES_BY_CREATURE_ID := {
+	"#sensei#": preload("res://assets/main/credits/pinup-sensei.png"),
+	"bones": preload("res://assets/main/credits/pinup-bones.png"),
+	"chelle": preload("res://assets/main/credits/pinup-chelle.png"),
+	"frungle": preload("res://assets/main/credits/pinup-frungle.png"),
+	"goris": preload("res://assets/main/credits/pinup-goris.png"),
+	"mara": preload("res://assets/main/credits/pinup-mara.png"),
+	"namory": preload("res://assets/main/credits/pinup-namory.png"),
+	"shirts": preload("res://assets/main/credits/pinup-shirts.png"),
+	"tunathy": preload("res://assets/main/credits/pinup-tunathy.png"),
+}
+
 export (Color) var bg_color := Color("6c4331") setget set_bg_color
 
 var creature_id: String setget set_creature_id
@@ -18,18 +30,6 @@ onready var _transformed := $Transformed
 onready var _transformed_player := $Transformed/AnimationPlayer
 onready var _transformed_sprite := $Transformed/Sprite
 onready var _untransformed := $Untransformed
-
-onready var _transformed_sprites_by_creature_id := {
-	"#sensei#": preload("res://assets/main/credits/pinup-sensei.png"),
-	"bones": preload("res://assets/main/credits/pinup-bones.png"),
-	"chelle": preload("res://assets/main/credits/pinup-chelle.png"),
-	"frungle": preload("res://assets/main/credits/pinup-frungle.png"),
-	"goris": preload("res://assets/main/credits/pinup-goris.png"),
-	"mara": preload("res://assets/main/credits/pinup-mara.png"),
-	"namory": preload("res://assets/main/credits/pinup-namory.png"),
-	"shirts": preload("res://assets/main/credits/pinup-shirts.png"),
-	"tunathy": preload("res://assets/main/credits/pinup-tunathy.png"),
-}
 
 func _ready() -> void:
 	_refresh()
@@ -75,8 +75,8 @@ func transform(flip_h: bool = false) -> void:
 	# initialize the mix_color shader param, otherwise there will be one non-white frame visible
 	_transformed_sprite.material.set_shader_param("mix_color", Color.white)
 	
-	if creature_id in _transformed_sprites_by_creature_id:
-		_transformed_sprite.texture = _transformed_sprites_by_creature_id[creature_id]
+	if creature_id in TRANSFORMED_SPRITES_BY_CREATURE_ID:
+		_transformed_sprite.texture = TRANSFORMED_SPRITES_BY_CREATURE_ID[creature_id]
 
 
 func _refresh() -> void:

@@ -2,7 +2,7 @@ extends AudioStreamPlayer2D
 ## Door chime which rings when a customer enters the restaurant.
 
 ## sounds which get played when a creature shows up
-onready var _chime_sounds := [
+const CHIME_SOUNDS := [
 	preload("res://assets/main/world/environment/restaurant/door-chime0.wav"),
 	preload("res://assets/main/world/environment/restaurant/door-chime1.wav"),
 	preload("res://assets/main/world/environment/restaurant/door-chime2.wav"),
@@ -25,7 +25,7 @@ func _enter_tree() -> void:
 
 
 func play_door_chime() -> void:
-	stream = Utils.rand_value(_chime_sounds)
+	stream = Utils.rand_value(CHIME_SOUNDS)
 	play()
 
 
