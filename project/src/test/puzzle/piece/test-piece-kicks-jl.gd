@@ -1047,7 +1047,6 @@ func test_j_tip_kick_0r() -> void:
 	assert_kick()
 
 
-
 func test_j_tip_kick_r2() -> void:
 	from_grid = [
 		"     ",

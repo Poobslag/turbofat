@@ -164,7 +164,6 @@ func test_wall_kick_l2() -> void:
 	assert_kick()
 
 
-
 func test_wall_kick_r0() -> void:
 	from_grid = [
 		"     ",
@@ -321,7 +320,6 @@ func test_climb_2r_1() -> void:
 		":::   ",
 	]
 	assert_kick()
-
 
 
 func test_climb_2r_2() -> void:
