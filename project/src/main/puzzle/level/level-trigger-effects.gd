@@ -17,7 +17,7 @@ class ClearFilledLinesEffect extends LevelTriggerEffect:
 	## [force]: (Optional) If 'true', line clears will ignore any 'blocks during' conditions such as
 	## 	'filled_line_clear_delay' or 'filled_line_clear_max'. Defaults to 'false'
 	##
-	## Example: ["add_moles count=2 reward=seed"]
+	## Example: ["clear_filled_lines force"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		if new_config.has("force"):
 			force = Utils.to_bool(new_config["force"])
@@ -400,7 +400,7 @@ class RemoveOnionEffect extends LevelTriggerEffect:
 		CurrentLevel.puzzle.get_onions().remove_onion()
 
 
-## Removes one or more carrots from the playfield.
+## Removes one or more spears from the playfield.
 class RemoveSpearsEffect extends LevelTriggerEffect:
 	var count := 1
 	
