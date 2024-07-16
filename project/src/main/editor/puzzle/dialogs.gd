@@ -10,19 +10,23 @@ onready var _open_resource_dialog := $OpenResource
 onready var _save_dialog := $Save
 
 func _ready() -> void:
-	# Assign default dialog paths. These path properties were removed in Godot 3.5 in 2022 as a security precaution
-	# and can no longer be assigned in the Godot editor, so we assign them here. See Godot #29674
-	# (https://github.com/godotengine/godot/issues/29674)
-	_open_file_dialog.current_dir = "/"
-	_open_file_dialog.current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
-	_open_file_dialog.current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
+	_assign_default_dialog_paths()
+
+
+## Assign default dialog paths. These path properties were removed in Godot 3.5 in 2022 as a security precaution and
+## can no longer be assigned in the Godot editor, so we assign them here. See Godot #29674
+## (https://github.com/godotengine/godot/issues/29674)
+func _assign_default_dialog_paths() -> void:
+	# During development, the second of these assignments will succeed, but at runtime the assignment will have no
+	# effect. This gives us a more convenient default directory when authoring Turbo Fat's levels.
+	_open_file_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_open_file_dialog.current_dir = ProjectSettings.globalize_path("res://assets/main/puzzle/levels/practice/")
 	
-	_open_resource_dialog.current_dir = "res://assets/main/puzzle/levels"
-	_open_resource_dialog.current_path = "res://assets/main/puzzle/levels/"
+	_open_resource_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_open_resource_dialog.current_dir = ProjectSettings.globalize_path("res://assets/main/puzzle/levels/practice/")
 	
-	_save_dialog.current_dir = "/"
-	_save_dialog.current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
-	_save_dialog.current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
+	_save_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_save_dialog.current_dir = ProjectSettings.globalize_path("res://assets/main/puzzle/levels/practice/")
 
 
 func _show_save_load_not_supported_error() -> void:
@@ -64,13 +68,10 @@ func _on_OpenFile_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path(_open_file_dialog, "res://assets/main/puzzle/levels/practice/")
 	_open_file_dialog.popup_centered()
 
 
 func _on_OpenResource_pressed() -> void:
-	_open_resource_dialog.popup_centered()
-	Utils.assign_default_dialog_path(_open_resource_dialog, "res://assets/main/puzzle/levels/practice/")
 	_open_resource_dialog.popup_centered()
 
 
@@ -79,7 +80,6 @@ func _on_Save_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path(_save_dialog, "res://assets/main/puzzle/levels/practice/")
 	_save_dialog.popup_centered()
 	if not _save_dialog.current_file:
 		# We assign a sensible filename based on the current level, like "level_512". Unfortunately, this filename is
