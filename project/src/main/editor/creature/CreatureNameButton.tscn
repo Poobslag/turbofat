@@ -1,16 +1,15 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=1]
 [ext_resource path="res://src/main/editor/creature/NamePickerPopup.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/ui/button-click.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=4]
+[ext_resource path="res://src/main/ui/candy-button/ClickSound.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/editor/creature/creature-name-button.gd" type="Script" id=5]
 [ext_resource path="res://assets/main/ui/candy-button/c3-shine.png" type="Texture" id=6]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=7]
 [ext_resource path="res://assets/main/editor/creature/icon-name.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/ui/candy-button/c3-blank.png" type="Texture" id=10]
-[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/main/ui/candy-button/c3-blank-pressed.png" type="Texture" id=12]
 [ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=13]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=14]
@@ -94,16 +93,10 @@ anchor_bottom = 1.0
 texture = ExtResource( 6 )
 expand = true
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 3 )
-bus = "Sound Bus"
-
-[node name="HoverSound" parent="." instance=ExtResource( 11 )]
-pause_mode = 2
-stream = ExtResource( 4 )
-volume_db = -12.0
-
 [node name="NamePickerPopup" parent="." instance=ExtResource( 2 )]
+
+[node name="ClickSound" parent="." instance=ExtResource( 3 )]
+
+[node name="HoverSound" parent="." instance=ExtResource( 4 )]
 
 [connection signal="name_changed" from="NamePickerPopup" to="." method="_on_NamePickerPopup_name_changed"]

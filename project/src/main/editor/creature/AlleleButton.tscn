@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=2]
@@ -6,11 +6,10 @@
 [ext_resource path="res://assets/main/ui/candy-button/c3-shine.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/ui/candy-button/c3-v-pressed.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/ui/candy-button/c3-v.png" type="Texture" id=6]
-[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=8]
-[ext_resource path="res://assets/main/ui/button-click.wav" type="AudioStream" id=9]
+[ext_resource path="res://src/main/ui/candy-button/ClickSound.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=10]
-[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/editor/creature/allele-button.gd" type="Script" id=12]
 
 [sub_resource type="GradientTexture2D" id=9]
@@ -92,12 +91,6 @@ anchor_bottom = 1.0
 texture = ExtResource( 4 )
 expand = true
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 9 )
-bus = "Sound Bus"
+[node name="ClickSound" parent="." instance=ExtResource( 9 )]
 
 [node name="HoverSound" parent="." instance=ExtResource( 7 )]
-pause_mode = 2
-stream = ExtResource( 11 )
-volume_db = -12.0

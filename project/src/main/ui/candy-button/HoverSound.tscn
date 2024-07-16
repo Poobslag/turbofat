@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=2]
+
+[node name="HoverSound" instance=ExtResource( 1 )]
+pause_mode = 2
+stream = ExtResource( 2 )
+volume_db = -12.0
