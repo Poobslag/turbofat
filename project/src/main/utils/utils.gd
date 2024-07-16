@@ -14,22 +14,6 @@ static func append_if_absent(array: Array, value) -> void:
 		array.append(value)
 
 
-## Assigns a default path for a FileDialog.
-##
-## At runtime, this will default to the user data directory. During development, this will default to a resource path
-## for convenience when authoring Turbo Fat's creature's/levels.
-##
-## Note: We only want to assign the path the first time, but we can't check 'is the path empty' because an empty path
-## is a valid choice -- a player can navigate to the root directory. So instead of checking 'is the path empty' we
-## check 'is the path this specific UUID' since that's something the user will never navigate to accidentally.
-static func assign_default_dialog_path(dialog: FileDialog, default_resource_path: String) -> void:
-	if dialog.current_path == "/509e7c82-9399-425a-9f15-9370c2b3de8b":
-		var current_path := ProjectSettings.globalize_path(default_resource_path)
-		if not Directory.new().dir_exists(current_path):
-			current_path = OS.get_user_data_dir()
-		dialog.current_path = current_path
-
-
 ## Returns the perceived brightness of a color.
 ##
 ## This allows UI elements to avoid combinations like dark blue on black or light green on white.

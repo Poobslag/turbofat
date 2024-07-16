@@ -9,6 +9,23 @@ onready var _import_dialog := $Import
 onready var _export_dialog := $Export
 onready var _save_confirmation := $SaveConfirmation
 
+func _ready() -> void:
+	_assign_default_dialog_paths()
+
+
+## Assign default dialog paths. These path properties were removed in Godot 3.5 in 2022 as a security precaution and
+## can no longer be assigned in the Godot editor, so we assign them here. See Godot #29674
+## (https://github.com/godotengine/godot/issues/29674)
+func _assign_default_dialog_paths() -> void:
+	# During development, the second of these assignments will succeed, but at runtime the assignment will have no
+	# effect. This gives us a more convenient default directory when authoring Turbo Fat's creatures.
+	_import_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_import_dialog.current_dir = ProjectSettings.globalize_path("res://assets/main/creatures/nonstory/")
+	
+	_export_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
+	_export_dialog.current_dir = ProjectSettings.globalize_path("res://assets/main/creatures/nonstory/")
+
+
 func _show_import_export_not_supported_error() -> void:
 	_error_dialog.dialog_text = "Import/export isn't supported over the web. Sorry!"
 	_error_dialog.popup_centered()
@@ -25,7 +42,6 @@ func _on_ImportButton_pressed() -> void:
 		_show_import_export_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path(_import_dialog, "res://assets/main/creatures/nonstory/")
 	_import_dialog.popup_centered()
 
 
@@ -46,7 +62,6 @@ func _on_ExportButton_pressed() -> void:
 		_show_import_export_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path(_export_dialog, "res://assets/main/creatures/nonstory/")
 	var exported_creature: Creature = _creature_editor.center_creature
 	var sanitized_creature_name := StringUtils.sanitize_file_root(exported_creature.creature_short_name)
 	_export_dialog.current_file = "%s.json" % sanitized_creature_name
