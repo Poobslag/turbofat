@@ -33,11 +33,11 @@ func _refresh_shine() -> void:
 
 
 func _on_Button_button_down() -> void:
-	_refresh_shine()
+	texture = texture_pressed
 
 
 func _on_Button_button_up() -> void:
-	_refresh_shine()
+	texture = texture_normal
 
 
 func _on_Button_toggled(_button_pressed: bool) -> void:
