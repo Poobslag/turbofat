@@ -6,26 +6,6 @@
     "type": "score",
     "value": 200
   },
-  "triggers": [
-    {
-      "phases": [
-        "start"
-      ],
-      "effect": "add_spears wait=3 count=6 y=0,2,4,6,8,10 sizes=l3,l4,l5,l6"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_spears"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "remove_spears 1"
-    }
-  ],
   "piece_types": [
     "start_piece_q"
   ],
@@ -396,5 +376,25 @@
         "tile": "1 5 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "start"
+      ],
+      "effect": "add_spears sizes=l3,l4,l5,l6 count=6 wait=3 y=0,2,4,6,8,10"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "remove_spears"
+    }
+  ]
 }

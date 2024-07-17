@@ -1,21 +1,21 @@
 {
   "version": "4c5c",
-  "start_speed": "T",
   "name": "Zero Gravity",
   "description": "In space, nobody can hear you scream.",
   "difficulty": "6",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "90"
-  },
-  "rank": [
-    "extra_seconds_per_piece 1.2",
-    "combo_factor 0.30",
-    "preplaced_pieces 3"
-  ],
+  "start_speed": "T",
   "blocks_during": [
     "clear_on_top_out",
     "line_clear_type float"
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 90
+  },
+  "rank": [
+    "combo_factor 0.3",
+    "extra_seconds_per_piece 1.2",
+    "preplaced_pieces 3"
   ],
   "tiles": {
     "start": [

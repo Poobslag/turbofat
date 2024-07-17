@@ -3,19 +3,19 @@
   "name": "3 Kyu",
   "description": "An escalating set of challenges. Finish with ¥999 to achieve this rank!",
   "color": "blue",
-  "success_condition": {
-    "type": "score",
-    "value": "999"
-  },
+  "start_speed": "5",
   "blocks_during": [
     "clear_on_top_out"
   ],
-  "start_speed": "5",
   "finish_condition": {
     "type": "time_over",
-    "value": "540"
+    "value": 540
   },
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "score",
+    "value": 999
+  }
 }

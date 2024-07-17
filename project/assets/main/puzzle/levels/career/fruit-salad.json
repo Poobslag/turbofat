@@ -1,14 +1,14 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
   "name": "Fruit Salad",
   "description": "Ick! Salad. ...You said there would be fruit!",
+  "start_speed": "4",
   "blocks_during": [
     "shuffle_inserted_lines slice"
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "40"
+    "value": 40
   },
   "other": [
     "tile_set veggie"
@@ -19,20 +19,6 @@
     "master_pickup_score_per_line 9.57",
     "show_pickups_rank"
   ],
-  "timers": [
-    {
-      "interval": 12
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0-5",
-        "timer_0"
-      ],
-      "effect": "insert_line tiles_key=0"
-    }
-  ],
   "tiles": {
     "0": [
       {
@@ -42,14 +28,6 @@
       {
         "pos": "1 0",
         "tile": "1 4 5"
-      },
-      {
-        "pos": "2 0",
-        "pickup": "5"
-      },
-      {
-        "pos": "3 0",
-        "pickup": "5"
       },
       {
         "pos": "4 0",
@@ -70,14 +48,6 @@
       {
         "pos": "8 0",
         "tile": "1 4 5"
-      },
-      {
-        "pos": "0 1",
-        "pickup": "5"
-      },
-      {
-        "pos": "1 1",
-        "pickup": "5"
       },
       {
         "pos": "2 1",
@@ -132,14 +102,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "6 2",
-        "pickup": "5"
-      },
-      {
-        "pos": "7 2",
-        "pickup": "5"
-      },
-      {
         "pos": "8 2",
         "tile": "1 0 5"
       },
@@ -154,14 +116,6 @@
       {
         "pos": "2 3",
         "tile": "1 4 5"
-      },
-      {
-        "pos": "3 3",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 3",
-        "pickup": "5"
       },
       {
         "pos": "5 3",
@@ -200,14 +154,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "5 4",
-        "pickup": "5"
-      },
-      {
-        "pos": "6 4",
-        "pickup": "5"
-      },
-      {
         "pos": "7 4",
         "tile": "1 8 5"
       },
@@ -244,24 +190,8 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "7 5",
-        "pickup": "5"
-      },
-      {
-        "pos": "8 5",
-        "pickup": "5"
-      },
-      {
         "pos": "0 6",
         "tile": "1 0 5"
-      },
-      {
-        "pos": "1 6",
-        "pickup": "5"
-      },
-      {
-        "pos": "2 6",
-        "pickup": "5"
       },
       {
         "pos": "3 6",
@@ -304,14 +234,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "4 7",
-        "pickup": "5"
-      },
-      {
-        "pos": "5 7",
-        "pickup": "5"
-      },
-      {
         "pos": "6 7",
         "tile": "1 8 5"
       },
@@ -322,6 +244,70 @@
       {
         "pos": "8 7",
         "tile": "1 4 5"
+      },
+      {
+        "pos": "2 0",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 0",
+        "pickup": "5"
+      },
+      {
+        "pos": "0 1",
+        "pickup": "5"
+      },
+      {
+        "pos": "1 1",
+        "pickup": "5"
+      },
+      {
+        "pos": "6 2",
+        "pickup": "5"
+      },
+      {
+        "pos": "7 2",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 3",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 3",
+        "pickup": "5"
+      },
+      {
+        "pos": "5 4",
+        "pickup": "5"
+      },
+      {
+        "pos": "6 4",
+        "pickup": "5"
+      },
+      {
+        "pos": "7 5",
+        "pickup": "5"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "5"
+      },
+      {
+        "pos": "1 6",
+        "pickup": "5"
+      },
+      {
+        "pos": "2 6",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 7",
+        "pickup": "5"
+      },
+      {
+        "pos": "5 7",
+        "pickup": "5"
       }
     ],
     "start": [
@@ -398,5 +384,19 @@
         "tile": "2 10 1"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 12
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-5",
+        "timer_0"
+      ],
+      "effect": "insert_line tiles_key=0"
+    }
+  ]
 }

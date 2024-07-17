@@ -2,19 +2,19 @@
   "version": "4c5c",
   "name": "Sandbox: Expert",
   "description": "Practice with faster pieces! There is no way to win or lose this mode.",
+  "start_speed": "A5",
   "blocks_during": [
     "clear_on_top_out"
   ],
   "lose_condition": [
-    "top_out 999999",
-    "finish_on_lose"
+    "finish_on_lose",
+    "top_out 999999"
   ],
   "rank": [
     "unranked"
   ],
-  "start_speed": "A5",
   "success_condition": {
     "type": "lines",
-    "value": "300"
+    "value": 300
   }
 }

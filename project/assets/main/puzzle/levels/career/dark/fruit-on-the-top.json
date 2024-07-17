@@ -1,25 +1,25 @@
 {
   "version": "4c5c",
-  "start_speed": "F0",
   "name": "Fruit on the Top EX",
   "description": "It needs to settle first.",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "80"
-  },
-  "rank": [
-    "box_factor 0.33",
-    "combo_factor 0.08",
-    "master_pickup_score_per_line 3.66",
-    "show_pickups_rank",
-    "hide_combos_rank"
-  ],
+  "start_speed": "F0",
   "blocks_during": [
     "fill_lines 0",
     "refresh_on_top_out"
   ],
   "combo_break": [
     "pieces 0"
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 80
+  },
+  "rank": [
+    "box_factor 0.33",
+    "combo_factor 0.08",
+    "master_pickup_score_per_line 3.66",
+    "hide_combos_rank",
+    "show_pickups_rank"
   ],
   "tiles": {
     "0": [
@@ -84,10 +84,6 @@
         "tile": "1 4 1"
       },
       {
-        "pos": "4 2",
-        "pickup": "5"
-      },
-      {
         "pos": "6 2",
         "tile": "1 8 1"
       },
@@ -146,6 +142,10 @@
       {
         "pos": "8 4",
         "tile": "2 12 3"
+      },
+      {
+        "pos": "4 2",
+        "pickup": "5"
       }
     ],
     "start": [
@@ -208,10 +208,6 @@
       {
         "pos": "2 2",
         "tile": "1 4 1"
-      },
-      {
-        "pos": "4 2",
-        "pickup": "5"
       },
       {
         "pos": "6 2",
@@ -632,6 +628,10 @@
       {
         "pos": "8 19",
         "tile": "2 17 1"
+      },
+      {
+        "pos": "4 2",
+        "pickup": "5"
       }
     ]
   }

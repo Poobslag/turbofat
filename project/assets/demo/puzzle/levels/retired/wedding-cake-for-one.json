@@ -1,20 +1,85 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "Wedding Cake For One",
   "description": "One VERY hungry customer and one VERY big cake! ...Are they going eat the entire thing?",
   "difficulty": "5",
+  "start_speed": "A1",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": 1,
+      "speed": "A2"
+    },
+    {
+      "type": "lines",
+      "value": 2,
+      "speed": "A3"
+    },
+    {
+      "type": "lines",
+      "value": 3,
+      "speed": "A4"
+    },
+    {
+      "type": "lines",
+      "value": 4,
+      "speed": "A5"
+    },
+    {
+      "type": "lines",
+      "value": 5,
+      "speed": "A6"
+    },
+    {
+      "type": "lines",
+      "value": 6,
+      "speed": "A7"
+    },
+    {
+      "type": "lines",
+      "value": 7,
+      "speed": "A8"
+    },
+    {
+      "type": "lines",
+      "value": 8,
+      "speed": "A9"
+    },
+    {
+      "type": "lines",
+      "value": 9,
+      "speed": "AA"
+    },
+    {
+      "type": "lines",
+      "value": 10,
+      "speed": "AB"
+    },
+    {
+      "type": "lines",
+      "value": 11,
+      "speed": "AC"
+    },
+    {
+      "type": "lines",
+      "value": 12,
+      "speed": "AD"
+    },
+    {
+      "type": "lines",
+      "value": 13,
+      "speed": "AE"
+    },
+    {
+      "type": "lines",
+      "value": 14,
+      "speed": "AF"
+    }
+  ],
   "finish_condition": {
     "type": "customers",
-    "value": "1"
+    "value": 1
   },
-  "rank": [
-    "customer_combo 9",
-    "leftover_lines 3",
-    "preplaced_pieces 10",
-    "box_factor 1.38",
-    "combo_factor 1.21"
-  ],
   "piece_types": [
     "piece_j",
     "piece_l",
@@ -23,77 +88,12 @@
     "piece_o",
     "piece_o"
   ],
-  "speed_ups": [
-    {
-      "type": "lines",
-      "value": "1",
-      "speed": "A2"
-    },
-    {
-      "type": "lines",
-      "value": "2",
-      "speed": "A3"
-    },
-    {
-      "type": "lines",
-      "value": "3",
-      "speed": "A4"
-    },
-    {
-      "type": "lines",
-      "value": "4",
-      "speed": "A5"
-    },
-    {
-      "type": "lines",
-      "value": "5",
-      "speed": "A6"
-    },
-    {
-      "type": "lines",
-      "value": "6",
-      "speed": "A7"
-    },
-    {
-      "type": "lines",
-      "value": "7",
-      "speed": "A8"
-    },
-    {
-      "type": "lines",
-      "value": "8",
-      "speed": "A9"
-    },
-    {
-      "type": "lines",
-      "value": "9",
-      "speed": "AA"
-    },
-    {
-      "type": "lines",
-      "value": "10",
-      "speed": "AB"
-    },
-    {
-      "type": "lines",
-      "value": "11",
-      "speed": "AC"
-    },
-    {
-      "type": "lines",
-      "value": "12",
-      "speed": "AD"
-    },
-    {
-      "type": "lines",
-      "value": "13",
-      "speed": "AE"
-    },
-    {
-      "type": "lines",
-      "value": "14",
-      "speed": "AF"
-    }
+  "rank": [
+    "box_factor 1.38",
+    "combo_factor 1.21",
+    "customer_combo 9",
+    "leftover_lines 3",
+    "preplaced_pieces 10"
   ],
   "tiles": {
     "start": [

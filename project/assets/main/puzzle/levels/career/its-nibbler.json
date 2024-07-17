@@ -1,52 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "7",
   "name": "It's Nibbler",
   "description": "Aww, they take such tiny bites. ...Oww! My finger!",
+  "start_speed": "7",
   "finish_condition": {
     "type": "time_over",
-    "value": "75"
+    "value": 75
   },
   "rank": [
-    "extra_seconds_per_piece 1.37",
     "box_factor 1.65",
     "combo_factor 1.21",
+    "extra_seconds_per_piece 1.37",
     "master_pickup_score_per_line 8.64",
     "show_pickups_rank"
-  ],
-  "timers": [
-    {
-      "interval": 1.25,
-      "start": 5
-    },
-    {
-      "interval": 15,
-      "start": 5
-    },
-    {
-      "interval": 15,
-      "start": 12.5
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_1"
-      ],
-      "effect": "add_sharks size=small count=1 patience=5"
-    },
-    {
-      "phases": [
-        "timer_2"
-      ],
-      "effect": "add_sharks size=small count=2 patience=5"
-    },
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "advance_sharks"
-    }
   ],
   "tiles": {
     "start": [
@@ -183,5 +149,39 @@
         "tile": "1 5 7"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 1.25,
+      "start": 5
+    },
+    {
+      "interval": 15,
+      "start": 5
+    },
+    {
+      "interval": 15,
+      "start": 12.5
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_sharks patience=5 size=small"
+    },
+    {
+      "phases": [
+        "timer_2"
+      ],
+      "effect": "add_sharks count=2 patience=5 size=small"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_sharks"
+    }
+  ]
 }

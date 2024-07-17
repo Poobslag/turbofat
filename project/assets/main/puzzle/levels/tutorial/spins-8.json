@@ -3,7 +3,7 @@
   "start_speed": "5",
   "finish_condition": {
     "type": "pieces",
-    "value": "20"
+    "value": 20
   },
   "lose_condition": [
     "top_out 999999"

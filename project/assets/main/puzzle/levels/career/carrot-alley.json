@@ -1,39 +1,27 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Carrot Alley",
   "description": "Carrots... Why did it have to be carrots?",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "105"
-  },
-  "piece_types": [
-    "no_suppress_repeat_piece",
-    "piece_j",
-    "piece_j",
-    "piece_j",
-    "piece_o",
-    "piece_p"
-  ],
+  "start_speed": "3",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "20",
+      "value": 20,
       "speed": "4"
     },
     {
       "type": "lines",
-      "value": "40",
+      "value": 40,
       "speed": "5"
     },
     {
       "type": "lines",
-      "value": "60",
+      "value": 60,
       "speed": "6"
     },
     {
       "type": "lines",
-      "value": "80",
+      "value": 80,
       "speed": "7"
     }
   ],
@@ -44,19 +32,17 @@
   "combo_break": [
     "pieces 0"
   ],
-  "triggers": [
-    {
-      "phases": [
-        "pickup_collected snack"
-      ],
-      "effect": "add_carrots x=3-5 duration=6"
-    },
-    {
-      "phases": [
-        "pickup_collected cake"
-      ],
-      "effect": "add_carrots x=3 size=xl duration=16"
-    }
+  "finish_condition": {
+    "type": "time_over",
+    "value": 105
+  },
+  "piece_types": [
+    "no_suppress_repeat_piece",
+    "piece_j",
+    "piece_j",
+    "piece_j",
+    "piece_o",
+    "piece_p"
   ],
   "tiles": {
     "0": [
@@ -71,10 +57,6 @@
       {
         "pos": "2 0",
         "tile": "2 17 0"
-      },
-      {
-        "pos": "4 0",
-        "pickup": "1"
       },
       {
         "pos": "6 0",
@@ -99,14 +81,6 @@
       {
         "pos": "2 1",
         "tile": "2 9 0"
-      },
-      {
-        "pos": "3 1",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 1",
-        "pickup": "1"
       },
       {
         "pos": "6 1",
@@ -229,10 +203,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "4 6",
-        "pickup": "5"
-      },
-      {
         "pos": "6 6",
         "tile": "1 8 5"
       },
@@ -353,14 +323,6 @@
         "tile": "2 8 0"
       },
       {
-        "pos": "3 11",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 11",
-        "pickup": "1"
-      },
-      {
         "pos": "6 11",
         "tile": "2 4 2"
       },
@@ -383,10 +345,6 @@
       {
         "pos": "2 12",
         "tile": "2 14 1"
-      },
-      {
-        "pos": "4 12",
-        "pickup": "1"
       },
       {
         "pos": "6 12",
@@ -495,6 +453,34 @@
       {
         "pos": "8 16",
         "tile": "2 2 1"
+      },
+      {
+        "pos": "4 0",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 1",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 1",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 6",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 12",
+        "pickup": "1"
       }
     ],
     "start": [
@@ -607,10 +593,6 @@
         "tile": "2 8 1"
       },
       {
-        "pos": "4 4",
-        "pickup": "1"
-      },
-      {
         "pos": "6 4",
         "tile": "2 3 0"
       },
@@ -633,14 +615,6 @@
       {
         "pos": "2 5",
         "tile": "2 7 2"
-      },
-      {
-        "pos": "3 5",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 5",
-        "pickup": "1"
       },
       {
         "pos": "6 5",
@@ -763,10 +737,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "4 10",
-        "pickup": "5"
-      },
-      {
         "pos": "6 10",
         "tile": "1 8 5"
       },
@@ -887,14 +857,6 @@
         "tile": "2 2 3"
       },
       {
-        "pos": "3 15",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 15",
-        "pickup": "1"
-      },
-      {
         "pos": "6 15",
         "tile": "2 7 2"
       },
@@ -917,10 +879,6 @@
       {
         "pos": "2 16",
         "tile": "2 7 2"
-      },
-      {
-        "pos": "4 16",
-        "pickup": "1"
       },
       {
         "pos": "6 16",
@@ -1005,7 +963,49 @@
       {
         "pos": "8 19",
         "tile": "2 17 1"
+      },
+      {
+        "pos": "4 4",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 10",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 15",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 15",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 16",
+        "pickup": "1"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "pickup_collected snack"
+      ],
+      "effect": "add_carrots duration=6 x=3-5"
+    },
+    {
+      "phases": [
+        "pickup_collected cake"
+      ],
+      "effect": "add_carrots duration=16 size=xl x=3"
+    }
+  ]
 }

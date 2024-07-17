@@ -3,12 +3,19 @@
   "name": "Sharky Cheese 2",
   "description": "This time with actual cheese! ...Wait, isn't cheese bad for sharks?",
   "start_speed": "A3",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": 30,
+      "speed": "A4"
+    }
+  ],
   "combo_break": [
     "pieces 1"
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "75"
+    "value": 75
   },
   "piece_types": [
     "piece_c",
@@ -23,15 +30,8 @@
   "rank": [
     "box_factor 0.85",
     "combo_factor 0.71",
-    "master_pickup_score_per_line 11.90",
+    "master_pickup_score_per_line 11.9",
     "show_pickups_rank"
-  ],
-  "speed_ups": [
-    {
-      "type": "lines",
-      "value": "30",
-      "speed": "A4"
-    }
   ],
   "tiles": {
     "0": [

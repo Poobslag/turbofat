@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "It's Square to be Square EX",
   "description": "Can you handle all this sugar, or will you go down swinging?",
+  "start_speed": "A1",
   "finish_condition": {
     "type": "score",
-    "value": "1500"
+    "value": 1500
   },
   "piece_types": [
     "piece_j",

@@ -1,44 +1,16 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Three Nights",
   "description": "I'm not afraid of the dark! It's just very annoying...",
+  "start_speed": "2",
   "finish_condition": {
     "type": "time_over",
-    "value": "110"
+    "value": 110
   },
   "rank": [
-    "extra_seconds_per_piece 0.10",
     "box_factor 0.95",
-    "combo_factor 1.06"
-  ],
-  "timers": [
-    {
-      "interval": 2.5
-    },
-    {
-      "interval": 95
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "before_start"
-      ],
-      "effect": "add_onion ..dddddennnn"
-    },
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "advance_onion"
-    },
-    {
-      "phases": [
-        "timer_1"
-      ],
-      "effect": "remove_onion"
-    }
+    "combo_factor 1.06",
+    "extra_seconds_per_piece 0.1"
   ],
   "tiles": {
     "start": [
@@ -131,5 +103,33 @@
         "tile": "0 4 1"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 2.5
+    },
+    {
+      "interval": 95
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_onion ..dddddennnn"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_onion"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "remove_onion"
+    }
+  ]
 }

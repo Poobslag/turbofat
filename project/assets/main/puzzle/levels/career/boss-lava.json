@@ -2,76 +2,75 @@
   "version": "4c5c",
   "name": "Grand Opening: Starberry Mountain",
   "description": "Opening a new restaurant can be tough!",
-  "success_condition": {
-    "type": "score",
-    "value": "2000"
-  },
-  "start_speed": "0",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "10",
+      "value": 10,
       "speed": "1"
     },
     {
       "type": "lines",
-      "value": "20",
+      "value": 20,
       "speed": "2"
     },
     {
       "type": "lines",
-      "value": "30",
+      "value": 30,
       "speed": "3"
     },
     {
       "type": "lines",
-      "value": "40",
+      "value": 40,
       "speed": "4"
     },
     {
       "type": "lines",
-      "value": "50",
+      "value": 50,
       "speed": "5"
     },
     {
       "type": "lines",
-      "value": "60",
+      "value": 60,
       "speed": "6"
     },
     {
       "type": "lines",
-      "value": "70",
+      "value": 70,
       "speed": "7"
     },
     {
       "type": "lines",
-      "value": "80",
+      "value": 80,
       "speed": "8"
     },
     {
       "type": "lines",
-      "value": "90",
+      "value": 90,
       "speed": "9"
     },
     {
       "type": "lines",
-      "value": "100",
+      "value": 100,
       "speed": "A3"
     },
     {
       "type": "lines",
-      "value": "110",
+      "value": 110,
       "speed": "A4"
     }
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "120"
+    "value": 120
   },
   "lose_condition": [
     "top_out 1"
   ],
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "score",
+    "value": 2000
+  }
 }

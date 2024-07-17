@@ -3,86 +3,86 @@
   "name": "7 Dan",
   "description": "An escalating set of challenges. Finish with ¥5,000 to achieve this rank!",
   "color": "yellow",
-  "success_condition": {
-    "type": "score",
-    "value": "5000"
-  },
   "start_speed": "A0",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "20",
+      "value": 20,
       "speed": "A1"
     },
     {
       "type": "lines",
-      "value": "40",
+      "value": 40,
       "speed": "A2"
     },
     {
       "type": "lines",
-      "value": "60",
+      "value": 60,
       "speed": "A3"
     },
     {
       "type": "lines",
-      "value": "80",
+      "value": 80,
       "speed": "A4"
     },
     {
       "type": "lines",
-      "value": "100",
+      "value": 100,
       "speed": "A5"
     },
     {
       "type": "lines",
-      "value": "140",
+      "value": 140,
       "speed": "AA"
     },
     {
       "type": "lines",
-      "value": "160",
+      "value": 160,
       "speed": "AC"
     },
     {
       "type": "lines",
-      "value": "180",
+      "value": 180,
       "speed": "AF"
     },
     {
       "type": "lines",
-      "value": "220",
+      "value": 220,
       "speed": "A1"
     },
     {
       "type": "lines",
-      "value": "240",
+      "value": 240,
       "speed": "A5"
     },
     {
       "type": "lines",
-      "value": "260",
+      "value": 260,
       "speed": "AA"
     },
     {
       "type": "lines",
-      "value": "280",
+      "value": 280,
       "speed": "AF"
     },
     {
       "type": "lines",
-      "value": "300",
+      "value": 300,
       "speed": "FA"
     }
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "400"
+    "value": 400
   },
   "lose_condition": [
     "top_out 1"
   ],
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "score",
+    "value": 5000
+  }
 }

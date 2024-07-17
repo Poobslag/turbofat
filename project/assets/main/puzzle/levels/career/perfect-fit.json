@@ -1,25 +1,16 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Perfect Fit",
   "description": "This is my hole! It was made for me!",
   "finish_condition": {
     "type": "pieces",
-    "value": "30"
+    "value": 30
   },
   "piece_types": [
     "piece_j",
     "piece_l",
     "piece_p",
     "piece_q"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0-5"
-      ],
-      "effect": "insert_line tiles_keys=0,1"
-    }
   ],
   "tiles": {
     "start": [
@@ -58,10 +49,6 @@
       {
         "pos": "2 15",
         "tile": "1 7 3"
-      },
-      {
-        "pos": "4 15",
-        "pickup": "3"
       },
       {
         "pos": "6 15",
@@ -148,10 +135,6 @@
         "tile": "1 5 3"
       },
       {
-        "pos": "7 18",
-        "pickup": "3"
-      },
-      {
         "pos": "0 19",
         "tile": "2 12 3"
       },
@@ -174,6 +157,14 @@
       {
         "pos": "5 19",
         "tile": "1 4 3"
+      },
+      {
+        "pos": "4 15",
+        "pickup": "3"
+      },
+      {
+        "pos": "7 18",
+        "pickup": "3"
       }
     ],
     "0": [
@@ -212,10 +203,6 @@
       {
         "pos": "2 1",
         "tile": "1 4 3"
-      },
-      {
-        "pos": "4 1",
-        "pickup": "3"
       },
       {
         "pos": "6 1",
@@ -278,10 +265,6 @@
         "tile": "1 4 3"
       },
       {
-        "pos": "1 4",
-        "pickup": "3"
-      },
-      {
         "pos": "3 4",
         "tile": "1 8 3"
       },
@@ -328,6 +311,14 @@
       {
         "pos": "8 5",
         "tile": "1 4 3"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 4",
+        "pickup": "3"
       }
     ],
     "1": [
@@ -366,10 +357,6 @@
       {
         "pos": "2 1",
         "tile": "1 4 3"
-      },
-      {
-        "pos": "4 1",
-        "pickup": "3"
       },
       {
         "pos": "6 1",
@@ -456,10 +443,6 @@
         "tile": "1 4 3"
       },
       {
-        "pos": "7 4",
-        "pickup": "3"
-      },
-      {
         "pos": "0 5",
         "tile": "1 8 3"
       },
@@ -482,7 +465,23 @@
       {
         "pos": "5 5",
         "tile": "1 4 3"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "7 4",
+        "pickup": "3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-5"
+      ],
+      "effect": "insert_line tiles_keys=0,1"
+    }
+  ]
 }

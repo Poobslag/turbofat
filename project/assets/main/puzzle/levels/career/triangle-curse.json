@@ -5,7 +5,7 @@
   "start_speed": "8",
   "finish_condition": {
     "type": "time_over",
-    "value": "120"
+    "value": 120
   },
   "piece_types": [
     "no_suppress_o_piece",
@@ -20,11 +20,11 @@
   ],
   "rank": [
     "box_factor 1.66",
-    "combo_factor 0.80"
+    "combo_factor 0.8"
   ],
   "score": [
-    "snack_all 10",
-    "cake_all 20"
+    "cake_all 20",
+    "snack_all 10"
   ],
   "tiles": {
     "start": [

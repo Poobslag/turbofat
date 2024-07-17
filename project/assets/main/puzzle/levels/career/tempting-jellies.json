@@ -1,36 +1,36 @@
 {
   "version": "4c5c",
+  "name": "Tempting Jellies",
+  "description": "Throw caution to the wind this once!",
   "start_speed": "3",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "10",
+      "value": 10,
       "speed": "4"
     },
     {
       "type": "lines",
-      "value": "20",
+      "value": 20,
       "speed": "5"
     },
     {
       "type": "lines",
-      "value": "30",
+      "value": 30,
       "speed": "6"
     },
     {
       "type": "lines",
-      "value": "40",
+      "value": 40,
       "speed": "7"
     }
   ],
-  "name": "Tempting Jellies",
-  "description": "Throw caution to the wind this once!",
   "blocks_during": [
     "pickup_type float_regen"
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "50"
+    "value": 50
   },
   "lose_condition": [
     "top_out 1"
@@ -38,86 +38,14 @@
   "rank": [
     "box_factor 0.25",
     "master_pickup_score_per_line 17.78",
-    "show_pickups_rank",
-    "preplaced_pieces 6"
+    "preplaced_pieces 6",
+    "show_pickups_rank"
   ],
   "score": [
     "snack_all 0"
   ],
   "tiles": {
     "start": [
-      {
-        "pos": "3 0",
-        "pickup": "6"
-      },
-      {
-        "pos": "4 0",
-        "pickup": "6"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "6"
-      },
-      {
-        "pos": "3 1",
-        "pickup": "6"
-      },
-      {
-        "pos": "4 1",
-        "pickup": "6"
-      },
-      {
-        "pos": "5 1",
-        "pickup": "6"
-      },
-      {
-        "pos": "3 2",
-        "pickup": "6"
-      },
-      {
-        "pos": "4 2",
-        "pickup": "6"
-      },
-      {
-        "pos": "5 2",
-        "pickup": "6"
-      },
-      {
-        "pos": "3 3",
-        "pickup": "6"
-      },
-      {
-        "pos": "4 3",
-        "pickup": "3"
-      },
-      {
-        "pos": "5 3",
-        "pickup": "6"
-      },
-      {
-        "pos": "3 4",
-        "pickup": "3"
-      },
-      {
-        "pos": "4 4",
-        "pickup": "6"
-      },
-      {
-        "pos": "5 4",
-        "pickup": "3"
-      },
-      {
-        "pos": "4 5",
-        "pickup": "3"
-      },
-      {
-        "pos": "4 7",
-        "pickup": "1"
-      },
-      {
-        "pos": "4 9",
-        "pickup": "0"
-      },
       {
         "pos": "3 11",
         "tile": "1 10 3"
@@ -225,6 +153,78 @@
       {
         "pos": "5 19",
         "tile": "1 5 0"
+      },
+      {
+        "pos": "3 0",
+        "pickup": "6"
+      },
+      {
+        "pos": "4 0",
+        "pickup": "6"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "6"
+      },
+      {
+        "pos": "3 1",
+        "pickup": "6"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "6"
+      },
+      {
+        "pos": "5 1",
+        "pickup": "6"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "6"
+      },
+      {
+        "pos": "4 2",
+        "pickup": "6"
+      },
+      {
+        "pos": "5 2",
+        "pickup": "6"
+      },
+      {
+        "pos": "3 3",
+        "pickup": "6"
+      },
+      {
+        "pos": "4 3",
+        "pickup": "3"
+      },
+      {
+        "pos": "5 3",
+        "pickup": "6"
+      },
+      {
+        "pos": "3 4",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 4",
+        "pickup": "6"
+      },
+      {
+        "pos": "5 4",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 5",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 7",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 9",
+        "pickup": "0"
       }
     ]
   }

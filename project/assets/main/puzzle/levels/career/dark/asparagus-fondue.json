@@ -8,7 +8,7 @@
   ],
   "finish_condition": {
     "type": "score",
-    "value": "1550"
+    "value": 1550
   },
   "piece_types": [
     "piece_c",

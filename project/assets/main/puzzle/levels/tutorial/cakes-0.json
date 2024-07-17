@@ -2,6 +2,22 @@
   "version": "4c5c",
   "name": "Make Cakes",
   "description": "Learn all eight different cake box recipes.",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial"
+  ],
+  "piece_types": [
+    "start_piece_p",
+    "start_piece_t",
+    "start_piece_v"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -113,21 +129,5 @@
         "tile": "0 5 0"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial"
-  ],
-  "piece_types": [
-    "start_piece_p",
-    "start_piece_t",
-    "start_piece_v"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "start_speed": "T"
+  }
 }

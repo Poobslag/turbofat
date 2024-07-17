@@ -1,11 +1,23 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
   "name": "Too Fast to Fast",
   "description": "Can you survive the increasing speeds?",
+  "start_speed": "5",
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": 30,
+      "speed": "7"
+    },
+    {
+      "type": "time_over",
+      "value": 60,
+      "speed": "9"
+    }
+  ],
   "finish_condition": {
     "type": "time_over",
-    "value": "90"
+    "value": 90
   },
   "lose_condition": [
     "top_out 1"
@@ -15,18 +27,6 @@
   ],
   "rank": [
     "preplaced_pieces 7"
-  ],
-  "speed_ups": [
-    {
-      "type": "time_over",
-      "value": "30",
-      "speed": "7"
-    },
-    {
-      "type": "time_over",
-      "value": "60",
-      "speed": "9"
-    }
   ],
   "tiles": {
     "start": [

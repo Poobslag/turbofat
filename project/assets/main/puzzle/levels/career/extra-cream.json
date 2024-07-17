@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
   "name": "Extra Cream",
   "description": "Too much of a good thing is still a good thing!",
+  "start_speed": "5",
   "finish_condition": {
     "type": "lines",
-    "value": "35"
+    "value": 35
   },
   "piece_types": [
     "no_suppress_o_piece",
@@ -27,20 +27,12 @@
   "tiles": {
     "start": [
       {
-        "pos": "4 16",
-        "pickup": "3"
-      },
-      {
         "pos": "5 16",
         "tile": "2 8 2"
       },
       {
         "pos": "6 16",
         "tile": "2 16 0"
-      },
-      {
-        "pos": "7 16",
-        "pickup": "3"
       },
       {
         "pos": "0 17",
@@ -55,28 +47,8 @@
         "tile": "1 4 3"
       },
       {
-        "pos": "3 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "4 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "5 17",
-        "pickup": "3"
-      },
-      {
         "pos": "6 17",
         "tile": "2 10 1"
-      },
-      {
-        "pos": "7 17",
-        "pickup": "3"
-      },
-      {
-        "pos": "8 17",
-        "pickup": "3"
       },
       {
         "pos": "0 18",
@@ -95,24 +67,8 @@
         "tile": "2 4 3"
       },
       {
-        "pos": "4 18",
-        "pickup": "3"
-      },
-      {
-        "pos": "5 18",
-        "pickup": "3"
-      },
-      {
         "pos": "6 18",
         "tile": "2 14 2"
-      },
-      {
-        "pos": "7 18",
-        "pickup": "3"
-      },
-      {
-        "pos": "8 18",
-        "pickup": "3"
       },
       {
         "pos": "0 19",
@@ -135,12 +91,56 @@
         "tile": "2 16 1"
       },
       {
-        "pos": "5 19",
+        "pos": "6 19",
+        "tile": "2 0 0"
+      },
+      {
+        "pos": "4 16",
         "pickup": "3"
       },
       {
-        "pos": "6 19",
-        "tile": "2 0 0"
+        "pos": "7 16",
+        "pickup": "3"
+      },
+      {
+        "pos": "3 17",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 17",
+        "pickup": "3"
+      },
+      {
+        "pos": "5 17",
+        "pickup": "3"
+      },
+      {
+        "pos": "7 17",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 17",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "3"
+      },
+      {
+        "pos": "5 18",
+        "pickup": "3"
+      },
+      {
+        "pos": "7 18",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 18",
+        "pickup": "3"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "3"
       },
       {
         "pos": "7 19",

@@ -1,12 +1,7 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Checkerboard Vault",
   "description": "Do you have the combination?",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "120"
-  },
   "blocks_during": [
     "fill_lines 0",
     "refresh_on_top_out",
@@ -16,20 +11,16 @@
   "combo_break": [
     "veg_row"
   ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 120
+  },
   "rank": [
     "box_factor 0.14",
-    "combo_factor 0.00",
+    "combo_factor 0",
     "master_pickup_score_per_line 4.57",
-    "show_pickups_rank",
-    "hide_combos_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0-2"
-      ],
-      "effect": "insert_line tiles_key=1"
-    }
+    "hide_combos_rank",
+    "show_pickups_rank"
   ],
   "tiles": {
     "start": [
@@ -346,18 +337,6 @@
         "tile": "1 0 5"
       },
       {
-        "pos": "3 17",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 17",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 17",
-        "pickup": "5"
-      },
-      {
         "pos": "6 17",
         "tile": "1 8 5"
       },
@@ -380,18 +359,6 @@
       {
         "pos": "2 18",
         "tile": "1 0 5"
-      },
-      {
-        "pos": "3 18",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 18",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 18",
-        "pickup": "8"
       },
       {
         "pos": "6 18",
@@ -418,18 +385,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "3 19",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 19",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 19",
-        "pickup": "5"
-      },
-      {
         "pos": "6 19",
         "tile": "1 0 5"
       },
@@ -440,6 +395,42 @@
       {
         "pos": "8 19",
         "tile": "1 4 8"
+      },
+      {
+        "pos": "3 17",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 17",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 17",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 18",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 18",
+        "pickup": "8"
+      },
+      {
+        "pos": "3 19",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 19",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "5"
       }
     ],
     "1": [
@@ -454,18 +445,6 @@
       {
         "pos": "2 0",
         "tile": "1 4 5"
-      },
-      {
-        "pos": "3 0",
-        "pickup": "8"
-      },
-      {
-        "pos": "4 0",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "5"
       },
       {
         "pos": "6 0",
@@ -492,18 +471,6 @@
         "tile": "1 0 5"
       },
       {
-        "pos": "3 1",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 1",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 1",
-        "pickup": "8"
-      },
-      {
         "pos": "6 1",
         "tile": "1 8 5"
       },
@@ -526,14 +493,6 @@
       {
         "pos": "2 2",
         "tile": "1 4 5"
-      },
-      {
-        "pos": "3 2",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 2",
-        "pickup": "8"
       },
       {
         "pos": "5 2",
@@ -568,14 +527,6 @@
         "tile": "1 4 5"
       },
       {
-        "pos": "4 3",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 3",
-        "pickup": "5"
-      },
-      {
         "pos": "6 3",
         "tile": "1 8 5"
       },
@@ -598,18 +549,6 @@
       {
         "pos": "2 4",
         "tile": "1 4 5"
-      },
-      {
-        "pos": "3 4",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 4",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 4",
-        "pickup": "5"
       },
       {
         "pos": "6 4",
@@ -636,18 +575,6 @@
         "tile": "1 0 5"
       },
       {
-        "pos": "3 5",
-        "pickup": "5"
-      },
-      {
-        "pos": "4 5",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 5",
-        "pickup": "5"
-      },
-      {
         "pos": "6 5",
         "tile": "1 8 5"
       },
@@ -658,6 +585,70 @@
       {
         "pos": "8 5",
         "tile": "1 0 8"
+      },
+      {
+        "pos": "3 0",
+        "pickup": "8"
+      },
+      {
+        "pos": "4 0",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 1",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 1",
+        "pickup": "8"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 2",
+        "pickup": "8"
+      },
+      {
+        "pos": "4 3",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 3",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 4",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 4",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 4",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 5",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 5",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 5",
+        "pickup": "5"
       }
     ],
     "0": [
@@ -982,5 +973,13 @@
         "tile": "2 2 0"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-2"
+      ],
+      "effect": "insert_line tiles_key=1"
+    }
+  ]
 }

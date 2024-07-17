@@ -1,64 +1,63 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Marathon: Normal (100 lines)",
   "description": "A test of endurance against faster and faster pieces! Can you clear 100 lines?",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "10",
+      "value": 10,
       "speed": "1"
     },
     {
       "type": "lines",
-      "value": "20",
+      "value": 20,
       "speed": "2"
     },
     {
       "type": "lines",
-      "value": "30",
+      "value": 30,
       "speed": "3"
     },
     {
       "type": "lines",
-      "value": "40",
+      "value": 40,
       "speed": "4"
     },
     {
       "type": "lines",
-      "value": "50",
+      "value": 50,
       "speed": "5"
     },
     {
       "type": "lines",
-      "value": "60",
+      "value": 60,
       "speed": "6"
     },
     {
       "type": "lines",
-      "value": "70",
+      "value": 70,
       "speed": "7"
     },
     {
       "type": "lines",
-      "value": "80",
+      "value": 80,
       "speed": "8"
     },
     {
       "type": "lines",
-      "value": "90",
+      "value": 90,
       "speed": "9"
     }
   ],
-  "success_condition": {
-    "type": "lines",
-    "value": "100"
-  },
   "finish_condition": {
     "type": "lines",
-    "value": "100"
+    "value": 100
   },
   "lose_condition": [
     "top_out 1"
-  ]
+  ],
+  "success_condition": {
+    "type": "lines",
+    "value": 100
+  }
 }

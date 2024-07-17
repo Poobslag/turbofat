@@ -1,20 +1,20 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Two Box Buffet",
   "description": "Surely, six columns should be enough for anybody!",
-  "finish_condition": {
-    "type": "customers",
-    "value": "4"
-  },
+  "start_speed": "3",
   "blocks_during": [
-    "fill_lines 0",
     "filled_line_clear_max 1",
-    "filled_line_clear_order lowest"
+    "filled_line_clear_order lowest",
+    "fill_lines 0"
   ],
   "combo_break": [
     "pieces 1"
   ],
+  "finish_condition": {
+    "type": "customers",
+    "value": 4
+  },
   "rank": [
     "box_factor 0.67",
     "combo_factor 0.94",
@@ -26,14 +26,6 @@
       {
         "pos": "0 0",
         "tile": "1 0 8"
-      },
-      {
-        "pos": "2 0",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "8"
       },
       {
         "pos": "7 0",
@@ -156,14 +148,6 @@
         "tile": "1 0 8"
       },
       {
-        "pos": "2 10",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 10",
-        "pickup": "8"
-      },
-      {
         "pos": "7 10",
         "tile": "1 8 8"
       },
@@ -278,6 +262,22 @@
       {
         "pos": "8 19",
         "tile": "2 17 0"
+      },
+      {
+        "pos": "2 0",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "8"
+      },
+      {
+        "pos": "2 10",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 10",
+        "pickup": "8"
       }
     ],
     "0": [
@@ -394,20 +394,20 @@
         "tile": "1 0 8"
       },
       {
-        "pos": "2 9",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 9",
-        "pickup": "8"
-      },
-      {
         "pos": "7 9",
         "tile": "1 8 8"
       },
       {
         "pos": "8 9",
         "tile": "1 4 8"
+      },
+      {
+        "pos": "2 9",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 9",
+        "pickup": "8"
       }
     ]
   }

@@ -3,16 +3,16 @@
   "name": "7 Kyu",
   "description": "An escalating set of challenges. Finish with in 5:00 to achieve this rank!",
   "color": "blue",
-  "success_condition": {
-    "type": "time_under",
-    "value": "300"
-  },
   "start_speed": "1",
   "finish_condition": {
     "type": "score",
-    "value": "200"
+    "value": 200
   },
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "time_under",
+    "value": 300
+  }
 }

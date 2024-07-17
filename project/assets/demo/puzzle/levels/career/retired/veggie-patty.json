@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
   "name": "Veggie Patty",
   "description": "Twice the pace and half the space? ...This is a recipe for disaster!",
+  "start_speed": "4",
   "finish_condition": {
     "type": "pieces",
-    "value": "80"
+    "value": 80
   },
   "lose_condition": [
     "top_out 1"

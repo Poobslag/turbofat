@@ -1,15 +1,15 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Asparagus Vault",
   "description": "Are you planning a robbery? I'm onto you!",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "120"
-  },
+  "start_speed": "2",
   "blocks_during": [
     "shuffle_inserted_lines"
   ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 120
+  },
   "other": [
     "tile_set veggie"
   ],
@@ -22,26 +22,6 @@
     "combo_factor 0.66",
     "master_pickup_score_per_line 7.94",
     "show_pickups_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0-2"
-      ],
-      "effect": "insert_line tiles_key=0"
-    },
-    {
-      "phases": [
-        "line_cleared y=0-2"
-      ],
-      "effect": "add_spears wait=1 y=3,4,5,6,7 count=5 sizes=l1r6,l1r7,l2r6,l6r1,l6r2,l7r1"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_spears"
-    }
   ],
   "tiles": {
     "start": [
@@ -150,14 +130,6 @@
         "tile": "1 6 11"
       },
       {
-        "pos": "3 17",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 17",
-        "pickup": "1"
-      },
-      {
         "pos": "6 17",
         "tile": "1 10 11"
       },
@@ -180,10 +152,6 @@
       {
         "pos": "2 18",
         "tile": "1 7 11"
-      },
-      {
-        "pos": "4 18",
-        "pickup": "11"
       },
       {
         "pos": "6 18",
@@ -210,14 +178,6 @@
         "tile": "1 5 11"
       },
       {
-        "pos": "3 19",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 19",
-        "pickup": "2"
-      },
-      {
         "pos": "6 19",
         "tile": "1 9 11"
       },
@@ -228,6 +188,26 @@
       {
         "pos": "8 19",
         "tile": "1 5 11"
+      },
+      {
+        "pos": "3 17",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 17",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "11"
+      },
+      {
+        "pos": "3 19",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "2"
       }
     ],
     "0": [
@@ -242,14 +222,6 @@
       {
         "pos": "2 0",
         "tile": "1 4 11"
-      },
-      {
-        "pos": "3 0",
-        "pickup": "2"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "1"
       },
       {
         "pos": "6 0",
@@ -276,10 +248,6 @@
         "tile": "1 4 11"
       },
       {
-        "pos": "4 1",
-        "pickup": "3"
-      },
-      {
         "pos": "6 1",
         "tile": "1 8 11"
       },
@@ -304,14 +272,6 @@
         "tile": "1 4 11"
       },
       {
-        "pos": "3 2",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 2",
-        "pickup": "2"
-      },
-      {
         "pos": "6 2",
         "tile": "1 8 11"
       },
@@ -322,7 +282,47 @@
       {
         "pos": "8 2",
         "tile": "1 4 11"
+      },
+      {
+        "pos": "3 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 2",
+        "pickup": "2"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-2"
+      ],
+      "effect": "insert_line tiles_key=0"
+    },
+    {
+      "phases": [
+        "line_cleared y=0-2"
+      ],
+      "effect": "add_spears sizes=l1r6,l1r7,l2r6,l6r1,l6r2,l7r1 count=5 wait=1 y=3-7"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

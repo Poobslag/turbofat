@@ -1,5 +1,21 @@
 {
   "version": "4c5c",
+  "finish_condition": {
+    "type": "score",
+    "value": 120
+  },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "after_tutorial",
+    "enhance_combo_fx",
+    "start_level tutorial/combo_0"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -39,22 +55,5 @@
         "tile": "1 5 0"
       }
     ]
-  },
-  "finish_condition": {
-    "type": "score",
-    "value": "120"
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "after_tutorial",
-    "start_level tutorial/combo_0",
-    "enhance_combo_fx"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "start_speed": "0"
+  }
 }

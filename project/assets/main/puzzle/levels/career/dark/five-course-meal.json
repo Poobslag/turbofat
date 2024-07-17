@@ -1,26 +1,26 @@
 {
   "version": "4c5c",
-  "start_speed": "7",
   "name": "Five Course Meal",
   "description": "Five courses? ...I'll have five desserts, please!",
-  "finish_condition": {
-    "type": "lines",
-    "value": "50"
-  },
+  "start_speed": "7",
   "blocks_during": [
     "filled_line_clear_min 5"
   ],
   "combo_break": [
     "pieces 0"
   ],
-  "score": [
-    "snack_all 10",
-    "cake_all 20"
-  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": 50
+  },
   "rank": [
-    "box_factor 1.80",
+    "box_factor 1.8",
     "combo_factor 0.29",
     "hide_combos_rank"
+  ],
+  "score": [
+    "cake_all 20",
+    "snack_all 10"
   ],
   "tiles": {
     "start": [

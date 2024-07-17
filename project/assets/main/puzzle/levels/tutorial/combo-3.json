@@ -1,14 +1,59 @@
 {
   "version": "4c5c",
+  "start_speed": "T",
+  "input_replay": [
+    "25 +rotate_cw",
+    "33 -rotate_cw",
+    "49 +move_piece_right",
+    "56 -move_piece_right",
+    "81 +soft_drop",
+    "112 -soft_drop",
+    "281 +rotate_ccw",
+    "288 -rotate_ccw",
+    "301 +rotate_ccw",
+    "309 -rotate_ccw",
+    "333 +rotate_cw",
+    "341 -rotate_cw",
+    "343 +move_piece_right",
+    "349 -move_piece_right",
+    "355 +move_piece_right",
+    "360 -move_piece_right",
+    "368 +move_piece_right",
+    "374 -move_piece_right",
+    "372 +move_piece_right",
+    "386 -move_piece_right",
+    "418 +soft_drop",
+    "448 -soft_drop",
+    "651 +move_piece_right",
+    "657 -move_piece_right",
+    "664 +move_piece_right",
+    "669 -move_piece_right",
+    "677 +move_piece_right",
+    "682 -move_piece_right",
+    "696 +soft_drop",
+    "728 -soft_drop"
+  ],
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "enhance_combo_fx",
+    "start_level tutorial/combo_0",
+    "tutorial"
+  ],
   "piece_types": [
     "ordered_start",
+    "piece_j",
+    "piece_l",
+    "piece_o",
     "start_piece_l",
     "start_piece_j",
     "start_piece_o",
-    "start_piece_l",
-    "piece_j",
-    "piece_l",
-    "piece_o"
+    "start_piece_l"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
   ],
   "tiles": {
     "start": [
@@ -165,50 +210,5 @@
         "tile": "2 6 2"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial",
-    "start_level tutorial/combo_0",
-    "enhance_combo_fx"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "input_replay": [
-    "25 +rotate_cw",
-    "33 -rotate_cw",
-    "49 +move_piece_right",
-    "56 -move_piece_right",
-    "81 +soft_drop",
-    "112 -soft_drop",
-    "281 +rotate_ccw",
-    "288 -rotate_ccw",
-    "301 +rotate_ccw",
-    "309 -rotate_ccw",
-    "333 +rotate_cw",
-    "341 -rotate_cw",
-    "343 +move_piece_right",
-    "349 -move_piece_right",
-    "355 +move_piece_right",
-    "360 -move_piece_right",
-    "368 +move_piece_right",
-    "374 -move_piece_right",
-    "372 +move_piece_right",
-    "386 -move_piece_right",
-    "418 +soft_drop",
-    "448 -soft_drop",
-    "651 +move_piece_right",
-    "657 -move_piece_right",
-    "664 +move_piece_right",
-    "669 -move_piece_right",
-    "677 +move_piece_right",
-    "682 -move_piece_right",
-    "696 +soft_drop",
-    "728 -soft_drop"
-  ],
-  "start_speed": "T"
+  }
 }

@@ -1,22 +1,22 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Slow Service",
   "description": "May... I... take... your... order...?",
-  "finish_condition": {
-    "type": "lines",
-    "value": "15"
-  },
+  "start_speed": "1",
   "blocks_during": [
     "filled_line_clear_delay 2"
   ],
   "combo_break": [
     "pieces 999999"
   ],
+  "finish_condition": {
+    "type": "lines",
+    "value": 15
+  },
   "rank": [
-    "extra_seconds_per_piece 1.12",
     "box_factor 1.25",
     "combo_factor 1.21",
+    "extra_seconds_per_piece 1.12",
     "hide_combos_rank"
   ],
   "tiles": {

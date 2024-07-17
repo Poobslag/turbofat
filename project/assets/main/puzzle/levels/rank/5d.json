@@ -3,46 +3,46 @@
   "name": "5 Dan",
   "description": "An escalating set of challenges. Finish with ¥2,500 to achieve this rank!",
   "color": "green",
-  "success_condition": {
-    "type": "score",
-    "value": "2500"
-  },
   "start_speed": "AA",
   "speed_ups": [
     {
       "type": "time_over",
-      "value": "60",
+      "value": 60,
       "speed": "AB"
     },
     {
       "type": "time_over",
-      "value": "120",
+      "value": 120,
       "speed": "AC"
     },
     {
       "type": "time_over",
-      "value": "180",
+      "value": 180,
       "speed": "AD"
     },
     {
       "type": "time_over",
-      "value": "240",
+      "value": 240,
       "speed": "AA"
     },
     {
       "type": "time_over",
-      "value": "300",
+      "value": 300,
       "speed": "AE"
     }
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "200"
+    "value": 200
   },
   "lose_condition": [
     "top_out 1"
   ],
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "score",
+    "value": 2500
+  }
 }

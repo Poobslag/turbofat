@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "7",
   "name": "Left Shark",
   "description": "Fins to the left, pentominos to the right. And no tetrominos in sight!",
+  "start_speed": "7",
   "finish_condition": {
     "type": "time_over",
-    "value": "170"
+    "value": 170
   },
   "piece_types": [
     "piece_p",
@@ -14,30 +14,11 @@
     "piece_v"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.78",
     "box_factor 1.06",
     "combo_factor 1.21",
+    "extra_seconds_per_piece 0.78",
     "master_pickup_score_per_line 14.35",
     "show_pickups_rank"
-  ],
-  "timers": [
-    {
-      "interval": 1.1
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "add_sharks size=small x=0 home=surface"
-    },
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "advance_sharks"
-    }
   ],
   "tiles": {
     "start": [
@@ -66,5 +47,24 @@
         "tile": "1 1 2"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 1.1
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_sharks home=surface x=0 patience=0 size=small"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_sharks"
+    }
+  ]
 }

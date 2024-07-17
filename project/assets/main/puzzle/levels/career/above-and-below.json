@@ -1,39 +1,19 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Above and Below",
   "description": "Build some delicious snack boxes above while befriending some moles below.",
-  "finish_condition": {
-    "type": "lines",
-    "value": "20"
-  },
+  "start_speed": "1",
   "blocks_during": [
     "refresh_on_top_out"
   ],
+  "finish_condition": {
+    "type": "lines",
+    "value": 20
+  },
   "rank": [
-    "extra_seconds_per_piece 0.40",
+    "extra_seconds_per_piece 0.4",
     "master_pickup_score_per_line 23.91",
     "show_pickups_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0-2"
-      ],
-      "effect": "insert_line y=3 tiles_key=0"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "add_moles y=0-2"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_moles"
-    }
   ],
   "tiles": {
     "start": [
@@ -367,5 +347,25 @@
         "tile": "2 11 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-2"
+      ],
+      "effect": "insert_line tiles_key=0 y=3"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "add_moles y=0-2"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_moles"
+    }
+  ]
 }

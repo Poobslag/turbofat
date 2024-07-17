@@ -3,16 +3,16 @@
   "name": "2 Kyu",
   "description": "An escalating set of challenges. Finish in 3:00 to achieve this rank!",
   "color": "blue",
-  "success_condition": {
-    "type": "time_under",
-    "value": "180"
-  },
   "start_speed": "6",
   "finish_condition": {
     "type": "score",
-    "value": "500"
+    "value": 500
   },
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "time_under",
+    "value": 180
+  }
 }

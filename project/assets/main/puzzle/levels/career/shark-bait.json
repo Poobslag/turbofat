@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Shark Bait",
   "description": "This is almost TOO easy! ...Is there a trick?",
+  "start_speed": "2",
   "finish_condition": {
     "type": "lines",
-    "value": "3"
+    "value": 3
   },
   "piece_types": [
     "ordered_start",
@@ -13,31 +13,11 @@
     "start_piece_u"
   ],
   "rank": [
-    "extra_seconds_per_piece 2.00",
     "box_factor 1.92",
-    "combo_factor 0.60",
+    "combo_factor 0.6",
+    "extra_seconds_per_piece 2",
     "master_pickup_score_per_line 292.27",
     "show_pickups_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "box_built snack"
-      ],
-      "effect": "add_sharks size=large"
-    },
-    {
-      "phases": [
-        "box_built cake"
-      ],
-      "effect": "add_sharks size=large count=3"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_sharks"
-    }
   ],
   "tiles": {
     "start": [
@@ -130,5 +110,25 @@
         "tile": "2 8 1"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_sharks patience=0 size=large"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_sharks count=3 patience=0 size=large"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
+  ]
 }

@@ -1,47 +1,15 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Cheerleaders",
   "description": "They're just happy to be included!",
+  "start_speed": "1",
   "finish_condition": {
     "type": "time_over",
-    "value": "85"
+    "value": 85
   },
   "piece_types": [
     "start_piece_q",
     "start_piece_l"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared combo=3,6..."
-      ],
-      "effect": "add_carrots size=medium duration=5"
-    },
-    {
-      "phases": [
-        "line_cleared combo=5,10"
-      ],
-      "effect": "add_carrots size=large duration=8"
-    },
-    {
-      "phases": [
-        "line_cleared combo=7,14"
-      ],
-      "effect": "add_carrots count=2 size=medium duration=13"
-    },
-    {
-      "phases": [
-        "line_cleared combo=11,22"
-      ],
-      "effect": "add_carrots size=small smoke=large duration=21"
-    },
-    {
-      "phases": [
-        "combo_ended combo=7..."
-      ],
-      "effect": "remove_carrots 999999"
-    }
   ],
   "tiles": {
     "start": [
@@ -118,5 +86,37 @@
         "tile": "1 5 6"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared combo=3,6..."
+      ],
+      "effect": "add_carrots duration=5"
+    },
+    {
+      "phases": [
+        "line_cleared combo=5,10"
+      ],
+      "effect": "add_carrots size=large"
+    },
+    {
+      "phases": [
+        "line_cleared combo=7,14"
+      ],
+      "effect": "add_carrots count=2 duration=13"
+    },
+    {
+      "phases": [
+        "line_cleared combo=11,22"
+      ],
+      "effect": "add_carrots duration=21 size=small smoke=large"
+    },
+    {
+      "phases": [
+        "combo_ended combo=7..."
+      ],
+      "effect": "remove_carrots 999999"
+    }
+  ]
 }

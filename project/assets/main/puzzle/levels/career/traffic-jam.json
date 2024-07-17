@@ -1,26 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Traffic Jam",
   "description": "Nobody knows what the 'H' stands for! We just know it is annoying and gets in the way...",
-  "finish_condition": {
-    "type": "score",
-    "value": "225"
-  },
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=2,4,6..."
-      ],
-      "effect": "clear_filled_lines"
-    }
-  ],
+  "start_speed": "1",
   "blocks_during": [
+    "no_clear_filled_lines",
     "filled_line_clear_max 1",
     "filled_line_clear_order highest",
-    "no_clear_filled_lines",
     "refresh_on_top_out"
   ],
+  "finish_condition": {
+    "type": "score",
+    "value": 225
+  },
   "rank": [
     "combo_factor 1.21"
   ],
@@ -279,5 +271,13 @@
         "tile": "1 4 2"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=2,4..."
+      ],
+      "effect": "clear_filled_lines"
+    }
+  ]
 }
