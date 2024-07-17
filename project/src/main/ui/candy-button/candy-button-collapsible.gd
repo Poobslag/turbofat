@@ -70,12 +70,6 @@ export (CandyButtons.ButtonShape) var shape setget set_shape
 ## 'true' if the button is in its narrow 'a3' size, or 'false' if the button is in its wider 'c3' size.
 export (bool) var collapsed := false setget set_collapsed
 
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = SHINE_TEXTURE_UNCOLLAPSED_NORMAL
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = SHINE_TEXTURE_UNCOLLAPSED_PRESSED
-
 ## Textures for the various ButtonShape presets.
 ##
 ## key: (int) Enum from ButtonShape
@@ -107,8 +101,6 @@ func _ready() -> void:
 	#
 	# This is a generic button used in many places, we want to be able to quickly see the unique signals connected to
 	# each button instance, not the generic signals connected to all button instances.
-	connect("button_down", self, "_on_button_down")
-	connect("button_up", self, "_on_button_up")
 	connect("focus_entered", self, "_on_focus_entered")
 	connect("focus_exited", self, "_on_focus_exited")
 	connect("mouse_entered", self, "_on_mouse_entered")
@@ -119,7 +111,6 @@ func _ready() -> void:
 	_refresh_icons()
 	_refresh_shape()
 	_refresh_color()
-	_refresh_shine()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -141,7 +132,6 @@ func set_disabled(new_disabled: bool) -> void:
 func set_collapsed(new_collapsed: bool) -> void:
 	collapsed = new_collapsed
 	_refresh_collapsed()
-	_refresh_shine()
 	_refresh_shape()
 
 
@@ -181,18 +171,18 @@ func collapse(animate: bool = false) -> void:
 
 
 func assign_collapsed_textures() -> void:
-	_shine_texture_normal = SHINE_TEXTURE_COLLAPSED_NORMAL
+	_shine.texture_normal = SHINE_TEXTURE_COLLAPSED_NORMAL
+	_shine.texture_pressed = SHINE_TEXTURE_COLLAPSED_PRESSED
 	_textures_by_shape = TEXTURES_BY_SHAPE_COLLAPSED
 	texture_focused = TEXTURE_FOCUSED_COLLAPSED
-	_refresh_shine()
 	_refresh_shape()
 
 
 func assign_uncollapsed_textures() -> void:
-	_shine_texture_normal = SHINE_TEXTURE_UNCOLLAPSED_NORMAL
+	_shine.texture_normal = SHINE_TEXTURE_UNCOLLAPSED_NORMAL
+	_shine.texture_pressed = SHINE_TEXTURE_UNCOLLAPSED_PRESSED
 	_textures_by_shape = CandyButtons.C3_TEXTURES_BY_SHAPE
 	texture_focused = TEXTURE_FOCUSED_UNCOLLAPSED
-	_refresh_shine()
 	_refresh_shape()
 
 
@@ -298,19 +288,6 @@ func _refresh_shape() -> void:
 	texture_hover = textures[0]
 
 
-## Updates the shine texture for our button.
-func _refresh_shine() -> void:
-	if not is_inside_tree():
-		return
-	
-	if Engine.editor_hint:
-		if not _shine:
-			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
-			_initialize_onready_variables()
-	
-	_shine.texture = _shine_texture_pressed if pressed else _shine_texture_normal
-
-
 func _refresh_icon_position() -> void:
 	_icon_node.rect_position = rect_size / 2 - _icon_node.rect_size / 2
 
@@ -341,14 +318,6 @@ func _on_mouse_exited() -> void:
 	if not disabled:
 		yield(get_tree(), "idle_frame")
 		_refresh_color()
-
-
-func _on_button_down() -> void:
-	_refresh_shine()
-
-
-func _on_button_up() -> void:
-	_refresh_shine()
 
 
 func _on_Icon_resized() -> void:

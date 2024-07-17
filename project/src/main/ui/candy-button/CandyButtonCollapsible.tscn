@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://assets/main/ui/candy-button/c3-blank-pressed.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/ui/candy-button/c3-shine.png" type="Texture" id=9]
 [ext_resource path="res://src/main/ui/candy-button/ClickSound.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/main/ui/candy-button/c3-shine-pressed.png" type="Texture" id=11]
+[ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=12]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -206,13 +208,6 @@ texture_focused = ExtResource( 6 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Shine" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.831373 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 9 )
-expand = true
-
 [node name="Icon" type="TextureRect" parent="."]
 visible = false
 material = SubResource( 7 )
@@ -220,13 +215,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -25.0
-margin_top = -25.0
-margin_right = 25.0
-margin_bottom = 25.0
+margin_left = 55.0
+margin_top = 39.0
+margin_right = 105.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_vertical = 4
 expand = true
+
+[node name="Shine" parent="." instance=ExtResource( 12 )]
+texture = ExtResource( 9 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 10 )

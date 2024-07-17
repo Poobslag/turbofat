@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/candy-button-h4.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=2]
@@ -9,7 +9,9 @@
 [ext_resource path="res://assets/main/ui/candy-button/h4-shine.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/main/ui/candy-button/h4-shine-pressed.png" type="Texture" id=10]
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=11]
+[ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=12]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -54,12 +56,10 @@ text = "Text"
 align = 1
 valign = 1
 
-[node name="Shine" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.831373 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Shine" parent="." instance=ExtResource( 12 )]
 texture = ExtResource( 7 )
-expand = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 10 )
 
 [node name="ClickSound" parent="." instance=ExtResource( 3 )]
 

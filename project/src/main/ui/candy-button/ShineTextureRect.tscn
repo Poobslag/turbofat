@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/ui/candy-button/candy-button-shine.gd" type="Script" id=1]
+
+[node name="Shine" type="TextureRect"]
+modulate = Color( 1, 1, 1, 0.831373 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+script = ExtResource( 1 )
