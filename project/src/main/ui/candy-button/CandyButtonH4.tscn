@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/candy-button-h4.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/main/ui/candy-button/h4-shine-pressed.png" type="Texture" id=10]
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=11]
 [ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/ui/candy-button/gradient-helper.gd" type="Script" id=13]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -64,3 +65,6 @@ texture_pressed = ExtResource( 10 )
 [node name="ClickSound" parent="." instance=ExtResource( 3 )]
 
 [node name="HoverSound" parent="." instance=ExtResource( 9 )]
+
+[node name="GradientHelper" type="Node" parent="."]
+script = ExtResource( 13 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/ui/candy-button/c3-shine-pressed.png" type="Texture" id=11]
 [ext_resource path="res://src/main/ui/candy-button/candy-button-c3.gd" type="Script" id=12]
+[ext_resource path="res://src/main/ui/candy-button/gradient-helper.gd" type="Script" id=13]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="GradientTexture2D" id=9]
@@ -96,3 +97,6 @@ texture_pressed = ExtResource( 11 )
 [node name="ClickSound" parent="." instance=ExtResource( 7 )]
 
 [node name="HoverSound" parent="." instance=ExtResource( 9 )]
+
+[node name="GradientHelper" type="Node" parent="."]
+script = ExtResource( 13 )

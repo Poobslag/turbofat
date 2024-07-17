@@ -544,6 +544,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/grade-label.gd"
 }, {
+"base": "Node",
+"class": "GradientHelper",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/gradient-helper.gd"
+}, {
 "base": "Reference",
 "class": "GraphicsSettings",
 "language": "GDScript",
@@ -1667,6 +1672,7 @@ _global_script_class_icons={
 "GoopGlob": "",
 "GoopViewports": "",
 "GradeLabel": "",
+"GradientHelper": "",
 "GraphicsSettings": "",
 "GutHookScript": "",
 "GutTest": "",
