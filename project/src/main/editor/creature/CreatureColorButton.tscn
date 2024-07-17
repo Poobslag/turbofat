@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/main/ui/candy-button/c3-blank-pressed.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/c3-blank.png" type="Texture" id=2]
@@ -7,10 +7,12 @@
 [ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=6]
 [ext_resource path="res://src/main/ui/candy-button/ClickSound.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/main/ui/candy-button/c3-shine-pressed.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/ui/candy-button/c3-shine.png" type="Texture" id=9]
 [ext_resource path="res://src/main/editor/creature/creature-color-button.gd" type="Script" id=10]
 [ext_resource path="res://assets/main/editor/creature/icon-color.png" type="Texture" id=11]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=12]
+[ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=13]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -53,12 +55,10 @@ size_flags_vertical = 4
 texture = ExtResource( 11 )
 expand = true
 
-[node name="Shine" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.831373 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Shine" parent="." instance=ExtResource( 13 )]
 texture = ExtResource( 9 )
-expand = true
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
 
 [node name="Popup" parent="." instance=ExtResource( 4 )]
 margin_right = 236.0

@@ -7,12 +7,6 @@ extends TextureButton
 
 signal color_changed(color)
 
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-const SHINE_TEXTURE_NORMAL: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-const SHINE_TEXTURE_PRESSED: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
-
 ## Repeating piece shapes which decorate the button.
 export (CandyButtons.ButtonShape) var shape setget set_shape
 
@@ -29,16 +23,11 @@ onready var _icon := $Icon
 
 onready var _popup := $Popup
 
-## Shiny reflection effect which overlays the button and text
-onready var _shine := $Shine
-
 func _ready() -> void:
 	# Connect signals in code to prevent them from showing up in the Godot editor.
 	#
 	# This is a generic button used in many places, we want to be able to quickly see the unique signals connected to
 	# each button instance, not the generic signals connected to all button instances.
-	connect("button_down", self, "_on_button_down")
-	connect("button_up", self, "_on_button_up")
 	connect("focus_entered", self, "_on_focus_entered")
 	connect("focus_exited", self, "_on_focus_exited")
 	connect("mouse_entered", self, "_on_mouse_entered")
@@ -47,7 +36,6 @@ func _ready() -> void:
 	_refresh_shape()
 	_refresh_color()
 	_refresh_creature_color()
-	_refresh_shine()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -83,7 +71,6 @@ func _initialize_onready_variables() -> void:
 	_hover_sound = $HoverSound
 	_icon = $Icon
 	_popup = $Popup
-	_shine = $Shine
 
 
 ## Calculates the gradient which should color the button based on its color and state.
@@ -153,11 +140,6 @@ func _refresh_shape() -> void:
 	texture_hover = textures[0]
 
 
-## Updates the shine texture for our button.
-func _refresh_shine() -> void:
-	_shine.texture = SHINE_TEXTURE_PRESSED if pressed else SHINE_TEXTURE_NORMAL
-
-
 ## When we gain focus, we reapply a bright cyan color for our texture, text and icons.
 func _on_focus_entered() -> void:
 	_refresh_color()
@@ -184,14 +166,6 @@ func _on_mouse_exited() -> void:
 	if not disabled:
 		yield(get_tree(), "idle_frame")
 		_refresh_color()
-
-
-func _on_button_down() -> void:
-	_refresh_shine()
-
-
-func _on_button_up() -> void:
-	_refresh_shine()
 
 
 func _on_Popup_color_changed(color: Color) -> void:

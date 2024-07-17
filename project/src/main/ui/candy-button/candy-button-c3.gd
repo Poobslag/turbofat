@@ -5,12 +5,6 @@ extends TextureButton
 ##
 ## This button is small and squareish, and is used throughout the creature editor.
 
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-const SHINE_TEXTURE_NORMAL: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-const SHINE_TEXTURE_PRESSED: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
-
 export (String) var text setget set_text
 
 ## Icon shown to the top of the button's text.
@@ -52,20 +46,16 @@ func _ready() -> void:
 	#
 	# This is a generic button used in many places, we want to be able to quickly see the unique signals connected to
 	# each button instance, not the generic signals connected to all button instances.
-	connect("button_down", self, "_on_button_down")
-	connect("button_up", self, "_on_button_up")
 	connect("focus_entered", self, "_on_focus_entered")
 	connect("focus_exited", self, "_on_focus_exited")
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
-	connect("toggled", self, "_on_toggled")
 	
 	_refresh_icons()
 	_refresh_font_size()
 	_refresh_text()
 	_refresh_shape()
 	_refresh_color()
-	_refresh_shine()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -217,11 +207,6 @@ func _refresh_shape() -> void:
 	texture_hover = textures[0]
 
 
-## Updates the shine texture for our button.
-func _refresh_shine() -> void:
-	_shine.texture = SHINE_TEXTURE_PRESSED if pressed else SHINE_TEXTURE_NORMAL
-
-
 ## Updates our label's text.
 func _refresh_text() -> void:
 	if not is_inside_tree():
@@ -262,15 +247,3 @@ func _on_mouse_exited() -> void:
 	if not disabled:
 		yield(get_tree(), "idle_frame")
 		_refresh_color()
-
-
-func _on_button_down() -> void:
-	_refresh_shine()
-
-
-func _on_button_up() -> void:
-	_refresh_shine()
-
-
-func _on_toggled(_button_pressed: bool) -> void:
-	_refresh_shine()
