@@ -275,6 +275,8 @@
     {
       "type": "key",
       "scancode": 88
+    },
+    {
     }
   ],
   "prev_tab": [
@@ -286,6 +288,8 @@
     {
       "type": "key",
       "scancode": 90
+    },
+    {
     }
   ]
 }
