@@ -5,8 +5,7 @@ func _ready() -> void:
 	$Presets/Guideline.connect("pressed", self, "_on_Guideline_pressed")
 	$Presets/Wasd.connect("pressed", self, "_on_Wasd_pressed")
 	$Presets/Custom.connect("pressed", self, "_on_Custom_pressed")
-	$CustomScrollContainer/CenterContainer/VBoxContainer/ResetToDefault \
-			.connect("pressed", self, "_on_ResetToDefault_pressed")
+	_custom_control("ResetToDefault").connect("pressed", self, "_on_ResetToDefault_pressed")
 	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
 	
 	match SystemData.keybind_settings.preset:
@@ -15,6 +14,16 @@ func _ready() -> void:
 		KeybindSettings.CUSTOM: $Presets/Custom.pressed = true
 	
 	_refresh_keybind_labels()
+
+
+## Returns a control within the 'Presets' scroll container.
+func _preset_control(path: String) -> Control:
+	return $PresetScrollContainer/CenterContainer/VBoxContainer.get_node(path) as Control
+
+
+## Returns a control within the 'Custom' scroll container.
+func _custom_control(path: String) -> Control:
+	return $CustomScrollContainer/CenterContainer/VBoxContainer.get_node(path) as Control
 
 
 ## Updates the UI controls to reflect the currently selected preset.
@@ -33,44 +42,29 @@ func _refresh_keybind_labels() -> void:
 	match preset:
 		KeybindSettings.GUIDELINE:
 			$PresetScrollContainer.visible = true
-			$PresetScrollContainer/CenterContainer/VBoxContainer/MovePiece.keybind_value \
-					= tr("Left, Right, Kp 4, Kp 6")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/SoftDrop.keybind_value \
-					= tr("Down, Kp 2")
+			_preset_control("MovePiece").keybind_value = tr("Left, Right, Kp 4, Kp 6")
+			_preset_control("SoftDrop").keybind_value = tr("Down, Kp 2")
 			if SystemData.gameplay_settings.hold_piece:
-				$PresetScrollContainer/CenterContainer/VBoxContainer/HardDrop.keybind_value \
-						= tr("Space, Up, Kp 8")
+				_preset_control("HardDrop").keybind_value = tr("Space, Up, Kp 8")
 			else:
-				$PresetScrollContainer/CenterContainer/VBoxContainer/HardDrop.keybind_value \
-						= tr("Space, Up, Kp 8, Shift")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/RotatePiece.keybind_value \
-					= tr("Z, X, Kp 7, Kp 9")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/SwapHoldPiece.keybind_value \
-					= tr("Shift, C, Kp 0")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/SwapHoldPiece.visible \
-					= SystemData.gameplay_settings.hold_piece
+				_preset_control("HardDrop").keybind_value = tr("Space, Up, Kp 8, Shift")
+			_preset_control("RotatePiece").keybind_value = tr("Z, X, Kp 7, Kp 9")
+			_preset_control("SwapHoldPiece").keybind_value = tr("Shift, C, Kp 0")
+			_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
 		KeybindSettings.WASD:
 			$PresetScrollContainer.visible = true
-			$PresetScrollContainer/CenterContainer/VBoxContainer/MovePiece.keybind_value \
-					= tr("A, D, Kp 4, Kp 6")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/SoftDrop.keybind_value \
-					= tr("S, Kp 8")
+			_preset_control("MovePiece").keybind_value = tr("A, D, Kp 4, Kp 6")
+			_preset_control("SoftDrop").keybind_value = tr("S, Kp 8")
 			if SystemData.gameplay_settings.hold_piece:
-				$PresetScrollContainer/CenterContainer/VBoxContainer/HardDrop.keybind_value \
-						= tr("W, Kp 5")
+				_preset_control("HardDrop").keybind_value = tr("W, Kp 5")
 			else:
-				$PresetScrollContainer/CenterContainer/VBoxContainer/HardDrop.keybind_value \
-						= tr("W, Kp 5, Kp Enter")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/RotatePiece.keybind_value \
-					= tr("Left, Right, Kp 7, Kp 9")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/SwapHoldPiece.keybind_value \
-					= tr("Shift, Kp Enter")
-			$PresetScrollContainer/CenterContainer/VBoxContainer/SwapHoldPiece.visible \
-					= SystemData.gameplay_settings.hold_piece
+				_preset_control("HardDrop").keybind_value = tr("W, Kp 5, Kp Enter")
+			_preset_control("RotatePiece").keybind_value = tr("Left, Right, Kp 7, Kp 9")
+			_preset_control("SwapHoldPiece").keybind_value = tr("Shift, Kp Enter")
+			_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
 		KeybindSettings.CUSTOM:
 			$CustomScrollContainer.visible = true
-			$CustomScrollContainer/CenterContainer/VBoxContainer/SwapHoldPiece.visible \
-					= SystemData.gameplay_settings.hold_piece
+			_custom_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
 
 
 func _on_Guideline_pressed() -> void:
