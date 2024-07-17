@@ -1,4 +1,7 @@
 extends TextureRect
+## Shiny graphic which overlays a CandyButton.
+##
+## This graphic toggles between a shiny texture and less shiny texture based on the button's state.
 
 ## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
 export (Texture) var texture_normal: Texture setget set_texture_normal
@@ -6,6 +9,7 @@ export (Texture) var texture_normal: Texture setget set_texture_normal
 ## Less shiny reflection texture which overlays the button and text when the button is pressed.
 export (Texture) var texture_pressed: Texture setget set_texture_pressed
 
+## CandyButton which this graphic is overlaid onto.
 onready var _button := get_parent()
 
 func _ready() -> void:
@@ -25,6 +29,7 @@ func set_texture_pressed(new_texture_pressed: Texture) -> void:
 	_refresh_shine()
 
 
+## Toggles between a shiny texture and less shiny texture based on the button's state.
 func _refresh_shine() -> void:
 	if not is_inside_tree():
 		return
