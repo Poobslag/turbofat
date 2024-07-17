@@ -1,26 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Carrot Cake",
   "description": "Hmph, I guess I'll just try to eat around the carrot part....",
   "finish_condition": {
     "type": "score",
-    "value": "200"
+    "value": 200
   },
-  "triggers": [
-    {
-      "phases": [
-        "box_built snack"
-      ],
-      "effect": "add_carrots size=medium duration=8.0"
-    },
-    {
-      "phases": [
-        "box_built cake"
-      ],
-      "effect": "add_carrots size=large duration=10.0"
-    }
-  ],
   "tiles": {
     "start": [
       {
@@ -48,5 +33,19 @@
         "tile": "0 5 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_carrots"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_carrots duration=10 size=large"
+    }
+  ]
 }

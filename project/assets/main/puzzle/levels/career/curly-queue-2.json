@@ -1,50 +1,27 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Curly Queue II",
   "description": "They won't stop spinning! This is hurting my head a little...",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "120"
-  },
-  "rank": [
-    "extra_seconds_per_piece 0.4",
-    "preplaced_pieces 3"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "rotated_cw",
-        "initial_rotated_cw"
-      ],
-      "effect": "rotate_next_pieces cw"
-    },
-    {
-      "phases": [
-        "rotated_ccw",
-        "initial_rotated_ccw"
-      ],
-      "effect": "rotate_next_pieces ccw"
-    },
-    {
-      "phases": [
-        "rotated_180",
-        "initial_rotated_180"
-      ],
-      "effect": "rotate_next_pieces 180"
-    }
-  ],
+  "start_speed": "1",
   "speed_ups": [
     {
       "type": "time_over",
-      "value": "30",
+      "value": 30,
       "speed": "3"
     },
     {
       "type": "time_over",
-      "value": "60",
+      "value": 60,
       "speed": "5"
     }
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 120
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.4",
+    "preplaced_pieces 3"
   ],
   "tiles": {
     "start": [
@@ -129,5 +106,28 @@
         "tile": "2 15 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "rotated_cw",
+        "initial_rotated_cw"
+      ],
+      "effect": "rotate_next_pieces cw"
+    },
+    {
+      "phases": [
+        "rotated_ccw",
+        "initial_rotated_ccw"
+      ],
+      "effect": "rotate_next_pieces ccw"
+    },
+    {
+      "phases": [
+        "rotated_180",
+        "initial_rotated_180"
+      ],
+      "effect": "rotate_next_pieces 180"
+    }
+  ]
 }

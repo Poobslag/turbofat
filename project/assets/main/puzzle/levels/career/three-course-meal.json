@@ -1,81 +1,24 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Three Course Meal",
   "description": "It's important to bring out all three courses at once! ...Or is that something else...",
+  "blocks_during": [
+    "filled_line_clear_min 3",
+    "fill_lines 0"
+  ],
   "finish_condition": {
     "type": "lines",
-    "value": "25"
+    "value": 25
   },
-  "blocks_during": [
-    "fill_lines 0",
-    "filled_line_clear_min 3"
-  ],
   "rank": [
-    "extra_seconds_per_piece 0.69",
-    "box_factor 0.90",
+    "box_factor 0.9",
     "combo_factor 1.05",
+    "extra_seconds_per_piece 0.69",
     "master_pickup_score_per_line 14.31",
     "show_pickups_rank"
   ],
   "tiles": {
     "start": [
-      {
-        "pos": "0 0",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 1",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 2",
-        "pickup": "1"
-      },
-      {
-        "pos": "8 3",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 4",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 5",
-        "pickup": "1"
-      },
-      {
-        "pos": "0 6",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 7",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 8",
-        "pickup": "1"
-      },
-      {
-        "pos": "8 9",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 10",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 11",
-        "pickup": "1"
-      },
-      {
-        "pos": "0 12",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 13",
-        "pickup": "2"
-      },
       {
         "pos": "0 14",
         "tile": "2 8 0"
@@ -179,6 +122,62 @@
       {
         "pos": "8 16",
         "tile": "2 15 2"
+      },
+      {
+        "pos": "0 0",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 6",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 7",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 8",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 9",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 10",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 12",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 13",
+        "pickup": "2"
       },
       {
         "pos": "8 17",

@@ -2,7 +2,7 @@
   "version": "4c5c",
   "finish_condition": {
     "type": "time_over",
-    "value": "45"
+    "value": 45
   },
   "lose_condition": [
     "top_out 999999"
@@ -21,7 +21,6 @@
     "skip_results",
     "unranked"
   ],
-  "start_speed": "0",
   "tiles": {
     "start": [
       {

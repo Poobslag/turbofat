@@ -1,6 +1,20 @@
 {
   "version": "4c5c",
   "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "start_level tutorial/squish_0",
+    "tutorial"
+  ],
+  "piece_types": [
+    "piece_v"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -212,19 +226,5 @@
         "tile": "0 5 3"
       }
     ]
-  },
-  "piece_types": [
-    "piece_v"
-  ],
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "start_level tutorial/squish_0",
-    "tutorial"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ]
+  }
 }

@@ -1,20 +1,19 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Low Gravity",
   "description": "What goes up must come down... Eventually?",
   "difficulty": "3",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "120"
-  },
-  "rank": [
-    "extra_seconds_per_piece 0.2",
-    "combo_factor 0.4",
-    "preplaced_pieces 12"
-  ],
   "blocks_during": [
     "line_clear_type float_fall"
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 120
+  },
+  "rank": [
+    "combo_factor 0.4",
+    "extra_seconds_per_piece 0.2",
+    "preplaced_pieces 12"
   ],
   "tiles": {
     "start": [

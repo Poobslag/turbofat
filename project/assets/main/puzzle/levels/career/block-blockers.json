@@ -1,16 +1,16 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Block Blockers",
   "description": "They're just here to get in the way!",
-  "finish_condition": {
-    "type": "score",
-    "value": "425"
-  },
+  "start_speed": "3",
   "blocks_during": [
     "fill_lines 0",
     "refresh_on_top_out"
   ],
+  "finish_condition": {
+    "type": "score",
+    "value": 425
+  },
   "piece_types": [
     "piece_j",
     "piece_p",
@@ -20,37 +20,50 @@
     "piece_v"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.22",
     "box_factor 1.14",
     "combo_factor 1.21",
+    "extra_seconds_per_piece 0.22",
     "master_pickup_score_per_line 19.13",
     "show_pickups_rank"
   ],
-  "timers": [
-    {
-      "interval": 1.2
-    },
-    {
-      "interval": 8.4,
-      "start": 8
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_1"
-      ],
-      "effect": "add_spears sizes=x8 y=9-11"
-    },
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "advance_spears"
-    }
-  ],
   "tiles": {
     "start": [
+      {
+        "pos": "0 17",
+        "tile": "0 2 0"
+      },
+      {
+        "pos": "7 17",
+        "tile": "0 10 0"
+      },
+      {
+        "pos": "8 17",
+        "tile": "0 6 0"
+      },
+      {
+        "pos": "0 18",
+        "tile": "0 3 0"
+      },
+      {
+        "pos": "7 18",
+        "tile": "0 9 0"
+      },
+      {
+        "pos": "8 18",
+        "tile": "0 7 0"
+      },
+      {
+        "pos": "0 19",
+        "tile": "0 9 0"
+      },
+      {
+        "pos": "1 19",
+        "tile": "0 4 0"
+      },
+      {
+        "pos": "8 19",
+        "tile": "0 1 0"
+      },
       {
         "pos": "0 0",
         "pickup": "0"
@@ -130,42 +143,6 @@
       {
         "pos": "8 9",
         "pickup": "0"
-      },
-      {
-        "pos": "0 17",
-        "tile": "0 2 0"
-      },
-      {
-        "pos": "7 17",
-        "tile": "0 10 0"
-      },
-      {
-        "pos": "8 17",
-        "tile": "0 6 0"
-      },
-      {
-        "pos": "0 18",
-        "tile": "0 3 0"
-      },
-      {
-        "pos": "7 18",
-        "tile": "0 9 0"
-      },
-      {
-        "pos": "8 18",
-        "tile": "0 7 0"
-      },
-      {
-        "pos": "0 19",
-        "tile": "0 9 0"
-      },
-      {
-        "pos": "1 19",
-        "tile": "0 4 0"
-      },
-      {
-        "pos": "8 19",
-        "tile": "0 1 0"
       }
     ],
     "0": [
@@ -194,5 +171,28 @@
         "pickup": "3"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 1.2
+    },
+    {
+      "interval": 8.4,
+      "start": 8
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_spears sizes=x8 y=9-11"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

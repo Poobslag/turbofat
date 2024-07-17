@@ -1,29 +1,15 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
   "name": "The Last ¥100",
   "description": "Why is the last mile the hardest mile?",
+  "start_speed": "4",
   "finish_condition": {
     "type": "score",
-    "value": "360"
+    "value": 360
   },
   "rank": [
-    "extra_seconds_per_piece 0.03",
-    "box_factor 0.66"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared score=260"
-      ],
-      "effect": "add_onion dennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..........dddddddd"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_onion"
-    }
+    "box_factor 0.66",
+    "extra_seconds_per_piece 0.03"
   ],
   "tiles": {
     "start": [
@@ -64,20 +50,12 @@
         "tile": "2 6 3"
       },
       {
-        "pos": "3 18",
-        "pickup": "7"
-      },
-      {
         "pos": "4 18",
         "tile": "2 10 3"
       },
       {
         "pos": "6 18",
         "tile": "2 2 3"
-      },
-      {
-        "pos": "7 18",
-        "pickup": "7"
       },
       {
         "pos": "8 18",
@@ -110,7 +88,29 @@
       {
         "pos": "8 19",
         "tile": "1 4 2"
+      },
+      {
+        "pos": "3 18",
+        "pickup": "7"
+      },
+      {
+        "pos": "7 18",
+        "pickup": "7"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared score=260"
+      ],
+      "effect": "add_onion dennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..........dddddddd"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_onion"
+    }
+  ]
 }

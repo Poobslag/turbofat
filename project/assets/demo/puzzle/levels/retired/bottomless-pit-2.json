@@ -1,23 +1,15 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
   "name": "Bottomless Pit II",
   "description": "How deep does this thing go!?",
+  "start_speed": "5",
   "finish_condition": {
     "type": "time_over",
-    "value": "115"
+    "value": 115
   },
   "rank": [
     "box_factor 1.22",
-    "combo_factor 0.80"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=4,11,18..."
-      ],
-      "effect": "insert_line tiles_key=0"
-    }
+    "combo_factor 0.8"
   ],
   "tiles": {
     "start": [
@@ -368,5 +360,13 @@
         "tile": "1 4 9"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=4,11..."
+      ],
+      "effect": "insert_line tiles_key=0"
+    }
+  ]
 }

@@ -1,10 +1,20 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "finish_condition": {
     "type": "score",
-    "value": "150"
+    "value": 150
   },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "after_tutorial",
+    "start_level tutorial/squish_0"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -204,16 +214,5 @@
         "tile": "1 4 1"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "start_level tutorial/squish_0",
-    "after_tutorial"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ]
+  }
 }

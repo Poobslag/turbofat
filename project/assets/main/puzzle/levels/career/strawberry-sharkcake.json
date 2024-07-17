@@ -21,10 +21,10 @@
     "piece_q"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.14",
     "box_factor 0.94",
     "combo_factor 0.96",
-    "master_pickup_score_per_line 22.10",
+    "extra_seconds_per_piece 0.14",
+    "master_pickup_score_per_line 22.1",
     "show_pickups_rank"
   ],
   "tiles": {

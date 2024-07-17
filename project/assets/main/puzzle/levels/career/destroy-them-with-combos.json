@@ -1,63 +1,21 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Destroy Them With Combos!",
   "description": "No no, I was talking about the carrots! ...Please don't destroy the customers.",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "100"
-  },
-  "rank": [
-    "extra_seconds_per_piece 0.10"
-  ],
+  "start_speed": "1",
   "speed_ups": [
     {
       "type": "time_over",
-      "value": "60",
+      "value": 60,
       "speed": "2"
     }
   ],
-  "timers": [
-    {
-      "interval": 3.2,
-      "start": 12.1
-    },
-    {
-      "interval": 3.2,
-      "start": 7.3
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "add_carrots count=3 duration=14"
-    },
-    {
-      "phases": [
-        "timer_1"
-      ],
-      "effect": "add_carrots count=2 duration=14"
-    },
-    {
-      "phases": [
-        "line_cleared combo=5-9"
-      ],
-      "effect": "remove_carrots 2"
-    },
-    {
-      "phases": [
-        "line_cleared combo=10-19"
-      ],
-      "effect": "remove_carrots 3"
-    },
-    {
-      "phases": [
-        "line_cleared combo=20..."
-      ],
-      "effect": "remove_carrots 5"
-    }
+  "finish_condition": {
+    "type": "time_over",
+    "value": 100
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.1"
   ],
   "tiles": {
     "start": [
@@ -206,5 +164,47 @@
         "tile": "1 5 3"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 3.2,
+      "start": 12.1
+    },
+    {
+      "interval": 3.2,
+      "start": 7.3
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_carrots count=3 duration=14"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_carrots count=2 duration=14"
+    },
+    {
+      "phases": [
+        "line_cleared combo=5-9"
+      ],
+      "effect": "remove_carrots 2"
+    },
+    {
+      "phases": [
+        "line_cleared combo=10-19"
+      ],
+      "effect": "remove_carrots 3"
+    },
+    {
+      "phases": [
+        "line_cleared combo=20..."
+      ],
+      "effect": "remove_carrots 5"
+    }
+  ]
 }

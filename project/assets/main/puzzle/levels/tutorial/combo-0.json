@@ -2,6 +2,18 @@
   "version": "4c5c",
   "name": "Build Combos",
   "description": "Learn how combos work, and learn to make snack boxes and cake boxes during your combos.",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "enhance_combo_fx",
+    "tutorial"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -213,17 +225,5 @@
         "tile": "2 8 3"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial",
-    "enhance_combo_fx"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "start_speed": "T"
+  }
 }

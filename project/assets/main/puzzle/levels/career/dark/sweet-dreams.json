@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "AB",
   "name": "Sweet Dreams",
   "description": "Who left these chocolates under my pillow? They're all melted now!",
+  "start_speed": "AB",
   "finish_condition": {
     "type": "time_over",
-    "value": "125"
+    "value": 125
   },
   "triggers": [
     {

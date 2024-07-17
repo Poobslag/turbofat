@@ -2,19 +2,19 @@
   "version": "4c5c",
   "name": "Sandbox: Master",
   "description": "Practice with instant gravity! There is no way to win or lose this mode.",
+  "start_speed": "FA",
   "blocks_during": [
     "clear_on_top_out"
   ],
   "lose_condition": [
-    "top_out 999999",
-    "finish_on_lose"
+    "finish_on_lose",
+    "top_out 999999"
   ],
   "rank": [
     "unranked"
   ],
-  "start_speed": "FA",
   "success_condition": {
     "type": "lines",
-    "value": "500"
+    "value": 500
   }
 }

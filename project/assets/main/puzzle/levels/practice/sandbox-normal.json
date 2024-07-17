@@ -6,15 +6,14 @@
     "clear_on_top_out"
   ],
   "lose_condition": [
-    "top_out 999999",
-    "finish_on_lose"
+    "finish_on_lose",
+    "top_out 999999"
   ],
   "rank": [
     "unranked"
   ],
-  "start_speed": "0",
   "success_condition": {
     "type": "lines",
-    "value": "100"
+    "value": 100
   }
 }

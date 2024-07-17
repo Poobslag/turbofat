@@ -1,94 +1,36 @@
 {
   "version": "4c5c",
-  "start_speed": "7",
   "name": "Wall Greens",
   "description": "Asparagus evolved its disgusting spines as a defense against being eaten.",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "95"
-  },
-  "blocks_during": [
-    "fill_lines 0"
-  ],
-  "rank": [
-    "extra_seconds_per_piece 0.38",
-    "box_factor 1.15",
-    "combo_factor 1.21",
-    "master_pickup_score_per_line 12.15",
-    "show_pickups_rank"
-  ],
+  "start_speed": "7",
   "speed_ups": [
     {
       "type": "time_over",
-      "value": "30",
+      "value": 30,
       "speed": "8"
     },
     {
       "type": "time_over",
-      "value": "60",
+      "value": 60,
       "speed": "9"
     }
   ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=4,26..."
-      ],
-      "effect": "add_spears sizes=l2r2,x3,x5 y=4-11 duration=8"
-    },
-    {
-      "phases": [
-        "piece_written n=10,34..."
-      ],
-      "effect": "add_spears sizes=l3r3,x5,x8 y=4-11 duration=8"
-    },
-    {
-      "phases": [
-        "piece_written n=18,42..."
-      ],
-      "effect": "add_spears sizes=L2R2,X3,X5 y=5-11 duration=8"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_spears"
-    }
+  "blocks_during": [
+    "fill_lines 0"
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 95
+  },
+  "rank": [
+    "box_factor 1.15",
+    "combo_factor 1.21",
+    "extra_seconds_per_piece 0.38",
+    "master_pickup_score_per_line 12.15",
+    "show_pickups_rank"
   ],
   "tiles": {
     "start": [
-      {
-        "pos": "0 1",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 1",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 3",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 3",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 5",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 5",
-        "pickup": "2"
-      },
-      {
-        "pos": "0 7",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 7",
-        "pickup": "2"
-      },
       {
         "pos": "3 16",
         "tile": "1 8 9"
@@ -134,10 +76,6 @@
         "tile": "1 4 9"
       },
       {
-        "pos": "4 18",
-        "pickup": "9"
-      },
-      {
         "pos": "5 18",
         "tile": "1 8 9"
       },
@@ -162,18 +100,6 @@
         "tile": "1 4 9"
       },
       {
-        "pos": "3 19",
-        "pickup": "9"
-      },
-      {
-        "pos": "4 19",
-        "pickup": "9"
-      },
-      {
-        "pos": "5 19",
-        "pickup": "9"
-      },
-      {
         "pos": "6 19",
         "tile": "1 8 9"
       },
@@ -184,6 +110,54 @@
       {
         "pos": "8 19",
         "tile": "1 4 9"
+      },
+      {
+        "pos": "0 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 1",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 5",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 5",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 7",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 7",
+        "pickup": "2"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "9"
+      },
+      {
+        "pos": "3 19",
+        "pickup": "9"
+      },
+      {
+        "pos": "4 19",
+        "pickup": "9"
+      },
+      {
+        "pos": "5 19",
+        "pickup": "9"
       }
     ],
     "0": [
@@ -196,5 +170,31 @@
         "pickup": "2"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=4,26..."
+      ],
+      "effect": "add_spears sizes=l2r2,x3,x5 duration=8 y=4-11"
+    },
+    {
+      "phases": [
+        "piece_written n=10,34..."
+      ],
+      "effect": "add_spears sizes=l3r3,x5,x8 duration=8 y=4-11"
+    },
+    {
+      "phases": [
+        "piece_written n=18,42..."
+      ],
+      "effect": "add_spears sizes=L2R2,X3,X5 duration=8 y=5-11"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

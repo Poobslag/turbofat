@@ -1,22 +1,22 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "It Takes Two",
   "description": "What takes two? ...Oh please no, not that...",
-  "finish_condition": {
-    "type": "pieces",
-    "value": "165"
-  },
+  "start_speed": "A1",
   "blocks_during": [
     "clear_on_top_out",
-    "filled_line_clear_min 2",
     "filled_line_clear_max 1",
+    "filled_line_clear_min 2",
     "filled_line_clear_order lowest"
   ],
+  "finish_condition": {
+    "type": "pieces",
+    "value": 165
+  },
   "rank": [
-    "extra_seconds_per_piece 0.39",
     "box_factor 0.96",
-    "combo_factor 0.58"
+    "combo_factor 0.58",
+    "extra_seconds_per_piece 0.39"
   ],
   "tiles": {
     "start": [

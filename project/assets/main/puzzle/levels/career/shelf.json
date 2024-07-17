@@ -1,35 +1,20 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Shelf",
   "description": "Who came up with this stupid shelf anyway!? ...Ooh! Cookies!",
-  "finish_condition": {
-    "type": "score",
-    "value": "400"
-  },
   "blocks_during": [
     "refresh_on_top_out",
     "shuffle_inserted_lines"
   ],
+  "finish_condition": {
+    "type": "score",
+    "value": 400
+  },
   "rank": [
     "box_factor 0.73",
     "combo_factor 0.91",
     "master_pickup_score_per_line 4.65",
     "show_pickups_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared y=0-5"
-      ],
-      "effect": "insert_line y=6 tiles_key=0"
-    },
-    {
-      "phases": [
-        "line_cleared y=6"
-      ],
-      "effect": "insert_line y=7 tiles_key=1"
-    }
   ],
   "tiles": {
     "start": [
@@ -98,18 +83,6 @@
         "tile": "2 1 2"
       },
       {
-        "pos": "3 13",
-        "pickup": "0"
-      },
-      {
-        "pos": "4 13",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 13",
-        "pickup": "0"
-      },
-      {
         "pos": "6 13",
         "tile": "2 14 2"
       },
@@ -120,6 +93,18 @@
       {
         "pos": "8 13",
         "tile": "2 12 3"
+      },
+      {
+        "pos": "3 13",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 13",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 13",
+        "pickup": "0"
       }
     ],
     "0": [
@@ -127,16 +112,8 @@
     ],
     "1": [
       {
-        "pos": "0 0",
-        "pickup": "0"
-      },
-      {
         "pos": "1 0",
         "tile": "2 14 3"
-      },
-      {
-        "pos": "2 0",
-        "pickup": "8"
       },
       {
         "pos": "3 0",
@@ -145,10 +122,6 @@
       {
         "pos": "4 0",
         "tile": "2 9 0"
-      },
-      {
-        "pos": "5 0",
-        "pickup": "0"
       },
       {
         "pos": "6 0",
@@ -163,20 +136,12 @@
         "tile": "2 13 2"
       },
       {
-        "pos": "0 1",
-        "pickup": "0"
-      },
-      {
         "pos": "1 1",
         "tile": "2 12 3"
       },
       {
         "pos": "2 1",
         "tile": "2 7 0"
-      },
-      {
-        "pos": "3 1",
-        "pickup": "8"
       },
       {
         "pos": "4 1",
@@ -187,20 +152,12 @@
         "tile": "2 13 2"
       },
       {
-        "pos": "6 1",
-        "pickup": "0"
-      },
-      {
         "pos": "7 1",
         "tile": "2 13 0"
       },
       {
         "pos": "8 1",
         "tile": "2 5 2"
-      },
-      {
-        "pos": "0 2",
-        "pickup": "0"
       },
       {
         "pos": "1 2",
@@ -215,10 +172,6 @@
         "tile": "2 9 2"
       },
       {
-        "pos": "4 2",
-        "pickup": "8"
-      },
-      {
         "pos": "5 2",
         "tile": "2 3 0"
       },
@@ -231,24 +184,12 @@
         "tile": "2 6 2"
       },
       {
-        "pos": "8 2",
-        "pickup": "0"
-      },
-      {
         "pos": "0 3",
         "tile": "2 13 1"
       },
       {
-        "pos": "1 3",
-        "pickup": "0"
-      },
-      {
         "pos": "2 3",
         "tile": "2 3 3"
-      },
-      {
-        "pos": "3 3",
-        "pickup": "8"
       },
       {
         "pos": "4 3",
@@ -257,10 +198,6 @@
       {
         "pos": "5 3",
         "tile": "2 0 2"
-      },
-      {
-        "pos": "6 3",
-        "pickup": "0"
       },
       {
         "pos": "7 3",
@@ -275,10 +212,6 @@
         "tile": "2 7 2"
       },
       {
-        "pos": "1 4",
-        "pickup": "0"
-      },
-      {
         "pos": "2 4",
         "tile": "2 3 3"
       },
@@ -287,16 +220,8 @@
         "tile": "2 6 0"
       },
       {
-        "pos": "4 4",
-        "pickup": "8"
-      },
-      {
         "pos": "5 4",
         "tile": "2 6 3"
-      },
-      {
-        "pos": "6 4",
-        "pickup": "0"
       },
       {
         "pos": "7 4",
@@ -311,10 +236,6 @@
         "tile": "2 15 3"
       },
       {
-        "pos": "1 5",
-        "pickup": "0"
-      },
-      {
         "pos": "2 5",
         "tile": "2 16 2"
       },
@@ -323,20 +244,12 @@
         "tile": "2 7 2"
       },
       {
-        "pos": "4 5",
-        "pickup": "8"
-      },
-      {
         "pos": "5 5",
         "tile": "2 9 2"
       },
       {
         "pos": "6 5",
         "tile": "2 5 3"
-      },
-      {
-        "pos": "7 5",
-        "pickup": "0"
       },
       {
         "pos": "8 5",
@@ -351,16 +264,8 @@
         "tile": "2 3 1"
       },
       {
-        "pos": "2 6",
-        "pickup": "0"
-      },
-      {
         "pos": "3 6",
         "tile": "2 11 3"
-      },
-      {
-        "pos": "4 6",
-        "pickup": "8"
       },
       {
         "pos": "5 6",
@@ -369,10 +274,6 @@
       {
         "pos": "6 6",
         "tile": "2 12 2"
-      },
-      {
-        "pos": "7 6",
-        "pickup": "0"
       },
       {
         "pos": "8 6",
@@ -387,10 +288,6 @@
         "tile": "2 6 2"
       },
       {
-        "pos": "2 7",
-        "pickup": "0"
-      },
-      {
         "pos": "3 7",
         "tile": "2 13 3"
       },
@@ -399,16 +296,8 @@
         "tile": "2 3 1"
       },
       {
-        "pos": "5 7",
-        "pickup": "8"
-      },
-      {
         "pos": "6 7",
         "tile": "2 14 1"
-      },
-      {
-        "pos": "7 7",
-        "pickup": "0"
       },
       {
         "pos": "8 7",
@@ -423,10 +312,6 @@
         "tile": "2 0 1"
       },
       {
-        "pos": "2 8",
-        "pickup": "0"
-      },
-      {
         "pos": "3 8",
         "tile": "2 1 3"
       },
@@ -435,20 +320,12 @@
         "tile": "2 12 0"
       },
       {
-        "pos": "5 8",
-        "pickup": "8"
-      },
-      {
         "pos": "6 8",
         "tile": "2 15 1"
       },
       {
         "pos": "7 8",
         "tile": "2 1 0"
-      },
-      {
-        "pos": "8 8",
-        "pickup": "0"
       },
       {
         "pos": "0 9",
@@ -461,18 +338,6 @@
       {
         "pos": "2 9",
         "tile": "2 12 2"
-      },
-      {
-        "pos": "3 9",
-        "pickup": "0"
-      },
-      {
-        "pos": "4 9",
-        "pickup": "8"
-      },
-      {
-        "pos": "5 9",
-        "pickup": "0"
       },
       {
         "pos": "6 9",
@@ -499,10 +364,6 @@
         "tile": "2 14 0"
       },
       {
-        "pos": "3 10",
-        "pickup": "0"
-      },
-      {
         "pos": "4 10",
         "tile": "2 12 3"
       },
@@ -511,17 +372,155 @@
         "tile": "2 10 2"
       },
       {
-        "pos": "6 10",
+        "pos": "7 10",
+        "tile": "2 11 3"
+      },
+      {
+        "pos": "0 0",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 0",
         "pickup": "8"
       },
       {
-        "pos": "7 10",
-        "tile": "2 11 3"
+        "pos": "5 0",
+        "pickup": "0"
+      },
+      {
+        "pos": "0 1",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 1",
+        "pickup": "8"
+      },
+      {
+        "pos": "6 1",
+        "pickup": "0"
+      },
+      {
+        "pos": "0 2",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 2",
+        "pickup": "8"
+      },
+      {
+        "pos": "8 2",
+        "pickup": "0"
+      },
+      {
+        "pos": "1 3",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 3",
+        "pickup": "8"
+      },
+      {
+        "pos": "6 3",
+        "pickup": "0"
+      },
+      {
+        "pos": "1 4",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 4",
+        "pickup": "8"
+      },
+      {
+        "pos": "6 4",
+        "pickup": "0"
+      },
+      {
+        "pos": "1 5",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 5",
+        "pickup": "8"
+      },
+      {
+        "pos": "7 5",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 6",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 6",
+        "pickup": "8"
+      },
+      {
+        "pos": "7 6",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 7",
+        "pickup": "0"
+      },
+      {
+        "pos": "5 7",
+        "pickup": "8"
+      },
+      {
+        "pos": "7 7",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 8",
+        "pickup": "0"
+      },
+      {
+        "pos": "5 8",
+        "pickup": "8"
+      },
+      {
+        "pos": "8 8",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 9",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 9",
+        "pickup": "8"
+      },
+      {
+        "pos": "5 9",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 10",
+        "pickup": "0"
+      },
+      {
+        "pos": "6 10",
+        "pickup": "8"
       },
       {
         "pos": "8 10",
         "pickup": "0"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared y=0-5"
+      ],
+      "effect": "insert_line tiles_key=0 y=6"
+    },
+    {
+      "phases": [
+        "line_cleared y=6"
+      ],
+      "effect": "insert_line tiles_key=1 y=7"
+    }
+  ]
 }

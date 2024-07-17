@@ -1,11 +1,10 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Bon Appetit",
   "description": "Dig in!",
   "finish_condition": {
     "type": "time_over",
-    "value": "60"
+    "value": 60
   },
   "rank": [
     "preplaced_pieces 4"

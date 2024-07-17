@@ -1,5 +1,24 @@
 {
   "version": "4c5c",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "start_level tutorial/basics_0",
+    "tutorial"
+  ],
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "start_piece_l"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -95,24 +114,5 @@
         "tile": "0 5 0"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "start_level tutorial/basics_0",
-    "tutorial"
-  ],
-  "piece_types": [
-    "start_piece_l",
-    "piece_j",
-    "piece_l",
-    "piece_p",
-    "piece_q"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "start_speed": "T"
+  }
 }

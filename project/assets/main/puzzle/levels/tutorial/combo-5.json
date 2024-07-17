@@ -1,9 +1,22 @@
 {
   "version": "4c5c",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "enhance_combo_fx",
+    "start_level tutorial/combo_0",
+    "tutorial"
+  ],
   "piece_types": [
     "piece_j",
     "piece_l",
     "piece_o"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
   ],
   "tiles": {
     "start": [
@@ -160,18 +173,5 @@
         "tile": "2 6 2"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial",
-    "start_level tutorial/combo_0",
-    "enhance_combo_fx"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "start_speed": "T"
+  }
 }

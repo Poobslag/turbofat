@@ -1,42 +1,34 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Another Traffic Jam",
   "description": "An even bigger, and even slower H! ...But what does the H stand for?",
-  "finish_condition": {
-    "type": "score",
-    "value": "750"
-  },
-  "blocks_during": [
-    "filled_line_clear_max 1",
-    "filled_line_clear_order highest",
-    "no_clear_filled_lines",
-    "refresh_on_top_out"
-  ],
+  "start_speed": "2",
   "speed_ups": [
     {
       "type": "score",
-      "value": "200",
+      "value": 200,
       "speed": "3"
     },
     {
       "type": "score",
-      "value": "400",
+      "value": 400,
       "speed": "4"
     }
   ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=3,5,7..."
-      ],
-      "effect": "clear_filled_lines"
-    }
+  "blocks_during": [
+    "no_clear_filled_lines",
+    "filled_line_clear_max 1",
+    "filled_line_clear_order highest",
+    "refresh_on_top_out"
   ],
+  "finish_condition": {
+    "type": "score",
+    "value": 750
+  },
   "rank": [
-    "extra_seconds_per_piece 0.24",
     "box_factor 0.91",
-    "combo_factor 0.96"
+    "combo_factor 0.96",
+    "extra_seconds_per_piece 0.24"
   ],
   "tiles": {
     "start": [
@@ -401,5 +393,13 @@
         "tile": "1 4 2"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=3,5..."
+      ],
+      "effect": "clear_filled_lines"
+    }
+  ]
 }

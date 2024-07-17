@@ -1,65 +1,65 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "Marathon: Hard (200 lines)",
   "description": "A true test of endurance with faster pieces than before! Can you clear 200 lines?",
+  "start_speed": "A1",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "50",
+      "value": 50,
       "speed": "A2"
     },
     {
       "type": "lines",
-      "value": "60",
+      "value": 60,
       "speed": "A3"
     },
     {
       "type": "lines",
-      "value": "70",
+      "value": 70,
       "speed": "A4"
     },
     {
       "type": "lines",
-      "value": "80",
+      "value": 80,
       "speed": "A5"
     },
     {
       "type": "lines",
-      "value": "90",
+      "value": 90,
       "speed": "A6"
     },
     {
       "type": "lines",
-      "value": "100",
+      "value": 100,
       "speed": "A7"
     },
     {
       "type": "lines",
-      "value": "115",
+      "value": 115,
       "speed": "A8"
     },
     {
       "type": "lines",
-      "value": "130",
+      "value": 130,
       "speed": "A9"
     },
     {
       "type": "lines",
-      "value": "150",
+      "value": 150,
       "speed": "AA"
     }
   ],
-  "success_condition": {
-    "type": "lines",
-    "value": "200"
-  },
   "finish_condition": {
     "type": "lines",
-    "value": "200",
+    "value": 200,
     "lenient_value": "150"
   },
   "lose_condition": [
     "top_out 1"
-  ]
+  ],
+  "success_condition": {
+    "type": "lines",
+    "value": 200
+  }
 }

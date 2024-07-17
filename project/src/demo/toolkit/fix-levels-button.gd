@@ -42,9 +42,13 @@ func _upgrade_levels() -> void:
 func _upgrade_settings(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
 	var old_json: Dictionary = parse_json(old_text)
+	
 	if _upgrader.needs_upgrade(old_json):
-		var new_json := _upgrader.upgrade(old_json)
-		var new_text := Utils.print_json(new_json)
+		var level_id := LevelSettings.level_key_from_path(path)
+		# immediately parse and rewrite the level; LevelEditor will behave strangely with older level formats
+		var settings := LevelSettings.new()
+		settings.load_from_text(level_id, old_text)
+		var new_text := Utils.print_json(settings.to_json_dict())
 		FileUtils.write_file(path, new_text)
 		_converted.append(path)
 

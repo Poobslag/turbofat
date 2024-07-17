@@ -1,25 +1,17 @@
 {
   "version": "4c5c",
-  "start_speed": "6",
   "name": "Creeping Crevice II",
   "description": "It just keeps going...",
+  "start_speed": "6",
   "blocks_during": [
     "shuffle_inserted_lines"
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "35"
+    "value": 35
   },
   "rank": [
-    "box_factor 0.80"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written combo=0,1,2"
-      ],
-      "effect": "insert_line tiles_key=0"
-    }
+    "box_factor 0.8"
   ],
   "tiles": {
     "0": [
@@ -392,5 +384,13 @@
         "tile": "2 6 1"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written combo=0-2"
+      ],
+      "effect": "insert_line tiles_key=0"
+    }
+  ]
 }

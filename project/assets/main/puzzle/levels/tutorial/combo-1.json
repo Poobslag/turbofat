@@ -5,10 +5,10 @@
     "top_out 999999"
   ],
   "other": [
-    "tutorial",
-    "start_level tutorial/combo_0",
+    "enhance_combo_fx",
     "non_interactive",
-    "enhance_combo_fx"
+    "start_level tutorial/combo_0",
+    "tutorial"
   ],
   "rank": [
     "skip_results",

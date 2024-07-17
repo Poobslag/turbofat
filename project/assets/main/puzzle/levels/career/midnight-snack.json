@@ -1,41 +1,27 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Midnight Snack",
   "description": "We already turned the lights off! Come back tomorrow.",
-  "finish_condition": {
-    "type": "customers",
-    "value": "3"
-  },
-  "rank": [
-    "extra_seconds_per_piece 0.21",
-    "box_factor 0.81"
-  ],
+  "start_speed": "1",
   "speed_ups": [
     {
       "type": "customers",
-      "value": "1",
+      "value": 1,
       "speed": "2"
     },
     {
       "type": "customers",
-      "value": "2",
+      "value": 2,
       "speed": "3"
     }
   ],
-  "triggers": [
-    {
-      "phases": [
-        "before_start"
-      ],
-      "effect": "add_onion ndn"
-    },
-    {
-      "phases": [
-        "combo_ended"
-      ],
-      "effect": "advance_onion"
-    }
+  "finish_condition": {
+    "type": "customers",
+    "value": 3
+  },
+  "rank": [
+    "box_factor 0.81",
+    "extra_seconds_per_piece 0.21"
   ],
   "tiles": {
     "start": [
@@ -96,5 +82,19 @@
         "tile": "1 5 10"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_onion ndn"
+    },
+    {
+      "phases": [
+        "combo_ended"
+      ],
+      "effect": "advance_onion"
+    }
+  ]
 }

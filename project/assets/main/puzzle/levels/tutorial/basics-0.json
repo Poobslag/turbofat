@@ -2,6 +2,20 @@
   "version": "4c5c",
   "name": "Basic Techniques",
   "description": "Learn to clear lines, to make snack boxes and to squish pieces.",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial"
+  ],
+  "piece_types": [
+    "piece_t"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -197,19 +211,5 @@
         "tile": "0 4 2"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial"
-  ],
-  "piece_types": [
-    "piece_t"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "start_speed": "T"
+  }
 }

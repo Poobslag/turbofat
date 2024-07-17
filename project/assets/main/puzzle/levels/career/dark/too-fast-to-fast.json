@@ -1,35 +1,35 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "Too Fast to Fast EX",
   "description": "It was already too fast before! This is nonsense...",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "80"
-  },
-  "lose_condition": [
-    "top_out 1"
-  ],
+  "start_speed": "A1",
   "speed_ups": [
     {
       "type": "time_over",
-      "value": "10",
+      "value": 10,
       "speed": "A2"
     },
     {
       "type": "time_over",
-      "value": "20",
+      "value": 20,
       "speed": "A3"
     },
     {
       "type": "time_over",
-      "value": "30",
+      "value": 30,
       "speed": "A4"
     },
     {
       "type": "time_over",
-      "value": "40",
+      "value": 40,
       "speed": "A5"
     }
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 80
+  },
+  "lose_condition": [
+    "top_out 1"
   ]
 }

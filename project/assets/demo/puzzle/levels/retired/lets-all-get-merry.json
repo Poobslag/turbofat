@@ -1,31 +1,31 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Let's All Get Merry",
   "description": "It's a dessert party and everybody's invited!",
-  "finish_condition": {
-    "type": "lines",
-    "value": "50"
-  },
-  "rank": [
-    "preplaced_pieces 14"
-  ],
+  "start_speed": "3",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "10",
+      "value": 10,
       "speed": "4"
     },
     {
       "type": "lines",
-      "value": "20",
+      "value": 20,
       "speed": "5"
     },
     {
       "type": "lines",
-      "value": "30",
+      "value": 30,
       "speed": "6"
     }
+  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": 50
+  },
+  "rank": [
+    "preplaced_pieces 14"
   ],
   "tiles": {
     "start": [

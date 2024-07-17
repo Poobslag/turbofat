@@ -1,50 +1,50 @@
 {
   "version": "4c5c",
-  "start_speed": "A5",
   "name": "Marathon: Expert (300 lines)",
   "description": "A grueling test of endurance ramping up to instant gravity! Can you clear 300 lines?",
+  "start_speed": "A5",
   "speed_ups": [
     {
       "type": "lines",
-      "value": "75",
+      "value": 75,
       "speed": "AA"
     },
     {
       "type": "lines",
-      "value": "100",
+      "value": 100,
       "speed": "AB"
     },
     {
       "type": "lines",
-      "value": "125",
+      "value": 125,
       "speed": "AC"
     },
     {
       "type": "lines",
-      "value": "150",
+      "value": 150,
       "speed": "AD"
     },
     {
       "type": "lines",
-      "value": "175",
+      "value": 175,
       "speed": "AE"
     },
     {
       "type": "lines",
-      "value": "200",
+      "value": 200,
       "speed": "AF"
     }
   ],
-  "success_condition": {
-    "type": "lines",
-    "value": "300"
-  },
   "finish_condition": {
     "type": "lines",
-    "value": "300",
+    "value": 300,
     "lenient_value": "200"
   },
   "lose_condition": [
     "top_out 1"
-  ]
+  ],
+  "success_condition": {
+    "type": "lines",
+    "value": 300
+  }
 }

@@ -1,17 +1,14 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Just Cream",
   "description": "What are these pieces!? LOLOLOL",
+  "blocks_during": [
+    "pickup_type float_regen"
+  ],
   "finish_condition": {
     "type": "time_over",
-    "value": "50"
+    "value": 50
   },
-  "rank": [
-    "box_factor 0.76",
-    "master_pickup_score_per_line 3.84",
-    "show_pickups_rank"
-  ],
   "piece_types": [
     "no_suppress_o_piece",
     "no_suppress_repeat_piece",
@@ -21,8 +18,10 @@
     "piece_v",
     "piece_v"
   ],
-  "blocks_during": [
-    "pickup_type float_regen"
+  "rank": [
+    "box_factor 0.76",
+    "master_pickup_score_per_line 3.84",
+    "show_pickups_rank"
   ],
   "tiles": {
     "start": [

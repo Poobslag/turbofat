@@ -3,10 +3,20 @@
   "name": "Squish and Recover",
   "description": "Learn how squish moves work and when to use them.",
   "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial"
+  ],
   "piece_types": [
     "piece_p",
     "piece_q",
     "piece_v"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
   ],
   "tiles": {
     "start": [
@@ -299,15 +309,5 @@
         "tile": "1 5 3"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ]
+  }
 }

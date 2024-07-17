@@ -3,19 +3,19 @@
   "name": "9 Dan",
   "description": "An escalating set of challenges. Finish with ¥5,000 to achieve this rank!",
   "color": "orange",
-  "success_condition": {
-    "type": "score",
-    "value": "5000"
-  },
   "start_speed": "FB",
   "finish_condition": {
     "type": "lines",
-    "value": "200"
+    "value": 200
   },
   "lose_condition": [
     "top_out 1"
   ],
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "score",
+    "value": 5000
+  }
 }

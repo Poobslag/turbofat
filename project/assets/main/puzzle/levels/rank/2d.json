@@ -3,19 +3,19 @@
   "name": "2 Dan",
   "description": "An escalating set of challenges. Finish in 5:00 to achieve this rank!",
   "color": "green",
-  "success_condition": {
-    "type": "time_under",
-    "value": "300"
-  },
   "start_speed": "A5",
   "finish_condition": {
     "type": "score",
-    "value": "1500"
+    "value": 1500
   },
   "lose_condition": [
     "top_out 1"
   ],
   "rank": [
     "success_bonus 2"
-  ]
+  ],
+  "success_condition": {
+    "type": "time_under",
+    "value": 300
+  }
 }

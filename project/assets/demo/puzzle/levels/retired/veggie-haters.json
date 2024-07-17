@@ -1,13 +1,13 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
   "name": "Veggie Haters",
   "description": "Five of the pickiest customers you'll ever meet!",
-  "finish_condition": {
-    "type": "customers",
-    "value": "5"
-  },
+  "start_speed": "4",
   "combo_break": [
     "veg_row"
-  ]
+  ],
+  "finish_condition": {
+    "type": "customers",
+    "value": 5
+  }
 }

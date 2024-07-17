@@ -1,28 +1,20 @@
 {
   "version": "4c5c",
-  "start_speed": "AB",
   "name": "All Nighter",
   "description": "When the onion hits your eye like a big pizza pie, that's a painful...",
+  "start_speed": "AB",
   "blocks_during": [
     "shuffle_inserted_lines"
   ],
   "finish_condition": {
     "type": "pieces",
-    "value": "125"
+    "value": 125
   },
   "rank": [
-    "extra_seconds_per_piece 0.37",
     "box_factor 0.55",
     "combo_factor 0.42",
+    "extra_seconds_per_piece 0.37",
     "master_pickup_score 100"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "before_start"
-      ],
-      "effect": "add_onion n"
-    }
   ],
   "tiles": {
     "start": [
@@ -47,5 +39,13 @@
         "pickup": "6"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_onion n"
+    }
+  ]
 }
