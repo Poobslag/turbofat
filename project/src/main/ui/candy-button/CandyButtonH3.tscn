@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/main/ui/candy-button/h3-blank-pressed.png" type="Texture" id=1]
 [ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/main/ui/candy-button/h3-shine-pressed.png" type="Texture" id=12]
 [ext_resource path="res://assets/main/ui/candy-button/h3-shine.png" type="Texture" id=13]
+[ext_resource path="res://src/main/ui/candy-button/gradient-helper.gd" type="Script" id=14]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -126,3 +127,6 @@ texture_pressed = ExtResource( 12 )
 [node name="ClickSound" parent="." instance=ExtResource( 10 )]
 
 [node name="HoverSound" parent="." instance=ExtResource( 11 )]
+
+[node name="GradientHelper" type="Node" parent="."]
+script = ExtResource( 14 )

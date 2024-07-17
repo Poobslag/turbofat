@@ -2,6 +2,12 @@ tool
 extends TextureButton
 ## An eye-catching button with customizable colors and textures.
 
+signal color_changed
+
+signal disabled_changed
+
+signal hovered_changed
+
 ## Textures for the various ButtonShape presets.
 ##
 ## key: (int) Enum from ButtonShape
@@ -58,15 +64,17 @@ onready var _hover_sound := $HoverSound
 ## Label containing the button's text
 onready var _label := $Label
 
+onready var _gradient_helper: GradientHelper = $GradientHelper
+
 func _ready() -> void:
 	# Connect signals in code to prevent them from showing up in the Godot editor.
 	#
 	# This is a generic button used in many places, we want to be able to quickly see the unique signals connected to
 	# each button instance, not the generic signals connected to all button instances.
 	connect("focus_entered", self, "_on_focus_entered")
-	connect("focus_exited", self, "_on_focus_exited")
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
+	_gradient_helper.connect("gradient_changed", self, "_on_GradientHelper_gradient_changed")
 	
 	_refresh_font_size()
 	_refresh_text()
@@ -93,6 +101,7 @@ func set_text(new_text: String) -> void:
 func set_color(new_color: int) -> void:
 	color = new_color
 	_refresh_color()
+	emit_signal("color_changed")
 
 
 func set_shape(new_shape: int) -> void:
@@ -101,29 +110,17 @@ func set_shape(new_shape: int) -> void:
 
 
 func set_disabled(new_disabled: bool) -> void:
-	if disabled != new_disabled:
-		disabled = new_disabled
-		_refresh_color()
+	if disabled == new_disabled:
+		return
+	
+	disabled = new_disabled
+	emit_signal("disabled_changed")
 
 
 ## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_label = $Label
-
-
-## Calculates the gradient which should color the button based on its color and state.
-func _gradient() -> Gradient:
-	var result: Gradient
-	if has_focus():
-		# if the button is focused, we use a bright cyan color
-		result = CandyButtons.GRADIENT_FOCUSED_HOVER if is_hovered() else CandyButtons.GRADIENT_FOCUSED
-	elif disabled:
-		result = CandyButtons.GRADIENT_DISABLED_HOVER if is_hovered() else CandyButtons.GRADIENT_DISABLED
-	else:
-		# if the button is not focused, we use the user-specified color
-		var gradients: Array = CandyButtons.GRADIENTS_BY_COLOR[color]
-		result = gradients[1] if is_hovered() else gradients[0]
-	return result
+	_gradient_helper = $GradientHelper
 
 
 ## Reapplies the colors for our texture, text and icons.
@@ -136,7 +133,7 @@ func _refresh_color() -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	material.get_shader_param("gradient").gradient = _gradient()
+	material.get_shader_param("gradient").gradient = _gradient_helper.gradient
 	_refresh_label_color()
 
 
@@ -171,7 +168,7 @@ func _refresh_font_size() -> void:
 
 ## Reapplies the colors for our label.
 func _refresh_label_color() -> void:
-	_label.get_font("font").outline_color = _gradient().interpolate(0.15)
+	_label.get_font("font").outline_color = _gradient_helper.gradient.interpolate(0.15)
 
 
 ## Reapplies the various textures for our button.
@@ -205,27 +202,29 @@ func _refresh_text() -> void:
 
 ## When we gain focus, we reapply a bright cyan color for our texture, text and icons.
 func _on_focus_entered() -> void:
-	_refresh_color()
 	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
 	SfxKeeper.copy(_hover_sound).play()
 
 
-## When we lose focus, we reapply the normal color for our texture, text and icons.
-func _on_focus_exited() -> void:
-	_refresh_color()
-
-
 ## When the player hovers over us, we reapply a brighter color for our texture, text and icons.
 func _on_mouse_entered() -> void:
-	if not disabled:
-		yield(get_tree(), "idle_frame")
-		_refresh_color()
-		_hover_sound.pitch_scale = rand_range(0.95, 1.05)
-		SfxKeeper.copy(_hover_sound).play()
+	if disabled:
+		return
+	
+	yield(get_tree(), "idle_frame")
+	emit_signal("hovered_changed")
+	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
+	SfxKeeper.copy(_hover_sound).play()
 
 
 ## When the player hovers away from us, we reapply the normal color for our texture, text and icons.
 func _on_mouse_exited() -> void:
-	if not disabled:
-		yield(get_tree(), "idle_frame")
-		_refresh_color()
+	if disabled:
+		return
+	
+	yield(get_tree(), "idle_frame")
+	emit_signal("hovered_changed")
+
+
+func _on_GradientHelper_gradient_changed() -> void:
+	_refresh_color()
