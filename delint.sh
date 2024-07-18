@@ -300,16 +300,30 @@ fi
 
 # orphaned .import files
 RESULT=""
-while IFS= read -r import_file; do
-    filename="${import_file%.import}"
-    if [ ! -f "$filename" ]; then
-        RESULT="${RESULT}${filename}
+while IFS= read -r import_file
+do
+  base_file="${import_file%.import}"
+  if [ ! -f "$base_file" ]
+  then
+    RESULT="${RESULT}${import_file}
 "
-    fi
+  fi
 done < <(find project -type f -name "*.import")
+RESULT=$(echo "$RESULT" | sed '/./,$!d') # remove trailing newline
 if [ -n "$RESULT" ]
 then
   echo ""
-  echo "Orphaned import files:"
+  echo "Orphaned .import files:"
   echo "$RESULT"
+  if [ "$CLEAN" ]
+  then
+    while IFS= read -r file_to_delete
+    do
+      if [ -n "$file_to_delete" ]
+      then
+        rm "$file_to_delete"
+      fi
+    done <<< "$RESULT"
+    echo "...Orphaned .import files deleted."
+  fi
 fi
