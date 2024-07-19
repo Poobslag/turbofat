@@ -20,6 +20,8 @@ var _scancode_localizables := []
 ## label for outputting messages to the user
 onready var _output_label := get_node(output_label_path)
 
+onready var _creature_editor_library := Global.get_creature_editor_library()
+
 ## Extracts localizable strings from levels and chats and writes them to a file.
 func _extract_and_write_localizables() -> void:
 	_localizables.clear()
@@ -106,7 +108,7 @@ func _extract_localizables_from_chat_trees() -> void:
 
 
 func _extract_localizables_from_creature_editor() -> void:
-	for category in CreatureEditorLibrary.categories:
+	for category in _creature_editor_library.categories:
 		_localizables.append(category.name)
 
 

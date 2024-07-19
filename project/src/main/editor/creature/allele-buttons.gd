@@ -47,6 +47,7 @@ var _new_focus_target: Control = null
 onready var _category_selector: CategorySelector = get_node(category_selector_path)
 onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 onready var _creature_saver: CreatureSaver = get_node(creature_saver_path)
+onready var _creature_editor_library := Global.get_creature_editor_library()
 
 ## Deletes and recreates all buttons for the specified category.
 func _refresh_allele_buttons(category: int) -> void:
@@ -81,7 +82,7 @@ func _refresh_allele_buttons(category: int) -> void:
 ## Adds all operation buttons for the specified category.
 func _add_operation_buttons(category: int) -> void:
 	var category_button := _category_selector.get_category_button(category)
-	var operations := CreatureEditorLibrary.get_operations_by_category_index(category)
+	var operations := _creature_editor_library.get_operations_by_category_index(category)
 	
 	for operation_obj in operations:
 		var operation: Operation = operation_obj
@@ -137,7 +138,7 @@ func _initialize_operation_button(button: OperationButton, operation: Operation)
 func _add_allele_buttons(category: int) -> void:
 	var category_button := _category_selector.get_category_button(category)
 	
-	var allele_combos := CreatureEditorLibrary.get_allele_combos_by_category_index(category)
+	var allele_combos := _creature_editor_library.get_allele_combos_by_category_index(category)
 	var allele_buttons := []
 	
 	# create the correct number of buttons; position appropriately
@@ -230,7 +231,7 @@ func _is_allele_assigned(allele_string: String) -> bool:
 func _add_color_buttons(category: int) -> void:
 	var category_button := _category_selector.get_category_button(category)
 	
-	var color_properties := CreatureEditorLibrary.get_color_properties_by_category_index(category)
+	var color_properties := _creature_editor_library.get_color_properties_by_category_index(category)
 	var color_buttons := []
 	
 	# create the correct number of buttons; position appropriately
@@ -257,7 +258,7 @@ func _add_color_buttons(category: int) -> void:
 			_:
 				creature_color_html = _player().dna[color_property]
 		color_button.creature_color = Color(creature_color_html)
-		color_button.enabled_if = CreatureEditorLibrary.get_color_property_enabled_if(category, color_property)
+		color_button.enabled_if = _creature_editor_library.get_color_property_enabled_if(category, color_property)
 		color_button.connect("color_changed", self, "_on_CreatureColorButton_color_changed", [color_property])
 
 

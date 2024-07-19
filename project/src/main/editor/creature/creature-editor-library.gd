@@ -1,4 +1,5 @@
 tool
+class_name CreatureEditorLibrary
 extends Node
 ## Manages data for the creature editor. This includes the list of category names, which buttons should be shown,
 ## their positions, and when those buttons should be enabled or disabled.
