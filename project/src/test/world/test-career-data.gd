@@ -5,7 +5,7 @@ const TEMP_PLAYER_FILENAME := "test997.save"
 var _data: CareerData
 
 func before_each() -> void:
-	_data = CareerData.new()
+	_data = autofree(CareerData.new())
 	add_child(_data)
 	
 	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
@@ -16,11 +16,6 @@ func before_each() -> void:
 	PlayerData.level_history.add_result("intro_311", RankResult.new())
 	PlayerData.level_history.add_result("intro_411", RankResult.new())
 	_data.best_distance_travelled = Careers.MAX_DISTANCE_TRAVELLED
-
-
-func after_each() -> void:
-	## we use 'free' instead of 'queue_free' to avoid warnings from Gut about new orphans
-	_data.free()
 
 
 func test_prev_money() -> void:

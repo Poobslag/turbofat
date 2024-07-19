@@ -65,7 +65,7 @@ func get_cell_color(orientation: int, cell_index: int) -> Vector2:
 ## For a null piece, this returns 0. This allows code centered around "what color should these piece crumbs be" or
 ## "which sprite should I show" to fail more gracefully, instead of throwing an out of bounds error.
 func get_box_type() -> int:
-	return color_arr[0][0].y if color_arr and color_arr[0] else 0
+	return int(color_arr[0][0].y) if color_arr and color_arr[0] else 0
 
 
 ## Changes the PuzzleTileMap's food color index for this piece (brown, pink, bread, white)
