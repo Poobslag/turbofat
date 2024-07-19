@@ -247,7 +247,7 @@ func test_4ceb_career_data() -> void:
 	assert_eq(PlayerData.career.prev_distance_travelled, [134, 114])
 	assert_eq(PlayerData.career.prev_money, [4156, 2268])
 	assert_eq(PlayerData.career.remain_in_region, false)
-	assert_eq(PlayerData.career.seconds_played, 525)
+	assert_eq(PlayerData.career.seconds_played, 525.0)
 	assert_eq(PlayerData.career.skipped_previous_level, false)
 	assert_eq(PlayerData.career.steps, 25)
 	assert_eq(PlayerData.career.top_out_count, 1)
