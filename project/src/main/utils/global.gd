@@ -73,6 +73,11 @@ func get_overworld_ui() -> OverworldUi:
 	return nodes[0] if nodes else null
 
 
+func get_creature_editor_library() -> CreatureEditorLibrary:
+	var nodes := get_tree().get_nodes_in_group("creature_editor_library")
+	return nodes[0] if nodes else null
+
+
 ## Convert a coordinate from global coordinates to isometric (squashed) coordinates
 static func to_iso(vector: Vector2) -> Vector2:
 	return vector * ISO_FACTOR

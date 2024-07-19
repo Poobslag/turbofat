@@ -9,6 +9,7 @@ var _tween: SceneTreeTween
 
 onready var _category_selector: CategorySelector = get_node(category_selector_path)
 onready var _accent := $MenuAccentH3
+onready var _creature_editor_library := Global.get_creature_editor_library()
 
 func _ready() -> void:
 	# Workaround for Godot #20623 (https://github.com/godotengine/godot/issues/20623)
@@ -24,7 +25,7 @@ func _ready() -> void:
 
 func _on_CategorySelector_category_selected(category: int) -> void:
 	# update text
-	text = CreatureEditorLibrary.get_name_by_category_index(category, tr("???"))
+	text = _creature_editor_library.get_name_by_category_index(category, tr("???"))
 	
 	# update accent
 	_accent.refresh()

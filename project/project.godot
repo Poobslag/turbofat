@@ -280,6 +280,11 @@ _global_script_classes=[ {
 "path": "res://src/main/editor/creature/dialogs.gd"
 }, {
 "base": "Node",
+"class": "CreatureEditorLibrary",
+"language": "GDScript",
+"path": "res://src/main/editor/creature/creature-editor-library.gd"
+}, {
+"base": "Node",
 "class": "CreatureEditorOld",
 "language": "GDScript",
 "path": "res://src/demo/editor/creature-old/creature-editor-old.gd"
@@ -1619,6 +1624,7 @@ _global_script_class_icons={
 "CreatureDef": "",
 "CreatureEditorCategory": "",
 "CreatureEditorDialogs": "",
+"CreatureEditorLibrary": "",
 "CreatureEditorOld": "",
 "CreatureLibrary": "",
 "CreatureNameButton": "",
@@ -1913,6 +1919,7 @@ MusicTransition="*res://src/main/music/music-transition.gd"
 NameGeneratorLibrary="*res://src/main/world/creature/name-generator-library.gd"
 OtherLevelLibrary="*res://src/main/puzzle/other-level-library.gd"
 Pauser="*res://src/main/utils/pauser.gd"
+PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
 PlayerData="*res://src/main/data/player-data.gd"
 PlayerSave="*res://src/main/data/player-save.gd"
 PuzzleState="*res://src/main/puzzle/PuzzleState.tscn"
@@ -1922,8 +1929,6 @@ SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
 SfxKeeper="*res://src/main/utils/sfx-keeper.gd"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
-PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
-CreatureEditorLibrary="*res://src/main/editor/creature/creature-editor-library.gd"
 
 [debug]
 
