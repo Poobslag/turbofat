@@ -28,6 +28,10 @@ const FILENAMES_BY_SAVE_SLOT: Dictionary = {
 ## Filename for saving/loading system data. Can be changed for tests
 var data_filename := "user://config.json"
 
+## 'true' if the data filename has been overridden for tests. Prevents our save slot logic from resetting the filename
+## back to its default.
+var ignore_save_slot_filename := false
+
 ## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save"
 
@@ -188,8 +192,13 @@ func _load_line(type: String, _key: String, json_value) -> void:
 func _refresh_save_slot() -> void:
 	if not FILENAMES_BY_SAVE_SLOT.has(SystemData.misc_settings.save_slot):
 		SystemData.misc_settings.save_slot = MiscSettings.SaveSlot.SLOT_A
-	var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[SystemData.misc_settings.save_slot]
-	PlayerSave.data_filename = save_slot_filename
+	
+	if ignore_save_slot_filename:
+		# prevent filenames from changing if we're overriding them for tests
+		pass
+	else:
+		var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[SystemData.misc_settings.save_slot]
+		PlayerSave.data_filename = save_slot_filename
 
 
 func _on_MiscSettings_save_slot_changed() -> void:
