@@ -1,30 +1,29 @@
 extends GutTest
 
-const TEMP_FILENAME := "test-ripe-bucket.json"
-const TEMP_LEGACY_FILENAME := "test-oven-bucket.save"
+const TEMP_FILENAME := "user://test-ripe-bucket.json"
+const TEMP_LEGACY_FILENAME := "user://test-oven-bucket.save"
 
 func before_each() -> void:
-	SystemSave.data_filename = "user://%s" % TEMP_FILENAME
-	SystemSave.legacy_filename = "user://%s" % TEMP_LEGACY_FILENAME
+	SystemSave.data_filename = TEMP_FILENAME
+	SystemSave.legacy_filename = TEMP_LEGACY_FILENAME
 	SystemData.reset()
 
 
 func after_each() -> void:
-	var save_dir := Directory.new()
-	save_dir.open("user://")
-	save_dir.remove(TEMP_FILENAME)
-	save_dir.remove(TEMP_LEGACY_FILENAME)
+	var dir := Directory.new()
+	dir.remove(TEMP_FILENAME)
+	dir.remove(TEMP_LEGACY_FILENAME)
 
 
 func load_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
+	dir.copy("res://assets/test/data/%s" % filename, TEMP_FILENAME)
 	SystemSave.load_system_data()
 
 
 func load_legacy_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
+	dir.copy("res://assets/test/data/%s" % filename, TEMP_LEGACY_FILENAME)
 	SystemSave.load_system_data()
 
 

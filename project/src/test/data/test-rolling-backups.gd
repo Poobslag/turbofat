@@ -1,11 +1,11 @@
 extends GutTest
 
-const TEMP_FILENAME := "test837.save"
+const TEMP_FILENAME := "user://test837.save"
 
 var _backups := RollingBackups.new()
 
 func before_each() -> void:
-	_backups.data_filename = "user://%s" % TEMP_FILENAME
+	_backups.data_filename = TEMP_FILENAME
 
 
 func after_each() -> void:
