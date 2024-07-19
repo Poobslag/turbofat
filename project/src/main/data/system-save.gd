@@ -145,16 +145,9 @@ func get_save_slot_name(save_slot: int) -> String:
 ## Deletes the specified save slot and all of its backups.
 func delete_save_slot(save_slot: int) -> void:
 	var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
-	
 	var rolling_backups := RollingBackups.new()
 	rolling_backups.data_filename = save_slot_filename
-	for backup in [RollingBackups.CURRENT,
-			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
-			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
-			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK]:
-		var rolling_filename := rolling_backups.rolling_filename(backup)
-		Directory.new().remove(rolling_filename)
-	
+	rolling_backups.delete_all_backups()
 	emit_signal("save_slot_deleted")
 
 
