@@ -15,13 +15,9 @@ func after_each() -> void:
 	var dir := Directory.new()
 	dir.remove(TEMP_SYSTEM_FILENAME)
 	dir.remove(TEMP_LEGACY_FILENAME)
-	for backup in [
-			RollingBackups.CURRENT,
-			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
-			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
-			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK,
-			RollingBackups.LEGACY]:
-		dir.remove(PlayerSave.rolling_backups.rolling_filename(backup))
+	var rolling_backups := RollingBackups.new()
+	rolling_backups.data_filename = TEMP_PLAYER_FILENAME
+	rolling_backups.delete_all_backups()
 
 
 func test_save_and_load() -> void:

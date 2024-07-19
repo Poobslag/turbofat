@@ -159,3 +159,10 @@ func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
 	if not dir.file_exists(this_filename):
 		# populate the 'this-xxx' backup from the current save
 		dir.copy(data_filename, this_filename)
+
+
+## Delete the current save and all backups.
+func delete_all_backups() -> void:
+	for backup in [CURRENT, THIS_HOUR, PREV_HOUR, THIS_DAY, PREV_DAY, THIS_WEEK, PREV_WEEK]:
+		var rolling_filename := rolling_filename(backup)
+		Directory.new().remove(rolling_filename)
