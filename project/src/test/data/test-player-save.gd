@@ -1,11 +1,11 @@
 extends GutTest
 
-const TEMP_FILENAME := "test936.save"
+const TEMP_FILENAME := "user://test936.save"
 
 var _rank_result: RankResult
 
 func before_each() -> void:
-	PlayerSave.data_filename = "user://%s" % TEMP_FILENAME
+	PlayerSave.data_filename = TEMP_FILENAME
 	PlayerData.reset()
 	
 	_rank_result = RankResult.new()

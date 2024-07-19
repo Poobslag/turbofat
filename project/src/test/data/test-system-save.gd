@@ -1,19 +1,18 @@
 extends GutTest
 
-const TEMP_PLAYER_FILENAME := "test253.save"
-const TEMP_SYSTEM_FILENAME := "test254.json"
-const TEMP_LEGACY_FILENAME := "test255.save"
+const TEMP_PLAYER_FILENAME := "user://test253.save"
+const TEMP_SYSTEM_FILENAME := "user://test254.json"
+const TEMP_LEGACY_FILENAME := "user://test255.save"
 
 func before_each() -> void:
-	PlayerSave.data_filename = "user://%s" % TEMP_PLAYER_FILENAME
-	SystemSave.data_filename = "user://%s" % TEMP_SYSTEM_FILENAME
-	SystemSave.legacy_filename = "user://%s" % TEMP_LEGACY_FILENAME
+	PlayerSave.data_filename = TEMP_PLAYER_FILENAME
+	SystemSave.data_filename = TEMP_SYSTEM_FILENAME
+	SystemSave.legacy_filename = TEMP_LEGACY_FILENAME
 	SystemData.reset()
 
 
 func after_each() -> void:
 	var dir := Directory.new()
-	dir.open("user://")
 	dir.remove(TEMP_SYSTEM_FILENAME)
 	dir.remove(TEMP_LEGACY_FILENAME)
 	for backup in [
