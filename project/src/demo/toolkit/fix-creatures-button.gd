@@ -13,6 +13,9 @@ export (NodePath) var output_label_path: NodePath
 ## string creature paths which have been successfully converted to the newest version
 var _converted := []
 
+## string creature paths which have been recolored
+var _recolored := []
+
 ## label for outputting messages to the user
 onready var _output_label: Label = get_node(output_label_path)
 
@@ -189,11 +192,91 @@ func _report_creatures_without_id() -> void:
 		_output_label.add_line("Missing creature ids: %s" % [missing_creature_ids])
 
 
+## Recolors the specified creature using the Creature Editor's color palettes.
+func _recolor_creature(path: String) -> void:
+	var color_change_count := 0
+	var old_text := FileUtils.get_file_as_text(path)
+	var old_json: Dictionary = parse_json(old_text)
+	var creature_def := CreatureDef.new()
+	creature_def.from_json_dict(old_json)
+	var new_dna := creature_def.dna.duplicate()
+	
+	# Create an ordered list of all color properties. Move line_rgb and hair_rgb to the end, because they depend on
+	# body_rgb
+	var color_properties := CreatureEditorLibrary.COLOR_PRESETS_BY_COLOR_PROPERTY.keys()
+	for color_property in ["line_rgb", "hair_rgb"]:
+		color_properties.remove(color_properties.find(color_property))
+		color_properties.append(color_property)
+	
+	for color_property in color_properties:
+		var color_presets: Array = CreatureEditorLibrary.get_color_presets(new_dna, color_property)
+		var dna_color: Color = _get_dna_color(new_dna, color_property)
+		var closest_preset := _find_closest_preset(color_presets, dna_color)
+		if closest_preset.to_html(false) != dna_color.to_html(false):
+			color_change_count += 1
+			_set_dna_color(new_dna, color_property, closest_preset)
+	
+	if color_change_count > 0:
+		creature_def.dna = new_dna
+		var new_json := creature_def.to_json_dict()
+		var new_text := Utils.print_json(new_json)
+		FileUtils.write_file(path, new_text)
+		_recolored.append(path)
+
+
+func _get_dna_color(dna: Dictionary, color_property: String) -> Color:
+	var result: Color
+	if color_property == "eye_rgb_0":
+		result = Color(dna["eye_rgb"].split(" ")[0])
+	elif color_property == "eye_rgb_1":
+		result = Color(dna["eye_rgb"].split(" ")[1])
+	else:
+		result = Color(dna[color_property])
+	return result
+
+
+func _set_dna_color(dna: Dictionary, color_property: String, color: Color) -> void:
+	if color_property == "eye_rgb_0":
+		dna["eye_rgb"] = "%s %s" % [color.to_html(false), dna["eye_rgb"].split(" ")[1]]
+	elif color_property == "eye_rgb_1":
+		dna["eye_rgb"] = "%s %s" % [dna["eye_rgb"].split(" ")[0], color.to_html(false)]
+	else:
+		dna[color_property] = color.to_html(false)
+
+
+func _find_closest_preset(color_presets: Array, target_color: Color) -> Color:
+	var closest_preset: Color = color_presets[0]
+	var closest_distance := 999999.0
+	for color_preset in color_presets:
+		var distance := Utils.color_distance_rgb(color_preset, target_color)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_preset = color_preset
+		
+		if closest_preset.to_html(false) == target_color.to_html(false):
+			break
+	return closest_preset
+
+
+## Recursively searches for creatures, recoloring them using the Creature Editor's color palettes.
+func _recolor_creatures() -> void:
+	_recolored.clear()
+	
+	var creature_paths := _find_creature_paths()
+	for creature_path in creature_paths:
+		_recolor_creature(creature_path)
+	
+	if _recolored:
+		_output_label.add_line("Recolored %d creatures." \
+				% [_recolored.size()])
+
+
 func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_creatures()
 	_report_story_creatures()
 	_report_population_creatures()
 	_report_creatures_without_id()
+	_recolor_creatures()
 	if _output_label.text.empty():
 		_output_label.text = "No creature files have problems."

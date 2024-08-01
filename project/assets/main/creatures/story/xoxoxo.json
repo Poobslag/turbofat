@@ -25,8 +25,8 @@
     "glass_rgb": "508e44",
     "plastic_rgb": "c49877",
     "hair_rgb": "2c3c2b",
-    "eye_rgb": "ccd44d ffffd9",
-    "horn_rgb": "959f78"
+    "eye_rgb": "ccd44d ffffff",
+    "horn_rgb": "98a49a"
   },
   "chat_theme": {
     "accent_scale": 0.5,

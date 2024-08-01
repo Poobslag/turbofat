@@ -19,14 +19,14 @@
     "tail": "7",
     "accessory": "0",
     "line_rgb": "6c4331",
-    "body_rgb": "f6bd44",
+    "body_rgb": "f9bb4a",
     "belly_rgb": "fde8c9",
     "cloth_rgb": "ecdf32",
     "glass_rgb": "f4ec80",
     "plastic_rgb": "f28c2a",
-    "hair_rgb": "477d5b",
+    "hair_rgb": "3e7e32",
     "eye_rgb": "91e6ff ffffff",
-    "horn_rgb": "f7ecf1"
+    "horn_rgb": "fde9e7"
   },
   "chat_theme": {
     "accent_scale": 1.75,

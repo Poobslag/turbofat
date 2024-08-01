@@ -22,10 +22,10 @@
     "body_rgb": "737373",
     "belly_rgb": "fe5911",
     "cloth_rgb": "95c152",
-    "glass_rgb": "232521",
+    "glass_rgb": "1d1d1d",
     "plastic_rgb": "5e885a",
     "hair_rgb": "bdab30",
-    "eye_rgb": "d25e00 ffebff",
+    "eye_rgb": "d25e00 ffe8eb",
     "horn_rgb": "fa6400"
   },
   "chat_theme": {

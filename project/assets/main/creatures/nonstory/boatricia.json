@@ -11,7 +11,7 @@
     "cheek": "2",
     "ear": "2",
     "eye": "3",
-    "eye_rgb": "fad541 ffffff",
+    "eye_rgb": "f5d561 ffffff",
     "head": "1",
     "horn": "0",
     "horn_rgb": "282828",
@@ -20,7 +20,13 @@
     "nose": "2",
     "tail": "3",
     "bellybutton": "0",
-    "accessory": "0"
+    "accessory": "0",
+    "collar": "0",
+    "hair": "0",
+    "cloth_rgb": "282828",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "f1e398"
   },
   "chat_theme": {
     "accent_scale": 4,
