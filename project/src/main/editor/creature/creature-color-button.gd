@@ -7,10 +7,15 @@ extends TextureButton
 
 signal color_changed(color)
 
+signal about_to_show
+
 ## Repeating piece shapes which decorate the button.
 export (CandyButtons.ButtonShape) var shape setget set_shape
 
 var creature_color: Color setget set_creature_color
+
+## Virtual property; value is only exposed through getters/setters
+var color_presets := [] setget set_color_presets
 
 ## List of String allele combos for which this button should be enabled. If unset, the button is always enabled.
 var enabled_if := []
@@ -56,6 +61,10 @@ func _pressed() -> void:
 	popup_position.y = clamp(popup_position.y, 0, screen_size.y - _popup.rect_size.y)
 	
 	_popup.popup(Rect2(popup_position, _popup.rect_size))
+
+
+func set_color_presets(new_color_presets: Array) -> void:
+	_popup.color_presets = new_color_presets
 
 
 func set_disabled(new_disabled: bool) -> void:
@@ -171,3 +180,7 @@ func _on_mouse_exited() -> void:
 func _on_Popup_color_changed(color: Color) -> void:
 	set_creature_color(color)
 	emit_signal("color_changed", color)
+
+
+func _on_Popup_about_to_show() -> void:
+	emit_signal("about_to_show")

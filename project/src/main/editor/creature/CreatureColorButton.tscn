@@ -61,11 +61,10 @@ texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 8 )
 
 [node name="Popup" parent="." instance=ExtResource( 4 )]
-margin_right = 236.0
-margin_bottom = 406.0
 
 [node name="ClickSound" parent="." instance=ExtResource( 7 )]
 
 [node name="HoverSound" parent="." instance=ExtResource( 5 )]
 
+[connection signal="about_to_show" from="Popup" to="." method="_on_Popup_about_to_show"]
 [connection signal="color_changed" from="Popup" to="." method="_on_Popup_color_changed"]

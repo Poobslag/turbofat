@@ -202,3 +202,8 @@ func test_is_json_deep_equal_recursive() -> void:
 	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"e": [1, 2, 3]}}))
 	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 4, "e": [1, 2, 3], "f": 5}}))
 	assert_eq(false, Utils.is_json_deep_equal(dict1, {"a": 10, "b": 2, "c": {"d": 5, "e": [1, 2, 3]}}))
+
+
+func test_color_distance_rgb() -> void:
+	assert_eq(0.0, Utils.color_distance_rgb(Color("1a1a1a"), Color("1a1a1a")))
+	assert_almost_eq(sqrt(3), Utils.color_distance_rgb(Color("000000"), Color("ffffff")), 0.001)
