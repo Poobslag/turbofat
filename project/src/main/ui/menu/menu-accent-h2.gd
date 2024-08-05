@@ -53,7 +53,7 @@ func _ready() -> void:
 
 
 ## Preemptively initializes onready variables to avoid null references.
-func enter_tree() -> void:
+func _enter_tree() -> void:
 	_initialize_onready_variables()
 
 
