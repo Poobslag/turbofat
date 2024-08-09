@@ -987,6 +987,7 @@ bus = "Sound Bus"
 [connection signal="popup_hide" from="Buttons/Dialogs/UnsavedChangesConfirmation" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Buttons/Dialogs/Import" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Buttons/Dialogs/Import" to="." method="_on_Import_file_selected"]
+[connection signal="file_selected" from="Buttons/Dialogs/Import" to="CreatureSaver" method="_on_Import_file_selected"]
 [connection signal="popup_hide" from="Buttons/Dialogs/Import" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Buttons/Dialogs/Export" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Buttons/Dialogs/Export" to="." method="_on_Export_file_selected"]
