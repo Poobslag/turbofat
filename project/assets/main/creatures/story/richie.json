@@ -20,12 +20,12 @@
     "accessory": "1",
     "line_rgb": "41281e",
     "body_rgb": "b24b10",
-    "belly_rgb": "d98227",
-    "cloth_rgb": "ffd256",
+    "belly_rgb": "d58944",
+    "cloth_rgb": "fad541",
     "glass_rgb": "ffd256",
-    "plastic_rgb": "252422",
+    "plastic_rgb": "292828",
     "hair_rgb": "d98227",
-    "eye_rgb": "7c4725 b8ad9f",
+    "eye_rgb": "7d4c21 a8ad89",
     "horn_rgb": "4c5245"
   },
   "chat_theme": {

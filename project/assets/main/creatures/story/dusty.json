@@ -21,11 +21,11 @@
     "line_rgb": "6c4331",
     "body_rgb": "a854cb",
     "belly_rgb": "bb73dd",
-    "cloth_rgb": "25291b",
+    "cloth_rgb": "282828",
     "glass_rgb": "4e50a9",
     "plastic_rgb": "292828",
     "hair_rgb": "40342d",
-    "eye_rgb": "25291b 606060",
+    "eye_rgb": "282828 606060",
     "horn_rgb": "e38a61"
   },
   "chat_theme": {

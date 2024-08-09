@@ -17,14 +17,16 @@
     "tail": "1",
     "belly": "1",
     "line_rgb": "6c4331",
-    "body_rgb": "ffa32c",
-    "belly_rgb": "f8d196",
-    "cloth_rgb": "fcf9f9",
+    "body_rgb": "ffb12c",
+    "belly_rgb": "ffcd78",
+    "cloth_rgb": "ffffff",
     "hair_rgb": "f50808",
     "eye_rgb": "f92a2a e5cd7d",
     "horn_rgb": "f1e398",
     "bellybutton": "0",
-    "accessory": "0"
+    "accessory": "0",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828"
   },
   "chat_theme": {
     "accent_scale": 1,
@@ -33,6 +35,6 @@
     "color": "ffa32c"
   },
   "customer_if": "region_started marsh",
-  "weight_gain_scale": 0.25,
-  "metabolism_scale": 4
+  "metabolism_scale": 4,
+  "weight_gain_scale": 0.25
 }

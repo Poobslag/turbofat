@@ -24,8 +24,8 @@
     "cloth_rgb": "fad4cf",
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "f55034",
-    "hair_rgb": "fffaff",
-    "eye_rgb": "74a27f fffaff",
+    "hair_rgb": "ffffff",
+    "eye_rgb": "74a27f ffffff",
     "horn_rgb": "fde9e7"
   },
   "chat_theme": {

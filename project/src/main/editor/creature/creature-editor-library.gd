@@ -182,13 +182,22 @@ func get_operations_by_category_index(category_index: int) -> Array:
 	return result
 
 
+func _load_raw_json_data() -> void:
+	var categories_text := FileUtils.get_file_as_text(CATEGORIES_PATH)
+	var categories_json: Dictionary = parse_json(categories_text)
+	for category_json in categories_json.get("categories", []):
+		var category := CreatureEditorCategory.new()
+		category.from_json_dict(category_json)
+		categories.append(category)
+
+
 ## Return the color presets to show in the creature editor.
 ##
 ## Parameters:
 ## 	'creature_dna': The dna for the creature whose presets should be shown.
 ##
 ## 	'color_property': The color property being edited, such as 'belly_rgb'.
-func get_color_presets(creature_dna: Dictionary, color_property: String) -> Array:
+static func get_color_presets(creature_dna: Dictionary, color_property: String) -> Array:
 	var result := []
 	result.append_array(COLOR_PRESETS_BY_COLOR_PROPERTY[color_property])
 	
@@ -199,12 +208,3 @@ func get_color_presets(creature_dna: Dictionary, color_property: String) -> Arra
 			result.append(Color(creature_dna["body_rgb"]))
 	
 	return result
-
-
-func _load_raw_json_data() -> void:
-	var categories_text := FileUtils.get_file_as_text(CATEGORIES_PATH)
-	var categories_json: Dictionary = parse_json(categories_text)
-	for category_json in categories_json.get("categories", []):
-		var category := CreatureEditorCategory.new()
-		category.from_json_dict(category_json)
-		categories.append(category)

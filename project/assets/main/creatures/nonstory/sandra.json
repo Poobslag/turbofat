@@ -18,15 +18,15 @@
     "nose": "2",
     "tail": "5",
     "accessory": "0",
-    "line_rgb": "a05f35",
+    "line_rgb": "857350",
     "body_rgb": "c7ac78",
-    "belly_rgb": "fef3bb",
+    "belly_rgb": "fff4b2",
     "cloth_rgb": "6e99ca",
     "glass_rgb": "ffffff",
-    "plastic_rgb": "111111",
+    "plastic_rgb": "121011",
     "hair_rgb": "a05f35",
-    "eye_rgb": "7c5a46 f8f8f8",
-    "horn_rgb": "f8f8f8"
+    "eye_rgb": "7c5a46 fff6df",
+    "horn_rgb": "fdfcec"
   },
   "chat_theme": {
     "accent_scale": 0.88,

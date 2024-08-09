@@ -5,7 +5,7 @@
   "short_name": "Ebe",
   "dna": {
     "belly": "1",
-    "belly_rgb": "ffeffc",
+    "belly_rgb": "fffaff",
     "body": "1",
     "body_rgb": "feceef",
     "cheek": "2",
@@ -13,16 +13,20 @@
     "collar": "1",
     "ear": "1",
     "eye": "1",
-    "eye_rgb": "ffddf4 ffffff",
+    "eye_rgb": "fad4cf ffffff",
     "head": "3",
     "horn": "2",
-    "horn_rgb": "ffffff",
+    "horn_rgb": "fdfcec",
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "2",
     "tail": "4",
     "bellybutton": "0",
-    "accessory": "0"
+    "accessory": "0",
+    "hair": "0",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "f1e398"
   },
   "chat_theme": {
     "accent_scale": 2.3,

@@ -18,13 +18,15 @@
     "belly": "2",
     "line_rgb": "6c4331",
     "body_rgb": "f9bb4a",
-    "belly_rgb": "fac978",
+    "belly_rgb": "ffcd78",
     "cloth_rgb": "f9a74c",
     "hair_rgb": "b47922",
     "eye_rgb": "7d4c21 e5cd7d",
     "horn_rgb": "b47922",
     "bellybutton": "0",
-    "accessory": "0"
+    "accessory": "0",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828"
   },
   "chat_theme": {
     "accent_scale": 1.15,

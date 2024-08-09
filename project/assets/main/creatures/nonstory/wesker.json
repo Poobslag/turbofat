@@ -24,7 +24,9 @@
     "eye_rgb": "f9a74c fff6df",
     "horn_rgb": "4c5245",
     "bellybutton": "0",
-    "accessory": "0"
+    "accessory": "0",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828"
   },
   "chat_theme": {
     "accent_swapped": true,
