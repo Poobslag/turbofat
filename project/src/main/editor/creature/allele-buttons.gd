@@ -259,6 +259,8 @@ func _add_color_buttons(category: int) -> void:
 				creature_color_html = _player().dna[color_property]
 		color_button.creature_color = Color(creature_color_html)
 		color_button.enabled_if = _creature_editor_library.get_color_property_enabled_if(category, color_property)
+		color_button.connect("about_to_show", self, "_on_CreatureColorButton_about_to_show",
+				[color_button, color_property])
 		color_button.connect("color_changed", self, "_on_CreatureColorButton_color_changed", [color_property])
 
 
@@ -373,3 +375,10 @@ func _on_OperationButton_pressed(operation_button: OperationButton) -> void:
 	emit_signal("operation_button_pressed", operation_button.id)
 	if operation_button.id == "save":
 		operation_button.disabled = true
+
+
+## Before showing the CreatureColorButton popup, populate the list of color presets.
+##
+## Some of these presets such as for 'line_rgb' change based on the creature's body color.
+func _on_CreatureColorButton_about_to_show(color_button: CreatureColorButton, color_property: String) -> void:
+	color_button.color_presets = _creature_editor_library.get_color_presets(_player().dna, color_property)

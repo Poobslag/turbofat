@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/main/ui/candy-button/HsvSlider.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/candy-button/CandyColorPickerButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/main/ui/candy-button/candy-color-picker.gd" type="Script" id=6]
+[ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=7]
+
+[sub_resource type="StyleBoxFlat" id=459]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 0.866667, 0.6, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="DynamicFont" id=460]
+size = 1
+font_data = ExtResource( 3 )
+
+[node name="ColorPicker" type="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -272.0
+margin_bottom = -300.0
+rect_min_size = Vector2( 240, 0 )
+theme = ExtResource( 7 )
+custom_styles/panel = SubResource( 459 )
+script = ExtResource( 6 )
+CandyColorPickerButtonScene = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 234.0
+margin_bottom = 94.0
+
+[node name="PresetsContainer" type="GridContainer" parent="VBoxContainer"]
+margin_right = 228.0
+margin_bottom = 20.0
+columns = 8
+
+[node name="Button" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.854902, 0.321569, 0.321569, 1 )
+
+[node name="Button2" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 29.0
+margin_right = 54.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.266667, 0.419608, 0.827451, 1 )
+
+[node name="Button3" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 58.0
+margin_right = 83.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.854902, 0.321569, 0.321569, 1 )
+
+[node name="Button4" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 87.0
+margin_right = 112.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.266667, 0.419608, 0.827451, 1 )
+
+[node name="Button5" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 116.0
+margin_right = 141.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.854902, 0.321569, 0.321569, 1 )
+
+[node name="Button6" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 145.0
+margin_right = 170.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.266667, 0.419608, 0.827451, 1 )
+
+[node name="Button7" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 174.0
+margin_right = 199.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.854902, 0.321569, 0.321569, 1 )
+
+[node name="Button8" parent="VBoxContainer/PresetsContainer" instance=ExtResource( 2 )]
+margin_left = 203.0
+margin_right = 228.0
+custom_fonts/font = SubResource( 460 )
+clip_text = true
+color = Color( 0.266667, 0.419608, 0.827451, 1 )
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+margin_top = 26.0
+margin_right = 228.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="HsvContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 228.0
+margin_bottom = 98.0
+custom_constants/separation = 1
+
+[node name="HueSlider" parent="VBoxContainer/HsvContainer" instance=ExtResource( 1 )]
+margin_right = 228.0
+margin_bottom = 20.0
+text = "H"
+value = 100
+
+[node name="SaturationSlider" parent="VBoxContainer/HsvContainer" instance=ExtResource( 1 )]
+margin_top = 21.0
+margin_right = 228.0
+margin_bottom = 41.0
+text = "S"
+value = 100
+
+[node name="ValueSlider" parent="VBoxContainer/HsvContainer" instance=ExtResource( 1 )]
+margin_top = 42.0
+margin_right = 228.0
+margin_bottom = 62.0
+text = "V"
+value = 100
+
+[connection signal="resized" from="VBoxContainer" to="." method="_on_VBoxContainer_resized"]
+[connection signal="value_changed" from="VBoxContainer/HsvContainer/HueSlider" to="." method="_on_HsvSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HsvContainer/SaturationSlider" to="." method="_on_HsvSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HsvContainer/ValueSlider" to="." method="_on_HsvSlider_value_changed"]

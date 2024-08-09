@@ -7,7 +7,7 @@ extends Node
 ## Colors used for creature's outlines
 const LINE_COLORS := ["6c4331", "41281e", "3c3c3d"]
 
-## Palettes used for recoloring creatures
+## Palettes used for recoloring creatures. Used for the old creature editor, and for randomly generated customers.
 const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "b23823", "belly_rgb": "c9442a",
 		"hair_rgb": "af845c", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",

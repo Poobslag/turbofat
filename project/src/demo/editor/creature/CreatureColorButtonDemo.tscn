@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=2]
 [ext_resource path="res://src/main/editor/creature/CreatureColorButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/demo/editor/creature/creature-color-button-demo.gd" type="Script" id=4]
 
 [sub_resource type="GradientTexture2D" id=1]
 resource_local_to_scene = true
@@ -55,6 +56,7 @@ shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 9 )
 
 [node name="Node" type="Node"]
+script = ExtResource( 4 )
 
 [node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
@@ -185,3 +187,17 @@ margin_bottom = -46.0
 rect_min_size = Vector2( 80, 64 )
 toggle_mode = false
 shortcut_in_tooltip = false
+
+[node name="ColorAnalysis" type="Control" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/ColorAnalysis"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+readonly = true

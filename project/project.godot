@@ -84,6 +84,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/candy-button/candy-buttons.gd"
 }, {
+"base": "Panel",
+"class": "CandyColorPicker",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/candy-color-picker.gd"
+}, {
+"base": "Button",
+"class": "CandyColorPickerButton",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/candy-color-picker-button.gd"
+}, {
 "base": "Reference",
 "class": "CareerCutsceneLibrarian",
 "language": "GDScript",
@@ -598,6 +608,11 @@ _global_script_classes=[ {
 "class": "HookableRegionGradeLabel",
 "language": "GDScript",
 "path": "res://src/main/career/ui/hookable-region-grade-label.gd"
+}, {
+"base": "HBoxContainer",
+"class": "HsvSlider",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/hsv-slider.gd"
 }, {
 "base": "ColorRect",
 "class": "HudFlash",
@@ -1585,6 +1600,8 @@ _global_script_class_icons={
 "CandyButtonC3": "",
 "CandyButtonCollapsible": "",
 "CandyButtons": "",
+"CandyColorPicker": "",
+"CandyColorPickerButton": "",
 "CareerCutsceneLibrarian": "",
 "CareerData": "",
 "CareerLevel": "",
@@ -1688,6 +1705,7 @@ _global_script_class_icons={
 "HoldPieceDisplays": "",
 "HookableLevelGradeLabel": "",
 "HookableRegionGradeLabel": "",
+"HsvSlider": "",
 "HudFlash": "",
 "IdleTimer": "",
 "ImageButton": "",
