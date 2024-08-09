@@ -491,6 +491,7 @@ margin_left = -472.0
 margin_top = -260.0
 margin_right = 472.0
 margin_bottom = 260.0
+mouse_filter = 2
 
 [node name="CategorySelector" type="HBoxContainer" parent="Buttons/VBoxContainer"]
 margin_right = 944.0
@@ -729,11 +730,13 @@ margin_top = 68.0
 margin_right = 944.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
 
 [node name="AlleleButtons" type="Control" parent="Buttons/VBoxContainer"]
 margin_top = 122.0
 margin_right = 944.0
 margin_bottom = 520.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 21 )
@@ -975,8 +978,8 @@ bus = "Sound Bus"
 [connection signal="pressed" from="Buttons/SystemButtons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="category_selected" from="Buttons/VBoxContainer/CategorySelector" to="DropPanel/CategoryLabel" method="_on_CategorySelector_category_selected"]
 [connection signal="category_selected" from="Buttons/VBoxContainer/CategorySelector" to="Buttons/VBoxContainer/AlleleButtons" method="_on_CategorySelector_category_selected"]
-[connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="Buttons/VBoxContainer/CategorySelector" method="_on_AlleleButtons_allele_buttons_refreshed"]
 [connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="Buttons/SystemButtons" method="_on_AlleleButtons_allele_buttons_refreshed"]
+[connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="Buttons/VBoxContainer/CategorySelector" method="_on_AlleleButtons_allele_buttons_refreshed"]
 [connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="FatnessChanger" method="_on_AlleleButtons_allele_buttons_refreshed"]
 [connection signal="operation_button_pressed" from="Buttons/VBoxContainer/AlleleButtons" to="." method="_on_AlleleButtons_operation_button_pressed"]
 [connection signal="operation_button_pressed" from="Buttons/VBoxContainer/AlleleButtons" to="FatnessChanger" method="_on_AlleleButtons_operation_button_pressed"]
