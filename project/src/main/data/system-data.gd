@@ -37,6 +37,7 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("fullscreen"):
 		SystemData.graphics_settings.fullscreen = !SystemData.graphics_settings.fullscreen
+		SystemSave.save_system_data()
 		get_tree().set_input_as_handled()
 
 
