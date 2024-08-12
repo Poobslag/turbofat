@@ -22,6 +22,11 @@ func _enter_tree() -> void:
 	_status_icon = $StatusIcon
 
 
+func _process(_delta: float) -> void:
+	modulate.a = button.modulate.a
+	visible = button.visible
+
+
 ## Assigns this label's button, and updates the label's appearance.
 func set_button(new_button: LevelSelectButton) -> void:
 	if button == new_button:

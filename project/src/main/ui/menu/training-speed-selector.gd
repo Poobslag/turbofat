@@ -11,7 +11,7 @@ var speed_names: Array setget set_speed_names
 ## If true, the slider can be interacted with. If false, the value can be changed only by code.
 var editable: bool = false setget set_editable
 
-onready var _slider := $Slider
+onready var _slider := $SliderPanel/Slider
 onready var _labels := $Labels
 
 func set_editable(new_editable: bool) -> void:
@@ -69,7 +69,7 @@ func _refresh_labels() -> void:
 	# toggle color based on editable property
 	for i in range(_labels.get_child_count()):
 		var label: Label = _labels.get_child(i)
-		label.set("custom_colors/font_color", Color.white if editable else Color.black)
+		label.set("custom_colors/font_color", Color.white if editable else Color("41281e"))
 	
 	# outermost labels take up less space; this helps the ticks align better
 	if _labels.get_child_count() > 0:

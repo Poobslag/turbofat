@@ -12,7 +12,7 @@ outline_size = 2
 outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 font_data = ExtResource( 1 )
 
-[node name="Control" type="Control"]
+[node name="LevelSelectButton" type="Control"]
 margin_right = 120.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 120, 80 )

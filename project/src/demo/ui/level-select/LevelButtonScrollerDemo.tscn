@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/ui/level-select/LevelButtonScroller.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=2]
+[ext_resource path="res://src/demo/ui/level-select/level-button-scroller-demo.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=4]
+
+[node name="LevelButtonScrollerDemo" type="Node"]
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -217.0
+margin_right = 512.0
+margin_bottom = 217.0
+
+[node name="PressedCheckButton" type="CheckButton" parent="VBoxContainer"]
+margin_left = 361.0
+margin_right = 663.0
+margin_bottom = 40.0
+size_flags_horizontal = 4
+theme = ExtResource( 4 )
+text = "Signal: 'central_button_pressed'"
+
+[node name="Timer" type="Timer" parent="VBoxContainer/PressedCheckButton"]
+one_shot = true
+
+[node name="ChangedCheckButton" type="CheckButton" parent="VBoxContainer"]
+margin_left = 359.0
+margin_top = 44.0
+margin_right = 664.0
+margin_bottom = 84.0
+size_flags_horizontal = 4
+theme = ExtResource( 4 )
+text = "Signal: 'central_button_changed'"
+
+[node name="Timer" type="Timer" parent="VBoxContainer/ChangedCheckButton"]
+one_shot = true
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_left = 462.0
+margin_top = 88.0
+margin_right = 562.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 4
+theme = ExtResource( 2 )
+text = "Button"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_left = 462.0
+margin_top = 142.0
+margin_right = 562.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 4
+theme = ExtResource( 2 )
+text = "Button"
+
+[node name="LevelButtonScroller" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 196.0
+margin_right = 1024.0
+margin_bottom = 326.0
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_left = 462.0
+margin_top = 330.0
+margin_right = 562.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 4
+theme = ExtResource( 2 )
+text = "Button"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+margin_left = 462.0
+margin_top = 384.0
+margin_right = 562.0
+margin_bottom = 434.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 4
+theme = ExtResource( 2 )
+text = "Button"
+
+[connection signal="pressed" from="VBoxContainer/PressedCheckButton" to="." method="_on_PressedCheckButton_pressed"]
+[connection signal="timeout" from="VBoxContainer/PressedCheckButton/Timer" to="." method="_on_PressedTimer_timeout"]
+[connection signal="pressed" from="VBoxContainer/ChangedCheckButton" to="." method="_on_ChangedCheckButton_pressed"]
+[connection signal="timeout" from="VBoxContainer/ChangedCheckButton/Timer" to="." method="_on_ChangedTimer_timeout"]
+[connection signal="central_button_changed" from="VBoxContainer/LevelButtonScroller" to="." method="_on_LevelButtonScroller_central_button_changed"]
+[connection signal="central_button_pressed" from="VBoxContainer/LevelButtonScroller" to="." method="_on_LevelButtonScroller_central_button_pressed"]

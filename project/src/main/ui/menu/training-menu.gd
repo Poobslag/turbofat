@@ -6,7 +6,7 @@ const DEFAULT_REGION_ID := OtherRegion.ID_MARATHON
 const DEFAULT_LEVEL_ID := "practice/marathon_normal"
 
 export (NodePath) var high_scores_path: NodePath
-export (NodePath) var level_button_path: NodePath
+export (NodePath) var level_button_scroller_path: NodePath
 export (NodePath) var level_description_label_path: NodePath
 export (NodePath) var speed_selector_path: NodePath
 export (NodePath) var start_button_path: NodePath
@@ -21,7 +21,7 @@ var _level_settings: LevelSettings = LevelSettings.new()
 var _piece_speed: String
 
 onready var _high_scores: Panel = get_node(high_scores_path)
-onready var _level_button: Button = get_node(level_button_path)
+onready var _level_button_scroller: LevelButtonScroller = get_node(level_button_scroller_path)
 onready var _level_description_label: Label = get_node(level_description_label_path)
 onready var _speed_selector: PracticeSpeedSelector = get_node(speed_selector_path)
 onready var _start_button: BaseButton = get_node(start_button_path)
@@ -36,7 +36,7 @@ func _ready() -> void:
 	_assign_default_recent_data()
 	_load_recent_data()
 	
-	_refresh_level_button()
+	_refresh_level_button_scroller()
 	_refresh_speed_selector()
 	_refresh_high_scores()
 	
@@ -105,25 +105,11 @@ func _refresh_input_focus_mode() -> void:
 	var submenu_visible: bool = _level_submenu.visible or _region_submenu.visible
 	for node in get_tree().get_nodes_in_group("main_practice_inputs"):
 		node.focus_mode = FOCUS_NONE if submenu_visible else FOCUS_ALL
+	_level_button_scroller.visible = not submenu_visible
 
 
-## Updates the level button to show the current level's name.
-func _refresh_level_button() -> void:
-	var new_level_button_text := _level_button.text
-	if _region is CareerRegion:
-		new_level_button_text = "%s: %s" % [PlayerData.career.obfuscated_region_name(_region), _level_settings.name]
-	else:
-		if _region.has_flag(OtherRegion.FLAG_TRAINING):
-			new_level_button_text = _level_settings.name
-		else:
-			new_level_button_text = "%s: %s" % [_region.branch_name, _level_settings.name]
-	
-	# truncate long level names
-	if new_level_button_text.length() > 40:
-		new_level_button_text = "%s..." % [new_level_button_text.substr(0, 37)]
-	
-	_level_button.text = new_level_button_text
-	_level_description_label.text = _level_settings.description
+func _refresh_level_button_scroller() -> void:
+	_level_button_scroller.populate(_region, _level_settings.id)
 
 
 ## Updates the speed slider with a list of available speeds.
@@ -182,7 +168,7 @@ func _on_Start_pressed() -> void:
 
 
 ## When the player clicks the 'Level Selection' button up top, we launch a series of submenus
-func _on_LevelButton_pressed() -> void:
+func _on_LevelButtonScroller_central_button_pressed() -> void:
 	_region_submenu.popup(_region.id)
 
 
@@ -195,7 +181,7 @@ func _on_RegionSubmenu_region_chosen(region: Object) -> void:
 func _on_RegionSubmenu_visibility_changed() -> void:
 	_refresh_input_focus_mode()
 	if not _region_submenu.visible:
-		_level_button.grab_focus()
+		_level_button_scroller.grab_focus()
 
 
 func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> void:
@@ -204,18 +190,28 @@ func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> vo
 	_level_settings = settings
 	PlayerData.practice.level_id = settings.id
 	_level_submenu.hide()
-	_refresh_level_button()
+	_refresh_level_button_scroller()
 	_refresh_speed_selector()
 	_refresh_high_scores()
-	_level_button.grab_focus()
+	yield(get_tree(), "idle_frame")
+	_level_button_scroller.grab_focus()
 
 
 func _on_LevelSubmenu_visibility_changed() -> void:
 	_refresh_input_focus_mode()
 	if not _level_submenu.visible:
-		_level_button.grab_focus()
+		yield(get_tree(), "idle_frame")
+		_level_button_scroller.grab_focus()
 
 
 func _on_SpeedSelector_speed_changed(value: String) -> void:
 	_piece_speed = value
 	PlayerData.practice.piece_speed = value
+
+
+func _on_LevelButtonScroller_central_button_changed() -> void:
+	_level_settings = _level_button_scroller.get_level_settings()
+	PlayerData.practice.level_id = _level_settings.id
+	_refresh_speed_selector()
+	_refresh_high_scores()
+	_start_button.set_disabled(_level_button_scroller.get_lock_status() == LevelSelectButton.STATUS_LOCKED)

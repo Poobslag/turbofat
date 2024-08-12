@@ -4,8 +4,14 @@ extends Control
 ##
 ## The button adjusts its rect_min_size based on level duration.
 
-## emitted when a level is launched.
+## emitted when the button is pressed, if the level is not locked.
 signal level_chosen
+
+## emitted when the button is pressed.
+signal pressed
+
+## emitted when the button starts being held down.
+signal button_down
 
 ## short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
@@ -173,6 +179,20 @@ func grab_focus() -> void:
 	_button_control.grab_focus()
 
 
+## Assigns the focus access mode for the control (None, Click or All).
+##
+## For cosmetic reasons, this control itself doesn't have a focus mode, but the child button control does.
+func set_focus_mode(new_button_focus_mode: int) -> void:
+	_button_control.focus_mode = new_button_focus_mode
+
+
+## Returns the focus access mode for the control (None, Click or All).
+##
+## For cosmetic reasons, this control itself doesn't have a focus mode, but the child button control does.
+func get_focus_mode() -> int:
+	return _button_control.focus_mode
+
+
 ## Updates the button's text, colors, size and icon based on the level and its status.
 func _refresh_appearance() -> void:
 	if not is_inside_tree():
@@ -211,11 +231,9 @@ func _on_resized() -> void:
 
 
 func _on_ButtonControl_pressed() -> void:
-	if lock_status == STATUS_LOCKED:
-		# level is locked, don't launch the level
-		return
+	emit_signal("pressed")
 	
-	if _emit_level_chosen:
+	if lock_status != STATUS_LOCKED and _emit_level_chosen:
 		_emit_level_chosen = false
 		emit_signal("level_chosen")
 
@@ -236,6 +254,8 @@ func _on_ButtonControl_focus_exited() -> void:
 
 
 func _on_ButtonControl_button_down() -> void:
+	emit_signal("button_down")
+	
 	if _focus_just_entered:
 		pass
 	else:
