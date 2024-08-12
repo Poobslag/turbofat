@@ -17,6 +17,6 @@ func _on_Career_pressed() -> void:
 		Breadcrumb.push_trail(Global.SCENE_CAREER_REGION_SELECT_MENU)
 
 
-func _on_Avatar_pressed():
+func _on_Avatar_pressed() -> void:
 	MusicPlayer.stop()
 	SceneTransition.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")

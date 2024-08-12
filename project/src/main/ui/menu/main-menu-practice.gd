@@ -1,7 +1,7 @@
 extends VBoxContainer
 ## Main menu panel with various practice modes.
 
-func _on_Training_pressed():
+func _on_Training_pressed() -> void:
 	SceneTransition.push_trail("res://src/main/ui/menu/TrainingMenu.tscn",
 			{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
 
