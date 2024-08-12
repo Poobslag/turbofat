@@ -2,6 +2,10 @@ class_name LevelEditor
 extends Node
 ## Graphical level editor which lets players create, load and save levels.
 ##
+## This editor was used in the game until August 2024 when it was removed. Its UI was undecorated, unintuitive,
+## incomplete and incompatible with gamepads. It will need a massive overhaul before it can meet the standards to be
+## included in the game.
+##
 ## Full instructions are available at https://github.com/Poobslag/turbofat/wiki/level-editor
 
 ## default to an empty level; players may be confused if it's not empty
@@ -55,7 +59,7 @@ func _start_test() -> void:
 	_test_scene = PuzzleScene.instance()
 	
 	# back button should close level; shouldn't redirect us to a new scene
-	SceneTransition.push_trail("res://src/main/editor/puzzle/LevelEditor.tscn::test",
+	SceneTransition.push_trail("res://src/demo/editor/puzzle/LevelEditor.tscn::test",
 			{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
 	add_child(_test_scene)
 	
@@ -79,7 +83,7 @@ func _on_Test_pressed() -> void:
 
 
 func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
-	if prev_path == "res://src/main/editor/puzzle/LevelEditor.tscn::test":
+	if prev_path == "res://src/demo/editor/puzzle/LevelEditor.tscn::test":
 		# player exited the level under test; stop the test
 		_stop_test()
 
