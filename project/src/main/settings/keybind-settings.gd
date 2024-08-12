@@ -44,6 +44,8 @@ const MENU_ACTION_NAMES := {
 	"ui_right": true,
 	"ui_accept": true,
 	"ui_cancel": true,
+	"next_tab": true,
+	"prev_tab": true,
 }
 
 ## Set of inputs accepted on the overworld.
