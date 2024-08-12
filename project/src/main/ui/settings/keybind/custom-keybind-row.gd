@@ -30,8 +30,11 @@ func _refresh_description_label() -> void:
 
 
 func _on_Delete_pressed() -> void:
-	for action_index in range(3):
-		SystemData.keybind_settings.set_custom_keybind(action_name, action_index, {})
+	if action_name in KeybindSettings.MENU_ACTION_NAMES:
+		SystemData.keybind_settings.restore_default_keybinds(action_name)
+	else:
+		for action_index in range(3):
+			SystemData.keybind_settings.set_custom_keybind(action_name, action_index, {})
 	
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
 	for keybind_button in custom_keybind_buttons:
