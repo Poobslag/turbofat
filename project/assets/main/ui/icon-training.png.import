@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon-create-creatures.png-24df1c64416a89949c801821bd8e2a6d.stex"
+path="res://.import/icon-training.png-c18629cdc5ba8a0867c0896ee37ca200.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/ui/icon-create-creatures.png"
-dest_files=[ "res://.import/icon-create-creatures.png-24df1c64416a89949c801821bd8e2a6d.stex" ]
+source_file="res://assets/main/ui/icon-training.png"
+dest_files=[ "res://.import/icon-training.png-c18629cdc5ba8a0867c0896ee37ca200.stex" ]
 
 [params]
 

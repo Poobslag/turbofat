@@ -12,28 +12,28 @@
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=11]
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
-[ext_resource path="res://src/main/ui/menu/main-menu-play.gd" type="Script" id=13]
-[ext_resource path="res://src/main/ui/menu/main-menu-create.gd" type="Script" id=14]
+[ext_resource path="res://src/main/ui/menu/main-menu-adventure.gd" type="Script" id=13]
+[ext_resource path="res://src/main/ui/menu/main-menu-practice.gd" type="Script" id=14]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/main/ui/candy-button/h3-o-pressed.png" type="Texture" id=16]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-l2.png" type="Texture" id=17]
 [ext_resource path="res://assets/main/ui/candy-button/h3-t.png" type="Texture" id=18]
 [ext_resource path="res://assets/main/ui/candy-button/h3-t-pressed.png" type="Texture" id=19]
 [ext_resource path="res://assets/main/ui/candy-button/h3-o.png" type="Texture" id=20]
+[ext_resource path="res://assets/main/editor/creature/icon-head-2.png" type="Texture" id=21]
 [ext_resource path="res://src/main/ui/candy-button/gradient-green-normal.tres" type="Gradient" id=22]
-[ext_resource path="res://src/main/ui/candy-button/gradient-indigo-normal.tres" type="Gradient" id=23]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-l1.png" type="Texture" id=23]
+[ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=24]
 [ext_resource path="res://assets/main/ui/candy-button/h3-u-pressed.png" type="Texture" id=25]
 [ext_resource path="res://assets/main/ui/candy-button/h3-u.png" type="Texture" id=26]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p-pressed.png" type="Texture" id=27]
 [ext_resource path="res://src/main/ui/candy-button/gradient-orange-normal.tres" type="Gradient" id=28]
 [ext_resource path="res://src/main/ui/candy-button/gradient-violet-normal.tres" type="Gradient" id=29]
-[ext_resource path="res://assets/main/ui/icon-practice.png" type="Texture" id=30]
+[ext_resource path="res://assets/main/ui/icon-training.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/ui/icon-tutorials.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/ui/icon-career.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/ui/icon-create-creatures.png" type="Texture" id=34]
 [ext_resource path="res://src/main/ui/menu/MenuAccentH2.tscn" type="PackedScene" id=36]
-[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-s1.png" type="Texture" id=37]
 [ext_resource path="res://src/main/ui/menu/MenuAccentTitle.tscn" type="PackedScene" id=38]
-[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-m2.png" type="Texture" id=39]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=40]
 [ext_resource path="res://assets/main/ui/candy-button/h4-t.png" type="Texture" id=41]
 [ext_resource path="res://assets/main/ui/candy-button/h4-t-pressed.png" type="Texture" id=42]
@@ -54,6 +54,16 @@ shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 2 )
 
+[sub_resource type="GradientTexture2D" id=8]
+resource_local_to_scene = true
+gradient = ExtResource( 24 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 8 )
+
 [sub_resource type="GradientTexture2D" id=4]
 resource_local_to_scene = true
 gradient = ExtResource( 29 )
@@ -73,16 +83,6 @@ resource_local_to_scene = true
 shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 6 )
-
-[sub_resource type="GradientTexture2D" id=8]
-resource_local_to_scene = true
-gradient = ExtResource( 23 )
-
-[sub_resource type="ShaderMaterial" id=9]
-resource_local_to_scene = true
-shader = ExtResource( 11 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 8 )
 
 [sub_resource type="GradientTexture2D" id=12]
 resource_local_to_scene = true
@@ -125,68 +125,110 @@ margin_top = -75.0
 margin_right = 250.0
 margin_bottom = 75.0
 
-[node name="Play" type="VBoxContainer" parent="DropPanel"]
+[node name="Adventure" type="VBoxContainer" parent="DropPanel"]
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = 150.0
-margin_bottom = -100.0
+margin_top = 130.0
+margin_bottom = -120.0
 custom_constants/separation = 10
 alignment = 1
 script = ExtResource( 13 )
 
-[node name="Label" type="Label" parent="DropPanel/Play"]
-margin_top = 12.0
+[node name="Label" type="Label" parent="DropPanel/Adventure"]
+margin_top = 42.0
 margin_right = 462.0
-margin_bottom = 57.0
+margin_bottom = 87.0
 custom_fonts/font = ExtResource( 9 )
-text = "Play"
+text = "Adventure"
 align = 1
 
-[node name="MenuAccentH2" parent="DropPanel/Play/Label" instance=ExtResource( 36 )]
-margin_left = -87.5
+[node name="MenuAccentH2" parent="DropPanel/Adventure/Label" instance=ExtResource( 36 )]
+margin_left = -137.5
 margin_top = -37.5
-margin_right = 87.5
+margin_right = 137.5
 margin_bottom = 37.5
-texture = ExtResource( 37 )
+texture = ExtResource( 23 )
 
-[node name="Career" parent="DropPanel/Play" instance=ExtResource( 15 )]
+[node name="Play" parent="DropPanel/Adventure" instance=ExtResource( 15 )]
 material = SubResource( 3 )
 margin_left = 131.0
-margin_top = 67.0
+margin_top = 97.0
 margin_right = 331.0
-margin_bottom = 117.0
+margin_bottom = 147.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 16 )
 texture_hover = ExtResource( 20 )
-text = "Career"
+text = "Play"
 icon_left = ExtResource( 32 )
 color = 4
 shape = 3
 
-[node name="Practice" parent="DropPanel/Play" instance=ExtResource( 15 )]
+[node name="Avatar" parent="DropPanel/Adventure" instance=ExtResource( 15 )]
+material = SubResource( 9 )
+margin_left = 131.0
+margin_top = 157.0
+margin_right = 331.0
+margin_bottom = 207.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 26 )
+text = "Avatar"
+icon_left = ExtResource( 21 )
+color = 5
+shape = 7
+
+[node name="Practice" type="VBoxContainer" parent="DropPanel"]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 130.0
+margin_bottom = -120.0
+custom_constants/separation = 10
+alignment = 1
+script = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="DropPanel/Practice"]
+margin_top = 42.0
+margin_right = 462.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 9 )
+text = "Practice"
+align = 1
+
+[node name="MenuAccentH2" parent="DropPanel/Practice/Label" instance=ExtResource( 36 )]
+margin_left = -137.5
+margin_top = -37.5
+margin_right = 137.5
+margin_bottom = 37.5
+texture = ExtResource( 17 )
+_accent_index = 1
+
+[node name="Training" parent="DropPanel/Practice" instance=ExtResource( 15 )]
 material = SubResource( 5 )
 margin_left = 131.0
-margin_top = 127.0
+margin_top = 97.0
 margin_right = 331.0
-margin_bottom = 177.0
+margin_bottom = 147.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 18 )
 texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 18 )
-text = "Practice"
+text = "Training"
 icon_left = ExtResource( 30 )
 color = 7
 shape = 6
 
-[node name="Tutorials" parent="DropPanel/Play" instance=ExtResource( 15 )]
+[node name="Tutorials" parent="DropPanel/Practice" instance=ExtResource( 15 )]
 material = SubResource( 7 )
 margin_left = 131.0
-margin_top = 187.0
+margin_top = 157.0
 margin_right = 331.0
-margin_bottom = 237.0
+margin_bottom = 207.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 2 )
@@ -196,48 +238,6 @@ text = "Tutorials"
 icon_left = ExtResource( 31 )
 color = 2
 shape = 4
-
-[node name="Create" type="VBoxContainer" parent="DropPanel"]
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 150.0
-margin_bottom = -100.0
-custom_constants/separation = 10
-alignment = 1
-script = ExtResource( 14 )
-
-[node name="Label" type="Label" parent="DropPanel/Create"]
-margin_top = 72.0
-margin_right = 462.0
-margin_bottom = 117.0
-custom_fonts/font = ExtResource( 9 )
-text = "Create"
-align = 1
-
-[node name="MenuAccentH2" parent="DropPanel/Create/Label" instance=ExtResource( 36 )]
-margin_left = -112.5
-margin_top = -37.5
-margin_right = 112.5
-margin_bottom = 37.5
-texture = ExtResource( 39 )
-_accent_index = 1
-
-[node name="Creatures" parent="DropPanel/Create" instance=ExtResource( 15 )]
-material = SubResource( 9 )
-margin_left = 131.0
-margin_top = 127.0
-margin_right = 331.0
-margin_bottom = 177.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 26 )
-texture_pressed = ExtResource( 25 )
-texture_hover = ExtResource( 26 )
-text = "Creatures"
-icon_left = ExtResource( 34 )
-color = 6
-shape = 7
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
 alignment = 1
@@ -273,10 +273,10 @@ shape = 6
 
 [node name="MusicPopup" parent="." instance=ExtResource( 10 )]
 
-[connection signal="pressed" from="DropPanel/Play/Career" to="DropPanel/Play" method="_on_Career_pressed"]
-[connection signal="pressed" from="DropPanel/Play/Practice" to="DropPanel/Play" method="_on_Practice_pressed"]
-[connection signal="pressed" from="DropPanel/Play/Tutorials" to="DropPanel/Play" method="_on_Tutorials_pressed"]
-[connection signal="pressed" from="DropPanel/Create/Creatures" to="DropPanel/Create" method="_on_Creatures_pressed"]
+[connection signal="pressed" from="DropPanel/Adventure/Play" to="DropPanel/Adventure" method="_on_Career_pressed"]
+[connection signal="pressed" from="DropPanel/Adventure/Avatar" to="DropPanel/Adventure" method="_on_Avatar_pressed"]
+[connection signal="pressed" from="DropPanel/Practice/Training" to="DropPanel/Practice" method="_on_Training_pressed"]
+[connection signal="pressed" from="DropPanel/Practice/Tutorials" to="DropPanel/Practice" method="_on_Tutorials_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]

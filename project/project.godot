@@ -1174,10 +1174,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/data/practice-data.gd"
 }, {
-"base": "VBoxContainer",
+"base": "Reference",
 "class": "PracticeSpeedSelector",
 "language": "GDScript",
-"path": "res://src/main/ui/menu/practice-speed-selector.gd"
+"path": "res://src/main/ui/menu/training-speed-selector.gd"
 }, {
 "base": "AudioStreamPlayer",
 "class": "PresquishSfx",

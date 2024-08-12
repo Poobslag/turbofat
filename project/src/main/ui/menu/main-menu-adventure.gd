@@ -1,5 +1,5 @@
 extends VBoxContainer
-## Main menu panel with game modes to play.
+## Main menu panel with the main game modes.
 
 const WORLD0_ID := "world0"
 
@@ -17,12 +17,6 @@ func _on_Career_pressed() -> void:
 		Breadcrumb.push_trail(Global.SCENE_CAREER_REGION_SELECT_MENU)
 
 
-func _on_Practice_pressed() -> void:
-	SceneTransition.push_trail("res://src/main/ui/menu/PracticeMenu.tscn",
-			{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
-
-
-func _on_Tutorials_pressed() -> void:
-	SceneTransition.push_trail("res://src/main/ui/menu/TutorialMenu.tscn",
-			{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
- 
+func _on_Avatar_pressed():
+	MusicPlayer.stop()
+	SceneTransition.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")
