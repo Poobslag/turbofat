@@ -29,6 +29,15 @@ func _ready() -> void:
 	graphics_settings.connect("fullscreen_changed", self, "_on_GraphicsSettings_fullscreen_changed")
 	graphics_settings.connect("use_vsync_changed", self, "_on_GraphicsSettings_use_vsync_changed")
 	_schedule_refresh_graphics_settings()
+	
+	# allow the alt+enter shortcut to process even when gameplay is paused
+	pause_mode = Node.PAUSE_MODE_PROCESS
+
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		SystemData.graphics_settings.fullscreen = !SystemData.graphics_settings.fullscreen
+		get_tree().set_input_as_handled()
 
 
 ## Prevents the player's settings from triggering fullscreen mode or vsync.
