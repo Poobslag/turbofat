@@ -13339,14 +13339,14 @@ msgid "Chapter Select"
 msgstr ""
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:116
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:297
+#: project/demo/main/editor/puzzle/PlayfieldEditor.tscn:297
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:84
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:85
 msgid "<"
 msgstr ""
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:136
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:306
+#: project/demo/main/editor/puzzle/PlayfieldEditor.tscn:306
 #: project/src/main/ui/menu/PagedLevelPanel.tscn:107
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:105
 msgid ">"
@@ -13395,7 +13395,7 @@ msgid "Ok"
 msgstr ""
 
 #: project/src/main/career/ui/ProgressBoard.tscn:539
-#: project/src/main/editor/puzzle/LevelEditor.tscn:67
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:67
 #: project/src/main/ui/menu/PracticeMenu.tscn:214
 msgid "0"
 msgstr ""
@@ -13664,7 +13664,7 @@ msgid "Mouths"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:835
-#: project/src/main/editor/puzzle/LevelEditor.tscn:152
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:152
 #: project/src/main/puzzle/PuzzleMessages.tscn:92
 #: project/src/main/ui/menu/PracticeMenu.tscn:276
 #: project/src/main/ui/menu/SystemButtons.tscn:71
@@ -13672,7 +13672,7 @@ msgid "Settings"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:855
-#: project/src/main/editor/puzzle/LevelEditor.tscn:160
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:160
 #: project/src/main/ui/CreatureStressTest.tscn:77
 #: project/src/main/ui/menu/PracticeMenu.tscn:294
 #: project/src/main/ui/menu/SystemButtons.tscn:106
@@ -13699,7 +13699,7 @@ msgid "Export Creature"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:925
-#: project/src/main/editor/puzzle/LevelEditor.tscn:224
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:224
 msgid "Error"
 msgstr ""
 
@@ -13716,7 +13716,7 @@ msgid "Error importing creature."
 msgstr ""
 
 #: project/src/main/editor/creature/dialogs.gd:29
-#: project/src/main/editor/puzzle/LevelEditor.tscn:118
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:118
 msgid "Save"
 msgstr ""
 
@@ -13724,64 +13724,64 @@ msgstr ""
 msgid "Discard"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:58
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:58
 msgid "Pickups"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:75
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:75
 msgid "Calculate"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:88
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:88
 msgid "default"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:102
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:102
 msgid "Open File"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:110
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:110
 msgid "Open Resource"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:131
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:131
 msgid "Test"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:139
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:139
 #: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:55
 msgid "abc"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:184
-#: project/src/main/editor/puzzle/LevelEditor.tscn:200
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:184
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:200
 msgid "Open Level"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:215
+#: project/demo/main/editor/puzzle/LevelEditor.tscn:215
 msgid "Save Level"
 msgstr ""
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:274
+#: project/demo/main/editor/puzzle/PlayfieldEditor.tscn:274
 msgid "blocks:"
 msgstr ""
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:282
+#: project/demo/main/editor/puzzle/PlayfieldEditor.tscn:282
 msgid "start"
 msgstr ""
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:324
+#: project/demo/main/editor/puzzle/PlayfieldEditor.tscn:324
 #: project/src/main/ui/settings/SettingsMenu.tscn:664
 #: project/src/main/ui/settings/SettingsMenu.tscn:1100
 #: project/src/main/ui/settings/keybind/KeybindCustom.tscn:82
 msgid "X"
 msgstr ""
 
-#: project/src/main/editor/puzzle/PlayfieldEditor.tscn:333
+#: project/demo/main/editor/puzzle/PlayfieldEditor.tscn:333
 msgid "+"
 msgstr ""
 
-#: project/src/main/editor/puzzle/dialogs.gd:29
+#: project/demo/main/editor/puzzle/dialogs.gd:29
 msgid "Saving/loading files isn't supported over the web. Sorry!"
 msgstr ""
 

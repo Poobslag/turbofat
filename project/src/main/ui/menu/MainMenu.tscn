@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p.png" type="Texture" id=2]
@@ -16,14 +16,11 @@
 [ext_resource path="res://src/main/ui/menu/main-menu-create.gd" type="Script" id=14]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/main/ui/candy-button/h3-o-pressed.png" type="Texture" id=16]
-[ext_resource path="res://assets/main/ui/candy-button/h3-q.png" type="Texture" id=17]
 [ext_resource path="res://assets/main/ui/candy-button/h3-t.png" type="Texture" id=18]
 [ext_resource path="res://assets/main/ui/candy-button/h3-t-pressed.png" type="Texture" id=19]
 [ext_resource path="res://assets/main/ui/candy-button/h3-o.png" type="Texture" id=20]
-[ext_resource path="res://assets/main/ui/candy-button/h3-q-pressed.png" type="Texture" id=21]
 [ext_resource path="res://src/main/ui/candy-button/gradient-green-normal.tres" type="Gradient" id=22]
 [ext_resource path="res://src/main/ui/candy-button/gradient-indigo-normal.tres" type="Gradient" id=23]
-[ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=24]
 [ext_resource path="res://assets/main/ui/candy-button/h3-u-pressed.png" type="Texture" id=25]
 [ext_resource path="res://assets/main/ui/candy-button/h3-u.png" type="Texture" id=26]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p-pressed.png" type="Texture" id=27]
@@ -32,7 +29,6 @@
 [ext_resource path="res://assets/main/ui/icon-practice.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/ui/icon-tutorials.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/ui/icon-career.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/ui/icon-create-levels.png" type="Texture" id=33]
 [ext_resource path="res://assets/main/ui/icon-create-creatures.png" type="Texture" id=34]
 [ext_resource path="res://src/main/ui/menu/MenuAccentH2.tscn" type="PackedScene" id=36]
 [ext_resource path="res://assets/main/ui/menu/menu-accent-h2-s1.png" type="Texture" id=37]
@@ -87,16 +83,6 @@ resource_local_to_scene = true
 shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 8 )
-
-[sub_resource type="GradientTexture2D" id=10]
-resource_local_to_scene = true
-gradient = ExtResource( 24 )
-
-[sub_resource type="ShaderMaterial" id=11]
-resource_local_to_scene = true
-shader = ExtResource( 11 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 10 )
 
 [sub_resource type="GradientTexture2D" id=12]
 resource_local_to_scene = true
@@ -222,9 +208,9 @@ alignment = 1
 script = ExtResource( 14 )
 
 [node name="Label" type="Label" parent="DropPanel/Create"]
-margin_top = 42.0
+margin_top = 72.0
 margin_right = 462.0
-margin_bottom = 87.0
+margin_bottom = 117.0
 custom_fonts/font = ExtResource( 9 )
 text = "Create"
 align = 1
@@ -240,9 +226,9 @@ _accent_index = 1
 [node name="Creatures" parent="DropPanel/Create" instance=ExtResource( 15 )]
 material = SubResource( 9 )
 margin_left = 131.0
-margin_top = 97.0
+margin_top = 127.0
 margin_right = 331.0
-margin_bottom = 147.0
+margin_bottom = 177.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 26 )
@@ -252,22 +238,6 @@ text = "Creatures"
 icon_left = ExtResource( 34 )
 color = 6
 shape = 7
-
-[node name="Levels" parent="DropPanel/Create" instance=ExtResource( 15 )]
-material = SubResource( 11 )
-margin_left = 131.0
-margin_top = 157.0
-margin_right = 331.0
-margin_bottom = 207.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 21 )
-texture_hover = ExtResource( 17 )
-text = "Levels"
-icon_left = ExtResource( 33 )
-color = 5
-shape = 5
 
 [node name="System" parent="DropPanel" instance=ExtResource( 5 )]
 alignment = 1
@@ -307,7 +277,6 @@ shape = 6
 [connection signal="pressed" from="DropPanel/Play/Practice" to="DropPanel/Play" method="_on_Practice_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Tutorials" to="DropPanel/Play" method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Creatures" to="DropPanel/Create" method="_on_Creatures_pressed"]
-[connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]
