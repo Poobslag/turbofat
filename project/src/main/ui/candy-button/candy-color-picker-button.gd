@@ -2,7 +2,7 @@ class_name CandyColorPickerButton
 extends Button
 ## Button showing a color preset within the candy color picker.
 
-const DEFAULT_BORDER_COLOR := Color("ffdd99")
+const DEFAULT_BORDER_COLOR := Color("cbaec1")
 const FOCUSED_BORDER_COLOR := Color.white
 const HOVERED_BORDER_COLOR := Color.white
 

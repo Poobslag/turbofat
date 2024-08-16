@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/main/ui/squeak/squeak-theme-br-h4.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/squeak/squeak-theme-gy-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/candy-button/hsv-slider.gd" type="Script" id=2]
 
 [node name="HsvSlider" type="HBoxContainer"]
