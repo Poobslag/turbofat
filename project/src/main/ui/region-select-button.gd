@@ -122,6 +122,13 @@ func set_region_name(new_region_name: String) -> void:
 	_refresh()
 
 
+## Returns true if this button is currently focused.
+##
+## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
+func has_focus() -> bool:
+	return _button.has_focus()
+
+
 func grab_focus() -> void:
 	_button.grab_focus()
 

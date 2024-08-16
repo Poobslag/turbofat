@@ -46,6 +46,38 @@ func _ready() -> void:
 	_refresh()
 
 
+func _input(event: InputEvent) -> void:
+	if _rightmost_level_button_has_focus() and event.is_action_pressed("ui_right"):
+		if _page < _max_selectable_page():
+			_select_next_page()
+		get_tree().set_input_as_handled()
+
+	if _leftmost_level_button_has_focus() and event.is_action_pressed("ui_left"):
+		if _page > 0:
+			_select_previous_page()
+		get_tree().set_input_as_handled()
+
+
+## Returns 'true' if a button in the rightmost column has focus.
+func _rightmost_level_button_has_focus() -> bool:
+	var result := false
+	for i in _grid_container.get_child_count():
+		if i % _grid_container.columns == _grid_container.columns - 1 and _grid_container.get_child(i).has_focus():
+			result = true
+			break
+	return result
+
+
+## Returns 'true' if a button in the leftmost column has focus.
+func _leftmost_level_button_has_focus() -> bool:
+	var result := false
+	for i in _grid_container.get_child_count():
+		if i % _grid_container.columns == 0 and _grid_container.get_child(i).has_focus():
+			result = true
+			break
+	return result
+
+
 ## Focuses a specific level button, possibly changing the current page.
 ##
 ## Parameters:
@@ -180,6 +212,18 @@ func _level_select_button(level_id: String, level_count: int) -> Node:
 	return level_button
 
 
+func _select_previous_page() -> void:
+	_page = max(0, _page - 1)
+	_refresh()
+	_grid_container.get_children().back().grab_focus()
+
+
+func _select_next_page() -> void:
+	_page = min(_max_selectable_page(), _page + 1)
+	_refresh()
+	_grid_container.get_children().front().grab_focus()
+
+
 ## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelButton_focus_entered(level_button: LevelSelectButton, level_id: String) -> void:
 	if level_button.lock_status == LevelSelectButton.STATUS_LOCKED:
@@ -194,13 +238,11 @@ func _on_LevelButton_level_chosen(level_settings: LevelSettings) -> void:
 
 
 func _on_LeftArrow_pressed() -> void:
-	_page = max(0, _page - 1)
-	_refresh()
+	_select_previous_page()
 
 
 func _on_RightArrow_pressed() -> void:
-	_page = min(_max_selectable_page(), _page + 1)
-	_refresh()
+	_select_next_page()
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
