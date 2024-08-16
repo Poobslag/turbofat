@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/main/ui/squeak/SqueakCheckBoxHelper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/squeak/br/SqueakCheckBoxHelper.tscn" type="PackedScene" id=1]
 
 [node name="CheckBox" type="CheckBox"]
 margin_right = 24.0
