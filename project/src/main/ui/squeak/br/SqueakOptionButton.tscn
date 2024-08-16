@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/main/ui/squeak/SqueakOptionButtonHelper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/squeak/br/SqueakOptionButtonHelper.tscn" type="PackedScene" id=1]
 
 [node name="OptionButton" type="OptionButton"]
 margin_right = 29.0
