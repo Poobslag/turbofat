@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/squeak/squeak-theme-br-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/demo/ui/squeak/squeak-theme-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/squeak/SqueakOptionButton.tscn" type="PackedScene" id=4]
