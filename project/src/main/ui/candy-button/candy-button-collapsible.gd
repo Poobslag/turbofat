@@ -136,6 +136,7 @@ func set_disabled(new_disabled: bool) -> void:
 		return
 	
 	disabled = new_disabled
+	_refresh_color()
 	emit_signal("disabled_changed")
 
 
