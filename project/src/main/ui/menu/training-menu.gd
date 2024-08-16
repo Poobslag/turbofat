@@ -191,6 +191,7 @@ func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> vo
 	PlayerData.practice.level_id = settings.id
 	_level_submenu.hide()
 	_refresh_level_button_scroller()
+	_level_description_label.text = _level_settings.description
 	_refresh_speed_selector()
 	_refresh_high_scores()
 	yield(get_tree(), "idle_frame")
@@ -212,6 +213,7 @@ func _on_SpeedSelector_speed_changed(value: String) -> void:
 func _on_LevelButtonScroller_central_button_changed() -> void:
 	_level_settings = _level_button_scroller.get_level_settings()
 	PlayerData.practice.level_id = _level_settings.id
+	_level_description_label.text = _level_settings.description
 	_refresh_speed_selector()
 	_refresh_high_scores()
 	_start_button.set_disabled(_level_button_scroller.get_lock_status() == LevelSelectButton.STATUS_LOCKED)
