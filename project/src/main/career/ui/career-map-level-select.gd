@@ -7,7 +7,6 @@ signal level_button_focused(button_index)
 export (PackedScene) var LevelSelectButtonScene: PackedScene
 export (PackedScene) var HardcoreLevelSelectButtonScene: PackedScene
 
-var _duration_calculator := DurationCalculator.new()
 var _prev_focused_level_button_index := -1
 
 onready var _control := $Control
@@ -53,18 +52,10 @@ func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
 		button = HardcoreLevelSelectButtonScene.instance()
 	else:
 		button = LevelSelectButtonScene.instance()
+	button.decorate_for_level(PlayerData.career.current_region(), settings, true)
 	button.rect_min_size = Vector2(200, 120)
 	button.size_flags_horizontal = 6
 	button.size_flags_vertical = 4
-	button.level_name = settings.name
-	button.level_id = settings.id
-	var duration := _duration_calculator.duration(settings)
-	if duration < 100:
-		button.level_duration = LevelSelectButton.SHORT
-	elif duration < 200:
-		button.level_duration = LevelSelectButton.MEDIUM
-	else:
-		button.level_duration = LevelSelectButton.LONG
 	
 	button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", \
 			[_level_buttons_container.get_child_count()])

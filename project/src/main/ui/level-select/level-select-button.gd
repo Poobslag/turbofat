@@ -66,6 +66,8 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
 
+var _duration_calculator := DurationCalculator.new()
+
 onready var _button_control := $ButtonControlHolder/ButtonControl
 onready var _label := $ButtonControlHolder/ButtonControl/Label
 
@@ -103,6 +105,49 @@ func set_level_name(new_level_name: String) -> void:
 func set_level_duration(new_level_duration: int) -> void:
 	level_duration = new_level_duration
 	_refresh_appearance()
+
+
+## Updates the button's fields based on the specified level.
+##
+## Specifically, this updates the level_id, level_name, lock_status, duration and bg_color fields.
+func decorate_for_level(region: Object, settings: LevelSettings, force_unlock: bool = false) -> void:
+	level_id = settings.id
+	level_name = settings.name
+
+	# calculate the lock status
+	lock_status = STATUS_NONE
+	if region is CareerRegion and not PlayerData.level_history.has_result(settings.id) and not force_unlock:
+		# career levels are locked if the player hasn't played them
+		lock_status = STATUS_LOCKED
+	elif region.id == OtherRegion.ID_TUTORIAL:
+		# tutorial levels show a checkmark if completed
+		if PlayerData.level_history.is_level_finished(settings.id):
+			lock_status = STATUS_CLEARED
+	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
+		# rank/marathon levels show a crown if completed
+		if PlayerData.level_history.is_level_success(settings.id):
+			lock_status = STATUS_CROWN
+	
+	var duration := _duration_calculator.duration(settings)
+	if duration < 100:
+		level_duration = SHORT
+	elif duration < 200:
+		level_duration = MEDIUM
+	else:
+		level_duration = LONG
+	
+	# calculate the background color. this is usually random, but for rank mode we use specific colors
+	if settings.color_string:
+		match settings.color_string:
+			"red": set_bg_color(BUTTON_COLOR_RED)
+			"orange": set_bg_color(BUTTON_COLOR_ORANGE)
+			"yellow": set_bg_color(BUTTON_COLOR_YELLOW)
+			"green": set_bg_color(BUTTON_COLOR_GREEN)
+			"blue": set_bg_color(BUTTON_COLOR_BLUE)
+			"purple": set_bg_color(BUTTON_COLOR_PURPLE)
+			_:
+				push_warning("Unrecognized color string '%s'" % [settings.color_string])
+				pass
 
 
 ## Updates the button's style colors. Can be overridden by child buttons who use different styles.
