@@ -1,7 +1,7 @@
 [gd_scene load_steps=48 format=2]
 
-[ext_resource path="res://src/main/ui/squeak/squeak-theme-h5.tres" type="Theme" id=1]
-[ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=2]
+[ext_resource path="res://src/main/ui/squeak/squeak-theme-br-h5.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/squeak/squeak-theme-br-h4.tres" type="Theme" id=2]
 [ext_resource path="res://src/main/ui/squeak/SqueakOptionButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/settings/settings-menu.gd" type="Script" id=5]
