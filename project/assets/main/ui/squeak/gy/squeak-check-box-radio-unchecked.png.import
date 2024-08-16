@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/squeak-check-box-radio-unchecked.png-1a26f5a180b888da4fc2b6d8e387b041.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/main/ui/squeak/gy/squeak-check-box-radio-unchecked.png"
+dest_files=[ "res://.import/squeak-check-box-radio-unchecked.png-1a26f5a180b888da4fc2b6d8e387b041.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=true
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
