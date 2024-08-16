@@ -134,6 +134,19 @@ max_value = 1.0
 step = 0.01
 tick_count = 11
 
+[node name="HSlider2" type="HSlider" parent="Panel"]
+margin_left = 52.8571
+margin_top = 397.0
+margin_right = 252.857
+margin_bottom = 415.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+editable = false
+tick_count = 11
+
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="Panel"]
 margin_left = 415.033
 margin_top = 108.218
