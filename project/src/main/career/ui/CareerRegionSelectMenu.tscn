@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=2]
@@ -8,9 +8,9 @@
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/ui/squeak/gy/SqueakButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/RegionSelectButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=11]
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=13]
 [ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=14]
 [ext_resource path="res://src/main/ui/menu/career-region-select-menu.gd" type="Script" id=15]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/main/ui/menu/region-grade-labels.gd" type="Script" id=18]
 [ext_resource path="res://src/main/ui/menu/paged-region-buttons.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=20]
+[ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=21]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -105,14 +106,16 @@ alignment = 1
 script = ExtResource( 19 )
 RegionButtonScene = ExtResource( 10 )
 
-[node name="LeftArrow" type="Button" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
+[node name="LeftArrow" parent="RegionSelect/VBoxContainer/Top/RegionButtons" instance=ExtResource( 9 )]
 margin_left = 374.0
-margin_top = 132.0
+margin_top = 130.0
 margin_right = 398.0
-margin_bottom = 158.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 24, 24 )
+focus_mode = 1
 size_flags_vertical = 4
-theme = ExtResource( 20 )
+theme = ExtResource( 21 )
+enabled_focus_mode = 1
 text = "<"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
@@ -125,14 +128,16 @@ custom_constants/separation = 5
 
 [node name="RegionButton" parent="RegionSelect/VBoxContainer/Top/RegionButtons/HBoxContainer" instance=ExtResource( 10 )]
 
-[node name="RightArrow" type="Button" parent="RegionSelect/VBoxContainer/Top/RegionButtons"]
+[node name="RightArrow" parent="RegionSelect/VBoxContainer/Top/RegionButtons" instance=ExtResource( 9 )]
 margin_left = 506.0
-margin_top = 132.0
+margin_top = 130.0
 margin_right = 530.0
-margin_bottom = 158.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 24, 24 )
+focus_mode = 1
 size_flags_vertical = 4
-theme = ExtResource( 20 )
+theme = ExtResource( 21 )
+enabled_focus_mode = 1
 text = ">"
 
 [node name="GradeLabels" type="Control" parent="RegionSelect/VBoxContainer/Top"]
@@ -151,12 +156,12 @@ rect_min_size = Vector2( 0, 100 )
 [node name="HBoxContainer" type="HBoxContainer" parent="RegionSelect/VBoxContainer/Bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 21 )
 
 [node name="Description" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
-margin_right = 450.0
+margin_right = 449.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 12 )
 script = ExtResource( 16 )
 
 [node name="MarginContainer" type="MarginContainer" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description"]
@@ -170,7 +175,7 @@ custom_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 430.0
+margin_right = 429.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )
@@ -179,11 +184,10 @@ valign = 1
 autowrap = true
 
 [node name="Info" type="Panel" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer"]
-margin_left = 454.0
+margin_left = 455.0
 margin_right = 904.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 12 )
 script = ExtResource( 17 )
 
 [node name="MarginContainer" type="MarginContainer" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info"]
@@ -197,7 +201,7 @@ custom_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="RegionSelect/VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 430.0
+margin_right = 429.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 20 )

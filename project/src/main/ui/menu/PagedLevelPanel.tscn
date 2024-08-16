@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/squeak/gy/SqueakButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/paged-level-buttons.gd" type="Script" id=5]
+[ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=6]
 [ext_resource path="res://src/main/ui/menu/paged-level-panel.gd" type="Script" id=7]
 [ext_resource path="res://src/main/ui/level-select/level-submenu-info-panel.gd" type="Script" id=8]
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=9]
 [ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/level-select/level-submenu-description-panel.gd" type="Script" id=11]
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=13]
@@ -73,37 +74,38 @@ alignment = 1
 script = ExtResource( 5 )
 LevelButtonScene = ExtResource( 1 )
 
-[node name="LeftArrow" type="Button" parent="VBoxContainer/Top/LevelButtons"]
-margin_left = 354.0
-margin_top = 132.0
-margin_right = 378.0
-margin_bottom = 158.0
+[node name="LeftArrow" parent="VBoxContainer/Top/LevelButtons" instance=ExtResource( 4 )]
+margin_left = 364.0
+margin_top = 130.0
+margin_right = 388.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 24, 24 )
+focus_mode = 1
 size_flags_vertical = 4
-theme = ExtResource( 14 )
+theme = ExtResource( 6 )
+enabled_focus_mode = 1
 text = "<"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/Top/LevelButtons"]
-margin_left = 382.0
-margin_top = 115.0
-margin_right = 522.0
-margin_bottom = 175.0
+margin_left = 392.0
+margin_top = 105.0
+margin_right = 512.0
+margin_bottom = 185.0
 size_flags_vertical = 4
 columns = 6
 
 [node name="Button" parent="VBoxContainer/Top/LevelButtons/GridContainer" instance=ExtResource( 1 )]
-margin_right = 140.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 140, 60 )
 
-[node name="RightArrow" type="Button" parent="VBoxContainer/Top/LevelButtons"]
-margin_left = 526.0
-margin_top = 132.0
-margin_right = 550.0
-margin_bottom = 158.0
+[node name="RightArrow" parent="VBoxContainer/Top/LevelButtons" instance=ExtResource( 4 )]
+margin_left = 516.0
+margin_top = 130.0
+margin_right = 540.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 24, 24 )
+focus_mode = 1
 size_flags_vertical = 4
-theme = ExtResource( 14 )
+theme = ExtResource( 6 )
+enabled_focus_mode = 1
 text = ">"
 
 [node name="GradeLabels" type="Control" parent="VBoxContainer/Top"]
@@ -122,12 +124,12 @@ rect_min_size = Vector2( 0, 100 )
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 6 )
 
 [node name="Description" type="Panel" parent="VBoxContainer/Bottom/HBoxContainer"]
-margin_right = 450.0
+margin_right = 449.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 9 )
 script = ExtResource( 11 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/Description"]
@@ -141,7 +143,7 @@ custom_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 430.0
+margin_right = 429.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 14 )
@@ -150,11 +152,10 @@ valign = 1
 autowrap = true
 
 [node name="Info" type="Panel" parent="VBoxContainer/Bottom/HBoxContainer"]
-margin_left = 454.0
+margin_left = 455.0
 margin_right = 904.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 9 )
 script = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/Info"]
@@ -168,7 +169,7 @@ custom_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 430.0
+margin_right = 429.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 14 )
