@@ -37,6 +37,8 @@ func _extract_and_write_localizables() -> void:
 	_extract_localizables_from_levels()
 	_append_header_comment("Scancodes")
 	_extract_localizables_from_scancodes()
+	_append_header_comment("Locales")
+	_extract_localizables_from_locales()
 	
 	FileUtils.write_file(OUTPUT_PATH, PoolStringArray(_file_contents).join("\n") + "\n")
 	TranslationServer.set_locale(old_locale)
@@ -170,6 +172,12 @@ func _extract_localizables_from_scancodes() -> void:
 		var scancode_string := OS.get_scancode_string(i)
 		if scancode_string.length() > 1:
 			_append_localizable(scancode_string)
+
+
+## Extract localizables from TranslationServer.get_loaded_locales()
+func _extract_localizables_from_locales() -> void:
+	for locale in TranslationServer.get_loaded_locales():
+		_append_localizable(TranslationServer.get_locale_name(locale))
 
 
 func _on_pressed() -> void:

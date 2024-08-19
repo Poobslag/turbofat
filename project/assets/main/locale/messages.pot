@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-19 09:52-0400\n"
+"POT-Creation-Date: 2024-08-19 10:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13286,6 +13286,14 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3193
 msgid "Kp 9"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:3196
+msgid "English"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:3197
+msgid "Spanish"
 msgstr ""
 
 #: project/src/main/career/CareerMap.tscn:142
