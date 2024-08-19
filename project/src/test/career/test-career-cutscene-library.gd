@@ -27,7 +27,7 @@ func test_load_all_chat_keys() -> void:
 	])
 
 
-func test_find_chat_key_pairs() -> void:
+func test_find_chat_key_pairs_include_all_numeric_children() -> void:
 	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/career/fake-career"
 	
 	var search_flags := CutsceneSearchFlags.new()
@@ -41,6 +41,22 @@ func test_find_chat_key_pairs() -> void:
 		_interlude("career/fake_career/marsh/020", ""),
 		_interlude("career/fake_career/marsh/030_a", ""),
 		_interlude("career/fake_career/marsh/030_b", ""),
+	])
+
+
+func test_find_chat_key_pairs_max_chat_key() -> void:
+	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/career/fake-career"
+	
+	var search_flags := CutsceneSearchFlags.new()
+	search_flags.max_chat_key = 25
+	search_flags.include_all_numeric_children = true
+	var chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs(["career/fake_career/marsh"], search_flags)
+	_assert_eq_ckp(chat_key_pairs, [
+		_interlude("career/fake_career/marsh/000", "career/fake_career/marsh/000_end"),
+		_interlude("career/fake_career/marsh/010_a", ""),
+		_interlude("career/fake_career/marsh/010_b", ""),
+		_interlude("", "career/fake_career/marsh/010_c_end"),
+		_interlude("career/fake_career/marsh/020", ""),
 	])
 
 
@@ -227,6 +243,30 @@ func test_potential_chat_keys_excludes_boss_levels() -> void:
 		"career/fake_career_2"
 	]), [
 		# player hasn't cleared the boss level, post-boss cutscenes are excluded
+	])
+
+
+func test_potential_chat_keys_excludes_post_epilogue() -> void:
+	CareerCutsceneLibrary.all_chat_key_pairs = [
+		_interlude("career/fake_career_2/000_a", ""),
+		# include post-epilogue cutscenes, cutscenes numbered 200-299
+		_interlude("career/fake_career_2/200_a", ""),
+		_interlude("career/fake_career_2/200_b", ""),
+	]
+	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+		"career/fake_career_2"
+	]), [
+		# player hasn't watched the epilogue, post-epilogue cutscenes are excluded
+		_interlude("career/fake_career_2/000_a", ""),
+	])
+	
+	PlayerData.chat_history.add_history_item("career/fake_career_2/000_a")
+	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+		"career/fake_career_2"
+	]), [
+		# player has watched the epilogue, post-epilogue cutscenes are included
+		_interlude("career/fake_career_2/200_a", ""),
+		_interlude("career/fake_career_2/200_b", ""),
 	])
 
 

@@ -33,6 +33,9 @@ extends Node
 ##
 ## Nodes starting with a number 100 or greater are 'post-boss cutscenes' and will not play unless the player has
 ## cleared the region's boss level.
+##
+## Nodes starting with a number 200 or greater are 'post-epilogue cutscenes' and will not play unless the player has
+## watched the epilogue cutscene.
 
 ## Default resource path containing career cutscenes.
 const DEFAULT_CAREER_CUTSCENE_ROOT_PATH := "res://assets/main/chat/career"
@@ -167,7 +170,7 @@ func potential_chat_key_pairs(chat_key_roots: Array,
 		var key_parts := _split_key(_preroll_key_from_chat_key_pair(potential_chat_key_pair))
 		
 		if accept_chat_key_pair \
-				and key_parts.size() >= 2 and int(key_parts[1]) >= 100:
+				and key_parts.size() >= 2 and int(key_parts[1]) >= 100 and int(key_parts[1]) <= 199:
 			# post-boss cutscene; only play it if the player has cleared the region
 			accept_chat_key_pair = PlayerData.career.is_region_finished(PlayerData.career.current_region())
 		
@@ -336,6 +339,9 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlag
 				var child_key := _child_key(chat_key_roots, chat_key, child)
 				if search_flags.excluded_chat_keys.has(child_key):
 					# don't include these chat keys; the player's already seen these cutscenes
+					pass
+				elif child.is_valid_integer() and int(child) > search_flags.max_chat_key:
+					# don't include this chat key; it exceeds max_chat_key
 					pass
 				elif not search_flags.include_all_numeric_children and child.is_valid_integer():
 					if not min_numeric_child or int(child) < int(min_numeric_child):
