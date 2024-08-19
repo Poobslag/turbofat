@@ -255,6 +255,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 		# determine if any cutscenes will remain after this cutscene was played
 		var search_flags := CutsceneSearchFlags.new()
 		search_flags.include_all_numeric_children = true
+		search_flags.max_chat_key = 199 # exclude post-epilogue cutscenes
 		search_flags.excluded_chat_keys = CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
 		search_flags.exclude_chat_key(preroll_key)
 		var remaining_chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path],
