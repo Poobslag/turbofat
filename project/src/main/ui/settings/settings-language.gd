@@ -8,7 +8,7 @@ onready var _option_button: OptionButton = $OptionButton
 func _ready() -> void:
 	# populate the dropdown with the names of available locales
 	for locale in TranslationServer.get_loaded_locales():
-		_option_button.add_item(TranslationServer.get_locale_name(locale))
+		_option_button.add_item(tr(TranslationServer.get_locale_name(locale)))
 	
 	# update the option button's selection to the current locale
 	var current_loaded_locale := _current_loaded_locale()
