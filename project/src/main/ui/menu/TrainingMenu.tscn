@@ -81,7 +81,7 @@ action = "ui_cancel"
 [sub_resource type="ShortCut" id=5]
 shortcut = SubResource( 4 )
 
-[node name="PracticeMenu" type="Control"]
+[node name="TrainingMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
