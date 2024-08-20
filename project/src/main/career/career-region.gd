@@ -61,6 +61,9 @@ var cutscene_path: String
 ## Describes the creatures in this region.
 var population := Population.new()
 
+## Describes the music in this region.
+var music := RegionMusic.new()
+
 ## Human-readable tagline describing this career region.
 var description: String
 
@@ -114,6 +117,8 @@ func from_json_dict(json: Dictionary) -> void:
 		var level: CareerLevel = CareerLevel.new()
 		level.from_json_dict(level_json)
 		levels.append(level)
+	if json.has("music"):
+		music.from_json_dict(json.get("music"))
 	overworld_environment_id = json.get("overworld_environment", "")
 	region_button_id = json.get("region_button", "")
 	var piece_speed_string: String = json.get("piece_speed", "0")

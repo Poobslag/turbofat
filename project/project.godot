@@ -1279,6 +1279,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/career/region-completion.gd"
 }, {
+"base": "Reference",
+"class": "RegionMusic",
+"language": "GDScript",
+"path": "res://src/main/career/region-music.gd"
+}, {
 "base": "MarginContainer",
 "class": "RegionSelectButton",
 "language": "GDScript",
@@ -1844,6 +1849,7 @@ _global_script_class_icons={
 "RankRules": "",
 "RectFitLabel": "",
 "RegionCompletion": "",
+"RegionMusic": "",
 "RegionSelectButton": "",
 "ReleaseToolkitOutput": "",
 "RestaurantPuzzleScene": "",
