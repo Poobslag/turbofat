@@ -16,6 +16,9 @@ export (Array, float) var checkpoints: Array = []
 export var song_title: String
 export var song_color: Color
 
+## song id referenced by career-regions.json
+export var id: String
+
 ## array of ints corresponding to how much each 'chunk' of music has been played
 var _staleness_record: Array
 

@@ -90,6 +90,7 @@ func save_player_data() -> void:
 	save_json.append(SaveItem.new("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("career", PlayerData.career.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("menu_region", PlayerData.menu_region.id).to_json_dict())
 	save_json.append(SaveItem.new("practice", PlayerData.practice.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("successful_levels",
 			PlayerData.level_history.successful_levels).to_json_dict())
@@ -226,6 +227,10 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"career":
 			var value: Dictionary = json_value
 			PlayerData.career.from_json_dict(value)
+		"menu_region":
+			var value: String = json_value
+			if CareerLevelLibrary.region_for_id(value):
+				PlayerData.menu_region = CareerLevelLibrary.region_for_id(value)
 		"practice":
 			var value: Dictionary = json_value
 			PlayerData.practice.from_json_dict(value)

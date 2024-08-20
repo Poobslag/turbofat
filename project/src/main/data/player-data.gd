@@ -34,6 +34,9 @@ var seconds_played := 0.0
 ## periodically increments the 'seconds_played' value
 var seconds_played_timer: Timer
 
+## decides the music and menu theme
+var menu_region: CareerRegion
+
 func _ready() -> void:
 	career = CareerData.new()
 	add_child(career)
@@ -56,6 +59,7 @@ func reset() -> void:
 	practice.reset()
 	money = 0
 	seconds_played = 0.0
+	menu_region = CareerLevelLibrary.regions[0]
 	
 	emit_signal("level_history_changed")
 

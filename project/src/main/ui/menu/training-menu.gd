@@ -187,6 +187,8 @@ func _on_RegionSubmenu_visibility_changed() -> void:
 func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> void:
 	_region = region
 	PlayerData.practice.region_id = _region.id
+	if region is CareerRegion:
+		PlayerData.menu_region = _region
 	_level_settings = settings
 	PlayerData.practice.level_id = settings.id
 	_level_submenu.hide()

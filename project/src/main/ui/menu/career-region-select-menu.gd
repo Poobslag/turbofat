@@ -28,6 +28,8 @@ func _on_RegionButtons_region_chosen(region: CareerRegion) -> void:
 	PlayerData.career.distance_travelled = region.start
 	PlayerData.career.remain_in_region = region.end < PlayerData.career.best_distance_travelled
 	PlayerData.career.show_progress = Careers.ShowProgress.STATIC
+	if region is CareerRegion:
+		PlayerData.menu_region = region
 	
 	if Breadcrumb.trail.front() == Global.SCENE_CAREER_REGION_SELECT_MENU:
 		Breadcrumb.trail.pop_front()
