@@ -331,10 +331,10 @@ max_lines_visible = 1
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
 [node name="ProgressBarParticles" type="Control" parent="Fg/Chalkboard/MilestoneHud"]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
+margin_left = 200.0
+margin_top = 52.0
+margin_right = 200.0
+margin_bottom = 52.0
 script = ExtResource( 93 )
 amount = 12
 
