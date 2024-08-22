@@ -1,5 +1,5 @@
 extends SteamAchievement
-## Unlocks an achievement when the player obtains a particular grade.
+## Unlocks an achievement when the player obtains a particular grade on a specific level.
 
 ## The level ID whose grade should be checked.
 export (String) var level_id: String

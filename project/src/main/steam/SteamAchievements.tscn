@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/steam/chapter-story-finished-achievement.gd" type="Script" id=1]
 [ext_resource path="res://src/main/steam/chapter-unlocked-achievement.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://src/main/steam/level-rank-achievement.gd" type="Script" id=5]
 [ext_resource path="res://src/main/steam/chapter-rank-s-achievement.gd" type="Script" id=6]
 [ext_resource path="res://src/main/steam/chapter-finished-achievement.gd" type="Script" id=7]
+[ext_resource path="res://src/main/steam/consolidated-achievement.gd" type="Script" id=8]
+[ext_resource path="res://src/main/steam/rank-m-achievement.gd" type="Script" id=9]
+[ext_resource path="res://src/main/steam/combo-achievement.gd" type="Script" id=10]
+[ext_resource path="res://src/main/steam/customer-score-achievement.gd" type="Script" id=11]
+[ext_resource path="res://src/main/steam/leftovers-score-achievement.gd" type="Script" id=12]
 
 [node name="SteamAchievements" type="Node"]
 script = ExtResource( 4 )
@@ -117,7 +122,48 @@ region_id = "lava"
 script = ExtResource( 5 )
 achievement_id = "MARATHON_HARD_RANK_S"
 level_id = "practice/marathon_hard"
-target_grade = "S"
+target_grade = "S-"
+
+[node name="UltraHardRankS" type="Node" parent="."]
+script = ExtResource( 5 )
+achievement_id = "ULTRA_HARD_RANK_S"
+level_id = "practice/ultra_hard"
+target_grade = "S-"
+
+[node name="SprintNormalRankS" type="Node" parent="."]
+script = ExtResource( 5 )
+achievement_id = "SPRINT_NORMAL_RANK_S"
+level_id = "practice/sprint_normal"
+target_grade = "S-"
+
+[node name="OverallRankS" type="Node" parent="."]
+script = ExtResource( 8 )
+achievement_id = "OVERALL_RANK_S"
+required_achievements = [ "CHAPTER_1_RANK_S", "CHAPTER_2_RANK_S", "CHAPTER_3_RANK_S", "CHAPTER_4_RANK_S", "CHAPTER_5_RANK_S", "CHAPTER_6_RANK_S" ]
+
+[node name="RankM" type="Node" parent="."]
+script = ExtResource( 9 )
+achievement_id = "RANK_M"
+
+[node name="Combo50" type="Node" parent="."]
+script = ExtResource( 10 )
+achievement_id = "COMBO_50"
+target_combo = 50
+
+[node name="Combo100" type="Node" parent="."]
+script = ExtResource( 10 )
+achievement_id = "COMBO_100"
+target_combo = 100
+
+[node name="OneCustomer2000Points" type="Node" parent="."]
+script = ExtResource( 11 )
+achievement_id = "ONE_CUSTOMER_2000_POINTS"
+target_score = 2000
+
+[node name="Leftovers300Points" type="Node" parent="."]
+script = ExtResource( 12 )
+achievement_id = "LEFTOVERS_300_POINTS"
+target_score = 300
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 3 )]
 codes = [ "pain-whistle-elastic-union" ]

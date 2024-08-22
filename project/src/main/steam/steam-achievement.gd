@@ -10,6 +10,7 @@ export (String) var achievement_id: String
 func _ready() -> void:
 	PlayerSave.connect("save_scheduled", self, "_on_PlayerSave_save_scheduled")
 	PlayerSave.connect("after_load", self, "_on_PlayerSave_after_load")
+	add_to_group("steam_achievements")
 
 
 ## Overridden by child classes to refresh the achievement and any stats.
