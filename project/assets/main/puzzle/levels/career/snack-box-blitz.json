@@ -3,23 +3,23 @@
   "name": "Snack Box Blitz",
   "description": "Everyone's in a hurry today. Get those cakes out!",
   "start_speed": "6",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "75"
-  },
   "combo_break": [
     "pieces 0"
   ],
-  "score": [
-    "snack_all 10",
-    "cake_all 20"
-  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 75
+  },
   "rank": [
-    "extra_seconds_per_piece 0.47",
     "box_factor 2.68",
-    "combo_factor 0.00",
-    "hide_combos_rank",
-    "preplaced_pieces 5"
+    "combo_factor 0",
+    "extra_seconds_per_piece 0.47",
+    "preplaced_pieces 5",
+    "hide_combos_rank"
+  ],
+  "score": [
+    "cake_all 20",
+    "snack_all 10"
   ],
   "tiles": {
     "0": [
@@ -40,10 +40,6 @@
         "tile": "2 0 0"
       },
       {
-        "pos": "4 0",
-        "pickup": "11"
-      },
-      {
         "pos": "5 0",
         "tile": "2 7 3"
       },
@@ -58,22 +54,6 @@
       {
         "pos": "8 0",
         "tile": "2 1 0"
-      },
-      {
-        "pos": "0 1",
-        "pickup": "3"
-      },
-      {
-        "pos": "1 1",
-        "pickup": "3"
-      },
-      {
-        "pos": "2 1",
-        "pickup": "3"
-      },
-      {
-        "pos": "3 1",
-        "pickup": "3"
       },
       {
         "pos": "4 1",
@@ -96,22 +76,6 @@
         "tile": "2 1 0"
       },
       {
-        "pos": "0 2",
-        "pickup": "1"
-      },
-      {
-        "pos": "1 2",
-        "pickup": "1"
-      },
-      {
-        "pos": "2 2",
-        "pickup": "1"
-      },
-      {
-        "pos": "3 2",
-        "pickup": "1"
-      },
-      {
         "pos": "4 2",
         "tile": "2 1 2"
       },
@@ -132,22 +96,6 @@
         "tile": "2 16 2"
       },
       {
-        "pos": "0 3",
-        "pickup": "2"
-      },
-      {
-        "pos": "1 3",
-        "pickup": "2"
-      },
-      {
-        "pos": "2 3",
-        "pickup": "2"
-      },
-      {
-        "pos": "3 3",
-        "pickup": "2"
-      },
-      {
         "pos": "4 3",
         "tile": "2 0 3"
       },
@@ -166,22 +114,6 @@
       {
         "pos": "8 3",
         "tile": "2 10 0"
-      },
-      {
-        "pos": "0 4",
-        "pickup": "2"
-      },
-      {
-        "pos": "1 4",
-        "pickup": "2"
-      },
-      {
-        "pos": "2 4",
-        "pickup": "2"
-      },
-      {
-        "pos": "3 4",
-        "pickup": "2"
       },
       {
         "pos": "4 4",
@@ -220,10 +152,6 @@
         "tile": "2 17 0"
       },
       {
-        "pos": "4 5",
-        "pickup": "11"
-      },
-      {
         "pos": "5 5",
         "tile": "2 10 2"
       },
@@ -260,22 +188,6 @@
         "tile": "2 16 2"
       },
       {
-        "pos": "5 6",
-        "pickup": "3"
-      },
-      {
-        "pos": "6 6",
-        "pickup": "3"
-      },
-      {
-        "pos": "7 6",
-        "pickup": "3"
-      },
-      {
-        "pos": "8 6",
-        "pickup": "3"
-      },
-      {
         "pos": "0 7",
         "tile": "2 6 3"
       },
@@ -294,22 +206,6 @@
       {
         "pos": "4 7",
         "tile": "2 16 1"
-      },
-      {
-        "pos": "5 7",
-        "pickup": "1"
-      },
-      {
-        "pos": "6 7",
-        "pickup": "1"
-      },
-      {
-        "pos": "7 7",
-        "pickup": "1"
-      },
-      {
-        "pos": "8 7",
-        "pickup": "1"
       },
       {
         "pos": "0 8",
@@ -332,22 +228,6 @@
         "tile": "2 15 1"
       },
       {
-        "pos": "5 8",
-        "pickup": "2"
-      },
-      {
-        "pos": "6 8",
-        "pickup": "2"
-      },
-      {
-        "pos": "7 8",
-        "pickup": "2"
-      },
-      {
-        "pos": "8 8",
-        "pickup": "2"
-      },
-      {
         "pos": "0 9",
         "tile": "2 6 3"
       },
@@ -366,6 +246,126 @@
       {
         "pos": "4 9",
         "tile": "2 14 3"
+      },
+      {
+        "pos": "4 0",
+        "pickup": "11"
+      },
+      {
+        "pos": "0 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "1 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "2 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "3 1",
+        "pickup": "3"
+      },
+      {
+        "pos": "0 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "1 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "2 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "1"
+      },
+      {
+        "pos": "0 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "1 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "2 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "3 3",
+        "pickup": "2"
+      },
+      {
+        "pos": "0 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "1 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "2 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "3 4",
+        "pickup": "2"
+      },
+      {
+        "pos": "4 5",
+        "pickup": "11"
+      },
+      {
+        "pos": "5 6",
+        "pickup": "3"
+      },
+      {
+        "pos": "6 6",
+        "pickup": "3"
+      },
+      {
+        "pos": "7 6",
+        "pickup": "3"
+      },
+      {
+        "pos": "8 6",
+        "pickup": "3"
+      },
+      {
+        "pos": "5 7",
+        "pickup": "1"
+      },
+      {
+        "pos": "6 7",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 7",
+        "pickup": "1"
+      },
+      {
+        "pos": "8 7",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 8",
+        "pickup": "2"
+      },
+      {
+        "pos": "6 8",
+        "pickup": "2"
+      },
+      {
+        "pos": "7 8",
+        "pickup": "2"
+      },
+      {
+        "pos": "8 8",
+        "pickup": "2"
       },
       {
         "pos": "5 9",

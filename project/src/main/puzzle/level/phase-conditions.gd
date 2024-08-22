@@ -184,8 +184,8 @@ class BoxBuiltPhaseCondition extends PhaseCondition:
 	## Note: This dictionary does not have entries for one-to-many keys like RequiredBoxType.ANY or
 	## RequiredBoxType.CAKE.
 	##
-	## key: (RequiredBoxType)
-	## value: (Foods.BoxType)
+	## key: (int) Enum from RequiredBoxType
+	## value: (int) Enum from Foods.BoxType
 	const BOX_TYPE_BY_REQUIRED_BOX_TYPE := {
 		RequiredBoxType.BROWN: Foods.BoxType.BROWN,
 		RequiredBoxType.PINK: Foods.BoxType.PINK,

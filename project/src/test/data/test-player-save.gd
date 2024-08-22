@@ -1,11 +1,11 @@
 extends GutTest
 
-const TEMP_FILENAME := "test936.save"
+const TEMP_FILENAME := "user://test936.save"
 
 var _rank_result: RankResult
 
 func before_each() -> void:
-	PlayerSave.data_filename = "user://%s" % TEMP_FILENAME
+	PlayerSave.data_filename = TEMP_FILENAME
 	PlayerData.reset()
 	
 	_rank_result = RankResult.new()
@@ -17,14 +17,9 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var dir := Directory.new()
-	for backup in [
-			RollingBackups.CURRENT,
-			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
-			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
-			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK,
-			RollingBackups.LEGACY]:
-		dir.remove(PlayerSave.rolling_backups.rolling_filename(backup))
+	var rolling_backups := RollingBackups.new()
+	rolling_backups.data_filename = TEMP_FILENAME
+	rolling_backups.delete_all_backups()
 
 
 func test_save_and_load() -> void:

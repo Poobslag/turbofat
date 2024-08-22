@@ -236,13 +236,14 @@ export (int) var corner_tile_index: int
 ## (https://github.com/godotengine/godot/issues/11855)
 export (bool) var _autotile: bool setget autotile
 
-## key: (TileType)
+## key: (int) Enum from TileType
 ## value: (int) tile index from the parent tilemap for the specified enum, as defined by no_goop_tile_index,
 ## 	some_goop_tile_index and all_goop_tile_index
 var _tile_indexes_by_type := {}
 
 ## key: (int) tile index from the parent tilemap
-## value: (TileType) tile index, as defined by no_goop_tile_index, some_goop_tile_index and all_goop_tile_index
+## value: (int) Enum from TileType for the tile index, as defined by no_goop_tile_index, some_goop_tile_index and
+## 	all_goop_tile_index
 var _tile_types_by_index := {}
 
 ## indexes of cake tiles in the parent tilemap, both goopy and goopless

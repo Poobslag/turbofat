@@ -22,9 +22,9 @@
     "body_rgb": "907027",
     "belly_rgb": "e5d6b7",
     "cloth_rgb": "d5c26a",
-    "glass_rgb": "232221",
+    "glass_rgb": "1d1d1d",
     "plastic_rgb": "d5c26a",
-    "hair_rgb": "544e42",
+    "hair_rgb": "4f5651",
     "eye_rgb": "d5c26a ffffff",
     "horn_rgb": "afa7ae"
   },
@@ -33,8 +33,5 @@
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "907027"
-  },
-  "fatness": 1,
-  "weight_gain_scale": 1,
-  "metabolism_scale": 1
+  }
 }

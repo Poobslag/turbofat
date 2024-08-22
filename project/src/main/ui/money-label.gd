@@ -11,12 +11,8 @@ export (bool) var compact: bool setget set_compact
 var shown_money: int
 
 func _ready() -> void:
-	PlayerData.connect("money_changed", self, "on_PlayerData_money_changed")
+	PlayerData.connect("money_changed", self, "_on_PlayerData_money_changed")
 	set_shown_money(PlayerData.money)
-
-
-func on_PlayerData_money_changed(value: int) -> void:
-	set_shown_money(value)
 
 
 func set_compact(new_compact: bool) -> void:
@@ -33,3 +29,7 @@ func set_shown_money(new_money: int) -> void:
 		$Label.text = StringUtils.compact(max(0, shown_money))
 	else:
 		$Label.text = StringUtils.comma_sep(max(0, shown_money))
+
+
+func _on_PlayerData_money_changed(value: int) -> void:
+	set_shown_money(value)

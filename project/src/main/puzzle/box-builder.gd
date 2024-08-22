@@ -158,7 +158,6 @@ func process_boxes() -> bool:
 	return false
 
 
-
 ## Creates a new integer matrix of the same dimensions as the playfield.
 func _int_matrix() -> Array:
 	var matrix := []

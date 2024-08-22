@@ -7,7 +7,7 @@ extends Node
 ## Colors used for creature's outlines
 const LINE_COLORS := ["6c4331", "41281e", "3c3c3d"]
 
-## Palettes used for recoloring creatures
+## Palettes used for recoloring creatures. Used for the old creature editor, and for randomly generated customers.
 const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "b23823", "belly_rgb": "c9442a",
 		"hair_rgb": "af845c", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
@@ -391,8 +391,7 @@ func dna_matches_type(dna: Dictionary, creature_type: int) -> bool:
 func line_colors(dna: Dictionary) -> Array:
 	var result := LINE_COLORS.duplicate()
 	if dna.has("body_rgb"):
-		var darker_line_rgb := Color(dna["body_rgb"])
-		darker_line_rgb.v -= max(darker_line_rgb.v * 0.33, 0.08)
+		var darker_line_rgb := darker_line_color(Color(dna["body_rgb"]))
 		result.append(darker_line_rgb.to_html(false))
 	return result
 
@@ -595,3 +594,10 @@ func _allele_combo_key(key1: String, value1: String, key2: String, value2: Strin
 ## A combination such as 'stubby tails' becomes a string key such as 'tail-4' which is compatible with dictionaries.
 func _allele_value_key(key: String, value: String) -> String:
 	return "%s-%s" % [key, value]
+
+
+## Returns a darker color suitable for outlining the specified body color.
+static func darker_line_color(body_rgb: Color) -> Color:
+	var result := Color(body_rgb)
+	result.v -= max(result.v * 0.33, 0.08)
+	return result

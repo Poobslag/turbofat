@@ -28,6 +28,10 @@ const FILENAMES_BY_SAVE_SLOT: Dictionary = {
 ## Filename for saving/loading system data. Can be changed for tests
 var data_filename := "user://config.json"
 
+## 'true' if the data filename has been overridden for tests. Prevents our save slot logic from resetting the filename
+## back to its default.
+var ignore_save_slot_filename := false
+
 ## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save"
 
@@ -67,8 +71,8 @@ func save_system_data() -> void:
 		PlayerSave.save_player_data()
 		
 		# Preserve turbofat0.save.bak, but delete the hourly/daily/weekly backups
-		for filename in OLD_SAVES_TO_DELETE:
-			Directory.new().remove(filename)
+		for save_slot_filename in OLD_SAVES_TO_DELETE:
+			Directory.new().remove(save_slot_filename)
 
 
 ## Populates the system's in-memory data based on a save file.
@@ -77,28 +81,28 @@ func save_system_data() -> void:
 func load_system_data() -> bool:
 	SystemData.reset()
 	
-	var filename := data_filename
+	var filename_to_load := data_filename
 	if not FileUtils.file_exists(data_filename) and FileUtils.file_exists(legacy_filename):
 		# If the player only has older July 2021 save data, we load that instead
-		filename = legacy_filename
+		filename_to_load = legacy_filename
 	
-	if not FileUtils.file_exists(filename):
+	if not FileUtils.file_exists(filename_to_load):
 		# file does not exist
 		return false
 	
 	var file := File.new()
-	var open_result := file.open(filename, File.READ)
+	var open_result := file.open(filename_to_load, File.READ)
 	if open_result != OK:
 		# validation failed; couldn't open file
-		push_warning("Couldn't open file '%s' for reading: %s" % [filename, open_result])
+		push_warning("Couldn't open file '%s' for reading: %s" % [filename_to_load, open_result])
 		return false
 	
-	var save_json_text := FileUtils.get_file_as_text(filename)
+	var save_json_text := FileUtils.get_file_as_text(filename_to_load)
 	
 	var validate_json_result := validate_json(save_json_text)
 	if validate_json_result != "":
 		# validation failed; invalid json
-		push_warning("Invalid json in file '%s': %s" % [filename, validate_json_result])
+		push_warning("Invalid json in file '%s': %s" % [filename_to_load, validate_json_result])
 		return false
 	
 	var json_save_items: Array = parse_json(save_json_text)
@@ -119,22 +123,22 @@ func load_system_data() -> bool:
 
 ## Returns the playtime in seconds for the specified save slot.
 func get_save_slot_playtime(save_slot: int) -> float:
-	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
-	return PlayerSave.get_save_slot_playtime(filename)
+	var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
+	return PlayerSave.get_save_slot_playtime(save_slot_filename)
 
 
 ## Returns the player's short name for the specified save slot.
 func get_save_slot_player_short_name(save_slot: int) -> String:
-	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
-	return PlayerSave.get_save_slot_player_short_name(filename)
+	var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
+	return PlayerSave.get_save_slot_player_short_name(save_slot_filename)
 
 
 ## Returns a human-readable name for the specified save slot.
 func get_save_slot_name(save_slot: int) -> String:
 	var prefix: String = MiscSettings.SAVE_SLOT_PREFIXES[save_slot]
-	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
+	var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	var save_slot_name: String
-	if FileUtils.file_exists(filename):
+	if FileUtils.file_exists(save_slot_filename):
 		var player_short_name := get_save_slot_player_short_name(save_slot)
 		save_slot_name = "%s: %s" % [prefix, player_short_name]
 	else:
@@ -144,17 +148,10 @@ func get_save_slot_name(save_slot: int) -> String:
 
 ## Deletes the specified save slot and all of its backups.
 func delete_save_slot(save_slot: int) -> void:
-	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
-	
+	var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	var rolling_backups := RollingBackups.new()
-	rolling_backups.data_filename = filename
-	for backup in [RollingBackups.CURRENT,
-			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
-			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
-			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK]:
-		var rolling_filename := rolling_backups.rolling_filename(backup)
-		Directory.new().remove(rolling_filename)
-	
+	rolling_backups.data_filename = save_slot_filename
+	rolling_backups.delete_all_backups()
 	emit_signal("save_slot_deleted")
 
 
@@ -195,8 +192,13 @@ func _load_line(type: String, _key: String, json_value) -> void:
 func _refresh_save_slot() -> void:
 	if not FILENAMES_BY_SAVE_SLOT.has(SystemData.misc_settings.save_slot):
 		SystemData.misc_settings.save_slot = MiscSettings.SaveSlot.SLOT_A
-	var filename: String = FILENAMES_BY_SAVE_SLOT[SystemData.misc_settings.save_slot]
-	PlayerSave.data_filename = filename
+	
+	if ignore_save_slot_filename:
+		# prevent filenames from changing if we're overriding them for tests
+		pass
+	else:
+		var save_slot_filename: String = FILENAMES_BY_SAVE_SLOT[SystemData.misc_settings.save_slot]
+		PlayerSave.data_filename = save_slot_filename
 
 
 func _on_MiscSettings_save_slot_changed() -> void:

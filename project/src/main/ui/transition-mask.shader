@@ -1,10 +1,10 @@
-/*
+shader_type canvas_item;
+render_mode unshaded;
+/**
  * Renders a greyscale image as a single-color mask with an alpha component.
  *
  * Used to black out the screen during scene transitions.
  */
-shader_type canvas_item;
-render_mode unshaded;
 
 // The red value which defines the cutoff for what's opaque
 uniform float cutoff : hint_range(0.0, 1.0);

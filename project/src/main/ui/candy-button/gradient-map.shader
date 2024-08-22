@@ -1,10 +1,10 @@
-/*
+shader_type canvas_item;
+render_mode unshaded;
+/**
  * Applies a gradient map to a texture. Obtained from GDQuest's Gradient Map tutorial, 2024-05-14
  *
  * https://www.gdquest.com/tutorial/godot/shaders/gradient-map/
  */
-shader_type canvas_item;
-render_mode unshaded;
 
 // Gradient used in the mapping; light and dark tones are mapped to colors in this gradient.
 uniform sampler2D gradient: hint_black;

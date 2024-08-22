@@ -1,46 +1,23 @@
 {
   "version": "4c5c",
-  "start_speed": "1",
   "name": "Curly Queue",
   "description": "Augh who keeps spinning the next queue? Oh wait, it's me.",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "90"
-  },
+  "start_speed": "1",
   "combo_break": [
     "pieces 999999"
   ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 90
+  },
   "piece_types": [
     "start_piece_j"
   ],
   "rank": [
+    "box_factor 1.1",
     "extra_seconds_per_piece 0.25",
-    "box_factor 1.10",
-    "hide_combos_rank",
-    "preplaced_pieces 4"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "rotated_cw",
-        "initial_rotated_cw"
-      ],
-      "effect": "rotate_next_pieces cw"
-    },
-    {
-      "phases": [
-        "rotated_ccw",
-        "initial_rotated_ccw"
-      ],
-      "effect": "rotate_next_pieces ccw"
-    },
-    {
-      "phases": [
-        "rotated_180",
-        "initial_rotated_180"
-      ],
-      "effect": "rotate_next_pieces 180"
-    }
+    "preplaced_pieces 4",
+    "hide_combos_rank"
   ],
   "tiles": {
     "start": [
@@ -165,5 +142,28 @@
         "tile": "2 0 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "rotated_cw",
+        "initial_rotated_cw"
+      ],
+      "effect": "rotate_next_pieces cw"
+    },
+    {
+      "phases": [
+        "rotated_ccw",
+        "initial_rotated_ccw"
+      ],
+      "effect": "rotate_next_pieces ccw"
+    },
+    {
+      "phases": [
+        "rotated_180",
+        "initial_rotated_180"
+      ],
+      "effect": "rotate_next_pieces 180"
+    }
+  ]
 }

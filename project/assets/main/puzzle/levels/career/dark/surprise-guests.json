@@ -1,41 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "Surprise Guests EX",
   "description": "Surpriiiise! ...We just thought we'd drop in.",
+  "start_speed": "A1",
   "finish_condition": {
     "type": "time_over",
-    "value": "135"
+    "value": 135
   },
   "rank": [
-    "extra_seconds_per_piece 0.20",
-    "box_factor 0.90",
-    "combo_factor 0.90",
+    "box_factor 0.9",
+    "combo_factor 0.9",
+    "extra_seconds_per_piece 0.2",
     "master_pickup_score_per_line 9.03",
     "show_pickups_rank"
-  ],
-  "timers": [
-    {
-      "interval": 9.6,
-      "start": 4.8
-    },
-    {
-      "interval": 1.2
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "add_moles count=8 dig_duration=2 reward=seed"
-    },
-    {
-      "phases": [
-        "timer_1"
-      ],
-      "effect": "advance_moles"
-    }
   ],
   "tiles": {
     "start": [
@@ -148,5 +125,28 @@
         "tile": "1 5 1"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 9.6,
+      "start": 4.8
+    },
+    {
+      "interval": 1.2
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_moles count=8 dig_duration=2 reward=seed"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "advance_moles"
+    }
+  ]
 }

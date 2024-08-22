@@ -1,10 +1,10 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "Three Minute Sprint EX",
   "description": "Nothing fancy, let's just cook!",
+  "start_speed": "A1",
   "finish_condition": {
     "type": "time_over",
-    "value": "180"
+    "value": 180
   }
 }

@@ -8,7 +8,7 @@
   ],
   "finish_condition": {
     "type": "score",
-    "value": "1100"
+    "value": 1100
   },
   "piece_types": [
     "piece_c",
@@ -22,7 +22,7 @@
   ],
   "rank": [
     "combo_factor 1.21",
-    "master_pickup_score_per_line 15.30",
+    "master_pickup_score_per_line 15.3",
     "show_pickups_rank"
   ],
   "tiles": {

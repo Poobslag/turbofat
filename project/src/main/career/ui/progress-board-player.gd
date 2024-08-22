@@ -28,6 +28,9 @@ var visual_spots_travelled: float setget set_visual_spots_travelled
 ## Height in pixels the player's chalk graphics bounce while advancing.
 var _bounce_height := MAX_BOUNCE_HEIGHT
 
+## Tweens the player's chalk graphic position along the trail.
+var _tween: SceneTreeTween
+
 ## Number label above the player's head which shows how far they will advance.
 onready var _label := $Label
 
@@ -37,9 +40,6 @@ onready var _sprite: Sprite = $PlayerSprite
 ## Animates the player's chalk graphic to wave its arms.
 onready var _sprite_animation_player := $PlayerSprite/AnimationPlayer
 onready var _trail: ProgressBoardTrail = get_node(trail_path)
-
-## Tweens the player's chalk graphic position along the trail.
-onready var _tween: SceneTreeTween
 
 ## Plays a 'donk' sound as the player's chalk graphic bounces along the trail.
 onready var _player_move_sound := $PlayerMoveSound

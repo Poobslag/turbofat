@@ -39,13 +39,13 @@ var _velocity: Vector2
 ## the creature's desired velocity, based on how close they are to their buddy and destination
 var _desired_velocity: Vector2
 
+var _elevation_tween: SceneTreeTween
+
 ## other creature whom this creature is walking with
 onready var _buddy: Creature = get_node(buddy_path)
 
 ## other creature whom this creature is walking with
 onready var _destination: Node2D = get_node(destination_path)
-
-onready var _elevation_tween: SceneTreeTween
 
 ## periodically changes the creature's mood and orientation
 onready var _mood_timer := $MoodTimer

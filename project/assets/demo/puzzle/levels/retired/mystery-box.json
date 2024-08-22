@@ -1,16 +1,104 @@
 {
   "version": "4c5c",
-  "start_speed": "9",
   "name": "Mystery Box",
   "description": "Can you guess what's inside? Hey, no peeking!",
+  "start_speed": "9",
   "finish_condition": {
     "type": "time_over",
-    "value": "90"
+    "value": 90
   },
   "rank": [
     "box_factor 0.82",
     "master_pickup_score 100"
   ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 16",
+        "tile": "1 8 6"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 12 6"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 4 6"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 8 6"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 4 6"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 10 0"
+      },
+      {
+        "pos": "7 17",
+        "tile": "1 14 0"
+      },
+      {
+        "pos": "8 17",
+        "tile": "1 6 0"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 0 6"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 11 0"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 15 0"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 7 0"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 0 6"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 0"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 0"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 0"
+      },
+      {
+        "pos": "0 17",
+        "pickup": "6"
+      },
+      {
+        "pos": "0 18",
+        "pickup": "6"
+      },
+      {
+        "pos": "1 18",
+        "pickup": "6"
+      },
+      {
+        "pos": "0 19",
+        "pickup": "6"
+      },
+      {
+        "pos": "1 19",
+        "pickup": "6"
+      }
+    ]
+  },
   "timers": [
     {
       "interval": 5
@@ -38,93 +126,5 @@
       ],
       "effect": "remove_onion"
     }
-  ],
-  "tiles": {
-    "start": [
-      {
-        "pos": "0 16",
-        "tile": "1 8 6"
-      },
-      {
-        "pos": "1 16",
-        "tile": "1 12 6"
-      },
-      {
-        "pos": "2 16",
-        "tile": "1 4 6"
-      },
-      {
-        "pos": "0 17",
-        "pickup": "6"
-      },
-      {
-        "pos": "1 17",
-        "tile": "1 8 6"
-      },
-      {
-        "pos": "2 17",
-        "tile": "1 4 6"
-      },
-      {
-        "pos": "6 17",
-        "tile": "1 10 0"
-      },
-      {
-        "pos": "7 17",
-        "tile": "1 14 0"
-      },
-      {
-        "pos": "8 17",
-        "tile": "1 6 0"
-      },
-      {
-        "pos": "0 18",
-        "pickup": "6"
-      },
-      {
-        "pos": "1 18",
-        "pickup": "6"
-      },
-      {
-        "pos": "2 18",
-        "tile": "1 0 6"
-      },
-      {
-        "pos": "6 18",
-        "tile": "1 11 0"
-      },
-      {
-        "pos": "7 18",
-        "tile": "1 15 0"
-      },
-      {
-        "pos": "8 18",
-        "tile": "1 7 0"
-      },
-      {
-        "pos": "0 19",
-        "pickup": "6"
-      },
-      {
-        "pos": "1 19",
-        "pickup": "6"
-      },
-      {
-        "pos": "2 19",
-        "tile": "1 0 6"
-      },
-      {
-        "pos": "6 19",
-        "tile": "1 9 0"
-      },
-      {
-        "pos": "7 19",
-        "tile": "1 13 0"
-      },
-      {
-        "pos": "8 19",
-        "tile": "1 5 0"
-      }
-    ]
-  }
+  ]
 }

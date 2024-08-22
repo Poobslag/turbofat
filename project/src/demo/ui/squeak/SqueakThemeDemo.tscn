@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/demo/ui/squeak/squeak-theme-demo.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/squeak/SqueakButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/squeak/SqueakOptionButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/ui/squeak/SqueakCheckBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/squeak/br/SqueakButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/squeak/br/SqueakOptionButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/squeak/br/SqueakCheckBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/TabInputEnabler.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=5]
@@ -132,6 +132,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
+tick_count = 11
+
+[node name="HSlider2" type="HSlider" parent="Panel"]
+margin_left = 52.8571
+margin_top = 397.0
+margin_right = 252.857
+margin_bottom = 415.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+editable = false
 tick_count = 11
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="Panel"]

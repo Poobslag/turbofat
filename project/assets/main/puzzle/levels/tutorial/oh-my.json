@@ -1,5 +1,24 @@
 {
   "version": "4c5c",
+  "start_speed": "A1",
+  "finish_condition": {
+    "type": "lines",
+    "value": 100
+  },
+  "lose_condition": [
+    "top_out 1"
+  ],
+  "other": [
+    "after_tutorial",
+    "no_clear_on_finish",
+    "start_level marathon_hard"
+  ],
+  "piece_types": [
+    "piece_l"
+  ],
+  "rank": [
+    "skip_results"
+  ],
   "tiles": {
     "start": [
       {
@@ -239,24 +258,5 @@
         "tile": "0 5 1"
       }
     ]
-  },
-  "finish_condition": {
-    "type": "lines",
-    "value": "100"
-  },
-  "lose_condition": [
-    "top_out 1"
-  ],
-  "other": [
-    "start_level marathon_hard",
-    "after_tutorial",
-    "no_clear_on_finish"
-  ],
-  "piece_types": [
-    "piece_l"
-  ],
-  "rank": [
-    "skip_results"
-  ],
-  "start_speed": "A1"
+  }
 }

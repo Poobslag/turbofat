@@ -25,17 +25,17 @@ const SOUTHWEST := ExitDirection.SOUTHWEST
 const WEST := ExitDirection.WEST
 const NORTHWEST := ExitDirection.NORTHWEST
 
-## direction the exit is facing. Also the direction the player needs to move to use the exit
-export (ExitDirection) var exit_direction := ExitDirection.NORTH setget set_exit_direction
-
 ## sprite sheet for when the exit faces east or west
-var _exit_e_sheet := preload("res://assets/main/world/environment/exit-e-sheet.png")
+const EXIT_E_SHEET := preload("res://assets/main/world/environment/exit-e-sheet.png")
 
 ## sprite sheet for when the exit faces north or south
-var _exit_n_sheet := preload("res://assets/main/world/environment/exit-n-sheet.png")
+const EXIT_N_SHEET := preload("res://assets/main/world/environment/exit-n-sheet.png")
 
 ## sprite sheet for when the exit faces northeast, southeast, southwest or northwest
-var _exit_ne_sheet := preload("res://assets/main/world/environment/exit-ne-sheet.png")
+const EXIT_NE_SHEET := preload("res://assets/main/world/environment/exit-ne-sheet.png")
+
+## direction the exit is facing. Also the direction the player needs to move to use the exit
+export (ExitDirection) var exit_direction := ExitDirection.NORTH setget set_exit_direction
 
 func _ready() -> void:
 	_refresh_exit_direction()
@@ -54,6 +54,6 @@ func _refresh_exit_direction() -> void:
 	scale.y = abs(scale.y) * (-1 if exit_direction in [SOUTHWEST, SOUTH, SOUTHEAST] else 1)
 	
 	match exit_direction:
-		NORTH, SOUTH: texture = _exit_n_sheet
-		NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST: texture = _exit_ne_sheet
-		EAST, WEST: texture = _exit_e_sheet
+		NORTH, SOUTH: texture = EXIT_N_SHEET
+		NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST: texture = EXIT_NE_SHEET
+		EAST, WEST: texture = EXIT_E_SHEET

@@ -20,6 +20,12 @@ const TILE_CORNER := 3 # inner corner of a piece for CornerMap
 const ROW_COUNT := 20
 const COL_COUNT := 9
 
+const PUZZLE_TILE_SETS_BY_ENUM := {
+	TileSetType.DEFAULT: preload("res://src/main/puzzle/puzzle-tile-set.tres"),
+	TileSetType.VEGGIE: preload("res://src/main/puzzle/puzzle-tile-set-veggies.tres"),
+	TileSetType.DIAGRAM: preload("res://src/main/puzzle/puzzle-tile-set-diagram.tres"),
+}
+
 ## number in the range [0, 1] which can be set to make the tilemap flash or blink.
 var whiteness := 0.0 setget set_whiteness
 
@@ -33,12 +39,6 @@ var puzzle_tile_set_type: int = TileSetType.DEFAULT setget set_puzzle_tile_set_t
 var _saved_used_cells := []
 var _saved_tiles := []
 var _saved_autotile_coords := []
-
-var _puzzle_tile_sets_by_enum := {
-	TileSetType.DEFAULT: preload("res://src/main/puzzle/puzzle-tile-set.tres"),
-	TileSetType.VEGGIE: preload("res://src/main/puzzle/puzzle-tile-set-veggies.tres"),
-	TileSetType.DIAGRAM: preload("res://src/main/puzzle/puzzle-tile-set-diagram.tres"),
-}
 
 ## tilemap which covers the corners of this tilemap
 onready var corner_map: TileMap = $CornerMap
@@ -225,11 +225,11 @@ func somewhere_near_cell(cell_pos: Vector2, cell_offset: Vector2 = Vector2.ZERO)
 ## 	'new_puzzle_tile_set_type': enum from TileSetType referencing the tileset used to render blocks
 func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
 	puzzle_tile_set_type = new_puzzle_tile_set_type
-	tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
-	corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
+	tile_set = PUZZLE_TILE_SETS_BY_ENUM[new_puzzle_tile_set_type]
+	corner_map.tile_set = PUZZLE_TILE_SETS_BY_ENUM[new_puzzle_tile_set_type]
 	
-	_ghost_piece_shadow_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
-	_ghost_piece_corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
+	_ghost_piece_shadow_map.tile_set = PUZZLE_TILE_SETS_BY_ENUM[new_puzzle_tile_set_type]
+	_ghost_piece_corner_map.tile_set = PUZZLE_TILE_SETS_BY_ENUM[new_puzzle_tile_set_type]
 
 
 ## Shifts a group of rows up or down.

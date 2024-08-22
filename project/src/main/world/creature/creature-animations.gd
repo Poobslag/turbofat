@@ -31,11 +31,11 @@ var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
 
+## recoils the creature's head
+var _tween: SceneTreeTween
+
 ## IdleTimer which launches idle animations periodically
 onready var _idle_timer: Timer = $IdleTimer
-
-## recoils the creature's head
-onready var _tween: SceneTreeTween
 
 ## EmotePlayer which animates moods: blinking, smiling, sweating, etc.
 onready var _emote_player: AnimationPlayer = $EmotePlayer

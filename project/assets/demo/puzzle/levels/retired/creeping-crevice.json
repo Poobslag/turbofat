@@ -1,25 +1,17 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
   "name": "Creeping Crevice",
   "description": "It'll sneak up on you!",
+  "start_speed": "4",
   "blocks_during": [
     "shuffle_inserted_lines"
   ],
   "finish_condition": {
     "type": "lines",
-    "value": "25"
+    "value": 25
   },
   "rank": [
     "box_factor 0.94"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=2,4,6... combo=0,1,2"
-      ],
-      "effect": "insert_line tiles_key=0"
-    }
   ],
   "tiles": {
     "0": [
@@ -392,5 +384,13 @@
         "tile": "2 6 1"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=2,4... combo=0-2"
+      ],
+      "effect": "insert_line tiles_key=0"
+    }
+  ]
 }

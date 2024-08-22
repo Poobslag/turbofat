@@ -7,8 +7,9 @@ const TWEEN_DURATION := 0.1
 ## Path to the label which shows the total each customer paid. The money label responds to these totals.
 export (NodePath) var results_label_path: NodePath
 
+var _money_label_tween: SceneTreeTween
+
 onready var _money_label := $MoneyLabel
-onready var _money_label_tween: SceneTreeTween
 onready var _results_label: ResultsLabel = get_node(results_label_path)
 
 func _ready() -> void:

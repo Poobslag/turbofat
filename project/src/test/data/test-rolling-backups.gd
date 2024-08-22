@@ -1,22 +1,15 @@
 extends GutTest
 
-const TEMP_FILENAME := "test837.save"
+const TEMP_FILENAME := "user://test837.save"
 
 var _backups := RollingBackups.new()
 
 func before_each() -> void:
-	_backups.data_filename = "user://%s" % TEMP_FILENAME
+	_backups.data_filename = TEMP_FILENAME
 
 
 func after_each() -> void:
-	var dir := Directory.new()
-	dir.remove(_backups.rolling_filename(RollingBackups.CURRENT))
-	dir.remove(_backups.rolling_filename(RollingBackups.THIS_HOUR))
-	dir.remove(_backups.rolling_filename(RollingBackups.PREV_HOUR))
-	dir.remove(_backups.rolling_filename(RollingBackups.THIS_DAY))
-	dir.remove(_backups.rolling_filename(RollingBackups.PREV_DAY))
-	dir.remove(_backups.rolling_filename(RollingBackups.THIS_WEEK))
-	dir.remove(_backups.rolling_filename(RollingBackups.PREV_WEEK))
+	_backups.delete_all_backups()
 
 
 func test_rolling_filename() -> void:

@@ -3,8 +3,40 @@
   "start_speed": "T",
   "finish_condition": {
     "type": "pieces",
-    "value": "5"
+    "value": 5
   },
+  "input_replay": [
+    "56 +move_piece_right",
+    "61 -move_piece_right",
+    "113 +move_piece_left",
+    "118 +rotate_cw",
+    "120 -move_piece_left",
+    "124 -rotate_cw",
+    "131 +move_piece_right",
+    "136 -move_piece_right",
+    "146 +hard_drop",
+    "153 -hard_drop"
+  ],
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "start_level tutorial/squish_0",
+    "tutorial"
+  ],
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_t",
+    "piece_u",
+    "start_piece_u"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -220,37 +252,5 @@
         "tile": "1 4 0"
       }
     ]
-  },
-  "piece_types": [
-    "start_piece_u",
-    "piece_j",
-    "piece_l",
-    "piece_p",
-    "piece_q",
-    "piece_t",
-    "piece_u"
-  ],
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "start_level tutorial/squish_0",
-    "tutorial"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "input_replay": [
-    "56 +move_piece_right",
-    "61 -move_piece_right",
-    "113 +move_piece_left",
-    "118 +rotate_cw",
-    "120 -move_piece_left",
-    "124 -rotate_cw",
-    "131 +move_piece_right",
-    "136 -move_piece_right",
-    "146 +hard_drop",
-    "153 -hard_drop"
-  ]
+  }
 }

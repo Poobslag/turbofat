@@ -154,9 +154,10 @@ var _head_bobber: Sprite
 ## list of sprites to reset when unemoting
 var _emote_sprites: Array
 
+var _reset_tween: SceneTreeTween
+var _volume_db_tween: SceneTreeTween
+
 onready var _emote_sfx := $EmoteSfx
-onready var _reset_tween: SceneTreeTween
-onready var _volume_db_tween: SceneTreeTween
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()

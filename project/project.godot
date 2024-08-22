@@ -32,12 +32,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "BlockLevelChunk",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/block-level-chunk.gd"
+"path": "res://src/demo/editor/puzzle/block-level-chunk.gd"
 }, {
 "base": "Control",
 "class": "BlockLevelChunkControl",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/block-level-chunk-control.gd"
+"path": "res://src/demo/editor/puzzle/block-level-chunk-control.gd"
 }, {
 "base": "Reference",
 "class": "BlocksDuringRules",
@@ -83,6 +83,16 @@ _global_script_classes=[ {
 "class": "CandyButtons",
 "language": "GDScript",
 "path": "res://src/main/ui/candy-button/candy-buttons.gd"
+}, {
+"base": "Panel",
+"class": "CandyColorPicker",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/candy-color-picker.gd"
+}, {
+"base": "Button",
+"class": "CandyColorPickerButton",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/candy-color-picker-button.gd"
 }, {
 "base": "Reference",
 "class": "CareerCutsceneLibrarian",
@@ -280,6 +290,11 @@ _global_script_classes=[ {
 "path": "res://src/main/editor/creature/dialogs.gd"
 }, {
 "base": "Node",
+"class": "CreatureEditorLibrary",
+"language": "GDScript",
+"path": "res://src/main/editor/creature/creature-editor-library.gd"
+}, {
+"base": "Node",
 "class": "CreatureEditorOld",
 "language": "GDScript",
 "path": "res://src/demo/editor/creature-old/creature-editor-old.gd"
@@ -452,12 +467,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "EditorPickups",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/editor-pickups.gd"
+"path": "res://src/demo/editor/puzzle/editor-pickups.gd"
 }, {
 "base": "Control",
 "class": "EditorPlayfield",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/editor-playfield.gd"
+"path": "res://src/demo/editor/puzzle/editor-playfield.gd"
 }, {
 "base": "Node2D",
 "class": "EndTextTitle",
@@ -544,6 +559,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/grade-label.gd"
 }, {
+"base": "Node",
+"class": "GradientHelper",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/gradient-helper.gd"
+}, {
 "base": "Reference",
 "class": "GraphicsSettings",
 "language": "GDScript",
@@ -588,6 +608,11 @@ _global_script_classes=[ {
 "class": "HookableRegionGradeLabel",
 "language": "GDScript",
 "path": "res://src/main/career/ui/hookable-region-grade-label.gd"
+}, {
+"base": "HBoxContainer",
+"class": "HsvSlider",
+"language": "GDScript",
+"path": "res://src/main/ui/candy-button/hsv-slider.gd"
 }, {
 "base": "ColorRect",
 "class": "HudFlash",
@@ -649,10 +674,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/letter-shooter.gd"
 }, {
+"base": "Control",
+"class": "LevelButtonScroller",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/level-button-scroller.gd"
+}, {
 "base": "Node",
 "class": "LevelEditor",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/level-editor.gd"
+"path": "res://src/demo/editor/puzzle/level-editor.gd"
 }, {
 "base": "Reference",
 "class": "LevelHistory",
@@ -1022,12 +1052,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PickupLevelChunk",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/pickup-level-chunk.gd"
+"path": "res://src/demo/editor/puzzle/pickup-level-chunk.gd"
 }, {
 "base": "Control",
 "class": "PickupLevelChunkControl",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/pickup-level-chunk-control.gd"
+"path": "res://src/demo/editor/puzzle/pickup-level-chunk-control.gd"
 }, {
 "base": "Control",
 "class": "Pickups",
@@ -1122,7 +1152,7 @@ _global_script_classes=[ {
 "base": "HBoxContainer",
 "class": "PlayfieldEditorControl",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/playfield-editor-control.gd"
+"path": "res://src/demo/editor/puzzle/playfield-editor-control.gd"
 }, {
 "base": "Node2D",
 "class": "PlayfieldFx",
@@ -1132,7 +1162,7 @@ _global_script_classes=[ {
 "base": "VBoxContainer",
 "class": "PlayfieldNav",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/editor-playfield-nav.gd"
+"path": "res://src/demo/editor/puzzle/editor-playfield-nav.gd"
 }, {
 "base": "OverworldObstacle",
 "class": "PokiCrowdie",
@@ -1152,7 +1182,7 @@ _global_script_classes=[ {
 "base": "VBoxContainer",
 "class": "PracticeSpeedSelector",
 "language": "GDScript",
-"path": "res://src/main/ui/menu/practice-speed-selector.gd"
+"path": "res://src/main/ui/menu/training-speed-selector.gd"
 }, {
 "base": "AudioStreamPlayer",
 "class": "PresquishSfx",
@@ -1182,7 +1212,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "PropertiesEditorControl",
 "language": "GDScript",
-"path": "res://src/main/editor/puzzle/properties-editor-control.gd"
+"path": "res://src/demo/editor/puzzle/properties-editor-control.gd"
 }, {
 "base": "Control",
 "class": "Puzzle",
@@ -1248,6 +1278,11 @@ _global_script_classes=[ {
 "class": "RegionCompletion",
 "language": "GDScript",
 "path": "res://src/main/career/region-completion.gd"
+}, {
+"base": "Reference",
+"class": "RegionMusic",
+"language": "GDScript",
+"path": "res://src/main/career/region-music.gd"
 }, {
 "base": "MarginContainer",
 "class": "RegionSelectButton",
@@ -1585,6 +1620,8 @@ _global_script_class_icons={
 "CandyButtonC3": "",
 "CandyButtonCollapsible": "",
 "CandyButtons": "",
+"CandyColorPicker": "",
+"CandyColorPickerButton": "",
 "CareerCutsceneLibrarian": "",
 "CareerData": "",
 "CareerLevel": "",
@@ -1624,6 +1661,7 @@ _global_script_class_icons={
 "CreatureDef": "",
 "CreatureEditorCategory": "",
 "CreatureEditorDialogs": "",
+"CreatureEditorLibrary": "",
 "CreatureEditorOld": "",
 "CreatureLibrary": "",
 "CreatureNameButton": "",
@@ -1677,6 +1715,7 @@ _global_script_class_icons={
 "GoopGlob": "",
 "GoopViewports": "",
 "GradeLabel": "",
+"GradientHelper": "",
 "GraphicsSettings": "",
 "GutHookScript": "",
 "GutTest": "",
@@ -1686,6 +1725,7 @@ _global_script_class_icons={
 "HoldPieceDisplays": "",
 "HookableLevelGradeLabel": "",
 "HookableRegionGradeLabel": "",
+"HsvSlider": "",
 "HudFlash": "",
 "IdleTimer": "",
 "ImageButton": "",
@@ -1698,6 +1738,7 @@ _global_script_class_icons={
 "LeafPoof": "",
 "LetterProjectile": "",
 "LetterShooter": "",
+"LevelButtonScroller": "",
 "LevelEditor": "",
 "LevelHistory": "",
 "LevelPosse": "",
@@ -1818,6 +1859,7 @@ _global_script_class_icons={
 "RankRules": "",
 "RectFitLabel": "",
 "RegionCompletion": "",
+"RegionMusic": "",
 "RegionSelectButton": "",
 "ReleaseToolkitOutput": "",
 "RestaurantPuzzleScene": "",
@@ -1920,6 +1962,7 @@ MusicTransition="*res://src/main/music/music-transition.gd"
 NameGeneratorLibrary="*res://src/main/world/creature/name-generator-library.gd"
 OtherLevelLibrary="*res://src/main/puzzle/other-level-library.gd"
 Pauser="*res://src/main/utils/pauser.gd"
+PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
 PlayerData="*res://src/main/data/player-data.gd"
 PlayerSave="*res://src/main/data/player-save.gd"
 PuzzleState="*res://src/main/puzzle/PuzzleState.tscn"
@@ -1930,8 +1973,6 @@ SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
 SfxKeeper="*res://src/main/utils/sfx-keeper.gd"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
-PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
-CreatureEditorLibrary="*res://src/main/editor/creature/creature-editor-library.gd"
 
 [debug]
 
@@ -2119,6 +2160,11 @@ prev_tab={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

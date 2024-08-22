@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "A1",
   "name": "Muffin Impossible EX",
   "description": "More awkward mismatched pieces!? When will the pain stop?",
+  "start_speed": "A1",
   "finish_condition": {
     "type": "score",
-    "value": "1800"
+    "value": 1800
   },
   "piece_types": [
     "piece_j",

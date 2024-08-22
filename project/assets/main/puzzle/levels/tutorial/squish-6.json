@@ -3,8 +3,54 @@
   "start_speed": "T",
   "finish_condition": {
     "type": "pieces",
-    "value": "5"
+    "value": 5
   },
+  "input_replay": [
+    "16 +move_piece_right",
+    "16 +rotate_ccw",
+    "23 -move_piece_right",
+    "23 -rotate_ccw",
+    "29 +move_piece_right",
+    "35 -move_piece_right",
+    "39 +rotate_cw",
+    "39 +move_piece_right",
+    "46 -move_piece_right",
+    "48 -rotate_cw",
+    "53 +rotate_cw",
+    "53 +move_piece_right",
+    "59 -move_piece_right",
+    "60 -rotate_cw",
+    "64 +rotate_cw",
+    "71 -rotate_cw",
+    "72 +move_piece_left",
+    "76 +rotate_cw",
+    "78 -move_piece_left",
+    "82 -rotate_cw",
+    "87 +rotate_cw",
+    "95 -rotate_cw",
+    "108 +hard_drop",
+    "114 -hard_drop"
+  ],
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "start_level tutorial/squish_0",
+    "tutorial"
+  ],
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_t",
+    "piece_u",
+    "start_piece_q"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
   "tiles": {
     "start": [
       {
@@ -244,51 +290,5 @@
         "tile": "2 9 3"
       }
     ]
-  },
-  "piece_types": [
-    "start_piece_q",
-    "piece_j",
-    "piece_l",
-    "piece_p",
-    "piece_q",
-    "piece_t",
-    "piece_u"
-  ],
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "start_level tutorial/squish_0",
-    "tutorial"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "input_replay": [
-    "16 +move_piece_right",
-    "16 +rotate_ccw",
-    "23 -move_piece_right",
-    "23 -rotate_ccw",
-    "29 +move_piece_right",
-    "35 -move_piece_right",
-    "39 +rotate_cw",
-    "39 +move_piece_right",
-    "46 -move_piece_right",
-    "48 -rotate_cw",
-    "53 +rotate_cw",
-    "53 +move_piece_right",
-    "59 -move_piece_right",
-    "60 -rotate_cw",
-    "64 +rotate_cw",
-    "71 -rotate_cw",
-    "72 +move_piece_left",
-    "76 +rotate_cw",
-    "78 -move_piece_left",
-    "82 -rotate_cw",
-    "87 +rotate_cw",
-    "95 -rotate_cw",
-    "108 +hard_drop",
-    "114 -hard_drop"
-  ]
+  }
 }

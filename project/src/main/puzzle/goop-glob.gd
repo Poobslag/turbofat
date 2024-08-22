@@ -42,7 +42,8 @@ var velocity := Vector2.ZERO
 ## time in milliseconds between the engine starting and this node being initialized
 var _creation_time := 0.0
 
-onready var _tween: SceneTreeTween
+var _tween: SceneTreeTween
+
 onready var _fade_timer: Timer = $FadeTimer
 
 ## Populates this object from another GoopGlob instance.

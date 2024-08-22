@@ -1,11 +1,10 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Real Meal",
   "description": "If you're going to indulge, you may as well make it worth it!",
   "finish_condition": {
     "type": "score",
-    "value": "500"
+    "value": 500
   },
   "piece_types": [
     "start_piece_j"

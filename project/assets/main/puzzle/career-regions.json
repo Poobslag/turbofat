@@ -6,6 +6,14 @@
       "start": 0,
       "description": "Locate the mysterious Fat Sensei and launch your first successful restaurant. ...And maybe make some woodland friends along the way!",
       "icon": "forest",
+      "music": {
+        "menu": "hot_funk_sundae",
+        "puzzle": [
+          "+sugar_crash",
+          "mystic_muffin",
+          "acid_reflux"
+        ]
+      },
       "overworld_environment": "lemon",
       "puzzle_environment": "lemon",
       "region_button": "lemon",
@@ -88,6 +96,14 @@
       "start": 8,
       "description": "We're not done yet, there's a heckton of work which goes into setting up a restaurant! ...Oh wait, there isn't? Never mind then!",
       "icon": "forest",
+      "music": {
+        "menu": "hot_funk_sundae",
+        "puzzle": [
+          "+pressure_cooker",
+          "chunky_obake",
+          "acid_reflux"
+        ]
+      },
       "overworld_environment": "lemon_2",
       "puzzle_environment": "lemon_2",
       "region_button": "lemon_2",
@@ -171,6 +187,14 @@
       "start": 20,
       "description": "Oh no, there's nobody here. ....Except for THOSE fifty billion people! Where did THEY all come from!?",
       "icon": "cactus",
+      "music": {
+        "menu": "dessert_course",
+        "puzzle": [
+          "+chocolate_chip",
+          "chunky_obake",
+          "chub_n_bass"
+        ]
+      },
       "overworld_environment": "poki",
       "region_button": "poki",
       "piece_speed": "1-3",
@@ -259,6 +283,14 @@
       "start": 32,
       "description": "The wacky council members running this island might be able to help our restaurant! If they would only stop arguing...",
       "icon": "island",
+      "music": {
+        "menu": "lo_fi_chill",
+        "puzzle": [
+          "+doo_doo_doo",
+          "gingerbread_house",
+          "chub_n_bass"
+        ]
+      },
       "overworld_environment": "sand",
       "region_button": "sand",
       "piece_speed": "2-5",
@@ -340,6 +372,14 @@
       "start": 46,
       "description": "The quirky chefs at the Merrymellow Marsh location can't seem to do anything right. They really need our help!",
       "icon": "skull",
+      "music": {
+        "menu": "chub_hub",
+        "puzzle": [
+          "+triple_thicc_shake",
+          "gingerbread_house",
+          "juicer_mixer_grinder"
+        ]
+      },
       "overworld_environment": "marsh",
       "region_button": "marsh",
       "piece_speed": "3-7",
@@ -434,6 +474,14 @@
       "start": 62,
       "description": "Can we complete the ultimate challenge to obtain the coveted 'Chef Of The Year' plaque!? All our hopes are riding on this!",
       "icon": "volcano",
+      "music": {
+        "menu": "harder_butter",
+        "puzzle": [
+          "+extra_sprinkles",
+          "mystic_muffin",
+          "juicer_mixer_grinder"
+        ]
+      },
       "overworld_environment": "lava",
       "region_button": "lava",
       "piece_speed": "6-9",
@@ -506,6 +554,23 @@
       "start": 82,
       "description": "A slew of insurmountable challenges sure to drive even the most seasoned chefs to the brink of insanity. The true Turbo Fat starts here!",
       "icon": "rainbow",
+      "music": {
+        "menu": "rainbow_sherbeat",
+        "puzzle": [
+          "sugar_crash",
+          "acid_reflux",
+          "chocolate_chip",
+          "chub_n_bass",
+          "chunky_obake",
+          "doo_doo_doo",
+          "extra_sprinkles",
+          "gingerbread_house",
+          "juicer_mixer_grinder",
+          "mystic_muffin",
+          "pressure_cooker",
+          "triple_thicc_shake"
+        ]
+      },
       "piece_speed": "A1-AD",
       "flags": [
         "new_page"

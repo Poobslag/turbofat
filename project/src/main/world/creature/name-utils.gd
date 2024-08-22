@@ -69,7 +69,7 @@ static func sanitize_short_name(name: String) -> String:
 ## Returns 'true' if the specified letter is a consonant.
 ##
 ## Parameters:
-## 	'character': An upper-case or lower-case letter.
+## 	'character': An upper case or lower case letter.
 ##
 ## 	'y': True if 'y' counts as a consonant.
 static func is_consonant(character: String, y: bool = false) -> bool:
@@ -84,7 +84,7 @@ static func is_consonant(character: String, y: bool = false) -> bool:
 ## Returns 'true' if the specified letter is a vowel.
 ##
 ## Parameters:
-## 	'character': An upper-case or lower-case letter.
+## 	'character': An upper case or lower case letter.
 ##
 ## 	'y': True if 'y' counts as a vowel.
 static func is_vowel(character: String, y: bool = true) -> bool:

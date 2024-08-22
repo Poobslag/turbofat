@@ -38,12 +38,13 @@ var _current_state_index := -1
 ## accidentally popping two states from the queue when the onion first spawns.
 var _already_popped_state := false
 
+var _onion_location_tween: SceneTreeTween
+
 onready var _animation_tree := $AnimationTree
 onready var _onion := $Onion
 onready var _soil := $Soil
 
 onready var _dirt_particles := $DirtParticles
-onready var _onion_location_tween: SceneTreeTween
 
 func _ready() -> void:
 	# The state machine defaults to the 'none' state and not the 'null' state to avoid edge cases

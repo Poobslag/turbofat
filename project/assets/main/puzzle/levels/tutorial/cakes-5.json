@@ -5,9 +5,9 @@
     "top_out 999999"
   ],
   "other": [
-    "tutorial",
+    "non_interactive",
     "start_level tutorial/cakes_0",
-    "non_interactive"
+    "tutorial"
   ],
   "rank": [
     "skip_results",

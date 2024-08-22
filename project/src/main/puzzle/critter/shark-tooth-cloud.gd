@@ -28,6 +28,9 @@ var eaten_autotile_y := 0
 ## Duration in seconds the shark takes to eat.
 var eat_duration := Shark.DEFAULT_EAT_DURATION
 
+## Tween which ends the eating animation.
+var _eat_tween: SceneTreeTween
+
 ## node which contains any child PuzzleTileMap node
 onready var _tilemap_holder: Control = $TileMapHolder
 
@@ -48,9 +51,6 @@ onready var _cloud_timer: Timer = $CloudTimer
 
 ## Timer which cycles the cyclone of teeth to the next frame.
 onready var _tooth_timer: Timer = $ToothTimer
-
-## Tween which ends the eating animation.
-onready var _eat_tween: SceneTreeTween
 
 func _ready() -> void:
 	_refresh_eating()

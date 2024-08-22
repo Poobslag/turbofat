@@ -21,10 +21,12 @@
     "belly_rgb": "fffaff",
     "cloth_rgb": "fad4cf",
     "hair_rgb": "ffffff",
-    "eye_rgb": "fad541 ffffff",
-    "horn_rgb": "ffffff",
+    "eye_rgb": "f5d561 ffffff",
+    "horn_rgb": "fdfcec",
     "bellybutton": "0",
-    "accessory": "0"
+    "accessory": "0",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828"
   },
   "chat_theme": {
     "accent_scale": 1.75,

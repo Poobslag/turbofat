@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "5",
   "name": "Pineapple On Its Side Cake",
   "description": "Why is this cake on its side? Whoever left this here was either very smart, or very stupid...",
+  "start_speed": "5",
   "finish_condition": {
     "type": "score",
-    "value": "400"
+    "value": 400
   },
   "piece_types": [
     "start_piece_q",

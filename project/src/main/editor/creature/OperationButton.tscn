@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/editor/creature/operation-button.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/c3-v-pressed.png" type="Texture" id=2]
@@ -8,10 +8,12 @@
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://src/main/utils/icon-outline.shader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=8]
-[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/candy-button/HoverSound.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/candy-button/gradient-none.tres" type="Gradient" id=10]
-[ext_resource path="res://assets/main/ui/button-click.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/main/ui/button-hover.wav" type="AudioStream" id=12]
+[ext_resource path="res://src/main/ui/candy-button/ClickSound.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/main/ui/candy-button/c3-shine-pressed.png" type="Texture" id=13]
+[ext_resource path="res://src/main/ui/candy-button/gradient-helper.gd" type="Script" id=14]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -84,19 +86,14 @@ align = 1
 valign = 1
 clip_text = true
 
-[node name="Shine" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.831373 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Shine" parent="." instance=ExtResource( 12 )]
 texture = ExtResource( 4 )
-expand = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 13 )
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 11 )
-bus = "Sound Bus"
+[node name="ClickSound" parent="." instance=ExtResource( 11 )]
 
 [node name="HoverSound" parent="." instance=ExtResource( 9 )]
-pause_mode = 2
-stream = ExtResource( 12 )
-volume_db = -12.0
+
+[node name="GradientHelper" type="Node" parent="."]
+script = ExtResource( 14 )

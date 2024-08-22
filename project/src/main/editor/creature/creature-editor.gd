@@ -26,7 +26,7 @@ func _perform_export_operation() -> void:
 
 
 func _perform_import_operation() -> void:
-	if _creature_saver.has_unsaved_changes():
+	if _creature_saver.has_unsaved_changes() and not _creature_saver.is_freshly_imported_creature_def():
 		_dialogs.show_unsaved_changes_confirmation(self, "_show_import_dialog")
 	else:
 		_show_import_dialog()

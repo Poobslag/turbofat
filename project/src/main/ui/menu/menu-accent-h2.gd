@@ -12,16 +12,9 @@ enum AccentWidth {
 	XL,
 }
 
-export (bool) var _refresh: bool setget refresh
-
-export (int) var _accent_index: int
-
-## Approximate accent width, calculated from our label's font and text
-var _accent_width: int = AccentWidth.NONE
-
 ## key: (int) AccentWidth
 ## value: (Array, Texture) Textures for the specified accent width
-var _textures_by_accent_width := {
+const TEXTURES_BY_ACCENT_WIDTH := {
 	AccentWidth.NONE: [
 	],
 	AccentWidth.SMALL: [
@@ -46,6 +39,13 @@ var _textures_by_accent_width := {
 	],
 }
 
+export (bool) var _refresh: bool setget refresh
+
+export (int) var _accent_index: int
+
+## Approximate accent width, calculated from our label's font and text
+var _accent_width: int = AccentWidth.NONE
+
 onready var _parent: Label = get_parent()
 
 func _ready() -> void:
@@ -53,7 +53,7 @@ func _ready() -> void:
 
 
 ## Preemptively initializes onready variables to avoid null references.
-func enter_tree() -> void:
+func _enter_tree() -> void:
 	_initialize_onready_variables()
 
 
@@ -93,10 +93,10 @@ func _refresh_accent_width() -> void:
 
 
 func _refresh_texture() -> void:
-	var textures: Array = _textures_by_accent_width[_accent_width]
+	var textures: Array = TEXTURES_BY_ACCENT_WIDTH[_accent_width]
 	if not textures:
 		texture = null
 	else:
-		texture = textures[_accent_index % _textures_by_accent_width.size()]
+		texture = textures[_accent_index % TEXTURES_BY_ACCENT_WIDTH.size()]
 	rect_size = texture.get_size() * 0.5
 	rect_position = _parent.rect_size / 2 - rect_size / 2

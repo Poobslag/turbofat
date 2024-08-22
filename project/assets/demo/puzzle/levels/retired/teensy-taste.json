@@ -1,11 +1,10 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Teensy Taste",
   "description": "Just a quick bite.",
   "finish_condition": {
     "type": "score",
-    "value": "200"
+    "value": 200
   },
   "piece_types": [
     "start_piece_u"

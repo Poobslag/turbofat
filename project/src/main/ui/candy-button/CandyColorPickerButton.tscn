@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/ui/candy-button/candy-color-picker-button.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=460]
+size = 1
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=461]
+resource_local_to_scene = true
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.227451, 0.188235, 0.258824, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.796078, 0.682353, 0.756863, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Button" type="Button"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 25.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 25, 20 )
+custom_fonts/font = SubResource( 460 )
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 461 )
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

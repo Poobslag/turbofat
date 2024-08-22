@@ -3,12 +3,29 @@
   "name": "Fondue Chasm",
   "description": "Yum, fruit fondue! Wait, where is the chocolate...?",
   "start_speed": "A8",
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": 30,
+      "speed": "A9"
+    },
+    {
+      "type": "lines",
+      "value": 60,
+      "speed": "AA"
+    },
+    {
+      "type": "lines",
+      "value": 100,
+      "speed": "AB"
+    }
+  ],
   "blocks_during": [
     "refresh_on_top_out"
   ],
   "finish_condition": {
     "type": "time_over",
-    "value": "145"
+    "value": 145
   },
   "piece_types": [
     "piece_c",
@@ -23,23 +40,6 @@
   "rank": [
     "box_factor 0.91",
     "combo_factor 0.85"
-  ],
-  "speed_ups": [
-    {
-      "type": "time_over",
-      "value": "30",
-      "speed": "A9"
-    },
-    {
-      "type": "lines",
-      "value": "60",
-      "speed": "AA"
-    },
-    {
-      "type": "lines",
-      "value": "100",
-      "speed": "AB"
-    }
   ],
   "tiles": {
     "0": [
@@ -424,7 +424,7 @@
       "phases": [
         "line_cleared y=0-2"
       ],
-      "effect": "insert_line count=2 tiles_key=0"
+      "effect": "insert_line tiles_key=0 count=2"
     }
   ]
 }

@@ -1,38 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Chompo and Bitey",
   "description": "I call the red one Bitey! They like snack boxes... but who doesn't?",
+  "start_speed": "3",
   "finish_condition": {
     "type": "pieces",
-    "value": "50"
+    "value": 50
   },
   "rank": [
-    "extra_seconds_per_piece 2.00",
     "box_factor 1.16",
     "combo_factor 1.21",
+    "extra_seconds_per_piece 2",
     "master_pickup_score_per_line 17.71",
     "show_pickups_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "box_built snack"
-      ],
-      "effect": "add_sharks size=medium"
-    },
-    {
-      "phases": [
-        "box_built cake"
-      ],
-      "effect": "add_sharks size=large"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_sharks"
-    }
   ],
   "tiles": {
     "start": [
@@ -145,5 +125,25 @@
         "tile": "1 5 10"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "add_sharks patience=0"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "add_sharks patience=0 size=large"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_sharks"
+    }
+  ]
 }

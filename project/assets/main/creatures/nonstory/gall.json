@@ -21,12 +21,12 @@
     "line_rgb": "6c4331",
     "body_rgb": "9a7f5d",
     "belly_rgb": "c9dac6",
-    "cloth_rgb": "25291b",
-    "glass_rgb": "1f201e",
-    "plastic_rgb": "3b3724",
+    "cloth_rgb": "282828",
+    "glass_rgb": "1d1d1d",
+    "plastic_rgb": "3d3c3b",
     "hair_rgb": "40342d",
-    "eye_rgb": "25291b 606060",
-    "horn_rgb": "b9b9b9"
+    "eye_rgb": "282828 606060",
+    "horn_rgb": "b3b2b5"
   },
   "chat_theme": {
     "accent_scale": 6,

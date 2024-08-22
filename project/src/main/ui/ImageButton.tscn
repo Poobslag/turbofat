@@ -18,6 +18,7 @@ anchor_bottom = 1.0
 margin_right = -924.0
 margin_bottom = -500.0
 rect_min_size = Vector2( 100, 100 )
+focus_mode = 1
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )

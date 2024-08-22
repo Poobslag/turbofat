@@ -8,7 +8,7 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	
-	$DropPanel/Play/Career.grab_focus()
+	$DropPanel/Adventure/Play.grab_focus()
 
 
 func _exit_tree() -> void:

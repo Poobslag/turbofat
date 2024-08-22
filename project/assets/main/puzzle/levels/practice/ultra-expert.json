@@ -1,10 +1,10 @@
 {
   "version": "4c5c",
-  "start_speed": "F0",
   "name": "Ultra: Expert (¥3,000)",
   "description": "Earn ¥3,000 as fast as possible, with faster piece movement!",
+  "start_speed": "F0",
   "finish_condition": {
     "type": "score",
-    "value": "3000"
+    "value": 3000
   }
 }

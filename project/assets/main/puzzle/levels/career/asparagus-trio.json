@@ -1,32 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "4",
   "name": "The Asparagus Trio",
   "description": "Why is it when something happens, it is always you three?",
-  "finish_condition": {
-    "type": "score",
-    "value": "550"
-  },
+  "start_speed": "4",
   "blocks_during": [
     "fill_lines 0"
   ],
+  "finish_condition": {
+    "type": "score",
+    "value": 550
+  },
   "rank": [
-    "box_factor 0.30",
+    "box_factor 0.3",
     "combo_factor 1.11"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=7,16..."
-      ],
-      "effect": "add_spears count=3 sizes=x3"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_spears"
-    }
   ],
   "tiles": {
     "start": [
@@ -385,5 +371,19 @@
         "tile": "2 8 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=7,16..."
+      ],
+      "effect": "add_spears sizes=x3 count=3"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

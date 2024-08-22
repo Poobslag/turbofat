@@ -1,34 +1,15 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Rice Bear Island",
   "description": "What on earth is a rice bear? ...This just seems like a regular island.",
+  "start_speed": "2",
   "finish_condition": {
     "type": "lines",
-    "value": "30"
+    "value": 30
   },
-  "timers": [
-    {
-      "interval": 1.2
-    }
-  ],
   "rank": [
     "master_pickup_score_per_line 5.31",
     "show_pickups_rank"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "line_cleared n=25"
-      ],
-      "effect": "add_moles count=99 dig_duration=2"
-    },
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "advance_moles"
-    }
   ],
   "tiles": {
     "start": [
@@ -113,5 +94,24 @@
         "tile": "2 6 3"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 1.2
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "line_cleared n=25"
+      ],
+      "effect": "add_moles count=99 dig_duration=2"
+    },
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "advance_moles"
+    }
+  ]
 }

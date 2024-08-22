@@ -1,21 +1,21 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Nowhere To Turn",
   "description": "You really can't turn the pieces? I think there might be a way...",
+  "start_speed": "3",
   "finish_condition": {
     "type": "time_over",
-    "value": "120"
+    "value": 120
   },
-  "rank": [
-    "box_factor 0.8",
-    "preplaced_pieces 6"
+  "other": [
+    "suppress_piece_rotation rotation_and_signals"
   ],
   "piece_types": [
     "start_piece_p"
   ],
-  "other": [
-    "suppress_piece_rotation rotation_and_signals"
+  "rank": [
+    "box_factor 0.8",
+    "preplaced_pieces 6"
   ],
   "tiles": {
     "start": [

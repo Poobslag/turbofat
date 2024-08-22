@@ -32,42 +32,49 @@ stream = ExtResource( 18 )
 checkpoints = [ 0.0, 32.912, 65.827, 87.771, 120.686 ]
 song_title = "Acid Reflux"
 song_color = Color( 0.3245, 0.55, 0.22, 1 )
+id = "acid_reflux"
 
 [node name="ChocolateChip" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 22 )
 checkpoints = [ 0.0, 15.476, 30.964 ]
 song_title = "Chocolate Chip Hipster"
 song_color = Color( 0.521569, 0.309804, 0.215686, 1 )
+id = "chocolate_chip"
 
 [node name="ChubHub" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 13 )
 checkpoints = [ 0.0, 12.489, 32.489, 42.489, 142.489, 152.489, 162.489 ]
 song_title = "Chub Hub"
 song_color = Color( 0.352941, 0.666667, 0.301961, 1 )
+id = "chub_hub"
 
 [node name="ChubNBass" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 15 )
 checkpoints = [ 0.0, 22.575, 101.642 ]
 song_title = "Chub 'n Bass"
 song_color = Color( 0.24, 0.75, 0.3675, 1 )
+id = "chub_n_bass"
 
 [node name="ChunkyObake" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 14 )
 checkpoints = [ 0.0, 31.473, 62.95, 94.422, 188.845 ]
 song_title = "Chunky Obake"
 song_color = Color( 0.988235, 0.588235, 0.929412, 1 )
+id = "chunky_obake"
 
 [node name="DessertCourse" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 17 )
 checkpoints = [ 0.0, 9.141, 18.286, 27.429, 36.571, 127.983 ]
 song_title = "Dessert Course (With No Name)"
 song_color = Color( 0.921569, 0.905882, 0.486275, 1 )
+id = "dessert_course"
 
 [node name="DooDooDoo" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 7 )
 checkpoints = [ 0.0, 15.233, 45.721, 76.196, 106.67, 167.613 ]
 song_title = "Doo Doo Doo"
 song_color = Color( 0.494118, 0.905882, 0.423529, 1 )
+id = "doo_doo_doo"
 
 [node name="ExtraSprinkles" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 20 )
@@ -75,30 +82,35 @@ volume_db = -3.0
 checkpoints = [ 0.0 ]
 song_title = "Extra Sprinkles"
 song_color = Color( 1, 0.74902, 0.34902, 1 )
+id = "extra_sprinkles"
 
 [node name="GingerbreadHouse" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 21 )
 checkpoints = [ 0.0, 15.231, 30.476, 60.949, 137.143, 152.377 ]
 song_title = "Gingerbread House"
 song_color = Color( 0.913725, 0.905882, 0.47451, 1 )
+id = "gingerbread_house"
 
 [node name="LoFiChill" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 6 )
 checkpoints = [ 0.0, 10.646, 21.326, 63.988, 85.33, 213.328 ]
 song_title = "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
 song_color = Color( 0.360784, 0.427451, 0.847059, 1 )
+id = "lo_fi_chill"
 
 [node name="HarderButter" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 16 )
 checkpoints = [ 0.0, 17.454, 34.908, 157.087 ]
 song_title = "Harder, Butter, Fatter, Stronger"
 song_color = Color( 0.678431, 0.678431, 0.678431, 1 )
+id = "harder_butter"
 
 [node name="HotFunkSundae" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 10 )
 checkpoints = [ 0.0, 8.707, 17.456, 69.826, 165.814 ]
 song_title = "Hot Funk Sundae"
 song_color = Color( 0.776471, 0.52549, 0.419608, 1 )
+id = "hot_funk_sundae"
 
 [node name="JuicerMixerGrinder" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 5 )
@@ -106,6 +118,7 @@ volume_db = -3.0
 checkpoints = [ 0.0, 12.916, 29.532, 88.61 ]
 song_title = "Juicer Mixer Grinder"
 song_color = Color( 0.909804, 0.439216, 0.435294, 1 )
+id = "juicer_mixer_grinder"
 
 [node name="MyFatnessPal" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 11 )
@@ -113,36 +126,42 @@ volume_db = 4.0
 checkpoints = [ 0.0, 25.098, 50.196, 74.681 ]
 song_title = "My Fatness Pal"
 song_color = Color( 0.709804, 0.486275, 0.917647, 1 )
+id = "my_fatness_pal"
 
 [node name="MysticMuffin" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 8 )
 checkpoints = [ 0.0, 15.23, 30.474 ]
 song_title = "Mystic Muffin"
 song_color = Color( 0.709804, 0.486275, 0.917647, 1 )
+id = "mystic_muffin"
 
 [node name="PressureCooker" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 12 )
 checkpoints = [ 0.0, 14.989, 29.982, 59.993 ]
 song_title = "Pressure Cooker"
 song_color = Color( 0.980392, 0.709804, 0.419608, 1 )
+id = "pressure_cooker"
 
 [node name="RainbowSherbeat" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 19 )
 checkpoints = [ 0.0, 20.206, 101.058 ]
 song_title = "Rainbow Sherbeat"
 song_color = Color( 0.538333, 0.3825, 0.85, 1 )
+id = "rainbow_sherbeat"
 
 [node name="SugarCrash" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 9 )
 checkpoints = [ 0.0, 1.951, 204.877 ]
 song_title = "Sugar Crash"
 song_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+id = "sugar_crash"
 
 [node name="TripleThiccShake" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 3 )
 checkpoints = [ 0.0, 7.747, 23.229, 38.696 ]
 song_title = "Triple Thicc Shake"
 song_color = Color( 0.494118, 0.905882, 0.423529, 1 )
+id = "triple_thicc_shake"
 
 [node name="MusicTweenManager" type="Node" parent="."]
 script = ExtResource( 4 )

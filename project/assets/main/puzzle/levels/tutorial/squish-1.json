@@ -5,9 +5,9 @@
     "top_out 999999"
   ],
   "other": [
+    "non_interactive",
     "start_level tutorial/squish_0",
-    "tutorial",
-    "non_interactive"
+    "tutorial"
   ],
   "rank": [
     "skip_results",

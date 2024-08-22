@@ -1,7 +1,7 @@
 extends Node
 ## Plays sound effects when lines are cleared.
 
-onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
+const COMBO_SOUNDS := [null, null, # no combo sfx for the first two lines
 		preload("res://assets/main/puzzle/combo-00.wav"),
 		preload("res://assets/main/puzzle/combo-01.wav"),
 		preload("res://assets/main/puzzle/combo-02.wav"),
@@ -28,7 +28,7 @@ onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
 		preload("res://assets/main/puzzle/combo-23.wav"),
 	]
 
-onready var _combo_endless_sounds := [
+const COMBO_ENDLESS_SOUNDS := [
 		preload("res://assets/main/puzzle/combo-e00.wav"),
 		preload("res://assets/main/puzzle/combo-e01.wav"),
 		preload("res://assets/main/puzzle/combo-e02.wav"),
@@ -71,10 +71,10 @@ func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_i
 	if PuzzleState.combo <= 0:
 		# lines were cleared from top out or another unusual case. don't play combo sounds
 		pass
-	elif PuzzleState.combo < _combo_sounds.size():
-		sound = _combo_sounds[PuzzleState.combo - 1]
+	elif PuzzleState.combo < COMBO_SOUNDS.size():
+		sound = COMBO_SOUNDS[PuzzleState.combo - 1]
 	else:
-		sound = _combo_endless_sounds[(PuzzleState.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
+		sound = COMBO_ENDLESS_SOUNDS[(PuzzleState.combo - 1 - COMBO_SOUNDS.size()) % COMBO_ENDLESS_SOUNDS.size()]
 	if sound:
 		_combo_sound.stream = sound
 		_combo_sound.play()

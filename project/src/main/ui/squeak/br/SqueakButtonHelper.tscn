@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/ui/squeak/br/squeak-button-normal-focus.tres" type="StyleBox" id=1]
+[ext_resource path="res://src/main/ui/squeak/squeak-button-helper.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/squeak/br/squeak-button-pressed-focus.tres" type="StyleBox" id=3]
+
+[node name="SqueakButtonHelper" type="Node"]
+script = ExtResource( 2 )
+_normal_focus = ExtResource( 1 )
+_pressed_focus = ExtResource( 3 )

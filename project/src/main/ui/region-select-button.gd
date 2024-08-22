@@ -29,27 +29,9 @@ enum Type {
 	SANDBOX,
 }
 
-## text to show at the top of the button, like 'Merrymellow Marsh'
-var region_name := "" setget set_region_name
-
-## button's visual index, the leftmost shown button has an index of '0'
-var button_index := 0 setget set_button_index
-
-## 'true' if the button is disabled
-var disabled := false setget set_disabled
-
-## Image shown on the button.
-var button_type: int = Type.NONE setget set_button_type
-
-## Array of level ranks for levels in this region. Incomplete levels are treated as rank 999.
-var ranks := []
-
-## Number in the range [0.0, 1.0] for how close the player is to completing the region.
-var completion_percent := 0.0
-
-## key: (Type)
+## key: (int) Enum from Type
 ## value: (Array, Resource) pair of texture resources to use when the button is enabled or disabled
-var _texture_pairs_by_type := {
+const TEXTURE_PAIRS_BY_TYPE := {
 	Type.NONE: [preload("res://assets/main/career/ui/region-default.png"),
 			preload("res://assets/main/career/ui/region-default-off.png")],
 	Type.LEMON: [preload("res://assets/main/career/ui/region-lemon.png"),
@@ -76,6 +58,24 @@ var _texture_pairs_by_type := {
 	Type.SANDBOX: [preload("res://assets/main/career/ui/training-sandbox.png"),
 			preload("res://assets/main/career/ui/training-sandbox-off.png")],
 }
+
+## text to show at the top of the button, like 'Merrymellow Marsh'
+var region_name := "" setget set_region_name
+
+## button's visual index, the leftmost shown button has an index of '0'
+var button_index := 0 setget set_button_index
+
+## 'true' if the button is disabled
+var disabled := false setget set_disabled
+
+## Image shown on the button.
+var button_type: int = Type.NONE setget set_button_type
+
+## Array of level ranks for levels in this region. Incomplete levels are treated as rank 999.
+var ranks := []
+
+## Number in the range [0.0, 1.0] for how close the player is to completing the region.
+var completion_percent := 0.0
 
 ## 'true' if this button just received focus this frame. A mouse click which grants focus doesn't emit a 'region
 ## started' event
@@ -122,6 +122,13 @@ func set_region_name(new_region_name: String) -> void:
 	_refresh()
 
 
+## Returns true if this button is currently focused.
+##
+## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
+func has_focus() -> bool:
+	return _button.has_focus()
+
+
 func grab_focus() -> void:
 	_button.grab_focus()
 
@@ -135,7 +142,7 @@ func _refresh() -> void:
 	_button_name_label.text = region_name
 	
 	# change the button's image
-	var texture_pair: Array = _texture_pairs_by_type[button_type]
+	var texture_pair: Array = TEXTURE_PAIRS_BY_TYPE[button_type]
 	_button_polygon2d.texture = texture_pair[1] if disabled else texture_pair[0]
 	
 	# change the font outline color to match the button's outline color

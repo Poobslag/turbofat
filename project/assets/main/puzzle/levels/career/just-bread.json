@@ -1,16 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "0",
   "name": "Just Bread",
   "description": "No jam. No butter. Just anger!",
   "finish_condition": {
     "type": "time_over",
-    "value": "80"
+    "value": 80
   },
-  "rank": [
-    "box_factor 0.73",
-    "preplaced_pieces 3"
-  ],
   "piece_types": [
     "no_suppress_repeat_piece",
     "piece_u",
@@ -18,6 +13,10 @@
     "piece_t",
     "piece_t",
     "piece_t"
+  ],
+  "rank": [
+    "box_factor 0.73",
+    "preplaced_pieces 3"
   ],
   "tiles": {
     "start": [

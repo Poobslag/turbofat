@@ -1,0 +1,403 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://src/demo/editor/puzzle/pickup-level-chunk-control.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/ui/touch/rotate-cw.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/ui/touch/move-right.png" type="Texture" id=3]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/demo/editor/puzzle/BlockLevelChunkControl.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/puzzle/Pickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/demo/editor/puzzle/editor-playfield.gd" type="Script" id=7]
+[ext_resource path="res://src/demo/editor/puzzle/piece-level-chunk-control.gd" type="Script" id=8]
+[ext_resource path="res://src/demo/editor/puzzle/playfield-editor-control.gd" type="Script" id=9]
+[ext_resource path="res://src/demo/editor/puzzle/editor-playfield-nav.gd" type="Script" id=10]
+[ext_resource path="res://src/demo/editor/puzzle/box-level-chunk-control.gd" type="Script" id=11]
+[ext_resource path="res://src/demo/editor/puzzle/veg-level-chunk-control.gd" type="Script" id=12]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=13]
+[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=14]
+[ext_resource path="res://src/demo/editor/puzzle/editor-pickups.gd" type="Script" id=15]
+[ext_resource path="res://assets/main/ui/touch/move-left.png" type="Texture" id=16]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 14 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 14 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[node name="Playfield" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 9 )
+
+[node name="Palette" type="Control" parent="."]
+margin_right = 472.0
+margin_bottom = 564.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Palette"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Buttons" type="GridContainer" parent="Palette/VBoxContainer"]
+margin_left = 119.0
+margin_right = 343.0
+margin_bottom = 64.0
+size_flags_horizontal = 4
+columns = 3
+
+[node name="PrevButton" type="Button" parent="Palette/VBoxContainer/Buttons"]
+margin_right = 72.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 72, 64 )
+theme = ExtResource( 13 )
+icon = ExtResource( 16 )
+expand_icon = true
+
+[node name="RotateButton" type="Button" parent="Palette/VBoxContainer/Buttons"]
+margin_left = 76.0
+margin_right = 148.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 72, 64 )
+theme = ExtResource( 13 )
+icon = ExtResource( 2 )
+expand_icon = true
+
+[node name="NextButton" type="Button" parent="Palette/VBoxContainer/Buttons"]
+margin_left = 152.0
+margin_right = 224.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 72, 64 )
+theme = ExtResource( 13 )
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="LevelChunks" type="GridContainer" parent="Palette/VBoxContainer"]
+margin_left = 81.0
+margin_top = 68.0
+margin_right = 381.0
+margin_bottom = 472.0
+size_flags_horizontal = 4
+columns = 4
+
+[node name="Veg" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_right = 72.0
+margin_bottom = 64.0
+script = ExtResource( 12 )
+veg_size = Vector2( 1, 1 )
+
+[node name="Veg2x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 76.0
+margin_right = 148.0
+margin_bottom = 64.0
+script = ExtResource( 12 )
+veg_size = Vector2( 2, 2 )
+
+[node name="CPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 152.0
+margin_right = 224.0
+margin_bottom = 64.0
+script = ExtResource( 8 )
+editor_piece = 0
+
+[node name="JPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 228.0
+margin_right = 300.0
+margin_bottom = 64.0
+script = ExtResource( 8 )
+editor_piece = 1
+
+[node name="KPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 132.0
+script = ExtResource( 8 )
+editor_piece = 2
+
+[node name="LPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 76.0
+margin_top = 68.0
+margin_right = 148.0
+margin_bottom = 132.0
+script = ExtResource( 8 )
+editor_piece = 3
+
+[node name="OPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 152.0
+margin_top = 68.0
+margin_right = 224.0
+margin_bottom = 132.0
+script = ExtResource( 8 )
+editor_piece = 4
+
+[node name="PPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 228.0
+margin_top = 68.0
+margin_right = 300.0
+margin_bottom = 132.0
+script = ExtResource( 8 )
+editor_piece = 5
+
+[node name="QPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_top = 136.0
+margin_right = 72.0
+margin_bottom = 200.0
+script = ExtResource( 8 )
+editor_piece = 6
+
+[node name="TPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 76.0
+margin_top = 136.0
+margin_right = 148.0
+margin_bottom = 200.0
+script = ExtResource( 8 )
+editor_piece = 7
+
+[node name="UPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 152.0
+margin_top = 136.0
+margin_right = 224.0
+margin_bottom = 200.0
+script = ExtResource( 8 )
+editor_piece = 8
+
+[node name="VPiece" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 228.0
+margin_top = 136.0
+margin_right = 300.0
+margin_bottom = 200.0
+script = ExtResource( 8 )
+editor_piece = 9
+
+[node name="Box1x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_top = 204.0
+margin_right = 72.0
+margin_bottom = 268.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 1, 1 )
+
+[node name="Box1x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 76.0
+margin_top = 204.0
+margin_right = 148.0
+margin_bottom = 268.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 1, 2 )
+
+[node name="Box2x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 152.0
+margin_top = 204.0
+margin_right = 224.0
+margin_bottom = 268.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 2, 1 )
+
+[node name="Box3x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 228.0
+margin_top = 204.0
+margin_right = 300.0
+margin_bottom = 268.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 3, 1 )
+
+[node name="Box3x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_top = 272.0
+margin_right = 72.0
+margin_bottom = 336.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 3, 2 )
+
+[node name="Box3x3" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 76.0
+margin_top = 272.0
+margin_right = 148.0
+margin_bottom = 336.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 3, 3 )
+
+[node name="Box3x4" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 152.0
+margin_top = 272.0
+margin_right = 224.0
+margin_bottom = 336.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 3, 4 )
+
+[node name="Box3x5" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 228.0
+margin_top = 272.0
+margin_right = 300.0
+margin_bottom = 336.0
+script = ExtResource( 11 )
+box_type = 0
+box_size = Vector2( 3, 5 )
+
+[node name="Pickup" type="Control" parent="Palette/VBoxContainer/LevelChunks" groups=["chunk_controls"]]
+margin_top = 340.0
+margin_right = 72.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 72, 64 )
+script = ExtResource( 1 )
+
+[node name="Pickup" parent="Palette/VBoxContainer/LevelChunks/Pickup" instance=ExtResource( 6 )]
+
+[node name="PlayfieldNav" type="VBoxContainer" parent="."]
+margin_left = 476.0
+margin_right = 540.0
+margin_bottom = 564.0
+script = ExtResource( 10 )
+
+[node name="Blocks" type="Label" parent="PlayfieldNav"]
+margin_right = 64.0
+margin_bottom = 20.0
+theme = ExtResource( 13 )
+text = "blocks:"
+align = 1
+
+[node name="TilesName" type="Label" parent="PlayfieldNav"]
+margin_top = 24.0
+margin_right = 64.0
+margin_bottom = 44.0
+theme = ExtResource( 13 )
+text = "start"
+align = 1
+clip_text = true
+
+[node name="NextPrev" type="HBoxContainer" parent="PlayfieldNav"]
+margin_top = 48.0
+margin_right = 64.0
+margin_bottom = 78.0
+
+[node name="Prev" type="Button" parent="PlayfieldNav/NextPrev"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+theme = ExtResource( 13 )
+disabled = true
+text = "<"
+
+[node name="Next" type="Button" parent="PlayfieldNav/NextPrev"]
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+theme = ExtResource( 13 )
+disabled = true
+text = ">"
+
+[node name="HSeparator" type="HSeparator" parent="PlayfieldNav"]
+margin_top = 82.0
+margin_right = 64.0
+margin_bottom = 86.0
+
+[node name="AddRemove" type="HBoxContainer" parent="PlayfieldNav"]
+margin_top = 90.0
+margin_right = 64.0
+margin_bottom = 120.0
+
+[node name="Remove" type="Button" parent="PlayfieldNav/AddRemove"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+theme = ExtResource( 13 )
+disabled = true
+text = "X"
+
+[node name="Add" type="Button" parent="PlayfieldNav/AddRemove"]
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+theme = ExtResource( 13 )
+disabled = true
+text = "+"
+
+[node name="CenterPanel" type="Control" parent="."]
+margin_left = 544.0
+margin_right = 1016.0
+margin_bottom = 564.0
+size_flags_horizontal = 3
+
+[node name="Playfield" type="Control" parent="CenterPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -139.5
+margin_top = -275.5
+margin_right = 139.5
+margin_bottom = 275.5
+rect_min_size = Vector2( 279, 551 )
+script = ExtResource( 7 )
+
+[node name="Bg" type="ColorRect" parent="CenterPanel/Playfield"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -6.0
+margin_bottom = -12.0
+rect_min_size = Vector2( 279, 551 )
+mouse_filter = 2
+color = Color( 0.113725, 0.101961, 0.101961, 1 )
+
+[node name="Pickups" type="Control" parent="CenterPanel/Playfield/Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 15 )
+PickupScene = ExtResource( 6 )
+puzzle_tile_map_path = NodePath("../TileMap")
+
+[node name="PickupsDropPreview" type="Control" parent="CenterPanel/Playfield/Bg"]
+modulate = Color( 1, 1, 1, 0.25098 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 15 )
+PickupScene = ExtResource( 6 )
+puzzle_tile_map_path = NodePath("../TileMap")
+
+[node name="TileMap" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
+material = SubResource( 1 )
+scale = Vector2( 0.43, 0.43 )
+z_index = 4
+tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 1245184, 1, 0, 1245192, 1, 0 )
+
+[node name="TileMapDropPreview" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0.25098 )
+material = SubResource( 2 )
+scale = Vector2( 0.43, 0.43 )
+z_index = 4
+tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
+
+[connection signal="tiles_keys_changed" from="." to="PlayfieldNav" method="_on_Playfield_tiles_keys_changed"]
+[connection signal="add_tiles_key_pressed" from="PlayfieldNav" to="." method="_on_PlayfieldNav_add_tiles_key_pressed"]
+[connection signal="next_tiles_key_pressed" from="PlayfieldNav" to="." method="_on_PlayfieldNav_next_tiles_key_pressed"]
+[connection signal="prev_tiles_key_pressed" from="PlayfieldNav" to="." method="_on_PlayfieldNav_prev_tiles_key_pressed"]
+[connection signal="remove_tiles_key_pressed" from="PlayfieldNav" to="." method="_on_PlayfieldNav_remove_tiles_key_pressed"]
+[connection signal="pressed" from="PlayfieldNav/NextPrev/Prev" to="PlayfieldNav" method="_on_Prev_Button_pressed"]
+[connection signal="pressed" from="PlayfieldNav/NextPrev/Next" to="PlayfieldNav" method="_on_Next_Button_pressed"]
+[connection signal="pressed" from="PlayfieldNav/AddRemove/Remove" to="PlayfieldNav" method="_on_Remove_Button_pressed"]
+[connection signal="pressed" from="PlayfieldNav/AddRemove/Add" to="PlayfieldNav" method="_on_Add_Button_pressed"]
+[connection signal="mouse_exited" from="CenterPanel/Playfield" to="CenterPanel/Playfield" method="_on_mouse_exited"]
+[connection signal="pickups_changed" from="CenterPanel/Playfield" to="." method="_on_Playfield_pickups_changed"]
+[connection signal="tile_map_changed" from="CenterPanel/Playfield" to="." method="_on_Playfield_tile_map_changed"]

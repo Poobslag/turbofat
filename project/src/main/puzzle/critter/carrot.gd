@@ -40,10 +40,10 @@ var hiding := false
 var _mix_color: Color = Color.transparent setget set_mix_color
 
 ## Handles the show/hide animations.
-onready var _show_tween: SceneTreeTween
+var _show_tween: SceneTreeTween
 
 ## Moves the carrot to the top of the screen.
-onready var _move_tween: SceneTreeTween
+var _move_tween: SceneTreeTween
 
 ## Stores details about the carrot's visuals, such as which sprites to use and the smoke location.
 onready var _visuals: Node2D = $Visuals

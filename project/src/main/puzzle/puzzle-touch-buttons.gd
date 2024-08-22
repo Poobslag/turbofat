@@ -1,6 +1,14 @@
 extends Control
 ## Manages the touchscreen buttons for puzzle mode.
 
+const CLOSE := preload("res://assets/main/ui/touch/menu.png")
+const CLOSE_PRESSED := preload("res://assets/main/ui/touch/menu-pressed.png")
+
+## when the player is testing buttons, we replace the icon so we don't confuse players trying to quit
+## (although... there's an argument that replacing the close button with a duck might confuse them more...)
+const DUCK := preload("res://assets/main/ui/touch/duck.png")
+const DUCK_PRESSED := preload("res://assets/main/ui/touch/duck-pressed.png")
+
 ## touchscreen control schemes the player can select in the settings menu
 const SCHEMES := {
 	TouchSettings.EASY_CONSOLE: {
@@ -44,14 +52,6 @@ const SCHEMES := {
 ## if false, pressing the buttons won't emit any actions.
 export (bool) var emit_actions := true setget set_emit_actions
 
-onready var _close := preload("res://assets/main/ui/touch/menu.png")
-onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
-
-## when the player is testing buttons, we replace the icon so we don't confuse players trying to quit
-## (although... there's an argument that replacing the close button with a duck might confuse them more...)
-onready var _duck := preload("res://assets/main/ui/touch/duck.png")
-onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.png")
-
 onready var _menu_button := $MenuButtonHolder/MenuButton
 
 func _ready() -> void:
@@ -81,14 +81,14 @@ func _refresh_emit_actions() -> void:
 	$ButtonsSe.emit_actions = emit_actions
 	if emit_actions:
 		_menu_button.action = "ui_menu"
-		_menu_button.normal = _close
-		_menu_button.pressed = _close_pressed
+		_menu_button.normal = CLOSE
+		_menu_button.pressed = CLOSE_PRESSED
 	else:
 		# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying
 		# to quit. (there's an argument that replacing the close button with a duck might confuse them more...)
 		_menu_button.action = ""
-		_menu_button.normal = _duck
-		_menu_button.pressed = _duck_pressed
+		_menu_button.normal = DUCK
+		_menu_button.pressed = DUCK_PRESSED
 
 
 ## Updates the buttons based on the player's settings.

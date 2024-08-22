@@ -1,14 +1,61 @@
 {
   "version": "4c5c",
+  "start_speed": "T",
+  "input_replay": [
+    "17 +move_piece_right",
+    "23 -move_piece_right",
+    "29 +move_piece_right",
+    "34 -move_piece_right",
+    "40 +move_piece_right",
+    "46 -move_piece_right",
+    "50 +soft_drop",
+    "87 -soft_drop",
+    "205 +rotate_ccw",
+    "212 -rotate_ccw",
+    "237 +rotate_ccw",
+    "242 -rotate_ccw",
+    "254 +soft_drop",
+    "296 -soft_drop",
+    "466 +move_piece_right",
+    "472 -move_piece_right",
+    "478 +move_piece_right",
+    "482 -move_piece_right",
+    "488 +move_piece_right",
+    "492 -move_piece_right",
+    "498 +move_piece_right",
+    "502 -move_piece_right",
+    "508 +soft_drop",
+    "542 -soft_drop",
+    "658 +rotate_cw",
+    "667 -rotate_cw",
+    "672 +move_piece_right",
+    "678 -move_piece_right",
+    "684 +move_piece_right",
+    "690 -move_piece_right",
+    "696 +soft_drop",
+    "788 -soft_drop"
+  ],
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "enhance_combo_fx",
+    "start_level tutorial/combo_0",
+    "tutorial"
+  ],
   "piece_types": [
     "ordered_start",
+    "piece_j",
+    "piece_l",
+    "piece_o",
     "start_piece_l",
     "start_piece_j",
     "start_piece_o",
-    "start_piece_l",
-    "piece_j",
-    "piece_l",
-    "piece_o"
+    "start_piece_l"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
   ],
   "tiles": {
     "start": [
@@ -165,52 +212,5 @@
         "tile": "2 6 2"
       }
     ]
-  },
-  "lose_condition": [
-    "top_out 999999"
-  ],
-  "other": [
-    "tutorial",
-    "start_level tutorial/combo_0",
-    "enhance_combo_fx"
-  ],
-  "rank": [
-    "skip_results",
-    "unranked"
-  ],
-  "input_replay": [
-    "17 +move_piece_right",
-    "23 -move_piece_right",
-    "29 +move_piece_right",
-    "34 -move_piece_right",
-    "40 +move_piece_right",
-    "46 -move_piece_right",
-    "50 +soft_drop",
-    "87 -soft_drop",
-    "205 +rotate_ccw",
-    "212 -rotate_ccw",
-    "237 +rotate_ccw",
-    "242 -rotate_ccw",
-    "254 +soft_drop",
-    "296 -soft_drop",
-    "466 +move_piece_right",
-    "472 -move_piece_right",
-    "478 +move_piece_right",
-    "482 -move_piece_right",
-    "488 +move_piece_right",
-    "492 -move_piece_right",
-    "498 +move_piece_right",
-    "502 -move_piece_right",
-    "508 +soft_drop",
-    "542 -soft_drop",
-    "658 +rotate_cw",
-    "667 -rotate_cw",
-    "672 +move_piece_right",
-    "678 -move_piece_right",
-    "684 +move_piece_right",
-    "690 -move_piece_right",
-    "696 +soft_drop",
-    "788 -soft_drop"
-  ],
-  "start_speed": "T"
+  }
 }

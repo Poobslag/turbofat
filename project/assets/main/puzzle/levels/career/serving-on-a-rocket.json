@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Serving On A Rocket",
   "description": "Time for flying rockets. Let's serve up some delicious treats!",
+  "start_speed": "2",
   "finish_condition": {
     "type": "time_over",
-    "value": "95"
+    "value": 95
   },
   "timers": [
     {
@@ -26,7 +26,7 @@
       "phases": [
         "timer_0"
       ],
-      "effect": "add_carrots count=3 smoke=medium size=small duration=8"
+      "effect": "add_carrots count=3 size=small smoke=medium"
     },
     {
       "phases": [
@@ -38,7 +38,7 @@
       "phases": [
         "timer_2"
       ],
-      "effect": "add_carrots size=large smoke=large duration=16"
+      "effect": "add_carrots duration=16 size=large smoke=large"
     }
   ]
 }

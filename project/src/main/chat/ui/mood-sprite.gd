@@ -4,7 +4,7 @@ extends Control
 ## location of the mood icon; the right or left side of the chat window
 export (bool) var mood_right: bool setget set_mood_right
 
-var textures := {
+const TEXTURES := {
 	Creatures.Mood.DEFAULT: preload("res://assets/main/chat/ui/choice-mood-default.png"),
 	Creatures.Mood.AWKWARD0: preload("res://assets/main/chat/ui/choice-mood-awkward0.png"),
 	Creatures.Mood.AWKWARD1: preload("res://assets/main/chat/ui/choice-mood-awkward1.png"),
@@ -44,8 +44,8 @@ var textures := {
 ## 	'mood': Enum from Creatures.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
 ## 		mood being shown.
 func set_mood(new_mood: int) -> void:
-	if textures.has(new_mood):
-		$Texture.texture = textures[new_mood]
+	if TEXTURES.has(new_mood):
+		$Texture.texture = TEXTURES[new_mood]
 	else:
 		$Texture.texture = null
 

@@ -1,38 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "A8",
   "name": "Asparagus Gang",
   "description": "People called them 'bad seeds', but they're all grown up now!",
-  "finish_condition": {
-    "type": "score",
-    "value": "1750"
-  },
+  "start_speed": "A8",
   "blocks_during": [
     "fill_lines 0"
   ],
+  "finish_condition": {
+    "type": "score",
+    "value": 1750
+  },
   "rank": [
     "box_factor 0.34",
     "combo_factor 0.97"
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "piece_written n=5,14..."
-      ],
-      "effect": "add_spears count=1 sizes=x3 y=3,4..."
-    },
-    {
-      "phases": [
-        "piece_written n=7,16..."
-      ],
-      "effect": "add_spears count=1 sizes=l3r3 y=3,4..."
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_spears"
-    }
   ],
   "tiles": {
     "start": [
@@ -405,10 +385,6 @@
         "tile": "1 7 9"
       },
       {
-        "pos": "4 18",
-        "pickup": "9"
-      },
-      {
         "pos": "5 18",
         "tile": "1 11 9"
       },
@@ -441,10 +417,6 @@
         "tile": "1 5 9"
       },
       {
-        "pos": "4 19",
-        "pickup": "9"
-      },
-      {
         "pos": "5 19",
         "tile": "1 9 9"
       },
@@ -459,6 +431,14 @@
       {
         "pos": "8 19",
         "tile": "1 5 9"
+      },
+      {
+        "pos": "4 18",
+        "pickup": "9"
+      },
+      {
+        "pos": "4 19",
+        "pickup": "9"
       }
     ],
     "0": [
@@ -479,5 +459,25 @@
         "tile": "2 8 3"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "piece_written n=5,14..."
+      ],
+      "effect": "add_spears sizes=x3 y=3-16"
+    },
+    {
+      "phases": [
+        "piece_written n=7,16..."
+      ],
+      "effect": "add_spears sizes=l3r3 y=3-16"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

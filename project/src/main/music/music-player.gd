@@ -25,11 +25,23 @@ var current_bgm: CheckpointSong
 ## true if the music should have a low-pass filter applied; used during nighttime
 var night_filter: bool = false setget set_night_filter
 
+## key: (String) music id
+## value: (CheckpointSong) music
+var bgms_by_id := {}
+
 ## volume_db changes when we fade in/fade out so we cache the original value.
 ##
 ## key: (String) bgm node name
 ## value: (float) desired volume_db for playing music
 var _max_volume_db_by_bgm := {}
+
+var _filter_tween: SceneTreeTween
+
+## Level id for the newest played puzzle music. We track this to ensure repeating a puzzle also repeats the music.
+var _previous_level_id: String
+
+## Music id for the newest played puzzle music. We track this to ensure repeating a puzzle also repeats the music.
+var _previous_puzzle_bgm_id: String
 
 onready var _chill_bgms := [
 		$ChubHub, $DessertCourse, $HarderButter,
@@ -44,10 +56,11 @@ onready var _upbeat_bgms := [
 onready var _credits_bgm := $SugarCrash
 onready var _tutorial_bgms := [$MyFatnessPal]
 onready var _music_tween_manager := $MusicTweenManager
-onready var _filter_tween: SceneTreeTween
 
 func _ready() -> void:
 	all_bgms = _chill_bgms + _upbeat_bgms + _tutorial_bgms
+	for bgm in all_bgms:
+		bgms_by_id[bgm.id] = bgm
 	_chill_bgms.shuffle()
 	_upbeat_bgms.shuffle()
 	
@@ -55,19 +68,64 @@ func _ready() -> void:
 		_max_volume_db_by_bgm[bgm.name] = bgm.volume_db
 
 
+func bgm_for_id(id: String) -> CheckpointSong:
+	return bgms_by_id.get(id)
+
+
 ## Plays a 'chill' song; something suitable for background music when the player's navigating menus or wandering the
 ## free roam overworld.
 ##
 ## If a chill song is already playing, this method has no effect.
 func play_chill_bgm(fade_in: bool = true) -> void:
-	_play_next_bgm(_chill_bgms, fade_in)
+	if PlayerData.menu_region and PlayerData.menu_region.music.menu_music_id:
+		var new_bgm_id: String = PlayerData.menu_region.music.menu_music_id
+		if current_bgm and current_bgm.id == new_bgm_id:
+			# song is already playing; don't interrupt it
+			pass
+		else:
+			var new_bgm: CheckpointSong = bgm_for_id(new_bgm_id)
+			
+			play_bgm(new_bgm)
+			if fade_in:
+				fade_in()
+	else:
+		_play_next_bgm(_chill_bgms, fade_in)
 
 
 ## Plays an 'upbeat' song; something suitable when the player's playing a puzzle level.
 ##
 ## If an upbeat song is already playing, this method has no effect.
 func play_upbeat_bgm(fade_in: bool = true) -> void:
-	_play_next_bgm(_upbeat_bgms, fade_in)
+	if PlayerData.menu_region and PlayerData.menu_region.music.puzzle_music_ids:
+		var region_music: RegionMusic = PlayerData.menu_region.music
+		
+		var new_bgm_id: String
+		
+		if PlayerData.career.hours_passed == 0:
+			# if it's the first level, play the 'main puzzle song'
+			new_bgm_id = region_music.main_puzzle_music_id()
+		elif PlayerData.career.is_boss_level():
+			# if it's a boss level, play the 'main puzzle song'
+			new_bgm_id = region_music.main_puzzle_music_id()
+		elif _previous_level_id == CurrentLevel.level_id and _previous_puzzle_bgm_id in region_music.puzzle_music_ids:
+			# if replaying a level, play the same song
+			new_bgm_id = _previous_puzzle_bgm_id
+		else:
+			# otherwise, play a random song
+			new_bgm_id = region_music.random_puzzle_music_id()
+		
+		if current_bgm and current_bgm.id == new_bgm_id:
+			# song is already playing; don't interrupt it
+			pass
+		else:
+			play_bgm(bgm_for_id(new_bgm_id))
+			if fade_in:
+				fade_in()
+		
+		_previous_puzzle_bgm_id = new_bgm_id
+		_previous_level_id = CurrentLevel.level_id
+	else:
+		_play_next_bgm(_upbeat_bgms, fade_in)
 
 
 ## Plays a 'tutorial song'; something suitable when the player is following a puzzle tutorial.

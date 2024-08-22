@@ -458,6 +458,16 @@ static func grade(rank: float) -> String:
 	return grade
 
 
+## Returns 'true' if the specified rank qualifies for the specified grade.
+static func rank_meets_grade(rank: float, grade: String) -> bool:
+	var max_rank := WORST_RANK
+	for i in range(GRADE_RANKS.size() - 1):
+		if grade == GRADE_RANKS[i][0]:
+			max_rank = GRADE_RANKS[i][1]
+			break
+	return rank <= max_rank
+
+
 ## Calculates the next grade better than the specified grade.
 ##
 ## next_grade("A-")  = "A"

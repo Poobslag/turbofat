@@ -6,10 +6,10 @@ extends Control
 signal all_messages_shown
 
 ## huge font used for easter eggs
-var _huge_font := preload("res://src/main/ui/blogger-sans-bold-72.tres")
+const HUGE_FONT := preload("res://src/main/ui/blogger-sans-bold-72.tres")
 
 ## normal font used for regular chat
-var _normal_font := preload("res://src/main/ui/blogger-sans-medium-30.tres")
+const NORMAL_FONT := preload("res://src/main/ui/blogger-sans-medium-30.tres")
 
 ## Queue of sensei messages which will be shown one at a time after a delay. This can also include empty strings
 ## which hide the current message.
@@ -48,7 +48,7 @@ func set_message(message: String) -> void:
 ## Displays a BIG message from the sensei, for use in easter eggs.
 func set_big_message(message: String) -> void:
 	_clear_message_queue()
-	_show_or_hide_message(message, _huge_font)
+	_show_or_hide_message(message, HUGE_FONT)
 
 
 ## Displays a message after a short delay.
@@ -72,7 +72,7 @@ func _clear_message_queue() -> void:
 	$QueueTimer.stop()
 
 
-func _show_or_hide_message(message: String, font: Font = _normal_font) -> void:
+func _show_or_hide_message(message: String, font: Font = NORMAL_FONT) -> void:
 	if message:
 		_show_message(message, font)
 	else:
@@ -82,7 +82,7 @@ func _show_or_hide_message(message: String, font: Font = _normal_font) -> void:
 ## Updates the message text and panel size to display the specified message.
 ##
 ## If no message is currently shown, we also play a sound effect and a 'pop in' animation.
-func _show_message(message: String, font: Font = _normal_font) -> void:
+func _show_message(message: String, font: Font = NORMAL_FONT) -> void:
 	if not _popped_in:
 		# play a sound effect and 'pop in' animation
 		_popped_in = true

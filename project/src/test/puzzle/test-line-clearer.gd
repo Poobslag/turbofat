@@ -2,17 +2,9 @@ extends GutTest
 
 var clearer: LineClearer
 
-func before_all() -> void:
-	clearer = LineClearer.new()
-
-
 func before_each() -> void:
 	CurrentLevel.settings = LevelSettings.new()
-	clearer.reset()
-
-
-func after_all() -> void:
-	clearer.free()
+	clearer = autofree(LineClearer.new())
 
 
 func test_filled_line_clear_delay() -> void:

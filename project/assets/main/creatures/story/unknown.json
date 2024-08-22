@@ -1,12 +1,37 @@
 {
   "version": "375c",
   "id": "unknown",
-  "name": "",
+  "short_name": "X",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "0",
+    "ear": "1",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "2",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "b23823",
+    "belly_rgb": "c9442a",
+    "cloth_rgb": "282828",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "f1e398",
+    "eye_rgb": "282828 dedede",
+    "horn_rgb": "f1e398"
+  },
   "chat_theme": {
     "accent_scale": 1.15,
     "accent_swapped": true,
     "accent_texture": 13,
     "color": "b23823"
   },
-  "customer_if": "false",
+  "customer_if": "false"
 }

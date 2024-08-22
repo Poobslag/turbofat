@@ -58,7 +58,6 @@ func _refresh_styles() -> void:
 		_parent.set("custom_styles/pressed", null)
 
 
-
 func _on_Popup_about_to_show() -> void:
 	_refresh_styles()
 

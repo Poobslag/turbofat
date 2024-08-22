@@ -1,18 +1,18 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "Cleaning Duty",
   "description": "Who made this mess! ...Do we need to set up a chore board?",
+  "start_speed": "3",
   "finish_condition": {
     "type": "time_over",
-    "value": "90"
+    "value": 90
   },
+  "lose_condition": [
+    "top_out 1"
+  ],
   "rank": [
     "box_factor 0.5",
     "combo_factor 0.5"
-  ],
-  "lose_condition": [
-    "top_out 1"
   ],
   "tiles": {
     "start": [

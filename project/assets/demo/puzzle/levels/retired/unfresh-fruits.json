@@ -1,11 +1,11 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Unfresh Fruits",
   "description": "This fruit's going bad soon! Maybe someone will eat it...",
+  "start_speed": "2",
   "finish_condition": {
     "type": "score",
-    "value": "200"
+    "value": 200
   },
   "piece_types": [
     "start_piece_j"

@@ -481,3 +481,17 @@ func test_next_grade() -> void:
 	assert_eq(RankCalculator.next_grade("SSS"), "M")
 	assert_eq(RankCalculator.next_grade("M"), "M")
 	assert_eq(RankCalculator.next_grade("crazy-giants"), RankCalculator.NO_GRADE)
+
+
+func test_rank_meets_grade() -> void:
+	assert_eq(RankCalculator.rank_meets_grade(0, "S"), true)
+	assert_eq(RankCalculator.rank_meets_grade(15, "S"), true)
+	assert_eq(RankCalculator.rank_meets_grade(20, "S"), true)
+	assert_eq(RankCalculator.rank_meets_grade(25, "S"), false)
+	assert_eq(RankCalculator.rank_meets_grade(999, "S"), false)
+	
+	assert_eq(RankCalculator.rank_meets_grade(0, "M"), true)
+	assert_eq(RankCalculator.rank_meets_grade(999, "M"), false)
+	
+	assert_eq(RankCalculator.rank_meets_grade(0, "-"), true)
+	assert_eq(RankCalculator.rank_meets_grade(999, "-"), true)

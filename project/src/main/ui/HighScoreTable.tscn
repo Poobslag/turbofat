@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/high-score-table.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=3]
 
 [node name="HighScoreTable" type="VBoxContainer"]
 margin_right = 412.0
 margin_bottom = 152.0
 size_flags_horizontal = 3
-theme = ExtResource( 3 )
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -18,9 +18,9 @@ text = "Today's Best"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_top = 24.0
+margin_top = 26.0
 margin_right = 412.0
-margin_bottom = 92.0
+margin_bottom = 94.0
 size_flags_horizontal = 3
 custom_constants/hseparation = 20
 columns = 4

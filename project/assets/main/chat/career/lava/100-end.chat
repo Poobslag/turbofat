@@ -21,12 +21,12 @@ s: You see, the word 'Boob' looks like boobs in three different ways.
  
 
 [first_time]
-s: The upper-case 'B' looks like boobs from above. The middle 'oo' looks like boobs from the front. And the last 'b' looks like boobs from the side.
+s: The upper case 'B' looks like boobs from above. The middle 'oo' looks like boobs from the front. And the last 'b' looks like boobs from the side.
 p1: >__< That's... NOT helpful advice!
 [oh_really]
 
 [heard_it_before]
-s: The upper-case 'B' look-
+s: The upper case 'B' look-
 p1: >__< -Stop! STOP! I've already HEARD this advice before!!!
  (s mood @_@)
 [oh_really]

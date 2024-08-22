@@ -1,6 +1,28 @@
 extends HBoxContainer
 ## Chalkboard title shown when the player finishes career mode.
 
+## Icons shown alongside the title at the top. One of these is selected randomly each time.
+##
+## Each item in this array is a subarray containing two nested items: a left icon and a right icon.
+const TITLE_ICON_RESOURCES := [
+	[
+		preload("res://assets/main/career/ui/chalkboard-title-0a.png"),
+		preload("res://assets/main/career/ui/chalkboard-title-0b.png")
+	],
+	[
+		preload("res://assets/main/career/ui/chalkboard-title-1a.png"),
+		preload("res://assets/main/career/ui/chalkboard-title-1b.png")
+	],
+	[
+		preload("res://assets/main/career/ui/chalkboard-title-2a.png"),
+		preload("res://assets/main/career/ui/chalkboard-title-2b.png")
+	],
+	[
+		preload("res://assets/main/career/ui/chalkboard-title-3a.png"),
+		preload("res://assets/main/career/ui/chalkboard-title-3b.png")
+	],
+]
+
 ## Affirming titles shown when the player does well, travelling many steps during a career session.
 ##
 ## These messages are shown very frequently, so they should have a sense of understatement to them.
@@ -30,28 +52,6 @@ var _bad_titles := [
 	tr("GOSH THAT'S NOT GOOD"),
 ]
 
-## Icons shown alongside the title at the top. One of these is selected randomly each time.
-##
-## Each item in this array is a subarray containing two nested items: a left icon and a right icon.
-var _title_icon_resources := [
-	[
-		preload("res://assets/main/career/ui/chalkboard-title-0a.png"),
-		preload("res://assets/main/career/ui/chalkboard-title-0b.png")
-	],
-	[
-		preload("res://assets/main/career/ui/chalkboard-title-1a.png"),
-		preload("res://assets/main/career/ui/chalkboard-title-1b.png")
-	],
-	[
-		preload("res://assets/main/career/ui/chalkboard-title-2a.png"),
-		preload("res://assets/main/career/ui/chalkboard-title-2b.png")
-	],
-	[
-		preload("res://assets/main/career/ui/chalkboard-title-3a.png"),
-		preload("res://assets/main/career/ui/chalkboard-title-3b.png")
-	],
-]
-
 ## Labels which show the current day's information
 onready var _title := $Label
 
@@ -68,6 +68,6 @@ func _ready() -> void:
 		_title.text = Utils.rand_value(_bad_titles)
 	
 	# Select a random set of icons to show alongside the title at the top
-	var title_icon_resources: Array = Utils.rand_value(_title_icon_resources)
+	var title_icon_resources: Array = Utils.rand_value(TITLE_ICON_RESOURCES)
 	_left_title_icon.texture = title_icon_resources[0]
 	_right_title_icon.texture = title_icon_resources[1]

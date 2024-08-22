@@ -3,6 +3,9 @@ extends TutorialModule
 ##
 ## Shows messages and advances the player through the tutorial as they complete tasks.
 
+const CAKES_DIAGRAM_0 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-0.png")
+const CAKES_DIAGRAM_1 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-1.png")
+
 ## player statistics for the current tutorial section
 var _cakes_built := 0
 var _failure_count := 0
@@ -12,9 +15,6 @@ var _did_build_cake := false
 
 ## 'true' if player completed or failed the current tutorial section
 var _level_finished := false
-
-var _cakes_diagram_0 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-0.png")
-var _cakes_diagram_1 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-1.png")
 
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
@@ -37,7 +37,7 @@ func prepare_tutorial_level() -> void:
 			hud.skill_tally_item("SnackBox").visible = true
 			hud.set_message(tr("Try making some snack boxes by arranging pairs of pieces into squares."))
 		"tutorial/cakes_1":
-			hud.diagram.show_diagram(_cakes_diagram_0)
+			hud.diagram.show_diagram(CAKES_DIAGRAM_0)
 			hud.set_message(tr("Arranging pieces into a square makes a snack box worth ¥15."
 					+ "\n\nBut rectangles make cake boxes worth ¥40!"))
 			hud.enqueue_message(tr("A cake box needs exactly three pieces in a rectangle.\n\nNo more, no less."))
@@ -66,7 +66,7 @@ func prepare_tutorial_level() -> void:
 			else:
 				hud.set_message(tr("Here's something more difficult. Can you make two cake boxes at once?"))
 		"tutorial/cakes_5":
-			hud.diagram.show_diagram(_cakes_diagram_1)
+			hud.diagram.show_diagram(CAKES_DIAGRAM_1)
 			hud.set_message(tr("You can make cake boxes with the bigger pieces."
 					+ "\n\nAnd they're worth three times as much sideways!"))
 			hud.enqueue_message(tr("See all those stars? Each star becomes a tasty treat for our customers."

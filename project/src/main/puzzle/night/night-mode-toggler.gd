@@ -24,15 +24,15 @@ const TWEEN_DURATION := 0.3
 
 var _night_mode := false
 
+## Adjusts node colors and visibility during day/night transitions.
+var _tween: SceneTreeTween
+
 ## Nodes being tweened to transparent. After the tween completes, we set the 'visible' property on these nodes to
 ## 'false'.
 ##
 ## key: (Node) node being modulated to transparent
 ## kalue: (bool) true
 var _nodes_modulated_to_transparent := {}
-
-## Adjusts node colors and visibility during day/night transitions.
-onready var _tween: SceneTreeTween
 
 func _exit_tree() -> void:
 	# unset night filter if it was enabled

@@ -42,9 +42,13 @@ func _upgrade_levels() -> void:
 func _upgrade_settings(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
 	var old_json: Dictionary = parse_json(old_text)
+	
 	if _upgrader.needs_upgrade(old_json):
-		var new_json := _upgrader.upgrade(old_json)
-		var new_text := Utils.print_json(new_json)
+		var level_id := LevelSettings.level_key_from_path(path)
+		# immediately parse and rewrite the level; LevelEditor will behave strangely with older level formats
+		var settings := LevelSettings.new()
+		settings.load_from_text(level_id, old_text)
+		var new_text := Utils.print_json(settings.to_json_dict())
 		FileUtils.write_file(path, new_text)
 		_converted.append(path)
 
@@ -97,6 +101,33 @@ func _report_invalid_career_levels() -> void:
 		var keys_to_print := invalid_level_keys.keys()
 		keys_to_print.sort()
 		_output_label.add_line("Invalid levels in career regions: %s" % [keys_to_print])
+
+
+## Reports any regions in career-regions.json with missing or invalid music ids
+func _report_invalid_career_music() -> void:
+	var invalid_region_ids := {}
+	
+	for region in CareerLevelLibrary.regions:
+		if region.music.menu_music_id == null:
+			push_warning("%s - menu_music_id is empty" % [region.id])
+			invalid_region_ids[region.id] = true
+		elif MusicPlayer.bgm_for_id(region.music.menu_music_id) == null:
+			push_warning("%s - invalid menu_music_id: %s" % [region.id, region.music.menu_music_id])
+			invalid_region_ids[region.id] = true
+		
+		if not region.music.puzzle_music_ids:
+			push_warning("%s - puzzle_music_ids is empty" % [region.id])
+			invalid_region_ids[region.id] = true
+		else:
+			for puzzle_music_id in region.music.puzzle_music_ids:
+				if MusicPlayer.bgm_for_id(puzzle_music_id) == null:
+					push_warning("%s - invalid puzzle_music_id: %s" % [region.id, puzzle_music_id])
+					invalid_region_ids[region.id] = true
+	
+	if invalid_region_ids:
+		var keys_to_print := invalid_region_ids.keys()
+		keys_to_print.sort()
+		_output_label.add_line("Invalid music in career regions: %s" % [keys_to_print])
 
 
 ## Reports any levels in CAREER_LEVEL_DIRS which are not actually available in career mode.
@@ -179,6 +210,7 @@ func _on_pressed() -> void:
 	_output_label.text = ""
 	_upgrade_levels()
 	_report_invalid_career_levels()
+	_report_invalid_career_music()
 	_report_unused_career_levels()
 	_report_bad_show_rank()
 	_alphabetize_career_levels()

@@ -22,11 +22,11 @@
     "body_rgb": "e63f2d",
     "belly_rgb": "f77429",
     "cloth_rgb": "f2c12a",
-    "glass_rgb": "fad669",
+    "glass_rgb": "ffd256",
     "plastic_rgb": "f28c2a",
     "hair_rgb": "3b5854",
     "eye_rgb": "f2c12a ffffa2",
-    "horn_rgb": "486965"
+    "horn_rgb": "49663a"
   },
   "chat_theme": {
     "accent_scale": 1.33,

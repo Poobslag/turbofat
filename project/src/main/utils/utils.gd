@@ -7,27 +7,19 @@ const NUM_SCANCODES := {
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
 }
 
+## Perceptually adjusted weights for the RGB color channels.
+##
+## These weights emphasize the red and green channels (to which the human eye is most sensitive) while reducing the
+## impact of the blue channel (to which the human eye is least sensitive)
+##
+## The value is equal to "Vector3(0.2990, 0.5871, 0.1140).normalized() * sqrt(3)"
+const PERCEPTUAL_RGB_WEIGHTS := Vector3(0.774529, 1.520822, 0.295305)
+
 
 ## If the specified array item does not exist, this method appends it.
 static func append_if_absent(array: Array, value) -> void:
 	if not array.has(value):
 		array.append(value)
-
-
-## Assigns a default path for a FileDialog.
-##
-## At runtime, this will default to the user data directory. During development, this will default to a resource path
-## for convenience when authoring Turbo Fat's creature's/levels.
-##
-## Note: We only want to assign the path the first time, but we can't check 'is the path empty' because an empty path
-## is a valid choice -- a player can navigate to the root directory. So instead of checking 'is the path empty' we
-## check 'is the path this specific UUID' since that's something the user will never navigate to accidentally.
-static func assign_default_dialog_path(dialog: FileDialog, default_resource_path: String) -> void:
-	if dialog.current_path == "/509e7c82-9399-425a-9f15-9370c2b3de8b":
-		var current_path := ProjectSettings.globalize_path(default_resource_path)
-		if not Directory.new().dir_exists(current_path):
-			current_path = OS.get_user_data_dir()
-		dialog.current_path = current_path
 
 
 ## Returns the perceived brightness of a color.
@@ -490,3 +482,18 @@ static func weighted_rand_value(weights_map: Dictionary):
 			break
 	
 	return selected_value
+
+
+## Returns the perceptual distance between two colors using RGB channel weights.
+##
+## Parameters:
+## 	'color_0': The first color to compare.
+##
+## 	'color_1': The second color to compare.
+##
+## Returns:
+## 	A float representing the perceptual distance between the two colors. A small value like '0.1' indicates the
+## 	colors are similar, a large value like '1.0' indicates they are not similar at all.
+static func color_distance_rgb(a: Color, b: Color) -> float:
+	return (Vector3(a.r, a.g, a.b) * PERCEPTUAL_RGB_WEIGHTS) \
+			.distance_to(Vector3(b.r, b.g, b.b) * PERCEPTUAL_RGB_WEIGHTS)

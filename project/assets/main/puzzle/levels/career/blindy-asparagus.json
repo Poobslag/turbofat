@@ -1,11 +1,28 @@
 {
   "version": "4c5c",
-  "start_speed": "2",
   "name": "Blindy Asparagus",
   "description": "What you can't see CAN hurt you!",
+  "start_speed": "2",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": 10,
+      "speed": "3"
+    },
+    {
+      "type": "lines",
+      "value": 20,
+      "speed": "4"
+    },
+    {
+      "type": "lines",
+      "value": 30,
+      "speed": "5"
+    }
+  ],
   "finish_condition": {
     "type": "lines",
-    "value": "40"
+    "value": 40
   },
   "piece_types": [
     "piece_l",
@@ -18,73 +35,16 @@
     "piece_v"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.25",
     "box_factor 0.65",
     "combo_factor 1.21",
+    "extra_seconds_per_piece 0.25",
     "master_pickup_score 120"
-  ],
-  "speed_ups": [
-    {
-      "type": "lines",
-      "value": "10",
-      "speed": "3"
-    },
-    {
-      "type": "lines",
-      "value": "20",
-      "speed": "4"
-    },
-    {
-      "type": "lines",
-      "value": "30",
-      "speed": "5"
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "before_start"
-      ],
-      "effect": "add_spears count=1 sizes=R3 y=16"
-    },
-    {
-      "phases": [
-        "line_cleared n=5"
-      ],
-      "effect": "add_spears count=1 sizes=R3 y=16"
-    },
-    {
-      "phases": [
-        "line_cleared n=15"
-      ],
-      "effect": "add_spears count=2 sizes=R3 y=16,14"
-    },
-    {
-      "phases": [
-        "line_cleared n=25..."
-      ],
-      "effect": "add_spears count=3 sizes=R3 y=16,14,12"
-    },
-    {
-      "phases": [
-        "piece_written"
-      ],
-      "effect": "advance_spears"
-    }
   ],
   "tiles": {
     "start": [
       {
         "pos": "0 11",
         "tile": "0 2 0"
-      },
-      {
-        "pos": "1 11",
-        "pickup": "0"
-      },
-      {
-        "pos": "2 11",
-        "pickup": "0"
       },
       {
         "pos": "0 12",
@@ -95,20 +55,12 @@
         "tile": "0 6 0"
       },
       {
-        "pos": "2 12",
-        "pickup": "0"
-      },
-      {
         "pos": "0 13",
         "tile": "0 9 0"
       },
       {
         "pos": "1 13",
         "tile": "0 5 0"
-      },
-      {
-        "pos": "2 13",
-        "pickup": "0"
       },
       {
         "pos": "0 14",
@@ -135,10 +87,6 @@
         "tile": "1 6 0"
       },
       {
-        "pos": "3 15",
-        "pickup": "0"
-      },
-      {
         "pos": "0 16",
         "tile": "1 9 0"
       },
@@ -149,18 +97,6 @@
       {
         "pos": "2 16",
         "tile": "1 5 0"
-      },
-      {
-        "pos": "3 16",
-        "pickup": "0"
-      },
-      {
-        "pos": "4 16",
-        "pickup": "0"
-      },
-      {
-        "pos": "5 16",
-        "pickup": "0"
       },
       {
         "pos": "0 17",
@@ -187,10 +123,6 @@
         "tile": "1 6 0"
       },
       {
-        "pos": "6 17",
-        "pickup": "0"
-      },
-      {
         "pos": "0 18",
         "tile": "1 11 0"
       },
@@ -213,10 +145,6 @@
       {
         "pos": "5 18",
         "tile": "1 7 0"
-      },
-      {
-        "pos": "6 18",
-        "pickup": "0"
       },
       {
         "pos": "0 19",
@@ -243,6 +171,46 @@
         "tile": "1 5 0"
       },
       {
+        "pos": "1 11",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 11",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 12",
+        "pickup": "0"
+      },
+      {
+        "pos": "2 13",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 15",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 16",
+        "pickup": "0"
+      },
+      {
+        "pos": "4 16",
+        "pickup": "0"
+      },
+      {
+        "pos": "5 16",
+        "pickup": "0"
+      },
+      {
+        "pos": "6 17",
+        "pickup": "0"
+      },
+      {
+        "pos": "6 18",
+        "pickup": "0"
+      },
+      {
         "pos": "6 19",
         "pickup": "0"
       },
@@ -251,5 +219,37 @@
         "pickup": "0"
       }
     ]
-  }
+  },
+  "triggers": [
+    {
+      "phases": [
+        "before_start"
+      ],
+      "effect": "add_spears sizes=R3 y=16"
+    },
+    {
+      "phases": [
+        "line_cleared n=5"
+      ],
+      "effect": "add_spears sizes=R3 y=16"
+    },
+    {
+      "phases": [
+        "line_cleared n=15"
+      ],
+      "effect": "add_spears sizes=R3 count=2 y=14,16"
+    },
+    {
+      "phases": [
+        "line_cleared n=25..."
+      ],
+      "effect": "add_spears sizes=R3 count=3 y=12,14,16"
+    },
+    {
+      "phases": [
+        "piece_written"
+      ],
+      "effect": "advance_spears"
+    }
+  ]
 }

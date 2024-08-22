@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/ui/squeak/squeak-check-box-helper.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-unchecked-hover.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-checked-hover.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-checked-focus.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-unchecked-focus.png" type="Texture" id=5]
+
+[node name="SqueakCheckBoxHelper" type="Node"]
+script = ExtResource( 1 )
+_checked_focus = ExtResource( 4 )
+_unchecked_focus = ExtResource( 5 )
+_checked_hover = ExtResource( 3 )
+_unchecked_hover = ExtResource( 2 )

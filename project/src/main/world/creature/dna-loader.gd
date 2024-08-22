@@ -108,7 +108,7 @@ func unload_dna() -> void:
 ##
 ## This method assumes that any existing animations and connections have been disconnected.
 func load_dna() -> void:
-	if _creature_visuals.dna.has("mouth"):
+	if _creature_visuals.dna.has("mouth") and _creature_visuals.dna.mouth != "0":
 		_add_dna_node(CreatureLoader.new_mouth_player(_creature_visuals.dna.mouth), "mouth",
 				_creature_visuals.dna.mouth, _creature_visuals.get_node("Animations"))
 	

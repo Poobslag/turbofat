@@ -22,7 +22,7 @@ var _rng := RandomNumberGenerator.new()
 var _next_line_color_index := 0
 
 ## key: (String) allele
-## value: (Array) String values which have been randomly chosen by the 'tweak dna' button
+## value: (Array, String) allele values which have been randomly chosen by the 'tweak dna' button
 var _recent_tweaked_allele_values := {}
 
 ## creature the player is editing

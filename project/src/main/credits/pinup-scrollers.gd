@@ -33,7 +33,7 @@ func _ready() -> void:
 ## Parameters:
 ## 	'creature_id': The creature to show
 ##
-## 	'pinup_side': An enum from PinupScroller.Side for the side of the screen the pinup appears on
+## 	'pinup_side': Enum from PinupScroller.Side for the side of the screen the pinup appears on
 func add_pinup(creature_id: String, pinup_side: int, bg_color: Color) -> void:
 	# grab the oldest pinup out of the pool
 	var scroller: PinupScroller = _pinup_scroller_pool.pop_front()

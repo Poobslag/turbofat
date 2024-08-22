@@ -23,10 +23,10 @@
     "belly_rgb": "92d8e5",
     "cloth_rgb": "415a73",
     "glass_rgb": "bf3a3a",
-    "plastic_rgb": "34373a",
-    "hair_rgb": "477d5b",
+    "plastic_rgb": "3d3c3b",
+    "hair_rgb": "3e7e32",
     "eye_rgb": "374265 eaf2f4",
-    "horn_rgb": "ffe7e5"
+    "horn_rgb": "fde9e7"
   },
   "chat_theme": {
     "accent_scale": 6,

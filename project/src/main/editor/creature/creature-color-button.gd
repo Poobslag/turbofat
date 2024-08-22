@@ -7,16 +7,15 @@ extends TextureButton
 
 signal color_changed(color)
 
+signal about_to_show
+
 ## Repeating piece shapes which decorate the button.
 export (CandyButtons.ButtonShape) var shape setget set_shape
 
-## Bright shiny reflection texture which overlays the button and text when the button is not pressed.
-var _shine_texture_normal: Texture = preload("res://assets/main/ui/candy-button/c3-shine.png")
-
-## Less shiny reflection texture which overlays the button and text when the button is pressed.
-var _shine_texture_pressed: Texture = preload("res://assets/main/ui/candy-button/c3-shine-pressed.png")
-
 var creature_color: Color setget set_creature_color
+
+## Virtual property; value is only exposed through getters/setters
+var color_presets := [] setget set_color_presets
 
 ## List of String allele combos for which this button should be enabled. If unset, the button is always enabled.
 var enabled_if := []
@@ -29,16 +28,11 @@ onready var _icon := $Icon
 
 onready var _popup := $Popup
 
-## Shiny reflection effect which overlays the button and text
-onready var _shine := $Shine
-
 func _ready() -> void:
 	# Connect signals in code to prevent them from showing up in the Godot editor.
 	#
 	# This is a generic button used in many places, we want to be able to quickly see the unique signals connected to
 	# each button instance, not the generic signals connected to all button instances.
-	connect("button_down", self, "_on_button_down")
-	connect("button_up", self, "_on_button_up")
 	connect("focus_entered", self, "_on_focus_entered")
 	connect("focus_exited", self, "_on_focus_exited")
 	connect("mouse_entered", self, "_on_mouse_entered")
@@ -47,7 +41,6 @@ func _ready() -> void:
 	_refresh_shape()
 	_refresh_color()
 	_refresh_creature_color()
-	_refresh_shine()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -70,6 +63,10 @@ func _pressed() -> void:
 	_popup.popup(Rect2(popup_position, _popup.rect_size))
 
 
+func set_color_presets(new_color_presets: Array) -> void:
+	_popup.color_presets = new_color_presets
+
+
 func set_disabled(new_disabled: bool) -> void:
 	if disabled != new_disabled:
 		disabled = new_disabled
@@ -83,7 +80,6 @@ func _initialize_onready_variables() -> void:
 	_hover_sound = $HoverSound
 	_icon = $Icon
 	_popup = $Popup
-	_shine = $Shine
 
 
 ## Calculates the gradient which should color the button based on its color and state.
@@ -96,7 +92,7 @@ func _gradient() -> Gradient:
 		result = CandyButtons.GRADIENT_DISABLED_HOVER if is_hovered() else CandyButtons.GRADIENT_DISABLED
 	else:
 		# if the button is not focused, we use the default color
-		var gradients: Array = CandyButtons.GRADIENTS_BY_BUTTON_COLOR[CandyButtons.ButtonColor.NONE]
+		var gradients: Array = CandyButtons.GRADIENTS_BY_COLOR[CandyButtons.ButtonColor.NONE]
 		result = gradients[1] if is_hovered() else gradients[0]
 	return result
 
@@ -147,15 +143,10 @@ func _refresh_shape() -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	var textures: Array = CandyButtons.C3_TEXTURES_BY_BUTTON_SHAPE[shape]
+	var textures: Array = CandyButtons.C3_TEXTURES_BY_SHAPE[shape]
 	texture_normal = textures[0]
 	texture_pressed = textures[1]
 	texture_hover = textures[0]
-
-
-## Updates the shine texture for our button.
-func _refresh_shine() -> void:
-	_shine.texture = _shine_texture_pressed if pressed else _shine_texture_normal
 
 
 ## When we gain focus, we reapply a bright cyan color for our texture, text and icons.
@@ -186,14 +177,10 @@ func _on_mouse_exited() -> void:
 		_refresh_color()
 
 
-func _on_button_down() -> void:
-	_refresh_shine()
-
-
-func _on_button_up() -> void:
-	_refresh_shine()
-
-
 func _on_Popup_color_changed(color: Color) -> void:
 	set_creature_color(color)
 	emit_signal("color_changed", color)
+
+
+func _on_Popup_about_to_show() -> void:
+	emit_signal("about_to_show")

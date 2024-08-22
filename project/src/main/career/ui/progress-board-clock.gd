@@ -26,10 +26,10 @@ const HAND_POSITIONS_BY_HOUR := {
 ## or future.
 var hours_passed := 0 setget set_hours_passed
 
+var _tween: SceneTreeTween
+
 ## Digital text which shows the time using text like '8:50 pm'
 onready var _label: Label = $Label
-
-onready var _tween: SceneTreeTween
 
 ## Analog clock which shows the time using an and hour and minute hand.
 onready var _visuals: ProgressBoardClockVisuals = $VisualsHolder/Visuals

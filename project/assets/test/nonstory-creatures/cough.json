@@ -20,13 +20,13 @@
     "accessory": "0",
     "line_rgb": "41281e",
     "body_rgb": "8f1b21",
-    "belly_rgb": "838382",
+    "belly_rgb": "7b8780",
     "cloth_rgb": "546127",
     "glass_rgb": "cbde88",
     "plastic_rgb": "546127",
-    "hair_rgb": "1e1e1e",
+    "hair_rgb": "222222",
     "eye_rgb": "546127 a8ad89",
-    "horn_rgb": "2b2b2b"
+    "horn_rgb": "282828"
   },
   "chat_theme": {
     "accent_swapped": true,

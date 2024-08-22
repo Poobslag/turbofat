@@ -40,10 +40,10 @@ const GRADIENT_DISABLED_HOVER := preload("res://src/main/ui/candy-button/gradien
 ## Gradients for the various ButtonColor presets.
 ##
 ## key: (int) Enum from ButtonColor
-## value: (Array) Array with two entries for the gradients for the specified color:
+## value: (Array, Gradient) Array with two entries for the gradients for the specified color:
 ## 	value[0]: (Gradient) Gradient to use when the button is not hovered.
 ## 	value[1]: (Gradient) Gradient to use when the button is hovered.
-const GRADIENTS_BY_BUTTON_COLOR := {
+const GRADIENTS_BY_COLOR := {
 	ButtonColor.NONE: [
 		preload("res://src/main/ui/candy-button/gradient-none.tres"),
 		preload("res://src/main/ui/candy-button/gradient-none-hover.tres")],
@@ -75,10 +75,10 @@ const GRADIENTS_BY_BUTTON_COLOR := {
 ## Textures for the various ButtonShape presets.
 ##
 ## key: (int) Enum from ButtonShape
-## value: (Array) Array with two entries for the textures for the specified shape:
+## value: (Array, Texture) Array with two entries for the textures for the specified shape:
 ## 	value[0]: (Texture) texture to use when the button is not pressed.
 ## 	value[1]: (Texture) texture to use when the button is pressed.
-const C3_TEXTURES_BY_BUTTON_SHAPE := {
+const C3_TEXTURES_BY_SHAPE := {
 	ButtonShape.NONE: [
 		preload("res://assets/main/ui/candy-button/c3-blank.png"),
 		preload("res://assets/main/ui/candy-button/c3-blank-pressed.png")],

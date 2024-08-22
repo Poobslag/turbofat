@@ -1,20 +1,44 @@
 {
   "version": "4c5c",
-  "start_speed": "3",
   "name": "One Step Ahead",
   "description": "It's easy if you make a plan.",
+  "start_speed": "3",
   "finish_condition": {
     "type": "time_over",
-    "value": "150"
+    "value": 150
   },
-  "rank": [
-    "extra_seconds_per_piece 0.6",
-    "box_factor 0.8",
-    "preplaced_pieces 1"
+  "other": [
+    "suppress_piece_rotation",
+    "suppress_piece_initial_rotation"
   ],
   "piece_types": [
     "start_piece_v"
   ],
+  "rank": [
+    "box_factor 0.8",
+    "extra_seconds_per_piece 0.6",
+    "preplaced_pieces 1"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "7 18",
+        "tile": "0 10 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "0 6 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "0 9 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "0 5 3"
+      }
+    ]
+  },
   "triggers": [
     {
       "phases": [
@@ -37,29 +61,5 @@
       ],
       "effect": "rotate_next_pieces 180 0 0"
     }
-  ],
-  "other": [
-    "suppress_piece_rotation",
-    "suppress_piece_initial_rotation"
-  ],
-  "tiles": {
-    "start": [
-      {
-        "pos": "7 18",
-        "tile": "0 10 3"
-      },
-      {
-        "pos": "8 18",
-        "tile": "0 6 3"
-      },
-      {
-        "pos": "7 19",
-        "tile": "0 9 3"
-      },
-      {
-        "pos": "8 19",
-        "tile": "0 5 3"
-      }
-    ]
-  }
+  ]
 }

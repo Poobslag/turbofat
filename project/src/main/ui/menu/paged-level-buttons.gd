@@ -46,6 +46,38 @@ func _ready() -> void:
 	_refresh()
 
 
+func _input(event: InputEvent) -> void:
+	if _rightmost_level_button_has_focus() and event.is_action_pressed("ui_right"):
+		if _page < _max_selectable_page():
+			_select_next_page()
+		get_tree().set_input_as_handled()
+
+	if _leftmost_level_button_has_focus() and event.is_action_pressed("ui_left"):
+		if _page > 0:
+			_select_previous_page()
+		get_tree().set_input_as_handled()
+
+
+## Returns 'true' if a button in the rightmost column has focus.
+func _rightmost_level_button_has_focus() -> bool:
+	var result := false
+	for i in _grid_container.get_child_count():
+		if i % _grid_container.columns == _grid_container.columns - 1 and _grid_container.get_child(i).has_focus():
+			result = true
+			break
+	return result
+
+
+## Returns 'true' if a button in the leftmost column has focus.
+func _leftmost_level_button_has_focus() -> bool:
+	var result := false
+	for i in _grid_container.get_child_count():
+		if i % _grid_container.columns == 0 and _grid_container.get_child(i).has_focus():
+			result = true
+			break
+	return result
+
+
 ## Focuses a specific level button, possibly changing the current page.
 ##
 ## Parameters:
@@ -171,42 +203,25 @@ func _max_selectable_page() -> int:
 ## 	A new orphaned LevelSelectButton instance for the specified level
 func _level_select_button(level_id: String, level_count: int) -> Node:
 	var level_settings: LevelSettings = _level_settings_by_id[level_id]
-	
 	var level_button: LevelSelectButton = LevelButtonScene.instance()
-	level_button.level_id = level_id
+	level_button.decorate_for_level(region, level_settings, _unlock_cheat_enabled)
 	level_button.level_duration = LevelSelectButton.MEDIUM if level_count >= 10 else LevelSelectButton.LONG
-	level_button.level_name = level_settings.name
-	
-	# calculate the lock status
-	level_button.lock_status = LevelSelectButton.STATUS_NONE
-	if region is CareerRegion and not PlayerData.level_history.has_result(level_id) and not _unlock_cheat_enabled:
-		# career levels are locked if the player hasn't played them
-		level_button.lock_status = LevelSelectButton.STATUS_LOCKED
-	elif region.id == OtherRegion.ID_TUTORIAL:
-		# tutorial levels show a checkmark if completed
-		if PlayerData.level_history.is_level_finished(level_id):
-			level_button.lock_status = LevelSelectButton.STATUS_CLEARED
-	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
-		# rank/marathon levels show a crown if completed
-		if PlayerData.level_history.is_level_success(level_id):
-			level_button.lock_status = LevelSelectButton.STATUS_CROWN
-	
-	# calculate the background color. this is usually random, but for rank mode we use specific colors
-	if level_settings.color_string:
-		match level_settings.color_string:
-			"red": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_RED)
-			"orange": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_ORANGE)
-			"yellow": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_YELLOW)
-			"green": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_GREEN)
-			"blue": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_BLUE)
-			"purple": level_button.set_bg_color(LevelSelectButton.BUTTON_COLOR_PURPLE)
-			_:
-				push_warning("Unrecognized color string '%s'" % [level_settings.color_string])
-				pass
 	
 	level_button.connect("focus_entered", self, "_on_LevelButton_focus_entered", [level_button, level_id])
 	level_button.connect("level_chosen", self, "_on_LevelButton_level_chosen", [level_settings])
 	return level_button
+
+
+func _select_previous_page() -> void:
+	_page = max(0, _page - 1)
+	_refresh()
+	_grid_container.get_children().back().grab_focus()
+
+
+func _select_next_page() -> void:
+	_page = min(_max_selectable_page(), _page + 1)
+	_refresh()
+	_grid_container.get_children().front().grab_focus()
 
 
 ## When the player clicks a level button once, we emit a signal to show more information.
@@ -223,13 +238,11 @@ func _on_LevelButton_level_chosen(level_settings: LevelSettings) -> void:
 
 
 func _on_LeftArrow_pressed() -> void:
-	_page = max(0, _page - 1)
-	_refresh()
+	_select_previous_page()
 
 
 func _on_RightArrow_pressed() -> void:
-	_page = min(_max_selectable_page(), _page + 1)
-	_refresh()
+	_select_next_page()
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:

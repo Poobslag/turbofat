@@ -4,8 +4,14 @@ extends Control
 ##
 ## The button adjusts its rect_min_size based on level duration.
 
-## emitted when a level is launched.
+## emitted when the button is pressed, if the level is not locked.
 signal level_chosen
+
+## emitted when the button is pressed.
+signal pressed
+
+## emitted when the button starts being held down.
+signal button_down
 
 ## short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
@@ -66,6 +72,8 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
 
+var _duration_calculator := DurationCalculator.new()
+
 onready var _button_control := $ButtonControlHolder/ButtonControl
 onready var _label := $ButtonControlHolder/ButtonControl/Label
 
@@ -105,6 +113,49 @@ func set_level_duration(new_level_duration: int) -> void:
 	_refresh_appearance()
 
 
+## Updates the button's fields based on the specified level.
+##
+## Specifically, this updates the level_id, level_name, lock_status, duration and bg_color fields.
+func decorate_for_level(region: Object, settings: LevelSettings, force_unlock: bool = false) -> void:
+	level_id = settings.id
+	level_name = settings.name
+
+	# calculate the lock status
+	lock_status = STATUS_NONE
+	if region is CareerRegion and not PlayerData.level_history.has_result(settings.id) and not force_unlock:
+		# career levels are locked if the player hasn't played them
+		lock_status = STATUS_LOCKED
+	elif region.id == OtherRegion.ID_TUTORIAL:
+		# tutorial levels show a checkmark if completed
+		if PlayerData.level_history.is_level_finished(settings.id):
+			lock_status = STATUS_CLEARED
+	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
+		# rank/marathon levels show a crown if completed
+		if PlayerData.level_history.is_level_success(settings.id):
+			lock_status = STATUS_CROWN
+	
+	var duration := _duration_calculator.duration(settings)
+	if duration < 100:
+		level_duration = SHORT
+	elif duration < 200:
+		level_duration = MEDIUM
+	else:
+		level_duration = LONG
+	
+	# calculate the background color. this is usually random, but for rank mode we use specific colors
+	if settings.color_string:
+		match settings.color_string:
+			"red": set_bg_color(BUTTON_COLOR_RED)
+			"orange": set_bg_color(BUTTON_COLOR_ORANGE)
+			"yellow": set_bg_color(BUTTON_COLOR_YELLOW)
+			"green": set_bg_color(BUTTON_COLOR_GREEN)
+			"blue": set_bg_color(BUTTON_COLOR_BLUE)
+			"purple": set_bg_color(BUTTON_COLOR_PURPLE)
+			_:
+				push_warning("Unrecognized color string '%s'" % [settings.color_string])
+				pass
+
+
 ## Updates the button's style colors. Can be overridden by child buttons who use different styles.
 func refresh_style_color(color: Color) -> void:
 	if not is_inside_tree():
@@ -126,6 +177,20 @@ func has_focus() -> bool:
 ## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
 func grab_focus() -> void:
 	_button_control.grab_focus()
+
+
+## Assigns the focus access mode for the control (None, Click or All).
+##
+## For cosmetic reasons, this control itself doesn't have a focus mode, but the child button control does.
+func set_focus_mode(new_button_focus_mode: int) -> void:
+	_button_control.focus_mode = new_button_focus_mode
+
+
+## Returns the focus access mode for the control (None, Click or All).
+##
+## For cosmetic reasons, this control itself doesn't have a focus mode, but the child button control does.
+func get_focus_mode() -> int:
+	return _button_control.focus_mode
 
 
 ## Updates the button's text, colors, size and icon based on the level and its status.
@@ -166,11 +231,9 @@ func _on_resized() -> void:
 
 
 func _on_ButtonControl_pressed() -> void:
-	if lock_status == STATUS_LOCKED:
-		# level is locked, don't launch the level
-		return
+	emit_signal("pressed")
 	
-	if _emit_level_chosen:
+	if lock_status != STATUS_LOCKED and _emit_level_chosen:
 		_emit_level_chosen = false
 		emit_signal("level_chosen")
 
@@ -191,6 +254,8 @@ func _on_ButtonControl_focus_exited() -> void:
 
 
 func _on_ButtonControl_button_down() -> void:
+	emit_signal("button_down")
+	
 	if _focus_just_entered:
 		pass
 	else:

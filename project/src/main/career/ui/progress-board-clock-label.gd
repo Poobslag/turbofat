@@ -10,7 +10,7 @@ const FLASH_DURATION := 1.5
 const OUTLINE_COLOR := Color("6c4331")
 
 ## Tween that handles the clock's flash effect.
-onready var _flash_tween: SceneTreeTween
+var _flash_tween: SceneTreeTween
 
 ## Particles emitted when the clock flashes.
 onready var _particles := $Particles

@@ -1,11 +1,11 @@
 extends GutTest
 
-const TEMP_FILENAME := "test-ground-lucky.save"
-const TEMP_LEGACY_FILENAME := "test-snatch-lucky.save"
+const TEMP_FILENAME := "user://test-ground-lucky.save"
+const TEMP_LEGACY_FILENAME := "user://test-snatch-lucky.save"
 
 func before_each() -> void:
-	PlayerSave.data_filename = "user://%s" % TEMP_FILENAME
-	PlayerSave.legacy_filename = "user://%s" % TEMP_LEGACY_FILENAME
+	PlayerSave.data_filename = TEMP_FILENAME
+	PlayerSave.legacy_filename = TEMP_LEGACY_FILENAME
 	
 	# don't increment playtime during this test or it ruins our assertions
 	PlayerData.seconds_played_timer.stop()
@@ -13,21 +13,20 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	var save_dir := Directory.new()
-	save_dir.open("user://")
-	save_dir.remove(TEMP_FILENAME)
-	save_dir.remove(TEMP_LEGACY_FILENAME)
+	var dir := Directory.new()
+	dir.remove(TEMP_FILENAME)
+	dir.remove(TEMP_LEGACY_FILENAME)
 
 
 func load_legacy_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_LEGACY_FILENAME)
+	dir.copy("res://assets/test/data/%s" % filename, TEMP_LEGACY_FILENAME)
 	PlayerSave.load_player_data()
 
 
 func load_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/data/%s" % filename, "user://%s" % TEMP_FILENAME)
+	dir.copy("res://assets/test/data/%s" % filename, TEMP_FILENAME)
 	PlayerSave.load_player_data()
 
 
@@ -247,7 +246,7 @@ func test_4ceb_career_data() -> void:
 	assert_eq(PlayerData.career.prev_distance_travelled, [134, 114])
 	assert_eq(PlayerData.career.prev_money, [4156, 2268])
 	assert_eq(PlayerData.career.remain_in_region, false)
-	assert_eq(PlayerData.career.seconds_played, 525)
+	assert_eq(PlayerData.career.seconds_played, 525.0)
 	assert_eq(PlayerData.career.skipped_previous_level, false)
 	assert_eq(PlayerData.career.steps, 25)
 	assert_eq(PlayerData.career.top_out_count, 1)

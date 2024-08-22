@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://assets/main/editor/creature/icon-category-eye.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/editor/creature/icon-category-nose.png" type="Texture" id=2]
@@ -56,9 +56,8 @@
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=54]
 [ext_resource path="res://src/main/editor/creature/dialogs.gd" type="Script" id=55]
 [ext_resource path="res://src/main/editor/creature/creature-editor.gd" type="Script" id=56]
-[ext_resource path="res://src/main/ui/squeak/squeak-theme-h4.tres" type="Theme" id=57]
+[ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=57]
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=58]
-[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=59]
 [ext_resource path="res://src/main/editor/creature/OperationButton.tscn" type="PackedScene" id=60]
 [ext_resource path="res://src/main/world/environment/CreatureEditorEnvironment.tscn" type="PackedScene" id=61]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=62]
@@ -73,7 +72,6 @@
 [ext_resource path="res://src/main/world/environment/restaurant/LayoutContainer.tscn" type="PackedScene" id=71]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonCollapsible.tscn" type="PackedScene" id=72]
 [ext_resource path="res://src/main/editor/creature/CreatureColorButton.tscn" type="PackedScene" id=73]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=74]
 [ext_resource path="res://src/main/editor/creature/AlleleButton.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/main/editor/creature/icon-category-face.png" type="Texture" id=76]
 [ext_resource path="res://assets/main/ui/menu/menu-accent-h2-l1.png" type="Texture" id=77]
@@ -82,6 +80,7 @@
 [ext_resource path="res://src/main/editor/creature/fatness-changer.gd" type="Script" id=80]
 [ext_resource path="res://src/main/editor/creature/category-label.gd" type="Script" id=81]
 [ext_resource path="res://src/main/editor/creature/creature-editor-system-buttons.gd" type="Script" id=82]
+[ext_resource path="res://src/main/editor/creature/CreatureEditorLibrary.tscn" type="PackedScene" id=83]
 
 [sub_resource type="StyleBoxFlat" id=52]
 resource_local_to_scene = true
@@ -90,6 +89,26 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="GradientTexture2D" id=1]
+resource_local_to_scene = true
+gradient = ExtResource( 48 )
+
+[sub_resource type="ShaderMaterial" id=46]
+resource_local_to_scene = true
+shader = ExtResource( 47 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 1 )
+
+[sub_resource type="GradientTexture2D" id=5]
+resource_local_to_scene = true
+gradient = ExtResource( 46 )
+
+[sub_resource type="ShaderMaterial" id=47]
+resource_local_to_scene = true
+shader = ExtResource( 47 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 5 )
 
 [sub_resource type="GradientTexture2D" id=13]
 resource_local_to_scene = true
@@ -240,26 +259,6 @@ resource_local_to_scene = true
 shader = ExtResource( 47 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 44 )
-
-[sub_resource type="GradientTexture2D" id=1]
-resource_local_to_scene = true
-gradient = ExtResource( 48 )
-
-[sub_resource type="ShaderMaterial" id=46]
-resource_local_to_scene = true
-shader = ExtResource( 47 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 1 )
-
-[sub_resource type="GradientTexture2D" id=5]
-resource_local_to_scene = true
-gradient = ExtResource( 46 )
-
-[sub_resource type="ShaderMaterial" id=47]
-resource_local_to_scene = true
-shader = ExtResource( 47 )
-shader_param/mix_amount = 1.0
-shader_param/gradient = SubResource( 5 )
 
 [sub_resource type="Animation" id=49]
 length = 0.001
@@ -439,6 +438,50 @@ overworld_environment_path = NodePath("../../Environment")
 
 [node name="Buttons" type="CanvasLayer" parent="."]
 
+[node name="SystemButtons" type="VBoxContainer" parent="Buttons"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -104.0
+margin_right = -40.0
+margin_bottom = -40.0
+script = ExtResource( 82 )
+allele_buttons_path = NodePath("../VBoxContainer/AlleleButtons")
+category_selector_path = NodePath("../VBoxContainer/CategorySelector")
+
+[node name="Settings" parent="Buttons/SystemButtons" instance=ExtResource( 68 )]
+material = SubResource( 46 )
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 120.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+shortcut = ExtResource( 66 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+text = "Settings"
+color = 7
+shape = 3
+
+[node name="Quit" parent="Buttons/SystemButtons" instance=ExtResource( 68 )]
+material = SubResource( 47 )
+margin_left = 0.0
+margin_top = 34.0
+margin_right = 120.0
+margin_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 17 )
+text = "Quit"
+color = 1
+shape = 5
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -448,6 +491,7 @@ margin_left = -472.0
 margin_top = -260.0
 margin_right = 472.0
 margin_bottom = 260.0
+mouse_filter = 2
 
 [node name="CategorySelector" type="HBoxContainer" parent="Buttons/VBoxContainer"]
 margin_right = 944.0
@@ -686,11 +730,13 @@ margin_top = 68.0
 margin_right = 944.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 0, 50 )
+mouse_filter = 2
 
 [node name="AlleleButtons" type="Control" parent="Buttons/VBoxContainer"]
 margin_top = 122.0
 margin_right = 944.0
 margin_bottom = 520.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 21 )
@@ -806,55 +852,6 @@ margin_top = 230.0
 margin_right = 175.0
 margin_bottom = 294.0
 text = ""
-
-[node name="SystemButtons" type="VBoxContainer" parent="Buttons"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -160.0
-margin_top = -104.0
-margin_right = -40.0
-margin_bottom = -40.0
-script = ExtResource( 82 )
-allele_buttons_path = NodePath("../VBoxContainer/AlleleButtons")
-category_selector_path = NodePath("../VBoxContainer/CategorySelector")
-
-[node name="Settings" parent="Buttons/SystemButtons" instance=ExtResource( 68 )]
-material = SubResource( 46 )
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 120.0
-margin_bottom = 30.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-shortcut = ExtResource( 66 )
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-text = "Settings"
-color = 7
-shape = 3
-
-[node name="ShortcutHelper" parent="Buttons/SystemButtons/Settings" instance=ExtResource( 59 )]
-action = "ui_cancel"
-overridden_action = "ui_menu"
-
-[node name="Quit" parent="Buttons/SystemButtons" instance=ExtResource( 68 )]
-material = SubResource( 47 )
-margin_left = 0.0
-margin_top = 34.0
-margin_right = 120.0
-margin_bottom = 64.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-shortcut = ExtResource( 74 )
-texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 15 )
-texture_hover = ExtResource( 17 )
-text = "Quit"
-color = 1
-shape = 5
 
 [node name="Dialogs" type="Control" parent="Buttons"]
 pause_mode = 2
@@ -975,19 +972,22 @@ stream = ExtResource( 18 )
 volume_db = -4.0
 bus = "Sound Bus"
 
+[node name="CreatureEditorLibrary" parent="." instance=ExtResource( 83 )]
+
+[connection signal="pressed" from="Buttons/SystemButtons/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="Buttons/SystemButtons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="category_selected" from="Buttons/VBoxContainer/CategorySelector" to="DropPanel/CategoryLabel" method="_on_CategorySelector_category_selected"]
 [connection signal="category_selected" from="Buttons/VBoxContainer/CategorySelector" to="Buttons/VBoxContainer/AlleleButtons" method="_on_CategorySelector_category_selected"]
-[connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="Buttons/VBoxContainer/CategorySelector" method="_on_AlleleButtons_allele_buttons_refreshed"]
 [connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="Buttons/SystemButtons" method="_on_AlleleButtons_allele_buttons_refreshed"]
+[connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="Buttons/VBoxContainer/CategorySelector" method="_on_AlleleButtons_allele_buttons_refreshed"]
 [connection signal="allele_buttons_refreshed" from="Buttons/VBoxContainer/AlleleButtons" to="FatnessChanger" method="_on_AlleleButtons_allele_buttons_refreshed"]
 [connection signal="operation_button_pressed" from="Buttons/VBoxContainer/AlleleButtons" to="." method="_on_AlleleButtons_operation_button_pressed"]
 [connection signal="operation_button_pressed" from="Buttons/VBoxContainer/AlleleButtons" to="FatnessChanger" method="_on_AlleleButtons_operation_button_pressed"]
-[connection signal="pressed" from="Buttons/SystemButtons/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
-[connection signal="pressed" from="Buttons/SystemButtons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="about_to_show" from="Buttons/Dialogs/UnsavedChangesConfirmation" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Buttons/Dialogs/UnsavedChangesConfirmation" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Buttons/Dialogs/Import" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Buttons/Dialogs/Import" to="." method="_on_Import_file_selected"]
+[connection signal="file_selected" from="Buttons/Dialogs/Import" to="CreatureSaver" method="_on_Import_file_selected"]
 [connection signal="popup_hide" from="Buttons/Dialogs/Import" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Buttons/Dialogs/Export" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Buttons/Dialogs/Export" to="." method="_on_Export_file_selected"]

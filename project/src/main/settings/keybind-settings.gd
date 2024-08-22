@@ -44,6 +44,8 @@ const MENU_ACTION_NAMES := {
 	"ui_right": true,
 	"ui_accept": true,
 	"ui_cancel": true,
+	"next_tab": true,
+	"prev_tab": true,
 }
 
 ## Set of inputs accepted on the overworld.
@@ -68,6 +70,22 @@ func set_preset(new_preset: int) -> void:
 	emit_signal("settings_changed")
 
 
+## Restore the default keybind for a specific action.
+##
+## This can also trigger unbinding/rebinding other conflicting actions.
+##
+## Parameters:
+## 	'action_name': The action whose keybinds to restore
+func restore_default_keybinds(action_name: String) -> void:
+	var json_text := FileUtils.get_file_as_text(DEFAULT_CUSTOM_PATH)
+	var json_dict: Dictionary = parse_json(json_text)
+	
+	for i in range(json_dict[action_name].size()):
+		_set_custom_keybind_inner(action_name, i, json_dict[action_name][i])
+	
+	emit_signal("settings_changed")
+
+
 ## Updates the custom keybind for a specific action.
 ##
 ## Unbinds any conflicting actions to avoid cases where the Left Arrow is accidentally bound to two conflicting
@@ -82,11 +100,15 @@ func set_preset(new_preset: int) -> void:
 ##
 ## 	'json': A json representation of a keyboard or joypad input
 func set_custom_keybind(action_name: String, index: int, json: Dictionary) -> void:
-	_unbind_conflicting_actions(action_name, json)
+	_set_custom_keybind_inner(action_name, index, json)
+	emit_signal("settings_changed")
+
+
+func _set_custom_keybind_inner(action_name: String, index: int, json: Dictionary) -> void:
+	_unbind_conflicting_actions(action_name, index, json)
 	
 	Utils.put_if_absent(custom_keybinds, action_name, [{}, {}, {}])
 	custom_keybinds[action_name][index] = json
-	emit_signal("settings_changed")
 
 
 ## Returns a json reprentation of the specified keybind.
@@ -126,11 +148,11 @@ func restore_default_custom_keybinds() -> void:
 	emit_signal("settings_changed")
 
 
-## Unbinds any keybinds which conflict with the specified keybind.
+## Unbinds/rebinds any keybinds which conflict with the specified keybind.
 ##
 ## It's OK for two actions to be bound by the same key if they're in different contexts (ui_left, move_piece_left) but
 ## problematic if the actions are in the same context (activate, rewind_text).
-func _unbind_conflicting_actions(action_name: String, json: Dictionary) -> void:
+func _unbind_conflicting_actions(action_name: String, index: int, json: Dictionary) -> void:
 	for other_action_name in _conflicting_action_names(action_name):
 		if not custom_keybinds.has(other_action_name):
 			continue
@@ -138,6 +160,27 @@ func _unbind_conflicting_actions(action_name: String, json: Dictionary) -> void:
 			var other_json: Dictionary = custom_keybinds[other_action_name][other_index]
 			if _shallow_equal_dicts(json, other_json):
 				custom_keybinds[other_action_name][other_index] = {}
+	
+	if action_name in MENU_ACTION_NAMES:
+		# Ensure all UI actions are bound to something. If the player unbinds their UI controls, they can't fix them
+		# using the controller or keyboard. This would hard lock the game on platforms like the Nintendo Switch where
+		# they don't have a mouse available.
+		
+		for menu_action_name in MENU_ACTION_NAMES:
+			var menu_action_input_count := 0
+			
+			for menu_index in range(custom_keybinds[menu_action_name].size()):
+				if custom_keybinds[menu_action_name][menu_index]:
+					menu_action_input_count += 1
+			
+			if menu_action_input_count == 0:
+				# After unbinding, a menu action is bound to nothing. Rebind it to the input currently being rebound.
+				var source_index := 0
+				if custom_keybinds[action_name][index]:
+					source_index = index
+				
+				custom_keybinds[menu_action_name][0] = custom_keybinds[action_name][source_index]
+				custom_keybinds[action_name][source_index] = {}
 
 
 ## Returns a list of action names which appear in the same context as the specified keybind.

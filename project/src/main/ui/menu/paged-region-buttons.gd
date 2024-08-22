@@ -42,6 +42,18 @@ func _ready() -> void:
 	_refresh()
 
 
+func _input(event: InputEvent) -> void:
+	if _rightmost_region_button_has_focus() and event.is_action_pressed("ui_right"):
+		if _page < _max_selectable_page():
+			_select_next_page()
+		get_tree().set_input_as_handled()
+
+	if _leftmost_region_button_has_focus() and event.is_action_pressed("ui_left"):
+		if _page > 0:
+			_select_previous_page()
+		get_tree().set_input_as_handled()
+
+
 ## Focuses a specific region button, possibly changing the current page.
 ##
 ## Parameters:
@@ -89,6 +101,18 @@ func set_regions(new_regions: Array) -> void:
 		_regions_by_page.back().append(regions[i])
 	
 	_refresh()
+
+
+func _rightmost_region_button_has_focus() -> bool:
+	if not _hbox_container.get_children():
+		return false
+	return _hbox_container.get_children().back().has_focus()
+
+
+func _leftmost_region_button_has_focus() -> bool:
+	if not _hbox_container.get_children():
+		return false
+	return _hbox_container.get_children().front().has_focus()
 
 
 ## Refreshes the buttons and arrows based on our current properties.
@@ -193,6 +217,18 @@ func _region_select_button(button_index: int, region_obj: Object) -> RegionSelec
 	return region_button
 
 
+func _select_previous_page() -> void:
+	_page = max(0, _page - 1)
+	_refresh()
+	_hbox_container.get_children().back().grab_focus()
+
+
+func _select_next_page() -> void:
+	_page = min(_max_selectable_page(), _page + 1)
+	_refresh()
+	_hbox_container.get_children().front().grab_focus()
+
+
 ## When the player clicks a region button once, we emit a signal to show more information.
 func _on_RegionButton_focus_entered(region_button: RegionSelectButton, region: Object) -> void:
 	if region_button.disabled:
@@ -207,13 +243,11 @@ func _on_RegionButton_region_chosen(region: Object) -> void:
 
 
 func _on_LeftArrow_pressed() -> void:
-	_page = max(0, _page - 1)
-	_refresh()
+	_select_previous_page()
 
 
 func _on_RightArrow_pressed() -> void:
-	_page = min(_max_selectable_page(), _page + 1)
-	_refresh()
+	_select_next_page()
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:

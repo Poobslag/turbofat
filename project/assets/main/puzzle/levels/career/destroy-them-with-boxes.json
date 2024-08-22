@@ -1,48 +1,12 @@
 {
   "version": "4c5c",
-  "start_speed": "9",
   "name": "Destroy Them With Boxes!",
   "description": "Ack, sweets! My only weakness!",
+  "start_speed": "9",
   "finish_condition": {
     "type": "score",
-    "value": "1200"
+    "value": 1200
   },
-  "timers": [
-    {
-      "interval": 7.2,
-      "start": 28.2
-    },
-    {
-      "interval": 7.2,
-      "start": 10.2
-    }
-  ],
-  "triggers": [
-    {
-      "phases": [
-        "timer_0"
-      ],
-      "effect": "add_carrots count=2 size=large duration=20"
-    },
-    {
-      "phases": [
-        "timer_1"
-      ],
-      "effect": "add_carrots size=large duration=20"
-    },
-    {
-      "phases": [
-        "box_built snack"
-      ],
-      "effect": "remove_carrots"
-    },
-    {
-      "phases": [
-        "box_built cake"
-      ],
-      "effect": "remove_carrots 999"
-    }
-  ],
   "tiles": {
     "start": [
       {
@@ -82,18 +46,6 @@
         "tile": "1 7 10"
       },
       {
-        "pos": "3 11",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 11",
-        "pickup": "1"
-      },
-      {
-        "pos": "7 11",
-        "pickup": "3"
-      },
-      {
         "pos": "0 12",
         "tile": "1 11 10"
       },
@@ -106,18 +58,6 @@
         "tile": "1 7 10"
       },
       {
-        "pos": "4 12",
-        "pickup": "10"
-      },
-      {
-        "pos": "6 12",
-        "pickup": "10"
-      },
-      {
-        "pos": "8 12",
-        "pickup": "3"
-      },
-      {
         "pos": "0 13",
         "tile": "1 9 10"
       },
@@ -128,18 +68,6 @@
       {
         "pos": "2 13",
         "tile": "1 5 10"
-      },
-      {
-        "pos": "3 13",
-        "pickup": "1"
-      },
-      {
-        "pos": "5 13",
-        "pickup": "1"
-      },
-      {
-        "pos": "7 13",
-        "pickup": "3"
       },
       {
         "pos": "0 14",
@@ -280,7 +208,79 @@
       {
         "pos": "8 19",
         "tile": "0 5 3"
+      },
+      {
+        "pos": "3 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 11",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 11",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 12",
+        "pickup": "10"
+      },
+      {
+        "pos": "6 12",
+        "pickup": "10"
+      },
+      {
+        "pos": "8 12",
+        "pickup": "3"
+      },
+      {
+        "pos": "3 13",
+        "pickup": "1"
+      },
+      {
+        "pos": "5 13",
+        "pickup": "1"
+      },
+      {
+        "pos": "7 13",
+        "pickup": "3"
       }
     ]
-  }
+  },
+  "timers": [
+    {
+      "interval": 7.2,
+      "start": 28.2
+    },
+    {
+      "interval": 7.2,
+      "start": 10.2
+    }
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "timer_0"
+      ],
+      "effect": "add_carrots count=2 duration=20 size=large"
+    },
+    {
+      "phases": [
+        "timer_1"
+      ],
+      "effect": "add_carrots duration=20 size=large"
+    },
+    {
+      "phases": [
+        "box_built snack"
+      ],
+      "effect": "remove_carrots"
+    },
+    {
+      "phases": [
+        "box_built cake"
+      ],
+      "effect": "remove_carrots 999"
+    }
+  ]
 }

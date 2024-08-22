@@ -5,13 +5,13 @@ extends Node2D
 ## This can be something like 'S' or 'B+' if a level has been cleared, or something like a lock/key icon for levels
 ## which haven't yet been cleared.
 
+const CLEARED_TEXTURE: Texture = preload("res://assets/main/ui/level-select/cleared.png")
+const CROWN_TEXTURE: Texture = preload("res://assets/main/ui/level-select/crown.png")
+const KEY_TEXTURE: Texture = preload("res://assets/main/ui/level-select/key.png")
+const LOCKED_TEXTURE: Texture = preload("res://assets/main/ui/level-select/locked.png")
+
 ## LevelSelectButton this grade label applies to
 var button: Control setget set_button
-
-var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")
-var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")
-var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
-var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
 
 onready var _grade_label: GradeLabel = $GradeLabel
 onready var _status_icon := $StatusIcon
@@ -20,6 +20,11 @@ onready var _status_icon := $StatusIcon
 func _enter_tree() -> void:
 	_grade_label = $GradeLabel
 	_status_icon = $StatusIcon
+
+
+func _process(_delta: float) -> void:
+	modulate.a = button.modulate.a
+	visible = button.visible
 
 
 ## Assigns this label's button, and updates the label's appearance.
@@ -70,16 +75,16 @@ func _refresh_status_icon(lock_status: int) -> void:
 			_status_icon.texture = null
 			icon_color = Color.white
 		LevelSelectButton.STATUS_CLEARED:
-			_status_icon.texture = _cleared_texture
+			_status_icon.texture = CLEARED_TEXTURE
 			icon_color = GradeLabel.GRADE_COLOR_GREEN
 		LevelSelectButton.STATUS_CROWN:
-			_status_icon.texture = _crown_texture
+			_status_icon.texture = CROWN_TEXTURE
 			icon_color = GradeLabel.GRADE_COLOR_YELLOW
 		LevelSelectButton.STATUS_KEY:
-			_status_icon.texture = _key_texture
+			_status_icon.texture = KEY_TEXTURE
 			icon_color = GradeLabel.GRADE_COLOR_GREEN
 		LevelSelectButton.STATUS_LOCKED:
-			_status_icon.texture = _locked_texture
+			_status_icon.texture = LOCKED_TEXTURE
 			icon_color = GradeLabel.GRADE_COLOR_GREY
 		_:
 			push_warning("Unexpected lock status: %s" % [lock_status])
