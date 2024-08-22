@@ -30,7 +30,7 @@ const CODE_KEYS := {
 	KEY_BRACKETLEFT: "[", KEY_BACKSLASH: "\\", KEY_BRACKETRIGHT: "]", KEY_QUOTELEFT: "`",
 }
 
-## List of cheat codes. Cheat codes should be lower-case, and should not be contained within one another or the shorter
+## List of cheat codes. Cheat codes should be lower case, and should not be contained within one another or the shorter
 ## cheat code will take precedence.
 export (Array, String) var codes := []
 

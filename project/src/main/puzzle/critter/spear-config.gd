@@ -32,6 +32,6 @@ var sizes: Array = DEFAULT_SIZES
 
 ## Returns true if the specified size string corresponds to a wide spear.
 ##
-## A size string like 'R8' corresponds to a wide spear because it contains an upper-case letter.
+## A size string like 'R8' corresponds to a wide spear because it contains an upper case letter.
 static func is_wide(size_string: String) -> bool:
 	return size_string != size_string.to_lower()
