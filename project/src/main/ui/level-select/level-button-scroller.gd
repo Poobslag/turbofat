@@ -97,6 +97,7 @@ func populate(new_region: Object, default_level_id: String = "") -> void:
 	yield(get_tree(), "idle_frame")
 	if default_level_id:
 		set_central_button_index(_level_ids.find(default_level_id))
+	_refresh_central_button_index(false)
 
 	# set_central_button_index will only refresh the central button index if it detects a change. We always need to
 	# refresh the central button index when initially populating the buttons, otherwise the scroller can stay scrolled

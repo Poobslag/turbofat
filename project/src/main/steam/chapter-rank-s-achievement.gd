@@ -1,5 +1,5 @@
 extends SteamAchievement
-## Unlocks an achievement when the player gets rank "S" on all levels in a chapter, excluding the boss level.
+## Unlocks an achievement when the player gets rank "S-" on all levels in a chapter, excluding the boss level.
 
 ## The 'API Name' of the Steam stat which tracks how many levels the player has achieved an 'S' rank on
 export (String) var stat_id: String
