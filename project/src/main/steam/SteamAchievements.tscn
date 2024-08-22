@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/steam/chapter-story-finished-achievement.gd" type="Script" id=1]
 [ext_resource path="res://src/main/steam/chapter-unlocked-achievement.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/steam/steam-achievements.gd" type="Script" id=4]
 [ext_resource path="res://src/main/steam/level-rank-achievement.gd" type="Script" id=5]
+[ext_resource path="res://src/main/steam/chapter-rank-s-achievement.gd" type="Script" id=6]
+[ext_resource path="res://src/main/steam/chapter-finished-achievement.gd" type="Script" id=7]
 
 [node name="SteamAchievements" type="Node"]
 script = ExtResource( 4 )
@@ -15,10 +17,101 @@ achievement_id = "CHAPTER_1_STORY_FINISH"
 stat_id = "CHAPTER_1_STORY_PERCENT"
 region_id = "lemon"
 
+[node name="Chapter2StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_2_STORY_FINISH"
+stat_id = "CHAPTER_2_STORY_PERCENT"
+region_id = "lemon_2"
+
+[node name="Chapter3StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_3_STORY_FINISH"
+stat_id = "CHAPTER_3_STORY_PERCENT"
+region_id = "poki"
+
+[node name="Chapter4StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_4_STORY_FINISH"
+stat_id = "CHAPTER_4_STORY_PERCENT"
+region_id = "sand"
+
+[node name="Chapter5StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_5_STORY_FINISH"
+stat_id = "CHAPTER_5_STORY_PERCENT"
+region_id = "marsh"
+
+[node name="Chapter6StoryFinish" type="Node" parent="."]
+script = ExtResource( 1 )
+achievement_id = "CHAPTER_6_STORY_FINISH"
+stat_id = "CHAPTER_6_STORY_PERCENT"
+region_id = "lava"
+
+[node name="CareerModeFinish" type="Node" parent="."]
+script = ExtResource( 7 )
+achievement_id = "career_mode_finish"
+region_id = "lava"
+
+[node name="Chapter2Start" type="Node" parent="."]
+script = ExtResource( 2 )
+achievement_id = "CHAPTER_2_START"
+region_id = "lemon_2"
+
 [node name="Chapter3Start" type="Node" parent="."]
 script = ExtResource( 2 )
 achievement_id = "CHAPTER_3_START"
 region_id = "poki"
+
+[node name="Chapter4Start" type="Node" parent="."]
+script = ExtResource( 2 )
+achievement_id = "CHAPTER_4_START"
+region_id = "sand"
+
+[node name="Chapter5Start" type="Node" parent="."]
+script = ExtResource( 2 )
+achievement_id = "CHAPTER_5_START"
+region_id = "marsh"
+
+[node name="Chapter6Start" type="Node" parent="."]
+script = ExtResource( 2 )
+achievement_id = "CHAPTER_6_START"
+region_id = "lava"
+
+[node name="Chapter1RankS" type="Node" parent="."]
+script = ExtResource( 6 )
+achievement_id = "CHAPTER_1_RANK_S"
+stat_id = "CHAPTER_1_RANK_S_PERCENT"
+region_id = "lemon"
+
+[node name="Chapter2RankS" type="Node" parent="."]
+script = ExtResource( 6 )
+achievement_id = "CHAPTER_2_RANK_S"
+stat_id = "CHAPTER_2_RANK_S_PERCENT"
+region_id = "lemon_2"
+
+[node name="Chapter3RankS" type="Node" parent="."]
+script = ExtResource( 6 )
+achievement_id = "CHAPTER_3_RANK_S"
+stat_id = "CHAPTER_3_RANK_S_PERCENT"
+region_id = "poki"
+
+[node name="Chapter4RankS" type="Node" parent="."]
+script = ExtResource( 6 )
+achievement_id = "CHAPTER_4_RANK_S"
+stat_id = "CHAPTER_4_RANK_S_PERCENT"
+region_id = "sand"
+
+[node name="Chapter5RankS" type="Node" parent="."]
+script = ExtResource( 6 )
+achievement_id = "CHAPTER_5_RANK_S"
+stat_id = "CHAPTER_5_RANK_S_PERCENT"
+region_id = "marsh"
+
+[node name="Chapter6RankS" type="Node" parent="."]
+script = ExtResource( 6 )
+achievement_id = "CHAPTER_6_RANK_S"
+stat_id = "CHAPTER_6_RANK_S_PERCENT"
+region_id = "lava"
 
 [node name="MarathonHardRankS" type="Node" parent="."]
 script = ExtResource( 5 )
