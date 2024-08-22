@@ -1259,7 +1259,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:284
 #: project/assets/main/locale/localizables-extracted.py:2369
 msgid ""
-"The upper-case 'B' looks like boobs from above. The middle 'oo' looks "
+"The upper case 'B' looks like boobs from above. The middle 'oo' looks "
 "like boobs from the front. And the last 'b' looks like boobs from the "
 "side."
 msgstr ""
@@ -1269,7 +1269,7 @@ msgid "That's... NOT helpful advice!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:286
-msgid "The upper-case 'B' look-"
+msgid "The upper case 'B' look-"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:287

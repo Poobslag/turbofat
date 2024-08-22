@@ -1410,7 +1410,7 @@ msgstr "Mira, la palabra \"Banco\" puede verse de tres formas diferentes."
 #: project/assets/main/locale/localizables-extracted.py:284
 #: project/assets/main/locale/localizables-extracted.py:2369
 msgid ""
-"The upper-case 'B' looks like boobs from above. The middle 'oo' looks like "
+"The upper case 'B' looks like boobs from above. The middle 'oo' looks like "
 "boobs from the front. And the last 'b' looks like boobs from the side."
 msgstr ""
 "Un banco puede ser algo con mucho dinero. Para otros, es algo donde uno "
@@ -1421,7 +1421,7 @@ msgid "That's... NOT helpful advice!"
 msgstr "Eso... ¡No me ayuda PARA NADA!"
 
 #: project/assets/main/locale/localizables-extracted.py:286
-msgid "The upper-case 'B' look-"
+msgid "The upper case 'B' look-"
 msgstr "Un banco puede ser algo-"
 
 #: project/assets/main/locale/localizables-extracted.py:287
