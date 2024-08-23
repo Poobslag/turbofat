@@ -181,6 +181,22 @@ func _report_bad_show_rank() -> void:
 		_output_label.add_line("Level keys with bad show_rank settings: %s" % [bad_level_ids])
 
 
+## Reports bad SteamAchievement achievement_ids, region_ids, level_ids
+func _report_bad_achievements() -> void:
+	var invalid_achievement_properties := []
+	for achievement in SteamAchievements.get_achievements():
+		if not achievement.achievement_id:
+			invalid_achievement_properties.append("%s/%s=%s" % [achievement.name, "achievement_id", ""])
+		if achievement.get("region_id"):
+			var region_id: String = achievement.get("region_id")
+			if not CareerLevelLibrary.region_for_id(region_id):
+				invalid_achievement_properties.append("%s/%s=%s" % [achievement.name, "region_id", region_id])
+		if achievement.get("level_id"):
+			var level_id: String = achievement.get("level_id")
+			if not LevelSettings.level_exists_with_key(level_id):
+				invalid_achievement_properties.append("%s/%s=%s" % [achievement.name, "level_id", level_id])
+
+
 ## Alphabetizes the levels in 'career-regions.json'
 func _alphabetize_career_levels() -> void:
 	var sorted_region_ids := {}
@@ -213,6 +229,7 @@ func _on_pressed() -> void:
 	_report_invalid_career_music()
 	_report_unused_career_levels()
 	_report_bad_show_rank()
+	_report_bad_achievements()
 	_alphabetize_career_levels()
 	if not _output_label.text:
 		_output_label.text = "No level files have problems."
