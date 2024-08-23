@@ -1,6 +1,6 @@
 {
   "version": "4c5c",
-  "name": "Ultra: Normal (200¥)",
+  "name": "Ultra: Normal (¥200)",
   "description": "Earn ¥200 as fast as possible!",
   "finish_condition": {
     "type": "score",

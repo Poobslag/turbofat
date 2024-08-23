@@ -12687,28 +12687,28 @@ msgid "Finish"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2668
-msgid "1,000¥ Race"
-msgstr "Carrera 1.000¥"
+msgid "¥1,000 Race"
+msgstr "Carrera ¥1.000"
 
 #: project/assets/main/locale/localizables-extracted.py:2669
-msgid "Earn 1,000¥ as fast as possible. No tricks!"
-msgstr "Consigue 1.000¥ lo más rápido posible. ¡Sin trampas!"
+msgid "Earn ¥1,000 as fast as possible. No tricks!"
+msgstr "Consigue ¥1.000 lo más rápido posible. ¡Sin trampas!"
 
 #: project/assets/main/locale/localizables-extracted.py:2670
-msgid "200¥ Race"
-msgstr "Carrera 200¥"
+msgid "¥200 Race"
+msgstr "Carrera ¥200"
 
 #: project/assets/main/locale/localizables-extracted.py:2671
-msgid "Earn 200¥ as fast as possible. No tricks!"
-msgstr "Consigue 200¥ lo más rápido posible. ¡Sin trampas!"
+msgid "Earn ¥200 as fast as possible. No tricks!"
+msgstr "Consigue ¥200 lo más rápido posible. ¡Sin trampas!"
 
 #: project/assets/main/locale/localizables-extracted.py:2672
-msgid "500¥ Race"
-msgstr "Carrera 500¥"
+msgid "¥500 Race"
+msgstr "Carrera ¥500"
 
 #: project/assets/main/locale/localizables-extracted.py:2673
-msgid "Earn 500¥ as fast as possible. No tricks!"
-msgstr "Consigue 500¥ lo más rápido posible. ¡Sin trampas!"
+msgid "Earn ¥500 as fast as possible. No tricks!"
+msgstr "Consigue ¥500 lo más rápido posible. ¡Sin trampas!"
 
 #: project/assets/main/locale/localizables-extracted.py:2674
 msgid "90 Second Sprint"
@@ -13001,12 +13001,12 @@ msgid "They won't stop spinning! This is hurting my head a little..."
 msgstr "¡No termina de girar! Me está doliendo un poco la cabeza..."
 
 #: project/assets/main/locale/localizables-extracted.py:2746
-msgid "3,000¥ Race EX"
-msgstr "Carrera 3.000¥ EX"
+msgid "¥3,000 Race EX"
+msgstr "Carrera ¥3.000 EX"
 
 #: project/assets/main/locale/localizables-extracted.py:2747
-msgid "Earn 3,000¥ as fast as possible. No tricks!"
-msgstr "Consigue 3.000¥ lo más rápido posible. ¡Sin trampas!"
+msgid "Earn ¥3,000 as fast as possible. No tricks!"
+msgstr "Consigue ¥3.000 lo más rápido posible. ¡Sin trampas!"
 
 #: project/assets/main/locale/localizables-extracted.py:2748
 msgid "A Little Extra EX"
@@ -13791,16 +13791,16 @@ msgid "Earn ¥3,000 as fast as possible, with faster piece movement!"
 msgstr "¡Consigue ¥3.000 lo más rápido posible, con piezas muy rápidas!"
 
 #: project/assets/main/locale/localizables-extracted.py:2938
-msgid "Ultra: Hard (1,000¥)"
-msgstr "Ultra: Difícil (1.000¥)"
+msgid "Ultra: Hard (¥1,000)"
+msgstr "Ultra: Difícil (¥1.000)"
 
 #: project/assets/main/locale/localizables-extracted.py:2939
 msgid "Earn ¥1,000 as fast as possible!"
 msgstr "¡Consigue ¥1.000 lo más rápido posible!"
 
 #: project/assets/main/locale/localizables-extracted.py:2940
-msgid "Ultra: Normal (200¥)"
-msgstr "Ultra: Normal (200¥)"
+msgid "Ultra: Normal (¥200)"
+msgstr "Ultra: Normal (¥200)"
 
 #: project/assets/main/locale/localizables-extracted.py:2941
 msgid "Earn ¥200 as fast as possible!"
