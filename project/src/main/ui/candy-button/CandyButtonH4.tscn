@@ -28,6 +28,7 @@ shader_param/gradient = SubResource( 9 )
 resource_local_to_scene = true
 outline_size = 2
 outline_color = Color( 0.149412, 0.135882, 0.15, 1 )
+use_filter = true
 font_data = ExtResource( 8 )
 
 [node name="CandyButton" type="TextureButton"]

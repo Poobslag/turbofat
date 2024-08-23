@@ -19,6 +19,7 @@
 size = 72
 outline_size = 6
 outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="GradientTexture2D" id=2]

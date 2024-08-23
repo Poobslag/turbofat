@@ -38,6 +38,7 @@ resource_local_to_scene = true
 size = 24
 outline_size = 2
 outline_color = Color( 0.149412, 0.135882, 0.15, 1 )
+use_filter = true
 font_data = ExtResource( 3 )
 
 [node name="AlleleButton" type="TextureButton" groups=["allele_buttons"]]
