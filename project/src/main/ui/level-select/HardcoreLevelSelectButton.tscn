@@ -14,6 +14,7 @@
 [sub_resource type="DynamicFont" id=1]
 outline_size = 2
 outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=4]

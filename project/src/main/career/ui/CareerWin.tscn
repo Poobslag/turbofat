@@ -27,6 +27,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+use_filter = true
 font_data = ExtResource( 18 )
 
 [sub_resource type="StyleBoxFlat" id=13]

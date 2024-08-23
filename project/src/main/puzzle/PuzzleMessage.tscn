@@ -9,6 +9,7 @@ size = 48
 outline_size = 6
 outline_color = Color( 1, 0.933333, 0.521569, 0.752941 )
 extra_spacing_bottom = -10
+use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
@@ -16,6 +17,7 @@ size = 48
 outline_size = 5
 outline_color = Color( 0.498039, 0.388235, 0.0862745, 1 )
 extra_spacing_bottom = -10
+use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=4]
