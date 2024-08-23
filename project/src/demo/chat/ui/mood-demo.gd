@@ -15,6 +15,7 @@ extends Node
 ## 	[B,N,M, comma, period]: Wave0 (neutral), Wave1 (Polite), Wave2 (Friendly), Yes0 (Nod), Yes1 (More Nods)
 ##
 ## 	[Shift + T]: Talk
+## 	[-]: Change the creature's comfort
 ## 	[=]: Make the creature fat
 ## 	Space: Feed
 ## 	Brace keys: Change the creature's appearance
@@ -105,6 +106,9 @@ func _input(event: InputEvent) -> void:
 			KEY_COMMA: _creature.play_mood(Creatures.Mood.YES0)
 			KEY_PERIOD: _creature.play_mood(Creatures.Mood.YES1)
 			KEY_SPACE: _creature.feed(Foods.FoodType.BROWN_0)
+			KEY_MINUS:
+				_creature.set_comfort(rand_range(-1.00, 1.00))
+				_creature.feed(Foods.FoodType.BROWN_0)
 			KEY_EQUAL: _creature.fatness = 3
 			KEY_RIGHT:
 				if _creature.non_iso_walk_direction == Vector2.ZERO:
