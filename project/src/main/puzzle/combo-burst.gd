@@ -117,6 +117,10 @@ func _refresh_accent() -> void:
 		_accent.frame = 8
 	else:
 		_accent.frame = 12
+	if combo <= COMBO_THRESHOLD_4:
+		_accent.base_scale.x = abs(_accent.base_scale.x)
+	else:
+		_accent.base_scale.x = abs(_accent.base_scale.x) * (1 if randf() < 0.5 else -1)
 	_accent.frame += randi() % 4 # randomly select between four different similar accents
 	_accent.modulate = _accent_color
 
