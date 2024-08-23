@@ -10,6 +10,7 @@ outline_size = 2
 outline_color = Color( 0.054902, 0.309804, 0.6, 1 )
 extra_spacing_top = -4
 extra_spacing_bottom = -4
+use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=6]

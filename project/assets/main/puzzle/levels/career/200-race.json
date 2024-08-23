@@ -1,7 +1,7 @@
 {
   "version": "4c5c",
-  "name": "200¥ Race",
-  "description": "Earn 200¥ as fast as possible. No tricks!",
+  "name": "¥200 Race",
+  "description": "Earn ¥200 as fast as possible. No tricks!",
   "finish_condition": {
     "type": "score",
     "value": 200
