@@ -1479,7 +1479,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/utils/state-machine.gd"
 }, {
-"base": "Object",
+"base": "",
 "class": "Steam",
 "language": "NativeScript",
 "path": "res://addons/godotsteam/godotsteam.gdns"
@@ -1573,6 +1573,11 @@ _global_script_classes=[ {
 "class": "Tutorials",
 "language": "GDScript",
 "path": "res://src/main/puzzle/tutorial/tutorials.gd"
+}, {
+"base": "SteamAchievement",
+"class": "UniqueLevelAchievement",
+"language": "GDScript",
+"path": "res://src/main/steam/unique-level-achievement.gd"
 }, {
 "base": "Reference",
 "class": "Utils",
@@ -1918,6 +1923,7 @@ _global_script_class_icons={
 "TutorialMessages": "",
 "TutorialModule": "",
 "Tutorials": "",
+"UniqueLevelAchievement": "",
 "Utils": "",
 "VolumeSettings": "",
 "WalkingBuddy": "",

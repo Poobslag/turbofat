@@ -7,6 +7,8 @@ export (int) var target_combo: int = 0
 var _max_combo := 0
 
 func _ready() -> void:
+	disconnect_save_signal()
+	disconnect_load_signal()
 	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
 
 
