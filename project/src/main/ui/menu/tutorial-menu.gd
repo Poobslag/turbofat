@@ -7,7 +7,7 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	
-	var tutorial_region := _find_tutorial_region()
+	var tutorial_region := OtherLevelLibrary.region_for_id(OtherRegion.ID_TUTORIAL)
 	if tutorial_region:
 		_assign_default_recent_data(tutorial_region)
 		_populate_level_buttons(tutorial_region)
@@ -15,19 +15,6 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
-
-
-func _find_tutorial_region() -> OtherRegion:
-	var tutorial_region: OtherRegion
-	for region in OtherLevelLibrary.regions:
-		if region.id == OtherRegion.ID_TUTORIAL:
-			tutorial_region = region
-			break
-	
-	if not tutorial_region or not tutorial_region.level_ids:
-		push_warning("No tutorial levels found.")
-	
-	return tutorial_region
 
 
 ## Assign a tutorial level if this is the first time launching the tutorial menu
