@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/candy-button/hsv-slider.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/HSliderGamepadHelper.tscn" type="PackedScene" id=3]
 
 [node name="HsvSlider" type="HBoxContainer"]
 size_flags_vertical = 4
@@ -22,6 +23,9 @@ margin_bottom = 18.0
 size_flags_horizontal = 3
 max_value = 255.0
 tick_count = 8
+
+[node name="HSliderGamepadHelper" parent="HSlider" instance=ExtResource( 3 )]
+sliding_speed = 128.0
 
 [node name="ValueLabel" type="Label" parent="."]
 margin_left = 31.0

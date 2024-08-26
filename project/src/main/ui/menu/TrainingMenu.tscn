@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/main/ui/menu/PagedRegionPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/main/ui/candy-button/h4-o-pressed.png" type="Texture" id=35]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=36]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=37]
+[ext_resource path="res://src/main/ui/HSliderGamepadHelper.tscn" type="PackedScene" id=38]
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -200,6 +201,9 @@ size_flags_horizontal = 4
 theme = ExtResource( 19 )
 max_value = 3.0
 tick_count = 4
+
+[node name="HSliderGamepadHelper" parent="MainMenu/DropPanel/VBoxContainer/Speed/SliderPanel/Slider" instance=ExtResource( 38 )]
+sliding_speed = 6.0
 
 [node name="Labels" type="HBoxContainer" parent="MainMenu/DropPanel/VBoxContainer/Speed"]
 margin_left = 144.0
