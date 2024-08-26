@@ -1479,7 +1479,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/utils/state-machine.gd"
 }, {
-"base": "",
+"base": "Object",
 "class": "Steam",
 "language": "NativeScript",
 "path": "res://addons/godotsteam/godotsteam.gdns"
