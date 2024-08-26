@@ -5,6 +5,8 @@ extends Node2D
 ## Sharks wait on the playfield until bumped by a piece. Depending on the size of the shark, they may take a small bite
 ## from the piece, a big bite from the piece, or eat the entire piece.
 
+signal shark_squished(shark)
+
 export (PackedScene) var SharkScene: PackedScene
 export (NodePath) var critter_manager_path: NodePath
 
@@ -151,6 +153,7 @@ func _refresh_sharks_for_piece() -> void:
 		if _did_hard_drop and piece_overlaps_shark \
 				and shark.state in [Shark.DANCING, Shark.DANCING_END, Shark.EATING, Shark.FED]:
 			shark.squish()
+			emit_signal("shark_squished", shark)
 		
 		if shark.state in [Shark.DANCING, Shark.DANCING_END] and piece_overlaps_shark:
 			match shark.shark_size:
