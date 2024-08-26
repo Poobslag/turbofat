@@ -13,6 +13,9 @@ signal trail_popped(prev_path)
 ## Emitted before this class changes the running scene.
 signal before_scene_changed
 
+## Emitted after this class changes the running scene.
+signal after_scene_changed
+
 var trail := []
 
 ## Initializes the trail to be empty except for the current scene.
@@ -71,3 +74,8 @@ func change_scene() -> void:
 		ResourceCache.minimal_resources = false
 		scene_path = "res://src/main/ui/menu/LoadingScreen.tscn"
 	get_tree().change_scene_to(ResourceCache.get_resource(scene_path))
+
+	# The scene change is deferred, which means that event listeners won't be able to access it immediately after the
+	# change_scene_to call. We defer the signal until the next idle_frame.
+	yield(get_tree(), "idle_frame")
+	emit_signal("after_scene_changed")

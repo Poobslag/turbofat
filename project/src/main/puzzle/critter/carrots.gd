@@ -5,6 +5,8 @@ extends Node2D
 ## Carrots remain onscreen for several seconds. They have many different sizes, and can also leave behind a smokescreen
 ## which blocks the player's vision for even longer.
 
+signal carrot_added
+
 ## tracks whether the carrot sfx are playing
 enum MoveSfxState {
 	STOPPED, # sfx are not playing
@@ -87,6 +89,12 @@ func add_carrots(config: CarrotConfig) -> void:
 	for i in range(min(config.count, potential_carrot_x_coords.size())):
 		_add_carrot(Vector2(potential_carrot_x_coords[i], PuzzleTileMap.ROW_COUNT), config)
 	_carrot_poof_sound.play()
+	emit_signal("carrot_added")
+
+
+## Returns the number of child carrot nodes on the playfield.
+func get_carrot_count() -> int:
+	return _carrot_holder.get_child_count()
 
 
 func _refresh_playfield_path() -> void:
