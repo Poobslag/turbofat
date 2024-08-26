@@ -5,6 +5,8 @@ extends SteamAchievement
 var _best_level_rank: float = RankCalculator.WORST_RANK
 
 func _ready() -> void:
+	disconnect_save_signal()
+	disconnect_load_signal()
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 
 

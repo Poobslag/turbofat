@@ -13,6 +13,14 @@ func _ready() -> void:
 	add_to_group("steam_achievements")
 
 
+func disconnect_save_signal() -> void:
+	PlayerSave.disconnect("save_scheduled", self, "_on_PlayerSave_save_scheduled")
+
+
+func disconnect_load_signal() -> void:
+	PlayerSave.disconnect("after_load", self, "_on_PlayerSave_after_load")
+
+
 ## Overridden by child classes to refresh the achievement and any stats.
 ##
 ## Child classes should call Steam.set_achievement and Steam.set_stat_xxx appropriately.

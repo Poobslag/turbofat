@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/steam/chapter-story-finished-achievement.gd" type="Script" id=1]
 [ext_resource path="res://src/main/steam/chapter-unlocked-achievement.gd" type="Script" id=2]
@@ -12,9 +12,21 @@
 [ext_resource path="res://src/main/steam/combo-achievement.gd" type="Script" id=10]
 [ext_resource path="res://src/main/steam/customer-score-achievement.gd" type="Script" id=11]
 [ext_resource path="res://src/main/steam/leftovers-score-achievement.gd" type="Script" id=12]
+[ext_resource path="res://src/main/steam/level-finished-achievement.gd" type="Script" id=13]
+[ext_resource path="res://src/main/steam/all-tutorials-achievement.gd" type="Script" id=14]
+[ext_resource path="res://src/main/steam/create-creature-achievement.gd" type="Script" id=15]
+[ext_resource path="res://src/main/steam/shark-smush-achievement.gd" type="Script" id=16]
+[ext_resource path="res://src/main/steam/carrot-count-achievement.gd" type="Script" id=17]
+[ext_resource path="res://src/main/steam/first-customer-score-achievement.gd" type="Script" id=18]
+[ext_resource path="res://src/main/steam/level-pickup-achievement.gd" type="Script" id=19]
 
 [node name="SteamAchievements" type="Node"]
 script = ExtResource( 4 )
+
+[node name="BasicTutorial" type="Node" parent="."]
+script = ExtResource( 13 )
+achievement_id = "BASIC_TUTORIAL"
+level_id = "tutorial/basics_0"
 
 [node name="Chapter1StoryFinish" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -164,6 +176,42 @@ target_score = 2000
 script = ExtResource( 12 )
 achievement_id = "LEFTOVERS_300_POINTS"
 target_score = 300
+
+[node name="AllTutorials" type="Node" parent="."]
+script = ExtResource( 14 )
+achievement_id = "ALL_TUTORIALS"
+
+[node name="CreateCreature" type="Node" parent="."]
+script = ExtResource( 15 )
+achievement_id = "CREATE_CREATURE"
+
+[node name="SharkSmush" type="Node" parent="."]
+script = ExtResource( 16 )
+achievement_id = "SHARK_SMUSH"
+
+[node name="CarrotMany" type="Node" parent="."]
+script = ExtResource( 17 )
+achievement_id = "CARROT_MANY"
+level_id = "career/cheerleaders"
+target_carrot_count = 6
+
+[node name="Onion500Points" type="Node" parent="."]
+script = ExtResource( 18 )
+achievement_id = "ONION_500_POINTS"
+level_id = "career/midnight_snack"
+target_score = 500
+
+[node name="SpearVault" type="Node" parent="."]
+script = ExtResource( 19 )
+achievement_id = "SPEAR_VAULT"
+level_id = "career/asparagus_vault"
+target_score = 250
+
+[node name="MoleMany" type="Node" parent="."]
+script = ExtResource( 19 )
+achievement_id = "MOLE_MANY"
+level_id = "career/rice_bear_island"
+target_score = 150
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 3 )]
 codes = [ "pain-whistle-elastic-union" ]

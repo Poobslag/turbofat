@@ -7,6 +7,8 @@ export (int) var target_score: int = 0
 var _max_score := 0
 
 func _ready() -> void:
+	disconnect_save_signal()
+	disconnect_load_signal()
 	PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")
 
 
