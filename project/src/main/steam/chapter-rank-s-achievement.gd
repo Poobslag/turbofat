@@ -7,6 +7,13 @@ export (String) var stat_id: String
 ## The region ID whose unlock status should be tracked.
 export (String) var region_id: String
 
+func _ready() -> void:
+	# avoid checking for 'rank s' every time we save; this changes infrequently and is expensive to check.
+	disconnect_save_signal()
+	
+	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
+
+
 ## Refreshes the achievement based on whether the chapter has been unlocked.
 func refresh_achievement() -> void:
 	var s_rank_percent := _s_rank_percent()
@@ -27,3 +34,10 @@ func _s_rank_percent() -> float:
 			s_rank_count += 1
 	
 	return s_rank_count / float(region.levels.size())
+
+
+## When a level is played, if it corresponds to our region we refresh our achievement status.
+func _on_PuzzleState_after_game_ended() -> void:
+	var level_region_id := CareerLevelLibrary.region_id_for_level_id(CurrentLevel.level_id)
+	if level_region_id == region_id:
+		refresh_achievement()

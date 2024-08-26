@@ -14,6 +14,12 @@ var regions_path := DEFAULT_REGIONS_PATH setget set_regions_path
 ## List of CareerRegion instances containing region and level data, sorted by distance
 var regions: Array = []
 
+## Maps from level ids to region ids. Includes boss levels, intro levels, and regular levels.
+##
+## key: (String) level id
+## value: (String) region id containing the specified level
+var _region_ids_by_level_id: Dictionary
+
 ## Loads the list of levels from JSON
 func _ready() -> void:
 	_load_raw_json_data()
@@ -55,6 +61,14 @@ func region_for_id(region_id: String) -> CareerRegion:
 			result = next_region
 			break
 	return result
+
+
+
+## Returns the region id with the specified level.
+##
+## Includes boss levels, intro levels, and regular levels.
+func region_id_for_level_id(level_id: String) -> String:
+	return _region_ids_by_level_id.get(level_id)
 
 
 ## Returns an appropriate piece speed ID after the player travels a certain distance.
@@ -270,3 +284,17 @@ func _load_raw_json_data() -> void:
 			regions[i].length = regions[i + 1].start - regions[i].start
 		else:
 			regions[i].length = Careers.MAX_DISTANCE_TRAVELLED
+	
+	_populate_region_ids_by_level_id()
+
+
+## Populates the '_region_ids_by_level_id' field.
+func _populate_region_ids_by_level_id() -> void:
+	_region_ids_by_level_id = {}
+	for region in regions:
+		if region.boss_level:
+			_region_ids_by_level_id[region.boss_level.level_id] = region.id
+		if region.intro_level:
+			_region_ids_by_level_id[region.intro_level.level_id] = region.id
+		for level in region.levels:
+			_region_ids_by_level_id[level.level_id] = region.id

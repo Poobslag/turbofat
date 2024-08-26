@@ -308,3 +308,15 @@ func test_region_for_chat_key() -> void:
 	assert_eq(CareerLevelLibrary.region_for_chat_key("chat/career/permissible/10_b"), CareerLevelLibrary.regions[0])
 	assert_eq(CareerLevelLibrary.region_for_chat_key("chat/career/cherries/20_a"), CareerLevelLibrary.regions[2])
 	assert_eq(CareerLevelLibrary.region_for_chat_key("chat/career/bogus/30_c"), null)
+
+
+func test_region_id_for_level_id() -> void:
+	CareerLevelLibrary.regions_path = "res://assets/test/career/career-regions-simple.json"
+	
+	assert_eq(CareerLevelLibrary.region_id_for_level_id("intro_211"), "permissible")
+	assert_eq(CareerLevelLibrary.region_id_for_level_id("boss_211"), "permissible")
+	assert_eq(CareerLevelLibrary.region_id_for_level_id("level_211"), "permissible")
+	
+	assert_eq(CareerLevelLibrary.region_id_for_level_id("level_313"), "even")
+	
+	assert_eq(CareerLevelLibrary.region_id_for_level_id("bogus_414"), null)
