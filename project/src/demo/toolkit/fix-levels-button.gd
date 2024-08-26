@@ -193,7 +193,8 @@ func _report_bad_achievements() -> void:
 				invalid_achievement_properties.append("%s/%s=%s" % [achievement.name, "region_id", region_id])
 		if achievement.get("level_id"):
 			var level_id: String = achievement.get("level_id")
-			if not LevelSettings.level_exists_with_key(level_id):
+			if level_id.find("-") \
+					or not LevelSettings.level_exists_with_key(level_id):
 				invalid_achievement_properties.append("%s/%s=%s" % [achievement.name, "level_id", level_id])
 
 
