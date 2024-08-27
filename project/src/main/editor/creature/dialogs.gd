@@ -30,6 +30,7 @@ func _ready() -> void:
 			self, "_on_UnsavedChangesQuitConfirmation_discard_pressed")
 	_unsaved_changes_confirmation.get_close_button().connect("pressed",
 			self, "_on_UnsavedChangesQuitConfirmation_closed")
+	_assign_dialog_cancel_shortcut(_unsaved_changes_confirmation)
 
 
 ## Pops up an "unsaved changes" dialog. After the player chooses "Save" or "Discard", the specified callback is
@@ -60,6 +61,15 @@ func show_export_dialog() -> void:
 func show_error_dialog(text: String) -> void:
 	_error.dialog_text = text
 	_error.popup_centered()
+
+
+## Configures a dialog to be dismissed by the 'ui_cancel' action.
+func _assign_dialog_cancel_shortcut(dialog: WindowDialog) -> void:
+	var new_shortcut := ShortCut.new()
+	var new_input_event_action := InputEventAction.new()
+	new_input_event_action.action = "ui_cancel"
+	new_shortcut.shortcut = new_input_event_action
+	dialog.get_close_button().shortcut = new_shortcut
 
 
 ## Save the changes, and then perform the requested operation (quitting or importing)
