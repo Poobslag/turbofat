@@ -4091,7 +4091,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:836
 msgid ""
-"Look who's at the stove, they didn't even move an inch! how could you "
+"Look who's at the stove, they didn't even move an inch! How could you "
 "possibly think that I-"
 msgstr ""
 "¡Mira quién está con el horno, yo no me moví ni un centímetro! ¿Cómo puedes "
