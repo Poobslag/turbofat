@@ -11,6 +11,12 @@ var quit_type: int setget set_quit_type
 ## UI control which was focused before this settings menu popped up
 var _old_focus_owner: Control
 
+## True if input should be blocked because the player is rebinding a key.
+var _custom_keybind_button_awaiting := false
+
+## True if input should be blocked because a dialog is visible.
+var _dialog_visible := false
+
 onready var _ok_button := $HBoxContainer/VBoxContainer2/Holder/Ok
 onready var _ok_shortcut_helper := $HBoxContainer/VBoxContainer2/Holder/Ok/ShortcutHelper
 onready var _quit_button := $HBoxContainer/VBoxContainer1/Holder2/Quit2
@@ -57,10 +63,37 @@ func _refresh_quit_type() -> void:
 		$HBoxContainer/VBoxContainer3/Spacer.visible = false
 
 
+## Blocks input from the OK button if the player is rebinding their keys, or if a modal dialog is visible.
+func _refresh_ok_shortcut_helper() -> void:
+	var new_process_input := true
+	
+	if _custom_keybind_button_awaiting:
+		# When the user is rebinding their keys, we disable the shortcut helper. Otherwise trying to rebind 'Escape'
+		# or 'Xbox B' will close the settings menu
+		new_process_input = false
+	
+	if _dialog_visible:
+		# When a modal dialog is visible, we disable the shortcut helper. Godot blocks gui input while modal dialogs
+		# are visible, but OkShortcutHelper does not use gui input, so we must disable it manually.
+		new_process_input = false
+	
+	_ok_shortcut_helper.set_process_input(new_process_input)
+
+
+## When the user is rebinding their keys, we disable the shortcut helper.
+
+## Otherwise trying to rebind 'Escape' or 'Xbox B' will close the settings menu.
 func _on_CustomKeybindButton_awaiting_changed(awaiting: bool) -> void:
-	# When the user is rebinding their keys, we disable the shortcut helper. Otherwise trying to rebind something like
-	# 'escape' will close the settings menu
-	_ok_shortcut_helper.set_process_input(not awaiting)
+	_custom_keybind_button_awaiting = awaiting
+	_refresh_ok_shortcut_helper()
+
+
+## When a modal dialog is visible, we disable the shortcut helper.
+##
+## Otherwise pressing 'Escape' or 'Xbox B' while a modal dialog is visible will close the settings window behind it.
+func _on_Dialogs_dialog_visibility_changed(value: bool) -> void:
+	_dialog_visible = value
+	_refresh_ok_shortcut_helper()
 
 
 func _on_SettingsMenu_show() -> void:

@@ -13,6 +13,12 @@ signal delete_confirmed
 ## emitted when the player is prompted to delete a save slot and answers 'no' or closes the window
 signal delete_cancelled
 
+## emitted when a dialog becomes visible/invisible
+##
+## Parameters:
+## 	'value': 'true' if any dialog is visible, 'false' if all dialogs are invisible
+signal dialog_visibility_changed(value)
+
 export var save_slot_control_path: NodePath
 
 ## 'Are you sure you want to change save slots?' confirmation dialog
@@ -24,6 +30,8 @@ onready var _delete_confirmation_1 := $DeleteConfirmation1
 ## 'Are you sure?' confirmation dialog
 onready var _delete_confirmation_2 := $DeleteConfirmation2
 
+onready var _backdrop: ColorRect = $Backdrop
+
 ## UI component for a changing the current save slot or deleting save slots
 onready var _save_slot_control: SaveSlotControl = get_node(save_slot_control_path)
 
@@ -33,18 +41,21 @@ func _ready() -> void:
 	_change_save_confirmation.connect("confirmed", self, "_on_ChangeSaveConfirmation_confirmed")
 	_change_save_confirmation.get_cancel().connect("pressed", self, "_on_ChangeSaveConfirmation_cancelled")
 	_change_save_confirmation.get_close_button().connect("pressed", self, "_on_ChangeSaveConfirmation_cancelled")
+	_assign_dialog_cancel_shortcut(_change_save_confirmation)
 	
 	_delete_confirmation_1.get_ok().text = tr("Yes")
 	_delete_confirmation_1.get_cancel().text = tr("No")
 	_delete_confirmation_1.connect("confirmed", self, "_on_DeleteConfirmation1_confirmed")
 	_delete_confirmation_1.get_cancel().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
 	_delete_confirmation_1.get_close_button().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
+	_assign_dialog_cancel_shortcut(_delete_confirmation_1)
 	
 	_delete_confirmation_2.get_ok().text = tr("Yes")
 	_delete_confirmation_2.get_cancel().text = tr("No")
 	_delete_confirmation_2.connect("confirmed", self, "_on_DeleteConfirmation2_confirmed")
 	_delete_confirmation_2.get_cancel().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
 	_delete_confirmation_2.get_close_button().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
+	_assign_dialog_cancel_shortcut(_delete_confirmation_2)
 
 
 ## Displays a dialog prompting the player if they want to change their save slot
@@ -66,6 +77,15 @@ func _delete_confirmation_dialog_text(message: String) -> String:
 	var playtime_message := tr("%.1f hours") % [playtime_in_hours]
 	var save_slot_name: String = SystemSave.get_save_slot_name(selected_save_slot)
 	return "%s\n%s (%s)" % [message, save_slot_name, playtime_message]
+
+
+## Configures a dialog to be dismissed by the 'ui_cancel' action.
+func _assign_dialog_cancel_shortcut(dialog: WindowDialog) -> void:
+	var new_shortcut := ShortCut.new()
+	var new_input_event_action := InputEventAction.new()
+	new_input_event_action.action = "ui_cancel"
+	new_shortcut.shortcut = new_input_event_action
+	dialog.get_close_button().shortcut = new_shortcut
 
 
 ## Displays a dialog prompting the player if they want to delete a save
@@ -96,3 +116,7 @@ func _on_ChangeSaveConfirmation_confirmed() -> void:
 
 func _on_ChangeSaveConfirmation_cancelled() -> void:
 	emit_signal("change_save_cancelled")
+
+
+func _on_Backdrop_visibility_changed() -> void:
+	emit_signal("dialog_visibility_changed", _backdrop.visible)
