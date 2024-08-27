@@ -6,6 +6,11 @@
     "type": "score",
     "value": 100
   },
+  "icons": [
+    "veggie",
+    "piece_z",
+    "confusing"
+  ],
   "other": [
     "tile_set veggie"
   ],

@@ -10,6 +10,9 @@
     "type": "time_over",
     "value": 75
   },
+  "icons": [
+    "turn"
+  ],
   "rank": [
     "box_factor 2.68",
     "combo_factor 0",

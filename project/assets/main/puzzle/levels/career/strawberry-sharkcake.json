@@ -14,6 +14,11 @@
     "type": "time_over",
     "value": 85
   },
+  "icons": [
+    "shark",
+    "stop",
+    "dig"
+  ],
   "piece_types": [
     "piece_j",
     "piece_l",

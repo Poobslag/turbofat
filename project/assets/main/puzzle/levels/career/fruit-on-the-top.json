@@ -13,6 +13,10 @@
     "type": "time_over",
     "value": 50
   },
+  "icons": [
+    "narrow",
+    "fast"
+  ],
   "rank": [
     "box_factor 0.33",
     "combo_factor 0.08",

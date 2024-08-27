@@ -7,6 +7,9 @@
     "type": "time_over",
     "value": 110
   },
+  "icons": [
+    "onion"
+  ],
   "rank": [
     "box_factor 0.95",
     "combo_factor 1.06",

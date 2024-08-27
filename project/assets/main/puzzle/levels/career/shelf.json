@@ -10,6 +10,9 @@
     "type": "score",
     "value": 400
   },
+  "icons": [
+    "confusing"
+  ],
   "rank": [
     "box_factor 0.73",
     "combo_factor 0.91",

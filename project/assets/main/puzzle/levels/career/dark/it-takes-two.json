@@ -13,6 +13,11 @@
     "type": "pieces",
     "value": 165
   },
+  "icons": [
+    "stop",
+    "annoying",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.96",
     "combo_factor 0.58",

@@ -10,6 +10,9 @@
   "rank": [
     "success_bonus 2"
   ],
+  "icons": [
+    "basic"
+  ],
   "success_condition": {
     "type": "score",
     "value": 400

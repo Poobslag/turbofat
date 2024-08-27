@@ -8,6 +8,10 @@
     "type": "score",
     "value": 2000
   },
+  "icons": [
+    "basic",
+    "fast"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

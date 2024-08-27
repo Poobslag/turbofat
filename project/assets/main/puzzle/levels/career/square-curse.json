@@ -6,6 +6,11 @@
     "type": "lines",
     "value": 12
   },
+  "icons": [
+    "piece_o",
+    "piece_o",
+    "piece_o"
+  ],
   "piece_types": [
     "start_piece_o",
     "start_piece_o",

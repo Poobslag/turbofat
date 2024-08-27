@@ -24,6 +24,11 @@
     "type": "lines",
     "value": 40
   },
+  "icons": [
+    "spear",
+    "blind",
+    "slow"
+  ],
   "piece_types": [
     "piece_l",
     "piece_l",

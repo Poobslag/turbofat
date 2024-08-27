@@ -30,6 +30,9 @@
     "type": "lines",
     "value": 180
   },
+  "icons": [
+    "basic"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

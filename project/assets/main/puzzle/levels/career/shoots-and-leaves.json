@@ -24,6 +24,10 @@
     "type": "time_over",
     "value": 130
   },
+  "icons": [
+    "spear",
+    "annoying"
+  ],
   "rank": [
     "box_factor 0.83",
     "combo_factor 0.67",

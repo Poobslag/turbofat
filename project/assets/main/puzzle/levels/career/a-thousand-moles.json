@@ -6,6 +6,9 @@
     "type": "time_over",
     "value": 80
   },
+  "icons": [
+    "dig"
+  ],
   "rank": [
     "master_pickup_score_per_line 7.97",
     "show_pickups_rank"

@@ -13,6 +13,10 @@
     "type": "lines",
     "value": 50
   },
+  "icons": [
+    "stop",
+    "slow"
+  ],
   "rank": [
     "box_factor 1.8",
     "combo_factor 0.29",

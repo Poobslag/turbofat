@@ -7,6 +7,11 @@
     "type": "lines",
     "value": 35
   },
+  "icons": [
+    "piece_o",
+    "piece_v",
+    "slow"
+  ],
   "piece_types": [
     "no_suppress_o_piece",
     "no_suppress_repeat_piece",

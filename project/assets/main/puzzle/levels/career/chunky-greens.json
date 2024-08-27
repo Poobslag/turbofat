@@ -17,6 +17,11 @@
     "piece_u",
     "piece_v"
   ],
+  "icons": [
+    "piece_p",
+    "spear",
+    "slow"
+  ],
   "rank": [
     "extra_seconds_per_piece 0.3",
     "master_pickup_score 120"

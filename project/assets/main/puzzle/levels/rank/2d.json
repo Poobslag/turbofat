@@ -8,6 +8,9 @@
     "type": "score",
     "value": 1500
   },
+  "icons": [
+    "basic"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

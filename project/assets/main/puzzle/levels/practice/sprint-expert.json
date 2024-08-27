@@ -6,5 +6,8 @@
   "finish_condition": {
     "type": "time_over",
     "value": 180
-  }
+  },
+  "icons": [
+    "basic"
+  ]
 }

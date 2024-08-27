@@ -35,6 +35,9 @@
     "type": "lines",
     "value": 200
   },
+  "icons": [
+    "basic"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

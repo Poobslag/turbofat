@@ -8,6 +8,9 @@
     "type": "time_over",
     "value": 300
   },
+  "icons": [
+    "basic"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

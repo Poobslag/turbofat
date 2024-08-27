@@ -6,6 +6,9 @@
     "type": "score",
     "value": 200
   },
+  "icons": [
+    "basic"
+  ],
   "rank": [
     "preplaced_pieces 4"
   ],

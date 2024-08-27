@@ -7,6 +7,10 @@
     "type": "score",
     "value": 1200
   },
+  "icons": [
+    "carrot",
+    "snack_box"
+  ],
   "tiles": {
     "start": [
       {

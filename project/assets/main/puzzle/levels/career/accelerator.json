@@ -78,5 +78,9 @@
   "finish_condition": {
     "type": "score",
     "value": 800
-  }
+  },
+  "icons": [
+    "basic",
+    "fast"
+  ]
 }

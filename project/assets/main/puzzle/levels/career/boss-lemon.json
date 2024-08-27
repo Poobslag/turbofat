@@ -7,6 +7,9 @@
     "type": "score",
     "value": 300
   },
+  "icons": [
+    "basic"
+  ],
   "rank": [
     "success_bonus 2"
   ],

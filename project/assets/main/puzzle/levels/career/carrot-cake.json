@@ -6,6 +6,10 @@
     "type": "score",
     "value": 200
   },
+  "icons": [
+    "carrot",
+    "cake_box"
+  ],
   "tiles": {
     "start": [
       {

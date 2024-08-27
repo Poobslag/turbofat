@@ -7,6 +7,9 @@
     "type": "time_over",
     "value": 150
   },
+  "icons": [
+    "dig"
+  ],
   "rank": [
     "box_factor 0.16",
     "combo_factor 0.62",

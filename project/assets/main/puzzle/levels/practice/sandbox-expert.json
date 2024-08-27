@@ -6,6 +6,9 @@
   "blocks_during": [
     "clear_on_top_out"
   ],
+  "icons": [
+    "basic"
+  ],
   "lose_condition": [
     "finish_on_lose",
     "top_out 999999"

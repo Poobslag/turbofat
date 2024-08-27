@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 135
   },
+  "icons": [
+    "mole",
+    "surprising"
+  ],
   "rank": [
     "box_factor 0.9",
     "combo_factor 0.9",
