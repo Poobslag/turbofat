@@ -122,17 +122,29 @@ func decorate_for_level(region: Object, settings: LevelSettings, force_unlock: b
 
 	# calculate the lock status
 	lock_status = STATUS_NONE
-	if region is CareerRegion and not PlayerData.level_history.has_result(settings.id) and not force_unlock:
-		# career levels are locked if the player hasn't played them
-		lock_status = STATUS_LOCKED
-	elif region.id == OtherRegion.ID_TUTORIAL:
-		# tutorial levels show a checkmark if completed
-		if PlayerData.level_history.is_level_finished(settings.id):
-			lock_status = STATUS_CLEARED
-	elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
-		# rank/marathon levels show a crown if completed
-		if PlayerData.level_history.is_level_success(settings.id):
-			lock_status = STATUS_CROWN
+	
+	# lock unplayed/unreached career levels
+	var is_boss_level: bool = region is CareerRegion and region.boss_level \
+			and region.boss_level.level_id == settings.id
+	if not force_unlock and region is CareerRegion:
+		if is_boss_level and not PlayerData.level_history.has_result(settings.id) \
+				and not PlayerData.career.is_region_finished(region):
+			# boss levels are locked if the player hasn't gotten past them and hasn't played them
+			lock_status = STATUS_LOCKED
+		if not is_boss_level and not PlayerData.level_history.has_result(settings.id):
+			# career levels are locked if the player hasn't played them
+			lock_status = STATUS_LOCKED
+	
+	# assign cleared/crown status for completed levels
+	if lock_status == STATUS_NONE:
+		if region.id == OtherRegion.ID_TUTORIAL:
+			# tutorial levels show a checkmark if completed
+			if PlayerData.level_history.is_level_finished(settings.id):
+				lock_status = STATUS_CLEARED
+		elif region is OtherRegion and region.id in [OtherRegion.ID_RANK, OtherRegion.ID_MARATHON]:
+			# rank/marathon levels show a crown if completed
+			if PlayerData.level_history.is_level_success(settings.id):
+				lock_status = STATUS_CROWN
 	
 	var duration := _duration_calculator.duration(settings)
 	if duration < 100:
