@@ -7,6 +7,11 @@
     "type": "score",
     "value": 275
   },
+  "icons": [
+    "carrot",
+    "blind",
+    "annoying"
+  ],
   "tiles": {
     "start": [
       {

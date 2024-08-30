@@ -53,6 +53,10 @@
     "type": "lines",
     "value": 100
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

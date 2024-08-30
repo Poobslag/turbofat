@@ -29,6 +29,9 @@
     "type": "time_over",
     "value": 80
   },
+  "icons": [
+    "fast"
+  ],
   "lose_condition": [
     "top_out 1"
   ]

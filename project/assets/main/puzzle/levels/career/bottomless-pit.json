@@ -6,6 +6,10 @@
     "type": "time_over",
     "value": 100
   },
+  "icons": [
+    "dig",
+    "narrow"
+  ],
   "rank": [
     "box_factor 1.35",
     "combo_factor 0.56"

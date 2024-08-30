@@ -8,6 +8,10 @@
     "type": "lines",
     "value": 100
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "success_bonus 2"
   ],

@@ -24,6 +24,9 @@
     "type": "score",
     "value": 600
   },
+  "icons": [
+    "basic"
+  ],
   "rank": [
     "success_bonus 2"
   ],

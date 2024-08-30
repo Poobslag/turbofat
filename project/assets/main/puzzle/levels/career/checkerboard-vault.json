@@ -15,6 +15,10 @@
     "type": "time_over",
     "value": 120
   },
+  "icons": [
+    "dig",
+    "annoying"
+  ],
   "rank": [
     "box_factor 0.14",
     "combo_factor 0",

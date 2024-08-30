@@ -6,6 +6,10 @@
     "type": "score",
     "value": 500
   },
+  "icons": [
+    "basic",
+    "cake_box"
+  ],
   "piece_types": [
     "start_piece_j"
   ],

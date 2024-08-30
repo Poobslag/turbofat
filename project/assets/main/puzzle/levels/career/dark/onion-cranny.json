@@ -10,6 +10,10 @@
     "type": "score",
     "value": 1800
   },
+  "icons": [
+    "onion",
+    "dig"
+  ],
   "rank": [
     "box_factor 1.05",
     "combo_factor 0.58",

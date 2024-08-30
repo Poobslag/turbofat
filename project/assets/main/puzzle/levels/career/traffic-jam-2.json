@@ -25,6 +25,10 @@
     "type": "score",
     "value": 750
   },
+  "icons": [
+    "stop",
+    "annoying"
+  ],
   "rank": [
     "box_factor 0.91",
     "combo_factor 0.96",

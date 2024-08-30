@@ -40,6 +40,10 @@
     "value": 300,
     "lenient_value": "200"
   },
+  "icons": [
+    "basic",
+    "fast"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

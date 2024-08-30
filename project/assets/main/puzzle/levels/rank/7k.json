@@ -8,6 +8,10 @@
     "type": "score",
     "value": 200
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "success_bonus 2"
   ],

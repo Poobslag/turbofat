@@ -10,6 +10,11 @@
     "type": "lines",
     "value": 75
   },
+  "icons": [
+    "mole",
+    "confusing",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.71",
     "combo_factor 0.45",

@@ -10,6 +10,11 @@
     "type": "pieces",
     "value": 125
   },
+  "icons": [
+    "onion",
+    "confusing",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.55",
     "combo_factor 0.42",

@@ -5,5 +5,8 @@
   "finish_condition": {
     "type": "score",
     "value": 200
-  }
+  },
+  "icons": [
+    "basic"
+  ]
 }

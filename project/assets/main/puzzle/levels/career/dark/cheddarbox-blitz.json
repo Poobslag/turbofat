@@ -10,6 +10,11 @@
     "type": "time_over",
     "value": 175
   },
+  "icons": [
+    "piece_c",
+    "piece_k",
+    "cake_box"
+  ],
   "piece_types": [
     "piece_c",
     "piece_j",

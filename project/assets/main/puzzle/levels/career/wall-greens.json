@@ -22,6 +22,9 @@
     "type": "time_over",
     "value": 95
   },
+  "icons": [
+    "spear"
+  ],
   "rank": [
     "box_factor 1.15",
     "combo_factor 1.21",

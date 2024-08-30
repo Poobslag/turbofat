@@ -39,6 +39,11 @@
     "type": "score",
     "value": 1800
   },
+  "icons": [
+    "carrot",
+    "blind",
+    "annoying"
+  ],
   "tiles": {
     "start": [
       {

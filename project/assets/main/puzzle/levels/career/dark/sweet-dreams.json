@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 125
   },
+  "icons": [
+    "mole",
+    "onion"
+  ],
   "triggers": [
     {
       "phases": [

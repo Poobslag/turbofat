@@ -18,6 +18,10 @@
     "type": "time_over",
     "value": 90
   },
+  "icons": [
+    "carrot",
+    "blind"
+  ],
   "tiles": {
     "start": [
       {

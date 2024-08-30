@@ -7,6 +7,10 @@
     "type": "score",
     "value": 360
   },
+  "icons": [
+    "onion",
+    "sneaky"
+  ],
   "rank": [
     "box_factor 0.66",
     "extra_seconds_per_piece 0.03"

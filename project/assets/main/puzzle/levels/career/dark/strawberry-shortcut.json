@@ -29,6 +29,10 @@
     "type": "time_over",
     "value": 150
   },
+  "icons": [
+    "dig",
+    "basic"
+  ],
   "rank": [
     "box_factor 0.28",
     "combo_factor 0.57",

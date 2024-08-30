@@ -10,6 +10,11 @@
     "type": "lines",
     "value": 35
   },
+  "icons": [
+    "annoying",
+    "confusing",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.8"
   ],

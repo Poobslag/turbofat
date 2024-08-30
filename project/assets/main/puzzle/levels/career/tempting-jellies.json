@@ -32,6 +32,10 @@
     "type": "lines",
     "value": 50
   },
+  "icons": [
+    "slow",
+    "confusing"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

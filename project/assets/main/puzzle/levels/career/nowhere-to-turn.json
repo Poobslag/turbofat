@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 120
   },
+  "icons": [
+    "turn",
+    "sneaky"
+  ],
   "other": [
     "suppress_piece_rotation rotation_and_signals"
   ],

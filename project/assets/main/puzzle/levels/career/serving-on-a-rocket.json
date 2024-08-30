@@ -7,6 +7,9 @@
     "type": "time_over",
     "value": 95
   },
+  "icons": [
+    "carrot"
+  ],
   "timers": [
     {
       "interval": 5.62,

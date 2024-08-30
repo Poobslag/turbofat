@@ -45,6 +45,11 @@
     "type": "lines",
     "value": 600
   },
+  "icons": [
+    "fast",
+    "fast",
+    "fast"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 80
   },
+  "icons": [
+    "basic",
+    "narrow"
+  ],
   "rank": [
     "preplaced_pieces 14"
   ],

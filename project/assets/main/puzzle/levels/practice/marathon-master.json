@@ -35,6 +35,11 @@
     "value": 500,
     "lenient_value": "300"
   },
+  "icons": [
+    "fast",
+    "fast",
+    "fast"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

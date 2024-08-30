@@ -10,6 +10,10 @@
     "type": "time_over",
     "value": 160
   },
+  "icons": [
+    "spear",
+    "annoying"
+  ],
   "piece_types": [
     "piece_j",
     "piece_l",

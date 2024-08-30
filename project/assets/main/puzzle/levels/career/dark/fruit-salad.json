@@ -10,6 +10,11 @@
     "type": "lines",
     "value": 60
   },
+  "icons": [
+    "veggie",
+    "dig",
+    "slow"
+  ],
   "other": [
     "tile_set veggie"
   ],

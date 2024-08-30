@@ -7,6 +7,9 @@
     "type": "time_over",
     "value": 85
   },
+  "icons": [
+    "carrot"
+  ],
   "piece_types": [
     "start_piece_q",
     "start_piece_l"
