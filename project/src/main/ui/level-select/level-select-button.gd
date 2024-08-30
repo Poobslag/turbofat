@@ -46,9 +46,6 @@ const SHORT := LevelSize.SHORT
 const MEDIUM := LevelSize.MEDIUM
 const LONG := LevelSize.LONG
 
-const MAX_BUTTON_HEIGHT := 120
-const VERTICAL_SPACING := 6
-
 var level_id: String
 
 ## Enum from LevelSize for the duration of the level. This affects the button size
@@ -211,9 +208,9 @@ func _refresh_appearance() -> void:
 		return
 	
 	match level_duration:
-		LevelSize.SHORT: rect_min_size.y = MAX_BUTTON_HEIGHT * 0.5
-		LevelSize.MEDIUM: rect_min_size.y = MAX_BUTTON_HEIGHT * 0.75 + VERTICAL_SPACING * 0.5
-		LevelSize.LONG: rect_min_size.y = MAX_BUTTON_HEIGHT + VERTICAL_SPACING
+		LevelSize.SHORT: rect_min_size.y = 80
+		LevelSize.MEDIUM: rect_min_size.y = 100
+		LevelSize.LONG: rect_min_size.y = 120
 	
 	_label.text = StringUtils.default_if_empty(level_name, "-")
 	

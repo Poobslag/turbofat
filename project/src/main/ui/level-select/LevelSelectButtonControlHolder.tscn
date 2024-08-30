@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFocus.tres" type="StyleBox" id=4]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonPressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonNormal.tres" type="StyleBox" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 2
+outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="ButtonControlHolder" type="Node2D"]
+z_index = 1
+
+[node name="ButtonControl" type="Button" parent="." groups=["level_select_buttons"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 120.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="ButtonControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Just getting started"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
