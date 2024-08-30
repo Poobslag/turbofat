@@ -48,6 +48,12 @@ func _button() -> LevelSelectButton:
 	button.level_id = "level_%03d" % [button_index]
 	button.level_name = "Level %03d" % [button_index]
 	
+	var icons := []
+	icons.append((button_index * 3) % LevelSettings.LevelIcon.size())
+	icons.append((button_index * 3 + 1) % LevelSettings.LevelIcon.size())
+	icons.append((button_index * 3 + 2) % LevelSettings.LevelIcon.size())
+	button.level_icons = icons
+	
 	return button
 
 
