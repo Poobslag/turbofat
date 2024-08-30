@@ -36,6 +36,8 @@ const BUTTON_COLOR_GREEN := Color("7be352")
 const BUTTON_COLOR_BLUE := Color("52afe3")
 const BUTTON_COLOR_PURPLE := Color("9852e3")
 
+const MAX_ICON_COUNT := 5
+
 const STATUS_NONE := LockStatus.NONE
 const STATUS_KEY := LockStatus.KEY
 const STATUS_CROWN := LockStatus.CROWN
@@ -59,6 +61,8 @@ var keys_needed := -1 setget set_keys_needed
 
 var level_name: String setget set_level_name
 
+var level_icons := [] setget set_level_icons
+
 ## Button's background color. If omitted, the button will use a pseudo-random background color based on its id
 var bg_color: Color setget set_bg_color
 
@@ -73,6 +77,7 @@ var _duration_calculator := DurationCalculator.new()
 
 onready var _button_control := $ButtonControlHolder/ButtonControl
 onready var _label := $ButtonControlHolder/ButtonControl/Label
+onready var _icon_tile_map := $ButtonControlHolder/ButtonControl/IconTileMapHolder/IconTileMap
 
 func _ready() -> void:
 	_button_control.text = ""
@@ -107,6 +112,11 @@ func set_level_name(new_level_name: String) -> void:
 
 func set_level_duration(new_level_duration: int) -> void:
 	level_duration = new_level_duration
+	_refresh_appearance()
+
+
+func set_level_icons(new_level_icons: Array) -> void:
+	level_icons = new_level_icons
 	_refresh_appearance()
 
 
@@ -163,6 +173,8 @@ func decorate_for_level(region: Object, settings: LevelSettings, force_unlock: b
 			_:
 				push_warning("Unrecognized color string '%s'" % [settings.color_string])
 				pass
+	
+	level_icons = settings.icons
 
 
 ## Updates the button's style colors. Can be overridden by child buttons who use different styles.
@@ -226,6 +238,11 @@ func _refresh_appearance() -> void:
 			4: new_style_color = BUTTON_COLOR_BLUE
 			5: new_style_color = BUTTON_COLOR_PURPLE
 	refresh_style_color(new_style_color)
+	
+	_icon_tile_map.clear()
+	for i in range(min(level_icons.size(), MAX_ICON_COUNT)):
+		var level_icon_autotile_coord := Vector2(level_icons[i] % 8, floor(level_icons[i] / 8))
+		_icon_tile_map.set_cell(-i, 0, 0, false, false, false, level_icon_autotile_coord)
 
 
 func _refresh_size() -> void:
@@ -251,6 +268,7 @@ func _on_ButtonControl_focus_entered() -> void:
 	_focus_just_entered = true
 	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("007a99")
+	_icon_tile_map.material.set("shader_param/black", font.outline_color)
 	
 	# Propagate the focus_entered signal. This control cannot be focused, but other scenes such as the career map and
 	# level select screen need to react to our focus events
@@ -260,6 +278,7 @@ func _on_ButtonControl_focus_entered() -> void:
 func _on_ButtonControl_focus_exited() -> void:
 	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("6c4331")
+	_icon_tile_map.material.set("shader_param/black", font.outline_color)
 
 
 func _on_ButtonControl_button_down() -> void:

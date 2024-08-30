@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/utils/smooth-outline.shader" type="Shader" id=2]
+[ext_resource path="res://assets/main/puzzle/level-button-icons.png" type="Texture" id=3]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFocus.tres" type="StyleBox" id=4]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButtonPressed.tres" type="StyleBox" id=6]
@@ -11,6 +13,36 @@ outline_size = 2
 outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/width = 15.0
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/sample_count = 24
+
+[sub_resource type="TileSet" id=2]
+0/name = "level-button-icons.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 1600, 800 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 200, 200 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [node name="ButtonControlHolder" type="Node2D"]
 z_index = 1
@@ -26,6 +58,23 @@ custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = ExtResource( 7 )
+
+[node name="IconTileMapHolder" type="Control" parent="ButtonControl"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -31.0
+margin_top = -31.0
+mouse_filter = 2
+
+[node name="IconTileMap" type="TileMap" parent="ButtonControl/IconTileMapHolder"]
+material = SubResource( 3 )
+scale = Vector2( 0.15, 0.15 )
+tile_set = SubResource( 2 )
+cell_size = Vector2( 140, 150 )
+format = 1
+tile_data = PoolIntArray( 65534, 0, 0, 65535, 0, 0, 0, 0, 0 )
 
 [node name="Label" type="Label" parent="ButtonControl"]
 anchor_right = 1.0
