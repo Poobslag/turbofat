@@ -1,17 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonControlHolder.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/level-select/level-select-button.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonNormal.tres" type="StyleBox" id=3]
-[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonPressed.tres" type="StyleBox" id=4]
-[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFocus.tres" type="StyleBox" id=5]
-[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
 outline_size = 2
 outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 use_filter = true
-font_data = ExtResource( 1 )
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 3 )
 
 [node name="LevelSelectButton" type="Control"]
 margin_right = 120.0
@@ -20,35 +20,10 @@ rect_min_size = Vector2( 120, 80 )
 mouse_filter = 1
 script = ExtResource( 2 )
 
-[node name="ButtonControlHolder" type="Node2D" parent="."]
-z_index = 1
+[node name="ButtonControlHolder" parent="." instance=ExtResource( 1 )]
 
-[node name="ButtonControl" type="Button" parent="ButtonControlHolder" groups=["level_select_buttons"]]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 120.0
-margin_bottom = 80.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+[node name="Label" parent="ButtonControlHolder/ButtonControl" index="0"]
 custom_fonts/font = SubResource( 1 )
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = ExtResource( 5 )
-custom_styles/normal = ExtResource( 3 )
-
-[node name="Label" type="Label" parent="ButtonControlHolder/ButtonControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 6 )
-text = "Just getting started"
-align = 1
-valign = 1
-autowrap = true
-clip_text = true
 
 [node name="GradeHook" type="RemoteTransform2D" parent="."]
 position = Vector2( 12, 6 )
@@ -61,3 +36,5 @@ z_index = 1
 [connection signal="focus_entered" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_focus_entered"]
 [connection signal="focus_exited" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_focus_exited"]
 [connection signal="pressed" from="ButtonControlHolder/ButtonControl" to="." method="_on_ButtonControl_pressed"]
+
+[editable path="ButtonControlHolder"]
