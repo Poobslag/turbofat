@@ -54,4 +54,4 @@ func _on_ColorPicker_resized() -> void:
 	if not _color_picker:
 		return
 	
-	_color_picker.rect_position = (get_viewport().size - _color_picker.rect_size) / 2
+	_color_picker.rect_position = (Global.window_size - _color_picker.rect_size) / 2

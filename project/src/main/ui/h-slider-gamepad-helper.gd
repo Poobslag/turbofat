@@ -28,6 +28,7 @@ onready var _slider: HSlider = get_parent()
 onready var _delay_timer: Timer
 
 func _ready() -> void:
+	_slider.connect("focus_exited", self, "_on_HSlider_focus_exited")
 	_initialize_delay_timer()
 	set_process(false)
 
@@ -49,13 +50,9 @@ func _process(delta: float) -> void:
 ## Updates our sliding direction and state based on a D-Pad input event.
 func _handle_dpad(event: InputEventJoypadButton) -> void:
 	if event.is_action_released("ui_left") and _sliding_dir < 0.0:
-		# stop sliding left
-		_sliding_dir = 0.0
-		set_process(false)
+		_stop_sliding()
 	if event.is_action_released("ui_right") and _sliding_dir > 0.0:
-		# stop sliding right
-		_sliding_dir = 0.0
-		set_process(false)
+		_stop_sliding()
 	
 	if event.is_action_pressed("ui_left"):
 		# slide left after a delay
@@ -74,7 +71,18 @@ func _initialize_delay_timer() -> void:
 	add_child(_delay_timer)
 
 
+func _stop_sliding() -> void:
+	_delay_timer.stop()
+	_sliding_dir = 0.0
+	set_process(false)
+
+
+
 ## When the delay timer times out, we update our stored value and start sliding.
 func _on_DelayTimer_timeout() -> void:
 	set_process(true)
 	_slider_value_float = _slider.value
+
+
+func _on_HSlider_focus_exited() -> void:
+	_stop_sliding()

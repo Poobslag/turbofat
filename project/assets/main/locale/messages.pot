@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-19 10:05-0400\n"
+"POT-Creation-Date: 2024-09-02 15:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Generated-By: Babel 2.13.1\n"
 
 #: project/assets/main/locale/localizables-extracted.py:4
-#: project/src/main/career/ui/ProgressBoard.tscn:589
+#: project/src/main/career/ui/ProgressBoard.tscn:591
 #: project/src/main/ui/RegionSelectButton.tscn:57
 msgid "Lemony Thickets"
 msgstr ""
@@ -90,7 +90,7 @@ msgid ""
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:18
-#: project/src/main/ui/menu/MainMenu.tscn:241
+#: project/src/main/ui/menu/MainMenu.tscn:242
 msgid "Tutorials"
 msgstr ""
 
@@ -7134,17 +7134,17 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:1695
 #: project/assets/main/locale/localizables-extracted.py:2286
-#: project/src/main/ui/settings/settings-dialogs.gd:32
-#: project/src/main/ui/settings/settings-dialogs.gd:38
-#: project/src/main/ui/settings/settings-dialogs.gd:44
+#: project/src/main/ui/settings/settings-dialogs.gd:40
+#: project/src/main/ui/settings/settings-dialogs.gd:47
+#: project/src/main/ui/settings/settings-dialogs.gd:54
 msgid "No"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:1697
 #: project/assets/main/locale/localizables-extracted.py:2285
-#: project/src/main/ui/settings/settings-dialogs.gd:31
-#: project/src/main/ui/settings/settings-dialogs.gd:37
-#: project/src/main/ui/settings/settings-dialogs.gd:43
+#: project/src/main/ui/settings/settings-dialogs.gd:39
+#: project/src/main/ui/settings/settings-dialogs.gd:46
+#: project/src/main/ui/settings/settings-dialogs.gd:53
 msgid "Yes"
 msgstr ""
 
@@ -11245,7 +11245,7 @@ msgid "90 Second Sprint"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2675
-#: project/assets/main/locale/localizables-extracted.py:2797
+#: project/assets/main/locale/localizables-extracted.py:2795
 msgid "Nothing fancy, let's just cook!"
 msgstr ""
 
@@ -11254,2045 +11254,2037 @@ msgid "A Little Extra"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2677
-#: project/assets/main/locale/localizables-extracted.py:2749
+#: project/assets/main/locale/localizables-extracted.py:2747
 msgid "Some fun little bonuses at the bottom. But you have to work for it!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2678
-msgid "A Little Garbage"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:2679
-msgid "Nothing to worry about."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:2680
 msgid "A Little Garbage 2"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2681
-#: project/assets/main/locale/localizables-extracted.py:2751
+#: project/assets/main/locale/localizables-extracted.py:2679
+#: project/assets/main/locale/localizables-extracted.py:2749
 msgid "Is that food? Don't eat out of the garbage!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2682
+#: project/assets/main/locale/localizables-extracted.py:2680
 msgid "A Thousand Moles"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2683
+#: project/assets/main/locale/localizables-extracted.py:2681
 msgid "Making my way downtown..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2684
+#: project/assets/main/locale/localizables-extracted.py:2682
 msgid "Above and Below"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2685
-#: project/assets/main/locale/localizables-extracted.py:2753
+#: project/assets/main/locale/localizables-extracted.py:2683
+#: project/assets/main/locale/localizables-extracted.py:2751
 msgid "Build some delicious snack boxes above while befriending some moles below."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2686
+#: project/assets/main/locale/localizables-extracted.py:2684
 msgid "Accelerator"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2687
+#: project/assets/main/locale/localizables-extracted.py:2685
 msgid "Hurry up and finish before things get out of control!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2688
+#: project/assets/main/locale/localizables-extracted.py:2686
 msgid "Angle Grinder"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2689
+#: project/assets/main/locale/localizables-extracted.py:2687
 msgid "So many bendy pieces! Need a helping hand? ...Or a helping jaw?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2690
+#: project/assets/main/locale/localizables-extracted.py:2688
 msgid "The Asparagus Trio"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2691
+#: project/assets/main/locale/localizables-extracted.py:2689
 msgid "Why is it when something happens, it is always you three?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2692
+#: project/assets/main/locale/localizables-extracted.py:2690
 msgid "Asparagus Vault"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2693
+#: project/assets/main/locale/localizables-extracted.py:2691
 msgid "Are you planning a robbery? I'm onto you!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2694
+#: project/assets/main/locale/localizables-extracted.py:2692
 msgid "Back to Back"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2695
+#: project/assets/main/locale/localizables-extracted.py:2693
 msgid "Now where did I put those two line pieces?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2696
+#: project/assets/main/locale/localizables-extracted.py:2694
 msgid "Blindy Asparagus"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2697
+#: project/assets/main/locale/localizables-extracted.py:2695
 msgid "What you can't see CAN hurt you!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2698
+#: project/assets/main/locale/localizables-extracted.py:2696
 msgid "Block Blockers"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2699
+#: project/assets/main/locale/localizables-extracted.py:2697
 msgid "They're just here to get in the way!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2700
+#: project/assets/main/locale/localizables-extracted.py:2698
 msgid "Bon Appetit"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2701
+#: project/assets/main/locale/localizables-extracted.py:2699
 msgid "Dig in!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2702
+#: project/assets/main/locale/localizables-extracted.py:2700
 msgid "Grand Opening: Starberry Mountain"
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:2701
 #: project/assets/main/locale/localizables-extracted.py:2703
 #: project/assets/main/locale/localizables-extracted.py:2705
 #: project/assets/main/locale/localizables-extracted.py:2707
 #: project/assets/main/locale/localizables-extracted.py:2709
-#: project/assets/main/locale/localizables-extracted.py:2711
 msgid "Opening a new restaurant can be tough!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2704
+#: project/assets/main/locale/localizables-extracted.py:2702
 msgid "Trial: Fat Sensei"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2706
+#: project/assets/main/locale/localizables-extracted.py:2704
 msgid "Grand Opening: Chocolava Canyon"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2708
+#: project/assets/main/locale/localizables-extracted.py:2706
 msgid "Grand Opening: Kflab"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2710
+#: project/assets/main/locale/localizables-extracted.py:2708
 msgid "Grand Opening: Merrymellow Marsh"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2712
+#: project/assets/main/locale/localizables-extracted.py:2710
 msgid "Grand Opening: Lemony Thickets"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2713
+#: project/assets/main/locale/localizables-extracted.py:2711
 msgid ""
 "We're officially open! Let's attract enough customers to make sure we "
 "stay that way."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2714
+#: project/assets/main/locale/localizables-extracted.py:2712
 msgid "Bottomless Pit"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2715
-#: project/assets/main/locale/localizables-extracted.py:2741
+#: project/assets/main/locale/localizables-extracted.py:2713
+#: project/assets/main/locale/localizables-extracted.py:2739
 msgid "It just keeps going..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2716
+#: project/assets/main/locale/localizables-extracted.py:2714
 msgid "Carrot Alley"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2717
+#: project/assets/main/locale/localizables-extracted.py:2715
 msgid "Carrots... Why did it have to be carrots?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2718
+#: project/assets/main/locale/localizables-extracted.py:2716
 msgid "Carrot Cake"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2719
+#: project/assets/main/locale/localizables-extracted.py:2717
 msgid "Hmph, I guess I'll just try to eat around the carrot part...."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2720
+#: project/assets/main/locale/localizables-extracted.py:2718
 msgid "Carrot Cake II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2721
+#: project/assets/main/locale/localizables-extracted.py:2719
 msgid "Even cakier cakes! ...Even chonkier carrots! This level is a menace!!!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2722
+#: project/assets/main/locale/localizables-extracted.py:2720
 msgid "Checkerboard Vault"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2723
+#: project/assets/main/locale/localizables-extracted.py:2721
 msgid "Do you have the combination?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2724
+#: project/assets/main/locale/localizables-extracted.py:2722
 msgid "Cheerleaders"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2725
+#: project/assets/main/locale/localizables-extracted.py:2723
 msgid "They're just happy to be included!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2726
+#: project/assets/main/locale/localizables-extracted.py:2724
 msgid "On Top of Cheese Mountain"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2727
+#: project/assets/main/locale/localizables-extracted.py:2725
 msgid "...Did anybody lose a meatball?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2728
+#: project/assets/main/locale/localizables-extracted.py:2726
 msgid "Chocolate Star"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2729
+#: project/assets/main/locale/localizables-extracted.py:2727
 msgid "Close your eyes and make a chocolate wish!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2730
+#: project/assets/main/locale/localizables-extracted.py:2728
 msgid "Chompo and Bitey"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2731
+#: project/assets/main/locale/localizables-extracted.py:2729
 msgid "I call the red one Bitey! They like snack boxes... but who doesn't?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2732
+#: project/assets/main/locale/localizables-extracted.py:2730
 msgid "Chunky Greens"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2733
+#: project/assets/main/locale/localizables-extracted.py:2731
 msgid "Just pile them beside my plate, where I can ignore them."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2734
+#: project/assets/main/locale/localizables-extracted.py:2732
 msgid "Cocoa Canyon"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2735
+#: project/assets/main/locale/localizables-extracted.py:2733
 msgid "Excavate the chocolate! Hurry, hurry!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2736
+#: project/assets/main/locale/localizables-extracted.py:2734
 msgid "Cookie Crevice"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2737
+#: project/assets/main/locale/localizables-extracted.py:2735
 msgid "The good stuff's at the bottom!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2738
+#: project/assets/main/locale/localizables-extracted.py:2736
 msgid "Cookies"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2739
+#: project/assets/main/locale/localizables-extracted.py:2737
 msgid "Let's make some cookies! Who brought the U-Blocks?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2740
+#: project/assets/main/locale/localizables-extracted.py:2738
 msgid "Creeping Crevice II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2742
+#: project/assets/main/locale/localizables-extracted.py:2740
 msgid "Curly Queue"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2743
+#: project/assets/main/locale/localizables-extracted.py:2741
 msgid "Augh who keeps spinning the next queue? Oh wait, it's me."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2744
+#: project/assets/main/locale/localizables-extracted.py:2742
 msgid "Curly Queue II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2745
+#: project/assets/main/locale/localizables-extracted.py:2743
 msgid "They won't stop spinning! This is hurting my head a little..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2746
+#: project/assets/main/locale/localizables-extracted.py:2744
 msgid "¥3,000 Race EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2747
+#: project/assets/main/locale/localizables-extracted.py:2745
 msgid "Earn ¥3,000 as fast as possible. No tricks!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2748
+#: project/assets/main/locale/localizables-extracted.py:2746
 msgid "A Little Extra EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2750
+#: project/assets/main/locale/localizables-extracted.py:2748
 msgid "A Little Garbage EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2752
+#: project/assets/main/locale/localizables-extracted.py:2750
 msgid "Above and Below EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2754
+#: project/assets/main/locale/localizables-extracted.py:2752
 msgid "All Nighter"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2755
+#: project/assets/main/locale/localizables-extracted.py:2753
 msgid "When the onion hits your eye like a big pizza pie, that's a painful..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2756
+#: project/assets/main/locale/localizables-extracted.py:2754
 msgid "Asparagus Fondue"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2757
+#: project/assets/main/locale/localizables-extracted.py:2755
 msgid "Why is it when something happens, it is always you four?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2758
+#: project/assets/main/locale/localizables-extracted.py:2756
 msgid "Asparagus Gang"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2759
+#: project/assets/main/locale/localizables-extracted.py:2757
 msgid "People called them 'bad seeds', but they're all grown up now!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2760
+#: project/assets/main/locale/localizables-extracted.py:2758
 msgid "Block Blockers EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2761
+#: project/assets/main/locale/localizables-extracted.py:2759
 msgid "They're still here to get in the way... and they have some new tricks!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2762
+#: project/assets/main/locale/localizables-extracted.py:2760
 msgid "Boxing Day EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2763
+#: project/assets/main/locale/localizables-extracted.py:2761
 msgid "Don't get boxed in!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2764
+#: project/assets/main/locale/localizables-extracted.py:2762
 msgid "Cheddarbox Blitz"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2765
+#: project/assets/main/locale/localizables-extracted.py:2763
 msgid ""
 "Can two triangles really make a square? Oh okay, I guess that checks "
 "out..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2766
+#: project/assets/main/locale/localizables-extracted.py:2764
 msgid "Five Course Meal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2767
+#: project/assets/main/locale/localizables-extracted.py:2765
 msgid "Five courses? ...I'll have five desserts, please!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2768
+#: project/assets/main/locale/localizables-extracted.py:2766
 msgid "Fondue Chasm"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2769
+#: project/assets/main/locale/localizables-extracted.py:2767
 msgid "Yum, fruit fondue! Wait, where is the chocolate...?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2770
+#: project/assets/main/locale/localizables-extracted.py:2768
 msgid "Fruit on the Top EX"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:2769
+#: project/assets/main/locale/localizables-extracted.py:2811
+msgid "It needs to settle first."
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:2770
+msgid "Fruit Salad EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2771
 #: project/assets/main/locale/localizables-extracted.py:2813
-msgid "It needs to settle first."
+msgid "Ick! Salad. ...You said there would be fruit!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2772
-msgid "Fruit Salad EX"
+msgid "Garbage Disposal EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2773
 #: project/assets/main/locale/localizables-extracted.py:2815
-msgid "Ick! Salad. ...You said there would be fruit!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:2774
-msgid "Garbage Disposal EX"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:2775
-#: project/assets/main/locale/localizables-extracted.py:2817
 msgid ""
 "These pieces are garbage. Lucky thing we've got a garbage disposal! Om "
 "nom nom nom nom."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2776
+#: project/assets/main/locale/localizables-extracted.py:2774
 msgid "Hungry Moles EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2777
-#: project/assets/main/locale/localizables-extracted.py:2819
+#: project/assets/main/locale/localizables-extracted.py:2775
+#: project/assets/main/locale/localizables-extracted.py:2817
 msgid "You had my curiosity... but now you have my attention!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2778
+#: project/assets/main/locale/localizables-extracted.py:2776
 msgid "It Takes Two"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2779
+#: project/assets/main/locale/localizables-extracted.py:2777
 msgid "What takes two? ...Oh please no, not that..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2780
+#: project/assets/main/locale/localizables-extracted.py:2778
 msgid "It's Square to be Square EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2781
-#: project/assets/main/locale/localizables-extracted.py:2823
+#: project/assets/main/locale/localizables-extracted.py:2779
+#: project/assets/main/locale/localizables-extracted.py:2821
 msgid "Can you handle all this sugar, or will you go down swinging?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2782
+#: project/assets/main/locale/localizables-extracted.py:2780
 msgid "No Smoking Section II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2783
+#: project/assets/main/locale/localizables-extracted.py:2781
 msgid "Cough! Cough! ...Carrots! Too many!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2784
+#: project/assets/main/locale/localizables-extracted.py:2782
 msgid "Onion Cranny"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2785
+#: project/assets/main/locale/localizables-extracted.py:2783
 msgid "This looks just like another level! The resemblance is onion-cranny."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2786
+#: project/assets/main/locale/localizables-extracted.py:2784
 msgid "Secret Brownies EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2787
-#: project/assets/main/locale/localizables-extracted.py:2865
+#: project/assets/main/locale/localizables-extracted.py:2785
+#: project/assets/main/locale/localizables-extracted.py:2863
 msgid "Secret brownies? Where? ...I must have them!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2788
+#: project/assets/main/locale/localizables-extracted.py:2786
 msgid "Sharky Cheese 2"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2789
+#: project/assets/main/locale/localizables-extracted.py:2787
 msgid "This time with actual cheese! ...Wait, isn't cheese bad for sharks?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2790
+#: project/assets/main/locale/localizables-extracted.py:2788
 msgid "Strawberry Shortcut EX"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:2789
+#: project/assets/main/locale/localizables-extracted.py:2887
+msgid "Take a shortcut. ...A strawberry shortcut!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:2790
+msgid "Surprise Guests EX"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2791
 #: project/assets/main/locale/localizables-extracted.py:2889
-msgid "Take a shortcut. ...A strawberry shortcut!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:2792
-msgid "Surprise Guests EX"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:2793
-#: project/assets/main/locale/localizables-extracted.py:2891
 msgid "Surpriiiise! ...We just thought we'd drop in."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2794
+#: project/assets/main/locale/localizables-extracted.py:2792
 msgid "Sweet Dreams"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2795
+#: project/assets/main/locale/localizables-extracted.py:2793
 msgid "Who left these chocolates under my pillow? They're all melted now!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2796
+#: project/assets/main/locale/localizables-extracted.py:2794
 msgid "Three Minute Sprint EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2798
+#: project/assets/main/locale/localizables-extracted.py:2796
 msgid "Too Fast to Fast EX"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2799
+#: project/assets/main/locale/localizables-extracted.py:2797
 msgid "It was already too fast before! This is nonsense..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2800
+#: project/assets/main/locale/localizables-extracted.py:2798
 msgid "Day/Night Psycho"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2801
+#: project/assets/main/locale/localizables-extracted.py:2799
 msgid "Sometimes the days just seem to fly by."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2802
+#: project/assets/main/locale/localizables-extracted.py:2800
 msgid "Destroy Them With Boxes!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2803
+#: project/assets/main/locale/localizables-extracted.py:2801
 msgid "Ack, sweets! My only weakness!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2804
+#: project/assets/main/locale/localizables-extracted.py:2802
 msgid "Destroy Them With Combos!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2805
+#: project/assets/main/locale/localizables-extracted.py:2803
 msgid ""
 "No no, I was talking about the carrots! ...Please don't destroy the "
 "customers."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2806
+#: project/assets/main/locale/localizables-extracted.py:2804
 msgid "Donuts"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2807
+#: project/assets/main/locale/localizables-extracted.py:2805
 msgid "Ooh donuts! Don't mind if I do..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2808
+#: project/assets/main/locale/localizables-extracted.py:2806
 msgid "Extra Cream"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2809
+#: project/assets/main/locale/localizables-extracted.py:2807
 msgid "Too much of a good thing is still a good thing!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2810
+#: project/assets/main/locale/localizables-extracted.py:2808
 msgid "Fat Stacks"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2811
+#: project/assets/main/locale/localizables-extracted.py:2809
 msgid "Stack 'em up, we have customers to serve!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2812
+#: project/assets/main/locale/localizables-extracted.py:2810
 msgid "Fruit on the Top"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2814
+#: project/assets/main/locale/localizables-extracted.py:2812
 msgid "Fruit Salad"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2816
+#: project/assets/main/locale/localizables-extracted.py:2814
 msgid "Garbage Disposal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2818
+#: project/assets/main/locale/localizables-extracted.py:2816
 msgid "Hungry Moles"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2820
+#: project/assets/main/locale/localizables-extracted.py:2818
 msgid "It's Nibbler"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2821
+#: project/assets/main/locale/localizables-extracted.py:2819
 msgid "Aww, they take such tiny bites. ...Oww! My finger!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2822
+#: project/assets/main/locale/localizables-extracted.py:2820
 msgid "It's Square to be Square"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2824
+#: project/assets/main/locale/localizables-extracted.py:2822
 msgid "It's Tee Time"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2825
+#: project/assets/main/locale/localizables-extracted.py:2823
 msgid "Augh, bread overload! And half the end pieces are missing..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2826
+#: project/assets/main/locale/localizables-extracted.py:2824
 msgid "Just Bread"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2827
+#: project/assets/main/locale/localizables-extracted.py:2825
 msgid "No jam. No butter. Just anger!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2828
+#: project/assets/main/locale/localizables-extracted.py:2826
 msgid "Just Cream"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2829
+#: project/assets/main/locale/localizables-extracted.py:2827
 msgid "What are these pieces!? LOLOLOL"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2830
+#: project/assets/main/locale/localizables-extracted.py:2828
 msgid "Just Fruit"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2831
+#: project/assets/main/locale/localizables-extracted.py:2829
 msgid "Do we really need a recipe?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2832
+#: project/assets/main/locale/localizables-extracted.py:2830
 msgid "Left Shark"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2833
+#: project/assets/main/locale/localizables-extracted.py:2831
 msgid "Fins to the left, pentominos to the right. And no tetrominos in sight!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2834
+#: project/assets/main/locale/localizables-extracted.py:2832
 msgid "Lo kCal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2835
+#: project/assets/main/locale/localizables-extracted.py:2833
 msgid "Can you scrape together ¥100 on veggies alone?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2836
+#: project/assets/main/locale/localizables-extracted.py:2834
 msgid "Midnight Snack"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2837
+#: project/assets/main/locale/localizables-extracted.py:2835
 msgid "We already turned the lights off! Come back tomorrow."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2838
+#: project/assets/main/locale/localizables-extracted.py:2836
 msgid "Mole Money Mole Problems"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2839
+#: project/assets/main/locale/localizables-extracted.py:2837
 msgid "This cave isn't big enough for the eight of us..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2840
+#: project/assets/main/locale/localizables-extracted.py:2838
 msgid "Moonshower"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2841
+#: project/assets/main/locale/localizables-extracted.py:2839
 msgid "It's pretty when all the stars are out."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2842
+#: project/assets/main/locale/localizables-extracted.py:2840
 msgid "Mozzarella Sticks"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2843
+#: project/assets/main/locale/localizables-extracted.py:2841
 msgid "Speak softly and eat a big mozzarella stick."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2844
+#: project/assets/main/locale/localizables-extracted.py:2842
 msgid "Your New Onion Friend"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2845
+#: project/assets/main/locale/localizables-extracted.py:2843
 msgid "Who could ever say no to a new friend?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2846
+#: project/assets/main/locale/localizables-extracted.py:2844
 msgid "Nice and Cheesy"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2847
+#: project/assets/main/locale/localizables-extracted.py:2845
 msgid "Let's learn to cook with cheese!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2848
+#: project/assets/main/locale/localizables-extracted.py:2846
 msgid "No Smoking Section"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2849
+#: project/assets/main/locale/localizables-extracted.py:2847
 msgid ""
 "Carrot smoke is the healthiest kind of smoke! But, we still don't like it"
 " very much."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2850
+#: project/assets/main/locale/localizables-extracted.py:2848
 msgid "Nowhere To Turn"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2851
+#: project/assets/main/locale/localizables-extracted.py:2849
 msgid "You really can't turn the pieces? I think there might be a way..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2852
+#: project/assets/main/locale/localizables-extracted.py:2850
 msgid "One Shark Two Shark Red Shark Blue Shark"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2853
+#: project/assets/main/locale/localizables-extracted.py:2851
 msgid "Why do sharks smell so good? ...Is it because they are always in the bath?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2854
+#: project/assets/main/locale/localizables-extracted.py:2852
 msgid "One Step Ahead"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2855
+#: project/assets/main/locale/localizables-extracted.py:2853
 msgid "It's easy if you make a plan."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2856
+#: project/assets/main/locale/localizables-extracted.py:2854
 msgid "Paranormal Tetrominon"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2857
+#: project/assets/main/locale/localizables-extracted.py:2855
 msgid "A visit from some familiar friends."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2858
+#: project/assets/main/locale/localizables-extracted.py:2856
 msgid "Perfect Fit"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2859
+#: project/assets/main/locale/localizables-extracted.py:2857
 msgid "This is my hole! It was made for me!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2860
+#: project/assets/main/locale/localizables-extracted.py:2858
 msgid "Real Meal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2861
+#: project/assets/main/locale/localizables-extracted.py:2859
 msgid "If you're going to indulge, you may as well make it worth it!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2862
+#: project/assets/main/locale/localizables-extracted.py:2860
 msgid "Rice Bear Island"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2863
+#: project/assets/main/locale/localizables-extracted.py:2861
 msgid "What on earth is a rice bear? ...This just seems like a regular island."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2864
+#: project/assets/main/locale/localizables-extracted.py:2862
 msgid "Secret Brownies"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2866
+#: project/assets/main/locale/localizables-extracted.py:2864
 msgid "Serving On A Rocket"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2867
+#: project/assets/main/locale/localizables-extracted.py:2865
 msgid "Time for flying rockets. Let's serve up some delicious treats!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2868
+#: project/assets/main/locale/localizables-extracted.py:2866
 msgid "Shark Bait"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2869
+#: project/assets/main/locale/localizables-extracted.py:2867
 msgid "This is almost TOO easy! ...Is there a trick?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2870
+#: project/assets/main/locale/localizables-extracted.py:2868
 msgid "Sharky Cheese"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2871
+#: project/assets/main/locale/localizables-extracted.py:2869
 msgid "Sharks never struggle with downstacking! They just eat everything..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2872
+#: project/assets/main/locale/localizables-extracted.py:2870
 msgid "Sharp Curds"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2873
+#: project/assets/main/locale/localizables-extracted.py:2871
 msgid "Dig efficiently to turn up some high-scoring snacks!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2874
+#: project/assets/main/locale/localizables-extracted.py:2872
 msgid "Shelf"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2875
+#: project/assets/main/locale/localizables-extracted.py:2873
 msgid "Who came up with this stupid shelf anyway!? ...Ooh! Cookies!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2876
+#: project/assets/main/locale/localizables-extracted.py:2874
 msgid "Shoots and Leaves"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2877
+#: project/assets/main/locale/localizables-extracted.py:2875
 msgid "Stop me if you've heard this one before..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2878
+#: project/assets/main/locale/localizables-extracted.py:2876
 msgid "Slow Service"
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:2877
 #: project/assets/main/locale/localizables-extracted.py:2879
-#: project/assets/main/locale/localizables-extracted.py:2881
 msgid "May... I... take... your... order...?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2880
+#: project/assets/main/locale/localizables-extracted.py:2878
 msgid "Slower Service"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2882
+#: project/assets/main/locale/localizables-extracted.py:2880
 msgid "Snack Box Blitz"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2883
+#: project/assets/main/locale/localizables-extracted.py:2881
 msgid "Everyone's in a hurry today. Get those cakes out!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2884
+#: project/assets/main/locale/localizables-extracted.py:2882
 msgid "Square Curse"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2885
+#: project/assets/main/locale/localizables-extracted.py:2883
 msgid "...And they don't stop coming!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2886
+#: project/assets/main/locale/localizables-extracted.py:2884
 msgid "Strawberry Sharkcake"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2887
+#: project/assets/main/locale/localizables-extracted.py:2885
 msgid "It says in this cookbook it takes a long time to rise."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2888
+#: project/assets/main/locale/localizables-extracted.py:2886
 msgid "Strawberry Shortcut"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2890
+#: project/assets/main/locale/localizables-extracted.py:2888
 msgid "Surprise Guests"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2892
+#: project/assets/main/locale/localizables-extracted.py:2890
 msgid "Tempting Jellies"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2893
+#: project/assets/main/locale/localizables-extracted.py:2891
 msgid "Throw caution to the wind this once!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2894
+#: project/assets/main/locale/localizables-extracted.py:2892
 msgid "The Last ¥100"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2895
+#: project/assets/main/locale/localizables-extracted.py:2893
 msgid "Why is the last mile the hardest mile?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2896
+#: project/assets/main/locale/localizables-extracted.py:2894
 msgid "Three Course Meal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2897
+#: project/assets/main/locale/localizables-extracted.py:2895
 msgid ""
 "It's important to bring out all three courses at once! ...Or is that "
 "something else..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2898
+#: project/assets/main/locale/localizables-extracted.py:2896
 msgid "Three Nights"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2899
+#: project/assets/main/locale/localizables-extracted.py:2897
 msgid "I'm not afraid of the dark! It's just very annoying..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2900
+#: project/assets/main/locale/localizables-extracted.py:2898
 msgid "Traffic Jam"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2901
+#: project/assets/main/locale/localizables-extracted.py:2899
 msgid ""
 "Nobody knows what the 'H' stands for! We just know it is annoying and "
 "gets in the way..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2902
+#: project/assets/main/locale/localizables-extracted.py:2900
 msgid "Another Traffic Jam"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2903
+#: project/assets/main/locale/localizables-extracted.py:2901
 msgid "An even bigger, and even slower H! ...But what does the H stand for?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2904
+#: project/assets/main/locale/localizables-extracted.py:2902
 msgid "Triangle Curse"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2905
+#: project/assets/main/locale/localizables-extracted.py:2903
 msgid "Squares and triangles. Together at last!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2906
+#: project/assets/main/locale/localizables-extracted.py:2904
 msgid "Tulip"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2907
+#: project/assets/main/locale/localizables-extracted.py:2905
 msgid "It belongs in a museum! Or maybe on the refrigerator."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2908
+#: project/assets/main/locale/localizables-extracted.py:2906
 msgid "Tunnel Snakes"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2909
+#: project/assets/main/locale/localizables-extracted.py:2907
 msgid "Asparagus. Why'd it have to be asparagus?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2910
+#: project/assets/main/locale/localizables-extracted.py:2908
 msgid "Two Box Buffet"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2911
+#: project/assets/main/locale/localizables-extracted.py:2909
 msgid "Surely, six columns should be enough for anybody!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2912
+#: project/assets/main/locale/localizables-extracted.py:2910
 msgid "Up In Smoke"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2913
+#: project/assets/main/locale/localizables-extracted.py:2911
 msgid ""
 "I don't love carrots, but I promise to hate them slightly less if they "
 "stay over there..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2914
+#: project/assets/main/locale/localizables-extracted.py:2912
 msgid "Wall Greens"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2915
+#: project/assets/main/locale/localizables-extracted.py:2913
 msgid "Asparagus evolved its disgusting spines as a defense against being eaten."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2916
+#: project/assets/main/locale/localizables-extracted.py:2914
 msgid "Wedge"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2917
+#: project/assets/main/locale/localizables-extracted.py:2915
 msgid "A fun shape to climb, if only it wasn't so sticky..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2918
+#: project/assets/main/locale/localizables-extracted.py:2916
 msgid "Marathon: Expert (300 lines)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2919
+#: project/assets/main/locale/localizables-extracted.py:2917
 msgid ""
 "A grueling test of endurance ramping up to instant gravity! Can you clear"
 " 300 lines?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2920
+#: project/assets/main/locale/localizables-extracted.py:2918
 msgid "Marathon: Hard (200 lines)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2921
+#: project/assets/main/locale/localizables-extracted.py:2919
 msgid ""
 "A true test of endurance with faster pieces than before! Can you clear "
 "200 lines?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2922
+#: project/assets/main/locale/localizables-extracted.py:2920
 msgid "Marathon: Master (500 lines)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2923
+#: project/assets/main/locale/localizables-extracted.py:2921
 msgid ""
 "An impossible test of endurance for true Turbo Fat masters! Can you clear"
 " 500 lines?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2924
+#: project/assets/main/locale/localizables-extracted.py:2922
 msgid "Marathon: Normal (100 lines)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2925
+#: project/assets/main/locale/localizables-extracted.py:2923
 msgid ""
 "A test of endurance against faster and faster pieces! Can you clear 100 "
 "lines?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2926
+#: project/assets/main/locale/localizables-extracted.py:2924
 msgid "Sandbox: Expert"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2927
+#: project/assets/main/locale/localizables-extracted.py:2925
 msgid "Practice with faster pieces! There is no way to win or lose this mode."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2928
+#: project/assets/main/locale/localizables-extracted.py:2926
 msgid "Sandbox: Master"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2929
+#: project/assets/main/locale/localizables-extracted.py:2927
 msgid "Practice with instant gravity! There is no way to win or lose this mode."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2930
+#: project/assets/main/locale/localizables-extracted.py:2928
 msgid "Sandbox: Normal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2931
+#: project/assets/main/locale/localizables-extracted.py:2929
 msgid "Just relax! There is no way to win or lose this mode."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2932
+#: project/assets/main/locale/localizables-extracted.py:2930
 msgid "Sprint: Expert (3:00)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2933
+#: project/assets/main/locale/localizables-extracted.py:2931
 msgid ""
 "Earn as much money as you can in 3:00. Use the faster pieces to set a "
 "high score!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2934
+#: project/assets/main/locale/localizables-extracted.py:2932
 msgid "Sprint: Normal (2:30)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2935
+#: project/assets/main/locale/localizables-extracted.py:2933
 msgid "Earn as much money as you can in 2:30!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2936
+#: project/assets/main/locale/localizables-extracted.py:2934
 msgid "Ultra: Expert (¥3,000)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2937
+#: project/assets/main/locale/localizables-extracted.py:2935
 msgid "Earn ¥3,000 as fast as possible, with faster piece movement!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2938
+#: project/assets/main/locale/localizables-extracted.py:2936
 msgid "Ultra: Hard (¥1,000)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2939
+#: project/assets/main/locale/localizables-extracted.py:2937
 msgid "Earn ¥1,000 as fast as possible!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2940
+#: project/assets/main/locale/localizables-extracted.py:2938
 msgid "Ultra: Normal (¥200)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2941
+#: project/assets/main/locale/localizables-extracted.py:2939
 msgid "Earn ¥200 as fast as possible!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2942
+#: project/assets/main/locale/localizables-extracted.py:2940
 msgid "10 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2943
+#: project/assets/main/locale/localizables-extracted.py:2941
 msgid "An escalating set of challenges. Finish in 6:00 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2944
+#: project/assets/main/locale/localizables-extracted.py:2942
 msgid "1 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2945
-#: project/assets/main/locale/localizables-extracted.py:2953
+#: project/assets/main/locale/localizables-extracted.py:2943
+#: project/assets/main/locale/localizables-extracted.py:2951
 msgid "An escalating set of challenges. Finish with ¥1,200 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2946
+#: project/assets/main/locale/localizables-extracted.py:2944
 msgid "1 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2947
+#: project/assets/main/locale/localizables-extracted.py:2945
 msgid "An escalating set of challenges. Finish with ¥1,000 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2948
+#: project/assets/main/locale/localizables-extracted.py:2946
 msgid "2 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2949
+#: project/assets/main/locale/localizables-extracted.py:2947
 msgid "An escalating set of challenges. Finish in 5:00 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2950
+#: project/assets/main/locale/localizables-extracted.py:2948
 msgid "2 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2951
-#: project/assets/main/locale/localizables-extracted.py:2965
+#: project/assets/main/locale/localizables-extracted.py:2949
+#: project/assets/main/locale/localizables-extracted.py:2963
 msgid "An escalating set of challenges. Finish in 3:00 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2952
+#: project/assets/main/locale/localizables-extracted.py:2950
 msgid "3 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2954
+#: project/assets/main/locale/localizables-extracted.py:2952
 msgid "3 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2955
+#: project/assets/main/locale/localizables-extracted.py:2953
 msgid "An escalating set of challenges. Finish with ¥999 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2956
+#: project/assets/main/locale/localizables-extracted.py:2954
 msgid "4 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2957
+#: project/assets/main/locale/localizables-extracted.py:2955
 msgid "An escalating set of challenges. Finish with ¥2,000 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2958
+#: project/assets/main/locale/localizables-extracted.py:2956
 msgid "4 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2959
-#: project/assets/main/locale/localizables-extracted.py:2967
+#: project/assets/main/locale/localizables-extracted.py:2957
+#: project/assets/main/locale/localizables-extracted.py:2965
 msgid "An escalating set of challenges. Finish with ¥200 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2960
+#: project/assets/main/locale/localizables-extracted.py:2958
 msgid "5 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2961
+#: project/assets/main/locale/localizables-extracted.py:2959
 msgid "An escalating set of challenges. Finish with ¥2,500 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2962
+#: project/assets/main/locale/localizables-extracted.py:2960
 msgid "5 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2963
+#: project/assets/main/locale/localizables-extracted.py:2961
 msgid "An escalating set of challenges. Finish with ¥500 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2964
+#: project/assets/main/locale/localizables-extracted.py:2962
 msgid "6 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2966
+#: project/assets/main/locale/localizables-extracted.py:2964
 msgid "6 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2968
+#: project/assets/main/locale/localizables-extracted.py:2966
 msgid "7 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2969
-#: project/assets/main/locale/localizables-extracted.py:2975
+#: project/assets/main/locale/localizables-extracted.py:2967
+#: project/assets/main/locale/localizables-extracted.py:2973
 msgid "An escalating set of challenges. Finish with ¥5,000 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2970
+#: project/assets/main/locale/localizables-extracted.py:2968
 msgid "7 Kyu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2971
+#: project/assets/main/locale/localizables-extracted.py:2969
 msgid "An escalating set of challenges. Finish with in 5:00 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2972
+#: project/assets/main/locale/localizables-extracted.py:2970
 msgid "8 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2973
+#: project/assets/main/locale/localizables-extracted.py:2971
 msgid "An escalating set of challenges. Finish with ¥3,000 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2974
+#: project/assets/main/locale/localizables-extracted.py:2972
 msgid "9 Dan"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2976
+#: project/assets/main/locale/localizables-extracted.py:2974
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:44
 #: project/src/main/ui/menu/region-info-panel.gd:29
 msgid "Master"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2977
+#: project/assets/main/locale/localizables-extracted.py:2975
 msgid "An escalating set of challenges. Finish with ¥10,000 to achieve this rank!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2978
+#: project/assets/main/locale/localizables-extracted.py:2976
 msgid "Basic Techniques"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2979
+#: project/assets/main/locale/localizables-extracted.py:2977
 msgid "Learn to clear lines, to make snack boxes and to squish pieces."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2980
+#: project/assets/main/locale/localizables-extracted.py:2978
 msgid "Make Cakes"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2981
+#: project/assets/main/locale/localizables-extracted.py:2979
 msgid "Learn all eight different cake box recipes."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2982
+#: project/assets/main/locale/localizables-extracted.py:2980
 msgid "Build Combos"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2983
+#: project/assets/main/locale/localizables-extracted.py:2981
 msgid ""
 "Learn how combos work, and learn to make snack boxes and cake boxes "
 "during your combos."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2984
+#: project/assets/main/locale/localizables-extracted.py:2982
 msgid "Meet Spins"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2985
+#: project/assets/main/locale/localizables-extracted.py:2983
 msgid "Learn to spin and flip pieces in tight spaces."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2986
+#: project/assets/main/locale/localizables-extracted.py:2984
 msgid "Squish and Recover"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2987
+#: project/assets/main/locale/localizables-extracted.py:2985
 msgid "Learn how squish moves work and when to use them."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2990
+#: project/assets/main/locale/localizables-extracted.py:2988
 #: project/src/main/ui/settings/SettingsMenu.tscn:650
 msgid "Space"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2991
+#: project/assets/main/locale/localizables-extracted.py:2989
 msgid "Exclam"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2992
+#: project/assets/main/locale/localizables-extracted.py:2990
 msgid "QuoteDbl"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2993
+#: project/assets/main/locale/localizables-extracted.py:2991
 msgid "NumberSign"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2994
+#: project/assets/main/locale/localizables-extracted.py:2992
 msgid "Dollar"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2995
+#: project/assets/main/locale/localizables-extracted.py:2993
 msgid "Percent"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2996
+#: project/assets/main/locale/localizables-extracted.py:2994
 msgid "Ampersand"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2997
+#: project/assets/main/locale/localizables-extracted.py:2995
 msgid "Apostrophe"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2998
+#: project/assets/main/locale/localizables-extracted.py:2996
 msgid "ParenLeft"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:2999
+#: project/assets/main/locale/localizables-extracted.py:2997
 msgid "ParenRight"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3000
+#: project/assets/main/locale/localizables-extracted.py:2998
 msgid "Asterisk"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3001
+#: project/assets/main/locale/localizables-extracted.py:2999
 msgid "Plus"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3002
+#: project/assets/main/locale/localizables-extracted.py:3000
 msgid "Comma"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3003
+#: project/assets/main/locale/localizables-extracted.py:3001
 msgid "Minus"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3004
+#: project/assets/main/locale/localizables-extracted.py:3002
 msgid "Period"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3005
+#: project/assets/main/locale/localizables-extracted.py:3003
 msgid "Slash"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3006
+#: project/assets/main/locale/localizables-extracted.py:3004
 msgid "Colon"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3007
+#: project/assets/main/locale/localizables-extracted.py:3005
 msgid "Semicolon"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3008
+#: project/assets/main/locale/localizables-extracted.py:3006
 msgid "Less"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3009
+#: project/assets/main/locale/localizables-extracted.py:3007
 msgid "Equal"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3010
+#: project/assets/main/locale/localizables-extracted.py:3008
 msgid "Greater"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3011
+#: project/assets/main/locale/localizables-extracted.py:3009
 msgid "Question"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3012
+#: project/assets/main/locale/localizables-extracted.py:3010
 msgid "At"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3013
+#: project/assets/main/locale/localizables-extracted.py:3011
 msgid "BracketLeft"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3014
+#: project/assets/main/locale/localizables-extracted.py:3012
 msgid "BackSlash"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3015
+#: project/assets/main/locale/localizables-extracted.py:3013
 msgid "BracketRight"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3016
+#: project/assets/main/locale/localizables-extracted.py:3014
 msgid "AsciiCircum"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3017
+#: project/assets/main/locale/localizables-extracted.py:3015
 msgid "UnderScore"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3018
+#: project/assets/main/locale/localizables-extracted.py:3016
 msgid "QuoteLeft"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3019
+#: project/assets/main/locale/localizables-extracted.py:3017
 msgid "BraceLeft"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3020
+#: project/assets/main/locale/localizables-extracted.py:3018
 msgid "Bar"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3021
+#: project/assets/main/locale/localizables-extracted.py:3019
 msgid "BraceRight"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3022
+#: project/assets/main/locale/localizables-extracted.py:3020
 msgid "AsciiTilde"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3023
+#: project/assets/main/locale/localizables-extracted.py:3021
 msgid "NoBreakSpace"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3024
+#: project/assets/main/locale/localizables-extracted.py:3022
 msgid "ExclamDown"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3025
+#: project/assets/main/locale/localizables-extracted.py:3023
 msgid "Cent"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3026
+#: project/assets/main/locale/localizables-extracted.py:3024
 msgid "Sterling"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3027
+#: project/assets/main/locale/localizables-extracted.py:3025
 msgid "Currency"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3028
+#: project/assets/main/locale/localizables-extracted.py:3026
 msgid "Yen"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3029
+#: project/assets/main/locale/localizables-extracted.py:3027
 msgid "BrokenBar"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3030
+#: project/assets/main/locale/localizables-extracted.py:3028
 msgid "Section"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3031
+#: project/assets/main/locale/localizables-extracted.py:3029
 msgid "Diaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3032
+#: project/assets/main/locale/localizables-extracted.py:3030
 msgid "Copyright"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3033
+#: project/assets/main/locale/localizables-extracted.py:3031
 msgid "Ordfeminine"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3034
+#: project/assets/main/locale/localizables-extracted.py:3032
 msgid "GuillemotLeft"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3035
+#: project/assets/main/locale/localizables-extracted.py:3033
 msgid "NotSign"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3036
+#: project/assets/main/locale/localizables-extracted.py:3034
 msgid "Hyphen"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3037
+#: project/assets/main/locale/localizables-extracted.py:3035
 msgid "Registered"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3038
+#: project/assets/main/locale/localizables-extracted.py:3036
 msgid "Macron"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3039
+#: project/assets/main/locale/localizables-extracted.py:3037
 msgid "Degree"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3040
+#: project/assets/main/locale/localizables-extracted.py:3038
 msgid "PlusMinus"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3041
+#: project/assets/main/locale/localizables-extracted.py:3039
 msgid "TwoSuperior"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3042
+#: project/assets/main/locale/localizables-extracted.py:3040
 msgid "ThreeSuperior"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3043
+#: project/assets/main/locale/localizables-extracted.py:3041
 msgid "Acute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3044
+#: project/assets/main/locale/localizables-extracted.py:3042
 msgid "Mu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3045
+#: project/assets/main/locale/localizables-extracted.py:3043
 msgid "Paragraph"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3046
+#: project/assets/main/locale/localizables-extracted.py:3044
 msgid "PeriodCentered"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3047
+#: project/assets/main/locale/localizables-extracted.py:3045
 msgid "Cedilla"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3048
+#: project/assets/main/locale/localizables-extracted.py:3046
 msgid "OneSuperior"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3049
+#: project/assets/main/locale/localizables-extracted.py:3047
 msgid "Masculine"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3050
+#: project/assets/main/locale/localizables-extracted.py:3048
 msgid "GuillemotRight"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3051
+#: project/assets/main/locale/localizables-extracted.py:3049
 msgid "OneQuarter"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3052
+#: project/assets/main/locale/localizables-extracted.py:3050
 msgid "OneHalf"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3053
+#: project/assets/main/locale/localizables-extracted.py:3051
 msgid "ThreeQuarters"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3054
+#: project/assets/main/locale/localizables-extracted.py:3052
 msgid "QuestionDown"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3055
+#: project/assets/main/locale/localizables-extracted.py:3053
 msgid "Agrave"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3056
+#: project/assets/main/locale/localizables-extracted.py:3054
 msgid "Aacute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3057
+#: project/assets/main/locale/localizables-extracted.py:3055
 msgid "AcircumFlex"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3058
+#: project/assets/main/locale/localizables-extracted.py:3056
 msgid "Atilde"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3059
+#: project/assets/main/locale/localizables-extracted.py:3057
 msgid "Adiaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3060
+#: project/assets/main/locale/localizables-extracted.py:3058
 msgid "Aring"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3061
+#: project/assets/main/locale/localizables-extracted.py:3059
 msgid "Ae"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3062
+#: project/assets/main/locale/localizables-extracted.py:3060
 msgid "Ccedilla"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3063
+#: project/assets/main/locale/localizables-extracted.py:3061
 msgid "Egrave"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3064
+#: project/assets/main/locale/localizables-extracted.py:3062
 msgid "Eacute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3065
+#: project/assets/main/locale/localizables-extracted.py:3063
 msgid "Ecircumflex"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3066
+#: project/assets/main/locale/localizables-extracted.py:3064
 msgid "Ediaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3067
+#: project/assets/main/locale/localizables-extracted.py:3065
 msgid "Igrave"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3068
+#: project/assets/main/locale/localizables-extracted.py:3066
 msgid "Iacute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3069
+#: project/assets/main/locale/localizables-extracted.py:3067
 msgid "Icircumflex"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3070
+#: project/assets/main/locale/localizables-extracted.py:3068
 msgid "Idiaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3071
+#: project/assets/main/locale/localizables-extracted.py:3069
 msgid "Eth"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3072
+#: project/assets/main/locale/localizables-extracted.py:3070
 msgid "Ntilde"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3073
+#: project/assets/main/locale/localizables-extracted.py:3071
 msgid "Ograve"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3074
+#: project/assets/main/locale/localizables-extracted.py:3072
 msgid "Oacute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3075
+#: project/assets/main/locale/localizables-extracted.py:3073
 msgid "Ocircumflex"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3076
+#: project/assets/main/locale/localizables-extracted.py:3074
 msgid "Otilde"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3077
+#: project/assets/main/locale/localizables-extracted.py:3075
 msgid "Odiaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3078
+#: project/assets/main/locale/localizables-extracted.py:3076
 msgid "Multiply"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3079
+#: project/assets/main/locale/localizables-extracted.py:3077
 msgid "Ooblique"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3080
+#: project/assets/main/locale/localizables-extracted.py:3078
 msgid "Ugrave"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3081
+#: project/assets/main/locale/localizables-extracted.py:3079
 msgid "Uacute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3082
+#: project/assets/main/locale/localizables-extracted.py:3080
 msgid "Ucircumflex"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3083
+#: project/assets/main/locale/localizables-extracted.py:3081
 msgid "Udiaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3084
+#: project/assets/main/locale/localizables-extracted.py:3082
 msgid "Yacute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3085
+#: project/assets/main/locale/localizables-extracted.py:3083
 msgid "Thorn"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3086
+#: project/assets/main/locale/localizables-extracted.py:3084
 msgid "Ssharp"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3087
+#: project/assets/main/locale/localizables-extracted.py:3085
 msgid "Division"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3088
+#: project/assets/main/locale/localizables-extracted.py:3086
 msgid "Ydiaeresis"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3089
+#: project/assets/main/locale/localizables-extracted.py:3087
 #: project/src/main/ui/settings/SettingsMenu.tscn:630
 #: project/src/main/ui/settings/SettingsMenu.tscn:657
 msgid "Escape"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3090
+#: project/assets/main/locale/localizables-extracted.py:3088
 msgid "Tab"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3091
+#: project/assets/main/locale/localizables-extracted.py:3089
 msgid "BackTab"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3092
+#: project/assets/main/locale/localizables-extracted.py:3090
 msgid "BackSpace"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3093
+#: project/assets/main/locale/localizables-extracted.py:3091
 msgid "Enter"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3094
+#: project/assets/main/locale/localizables-extracted.py:3092
 msgid "Kp Enter"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3095
+#: project/assets/main/locale/localizables-extracted.py:3093
 msgid "Insert"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3096
+#: project/assets/main/locale/localizables-extracted.py:3094
 msgid "Delete"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3097
+#: project/assets/main/locale/localizables-extracted.py:3095
 msgid "Pause"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3098
+#: project/assets/main/locale/localizables-extracted.py:3096
 msgid "Print"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3099
+#: project/assets/main/locale/localizables-extracted.py:3097
 msgid "SysReq"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3100
+#: project/assets/main/locale/localizables-extracted.py:3098
 msgid "Clear"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3101
+#: project/assets/main/locale/localizables-extracted.py:3099
 msgid "Home"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3102
+#: project/assets/main/locale/localizables-extracted.py:3100
 msgid "End"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3103
+#: project/assets/main/locale/localizables-extracted.py:3101
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Left"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3104
+#: project/assets/main/locale/localizables-extracted.py:3102
 msgid "Up"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3105
+#: project/assets/main/locale/localizables-extracted.py:3103
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Right"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3106
+#: project/assets/main/locale/localizables-extracted.py:3104
 #: project/src/main/ui/settings/SettingsMenu.tscn:596
 msgid "Down"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3107
+#: project/assets/main/locale/localizables-extracted.py:3105
 msgid "PageUp"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3108
+#: project/assets/main/locale/localizables-extracted.py:3106
 msgid "PageDown"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3109
+#: project/assets/main/locale/localizables-extracted.py:3107
 #: project/src/main/ui/settings/SettingsMenu.tscn:684
 msgid "Shift"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3110
+#: project/assets/main/locale/localizables-extracted.py:3108
 msgid "Control"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3111
+#: project/assets/main/locale/localizables-extracted.py:3109
 msgid "Meta"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3112
+#: project/assets/main/locale/localizables-extracted.py:3110
 msgid "Alt"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3113
+#: project/assets/main/locale/localizables-extracted.py:3111
 msgid "CapsLock"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3114
+#: project/assets/main/locale/localizables-extracted.py:3112
 msgid "NumLock"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3115
+#: project/assets/main/locale/localizables-extracted.py:3113
 msgid "ScrollLock"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3116
+#: project/assets/main/locale/localizables-extracted.py:3114
 msgid "F1"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3117
+#: project/assets/main/locale/localizables-extracted.py:3115
 msgid "F2"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3118
+#: project/assets/main/locale/localizables-extracted.py:3116
 msgid "F3"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3119
+#: project/assets/main/locale/localizables-extracted.py:3117
 msgid "F4"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3120
+#: project/assets/main/locale/localizables-extracted.py:3118
 msgid "F5"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3121
+#: project/assets/main/locale/localizables-extracted.py:3119
 msgid "F6"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3122
+#: project/assets/main/locale/localizables-extracted.py:3120
 msgid "F7"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3123
+#: project/assets/main/locale/localizables-extracted.py:3121
 msgid "F8"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3124
+#: project/assets/main/locale/localizables-extracted.py:3122
 msgid "F9"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3125
+#: project/assets/main/locale/localizables-extracted.py:3123
 msgid "F10"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3126
+#: project/assets/main/locale/localizables-extracted.py:3124
 msgid "F11"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3127
+#: project/assets/main/locale/localizables-extracted.py:3125
 msgid "F12"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3128
+#: project/assets/main/locale/localizables-extracted.py:3126
 msgid "F13"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3129
+#: project/assets/main/locale/localizables-extracted.py:3127
 msgid "F14"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3130
+#: project/assets/main/locale/localizables-extracted.py:3128
 msgid "F15"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3131
+#: project/assets/main/locale/localizables-extracted.py:3129
 msgid "F16"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3132
+#: project/assets/main/locale/localizables-extracted.py:3130
 msgid "Super L"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3133
+#: project/assets/main/locale/localizables-extracted.py:3131
 msgid "Super R"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3134
+#: project/assets/main/locale/localizables-extracted.py:3132
 #: project/src/main/ui/settings/SettingsMenu.tscn:629
 #: project/src/main/ui/settings/SettingsMenu.tscn:771
 msgid "Menu"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3135
+#: project/assets/main/locale/localizables-extracted.py:3133
 msgid "Hyper L"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3136
+#: project/assets/main/locale/localizables-extracted.py:3134
 msgid "Hyper R"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3137
+#: project/assets/main/locale/localizables-extracted.py:3135
 msgid "Help"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3138
+#: project/assets/main/locale/localizables-extracted.py:3136
 msgid "Direction L"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3139
+#: project/assets/main/locale/localizables-extracted.py:3137
 msgid "Direction R"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3140
+#: project/assets/main/locale/localizables-extracted.py:3138
 #: project/src/main/puzzle/PuzzleMessages.tscn:112
 #: project/src/main/puzzle/puzzle-messages.gd:207
 #: project/src/main/puzzle/puzzle-messages.gd:213
 msgid "Back"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3141
+#: project/assets/main/locale/localizables-extracted.py:3139
 msgid "Forward"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3142
+#: project/assets/main/locale/localizables-extracted.py:3140
 msgid "Stop"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3143
+#: project/assets/main/locale/localizables-extracted.py:3141
 msgid "Refresh"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3144
+#: project/assets/main/locale/localizables-extracted.py:3142
 msgid "VolumeDown"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3145
+#: project/assets/main/locale/localizables-extracted.py:3143
 msgid "VolumeMute"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3146
+#: project/assets/main/locale/localizables-extracted.py:3144
 msgid "VolumeUp"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3147
+#: project/assets/main/locale/localizables-extracted.py:3145
 msgid "BassBoost"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3148
+#: project/assets/main/locale/localizables-extracted.py:3146
 msgid "BassUp"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3149
+#: project/assets/main/locale/localizables-extracted.py:3147
 msgid "BassDown"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3150
+#: project/assets/main/locale/localizables-extracted.py:3148
 msgid "TrebleUp"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3151
+#: project/assets/main/locale/localizables-extracted.py:3149
 msgid "TrebleDown"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3152
+#: project/assets/main/locale/localizables-extracted.py:3150
 msgid "MediaPlay"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3153
+#: project/assets/main/locale/localizables-extracted.py:3151
 msgid "MediaStop"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3154
+#: project/assets/main/locale/localizables-extracted.py:3152
 msgid "MediaPrevious"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3155
+#: project/assets/main/locale/localizables-extracted.py:3153
 msgid "MediaNext"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3156
+#: project/assets/main/locale/localizables-extracted.py:3154
 msgid "MediaRecord"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3157
+#: project/assets/main/locale/localizables-extracted.py:3155
 msgid "HomePage"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3158
+#: project/assets/main/locale/localizables-extracted.py:3156
 msgid "Favorites"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3159
+#: project/assets/main/locale/localizables-extracted.py:3157
 msgid "Search"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3160
+#: project/assets/main/locale/localizables-extracted.py:3158
 msgid "StandBy"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3161
+#: project/assets/main/locale/localizables-extracted.py:3159
 msgid "LaunchMail"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3162
+#: project/assets/main/locale/localizables-extracted.py:3160
 msgid "LaunchMedia"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3163
+#: project/assets/main/locale/localizables-extracted.py:3161
 msgid "Launch0"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3164
+#: project/assets/main/locale/localizables-extracted.py:3162
 msgid "Launch1"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3165
+#: project/assets/main/locale/localizables-extracted.py:3163
 msgid "Launch2"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3166
+#: project/assets/main/locale/localizables-extracted.py:3164
 msgid "Launch3"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3167
+#: project/assets/main/locale/localizables-extracted.py:3165
 msgid "Launch4"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3168
+#: project/assets/main/locale/localizables-extracted.py:3166
 msgid "Launch5"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3169
+#: project/assets/main/locale/localizables-extracted.py:3167
 msgid "Launch6"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3170
+#: project/assets/main/locale/localizables-extracted.py:3168
 msgid "Launch7"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3171
+#: project/assets/main/locale/localizables-extracted.py:3169
 msgid "Launch8"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3172
+#: project/assets/main/locale/localizables-extracted.py:3170
 msgid "Launch9"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3173
+#: project/assets/main/locale/localizables-extracted.py:3171
 msgid "LaunchA"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3174
+#: project/assets/main/locale/localizables-extracted.py:3172
 msgid "LaunchB"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3175
+#: project/assets/main/locale/localizables-extracted.py:3173
 msgid "LaunchC"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3176
+#: project/assets/main/locale/localizables-extracted.py:3174
 msgid "LaunchD"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3177
+#: project/assets/main/locale/localizables-extracted.py:3175
 msgid "LaunchE"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3178
+#: project/assets/main/locale/localizables-extracted.py:3176
 msgid "LaunchF"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3179
+#: project/assets/main/locale/localizables-extracted.py:3177
 msgid "Kp Multiply"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3180
+#: project/assets/main/locale/localizables-extracted.py:3178
 msgid "Kp Divide"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3181
+#: project/assets/main/locale/localizables-extracted.py:3179
 msgid "Kp Subtract"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3182
+#: project/assets/main/locale/localizables-extracted.py:3180
 msgid "Kp Period"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3183
+#: project/assets/main/locale/localizables-extracted.py:3181
 msgid "Kp Add"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3184
+#: project/assets/main/locale/localizables-extracted.py:3182
 msgid "Kp 0"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3185
+#: project/assets/main/locale/localizables-extracted.py:3183
 msgid "Kp 1"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3186
+#: project/assets/main/locale/localizables-extracted.py:3184
 msgid "Kp 2"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3187
+#: project/assets/main/locale/localizables-extracted.py:3185
 msgid "Kp 3"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3188
+#: project/assets/main/locale/localizables-extracted.py:3186
 msgid "Kp 4"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3189
+#: project/assets/main/locale/localizables-extracted.py:3187
 msgid "Kp 5"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3190
+#: project/assets/main/locale/localizables-extracted.py:3188
 msgid "Kp 6"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3191
+#: project/assets/main/locale/localizables-extracted.py:3189
 msgid "Kp 7"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3192
+#: project/assets/main/locale/localizables-extracted.py:3190
 msgid "Kp 8"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3193
+#: project/assets/main/locale/localizables-extracted.py:3191
 msgid "Kp 9"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3196
+#: project/assets/main/locale/localizables-extracted.py:3194
 msgid "English"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:3197
+#: project/assets/main/locale/localizables-extracted.py:3195
 msgid "Spanish"
 msgstr ""
 
@@ -13358,55 +13350,55 @@ msgstr ""
 msgid ">"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:155
+#: project/src/main/career/ui/CareerWin.tscn:156
 #: project/src/main/career/ui/chalkboard-title.gd:35
 msgid "LOOK WHAT WE DID"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:250
+#: project/src/main/career/ui/CareerWin.tscn:251
 msgid "Served:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:260
+#: project/src/main/career/ui/CareerWin.tscn:261
 msgid "132"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:307
+#: project/src/main/career/ui/CareerWin.tscn:308
 msgid "Steps:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:317
+#: project/src/main/career/ui/CareerWin.tscn:318
 msgid "23"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:373
+#: project/src/main/career/ui/CareerWin.tscn:374
 msgid "Earned:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:383
+#: project/src/main/career/ui/CareerWin.tscn:384
 msgid "¥999,999"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:430
+#: project/src/main/career/ui/CareerWin.tscn:431
 msgid "Time:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:440
+#: project/src/main/career/ui/CareerWin.tscn:441
 msgid "15:03"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:499
+#: project/src/main/career/ui/CareerWin.tscn:500
 #: project/src/main/ui/settings/SettingsMenu.tscn:1277
 msgid "Ok"
 msgstr ""
 
-#: project/src/main/career/ui/ProgressBoard.tscn:539
-#: project/src/main/ui/candy-button/HsvSlider.tscn:31
-#: project/src/main/ui/menu/TrainingMenu.tscn:218
+#: project/src/main/career/ui/ProgressBoard.tscn:541
+#: project/src/main/ui/candy-button/HsvSlider.tscn:35
+#: project/src/main/ui/menu/TrainingMenu.tscn:222
 msgid "0"
 msgstr ""
 
-#: project/src/main/career/ui/ProgressBoard.tscn:659
+#: project/src/main/career/ui/ProgressBoard.tscn:661
 msgid "10:15 am"
 msgstr ""
 
@@ -13487,7 +13479,7 @@ msgid "Completion:"
 msgstr ""
 
 #: project/src/main/credits/CreditsEndText.tscn:61
-#: project/src/main/ui/settings/VolumeSetting.tscn:63
+#: project/src/main/ui/settings/VolumeSetting.tscn:67
 msgid "100%"
 msgstr ""
 
@@ -13506,9 +13498,9 @@ msgid ""
 "You are a super player."
 msgstr ""
 
-#: project/src/main/credits/CreditsHeader.tscn:34
-#: project/src/main/ui/menu/MainMenu.tscn:118
-#: project/src/main/ui/menu/SplashScreen.tscn:55
+#: project/src/main/credits/CreditsHeader.tscn:35
+#: project/src/main/ui/menu/MainMenu.tscn:119
+#: project/src/main/ui/menu/SplashScreen.tscn:56
 msgid "turbo fat"
 msgstr ""
 
@@ -13654,14 +13646,14 @@ msgstr ""
 msgid "%.1f%%"
 msgstr ""
 
-#: project/src/main/editor/creature/AlleleButton.tscn:85
-#: project/src/main/editor/creature/OperationButton.tscn:84
-#: project/src/main/ui/candy-button/CandyButtonC3.tscn:58
-#: project/src/main/ui/candy-button/CandyButtonC3.tscn:87
-#: project/src/main/ui/candy-button/CandyButtonH3.tscn:57
-#: project/src/main/ui/candy-button/CandyButtonH3.tscn:95
-#: project/src/main/ui/candy-button/CandyButtonH4.tscn:47
-#: project/src/main/ui/candy-button/CandyButtonH4.tscn:56
+#: project/src/main/editor/creature/AlleleButton.tscn:86
+#: project/src/main/editor/creature/OperationButton.tscn:85
+#: project/src/main/ui/candy-button/CandyButtonC3.tscn:59
+#: project/src/main/ui/candy-button/CandyButtonC3.tscn:88
+#: project/src/main/ui/candy-button/CandyButtonH3.tscn:58
+#: project/src/main/ui/candy-button/CandyButtonH3.tscn:96
+#: project/src/main/ui/candy-button/CandyButtonH4.tscn:48
+#: project/src/main/ui/candy-button/CandyButtonH4.tscn:57
 msgid "Text"
 msgstr ""
 
@@ -13672,17 +13664,17 @@ msgstr ""
 #: project/src/main/editor/creature/CreatureEditor.tscn:466
 #: project/src/main/puzzle/PuzzleMessages.tscn:92
 #: project/src/main/ui/menu/SystemButtons.tscn:71
-#: project/src/main/ui/menu/TrainingMenu.tscn:280
+#: project/src/main/ui/menu/TrainingMenu.tscn:284
 msgid "Settings"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:481
 #: project/src/main/ui/CreatureStressTest.tscn:77
 #: project/src/main/ui/menu/SystemButtons.tscn:106
-#: project/src/main/ui/menu/TrainingMenu.tscn:298
+#: project/src/main/ui/menu/TrainingMenu.tscn:302
 #: project/src/main/ui/settings/SettingsMenu.tscn:1222
 #: project/src/main/ui/settings/SettingsMenu.tscn:1243
-#: project/src/main/ui/settings/settings-menu-bottom.gd:36
+#: project/src/main/ui/settings/settings-menu-bottom.gd:42
 msgid "Quit"
 msgstr ""
 
@@ -13730,84 +13722,84 @@ msgstr ""
 msgid "Acid Reflux"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:39
+#: project/src/main/music/MusicPlayer.tscn:40
 msgid "Chocolate Chip Hipster"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:45
+#: project/src/main/music/MusicPlayer.tscn:47
 msgid "Chub Hub"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:51
+#: project/src/main/music/MusicPlayer.tscn:54
 msgid "Chub 'n Bass"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:57
+#: project/src/main/music/MusicPlayer.tscn:61
 msgid "Chunky Obake"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:63
+#: project/src/main/music/MusicPlayer.tscn:68
 msgid "Dessert Course (With No Name)"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:69
+#: project/src/main/music/MusicPlayer.tscn:75
 msgid "Doo Doo Doo"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:76
+#: project/src/main/music/MusicPlayer.tscn:83
 msgid "Extra Sprinkles"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:82
+#: project/src/main/music/MusicPlayer.tscn:90
 msgid "Gingerbread House"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:88
+#: project/src/main/music/MusicPlayer.tscn:97
 #: project/src/main/ui/MusicPopup.tscn:73
 msgid "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:94
+#: project/src/main/music/MusicPlayer.tscn:104
 msgid "Harder, Butter, Fatter, Stronger"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:100
+#: project/src/main/music/MusicPlayer.tscn:111
 msgid "Hot Funk Sundae"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:107
+#: project/src/main/music/MusicPlayer.tscn:119
 msgid "Juicer Mixer Grinder"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:114
+#: project/src/main/music/MusicPlayer.tscn:127
 msgid "My Fatness Pal"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:120
+#: project/src/main/music/MusicPlayer.tscn:134
 msgid "Mystic Muffin"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:126
+#: project/src/main/music/MusicPlayer.tscn:141
 msgid "Pressure Cooker"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:132
+#: project/src/main/music/MusicPlayer.tscn:148
 msgid "Rainbow Sherbeat"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:138
+#: project/src/main/music/MusicPlayer.tscn:155
 msgid "Sugar Crash"
 msgstr ""
 
-#: project/src/main/music/MusicPlayer.tscn:144
+#: project/src/main/music/MusicPlayer.tscn:162
 msgid "Triple Thicc Shake"
 msgstr ""
 
-#: project/src/main/puzzle/ComboBurst.tscn:127
+#: project/src/main/puzzle/ComboBurst.tscn:128
 msgid "3x"
 msgstr ""
 
-#: project/src/main/puzzle/MoneyBurst.tscn:127
+#: project/src/main/puzzle/MoneyBurst.tscn:128
 msgid "¥20"
 msgstr ""
 
@@ -13828,7 +13820,7 @@ msgid "10"
 msgstr ""
 
 #: project/src/main/puzzle/Puzzle.tscn:575
-#: project/src/main/ui/menu/TrainingMenu.tscn:225
+#: project/src/main/ui/menu/TrainingMenu.tscn:229
 msgid "1"
 msgstr ""
 
@@ -13842,8 +13834,8 @@ msgid ""
 "0 step drops"
 msgstr ""
 
-#: project/src/main/puzzle/PuzzleMessage.tscn:279
-#: project/src/main/puzzle/PuzzleMessage.tscn:292
+#: project/src/main/puzzle/PuzzleMessage.tscn:281
+#: project/src/main/puzzle/PuzzleMessage.tscn:294
 #: project/src/main/puzzle/puzzle-messages.gd:134
 msgid "Good!"
 msgstr ""
@@ -13851,7 +13843,7 @@ msgstr ""
 #: project/src/main/puzzle/PuzzleMessages.tscn:76
 #: project/src/main/puzzle/puzzle-messages.gd:75
 #: project/src/main/puzzle/puzzle-messages.gd:87
-#: project/src/main/ui/menu/TrainingMenu.tscn:264
+#: project/src/main/ui/menu/TrainingMenu.tscn:268
 msgid "Start"
 msgstr ""
 
@@ -13867,7 +13859,7 @@ msgstr ""
 msgid "+¥55"
 msgstr ""
 
-#: project/src/main/puzzle/TechMoveBurst.tscn:129
+#: project/src/main/puzzle/TechMoveBurst.tscn:130
 msgid ""
 "T-Spin\n"
 "Double"
@@ -13910,8 +13902,8 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:31
-#: project/src/main/ui/settings/settings-menu-bottom.gd:38
-#: project/src/main/ui/settings/settings-menu-bottom.gd:41
+#: project/src/main/ui/settings/settings-menu-bottom.gd:44
+#: project/src/main/ui/settings/settings-menu-bottom.gd:47
 msgid "Give Up"
 msgstr ""
 
@@ -13920,7 +13912,7 @@ msgid "Skip"
 msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:79
-#: project/src/main/ui/menu/MainMenu.tscn:201
+#: project/src/main/ui/menu/MainMenu.tscn:202
 msgid "Practice"
 msgstr ""
 
@@ -14149,11 +14141,11 @@ msgid ""
 "silly goose!"
 msgstr ""
 
-#: project/src/main/puzzle/level/level-settings.gd:100
+#: project/src/main/puzzle/level/level-settings.gd:147
 msgid "description"
 msgstr ""
 
-#: project/src/main/puzzle/level/level-settings.gd:110
+#: project/src/main/puzzle/level/level-settings.gd:159
 msgid "name"
 msgstr ""
 
@@ -15271,7 +15263,7 @@ msgid "+1"
 msgstr ""
 
 #: project/src/main/ui/CreatureStressTest.tscn:49
-#: project/src/main/ui/menu/TrainingMenu.tscn:233
+#: project/src/main/ui/menu/TrainingMenu.tscn:237
 msgid "2"
 msgstr ""
 
@@ -15360,26 +15352,25 @@ msgstr ""
 msgid "All-time Best"
 msgstr ""
 
-#: project/src/main/ui/candy-button/CandyColorPicker.tscn:124
+#: project/src/main/ui/candy-button/CandyColorPicker.tscn:125
 msgid "H"
 msgstr ""
 
-#: project/src/main/ui/candy-button/CandyColorPicker.tscn:131
+#: project/src/main/ui/candy-button/CandyColorPicker.tscn:132
 msgid "S"
 msgstr ""
 
-#: project/src/main/ui/candy-button/CandyColorPicker.tscn:138
+#: project/src/main/ui/candy-button/CandyColorPicker.tscn:139
 msgid "V"
-msgstr ""
-
-#: project/src/main/ui/level-select/HardcoreLevelSelectButton.tscn:181
-#: project/src/main/ui/level-select/LevelSelectButton.tscn:46
-msgid "Just getting started"
 msgstr ""
 
 #: project/src/main/ui/level-select/HookableLevelGradeLabel.tscn:28
 #: project/src/main/ui/level-select/HookableRegionGradeLabel.tscn:25
 msgid "S++"
+msgstr ""
+
+#: project/src/main/ui/level-select/LevelSelectButtonControlHolder.tscn:88
+msgid "Just getting started"
 msgstr ""
 
 #: project/src/main/ui/level-select/level-submenu-description-panel.gd:29
@@ -15455,24 +15446,24 @@ msgstr ""
 msgid "Well, crap"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:142
+#: project/src/main/ui/menu/MainMenu.tscn:143
 msgid "Adventure"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:164
-#: project/src/main/ui/menu/SplashScreen.tscn:80
+#: project/src/main/ui/menu/MainMenu.tscn:165
+#: project/src/main/ui/menu/SplashScreen.tscn:81
 msgid "Play"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:181
+#: project/src/main/ui/menu/MainMenu.tscn:182
 msgid "Avatar"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:224
+#: project/src/main/ui/menu/MainMenu.tscn:225
 msgid "Training"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:270
+#: project/src/main/ui/menu/MainMenu.tscn:271
 msgid "Stress Test"
 msgstr ""
 
@@ -15485,20 +15476,20 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-#: project/src/main/ui/menu/TrainingMenu.tscn:130
+#: project/src/main/ui/menu/TrainingMenu.tscn:131
 msgid "Level"
 msgstr ""
 
-#: project/src/main/ui/menu/TrainingMenu.tscn:152
+#: project/src/main/ui/menu/TrainingMenu.tscn:153
 msgid "Score 200 points as quickly as possible!"
 msgstr ""
 
-#: project/src/main/ui/menu/TrainingMenu.tscn:169
+#: project/src/main/ui/menu/TrainingMenu.tscn:170
 #: project/src/main/ui/settings/SettingsMenu.tscn:435
 msgid "Speed"
 msgstr ""
 
-#: project/src/main/ui/menu/TrainingMenu.tscn:242
+#: project/src/main/ui/menu/TrainingMenu.tscn:246
 msgid "3"
 msgstr ""
 
@@ -15884,7 +15875,7 @@ msgstr ""
 msgid "Change save slot?"
 msgstr ""
 
-#: project/src/main/ui/settings/VolumeSetting.tscn:34
+#: project/src/main/ui/settings/VolumeSetting.tscn:35
 msgid "Music"
 msgstr ""
 
@@ -15896,16 +15887,16 @@ msgstr ""
 msgid "High"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:66
+#: project/src/main/ui/settings/settings-dialogs.gd:77
 #, python-format
 msgid "%.1f hours"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:73
+#: project/src/main/ui/settings/settings-dialogs.gd:93
 msgid "Delete save data?"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:80
+#: project/src/main/ui/settings/settings-dialogs.gd:100
 msgid "Are you sure?"
 msgstr ""
 
@@ -15953,8 +15944,8 @@ msgstr ""
 msgid "Fastestest"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-menu-bottom.gd:37
-#: project/src/main/ui/settings/settings-menu-bottom.gd:40
+#: project/src/main/ui/settings/settings-menu-bottom.gd:43
+#: project/src/main/ui/settings/settings-menu-bottom.gd:46
 msgid "Save + Quit"
 msgstr ""
 
