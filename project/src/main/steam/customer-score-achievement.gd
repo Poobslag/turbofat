@@ -6,7 +6,8 @@ export (int) var target_score: int = 0
 ## Highest single-customer score the player has achieved since launching the game.
 var _max_score := 0
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	disconnect_save_signal()
 	disconnect_load_signal()
 	PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")

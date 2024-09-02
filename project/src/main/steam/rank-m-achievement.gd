@@ -4,7 +4,8 @@ extends SteamAchievement
 ## The best rank the player has achieved on any level since launching the game.
 var _best_level_rank: float = RankCalculator.WORST_RANK
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	disconnect_save_signal()
 	disconnect_load_signal()
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")

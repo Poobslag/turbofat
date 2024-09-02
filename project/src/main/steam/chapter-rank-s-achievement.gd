@@ -7,10 +7,10 @@ export (String) var stat_id: String
 ## The region ID whose unlock status should be tracked.
 export (String) var region_id: String
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	# avoid checking for 'rank s' every time we save; this changes infrequently and is expensive to check.
 	disconnect_save_signal()
-	
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 
 

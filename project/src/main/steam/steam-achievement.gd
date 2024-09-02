@@ -8,9 +8,20 @@ extends Node
 export (String) var achievement_id: String
 
 func _ready() -> void:
+	add_to_group("steam_achievements")
+	
+	# avoid flooding the steam API with calls on startup; otherwise the game can crash
+	yield(get_tree().create_timer(3), "timeout")
+	connect_signals()
+
+
+## Connects signals needed for this achievement. Can be overridden by child scripts to connect other signals.
+##
+## Signals are connected a few seconds after startup to avoid immediately flooding the Steam API with calls when
+## loading the player's initial save. Otherwise the game can crash.
+func connect_signals() -> void:
 	PlayerSave.connect("save_scheduled", self, "_on_PlayerSave_save_scheduled")
 	PlayerSave.connect("after_load", self, "_on_PlayerSave_after_load")
-	add_to_group("steam_achievements")
 
 
 func disconnect_save_signal() -> void:
