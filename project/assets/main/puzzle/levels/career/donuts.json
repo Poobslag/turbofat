@@ -6,6 +6,9 @@
     "type": "score",
     "value": 100
   },
+  "icons": [
+    "basic"
+  ],
   "piece_types": [
     "start_piece_t"
   ],

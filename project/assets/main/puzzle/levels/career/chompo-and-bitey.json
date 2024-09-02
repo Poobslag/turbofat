@@ -7,6 +7,11 @@
     "type": "pieces",
     "value": 50
   },
+  "icons": [
+    "shark",
+    "snack_box",
+    "slow"
+  ],
   "rank": [
     "box_factor 1.16",
     "combo_factor 1.21",

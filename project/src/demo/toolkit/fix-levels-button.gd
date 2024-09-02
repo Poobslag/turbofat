@@ -146,6 +146,38 @@ func _report_unused_career_levels() -> void:
 		_output_label.add_line("Level keys not in career regions: %s" % [level_keys_not_in_career_regions])
 
 
+## Reports any levels with missing or invalid 'icons' data.
+func _report_level_icons() -> void:
+	var missing_icons_level_ids := []
+	var bad_icons := []
+	
+	var level_ids := []
+	level_ids.append_array(CareerLevelLibrary.all_level_ids())
+	level_ids.append_array(OtherLevelLibrary.all_level_ids())
+	
+	for level_id in level_ids:
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		
+		if level_settings.other.tutorial:
+			pass
+		elif not level_settings.icons:
+			missing_icons_level_ids.append(level_id)
+	
+	for level_id in level_ids:
+		var text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(level_id))
+		var json: Dictionary = parse_json(text)
+		for icon_string in json.get("icons", []):
+			if not LevelSettings.LevelIcon.has(icon_string.to_upper()):
+				bad_icons.append("%s/%s" % [level_id, icon_string])
+	
+	if missing_icons_level_ids:
+		_output_label.add_line("Levels missing icons: %s" % [PoolStringArray(missing_icons_level_ids).join(", ")])
+	
+	if bad_icons:
+		_output_label.add_line("Levels with bad icons: %s" % [PoolStringArray(bad_icons).join(", ")])
+
+
 ## Reports any unusual show_rank and hide_rank settings
 func _report_bad_show_rank() -> void:
 	var bad_level_id_set := {}
@@ -229,6 +261,7 @@ func _on_pressed() -> void:
 	_report_invalid_career_levels()
 	_report_invalid_career_music()
 	_report_unused_career_levels()
+	_report_level_icons()
 	_report_bad_show_rank()
 	_report_bad_achievements()
 	_alphabetize_career_levels()

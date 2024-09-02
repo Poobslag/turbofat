@@ -7,6 +7,11 @@
     "type": "lines",
     "value": 48
   },
+  "icons": [
+    "piece_k",
+    "dig",
+    "slow"
+  ],
   "piece_types": [
     "piece_c",
     "piece_j",

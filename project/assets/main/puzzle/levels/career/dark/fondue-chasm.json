@@ -27,6 +27,11 @@
     "type": "time_over",
     "value": 145
   },
+  "icons": [
+    "piece_c",
+    "piece_k",
+    "dig"
+  ],
   "piece_types": [
     "piece_c",
     "piece_j",

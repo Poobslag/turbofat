@@ -1398,6 +1398,8 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="change_save_cancelled" from="Dialogs" to="." method="_on_Dialogs_change_save_cancelled"]
 [connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
 [connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
+[connection signal="dialog_visibility_changed" from="Dialogs" to="Window/UiArea/Bottom" method="_on_Dialogs_dialog_visibility_changed"]
+[connection signal="visibility_changed" from="Dialogs/Backdrop" to="Dialogs" method="_on_Backdrop_visibility_changed"]
 [connection signal="about_to_show" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]

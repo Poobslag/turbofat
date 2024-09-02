@@ -10,6 +10,10 @@
     "type": "time_over",
     "value": 80
   },
+  "icons": [
+    "veggie",
+    "dig"
+  ],
   "other": [
     "tile_set veggie"
   ],

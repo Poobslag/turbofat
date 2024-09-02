@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 170
   },
+  "icons": [
+    "shark",
+    "confusing"
+  ],
   "piece_types": [
     "piece_p",
     "piece_q",

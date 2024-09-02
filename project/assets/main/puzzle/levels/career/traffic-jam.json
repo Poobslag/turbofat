@@ -13,6 +13,9 @@
     "type": "score",
     "value": 225
   },
+  "icons": [
+    "stop"
+  ],
   "rank": [
     "combo_factor 1.21"
   ],

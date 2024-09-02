@@ -6,6 +6,10 @@
     "type": "time_over",
     "value": 60
   },
+  "icons": [
+    "mole",
+    "sneaky"
+  ],
   "rank": [
     "box_factor 0.53",
     "combo_factor 1.21",

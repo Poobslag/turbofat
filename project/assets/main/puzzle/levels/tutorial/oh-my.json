@@ -5,6 +5,9 @@
     "type": "lines",
     "value": 100
   },
+  "icons": [
+    "slow"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

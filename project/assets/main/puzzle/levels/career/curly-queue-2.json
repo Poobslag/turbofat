@@ -19,6 +19,10 @@
     "type": "time_over",
     "value": 120
   },
+  "icons": [
+    "turn",
+    "annoying"
+  ],
   "rank": [
     "extra_seconds_per_piece 0.4",
     "preplaced_pieces 3"

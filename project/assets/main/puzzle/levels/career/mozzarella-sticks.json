@@ -10,6 +10,11 @@
     "type": "score",
     "value": 1100
   },
+  "icons": [
+    "piece_c",
+    "piece_k",
+    "confusing"
+  ],
   "piece_types": [
     "piece_c",
     "piece_j",

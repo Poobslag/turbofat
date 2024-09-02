@@ -10,6 +10,10 @@
     "type": "score",
     "value": 550
   },
+  "icons": [
+    "spear",
+    "narrow"
+  ],
   "rank": [
     "box_factor 0.3",
     "combo_factor 1.11"

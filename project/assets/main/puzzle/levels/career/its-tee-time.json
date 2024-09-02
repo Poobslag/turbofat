@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 75
   },
+  "icons": [
+    "piece_t",
+    "basic"
+  ],
   "piece_types": [
     "piece_j",
     "piece_l",

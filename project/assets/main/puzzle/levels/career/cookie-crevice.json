@@ -7,6 +7,10 @@
     "type": "lines",
     "value": 20
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "box_factor 1.21",
     "preplaced_pieces 14"

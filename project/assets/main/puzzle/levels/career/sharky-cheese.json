@@ -7,6 +7,11 @@
     "type": "time_over",
     "value": 160
   },
+  "icons": [
+    "shark",
+    "confusing",
+    "dig"
+  ],
   "rank": [
     "box_factor 0.72",
     "combo_factor 0.76",

@@ -7,6 +7,9 @@
     "type": "score",
     "value": 2500
   },
+  "icons": [
+    "shark"
+  ],
   "rank": [
     "box_factor 0.81",
     "combo_factor 1.21",

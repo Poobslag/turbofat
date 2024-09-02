@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": 150
   },
+  "icons": [
+    "turn",
+    "confusing"
+  ],
   "other": [
     "suppress_piece_rotation",
     "suppress_piece_initial_rotation"

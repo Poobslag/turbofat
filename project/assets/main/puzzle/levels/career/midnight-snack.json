@@ -19,6 +19,11 @@
     "type": "customers",
     "value": 3
   },
+  "icons": [
+    "onion",
+    "annoying",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.81",
     "extra_seconds_per_piece 0.21"

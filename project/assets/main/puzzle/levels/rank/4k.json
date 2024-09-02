@@ -8,6 +8,10 @@
     "type": "customers",
     "value": 4
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "success_bonus 2"
   ],

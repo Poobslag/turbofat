@@ -8,6 +8,10 @@
     "type": "lines",
     "value": 200
   },
+  "icons": [
+    "basic",
+    "fast"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

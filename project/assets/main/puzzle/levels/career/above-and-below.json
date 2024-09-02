@@ -10,6 +10,11 @@
     "type": "lines",
     "value": 20
   },
+  "icons": [
+    "mole",
+    "confusing",
+    "slow"
+  ],
   "rank": [
     "extra_seconds_per_piece 0.4",
     "master_pickup_score_per_line 23.91",

@@ -7,6 +7,9 @@
     "type": "score",
     "value": 300
   },
+  "icons": [
+    "piece_o"
+  ],
   "piece_types": [
     "piece_j",
     "piece_l",

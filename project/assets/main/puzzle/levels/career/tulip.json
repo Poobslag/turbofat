@@ -6,6 +6,9 @@
     "type": "score",
     "value": 200
   },
+  "icons": [
+    "basic"
+  ],
   "rank": [
     "box_factor 0.7",
     "master_pickup_score 40",

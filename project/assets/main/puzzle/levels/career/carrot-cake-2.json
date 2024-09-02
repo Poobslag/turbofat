@@ -7,6 +7,11 @@
     "type": "score",
     "value": 500
   },
+  "icons": [
+    "carrot",
+    "cake_box",
+    "annoying"
+  ],
   "rank": [
     "box_factor 2.12",
     "combo_factor 1.21",

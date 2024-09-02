@@ -15,6 +15,11 @@
     "type": "customers",
     "value": 4
   },
+  "icons": [
+    "stop",
+    "narrow",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.67",
     "combo_factor 0.94",

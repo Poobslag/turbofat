@@ -17,6 +17,11 @@
     "type": "lines",
     "value": 75
   },
+  "icons": [
+    "shark",
+    "piece_k",
+    "slow"
+  ],
   "piece_types": [
     "piece_c",
     "piece_j",

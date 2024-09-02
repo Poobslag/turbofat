@@ -11,6 +11,11 @@
     "type": "score",
     "value": 2500
   },
+  "icons": [
+    "spear",
+    "piece_j",
+    "piece_p"
+  ],
   "piece_types": [
     "piece_j",
     "piece_p",

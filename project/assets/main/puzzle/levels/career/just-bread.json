@@ -6,6 +6,10 @@
     "type": "time_over",
     "value": 80
   },
+  "icons": [
+    "piece_t",
+    "piece_u"
+  ],
   "piece_types": [
     "no_suppress_repeat_piece",
     "piece_u",

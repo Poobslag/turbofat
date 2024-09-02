@@ -833,7 +833,7 @@ tr("If you're gonna lie, at least lie about something that matters! Not just, ov
 tr("Sensei, how are you this gullible!?")
 tr("Sidger's cooked everything today, I've just been coaching them. How would it even make sense for me to-")
 tr("This has nothing to do with me, I haven't cooked a single thing today. I've just been watching Sidger-")
-tr("Look who's at the stove, they didn't even move an inch! how could you possibly think that I-")
+tr("Look who's at the stove, they didn't even move an inch! How could you possibly think that I-")
 tr("Now now, you shouldn't go around blaming each other. #player#, you need to be more of a team player like Sidger.")
 tr("...Remember what I was saying about a delicate balance?")
 tr("@#$%!")

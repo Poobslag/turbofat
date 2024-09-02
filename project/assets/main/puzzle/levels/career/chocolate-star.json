@@ -6,6 +6,11 @@
     "type": "lines",
     "value": 10
   },
+  "icons": [
+    "piece_q",
+    "piece_l",
+    "slow"
+  ],
   "piece_types": [
     "piece_q",
     "piece_q",

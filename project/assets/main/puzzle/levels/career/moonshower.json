@@ -7,6 +7,10 @@
     "type": "lines",
     "value": 25
   },
+  "icons": [
+    "onion",
+    "slow"
+  ],
   "rank": [
     "box_factor 0.93",
     "extra_seconds_per_piece 0.06"

@@ -10,6 +10,11 @@
     "type": "time_over",
     "value": 120
   },
+  "icons": [
+    "veggie",
+    "spear",
+    "confusing"
+  ],
   "other": [
     "tile_set veggie"
   ],

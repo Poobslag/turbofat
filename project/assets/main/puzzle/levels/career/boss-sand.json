@@ -29,6 +29,9 @@
     "type": "time_over",
     "value": 210
   },
+  "icons": [
+    "basic"
+  ],
   "rank": [
     "success_bonus 2"
   ],

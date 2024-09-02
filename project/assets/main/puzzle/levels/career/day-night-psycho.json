@@ -7,6 +7,9 @@
     "type": "score",
     "value": 500
   },
+  "icons": [
+    "onion"
+  ],
   "piece_types": [
     "piece_q",
     "piece_l",

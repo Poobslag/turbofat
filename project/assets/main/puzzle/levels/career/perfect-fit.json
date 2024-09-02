@@ -6,6 +6,11 @@
     "type": "pieces",
     "value": 30
   },
+  "icons": [
+    "dig",
+    "piece_q",
+    "slow"
+  ],
   "piece_types": [
     "piece_j",
     "piece_l",

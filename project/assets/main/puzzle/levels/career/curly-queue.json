@@ -10,6 +10,10 @@
     "type": "time_over",
     "value": 90
   },
+  "icons": [
+    "turn",
+    "annoying"
+  ],
   "piece_types": [
     "start_piece_j"
   ],

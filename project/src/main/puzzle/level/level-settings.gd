@@ -4,6 +4,50 @@ class_name LevelSettings
 ## This includes information about how the player loses/wins, what kind of pieces they're given, whether they're given
 ## a time limit, and any other special rules.
 
+## Icons shown when selecting a level which warn the player about gimmicks.
+enum LevelIcon {
+	# critters
+	CARROT,
+	MOLE,
+	SHARK,
+	ONION,
+	SPEAR,
+
+	# pieces
+	PIECE_J,
+	PIECE_L,
+	PIECE_O,
+	PIECE_P,
+	PIECE_Q,
+	PIECE_T,
+	PIECE_U,
+	PIECE_V,
+	PIECE_S,
+	PIECE_Z,
+	PIECE_C,
+	PIECE_K,
+
+	# related to pieces
+	SNACK_BOX,
+	CAKE_BOX,
+	VEGGIE,
+
+	# qualities
+	BASIC, # levels which reward normal play (building and clearing boxes)
+	SLOW, # levels with no time pressure
+	FAST, # levels which reward or force fast play
+	DIG, # levels which require 'digging down' rather than 'building up'
+	SURPRISING, # levels with a surprising gimmick, which are mitigated if you play them a second time
+	ANNOYING, # levels with an annoying gimmick, which are difficult to mitigate even with experience
+	CONFUSING, # levels with a confusing gimmick, which require conscious planning or clever strategy
+	SNEAKY, # levels with a sneaky way to score a lot of points, which you might look up on the internet
+	NARROW, # levels with a narrow playfield
+	BLIND, # Levels which reward memorizing the playfield. Technically all carrot and onion levels reward memorizing
+		# the playfield, but this icon is used for the more egregious levels.
+	STOP, # Levels which make you wait for something (most commonly, waiting for lines to clear)
+	TURN, # Levels with special rotation rules
+}
+
 ## Level description shown when selecting a level.
 var description := ""
 
@@ -22,6 +66,9 @@ var combo_break := ComboBreakRules.new()
 ## How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
 ## used for limits such as serving 5 creatures or clearing 10 lines.
 var finish_condition := Milestone.new()
+
+## Icons shown when selecting a level which warn the player about gimmicks.
+var icons := []
 
 ## Level id used for saving/loading data.
 var id := ""
@@ -102,6 +149,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		difficulty = json["difficulty"]
 	if json.has("finish_condition"):
 		finish_condition.from_json_dict(json["finish_condition"])
+	if json.has("icons"):
+		icons = _icon_ints_from_strings(json["icons"])
 	if json.has("input_replay"):
 		input_replay.from_json_array(json["input_replay"])
 	if json.has("lose_condition"):
@@ -142,6 +191,7 @@ func to_json_dict() -> Dictionary:
 	if not blocks_during.is_default(): result["blocks_during"] = blocks_during.to_json_array()
 	if not combo_break.is_default(): result["combo_break"] = combo_break.to_json_array()
 	if not finish_condition.is_default(): result["finish_condition"] = finish_condition.to_json_dict()
+	if icons: result["icons"] = _icon_strings_from_ints(icons)
 	if not input_replay.is_default(): result["input_replay"] = input_replay.to_json_array()
 	if not lose_condition.is_default(): result["lose_condition"] = lose_condition.to_json_array()
 	if not other.is_default(): result["other"] = other.to_json_array()
@@ -177,6 +227,38 @@ func load_from_text(new_id: String, text: String) -> void:
 
 func get_difficulty() -> String:
 	return difficulty if difficulty else speed.get_max_speed()
+
+
+## Parameters:
+## 	'icon_strings': Lowercase strings corresponding to entries in LevelIcon, like 'shark' or 'cake_box'
+##
+## Returns:
+## 	List of enums from LevelIcon, like SHARK or CAKE_BOX
+func _icon_ints_from_strings(icon_strings: Array) -> Array:
+	var result := []
+	for icon_string in icon_strings:
+		var icon_int: int = Utils.enum_from_snake_case(LevelIcon, icon_string, -1)
+		if icon_int == -1:
+			push_warning("Invalid level icon: %s" % [icon_string])
+		else:
+			result.append(icon_int)
+	return result
+
+
+## Parameters:
+## 	'icon_strings': Enums from LevelIcon, like SHARK or CAKE_BOX
+##
+## Returns:
+## 	Lowercase strings corresponding to entries in LevelIcon, like 'shark' or 'cake_box'
+func _icon_strings_from_ints(icon_ints: Array) -> Array:
+	var result := []
+	for icon_int in icon_ints:
+		var icon_string: String = Utils.enum_to_snake_case(LevelIcon, icon_int, "")
+		if icon_string == "":
+			push_warning("Invalid level icon: %s" % [icon_string])
+		else:
+			result.append(icon_string)
+	return result
 
 
 static func path_from_level_key(level_key: String) -> String:

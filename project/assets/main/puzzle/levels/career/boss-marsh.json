@@ -7,6 +7,10 @@
     "type": "pieces",
     "value": 150
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "success_bonus 2"
   ],

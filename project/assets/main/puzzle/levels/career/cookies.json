@@ -6,6 +6,10 @@
     "type": "lines",
     "value": 20
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "box_factor 1.16",
     "master_pickup_score 40",

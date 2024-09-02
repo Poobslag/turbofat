@@ -6,6 +6,10 @@
     "type": "score",
     "value": 100
   },
+  "icons": [
+    "piece_p",
+    "piece_j"
+  ],
   "piece_types": [
     "piece_p",
     "piece_p",

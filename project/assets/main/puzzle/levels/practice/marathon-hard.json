@@ -55,6 +55,9 @@
     "value": 200,
     "lenient_value": "150"
   },
+  "icons": [
+    "basic"
+  ],
   "lose_condition": [
     "top_out 1"
   ],

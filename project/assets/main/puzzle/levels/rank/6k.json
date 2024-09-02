@@ -8,6 +8,10 @@
     "type": "time_over",
     "value": 180
   },
+  "icons": [
+    "basic",
+    "slow"
+  ],
   "rank": [
     "success_bonus 2"
   ],
