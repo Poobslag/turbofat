@@ -13,7 +13,8 @@ extends SteamAchievement
 ## The level ID whose achievement condition should be checked.
 export (String) var level_id: String
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	disconnect_save_signal()
 	disconnect_load_signal()
 	Breadcrumb.connect("after_scene_changed", self, "_on_Breadcrumb_after_scene_changed")

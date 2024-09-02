@@ -6,7 +6,8 @@ export (int) var target_combo: int = 0
 ## Highest combo the player has achieved since launching the game.
 var _max_combo := 0
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	disconnect_save_signal()
 	disconnect_load_signal()
 	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")

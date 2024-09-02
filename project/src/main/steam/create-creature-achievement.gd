@@ -1,7 +1,8 @@
 extends SteamAchievement
 ## Unlocks an achievement when the player customizes their creature.
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	# The creature editor does not fire a 'save_scheduled' signal when saving; we connect a 'before_save' signal
 	# instead
 	disconnect_save_signal()

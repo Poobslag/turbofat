@@ -7,10 +7,10 @@ export (String) var stat_id: String
 ## The region ID whose cutscenes should be tracked.
 export (String) var region_id: String
 
-func _ready() -> void:
+func connect_signals() -> void:
+	.connect_signals()
 	# avoid checking for story completion every time we save; this changes infrequently and is expensive to check.
 	disconnect_save_signal()
-	
 	CurrentCutscene.connect("cutscene_played", self, "_on_CurrentCutscene_cutscene_played")
 
 
