@@ -1,10 +1,10 @@
 class_name FrameInput
 extends Node
-## Tracks the state of an input action over time.
+## Monitors the state of an input action over time.
 ##
 ## Also provides support for buffered inputs. The buffer duration is dictated by the child timer.
 
-## Action to track
+## Action to monitor
 export (String) var action: String
 
 ## Action which negates this one if pressed. For example if the player holds move_piece_left and presses

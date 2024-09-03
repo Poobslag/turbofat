@@ -50,7 +50,7 @@ var _free_after_poof := false
 ## Queue of enums from State for the mole's upcoming animation states.
 var _next_states := []
 
-## 'true' if a state has already been popped from the _next_states queue this frame. We track this to avoid
+## 'true' if a state has already been popped from the _next_states queue this frame. We monitor this to avoid
 ## accidentally popping two states from the queue when the mole first spawns.
 var _already_popped_state := false
 

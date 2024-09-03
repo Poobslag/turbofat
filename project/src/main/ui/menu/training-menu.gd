@@ -31,7 +31,7 @@ onready var _region_submenu := $RegionSubmenu
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	
 	_assign_default_recent_data()
 	_load_recent_data()

@@ -58,7 +58,7 @@ var _remaining_line_erase_timings := []
 ## value: (bool) true
 var _lines_to_preserve_at_end := {}
 
-## tracks the age of lines which have been filled, but not yet cleared due to the level's rules
+## monitors the age of lines which have been filled, but not yet cleared due to the level's rules
 ## key: (int) line index
 ## value: (int) number of times this line has been full during 'calculate_lines_to_clear'
 var _line_filled_age := {}
@@ -70,7 +70,7 @@ var _total_cleared_line_count := 0
 ## Maximum score the player has reached.
 ##
 ## Level triggers can fire when the player reaches a score threshold. The player's score can decrease if they top out,
-## so we track their max score to ensure score triggers only fire once.
+## so we monitor their max score to ensure score triggers only fire once.
 var _max_trigger_score := 0
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)

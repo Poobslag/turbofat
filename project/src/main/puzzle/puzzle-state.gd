@@ -233,7 +233,7 @@ func make_player_lose() -> void:
 
 ## Immediately ends the game, triggering any other end-of-game effects.
 ##
-## End-of-game effects include calculating the player's final score, restoring the chill background music and
+## End-of-game effects include calculating the player's final score, restoring the menu background music and
 ## triggering the chef's reaction. End-of-game effects do not include clearing the player's remaining boxes -- this
 ## occurs before the game ends.
 func end_game() -> void:

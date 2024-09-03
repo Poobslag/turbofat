@@ -4,7 +4,7 @@ class_name ChatscriptParser
 ## This class is stateful and intended to be used once and thrown away. If it is reused, the previously parsed
 ## chat tree will be erased.
 
-## Tracks the state for the parser.
+## Monitors the state for the parser.
 ##
 ## The ChatscriptParser has different states based on whether it's parsing chat, characters, locations, or something
 ## else.

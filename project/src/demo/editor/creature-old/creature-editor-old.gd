@@ -38,7 +38,7 @@ onready var outer_creatures := [
 	$World/Creatures/SeCreature,
 ]
 
-## UI which tracks things like mutagen level and locked/unlocked alleles
+## UI which monitors things like mutagen level and locked/unlocked alleles
 onready var _mutate_ui := $Ui/TabContainer/Mutate
 onready var _reroll_ui := $Ui/Reroll
 

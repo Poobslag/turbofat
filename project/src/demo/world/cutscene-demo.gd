@@ -19,7 +19,7 @@ func _ready() -> void:
 	# Initialize the Breadcrumb trail so that cutscenes will return to this demo after they finish.
 	Breadcrumb.initialize_trail()
 	
-	# stop any music which was playing during the cutscene
+	# stop any music track which was playing during the cutscene
 	MusicPlayer.stop()
 	
 	_load_demo_data()

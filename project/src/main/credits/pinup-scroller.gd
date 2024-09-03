@@ -22,7 +22,7 @@ const FADE_DURATION := 0.5
 ## Height in units. Used for calculating the scroll speed.
 export (float) var line_height: float
 
-## tracks whether the pinup is currently fading in or out
+## monitors whether the pinup is currently fading in or out
 var state: int = ScrollerState.VISIBLE
 
 var velocity := Vector2(0, -50)

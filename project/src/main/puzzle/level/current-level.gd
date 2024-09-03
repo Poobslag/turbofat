@@ -34,7 +34,7 @@ var customers: Array
 ## Creature who will be the chef for the level. If absent, the player will be the chef.
 var chef_id: String
 
-## Tracks when the player finishes a level.
+## Monitors when the player finishes a level.
 var best_result: int = Levels.Result.NONE setget set_best_result
 
 ## How many times the player has tried the level in this session.

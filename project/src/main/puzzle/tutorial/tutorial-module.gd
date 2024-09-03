@@ -119,7 +119,7 @@ func _on_PuzzleState_after_level_changed() -> void:
 	
 	if _start_customer_countdown:
 		_start_customer_countdown = false
-		MusicPlayer.play_upbeat_bgm(false)
+		MusicPlayer.play_puzzle_track(false)
 		PuzzleState.game_active = true
 		puzzle.start_level_countdown()
 

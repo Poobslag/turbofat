@@ -8,7 +8,7 @@ export (PackedScene) var FoodScene: PackedScene
 ## Array of floats corresponding to how fat the creature should become after eating each upcoming food item.
 var _pending_food_fatness := []
 
-## Increments as the customer changes to track the intended recipient of each food item.
+## Increments as the customer changes to monitor the intended recipient of each food item.
 var _customer_index := 0
 
 ## Queue of FoodItem objects which have floated awhile, and can now fly into a customer's mouth.
@@ -178,7 +178,7 @@ func _on_FoodFlightTimer_timeout() -> void:
 	food_item.emit_signal("ready_to_fly")
 
 
-## We track when the customer changes to ensure food goes to the proper place, and that it doesn't get eaten by the
+## We monitor when the customer changes to ensure food goes to the proper place, and that it doesn't get eaten by the
 ## wrong customer.
 func _on_RestaurantView_customer_changed() -> void:
 	_customer_change_timer.start()

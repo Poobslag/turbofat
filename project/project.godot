@@ -225,9 +225,9 @@ _global_script_classes=[ {
 "path": "res://src/main/ui/cheat-code-detector.gd"
 }, {
 "base": "AudioStreamPlayer",
-"class": "CheckpointSong",
+"class": "CheckpointMusicTrack",
 "language": "GDScript",
-"path": "res://src/main/music/checkpoint-song.gd"
+"path": "res://src/main/music/checkpoint-music-track.gd"
 }, {
 "base": "Reference",
 "class": "ComboBreakRules",
@@ -1643,7 +1643,7 @@ _global_script_class_icons={
 "ChatTree": "",
 "ChatscriptParser": "",
 "CheatCodeDetector": "",
-"CheckpointSong": "",
+"CheckpointMusicTrack": "",
 "ComboBreakRules": "",
 "ComboBurst": "",
 "ComboTracker": "",
