@@ -15,7 +15,6 @@ onready var _creature_editor_library := Global.get_creature_editor_library()
 
 ## Extracts localizable strings from levels and chats and writes them to a file.
 func run() -> void:
-	_output.clear()
 	_file_contents.clear()
 	
 	# Temporarily set the locale to 'en' to ensure we extract english keys

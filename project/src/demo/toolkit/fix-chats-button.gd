@@ -11,7 +11,6 @@ var _problems := []
 
 ## Reports any chats with problems.
 func run() -> void:
-	_output.clear()
 	_problems.clear()
 	
 	var chat_paths := _find_chat_paths()
