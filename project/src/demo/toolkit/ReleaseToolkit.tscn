@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/demo/toolkit/fix-levels-button.gd" type="Script" id=1]
 [ext_resource path="res://src/demo/toolkit/extract-localizables-button.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/demo/toolkit/fix-creatures-button.gd" type="Script" id=6]
 [ext_resource path="res://src/demo/toolkit/release-toolkit-output.gd" type="Script" id=7]
 [ext_resource path="res://src/main/editor/creature/CreatureEditorLibrary.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=9]
+[ext_resource path="res://src/demo/toolkit/run-all-button.gd" type="Script" id=10]
 
 [node name="ReleaseToolkit" type="Control"]
 anchor_right = 1.0
@@ -25,63 +27,81 @@ margin_bottom = 225.0
 rect_min_size = Vector2( 768, 450 )
 alignment = 1
 
-[node name="ExtractLocalizables" type="Button" parent="VBoxContainer"]
-margin_left = 199.0
-margin_top = 61.0
-margin_right = 569.0
-margin_bottom = 112.0
+[node name="RunAll" type="Button" parent="VBoxContainer"]
+margin_left = 314.0
+margin_top = 9.0
+margin_right = 454.0
+margin_bottom = 60.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
+text = "Run All"
+script = ExtResource( 10 )
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 64.0
+margin_right = 768.0
+margin_bottom = 68.0
+
+[node name="ExtractLocalizables" type="Button" parent="VBoxContainer"]
+margin_left = 259.0
+margin_top = 72.0
+margin_right = 509.0
+margin_bottom = 108.0
+size_flags_horizontal = 4
+theme = ExtResource( 9 )
 text = "Extract Localizables"
 script = ExtResource( 2 )
 output_label_path = NodePath("../Output")
 
 [node name="FixChats" type="Button" parent="VBoxContainer"]
-margin_left = 297.0
-margin_top = 116.0
-margin_right = 471.0
-margin_bottom = 167.0
+margin_left = 323.0
+margin_top = 112.0
+margin_right = 444.0
+margin_bottom = 148.0
 size_flags_horizontal = 4
-theme = ExtResource( 3 )
+theme = ExtResource( 9 )
 text = "Fix Chats"
 script = ExtResource( 5 )
 output_label_path = NodePath("../Output")
 
 [node name="FixCreatures" type="Button" parent="VBoxContainer"]
-margin_left = 260.0
-margin_top = 171.0
-margin_right = 508.0
-margin_bottom = 222.0
+margin_left = 298.0
+margin_top = 152.0
+margin_right = 469.0
+margin_bottom = 188.0
 size_flags_horizontal = 4
-theme = ExtResource( 3 )
+theme = ExtResource( 9 )
 text = "Fix Creatures"
 script = ExtResource( 6 )
 output_label_path = NodePath("../Output")
 
 [node name="FixLevels" type="Button" parent="VBoxContainer"]
-margin_left = 289.0
-margin_top = 226.0
-margin_right = 478.0
-margin_bottom = 277.0
+margin_left = 319.0
+margin_top = 192.0
+margin_right = 449.0
+margin_bottom = 228.0
 size_flags_horizontal = 4
-theme = ExtResource( 3 )
+theme = ExtResource( 9 )
 text = "Fix Levels"
 script = ExtResource( 1 )
 output_label_path = NodePath("../Output")
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 281.0
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 232.0
 margin_right = 768.0
-margin_bottom = 285.0
+margin_bottom = 236.0
 
-[node name="Output" type="Label" parent="VBoxContainer"]
-margin_top = 289.0
+[node name="Output" type="TextEdit" parent="VBoxContainer"]
+margin_top = 240.0
 margin_right = 768.0
-margin_bottom = 389.0
-rect_min_size = Vector2( 0, 100 )
+margin_bottom = 440.0
+rect_min_size = Vector2( 0, 200 )
+focus_mode = 0
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_vertical = 4
 theme = ExtResource( 4 )
-align = 1
-autowrap = true
+readonly = true
 script = ExtResource( 7 )
 
 [node name="CreatureEditorLibrary" parent="." instance=ExtResource( 8 )]

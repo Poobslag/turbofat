@@ -19,7 +19,6 @@ var _converted := []
 var _problem_count := 0
 
 func run() -> void:
-	_output.clear()
 	_problem_count = 0
 	
 	_upgrade_levels()

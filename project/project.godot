@@ -1299,7 +1299,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/demo/toolkit/release-tool-button.gd"
 }, {
-"base": "Label",
+"base": "TextEdit",
 "class": "ReleaseToolkitOutput",
 "language": "GDScript",
 "path": "res://src/demo/toolkit/release-toolkit-output.gd"
