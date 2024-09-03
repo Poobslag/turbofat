@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/level-button-scroller.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/level-select/GradeLabels.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=6]
 
 [node name="LevelButtonScroller" type="Control"]
@@ -30,12 +29,7 @@ margin_bottom = 105.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="GradeLabels" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-script = ExtResource( 4 )
-GradeLabelScene = ExtResource( 3 )
+[node name="GradeLabels" parent="." instance=ExtResource( 3 )]
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 6 )]
 codes = [ "unlock" ]

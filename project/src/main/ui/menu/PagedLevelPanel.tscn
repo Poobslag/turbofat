@@ -1,14 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/ui/level-select/HookableLevelGradeLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/level-select/GradeLabels.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/squeak/gy/SqueakButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/paged-level-buttons.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=6]
 [ext_resource path="res://src/main/ui/menu/paged-level-panel.gd" type="Script" id=7]
 [ext_resource path="res://src/main/ui/level-select/level-submenu-info-panel.gd" type="Script" id=8]
-[ext_resource path="res://src/main/ui/level-select/level-grade-labels.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/level-select/level-submenu-description-panel.gd" type="Script" id=11]
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=13]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=14]
@@ -73,6 +72,7 @@ margin_bottom = 145.0
 alignment = 1
 script = ExtResource( 5 )
 LevelButtonScene = ExtResource( 1 )
+grade_labels_path = NodePath("../GradeLabels")
 
 [node name="LeftArrow" parent="VBoxContainer/Top/LevelButtons" instance=ExtResource( 4 )]
 margin_left = 364.0
@@ -108,12 +108,7 @@ theme = ExtResource( 6 )
 enabled_focus_mode = 1
 text = ">"
 
-[node name="GradeLabels" type="Control" parent="VBoxContainer/Top"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-script = ExtResource( 10 )
-GradeLabelScene = ExtResource( 2 )
+[node name="GradeLabels" parent="VBoxContainer/Top" instance=ExtResource( 2 )]
 
 [node name="Bottom" type="Control" parent="VBoxContainer"]
 margin_top = 380.0
@@ -178,7 +173,6 @@ valign = 1
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 3 )]
 codes = [ "unlock" ]
 
-[connection signal="button_added" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Top/GradeLabels" method="_on_LevelButtons_button_added"]
 [connection signal="level_chosen" from="VBoxContainer/Top/LevelButtons" to="." method="_on_LevelButtons_level_chosen"]
 [connection signal="locked_level_focused" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Bottom/HBoxContainer/Description" method="_on_LevelButtons_locked_level_focused"]
 [connection signal="locked_level_focused" from="VBoxContainer/Top/LevelButtons" to="VBoxContainer/Bottom/HBoxContainer/Info" method="_on_LevelButtons_locked_level_focused"]
