@@ -172,8 +172,7 @@ func decorate_for_level(region: Object, settings: LevelSettings, force_unlock: b
 			"purple": set_bg_color(BUTTON_COLOR_PURPLE)
 			_:
 				push_warning("Unrecognized color string '%s'" % [settings.color_string])
-				pass
-	
+
 	level_icons = settings.icons
 
 
