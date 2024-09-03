@@ -993,4 +993,4 @@ bus = "Sound Bus"
 [connection signal="file_selected" from="Buttons/Dialogs/Export" to="." method="_on_Export_file_selected"]
 [connection signal="popup_hide" from="Buttons/Dialogs/Export" to="Buttons/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
-[connection signal="creature_saved" from="CreatureSaver" to="Buttons/SaveLabel" method="_on_CreatureSaver_creature_saved"]
+[connection signal="save_button_pressed" from="CreatureSaver" to="Buttons/SaveLabel" method="_on_CreatureSaver_save_button_pressed"]
