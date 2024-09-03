@@ -1,4 +1,4 @@
-extends Button
+extends ReleaseToolButton
 ## Fixes and reports problems with creature files.
 ##
 ## Recursively searches for creatures, upgrading them if they are out of date.
@@ -8,26 +8,26 @@ extends Button
 ## directories containing creatures which should be upgraded
 const CREATURE_DIRS := ["res://assets/main/creatures", "res://assets/test/nonstory-creatures"]
 
-export (NodePath) var output_label_path: NodePath
-
 ## string creature paths which have been successfully converted to the newest version
 var _converted := []
 
 ## string creature paths which have been recolored
 var _recolored := []
 
-## label for outputting messages to the user
-onready var _output_label: Label = get_node(output_label_path)
+var _problem_count := 0
 
-func _pressed() -> void:
-	_output_label.text = ""
+func run() -> void:
+	_output.clear()
+	_problem_count = 0
+	
 	_upgrade_creatures()
 	_report_story_creatures()
 	_report_population_creatures()
 	_report_creatures_without_id()
 	_recolor_creatures()
-	if _output_label.text.empty():
-		_output_label.text = "No creature files have problems."
+	
+	if _problem_count == 0:
+		_output.add_line("No creature files have problems.")
 
 
 ## Recursively searches for creatures, upgrading them if they are out of date.
@@ -39,7 +39,7 @@ func _upgrade_creatures() -> void:
 		_upgrade_creature(creature_path)
 	
 	if _converted:
-		_output_label.add_line("Upgraded %d creatures to settings version %s." \
+		_report_problem("Upgraded %d creatures to settings version %s." \
 				% [_converted.size(), Creatures.CREATURE_DATA_VERSION])
 
 
@@ -110,7 +110,7 @@ func _report_story_creatures() -> void:
 	
 	move_to_nonstory_ids.sort()
 	if move_to_nonstory_ids:
-		_output_label.add_line("%s creatures should be moved from /story to /nonstory: %s" \
+		_report_problem("%s creatures should be moved from /story to /nonstory: %s" \
 				% [move_to_nonstory_ids.size(), move_to_nonstory_ids])
 	
 	# get a list of creature ids from the /nonstory/ directory
@@ -119,7 +119,7 @@ func _report_story_creatures() -> void:
 	# report any story creatures who are in our list of career creature ids
 	var move_to_story_ids := Utils.intersection(nonstory_ids, career_creature_ids)
 	if move_to_story_ids:
-		_output_label.add_line("%s creatures should be moved from /nonstory to /story: %s" \
+		_report_problem("%s creatures should be moved from /nonstory to /story: %s" \
 				% [move_to_story_ids.size(), move_to_story_ids])
 
 
@@ -174,7 +174,7 @@ func _report_population_creatures() -> void:
 			if PlayerData.creature_library.get_creature_def(appearance.id) == null:
 				invalid_creature_ids[appearance.id] = true
 		if invalid_creature_ids:
-			_output_label.add_line("Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()])
+			_report_problem("Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()])
 
 
 ## Reports any creature files without a creature id.
@@ -200,7 +200,7 @@ func _report_creatures_without_id() -> void:
 		missing_creature_ids.append(identifier)
 	
 	if missing_creature_ids:
-		_output_label.add_line("Missing creature ids: %s" % [missing_creature_ids])
+		_report_problem("Missing creature ids: %s" % [missing_creature_ids])
 
 
 ## Recolors the specified creature using the Creature Editor's color palettes.
@@ -278,5 +278,9 @@ func _recolor_creatures() -> void:
 		_recolor_creature(creature_path)
 	
 	if _recolored:
-		_output_label.add_line("Recolored %d creatures." \
-				% [_recolored.size()])
+		_report_problem("Recolored %d creatures." % [_recolored.size()])
+
+
+func _report_problem(problem: String) -> void:
+	_output.add_line(problem)
+	_problem_count += 1

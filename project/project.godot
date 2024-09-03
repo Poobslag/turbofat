@@ -1294,6 +1294,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/region-select-button.gd"
 }, {
+"base": "Button",
+"class": "ReleaseToolButton",
+"language": "GDScript",
+"path": "res://src/demo/toolkit/release-tool-button.gd"
+}, {
 "base": "Label",
 "class": "ReleaseToolkitOutput",
 "language": "GDScript",
@@ -1857,6 +1862,7 @@ _global_script_class_icons={
 "RegionCompletion": "",
 "RegionMusic": "",
 "RegionSelectButton": "",
+"ReleaseToolButton": "",
 "ReleaseToolkitOutput": "",
 "RestaurantPuzzleScene": "",
 "RestaurantView": "",

@@ -1,4 +1,4 @@
-extends Button
+extends ReleaseToolButton
 ## Reports problems in the chats.
 ##
 ## Recursively searches for chats, reporting any problems.
@@ -6,20 +6,12 @@ extends Button
 ## directories containing chats which should be checked for problems
 const CHAT_DIRS := ["res://assets/main/chat"]
 
-export (NodePath) var output_label_path: NodePath
-
 ## chatscript paths which have problems
 var _problems := []
 
-## label for outputting messages to the user
-onready var _output_label: Label = get_node(output_label_path)
-
-func _pressed() -> void:
-	_report_problems_for_chats()
-
-
 ## Reports any chats with problems.
-func _report_problems_for_chats() -> void:
+func run() -> void:
+	_output.clear()
 	_problems.clear()
 	
 	var chat_paths := _find_chat_paths()
@@ -27,9 +19,9 @@ func _report_problems_for_chats() -> void:
 		_report_problems_for_chat(chat_path)
 	
 	if _problems:
-		_output_label.text = "%d chatscript files have problems." % [_problems.size()]
+		_output.add_line("%d chatscript files have problems." % [_problems.size()])
 	else:
-		_output_label.text = "No chatscript files have problems."
+		_output.add_line("No chatscript files have problems.")
 
 
 func _report_broken_chat_links(chat_tree: ChatTree) -> void:
