@@ -17,5 +17,3 @@ expand_icon = true
 script = ExtResource( 2 )
 locked_texture = ExtResource( 4 )
 unlocked_texture = ExtResource( 3 )
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

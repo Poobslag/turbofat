@@ -18,19 +18,19 @@ export (String) var allele: String
 ## enabled to make the button toggle between locked/unlocked instead.
 export (bool) var two_states: bool = false
 
-func is_locked() -> bool:
-	return icon == locked_texture
-
-
-func is_unlocked() -> bool:
-	return icon == unlocked_texture
-
-
 ## When the button is pressed, it cycles between three states (Or two states if the 'two_states' property is set)
-func _on_pressed() -> void:
+func _pressed() -> void:
 	if not icon or (icon != locked_texture and two_states):
 		icon = locked_texture
 	elif icon == locked_texture:
 		icon = unlocked_texture
 	else:
 		icon = null
+
+
+func is_locked() -> bool:
+	return icon == locked_texture
+
+
+func is_unlocked() -> bool:
+	return icon == unlocked_texture

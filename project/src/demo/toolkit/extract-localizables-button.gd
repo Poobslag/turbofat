@@ -18,6 +18,10 @@ onready var _output_label := get_node(output_label_path)
 
 onready var _creature_editor_library := Global.get_creature_editor_library()
 
+func _pressed() -> void:
+	_extract_and_write_localizables()
+
+
 ## Extracts localizable strings from levels and chats and writes them to a file.
 func _extract_and_write_localizables() -> void:
 	_file_contents.clear()
@@ -178,7 +182,3 @@ func _extract_localizables_from_scancodes() -> void:
 func _extract_localizables_from_locales() -> void:
 	for locale in TranslationServer.get_loaded_locales():
 		_append_localizable(TranslationServer.get_locale_name(locale))
-
-
-func _on_pressed() -> void:
-	_extract_and_write_localizables()
