@@ -3,7 +3,7 @@ extends Control
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm(false)
+	MusicPlayer.play_menu_track(false)
 	
 	$DropPanel/PlayHolder/Play.grab_focus()
 	if PlayerSave.corrupt_filenames:

@@ -24,7 +24,7 @@ var _slider_value_float: float
 
 onready var _slider: HSlider = get_parent()
 
-## Timer which tracks whether a D-Pad input was recently pressed.
+## Timer which monitors whether a D-Pad input was recently pressed.
 onready var _delay_timer: Timer
 
 func _ready() -> void:

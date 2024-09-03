@@ -7,7 +7,7 @@ extends Node2D
 
 signal carrot_added
 
-## tracks whether the carrot sfx are playing
+## monitors whether the carrot sfx are playing
 enum MoveSfxState {
 	STOPPED, # sfx are not playing
 	STARTING, # sfx are playing, and volume is increasing
@@ -27,7 +27,7 @@ var playfield_path: NodePath setget set_playfield_path
 
 var _playfield: Playfield
 
-## tracks whether the carrot sfx are playing
+## monitors whether the carrot sfx are playing
 var _move_sfx_state: int = MoveSfxState.STOPPED
 
 ## tweens carrot sfx

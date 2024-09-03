@@ -3,14 +3,14 @@ extends TutorialModule
 ##
 ## Shows messages and advances the player through the tutorial as they complete tasks.
 
-## tracks what the player has done so far during this tutorial
+## monitors what the player has done so far during this tutorial
 var _line_clears := 0
 var _box_clears := 0
 var _boxes_built := 0
 var _squish_moves := 0
 var _snack_stacks := 0
 
-## tracks what the player did with their newest piece
+## monitors what the player did with their newest piece
 var _did_line_clear := false
 var _did_box_clear := false
 var _did_build_box := false

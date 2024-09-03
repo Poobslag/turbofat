@@ -18,9 +18,9 @@ const FADE_IN_DURATION := 2.5
 ## Enum from FadingState representing whether the music is fading in or out
 var fading_state: int = FADING_NONE
 
-## key: (AudioStreamPlayer) song
+## key: (AudioStreamPlayer) track
 ## value: (SceneTreeTween) tween adjusting volume
-var _tweens_by_song: Dictionary = {}
+var _tweens_by_track: Dictionary = {}
 
 ## Gradually silences a music track.
 func fade_out(player: AudioStreamPlayer, min_volume: float, duration: float = FADE_OUT_DURATION) -> void:
@@ -36,10 +36,10 @@ func fade_in(player: AudioStreamPlayer, max_volume: float, duration: float = FAD
 
 ## Gradually adjusts a music track's volume.
 func _fade(player: AudioStreamPlayer, new_volume_db: float, duration: float) -> void:
-	if _tweens_by_song.has(player):
-		_tweens_by_song[player].kill()
-	_tweens_by_song[player] = create_tween()
-	var fade_tween: SceneTreeTween = _tweens_by_song[player]
+	if _tweens_by_track.has(player):
+		_tweens_by_track[player].kill()
+	_tweens_by_track[player] = create_tween()
+	var fade_tween: SceneTreeTween = _tweens_by_track[player]
 	fade_tween.tween_property(player, "volume_db", new_volume_db, duration)
 	fade_tween.tween_callback(self, "_on_Tween_completed", [player])
 

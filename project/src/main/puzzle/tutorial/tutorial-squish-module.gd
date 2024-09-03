@@ -6,11 +6,11 @@ extends TutorialModule
 const SQUISH_DIAGRAM_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")
 const SQUISH_DIAGRAM_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
-## tracks what the player has done during the current tutorial section
+## monitors what the player has done during the current tutorial section
 var _squish_moves := 0
 var _boxes_built := 0
 
-## tracks what the player did with the most recent piece
+## monitors what the player did with the most recent piece
 var _did_squish_move := false
 var _did_build_box := false
 

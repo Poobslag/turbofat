@@ -104,7 +104,7 @@ func _ready() -> void:
 
 ## Schedules all of the credits events for the "cool credits" after the player beats the game.
 func play_cool_credits() -> void:
-	MusicPlayer.play_credits_bgm()
+	MusicPlayer.play_credits_track()
 	_music_sync_player.play("play")
 	
 	# initialize total_time to a particular value, so the letters which hit the header are 'T', 'u', 'r'...
@@ -141,7 +141,7 @@ func play_cool_credits() -> void:
 
 ## Schedules all of the credits events for the "boring credits" before the player beats the game.
 func play_boring_credits() -> void:
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	var credits_tween := get_tree().create_tween()
 	
 	var boring_credits := []
@@ -166,8 +166,9 @@ func play_boring_credits() -> void:
 ## lags, the game will end up ahead and this will be a negative number.
 func get_desync_amount() -> float:
 	var result := 0.0
-	if _music_sync_player.current_animation == "play" and _music_sync_player.is_playing() and MusicPlayer.current_bgm:
-		result = MusicPlayer.current_bgm.get_playback_position() - _music_sync_player.current_animation_position
+	if _music_sync_player.current_animation == "play" and _music_sync_player.is_playing() \
+			and MusicPlayer.current_track:
+		result = MusicPlayer.current_track.get_playback_position() - _music_sync_player.current_animation_position
 	return result
 
 

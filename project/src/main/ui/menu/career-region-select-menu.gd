@@ -7,7 +7,7 @@ onready var _region_buttons := get_node(region_buttons_path)
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	
 	_region_buttons.set_regions(CareerLevelLibrary.regions)
 	

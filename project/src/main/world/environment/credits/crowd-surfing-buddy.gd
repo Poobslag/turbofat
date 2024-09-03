@@ -15,7 +15,7 @@ const TOO_FAR_THRESHOLD := 240.0
 
 const AVERAGE_TRAVEL_SPEED := 60.0
 
-## Rate at which to bounce. This is synchronized with the song "Sugar Crash" for the end credits.
+## Rate at which to bounce. This is synchronized with the music track "Sugar Crash" for the end credits.
 const BOUNCES_PER_SECOND := 2.05000
 
 ## Creature's elevation at the bottom of their bounce.

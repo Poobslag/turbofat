@@ -103,25 +103,25 @@ func _report_invalid_career_levels() -> void:
 		_output_label.add_line("Invalid levels in career regions: %s" % [keys_to_print])
 
 
-## Reports any regions in career-regions.json with missing or invalid music ids
+## Reports any regions in career-regions.json with missing or invalid music track ids
 func _report_invalid_career_music() -> void:
 	var invalid_region_ids := {}
 	
 	for region in CareerLevelLibrary.regions:
-		if region.music.menu_music_id == null:
-			push_warning("%s - menu_music_id is empty" % [region.id])
+		if region.music.menu_track_id == null:
+			push_warning("%s - menu_track_id is empty" % [region.id])
 			invalid_region_ids[region.id] = true
-		elif MusicPlayer.bgm_for_id(region.music.menu_music_id) == null:
-			push_warning("%s - invalid menu_music_id: %s" % [region.id, region.music.menu_music_id])
+		elif MusicPlayer.track_for_id(region.music.menu_track_id) == null:
+			push_warning("%s - invalid menu_track_id: %s" % [region.id, region.music.menu_track_id])
 			invalid_region_ids[region.id] = true
 		
-		if not region.music.puzzle_music_ids:
-			push_warning("%s - puzzle_music_ids is empty" % [region.id])
+		if not region.music.puzzle_track_ids:
+			push_warning("%s - puzzle_track_ids is empty" % [region.id])
 			invalid_region_ids[region.id] = true
 		else:
-			for puzzle_music_id in region.music.puzzle_music_ids:
-				if MusicPlayer.bgm_for_id(puzzle_music_id) == null:
-					push_warning("%s - invalid puzzle_music_id: %s" % [region.id, puzzle_music_id])
+			for puzzle_track_id in region.music.puzzle_track_ids:
+				if MusicPlayer.track_for_id(puzzle_track_id) == null:
+					push_warning("%s - invalid puzzle_track_id: %s" % [region.id, puzzle_track_id])
 					invalid_region_ids[region.id] = true
 	
 	if invalid_region_ids:

@@ -26,7 +26,7 @@ const TWEEN_DURATION := 0.2
 ## how many seconds to stay popped in
 const LINGER_DURATION := 3.0
 
-## tracks whether the popup is currently popping in or out
+## monitors whether the popup is currently popping in or out
 var _popup_state: int = PopupState.POPPED_OUT
 
 var _tween: SceneTreeTween

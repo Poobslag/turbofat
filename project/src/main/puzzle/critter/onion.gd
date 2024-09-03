@@ -34,7 +34,7 @@ var _next_states := []
 ## Index in next_states for the onion's current state.
 var _current_state_index := -1
 
-## 'true' if a state has already been popped from the _next_states queue this frame. We track this to avoid
+## 'true' if a state has already been popped from the _next_states queue this frame. We monitor this to avoid
 ## accidentally popping two states from the queue when the onion first spawns.
 var _already_popped_state := false
 

@@ -18,7 +18,7 @@ const POPUP_DURATION := 4.0
 const POP_IN_Y := 32
 const POP_OUT_Y := 0
 
-## tracks whether the popup is currently popping in or out
+## monitors whether the popup is currently popping in or out
 var _popup_state: int = PopupState.POPPED_OUT
 
 var _tween: SceneTreeTween

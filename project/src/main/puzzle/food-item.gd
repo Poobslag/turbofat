@@ -21,7 +21,7 @@ var velocity := Vector2(0, -25)
 ## Creature who this food will fly towards
 var customer: Creature
 
-## Incremented as the customer changes to track the intended recipient of each food item.
+## Incremented as the customer changes to monitor the intended recipient of each food item.
 var customer_index: int
 
 ## Enum from FoodType corresponding to the food to show

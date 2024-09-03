@@ -312,7 +312,7 @@ func chat_keys(chat_key_roots: Array) -> Array:
 func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlags) -> Array:
 	var potential_chat_key_pairs := []
 	
-	# We traverse the tree top-down. This queue tracks the child nodes we haven't traversed:
+	# We traverse the tree top-down. This queue monitors the child nodes we haven't traversed:
 	#
 	# [['00-a-01', '00-a-02], ['00-b', '00-c'], ['01']]
 	#

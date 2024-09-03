@@ -12,7 +12,7 @@ func _ready() -> void:
 	if CurrentCutscene.chat_tree.meta.has("fixed_zoom"):
 		_camera.fixed_zoom = CurrentCutscene.chat_tree.meta["fixed_zoom"]
 	
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	_launch_cutscene()
 
 

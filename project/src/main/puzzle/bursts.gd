@@ -11,7 +11,7 @@ export (PackedScene) var TechMoveBurstScene: PackedScene
 ## Stores the x position of the previous combo burst to ensure consecutive bursts aren't vertically aligned
 var _previous_cell_x := -1
 
-## Tracks the x position of the most recent piece placed in each row
+## Monitors the x position of the most recent piece placed in each row
 ## key: (int) y value of a recently dropped piece
 ## value: (float) average x position of the piece's blocks in that row
 var _piece_x_by_y: Dictionary
