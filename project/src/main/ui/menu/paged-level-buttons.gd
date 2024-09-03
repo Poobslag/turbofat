@@ -20,6 +20,8 @@ const MAX_LEVELS_PER_PAGE := 18
 
 export (PackedScene) var LevelButtonScene: PackedScene
 
+export (NodePath) var grade_labels_path: NodePath
+
 ## CareerRegion or OtherRegion instance whose levels are being shown
 var region: Object setget set_region
 
@@ -41,6 +43,8 @@ onready var _grid_container := $GridContainer
 ## arrows for paging left and right
 onready var _left_arrow := $LeftArrow
 onready var _right_arrow := $RightArrow
+
+onready var _grade_labels: GradeLabels = get_node(grade_labels_path)
 
 func _ready() -> void:
 	_refresh()
@@ -138,6 +142,7 @@ func _add_buttons() -> void:
 				level_ids[i], max_shown_level - min_shown_level + 1)
 		
 		_grid_container.add_child(new_level_button)
+		_grade_labels.add_label(new_level_button)
 		emit_signal("button_added", new_level_button)
 	
 	# assign default focus to the first button

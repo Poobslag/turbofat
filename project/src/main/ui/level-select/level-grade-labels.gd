@@ -1,3 +1,4 @@
+class_name GradeLabels
 extends Control
 ## Manages grade labels which overlay level select buttons.
 ##
@@ -21,10 +22,6 @@ func add_label(button: LevelSelectButton) -> void:
 	new_label.button = button
 	
 	button.connect("tree_exited", self, "_on_LevelSelectButton_tree_exited", [button])
-
-
-func _on_LevelButtons_button_added(button: LevelSelectButton) -> void:
-	add_label(button)
 
 
 func _on_LevelSelectButton_tree_exited(button: LevelSelectButton) -> void:
