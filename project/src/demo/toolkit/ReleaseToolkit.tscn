@@ -85,8 +85,3 @@ autowrap = true
 script = ExtResource( 7 )
 
 [node name="CreatureEditorLibrary" parent="." instance=ExtResource( 8 )]
-
-[connection signal="pressed" from="VBoxContainer/ExtractLocalizables" to="VBoxContainer/ExtractLocalizables" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/FixChats" to="VBoxContainer/FixChats" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/FixCreatures" to="VBoxContainer/FixCreatures" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/FixLevels" to="VBoxContainer/FixLevels" method="_on_pressed"]

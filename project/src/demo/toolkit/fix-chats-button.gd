@@ -14,6 +14,10 @@ var _problems := []
 ## label for outputting messages to the user
 onready var _output_label: Label = get_node(output_label_path)
 
+func _pressed() -> void:
+	_report_problems_for_chats()
+
+
 ## Reports any chats with problems.
 func _report_problems_for_chats() -> void:
 	_problems.clear()
@@ -121,7 +125,3 @@ func _find_chat_paths() -> Array:
 		file = dir.get_next()
 	
 	return result
-
-
-func _on_pressed() -> void:
-	_report_problems_for_chats()

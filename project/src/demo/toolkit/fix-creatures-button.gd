@@ -19,6 +19,17 @@ var _recolored := []
 ## label for outputting messages to the user
 onready var _output_label: Label = get_node(output_label_path)
 
+func _pressed() -> void:
+	_output_label.text = ""
+	_upgrade_creatures()
+	_report_story_creatures()
+	_report_population_creatures()
+	_report_creatures_without_id()
+	_recolor_creatures()
+	if _output_label.text.empty():
+		_output_label.text = "No creature files have problems."
+
+
 ## Recursively searches for creatures, upgrading them if they are out of date.
 func _upgrade_creatures() -> void:
 	_converted.clear()
@@ -269,14 +280,3 @@ func _recolor_creatures() -> void:
 	if _recolored:
 		_output_label.add_line("Recolored %d creatures." \
 				% [_recolored.size()])
-
-
-func _on_pressed() -> void:
-	_output_label.text = ""
-	_upgrade_creatures()
-	_report_story_creatures()
-	_report_population_creatures()
-	_report_creatures_without_id()
-	_recolor_creatures()
-	if _output_label.text.empty():
-		_output_label.text = "No creature files have problems."

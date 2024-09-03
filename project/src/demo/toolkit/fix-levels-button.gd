@@ -22,6 +22,19 @@ var _converted := []
 ## label for outputting messages to the user
 onready var _output_label: Label = get_node(output_label_path)
 
+func _pressed() -> void:
+	_output_label.text = ""
+	_upgrade_levels()
+	_report_invalid_career_levels()
+	_report_invalid_career_music()
+	_report_unused_career_levels()
+	_report_level_icons()
+	_report_bad_show_rank()
+	_alphabetize_career_levels()
+	if not _output_label.text:
+		_output_label.text = "No level files have problems."
+
+
 ## Upgrades all levels to the newest version.
 func _upgrade_levels() -> void:
 	_converted.clear()
@@ -236,16 +249,3 @@ func _alphabetize_career_levels() -> void:
 
 func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:
 	return obj0.get("id") < obj1.get("id")
-
-
-func _on_pressed() -> void:
-	_output_label.text = ""
-	_upgrade_levels()
-	_report_invalid_career_levels()
-	_report_invalid_career_music()
-	_report_unused_career_levels()
-	_report_level_icons()
-	_report_bad_show_rank()
-	_alphabetize_career_levels()
-	if not _output_label.text:
-		_output_label.text = "No level files have problems."
