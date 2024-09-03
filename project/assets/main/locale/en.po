@@ -9802,11 +9802,11 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:2150
 msgid ""
 "I should have been more open about this up front, but I think I might be "
-"mildly faceblind."
+"mildly face blind."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2151
-msgid "You're not FACEBLIND, you just never LOOK at people!"
+msgid "You're not FACE BLIND, you just never LOOK at people!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2152
@@ -9864,7 +9864,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:2162
 msgid ""
 "Haha. \"Moron\". Touche I guess. Well, let's just call my condition "
-"selective faceblindness for now."
+"selective face blindness for now."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2163
