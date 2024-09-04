@@ -9,7 +9,7 @@ onready var _applause_sound := $Bg/ApplauseSound
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	
 	_refresh_mood()
 	

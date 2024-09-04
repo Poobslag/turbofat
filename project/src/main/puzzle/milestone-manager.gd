@@ -1,5 +1,5 @@
 extends Node
-## Tracks the player's progress towards milestones.
+## Monitors the player's progress towards milestones.
 ##
 ## Milestones can involve reaching a certain score, clearing a certain number of lines or surviving a certain number of
 ## seconds.

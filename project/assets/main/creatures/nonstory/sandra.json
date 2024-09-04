@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sandra",
   "name": "Sandra",
   "short_name": "Sandra",
@@ -25,8 +25,9 @@
     "glass_rgb": "ffffff",
     "plastic_rgb": "121011",
     "hair_rgb": "a05f35",
-    "eye_rgb": "7c5a46 fff6df",
-    "horn_rgb": "fdfcec"
+    "horn_rgb": "fdfcec",
+    "eye_rgb_0": "7c5a46",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 0.88,

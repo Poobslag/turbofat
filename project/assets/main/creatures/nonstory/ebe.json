@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "ebe",
   "name": "Ebe",
   "short_name": "Ebe",
@@ -13,7 +13,6 @@
     "collar": "1",
     "ear": "1",
     "eye": "1",
-    "eye_rgb": "fad4cf ffffff",
     "head": "3",
     "horn": "2",
     "horn_rgb": "fdfcec",
@@ -26,7 +25,9 @@
     "hair": "0",
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
-    "hair_rgb": "f1e398"
+    "hair_rgb": "f1e398",
+    "eye_rgb_0": "fad4cf",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 2.3,

@@ -10118,13 +10118,13 @@ msgstr "La única parte difícil para mi es reconocer donde se sienta la gente."
 #: project/assets/main/locale/localizables-extracted.py:2150
 msgid ""
 "I should have been more open about this up front, but I think I might be "
-"mildly faceblind."
+"mildly face blind."
 msgstr ""
 "Creo que debí de ser más abierto sobre esto, pero creo que tengo algo de "
 "ceguera facial."
 
 #: project/assets/main/locale/localizables-extracted.py:2151
-msgid "You're not FACEBLIND, you just never LOOK at people!"
+msgid "You're not FACE BLIND, you just never LOOK at people!"
 msgstr "¡No tienes CEGUERA FACIAL, solo que nunca MIRAS a la gente!"
 
 #: project/assets/main/locale/localizables-extracted.py:2152
@@ -10194,7 +10194,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:2162
 msgid ""
 "Haha. \"Moron\". Touche I guess. Well, let's just call my condition "
-"selective faceblindness for now."
+"selective face blindness for now."
 msgstr ""
 "Jaja. \"Imbéciles\". Touché, supongo. Bueno, creo que por ahora podrías "
 "decir que tengo ceguera facial selectiva."

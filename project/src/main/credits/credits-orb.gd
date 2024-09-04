@@ -9,7 +9,7 @@ extends Sprite
 ## Number of frames in our animation. Each frame launches a different puzzle piece.
 const FRAME_COUNT := 8
 
-## Rate at which to launch puzzle pieces. This is synchronized with the song "Sugar Crash" for the end credits.
+## Rate at which to launch puzzle pieces. This is synchronized with the music track "Sugar Crash" for the end credits.
 const PIECES_PER_SECOND := 4.10000
 
 export (NodePath) var wallpaper_path: NodePath

@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "nictor",
   "name": "Nictor",
   "short_name": "Nictor",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "47465f",
-    "eye_rgb": "f2c12a ffffa2",
-    "horn_rgb": "282828"
+    "horn_rgb": "282828",
+    "eye_rgb_0": "f2c12a",
+    "eye_rgb_1": "ffffa2"
   },
   "chat_theme": {
     "accent_scale": 7,

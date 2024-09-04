@@ -38,7 +38,7 @@ onready var outer_creatures := [
 	$World/Creatures/SeCreature,
 ]
 
-## UI which tracks things like mutagen level and locked/unlocked alleles
+## UI which monitors things like mutagen level and locked/unlocked alleles
 onready var _mutate_ui := $Ui/TabContainer/Mutate
 onready var _reroll_ui := $Ui/Reroll
 
@@ -142,9 +142,11 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 			dna["glass_rgb"] = new_palette["glass_rgb"]
 			dna["plastic_rgb"] = new_palette["plastic_rgb"]
 			dna["hair_rgb"] = new_palette["hair_rgb"]
-			dna["eye_rgb"] = new_palette["eye_rgb"]
+			dna["eye_rgb_0"] = new_palette["eye_rgb_0"]
+			dna["eye_rgb_1"] = new_palette["eye_rgb_1"]
 			dna["horn_rgb"] = new_palette["horn_rgb"]
-		"line_rgb", "belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
+		"line_rgb", "belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb", "hair_rgb", "eye_rgb_0", "eye_rgb_1", \
+				"horn_rgb":
 			dna[property] = new_palette[property]
 		_:
 			var new_alleles := DnaUtils.allele_weights(dna, property)
@@ -200,22 +202,24 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 		result["glass_rgb"] = glass.to_html(false)
 		result["plastic_rgb"] = plastic.to_html(false)
 		result["hair_rgb"] = hair.to_html(false)
-		result["eye_rgb"] = "%s %s" % [eye0.to_html(false), eye1.to_html(false)]
+		result["eye_rgb_0"] = eye0.to_html(false)
+		result["eye_rgb_1"] = eye1.to_html(false)
 		result["horn_rgb"] = horn.to_html(false)
 		result["line_rgb"] = center_creature.dna["line_rgb"]
 	elif color_mode == SIMILAR_COLORS:
 		# derive a palette from the creature's current palette
 		result["line_rgb"] = center_creature.dna["line_rgb"]
 		for allele in DnaUtils.COLOR_ALLELES:
-			if allele in ["line_rgb", "eye_rgb"]:
+			if allele in ["line_rgb", "eye_rgb_0", "eye_rgb_1"]:
 				# these color alleles are special; lines aren't randomly mutated, and eyes have two colors
 				continue
 			var body := Color(center_creature.dna[allele])
 			result[allele] = _random_similar_color(body).to_html(false)
 		
-		var eye0: Color = Color(center_creature.dna["eye_rgb"].split(" ")[0])
+		var eye0: Color = Color(center_creature.dna["eye_rgb_0"])
 		eye0 = _random_similar_color(eye0)
-		result["eye_rgb"] = "%s %s" % [eye0.to_html(false), _random_highlight_color(eye0).to_html(false)]
+		result["eye_rgb_0"] = eye0.to_html(false)
+		result["eye_rgb_1"] = _random_highlight_color(eye0).to_html(false)
 	return result
 
 
@@ -265,9 +269,13 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			dna["glass_rgb"] = palette["glass_rgb"]
 			dna["plastic_rgb"] = palette["plastic_rgb"]
 			dna["hair_rgb"] = palette["hair_rgb"]
-			dna["eye_rgb"] = palette["eye_rgb"]
+			dna["eye_rgb_0"] = palette["eye_rgb_0"]
+			dna["eye_rgb_1"] = palette["eye_rgb_1"]
 			dna["horn_rgb"] = palette["horn_rgb"]
-		"belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb", "hair_rgb", "eye_rgb", "horn_rgb", "line_rgb":
+		"eye_rgb_0", "eye_rgb_1":
+			dna["eye_rgb_0"] = palette["eye_rgb_0"]
+			dna["eye_rgb_1"] = palette["eye_rgb_1"]
+		"belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb", "hair_rgb", "horn_rgb", "line_rgb":
 			dna[allele] = palette[allele]
 		_:
 			var new_alleles := DnaUtils.unique_allele_values(allele)

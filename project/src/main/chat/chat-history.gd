@@ -8,7 +8,7 @@ class_name ChatHistory
 ## conversation before.
 const CHAT_AGE_NEVER := 99999999
 
-## Tracks which conversations the player has had with each creature. The value is a per-creature index which starts
+## Monitors which conversations the player has had with each creature. The value is a per-creature index which starts
 ## from 0 and increments with each conversation with that creature.
 ##
 ## key: (String) chat key

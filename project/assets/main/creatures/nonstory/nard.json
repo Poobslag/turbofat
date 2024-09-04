@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "nard",
   "name": "Nard",
   "short_name": "Nard",
@@ -25,8 +25,9 @@
     "glass_rgb": "f0f3bd",
     "plastic_rgb": "292828",
     "hair_rgb": "222222",
-    "eye_rgb": "f5f0d1 ffffff",
-    "horn_rgb": "3c3b3b"
+    "horn_rgb": "3c3b3b",
+    "eye_rgb_0": "f5f0d1",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 2,

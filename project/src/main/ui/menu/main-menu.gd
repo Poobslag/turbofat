@@ -6,7 +6,7 @@ extends Control
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	
 	$DropPanel/Adventure/Play.grab_focus()
 

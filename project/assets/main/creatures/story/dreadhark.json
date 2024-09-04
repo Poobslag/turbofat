@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "dreadhark",
   "name": "Dreadhark",
   "short_name": "Dreadhark",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "442f1c",
     "hair_rgb": "222222",
-    "eye_rgb": "4e8eee ffffff",
-    "horn_rgb": "f1e398"
+    "horn_rgb": "f1e398",
+    "eye_rgb_0": "4e8eee",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 1.75,

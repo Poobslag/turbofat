@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "dusty",
   "name": "Dusty",
   "short_name": "Dusty",
@@ -25,8 +25,9 @@
     "glass_rgb": "4e50a9",
     "plastic_rgb": "292828",
     "hair_rgb": "40342d",
-    "eye_rgb": "282828 606060",
-    "horn_rgb": "e38a61"
+    "horn_rgb": "e38a61",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "606060"
   },
   "chat_theme": {
     "accent_scale": 0.67,

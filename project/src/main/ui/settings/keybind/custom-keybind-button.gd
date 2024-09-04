@@ -11,7 +11,6 @@ export (int) var action_index: int
 var awaiting := false
 
 func _ready() -> void:
-	connect("pressed", self, "_on_pressed")
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 	_refresh_text()
 
@@ -23,6 +22,13 @@ func _input(event: InputEvent) -> void:
 			accept_event()
 			SystemData.keybind_settings.set_custom_keybind(action_name, action_index, input_json)
 			end_awaiting()
+
+
+func _pressed() -> void:
+	if pressed:
+		_start_awaiting()
+	else:
+		end_awaiting()
 
 
 ## Takes the button out of the 'awaiting state', so it no longer waits for the player to press a key.
@@ -55,13 +61,6 @@ func _refresh_text() -> void:
 	if json:
 		new_text = tr(KeybindManager.pretty_string(json))
 	text = new_text
-
-
-func _on_pressed() -> void:
-	if pressed:
-		_start_awaiting()
-	else:
-		end_awaiting()
 
 
 func _on_KeybindSettings_settings_changed() -> void:

@@ -101,9 +101,9 @@ func _input(event: InputEvent) -> void:
 
 func _set_time_scale(new_time_scale: float) -> void:
 	Engine.time_scale = new_time_scale
-	if MusicPlayer.current_bgm:
-		MusicPlayer.current_bgm.pitch_scale = new_time_scale
-		MusicPlayer.current_bgm.play(_total_time)
+	if MusicPlayer.current_track:
+		MusicPlayer.current_track.pitch_scale = new_time_scale
+		MusicPlayer.current_track.play(_total_time)
 
 
 func _physics_process(delta: float) -> void:

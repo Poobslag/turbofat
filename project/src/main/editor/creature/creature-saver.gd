@@ -4,7 +4,7 @@ extends Node
 ##
 ## This occurs either in response to the player clicking the "save" button or answering a dialog prompt.
 
-signal creature_saved
+signal save_button_pressed
 
 export (NodePath) var overworld_environment_path: NodePath
 
@@ -33,7 +33,7 @@ func save_creature() -> void:
 			Creatures.Mood.YES0,
 			Creatures.Mood.YES1,
 	]))
-	emit_signal("creature_saved")
+	emit_signal("save_button_pressed")
 
 
 func has_unsaved_changes() -> bool:

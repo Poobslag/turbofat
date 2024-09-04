@@ -1,47 +1,47 @@
 extends Control
-## Toaster popup which shows the current song title.
+## Toaster popup which shows the current track title.
 
-## bgm which was last shown in this popup
-var _shown_bgm: CheckpointSong
+## track which was last shown in this popup
+var _shown_track: CheckpointMusicTrack
 
 onready var _music_label := $Panel/HBoxContainer/Label
 onready var _music_panel := $Panel
 onready var _popup_tween_manager := $PopupTweenManager
 
 func _ready() -> void:
-	MusicPlayer.connect("current_bgm_changed", self, "_on_MusicPlayer_current_bgm_changed")
-	_refresh_panel(MusicPlayer.current_bgm)
+	MusicPlayer.connect("current_track_changed", self, "_on_MusicPlayer_current_track_changed")
+	_refresh_panel(MusicPlayer.current_track)
 	_music_label.connect("item_rect_changed", self, "_on_Label_item_rect_changed")
 
 
-## Update the popup's appearance based on the current song, and maybe show it.
+## Update the popup's appearance based on the current track, and maybe show it.
 ##
-## The popup is only shown if the song changes, and if the song is audible.
+## The popup is only shown if the track changes, and if the track is audible.
 ##
 ## Parameters:
-## 	'value': The song to show in the popup
-func _refresh_panel(value: CheckpointSong) -> void:
-	if _shown_bgm == value or not is_inside_tree():
+## 	'value': The track to show in the popup
+func _refresh_panel(value: CheckpointMusicTrack) -> void:
+	if _shown_track == value or not is_inside_tree():
 		return
 	
 	# if no music is audible, don't show a music popup
 	if SystemData.volume_settings.is_bus_mute(VolumeSettings.MUSIC) \
 			or SystemData.volume_settings.is_bus_mute(VolumeSettings.MASTER):
-		_shown_bgm = null
+		_shown_track = null
 	else:
-		_shown_bgm = value
+		_shown_track = value
 	
 	# show the appropriate popup
-	if _shown_bgm:
-		_music_label.text = _shown_bgm.song_title
+	if _shown_track:
+		_music_label.text = _shown_track.track_title
 		
 		# we delay a few seconds if the music is fading in slowly
 		var pop_in_delay := 2.0 if MusicPlayer.is_fading_in() else 0.0
 		_popup_tween_manager.pop_in_and_out(pop_in_delay)
-		_music_panel.get("custom_styles/panel").set("bg_color", _shown_bgm.song_color)
+		_music_panel.get("custom_styles/panel").set("bg_color", _shown_track.track_color)
 
 
-func _on_MusicPlayer_current_bgm_changed(value: CheckpointSong) -> void:
+func _on_MusicPlayer_current_track_changed(value: CheckpointMusicTrack) -> void:
 	_refresh_panel(value)
 
 

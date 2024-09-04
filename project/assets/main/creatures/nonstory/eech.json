@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "eech",
   "name": "Eech",
   "short_name": "Eech",
@@ -25,8 +25,9 @@
     "glass_rgb": "4e50a9",
     "plastic_rgb": "5e885a",
     "hair_rgb": "bdab30",
-    "eye_rgb": "924a51 ffe8eb",
-    "horn_rgb": "3c3b3b"
+    "horn_rgb": "3c3b3b",
+    "eye_rgb_0": "924a51",
+    "eye_rgb_1": "ffe8eb"
   },
   "chat_theme": {
     "accent_scale": 0.5,

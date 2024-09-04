@@ -10,4 +10,4 @@ func _ready() -> void:
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()

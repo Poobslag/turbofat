@@ -401,12 +401,13 @@ func _load_colors(dna: Dictionary) -> void:
 	var nose_skin_color := belly_color if dna.get("head") in ["2", "3"] else body_color
 	_set_krgb(dna, "Neck0/HeadBobber/Nose", line_color, nose_skin_color)
 	
-	var eye_color: Color
-	var eye_shine_color: Color
 	var eye_skin_color := belly_color if dna.get("head") in ["2", "4", "5"] else body_color
-	if dna.has("eye_rgb"):
-		eye_color = Color(dna.eye_rgb.split(" ")[0])
-		eye_shine_color = Color(dna.eye_rgb.split(" ")[1])
+	var eye_color: Color
+	if dna.has("eye_rgb_0"):
+		eye_color = Color(dna.eye_rgb_0)
+	var eye_shine_color: Color
+	if dna.has("eye_rgb_1"):
+		eye_shine_color = Color(dna.eye_rgb_1)
 	_set_krgb(dna, "Neck0/HeadBobber/EyeZ0", line_color, eye_skin_color, eye_color, eye_shine_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EyeZ1", line_color, eye_skin_color, eye_color, eye_shine_color)
 
@@ -416,8 +417,8 @@ func _load_colors(dna: Dictionary) -> void:
 
 ## Assigns shader colors for the specified creature node.
 func _set_krgb(dna: Dictionary, path: String, black: Color,
-		red: Color = Color.black, green: Color = Color.black, blue: Color = Color.black):
+		red: Color = Color.transparent, green: Color = Color.transparent, blue: Color = Color.transparent):
 	dna["shader:%s:black" % path] = black
-	if red: dna["shader:%s:red" % path] = red
-	if green: dna["shader:%s:green" % path] = green
-	if blue: dna["shader:%s:blue" % path] = blue
+	if red != Color.transparent: dna["shader:%s:red" % path] = red
+	if green != Color.transparent: dna["shader:%s:green" % path] = green
+	if blue != Color.transparent: dna["shader:%s:blue" % path] = blue

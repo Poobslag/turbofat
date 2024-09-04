@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "jaco",
   "name": "Jaco",
   "short_name": "Jaco",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "c49877",
     "hair_rgb": "f1e398",
-    "eye_rgb": "e9c57d ffffff",
-    "horn_rgb": "e9ebf0"
+    "horn_rgb": "e9ebf0",
+    "eye_rgb_0": "e9c57d",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 1,

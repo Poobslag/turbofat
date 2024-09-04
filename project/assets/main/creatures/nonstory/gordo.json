@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "gordo",
   "name": "Gordo",
   "short_name": "Gordo",
@@ -25,8 +25,9 @@
     "glass_rgb": "c5d1d1",
     "plastic_rgb": "785537",
     "hair_rgb": "f1e398",
-    "eye_rgb": "c09a2f f1e398",
-    "horn_rgb": "d3af43"
+    "horn_rgb": "d3af43",
+    "eye_rgb_0": "c09a2f",
+    "eye_rgb_1": "f1e398"
   },
   "chat_theme": {
     "accent_scale": 1.5,

@@ -3,5 +3,5 @@ extends Label
 
 onready var _animation_player := $AnimationPlayer
 
-func _on_CreatureSaver_creature_saved() -> void:
+func _on_CreatureSaver_save_button_pressed() -> void:
 	_animation_player.play("play")

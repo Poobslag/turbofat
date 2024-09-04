@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "eeeroy",
   "name": "Eeeroy",
   "short_name": "Eeeroy",
@@ -25,8 +25,9 @@
     "glass_rgb": "d0f29f",
     "plastic_rgb": "e5e6e0",
     "hair_rgb": "f57e7d",
-    "eye_rgb": "87b8f6 ffffff",
-    "horn_rgb": "fdfcec"
+    "horn_rgb": "fdfcec",
+    "eye_rgb_0": "87b8f6",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 1.33,

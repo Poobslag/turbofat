@@ -1,4 +1,4 @@
-extends Button
+extends ReleaseToolButton
 ## Upgrades old levels to the newest format.
 ##
 ## Recursively searches for levels, upgrading them if they are out of date.
@@ -12,15 +12,26 @@ const LEVEL_DIRS := [
 
 const CAREER_LEVEL_DIRS := ["res://assets/main/puzzle/levels/career"]
 
-export (NodePath) var output_label_path: NodePath
-
 var _upgrader := LevelSettingsUpgrader.new()
 
 ## string level paths which have been successfully converted to the newest version
 var _converted := []
+var _problem_count := 0
 
-## label for outputting messages to the user
-onready var _output_label: Label = get_node(output_label_path)
+func run() -> void:
+	_problem_count = 0
+
+	_upgrade_levels()
+	_report_invalid_career_levels()
+	_report_invalid_career_music()
+	_report_unused_career_levels()
+	_report_level_icons()
+	_report_bad_show_rank()
+	_report_bad_achievements()
+	_alphabetize_career_levels()
+	if _problem_count == 0:
+		_output.add_line("No level files have problems.")
+
 
 ## Upgrades all levels to the newest version.
 func _upgrade_levels() -> void:
@@ -31,7 +42,7 @@ func _upgrade_levels() -> void:
 		_upgrade_settings(level_path)
 	
 	if _converted:
-		_output_label.add_line("Upgraded %d levels to settings version %s." % [_converted.size(),
+		_report_problem("Upgraded %d levels to settings version %s." % [_converted.size(),
 				Levels.LEVEL_DATA_VERSION])
 
 
@@ -100,34 +111,34 @@ func _report_invalid_career_levels() -> void:
 	if invalid_level_keys:
 		var keys_to_print := invalid_level_keys.keys()
 		keys_to_print.sort()
-		_output_label.add_line("Invalid levels in career regions: %s" % [keys_to_print])
+		_report_problem("Invalid levels in career regions: %s" % [keys_to_print])
 
 
-## Reports any regions in career-regions.json with missing or invalid music ids
+## Reports any regions in career-regions.json with missing or invalid music track ids
 func _report_invalid_career_music() -> void:
 	var invalid_region_ids := {}
 	
 	for region in CareerLevelLibrary.regions:
-		if region.music.menu_music_id == null:
-			push_warning("%s - menu_music_id is empty" % [region.id])
+		if region.music.menu_track_id == null:
+			push_warning("%s - menu_track_id is empty" % [region.id])
 			invalid_region_ids[region.id] = true
-		elif MusicPlayer.bgm_for_id(region.music.menu_music_id) == null:
-			push_warning("%s - invalid menu_music_id: %s" % [region.id, region.music.menu_music_id])
+		elif MusicPlayer.track_for_id(region.music.menu_track_id) == null:
+			push_warning("%s - invalid menu_track_id: %s" % [region.id, region.music.menu_track_id])
 			invalid_region_ids[region.id] = true
 		
-		if not region.music.puzzle_music_ids:
-			push_warning("%s - puzzle_music_ids is empty" % [region.id])
+		if not region.music.puzzle_track_ids:
+			push_warning("%s - puzzle_track_ids is empty" % [region.id])
 			invalid_region_ids[region.id] = true
 		else:
-			for puzzle_music_id in region.music.puzzle_music_ids:
-				if MusicPlayer.bgm_for_id(puzzle_music_id) == null:
-					push_warning("%s - invalid puzzle_music_id: %s" % [region.id, puzzle_music_id])
+			for puzzle_track_id in region.music.puzzle_track_ids:
+				if MusicPlayer.track_for_id(puzzle_track_id) == null:
+					push_warning("%s - invalid puzzle_track_id: %s" % [region.id, puzzle_track_id])
 					invalid_region_ids[region.id] = true
 	
 	if invalid_region_ids:
 		var keys_to_print := invalid_region_ids.keys()
 		keys_to_print.sort()
-		_output_label.add_line("Invalid music in career regions: %s" % [keys_to_print])
+		_report_problem("Invalid music in career regions: %s" % [keys_to_print])
 
 
 ## Reports any levels in CAREER_LEVEL_DIRS which are not actually available in career mode.
@@ -143,7 +154,7 @@ func _report_unused_career_levels() -> void:
 	level_keys_not_in_career_regions.sort()
 	
 	if level_keys_not_in_career_regions:
-		_output_label.add_line("Level keys not in career regions: %s" % [level_keys_not_in_career_regions])
+		_report_problem("Level keys not in career regions: %s" % [level_keys_not_in_career_regions])
 
 
 ## Reports any levels with missing or invalid 'icons' data.
@@ -172,10 +183,10 @@ func _report_level_icons() -> void:
 				bad_icons.append("%s/%s" % [level_id, icon_string])
 	
 	if missing_icons_level_ids:
-		_output_label.add_line("Levels missing icons: %s" % [PoolStringArray(missing_icons_level_ids).join(", ")])
+		_report_problem("Levels missing icons: %s" % [PoolStringArray(missing_icons_level_ids).join(", ")])
 	
 	if bad_icons:
-		_output_label.add_line("Levels with bad icons: %s" % [PoolStringArray(bad_icons).join(", ")])
+		_report_problem("Levels with bad icons: %s" % [PoolStringArray(bad_icons).join(", ")])
 
 
 ## Reports any unusual show_rank and hide_rank settings
@@ -210,7 +221,7 @@ func _report_bad_show_rank() -> void:
 	var bad_level_ids := bad_level_id_set.keys()
 	bad_level_ids.sort()
 	if bad_level_ids:
-		_output_label.add_line("Level keys with bad show_rank settings: %s" % [bad_level_ids])
+		_report_problem("Level keys with bad show_rank settings: %s" % [bad_level_ids])
 
 
 ## Reports bad SteamAchievement achievement_ids, region_ids, level_ids
@@ -248,22 +259,13 @@ func _alphabetize_career_levels() -> void:
 	if sorted_region_ids:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(CareerLevelLibrary.DEFAULT_REGIONS_PATH, new_text)
-		_output_label.add_line("Sorted career level ids: %s" % [PoolStringArray(sorted_region_ids.keys()).join(", ")])
+		_report_problem("Sorted career level ids: %s" % [PoolStringArray(sorted_region_ids.keys()).join(", ")])
 
 
 func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:
 	return obj0.get("id") < obj1.get("id")
 
 
-func _on_pressed() -> void:
-	_output_label.text = ""
-	_upgrade_levels()
-	_report_invalid_career_levels()
-	_report_invalid_career_music()
-	_report_unused_career_levels()
-	_report_level_icons()
-	_report_bad_show_rank()
-	_report_bad_achievements()
-	_alphabetize_career_levels()
-	if not _output_label.text:
-		_output_label.text = "No level files have problems."
+func _report_problem(problem: String) -> void:
+	_output.add_line(problem)
+	_problem_count += 1

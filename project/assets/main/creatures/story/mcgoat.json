@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "mcgoat",
   "name": "McGoat",
   "short_name": "McGoat",
@@ -25,8 +25,9 @@
     "glass_rgb": "5376f1",
     "plastic_rgb": "e3fbfc",
     "hair_rgb": "ffffff",
-    "eye_rgb": "c1f1f2 ffffff",
-    "horn_rgb": "e1f9f9"
+    "horn_rgb": "e1f9f9",
+    "eye_rgb_0": "c1f1f2",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_texture": 10,

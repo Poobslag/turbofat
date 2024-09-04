@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sergia",
   "name": "Sergia",
   "short_name": "Sergia",
@@ -25,8 +25,9 @@
     "glass_rgb": "d96079",
     "plastic_rgb": "6f6168",
     "hair_rgb": "ffffff",
-    "eye_rgb": "7ac252 eaf2f4",
-    "horn_rgb": "bdc6c5"
+    "horn_rgb": "bdc6c5",
+    "eye_rgb_0": "7ac252",
+    "eye_rgb_1": "eaf2f4"
   },
   "chat_theme": {
     "accent_scale": 6,

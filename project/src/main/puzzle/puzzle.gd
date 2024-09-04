@@ -11,7 +11,7 @@ onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")

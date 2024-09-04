@@ -17,7 +17,7 @@ var _beat_duration := 60 / 136.0
 ## 1.0 = normal, 2.0 = fastest, 6.0 = fastestestest, 1000000.0 = fastestest
 var _text_speed := 1.0
 
-## These two fields are used to track unshown text which is gradually revealed. RichTextLabel defines a
+## These two fields are used to monitor unshown text which is gradually revealed. RichTextLabel defines a
 ## 'visible_characters' field which supports this capability, but it does not mesh well with the scroll bar or the
 ## 'scroll_following' property. So we reimplement the concept of invisible characters our own way.
 var _unshown_text := ""

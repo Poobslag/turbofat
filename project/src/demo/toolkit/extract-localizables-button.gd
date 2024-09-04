@@ -1,4 +1,4 @@
-extends Button
+extends ReleaseToolButton
 ## Extracts localizable strings from levels and chats as a part of the localization process.
 ##
 ## The pybabel tool creates a PO template file from our script and scene files. However, level and chat data is stored
@@ -8,18 +8,13 @@ extends Button
 ## file where we write the localizable strings
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
 
-export (NodePath) var output_label_path: NodePath
-
 ## List of String lines to be written to the file.
 var _file_contents: Array = []
-
-## label for outputting messages to the user
-onready var _output_label := get_node(output_label_path)
 
 onready var _creature_editor_library := Global.get_creature_editor_library()
 
 ## Extracts localizable strings from levels and chats and writes them to a file.
-func _extract_and_write_localizables() -> void:
+func run() -> void:
 	_file_contents.clear()
 	
 	# Temporarily set the locale to 'en' to ensure we extract english keys
@@ -42,9 +37,9 @@ func _extract_and_write_localizables() -> void:
 	
 	FileUtils.write_file(OUTPUT_PATH, PoolStringArray(_file_contents).join("\n") + "\n")
 	TranslationServer.set_locale(old_locale)
-	_output_label.text = "Wrote %s lines to %s." % [
+	_output.add_line("Wrote %s lines to %s." % [
 			StringUtils.comma_sep(_file_contents.size()),
-			OUTPUT_PATH]
+			OUTPUT_PATH])
 
 
 ## Appends a comment to the '_file_contents' to be written to a file later.
@@ -178,7 +173,3 @@ func _extract_localizables_from_scancodes() -> void:
 func _extract_localizables_from_locales() -> void:
 	for locale in TranslationServer.get_loaded_locales():
 		_append_localizable(TranslationServer.get_locale_name(locale))
-
-
-func _on_pressed() -> void:
-	_extract_and_write_localizables()

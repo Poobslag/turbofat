@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "darry",
   "name": "Darry",
   "short_name": "Darry",
@@ -25,8 +25,9 @@
     "glass_rgb": "ee2b91",
     "plastic_rgb": "79ff19",
     "hair_rgb": "a6a1a1",
-    "eye_rgb": "e9c57d ffffff",
-    "horn_rgb": "b3b2b5"
+    "horn_rgb": "b3b2b5",
+    "eye_rgb_0": "e9c57d",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 6,

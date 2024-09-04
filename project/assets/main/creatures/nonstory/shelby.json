@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "shelby",
   "name": "Shelby",
   "short_name": "Shelby",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "e699a1",
     "hair_rgb": "696864",
-    "eye_rgb": "87b8f6 ffffff",
-    "horn_rgb": "404094"
+    "horn_rgb": "404094",
+    "eye_rgb_0": "87b8f6",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 2.3,

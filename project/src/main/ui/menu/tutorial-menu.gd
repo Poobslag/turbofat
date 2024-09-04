@@ -5,7 +5,7 @@ onready var _paged_level_panel := $Panel
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_menu_track()
 	
 	var tutorial_region := OtherLevelLibrary.region_for_id(OtherRegion.ID_TUTORIAL)
 	if tutorial_region:

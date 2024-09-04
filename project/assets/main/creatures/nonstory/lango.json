@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "lango",
   "name": "Lango",
   "short_name": "Lango",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "d3a01c",
-    "eye_rgb": "54c35c d6ffff",
-    "horn_rgb": "529e43"
+    "horn_rgb": "529e43",
+    "eye_rgb_0": "54c35c",
+    "eye_rgb_1": "d6ffff"
   },
   "chat_theme": {
     "accent_scale": 4,

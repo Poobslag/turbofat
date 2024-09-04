@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "gongo",
   "name": "Gongo",
   "short_name": "Gongo",
@@ -25,8 +25,9 @@
     "glass_rgb": "690a00",
     "plastic_rgb": "292828",
     "hair_rgb": "222222",
-    "eye_rgb": "ad1000 b73a36",
-    "horn_rgb": "282828"
+    "horn_rgb": "282828",
+    "eye_rgb_0": "ad1000",
+    "eye_rgb_1": "b73a36"
   },
   "chat_theme": {
     "accent_scale": 4.6,

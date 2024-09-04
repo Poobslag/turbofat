@@ -8,7 +8,7 @@ pybabel extract -F project/assets/main/locale/babelrc \
 	-k dialog_text \
 	-k keybind_value \
 	-k label_text \
-	-k song_title \
+	-k track_title \
 	-k text \
 	-k tr \
 	-k window_title \

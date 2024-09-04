@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "hellius",
   "name": "Hellius",
   "short_name": "Hellius",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "1f1f1f",
     "hair_rgb": "222222",
-    "eye_rgb": "b8260b f45e40",
-    "horn_rgb": "e8a261"
+    "horn_rgb": "e8a261",
+    "eye_rgb_0": "b8260b",
+    "eye_rgb_1": "f45e40"
   },
   "chat_theme": {
     "accent_scale": 0.75,

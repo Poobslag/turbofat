@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "i_n_cognito",
   "name": "I. N. Cognito",
   "short_name": "I. N. Cognito",
@@ -25,8 +25,9 @@
     "glass_rgb": "41b34e",
     "plastic_rgb": "442f1c",
     "hair_rgb": "222222",
-    "eye_rgb": "ce4224 fff6df",
-    "horn_rgb": "090909"
+    "horn_rgb": "090909",
+    "eye_rgb_0": "ce4224",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 2.66,

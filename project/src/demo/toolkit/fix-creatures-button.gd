@@ -1,4 +1,4 @@
-extends Button
+extends ReleaseToolButton
 ## Fixes and reports problems with creature files.
 ##
 ## Recursively searches for creatures, upgrading them if they are out of date.
@@ -8,16 +8,26 @@ extends Button
 ## directories containing creatures which should be upgraded
 const CREATURE_DIRS := ["res://assets/main/creatures", "res://assets/test/nonstory-creatures"]
 
-export (NodePath) var output_label_path: NodePath
-
 ## string creature paths which have been successfully converted to the newest version
 var _converted := []
 
 ## string creature paths which have been recolored
 var _recolored := []
 
-## label for outputting messages to the user
-onready var _output_label: Label = get_node(output_label_path)
+var _problem_count := 0
+
+func run() -> void:
+	_problem_count = 0
+	
+	_upgrade_creatures()
+	_report_story_creatures()
+	_report_population_creatures()
+	_report_creatures_without_id()
+	_recolor_creatures()
+	
+	if _problem_count == 0:
+		_output.add_line("No creature files have problems.")
+
 
 ## Recursively searches for creatures, upgrading them if they are out of date.
 func _upgrade_creatures() -> void:
@@ -28,7 +38,7 @@ func _upgrade_creatures() -> void:
 		_upgrade_creature(creature_path)
 	
 	if _converted:
-		_output_label.add_line("Upgraded %d creatures to settings version %s." \
+		_report_problem("Upgraded %d creatures to settings version %s." \
 				% [_converted.size(), Creatures.CREATURE_DATA_VERSION])
 
 
@@ -99,7 +109,7 @@ func _report_story_creatures() -> void:
 	
 	move_to_nonstory_ids.sort()
 	if move_to_nonstory_ids:
-		_output_label.add_line("%s creatures should be moved from /story to /nonstory: %s" \
+		_report_problem("%s creatures should be moved from /story to /nonstory: %s" \
 				% [move_to_nonstory_ids.size(), move_to_nonstory_ids])
 	
 	# get a list of creature ids from the /nonstory/ directory
@@ -108,7 +118,7 @@ func _report_story_creatures() -> void:
 	# report any story creatures who are in our list of career creature ids
 	var move_to_story_ids := Utils.intersection(nonstory_ids, career_creature_ids)
 	if move_to_story_ids:
-		_output_label.add_line("%s creatures should be moved from /nonstory to /story: %s" \
+		_report_problem("%s creatures should be moved from /nonstory to /story: %s" \
 				% [move_to_story_ids.size(), move_to_story_ids])
 
 
@@ -163,7 +173,7 @@ func _report_population_creatures() -> void:
 			if PlayerData.creature_library.get_creature_def(appearance.id) == null:
 				invalid_creature_ids[appearance.id] = true
 		if invalid_creature_ids:
-			_output_label.add_line("Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()])
+			_report_problem("Region '%s' has bad creature ids: %s" % [region.id, invalid_creature_ids.keys()])
 
 
 ## Reports any creature files without a creature id.
@@ -189,7 +199,7 @@ func _report_creatures_without_id() -> void:
 		missing_creature_ids.append(identifier)
 	
 	if missing_creature_ids:
-		_output_label.add_line("Missing creature ids: %s" % [missing_creature_ids])
+		_report_problem("Missing creature ids: %s" % [missing_creature_ids])
 
 
 ## Recolors the specified creature using the Creature Editor's color palettes.
@@ -210,11 +220,11 @@ func _recolor_creature(path: String) -> void:
 	
 	for color_property in color_properties:
 		var color_presets: Array = CreatureEditorLibrary.get_color_presets(new_dna, color_property)
-		var dna_color: Color = _get_dna_color(new_dna, color_property)
+		var dna_color: Color = Color(new_dna[color_property])
 		var closest_preset := _find_closest_preset(color_presets, dna_color)
 		if closest_preset.to_html(false) != dna_color.to_html(false):
 			color_change_count += 1
-			_set_dna_color(new_dna, color_property, closest_preset)
+			new_dna[color_property] = closest_preset.to_html(false)
 	
 	if color_change_count > 0:
 		creature_def.dna = new_dna
@@ -222,26 +232,6 @@ func _recolor_creature(path: String) -> void:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(path, new_text)
 		_recolored.append(path)
-
-
-func _get_dna_color(dna: Dictionary, color_property: String) -> Color:
-	var result: Color
-	if color_property == "eye_rgb_0":
-		result = Color(dna["eye_rgb"].split(" ")[0])
-	elif color_property == "eye_rgb_1":
-		result = Color(dna["eye_rgb"].split(" ")[1])
-	else:
-		result = Color(dna[color_property])
-	return result
-
-
-func _set_dna_color(dna: Dictionary, color_property: String, color: Color) -> void:
-	if color_property == "eye_rgb_0":
-		dna["eye_rgb"] = "%s %s" % [color.to_html(false), dna["eye_rgb"].split(" ")[1]]
-	elif color_property == "eye_rgb_1":
-		dna["eye_rgb"] = "%s %s" % [dna["eye_rgb"].split(" ")[0], color.to_html(false)]
-	else:
-		dna[color_property] = color.to_html(false)
 
 
 func _find_closest_preset(color_presets: Array, target_color: Color) -> Color:
@@ -267,16 +257,9 @@ func _recolor_creatures() -> void:
 		_recolor_creature(creature_path)
 	
 	if _recolored:
-		_output_label.add_line("Recolored %d creatures." \
-				% [_recolored.size()])
+		_report_problem("Recolored %d creatures." % [_recolored.size()])
 
 
-func _on_pressed() -> void:
-	_output_label.text = ""
-	_upgrade_creatures()
-	_report_story_creatures()
-	_report_population_creatures()
-	_report_creatures_without_id()
-	_recolor_creatures()
-	if _output_label.text.empty():
-		_output_label.text = "No creature files have problems."
+func _report_problem(problem: String) -> void:
+	_output.add_line(problem)
+	_problem_count += 1

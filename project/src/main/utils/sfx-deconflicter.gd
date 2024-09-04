@@ -1,9 +1,9 @@
 extends Node
 ## Ensures multiple copies of the same sound don't play simultaneously.
 ##
-## By calling SfxDeconflicter.play() with multiple AudioStreamPlayers, this script tracks when those AudioStreamPlayers
-## play to prevent two copies of the same sound from playing simultaneously. This prevents the player from hearing one
-## very loud sound effect when several things happen at once.
+## By calling SfxDeconflicter.play() with multiple AudioStreamPlayers, this script monitors when those
+## AudioStreamPlayers play to prevent two copies of the same sound from playing simultaneously. This prevents the
+## player from hearing one very loud sound effect when several things happen at once.
 
 ## Number of milliseconds before the same sound can play a second time.
 const SUPPRESS_SFX_MSEC := 20

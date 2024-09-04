@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "goris",
   "name": "Goris",
   "short_name": "Goris",
@@ -21,12 +21,13 @@
     "belly_rgb": "4e4f4f",
     "cloth_rgb": "4fa94e",
     "hair_rgb": "ffffff",
-    "eye_rgb": "121011 4d6c6a",
     "horn_rgb": "fdfcec",
     "bellybutton": "0",
     "accessory": "0",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "121011",
+    "eye_rgb_1": "4d6c6a"
   },
   "chat_theme": {
     "accent_scale": 3,

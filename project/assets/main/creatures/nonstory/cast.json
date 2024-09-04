@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "cast",
   "name": "Cast",
   "short_name": "Cast",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "5e885a",
     "hair_rgb": "bdab30",
-    "eye_rgb": "d25e00 ffe8eb",
-    "horn_rgb": "fa6400"
+    "horn_rgb": "fa6400",
+    "eye_rgb_0": "d25e00",
+    "eye_rgb_1": "ffe8eb"
   },
   "chat_theme": {
     "accent_texture": 9,

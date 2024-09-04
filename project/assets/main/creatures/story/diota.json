@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "diota",
   "name": "Diota",
   "short_name": "Diota",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "f55034",
     "hair_rgb": "ffffff",
-    "eye_rgb": "74a27f ffffff",
-    "horn_rgb": "fde9e7"
+    "horn_rgb": "fde9e7",
+    "eye_rgb_0": "74a27f",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 1.15,

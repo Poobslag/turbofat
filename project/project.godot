@@ -225,9 +225,9 @@ _global_script_classes=[ {
 "path": "res://src/main/ui/cheat-code-detector.gd"
 }, {
 "base": "AudioStreamPlayer",
-"class": "CheckpointSong",
+"class": "CheckpointMusicTrack",
 "language": "GDScript",
-"path": "res://src/main/music/checkpoint-song.gd"
+"path": "res://src/main/music/checkpoint-music-track.gd"
 }, {
 "base": "Reference",
 "class": "ComboBreakRules",
@@ -558,6 +558,11 @@ _global_script_classes=[ {
 "class": "GradeLabel",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/grade-label.gd"
+}, {
+"base": "Control",
+"class": "GradeLabels",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/level-grade-labels.gd"
 }, {
 "base": "Node",
 "class": "GradientHelper",
@@ -1289,7 +1294,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/region-select-button.gd"
 }, {
-"base": "Label",
+"base": "Button",
+"class": "ReleaseToolButton",
+"language": "GDScript",
+"path": "res://src/demo/toolkit/release-tool-button.gd"
+}, {
+"base": "TextEdit",
 "class": "ReleaseToolkitOutput",
 "language": "GDScript",
 "path": "res://src/demo/toolkit/release-toolkit-output.gd"
@@ -1653,7 +1663,7 @@ _global_script_class_icons={
 "ChatTree": "",
 "ChatscriptParser": "",
 "CheatCodeDetector": "",
-"CheckpointSong": "",
+"CheckpointMusicTrack": "",
 "ComboBreakRules": "",
 "ComboBurst": "",
 "ComboTracker": "",
@@ -1720,6 +1730,7 @@ _global_script_class_icons={
 "GoopGlob": "",
 "GoopViewports": "",
 "GradeLabel": "",
+"GradeLabels": "",
 "GradientHelper": "",
 "GraphicsSettings": "",
 "GutHookScript": "",
@@ -1866,6 +1877,7 @@ _global_script_class_icons={
 "RegionCompletion": "",
 "RegionMusic": "",
 "RegionSelectButton": "",
+"ReleaseToolButton": "",
 "ReleaseToolkitOutput": "",
 "RestaurantPuzzleScene": "",
 "RestaurantView": "",

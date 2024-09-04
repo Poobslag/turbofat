@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/main/music/checkpoint-song.gd" type="Script" id=2]
+[ext_resource path="res://src/main/music/checkpoint-music-track.gd" type="Script" id=2]
 
-[node name="CheckpointSong" type="AudioStreamPlayer"]
+[node name="CheckpointMusicTrack" type="AudioStreamPlayer"]
 bus = "Music Bus"
 script = ExtResource( 2 )
 

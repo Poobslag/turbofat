@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sandrew",
   "name": "Sandrew",
   "short_name": "Sandrew",
@@ -21,12 +21,13 @@
     "belly_rgb": "d58944",
     "cloth_rgb": "4fa94e",
     "hair_rgb": "47465f",
-    "eye_rgb": "7d4c21 a8ad89",
     "horn_rgb": "b47922",
     "bellybutton": "0",
     "accessory": "0",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "7d4c21",
+    "eye_rgb_1": "a8ad89"
   },
   "chat_theme": {
     "accent_scale": 1.5,
