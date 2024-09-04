@@ -416,8 +416,8 @@ func _load_colors(dna: Dictionary) -> void:
 
 ## Assigns shader colors for the specified creature node.
 func _set_krgb(dna: Dictionary, path: String, black: Color,
-		red: Color = Color.black, green: Color = Color.black, blue: Color = Color.black):
+		red: Color = Color.transparent, green: Color = Color.transparent, blue: Color = Color.transparent):
 	dna["shader:%s:black" % path] = black
-	if red: dna["shader:%s:red" % path] = red
-	if green: dna["shader:%s:green" % path] = green
-	if blue: dna["shader:%s:blue" % path] = blue
+	if red != Color.transparent: dna["shader:%s:red" % path] = red
+	if green != Color.transparent: dna["shader:%s:green" % path] = green
+	if blue != Color.transparent: dna["shader:%s:blue" % path] = blue
