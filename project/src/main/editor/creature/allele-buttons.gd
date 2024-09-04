@@ -249,14 +249,7 @@ func _add_color_buttons(category: int) -> void:
 	for i in range(color_properties.size()):
 		var color_property: String = color_properties[i]
 		var color_button: CreatureColorButton = color_buttons[i]
-		var creature_color_html: String
-		match color_property:
-			"eye_rgb_0":
-				creature_color_html = _player().dna["eye_rgb"].split(" ")[0]
-			"eye_rgb_1":
-				creature_color_html = _player().dna["eye_rgb"].split(" ")[1]
-			_:
-				creature_color_html = _player().dna[color_property]
+		var creature_color_html: String = _player().dna[color_property]
 		color_button.creature_color = Color(creature_color_html)
 		color_button.enabled_if = _creature_editor_library.get_color_property_enabled_if(category, color_property)
 		color_button.connect("about_to_show", self, "_on_CreatureColorButton_about_to_show",
@@ -345,19 +338,7 @@ func _on_AlleleButton_pressed(allele_button: AlleleButton) -> void:
 
 ## When the player uses a CreatureColorButton, we update the creature's appearance
 func _on_CreatureColorButton_color_changed(color: Color, color_property: String) -> void:
-	match color_property:
-		"eye_rgb_0":
-			_player().dna["eye_rgb"] = "%s %s" % [
-					color.to_html(false).to_lower(),
-					_player().dna["eye_rgb"].split(" ")[1]
-				]
-		"eye_rgb_1":
-			_player().dna["eye_rgb"] = "%s %s" % [
-					_player().dna["eye_rgb"].split(" ")[0],
-					color.to_html(false).to_lower()
-				]
-		_:
-			_player().dna[color_property] = color.to_html(false).to_lower()
+	_player().dna[color_property] = color.to_html(false).to_lower()
 	_player().refresh_dna()
 	_player().chat_theme = CreatureLoader.chat_theme(_player().dna) # generate a new chat theme
 

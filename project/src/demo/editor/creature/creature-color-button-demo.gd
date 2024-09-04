@@ -27,19 +27,13 @@ func _input(event: InputEvent) -> void:
 ## creature's parts, such as "Red eyes, green eyes, blue eyes."
 func _extract_colors_from_creature_palettes() -> void:
 	var lines := []
-	var creature_palettes := DnaUtils.CREATURE_PALETTES.duplicate(true)
-	for palette in creature_palettes:
-		palette["eye_rgb_0"] = palette["eye_rgb"].split(" ")[0]
-		palette["eye_rgb_1"] = palette["eye_rgb"].split(" ")[1]
-		palette.erase("eye_rgb")
-	
-	var color_properties: Array = creature_palettes[0].keys()
+	var color_properties: Array = DnaUtils.CREATURE_PALETTES[0].keys()
 	color_properties.sort()
 	
 	var colors_by_property := {}
 	for color_property in color_properties:
 		colors_by_property[color_property] = {}
-		for palette in creature_palettes:
+		for palette in DnaUtils.CREATURE_PALETTES:
 			colors_by_property[color_property][Color(palette[color_property])] = true
 	
 	for color_property in colors_by_property:
@@ -140,11 +134,7 @@ func _show_missing_colors() -> void:
 func _colors_from_creature_dna(creature_dnas: Array, color_property: String) -> Array:
 	var result := {}
 	for creature_dna in creature_dnas:
-		if color_property == "eye_rgb_0":
-			result[Color(creature_dna["eye_rgb"].split(" ")[0])] = true
-		elif color_property == "eye_rgb_1":
-			result[Color(creature_dna["eye_rgb"].split(" ")[1])] = true
-		elif creature_dna.has(color_property):
+		if creature_dna.has(color_property):
 			result[Color(creature_dna[color_property])] = true
 	if not result:
 		push_warning("Color property '%s' is absent from creature dna" % [color_property])

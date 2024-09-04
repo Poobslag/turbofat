@@ -10,131 +10,131 @@ const LINE_COLORS := ["6c4331", "41281e", "3c3c3d"]
 ## Palettes used for recoloring creatures. Used for the old creature editor, and for randomly generated customers.
 const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "b23823", "belly_rgb": "c9442a",
-		"hair_rgb": "af845c", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
+		"hair_rgb": "af845c", "eye_rgb_0": "282828", "eye_rgb_1": "dedede", "horn_rgb": "f1e398",
 		"cloth_rgb": "282828", "glass_rgb": "72d2eb", "plastic_rgb": "292828"}, # dark red
 	{"line_rgb": "6c4331", "body_rgb": "f9bb4a", "belly_rgb": "fff4b2",
-		"hair_rgb": "b47922", "eye_rgb": "f9a74c fff6df", "horn_rgb": "b3b2b5",
+		"hair_rgb": "b47922", "eye_rgb_0": "f9a74c", "eye_rgb_1": "fff6df", "horn_rgb": "b3b2b5",
 		"cloth_rgb": "f9a74c", "glass_rgb": "1d1d1d", "plastic_rgb": "f55034"}, # yellow
 	{"line_rgb": "6c4331", "body_rgb": "41a740", "belly_rgb": "6dcb4c",
-		"hair_rgb": "f1e398", "eye_rgb": "c09a2f f1e398", "horn_rgb": "f6ff8c",
+		"hair_rgb": "f1e398", "eye_rgb_0": "c09a2f", "eye_rgb_1": "f1e398", "horn_rgb": "f6ff8c",
 		"cloth_rgb": "c09a2f", "glass_rgb": "c5d1d1", "plastic_rgb": "785537"}, # dark green
 	{"line_rgb": "6c4331", "body_rgb": "b47922", "belly_rgb": "e6cf62",
-		"hair_rgb": "7f8f69", "eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398",
+		"hair_rgb": "7f8f69", "eye_rgb_0": "7d4c21", "eye_rgb_1": "e5cd7d", "horn_rgb": "f1e398",
 		"cloth_rgb": "7d4c21", "glass_rgb": "777668", "plastic_rgb": "3b2416"}, # brown
 	{"line_rgb": "6c4331", "body_rgb": "6f83db", "belly_rgb": "92d8e5",
-		"hair_rgb": "47465f", "eye_rgb": "374265 eaf2f4", "horn_rgb": "f1e398",
+		"hair_rgb": "47465f", "eye_rgb_0": "374265", "eye_rgb_1": "eaf2f4", "horn_rgb": "f1e398",
 		"cloth_rgb": "374265", "glass_rgb": "202020", "plastic_rgb": "b5c4f2"}, # light blue
 
 	{"line_rgb": "6c4331", "body_rgb": "a854cb", "belly_rgb": "bb73dd",
-		"hair_rgb": "f1e398", "eye_rgb": "924a51 ffe8eb", "horn_rgb": "e38a61",
+		"hair_rgb": "f1e398", "eye_rgb_0": "924a51", "eye_rgb_1": "ffe8eb", "horn_rgb": "e38a61",
 		"cloth_rgb": "4fa94e", "glass_rgb": "4e50a9", "plastic_rgb": "42a5be"}, # purple
 	{"line_rgb": "6c4331", "body_rgb": "f57e7d", "belly_rgb": "fde8c9",
-		"hair_rgb": "f57e7d", "eye_rgb": "7ac252 e9f4dc", "horn_rgb": "f1e398",
+		"hair_rgb": "f57e7d", "eye_rgb_0": "7ac252", "eye_rgb_1": "e9f4dc", "horn_rgb": "f1e398",
 		"cloth_rgb": "7ac252", "glass_rgb": "d96079", "plastic_rgb": "6f6168"}, # light red
 	{"line_rgb": "6c4331", "body_rgb": "e17827", "belly_rgb": "dbbd9e",
-		"hair_rgb": "dfca7a", "eye_rgb": "1492d6 33d4f0", "horn_rgb": "e9ebf0",
+		"hair_rgb": "dfca7a", "eye_rgb_0": "1492d6", "eye_rgb_1": "33d4f0", "horn_rgb": "e9ebf0",
 		"cloth_rgb": "4aadc5", "glass_rgb": "c1ccce", "plastic_rgb": "3d3c3b"}, # fox orange
 	{"line_rgb": "6c4331", "body_rgb": "8fea40", "belly_rgb": "e8fa95",
-		"hair_rgb": "b47922", "eye_rgb": "f5d561 fcf3cd", "horn_rgb": "d3af43",
+		"hair_rgb": "b47922", "eye_rgb_0": "f5d561", "eye_rgb_1": "fcf3cd", "horn_rgb": "d3af43",
 		"cloth_rgb": "816327", "glass_rgb": "333332", "plastic_rgb": "e5e6e0"}, # light green
 	{"line_rgb": "6c4331", "body_rgb": "70843a", "belly_rgb": "a9aa2f",
-		"hair_rgb": "f1e398", "eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "eabc75",
+		"hair_rgb": "f1e398", "eye_rgb_0": "7d4c21", "eye_rgb_1": "e5cd7d", "horn_rgb": "eabc75",
 		"cloth_rgb": "7d4c21", "glass_rgb": "1a1919", "plastic_rgb": "442f1c"}, # goblin green
 
 	{"line_rgb": "6c4331", "body_rgb": "ffbfcb", "belly_rgb": "fffaff",
-			"hair_rgb": "ffffff", "eye_rgb": "fad4cf ffffff", "horn_rgb": "fde9e7",
+			"hair_rgb": "ffffff", "eye_rgb_0": "fad4cf", "eye_rgb_1": "ffffff", "horn_rgb": "fde9e7",
 			"cloth_rgb": "fad4cf", "glass_rgb": "f66451", "plastic_rgb": "f5dfdc"}, # pink
 	{"line_rgb": "6c4331", "body_rgb": "b1edee", "belly_rgb": "dff2f0",
-			"hair_rgb": "ffffff", "eye_rgb": "c1f1f2 ffffff", "horn_rgb": "e1f9f9",
+			"hair_rgb": "ffffff", "eye_rgb_0": "c1f1f2", "eye_rgb_1": "ffffff", "horn_rgb": "e1f9f9",
 			"cloth_rgb": "c1f1f2", "glass_rgb": "5376f1", "plastic_rgb": "e3fbfc"}, # cyan
 	{"line_rgb": "6c4331", "body_rgb": "f9f7d9", "belly_rgb": "d7c2a4",
-			"hair_rgb": "ffffff", "eye_rgb": "91e6ff ffffff", "horn_rgb": "fdfcec",
+			"hair_rgb": "ffffff", "eye_rgb_0": "91e6ff", "eye_rgb_1": "ffffff", "horn_rgb": "fdfcec",
 			"cloth_rgb": "91e6ff", "glass_rgb": "728eff", "plastic_rgb": "e8e8fe"}, # white
 	{"line_rgb": "41281e", "body_rgb": "1a1a1e", "belly_rgb": "65412e",
-			"hair_rgb": "222222", "eye_rgb": "b8260b f45e40", "horn_rgb": "282828",
+			"hair_rgb": "222222", "eye_rgb_0": "b8260b", "eye_rgb_1": "f45e40", "horn_rgb": "282828",
 			"cloth_rgb": "b8260b", "glass_rgb": "2d2b2b", "plastic_rgb": "1f1f1f"}, # doberman black
 	{"line_rgb": "6c4331", "body_rgb": "7a8289", "belly_rgb": "c8c3b5",
-			"hair_rgb": "282828", "eye_rgb": "f5f0d1 ffffff", "horn_rgb": "1e1e1e",
+			"hair_rgb": "282828", "eye_rgb_0": "f5f0d1", "eye_rgb_1": "ffffff", "horn_rgb": "1e1e1e",
 			"cloth_rgb": "f5f0d1", "glass_rgb": "a9b2b2", "plastic_rgb": "1e1e1e"}, # grey
 
 	{"line_rgb": "41281e", "body_rgb": "0b45a6", "belly_rgb": "eec086",
-			"hair_rgb": "282828", "eye_rgb": "fad541 ffffff", "horn_rgb": "3c3b3b",
+			"hair_rgb": "282828", "eye_rgb_0": "fad541", "eye_rgb_1": "ffffff", "horn_rgb": "3c3b3b",
 			"cloth_rgb": "fad541", "glass_rgb": "f5e194", "plastic_rgb": "282828"}, # dark blue
 	{"line_rgb": "6c4331", "body_rgb": "db2a25", "belly_rgb": "ffcd78",
-			"hair_rgb": "fbebe5", "eye_rgb": "5ba964 a9e0bb", "horn_rgb": "f4ffff",
+			"hair_rgb": "fbebe5", "eye_rgb_0": "5ba964", "eye_rgb_1": "a9e0bb", "horn_rgb": "f4ffff",
 			"cloth_rgb": "5ba964", "glass_rgb": "303630", "plastic_rgb": "66ca72"}, # dragon red
 	{"line_rgb": "3c3c3d", "body_rgb": "725e96", "belly_rgb": "a9d252",
-			"hair_rgb": "4f5651", "eye_rgb": "41f2ff d6ffff", "horn_rgb": "5a635d",
+			"hair_rgb": "4f5651", "eye_rgb_0": "41f2ff", "eye_rgb_1": "d6ffff", "horn_rgb": "5a635d",
 			"cloth_rgb": "41f2ff", "glass_rgb": "f9c0f9", "plastic_rgb": "de64d9"}, # dragon muted purple
 	{"line_rgb": "41281e", "body_rgb": "3b494f", "belly_rgb": "7b8780",
-			"hair_rgb": "1f1e1e", "eye_rgb": "ad1000 b73a36", "horn_rgb": "282727",
+			"hair_rgb": "1f1e1e", "eye_rgb_0": "ad1000", "eye_rgb_1": "b73a36", "horn_rgb": "282727",
 			"cloth_rgb": "ad1000", "glass_rgb": "690a00", "plastic_rgb": "252423"}, # gargoyle gray
 	{"line_rgb": "6c4331", "body_rgb": "68d50a", "belly_rgb": "4baf20",
-			"hair_rgb": "ffffed", "eye_rgb": "994dbd b392df", "horn_rgb": "d59fef",
+			"hair_rgb": "ffffed", "eye_rgb_0": "994dbd", "eye_rgb_1": "b392df", "horn_rgb": "d59fef",
 			"cloth_rgb": "994dbd", "glass_rgb": "bac5d6", "plastic_rgb": "2b2a29"}, # hulk green
 
 	{"line_rgb": "6c4331", "body_rgb": "9a7f5d", "belly_rgb": "c9dac6",
-			"hair_rgb": "40342d", "eye_rgb": "25291b 606060", "horn_rgb": "b9b9b9",
+			"hair_rgb": "40342d", "eye_rgb_0": "25291b", "eye_rgb_1": "606060", "horn_rgb": "b9b9b9",
 			"cloth_rgb": "25291b", "glass_rgb": "1f201e", "plastic_rgb": "3b3724"}, # goblin tan
 	{"line_rgb": "6c4331", "body_rgb": "ffb12c", "belly_rgb": "ffffff",
-			"hair_rgb": "d37725", "eye_rgb": "cb5340 ffb597", "horn_rgb": "d2c9cd",
+			"hair_rgb": "d37725", "eye_rgb_0": "cb5340", "eye_rgb_1": "ffb597", "horn_rgb": "d2c9cd",
 			"cloth_rgb": "cb5340", "glass_rgb": "dcd2d0", "plastic_rgb": "545050"}, # goober yellow
 	{"line_rgb": "6c4331", "body_rgb": "fa5c2c", "belly_rgb": "ffd461",
-			"hair_rgb": "3e7e32", "eye_rgb": "a7b958 ecf1bf", "horn_rgb": "529e43",
+			"hair_rgb": "3e7e32", "eye_rgb_0": "a7b958", "eye_rgb_1": "ecf1bf", "horn_rgb": "529e43",
 			"cloth_rgb": "a7b958", "glass_rgb": "a8db69", "plastic_rgb": "3d7d4b"}, # pumpkin orange
 	{"line_rgb": "6c4331", "body_rgb": "99ffb5", "belly_rgb": "ffffff",
-			"hair_rgb": "c5b871", "eye_rgb": "e9c57d ffffff", "horn_rgb": "f2f1f1",
+			"hair_rgb": "c5b871", "eye_rgb_0": "e9c57d", "eye_rgb_1": "ffffff", "horn_rgb": "f2f1f1",
 			"cloth_rgb": "c49877", "glass_rgb": "2e2d2d", "plastic_rgb": "c49877"}, # angelic green
 	{"line_rgb": "6c4331", "body_rgb": "23a2e3", "belly_rgb": "35e1e0",
-			"hair_rgb": "477d5b", "eye_rgb": "415a73 c8cbd6", "horn_rgb": "ffe7e5",
+			"hair_rgb": "477d5b", "eye_rgb_0": "415a73", "eye_rgb_1": "c8cbd6", "horn_rgb": "ffe7e5",
 			"cloth_rgb": "415a73", "glass_rgb": "bf3a3a", "plastic_rgb": "34373a"}, # fishy blue
 
 	{"line_rgb": "6c4331", "body_rgb": "9d3df6", "belly_rgb": "e055a0",
-			"hair_rgb": "28252a", "eye_rgb": "ecdf32 fcfcdb", "horn_rgb": "ac4577",
+			"hair_rgb": "28252a", "eye_rgb_0": "ecdf32", "eye_rgb_1": "fcfcdb", "horn_rgb": "ac4577",
 			"cloth_rgb": "ecdf32", "glass_rgb": "f4ec80", "plastic_rgb": "31302d"}, # mystic purple
 	{"line_rgb": "6c4331", "body_rgb": "25785f", "belly_rgb": "876edb",
-			"hair_rgb": "a6a1a1", "eye_rgb": "ff5c6f fff1f0", "horn_rgb": "bdc6c5",
+			"hair_rgb": "a6a1a1", "eye_rgb_0": "ff5c6f", "eye_rgb_1": "fff1f0", "horn_rgb": "bdc6c5",
 			"cloth_rgb": "ff5c6f", "glass_rgb": "c42b3d", "plastic_rgb": "fc7d8c"}, # sea monster turquoise
 	{"line_rgb": "6c4331", "body_rgb": "411c17", "belly_rgb": "e29b6e",
-			"hair_rgb": "d98227", "eye_rgb": "ff912e ffd061", "horn_rgb": "c9d9bd",
+			"hair_rgb": "d98227", "eye_rgb_0": "ff912e", "eye_rgb_1": "ffd061", "horn_rgb": "c9d9bd",
 			"cloth_rgb": "cb1b2e", "glass_rgb": "e7bb76", "plastic_rgb": "3f2a1f"}, # ogre brown
 	{"line_rgb": "6c4331", "body_rgb": "dbffc8", "belly_rgb": "d69e63",
-			"hair_rgb": "bdab30", "eye_rgb": "8bb253 ffebff", "horn_rgb": "caf877",
+			"hair_rgb": "bdab30", "eye_rgb_0": "8bb253", "eye_rgb_1": "ffebff", "horn_rgb": "caf877",
 			"cloth_rgb": "95c152", "glass_rgb": "232521", "plastic_rgb": "5e885a"}, # celtic white
 	{"line_rgb": "41281e", "body_rgb": "8f1b21", "belly_rgb": "838382",
-			"hair_rgb": "1e1e1e", "eye_rgb": "546127 a8ad89", "horn_rgb": "2b2b2b",
+			"hair_rgb": "1e1e1e", "eye_rgb_0": "546127", "eye_rgb_1": "a8ad89", "horn_rgb": "2b2b2b",
 			"cloth_rgb": "546127", "glass_rgb": "cbde88", "plastic_rgb": "546127"}, # heckraiser red
 
 	{"line_rgb": "41281e", "body_rgb": "b24b10", "belly_rgb": "d58944",
-			"hair_rgb": "2e261f", "eye_rgb": "7c4725 b8ad9f", "horn_rgb": "4c5245",
+			"hair_rgb": "2e261f", "eye_rgb_0": "7c4725", "eye_rgb_1": "b8ad9f", "horn_rgb": "4c5245",
 			"cloth_rgb": "ffd256", "glass_rgb": "ffd256", "plastic_rgb": "252422"}, # muddy orange
 	{"line_rgb": "41281e", "body_rgb": "907027", "belly_rgb": "e5d6b7",
-			"hair_rgb": "544e42", "eye_rgb": "d5c26a ffffff", "horn_rgb": "afa7ae",
+			"hair_rgb": "544e42", "eye_rgb_0": "d5c26a", "eye_rgb_1": "ffffff", "horn_rgb": "afa7ae",
 			"cloth_rgb": "d5c26a", "glass_rgb": "232221", "plastic_rgb": "d5c26a"}, # golem bronze
 	{"line_rgb": "41281e", "body_rgb": "48366e", "belly_rgb": "8b70a1",
-			"hair_rgb": "3e2d62", "eye_rgb": "121011 4d6c6a", "horn_rgb": "828863",
+			"hair_rgb": "3e2d62", "eye_rgb_0": "121011", "eye_rgb_1": "4d6c6a", "horn_rgb": "828863",
 			"cloth_rgb": "121011", "glass_rgb": "331d4b", "plastic_rgb": "121011"}, # grape jelly
 	{"line_rgb": "41281e", "body_rgb": "2c4b9e", "belly_rgb": "c78e69",
-			"hair_rgb": "e7b658", "eye_rgb": "a58900 e3d48e", "horn_rgb": "98a49a",
+			"hair_rgb": "e7b658", "eye_rgb_0": "a58900", "eye_rgb_1": "e3d48e", "horn_rgb": "98a49a",
 			"cloth_rgb": "a58900", "glass_rgb": "282514", "plastic_rgb": "a59131"}, # bold blue
 	{"line_rgb": "41281e", "body_rgb": "025d28", "belly_rgb": "67aa0f",
-			"hair_rgb": "2c3c2b", "eye_rgb": "ccd44d ffffd9", "horn_rgb": "959f78",
+			"hair_rgb": "2c3c2b", "eye_rgb_0": "ccd44d", "eye_rgb_1": "ffffd9", "horn_rgb": "959f78",
 			"cloth_rgb": "ccd44d", "glass_rgb": "508e44", "plastic_rgb": "d4aa4d"}, # broccoli green
 
 	{"line_rgb": "41281e", "body_rgb": "664437", "belly_rgb": "eaf9c7",
-			"hair_rgb": "c58549", "eye_rgb": "74a27f fffaff", "horn_rgb": "e8a261",
+			"hair_rgb": "c58549", "eye_rgb_0": "74a27f", "eye_rgb_1": "fffaff", "horn_rgb": "e8a261",
 			"cloth_rgb": "74a27f", "glass_rgb": "d2d1be", "plastic_rgb": "923b3b"}, # chocolate brown
 	{"line_rgb": "6c4331", "body_rgb": "68af25", "belly_rgb": "8fff54",
-			"hair_rgb": "587f44", "eye_rgb": "ce4224 fff6e3", "horn_rgb": "49663a",
+			"hair_rgb": "587f44", "eye_rgb_0": "ce4224", "eye_rgb_1": "fff6e3", "horn_rgb": "49663a",
 			"cloth_rgb": "ce4224", "glass_rgb": "e65738", "plastic_rgb": "37302e"}, # tomato green
 	{"line_rgb": "6c4331", "body_rgb": "f6bd44", "belly_rgb": "2a2a2a",
-			"hair_rgb": "2c2c2c", "eye_rgb": "f0f3bd ffffff", "horn_rgb": "383838",
+			"hair_rgb": "2c2c2c", "eye_rgb_0": "f0f3bd", "eye_rgb_1": "ffffff", "horn_rgb": "383838",
 			"cloth_rgb": "f0f3bd", "glass_rgb": "f0f3bd", "plastic_rgb": "292927"}, # honeybee yellow
 	{"line_rgb": "3c3c3d", "body_rgb": "171419", "belly_rgb": "b0b4d1",
-			"hair_rgb": "b0b4d1", "eye_rgb": "4e8eee f8ffff", "horn_rgb": "c4c4c5",
+			"hair_rgb": "b0b4d1", "eye_rgb_0": "4e8eee", "eye_rgb_1": "f8ffff", "horn_rgb": "c4c4c5",
 			"cloth_rgb": "4e8eee", "glass_rgb": "1c1c1d", "plastic_rgb": "abb7f5"}, # penguin black
 	{"line_rgb": "3c3c3d", "body_rgb": "e63f2d", "belly_rgb": "f77429",
-			"hair_rgb": "3b5854", "eye_rgb": "f2c12a ffffa2", "horn_rgb": "486965",
+			"hair_rgb": "3b5854", "eye_rgb_0": "f2c12a", "eye_rgb_1": "ffffa2", "horn_rgb": "486965",
 			"cloth_rgb": "f2c12a", "glass_rgb": "fad669", "plastic_rgb": "f28c2a"}, # magma orange
 ]
 
@@ -147,7 +147,7 @@ const BODY_PART_ALLELES := [
 ## alleles corresponding to creature colors
 const COLOR_ALLELES := [
 	"line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb",
-	"hair_rgb", "eye_rgb", "horn_rgb",
+	"hair_rgb", "eye_rgb_0", "eye_rgb_1", "horn_rgb",
 ]
 
 ## all alleles, including body parts and colors

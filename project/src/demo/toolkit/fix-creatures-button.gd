@@ -220,11 +220,11 @@ func _recolor_creature(path: String) -> void:
 	
 	for color_property in color_properties:
 		var color_presets: Array = CreatureEditorLibrary.get_color_presets(new_dna, color_property)
-		var dna_color: Color = _get_dna_color(new_dna, color_property)
+		var dna_color: Color = Color(new_dna[color_property])
 		var closest_preset := _find_closest_preset(color_presets, dna_color)
 		if closest_preset.to_html(false) != dna_color.to_html(false):
 			color_change_count += 1
-			_set_dna_color(new_dna, color_property, closest_preset)
+			new_dna[color_property] = closest_preset.to_html(false)
 	
 	if color_change_count > 0:
 		creature_def.dna = new_dna
@@ -232,26 +232,6 @@ func _recolor_creature(path: String) -> void:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(path, new_text)
 		_recolored.append(path)
-
-
-func _get_dna_color(dna: Dictionary, color_property: String) -> Color:
-	var result: Color
-	if color_property == "eye_rgb_0":
-		result = Color(dna["eye_rgb"].split(" ")[0])
-	elif color_property == "eye_rgb_1":
-		result = Color(dna["eye_rgb"].split(" ")[1])
-	else:
-		result = Color(dna[color_property])
-	return result
-
-
-func _set_dna_color(dna: Dictionary, color_property: String, color: Color) -> void:
-	if color_property == "eye_rgb_0":
-		dna["eye_rgb"] = "%s %s" % [color.to_html(false), dna["eye_rgb"].split(" ")[1]]
-	elif color_property == "eye_rgb_1":
-		dna["eye_rgb"] = "%s %s" % [dna["eye_rgb"].split(" ")[0], color.to_html(false)]
-	else:
-		dna[color_property] = color.to_html(false)
 
 
 func _find_closest_preset(color_presets: Array, target_color: Color) -> Color:

@@ -5,9 +5,6 @@ extends HBoxContainer
 
 export (NodePath) var creature_editor_path: NodePath
 
-## Allele property used internally when updating the creature. Not shown to the player
-var _allele := "eye_rgb"
-
 onready var _creature_editor: CreatureEditorOld = get_node(creature_editor_path)
 
 func _ready() -> void:
@@ -16,8 +13,8 @@ func _ready() -> void:
 
 ## Update the creature with the player's chosen eye color.
 func _on_Edit_color_changed(_color: Color) -> void:
-	var color_string := "%s %s" % [$Edit1.color.to_html(false).to_lower(), $Edit2.color.to_html(false).to_lower()]
-	_creature_editor.center_creature.dna[_allele] = color_string
+	_creature_editor.center_creature.dna["eye_rgb_0"] = $Edit1.color.to_html(false).to_lower()
+	_creature_editor.center_creature.dna["eye_rgb_1"] = $Edit2.color.to_html(false).to_lower()
 	_creature_editor.center_creature.refresh_dna()
 
 
@@ -30,19 +27,18 @@ func _on_Edit_pressed() -> void:
 
 
 func _on_GrayDna_pressed() -> void:
-	_creature_editor.tweak_all_creatures(_allele, CreatureEditorOld.SIMILAR_COLORS)
+	_creature_editor.tweak_all_creatures("eye_rgb_0", CreatureEditorOld.SIMILAR_COLORS)
 
 
 func _on_PurpleDna_pressed() -> void:
-	_creature_editor.tweak_all_creatures(_allele, CreatureEditorOld.THEME_COLORS)
+	_creature_editor.tweak_all_creatures("eye_rgb_0", CreatureEditorOld.THEME_COLORS)
 
 
 func _on_RainbowDna_pressed() -> void:
-	_creature_editor.tweak_all_creatures(_allele, CreatureEditorOld.RANDOM_COLORS)
+	_creature_editor.tweak_all_creatures("eye_rgb_0", CreatureEditorOld.RANDOM_COLORS)
 
 
 ## Update the color picker buttons with the creature's eye color.
 func _on_CreatureEditor_center_creature_changed() -> void:
-	var rgb_split: Array = _creature_editor.center_creature.dna[_allele].split(" ")
-	$Edit1.color = Color(rgb_split[0])
-	$Edit2.color = Color(rgb_split[1])
+	$Edit1.color = Color(_creature_editor.center_creature.dna["eye_rgb_0"])
+	$Edit2.color = Color(_creature_editor.center_creature.dna["eye_rgb_1"])

@@ -401,12 +401,13 @@ func _load_colors(dna: Dictionary) -> void:
 	var nose_skin_color := belly_color if dna.get("head") in ["2", "3"] else body_color
 	_set_krgb(dna, "Neck0/HeadBobber/Nose", line_color, nose_skin_color)
 	
-	var eye_color: Color
-	var eye_shine_color: Color
 	var eye_skin_color := belly_color if dna.get("head") in ["2", "4", "5"] else body_color
-	if dna.has("eye_rgb"):
-		eye_color = Color(dna.eye_rgb.split(" ")[0])
-		eye_shine_color = Color(dna.eye_rgb.split(" ")[1])
+	var eye_color: Color
+	if dna.has("eye_rgb_0"):
+		eye_color = Color(dna.eye_rgb_0)
+	var eye_shine_color: Color
+	if dna.has("eye_rgb_1"):
+		eye_shine_color = Color(dna.eye_rgb_1)
 	_set_krgb(dna, "Neck0/HeadBobber/EyeZ0", line_color, eye_skin_color, eye_color, eye_shine_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EyeZ1", line_color, eye_skin_color, eye_color, eye_shine_color)
 
