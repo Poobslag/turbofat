@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "stunker",
   "name": "Stunker",
   "short_name": "Stunker",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "ffffff",
-    "eye_rgb": "2c8619 a9e0bb",
-    "horn_rgb": "ac4577"
+    "horn_rgb": "ac4577",
+    "eye_rgb_0": "2c8619",
+    "eye_rgb_1": "a9e0bb"
   },
   "chat_theme": {
     "accent_scale": 2.66,

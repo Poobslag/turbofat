@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "trough",
   "name": "Trough",
   "short_name": "Trough",
@@ -25,8 +25,9 @@
     "glass_rgb": "f5e194",
     "plastic_rgb": "66ca72",
     "hair_rgb": "fbebe5",
-    "eye_rgb": "5ba964 a9e0bb",
-    "horn_rgb": "fdfcec"
+    "horn_rgb": "fdfcec",
+    "eye_rgb_0": "5ba964",
+    "eye_rgb_1": "a9e0bb"
   },
   "chat_theme": {
     "accent_scale": 1.5,

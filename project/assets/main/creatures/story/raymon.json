@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "raymon",
   "name": "Raymon",
   "short_name": "Raymon",
@@ -25,8 +25,9 @@
     "glass_rgb": "e7bb76",
     "plastic_rgb": "442f1c",
     "hair_rgb": "e7b658",
-    "eye_rgb": "a58900 e5cd7d",
-    "horn_rgb": "c9d9bd"
+    "horn_rgb": "c9d9bd",
+    "eye_rgb_0": "a58900",
+    "eye_rgb_1": "e5cd7d"
   },
   "chat_theme": {
     "accent_scale": 1.75,

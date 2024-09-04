@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "toat",
   "name": "Toat",
   "short_name": "Toat",
@@ -25,8 +25,9 @@
     "glass_rgb": "e65738",
     "plastic_rgb": "923b3b",
     "hair_rgb": "c58549",
-    "eye_rgb": "ce4224 fff6df",
-    "horn_rgb": "e8a261"
+    "horn_rgb": "e8a261",
+    "eye_rgb_0": "ce4224",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 7,

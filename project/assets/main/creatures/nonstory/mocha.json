@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "mocha",
   "name": "Mocha",
   "short_name": "Mocha",
@@ -21,12 +21,13 @@
     "belly_rgb": "c78e69",
     "cloth_rgb": "74a27f",
     "hair_rgb": "e8a261",
-    "eye_rgb": "977968 ffffff",
     "horn_rgb": "e8a261",
     "bellybutton": "0",
     "accessory": "0",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "977968",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 2.3,

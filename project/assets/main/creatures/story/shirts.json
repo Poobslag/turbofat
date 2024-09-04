@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "shirts",
   "name": "Shirts",
   "short_name": "Shirts",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "121011",
     "hair_rgb": "3e2d62",
-    "eye_rgb": "121011 617d7c",
-    "horn_rgb": "fecbd3"
+    "horn_rgb": "fecbd3",
+    "eye_rgb_0": "121011",
+    "eye_rgb_1": "617d7c"
   },
   "chat_theme": {
     "accent_scale": 0.67,

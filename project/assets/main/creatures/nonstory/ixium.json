@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "ixium",
   "name": "Ixium",
   "short_name": "Ixium",
@@ -25,8 +25,9 @@
     "glass_rgb": "f9c0f9",
     "plastic_rgb": "e5e6e0",
     "hair_rgb": "b47922",
-    "eye_rgb": "f5d561 fff6df",
-    "horn_rgb": "5a635d"
+    "horn_rgb": "5a635d",
+    "eye_rgb_0": "f5d561",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 0.88,

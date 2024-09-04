@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "vile",
   "name": "Vile",
   "short_name": "Vile",
@@ -25,8 +25,9 @@
     "glass_rgb": "ff8600",
     "plastic_rgb": "d4aa4d",
     "hair_rgb": "fbebe5",
-    "eye_rgb": "f6f200 ffffa2",
-    "horn_rgb": "fdfcec"
+    "horn_rgb": "fdfcec",
+    "eye_rgb_0": "f6f200",
+    "eye_rgb_1": "ffffa2"
   },
   "chat_theme": {
     "accent_scale": 1.15,

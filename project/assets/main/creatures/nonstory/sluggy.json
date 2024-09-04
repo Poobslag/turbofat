@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sluggy",
   "name": "Sluggy",
   "short_name": "Sluggy",
@@ -25,8 +25,9 @@
     "glass_rgb": "f0f3bd",
     "plastic_rgb": "a3a2a6",
     "hair_rgb": "f9f7d9",
-    "eye_rgb": "121011 fff6df",
-    "horn_rgb": "e9ebf0"
+    "horn_rgb": "e9ebf0",
+    "eye_rgb_0": "121011",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 4,

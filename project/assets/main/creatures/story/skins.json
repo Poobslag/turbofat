@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "skins",
   "name": "Skins",
   "short_name": "Skins",
@@ -25,8 +25,9 @@
     "glass_rgb": "c42b3d",
     "plastic_rgb": "292828",
     "hair_rgb": "d98227",
-    "eye_rgb": "d5c26a ffffff",
-    "horn_rgb": "4c5245"
+    "horn_rgb": "4c5245",
+    "eye_rgb_0": "d5c26a",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 4,

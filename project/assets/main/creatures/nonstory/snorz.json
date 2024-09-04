@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "snorz",
   "name": "Snorz",
   "short_name": "Snorz",
@@ -21,12 +21,13 @@
     "belly_rgb": "f6e183",
     "cloth_rgb": "cb5340",
     "hair_rgb": "e5d6b7",
-    "eye_rgb": "ecdf32 fff6df",
     "horn_rgb": "ac4577",
     "bellybutton": "0",
     "accessory": "0",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "ecdf32",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 7,

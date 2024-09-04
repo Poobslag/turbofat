@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "posh",
   "name": "Posh",
   "short_name": "Posh",
@@ -25,8 +25,9 @@
     "glass_rgb": "f66451",
     "plastic_rgb": "f5dfdc",
     "hair_rgb": "ffffff",
-    "eye_rgb": "fad4cf ffffff",
-    "horn_rgb": "fde9e7"
+    "horn_rgb": "fde9e7",
+    "eye_rgb_0": "fad4cf",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 1,

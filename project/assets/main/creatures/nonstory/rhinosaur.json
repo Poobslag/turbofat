@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "rhinosaur",
   "name": "Rhinosaur",
   "short_name": "Rhinosaur",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "f1e398",
-    "eye_rgb": "282828 dedede",
-    "horn_rgb": "f1e398"
+    "horn_rgb": "f1e398",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "dedede"
   },
   "chat_theme": {
     "accent_scale": 0.88,

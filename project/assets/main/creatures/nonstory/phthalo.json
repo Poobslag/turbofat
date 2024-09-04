@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "phthalo",
   "name": "Phthalo",
   "short_name": "Phthalo",
@@ -25,8 +25,9 @@
     "glass_rgb": "b8d229",
     "plastic_rgb": "546127",
     "hair_rgb": "2c3c2b",
-    "eye_rgb": "374265 aba4ce",
-    "horn_rgb": "fecbd3"
+    "horn_rgb": "fecbd3",
+    "eye_rgb_0": "374265",
+    "eye_rgb_1": "aba4ce"
   },
   "chat_theme": {
     "accent_scale": 2.3,

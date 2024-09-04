@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "chelle",
   "name": "Chelle",
   "short_name": "Chelle",
@@ -25,8 +25,9 @@
     "glass_rgb": "dcd2d0",
     "plastic_rgb": "923b3b",
     "hair_rgb": "c58549",
-    "eye_rgb": "5ba964 a9e0bb",
-    "horn_rgb": "fde9e7"
+    "horn_rgb": "fde9e7",
+    "eye_rgb_0": "5ba964",
+    "eye_rgb_1": "a9e0bb"
   },
   "chat_theme": {
     "accent_scale": 0.5,

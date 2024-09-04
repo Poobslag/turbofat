@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "flutter",
   "name": "Flutter",
   "short_name": "Flutter",
@@ -22,11 +22,12 @@
     "belly_rgb": "e5d6b7",
     "cloth_rgb": "fad4cf",
     "hair_rgb": "fbebe5",
-    "eye_rgb": "866c95 fff6df",
     "horn_rgb": "fde9e7",
     "accessory": "0",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "866c95",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 1.15,

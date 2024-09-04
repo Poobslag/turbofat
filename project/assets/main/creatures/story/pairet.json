@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "pairet",
   "name": "Pairet",
   "short_name": "Pairet",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "5e885a",
     "hair_rgb": "bdab30",
-    "eye_rgb": "8bb253 ffe8eb",
-    "horn_rgb": "caf877"
+    "horn_rgb": "caf877",
+    "eye_rgb_0": "8bb253",
+    "eye_rgb_1": "ffe8eb"
   },
   "chat_theme": {
     "accent_swapped": true,

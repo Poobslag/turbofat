@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "xoxoxo",
   "name": "Xoxoxo",
   "short_name": "Xoxoxo",
@@ -25,8 +25,9 @@
     "glass_rgb": "508e44",
     "plastic_rgb": "c49877",
     "hair_rgb": "2c3c2b",
-    "eye_rgb": "ccd44d ffffff",
-    "horn_rgb": "98a49a"
+    "horn_rgb": "98a49a",
+    "eye_rgb_0": "ccd44d",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 0.5,

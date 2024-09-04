@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "deathcliff",
   "name": "Deathcliff",
   "short_name": "Deathcliff",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "1f1f1f",
     "hair_rgb": "4f5651",
-    "eye_rgb": "41f2ff d6ffff",
-    "horn_rgb": "5a635d"
+    "horn_rgb": "5a635d",
+    "eye_rgb_0": "41f2ff",
+    "eye_rgb_1": "d6ffff"
   },
   "chat_theme": {
     "accent_scale": 1.33,
