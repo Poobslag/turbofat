@@ -8,7 +8,7 @@ signal pressed
 func set_palette(palette: Dictionary) -> void:
 	color = palette["line_rgb"]
 	$HBoxContainer/Body.color = Color(palette["body_rgb"])
-	$HBoxContainer/VBoxContainer/Eye.color = Color(palette["eye_rgb"].split(" ")[0])
+	$HBoxContainer/VBoxContainer/Eye.color = Color(palette["eye_rgb_0"])
 	$HBoxContainer/VBoxContainer/Belly.color = Color(palette["belly_rgb"])
 	$HBoxContainer/VBoxContainer/Horn.color = Color(palette["horn_rgb"])
 

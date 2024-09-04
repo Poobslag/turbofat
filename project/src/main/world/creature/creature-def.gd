@@ -22,7 +22,8 @@ const DEFAULT_DNA := {
 	"collar": "0",
 	"ear": "1",
 	"eye": "1",
-	"eye_rgb": "282828 dedede",
+	"eye_rgb_0": "282828",
+	"eye_rgb_1": "dedede",
 	"glass_rgb": "282828",
 	"hair": "0",
 	"hair_rgb": "f1e398",
@@ -82,6 +83,13 @@ func from_json_dict(json: Dictionary) -> void:
 	var version: String = json.get("version", "")
 	while version != Creatures.CREATURE_DATA_VERSION:
 		match version:
+			"375c":
+				if json.has("dna"):
+					if json["dna"].has("eye_rgb"):
+						json["dna"]["eye_rgb_0"] = json["dna"]["eye_rgb"].split(" ")[0]
+						json["dna"]["eye_rgb_1"] = json["dna"]["eye_rgb"].split(" ")[1]
+						json["dna"].erase("eye_rgb")
+				version = "5923"
 			"19dd":
 				if json.has("chat_theme_def"):
 					json["chat_theme"] = json["chat_theme_def"]

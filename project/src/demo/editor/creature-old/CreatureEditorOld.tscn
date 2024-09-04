@@ -505,7 +505,7 @@ margin_top = 0.0
 margin_right = 205.0
 margin_bottom = 26.0
 text = "Color"
-allele = "eye_rgb"
+allele = "eye_rgb_0"
 
 [node name="Nose" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
 margin_top = 155.0
