@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "beats",
   "name": "Beats",
   "short_name": "Beats",
@@ -25,8 +25,9 @@
     "glass_rgb": "5d1b2b",
     "plastic_rgb": "121011",
     "hair_rgb": "3e2d62",
-    "eye_rgb": "121011 20383f",
-    "horn_rgb": "b3b2b5"
+    "horn_rgb": "b3b2b5",
+    "eye_rgb_0": "121011",
+    "eye_rgb_1": "20383f"
   },
   "chat_theme": {
     "accent_scale": 1.5,

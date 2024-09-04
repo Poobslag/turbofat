@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "boatricia",
   "name": "Boatricia",
   "short_name": "Boatricia",
@@ -11,7 +11,6 @@
     "cheek": "2",
     "ear": "2",
     "eye": "3",
-    "eye_rgb": "f5d561 ffffff",
     "head": "1",
     "horn": "0",
     "horn_rgb": "282828",
@@ -26,7 +25,9 @@
     "cloth_rgb": "282828",
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
-    "hair_rgb": "f1e398"
+    "hair_rgb": "f1e398",
+    "eye_rgb_0": "f5d561",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 4,

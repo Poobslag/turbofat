@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "jayton",
   "name": "Jayton",
   "short_name": "Jayton",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "d98227",
-    "eye_rgb": "276127 a8ad89",
-    "horn_rgb": "9787a2"
+    "horn_rgb": "9787a2",
+    "eye_rgb_0": "276127",
+    "eye_rgb_1": "a8ad89"
   },
   "chat_theme": {
     "accent_scale": 1.33,

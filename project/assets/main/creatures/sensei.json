@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "#sensei#",
   "name": "Fat Sensei",
   "short_name": "Fat Sensei",
@@ -13,7 +13,6 @@
     "collar": "0",
     "ear": "3",
     "eye": "2",
-    "eye_rgb": "5ba964 f1e398",
     "hair": "0",
     "hair_rgb": "f1e398",
     "head": "1",
@@ -27,7 +26,9 @@
     "accessory": "0",
     "belly_rgb": "c9442a",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "5ba964",
+    "eye_rgb_1": "f1e398"
   },
   "chat_theme": {
     "accent_scale": 3.5,

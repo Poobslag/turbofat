@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "wendrea",
   "name": "Wendrea",
   "short_name": "Wendrea",
@@ -25,8 +25,9 @@
     "glass_rgb": "a9b2b2",
     "plastic_rgb": "e5e6e0",
     "hair_rgb": "fbebe5",
-    "eye_rgb": "cb5340 ffb597",
-    "horn_rgb": "1e1e1e"
+    "horn_rgb": "1e1e1e",
+    "eye_rgb_0": "cb5340",
+    "eye_rgb_1": "ffb597"
   },
   "chat_theme": {
     "accent_scale": 5.33,

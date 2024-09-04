@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "spood",
   "name": "Spood",
   "short_name": "Spood",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "e5d6b7",
-    "eye_rgb": "c1f1f2 ffffff",
-    "horn_rgb": "f1e398"
+    "horn_rgb": "f1e398",
+    "eye_rgb_0": "c1f1f2",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 1.5,

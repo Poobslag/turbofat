@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sque",
   "name": "Sque",
   "short_name": "Sque",
@@ -25,8 +25,9 @@
     "glass_rgb": "bf3a3a",
     "plastic_rgb": "3d3c3b",
     "hair_rgb": "3e7e32",
-    "eye_rgb": "374265 eaf2f4",
-    "horn_rgb": "fde9e7"
+    "horn_rgb": "fde9e7",
+    "eye_rgb_0": "374265",
+    "eye_rgb_1": "eaf2f4"
   },
   "chat_theme": {
     "accent_scale": 6,

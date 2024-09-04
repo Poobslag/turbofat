@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "redo",
   "name": "Redo",
   "short_name": "Redo",
@@ -25,8 +25,9 @@
     "glass_rgb": "e65738",
     "plastic_rgb": "442f1c",
     "hair_rgb": "3e7e32",
-    "eye_rgb": "f5d561 ffffff",
-    "horn_rgb": "49663a"
+    "horn_rgb": "49663a",
+    "eye_rgb_0": "f5d561",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 0.67,

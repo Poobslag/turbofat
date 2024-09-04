@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sleve",
   "name": "Sleve",
   "short_name": "Sleve",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "b5c4f2",
     "hair_rgb": "d37725",
-    "eye_rgb": "cb5340 ffb597",
-    "horn_rgb": "d2c9cd"
+    "horn_rgb": "d2c9cd",
+    "eye_rgb_0": "cb5340",
+    "eye_rgb_1": "ffb597"
   },
   "chat_theme": {
     "accent_scale": 0.5,

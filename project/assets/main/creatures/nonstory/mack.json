@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "mack",
   "name": "Mack",
   "short_name": "Mack",
@@ -25,8 +25,9 @@
     "glass_rgb": "f5e194",
     "plastic_rgb": "ae2222",
     "hair_rgb": "dfca7a",
-    "eye_rgb": "f5d561 ffffff",
-    "horn_rgb": "eabc75"
+    "horn_rgb": "eabc75",
+    "eye_rgb_0": "f5d561",
+    "eye_rgb_1": "ffffff"
   },
   "chat_theme": {
     "accent_scale": 2.66,

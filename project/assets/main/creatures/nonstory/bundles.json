@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "bundles",
   "name": "Bundles",
   "short_name": "Bundles",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "b47922",
-    "eye_rgb": "282828 dedede",
-    "horn_rgb": "b47922"
+    "horn_rgb": "b47922",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "dedede"
   },
   "chat_theme": {
     "accent_scale": 1.5,

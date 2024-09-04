@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "logana",
   "name": "Logana",
   "short_name": "Logana",
@@ -25,8 +25,9 @@
     "glass_rgb": "333332",
     "plastic_rgb": "292828",
     "hair_rgb": "d98227",
-    "eye_rgb": "8458b9 daaed8",
-    "horn_rgb": "529e43"
+    "horn_rgb": "529e43",
+    "eye_rgb_0": "8458b9",
+    "eye_rgb_1": "daaed8"
   },
   "chat_theme": {
     "accent_scale": 3.5,

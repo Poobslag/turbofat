@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "alyssa",
   "name": "Alyssa",
   "short_name": "Alyssa",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "e5e6e0",
     "hair_rgb": "40342d",
-    "eye_rgb": "282828 606060",
-    "horn_rgb": "b3b2b5"
+    "horn_rgb": "b3b2b5",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "606060"
   },
   "chat_theme": {
     "accent_scale": 2,

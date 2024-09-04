@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "namory",
   "name": "Namory",
   "short_name": "Namory",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "a59131",
     "hair_rgb": "e7b658",
-    "eye_rgb": "a58900 e5cd7d",
-    "horn_rgb": "b3b2b5"
+    "horn_rgb": "b3b2b5",
+    "eye_rgb_0": "a58900",
+    "eye_rgb_1": "e5cd7d"
   },
   "chat_theme": {
     "accent_scale": 3.5,

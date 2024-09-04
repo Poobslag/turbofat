@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "sidger",
   "name": "Sidger",
   "short_name": "Sidger",
@@ -25,11 +25,11 @@
     "glass_rgb": "331d4b",
     "plastic_rgb": "121011",
     "hair_rgb": "3e2d62",
-    "eye_rgb": "121011 4d6c6a",
-    "horn_rgb": "828863"
+    "horn_rgb": "828863",
+    "eye_rgb_0": "121011",
+    "eye_rgb_1": "4d6c6a"
   },
   "chat_theme": {
-    "accent_amount": 0.12,
     "accent_scale": 4,
     "accent_swapped": true,
     "accent_texture": 12,

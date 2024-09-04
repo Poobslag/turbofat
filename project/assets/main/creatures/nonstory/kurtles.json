@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "kurtles",
   "name": "Kurtles",
   "short_name": "Kurtles",
@@ -25,8 +25,9 @@
     "glass_rgb": "1d1d1d",
     "plastic_rgb": "abb7f5",
     "hair_rgb": "b0b4d1",
-    "eye_rgb": "374265 eaf2f4",
-    "horn_rgb": "bdc6c5"
+    "horn_rgb": "bdc6c5",
+    "eye_rgb_0": "374265",
+    "eye_rgb_1": "eaf2f4"
   },
   "chat_theme": {
     "accent_scale": 2.66,

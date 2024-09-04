@@ -1,5 +1,5 @@
 {
-  "version": "375c",
+  "version": "5923",
   "id": "mewow",
   "name": "Mewow",
   "short_name": "Mewow",
@@ -21,12 +21,13 @@
     "belly_rgb": "fff4b2",
     "cloth_rgb": "ccd44d",
     "hair_rgb": "b47922",
-    "eye_rgb": "f9a74c fff6df",
     "horn_rgb": "b47922",
     "bellybutton": "0",
     "accessory": "0",
     "glass_rgb": "333332",
-    "plastic_rgb": "292828"
+    "plastic_rgb": "292828",
+    "eye_rgb_0": "f9a74c",
+    "eye_rgb_1": "fff6df"
   },
   "chat_theme": {
     "accent_scale": 1.15,
