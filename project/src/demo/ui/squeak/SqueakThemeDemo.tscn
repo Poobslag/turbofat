@@ -178,3 +178,9 @@ rect_min_size = Vector2( 50, 50 )
 margin_right = 400.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 400, 400 )
+
+[node name="Tree" type="Tree" parent="Panel"]
+margin_left = 348.0
+margin_top = 243.0
+margin_right = 548.0
+margin_bottom = 443.0
