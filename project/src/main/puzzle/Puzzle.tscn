@@ -1,11 +1,11 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/theme/h3-font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/main/puzzle/metaball.shader" type="Shader" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
-[ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/puzzle/result/ResultsHud.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
@@ -75,9 +75,8 @@
 [ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=73]
 [ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
 [ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
-[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=76]
+[ext_resource path="res://src/main/puzzle/PuzzleMoneyHud.tscn" type="PackedScene" id=76]
 [ext_resource path="res://src/main/puzzle/TechMoveBurst.tscn" type="PackedScene" id=77]
-[ext_resource path="res://src/main/puzzle/puzzle-money-hud.gd" type="Script" id=78]
 [ext_resource path="res://src/main/puzzle/critter/Critters.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/main/puzzle/hold-piece-displays.gd" type="Script" id=80]
 [ext_resource path="res://assets/main/puzzle/hold-piece-walls.png" type="Texture" id=81]
@@ -716,16 +715,8 @@ puzzle_path = NodePath("../..")
 
 [node name="MusicPopup" parent="Hud" instance=ExtResource( 31 )]
 
-[node name="PuzzleMoneyHud" type="Control" parent="Hud" groups=["night_mode_light"]]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-script = ExtResource( 78 )
-results_label_path = NodePath("../Center/ResultsHud/ResultsLabel")
-
-[node name="MoneyLabel" parent="Hud/PuzzleMoneyHud" instance=ExtResource( 76 )]
-margin_top = -32.0
-margin_bottom = 0.0
+[node name="PuzzleMoneyHud" parent="Hud" instance=ExtResource( 76 )]
+results_hud_path = NodePath("../Center/ResultsHud")
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 

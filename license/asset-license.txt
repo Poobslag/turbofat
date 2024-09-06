@@ -96,6 +96,9 @@ project/assets/main/puzzle/move.wav "Cooking_Game_16bit\Ingredient_Pickup\Cookin
 project/assets/main/puzzle/pickup.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
 project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
 project/assets/main/puzzle/ready.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
+project/assets/main/puzzle/result/bar-pop.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 02.wav"
+project/assets/main/puzzle/result/medal-bang.wav "Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Actions\Cooking_Game_Ingredient_Actions_Take_01.wav"
+project/assets/main/puzzle/result/medal-shimmer.wav "Call Bell.WAV" by Pablobd
 project/assets/main/puzzle/rotate-sealed.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\IMPACTS - HITS - (50)\IMPACT Button Press Click 01.wav"
 project/assets/main/puzzle/rotate0.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/rotate1.wav "Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
