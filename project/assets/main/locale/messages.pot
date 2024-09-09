@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-02 15:44-0400\n"
+"POT-Creation-Date: 2024-09-09 12:34-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13288,13 +13288,13 @@ msgstr ""
 msgid "Spanish"
 msgstr ""
 
-#: project/src/main/career/CareerMap.tscn:142
+#: project/src/main/career/CareerMap.tscn:136
 #: project/src/main/career/ui/ChalkboardMapRow.tscn:179
 #: project/src/main/career/ui/Landmark.tscn:37
 msgid "999,999"
 msgstr ""
 
-#: project/src/main/career/CareerMap.tscn:177
+#: project/src/main/career/CareerMap.tscn:171
 msgid "12:05 am"
 msgstr ""
 
@@ -15467,7 +15467,7 @@ msgstr ""
 msgid "Stress Test"
 msgstr ""
 
-#: project/src/main/ui/menu/PagedLevelPanel.tscn:55
+#: project/src/main/ui/menu/PagedLevelPanel.tscn:54
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:55
 msgid "Level Select"
 msgstr ""
@@ -16033,7 +16033,7 @@ msgstr ""
 msgid "Voice Volume"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:47
+#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:53
 msgid "<Enter Key>"
 msgstr ""
 
@@ -16083,6 +16083,90 @@ msgstr ""
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:63
 msgid "Shift, Kp Enter"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "zero"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "one"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "two"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "three"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "four"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "five"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "six"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "seven"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "eight"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "nine"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "ten"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "eleven"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "twelve"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "thirteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "fourteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "fifteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "sixteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "seventeen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "eighteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "nineteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "twenty"
 msgstr ""
 
 #: project/src/main/world/LetterProjectile.tscn:113
