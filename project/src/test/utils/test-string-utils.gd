@@ -130,13 +130,33 @@ func test_default_if_empty() -> void:
 
 
 func test_english_number() -> void:
-	assert_eq(StringUtils.english_number(-1000), "-1,000")
-	assert_eq(StringUtils.english_number(-10), "-10")
-	assert_eq(StringUtils.english_number(0), "zero")
-	assert_eq(StringUtils.english_number(10), "ten")
-	assert_eq(StringUtils.english_number(20), "twenty")
-	assert_eq(StringUtils.english_number(30), "30")
-	assert_eq(StringUtils.english_number(1000), "1,000")
+	var original_locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("en")
+	
+	assert_eq(StringUtils.english_number(self, -1000), "-1,000")
+	assert_eq(StringUtils.english_number(self, -10), "-10")
+	assert_eq(StringUtils.english_number(self, 0), "zero")
+	assert_eq(StringUtils.english_number(self, 10), "ten")
+	assert_eq(StringUtils.english_number(self, 20), "twenty")
+	assert_eq(StringUtils.english_number(self, 30), "30")
+	assert_eq(StringUtils.english_number(self, 1000), "1,000")
+	
+	TranslationServer.set_locale(original_locale)
+
+
+func test_english_number_spanish() -> void:
+	var original_locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("es")
+	
+	assert_eq(StringUtils.english_number(self, -1000), "-1,000")
+	assert_eq(StringUtils.english_number(self, -10), "-10")
+	assert_eq(StringUtils.english_number(self, 0), "cero")
+	assert_eq(StringUtils.english_number(self, 10), "diez")
+	assert_eq(StringUtils.english_number(self, 20), "veinte")
+	assert_eq(StringUtils.english_number(self, 30), "30")
+	assert_eq(StringUtils.english_number(self, 1000), "1,000")
+	
+	TranslationServer.set_locale(original_locale)
 
 
 func test_format_duration() -> void:

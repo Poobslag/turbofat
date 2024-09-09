@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-02 15:44-0400\n"
+"POT-Creation-Date: 2024-09-09 12:34-0400\n"
 "PO-Revision-Date: 2024-06-27 10:27-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14848,13 +14848,13 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: project/src/main/career/CareerMap.tscn:142
+#: project/src/main/career/CareerMap.tscn:136
 #: project/src/main/career/ui/ChalkboardMapRow.tscn:179
 #: project/src/main/career/ui/Landmark.tscn:37
 msgid "999,999"
 msgstr "999.999"
 
-#: project/src/main/career/CareerMap.tscn:177
+#: project/src/main/career/CareerMap.tscn:171
 msgid "12:05 am"
 msgstr "12:05 am"
 
@@ -17388,7 +17388,7 @@ msgstr ""
 msgid "Stress Test"
 msgstr "Prueba de Estrés"
 
-#: project/src/main/ui/menu/PagedLevelPanel.tscn:55
+#: project/src/main/ui/menu/PagedLevelPanel.tscn:54
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:55
 msgid "Level Select"
 msgstr "Selección de Nivel"
@@ -17975,7 +17975,7 @@ msgstr ""
 msgid "Voice Volume"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:47
+#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:53
 msgid "<Enter Key>"
 msgstr "<Tecla>"
 
@@ -18026,6 +18026,90 @@ msgstr "Izquierda, Derecha, Numpad 7, Numpad 9"
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:63
 msgid "Shift, Kp Enter"
 msgstr "Shift, Numpad Intro"
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "zero"
+msgstr "cero"
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "one"
+msgstr "uno"
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "two"
+msgstr "dos"
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "three"
+msgstr "tres"
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "four"
+msgstr "cuatro"
+
+#: project/src/main/utils/string-utils.gd:99
+msgid "five"
+msgstr "cinco"
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "six"
+msgstr "seis"
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "seven"
+msgstr "siete"
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "eight"
+msgstr "ocho"
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "nine"
+msgstr "nueve"
+
+#: project/src/main/utils/string-utils.gd:100
+msgid "ten"
+msgstr "diez"
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "eleven"
+msgstr "once"
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "twelve"
+msgstr "doce"
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "thirteen"
+msgstr "trece"
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "fourteen"
+msgstr "catorce"
+
+#: project/src/main/utils/string-utils.gd:101
+msgid "fifteen"
+msgstr "quince"
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "sixteen"
+msgstr "dieciséis"
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "seventeen"
+msgstr "diecisiete"
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "eighteen"
+msgstr "dieciocho"
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "nineteen"
+msgstr "diecinueve"
+
+#: project/src/main/utils/string-utils.gd:102
+msgid "twenty"
+msgstr "veinte"
 
 #: project/src/main/world/LetterProjectile.tscn:113
 msgid "O"
