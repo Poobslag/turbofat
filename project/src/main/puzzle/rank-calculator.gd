@@ -3,6 +3,7 @@ class_name RankCalculator
 ## is the best possible rank and 999 is the worst.
 
 const WORST_RANK := RankResult.WORST_RANK
+const BAD_RANK := 72
 const BEST_RANK := RankResult.BEST_RANK
 
 ## These RDF (rank difference factor) constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99
@@ -48,6 +49,7 @@ const GRADE_RANKS := [
 	["SSS", 4],
 	["SS+", 7],
 	["SS", 10], # 4 stars (medium gap)
+	
 	["S+", 16],
 	["S", 20],
 	["S-", 24], # 1 star (big gap)

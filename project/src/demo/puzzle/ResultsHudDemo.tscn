@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/demo/puzzle/results-hud-demo.gd" type="Script" id=2]
-
-[node name="ResultsHudDemo" type="Node"]
-script = ExtResource( 2 )
-
-[node name="ResultsHud" parent="." instance=ExtResource( 1 )]
