@@ -482,10 +482,10 @@ static func next_grade(grade: String) -> String:
 	return result
 
 
-## Converts a letter grade such as 'S+' into a numeric rating such as '12.6'.
+## Returns the average rank such as '5.5' for a letter grade such as 'SS+'.
 ##
-## The resulting rating is an average rating for that grade -- not a minimum cutoff.
-static func rank(grade: String) -> float:
+## Grades correspond to a range of ranks. This method returns the middle of the range for a particular grade.
+static func average_rank_for_grade(grade: String) -> float:
 	var rank_lo := WORST_RANK
 	var rank_hi := WORST_RANK
 	
@@ -495,6 +495,20 @@ static func rank(grade: String) -> float:
 			rank_hi = GRADE_RANKS[i][1]
 	
 	return 0.5 * (rank_lo + rank_hi)
+
+
+## Returns the required rank such as '16.0' for a a letter grade such as 'S+'.
+##
+## Grades correspond to a range of ranks, and high rank values like 50.0 correspond to bad grades. This method returns
+## the highest (worst) rank value which will still achieve the specified grade.
+static func required_rank_for_grade(grade: String) -> float:
+	var rank_hi := WORST_RANK
+	
+	for i in range(GRADE_RANKS.size() - 1):
+		if grade == GRADE_RANKS[i][0]:
+			rank_hi = GRADE_RANKS[i][1]
+	
+	return rank_hi
 
 
 ## Returns the maximum box score per line for the specified level.
