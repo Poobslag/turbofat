@@ -8324,7 +8324,7 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:1751
 msgid ""
-"Heh yeah! You're not alone, When I tell most people about it, they just "
+"Heh yeah! You're not alone. When I tell most people about it, they just "
 "think it seems dumb."
 msgstr ""
 "¡Por supuesto! No estás solo, cuando le cuento a la gente sobre esto, mucha "
