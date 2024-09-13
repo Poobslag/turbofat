@@ -134,7 +134,7 @@ func _best_result() -> RankResult:
 
 ## Returns the rank corresponding to the grade chosen in the demo.
 func _target_rank() -> float:
-	return RankCalculator.rank(_grade_input.value)
+	return RankCalculator.average_rank_for_grade(_grade_input.value)
 
 
 ## Reads the developer's in-memory data from a save file.
