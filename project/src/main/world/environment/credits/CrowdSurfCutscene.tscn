@@ -1,15 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/world/environment/credits/crowd-surf-camera.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/credits/crowd-surf-cutscene.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/environment/credits/LaunchBg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/credits/CrowdSurfEnvironment.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/environment/scrolling-texture.shader" type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/texture_scale = Vector2( 1.6, 1.6 )
+shader_param/scroll_velocity = Vector2( -0.25, 0.25 )
 
 [node name="Cutscene" type="Node"]
 script = ExtResource( 2 )
 
 [node name="Bg" parent="." instance=ExtResource( 4 )]
+
+[node name="OuterSpace" parent="Bg" index="0"]
+material = SubResource( 1 )
 
 [node name="LaunchBg" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -22,3 +32,5 @@ current = true
 zoom = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 overworld_environment_path = NodePath("../Environment")
+
+[editable path="Bg"]
