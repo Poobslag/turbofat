@@ -549,7 +549,7 @@ bus = "Sound Bus"
 [node name="Shadow" type="Polygon2D" parent="ChalkboardRegion"]
 color = Color( 0, 0, 0, 0.392157 )
 antialiased = true
-polygon = PoolVector2Array( 16, 16, 21, 16, 21, 446, 665, 446, 665, 451, 16, 451 )
+polygon = PoolVector2Array( 16.2, 16.604, 21.2, 16.604, 21, 446, 664.2, 445.604, 664.2, 450.604, 16, 451 )
 
 [node name="Title" type="Control" parent="ChalkboardRegion"]
 modulate = Color( 1, 0.5, 0.945313, 1 )
