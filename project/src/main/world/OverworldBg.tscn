@@ -7,7 +7,7 @@
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/texture_scale = Vector2( 0.4, 0.4 )
-shader_param/scroll_velocity = Vector2( -0.25, 0.25 )
+shader_param/scroll_velocity = Vector2( -0.271, 0.233 )
 
 [node name="Bg" type="CanvasLayer"]
 layer = -1
