@@ -4,7 +4,7 @@ extends Node
 ## This summary screen includes things like how much money the player earned and how many customers they served, as
 ## well as a visual map showing their progress through the world.
 
-onready var _button := $Bg/Chalkboard/VBoxContainer/ButtonRow/Button
+onready var _button := $Bg/Chalkboard/VBoxContainer/ButtonRow/ZHolder/Button
 onready var _applause_sound := $Bg/ApplauseSound
 
 func _ready() -> void:
