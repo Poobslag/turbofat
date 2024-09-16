@@ -2,35 +2,7 @@
 
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/main/puzzle/result/dotted-line.png" type="Texture" id=2]
-
-[sub_resource type="GDScript" id=3]
-script/source = "tool
-class_name BarGraphGoal
-extends Control
-## Goal shown in the results screen's bar graph.
-##
-## Each goal shows something like 'SS ¥1,200'.
-
-export (String) var text: String setget set_text
-
-onready var _goal_label := $GoalLabel
-
-func _ready() -> void:
-	_refresh()
-
-
-## Updates the goal label text.
-func _refresh() -> void:
-	if not is_inside_tree():
-		return
-	
-	_goal_label.text = text
-
-
-func set_text(new_text: String) -> void:
-	text = new_text
-	_refresh()
-"
+[ext_resource path="res://src/main/puzzle/result/bar-graph-goal.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 use_filter = true
@@ -43,8 +15,7 @@ margin_left = 56.0
 margin_top = 66.0
 margin_right = 256.0
 margin_bottom = 86.0
-script = SubResource( 3 )
-text = "¥25,000: SSS"
+script = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2( 0, 10 )
