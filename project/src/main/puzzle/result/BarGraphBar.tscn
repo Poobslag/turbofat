@@ -25,7 +25,7 @@ uniform vec4 black : hint_color;
 // The color of the middle area, which is white in the source texture
 uniform vec4 white : hint_color;
 
-// A monochrome texture containing the accents to draw in the chat window's middle
+// A monochrome texture containing the accents to draw in the bar's middle
 uniform sampler2D accent_texture;
 
 uniform float accent_scale = 0.25;
