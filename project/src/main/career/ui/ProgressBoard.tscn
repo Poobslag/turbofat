@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/main/career/ui/progress-board-clock-label.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/map/landmark-forest.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/main/career/ui/progress-board-player-move.wav" type="AudioStream" id=18]
 [ext_resource path="res://src/main/career/ui/progress-board-map-holder.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/DiagonalParticles.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/main/career/ui/progress-board-grain.png" type="Texture" id=21]
 
 [sub_resource type="ShaderMaterial" id=29]
 shader = ExtResource( 9 )
@@ -611,6 +612,15 @@ rect_min_size = Vector2( 65, 50 )
 texture = ExtResource( 2 )
 expand = true
 flip_h = true
+
+[node name="Grain" type="TextureRect" parent="ChalkboardRegion"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 21 )
+expand = true
+stretch_mode = 1
 
 [node name="Clock" type="Control" parent="."]
 anchor_left = 0.5
