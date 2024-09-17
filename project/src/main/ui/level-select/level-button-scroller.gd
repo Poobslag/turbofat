@@ -283,5 +283,6 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		
 		yield(get_tree(), "idle_frame")
 		set_central_button_index(old_central_button_index)
+		_refresh_central_button_index(false)
 		if old_level_button_has_focus:
 			grab_focus()
