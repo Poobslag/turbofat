@@ -121,9 +121,12 @@ func reset() -> void:
 
 ## Initializes the different colored tiles in LightMap/GlowMap.
 func _init_tile_set() -> void:
-	if len(light_map.tile_set.get_tiles_ids()) > 1:
-		return
-	
+	# purge leftover tiles from light_map, glow_map
+	for tile_set in [light_map.tile_set, glow_map.tile_set]:
+		for tile_id in tile_set.get_tiles_ids():
+			if tile_id != 0:
+				tile_set.remove_tile(tile_id)
+
 	for food_light_color in FOOD_LIGHT_COLORS:
 		_init_tile(food_light_color)
 	
