@@ -55,12 +55,20 @@ func hide_results_message() -> void:
 		# already hidden
 		return
 	
-	_tween = Utils.recreate_tween(self, _tween).set_parallel()
+	var blueprint := ResultsHudBlueprint.new()
+	
+	_tween = Utils.recreate_tween(self, _tween)
 	
 	_sfx_receipt_hide.play()
 	_tween.tween_property(_receipt_paper, "rect_position:y", POSITION_HIDDEN.y, 0.2) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	_tween.tween_callback(_receipt_paper, "set", ["visible", false]).set_delay(0.2)
+	_tween.tween_interval(0.2)
+	_tween.tween_callback(_receipt_paper, "set", ["visible", false])
+	_tween.tween_callback(_bar_graph, "reset", [blueprint])
+	_tween.tween_callback(_header, "reset", [blueprint])
+	_tween.tween_callback(_table, "reset", [blueprint])
+	_tween.tween_callback(_stamp, "reset", [blueprint])
+	_tween.tween_callback(_medal, "reset", [blueprint])
 
 
 ## Animates showing the receipt, building up a bar graph, and showing the player's grade.
