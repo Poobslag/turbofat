@@ -6,7 +6,7 @@ extends Node
 ## player from hearing one very loud sound effect when several things happen at once.
 
 ## Number of milliseconds before the same sound can play a second time.
-const SUPPRESS_SFX_MSEC := 20
+const DEFAULT_SUPPRESS_SFX_MSEC := 20
 
 ## key: (String) audio stream resource path
 ## value: (int) the amount of time passed in milliseconds between when the engine started and when the sound effect was
@@ -44,7 +44,9 @@ func play(player: Node, from_position: float = 0.0) -> void:
 ## Parameters:
 ## 	'player': The AudioStreamPlayer to play. This is not explicitly typed as an AudioStreamPlayer because it also
 ## 		supports AudioStreamPlayer2D and AudioStreamPlayer3D nodes.
-func should_play(player: Node) -> bool:
+##
+## 	'suppress_sfx_msec': Number of milliseconds before the sound can play a second time.
+func should_play(player: Node, suppress_sfx_msec: int = DEFAULT_SUPPRESS_SFX_MSEC) -> bool:
 	if not player:
 		return false
 	
@@ -56,7 +58,7 @@ func should_play(player: Node) -> bool:
 	var result := true
 	var resource_path: String = player.stream.resource_path
 	var last_played_msec: int = last_played_msec_by_resource_path.get(resource_path, 0)
-	if last_played_msec + SUPPRESS_SFX_MSEC >= Time.get_ticks_msec():
+	if last_played_msec + suppress_sfx_msec >= Time.get_ticks_msec():
 		# suppress sound effect; sound was played too recently
 		result = false
 	else:
