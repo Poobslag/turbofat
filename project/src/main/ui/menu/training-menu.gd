@@ -181,7 +181,7 @@ func _on_RegionSubmenu_region_chosen(region: Object) -> void:
 func _on_RegionSubmenu_visibility_changed() -> void:
 	_refresh_input_focus_mode()
 	if not _region_submenu.visible:
-		_level_button_scroller.grab_focus()
+		_start_button.grab_focus()
 
 
 func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> void:
@@ -197,14 +197,14 @@ func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> vo
 	_refresh_speed_selector()
 	_refresh_high_scores()
 	yield(get_tree(), "idle_frame")
-	_level_button_scroller.grab_focus()
+	_start_button.grab_focus()
 
 
 func _on_LevelSubmenu_visibility_changed() -> void:
 	_refresh_input_focus_mode()
 	if not _level_submenu.visible:
 		yield(get_tree(), "idle_frame")
-		_level_button_scroller.grab_focus()
+		_start_button.grab_focus()
 
 
 func _on_SpeedSelector_speed_changed(value: String) -> void:
