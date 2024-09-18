@@ -12,6 +12,7 @@
 script = ExtResource( 2 )
 
 [node name="Bg" parent="." instance=ExtResource( 7 )]
+outer_space_visible = true
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 1 )

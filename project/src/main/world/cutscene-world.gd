@@ -3,7 +3,10 @@ class_name CutsceneWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during cutscenes.
 
+export (NodePath) var overworld_bg_path: NodePath
+
 onready var _camera: CutsceneCamera = $Camera
+onready var _overworld_bg: OverworldBg = get_node(overworld_bg_path)
 
 func _ready() -> void:
 	if Engine.editor_hint:
@@ -24,6 +27,7 @@ func initial_environment_path() -> String:
 ##
 ## Replaces the environment's creatures with those necessary for the cutscene and plays the cutscene's chat tree.
 func _launch_cutscene() -> void:
+	_prepare_bg()
 	_remove_all_creatures()
 	_add_cutscene_creatures()
 	_arrange_creatures()
@@ -32,6 +36,12 @@ func _launch_cutscene() -> void:
 
 	Global.get_overworld_ui().start_chat(CurrentCutscene.chat_tree)
 	_camera.snap_into_position()
+
+
+## Updates the background to include an outer space background for outdoor cutscenes.
+func _prepare_bg() -> void:
+	var outer_space_visible := not CurrentCutscene.chat_tree.location_id in ChatTree.INDOOR_LOCATION_IDS
+	_overworld_bg.outer_space_visible = outer_space_visible
 
 
 ## Removes all creatures from the overworld except for the player and sensei.
