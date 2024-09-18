@@ -131,6 +131,8 @@ func _pop_level() -> void:
 		CurrentLevel.customers = level_properties["customers"]
 	if level_properties.has("hardcore"):
 		CurrentLevel.hardcore = level_properties["hardcore"]
+	if level_properties.has("boss_level"):
+		CurrentLevel.boss_level = level_properties["boss_level"]
 	if level_properties.has("puzzle_environment_id"):
 		CurrentLevel.puzzle_environment_id = level_properties["puzzle_environment_id"]
 	PlayerData.customer_queue.pop_standard_customers(CurrentLevel.get_creature_ids())

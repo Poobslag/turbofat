@@ -300,6 +300,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
 	CurrentLevel.hardcore = level_settings.lose_condition.top_out == 1
+	CurrentLevel.boss_level = PlayerData.career.is_boss_level()
 	
 	var level_posse: LevelPosse = _level_posses[level_index]
 	CurrentLevel.customers = level_posse.customer_ids
@@ -336,6 +337,7 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 		"chef_id": CurrentLevel.chef_id,
 		"customers": CurrentLevel.customers,
 		"hardcore": CurrentLevel.hardcore,
+		"boss_level": CurrentLevel.boss_level,
 		"puzzle_environment_id": CurrentLevel.puzzle_environment_id,
 	})
 	
