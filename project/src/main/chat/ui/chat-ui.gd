@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
 	if not _chat_frame.is_chat_window_showing() and not _narration_frame.is_narration_window_showing():
 		return
 	

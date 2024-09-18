@@ -51,6 +51,9 @@ func _exit_tree() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
+	
 	if event.is_action_pressed("ui_menu") and not $Hud/Center/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		_settings_menu.show()
