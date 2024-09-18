@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 	# slide the bar graph down if it grows too tall
 	if _contents.rect_position.y + _total_label.rect_position.y < CAMERA_TARGET_Y:
 		_contents.rect_position.y = lerp(_contents.rect_position.y, \
-				CAMERA_TARGET_Y - _total_label.rect_position.y, _delta * 3)
+				CAMERA_TARGET_Y - _total_label.rect_position.y, _delta * 5)
 
 
 ## Resets the graph to be empty, with a set of BarGraphGoals based on the current level.
