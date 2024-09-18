@@ -2401,7 +2401,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:488
 #: project/assets/main/locale/localizables-extracted.py:492
 msgid ""
-"\"Blindly head east again!?\" Hmph don't be so naive. You can't wandering in "
+"\"Blindly head east again!?\" Hmph don't be so naive. You can't go wandering in "
 "a random direction and expect to find anything."
 msgstr ""
 "¿¡\"Ciegamente al este, otra vez\"!? Hmph, no esperes caminar hacia una "
