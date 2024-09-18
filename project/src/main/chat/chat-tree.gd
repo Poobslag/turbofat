@@ -49,6 +49,15 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	"filming": "res://src/main/world/environment/sand/FilmingEnvironment.tscn",
 }
 
+## indoor location IDs which should not have the scrolling outer space background
+const INDOOR_LOCATION_IDS := [
+	"inside_turbo_fat",
+	"credits/gift_shop",
+	"lava/zagma",
+	"sand/banana_hq",
+	"filming",
+]
+
 ## unique key to identify this conversation in the chat history
 var chat_key: String
 
