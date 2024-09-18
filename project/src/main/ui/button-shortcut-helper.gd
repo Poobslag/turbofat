@@ -20,6 +20,8 @@ export (String) var overridden_action: String
 onready var button: BaseButton = get_parent()
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
 	if not event.is_action(action):
 		return
 	if not get_parent().is_visible_in_tree():
