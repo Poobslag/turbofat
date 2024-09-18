@@ -17,6 +17,9 @@ var settings := LevelSettings.new() setget switch_level
 ## If 'true' the player only gets one life.
 var hardcore := false
 
+## If 'true' the player selected a career mode boss level.
+var boss_level: bool
+
 var puzzle: Puzzle
 
 ## The level which was originally launched. Some tutorial levels transition
@@ -52,6 +55,7 @@ func reset() -> void:
 	keep_retrying = false
 	settings = LevelSettings.new()
 	hardcore = false
+	boss_level = false
 	puzzle = null
 	level_id = ""
 	piece_speed = ""

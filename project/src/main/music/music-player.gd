@@ -103,7 +103,7 @@ func play_puzzle_track(fade_in: bool = true) -> void:
 		if PlayerData.career.hours_passed == 0:
 			# if it's the first level, play the 'main puzzle track'
 			new_track_id = region_music.main_puzzle_track_id()
-		elif PlayerData.career.is_boss_level():
+		elif CurrentLevel.boss_level:
 			# if it's a boss level, play the 'main puzzle track'
 			new_track_id = region_music.main_puzzle_track_id()
 		elif _previous_level_id == CurrentLevel.level_id \
