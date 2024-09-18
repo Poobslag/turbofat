@@ -306,7 +306,19 @@ func _complete_milestone(milestone: Milestone) -> void:
 		Milestone.PIECES:
 			PuzzleState.level_performance.pieces = milestone.adjusted_value()
 		Milestone.SCORE:
-			PuzzleState.level_performance.score = milestone.adjusted_value()
+			var score := milestone.adjusted_value()
+			
+			# update all score fields; otherwise the results hud might be have strangely
+			PuzzleState.level_performance.score = score
+			PuzzleState.level_performance.box_score = int(score * 0.4)
+			PuzzleState.level_performance.combo_score = int(score * 0.4)
+			PuzzleState.level_performance.leftover_score = int(score * 0.1)
+			PuzzleState.level_performance.pickup_score = PuzzleState.level_performance.score \
+				- PuzzleState.level_performance.box_score \
+				- PuzzleState.level_performance.combo_score \
+				- PuzzleState.level_performance.leftover_score \
+				- PuzzleState.level_performance.lines
+			
 			PuzzleState.level_performance.seconds += 9999
 		Milestone.TIME_OVER, Milestone.TIME_UNDER:
 			PuzzleState.level_performance.seconds = milestone.adjusted_value()

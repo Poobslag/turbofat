@@ -41,7 +41,7 @@ func combo_score() -> int:
 
 
 func extra_score() -> int:
-	return rank_result.lines + rank_result.pickup_score + rank_result.leftover_score
+	return int(max(0, rank_result.score - rank_result.box_score - rank_result.combo_score))
 
 
 func box_duration() -> float:
