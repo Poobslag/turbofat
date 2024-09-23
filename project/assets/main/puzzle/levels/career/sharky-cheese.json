@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Sharky Cheese",
   "description": "Sharks never struggle with downstacking! They just eat everything...",
   "start_speed": "9",
@@ -13,10 +13,8 @@
     "dig"
   ],
   "rank": [
-    "box_factor 0.72",
-    "combo_factor 0.76",
-    "extra_seconds_per_piece 0.09",
-    "master_pickup_score_per_line 8.08",
+    "duration 160",
+    "rank_criteria m=2700",
     "show_pickups_rank"
   ],
   "tiles": {

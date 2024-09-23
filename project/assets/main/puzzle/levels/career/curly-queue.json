@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Curly Queue",
   "description": "Augh who keeps spinning the next queue? Oh wait, it's me.",
   "start_speed": "1",
@@ -18,9 +18,8 @@
     "start_piece_j"
   ],
   "rank": [
-    "box_factor 1.1",
-    "extra_seconds_per_piece 0.25",
-    "preplaced_pieces 4",
+    "duration 90",
+    "rank_criteria m=1650",
     "hide_combos_rank"
   ],
   "tiles": {

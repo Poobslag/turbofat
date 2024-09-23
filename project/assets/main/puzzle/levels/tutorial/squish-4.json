@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "start_speed": "T",
   "lose_condition": [
     "top_out 999999"
@@ -12,6 +12,8 @@
     "piece_u"
   ],
   "rank": [
+    "duration 150",
+    "rank_criteria m=1",
     "skip_results",
     "unranked"
   ],

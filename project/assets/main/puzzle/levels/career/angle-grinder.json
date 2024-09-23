@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Angle Grinder",
   "description": "So many bendy pieces! Need a helping hand? ...Or a helping jaw?",
   "start_speed": "5",
@@ -18,10 +18,8 @@
     "piece_z"
   ],
   "rank": [
-    "box_factor 1.23",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 2",
-    "master_pickup_score_per_line 29.23",
+    "duration 28",
+    "rank_criteria m=1750",
     "show_pickups_rank"
   ],
   "tiles": {

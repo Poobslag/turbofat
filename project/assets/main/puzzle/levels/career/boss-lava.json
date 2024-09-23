@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Grand Opening: Starberry Mountain",
   "description": "Opening a new restaurant can be tough!",
   "speed_ups": [
@@ -71,6 +71,8 @@
     "top_out 1"
   ],
   "rank": [
+    "duration 620",
+    "rank_criteria m=4250",
     "success_bonus 2"
   ],
   "success_condition": {

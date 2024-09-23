@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "90 Second Sprint",
   "description": "Nothing fancy, let's just cook!",
   "finish_condition": {
@@ -8,5 +8,9 @@
   },
   "icons": [
     "basic"
+  ],
+  "rank": [
+    "duration 90",
+    "rank_criteria m=1850"
   ]
 }

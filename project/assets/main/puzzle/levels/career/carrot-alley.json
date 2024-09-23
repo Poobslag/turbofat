@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Carrot Alley",
   "description": "Carrots... Why did it have to be carrots?",
   "start_speed": "3",
@@ -48,6 +48,10 @@
     "piece_j",
     "piece_o",
     "piece_p"
+  ],
+  "rank": [
+    "duration 105",
+    "rank_criteria m=2100"
   ],
   "tiles": {
     "0": [

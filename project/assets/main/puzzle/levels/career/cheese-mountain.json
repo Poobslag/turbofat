@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "On Top of Cheese Mountain",
   "description": "...Did anybody lose a meatball?",
   "start_speed": "7",
@@ -26,7 +26,8 @@
     "start_piece_k"
   ],
   "rank": [
-    "master_pickup_score_per_line 5.53",
+    "duration 365",
+    "rank_criteria m=56",
     "show_pickups_rank"
   ],
   "tiles": {

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Onion Cranny",
   "description": "This looks just like another level! The resemblance is onion-cranny.",
   "start_speed": "A1",
@@ -15,9 +15,8 @@
     "dig"
   ],
   "rank": [
-    "box_factor 1.05",
-    "combo_factor 0.58",
-    "extra_seconds_per_piece 0.07"
+    "duration 690",
+    "rank_criteria m=130"
   ],
   "tiles": {
     "start": [

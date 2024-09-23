@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Tempting Jellies",
   "description": "Throw caution to the wind this once!",
   "start_speed": "3",
@@ -40,9 +40,8 @@
     "top_out 1"
   ],
   "rank": [
-    "box_factor 0.25",
-    "master_pickup_score_per_line 17.78",
-    "preplaced_pieces 6",
+    "duration 375",
+    "rank_criteria m=2150",
     "show_pickups_rank"
   ],
   "score": [

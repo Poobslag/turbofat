@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Fruit Salad",
   "description": "Ick! Salad. ...You said there would be fruit!",
   "start_speed": "4",
@@ -19,9 +19,8 @@
     "tile_set veggie"
   ],
   "rank": [
-    "box_factor 0.49",
-    "combo_factor 0.48",
-    "master_pickup_score_per_line 9.57",
+    "duration 300",
+    "rank_criteria m=945",
     "show_pickups_rank"
   ],
   "tiles": {

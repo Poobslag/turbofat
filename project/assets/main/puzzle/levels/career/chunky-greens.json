@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Chunky Greens",
   "description": "Just pile them beside my plate, where I can ignore them.",
   "start_speed": "5",
@@ -7,6 +7,11 @@
     "type": "lines",
     "value": 25
   },
+  "icons": [
+    "piece_p",
+    "spear",
+    "slow"
+  ],
   "piece_types": [
     "piece_j",
     "piece_j",
@@ -17,14 +22,9 @@
     "piece_u",
     "piece_v"
   ],
-  "icons": [
-    "piece_p",
-    "spear",
-    "slow"
-  ],
   "rank": [
-    "extra_seconds_per_piece 0.3",
-    "master_pickup_score 120"
+    "duration 145",
+    "rank_criteria m=1150"
   ],
   "tiles": {
     "start": [

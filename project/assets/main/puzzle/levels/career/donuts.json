@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Donuts",
   "description": "Ooh donuts! Don't mind if I do...",
   "finish_condition": {
@@ -13,9 +13,8 @@
     "start_piece_t"
   ],
   "rank": [
-    "box_factor 0.76",
-    "master_pickup_score 30",
-    "preplaced_pieces 2"
+    "duration 70",
+    "rank_criteria m=11 s-=80"
   ],
   "tiles": {
     "start": [

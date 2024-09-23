@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Real Meal",
   "description": "If you're going to indulge, you may as well make it worth it!",
   "finish_condition": {
@@ -14,7 +14,8 @@
     "start_piece_j"
   ],
   "rank": [
-    "preplaced_pieces 5"
+    "duration 445",
+    "rank_criteria m=29"
   ],
   "tiles": {
     "start": [

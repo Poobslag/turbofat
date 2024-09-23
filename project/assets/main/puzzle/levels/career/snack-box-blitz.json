@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Snack Box Blitz",
   "description": "Everyone's in a hurry today. Get those cakes out!",
   "start_speed": "6",
@@ -14,10 +14,8 @@
     "turn"
   ],
   "rank": [
-    "box_factor 2.68",
-    "combo_factor 0",
-    "extra_seconds_per_piece 0.47",
-    "preplaced_pieces 5",
+    "duration 75",
+    "rank_criteria m=1750",
     "hide_combos_rank"
   ],
   "score": [

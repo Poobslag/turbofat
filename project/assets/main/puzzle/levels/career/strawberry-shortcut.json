@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Strawberry Shortcut",
   "description": "Take a shortcut. ...A strawberry shortcut!",
   "start_speed": "4",
@@ -12,9 +12,8 @@
     "basic"
   ],
   "rank": [
-    "box_factor 0.28",
-    "combo_factor 0.57",
-    "master_pickup_score_per_line 13.11",
+    "duration 120",
+    "rank_criteria m=1900",
     "show_pickups_rank"
   ],
   "tiles": {

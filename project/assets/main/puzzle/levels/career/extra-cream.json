@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Extra Cream",
   "description": "Too much of a good thing is still a good thing!",
   "start_speed": "5",
@@ -24,10 +24,8 @@
     "piece_v"
   ],
   "rank": [
-    "box_factor 0.61",
-    "combo_factor 0.56",
-    "master_pickup_score 140",
-    "preplaced_pieces 2"
+    "duration 265",
+    "rank_criteria m=945"
   ],
   "tiles": {
     "start": [

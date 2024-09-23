@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "finish_condition": {
     "type": "time_over",
     "value": 45
@@ -18,6 +18,8 @@
     "start_piece_u"
   ],
   "rank": [
+    "duration 45",
+    "rank_criteria m=1",
     "skip_results",
     "unranked"
   ],

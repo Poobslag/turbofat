@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Teensy Taste",
   "description": "Just a quick bite.",
   "finish_condition": {
@@ -10,7 +10,8 @@
     "start_piece_u"
   ],
   "rank": [
-    "preplaced_pieces 4"
+    "duration 180",
+    "rank_criteria m=13"
   ],
   "tiles": {
     "start": [

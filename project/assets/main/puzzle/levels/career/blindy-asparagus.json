@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Blindy Asparagus",
   "description": "What you can't see CAN hurt you!",
   "start_speed": "2",
@@ -40,10 +40,8 @@
     "piece_v"
   ],
   "rank": [
-    "box_factor 0.65",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 0.25",
-    "master_pickup_score 120"
+    "duration 255",
+    "rank_criteria m=1500"
   ],
   "tiles": {
     "start": [

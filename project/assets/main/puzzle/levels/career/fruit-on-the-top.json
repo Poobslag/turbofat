@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Fruit on the Top",
   "description": "It needs to settle first.",
   "blocks_during": [
@@ -18,9 +18,8 @@
     "fast"
   ],
   "rank": [
-    "box_factor 0.33",
-    "combo_factor 0.08",
-    "master_pickup_score_per_line 3.66",
+    "duration 50",
+    "rank_criteria m=550",
     "hide_combos_rank",
     "show_pickups_rank"
   ],

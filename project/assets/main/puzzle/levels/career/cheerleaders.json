@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Cheerleaders",
   "description": "They're just happy to be included!",
   "start_speed": "1",
@@ -13,6 +13,10 @@
   "piece_types": [
     "start_piece_q",
     "start_piece_l"
+  ],
+  "rank": [
+    "duration 85",
+    "rank_criteria m=1750 s-=300"
   ],
   "tiles": {
     "start": [

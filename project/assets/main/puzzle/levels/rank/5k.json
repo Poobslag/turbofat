@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "5 Kyu",
   "description": "An escalating set of challenges. Finish with ¥500 to achieve this rank!",
   "color": "blue",
@@ -13,6 +13,8 @@
     "slow"
   ],
   "rank": [
+    "duration 750",
+    "rank_criteria m=3600",
     "success_bonus 2"
   ],
   "success_condition": {

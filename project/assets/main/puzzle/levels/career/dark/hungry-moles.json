@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Hungry Moles EX",
   "description": "You had my curiosity... but now you have my attention!",
   "start_speed": "A1",
@@ -13,10 +13,8 @@
     "cake_box"
   ],
   "rank": [
-    "box_factor 0",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 0.2",
-    "master_pickup_score_per_line 15.23",
+    "duration 400",
+    "rank_criteria m=200",
     "hide_boxes_rank",
     "show_pickups_rank"
   ],

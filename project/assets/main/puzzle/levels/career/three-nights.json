@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Three Nights",
   "description": "I'm not afraid of the dark! It's just very annoying...",
   "start_speed": "2",
@@ -11,9 +11,8 @@
     "onion"
   ],
   "rank": [
-    "box_factor 0.95",
-    "combo_factor 1.06",
-    "extra_seconds_per_piece 0.1"
+    "duration 110",
+    "rank_criteria m=2000"
   ],
   "tiles": {
     "start": [

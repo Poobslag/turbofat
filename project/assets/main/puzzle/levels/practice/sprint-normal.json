@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Sprint: Normal (2:30)",
   "description": "Earn as much money as you can in 2:30!",
   "finish_condition": {
@@ -8,5 +8,9 @@
   },
   "icons": [
     "basic"
+  ],
+  "rank": [
+    "duration 150",
+    "rank_criteria m=2850"
   ]
 }

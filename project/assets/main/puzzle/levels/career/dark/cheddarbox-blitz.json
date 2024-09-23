@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Cheddarbox Blitz",
   "description": "Can two triangles really make a square? Oh okay, I guess that checks out...",
   "start_speed": "A5",
@@ -26,8 +26,8 @@
     "piece_u"
   ],
   "rank": [
-    "box_factor 2.38",
-    "extra_seconds_per_piece 0.39",
+    "duration 175",
+    "rank_criteria m=4300",
     "hide_combos_rank"
   ],
   "score": [

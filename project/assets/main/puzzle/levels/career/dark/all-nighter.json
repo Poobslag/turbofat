@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "All Nighter",
   "description": "When the onion hits your eye like a big pizza pie, that's a painful...",
   "start_speed": "AB",
@@ -16,10 +16,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.55",
-    "combo_factor 0.42",
-    "extra_seconds_per_piece 0.37",
-    "master_pickup_score 100"
+    "duration 370",
+    "rank_criteria m=1150"
   ],
   "tiles": {
     "start": [

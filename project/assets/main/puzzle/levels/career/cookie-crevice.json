@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Cookie Crevice",
   "description": "The good stuff's at the bottom!",
   "start_speed": "2",
@@ -12,8 +12,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 1.21",
-    "preplaced_pieces 14"
+    "duration 150",
+    "rank_criteria m=1050"
   ],
   "tiles": {
     "start": [

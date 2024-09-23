@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "A Thousand Moles",
   "description": "Making my way downtown...",
   "finish_condition": {
@@ -10,7 +10,8 @@
     "dig"
   ],
   "rank": [
-    "master_pickup_score_per_line 7.97",
+    "duration 80",
+    "rank_criteria m=2000 s-=345",
     "show_pickups_rank"
   ],
   "tiles": {

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Carrot Cake",
   "description": "Hmph, I guess I'll just try to eat around the carrot part....",
   "finish_condition": {
@@ -9,6 +9,10 @@
   "icons": [
     "carrot",
     "cake_box"
+  ],
+  "rank": [
+    "duration 180",
+    "rank_criteria m=17 s-=100"
   ],
   "tiles": {
     "start": [

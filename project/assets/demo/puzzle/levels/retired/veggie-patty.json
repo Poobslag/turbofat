@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Veggie Patty",
   "description": "Twice the pace and half the space? ...This is a recipe for disaster!",
   "start_speed": "4",
@@ -9,6 +9,10 @@
   },
   "lose_condition": [
     "top_out 1"
+  ],
+  "rank": [
+    "duration 1200",
+    "rank_criteria m=1500"
   ],
   "tiles": {
     "start": [

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Marathon: Normal (100 lines)",
   "description": "A test of endurance against faster and faster pieces! Can you clear 100 lines?",
   "speed_ups": [
@@ -59,6 +59,10 @@
   ],
   "lose_condition": [
     "top_out 1"
+  ],
+  "rank": [
+    "duration 750",
+    "rank_criteria m=3600"
   ],
   "success_condition": {
     "type": "lines",

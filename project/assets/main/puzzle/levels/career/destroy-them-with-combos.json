@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Destroy Them With Combos!",
   "description": "No no, I was talking about the carrots! ...Please don't destroy the customers.",
   "start_speed": "1",
@@ -18,7 +18,8 @@
     "carrot"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.1"
+    "duration 100",
+    "rank_criteria m=1850"
   ],
   "tiles": {
     "start": [

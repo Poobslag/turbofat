@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Trial: Fat Sensei",
   "description": "Opening a new restaurant can be tough!",
   "start_speed": "3",
@@ -11,6 +11,8 @@
     "basic"
   ],
   "rank": [
+    "duration 195",
+    "rank_criteria m=25 s-=180",
     "success_bonus 2"
   ],
   "success_condition": {
