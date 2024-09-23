@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=1]
+[ext_resource path="res://src/demo/puzzle/level/level-rank-bridge-demo.gd" type="Script" id=2]
+[ext_resource path="res://src/demo/puzzle/level/level-rank-bridge-demo-open.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/demo/DemoSave.tscn" type="PackedScene" id=5]
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Input" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -146.0
+margin_right = 200.0
+margin_bottom = 146.0
+rect_min_size = Vector2( 400, 0 )
+
+[node name="Open" type="HBoxContainer" parent="Input"]
+margin_right = 400.0
+margin_bottom = 28.0
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="Input/Open"]
+margin_right = 47.0
+margin_bottom = 28.0
+theme = ExtResource( 1 )
+text = "Open"
+
+[node name="LineEdit" type="LineEdit" parent="Input/Open"]
+margin_left = 51.0
+margin_right = 400.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "experiment/000"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Output" type="TextEdit" parent="Input"]
+margin_top = 32.0
+margin_right = 400.0
+margin_bottom = 292.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "Oh!
+What an output"
+readonly = true
+
+[node name="Dialogs" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Backdrop" parent="Dialogs" instance=ExtResource( 4 )]
+
+[node name="OpenFile" type="FileDialog" parent="Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -200.0
+margin_right = 320.0
+margin_bottom = 200.0
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+filters = PoolStringArray( "*.json" )
+
+[node name="Error" type="AcceptDialog" parent="Dialogs"]
+margin_right = 250.0
+margin_bottom = 58.0
+popup_exclusive = true
+window_title = "Error"
+dialog_autowrap = true
+
+[node name="DemoSave" parent="." instance=ExtResource( 5 )]
+
+[connection signal="pressed" from="Input/Open/Button" to="." method="_on_OpenButton_pressed"]
+[connection signal="about_to_show" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Dialogs/OpenFile" to="." method="_on_OpenFileDialog_file_selected"]
+[connection signal="popup_hide" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]

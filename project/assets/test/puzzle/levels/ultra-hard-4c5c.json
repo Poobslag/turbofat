@@ -1,0 +1,13 @@
+{
+  "version": "4c5c",
+  "name": "Ultra: Hard (¥1,000)",
+  "description": "Earn ¥1,000 as fast as possible!",
+  "start_speed": "A0",
+  "finish_condition": {
+    "type": "score",
+    "value": 1000
+  },
+  "icons": [
+    "basic"
+  ]
+}

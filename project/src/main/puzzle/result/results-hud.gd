@@ -14,8 +14,6 @@ const POSITION_HIDDEN := Vector2(765, 800)
 ## Receipt paper position when it is shown
 const POSITION_SHOWN := Vector2(765, 4)
 
-var _rank_calculator := RankCalculator.new()
-
 onready var _sfx_receipt_show := $Sfx/ReceiptShow
 onready var _sfx_receipt_hide := $Sfx/ReceiptHide
 

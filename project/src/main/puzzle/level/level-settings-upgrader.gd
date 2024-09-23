@@ -21,6 +21,7 @@ var _upgrade_methods := {}
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_4c5c", "4c5c", "59c3")
 	_add_upgrade_method("_upgrade_49db", "49db", "4c5c")
 	_add_upgrade_method("_upgrade_4373", "4373", "49db")
 	_add_upgrade_method("_upgrade_39e5", "39e5", "4373")
@@ -94,6 +95,32 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+## Simplify level rank metadata.
+##
+## Version 59c3 eliminated granular rank fields like "box_factor" and "combo_factor", although it still supports them
+## temporarily via the "legacy box_factor" and "legacy combo_factor" properties.
+func _upgrade_4c5c(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
+	match old_key:
+		"rank":
+			new_json["rank"] = []
+			for rank_entry in old_json.get("rank", []):
+				match rank_entry.split(" ")[0]:
+					"box_factor", \
+					"combo_factor", \
+					"customer_combo", \
+					"extra_seconds_per_piece", \
+					"leftover_lines", \
+					"master_pickup_score", \
+					"master_pickup_score_per_line", \
+					"preplaced_pieces":
+						new_json["rank"].append("legacy %s" % [rank_entry])
+					_:
+						new_json["rank"].append(rank_entry)
+		_:
+			new_json[old_key] = old_json[old_key]
+	return new_json
 
 
 func _upgrade_49db(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:

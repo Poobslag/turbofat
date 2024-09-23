@@ -12,12 +12,16 @@ var goal_s: int
 var goal_a: int
 var goal_b: int
 
-var _rank_target_calculator: RankTargetCalculator
 var rank_result: RankResult
 
+## calculates the time or score thresholds
+var rank_criteria: RankCriteria
+
+var _rank_calculator := RankCalculator.new()
+
 func _init() -> void:
-	_rank_target_calculator = RankTargetCalculator.new()
 	var rank_calculator := RankCalculator.new()
+	rank_criteria = rank_calculator.filled_rank_criteria()
 	rank_result = rank_calculator.calculate_rank()
 	
 	# we calculate these goals in advance because they're computationally complex
@@ -104,10 +108,7 @@ func goal_height_sss() -> float:
 
 
 func _target_for_grade(grade: String) -> int:
-	var result := _rank_target_calculator.target_for_grade(grade)
-	if rank_result.compare == "-seconds":
-		result = min(result, 5999)
-	return result
+	return rank_criteria.thresholds_by_grade[grade]
 
 
 func _duration_from_score(score: int) -> float:
@@ -129,8 +130,9 @@ func _goal_height(goal: int) -> float:
 	if rank_result.compare == "-seconds":
 		var seconds := rank_result.seconds
 		if rank_result.lost:
-			var percent_complete := float(rank_result.score) / CurrentLevel.settings.finish_condition.value
-			seconds = _rank_target_calculator.target_for_rank(Ranks.BAD_RANK)
+			var percent_complete := float(rank_result.score) / max(1, CurrentLevel.settings.finish_condition.value)
+			var filled_rank_criteria: RankCriteria = _rank_calculator.filled_rank_criteria()
+			seconds = filled_rank_criteria.thresholds_by_grade["B-"] * 2.0
 			seconds += clamp((1.0 - percent_complete) * seconds, 1, 180)
 		result = seconds * total_height() / goal
 	else:

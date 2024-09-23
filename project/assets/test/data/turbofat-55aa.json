@@ -1,0 +1,49 @@
+[
+  {
+    "type": "version",
+    "value": "512b"
+  },
+
+  {
+    "type": "level_history",
+    "key": "career/curly_queue",
+    "value": [
+      {
+        "box_score": 370,
+        "box_score_per_line": 11.212121,
+        "box_score_per_line_rank": 11.571653,
+        "combo_score": 560,
+        "combo_score_per_line": 20,
+        "combo_score_per_line_rank": 0,
+        "pickup_score": 0,
+        "pickup_score_per_line": 0,
+        "pickup_score_rank": 0,
+        "compare": "+score",
+        "leftover_score": 458,
+        "lines": 33,
+        "lines_rank": 0.950951,
+        "pieces": 78,
+        "pieces_rank": 0,
+        "lost": false,
+        "score": 1421,
+        "score_rank": 4.27,
+        "seconds": 90.000005,
+        "seconds_rank": 999,
+        "speed": 21.999999,
+        "speed_rank": 1.732742,
+        "success": false,
+        "timestamp": {
+          "year": 2024,
+          "month": 8,
+          "day": 12,
+          "weekday": 1,
+          "dst": true,
+          "hour": 11,
+          "minute": 44,
+          "second": 37
+        },
+        "top_out_count": 0
+      }
+    ]
+  }
+]

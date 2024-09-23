@@ -8,7 +8,7 @@ func before_each() -> void:
 
 func test_is_default() -> void:
 	assert_eq(rules.is_default(), true)
-	rules.box_factor = 2.0
+	rules.success_bonus = 9.0
 	assert_eq(rules.is_default(), false)
 
 
@@ -17,13 +17,8 @@ func test_to_json_empty() -> void:
 
 
 func test_convert_to_json_and_back() -> void:
-	rules.box_factor = 2.3
-	rules.combo_factor = 3.4
-	rules.customer_combo = 4
-	rules.extra_seconds_per_piece = 5.6
-	rules.leftover_lines = 6
-	rules.master_pickup_score = 7.8
-	rules.master_pickup_score_per_line = 8.9
+	rules.rank_criteria.add_threshold("M", 1000)
+	rules.rank_criteria.add_threshold("S-", 500)
 	rules.show_boxes_rank = RankRules.ShowRank.SHOW
 	rules.show_combos_rank = RankRules.ShowRank.HIDE
 	rules.show_lines_rank = RankRules.ShowRank.SHOW
@@ -35,13 +30,9 @@ func test_convert_to_json_and_back() -> void:
 	rules.unranked = true
 	_convert_to_json_and_back()
 	
-	assert_eq(rules.box_factor, 2.3)
-	assert_eq(rules.combo_factor, 3.4)
-	assert_eq(rules.customer_combo, 4)
-	assert_eq(rules.extra_seconds_per_piece, 5.6)
-	assert_eq(rules.leftover_lines, 6)
-	assert_eq(rules.master_pickup_score, 7.8)
-	assert_eq(rules.master_pickup_score_per_line, 8.9)
+	assert_eq(2, rules.rank_criteria.thresholds_by_grade.size())
+	assert_eq(1000, rules.rank_criteria.thresholds_by_grade.get("M"))
+	assert_eq(500, rules.rank_criteria.thresholds_by_grade.get("S-"))
 	assert_eq(rules.show_boxes_rank, RankRules.ShowRank.SHOW)
 	assert_eq(rules.show_combos_rank, RankRules.ShowRank.HIDE)
 	assert_eq(rules.show_lines_rank, RankRules.ShowRank.SHOW)

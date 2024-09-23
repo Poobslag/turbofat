@@ -73,8 +73,6 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
 
-var _duration_calculator := DurationCalculator.new()
-
 onready var _button_control := $ButtonControlHolder/ButtonControl
 onready var _label := $ButtonControlHolder/ButtonControl/Label
 onready var _icon_tile_map := $ButtonControlHolder/ButtonControl/IconTileMapHolder/IconTileMap
@@ -153,10 +151,9 @@ func decorate_for_level(region: Object, settings: LevelSettings, force_unlock: b
 			if PlayerData.level_history.is_level_success(settings.id):
 				lock_status = STATUS_CROWN
 	
-	var duration := _duration_calculator.duration(settings)
-	if duration < 100:
+	if settings.rank.duration < 100:
 		level_duration = SHORT
-	elif duration < 200:
+	elif settings.rank.duration < 200:
 		level_duration = MEDIUM
 	else:
 		level_duration = LONG

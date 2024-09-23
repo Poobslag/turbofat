@@ -42,7 +42,7 @@ var _data_per_rank := {
 	"boss 7*": ["20", "0", "10:00"],
 }
 
-var _rank_calculator := RankCalculator.new()
+var _rank_calculator := LegacyRankCalculator.new()
 
 func _ready() -> void:
 	for data_key in _data_per_rank.keys():
@@ -155,7 +155,7 @@ func _level_settings(data_key: String, start_speed: String, seconds: float) -> L
 func _target_score(target_rank: float) -> float:
 	var min_score := 0
 	var max_score := 50000
-	var rank_result: RankResult
+	var rank_result: LegacyRankResult
 	for _i in range(20):
 		PuzzleState.level_performance.score = (min_score + max_score) / 2.0
 		rank_result = _rank_calculator.calculate_rank()
@@ -174,7 +174,7 @@ func _target_score(target_rank: float) -> float:
 func _target_lines(target_rank: int) -> float:
 	var min_target_lines := 0
 	var max_target_lines := 5000
-	var rank_result: RankResult
+	var rank_result: LegacyRankResult
 	for _i in range(20):
 		PuzzleState.level_performance.lines = ceil((min_target_lines + max_target_lines) / 2.0)
 		rank_result = _rank_calculator.calculate_rank()

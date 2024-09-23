@@ -1,5 +1,7 @@
 extends GutTest
 
+var settings := LevelSettings.new()
+
 func test_increment_string() -> void:
 	assert_eq(LevelSettingsUpgrader.increment_string(""), "")
 	assert_eq(LevelSettingsUpgrader.increment_string("3"), "4")
