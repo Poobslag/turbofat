@@ -36,11 +36,7 @@ func play(new_blueprint: ResultsHudBlueprint) -> void:
 	_blueprint = new_blueprint
 	_animation_player.play("play")
 	
-	var rank: float
-	if _blueprint.rank_result.compare == "-seconds":
-		rank = _blueprint.rank_result.seconds_rank
-	else:
-		rank = _blueprint.rank_result.score_rank
+	var rank := _blueprint.rank_result.rank
 	var grade := Ranks.grade(rank)
 	_ink.frame = INK_FRAMES_BY_GRADE.get(grade, 1)
 

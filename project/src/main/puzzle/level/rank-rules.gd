@@ -1,6 +1,58 @@
 class_name RankRules
 ## Tweaks to rank calculation.
 
+## Parses legacy rank criteria such as 'legacy box_factor' into the 'legacy_rules' field.
+class LegacyCriteriaParser extends RuleParser.PropertyParser:
+	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+		pass
+	
+	
+	# don't write legacy properties, we don't want to preserve them in future versions of the game
+	func to_json_strings() -> Array:
+		return []
+	
+	
+	func from_json_string(json: String) -> void:
+		var json_strings := json.split(" ")
+		
+		match json_strings[1]:
+			"box_factor", \
+			"combo_factor", \
+			"extra_seconds_per_piece", \
+			"master_pickup_score", \
+			"master_pickup_score_per_line":
+				target().legacy_rules[json_strings[1]] = float(json_strings[2])
+			"customer_combo", \
+			"leftover_lines", \
+			"preplaced_pieces":
+				target().legacy_rules[json_strings[1]] = int(json_strings[2])
+
+
+## Parses a json string like 'rank_criteria m=1000 s=800' into a RankCriteria instance.
+class RankCriteriaParser extends RuleParser.PropertyParser:
+	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+		pass
+	
+	func to_json_strings() -> Array:
+		var result := "rank_criteria"
+		for grade in target().rank_criteria.thresholds_by_grade:
+			var threshold: int = target().rank_criteria.thresholds_by_grade[grade]
+			result += " %s=%s" % [grade.to_lower(), threshold]
+		return [result]
+	
+	
+	func from_json_string(json: String) -> void:
+		var json_strings := json.split(" ")
+		for i in range(1, json_strings.size()):
+			var grade_string := json_strings[i].split("=")[0].to_upper()
+			var cutoff_string := int(json_strings[i].split("=")[1])
+			target().rank_criteria.add_threshold(grade_string, cutoff_string)
+	
+	
+	func is_default() -> bool:
+		return not target().rank_criteria.thresholds_by_grade
+
+
 ## Parses a json string like 'hide_combos_rank' into an enum like 'ShowRank.HIDE'
 class ShowRankPropertyParser extends RuleParser.PropertyParser:
 	var _hide_string: String
@@ -36,31 +88,10 @@ enum ShowRank {
 	HIDE, # rank should be hidden
 }
 
-## multiplier for the expected box_score_per_line. '3.0' means the player
-## needs 3x the usual box points per line to get a good rank
-var box_factor := 1.0
+var rank_criteria: RankCriteria = RankCriteria.new()
 
-## multiplier for the expected combo_score_per_line. '3.0' means the player
-## needs 3x the usual combo points per line to get a good rank
-var combo_factor := 1.0
-
-## expected combo per customer
-var customer_combo := 0
-
-## extra time it takes an expert to move the piece where it belongs
-var extra_seconds_per_piece := 0.0
-
-## helpful pieces which are already placed for the player
-var preplaced_pieces := 0
-
-## expected leftover lines
-var leftover_lines := 0
-
-## expected bonus points for pickups
-var master_pickup_score := 0.0
-
-## expected bonus points per line awarded for pickups
-var master_pickup_score_per_line := 0.0
+## the level's estimated duration
+var duration: int
 
 var show_boxes_rank: int = ShowRank.DEFAULT
 var show_combos_rank: int = ShowRank.DEFAULT
@@ -79,19 +110,15 @@ var success_bonus := 0.0
 
 ## If 'true' the player is not given a rank for this level.
 var unranked := false
+var legacy_rules := {}
 
 var _rule_parser: RuleParser
 
 func _init() -> void:
 	_rule_parser = RuleParser.new(self)
-	_rule_parser.add_float("box_factor").default(1.0)
-	_rule_parser.add_float("combo_factor").default(1.0)
-	_rule_parser.add_int("customer_combo")
-	_rule_parser.add_float("extra_seconds_per_piece")
-	_rule_parser.add_int("leftover_lines")
-	_rule_parser.add_float("master_pickup_score")
-	_rule_parser.add_float("master_pickup_score_per_line")
-	_rule_parser.add_int("preplaced_pieces")
+	_rule_parser.add_int("duration")
+	_rule_parser.add(LegacyCriteriaParser.new(self, "legacy"))
+	_rule_parser.add(RankCriteriaParser.new(self, "rank_criteria"))
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_boxes_rank"))
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_combos_rank"))
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_lines_rank"))

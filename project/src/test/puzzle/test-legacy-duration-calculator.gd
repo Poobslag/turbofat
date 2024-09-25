@@ -1,6 +1,6 @@
 extends GutTest
 
-var _duration_calculator := DurationCalculator.new()
+var _duration_calculator := LegacyDurationCalculator.new()
 var _settings: LevelSettings
 
 func before_each() -> void:
@@ -86,18 +86,18 @@ func test_customers_high_speed() -> void:
 func test_master_pickup_score() -> void:
 	_settings.finish_condition.set_milestone(Milestone.SCORE, 1000)
 	
-	_settings.rank.master_pickup_score = 0 # low pickup score
+	_settings.rank.legacy_rules["master_pickup_score"] = 0 # low pickup score
 	assert_almost_eq(_duration_calculator.duration(_settings), 889.0, 10.0)
 	
-	_settings.rank.master_pickup_score = 800 # high pickup score
+	_settings.rank.legacy_rules["master_pickup_score"] = 800 # high pickup score
 	assert_almost_eq(_duration_calculator.duration(_settings), 177.0, 10.0)
 
 
 func test_master_pickup_score_per_line() -> void:
 	_settings.finish_condition.set_milestone(Milestone.SCORE, 1000)
 	
-	_settings.rank.master_pickup_score_per_line = 0 # low pickup score
+	_settings.rank.legacy_rules["master_pickup_score_per_line"] = 0 # low pickup score
 	assert_almost_eq(_duration_calculator.duration(_settings), 889.0, 10.0)
 	
-	_settings.rank.master_pickup_score_per_line = 20 # high pickup score
+	_settings.rank.legacy_rules["master_pickup_score_per_line"] = 20 # high pickup score
 	assert_almost_eq(_duration_calculator.duration(_settings), 574.0, 10.0)

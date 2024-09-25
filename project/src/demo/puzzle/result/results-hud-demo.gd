@@ -11,8 +11,6 @@ extends Node
 ## 	[J]: Toggle passed/failed.
 ## 	[Space]: Hide message
 
-var _rank_calculator := RankCalculator.new()
-
 onready var _results_hud := $ResultsHud
 
 func _ready() -> void:
@@ -83,6 +81,7 @@ func _show_results_message() -> void:
 
 func _prepare_marathon_scenario(skill_factor: float) -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 300)
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("M", 10000)
 	PuzzleState.level_performance.seconds = 600.0
 	PuzzleState.level_performance.lines = 300 * skill_factor
 	PuzzleState.level_performance.box_score = 2790 * skill_factor
@@ -92,6 +91,7 @@ func _prepare_marathon_scenario(skill_factor: float) -> void:
 
 func _prepare_long_ultra_scenario(skill_factor: float) -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1000)
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("M", 55)
 	PuzzleState.level_performance.seconds = 69.5 / skill_factor
 	PuzzleState.level_performance.lines = 47
 	PuzzleState.level_performance.box_score = 460
@@ -101,6 +101,7 @@ func _prepare_long_ultra_scenario(skill_factor: float) -> void:
 
 func _prepare_short_ultra_scenario(skill_factor: float) -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("M", 17)
 	PuzzleState.level_performance.seconds = 7.5 / skill_factor
 	PuzzleState.level_performance.lines = 9
 	PuzzleState.level_performance.box_score = 90

@@ -293,7 +293,8 @@ var _third_zero_regex: RegEx
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "55aa"
+	upgrader.current_version = "59c3"
+	upgrader.add_upgrade_method(self, "_upgrade_55aa", "55aa", "59c3")
 	upgrader.add_upgrade_method(self, "_upgrade_512b", "512b", "55aa")
 	upgrader.add_upgrade_method(self, "_upgrade_4ceb", "4ceb", "512b")
 	upgrader.add_upgrade_method(self, "_upgrade_49eb", "49eb", "4ceb")
@@ -316,6 +317,17 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _upgrade_55aa(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			# populate the 'rank' field from 'score_rank', 'seconds_rank'
+			for level_history_entry in save_item.value:
+				level_history_entry["rank"] = min(
+					level_history_entry.get("score_rank", 999.0),
+					level_history_entry.get("seconds_rank", 999.0))
+	return save_item
 
 
 func _upgrade_512b(_old_save_items: Array, save_item: SaveItem) -> SaveItem:

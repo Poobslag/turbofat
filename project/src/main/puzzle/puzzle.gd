@@ -240,16 +240,6 @@ func _quit_puzzle() -> void:
 			SceneTransition.pop_trail()
 
 
-func _overall_rank(rank_result: RankResult) -> float:
-	var result: float
-	match CurrentLevel.settings.finish_condition.type:
-		Milestone.SCORE:
-			result = rank_result.seconds_rank
-		_:
-			result = rank_result.score_rank
-	return result
-
-
 ## Records the player's performance for career mode.
 func _update_career_data(rank_result: RankResult) -> void:
 	PlayerData.career.money = min(PlayerData.career.money + rank_result.score,
@@ -263,7 +253,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 			PlayerData.career.customers += 1
 	
 	# Calculate the player's distance to travel based on their overall rank
-	var overall_rank := _overall_rank(rank_result)
+	var overall_rank := rank_result.rank
 	
 	var milestone_index := CareerData.rank_milestone_index(overall_rank)
 	var distance_to_advance: int = Careers.RANK_MILESTONES[milestone_index].distance
@@ -370,7 +360,7 @@ func _on_PuzzleState_game_ended() -> void:
 	var rank_result := RankCalculator.new().calculate_rank()
 	_save_level_result(rank_result)
 
-	if not PuzzleState.level_performance.lost and _overall_rank(rank_result) < 24: $ApplauseSound.play()
+	if not PuzzleState.level_performance.lost and rank_result.rank < 24: $ApplauseSound.play()
 
 
 ## Briefly pause during level transitions.

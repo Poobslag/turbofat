@@ -10,9 +10,6 @@ func before_each() -> void:
 	
 	_rank_result = RankResult.new()
 	_rank_result.seconds = 600.0
-	_rank_result.lines = 300
-	_rank_result.box_score_per_line = 9.3
-	_rank_result.combo_score_per_line = 17.0
 	_rank_result.score = 7890
 
 

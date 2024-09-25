@@ -137,7 +137,7 @@ func test_375c() -> void:
 	
 	# update sandbox data to 'm' rank
 	var best_result := PlayerData.level_history.best_result("practice/sandbox_normal")
-	assert_eq(best_result.score_rank, 0.0)
+	assert_eq(best_result.rank, 0.0)
 
 
 ## With the removal of free roam mode, we also remove all of the old level history items.
@@ -267,3 +267,14 @@ func test_512b_level_history_purged() -> void:
 	var rank_results := PlayerData.level_history.rank_results
 	assert_eq(rank_results.has("career/square_curse"), true)
 	assert_eq(rank_results.has("career/its_tee_time"), false)
+
+
+func test_55aa_level_history_simplified() -> void:
+	load_player_data("turbofat-55aa.json")
+	
+	# level history
+	var rank_results := PlayerData.level_history.rank_results
+	assert_eq(rank_results.has("career/curly_queue"), true)
+	assert_eq(rank_results["career/curly_queue"].size(), 1)
+	var rank_result: RankResult = rank_results["career/curly_queue"][0]
+	assert_eq(rank_result.rank, 4.27)

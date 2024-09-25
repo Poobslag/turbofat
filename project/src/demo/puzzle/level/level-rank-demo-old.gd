@@ -11,7 +11,7 @@ extends Node
 const SAVE_KEY_GRADE := "level-rank-demo.grade"
 const SAVE_KEY_OPEN := "level-rank-demo.open"
 
-var _rank_calculator := RankCalculator.new()
+var _rank_calculator := LegacyRankCalculator.new()
 
 onready var _error_dialog := $Dialogs/Error
 onready var _open_dialog := $Dialogs/OpenFile
@@ -61,15 +61,16 @@ func _calculate_extra_seconds_per_piece() -> void:
 	var extra_seconds_per_piece_min := 0.0
 	var extra_seconds_per_piece_max := 2.0
 	for _i in range(20):
-		CurrentLevel.settings.rank.extra_seconds_per_piece = \
+		CurrentLevel.settings.rank.legacy_rules["extra_seconds_per_piece"] = \
 				0.5 * (extra_seconds_per_piece_min + extra_seconds_per_piece_max)
 		var lpm_for_grade := _rank_calculator.rank_lpm(target_rank)
-		if lpm_for_grade >= best_result.speed:
-			extra_seconds_per_piece_min = CurrentLevel.settings.rank.extra_seconds_per_piece
+		if lpm_for_grade >= best_result.lines / max(best_result.seconds, 1):
+			extra_seconds_per_piece_min = CurrentLevel.settings.rank.legacy_rules.get("extra_seconds_per_piece", 0.0)
 		else:
-			extra_seconds_per_piece_max = CurrentLevel.settings.rank.extra_seconds_per_piece
+			extra_seconds_per_piece_max = CurrentLevel.settings.rank.legacy_rules.get("extra_seconds_per_piece", 0.0)
 	
-	_text_edit.text += "\"extra_seconds_per_piece %.2f\",\n" % [CurrentLevel.settings.rank.extra_seconds_per_piece]
+	_text_edit.text += "\"extra_seconds_per_piece %.2f\",\n" \
+			% [CurrentLevel.settings.rank.legacy_rules.get("extra_seconds_per_piece", 0.0)]
 
 
 ## Calculates and outputs the box_factor for levels which inhibit snack and cake boxes.
@@ -80,16 +81,16 @@ func _calculate_box_factor() -> void:
 	var box_factor_min := 0.0
 	var box_factor_max := 4.0
 	for _i in range(20):
-		CurrentLevel.settings.rank.box_factor = \
+		CurrentLevel.settings.rank.legacy_rules["box_factor"] = \
 				0.5 * (box_factor_min + box_factor_max)
-		var box_score_for_grade := CurrentLevel.settings.rank.box_factor \
-				* RankCalculator.MASTER_BOX_SCORE * pow(RankCalculator.RDF_BOX_SCORE_PER_LINE, target_rank)
-		if box_score_for_grade >= best_result.box_score_per_line:
-			box_factor_max = CurrentLevel.settings.rank.box_factor
+		var box_score_for_grade := float(CurrentLevel.settings.rank.legacy_rules.get("box_factor", 1.0)) \
+				* LegacyRankCalculator.MASTER_BOX_SCORE * pow(LegacyRankCalculator.RDF_BOX_SCORE_PER_LINE, target_rank)
+		if box_score_for_grade >= best_result.box_score / max(best_result.lines, 1):
+			box_factor_max = float(CurrentLevel.settings.rank.legacy_rules.get("box_factor", 1.0))
 		else:
-			box_factor_min = CurrentLevel.settings.rank.box_factor
+			box_factor_min = float(CurrentLevel.settings.rank.legacy_rules.get("box_factor", 1.0))
 	
-	_text_edit.text += "\"box_factor %.2f\",\n" % [CurrentLevel.settings.rank.box_factor]
+	_text_edit.text += "\"box_factor %.2f\",\n" % [CurrentLevel.settings.rank.legacy_rules.get("box_factor", 1.0)]
 
 
 ## Calculates and outputs the combo_factor for levels which inhibit combos.
@@ -100,16 +101,18 @@ func _calculate_combo_factor() -> void:
 	var combo_factor_min := 0.0
 	var combo_factor_max := 4.0
 	for _i in range(20):
-		CurrentLevel.settings.rank.combo_factor = \
+		CurrentLevel.settings.rank.legacy_rules["combo_factor"] = \
 				0.5 * (combo_factor_min + combo_factor_max)
-		var combo_score_for_grade := CurrentLevel.settings.rank.combo_factor \
-				* RankCalculator.MASTER_COMBO_SCORE * pow(RankCalculator.RDF_COMBO_SCORE_PER_LINE, target_rank)
-		if combo_score_for_grade >= best_result.combo_score_per_line:
-			combo_factor_max = CurrentLevel.settings.rank.combo_factor
+		var combo_score_for_grade := \
+				float(CurrentLevel.settings.rank.legacy_rules.get("combo_factor", 1.0)) \
+				* LegacyRankCalculator.MASTER_COMBO_SCORE \
+				* pow(LegacyRankCalculator.RDF_COMBO_SCORE_PER_LINE, target_rank)
+		if combo_score_for_grade >= best_result.combo_score / max(best_result.lines, 1):
+			combo_factor_max = CurrentLevel.settings.rank.legacy_rules.get("combo_factor", 1.0)
 		else:
-			combo_factor_min = CurrentLevel.settings.rank.combo_factor
+			combo_factor_min = CurrentLevel.settings.rank.legacy_rules.get("combo_factor", 1.0)
 	
-	_text_edit.text += "\"combo_factor %.2f\",\n" % [CurrentLevel.settings.rank.combo_factor]
+	_text_edit.text += "\"combo_factor %.2f\",\n" % [CurrentLevel.settings.rank.legacy_rules.get("combo_factor", 1.0)]
 
 
 ## Calculates and outputs the master_pickup_score_per_line for levels with pickups.
@@ -117,12 +120,12 @@ func _calculate_master_pickup_score_per_line() -> void:
 	var target_rank := _target_rank()
 	var best_result := _best_result()
 	
-	CurrentLevel.settings.rank.master_pickup_score_per_line = \
-			best_result.pickup_score_per_line \
-			/ pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, target_rank)
+	CurrentLevel.settings.rank.legacy_rules["master_pickup_score_per_line"] = \
+			(best_result.pickup_score / max(best_result.lines, 1)) \
+			/ pow(LegacyRankCalculator.RDF_PICKUP_SCORE_PER_LINE, target_rank)
 	
 	_text_edit.text += "\"master_pickup_score_per_line %.2f\",\n" \
-			% [CurrentLevel.settings.rank.master_pickup_score_per_line]
+			% [CurrentLevel.settings.rank.legacy_rules.get("master_pickup_score_per_line", 0.0)]
 
 
 ## Returns the player's best result for the level selected in the demo.
@@ -134,7 +137,7 @@ func _best_result() -> RankResult:
 
 ## Returns the rank corresponding to the grade chosen in the demo.
 func _target_rank() -> float:
-	return RankCalculator.average_rank_for_grade(_grade_input.value)
+	return LegacyRankCalculator.average_rank_for_grade(_grade_input.value)
 
 
 ## Reads the developer's in-memory data from a save file.

@@ -74,8 +74,5 @@ func test_finished_successful() -> void:
 static func rank_result(score: int = 7890) -> RankResult:
 	var result := RankResult.new()
 	result.seconds = 600.0
-	result.lines = 300
-	result.box_score_per_line = 9.3
-	result.combo_score_per_line = 17.0
 	result.score = score
 	return result

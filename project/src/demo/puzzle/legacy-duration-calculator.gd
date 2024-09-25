@@ -1,7 +1,8 @@
-class_name DurationCalculator
-## Estimates the duration of a puzzle.
+class_name LegacyDurationCalculator
+## Estimates the duration of a puzzle with a mathematical model incorporating piece speed, required line clears,
+## points per line and other factors.
 ##
-## This is shown to the player on the level select screen, and also affects the relative sizes of the level buttons.
+## Note: The math-based duration algorithm has been replaced with a per-level "duration" field.
 
 ## While rank 48 only requires a player to clear 3-4 lines per minute, it's unreasonable to predict that a level that
 ## requiring 12 line clears will take 3-4 minutes. This constant stores the expected lines per minute for a novice
@@ -41,7 +42,8 @@ func duration(settings: LevelSettings) -> float:
 		match settings.finish_condition.type:
 			Milestone.SCORE:
 				# assume the player collects all the one-time pickups
-				var lines := (settings.finish_condition.value - settings.rank.master_pickup_score) \
+				var lines := (settings.finish_condition.value \
+						- float(settings.rank.legacy_rules.get("master_pickup_score", 0.0))) \
 						/ _score_per_line(settings)
 				lines = clamp(lines, 1, 10000)
 				result = _duration_for_lines(settings, lines)
@@ -53,8 +55,8 @@ func duration(settings: LevelSettings) -> float:
 				result = settings.finish_condition.value
 			Milestone.CUSTOMERS:
 				var rank: float = RANKS_BY_DIFFICULTY[settings.get_difficulty()]
-				var lines_per_customer := RankCalculator.master_customer_combo(settings)
-				lines_per_customer *= pow(RankCalculator.RDF_ENDURANCE, rank)
+				var lines_per_customer := LegacyRankCalculator.master_customer_combo(settings)
+				lines_per_customer *= pow(LegacyRankCalculator.RDF_ENDURANCE, rank)
 				var lines := lines_per_customer * settings.finish_condition.value
 				result = _duration_for_lines(settings, lines)
 	
@@ -65,9 +67,10 @@ func duration(settings: LevelSettings) -> float:
 func _duration_for_lines(settings: LevelSettings, lines: float) -> float:
 	var min_frames_per_line := Ranks.min_frames_per_line(PieceSpeeds.speed(settings.difficulty))
 	var min_lines_per_frame := 1 / min_frames_per_line
-	var master_lines_per_second := 60 * min_lines_per_frame + 2 * settings.rank.extra_seconds_per_piece
+	var master_lines_per_second := 60 * min_lines_per_frame \
+			+ 2 * float(settings.rank.legacy_rules.get("extra_seconds_per_piece", 0.0))
 	var master_lines_per_minute := 60 * master_lines_per_second
-	master_lines_per_minute *= pow(RankCalculator.RDF_SPEED, _rank(settings))
+	master_lines_per_minute *= pow(LegacyRankCalculator.RDF_SPEED, _rank(settings))
 	# minimum 8.0 lines per minute; novices don't play THAT slowly
 	master_lines_per_minute = max(MIN_LINES_PER_MINUTE, master_lines_per_minute)
 	return 60 * lines / master_lines_per_minute
@@ -83,13 +86,13 @@ func _rank(settings: LevelSettings) -> float:
 ## We calculate an approprate rank based on the level difficulty, and then estimate how many bonus points a player of
 ## that rank would achieve from combos and boxes.
 func _score_per_line(settings: LevelSettings) -> float:
-	var combo_score_per_line := RankCalculator.master_combo_score(settings)
-	combo_score_per_line *= pow(RankCalculator.RDF_COMBO_SCORE_PER_LINE, _rank(settings))
+	var combo_score_per_line := LegacyRankCalculator.master_combo_score(settings)
+	combo_score_per_line *= pow(LegacyRankCalculator.RDF_COMBO_SCORE_PER_LINE, _rank(settings))
 	
-	var box_score_per_line := RankCalculator.master_box_score(settings)
-	box_score_per_line *= pow(RankCalculator.RDF_BOX_SCORE_PER_LINE, _rank(settings))
+	var box_score_per_line := LegacyRankCalculator.master_box_score(settings)
+	box_score_per_line *= pow(LegacyRankCalculator.RDF_BOX_SCORE_PER_LINE, _rank(settings))
 	
-	var pickup_score_per_line := RankCalculator.master_pickup_score_per_line(settings)
-	pickup_score_per_line *= pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, _rank(settings))
+	var pickup_score_per_line := LegacyRankCalculator.master_pickup_score_per_line(settings)
+	pickup_score_per_line *= pow(LegacyRankCalculator.RDF_PICKUP_SCORE_PER_LINE, _rank(settings))
 	
 	return box_score_per_line + combo_score_per_line + pickup_score_per_line + 1
