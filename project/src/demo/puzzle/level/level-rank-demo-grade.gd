@@ -10,8 +10,8 @@ var value: String setget set_value, get_value
 var _index_by_grade := {}
 
 func _ready() -> void:
-	for i in range(RankCalculator.GRADE_RANKS.size()):
-		var grade: String = RankCalculator.GRADE_RANKS[i][0]
+	for i in range(Ranks.GRADES.size()):
+		var grade: String = Ranks.GRADES[i]
 		$OptionButton.add_item(grade, i)
 		_index_by_grade[grade] = i
 

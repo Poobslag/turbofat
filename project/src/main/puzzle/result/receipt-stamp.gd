@@ -41,7 +41,7 @@ func play(new_blueprint: ResultsHudBlueprint) -> void:
 		rank = _blueprint.rank_result.seconds_rank
 	else:
 		rank = _blueprint.rank_result.score_rank
-	var grade := RankCalculator.grade(rank)
+	var grade := Ranks.grade(rank)
 	_ink.frame = INK_FRAMES_BY_GRADE.get(grade, 1)
 
 

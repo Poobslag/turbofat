@@ -9,7 +9,7 @@ extends Node
 ## key: (String) level name
 ## value: (Array, String) array containing 3 elements representing the level difficulty:
 ## 	value[0]: (String) The desired rank like "2" or "48" for the player's expected skill. These correspond to the
-## 		integers in RankCalculator.GRADE_RANKS
+## 		integers in Ranks.RANKS_BY_GRADE
 ## 	value[1]: (String) The slowest piece speed like "3" or "FA" which the player is constrained to. Levels with
 ## 		higher speeds expect higher scores
 ## 	value[2]: (String) The duration string like "3:00".

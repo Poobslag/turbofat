@@ -63,7 +63,7 @@ func duration(settings: LevelSettings) -> float:
 
 ## Returns the estimated time to clear the specified number of lines.
 func _duration_for_lines(settings: LevelSettings, lines: float) -> float:
-	var min_frames_per_line := RankCalculator.min_frames_per_line(PieceSpeeds.speed(settings.difficulty))
+	var min_frames_per_line := Ranks.min_frames_per_line(PieceSpeeds.speed(settings.difficulty))
 	var min_lines_per_frame := 1 / min_frames_per_line
 	var master_lines_per_second := 60 * min_lines_per_frame + 2 * settings.rank.extra_seconds_per_piece
 	var master_lines_per_minute := 60 * master_lines_per_second

@@ -170,7 +170,7 @@ func _average_grade() -> String:
 	for rank in ranks:
 		sum += rank
 	var mean_rank := sum / float(ranks.size())
-	return RankCalculator.grade(mean_rank)
+	return Ranks.grade(mean_rank)
 
 
 ## Smoothly moves the credits to a new position, showing or hiding the header.

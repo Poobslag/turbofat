@@ -97,7 +97,7 @@ func _refresh_status_icon(lock_status: int) -> void:
 func _refresh_grade_text(rank: float) -> void:
 	_status_icon.visible = false
 	
-	_grade_label.text = RankCalculator.grade(rank)
+	_grade_label.text = Ranks.grade(rank)
 	_grade_label.visible = false if _grade_label.text == "-" else true
 	_grade_label.refresh_color_from_text()
 
