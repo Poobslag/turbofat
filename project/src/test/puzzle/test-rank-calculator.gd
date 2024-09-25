@@ -9,17 +9,17 @@ func before_each() -> void:
 
 func test_rank_lpm_slow_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("0")
-	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 30.77, 0.1)
+	assert_almost_eq(_rank_calculator.rank_lpm(Ranks.BEST_RANK), 30.77, 0.1)
 
 
 func test_rank_lpm_medium_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("A0")
-	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 35.64, 0.1)
+	assert_almost_eq(_rank_calculator.rank_lpm(Ranks.BEST_RANK), 35.64, 0.1)
 
 
 func test_rank_lpm_fast_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("F0")
-	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 65.00, 0.1)
+	assert_almost_eq(_rank_calculator.rank_lpm(Ranks.BEST_RANK), 65.00, 0.1)
 
 
 func test_rank_lpm_mixed_marathon() -> void:
@@ -27,7 +27,7 @@ func test_rank_lpm_mixed_marathon() -> void:
 	CurrentLevel.settings.speed.add_speed_up(Milestone.LINES, 30, "A0")
 	CurrentLevel.settings.speed.add_speed_up(Milestone.LINES, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 100)
-	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 45.27, 0.1)
+	assert_almost_eq(_rank_calculator.rank_lpm(Ranks.BEST_RANK), 45.27, 0.1)
 
 
 func test_rank_lpm_mixed_sprint() -> void:
@@ -35,7 +35,7 @@ func test_rank_lpm_mixed_sprint() -> void:
 	CurrentLevel.settings.speed.add_speed_up(Milestone.TIME_OVER, 30, "A0")
 	CurrentLevel.settings.speed.add_speed_up(Milestone.TIME_OVER, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 90)
-	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 49.54, 0.1)
+	assert_almost_eq(_rank_calculator.rank_lpm(Ranks.BEST_RANK), 49.54, 0.1)
 
 
 func test_calculate_rank_marathon_300_master() -> void:
@@ -62,11 +62,11 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 	PuzzleState.level_performance.combo_score = 500
 	PuzzleState.level_performance.score = 1160
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.speed_rank), "S+")
-	assert_eq(RankCalculator.grade(rank.lines_rank), "A+")
-	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S+")
-	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S-")
-	assert_eq(RankCalculator.grade(rank.score_rank), "AA+")
+	assert_eq(Ranks.grade(rank.speed_rank), "S+")
+	assert_eq(Ranks.grade(rank.lines_rank), "A+")
+	assert_eq(Ranks.grade(rank.box_score_per_line_rank), "S+")
+	assert_eq(Ranks.grade(rank.combo_score_per_line_rank), "S-")
+	assert_eq(Ranks.grade(rank.score_rank), "AA+")
 
 
 func test_calculate_rank_marathon_lenient() -> void:
@@ -77,11 +77,11 @@ func test_calculate_rank_marathon_lenient() -> void:
 	PuzzleState.level_performance.combo_score = 500
 	PuzzleState.level_performance.score = 1160
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.speed_rank), "S+")
-	assert_eq(RankCalculator.grade(rank.lines_rank), "AA+")
-	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S+")
-	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S-")
-	assert_eq(RankCalculator.grade(rank.score_rank), "AA+")
+	assert_eq(Ranks.grade(rank.speed_rank), "S+")
+	assert_eq(Ranks.grade(rank.lines_rank), "AA+")
+	assert_eq(Ranks.grade(rank.box_score_per_line_rank), "S+")
+	assert_eq(Ranks.grade(rank.combo_score_per_line_rank), "S-")
+	assert_eq(Ranks.grade(rank.score_rank), "AA+")
 
 
 func test_calculate_rank_marathon_300_fail() -> void:
@@ -103,7 +103,7 @@ func test_calculate_rank_40_pieces() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.PIECES, 80)
 	PuzzleState.level_performance.pieces = 40
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.pieces_rank), "S+")
+	assert_eq(Ranks.grade(rank.pieces_rank), "S+")
 
 
 func test_calculate_rank_1_piece() -> void:
@@ -111,7 +111,7 @@ func test_calculate_rank_1_piece() -> void:
 	PuzzleState.level_performance.pieces = 0
 	var rank := _rank_calculator.calculate_rank()
 	# most importantly, this should avoid a divide-by-zero error
-	assert_eq(RankCalculator.grade(rank.pieces_rank), "-")
+	assert_eq(Ranks.grade(rank.pieces_rank), "-")
 
 
 func test_calculate_rank_sprint_120_top_out() -> void:
@@ -124,20 +124,20 @@ func test_calculate_rank_sprint_120_top_out() -> void:
 	PuzzleState.level_performance.score = 1012
 	
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.speed_rank), "SS+")
-	assert_eq(RankCalculator.grade(rank1.lines_rank), "SS+")
-	assert_eq(RankCalculator.grade(rank1.box_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank1.combo_score_per_line_rank), "SS")
-	assert_eq(RankCalculator.grade(rank1.score_rank), "S+")
+	assert_eq(Ranks.grade(rank1.speed_rank), "SS+")
+	assert_eq(Ranks.grade(rank1.lines_rank), "SS+")
+	assert_eq(Ranks.grade(rank1.box_score_per_line_rank), "S")
+	assert_eq(Ranks.grade(rank1.combo_score_per_line_rank), "SS")
+	assert_eq(Ranks.grade(rank1.score_rank), "S+")
 	
 	# even when topping out, ranks stay the same
 	PuzzleState.level_performance.top_out_count = 1
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.speed_rank), "SS+")
-	assert_eq(RankCalculator.grade(rank2.lines_rank), "SS+")
-	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "SS")
-	assert_eq(RankCalculator.grade(rank2.score_rank), "S+")
+	assert_eq(Ranks.grade(rank2.speed_rank), "SS+")
+	assert_eq(Ranks.grade(rank2.lines_rank), "SS+")
+	assert_eq(Ranks.grade(rank2.box_score_per_line_rank), "S")
+	assert_eq(Ranks.grade(rank2.combo_score_per_line_rank), "SS")
+	assert_eq(Ranks.grade(rank2.score_rank), "S+")
 
 
 func test_calculate_rank_ultra_200() -> void:
@@ -148,11 +148,11 @@ func test_calculate_rank_ultra_200() -> void:
 	PuzzleState.level_performance.combo_score = 60
 	PuzzleState.level_performance.score = 8
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.speed_rank), "SS+")
-	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank.speed_rank), "SS+")
+	assert_eq(Ranks.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(rank.combo_score_per_line, 20.0)
-	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "M")
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "SS+")
+	assert_eq(Ranks.grade(rank.combo_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank.seconds_rank), "SS+")
 
 
 ## This is an edge case where, if the player clears too many lines for ultra, they can sort of be robbed of a master
@@ -165,10 +165,10 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	PuzzleState.level_performance.combo_score = 100
 	PuzzleState.level_performance.score = 260
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.speed_rank), "M")
-	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "M")
-	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "M")
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "SSS")
+	assert_eq(Ranks.grade(rank.speed_rank), "M")
+	assert_eq(Ranks.grade(rank.box_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank.combo_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank.seconds_rank), "SSS")
 
 
 ## Level requiring only one line clear used to trigger divide by zero errors.
@@ -178,7 +178,7 @@ func test_calculate_rank_ultra_1() -> void:
 	PuzzleState.level_performance.lines = 1
 	PuzzleState.level_performance.score = 1
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "AA")
+	assert_eq(Ranks.grade(rank.seconds_rank), "AA")
 
 
 func test_calculate_rank_five_creatures() -> void:
@@ -191,10 +191,10 @@ func test_calculate_rank_five_creatures() -> void:
 	PuzzleState.level_performance.combo_score = 915
 	PuzzleState.level_performance.score = 2040
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.lines_rank), "SSS")
-	assert_eq(RankCalculator.grade(rank1.box_score_per_line_rank), "S+")
-	assert_eq(RankCalculator.grade(rank1.combo_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank1.score_rank), "SS")
+	assert_eq(Ranks.grade(rank1.lines_rank), "SSS")
+	assert_eq(Ranks.grade(rank1.box_score_per_line_rank), "S+")
+	assert_eq(Ranks.grade(rank1.combo_score_per_line_rank), "S")
+	assert_eq(Ranks.grade(rank1.score_rank), "SS")
 	
 	# bad score
 	PuzzleState.level_performance.lines = 18
@@ -202,10 +202,10 @@ func test_calculate_rank_five_creatures() -> void:
 	PuzzleState.level_performance.combo_score = 60
 	PuzzleState.level_performance.score = 168
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.lines_rank), "A-")
-	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "AA")
-	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "A")
-	assert_eq(RankCalculator.grade(rank2.score_rank), "A+")
+	assert_eq(Ranks.grade(rank2.lines_rank), "A-")
+	assert_eq(Ranks.grade(rank2.box_score_per_line_rank), "AA")
+	assert_eq(Ranks.grade(rank2.combo_score_per_line_rank), "A")
+	assert_eq(Ranks.grade(rank2.score_rank), "A+")
 
 
 ## This edge case used to result in a combo_score_per_line of 22.5
@@ -237,12 +237,12 @@ func test_success_bonus_score() -> void:
 	# the player doesn't achieve the success condition; they get a worse grade
 	CurrentLevel.settings.set_success_condition(Milestone.SCORE, 2000)
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.score_rank), "AA+")
+	assert_eq(Ranks.grade(rank1.score_rank), "AA+")
 
 	# the player achieves the success condition; they get a better grade
 	CurrentLevel.settings.set_success_condition(Milestone.SCORE, 1000)
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.score_rank), "S")
+	assert_eq(Ranks.grade(rank2.score_rank), "S")
 
 
 func test_success_bonus_seconds() -> void:
@@ -254,12 +254,12 @@ func test_success_bonus_seconds() -> void:
 	# the player doesn't achieve the success condition; they get a worse grade
 	CurrentLevel.settings.set_success_condition(Milestone.TIME_UNDER, 180)
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.seconds_rank), "S-")
+	assert_eq(Ranks.grade(rank1.seconds_rank), "S-")
 
 	# the player achieves the success condition; they get a better grade
 	CurrentLevel.settings.set_success_condition(Milestone.TIME_UNDER, 300)
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.seconds_rank), "S+")
+	assert_eq(Ranks.grade(rank2.seconds_rank), "S+")
 
 
 func test_customer_combo() -> void:
@@ -269,7 +269,7 @@ func test_customer_combo() -> void:
 	PuzzleState.level_performance.score = 296
 	
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.score_rank), "M")
+	assert_eq(Ranks.grade(rank.score_rank), "M")
 
 
 func test_unranked() -> void:
@@ -277,8 +277,8 @@ func test_unranked() -> void:
 	
 	# the player finishes the level; they automatically get a master rank
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "M")
-	assert_eq(RankCalculator.grade(rank.score_rank), "M")
+	assert_eq(Ranks.grade(rank.seconds_rank), "M")
+	assert_eq(Ranks.grade(rank.score_rank), "M")
 
 
 func test_unranked_loss() -> void:
@@ -287,8 +287,8 @@ func test_unranked_loss() -> void:
 	
 	# the player lost the level; they get the worst rank
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "-")
-	assert_eq(RankCalculator.grade(rank.score_rank), "-")
+	assert_eq(Ranks.grade(rank.seconds_rank), "-")
+	assert_eq(Ranks.grade(rank.score_rank), "-")
 
 
 func test_extra_seconds_per_piece() -> void:
@@ -297,47 +297,47 @@ func test_extra_seconds_per_piece() -> void:
 	PuzzleState.level_performance.lines = 60
 	PuzzleState.level_performance.score = 1160
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.speed_rank), "SS+")
-	assert_eq(RankCalculator.grade(rank1.score_rank), "S")
+	assert_eq(Ranks.grade(rank1.speed_rank), "SS+")
+	assert_eq(Ranks.grade(rank1.score_rank), "S")
 	
 	# with the 'extra_seconds_per_piece' setting enabled, the player gets a better grade
 	CurrentLevel.settings.rank.extra_seconds_per_piece = 1.2
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.speed_rank), "M")
-	assert_eq(RankCalculator.grade(rank2.score_rank), "SS")
+	assert_eq(Ranks.grade(rank2.speed_rank), "M")
+	assert_eq(Ranks.grade(rank2.score_rank), "SS")
 
 
 func test_box_factor_zero() -> void:
 	PuzzleState.level_performance.lines = 100
 	PuzzleState.level_performance.box_score = 440
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.box_score_per_line_rank), "A+")
+	assert_eq(Ranks.grade(rank1.box_score_per_line_rank), "A+")
 	
 	CurrentLevel.settings.rank.box_factor = 0.0
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank2.box_score_per_line_rank), "M")
 
 
 func test_combo_factor_zero() -> void:
 	PuzzleState.level_performance.lines = 100
 	PuzzleState.level_performance.combo_score = 550
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.combo_score_per_line_rank), "A+")
+	assert_eq(Ranks.grade(rank1.combo_score_per_line_rank), "A+")
 	
 	CurrentLevel.settings.rank.combo_factor = 0.0
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank2.combo_score_per_line_rank), "M")
 
 
 func test_master_pickup_score() -> void:
 	PuzzleState.level_performance.pickup_score = 100
 	CurrentLevel.settings.rank.master_pickup_score = 100
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.pickup_score_rank), "M")
+	assert_eq(Ranks.grade(rank1.pickup_score_rank), "M")
 
 	CurrentLevel.settings.rank.master_pickup_score = 200
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "AA")
+	assert_eq(Ranks.grade(rank2.pickup_score_rank), "AA")
 
 
 func test_master_pickup_score_per_line() -> void:
@@ -345,11 +345,11 @@ func test_master_pickup_score_per_line() -> void:
 	PuzzleState.level_performance.pickup_score = 1000
 	CurrentLevel.settings.rank.master_pickup_score_per_line = 10
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.pickup_score_rank), "M")
+	assert_eq(Ranks.grade(rank1.pickup_score_rank), "M")
 
 	CurrentLevel.settings.rank.master_pickup_score_per_line = 20
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "S-")
+	assert_eq(Ranks.grade(rank2.pickup_score_rank), "S-")
 
 
 func test_avoid_infinite_ranks() -> void:
@@ -373,12 +373,12 @@ func test_very_short_level() -> void:
 	PuzzleState.level_performance.leftover_score = 257
 	PuzzleState.level_performance.score = 257
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.score_rank), "S+")
+	assert_eq(Ranks.grade(rank1.score_rank), "S+")
 	
 	PuzzleState.level_performance.leftover_score = 467
 	PuzzleState.level_performance.score = 467
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
+	assert_eq(Ranks.grade(rank2.score_rank), "SSS")
 
 
 func test_preplaced_pieces_ultra() -> void:
@@ -387,19 +387,19 @@ func test_preplaced_pieces_ultra() -> void:
 	# 17 seconds is very fast for scoring 200 points.
 	PuzzleState.level_performance.seconds = 17
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.seconds_rank), "M")
+	assert_eq(Ranks.grade(rank1.seconds_rank), "M")
 	
 	# 17 seconds isn't as impressive if the playfield starts with pieces on it.
 	CurrentLevel.settings.rank.preplaced_pieces = 5
 	PuzzleState.level_performance.seconds = 17
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.seconds_rank), "S+")
+	assert_eq(Ranks.grade(rank2.seconds_rank), "S+")
 	
 	# 11 seconds is required, because some pieces are preplaced
 	CurrentLevel.settings.rank.preplaced_pieces = 5
 	PuzzleState.level_performance.seconds = 11
 	var rank3 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank3.seconds_rank), "M")
+	assert_eq(Ranks.grade(rank3.seconds_rank), "M")
 
 
 func test_preplaced_pieces_sprint() -> void:
@@ -408,19 +408,19 @@ func test_preplaced_pieces_sprint() -> void:
 	# 650 points is a lot in 17 seconds.
 	PuzzleState.level_performance.score = 650
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.score_rank), "M")
+	assert_eq(Ranks.grade(rank1.score_rank), "M")
 	
 	# 650 points isn't as impressive if the playfield starts with pieces on it.
 	CurrentLevel.settings.rank.preplaced_pieces = 5
 	PuzzleState.level_performance.score = 650
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
+	assert_eq(Ranks.grade(rank2.score_rank), "SSS")
 	
 	# 700 points are required, because some pieces are preplaced
 	CurrentLevel.settings.rank.preplaced_pieces = 5
 	PuzzleState.level_performance.score = 700
 	var rank3 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank3.score_rank), "M")
+	assert_eq(Ranks.grade(rank3.score_rank), "M")
 
 
 func test_target_leftover_score_low_combo_factor() -> void:
@@ -467,31 +467,26 @@ func test_calculate_rank_lines_m() -> void:
 	PuzzleState.level_performance.score = 946
 	
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "M")
-	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "M")
-	assert_eq(RankCalculator.grade(rank.pickup_score_rank), "M")
-	assert_eq(RankCalculator.grade(rank.lines_rank), "M")
-	assert_eq(RankCalculator.grade(rank.score_rank), "M")
+	assert_eq(Ranks.grade(rank.box_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank.combo_score_per_line_rank), "M")
+	assert_eq(Ranks.grade(rank.pickup_score_rank), "M")
+	assert_eq(Ranks.grade(rank.lines_rank), "M")
+	assert_eq(Ranks.grade(rank.score_rank), "M")
 
 
-func test_next_grade() -> void:
-	assert_eq(RankCalculator.next_grade(RankCalculator.NO_GRADE), "B-")
-	assert_eq(RankCalculator.next_grade("B-"), "B")
-	assert_eq(RankCalculator.next_grade("AA+"), "S-")
-	assert_eq(RankCalculator.next_grade("SSS"), "M")
-	assert_eq(RankCalculator.next_grade("M"), "M")
-	assert_eq(RankCalculator.next_grade("crazy-giants"), RankCalculator.NO_GRADE)
+func test_average_rank_for_grade() -> void:
+	assert_eq(RankCalculator.average_rank_for_grade(Ranks.WORST_GRADE), Ranks.WORST_RANK)
+	assert_eq(RankCalculator.average_rank_for_grade("B-"), 62.0)
+	assert_eq(RankCalculator.average_rank_for_grade("AA+"), 28.0)
+	assert_eq(RankCalculator.average_rank_for_grade("SSS"), 2.0)
+	assert_eq(RankCalculator.average_rank_for_grade("M"), 0.0)
+	assert_eq(RankCalculator.average_rank_for_grade("crazy-giants"), Ranks.WORST_RANK)
 
 
-func test_rank_meets_grade() -> void:
-	assert_eq(RankCalculator.rank_meets_grade(0, "S"), true)
-	assert_eq(RankCalculator.rank_meets_grade(15, "S"), true)
-	assert_eq(RankCalculator.rank_meets_grade(20, "S"), true)
-	assert_eq(RankCalculator.rank_meets_grade(25, "S"), false)
-	assert_eq(RankCalculator.rank_meets_grade(999, "S"), false)
-	
-	assert_eq(RankCalculator.rank_meets_grade(0, "M"), true)
-	assert_eq(RankCalculator.rank_meets_grade(999, "M"), false)
-	
-	assert_eq(RankCalculator.rank_meets_grade(0, "-"), true)
-	assert_eq(RankCalculator.rank_meets_grade(999, "-"), true)
+func test_required_rank_for_grade() -> void:
+	assert_eq(RankCalculator.required_rank_for_grade(Ranks.WORST_GRADE), Ranks.WORST_RANK)
+	assert_eq(RankCalculator.required_rank_for_grade("B-"), 64.0)
+	assert_eq(RankCalculator.required_rank_for_grade("AA+"), 32.0)
+	assert_eq(RankCalculator.required_rank_for_grade("SSS"), 4.0)
+	assert_eq(RankCalculator.required_rank_for_grade("M"), 0.0)
+	assert_eq(RankCalculator.required_rank_for_grade("crazy-giants"), Ranks.WORST_RANK)

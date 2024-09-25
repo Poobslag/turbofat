@@ -2,10 +2,6 @@ class_name RankCalculator
 ## Contains logic for calculating the player's performance. This performance is stored as a series of 'ranks', where 0
 ## is the best possible rank and 999 is the worst.
 
-const WORST_RANK := RankResult.WORST_RANK
-const BAD_RANK := 72
-const BEST_RANK := RankResult.BEST_RANK
-
 ## These RDF (rank difference factor) constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99
 ## means the ranks are really narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like
 ## 0.96 means the ranks are more forgiving.
@@ -31,41 +27,8 @@ const MASTER_LEFTOVER_LINES := 12
 ## minute.
 const MASTER_LINES_PER_MINUTE := 65
 
-## Number of extra unnecessary frames a perfect player will spend moving their piece.
-const MASTER_MVMT_FRAMES := 6
-
 ## amount of points lost while starting a combo
 const COMBO_DEFICIT := [0, 20, 40, 55, 70, 80, 90, 95, 100]
-
-## String to display if the player scored worse than the lowest grade
-const NO_GRADE := "-"
-
-## highest attainable grade; useful for logic which checks if the player's grade can increase
-const HIGHEST_GRADE := "M"
-
-## grades with their corresponding rank requirement
-const GRADE_RANKS := [
-	["M", 0],
-	["SSS", 4],
-	["SS+", 7],
-	["SS", 10], # 4 stars (medium gap)
-	
-	["S+", 16],
-	["S", 20],
-	["S-", 24], # 1 star (big gap)
-	
-	["AA+", 32],
-	["AA", 36],
-	["A+", 40],
-	["A", 44],
-	["A-", 48], # 1 triangle (big gap)
-	
-	["B+", 56],
-	["B", 60],
-	["B-", 64], # 1 dot (big gap)
-	
-	[NO_GRADE, WORST_RANK],
-]
 
 ## Calculates the player's rank.
 ##
@@ -82,8 +45,8 @@ func calculate_rank(unranked_result: RankResult = null) -> RankResult:
 	
 	if CurrentLevel.settings.rank.unranked:
 		# automatic master rank for unranked levels
-		rank_result.seconds_rank = WORST_RANK if rank_result.lost else BEST_RANK
-		rank_result.score_rank = WORST_RANK if rank_result.lost else BEST_RANK
+		rank_result.seconds_rank = Ranks.WORST_RANK if rank_result.lost else Ranks.BEST_RANK
+		rank_result.score_rank = Ranks.WORST_RANK if rank_result.lost else Ranks.BEST_RANK
 	else:
 		_populate_rank_fields(rank_result, false)
 		
@@ -119,7 +82,7 @@ func rank_lpm(rank: float) -> float:
 		# calculate the maximum lpm/spl based on the piece speed
 		var milestone: Milestone = CurrentLevel.settings.speed.speed_ups[i]
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
-		var min_frames_per_line := min_frames_per_line(piece_speed)
+		var min_frames_per_line := Ranks.min_frames_per_line(piece_speed)
 		var mechanical_spl_limit: float = min_frames_per_line / 60 \
 				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
 		
@@ -255,7 +218,7 @@ func _max_combo_score(lines: int) -> int:
 ## 		good S++ rank player. This is mostly done to avoid giving the player a C+ because they 'only' survived for 150
 ## 		lines in Marathon mode.
 func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
-	var target_speed: float = rank_lpm(BEST_RANK)
+	var target_speed: float = rank_lpm(Ranks.BEST_RANK)
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
 	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
 	var target_pickup_score_per_line := master_pickup_score_per_line(CurrentLevel.settings)
@@ -327,8 +290,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	# Binary search for the player's overall rank. Overall rank is a function of several criteria, the rank doesn't
 	# deteriorate in a predictable way like the other ranks
-	var overall_rank_max := WORST_RANK
-	var overall_rank_min := BEST_RANK
+	var overall_rank_max := Ranks.WORST_RANK
+	var overall_rank_min := Ranks.BEST_RANK
 	for _i in range(20):
 		var tmp_overall_rank := (overall_rank_max + overall_rank_min) / 2.0
 		var tmp_box_score_per_line := target_box_score_per_line \
@@ -389,7 +352,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	if rank_result.compare == "-seconds":
 		if rank_result.lost:
-			rank_result.seconds_rank = WORST_RANK
+			rank_result.seconds_rank = Ranks.WORST_RANK
 		else:
 			rank_result.seconds_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	else:
@@ -411,8 +374,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 ##
 ## The player cannot achieve a master rank if the lenient flag is set.
 func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
-	var min_rank := 1.0 if lenient else BEST_RANK
-	var max_rank := WORST_RANK
+	var min_rank := 1.0 if lenient else Ranks.BEST_RANK
+	var max_rank := Ranks.WORST_RANK
 	rank_result.speed_rank = clamp(rank_result.speed_rank, min_rank, max_rank)
 	rank_result.lines_rank = clamp(rank_result.lines_rank, min_rank, max_rank)
 	rank_result.pieces_rank = clamp(rank_result.pieces_rank, min_rank, max_rank)
@@ -423,79 +386,19 @@ func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	rank_result.pickup_score_rank = clamp(rank_result.pickup_score_rank, min_rank, max_rank)
 
 
-## Calculates the minimum theoretical frames per line for a given piece speed.
-##
-## This assumes a perfect player who is making many boxes, clearing lines one at a time, and moving pieces with TAS
-## level efficiency.
-static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
-	var movement_frames := 1 + MASTER_MVMT_FRAMES
-	var frames_per_line := 0.0
-	
-	# eight pieces form three boxes and clear four lines
-
-	# time spent spawning eight pieces
-	frames_per_line += piece_speed.line_appearance_delay * 4 # four 'line clear' pieces spawned
-	frames_per_line += piece_speed.appearance_delay * 4 # four 'regular pieces' spawned
-	
-	# time spent moving nine pieces
-	frames_per_line += movement_frames * 8
-	
-	# time spent while pieces lock into the playfield
-	frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
-	frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
-	frames_per_line += piece_speed.box_delay * 3 # three boxes formed
-	frames_per_line /= 4
-	return frames_per_line
-
-
-## Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
-static func grade(rank: float) -> String:
-	var grade := NO_GRADE
-	
-	for grade_ranks_entry in GRADE_RANKS:
-		if rank <= grade_ranks_entry[1]:
-			grade = grade_ranks_entry[0]
-			break
-	
-	return grade
-
-
-## Returns 'true' if the specified rank qualifies for the specified grade.
-static func rank_meets_grade(rank: float, grade: String) -> bool:
-	var max_rank := WORST_RANK
-	for i in range(GRADE_RANKS.size() - 1):
-		if grade == GRADE_RANKS[i][0]:
-			max_rank = GRADE_RANKS[i][1]
-			break
-	return rank <= max_rank
-
-
-## Calculates the next grade better than the specified grade.
-##
-## next_grade("A-")  = "A"
-## next_grade("SSS") = "M"
-## next_grade("M")   = "M"
-## next_grade("-")   = "B-"
-static func next_grade(grade: String) -> String:
-	var result := NO_GRADE
-	for i in range(GRADE_RANKS.size()):
-		if grade == GRADE_RANKS[i][0]:
-			result = GRADE_RANKS[max(0, i - 1)][0]
-	return result
-
-
 ## Returns the average rank such as '5.5' for a letter grade such as 'SS+'.
 ##
 ## Grades correspond to a range of ranks. This method returns the middle of the range for a particular grade.
 static func average_rank_for_grade(grade: String) -> float:
-	var rank_lo := WORST_RANK
-	var rank_hi := WORST_RANK
+	var rank_lo: float
+	var rank_hi: float = Ranks.RANKS_BY_GRADE.get(grade, Ranks.WORST_RANK)
 	
-	for i in range(GRADE_RANKS.size() - 1):
-		if grade == GRADE_RANKS[i][0]:
-			rank_lo = GRADE_RANKS[max(0, i - 1)][1]
-			rank_hi = GRADE_RANKS[i][1]
-	
+	var i := Ranks.RANKS_BY_GRADE.keys().find(grade)
+	if i == -1:
+		rank_lo = Ranks.WORST_RANK
+	else:
+		rank_lo = Ranks.RANKS_BY_GRADE.values()[max(0, i - 1)]
+
 	return 0.5 * (rank_lo + rank_hi)
 
 
@@ -504,13 +407,7 @@ static func average_rank_for_grade(grade: String) -> float:
 ## Grades correspond to a range of ranks, and high rank values like 50.0 correspond to bad grades. This method returns
 ## the highest (worst) rank value which will still achieve the specified grade.
 static func required_rank_for_grade(grade: String) -> float:
-	var rank_hi := WORST_RANK
-	
-	for i in range(GRADE_RANKS.size() - 1):
-		if grade == GRADE_RANKS[i][0]:
-			rank_hi = GRADE_RANKS[i][1]
-	
-	return rank_hi
+	return Ranks.RANKS_BY_GRADE.get(grade, Ranks.WORST_RANK)
 
 
 ## Returns the maximum box score per line for the specified level.

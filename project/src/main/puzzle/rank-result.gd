@@ -2,9 +2,6 @@ class_name RankResult
 ## Contains rank information for a playthrough. This includes raw statistics such as how many lines-per-minute the
 ## player cleared, as well as derived statistics such as the computed lines-per-minute rank.
 
-const BEST_RANK := 0.0
-const WORST_RANK := 999.0
-
 var timestamp := OS.get_datetime()
 
 ## how this rank result should be compared:
@@ -14,15 +11,15 @@ var compare := "+score"
 
 ## player's speed in lines per minute.
 var speed := 0.0
-var speed_rank := WORST_RANK
+var speed_rank := Ranks.WORST_RANK
 
 ## raw number of cleared lines, not including bonus points
 var lines := 0
-var lines_rank := WORST_RANK
+var lines_rank := Ranks.WORST_RANK
 
 ## number of pieces placed
 var pieces := 0
-var pieces_rank := WORST_RANK
+var pieces_rank := Ranks.WORST_RANK
 
 ## points awarded for lines left over at the end
 var leftover_score := 0
@@ -30,25 +27,25 @@ var leftover_score := 0
 ## bonus points awarded for clearing boxes
 var box_score := 0
 var box_score_per_line := 0.0
-var box_score_per_line_rank := WORST_RANK
+var box_score_per_line_rank := Ranks.WORST_RANK
 
 ## bonus points awarded for combos
 var combo_score := 0
 var combo_score_per_line := 0.0
-var combo_score_per_line_rank := WORST_RANK
+var combo_score_per_line_rank := Ranks.WORST_RANK
 
 ## bonus points awarded for pickups
 var pickup_score := 0
 var pickup_score_per_line := 0.0
-var pickup_score_rank := WORST_RANK
+var pickup_score_rank := Ranks.WORST_RANK
 
 ## number of seconds until the player won or lost
 var seconds := 0.0
-var seconds_rank := WORST_RANK
+var seconds_rank := Ranks.WORST_RANK
 
 ## overall score
 var score := 0
-var score_rank := WORST_RANK
+var score_rank := Ranks.WORST_RANK
 
 ## how many times did the player top out?
 var top_out_count := 0
@@ -93,26 +90,26 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	box_score = int(json.get("box_score", 0))
 	box_score_per_line = float(json.get("box_score_per_line", 0.0))
-	box_score_per_line_rank = float(json.get("box_score_per_line_rank", WORST_RANK))
+	box_score_per_line_rank = float(json.get("box_score_per_line_rank", Ranks.WORST_RANK))
 	combo_score = int(json.get("combo_score", 0))
 	combo_score_per_line = float(json.get("combo_score_per_line", 0.0))
-	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", WORST_RANK))
+	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", Ranks.WORST_RANK))
 	pickup_score = int(json.get("pickup_score", 0))
 	pickup_score_per_line = float(json.get("pickup_score_per_line", 0.0))
-	pickup_score_rank = float(json.get("pickup_score_rank", WORST_RANK))
+	pickup_score_rank = float(json.get("pickup_score_rank", Ranks.WORST_RANK))
 	compare = json.get("compare", "+score")
 	leftover_score = int(json.get("leftover_score", 0))
 	lines = int(json.get("lines", 0))
-	lines_rank = float(json.get("lines_rank", WORST_RANK))
+	lines_rank = float(json.get("lines_rank", Ranks.WORST_RANK))
 	pieces = int(json.get("pieces", 0))
-	pieces_rank = float(json.get("pieces_rank", WORST_RANK))
+	pieces_rank = float(json.get("pieces_rank", Ranks.WORST_RANK))
 	lost = bool(json.get("lost", true))
 	score = int(json.get("score", 0))
-	score_rank = float(json.get("score_rank", WORST_RANK))
+	score_rank = float(json.get("score_rank", Ranks.WORST_RANK))
 	seconds = float(json.get("seconds", 999999.0))
-	seconds_rank = float(json.get("seconds_rank", WORST_RANK))
+	seconds_rank = float(json.get("seconds_rank", Ranks.WORST_RANK))
 	speed = float(json.get("speed", 0.0))
-	speed_rank = float(json.get("speed_rank", WORST_RANK))
+	speed_rank = float(json.get("speed_rank", Ranks.WORST_RANK))
 	success = bool(json.get("success", false))
 	timestamp = json.get("timestamp",
 			{"year": 2020, "month": 5, "day": 9, "weekday": 4, "dst": false, "hour": 17, "minute": 43, "second": 51})

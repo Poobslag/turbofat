@@ -50,7 +50,7 @@ func best_overall_rank(level_id: String) -> float:
 	var best_rank: float
 	var best_result := best_result(level_id)
 	if not best_result:
-		best_rank = RankResult.WORST_RANK
+		best_rank = Ranks.WORST_RANK
 	elif best_result.compare == "-seconds":
 		best_rank = best_result.seconds_rank
 	else:

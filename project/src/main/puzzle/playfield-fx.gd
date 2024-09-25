@@ -106,7 +106,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	_elapsed_beats += delta * (60.0 / RankCalculator.min_frames_per_line(PieceSpeeds.current_speed))
+	_elapsed_beats += delta * (60.0 / Ranks.min_frames_per_line(PieceSpeeds.current_speed))
 	modulate.a = lerp(_brightness * (1 - _pulse_amount), _brightness, 0.5 + 0.5 * cos(_elapsed_beats * TAU))
 
 

@@ -54,10 +54,10 @@ func test_target_for_grade_score() -> void:
 	var rank_calculator := RankCalculator.new()
 	
 	PuzzleState.level_performance.seconds = expected_target
-	assert_eq(rank_calculator.grade(rank_calculator.calculate_rank().seconds_rank), "S-")
+	assert_eq(Ranks.grade(rank_calculator.calculate_rank().seconds_rank), "S-")
 	
 	PuzzleState.level_performance.seconds = expected_target + 1
-	assert_eq(rank_calculator.grade(rank_calculator.calculate_rank().seconds_rank), "AA+")
+	assert_eq(Ranks.grade(rank_calculator.calculate_rank().seconds_rank), "AA+")
 
 
 func test_target_for_grade_ignores_lost() -> void:
@@ -79,7 +79,7 @@ func test_target_for_grade_time() -> void:
 	var rank_calculator := RankCalculator.new()
 	
 	PuzzleState.level_performance.score = expected_target
-	assert_eq(rank_calculator.grade(rank_calculator.calculate_rank().score_rank), "S-")
+	assert_eq(Ranks.grade(rank_calculator.calculate_rank().score_rank), "S-")
 	
 	PuzzleState.level_performance.score = expected_target - 1
-	assert_eq(rank_calculator.grade(rank_calculator.calculate_rank().score_rank), "AA+")
+	assert_eq(Ranks.grade(rank_calculator.calculate_rank().score_rank), "AA+")

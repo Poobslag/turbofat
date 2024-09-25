@@ -130,7 +130,7 @@ func _goal_height(goal: int) -> float:
 		var seconds := rank_result.seconds
 		if rank_result.lost:
 			var percent_complete := float(rank_result.score) / CurrentLevel.settings.finish_condition.value
-			seconds = _rank_target_calculator.target_for_rank(RankCalculator.BAD_RANK)
+			seconds = _rank_target_calculator.target_for_rank(Ranks.BAD_RANK)
 			seconds += clamp((1.0 - percent_complete) * seconds, 1, 180)
 		result = seconds * total_height() / goal
 	else:
