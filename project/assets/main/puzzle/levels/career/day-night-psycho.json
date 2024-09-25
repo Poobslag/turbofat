@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Day/Night Psycho",
   "description": "Sometimes the days just seem to fly by.",
   "start_speed": "5",
@@ -18,8 +18,8 @@
     "piece_o"
   ],
   "rank": [
-    "box_factor 0.65",
-    "extra_seconds_per_piece 0.28"
+    "duration 255",
+    "rank_criteria m=52"
   ],
   "triggers": [
     {

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Chompo and Bitey",
   "description": "I call the red one Bitey! They like snack boxes... but who doesn't?",
   "start_speed": "3",
@@ -13,10 +13,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 1.16",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 2",
-    "master_pickup_score_per_line 17.71",
+    "duration 2060",
+    "rank_criteria m=14000",
     "show_pickups_rank"
   ],
   "triggers": [

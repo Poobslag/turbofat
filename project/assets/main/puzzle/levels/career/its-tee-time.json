@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "It's Tee Time",
   "description": "Augh, bread overload! And half the end pieces are missing...",
   "start_speed": "2",
@@ -22,10 +22,8 @@
     "start_piece_t"
   ],
   "rank": [
-    "box_factor 1.19",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 0.41",
-    "preplaced_pieces 3"
+    "duration 75",
+    "rank_criteria m=1450 s-=250"
   ],
   "tiles": {
     "start": [

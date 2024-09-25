@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Checkerboard Vault",
   "description": "Do you have the combination?",
   "blocks_during": [
@@ -20,9 +20,8 @@
     "annoying"
   ],
   "rank": [
-    "box_factor 0.14",
-    "combo_factor 0",
-    "master_pickup_score_per_line 4.57",
+    "duration 120",
+    "rank_criteria m=640",
     "hide_combos_rank",
     "show_pickups_rank"
   ],

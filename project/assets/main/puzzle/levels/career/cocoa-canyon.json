@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Cocoa Canyon",
   "description": "Excavate the chocolate! Hurry, hurry!",
   "start_speed": "2",
@@ -18,9 +18,8 @@
     "tile_set veggie"
   ],
   "rank": [
-    "box_factor 0.59",
-    "combo_factor 0.85",
-    "master_pickup_score_per_line 16.7",
+    "duration 80",
+    "rank_criteria m=1550",
     "show_pickups_rank"
   ],
   "tiles": {

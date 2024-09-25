@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Block Blockers EX",
   "description": "They're still here to get in the way... and they have some new tricks!",
   "start_speed": "A9",
@@ -25,9 +25,8 @@
     "piece_v"
   ],
   "rank": [
-    "box_factor 0.76",
-    "extra_seconds_per_piece 0.14",
-    "master_pickup_score_per_line 11.1",
+    "duration 230",
+    "rank_criteria m=175",
     "show_pickups_rank"
   ],
   "tiles": {

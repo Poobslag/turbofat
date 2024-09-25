@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Wedge",
   "description": "A fun shape to climb, if only it wasn't so sticky...",
   "finish_condition": {
@@ -10,7 +10,8 @@
     "basic"
   ],
   "rank": [
-    "preplaced_pieces 4"
+    "duration 180",
+    "rank_criteria m=13 s-=95"
   ],
   "tiles": {
     "start": [

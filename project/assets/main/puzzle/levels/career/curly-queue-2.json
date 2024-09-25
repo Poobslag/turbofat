@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Curly Queue II",
   "description": "They won't stop spinning! This is hurting my head a little...",
   "start_speed": "1",
@@ -24,8 +24,8 @@
     "annoying"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.4",
-    "preplaced_pieces 3"
+    "duration 120",
+    "rank_criteria m=1800"
   ],
   "tiles": {
     "start": [

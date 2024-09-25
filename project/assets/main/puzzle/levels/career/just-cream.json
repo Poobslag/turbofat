@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Just Cream",
   "description": "What are these pieces!? LOLOLOL",
   "blocks_during": [
@@ -23,8 +23,8 @@
     "piece_v"
   ],
   "rank": [
-    "box_factor 0.76",
-    "master_pickup_score_per_line 3.84",
+    "duration 50",
+    "rank_criteria m=1100 s-=150",
     "show_pickups_rank"
   ],
   "tiles": {

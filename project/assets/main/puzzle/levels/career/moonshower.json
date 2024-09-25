@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Moonshower",
   "description": "It's pretty when all the stars are out.",
   "start_speed": "2",
@@ -12,8 +12,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.93",
-    "extra_seconds_per_piece 0.06"
+    "duration 190",
+    "rank_criteria m=1100"
   ],
   "triggers": [
     {

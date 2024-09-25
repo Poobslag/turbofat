@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Triangle Curse",
   "description": "Squares and triangles. Together at last!",
   "start_speed": "8",
@@ -23,8 +23,8 @@
     "piece_k"
   ],
   "rank": [
-    "box_factor 1.66",
-    "combo_factor 0.8"
+    "duration 120",
+    "rank_criteria m=2800"
   ],
   "score": [
     "cake_all 20",

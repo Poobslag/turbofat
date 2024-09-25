@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "A Little Extra",
   "description": "Some fun little bonuses at the bottom. But you have to work for it!",
   "finish_condition": {
@@ -10,9 +10,8 @@
     "dig"
   ],
   "rank": [
-    "box_factor 0.16",
-    "combo_factor 0.62",
-    "master_pickup_score_per_line 15.29",
+    "duration 150",
+    "rank_criteria m=2450",
     "show_pickups_rank"
   ],
   "tiles": {

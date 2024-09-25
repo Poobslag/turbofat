@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Just Fruit",
   "description": "Do we really need a recipe?",
   "finish_condition": {
@@ -20,6 +20,7 @@
     "piece_j"
   ],
   "rank": [
-    "box_factor 1.31"
+    "duration 80",
+    "rank_criteria m=9 s-=65"
   ]
 }

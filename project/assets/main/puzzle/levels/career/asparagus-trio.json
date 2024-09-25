@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "The Asparagus Trio",
   "description": "Why is it when something happens, it is always you three?",
   "start_speed": "4",
@@ -15,8 +15,8 @@
     "narrow"
   ],
   "rank": [
-    "box_factor 0.3",
-    "combo_factor 1.11"
+    "duration 415",
+    "rank_criteria m=52"
   ],
   "tiles": {
     "start": [

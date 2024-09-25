@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Bon Appetit",
   "description": "Dig in!",
   "finish_condition": {
@@ -10,7 +10,8 @@
     "basic"
   ],
   "rank": [
-    "preplaced_pieces 4"
+    "duration 60",
+    "rank_criteria m=1400 s-=190"
   ],
   "tiles": {
     "start": [

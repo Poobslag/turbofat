@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Nowhere To Turn",
   "description": "You really can't turn the pieces? I think there might be a way...",
   "start_speed": "3",
@@ -18,8 +18,8 @@
     "start_piece_p"
   ],
   "rank": [
-    "box_factor 0.8",
-    "preplaced_pieces 6"
+    "duration 120",
+    "rank_criteria m=2200"
   ],
   "tiles": {
     "start": [

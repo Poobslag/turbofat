@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Garbage Disposal EX",
   "description": "These pieces are garbage. Lucky thing we've got a garbage disposal! Om nom nom nom nom.",
   "start_speed": "A9",
@@ -11,10 +11,8 @@
     "shark"
   ],
   "rank": [
-    "box_factor 0.81",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 0.44",
-    "master_pickup_score_per_line 11.81",
+    "duration 125",
+    "rank_criteria m=200",
     "show_pickups_rank"
   ],
   "tiles": {

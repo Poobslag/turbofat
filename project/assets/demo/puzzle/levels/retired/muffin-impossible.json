@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Muffin Impossible",
   "description": "So many awkward mismatched pieces! This is like solving a jigsaw puzzle with no edges...",
   "start_speed": "5",
@@ -20,7 +20,8 @@
     "start_piece_v"
   ],
   "rank": [
-    "preplaced_pieces 4"
+    "duration 165",
+    "rank_criteria m=19"
   ],
   "tiles": {
     "start": [

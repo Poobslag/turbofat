@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Marathon: Hard (200 lines)",
   "description": "A true test of endurance with faster pieces than before! Can you clear 200 lines?",
   "start_speed": "A1",
@@ -60,6 +60,10 @@
   ],
   "lose_condition": [
     "top_out 1"
+  ],
+  "rank": [
+    "duration 710",
+    "rank_criteria m=6900"
   ],
   "success_condition": {
     "type": "lines",

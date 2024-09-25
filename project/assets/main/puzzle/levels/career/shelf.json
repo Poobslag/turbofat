@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Shelf",
   "description": "Who came up with this stupid shelf anyway!? ...Ooh! Cookies!",
   "blocks_during": [
@@ -14,9 +14,8 @@
     "confusing"
   ],
   "rank": [
-    "box_factor 0.73",
-    "combo_factor 0.91",
-    "master_pickup_score_per_line 4.65",
+    "duration 365",
+    "rank_criteria m=35",
     "show_pickups_rank"
   ],
   "tiles": {

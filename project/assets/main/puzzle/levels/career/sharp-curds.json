@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Sharp Curds",
   "description": "Dig efficiently to turn up some high-scoring snacks!",
   "start_speed": "7",
@@ -23,9 +23,8 @@
     "piece_u"
   ],
   "rank": [
-    "box_factor 0.68",
-    "combo_factor 0.97",
-    "master_pickup_score_per_line 6.64",
+    "duration 360",
+    "rank_criteria m=1900",
     "show_pickups_rank"
   ],
   "tiles": {

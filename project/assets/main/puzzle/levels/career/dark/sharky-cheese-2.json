@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Sharky Cheese 2",
   "description": "This time with actual cheese! ...Wait, isn't cheese bad for sharks?",
   "start_speed": "A3",
@@ -33,9 +33,8 @@
     "piece_u"
   ],
   "rank": [
-    "box_factor 0.85",
-    "combo_factor 0.71",
-    "master_pickup_score_per_line 11.9",
+    "duration 385",
+    "rank_criteria m=3100",
     "show_pickups_rank"
   ],
   "tiles": {

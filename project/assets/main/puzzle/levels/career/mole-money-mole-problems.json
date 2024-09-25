@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Mole Money Mole Problems",
   "description": "This cave isn't big enough for the eight of us...",
   "finish_condition": {
@@ -11,9 +11,8 @@
     "sneaky"
   ],
   "rank": [
-    "box_factor 0.53",
-    "combo_factor 1.21",
-    "master_pickup_score_per_line 5.86",
+    "duration 60",
+    "rank_criteria m=1300 s-=225",
     "show_pickups_rank"
   ],
   "tiles": {

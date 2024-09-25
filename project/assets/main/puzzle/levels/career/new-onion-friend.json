@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Your New Onion Friend",
   "description": "Who could ever say no to a new friend?",
   "start_speed": "1",
@@ -19,8 +19,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.77",
-    "extra_seconds_per_piece 0.38"
+    "duration 220",
+    "rank_criteria m=1150"
   ],
   "tiles": {
     "start": [

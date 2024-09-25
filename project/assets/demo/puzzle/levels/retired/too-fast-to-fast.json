@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Too Fast to Fast",
   "description": "Can you survive the increasing speeds?",
   "start_speed": "5",
@@ -26,7 +26,8 @@
     "start_piece_j"
   ],
   "rank": [
-    "preplaced_pieces 7"
+    "duration 90",
+    "rank_criteria m=1950"
   ],
   "tiles": {
     "start": [

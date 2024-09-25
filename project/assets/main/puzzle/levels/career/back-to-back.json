@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Back to Back",
   "description": "Now where did I put those two line pieces?",
   "start_speed": "1",
@@ -12,7 +12,8 @@
     "narrow"
   ],
   "rank": [
-    "preplaced_pieces 14"
+    "duration 80",
+    "rank_criteria m=1900"
   ],
   "tiles": {
     "start": [

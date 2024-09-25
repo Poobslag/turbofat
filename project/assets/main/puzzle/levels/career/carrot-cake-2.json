@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Carrot Cake II",
   "description": "Even cakier cakes! ...Even chonkier carrots! This level is a menace!!!",
   "start_speed": "3",
@@ -13,9 +13,8 @@
     "annoying"
   ],
   "rank": [
-    "box_factor 2.12",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 0.13"
+    "duration 205",
+    "rank_criteria m=26"
   ],
   "score": [
     "cake_all 20"

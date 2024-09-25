@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Left Shark",
   "description": "Fins to the left, pentominos to the right. And no tetrominos in sight!",
   "start_speed": "7",
@@ -18,10 +18,8 @@
     "piece_v"
   ],
   "rank": [
-    "box_factor 1.06",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 0.78",
-    "master_pickup_score_per_line 14.35",
+    "duration 170",
+    "rank_criteria m=2850",
     "show_pickups_rank"
   ],
   "tiles": {

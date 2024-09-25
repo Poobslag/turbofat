@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Shark Bait",
   "description": "This is almost TOO easy! ...Is there a trick?",
   "start_speed": "2",
@@ -18,10 +18,8 @@
     "start_piece_u"
   ],
   "rank": [
-    "box_factor 1.92",
-    "combo_factor 0.6",
-    "extra_seconds_per_piece 2",
-    "master_pickup_score_per_line 292.27",
+    "duration 7",
+    "rank_criteria m=1500",
     "show_pickups_rank"
   ],
   "tiles": {

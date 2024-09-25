@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Above and Below",
   "description": "Build some delicious snack boxes above while befriending some moles below.",
   "start_speed": "1",
@@ -16,8 +16,8 @@
     "slow"
   ],
   "rank": [
-    "extra_seconds_per_piece 0.4",
-    "master_pickup_score_per_line 23.91",
+    "duration 150",
+    "rank_criteria m=1450",
     "show_pickups_rank"
   ],
   "tiles": {

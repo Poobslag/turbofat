@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "One Step Ahead",
   "description": "It's easy if you make a plan.",
   "start_speed": "3",
@@ -19,9 +19,8 @@
     "start_piece_v"
   ],
   "rank": [
-    "box_factor 0.8",
-    "extra_seconds_per_piece 0.6",
-    "preplaced_pieces 1"
+    "duration 150",
+    "rank_criteria m=1700"
   ],
   "tiles": {
     "start": [

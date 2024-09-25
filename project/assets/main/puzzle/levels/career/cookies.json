@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Cookies",
   "description": "Let's make some cookies! Who brought the U-Blocks?",
   "finish_condition": {
@@ -11,9 +11,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 1.16",
-    "master_pickup_score 40",
-    "preplaced_pieces 2"
+    "duration 150",
+    "rank_criteria m=1050 s-=145"
   ],
   "tiles": {
     "start": [

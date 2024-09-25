@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "It Takes Two",
   "description": "What takes two? ...Oh please no, not that...",
   "start_speed": "A1",
@@ -19,9 +19,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.96",
-    "combo_factor 0.58",
-    "extra_seconds_per_piece 0.39"
+    "duration 940",
+    "rank_criteria m=2250"
   ],
   "tiles": {
     "start": [

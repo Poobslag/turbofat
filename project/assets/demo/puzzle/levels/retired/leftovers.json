@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Leftovers",
   "description": "Another big mess to clean. Why does this always fall to you?",
   "start_speed": "2",
@@ -8,8 +8,8 @@
     "value": 150
   },
   "rank": [
-    "box_factor 0.51",
-    "combo_factor 0.6"
+    "duration 150",
+    "rank_criteria m=1650"
   ],
   "tiles": {
     "start": [

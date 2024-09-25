@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "start_speed": "T",
   "input_replay": [
     "25 +rotate_cw",
@@ -52,6 +52,8 @@
     "start_piece_l"
   ],
   "rank": [
+    "duration 150",
+    "rank_criteria m=1",
     "skip_results",
     "unranked"
   ],

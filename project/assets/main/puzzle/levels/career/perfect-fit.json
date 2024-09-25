@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Perfect Fit",
   "description": "This is my hole! It was made for me!",
   "finish_condition": {
@@ -16,6 +16,10 @@
     "piece_l",
     "piece_p",
     "piece_q"
+  ],
+  "rank": [
+    "duration 450",
+    "rank_criteria m=690 s-=95"
   ],
   "tiles": {
     "start": [

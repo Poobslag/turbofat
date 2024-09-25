@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Slower Service",
   "description": "May... I... take... your... order...?",
   "start_speed": "8",
@@ -18,9 +18,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 2.65",
-    "combo_factor 0",
-    "extra_seconds_per_piece 0.34",
+    "duration 930",
+    "rank_criteria m=2600",
     "hide_combos_rank"
   ],
   "score": [

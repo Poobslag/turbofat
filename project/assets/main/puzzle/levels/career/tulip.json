@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Tulip",
   "description": "It belongs in a museum! Or maybe on the refrigerator.",
   "finish_condition": {
@@ -10,9 +10,8 @@
     "basic"
   ],
   "rank": [
-    "box_factor 0.7",
-    "master_pickup_score 40",
-    "preplaced_pieces 2"
+    "duration 165",
+    "rank_criteria m=19 s-=140"
   ],
   "tiles": {
     "start": [
