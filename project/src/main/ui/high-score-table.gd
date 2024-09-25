@@ -91,12 +91,12 @@ static func rank_result_row(result: RankResult, daily_result: bool = false) -> A
 		if result.lost:
 			seconds_string = "-"
 		row.append(seconds_string)
-		row.append(RankCalculator.grade(result.seconds_rank))
+		row.append(Ranks.grade(result.rank))
 	else:
 		var score_string := StringUtils.format_money(result.score)
 		if result.lost:
 			score_string += "*"
 		row.append(score_string)
-		row.append(RankCalculator.grade(result.score_rank))
+		row.append(Ranks.grade(result.rank))
 
 	return row

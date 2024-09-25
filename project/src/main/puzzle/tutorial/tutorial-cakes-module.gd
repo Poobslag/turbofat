@@ -255,13 +255,13 @@ func _on_PuzzleState_game_ended() -> void:
 			hud.set_message(tr("Ahhh... you only made one cake?\n\nWell, cake boxes can be tricky. Keep practicing!"))
 		elif _cakes_built <= 4:
 			hud.set_message(tr("Oh, you made %s cakes!\n\nAll that training paid off. Look at those happy customers!")
-					% [StringUtils.english_number(_cakes_built)])
+					% [StringUtils.english_number(self, _cakes_built)])
 		elif _cakes_built <= 8:
 			hud.set_message(tr("Wow, you made %s cakes? Maybe you should be training me!")
-					% [StringUtils.english_number(_cakes_built)])
+					% [StringUtils.english_number(self, _cakes_built)])
 			hud.enqueue_message(tr("Just kidding, I should still be training you.\n\nBut you did really well! Wow!"))
 		else:
 			hud.set_message(tr("%s CAKES!? Okay, well that's just ridiculous!")
-					% [StringUtils.english_number(_cakes_built).to_upper()])
+					% [StringUtils.english_number(self, _cakes_built).to_upper()])
 			hud.enqueue_message(tr("I'll have to think of some harder tutorials for someone like you."
 					+ "\n\nYou little troublemaker!"))

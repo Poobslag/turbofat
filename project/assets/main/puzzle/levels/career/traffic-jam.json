@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Traffic Jam",
   "description": "Nobody knows what the 'H' stands for! We just know it is annoying and gets in the way...",
   "start_speed": "1",
@@ -17,7 +17,8 @@
     "stop"
   ],
   "rank": [
-    "combo_factor 1.21"
+    "duration 165",
+    "rank_criteria m=19 s-=110"
   ],
   "tiles": {
     "start": [

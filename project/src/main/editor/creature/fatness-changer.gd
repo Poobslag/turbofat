@@ -64,7 +64,7 @@ func _on_AlleleButtons_allele_buttons_refreshed() -> void:
 
 ## When the creature's fatness changes, we enable/disable the fatness_down and fatness_up buttons appropriately.
 func _on_Creature_fatness_changed() -> void:
-	if fatness_down_button:
+	if fatness_down_button and is_instance_valid(fatness_down_button):
 		fatness_down_button.set_disabled(_player().fatness <= MIN_FATNESS)
-	if fatness_up_button:
+	if fatness_up_button and is_instance_valid(fatness_up_button):
 		fatness_up_button.set_disabled(_player().fatness >= MAX_FATNESS)

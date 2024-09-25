@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Bottomless Pit",
   "description": "It just keeps going...",
   "finish_condition": {
@@ -11,8 +11,8 @@
     "narrow"
   ],
   "rank": [
-    "box_factor 1.35",
-    "combo_factor 0.56"
+    "duration 100",
+    "rank_criteria m=1900 s-=325"
   ],
   "tiles": {
     "start": [

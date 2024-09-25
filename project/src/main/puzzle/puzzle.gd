@@ -51,6 +51,9 @@ func _exit_tree() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
+	
 	if event.is_action_pressed("ui_menu") and not $Hud/Center/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		_settings_menu.show()
@@ -237,16 +240,6 @@ func _quit_puzzle() -> void:
 			SceneTransition.pop_trail()
 
 
-func _overall_rank(rank_result: RankResult) -> float:
-	var result: float
-	match CurrentLevel.settings.finish_condition.type:
-		Milestone.SCORE:
-			result = rank_result.seconds_rank
-		_:
-			result = rank_result.score_rank
-	return result
-
-
 ## Records the player's performance for career mode.
 func _update_career_data(rank_result: RankResult) -> void:
 	PlayerData.career.money = min(PlayerData.career.money + rank_result.score,
@@ -260,7 +253,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 			PlayerData.career.customers += 1
 	
 	# Calculate the player's distance to travel based on their overall rank
-	var overall_rank := _overall_rank(rank_result)
+	var overall_rank := rank_result.rank
 	
 	var milestone_index := CareerData.rank_milestone_index(overall_rank)
 	var distance_to_advance: int = Careers.RANK_MILESTONES[milestone_index].distance
@@ -303,7 +296,19 @@ func _complete_milestone(milestone: Milestone) -> void:
 		Milestone.PIECES:
 			PuzzleState.level_performance.pieces = milestone.adjusted_value()
 		Milestone.SCORE:
-			PuzzleState.level_performance.score = milestone.adjusted_value()
+			var score := milestone.adjusted_value()
+			
+			# update all score fields; otherwise the results hud might be have strangely
+			PuzzleState.level_performance.score = score
+			PuzzleState.level_performance.box_score = int(score * 0.4)
+			PuzzleState.level_performance.combo_score = int(score * 0.4)
+			PuzzleState.level_performance.leftover_score = int(score * 0.1)
+			PuzzleState.level_performance.pickup_score = PuzzleState.level_performance.score \
+				- PuzzleState.level_performance.box_score \
+				- PuzzleState.level_performance.combo_score \
+				- PuzzleState.level_performance.leftover_score \
+				- PuzzleState.level_performance.lines
+			
 			PuzzleState.level_performance.seconds += 9999
 		Milestone.TIME_OVER, Milestone.TIME_UNDER:
 			PuzzleState.level_performance.seconds = milestone.adjusted_value()
@@ -355,7 +360,7 @@ func _on_PuzzleState_game_ended() -> void:
 	var rank_result := RankCalculator.new().calculate_rank()
 	_save_level_result(rank_result)
 
-	if not PuzzleState.level_performance.lost and _overall_rank(rank_result) < 24: $ApplauseSound.play()
+	if not PuzzleState.level_performance.lost and rank_result.rank < 24: $ApplauseSound.play()
 
 
 ## Briefly pause during level transitions.

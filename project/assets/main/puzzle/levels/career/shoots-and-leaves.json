@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Shoots and Leaves",
   "description": "Stop me if you've heard this one before...",
   "start_speed": "6",
@@ -29,9 +29,8 @@
     "annoying"
   ],
   "rank": [
-    "box_factor 0.83",
-    "combo_factor 0.67",
-    "master_pickup_score 90"
+    "duration 130",
+    "rank_criteria m=1950"
   ],
   "tiles": {
     "start": [

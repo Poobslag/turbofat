@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Sweet Dreams",
   "description": "Who left these chocolates under my pillow? They're all melted now!",
   "start_speed": "AB",
@@ -10,6 +10,10 @@
   "icons": [
     "mole",
     "onion"
+  ],
+  "rank": [
+    "duration 125",
+    "rank_criteria m=2750"
   ],
   "triggers": [
     {

@@ -22,6 +22,10 @@ func run() -> void:
 	_problem_count = 0
 
 	_upgrade_levels()
+	
+	_soften_intro_levels("lemon", "S-", 0.64)
+	_soften_intro_levels("lemon_2", "S-", 0.8)
+	
 	_report_invalid_career_levels()
 	_report_invalid_career_music()
 	_report_unused_career_levels()
@@ -198,15 +202,15 @@ func _report_bad_show_rank() -> void:
 		level_settings.load_from_resource(level_id)
 		
 		if level_settings.rank.show_boxes_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]:
-			if level_settings.rank.box_factor < 0.1:
+			if level_settings.rank.legacy_rules.get("box_factor", 1.0) < 0.1:
 				push_warning("%s - show_boxes_rank enabled with box_factor of %s"
-						% [level_id, level_settings.rank.box_factor])
+						% [level_id, level_settings.rank.legacy_rules.get("box_factor", 1.0)])
 				bad_level_id_set[level_id] = true
 		
 		if level_settings.rank.show_combos_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]:
-			if level_settings.rank.combo_factor < 0.1:
+			if level_settings.rank.legacy_rules.get("combo_factor", 1.0) < 0.1:
 				push_warning("%s - show_combos_rank enabled with combo_factor of %s"
-						% [level_id, level_settings.rank.box_factor])
+						% [level_id, level_settings.rank.legacy_rules.get("box_factor", 1.0)])
 				bad_level_id_set[level_id] = true
 			if level_settings.combo_break.pieces == ComboBreakRules.UNLIMITED_PIECES:
 				push_warning("%s - show_combos_rank enabled with combo_break.pieces == %s"
@@ -214,9 +218,9 @@ func _report_bad_show_rank() -> void:
 				bad_level_id_set[level_id] = true
 		
 		if not level_settings.rank.show_pickups_rank in [RankRules.ShowRank.SHOW]:
-			if level_settings.rank.master_pickup_score_per_line > 1.0:
+			if level_settings.rank.legacy_rules.get("master_pickup_score_per_line", 0.0) > 1.0:
 				push_warning("%s - show_pickups_rank disabled with master_pickup_score_per_line of %s"
-						% [level_id, level_settings.rank.master_pickup_score_per_line])
+						% [level_id, level_settings.rank.legacy_rules.get("master_pickup_score_per_line", 0.0)])
 	
 	var bad_level_ids := bad_level_id_set.keys()
 	bad_level_ids.sort()
@@ -260,6 +264,56 @@ func _alphabetize_career_levels() -> void:
 		var new_text := Utils.print_json(new_json)
 		FileUtils.write_file(CareerLevelLibrary.DEFAULT_REGIONS_PATH, new_text)
 		_report_problem("Sorted career level ids: %s" % [PoolStringArray(sorted_region_ids.keys()).join(", ")])
+
+
+## Updates the grade criteria for the specified intro levels, to make the grade easier to attain.
+##
+## For levels in the first two regions, we don't want players to get discouraged with bad grades so we make it easier
+## to get 'S' ranks for the achievements. This algorithm takes the scoring requirements for an 'S' rank and decreases
+## them by a factor.
+##
+## Parameters:
+## 	'region_id': career region id
+##
+## 	'grade': grade whose requirements should be made easier
+##
+## 	'ease_factor': A number in the range (0, 1.0) for how much to decrease the scoring requirements. A small number
+## 		like 0.1 represents a large decrease, a large number like  0.9 represents a small decrease.
+func _soften_intro_levels(region_id: String, grade: String, ease_factor: float) -> void:
+	var softened_level_id_set := {}
+	
+	var region: CareerRegion = CareerLevelLibrary.region_for_id(region_id)
+	var level_ids := {}
+	for career_level in region.levels:
+		level_ids[career_level.level_id] = true
+	if region.boss_level:
+		level_ids[region.boss_level.level_id] = true
+	if region.intro_level:
+		level_ids[region.intro_level.level_id] = true
+	for level_id in level_ids:
+		var settings := LevelSettings.new()
+		settings.load_from_resource(level_id)
+		
+		var level_needs_softening := false
+		if not settings.rank.rank_criteria.thresholds_by_grade.has(grade):
+			level_needs_softening = true
+		else:
+			var old_goal: int = settings.rank.rank_criteria.thresholds_by_grade[grade]
+			settings.rank.rank_criteria.soften(grade, ease_factor)
+			var new_goal: int = settings.rank.rank_criteria.thresholds_by_grade[grade]
+			if old_goal != new_goal:
+				level_needs_softening = true
+		
+		if level_needs_softening:
+			softened_level_id_set[level_id] = true
+			settings.rank.rank_criteria.soften(grade, ease_factor)
+			var new_text := Utils.print_json(settings.to_json_dict())
+			FileUtils.write_file(LevelSettings.path_from_level_key(level_id), new_text)
+	
+	var softened_level_ids := softened_level_id_set.keys()
+	softened_level_ids.sort()
+	if softened_level_ids:
+		_report_problem("Softened %s levels: %s" % [softened_level_ids.size(), softened_level_ids])
 
 
 func _compare_by_id(obj0: Dictionary, obj1: Dictionary) -> bool:

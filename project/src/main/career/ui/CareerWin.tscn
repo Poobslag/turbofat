@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/career/ui/career-win.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/career/ui/chalkboard-grain.png" type="Texture" id=2]
 [ext_resource path="res://src/main/career/ui/career-win-world.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/theme/chalkboard-54.theme" type="Theme" id=6]
@@ -481,15 +482,21 @@ margin_right = 930.0
 margin_bottom = 534.0
 rect_min_size = Vector2( 0, 63 )
 
-[node name="Button" type="Button" parent="Bg/Chalkboard/VBoxContainer/ButtonRow"]
+[node name="ZHolder" type="Sprite" parent="Bg/Chalkboard/VBoxContainer/ButtonRow"]
+z_index = 1
+__meta__ = {
+"_editor_description_": "Control nodes cannot have a Z index. We need this button to show up over the chalkboard texture."
+}
+
+[node name="Button" type="Button" parent="Bg/Chalkboard/VBoxContainer/ButtonRow/ZHolder"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = -25.0
-margin_right = 50.0
-margin_bottom = 25.0
+margin_left = 414.5
+margin_top = 6.0
+margin_right = 514.5
+margin_bottom = 58.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = SubResource( 1 )
 custom_styles/hover = SubResource( 13 )
@@ -504,6 +511,14 @@ margin_top = 534.0
 margin_right = 930.0
 margin_bottom = 540.0
 rect_min_size = Vector2( 0, 6 )
+
+[node name="Grain" type="TextureRect" parent="Bg/Chalkboard"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="Bg"]
 stream = ExtResource( 33 )
@@ -522,4 +537,4 @@ current = true
 
 [node name="MusicPopup" parent="Ui" instance=ExtResource( 37 )]
 
-[connection signal="pressed" from="Bg/Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Bg/Chalkboard/VBoxContainer/ButtonRow/ZHolder/Button" to="." method="_on_Button_pressed"]

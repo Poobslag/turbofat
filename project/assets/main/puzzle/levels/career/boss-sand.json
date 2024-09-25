@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Grand Opening: Merrymellow Marsh",
   "description": "Opening a new restaurant can be tough!",
   "start_speed": "3",
@@ -33,6 +33,8 @@
     "basic"
   ],
   "rank": [
+    "duration 210",
+    "rank_criteria m=3850",
     "success_bonus 2"
   ],
   "success_condition": {

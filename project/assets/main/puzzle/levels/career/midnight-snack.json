@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Midnight Snack",
   "description": "We already turned the lights off! Come back tomorrow.",
   "start_speed": "1",
@@ -25,8 +25,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.81",
-    "extra_seconds_per_piece 0.21"
+    "duration 115",
+    "rank_criteria m=1900"
   ],
   "tiles": {
     "start": [

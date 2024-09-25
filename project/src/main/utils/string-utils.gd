@@ -87,19 +87,28 @@ static func default_if_empty(s: String, default: String) -> String:
 	return s if s else default
 
 
-## Returns an english representation of a number suitable for a message.
+## Returns an english (or other language) representation of a number suitable for a message.
 ##
 ## This is useful for messages like 'You need to beat three more levels' or 'You need 3,125 more points.' We don't want
 ## to display messages like 'You need three thousand one hundred and twenty-five more points', so we leave larger
 ## numbers alone.
-static func english_number(i: int) -> String:
+##
+## Parameters:
+## 	'o': The object containing reference to message translation catalogs. Static utility classes cannot call the
+## 		'tr' function.
+##
+## 	'i': The number to translate
+##
+## Returns:
+## 	An english (or other language) string representing the specified number, such as "three" or "3,125".
+static func english_number(o: Object, i: int) -> String:
 	if i < 0 or i > 20:
 		return comma_sep(i)
 	
-	return ["zero", "one", "two", "three", "four", "five", \
-			"six", "seven", "eight", "nine", "ten", \
-			"eleven", "twelve", "thirteen", "fourteen", "fifteen", \
-			"sixteen", "seventeen", "eighteen", "nineteen", "twenty"][i];
+	return [o.tr("zero"), o.tr("one"), o.tr("two"), o.tr("three"), o.tr("four"), o.tr("five"),
+			o.tr("six"), o.tr("seven"), o.tr("eight"), o.tr("nine"), o.tr("ten"),
+			o.tr("eleven"), o.tr("twelve"), o.tr("thirteen"), o.tr("fourteen"), o.tr("fifteen"),
+			o.tr("sixteen"), o.tr("seventeen"), o.tr("eighteen"), o.tr("nineteen"), o.tr("twenty")][i];
 
 
 ## Formats a duration like 63.159 into '1:04'

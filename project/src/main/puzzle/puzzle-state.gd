@@ -304,7 +304,7 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 		level_performance.box_score += box_score
 		_add_line()
 	else:
-		# boxes left on the screen count towards a 'finish_score'
+		# boxes left on the screen count towards a 'leftover_score'
 		level_performance.leftover_score += combo_score + box_score + 1
 	
 	combo += 1

@@ -43,6 +43,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
+	
 	if _rightmost_region_button_has_focus() and event.is_action_pressed("ui_right"):
 		if _page < _max_selectable_page():
 			_select_next_page()

@@ -42,6 +42,9 @@ onready var _level_buttons_container: HBoxContainer = $LevelButtons
 onready var _grade_labels := $GradeLabels
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
+	
 	if _level_button_has_focus() and event.is_action_pressed("ui_right"):
 		# scroll level buttons right, if possible
 		if central_button_index < _level_buttons_container.get_child_count() - 1:
@@ -283,5 +286,6 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		
 		yield(get_tree(), "idle_frame")
 		set_central_button_index(old_central_button_index)
+		_refresh_central_button_index(false)
 		if old_level_button_has_focus:
 			grab_focus()

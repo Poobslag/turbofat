@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Mystery Box",
   "description": "Can you guess what's inside? Hey, no peeking!",
   "start_speed": "9",
@@ -8,8 +8,8 @@
     "value": 90
   },
   "rank": [
-    "box_factor 0.82",
-    "master_pickup_score 100"
+    "duration 90",
+    "rank_criteria m=1700"
   ],
   "tiles": {
     "start": [

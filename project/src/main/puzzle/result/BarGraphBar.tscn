@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/puzzle/result/bar-graph-bar.shader" type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/node_size = Vector2( 100, 100 )
+shader_param/black = Color( 0.305882, 0.227451, 0.196078, 1 )
+shader_param/white = Color( 0.831373, 0.831373, 0.831373, 1 )
+shader_param/accent_scale = 0.25
+shader_param/accent_rotation = 0.0
+shader_param/accent_swapped = false
+
+[sub_resource type="StyleBoxFlat" id=9]
+resource_local_to_scene = true
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="GDScript" id=11]
+script/source = "class_name BarGraphBar
+extends Control
+## Bar shown in the results screen's bar graph.
+##
+## The bar graph includes several of these bar nodes stacked on top of each other.
+
+func _ready() -> void:
+	connect(\"resized\", self, \"_on_resized\")
+	_refresh_node_size()
+
+
+## When the node is resized, we update the shader so that textures are scaled appropriately.
+func _refresh_node_size() -> void:
+	material.set_shader_param(\"node_size\", rect_size)
+
+
+func _on_resized() -> void:
+	_refresh_node_size()
+"
+
+[node name="Bar" type="Panel"]
+material = SubResource( 8 )
+margin_right = 100.0
+margin_bottom = 100.0
+custom_styles/panel = SubResource( 9 )
+script = SubResource( 11 )

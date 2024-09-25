@@ -195,8 +195,9 @@ func _refresh_sharks_for_piece() -> void:
 			piece_bitten = true
 	
 	if piece_bitten:
-		# If a shark just ate a piece, we check if we should cycle to the next piece. We do this
+		# If a shark just ate a piece, we emit a signal and check if we should cycle to the next piece. We do this
 		# last to avoid edge cases where we'd cycle prematurely or fire triggers at bad times.
+		_piece_manager.emit_signal("piece_disturbed", _piece_manager.piece)
 		_critter_manager.check_for_empty_piece()
 
 
@@ -226,8 +227,6 @@ func _feed_shark_cells(shark: Shark, shark_cell: Vector2, old_piece_cells: Array
 	
 	for eaten_piece_cell in eaten_piece_cells:
 		shark.set_eaten_cell(eaten_piece_cell - shark_cell)
-	
-	_piece_manager.emit_signal("piece_disturbed", _piece_manager.piece)
 
 
 ## Returns:

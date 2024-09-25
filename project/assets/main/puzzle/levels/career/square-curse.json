@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Square Curse",
   "description": "...And they don't stop coming!",
   "finish_condition": {
@@ -26,6 +26,7 @@
     "start_piece_o"
   ],
   "rank": [
-    "box_factor 0.45"
+    "duration 90",
+    "rank_criteria m=530 s-=70"
   ]
 }

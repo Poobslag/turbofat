@@ -43,18 +43,16 @@ func results(level_id: String) -> Array:
 ## 	'level_id': The id of the level to evaluate
 ##
 ## Returns:
-## 	The rank for the player's best overall level performance. For timed levels, this is the player's best
-## 	seconds_rank which evaluates how fast they were. For all other levels, this is the player's best score_rank
-## 	which evaluates how high their score was.
+## 	The rank for the player's best overall level performance. For timed levels, this is the player's best rank
+## 	which evaluates how fast they were. For all other levels, this is the player's best rank which evaluates how
+## 	high their score was.
 func best_overall_rank(level_id: String) -> float:
 	var best_rank: float
 	var best_result := best_result(level_id)
 	if not best_result:
-		best_rank = RankResult.WORST_RANK
-	elif best_result.compare == "-seconds":
-		best_rank = best_result.seconds_rank
+		best_rank = Ranks.WORST_RANK
 	else:
-		best_rank = best_result.score_rank
+		best_rank = best_result.rank
 	return best_rank
 
 

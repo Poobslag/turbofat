@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Muffin Impossible EX",
   "description": "More awkward mismatched pieces!? When will the pain stop?",
   "start_speed": "A1",
@@ -18,7 +18,8 @@
     "piece_v"
   ],
   "rank": [
-    "preplaced_pieces 8"
+    "duration 680",
+    "rank_criteria m=90"
   ],
   "tiles": {
     "start": [

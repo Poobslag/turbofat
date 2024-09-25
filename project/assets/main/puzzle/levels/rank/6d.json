@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "6 Dan",
   "description": "An escalating set of challenges. Finish in 3:00 to achieve this rank!",
   "color": "yellow",
@@ -16,6 +16,8 @@
     "top_out 1"
   ],
   "rank": [
+    "duration 185",
+    "rank_criteria m=100",
     "success_bonus 2"
   ],
   "success_condition": {

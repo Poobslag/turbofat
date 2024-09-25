@@ -3,15 +3,7 @@ extends Panel
 ##
 ## This includes details such as the level's duration, difficulty, and the player's high score.
 
-## All calculated durations are rounded to one of these aesthetically pleasing values.
-const DURATIONS := [
-	10, 15, 20, 30, 45, 60,
-	90, 120, 150, 180, 270, 360, 480, 600
-]
-
 var text: String setget set_text
-
-var _duration_calculator := DurationCalculator.new()
 
 onready var _label := $MarginContainer/Label
 
@@ -50,8 +42,7 @@ func _update_unlocked_level_text(settings: LevelSettings) -> void:
 	if settings.finish_condition.type == Milestone.TIME_OVER:
 		duration = settings.finish_condition.value
 	else:
-		duration = _duration_calculator.duration(settings)
-		duration = DURATIONS[Utils.find_closest(DURATIONS, duration)]
+		duration = settings.rank.duration
 	
 	duration_string = StringUtils.format_duration(duration)
 	

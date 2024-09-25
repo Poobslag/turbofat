@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Five Course Meal",
   "description": "Five courses? ...I'll have five desserts, please!",
   "start_speed": "7",
@@ -18,8 +18,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 1.8",
-    "combo_factor 0.29",
+    "duration 375",
+    "rank_criteria m=2050",
     "hide_combos_rank"
   ],
   "score": [

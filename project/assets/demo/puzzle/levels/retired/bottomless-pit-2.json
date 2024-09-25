@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Bottomless Pit II",
   "description": "How deep does this thing go!?",
   "start_speed": "5",
@@ -8,8 +8,8 @@
     "value": 115
   },
   "rank": [
-    "box_factor 1.22",
-    "combo_factor 0.8"
+    "duration 115",
+    "rank_criteria m=2250"
   ],
   "tiles": {
     "start": [

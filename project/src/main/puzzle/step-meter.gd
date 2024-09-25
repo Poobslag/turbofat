@@ -115,12 +115,12 @@ func _update_ui(rank_milestone: Dictionary, next_progress_value: float) -> void:
 ## For modes graded on score, we simply rank them based on their current score. For modes graded on time, we predict
 ## their final time based on their current score and percent complete.
 func _overall_rank() -> float:
-	var overall_rank: float = RankCalculator.WORST_RANK
+	var overall_rank: float = Ranks.WORST_RANK
 	
 	if CurrentLevel.settings.finish_condition.type == Milestone.SCORE:
 		# for modes graded on time, we predict their final time based on their current performance
 		var rank_result := _rank_calculator.unranked_result()
-		var percent_complete := float(rank_result.score) / CurrentLevel.settings.finish_condition.value
+		var percent_complete := float(rank_result.score) / max(1, CurrentLevel.settings.finish_condition.value)
 		percent_complete = clamp(percent_complete, 0.0, 1.0)
 		
 		# This line deliberately inflates our seconds prediction, particularly at the start of a puzzle. We do this
@@ -129,15 +129,15 @@ func _overall_rank() -> float:
 		percent_complete = pow(percent_complete, 1.5)
 		
 		if percent_complete == 0:
-			overall_rank = RankCalculator.WORST_RANK
+			overall_rank = Ranks.WORST_RANK
 		else:
 			rank_result.seconds = clamp(PuzzleState.level_performance.seconds / percent_complete, 0, 9999)
 			rank_result = _rank_calculator.calculate_rank(rank_result)
-			overall_rank = rank_result.seconds_rank
+			overall_rank = rank_result.rank
 	else:
 		# for modes graded on score, we feed their current score into the rank calculator
 		var rank_result := _rank_calculator.calculate_rank()
-		overall_rank = rank_result.score_rank
+		overall_rank = rank_result.rank
 	
 	return overall_rank
 

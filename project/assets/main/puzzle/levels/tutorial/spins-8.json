@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "start_speed": "5",
   "finish_condition": {
     "type": "pieces",
@@ -16,6 +16,8 @@
     "start_piece_j"
   ],
   "rank": [
+    "duration 300",
+    "rank_criteria m=1",
     "skip_results",
     "unranked"
   ],

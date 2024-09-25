@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "It's Nibbler",
   "description": "Aww, they take such tiny bites. ...Oww! My finger!",
   "start_speed": "7",
@@ -11,10 +11,8 @@
     "shark"
   ],
   "rank": [
-    "box_factor 1.65",
-    "combo_factor 1.21",
-    "extra_seconds_per_piece 1.37",
-    "master_pickup_score_per_line 8.64",
+    "duration 75",
+    "rank_criteria m=1300",
     "show_pickups_rank"
   ],
   "tiles": {

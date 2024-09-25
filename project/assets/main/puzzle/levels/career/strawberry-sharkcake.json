@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Strawberry Sharkcake",
   "description": "It says in this cookbook it takes a long time to rise.",
   "start_speed": "2",
@@ -26,10 +26,8 @@
     "piece_q"
   ],
   "rank": [
-    "box_factor 0.94",
-    "combo_factor 0.96",
-    "extra_seconds_per_piece 0.14",
-    "master_pickup_score_per_line 22.1",
+    "duration 85",
+    "rank_criteria m=2350",
     "show_pickups_rank"
   ],
   "tiles": {

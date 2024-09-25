@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "finish_condition": {
     "type": "score",
     "value": 150
@@ -12,6 +12,8 @@
     "start_level tutorial/squish_0"
   ],
   "rank": [
+    "duration 135",
+    "rank_criteria m=50040",
     "skip_results",
     "unranked"
   ],

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-02 15:44-0400\n"
+"POT-Creation-Date: 2024-09-13 14:02-0400\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2145,7 +2145,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:488
 #: project/assets/main/locale/localizables-extracted.py:492
 msgid ""
-"\"Blindly head east again!?\" Hmph don't be so naive. You can't wandering in "
+"\"Blindly head east again!?\" Hmph don't be so naive. You can't go wandering in "
 "a random direction and expect to find anything."
 msgstr ""
 
@@ -8041,10 +8041,10 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:1751
 msgid ""
-"Heh yeah! You're not alone, When I tell most people about it, they just "
+"Heh yeah! You're not alone. When I tell most people about it, they just "
 "think it seems dumb."
 msgstr ""
-"Heh yeah! You're not alone, When I tell most people about it, they just "
+"Heh yeah! You're not alone. When I tell most people about it, they just "
 "think it seems dumb."
 
 #: project/assets/main/locale/localizables-extracted.py:1752
@@ -14167,13 +14167,13 @@ msgstr ""
 msgid "Spanish"
 msgstr ""
 
-#: project/src/main/career/CareerMap.tscn:142
+#: project/src/main/career/CareerMap.tscn:136
 #: project/src/main/career/ui/ChalkboardMapRow.tscn:179
 #: project/src/main/career/ui/Landmark.tscn:37
 msgid "999,999"
 msgstr "999,999"
 
-#: project/src/main/career/CareerMap.tscn:177
+#: project/src/main/career/CareerMap.tscn:171
 msgid "12:05 am"
 msgstr "12:05 am"
 
@@ -14694,24 +14694,24 @@ msgid ""
 "Z, X: Rotate"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:316
+#: project/src/main/puzzle/Puzzle.tscn:315
 msgid "Goal"
 msgstr "Goal"
 
-#: project/src/main/puzzle/Puzzle.tscn:326
+#: project/src/main/puzzle/Puzzle.tscn:325
 msgid "10"
 msgstr "10"
 
-#: project/src/main/puzzle/Puzzle.tscn:575
+#: project/src/main/puzzle/Puzzle.tscn:574
 #: project/src/main/ui/menu/TrainingMenu.tscn:229
 msgid "1"
 msgstr "1"
 
-#: project/src/main/puzzle/Puzzle.tscn:713
+#: project/src/main/puzzle/Puzzle.tscn:712
 msgid "abcd"
 msgstr "abcd"
 
-#: project/src/main/puzzle/Puzzle.tscn:750
+#: project/src/main/puzzle/Puzzle.tscn:741
 msgid ""
 "0 frame drops\n"
 "0 step drops"
@@ -14834,135 +14834,6 @@ msgstr "You win!"
 msgid "Continue"
 msgstr "Continue"
 
-#: project/src/main/puzzle/puzzle-money-hud.gd:50
-#: project/src/main/puzzle/results-hud.gd:61
-#, python-format
-msgid "Customer #%s"
-msgstr "Customer #%s"
-
-#: project/src/main/puzzle/results-hud.gd:6
-msgid ""
-"Build a snack box by arranging a pentomino and a tetromino into a square!"
-msgstr ""
-"Build a snack box by arranging a pentomino and a tetromino into a square!"
-
-#: project/src/main/puzzle/results-hud.gd:7
-msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
-msgstr "Build a cake box by arranging 3 pentominos into a rectangle!"
-
-#: project/src/main/puzzle/results-hud.gd:8
-msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
-msgstr "Build a cake box by arranging 3 tetrominos into a rectangle!"
-
-#: project/src/main/puzzle/results-hud.gd:9
-msgid "Two different pieces with the same color can always make a square!"
-msgstr "Two different pieces with the same color can always make a square!"
-
-#: project/src/main/puzzle/results-hud.gd:10
-msgid ""
-"A snack box scores 5 points per line, a cake box scores 10. Make lots of "
-"cakes!"
-msgstr ""
-"A snack box scores 5 points per line, a cake box scores 10. Make lots of "
-"cakes!"
-
-#: project/src/main/puzzle/results-hud.gd:11
-msgid ""
-"Combos can give you 20 bonus points for completing a line. Make lots of "
-"combos!"
-msgstr ""
-"Combos can give you 20 bonus points for completing a line. Make lots of "
-"combos!"
-
-#: project/src/main/puzzle/results-hud.gd:12
-msgid "Build a big combo by making boxes and clearing lines!"
-msgstr "Build a big combo by making boxes and clearing lines!"
-
-#: project/src/main/puzzle/results-hud.gd:13
-msgid ""
-"Making boxes keeps your combo going. You can keep your combo going forever!"
-msgstr ""
-"Making boxes keeps your combo going. You can keep your combo going forever!"
-
-#: project/src/main/puzzle/results-hud.gd:14
-msgid "Clear lines to keep your combo going. Combos get you lots of money!"
-msgstr "Clear lines to keep your combo going. Combos get you lots of money!"
-
-#: project/src/main/puzzle/results-hud.gd:15
-msgid "When a piece locks, hold left or right to quickly move the next piece!"
-msgstr "When a piece locks, hold left or right to quickly move the next piece!"
-
-#: project/src/main/puzzle/results-hud.gd:16
-msgid "When a piece locks, hold a rotate key to quickly rotate the next piece!"
-msgstr ""
-"When a piece locks, hold a rotate key to quickly rotate the next piece!"
-
-#: project/src/main/puzzle/results-hud.gd:17
-msgid ""
-"When a piece locks, hold both rotate keys to quickly flip the next piece!"
-msgstr ""
-"When a piece locks, hold both rotate keys to quickly flip the next piece!"
-
-#: project/src/main/puzzle/results-hud.gd:18
-msgid "When a piece locks, hold up to quickly hard-drop the next piece!"
-msgstr "When a piece locks, hold up to quickly hard-drop the next piece!"
-
-#: project/src/main/puzzle/results-hud.gd:19
-msgid "After a hard drop, tap 'down' to delay the piece from locking!"
-msgstr "After a hard drop, tap 'down' to delay the piece from locking!"
-
-#: project/src/main/puzzle/results-hud.gd:20
-msgid "Press 'down' to squish pieces past other blocks!"
-msgstr "Press 'down' to squish pieces past other blocks!"
-
-#: project/src/main/puzzle/results-hud.gd:44
-msgid "Hardcore level cleared. Extra life awarded!"
-msgstr ""
-
-#: project/src/main/puzzle/results-hud.gd:46
-#, python-format
-msgid "Hint: %s"
-msgstr "Hint: %s"
-
-#: project/src/main/puzzle/results-hud.gd:68
-#, python-format
-msgid "Total: %s"
-msgstr "Total: %s"
-
-#: project/src/main/puzzle/results-hud.gd:78
-#, python-format
-msgid "Speed: %d"
-msgstr "Speed: %d"
-
-#: project/src/main/puzzle/results-hud.gd:84
-#, python-format
-msgid "Pieces: %d"
-msgstr "Pieces: %d"
-
-#: project/src/main/puzzle/results-hud.gd:90
-#, python-format
-msgid "Lines: %d"
-msgstr "Lines: %d"
-
-#: project/src/main/puzzle/results-hud.gd:96
-#, python-format
-msgid "Boxes: %d"
-msgstr "Boxes: %d"
-
-#: project/src/main/puzzle/results-hud.gd:102
-#, python-format
-msgid "Combos: %d"
-msgstr "Combos: %d"
-
-#: project/src/main/puzzle/results-hud.gd:116
-#, python-format
-msgid "Pickups: %d"
-msgstr "Pickups: %d"
-
-#: project/src/main/puzzle/results-hud.gd:122
-msgid "Overall: "
-msgstr "Overall: "
-
 #: project/src/main/puzzle/tech-move-burst.gd:31
 msgid "Single"
 msgstr "Single"
@@ -15044,6 +14915,83 @@ msgstr "description"
 #: project/src/main/puzzle/level/level-settings.gd:159
 msgid "name"
 msgstr "name"
+
+#: project/src/main/puzzle/result/BarGraphGoal.tscn:47
+#: project/src/main/puzzle/result/BarGraphGoal.tscn:68
+msgid "¥25,000: SSS"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:595
+#: project/src/main/puzzle/result/receipt-header.gd:23
+msgid ""
+"Level\n"
+"Complete!"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:625
+msgid ""
+"Boxes\n"
+"¥0"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:637
+msgid ""
+"Combos\n"
+"¥0"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:649
+msgid ""
+"Extra\n"
+"¥0"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:697
+msgid "¥387"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:712
+msgid "¥20,000: SS"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:719
+msgid "¥15,000: S"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:726
+msgid "¥10,000: A"
+msgstr ""
+
+#: project/src/main/puzzle/result/ResultsHud.tscn:733
+msgid "¥5,000: B"
+msgstr ""
+
+#: project/src/main/puzzle/result/receipt-header.gd:21
+msgid ""
+"Level\n"
+"Failed..."
+msgstr ""
+
+#: project/src/main/puzzle/result/receipt-table.gd:80
+#, python-format
+msgid ""
+"Boxes\n"
+"¥%s"
+msgstr ""
+
+#: project/src/main/puzzle/result/receipt-table.gd:81
+#, python-format
+msgid ""
+"Combos\n"
+"¥%s"
+msgstr ""
+
+#: project/src/main/puzzle/result/receipt-table.gd:82
+#, python-format
+msgid ""
+"Extra\n"
+"¥%s"
+msgstr ""
 
 #: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:55
 msgid "abc"
@@ -16679,7 +16627,7 @@ msgstr ""
 msgid "Stress Test"
 msgstr "Stress Test"
 
-#: project/src/main/ui/menu/PagedLevelPanel.tscn:55
+#: project/src/main/ui/menu/PagedLevelPanel.tscn:54
 #: project/src/main/ui/menu/PagedRegionPanel.tscn:55
 msgid "Level Select"
 msgstr "Level Select"
@@ -17246,7 +17194,7 @@ msgstr ""
 msgid "Voice Volume"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:47
+#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:53
 msgid "<Enter Key>"
 msgstr "<Enter Key>"
 
@@ -17298,6 +17246,90 @@ msgstr "Left, Right, Kp 7, Kp 9"
 msgid "Shift, Kp Enter"
 msgstr "Shift, Kp Enter"
 
+#: project/src/main/utils/string-utils.gd:108
+msgid "zero"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:108
+msgid "one"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:108
+msgid "two"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:108
+msgid "three"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:108
+msgid "four"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:108
+msgid "five"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:109
+msgid "six"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:109
+msgid "seven"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:109
+msgid "eight"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:109
+msgid "nine"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:109
+msgid "ten"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:110
+msgid "eleven"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:110
+msgid "twelve"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:110
+msgid "thirteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:110
+msgid "fourteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:110
+msgid "fifteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:111
+msgid "sixteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:111
+msgid "seventeen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:111
+msgid "eighteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:111
+msgid "nineteen"
+msgstr ""
+
+#: project/src/main/utils/string-utils.gd:111
+msgid "twenty"
+msgstr ""
+
 #: project/src/main/world/LetterProjectile.tscn:113
 msgid "O"
 msgstr "O"
@@ -17321,6 +17353,110 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:94
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
+
+#, python-format
+#~ msgid "Customer #%s"
+#~ msgstr "Customer #%s"
+
+#~ msgid ""
+#~ "Build a snack box by arranging a pentomino and a tetromino into a square!"
+#~ msgstr ""
+#~ "Build a snack box by arranging a pentomino and a tetromino into a square!"
+
+#~ msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
+#~ msgstr "Build a cake box by arranging 3 pentominos into a rectangle!"
+
+#~ msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
+#~ msgstr "Build a cake box by arranging 3 tetrominos into a rectangle!"
+
+#~ msgid "Two different pieces with the same color can always make a square!"
+#~ msgstr "Two different pieces with the same color can always make a square!"
+
+#~ msgid ""
+#~ "A snack box scores 5 points per line, a cake box scores 10. Make lots of "
+#~ "cakes!"
+#~ msgstr ""
+#~ "A snack box scores 5 points per line, a cake box scores 10. Make lots of "
+#~ "cakes!"
+
+#~ msgid ""
+#~ "Combos can give you 20 bonus points for completing a line. Make lots of "
+#~ "combos!"
+#~ msgstr ""
+#~ "Combos can give you 20 bonus points for completing a line. Make lots of "
+#~ "combos!"
+
+#~ msgid "Build a big combo by making boxes and clearing lines!"
+#~ msgstr "Build a big combo by making boxes and clearing lines!"
+
+#~ msgid ""
+#~ "Making boxes keeps your combo going. You can keep your combo going "
+#~ "forever!"
+#~ msgstr ""
+#~ "Making boxes keeps your combo going. You can keep your combo going "
+#~ "forever!"
+
+#~ msgid "Clear lines to keep your combo going. Combos get you lots of money!"
+#~ msgstr "Clear lines to keep your combo going. Combos get you lots of money!"
+
+#~ msgid ""
+#~ "When a piece locks, hold left or right to quickly move the next piece!"
+#~ msgstr ""
+#~ "When a piece locks, hold left or right to quickly move the next piece!"
+
+#~ msgid ""
+#~ "When a piece locks, hold a rotate key to quickly rotate the next piece!"
+#~ msgstr ""
+#~ "When a piece locks, hold a rotate key to quickly rotate the next piece!"
+
+#~ msgid ""
+#~ "When a piece locks, hold both rotate keys to quickly flip the next piece!"
+#~ msgstr ""
+#~ "When a piece locks, hold both rotate keys to quickly flip the next piece!"
+
+#~ msgid "When a piece locks, hold up to quickly hard-drop the next piece!"
+#~ msgstr "When a piece locks, hold up to quickly hard-drop the next piece!"
+
+#~ msgid "After a hard drop, tap 'down' to delay the piece from locking!"
+#~ msgstr "After a hard drop, tap 'down' to delay the piece from locking!"
+
+#~ msgid "Press 'down' to squish pieces past other blocks!"
+#~ msgstr "Press 'down' to squish pieces past other blocks!"
+
+#, python-format
+#~ msgid "Hint: %s"
+#~ msgstr "Hint: %s"
+
+#, python-format
+#~ msgid "Total: %s"
+#~ msgstr "Total: %s"
+
+#, python-format
+#~ msgid "Speed: %d"
+#~ msgstr "Speed: %d"
+
+#, python-format
+#~ msgid "Pieces: %d"
+#~ msgstr "Pieces: %d"
+
+#, python-format
+#~ msgid "Lines: %d"
+#~ msgstr "Lines: %d"
+
+#, python-format
+#~ msgid "Boxes: %d"
+#~ msgstr "Boxes: %d"
+
+#, python-format
+#~ msgid "Combos: %d"
+#~ msgstr "Combos: %d"
+
+#, python-format
+#~ msgid "Pickups: %d"
+#~ msgstr "Pickups: %d"
+
+#~ msgid "Overall: "
+#~ msgstr "Overall: "
 
 #~ msgid "¥Earn 1,000 as fast as possible. No tricks!"
 #~ msgstr "¥Earn 1,000 as fast as possible. No tricks!"

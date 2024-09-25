@@ -177,6 +177,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		timers.from_json_array(json["timers"])
 	if json.has("triggers"):
 		triggers.from_json_array(json["triggers"])
+	
+	rank.rank_criteria.duration_criteria = finish_condition.type == Milestone.SCORE
 
 
 func to_json_dict() -> Dictionary:

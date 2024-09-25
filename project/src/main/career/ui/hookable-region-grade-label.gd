@@ -51,7 +51,7 @@ func _refresh_appearance() -> void:
 ## Updates the text based on the player's grade on a level.
 func _refresh_grade_text(rank: float) -> void:
 	_grade_label.visible = true
-	_grade_label.text = RankCalculator.grade(rank)
+	_grade_label.text = Ranks.grade(rank)
 	_grade_label.refresh_color_from_text()
 
 

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Three Course Meal",
   "description": "It's important to bring out all three courses at once! ...Or is that something else...",
   "blocks_during": [
@@ -15,10 +15,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.9",
-    "combo_factor 1.05",
-    "extra_seconds_per_piece 0.69",
-    "master_pickup_score_per_line 14.31",
+    "duration 190",
+    "rank_criteria m=1450 s-=250",
     "show_pickups_rank"
   ],
   "tiles": {

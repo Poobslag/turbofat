@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Nice and Cheesy",
   "description": "Let's learn to cook with cheese!",
   "start_speed": "4",
@@ -40,7 +40,8 @@
     "piece_u"
   ],
   "rank": [
-    "master_pickup_score 120",
+    "duration 300",
+    "rank_criteria m=1600",
     "show_pickups_rank"
   ],
   "tiles": {

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "No Smoking Section II",
   "description": "Cough! Cough! ...Carrots! Too many!",
   "start_speed": "A4",
@@ -43,6 +43,10 @@
     "carrot",
     "blind",
     "annoying"
+  ],
+  "rank": [
+    "duration 275",
+    "rank_criteria m=100"
   ],
   "tiles": {
     "start": [

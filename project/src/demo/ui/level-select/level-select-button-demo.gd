@@ -22,7 +22,7 @@ func _ready() -> void:
 			80.0]:
 		var button := _button()
 		var rank_result := RankResult.new()
-		rank_result.score_rank = rank
+		rank_result.rank = rank
 		PlayerData.level_history.add_result(button.level_id, rank_result)
 		_add_button(button)
 	

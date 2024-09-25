@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Rice Bear Island",
   "description": "What on earth is a rice bear? ...This just seems like a regular island.",
   "start_speed": "2",
@@ -13,7 +13,8 @@
     "slow"
   ],
   "rank": [
-    "master_pickup_score_per_line 5.31",
+    "duration 225",
+    "rank_criteria m=1450 s-=250",
     "show_pickups_rank"
   ],
   "tiles": {

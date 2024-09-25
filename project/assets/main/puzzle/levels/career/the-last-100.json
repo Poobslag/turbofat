@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "The Last ¥100",
   "description": "Why is the last mile the hardest mile?",
   "start_speed": "4",
@@ -12,8 +12,8 @@
     "sneaky"
   ],
   "rank": [
-    "box_factor 0.66",
-    "extra_seconds_per_piece 0.03"
+    "duration 240",
+    "rank_criteria m=32"
   ],
   "tiles": {
     "start": [

@@ -87,6 +87,36 @@ func test_load_49db_data() -> void:
 	}, settings.tiles.blocks_start().pickups)
 
 
+func test_load_4c5c_ultra_data() -> void:
+	load_level("ultra-hard-4c5c")
+	LegacyRankCriteriaCalculator.new().populate_rank_fields(settings)
+	
+	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.size(), 1)
+	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.get("M"), 55)
+	assert_eq(settings.rank.duration, 455)
+
+
+func test_load_4c5c_sprint_data() -> void:
+	load_level("sprint-expert-4c5c")
+	LegacyRankCriteriaCalculator.new().populate_rank_fields(settings)
+	
+	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.size(), 1)
+	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.get("M"), 6750)
+	assert_eq(settings.rank.duration, 180)
+
+
+func test_load_4c5c_rank_data() -> void:
+	load_level("wedding-cake-for-one-4c5c")
+	LegacyRankCriteriaCalculator.new().populate_rank_fields(settings)
+	
+	assert_eq(5, settings.rank.legacy_rules.size())
+	assert_almost_eq(settings.rank.legacy_rules.get("box_factor"), 1.38, 0.001)
+	assert_almost_eq(settings.rank.legacy_rules.get("combo_factor"), 1.21, 0.001)
+	assert_eq(settings.rank.legacy_rules.get("customer_combo"), 9)
+	assert_eq(settings.rank.legacy_rules.get("leftover_lines"), 3)
+	assert_eq(settings.rank.legacy_rules.get("preplaced_pieces"), 10)
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
@@ -165,7 +195,7 @@ func test_to_json_rules() -> void:
 	settings.lose_condition.finish_on_lose = true
 	settings.other.after_tutorial = true
 	settings.piece_types.start_types = [PieceTypes.piece_j, PieceTypes.piece_l]
-	settings.rank.box_factor = 2.0
+	settings.rank.duration = 120
 	settings.score.cake_points = 30
 	settings.speed.set_start_speed("6")
 	settings.timers.timers = [{"interval": 5}]
@@ -179,7 +209,7 @@ func test_to_json_rules() -> void:
 	assert_eq(settings.lose_condition.finish_on_lose, true)
 	assert_eq(settings.other.after_tutorial, true)
 	assert_eq(settings.piece_types.start_types, [PieceTypes.piece_j, PieceTypes.piece_l])
-	assert_eq(settings.rank.box_factor, 2.0)
+	assert_eq(settings.rank.duration, 120)
 	assert_eq(settings.score.cake_points, 30)
 	assert_eq(settings.speed.get_start_speed(), "6")
 	assert_eq_deep(settings.timers.timers, [{"interval": 5}])

@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Creeping Crevice II",
   "description": "It just keeps going...",
   "start_speed": "6",
@@ -16,7 +16,8 @@
     "slow"
   ],
   "rank": [
-    "box_factor 0.8"
+    "duration 265",
+    "rank_criteria m=1300"
   ],
   "tiles": {
     "0": [

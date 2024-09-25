@@ -4,26 +4,27 @@ extends Control
 ## Duration of the pop-in/pop-out animation
 const TWEEN_DURATION := 0.1
 
-## Path to the label which shows the total each customer paid. The money label responds to these totals.
-export (NodePath) var results_label_path: NodePath
+## Path to the results hud which shows the total the player earned. The money label responds to this hud.
+export (NodePath) var results_hud_path: NodePath
 
 var _money_label_tween: SceneTreeTween
 
 onready var _money_label := $MoneyLabel
-onready var _results_label: ResultsLabel = get_node(results_label_path)
+onready var _results_hud: ResultsHud = get_node(results_hud_path)
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
-	_results_label.connect("text_shown", self, "_on_ResultsLabel_text_shown")
+	
+	_results_hud.connect("receipt_shown", self, "_on_ResultsHud_receipt_shown")
+	_results_hud.connect("stamped", self, "_on_ResultsHud_stamped")
 
 
-## Shows the money label, decrementing it so that it does not include the current customer totals.
+## Shows the money label, decrementing it so that it does not include money earned for the current level.
 ##
 ## The money label is later incremented in response to 'text_shown' signals, so that it increments as customers are
 ## shown.
-func _show_money(rank_result: RankResult) -> void:
-	_money_label.set_shown_money(PlayerData.money - rank_result.score)
+func _show_money() -> void:
+	_money_label.set_shown_money(PlayerData.money - PuzzleState.level_performance.score)
 	_money_label_tween = Utils.recreate_tween(self, _money_label_tween)
 	_money_label_tween.tween_property(_money_label, "rect_position:y", 0.0, TWEEN_DURATION)
 
@@ -38,15 +39,10 @@ func _on_PuzzleState_game_prepared() -> void:
 	_hide_money()
 
 
-func _on_PuzzleState_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.level_history.prev_result(CurrentLevel.settings.id)
-	if not rank_result or CurrentLevel.settings.rank.skip_results:
-		return
-	
-	_show_money(rank_result)
+func _on_ResultsHud_receipt_shown() -> void:
+	_show_money()
 
 
-func _on_ResultsLabel_text_shown(new_text: String) -> void:
-	if new_text.begins_with(tr("Customer #%s") % [""]):
-		var amount := int(StringUtils.substring_after_last(new_text, "¥").replace(",", ""))
-		_money_label.set_shown_money(_money_label.shown_money + amount)
+## Refreshes the money label, incrementing it to include money earned for the current level.
+func _on_ResultsHud_stamped() -> void:
+	_money_label.set_shown_money(PlayerData.money)

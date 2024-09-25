@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "start_speed": "A1",
   "finish_condition": {
     "type": "lines",
@@ -20,6 +20,8 @@
     "piece_l"
   ],
   "rank": [
+    "duration 660",
+    "rank_criteria m=3600",
     "skip_results"
   ],
   "tiles": {

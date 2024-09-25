@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Asparagus Vault",
   "description": "Are you planning a robbery? I'm onto you!",
   "start_speed": "2",
@@ -23,9 +23,8 @@
     "start_piece_t"
   ],
   "rank": [
-    "box_factor 0.62",
-    "combo_factor 0.66",
-    "master_pickup_score_per_line 7.94",
+    "duration 120",
+    "rank_criteria m=1700",
     "show_pickups_rank"
   ],
   "tiles": {

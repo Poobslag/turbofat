@@ -16,10 +16,10 @@ const LEVEL_COLOR_3 := Color("b95c48")
 const LEVEL_COLOR_4 := Color("b94878")
 const LEVEL_COLOR_5 := Color("b948b9")
 
-onready var _progress_bar: ProgressBar = $ProgressBar
+onready var _progress_bar: ProgressBar = $ZHolder/ProgressBar
 onready var _desc: Label = $Desc
-onready var _value: FontFitLabel = $Value
-onready var _progress_bar_particles: Control = $ProgressBarParticles
+onready var _value: FontFitLabel = $ZHolder/Value
+onready var _progress_bar_particles: Control = $ZHolder/ProgressBarParticles
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")

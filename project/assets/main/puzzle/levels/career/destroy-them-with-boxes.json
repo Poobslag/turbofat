@@ -1,5 +1,5 @@
 {
-  "version": "4c5c",
+  "version": "59c3",
   "name": "Destroy Them With Boxes!",
   "description": "Ack, sweets! My only weakness!",
   "start_speed": "9",
@@ -10,6 +10,10 @@
   "icons": [
     "carrot",
     "snack_box"
+  ],
+  "rank": [
+    "duration 565",
+    "rank_criteria m=80"
   ],
   "tiles": {
     "start": [
