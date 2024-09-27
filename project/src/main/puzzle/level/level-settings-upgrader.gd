@@ -99,8 +99,7 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 
 ## Simplify level rank metadata.
 ##
-## Version 59c3 eliminated granular rank fields like "box_factor" and "combo_factor", although it still supports them
-## temporarily via the "legacy box_factor" and "legacy combo_factor" properties.
+## Version 59c3 eliminated granular rank fields like "box_factor" and "combo_factor".
 func _upgrade_4c5c(old_json: Dictionary, old_key: String, new_json: Dictionary) -> Dictionary:
 	match old_key:
 		"rank":
@@ -111,11 +110,23 @@ func _upgrade_4c5c(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 					"combo_factor", \
 					"customer_combo", \
 					"extra_seconds_per_piece", \
+					"hide_boxes_rank", \
+					"hide_combos_rank", \
+					"hide_lines_rank", \
+					"hide_pickups_rank", \
+					"hide_pieces_rank", \
+					"hide_speed_rank", \
 					"leftover_lines", \
 					"master_pickup_score", \
 					"master_pickup_score_per_line", \
-					"preplaced_pieces":
-						new_json["rank"].append("legacy %s" % [rank_entry])
+					"preplaced_pieces", \
+					"show_boxes_rank", \
+					"show_combos_rank", \
+					"show_lines_rank", \
+					"show_pickups_rank", \
+					"show_pieces_rank", \
+					"show_speed_rank":
+						pass
 					_:
 						new_json["rank"].append(rank_entry)
 		_:

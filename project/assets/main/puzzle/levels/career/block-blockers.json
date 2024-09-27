@@ -26,8 +26,7 @@
   ],
   "rank": [
     "duration 160",
-    "rank_criteria m=30",
-    "show_pickups_rank"
+    "rank_criteria m=30"
   ],
   "tiles": {
     "start": [

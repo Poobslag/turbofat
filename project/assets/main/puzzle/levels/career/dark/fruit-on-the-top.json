@@ -20,9 +20,7 @@
   ],
   "rank": [
     "duration 80",
-    "rank_criteria m=1500",
-    "hide_combos_rank",
-    "show_pickups_rank"
+    "rank_criteria m=1500"
   ],
   "tiles": {
     "0": [

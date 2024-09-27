@@ -129,6 +129,7 @@ func test_calculate_rank_ultra_hard_master() -> void:
 
 func test_calculate_rank_ultra_fail() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("M", 44)
 	PuzzleState.level_performance.seconds = 34
 	PuzzleState.level_performance.lost = true
 	var rank_result := _rank_calculator.calculate_rank()
@@ -138,6 +139,7 @@ func test_calculate_rank_ultra_fail() -> void:
 
 func test_unranked() -> void:
 	CurrentLevel.settings.rank.unranked = true
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("M", 1)
 	var rank_result := _rank_calculator.calculate_rank()
 	
 	# the player finishes the level; they automatically get a master rank
@@ -147,6 +149,7 @@ func test_unranked() -> void:
 func test_unranked_loss() -> void:
 	CurrentLevel.settings.rank.unranked = true
 	PuzzleState.level_performance.lost = true
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("M", 1)
 	var rank_result := _rank_calculator.calculate_rank()
 	
 	# the player lost the level; they get the worst rank
