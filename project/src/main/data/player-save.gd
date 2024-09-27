@@ -104,7 +104,7 @@ func save_player_data() -> void:
 ## Populates the player's in-memory data based on their save files.
 func load_player_data() -> void:
 	PlayerData.reset()
-	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
+	rolling_backups.load_newest_save(self, "load_player_data_from_file")
 	emit_signal("after_load")
 
 
@@ -144,7 +144,7 @@ func get_save_slot_player_short_name(filename: String) -> String:
 ## Populates the player's in-memory data based on a save file.
 ##
 ## Returns 'true' if the data is loaded successfully.
-func _load_player_data_from_file(filename: String) -> bool:
+func load_player_data_from_file(filename: String) -> bool:
 	var json_save_items := _save_items_from_file(filename)
 	if json_save_items.empty():
 		return false
