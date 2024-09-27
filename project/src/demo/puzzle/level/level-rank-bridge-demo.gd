@@ -2,7 +2,8 @@ extends Node
 ## Calculates the percentage thresholds for different ranks, using the legacy math-based rank model.
 ##
 ## The math-based rank algorithms have been replaced with simpler percent-based algorithms, where there is a
-## perfect score and then other goals are calculated based on a percentage of the perfect score. This demo calculates these percentages for a given level.
+## perfect score and then other goals are calculated based on a percentage of the perfect score. This demo calculates
+## these percentages for a given level.
 ##
 ## For example, following the classic math-based model, a level might have the following requirements:
 ##
