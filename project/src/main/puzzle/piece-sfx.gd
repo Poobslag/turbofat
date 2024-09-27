@@ -54,42 +54,60 @@ func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> vo
 ## Rotation events ----------------------------------------------------------------
 
 func _on_PieceManager_initial_rotated_ccw(piece: ActivePiece) -> void:
-	if piece.is_sealed():
+	if piece.is_sealed() \
+			and not CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
 		$RotateSealed0Sound.play()
 	else:
 		$Rotate0Sound.play()
 
 
 func _on_PieceManager_initial_rotated_cw(piece: ActivePiece) -> void:
-	if piece.is_sealed():
+	if piece.is_sealed() \
+			and not CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
 		$RotateSealed0Sound.play()
 	else:
 		$Rotate0Sound.play()
 
 
 func _on_PieceManager_initial_rotated_180(piece: ActivePiece) -> void:
-	if piece.is_sealed():
+	if piece.is_sealed() \
+			and not CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
 		$RotateSealed0Sound.play()
 	else:
 		$Rotate0Sound.play()
 
 
 func _on_PieceManager_rotated_ccw(piece: ActivePiece) -> void:
-	if piece.is_sealed():
+	if piece.is_sealed() \
+			and not CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
 		$RotateSealed0Sound.play()
 	else:
 		$Rotate0Sound.play()
 
 
 func _on_PieceManager_rotated_cw(piece: ActivePiece) -> void:
-	if piece.is_sealed():
+	if piece.is_sealed() \
+			and not CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
 		$RotateSealed1Sound.play()
 	else:
 		$Rotate1Sound.play()
 
 
 func _on_PieceManager_rotated_180(piece: ActivePiece) -> void:
-	if piece.is_sealed():
+	if piece.is_sealed() \
+			and not CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
 		$RotateSealed0Sound.play()
 	else:
 		$Rotate0Sound.play()

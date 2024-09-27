@@ -119,7 +119,8 @@ func fill_missing_thresholds() -> void:
 	if duration_criteria:
 		if not thresholds_by_grade.has(Ranks.BEST_GRADE):
 			push_warning("Level %s does not define '%s' rank criteria; defaulting to %s" \
-					% [CurrentLevel.level_id, Ranks.BEST_GRADE, DEFAULT_BEST_SCORE])
+					% [CurrentLevel.level_id if CurrentLevel.level_id else "(unknown)", \
+						Ranks.BEST_GRADE, DEFAULT_BEST_SCORE])
 			new_thresholds[Ranks.BEST_GRADE] = DEFAULT_BEST_TIME
 		if not new_thresholds.has(Ranks.WORST_GRADE):
 			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[Ranks.BEST_GRADE] \
@@ -127,7 +128,8 @@ func fill_missing_thresholds() -> void:
 	else:
 		if not thresholds_by_grade.has(Ranks.BEST_GRADE):
 			push_warning("Level %s does not define '%s' rank criteria; defaulting to %s" \
-					% [CurrentLevel.level_id, Ranks.BEST_GRADE, DEFAULT_BEST_TIME])
+					% [CurrentLevel.level_id if CurrentLevel.level_id else "(unknown)", \
+						Ranks.BEST_GRADE, DEFAULT_BEST_TIME])
 			new_thresholds[Ranks.BEST_GRADE] = DEFAULT_BEST_SCORE
 		if not new_thresholds.has(Ranks.WORST_GRADE):
 			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[Ranks.BEST_GRADE] \

@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=3]
+[ext_resource path="res://src/demo/puzzle/level/rank-outlier-demo-import.gd" type="Script" id=4]
+[ext_resource path="res://src/demo/DemoSave.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/demo/puzzle/level/rank-outlier-demo-analyze.gd" type="Script" id=6]
+[ext_resource path="res://src/demo/puzzle/level/rank-outlier-dialogs.gd" type="Script" id=7]
+
+[node name="Node" type="Node"]
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="Import" type="Control" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 36.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 4 )
+dialogs_path = NodePath("../../Dialogs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Import"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -232.0
+margin_right = 200.0
+margin_bottom = 232.0
+rect_min_size = Vector2( 400, 0 )
+
+[node name="ButtonImport" type="Button" parent="TabContainer/Import/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 26.0
+theme = ExtResource( 3 )
+text = "Import .save"
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/Import/VBoxContainer"]
+margin_top = 30.0
+margin_right = 400.0
+margin_bottom = 430.0
+rect_min_size = Vector2( 0, 400 )
+readonly = true
+
+[node name="ButtonExport" type="Button" parent="TabContainer/Import/VBoxContainer"]
+margin_top = 434.0
+margin_right = 400.0
+margin_bottom = 460.0
+theme = ExtResource( 3 )
+text = "Export .score"
+
+[node name="Analyze" type="Control" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 36.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Analyze"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -230.0
+margin_right = 400.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 800, 0 )
+
+[node name="ButtonImport" type="Button" parent="TabContainer/Analyze/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 26.0
+theme = ExtResource( 3 )
+text = "Import .score"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Analyze/VBoxContainer"]
+margin_top = 30.0
+margin_right = 800.0
+margin_bottom = 430.0
+
+[node name="TextEditIn" type="TextEdit" parent="TabContainer/Analyze/VBoxContainer/HBoxContainer"]
+margin_right = 398.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 400 )
+size_flags_horizontal = 3
+readonly = true
+
+[node name="TextEditOut" type="TextEdit" parent="TabContainer/Analyze/VBoxContainer/HBoxContainer"]
+margin_left = 402.0
+margin_right = 800.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 400 )
+size_flags_horizontal = 3
+readonly = true
+
+[node name="Control" type="Control" parent="TabContainer/Analyze/VBoxContainer"]
+margin_top = 434.0
+margin_right = 800.0
+margin_bottom = 460.0
+rect_min_size = Vector2( 0, 26 )
+
+[node name="Dialogs" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 7 )
+
+[node name="Backdrop" parent="Dialogs" instance=ExtResource( 2 )]
+
+[node name="ImportJson" type="FileDialog" parent="Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -200.0
+margin_right = 320.0
+margin_bottom = 200.0
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.save" )
+
+[node name="ExportScore" type="FileDialog" parent="Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -200.0
+margin_right = 320.0
+margin_bottom = 200.0
+popup_exclusive = true
+access = 2
+filters = PoolStringArray( "*.score" )
+
+[node name="Error" type="AcceptDialog" parent="Dialogs"]
+margin_right = 250.0
+margin_bottom = 58.0
+popup_exclusive = true
+window_title = "Error"
+dialog_autowrap = true
+
+[node name="DemoSave" parent="." instance=ExtResource( 5 )]
+
+[connection signal="text_changed" from="TabContainer/Import" to="TabContainer/Analyze" method="_on_Import_text_changed"]
+[connection signal="pressed" from="TabContainer/Import/VBoxContainer/ButtonImport" to="TabContainer/Import" method="_on_ButtonImport_pressed"]
+[connection signal="pressed" from="TabContainer/Import/VBoxContainer/ButtonExport" to="TabContainer/Import" method="_on_ButtonExport_pressed"]
+[connection signal="about_to_show" from="Dialogs/ImportJson" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/ImportJson" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/ExportScore" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/ExportScore" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]

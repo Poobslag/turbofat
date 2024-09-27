@@ -87,34 +87,10 @@ func test_load_49db_data() -> void:
 	}, settings.tiles.blocks_start().pickups)
 
 
-func test_load_4c5c_ultra_data() -> void:
-	load_level("ultra-hard-4c5c")
-	LegacyRankCriteriaCalculator.new().populate_rank_fields(settings)
+func test_load_4c5c_data() -> void:
+	load_level("level-4c5c")
 	
-	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.size(), 1)
-	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.get("M"), 55)
-	assert_eq(settings.rank.duration, 455)
-
-
-func test_load_4c5c_sprint_data() -> void:
-	load_level("sprint-expert-4c5c")
-	LegacyRankCriteriaCalculator.new().populate_rank_fields(settings)
-	
-	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.size(), 1)
-	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.get("M"), 6750)
-	assert_eq(settings.rank.duration, 180)
-
-
-func test_load_4c5c_rank_data() -> void:
-	load_level("wedding-cake-for-one-4c5c")
-	LegacyRankCriteriaCalculator.new().populate_rank_fields(settings)
-	
-	assert_eq(5, settings.rank.legacy_rules.size())
-	assert_almost_eq(settings.rank.legacy_rules.get("box_factor"), 1.38, 0.001)
-	assert_almost_eq(settings.rank.legacy_rules.get("combo_factor"), 1.21, 0.001)
-	assert_eq(settings.rank.legacy_rules.get("customer_combo"), 9)
-	assert_eq(settings.rank.legacy_rules.get("leftover_lines"), 3)
-	assert_eq(settings.rank.legacy_rules.get("preplaced_pieces"), 10)
+	assert_eq(0, settings.rank.rank_criteria.thresholds_by_grade.size())
 
 
 func test_load_tiles() -> void:

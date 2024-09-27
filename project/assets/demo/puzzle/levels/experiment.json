@@ -14,8 +14,7 @@
   ],
   "rank": [
     "duration 2060",
-    "rank_criteria m=14000",
-    "show_pickups_rank"
+    "rank_criteria m=14000"
   ],
   "triggers": [
     {

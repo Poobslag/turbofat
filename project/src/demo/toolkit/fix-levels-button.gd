@@ -30,7 +30,6 @@ func run() -> void:
 	_report_invalid_career_music()
 	_report_unused_career_levels()
 	_report_level_icons()
-	_report_bad_show_rank()
 	_report_bad_achievements()
 	_alphabetize_career_levels()
 	if _problem_count == 0:
@@ -191,41 +190,6 @@ func _report_level_icons() -> void:
 	
 	if bad_icons:
 		_report_problem("Levels with bad icons: %s" % [PoolStringArray(bad_icons).join(", ")])
-
-
-## Reports any unusual show_rank and hide_rank settings
-func _report_bad_show_rank() -> void:
-	var bad_level_id_set := {}
-	
-	for level_id in CareerLevelLibrary.all_level_ids():
-		var level_settings := LevelSettings.new()
-		level_settings.load_from_resource(level_id)
-		
-		if level_settings.rank.show_boxes_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]:
-			if level_settings.rank.legacy_rules.get("box_factor", 1.0) < 0.1:
-				push_warning("%s - show_boxes_rank enabled with box_factor of %s"
-						% [level_id, level_settings.rank.legacy_rules.get("box_factor", 1.0)])
-				bad_level_id_set[level_id] = true
-		
-		if level_settings.rank.show_combos_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]:
-			if level_settings.rank.legacy_rules.get("combo_factor", 1.0) < 0.1:
-				push_warning("%s - show_combos_rank enabled with combo_factor of %s"
-						% [level_id, level_settings.rank.legacy_rules.get("box_factor", 1.0)])
-				bad_level_id_set[level_id] = true
-			if level_settings.combo_break.pieces == ComboBreakRules.UNLIMITED_PIECES:
-				push_warning("%s - show_combos_rank enabled with combo_break.pieces == %s"
-						% [level_id, level_settings.combo_break.pieces])
-				bad_level_id_set[level_id] = true
-		
-		if not level_settings.rank.show_pickups_rank in [RankRules.ShowRank.SHOW]:
-			if level_settings.rank.legacy_rules.get("master_pickup_score_per_line", 0.0) > 1.0:
-				push_warning("%s - show_pickups_rank disabled with master_pickup_score_per_line of %s"
-						% [level_id, level_settings.rank.legacy_rules.get("master_pickup_score_per_line", 0.0)])
-	
-	var bad_level_ids := bad_level_id_set.keys()
-	bad_level_ids.sort()
-	if bad_level_ids:
-		_report_problem("Level keys with bad show_rank settings: %s" % [bad_level_ids])
 
 
 ## Reports bad SteamAchievement achievement_ids, region_ids, level_ids
