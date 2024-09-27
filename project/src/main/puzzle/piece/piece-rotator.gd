@@ -94,7 +94,13 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			if not piece.can_move_to_target():
 				piece.kick_piece()
 		
-		if piece.target_pos.y < piece.pos.y and not piece.can_floor_kick():
+		if CurrentLevel.settings.other.suppress_piece_rotation in [
+				OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS,
+				OtherRules.SuppressPieceRotation.ROTATION]:
+			# don't suppress rotation signals for levels where the current piece does not rotate; otherwise it's
+			# unintuitive that rotation triggers occur conditionally based on the state of the current piece
+			pass
+		elif piece.target_pos.y < piece.pos.y and not piece.can_floor_kick():
 			# tried to flip but we don't have any floor kicks for it
 			rotation_signal = ""
 		elif not piece.can_move_to_target():
