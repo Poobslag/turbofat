@@ -25,8 +25,7 @@
   ],
   "rank": [
     "duration 120",
-    "rank_criteria m=18 s-=155",
-    "hide_boxes_rank"
+    "rank_criteria m=18 s-=155"
   ],
   "tiles": {
     "start": [

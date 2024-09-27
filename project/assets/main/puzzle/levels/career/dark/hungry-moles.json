@@ -14,9 +14,7 @@
   ],
   "rank": [
     "duration 400",
-    "rank_criteria m=200",
-    "hide_boxes_rank",
-    "show_pickups_rank"
+    "rank_criteria m=200"
   ],
   "score": [
     "cake_all 0",
