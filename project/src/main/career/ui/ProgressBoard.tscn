@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/career/ui/progress-board-clock-label.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/map/landmark-forest.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://src/main/career/ui/progress-board-map-holder.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/DiagonalParticles.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/main/career/ui/progress-board-grain.png" type="Texture" id=21]
+[ext_resource path="res://src/main/ui/AnimationPlayerUnscrewerupper.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ShaderMaterial" id=29]
 shader = ExtResource( 9 )
@@ -703,6 +704,8 @@ bus = "Sound Bus"
 anims/RESET = SubResource( 34 )
 anims/hide = SubResource( 36 )
 anims/show = SubResource( 31 )
+
+[node name="AnimationPlayerUnscrewerupper" parent="ShowAnimationPlayer" instance=ExtResource( 22 )]
 
 [node name="HideTimer" type="Timer" parent="."]
 wait_time = 1.5
