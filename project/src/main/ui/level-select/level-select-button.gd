@@ -73,14 +73,15 @@ var _focus_just_entered := false
 ## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_chosen := false
 
-onready var _button_control := $ButtonControlHolder/ButtonControl
 onready var _label := $ButtonControlHolder/ButtonControl/Label
 onready var _icon_tile_map := $ButtonControlHolder/ButtonControl/IconTileMapHolder/IconTileMap
 
+onready var button_control := $ButtonControlHolder/ButtonControl
+
 func _ready() -> void:
-	_button_control.text = ""
-	_button_control.rect_size = rect_size
-	_refresh_size()
+	button_control.text = ""
+	button_control.rect_size = rect_size
+	refresh_size()
 	_refresh_appearance()
 
 
@@ -178,36 +179,43 @@ func refresh_style_color(color: Color) -> void:
 	if not is_inside_tree():
 		return
 	
-	_button_control.get("custom_styles/normal").bg_color = color
-	_button_control.get("custom_styles/hover").bg_color = color
+	button_control.get("custom_styles/normal").bg_color = color
+	button_control.get("custom_styles/hover").bg_color = color
 
 
 ## Returns true if this button is currently focused.
 ##
 ## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
 func has_focus() -> bool:
-	return _button_control.has_focus()
+	return button_control.has_focus()
 
 
 ## Steals the focus from another control and becomes the focused control.
 ##
 ## For cosmetic reasons, this control itself doesn't have focus, but the child button control does.
 func grab_focus() -> void:
-	_button_control.grab_focus()
+	button_control.grab_focus()
 
 
 ## Assigns the focus access mode for the control (None, Click or All).
 ##
 ## For cosmetic reasons, this control itself doesn't have a focus mode, but the child button control does.
 func set_focus_mode(new_button_focus_mode: int) -> void:
-	_button_control.focus_mode = new_button_focus_mode
+	button_control.focus_mode = new_button_focus_mode
 
 
 ## Returns the focus access mode for the control (None, Click or All).
 ##
 ## For cosmetic reasons, this control itself doesn't have a focus mode, but the child button control does.
 func get_focus_mode() -> int:
-	return _button_control.focus_mode
+	return button_control.focus_mode
+
+
+func refresh_size() -> void:
+	if not button_control:
+		return
+	
+	button_control.rect_size = rect_size
 
 
 ## Updates the button's text, colors, size and icon based on the level and its status.
@@ -241,15 +249,8 @@ func _refresh_appearance() -> void:
 		_icon_tile_map.set_cell(-i, 0, 0, false, false, false, level_icon_autotile_coord)
 
 
-func _refresh_size() -> void:
-	if not _button_control:
-		return
-	
-	_button_control.rect_size = rect_size
-
-
 func _on_resized() -> void:
-	_refresh_size()
+	refresh_size()
 
 
 func _on_ButtonControl_pressed() -> void:

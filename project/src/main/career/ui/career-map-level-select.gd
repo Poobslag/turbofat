@@ -6,6 +6,8 @@ signal level_button_focused(button_index)
 
 export (PackedScene) var LevelSelectButtonScene: PackedScene
 export (PackedScene) var HardcoreLevelSelectButtonScene: PackedScene
+export (PackedScene) var BossLevelSelectButtonScene: PackedScene
+export (PackedScene) var HardcoreBossLevelSelectButtonScene: PackedScene
 
 var _prev_focused_level_button_index := -1
 
@@ -48,7 +50,11 @@ func clear_level_select_buttons() -> void:
 ## 	'settings': The level settings which control the button's appearance.
 func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
 	var button: LevelSelectButton
-	if settings.lose_condition.top_out == 1:
+	if PlayerData.career.is_boss_level() and settings.lose_condition.top_out == 1:
+		button = HardcoreBossLevelSelectButtonScene.instance()
+	elif PlayerData.career.is_boss_level():
+		button = BossLevelSelectButtonScene.instance()
+	elif settings.lose_condition.top_out == 1:
 		button = HardcoreLevelSelectButtonScene.instance()
 	else:
 		button = LevelSelectButtonScene.instance()

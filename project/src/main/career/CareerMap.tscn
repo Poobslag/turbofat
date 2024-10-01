@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/GradeLabels.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/level-select/BossLevelSelectButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
@@ -15,6 +16,9 @@
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/ui/level-select/HardcoreLevelSelectButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/career/ui/career-time-label.gd" type="Script" id=16]
+[ext_resource path="res://src/main/ui/level-select/HardcoreBossLevelSelectButton.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
 [ext_resource path="res://src/main/career/ui/career-map-level-select.gd" type="Script" id=28]
@@ -55,7 +59,11 @@ outer_space_visible = true
 script = ExtResource( 25 )
 MileMarkerScene = ExtResource( 48 )
 
-[node name="Environment" parent="World" instance=ExtResource( 8 )]
+[node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 8 )]
+script = ExtResource( 19 )
+environment_shadows_path = NodePath("Ground/Shadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 18 )
 
 [node name="Camera" type="Camera2D" parent="World"]
 current = true
@@ -66,6 +74,8 @@ script = ExtResource( 49 )
 script = ExtResource( 28 )
 LevelSelectButtonScene = ExtResource( 6 )
 HardcoreLevelSelectButtonScene = ExtResource( 15 )
+BossLevelSelectButtonScene = ExtResource( 3 )
+HardcoreBossLevelSelectButtonScene = ExtResource( 17 )
 
 [node name="Control" type="Control" parent="LevelSelect"]
 anchor_right = 1.0

@@ -1,0 +1,215 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=1]
+[ext_resource path="res://src/main/career/ui/HardcoreBgSkulls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/career/ui/BossFgSparkles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/level-select/BossLevelSelectButtonControlHolder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/level-select/boss-level-select-button.gd" type="Script" id=7]
+[ext_resource path="res://src/main/ui/level-select/hardcore-button-halo.gd" type="Script" id=8]
+[ext_resource path="res://src/main/career/ui/HardcoreFgSkulls.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Gradient" id=42]
+offsets = PoolRealArray( 0, 0.683824, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=43]
+gradient = SubResource( 42 )
+
+[sub_resource type="Curve" id=44]
+_data = [ Vector2( 0, 0 ), 0.0, 19.8455, 0, 0, Vector2( 0.105085, 1 ), -0.0924758, -0.0924758, 0, 0, Vector2( 1, 0.645455 ), -0.914257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=45]
+curve = SubResource( 44 )
+
+[sub_resource type="ParticlesMaterial" id=46]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.33
+scale_curve = SubResource( 45 )
+color_ramp = SubResource( 43 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="Gradient" id=34]
+offsets = PoolRealArray( 0, 0.683824, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 34 )
+
+[sub_resource type="Curve" id=35]
+_data = [ Vector2( 0, 0 ), 0.0, 19.8455, 0, 0, Vector2( 0.105085, 1 ), -0.0924758, -0.0924758, 0, 0, Vector2( 1, 0.645455 ), -0.914257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 35 )
+
+[sub_resource type="ParticlesMaterial" id=36]
+resource_local_to_scene = true
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.4
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="Gradient" id=47]
+offsets = PoolRealArray( 0, 0.683824, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=48]
+gradient = SubResource( 47 )
+
+[sub_resource type="Curve" id=49]
+_data = [ Vector2( 0, 0 ), 0.0, 19.8455, 0, 0, Vector2( 0.105085, 1 ), -0.0924758, -0.0924758, 0, 0, Vector2( 1, 0.645455 ), -0.914257, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=50]
+curve = SubResource( 49 )
+
+[sub_resource type="ParticlesMaterial" id=51]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.33
+scale_curve = SubResource( 50 )
+color_ramp = SubResource( 48 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="ParticlesMaterial" id=40]
+resource_local_to_scene = true
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 30, 15, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.5
+angular_velocity = 20.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -20.0
+angle_random = 1.0
+scale = 0.4
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=41]
+
+[node name="Control" type="Control"]
+margin_right = 120.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 120, 80 )
+mouse_filter = 1
+script = ExtResource( 7 )
+
+[node name="ButtonControlHolder" parent="." instance=ExtResource( 4 )]
+
+[node name="Decorations" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="BottomLeft" type="Control" parent="Decorations"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+
+[node name="FgSkulls" parent="Decorations/BottomLeft" instance=ExtResource( 9 )]
+position = Vector2( -5, 10 )
+z_index = 2
+amount = 2
+process_material = SubResource( 46 )
+
+[node name="FgSparkles" parent="Decorations/BottomLeft" instance=ExtResource( 3 )]
+z_index = 2
+
+[node name="BgSkulls" parent="Decorations/BottomLeft" instance=ExtResource( 2 )]
+process_material = SubResource( 36 )
+
+[node name="BottomRight" type="Control" parent="Decorations"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FgSkulls" parent="Decorations/BottomRight" instance=ExtResource( 9 )]
+z_index = 2
+amount = 2
+preprocess = 0.75
+process_material = SubResource( 51 )
+
+[node name="FgSparkles" parent="Decorations/BottomRight" instance=ExtResource( 3 )]
+z_index = 2
+
+[node name="BgSkulls" parent="Decorations/BottomRight" instance=ExtResource( 2 )]
+position = Vector2( 5, 10 )
+preprocess = 0.75
+process_material = SubResource( 40 )
+
+[node name="GradeHook" type="RemoteTransform2D" parent="."]
+position = Vector2( 12, 6 )
+rotation = -0.261799
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+
+[node name="Halo" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Halo"]
+modulate = Color( 0, 0, 0, 0.627451 )
+material = SubResource( 41 )
+position = Vector2( 60, 40 )
+scale = Vector2( 2, 0.8 )
+texture = ExtResource( 1 )
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="resized" from="Halo" to="Halo" method="_on_resized"]
+
+[editable path="Decorations/BottomLeft/FgSkulls"]
+[editable path="Decorations/BottomRight/FgSkulls"]
