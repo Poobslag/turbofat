@@ -50,11 +50,11 @@ onready var _menu_tracks := [
 onready var _puzzle_tracks := [
 		$AcidReflux, $ChocolateChip, $ChubNBass, $ChunkyObake,
 		$DooDooDoo, $ExtraSprinkles, $GingerbreadHouse, $JuicerMixerGrinder,
-		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake,
-		]
+		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake]
 
 onready var _credits_track := $SugarCrash
 onready var _tutorial_tracks := [$MyFatnessPal]
+onready var _boss_tracks := [$ExtraSprinkles]
 onready var _music_tween_manager := $MusicTweenManager
 
 func _ready() -> void:
@@ -126,6 +126,14 @@ func play_puzzle_track(fade_in: bool = true) -> void:
 		_previous_level_id = CurrentLevel.level_id
 	else:
 		_play_next_track(_puzzle_tracks, fade_in)
+
+
+func play_boss_track(fade_in: bool = true) -> void:
+	_play_next_track(_boss_tracks, fade_in)
+
+
+func is_playing_boss_track() -> bool:
+	return current_track in _boss_tracks
 
 
 ## Plays a 'tutorial track'; something suitable when the player is following a puzzle tutorial.

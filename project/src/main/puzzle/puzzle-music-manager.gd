@@ -7,7 +7,10 @@ func _ready() -> void:
 
 
 func start_puzzle_music() -> void:
-	if CurrentLevel.is_tutorial():
+	if PlayerData.career.is_career_mode() and MusicPlayer.is_playing_boss_track():
+		# don't interrupt boss music during career mode; it keeps playing from the level select to the puzzle
+		pass
+	elif CurrentLevel.is_tutorial():
 		MusicPlayer.play_tutorial_track(false)
 	else:
 		MusicPlayer.play_puzzle_track(false)

@@ -3,6 +3,8 @@ extends Control
 ##
 ## This includes two components: a player graphic and a 'steps remaining' label.
 
+signal travelling_finished
+
 ## Maximum height in pixels the player's chalk graphics bounce while advancing.
 const MAX_BOUNCE_HEIGHT := 40.0
 
@@ -74,6 +76,7 @@ func play(new_spots_travelled: int, duration: float) -> void:
 	# launch the movement tween, causing the player sprite to move along the path
 	_tween = Utils.recreate_tween(self, _tween)
 	_tween.tween_property(self, "visual_spots_travelled", new_spots_travelled, duration)
+	_tween.connect("finished", self, "_on_Tween_finished")
 	
 	var starting_pitch := \
 			PLAYER_MOVE_SOUND_PITCH_SCALE_MAX if _moving_backward() else PLAYER_MOVE_SOUND_PITCH_SCALE_MIN
@@ -149,3 +152,7 @@ func _refresh_visual_spots_travelled() -> void:
 				PLAYER_MOVE_SOUND_PITCH_SCALE_MIN if _moving_backward() else PLAYER_MOVE_SOUND_PITCH_SCALE_MAX
 		_player_move_sound.pitch_scale = lerp(_player_move_sound.pitch_scale, target_pitch, 0.05)
 		_player_move_sound.play()
+
+
+func _on_Tween_finished() -> void:
+	emit_signal("travelling_finished")

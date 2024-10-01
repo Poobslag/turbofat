@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/demo/ui/level-select/level-select-button-demo.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/level-select/GradeLabels.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/level-select/BossLevelSelectButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/level-select/HardcoreLevelSelectButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/level-select/HardcoreBossLevelSelectButton.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.807843, 0.407843, 0.85098, 1 )
@@ -16,6 +18,8 @@ corner_radius_bottom_left = 50
 script = ExtResource( 1 )
 LevelButtonScene = ExtResource( 2 )
 HardcoreLevelButtonScene = ExtResource( 5 )
+BossLevelButtonScene = ExtResource( 4 )
+HardcoreBossLevelButtonScene = ExtResource( 6 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0

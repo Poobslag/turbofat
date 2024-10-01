@@ -3,6 +3,8 @@ extends Node
 
 export (PackedScene) var LevelButtonScene: PackedScene
 export (PackedScene) var HardcoreLevelButtonScene: PackedScene
+export (PackedScene) var BossLevelButtonScene: PackedScene
+export (PackedScene) var HardcoreBossLevelButtonScene: PackedScene
 
 onready var _grid_container := $Control/GridContainer
 onready var _grade_labels := $Control/GradeLabels
@@ -43,6 +45,10 @@ func _button() -> LevelSelectButton:
 	var button: LevelSelectButton
 	if button_index == 2:
 		button = HardcoreLevelButtonScene.instance()
+	elif button_index == 4:
+		button = BossLevelButtonScene.instance()
+	elif button_index == 6:
+		button = HardcoreBossLevelButtonScene.instance()
 	else:
 		button = LevelButtonScene.instance()
 	button.level_id = "level_%03d" % [button_index]

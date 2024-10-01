@@ -761,7 +761,7 @@
   "triggers": [
     {
       "phases": [
-        "piece_written n=3,6..."
+        "piece_written n=4,8..."
       ],
       "effect": "insert_line tiles_key=0"
     },

@@ -1,3 +1,4 @@
+class_name ProgressBoard
 extends CanvasLayer
 ## Screen which shows the player's progress through career mode.
 ##
@@ -10,8 +11,27 @@ signal progress_board_hidden
 ## Amount of time in seconds to wait before hiding the progress board after an animation.
 const ANIMATED_HIDE_DELAY := 1.2
 
+## Amount of time in seconds to wait before hiding the progress board after the player reaches a boss level.
+const BOSS_HIDE_DELAY := 2.2
+
 ## Amount of time in seconds to wait before hiding the progress board when it is not being animated.
 const STATIC_HIDE_DELAY := 2.0
+
+## Chalk color to use for the progress board lines, spots, player and goal.
+const DEFAULT_CHALK_COLOR := Color("cfc56a")
+
+## Chalk colors to use for the progress board lines and spots when the player reaches the goal.
+const RAINBOW_CHALK_COLORS := [
+	Color("cfc56a"),
+	Color("75d06b"),
+	Color("6acfc5"),
+	Color("6a74cf"),
+	Color("c56acf"),
+	Color("cf6a74"),
+]
+
+## Duration in seconds to cycle between rainbow chalk colors when the player reaches the goal.
+const RAINBOW_INTERVAL := 0.16667
 
 ## If 'true', the board will not hide itself. Used for demos/debugging.
 export (bool) var suppress_hide := false
@@ -36,6 +56,9 @@ onready var _title := $ChalkboardRegion/Title
 
 ## Player's chalk graphics on the progress board.
 onready var _player := $ChalkboardRegion/Player
+
+## Goal text which shows up over the progress board destination
+onready var _goal := $ChalkboardRegion/GoalLabel
 
 ## Chalk drawing of the region.
 onready var _map_holder := $ChalkboardRegion/MapHolder
@@ -94,7 +117,10 @@ func play() -> void:
 	
 	## After the animation, we hide the progress board after a delay.
 	if not suppress_hide:
-		_hide_timer.start(ANIMATED_HIDE_DELAY + duration)
+		if PlayerData.career.is_boss_level():
+			_hide_timer.start(BOSS_HIDE_DELAY + duration)
+		else:
+			_hide_timer.start(ANIMATED_HIDE_DELAY + duration)
 
 
 ## Update the progress board's graphics based on the player's career progress.
@@ -118,6 +144,12 @@ func refresh() -> void:
 	if not region.has_end():
 		new_spots_truncated = true
 	_trail.spots_truncated = new_spots_truncated
+	
+	if region.boss_level and not PlayerData.career.is_region_finished(region):
+		_goal.visible = true
+		_goal.move_to_goal_spot(_trail.get_goal_position())
+	else:
+		_goal.visible = false
 	
 	match PlayerData.career.show_progress:
 		Careers.ShowProgress.ANIMATED:
@@ -198,3 +230,8 @@ func _on_HideTimer_timeout() -> void:
 ## When the AnimateStartTimer times out, we launch the clock and player animations.
 func _on_AnimateStartTimer_timeout() -> void:
 	play()
+
+
+func _on_Player_travelling_finished() -> void:
+	if PlayerData.career.is_boss_level() and not PlayerData.career.is_day_over():
+		MusicPlayer.play_boss_track(false)

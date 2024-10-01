@@ -3,6 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[0-9]: Set the time of day, 0=11:00 am, 6=10:00 pm.
+## 	[Shift + 0]: Prepare a career scenario where the player is 3 steps from a boss level for Poki Desert.
 ## 	[Q]: Hide the progress board.
 ## 	[W]: Briefly show the progress board, but do not animate.
 ## 	[E]: Briefly show and animate the progress board.
@@ -60,8 +61,13 @@ func _input(event: InputEvent) -> void:
 				PlayerData.career.current_region().flags[CareerRegion.FLAG_NO_SENSEI] = true
 			_player.refresh()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			PlayerData.career.hours_passed = Utils.key_num(event)
-			_progress_board.refresh()
+			if Input.is_key_pressed(KEY_SHIFT) and Utils.key_scancode(event) == KEY_0:
+				PlayerData.career.distance_travelled = 28
+				PlayerData.career.best_distance_travelled = 28
+				_progress_board.refresh()
+			else:
+				PlayerData.career.hours_passed = Utils.key_num(event)
+				_progress_board.refresh()
 		KEY_EQUAL:
 			PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 			PlayerData.career.distance_earned = 0

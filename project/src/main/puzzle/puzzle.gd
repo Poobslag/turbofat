@@ -11,7 +11,11 @@ onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	MusicPlayer.play_menu_track()
+	if PlayerData.career.is_career_mode() and MusicPlayer.is_playing_boss_track():
+		# don't interrupt boss music during career mode; it keeps playing from the level select to the puzzle
+		pass
+	else:
+		MusicPlayer.play_menu_track()
 	
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")

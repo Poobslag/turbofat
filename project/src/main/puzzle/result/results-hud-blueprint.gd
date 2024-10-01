@@ -113,7 +113,7 @@ func _target_for_grade(grade: String) -> int:
 
 func _duration_from_score(score: int) -> float:
 	var duration := 0.0
-	if score >= 0:
+	if score > 0:
 		duration += 0.4
 	duration += 1.6 / 1000.0 * clamp(score, 0, 1000) # 800 ms for the first 1,000 points
 	duration += 1.2 / 1000.0 * clamp(score - 1000, 0, 1000) # 600 ms for the second 1,000 points
