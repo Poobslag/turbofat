@@ -38,13 +38,7 @@ margin_right = 580.0
 margin_bottom = 336.0
 size_flags_vertical = 7
 theme = ExtResource( 2 )
-text = "There was a problem loading your save data. Your old save data from 3 days ago works, so we've loaded that instead.
-
-The invalid save data is available at the following path:
-
-\"C:\\Users\\Aaron\\AppData\\Roaming\\Godot\\app_userdata\\Turbo Fat\\turbofat0.this-day.save.bak\"
-
-Sorry."
+text = "asdf"
 autowrap = true
 
 [node name="Button" type="Button" parent="Popup/VBoxContainer"]
