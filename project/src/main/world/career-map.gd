@@ -37,7 +37,11 @@ func _ready() -> void:
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	
-	MusicPlayer.play_menu_track()
+	if PlayerData.career.is_boss_level() and not PlayerData.career.is_day_over() \
+			and (PlayerData.career.show_progress != Careers.ShowProgress.ANIMATED):
+		MusicPlayer.play_boss_track()
+	else:
+		MusicPlayer.play_menu_track()
 	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
 	
 	var redirected := false

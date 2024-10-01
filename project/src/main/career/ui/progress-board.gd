@@ -230,3 +230,8 @@ func _on_HideTimer_timeout() -> void:
 ## When the AnimateStartTimer times out, we launch the clock and player animations.
 func _on_AnimateStartTimer_timeout() -> void:
 	play()
+
+
+func _on_Player_travelling_finished() -> void:
+	if PlayerData.career.is_boss_level() and not PlayerData.career.is_day_over():
+		MusicPlayer.play_boss_track(false)

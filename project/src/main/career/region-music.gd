@@ -5,7 +5,7 @@ class_name RegionMusic
 ## in MusicPlayer.tracks_by_id. The list of puzzle music track ids obey two unusual rules:
 ##
 ## 1. The first item in the list of puzzle music track ids is the 'main puzzle music track id'. This main puzzle track
-## is played for the first puzzle of each career data and for the boss level.
+## is played for the first puzzle of each career data.
 ##
 ## 2. Json puzzle music track ids prefixed with a '+' will play twice as often.
 
@@ -34,7 +34,7 @@ func random_puzzle_track_id() -> String:
 
 ## Returns the main music track id to play while the player is playing a level from this region.
 ##
-## The main music track id is played at the start of every career day, and for every boss level.
+## The main music track id is played at the start of every career day.
 func main_puzzle_track_id() -> String:
 	return puzzle_track_ids[0]
 

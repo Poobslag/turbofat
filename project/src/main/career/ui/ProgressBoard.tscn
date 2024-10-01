@@ -849,6 +849,7 @@ wait_time = 0.5
 one_shot = true
 
 [connection signal="visibility_changed" from="Backdrop" to="." method="_on_Backdrop_visibility_changed"]
+[connection signal="travelling_finished" from="ChalkboardRegion/Player" to="." method="_on_Player_travelling_finished"]
 [connection signal="travelling_finished" from="ChalkboardRegion/Player" to="ChalkboardRegion/Trail" method="_on_Player_travelling_finished"]
 [connection signal="travelling_finished" from="ChalkboardRegion/Player" to="ChalkboardRegion/GoalLabel" method="_on_Player_travelling_finished"]
 [connection signal="travelling_finished" from="ChalkboardRegion/Player" to="ChalkboardRegion/SplashMessage" method="_on_Player_travelling_finished"]
