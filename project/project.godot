@@ -1204,6 +1204,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/presquish-sfx.gd"
 }, {
+"base": "CanvasLayer",
+"class": "ProgressBoard",
+"language": "GDScript",
+"path": "res://src/main/career/ui/progress-board.gd"
+}, {
 "base": "Node2D",
 "class": "ProgressBoardClockVisuals",
 "language": "GDScript",
@@ -1874,6 +1879,7 @@ _global_script_class_icons={
 "PracticeData": "",
 "PracticeSpeedSelector": "",
 "PresquishSfx": "",
+"ProgressBoard": "",
 "ProgressBoardClockVisuals": "",
 "ProgressBoardSpot": "",
 "ProgressBoardTitle": "",

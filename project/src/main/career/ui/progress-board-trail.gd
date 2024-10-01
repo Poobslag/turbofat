@@ -50,6 +50,10 @@ func get_spot_position(i: float) -> Vector2:
 	return _spots.get_spot_position(i)
 
 
+func get_goal_position() -> Vector2:
+	return _spots.get_spot_position(_spots.spot_count)
+
+
 func set_spots_truncated(new_spots_truncated: bool) -> void:
 	spots_truncated = new_spots_truncated
 	_refresh_spots()
@@ -73,3 +77,10 @@ func _refresh_spots() -> void:
 	
 	_spots.spot_count = spot_count
 	_spots.spots_truncated = spots_truncated
+
+
+## When the player reaches the goal, the trail flashes different colors.
+func _on_Player_travelling_finished() -> void:
+	if PlayerData.career.is_boss_level():
+		_spots.set_cycle_colors(true)
+		_lines.set_cycle_colors(true)

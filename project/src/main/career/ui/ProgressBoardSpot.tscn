@@ -5,6 +5,7 @@
 [ext_resource path="res://src/main/career/ui/progress-board-spot.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=29]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/width = 8.0
 shader_param/white = Color( 0.811765, 0.772549, 0.415686, 1 )

@@ -25,8 +25,23 @@ var spot_count: int = 0 setget set_spot_count
 ## great distance.
 var spots_truncated: bool = false setget set_spots_truncated
 
+## If 'true', the spots flash different colors. Used when the player reaches a goal.
+var cycle_colors: bool setget set_cycle_colors
+
+var _tween: SceneTreeTween
+
+## Colors used for progress board spots when cycle_colors is true. The first array entry is used to color the first
+## spot.
+var _rainbow_colors: Array
+
 func _ready() -> void:
 	_refresh_spots()
+	_refresh_cycle_colors()
+
+
+func set_cycle_colors(new_cycle_colors: bool) -> void:
+	cycle_colors = new_cycle_colors
+	_refresh_cycle_colors()
 
 
 func set_path2d(new_path2d: Path2D) -> void:
@@ -74,6 +89,29 @@ func get_spot_position(i: float) -> Vector2:
 			baked_points[int(floor(baked_point_float_index))],
 			baked_points[int(ceil(baked_point_float_index))],
 			baked_point_float_index - int(baked_point_float_index))
+
+
+## Cycles the rainbow colors by one, changing the color of all progress board spots.
+func _change_rainbow() -> void:
+	_rainbow_colors.push_back(_rainbow_colors.pop_front())
+	for i in range(get_child_count()):
+		get_child(i).set_spot_color(_rainbow_colors[i % _rainbow_colors.size()])
+
+
+func _refresh_cycle_colors() -> void:
+	if cycle_colors:
+		# flash different colors
+		_tween = Utils.recreate_tween(self, _tween)
+		_tween.set_loops()
+		_rainbow_colors = ProgressBoard.RAINBOW_CHALK_COLORS.duplicate()
+		_rainbow_colors.shuffle()
+		_tween.tween_callback(self, "_change_rainbow")
+		_tween.tween_interval(ProgressBoard.RAINBOW_INTERVAL)
+	else:
+		# reset to our default color
+		_tween = Utils.kill_tween(_tween)
+		for child in get_children():
+			child.set_spot_color(ProgressBoard.DEFAULT_CHALK_COLOR)
 
 
 ## Deletes and recreates all spots on the trail, assigning their positions and frames.
