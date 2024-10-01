@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=1]
+[ext_resource path="res://src/main/ui/level-select/BossLevelSelectButtonControlHolder.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/level-select/boss-level-button-material.tres" type="Material" id=3]
+[ext_resource path="res://src/main/utils/smooth-outline.shader" type="Shader" id=5]
+[ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://src/main/ui/level-select/hardcore-button-halo.gd" type="Script" id=7]
+[ext_resource path="res://src/main/ui/level-select/boss-level-select-button.gd" type="Script" id=8]
+[ext_resource path="res://src/main/career/ui/BossFgSparkles.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/career/ui/BossBgSparkles.tscn" type="PackedScene" id=10]
+
+[sub_resource type="StyleBoxFlat" id=28]
+resource_local_to_scene = true
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="ShaderMaterial" id=29]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/width = 15.0
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/sample_count = 24
+
+[sub_resource type="DynamicFont" id=30]
+resource_local_to_scene = true
+outline_size = 2
+outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+use_filter = true
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 6 )
+
+[sub_resource type="CanvasItemMaterial" id=26]
+
+[node name="Control" type="Control"]
+margin_right = 120.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 120, 80 )
+mouse_filter = 1
+script = ExtResource( 8 )
+
+[node name="ButtonControlHolder" parent="." instance=ExtResource( 2 )]
+
+[node name="ButtonControl" parent="ButtonControlHolder" index="0"]
+material = ExtResource( 3 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 28 )
+custom_styles/normal = SubResource( 28 )
+
+[node name="IconTileMap" parent="ButtonControlHolder/ButtonControl/IconTileMapHolder" index="0"]
+material = SubResource( 29 )
+
+[node name="Label" parent="ButtonControlHolder/ButtonControl" index="1"]
+custom_fonts/font = SubResource( 30 )
+
+[node name="Decorations" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="BottomLeft" type="Control" parent="Decorations"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+
+[node name="FgSparkles" parent="Decorations/BottomLeft" instance=ExtResource( 9 )]
+z_index = 2
+
+[node name="BgSparkles" parent="Decorations/BottomLeft" instance=ExtResource( 10 )]
+
+[node name="BottomRight" type="Control" parent="Decorations"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FgSparkles" parent="Decorations/BottomRight" instance=ExtResource( 9 )]
+z_index = 2
+
+[node name="BgSparkles" parent="Decorations/BottomRight" instance=ExtResource( 10 )]
+
+[node name="GradeHook" type="RemoteTransform2D" parent="."]
+position = Vector2( 12, 6 )
+rotation = -0.261799
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+
+[node name="Halo" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Halo"]
+modulate = Color( 1, 0.94902, 0.745098, 0.352941 )
+material = SubResource( 26 )
+position = Vector2( 60, 40 )
+scale = Vector2( 2, 0.8 )
+texture = ExtResource( 1 )
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="resized" from="Halo" to="Halo" method="_on_resized"]
+
+[editable path="ButtonControlHolder"]
