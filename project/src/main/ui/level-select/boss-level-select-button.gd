@@ -14,6 +14,7 @@ const PRESSED_BORDER := Color("80e1ff")
 
 func _ready() -> void:
 	_refresh_button_colors()
+	button_control.connect("pressed", self, "_on_ButtonControl_pressed")
 	button_control.connect("focus_entered", self, "_on_ButtonControl_focus_entered")
 	button_control.connect("focus_exited", self, "_on_ButtonControl_focus_exited")
 	button_control.connect("button_down", self, "_on_ButtonControl_button_down")
