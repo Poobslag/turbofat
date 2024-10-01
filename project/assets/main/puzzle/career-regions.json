@@ -99,7 +99,7 @@
       "music": {
         "menu": "hot_funk_sundae",
         "puzzle": [
-          "+pressure_cooker",
+          "+sugar_crash",
           "chunky_obake",
           "acid_reflux"
         ]
@@ -474,7 +474,7 @@
       "music": {
         "menu": "harder_butter",
         "puzzle": [
-          "+extra_sprinkles",
+          "+pressure_cooker",
           "mystic_muffin",
           "juicer_mixer_grinder"
         ]
@@ -554,13 +554,13 @@
       "music": {
         "menu": "rainbow_sherbeat",
         "puzzle": [
+          "+extra_sprinkles",
           "sugar_crash",
           "acid_reflux",
           "chocolate_chip",
           "chub_n_bass",
           "chunky_obake",
           "doo_doo_doo",
-          "extra_sprinkles",
           "gingerbread_house",
           "juicer_mixer_grinder",
           "mystic_muffin",

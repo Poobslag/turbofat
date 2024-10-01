@@ -15,7 +15,11 @@ func _ready() -> void:
 	if CurrentCutscene.chat_tree.meta.has("fixed_zoom"):
 		_camera.fixed_zoom = CurrentCutscene.chat_tree.meta["fixed_zoom"]
 	
-	MusicPlayer.play_menu_track()
+	if PlayerData.career.is_career_mode() and MusicPlayer.is_playing_boss_track():
+		# don't interrupt boss music during career mode; it keeps playing from the level select to the puzzle
+		pass
+	else:
+		MusicPlayer.play_menu_track()
 	_launch_cutscene()
 
 

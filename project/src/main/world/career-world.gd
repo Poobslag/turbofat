@@ -76,6 +76,11 @@ func _input(event: InputEvent) -> void:
 			PlayerData.career.distance_travelled = clamp(PlayerData.career.distance_travelled + distance,
 					region.start, region.end)
 			_move_objects_to_path()
+		
+		if PlayerData.career.is_boss_level():
+			MusicPlayer.play_boss_track()
+		else:
+			MusicPlayer.play_menu_track()
 
 
 func initial_environment_path() -> String:
