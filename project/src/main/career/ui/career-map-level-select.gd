@@ -11,9 +11,9 @@ export (PackedScene) var HardcoreBossLevelSelectButtonScene: PackedScene
 
 var _prev_focused_level_button_index := -1
 
-onready var _control := $Control
-onready var _grade_labels := $Control/GradeLabels
-onready var _level_buttons_container := $Control/LevelButtons
+onready var _control := $VBoxContainer/LevelButtons
+onready var _grade_labels := $VBoxContainer/LevelButtons/GradeLabels
+onready var _level_buttons_container := $VBoxContainer/LevelButtons/HBoxContainer
 
 func _ready() -> void:
 	# If the day is over, we show the career map briefly so the player can see their progress, but we hide the level
