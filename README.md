@@ -8,7 +8,7 @@ Turbo Fat was inspired by block-stacking games of the 90s, but builds on them wi
 
 ![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](img/screenshot-overworld.png)
 
-The game also includes a career mode where you can interact with other monsters. This will eventually grow to include many characters to meet with unique stories, worlds to explore, and crazy puzzle challenges.
+The game also includes an adventure mode where you can interact with other monsters. This will eventually grow to include many characters to meet with unique stories, worlds to explore, and crazy puzzle challenges.
 
 **Turbo Fat is free; you can download the latest version on the [releases page](https://github.com/Poobslag/turbofat/releases), or play it online at [itch.io](https://poobslag.itch.io/turbo-fat).**
 
