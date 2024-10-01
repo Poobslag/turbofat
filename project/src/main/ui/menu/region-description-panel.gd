@@ -20,7 +20,7 @@ func _refresh_text() -> void:
 
 
 func _on_RegionButtons_locked_region_focused(_region: Object) -> void:
-	set_text(tr("Advance further into career mode to unlock new areas!"))
+	set_text(tr("Advance further into Adventure mode to unlock new areas!"))
 
 
 func _on_RegionButtons_unlocked_region_focused(region: Object) -> void:

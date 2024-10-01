@@ -26,8 +26,8 @@ func _hints() -> Array:
 	
 	# Essential hints to help the player understand career mode
 	result.append(tr("Earning more money in a level moves you further on the map."))
-	result.append(tr("Career mode ends after six levels. Make every level count!"))
-	result.append(tr("Career mode ends if you lose all your lives. Try not to top out!"))
+	result.append(tr("Adventure mode ends after six levels. Make every level count!"))
+	result.append(tr("Adventure mode ends if you lose all your lives. Try not to top out!"))
 	result.append(tr("Sudden death levels are risky but reward you with an extra life."))
 	var region := PlayerData.career.current_region()
 	if region.boss_level and not PlayerData.career.is_region_finished(region) \
