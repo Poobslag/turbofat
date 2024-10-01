@@ -2,6 +2,7 @@ extends Node
 ## Demonstrates the end of level results message.
 ##
 ## Keys:
+## 	[0]: Show message for a marathon level where the player did nothing.
 ## 	[1,2,3]: Show message for a marathon level where the player did bad/ok/good.
 ## 	[Q,W,E]: Show message for a long ultra level where the player did bad/ok/good.
 ## 	[R]: Show message for a long ultra level which the player skipped with a cheat code.
@@ -27,6 +28,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
+		KEY_0:
+			_prepare_marathon_scenario(0.0)
+			_show_results_message()
 		KEY_1:
 			_prepare_marathon_scenario(0.1)
 			_show_results_message()
