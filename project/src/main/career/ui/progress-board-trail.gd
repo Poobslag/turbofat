@@ -75,6 +75,7 @@ func _refresh_spots() -> void:
 	if not is_inside_tree():
 		return
 	
+	_spots.has_goal = PlayerData.career.current_region().has_end()
 	_spots.spot_count = spot_count
 	_spots.spots_truncated = spots_truncated
 

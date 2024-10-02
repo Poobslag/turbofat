@@ -20,6 +20,9 @@ var path2d: Path2D setget set_path2d
 ## Number of spots on the trail, including the start and ending spot.
 var spot_count: int = 0 setget set_spot_count
 
+## If 'true', the ending spot will be decorated with a star.
+var has_goal: bool = true
+
 ## True if the number of spots on the board is truncated. Normally the player's start space is bigger, but when
 ## truncated the start space looks like just another spot. This way it looks like the player's already travelled a
 ## great distance.
@@ -137,7 +140,7 @@ func _refresh_spots() -> void:
 	for child_index in range(get_child_count()):
 		var child: ProgressBoardSpot = get_child(child_index)
 		var possible_frames := []
-		if child_index == get_child_count() - 1:
+		if has_goal and child_index == get_child_count() - 1:
 			possible_frames = SPOT_FRAMES_FINISH
 		elif child_index == 0 and not spots_truncated:
 			possible_frames = SPOT_FRAMES_START
