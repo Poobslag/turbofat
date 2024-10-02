@@ -13,7 +13,7 @@ script_encryption_key=""
 
 [preset.0.options]
 
-custom_template/debug="##GODOTSTEAM_WIN_DEBUG_TEMPLATE##"
+custom_template/debug=
 custom_template/release="##GODOTSTEAM_WIN_TEMPLATE##"
 binary_format/64_bits=true
 binary_format/embed_pck=false
@@ -56,7 +56,7 @@ script_encryption_key=""
 
 [preset.1.options]
 
-custom_template/debug="##GODOTSTEAM_LINUX_DEBUG_TEMPLATE##"
+custom_template/debug=
 custom_template/release="##GODOTSTEAM_LINUX_TEMPLATE##"
 binary_format/64_bits=true
 binary_format/embed_pck=false
