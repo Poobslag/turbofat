@@ -34,7 +34,7 @@ func disconnect_load_signal() -> void:
 
 ## Overridden by child classes to refresh the achievement and any stats.
 ##
-## Child classes should call Steam.set_achievement and Steam.set_stat_xxx appropriately.
+## Child classes should call SteamUtils.set_achievement and SteamUtils.set_stat_xxx appropriately.
 func refresh_achievement() -> void:
 	pass
 
@@ -43,7 +43,7 @@ func refresh_achievement() -> void:
 ##
 ## This is primarily only ever used for testing.
 func clear_achievement() -> void:
-	Steam.clear_achievement(achievement_id)
+	SteamUtils.clear_achievement(achievement_id)
 
 
 ## We check the achievement condition each time the player loads save data.

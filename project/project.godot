@@ -1524,11 +1524,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/utils/state-machine.gd"
 }, {
-"base": "",
-"class": "Steam",
-"language": "NativeScript",
-"path": "res://addons/godotsteam/godotsteam.gdns"
-}, {
 "base": "Node",
 "class": "SteamAchievement",
 "language": "GDScript",
@@ -1958,7 +1953,6 @@ _global_script_class_icons={
 "StarSeeds": "",
 "State": "",
 "StateMachine": "",
-"Steam": "",
 "SteamAchievement": "",
 "Sticker": "",
 "StickerRow": "",
@@ -2006,7 +2000,7 @@ LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 SfxDeconflicter="*res://src/main/utils/SfxDeconflicter.tscn"
-Steam="*res://addons/godotsteam/steam.gd"
+SteamUtils="*res://src/main/steam/steam-utils.gd"
 Breadcrumb="*res://src/main/utils/breadcrumb.gd"
 CareerLevelLibrary="*res://src/main/career/career-level-library.gd"
 CareerCutsceneLibrary="*res://src/main/career/career-cutscene-library.gd"
@@ -2038,7 +2032,6 @@ SystemSave="*res://src/main/data/system-save.gd"
 
 settings/fps/force_fps=120
 gdscript/warnings/narrowing_conversion=false
-gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -2145,7 +2138,7 @@ ui_menu={
 }
 ui_click={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 rewind_text={

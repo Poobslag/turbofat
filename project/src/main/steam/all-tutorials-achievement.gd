@@ -8,4 +8,4 @@ func refresh_achievement() -> void:
 		if PlayerData.level_history.is_level_finished(level_id):
 			finished_tutorial_count += 1
 	if finished_tutorial_count == tutorial_count:
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)

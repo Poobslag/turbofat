@@ -16,4 +16,4 @@ func refresh_achievement() -> void:
 	var best_rank: float = PlayerData.level_history.best_overall_rank(level_id)
 	
 	if best_rank <= target_rank:
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)
