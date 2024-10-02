@@ -26,4 +26,4 @@ func _on_LevelButtons_unlocked_level_focused(settings: LevelSettings) -> void:
 
 ## When a locked level is selected, we tell the player how to unlock it.
 func _on_LevelButtons_locked_level_focused(_settings: LevelSettings) -> void:
-	set_text(tr("Play this level in Career mode to unlock it!"))
+	set_text(tr("Play this level in Adventure mode to unlock it!"))

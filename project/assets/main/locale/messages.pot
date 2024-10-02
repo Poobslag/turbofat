@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 14:02-0400\n"
+"POT-Creation-Date: 2024-10-02 09:21-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Generated-By: Babel 2.13.1\n"
 
 #: project/assets/main/locale/localizables-extracted.py:4
-#: project/src/main/career/ui/ProgressBoard.tscn:591
+#: project/src/main/career/ui/ProgressBoard.tscn:719
 #: project/src/main/ui/RegionSelectButton.tscn:57
 msgid "Lemony Thickets"
 msgstr ""
@@ -148,12 +148,12 @@ msgstr ""
 msgid ""
 "And so #player# and Fat Sensei proceeded to the Zagma gift shop, where "
 "#player# purchased their very own Zagma Chef Of The Year plaque for "
-"¥3000."
+"¥3,000."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:33
 msgid ""
-"Fat Sensei refused to help pay for the plaque. \"¥3000 is a considerable "
+"Fat Sensei refused to help pay for the plaque. \"¥3,000 is a considerable "
 "investment, it's best you do it yourself.\""
 msgstr ""
 
@@ -1715,7 +1715,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:404
 #: project/assets/main/locale/localizables-extracted.py:409
 msgid ""
-"See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't"
+"See? That's the meaning. Who cares if you paid ¥3,000 for it? That doesn't"
 " change the meaning!"
 msgstr ""
 
@@ -2115,7 +2115,7 @@ msgid ""
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:484
-msgid "Ohhh, about ¥3000 should cover it. Cash is fine~"
+msgid "Ohhh, about ¥3,000 should cover it. Cash is fine~"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:485
@@ -2131,8 +2131,8 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:488
 #: project/assets/main/locale/localizables-extracted.py:492
 msgid ""
-"\"Blindly head east again!?\" Hmph don't be so naive. You can't go wandering"
-" in a random direction and expect to find anything."
+"\"Blindly head east again!?\" Hmph don't be so naive. You can't go "
+"wandering in a random direction and expect to find anything."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:489
@@ -12401,7 +12401,7 @@ msgid "9 Dan"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2974
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:44
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:36
 #: project/src/main/ui/menu/region-info-panel.gd:29
 msgid "Master"
 msgstr ""
@@ -13288,13 +13288,17 @@ msgstr ""
 msgid "Spanish"
 msgstr ""
 
-#: project/src/main/career/CareerMap.tscn:136
+#: project/src/main/career/CareerMap.tscn:120
+msgid "The left level is further from the goal. Choose carefully!"
+msgstr ""
+
+#: project/src/main/career/CareerMap.tscn:190
 #: project/src/main/career/ui/ChalkboardMapRow.tscn:179
 #: project/src/main/career/ui/Landmark.tscn:37
 msgid "999,999"
 msgstr ""
 
-#: project/src/main/career/CareerMap.tscn:171
+#: project/src/main/career/CareerMap.tscn:225
 msgid "12:05 am"
 msgstr ""
 
@@ -13334,6 +13338,101 @@ msgstr ""
 msgid "Kflab"
 msgstr ""
 
+#: project/src/main/career/career-hint.gd:13
+#, python-format
+msgid "Hint: %s"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:28
+msgid "Earning more money in a level moves you further on the map."
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:29
+msgid "Adventure mode ends after six levels. Make every level count!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:30
+msgid "Adventure mode ends if you lose all your lives. Try not to top out!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:31
+msgid "Sudden death levels are risky but reward you with an extra life."
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:35
+msgid "The boss level is near! Can you reach it in time?"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:39
+msgid "Tap down to squeeze pieces through tight spaces!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:40
+msgid "Practice tricky levels in Training Mode!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:42
+msgid "The leftmost level is further from the goal. Choose wisely!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:43
+msgid "Make a snack box by arranging a pentomino and a tetromino into a square!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:44
+msgid "Make a cake box by arranging 3 pieces into a rectangle!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:45
+msgid "Two different same-colored pieces can always make a square!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:46
+msgid "Keep clearing lines and making boxes to build a big combo!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:47
+msgid "Making boxes extends your combo. Keep your combo alive!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:48
+msgid "Clear lines to keep your combo going and earn tons of money!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:52
+msgid ""
+"Snack boxes score 5 points per line, but cake boxes score 10. Make those "
+"cakes!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:53
+msgid "Combos can earn up to 20 bonus points per line. Build those combos!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:54
+msgid "Hold left or right as the next piece appears to move it instantly!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:55
+msgid "Hold a rotate key as the next piece appears to spin it instantly!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:56
+msgid "Hold both rotate keys as the next piece appears to flip it instantly!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:57
+msgid "Press both rotate keys to flip a piece!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:58
+msgid "Hold up as the next piece appears to hard-drop it instantly!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd:59
+msgid "Tap down after a hard drop to unlock the piece and move it again!"
+msgstr ""
+
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:87
 msgid "Chapter Select"
 msgstr ""
@@ -13350,55 +13449,60 @@ msgstr ""
 msgid ">"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:156
+#: project/src/main/career/ui/CareerWin.tscn:157
 #: project/src/main/career/ui/chalkboard-title.gd:35
 msgid "LOOK WHAT WE DID"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:251
+#: project/src/main/career/ui/CareerWin.tscn:252
 msgid "Served:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:261
+#: project/src/main/career/ui/CareerWin.tscn:262
 msgid "132"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:308
+#: project/src/main/career/ui/CareerWin.tscn:309
 msgid "Steps:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:318
+#: project/src/main/career/ui/CareerWin.tscn:319
 msgid "23"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:374
+#: project/src/main/career/ui/CareerWin.tscn:375
 msgid "Earned:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:384
+#: project/src/main/career/ui/CareerWin.tscn:385
 msgid "¥999,999"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:431
+#: project/src/main/career/ui/CareerWin.tscn:432
 msgid "Time:"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:441
+#: project/src/main/career/ui/CareerWin.tscn:442
 msgid "15:03"
 msgstr ""
 
-#: project/src/main/career/ui/CareerWin.tscn:500
+#: project/src/main/career/ui/CareerWin.tscn:507
 #: project/src/main/ui/settings/SettingsMenu.tscn:1277
 msgid "Ok"
 msgstr ""
 
-#: project/src/main/career/ui/ProgressBoard.tscn:541
+#: project/src/main/career/ui/ProgressBoard.tscn:623
 #: project/src/main/ui/candy-button/HsvSlider.tscn:35
 #: project/src/main/ui/menu/TrainingMenu.tscn:222
 msgid "0"
 msgstr ""
 
-#: project/src/main/career/ui/ProgressBoard.tscn:661
+#: project/src/main/career/ui/ProgressBoard.tscn:663
+#: project/src/main/career/ui/progress-board-goal.gd:14
+msgid "GOAL"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn:805
 msgid "10:15 am"
 msgstr ""
 
@@ -13456,6 +13560,10 @@ msgstr ""
 
 #: project/src/main/career/ui/chalkboard-title.gd:52
 msgid "GOSH THAT'S NOT GOOD"
+msgstr ""
+
+#: project/src/main/career/ui/progress-board-splash-message.gd:8
+msgid "Goal!"
 msgstr ""
 
 #: project/src/main/chat/ui/ChatChoiceButton.tscn:248
@@ -13703,6 +13811,7 @@ msgid "Creature Saved"
 msgstr ""
 
 #: project/src/main/editor/creature/NamePickerPopup.tscn:20
+#: project/src/main/ui/menu/BadSaveDataControl.tscn:41
 msgid "asdf"
 msgstr ""
 
@@ -13811,24 +13920,24 @@ msgid ""
 "Z, X: Rotate"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:315
+#: project/src/main/puzzle/Puzzle.tscn:307
 msgid "Goal"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:325
+#: project/src/main/puzzle/Puzzle.tscn:332
 msgid "10"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:574
+#: project/src/main/puzzle/Puzzle.tscn:589
 #: project/src/main/ui/menu/TrainingMenu.tscn:229
 msgid "1"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:712
+#: project/src/main/puzzle/Puzzle.tscn:727
 msgid "abcd"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:741
+#: project/src/main/puzzle/Puzzle.tscn:756
 msgid ""
 "0 frame drops\n"
 "0 step drops"
@@ -13924,7 +14033,7 @@ msgid "Retry"
 msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:119
-#: project/src/main/puzzle/puzzle.gd:130
+#: project/src/main/puzzle/puzzle.gd:137
 msgid "Ready?"
 msgstr ""
 
@@ -14029,13 +14138,12 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-#: project/src/main/puzzle/result/BarGraphGoal.tscn:47
-#: project/src/main/puzzle/result/BarGraphGoal.tscn:68
+#: project/src/main/puzzle/result/BarGraphGoal.tscn:39
 msgid "¥25,000: SSS"
 msgstr ""
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:595
-#: project/src/main/puzzle/result/receipt-header.gd:23
+#: project/src/main/puzzle/result/receipt-header.gd:31
 msgid ""
 "Level\n"
 "Complete!"
@@ -14079,7 +14187,7 @@ msgstr ""
 msgid "¥5,000: B"
 msgstr ""
 
-#: project/src/main/puzzle/result/receipt-header.gd:21
+#: project/src/main/puzzle/result/receipt-header.gd:29
 msgid ""
 "Level\n"
 "Failed..."
@@ -15321,85 +15429,73 @@ msgstr ""
 msgid "V"
 msgstr ""
 
+#: project/src/main/ui/level-select/BossLevelSelectButtonControlHolder.tscn:119
+#: project/src/main/ui/level-select/LevelSelectButtonControlHolder.tscn:88
+msgid "Just getting started"
+msgstr ""
+
 #: project/src/main/ui/level-select/HookableLevelGradeLabel.tscn:28
 #: project/src/main/ui/level-select/HookableRegionGradeLabel.tscn:25
 msgid "S++"
 msgstr ""
 
-#: project/src/main/ui/level-select/LevelSelectButtonControlHolder.tscn:88
-msgid "Just getting started"
-msgstr ""
-
 #: project/src/main/ui/level-select/level-submenu-description-panel.gd:29
-msgid "Play this level in Career mode to unlock it!"
+msgid "Play this level in Adventure mode to unlock it!"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:35
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:27
 msgid "Unknown"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:37
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:29
 msgid "Very Easy"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:38
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:30
 msgid "Easy"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:39
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:31
 msgid "Normal"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:40
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:32
 msgid "Hard"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:41
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:33
 msgid "Very Hard"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:42
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:34
 msgid "Expert"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:43
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:35
 msgid "Very Expert"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:45
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:37
 #, python-format
 msgid "Difficulty: %s"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:58
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:49
 #, python-format
 msgid "Duration: %s"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:63
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:54
 #, python-format
 msgid "New: %s"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-submenu-info-panel.gd:67
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd:58
 #, python-format
 msgid "Top: %s"
 msgstr ""
 
-#: project/src/main/ui/menu/BadSaveDataControl.tscn:41
-msgid ""
-"There was a problem loading your save data. Your old save data from 3 "
-"days ago works, so we've loaded that instead.\n"
-"\n"
-"The invalid save data is available at the following path:\n"
-"\n"
-"\"C:\\Users\\Aaron\\AppData\\Roaming\\Godot\\app_userdata\\Turbo "
-"Fat\\turbofat0.this-day.save.bak\"\n"
-"\n"
-"Sorry."
-msgstr ""
-
-#: project/src/main/ui/menu/BadSaveDataControl.tscn:58
+#: project/src/main/ui/menu/BadSaveDataControl.tscn:52
 msgid "Well, crap"
 msgstr ""
 
@@ -15503,7 +15599,7 @@ msgid "I'm really sorry."
 msgstr ""
 
 #: project/src/main/ui/menu/region-description-panel.gd:23
-msgid "Advance further into career mode to unlock new areas!"
+msgid "Advance further into Adventure mode to unlock new areas!"
 msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd:12
