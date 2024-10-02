@@ -77,3 +77,26 @@ func test_grade() -> void:
 	assert_eq("SS", Ranks.grade(10.0))
 	assert_eq("S+", Ranks.grade(10.1))
 	assert_eq("-", Ranks.grade(999999.0))
+
+
+func test_rank_meets_grade() -> void:
+	assert_eq(Ranks.rank_meets_grade(0.0, "S"), true)
+	assert_eq(Ranks.rank_meets_grade(15.0, "S"), true)
+	assert_eq(Ranks.rank_meets_grade(20.0, "S"), true)
+	assert_eq(Ranks.rank_meets_grade(25.0, "S"), false)
+	assert_eq(Ranks.rank_meets_grade(999.0, "S"), false)
+	
+	assert_eq(Ranks.rank_meets_grade(0.0, "M"), true)
+	assert_eq(Ranks.rank_meets_grade(999.0, "M"), false)
+	
+	assert_eq(Ranks.rank_meets_grade(0.0, "-"), true)
+	assert_eq(Ranks.rank_meets_grade(999.0, "-"), true)
+
+
+func test_required_rank_for_grade() -> void:
+	assert_eq(Ranks.required_rank_for_grade(Ranks.WORST_GRADE), Ranks.WORST_RANK)
+	assert_eq(Ranks.required_rank_for_grade("B-"), 64.0)
+	assert_eq(Ranks.required_rank_for_grade("AA+"), 32.0)
+	assert_eq(Ranks.required_rank_for_grade("SSS"), 4.0)
+	assert_eq(Ranks.required_rank_for_grade("M"), 0.0)
+	assert_eq(Ranks.required_rank_for_grade("crazy-giants"), Ranks.WORST_RANK)
