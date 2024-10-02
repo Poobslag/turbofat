@@ -15,4 +15,4 @@ func _on_Breadcrumb_after_scene_changed() -> void:
 
 
 func _on_Sharks_shark_squished(_shark: Shark) -> void:
-	Steam.set_achievement(achievement_id)
+	SteamUtils.set_achievement(achievement_id)

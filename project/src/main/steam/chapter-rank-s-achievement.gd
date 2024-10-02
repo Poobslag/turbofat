@@ -18,9 +18,9 @@ func connect_signals() -> void:
 func refresh_achievement() -> void:
 	var s_rank_percent := _s_rank_percent()
 	
-	Steam.set_stat_float(stat_id, 100 * s_rank_percent)
+	SteamUtils.set_stat_float(stat_id, 100 * s_rank_percent)
 	if s_rank_percent == 1.0:
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)
 
 
 ## Returns a number in the range [0.0, 1.0] for how many levels the player has achieved an 'S' rank on.

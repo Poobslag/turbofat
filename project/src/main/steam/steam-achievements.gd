@@ -11,4 +11,4 @@ func get_achievements() -> Array:
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "pain-whistle-elastic-union":
 		detector.play_cheat_sound(true)
-		Steam.reset_all_stats(true)
+		SteamUtils.reset_all_stats(true)

@@ -12,7 +12,7 @@ func connect_signals() -> void:
 func refresh_achievement() -> void:
 	var player_dna := PlayerData.creature_library.get_player_def().dna
 	if not Utils.is_json_deep_equal(player_dna, CreatureDef.DEFAULT_DNA):
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)
 
 
 func _on_PlayerSave_before_save() -> void:

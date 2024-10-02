@@ -15,7 +15,7 @@ func connect_signals() -> void:
 
 func refresh_achievement() -> void:
 	if _max_combo >= target_combo:
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)
 
 
 func _on_PuzzleState_combo_changed(value: int) -> void:

@@ -9,7 +9,7 @@ func prepare_level_listeners() -> void:
 
 func refresh_achievement() -> void:
 	if PuzzleState.level_performance.pickup_score > target_score:
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)
 
 
 func _on_PuzzleState_score_changed() -> void:

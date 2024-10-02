@@ -10,7 +10,7 @@ func prepare_level_listeners() -> void:
 
 func refresh_achievement() -> void:
 	if get_tree().current_scene is Puzzle and _carrots().get_carrot_count() >= target_carrot_count:
-		Steam.set_achievement(achievement_id)
+		SteamUtils.set_achievement(achievement_id)
 
 
 func _carrots() -> Carrots:
