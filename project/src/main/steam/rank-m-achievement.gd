@@ -19,10 +19,6 @@ func refresh_achievement() -> void:
 
 func _on_PuzzleState_game_ended() -> void:
 	var rank_result := RankCalculator.new().calculate_rank()
-	var current_level_rank: float
-	if CurrentLevel.settings.finish_condition.type == Milestone.SCORE:
-		current_level_rank = rank_result.seconds_rank
-	else:
-		current_level_rank = rank_result.score_rank
+	var current_level_rank := rank_result.rank
 	
 	_best_level_rank = min(_best_level_rank, current_level_rank)
