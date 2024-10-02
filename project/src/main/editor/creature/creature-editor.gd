@@ -10,7 +10,14 @@ onready var _dialogs: CreatureEditorDialogs = get_node(dialogs_path)
 onready var _creature_saver: CreatureSaver = get_node(creature_saver_path)
 
 func _ready() -> void:
+	ResourceCache.substitute_singletons()
+	MusicPlayer.play_menu_track()
+	
 	$Buttons/VBoxContainer/CategorySelector.set_selected_category_index(0)
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
 
 
 func _quit() -> void:

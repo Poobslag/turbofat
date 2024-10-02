@@ -18,5 +18,4 @@ func _on_Career_pressed() -> void:
 
 
 func _on_Avatar_pressed() -> void:
-	MusicPlayer.stop()
 	SceneTransition.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")
