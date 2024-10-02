@@ -173,17 +173,17 @@ msgstr "Un modo infinito donde no hay forma de ganar o perder."
 #: project/assets/main/locale/localizables-extracted.py:32
 msgid ""
 "And so #player# and Fat Sensei proceeded to the Zagma gift shop, where "
-"#player# purchased their very own Zagma Chef Of The Year plaque for ¥3000."
+"#player# purchased their very own Zagma Chef Of The Year plaque for ¥3,000."
 msgstr ""
 "Y así, #player# y Fat Sensei fueron a la tienda de regalos de Zagma, donde "
-"#player# compró su propia placa de Zagma Chef del Año por ¥3000."
+"#player# compró su propia placa de Zagma Chef del Año por ¥3,000."
 
 #: project/assets/main/locale/localizables-extracted.py:33
 msgid ""
-"Fat Sensei refused to help pay for the plaque. \"¥3000 is a considerable "
+"Fat Sensei refused to help pay for the plaque. \"¥3,000 is a considerable "
 "investment, it's best you do it yourself.\""
 msgstr ""
-"Fat Sensei se negó a ayudar con el pago de la placa. \"¥3000 es una "
+"Fat Sensei se negó a ayudar con el pago de la placa. \"¥3,000 es una "
 "inversión considerable, es mejor que lo hagas solo.\""
 
 #: project/assets/main/locale/localizables-extracted.py:34
@@ -1909,10 +1909,10 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:404
 #: project/assets/main/locale/localizables-extracted.py:409
 msgid ""
-"See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't "
+"See? That's the meaning. Who cares if you paid ¥3,000 for it? That doesn't "
 "change the meaning!"
 msgstr ""
-"¿Ves? Ese es el significado. ¿A quién le importa si pagaste ¥3000 por ella? "
+"¿Ves? Ese es el significado. ¿A quién le importa si pagaste ¥3,000 por ella? "
 "¡Eso no cambia el significado!"
 
 #: project/assets/main/locale/localizables-extracted.py:395
@@ -2383,8 +2383,8 @@ msgstr ""
 "varias semanas!! ¿Qué tipo de dedicación te refieres?"
 
 #: project/assets/main/locale/localizables-extracted.py:484
-msgid "Ohhh, about ¥3000 should cover it. Cash is fine~"
-msgstr "Ohhh, con solo ¥3000 debería de bastar. En efectivo está bien~"
+msgid "Ohhh, about ¥3,000 should cover it. Cash is fine~"
+msgstr "Ohhh, con solo ¥3,000 debería de bastar. En efectivo está bien~"
 
 #: project/assets/main/locale/localizables-extracted.py:485
 msgid "Ha ha, nice try..."

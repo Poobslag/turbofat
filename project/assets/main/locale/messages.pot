@@ -148,12 +148,12 @@ msgstr ""
 msgid ""
 "And so #player# and Fat Sensei proceeded to the Zagma gift shop, where "
 "#player# purchased their very own Zagma Chef Of The Year plaque for "
-"¥3000."
+"¥3,000."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:33
 msgid ""
-"Fat Sensei refused to help pay for the plaque. \"¥3000 is a considerable "
+"Fat Sensei refused to help pay for the plaque. \"¥3,000 is a considerable "
 "investment, it's best you do it yourself.\""
 msgstr ""
 
@@ -1715,7 +1715,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:404
 #: project/assets/main/locale/localizables-extracted.py:409
 msgid ""
-"See? That's the meaning. Who cares if you paid ¥3000 for it? That doesn't"
+"See? That's the meaning. Who cares if you paid ¥3,000 for it? That doesn't"
 " change the meaning!"
 msgstr ""
 
@@ -2115,7 +2115,7 @@ msgid ""
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:484
-msgid "Ohhh, about ¥3000 should cover it. Cash is fine~"
+msgid "Ohhh, about ¥3,000 should cover it. Cash is fine~"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:485
