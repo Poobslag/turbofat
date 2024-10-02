@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 09:17-0400\n"
+"POT-Creation-Date: 2024-10-02 09:19-0400\n"
 "PO-Revision-Date: 2024-06-27 10:27-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -12635,8 +12635,9 @@ msgid "Face"
 msgstr "Cara"
 
 #: project/assets/main/locale/localizables-extracted.py:2653
+#, fuzzy
 msgid "Eyes"
-msgstr ""
+msgstr "Ojos"
 
 #: project/assets/main/locale/localizables-extracted.py:2654
 msgid "Nose"
@@ -12647,12 +12648,14 @@ msgid "Mouth"
 msgstr "Boca"
 
 #: project/assets/main/locale/localizables-extracted.py:2656
+#, fuzzy
 msgid "Cheeks"
-msgstr ""
+msgstr "Mejillas"
 
 #: project/assets/main/locale/localizables-extracted.py:2657
+#, fuzzy
 msgid "Ears"
-msgstr ""
+msgstr "Orejas"
 
 #: project/assets/main/locale/localizables-extracted.py:2658
 msgid "Forehead"
@@ -12671,8 +12674,9 @@ msgid "Body"
 msgstr "Cuerpo"
 
 #: project/assets/main/locale/localizables-extracted.py:2662
+#, fuzzy
 msgid "Neck"
-msgstr ""
+msgstr "Cuello"
 
 #: project/assets/main/locale/localizables-extracted.py:2663
 msgid "Tail"
@@ -12683,8 +12687,9 @@ msgid "Belly"
 msgstr "Panza"
 
 #: project/assets/main/locale/localizables-extracted.py:2665
+#, fuzzy
 msgid "Finish"
-msgstr ""
+msgstr "Finalizar"
 
 #: project/assets/main/locale/localizables-extracted.py:2668
 msgid "¥1,000 Race"
@@ -13543,8 +13548,9 @@ msgid "...And they don't stop coming!"
 msgstr "...¡Y no paran de venir!"
 
 #: project/assets/main/locale/localizables-extracted.py:2884
+#, fuzzy
 msgid "Strawberry Sharkcake"
-msgstr ""
+msgstr "Tarta Tiburón de Fresa"
 
 #: project/assets/main/locale/localizables-extracted.py:2885
 msgid "It says in this cookbook it takes a long time to rise."
@@ -14849,8 +14855,10 @@ msgid "Spanish"
 msgstr "Español"
 
 #: project/src/main/career/CareerMap.tscn:120
+#, fuzzy
 msgid "The left level is further from the goal. Choose carefully!"
 msgstr ""
+"El nivel de la izquierda está más lejos de la meta. ¡Elige con cuidado!"
 
 #: project/src/main/career/CareerMap.tscn:190
 #: project/src/main/career/ui/ChalkboardMapRow.tscn:179
@@ -14904,95 +14912,141 @@ msgid "Hint: %s"
 msgstr "Pista: %s"
 
 #: project/src/main/career/career-hint.gd:28
+#, fuzzy
 msgid "Earning more money in a level moves you further on the map."
-msgstr ""
+msgstr "Ganar más dinero en un nivel te lleva más lejos en el mapa."
 
 #: project/src/main/career/career-hint.gd:29
+#, fuzzy
 msgid "Adventure mode ends after six levels. Make every level count!"
 msgstr ""
+"El modo Aventura termina después de seis niveles. ¡Aprovecha cada nivel!"
 
 #: project/src/main/career/career-hint.gd:30
+#, fuzzy
 msgid "Adventure mode ends if you lose all your lives. Try not to top out!"
 msgstr ""
+"El modo Aventura termina si pierdes todas tus vidas. ¡Intenta no "
+"sobrepasarte!"
 
 #: project/src/main/career/career-hint.gd:31
+#, fuzzy
 msgid "Sudden death levels are risky but reward you with an extra life."
 msgstr ""
+"Los niveles de muerte súbita son arriesgados, pero te recompensan con una "
+"vida extra."
 
 #: project/src/main/career/career-hint.gd:35
+#, fuzzy
 msgid "The boss level is near! Can you reach it in time?"
-msgstr ""
+msgstr "¡El nivel del jefe está cerca! ¿Puedes llegar a tiempo?"
 
 #: project/src/main/career/career-hint.gd:39
+#, fuzzy
 msgid "Tap down to squeeze pieces through tight spaces!"
-msgstr ""
+msgstr "¡Presiona abajo para aplastar las piezas en espacios estrechos!"
 
 #: project/src/main/career/career-hint.gd:40
+#, fuzzy
 msgid "Practice tricky levels in Training Mode!"
-msgstr ""
+msgstr "¡Practica niveles complicados en el Modo Entrenamiento!"
 
 #: project/src/main/career/career-hint.gd:42
+#, fuzzy
 msgid "The leftmost level is further from the goal. Choose wisely!"
 msgstr ""
+"El nivel más a la izquierda está más lejos de la meta. ¡Elige sabiamente!"
 
 #: project/src/main/career/career-hint.gd:43
+#, fuzzy
 msgid ""
 "Make a snack box by arranging a pentomino and a tetromino into a square!"
 msgstr ""
+"¡Haz una caja de bocadillo organizando un pentomino y un tetromino en un "
+"cuadrado!"
 
 #: project/src/main/career/career-hint.gd:44
+#, fuzzy
 msgid "Make a cake box by arranging 3 pieces into a rectangle!"
-msgstr ""
+msgstr "¡Haz una caja de pastel organizando 3 piezas en un rectángulo!"
 
 #: project/src/main/career/career-hint.gd:45
+#, fuzzy
 msgid "Two different same-colored pieces can always make a square!"
 msgstr ""
+"¡Dos piezas de diferente tipo pero del mismo color siempre pueden formar un "
+"cuadrado!"
 
 #: project/src/main/career/career-hint.gd:46
+#, fuzzy
 msgid "Keep clearing lines and making boxes to build a big combo!"
-msgstr ""
+msgstr "¡Sigue eliminando líneas y formando cajas para hacer un gran combo!"
 
 #: project/src/main/career/career-hint.gd:47
+#, fuzzy
 msgid "Making boxes extends your combo. Keep your combo alive!"
-msgstr ""
+msgstr "Formar cajas extiende tu combo. ¡Mantén vivo tu combo!"
 
 #: project/src/main/career/career-hint.gd:48
+#, fuzzy
 msgid "Clear lines to keep your combo going and earn tons of money!"
-msgstr ""
+msgstr "Elimina líneas para mantener tu combo y ganar mucho dinero."
 
 #: project/src/main/career/career-hint.gd:52
+#, fuzzy
 msgid ""
 "Snack boxes score 5 points per line, but cake boxes score 10. Make those "
 "cakes!"
 msgstr ""
+"Las cajas de bocadillo otorgan 5 puntos por línea, pero las cajas de pastel "
+"otorgan 10. ¡Haz esos pasteles!"
 
 #: project/src/main/career/career-hint.gd:53
+#, fuzzy
 msgid "Combos can earn up to 20 bonus points per line. Build those combos!"
 msgstr ""
+"Los combos pueden darte hasta 20 puntos extra por línea. ¡Construye esos "
+"combos!"
 
 #: project/src/main/career/career-hint.gd:54
+#, fuzzy
 msgid "Hold left or right as the next piece appears to move it instantly!"
 msgstr ""
+"Mantén presionado izquierda o derecha cuando aparezca la siguiente pieza "
+"para moverla al instante."
 
 #: project/src/main/career/career-hint.gd:55
+#, fuzzy
 msgid "Hold a rotate key as the next piece appears to spin it instantly!"
 msgstr ""
+"Mantén presionada una tecla de rotación cuando aparezca la siguiente pieza "
+"para girarla al instante."
 
 #: project/src/main/career/career-hint.gd:56
+#, fuzzy
 msgid "Hold both rotate keys as the next piece appears to flip it instantly!"
 msgstr ""
+"Mantén presionadas ambas teclas de rotación cuando aparezca la siguiente "
+"pieza para voltearla al instante."
 
 #: project/src/main/career/career-hint.gd:57
+#, fuzzy
 msgid "Press both rotate keys to flip a piece!"
-msgstr ""
+msgstr "¡Presiona ambas teclas de rotación para voltear una pieza!"
 
 #: project/src/main/career/career-hint.gd:58
+#, fuzzy
 msgid "Hold up as the next piece appears to hard-drop it instantly!"
 msgstr ""
+"Mantén presionado arriba cuando aparezca la siguiente pieza para dejarla "
+"caer al instante."
 
 #: project/src/main/career/career-hint.gd:59
+#, fuzzy
 msgid "Tap down after a hard drop to unlock the piece and move it again!"
 msgstr ""
+"Presiona abajo después de una caída fuerte para desbloquear la pieza y "
+"moverla de nuevo."
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:87
 msgid "Chapter Select"
@@ -15060,8 +15114,9 @@ msgstr "0"
 
 #: project/src/main/career/ui/ProgressBoard.tscn:663
 #: project/src/main/career/ui/progress-board-goal.gd:14
+#, fuzzy
 msgid "GOAL"
-msgstr ""
+msgstr "META"
 
 #: project/src/main/career/ui/ProgressBoard.tscn:805
 msgid "10:15 am"
@@ -15124,8 +15179,9 @@ msgid "GOSH THAT'S NOT GOOD"
 msgstr "¡WOW! ESO NO ESTÁ BIEN"
 
 #: project/src/main/career/ui/progress-board-splash-message.gd:8
+#, fuzzy
 msgid "Goal!"
-msgstr ""
+msgstr "¡Meta!"
 
 #: project/src/main/chat/ui/ChatChoiceButton.tscn:248
 msgid "Oh bother"
@@ -15165,11 +15221,15 @@ msgid "S+"
 msgstr "S+"
 
 #: project/src/main/credits/CreditsEndText.tscn:107
+#, fuzzy
 msgid ""
 "Congratulations!\n"
 "\n"
 "You are a super player."
 msgstr ""
+"¡Felicidades!\n"
+"\n"
+"Eres un jugador excelente."
 
 #: project/src/main/credits/CreditsHeader.tscn:35
 #: project/src/main/ui/menu/MainMenu.tscn:119
@@ -15334,12 +15394,14 @@ msgstr "%.1f%%"
 #: project/src/main/ui/candy-button/CandyButtonH3.tscn:96
 #: project/src/main/ui/candy-button/CandyButtonH4.tscn:48
 #: project/src/main/ui/candy-button/CandyButtonH4.tscn:57
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:384
+#, fuzzy
 msgid "Mouths"
-msgstr ""
+msgstr "Bocas"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:466
 #: project/src/main/puzzle/PuzzleMessages.tscn:92
@@ -15359,16 +15421,19 @@ msgid "Quit"
 msgstr "Salir"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:877
+#, fuzzy
 msgid "Save Changes?"
-msgstr ""
+msgstr "¿Guardar cambios?"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:878
+#, fuzzy
 msgid "Want to save your changes?"
-msgstr ""
+msgstr "¿Quieres guardar tus cambios?"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:892
+#, fuzzy
 msgid "Import Creature"
-msgstr ""
+msgstr "Importar Criatura"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:909
 msgid "Export Creature"
@@ -15379,25 +15444,28 @@ msgid "Error"
 msgstr "Error"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:939
+#, fuzzy
 msgid "Creature Saved"
-msgstr ""
+msgstr "Criatura Guardada"
 
 #: project/src/main/editor/creature/NamePickerPopup.tscn:20
 #: project/src/main/ui/menu/BadSaveDataControl.tscn:41
 msgid "asdf"
-msgstr ""
+msgstr "asdf"
 
 #: project/src/main/editor/creature/creature-editor.gd:64
+#, fuzzy
 msgid "Error importing creature."
-msgstr ""
+msgstr "Error al importar la criatura."
 
 #: project/src/main/editor/creature/dialogs.gd:25
 msgid "Save"
 msgstr "Guardar"
 
 #: project/src/main/editor/creature/dialogs.gd:26
+#, fuzzy
 msgid "Discard"
-msgstr ""
+msgstr "Descartar"
 
 #: project/src/main/music/MusicPlayer.tscn:33
 msgid "Acid Reflux"
@@ -15485,12 +15553,17 @@ msgid "¥20"
 msgstr "¥20"
 
 #: project/src/main/puzzle/Playfield.tscn:256
+#, fuzzy
 msgid ""
 "Arrows: Move\n"
 "Down: Soft drop\n"
 "Space: Hard drop\n"
 "Z, X: Rotate"
 msgstr ""
+"Flechas: Mover\n"
+"Abajo: Caída suave\n"
+"Espacio: Caída fuerte\n"
+"Z, X: Rotar"
 
 #: project/src/main/puzzle/Puzzle.tscn:307
 msgid "Goal"
@@ -15510,10 +15583,13 @@ msgid "abcd"
 msgstr "abcd"
 
 #: project/src/main/puzzle/Puzzle.tscn:756
+#, fuzzy
 msgid ""
 "0 frame drops\n"
 "0 step drops"
 msgstr ""
+"0 caídas de cuadros\n"
+"0 caídas por paso"
 
 #: project/src/main/puzzle/PuzzleMessage.tscn:281
 #: project/src/main/puzzle/PuzzleMessage.tscn:294
@@ -15541,10 +15617,13 @@ msgid "+¥55"
 msgstr "+¥55"
 
 #: project/src/main/puzzle/TechMoveBurst.tscn:130
+#, fuzzy
 msgid ""
 "T-Spin\n"
 "Double"
 msgstr ""
+"T-Spin\n"
+"Doble"
 
 #: project/src/main/puzzle/frame-drops-label.gd:61
 #, python-format
@@ -15715,8 +15794,9 @@ msgid "name"
 msgstr "nombre"
 
 #: project/src/main/puzzle/result/BarGraphGoal.tscn:39
+#, fuzzy
 msgid "¥25,000: SSS"
-msgstr ""
+msgstr "¥25,000: SSS"
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:595
 #: project/src/main/puzzle/result/receipt-header.gd:31
@@ -15753,23 +15833,23 @@ msgstr ""
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:697
 msgid "¥387"
-msgstr ""
+msgstr "¥387"
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:712
 msgid "¥20,000: SS"
-msgstr ""
+msgstr "¥20,000: SS"
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:719
 msgid "¥15,000: S"
-msgstr ""
+msgstr "¥15,000: S"
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:726
 msgid "¥10,000: A"
-msgstr ""
+msgstr "¥10,000: A"
 
 #: project/src/main/puzzle/result/ResultsHud.tscn:733
 msgid "¥5,000: B"
-msgstr ""
+msgstr "¥5,000: B"
 
 #: project/src/main/puzzle/result/receipt-header.gd:29
 msgid ""
@@ -15811,10 +15891,13 @@ msgid "abc"
 msgstr "abc"
 
 #: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:72
+#, fuzzy
 msgid ""
 "abc\n"
 "(0/5)"
 msgstr ""
+"abc\n"
+"(0/5)"
 
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:44
 msgid "Move Left"
@@ -17340,15 +17423,15 @@ msgstr "Mejor de Todos"
 
 #: project/src/main/ui/candy-button/CandyColorPicker.tscn:125
 msgid "H"
-msgstr ""
+msgstr "H"
 
 #: project/src/main/ui/candy-button/CandyColorPicker.tscn:132
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: project/src/main/ui/candy-button/CandyColorPicker.tscn:139
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: project/src/main/ui/level-select/BossLevelSelectButtonControlHolder.tscn:119
 #: project/src/main/ui/level-select/LevelSelectButtonControlHolder.tscn:88
@@ -17361,8 +17444,9 @@ msgid "S++"
 msgstr "S++"
 
 #: project/src/main/ui/level-select/level-submenu-description-panel.gd:29
+#, fuzzy
 msgid "Play this level in Adventure mode to unlock it!"
-msgstr ""
+msgstr "¡Juega este nivel en el modo Aventura para desbloquearlo!"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:27
 msgid "Unknown"
@@ -17421,8 +17505,9 @@ msgid "Well, crap"
 msgstr "Bueno, mierda"
 
 #: project/src/main/ui/menu/MainMenu.tscn:143
+#, fuzzy
 msgid "Adventure"
-msgstr ""
+msgstr "Aventura"
 
 #: project/src/main/ui/menu/MainMenu.tscn:165
 #: project/src/main/ui/menu/SplashScreen.tscn:81
@@ -17430,12 +17515,14 @@ msgid "Play"
 msgstr "Jugar"
 
 #: project/src/main/ui/menu/MainMenu.tscn:182
+#, fuzzy
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: project/src/main/ui/menu/MainMenu.tscn:225
+#, fuzzy
 msgid "Training"
-msgstr ""
+msgstr "Entrenamiento"
 
 #: project/src/main/ui/menu/MainMenu.tscn:271
 msgid "Stress Test"
@@ -17541,8 +17628,9 @@ msgid "I'm really sorry."
 msgstr "Lo lamento mucho."
 
 #: project/src/main/ui/menu/region-description-panel.gd:23
+#, fuzzy
 msgid "Advance further into Adventure mode to unlock new areas!"
-msgstr ""
+msgstr "¡Avanza más en el modo Aventura para desbloquear nuevas areas!"
 
 #: project/src/main/ui/menu/region-info-panel.gd:12
 msgid "7 kyu"
@@ -17761,8 +17849,9 @@ msgstr "Volver en Menú"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:663
 #: project/src/main/ui/settings/SettingsMenu.tscn:826
+#, fuzzy
 msgid "Next Tab"
-msgstr ""
+msgstr "Siguiente Pestaña"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:664
 #: project/src/main/ui/settings/SettingsMenu.tscn:1100
@@ -17772,12 +17861,13 @@ msgstr "X"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:670
 #: project/src/main/ui/settings/SettingsMenu.tscn:833
+#, fuzzy
 msgid "Previous Tab"
-msgstr ""
+msgstr "Pestaña Anterior"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:671
 msgid "Z"
-msgstr ""
+msgstr "Z"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:683
 #: project/src/main/ui/settings/SettingsMenu.tscn:846
@@ -18013,20 +18103,24 @@ msgid "Mute"
 msgstr "Mudo"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:54
+#, fuzzy
 msgid "Master Volume"
-msgstr ""
+msgstr "Volumen Principal"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:55
+#, fuzzy
 msgid "Music Volume"
-msgstr ""
+msgstr "Volumen de la Música"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:56
+#, fuzzy
 msgid "SFX Volume"
-msgstr ""
+msgstr "Volumen de Efectos"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:57
+#, fuzzy
 msgid "Voice Volume"
-msgstr ""
+msgstr "Volumen de las Voces"
 
 #: project/src/main/ui/settings/keybind/custom-keybind-button.gd:53
 msgid "<Enter Key>"
@@ -18187,126 +18281,3 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:94
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
-
-#~ msgid "Play this level in Career mode to unlock it!"
-#~ msgstr "¡Juega este nivel en el modo Carrera para desbloquearlo!"
-
-#~ msgid "Advance further into career mode to unlock new areas!"
-#~ msgstr "¡Avanza más en el modo Carrera para desbloquear nuevas areas!"
-
-#, python-format
-#~ msgid "Customer #%s"
-#~ msgstr "Cliente: #%s"
-
-#~ msgid ""
-#~ "Build a snack box by arranging a pentomino and a tetromino into a square!"
-#~ msgstr ""
-#~ "¡Haz una caja de snacks haciendo un cuadrado con un pentominó y un "
-#~ "tetrominó!"
-
-#~ msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
-#~ msgstr "¡Haz una caja de torta haciendo un rectángulo con 3 pentominós!"
-
-#~ msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
-#~ msgstr "¡Haz una caja de torta haciendo un rectángulo con 3 tetrominós!"
-
-#~ msgid "Two different pieces with the same color can always make a square!"
-#~ msgstr ""
-#~ "¡Dos piezas diferentes del mismo color siempre pueden hacer un cuadrado!"
-
-#~ msgid ""
-#~ "A snack box scores 5 points per line, a cake box scores 10. Make lots of "
-#~ "cakes!"
-#~ msgstr ""
-#~ "Una caja de snacks son 5 puntos por línea, una caja de torta son 10. ¡Haz "
-#~ "muchas tortas!"
-
-#~ msgid ""
-#~ "Combos can give you 20 bonus points for completing a line. Make lots of "
-#~ "combos!"
-#~ msgstr ""
-#~ "Los combos pueden darte 20 puntos extra por completar una línea. ¡Haz "
-#~ "muchos combos!"
-
-#~ msgid "Build a big combo by making boxes and clearing lines!"
-#~ msgstr "¡Haz un combo grande haciendo cajas y limpiando líneas!"
-
-#~ msgid ""
-#~ "Making boxes keeps your combo going. You can keep your combo going "
-#~ "forever!"
-#~ msgstr ""
-#~ "Hacer cajas aumentan tu combo. ¡Puedes extender tu combo para siempre!"
-
-#~ msgid "Clear lines to keep your combo going. Combos get you lots of money!"
-#~ msgstr "Limpiar líneas aumentan tu combo. ¡Los combos te dan mucho dinero!"
-
-#~ msgid ""
-#~ "When a piece locks, hold left or right to quickly move the next piece!"
-#~ msgstr ""
-#~ "Cuando una pieza se asegure, ¡mantén izquierda o derecha para mover "
-#~ "rápido la siguiente pieza!"
-
-#~ msgid ""
-#~ "When a piece locks, hold a rotate key to quickly rotate the next piece!"
-#~ msgstr ""
-#~ "Cuando una pieza se asegure, ¡mantén el botón rotar para rotar rápido la "
-#~ "siguiente pieza!"
-
-#~ msgid ""
-#~ "When a piece locks, hold both rotate keys to quickly flip the next piece!"
-#~ msgstr ""
-#~ "Cuando una pieza se asegure, ¡mantén ambos botones de rotación para girar "
-#~ "la siguiente pieza!"
-
-#~ msgid "When a piece locks, hold up to quickly hard-drop the next piece!"
-#~ msgstr ""
-#~ "Cuando una pieza se asegure, ¡mantén arriba para hacer una caída rápida "
-#~ "con la siguiente pieza!"
-
-#~ msgid "After a hard drop, tap 'down' to delay the piece from locking!"
-#~ msgstr ""
-#~ "¡Después de una caída rápida, toca \"abajo\" para que la pieza tarde en "
-#~ "asegurarse!"
-
-#~ msgid "Press 'down' to squish pieces past other blocks!"
-#~ msgstr "¡Presiona \"abajo\" para aplastar piezas entre otras piezas!"
-
-#~ msgid "Hardcore level cleared. Extra life awarded!"
-#~ msgstr "Nivel difícil completado. ¡Ganaste una vida extra!"
-
-#, python-format
-#~ msgid "Total: %s"
-#~ msgstr "Total: %s"
-
-#, python-format
-#~ msgid "Speed: %d"
-#~ msgstr "Velocidad: %d"
-
-#, python-format
-#~ msgid "Pieces: %d"
-#~ msgstr "Piezas: %d"
-
-#, python-format
-#~ msgid "Lines: %d"
-#~ msgstr "Líneas: %d"
-
-#, python-format
-#~ msgid "Boxes: %d"
-#~ msgstr "Cajas: %d"
-
-#, python-format
-#~ msgid "Combos: %d"
-#~ msgstr "Combos: %d"
-
-#, python-format
-#~ msgid "Pickups: %d"
-#~ msgstr "Recolectados: %d"
-
-#~ msgid "Overall: "
-#~ msgstr "Promedio: "
-
-#~ msgid "A Little Garbage"
-#~ msgstr "Un Poco de Basura"
-
-#~ msgid "Nothing to worry about."
-#~ msgstr "Nada de que preocuparse."
