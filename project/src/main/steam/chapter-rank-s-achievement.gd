@@ -30,7 +30,7 @@ func _s_rank_percent() -> float:
 	for level_obj in region.levels:
 		var level: CareerLevel = level_obj
 		var rank := PlayerData.level_history.best_overall_rank(level.level_id)
-		if RankCalculator.rank_meets_grade(rank, "S-"):
+		if Ranks.rank_meets_grade(rank, "S-"):
 			s_rank_count += 1
 	
 	return s_rank_count / float(region.levels.size())
