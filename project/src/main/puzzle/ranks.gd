@@ -119,3 +119,20 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 	frames_per_line += piece_speed.box_delay * 3 # three boxes formed
 	frames_per_line /= 4
 	return frames_per_line
+
+
+## Returns the required rank such as '16.0' for a a letter grade such as 'S+'.
+##
+## Grades correspond to a range of ranks, and high rank values like 50.0 correspond to bad grades. This method returns
+## the highest (worst) rank value which will still achieve the specified grade.
+##
+## Note: This method is unused by our main branch code, but is used by our achievement framework.
+static func required_rank_for_grade(grade: String) -> float:
+	return RANKS_BY_GRADE.get(grade, WORST_RANK)
+
+
+## Returns 'true' if the specified rank qualifies for the specified grade.
+##
+## Note: This method is unused by our main branch code, but is used by our achievement framework.
+static func rank_meets_grade(rank: float, grade: String) -> bool:
+	return rank <= required_rank_for_grade(grade)
