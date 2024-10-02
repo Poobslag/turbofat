@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-01 16:32-0400\n"
+"POT-Creation-Date: 2024-10-02 09:17-0400\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14227,11 +14227,11 @@ msgid "Earning more money in a level moves you further on the map."
 msgstr ""
 
 #: project/src/main/career/career-hint.gd:29
-msgid "Career mode ends after six levels. Make every level count!"
+msgid "Adventure mode ends after six levels. Make every level count!"
 msgstr ""
 
 #: project/src/main/career/career-hint.gd:30
-msgid "Career mode ends if you lose all your lives. Try not to top out!"
+msgid "Adventure mode ends if you lose all your lives. Try not to top out!"
 msgstr ""
 
 #: project/src/main/career/career-hint.gd:31
@@ -14695,6 +14695,7 @@ msgid "Creature Saved"
 msgstr ""
 
 #: project/src/main/editor/creature/NamePickerPopup.tscn:20
+#: project/src/main/ui/menu/BadSaveDataControl.tscn:41
 msgid "asdf"
 msgstr ""
 
@@ -16643,8 +16644,8 @@ msgid "S++"
 msgstr "S++"
 
 #: project/src/main/ui/level-select/level-submenu-description-panel.gd:29
-msgid "Play this level in Career mode to unlock it!"
-msgstr "Play this level in Career mode to unlock it!"
+msgid "Play this level in Adventure mode to unlock it!"
+msgstr ""
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:27
 msgid "Unknown"
@@ -16698,20 +16699,7 @@ msgstr "New: %s"
 msgid "Top: %s"
 msgstr "Top: %s"
 
-#: project/src/main/ui/menu/BadSaveDataControl.tscn:41
-msgid ""
-"There was a problem loading your save data. Your old save data from 3 days "
-"ago works, so we've loaded that instead.\n"
-"\n"
-"The invalid save data is available at the following path:\n"
-"\n"
-"\"C:\\Users\\Aaron\\AppData\\Roaming\\Godot\\app_userdata\\Turbo Fat"
-"\\turbofat0.this-day.save.bak\"\n"
-"\n"
-"Sorry."
-msgstr ""
-
-#: project/src/main/ui/menu/BadSaveDataControl.tscn:58
+#: project/src/main/ui/menu/BadSaveDataControl.tscn:52
 msgid "Well, crap"
 msgstr "Well, crap"
 
@@ -16816,8 +16804,8 @@ msgid "I'm really sorry."
 msgstr ""
 
 #: project/src/main/ui/menu/region-description-panel.gd:23
-msgid "Advance further into career mode to unlock new areas!"
-msgstr "Advance further into career mode to unlock new areas!"
+msgid "Advance further into Adventure mode to unlock new areas!"
+msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd:12
 msgid "7 kyu"
@@ -17462,6 +17450,12 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn:94
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
+
+#~ msgid "Play this level in Career mode to unlock it!"
+#~ msgstr "Play this level in Career mode to unlock it!"
+
+#~ msgid "Advance further into career mode to unlock new areas!"
+#~ msgstr "Advance further into career mode to unlock new areas!"
 
 #, python-format
 #~ msgid "Customer #%s"
