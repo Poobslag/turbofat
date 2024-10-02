@@ -13,7 +13,7 @@ func connect_signals() -> void:
 
 ## Refreshes the achievement and stat based on how many cutscenes the player has viewed in a chapter.
 func refresh_achievement() -> void:
-	if RankCalculator.rank_meets_grade(_best_level_rank, "M"):
+	if Ranks.rank_meets_grade(_best_level_rank, "M"):
 		Steam.set_achievement(achievement_id)
 
 
