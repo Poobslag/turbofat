@@ -2,7 +2,7 @@ extends SteamAchievement
 ## Unlocks an achievement when the player obtains a grade of 'M' on any level.
 
 ## The best rank the player has achieved on any level since launching the game.
-var _best_level_rank: float = RankCalculator.WORST_RANK
+var _best_level_rank: float = Ranks.WORST_RANK
 
 func connect_signals() -> void:
 	.connect_signals()
