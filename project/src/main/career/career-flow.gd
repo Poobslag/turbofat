@@ -15,12 +15,6 @@ func push_career_trail() -> void:
 	var redirected := false
 	if not redirected and not PlayerData.cutscene_queue.is_queue_empty():
 		# If there are pending puzzles/cutscenes, show them.
-		
-		# If the player is playing a puzzle, we immediately apply failure penalties to the player's save data so they
-		# can't quit and retry.
-		if PlayerData.cutscene_queue.is_front_level():
-			_preapply_failure_penalties()
-		
 		PlayerData.cutscene_queue.push_trail()
 		redirected = true
 	
@@ -84,30 +78,3 @@ func should_play_prologue() -> bool:
 	var prologue_chat_key: String = region.get_prologue_chat_key()
 	return ChatLibrary.chat_exists(prologue_chat_key) \
 			and not PlayerData.chat_history.is_chat_finished(prologue_chat_key)
-
-
-## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.
-func _preapply_failure_penalties() -> void:
-	if PlayerSave.is_connected("before_save", self, "_on_PlayerSave_before_save"):
-		PlayerSave.disconnect("before_save", self, "_on_PlayerSave_before_save")
-	PlayerSave.connect("before_save", self, "_on_PlayerSave_before_save")
-	
-	if PlayerSave.is_connected("after_save", self, "_on_PlayerSave_after_save"):
-		PlayerSave.disconnect("after_save", self, "_on_PlayerSave_after_save")
-	PlayerSave.connect("after_save", self, "_on_PlayerSave_after_save", [career_data.hours_passed])
-	
-	PlayerSave.schedule_save()
-
-
-func _on_PlayerSave_before_save() -> void:
-	# Temporarily sabotage the player's career progress to punish them if they try to savescum when losing a puzzle.
-	career_data.hours_passed = Careers.HOURS_PER_CAREER_DAY
-	
-	PlayerSave.disconnect("before_save", self, "_on_PlayerSave_before_save")
-
-
-func _on_PlayerSave_after_save(hours_passed: int) -> void:
-	# Restore the player's hours passed.
-	career_data.hours_passed = hours_passed
-	
-	PlayerSave.disconnect("after_save", self, "_on_PlayerSave_after_save")
