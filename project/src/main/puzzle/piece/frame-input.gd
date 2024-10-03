@@ -23,6 +23,10 @@ var _print_inputs := false
 ## If this timer is active, the input was recently pressed and can be popped with pop_buffered_input
 onready var _buffer_timer: Timer = $BufferTimer
 
+func _ready() -> void:
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not CurrentLevel.settings.input_replay.empty():
 		# don't process button presses when replaying prerecorded input
@@ -91,6 +95,17 @@ func is_das_active() -> bool:
 	return _pressed and pressed_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay
 
 
+## Resets the input action state to unpressed.
+##
+## This is used during tutorials to ensure the replay doesn't break if the player keeps a button held during the level
+## transition.
+func reset_input() -> void:
+	pressed_frames = 0
+	_just_pressed = false
+	_pressed = false
+	_buffer = false
+
+
 ## Applies prerecorded puzzle inputs for things such as tutorials.
 func _process_input_replay() -> void:
 	if CurrentLevel.settings.input_replay.is_action_pressed(action):
@@ -110,3 +125,10 @@ func _process_input_replay() -> void:
 				# player was holding both buttons, but let go of the cancel_button
 				_just_pressed = true
 				_pressed = true
+
+
+## When the level changes, we resets the input action state to unpressed.
+##
+## This ensures tutorial replays don't break if the player keeps a button held during the level transition.
+func _on_PuzzleState_after_level_changed() -> void:
+	reset_input()
