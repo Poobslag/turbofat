@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://src/main/ui/SaveIndicator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ScaledTextureRect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/transition-mask.shader" type="Shader" id=3]
 [ext_resource path="res://assets/main/ui/transition-pieces-mask.png" type="Texture" id=4]
@@ -201,3 +202,11 @@ anims/fade-out = SubResource( 4 )
 stream = ExtResource( 5 )
 volume_db = -80.0
 bus = "Sound Bus"
+
+[node name="SaveIndicator" parent="." instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_top = 1.0
+margin_left = -45.0
+margin_top = -45.0
+margin_right = -5.0
+margin_bottom = -5.0
