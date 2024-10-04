@@ -18,7 +18,11 @@ func connect_signals() -> void:
 func refresh_achievement() -> void:
 	var s_rank_percent := _s_rank_percent()
 	
-	SteamUtils.set_stat_float(stat_id, 100 * s_rank_percent)
+	if s_rank_percent >= 0 and s_rank_percent <= 100:
+		SteamUtils.set_stat_float(stat_id, 100 * s_rank_percent)
+	else:
+		push_error("Invalid s_rank_percent for region %s: %s" % [region_id, s_rank_percent])
+	
 	if s_rank_percent == 1.0:
 		SteamUtils.set_achievement(achievement_id)
 
@@ -33,7 +37,7 @@ func _s_rank_percent() -> float:
 		if Ranks.rank_meets_grade(rank, "S-"):
 			s_rank_count += 1
 	
-	return s_rank_count / float(region.levels.size())
+	return s_rank_count / float(max(1, region.levels.size()))
 
 
 ## When a level is played, if it corresponds to our region we refresh our achievement status.
