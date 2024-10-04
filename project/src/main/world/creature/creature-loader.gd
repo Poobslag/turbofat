@@ -349,6 +349,7 @@ func _load_colors(dna: Dictionary) -> void:
 	dna["property:Body:belly_color"] = belly_color
 	dna["property:Body:shadow_color"] = Utils.to_transparent(line_color, SHADOW_ALPHA)
 	
+	_set_krgb(dna, "SprintBellyScaleControl/SprintBellyFill", line_color, body_color)
 	_set_krgb(dna, "Collar", line_color, cloth_color, hair_color)
 	_set_krgb(dna, "EmoteBody", line_color)
 	_set_krgb(dna, "FarArm", line_color, body_color)

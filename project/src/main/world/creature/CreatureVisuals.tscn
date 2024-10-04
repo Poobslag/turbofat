@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/utils/packed-sprite.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=4]
 [ext_resource path="res://src/main/world/creature/creature-animations.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=6]
+[ext_resource path="res://assets/main/world/creature/1/sprint_belly.png" type="Texture" id=7]
 [ext_resource path="res://src/main/world/creature/dna-loader.gd" type="Script" id=8]
 [ext_resource path="res://src/main/world/creature/head-bobber.gd" type="Script" id=9]
 [ext_resource path="res://assets/main/world/creature/1/emote-brain-packed.png" type="Texture" id=10]
@@ -46,6 +47,13 @@ shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = ExtResource( 1 )
+shader_param/red = Color( 0.317647, 0.2, 0.180392, 1 )
+shader_param/green = null
+shader_param/blue = null
+shader_param/black = Color( 0.219608, 0.141176, 0.113725, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -267,6 +275,19 @@ rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
+
+[node name="SprintBellyScaleControl" type="Node2D" parent="."]
+position = Vector2( 18, -51 )
+scale = Vector2( 0.148062, 0.148062 )
+script = ExtResource( 50 )
+
+[node name="SprintBelly" type="Sprite" parent="SprintBellyScaleControl"]
+material = SubResource( 28 )
+position = Vector2( -197.531, 56.789 )
+scale = Vector2( 0.967891, 1.02019 )
+z_index = -1
+texture = ExtResource( 7 )
+offset = Vector2( 0, 75 )
 
 [node name="Sprint" type="Node2D" parent="."]
 visible = false
