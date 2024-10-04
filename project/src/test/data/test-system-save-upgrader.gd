@@ -49,3 +49,19 @@ func test_27bb() -> void:
 	assert_eq(SystemData.gameplay_settings.speed, GameplaySettings.Speed.DEFAULT)
 	assert_eq(SystemData.gameplay_settings.hold_piece, false)
 	assert_eq(SystemData.gameplay_settings.line_piece, false)
+
+
+func test_37b3() -> void:
+	load_player_data("config-37b3.json")
+	
+	# should fill in missing keybinds
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("next_tab"), true)
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("prev_tab"), true)
+	
+	# should preserve existing keybinds
+	assert_eq(SystemData.keybind_settings.custom_keybinds.has("rotate_ccw"), true)
+	assert_eq_deep(SystemData.keybind_settings.custom_keybinds["rotate_ccw"], [
+		{"type": "key", "scancode": 91.0},
+		{},
+		{},
+	])

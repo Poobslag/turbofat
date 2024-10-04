@@ -1,0 +1,249 @@
+[
+  {
+    "type": "version",
+    "value": "37b3"
+  },
+  {
+    "type": "gameplay_settings",
+    "value": {
+      "ghost_piece": true,
+      "hold_piece": false,
+      "line_piece": false,
+      "soft_drop_lock_cancel": true,
+      "speed": "default"
+    }
+  },
+  {
+    "type": "graphics_settings",
+    "value": {
+      "creature_detail": 1,
+      "feeding_animation": 1,
+      "fullscreen": false,
+      "use_vsync": false
+    }
+  },
+  {
+    "type": "volume_settings",
+    "value": {
+      "master": 0.36,
+      "music": 0.34,
+      "sound": 0.7,
+      "voice": 0.7
+    }
+  },
+  {
+    "type": "touch_settings",
+    "value": {
+      "fat_finger": 0,
+      "scheme": 0,
+      "size": 1
+    }
+  },
+  {
+    "type": "keybind_settings",
+    "value": {
+      "preset": 2,
+      "custom_keybinds": {
+        "move_piece_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "move_piece_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "soft_drop": [
+          {
+            "type": "key",
+            "scancode": 67
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "hard_drop": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "retry": [
+          {
+            "type": "key",
+            "scancode": 82
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rotate_ccw": [
+          {
+            "type": "key",
+            "scancode": 91
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rotate_cw": [
+          {
+            "type": "key",
+            "scancode": 88
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "swap_hold_piece": [
+          {
+            "type": "key",
+            "scancode": 16777237
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_up": [
+          {
+            "type": "key",
+            "scancode": 16777232
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_down": [
+          {
+            "type": "key",
+            "scancode": 16777234
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_accept": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_cancel": [
+          {
+            "type": "key",
+            "scancode": 16777217
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_menu": [
+          {
+            "type": "key",
+            "scancode": 16777217
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rewind_text": [
+          {
+            "type": "key",
+            "scancode": 16777237
+          },
+          {
+
+          },
+          {
+
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "misc_settings",
+    "value": {
+      "locale": "en_US",
+      "save_slot": 1
+    }
+  }
+]

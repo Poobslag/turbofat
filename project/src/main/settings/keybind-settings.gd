@@ -109,6 +109,10 @@ func _set_custom_keybind_inner(action_name: String, index: int, json: Dictionary
 	
 	Utils.put_if_absent(custom_keybinds, action_name, [{}, {}, {}])
 	custom_keybinds[action_name][index] = json
+	
+	if not valid_custom_ui_keybinds():
+		push_warning("Invalid custom ui keybinds; restoring defaults.")
+		restore_default_custom_keybinds()
 
 
 ## Returns a json reprentation of the specified keybind.
@@ -137,6 +141,11 @@ func from_json_dict(json: Dictionary) -> void:
 	custom_keybinds = json.get("custom_keybinds", {})
 	if custom_keybinds.empty():
 		restore_default_custom_keybinds()
+	
+	if not valid_custom_ui_keybinds():
+		push_warning("Invalid custom ui keybinds; restoring defaults.")
+		restore_default_custom_keybinds()
+	
 	emit_signal("settings_changed")
 
 
@@ -167,11 +176,7 @@ func _unbind_conflicting_actions(action_name: String, index: int, json: Dictiona
 		# they don't have a mouse available.
 		
 		for menu_action_name in MENU_ACTION_NAMES:
-			var menu_action_input_count := 0
-			
-			for menu_index in range(custom_keybinds[menu_action_name].size()):
-				if custom_keybinds[menu_action_name][menu_index]:
-					menu_action_input_count += 1
+			var menu_action_input_count := _menu_action_input_count(menu_action_name)
 			
 			if menu_action_input_count == 0:
 				# After unbinding, a menu action is bound to nothing. Rebind it to the input currently being rebound.
@@ -181,6 +186,17 @@ func _unbind_conflicting_actions(action_name: String, index: int, json: Dictiona
 				
 				custom_keybinds[menu_action_name][0] = custom_keybinds[action_name][source_index]
 				custom_keybinds[action_name][source_index] = {}
+
+
+func _menu_action_input_count(menu_action_name: String) -> int:
+	if not custom_keybinds.has(menu_action_name):
+		return 0
+	
+	var menu_action_input_count := 0
+	for menu_index in range(custom_keybinds[menu_action_name].size()):
+		if custom_keybinds[menu_action_name][menu_index]:
+			menu_action_input_count += 1
+	return menu_action_input_count
 
 
 ## Returns a list of action names which appear in the same context as the specified keybind.
@@ -218,3 +234,35 @@ func _shallow_equal_dicts(a: Dictionary, b: Dictionary) -> bool:
 				result = false
 				break
 	return result
+
+
+## Check that all UI actions are bound to something, and that there are no conflicts.
+func valid_custom_ui_keybinds() -> bool:
+	var valid := true
+	var scancodes := {}
+	for menu_action_name in MENU_ACTION_NAMES:
+		# detect whether any ui keybinds have no keys defined
+		var action_scancode_count := 0
+		if custom_keybinds.has(menu_action_name):
+			for menu_index in range(custom_keybinds[menu_action_name].size()):
+				if custom_keybinds[menu_action_name][menu_index].has("scancode"):
+					action_scancode_count += 1
+		if action_scancode_count == 0:
+			valid = false
+			break
+		
+		# detect whether any ui keybinds have duplicate keys
+		var duplicate_scancode := false
+		for menu_index in range(custom_keybinds[menu_action_name].size()):
+			if not custom_keybinds[menu_action_name][menu_index].has("scancode"):
+				continue
+			var scancode: int = custom_keybinds[menu_action_name][menu_index]["scancode"]
+			if scancodes.has(scancode):
+				duplicate_scancode = true
+				break
+			scancodes[scancode] = true
+		if duplicate_scancode:
+			valid = false
+			break
+	
+	return valid
