@@ -3,6 +3,8 @@ extends Node
 ##
 ## This data includes configuration data like language, keybindings, and which save slot is active.
 
+signal before_save
+signal after_save
 signal save_slot_deleted
 
 const SYSTEM_DATA_VERSION := "37b3"
@@ -47,6 +49,7 @@ func _ready() -> void:
 
 ## Writes the system's in-memory data to a save file.
 func save_system_data() -> void:
+	emit_signal("before_save")
 	var save_json := []
 	save_json.append(SaveItem.new("version", SYSTEM_DATA_VERSION).to_json_dict())
 	save_json.append(SaveItem.new("gameplay_settings", SystemData.gameplay_settings.to_json_dict()).to_json_dict())
@@ -73,6 +76,7 @@ func save_system_data() -> void:
 		# Preserve turbofat0.save.bak, but delete the hourly/daily/weekly backups
 		for save_slot_filename in OLD_SAVES_TO_DELETE:
 			Directory.new().remove(save_slot_filename)
+	emit_signal("after_save")
 
 
 ## Populates the system's in-memory data based on a save file.
