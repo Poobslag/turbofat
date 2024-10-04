@@ -34,5 +34,6 @@
     "accent_texture": 8,
     "color": "ffb12c"
   },
-  "fatness": 1.3
+  "fatness": 1.3,
+  "customer_if": "region_started lava"
 }
