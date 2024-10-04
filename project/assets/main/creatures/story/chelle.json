@@ -33,5 +33,6 @@
     "accent_scale": 0.5,
     "accent_texture": 15,
     "color": "664437"
-  }
+  },
+  "customer_if": "region_started lava"
 }

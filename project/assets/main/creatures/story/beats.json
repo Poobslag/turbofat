@@ -34,5 +34,6 @@
     "accent_swapped": true,
     "accent_texture": 12,
     "color": "354181"
-  }
+  },
+  "customer_if": "region_started poki"
 }

@@ -32,5 +32,6 @@
   "chat_theme": {
     "accent_scale": 1.5,
     "color": "b24b10"
-  }
+  },
+  "customer_if": "region_started lemon_2"
 }

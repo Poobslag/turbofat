@@ -33,5 +33,6 @@
     "accent_scale": 1.75,
     "accent_texture": 12,
     "color": "411c17"
-  }
+  },
+  "customer_if": "region_finished poki"
 }

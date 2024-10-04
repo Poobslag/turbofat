@@ -35,5 +35,6 @@
     "accent_texture": 13,
     "color": "664437",
     "dark": true
-  }
+  },
+  "customer_if": "region_started poki"
 }
