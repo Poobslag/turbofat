@@ -13555,7 +13555,7 @@ msgid "OH DEAR WHAT HAPPENED"
 msgstr ""
 
 #: project/src/main/career/ui/chalkboard-title.gd:51
-msgid "OH! NO! GO ON TRYING"
+msgid "THERE'S ALWAYS TOMORROW"
 msgstr ""
 
 #: project/src/main/career/ui/chalkboard-title.gd:52

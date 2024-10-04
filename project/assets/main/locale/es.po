@@ -15171,8 +15171,9 @@ msgid "OH DEAR WHAT HAPPENED"
 msgstr "OH QUE PASÓ"
 
 #: project/src/main/career/ui/chalkboard-title.gd:51
-msgid "OH! NO! GO ON TRYING"
-msgstr "¡OH! ¡NO! SIGUE INTENTANDO"
+#, fuzzy
+msgid "THERE'S ALWAYS TOMORROW"
+msgstr "SIEMPRE HAY UN MAÑANA"
 
 #: project/src/main/career/ui/chalkboard-title.gd:52
 msgid "GOSH THAT'S NOT GOOD"

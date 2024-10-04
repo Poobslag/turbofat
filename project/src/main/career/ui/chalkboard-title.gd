@@ -48,7 +48,7 @@ var _good_titles := [
 ## Negative titles shown when the player fails, travelling zero steps during a career session.
 var _bad_titles := [
 	tr("OH DEAR WHAT HAPPENED"),
-	tr("OH! NO! GO ON TRYING"),
+	tr("THERE'S ALWAYS TOMORROW"),
 	tr("GOSH THAT'S NOT GOOD"),
 ]
 
