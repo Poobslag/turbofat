@@ -16,10 +16,20 @@ func connect_signals() -> void:
 
 ## Refreshes the achievement and stat based on how many cutscenes the player has viewed in a chapter.
 func refresh_achievement() -> void:
-	var region_completion := PlayerData.career.region_completion(CareerLevelLibrary.region_for_id(region_id))
-	SteamUtils.set_stat_float(stat_id, 100 * region_completion.cutscene_completion_percent())
-	if region_completion.cutscene_completion_percent() == 1.0:
+	var cutscene_completion_percent := _cutscene_completion_percent()
+	
+	if cutscene_completion_percent >= 0.0 and cutscene_completion_percent <= 1.0:
+		SteamUtils.set_stat_float(stat_id, 100 * cutscene_completion_percent)
+	else:
+		push_error("Invalid cutscene_completion_percent for region %s: %s" % [region_id, cutscene_completion_percent])
+	
+	if cutscene_completion_percent == 1.0:
 		SteamUtils.set_achievement(achievement_id)
+
+
+func _cutscene_completion_percent() -> float:
+	var region_completion := PlayerData.career.region_completion(CareerLevelLibrary.region_for_id(region_id))
+	return region_completion.cutscene_completion_percent()
 
 
 ## When a cutscene is played, if it corresponds to our region we refresh our achievement status.
