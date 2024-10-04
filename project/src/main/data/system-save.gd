@@ -7,7 +7,7 @@ signal before_save
 signal after_save
 signal save_slot_deleted
 
-const SYSTEM_DATA_VERSION := "37b3"
+const SYSTEM_DATA_VERSION := "5a24"
 
 ## Save files older than July 2021 which should be deleted during an upgrade
 const OLD_SAVES_TO_DELETE := [
