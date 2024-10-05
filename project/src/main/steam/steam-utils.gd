@@ -26,9 +26,8 @@ func _process(_delta: float) -> void:
 ## 	'id': The 'API Name' of the stat.
 func get_stat_float(id: String) -> float:
 	_log("Getting Steam stat: %s" % [id])
-	
 	var get_stat_float_response: float = Steam.getStatFloat(id)
-	_log("get_stat_float(%s) response: %s" % [id, get_stat_float_response])
+	_log("getStatFloat(%s) response: %s" % [id, get_stat_float_response])
 	
 	return get_stat_float_response
 
@@ -39,7 +38,6 @@ func get_stat_float(id: String) -> float:
 ## 	'id': The 'API Name' of the achievement.
 func is_achievement_achieved(id: String) -> bool:
 	_log("Getting Steam achievement: %s" % [id])
-	
 	var get_achievement_response: Dictionary = Steam.getAchievement(id)
 	_log("getAchievement(%s) response: %s" % [id, get_achievement_response])
 	
@@ -51,12 +49,11 @@ func is_achievement_achieved(id: String) -> bool:
 ## Parameters:
 ## 	'id': The 'API Name' of the achievement.
 func set_achievement(id: String) -> void:
-	_log("Setting Steam achievement: %s" % [id])
-	
 	if is_achievement_achieved(id):
 		# avoid unnecessary storeStats calls
 		return
 	
+	_log("Setting Steam achievement: %s" % [id])
 	var set_achievement_response: bool = Steam.setAchievement(id)
 	_log("setAchievement(%s) response: %s" % [id, set_achievement_response])
 	
@@ -70,12 +67,11 @@ func set_achievement(id: String) -> void:
 ##
 ## 	'value': The new value of the stat.
 func set_stat_float(id: String, value: float) -> void:
-	_log("Setting Steam stat: %s -> %s" % [id, value])
-	
 	if is_equal_approx(get_stat_float(id), value):
 		# avoid unnecessary storeStats calls
 		return
 	
+	_log("Setting Steam stat: %s -> %s" % [id, value])
 	var set_stat_float_response: bool = Steam.setStatFloat(id, value)
 	_log("setStatFloat(%s, %s) response: %s" % [id, value, set_stat_float_response])
 	
@@ -88,7 +84,6 @@ func set_stat_float(id: String, value: float) -> void:
 ## 	'achievements_too': If 'true', the user's achievements are also reset
 func reset_all_stats(achievements_too: bool) -> void:
 	_log("Resetting Steam stats: %s" % [achievements_too])
-	
 	var reset_all_stats_response: bool = Steam.resetAllStats(achievements_too)
 	_log("resetAllStats(%s) response: %s" % [achievements_too, reset_all_stats_response])
 
@@ -100,12 +95,11 @@ func reset_all_stats(achievements_too: bool) -> void:
 ## Parameters:
 ## 	'id': The 'API Name' of the achievement.
 func clear_achievement(id: String) -> void:
-	_log("Clearing Steam achievement: %s" % [id])
-	
 	if not is_achievement_achieved(id):
 		# avoid unnecessary storeStats calls
 		return
 	
+	_log("Clearing Steam achievement: %s" % [id])
 	var clear_achievement_response: bool = Steam.clearAchievement(id)
 	_log("clearAchievement(%s) response: %s" % [id, clear_achievement_response])
 	
@@ -120,9 +114,7 @@ func _initialize_steam() -> void:
 	OS.set_environment("SteamGameId", str(STEAM_APP_ID))
 	
 	_log("Initializing Steam: %s" % [STEAM_APP_ID])
-	
-	## steamInitEx() accepts a STEAM_APP_ID, but GDNative does not support it.
-	var steam_init_ex_response: Dictionary = Steam.steamInitEx(true)
+	var steam_init_ex_response: Dictionary = Steam.steamInitEx(true, STEAM_APP_ID)
 	_log("steamInitEx response: %s" % [steam_init_ex_response])
 
 
@@ -152,7 +144,6 @@ func _schedule_store_stats() -> void:
 ## This should only be called by _schedule_store_stats(), everyone else should use _schedule_store_stats() instead.
 func _store_stats() -> void:
 	_log("Storing stats")
-	
 	var store_stats_response: bool = Steam.storeStats()
 	_log("storeStats response: %s" % [store_stats_response])
 
