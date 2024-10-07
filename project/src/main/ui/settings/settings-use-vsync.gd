@@ -8,4 +8,8 @@ func _ready() -> void:
 
 
 func _on_CheckBox_pressed() -> void:
+	if SystemData.graphics_settings.use_vsync == _check_box.pressed:
+		return
+	
 	SystemData.graphics_settings.use_vsync = _check_box.pressed
+	SystemData.has_unsaved_changes = true

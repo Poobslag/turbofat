@@ -76,6 +76,8 @@ func save_system_data() -> void:
 		# Preserve turbofat0.save.bak, but delete the hourly/daily/weekly backups
 		for save_slot_filename in OLD_SAVES_TO_DELETE:
 			Directory.new().remove(save_slot_filename)
+	
+	SystemData.has_unsaved_changes = false
 	emit_signal("after_save")
 
 

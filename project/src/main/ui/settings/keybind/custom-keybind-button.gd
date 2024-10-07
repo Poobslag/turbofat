@@ -21,6 +21,7 @@ func _input(event: InputEvent) -> void:
 		if input_json:
 			accept_event()
 			SystemData.keybind_settings.set_custom_keybind(action_name, action_index, input_json)
+			SystemData.has_unsaved_changes = true
 			end_awaiting()
 
 

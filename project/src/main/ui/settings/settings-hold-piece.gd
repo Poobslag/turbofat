@@ -14,6 +14,7 @@ func _refresh() -> void:
 
 func _on_CheckBox_toggled(_button_pressed: bool) -> void:
 	SystemData.gameplay_settings.hold_piece = _check_box.pressed
+	SystemData.has_unsaved_changes = true
 
 
 func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:
