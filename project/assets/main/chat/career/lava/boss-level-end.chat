@@ -12,6 +12,7 @@ sleve, s, judge_4
 
 w: ^o^ Wow! I'd say you've officially proven your skills as a world class chef. Well done!!
  (c mood ^o^, s mood ^o^, s1 mood ^o^, p1 mood ^_^)
+ (end_day)
 c: ^o^ Yes definitely! Congratulations!
 [holy_smokes] That was an ordeal
 [phew_finally] Phew, finally

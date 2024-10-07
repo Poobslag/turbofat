@@ -201,16 +201,26 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var creature: Creature = _overworld_environment.get_creature_by_id(creature_id)
 			var orientation: int = int(meta_item_split[2])
 			creature.set_orientation(orientation)
+		"end_day":
+			_advance_to_fresh_career_day()
 		"play_credits":
 			# the credits lead directly into the main menu, so we immediately end the current career day and advance
 			# the calendar.
-			PlayerData.career.hours_passed = Careers.HOURS_PER_CAREER_DAY
-			PlayerData.career.advance_calendar()
-			PlayerSave.schedule_save()
+			_advance_to_fresh_career_day()
 			
 			PlayerData.cutscene_queue.insert_credits(0)
 	
 	emit_signal("chat_event_meta_played", meta_item)
+
+
+## If the current career day has begin, immediately end it advance the calendar.
+##
+## This is used during the credits sequence to ensure the player starts fresh after viewing the credits.
+func _advance_to_fresh_career_day() -> void:
+	if PlayerData.career.is_career_mode() and PlayerData.career.hours_passed > 0:
+		PlayerData.career.hours_passed = Careers.HOURS_PER_CAREER_DAY
+		PlayerData.career.advance_calendar()
+		PlayerSave.schedule_save()
 
 
 func _on_ChatUi_chat_finished() -> void:
