@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-02 09:19-0400\n"
-"PO-Revision-Date: 2024-06-27 10:27-0300\n"
+"PO-Revision-Date: 2024-10-07 03:44-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -725,14 +725,14 @@ msgstr "Oh. Supongo."
 #: project/assets/main/locale/localizables-extracted.py:139
 msgid "We could put up a plaque that applies to both of us! \"Adequate Chef?\""
 msgstr ""
-"¡Podríamos poner una placa que aplique a ambos! ¿\"Suficiente para ser Chef"
-"\"?"
+"¡Podríamos poner una placa que aplique a ambos! ¿\"Suficiente para ser "
+"Chef\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:141
 msgid "\"Unmotivated Chef?\" \"Too Lazy To Get Their Own Plaque Chef?\""
 msgstr ""
-"¿\"Chef sin Motivación\"? ¿\"Muy vago para conseguir su propia placa de Chef"
-"\"?"
+"¿\"Chef sin Motivación\"? ¿\"Muy vago para conseguir su propia placa de "
+"Chef\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:142
 msgid "Okay! Okay!! I get it..."
@@ -4272,8 +4272,8 @@ msgstr "Voy a consultar a mi compañero... de negocios para ayudarte. NEGOCIOS."
 #: project/assets/main/locale/localizables-extracted.py:871
 msgid "Sorry, can you remind me why I have to keep saying 'business'?"
 msgstr ""
-"Perdón, pero ¿puedes recordarme por qué tengo que seguir diciendo \"negocios"
-"\"?"
+"Perdón, pero ¿puedes recordarme por qué tengo que seguir diciendo "
+"\"negocios\"?"
 
 #: project/assets/main/locale/localizables-extracted.py:872
 msgid "(whisper, whisper)"
@@ -5026,8 +5026,8 @@ msgid ""
 "Kshh, so unprofessional. We talked about the name '#bad_restaurant_name#' "
 "don't you remember?"
 msgstr ""
-"Pfff, que poco profesional. Hablamos sobre el nombre, \"#bad_restaurant_name#"
-"\" ¿No recuerdas?"
+"Pfff, que poco profesional. Hablamos sobre el nombre, "
+"\"#bad_restaurant_name#\" ¿No recuerdas?"
 
 #: project/assets/main/locale/localizables-extracted.py:1036
 msgid "I don't think they were there for that conversation, sensei."
@@ -8279,8 +8279,8 @@ msgid ""
 "\"Real Eggs?\" Ohhhhhh so is that sort of like... like the \"Impossible "
 "Burger\" but for eggs?"
 msgstr ""
-"\"Huevos de Verdad\"? Ohhhhh, es como la... ¿Como la \"Hamburguesa Imposible"
-"\" pero con huevos?"
+"\"Huevos de Verdad\"? Ohhhhh, es como la... ¿Como la \"Hamburguesa "
+"Imposible\" pero con huevos?"
 
 #: project/assets/main/locale/localizables-extracted.py:1742
 msgid "Oooh sounds tasty. I'll have that!"
@@ -9724,8 +9724,8 @@ msgid ""
 "This is terrible. Horrifying! ...And... the pun was right there the whole "
 "time!?"
 msgstr ""
-"Esto es terrible. Primero, muchos chistes malos, ¿y ahora rimas? ¿Qué "
-"siguen, musicales improvisados? ¡Oh no, los niños!"
+"Esto es terrible. Primero, muchos chistes malos, ¿y ahora rimas? ¿¡Qué es lo "
+"que sigue!?"
 
 #: project/assets/main/locale/localizables-extracted.py:2069
 msgid "So many lives ruined..."
@@ -9883,8 +9883,8 @@ msgid ""
 "When you said 'desert' I assumed you meant 'Hot Place With People In It'... "
 "This place is literally deserted!"
 msgstr ""
-"Cuando dijiste \"desierto\", yo asumí que decías \"lugar caliente con gente"
-"\"... ¡Este lugar es literalmente desierto!"
+"Cuando dijiste \"desierto\", yo asumí que decías \"lugar caliente con "
+"gente\"... ¡Este lugar es literalmente desierto!"
 
 #: project/assets/main/locale/localizables-extracted.py:2104
 msgid "Oh come now. LITERALLY deserted?"
@@ -10686,8 +10686,8 @@ msgid ""
 "Oh sure – well that's true! The 'K' is from both our names. We both share "
 "the 'K' part of 'Kflab'."
 msgstr ""
-"Oh, claro - ¡Sí, es cierto! La \"K\" es de ambos nombres. Compartimos la \"K"
-"\" de \"Kflab\"."
+"Oh, claro - ¡Sí, es cierto! La \"K\" es de ambos nombres. Compartimos la "
+"\"K\" de \"Kflab\"."
 
 #: project/assets/main/locale/localizables-extracted.py:2251
 msgid "No! The 'K' is from my name, and NOT yours! Your 'K' isn't in the name."
@@ -12635,7 +12635,6 @@ msgid "Face"
 msgstr "Cara"
 
 #: project/assets/main/locale/localizables-extracted.py:2653
-#, fuzzy
 msgid "Eyes"
 msgstr "Ojos"
 
@@ -12648,12 +12647,10 @@ msgid "Mouth"
 msgstr "Boca"
 
 #: project/assets/main/locale/localizables-extracted.py:2656
-#, fuzzy
 msgid "Cheeks"
 msgstr "Mejillas"
 
 #: project/assets/main/locale/localizables-extracted.py:2657
-#, fuzzy
 msgid "Ears"
 msgstr "Orejas"
 
@@ -12674,7 +12671,6 @@ msgid "Body"
 msgstr "Cuerpo"
 
 #: project/assets/main/locale/localizables-extracted.py:2662
-#, fuzzy
 msgid "Neck"
 msgstr "Cuello"
 
@@ -12687,7 +12683,6 @@ msgid "Belly"
 msgstr "Panza"
 
 #: project/assets/main/locale/localizables-extracted.py:2665
-#, fuzzy
 msgid "Finish"
 msgstr "Finalizar"
 
@@ -13548,9 +13543,8 @@ msgid "...And they don't stop coming!"
 msgstr "...¡Y no paran de venir!"
 
 #: project/assets/main/locale/localizables-extracted.py:2884
-#, fuzzy
 msgid "Strawberry Sharkcake"
-msgstr "Tarta Tiburón de Fresa"
+msgstr "Tibu-Torta de Frutilla"
 
 #: project/assets/main/locale/localizables-extracted.py:2885
 msgid "It says in this cookbook it takes a long time to rise."
@@ -14855,7 +14849,6 @@ msgid "Spanish"
 msgstr "Español"
 
 #: project/src/main/career/CareerMap.tscn:120
-#, fuzzy
 msgid "The left level is further from the goal. Choose carefully!"
 msgstr ""
 "El nivel de la izquierda está más lejos de la meta. ¡Elige con cuidado!"
@@ -14912,141 +14905,119 @@ msgid "Hint: %s"
 msgstr "Pista: %s"
 
 #: project/src/main/career/career-hint.gd:28
-#, fuzzy
 msgid "Earning more money in a level moves you further on the map."
 msgstr "Ganar más dinero en un nivel te lleva más lejos en el mapa."
 
 #: project/src/main/career/career-hint.gd:29
-#, fuzzy
 msgid "Adventure mode ends after six levels. Make every level count!"
 msgstr ""
 "El modo Aventura termina después de seis niveles. ¡Aprovecha cada nivel!"
 
 #: project/src/main/career/career-hint.gd:30
-#, fuzzy
 msgid "Adventure mode ends if you lose all your lives. Try not to top out!"
 msgstr ""
-"El modo Aventura termina si pierdes todas tus vidas. ¡Intenta no "
-"sobrepasarte!"
+"El modo Aventura termina si pierdes todas tus vidas. ¡Intenta no sobre "
+"amontonar piezas!"
 
 #: project/src/main/career/career-hint.gd:31
-#, fuzzy
 msgid "Sudden death levels are risky but reward you with an extra life."
 msgstr ""
 "Los niveles de muerte súbita son arriesgados, pero te recompensan con una "
 "vida extra."
 
 #: project/src/main/career/career-hint.gd:35
-#, fuzzy
 msgid "The boss level is near! Can you reach it in time?"
 msgstr "¡El nivel del jefe está cerca! ¿Puedes llegar a tiempo?"
 
 #: project/src/main/career/career-hint.gd:39
-#, fuzzy
 msgid "Tap down to squeeze pieces through tight spaces!"
 msgstr "¡Presiona abajo para aplastar las piezas en espacios estrechos!"
 
 #: project/src/main/career/career-hint.gd:40
-#, fuzzy
 msgid "Practice tricky levels in Training Mode!"
-msgstr "¡Practica niveles complicados en el Modo Entrenamiento!"
+msgstr "¡Practica niveles complejos en el Modo Entrenamiento!"
 
 #: project/src/main/career/career-hint.gd:42
-#, fuzzy
 msgid "The leftmost level is further from the goal. Choose wisely!"
 msgstr ""
-"El nivel más a la izquierda está más lejos de la meta. ¡Elige sabiamente!"
+"El nivel que está a la izquierda está más lejos de la meta. ¡Elige "
+"sabiamente!"
 
 #: project/src/main/career/career-hint.gd:43
-#, fuzzy
 msgid ""
 "Make a snack box by arranging a pentomino and a tetromino into a square!"
 msgstr ""
-"¡Haz una caja de bocadillo organizando un pentomino y un tetromino en un "
-"cuadrado!"
+"¡Haz una caja de snacks haciendo un cuadrado con un pentominó y un tetrominó!"
 
 #: project/src/main/career/career-hint.gd:44
-#, fuzzy
 msgid "Make a cake box by arranging 3 pieces into a rectangle!"
-msgstr "¡Haz una caja de pastel organizando 3 piezas en un rectángulo!"
+msgstr "¡Haz una caja de torta juntando 3 piezas en un rectángulo!"
 
 #: project/src/main/career/career-hint.gd:45
-#, fuzzy
 msgid "Two different same-colored pieces can always make a square!"
 msgstr ""
-"¡Dos piezas de diferente tipo pero del mismo color siempre pueden formar un "
+"¡Dos piezas diferentes pero del mismo color siempre pueden formar un "
 "cuadrado!"
 
 #: project/src/main/career/career-hint.gd:46
-#, fuzzy
 msgid "Keep clearing lines and making boxes to build a big combo!"
 msgstr "¡Sigue eliminando líneas y formando cajas para hacer un gran combo!"
 
 #: project/src/main/career/career-hint.gd:47
-#, fuzzy
 msgid "Making boxes extends your combo. Keep your combo alive!"
-msgstr "Formar cajas extiende tu combo. ¡Mantén vivo tu combo!"
+msgstr "Hacer cajas extiende tu combo. ¡Mantén tu combo vivo!"
 
 #: project/src/main/career/career-hint.gd:48
-#, fuzzy
 msgid "Clear lines to keep your combo going and earn tons of money!"
-msgstr "Elimina líneas para mantener tu combo y ganar mucho dinero."
+msgstr "!Haz líneas para mantener tu combo y ganar mucho dinero!"
 
 #: project/src/main/career/career-hint.gd:52
-#, fuzzy
 msgid ""
 "Snack boxes score 5 points per line, but cake boxes score 10. Make those "
 "cakes!"
 msgstr ""
-"Las cajas de bocadillo otorgan 5 puntos por línea, pero las cajas de pastel "
-"otorgan 10. ¡Haz esos pasteles!"
+"Las cajas de snacks otorgan 5 puntos por línea, pero las cajas de torta "
+"otorgan 10. ¡Haz muchas tortas!"
 
 #: project/src/main/career/career-hint.gd:53
-#, fuzzy
 msgid "Combos can earn up to 20 bonus points per line. Build those combos!"
 msgstr ""
-"Los combos pueden darte hasta 20 puntos extra por línea. ¡Construye esos "
+"Los combos pueden darte hasta 20 puntos extra por línea. ¡Continúa los "
 "combos!"
 
 #: project/src/main/career/career-hint.gd:54
-#, fuzzy
 msgid "Hold left or right as the next piece appears to move it instantly!"
 msgstr ""
-"Mantén presionado izquierda o derecha cuando aparezca la siguiente pieza "
-"para moverla al instante."
+"¡Mantén presionado izquierda o derecha antes de que aparezca la siguiente "
+"pieza para moverla al instante!"
 
 #: project/src/main/career/career-hint.gd:55
-#, fuzzy
 msgid "Hold a rotate key as the next piece appears to spin it instantly!"
 msgstr ""
-"Mantén presionada una tecla de rotación cuando aparezca la siguiente pieza "
-"para girarla al instante."
+"¡Mantén presionada una tecla de rotación antes de que aparezca la siguiente "
+"pieza para girarla al instante!"
 
 #: project/src/main/career/career-hint.gd:56
-#, fuzzy
 msgid "Hold both rotate keys as the next piece appears to flip it instantly!"
 msgstr ""
-"Mantén presionadas ambas teclas de rotación cuando aparezca la siguiente "
-"pieza para voltearla al instante."
+"¡Mantén presionadas ambas teclas de rotación antes de que aparezca la "
+"siguiente pieza para girarla al instante!"
 
 #: project/src/main/career/career-hint.gd:57
-#, fuzzy
 msgid "Press both rotate keys to flip a piece!"
-msgstr "¡Presiona ambas teclas de rotación para voltear una pieza!"
+msgstr "¡Presiona ambas teclas de rotación para girar una pieza!"
 
 #: project/src/main/career/career-hint.gd:58
-#, fuzzy
 msgid "Hold up as the next piece appears to hard-drop it instantly!"
 msgstr ""
-"Mantén presionado arriba cuando aparezca la siguiente pieza para dejarla "
-"caer al instante."
+"¡Mantén presionado arriba antes de que aparezca la siguiente pieza para "
+"dejarla caer al instante!"
 
 #: project/src/main/career/career-hint.gd:59
-#, fuzzy
 msgid "Tap down after a hard drop to unlock the piece and move it again!"
 msgstr ""
-"Presiona abajo después de una caída fuerte para desbloquear la pieza y "
-"moverla de nuevo."
+"¡Presiona abajo después de una caída rápida para poder seguir moviendo la "
+"pieza!"
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn:87
 msgid "Chapter Select"
@@ -15114,7 +15085,6 @@ msgstr "0"
 
 #: project/src/main/career/ui/ProgressBoard.tscn:663
 #: project/src/main/career/ui/progress-board-goal.gd:14
-#, fuzzy
 msgid "GOAL"
 msgstr "META"
 
@@ -15171,16 +15141,14 @@ msgid "OH DEAR WHAT HAPPENED"
 msgstr "OH QUE PASÓ"
 
 #: project/src/main/career/ui/chalkboard-title.gd:51
-#, fuzzy
-msgid "THERE'S ALWAYS TOMORROW"
-msgstr "SIEMPRE HAY UN MAÑANA"
+msgid "OH! NO! GO ON TRYING"
+msgstr "¡OH! ¡NO! SIGUE INTENTANDO"
 
 #: project/src/main/career/ui/chalkboard-title.gd:52
 msgid "GOSH THAT'S NOT GOOD"
 msgstr "¡WOW! ESO NO ESTÁ BIEN"
 
 #: project/src/main/career/ui/progress-board-splash-message.gd:8
-#, fuzzy
 msgid "Goal!"
 msgstr "¡Meta!"
 
@@ -15222,7 +15190,6 @@ msgid "S+"
 msgstr "S+"
 
 #: project/src/main/credits/CreditsEndText.tscn:107
-#, fuzzy
 msgid ""
 "Congratulations!\n"
 "\n"
@@ -15230,7 +15197,7 @@ msgid ""
 msgstr ""
 "¡Felicidades!\n"
 "\n"
-"Eres un jugador excelente."
+"Eres un gran jugador."
 
 #: project/src/main/credits/CreditsHeader.tscn:35
 #: project/src/main/ui/menu/MainMenu.tscn:119
@@ -15395,12 +15362,10 @@ msgstr "%.1f%%"
 #: project/src/main/ui/candy-button/CandyButtonH3.tscn:96
 #: project/src/main/ui/candy-button/CandyButtonH4.tscn:48
 #: project/src/main/ui/candy-button/CandyButtonH4.tscn:57
-#, fuzzy
 msgid "Text"
 msgstr "Texto"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:384
-#, fuzzy
 msgid "Mouths"
 msgstr "Bocas"
 
@@ -15422,17 +15387,14 @@ msgid "Quit"
 msgstr "Salir"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:877
-#, fuzzy
 msgid "Save Changes?"
 msgstr "¿Guardar cambios?"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:878
-#, fuzzy
 msgid "Want to save your changes?"
 msgstr "¿Quieres guardar tus cambios?"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:892
-#, fuzzy
 msgid "Import Creature"
 msgstr "Importar Criatura"
 
@@ -15445,7 +15407,6 @@ msgid "Error"
 msgstr "Error"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:939
-#, fuzzy
 msgid "Creature Saved"
 msgstr "Criatura Guardada"
 
@@ -15455,16 +15416,14 @@ msgid "asdf"
 msgstr "asdf"
 
 #: project/src/main/editor/creature/creature-editor.gd:64
-#, fuzzy
 msgid "Error importing creature."
-msgstr "Error al importar la criatura."
+msgstr "Error al importar criatura."
 
 #: project/src/main/editor/creature/dialogs.gd:25
 msgid "Save"
 msgstr "Guardar"
 
 #: project/src/main/editor/creature/dialogs.gd:26
-#, fuzzy
 msgid "Discard"
 msgstr "Descartar"
 
@@ -15554,7 +15513,6 @@ msgid "¥20"
 msgstr "¥20"
 
 #: project/src/main/puzzle/Playfield.tscn:256
-#, fuzzy
 msgid ""
 "Arrows: Move\n"
 "Down: Soft drop\n"
@@ -15562,8 +15520,8 @@ msgid ""
 "Z, X: Rotate"
 msgstr ""
 "Flechas: Mover\n"
-"Abajo: Caída suave\n"
-"Espacio: Caída fuerte\n"
+"Abajo: Caída lenta\n"
+"Espacio: Caída rápida\n"
 "Z, X: Rotar"
 
 #: project/src/main/puzzle/Puzzle.tscn:307
@@ -15584,13 +15542,12 @@ msgid "abcd"
 msgstr "abcd"
 
 #: project/src/main/puzzle/Puzzle.tscn:756
-#, fuzzy
 msgid ""
 "0 frame drops\n"
 "0 step drops"
 msgstr ""
 "0 caídas de cuadros\n"
-"0 caídas por paso"
+"0 caídas de pasos"
 
 #: project/src/main/puzzle/PuzzleMessage.tscn:281
 #: project/src/main/puzzle/PuzzleMessage.tscn:294
@@ -15618,7 +15575,6 @@ msgid "+¥55"
 msgstr "+¥55"
 
 #: project/src/main/puzzle/TechMoveBurst.tscn:130
-#, fuzzy
 msgid ""
 "T-Spin\n"
 "Double"
@@ -15730,11 +15686,11 @@ msgstr "Cuádruple"
 
 #: project/src/main/puzzle/tech-move-burst.gd:40
 msgid "Spin"
-msgstr "Giro"
+msgstr "Spin"
 
 #: project/src/main/puzzle/tech-move-burst.gd:41
 msgid "Squish"
-msgstr "Aplastado"
+msgstr "Squish"
 
 #: project/src/main/puzzle/tech-move-burst.gd:115
 msgid "Mega"
@@ -15795,7 +15751,6 @@ msgid "name"
 msgstr "nombre"
 
 #: project/src/main/puzzle/result/BarGraphGoal.tscn:39
-#, fuzzy
 msgid "¥25,000: SSS"
 msgstr "¥25,000: SSS"
 
@@ -15892,7 +15847,6 @@ msgid "abc"
 msgstr "abc"
 
 #: project/src/main/puzzle/tutorial/SkillTallyItem.tscn:72
-#, fuzzy
 msgid ""
 "abc\n"
 "(0/5)"
@@ -16512,7 +16466,7 @@ msgid ""
 msgstr ""
 "¡Inténtalo de nuevo! Intenta hacer dos cajas de torta.\n"
 "\n"
-"Limpia líneas para evitar romper el combo."
+"Haz líneas para evitar romper el combo."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:86
 msgid ""
@@ -17445,9 +17399,8 @@ msgid "S++"
 msgstr "S++"
 
 #: project/src/main/ui/level-select/level-submenu-description-panel.gd:29
-#, fuzzy
 msgid "Play this level in Adventure mode to unlock it!"
-msgstr "¡Juega este nivel en el modo Aventura para desbloquearlo!"
+msgstr "¡Juega este nivel en modo Aventura para desbloquearlo!"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd:27
 msgid "Unknown"
@@ -17506,7 +17459,6 @@ msgid "Well, crap"
 msgstr "Bueno, mierda"
 
 #: project/src/main/ui/menu/MainMenu.tscn:143
-#, fuzzy
 msgid "Adventure"
 msgstr "Aventura"
 
@@ -17516,12 +17468,10 @@ msgid "Play"
 msgstr "Jugar"
 
 #: project/src/main/ui/menu/MainMenu.tscn:182
-#, fuzzy
 msgid "Avatar"
 msgstr "Avatar"
 
 #: project/src/main/ui/menu/MainMenu.tscn:225
-#, fuzzy
 msgid "Training"
 msgstr "Entrenamiento"
 
@@ -17629,9 +17579,8 @@ msgid "I'm really sorry."
 msgstr "Lo lamento mucho."
 
 #: project/src/main/ui/menu/region-description-panel.gd:23
-#, fuzzy
 msgid "Advance further into Adventure mode to unlock new areas!"
-msgstr "¡Avanza más en el modo Aventura para desbloquear nuevas areas!"
+msgstr "¡Avanza más en modo Aventura para desbloquear nuevas áreas!"
 
 #: project/src/main/ui/menu/region-info-panel.gd:12
 msgid "7 kyu"
@@ -17850,7 +17799,6 @@ msgstr "Volver en Menú"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:663
 #: project/src/main/ui/settings/SettingsMenu.tscn:826
-#, fuzzy
 msgid "Next Tab"
 msgstr "Siguiente Pestaña"
 
@@ -17862,7 +17810,6 @@ msgstr "X"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:670
 #: project/src/main/ui/settings/SettingsMenu.tscn:833
-#, fuzzy
 msgid "Previous Tab"
 msgstr "Pestaña Anterior"
 
@@ -18104,24 +18051,20 @@ msgid "Mute"
 msgstr "Mudo"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:54
-#, fuzzy
 msgid "Master Volume"
 msgstr "Volumen Principal"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:55
-#, fuzzy
 msgid "Music Volume"
-msgstr "Volumen de la Música"
+msgstr "Volumen de Música"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:56
-#, fuzzy
 msgid "SFX Volume"
 msgstr "Volumen de Efectos"
 
 #: project/src/main/ui/settings/volume-setting-control.gd:57
-#, fuzzy
 msgid "Voice Volume"
-msgstr "Volumen de las Voces"
+msgstr "Volumen de Voces"
 
 #: project/src/main/ui/settings/keybind/custom-keybind-button.gd:53
 msgid "<Enter Key>"
