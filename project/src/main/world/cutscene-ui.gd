@@ -28,3 +28,21 @@ func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:
 				if creature.creature_id == chat_event.who:
 					delay = 0.0
 				walking_buddy.start_walking(delay)
+
+
+func _on_SettingsMenu_quit_pressed() -> void:
+	PlayerData.cutscene_queue.reset()
+	
+	if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CAREER_MAP:
+		# When quitting a career mode cutscene, quit career mode entirely
+		Breadcrumb.initialize_trail()
+		SceneTransition.push_trail(Global.SCENE_MAIN_MENU)
+	else:
+		SceneTransition.pop_trail()
+
+
+func _on_SettingsMenu_hide() -> void:
+	if not _chat_ui:
+		return
+	
+	_chat_ui.grab_focus()
