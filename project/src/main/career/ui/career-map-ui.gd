@@ -51,7 +51,7 @@ func _find_region_with_boss_level() -> CareerRegion:
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
 	regions_reversed.invert()
 	for region in regions_reversed:
-		if region.start < PlayerData.career.distance_travelled and region.boss_level:
+		if region.start <= PlayerData.career.distance_travelled and region.boss_level:
 			result = region
 			break
 	
