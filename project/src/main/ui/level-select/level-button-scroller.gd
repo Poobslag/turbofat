@@ -97,14 +97,9 @@ func populate(new_region: Object, default_level_id: String = "") -> void:
 		_level_ids.append_array(_region.level_ids)
 
 	_refresh()
-	yield(get_tree(), "idle_frame")
 	if default_level_id:
-		set_central_button_index(_level_ids.find(default_level_id))
-
-	# set_central_button_index will only refresh the central button index if it detects a change. We always need to
-	# refresh the central button index when initially populating the buttons, otherwise the scroller can stay scrolled
-	# in an unusual position
-	_refresh_central_button_index(false)
+		call_deferred("set_central_button_index", _level_ids.find(default_level_id))
+	call_deferred("_refresh_central_button_index", false)
 
 
 func set_central_button_index(new_central_button_index: int) -> void:
@@ -202,7 +197,7 @@ func _slide_central_button(new_central_button_index: int) -> void:
 ## Parameters:
 ## 	'animate': If true, the button smoothly slides into the center.
 func _refresh_central_button_index(animate: bool = true) -> void:
-	if not _level_buttons_container.get_children():
+	if _level_buttons_container.get_child_count() == 0:
 		return
 	
 	# set appropriate focus_mode for all level select buttons
@@ -223,7 +218,7 @@ func _refresh_central_button_index(animate: bool = true) -> void:
 
 
 func _central_button() -> LevelSelectButton:
-	return _level_buttons_container.get_children()[central_button_index]
+	return _level_buttons_container.get_child(central_button_index) as LevelSelectButton
 
 
 ## Returns 'true' if any level button in this container has focus.
@@ -279,13 +274,11 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 	if cheat == "unlock":
 		_unlock_cheat_enabled = !_unlock_cheat_enabled
 		detector.play_cheat_sound(_unlock_cheat_enabled)
-		var old_central_button_index := central_button_index
 		var old_level_button_has_focus := _level_button_has_focus()
 		
 		_refresh()
-		
-		yield(get_tree(), "idle_frame")
-		set_central_button_index(old_central_button_index)
-		_refresh_central_button_index(false)
+		call_deferred("set_central_button_index", central_button_index)
+		call_deferred("_refresh_central_button_index", false)
+
 		if old_level_button_has_focus:
-			grab_focus()
+			call_deferred("grab_focus")
