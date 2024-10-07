@@ -15,6 +15,7 @@ unknown, ?
  (lava_crowd start_bouncing)
  (play_sfx lava_cheer)
  (s1 mood ^_^)
+ (end_day)
 b: ^o^ Chef of the year? Wow, that's amazing!
  (s1 faces right, p1 faces right)
  (b enters)
