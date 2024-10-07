@@ -327,8 +327,11 @@ func _complete_milestone(milestone: Milestone) -> void:
 				- PuzzleState.level_performance.lines
 			
 			PuzzleState.level_performance.seconds += 9999
-		Milestone.TIME_OVER, Milestone.TIME_UNDER:
+		Milestone.TIME_OVER:
 			PuzzleState.level_performance.seconds = milestone.adjusted_value()
+		Milestone.TIME_UNDER:
+			# set the time slightly under the required time, so the player has a moment to place the piece
+			PuzzleState.level_performance.seconds = max(milestone.adjusted_value() - 10.0, 1.0)
 
 
 func _on_Hud_start_button_pressed() -> void:
