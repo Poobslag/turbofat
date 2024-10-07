@@ -5,3 +5,4 @@ extends Button
 
 func _pressed() -> void:
 	SystemData.gameplay_settings.reset()
+	SystemData.has_unsaved_changes = true

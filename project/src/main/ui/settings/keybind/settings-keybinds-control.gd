@@ -69,16 +69,19 @@ func _refresh_keybind_labels() -> void:
 
 func _on_Guideline_pressed() -> void:
 	SystemData.keybind_settings.preset = KeybindSettings.GUIDELINE
+	SystemData.has_unsaved_changes = true
 	_refresh_keybind_labels()
 
 
 func _on_Wasd_pressed() -> void:
 	SystemData.keybind_settings.preset = KeybindSettings.WASD
+	SystemData.has_unsaved_changes = true
 	_refresh_keybind_labels()
 
 
 func _on_Custom_pressed() -> void:
 	SystemData.keybind_settings.preset = KeybindSettings.CUSTOM
+	SystemData.has_unsaved_changes = true
 	_refresh_keybind_labels()
 
 

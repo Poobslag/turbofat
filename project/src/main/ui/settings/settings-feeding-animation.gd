@@ -11,3 +11,4 @@ func _ready() -> void:
 
 func _on_OptionButton_item_selected(_index: int) -> void:
 	SystemData.graphics_settings.feeding_animation = _index
+	SystemData.has_unsaved_changes = true

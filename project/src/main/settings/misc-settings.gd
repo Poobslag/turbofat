@@ -50,6 +50,7 @@ func advance_locale() -> void:
 	var new_locale_index := (locales.find(old_locale) + 1) % locales.size()
 	var new_locale: String = locales[new_locale_index]
 	SystemData.misc_settings.set_locale(new_locale)
+	SystemData.has_unsaved_changes = true
 
 
 func set_save_slot(new_save_slot: int) -> void:

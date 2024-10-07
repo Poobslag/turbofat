@@ -52,3 +52,4 @@ func _current_loaded_locale() -> String:
 func _on_OptionButton_item_selected(_index: int) -> void:
 	# update the locale to the selected locale
 	SystemData.misc_settings.set_locale(TranslationServer.get_loaded_locales()[_index])
+	SystemData.has_unsaved_changes = true
