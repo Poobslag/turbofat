@@ -21,6 +21,7 @@ func _refresh_checkbox() -> void:
 
 func _on_CheckBox_pressed() -> void:
 	SystemData.graphics_settings.fullscreen = _check_box.pressed
+	SystemData.has_unsaved_changes = true
 
 
 func _on_GraphicsSettings_fullscreen_changed(_value: bool) -> void:

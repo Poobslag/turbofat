@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func _on_OptionButton_item_selected(_index: int) -> void:
 	SystemData.graphics_settings.creature_detail = _index
+	SystemData.has_unsaved_changes = true
 
 
 ## When the player changes the detail levels, we add an asterisk.

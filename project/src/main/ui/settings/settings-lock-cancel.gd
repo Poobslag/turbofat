@@ -14,7 +14,11 @@ func _refresh() -> void:
 
 
 func _on_CheckBox_toggled(_button_pressed: bool) -> void:
+	if SystemData.gameplay_settings.soft_drop_lock_cancel == _check_box.pressed:
+		return
+	
 	SystemData.gameplay_settings.soft_drop_lock_cancel = _check_box.pressed
+	SystemData.has_unsaved_changes = true
 
 
 func _on_GameplaySettings_soft_drop_lock_cancel_changed(_value: bool) -> void:

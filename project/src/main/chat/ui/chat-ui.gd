@@ -74,6 +74,14 @@ func play_chat_tree(chat_tree: ChatTree) -> void:
 	emit_signal("popped_in")
 
 
+## Steals the focus from another control and becomes the focused control.
+##
+## This control itself doesn't have focus, so we delegate to a child control.
+func grab_focus() -> void:
+	if _chat_choices.is_showing_choices():
+		_chat_choices.grab_focus()
+
+
 func _refresh_overworld_environment_path() -> void:
 	if not is_inside_tree():
 		return

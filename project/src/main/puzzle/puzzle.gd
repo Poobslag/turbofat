@@ -226,15 +226,28 @@ func _start_puzzle() -> void:
 	PuzzleState.prepare_and_start_game()
 
 
-func _quit_puzzle() -> void:
-	if PlayerData.career.is_career_mode():
+## Quits/skips the current puzzle and changes scenes, navigating back one level in the breadcrumb trail.
+##
+## Parameters:
+## 	'force_quit': In Career mode, this is 'true' if the player should be redirecting out of career mode entirely,
+## 		or 'false' if the player should be redirected back to career mode.
+func _quit_puzzle(force_quit: bool = false) -> void:
+	if PlayerData.career.is_career_mode() and force_quit and CurrentLevel.attempt_count == 0:
+		# The player can quit a puzzle in career mode if they haven't attempted it
+		pass
+	elif PlayerData.career.is_career_mode():
 		PlayerData.career.process_puzzle_result()
 	
 	CurrentLevel.reset()
 	PlayerData.customer_queue.reset()
 	
-	if PlayerData.career.is_career_mode():
-		# career mode; defer to CareerData to decide the next scene.
+	if PlayerData.career.is_career_mode() and force_quit:
+		# quitting career mode; dump them back to the main menu
+		PlayerData.cutscene_queue.reset()
+		Breadcrumb.initialize_trail()
+		SceneTransition.push_trail(Global.SCENE_MAIN_MENU)
+	elif PlayerData.career.is_career_mode() and not force_quit:
+		# continuing career mode; defer to CareerData to decide the next scene.
 		PlayerData.career.push_career_trail()
 	else:
 		# not career mode; play a cutscene or return to the previous scene
@@ -314,8 +327,11 @@ func _complete_milestone(milestone: Milestone) -> void:
 				- PuzzleState.level_performance.lines
 			
 			PuzzleState.level_performance.seconds += 9999
-		Milestone.TIME_OVER, Milestone.TIME_UNDER:
+		Milestone.TIME_OVER:
 			PuzzleState.level_performance.seconds = milestone.adjusted_value()
+		Milestone.TIME_UNDER:
+			# set the time slightly under the required time, so the player has a moment to place the piece
+			PuzzleState.level_performance.seconds = max(milestone.adjusted_value() - 10.0, 1.0)
 
 
 func _on_Hud_start_button_pressed() -> void:
@@ -376,7 +392,7 @@ func _on_SettingsMenu_quit_pressed() -> void:
 	if _settings_menu.quit_type == SettingsMenu.GIVE_UP:
 		PuzzleState.make_player_lose()
 	else:
-		_quit_puzzle()
+		_quit_puzzle(true)
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:

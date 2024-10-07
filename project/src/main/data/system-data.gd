@@ -15,6 +15,9 @@ var misc_settings := MiscSettings.new()
 ## We accelerate scene transitions and animations during development.
 var fast_mode := OS.is_debug_build()
 
+## If 'true', the player has pending configuration changes which need to be saved
+var has_unsaved_changes := false
+
 ## We store the non-fullscreened window size so we can restore it when the player disables fullscreen mode.
 var _prev_window_size: Vector2 = Global.window_size
 var _prev_window_position: Vector2 = OS.window_position
@@ -37,6 +40,7 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("fullscreen"):
 		SystemData.graphics_settings.fullscreen = !SystemData.graphics_settings.fullscreen
+		SystemData.has_unsaved_changes = true
 		SystemSave.save_system_data()
 		get_tree().set_input_as_handled()
 
@@ -61,6 +65,7 @@ func reset() -> void:
 	touch_settings.reset()
 	keybind_settings.reset()
 	misc_settings.reset()
+	has_unsaved_changes = false
 
 
 ## Apply the vsync/maximized settings.

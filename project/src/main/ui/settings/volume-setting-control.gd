@@ -61,6 +61,7 @@ func _refresh_setting_label() -> void:
 func _on_HSlider_value_changed(value: float) -> void:
 	_refresh_percent_label()
 	SystemData.volume_settings.set_bus_volume_linear(volume_type, value)
+	SystemData.has_unsaved_changes = true
 	_sample_timer.start()
 
 

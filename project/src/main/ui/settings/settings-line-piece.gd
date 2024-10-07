@@ -13,6 +13,7 @@ func _refresh() -> void:
 
 
 func _on_CheckBox_toggled(_button_pressed: bool) -> void:
+	SystemData.has_unsaved_changes = true
 	SystemData.gameplay_settings.line_piece = _check_box.pressed
 
 

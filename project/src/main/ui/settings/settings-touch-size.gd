@@ -13,4 +13,6 @@ func _ready() -> void:
 func _on_HSlider_value_changed(index: float) -> void:
 	var value: float = VALUES[int(index)]
 	$Control/Text.text = "%04.2fx" % value
-	SystemData.touch_settings.size = value
+	if SystemData.touch_settings.size != value:
+		SystemData.touch_settings.size = value
+		SystemData.has_unsaved_changes = true

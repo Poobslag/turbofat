@@ -1,12 +1,33 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/world/cutscene-ui.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=4]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
+[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/chat/ui/ChatUi.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="InputEventAction" id=15]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=21]
+shortcut = SubResource( 15 )
 
 [node name="CutsceneUi" type="CanvasLayer" groups=["overworld_ui"]]
 script = ExtResource( 1 )
@@ -52,12 +73,57 @@ margin_bottom = 280.0
 [node name="ChatUi" parent="." instance=ExtResource( 15 )]
 visible = false
 
+[node name="Buttons" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="Northeast" type="HBoxContainer" parent="Buttons"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -512.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
+custom_constants/separation = 10
+alignment = 2
+
+[node name="SettingsButton" parent="Buttons/Northeast" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+focus_mode = 2
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 18 )
+custom_styles/disabled = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+shortcut = SubResource( 21 )
+icon = ExtResource( 3 )
+expand_icon = true
+normal_icon = ExtResource( 3 )
+pressed_icon = ExtResource( 4 )
+
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 20 )]
 codes = [ "bigfps" ]
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 7 )]
+quit_type = 1
 
 [node name="MusicPopup" parent="." instance=ExtResource( 13 )]
 
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="chat_finished" from="ChatUi" to="." method="_on_ChatUi_chat_finished"]
 [connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
+[connection signal="pressed" from="Buttons/Northeast/SettingsButton" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="hide" from="SettingsMenu" to="." method="_on_SettingsMenu_hide"]
+[connection signal="hide" from="SettingsMenu" to="Buttons" method="_on_Menu_hide"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
+[connection signal="show" from="SettingsMenu" to="Buttons" method="_on_Menu_show"]

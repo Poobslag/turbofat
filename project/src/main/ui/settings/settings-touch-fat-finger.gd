@@ -18,3 +18,4 @@ func _ready() -> void:
 
 func _on_OptionButton_item_selected(id: int) -> void:
 	SystemData.touch_settings.fat_finger = VALUES[id]
+	SystemData.has_unsaved_changes = true

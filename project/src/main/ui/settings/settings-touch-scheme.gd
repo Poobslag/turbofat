@@ -17,3 +17,4 @@ func _ready() -> void:
 
 func _on_OptionButton_item_selected(id: int) -> void:
 	SystemData.touch_settings.scheme = id
+	SystemData.has_unsaved_changes = true

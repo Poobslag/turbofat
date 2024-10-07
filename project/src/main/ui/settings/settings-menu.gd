@@ -93,7 +93,8 @@ func _confirm_and_save(new_post_save_method: String, new_post_save_args_array: A
 	if _save_slot_control.get_selected_save_slot() != SystemData.misc_settings.save_slot:
 		_dialogs.confirm_new_save_slot()
 	else:
-		SystemSave.save_system_data()
+		if SystemData.has_unsaved_changes:
+			SystemSave.save_system_data()
 		hide()
 		if _post_save_method:
 			callv(_post_save_method, _post_save_args_array)
@@ -144,7 +145,8 @@ func _on_Settings_pressed() -> void:
 
 func _on_Dialogs_change_save_cancelled() -> void:
 	_save_slot_control.revert_save_slot()
-	SystemSave.save_system_data()
+	if SystemData.has_unsaved_changes:
+		SystemSave.save_system_data()
 	hide()
 	if _post_save_method:
 		callv(_post_save_method, _post_save_args_array)
@@ -153,6 +155,7 @@ func _on_Dialogs_change_save_cancelled() -> void:
 func _on_Dialogs_change_save_confirmed() -> void:
 	# update and save the player's save slot choice in SystemData
 	SystemData.misc_settings.save_slot = _save_slot_control.get_selected_save_slot()
+	SystemData.has_unsaved_changes = true
 	SystemSave.save_system_data()
 	
 	# load the save slot contents and return the player to the splash screen
