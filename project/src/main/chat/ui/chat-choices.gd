@@ -72,9 +72,16 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 		
 		# wait for old chat choices to be deleted before grabbing focus
 		yield(get_tree(), "idle_frame")
-		for button in get_tree().get_nodes_in_group("chat_choices"):
-			button.grab_focus()
-			break
+		grab_focus()
+
+
+## Steals the focus from another control and becomes the focused control.
+##
+## This control itself doesn't have focus, so we delegate to a child control.
+func grab_focus() -> void:
+	for button in get_tree().get_nodes_in_group("chat_choices"):
+		button.grab_focus()
+		break
 
 
 func is_showing_choices() -> bool:
@@ -124,7 +131,6 @@ func _refresh_child_buttons() -> void:
 		button.set_mood(_moods[i])
 		button.set_mood_right(i % 2 == 1)
 		button.connect("focus_entered", self, "_on_ChatChoiceButton_focus_entered")
-		button.connect("gui_input", self, "_on_ChatChoiceButton_gui_input")
 		button.connect("pressed", self, "_on_ChatChoiceButton_pressed")
 		add_child(button)
 		new_buttons.append(button)
@@ -149,11 +155,6 @@ func _refresh_child_buttons() -> void:
 
 func _on_ChatChoiceButton_focus_entered() -> void:
 	$PopSound.play()
-
-
-func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
-	# swallow input; player shouldn't move when answering chat prompts
-	get_tree().set_input_as_handled()
 
 
 ## Makes all the chat choice buttons disappear and emits a signal with the player's selected choice.
