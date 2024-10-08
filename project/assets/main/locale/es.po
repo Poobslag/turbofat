@@ -15735,11 +15735,12 @@ msgid "DPAD"
 msgstr "DPAD"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:23
+#, fuzzy
 msgid ""
-"What have you done!? Click 'Settings' to reconfigure your controls, you "
+"What have you done!? Go into 'Settings' and reconfigure your controls, you "
 "silly goose!"
 msgstr ""
-"¿¡Qué has hecho!? Haz clic en 'Configuración' para reconfigurar tus "
+"¿¡Qué has hecho!? Ve a 'Configuración' y reconfigura tus "
 "controles, ¡tonto!"
 
 #: project/src/main/puzzle/level/level-settings.gd:147
@@ -18067,8 +18068,9 @@ msgid "Voice Volume"
 msgstr "Volumen de Voces"
 
 #: project/src/main/ui/settings/keybind/custom-keybind-button.gd:54
-msgid "<Enter Key>"
-msgstr "<Tecla>"
+#, fuzzy
+msgid "<Enter...>"
+msgstr "<Pulsa...>"
 
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:45
 msgid "Left, Right, Kp 4, Kp 6"
