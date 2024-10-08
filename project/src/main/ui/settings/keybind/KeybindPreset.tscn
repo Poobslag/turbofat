@@ -20,17 +20,13 @@ rect_min_size = Vector2( 120, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
 size_flags_stretch_ratio = 0.9
-align = 2
-valign = 1
-autowrap = true
 
-[node name="Value" type="Label" parent="."]
+[node name="Value" type="RichTextLabel" parent="."]
 margin_left = 200.0
 margin_right = 420.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 160, 20 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.1
-custom_colors/font_color = Color( 1, 0.866667, 0.6, 0.501961 )
-valign = 1
-autowrap = true
+custom_colors/default_color = Color( 1, 0.866667, 0.6, 0.501961 )
+scroll_active = false

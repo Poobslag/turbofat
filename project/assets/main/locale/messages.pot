@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-08 14:04-0400\n"
+"POT-Creation-Date: 2024-10-08 14:49-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12453,7 +12453,9 @@ msgid "Learn how squish moves work and when to use them."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:2988
-#: project/src/main/ui/settings/SettingsMenu.tscn:652
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:66
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:79
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:81
 msgid "Space"
 msgstr ""
 
@@ -12850,8 +12852,8 @@ msgid "Ydiaeresis"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3087
-#: project/src/main/ui/settings/SettingsMenu.tscn:632
-#: project/src/main/ui/settings/SettingsMenu.tscn:659
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:64
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:67
 msgid "Escape"
 msgstr ""
 
@@ -12872,6 +12874,8 @@ msgid "Enter"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3092
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:95
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:97
 msgid "Kp Enter"
 msgstr ""
 
@@ -12908,21 +12912,25 @@ msgid "End"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3101
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:76
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:96
 msgid "Left"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3102
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:79
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:81
 msgid "Up"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3103
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:76
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:96
 msgid "Right"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3104
-#: project/src/main/ui/settings/SettingsMenu.tscn:598
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:77
 msgid "Down"
 msgstr ""
 
@@ -12935,7 +12943,10 @@ msgid "PageDown"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3107
-#: project/src/main/ui/settings/SettingsMenu.tscn:686
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:70
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:81
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:83
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:97
 msgid "Shift"
 msgstr ""
 
@@ -13241,6 +13252,7 @@ msgid "Kp Add"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3182
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:83
 msgid "Kp 0"
 msgstr ""
 
@@ -13249,6 +13261,7 @@ msgid "Kp 1"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3184
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:77
 msgid "Kp 2"
 msgstr ""
 
@@ -13257,26 +13270,39 @@ msgid "Kp 3"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3186
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:76
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:90
 msgid "Kp 4"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3187
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:93
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:95
 msgid "Kp 5"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3188
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:76
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:90
 msgid "Kp 6"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3189
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:82
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:96
 msgid "Kp 7"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3190
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:79
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:81
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:91
 msgid "Kp 8"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:3191
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:82
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:96
 msgid "Kp 9"
 msgstr ""
 
@@ -13912,14 +13938,6 @@ msgstr ""
 msgid "¥20"
 msgstr ""
 
-#: project/src/main/puzzle/Playfield.tscn:256
-msgid ""
-"Arrows: Move\n"
-"Down: Soft drop\n"
-"Space: Hard drop\n"
-"Z, X: Rotate"
-msgstr ""
-
 #: project/src/main/puzzle/Puzzle.tscn:307
 msgid "Goal"
 msgstr ""
@@ -14086,48 +14104,32 @@ msgstr ""
 msgid "Mega"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:12
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:17
 msgid "Move"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:13
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:93
 #: project/src/main/ui/settings/SettingsMenu.tscn:597
 #: project/src/main/ui/settings/SettingsMenu.tscn:731
 msgid "Soft Drop"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:14
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:105
 #: project/src/main/ui/settings/SettingsMenu.tscn:604
 #: project/src/main/ui/settings/SettingsMenu.tscn:738
 msgid "Hard Drop"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:15
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:20
 msgid "Rotate"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
-msgid "Arrows"
-msgstr ""
-
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Left"
-msgstr ""
-
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD Right"
-msgstr ""
-
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
-msgid "DPAD"
-msgstr ""
-
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:23
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:24
 msgid ""
-"What have you done!? Go into 'Settings' and reconfigure your controls, you "
-"silly goose!"
+"What have you done!? Go into 'Settings' and reconfigure your controls, "
+"you silly goose!"
 msgstr ""
 
 #: project/src/main/puzzle/level/level-settings.gd:147
@@ -15422,6 +15424,7 @@ msgid "H"
 msgstr ""
 
 #: project/src/main/ui/candy-button/CandyColorPicker.tscn:132
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:91
 msgid "S"
 msgstr ""
 
@@ -15763,6 +15766,7 @@ msgid "Guideline"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:554
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:65
 msgid "WASD"
 msgstr ""
 
@@ -15774,20 +15778,8 @@ msgstr ""
 msgid "Move Piece"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:591
-msgid "Left, Right"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:605
-msgid "Space, Up, Shift"
-msgstr ""
-
 #: project/src/main/ui/settings/SettingsMenu.tscn:611
 msgid "Rotate Piece"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:612
-msgid "Z, X"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:618
@@ -15795,16 +15787,8 @@ msgstr ""
 msgid "Swap Hold Piece"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:625
-msgid "R"
-msgstr ""
-
 #: project/src/main/ui/settings/SettingsMenu.tscn:644
 msgid "Move in Menus"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:645
-msgid "Arrows, WASD"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:651
@@ -15822,19 +15806,9 @@ msgstr ""
 msgid "Next Tab"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:666
-#: project/src/main/ui/settings/SettingsMenu.tscn:1102
-#: project/src/main/ui/settings/keybind/KeybindCustom.tscn:82
-msgid "X"
-msgstr ""
-
 #: project/src/main/ui/settings/SettingsMenu.tscn:672
 #: project/src/main/ui/settings/SettingsMenu.tscn:835
 msgid "Previous Tab"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn:673
-msgid "Z"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:685
@@ -15900,6 +15874,13 @@ msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:1095
 msgid "Slot A"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:1102
+#: project/src/main/ui/settings/keybind/KeybindCustom.tscn:88
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:68
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:82
+msgid "X"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn:1129
@@ -16090,52 +16071,34 @@ msgstr ""
 msgid "<Enter...>"
 msgstr ""
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:45
-msgid "Left, Right, Kp 4, Kp 6"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:46
-msgid "Down, Kp 2"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:48
-msgid "Space, Up, Kp 8"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:50
-msgid "Space, Up, Kp 8, Shift"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:51
-msgid "Z, X, Kp 7, Kp 9"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:52
-msgid "Shift, C, Kp 0"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:56
-msgid "A, D, Kp 4, Kp 6"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:57
-msgid "S, Kp 8"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:59
-msgid "W, Kp 5"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:61
-msgid "W, Kp 5, Kp Enter"
-msgstr ""
-
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:62
-msgid "Left, Right, Kp 7, Kp 9"
-msgstr ""
-
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:63
-msgid "Shift, Kp Enter"
+msgid "R"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:65
+msgid "Arrows"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:69
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:82
+msgid "Z"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:83
+msgid "C"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:90
+msgid "A"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:90
+msgid "D"
+msgstr ""
+
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:93
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:95
+msgid "W"
 msgstr ""
 
 #: project/src/main/utils/string-utils.gd:108

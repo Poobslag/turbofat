@@ -13,6 +13,46 @@ enum KeybindPreset {
 	CUSTOM
 }
 
+## Images to show for XBox inputs
+const XBOX_IMAGE_A := preload("res://assets/main/ui/xbox/xbox-a.png")
+const XBOX_IMAGE_B := preload("res://assets/main/ui/xbox/xbox-b.png")
+const XBOX_IMAGE_X := preload("res://assets/main/ui/xbox/xbox-x.png")
+const XBOX_IMAGE_Y := preload("res://assets/main/ui/xbox/xbox-y.png")
+const XBOX_IMAGE_LB := preload("res://assets/main/ui/xbox/xbox-lb.png")
+const XBOX_IMAGE_RB := preload("res://assets/main/ui/xbox/xbox-rb.png")
+const XBOX_IMAGE_LT := preload("res://assets/main/ui/xbox/xbox-lt.png")
+const XBOX_IMAGE_RT := preload("res://assets/main/ui/xbox/xbox-rt.png")
+const XBOX_IMAGE_LEFT_STICK_CLICK := preload("res://assets/main/ui/xbox/xbox-left-stick-click.png")
+const XBOX_IMAGE_RIGHT_STICK_CLICK := preload("res://assets/main/ui/xbox/xbox-right-stick-click.png")
+const XBOX_IMAGE_VIEW := preload("res://assets/main/ui/xbox/xbox-view.png")
+const XBOX_IMAGE_MENU := preload("res://assets/main/ui/xbox/xbox-menu.png")
+const XBOX_IMAGE_DPAD := preload("res://assets/main/ui/xbox/xbox-dpad.png")
+const XBOX_IMAGE_DPAD_UP := preload("res://assets/main/ui/xbox/xbox-dpad-up.png")
+const XBOX_IMAGE_DPAD_DOWN := preload("res://assets/main/ui/xbox/xbox-dpad-down.png")
+const XBOX_IMAGE_DPAD_LEFT := preload("res://assets/main/ui/xbox/xbox-dpad-left.png")
+const XBOX_IMAGE_DPAD_RIGHT := preload("res://assets/main/ui/xbox/xbox-dpad-right.png")
+
+## key: button index
+## value: XBox input image texture
+const XBOX_IMAGES_BY_BUTTON := {
+	0: XBOX_IMAGE_A,
+	1: XBOX_IMAGE_B,
+	2: XBOX_IMAGE_X,
+	3: XBOX_IMAGE_Y,
+	4: XBOX_IMAGE_LB,
+	5: XBOX_IMAGE_RB,
+	6: XBOX_IMAGE_LT,
+	7: XBOX_IMAGE_RT,
+	8: XBOX_IMAGE_LEFT_STICK_CLICK,
+	9: XBOX_IMAGE_RIGHT_STICK_CLICK,
+	10: XBOX_IMAGE_VIEW,
+	11: XBOX_IMAGE_MENU,
+	12: XBOX_IMAGE_DPAD_UP,
+	13: XBOX_IMAGE_DPAD_DOWN,
+	14: XBOX_IMAGE_DPAD_LEFT,
+	15: XBOX_IMAGE_DPAD_RIGHT,
+}
+
 ## files defining keybind presets
 const GUIDELINE_PATH := "res://assets/main/keybind/guideline.json"
 const GUIDELINE_HOLD_PATH := "res://assets/main/keybind/guideline-hold.json"
@@ -266,3 +306,14 @@ func valid_custom_ui_keybinds() -> bool:
 			break
 	
 	return valid
+
+
+## Returns the xbox input image texture for the specified joypad event.
+##
+## Parameters:
+## 	'input_event_json': json containing an xbox 'button_index' key
+##
+## Returns:
+## 	An xbox input image texture showing a button or dpad input.
+static func xbox_image_for_input_event(input_event_json: Dictionary) -> Texture:
+	return XBOX_IMAGES_BY_BUTTON.get(input_event_json.get("button_index"))
