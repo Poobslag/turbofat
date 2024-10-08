@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/world/cutscene-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/chat/ui/ChatUi.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=18]
@@ -109,6 +110,9 @@ icon = ExtResource( 3 )
 expand_icon = true
 normal_icon = ExtResource( 3 )
 pressed_icon = ExtResource( 4 )
+
+[node name="ShortcutHelper" parent="Buttons/Northeast/SettingsButton" instance=ExtResource( 8 )]
+action = "ui_menu"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 20 )]
 codes = [ "bigfps" ]
