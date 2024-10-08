@@ -51,7 +51,7 @@ func _start_awaiting() -> void:
 	
 	pressed = true
 	awaiting = true
-	text = tr("<Enter Key>")
+	text = tr("<Enter...>")
 	emit_signal("awaiting_changed", awaiting)
 
 

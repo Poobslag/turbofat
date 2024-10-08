@@ -20,7 +20,7 @@ func _refresh_message() -> void:
 	
 	if not text:
 		# If the player unbinds all of their keys, they can't play.
-		text = tr("What have you done!? Click 'Settings' to reconfigure your controls, you silly goose!")
+		text = tr("What have you done!? Go into 'Settings' and reconfigure your controls, you silly goose!")
 	
 	rect_size = Vector2(238, 0)
 
