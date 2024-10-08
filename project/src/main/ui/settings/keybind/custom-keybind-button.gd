@@ -12,7 +12,7 @@ var awaiting := false
 
 func _ready() -> void:
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
-	_refresh_text()
+	_refresh()
 
 
 func _input(event: InputEvent) -> void:
@@ -39,7 +39,7 @@ func end_awaiting() -> void:
 	
 	pressed = false
 	awaiting = false
-	_refresh_text()
+	_refresh()
 	emit_signal("awaiting_changed", awaiting)
 
 
@@ -52,17 +52,22 @@ func _start_awaiting() -> void:
 	pressed = true
 	awaiting = true
 	text = tr("<Enter...>")
+	icon = null
 	emit_signal("awaiting_changed", awaiting)
 
 
-## Updates the button's text based on the player's current keybinds.
-func _refresh_text() -> void:
+## Updates the button's text and texture based on the player's current keybinds.
+func _refresh() -> void:
 	var new_text := ""
+	var new_image: Texture = null
 	var json: Dictionary = SystemData.keybind_settings.get_custom_keybind(action_name, action_index)
-	if json:
+	if json.get("type") == "key":
 		new_text = tr(KeybindManager.pretty_string(json))
+	elif json.get("type") == "joypad_button":
+		new_image = KeybindSettings.xbox_image_for_input_event(json)
 	text = new_text
+	icon = new_image
 
 
 func _on_KeybindSettings_settings_changed() -> void:
-	_refresh_text()
+	_refresh()

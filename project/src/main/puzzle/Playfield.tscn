@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -20,10 +20,8 @@
 [ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=18]
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=20]
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=21]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=22]
+[ext_resource path="res://src/main/puzzle/TutorialKeybindsLabel.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
-[ext_resource path="res://src/main/puzzle/tutorial-keybinds-label.gd" type="Script" id=24]
 [ext_resource path="res://src/main/puzzle/line-inserter.gd" type="Script" id=25]
 [ext_resource path="res://src/main/puzzle/Pickup.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/puzzle/pickups.gd" type="Script" id=27]
@@ -243,23 +241,7 @@ anchor_bottom = 1.0
 texture = SubResource( 14 )
 flip_v = true
 
-[node name="TutorialKeybindsLabel" type="RichTextLabel" parent="."]
-modulate = Color( 1, 1, 1, 0.392157 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -119.0
-margin_top = 86.0
-margin_right = 119.0
-margin_bottom = 176.0
-custom_fonts/normal_font = ExtResource( 22 )
-custom_styles/normal = ExtResource( 21 )
-text = "Arrows: Move
-Down: Soft drop
-Space: Hard drop
-Z, X: Rotate"
-fit_content_height = true
-scroll_active = false
-script = ExtResource( 24 )
+[node name="TutorialKeybindsLabel" parent="." instance=ExtResource( 21 )]
 
 [node name="ComboTracker" type="Node" parent="."]
 script = ExtResource( 61 )
