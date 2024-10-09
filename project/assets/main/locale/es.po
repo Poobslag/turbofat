@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-08 14:48-0400\n"
+"POT-Creation-Date: 2024-10-09 16:53-0400\n"
 "PO-Revision-Date: 2024-10-07 03:44-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14633,7 +14633,7 @@ msgid "Direction R"
 msgstr "Dirección Der"
 
 #: project/assets/main/locale/localizables-extracted.py:3138
-#: project/src/main/puzzle/PuzzleMessages.tscn:112
+#: project/src/main/puzzle/PuzzleMessages.tscn:119
 #: project/src/main/puzzle/puzzle-messages.gd:207
 #: project/src/main/puzzle/puzzle-messages.gd:213
 msgid "Back"
@@ -14874,18 +14874,18 @@ msgstr "Inglés"
 msgid "Spanish"
 msgstr "Español"
 
-#: project/src/main/career/CareerMap.tscn:120
+#: project/src/main/career/CareerMap.tscn:121
 msgid "The left level is further from the goal. Choose carefully!"
 msgstr ""
 "El nivel de la izquierda está más lejos de la meta. ¡Elige con cuidado!"
 
-#: project/src/main/career/CareerMap.tscn:190
+#: project/src/main/career/CareerMap.tscn:191
 #: project/src/main/career/ui/ChalkboardMapRow.tscn:179
 #: project/src/main/career/ui/Landmark.tscn:37
 msgid "999,999"
 msgstr "999.999"
 
-#: project/src/main/career/CareerMap.tscn:225
+#: project/src/main/career/CareerMap.tscn:226
 msgid "12:05 am"
 msgstr "12:05 am"
 
@@ -15396,7 +15396,7 @@ msgid "Mouths"
 msgstr "Bocas"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:466
-#: project/src/main/puzzle/PuzzleMessages.tscn:92
+#: project/src/main/puzzle/PuzzleMessages.tscn:99
 #: project/src/main/ui/menu/SystemButtons.tscn:71
 #: project/src/main/ui/menu/TrainingMenu.tscn:284
 msgid "Settings"
@@ -15569,7 +15569,7 @@ msgstr ""
 msgid "Good!"
 msgstr "¡Bien!"
 
-#: project/src/main/puzzle/PuzzleMessages.tscn:76
+#: project/src/main/puzzle/PuzzleMessages.tscn:83
 #: project/src/main/puzzle/puzzle-messages.gd:75
 #: project/src/main/puzzle/puzzle-messages.gd:87
 #: project/src/main/ui/menu/TrainingMenu.tscn:268
@@ -15739,6 +15739,173 @@ msgid ""
 "silly goose!"
 msgstr ""
 "¿¡Qué has hecho!? Ve a 'Configuración' y reconfigura tus controles, ¡tonto!"
+
+#: project/src/main/puzzle/intro/IntroReceipt.tscn:55
+msgid ""
+"¥800\n"
+"Ultra"
+msgstr ""
+"¥800\n"
+"Ultra"
+
+#: project/src/main/puzzle/intro/IntroReceipt.tscn:69
+#, fuzzy
+msgid "Earn ¥300 in 80 seconds for an S rank!"
+msgstr "¡Gana ¥300 en 80 segundos para obtener un rango S!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:16
+#, fuzzy
+msgid "There is no goal in this mode. Just have fun!"
+msgstr "No hay ningún objetivo en este modo. ¡Solo diviértete!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:207
+#, fuzzy, python-format
+msgid "Earn %s from %s customer to continue on your journey!"
+msgstr "¡Gana %s de %s cliente para continuar tu viaje!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:210
+#, fuzzy, python-format
+msgid "Earn %s from %s customers to continue on your journey!"
+msgstr "¡Gana %s de %s clientes para continuar tu viaje!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:214
+#, fuzzy, python-format
+msgid "Earn %s from %s customer for a passing grade!"
+msgstr "¡Gana %s de %s cliente para aprobar!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:217
+#, fuzzy, python-format
+msgid "Earn %s from %s customers for a passing grade!"
+msgstr "¡Gana %s de %s clientes para aprobar!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:221
+#, fuzzy, python-format
+msgid "Earn %s from %s customer for rank %s!"
+msgstr "¡Gana %s de %s cliente para obtener el rango %s!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:224
+#, fuzzy, python-format
+msgid "Earn %s from %s customers for rank %s!"
+msgstr "¡Gana %s de %s clientes para obtener el rango %s!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:228
+#, fuzzy, python-format
+msgid "Earn %s from %s customer to beat your record!"
+msgstr "¡Gana %s de %s cliente para superar tu récord!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:231
+#, fuzzy, python-format
+msgid "Earn %s from %s customers to beat your record!"
+msgstr "¡Gana %s de %s clientes para superar tu récord!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:253
+#, fuzzy, python-format
+msgid "Earn %s with %s pieces to continue on your journey!"
+msgstr "¡Gana %s con %s piezas para continuar tu viaje!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:256
+#, fuzzy, python-format
+msgid "Earn %s with %s pieces for a passing grade!"
+msgstr "¡Gana %s con %s piezas para aprobar!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:259
+#, fuzzy, python-format
+msgid "Earn %s with %s pieces for rank %s!"
+msgstr "¡Gana %s con %s piezas para obtener el rango %s!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:262
+#, fuzzy, python-format
+msgid "Earn %s with %s pieces to beat your record!"
+msgstr "¡Gana %s con %s piezas para superar tu récord!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:284
+#, fuzzy, python-format
+msgid "Earn %s with %s lines to continue on your journey!"
+msgstr "¡Gana %s con %s líneas para continuar tu viaje!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:287
+#, fuzzy, python-format
+msgid "Earn %s with %s lines for a passing grade!"
+msgstr "¡Gana %s con %s líneas para aprobar!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:290
+#, fuzzy, python-format
+msgid "Earn %s with %s lines for rank %s!"
+msgstr "¡Gana %s con %s líneas para obtener el rango %s!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:293
+#, fuzzy, python-format
+msgid "Earn %s with %s lines to beat your record!"
+msgstr "¡Gana %s con %s líneas para superar tu récord!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:318
+#, fuzzy, python-format
+msgid "Earn %s in %s to continue on your journey!"
+msgstr "¡Gana %s en %s para continuar tu viaje!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:321
+#, fuzzy, python-format
+msgid "Earn %s in %s for a passing grade!"
+msgstr "¡Gana %s en %s para aprobar!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:324
+#, fuzzy, python-format
+msgid "Earn %s in %s for rank %s!"
+msgstr "¡Gana %s en %s para obtener el rango %s!"
+
+#: project/src/main/puzzle/intro/intro-goal-message.gd:327
+#, fuzzy, python-format
+msgid "Earn %s in %s to beat your record!"
+msgstr "¡Gana %s en %s para superar tu récord!"
+
+#: project/src/main/puzzle/intro/intro-header.gd:42
+#, fuzzy, python-format
+msgid ""
+"%s-Customer\n"
+"VIP"
+msgstr ""
+"%s-Cliente\n"
+"VIP"
+
+#: project/src/main/puzzle/intro/intro-header.gd:51
+#, fuzzy, python-format
+msgid ""
+"%s-Line\n"
+"Marathon"
+msgstr ""
+"%s-Línea\n"
+"Maratón"
+
+#: project/src/main/puzzle/intro/intro-header.gd:54
+#, fuzzy, python-format
+msgid ""
+"%s-Piece\n"
+"Marathon"
+msgstr ""
+"%s-Pieza\n"
+"Maratón"
+
+#: project/src/main/puzzle/intro/intro-header.gd:66
+#, fuzzy
+msgid "Ultra"
+msgstr "Ultra"
+
+#: project/src/main/puzzle/intro/intro-header.gd:73
+#, fuzzy, python-format
+msgid ""
+"%s-Second\n"
+"Sprint"
+msgstr ""
+"%s-Segundo\n"
+"Sprint"
+
+#: project/src/main/puzzle/intro/intro-header.gd:77
+msgid "Sprint"
+msgstr "Carrera"
+
+#: project/src/main/puzzle/intro/intro-header.gd:83
+msgid "Sandbox"
+msgstr "Libre"
 
 #: project/src/main/puzzle/level/level-settings.gd:147
 msgid "description"
