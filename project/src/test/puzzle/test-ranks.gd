@@ -54,19 +54,20 @@ func test_round_time_up() -> void:
 	assert_eq(Ranks.round_time_up(44), 44)
 	assert_eq(Ranks.round_time_up(60), 60)
 	
-	# numbers 61-600 are rounded up to the nearest 5
+	# numbers 61-300 are rounded up to the nearest 5
 	assert_eq(Ranks.round_time_up(61), 65)
 	assert_eq(Ranks.round_time_up(239), 240)
-	assert_eq(Ranks.round_time_up(494), 495)
-	assert_eq(Ranks.round_time_up(600), 600)
+	assert_eq(Ranks.round_time_up(294), 295)
+	assert_eq(Ranks.round_time_up(300), 300)
 	
-	# numbers 600-3599 are rounded up to the nearest 10
-	assert_eq(Ranks.round_time_up(601), 610)
-	assert_eq(Ranks.round_time_up(2095), 2100)
-	assert_eq(Ranks.round_time_up(2948), 2950)
+	# numbers 300-1199 are rounded up to the nearest 10
+	assert_eq(Ranks.round_time_up(301), 310)
+	assert_eq(Ranks.round_time_up(895), 900)
+	assert_eq(Ranks.round_time_up(1191), 1200)
+	assert_eq(Ranks.round_time_up(1200), 1200)
 	
-	# numbers over 3600 are rounded up to the nearest 60
-	assert_eq(Ranks.round_time_up(5321), 5330)
+	# numbers over 1200 are rounded up to the nearest 60
+	assert_eq(Ranks.round_time_up(1201), 1260)
 	assert_eq(Ranks.round_time_up(93546), 93600)
 	assert_eq(Ranks.round_time_up(25133386), 25133400)
 
