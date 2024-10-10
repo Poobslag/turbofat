@@ -117,7 +117,7 @@ func _refresh_goals() -> void:
 	# calculate the list of goals to show
 	var goal_metadatas := []
 	if _blueprint.show_success_goal:
-		goal_metadatas.append([_success_goal, _blueprint.goal_height_success(), _blueprint.goal_success, "GOAL"])
+		goal_metadatas.append([_success_goal, _blueprint.goal_height_success(), _blueprint.goal_success, tr("GOAL")])
 	if _blueprint.show_rank_goals:
 		goal_metadatas.append([_sss_goal, _blueprint.goal_height_sss(), _blueprint.goal_sss, "SSS"])
 		goal_metadatas.append([_ss_goal, _blueprint.goal_height_ss(), _blueprint.goal_ss, "SS"])
