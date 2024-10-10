@@ -11,6 +11,7 @@ enum InputMode {
 
 const KEYBOARD_MOUSE := InputMode.KEYBOARD_MOUSE
 const JOYPAD := InputMode.JOYPAD
+const JOYPAD_DEADZONE := 0.5
 
 ## The input method the player is using to play the game; keyboard or joypad
 ##
@@ -34,6 +35,9 @@ func _input(event: InputEvent) -> void:
 		set_input_mode(KEYBOARD_MOUSE)
 	elif event is InputEventJoypadButton:
 		set_input_mode(JOYPAD)
+	elif event is InputEventJoypadMotion:
+		if abs(event.axis_value) > JOYPAD_DEADZONE:
+			set_input_mode(JOYPAD)
 
 
 func set_input_mode(new_input_mode: int) -> void:
