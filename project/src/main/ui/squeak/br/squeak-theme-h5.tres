@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=120 format=2]
+[gd_resource type="Theme" load_steps=122 format=2]
 
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-button-hover.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-hslider-grabber-area.png" type="Texture" id=2]
@@ -41,6 +41,8 @@
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-file-dialog-folder.png" type="Texture" id=39]
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-file-dialog-file.png" type="Texture" id=40]
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-file-dialog-parent-folder.png" type="Texture" id=41]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-checked-98058.png" type="Texture" id=42]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-unchecked-98058.png" type="Texture" id=43]
 
 [sub_resource type="StyleBoxTexture" id=345]
 content_margin_left = 6.0
@@ -922,11 +924,11 @@ PopupMenu/constants/hseparation = 8
 PopupMenu/constants/vseparation = 8
 PopupMenu/fonts/font = ExtResource( 32 )
 PopupMenu/fonts/font_separator = ExtResource( 32 )
-PopupMenu/icons/checked = ExtResource( 16 )
-PopupMenu/icons/radio_checked = ExtResource( 17 )
-PopupMenu/icons/radio_unchecked = ExtResource( 25 )
+PopupMenu/icons/checked = ExtResource( 42 )
+PopupMenu/icons/radio_checked = ExtResource( 42 )
+PopupMenu/icons/radio_unchecked = ExtResource( 43 )
 PopupMenu/icons/submenu = SubResource( 407 )
-PopupMenu/icons/unchecked = ExtResource( 7 )
+PopupMenu/icons/unchecked = ExtResource( 43 )
 PopupMenu/styles/hover = SubResource( 446 )
 PopupMenu/styles/labeled_separator_left = SubResource( 415 )
 PopupMenu/styles/labeled_separator_right = SubResource( 416 )
