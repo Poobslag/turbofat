@@ -46,13 +46,13 @@ func _refresh_keybind_labels() -> void:
 			if InputManager.input_mode == InputManager.KEYBOARD_MOUSE:
 				_assign_guideline_keyboard_values()
 			elif InputManager.input_mode == InputManager.JOYPAD:
-				_assign_preset_joypad_values()
+				_assign_guideline_joypad_values()
 		KeybindSettings.WASD:
 			$PresetScrollContainer.visible = true
 			if InputManager.input_mode == InputManager.KEYBOARD_MOUSE:
 				_assign_wasd_keyboard_values()
 			elif InputManager.input_mode == InputManager.JOYPAD:
-				_assign_preset_joypad_values()
+				_assign_wasd_joypad_values()
 		KeybindSettings.CUSTOM:
 			$CustomScrollContainer.visible = true
 			_custom_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
@@ -98,27 +98,8 @@ func _assign_wasd_keyboard_values() -> void:
 	_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
 
 
-## Updates all controls within the 'Presets' scroll container with values for joypad presets.
-##
-## The 'Guideline' and 'WASD' presets both have the same joypad mappings.
+## Assigns the standard preset joypad values which do not change between Guideline and WASD
 func _assign_preset_joypad_values() -> void:
-	_preset_control("MovePiece").keybind_values = \
-			[KeybindSettings.XBOX_IMAGE_DPAD_LEFT, KeybindSettings.XBOX_IMAGE_DPAD_RIGHT]
-	_preset_control("SoftDrop").keybind_values = \
-			[KeybindSettings.XBOX_IMAGE_DPAD_DOWN, KeybindSettings.XBOX_IMAGE_X]
-	if SystemData.gameplay_settings.hold_piece:
-		_preset_control("HardDrop").keybind_values = \
-				[KeybindSettings.XBOX_IMAGE_DPAD_UP, KeybindSettings.XBOX_IMAGE_Y]
-	else:
-		_preset_control("HardDrop").keybind_values = \
-				[KeybindSettings.XBOX_IMAGE_DPAD_UP, KeybindSettings.XBOX_IMAGE_Y,
-				KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
-	_preset_control("RotatePiece").keybind_values = \
-			[KeybindSettings.XBOX_IMAGE_A, KeybindSettings.XBOX_IMAGE_B]
-	_preset_control("SwapHoldPiece").keybind_values = \
-			[KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
-	_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
-	
 	_preset_control("Retry").keybind_values = \
 			[KeybindSettings.XBOX_IMAGE_VIEW]
 	_preset_control("Menu").keybind_values = \
@@ -135,6 +116,53 @@ func _assign_preset_joypad_values() -> void:
 			[KeybindSettings.XBOX_IMAGE_LB]
 	_preset_control("RewindText").keybind_values = \
 			[KeybindSettings.XBOX_IMAGE_X]
+
+
+## Updates all controls within the 'Presets' scroll container with values for joypad presets.
+##
+## The 'Guideline' and 'WASD' presets both have the same joypad mappings.
+func _assign_guideline_joypad_values() -> void:
+	_assign_preset_joypad_values()
+	_preset_control("MovePiece").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_DPAD_LEFT, KeybindSettings.XBOX_IMAGE_DPAD_RIGHT]
+	_preset_control("SoftDrop").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_DPAD_DOWN, KeybindSettings.XBOX_IMAGE_B]
+	if SystemData.gameplay_settings.hold_piece:
+		_preset_control("HardDrop").keybind_values = \
+				[KeybindSettings.XBOX_IMAGE_DPAD_UP, KeybindSettings.XBOX_IMAGE_Y]
+	else:
+		_preset_control("HardDrop").keybind_values = \
+				[KeybindSettings.XBOX_IMAGE_DPAD_UP, KeybindSettings.XBOX_IMAGE_Y,
+				KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
+	_preset_control("RotatePiece").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_X, KeybindSettings.XBOX_IMAGE_A]
+	_preset_control("SwapHoldPiece").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
+	_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
+	
+
+
+## Updates all controls within the 'Presets' scroll container with values for joypad presets.
+##
+## The 'Guideline' and 'WASD' presets both have the same joypad mappings.
+func _assign_wasd_joypad_values() -> void:
+	_assign_preset_joypad_values()
+	_preset_control("MovePiece").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_DPAD_LEFT, KeybindSettings.XBOX_IMAGE_DPAD_RIGHT]
+	_preset_control("SoftDrop").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_DPAD_DOWN, KeybindSettings.XBOX_IMAGE_X]
+	if SystemData.gameplay_settings.hold_piece:
+		_preset_control("HardDrop").keybind_values = \
+				[KeybindSettings.XBOX_IMAGE_DPAD_UP, KeybindSettings.XBOX_IMAGE_Y]
+	else:
+		_preset_control("HardDrop").keybind_values = \
+				[KeybindSettings.XBOX_IMAGE_DPAD_UP, KeybindSettings.XBOX_IMAGE_Y,
+				KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
+	_preset_control("RotatePiece").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_A, KeybindSettings.XBOX_IMAGE_B]
+	_preset_control("SwapHoldPiece").keybind_values = \
+			[KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
+	_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
 
 
 func _on_Guideline_pressed() -> void:
