@@ -2025,7 +2025,6 @@ SystemSave="*res://src/main/data/system-save.gd"
 
 settings/fps/force_fps=120
 gdscript/warnings/narrowing_conversion=false
-gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -2128,7 +2127,7 @@ ui_menu={
 }
 ui_click={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 rewind_text={
