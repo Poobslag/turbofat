@@ -44,7 +44,7 @@ var hold_piece := false setget set_hold_piece
 var line_piece := false setget set_line_piece
 
 ## 'true' if pressing soft drop should perform a lock cancel
-var soft_drop_lock_cancel := true setget set_soft_drop_lock_cancel
+var soft_drop_lock_cancel := false setget set_soft_drop_lock_cancel
 
 ## Current gameplay speed. The player can reduce this to make the game easier. They can also increase it to make
 ## the game harder, or to cheat on levels which otherwise require slow and thoughtful play.
@@ -104,7 +104,7 @@ func from_json_dict(json: Dictionary) -> void:
 	set_ghost_piece(json.get("ghost_piece", true))
 	set_hold_piece(json.get("hold_piece", false))
 	set_line_piece(json.get("line_piece", false))
-	set_soft_drop_lock_cancel(json.get("soft_drop_lock_cancel", true))
+	set_soft_drop_lock_cancel(json.get("soft_drop_lock_cancel", false))
 	set_speed(Utils.enum_from_snake_case(Speed, json.get("speed", "")))
 
 

@@ -15899,7 +15899,11 @@ msgstr ""
 msgid "Soft Drop Lock Cancel"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:417
+#: project/src/main/ui/settings/SettingsMenu.tscn:420
+msgid "Pieces that are Hard Dropped can be unlocked by pressing Soft Drop."
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:439
 msgid "Cheats"
 msgstr ""
 
