@@ -8,7 +8,7 @@ var _popped_out := false
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
+	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	
 	_refresh()
