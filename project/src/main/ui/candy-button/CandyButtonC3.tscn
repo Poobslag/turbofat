@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/c3-focused.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/main/ui/candy-button/candy-button-c3.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/candy-button/gradient-helper.gd" type="Script" id=13]
 [ext_resource path="res://assets/main/ui/font/fredoka-one-regular.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://src/main/ui/candy-button/CandyGlow.tscn" type="PackedScene" id=15]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -101,3 +102,5 @@ texture_pressed = ExtResource( 11 )
 
 [node name="GradientHelper" type="Node" parent="."]
 script = ExtResource( 13 )
+
+[node name="Glow" parent="." instance=ExtResource( 15 )]
