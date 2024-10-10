@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-09 16:37-0400\n"
+"POT-Creation-Date: 2024-10-10 12:44-0400\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14405,6 +14405,7 @@ msgstr "0"
 
 #: project/src/main/career/ui/ProgressBoard.tscn:663
 #: project/src/main/career/ui/progress-board-goal.gd:14
+#: project/src/main/puzzle/result/receipt-bar-graph.gd:120
 msgid "GOAL"
 msgstr ""
 
@@ -15215,19 +15216,19 @@ msgstr ""
 msgid "¥387"
 msgstr ""
 
-#: project/src/main/puzzle/result/ResultsHud.tscn:712
+#: project/src/main/puzzle/result/ResultsHud.tscn:718
 msgid "¥20,000: SS"
 msgstr ""
 
-#: project/src/main/puzzle/result/ResultsHud.tscn:719
+#: project/src/main/puzzle/result/ResultsHud.tscn:725
 msgid "¥15,000: S"
 msgstr ""
 
-#: project/src/main/puzzle/result/ResultsHud.tscn:726
+#: project/src/main/puzzle/result/ResultsHud.tscn:732
 msgid "¥10,000: A"
 msgstr ""
 
-#: project/src/main/puzzle/result/ResultsHud.tscn:733
+#: project/src/main/puzzle/result/ResultsHud.tscn:739
 msgid "¥5,000: B"
 msgstr ""
 
