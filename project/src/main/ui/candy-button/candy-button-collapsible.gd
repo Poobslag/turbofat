@@ -251,7 +251,8 @@ func _refresh_color() -> void:
 ## Reapplies the colors for our icons.
 func _refresh_icon_color() -> void:
 	# both icons use the same material; setting one sets the other
-	_icon_node.material.set_shader_param("black", _gradient_helper.gradient.interpolate(0.15))
+	_icon_node.material.set_shader_param("black", _gradient_helper.gradient.interpolate(
+			0.25 if has_focus() else 0.15))
 
 
 ## Toggles the visibility of the top icon and updates its properties.

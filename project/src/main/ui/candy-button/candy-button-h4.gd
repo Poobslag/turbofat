@@ -169,7 +169,8 @@ func _refresh_font_size() -> void:
 
 ## Reapplies the colors for our label.
 func _refresh_label_color() -> void:
-	_label.get_font("font").outline_color = _gradient_helper.gradient.interpolate(0.15)
+	_label.get_font("font").outline_color = _gradient_helper.gradient.interpolate(
+				0.25 if has_focus() else 0.15)
 
 
 ## Reapplies the various textures for our button.

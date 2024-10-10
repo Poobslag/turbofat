@@ -349,17 +349,18 @@ shader_param/gradient = SubResource( 51 )
 
 [node name="Demo" type="Node"]
 
-[node name="Control" type="Control" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+color = Color( 0.254902, 0.156863, 0.117647, 1 )
 
-[node name="CandyButtonH3s" type="VBoxContainer" parent="Control"]
+[node name="CandyButtonH3s" type="VBoxContainer" parent="ColorRect"]
 margin_left = 217.625
 margin_top = 34.487
-margin_right = 257.625
-margin_bottom = 74.487
+margin_right = 417.625
+margin_bottom = 408.487
 
-[node name="CandyButton1" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton1" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 54 )
 margin_left = 0.0
 margin_top = 0.0
@@ -373,7 +374,7 @@ icon_left = ExtResource( 1 )
 color = 1
 shape = 1
 
-[node name="CandyButton2" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton2" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 56 )
 margin_left = 0.0
 margin_top = 54.0
@@ -386,7 +387,7 @@ text = "Cars"
 color = 2
 shape = 2
 
-[node name="CandyButton3" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton3" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 58 )
 margin_left = 0.0
 margin_top = 108.0
@@ -401,7 +402,7 @@ icon_right = ExtResource( 1 )
 color = 3
 shape = 3
 
-[node name="CandyButton4" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton4" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 60 )
 margin_left = 0.0
 margin_top = 162.0
@@ -414,7 +415,7 @@ text = "Melt"
 color = 4
 shape = 4
 
-[node name="CandyButton5" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton5" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 62 )
 margin_left = 0.0
 margin_top = 216.0
@@ -428,7 +429,7 @@ icon_left = ExtResource( 1 )
 color = 5
 shape = 5
 
-[node name="CandyButton6" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton6" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 64 )
 margin_left = 0.0
 margin_top = 270.0
@@ -441,7 +442,7 @@ text = "Plastic"
 color = 6
 shape = 6
 
-[node name="CandyButton7" parent="Control/CandyButtonH3s" instance=ExtResource( 8 )]
+[node name="CandyButton7" parent="ColorRect/CandyButtonH3s" instance=ExtResource( 8 )]
 material = SubResource( 66 )
 margin_left = 0.0
 margin_top = 324.0
@@ -455,13 +456,13 @@ icon_right = ExtResource( 1 )
 color = 7
 shape = 7
 
-[node name="CandyButtonH3sBlank" type="VBoxContainer" parent="Control"]
+[node name="CandyButtonH3sBlank" type="VBoxContainer" parent="ColorRect"]
 margin_left = 11.0
 margin_top = 34.487
 margin_right = 211.0
 margin_bottom = 408.487
 
-[node name="CandyButton1" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton1" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 10 )
 margin_left = 0.0
 margin_top = 0.0
@@ -474,7 +475,7 @@ text = ""
 color = 1
 shape = 1
 
-[node name="CandyButton2" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton2" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 12 )
 margin_left = 0.0
 margin_top = 54.0
@@ -488,7 +489,7 @@ text = ""
 color = 2
 shape = 2
 
-[node name="CandyButton3" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton3" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 14 )
 margin_left = 0.0
 margin_top = 108.0
@@ -501,7 +502,7 @@ text = ""
 color = 3
 shape = 3
 
-[node name="CandyButton4" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton4" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 16 )
 margin_left = 0.0
 margin_top = 162.0
@@ -514,7 +515,7 @@ text = ""
 color = 4
 shape = 4
 
-[node name="CandyButton5" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton5" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 18 )
 margin_left = 0.0
 margin_top = 216.0
@@ -527,7 +528,7 @@ text = ""
 color = 5
 shape = 5
 
-[node name="CandyButton6" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton6" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 20 )
 margin_left = 0.0
 margin_top = 270.0
@@ -540,7 +541,7 @@ text = ""
 color = 6
 shape = 6
 
-[node name="CandyButton7" parent="Control/CandyButtonH3sBlank" instance=ExtResource( 8 )]
+[node name="CandyButton7" parent="ColorRect/CandyButtonH3sBlank" instance=ExtResource( 8 )]
 material = SubResource( 22 )
 margin_left = 0.0
 margin_top = 324.0
@@ -553,7 +554,7 @@ text = ""
 color = 7
 shape = 7
 
-[node name="CandyButtonH4s" type="VBoxContainer" parent="Control"]
+[node name="CandyButtonH4s" type="VBoxContainer" parent="ColorRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -561,9 +562,9 @@ anchor_bottom = 0.5
 margin_left = -60.0
 margin_top = -197.519
 margin_right = 60.0
-margin_bottom = 36.4808
+margin_bottom = 36.481
 
-[node name="CandyButton" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 24 )
 margin_left = 0.0
 margin_top = 0.0
@@ -578,7 +579,7 @@ text = "Instrument"
 color = 1
 shape = 1
 
-[node name="CandyButton2" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton2" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 26 )
 margin_left = 0.0
 margin_top = 34.0
@@ -593,7 +594,7 @@ text = "Cars"
 color = 2
 shape = 2
 
-[node name="CandyButton3" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton3" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 28 )
 margin_left = 0.0
 margin_top = 68.0
@@ -608,7 +609,7 @@ text = "Trousers"
 color = 3
 shape = 3
 
-[node name="CandyButton4" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton4" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 30 )
 margin_left = 0.0
 margin_top = 102.0
@@ -624,7 +625,7 @@ text = "Melt"
 color = 4
 shape = 4
 
-[node name="CandyButton5" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton5" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 32 )
 margin_left = 0.0
 margin_top = 136.0
@@ -639,7 +640,7 @@ text = "Wound"
 color = 5
 shape = 5
 
-[node name="CandyButton6" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton6" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 34 )
 margin_left = 0.0
 margin_top = 170.0
@@ -654,7 +655,7 @@ text = "Plastic"
 color = 6
 shape = 6
 
-[node name="CandyButton7" parent="Control/CandyButtonH4s" instance=ExtResource( 26 )]
+[node name="CandyButton7" parent="ColorRect/CandyButtonH4s" instance=ExtResource( 26 )]
 material = SubResource( 36 )
 margin_left = 0.0
 margin_top = 204.0
@@ -669,7 +670,7 @@ text = "Magenta"
 color = 7
 shape = 7
 
-[node name="DefaultButtons" type="VBoxContainer" parent="Control"]
+[node name="DefaultButtons" type="VBoxContainer" parent="ColorRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -680,40 +681,40 @@ margin_right = 474.0
 margin_bottom = 26.5402
 theme = ExtResource( 27 )
 
-[node name="Button" type="Button" parent="Control/DefaultButtons"]
+[node name="Button" type="Button" parent="ColorRect/DefaultButtons"]
 margin_right = 200.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 200, 50 )
 text = "Instrument"
 
-[node name="Button2" type="Button" parent="Control/DefaultButtons"]
+[node name="Button2" type="Button" parent="ColorRect/DefaultButtons"]
 margin_top = 54.0
 margin_right = 200.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 200, 50 )
 text = "Cars"
 
-[node name="Button3" type="Button" parent="Control/DefaultButtons"]
+[node name="Button3" type="Button" parent="ColorRect/DefaultButtons"]
 margin_top = 108.0
 margin_right = 200.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 200, 50 )
 text = "Trousers"
 
-[node name="Button4" type="Button" parent="Control/DefaultButtons"]
+[node name="Button4" type="Button" parent="ColorRect/DefaultButtons"]
 margin_top = 162.0
 margin_right = 200.0
 margin_bottom = 212.0
 rect_min_size = Vector2( 200, 50 )
 text = "Melt"
 
-[node name="CandyButtonC3s" type="HBoxContainer" parent="Control"]
+[node name="CandyButtonC3s" type="HBoxContainer" parent="ColorRect"]
 margin_left = 12.0
 margin_top = 417.0
-margin_right = 92.0
+margin_right = 680.0
 margin_bottom = 481.0
 
-[node name="CandyButton1" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton1" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 38 )
 margin_left = 0.0
 margin_top = 0.0
@@ -725,7 +726,7 @@ texture_hover = ExtResource( 49 )
 color = 1
 shape = 1
 
-[node name="CandyButton2" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton2" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 40 )
 margin_left = 84.0
 margin_top = 0.0
@@ -733,7 +734,7 @@ margin_right = 164.0
 margin_bottom = 64.0
 color = 2
 
-[node name="CandyButton3" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton3" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 42 )
 margin_left = 168.0
 margin_top = 0.0
@@ -745,7 +746,7 @@ texture_hover = ExtResource( 56 )
 color = 3
 shape = 3
 
-[node name="CandyButton4" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton4" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 44 )
 margin_left = 252.0
 margin_top = 0.0
@@ -757,7 +758,7 @@ texture_hover = ExtResource( 52 )
 color = 4
 shape = 4
 
-[node name="CandyButton5" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton5" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 46 )
 margin_left = 336.0
 margin_top = 0.0
@@ -770,7 +771,7 @@ texture_hover = ExtResource( 48 )
 color = 5
 shape = 5
 
-[node name="CandyButton6" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton6" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 48 )
 margin_left = 420.0
 margin_top = 0.0
@@ -782,7 +783,7 @@ texture_hover = ExtResource( 53 )
 color = 6
 shape = 6
 
-[node name="CandyButton7" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton7" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 50 )
 margin_left = 504.0
 margin_top = 0.0
@@ -794,7 +795,7 @@ texture_hover = ExtResource( 55 )
 color = 7
 shape = 7
 
-[node name="CandyButton8" parent="Control/CandyButtonC3s" instance=ExtResource( 25 )]
+[node name="CandyButton8" parent="ColorRect/CandyButtonC3s" instance=ExtResource( 25 )]
 material = SubResource( 52 )
 margin_left = 588.0
 margin_top = 0.0
