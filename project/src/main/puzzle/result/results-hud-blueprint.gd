@@ -11,6 +11,13 @@ var goal_ss: int
 var goal_s: int
 var goal_a: int
 var goal_b: int
+var goal_success: int
+
+## 'true' if we should show the 'GOAL' marker for the level's success_condition
+var show_success_goal := false
+
+## 'true' if we should show the 'A', 'S', 'SS' rank markers
+var show_rank_goals := true
 
 var rank_result: RankResult
 
@@ -24,12 +31,35 @@ func _init() -> void:
 	rank_criteria = rank_calculator.filled_rank_criteria()
 	rank_result = rank_calculator.calculate_rank()
 	
-	# we calculate these goals in advance because they're computationally complex
+	# we calculate these goals in advance because they were once computationally complex
+	goal_success = CurrentLevel.settings.success_condition.value
 	goal_b = _target_for_grade("B-")
 	goal_a = _target_for_grade("A-")
 	goal_s = _target_for_grade("S-")
 	goal_ss = _target_for_grade("SS")
 	goal_sss = _target_for_grade("SSS")
+	
+	var best_result := PlayerData.level_history.best_result(CurrentLevel.level_id)
+	
+	# For most levels, we show the rank goals and hide the success goal.
+	show_success_goal = false
+	show_rank_goals = true
+	
+	# We show the 'Goal' marker for levels with an unmet success condition, such as career mode boss levels
+	if CurrentLevel.settings.success_condition.type == Milestone.SCORE \
+			and (not best_result or best_result.score < CurrentLevel.settings.success_condition.value):
+		show_success_goal = true
+	if CurrentLevel.settings.success_condition.type == Milestone.TIME_UNDER \
+			and (not best_result or best_result.seconds > CurrentLevel.settings.success_condition.value):
+		show_success_goal = true
+	if CurrentLevel.boss_level:
+		show_success_goal = true
+	
+	
+	# We hide the 'rank' markers for boss levels, so the player can focus on the score they need. They'll probably
+	# only care about the letter grade when replaying the level in training mode.
+	if CurrentLevel.boss_level:
+		show_rank_goals = false
 
 
 func should_show_medal() -> bool:
@@ -105,6 +135,11 @@ func goal_height_ss() -> float:
 
 func goal_height_sss() -> float:
 	return _goal_height(goal_sss)
+
+
+## Goal height for the 'GOAL' marker for the level's success_condition
+func goal_height_success() -> float:
+	return _goal_height(goal_success)
 
 
 func _target_for_grade(grade: String) -> int:
