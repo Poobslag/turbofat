@@ -1,6 +1,8 @@
 extends Node
 ## Binds the player's input settings to the input map.
 
+signal input_map_updated
+
 func _ready() -> void:
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
@@ -113,6 +115,8 @@ func _refresh_keybinds() -> void:
 			_bind_keys_from_json_dict(SystemData.keybind_settings.custom_keybinds)
 		_:
 			push_warning("Unrecognized keybind settings preset: %s" % SystemData.keybind_settings.preset)
+	
+	emit_signal("input_map_updated")
 
 
 ## Updates the InputMap when the player's keybind settings change
