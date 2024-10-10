@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=120 format=2]
+[gd_resource type="Theme" load_steps=122 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4-font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-vscroll-bar-grabber-pressed.png" type="Texture" id=2]
@@ -41,6 +41,8 @@
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-tree-select-arrow.png" type="Texture" id=39]
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-tree-arrow-collapsed.png" type="Texture" id=40]
 [ext_resource path="res://assets/main/ui/squeak/br/squeak-tree-updown.png" type="Texture" id=41]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-checked-98058.png" type="Texture" id=42]
+[ext_resource path="res://assets/main/ui/squeak/br/squeak-check-box-unchecked-98058.png" type="Texture" id=43]
 
 [sub_resource type="StyleBoxTexture" id=345]
 content_margin_left = 6.0
@@ -922,11 +924,11 @@ PopupMenu/constants/hseparation = 8
 PopupMenu/constants/vseparation = 8
 PopupMenu/fonts/font = ExtResource( 1 )
 PopupMenu/fonts/font_separator = ExtResource( 1 )
-PopupMenu/icons/checked = ExtResource( 10 )
-PopupMenu/icons/radio_checked = ExtResource( 17 )
-PopupMenu/icons/radio_unchecked = ExtResource( 15 )
+PopupMenu/icons/checked = ExtResource( 42 )
+PopupMenu/icons/radio_checked = ExtResource( 42 )
+PopupMenu/icons/radio_unchecked = ExtResource( 43 )
 PopupMenu/icons/submenu = SubResource( 407 )
-PopupMenu/icons/unchecked = ExtResource( 11 )
+PopupMenu/icons/unchecked = ExtResource( 43 )
 PopupMenu/styles/hover = SubResource( 446 )
 PopupMenu/styles/labeled_separator_left = SubResource( 415 )
 PopupMenu/styles/labeled_separator_right = SubResource( 416 )
