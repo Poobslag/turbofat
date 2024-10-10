@@ -102,7 +102,7 @@
     {
       "type": "joypad_button",
       "device": 0,
-      "button_index": 0
+      "button_index": 2
     }
   ],
   "rotate_cw": [
@@ -117,7 +117,7 @@
     {
       "type": "joypad_button",
       "device": 0,
-      "button_index": 1
+      "button_index": 0
     }
   ],
   "soft_drop": [
@@ -137,7 +137,7 @@
     {
       "type": "joypad_button",
       "device": 0,
-      "button_index": 2
+      "button_index": 1
     }
   ],
   "swap_hold_piece": [
