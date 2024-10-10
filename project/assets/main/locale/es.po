@@ -17888,7 +17888,12 @@ msgstr "Pieza Fantasma"
 msgid "Soft Drop Lock Cancel"
 msgstr "Cancelar Asegurado con Caída Lenta"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:417
+#: project/src/main/ui/settings/SettingsMenu.tscn:420
+#, fuzzy
+msgid "Pieces that are Hard Dropped can be unlocked by pressing Soft Drop."
+msgstr "Las piezas que se Caen Rápido pueden desbloquearse presionando Caída Lenta."
+
+#: project/src/main/ui/settings/SettingsMenu.tscn:439
 msgid "Cheats"
 msgstr "Trucos"
 

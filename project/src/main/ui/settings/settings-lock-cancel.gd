@@ -1,7 +1,8 @@
 extends Control
 ## UI control for toggling the soft drop lock cancel.
 
-onready var _check_box := $CheckBox
+onready var _check_box := $HBoxContainer/CheckBox
+onready var _description := $HBoxContainer/Description
 
 func _ready() -> void:
 	SystemData.gameplay_settings.connect("soft_drop_lock_cancel_changed", self,
@@ -11,6 +12,8 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	_check_box.pressed = SystemData.gameplay_settings.soft_drop_lock_cancel
+	_description.modulate = Color(1.0, 1.0, 1.0, 0.5) if SystemData.gameplay_settings.soft_drop_lock_cancel \
+			else Color.transparent
 
 
 func _on_CheckBox_toggled(_button_pressed: bool) -> void:
