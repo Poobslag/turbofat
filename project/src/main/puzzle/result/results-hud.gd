@@ -47,6 +47,10 @@ func stamp() -> void:
 	emit_signal("stamped")
 
 
+func is_results_message_shown() -> bool:
+	return _receipt_paper.visible
+
+
 ## Animates hiding the receipt, swooshing it offscreen.
 func hide_results_message() -> void:
 	if _receipt_paper.visible == false:
