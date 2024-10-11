@@ -1,14 +1,14 @@
-# Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# Translations template for Turbo Fat.
+# Copyright (C) 2024 Poobslag
+# This file is distributed under the same license as the Turbo Fat project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:46-0400\n"
+"Project-Id-Version: Turbo Fat 0.9000\n"
+"Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
+"POT-Creation-Date: 2024-10-11 16:07-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12749,8 +12749,13 @@ msgid "Direction R"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
+#: project/src/main/editor/creature/CreatureEditor.tscn
 #: project/src/main/puzzle/PuzzleMessages.tscn
 #: project/src/main/puzzle/puzzle-messages.gd
+#: project/src/main/ui/CreatureStressTest.tscn
+#: project/src/main/ui/menu/SystemButtons.tscn
+#: project/src/main/ui/menu/TrainingMenu.tscn
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Back"
 msgstr ""
 
@@ -13478,15 +13483,6 @@ msgstr ""
 #: project/src/main/ui/menu/SystemButtons.tscn
 #: project/src/main/ui/menu/TrainingMenu.tscn
 msgid "Settings"
-msgstr ""
-
-#: project/src/main/editor/creature/CreatureEditor.tscn
-#: project/src/main/ui/CreatureStressTest.tscn
-#: project/src/main/ui/menu/SystemButtons.tscn
-#: project/src/main/ui/menu/TrainingMenu.tscn
-#: project/src/main/ui/settings/SettingsMenu.tscn
-#: project/src/main/ui/settings/settings-menu-bottom.gd
-msgid "Quit"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn
@@ -15300,6 +15296,12 @@ msgid "Training"
 msgstr ""
 
 #: project/src/main/ui/menu/MainMenu.tscn
+#: project/src/main/ui/menu/SplashScreen.tscn
+#: project/src/main/ui/settings/settings-menu-bottom.gd
+msgid "Quit"
+msgstr ""
+
+#: project/src/main/ui/menu/MainMenu.tscn
 msgid "Stress Test"
 msgstr ""
 
@@ -15487,6 +15489,10 @@ msgstr ""
 #: project/src/main/ui/menu/region-info-panel.gd
 #, python-format
 msgid "Overall rank: %s"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Controller disconnected."
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
@@ -15750,7 +15756,7 @@ msgid "Fastestest"
 msgstr ""
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
-msgid "Save + Quit"
+msgid "Main Menu"
 msgstr ""
 
 #: project/src/main/ui/settings/settings-tab-container.gd
