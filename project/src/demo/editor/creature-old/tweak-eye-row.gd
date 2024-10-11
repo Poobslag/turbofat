@@ -19,11 +19,11 @@ func _on_Edit_color_changed(_color: Color) -> void:
 
 
 func _on_Edit_popup_closed() -> void:
-	get_tree().paused = false
+	Pauser.toggle_pause("creature-editor", false)
 
 
 func _on_Edit_pressed() -> void:
-	get_tree().paused = true
+	Pauser.toggle_pause("creature-editor", true)
 
 
 func _on_GrayDna_pressed() -> void:
