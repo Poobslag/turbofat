@@ -115,7 +115,7 @@ margin_right = 1019.0
 margin_bottom = 595.0
 theme = ExtResource( 14 )
 shortcut_in_tooltip = false
-text = "Quit"
+text = "Back"
 
 [node name="Reroll" type="VBoxContainer" parent="Ui"]
 margin_left = 220.0

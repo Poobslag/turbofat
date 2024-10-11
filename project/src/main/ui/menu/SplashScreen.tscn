@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://src/main/ui/candy-button/gradient-green-normal.tres" type="Gradient" id=12]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=13]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/ui/candy-button/gradient-yellow-normal.tres" type="Gradient" id=15]
+[ext_resource path="res://src/main/ui/candy-button/gradient-violet-normal.tres" type="Gradient" id=16]
+[ext_resource path="res://src/main/ui/candy-button/gradient-red-normal.tres" type="Gradient" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -31,6 +34,36 @@ resource_local_to_scene = true
 shader = ExtResource( 13 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 2 )
+
+[sub_resource type="GradientTexture2D" id=4]
+resource_local_to_scene = true
+gradient = ExtResource( 16 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 13 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 4 )
+
+[sub_resource type="GradientTexture2D" id=6]
+resource_local_to_scene = true
+gradient = ExtResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 13 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 6 )
+
+[sub_resource type="GradientTexture2D" id=8]
+resource_local_to_scene = true
+gradient = ExtResource( 17 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 13 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 8 )
 
 [node name="SplashScreen" type="Control"]
 anchor_right = 1.0
@@ -86,9 +119,29 @@ shape = 8
 alignment = 1
 quit_on_cancel = false
 
+[node name="Settings" parent="DropPanel/System" index="0"]
+material = SubResource( 5 )
+margin_left = 402.0
+margin_right = 522.0
+
+[node name="Credits" parent="DropPanel/System" index="1"]
+material = SubResource( 7 )
+margin_left = 402.0
+margin_right = 522.0
+
+[node name="Quit" parent="DropPanel/System" index="2"]
+material = SubResource( 9 )
+margin_left = 402.0
+margin_right = 522.0
+text = "Quit"
+
+[node name="Spacer" parent="DropPanel/System" index="3"]
+margin_right = 924.0
+
 [node name="VersionLabel" parent="." instance=ExtResource( 2 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 6 )]
+quit_type = 4
 
 [node name="BadSaveDataControl" parent="." instance=ExtResource( 8 )]
 
@@ -96,3 +149,5 @@ quit_on_cancel = false
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="DropPanel/System" method="_on_Quit_pressed"]
+
+[editable path="DropPanel/System"]
