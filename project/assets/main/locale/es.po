@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:12-0400\n"
+"POT-Creation-Date: 2024-10-11 09:43-0400\n"
 "PO-Revision-Date: 2024-10-07 03:44-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14620,6 +14620,23 @@ msgstr ""
 "vida extra."
 
 #: project/src/main/career/career-hint.gd
+#, fuzzy
+msgid ""
+"Need a hand? Go into Settings to lower the difficulty or enable the hold "
+"piece!"
+msgstr ""
+"¿Necesitas ayuda? Ve a Configuración para bajar la dificultad o habilitar el "
+"sostener pieza!"
+
+#: project/src/main/career/career-hint.gd
+#, fuzzy
+msgid ""
+"Looking for line pieces? They're over in Settings... if you really need them!"
+msgstr ""
+"¿Buscas piezas largas? Están en Configuración... si realmente las necesitas."
+
+
+#: project/src/main/career/career-hint.gd
 msgid "The boss level is near! Can you reach it in time?"
 msgstr "¡El nivel del jefe está cerca! ¿Puedes llegar a tiempo?"
 
@@ -14708,10 +14725,12 @@ msgstr ""
 "dejarla caer al instante!"
 
 #: project/src/main/career/career-hint.gd
-msgid "Tap down after a hard drop to unlock the piece and move it again!"
+#, fuzzy
+msgid ""
+"Enable 'Soft Drop Lock Cancel' in Settings for some advanced piece finesse!"
 msgstr ""
-"¡Presiona abajo después de una caída rápida para poder seguir moviendo la "
-"pieza!"
+"Habilita 'Cancelar Asegurado con Caída Lenta' en Configuración para mayor "
+"finesse con las piezas avanzadas!"
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn
 msgid "Chapter Select"
