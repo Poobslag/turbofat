@@ -11,3 +11,7 @@ func _ready() -> void:
 func _on_SettingsMenu_show() -> void:
 	# hide by default; must be explicitly shown after the settings menu
 	hide()
+
+
+func _on_SettingsMenu_hide() -> void:
+	hide()
