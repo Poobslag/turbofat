@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:43-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
+"POT-Creation-Date: 2024-10-11 16:07-0400\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -13628,8 +13628,13 @@ msgid "Direction R"
 msgstr "Direction R"
 
 #: project/assets/main/locale/localizables-extracted.py
+#: project/src/main/editor/creature/CreatureEditor.tscn
 #: project/src/main/puzzle/PuzzleMessages.tscn
 #: project/src/main/puzzle/puzzle-messages.gd
+#: project/src/main/ui/CreatureStressTest.tscn
+#: project/src/main/ui/menu/SystemButtons.tscn
+#: project/src/main/ui/menu/TrainingMenu.tscn
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Back"
 msgstr "Back"
 
@@ -14361,15 +14366,6 @@ msgstr ""
 #: project/src/main/ui/menu/TrainingMenu.tscn
 msgid "Settings"
 msgstr "Settings"
-
-#: project/src/main/editor/creature/CreatureEditor.tscn
-#: project/src/main/ui/CreatureStressTest.tscn
-#: project/src/main/ui/menu/SystemButtons.tscn
-#: project/src/main/ui/menu/TrainingMenu.tscn
-#: project/src/main/ui/settings/SettingsMenu.tscn
-#: project/src/main/ui/settings/settings-menu-bottom.gd
-msgid "Quit"
-msgstr "Quit"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn
 msgid "Save Changes?"
@@ -16502,6 +16498,12 @@ msgid "Training"
 msgstr ""
 
 #: project/src/main/ui/menu/MainMenu.tscn
+#: project/src/main/ui/menu/SplashScreen.tscn
+#: project/src/main/ui/settings/settings-menu-bottom.gd
+msgid "Quit"
+msgstr "Quit"
+
+#: project/src/main/ui/menu/MainMenu.tscn
 msgid "Stress Test"
 msgstr "Stress Test"
 
@@ -16691,6 +16693,10 @@ msgstr "Clear every level to get to 100%!"
 #, python-format
 msgid "Overall rank: %s"
 msgstr "Overall rank: %s"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Controller disconnected."
+msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Sound + Music"
@@ -16953,8 +16959,8 @@ msgid "Fastestest"
 msgstr "Fastestest"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
-msgid "Save + Quit"
-msgstr "Save + Quit"
+msgid "Main Menu"
+msgstr ""
 
 #: project/src/main/ui/settings/settings-tab-container.gd
 msgid "Sound + Graphics"
@@ -17179,3 +17185,6 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
+
+#~ msgid "Save + Quit"
+#~ msgstr "Save + Quit"
