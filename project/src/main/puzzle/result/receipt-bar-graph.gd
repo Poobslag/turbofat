@@ -43,6 +43,7 @@ onready var _extra_bar := $Contents/OtherBar
 onready var _total_label := $Contents/TotalLabel
 
 ## BarGraphGoals which show dashed lines with time goals or score goals
+onready var _success_goal := $Contents/SuccessGoal
 onready var _sss_goal := $Contents/SssGoal
 onready var _ss_goal := $Contents/SsGoal
 onready var _s_goal := $Contents/SGoal
@@ -109,17 +110,29 @@ func _refresh_goals() -> void:
 	var bar_top_y := GRAPH_START_Y - _blueprint.total_height() * _height_scale
 	var lowest_unreached_goal: BarGraphGoal
 	
-	for goal_metadata in [
-			[_sss_goal, _blueprint.goal_height_sss(), _blueprint.goal_sss, "SSS"],
-			[_ss_goal, _blueprint.goal_height_ss(), _blueprint.goal_ss, "SS"],
-			[_s_goal, _blueprint.goal_height_s(), _blueprint.goal_s, "S"],
-			[_a_goal, _blueprint.goal_height_a(), _blueprint.goal_a, "A"],
-			[_b_goal, _blueprint.goal_height_b(), _blueprint.goal_b, "B"],
-	]:
+	# hide all goals
+	for goal_node in [_success_goal, _sss_goal, _ss_goal, _s_goal, _a_goal, _b_goal]:
+		goal_node.visible = false
+	
+	# calculate the list of goals to show
+	var goal_metadatas := []
+	if _blueprint.show_success_goal:
+		goal_metadatas.append([_success_goal, _blueprint.goal_height_success(), _blueprint.goal_success, tr("GOAL")])
+	if _blueprint.show_rank_goals:
+		goal_metadatas.append([_sss_goal, _blueprint.goal_height_sss(), _blueprint.goal_sss, "SSS"])
+		goal_metadatas.append([_ss_goal, _blueprint.goal_height_ss(), _blueprint.goal_ss, "SS"])
+		goal_metadatas.append([_s_goal, _blueprint.goal_height_s(), _blueprint.goal_s, "S"])
+		goal_metadatas.append([_a_goal, _blueprint.goal_height_a(), _blueprint.goal_a, "A"])
+		goal_metadatas.append([_b_goal, _blueprint.goal_height_b(), _blueprint.goal_b, "B"])
+	
+	# show and update some goalsj
+	for goal_metadata in goal_metadatas:
 		var goal_node: Node = goal_metadata[0]
 		var goal_height: float = goal_metadata[1]
 		var goal_value: int = goal_metadata[2]
 		var goal_grade: String = goal_metadata[3]
+		
+		goal_node.visible = true
 		
 		# update the goal label
 		var goal_value_string := ""
@@ -146,10 +159,17 @@ func _refresh_goals() -> void:
 	
 	# If the goals are too close to each other, we turn them invisible. This avoids a case where the "A" and "B"
 	# goals are squashed so close at the bottom that you can't read either one.
-	_b_goal.visible = abs(_b_goal.rect_position.y - _a_goal.rect_position.y) > 12
-	_a_goal.visible = abs(_a_goal.rect_position.y - _s_goal.rect_position.y) > 12
-	_s_goal.visible = abs(_s_goal.rect_position.y - _ss_goal.rect_position.y) > 12
-	_ss_goal.visible = abs(_ss_goal.rect_position.y - _sss_goal.rect_position.y) > 12
+	for front_goal_index in range(goal_metadatas.size()):
+		for back_goal_index in range(front_goal_index + 1, goal_metadatas.size()):
+			var back_goal: BarGraphGoal = goal_metadatas[back_goal_index][0]
+			var front_goal: BarGraphGoal = goal_metadatas[front_goal_index][0]
+			hide_behind(back_goal, front_goal)
+
+
+func hide_behind(back_goal: BarGraphGoal, front_goal: BarGraphGoal) -> void:
+	if back_goal.visible and front_goal.visible \
+			and abs(back_goal.rect_position.y - front_goal.rect_position.y) <= 12:
+		back_goal.visible = false
 
 
 ## Schedules events to increase the size of each BarGraphBar.

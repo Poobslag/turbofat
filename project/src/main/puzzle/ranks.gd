@@ -63,9 +63,9 @@ static func round_time_up(value: int) -> int:
 	var magnitude: int
 	if value <= 60:
 		magnitude = 1
-	elif value <= 600:
+	elif value <= 300:
 		magnitude = 5
-	elif value <= 6000:
+	elif value <= 1200:
 		magnitude = 10
 	else:
 		magnitude = 60

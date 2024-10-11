@@ -43,6 +43,8 @@ theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 0.866667, 0.6, 0.501961 )
 toggle_mode = true
 clip_text = true
+icon_align = 1
+expand_icon = true
 script = ExtResource( 4 )
 
 [node name="Value1" parent="." groups=["custom_keybind_buttons"] instance=ExtResource( 5 )]
@@ -55,6 +57,8 @@ theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 0.866667, 0.6, 0.501961 )
 toggle_mode = true
 clip_text = true
+icon_align = 1
+expand_icon = true
 script = ExtResource( 4 )
 action_index = 1
 
@@ -68,6 +72,8 @@ theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 0.866667, 0.6, 0.501961 )
 toggle_mode = true
 clip_text = true
+icon_align = 1
+expand_icon = true
 script = ExtResource( 4 )
 action_index = 2
 

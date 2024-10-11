@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/editor/creature/operation-button.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/c3-v-pressed.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://src/main/ui/candy-button/ShineTextureRect.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/main/ui/candy-button/c3-shine-pressed.png" type="Texture" id=13]
 [ext_resource path="res://src/main/ui/candy-button/gradient-helper.gd" type="Script" id=14]
+[ext_resource path="res://src/main/ui/candy-button/collapsible-candy-glow.gd" type="Script" id=15]
+[ext_resource path="res://src/main/ui/candy-button/CandyGlow.tscn" type="PackedScene" id=16]
 
 [sub_resource type="GradientTexture2D" id=9]
 resource_local_to_scene = true
@@ -98,3 +100,6 @@ texture_pressed = ExtResource( 13 )
 
 [node name="GradientHelper" type="Node" parent="."]
 script = ExtResource( 14 )
+
+[node name="Glow" parent="." instance=ExtResource( 16 )]
+script = ExtResource( 15 )

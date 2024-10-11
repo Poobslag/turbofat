@@ -70,6 +70,15 @@ margin_right = 75.0
 margin_bottom = 146.0
 text = "Label"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+margin_left = 94.0
+margin_top = 114.0
+margin_right = 294.0
+margin_bottom = 164.0
+focus_mode = 2
+text = "RichTextLabel"
+selection_enabled = true
+
 [node name="CheckBox" parent="Panel" instance=ExtResource( 5 )]
 margin_left = 29.0
 margin_top = 170.0

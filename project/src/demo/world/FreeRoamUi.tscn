@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/main/world/overworld-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=5]
 [ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=8]
@@ -125,6 +126,9 @@ icon = ExtResource( 7 )
 expand_icon = true
 normal_icon = ExtResource( 7 )
 pressed_icon = ExtResource( 8 )
+
+[node name="ShortcutHelper" parent="Buttons/Northeast/SettingsButton" instance=ExtResource( 4 )]
+action = "ui_menu"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 20 )]
 codes = [ "bigfps" ]

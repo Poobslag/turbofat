@@ -1,7 +1,11 @@
 extends RichTextLabel
 ## Label for tutorials which shows the keybinds.
 
+## Size of joypad image textures
+const IMAGE_SIZE := Vector2(24, 24)
+
 func _ready() -> void:
+	InputManager.connect("input_mode_changed", self, "_on_InputManager_input_mode_changed")
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 	_refresh_message()
 
@@ -9,23 +13,21 @@ func _ready() -> void:
 ## Refreshes the message based on the current InputMap.
 func _refresh_message() -> void:
 	text = ""
+	
 	_append_keybind_line(tr("Move"), ["move_piece_left", "move_piece_right"])
 	_append_keybind_line(tr("Soft Drop"), ["soft_drop"])
 	_append_keybind_line(tr("Hard Drop"), ["hard_drop"])
 	_append_keybind_line(tr("Rotate"), ["rotate_ccw", "rotate_cw"])
-	
-	# replace wordy phrasing like 'DPAD Left, DPAD Right' with succinct phrasing like 'DPAD'
-	text = text.replace("%s, %s" % [tr("Left"), tr("Right")], tr("Arrows"))
-	text = text.replace("%s, %s" % [tr("DPAD Left"), tr("DPAD Right")], tr("DPAD"))
-	
+
 	if not text:
 		# If the player unbinds all of their keys, they can't play.
-		text = tr("What have you done!? Click 'Settings' to reconfigure your controls, you silly goose!")
+		text = tr("What have you done!? Go into 'Settings' and reconfigure your controls, you silly goose!")
 	
-	rect_size = Vector2(238, 0)
+	# shrink the label to its minimum vertical size
+	call_deferred("set", "rect_size", Vector2(238, 0))
 
 
-## Appends a single keybind line to the message, like 'Move: Left, Right'
+## Appends a single keybind line to the message, like 'Left, Right: Move'
 ##
 ## The inputs such as 'Left' or 'Right' which are shown to the player are derived based on the current InputMap. If the
 ## InputMap's actions aren't defined, this will append a partial message or no message at all.
@@ -35,25 +37,38 @@ func _refresh_message() -> void:
 ##
 ## 	'action_names': One or more action names to translate for the player, such as 'rotate_cw' and 'rotate_ccw'
 func _append_keybind_line(desc: String, action_names: Array) -> void:
-	var keybind_strings := _keybind_strings(action_names)
-	if keybind_strings:
-		if text:
-			text += "\n"
-		if keybind_strings:
-			text += "%s: %s" % [desc, PoolStringArray(keybind_strings).join(", ")]
-
-
-## Translates a list of action names like 'rotate_cw' and 'rotate_ccw' into human-readable inputs like 'Z' and 'X'.
-##
-## These inputs are derived based on the current InputMap. If the InputMap's actions aren't defined, the array may have
-## fewer items in it, or even be empty.
-func _keybind_strings(action_names: Array) -> Array:
-	var result := []
+	if text:
+		newline()
+	var previous_item_was_text := false
+	var line_is_empty := true
+	
+	var input_event_jsons := []
 	for action_name in action_names:
-		var input_event_json := _input_event_json(action_name)
-		if input_event_json:
-			result.append(tr(KeybindManager.pretty_string(input_event_json)))
-	return result
+		input_event_jsons.append(_input_event_json(action_name))
+	
+	for input_event_json in input_event_jsons:
+		match input_event_json.get("type"):
+			"joypad_button":
+				# append an image texture corresponding to a joypad button
+				var image: Texture = KeybindSettings.xbox_image_for_input_event(input_event_json)
+				if image:
+					if previous_item_was_text:
+						add_text(", ")
+					add_image(image, IMAGE_SIZE.x, IMAGE_SIZE.y, INLINE_ALIGN_CENTER)
+					line_is_empty = false
+					previous_item_was_text = true
+			"key":
+				# append text corresponding to a keyboard button
+				var new_text := tr(KeybindManager.pretty_string(input_event_json))
+				if new_text:
+					if previous_item_was_text:
+						add_text(", ")
+					add_text(new_text)
+					line_is_empty = false
+					previous_item_was_text = true
+
+	if not line_is_empty:
+		add_text(": %s" % [desc])
 
 
 ## Returns a json representation of the input for the specified action name.
@@ -65,11 +80,19 @@ func _input_event_json(action_name: String) -> Dictionary:
 	var action_list := InputMap.get_action_list(action_name)
 	if action_list:
 		for input_event in action_list:
-			result = KeybindManager.input_event_to_json(input_event)
-			if result:
+			var input_event_json := KeybindManager.input_event_to_json(input_event)
+			if input_event_json:
+				result = input_event_json
+			if result and result.get("type") == "key" and InputManager.input_mode == InputManager.KEYBOARD_MOUSE:
+				break
+			if result and result.get("type") == "joypad_button" and InputManager.input_mode == InputManager.JOYPAD:
 				break
 	return result
 
 
 func _on_KeybindSettings_settings_changed() -> void:
+	_refresh_message()
+
+
+func _on_InputManager_input_mode_changed() -> void:
 	_refresh_message()

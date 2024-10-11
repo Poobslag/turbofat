@@ -698,6 +698,12 @@ text = "¥387"
 align = 1
 valign = 1
 
+[node name="SuccessGoal" parent="ReceiptPaper/BarGraph/Contents" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 198.0
+margin_right = 200.0
+margin_bottom = 218.0
+
 [node name="SssGoal" parent="ReceiptPaper/BarGraph/Contents" instance=ExtResource( 2 )]
 margin_left = 0.0
 margin_top = 198.0

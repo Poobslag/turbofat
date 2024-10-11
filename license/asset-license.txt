@@ -35,6 +35,7 @@ $ Reload by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimi
 $ Warning free icon by Gregor Cresnar (https://www.flaticon.com/authors/gregor-cresnar) (Unlimited use without attribution)
 $ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
 $ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
+$$ Xelu's free controller keyboard prompts by Nicolae (XELU) Berbece (https://thoseawesomeguys.com/prompts/) (CC0)
 
 Other:
 $ GDTracery by Althar93 (https://github.com/Althar93/GDTracery) (Apache-2.0 license)
@@ -131,10 +132,10 @@ project/assets/main/world/environment/restaurant/door-chime*.wav Doorbell Pull S
 
 Graphics
 --------------------------------------------------------------------------------
+project/assets/demo/editor/creature-old/edit-rainbow.png 'Dna' by Freepik
+project/assets/demo/editor/creature-old/edit.png 'Dna' by Freepik
 project/assets/demo/editor/creature-old/locked.png 'Unlock' by Freepik
 project/assets/demo/editor/creature-old/unlocked.png 'Safe' by Freepik
-project/assets/demo/editor/creature-old/edit.png 'Dna' by Freepik
-project/assets/demo/editor/creature-old/edit-rainbow.png 'Dna' by Freepik
 project/assets/demo/ui/icon-play.png 'Games free icon' by Freepik
 project/assets/main/career/ui/icon-distance.png 'Paws' by Solid icon Co
 project/assets/main/career/ui/icon-time-of-day-sheet.png 'Clock' by Ilhan Fitrotul Hayat
@@ -173,6 +174,7 @@ project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' b
 project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/ui/xbox/*.png Xelu's free controller keyboard prompts by Nicolae (XELU) Berbece
 
 Fonts
 --------------------------------------------------------------------------------

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/puzzle/result/ResultsHud.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleMoneyHud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/demo/puzzle/result/results-hud-demo.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=4]
 
 [node name="ResultsHudDemo" type="Node"]
 script = ExtResource( 3 )
@@ -11,3 +12,14 @@ script = ExtResource( 3 )
 
 [node name="PuzzleMoneyHud" parent="." instance=ExtResource( 2 )]
 results_hud_path = NodePath("../ResultsHud")
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 100.0
+margin_top = -200.0
+margin_right = 500.0
+margin_bottom = 200.0
+theme = ExtResource( 4 )
+align = 1
+valign = 1

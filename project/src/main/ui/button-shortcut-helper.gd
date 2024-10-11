@@ -38,10 +38,12 @@ func _input(event: InputEvent) -> void:
 		# true doesn't work without toggle mode
 		button.toggle_mode = true
 		button.pressed = true
+		button.emit_signal("button_down")
 	if button.pressed and event.is_action_released(action):
 		# workaround for Godot #35172 (https://github.com/godotengine/godot/issues/35172); setting button pressed to
 		# true doesn't work without toggle mode
 		button.pressed = false
 		button.toggle_mode = false
+		button.emit_signal("button_up")
 		button.emit_signal("pressed")
 	get_tree().set_input_as_handled()
