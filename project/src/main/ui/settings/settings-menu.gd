@@ -25,6 +25,8 @@ export (QuitType) var quit_type: int setget set_quit_type
 var _post_save_method: String
 var _post_save_args_array: Array
 
+onready var controller_unplugged_message := $ControllerUnpluggedMessage
+
 onready var _controls_control := $Window/UiArea/TabContainer/Controls
 onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot
 onready var _touch_control := $Window/UiArea/TabContainer/Touch
@@ -62,6 +64,11 @@ func show() -> void:
 	_window.show()
 	Pauser.toggle_pause("settings-menu", true)
 	emit_signal("show")
+
+
+## Returns 'true' if the settings menu is currently being shown to the player.
+func is_shown() -> bool:
+	return _window.visible
 
 
 ## Hides the menu and unpauses the scene tree.

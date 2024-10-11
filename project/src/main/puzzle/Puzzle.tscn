@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -93,6 +93,7 @@
 [ext_resource path="res://src/main/puzzle/night/NightStarSeed.tscn" type="PackedScene" id=91]
 [ext_resource path="res://src/main/puzzle/MoneyBurst.tscn" type="PackedScene" id=92]
 [ext_resource path="res://src/main/ui/diagonal-particles.gd" type="Script" id=93]
+[ext_resource path="res://src/main/puzzle/unplugged-controller-detector.gd" type="Script" id=94]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -772,6 +773,9 @@ margin_bottom = 270.0
 [node name="HudFlash" parent="Hud" instance=ExtResource( 75 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 26 )]
+
+[node name="UnpluggedControllerDetector" type="Node" parent="SettingsMenu"]
+script = ExtResource( 94 )
 
 [node name="TopOutTracker" type="Node" parent="."]
 script = ExtResource( 30 )
