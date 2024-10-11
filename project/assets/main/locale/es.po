@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-11 16:05-0400\n"
+"POT-Creation-Date: 2024-10-11 16:11-0400\n"
 "PO-Revision-Date: 2024-10-07 03:44-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17487,8 +17487,9 @@ msgid "Overall rank: %s"
 msgstr "Rango General: %s"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
+#, fuzzy
 msgid "Controller disconnected."
-msgstr ""
+msgstr "Controlador desconectado."
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Sound + Music"
@@ -17753,8 +17754,9 @@ msgid "Fastestest"
 msgstr "Rapidisisísimo"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
+#, fuzzy
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú Principal"
 
 #: project/src/main/ui/settings/settings-tab-container.gd
 msgid "Sound + Graphics"
@@ -17980,6 +17982,3 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
-
-#~ msgid "Save + Quit"
-#~ msgstr "Guardar + Salir"
