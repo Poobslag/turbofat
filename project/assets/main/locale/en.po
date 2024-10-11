@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-10 12:44-0400\n"
+"POT-Creation-Date: 2024-10-11 09:06-0400\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -13926,8 +13926,8 @@ msgid "Super R"
 msgstr "Super R"
 
 #: project/assets/main/locale/localizables-extracted.py:3132
-#: project/src/main/ui/settings/SettingsMenu.tscn:631
-#: project/src/main/ui/settings/SettingsMenu.tscn:773
+#: project/src/main/ui/settings/SettingsMenu.tscn:650
+#: project/src/main/ui/settings/SettingsMenu.tscn:792
 msgid "Menu"
 msgstr "Menu"
 
@@ -14393,7 +14393,7 @@ msgid "15:03"
 msgstr "15:03"
 
 #: project/src/main/career/ui/CareerWin.tscn:507
-#: project/src/main/ui/settings/SettingsMenu.tscn:1279
+#: project/src/main/ui/settings/SettingsMenu.tscn:1298
 msgid "Ok"
 msgstr "Ok"
 
@@ -14665,14 +14665,14 @@ msgstr ""
 msgid "%.1f%%"
 msgstr ""
 
-#: project/src/main/editor/creature/AlleleButton.tscn:86
-#: project/src/main/editor/creature/OperationButton.tscn:85
-#: project/src/main/ui/candy-button/CandyButtonC3.tscn:59
-#: project/src/main/ui/candy-button/CandyButtonC3.tscn:88
-#: project/src/main/ui/candy-button/CandyButtonH3.tscn:58
-#: project/src/main/ui/candy-button/CandyButtonH3.tscn:96
-#: project/src/main/ui/candy-button/CandyButtonH4.tscn:48
-#: project/src/main/ui/candy-button/CandyButtonH4.tscn:57
+#: project/src/main/editor/creature/AlleleButton.tscn:88
+#: project/src/main/editor/creature/OperationButton.tscn:87
+#: project/src/main/ui/candy-button/CandyButtonC3.tscn:60
+#: project/src/main/ui/candy-button/CandyButtonC3.tscn:89
+#: project/src/main/ui/candy-button/CandyButtonH3.tscn:59
+#: project/src/main/ui/candy-button/CandyButtonH3.tscn:97
+#: project/src/main/ui/candy-button/CandyButtonH4.tscn:49
+#: project/src/main/ui/candy-button/CandyButtonH4.tscn:58
 msgid "Text"
 msgstr ""
 
@@ -14691,8 +14691,8 @@ msgstr "Settings"
 #: project/src/main/ui/CreatureStressTest.tscn:77
 #: project/src/main/ui/menu/SystemButtons.tscn:106
 #: project/src/main/ui/menu/TrainingMenu.tscn:302
-#: project/src/main/ui/settings/SettingsMenu.tscn:1224
-#: project/src/main/ui/settings/SettingsMenu.tscn:1245
+#: project/src/main/ui/settings/SettingsMenu.tscn:1243
+#: project/src/main/ui/settings/SettingsMenu.tscn:1264
 #: project/src/main/ui/settings/settings-menu-bottom.gd:42
 msgid "Quit"
 msgstr "Quit"
@@ -14932,8 +14932,8 @@ msgstr "Practice"
 
 #: project/src/main/puzzle/puzzle-messages.gd:82
 #: project/src/main/puzzle/puzzle-messages.gd:90
-#: project/src/main/ui/settings/SettingsMenu.tscn:624
-#: project/src/main/ui/settings/SettingsMenu.tscn:766
+#: project/src/main/ui/settings/SettingsMenu.tscn:643
+#: project/src/main/ui/settings/SettingsMenu.tscn:785
 msgid "Retry"
 msgstr "Retry"
 
@@ -14997,15 +14997,15 @@ msgstr "Move"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:93
-#: project/src/main/ui/settings/SettingsMenu.tscn:597
-#: project/src/main/ui/settings/SettingsMenu.tscn:731
+#: project/src/main/ui/settings/SettingsMenu.tscn:616
+#: project/src/main/ui/settings/SettingsMenu.tscn:750
 msgid "Soft Drop"
 msgstr "Soft Drop"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:19
 #: project/src/main/puzzle/tutorial/TutorialBasicsModule.tscn:105
-#: project/src/main/ui/settings/SettingsMenu.tscn:604
-#: project/src/main/ui/settings/SettingsMenu.tscn:738
+#: project/src/main/ui/settings/SettingsMenu.tscn:623
+#: project/src/main/ui/settings/SettingsMenu.tscn:757
 msgid "Hard Drop"
 msgstr "Hard Drop"
 
@@ -16900,7 +16900,7 @@ msgid "Score 200 points as quickly as possible!"
 msgstr "Score 200 points as quickly as possible!"
 
 #: project/src/main/ui/menu/TrainingMenu.tscn:170
-#: project/src/main/ui/settings/SettingsMenu.tscn:436
+#: project/src/main/ui/settings/SettingsMenu.tscn:455
 msgid "Speed"
 msgstr "Speed"
 
@@ -17104,172 +17104,172 @@ msgstr "Ghost Piece"
 msgid "Soft Drop Lock Cancel"
 msgstr "Soft Drop Lock Cancel"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:420
+#: project/src/main/ui/settings/SettingsMenu.tscn:417
 msgid "Pieces that are Hard Dropped can be unlocked by pressing Soft Drop."
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:439
+#: project/src/main/ui/settings/SettingsMenu.tscn:436
 msgid "Cheats"
 msgstr "Cheats"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:466
+#: project/src/main/ui/settings/SettingsMenu.tscn:485
 msgid "Line Piece"
 msgstr "Line Piece"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:496
+#: project/src/main/ui/settings/SettingsMenu.tscn:515
 msgid "Hold Piece"
 msgstr "Hold Piece"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:516
-#: project/src/main/ui/settings/SettingsMenu.tscn:863
+#: project/src/main/ui/settings/SettingsMenu.tscn:535
+#: project/src/main/ui/settings/SettingsMenu.tscn:882
 msgid "Reset to Default"
 msgstr "Reset to Default"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:545
+#: project/src/main/ui/settings/SettingsMenu.tscn:564
 msgid "Guideline"
 msgstr "Guideline"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:554
+#: project/src/main/ui/settings/SettingsMenu.tscn:573
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:65
 msgid "WASD"
 msgstr "WASD"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:563
+#: project/src/main/ui/settings/SettingsMenu.tscn:582
 msgid "Custom"
 msgstr "Custom"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:590
+#: project/src/main/ui/settings/SettingsMenu.tscn:609
 msgid "Move Piece"
 msgstr "Move Piece"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:611
+#: project/src/main/ui/settings/SettingsMenu.tscn:630
 msgid "Rotate Piece"
 msgstr "Rotate Piece"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:618
-#: project/src/main/ui/settings/SettingsMenu.tscn:745
+#: project/src/main/ui/settings/SettingsMenu.tscn:637
+#: project/src/main/ui/settings/SettingsMenu.tscn:764
 msgid "Swap Hold Piece"
 msgstr "Swap Hold Piece"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:644
+#: project/src/main/ui/settings/SettingsMenu.tscn:663
 msgid "Move in Menus"
 msgstr "Move in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:651
-#: project/src/main/ui/settings/SettingsMenu.tscn:814
+#: project/src/main/ui/settings/SettingsMenu.tscn:670
+#: project/src/main/ui/settings/SettingsMenu.tscn:833
 msgid "Confirm in Menus"
 msgstr "Confirm in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:658
-#: project/src/main/ui/settings/SettingsMenu.tscn:821
+#: project/src/main/ui/settings/SettingsMenu.tscn:677
+#: project/src/main/ui/settings/SettingsMenu.tscn:840
 msgid "Back in Menus"
 msgstr "Back in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:665
-#: project/src/main/ui/settings/SettingsMenu.tscn:828
+#: project/src/main/ui/settings/SettingsMenu.tscn:684
+#: project/src/main/ui/settings/SettingsMenu.tscn:847
 msgid "Next Tab"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:672
-#: project/src/main/ui/settings/SettingsMenu.tscn:835
+#: project/src/main/ui/settings/SettingsMenu.tscn:691
+#: project/src/main/ui/settings/SettingsMenu.tscn:854
 msgid "Previous Tab"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:685
-#: project/src/main/ui/settings/SettingsMenu.tscn:848
+#: project/src/main/ui/settings/SettingsMenu.tscn:704
+#: project/src/main/ui/settings/SettingsMenu.tscn:867
 msgid "Rewind Text"
 msgstr "Rewind Text"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:717
+#: project/src/main/ui/settings/SettingsMenu.tscn:736
 msgid "Move Piece Left"
 msgstr "Move Piece Left"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:724
+#: project/src/main/ui/settings/SettingsMenu.tscn:743
 msgid "Move Piece Right"
 msgstr "Move Piece Right"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:752
+#: project/src/main/ui/settings/SettingsMenu.tscn:771
 msgid "Rotate Ccw"
 msgstr "Rotate Ccw"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:759
+#: project/src/main/ui/settings/SettingsMenu.tscn:778
 msgid "Rotate Cw"
 msgstr "Rotate Cw"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:786
+#: project/src/main/ui/settings/SettingsMenu.tscn:805
 msgid "Up in Menus"
 msgstr "Up in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:793
+#: project/src/main/ui/settings/SettingsMenu.tscn:812
 msgid "Down in Menus"
 msgstr "Down in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:800
+#: project/src/main/ui/settings/SettingsMenu.tscn:819
 msgid "Left in Menus"
 msgstr "Left in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:807
+#: project/src/main/ui/settings/SettingsMenu.tscn:826
 msgid "Right in Menus"
 msgstr "Right in Menus"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:903
+#: project/src/main/ui/settings/SettingsMenu.tscn:922
 msgid "Size"
 msgstr "Size"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:932
+#: project/src/main/ui/settings/SettingsMenu.tscn:951
 msgid "1.00x"
 msgstr "1.00x"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:957
+#: project/src/main/ui/settings/SettingsMenu.tscn:976
 msgid "Scheme"
 msgstr "Scheme"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:987
+#: project/src/main/ui/settings/SettingsMenu.tscn:1006
 msgid "Fat Finger"
 msgstr "Fat Finger"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1037
+#: project/src/main/ui/settings/SettingsMenu.tscn:1056
 msgid "Language"
 msgstr "Language"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1073
+#: project/src/main/ui/settings/SettingsMenu.tscn:1092
 msgid "Save Slot"
 msgstr "Save Slot"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1095
+#: project/src/main/ui/settings/SettingsMenu.tscn:1114
 msgid "Slot A"
 msgstr "Slot A"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1102
+#: project/src/main/ui/settings/SettingsMenu.tscn:1121
 #: project/src/main/ui/settings/keybind/KeybindCustom.tscn:88
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:68
 #: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:82
 msgid "X"
 msgstr "X"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1129
+#: project/src/main/ui/settings/SettingsMenu.tscn:1148
 msgid "Open User Folder"
 msgstr "Open User Folder"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1167
+#: project/src/main/ui/settings/SettingsMenu.tscn:1186
 msgid "Copy to Clipboard"
 msgstr "Copy to Clipboard"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1179
+#: project/src/main/ui/settings/SettingsMenu.tscn:1198
 msgid "Copied!"
 msgstr "Copied!"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1312
+#: project/src/main/ui/settings/SettingsMenu.tscn:1331
 msgid "* Your settings will take effect in the next scene."
 msgstr "* Your settings will take effect in the next scene."
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1339
-#: project/src/main/ui/settings/SettingsMenu.tscn:1354
-#: project/src/main/ui/settings/SettingsMenu.tscn:1370
+#: project/src/main/ui/settings/SettingsMenu.tscn:1358
+#: project/src/main/ui/settings/SettingsMenu.tscn:1373
+#: project/src/main/ui/settings/SettingsMenu.tscn:1389
 msgid "Confirm"
 msgstr "Confirm"
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1340
+#: project/src/main/ui/settings/SettingsMenu.tscn:1359
 msgid "Change save slot?"
 msgstr "Change save slot?"
 
