@@ -10,7 +10,7 @@ signal quit_pressed
 signal other_quit_pressed
 
 enum QuitType {
-	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP
+	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, QUIT_TO_DESKTOP
 }
 
 const QUIT := QuitType.QUIT
@@ -24,6 +24,8 @@ export (QuitType) var quit_type: int setget set_quit_type
 ## method name and parameters for a method to call after system data is saved
 var _post_save_method: String
 var _post_save_args_array: Array
+
+onready var controller_unplugged_message := $ControllerUnpluggedMessage
 
 onready var _controls_control := $Window/UiArea/TabContainer/Controls
 onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot
@@ -62,6 +64,11 @@ func show() -> void:
 	_window.show()
 	Pauser.toggle_pause("settings-menu", true)
 	emit_signal("show")
+
+
+## Returns 'true' if the settings menu is currently being shown to the player.
+func is_shown() -> bool:
+	return _window.visible
 
 
 ## Hides the menu and unpauses the scene tree.
@@ -109,6 +116,7 @@ func _refresh_quit_type() -> void:
 func _load_player_data() -> void:
 	PlayerSave.load_player_data()
 	Breadcrumb.trail = []
+	Pauser.reset()
 	SceneTransition.push_trail(Global.SCENE_SPLASH)
 
 

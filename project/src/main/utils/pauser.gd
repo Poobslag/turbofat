@@ -16,6 +16,12 @@ func _ready() -> void:
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
 
+## Purges all pause requests and unpauses the game.
+func reset() -> void:
+	_pausers.clear()
+	get_tree().paused = false
+
+
 func _process(_delta: float) -> void:
 	if get_tree().paused != _paused:
 		_paused = get_tree().paused

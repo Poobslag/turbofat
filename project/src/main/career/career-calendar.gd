@@ -41,6 +41,12 @@ func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
 		if success:
 			# if they pass a boss level, update best_distance_travelled to mark the region as cleared
 			career_data.best_distance_travelled = max(career_data.best_distance_travelled, region.end + 1)
+			career_data.distance_travelled = career_data.best_distance_travelled
+			
+			# Advance the calendar. We don't want to advance players to a new area, just to reset them to the start
+			# after 1 or 2 levels.
+			PlayerData.career.show_progress = Careers.ShowProgress.STATIC
+			advance_calendar()
 		else:
 			# if they fail a boss level, they lose 1-2 days worth of progress
 			career_data.distance_earned = -int(max(region.length * rand_range(0.125, 0.25), 2))

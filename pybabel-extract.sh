@@ -13,7 +13,11 @@ pybabel extract -F project/assets/main/locale/babelrc \
 	-k text \
 	-k tr \
 	-k window_title \
-	-o project/assets/main/locale/messages.pot .
+	-o project/assets/main/locale/messages.pot . \
+  --msgid-bugs-address=https://github.com/Poobslag/turbofat/ \
+  --project="Turbo Fat" \
+  --version=0.9000 \
+  --copyright-holder="Poobslag"
 
 msgmerge --update --backup=none -N project/assets/main/locale/es.po project/assets/main/locale/messages.pot
 msgmerge --update --backup=none -N project/assets/main/locale/en.po project/assets/main/locale/messages.pot

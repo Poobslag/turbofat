@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p.png" type="Texture" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://assets/main/ui/icon-training.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/ui/icon-tutorials.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/ui/icon-career.png" type="Texture" id=32]
+[ext_resource path="res://src/main/ui/candy-button/gradient-yellow-normal.tres" type="Gradient" id=33]
+[ext_resource path="res://src/main/ui/candy-button/gradient-red-normal.tres" type="Gradient" id=34]
 [ext_resource path="res://src/main/ui/menu/MenuAccentH2.tscn" type="PackedScene" id=36]
 [ext_resource path="res://src/main/ui/menu/MenuAccentTitle.tscn" type="PackedScene" id=38]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH4.tscn" type="PackedScene" id=40]
@@ -84,6 +86,36 @@ resource_local_to_scene = true
 shader = ExtResource( 11 )
 shader_param/mix_amount = 1.0
 shader_param/gradient = SubResource( 6 )
+
+[sub_resource type="GradientTexture2D" id=14]
+resource_local_to_scene = true
+gradient = ExtResource( 29 )
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 14 )
+
+[sub_resource type="GradientTexture2D" id=16]
+resource_local_to_scene = true
+gradient = ExtResource( 33 )
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 16 )
+
+[sub_resource type="GradientTexture2D" id=18]
+resource_local_to_scene = true
+gradient = ExtResource( 34 )
+
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 18 )
 
 [sub_resource type="GradientTexture2D" id=12]
 resource_local_to_scene = true
@@ -248,6 +280,25 @@ shape = 4
 alignment = 1
 quit_on_cancel = false
 
+[node name="Settings" parent="DropPanel/System" index="0"]
+material = SubResource( 15 )
+margin_left = 402.0
+margin_right = 522.0
+
+[node name="Credits" parent="DropPanel/System" index="1"]
+material = SubResource( 17 )
+margin_left = 402.0
+margin_right = 522.0
+
+[node name="Quit" parent="DropPanel/System" index="2"]
+material = SubResource( 19 )
+margin_left = 402.0
+margin_right = 522.0
+text = "Quit"
+
+[node name="Spacer" parent="DropPanel/System" index="3"]
+margin_right = 924.0
+
 [node name="Debug" type="VBoxContainer" parent="DropPanel"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -275,6 +326,7 @@ shape = 6
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
+quit_type = 4
 
 [node name="MusicPopup" parent="." instance=ExtResource( 10 )]
 
@@ -286,3 +338,5 @@ shape = 6
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="DropPanel/System" method="_on_Quit_pressed"]
+
+[editable path="DropPanel/System"]

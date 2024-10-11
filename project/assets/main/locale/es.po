@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:12-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
+"POT-Creation-Date: 2024-10-11 16:11-0400\n"
 "PO-Revision-Date: 2024-10-07 03:44-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14309,8 +14309,13 @@ msgid "Direction R"
 msgstr "Dirección Der"
 
 #: project/assets/main/locale/localizables-extracted.py
+#: project/src/main/editor/creature/CreatureEditor.tscn
 #: project/src/main/puzzle/PuzzleMessages.tscn
 #: project/src/main/puzzle/puzzle-messages.gd
+#: project/src/main/ui/CreatureStressTest.tscn
+#: project/src/main/ui/menu/SystemButtons.tscn
+#: project/src/main/ui/menu/TrainingMenu.tscn
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Back"
 msgstr "Atrás"
 
@@ -14620,6 +14625,22 @@ msgstr ""
 "vida extra."
 
 #: project/src/main/career/career-hint.gd
+#, fuzzy
+msgid ""
+"Need a hand? Go into Settings to lower the difficulty or enable the hold "
+"piece!"
+msgstr ""
+"¿Necesitas ayuda? Ve a Configuración para bajar la dificultad o habilitar el "
+"sostener pieza!"
+
+#: project/src/main/career/career-hint.gd
+#, fuzzy
+msgid ""
+"Looking for line pieces? They're over in Settings... if you really need them!"
+msgstr ""
+"¿Buscas piezas largas? Están en Configuración... si realmente las necesitas."
+
+#: project/src/main/career/career-hint.gd
 msgid "The boss level is near! Can you reach it in time?"
 msgstr "¡El nivel del jefe está cerca! ¿Puedes llegar a tiempo?"
 
@@ -14708,10 +14729,12 @@ msgstr ""
 "dejarla caer al instante!"
 
 #: project/src/main/career/career-hint.gd
-msgid "Tap down after a hard drop to unlock the piece and move it again!"
+#, fuzzy
+msgid ""
+"Enable 'Soft Drop Lock Cancel' in Settings for some advanced piece finesse!"
 msgstr ""
-"¡Presiona abajo después de una caída rápida para poder seguir moviendo la "
-"pieza!"
+"Habilita 'Cancelar Asegurado con Caída Lenta' en Configuración para mayor "
+"finesse con las piezas avanzadas!"
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn
 msgid "Chapter Select"
@@ -15065,15 +15088,6 @@ msgstr "Bocas"
 #: project/src/main/ui/menu/TrainingMenu.tscn
 msgid "Settings"
 msgstr "Configuración"
-
-#: project/src/main/editor/creature/CreatureEditor.tscn
-#: project/src/main/ui/CreatureStressTest.tscn
-#: project/src/main/ui/menu/SystemButtons.tscn
-#: project/src/main/ui/menu/TrainingMenu.tscn
-#: project/src/main/ui/settings/SettingsMenu.tscn
-#: project/src/main/ui/settings/settings-menu-bottom.gd
-msgid "Quit"
-msgstr "Salir"
 
 #: project/src/main/editor/creature/CreatureEditor.tscn
 msgid "Save Changes?"
@@ -17254,6 +17268,12 @@ msgid "Training"
 msgstr "Entrenamiento"
 
 #: project/src/main/ui/menu/MainMenu.tscn
+#: project/src/main/ui/menu/SplashScreen.tscn
+#: project/src/main/ui/settings/settings-menu-bottom.gd
+msgid "Quit"
+msgstr "Salir"
+
+#: project/src/main/ui/menu/MainMenu.tscn
 msgid "Stress Test"
 msgstr "Prueba de Estrés"
 
@@ -17465,6 +17485,11 @@ msgstr "¡Termina todos los niveles para tener el 100%!"
 #, python-format
 msgid "Overall rank: %s"
 msgstr "Rango General: %s"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+#, fuzzy
+msgid "Controller disconnected."
+msgstr "Controlador desconectado."
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Sound + Music"
@@ -17729,8 +17754,9 @@ msgid "Fastestest"
 msgstr "Rapidisisísimo"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
-msgid "Save + Quit"
-msgstr "Guardar + Salir"
+#, fuzzy
+msgid "Main Menu"
+msgstr "Menú Principal"
 
 #: project/src/main/ui/settings/settings-tab-container.gd
 msgid "Sound + Graphics"

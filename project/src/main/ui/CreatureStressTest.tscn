@@ -74,7 +74,7 @@ margin_top = 359.0
 margin_right = 150.0
 margin_bottom = 395.0
 theme = ExtResource( 5 )
-text = "Quit"
+text = "Back"
 
 [node name="FpsLabel" parent="Ui" instance=ExtResource( 3 )]
 margin_top = -30.0

@@ -157,7 +157,7 @@ margin_right = 180.0
 margin_bottom = 590.0
 theme = ExtResource( 11 )
 shortcut_in_tooltip = false
-text = "Quit"
+text = "Back"
 
 [node name="Ui" type="CanvasLayer" parent="."]
 

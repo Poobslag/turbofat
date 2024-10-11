@@ -103,7 +103,7 @@ shortcut = ExtResource( 3 )
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 14 )
 texture_hover = ExtResource( 13 )
-text = "Quit"
+text = "Back"
 color = 1
 shape = 5
 

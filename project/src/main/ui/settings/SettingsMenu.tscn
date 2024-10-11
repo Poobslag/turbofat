@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=2]
@@ -45,6 +45,7 @@
 [ext_resource path="res://src/main/ui/squeak/br/SqueakButton.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/main/ui/squeak/br/SqueakCheckBox.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/main/ui/WarningDialog.tscn" type="PackedScene" id=45]
+[ext_resource path="res://src/main/ui/settings/controller-unplugged-message.gd" type="Script" id=46]
 
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 8.0
@@ -92,6 +93,29 @@ color = Color( 0, 0, 0, 0.752941 )
 [node name="TouchButtons" parent="." instance=ExtResource( 9 )]
 visible = false
 emit_actions = false
+
+[node name="ControllerUnpluggedMessage" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 238.0
+margin_right = 200.0
+margin_bottom = 263.0
+mouse_filter = 2
+size_flags_vertical = 4
+theme = ExtResource( 2 )
+script = ExtResource( 46 )
+
+[node name="Label" type="Label" parent="ControllerUnpluggedMessage"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Controller disconnected."
+align = 1
+valign = 1
+autowrap = true
 
 [node name="Window" type="Panel" parent="."]
 visible = false
@@ -1240,7 +1264,7 @@ rect_min_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
-text = "Quit"
+text = "Back"
 
 [node name="Holder2" type="Control" parent="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1"]
 margin_top = 50.0
@@ -1261,7 +1285,7 @@ rect_min_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
-text = "Quit"
+text = "Back"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Window/UiArea/Bottom/HBoxContainer"]
 margin_left = 250.0
@@ -1391,7 +1415,9 @@ custom_text = "Are you sure?
 Slot A (34.2 hours)"
 icon_color = Color( 1, 0.866667, 0.6, 1 )
 
+[connection signal="hide" from="." to="ControllerUnpluggedMessage" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
+[connection signal="show" from="." to="ControllerUnpluggedMessage" method="_on_SettingsMenu_show"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen" method="_on_CheckBox_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]

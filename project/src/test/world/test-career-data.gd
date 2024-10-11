@@ -49,9 +49,10 @@ func test_advance_clock_clears_boss_level() -> void:
 	_data.best_distance_travelled = 0
 	_data.distance_travelled = 9 # boss level
 	_data.advance_clock(4, true, false)
-	assert_eq(_data.distance_earned, 4)
+	assert_eq(_data.distance_earned, 0)
 	assert_eq(_data.distance_travelled, 10)
-	assert_eq(_data.banked_steps, 3)
+	assert_eq(_data.best_distance_travelled, 10)
+	assert_eq(_data.banked_steps, 0)
 
 
 func test_advance_clock_fails_boss_level() -> void:
