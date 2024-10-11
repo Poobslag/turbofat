@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:12-0400\n"
+"POT-Creation-Date: 2024-10-11 09:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13054,6 +13054,18 @@ msgid "Sudden death levels are risky but reward you with an extra life."
 msgstr ""
 
 #: project/src/main/career/career-hint.gd
+msgid ""
+"Need a hand? Go into Settings to lower the difficulty or enable the hold "
+"piece!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd
+msgid ""
+"Looking for line pieces? They're over in Settings... if you really need "
+"them!"
+msgstr ""
+
+#: project/src/main/career/career-hint.gd
 msgid "The boss level is near! Can you reach it in time?"
 msgstr ""
 
@@ -13124,7 +13136,9 @@ msgid "Hold up as the next piece appears to hard-drop it instantly!"
 msgstr ""
 
 #: project/src/main/career/career-hint.gd
-msgid "Tap down after a hard drop to unlock the piece and move it again!"
+msgid ""
+"Enable 'Soft Drop Lock Cancel' in Settings for some advanced piece "
+"finesse!"
 msgstr ""
 
 #: project/src/main/career/ui/CareerRegionSelectMenu.tscn

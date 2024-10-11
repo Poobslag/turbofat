@@ -24,11 +24,13 @@ func _ready() -> void:
 func _hints() -> Array:
 	var result := []
 	
-	# Essential hints to help the player understand career mode
+	# Essential hints to help the player understand career mode or get accustomed to the game
 	result.append(tr("Earning more money in a level moves you further on the map."))
 	result.append(tr("Adventure mode ends after six levels. Make every level count!"))
 	result.append(tr("Adventure mode ends if you lose all your lives. Try not to top out!"))
 	result.append(tr("Sudden death levels are risky but reward you with an extra life."))
+	result.append(tr("Need a hand? Go into Settings to lower the difficulty or enable the hold piece!"))
+	result.append(tr("Looking for line pieces? They're over in Settings... if you really need them!"))
 	var region := PlayerData.career.current_region()
 	if region.boss_level and not PlayerData.career.is_region_finished(region) \
 			and not PlayerData.career.is_boss_level():
@@ -56,7 +58,7 @@ func _hints() -> Array:
 		result.append(tr("Hold both rotate keys as the next piece appears to flip it instantly!"))
 		result.append(tr("Press both rotate keys to flip a piece!"))
 		result.append(tr("Hold up as the next piece appears to hard-drop it instantly!"))
-		result.append(tr("Tap down after a hard drop to unlock the piece and move it again!"))
+		result.append(tr("Enable 'Soft Drop Lock Cancel' in Settings for some advanced piece finesse!"))
 	
 	return result
 
