@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:11-0400\n"
+"POT-Creation-Date: 2024-10-11 09:12-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15441,6 +15441,11 @@ msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd
 #, python-format
+msgid "Completion: %.1f%%"
+msgstr ""
+
+#: project/src/main/ui/menu/region-info-panel.gd
+#, python-format
 msgid "Overall grade: %s"
 msgstr ""
 
@@ -15450,13 +15455,11 @@ msgid "Promotion to %s: %.1f%%"
 msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd
-#, python-format
-msgid "Total stars: %s"
+msgid "Let's start a new adventure!"
 msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd
-#, python-format
-msgid "Completion: %.1f%%"
+msgid "Play this chapter to continue your adventure!"
 msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd

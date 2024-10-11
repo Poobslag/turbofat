@@ -61,6 +61,9 @@ func _update_region_text(region_obj: Object) -> void:
 func _update_career_region_text(region: CareerRegion) -> void:
 	var new_text := ""
 	var region_completion := PlayerData.career.region_completion(region)
+	# include completion details -- how the player can get 100%
+	new_text += tr("Completion: %.1f%%") % [100.0 * region_completion.completion_percent()]
+	new_text += "\n"
 	if region_completion.completion_percent() == 1.0:
 		# include grade details -- how the player can get a better grade
 		var ranks := []
@@ -73,18 +76,6 @@ func _update_career_region_text(region: CareerRegion) -> void:
 		for rank in ranks:
 			worst_rank = max(worst_rank, rank)
 		
-		# count the total number of 'stars' for all of the levels
-		var star_count := 0
-		for rank in ranks:
-			match Ranks.grade(rank):
-				"S-": star_count += 1
-				"S": star_count += 2
-				"S+": star_count += 3
-				"SS": star_count += 4
-				"SS+": star_count += 5
-				"SSS": star_count += 6
-				"M": star_count += 7
-		
 		# calculate the percent of levels where the player's rank is already high enough to rank up
 		var worst_rank_count := 0
 		for rank in ranks:
@@ -93,18 +84,23 @@ func _update_career_region_text(region: CareerRegion) -> void:
 		var next_rank_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 		
 		new_text += tr("Overall grade: %s") % [Ranks.grade(worst_rank)]
+		new_text += "\n"
 		if Ranks.grade(worst_rank) != Ranks.BEST_GRADE:
-			new_text += "\n" + tr("Promotion to %s: %.1f%%") % [
+			new_text += tr("Promotion to %s: %.1f%%") % [
 					Ranks.next_grade(Ranks.grade(worst_rank)), 100 * next_rank_pct]
-		if star_count > 0:
-			new_text += "\n" + tr("Total stars: %s") % [star_count]
 	else:
-		# include completion details -- how the player can get 100%
-		new_text += tr("Completion: %.1f%%") % [100.0 * region_completion.completion_percent()]
-		if region_completion.cutscene_completion_percent() < 1.0:
-			new_text += "\n\n" + tr("Replay this chapter to continue your adventure!")
+		if not PlayerData.career.is_region_started(region) and region.start == 0:
+			new_text += "\n"
+			new_text += tr("Let's start a new adventure!")
+		elif not PlayerData.career.is_region_started(region):
+			new_text += "\n"
+			new_text += tr("Play this chapter to continue your adventure!")
+		elif region_completion.cutscene_completion_percent() < 1.0:
+			new_text += "\n"
+			new_text += tr("Replay this chapter to continue your adventure!")
 		else:
-			new_text += "\n\n" + tr("Clear every level to get to 100%!")
+			new_text += "\n"
+			new_text += tr("Clear every level to get to 100%!")
 	
 	set_text(new_text)
 
@@ -169,18 +165,6 @@ func _update_other_region_text(region: OtherRegion) -> void:
 		for rank in ranks:
 			worst_rank = max(worst_rank, rank)
 		
-		# count the total number of 'stars' for all of the levels
-		var star_count := 0
-		for rank in ranks:
-			match Ranks.grade(rank):
-				"S-": star_count += 1
-				"S": star_count += 2
-				"S+": star_count += 3
-				"SS": star_count += 4
-				"SS+": star_count += 5
-				"SSS": star_count += 6
-				"M": star_count += 7
-		
 		# calculate the percent of levels where the player's rank is already high enough to rank up
 		var worst_rank_count := 0
 		for rank in ranks:
@@ -190,10 +174,8 @@ func _update_other_region_text(region: OtherRegion) -> void:
 		
 		new_text += tr("Overall grade: %s") % [Ranks.grade(worst_rank)]
 		if Ranks.grade(worst_rank) != Ranks.BEST_GRADE:
-			new_text += "\n" + tr("Promotion to %s: %.1f%%") % [
+			new_text += "\n\n" + tr("Promotion to %s: %.1f%%") % [
 					Ranks.next_grade(Ranks.grade(worst_rank)), 100 * next_rank_pct]
-		if star_count > 0:
-			new_text += "\n" + tr("Total stars: %s") % [star_count]
 	else:
 		# include completion details -- how the player can get to 100%
 		new_text += tr("Completion: %.1f%%") % [100.0 * completion_percent]

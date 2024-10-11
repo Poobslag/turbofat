@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 09:11-0400\n"
+"POT-Creation-Date: 2024-10-11 09:12-0400\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16646,6 +16646,11 @@ msgstr "10 dan"
 
 #: project/src/main/ui/menu/region-info-panel.gd
 #, python-format
+msgid "Completion: %.1f%%"
+msgstr ""
+
+#: project/src/main/ui/menu/region-info-panel.gd
+#, python-format
 msgid "Overall grade: %s"
 msgstr "Overall grade: %s"
 
@@ -16655,14 +16660,12 @@ msgid "Promotion to %s: %.1f%%"
 msgstr "Promotion to %s: %.1f%%"
 
 #: project/src/main/ui/menu/region-info-panel.gd
-#, python-format
-msgid "Total stars: %s"
-msgstr "Total stars: %s"
+msgid "Let's start a new adventure!"
+msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd
-#, python-format
-msgid "Completion: %.1f%%"
-msgstr "Completion: %.1f%%"
+msgid "Play this chapter to continue your adventure!"
+msgstr ""
 
 #: project/src/main/ui/menu/region-info-panel.gd
 msgid "Replay this chapter to continue your adventure!"
