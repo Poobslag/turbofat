@@ -4,6 +4,7 @@
 # updates the various PO files.
 
 pybabel extract -F project/assets/main/locale/babelrc \
+	--add-location=file \
 	-k description \
 	-k dialog_text \
 	-k keybind_value \
