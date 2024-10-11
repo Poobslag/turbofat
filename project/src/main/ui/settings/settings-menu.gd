@@ -116,6 +116,7 @@ func _refresh_quit_type() -> void:
 func _load_player_data() -> void:
 	PlayerSave.load_player_data()
 	Breadcrumb.trail = []
+	Pauser.reset()
 	SceneTransition.push_trail(Global.SCENE_SPLASH)
 
 
