@@ -1415,6 +1415,7 @@ custom_text = "Are you sure?
 Slot A (34.2 hours)"
 icon_color = Color( 1, 0.866667, 0.6, 1 )
 
+[connection signal="hide" from="." to="ControllerUnpluggedMessage" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
 [connection signal="show" from="." to="ControllerUnpluggedMessage" method="_on_SettingsMenu_show"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
