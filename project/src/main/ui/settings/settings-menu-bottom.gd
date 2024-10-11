@@ -39,12 +39,14 @@ func _refresh_quit_type() -> void:
 	var quit_text := ""
 	var other_quit_text := ""
 	match quit_type:
-		SettingsMenu.QuitType.QUIT: quit_text = tr("Quit")
-		SettingsMenu.QuitType.SAVE_AND_QUIT: quit_text = tr("Save + Quit")
+		SettingsMenu.QuitType.QUIT: quit_text = tr("Main Menu")
+		SettingsMenu.QuitType.SAVE_AND_QUIT: quit_text = tr("Main Menu")
 		SettingsMenu.QuitType.GIVE_UP: quit_text = tr("Give Up")
 		SettingsMenu.QuitType.SAVE_AND_QUIT_OR_GIVE_UP:
-			quit_text = tr("Save + Quit")
+			quit_text = tr("Main Menu")
 			other_quit_text = tr("Give Up")
+		SettingsMenu.QuitType.QUIT_TO_DESKTOP:
+			quit_text = tr("Quit")
 	
 	_quit_button.text = quit_text
 	_other_quit_button.text = other_quit_text

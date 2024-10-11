@@ -10,7 +10,7 @@ signal quit_pressed
 signal other_quit_pressed
 
 enum QuitType {
-	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP
+	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, QUIT_TO_DESKTOP
 }
 
 const QUIT := QuitType.QUIT

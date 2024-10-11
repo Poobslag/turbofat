@@ -299,7 +299,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource( 30 )
 texture_pressed = ExtResource( 29 )
 texture_hover = ExtResource( 30 )
-text = "Quit"
+text = "Back"
 color = 1
 shape = 5
 
