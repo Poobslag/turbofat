@@ -13,6 +13,7 @@ var verbose := true
 var _store_stats_timer: SceneTreeTimer
 
 func _ready() -> void:
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	_initialize_steam()
 
 
@@ -116,6 +117,8 @@ func _initialize_steam() -> void:
 	_log("Initializing Steam: %s" % [STEAM_APP_ID])
 	var steam_init_ex_response: Dictionary = Steam.steamInitEx(true, STEAM_APP_ID)
 	_log("steamInitEx response: %s" % [steam_init_ex_response])
+	
+	Steam.connect("overlay_toggled", self, "_on_Steam_overlay_toggled")
 
 
 ## Prints a message if logging is enabled.
@@ -152,3 +155,8 @@ func _store_stats() -> void:
 func _on_StoreStatsTimer_timeout() -> void:
 	_store_stats_timer = null
 	_store_stats()
+
+
+## When the Steam overlay is toggled, we pause the game.
+func _on_Steam_overlay_toggled(toggled: bool, _user_initiated: bool, _app_id: int) -> void:
+	get_tree().paused = toggled
