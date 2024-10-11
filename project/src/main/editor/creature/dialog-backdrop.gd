@@ -7,12 +7,12 @@ var _shown_dialogs := 0
 func _on_Dialog_about_to_show() -> void:
 	_shown_dialogs += 1
 	if _shown_dialogs >= 1:
-		get_tree().paused = true
+		Pauser.toggle_pause("dialog-backdrop", true)
 		show()
 
 
 func _on_Dialog_popup_hide() -> void:
 	_shown_dialogs -= 1
 	if _shown_dialogs <= 0:
-		get_tree().paused = false
+		Pauser.toggle_pause("dialog-backdrop", false)
 		hide()

@@ -159,4 +159,4 @@ func _on_StoreStatsTimer_timeout() -> void:
 
 ## When the Steam overlay is toggled, we pause the game.
 func _on_Steam_overlay_toggled(toggled: bool, _user_initiated: bool, _app_id: int) -> void:
-	get_tree().paused = toggled
+	Pauser.toggle_pause("steam-overlay", toggled)
