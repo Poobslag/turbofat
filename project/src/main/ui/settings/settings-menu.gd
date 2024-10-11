@@ -60,7 +60,7 @@ func show() -> void:
 	_touch_buttons.visible = true
 	_dialogs.visible = true
 	_window.show()
-	get_tree().paused = true
+	Pauser.toggle_pause("settings-menu", true)
 	emit_signal("show")
 
 
@@ -70,7 +70,7 @@ func hide() -> void:
 	_touch_buttons.visible = false
 	_dialogs.visible = false
 	_window.hide()
-	get_tree().paused = false
+	Pauser.toggle_pause("settings-menu", false)
 	emit_signal("hide")
 
 
@@ -119,7 +119,7 @@ func _on_Bottom_ok_pressed() -> void:
 
 func _on_Bottom_quit_pressed() -> void:
 	# keep the menu shown, but unpause the scene tree
-	get_tree().paused = false
+	Pauser.toggle_pause("settings-menu", false)
 	
 	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
@@ -130,7 +130,7 @@ func _on_Bottom_quit_pressed() -> void:
 
 func _on_Bottom_other_quit_pressed() -> void:
 	# keep the menu shown, but unpause the scene tree
-	get_tree().paused = false
+	Pauser.toggle_pause("settings-menu", false)
 	
 	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
