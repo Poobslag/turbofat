@@ -14625,7 +14625,7 @@ msgstr ""
 "vida extra."
 
 #: project/src/main/career/career-hint.gd
-#, fuzzy
+#, needs-review
 msgid ""
 "Need a hand? Go into Settings to lower the difficulty or enable the hold "
 "piece!"
@@ -14634,11 +14634,9 @@ msgstr ""
 "sostener pieza!"
 
 #: project/src/main/career/career-hint.gd
-#, fuzzy
-msgid ""
-"Looking for line pieces? They're over in Settings... if you really need them!"
-msgstr ""
-"¿Buscas piezas largas? Están en Configuración... si realmente las necesitas."
+#, needs-review
+msgid "Looking for line pieces? They're over in Settings... if you really need them!"
+msgstr "¿Buscas piezas largas? Están en Configuración... si realmente las necesitas."
 
 #: project/src/main/career/career-hint.gd
 msgid "The boss level is near! Can you reach it in time?"
@@ -14729,7 +14727,7 @@ msgstr ""
 "dejarla caer al instante!"
 
 #: project/src/main/career/career-hint.gd
-#, fuzzy
+#, needs-review
 msgid ""
 "Enable 'Soft Drop Lock Cancel' in Settings for some advanced piece finesse!"
 msgstr ""
@@ -15400,7 +15398,7 @@ msgid "Rotate"
 msgstr "Rotar"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd
-#, fuzzy
+#, needs-review
 msgid ""
 "What have you done!? Go into 'Settings' and reconfigure your controls, you "
 "silly goose!"
@@ -15416,117 +15414,117 @@ msgstr ""
 "Ultra"
 
 #: project/src/main/puzzle/intro/IntroReceipt.tscn
-#, fuzzy
+#, needs-review
 msgid "Earn ¥300 in 80 seconds for an S rank!"
 msgstr "¡Gana ¥300 en 80 segundos para obtener un rango S!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy
+#, needs-review
 msgid "There is no goal in this mode. Just have fun!"
 msgstr "No hay ningún objetivo en este modo. ¡Solo diviértete!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customer to continue on your journey!"
 msgstr "¡Gana %s de %s cliente para continuar tu viaje!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customers to continue on your journey!"
 msgstr "¡Gana %s de %s clientes para continuar tu viaje!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customer for a passing grade!"
 msgstr "¡Gana %s de %s cliente para aprobar!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customers for a passing grade!"
 msgstr "¡Gana %s de %s clientes para aprobar!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customer for rank %s!"
 msgstr "¡Gana %s de %s cliente para obtener el rango %s!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customers for rank %s!"
 msgstr "¡Gana %s de %s clientes para obtener el rango %s!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customer to beat your record!"
 msgstr "¡Gana %s de %s cliente para superar tu récord!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s from %s customers to beat your record!"
 msgstr "¡Gana %s de %s clientes para superar tu récord!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s pieces to continue on your journey!"
 msgstr "¡Gana %s con %s piezas para continuar tu viaje!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s pieces for a passing grade!"
 msgstr "¡Gana %s con %s piezas para aprobar!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s pieces for rank %s!"
 msgstr "¡Gana %s con %s piezas para obtener el rango %s!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s pieces to beat your record!"
 msgstr "¡Gana %s con %s piezas para superar tu récord!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s lines to continue on your journey!"
 msgstr "¡Gana %s con %s líneas para continuar tu viaje!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s lines for a passing grade!"
 msgstr "¡Gana %s con %s líneas para aprobar!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s lines for rank %s!"
 msgstr "¡Gana %s con %s líneas para obtener el rango %s!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s with %s lines to beat your record!"
 msgstr "¡Gana %s con %s líneas para superar tu récord!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s in %s to continue on your journey!"
 msgstr "¡Gana %s en %s para continuar tu viaje!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s in %s for a passing grade!"
 msgstr "¡Gana %s en %s para aprobar!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s in %s for rank %s!"
 msgstr "¡Gana %s en %s para obtener el rango %s!"
 
 #: project/src/main/puzzle/intro/intro-goal-message.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid "Earn %s in %s to beat your record!"
 msgstr "¡Gana %s en %s para superar tu récord!"
 
 #: project/src/main/puzzle/intro/intro-header.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid ""
 "%s-Customer\n"
 "VIP"
@@ -15535,7 +15533,7 @@ msgstr ""
 "VIP"
 
 #: project/src/main/puzzle/intro/intro-header.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid ""
 "%s-Line\n"
 "Marathon"
@@ -15544,7 +15542,7 @@ msgstr ""
 "Maratón"
 
 #: project/src/main/puzzle/intro/intro-header.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid ""
 "%s-Piece\n"
 "Marathon"
@@ -15553,12 +15551,12 @@ msgstr ""
 "Maratón"
 
 #: project/src/main/puzzle/intro/intro-header.gd
-#, fuzzy
+#, needs-review
 msgid "Ultra"
 msgstr "Ultra"
 
 #: project/src/main/puzzle/intro/intro-header.gd
-#, fuzzy, python-format
+#, needs-review, python-format
 msgid ""
 "%s-Second\n"
 "Sprint"
@@ -17464,12 +17462,12 @@ msgid "Promotion to %s: %.1f%%"
 msgstr "Promoción a %s: %.1f%%"
 
 #: project/src/main/ui/menu/region-info-panel.gd
-#, fuzzy
+#, needs-review
 msgid "Let's start a new adventure!"
 msgstr "¡Empecemos una nueva aventura!"
 
 #: project/src/main/ui/menu/region-info-panel.gd
-#, fuzzy
+#, needs-review
 msgid "Play this chapter to continue your adventure!"
 msgstr "¡Juega este capítulo para continuar tu aventura!"
 
@@ -17487,7 +17485,7 @@ msgid "Overall rank: %s"
 msgstr "Rango General: %s"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
-#, fuzzy
+#, needs-review
 msgid "Controller disconnected."
 msgstr "Controlador desconectado."
 
@@ -17524,7 +17522,7 @@ msgid "Soft Drop Lock Cancel"
 msgstr "Cancelar Asegurado con Caída Lenta"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
-#, fuzzy
+#, needs-review
 msgid "Pieces that are Hard Dropped can be unlocked by pressing Soft Drop."
 msgstr ""
 "Las piezas que se Caen Rápido pueden desbloquearse presionando Caída Lenta."
@@ -17754,7 +17752,7 @@ msgid "Fastestest"
 msgstr "Rapidisisísimo"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
-#, fuzzy
+#, needs-review
 msgid "Main Menu"
 msgstr "Menú Principal"
 
@@ -17843,7 +17841,7 @@ msgid "Voice Volume"
 msgstr "Volumen de Voces"
 
 #: project/src/main/ui/settings/keybind/custom-keybind-button.gd
-#, fuzzy
+#, needs-review
 msgid "<Enter...>"
 msgstr "<Pulsa...>"
 

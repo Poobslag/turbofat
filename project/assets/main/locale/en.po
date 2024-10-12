@@ -13063,8 +13063,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/career/career-hint.gd
-msgid ""
-"Looking for line pieces? They're over in Settings... if you really need them!"
+msgid "Looking for line pieces? They're over in Settings... if you really need them!"
 msgstr ""
 
 #: project/src/main/career/career-hint.gd
