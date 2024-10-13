@@ -3,6 +3,9 @@
   "name": "Build Combos",
   "description": "Learn how combos work, and learn to make snack boxes and cake boxes during your combos.",
   "start_speed": "T",
+  "blocks_during": [
+    "top_out_effect none"
+  ],
   "lose_condition": [
     "top_out 999999"
   ],

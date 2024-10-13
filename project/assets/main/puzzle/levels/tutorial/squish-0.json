@@ -3,6 +3,9 @@
   "name": "Squish and Recover",
   "description": "Learn how squish moves work and when to use them.",
   "start_speed": "T",
+  "blocks_during": [
+    "top_out_effect refresh"
+  ],
   "lose_condition": [
     "top_out 999999"
   ],

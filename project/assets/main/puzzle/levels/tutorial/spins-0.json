@@ -3,6 +3,9 @@
   "name": "Meet Spins",
   "description": "Learn to spin and flip pieces in tight spaces.",
   "start_speed": "T",
+  "blocks_during": [
+    "top_out_effect refresh"
+  ],
   "finish_condition": {
     "type": "pieces",
     "value": 1

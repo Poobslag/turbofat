@@ -1,6 +1,9 @@
 {
   "version": "5a6b",
   "start_speed": "T",
+  "blocks_during": [
+    "top_out_effect none"
+  ],
   "finish_condition": {
     "type": "pieces",
     "value": 6
