@@ -79,6 +79,10 @@ func buffer_input() -> void:
 
 ## Replays any inputs which were pressed while buffering.
 func pop_buffered_input() -> void:
+	if not CurrentLevel.settings.input_replay.empty():
+		# don't process button presses when replaying prerecorded input
+		return
+	
 	_buffer = false
 	if not _buffer_timer.is_stopped():
 		_just_pressed = true
