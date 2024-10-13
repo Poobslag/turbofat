@@ -8,14 +8,8 @@
 [ext_resource path="res://src/main/chat/ui/chat-ui.gd" type="Script" id=16]
 
 [node name="ChatUi" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 16 )
 
