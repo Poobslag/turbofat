@@ -37,6 +37,7 @@ func _ready() -> void:
 	_load_recent_data()
 	
 	_refresh_level_button_scroller()
+	_level_description_label.text = _level_settings.description
 	_refresh_speed_selector()
 	_refresh_high_scores()
 	
