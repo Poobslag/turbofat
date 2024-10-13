@@ -156,7 +156,9 @@ func check_for_empty_piece() -> void:
 		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
 		
 		# fire 'piece_written' triggers to ensure critters get advanced
+		PuzzleState.before_piece_written()
 		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
+		PuzzleState.after_piece_written()
 		_piece_manager.set_state(_piece_manager.states.wait_for_playfield)
 
 
