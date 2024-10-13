@@ -26,8 +26,8 @@ else
   yy=$(date +%Y)
   mmdd=$(date +%m%d)
   mmdd=$(echo "$mmdd" | sed 's/^0*//')
-  version=$(((yy - 2020) * 2000 + mmdd))
-  version=$(printf 0.%04d $version)
+  version=$(((yy - 2024) * 2000 + mmdd - 1013))
+  version=$(printf 1.%04d $version)
 fi
 
 echo "version=$version"
