@@ -93,6 +93,12 @@ func test_load_4c5c_data() -> void:
 	assert_eq(0, settings.rank.rank_criteria.thresholds_by_grade.size())
 
 
+func test_load_59c3_data() -> void:
+	load_level("level-59c3")
+	
+	assert_eq(settings.blocks_during.top_out_effect, BlocksDuringRules.TopOutEffect.CLEAR)
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
@@ -165,7 +171,7 @@ func test_to_json_milestones_and_tiles() -> void:
 
 
 func test_to_json_rules() -> void:
-	settings.blocks_during.clear_on_top_out = true
+	settings.blocks_during.top_out_effect = BlocksDuringRules.TopOutEffect.CLEAR
 	settings.combo_break.pieces = 3
 	settings.input_replay.action_timings = {"25 +rotate_cw": true, "33 -rotate_cw": true}
 	settings.lose_condition.finish_on_lose = true
@@ -179,7 +185,7 @@ func test_to_json_rules() -> void:
 			[{"phases": ["line_cleared y=0-5"], "effect": "insert_line tiles_key=0"}])
 	_convert_to_json_and_back()
 	
-	assert_eq(settings.blocks_during.clear_on_top_out, true)
+	assert_eq(settings.blocks_during.top_out_effect, BlocksDuringRules.TopOutEffect.CLEAR)
 	assert_eq(settings.combo_break.pieces, 3)
 	assert_eq(settings.input_replay.action_timings.keys(), ["25 +rotate_cw", "33 -rotate_cw"])
 	assert_eq(settings.lose_condition.finish_on_lose, true)
