@@ -19,9 +19,9 @@
   "triggers": [
     {
       "phases": [
-        "box_built snack"
+        "box_built"
       ],
-      "effect": "add_sharks patience=0"
+      "effect": "add_sharks patience=0 size=large"
     },
     {
       "phases": [
