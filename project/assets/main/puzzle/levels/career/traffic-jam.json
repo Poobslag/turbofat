@@ -1,5 +1,5 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Traffic Jam",
   "description": "Nobody knows what the 'H' stands for! We just know it is annoying and gets in the way...",
   "start_speed": "1",
@@ -7,7 +7,7 @@
     "no_clear_filled_lines",
     "filled_line_clear_max 1",
     "filled_line_clear_order highest",
-    "refresh_on_top_out"
+    "top_out_effect refresh"
   ],
   "finish_condition": {
     "type": "score",

@@ -1,13 +1,13 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "It Takes Two",
   "description": "What takes two? ...Oh please no, not that...",
   "start_speed": "A1",
   "blocks_during": [
-    "clear_on_top_out",
     "filled_line_clear_max 1",
     "filled_line_clear_min 2",
-    "filled_line_clear_order lowest"
+    "filled_line_clear_order lowest",
+    "top_out_effect clear"
   ],
   "finish_condition": {
     "type": "pieces",

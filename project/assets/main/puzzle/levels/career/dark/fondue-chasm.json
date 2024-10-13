@@ -1,5 +1,5 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Fondue Chasm",
   "description": "Yum, fruit fondue! Wait, where is the chocolate...?",
   "start_speed": "A8",
@@ -21,7 +21,7 @@
     }
   ],
   "blocks_during": [
-    "refresh_on_top_out"
+    "top_out_effect refresh"
   ],
   "finish_condition": {
     "type": "time_over",

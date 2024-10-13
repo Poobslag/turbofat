@@ -1,9 +1,9 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Sandbox: Normal",
   "description": "Just relax! There is no way to win or lose this mode.",
   "blocks_during": [
-    "clear_on_top_out"
+    "top_out_effect clear"
   ],
   "icons": [
     "basic",

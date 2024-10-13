@@ -1,10 +1,10 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Sandbox: Master",
   "description": "Practice with instant gravity! There is no way to win or lose this mode.",
   "start_speed": "FA",
   "blocks_during": [
-    "clear_on_top_out"
+    "top_out_effect clear"
   ],
   "icons": [
     "basic"
