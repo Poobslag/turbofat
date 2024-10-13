@@ -1,10 +1,10 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Shelf",
   "description": "Who came up with this stupid shelf anyway!? ...Ooh! Cookies!",
   "blocks_during": [
-    "refresh_on_top_out",
-    "shuffle_inserted_lines"
+    "shuffle_inserted_lines",
+    "top_out_effect refresh"
   ],
   "finish_condition": {
     "type": "score",

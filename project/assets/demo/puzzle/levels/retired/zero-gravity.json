@@ -1,12 +1,12 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Zero Gravity",
   "description": "In space, nobody can hear you scream.",
   "difficulty": "6",
   "start_speed": "T",
   "blocks_during": [
-    "clear_on_top_out",
-    "line_clear_type float"
+    "line_clear_type float",
+    "top_out_effect clear"
   ],
   "finish_condition": {
     "type": "time_over",
