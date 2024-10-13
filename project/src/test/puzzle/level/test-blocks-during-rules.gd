@@ -30,9 +30,10 @@ func test_to_json_full() -> void:
 	rules.shuffle_inserted_lines = BlocksDuringRules.ShuffleLinesType.SLICE
 	
 	assert_eq(rules.to_json_array(),
-			["no_clear_filled_lines", "top_out_effect clear", "filled_line_clear_delay 2", "filled_line_clear_max 3",
+			["no_clear_filled_lines", "filled_line_clear_delay 2", "filled_line_clear_max 3",
 			"filled_line_clear_min 4", "filled_line_clear_order random", "fill_lines 0", "line_clear_type float_fall",
 			"pickup_type float_regen", "shuffle_filled_lines slice", "shuffle_inserted_lines slice",
+			"top_out_effect clear",
 			])
 
 
