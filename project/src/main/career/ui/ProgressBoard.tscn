@@ -198,7 +198,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ChalkboardRegion:rect_position")
+tracks/2/path = NodePath("ChalkboardRegion:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -207,7 +207,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 171.8, 66.396 ) ]
+"values": [ 171.8 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ChalkboardRegion:modulate")
@@ -323,7 +323,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ChalkboardRegion:rect_position")
+tracks/2/path = NodePath("ChalkboardRegion:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -332,7 +332,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.0333333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 171.8, 66.396 ), Vector2( 521.8, 66.396 ) ]
+"values": [ 171.8, 521.8 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ChalkboardRegion:modulate")
@@ -450,7 +450,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ChalkboardRegion:rect_position")
+tracks/2/path = NodePath("ChalkboardRegion:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -459,7 +459,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.233333, 0.366667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 21.8, 66.396 ), Vector2( 21.8, 66.396 ), Vector2( 171.8, 66.396 ) ]
+"values": [ 21.8, 21.8, 171.8 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ChalkboardRegion:modulate")

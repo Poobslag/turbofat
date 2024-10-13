@@ -250,7 +250,7 @@ align = 2
 margin_top = 298.0
 margin_right = 896.0
 margin_bottom = 428.0
-size_flags_vertical = 10
+size_flags_vertical = 8
 custom_constants/separation = 10
 script = ExtResource( 5 )
 
