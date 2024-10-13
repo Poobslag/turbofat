@@ -237,7 +237,8 @@ func _on_Level_settings_changed() -> void:
 
 
 func _on_LineClearer_after_lines_deleted(lines: Array) -> void:
-	if PuzzleState.topping_out and CurrentLevel.settings.blocks_during.refresh_on_top_out:
+	if PuzzleState.topping_out \
+			and CurrentLevel.settings.blocks_during.top_out_effect == BlocksDuringRules.TopOutEffect.REFRESH:
 		# schedule line fills after a top out
 		_schedule_playfield_refill()
 	else:

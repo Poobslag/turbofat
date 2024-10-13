@@ -1,10 +1,10 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Above and Below",
   "description": "Build some delicious snack boxes above while befriending some moles below.",
   "start_speed": "1",
   "blocks_during": [
-    "refresh_on_top_out"
+    "top_out_effect refresh"
   ],
   "finish_condition": {
     "type": "lines",

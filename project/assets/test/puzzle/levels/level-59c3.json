@@ -1,10 +1,10 @@
 {
-  "version": "5a6b",
+  "version": "59c3",
   "name": "Sandbox: Expert",
   "description": "Practice with faster pieces! There is no way to win or lose this mode.",
   "start_speed": "A5",
   "blocks_during": [
-    "top_out_effect clear"
+    "clear_on_top_out"
   ],
   "icons": [
     "basic"

@@ -40,6 +40,7 @@ var _prev_piece_pos: Vector2
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	
 	hud.set_message(tr("Let's learn about spin moves!"
 			+ "\n\nMaybe you already figured out how they work, but I'll try to teach you something new."))
@@ -410,3 +411,11 @@ func _on_PuzzleState_after_game_prepared() -> void:
 	hud.show_skill_tally_items()
 	hud.skill_tally_item("Box").visible = false
 	prepare_tutorial_level()
+
+
+func _on_PuzzleState_topped_out() -> void:
+	match CurrentLevel.settings.id:
+		"tutorial/spins_0", "tutorial/spins_1", "tutorial/spins_1_fixed", "tutorial/spins_2", \
+		"tutorial/spins_3", "tutorial/spins_4", "tutorial/spins_5", "tutorial/spins_6", \
+		"tutorial/spins_7", "tutorial/spins_secret":
+			_advance_level()

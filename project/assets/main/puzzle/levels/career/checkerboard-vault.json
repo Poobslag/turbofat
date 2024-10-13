@@ -1,12 +1,12 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Checkerboard Vault",
   "description": "Do you have the combination?",
   "blocks_during": [
     "fill_lines 0",
-    "refresh_on_top_out",
     "shuffle_filled_lines",
-    "shuffle_inserted_lines"
+    "shuffle_inserted_lines",
+    "top_out_effect refresh"
   ],
   "combo_break": [
     "veg_row"

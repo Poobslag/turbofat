@@ -1,5 +1,5 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Carrot Alley",
   "description": "Carrots... Why did it have to be carrots?",
   "start_speed": "3",
@@ -27,7 +27,7 @@
   ],
   "blocks_during": [
     "fill_lines 0",
-    "refresh_on_top_out"
+    "top_out_effect refresh"
   ],
   "combo_break": [
     "pieces 0"

@@ -64,6 +64,8 @@ func prepare_tutorial_level() -> void:
 	# them to receive a discouraging 'you broke your combo' fanfare at the start of a section.
 	PuzzleState.set_combo(0)
 	PuzzleState.tutorial_section_finished = false
+	PuzzleState.level_performance.lost = false
+	PuzzleState.topping_out = false
 	
 	# Hide all completed skill tally items.
 	for skill_tally_item_obj in hud.skill_tally_items():

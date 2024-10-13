@@ -21,6 +21,7 @@ var _upgrade_methods := {}
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_59c3", "59c3", "5a6b")
 	_add_upgrade_method("_upgrade_4c5c", "4c5c", "59c3")
 	_add_upgrade_method("_upgrade_49db", "49db", "4c5c")
 	_add_upgrade_method("_upgrade_4373", "4373", "49db")
@@ -95,6 +96,23 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+func _upgrade_59c3(old_json: Dictionary, old_key: String, new_json: Dictionary) -> void:
+	match old_key:
+		"blocks_during":
+			var new_value := []
+			for old_blocks_during in old_json[old_key]:
+				match old_blocks_during:
+					"clear_on_top_out":
+						new_value.append("top_out_effect clear")
+					"refresh_on_top_out":
+						new_value.append("top_out_effect refresh")
+					_:
+						new_value.append(old_blocks_during)
+			new_json[old_key] = new_value
+		_:
+			new_json[old_key] = old_json[old_key]
 
 
 ## Simplify level rank metadata.

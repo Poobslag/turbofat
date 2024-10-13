@@ -25,6 +25,7 @@ var _level_attempt_count: Dictionary
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
 	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
@@ -249,3 +250,9 @@ func _on_TutorialDiagram_ok_chosen() -> void:
 
 func _on_TutorialDiagram_help_chosen() -> void:
 	_show_next_diagram()
+
+
+func _on_PuzzleState_topped_out() -> void:
+	match CurrentLevel.settings.id:
+		"tutorial/squish_5", "tutorial/squish_6":
+			_advance_level()

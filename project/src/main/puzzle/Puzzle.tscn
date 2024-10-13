@@ -377,7 +377,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 41 )
 
-[node name="TextureRect" type="TextureRect" parent="Fg/Chalkboard"]
+[node name="TextureRect" type="TextureRect" parent="Fg/Chalkboard" groups=["night_mode_dark_self"]]
 modulate = Color( 1, 1, 1, 0.705882 )
 anchor_right = 1.0
 anchor_bottom = 1.0

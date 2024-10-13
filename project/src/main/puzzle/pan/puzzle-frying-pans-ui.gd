@@ -28,7 +28,7 @@ func _refresh_lives() -> void:
 				# the player always starts with at least one life in career mode, even if they've topped out a lot on
 				# previous levels
 				pans_remaining = 1
-	gold = CurrentLevel.settings.blocks_during.clear_on_top_out
+	gold = CurrentLevel.settings.blocks_during.top_out_effect == BlocksDuringRules.TopOutEffect.CLEAR
 	refresh_tilemap()
 
 

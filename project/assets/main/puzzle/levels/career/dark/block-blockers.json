@@ -1,11 +1,11 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Block Blockers EX",
   "description": "They're still here to get in the way... and they have some new tricks!",
   "start_speed": "A9",
   "blocks_during": [
     "fill_lines 0",
-    "refresh_on_top_out"
+    "top_out_effect refresh"
   ],
   "finish_condition": {
     "type": "score",

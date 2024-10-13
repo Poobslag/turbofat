@@ -18,7 +18,7 @@ func test_to_json_empty() -> void:
 
 func test_to_json_full() -> void:
 	rules.clear_filled_lines = false
-	rules.clear_on_top_out = true
+	rules.top_out_effect = BlocksDuringRules.TopOutEffect.CLEAR
 	rules.filled_line_clear_delay = 2
 	rules.filled_line_clear_max = 3
 	rules.filled_line_clear_min = 4
@@ -30,15 +30,16 @@ func test_to_json_full() -> void:
 	rules.shuffle_inserted_lines = BlocksDuringRules.ShuffleLinesType.SLICE
 	
 	assert_eq(rules.to_json_array(),
-			["no_clear_filled_lines", "clear_on_top_out", "filled_line_clear_delay 2", "filled_line_clear_max 3",
+			["no_clear_filled_lines", "filled_line_clear_delay 2", "filled_line_clear_max 3",
 			"filled_line_clear_min 4", "filled_line_clear_order random", "fill_lines 0", "line_clear_type float_fall",
 			"pickup_type float_regen", "shuffle_filled_lines slice", "shuffle_inserted_lines slice",
+			"top_out_effect clear",
 			])
 
 
 func test_from_json_empty() -> void:
 	rules.from_json_array([])
-	assert_eq(rules.clear_on_top_out, false)
+	assert_eq(rules.top_out_effect, BlocksDuringRules.TopOutEffect.DEFAULT)
 	assert_eq(rules.filled_line_clear_delay, 0)
 	assert_eq(rules.filled_line_clear_max, 999999)
 	assert_eq(rules.filled_line_clear_min, 0)
@@ -52,11 +53,11 @@ func test_from_json_empty() -> void:
 
 func test_from_json_full() -> void:
 	rules.from_json_array(
-			["no_clear_filled_lines", "clear_on_top_out", "filled_line_clear_delay 2", "filled_line_clear_max 3",
+			["no_clear_filled_lines", "top_out_effect clear", "filled_line_clear_delay 2", "filled_line_clear_max 3",
 			"filled_line_clear_min 4", "filled_line_clear_order random", "fill_lines 0", "line_clear_type float_fall",
 			"pickup_type float_regen", "shuffle_filled_lines slice", "shuffle_inserted_lines slice",])
 	assert_eq(rules.clear_filled_lines, false)
-	assert_eq(rules.clear_on_top_out, true)
+	assert_eq(rules.top_out_effect, BlocksDuringRules.TopOutEffect.CLEAR)
 	assert_eq(rules.filled_line_clear_delay, 2)
 	assert_eq(rules.filled_line_clear_max, 3)
 	assert_eq(rules.filled_line_clear_min, 4)
@@ -69,14 +70,14 @@ func test_from_json_full() -> void:
 
 
 func test_convert_to_json_and_back() -> void:
-	rules.clear_on_top_out = true
+	rules.top_out_effect = BlocksDuringRules.TopOutEffect.CLEAR
 	rules.line_clear_type = BlocksDuringRules.LineClearType.FLOAT_FALL
 	rules.pickup_type = BlocksDuringRules.PickupType.FLOAT_REGEN
 	rules.shuffle_filled_lines = BlocksDuringRules.ShuffleLinesType.SLICE
 	rules.shuffle_inserted_lines = BlocksDuringRules.ShuffleLinesType.SLICE
 	_convert_to_json_and_back()
 	
-	assert_eq(rules.clear_on_top_out, true)
+	assert_eq(rules.top_out_effect, BlocksDuringRules.TopOutEffect.CLEAR)
 	assert_eq(rules.line_clear_type, BlocksDuringRules.LineClearType.FLOAT_FALL)
 	assert_eq(rules.pickup_type, BlocksDuringRules.PickupType.FLOAT_REGEN)
 	assert_eq(rules.shuffle_filled_lines, BlocksDuringRules.ShuffleLinesType.SLICE)

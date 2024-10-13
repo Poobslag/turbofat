@@ -9,20 +9,20 @@ signal receipt_shown
 signal stamped
 
 ## Receipt paper position when it is hidden
-const POSITION_HIDDEN := Vector2(765, 800)
+const POSITION_HIDDEN := Vector2(185, 800)
 
 ## Receipt paper position when it is shown
-const POSITION_SHOWN := Vector2(765, 4)
+const POSITION_SHOWN := Vector2(185, 4)
 
 onready var _sfx_receipt_show := $Sfx/ReceiptShow
 onready var _sfx_receipt_hide := $Sfx/ReceiptHide
 
-onready var _receipt_paper := $ReceiptPaper
-onready var _header := $ReceiptPaper/Header
-onready var _table := $ReceiptPaper/Table
-onready var _bar_graph := $ReceiptPaper/BarGraph
-onready var _stamp := $ReceiptPaper/Stamp
-onready var _medal := $ReceiptPaper/Medal
+onready var _receipt_paper := $Clipper/ReceiptPaper
+onready var _header := $Clipper/ReceiptPaper/Header
+onready var _table := $Clipper/ReceiptPaper/Table
+onready var _bar_graph := $Clipper/ReceiptPaper/BarGraph
+onready var _stamp := $Clipper/ReceiptPaper/Stamp
+onready var _medal := $Clipper/ReceiptPaper/Medal
 
 ## Directs the long animation of showing the receipt, building up a bar graph, and showing the player's grade.
 onready var _tween: SceneTreeTween

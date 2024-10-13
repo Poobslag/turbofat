@@ -1,5 +1,5 @@
 {
-  "version": "59c3",
+  "version": "5a6b",
   "name": "Chompo and Bitey",
   "description": "I call the red one Bitey! They like snack boxes... but who doesn't?",
   "start_speed": "3",
@@ -19,9 +19,9 @@
   "triggers": [
     {
       "phases": [
-        "box_built snack"
+        "box_built"
       ],
-      "effect": "add_sharks patience=0"
+      "effect": "add_sharks patience=0 size=large"
     },
     {
       "phases": [

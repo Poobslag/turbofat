@@ -149,11 +149,16 @@ func update_piece_manager_piece(new_type: PieceType, new_pos: Vector2, new_orien
 ## If all blocks were removed from a piece while being moved, we manually apply some steps which usually happen
 ## automatically such as pausing and running certain triggers. This occurs when sharks eat an entire piece.
 func check_for_empty_piece() -> void:
-	if _piece_manager.piece.type.empty() and _piece_manager.get_state() == _piece_manager.states.move_piece:
+	# A piece can spawn directly on a blue shark and disappear before entering the move_piece state, so we check for
+	# empty pieces in the prespawn state as well.
+	if _piece_manager.piece.type.empty() \
+			and _piece_manager.get_state() in [_piece_manager.states.move_piece, _piece_manager.states.prespawn]:
 		_playfield.add_misc_delay_frames(PieceSpeeds.current_speed.lock_delay)
 		
 		# fire 'piece_written' triggers to ensure critters get advanced
+		PuzzleState.before_piece_written()
 		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.PIECE_WRITTEN)
+		PuzzleState.after_piece_written()
 		_piece_manager.set_state(_piece_manager.states.wait_for_playfield)
 
 
