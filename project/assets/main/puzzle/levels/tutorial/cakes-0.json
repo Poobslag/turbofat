@@ -3,6 +3,9 @@
   "name": "Make Cakes",
   "description": "Learn all eight different cake box recipes.",
   "start_speed": "T",
+  "blocks_during": [
+    "top_out_effect refresh"
+  ],
   "lose_condition": [
     "top_out 999999"
   ],

@@ -43,6 +43,9 @@ signal before_piece_written
 ## emitted after the piece is written, and all boxes are made, and all lines are cleared
 signal after_piece_written
 
+## emitted when the current piece can't be placed in the playfield, before TopOutTracker applies other penalties
+signal before_topped_out
+
 signal score_changed
 
 ## emitted when a combo value changes, when building or ending a combo
@@ -204,6 +207,7 @@ func top_out() -> void:
 	else:
 		set_topping_out(true)
 		apply_top_out_score_penalty()
+		emit_signal("before_topped_out")
 		emit_signal("topped_out")
 		emit_signal("score_changed")
 
@@ -226,6 +230,7 @@ func make_player_lose() -> void:
 		apply_top_out_score_penalty()
 		# use up all of the players lives; especially for career mode, we don't want to reward players who give up
 		PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
+		emit_signal("before_topped_out")
 		emit_signal("topped_out")
 		emit_signal("score_changed")
 	end_game()

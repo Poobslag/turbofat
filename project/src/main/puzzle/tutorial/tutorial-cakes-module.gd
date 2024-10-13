@@ -19,6 +19,7 @@ var _level_finished := false
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
 	
@@ -265,3 +266,11 @@ func _on_PuzzleState_game_ended() -> void:
 					% [StringUtils.english_number(self, _cakes_built).to_upper()])
 			hud.enqueue_message(tr("I'll have to think of some harder tutorials for someone like you."
 					+ "\n\nYou little troublemaker!"))
+
+
+func _on_PuzzleState_topped_out() -> void:
+	match CurrentLevel.settings.id:
+		"tutorial/cakes_2", "tutorial/cakes_3", "tutorial/cakes_4", \
+		"tutorial/cakes_6", "tutorial/cakes_7", "tutorial/cakes_8":
+			# retry the level
+			_advance_level()

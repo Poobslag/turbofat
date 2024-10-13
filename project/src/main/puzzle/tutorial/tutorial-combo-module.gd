@@ -27,9 +27,11 @@ func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
 	PuzzleState.connect("combo_ended", self, "_on_PuzzleState_combo_ended")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
+	
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
 	hud.diagram.connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
 	hud.diagram.connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
@@ -227,6 +229,12 @@ func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 	if Foods.is_cake_box(color):
 		_cakes_built += 1
 		hud.skill_tally_item("CakeBox").increment()
+
+
+func _on_PuzzleState_topped_out() -> void:
+	match CurrentLevel.settings.id:
+		"tutorial/combo_0", "tutorial/combo_2", "tutorial/combo_5":
+			_advance_level()
 
 
 func _on_PuzzleState_combo_ended() -> void:
