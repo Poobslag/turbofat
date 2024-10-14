@@ -49,7 +49,6 @@ func to_json_dict() -> Dictionary:
 		"lines": lines,
 		"lost": lost,
 		"score": score,
-		"rank": rank,
 		"seconds": seconds,
 		"success": success,
 		"timestamp": timestamp,
@@ -64,7 +63,6 @@ func from_json_dict(json: Dictionary) -> void:
 	leftover_score = int(json.get("leftover_score", 0))
 	lines = int(json.get("lines", 0))
 	lost = bool(json.get("lost", true))
-	rank = float(json.get("rank", Ranks.WORST_RANK))
 	score = int(json.get("score", 0))
 	seconds = float(json.get("seconds", 999999.0))
 	success = bool(json.get("success", false))

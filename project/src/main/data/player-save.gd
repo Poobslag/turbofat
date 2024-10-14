@@ -153,7 +153,23 @@ func load_player_data_from_file(filename: String) -> bool:
 		var save_item: SaveItem = SaveItem.new()
 		save_item.from_json_dict(json_save_item_obj)
 		_load_line(save_item.type, save_item.key, save_item.value)
-	
+
+	# remove invalid levels
+	for level_id in PlayerData.level_history.level_names():
+		if not FileUtils.file_exists(LevelSettings.path_from_level_key(level_id)):
+			push_warning("Invalid level: %s" % [level_id])
+			PlayerData.level_history.delete_results(level_id)
+
+	# calculate rank data
+	var rank_calculator := RankCalculator.new()
+	for level_id in PlayerData.level_history.level_names():
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		CurrentLevel.start_level(level_settings)
+		for level_history_item in PlayerData.level_history.rank_results[level_id]:
+			rank_calculator.calculate_rank(level_history_item)
+	CurrentLevel.reset()
+
 	# emit a signal indicating the level history was loaded
 	PlayerData.emit_signal("level_history_changed")
 	return true
