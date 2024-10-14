@@ -68,6 +68,7 @@ func _input(event: InputEvent) -> void:
 			# still at the start of a puzzle; don't retry
 			pass
 		else:
+			PuzzleState.retrying = true
 			if not CurrentLevel.settings.lose_condition.finish_on_lose:
 				# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual
 				# effects
@@ -84,6 +85,7 @@ func _input(event: InputEvent) -> void:
 			_save_level_result(rank_result)
 			_start_puzzle()
 			get_tree().set_input_as_handled()
+			PuzzleState.retrying = false
 
 
 func get_playfield() -> Playfield:
