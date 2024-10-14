@@ -213,6 +213,7 @@ func _start_puzzle() -> void:
 		
 		# scroll to the starting customer
 		_restaurant_view.current_customer_index = starting_customer_index
+		_restaurant_view.purge_current_customer_index_from_queue()
 	else:
 		var current_customer_feed_count: int = _restaurant_view.get_customer().feed_count
 		
