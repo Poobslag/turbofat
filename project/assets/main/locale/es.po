@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
 "POT-Creation-Date: 2024-10-11 16:11-0400\n"
-"PO-Revision-Date: 2024-10-13 18:21-0300\n"
+"PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -15008,8 +15008,8 @@ msgid ""
 "%s-Customer\n"
 "VIP"
 msgstr ""
-"%s-Cliente\n"
-"VIP"
+"VIP:\n"
+"%s Clientes"
 
 #: project/src/main/puzzle/intro/intro-header.gd
 #, python-format
@@ -15017,8 +15017,8 @@ msgid ""
 "%s-Line\n"
 "Marathon"
 msgstr ""
-"%s-Línea\n"
-"Maratón"
+"Maratón:\n"
+"%s Líneas"
 
 #: project/src/main/puzzle/intro/intro-header.gd
 #, python-format
@@ -15026,8 +15026,8 @@ msgid ""
 "%s-Piece\n"
 "Marathon"
 msgstr ""
-"%s-Pieza\n"
-"Maratón"
+"Maratón:\n"
+"%s Piezas"
 
 #: project/src/main/puzzle/intro/intro-header.gd
 msgid "Ultra"
@@ -15039,8 +15039,8 @@ msgid ""
 "%s-Second\n"
 "Sprint"
 msgstr ""
-"%s-Segundo\n"
-"Carrera"
+"Carrera:\n"
+"%s Segundos"
 
 #: project/src/main/puzzle/intro/intro-header.gd
 msgid "Sprint"
