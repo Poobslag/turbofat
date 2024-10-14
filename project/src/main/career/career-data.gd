@@ -408,6 +408,26 @@ func region_completion(region: CareerRegion) -> RegionCompletion:
 		region_completion.potential_cutscene_completion += 1
 		if PlayerData.chat_history.is_chat_finished(special_chat_key):
 			region_completion.cutscene_completion += 1
+		elif special_chat_key in [
+				region.get_prologue_chat_key(),
+				region.get_intro_level_preroll_chat_key(),
+				region.get_intro_level_postroll_chat_key()] \
+				and is_region_started(region):
+			# if the player's started the region, they can never view the prologue/intro cutscenes again. mark it as
+			# complete to ensure they can always get 100%
+			region_completion.cutscene_completion += 1
+		elif special_chat_key in [
+				region.get_boss_level_preroll_chat_key(),
+				region.get_boss_level_postroll_chat_key()] \
+				and is_region_finished(region):
+			# if the player's finished the region, they can never view the boss cutscenes again. mark it as complete
+			# to ensure they can always get 100%
+			region_completion.cutscene_completion += 1
+		elif special_chat_key in [region.get_epilogue_chat_key()] \
+				and region_completion.cutscene_completion == region_completion.potential_cutscene_completion - 1:
+			# if the player's viewed all other cutscenes, they can never view the epilogue again. mark it as complete
+			# to ensure they can always get 100%
+			region_completion.cutscene_completion += 1
 	
 	# include the percent of levels which have been completed
 	region_completion.potential_level_completion = region.levels.size()
