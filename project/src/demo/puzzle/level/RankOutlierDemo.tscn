@@ -77,25 +77,37 @@ margin_right = 400.0
 margin_bottom = 230.0
 rect_min_size = Vector2( 800, 0 )
 
-[node name="ButtonImport" type="Button" parent="TabContainer/Analyze/VBoxContainer"]
+[node name="Top" type="HBoxContainer" parent="TabContainer/Analyze/VBoxContainer"]
 margin_right = 800.0
 margin_bottom = 26.0
+custom_constants/separation = 10
+
+[node name="ButtonImport" type="Button" parent="TabContainer/Analyze/VBoxContainer/Top"]
+margin_right = 150.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 150, 0 )
 theme = ExtResource( 3 )
 text = "Import .score"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Analyze/VBoxContainer"]
+[node name="OptionButtonRegions" type="OptionButton" parent="TabContainer/Analyze/VBoxContainer/Top"]
+margin_left = 160.0
+margin_right = 310.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="Bottom" type="HBoxContainer" parent="TabContainer/Analyze/VBoxContainer"]
 margin_top = 30.0
 margin_right = 800.0
 margin_bottom = 430.0
 
-[node name="TextEditIn" type="TextEdit" parent="TabContainer/Analyze/VBoxContainer/HBoxContainer"]
+[node name="TextEditIn" type="TextEdit" parent="TabContainer/Analyze/VBoxContainer/Bottom"]
 margin_right = 398.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 0, 400 )
 size_flags_horizontal = 3
 readonly = true
 
-[node name="TextEditOut" type="TextEdit" parent="TabContainer/Analyze/VBoxContainer/HBoxContainer"]
+[node name="TextEditOut" type="TextEdit" parent="TabContainer/Analyze/VBoxContainer/Bottom"]
 margin_left = 402.0
 margin_right = 800.0
 margin_bottom = 400.0
@@ -159,6 +171,7 @@ dialog_autowrap = true
 [connection signal="text_changed" from="TabContainer/Import" to="TabContainer/Analyze" method="_on_Import_text_changed"]
 [connection signal="pressed" from="TabContainer/Import/VBoxContainer/ButtonImport" to="TabContainer/Import" method="_on_ButtonImport_pressed"]
 [connection signal="pressed" from="TabContainer/Import/VBoxContainer/ButtonExport" to="TabContainer/Import" method="_on_ButtonExport_pressed"]
+[connection signal="item_selected" from="TabContainer/Analyze/VBoxContainer/Top/OptionButtonRegions" to="TabContainer/Analyze" method="_on_OptionButtonRegions_item_selected"]
 [connection signal="about_to_show" from="Dialogs/ImportJson" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/ImportJson" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/ExportScore" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]

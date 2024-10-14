@@ -18,10 +18,6 @@ class SkillRecord:
 	## Standard deviation of all skill percents in comparable level archetypes
 	var stddev: float
 
-## 'z score' for player records which are considered outliers. A threshold of 3 means that records will be considered
-## outliers if they are more than 3 standard deviations from the mean.
-const OUTLIER_Z_SCORE_THRESHOLD := 3
-
 ## Categories for levels based on their finish condition, and whether they enforce slow play (< 90 pieces per minute)
 enum LevelArchetype {
 	SANDBOX,
@@ -36,6 +32,11 @@ enum LevelArchetype {
 	SCORE_FAST,
 	TIME_FAST,
 }
+
+## 'z score' for player records which are considered outliers. A threshold of 3 means that records will be considered
+## outliers if they are more than 3 standard deviations from the mean.
+const OUTLIER_Z_SCORE_THRESHOLD := 3
+const ALL_REGIONS := "(all)"
 
 ## key: (String) level id
 ## value: (int) Enum from LevelArchetype
@@ -60,30 +61,66 @@ var _player_times_by_level_id := {}
 ## SkillRecord instances with data about how a player's performance on a single level matched our expectations.
 var _skill_records := []
 
-onready var _text_edit_in := $VBoxContainer/HBoxContainer/TextEditIn
-onready var _text_edit_out := $VBoxContainer/HBoxContainer/TextEditOut
+var _regions := []
+
+onready var _option_button_regions := $VBoxContainer/Top/OptionButtonRegions
+onready var _text_edit_in := $VBoxContainer/Bottom/TextEditIn
+onready var _text_edit_out := $VBoxContainer/Bottom/TextEditOut
 
 func _ready() -> void:
-	_analyze_levels()
+	_regions.append(ALL_REGIONS)
+	for region in CareerLevelLibrary.regions:
+		_regions.append(region)
+	for region in OtherLevelLibrary.regions:
+		_regions.append(region)
 	
+	for region in _regions:
+		if region is String:
+			_option_button_regions.add_item(region)
+		elif region is CareerRegion:
+			_option_button_regions.add_item(region.id)
+		elif region is OtherRegion:
+			_option_button_regions.add_item(region.id)
+	
+	_analyze_and_refresh(_all_level_ids())
+
+
+## Preemptively initializes onready variables to avoid null references.
+func _enter_tree() -> void:
+	_option_button_regions = $VBoxContainer/Top/OptionButtonRegions
+	_text_edit_in = $VBoxContainer/Bottom/TextEditIn
+	_text_edit_out = $VBoxContainer/Bottom/TextEditOut
+
+
+func _analyze_and_refresh(level_ids: Array) -> void:
+	_analyze_levels(level_ids)
 	_extract_player_data()
 	_analyze_player_data()
 	_refresh_text()
 
 
-## Preemptively initializes onready variables to avoid null references.
-func _enter_tree() -> void:
-	_text_edit_in = $VBoxContainer/HBoxContainer/TextEditIn
-	_text_edit_out = $VBoxContainer/HBoxContainer/TextEditOut
+func _all_level_ids() -> Array:
+	var result := []
+	for level_id in CareerLevelLibrary.all_level_ids():
+		result.append(level_id)
+	for level_id in OtherLevelLibrary.all_level_ids():
+		result.append(level_id)
+	return result
 
 
 ## Analyzes data for all levels, extracting their archetypes and grading criteria.
-func _analyze_levels() -> void:
+func _analyze_levels(level_ids: Array) -> void:
+	_archetypes_by_level_id.clear()
+	_level_ids_by_archetype.clear()
+	_best_grade_thresholds_by_level_id.clear()
+	_player_scores_by_level_id.clear()
+	_player_times_by_level_id.clear()
+	_skill_records.clear()
+	_level_ids_by_archetype.clear()
+	
 	for archetype in range(LevelArchetype.size()):
 		_level_ids_by_archetype[archetype] = []
-	for level_id in CareerLevelLibrary.all_level_ids():
-		_analyze_level(level_id)
-	for level_id in OtherLevelLibrary.all_level_ids():
+	for level_id in level_ids:
 		_analyze_level(level_id)
 
 
@@ -193,7 +230,7 @@ func _refresh_text() -> void:
 			compared_property = "score"
 			player_value = _player_scores_by_level_id[skill_record.level_id]
 			expected_value = _best_grade_thresholds_by_level_id[skill_record.level_id] * skill_record.mean
-		var z_score: float = skill_record.deviation / skill_record.stddev
+		var z_score: float = 0.0 if skill_record.stddev == 0.0 else skill_record.deviation / skill_record.stddev
 		
 		_text_edit_out.text += "%s: player %s=%d (not %d), z_score=%s\n" % [
 			skill_record.level_id,
@@ -287,3 +324,23 @@ func _on_Import_text_changed(new_score_text: String) -> void:
 		_extract_player_data()
 		_analyze_player_data()
 		_refresh_text()
+
+
+func _on_OptionButtonRegions_item_selected(index: int) -> void:
+	var level_ids := _all_level_ids()
+	var region = _regions[index]
+	if region is String and region == ALL_REGIONS:
+		level_ids = _all_level_ids()
+	elif region is CareerRegion:
+		level_ids = []
+		var career_region: CareerRegion = region
+		for level in career_region.levels:
+			level_ids.append(level.level_id)
+		if career_region.intro_level:
+			level_ids.append(career_region.intro_level.level_id)
+		if career_region.boss_level:
+			level_ids.append(career_region.boss_level.level_id)
+	elif region is OtherRegion:
+		level_ids = region.level_ids
+	
+	_analyze_and_refresh(level_ids)
