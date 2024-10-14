@@ -74,6 +74,7 @@ func _ready() -> void:
 func reset() -> void:
 	_recent_bonuses.clear()
 	_next_customer_indexes.clear()
+	_summon_customer_timers.clear()
 
 
 func swoop_chef_bubble_onscreen() -> void:
@@ -142,6 +143,19 @@ func find_customer_index_with_id(customer_creature_id: String) -> int:
 			break
 	
 	return customer_index
+
+
+## Purges the customer index from the 'next_customer_indexes' queue.
+##
+## The 'next_customer_indexes' queue should never have the current customer index in it, or we could risk keeping the
+## camera on a customer who is being loaded, resulting in them morphing into a new creature with black blob textures
+## visible.
+##
+## This method removes the current_customer_index from the 'next_customer_indexes' queue to ensure the camera always
+## switches to a new customer, and never tries to maintain focus on the current customer.
+func purge_current_customer_index_from_queue() -> void:
+	if get_current_customer_index() in _next_customer_indexes:
+		_next_customer_indexes.remove(_next_customer_indexes.find(get_current_customer_index()))
 
 
 ## Dequeues a customer from the customer queue, summoning them to the restaurant.
