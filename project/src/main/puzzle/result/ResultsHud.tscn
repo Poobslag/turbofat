@@ -302,7 +302,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("../..")
+tracks/4/path = NodePath("../../..")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false

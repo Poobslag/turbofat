@@ -107,6 +107,10 @@ var speed_index: int setget set_speed_index
 ## for tutorials to prevent the sensei from leaving.
 var no_more_customers: bool
 
+## Temporarily set to 'true' when the player retries a puzzle. This lets the music listener know not to stop the
+## music, even though a puzzle is ending.
+var retrying: bool
+
 ## 'True' if the player is going through the non-terminal top out process where lines are deleted and re-filled
 var topping_out: bool setget set_topping_out
 

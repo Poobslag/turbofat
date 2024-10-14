@@ -21,4 +21,5 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_PuzzleState_game_ended() -> void:
-	MusicPlayer.play_menu_track()
+	if not PuzzleState.retrying:
+		MusicPlayer.play_menu_track()
