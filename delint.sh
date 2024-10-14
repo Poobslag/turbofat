@@ -98,6 +98,7 @@ RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src 
   | grep -v "dna-loader\\.gd.*var property_value =" \
   | grep -v "dna-loader\\.gd.*var shader_value =" \
   | grep -v "population\\.gd.*var creature_def =" \
+  | grep -v "rank-outlier-demo-analyze\\.gd.*var region =" \
   | grep -v "squish-fx\\.gd.*var _piece_manager =" \
   | grep -v "tracery\\.gd.*var selected_rule = match_name" \
   | grep -v "utils\\.gd.*var tmp = arr\[i\]" \
