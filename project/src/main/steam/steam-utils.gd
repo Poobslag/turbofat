@@ -126,7 +126,7 @@ func _log(message: String) -> void:
 	if not verbose:
 		return
 	
-	print("[STEAM] %s" % [message])
+	print("[STEAM] %s %s" % [Time.get_ticks_msec(), message])
 
 
 ## Schedules the changed stats and achievements data to be sent to the server a few milliseconds in the future.
