@@ -135,9 +135,10 @@ func test_375c() -> void:
 	# added missing 'finished_level' entries -- successful levels weren't recorded as finished
 	assert_eq(PlayerData.level_history.finished_levels.keys(), ["practice/marathon_normal"])
 	
-	# update sandbox data to 'm' rank
+	# this test originally validated that sandbox was upgraded to 'm' rank. ranks are now calculated on startup, but
+	# we don't calculate them for tests because it's too slow, so the result is 'no rank'
 	var best_result := PlayerData.level_history.best_result("practice/sandbox_normal")
-	assert_eq(best_result.rank, 0.0)
+	assert_eq(best_result.rank, 999.0)
 
 
 ## With the removal of free roam mode, we also remove all of the old level history items.
@@ -277,4 +278,6 @@ func test_55aa_level_history_simplified() -> void:
 	assert_eq(rank_results.has("career/curly_queue"), true)
 	assert_eq(rank_results["career/curly_queue"].size(), 1)
 	var rank_result: RankResult = rank_results["career/curly_queue"][0]
-	assert_eq(rank_result.rank, 4.27)
+	
+	# ranks are now calculated on startup, but we don't calculate them for tests because it's too slow
+	assert_eq(rank_result.rank, 999.0)
