@@ -20,3 +20,4 @@ func refresh_achievement() -> void:
 
 func _on_PuzzleState_game_ended() -> void:
 	_max_score = max(_max_score, PuzzleState.level_performance.leftover_score)
+	refresh_achievement()

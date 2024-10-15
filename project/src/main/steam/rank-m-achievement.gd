@@ -22,3 +22,4 @@ func _on_PuzzleState_game_ended() -> void:
 	var current_level_rank := rank_result.rank
 	
 	_best_level_rank = min(_best_level_rank, current_level_rank)
+	refresh_achievement()
