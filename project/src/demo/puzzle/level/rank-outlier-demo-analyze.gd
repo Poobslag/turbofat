@@ -37,6 +37,7 @@ enum LevelArchetype {
 ## outliers if they are more than 3 standard deviations from the mean.
 const OUTLIER_Z_SCORE_THRESHOLD := 3
 const ALL_REGIONS := "(all)"
+const MAIN_STORY_REGIONS := "(main story)"
 
 ## key: (String) level id
 ## value: (int) Enum from LevelArchetype
@@ -69,6 +70,7 @@ onready var _text_edit_out := $VBoxContainer/Bottom/TextEditOut
 
 func _ready() -> void:
 	_regions.append(ALL_REGIONS)
+	_regions.append(MAIN_STORY_REGIONS)
 	for region in CareerLevelLibrary.regions:
 		_regions.append(region)
 	for region in OtherLevelLibrary.regions:
@@ -105,6 +107,14 @@ func _all_level_ids() -> Array:
 		result.append(level_id)
 	for level_id in OtherLevelLibrary.all_level_ids():
 		result.append(level_id)
+	return result
+
+
+func _main_story_level_ids() -> Array:
+	var result := []
+	for region in CareerLevelLibrary.regions:
+		if region.has_end():
+			result.append_array(_level_ids_for_career_region(region))
 	return result
 
 
@@ -326,20 +336,27 @@ func _on_Import_text_changed(new_score_text: String) -> void:
 		_refresh_text()
 
 
+func _level_ids_for_career_region(region: CareerRegion) -> Array:
+	var result := []
+	var career_region: CareerRegion = region
+	for level in career_region.levels:
+		result.append(level.level_id)
+	if career_region.intro_level:
+		result.append(career_region.intro_level.level_id)
+	if career_region.boss_level:
+		result.append(career_region.boss_level.level_id)
+	return result
+
+
 func _on_OptionButtonRegions_item_selected(index: int) -> void:
 	var level_ids := _all_level_ids()
 	var region = _regions[index]
 	if region is String and region == ALL_REGIONS:
 		level_ids = _all_level_ids()
+	if region is String and region == MAIN_STORY_REGIONS:
+		level_ids = _main_story_level_ids()
 	elif region is CareerRegion:
-		level_ids = []
-		var career_region: CareerRegion = region
-		for level in career_region.levels:
-			level_ids.append(level.level_id)
-		if career_region.intro_level:
-			level_ids.append(career_region.intro_level.level_id)
-		if career_region.boss_level:
-			level_ids.append(career_region.boss_level.level_id)
+		level_ids = _level_ids_for_career_region(region)
 	elif region is OtherRegion:
 		level_ids = region.level_ids
 	
