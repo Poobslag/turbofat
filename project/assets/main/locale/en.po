@@ -5349,7 +5349,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py
 msgid ""
 "Sorry, I should probably tell you - Fat Sensei and I aren't coming back to "
-"MerryMellow marsh for awhile."
+"Merrymellow marsh for awhile."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -5621,7 +5621,7 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py
 msgid ""
 "So I don't know if you've heard, but -- Fat Sensei and I are leaving "
-"MerryMellow Marsh for awhile."
+"Merrymellow Marsh for awhile."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
