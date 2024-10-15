@@ -16,7 +16,7 @@ func connect_signals() -> void:
 
 ## Refreshes the achievement and stat based on how many cutscenes the player has viewed in a chapter.
 func refresh_achievement() -> void:
-	var cutscene_completion_percent := _cutscene_completion_percent()
+	var cutscene_completion_percent: float = _cutscene_completion_percent()
 	
 	if cutscene_completion_percent >= 0.0 and cutscene_completion_percent <= 1.0:
 		SteamUtils.set_stat_float(stat_id, 100 * cutscene_completion_percent)
