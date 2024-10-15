@@ -9,9 +9,6 @@ export (String) var achievement_id: String
 
 func _ready() -> void:
 	add_to_group("steam_achievements")
-	
-	# avoid flooding the steam API with calls on startup; otherwise the game can crash
-	yield(get_tree().create_timer(3), "timeout")
 	connect_signals()
 
 
