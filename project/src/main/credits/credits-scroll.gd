@@ -139,14 +139,15 @@ func show_end_text() -> void:
 ## Returns:
 ## 	A number in the range [0.0, 1.0] for how close the player is to completing all regions.
 func _completion_percent() -> float:
-	var max_completion_value: float = REGION_IDS_FOR_COMPLETION.size()
+	var max_completion_value: float = 0.0
 	var player_completion_value: float = 0.0
 	for region in CareerLevelLibrary.regions:
 		if not region.id in REGION_IDS_FOR_COMPLETION:
 			continue
 		
 		player_completion_value += PlayerData.career.region_completion(region).completion_percent()
-	return player_completion_value / max_completion_value
+		max_completion_value += 1.0
+	return 0.0 if max_completion_value == 0.0 else player_completion_value / max_completion_value
 
 
 ## Returns the overall letter grade for all regions.
