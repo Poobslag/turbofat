@@ -8,7 +8,7 @@ player, p1, restaurant_4
 sensei, s1, restaurant_1
 (chef) shirts, s, restaurant_8
 
-p1: <_< So I don't know if you've heard, but -- Fat Sensei and I are leaving MerryMellow Marsh for awhile.
+p1: <_< So I don't know if you've heard, but -- Fat Sensei and I are leaving Merrymellow Marsh for awhile.
 s: /._. Oh. Yeah, it was only supposed to be a week, right? ...Well, sorry to see you go. This place will suck a little more without you.
 [maybe_manager] Want to be manager?
 [maybe_leave] You could leave
