@@ -13,3 +13,8 @@ func run() -> void:
 	SystemSave.legacy_filename = "user://%s" % TEMP_LEGACY_FILENAME
 	PlayerSave.data_filename = "user://%s" % TEMP_FILENAME
 	SystemSave.ignore_save_slot_filename = true
+	
+	# disable population of rank data; it takes about 300 ms which is too long for unit tests. it also invalidates old
+	# tests which wanted to verify that level history is carried forward, as most of those older levels don't exist
+	# anymore and are purged from our history
+	PlayerSave.populate_rank_data = false
