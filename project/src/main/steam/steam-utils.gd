@@ -1,13 +1,11 @@
 extends Node
 ## Utilities for interacting with Steam.
 ##
-## This script is TurboFat specific. Due to how GDNative works, it must remain at "res://addons/steam.gd" and cannot
-## be renamed or moved.
+## This method interacts with SteamFacade to avoid calling Steam's API too frequently. Calling Steam's API too
+## frequently seems to cause crashes, possibly due to GodotSteam #474
+## (https://github.com/GodotSteam/GodotSteam/issues/474)
 
 const STEAM_APP_ID: int = 2213410
-
-## If 'true', detailed messages will be shown for every call to Steam.
-var verbose := true
 
 ## Timer which calls Steam.storeStats() after a delay.
 var _store_stats_timer: SceneTreeTimer
@@ -18,7 +16,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	Steam.run_callbacks()
+	SteamFacade.run_callbacks()
 
 
 ## Gets the current value of a given stat for the current user.
@@ -26,10 +24,7 @@ func _process(_delta: float) -> void:
 ## Parameters:
 ## 	'id': The 'API Name' of the stat.
 func get_stat_float(id: String) -> float:
-	_log("Getting Steam stat: %s" % [id])
-	var get_stat_float_response: float = Steam.getStatFloat(id)
-	_log("getStatFloat(%s) response: %s" % [id, get_stat_float_response])
-	
+	var get_stat_float_response: float = SteamFacade.getStatFloat(id)
 	return get_stat_float_response
 
 
@@ -38,9 +33,7 @@ func get_stat_float(id: String) -> float:
 ## Parameters:
 ## 	'id': The 'API Name' of the achievement.
 func is_achievement_achieved(id: String) -> bool:
-	_log("Getting Steam achievement: %s" % [id])
-	var get_achievement_response: Dictionary = Steam.getAchievement(id)
-	_log("getAchievement(%s) response: %s" % [id, get_achievement_response])
+	var get_achievement_response: Dictionary = SteamFacade.getAchievement(id)
 	
 	var result := false
 	if get_achievement_response \
@@ -62,10 +55,7 @@ func set_achievement(id: String) -> void:
 		# avoid unnecessary storeStats calls
 		return
 	
-	_log("Setting Steam achievement: %s" % [id])
-	var set_achievement_response: bool = Steam.setAchievement(id)
-	_log("setAchievement(%s) response: %s" % [id, set_achievement_response])
-	
+	SteamFacade.setAchievement(id)
 	_schedule_store_stats()
 
 
@@ -80,10 +70,7 @@ func set_stat_float(id: String, value: float) -> void:
 		# avoid unnecessary storeStats calls
 		return
 	
-	_log("Setting Steam stat: %s -> %s" % [id, value])
-	var set_stat_float_response: bool = Steam.setStatFloat(id, value)
-	_log("setStatFloat(%s, %s) response: %s" % [id, value, set_stat_float_response])
-	
+	SteamFacade.setStatFloat(id, value)
 	_schedule_store_stats()
 
 
@@ -92,9 +79,7 @@ func set_stat_float(id: String, value: float) -> void:
 ## Parameters:
 ## 	'achievements_too': If 'true', the user's achievements are also reset
 func reset_all_stats(achievements_too: bool) -> void:
-	_log("Resetting Steam stats: %s" % [achievements_too])
-	var reset_all_stats_response: bool = Steam.resetAllStats(achievements_too)
-	_log("resetAllStats(%s) response: %s" % [achievements_too, reset_all_stats_response])
+	SteamFacade.resetAllStats(achievements_too)
 
 
 ## Resets the unlock status of an achievement.
@@ -108,10 +93,7 @@ func clear_achievement(id: String) -> void:
 		# avoid unnecessary storeStats calls
 		return
 	
-	_log("Clearing Steam achievement: %s" % [id])
-	var clear_achievement_response: bool = Steam.clearAchievement(id)
-	_log("clearAchievement(%s) response: %s" % [id, clear_achievement_response])
-	
+	SteamFacade.clearAchievement(id)
 	_schedule_store_stats()
 
 
@@ -122,19 +104,8 @@ func _initialize_steam() -> void:
 	OS.set_environment("SteamAppId", str(STEAM_APP_ID))
 	OS.set_environment("SteamGameId", str(STEAM_APP_ID))
 	
-	_log("Initializing Steam: %s" % [STEAM_APP_ID])
-	var steam_init_ex_response: Dictionary = Steam.steamInitEx(true, STEAM_APP_ID)
-	_log("steamInitEx response: %s" % [steam_init_ex_response])
-	
-	Steam.connect("overlay_toggled", self, "_on_Steam_overlay_toggled")
-
-
-## Prints a message if logging is enabled.
-func _log(message: String) -> void:
-	if not verbose:
-		return
-	
-	print("[STEAM] %s %s" % [Time.get_ticks_msec(), message])
+	SteamFacade.steamInitEx(true, STEAM_APP_ID)
+	SteamFacade.connect("overlay_toggled", self, "_on_Steam_overlay_toggled")
 
 
 ## Schedules the changed stats and achievements data to be sent to the server a few milliseconds in the future.
@@ -154,12 +125,10 @@ func _schedule_store_stats() -> void:
 ##
 ## This should only be called by _schedule_store_stats(), everyone else should use _schedule_store_stats() instead.
 func _store_stats() -> void:
-	_log("Storing stats")
-	var store_stats_response: bool = Steam.storeStats()
-	_log("storeStats response: %s" % [store_stats_response])
+	SteamFacade.storeStats()
 
 
-## When the StoreStatsTimer times out, we call Steam.storeStats() and reset the timer.
+## When the StoreStatsTimer times out, we call SteamFacade.storeStats() and reset the timer.
 func _on_StoreStatsTimer_timeout() -> void:
 	_store_stats_timer = null
 	_store_stats()
