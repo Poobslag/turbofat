@@ -42,7 +42,15 @@ func is_achievement_achieved(id: String) -> bool:
 	var get_achievement_response: Dictionary = Steam.getAchievement(id)
 	_log("getAchievement(%s) response: %s" % [id, get_achievement_response])
 	
-	return get_achievement_response["achieved"]
+	var result := false
+	if get_achievement_response \
+			and get_achievement_response.has("achieved") \
+			and get_achievement_response["achieved"] is bool:
+		result = get_achievement_response["achieved"]
+	else:
+		push_warning("Unexpected getAchievement response: %s" % [get_achievement_response])
+	
+	return result
 
 
 ## Unlocks an achievement.
