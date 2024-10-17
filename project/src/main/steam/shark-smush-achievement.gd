@@ -5,13 +5,17 @@ func connect_signals() -> void:
 	.connect_signals()
 	disconnect_save_signal()
 	disconnect_load_signal()
-	Breadcrumb.connect("after_scene_changed", self, "_on_Breadcrumb_after_scene_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 
 
-func _on_Breadcrumb_after_scene_changed() -> void:
-	if get_tree().current_scene is Puzzle:
-		var puzzle: Puzzle = get_tree().current_scene
-		puzzle.get_sharks().connect("shark_squished", self, "_on_Sharks_shark_squished")
+func _sharks() -> Sharks:
+	return get_tree().current_scene.get_sharks()
+
+
+func _on_PuzzleState_game_prepared() -> void:
+	if get_tree().current_scene is Puzzle \
+			and not _sharks().is_connected("shark_squished", self, "_on_Sharks_shark_squished"):
+		_sharks().connect("shark_squished", self, "_on_Sharks_shark_squished")
 
 
 func _on_Sharks_shark_squished(_shark: Shark) -> void:
