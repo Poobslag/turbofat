@@ -145,4 +145,4 @@ func _on_AnimationPlayer_animation_finished_change_scene(
 	
 	if breadcrumb_method:
 		breadcrumb_method.call_funcv(breadcrumb_arg_array)
-	fade_in(flags)
+	call_deferred("fade_in", flags)

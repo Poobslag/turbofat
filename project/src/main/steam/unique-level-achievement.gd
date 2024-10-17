@@ -13,11 +13,15 @@ extends SteamAchievement
 ## The level ID whose achievement condition should be checked.
 export (String) var level_id: String
 
+## 'true' if the prepare_level_listeners() method has already been called
+var _prepared_level_listeners := false
+
 func connect_signals() -> void:
 	.connect_signals()
 	disconnect_save_signal()
 	disconnect_load_signal()
-	Breadcrumb.connect("after_scene_changed", self, "_on_Breadcrumb_after_scene_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
 
 
 ## Overridden by child classes to connect listeners to the Puzzle or PuzzleState.
@@ -25,6 +29,14 @@ func prepare_level_listeners() -> void:
 	pass
 
 
-func _on_Breadcrumb_after_scene_changed() -> void:
-	if get_tree().current_scene is Puzzle and CurrentLevel.level_id == level_id:
+func _on_PuzzleState_game_prepared() -> void:
+	if get_tree().current_scene is Puzzle \
+			and CurrentLevel.level_id == level_id \
+			and not _prepared_level_listeners:
 		prepare_level_listeners()
+		_prepared_level_listeners = true
+
+
+func _on_Breadcrumb_before_scene_changed() -> void:
+	if _prepared_level_listeners:
+		_prepared_level_listeners = false
