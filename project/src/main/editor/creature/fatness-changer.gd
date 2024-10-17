@@ -25,18 +25,20 @@ func _player() -> Creature:
 
 
 func _decrease_fatness() -> void:
-	if _player().fatness <= MIN_FATNESS:
+	if _player().min_fatness <= MIN_FATNESS:
 		return
 	
-	_player().fatness = clamp(_player().fatness - 0.1, MIN_FATNESS, MAX_FATNESS)
+	_player().min_fatness = clamp(_player().min_fatness - 0.1, MIN_FATNESS, MAX_FATNESS)
+	_player().fatness = _player().min_fatness
 	_fatness_change_sound.play()
 
 
 func _increase_fatness() -> void:
-	if _player().fatness >= MAX_FATNESS:
+	if _player().min_fatness >= MAX_FATNESS:
 		return
 	
-	_player().fatness = clamp(_player().fatness + 0.1, MIN_FATNESS, MAX_FATNESS)
+	_player().min_fatness = clamp(_player().min_fatness + 0.1, MIN_FATNESS, MAX_FATNESS)
+	_player().fatness = _player().min_fatness
 	_fatness_change_sound.play()
 
 
