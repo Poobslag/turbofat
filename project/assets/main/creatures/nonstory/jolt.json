@@ -1,0 +1,40 @@
+{
+  "version": "5923",
+  "id": "jolt",
+  "name": "Jolt",
+  "short_name": "Jolt",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "4",
+    "ear": "6",
+    "eye": "4",
+    "hair": "2",
+    "head": "1",
+    "horn": "0",
+    "mouth": "1",
+    "nose": "0",
+    "tail": "4",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "f9bb4a",
+    "belly_rgb": "f77429",
+    "cloth_rgb": "fad541",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "f9bb4a",
+    "eye_rgb_0": "415a73",
+    "eye_rgb_1": "dedede",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme": {
+    "accent_scale": 1.15,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f9bb4a",
+    "dark": true
+  },
+  "fatness": 2.2
+}
