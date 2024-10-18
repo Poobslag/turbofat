@@ -68,9 +68,4 @@ func _on_Level_settings_changed() -> void:
 		# there is no 'add sharks' effect, don't fill the pool
 		return
 	
-	if OS.has_feature("web"):
-		# Godot issue #12699; threads not supported for HTML5
-		_fill_pool()
-	else:
-		_load_thread = Thread.new()
-		_load_thread.start(self, "_fill_pool")
+	_fill_pool()
