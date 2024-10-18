@@ -492,7 +492,7 @@ func is_sensei_turbo() -> bool:
 func obfuscated_region_name(region: CareerRegion) -> String:
 	var result := region.name
 	if region.id == "sand" and not PlayerData.career.is_region_finished(region):
-		result = tr("Kflab")
+		result = "Kflab"
 	return result
 
 
