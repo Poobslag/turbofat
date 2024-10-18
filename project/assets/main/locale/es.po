@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-18 07:44-0400\n"
+"POT-Creation-Date: 2024-10-18 07:42-0400\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -8482,8 +8482,8 @@ msgstr "Aww, ¿dijiste leche de pasto? ¡Soy alérgico al pasto!"
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid ""
-"N-no these aren't like... REGULAR pickles! This is SPECIAL grass harvested "
-"from um..."
+"N-no this isn't like... REGULAR grass! This is SPECIAL grass harvested from "
+"um..."
 msgstr "N-no usamos... ¡pasto REGULAR! Usamos pasto ESPECIAL de um..."
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -14540,12 +14540,12 @@ msgid "Kp 9"
 msgstr "Numpad 9"
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "English"
-msgstr "Inglés"
-
-#: project/assets/main/locale/localizables-extracted.py
 msgid "Spanish"
 msgstr "Español"
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid "English"
+msgstr "Inglés"
 
 #: project/src/main/career/CareerMap.tscn
 msgid "The left level is further from the goal. Choose carefully!"

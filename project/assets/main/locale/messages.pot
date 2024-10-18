@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-18 07:44-0400\n"
+"POT-Creation-Date: 2024-10-18 07:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7490,8 +7490,8 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid ""
-"N-no these aren't like... REGULAR pickles! This is SPECIAL grass "
-"harvested from um..."
+"N-no this isn't like... REGULAR grass! This is SPECIAL grass harvested "
+"from um..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -12980,11 +12980,11 @@ msgid "Kp 9"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "English"
+msgid "Spanish"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Spanish"
+msgid "English"
 msgstr ""
 
 #: project/src/main/career/CareerMap.tscn
