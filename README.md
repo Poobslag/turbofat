@@ -14,7 +14,7 @@ The game also includes an adventure mode where you can interact with other monst
 
 # Social Media Links
 
-Turbo Fat is still in development! If you're interested, join the community on Discord, or follow its progress on Twitter, Reddit, itch.io and of course GitHub!
+If you're interested in Turbo Fat, join the community on Discord, or follow its updates on Twitter, Reddit, itch.io and of course GitHub!
 
 - Steam: https://store.steampowered.com/app/2213410/Turbo_Fat
 - Discord: https://discord.gg/yU6aurT
