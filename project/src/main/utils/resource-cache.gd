@@ -35,9 +35,6 @@ export (Array, String) var low_priority_resource_paths: Array
 ## resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
 export (Array, String) var skipped_resource_paths: Array
 
-## if true, the caching process will be threaded on platforms which support it
-export (bool) var threaded := false
-
 ## minimum amount of time the game should take to load
 export (float) var load_seconds := 0.0
 
@@ -79,29 +76,14 @@ var _singletons_by_name: Dictionary
 var _start_load_begin_msec: float
 
 ## Initializes the resource load.
-##
-## For desktop/mobile targets, this involves launching a background thread.
-##
-## Web targets do not support background threads (Godot issue #12699) so we initialize the list of PNG paths, and load
-## them one at a time in the _process function.
 func start_load() -> void:
 	if SystemData.fast_mode:
 		# During development, just run as fast as possible
-		threaded = true
 		load_seconds = 0
 	
 	_start_load_begin_msec = Time.get_ticks_msec()
 	set_process(true)
 	_find_resource_paths()
-	if threaded:
-		if OS.has_feature("web"):
-			# Godot issue #12699; threads not supported for HTML5
-			pass
-		else:
-			for _i in range(THREAD_COUNT):
-				var thread := Thread.new()
-				thread.start(self, "_preload_all_resources")
-				_load_threads.append(thread)
 
 
 func _process(_delta: float) -> void:
@@ -111,7 +93,7 @@ func _process(_delta: float) -> void:
 			pass
 		else:
 			var start_msec := Time.get_ticks_msec()
-			# Web targets do not support background threads, so we load a few resources every frame
+			# For non-threaded targets we load a few resources every frame
 			while _remaining_resource_paths and Time.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 				_preload_next_resource()
 	elif _remaining_scene_paths:
