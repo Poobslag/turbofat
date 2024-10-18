@@ -144,7 +144,7 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	if json.has("combo_break"):
 		combo_break.from_json_array(json["combo_break"])
 	if json.has("description"):
-		description = tr(json["description"])
+		description = json["description"]
 	if json.has("difficulty"):
 		difficulty = json["difficulty"]
 	if json.has("finish_condition"):
@@ -156,7 +156,7 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	if json.has("lose_condition"):
 		lose_condition.from_json_array(json["lose_condition"])
 	if json.has("name"):
-		name = tr(json["name"])
+		name = json["name"]
 	if json.has("other"):
 		other.from_json_array(json["other"])
 	if json.has("piece_types"):

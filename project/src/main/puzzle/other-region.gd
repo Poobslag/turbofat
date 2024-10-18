@@ -38,9 +38,9 @@ var region_button_id: String
 
 func from_json_dict(json: Dictionary) -> void:
 	id = json.get("id", "")
-	name = tr(json.get("name", ""))
+	name = json.get("name", "")
 	branch_name = json.get("branch_name", name)
-	description = tr(json.get("description", ""))
+	description = json.get("description", "")
 	for flags_string in json.get("flags", []):
 		flags[flags_string] = true
 	level_ids = json.get("level_ids", "")
