@@ -44,11 +44,13 @@ func clear_achievement() -> void:
 ##
 ## This allows the player to unlock achievements when launching the game or changing save slots.
 func _on_PlayerSave_after_load() -> void:
-	refresh_achievement()
+	if not SteamUtils.is_achievement_achieved(achievement_id):
+		refresh_achievement()
 
 
 ## We check the achievement condition each time the player saves save data.
 ##
 ## This allows the player to unlock achievements after playing a level or watching a cutscene.
 func _on_PlayerSave_save_scheduled() -> void:
-	refresh_achievement()
+	if not SteamUtils.is_achievement_achieved(achievement_id):
+		refresh_achievement()

@@ -19,5 +19,7 @@ func refresh_achievement() -> void:
 
 
 func _on_PuzzleState_score_changed() -> void:
+	if SteamUtils.is_achievement_achieved(achievement_id):
+		return
 	_max_score = max(PuzzleState.get_customer_score(), _max_score)
 	refresh_achievement()

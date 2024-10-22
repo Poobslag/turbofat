@@ -34,6 +34,8 @@ func _cutscene_completion_percent() -> float:
 
 ## When a cutscene is played, if it corresponds to our region we refresh our achievement status.
 func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
+	if SteamUtils.is_achievement_achieved(achievement_id):
+		return
 	var cutscene_region: CareerRegion = CareerLevelLibrary.region_for_chat_key(chat_key)
 	if cutscene_region and cutscene_region.id == region_id:
 		refresh_achievement()

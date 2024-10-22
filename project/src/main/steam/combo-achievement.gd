@@ -19,5 +19,7 @@ func refresh_achievement() -> void:
 
 
 func _on_PuzzleState_combo_changed(value: int) -> void:
+	if SteamUtils.is_achievement_achieved(achievement_id):
+		return
 	_max_combo = max(_max_combo, value)
 	refresh_achievement()
