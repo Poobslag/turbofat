@@ -44,5 +44,7 @@ func _on_PuzzleState_game_prepared() -> void:
 
 func _on_Breadcrumb_before_scene_changed() -> void:
 	if _prepared_level_listeners:
+		Global.print_verbose("Scene changing; resetting achievement listeners for %s." % [achievement_id])
 		remove_level_listeners()
 		_prepared_level_listeners = false
+		Global.print_verbose("Finished resetting achievement listeners for %s." % [achievement_id])
