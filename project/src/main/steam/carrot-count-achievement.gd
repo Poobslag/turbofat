@@ -8,6 +8,12 @@ func prepare_level_listeners() -> void:
 	_carrots().connect("carrot_added", self, "_on_Carrots_carrot_added")
 
 
+func remove_level_listeners() -> void:
+	if get_tree().current_scene is Puzzle \
+			and _carrots().is_connected("carrot_added", self, "_on_Carrots_carrot_added"):
+		_carrots().disconnect("carrot_added", self, "_on_Carrots_carrot_added")
+
+
 func refresh_achievement() -> void:
 	if get_tree().current_scene is Puzzle and _carrots().get_carrot_count() >= target_carrot_count:
 		SteamUtils.set_achievement(achievement_id)
