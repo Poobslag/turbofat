@@ -9,11 +9,11 @@ func connect_signals() -> void:
 
 
 func _sharks() -> Sharks:
-	return get_tree().current_scene.get_sharks()
+	return CurrentLevel.puzzle.get_sharks()
 
 
 func _on_PuzzleState_game_prepared() -> void:
-	if get_tree().current_scene is Puzzle \
+	if CurrentLevel.puzzle \
 			and not _sharks().is_connected("shark_squished", self, "_on_Sharks_shark_squished"):
 		_sharks().connect("shark_squished", self, "_on_Sharks_shark_squished")
 

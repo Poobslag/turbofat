@@ -35,7 +35,7 @@ func remove_level_listeners() -> void:
 
 
 func _on_PuzzleState_game_prepared() -> void:
-	if get_tree().current_scene is Puzzle \
+	if CurrentLevel.puzzle \
 			and CurrentLevel.level_id == level_id \
 			and not _prepared_level_listeners:
 		prepare_level_listeners()
