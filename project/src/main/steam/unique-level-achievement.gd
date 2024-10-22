@@ -29,6 +29,11 @@ func prepare_level_listeners() -> void:
 	pass
 
 
+## Overridden by child classes to disconnect listeners from the Puzzle or PuzzleState.
+func remove_level_listeners() -> void:
+	pass
+
+
 func _on_PuzzleState_game_prepared() -> void:
 	if get_tree().current_scene is Puzzle \
 			and CurrentLevel.level_id == level_id \
@@ -39,4 +44,5 @@ func _on_PuzzleState_game_prepared() -> void:
 
 func _on_Breadcrumb_before_scene_changed() -> void:
 	if _prepared_level_listeners:
+		remove_level_listeners()
 		_prepared_level_listeners = false
