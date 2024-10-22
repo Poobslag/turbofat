@@ -24,4 +24,6 @@ func _carrots() -> Carrots:
 
 
 func _on_Carrots_carrot_added() -> void:
+	if SteamUtils.is_achievement_achieved(achievement_id):
+		return
 	refresh_achievement()

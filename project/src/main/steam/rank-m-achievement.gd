@@ -21,6 +21,8 @@ func _on_PuzzleState_game_ended() -> void:
 	if CurrentLevel.is_tutorial() or CurrentLevel.settings.other.after_tutorial:
 		# don't activate the achievement for tutorials
 		return
+	if SteamUtils.is_achievement_achieved(achievement_id):
+		return
 	
 	var rank_result := RankCalculator.new().calculate_rank()
 	var current_level_rank := rank_result.rank

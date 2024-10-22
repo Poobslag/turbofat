@@ -42,6 +42,8 @@ func _s_rank_percent() -> float:
 
 ## When a level is played, if it corresponds to our region we refresh our achievement status.
 func _on_PuzzleState_after_game_ended() -> void:
+	if SteamUtils.is_achievement_achieved(achievement_id):
+		return
 	var level_region_id := CareerLevelLibrary.region_id_for_level_id(CurrentLevel.level_id)
 	if level_region_id == region_id:
 		refresh_achievement()

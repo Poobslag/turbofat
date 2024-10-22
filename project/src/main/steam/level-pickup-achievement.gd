@@ -18,4 +18,5 @@ func refresh_achievement() -> void:
 
 
 func _on_PuzzleState_score_changed() -> void:
-	refresh_achievement()
+	if not SteamUtils.is_achievement_achieved(achievement_id):
+		refresh_achievement()
