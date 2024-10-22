@@ -9,7 +9,7 @@ func connect_signals() -> void:
 
 
 func _sharks() -> Sharks:
-	return CurrentLevel.puzzle.get_sharks()
+	return CurrentLevel.puzzle.get_sharks() if CurrentLevel.puzzle else null
 
 
 func _on_PuzzleState_game_prepared() -> void:

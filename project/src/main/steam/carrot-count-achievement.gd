@@ -5,7 +5,8 @@ extends UniqueLevelAchievement
 export (int) var target_carrot_count: int
 
 func prepare_level_listeners() -> void:
-	_carrots().connect("carrot_added", self, "_on_Carrots_carrot_added")
+	if CurrentLevel.puzzle:
+		_carrots().connect("carrot_added", self, "_on_Carrots_carrot_added")
 
 
 func remove_level_listeners() -> void:
@@ -20,7 +21,7 @@ func refresh_achievement() -> void:
 
 
 func _carrots() -> Carrots:
-	return CurrentLevel.puzzle.get_carrots()
+	return CurrentLevel.puzzle.get_carrots() if CurrentLevel.puzzle else null
 
 
 func _on_Carrots_carrot_added() -> void:
