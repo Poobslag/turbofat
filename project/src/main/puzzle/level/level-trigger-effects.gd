@@ -24,6 +24,8 @@ class ClearFilledLinesEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_playfield().line_clearer.schedule_filled_line_clears(force)
 	
 	
@@ -69,6 +71,8 @@ class AddCarrotsEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_carrots().add_carrots(config)
 	
 	
@@ -115,6 +119,8 @@ class AddOnionEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_onions().add_onion(config)
 	
 	
@@ -167,6 +173,8 @@ class AddMolesEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_moles().add_moles(config)
 	
 	
@@ -230,6 +238,8 @@ class AddSharksEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_sharks().add_sharks(config)
 	
 	
@@ -290,6 +300,8 @@ class AddSpearsEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_spears().add_spears(config)
 	
 	
@@ -319,6 +331,8 @@ class AdvanceOnionEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_onions().advance_onion()
 
 
@@ -330,6 +344,8 @@ class AdvanceMolesEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_moles().advance_moles()
 
 
@@ -341,6 +357,8 @@ class AdvanceSharksEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_sharks().advance_sharks()
 
 
@@ -352,6 +370,8 @@ class AdvanceSpearsEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_spears().advance_spears()
 
 
@@ -377,6 +397,8 @@ class RemoveCarrotsEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_carrots().remove_carrots(count)
 	
 	
@@ -397,6 +419,8 @@ class RemoveOnionEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_onions().remove_onion()
 
 
@@ -422,6 +446,8 @@ class RemoveSpearsEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		CurrentLevel.puzzle.get_spears().pop_out_spears(count)
 
 
@@ -474,6 +500,8 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		var pieces: Array = CurrentLevel.puzzle.get_piece_queue().pieces
 		for i in range(next_piece_from_index, next_piece_to_index + 1):
 			if i >= pieces.size():
@@ -535,6 +563,8 @@ class InsertLineEffect extends LevelTriggerEffect:
 	
 	
 	func run() -> void:
+		if not CurrentLevel.puzzle:
+			return
 		for _i in range(count):
 			CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_keys, y)
 	

@@ -20,7 +20,11 @@ var trail := []
 ## This is useful for demos and development where having an empty breadcrumb trail causes bugs. During regular play the
 ## breadcrumb trail should be initialized conventionally in the splash screen or menus.
 func initialize_trail() -> void:
-	trail = [get_tree().current_scene.filename]
+	if get_tree().current_scene == null:
+		push_warning("tree.current_scene == null; could not initialize trail")
+		trail = []
+	else:
+		trail = [get_tree().current_scene.filename]
 
 
 ## Navigates back one level in the breadcrumb trail.

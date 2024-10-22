@@ -55,6 +55,8 @@ func advance_onion() -> void:
 func remove_onion() -> void:
 	if not _onion:
 		return
+	if not CurrentLevel.puzzle:
+		return
 	
 	_onion.poof_and_free()
 	_onion = null
@@ -75,6 +77,8 @@ func _refresh_playfield_path() -> void:
 
 ## Initializes the onion's states with the specified onion config.
 func _initialize_onion_states(config: OnionConfig) -> void:
+	if not CurrentLevel.puzzle:
+		return
 	_onion.clear_states()
 	for i in range(config.cycle_length()):
 		_onion.append_next_state(config.get_state(i))
@@ -108,6 +112,8 @@ func _update_onion_position(onion: Onion, cell: Vector2) -> void:
 
 
 func _on_Onion_float_animation_playing_changed(_value: bool) -> void:
+	if not CurrentLevel.puzzle:
+		return
 	CurrentLevel.puzzle.set_night_mode(_onion.state == OnionConfig.OnionState.NIGHT)
 
 
@@ -127,6 +133,8 @@ func _on_PuzzleState_game_ended() -> void:
 ## Some levels introduce an onion in the middle of the level, we want to remove it when the level is restarted.
 func _on_PuzzleState_game_prepared() -> void:
 	if not _onion:
+		return
+	if not CurrentLevel.puzzle:
 		return
 	
 	if starts_in_night_mode():
