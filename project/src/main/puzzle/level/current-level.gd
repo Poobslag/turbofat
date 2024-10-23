@@ -225,4 +225,6 @@ func _customers_match(customer1, customer2) -> bool:
 ## Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll
 ## continue consuming resources and could cause side effects.
 func _on_Breadcrumb_before_scene_changed() -> void:
+	Global.print_verbose("Scene changing; unassigning CurrentLevel.puzzle.")
 	puzzle = null
+	Global.print_verbose("Finished unassigning CurrentLevel.puzzle.")

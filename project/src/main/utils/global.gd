@@ -41,6 +41,8 @@ const FATNESSES := [
 ## Factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
 
+var verbose_stdout_mode := false
+
 ## Game's main viewport width, as specified in the project settings
 var window_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/width"), \
 		ProjectSettings.get_setting("display/window/size/height"))
@@ -48,9 +50,15 @@ var window_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/s
 ## Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
 
+
 func _init() -> void:
 	# ensure music, pieces are random
 	randomize()
+
+
+func _ready() -> void:
+	if "--tf-verbose" in OS.get_cmdline_args():
+		verbose_stdout_mode = true
 
 
 ## Sets the start time for a benchmark. Calling 'benchmark_start(foo)' and 'benchmark_finish(foo)' will display a
@@ -76,6 +84,11 @@ func get_overworld_ui() -> OverworldUi:
 func get_creature_editor_library() -> CreatureEditorLibrary:
 	var nodes := get_tree().get_nodes_in_group("creature_editor_library")
 	return nodes[0] if nodes else null
+
+
+func print_verbose(s: String) -> void:
+	if verbose_stdout_mode:
+		print(s)
 
 
 ## Convert a coordinate from global coordinates to isometric (squashed) coordinates
