@@ -7,6 +7,8 @@ signal save_scheduled
 
 signal before_save
 
+signal before_load
+
 signal after_save
 
 signal after_load
@@ -40,7 +42,7 @@ var populate_rank_data := true
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
 ## 'true' if player data will be saved during the next scene transition
-var _save_scheduled := false
+var save_scheduled := false
 
 func _ready() -> void:
 	rolling_backups.data_filename = data_filename
@@ -72,7 +74,7 @@ func set_legacy_filename(new_legacy_filename: String) -> void:
 ## Serializing the player's in-memory data into a large JSON file takes about 50 milliseconds or longer. To prevent
 ## stuttering or frame drops, we do this during scene transitions.
 func schedule_save() -> void:
-	_save_scheduled = true
+	save_scheduled = true
 	emit_signal("save_scheduled")
 
 
@@ -106,6 +108,7 @@ func save_player_data() -> void:
 
 ## Populates the player's in-memory data based on their save files.
 func load_player_data() -> void:
+	emit_signal("before_load")
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "load_player_data_from_file")
 	emit_signal("after_load")
@@ -178,7 +181,7 @@ func _calculate_rank_for_level_history() -> void:
 	for level_id in PlayerData.level_history.level_names():
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level_id)
-		CurrentLevel.start_level(level_settings)
+		CurrentLevel.start_level(level_settings, true)
 		for level_history_item in PlayerData.level_history.rank_results[level_id]:
 			rank_calculator.calculate_rank(level_history_item)
 	CurrentLevel.reset()
@@ -264,8 +267,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 
 
 func _on_Breadcrumb_before_scene_changed() -> void:
-	if _save_scheduled:
+	if save_scheduled:
 		Global.print_verbose("Scene changing; saving player data")
 		save_player_data()
 		Global.print_verbose("Finished saving player data")
-		_save_scheduled = false
+		save_scheduled = false
