@@ -95,6 +95,7 @@ func _load_recent_data() -> void:
 		_region = OtherLevelLibrary.region_for_id(DEFAULT_REGION_ID)
 	
 	# load the player's previously played level
+	_level_settings = LevelSettings.new()
 	_level_settings.load_from_resource(PlayerData.practice.level_id)
 
 
