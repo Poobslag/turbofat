@@ -17,4 +17,6 @@ func refresh_achievement() -> void:
 
 func _on_PlayerSave_before_save() -> void:
 	if not SteamUtils.is_achievement_achieved(achievement_id):
+		Global.print_verbose("Refreshing achievement: %s" % [achievement_id])
 		refresh_achievement()
+		Global.print_verbose("Finished refreshing achievement: %s" % [achievement_id])
