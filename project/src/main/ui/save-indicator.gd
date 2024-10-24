@@ -19,6 +19,7 @@ func _ready() -> void:
 	SystemSave.connect("after_save", self, "_on_SystemSave_after_save")
 	PlayerSave.connect("before_save", self, "_on_PlayerSave_before_save")
 	PlayerSave.connect("after_save", self, "_on_PlayerSave_after_save")
+	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 
 
 func is_playing() -> bool:
@@ -90,3 +91,10 @@ func _on_SystemSave_after_save() -> void:
 	Global.print_verbose("Player data saved; Hiding save indicator")
 	_schedule_stop()
 	Global.print_verbose("Finished hiding save indicator")
+
+
+func _on_SceneTransition_fade_out_started(_duration: float) -> void:
+	if PlayerSave.save_scheduled:
+		Global.print_verbose("Save scheduled; Showing save indicator")
+		play()
+		Global.print_verbose("Finished showing save indicator")

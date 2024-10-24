@@ -40,7 +40,7 @@ var populate_rank_data := true
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
 ## 'true' if player data will be saved during the next scene transition
-var _save_scheduled := false
+var save_scheduled := false
 
 func _ready() -> void:
 	rolling_backups.data_filename = data_filename
@@ -72,7 +72,7 @@ func set_legacy_filename(new_legacy_filename: String) -> void:
 ## Serializing the player's in-memory data into a large JSON file takes about 50 milliseconds or longer. To prevent
 ## stuttering or frame drops, we do this during scene transitions.
 func schedule_save() -> void:
-	_save_scheduled = true
+	save_scheduled = true
 	emit_signal("save_scheduled")
 
 
@@ -264,8 +264,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 
 
 func _on_Breadcrumb_before_scene_changed() -> void:
-	if _save_scheduled:
+	if save_scheduled:
 		Global.print_verbose("Scene changing; saving player data")
 		save_player_data()
 		Global.print_verbose("Finished saving player data")
-		_save_scheduled = false
+		save_scheduled = false
