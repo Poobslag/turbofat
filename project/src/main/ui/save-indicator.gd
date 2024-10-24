@@ -69,16 +69,24 @@ func _schedule_stop() -> void:
 
 
 func _on_PlayerSave_before_save() -> void:
+	Global.print_verbose("Player data saved; Showing save indicator")
 	play()
+	Global.print_verbose("Finished showing save indicator")
 
 
 func _on_PlayerSave_after_save() -> void:
+	Global.print_verbose("Player data saved; Hiding save indicator")
 	_schedule_stop()
+	Global.print_verbose("Finished hiding save indicator")
 
 
 func _on_SystemSave_before_save() -> void:
+	Global.print_verbose("System data saved; Showing save indicator")
 	play()
+	Global.print_verbose("Finished showing save indicator")
 
 
 func _on_SystemSave_after_save() -> void:
+	Global.print_verbose("Player data saved; Hiding save indicator")
 	_schedule_stop()
+	Global.print_verbose("Finished hiding save indicator")

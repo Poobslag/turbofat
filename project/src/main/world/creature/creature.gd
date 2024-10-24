@@ -637,8 +637,10 @@ func _on_CreatureVisuals_talking_changed() -> void:
 ## When a new scene is loaded, creatures fade in. This conceals visual glitches as their body parts load.
 func _on_SceneTransition_fade_in_started(_duration: float) -> void:
 	if visible:
+		Global.print_verbose("Fading in creature %s; valid=%s" % [creature_id, is_instance_valid(self)])
 		visible = false
 		fade_in()
+		Global.print_verbose("Finished fading in creature %s" % [creature_id])
 	else:
 		# Don't fade in invisible creatures. Some creatures start invisible during cutscenes.
 		pass

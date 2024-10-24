@@ -94,6 +94,7 @@ func pop_trail(flags: Dictionary = {}) -> void:
 
 ## Launches the 'fade in' visual transition.
 func fade_in(flags: Dictionary = {}) -> void:
+	Global.print_verbose("Launching scene transition fade in effect")
 	# unignore input immediately; don't wait for fade in to finish
 	get_tree().get_root().set_disable_input(false)
 	
@@ -105,10 +106,12 @@ func fade_in(flags: Dictionary = {}) -> void:
 	_audio_stream_player.play(rand_range(0.0, max_audio_start))
 	
 	emit_signal("fade_in_started", _fade_in_duration(flags))
+	Global.print_verbose("Finished launching scene transition fade in effect")
 
 
 ## Launches the 'fade out' visual transition.
 func fade_out(flags: Dictionary = {}, breadcrumb_method: FuncRef = null, breadcrumb_arg_array: Array = []) -> void:
+	Global.print_verbose("Launching scene transition fade out effect")
 	# ignore input to prevent edge-cases where player does weird things during scene transitions
 	get_tree().get_root().set_disable_input(true)
 	
@@ -125,6 +128,7 @@ func fade_out(flags: Dictionary = {}, breadcrumb_method: FuncRef = null, breadcr
 	_animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene", \
 			[flags, breadcrumb_method, breadcrumb_arg_array])
 	emit_signal("fade_out_started", _fade_out_duration(flags))
+	Global.print_verbose("Finished launching scene transition fade out effect")
 
 
 func _fade_out_duration(flags: Dictionary) -> float:

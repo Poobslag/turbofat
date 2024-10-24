@@ -74,4 +74,7 @@ func change_scene() -> void:
 		# exit to loading screen and load all resources
 		ResourceCache.minimal_resources = false
 		scene_path = "res://src/main/ui/menu/LoadingScreen.tscn"
-	get_tree().change_scene_to(ResourceCache.get_resource(scene_path))
+	var new_scene: Resource = ResourceCache.get_resource(scene_path)
+	Global.print_verbose("Changing scene to %s (%s) valid=%s" % [new_scene, scene_path, is_instance_valid(new_scene)])
+	var result := get_tree().change_scene_to(new_scene)
+	Global.print_verbose("tree.change_scene_to returned %s" % [result])

@@ -1,0 +1,17 @@
+@echo off
+
+:: Run the game and capture the exit code
+##WIN_EXE_FILENAME## --verbose -- --tf-verbose
+set exitCode=%ERRORLEVEL%
+
+:: Check the exit code
+if %exitCode% neq 0 (
+    echo The game has crashed. Please review the output and send it to the devs.
+) else (
+    echo The game exited normally.
+)
+
+:: Keep the window open and wait for the user to close it
+:loop
+set /p exitprompt="Press X to close the window: "
+if /I "%exitprompt%" neq "X" goto loop
