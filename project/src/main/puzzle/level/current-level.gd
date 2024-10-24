@@ -83,15 +83,32 @@ func set_launched_level(new_level_id: String) -> void:
 			customers = [CreatureLibrary.SENSEI_ID]
 
 
-func start_level(new_settings: LevelSettings) -> void:
+## Updates the current level settings and resets all score data.
+##
+## Parameters:
+## 	'new_settings': Settings to apply to the current level.
+##
+## 	'suppress_change_signal': (Optional) If true, the 'settings_changed' is suppressed. This signal normally
+## 		initializes tile maps, sprites, and plays sound effects during a puzzle. If this is unnecessary, the signal
+## 		should be suppressed. Defaults to false.
+func start_level(new_settings: LevelSettings, suppress_change_signal: bool = false) -> void:
 	level_id = new_settings.id
 	PuzzleState.reset()
-	switch_level(new_settings)
+	switch_level(new_settings, suppress_change_signal)
 
 
-func switch_level(new_settings: LevelSettings) -> void:
+## Updates the current level settings.
+##
+## Parameters:
+## 	'new_settings': Settings to apply to the current level.
+##
+## 	'suppress_change_signal': (Optional) If true, the 'settings_changed' is suppressed. This signal normally
+## 		initializes tile maps, sprites, and plays sound effects during a puzzle. If this is unnecessary, the signal
+## 		should be suppressed. Defaults to false.
+func switch_level(new_settings: LevelSettings, suppress_change_signal: bool = false) -> void:
 	settings = new_settings
-	emit_signal("settings_changed")
+	if not suppress_change_signal:
+		emit_signal("settings_changed")
 
 
 ## Launches a puzzle scene with the previously specified 'launched level' settings.
