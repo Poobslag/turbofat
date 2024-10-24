@@ -1,0 +1,38 @@
+{
+  "version": "5923",
+  "id": "hish",
+  "name": "Hish",
+  "short_name": "Hish",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "1",
+    "collar": "1",
+    "ear": "3",
+    "eye": "3",
+    "hair": "0",
+    "head": "5",
+    "horn": "0",
+    "mouth": "1",
+    "nose": "0",
+    "tail": "2",
+    "accessory": "3",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "737373",
+    "belly_rgb": "e5d6b7",
+    "cloth_rgb": "4fa94e",
+    "glass_rgb": "333332",
+    "plastic_rgb": "ae2222",
+    "hair_rgb": "f1e398",
+    "eye_rgb_0": "276127",
+    "eye_rgb_1": "ffffff",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme": {
+    "accent_scale": 0.88,
+    "accent_texture": 12,
+    "color": "737373"
+  },
+  "fatness": 1.5
+}

@@ -265,5 +265,7 @@ func _load_line(type: String, key: String, json_value) -> void:
 
 func _on_Breadcrumb_before_scene_changed() -> void:
 	if _save_scheduled:
+		Global.print_verbose("Scene changing; saving player data")
 		save_player_data()
+		Global.print_verbose("Finished saving player data")
 		_save_scheduled = false

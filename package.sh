@@ -17,6 +17,14 @@ echo "version=$version"
 
 win_export_path="project/export/windows-steam"
 win_zip_filename="$win_export_path/turbofat-win-v$version.zip"
+win_bat_filename="$win_export_path/turbofat-win-troubleshoot-v$version.bat"
+win_bat_template="bin/troubleshoot_bat/turbofat-troubleshoot.bat.template"
+
+# Delete the existing windows bat file
+if [ -f "$win_bat_filename" ]; then
+  echo "Deleting $win_bat_filename"
+  rm "$win_bat_filename"
+fi
 
 # Delete the existing windows zip file
 if [ -f "$win_zip_filename" ]; then
@@ -24,9 +32,13 @@ if [ -f "$win_zip_filename" ]; then
   rm "$win_zip_filename"
 fi
 
+# Create the windows bat file
+cp "$win_bat_template" "$win_bat_filename"
+sed -i "s|##WIN_EXE_FILENAME##|turbofat-win-v$version.exe|g" "$win_bat_filename"
+
 # Assemble the windows zip file
 echo "Packaging $win_zip_filename"
-zip "$win_zip_filename" "$win_export_path/turbofat-win-v$version.*" "$win_export_path/*.dll" -x "*.zip" -j
+zip "$win_zip_filename" "$win_export_path/turbofat-win-v$version.*" "$win_export_path/*.dll" "$win_bat_filename" -x "*.zip" -j
 
 ################################################################################
 # Package the linux release
