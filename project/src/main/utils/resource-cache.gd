@@ -128,7 +128,9 @@ func substitute_singletons() -> void:
 		
 		var parent := non_singleton.get_parent()
 		if _singletons_by_name.has(singleton_name):
-			Global.print_verbose(" Reusing singleton: %s (%s, valid=%s)" % [singleton_name, _singletons_by_name[singleton_name], is_instance_valid(_singletons_by_name[singleton_name])])
+			Global.print_verbose(" Reusing singleton: %s (%s, valid=%s)" \
+					% [singleton_name, _singletons_by_name[singleton_name], \
+					is_instance_valid(_singletons_by_name[singleton_name])])
 			# we have a singleton value to substitute; remove the non-singleton value
 			var wallpaper_index := parent.get_children().find(non_singleton)
 			parent.remove_child(non_singleton)
@@ -138,7 +140,8 @@ func substitute_singletons() -> void:
 			parent.add_child(_singletons_by_name[singleton_name])
 			parent.move_child(_singletons_by_name[singleton_name], wallpaper_index)
 		else:
-			Global.print_verbose(" Initializing singleton: %s (%s, valid=%s)" % [singleton_name, non_singleton, is_instance_valid(non_singleton)])
+			Global.print_verbose(" Initializing singleton: %s (%s, valid=%s)" \
+					% [singleton_name, non_singleton, is_instance_valid(non_singleton)])
 			# we have no singleton value stored; store a new singleton value
 			_singletons_by_name[singleton_name] = non_singleton
 	Global.print_verbose("Finished substituting singletons")
