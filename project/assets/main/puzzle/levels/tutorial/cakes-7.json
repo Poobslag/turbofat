@@ -16,11 +16,12 @@
     "tutorial"
   ],
   "piece_types": [
-    "start_piece_p",
-    "start_piece_p",
-    "start_piece_t",
+    "ordered_start",
     "start_piece_u",
-    "start_piece_v"
+    "start_piece_p",
+    "start_piece_p",
+    "start_piece_v",
+    "start_piece_t"
   ],
   "rank": [
     "duration 150",

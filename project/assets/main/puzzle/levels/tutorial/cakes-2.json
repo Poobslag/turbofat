@@ -16,8 +16,9 @@
     "tutorial"
   ],
   "piece_types": [
-    "start_piece_l",
-    "start_piece_o"
+    "ordered_start",
+    "start_piece_o",
+    "start_piece_l"
   ],
   "rank": [
     "duration 150",
