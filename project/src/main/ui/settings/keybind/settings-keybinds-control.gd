@@ -1,6 +1,9 @@
 extends VBoxContainer
 ## UI control which lets the player view and update the game's keybinds.
 
+onready var _tab_container: TabContainer = get_parent()
+
+
 func _ready() -> void:
 	$Presets/Guideline.connect("pressed", self, "_on_Guideline_pressed")
 	$Presets/Wasd.connect("pressed", self, "_on_Wasd_pressed")
@@ -139,7 +142,6 @@ func _assign_guideline_joypad_values() -> void:
 	_preset_control("SwapHoldPiece").keybind_values = \
 			[KeybindSettings.XBOX_IMAGE_LB, KeybindSettings.XBOX_IMAGE_RB]
 	_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
-	
 
 
 ## Updates all controls within the 'Presets' scroll container with values for joypad presets.
@@ -165,22 +167,36 @@ func _assign_wasd_joypad_values() -> void:
 	_preset_control("SwapHoldPiece").visible = SystemData.gameplay_settings.hold_piece
 
 
+## Assigns the TabContainer's bottom focus neighbor to the pressed preset button.
+func _refresh_focus_neighbours() -> void:
+	var pressed_preset_button: Button
+	for preset_button in [$Presets/Guideline, $Presets/Wasd, $Presets/Custom]:
+		if preset_button.pressed:
+			pressed_preset_button = preset_button
+			break
+	if pressed_preset_button:
+		_tab_container.focus_neighbour_bottom = _tab_container.get_path_to(pressed_preset_button)
+
+
 func _on_Guideline_pressed() -> void:
 	SystemData.keybind_settings.preset = KeybindSettings.GUIDELINE
 	SystemData.has_unsaved_changes = true
 	_refresh_keybind_labels()
+	_refresh_focus_neighbours()
 
 
 func _on_Wasd_pressed() -> void:
 	SystemData.keybind_settings.preset = KeybindSettings.WASD
 	SystemData.has_unsaved_changes = true
 	_refresh_keybind_labels()
+	_refresh_focus_neighbours()
 
 
 func _on_Custom_pressed() -> void:
 	SystemData.keybind_settings.preset = KeybindSettings.CUSTOM
 	SystemData.has_unsaved_changes = true
 	_refresh_keybind_labels()
+	_refresh_focus_neighbours()
 
 
 ## When the player toggles the hold piece setting, we hide/show the swap hold piece keybind config.
@@ -197,3 +213,9 @@ func _on_ResetToDefault_pressed() -> void:
 
 func _on_InputManager_input_mode_changed() -> void:
 	_refresh_keybind_labels()
+
+
+func _on_TabInputEnabler_focus_neighbours_refreshed(current_tab: int) -> void:
+	var this_tab: int = _tab_container.get_children().find(self)
+	if current_tab == this_tab:
+		_refresh_focus_neighbours()
