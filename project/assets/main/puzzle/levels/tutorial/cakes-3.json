@@ -16,6 +16,7 @@
     "tutorial"
   ],
   "piece_types": [
+    "ordered_start",
     "start_piece_o",
     "start_piece_t",
     "start_piece_t"
