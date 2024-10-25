@@ -5,6 +5,8 @@ signal ok_pressed
 signal quit_pressed
 signal other_quit_pressed
 
+export (NodePath) var tab_input_enabler_path: NodePath
+
 ## Text on the menu's quit button
 var quit_type: int setget set_quit_type
 
@@ -21,6 +23,7 @@ onready var _ok_button := $HBoxContainer/VBoxContainer2/Holder/Ok
 onready var _ok_shortcut_helper := $HBoxContainer/VBoxContainer2/Holder/Ok/ShortcutHelper
 onready var _quit_button := $HBoxContainer/VBoxContainer1/Holder2/Quit2
 onready var _other_quit_button := $HBoxContainer/VBoxContainer1/Holder1/Quit1
+onready var _tab_input_enabler := get_node(tab_input_enabler_path)
 
 func _ready() -> void:
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
@@ -63,6 +66,9 @@ func _refresh_quit_type() -> void:
 		$HBoxContainer/VBoxContainer1/Holder1.visible = false
 		$HBoxContainer/VBoxContainer2/Spacer.visible = false
 		$HBoxContainer/VBoxContainer3/Spacer.visible = false
+	
+	# refresh focus neighbors for the TabContainer and newly visible buttons
+	_tab_input_enabler.refresh_focus_neighbours_for_current_tab()
 
 
 ## Blocks input from the OK button if the player is rebinding their keys, or if a modal dialog is visible.

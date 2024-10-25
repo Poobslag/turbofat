@@ -4,6 +4,8 @@ extends Node
 ## Workaround for Godot #25877 (https://github.com/godotengine/godot/issues/25877) to implement navigating a
 ## TabContainer's tabs with keyboard or controller inputs.
 
+signal focus_neighbours_refreshed(current_tab)
+
 ## Columns of focusable nodes below our TabContainer.
 ##
 ## The first visible node of each of these arrays will have its its focus_neighbour_top assigned our TabContainer, so
@@ -36,7 +38,7 @@ func _ready() -> void:
 	tab_container.get_viewport().connect("gui_focus_changed", self, "_on_Viewport_gui_focus_changed")
 	
 	_refresh_focused()
-	_refresh_focus_neighbours_for_current_tab()
+	refresh_focus_neighbours_for_current_tab()
 
 
 ## Handle left/right inputs while the TabContainer is focused.
@@ -90,7 +92,7 @@ func _select_prev_tab() -> void:
 ## 	3. Navigating up from the top item within the TabContainer focuses the TabContainer.
 ##
 ## 	4. Navigating up from the top item below the TabContainer focuses the bottom item in the TabContainer.
-func _refresh_focus_neighbours_for_current_tab() -> void:
+func refresh_focus_neighbours_for_current_tab() -> void:
 	if tab_container.current_tab == -1:
 		return
 	
@@ -110,12 +112,16 @@ func _refresh_focus_neighbours_for_current_tab() -> void:
 		var highest_node_in_column: Control
 		for node_below_path in nodes_in_column:
 			var node_below: Control = get_node(node_below_path)
-			if node_below.visible and node_below.focus_mode == Control.FOCUS_ALL:
+			if node_below.is_visible_in_tree() and node_below.focus_mode == Control.FOCUS_ALL:
 				highest_node_in_column = node_below
 				break
 		
 		if highest_node_in_column:
+			for node_below_path in nodes_in_column:
+				get_node(node_below_path).focus_neighbour_top = NodePath()
 			highest_node_in_column.focus_neighbour_top = bottom_focusable_node.get_path()
+	
+	emit_signal("focus_neighbours_refreshed", tab_container.current_tab)
 
 
 ## Focuses the top node in the current tab.
@@ -201,7 +207,7 @@ func _refresh_focused() -> void:
 
 
 func _on_TabContainer_tab_changed(_tab: int) -> void:
-	_refresh_focus_neighbours_for_current_tab()
+	refresh_focus_neighbours_for_current_tab()
 
 
 func _on_Viewport_gui_focus_changed(node: Control) -> void:
