@@ -65,7 +65,6 @@ func refresh_properties_editor() -> void:
 	if _json_tree.has("rank"):
 		var rank_rules := RankRules.new()
 		rank_rules.from_json_array(_json_tree["rank"])
-		_properties_editor.set_master_pickup_score(rank_rules.legacy_rules.get("master_pickup_score", 0.0))
 
 
 func reset_editors() -> void:
