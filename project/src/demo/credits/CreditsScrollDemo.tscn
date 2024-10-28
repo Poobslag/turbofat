@@ -4,7 +4,7 @@
 [ext_resource path="res://src/demo/credits/credits-scroll-demo.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=10]
 
-[node name="Demo" type="Node"]
+[node name="Demo" type="Node" groups=["wallpaper_enabled"]]
 script = ExtResource( 5 )
 
 [node name="CreditsScroll" parent="." instance=ExtResource( 1 )]

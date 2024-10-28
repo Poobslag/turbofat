@@ -12,8 +12,6 @@ const FRAME_COUNT := 8
 ## Rate at which to launch puzzle pieces. This is synchronized with the music track "Sugar Crash" for the end credits.
 const PIECES_PER_SECOND := 4.10000
 
-export (NodePath) var wallpaper_path: NodePath
-
 ## The loading orb rotates and moves. These fields are used to calculate the rotation/position.
 var _total_time := 0.0
 var _time_offset := 0.0
@@ -35,8 +33,6 @@ var _offscreen_position: Vector2
 var _offscreen_amount: float
 
 var _tween: SceneTreeTween
-
-onready var _wallpaper := get_node(wallpaper_path)
 
 func _ready() -> void:
 	# start offscreen
@@ -109,7 +105,7 @@ func show_onscreen(new_offscreen_position: Vector2) -> void:
 	_offscreen_position = new_offscreen_position
 	_tween = Utils.recreate_tween(self, _tween)
 	_tween.tween_property(self, "_offscreen_amount", 0.0, 3.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	_tween.parallel().tween_property(self, "modulate", _wallpaper.light_color.lightened(0.5), 1.0)
+	_tween.parallel().tween_property(self, "modulate", Wallpaper.light_color.lightened(0.5), 1.0)
 
 
 ## Moves the orb offscreen from the specified location, making it transparent.
