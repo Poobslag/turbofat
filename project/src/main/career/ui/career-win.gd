@@ -8,7 +8,6 @@ onready var _button := $Bg/Chalkboard/VBoxContainer/ButtonRow/ZHolder/Button
 onready var _applause_sound := $Bg/ApplauseSound
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	MusicPlayer.play_menu_track()
 	
 	_refresh_mood()
@@ -17,10 +16,6 @@ func _ready() -> void:
 	PlayerSave.schedule_save()
 	
 	_button.grab_focus()
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 ## Plays an applause sound if the player did well.

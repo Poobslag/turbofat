@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=5]
 [ext_resource path="res://src/main/ui/menu/tutorial-menu.gd" type="Script" id=6]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=16]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_cancel"
@@ -15,13 +13,11 @@ action = "ui_cancel"
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
 
-[node name="TutorialMenu" type="Control"]
+[node name="TutorialMenu" type="Control" groups=["wallpaper_enabled"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 6 )
-
-[node name="Wallpaper" parent="." instance=ExtResource( 16 )]
 
 [node name="Panel" parent="." instance=ExtResource( 3 )]
 
@@ -58,8 +54,6 @@ pressed_icon = ExtResource( 5 )
 
 [node name="ShortcutHelper" parent="Buttons/Northeast/BackButton" instance=ExtResource( 1 )]
 action = "ui_cancel"
-
-[node name="MusicPopup" parent="." instance=ExtResource( 7 )]
 
 [connection signal="level_chosen" from="Panel" to="." method="_on_Panel_level_chosen"]
 [connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]

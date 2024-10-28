@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/career/ui/CareerWin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/demo/career/ui/career-win-demo.gd" type="Script" id=2]
 
-[node name="Demo" type="Node"]
+[node name="Demo" type="Node" groups=["wallpaper_enabled"]]
 script = ExtResource( 2 )
 CareerWinScene = ExtResource( 1 )
 

@@ -1640,11 +1640,6 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/walking-buddy.gd"
 }, {
 "base": "Control",
-"class": "Wallpaper",
-"language": "GDScript",
-"path": "res://src/main/ui/wallpaper/wallpaper.gd"
-}, {
-"base": "Control",
 "class": "WallpaperBorder",
 "language": "GDScript",
 "path": "res://src/main/ui/wallpaper/wallpaper-border.gd"
@@ -1981,7 +1976,6 @@ _global_script_class_icons={
 "Utils": "",
 "VolumeSettings": "",
 "WalkingBuddy": "",
-"Wallpaper": "",
 "WallpaperBorder": "",
 "Wobbler": ""
 }
@@ -2023,6 +2017,7 @@ DnaUtils="*res://src/main/world/creature/dna-utils.gd"
 KeybindManager="*res://src/main/settings/keybind-manager.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
+MusicPopup="*res://src/main/ui/MusicPopup.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
 NameGeneratorLibrary="*res://src/main/world/creature/name-generator-library.gd"
 OtherLevelLibrary="*res://src/main/puzzle/other-level-library.gd"
@@ -2036,6 +2031,7 @@ SteamAchievements="*res://src/main/steam/SteamAchievements.tscn"
 SfxKeeper="*res://src/main/utils/sfx-keeper.gd"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
+Wallpaper="*res://src/main/ui/wallpaper/Wallpaper.tscn"
 
 [debug]
 

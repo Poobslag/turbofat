@@ -1,7 +1,6 @@
 extends Control
 ## Shows a progress bar while resources are loading.
 
-onready var _wallpaper := $Wallpaper
 onready var _orb := $Holder/Orb
 onready var _progress_bar := $Holder/ProgressBar
 
@@ -11,7 +10,7 @@ onready var _fade_cover: ColorRect = $FadeCover
 func _ready() -> void:
 	ResourceCache.connect("finished_loading", self, "_on_ResourceCache_finished_loading")
 	
-	_orb.modulate = _wallpaper.light_color.lightened(0.5)
+	_orb.modulate = Wallpaper.light_color.lightened(0.5)
 	_progress_bar.modulate = _orb.modulate
 	
 	var _fade_cover_tween: SceneTreeTween = create_tween()

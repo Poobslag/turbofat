@@ -30,7 +30,6 @@ onready var _level_submenu := $LevelSubmenu
 onready var _region_submenu := $RegionSubmenu
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	MusicPlayer.play_menu_track()
 	
 	_assign_default_recent_data()
@@ -48,10 +47,6 @@ func _ready() -> void:
 	# level panels.
 	_level_submenu.disable_cheat_sfx()
 	_start_button.grab_focus()
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 ## Assign a region/level if this is the first time launching the practice menu

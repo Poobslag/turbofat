@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/main/career/ui/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/chalkboard-grain.png" type="Texture" id=2]
 [ext_resource path="res://src/main/career/ui/career-win-world.gd" type="Script" id=4]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/theme/chalkboard-54.theme" type="Theme" id=6]
 [ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/career/ui/chalkboard-separator-bottom.png" type="Texture" id=8]
@@ -21,7 +20,6 @@
 [ext_resource path="res://assets/main/puzzle/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/career/ui/chalkboard-served.gd" type="Script" id=35]
 [ext_resource path="res://src/main/career/ui/chalkboard-earned.gd" type="Script" id=36]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=37]
 [ext_resource path="res://src/main/career/ui/chalkboard-time.gd" type="Script" id=38]
 [ext_resource path="res://src/main/career/ui/chalkboard-steps.gd" type="Script" id=39]
 [ext_resource path="res://src/main/career/ui/chalkboard-title.gd" type="Script" id=40]
@@ -78,13 +76,11 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" groups=["wallpaper_enabled"]]
 script = ExtResource( 1 )
 
 [node name="Bg" type="CanvasLayer" parent="."]
 layer = -1
-
-[node name="Wallpaper" parent="Bg" instance=ExtResource( 5 )]
 
 [node name="Chalkboard" type="TextureRect" parent="Bg"]
 anchor_left = 0.5
@@ -532,9 +528,5 @@ script = ExtResource( 4 )
 [node name="Camera2D" type="Camera2D" parent="World"]
 offset = Vector2( 512, 300 )
 current = true
-
-[node name="Ui" type="CanvasLayer" parent="."]
-
-[node name="MusicPopup" parent="Ui" instance=ExtResource( 37 )]
 
 [connection signal="pressed" from="Bg/Chalkboard/VBoxContainer/ButtonRow/ZHolder/Button" to="." method="_on_Button_pressed"]

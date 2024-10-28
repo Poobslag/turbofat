@@ -2,7 +2,6 @@ extends Control
 ## Splash screen which precedes the main menu.
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	MusicPlayer.play_menu_track(false)
 	
 	$DropPanel/PlayHolder/Play.grab_focus()
@@ -12,10 +11,6 @@ func _ready() -> void:
 	if OS.has_feature("web"):
 		# don't quit from the web. it just blacks out the window, which isn't useful or user friendly
 		$DropPanel/System/Quit.hide()
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 func _launch_tutorial() -> void:

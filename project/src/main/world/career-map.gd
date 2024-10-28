@@ -30,8 +30,6 @@ onready var _distance_label := $Ui/Control/StatusBar/Distance
 onready var _level_select_control := $LevelSelect
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
-	
 	if not Breadcrumb.trail:
 		# For developers accessing the CareerMap scene directly, we initialize a default Breadcrumb trail.
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
@@ -57,10 +55,6 @@ func _ready() -> void:
 			# Ordinarily, we focus the level button after the progress board vanishes. But if the progress board is not
 			# being shown, we focus the button right away.
 			_after_progress_board()
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 func _refresh_ui() -> void:

@@ -42,13 +42,8 @@ var _overworld_environment: OverworldEnvironment
 onready var _chat_ui := $ChatUi
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	_refresh_overworld_environment_path()
 	_update_visible()
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:

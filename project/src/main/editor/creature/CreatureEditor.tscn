@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://assets/main/editor/creature/icon-category-eye.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/editor/creature/icon-category-nose.png" type="Texture" id=2]
@@ -60,7 +60,6 @@
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=58]
 [ext_resource path="res://src/main/editor/creature/OperationButton.tscn" type="PackedScene" id=60]
 [ext_resource path="res://src/main/world/environment/CreatureEditorEnvironment.tscn" type="PackedScene" id=61]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=62]
 [ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=63]
 [ext_resource path="res://src/main/world/environment/restaurant/RestaurantNametagPanel.tscn" type="PackedScene" id=64]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonC3.tscn" type="PackedScene" id=65]
@@ -354,13 +353,11 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[node name="CreatureEditor" type="Node"]
+[node name="CreatureEditor" type="Node" groups=["wallpaper_enabled"]]
 script = ExtResource( 56 )
 overworld_environment_path = NodePath("Preview/World/Environment")
 dialogs_path = NodePath("Buttons/Dialogs")
 creature_saver_path = NodePath("CreatureSaver")
-
-[node name="Wallpaper" parent="." instance=ExtResource( 62 )]
 
 [node name="DropPanel" type="Panel" parent="."]
 anchor_right = 1.0

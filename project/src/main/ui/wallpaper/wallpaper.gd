@@ -1,6 +1,8 @@
-class_name Wallpaper
-extends Control
+extends CanvasLayer
 ## Background wallpaper with colored areas, borders and shapes.
+##
+## To enable wallpaper for a scene, add it to the 'wallpaper_enabled' group. This will make the Wallpaper singleton
+## visible when that node is the current scene.
 
 ## optional float parameters don't have the concept of null. this default value acts as a substitute so we can tell
 ## when a float value is unspecified.
@@ -36,10 +38,10 @@ func _ready() -> void:
 		color_rect_index += 1
 	
 	# stretch top/bottom color rects so they fill the screen
-	$ColorRects.get_children().front().anchor_top = 0.0
-	$ColorRects.get_children().front().margin_top = 0.0
-	$ColorRects.get_children().back().anchor_bottom = 1.0
-	$ColorRects.get_children().back().margin_bottom = 1.0
+	$Container/ColorRects.get_children().front().anchor_top = 0.0
+	$Container/ColorRects.get_children().front().margin_top = 0.0
+	$Container/ColorRects.get_children().back().anchor_bottom = 1.0
+	$Container/ColorRects.get_children().back().margin_bottom = 1.0
 	
 	# add sticker rows
 	var sticker_row_index := 0
@@ -48,6 +50,9 @@ func _ready() -> void:
 		sticker_row.color = light_color if sticker_row_index % 2 == 0 else dark_color
 		sticker_row.velocity = Vector2(-30.0, 0) if sticker_row_index % 2 == 0 else Vector2(30, 0)
 		sticker_row_index += 1
+	
+	get_tree().connect("node_added", self, "_on_node_added")
+	_refresh_visible()
 
 
 ## Assigns the background colors based on the day of the week.
@@ -80,7 +85,7 @@ func _add_sticker_row(row_y: float, row_height: float) -> StickerRow:
 	var row: StickerRow = StickerRowScene.instance()
 	set_anchors(row, 0.0, 0.5, 1.0)
 	set_margins(row, 0.0, row_y, 0.0, row_y + row_height)
-	$Stickers.add_child(row)
+	$Container/Stickers.add_child(row)
 	return row
 
 
@@ -90,7 +95,7 @@ func _add_border(border_y: float, border_height: float) -> WallpaperBorder:
 	set_margins(border, 0.0, border_y, 0.0, border_y + border_height)
 	border.texture_scale = Vector2(200, border_height)
 	border.velocity = Vector2(40, 0)
-	$Borders.add_child(border)
+	$Container/Borders.add_child(border)
 	return border
 
 
@@ -98,8 +103,20 @@ func _add_color_rect(rect_y: float, rect_height: float) -> ColorRect:
 	var color_rect: ColorRect = ColorRect.new()
 	set_anchors(color_rect, 0.0, 0.5, 1.0)
 	set_margins(color_rect, 0.0, rect_y, 0.0, rect_y + rect_height)
-	$ColorRects.add_child(color_rect)
+	$Container/ColorRects.add_child(color_rect)
 	return color_rect
+
+
+## Toggles the wallpaper visibility.
+##
+## The wallpaper is visible if the current scene is in the 'wallpaper_enabled' group.
+func _refresh_visible() -> void:
+	visible = get_tree().current_scene.is_in_group("wallpaper_enabled")
+
+
+func _on_node_added(node: Node) -> void:
+	if node == get_tree().current_scene:
+		_refresh_visible()
 
 
 ## Sets the left/top/right/bottom margins for a node.
