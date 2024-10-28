@@ -4,17 +4,12 @@ extends Control
 onready var _paged_level_panel := $Panel
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	MusicPlayer.play_menu_track()
 	
 	var tutorial_region := OtherLevelLibrary.region_for_id(OtherRegion.ID_TUTORIAL)
 	if tutorial_region:
 		_assign_default_recent_data(tutorial_region)
 		_populate_level_buttons(tutorial_region)
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 ## Assign a tutorial level if this is the first time launching the tutorial menu
