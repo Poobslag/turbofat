@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/ui/menu/PagedRegionPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=8]
 [ext_resource path="res://src/main/ui/level-select/LevelButtonScroller.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=10]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=12]
 [ext_resource path="res://src/main/ui/HighScoreTable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/theme/h3-font-outline.tres" type="DynamicFont" id=14]
@@ -82,7 +81,7 @@ action = "ui_cancel"
 [sub_resource type="ShortCut" id=5]
 shortcut = SubResource( 4 )
 
-[node name="TrainingMenu" type="Control"]
+[node name="TrainingMenu" type="Control" groups=["wallpaper_enabled"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
@@ -92,8 +91,6 @@ level_button_scroller_path = NodePath("MainMenu/DropPanel/VBoxContainer/Level/Le
 level_description_label_path = NodePath("MainMenu/DropPanel/VBoxContainer/Level/Desc")
 speed_selector_path = NodePath("MainMenu/DropPanel/VBoxContainer/Speed")
 start_button_path = NodePath("MainMenu/DropPanel/VBoxContainer/System/Start")
-
-[node name="Wallpaper" parent="." instance=ExtResource( 11 )]
 
 [node name="MainMenu" type="Control" parent="."]
 anchor_right = 1.0

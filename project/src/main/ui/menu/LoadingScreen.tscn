@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/ui/menu/loading-screen.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/menu/LoadingPiece.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/menu/loading-orb.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/menu/loading-pieces.gd" type="Script" id=6]
@@ -9,13 +8,11 @@
 [ext_resource path="res://assets/main/ui/menu/dotted-line.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/ui/menu/loading-orb-sheet.png" type="Texture" id=9]
 
-[node name="LoadingScreen" type="Control"]
+[node name="LoadingScreen" type="Control" groups=["wallpaper_enabled"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
-
-[node name="Wallpaper" parent="." instance=ExtResource( 2 )]
 
 [node name="Holder" type="Control" parent="."]
 anchor_left = 0.5

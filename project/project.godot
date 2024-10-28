@@ -1630,11 +1630,6 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/walking-buddy.gd"
 }, {
 "base": "Control",
-"class": "Wallpaper",
-"language": "GDScript",
-"path": "res://src/main/ui/wallpaper/wallpaper.gd"
-}, {
-"base": "Control",
 "class": "WallpaperBorder",
 "language": "GDScript",
 "path": "res://src/main/ui/wallpaper/wallpaper-border.gd"
@@ -1969,7 +1964,6 @@ _global_script_class_icons={
 "Utils": "",
 "VolumeSettings": "",
 "WalkingBuddy": "",
-"Wallpaper": "",
 "WallpaperBorder": "",
 "Wobbler": ""
 }
@@ -2021,6 +2015,7 @@ SceneTransition="*res://src/main/utils/SceneTransition.tscn"
 SfxKeeper="*res://src/main/utils/sfx-keeper.gd"
 SystemData="*res://src/main/data/system-data.gd"
 SystemSave="*res://src/main/data/system-save.gd"
+Wallpaper="*res://src/main/ui/wallpaper/Wallpaper.tscn"
 
 [debug]
 

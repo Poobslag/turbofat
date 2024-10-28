@@ -4,21 +4,24 @@
 [ext_resource path="res://src/main/ui/wallpaper/StickerRow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/wallpaper/wallpaper.gd" type="Script" id=3]
 
-[node name="Wallpaper" type="Control" groups=["singletons"]]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Wallpaper" type="CanvasLayer"]
+layer = -128
 script = ExtResource( 3 )
 WallpaperBorderScene = ExtResource( 1 )
 StickerRowScene = ExtResource( 2 )
 
-[node name="Borders" type="Control" parent="."]
+[node name="Container" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ColorRects" type="Control" parent="."]
+[node name="Borders" type="Control" parent="Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Stickers" type="Control" parent="."]
+[node name="ColorRects" type="Control" parent="Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Stickers" type="Control" parent="Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/main/career/ui/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/chalkboard-grain.png" type="Texture" id=2]
 [ext_resource path="res://src/main/career/ui/career-win-world.gd" type="Script" id=4]
-[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/theme/chalkboard-54.theme" type="Theme" id=6]
 [ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/career/ui/chalkboard-separator-bottom.png" type="Texture" id=8]
@@ -78,13 +77,11 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" groups=["wallpaper_enabled"]]
 script = ExtResource( 1 )
 
 [node name="Bg" type="CanvasLayer" parent="."]
 layer = -1
-
-[node name="Wallpaper" parent="Bg" instance=ExtResource( 5 )]
 
 [node name="Chalkboard" type="TextureRect" parent="Bg"]
 anchor_left = 0.5
