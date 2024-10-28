@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/main/world/overworld-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/chat/ui/ChatUi.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=20]
 
@@ -135,8 +134,6 @@ codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 12 )]
 quit_type = 1
-
-[node name="MusicPopup" parent="." instance=ExtResource( 17 )]
 
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="chat_finished" from="ChatUi" to="." method="_on_ChatUi_chat_finished"]

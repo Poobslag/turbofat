@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 ## Toaster popup which shows the current track title.
 
 ## track which was last shown in this popup
@@ -51,4 +51,4 @@ func _on_Label_item_rect_changed() -> void:
 	
 	# resize the music panel to accommodate the label
 	_music_panel.rect_size.x = _music_label.rect_size.x + 64
-	_music_panel.rect_position.x = rect_size.x / 2 - _music_panel.rect_size.x / 2
+	_music_panel.rect_position.x = get_viewport().get_visible_rect().size.x / 2 - _music_panel.rect_size.x / 2

@@ -15,8 +15,8 @@ const TWEEN_DURATION := 0.2
 const POPUP_DURATION := 4.0
 
 ## music panel's y coordinate when popped in and when popped out
-const POP_IN_Y := 32
-const POP_OUT_Y := 0
+const POP_IN_Y := -28
+const POP_OUT_Y := -60
 
 ## monitors whether the popup is currently popping in or out
 var _popup_state: int = PopupState.POPPED_OUT

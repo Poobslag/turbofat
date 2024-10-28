@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-p.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/theme/h2-font-outline.tres" type="DynamicFont" id=9]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=11]
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/menu/main-menu-adventure.gd" type="Script" id=13]
@@ -324,8 +323,6 @@ shape = 6
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
 quit_type = 4
-
-[node name="MusicPopup" parent="." instance=ExtResource( 10 )]
 
 [connection signal="pressed" from="DropPanel/Adventure/Play" to="DropPanel/Adventure" method="_on_Career_pressed"]
 [connection signal="pressed" from="DropPanel/Adventure/Avatar" to="DropPanel/Adventure" method="_on_Avatar_pressed"]
