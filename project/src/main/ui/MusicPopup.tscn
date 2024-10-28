@@ -26,22 +26,17 @@ shader_param/white = Color( 1, 1, 1, 1 )
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/sample_count = 24
 
-[node name="MusicPopup" type="Control" groups=["night_mode_light", "singletons"]]
-pause_mode = 2
-anchor_right = 1.0
-margin_top = -60.0
-margin_bottom = -4.0
-mouse_filter = 2
+[node name="MusicPopup" type="CanvasLayer"]
+layer = 10
 script = ExtResource( 3 )
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." groups=["night_mode_light"]]
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -229.5
-margin_top = -56.0
-margin_right = 219.5
+margin_left = -224.5
+margin_top = -60.0
+margin_right = 224.5
+margin_bottom = -4.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/panel = SubResource( 1 )
@@ -67,8 +62,9 @@ expand = true
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer"]
 margin_left = 32.0
+margin_top = 2.0
 margin_right = 417.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 custom_fonts/font = ExtResource( 1 )
 text = "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
 align = 1

@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/level-select/HookableRegionGradeLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/career/CareerRewinder.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/squeak/gy/SqueakButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/RegionSelectButton.tscn" type="PackedScene" id=10]
@@ -239,8 +238,6 @@ pressed_icon = ExtResource( 14 )
 action = "ui_cancel"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 2 )]
-
-[node name="MusicPopup" parent="." instance=ExtResource( 6 )]
 
 [node name="CareerRewinder" parent="." instance=ExtResource( 4 )]
 cheat_code_detector_path = NodePath("../CheatCodeDetector")

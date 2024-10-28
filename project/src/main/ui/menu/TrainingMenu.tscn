@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/main/ui/menu/PagedRegionPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://src/main/ui/HighScoreTable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/theme/h3-font-outline.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/main/ui/menu/PagedLevelPanel.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/menu/MenuAccentH3.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/main/ui/menu/menu-accent-h2-s1.png" type="Texture" id=18]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=19]
@@ -432,8 +431,6 @@ pressed_icon = ExtResource( 32 )
 action = "ui_cancel"
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
-
-[node name="MusicPopup" parent="." instance=ExtResource( 16 )]
 
 [connection signal="central_button_changed" from="MainMenu/DropPanel/VBoxContainer/Level/LevelButtonScroller" to="." method="_on_LevelButtonScroller_central_button_changed"]
 [connection signal="central_button_pressed" from="MainMenu/DropPanel/VBoxContainer/Level/LevelButtonScroller" to="." method="_on_LevelButtonScroller_central_button_pressed"]

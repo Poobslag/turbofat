@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -30,7 +30,6 @@
 [ext_resource path="res://assets/main/puzzle/level-change.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/top-out-tracker.gd" type="Script" id=30]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/puzzle/bursts.gd" type="Script" id=32]
 [ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=34]
@@ -728,8 +727,6 @@ theme = ExtResource( 1 )
 text = "abcd"
 script = ExtResource( 5 )
 puzzle_path = NodePath("../..")
-
-[node name="MusicPopup" parent="Hud" instance=ExtResource( 31 )]
 
 [node name="PuzzleMoneyHud" parent="Hud" instance=ExtResource( 76 )]
 results_hud_path = NodePath("../Center/ResultsHud")
