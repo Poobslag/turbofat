@@ -10,7 +10,6 @@ onready var _settings_menu: SettingsMenu = $SettingsMenu
 onready var _night_mode_toggler: NightModeToggler = $NightModeToggler
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	if PlayerData.career.is_career_mode() and MusicPlayer.is_playing_boss_track():
 		# don't interrupt boss music during career mode; it keeps playing from the level select to the puzzle
 		pass
@@ -48,10 +47,6 @@ func _ready() -> void:
 		_start_puzzle()
 	else:
 		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 func _input(event: InputEvent) -> void:

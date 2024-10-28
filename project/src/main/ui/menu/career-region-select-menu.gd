@@ -6,7 +6,6 @@ export (NodePath) var region_buttons_path: NodePath
 onready var _region_buttons := get_node(region_buttons_path)
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons()
 	MusicPlayer.play_menu_track()
 	
 	_region_buttons.set_regions(CareerLevelLibrary.regions)
@@ -14,10 +13,6 @@ func _ready() -> void:
 	var last_unlocked_region: CareerRegion = \
 			CareerLevelLibrary.region_for_distance(PlayerData.career.best_distance_travelled)
 	_region_buttons.focus_region(last_unlocked_region.id)
-
-
-func _exit_tree() -> void:
-	ResourceCache.remove_singletons()
 
 
 func _on_BackButton_pressed() -> void:

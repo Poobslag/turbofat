@@ -67,11 +67,6 @@ var _remaining_resource_paths_mutex := Mutex.new()
 
 var _remaining_scene_paths := []
  
-## singleton nodes, cached to preserve their appearance during scene transitions
-## key: (String) singleton names
-## value: (Node) singleton nodes
-var _singletons_by_name: Dictionary
-
 ## System time when we initialized the resource load.
 var _start_load_begin_msec: float
 
@@ -110,48 +105,10 @@ func _process(_delta: float) -> void:
 
 
 func _exit_tree() -> void:
-	for singleton in _singletons_by_name.values():
-		# singletons are not freed when their parent scene is removed from the tree, we have to free them manually
-		singleton.free()
 	if _load_threads:
 		_exiting = true
 		for thread in _load_threads:
 			thread.wait_to_finish()
-
-
-## Replaces non-singletons in the scene tree with their singleton counterparts.
-func substitute_singletons() -> void:
-	Global.print_verbose("Substituting singletons")
-	for non_singleton_obj in get_tree().get_nodes_in_group("singletons"):
-		var non_singleton: Node = non_singleton_obj
-		var singleton_name := non_singleton.name
-		
-		var parent := non_singleton.get_parent()
-		if _singletons_by_name.has(singleton_name):
-			Global.print_verbose(" Reusing singleton: %s (%s, valid=%s)" \
-					% [singleton_name, _singletons_by_name[singleton_name], \
-					is_instance_valid(_singletons_by_name[singleton_name])])
-			# we have a singleton value to substitute; remove the non-singleton value
-			var wallpaper_index := parent.get_children().find(non_singleton)
-			parent.remove_child(non_singleton)
-			non_singleton.queue_free()
-			
-			# add the singleton value
-			parent.add_child(_singletons_by_name[singleton_name])
-			parent.move_child(_singletons_by_name[singleton_name], wallpaper_index)
-		else:
-			Global.print_verbose(" Initializing singleton: %s (%s, valid=%s)" \
-					% [singleton_name, non_singleton, is_instance_valid(non_singleton)])
-			# we have no singleton value stored; store a new singleton value
-			_singletons_by_name[singleton_name] = non_singleton
-	Global.print_verbose("Finished substituting singletons")
-
-
-## Removes singletons from their parent nodes to prevent them from being freed.
-func remove_singletons() -> void:
-	for singleton_obj in _singletons_by_name.values():
-		if singleton_obj.get_parent():
-			singleton_obj.get_parent().remove_child(singleton_obj)
 
 
 ## Returns the overall progress based on the resources loaded and the mandatory wait timer.
