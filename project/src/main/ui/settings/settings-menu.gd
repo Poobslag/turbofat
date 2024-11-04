@@ -126,9 +126,6 @@ func _on_Bottom_ok_pressed() -> void:
 
 
 func _on_Bottom_quit_pressed() -> void:
-	# keep the menu shown, but unpause the scene tree
-	Pauser.toggle_pause("settings-menu", false)
-	
 	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
 	else:
@@ -137,9 +134,6 @@ func _on_Bottom_quit_pressed() -> void:
 
 
 func _on_Bottom_other_quit_pressed() -> void:
-	# keep the menu shown, but unpause the scene tree
-	Pauser.toggle_pause("settings-menu", false)
-	
 	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
 	else:
