@@ -11,13 +11,15 @@ signal quit_pressed
 signal other_quit_pressed
 
 enum QuitType {
-	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, QUIT_TO_DESKTOP
+	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, RESTART_OR_GIVE_UP, QUIT_TO_DESKTOP
 }
 
 const QUIT := QuitType.QUIT
 const SAVE_AND_QUIT := QuitType.SAVE_AND_QUIT
 const GIVE_UP := QuitType.GIVE_UP
 const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
+const RESTART_OR_GIVE_UP := QuitType.RESTART_OR_GIVE_UP
+const QUIT_TO_DESKTOP := QuitType.QUIT_TO_DESKTOP
 
 ## Text on the menu's quit button
 export (QuitType) var quit_type: int setget set_quit_type
@@ -134,7 +136,7 @@ func _on_Bottom_ok_pressed() -> void:
 
 
 func _on_Bottom_quit_pressed() -> void:
-	if quit_type in [GIVE_UP] \
+	if quit_type in [GIVE_UP, RESTART_OR_GIVE_UP] \
 			and PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 \
 			and SystemData.misc_settings.show_give_up_confirmation:
 		show_give_up_confirmation()
@@ -146,7 +148,11 @@ func _on_Bottom_quit_pressed() -> void:
 
 
 func _on_Bottom_other_quit_pressed() -> void:
-	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
+	if quit_type == RESTART_OR_GIVE_UP \
+			and PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 \
+			and SystemData.misc_settings.show_give_up_confirmation:
+		show_give_up_confirmation()
+	elif quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
 	else:
 		hide()
