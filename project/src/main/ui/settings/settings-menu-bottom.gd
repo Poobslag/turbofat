@@ -48,6 +48,9 @@ func _refresh_quit_type() -> void:
 		SettingsMenu.QuitType.SAVE_AND_QUIT_OR_GIVE_UP:
 			quit_text = tr("Main Menu")
 			other_quit_text = tr("Give Up")
+		SettingsMenu.QuitType.RESTART_OR_GIVE_UP:
+			quit_text = tr("Restart")
+			other_quit_text = tr("Give Up")
 		SettingsMenu.QuitType.QUIT_TO_DESKTOP:
 			quit_text = tr("Quit")
 	

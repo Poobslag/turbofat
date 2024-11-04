@@ -67,24 +67,7 @@ func _input(event: InputEvent) -> void:
 			# user hasn't been prompted yet; prompt the user to retry
 			_settings_menu.show_give_up_confirmation()
 		else:
-			PuzzleState.retrying = true
-			if not CurrentLevel.settings.lose_condition.finish_on_lose:
-				# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual
-				# effects
-				PuzzleState.level_performance.lost = true
-				PuzzleState.game_active = false
-				PuzzleState.game_ended = true
-				PuzzleState.apply_top_out_score_penalty()
-				# use up all of the players lives; especially for career mode, we don't want to reward players who
-				# give up
-				PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
-			if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
-				PuzzleState.end_game()
-			var rank_result := RankCalculator.new().calculate_rank()
-			_save_level_result(rank_result)
-			_start_puzzle()
-			get_tree().set_input_as_handled()
-			PuzzleState.retrying = false
+			_restart()
 
 
 func get_playfield() -> Playfield:
@@ -166,6 +149,28 @@ func set_night_mode(night_mode: bool) -> void:
 
 func is_night_mode() -> bool:
 	return _night_mode_toggler.is_night_mode()
+
+
+## Restarts the puzzle, saving the level results and applying any penalties.
+func _restart() -> void:
+	PuzzleState.retrying = true
+	if not CurrentLevel.settings.lose_condition.finish_on_lose:
+		# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual
+		# effects
+		PuzzleState.level_performance.lost = true
+		PuzzleState.game_active = false
+		PuzzleState.game_ended = true
+		PuzzleState.apply_top_out_score_penalty()
+		# use up all of the players lives; especially for career mode, we don't want to reward players who
+		# give up
+		PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
+	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+		PuzzleState.end_game()
+	var rank_result := RankCalculator.new().calculate_rank()
+	_save_level_result(rank_result)
+	_start_puzzle()
+	get_tree().set_input_as_handled()
+	PuzzleState.retrying = false
 
 
 ## Starts or restarts the puzzle, loading new customers and preparing the level.
@@ -370,7 +375,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 
 
 func _on_PuzzleState_game_started() -> void:
-	_settings_menu.quit_type = SettingsMenu.GIVE_UP
+	_settings_menu.quit_type = SettingsMenu.RESTART_OR_GIVE_UP
 
 
 ## Method invoked when the game ends. Stores the rank result for later.
@@ -391,10 +396,15 @@ func _on_PuzzleState_after_level_changed() -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	if _settings_menu.quit_type == SettingsMenu.GIVE_UP:
-		PuzzleState.make_player_lose()
+	if _settings_menu.quit_type == SettingsMenu.RESTART_OR_GIVE_UP:
+		_restart()
 	else:
 		_quit_puzzle(true)
+
+
+func _on_SettingsMenu_other_quit_pressed() -> void:
+	if _settings_menu.quit_type == SettingsMenu.RESTART_OR_GIVE_UP:
+		PuzzleState.make_player_lose()
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:

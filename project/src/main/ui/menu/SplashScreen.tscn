@@ -138,7 +138,7 @@ margin_right = 924.0
 [node name="VersionLabel" parent="." instance=ExtResource( 2 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 6 )]
-quit_type = 4
+quit_type = 5
 
 [node name="BadSaveDataControl" parent="." instance=ExtResource( 8 )]
 

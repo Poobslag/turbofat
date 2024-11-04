@@ -322,7 +322,7 @@ shape = 6
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
-quit_type = 4
+quit_type = 5
 
 [connection signal="pressed" from="DropPanel/Adventure/Play" to="DropPanel/Adventure" method="_on_Career_pressed"]
 [connection signal="pressed" from="DropPanel/Adventure/Avatar" to="DropPanel/Adventure" method="_on_Avatar_pressed"]
