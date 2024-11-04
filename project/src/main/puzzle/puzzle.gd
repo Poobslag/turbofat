@@ -62,6 +62,10 @@ func _input(event: InputEvent) -> void:
 		if not PuzzleState.game_active and not PuzzleState.game_ended:
 			# still at the start of a puzzle; don't retry
 			pass
+		elif PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 \
+				and SystemData.misc_settings.show_give_up_confirmation:
+			# user hasn't been prompted yet; prompt the user to retry
+			_settings_menu.show_give_up_confirmation()
 		else:
 			PuzzleState.retrying = true
 			if not CurrentLevel.settings.lose_condition.finish_on_lose:
@@ -410,3 +414,7 @@ func _on_Level_settings_changed() -> void:
 	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
 	if PuzzleState.game_active:
 		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.START)
+
+
+func _on_SettingsMenu_give_up_confirmed() -> void:
+	PuzzleState.make_player_lose()

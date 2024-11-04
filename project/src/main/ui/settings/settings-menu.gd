@@ -6,6 +6,7 @@ extends CanvasLayer
 
 signal show
 signal hide
+signal give_up_confirmed
 signal quit_pressed
 signal other_quit_pressed
 
@@ -81,6 +82,13 @@ func hide() -> void:
 	emit_signal("hide")
 
 
+## Prompts the player 'Are you sure you want to give up in Adventure Mode?'
+func show_give_up_confirmation() -> void:
+	if not is_shown():
+		show()
+	_dialogs.show_give_up_confirmation()
+
+
 ## Prompts the player for confirmation, if necessary, and saves their system settings.
 ##
 ## Confirmation is only required when changing the current save slot. If the player confirms changing their save slot,
@@ -126,7 +134,11 @@ func _on_Bottom_ok_pressed() -> void:
 
 
 func _on_Bottom_quit_pressed() -> void:
-	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
+	if quit_type in [GIVE_UP] \
+			and PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 \
+			and SystemData.misc_settings.show_give_up_confirmation:
+		show_give_up_confirmation()
+	elif quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
 	else:
 		hide()
@@ -171,3 +183,13 @@ func _on_Dialogs_delete_confirmed() -> void:
 	if SystemData.misc_settings.save_slot == deleted_save_slot:
 		# if the player deletes the current save slot contents we return them to the splash screen
 		_load_player_data()
+
+
+func _on_Dialogs_give_up_confirmed() -> void:
+	if SystemData.misc_settings.show_give_up_confirmation:
+		SystemData.misc_settings.show_give_up_confirmation = false
+		SystemData.has_unsaved_changes = true
+	if SystemData.has_unsaved_changes:
+		SystemSave.save_system_data()
+	hide()
+	emit_signal("give_up_confirmed")
