@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://src/main/ui/squeak/br/SqueakCheckBox.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/main/ui/WarningDialog.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/main/ui/settings/controller-unplugged-message.gd" type="Script" id=46]
+[ext_resource path="res://src/main/ui/settings/reenable-tips.gd" type="Script" id=47]
 
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 8.0
@@ -1058,7 +1059,7 @@ follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
 margin_right = 736.0
-margin_bottom = 166.0
+margin_bottom = 201.0
 size_flags_horizontal = 3
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
@@ -1094,16 +1095,64 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
-[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
+[node name="Tips" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
 margin_top = 41.0
 margin_right = 736.0
-margin_bottom = 61.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+custom_constants/separation = 20
+script = ExtResource( 47 )
+
+[node name="Spacer" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips"]
+margin_right = 287.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips"]
+margin_left = 307.0
+margin_right = 593.0
+margin_bottom = 29.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+
+[node name="Button" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips/HBoxContainer" instance=ExtResource( 39 )]
+margin_right = 160.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 160, 26 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+text = "Re-enable Tips"
+fonts = [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ) ]
+
+[node name="SqueakButtonHelper" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips/HBoxContainer/Button" instance=ExtResource( 33 )]
+
+[node name="Reenabled" type="Label" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips/HBoxContainer"]
+margin_left = 166.0
+margin_right = 286.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.74
+text = "Re-enabled!"
+valign = 1
+autowrap = true
+
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
+margin_top = 76.0
+margin_right = 736.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="SaveSlot" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-margin_top = 67.0
+margin_top = 102.0
 margin_right = 736.0
-margin_bottom = 96.0
+margin_bottom = 131.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -1148,9 +1197,9 @@ size_flags_vertical = 4
 text = "X"
 
 [node name="OpenUserFolder" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-margin_top = 102.0
+margin_top = 137.0
 margin_right = 736.0
-margin_bottom = 131.0
+margin_bottom = 166.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -1178,9 +1227,9 @@ fonts = [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 
 [node name="SqueakButtonHelper" parent="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder/Button" instance=ExtResource( 33 )]
 
 [node name="CopySaveData" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/VBoxContainer"]
-margin_top = 137.0
+margin_top = 172.0
 margin_right = 736.0
-margin_bottom = 166.0
+margin_bottom = 201.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -1382,6 +1431,23 @@ window_title = "Confirm"
 dialog_text = "Change save slot?"
 dialog_autowrap = true
 
+[node name="GiveUpConfirmation" type="ConfirmationDialog" parent="Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -66.0
+margin_right = 100.0
+margin_bottom = 66.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "Confirm"
+dialog_text = "Restarting or giving up will end the current day.
+
+Do you really give up?"
+dialog_autowrap = true
+
 [node name="DeleteConfirmation1" parent="Dialogs" instance=ExtResource( 45 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1431,6 +1497,7 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Language" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/Tips" method="_on_Button_pressed"]
 [connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_Delete_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder/Button" to="Window/UiArea/TabContainer/Misc/VBoxContainer/OpenUserFolder" method="_on_Button_pressed"]
@@ -1446,9 +1513,12 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
 [connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
 [connection signal="dialog_visibility_changed" from="Dialogs" to="Window/UiArea/Bottom" method="_on_Dialogs_dialog_visibility_changed"]
+[connection signal="give_up_confirmed" from="Dialogs" to="." method="_on_Dialogs_give_up_confirmed"]
 [connection signal="visibility_changed" from="Dialogs/Backdrop" to="Dialogs" method="_on_Backdrop_visibility_changed"]
 [connection signal="about_to_show" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/GiveUpConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/GiveUpConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]

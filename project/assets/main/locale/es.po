@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-18 09:44-0400\n"
+"POT-Creation-Date: 2024-11-04 11:13-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17626,6 +17626,16 @@ msgid "Language"
 msgstr "Lenguaje"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid "Re-enable Tips"
+msgstr "Volver a activar consejos"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid "Re-enabled!"
+msgstr "¡Reactivados!"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Save Slot"
 msgstr "Espacio de Guardado"
 
@@ -17662,6 +17672,17 @@ msgstr "Confirmar"
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Change save slot?"
 msgstr "¿Cambiar espacio de guardado?"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid ""
+"Restarting or giving up will end the current day.\n"
+"\n"
+"Do you really give up?"
+msgstr ""
+"Reiniciar o rendirse terminará el día actual.\n"
+"\n"
+"¿De verdad quieres rendirte?"
 
 #: project/src/main/ui/settings/VolumeSetting.tscn
 msgid "Music"

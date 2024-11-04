@@ -13,6 +13,10 @@ signal delete_confirmed
 ## emitted when the player is prompted to delete a save slot and answers 'no' or closes the window
 signal delete_cancelled
 
+signal give_up_confirmed
+
+signal give_up_cancelled
+
 ## emitted when a dialog becomes visible/invisible
 ##
 ## Parameters:
@@ -29,6 +33,8 @@ onready var _delete_confirmation_1 := $DeleteConfirmation1
 
 ## 'Are you sure?' confirmation dialog
 onready var _delete_confirmation_2 := $DeleteConfirmation2
+
+onready var _give_up_confirmation := $GiveUpConfirmation
 
 onready var _backdrop: ColorRect = $Backdrop
 
@@ -56,11 +62,22 @@ func _ready() -> void:
 	_delete_confirmation_2.get_cancel().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
 	_delete_confirmation_2.get_close_button().connect("pressed", self, "_on_DeleteConfirmation_cancelled")
 	_assign_dialog_cancel_shortcut(_delete_confirmation_2)
+	
+	_give_up_confirmation.get_ok().text = tr("Yes")
+	_give_up_confirmation.get_cancel().text = tr("No")
+	_give_up_confirmation.connect("confirmed", self, "_on_GiveUpConfirmation_confirmed")
+	_give_up_confirmation.get_cancel().connect("pressed", self, "_on_GiveUpConfirmation_cancelled")
+	_give_up_confirmation.get_close_button().connect("pressed", self, "_on_GiveUpConfirmation_cancelled")
+	_assign_dialog_cancel_shortcut(_give_up_confirmation)
 
 
 ## Displays a dialog prompting the player if they want to change their save slot
 func confirm_new_save_slot() -> void:
 	_change_save_confirmation.popup_centered()
+
+
+func show_give_up_confirmation() -> void:
+	_give_up_confirmation.popup_centered()
 
 
 ## Expands a simple delete confirmation message into a more detailed message.
@@ -120,3 +137,11 @@ func _on_ChangeSaveConfirmation_cancelled() -> void:
 
 func _on_Backdrop_visibility_changed() -> void:
 	emit_signal("dialog_visibility_changed", _backdrop.visible)
+
+
+func _on_GiveUpConfirmation_confirmed() -> void:
+	emit_signal("give_up_confirmed")
+
+
+func _on_GiveUpConfirmation_cancelled() -> void:
+	emit_signal("give_up_cancelled")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-18 09:44-0400\n"
+"POT-Creation-Date: 2024-11-04 11:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15637,6 +15637,14 @@ msgid "Language"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Re-enable Tips"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Re-enabled!"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Save Slot"
 msgstr ""
 
@@ -15672,6 +15680,13 @@ msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Change save slot?"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+msgid ""
+"Restarting or giving up will end the current day.\n"
+"\n"
+"Do you really give up?"
 msgstr ""
 
 #: project/src/main/ui/settings/VolumeSetting.tscn
