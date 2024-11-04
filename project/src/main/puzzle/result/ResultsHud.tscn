@@ -574,6 +574,7 @@ margin_left = 580.0
 margin_right = 1180.0
 margin_bottom = 684.0
 rect_clip_content = true
+mouse_filter = 2
 
 [node name="ReceiptPaper" type="TextureRect" parent="Clipper"]
 margin_left = 185.0
