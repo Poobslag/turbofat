@@ -7,6 +7,10 @@ func _on_Career_pressed() -> void:
 	PlayerData.customer_queue.reset()
 	CurrentLevel.reset()
 	
+	# If the player quit or ended the career mode day, we give them a fresh start.
+	if PlayerData.career.is_day_over():
+		PlayerData.career.advance_calendar()
+	
 	# Launch the first scene in career mode. This is probably the career map, but in some edge cases it could be a
 	# cutscene or victory screen.
 	if PlayerData.career.hours_passed > 0:
