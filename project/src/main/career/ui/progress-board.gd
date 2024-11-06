@@ -67,7 +67,10 @@ onready var _map_holder := $ChalkboardRegion/MapHolder
 onready var _show_animation_player := $ShowAnimationPlayer
 
 func _ready() -> void:
-	show_progress()
+	if SystemData.misc_settings.show_adventure_mode_intro:
+		show_intro()
+	else:
+		show_progress()
 
 
 ## Shows/animates the progress board based on the current 'CareerData.show_progress' value.
@@ -82,6 +85,12 @@ func show_progress() -> void:
 			visible = true
 			_show_animation_player.play("show")
 			refresh()
+
+
+## Shows/animates the adventure mode intro.
+func show_intro() -> void:
+	visible = true
+	_show_animation_player.play("show-intro")
 
 
 ## Animate the progress board based on how far the player just travelled.
@@ -235,3 +244,14 @@ func _on_AnimateStartTimer_timeout() -> void:
 func _on_Player_travelling_finished() -> void:
 	if PlayerData.career.is_boss_level() and not PlayerData.career.is_day_over():
 		MusicPlayer.play_boss_track(false)
+
+
+## When the adventure mode intro's OK button is pressed, we hide the intro
+func _on_OkButton_pressed() -> void:
+	if _show_animation_player.is_playing():
+		return
+	
+	SystemData.misc_settings.show_adventure_mode_intro = false
+	SystemData.has_unsaved_changes = true
+	
+	_show_animation_player.play("hide-intro")
