@@ -9,6 +9,7 @@ extends Node
 ## 	[E]: Briefly show and animate the progress board.
 ## 	[R]: Permanently show the progress board.
 ## 	[S]: Toggle whether or not the sensei accompanies the player in this chapter.
+## 	[I]: Show the intro board.
 ## 	[Z-M]: Animate the player advancing 0-25 steps.
 ## 	[Shift + Z-M]: Animate the player going backward 0-25 steps.
 ## 	[=/-]: Move the player forward/backward on the progress board.
@@ -40,6 +41,8 @@ func _input(event: InputEvent) -> void:
 			_progress_board.suppress_hide = true
 			PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 			_progress_board.show_progress()
+		KEY_I:
+			_progress_board.show_intro()
 		KEY_Z:
 			_animate_progress(0 * (-1 if Input.is_key_pressed(KEY_SHIFT) else 1))
 		KEY_X:

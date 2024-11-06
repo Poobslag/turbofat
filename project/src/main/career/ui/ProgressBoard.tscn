@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/main/career/ui/progress-board-clock-label.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/career/ui/map/landmark-forest.png" type="Texture" id=2]
@@ -27,6 +27,18 @@
 [ext_resource path="res://assets/main/puzzle/excellent.wav" type="AudioStream" id=25]
 [ext_resource path="res://src/main/puzzle/PuzzleMessage.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/career/ui/progress-board-splash-message.gd" type="Script" id=27]
+[ext_resource path="res://assets/main/career/ui/chalkboard-title-1a.png" type="Texture" id=29]
+[ext_resource path="res://assets/main/career/ui/chalkboard-title-1b.png" type="Texture" id=30]
+[ext_resource path="res://assets/main/career/ui/chalkboard-tutorial-2.png" type="Texture" id=31]
+[ext_resource path="res://assets/main/career/ui/chalkboard-tutorial-1.png" type="Texture" id=32]
+[ext_resource path="res://assets/main/ui/font/schoolbell-regular.ttf" type="DynamicFontData" id=33]
+[ext_resource path="res://assets/main/career/ui/chalkboard-tutorial-3.png" type="Texture" id=34]
+[ext_resource path="res://assets/main/career/ui/chalkboard-tutorial-4.png" type="Texture" id=35]
+[ext_resource path="res://src/main/ui/theme/chalkboard-24.theme" type="Theme" id=36]
+[ext_resource path="res://assets/main/career/ui/chalkboard.png" type="Texture" id=45]
+[ext_resource path="res://assets/main/career/ui/chalkboard-separator-bottom.png" type="Texture" id=46]
+[ext_resource path="res://assets/main/career/ui/chalkboard-grain.png" type="Texture" id=47]
+[ext_resource path="res://assets/main/career/ui/chalkboard-separator-top.png" type="Texture" id=48]
 
 [sub_resource type="ShaderMaterial" id=29]
 shader = ExtResource( 9 )
@@ -171,6 +183,58 @@ outline_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 use_filter = true
 font_data = ExtResource( 10 )
 
+[sub_resource type="DynamicFont" id=48]
+size = 32
+use_filter = true
+font_data = ExtResource( 33 )
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 1, 1, 1, 0.0784314 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 1, 1, 1, 0.313726 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id=51]
+bg_color = Color( 1, 1, 1, 0.156863 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id=52]
+
+[sub_resource type="StyleBoxFlat" id=53]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="Animation" id=34]
 length = 0.001
 tracks/0/type = "value"
@@ -293,6 +357,66 @@ tracks/9/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 32.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ChalkboardIntro:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("ChalkboardIntro:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "hide"
@@ -413,6 +537,109 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "hide-intro"
+length = 0.166667
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 171.8, 521.8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChalkboardIntro:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.02, 0.98 ), Vector2( 1.02, 0.98 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Backdrop:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.033, 0.165 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Backdrop:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Clock:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.0333333 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ChalkboardIntro:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.033, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("ProgressBoardDisappear")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -546,6 +773,159 @@ tracks/9/keys = {
 "stream": ExtResource( 16 )
 } ],
 "times": PoolRealArray( 0.166667 )
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ChalkboardIntro:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "show-intro"
+length = 1.00003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -118.0, -118.0, 32.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChalkboardIntro:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.233333, 0.366667, 0.416667, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Backdrop:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Backdrop:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Clock:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ChalkboardIntro:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.231 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("ProgressBoardAppear")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0.166667 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "grab_focus"
+} ]
 }
 
 [node name="ProgressBoard" type="CanvasLayer"]
@@ -761,7 +1141,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -90.0
 margin_top = 8.0
-margin_right = 90.0029
+margin_right = 90.0028
 margin_bottom = 58.0
 mouse_filter = 2
 script = ExtResource( 7 )
@@ -822,6 +1202,310 @@ stream = ExtResource( 17 )
 volume_db = -4.0
 bus = "Sound Bus"
 
+[node name="ChalkboardIntro" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -480.0
+margin_top = -291.2
+margin_right = 480.0
+margin_bottom = 291.2
+rect_pivot_offset = Vector2( 480, 291.2 )
+texture = ExtResource( 45 )
+expand = true
+
+[node name="Shadow" type="Polygon2D" parent="ChalkboardIntro"]
+show_behind_parent = true
+color = Color( 0, 0, 0, 0.392157 )
+antialiased = true
+polygon = PoolVector2Array( 1, 0, 10, -10, 970, -10, 970, 572.4, 960, 581.4, 1, 581.4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChalkboardIntro"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+custom_constants/separation = 0
+
+[node name="Spacer1" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+margin_right = 930.0
+margin_bottom = 6.0
+rect_min_size = Vector2( 0, 6 )
+
+[node name="TitleRow" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+modulate = Color( 1, 0.5, 0.945313, 1 )
+margin_top = 6.0
+margin_right = 930.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 0, 75 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChalkboardIntro/VBoxContainer/TitleRow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control1" type="Control" parent="ChalkboardIntro/VBoxContainer/TitleRow/HBoxContainer"]
+margin_right = 228.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/TitleRow/HBoxContainer/Control1"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.5
+margin_top = -37.5
+margin_right = 38.5
+margin_bottom = 32.5
+texture = ExtResource( 29 )
+expand = true
+
+[node name="Label" type="Label" parent="ChalkboardIntro/VBoxContainer/TitleRow/HBoxContainer"]
+margin_left = 232.0
+margin_top = 7.0
+margin_right = 697.0
+margin_bottom = 67.0
+theme = ExtResource( 36 )
+text = "In Adventure mode, try to reach the end before
+running out of time or losing all your lives!"
+align = 1
+max_lines_visible = 2
+
+[node name="Control2" type="Control" parent="ChalkboardIntro/VBoxContainer/TitleRow/HBoxContainer"]
+margin_left = 701.0
+margin_right = 930.0
+margin_bottom = 75.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/TitleRow/HBoxContainer/Control2"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.5
+margin_top = -37.5
+margin_right = 38.5
+margin_bottom = 32.5
+texture = ExtResource( 30 )
+expand = true
+
+[node name="Separator1" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+modulate = Color( 0.726563, 0.5, 1, 1 )
+margin_top = 81.0
+margin_right = 930.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="TextureRect" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/Separator1"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -432.0
+margin_top = -23.0
+margin_right = 432.0
+margin_bottom = 13.0
+texture = ExtResource( 48 )
+expand = true
+
+[node name="Instructions" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+margin_top = 106.0
+margin_right = 930.0
+margin_bottom = 458.0
+rect_min_size = Vector2( 0, 90 )
+size_flags_vertical = 3
+
+[node name="IntroHeader1" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 1, 0.580392, 0.501961, 0.784314 )
+margin_left = 45.0
+margin_top = -6.79999
+margin_right = 445.0
+margin_bottom = 43.2
+theme = ExtResource( 14 )
+text = "REACH THE GOAL"
+align = 1
+
+[node name="IntroImage1" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 1, 0.956863, 0.501961, 0.784314 )
+margin_left = 31.0
+margin_top = 22.2
+margin_right = 231.0
+margin_bottom = 162.2
+texture = ExtResource( 32 )
+expand = true
+
+[node name="IntroText1" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 1, 0.580392, 0.501961, 0.784314 )
+margin_left = 213.0
+margin_top = 32.2
+margin_right = 453.0
+margin_bottom = 152.2
+theme = ExtResource( 36 )
+text = "The better you
+play, the faster
+you move"
+align = 1
+valign = 1
+
+[node name="IntroHeader2" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 0.54902, 1, 0.501961, 0.784314 )
+margin_left = 492.0
+margin_top = 41.2
+margin_right = 892.0
+margin_bottom = 91.2
+theme = ExtResource( 14 )
+text = "WATCH THE CLOCK"
+align = 1
+
+[node name="IntroImage2" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 1, 0.956863, 0.501961, 0.784314 )
+margin_left = 517.0
+margin_top = 96.2
+margin_right = 717.0
+margin_bottom = 236.2
+texture = ExtResource( 31 )
+expand = true
+
+[node name="IntroText2" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 0.54902, 1, 0.501961, 0.784314 )
+margin_left = 652.0
+margin_top = 82.2
+margin_right = 892.0
+margin_bottom = 202.2
+theme = ExtResource( 36 )
+text = "You only have
+six levels to reach
+the end"
+align = 1
+valign = 1
+
+[node name="IntroHeader3" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 0.501961, 0.882353, 1, 0.784314 )
+margin_left = 87.0
+margin_top = 155.2
+margin_right = 487.0
+margin_bottom = 205.2
+theme = ExtResource( 14 )
+text = "BE CAREFUL"
+align = 1
+
+[node name="IntroImage3" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 1, 0.956863, 0.501961, 0.784314 )
+margin_left = 95.0
+margin_top = 236.2
+margin_right = 295.0
+margin_bottom = 376.2
+texture = ExtResource( 34 )
+expand = true
+
+[node name="IntroText3" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 0.501961, 0.882353, 1, 0.784314 )
+margin_left = 227.0
+margin_top = 193.2
+margin_right = 467.0
+margin_bottom = 313.2
+theme = ExtResource( 36 )
+text = "If you give up or
+run out of lives, you'll
+have to start again"
+align = 1
+valign = 1
+
+[node name="IntroText4" type="Label" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 0.72549, 0.501961, 1, 0.784314 )
+margin_left = 707.0
+margin_top = 217.2
+margin_right = 887.0
+margin_bottom = 307.2
+rect_pivot_offset = Vector2( 90, 45 )
+theme = ExtResource( 36 )
+text = "i believe
+in you"
+align = 1
+valign = 1
+
+[node name="IntroImage4" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/Instructions"]
+modulate = Color( 0.72549, 0.501961, 1, 0.784314 )
+margin_left = 770.0
+margin_top = 241.2
+margin_right = 970.0
+margin_bottom = 381.2
+texture = ExtResource( 35 )
+expand = true
+
+[node name="Separator2" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+modulate = Color( 1, 0.580392, 0.501961, 1 )
+margin_top = 458.0
+margin_right = 930.0
+margin_bottom = 483.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="TextureRect" type="TextureRect" parent="ChalkboardIntro/VBoxContainer/Separator2"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -432.0
+margin_top = -9.0
+margin_right = 432.0
+margin_bottom = 9.0
+texture = ExtResource( 46 )
+expand = true
+
+[node name="ButtonRow" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+margin_top = 483.0
+margin_right = 930.0
+margin_bottom = 546.0
+rect_min_size = Vector2( 0, 63 )
+
+[node name="ZHolder" type="Sprite" parent="ChalkboardIntro/VBoxContainer/ButtonRow"]
+z_index = 1
+__meta__ = {
+"_editor_description_": "Control nodes cannot have a Z index. We need this button to show up over the chalkboard texture."
+}
+
+[node name="Button" type="Button" parent="ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 414.5
+margin_top = 6.0
+margin_right = 514.5
+margin_bottom = 58.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = SubResource( 48 )
+custom_styles/hover = SubResource( 49 )
+custom_styles/pressed = SubResource( 50 )
+custom_styles/focus = SubResource( 51 )
+custom_styles/disabled = SubResource( 52 )
+custom_styles/normal = SubResource( 53 )
+text = "Ok"
+
+[node name="Spacer2" type="Control" parent="ChalkboardIntro/VBoxContainer"]
+margin_top = 546.0
+margin_right = 930.0
+margin_bottom = 552.0
+rect_min_size = Vector2( 0, 6 )
+
+[node name="Grain" type="TextureRect" parent="ChalkboardIntro"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 47 )
+expand = true
+
 [node name="ProgressBoardAppear" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = -8.0
@@ -836,7 +1520,9 @@ bus = "Sound Bus"
 [node name="ShowAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 34 )
 anims/hide = SubResource( 36 )
+anims/hide-intro = SubResource( 46 )
 anims/show = SubResource( 31 )
+anims/show-intro = SubResource( 47 )
 
 [node name="AnimationPlayerUnscrewerupper" parent="ShowAnimationPlayer" instance=ExtResource( 24 )]
 
@@ -853,6 +1539,7 @@ one_shot = true
 [connection signal="travelling_finished" from="ChalkboardRegion/Player" to="ChalkboardRegion/Trail" method="_on_Player_travelling_finished"]
 [connection signal="travelling_finished" from="ChalkboardRegion/Player" to="ChalkboardRegion/GoalLabel" method="_on_Player_travelling_finished"]
 [connection signal="travelling_finished" from="ChalkboardRegion/Player" to="ChalkboardRegion/SplashMessage" method="_on_Player_travelling_finished"]
+[connection signal="pressed" from="ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button" to="." method="_on_OkButton_pressed"]
 [connection signal="animation_finished" from="ShowAnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="HideTimer" to="." method="_on_HideTimer_timeout"]
 [connection signal="timeout" from="AnimateStartTimer" to="." method="_on_AnimateStartTimer_timeout"]

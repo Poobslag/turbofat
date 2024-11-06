@@ -11,7 +11,13 @@ func _ready() -> void:
 
 
 func _on_Button_pressed() -> void:
-	SystemData.misc_settings.show_give_up_confirmation = true
+	if SystemData.misc_settings.show_give_up_confirmation == false:
+		SystemData.misc_settings.show_give_up_confirmation = true
+		SystemData.has_unsaved_changes = true
+	
+	if SystemData.misc_settings.show_adventure_mode_intro == false:
+		SystemData.misc_settings.show_adventure_mode_intro = true
+		SystemData.has_unsaved_changes = true
 	
 	# display the 'Re-enabled!' message, and gradually fade it out
 	_reenabled_label.modulate = Color.white
