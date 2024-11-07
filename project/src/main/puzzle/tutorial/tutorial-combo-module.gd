@@ -56,23 +56,45 @@ func prepare_tutorial_level() -> void:
 		"tutorial/combo_0":
 			_set_combo_state(5, 10)
 			hud.skill_tally_item("Combo").visible = true
-			if _failure_count >= 1:
+			if _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_0_example"):
+				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you.\n\nGive it one last try!"))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to clear five lines without stopping."
 						+ "\n\nDropping one piece off to the side won't break your combo."))
 			else:
 				hud.set_message(tr("See if you can clear five lines without stopping."
 						+ "\n\nWell, a short break is actually okay too."))
+		"tutorial/combo_0_example":
+			_set_combo_state(5, 10)
+			hud.skill_tally_item("Combo").visible = true
+			hud.set_message(tr("With a big tunnel like this,"
+					+ " you can throw your pieces into it and build up a combo that way."))
+			hud.enqueue_message(tr("It's okay if they don't fit perfectly, or if they leave little holes!"
+					+ "\n\nDon't worry about that."))
+			start_timer_after_all_messages_shown(3.0) \
+					.connect("timeout", self, "_on_Timer_timeout_advance_level")
 		"tutorial/combo_1":
 			_show_next_diagram()
 		"tutorial/combo_2":
 			_set_combo_state(5, 12)
 			hud.skill_tally_item("Combo").visible = true
-			if _failure_count >= 1:
+			if _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_2_example"):
+				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you.\n\nGive it one last try!"))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to extend this combo by seven lines."
 						+ "\n\nMake boxes to keep your combo from breaking."))
 			else:
 				hud.set_message(tr("Let's use boxes to extend a combo!"
 						+ "\n\nTry to clear seven more lines without letting your combo break."))
+		"tutorial/combo_2_example":
+			_set_combo_state(5, 12)
+			hud.skill_tally_item("Combo").visible = true
+			hud.set_message(tr("To keep your combo, you need to alternate between clearing lines and building boxes."))
+			hud.enqueue_message(tr("There is no trick to it, it just takes practice."
+					+ "\n\n...Clear a line, build a box."
+					+ "\n\nAgain and again."))
+			hud.enqueue_message(tr("Build a box, and clear another line."))
+			hud.enqueue_message(tr("Clear a few lines, and build another box."))
 		"tutorial/combo_3":
 			_set_combo_state(5)
 			hud.set_message(tr("You can make a cake box with three pieces. Let me show you."))
@@ -86,12 +108,22 @@ func prepare_tutorial_level() -> void:
 			_set_combo_state(5, 12)
 			hud.skill_tally_item("CakeBox").reset()
 			hud.skill_tally_item("CakeBox").visible = true
-			if _failure_count >= 1:
+			if _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_5_example"):
+				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you.\n\nGive it one last try!"))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to make two cake boxes."
 						+ "\n\nClear lines to keep your combo from breaking."))
 			else:
 				hud.set_message(tr("Now see if you can do it."
 						+ "\n\nMake two cake boxes, but don't let your combo break."))
+		"tutorial/combo_5_example":
+			_set_combo_state(5, 12)
+			hud.skill_tally_item("CakeBox").reset()
+			hud.skill_tally_item("CakeBox").visible = true
+			hud.set_message(tr("Hmmmmmm, let's see if I can do it again..."))
+			hud.enqueue_message(tr("I want to make a box with this pink piece, but I'd better not."))
+			hud.enqueue_message(tr("See, that pink piece would have broken my combo!"
+					+ "\n\nI'll wait for the next one."))
 		"tutorial/combo_6":
 			dismiss_sensei([tr("...Oh! Customers!\n\nTry to get ¥120 in one big combo."
 					+ "\n\nIt might help to make some boxes first.")])
@@ -117,17 +149,40 @@ func _set_combo_state(start: int, goal: int = 0) -> void:
 func _advance_level() -> void:
 	PuzzleState.level_performance.lost = false
 	var delay_between_levels := Tutorials.DELAY_SHORT
+	var new_level_id: String
+	
 	match CurrentLevel.settings.id:
-		"tutorial/combo_0", "tutorial/combo_2":
+		"tutorial/combo_0":
 			if hud.skill_tally_item("Combo").is_complete():
 				hud.set_message(tr("Good job!"))
+			elif _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_0_example"):
+				hud.set_message(tr("This one's really tricky!"
+						+ "\n\nLet me show you one way, and then you can try again."))
+				new_level_id = "tutorial/combo_0_example"
+				PuzzleState.level_performance.lost = true
 			else:
 				hud.set_message(tr("Oops! ...You needed to clear a line with that last piece."))
 				delay_between_levels = Tutorials.DELAY_LONG
 				PuzzleState.level_performance.lost = true
+		"tutorial/combo_0_example":
+			new_level_id = "tutorial/combo_0"
 		"tutorial/combo_1":
 			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = Tutorials.DELAY_NONE
+		"tutorial/combo_2":
+			if hud.skill_tally_item("Combo").is_complete():
+				hud.set_message(tr("Good job!"))
+			elif _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_2_example"):
+				hud.set_message(tr("This one's really tricky!"
+						+ "\n\nLet me show you one way, and then you can try again."))
+				new_level_id = "tutorial/combo_2_example"
+				PuzzleState.level_performance.lost = true
+			else:
+				hud.set_message(tr("Oops! ...You needed to clear a line with that last piece."))
+				delay_between_levels = Tutorials.DELAY_LONG
+				PuzzleState.level_performance.lost = true
+		"tutorial/combo_2_example":
+			new_level_id = "tutorial/combo_2"
 		"tutorial/combo_3", "tutorial/combo_4":
 			# no delay for the non-interactive segment where we demo for the player
 			delay_between_levels = Tutorials.DELAY_NONE
@@ -135,23 +190,32 @@ func _advance_level() -> void:
 			if hud.skill_tally_item("CakeBox").is_complete():
 				hud.set_message(tr("Impressive!\n\nHmm... Was there anything else?"))
 				start_customer_countdown()
+			elif _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_5_example"):
+				hud.set_message(tr("This one's really tricky!"
+						+ "\n\nLet me show you one way, and then you can try again."))
+				new_level_id = "tutorial/combo_5_example"
+				PuzzleState.level_performance.lost = true
 			else:
 				hud.set_message(tr("Oh! ...You needed to clear a line that time."))
 				delay_between_levels = Tutorials.DELAY_LONG
 				PuzzleState.level_performance.lost = true
+		"tutorial/combo_5_example":
+			new_level_id = "tutorial/combo_5"
 	
 	var level_ids := [
 		"tutorial/combo_0", "tutorial/combo_1", "tutorial/combo_2", "tutorial/combo_3",
 		"tutorial/combo_4", "tutorial/combo_5", "tutorial/combo_6",
 	]
-	var new_level_id: String
+	
 	if PuzzleState.level_performance.lost:
 		_failed_levels[CurrentLevel.settings.id] = true
-		new_level_id = CurrentLevel.settings.id
-		_failure_count += 1
+		if not new_level_id:
+			new_level_id = CurrentLevel.settings.id
+			_failure_count += 1
 	else:
 		_failure_count = 1 if _failed_levels.has(new_level_id) else 0
-		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
+		if not new_level_id:
+			new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
 	change_level(new_level_id, delay_between_levels)
 
 
@@ -195,6 +259,15 @@ func _on_PuzzleState_after_piece_written() -> void:
 				_advance_level()
 			elif _did_end_combo:
 				_advance_level()
+		"tutorial/combo_2_example":
+			if PuzzleState.level_performance.pieces == 9:
+				hud.enqueue_message(tr("Just a few more lines..."))
+			elif PuzzleState.level_performance.pieces >= 14:
+				hud.set_message(tr("Phew, all done!"
+						+ "\n\nIf this seems overwhelming, don't worry."
+						+ "\n\nYou can get good scores without combos too."))
+				start_timer_after_all_messages_shown(3.0) \
+						.connect("timeout", self, "_on_Timer_timeout_advance_level")
 		"tutorial/combo_3":
 			if PuzzleState.level_performance.pieces == 2:
 				var message := tr("Oops! I can still make the cake box, but my combo already broke.")
@@ -213,6 +286,18 @@ func _on_PuzzleState_after_piece_written() -> void:
 				_advance_level()
 			elif _did_end_combo:
 				_advance_level()
+		"tutorial/combo_5_example":
+			if PuzzleState.level_performance.pieces == 6:
+				hud.set_message(tr("There, we got there eventually. Now what..."))
+			elif PuzzleState.level_performance.pieces == 9:
+				hud.set_message(tr("Ah-haha! Sometimes this is difficult, even for me!"
+					+ "\n\nIs it really okay to call this a tutorial?"))
+			if PuzzleState.level_performance.pieces >= 12:
+				hud.set_message(tr("Phew, all done!"
+						+ "\n\nIf this seems overwhelming, don't worry."
+						+ "\n\nYou can get good scores without combos too."))
+				start_timer_after_all_messages_shown(3.0) \
+						.connect("timeout", self, "_on_Timer_timeout_advance_level")
 		"tutorial/combo_6":
 			if not _showed_end_of_level_message:
 				var first_customer_score: int = PuzzleState.customer_scores[0]

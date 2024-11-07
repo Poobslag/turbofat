@@ -1,0 +1,157 @@
+{
+  "version": "5a6b",
+  "start_speed": "T",
+  "input_replay": [
+    "41 +move_piece_left",
+    "59 -move_piece_left",
+    "67 +rotate_cw",
+    "80 -rotate_cw",
+    "90 +soft_drop",
+    "129 -soft_drop",
+    "205 +move_piece_right",
+    "239 -move_piece_right",
+    "242 +soft_drop",
+    "283 -soft_drop",
+    "363 +soft_drop",
+    "404 -soft_drop",
+    "508 +move_piece_right",
+    "533 -move_piece_right",
+    "533 +soft_drop",
+    "575 -soft_drop",
+    "673 +soft_drop",
+    "712 -soft_drop",
+    "810 +rotate_ccw",
+    "817 -rotate_ccw",
+    "830 +rotate_ccw",
+    "836 -rotate_ccw",
+    "843 +move_piece_left",
+    "869 -move_piece_left",
+    "869 +soft_drop",
+    "909 -soft_drop",
+    "982 +rotate_ccw",
+    "990 -rotate_ccw",
+    "998 +rotate_ccw",
+    "1005 -rotate_ccw",
+    "1005 +move_piece_left",
+    "1031 +soft_drop",
+    "1032 -move_piece_left",
+    "1074 -soft_drop",
+    "1164 +rotate_cw",
+    "1171 -rotate_cw",
+    "1180 +move_piece_right",
+    "1208 -move_piece_right",
+    "1213 +soft_drop",
+    "1251 -soft_drop",
+    "1330 +rotate_ccw",
+    "1340 -rotate_ccw",
+    "1348 +soft_drop",
+    "1384 -soft_drop",
+    "1487 +rotate_ccw",
+    "1496 -rotate_ccw",
+    "1504 +rotate_ccw",
+    "1511 -rotate_ccw",
+    "1512 +move_piece_left",
+    "1539 -move_piece_left",
+    "1544 +soft_drop",
+    "1579 -soft_drop",
+    "1652 +rotate_cw",
+    "1659 -rotate_cw",
+    "1674 +move_piece_right",
+    "1680 -move_piece_right",
+    "1686 +move_piece_right",
+    "1691 -move_piece_right",
+    "1705 +soft_drop",
+    "1744 -soft_drop",
+    "1863 +soft_drop",
+    "1901 -soft_drop",
+    "1996 +soft_drop",
+    "2044 -soft_drop",
+    "2142 +rotate_ccw",
+    "2151 -rotate_ccw",
+    "2159 +move_piece_left",
+    "2164 -move_piece_left",
+    "2175 +soft_drop",
+    "2215 -soft_drop"
+  ],
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "enhance_combo_fx",
+    "start_level tutorial/combo_0",
+    "tutorial"
+  ],
+  "piece_types": [
+    "ordered_start",
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "start_piece_q",
+    "start_piece_j",
+    "start_piece_l",
+    "start_piece_p",
+    "start_piece_l",
+    "start_piece_q",
+    "start_piece_l",
+    "start_piece_p",
+    "start_piece_q",
+    "start_piece_p",
+    "start_piece_j",
+    "start_piece_l",
+    "start_piece_q",
+    "start_piece_p",
+    "start_piece_q",
+    "start_piece_j"
+  ],
+  "rank": [
+    "duration 150",
+    "rank_criteria m=1",
+    "skip_results",
+    "unranked"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 17",
+        "tile": "0 2 0"
+      },
+      {
+        "pos": "0 18",
+        "tile": "0 3 0"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "7 18",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "8 18",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "0 19",
+        "tile": "0 9 0"
+      },
+      {
+        "pos": "1 19",
+        "tile": "0 4 0"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "7 19",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "8 19",
+        "tile": "1 5 1"
+      }
+    ]
+  }
+}
