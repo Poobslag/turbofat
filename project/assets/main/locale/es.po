@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-06 12:28-0500\n"
+"POT-Creation-Date: 2024-11-07 10:23-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -15983,6 +15983,17 @@ msgstr ""
 "¡Te podría mostrar, pero quiero que lo intentes!"
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid ""
+"The white piece goes in the middle, and the brown piece goes on top.\n"
+"\n"
+"Like a sandwich!"
+msgstr ""
+"La pieza blanca va en el medio, y la pieza marrón va arriba.\n"
+"\n"
+"¡Como un sándwich!"
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "Give it another try.\n"
 "\n"
@@ -16001,6 +16012,17 @@ msgstr ""
 "Comencemos haciendo gelatina.\n"
 "\n"
 "¿Puedes hacer un rectángulo con estas piezas?"
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid ""
+"Now I feel bad for tricking you!\n"
+"\n"
+"...You only need those two T-Blocks for this one."
+msgstr ""
+"¡Ahora me siento mal por engañarte!\n"
+"\n"
+"...Solo necesitas esos dos bloques en T para este."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
@@ -16062,6 +16084,12 @@ msgid ""
 msgstr "Veamos si puedes descubrir las últimas cuatro recetas sin mi ayuda."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid "Start with the white piece, and stack the big brown piece on top of it."
+msgstr ""
+"Comienza con la pieza blanca, y apila la pieza marrón grande encima."
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "How about some cheesecake?\n"
 "\n"
@@ -16072,6 +16100,12 @@ msgstr ""
 "Esta vez vas a necesitar un rectángulo más grande."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid "Start with the U-Block, and tuck the pink piece inside of it."
+msgstr ""
+"Empieza con el bloque en U, y coloca la pieza rosada dentro."
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "Let's try some strawberry cake.\n"
 "\n"
@@ -16080,6 +16114,17 @@ msgstr ""
 "Intentemos algo de torta de frutilla\n"
 "\n"
 "¿Puedes hacer una caja de torta con estas piezas?"
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid ""
+"The O-Block goes with the two pink pieces!\n"
+"\n"
+"Maybe that will help."
+msgstr ""
+"¡El bloque en O va con las dos piezas rosadas!\n"
+"\n"
+"Tal vez eso ayude."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""

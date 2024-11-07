@@ -6,6 +6,14 @@ extends TutorialModule
 const CAKES_DIAGRAM_0 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-0.png")
 const CAKES_DIAGRAM_1 := preload("res://assets/main/puzzle/tutorial/cakes-diagram-1.png")
 
+## Hint diagrams which show the player where to drop their pieces.
+export (PackedScene) var HintTileMapJjoQuvScene: PackedScene
+export (PackedScene) var HintTileMapJloScene: PackedScene
+export (PackedScene) var HintTileMapJttLloScene: PackedScene
+export (PackedScene) var HintTileMapLttScene: PackedScene
+export (PackedScene) var HintTileMapPqvScene: PackedScene
+export (PackedScene) var HintTileMapPuvScene: PackedScene
+
 ## player statistics for the current tutorial section
 var _cakes_built := 0
 var _failure_count := 0
@@ -47,20 +55,37 @@ func prepare_tutorial_level() -> void:
 			_advance_level()
 		"tutorial/cakes_2":
 			_prepare_cake_tally_item(1)
-			if _failure_count >= 1:
+			if _failure_count >= 4:
+				hud.puzzle.get_playfield().add_hint(HintTileMapJloScene)
+				hud.set_message(tr("The white piece goes in the middle, and the brown piece goes on top."
+						+ "\n\nLike a sandwich!"))
+			elif _failure_count >= 2:
+				hud.set_message(tr("The white piece goes in the middle, and the brown piece goes on top."
+						+ "\n\nLike a sandwich!"))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make a rectangle."))
 			else:
 				hud.set_message(tr("Let's start by making gelatin.\n\nCan you make a rectangle with these pieces?"))
 		"tutorial/cakes_3":
 			_prepare_cake_tally_item(1)
-			if _failure_count >= 1:
+			if _failure_count >= 4:
+				hud.puzzle.get_playfield().add_hint(HintTileMapLttScene)
+				hud.set_message(tr("Now I feel bad for tricking you!"
+						+ "\n\n...You only need those two T-Blocks for this one."))
+			elif _failure_count >= 2:
+				hud.set_message(tr("Now I feel bad for tricking you!"
+						+ "\n\n...You only need those two T-Blocks for this one."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make a rectangle."))
 			else:
 				hud.set_message(tr("Next let's try double-decker brownies."
 						+ "\n\nCan you make another cake box with this?"))
 		"tutorial/cakes_4":
 			_prepare_cake_tally_item(2)
-			if _failure_count >= 3:
+			if _failure_count >= 4:
+				hud.puzzle.get_playfield().add_hint(HintTileMapJttLloScene)
+				hud.set_message(tr("I'll give you a small hint:\n\nBoth chocolate pieces go into the left box."))
+			elif _failure_count >= 2:
 				hud.set_message(tr("I'll give you a small hint:\n\nBoth chocolate pieces go into the left box."))
 			elif _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make two rectangles."))
@@ -76,19 +101,34 @@ func prepare_tutorial_level() -> void:
 			_advance_level()
 		"tutorial/cakes_6":
 			_prepare_cake_tally_item(1)
-			if _failure_count >= 1:
+			if _failure_count >= 4:
+				hud.puzzle.get_playfield().add_hint(HintTileMapPqvScene)
+				hud.set_message(tr("Start with the white piece, and stack the big brown piece on top of it."))
+			elif _failure_count >= 2:
+				hud.set_message(tr("Start with the white piece, and stack the big brown piece on top of it."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make a rectangle."))
 			else:
 				hud.set_message(tr("How about some cheesecake?\n\nYou'll need a bigger rectangle this time."))
 		"tutorial/cakes_7":
 			_prepare_cake_tally_item(1)
-			if _failure_count >= 1:
+			if _failure_count >= 4:
+				hud.puzzle.get_playfield().add_hint(HintTileMapPuvScene)
+				hud.set_message(tr("Start with the U-Block, and tuck the pink piece inside of it."))
+			elif _failure_count >= 2:
+				hud.set_message(tr("Start with the U-Block, and tuck the pink piece inside of it."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make a rectangle."))
 			else:
 				hud.set_message(tr("Let's try some strawberry cake.\n\nCan you make a cake box with these pieces?"))
 		"tutorial/cakes_8":
 			_prepare_cake_tally_item(2)
-			if _failure_count >= 1:
+			if _failure_count >= 4:
+				hud.puzzle.get_playfield().add_hint(HintTileMapJjoQuvScene)
+				hud.set_message(tr("The O-Block goes with the two pink pieces!\n\nMaybe that will help."))
+			elif _failure_count >= 2:
+				hud.set_message(tr("The O-Block goes with the two pink pieces!\n\nMaybe that will help."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Give it another try.\n\nSee if you can make two rectangles."))
 			else:
 				hud.set_message(tr("Okay, final two recipes!\n\n...Can you make two cakes at once?"))
