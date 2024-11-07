@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-07 10:23-0500\n"
+"POT-Creation-Date: 2024-11-07 13:31-0500\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14510,6 +14510,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
+"It's kind of hard to explain, so maybe I should just show you.\n"
+"\n"
+"Give it one last try!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
 "Try again! Try to clear five lines without stopping.\n"
 "\n"
 "Dropping one piece off to the side won't break your combo."
@@ -14524,6 +14531,19 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
+"With a big tunnel like this, you can throw your pieces into it and build up "
+"a combo that way."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"It's okay if they don't fit perfectly, or if they leave little holes!\n"
+"\n"
+"Don't worry about that."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
 "Try again! Try to extend this combo by seven lines.\n"
 "\n"
 "Make boxes to keep your combo from breaking."
@@ -14534,6 +14554,29 @@ msgid ""
 "Let's use boxes to extend a combo!\n"
 "\n"
 "Try to clear seven more lines without letting your combo break."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"To keep your combo, you need to alternate between clearing lines and "
+"building boxes."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"There is no trick to it, it just takes practice.\n"
+"\n"
+"...Clear a line, build a box.\n"
+"\n"
+"Again and again."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Build a box, and clear another line."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Clear a few lines, and build another box."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
@@ -14570,12 +14613,34 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Hmmmmmm, let's see if I can do it again..."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "I want to make a box with this pink piece, but I'd better not."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"See, that pink piece would have broken my combo!\n"
+"\n"
+"I'll wait for the next one."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "...Oh! Customers!\n"
 "\n"
 "Try to get ¥120 in one big combo.\n"
 "\n"
 "It might help to make some boxes first."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"This one's really tricky!\n"
+"\n"
+"Let me show you one way, and then you can try again."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
@@ -14640,6 +14705,19 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Just a few more lines..."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"Phew, all done!\n"
+"\n"
+"If this seems overwhelming, don't worry.\n"
+"\n"
+"You can get good scores without combos too."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr ""
 
@@ -14648,6 +14726,17 @@ msgid ""
 "There, I did it!\n"
 "\n"
 "That was tricky."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "There, we got there eventually. Now what..."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"Ah-haha! Sometimes this is difficult, even for me!\n"
+"\n"
+"Is it really okay to call this a tutorial?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd

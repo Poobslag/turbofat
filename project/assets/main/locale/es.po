@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-07 10:23-0500\n"
+"POT-Creation-Date: 2024-11-07 13:31-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -15297,7 +15297,7 @@ msgid ""
 "0 frame drops\n"
 "0 step drops"
 msgstr ""
-"0 caídas de cuadros\n"
+"0 caídas de cajas\n"
 "0 caídas de pasos"
 
 #: project/src/main/puzzle/PuzzleMessage.tscn
@@ -16086,8 +16086,7 @@ msgstr "Veamos si puedes descubrir las últimas cuatro recetas sin mi ayuda."
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 #, needs-review
 msgid "Start with the white piece, and stack the big brown piece on top of it."
-msgstr ""
-"Comienza con la pieza blanca, y apila la pieza marrón grande encima."
+msgstr "Comienza con la pieza blanca, y apila la pieza marrón grande encima."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
@@ -16102,8 +16101,7 @@ msgstr ""
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 #, needs-review
 msgid "Start with the U-Block, and tuck the pink piece inside of it."
-msgstr ""
-"Empieza con el bloque en U, y coloca la pieza rosada dentro."
+msgstr "Empieza con el bloque en U, y coloca la pieza rosada dentro."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
@@ -16305,6 +16303,17 @@ msgstr ""
 "Los combos son fáciles, ¡puede que hasta los hayas hecho por accidente!"
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"It's kind of hard to explain, so maybe I should just show you.\n"
+"\n"
+"Give it one last try!"
+msgstr ""
+"Es un poco difícil de explicar, así que mejor te lo muestro.\n"
+"\n"
+"¡Inténtalo una vez más!"
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "Try again! Try to clear five lines without stopping.\n"
 "\n"
@@ -16325,6 +16334,26 @@ msgstr ""
 "Bueno, un pequeño descanso también está bien."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"With a big tunnel like this, you can throw your pieces into it and build up "
+"a combo that way."
+msgstr ""
+"Con un túnel grande como este, puedes lanzar tus piezas dentro y formar "
+"un combo de esa forma."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"It's okay if they don't fit perfectly, or if they leave little holes!\n"
+"\n"
+"Don't worry about that."
+msgstr ""
+"Está bien si no encajan perfectamente, o si dejan pequeños huecos.\n"
+"\n"
+"No te preocupes por eso."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "Try again! Try to extend this combo by seven lines.\n"
 "\n"
@@ -16343,6 +16372,42 @@ msgstr ""
 "¡Vamos a usar cajas para extender el combo!\n"
 "\n"
 "Intenta limpiar siete líneas más sin romper el combo."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"To keep your combo, you need to alternate between clearing lines and "
+"building boxes."
+msgstr ""
+"Para mantener tu combo, necesitas alternar entre limpiar líneas y "
+"formar cajas."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"There is no trick to it, it just takes practice.\n"
+"\n"
+"...Clear a line, build a box.\n"
+"\n"
+"Again and again."
+msgstr ""
+"No hay truco, solo necesitas práctica.\n"
+"\n"
+"...Limpia una línea, forma un caja.\n"
+"\n"
+"Una y otra vez."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Build a box, and clear another line."
+msgstr ""
+"Forma un caja, y limpia otra línea."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Clear a few lines, and build another box."
+msgstr ""
+"Limpia unas líneas, y forma otro caja."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "You can make a cake box with three pieces. Let me show you."
@@ -16391,6 +16456,29 @@ msgstr ""
 "Haz dos cajas de torta, pero no rompas el combo."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Hmmmmmm, let's see if I can do it again..."
+msgstr ""
+"Hmmmmmm, veamos si puedo hacerlo otra vez..."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "I want to make a box with this pink piece, but I'd better not."
+msgstr ""
+"Quiero hacer un caja con esta pieza rosada, pero mejor no."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"See, that pink piece would have broken my combo!\n"
+"\n"
+"I'll wait for the next one."
+msgstr ""
+"¿Ves? Esa pieza rosada habría roto mi combo.\n"
+"\n"
+"Voy a esperar a la siguiente."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "...Oh! Customers!\n"
 "\n"
@@ -16403,6 +16491,17 @@ msgstr ""
 "Intenta conseguir ¥120 con un combo grande.\n"
 "\n"
 "Hacer primero algunas cajas podría ayudar."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"This one's really tricky!\n"
+"\n"
+"Let me show you one way, and then you can try again."
+msgstr ""
+"¡Esta es realmente difícil!\n"
+"\n"
+"Déjame mostrarte una forma, y luego puedes intentarlo de nuevo."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "Oops! ...You needed to clear a line with that last piece."
@@ -16491,6 +16590,27 @@ msgstr ""
 "paso."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Just a few more lines..."
+msgstr ""
+"Solo unas líneas más..."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"Phew, all done!\n"
+"\n"
+"If this seems overwhelming, don't worry.\n"
+"\n"
+"You can get good scores without combos too."
+msgstr ""
+"¡Uf, todo listo!\n"
+"\n"
+"Si esto parece demasiado, no te preocupes.\n"
+"\n"
+"También puedes obtener buenos puntajes sin combos."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr "¡Ay! Todavía puedo hacer la caja de torta, pero mi combo ya se rompió."
 
@@ -16503,6 +16623,21 @@ msgstr ""
 "¡Listo, lo hice!\n"
 "\n"
 "Fue algo complicado."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "There, we got there eventually. Now what..."
+msgstr ""
+"Listo, al final lo logramos. Ahora, ¿qué sigue...?"
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"Ah-haha! Sometimes this is difficult, even for me!\n"
+"\n"
+"Is it really okay to call this a tutorial?"
+msgstr ""
+"¡Ah-jaja! A veces esto es difícil, incluso para mí.\n"
+"\n"
+"¿Está bien llamarle a esto un tutorial?"
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
