@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=20]
 [ext_resource path="res://src/main/puzzle/TutorialKeybindsLabel.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/puzzle/tutorial-hint.gd" type="Script" id=22]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/puzzle/line-inserter.gd" type="Script" id=25]
 [ext_resource path="res://src/main/puzzle/Pickup.tscn" type="PackedScene" id=26]
@@ -227,6 +228,13 @@ script = ExtResource( 5 )
 LeafPoofScene = ExtResource( 23 )
 puzzle_tile_map_path = NodePath("../TileMap")
 
+[node name="TutorialHint" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_right = 324.0
+margin_bottom = 544.0
+rect_clip_content = true
+script = ExtResource( 22 )
+
 [node name="ShadowTexture" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.313726 )
 anchor_right = 1.0
@@ -242,6 +250,7 @@ texture = SubResource( 14 )
 flip_v = true
 
 [node name="TutorialKeybindsLabel" parent="." instance=ExtResource( 21 )]
+modulate = Color( 1, 1, 1, 0.392157 )
 
 [node name="ComboTracker" type="Node" parent="."]
 script = ExtResource( 61 )

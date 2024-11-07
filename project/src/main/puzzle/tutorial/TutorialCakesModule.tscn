@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-cakes-module.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/SkillTallyItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/puzzle/tutorial/HintTileMapLtt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/puzzle/tutorial/HintTileMapPuv.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/puzzle/tutorial/HintTileMapPqv.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/puzzle/tutorial/HintTileMapJlo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/puzzle/tutorial/HintTileMapJjoQuv.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/puzzle/tutorial/HintTileMapJttLlo.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
@@ -29,6 +35,12 @@ corner_radius_bottom_left = 8
 
 [node name="TutorialCakesModule" type="Node"]
 script = ExtResource( 1 )
+HintTileMapJjoQuvScene = ExtResource( 7 )
+HintTileMapJloScene = ExtResource( 6 )
+HintTileMapJttLloScene = ExtResource( 8 )
+HintTileMapLttScene = ExtResource( 3 )
+HintTileMapPqvScene = ExtResource( 5 )
+HintTileMapPuvScene = ExtResource( 4 )
 
 [node name="SkillTallyItems" type="Node" parent="."]
 

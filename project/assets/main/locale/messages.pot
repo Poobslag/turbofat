@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-06 12:28-0500\n"
+"POT-Creation-Date: 2024-11-07 10:23-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14279,6 +14279,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
+"The white piece goes in the middle, and the brown piece goes on top.\n"
+"\n"
+"Like a sandwich!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid ""
 "Give it another try.\n"
 "\n"
 "See if you can make a rectangle."
@@ -14289,6 +14296,13 @@ msgid ""
 "Let's start by making gelatin.\n"
 "\n"
 "Can you make a rectangle with these pieces?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid ""
+"Now I feel bad for tricking you!\n"
+"\n"
+"...You only need those two T-Blocks for this one."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
@@ -14334,6 +14348,10 @@ msgid "Let's see if you can figure out these last four recipes without my help."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid "Start with the white piece, and stack the big brown piece on top of it."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "How about some cheesecake?\n"
 "\n"
@@ -14341,10 +14359,21 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid "Start with the U-Block, and tuck the pink piece inside of it."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "Let's try some strawberry cake.\n"
 "\n"
 "Can you make a cake box with these pieces?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid ""
+"The O-Block goes with the two pink pieces!\n"
+"\n"
+"Maybe that will help."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
