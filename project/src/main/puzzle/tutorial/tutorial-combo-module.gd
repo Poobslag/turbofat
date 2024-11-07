@@ -7,6 +7,7 @@ const COMBO_DIAGRAM := preload("res://assets/main/puzzle/tutorial/combo-diagram.
 
 ## how many cakes the player has made during the current tutorial section
 var _cakes_built := 0
+var _failure_count := 0
 
 ## whether the player ended the combo with their most recent piece
 var _did_end_combo := false
@@ -22,6 +23,11 @@ var _showed_end_of_level_message := false
 ## key: (String) level id
 ## value: (bool) true
 var _prepared_levels: Dictionary
+
+## set of level IDs which the player has succeeded at during this tutorial
+## key: (String) level id
+## value: (bool) true
+var _failed_levels: Dictionary
 
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
@@ -42,13 +48,15 @@ func _ready() -> void:
 
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
-	var failed_section := _prepared_levels.has(CurrentLevel.settings.id)
+
+	_cakes_built = 0
+	PuzzleState.level_performance.pieces = 0
 	
 	match CurrentLevel.settings.id:
 		"tutorial/combo_0":
-			_set_combo_state(0, 5)
+			_set_combo_state(5, 10)
 			hud.skill_tally_item("Combo").visible = true
-			if failed_section:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to clear five lines without stopping."
 						+ "\n\nDropping one piece off to the side won't break your combo."))
 			else:
@@ -59,29 +67,26 @@ func prepare_tutorial_level() -> void:
 		"tutorial/combo_2":
 			_set_combo_state(5, 12)
 			hud.skill_tally_item("Combo").visible = true
-			if failed_section:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to extend this combo by seven lines."
 						+ "\n\nMake boxes to keep your combo from breaking."))
 			else:
 				hud.set_message(tr("Let's use boxes to extend a combo!"
 						+ "\n\nTry to clear seven more lines without letting your combo break."))
 		"tutorial/combo_3":
-			PuzzleState.level_performance.pieces = 0
 			_set_combo_state(5)
 			hud.set_message(tr("You can make a cake box with three pieces. Let me show you."))
 			hud.enqueue_message(tr("Unfortunately, it's difficult to continue a combo with cake boxes."
 					+ "\n\nThe first two pieces will break the combo."))
 		"tutorial/combo_4":
-			PuzzleState.level_performance.pieces = 0
 			_set_combo_state(5)
 			hud.set_message(tr("With a little foresight, you can clear some lines while building a cake box."
 					+ "\n\nThen your combo won't break."))
 		"tutorial/combo_5":
 			_set_combo_state(5, 12)
-			_cakes_built = 0
 			hud.skill_tally_item("CakeBox").reset()
 			hud.skill_tally_item("CakeBox").visible = true
-			if failed_section:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to make two cake boxes."
 						+ "\n\nClear lines to keep your combo from breaking."))
 			else:
@@ -141,8 +146,11 @@ func _advance_level() -> void:
 	]
 	var new_level_id: String
 	if PuzzleState.level_performance.lost:
+		_failed_levels[CurrentLevel.settings.id] = true
 		new_level_id = CurrentLevel.settings.id
+		_failure_count += 1
 	else:
+		_failure_count = 1 if _failed_levels.has(new_level_id) else 0
 		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
 	change_level(new_level_id, delay_between_levels)
 
@@ -247,6 +255,8 @@ func _on_PuzzleState_after_game_prepared() -> void:
 	hud.skill_tally_item("CakeBox").visible = false
 	
 	_prepared_levels.clear()
+	_failed_levels.clear()
+	_failure_count = 0
 	_cakes_built = 0
 	_show_diagram_count = 0
 	
