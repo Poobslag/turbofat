@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-07 13:31-0500\n"
+"POT-Creation-Date: 2024-11-08 10:00-0500\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14791,13 +14791,6 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Can you make a cake box with this piece?\n"
-"\n"
-"It doesn't quite fit, does it?"
-msgstr ""
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
 "Now you try!\n"
 "\n"
 "Move the piece into position and rotate it."
@@ -14805,9 +14798,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"Can you make a cake box with this piece?\n"
 "\n"
-"Move the piece into position and rotate it."
+"It doesn't quite fit, does it?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14823,6 +14816,13 @@ msgid ""
 "Customers won't tip extra for spin moves or anything like that!\n"
 "\n"
 "...But they're useful sometimes."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"Try again!\n"
+"\n"
+"Move the piece into position and rotate it."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14852,9 +14852,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"How about like this?\n"
+"Try again!\n"
 "\n"
-"Can you find a way to spin here?"
+"Press both rotate buttons to flip the piece into place."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14863,9 +14863,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"How about like this?\n"
 "\n"
-"Press both rotate buttons to flip the piece into place."
+"Can you find a way to spin here?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14889,16 +14889,16 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Here's something a little more sensible.\n"
+"Try again!\n"
 "\n"
-"Can you find a way to spin here?"
+"Don't forget you can use squish moves, too."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"Here's something a little more sensible.\n"
 "\n"
-"Don't forget you can use squish moves, too."
+"Can you find a way to spin here?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd

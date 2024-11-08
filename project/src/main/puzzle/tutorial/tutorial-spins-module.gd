@@ -57,15 +57,12 @@ func prepare_tutorial_level() -> void:
 	match CurrentLevel.settings.id:
 		"tutorial/spins_0":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				# first attempt
-				hud.set_message(tr("Can you make a cake box with this piece?\n\nIt doesn't quite fit, does it?"))
-			elif _failure_count == 1:
+			if _failure_count >= 1:
 				# second attempt, following an explanation
 				hud.set_message(tr("Now you try!\n\nMove the piece into position and rotate it."))
 			else:
-				# third, fourth attempt, they failed following the explanation
-				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+				# first attempt
+				hud.set_message(tr("Can you make a cake box with this piece?\n\nIt doesn't quite fit, does it?"))
 		"tutorial/spins_0_example":
 			hud.set_message(tr("A spin move is where you rotate a piece, locking it in place like this."))
 			if _failed_levels.has("tutorial/spins_0"):
@@ -74,40 +71,39 @@ func prepare_tutorial_level() -> void:
 					+ "\n\n...But they're useful sometimes."))
 		"tutorial/spins_1":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				hud.set_message(tr("Let's try another spin move.\n\nSee if you can make a box here."))
-			else:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+			else:
+				hud.set_message(tr("Let's try another spin move.\n\nSee if you can make a box here."))
 		"tutorial/spins_1_fixed":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
+			if _failure_count >= 1:
+				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+			else:
 				hud.set_message(tr("Here, now your squish move won't work."
 						+ "\n\nSee if you can do it by spinning this time."))
-			else:
-				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 		"tutorial/spins_2":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				hud.set_message(tr("How about with a U-Block, can you spin here?"))
-			else:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+			else:
+				hud.set_message(tr("How about with a U-Block, can you spin here?"))
 		"tutorial/spins_3":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				hud.set_message(tr("Oh! It's getting a little cramped.\n\nCan you still spin here?"))
-			else:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+			else:
+				hud.set_message(tr("Oh! It's getting a little cramped.\n\nCan you still spin here?"))
 		"tutorial/spins_4":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				# first attempt
-				hud.set_message(tr("How about like this?\n\nCan you find a way to spin here?"))
-			elif _failure_count == 1:
+			if _failure_count >= 2:
+				# third, fourth attempt, they failed following the explanation
+				hud.set_message(tr("Try again!\n\nPress both rotate buttons to flip the piece into place."))
+			elif _failure_count >= 1:
 				# second attempt, following an explanation
 				hud.set_message(tr("Can you figure out how to flip this piece into place to make a box?"))
 			else:
-				# third, fourth attempt, they failed following the explanation
-				hud.set_message(tr("Try again!\n\nPress both rotate buttons to flip the piece into place."))
+				hud.set_message(tr("How about like this?\n\nCan you find a way to spin here?"))
 		"tutorial/spins_4_example":
 			_prepare_box_tally_item()
 			hud.set_message(tr("If you press both rotate buttons, the piece flips!"))
@@ -115,24 +111,22 @@ func prepare_tutorial_level() -> void:
 					+ "\n\n...But it's necessary for some spin moves, too."))
 		"tutorial/spins_5":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				hud.set_message(tr("How about this T-Block? Can you spin this one too?"))
-			else:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+			else:
+				hud.set_message(tr("How about this T-Block? Can you spin this one too?"))
 		"tutorial/spins_6":
 			_prepare_box_tally_item()
 			hud.set_message(tr("What do you think about this? Can you spin this piece in?"))
 		"tutorial/spins_7":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				hud.set_message(tr("Here's something a little more sensible.\n\nCan you find a way to spin here?"))
-			else:
+			if _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nDon't forget you can use squish moves, too."))
+			else:
+				hud.set_message(tr("Here's something a little more sensible.\n\nCan you find a way to spin here?"))
 		"tutorial/spins_secret":
 			_prepare_box_tally_item()
-			if _failure_count == 0:
-				hud.set_message(tr("Okay there Flippy Longstocking, why don't you try this one?"))
-			else:
+			if _failure_count >= 1:
 				match _failure_count % 7:
 					1, 3, 6:
 						hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
@@ -140,6 +134,8 @@ func prepare_tutorial_level() -> void:
 						hud.set_message(tr("Try again!\n\nDon't forget you can use squish moves, too."))
 					5:
 						hud.set_message(tr("Try again!\n\nPress both rotate buttons to flip the piece into place."))
+			else:
+				hud.set_message(tr("Okay there Flippy Longstocking, why don't you try this one?"))
 		"tutorial/spins_8":
 			dismiss_sensei([tr("Well done!\n\nTry showing off your new spin moves in front of these customers.")])
 	
@@ -377,7 +373,7 @@ func _advance_level() -> void:
 		if not new_level_id:
 			# by default, progress to the next tutorial section
 			new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
-	
+
 	change_level(new_level_id, delay_between_levels)
 
 
