@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/puzzle/tutorial/hint-tile-map.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/piece/PuzzleCornerMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/puzzle/puzzle-tile-set-diagram.tres" type="TileSet" id=3]
+[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[node name="HintTileMapLtt" type="TileMap"]
+material = SubResource( 15 )
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 917504, 0, 131080, 917505, 0, 131086, 917506, 0, 131076, 983040, 0, 2, 983041, 0, 131073, 983042, 0, 65538, 1048576, 0, 3, 1048577, 0, 65544, 1048578, 0, 65543, 1114112, 0, 9, 1114113, 0, 4, 1114114, 0, 65537 )
+script = ExtResource( 1 )
+
+[node name="CornerMap" parent="." instance=ExtResource( 2 )]
+material = SubResource( 16 )
+tile_set = ExtResource( 3 )

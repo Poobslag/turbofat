@@ -34,7 +34,7 @@ func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
 	if lost:
 		career_data.hours_passed = Careers.HOURS_PER_CAREER_DAY
 	else:
-		career_data.hours_passed += 1
+		career_data.hours_passed = int(clamp(career_data.hours_passed + 1, 0, Careers.HOURS_PER_CAREER_DAY))
 	
 	if career_data.is_boss_level():
 		var region: CareerRegion = career_data.current_region()

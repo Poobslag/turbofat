@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-18 09:44-0400\n"
+"POT-Creation-Date: 2024-11-08 10:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13196,6 +13196,7 @@ msgid "15:03"
 msgstr ""
 
 #: project/src/main/career/ui/CareerWin.tscn
+#: project/src/main/career/ui/ProgressBoard.tscn
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Ok"
 msgstr ""
@@ -13214,6 +13215,51 @@ msgstr ""
 
 #: project/src/main/career/ui/ProgressBoard.tscn
 msgid "10:15 am"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid ""
+"In Adventure mode, try to reach the end before\n"
+"running out of time or losing all your lives!"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid "REACH THE GOAL"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid ""
+"The better you\n"
+"play, the faster\n"
+"you move"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid "WATCH THE CLOCK"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid ""
+"You only have\n"
+"six levels to reach\n"
+"the end"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid "BE CAREFUL"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid ""
+"If you give up or\n"
+"run out of lives, you'll\n"
+"have to start again"
+msgstr ""
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+msgid ""
+"i believe\n"
+"in you"
 msgstr ""
 
 #: project/src/main/career/ui/chalkboard-title.gd
@@ -14233,6 +14279,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
+"The white piece goes in the middle, and the brown piece goes on top.\n"
+"\n"
+"Like a sandwich!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid ""
 "Give it another try.\n"
 "\n"
 "See if you can make a rectangle."
@@ -14243,6 +14296,13 @@ msgid ""
 "Let's start by making gelatin.\n"
 "\n"
 "Can you make a rectangle with these pieces?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid ""
+"Now I feel bad for tricking you!\n"
+"\n"
+"...You only need those two T-Blocks for this one."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
@@ -14288,6 +14348,10 @@ msgid "Let's see if you can figure out these last four recipes without my help."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid "Start with the white piece, and stack the big brown piece on top of it."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "How about some cheesecake?\n"
 "\n"
@@ -14295,10 +14359,21 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid "Start with the U-Block, and tuck the pink piece inside of it."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "Let's try some strawberry cake.\n"
 "\n"
 "Can you make a cake box with these pieces?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+msgid ""
+"The O-Block goes with the two pink pieces!\n"
+"\n"
+"Maybe that will help."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
@@ -14437,6 +14512,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
+"It's kind of hard to explain, so maybe I should just show you.\n"
+"\n"
+"Give it one last try!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
 "Try again! Try to clear five lines without stopping.\n"
 "\n"
 "Dropping one piece off to the side won't break your combo."
@@ -14451,6 +14533,19 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
+"With a big tunnel like this, you can throw your pieces into it and build "
+"up a combo that way."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"It's okay if they don't fit perfectly, or if they leave little holes!\n"
+"\n"
+"Don't worry about that."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
 "Try again! Try to extend this combo by seven lines.\n"
 "\n"
 "Make boxes to keep your combo from breaking."
@@ -14461,6 +14556,29 @@ msgid ""
 "Let's use boxes to extend a combo!\n"
 "\n"
 "Try to clear seven more lines without letting your combo break."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"To keep your combo, you need to alternate between clearing lines and "
+"building boxes."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"There is no trick to it, it just takes practice.\n"
+"\n"
+"...Clear a line, build a box.\n"
+"\n"
+"Again and again."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Build a box, and clear another line."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Clear a few lines, and build another box."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
@@ -14497,12 +14615,34 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Hmmmmmm, let's see if I can do it again..."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "I want to make a box with this pink piece, but I'd better not."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"See, that pink piece would have broken my combo!\n"
+"\n"
+"I'll wait for the next one."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "...Oh! Customers!\n"
 "\n"
 "Try to get ¥120 in one big combo.\n"
 "\n"
 "It might help to make some boxes first."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"This one's really tricky!\n"
+"\n"
+"Let me show you one way, and then you can try again."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
@@ -14568,6 +14708,19 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "Just a few more lines..."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"Phew, all done!\n"
+"\n"
+"If this seems overwhelming, don't worry.\n"
+"\n"
+"You can get good scores without combos too."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr ""
 
@@ -14576,6 +14729,17 @@ msgid ""
 "There, I did it!\n"
 "\n"
 "That was tricky."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "There, we got there eventually. Now what..."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"Ah-haha! Sometimes this is difficult, even for me!\n"
+"\n"
+"Is it really okay to call this a tutorial?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
@@ -14630,9 +14794,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Can you make a cake box with this piece?\n"
+"Try again!\n"
 "\n"
-"It doesn't quite fit, does it?"
+"Move the piece into position and rotate it."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14644,9 +14808,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"Can you make a cake box with this piece?\n"
 "\n"
-"Move the piece into position and rotate it."
+"It doesn't quite fit, does it?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14666,9 +14830,30 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
+"This one's hard to figure out.\n"
+"\n"
+"Give it one last try! Then I'll show you."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
 "Let's try another spin move.\n"
 "\n"
 "See if you can make a box here."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"So if you rotate it left from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"Sorry, I know it doesn't make much sense!\n"
+"\n"
+"...It's just how it works."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14684,6 +14869,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
+"So if you rotate it right from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
 "Oh! It's getting a little cramped.\n"
 "\n"
 "Can you still spin here?"
@@ -14691,20 +14883,16 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"How about like this?\n"
+"Try again!\n"
 "\n"
-"Can you find a way to spin here?"
-msgstr ""
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid "Can you figure out how to flip this piece into place to make a box?"
+"Press both rotate buttons to flip the piece into place."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"How about like this?\n"
 "\n"
-"Press both rotate buttons to flip the piece into place."
+"Can you find a way to spin here?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14728,6 +14916,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
+"Try again!\n"
+"\n"
+"Don't forget you can use squish moves, too."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
 "Here's something a little more sensible.\n"
 "\n"
 "Can you find a way to spin here?"
@@ -14735,9 +14930,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"So if you rotate it right from here, you can squish it in.\n"
 "\n"
-"Don't forget you can use squish moves, too."
+"Pop!"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14782,6 +14977,10 @@ msgid "Good job! Although, it's probably better to squish here."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid "This one's really tricky! Let me show you."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Oops that's not right. This one's a little tricky..."
 msgstr ""
 
@@ -14816,7 +15015,7 @@ msgstr ""
 msgid ""
 "Hmm, that's not quite it. Try pressing both rotate buttons.\n"
 "\n"
-"You may need to squish first, too."
+"You need to squish first, too."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14920,13 +15119,6 @@ msgid ""
 "Oh, don't just mash random buttons!\n"
 "\n"
 "You're not Eddy Gordo..."
-msgstr ""
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
-"Hmm, that's not quite it.\n"
-"\n"
-"Try pressing both rotate buttons. You may need to squish first, too."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -15637,6 +15829,14 @@ msgid "Language"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Re-enable Tips"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Re-enabled!"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Save Slot"
 msgstr ""
 
@@ -15672,6 +15872,13 @@ msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Change save slot?"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+msgid ""
+"Restarting or giving up will end the current day.\n"
+"\n"
+"Do you really give up?"
 msgstr ""
 
 #: project/src/main/ui/settings/VolumeSetting.tscn
@@ -15745,6 +15952,10 @@ msgstr ""
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
 msgid "Main Menu"
+msgstr ""
+
+#: project/src/main/ui/settings/settings-menu-bottom.gd
+msgid "Restart"
 msgstr ""
 
 #: project/src/main/ui/settings/settings-tab-container.gd

@@ -25,6 +25,12 @@ const SAVE_SLOT_PREFIXES := {
 ## Current save slot for saving/loading progress
 var save_slot: int = SaveSlot.SLOT_A setget set_save_slot
 
+## 'true' if the player should be shown the intro screen when starting Adventure mode
+var show_adventure_mode_intro: bool = true
+
+## 'true' if the player should be shown the confirmation when restarting/giving up in Adventure mode
+var show_give_up_confirmation: bool = true
+
 ## Current locale. This is redundant with TranslationServer.locale, but exposing a setter lets us provide a signal
 ## to notify when the locale changes.
 var locale := "en" setget set_locale
@@ -64,11 +70,15 @@ func to_json_dict() -> Dictionary:
 	return {
 		"locale": locale,
 		"save_slot": save_slot,
+		"show_adventure_mode_intro": show_adventure_mode_intro,
+		"show_give_up_confirmation": show_give_up_confirmation,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
 	set_save_slot(int(json.get("save_slot", SaveSlot.SLOT_A)))
+	show_adventure_mode_intro = bool(json.get("show_adventure_mode_intro", true))
+	show_give_up_confirmation = bool(json.get("show_give_up_confirmation", true))
 	
 	var new_locale: String
 	if json.has("locale"):

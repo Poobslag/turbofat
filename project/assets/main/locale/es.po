@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-10-18 09:44-0400\n"
+"POT-Creation-Date: 2024-11-08 10:19-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14784,6 +14784,7 @@ msgid "15:03"
 msgstr "15:03"
 
 #: project/src/main/career/ui/CareerWin.tscn
+#: project/src/main/career/ui/ProgressBoard.tscn
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Ok"
 msgstr "Ok"
@@ -14803,6 +14804,72 @@ msgstr "META"
 #: project/src/main/career/ui/ProgressBoard.tscn
 msgid "10:15 am"
 msgstr "10:15 am"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid ""
+"In Adventure mode, try to reach the end before\n"
+"running out of time or losing all your lives!"
+msgstr ""
+"En el modo Aventura, intenta llegar al final antes\n"
+"de quedarte sin tiempo o perder todas tus vidas!"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid "REACH THE GOAL"
+msgstr "LLEGA A LA META"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid ""
+"The better you\n"
+"play, the faster\n"
+"you move"
+msgstr ""
+"Cuanto mejor\n"
+"juegues, más\n"
+"rápido avanzas"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid "WATCH THE CLOCK"
+msgstr "MIRA EL RELOJ"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid ""
+"You only have\n"
+"six levels to reach\n"
+"the end"
+msgstr ""
+"Solo tienes\n"
+"seis niveles para\n"
+"llegar al final"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid "BE CAREFUL"
+msgstr "TEN CUIDADO"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid ""
+"If you give up or\n"
+"run out of lives, you'll\n"
+"have to start again"
+msgstr ""
+"Si te rindes o\n"
+"pierdes todas las vidas,\n"
+"tendrás que empezar de nuevo"
+
+#: project/src/main/career/ui/ProgressBoard.tscn
+#, needs-review
+msgid ""
+"i believe\n"
+"in you"
+msgstr ""
+"creo\n"
+"en ti"
 
 #: project/src/main/career/ui/chalkboard-title.gd
 msgid "CONGRATULATIONS"
@@ -15230,7 +15297,7 @@ msgid ""
 "0 frame drops\n"
 "0 step drops"
 msgstr ""
-"0 caídas de cuadros\n"
+"0 caídas de cajas\n"
 "0 caídas de pasos"
 
 #: project/src/main/puzzle/PuzzleMessage.tscn
@@ -15916,6 +15983,17 @@ msgstr ""
 "¡Te podría mostrar, pero quiero que lo intentes!"
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid ""
+"The white piece goes in the middle, and the brown piece goes on top.\n"
+"\n"
+"Like a sandwich!"
+msgstr ""
+"La pieza blanca va en el medio, y la pieza marrón va arriba.\n"
+"\n"
+"¡Como un sándwich!"
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "Give it another try.\n"
 "\n"
@@ -15934,6 +16012,17 @@ msgstr ""
 "Comencemos haciendo gelatina.\n"
 "\n"
 "¿Puedes hacer un rectángulo con estas piezas?"
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid ""
+"Now I feel bad for tricking you!\n"
+"\n"
+"...You only need those two T-Blocks for this one."
+msgstr ""
+"¡Ahora me siento mal por engañarte!\n"
+"\n"
+"...Solo necesitas esos dos bloques en T para este."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
@@ -15995,6 +16084,11 @@ msgid ""
 msgstr "Veamos si puedes descubrir las últimas cuatro recetas sin mi ayuda."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid "Start with the white piece, and stack the big brown piece on top of it."
+msgstr "Comienza con la pieza blanca, y apila la pieza marrón grande encima."
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "How about some cheesecake?\n"
 "\n"
@@ -16005,6 +16099,11 @@ msgstr ""
 "Esta vez vas a necesitar un rectángulo más grande."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid "Start with the U-Block, and tuck the pink piece inside of it."
+msgstr "Empieza con el bloque en U, y coloca la pieza rosada dentro."
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
 "Let's try some strawberry cake.\n"
 "\n"
@@ -16013,6 +16112,17 @@ msgstr ""
 "Intentemos algo de torta de frutilla\n"
 "\n"
 "¿Puedes hacer una caja de torta con estas piezas?"
+
+#: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
+#, needs-review
+msgid ""
+"The O-Block goes with the two pink pieces!\n"
+"\n"
+"Maybe that will help."
+msgstr ""
+"¡El bloque en O va con las dos piezas rosadas!\n"
+"\n"
+"Tal vez eso ayude."
 
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd
 msgid ""
@@ -16193,6 +16303,17 @@ msgstr ""
 "Los combos son fáciles, ¡puede que hasta los hayas hecho por accidente!"
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"It's kind of hard to explain, so maybe I should just show you.\n"
+"\n"
+"Give it one last try!"
+msgstr ""
+"Es un poco difícil de explicar, así que mejor te lo muestro.\n"
+"\n"
+"¡Inténtalo una vez más!"
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "Try again! Try to clear five lines without stopping.\n"
 "\n"
@@ -16213,6 +16334,26 @@ msgstr ""
 "Bueno, un pequeño descanso también está bien."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"With a big tunnel like this, you can throw your pieces into it and build up "
+"a combo that way."
+msgstr ""
+"Con un túnel grande como este, puedes lanzar tus piezas dentro y formar un "
+"combo de esa forma."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"It's okay if they don't fit perfectly, or if they leave little holes!\n"
+"\n"
+"Don't worry about that."
+msgstr ""
+"Está bien si no encajan perfectamente, o si dejan pequeños huecos.\n"
+"\n"
+"No te preocupes por eso."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "Try again! Try to extend this combo by seven lines.\n"
 "\n"
@@ -16231,6 +16372,40 @@ msgstr ""
 "¡Vamos a usar cajas para extender el combo!\n"
 "\n"
 "Intenta limpiar siete líneas más sin romper el combo."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"To keep your combo, you need to alternate between clearing lines and "
+"building boxes."
+msgstr ""
+"Para mantener tu combo, necesitas alternar entre limpiar líneas y formar "
+"cajas."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"There is no trick to it, it just takes practice.\n"
+"\n"
+"...Clear a line, build a box.\n"
+"\n"
+"Again and again."
+msgstr ""
+"No hay truco, solo necesitas práctica.\n"
+"\n"
+"...Limpia una línea, forma un caja.\n"
+"\n"
+"Una y otra vez."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Build a box, and clear another line."
+msgstr "Forma un caja, y limpia otra línea."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Clear a few lines, and build another box."
+msgstr "Limpia unas líneas, y forma otro caja."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "You can make a cake box with three pieces. Let me show you."
@@ -16279,6 +16454,27 @@ msgstr ""
 "Haz dos cajas de torta, pero no rompas el combo."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Hmmmmmm, let's see if I can do it again..."
+msgstr "Hmmmmmm, veamos si puedo hacerlo otra vez..."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "I want to make a box with this pink piece, but I'd better not."
+msgstr "Quiero hacer un caja con esta pieza rosada, pero mejor no."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"See, that pink piece would have broken my combo!\n"
+"\n"
+"I'll wait for the next one."
+msgstr ""
+"¿Ves? Esa pieza rosada habría roto mi combo.\n"
+"\n"
+"Voy a esperar a la siguiente."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
 "...Oh! Customers!\n"
 "\n"
@@ -16291,6 +16487,17 @@ msgstr ""
 "Intenta conseguir ¥120 con un combo grande.\n"
 "\n"
 "Hacer primero algunas cajas podría ayudar."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"This one's really tricky!\n"
+"\n"
+"Let me show you one way, and then you can try again."
+msgstr ""
+"¡Esta es realmente difícil!\n"
+"\n"
+"Déjame mostrarte una forma, y luego puedes intentarlo de nuevo."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "Oops! ...You needed to clear a line with that last piece."
@@ -16379,6 +16586,26 @@ msgstr ""
 "paso."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid "Just a few more lines..."
+msgstr "Solo unas líneas más..."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+#, needs-review
+msgid ""
+"Phew, all done!\n"
+"\n"
+"If this seems overwhelming, don't worry.\n"
+"\n"
+"You can get good scores without combos too."
+msgstr ""
+"¡Uf, todo listo!\n"
+"\n"
+"Si esto parece demasiado, no te preocupes.\n"
+"\n"
+"También puedes obtener buenos puntajes sin combos."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr "¡Ay! Todavía puedo hacer la caja de torta, pero mi combo ya se rompió."
 
@@ -16391,6 +16618,20 @@ msgstr ""
 "¡Listo, lo hice!\n"
 "\n"
 "Fue algo complicado."
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid "There, we got there eventually. Now what..."
+msgstr "Listo, al final lo logramos. Ahora, ¿qué sigue...?"
+
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
+msgid ""
+"Ah-haha! Sometimes this is difficult, even for me!\n"
+"\n"
+"Is it really okay to call this a tutorial?"
+msgstr ""
+"¡Ah-jaja! A veces esto es difícil, incluso para mí.\n"
+"\n"
+"¿Está bien llamarle a esto un tutorial?"
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
@@ -16452,14 +16693,15 @@ msgstr ""
 "Tal vez ya sepas como se usan, pero voy a intentar enseñarte algo nuevo."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
 msgid ""
-"Can you make a cake box with this piece?\n"
+"Try again!\n"
 "\n"
-"It doesn't quite fit, does it?"
+"Move the piece into position and rotate it."
 msgstr ""
-"¿Puedes hacer una caja de torta con esta pieza?\n"
+"¡Intenta otra vez!\n"
 "\n"
-"No encaja del todo, ¿no?"
+"Mueve la pieza en posición y gírala."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16473,13 +16715,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"Can you make a cake box with this piece?\n"
 "\n"
-"Move the piece into position and rotate it."
+"It doesn't quite fit, does it?"
 msgstr ""
-"¡Intenta otra vez!\n"
+"¿Puedes hacer una caja de torta con esta pieza?\n"
 "\n"
-"Mueve la pieza en posición y gírala."
+"No encaja del todo, ¿no?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "A spin move is where you rotate a piece, locking it in place like this."
@@ -16502,6 +16744,17 @@ msgstr ""
 "...Pero a veces son útiles."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"This one's hard to figure out.\n"
+"\n"
+"Give it one last try! Then I'll show you."
+msgstr ""
+"Este es difícil de resolver.\n"
+"\n"
+"¡Dale un último intento! Luego te lo mostraré."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
 "Let's try another spin move.\n"
 "\n"
@@ -16510,6 +16763,28 @@ msgstr ""
 "Vamos a intentar otro movimiento de giro.\n"
 "\n"
 "Veamos si puedes hacer una caja."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"So if you rotate it left from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+"Entonces, si lo giras hacia la izquierda desde aquí, entra mágicamente.\n"
+"\n"
+"¡Pop!"
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"Sorry, I know it doesn't make much sense!\n"
+"\n"
+"...It's just how it works."
+msgstr ""
+"Lo siento, sé que no tiene mucho sentido.\n"
+"\n"
+"...Así es como funciona."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16526,6 +16801,17 @@ msgid "How about with a U-Block, can you spin here?"
 msgstr "Y con los bloques U, ¿Puedes hacer un giro?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"So if you rotate it right from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+"Entonces, si lo giras hacia la derecha desde aquí, entra mágicamente.\n"
+"\n"
+"¡Pop!"
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
 "Oh! It's getting a little cramped.\n"
 "\n"
@@ -16537,21 +16823,6 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"How about like this?\n"
-"\n"
-"Can you find a way to spin here?"
-msgstr ""
-"¿Y qué tal ahora?\n"
-"\n"
-"¿Puedes encontrar la manera de hacer un giro?"
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid "Can you figure out how to flip this piece into place to make a box?"
-msgstr ""
-"¿Puedes encontrar la forma de dar vuelta esta pieza para hacer una caja?"
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
 "Try again!\n"
 "\n"
 "Press both rotate buttons to flip the piece into place."
@@ -16559,6 +16830,16 @@ msgstr ""
 "¡Intenta otra vez!\n"
 "\n"
 "Aprieta ambos botones de rotación para dar vuelta la pieza."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"How about like this?\n"
+"\n"
+"Can you find a way to spin here?"
+msgstr ""
+"¿Y qué tal ahora?\n"
+"\n"
+"¿Puedes encontrar la manera de hacer un giro?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "If you press both rotate buttons, the piece flips!"
@@ -16584,6 +16865,16 @@ msgstr "¿Qué piensas de esto? ¿Puedes hacerlo girar al lugar?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
+"Try again!\n"
+"\n"
+"Don't forget you can use squish moves, too."
+msgstr ""
+"¡Intenta otra vez!\n"
+"\n"
+"No te olvides que también puedes aplastar piezas."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
 "Here's something a little more sensible.\n"
 "\n"
 "Can you find a way to spin here?"
@@ -16593,14 +16884,15 @@ msgstr ""
 "¿Puedes encontrar la forma de hacer girar la pieza?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
 msgid ""
-"Try again!\n"
+"So if you rotate it right from here, you can squish it in.\n"
 "\n"
-"Don't forget you can use squish moves, too."
+"Pop!"
 msgstr ""
-"¡Intenta otra vez!\n"
+"Entonces, si lo giras a la derecha desde aquí, puedes aplastarlo.\n"
 "\n"
-"No te olvides que también puedes aplastar piezas."
+"¡Pop!"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Okay there Flippy Longstocking, why don't you try this one?"
@@ -16656,6 +16948,11 @@ msgstr ""
 "¡Buen trabajo! Aunque en este caso probablemente era mejor aplastar la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid "This one's really tricky! Let me show you."
+msgstr "¡Este es realmente complicado! Déjame mostrarte."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Oops that's not right. This one's a little tricky..."
 msgstr "Ay, no está bien. Este es un poco difícil..."
 
@@ -16690,14 +16987,15 @@ msgid "Good job! I knew you could do it."
 msgstr "¡Buen trabajo! Sabía que podrías hacerlo."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
 msgid ""
 "Hmm, that's not quite it. Try pressing both rotate buttons.\n"
 "\n"
-"You may need to squish first, too."
+"You need to squish first, too."
 msgstr ""
 "Hmm, no está bien. Intenta apretar ambos botones de rotación.\n"
 "\n"
-"Tal vez también necesites aplastar la pieza."
+"Necesitas también aplastar la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Hmph, I'll bet you think you're pretty clever..."
@@ -16829,17 +17127,6 @@ msgstr ""
 "Oh, ¡No solo aprietes botones a lo loco!\n"
 "\n"
 "No eres Eddy Gordo..."
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
-"Hmm, that's not quite it.\n"
-"\n"
-"Try pressing both rotate buttons. You may need to squish first, too."
-msgstr ""
-"Hmmm, no del todo.\n"
-"\n"
-"Intenta apretar ambos botones de rotación. También puede que necesites "
-"aplastar la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -17626,6 +17913,16 @@ msgid "Language"
 msgstr "Lenguaje"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid "Re-enable Tips"
+msgstr "Volver a activar consejos"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid "Re-enabled!"
+msgstr "¡Reactivados!"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Save Slot"
 msgstr "Espacio de Guardado"
 
@@ -17662,6 +17959,17 @@ msgstr "Confirmar"
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Change save slot?"
 msgstr "¿Cambiar espacio de guardado?"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid ""
+"Restarting or giving up will end the current day.\n"
+"\n"
+"Do you really give up?"
+msgstr ""
+"Reiniciar o rendirse terminará el día actual.\n"
+"\n"
+"¿De verdad quieres rendirte?"
 
 #: project/src/main/ui/settings/VolumeSetting.tscn
 msgid "Music"
@@ -17735,6 +18043,11 @@ msgstr "Rapidisisísimo"
 #: project/src/main/ui/settings/settings-menu-bottom.gd
 msgid "Main Menu"
 msgstr "Menú Principal"
+
+#: project/src/main/ui/settings/settings-menu-bottom.gd
+#, needs-review
+msgid "Restart"
+msgstr "Reiniciar"
 
 #: project/src/main/ui/settings/settings-tab-container.gd
 msgid "Sound + Graphics"

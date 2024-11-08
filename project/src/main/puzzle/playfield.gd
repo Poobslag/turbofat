@@ -57,6 +57,7 @@ onready var line_clearer: LineClearer = $LineClearer
 onready var _bg_glob_viewports: GoopViewports = $BgGlobViewports
 onready var _box_builder: BoxBuilder = $BoxBuilder
 onready var _combo_tracker: ComboTracker = $ComboTracker
+onready var _tutorial_hint: TutorialHint = $TutorialHint
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -79,6 +80,17 @@ func _physics_process(delta: float) -> void:
 			line_clearer.set_physics_process(true)
 	elif _remaining_misc_delay_frames > 0:
 		_remaining_misc_delay_frames -= 1
+
+
+## Adds a new hint diagram to the playfield.
+##
+## These hints are currently always TileMaps, but the framework potentially allows for TextureRects or other hint
+## diagrams as well.
+##
+## Parameters:
+## 	'hint_scene': The hint diagram scene to instantiate and add behind the playfield.
+func add_hint(hint_scene: PackedScene) -> void:
+	_tutorial_hint.add_hint(hint_scene)
 
 
 func is_clearing_lines() -> bool:

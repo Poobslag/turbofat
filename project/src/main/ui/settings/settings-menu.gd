@@ -6,17 +6,20 @@ extends CanvasLayer
 
 signal show
 signal hide
+signal give_up_confirmed
 signal quit_pressed
 signal other_quit_pressed
 
 enum QuitType {
-	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, QUIT_TO_DESKTOP
+	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, RESTART_OR_GIVE_UP, QUIT_TO_DESKTOP
 }
 
 const QUIT := QuitType.QUIT
 const SAVE_AND_QUIT := QuitType.SAVE_AND_QUIT
 const GIVE_UP := QuitType.GIVE_UP
 const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
+const RESTART_OR_GIVE_UP := QuitType.RESTART_OR_GIVE_UP
+const QUIT_TO_DESKTOP := QuitType.QUIT_TO_DESKTOP
 
 ## Text on the menu's quit button
 export (QuitType) var quit_type: int setget set_quit_type
@@ -81,6 +84,13 @@ func hide() -> void:
 	emit_signal("hide")
 
 
+## Prompts the player 'Are you sure you want to give up in Adventure Mode?'
+func show_give_up_confirmation() -> void:
+	if not is_shown():
+		show()
+	_dialogs.show_give_up_confirmation()
+
+
 ## Prompts the player for confirmation, if necessary, and saves their system settings.
 ##
 ## Confirmation is only required when changing the current save slot. If the player confirms changing their save slot,
@@ -126,10 +136,11 @@ func _on_Bottom_ok_pressed() -> void:
 
 
 func _on_Bottom_quit_pressed() -> void:
-	# keep the menu shown, but unpause the scene tree
-	Pauser.toggle_pause("settings-menu", false)
-	
-	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
+	if quit_type in [GIVE_UP, RESTART_OR_GIVE_UP] \
+			and PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 \
+			and SystemData.misc_settings.show_give_up_confirmation:
+		show_give_up_confirmation()
+	elif quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
 	else:
 		hide()
@@ -137,10 +148,11 @@ func _on_Bottom_quit_pressed() -> void:
 
 
 func _on_Bottom_other_quit_pressed() -> void:
-	# keep the menu shown, but unpause the scene tree
-	Pauser.toggle_pause("settings-menu", false)
-	
-	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
+	if quit_type == RESTART_OR_GIVE_UP \
+			and PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 \
+			and SystemData.misc_settings.show_give_up_confirmation:
+		show_give_up_confirmation()
+	elif quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
 	else:
 		hide()
@@ -177,3 +189,13 @@ func _on_Dialogs_delete_confirmed() -> void:
 	if SystemData.misc_settings.save_slot == deleted_save_slot:
 		# if the player deletes the current save slot contents we return them to the splash screen
 		_load_player_data()
+
+
+func _on_Dialogs_give_up_confirmed() -> void:
+	if SystemData.misc_settings.show_give_up_confirmation:
+		SystemData.misc_settings.show_give_up_confirmation = false
+		SystemData.has_unsaved_changes = true
+	if SystemData.has_unsaved_changes:
+		SystemSave.save_system_data()
+	hide()
+	emit_signal("give_up_confirmed")

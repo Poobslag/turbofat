@@ -4,7 +4,8 @@ extends Node
 ## The settings menu is invisible by default, so a demo is necessary to view it.
 ##
 ## Keys:
-## 	'1-5': Update quit type: QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, QUIT_TO_DESKTOP
+## 	'1-6': Update quit type: QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP, RESTART_OR_GIVE_UP,
+## 		QUIT_TO_DESKTOP
 
 onready var _label := $Label
 onready var _settings_menu := $SettingsMenu
@@ -29,5 +30,8 @@ func _input(event: InputEvent) -> void:
 			_settings_menu.quit_type = SettingsMenu.QuitType.SAVE_AND_QUIT_OR_GIVE_UP
 			_label.text = "QuitType.SAVE_AND_QUIT_OR_GIVE_UP"
 		KEY_5:
+			_settings_menu.quit_type = SettingsMenu.QuitType.RESTART_OR_GIVE_UP
+			_label.text = "QuitType.RESTART_OR_GIVE_UP"
+		KEY_6:
 			_settings_menu.quit_type = SettingsMenu.QuitType.QUIT_TO_DESKTOP
 			_label.text = "QuitType.QUIT_TO_DESKTOP"

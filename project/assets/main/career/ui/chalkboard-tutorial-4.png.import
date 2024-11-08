@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/progress-board-accents.png-958430c608a751e9716cc4e2fff31987.stex"
+path="res://.import/chalkboard-tutorial-4.png-df2b901229de0e9d150daaca5764d3b2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/career/ui/progress-board-accents.png"
-dest_files=[ "res://.import/progress-board-accents.png-958430c608a751e9716cc4e2fff31987.stex" ]
+source_file="res://assets/main/career/ui/chalkboard-tutorial-4.png"
+dest_files=[ "res://.import/chalkboard-tutorial-4.png-df2b901229de0e9d150daaca5764d3b2.stex" ]
 
 [params]
 
