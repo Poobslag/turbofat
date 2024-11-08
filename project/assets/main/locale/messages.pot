@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-08 10:00-0500\n"
+"POT-Creation-Date: 2024-11-08 10:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14794,6 +14794,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
+"Try again!\n"
+"\n"
+"Move the piece into position and rotate it."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
 "Now you try!\n"
 "\n"
 "Move the piece into position and rotate it."
@@ -14823,9 +14830,9 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"This one's hard to figure out.\n"
 "\n"
-"Move the piece into position and rotate it."
+"Give it one last try! Then I'll show you."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14833,6 +14840,20 @@ msgid ""
 "Let's try another spin move.\n"
 "\n"
 "See if you can make a box here."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"So if you rotate it left from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"Sorry, I know it doesn't make much sense!\n"
+"\n"
+"...It's just how it works."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14848,6 +14869,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
+"So if you rotate it right from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
 "Oh! It's getting a little cramped.\n"
 "\n"
 "Can you still spin here?"
@@ -14858,10 +14886,6 @@ msgid ""
 "Try again!\n"
 "\n"
 "Press both rotate buttons to flip the piece into place."
-msgstr ""
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid "Can you figure out how to flip this piece into place to make a box?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14902,6 +14926,13 @@ msgid ""
 "Here's something a little more sensible.\n"
 "\n"
 "Can you find a way to spin here?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"So if you rotate it right from here, you can squish it in.\n"
+"\n"
+"Pop!"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -14946,6 +14977,10 @@ msgid "Good job! Although, it's probably better to squish here."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid "This one's really tricky! Let me show you."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Oops that's not right. This one's a little tricky..."
 msgstr ""
 
@@ -14980,7 +15015,7 @@ msgstr ""
 msgid ""
 "Hmm, that's not quite it. Try pressing both rotate buttons.\n"
 "\n"
-"You may need to squish first, too."
+"You need to squish first, too."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
@@ -15084,13 +15119,6 @@ msgid ""
 "Oh, don't just mash random buttons!\n"
 "\n"
 "You're not Eddy Gordo..."
-msgstr ""
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
-"Hmm, that's not quite it.\n"
-"\n"
-"Try pressing both rotate buttons. You may need to squish first, too."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd

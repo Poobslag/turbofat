@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-08 10:00-0500\n"
+"POT-Creation-Date: 2024-11-08 10:19-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16693,6 +16693,17 @@ msgstr ""
 "Tal vez ya sepas como se usan, pero voy a intentar enseñarte algo nuevo."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"Try again!\n"
+"\n"
+"Move the piece into position and rotate it."
+msgstr ""
+"¡Intenta otra vez!\n"
+"\n"
+"Mueve la pieza en posición y gírala."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
 "Now you try!\n"
 "\n"
@@ -16733,14 +16744,15 @@ msgstr ""
 "...Pero a veces son útiles."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
 msgid ""
-"Try again!\n"
+"This one's hard to figure out.\n"
 "\n"
-"Move the piece into position and rotate it."
+"Give it one last try! Then I'll show you."
 msgstr ""
-"¡Intenta otra vez!\n"
+"Este es difícil de resolver.\n"
 "\n"
-"Mueve la pieza en posición y gírala."
+"¡Dale un último intento! Luego te lo mostraré."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16751,6 +16763,28 @@ msgstr ""
 "Vamos a intentar otro movimiento de giro.\n"
 "\n"
 "Veamos si puedes hacer una caja."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"So if you rotate it left from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+"Entonces, si lo giras hacia la izquierda desde aquí, entra mágicamente.\n"
+"\n"
+"¡Pop!"
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"Sorry, I know it doesn't make much sense!\n"
+"\n"
+"...It's just how it works."
+msgstr ""
+"Lo siento, sé que no tiene mucho sentido.\n"
+"\n"
+"...Así es como funciona."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16765,6 +16799,17 @@ msgstr ""
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "How about with a U-Block, can you spin here?"
 msgstr "Y con los bloques U, ¿Puedes hacer un giro?"
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"So if you rotate it right from here, it magically goes in.\n"
+"\n"
+"Pop!"
+msgstr ""
+"Entonces, si lo giras hacia la derecha desde aquí, entra mágicamente.\n"
+"\n"
+"¡Pop!"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16785,11 +16830,6 @@ msgstr ""
 "¡Intenta otra vez!\n"
 "\n"
 "Aprieta ambos botones de rotación para dar vuelta la pieza."
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid "Can you figure out how to flip this piece into place to make a box?"
-msgstr ""
-"¿Puedes encontrar la forma de dar vuelta esta pieza para hacer una caja?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16842,6 +16882,17 @@ msgstr ""
 "Aquí hay algo más razonable.\n"
 "\n"
 "¿Puedes encontrar la forma de hacer girar la pieza?"
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid ""
+"So if you rotate it right from here, you can squish it in.\n"
+"\n"
+"Pop!"
+msgstr ""
+"Entonces, si lo giras a la derecha desde aquí, puedes aplastarlo.\n"
+"\n"
+"¡Pop!"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Okay there Flippy Longstocking, why don't you try this one?"
@@ -16897,6 +16948,11 @@ msgstr ""
 "¡Buen trabajo! Aunque en este caso probablemente era mejor aplastar la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
+msgid "This one's really tricky! Let me show you."
+msgstr "¡Este es realmente complicado! Déjame mostrarte."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Oops that's not right. This one's a little tricky..."
 msgstr "Ay, no está bien. Este es un poco difícil..."
 
@@ -16931,14 +16987,15 @@ msgid "Good job! I knew you could do it."
 msgstr "¡Buen trabajo! Sabía que podrías hacerlo."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+#, needs-review
 msgid ""
 "Hmm, that's not quite it. Try pressing both rotate buttons.\n"
 "\n"
-"You may need to squish first, too."
+"You need to squish first, too."
 msgstr ""
 "Hmm, no está bien. Intenta apretar ambos botones de rotación.\n"
 "\n"
-"Tal vez también necesites aplastar la pieza."
+"Necesitas también aplastar la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Hmph, I'll bet you think you're pretty clever..."
@@ -17070,17 +17127,6 @@ msgstr ""
 "Oh, ¡No solo aprietes botones a lo loco!\n"
 "\n"
 "No eres Eddy Gordo..."
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
-"Hmm, that's not quite it.\n"
-"\n"
-"Try pressing both rotate buttons. You may need to squish first, too."
-msgstr ""
-"Hmmm, no del todo.\n"
-"\n"
-"Intenta apretar ambos botones de rotación. También puede que necesites "
-"aplastar la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""

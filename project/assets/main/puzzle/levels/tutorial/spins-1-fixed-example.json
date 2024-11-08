@@ -1,0 +1,115 @@
+{
+  "version": "5a6b",
+  "start_speed": "T",
+  "blocks_during": [
+    "top_out_effect refresh"
+  ],
+  "input_replay": [
+    "10 +soft_drop",
+    "42 -soft_drop",
+    "46 +move_piece_left",
+    "54 -move_piece_left",
+    "65 +rotate_ccw",
+    "69 -rotate_ccw"
+  ],
+  "finish_condition": {
+    "type": "pieces",
+    "value": 1
+  },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "start_level tutorial/spins_0",
+    "tutorial"
+  ],
+  "piece_types": [
+    "piece_j"
+  ],
+  "rank": [
+    "duration 150",
+    "rank_criteria m=1",
+    "skip_results",
+    "unranked"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 14",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "1 14",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "2 14",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "0 15",
+        "tile": "1 11 1"
+      },
+      {
+        "pos": "1 15",
+        "tile": "1 15 1"
+      },
+      {
+        "pos": "2 15",
+        "tile": "1 7 1"
+      },
+      {
+        "pos": "0 16",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "0 17",
+        "tile": "0 10 1"
+      },
+      {
+        "pos": "1 17",
+        "tile": "0 6 1"
+      },
+      {
+        "pos": "0 18",
+        "tile": "0 11 1"
+      },
+      {
+        "pos": "1 18",
+        "tile": "0 5 1"
+      },
+      {
+        "pos": "0 19",
+        "tile": "0 1 1"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 6 0"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 10 2"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 15 0"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 6 1"
+      },
+      {
+        "pos": "7 19",
+        "tile": "2 13 0"
+      }
+    ]
+  }
+}
