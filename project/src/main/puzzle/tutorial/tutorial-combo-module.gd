@@ -57,7 +57,8 @@ func prepare_tutorial_level() -> void:
 			_set_combo_state(5, 10)
 			hud.skill_tally_item("Combo").visible = true
 			if _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_0_example"):
-				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you.\n\nGive it one last try!"))
+				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you."
+						+ "\n\nGive it one last try!"))
 			elif _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to clear five lines without stopping."
 						+ "\n\nDropping one piece off to the side won't break your combo."))
@@ -79,7 +80,8 @@ func prepare_tutorial_level() -> void:
 			_set_combo_state(5, 12)
 			hud.skill_tally_item("Combo").visible = true
 			if _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_2_example"):
-				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you.\n\nGive it one last try!"))
+				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you."
+						+ "\n\nGive it one last try!"))
 			elif _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to extend this combo by seven lines."
 						+ "\n\nMake boxes to keep your combo from breaking."))
@@ -109,7 +111,8 @@ func prepare_tutorial_level() -> void:
 			hud.skill_tally_item("CakeBox").reset()
 			hud.skill_tally_item("CakeBox").visible = true
 			if _failure_count >= 2 and not _prepared_levels.has("tutorial/combo_5_example"):
-				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you.\n\nGive it one last try!"))
+				hud.set_message(tr("It's kind of hard to explain, so maybe I should just show you."
+						+ "\n\nGive it one last try!"))
 			elif _failure_count >= 1:
 				hud.set_message(tr("Try again! Try to make two cake boxes."
 						+ "\n\nClear lines to keep your combo from breaking."))
