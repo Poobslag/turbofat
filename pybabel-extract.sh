@@ -19,5 +19,10 @@ pybabel extract -F project/assets/main/locale/babelrc \
   --version=0.9000 \
   --copyright-holder="Poobslag"
 
+# temporarily replace 'needs-review' flags with 'fuzzy' so that msgmerge will preserve them
+sed -i 's/#, needs-review/#, fuzzy/g' project/assets/main/locale/es.po
+
 msgmerge --update --backup=none -N project/assets/main/locale/es.po project/assets/main/locale/messages.pot
+sed -i 's/#, fuzzy/#, needs-review/g' project/assets/main/locale/es.po
+
 msgmerge --update --backup=none -N project/assets/main/locale/en.po project/assets/main/locale/messages.pot
