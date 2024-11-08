@@ -126,7 +126,7 @@ func play() -> void:
 	
 	## After the animation, we hide the progress board after a delay.
 	if not suppress_hide:
-		if PlayerData.career.is_boss_level():
+		if PlayerData.career.is_boss_level() and PlayerData.career.can_play_more_levels():
 			_hide_timer.start(BOSS_HIDE_DELAY + duration)
 		else:
 			_hide_timer.start(ANIMATED_HIDE_DELAY + duration)
@@ -205,7 +205,7 @@ func _hours_passed_start() -> int:
 
 ## Calculates the 'hours passed' value we should finish on when advancing the clock.
 func _hours_passed_finish() -> int:
-	return PlayerData.career.hours_passed
+	return int(min(PlayerData.career.hours_passed, Careers.HOURS_PER_CAREER_DAY))
 
 
 ## When the AnimationPlayer toggles the backdrop visibility, we emit signals so other parts of the UI can refresh.
@@ -232,7 +232,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 ## When the HideTimer times out, we hide the progress board.
 func _on_HideTimer_timeout() -> void:
 	_show_animation_player.play("hide")
-	if not PlayerData.career.is_day_over():
+	if PlayerData.career.can_play_more_levels():
 		PlayerData.career.show_progress = Careers.ShowProgress.NONE
 
 
@@ -242,7 +242,7 @@ func _on_AnimateStartTimer_timeout() -> void:
 
 
 func _on_Player_travelling_finished() -> void:
-	if PlayerData.career.is_boss_level() and not PlayerData.career.is_day_over():
+	if PlayerData.career.is_boss_level() and PlayerData.career.can_play_more_levels():
 		MusicPlayer.play_boss_track(false)
 
 

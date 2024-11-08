@@ -4,5 +4,5 @@ extends Control
 onready var _puzzle_message := $PuzzleMessage
 
 func _on_Player_travelling_finished() -> void:
-	if PlayerData.career.is_boss_level():
+	if PlayerData.career.is_boss_level() and PlayerData.career.can_play_more_levels():
 		_puzzle_message.show_message(PuzzleMessage.GOOD, tr("Goal!"))

@@ -66,6 +66,9 @@ var hours_passed := 0 setget set_hours_passed
 ## Level IDs played in the current career session. This is tracked to avoid repeating levels.
 var level_ids := []
 
+## 'true' if the player gave up or lost all their lives
+var lost := false
+
 ## Amount of money earned in the current career session.
 var money := 0
 
@@ -131,6 +134,7 @@ func reset() -> void:
 	customers = 0
 	money = 0
 	level_ids.clear()
+	lost = false
 	seconds_played = 0.0
 	steps = 0
 	day = 0
@@ -161,6 +165,7 @@ func from_json_dict(json: Dictionary) -> void:
 	forced_hardcore_level_hours = Utils.convert_floats_to_ints_in_array(json.get("forced_hardcore_level_hours", []))
 	hours_passed = int(json.get("hours_passed", 0))
 	level_ids = json.get("level_ids", [])
+	lost = bool(json.get("lost", false))
 	money = int(json.get("money", 0))
 	prev_distance_travelled = Utils.convert_floats_to_ints_in_array(json.get("prev_distance_travelled", []))
 	prev_money = Utils.convert_floats_to_ints_in_array(json.get("prev_money", []))
@@ -184,6 +189,7 @@ func to_json_dict() -> Dictionary:
 	results["forced_hardcore_level_hours"] = forced_hardcore_level_hours
 	results["hours_passed"] = hours_passed
 	results["level_ids"] = level_ids
+	results["lost"] = lost
 	results["money"] = money
 	results["prev_distance_travelled"] = prev_distance_travelled
 	results["prev_money"] = prev_money
@@ -215,9 +221,19 @@ func career_interlude_hours() -> Array:
 	return result
 
 
-## Returns 'true' if the player has completed the current career mode session.
-func is_day_over() -> bool:
-	return hours_passed >= Careers.HOURS_PER_CAREER_DAY
+## Returns 'true' if the player can continue playing the current career mode session.
+func can_play_more_levels() -> bool:
+	var result := true
+	if hours_passed >= Careers.HOURS_PER_CAREER_DAY:
+		# the player can't play more than six levels, unless there are unusual circumstances
+		result = false
+	if PlayerData.career.is_boss_level():
+		# the player can play a boss level even if the day is over
+		result = true
+	if lost:
+		# the player can't play more levels if they're out of lives
+		result = false
+	return result
 
 
 ## Launches the next scene in career mode. Either a new level, or a cutscene/ending scene.
@@ -344,9 +360,7 @@ func distance_penalties() -> Array:
 ## 	'new_distance_earned': The maximum distance the player will travel.
 ##
 ## 	'success': 'True' if the player met the success criteria for the current level.
-##
-## 	'lost': 'True' if the player gave up or lost all their lives.
-func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
+func advance_clock(new_distance_earned: int, success: bool) -> void:
 	_career_calendar.advance_clock(new_distance_earned, success, lost)
 
 

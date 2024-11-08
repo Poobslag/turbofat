@@ -24,7 +24,7 @@ func move_to_goal_spot(goal_spot_position: Vector2) -> void:
 
 ## When the player reaches a goal level, we play a special animation.
 func _on_Player_travelling_finished() -> void:
-	if PlayerData.career.is_boss_level():
+	if PlayerData.career.is_boss_level() and PlayerData.career.can_play_more_levels():
 		_goal_sound.play()
 		_animation_player.play("play")
 		
