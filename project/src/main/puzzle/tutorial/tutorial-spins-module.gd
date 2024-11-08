@@ -57,7 +57,10 @@ func prepare_tutorial_level() -> void:
 	match CurrentLevel.settings.id:
 		"tutorial/spins_0":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 2:
+				# third, fourth attempt, they failed following the explanation
+				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
+			elif _failure_count >= 1:
 				# second attempt, following an explanation
 				hud.set_message(tr("Now you try!\n\nMove the piece into position and rotate it."))
 			else:
@@ -71,37 +74,54 @@ func prepare_tutorial_level() -> void:
 					+ "\n\n...But they're useful sometimes."))
 		"tutorial/spins_1":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_1_example"):
+				hud.set_message(tr("This one's hard to figure out.\n\nGive it one last try! Then I'll show you."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 			else:
 				hud.set_message(tr("Let's try another spin move.\n\nSee if you can make a box here."))
+		"tutorial/spins_1_example":
+			hud.set_message(tr("So if you rotate it left from here, it magically goes in.\n\nPop!"))
+			hud.enqueue_message(tr("Sorry, I know it doesn't make much sense!\n\n...It's just how it works."))
 		"tutorial/spins_1_fixed":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_1_fixed_example"):
+				hud.set_message(tr("This one's hard to figure out.\n\nGive it one last try! Then I'll show you."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 			else:
 				hud.set_message(tr("Here, now your squish move won't work."
 						+ "\n\nSee if you can do it by spinning this time."))
+		"tutorial/spins_1_fixed_example":
+			hud.set_message(tr("So if you rotate it left from here, it magically goes in.\n\nPop!"))
+			hud.enqueue_message(tr("Sorry, I know it doesn't make much sense!\n\n...It's just how it works."))
 		"tutorial/spins_2":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_2_example"):
+				hud.set_message(tr("This one's hard to figure out.\n\nGive it one last try! Then I'll show you."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 			else:
 				hud.set_message(tr("How about with a U-Block, can you spin here?"))
+		"tutorial/spins_2_example":
+			hud.set_message(tr("So if you rotate it right from here, it magically goes in.\n\nPop!"))
+			hud.enqueue_message(tr("Sorry, I know it doesn't make much sense!\n\n...It's just how it works."))
 		"tutorial/spins_3":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_3_example"):
+				hud.set_message(tr("This one's hard to figure out.\n\nGive it one last try! Then I'll show you."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 			else:
 				hud.set_message(tr("Oh! It's getting a little cramped.\n\nCan you still spin here?"))
+		"tutorial/spins_3_example":
+			hud.set_message(tr("So if you rotate it left from here, it magically goes in.\n\nPop!"))
+			hud.enqueue_message(tr("Sorry, I know it doesn't make much sense!\n\n...It's just how it works."))
 		"tutorial/spins_4":
 			_prepare_box_tally_item()
-			if _failure_count >= 2:
-				# third, fourth attempt, they failed following the explanation
+			if _failure_count >= 1:
+				# second, third attempt; they failed following the explanation
 				hud.set_message(tr("Try again!\n\nPress both rotate buttons to flip the piece into place."))
-			elif _failure_count >= 1:
-				# second attempt, following an explanation
-				hud.set_message(tr("Can you figure out how to flip this piece into place to make a box?"))
 			else:
 				hud.set_message(tr("How about like this?\n\nCan you find a way to spin here?"))
 		"tutorial/spins_4_example":
@@ -111,22 +131,34 @@ func prepare_tutorial_level() -> void:
 					+ "\n\n...But it's necessary for some spin moves, too."))
 		"tutorial/spins_5":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_5_example"):
+				hud.set_message(tr("This one's hard to figure out.\n\nGive it one last try! Then I'll show you."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
 			else:
 				hud.set_message(tr("How about this T-Block? Can you spin this one too?"))
+		"tutorial/spins_5_example":
+			hud.set_message(tr("So if you rotate it right from here, it magically goes in.\n\nPop!"))
+			hud.enqueue_message(tr("Sorry, I know it doesn't make much sense!\n\n...It's just how it works."))
 		"tutorial/spins_6":
 			_prepare_box_tally_item()
 			hud.set_message(tr("What do you think about this? Can you spin this piece in?"))
 		"tutorial/spins_7":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_7_example"):
+				hud.set_message(tr("This one's hard to figure out.\n\nGive it one last try! Then I'll show you."))
+			elif _failure_count >= 1:
 				hud.set_message(tr("Try again!\n\nDon't forget you can use squish moves, too."))
 			else:
 				hud.set_message(tr("Here's something a little more sensible.\n\nCan you find a way to spin here?"))
+		"tutorial/spins_7_example":
+			hud.set_message(tr("So if you rotate it right from here, you can squish it in.\n\nPop!"))
+			hud.enqueue_message(tr("Sorry, I know it doesn't make much sense!\n\n...It's just how it works."))
 		"tutorial/spins_secret":
 			_prepare_box_tally_item()
-			if _failure_count >= 1:
+			if _failure_count == 0:
+				hud.set_message(tr("Okay there Flippy Longstocking, why don't you try this one?"))
+			else:
 				match _failure_count % 7:
 					1, 3, 6:
 						hud.set_message(tr("Try again!\n\nMove the piece into position and rotate it."))
@@ -134,8 +166,6 @@ func prepare_tutorial_level() -> void:
 						hud.set_message(tr("Try again!\n\nDon't forget you can use squish moves, too."))
 					5:
 						hud.set_message(tr("Try again!\n\nPress both rotate buttons to flip the piece into place."))
-			else:
-				hud.set_message(tr("Okay there Flippy Longstocking, why don't you try this one?"))
 		"tutorial/spins_8":
 			dismiss_sensei([tr("Well done!\n\nTry showing off your new spin moves in front of these customers.")])
 	
@@ -219,8 +249,14 @@ func _advance_level() -> void:
 					_:
 						hud.set_message(tr("Good job! Although, it's probably better to squish here."))
 			else:
-				hud.set_message(tr("Oops that's not right. This one's a little tricky..."))
+				if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_1_example"):
+					hud.set_message(tr("This one's really tricky! Let me show you."))
+					new_level_id = "tutorial/spins_1_example"
+				else:
+					hud.set_message(tr("Oops that's not right. This one's a little tricky..."))
 				PuzzleState.level_performance.lost = true
+		"tutorial/spins_1_example":
+			new_level_id = "tutorial/spins_1"
 		"tutorial/spins_1_fixed":
 			if hud.skill_tally_item("Box").value >= 1:
 				match _last_piece_movement:
@@ -232,14 +268,26 @@ func _advance_level() -> void:
 						hud.set_message(tr("Good job! If you rotate it left, it goes right in."))
 				new_level_id = "tutorial/spins_2"
 			else:
-				hud.set_message(tr("Oops that's not right. This one's a little tricky..."))
+				if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_1_fixed_example"):
+					hud.set_message(tr("This one's really tricky! Let me show you."))
+					new_level_id = "tutorial/spins_1_fixed_example"
+				else:
+					hud.set_message(tr("Oops that's not right. This one's a little tricky..."))
 				PuzzleState.level_performance.lost = true
+		"tutorial/spins_1_fixed_example":
+			new_level_id = "tutorial/spins_1_fixed"
 		"tutorial/spins_2":
 			if hud.skill_tally_item("Box").value >= 1:
 				hud.set_message(tr("Good job! It works here too, it's just a little different."))
 			else:
-				hud.set_message(tr("Oops! That didn't work..."))
+				if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_2_example"):
+					hud.set_message(tr("This one's really tricky! Let me show you."))
+					new_level_id = "tutorial/spins_2_example"
+				else:
+					hud.set_message(tr("Oops! That didn't work..."))
 				PuzzleState.level_performance.lost = true
+		"tutorial/spins_2_example":
+			new_level_id = "tutorial/spins_2"
 		"tutorial/spins_3":
 			if hud.skill_tally_item("Box").value >= 1:
 				match _last_piece_movement:
@@ -253,8 +301,14 @@ func _advance_level() -> void:
 					_:
 						hud.set_message(tr("That's right! Good job."))
 			else:
-				hud.set_message(tr("Oops! That didn't work..."))
+				if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_3_example"):
+					hud.set_message(tr("This one's really tricky! Let me show you."))
+					new_level_id = "tutorial/spins_3_example"
+				else:
+					hud.set_message(tr("Oops! That didn't work..."))
 				PuzzleState.level_performance.lost = true
+		"tutorial/spins_3_example":
+			new_level_id = "tutorial/spins_3"
 		"tutorial/spins_4":
 			if _failure_count >= 1:
 				# second try, after the flip tutorial
@@ -263,7 +317,7 @@ func _advance_level() -> void:
 					new_level_id = "tutorial/spins_5"
 				else:
 					hud.set_message(tr("Hmm, that's not quite it. Try pressing both rotate buttons."
-							+ "\n\nYou may need to squish first, too."))
+							+ "\n\nYou need to squish first, too."))
 					PuzzleState.level_performance.lost = true
 			else:
 				# first try, before the flip tutorial
@@ -307,8 +361,14 @@ func _advance_level() -> void:
 						hud.set_message(tr("Good job!\n\nYou could just squish that in, too."
 								+ " You don't always need spin moves."))
 			else:
-				hud.set_message(tr("Oops! That wasn't it."))
+				if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_5_example"):
+					hud.set_message(tr("This one's really tricky! Let me show you."))
+					new_level_id = "tutorial/spins_5_example"
+				else:
+					hud.set_message(tr("Oops! That wasn't it."))
 				PuzzleState.level_performance.lost = true
+		"tutorial/spins_5_example":
+			new_level_id = "tutorial/spins_5"
 		"tutorial/spins_6":
 			if hud.skill_tally_item("Box").value >= 1:
 				hud.set_message(tr("What!? Pieces can't just rotate through walls! That's cheating."))
@@ -322,8 +382,14 @@ func _advance_level() -> void:
 				hud.set_message(tr("Good job!\n\nPieces can squish through walls, that doesn't count as cheating."))
 				start_customer_countdown()
 			else:
-				hud.set_message(tr("Oops! That wasn't it."))
+				if _failure_count >= 3 and not _prepared_levels.has("tutorial/spins_7_example"):
+					hud.set_message(tr("This one's really tricky! Let me show you."))
+					new_level_id = "tutorial/spins_7_example"
+				else:
+					hud.set_message(tr("Oops! That wasn't it."))
 				PuzzleState.level_performance.lost = true
+		"tutorial/spins_7_example":
+			new_level_id = "tutorial/spins_7"
 		"tutorial/spins_secret":
 			if hud.skill_tally_item("Box").value >= 1:
 				if _failure_count <= 1:
@@ -350,8 +416,8 @@ func _advance_level() -> void:
 					7: failure_message = tr("Oh no! that wasn't it.")
 					8: failure_message = tr("Oops! That wasn't it, either.")
 					8: failure_message = tr("Oh, don't just mash random buttons!\n\nYou're not Eddy Gordo...")
-					9: failure_message = tr("Hmm, that's not quite it."
-							+ "\n\nTry pressing both rotate buttons. You may need to squish first, too.")
+					9: failure_message = tr("Hmm, that's not quite it. Try pressing both rotate buttons."
+							+ "\n\nYou need to squish first, too.")
 				hud.set_message(failure_message)
 				PuzzleState.level_performance.lost = true
 	
@@ -373,7 +439,7 @@ func _advance_level() -> void:
 		if not new_level_id:
 			# by default, progress to the next tutorial section
 			new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
-
+	
 	change_level(new_level_id, delay_between_levels)
 
 
@@ -387,7 +453,14 @@ func _on_PuzzleState_after_piece_written() -> void:
 		"tutorial/spins_7", "tutorial/spins_secret":
 			if PuzzleState.level_performance.pieces >= CurrentLevel.settings.finish_condition.value:
 				_advance_level()
-		"tutorial/spins_0_example", "tutorial/spins_4_example":
+		"tutorial/spins_0_example", \
+		"tutorial/spins_1_example", \
+		"tutorial/spins_1_fixed_example", \
+		"tutorial/spins_2_example", \
+		"tutorial/spins_3_example", \
+		"tutorial/spins_4_example", \
+		"tutorial/spins_5_example", \
+		"tutorial/spins_7_example":
 			_advance_level()
 		"tutorial/spins_8":
 			if PuzzleState.level_performance.pieces == 5:
