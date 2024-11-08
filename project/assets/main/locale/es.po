@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-07 13:31-0500\n"
+"POT-Creation-Date: 2024-11-08 10:00-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16339,8 +16339,8 @@ msgid ""
 "With a big tunnel like this, you can throw your pieces into it and build up "
 "a combo that way."
 msgstr ""
-"Con un túnel grande como este, puedes lanzar tus piezas dentro y formar "
-"un combo de esa forma."
+"Con un túnel grande como este, puedes lanzar tus piezas dentro y formar un "
+"combo de esa forma."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
@@ -16379,8 +16379,8 @@ msgid ""
 "To keep your combo, you need to alternate between clearing lines and "
 "building boxes."
 msgstr ""
-"Para mantener tu combo, necesitas alternar entre limpiar líneas y "
-"formar cajas."
+"Para mantener tu combo, necesitas alternar entre limpiar líneas y formar "
+"cajas."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
@@ -16400,14 +16400,12 @@ msgstr ""
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
 msgid "Build a box, and clear another line."
-msgstr ""
-"Forma un caja, y limpia otra línea."
+msgstr "Forma un caja, y limpia otra línea."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
 msgid "Clear a few lines, and build another box."
-msgstr ""
-"Limpia unas líneas, y forma otro caja."
+msgstr "Limpia unas líneas, y forma otro caja."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "You can make a cake box with three pieces. Let me show you."
@@ -16458,14 +16456,12 @@ msgstr ""
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
 msgid "Hmmmmmm, let's see if I can do it again..."
-msgstr ""
-"Hmmmmmm, veamos si puedo hacerlo otra vez..."
+msgstr "Hmmmmmm, veamos si puedo hacerlo otra vez..."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
 msgid "I want to make a box with this pink piece, but I'd better not."
-msgstr ""
-"Quiero hacer un caja con esta pieza rosada, pero mejor no."
+msgstr "Quiero hacer un caja con esta pieza rosada, pero mejor no."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
@@ -16592,8 +16588,7 @@ msgstr ""
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
 msgid "Just a few more lines..."
-msgstr ""
-"Solo unas líneas más..."
+msgstr "Solo unas líneas más..."
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 #, needs-review
@@ -16626,8 +16621,7 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid "There, we got there eventually. Now what..."
-msgstr ""
-"Listo, al final lo logramos. Ahora, ¿qué sigue...?"
+msgstr "Listo, al final lo logramos. Ahora, ¿qué sigue...?"
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd
 msgid ""
@@ -16700,16 +16694,6 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Can you make a cake box with this piece?\n"
-"\n"
-"It doesn't quite fit, does it?"
-msgstr ""
-"¿Puedes hacer una caja de torta con esta pieza?\n"
-"\n"
-"No encaja del todo, ¿no?"
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
 "Now you try!\n"
 "\n"
 "Move the piece into position and rotate it."
@@ -16720,13 +16704,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"Can you make a cake box with this piece?\n"
 "\n"
-"Move the piece into position and rotate it."
+"It doesn't quite fit, does it?"
 msgstr ""
-"¡Intenta otra vez!\n"
+"¿Puedes hacer una caja de torta con esta pieza?\n"
 "\n"
-"Mueve la pieza en posición y gírala."
+"No encaja del todo, ¿no?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "A spin move is where you rotate a piece, locking it in place like this."
@@ -16747,6 +16731,16 @@ msgstr ""
 "¡Los clientes no pagan extra por movimientos de giro ni nada de eso!\n"
 "\n"
 "...Pero a veces son útiles."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"Try again!\n"
+"\n"
+"Move the piece into position and rotate it."
+msgstr ""
+"¡Intenta otra vez!\n"
+"\n"
+"Mueve la pieza en posición y gírala."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
@@ -16784,13 +16778,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"How about like this?\n"
+"Try again!\n"
 "\n"
-"Can you find a way to spin here?"
+"Press both rotate buttons to flip the piece into place."
 msgstr ""
-"¿Y qué tal ahora?\n"
+"¡Intenta otra vez!\n"
 "\n"
-"¿Puedes encontrar la manera de hacer un giro?"
+"Aprieta ambos botones de rotación para dar vuelta la pieza."
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Can you figure out how to flip this piece into place to make a box?"
@@ -16799,13 +16793,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Try again!\n"
+"How about like this?\n"
 "\n"
-"Press both rotate buttons to flip the piece into place."
+"Can you find a way to spin here?"
 msgstr ""
-"¡Intenta otra vez!\n"
+"¿Y qué tal ahora?\n"
 "\n"
-"Aprieta ambos botones de rotación para dar vuelta la pieza."
+"¿Puedes encontrar la manera de hacer un giro?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "If you press both rotate buttons, the piece flips!"
@@ -16831,16 +16825,6 @@ msgstr "¿Qué piensas de esto? ¿Puedes hacerlo girar al lugar?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid ""
-"Here's something a little more sensible.\n"
-"\n"
-"Can you find a way to spin here?"
-msgstr ""
-"Aquí hay algo más razonable.\n"
-"\n"
-"¿Puedes encontrar la forma de hacer girar la pieza?"
-
-#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
-msgid ""
 "Try again!\n"
 "\n"
 "Don't forget you can use squish moves, too."
@@ -16848,6 +16832,16 @@ msgstr ""
 "¡Intenta otra vez!\n"
 "\n"
 "No te olvides que también puedes aplastar piezas."
+
+#: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
+msgid ""
+"Here's something a little more sensible.\n"
+"\n"
+"Can you find a way to spin here?"
+msgstr ""
+"Aquí hay algo más razonable.\n"
+"\n"
+"¿Puedes encontrar la forma de hacer girar la pieza?"
 
 #: project/src/main/puzzle/tutorial/tutorial-spins-module.gd
 msgid "Okay there Flippy Longstocking, why don't you try this one?"
