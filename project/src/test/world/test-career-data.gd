@@ -30,7 +30,7 @@ func test_prev_money() -> void:
 
 func test_advance_clock_stops_at_boss_level_0() -> void:
 	_data.best_distance_travelled = 0
-	_data.advance_clock(50, false, false)
+	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 9)
 	assert_eq(_data.banked_steps, 41)
@@ -39,7 +39,7 @@ func test_advance_clock_stops_at_boss_level_0() -> void:
 func test_advance_clock_stops_at_boss_level_1() -> void:
 	_data.best_distance_travelled = 0
 	_data.distance_travelled = 8 # just before a boss level
-	_data.advance_clock(3, true, false)
+	_data.advance_clock(3, true)
 	assert_eq(_data.distance_earned, 3)
 	assert_eq(_data.distance_travelled, 9)
 	assert_eq(_data.banked_steps, 2)
@@ -48,7 +48,7 @@ func test_advance_clock_stops_at_boss_level_1() -> void:
 func test_advance_clock_clears_boss_level() -> void:
 	_data.best_distance_travelled = 0
 	_data.distance_travelled = 9 # boss level
-	_data.advance_clock(4, true, false)
+	_data.advance_clock(4, true)
 	assert_eq(_data.distance_earned, 0)
 	assert_eq(_data.distance_travelled, 10)
 	assert_eq(_data.best_distance_travelled, 10)
@@ -58,7 +58,7 @@ func test_advance_clock_clears_boss_level() -> void:
 func test_advance_clock_fails_boss_level() -> void:
 	_data.best_distance_travelled = 0
 	_data.distance_travelled = 9 # boss level
-	_data.advance_clock(4, false, false)
+	_data.advance_clock(4, false)
 	assert_true(_data.distance_earned < 0,
 			"distance_earned should be less than 0 but was %s" % [_data.distance_earned])
 	assert_true(_data.distance_travelled < 9,
@@ -71,7 +71,7 @@ func test_advance_clock_stops_at_unbeaten_intro_level() -> void:
 	
 	PlayerData.level_history.delete_results("intro_311")
 	
-	_data.advance_clock(50, false, false)
+	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 10)
 	assert_eq(_data.banked_steps, 40)
@@ -84,7 +84,7 @@ func test_advance_clock_stops_at_beaten_intro_level() -> void:
 	var result := RankResult.new()
 	PlayerData.level_history.add_result("intro_311", result)
 	
-	_data.advance_clock(50, false, false)
+	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 10)
 	assert_eq(_data.banked_steps, 40)
@@ -95,7 +95,7 @@ func test_advance_clock_clears_intro_level() -> void:
 	_data.best_distance_travelled = 10
 	_data.banked_steps = 5
 	
-	_data.advance_clock(1, false, false)
+	_data.advance_clock(1, false)
 	assert_eq(_data.distance_earned, 6)
 	assert_eq(_data.distance_travelled, 16)
 	assert_eq(_data.banked_steps, 0)
@@ -106,7 +106,7 @@ func test_advance_clock_fails_intro_level() -> void:
 	_data.best_distance_travelled = 10
 	_data.banked_steps = 5
 	
-	_data.advance_clock(0, false, false)
+	_data.advance_clock(0, false)
 	assert_eq(_data.distance_earned, 0)
 	assert_eq(_data.distance_travelled, 10)
 	assert_eq(_data.banked_steps, 5)
@@ -116,7 +116,7 @@ func test_advance_clock_banked_steps_for_failed_boss_level() -> void:
 	_data.best_distance_travelled = 0
 	_data.banked_steps = 5
 	_data.distance_travelled = 9 # boss level
-	_data.advance_clock(4, false, false)
+	_data.advance_clock(4, false)
 	assert_true(_data.distance_earned < 0,
 			"distance_earned should be less than 0 but was %s" % [_data.distance_earned])
 	assert_eq(_data.banked_steps, 5)
@@ -124,20 +124,21 @@ func test_advance_clock_banked_steps_for_failed_boss_level() -> void:
 
 func test_advance_clock_banked_steps_for_failed_level() -> void:
 	_data.banked_steps = 5
-	_data.advance_clock(0, false, false)
+	_data.advance_clock(0, false)
 	assert_eq(_data.distance_earned, 0)
 	assert_eq(_data.distance_travelled, 0)
 	assert_eq(_data.banked_steps, 5)
 
 
 func test_advance_clock_lost_level() -> void:
-	_data.advance_clock(0, false, true)
+	_data.lost = true
+	_data.advance_clock(0, false)
 	assert_eq(_data.hours_passed, Careers.HOURS_PER_CAREER_DAY)
 
 
 func test_advance_clock_banked_steps_for_finished_level() -> void:
 	_data.banked_steps = 5
-	_data.advance_clock(1, false, false)
+	_data.advance_clock(1, false)
 	assert_eq(_data.distance_earned, 6)
 	assert_eq(_data.distance_travelled, 6)
 	assert_eq(_data.banked_steps, 0)

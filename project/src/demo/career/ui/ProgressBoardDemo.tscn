@@ -1,10 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main/career/ui/ProgressBoard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/demo/career/ui/progress-board-demo.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=3]
 
 [node name="Demo" type="Node"]
 script = ExtResource( 2 )
 
 [node name="ProgressBoard" parent="." instance=ExtResource( 1 )]
+layer = 0
 suppress_hide = true
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 11.0
+margin_top = -200.0
+margin_right = 161.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 150, 400 )
+theme = ExtResource( 3 )
+text = "asdf"
+align = 1
+valign = 1
+autowrap = true

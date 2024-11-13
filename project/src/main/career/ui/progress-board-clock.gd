@@ -82,13 +82,28 @@ func set_hours_passed(new_hours_passed: int = 0) -> void:
 	_refresh()
 
 
+## Calculates the desired minute/hour hand positions.
+##
+## Parameters:
+## 	'new_hours_passed': The number of hours passed in career mode.
+##
+## Returns:
+## 	Array with two float entries for the position of the analog clock's hour and minute hands.
+func _hand_positions(new_hours_passed: int) -> Array:
+	var hand_positions: Array
+	if new_hours_passed > Careers.HOURS_PER_CAREER_DAY:
+		hand_positions = HAND_POSITIONS_BY_HOUR.get(Careers.HOURS_PER_CAREER_DAY)
+	else:
+		hand_positions = HAND_POSITIONS_BY_HOUR.get(new_hours_passed, INVALID_HAND_POSITIONS)
+	return hand_positions
+
+
 ## Calculates the desired minute hand position.
 ##
 ## Parameters:
 ## 	'new_hours_passed': The number of hours passed in career mode.
 func _minute_hand_position(new_hours_passed: int) -> float:
-	var hand_positions: Array = HAND_POSITIONS_BY_HOUR.get(new_hours_passed, INVALID_HAND_POSITIONS)
-	return hand_positions[1]
+	return _hand_positions(new_hours_passed)[1]
 
 
 ## Calculates the desired hour hand position, advancing it based on the minute hand position.
@@ -100,8 +115,7 @@ func _minute_hand_position(new_hours_passed: int) -> float:
 ## 		two numbers on an analog clock. If false, the hour hand will ignore the minute hand, pointing directly to one
 ## 		of the twelve numbers on an analog clock.
 func _hour_hand_position(new_hours_passed: int, advance_for_minutes: bool = true) -> float:
-	var hand_positions: Array = HAND_POSITIONS_BY_HOUR.get(new_hours_passed, INVALID_HAND_POSITIONS)
-	var new_hours: float = hand_positions[0]
+	var new_hours: float = _hand_positions(new_hours_passed)[0]
 	if advance_for_minutes:
 		new_hours += _minute_hand_position(new_hours_passed) / 60.0
 	return new_hours
@@ -125,7 +139,12 @@ func _filled_percent(new_hours_passed: int) -> float:
 
 ## Calculates the text of the digital clock, like '12:30 pm'
 func _clock_text(new_hours_passed: int) -> String:
-	return PlayerData.career.times_of_day_by_hour.get(new_hours_passed, PlayerData.career.invalid_time_of_day)
+	var text: String
+	if new_hours_passed > Careers.HOURS_PER_CAREER_DAY:
+		text = PlayerData.career.times_of_day_by_hour.get(Careers.HOURS_PER_CAREER_DAY)
+	else:
+		text = PlayerData.career.times_of_day_by_hour.get(new_hours_passed, PlayerData.career.invalid_time_of_day)
+	return text
 
 
 ## Updates the clock visuals based on the number of hours passed.

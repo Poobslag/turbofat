@@ -27,14 +27,15 @@ func advance_clock(new_distance_earned: int, success: bool, lost: bool) -> void:
 	else:
 		career_data.show_progress = Careers.ShowProgress.ANIMATED
 	
-	
 	career_data.distance_earned = new_distance_earned
+	if lost:
+		career_data.lost = true
 	career_data.skipped_previous_level = false
 	
-	if lost:
-		career_data.hours_passed = Careers.HOURS_PER_CAREER_DAY
-	else:
-		career_data.hours_passed = int(clamp(career_data.hours_passed + 1, 0, Careers.HOURS_PER_CAREER_DAY))
+	career_data.hours_passed += 1
+	
+	if career_data.lost:
+		career_data.hours_passed = int(max(career_data.hours_passed, Careers.HOURS_PER_CAREER_DAY))
 	
 	if career_data.is_boss_level():
 		var region: CareerRegion = career_data.current_region()
@@ -88,6 +89,7 @@ func advance_calendar() -> void:
 	career_data.extra_life_count = 0
 	career_data.hours_passed = 0
 	career_data.level_ids.clear()
+	career_data.lost = false
 	career_data.money = 0
 	career_data.seconds_played = 0.0
 	career_data.steps = 0

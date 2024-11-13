@@ -284,7 +284,9 @@ func _update_career_data(rank_result: RankResult) -> void:
 	
 	PlayerData.career.steps += distance_to_advance
 	PlayerData.career.top_out_count += PuzzleState.level_performance.top_out_count
-	PlayerData.career.advance_clock(distance_to_advance, rank_result.success, rank_result.lost)
+	if rank_result.lost:
+		PlayerData.career.lost = true
+	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
 
 
 ## Stores the rank result for later.

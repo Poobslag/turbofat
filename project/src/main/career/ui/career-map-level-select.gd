@@ -18,7 +18,7 @@ onready var _level_buttons_container := $VBoxContainer/LevelButtons/HBoxContaine
 func _ready() -> void:
 	# If the day is over, we show the career map briefly so the player can see their progress, but we hide the level
 	# select buttons.
-	if PlayerData.career.is_day_over():
+	if not PlayerData.career.can_play_more_levels():
 		_control.visible = false
 
 
