@@ -49,13 +49,12 @@ func process_puzzle_result() -> void:
 		career_data.advance_clock(0, false)
 		career_data.skipped_previous_level = true
 	
-	if PlayerData.cutscene_queue.has_cutscene_flag("intro_level") \
-			and not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
+	if PlayerData.cutscene_queue.has_cutscene_flag("intro_level") and PlayerData.career.lost:
 		# player lost an intro level
 		skip_remaining_cutscenes = true
 	
 	if PlayerData.cutscene_queue.has_cutscene_flag("boss_level") \
-			and not CurrentLevel.best_result == Levels.Result.WON:
+			and not CurrentLevel.first_result == Levels.Result.WON:
 		# player didn't meet the win criteria for a boss level
 		skip_remaining_cutscenes = true
 	
@@ -63,8 +62,7 @@ func process_puzzle_result() -> void:
 		# skip career cutscenes if they skip a level, or if they fail a boss level
 		PlayerData.cutscene_queue.reset()
 	
-	if PuzzleState.game_ended and CurrentLevel.hardcore \
-			and CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
+	if PuzzleState.game_ended and CurrentLevel.hardcore and not PlayerData.career.lost:
 		# completing a hardcore level gives the player an extra life
 		career_data.extra_life_count += 1
 	

@@ -38,6 +38,7 @@ var customers: Array
 var chef_id: String
 
 ## Monitors when the player finishes a level.
+var first_result: int = Levels.Result.NONE
 var best_result: int = Levels.Result.NONE setget set_best_result
 
 ## How many times the player has tried the level in this session.
@@ -61,6 +62,7 @@ func reset() -> void:
 	piece_speed = ""
 	customers = []
 	chef_id = ""
+	first_result = Levels.Result.NONE
 	best_result = Levels.Result.NONE
 	attempt_count = 0
 	puzzle_environment_id = ""
