@@ -10,6 +10,7 @@ extends Node
 ## 	[F]: Show message for a short ultra level which the player skipped with a cheat code.
 ## 	[H]: Toggle hardcore/normal.
 ## 	[J]: Toggle passed/failed.
+## 	[I]: Toggle attempt count.
 ## 	[K]: Toggle success condition, and boss level.
 ## 	[L]: Toggle whether or not the player has beaten the level already.
 ## 	[Space]: Show/hide message
@@ -29,7 +30,7 @@ func _ready() -> void:
 	Breadcrumb.trail = [Global.SCENE_CAREER_MAP]
 	CurrentLevel.attempt_count = 0
 	CurrentLevel.hardcore = true
-	CurrentLevel.best_result = Levels.Result.FINISHED
+	CurrentLevel.first_result = Levels.Result.FINISHED
 
 
 func _input(event: InputEvent) -> void:
@@ -59,6 +60,9 @@ func _input(event: InputEvent) -> void:
 			_prepare_long_ultra_scenario(0.1)
 			PuzzleState.level_performance.seconds += 9999
 			_show_results_message()
+		KEY_I:
+			CurrentLevel.attempt_count = 1 if CurrentLevel.attempt_count == 0 else 0
+			_show_results_message()
 		KEY_A:
 			_prepare_short_ultra_scenario(0.1)
 			_show_results_message()
@@ -77,7 +81,7 @@ func _input(event: InputEvent) -> void:
 			_show_results_message()
 		KEY_J:
 			PuzzleState.level_performance.lost = not PuzzleState.level_performance.lost
-			CurrentLevel.best_result = \
+			CurrentLevel.first_result = \
 					Levels.Result.LOST if PuzzleState.level_performance.lost else Levels.Result.FINISHED
 			_show_results_message()
 		KEY_K:
@@ -108,6 +112,7 @@ func _show_results_message() -> void:
 	_label.text += "\n"
 	_label.text += "boss_level: %s\n" % [CurrentLevel.boss_level]
 	_label.text += "player_success: %s\n" % [_player_success]
+	_label.text += "attempt_count: %s\n" % [CurrentLevel.attempt_count]
 	_label.text += "hardcore: %s\n" % [CurrentLevel.hardcore]
 	_label.text += "lost: %s\n" % [PuzzleState.level_performance.lost]
 	_label.text = _label.text.strip_edges()
