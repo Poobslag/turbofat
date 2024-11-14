@@ -164,10 +164,15 @@ func _restart() -> void:
 		# use up all of the players lives; especially for career mode, we don't want to reward players who
 		# give up
 		PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
+	
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+		# End the game, triggering the chef's reaction and negative sound effects. Also saves the level result.
 		PuzzleState.end_game()
-	var rank_result := RankCalculator.new().calculate_rank()
-	_save_level_result(rank_result)
+	else:
+		# Just save the level result, don't trigger the chef's reaction and negative sound effects.
+		var rank_result := RankCalculator.new().calculate_rank()
+		_save_level_result(rank_result)
+	
 	_start_puzzle()
 	get_tree().set_input_as_handled()
 	PuzzleState.retrying = false
