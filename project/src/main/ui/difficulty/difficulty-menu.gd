@@ -7,11 +7,19 @@ onready var _normal_difficulty_button := $DropPanel/VBoxContainer/Difficulty/But
 onready var _hold_piece_checkbox := $DropPanel/VBoxContainer/Helpers/HBoxContainer/HoldPiecePanel/CheckBox
 onready var _line_piece_checkbox := $DropPanel/VBoxContainer/Helpers/HBoxContainer/LinePiecePanel/CheckBox
 
+## Conditionally shows a 'Customize your difficulty!' message if the menu is forced upon the player
+onready var _tip_label := $TipLabel
+
 func _ready() -> void:
 	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
 	
 	_focus_difficulty_button()
 	_assign_focus_neighbours()
+
+	if SystemData.misc_settings.show_difficulty_menu:
+		_tip_label.visible = true
+		SystemData.misc_settings.show_difficulty_menu = false
+		SystemData.has_unsaved_changes = true
 
 
 ## Returns:

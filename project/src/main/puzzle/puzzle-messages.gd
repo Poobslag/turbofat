@@ -171,6 +171,9 @@ func _on_PuzzleState_after_game_ended() -> void:
 			# don't redirect them back to the splash screen, send them to the main menu
 			if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_SPLASH:
 				Breadcrumb.trail.insert(1, Global.SCENE_MAIN_MENU)
+			if SystemData.misc_settings.show_difficulty_menu:
+				# show the player the difficulty menu if they haven't seen it
+				Breadcrumb.trail.insert(1, Global.SCENE_DIFFICULTY_MENU)
 	
 	if PlayerData.career.is_career_mode():
 		_back_button.text = tr("Continue")
