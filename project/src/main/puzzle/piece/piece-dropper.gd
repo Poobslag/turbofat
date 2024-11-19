@@ -8,6 +8,21 @@ signal soft_dropped(dropped_piece) # emitted when the player presses the soft dr
 signal hard_dropped(dropped_piece) # emitted when the player presses the hard drop key
 signal dropped(dropped_piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
 
+## Returns a number in the range [0.0, ∞) for how piece gravity should be modified for each gameplay speed setting.
+##
+## A value like 2.0 means pieces should fall faster, and a value like 0.5 means they should fall slower.
+const GRAVITY_FACTOR_BY_ENUM := {
+	DifficultyData.Speed.DEFAULT: 1.0,
+	DifficultyData.Speed.SLOW: 0.707,
+	DifficultyData.Speed.SLOWER: 0.500,
+	DifficultyData.Speed.SLOWEST: 0.333,
+	DifficultyData.Speed.SLOWESTEST: 0.0,
+	DifficultyData.Speed.FAST: 1.414,
+	DifficultyData.Speed.FASTER: 1.5,
+	DifficultyData.Speed.FASTEST: 2.0,
+	DifficultyData.Speed.FASTESTEST: 100.0,
+}
+
 export (NodePath) var input_path: NodePath
 export (NodePath) var piece_mover_path: NodePath
 
@@ -58,7 +73,7 @@ func apply_gravity(piece: ActivePiece) -> void:
 	else:
 		var current_gravity: int = PieceSpeeds.current_speed.gravity
 		if CurrentLevel.is_piece_speed_cheat_enabled():
-			current_gravity *= SystemData.gameplay_settings.get_gravity_factor()
+			current_gravity *= _get_gravity_factor()
 		
 		if input.is_soft_drop_pressed():
 			# soft drop
@@ -83,6 +98,13 @@ func apply_gravity(piece: ActivePiece) -> void:
 			emit_signal("soft_dropped", piece)
 		if pos_changed:
 			emit_signal("dropped", piece)
+
+
+## Returns a number in the range [0.0, ∞) for how piece gravity should be modified.
+##
+## A value like 2.0 means pieces should fall faster, and a value like 0.5 means they should fall slower.
+func _get_gravity_factor() -> float:
+	return GRAVITY_FACTOR_BY_ENUM.get(PlayerData.difficulty.speed, 1.0)
 
 
 ## Squish moving pauses gravity for a moment.

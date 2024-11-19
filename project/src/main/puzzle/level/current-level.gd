@@ -170,7 +170,7 @@ func get_creature_ids() -> Array:
 ##
 ## Even if the player wants to cheat, we hide the hold piece window if the player is in a tutorial.
 func is_hold_piece_cheat_enabled() -> bool:
-	return SystemData.gameplay_settings.hold_piece \
+	return PlayerData.difficulty.hold_piece \
 			and not is_tutorial()
 
 
@@ -178,7 +178,7 @@ func is_hold_piece_cheat_enabled() -> bool:
 ##
 ## Even if the player wants to cheat, we preserve the game's original piece speed if the player is in a tutorial.
 func is_piece_speed_cheat_enabled() -> bool:
-	return SystemData.gameplay_settings.speed != GameplaySettings.Speed.DEFAULT \
+	return PlayerData.difficulty.speed != DifficultyData.Speed.DEFAULT \
 			and not CurrentLevel.is_tutorial()
 
 
@@ -189,7 +189,7 @@ func is_piece_speed_cheat_enabled() -> bool:
 ##
 ## Adding line pieces for tutorials can make the tutorials impossible.
 func is_line_piece_cheat_enabled() -> bool:
-	return SystemData.gameplay_settings.line_piece \
+	return PlayerData.difficulty.line_piece \
 			and not CurrentLevel.is_tutorial() \
 			and not PieceTypes.piece_i in CurrentLevel.settings.piece_types.start_types \
 			and not PieceTypes.piece_i in CurrentLevel.settings.piece_types.types

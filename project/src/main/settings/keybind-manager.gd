@@ -5,7 +5,7 @@ signal input_map_updated
 
 func _ready() -> void:
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
-	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
+	PlayerData.difficulty.connect("hold_piece_changed", self, "_on_DifficultyData_hold_piece_changed")
 
 
 ## Converts a json dictionary to an InputEvent instance.
@@ -103,12 +103,12 @@ func _refresh_keybinds() -> void:
 	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE:
 			var path := KeybindSettings.GUIDELINE_PATH
-			if SystemData.gameplay_settings.hold_piece:
+			if PlayerData.difficulty.hold_piece:
 				path = KeybindSettings.GUIDELINE_HOLD_PATH
 			_bind_keys_from_file(path)
 		KeybindSettings.WASD:
 			var path := KeybindSettings.WASD_PATH
-			if SystemData.gameplay_settings.hold_piece:
+			if PlayerData.difficulty.hold_piece:
 				path = KeybindSettings.WASD_HOLD_PATH
 			_bind_keys_from_file(path)
 		KeybindSettings.CUSTOM:
@@ -124,5 +124,5 @@ func _on_KeybindSettings_settings_changed() -> void:
 	_refresh_keybinds()
 
 
-func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:
+func _on_DifficultyData_hold_piece_changed(_value: bool) -> void:
 	_refresh_keybinds()

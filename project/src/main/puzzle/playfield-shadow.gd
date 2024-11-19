@@ -7,7 +7,7 @@ onready var _normal_shadow: Polygon2D = $NormalShadow
 onready var _hold_piece_shadow: Polygon2D = $HoldPieceShadow
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
+	PlayerData.difficulty.connect("hold_piece_changed", self, "_on_DifficultyData_hold_piece_changed")
 	_refresh()
 
 
@@ -16,5 +16,5 @@ func _refresh() -> void:
 	_normal_shadow.visible = not _hold_piece_shadow.visible
 
 
-func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:
+func _on_DifficultyData_hold_piece_changed(_value: bool) -> void:
 	_refresh()

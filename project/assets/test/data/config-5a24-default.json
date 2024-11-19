@@ -1,0 +1,271 @@
+[
+  {
+    "type": "version",
+    "value": "5a24"
+  },
+  {
+    "type": "gameplay_settings",
+    "value": {
+    }
+  },
+  {
+    "type": "graphics_settings",
+    "value": {
+      "creature_detail": 1,
+      "feeding_animation": 1,
+      "fullscreen": false,
+      "use_vsync": true
+    }
+  },
+  {
+    "type": "volume_settings",
+    "value": {
+      "master": 0.71,
+      "music": 0,
+      "sound": 0.7,
+      "voice": 0.7
+    }
+  },
+  {
+    "type": "touch_settings",
+    "value": {
+      "fat_finger": 0,
+      "scheme": 0,
+      "size": 1
+    }
+  },
+  {
+    "type": "keybind_settings",
+    "value": {
+      "preset": 0,
+      "custom_keybinds": {
+        "move_piece_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "move_piece_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "soft_drop": [
+          {
+            "type": "key",
+            "scancode": 16777234
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "hard_drop": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "retry": [
+          {
+            "type": "key",
+            "scancode": 82
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rotate_ccw": [
+          {
+            "type": "key",
+            "scancode": 90
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rotate_cw": [
+          {
+            "type": "key",
+            "scancode": 88
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "swap_hold_piece": [
+          {
+            "type": "key",
+            "scancode": 16777237
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_up": [
+          {
+            "type": "key",
+            "scancode": 16777232
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_down": [
+          {
+            "type": "key",
+            "scancode": 16777234
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_accept": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_cancel": [
+          {
+            "type": "key",
+            "scancode": 16777217
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_menu": [
+          {
+            "type": "key",
+            "scancode": 16777217
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rewind_text": [
+          {
+            "type": "key",
+            "scancode": 16777237
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "next_tab": [
+          {
+            "type": "key",
+            "scancode": 88
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "prev_tab": [
+          {
+            "type": "key",
+            "scancode": 90
+          },
+          {
+
+          },
+          {
+
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "misc_settings",
+    "value": {
+      "locale": "en",
+      "save_slot": 0,
+      "show_adventure_mode_intro": true,
+      "show_difficulty_menu": false,
+      "show_give_up_confirmation": true
+    }
+  }
+]
