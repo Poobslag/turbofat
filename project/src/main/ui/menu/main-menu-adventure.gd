@@ -26,4 +26,4 @@ func _on_Avatar_pressed() -> void:
 
 
 func _on_Difficulty_pressed() -> void:
-	Breadcrumb.push_trail("res://src/main/ui/difficulty/DifficultyMenu.tscn")
+	Breadcrumb.push_trail(Global.SCENE_DIFFICULTY_MENU)
