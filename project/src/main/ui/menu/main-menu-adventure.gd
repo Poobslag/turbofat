@@ -23,3 +23,7 @@ func _on_Career_pressed() -> void:
 
 func _on_Avatar_pressed() -> void:
 	SceneTransition.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")
+
+
+func _on_Difficulty_pressed() -> void:
+	Breadcrumb.push_trail("res://src/main/ui/difficulty/DifficultyMenu.tscn")

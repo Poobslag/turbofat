@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-08 10:19-0500\n"
+"POT-Creation-Date: 2024-11-19 09:21-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14621,19 +14621,21 @@ msgstr ""
 "vida extra."
 
 #: project/src/main/career/career-hint.gd
+#, needs-review
 msgid ""
-"Need a hand? Go into Settings to lower the difficulty or enable the hold "
-"piece!"
+"Struggling? Enable a hold piece or slow things down in the Difficulty menu!"
 msgstr ""
-"¿Necesitas ayuda? ¡Ve a Configuración para bajar la dificultad o activar "
-"habilidades como sostener piezas!"
+"¿Te cuesta? Activa la habilidad de sostener piezas o baja la velocidad en el "
+"menú de Dificultad."
 
 #: project/src/main/career/career-hint.gd
+#, needs-review
 msgid ""
-"Looking for line pieces? They're over in Settings... if you really need them!"
+"Looking for line pieces? They're in the Difficulty menu... if you really "
+"need them!"
 msgstr ""
-"¿Buscas ESAS piezas largas? Están en Configuración... ¡si realmente las "
-"necesitas!"
+"¿Buscas ESAS piezas largas? Están en el menú de Dificultad... ¡si realmente "
+"las necesitas!"
 
 #: project/src/main/career/career-hint.gd
 msgid "The boss level is near! Can you reach it in time?"
@@ -14785,6 +14787,7 @@ msgstr "15:03"
 
 #: project/src/main/career/ui/CareerWin.tscn
 #: project/src/main/career/ui/ProgressBoard.tscn
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Ok"
 msgstr "Ok"
@@ -17450,6 +17453,73 @@ msgstr "S"
 msgid "V"
 msgstr "V"
 
+#: project/src/main/ui/difficulty/DifficultyButton.tscn
+#: project/src/main/ui/difficulty/difficulty-button.gd
+#, needs-review
+msgid "Turbo Mode"
+msgstr "Modo Turbo"
+
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
+#: project/src/main/ui/menu/MainMenu.tscn
+#, needs-review
+msgid "Difficulty"
+msgstr "Dificultad"
+
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
+#: project/src/main/ui/difficulty/difficulty-menu-description.gd
+#, needs-review
+msgid "The heart of Turbo Fat - balancing quick moves with clever strategy."
+msgstr ""
+"El corazón de Turbo Fat: equilibrar movimientos rápidos con una estrategia "
+"inteligente."
+
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
+#, needs-review
+msgid "Helpers"
+msgstr "Ayudas"
+
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
+msgid "Hold Piece"
+msgstr "Sostener Pieza"
+
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
+#, needs-review
+msgid "Line Pieces"
+msgstr "Piezas Largas"
+
+#: project/src/main/ui/difficulty/difficulty-button.gd
+#, needs-review
+msgid "Normal Mode"
+msgstr "Modo Normal"
+
+#: project/src/main/ui/difficulty/difficulty-button.gd
+#, needs-review
+msgid "Relaxed Mode"
+msgstr "Modo Relajado"
+
+#: project/src/main/ui/difficulty/difficulty-button.gd
+#, needs-review
+msgid "Zen Mode"
+msgstr "Modo Zen"
+
+#: project/src/main/ui/difficulty/difficulty-menu-description.gd
+#, needs-review
+msgid "Faster than intended - who needs strategy? Get down with the quickness!"
+msgstr ""
+"Más rápido de lo previsto: ¿quién necesita estrategia? ¡Déjate llevar por la "
+"rapidez!"
+
+#: project/src/main/ui/difficulty/difficulty-menu-description.gd
+#, needs-review
+msgid "Slower pieces, shorter levels - chill vibes only, please."
+msgstr "Piezas más lentas, niveles más cortos: solo buenas vibras, por favor."
+
+#: project/src/main/ui/difficulty/difficulty-menu-description.gd
+#, needs-review
+msgid "Zero gravity, super-short levels - pure tranquility at your own pace."
+msgstr ""
+"Gravedad cero, niveles ultracortos: pura tranquilidad a tu propio ritmo."
+
 #: project/src/main/ui/level-select/BossLevelSelectButtonControlHolder.tscn
 #: project/src/main/ui/level-select/LevelSelectButtonControlHolder.tscn
 msgid "Just getting started"
@@ -17565,7 +17635,6 @@ msgid "Score 200 points as quickly as possible!"
 msgstr "¡Obtén 200 puntos lo más rápido posible!"
 
 #: project/src/main/ui/menu/TrainingMenu.tscn
-#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Speed"
 msgstr "Velocidad"
 
@@ -17796,18 +17865,6 @@ msgstr ""
 "Las piezas que Caen Rápido pueden desbloquearse presionando Caída Lenta."
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
-msgid "Cheats"
-msgstr "Trucos"
-
-#: project/src/main/ui/settings/SettingsMenu.tscn
-msgid "Line Piece"
-msgstr "Pieza Larga"
-
-#: project/src/main/ui/settings/SettingsMenu.tscn
-msgid "Hold Piece"
-msgstr "Sostener Pieza"
-
-#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Reset to Default"
 msgstr "Por Defecto"
 
@@ -18003,42 +18060,6 @@ msgstr "Lineal"
 #: project/src/main/ui/settings/settings-feeding-animation.gd
 msgid "Bouncy"
 msgstr "Rebote"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Slowestest"
-msgstr "Lentisisísimo"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Slowest"
-msgstr "Lentisísimo"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Slower"
-msgstr "Lentísimo"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Slow"
-msgstr "Lento"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Default"
-msgstr "Normal"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Fast"
-msgstr "Rápido"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Faster"
-msgstr "Rapidísimo"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Fastest"
-msgstr "Rapidisísimo"
-
-#: project/src/main/ui/settings/settings-gameplay-speed.gd
-msgid "Fastestest"
-msgstr "Rapidisisísimo"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
 msgid "Main Menu"

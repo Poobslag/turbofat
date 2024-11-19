@@ -29,8 +29,8 @@ func _hints() -> Array:
 	result.append(tr("Adventure mode ends after six levels. Make every level count!"))
 	result.append(tr("Adventure mode ends if you lose all your lives. Try not to top out!"))
 	result.append(tr("Sudden death levels are risky but reward you with an extra life."))
-	result.append(tr("Need a hand? Go into Settings to lower the difficulty or enable the hold piece!"))
-	result.append(tr("Looking for line pieces? They're over in Settings... if you really need them!"))
+	result.append(tr("Struggling? Enable a hold piece or slow things down in the Difficulty menu!"))
+	result.append(tr("Looking for line pieces? They're in the Difficulty menu... if you really need them!"))
 	var region := PlayerData.career.current_region()
 	if region.boss_level and not PlayerData.career.is_region_finished(region) \
 			and not PlayerData.career.is_boss_level():

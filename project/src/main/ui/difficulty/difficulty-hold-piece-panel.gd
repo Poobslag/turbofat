@@ -1,5 +1,5 @@
-extends Control
-## UI control for enabling line pieces to all levels
+extends Panel
+## UI control for enabling the hold piece
 
 onready var _check_box := $CheckBox
 
