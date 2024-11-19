@@ -18272,12 +18272,3 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/environment/restaurant/RestaurantNametagPanel.tscn
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
-
-#~ msgid "Kflab"
-#~ msgstr "Kflab"
-
-#~ msgid "description"
-#~ msgstr "descripción"
-
-#~ msgid "name"
-#~ msgstr "nombre"
