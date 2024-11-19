@@ -37,6 +37,9 @@ var ignore_save_slot_filename := false
 ## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save"
 
+## 'true' if the previous 'load_system_data' upgraded the loaded data.
+var _load_performed_upgrade := false
+
 ## Provides backwards compatibility with older save formats
 var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
 
@@ -86,6 +89,7 @@ func save_system_data() -> void:
 ## Returns 'true' if the data is loaded successfully.
 func load_system_data() -> bool:
 	SystemData.reset()
+	_load_performed_upgrade = false
 	
 	var filename_to_load := data_filename
 	if not FileUtils.file_exists(data_filename) and FileUtils.file_exists(legacy_filename):
@@ -115,11 +119,16 @@ func load_system_data() -> bool:
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
+		_load_performed_upgrade = true
 	
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()
 		save_item.from_json_dict(json_save_item_obj)
 		_load_line(save_item.type, save_item.key, save_item.value)
+	
+	if _load_performed_upgrade:
+		# after loading old data, immediately save it so that the old data doesn't persist
+		save_system_data()
 	
 	# emit a signal indicating the level history was loaded
 	PlayerData.emit_signal("level_history_changed")

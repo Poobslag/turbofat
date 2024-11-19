@@ -38,6 +38,9 @@ var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
 ## 'true' if rank data should be populated, and invalid levels purged from the player's save. Can be changed for tests
 var populate_rank_data := true
 
+## 'true' if the previous '_save_items_from_file' call upgraded the loaded data.
+var _load_performed_upgrade := false
+
 ## Provides backwards compatibility with older save formats
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
@@ -163,6 +166,10 @@ func load_player_data_from_file(filename: String) -> bool:
 	if populate_rank_data:
 		_purge_invalid_levels_from_level_history()
 		_calculate_rank_for_level_history()
+	
+	if _load_performed_upgrade:
+		# after loading old data, immediately save it so that the old data doesn't persist
+		schedule_save()
 
 	# emit a signal indicating the level history was loaded
 	PlayerData.emit_signal("level_history_changed")
@@ -194,6 +201,7 @@ func _calculate_rank_for_level_history() -> void:
 ## 	file.
 func _save_items_from_file(filename: String) -> Array:
 	var file := File.new()
+	_load_performed_upgrade = false
 	var open_result := file.open(filename, File.READ)
 	if open_result != OK:
 		# validation failed; couldn't open file
@@ -211,6 +219,7 @@ func _save_items_from_file(filename: String) -> Array:
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
+		_load_performed_upgrade = true
 	
 	return json_save_items
 
