@@ -22,6 +22,9 @@ const SCENE_CAREER_REGION_SELECT_MENU := "res://src/main/career/ui/CareerRegionS
 ## credits scene which shows scrolling credits.
 const SCENE_CREDITS := "res://src/main/credits/CreditsScroll.tscn"
 
+## menu where the player selects their difficulty
+const SCENE_DIFFICULTY_MENU := "res://src/main/ui/difficulty/DifficultyMenu.tscn"
+
 ## puzzle where a player drops pieces into a playfield of blocks.
 const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
 

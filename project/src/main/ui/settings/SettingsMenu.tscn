@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=2]
@@ -29,9 +29,6 @@
 [ext_resource path="res://src/main/ui/settings/settings-copy-save-data.gd" type="Script" id=27]
 [ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
 [ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
-[ext_resource path="res://src/main/ui/settings/settings-gameplay-speed.gd" type="Script" id=30]
-[ext_resource path="res://src/main/ui/settings/settings-line-piece.gd" type="Script" id=31]
-[ext_resource path="res://src/main/ui/settings/settings-hold-piece.gd" type="Script" id=32]
 [ext_resource path="res://src/main/ui/squeak/br/SqueakButtonHelper.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/ui/settings/settings-feeding-animation.gd" type="Script" id=34]
 [ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=35]
@@ -362,7 +359,7 @@ follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
 margin_right = 736.0
-margin_bottom = 279.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 
 [node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
@@ -393,6 +390,7 @@ rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
+pressed = true
 
 [node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 38.0
@@ -443,119 +441,11 @@ text = "Pieces that are Hard Dropped can be unlocked by pressing Soft Drop."
 valign = 1
 autowrap = true
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-margin_top = 87.0
-margin_right = 736.0
-margin_bottom = 107.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
-
-[node name="Cheats" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-margin_top = 113.0
-margin_right = 736.0
-margin_bottom = 133.0
-rect_min_size = Vector2( 120, 0 )
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-text = "Cheats"
-align = 1
-
-[node name="Speed" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-margin_top = 139.0
-margin_right = 736.0
-margin_bottom = 168.0
-rect_min_size = Vector2( 400, 26 )
-size_flags_horizontal = 3
-custom_constants/separation = 20
-script = ExtResource( 30 )
-
-[node name="Speed" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed"]
-margin_right = 287.0
-margin_bottom = 29.0
-rect_min_size = Vector2( 120, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 0.74
-text = "Speed"
-align = 2
-valign = 1
-autowrap = true
-
-[node name="OptionButton" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" instance=ExtResource( 3 )]
-margin_left = 307.0
-margin_right = 467.0
-margin_bottom = 29.0
-rect_min_size = Vector2( 160, 0 )
-size_flags_horizontal = 2
-size_flags_vertical = 4
-size_flags_stretch_ratio = 1.1
-
-[node name="LinePiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-margin_top = 174.0
-margin_right = 736.0
-margin_bottom = 206.0
-rect_min_size = Vector2( 400, 26 )
-size_flags_horizontal = 3
-custom_constants/separation = 20
-script = ExtResource( 31 )
-
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece"]
-margin_right = 287.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 120, 28 )
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 0.63
-text = "Line Piece"
-align = 2
-valign = 1
-autowrap = true
-
-[node name="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" instance=ExtResource( 44 )]
-margin_left = 307.0
-margin_right = 736.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 160, 26 )
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.94
-
-[node name="HoldPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
-margin_top = 212.0
-margin_right = 736.0
-margin_bottom = 244.0
-rect_min_size = Vector2( 400, 26 )
-size_flags_horizontal = 3
-custom_constants/separation = 20
-script = ExtResource( 32 )
-
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece"]
-margin_right = 287.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 120, 28 )
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 0.63
-text = "Hold Piece"
-align = 2
-valign = 1
-autowrap = true
-
-[node name="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" instance=ExtResource( 44 )]
-margin_left = 307.0
-margin_right = 736.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 160, 26 )
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.94
-
 [node name="ResetToDefault" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer" instance=ExtResource( 43 )]
 margin_left = 298.0
-margin_top = 250.0
+margin_top = 87.0
 margin_right = 437.0
-margin_bottom = 279.0
+margin_bottom = 116.0
 size_flags_horizontal = 4
 text = "Reset to Default"
 script = ExtResource( 42 )
@@ -1490,9 +1380,6 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" method="_on_OptionButton_item_selected"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/HBoxContainer/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_CheckBox_toggled"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed/OptionButton" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/Speed" method="_on_OptionButton_item_selected"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LinePiece" method="_on_CheckBox_toggled"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/HoldPiece" method="_on_CheckBox_toggled"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/FatFinger" method="_on_OptionButton_item_selected"]
