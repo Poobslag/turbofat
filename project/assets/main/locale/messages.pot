@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-19 09:21-0500\n"
+"POT-Creation-Date: 2024-11-19 09:48-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15414,6 +15414,10 @@ msgstr ""
 
 #: project/src/main/ui/difficulty/DifficultyMenu.tscn
 msgid "Line Pieces"
+msgstr ""
+
+#: project/src/main/ui/difficulty/DifficultyMenu.tscn
+msgid "Customize your difficulty"
 msgstr ""
 
 #: project/src/main/ui/difficulty/difficulty-button.gd

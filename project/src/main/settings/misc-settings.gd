@@ -28,6 +28,9 @@ var save_slot: int = SaveSlot.SLOT_A setget set_save_slot
 ## 'true' if the player should be shown the intro screen when starting Adventure mode
 var show_adventure_mode_intro: bool = true
 
+## 'true' if the player should be shown the difficulty menu
+var show_difficulty_menu: bool = true
+
 ## 'true' if the player should be shown the confirmation when restarting/giving up in Adventure mode
 var show_give_up_confirmation: bool = true
 
@@ -71,6 +74,7 @@ func to_json_dict() -> Dictionary:
 		"locale": locale,
 		"save_slot": save_slot,
 		"show_adventure_mode_intro": show_adventure_mode_intro,
+		"show_difficulty_menu": show_difficulty_menu,
 		"show_give_up_confirmation": show_give_up_confirmation,
 	}
 
@@ -78,6 +82,7 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	set_save_slot(int(json.get("save_slot", SaveSlot.SLOT_A)))
 	show_adventure_mode_intro = bool(json.get("show_adventure_mode_intro", true))
+	show_difficulty_menu = bool(json.get("show_difficulty_menu", true))
 	show_give_up_confirmation = bool(json.get("show_give_up_confirmation", true))
 	
 	var new_locale: String

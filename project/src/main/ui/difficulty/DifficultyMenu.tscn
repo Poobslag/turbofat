@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-v.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/main/ui/menu/MenuAccentH3.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/difficulty/DifficultyButton.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/difficulty/difficulty-menu-description.gd" type="Script" id=14]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-xl1.png" type="Texture" id=15]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=21]
 [ext_resource path="res://src/main/ui/theme/h3-font-outline.tres" type="DynamicFont" id=22]
@@ -278,6 +279,22 @@ texture_hover = ExtResource( 2 )
 text = "Ok"
 color = 5
 shape = 8
+
+[node name="TipLabel" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_top = 34.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 22 )
+text = "Customize your difficulty"
+align = 1
+
+[node name="MenuAccentH3" parent="TipLabel" instance=ExtResource( 12 )]
+margin_left = -187.5
+margin_top = -37.5
+margin_right = 187.5
+margin_bottom = 37.5
+texture = ExtResource( 15 )
 
 [connection signal="toggled" from="DropPanel/VBoxContainer/Helpers/HBoxContainer/HoldPiecePanel/CheckBox" to="DropPanel/VBoxContainer/Helpers/HBoxContainer/HoldPiecePanel" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="DropPanel/VBoxContainer/Helpers/HBoxContainer/LinePiecePanel/CheckBox" to="DropPanel/VBoxContainer/Helpers/HBoxContainer/LinePiecePanel" method="_on_CheckBox_toggled"]

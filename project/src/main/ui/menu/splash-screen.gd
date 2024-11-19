@@ -23,7 +23,14 @@ func _on_Play_pressed() -> void:
 	if not PlayerData.level_history.is_level_finished(OtherLevelLibrary.BEGINNER_TUTORIAL):
 		_launch_tutorial()
 	else:
-		SceneTransition.push_trail(Global.SCENE_MAIN_MENU, {SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
+		if SystemData.misc_settings.show_difficulty_menu:
+			# show the player the difficulty menu if they haven't seen it
+			Breadcrumb.trail.push_front(Global.SCENE_MAIN_MENU)
+			SceneTransition.push_trail(Global.SCENE_DIFFICULTY_MENU,
+					{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
+		else:
+			SceneTransition.push_trail(Global.SCENE_MAIN_MENU,
+					{SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})
 
 
 func _on_System_quit_pressed() -> void:
