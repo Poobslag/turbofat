@@ -15,7 +15,7 @@ signal after_load
 
 ## Current version for saved player data. Should be updated if and only if the player format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "59c3"
+const PLAYER_DATA_VERSION := "5b9b"
 
 var rolling_backups := RollingBackups.new()
 
@@ -98,6 +98,7 @@ func save_player_data() -> void:
 	save_json.append(SaveItem.new("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("career", PlayerData.career.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("difficulty", PlayerData.difficulty.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("menu_region", PlayerData.menu_region.id).to_json_dict())
 	save_json.append(SaveItem.new("practice", PlayerData.practice.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("successful_levels",
@@ -255,6 +256,9 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"creature_library":
 			var value: Dictionary = json_value
 			PlayerData.creature_library.from_json_dict(value)
+		"difficulty":
+			var value: Dictionary = json_value
+			PlayerData.difficulty.from_json_dict(value)
 		"finished_levels":
 			var value: Dictionary = json_value
 			PlayerData.level_history.finished_levels = value

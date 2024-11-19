@@ -7,7 +7,8 @@ class_name SystemSaveUpgrader
 ## Creates and configures a SaveItemUpgrader capable of upgrading older system save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "5a24"
+	upgrader.current_version = "5b9b"
+	upgrader.add_upgrade_method(self, "_upgrade_5a24", "5a24", "5b9b")
 	upgrader.add_upgrade_method(self, "_upgrade_37b3", "37b3", "5a24")
 	upgrader.add_upgrade_method(self, "_upgrade_27bb", "27bb", "37b3")
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
@@ -23,6 +24,20 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "163e", "2783")
 	upgrader.add_upgrade_method(self, "_upgrade_2743", "15d2", "2783")
 	return upgrader
+
+
+func _upgrade_5a24(_old_save_items: Array, save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"gameplay_settings":
+			# ensure 'legacy_properties' property exists
+			if not "legacy_properties" in save_item:
+				save_item.value["legacy_properties"] = {}
+			
+			# move removed properties from gameplay_settings to gameplay_settings.legacy_properties
+			for property in ["hold_piece", "line_piece", "speed"]:
+				if save_item.value.has(property):
+					save_item.value["legacy_properties"][property] = save_item.value.get(property)
+	return save_item
 
 
 func _upgrade_37b3(_old_save_items: Array, save_item: SaveItem) -> SaveItem:

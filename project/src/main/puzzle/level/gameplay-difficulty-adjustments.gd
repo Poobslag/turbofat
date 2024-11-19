@@ -6,38 +6,38 @@ class_name GameplayDifficultyAdjustments
 ## gravity levels however (50% of 20G is still 10G which is way too fast for a novice) so this script defines mappings
 ## to adjust piece speeds based on the player's gameplay speed settings.
 
-## key: (int) enum from GameplaySettings.Speed
+## key: (int) enum from DifficultyData.Speed
 ## value: (float) multiplier for score milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
 const SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
-	GameplaySettings.Speed.SLOW: 0.70,
-	GameplaySettings.Speed.SLOWER: 0.40,
-	GameplaySettings.Speed.SLOWEST: 0.20,
-	GameplaySettings.Speed.SLOWESTEST: 0.10,
+	DifficultyData.Speed.SLOW: 0.70,
+	DifficultyData.Speed.SLOWER: 0.40,
+	DifficultyData.Speed.SLOWEST: 0.20,
+	DifficultyData.Speed.SLOWESTEST: 0.10,
 }
 
-## key: (int) enum from GameplaySettings.Speed
+## key: (int) enum from DifficultyData.Speed
 ## value: (float) multiplier for line milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
 const LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
-	GameplaySettings.Speed.SLOW: 0.85,
-	GameplaySettings.Speed.SLOWER: 0.70,
-	GameplaySettings.Speed.SLOWEST: 0.40,
-	GameplaySettings.Speed.SLOWESTEST: 0.20,
+	DifficultyData.Speed.SLOW: 0.85,
+	DifficultyData.Speed.SLOWER: 0.70,
+	DifficultyData.Speed.SLOWEST: 0.40,
+	DifficultyData.Speed.SLOWESTEST: 0.20,
 }
 
-## key: (int) enum from GameplaySettings.Speed
+## key: (int) enum from DifficultyData.Speed
 ## value: (float) multiplier for duration milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
 const TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
-	GameplaySettings.Speed.SLOW: 1.00,
-	GameplaySettings.Speed.SLOWER: 0.90,
-	GameplaySettings.Speed.SLOWEST: 0.70,
-	GameplaySettings.Speed.SLOWESTEST: 0.40,
+	DifficultyData.Speed.SLOW: 1.00,
+	DifficultyData.Speed.SLOWER: 0.90,
+	DifficultyData.Speed.SLOWEST: 0.70,
+	DifficultyData.Speed.SLOWESTEST: 0.40,
 }
 
-## key: (int) enum from GameplaySettings.Speed
+## key: (int) enum from DifficultyData.Speed
 ## value: (Dictionary) mapping from piece speed strings to adjusted piece speed strings
 const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	# pieces are literally always at the fastest 20G speed
-	GameplaySettings.Speed.FASTESTEST: {
+	DifficultyData.Speed.FASTESTEST: {
 		"T": "FFF",
 
 		"0": "FFF",
@@ -81,7 +81,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces fall much much faster (the slowest speed is F1)
-	GameplaySettings.Speed.FASTEST: {
+	DifficultyData.Speed.FASTEST: {
 		"T": "T",
 
 		"0": "F0",
@@ -125,7 +125,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces fall much faster (the slowest speed is A1)
-	GameplaySettings.Speed.FASTER: {
+	DifficultyData.Speed.FASTER: {
 		"T": "T",
 
 		"0": "A0",
@@ -169,7 +169,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces fall faster (the slowest speed is 5)
-	GameplaySettings.Speed.FAST: {
+	DifficultyData.Speed.FAST: {
 		"T": "T",
 
 		"0": "5",
@@ -212,7 +212,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 		"FFF": "FFF",
 	},
 	
-	GameplaySettings.Speed.DEFAULT: {
+	DifficultyData.Speed.DEFAULT: {
 		"T": "T",
 
 		"0": "0",
@@ -256,7 +256,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces fall slower (the fastest speed is AA)
-	GameplaySettings.Speed.SLOW: {
+	DifficultyData.Speed.SLOW: {
 		"T": "T",
 
 		"0": "0",
@@ -300,7 +300,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces fall much slower (the fastest speed is 9)
-	GameplaySettings.Speed.SLOWER: {
+	DifficultyData.Speed.SLOWER: {
 		"T": "T",
 
 		"0": "0",
@@ -344,7 +344,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces fall much much slower (the fastest speed is 7)
-	GameplaySettings.Speed.SLOWEST: {
+	DifficultyData.Speed.SLOWEST: {
 		"T": "T",
 
 		"0": "0",
@@ -388,7 +388,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 	
 	# pieces literally don't fall
-	GameplaySettings.Speed.SLOWESTEST: {
+	DifficultyData.Speed.SLOWESTEST: {
 		"T": "T",
 
 		"0": "T",
@@ -441,7 +441,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 ## 	A modified piece speed string such as '0' or 'A9'
 static func adjust_piece_speed(piece_speed_string: String) -> String:
 	var adjusted_speed_by_piece_speed: Dictionary = \
-			PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, {})
+			PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, {})
 	return adjusted_speed_by_piece_speed.get(piece_speed_string, piece_speed_string)
 
 
@@ -450,7 +450,7 @@ static func adjust_piece_speed(piece_speed_string: String) -> String:
 ## When the player plays at slow speeds, we make milestones easier to reach.
 static func adjust_score_milestone(score: int) -> int:
 	var score_milestone_factor: float = \
-			SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+			SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	return int(ceil(score * score_milestone_factor))
 
 
@@ -459,7 +459,7 @@ static func adjust_score_milestone(score: int) -> int:
 ## When the player plays at slow speeds, we make milestones easier to reach.
 static func adjust_line_milestone(lines: int) -> int:
 	var line_milestone_factor: float = \
-			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	return int(ceil(lines * line_milestone_factor))
 
 
@@ -468,7 +468,7 @@ static func adjust_line_milestone(lines: int) -> int:
 ## When the player plays at slow speeds, we make milestones easier to reach.
 static func adjust_piece_milestone(pieces: int) -> int:
 	var piece_milestone_factor: float = \
-			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	return int(ceil(pieces * piece_milestone_factor))
 
 
@@ -477,5 +477,5 @@ static func adjust_piece_milestone(pieces: int) -> int:
 ## When the player plays at very slow speeds, we make milestones easier to reach.
 static func adjust_time_over_milestone(time_over: int) -> int:
 	var time_over_milestone_factor: float = \
-			TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(SystemData.gameplay_settings.speed, 1.0)
+			TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	return int(ceil(time_over * time_over_milestone_factor))

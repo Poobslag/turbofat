@@ -11,7 +11,7 @@ onready var _line_piece_checkbox := $DropPanel/VBoxContainer/Helpers/HBoxContain
 onready var _tip_label := $TipLabel
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
+	PlayerData.difficulty.connect("speed_changed", self, "_on_DifficultyData_speed_changed")
 	
 	_focus_difficulty_button()
 	_assign_focus_neighbours()
@@ -60,7 +60,7 @@ func _assign_focus_neighbours() -> void:
 	_line_piece_checkbox.focus_neighbour_top = button_to_focus.get_path()
 
 
-func _on_GameplaySettings_speed_changed(_value: int) -> void:
+func _on_DifficultyData_speed_changed(_value: int) -> void:
 	_assign_focus_neighbours()
 
 

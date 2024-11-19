@@ -293,7 +293,8 @@ var _third_zero_regex: RegEx
 ## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
-	upgrader.current_version = "59c3"
+	upgrader.current_version = "5b9b"
+	upgrader.add_post_upgrade_method(self, "_post_upgrade_59c3", "59c3", "5b9b")
 	upgrader.add_upgrade_method(self, "_upgrade_55aa", "55aa", "59c3")
 	upgrader.add_upgrade_method(self, "_upgrade_512b", "512b", "55aa")
 	upgrader.add_upgrade_method(self, "_upgrade_4ceb", "4ceb", "512b")
@@ -317,6 +318,31 @@ func new_save_item_upgrader() -> SaveItemUpgrader:
 	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
 	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
 	return upgrader
+
+
+func _post_upgrade_59c3(new_save_items: Array) -> Array:
+	# locate the 'difficulty' save item
+	var difficulty_save_item: Dictionary
+	for save_item in new_save_items:
+		if save_item.get("type") == "difficulty":
+			difficulty_save_item = save_item
+			break
+	
+	# ensure the 'difficulty' save item exists and has a 'value' field
+	if not difficulty_save_item:
+		difficulty_save_item = {
+			"type": "difficulty",
+		}
+		new_save_items.append(difficulty_save_item)
+	if not difficulty_save_item.has("value"):
+		difficulty_save_item["value"] = {}
+	
+	# populate the 'difficulty' save item with legacy_properties from SystemData
+	for property in ["hold_piece", "line_piece", "speed"]:
+		if SystemData.gameplay_settings.legacy_properties.has(property):
+			difficulty_save_item["value"][property] = SystemData.gameplay_settings.legacy_properties[property]
+	
+	return new_save_items
 
 
 func _upgrade_55aa(_old_save_items: Array, save_item: SaveItem) -> SaveItem:

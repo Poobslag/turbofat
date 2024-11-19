@@ -2,50 +2,50 @@ class_name DifficultyButton
 extends Button
 ## Button on the difficulty screen which selects a difficulty.
 
-## key: (int) Enum from GameplaySettings.Speed
+## key: (int) Enum from DifficultyData.Speed
 ## value: (Array, Resource) pair of texture resources to use when the difficulty is chosen or not
 const TEXTURE_PAIRS_BY_SPEED := {
-	GameplaySettings.Speed.FASTESTEST: [preload("res://assets/main/ui/difficulty/turbo.png"),
+	DifficultyData.Speed.FASTESTEST: [preload("res://assets/main/ui/difficulty/turbo.png"),
 			preload("res://assets/main/ui/difficulty/turbo-off.png")],
-	GameplaySettings.Speed.FASTEST: [preload("res://assets/main/ui/difficulty/turbo.png"),
+	DifficultyData.Speed.FASTEST: [preload("res://assets/main/ui/difficulty/turbo.png"),
 			preload("res://assets/main/ui/difficulty/turbo-off.png")],
-	GameplaySettings.Speed.FASTER: [preload("res://assets/main/ui/difficulty/turbo.png"),
+	DifficultyData.Speed.FASTER: [preload("res://assets/main/ui/difficulty/turbo.png"),
 			preload("res://assets/main/ui/difficulty/turbo-off.png")],
-	GameplaySettings.Speed.FAST: [preload("res://assets/main/ui/difficulty/turbo.png"),
+	DifficultyData.Speed.FAST: [preload("res://assets/main/ui/difficulty/turbo.png"),
 			preload("res://assets/main/ui/difficulty/turbo-off.png")],
-	GameplaySettings.Speed.DEFAULT: [preload("res://assets/main/ui/difficulty/normal.png"),
+	DifficultyData.Speed.DEFAULT: [preload("res://assets/main/ui/difficulty/normal.png"),
 			preload("res://assets/main/ui/difficulty/normal-off.png")],
-	GameplaySettings.Speed.SLOW: [preload("res://assets/main/ui/difficulty/relaxed.png"),
+	DifficultyData.Speed.SLOW: [preload("res://assets/main/ui/difficulty/relaxed.png"),
 			preload("res://assets/main/ui/difficulty/relaxed-off.png")],
-	GameplaySettings.Speed.SLOWER: [preload("res://assets/main/ui/difficulty/relaxed.png"),
+	DifficultyData.Speed.SLOWER: [preload("res://assets/main/ui/difficulty/relaxed.png"),
 			preload("res://assets/main/ui/difficulty/relaxed-off.png")],
-	GameplaySettings.Speed.SLOWEST: [preload("res://assets/main/ui/difficulty/relaxed.png"),
+	DifficultyData.Speed.SLOWEST: [preload("res://assets/main/ui/difficulty/relaxed.png"),
 			preload("res://assets/main/ui/difficulty/relaxed-off.png")],
-	GameplaySettings.Speed.SLOWESTEST: [preload("res://assets/main/ui/difficulty/zen.png"),
+	DifficultyData.Speed.SLOWESTEST: [preload("res://assets/main/ui/difficulty/zen.png"),
 			preload("res://assets/main/ui/difficulty/zen-off.png")],
 }
 
-export (GameplaySettings.Speed) var speed: int = GameplaySettings.Speed.DEFAULT
+export (DifficultyData.Speed) var speed: int = DifficultyData.Speed.DEFAULT
 
-## key: (int) Enum from GameplaySettings.Speed
+## key: (int) Enum from DifficultyData.Speed
 ## value: (String) Difficulty name shown on the button
 var difficulty_names_by_speed := {
-	GameplaySettings.Speed.FASTESTEST: tr("Turbo Mode"),
-	GameplaySettings.Speed.FASTEST: tr("Turbo Mode"),
-	GameplaySettings.Speed.FASTER: tr("Turbo Mode"),
-	GameplaySettings.Speed.FAST: tr("Turbo Mode"),
-	GameplaySettings.Speed.DEFAULT: tr("Normal Mode"),
-	GameplaySettings.Speed.SLOW: tr("Relaxed Mode"),
-	GameplaySettings.Speed.SLOWER: tr("Relaxed Mode"),
-	GameplaySettings.Speed.SLOWEST: tr("Relaxed Mode"),
-	GameplaySettings.Speed.SLOWESTEST: tr("Zen Mode"),
+	DifficultyData.Speed.FASTESTEST: tr("Turbo Mode"),
+	DifficultyData.Speed.FASTEST: tr("Turbo Mode"),
+	DifficultyData.Speed.FASTER: tr("Turbo Mode"),
+	DifficultyData.Speed.FAST: tr("Turbo Mode"),
+	DifficultyData.Speed.DEFAULT: tr("Normal Mode"),
+	DifficultyData.Speed.SLOW: tr("Relaxed Mode"),
+	DifficultyData.Speed.SLOWER: tr("Relaxed Mode"),
+	DifficultyData.Speed.SLOWEST: tr("Relaxed Mode"),
+	DifficultyData.Speed.SLOWESTEST: tr("Zen Mode"),
 }
 
 onready var _polygon2d := $Polygon2D
 onready var _name_label := $NameLabel
 
 func _ready() -> void:
-	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
+	PlayerData.difficulty.connect("speed_changed", self, "_on_DifficultyData_speed_changed")
 	
 	_refresh()
 
@@ -73,16 +73,16 @@ func _refresh() -> void:
 ## Returns:
 ## 	'true' if the button's difficulty matches the player's chosen difficulty.
 func is_button_difficulty_chosen() -> bool:
-	return speed == SystemData.gameplay_settings.speed
+	return speed == PlayerData.difficulty.speed
 
 
 func _pressed() -> void:
-	SystemData.gameplay_settings.speed = speed
+	PlayerData.difficulty.speed = speed
 	SystemData.has_unsaved_changes = true
 	_refresh()
 
 
-func _on_GameplaySettings_speed_changed(_value: int) -> void:
+func _on_DifficultyData_speed_changed(_value: int) -> void:
 	_refresh()
 
 

@@ -18,6 +18,7 @@ const SECONDS_PLAYED_INCREMENT := 0.619
 
 var level_history := LevelHistory.new()
 var chat_history := ChatHistory.new()
+var difficulty := DifficultyData.new()
 
 var creature_library := CreatureLibrary.new()
 var customer_queue := CustomerQueue.new()
@@ -52,6 +53,7 @@ func _ready() -> void:
 func reset() -> void:
 	level_history.reset()
 	chat_history.reset()
+	difficulty.reset()
 	creature_library.reset()
 	customer_queue.reset()
 	cutscene_queue.reset()
