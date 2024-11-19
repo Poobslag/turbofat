@@ -4,7 +4,8 @@ class_name SaveItemUpgrader
 ## SaveItemUpgrader can update the 'version' tag, but any other version-specific updates must be defined externally.
 ## These version-specific updates can be incorporated via SaveItemUpgrader's 'add_upgrade_method' method.
 
-## Externally defined method which provides version-specific updates.
+## Externally defined methods which perform granular version-specific updates, capable of upgrading individual save
+## items.
 class UpgradeMethod:
 	## Object containing the method
 	var object: Object
@@ -21,25 +22,37 @@ class UpgradeMethod:
 ## Newest version which everything should upgrade to.
 var current_version := ""
 
-## Externally defined methods which provide version-specific updates.
+## Externally defined methods which perform granular version-specific updates, capable of upgrading individual save
+## items.
+##
+## These methods should have the following signature:
+##
+## 	* func _upgrade_xyz(old_save_items: Array, save_item: SaveItem) -> SaveItem
+##
+## The upgrade method should return a modified SaveItem object. The upgrade method can also return null, in which case
+## SaveItemUpgrader will omit the SaveItem object from the list of upgraded save items.
+##
 ## key: (String) old save data version from which the method upgrades
 ## value: (UpgradeMethod) method to call
 var _upgrade_methods := {}
 
-## Adds a new externally defined method which provides version-specific updates.
+## Adds a new externally defined method which performs granular version-specific updates, capable of upgrading
+## individual save items.
 ##
 ## SaveItemUpgrader does not have logic for upgrading specific save data versions. This upgrade logic must be defined
 ## on an external object and incorporated via this 'add_upgrade_method' method.
 ##
-## The specified upgrade method should accept an Array of source data and a SaveData object, and return a modified
-## SaveData object. The upgrade method can also return null, in which case SaveItemUpgrader will omit the SaveData
-## object from the list of upgraded save items.
+## This method should have the following signature:
+##
+## 	* func _upgrade_xyz(old_save_items: Array, save_item: SaveItem) -> SaveItem
+##
+## The upgrade method should return a modified SaveData object. The upgrade method can also return null, in which case
+## SaveItemUpgrader will omit the SaveData object from the list of upgraded save items.
 ##
 ## Parameters:
 ## 	'object': The object containing the method
 ##
-## 	'method': The name of the method which performs the upgrade. This method should accept a SaveData object and
-## 		return a modified SaveData object.
+## 	'method': The name of the method which performs the upgrade.
 ##
 ## 	'old_version': The old save data version which the method upgrades from
 ##
