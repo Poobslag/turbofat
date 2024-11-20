@@ -220,9 +220,11 @@ func _maybe_insert_cheat_pieces(min_line_piece_index: int) -> void:
 func _new_next_piece(type: PieceType) -> NextPiece:
 	var next_piece := NextPiece.new()
 	next_piece.type = type
+	if CurrentLevel.settings.other.vertical_line_pieces and next_piece.type == PieceTypes.piece_i:
+		next_piece.orientation = 1
 	if pieces:
 		# if the last piece in the queue has been rotated, we match its orientation.
-		next_piece.orientation = pieces.back().orientation
+		next_piece.orientation = (next_piece.orientation + pieces.back().orientation) % type.pos_arr.size()
 	return next_piece
 
 
