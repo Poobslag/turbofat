@@ -40,6 +40,9 @@ var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
 ## 'true' for tutorial levels which are led by Turbo
 var tutorial := false
 
+## 'true' if line pieces should be vertical, for levels where horizontal line pieces will cause a top out
+var vertical_line_pieces := false
+
 var _rule_parser: RuleParser
 
 func _init() -> void:
@@ -57,6 +60,7 @@ func _init() -> void:
 	_rule_parser.add_string("start_level")
 	_rule_parser.add_enum("tile_set", PuzzleTileMap.TileSetType)
 	_rule_parser.add_bool("tutorial")
+	_rule_parser.add_bool("vertical_line_pieces")
 
 
 func from_json_array(json: Array) -> void:
