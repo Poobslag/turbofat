@@ -19,6 +19,9 @@
     "dig",
     "annoying"
   ],
+  "other": [
+    "food_speed 2"
+  ],
   "rank": [
     "duration 120",
     "rank_criteria m=2600"
