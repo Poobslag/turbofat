@@ -96,7 +96,7 @@ func test_5a24_defaults() -> void:
 	load_system_data("config-5a24-default.json")
 	load_player_data("turbofat-59c3.json")
 	
-	# should load difficulty data from file
+	# should provide default difficulty
 	assert_eq(PlayerData.difficulty.speed, DifficultyData.Speed.DEFAULT)
 	assert_eq(PlayerData.difficulty.hold_piece, false)
 	assert_eq(PlayerData.difficulty.line_piece, false)

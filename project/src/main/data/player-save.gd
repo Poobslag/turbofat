@@ -35,11 +35,11 @@ var data_filename := "user://saveslot0.json" setget set_data_filename
 ## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
 
+## 'true' if the previous '_save_items_from_file' call upgraded the loaded data.
+var load_performed_upgrade := false
+
 ## 'true' if rank data should be populated, and invalid levels purged from the player's save. Can be changed for tests
 var populate_rank_data := true
-
-## 'true' if the previous '_save_items_from_file' call upgraded the loaded data.
-var _load_performed_upgrade := false
 
 ## Provides backwards compatibility with older save formats
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
@@ -112,6 +112,7 @@ func save_player_data() -> void:
 
 ## Populates the player's in-memory data based on their save files.
 func load_player_data() -> void:
+	load_performed_upgrade = false
 	emit_signal("before_load")
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "load_player_data_from_file")
@@ -155,6 +156,7 @@ func get_save_slot_player_short_name(filename: String) -> String:
 ##
 ## Returns 'true' if the data is loaded successfully.
 func load_player_data_from_file(filename: String) -> bool:
+	load_performed_upgrade = false
 	var json_save_items := _save_items_from_file(filename)
 	if json_save_items.empty():
 		return false
@@ -168,7 +170,7 @@ func load_player_data_from_file(filename: String) -> bool:
 		_purge_invalid_levels_from_level_history()
 		_calculate_rank_for_level_history()
 	
-	if _load_performed_upgrade:
+	if load_performed_upgrade:
 		# after loading old data, immediately save it so that the old data doesn't persist
 		schedule_save()
 
@@ -202,7 +204,6 @@ func _calculate_rank_for_level_history() -> void:
 ## 	file.
 func _save_items_from_file(filename: String) -> Array:
 	var file := File.new()
-	_load_performed_upgrade = false
 	var open_result := file.open(filename, File.READ)
 	if open_result != OK:
 		# validation failed; couldn't open file
@@ -220,7 +221,7 @@ func _save_items_from_file(filename: String) -> Array:
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
-		_load_performed_upgrade = true
+		load_performed_upgrade = true
 	
 	return json_save_items
 

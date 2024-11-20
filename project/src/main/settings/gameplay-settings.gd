@@ -12,9 +12,10 @@ var soft_drop_lock_cancel := false setget set_soft_drop_lock_cancel
 
 ## Outdated properties which are preserved for backwards compatibility.
 ##
-## Currently, this includes the old 'hold_piece', 'line_piece' and 'speed' settings. These have been moved into
-## PlayerData, but for our backwards-compatibility logic to run and populate PlayerData with the player's old
-## settings, they need to be available somewhere temporarily.
+## Currently, this includes the old 'hold_piece', 'line_piece' and 'speed' properties. These properties were moved
+## from SystemData to PlayerData, but for our backwards-compatibility logic to run and populate PlayerData with the
+## player's old settings, they need to be stored somewhere between when SystemData is upgraded and PlayerData is
+## upgraded.
 var legacy_properties := {}
 
 func set_ghost_piece(new_ghost_piece: bool) -> void:

@@ -38,7 +38,7 @@ var ignore_save_slot_filename := false
 var legacy_filename := "user://turbofat0.save"
 
 ## 'true' if the previous 'load_system_data' upgraded the loaded data.
-var _load_performed_upgrade := false
+var load_performed_upgrade := false
 
 ## Provides backwards compatibility with older save formats
 var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
@@ -89,7 +89,7 @@ func save_system_data() -> void:
 ## Returns 'true' if the data is loaded successfully.
 func load_system_data() -> bool:
 	SystemData.reset()
-	_load_performed_upgrade = false
+	load_performed_upgrade = false
 	
 	var filename_to_load := data_filename
 	if not FileUtils.file_exists(data_filename) and FileUtils.file_exists(legacy_filename):
@@ -119,7 +119,7 @@ func load_system_data() -> bool:
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
-		_load_performed_upgrade = true
+		load_performed_upgrade = true
 	
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()
