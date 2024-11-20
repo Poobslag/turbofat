@@ -10,7 +10,7 @@ var ghost_piece := true setget set_ghost_piece
 ## 'true' if pressing soft drop should perform a lock cancel
 var soft_drop_lock_cancel := false setget set_soft_drop_lock_cancel
 
-## Outdated properties which are preserved for backwards compatibility.
+## Transient properties which are temporarily stored for backwards compatibility.
 ##
 ## Currently, this includes the old 'hold_piece', 'line_piece' and 'speed' properties. These properties were moved
 ## from SystemData to PlayerData, but for our backwards-compatibility logic to run and populate PlayerData with the
@@ -40,16 +40,6 @@ func reset() -> void:
 func to_json_dict() -> Dictionary:
 	return {
 		"ghost_piece": ghost_piece,
-		
-		## We persist the 'legacy_properties' field which contains the outdated properties which are preserved for
-		## backwards compatibility.
-		##
-		## These fields are applied to the player's active save slot after it's loaded. However if we did not preserve
-		## them, they could not be applied to the player's other save slots when they're loaded in the future. This
-		## issue stems from #2910 (https://github.com/Poobslag/turbofat/issues/2910) which requires us to keep this
-		## data around because secondary save slots are not saved until the player loads them.
-		"legacy_properties": legacy_properties,
-		
 		"soft_drop_lock_cancel": soft_drop_lock_cancel,
 	}
 
