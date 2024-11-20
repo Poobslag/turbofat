@@ -45,6 +45,7 @@ var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
 	load_system_data()
+	_save_upgraded_data()
 	_refresh_save_slot()
 	SystemData.misc_settings.connect("save_slot_changed", self, "_on_MiscSettings_save_slot_changed")
 	PlayerSave.load_player_data()
@@ -126,10 +127,6 @@ func load_system_data() -> bool:
 		save_item.from_json_dict(json_save_item_obj)
 		_load_line(save_item.type, save_item.key, save_item.value)
 	
-	if _load_performed_upgrade:
-		# after loading old data, immediately save it so that the old data doesn't persist
-		save_system_data()
-	
 	# emit a signal indicating the level history was loaded
 	PlayerData.emit_signal("level_history_changed")
 	
@@ -202,6 +199,23 @@ func _load_line(type: String, _key: String, json_value) -> void:
 			SystemData.misc_settings.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)
+
+
+## Overwrites older file versions with the newest versions, if necessary.
+##
+## If any of the player's config or save files are using older file versions, this method writes them with the newest
+## versions. If the config and save files are up-to-date, this method has no effect.
+func _save_upgraded_data() -> void:
+	# after loading old data, immediately save it so that the old data doesn't persist
+	if load_performed_upgrade:
+		save_system_data()
+
+	# check for old save slots, and overwrite them with the new data format
+	for save_slot_index in MiscSettings.SaveSlot.values():
+		PlayerSave.data_filename = FILENAMES_BY_SAVE_SLOT[save_slot_index]
+		PlayerSave.load_player_data()
+		if PlayerSave.load_performed_upgrade:
+			PlayerSave.save_player_data()
 
 
 func _refresh_save_slot() -> void:
