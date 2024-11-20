@@ -1373,6 +1373,7 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="hide" from="." to="ControllerUnpluggedMessage" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
 [connection signal="show" from="." to="ControllerUnpluggedMessage" method="_on_SettingsMenu_show"]
+[connection signal="show" from="." to="Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot" method="_on_SettingsMenu_show"]
 [connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen" method="_on_CheckBox_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
