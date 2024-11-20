@@ -66,5 +66,6 @@ func _on_DifficultyData_speed_changed(_value: int) -> void:
 
 func _on_OkButton_pressed() -> void:
 	if SystemData.has_unsaved_changes:
+		# Save the 'show_difficulty_menu' setting
 		SystemSave.save_system_data()
 	SceneTransition.pop_trail({SceneTransition.FLAG_TYPE: SceneTransition.TYPE_NONE})

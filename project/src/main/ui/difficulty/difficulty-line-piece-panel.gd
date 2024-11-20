@@ -13,8 +13,8 @@ func _refresh() -> void:
 
 
 func _on_CheckBox_toggled(_button_pressed: bool) -> void:
-	SystemData.has_unsaved_changes = true
 	PlayerData.difficulty.line_piece = _check_box.pressed
+	PlayerSave.schedule_save()
 
 
 func _on_DifficultyData_line_piece_changed(_value: bool) -> void:
