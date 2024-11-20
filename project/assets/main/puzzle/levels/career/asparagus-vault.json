@@ -16,6 +16,7 @@
     "confusing"
   ],
   "other": [
+    "food_speed 2",
     "tile_set veggie"
   ],
   "piece_types": [
