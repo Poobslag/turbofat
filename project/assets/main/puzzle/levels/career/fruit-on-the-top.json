@@ -17,6 +17,9 @@
     "narrow",
     "fast"
   ],
+  "other": [
+    "vertical_line_pieces"
+  ],
   "rank": [
     "duration 50",
     "rank_criteria m=1400"
