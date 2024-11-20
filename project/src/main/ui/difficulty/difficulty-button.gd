@@ -78,7 +78,7 @@ func is_button_difficulty_chosen() -> bool:
 
 func _pressed() -> void:
 	PlayerData.difficulty.speed = speed
-	SystemData.has_unsaved_changes = true
+	PlayerSave.schedule_save()
 	_refresh()
 
 
