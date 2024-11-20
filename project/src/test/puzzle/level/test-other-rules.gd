@@ -16,6 +16,7 @@ func test_convert_to_json_and_back() -> void:
 	rules.after_tutorial = true
 	rules.clear_on_finish = false
 	rules.enhance_combo_fx = true
+	rules.food_speed = 2.0
 	rules.non_interactive = true
 	rules.suppress_piece_rotation = OtherRules.SuppressPieceRotation.ROTATION
 	rules.suppress_piece_initial_rotation = OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS
@@ -28,6 +29,7 @@ func test_convert_to_json_and_back() -> void:
 	assert_eq(rules.after_tutorial, true)
 	assert_eq(rules.clear_on_finish, false)
 	assert_eq(rules.enhance_combo_fx, true)
+	assert_eq(rules.food_speed, 2.0)
 	assert_eq(rules.non_interactive, true)
 	assert_eq(rules.suppress_piece_rotation, OtherRules.SuppressPieceRotation.ROTATION)
 	assert_eq(rules.suppress_piece_initial_rotation, OtherRules.SuppressPieceRotation.ROTATION_AND_SIGNALS)
