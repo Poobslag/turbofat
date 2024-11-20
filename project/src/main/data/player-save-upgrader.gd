@@ -342,6 +342,17 @@ func _post_upgrade_59c3(new_save_items: Array) -> Array:
 		if SystemData.gameplay_settings.legacy_properties.has(property):
 			difficulty_save_item["value"][property] = SystemData.gameplay_settings.legacy_properties[property]
 	
+	# replace the 'speed' field with one of the four standard settings
+	var old_speed: String = difficulty_save_item["value"].get("speed", "")
+	var new_speed: String = old_speed
+	match old_speed:
+		"slow", "slowest":
+			new_speed = "slower"
+		"fast", "faster", "fastestest":
+			new_speed = "fastest"
+	if new_speed:
+		difficulty_save_item["value"]["speed"] = new_speed
+	
 	return new_save_items
 
 
