@@ -8,8 +8,6 @@ onready var _option_button := $HBoxContainer/OptionButton
 
 func _ready() -> void:
 	SystemSave.connect("save_slot_deleted", self, "_on_SystemSave_save_slot_deleted")
-	
-	_refresh_save_slots()
 
 
 func get_selected_save_slot() -> int:
@@ -33,4 +31,8 @@ func _on_Delete_pressed() -> void:
 
 
 func _on_SystemSave_save_slot_deleted() -> void:
+	_refresh_save_slots()
+
+
+func _on_SettingsMenu_show() -> void:
 	_refresh_save_slots()
