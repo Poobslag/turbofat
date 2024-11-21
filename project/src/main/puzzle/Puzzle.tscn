@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -93,6 +93,7 @@
 [ext_resource path="res://src/main/puzzle/MoneyBurst.tscn" type="PackedScene" id=92]
 [ext_resource path="res://src/main/ui/diagonal-particles.gd" type="Script" id=93]
 [ext_resource path="res://src/main/puzzle/unplugged-controller-detector.gd" type="Script" id=94]
+[ext_resource path="res://src/main/puzzle/chalkboard-title.gd" type="Script" id=95]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -281,22 +282,39 @@ antialiased = true
 polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
 
 [node name="Score" parent="Fg/Chalkboard" instance=ExtResource( 61 )]
-margin_left = 58.0
-margin_top = 25.0
-margin_right = 308.0
-margin_bottom = 99.0
+margin_left = 68.0
+margin_top = 35.0
+margin_right = 318.0
+margin_bottom = 109.0
 
 [node name="PuzzleTimer" parent="Fg/Chalkboard" instance=ExtResource( 49 )]
-margin_left = 58.0
+margin_left = 68.0
 margin_top = 110.0
-margin_right = 308.0
+margin_right = 318.0
 margin_bottom = 140.0
 
+[node name="Title" type="Label" parent="Fg/Chalkboard" groups=["night_mode_light"]]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 68.0
+margin_top = 15.0
+margin_right = 318.0
+margin_bottom = 35.0
+mouse_filter = 0
+size_flags_vertical = 1
+theme = ExtResource( 68 )
+custom_constants/line_spacing = 0
+text = "asdf"
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 1
+script = ExtResource( 95 )
+
 [node name="MilestoneHud" type="Control" parent="Fg/Chalkboard" groups=["night_mode_light"]]
-margin_left = 58.0
-margin_top = 153.0
-margin_right = 308.0
-margin_bottom = 233.0
+margin_left = 68.0
+margin_top = 163.0
+margin_right = 318.0
+margin_bottom = 243.0
 rect_min_size = Vector2( 250, 40 )
 script = ExtResource( 23 )
 
