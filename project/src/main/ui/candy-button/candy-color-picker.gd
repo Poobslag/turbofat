@@ -47,9 +47,18 @@ func _ready() -> void:
 ##
 ## This control itself doesn't have focus, so we delegate to a child control.
 func grab_focus() -> void:
-	var focusable_nodes := Utils.find_focusable_nodes(self)
-	if focusable_nodes:
-		focusable_nodes[0].grab_focus()
+	var node_to_focus: Control
+	
+	if not node_to_focus:
+		# find the best matching CandyColorPickerButton preset for the current color
+		node_to_focus = _find_closest_color_button()
+	
+	if not node_to_focus:
+		# find the first focusable descendant of this node
+		node_to_focus = _find_first_focusable_node()
+	
+	if node_to_focus:
+		node_to_focus.grab_focus()
 
 
 func set_color(new_color: Color) -> void:
@@ -65,6 +74,31 @@ func set_color_presets(new_color_presets: Array) -> void:
 	
 	_refresh_color_presets()
 	_refresh_size()
+
+
+## Returns the best matching CandyColorPickerButton preset for the current color.
+##
+## Returns null if there are no CandyColorPickerButtons.
+func _find_closest_color_button() -> Control:
+	if _presets_container.get_child_count() == 0:
+		return null
+	
+	var closest_color_button: CandyColorPickerButton = _presets_container.get_child(0)
+	var closest_color_dist := Utils.color_distance_rgb(color, closest_color_button.color)
+	for child in _presets_container.get_children():
+		var color_dist := Utils.color_distance_rgb(color, child.color)
+		if color_dist < closest_color_dist:
+			closest_color_button = child
+			closest_color_dist = color_dist
+	return closest_color_button
+
+
+## Returns the first focusable descendant of this node.
+##
+## Returns null if there are no focusable descendants.
+func _find_first_focusable_node() -> Control:
+	var focusable_nodes := Utils.find_focusable_nodes(self)
+	return focusable_nodes[0] if focusable_nodes else null
 
 
 ## Updates the currently displayed color, moving the HSV sliders.
