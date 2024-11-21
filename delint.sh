@@ -71,7 +71,7 @@ if [ -n "$RESULT" ]; then
 fi
 
 # illegal references to demo/test code
-REGEX="\(src\/test\|src\/demo\)"
+REGEX="\(src\/test\|src\/demo|assets\/test\|assets\/demo\)"
 RESULT=$(grep -R -n "$REGEX" --include="*.gd" --include="*.tscn" project/src/main \
   | grep -v "global\\.gd.*const SCENE_CUTSCENE_DEMO" \
   )
