@@ -30,6 +30,7 @@ func run() -> void:
 	_report_invalid_career_music()
 	_report_unused_career_levels()
 	_report_level_icons()
+	_report_vertical_line_piece_levels()
 	_report_bad_achievements()
 	_alphabetize_career_levels()
 	if _problem_count == 0:
@@ -190,6 +191,35 @@ func _report_level_icons() -> void:
 	
 	if bad_icons:
 		_report_problem("Levels with bad icons: %s" % [PoolStringArray(bad_icons).join(", ")])
+
+
+## Report levels where line pieces will cause a top out.
+##
+## Levels like 'Carrot Alley' were frustrating for players using the line piece cheat, so we made those levels
+## automatically rotate line pieces. Any level which blocks line pieces should rotate them automatically.
+func _report_vertical_line_piece_levels() -> void:
+	var level_ids := []
+	level_ids.append_array(CareerLevelLibrary.all_level_ids())
+	level_ids.append_array(OtherLevelLibrary.all_level_ids())
+
+	# Cells at the top center of the playfield. Technically only four of these will cause a top out, but we check for
+	# all five.
+	var top_cells := [
+		Vector2(2, 3), Vector2(3, 3), Vector2(4, 3), Vector2(5, 3), Vector2(6, 3),
+	]
+
+	var bad_line_piece_level_ids := []
+	for level_id in level_ids:
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		var occupied_top_cells := Utils.intersection(
+				level_settings.tiles.blocks_start().block_tiles.keys(), top_cells)
+		if occupied_top_cells and not level_settings.other.vertical_line_pieces:
+			bad_line_piece_level_ids.append(level_id)
+
+	if bad_line_piece_level_ids:
+		_report_problem("Levels which need 'vertical_line_pieces' setting: %s"
+				% [PoolStringArray(bad_line_piece_level_ids).join(", ")])
 
 
 ## Reports bad SteamAchievement achievement_ids, region_ids, level_ids

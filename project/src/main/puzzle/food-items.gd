@@ -130,6 +130,17 @@ func _update_food_speed() -> void:
 	_food_float_duration = lerp(0.2, 1.3, speed_factor)
 	_food_flight_duration = lerp(0.4, 1.0, speed_factor)
 	_max_food_repeat_delay = lerp(0.16, 0.48, speed_factor)
+	
+	# update the food timings based on the current level's food speed setting
+	var flight_speed_factor := 1.0 / clamp(CurrentLevel.settings.other.food_speed, 0.1, 100)
+	var float_speed_factor := 1.0 / clamp(CurrentLevel.settings.other.food_speed, 0.1, 100)
+	if float_speed_factor < 1.0:
+		# for food_speed values greater than 1.0, the food does not float
+		float_speed_factor = 0.0
+	_food_float_duration = clamp(_food_float_duration * float_speed_factor, 0.01, 2.6)
+	_food_flight_duration = clamp(_food_flight_duration * flight_speed_factor, 0.01, 2.0)
+	_max_food_repeat_delay *= clamp(_max_food_repeat_delay * float_speed_factor, 0.01, 0.96)
+	
 	_food_flight_timer.wait_time = _max_food_repeat_delay * randf()
 
 

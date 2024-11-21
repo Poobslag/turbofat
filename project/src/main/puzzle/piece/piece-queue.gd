@@ -45,7 +45,7 @@ var _cheat_bag_pieces_remaining := 0
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
-	SystemData.gameplay_settings.connect("line_piece_changed", self, "_on_GameplaySettings_line_piece_changed")
+	PlayerData.difficulty.connect("line_piece_changed", self, "_on_DifficultyData_line_piece_changed")
 	_fill()
 
 
@@ -220,9 +220,11 @@ func _maybe_insert_cheat_pieces(min_line_piece_index: int) -> void:
 func _new_next_piece(type: PieceType) -> NextPiece:
 	var next_piece := NextPiece.new()
 	next_piece.type = type
+	if CurrentLevel.settings.other.vertical_line_pieces and next_piece.type == PieceTypes.piece_i:
+		next_piece.orientation = 1
 	if pieces:
 		# if the last piece in the queue has been rotated, we match its orientation.
-		next_piece.orientation = pieces.back().orientation
+		next_piece.orientation = (next_piece.orientation + pieces.back().orientation) % type.pos_arr.size()
 	return next_piece
 
 
@@ -321,7 +323,7 @@ func _on_PuzzleState_game_prepared() -> void:
 ##
 ## This has the potential for some very silly gameplay where the player repeatedly toggles the cheat on and off to get
 ## every piece in a particular order.
-func _on_GameplaySettings_line_piece_changed(_value: bool) -> void:
+func _on_DifficultyData_line_piece_changed(_value: bool) -> void:
 	if not CurrentLevel.is_line_piece_cheat_enabled():
 		return
 	

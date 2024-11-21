@@ -20,7 +20,7 @@ func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
-	SystemData.gameplay_settings.connect("hold_piece_changed", self, "_on_GameplaySettings_hold_piece_changed")
+	PlayerData.difficulty.connect("hold_piece_changed", self, "_on_DifficultyData_hold_piece_changed")
 	
 	display = HoldPieceDisplayScene.instance()
 	display.initialize(_piece_queue)
@@ -46,7 +46,7 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 	display.visible = not value
 
 
-func _on_GameplaySettings_hold_piece_changed(_value: bool) -> void:
+func _on_DifficultyData_hold_piece_changed(_value: bool) -> void:
 	_refresh()
 
 

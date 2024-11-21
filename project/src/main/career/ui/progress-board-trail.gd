@@ -82,6 +82,6 @@ func _refresh_spots() -> void:
 
 ## When the player reaches the goal, the trail flashes different colors.
 func _on_Player_travelling_finished() -> void:
-	if PlayerData.career.is_boss_level():
+	if PlayerData.career.is_boss_level() and PlayerData.career.can_play_more_levels():
 		_spots.set_cycle_colors(true)
 		_lines.set_cycle_colors(true)

@@ -89,7 +89,7 @@ func _ready() -> void:
 	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	
-	SystemData.gameplay_settings.connect("speed_changed", self, "_on_GameplaySettings_speed_changed")
+	PlayerData.difficulty.connect("speed_changed", self, "_on_DifficultyData_speed_changed")
 
 
 func speed(string: String) -> PieceSpeed:
@@ -121,5 +121,5 @@ func _on_PuzzleState_game_prepared() -> void:
 	_update_current_speed()
 
 
-func _on_GameplaySettings_speed_changed(_value: int) -> void:
+func _on_DifficultyData_speed_changed(_value: int) -> void:
 	_update_current_speed()

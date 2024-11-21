@@ -35,7 +35,7 @@ func _ready() -> void:
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	
-	if PlayerData.career.is_boss_level() and not PlayerData.career.is_day_over() \
+	if PlayerData.career.is_boss_level() and PlayerData.career.can_play_more_levels() \
 			and (PlayerData.career.show_progress != Careers.ShowProgress.ANIMATED):
 		MusicPlayer.play_boss_track()
 	else:
@@ -271,7 +271,7 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 ##
 ## If the progress board is not being shown, this happens at the start of the level.
 func _after_progress_board() -> void:
-	if PlayerData.career.is_day_over():
+	if not PlayerData.career.can_play_more_levels():
 		# After the final level, we show a 'you win' screen.
 		SceneTransition.replace_trail(Global.SCENE_CAREER_WIN)
 	else:

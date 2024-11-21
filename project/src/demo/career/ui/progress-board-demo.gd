@@ -10,17 +10,20 @@ extends Node
 ## 	[R]: Permanently show the progress board.
 ## 	[S]: Toggle whether or not the sensei accompanies the player in this chapter.
 ## 	[I]: Show the intro board.
+## 	[L]: Toggle whether or not the player topped out.
 ## 	[Z-M]: Animate the player advancing 0-25 steps.
 ## 	[Shift + Z-M]: Animate the player going backward 0-25 steps.
 ## 	[=/-]: Move the player forward/backward on the progress board.
 
 onready var _progress_board := $ProgressBoard
+onready var _label := $Label
 onready var _player := $ProgressBoard/ChalkboardRegion/Player
 
 func _ready() -> void:
 	PlayerData.career.hours_passed = 2
 	PlayerData.career.show_progress = Careers.ShowProgress.STATIC
 	_progress_board.show_progress()
+	_refresh_label()
 
 
 func _input(event: InputEvent) -> void:
@@ -43,6 +46,8 @@ func _input(event: InputEvent) -> void:
 			_progress_board.show_progress()
 		KEY_I:
 			_progress_board.show_intro()
+		KEY_L:
+			PlayerData.career.lost = not PlayerData.career.lost
 		KEY_Z:
 			_animate_progress(0 * (-1 if Input.is_key_pressed(KEY_SHIFT) else 1))
 		KEY_X:
@@ -82,6 +87,18 @@ func _input(event: InputEvent) -> void:
 			PlayerData.career.distance_travelled -= 10 if Input.is_key_pressed(KEY_SHIFT) else 1
 			PlayerData.career.distance_travelled = int(max(PlayerData.career.distance_travelled, 0))
 			_progress_board.refresh()
+	_refresh_label()
+
+
+func _refresh_label() -> void:
+	var new_text := ""
+	new_text += "lost=%s\n" % [PlayerData.career.lost]
+	new_text += "distance_earned=%s\n" % [PlayerData.career.distance_earned]
+	new_text += "distance_travelled=%s\n" % [PlayerData.career.distance_travelled]
+	new_text += "show_progress=%s\n" % \
+			[Utils.enum_to_snake_case(Careers.ShowProgress, PlayerData.career.show_progress)]
+	
+	_label.text = new_text.strip_edges()
 
 
 func _animate_progress(distance_earned: int) -> void:

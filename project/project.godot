@@ -464,6 +464,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/cutscene-world.gd"
 }, {
+"base": "Button",
+"class": "DifficultyButton",
+"language": "GDScript",
+"path": "res://src/main/ui/difficulty/difficulty-button.gd"
+}, {
+"base": "Reference",
+"class": "DifficultyData",
+"language": "GDScript",
+"path": "res://src/main/data/difficulty-data.gd"
+}, {
 "base": "Reference",
 "class": "DnaAlternatives",
 "language": "GDScript",
@@ -1746,6 +1756,8 @@ _global_script_class_icons={
 "CutsceneQueue": "",
 "CutsceneSearchFlags": "",
 "CutsceneWorld": "",
+"DifficultyButton": "",
+"DifficultyData": "",
 "DnaAlternatives": "",
 "EditorPickups": "",
 "EditorPlayfield": "",

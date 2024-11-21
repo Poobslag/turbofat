@@ -1,0 +1,301 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=1]
+[ext_resource path="res://assets/main/ui/candy-button/h3-v.png" type="Texture" id=2]
+[ext_resource path="res://src/main/ui/theme/h5.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=4]
+[ext_resource path="res://src/main/ui/squeak/br/SqueakCheckBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/difficulty/difficulty-menu.gd" type="Script" id=6]
+[ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=7]
+[ext_resource path="res://src/main/ui/difficulty/difficulty-line-piece-panel.gd" type="Script" id=8]
+[ext_resource path="res://src/main/ui/difficulty/difficulty-hold-piece-panel.gd" type="Script" id=9]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-m1.png" type="Texture" id=10]
+[ext_resource path="res://assets/main/ui/candy-button/h3-v-pressed.png" type="Texture" id=11]
+[ext_resource path="res://src/main/ui/menu/MenuAccentH3.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/ui/difficulty/DifficultyButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/ui/difficulty/difficulty-menu-description.gd" type="Script" id=14]
+[ext_resource path="res://assets/main/ui/menu/menu-accent-h2-xl1.png" type="Texture" id=15]
+[ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=21]
+[ext_resource path="res://src/main/ui/theme/h3-font-outline.tres" type="DynamicFont" id=22]
+
+[sub_resource type="StyleBoxFlat" id=12]
+resource_local_to_scene = true
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=13]
+resource_local_to_scene = true
+bg_color = Color( 0.501961, 0.882353, 1, 0.501961 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.501961, 0.882353, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=14]
+resource_local_to_scene = true
+bg_color = Color( 0, 0.768627, 1, 0.25098 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.501961, 0.882353, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=15]
+resource_local_to_scene = true
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="GradientTexture2D" id=17]
+resource_local_to_scene = true
+gradient = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/mix_amount = 1.0
+shader_param/gradient = SubResource( 17 )
+
+[node name="DifficultyMenu" type="Control" groups=["wallpaper_enabled"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 600 )
+script = ExtResource( 6 )
+
+[node name="DropPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -371.0
+margin_top = -200.0
+margin_right = 371.0
+margin_bottom = 200.0
+custom_styles/panel = ExtResource( 21 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DropPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = 14.0
+margin_right = -14.0
+margin_bottom = -14.0
+custom_constants/separation = 20
+
+[node name="Difficulty" type="VBoxContainer" parent="DropPanel/VBoxContainer"]
+margin_right = 714.0
+margin_bottom = 196.0
+
+[node name="Header" type="Label" parent="DropPanel/VBoxContainer/Difficulty"]
+margin_right = 714.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 22 )
+text = "Difficulty"
+align = 1
+valign = 1
+
+[node name="MenuAccentH3" parent="DropPanel/VBoxContainer/Difficulty/Header" instance=ExtResource( 12 )]
+margin_left = -112.5
+margin_top = -37.5
+margin_right = 112.5
+margin_bottom = 37.5
+texture = ExtResource( 10 )
+
+[node name="Buttons" type="HBoxContainer" parent="DropPanel/VBoxContainer/Difficulty"]
+margin_top = 34.0
+margin_right = 714.0
+margin_bottom = 174.0
+rect_pivot_offset = Vector2( -487, 80 )
+alignment = 1
+
+[node name="Button1" parent="DropPanel/VBoxContainer/Difficulty/Buttons" instance=ExtResource( 13 )]
+margin_left = 31.0
+margin_right = 191.0
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+speed = 7
+
+[node name="Button2" parent="DropPanel/VBoxContainer/Difficulty/Buttons" instance=ExtResource( 13 )]
+margin_left = 195.0
+margin_right = 355.0
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+
+[node name="Button3" parent="DropPanel/VBoxContainer/Difficulty/Buttons" instance=ExtResource( 13 )]
+margin_left = 359.0
+margin_right = 519.0
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+speed = 2
+
+[node name="Button4" parent="DropPanel/VBoxContainer/Difficulty/Buttons" instance=ExtResource( 13 )]
+margin_left = 523.0
+margin_right = 683.0
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+speed = 4
+
+[node name="Desc" type="Label" parent="DropPanel/VBoxContainer/Difficulty"]
+margin_top = 178.0
+margin_right = 714.0
+margin_bottom = 196.0
+theme = ExtResource( 3 )
+text = "The heart of Turbo Fat - balancing quick moves with clever strategy."
+align = 1
+script = ExtResource( 14 )
+
+[node name="Helpers" type="VBoxContainer" parent="DropPanel/VBoxContainer"]
+margin_top = 216.0
+margin_right = 714.0
+margin_bottom = 282.0
+
+[node name="Header" type="Label" parent="DropPanel/VBoxContainer/Helpers"]
+margin_right = 714.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 22 )
+text = "Helpers"
+align = 1
+valign = 1
+
+[node name="MenuAccentH3" parent="DropPanel/VBoxContainer/Helpers/Header" instance=ExtResource( 12 )]
+margin_left = -112.5
+margin_top = -37.5
+margin_right = 112.5
+margin_bottom = 37.5
+texture = ExtResource( 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DropPanel/VBoxContainer/Helpers"]
+margin_top = 34.0
+margin_right = 714.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 0, 32 )
+alignment = 1
+
+[node name="HoldPiecePanel" type="Panel" parent="DropPanel/VBoxContainer/Helpers/HBoxContainer"]
+margin_left = 155.0
+margin_right = 355.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 16 )
+script = ExtResource( 9 )
+
+[node name="CheckBox" parent="DropPanel/VBoxContainer/Helpers/HBoxContainer/HoldPiecePanel" instance=ExtResource( 5 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -16.0
+margin_right = 138.0
+margin_bottom = 16.0
+focus_neighbour_right = NodePath("../../LinePiecePanel/CheckBox")
+theme = ExtResource( 7 )
+text = "Hold Piece"
+
+[node name="LinePiecePanel" type="Panel" parent="DropPanel/VBoxContainer/Helpers/HBoxContainer"]
+margin_left = 359.0
+margin_right = 559.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 16 )
+script = ExtResource( 8 )
+
+[node name="CheckBox" parent="DropPanel/VBoxContainer/Helpers/HBoxContainer/LinePiecePanel" instance=ExtResource( 5 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -16.0
+margin_right = 138.0
+margin_bottom = 16.0
+theme = ExtResource( 7 )
+text = "Line Pieces"
+
+[node name="OkButtonHolder" type="Control" parent="DropPanel/VBoxContainer"]
+margin_top = 302.0
+margin_right = 714.0
+margin_bottom = 372.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OkButton" parent="DropPanel/VBoxContainer/OkButtonHolder" instance=ExtResource( 16 )]
+material = SubResource( 18 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -25.0
+margin_right = 100.0
+margin_bottom = 25.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 2 )
+text = "Ok"
+color = 5
+shape = 8
+
+[node name="TipLabel" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+margin_top = 34.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 22 )
+text = "Customize your difficulty"
+align = 1
+
+[node name="MenuAccentH3" parent="TipLabel" instance=ExtResource( 12 )]
+margin_left = -187.5
+margin_top = -37.5
+margin_right = 187.5
+margin_bottom = 37.5
+texture = ExtResource( 15 )
+
+[connection signal="toggled" from="DropPanel/VBoxContainer/Helpers/HBoxContainer/HoldPiecePanel/CheckBox" to="DropPanel/VBoxContainer/Helpers/HBoxContainer/HoldPiecePanel" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="DropPanel/VBoxContainer/Helpers/HBoxContainer/LinePiecePanel/CheckBox" to="DropPanel/VBoxContainer/Helpers/HBoxContainer/LinePiecePanel" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="DropPanel/VBoxContainer/OkButtonHolder/OkButton" to="." method="_on_OkButton_pressed"]

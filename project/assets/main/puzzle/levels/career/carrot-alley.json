@@ -41,6 +41,9 @@
     "narrow",
     "fast"
   ],
+  "other": [
+    "vertical_line_pieces"
+  ],
   "piece_types": [
     "no_suppress_repeat_piece",
     "piece_j",

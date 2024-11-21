@@ -7,7 +7,7 @@ signal before_save
 signal after_save
 signal save_slot_deleted
 
-const SYSTEM_DATA_VERSION := "5a24"
+const SYSTEM_DATA_VERSION := "5b9b"
 
 ## Save files older than July 2021 which should be deleted during an upgrade
 const OLD_SAVES_TO_DELETE := [
@@ -37,11 +37,15 @@ var ignore_save_slot_filename := false
 ## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save"
 
+## 'true' if the previous 'load_system_data' upgraded the loaded data.
+var load_performed_upgrade := false
+
 ## Provides backwards compatibility with older save formats
 var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
 	load_system_data()
+	_save_upgraded_data()
 	_refresh_save_slot()
 	SystemData.misc_settings.connect("save_slot_changed", self, "_on_MiscSettings_save_slot_changed")
 	PlayerSave.load_player_data()
@@ -86,6 +90,7 @@ func save_system_data() -> void:
 ## Returns 'true' if the data is loaded successfully.
 func load_system_data() -> bool:
 	SystemData.reset()
+	load_performed_upgrade = false
 	
 	var filename_to_load := data_filename
 	if not FileUtils.file_exists(data_filename) and FileUtils.file_exists(legacy_filename):
@@ -115,6 +120,7 @@ func load_system_data() -> bool:
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
+		load_performed_upgrade = true
 	
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()
@@ -193,6 +199,23 @@ func _load_line(type: String, _key: String, json_value) -> void:
 			SystemData.misc_settings.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)
+
+
+## Overwrites older file versions with the newest versions, if necessary.
+##
+## If any of the player's config or save files are using older file versions, this method writes them with the newest
+## versions. If the config and save files are up-to-date, this method has no effect.
+func _save_upgraded_data() -> void:
+	# after loading old data, immediately save it so that the old data doesn't persist
+	if load_performed_upgrade:
+		save_system_data()
+
+	# check for old save slots, and overwrite them with the new data format
+	for save_slot_index in MiscSettings.SaveSlot.values():
+		PlayerSave.data_filename = FILENAMES_BY_SAVE_SLOT[save_slot_index]
+		PlayerSave.load_player_data()
+		if PlayerSave.load_performed_upgrade:
+			PlayerSave.save_player_data()
 
 
 func _refresh_save_slot() -> void:

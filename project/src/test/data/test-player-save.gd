@@ -21,11 +21,13 @@ func after_each() -> void:
 
 func test_save_and_load() -> void:
 	PlayerData.level_history.add_result("level_895", _rank_result)
+	PlayerData.difficulty.speed = DifficultyData.Speed.FASTEST
 	PlayerSave.save_player_data()
 	PlayerData.reset()
 	PlayerSave.load_player_data()
 	assert_true(PlayerData.level_history.has_result("level_895"))
 	assert_eq(PlayerData.level_history.results("level_895")[0].score, 7890)
+	assert_eq(PlayerData.difficulty.speed, DifficultyData.Speed.FASTEST)
 
 
 func test_one_bad_file() -> void:

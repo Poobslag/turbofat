@@ -64,7 +64,7 @@ func _init() -> void:
 
 func should_show_medal() -> bool:
 	return PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0 and CurrentLevel.hardcore \
-			and CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]
+			and CurrentLevel.first_result in [Levels.Result.FINISHED, Levels.Result.WON]
 
 func box_score() -> int:
 	return rank_result.box_score

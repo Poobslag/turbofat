@@ -16,6 +16,9 @@ var clear_on_finish := true
 ## 'true' to make the visual combo indicators easier to see
 var enhance_combo_fx := false
 
+## Food speed factor. Higher speeds make foods disappear faster so the player can see.
+var food_speed := 1.0
+
 ## 'true' for non-interactive tutorial levels which don't let the player do anything
 var non_interactive := false
 
@@ -37,6 +40,9 @@ var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
 ## 'true' for tutorial levels which are led by Turbo
 var tutorial := false
 
+## 'true' if line pieces should be vertical, for levels where horizontal line pieces will cause a top out
+var vertical_line_pieces := false
+
 var _rule_parser: RuleParser
 
 func _init() -> void:
@@ -44,6 +50,7 @@ func _init() -> void:
 	_rule_parser.add_bool("after_tutorial")
 	_rule_parser.add_bool("clear_on_finish", "no_clear_on_finish").default(true)
 	_rule_parser.add_bool("enhance_combo_fx")
+	_rule_parser.add_float("food_speed").default(1.0)
 	_rule_parser.add_bool("non_interactive")
 	_rule_parser.add_enum("suppress_piece_rotation", SuppressPieceRotation) \
 			.implied(SuppressPieceRotation.ROTATION)
@@ -53,6 +60,7 @@ func _init() -> void:
 	_rule_parser.add_string("start_level")
 	_rule_parser.add_enum("tile_set", PuzzleTileMap.TileSetType)
 	_rule_parser.add_bool("tutorial")
+	_rule_parser.add_bool("vertical_line_pieces")
 
 
 func from_json_array(json: Array) -> void:

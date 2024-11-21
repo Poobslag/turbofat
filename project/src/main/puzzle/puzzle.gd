@@ -164,10 +164,15 @@ func _restart() -> void:
 		# use up all of the players lives; especially for career mode, we don't want to reward players who
 		# give up
 		PuzzleState.level_performance.top_out_count = CurrentLevel.settings.lose_condition.top_out
+	
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
+		# End the game, triggering the chef's reaction and negative sound effects. Also saves the level result.
 		PuzzleState.end_game()
-	var rank_result := RankCalculator.new().calculate_rank()
-	_save_level_result(rank_result)
+	else:
+		# Just save the level result, don't trigger the chef's reaction and negative sound effects.
+		var rank_result := RankCalculator.new().calculate_rank()
+		_save_level_result(rank_result)
+	
 	_start_puzzle()
 	get_tree().set_input_as_handled()
 	PuzzleState.retrying = false
@@ -284,7 +289,10 @@ func _update_career_data(rank_result: RankResult) -> void:
 	
 	PlayerData.career.steps += distance_to_advance
 	PlayerData.career.top_out_count += PuzzleState.level_performance.top_out_count
-	PlayerData.career.advance_clock(distance_to_advance, rank_result.success, rank_result.lost)
+	if rank_result.lost:
+		PlayerData.career.lost = true
+		PlayerData.cutscene_queue.reset()
+	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
 
 
 ## Stores the rank result for later.
@@ -295,9 +303,12 @@ func _save_level_result(rank_result: RankResult) -> void:
 	PlayerData.emit_signal("level_history_changed")
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
 	
+	if CurrentLevel.attempt_count == 0:
+		CurrentLevel.first_result = PuzzleState.end_result()
+	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
+	
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 		_update_career_data(rank_result)
-	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
 	
 	PlayerSave.schedule_save()
 

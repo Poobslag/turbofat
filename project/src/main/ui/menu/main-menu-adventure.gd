@@ -8,7 +8,7 @@ func _on_Career_pressed() -> void:
 	CurrentLevel.reset()
 	
 	# If the player quit or ended the career mode day, we give them a fresh start.
-	if PlayerData.career.is_day_over():
+	if not PlayerData.career.can_play_more_levels():
 		PlayerData.career.advance_calendar()
 	
 	# Launch the first scene in career mode. This is probably the career map, but in some edge cases it could be a
@@ -23,3 +23,7 @@ func _on_Career_pressed() -> void:
 
 func _on_Avatar_pressed() -> void:
 	SceneTransition.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")
+
+
+func _on_Difficulty_pressed() -> void:
+	Breadcrumb.push_trail(Global.SCENE_DIFFICULTY_MENU)

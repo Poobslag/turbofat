@@ -15,7 +15,7 @@ signal after_load
 
 ## Current version for saved player data. Should be updated if and only if the player format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "59c3"
+const PLAYER_DATA_VERSION := "5b9b"
 
 var rolling_backups := RollingBackups.new()
 
@@ -34,6 +34,9 @@ var data_filename := "user://saveslot0.json" setget set_data_filename
 
 ## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
+
+## 'true' if the previous '_save_items_from_file' call upgraded the loaded data.
+var load_performed_upgrade := false
 
 ## 'true' if rank data should be populated, and invalid levels purged from the player's save. Can be changed for tests
 var populate_rank_data := true
@@ -95,6 +98,7 @@ func save_player_data() -> void:
 	save_json.append(SaveItem.new("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("career", PlayerData.career.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("difficulty", PlayerData.difficulty.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("menu_region", PlayerData.menu_region.id).to_json_dict())
 	save_json.append(SaveItem.new("practice", PlayerData.practice.to_json_dict()).to_json_dict())
 	save_json.append(SaveItem.new("successful_levels",
@@ -108,6 +112,7 @@ func save_player_data() -> void:
 
 ## Populates the player's in-memory data based on their save files.
 func load_player_data() -> void:
+	load_performed_upgrade = false
 	emit_signal("before_load")
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "load_player_data_from_file")
@@ -151,6 +156,7 @@ func get_save_slot_player_short_name(filename: String) -> String:
 ##
 ## Returns 'true' if the data is loaded successfully.
 func load_player_data_from_file(filename: String) -> bool:
+	load_performed_upgrade = false
 	var json_save_items := _save_items_from_file(filename)
 	if json_save_items.empty():
 		return false
@@ -163,6 +169,10 @@ func load_player_data_from_file(filename: String) -> bool:
 	if populate_rank_data:
 		_purge_invalid_levels_from_level_history()
 		_calculate_rank_for_level_history()
+	
+	if load_performed_upgrade:
+		# after loading old data, immediately save it so that the old data doesn't persist
+		schedule_save()
 
 	# emit a signal indicating the level history was loaded
 	PlayerData.emit_signal("level_history_changed")
@@ -211,6 +221,7 @@ func _save_items_from_file(filename: String) -> Array:
 	
 	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
+		load_performed_upgrade = true
 	
 	return json_save_items
 
@@ -246,6 +257,9 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"creature_library":
 			var value: Dictionary = json_value
 			PlayerData.creature_library.from_json_dict(value)
+		"difficulty":
+			var value: Dictionary = json_value
+			PlayerData.difficulty.from_json_dict(value)
 		"finished_levels":
 			var value: Dictionary = json_value
 			PlayerData.level_history.finished_levels = value
