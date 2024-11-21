@@ -1,6 +1,6 @@
 [gd_scene load_steps=115 format=2]
 
-[ext_resource path="res://assets/demo/ui/icon-play.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/ui/icon-play.png" type="Texture" id=1]
 [ext_resource path="res://src/main/ui/candy-button/gradient-orange-normal.tres" type="Gradient" id=2]
 [ext_resource path="res://src/main/ui/candy-button/gradient-red-normal.tres" type="Gradient" id=3]
 [ext_resource path="res://assets/main/ui/candy-button/h3-o-pressed.png" type="Texture" id=4]
