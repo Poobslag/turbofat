@@ -37,6 +37,9 @@ extends Node
 ## 	[S] -> [4]: Toggle shark patience
 ## 	[S] -> ']': Advance sharks
 ## 	[S] -> '=': Increase shark count to 99 for stress testing
+## 	[T]: Manipulate tomatoes
+## 	[T] -> [0]: Remove all tomatoes
+## 	[T] -> [1]: Add some tomatoes
 
 enum CritterType {
 	NONE,
@@ -46,6 +49,7 @@ enum CritterType {
 	PLAYFIELD,
 	SHARK,
 	SPEAR,
+	TOMATO,
 }
 
 const SPEAR_CONFIG_SIZES := [
@@ -95,6 +99,7 @@ func _input(event: InputEvent) -> void:
 		KEY_O: critter_type = CritterType.ONION
 		KEY_Q: critter_type = CritterType.PLAYFIELD
 		KEY_S: critter_type = CritterType.SHARK
+		KEY_T: critter_type = CritterType.TOMATO
 	
 	match critter_type:
 		CritterType.CARROT: _carrot_input(event)
@@ -103,6 +108,7 @@ func _input(event: InputEvent) -> void:
 		CritterType.PLAYFIELD: _playfield_input(event)
 		CritterType.SHARK: _shark_input(event)
 		CritterType.SPEAR: _spear_input(event)
+		CritterType.TOMATO: _tomato_input(event)
 
 
 func _carrot_input(event: InputEvent) -> void:
@@ -210,6 +216,16 @@ func _spear_input(event: InputEvent) -> void:
 			
 		KEY_BRACKETRIGHT:
 			$Puzzle/Fg/Critters/Spears.advance_spears()
+
+
+func _tomato_input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_0:
+			for y in range(PuzzleTileMap.ROW_COUNT):
+				$Puzzle/Fg/Critters/Tomatoes.remove_tomato(y)
+		KEY_1:
+			for i in range(3):
+				$Puzzle/Fg/Critters/Tomatoes.add_tomato(Utils.randi_range(0, PuzzleTileMap.ROW_COUNT - 1))
 
 
 func _spear_config_size_index() -> int:

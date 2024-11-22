@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/puzzle/critter/moles.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/critter/critters.gd" type="Script" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://src/main/puzzle/critter/Spear.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/puzzle/critter/SpearWide.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/puzzle/critter/tomatoes.gd" type="Script" id=19]
+[ext_resource path="res://src/main/puzzle/critter/Tomato.tscn" type="PackedScene" id=20]
 
 [node name="Critters" type="Control"]
 margin_left = 364.0
@@ -67,6 +69,17 @@ volume_db = -4.0
 [node name="CarrotMoveSound" parent="Carrots" instance=ExtResource( 17 )]
 stream = ExtResource( 6 )
 volume_db = -2.0
+
+[node name="Tomatoes" type="Node2D" parent="." groups=["night_mode_light"]]
+script = ExtResource( 19 )
+TomatoScene = ExtResource( 20 )
+
+[node name="SuppressSfxTimer" type="Timer" parent="Tomatoes"]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[node name="TomatoHolder" type="Node2D" parent="Tomatoes"]
 
 [node name="CellCritterManager" type="Node" parent="."]
 script = ExtResource( 14 )

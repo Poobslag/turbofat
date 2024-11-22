@@ -107,6 +107,11 @@ func get_spears() -> Spears:
 	return $Fg/Critters/Spears as Spears
 
 
+## Returns the node which handles tomatoes, puzzle critters which indicate lines which can't be cleared.
+func get_tomatoes() -> Tomatoes:
+	return $Fg/Critters/Tomatoes as Tomatoes
+
+
 func hide_buttons() -> void:
 	$Hud/Center/PuzzleMessages.hide_buttons()
 

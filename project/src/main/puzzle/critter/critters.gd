@@ -19,6 +19,9 @@ onready var _sharks: Sharks = $Sharks
 ## Draws spears, puzzle critters which add veggie blocks from the sides.
 onready var _spears: Spears = $Spears
 
+## Draws tomatoes, puzzle critters which indicate lines which can't be cleared.
+onready var _tomatoes: Tomatoes = $Tomatoes
+
 onready var _cell_critter_manager: CellCritterManager = $CellCritterManager
 
 func _ready() -> void:
@@ -48,6 +51,7 @@ func _refresh_playfield_path() -> void:
 	_onions.playfield_path = _onions.get_path_to(get_node(playfield_path))
 	_sharks.playfield_path = _sharks.get_path_to(get_node(playfield_path))
 	_spears.playfield_path = _spears.get_path_to(get_node(playfield_path))
+	_tomatoes.playfield_path = _tomatoes.get_path_to(get_node(playfield_path))
 
 
 func _refresh_piece_manager_path() -> void:
