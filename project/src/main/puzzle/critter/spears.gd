@@ -2,7 +2,7 @@ class_name Spears
 extends Node2D
 ## Handles spears, puzzle critters which add veggie blocks from the sides.
 ##
-## Sharks pop out onto the playfield, destroying any blocks they collide with. Depending on the level configuration,
+## Spears pop out onto the playfield, destroying any blocks they collide with. Depending on the level configuration,
 ## they might retreat eventually. If they retreat, they leave behind empty cells which is annoying as well.
 
 ## If 'true', the spears cover the next queue. I personally think this looks better and is a funny gameplay hurdle,

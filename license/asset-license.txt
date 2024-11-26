@@ -81,6 +81,7 @@ project/assets/main/puzzle/critter/shark-voice-*.wav Created using Bosca Ceoil b
 project/assets/main/puzzle/critter/spear-pop.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SWIPES - SLASHES - WHOOSHES - (58)\SWIPE Whoosh 07.wav"
 project/assets/main/puzzle/critter/spear-voice-hello.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Customer_06_Cartoon_Voice.wav"
 project/assets/main/puzzle/critter/spear-voice-warn.wav "Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Customer_05_Cartoon_Voice.wav"
+project/assets/main/puzzle/critter/tomato-voice.wav Developed using Jonathan Murphy's TS-808 emulator
 project/assets/main/puzzle/excellent.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 project/assets/main/puzzle/fanfare*.wav "GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
 project/assets/main/puzzle/gameover.wav "Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"

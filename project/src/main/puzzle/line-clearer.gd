@@ -41,6 +41,11 @@ var lines_being_deleted := []
 var lines_being_cleared_during_trigger := []
 var lines_being_deleted_during_trigger := []
 
+## monitors the age of lines which have been filled, but not yet cleared due to the level's rules
+## key: (int) line index
+## value: (int) number of times this line has been full during 'calculate_lines_to_clear'
+var line_filled_age := {}
+
 ## remaining frames to wait for erasing the current lines
 var remaining_line_erase_frames := 0
 
@@ -57,11 +62,6 @@ var _remaining_line_erase_timings := []
 ## key: (int) line index
 ## value: (bool) true
 var _lines_to_preserve_at_end := {}
-
-## monitors the age of lines which have been filled, but not yet cleared due to the level's rules
-## key: (int) line index
-## value: (int) number of times this line has been full during 'calculate_lines_to_clear'
-var _line_filled_age := {}
 
 ## Total number of cleared lines for this level which we pass into triggers. This is distinct from the lines we
 ## show to the player, because the two values are incremented at different times.
@@ -149,12 +149,12 @@ func schedule_filled_line_clears(force: bool = false) -> void:
 func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array:
 	var lines_to_clear := filled_lines.duplicate()
 	
-	# increment entries in _line_filled_age
+	# increment entries in line_filled_age
 	for line in filled_lines:
-		if not _line_filled_age.has(line):
-			_line_filled_age[line] = 0
+		if not line_filled_age.has(line):
+			line_filled_age[line] = 0
 		else:
-			_line_filled_age[line] += 1
+			line_filled_age[line] += 1
 	
 	# apply 'filled_line_clear_min' setting
 	if lines_to_clear and not force \
@@ -166,28 +166,38 @@ func calculate_lines_to_clear(filled_lines: Array, force: bool = false) -> Array
 			and CurrentLevel.settings.blocks_during.filled_line_clear_delay >= 1:
 		var new_lines_to_clear := []
 		for line in lines_to_clear:
-			if _line_filled_age[line] >= CurrentLevel.settings.blocks_during.filled_line_clear_delay:
+			if line_filled_age[line] >= CurrentLevel.settings.blocks_during.filled_line_clear_delay:
 				new_lines_to_clear.append(line)
 		lines_to_clear = new_lines_to_clear
 	
 	# apply 'filled_line_clear_order' setting
-	if lines_to_clear:
-		match CurrentLevel.settings.blocks_during.filled_line_clear_order:
-			BlocksDuringRules.FilledLineClearOrder.OLDEST:
-				lines_to_clear.sort_custom(self, "_compare_by_line_filled_age")
-			BlocksDuringRules.FilledLineClearOrder.LOWEST:
-				lines_to_clear.sort()
-				lines_to_clear.invert()
-			BlocksDuringRules.FilledLineClearOrder.RANDOM:
-				lines_to_clear.shuffle()
-			BlocksDuringRules.FilledLineClearOrder.DEFAULT, BlocksDuringRules.FilledLineClearOrder.HIGHEST, _:
-				lines_to_clear.sort()
+	lines_to_clear = sort_lines_to_clear(lines_to_clear)
 	
 	# apply 'filled_line_clear_max' setting
 	if lines_to_clear and CurrentLevel.settings.blocks_during.filled_line_clear_max >= 1 and not force:
 		lines_to_clear = lines_to_clear.slice(0, CurrentLevel.settings.blocks_during.filled_line_clear_max - 1)
 	
 	return lines_to_clear
+
+
+## Sorts the specified list of lines based on the 'filled_line_clear_order' setting.
+##
+## Parameters:
+## 	'lines_to_clear': Row indexes to sort from the puzzle tilemap.
+func sort_lines_to_clear(lines_to_clear: Array) -> Array:
+	var sorted_lines := lines_to_clear.duplicate()
+	if sorted_lines:
+		match CurrentLevel.settings.blocks_during.filled_line_clear_order:
+			BlocksDuringRules.FilledLineClearOrder.OLDEST:
+				sorted_lines.sort_custom(self, "_compare_by_line_filled_age")
+			BlocksDuringRules.FilledLineClearOrder.LOWEST:
+				sorted_lines.sort()
+				sorted_lines.invert()
+			BlocksDuringRules.FilledLineClearOrder.RANDOM:
+				sorted_lines.shuffle()
+			BlocksDuringRules.FilledLineClearOrder.DEFAULT, BlocksDuringRules.FilledLineClearOrder.HIGHEST, _:
+				sorted_lines.sort()
+	return sorted_lines
 
 
 func filled_lines() -> Array:
@@ -445,7 +455,7 @@ func _box_ints(y: int) -> Array:
 
 
 func _compare_by_line_filled_age(a: int, b: int) -> bool:
-	return _line_filled_age.get(a, -1) > _line_filled_age.get(b, -1)
+	return line_filled_age.get(a, -1) > line_filled_age.get(b, -1)
 
 
 ## Dictionaries whose keys correspond to lines. These keys must be adjusted as lines are inserted/deleted from the
@@ -453,7 +463,7 @@ func _compare_by_line_filled_age(a: int, b: int) -> bool:
 func _line_dicts() -> Array:
 	return [
 		_lines_to_preserve_at_end,
-		_line_filled_age,
+		line_filled_age,
 	]
 
 

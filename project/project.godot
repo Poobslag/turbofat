@@ -1594,6 +1594,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/utils/timer-group.gd"
 }, {
+"base": "Node2D",
+"class": "Tomato",
+"language": "GDScript",
+"path": "res://src/main/puzzle/critter/tomato.gd"
+}, {
+"base": "Node",
+"class": "TomatoSfx",
+"language": "GDScript",
+"path": "res://src/main/puzzle/critter/tomato-sfx.gd"
+}, {
+"base": "Sprite",
+"class": "TomatoShadow",
+"language": "GDScript",
+"path": "res://src/main/puzzle/critter/tomato-shadow.gd"
+}, {
+"base": "Node2D",
+"class": "Tomatoes",
+"language": "GDScript",
+"path": "res://src/main/puzzle/critter/tomatoes.gd"
+}, {
 "base": "Reference",
 "class": "TouchSettings",
 "language": "GDScript",
@@ -1982,6 +2002,10 @@ _global_script_class_icons={
 "TechMoveDetector": "",
 "TextCreditsLine": "",
 "TimerGroup": "",
+"Tomato": "",
+"TomatoSfx": "",
+"TomatoShadow": "",
+"Tomatoes": "",
 "TouchSettings": "",
 "Tracery": "",
 "TutorialDiagram": "",
@@ -2002,6 +2026,7 @@ _global_script_class_icons={
 
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
+run/flush_stdout_on_print=true
 boot_splash/show_image=false
 config/icon="res://assets/main/ui/icon.png"
 config/windows_native_icon="res://assets/main/ui/icon.ico"

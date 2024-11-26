@@ -1,0 +1,263 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/main/puzzle/critter/tomato-shadow.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/puzzle/critter/tomato-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/puzzle/critter/critter-poof.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/main/puzzle/critter/tomato.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/critter/tomato-state-idle.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/critter/tomato-sfx.gd" type="Script" id=6]
+[ext_resource path="res://src/main/puzzle/critter/tomato-shadow.gd" type="Script" id=7]
+[ext_resource path="res://assets/main/puzzle/critter/tomato-clock-sheet.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/puzzle/critter/tomato-voice.wav" type="AudioStream" id=11]
+[ext_resource path="res://src/main/puzzle/critter/tomato-state-none.gd" type="Script" id=12]
+[ext_resource path="res://src/main/utils/state-machine.gd" type="Script" id=16]
+[ext_resource path="res://src/main/utils/DeconflictedAudioStreamPlayer.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/utils/CritterPoof.tscn" type="PackedScene" id=20]
+
+[sub_resource type="CanvasItemMaterial" id=7]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.221805, 0.785714, 1 )
+colors = PoolColorArray( 0.133333, 0.0313726, 0.0313726, 0, 0.133333, 0.0313726, 0.0313726, 1, 0.133333, 0.0313726, 0.0313726, 0.627451, 0.133333, 0.0313726, 0.0313726, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 324, 20, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 0.75
+angular_velocity = -45.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.25
+color_ramp = SubResource( 9 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.0864662, 0.484962, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 324, 20, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -40, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_random = 1.0
+color = Color( 1, 0.435294, 0.435294, 1 )
+color_ramp = SubResource( 11 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TomatoHolder/Tomato:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TomatoHolder/Tomato:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle1"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("TomatoHolder/Tomato:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TomatoHolder/Tomato:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle2"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("TomatoHolder/Tomato:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TomatoHolder/Tomato:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle3"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("TomatoHolder/Tomato:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TomatoHolder/Tomato:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Tomato" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="TomatoHolder" type="Control" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -100.0
+margin_right = 1000.0
+margin_bottom = 100.0
+
+[node name="Shadow" type="Sprite" parent="TomatoHolder"]
+modulate = Color( 0.388235, 0, 0, 1 )
+position = Vector2( 325, 100 )
+texture = ExtResource( 1 )
+script = ExtResource( 7 )
+
+[node name="ClockParticles" type="Particles2D" parent="TomatoHolder"]
+material = SubResource( 7 )
+position = Vector2( 324, 120 )
+amount = 16
+lifetime = 2.0
+visibility_rect = Rect2( -1200, -200, 2400, 250 )
+process_material = SubResource( 6 )
+texture = ExtResource( 8 )
+
+[node name="LightParticles" type="Particles2D" parent="TomatoHolder"]
+position = Vector2( 324, 120 )
+amount = 15
+lifetime = 1.5
+visibility_rect = Rect2( -400, -100, 800, 125 )
+process_material = SubResource( 12 )
+
+[node name="Tomato" type="Sprite" parent="TomatoHolder"]
+position = Vector2( 38, 97 )
+scale = Vector2( 0.66, 0.66 )
+texture = ExtResource( 2 )
+hframes = 2
+vframes = 3
+
+[node name="Poof" parent="TomatoHolder" instance=ExtResource( 20 )]
+position = Vector2( 38, 97 )
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 16 )
+
+[node name="None" type="Node" parent="States"]
+script = ExtResource( 12 )
+
+[node name="Idle1" type="Node" parent="States"]
+script = ExtResource( 5 )
+anim_name = "idle1"
+
+[node name="Idle2" type="Node" parent="States"]
+script = ExtResource( 5 )
+anim_name = "idle2"
+
+[node name="Idle3" type="Node" parent="States"]
+script = ExtResource( 5 )
+anim_name = "idle3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/idle1 = SubResource( 3 )
+anims/idle2 = SubResource( 4 )
+anims/idle3 = SubResource( 5 )
+
+[node name="TomatoSfx" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="Poof" parent="TomatoSfx" instance=ExtResource( 19 )]
+stream = ExtResource( 3 )
+volume_db = -8.0
+
+[node name="Voice" parent="TomatoSfx" instance=ExtResource( 19 )]
+stream = ExtResource( 11 )
+volume_db = 4.0
+
+[connection signal="animation_finished" from="TomatoHolder/Poof" to="." method="_on_Poof_animation_finished"]
