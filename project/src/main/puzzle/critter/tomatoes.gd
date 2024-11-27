@@ -115,6 +115,12 @@ func _refresh_playfield_path() -> void:
 
 ## Adds any missing tomatoes and updates their states.
 func _refresh_tomatoes() -> void:
+	if not (CurrentLevel.settings.blocks_during.filled_line_clear_delay > 0
+			or CurrentLevel.settings.blocks_during.filled_line_clear_max < 999999
+			or CurrentLevel.settings.blocks_during.filled_line_clear_min > 0):
+		# tomatoes only appear if clear_delay, clear_max or clear_min is set
+		return
+	
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		if _playfield.tile_map.row_is_full(y) and not _tomatoes_by_cell_y.has(y):
 			add_tomato(y)
