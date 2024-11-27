@@ -250,7 +250,6 @@ texture = SubResource( 14 )
 flip_v = true
 
 [node name="TutorialKeybindsLabel" parent="." instance=ExtResource( 21 )]
-modulate = Color( 1, 1, 1, 0.392157 )
 
 [node name="ComboTracker" type="Node" parent="."]
 script = ExtResource( 61 )

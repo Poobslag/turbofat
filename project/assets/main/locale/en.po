@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-19 09:48-0500\n"
+"POT-Creation-Date: 2024-11-27 08:20-0500\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -13550,6 +13550,7 @@ msgid "Creature Saved"
 msgstr ""
 
 #: project/src/main/editor/creature/NamePickerPopup.tscn
+#: project/src/main/puzzle/Puzzle.tscn
 #: project/src/main/ui/menu/BadSaveDataControl.tscn
 msgid "asdf"
 msgstr ""
@@ -15735,6 +15736,10 @@ msgid "Sound + Music"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
+msgid "Chewing Sounds"
+msgstr ""
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Graphics"
 msgstr ""
 
@@ -15748,10 +15753,6 @@ msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Creature detail"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn
-msgid "Feeding Animation"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
@@ -15947,14 +15948,6 @@ msgstr ""
 
 #: project/src/main/ui/settings/settings-dialogs.gd
 msgid "Are you sure?"
-msgstr ""
-
-#: project/src/main/ui/settings/settings-feeding-animation.gd
-msgid "Linear"
-msgstr ""
-
-#: project/src/main/ui/settings/settings-feeding-animation.gd
-msgid "Bouncy"
 msgstr ""
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd

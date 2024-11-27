@@ -212,7 +212,7 @@ func _refresh_text() -> void:
 	var overall_variance := 0.0
 	for record in _skill_records:
 		overall_variance += pow(record.deviation, 2)
-	overall_variance /= _skill_records.size()
+	overall_variance = overall_variance / _skill_records.size() if _skill_records else 0.0
 	_text_edit_out.text += "Analyzed %s levels, with an overall variance of %.2f.\n" \
 			% [_skill_records.size(), overall_variance]
 	
@@ -221,7 +221,7 @@ func _refresh_text() -> void:
 	for record in _skill_records:
 		if abs(record.deviation) > record.stddev * OUTLIER_Z_SCORE_THRESHOLD:
 			outlier_count += 1
-	var outlier_percent := outlier_count / float(_skill_records.size())
+	var outlier_percent := outlier_count / float(_skill_records.size()) if _skill_records else 0.0
 	_text_edit_out.text += "%s (%.1f%%) outliers have data outside %s standard deviations." \
 			% [outlier_count, 100 * outlier_percent, OUTLIER_Z_SCORE_THRESHOLD]
 	_text_edit_out.text += "\n\n"

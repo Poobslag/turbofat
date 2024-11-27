@@ -14,12 +14,17 @@ const HELLO_VOICES := [
 ]
 
 ## sounds which get played when the creature eats
-const MUNCH_SOUNDS := [
-	preload("res://assets/main/world/creature/munch0.wav"),
-	preload("res://assets/main/world/creature/munch1.wav"),
-	preload("res://assets/main/world/creature/munch2.wav"),
-	preload("res://assets/main/world/creature/munch3.wav"),
-	preload("res://assets/main/world/creature/munch4.wav"),
+const CHEW_SOUNDS := [
+	preload("res://assets/main/world/creature/chew0.wav"),
+	preload("res://assets/main/world/creature/chew1.wav"),
+	preload("res://assets/main/world/creature/chew2.wav"),
+	preload("res://assets/main/world/creature/chew3.wav"),
+	preload("res://assets/main/world/creature/chew4.wav"),
+]
+
+## sounds which get played when the creature eats if 'chewing sounds' are disabled
+const CHEW_ALT_SOUNDS := [
+	preload("res://assets/main/world/creature/chew-alt.wav"),
 ]
 
 ## satisfied sounds the creatures make when a player builds a big combo
@@ -54,6 +59,9 @@ const GOODBYE_VOICES := [
 	preload("res://assets/main/world/creature/goodbye-voice-3.wav"),
 ]
 
+## The duration in seconds for 'alternate chewing sounds' to return to their normal pitch.
+const CHEW_ALT_SFX_RESET_DURATION := 2.500
+
 ## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
 var suppress_sfx := false setget set_suppress_sfx
 
@@ -61,6 +69,9 @@ var should_play_sfx := false
 
 ## index of the most recent combo sound that was played
 var _combo_voice_index := 0
+
+## system clock for most recent munch sound that was played
+var _prev_munch_msec := 0.0
 
 ## AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
 ## things at once.
@@ -168,8 +179,26 @@ func _on_Creature_food_eaten(_food_type: int) -> void:
 	if not should_play_sfx:
 		return
 	
-	_munch_sound.stream = Utils.rand_value(MUNCH_SOUNDS)
-	_munch_sound.pitch_scale = rand_range(0.96, 1.04)
+	if SystemData.volume_settings.chewing_sounds:
+		# play a random chewing sound with random variance
+		_munch_sound.volume_db = 0.0
+		_munch_sound.stream = Utils.rand_value(CHEW_SOUNDS)
+		_munch_sound.pitch_scale = rand_range(0.96, 1.04)
+	else:
+		# play an alternate 'pop!' sound which escalates in pitch
+		_munch_sound.volume_db = -6.0
+
+		# decrease the pitch if it hasn't been played recently
+		var decrease_amount := clamp((Time.get_ticks_msec() - _prev_munch_msec) \
+				/ (1000 * CHEW_ALT_SFX_RESET_DURATION), 0.0, 1.0)
+		_munch_sound.pitch_scale = lerp(_munch_sound.pitch_scale, rand_range(0.66, 0.72), decrease_amount)
+
+		# increase the pitch a random amount
+		_munch_sound.pitch_scale = lerp(_munch_sound.pitch_scale, 2.0, rand_range(0.04, 0.12))
+
+		_munch_sound.stream = Utils.rand_value(CHEW_ALT_SOUNDS)
+
+		_prev_munch_msec = Time.get_ticks_msec()
 	_munch_sound.play()
 
 
