@@ -3191,5 +3191,5 @@ tr("Kp 8")
 tr("Kp 9")
 
 # Locales
-tr("Spanish")
 tr("English")
+tr("Spanish")

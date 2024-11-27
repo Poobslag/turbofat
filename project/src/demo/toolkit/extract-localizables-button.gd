@@ -171,5 +171,9 @@ func _extract_localizables_from_scancodes() -> void:
 
 ## Extract localizables from TranslationServer.get_loaded_locales()
 func _extract_localizables_from_locales() -> void:
+	var locale_names := []
 	for locale in TranslationServer.get_loaded_locales():
-		_append_localizable(TranslationServer.get_locale_name(locale))
+		locale_names.append(TranslationServer.get_locale_name(locale))
+	locale_names.sort()
+	for locale_name in locale_names:
+		_append_localizable(locale_name)
