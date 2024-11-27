@@ -14,12 +14,12 @@ const HELLO_VOICES := [
 ]
 
 ## sounds which get played when the creature eats
-const MUNCH_SOUNDS := [
-	preload("res://assets/main/world/creature/munch0.wav"),
-	preload("res://assets/main/world/creature/munch1.wav"),
-	preload("res://assets/main/world/creature/munch2.wav"),
-	preload("res://assets/main/world/creature/munch3.wav"),
-	preload("res://assets/main/world/creature/munch4.wav"),
+const CHEW_SOUNDS := [
+	preload("res://assets/main/world/creature/chew0.wav"),
+	preload("res://assets/main/world/creature/chew1.wav"),
+	preload("res://assets/main/world/creature/chew2.wav"),
+	preload("res://assets/main/world/creature/chew3.wav"),
+	preload("res://assets/main/world/creature/chew4.wav"),
 ]
 
 ## satisfied sounds the creatures make when a player builds a big combo
@@ -168,7 +168,7 @@ func _on_Creature_food_eaten(_food_type: int) -> void:
 	if not should_play_sfx:
 		return
 	
-	_munch_sound.stream = Utils.rand_value(MUNCH_SOUNDS)
+	_munch_sound.stream = Utils.rand_value(CHEW_SOUNDS)
 	_munch_sound.pitch_scale = rand_range(0.96, 1.04)
 	_munch_sound.play()
 
