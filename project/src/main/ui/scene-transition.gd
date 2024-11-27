@@ -125,6 +125,7 @@ func fade_out(flags: Dictionary = {}, breadcrumb_method: FuncRef = null, breadcr
 	if _animation_player.is_connected(
 			"animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene"):
 		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
+
 	_animation_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene", \
 			[flags, breadcrumb_method, breadcrumb_arg_array])
 	emit_signal("fade_out_started", _fade_out_duration(flags))
@@ -143,10 +144,15 @@ func _fade_in_duration(flags: Dictionary) -> float:
 func _on_AnimationPlayer_animation_finished_change_scene(
 		_animation_name: String, flags: Dictionary = {}, breadcrumb_method: FuncRef = null,
 		breadcrumb_arg_array: Array = []) -> void:
+	Global.print_verbose("Animation finished; disconnecting listeners")
 	if _animation_player.is_connected(
 			"animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene"):
 		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
 	
 	if breadcrumb_method:
+		Global.print_verbose("Calling breadcrumb method: %s, %s" % [breadcrumb_method.function, breadcrumb_arg_array])
 		breadcrumb_method.call_funcv(breadcrumb_arg_array)
+	else:
+		Global.print_verbose("No breadcrumb method: %s, %s" % [breadcrumb_method, breadcrumb_arg_array])
+	
 	call_deferred("fade_in", flags)
