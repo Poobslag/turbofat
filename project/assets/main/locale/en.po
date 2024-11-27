@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 08:20-0500\n"
+"POT-Creation-Date: 2024-11-27 14:53-0500\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -12978,11 +12978,11 @@ msgid "Kp 9"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Spanish"
+msgid "English"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "English"
+msgid "Spanish"
 msgstr ""
 
 #: project/src/main/career/CareerMap.tscn

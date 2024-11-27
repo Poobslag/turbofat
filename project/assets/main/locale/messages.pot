@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 08:20-0500\n"
+"POT-Creation-Date: 2024-11-27 14:53-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12980,11 +12980,11 @@ msgid "Kp 9"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Spanish"
+msgid "English"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "English"
+msgid "Spanish"
 msgstr ""
 
 #: project/src/main/career/CareerMap.tscn
