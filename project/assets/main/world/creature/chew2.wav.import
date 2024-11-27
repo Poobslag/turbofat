@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/munch4.wav-0f219548967ba4b316b6fe1ddaea58dd.sample"
+path="res://.import/chew2.wav-572f1ea6bda698029342036d49356a6e.sample"
 
 [deps]
 
-source_file="res://assets/main/world/creature/munch4.wav"
-dest_files=[ "res://.import/munch4.wav-0f219548967ba4b316b6fe1ddaea58dd.sample" ]
+source_file="res://assets/main/world/creature/chew2.wav"
+dest_files=[ "res://.import/chew2.wav-572f1ea6bda698029342036d49356a6e.sample" ]
 
 [params]
 
