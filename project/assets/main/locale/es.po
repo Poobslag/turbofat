@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 08:28-0500\n"
+"POT-Creation-Date: 2024-11-27 08:20-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17836,6 +17836,11 @@ msgstr "Control desconectado."
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Sound + Music"
 msgstr "Sonido + Música"
+
+#: project/src/main/ui/settings/SettingsMenu.tscn
+#, needs-review
+msgid "Chewing Sounds"
+msgstr "Sonidos de Masticar"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Graphics"
