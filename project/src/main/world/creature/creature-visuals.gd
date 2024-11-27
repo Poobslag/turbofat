@@ -106,10 +106,10 @@ func _physics_process(delta: float) -> void:
 	if Engine.editor_hint:
 		# don't move stuff in the editor
 		return
-	update_fattening_animation(delta)
+	update_fattening_animation()
 
 
-func update_fattening_animation(delta: float) -> void:
+func update_fattening_animation() -> void:
 	# bouncy animation; acceleration and squash n' stretch
 	if visual_fatness == fatness and _fattening_inertia < 0.05:
 		_fattening_inertia = 0.0
