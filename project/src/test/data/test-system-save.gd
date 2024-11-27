@@ -25,6 +25,7 @@ func test_save_and_load() -> void:
 	SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.695)
 	SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.SOUND, 0.279)
 	SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.VOICE, 0.405)
+	SystemData.volume_settings.chewing_sounds = false
 	SystemSave.save_system_data()
 	SystemData.reset()
 	SystemSave.load_system_data()
@@ -32,3 +33,4 @@ func test_save_and_load() -> void:
 	assert_almost_eq(SystemData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC), 0.695, 0.001)
 	assert_almost_eq(SystemData.volume_settings.get_bus_volume_linear(VolumeSettings.SOUND), 0.279, 0.001)
 	assert_almost_eq(SystemData.volume_settings.get_bus_volume_linear(VolumeSettings.VOICE), 0.405, 0.001)
+	assert_eq(SystemData.volume_settings.chewing_sounds, false)

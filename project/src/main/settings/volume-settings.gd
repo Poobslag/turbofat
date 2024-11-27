@@ -16,6 +16,9 @@ const MUSIC := VolumeType.MUSIC
 const SOUND := VolumeType.SOUND
 const VOICE := VolumeType.VOICE
 
+## 'false' if chewing sounds should be replaced with alternate sounds
+var chewing_sounds := true
+
 ## Returns the volume of the specified bus as a linear energy value.
 ##
 ## This returns a player-friendly energy value which always scales from 0.0 to 1.0, even if internally we limit a bus
@@ -60,6 +63,7 @@ func to_json_dict() -> Dictionary:
 		"music": get_bus_volume_linear(MUSIC),
 		"sound": get_bus_volume_linear(SOUND),
 		"voice": get_bus_volume_linear(VOICE),
+		"chewing_sounds": chewing_sounds,
 	}
 
 
@@ -68,6 +72,7 @@ func from_json_dict(json: Dictionary) -> void:
 	set_bus_volume_linear(MUSIC, float(json.get("music", 0.7)))
 	set_bus_volume_linear(SOUND, float(json.get("sound", 0.7)))
 	set_bus_volume_linear(VOICE, float(json.get("voice", 0.7)))
+	chewing_sounds = json.get("chewing_sounds", true)
 
 
 func _bus_index(volume_type: int) -> int:
