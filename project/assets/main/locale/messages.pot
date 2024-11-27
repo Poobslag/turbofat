@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 08:30-0500\n"
+"POT-Creation-Date: 2024-11-27 08:28-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15752,10 +15752,6 @@ msgid "Creature detail"
 msgstr ""
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
-msgid "Feeding Animation"
-msgstr ""
-
-#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Ghost Piece"
 msgstr ""
 
@@ -15948,14 +15944,6 @@ msgstr ""
 
 #: project/src/main/ui/settings/settings-dialogs.gd
 msgid "Are you sure?"
-msgstr ""
-
-#: project/src/main/ui/settings/settings-feeding-animation.gd
-msgid "Linear"
-msgstr ""
-
-#: project/src/main/ui/settings/settings-feeding-animation.gd
-msgid "Bouncy"
 msgstr ""
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd

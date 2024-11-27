@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 08:30-0500\n"
+"POT-Creation-Date: 2024-11-27 08:28-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17854,10 +17854,6 @@ msgid "Creature detail"
 msgstr "Detalle de Criatura"
 
 #: project/src/main/ui/settings/SettingsMenu.tscn
-msgid "Feeding Animation"
-msgstr "Animación al Comer"
-
-#: project/src/main/ui/settings/SettingsMenu.tscn
 msgid "Ghost Piece"
 msgstr "Pieza Fantasma"
 
@@ -18058,14 +18054,6 @@ msgstr "¿Eliminar datos guardados?"
 #: project/src/main/ui/settings/settings-dialogs.gd
 msgid "Are you sure?"
 msgstr "¿Estás seguro?"
-
-#: project/src/main/ui/settings/settings-feeding-animation.gd
-msgid "Linear"
-msgstr "Lineal"
-
-#: project/src/main/ui/settings/settings-feeding-animation.gd
-msgid "Bouncy"
-msgstr "Rebote"
 
 #: project/src/main/ui/settings/settings-menu-bottom.gd
 msgid "Main Menu"
