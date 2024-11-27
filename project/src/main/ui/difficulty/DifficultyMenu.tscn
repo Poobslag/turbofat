@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/ui/candy-button/gradient-map.shader" type="Shader" id=1]
 [ext_resource path="res://assets/main/ui/candy-button/h3-v.png" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://src/main/ui/difficulty/difficulty-menu-description.gd" type="Script" id=14]
 [ext_resource path="res://assets/main/ui/menu/menu-accent-h2-xl1.png" type="Texture" id=15]
 [ext_resource path="res://src/main/ui/candy-button/CandyButtonH3.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=17]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=21]
 [ext_resource path="res://src/main/ui/theme/h3-font-outline.tres" type="DynamicFont" id=22]
 
@@ -273,12 +275,16 @@ margin_left = -100.0
 margin_top = -25.0
 margin_right = 100.0
 margin_bottom = 25.0
+shortcut = ExtResource( 17 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 11 )
 texture_hover = ExtResource( 2 )
 text = "Ok"
 color = 5
 shape = 8
+
+[node name="ShortcutHelper" parent="DropPanel/VBoxContainer/OkButtonHolder/OkButton" instance=ExtResource( 18 )]
+action = "ui_cancel"
 
 [node name="TipLabel" type="Label" parent="."]
 visible = false
