@@ -1,0 +1,57 @@
+*give regular levels a brief pass (subtle! 10-20%)
+-give 'starberry mountain levels' a detailed pass
+ -which ones are your worst? try to improve your scores
+ -decrease them strongly (20-40%)
+-give 'training levels' a detailed pass
+ -decrease them strongly (20-40%)
+-ensure the 'rounding logic' is working
+ -criteria are rounded
+ -'s criteria' is reapplied
+-merge
+ -debug info
+ -rank changes
+
+
+bug: stoppie tomato appears in asparagus rows?
+
+make these about 20% easier?
+10%: career/shoots_and_leaves: player score=1659 (not 1982), z_score=-15.341487
+0%: career/triangle_curse: player score=2400 (not 2847), z_score=-14.752543
+0%: career/nice_and_cheesy: player score=1351 (not 1563), z_score=-17.000417
+20%: career/serving_on_a_rocket: player score=1664 (not 1931), z_score=-13.029534
+10%: career/sharky_cheese: player score=2382 (not 2745), z_score=-12.435127
+10%: career/slow_service_2: player score=2238 (not 2539), z_score=-14.897118
+10%: career/carrot_cake_2: player time=29 (not 25), z_score=-11.111035
+0%: career/surprise_guests: player score=2297 (not 2592), z_score=-10.719929
+0%: career/left_shark: player score=2585 (not 2897), z_score=-10.143959
+20%: career/bon_appetit: player score=1273 (not 1423), z_score=-9.934372
+20%: career/back_to_back: player score=1728 (not 1931), z_score=-9.917003
+0%: career/boss_marsh: player score=2201 (not 2442), z_score=-12.378586
+
+
+SceneTransition.fade_out(): prints some messages...
+
+
+
+make these about 40% easier?
+40%: career/dark/no_smoking_section_2: player time=209 (not 117), z_score=-10.466644
+20%: career/dark/cheddarbox_blitz: player score=2302 (not 3645), z_score=-8.855105
+----------------------------------------
+career/dark/a_little_extra: player score=1659 (not 2374), z_score=-7.235881
+career/dark/sharky_cheese_2: player score=2231 (not 3195), z_score=-4.371027
+career/dark/secret_brownies: player time=162 (not 135), z_score=-3.910333
+career/dark/sweet_dreams: player score=1962 (not 2331), z_score=-3.80896
+career/dark/a_little_garbage_2: player score=1301 (not 1526), z_score=-3.544811
+career/dark/strawberry_shortcut: player score=1999 (not 2289), z_score=-3.046373
+career/dark/three_minute_sprint: player score=2903 (not 3264), z_score=-2.659478
+career/dark/it_takes_two: player score=2064 (not 2319), z_score=-1.593931
+
+training mode?
+practice/marathon_expert: player score=5618 (not 8213), z_score=-7.589998
+practice/marathon_normal: player score=3524 (not 2956), z_score=4.607331
+practice/marathon_hard: player score=6371 (not 5667), z_score=2.982667
+practice/ultra_normal: player time=16 (not 17), z_score=12.433121
+practice/ultra_hard: player time=61 (not 56), z_score=-12.433121
+practice/ultra_expert: player time=149 (not 149), z_score=0
+practice/sprint_normal: player score=2425 (not 2425), z_score=0
+practice/sprint_expert: player score=4365 (not 4365), z_score=0
