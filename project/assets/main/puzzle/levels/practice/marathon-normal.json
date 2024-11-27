@@ -62,7 +62,7 @@
   ],
   "rank": [
     "duration 750",
-    "rank_criteria top=3600"
+    "rank_criteria top=3200"
   ],
   "success_condition": {
     "type": "lines",

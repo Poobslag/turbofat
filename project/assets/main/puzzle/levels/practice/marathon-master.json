@@ -44,8 +44,8 @@
     "top_out 1"
   ],
   "rank": [
-    "duration 355",
-    "rank_criteria top=16500"
+    "duration 550",
+    "rank_criteria top=10000"
   ],
   "success_condition": {
     "type": "lines",
