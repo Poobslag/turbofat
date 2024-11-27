@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=2]
@@ -30,7 +30,6 @@
 [ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
 [ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
 [ext_resource path="res://src/main/ui/squeak/br/SqueakButtonHelper.tscn" type="PackedScene" id=33]
-[ext_resource path="res://src/main/ui/settings/settings-feeding-animation.gd" type="Script" id=34]
 [ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=35]
 [ext_resource path="res://src/main/ui/theme/h6-font.tres" type="DynamicFont" id=36]
 [ext_resource path="res://src/main/ui/theme/h7-font.tres" type="DynamicFont" id=37]
@@ -157,7 +156,7 @@ follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics"]
 margin_right = 736.0
-margin_bottom = 306.0
+margin_bottom = 271.0
 size_flags_horizontal = 3
 
 [node name="Volume" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
@@ -307,36 +306,6 @@ valign = 1
 autowrap = true
 
 [node name="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" instance=ExtResource( 3 )]
-margin_left = 298.0
-margin_right = 458.0
-margin_bottom = 29.0
-rect_min_size = Vector2( 160, 0 )
-size_flags_horizontal = 2
-size_flags_vertical = 4
-size_flags_stretch_ratio = 1.1
-
-[node name="FeedingAnimation" type="HBoxContainer" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
-margin_top = 277.0
-margin_right = 712.0
-margin_bottom = 306.0
-rect_min_size = Vector2( 400, 26 )
-size_flags_horizontal = 3
-custom_constants/separation = 20
-script = ExtResource( 34 )
-
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation"]
-margin_right = 278.0
-margin_bottom = 29.0
-rect_min_size = Vector2( 120, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 5
-size_flags_stretch_ratio = 0.74
-text = "Feeding Animation"
-align = 2
-valign = 1
-autowrap = true
-
-[node name="OptionButton" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" instance=ExtResource( 3 )]
 margin_left = 298.0
 margin_right = 458.0
 margin_bottom = 29.0
@@ -1378,7 +1347,6 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Fullscreen" method="_on_CheckBox_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/FeedingAnimation" method="_on_OptionButton_item_selected"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/HBoxContainer/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_CheckBox_toggled"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]

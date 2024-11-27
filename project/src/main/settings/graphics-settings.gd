@@ -12,15 +12,8 @@ enum CreatureDetail {
 	HIGH,
 }
 
-enum FeedingAnimation {
-	LINEAR,
-	BOUNCY,
-}
-
 ## enum from CreatureDetail describing how detailed the creatures should look
 var creature_detail: int = _default_creature_detail() setget set_creature_detail
-
-var feeding_animation: int = _default_feeding_animation()
 
 var fullscreen: bool = true setget set_fullscreen
 
@@ -55,7 +48,6 @@ func reset() -> void:
 func to_json_dict() -> Dictionary:
 	return {
 		"creature_detail": creature_detail,
-		"feeding_animation": feeding_animation,
 		"fullscreen": fullscreen,
 		"use_vsync": use_vsync,
 	}
@@ -63,7 +55,6 @@ func to_json_dict() -> Dictionary:
 
 func from_json_dict(json: Dictionary) -> void:
 	set_creature_detail(json.get("creature_detail", _default_creature_detail()))
-	feeding_animation = json.get("feeding_animation", _default_feeding_animation())
 	set_fullscreen(json.get("fullscreen", true))
 	set_use_vsync(json.get("use_vsync", _default_use_vsync()))
 
@@ -85,8 +76,3 @@ func _default_creature_detail() -> int:
 ## 'true' on those platforms. However, it makes stuttering more noticable during puzzles.
 func _default_use_vsync() -> bool:
 	return true if OS.has_feature("web") or OS.has_feature("mobile") else false
-
-
-## Retuns the default feeding animation setting value.
-func _default_feeding_animation() -> int:
-	return FeedingAnimation.BOUNCY
