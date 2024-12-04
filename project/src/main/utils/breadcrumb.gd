@@ -76,5 +76,17 @@ func change_scene() -> void:
 		scene_path = "res://src/main/ui/menu/LoadingScreen.tscn"
 	var new_scene: Resource = ResourceCache.get_resource(scene_path)
 	Global.print_verbose("Changing scene to %s (%s) valid=%s" % [new_scene, scene_path, is_instance_valid(new_scene)])
+	
+	_unload_current_scene_custom()
 	var result := get_tree().change_scene_to(new_scene)
+	
 	Global.print_verbose("tree.change_scene_to returned %s" % [result])
+
+
+## Workaround for Godot #85692
+##
+## tree.change_scene_to() sometimes causes a silent crash, with no errors or logs.
+func _unload_current_scene_custom() -> void:
+	var old_scene := get_tree().current_scene
+	get_tree().root.remove_child(old_scene)
+	old_scene.queue_free()
