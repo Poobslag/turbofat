@@ -32,16 +32,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event is InputEventScreenTouch:
-		if event.pressed and _touch_index == -1:
-			# emit a press event
-			_touch_index = event.index
-			get_tree().set_input_as_handled()
-			_emit_ui_accept_event(true, false)
-		if not event.pressed and _touch_index == event.index:
-			# emit a release event
-			_touch_index = -1
-			get_tree().set_input_as_handled()
-			_emit_ui_accept_event(false, false)
+		_handle_screen_touch(event)
 
 
 func _process(_delta: float) -> void:
@@ -75,6 +66,21 @@ func _disable_translation() -> void:
 ## causing all text to appear.
 func _enable_translation() -> void:
 	call_deferred("set_process", true)
+
+
+## Emits press/release events based on a multi-touch press/release.
+func _handle_screen_touch(event: InputEventScreenTouch) -> void:
+	if event.pressed and _touch_index == -1 and not _showing_choices:
+		# emit a press event
+		_touch_index = event.index
+		get_tree().set_input_as_handled()
+		_emit_ui_accept_event(true, false)
+	
+	if not event.pressed and _touch_index == event.index:
+		# emit a release event
+		_touch_index = -1
+		get_tree().set_input_as_handled()
+		_emit_ui_accept_event(false, false)
 
 
 func _on_ChatUi_popped_in() -> void:
