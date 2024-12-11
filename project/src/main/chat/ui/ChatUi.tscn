@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/chat/ui/ChatFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/chat/ui/ChatChoices.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/chat/chat-advancer.gd" type="Script" id=3]
-[ext_resource path="res://src/main/chat/ui/touch-translator.gd" type="Script" id=4]
+[ext_resource path="res://src/main/chat/ui/click-translator.gd" type="Script" id=4]
 [ext_resource path="res://src/main/chat/ui/NarrationFrame.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/chat/ui/chat-ui.gd" type="Script" id=16]
 
@@ -29,7 +29,7 @@ margin_bottom = -0.000732422
 [node name="ChatAdvancer" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="TouchTranslator" type="Control" parent="."]
+[node name="ClickTranslator" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
@@ -37,14 +37,14 @@ chat_frame_path = NodePath("../ChatFrame")
 narration_frame_path = NodePath("../NarrationFrame")
 
 [connection signal="chat_event_played" from="." to="ChatAdvancer" method="_on_ChatUi_chat_event_played"]
-[connection signal="chat_finished" from="." to="TouchTranslator" method="_on_ChatUi_chat_finished"]
-[connection signal="popped_in" from="." to="TouchTranslator" method="_on_ChatUi_popped_in"]
-[connection signal="showed_choices" from="." to="TouchTranslator" method="_on_ChatUi_showed_choices"]
+[connection signal="chat_finished" from="." to="ClickTranslator" method="_on_ChatUi_chat_finished"]
+[connection signal="popped_in" from="." to="ClickTranslator" method="_on_ChatUi_popped_in"]
+[connection signal="showed_choices" from="." to="ClickTranslator" method="_on_ChatUi_showed_choices"]
 [connection signal="all_text_shown" from="ChatFrame" to="." method="_on_ChatFrame_all_text_shown"]
 [connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]
 [connection signal="chat_choice_chosen" from="ChatChoices" to="." method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="chat_choice_chosen" from="ChatChoices" to="ChatAdvancer" method="_on_ChatChoices_chat_choice_chosen"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="TouchTranslator" method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="chat_choice_chosen" from="ChatChoices" to="ClickTranslator" method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="pop_out_completed" from="NarrationFrame" to="." method="_on_NarrationFrame_pop_out_completed"]
 [connection signal="chat_event_shown" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_event_shown"]
 [connection signal="chat_finished" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_finished"]
