@@ -49,4 +49,5 @@ script = ExtResource( 8 )
 
 [connection signal="food_eaten" from="." to="CreatureSfx" method="_on_Creature_food_eaten"]
 [connection signal="landed" from="." to="CreatureSfx" method="_on_Creature_landed"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="CreatureSfx/SuppressSfxTimer" to="CreatureSfx" method="_on_SuppressSfxTimer_timeout"]
