@@ -83,9 +83,11 @@ func change_scene() -> void:
 	Global.print_verbose("tree.change_scene_to returned %s" % [result])
 
 
-## Workaround for Godot #85692
+## Unloads the current scene in a special way which prevents a sporadic silent crash.
 ##
-## tree.change_scene_to() sometimes causes a silent crash, with no errors or logs.
+## SceneTree.change_scene_to() sometimes causes a silent crash with no errors or logs. Without this workaround, this
+## happens about every 300 times the player exits a puzzle. See Godot #85692
+## (https://github.com/godotengine/godot/issues/85692). 
 func _unload_current_scene_custom() -> void:
 	var old_scene := get_tree().current_scene
 	get_tree().root.remove_child(old_scene)
