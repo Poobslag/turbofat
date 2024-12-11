@@ -1,11 +1,11 @@
 extends Control
-## Converts touch events into ui_accept events which can be handled by the ChatUi.
+## Converts click events into ui_accept events which can be handled by the ChatUi.
 
 export (NodePath) var chat_frame_path: NodePath
 export (NodePath) var narration_frame_path: NodePath
 
-## index of the current touch event, or -1 if there is none
-var _touch_index := -1
+## index of the current click event, or -1 if there is none
+var _click_index := -1
 
 ## 'true' if the player is making a dialog choice
 var _showing_choices := false
@@ -34,17 +34,17 @@ func _input(event: InputEvent) -> void:
 	if not _chat_frame.is_chat_window_showing() and not _narration_frame.is_narration_window_showing():
 		return
 	
-	if event is InputEventScreenTouch:
-		_handle_screen_touch(event)
+	if event is InputEventMouseButton:
+		_handle_mouse_button(event)
 
 
 func _process(_delta: float) -> void:
-	if _touch_index != -1:
+	if _click_index != -1:
 		# emit an echo event
 		_emit_ui_accept_event(true, true)
 
 
-## Translates the current touch event into a ui_accept event.
+## Translates the current click event into a ui_accept event.
 func _emit_ui_accept_event(pressed: bool, echo: bool) -> void:
 	var ev := InputEventKey.new()
 	ev.scancode = _ui_accept_scancode
@@ -53,35 +53,35 @@ func _emit_ui_accept_event(pressed: bool, echo: bool) -> void:
 	Input.parse_input_event(ev)
 
 
-## Temporarily disables touch translation.
+## Temporarily disables click translation.
 ##
 ## This is done when showing chat choices, or when the chat window is not being shown.
 func _disable_translation() -> void:
-	if _touch_index != -1:
+	if _click_index != -1:
 		_emit_ui_accept_event(false, false)
-		_touch_index = -1
+		_click_index = -1
 	set_process(false)
 
 
-## Reenables touch translation.
+## Reenables click translation.
 ##
-## Touch translation is reenabled during a brief delay to prevent a bug where a touch event is immediately processed,
+## Click translation is reenabled during a brief delay to prevent a bug where a click event is immediately processed,
 ## causing all text to appear.
 func _enable_translation() -> void:
 	call_deferred("set_process", true)
 
 
-## Emits press/release events based on a multi-touch press/release.
-func _handle_screen_touch(event: InputEventScreenTouch) -> void:
-	if event.pressed and _touch_index == -1 and not _showing_choices:
+## Emits press/release events based on a mouse click.
+func _handle_mouse_button(event: InputEventMouseButton) -> void:
+	if event.pressed and _click_index == -1 and not _showing_choices:
 		# emit a press event
-		_touch_index = event.index
+		_click_index = event.button_index
 		get_tree().set_input_as_handled()
 		_emit_ui_accept_event(true, false)
-	
-	if not event.pressed and _touch_index == event.index:
+
+	if not event.pressed and _click_index == event.button_index:
 		# emit a release event
-		_touch_index = -1
+		_click_index = -1
 		get_tree().set_input_as_handled()
 		_emit_ui_accept_event(false, false)
 
