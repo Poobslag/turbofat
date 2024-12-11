@@ -7,6 +7,9 @@ export (NodePath) var narration_frame_path: NodePath
 ## index of the current touch event, or -1 if there is none
 var _touch_index := -1
 
+## 'true' if the player is making a dialog choice
+var _showing_choices := false
+
 ## scancode which triggers a ui_accept action.
 ## echo events cannot be emitted without an InputEventKey instance which requires a scancode
 var _ui_accept_scancode: int
@@ -88,11 +91,11 @@ func _on_ChatUi_popped_in() -> void:
 
 
 func _on_ChatUi_showed_choices() -> void:
-	_disable_translation()
+	_showing_choices = true
 
 
 func _on_ChatChoices_chat_choice_chosen(_choice_index: int) -> void:
-	_enable_translation()
+	_showing_choices = false
 
 
 func _on_ChatUi_chat_finished() -> void:
