@@ -102,7 +102,7 @@ func test_load_59c3_data() -> void:
 func test_load_5a6b_data() -> void:
 	load_level("level-5a6b")
 	
-	assert_eq(settings.rank.rank_criteria, BlocksDuringRules.TopOutEffect.CLEAR)
+	assert_eq(settings.rank.rank_criteria.thresholds_by_grade.get("TOP"), 7560)
 
 
 func test_load_tiles() -> void:

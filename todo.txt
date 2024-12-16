@@ -8,20 +8,28 @@
  *new level version
  *converter translates 'm' to 'top'
  *update all levels to use 'top'
- -regression test: gut tests
- -regression test: in game; top should never appear
--ensure the 'rounding logic' is working
- -ReleaseToolkit
+*ensure the 'rounding logic' is working
+ *ReleaseToolkit
  *'top' is rounded
- -duration is rounded
- -'s criteria' is reapplied
--gut tests pass
+ *duration is rounded
+ *'s criteria' is reapplied
+*gut tests pass
+-regression test
+ *your personal grades should be sensible
+ *beat a few levels; look at the milestones
+ *compare milestones to old game's milestones side-by-side; take a screenshot
+ *ensure 'top grade' is never an issue
+ -start a new game; play badly, make sure you progress sensibly
 -merge
  -debug info
  -separate 'top' and 'm'
  -broad level updates (m -> top, version number)
  -individual level tweaks (80%, 60%)
  -rank changes
+
+chocolate star new:
+
+
 
 make ranks gentler; "M rank" should be lower (about 95%; where SSS is now)
 
