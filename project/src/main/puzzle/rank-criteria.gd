@@ -11,6 +11,7 @@ const DEFAULT_BEST_TIME := 60
 
 ## Grades with their corresponding score percent requirement. Lower values represent lower scores.
 const SCORE_PERCENT_BY_GRADE := {
+	"TOP": 1.000,
 	"M":   0.950,
 	"SSS": 0.811,
 	"SS+": 0.730,
@@ -33,6 +34,7 @@ const SCORE_PERCENT_BY_GRADE := {
 ##
 ## Note: Most entries are reciprocals of the entries in SCORE_PERCENT_BY_GRADE, except for WORST_GRADE.
 const TIME_PERCENT_BY_GRADE := {
+	"TOP":  1.000, # 'TOP' is not a grade, but data stored in each level for the maximum
 	"M":    1.053,
 	"SSS":  1.298,
 	"SS+":  1.442,
@@ -57,6 +59,8 @@ var thresholds_by_grade := {}
 
 ## Determines whether rank criteria are based on time (true) or score (false).
 var duration_criteria: bool
+
+var top_threshold := 1
 
 ## Adds a new time or score threshold.
 ##
@@ -117,22 +121,22 @@ func fill_missing_thresholds() -> void:
 	# assign boundaries for WORST_GRADE, BEST_GRADE
 	var new_thresholds := thresholds_by_grade.duplicate()
 	if duration_criteria:
-		if not thresholds_by_grade.has(Ranks.BEST_GRADE):
+		if not thresholds_by_grade.has("top"):
 			push_warning("Level %s does not define '%s' rank criteria; defaulting to %s" \
 					% [CurrentLevel.level_id if CurrentLevel.level_id else "(unknown)", \
-						Ranks.BEST_GRADE, DEFAULT_BEST_SCORE])
-			new_thresholds[Ranks.BEST_GRADE] = DEFAULT_BEST_TIME
+						"TOP", DEFAULT_BEST_SCORE])
+			new_thresholds["TOP"] = DEFAULT_BEST_TIME
 		if not new_thresholds.has(Ranks.WORST_GRADE):
-			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[Ranks.BEST_GRADE] \
+			new_thresholds[Ranks.WORST_GRADE] = new_thresholds["top"] \
 					* TIME_PERCENT_BY_GRADE[Ranks.WORST_GRADE]
 	else:
-		if not thresholds_by_grade.has(Ranks.BEST_GRADE):
+		if not thresholds_by_grade.has("TOP"):
 			push_warning("Level %s does not define '%s' rank criteria; defaulting to %s" \
 					% [CurrentLevel.level_id if CurrentLevel.level_id else "(unknown)", \
-						Ranks.BEST_GRADE, DEFAULT_BEST_TIME])
-			new_thresholds[Ranks.BEST_GRADE] = DEFAULT_BEST_SCORE
+						"TOP", DEFAULT_BEST_TIME])
+			new_thresholds["TOP"] = DEFAULT_BEST_SCORE
 		if not new_thresholds.has(Ranks.WORST_GRADE):
-			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[Ranks.BEST_GRADE] \
+			new_thresholds[Ranks.WORST_GRADE] = new_thresholds["TOP"] \
 					* SCORE_PERCENT_BY_GRADE[Ranks.WORST_GRADE]
 	
 	# fill thresholds for the remaining grades
@@ -233,7 +237,7 @@ func _sanitize_threshold(value: int) -> int:
 static func _higher_grade_by_grades(new_thresholds: Dictionary) -> Dictionary:
 	var result := {}
 	
-	var higher_grade := Ranks.BEST_GRADE
+	var higher_grade := "TOP"
 	var grades := SCORE_PERCENT_BY_GRADE.keys()
 	for grade in grades:
 		if new_thresholds.has(grade):
