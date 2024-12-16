@@ -25,6 +25,7 @@ func run() -> void:
 	
 	_soften_intro_levels("lemon", "S-", 0.64)
 	_soften_intro_levels("lemon_2", "S-", 0.8)
+	_round_goals_for_levels()
 	
 	_report_invalid_career_levels()
 	_report_invalid_career_music()
@@ -49,6 +50,20 @@ func _upgrade_levels() -> void:
 				Levels.LEVEL_DATA_VERSION])
 
 
+## Rounds all level master rank goals to nice numbers.
+func _round_goals_for_levels() -> void:
+	var rounded_level_id_set := {}
+	
+	var level_paths := _find_level_paths(LEVEL_DIRS)
+	for level_path in level_paths:
+		var did_round := _round_goals_for_level(level_path)
+		if did_round:
+			rounded_level_id_set[level_path] = true
+	
+	if rounded_level_id_set:
+		_report_problem("Rounded %d level goals." % [rounded_level_id_set.size()])
+
+
 ## Upgrades a level to the newest version.
 ##
 ## Parameters:
@@ -65,6 +80,17 @@ func _upgrade_settings(path: String) -> void:
 		var new_text := Utils.print_json(settings.to_json_dict())
 		FileUtils.write_file(path, new_text)
 		_converted.append(path)
+
+
+func _round_goals_for_level(path: String) -> bool:
+	var did_round := false
+	
+	var old_text := FileUtils.get_file_as_text(path)
+	var old_json: Dictionary = parse_json(old_text)
+	var settings := LevelSettings.new()
+	settings.load_from_resource(path)
+	settings.rank_
+	return did_round
 
 
 ## Returns a list of all level paths within 'LEVEL_DIRS', performing a tree traversal.

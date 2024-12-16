@@ -1,15 +1,26 @@
 *give regular levels a brief pass (subtle! 10-20%)
--give 'starberry mountain levels' a detailed pass
- -which ones are your worst? try to improve your scores
- -decrease them strongly (20-40%)
--give 'training levels' a detailed pass
- -decrease them strongly (20-40%)
+*give 'starberry mountain levels' a detailed pass
+ *which ones are your worst? try to improve your scores
+ *decrease them strongly (20-40%)
+*give 'training levels' a detailed pass
+ *decrease them strongly (20-40%)
+-separate 'top' from 'm'
+ -new level version
+ -converter translates 'm' to 'top'
+ -update all levels to use 'top'
+ -regression test: gut tests
+ -regression test: in game
 -ensure the 'rounding logic' is working
- -criteria are rounded
+ -ReleaseToolkit
+ -'top' is rounded
  -duration is rounded
  -'s criteria' is reapplied
+-gut tests pass
 -merge
  -debug info
+ -separate 'top' and 'm'
+ -broad level updates (m -> top, version number)
+ -individual level tweaks (80%, 60%)
  -rank changes
 
 make ranks gentler; "M rank" should be lower (about 95%; where SSS is now)
@@ -35,7 +46,6 @@ make these about 20% easier?
 SceneTransition.fade_out(): prints some messages...
 
 
-
 make these about 40% easier?
 40%: career/dark/no_smoking_section_2: player time=209 (not 117), z_score=-10.466644
 20%: career/dark/cheddarbox_blitz: player score=2302 (not 3645), z_score=-8.855105
@@ -56,5 +66,16 @@ training mode?
 90%: practice/ultra_normal: player time=16 (not 17), z_score=12.433121
 90%: practice/ultra_hard: player time=61 (not 56), z_score=-12.433121
 60%: practice/ultra_expert: player time=149 (not 149), z_score=0
+60%: practice/marathon_master: 
 90%: practice/sprint_normal: player score=2425 (not 2425), z_score=0
 60%: practice/sprint_expert: player score=4365 (not 4365), z_score=0
+
+success: a little easier (80%)
+m: a lot easier (60%)
+duration: a little easier (80%)
+
+--
+m: a lot easier
+duration: a little easier
+--
+m: a little easier
