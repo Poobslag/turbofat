@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Sandbox: Normal",
   "description": "Just relax! There is no way to win or lose this mode.",
   "blocks_during": [
@@ -15,7 +15,7 @@
   ],
   "rank": [
     "duration 600",
-    "rank_criteria m=1",
+    "rank_criteria top=1",
     "unranked"
   ],
   "success_condition": {

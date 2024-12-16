@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Marathon: Expert (300 lines)",
   "description": "A grueling test of endurance ramping up to instant gravity! Can you clear 300 lines?",
   "start_speed": "A5",
@@ -49,7 +49,7 @@
   ],
   "rank": [
     "duration 875",
-    "rank_criteria m=6400"
+    "rank_criteria top=6400"
   ],
   "success_condition": {
     "type": "lines",

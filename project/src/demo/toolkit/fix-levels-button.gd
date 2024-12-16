@@ -85,11 +85,29 @@ func _upgrade_settings(path: String) -> void:
 func _round_goals_for_level(path: String) -> bool:
 	var did_round := false
 	
+	# sanitize time/score goals by rounding and clamping to reasonable values
 	var old_text := FileUtils.get_file_as_text(path)
 	var old_json: Dictionary = parse_json(old_text)
+	var level_id := LevelSettings.level_key_from_path(path)
 	var settings := LevelSettings.new()
-	settings.load_from_resource(path)
-	settings.rank_
+	settings.load_from_text(level_id, old_text)
+	for grade in settings.rank.rank_criteria.thresholds_by_grade:
+		var old_threshold: int = settings.rank.rank_criteria.thresholds_by_grade[grade]
+		var new_threshold: int = settings.rank.rank_criteria.sanitize_threshold(old_threshold)
+		if old_threshold != new_threshold:
+			did_round = true
+			settings.rank.rank_criteria.thresholds_by_grade[grade] = new_threshold
+	
+	# sanitize durations by rounding and clamping to reasonable values
+	var old_duration := settings.rank.duration
+	var new_duration := settings.rank.rank_criteria.sanitize_threshold(old_duration)
+	if old_duration != new_duration:
+		did_round = true
+		settings.rank.duration = new_duration
+	
+	if did_round:
+		var new_text := Utils.print_json(settings.to_json_dict())
+		FileUtils.write_file(path, new_text)
 	return did_round
 
 

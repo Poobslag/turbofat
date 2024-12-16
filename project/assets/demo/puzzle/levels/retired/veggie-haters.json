@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Veggie Haters",
   "description": "Five of the pickiest customers you'll ever meet!",
   "start_speed": "4",
@@ -12,6 +12,6 @@
   },
   "rank": [
     "duration 190",
-    "rank_criteria m=3500"
+    "rank_criteria top=3500"
   ]
 }

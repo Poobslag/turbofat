@@ -5,14 +5,14 @@
 *give 'training levels' a detailed pass
  *decrease them strongly (20-40%)
 -separate 'top' from 'm'
- -new level version
- -converter translates 'm' to 'top'
- -update all levels to use 'top'
+ *new level version
+ *converter translates 'm' to 'top'
+ *update all levels to use 'top'
  -regression test: gut tests
  -regression test: in game; top should never appear
 -ensure the 'rounding logic' is working
  -ReleaseToolkit
- -'top' is rounded
+ *'top' is rounded
  -duration is rounded
  -'s criteria' is reapplied
 -gut tests pass

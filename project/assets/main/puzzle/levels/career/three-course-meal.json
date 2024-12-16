@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Three Course Meal",
   "description": "It's important to bring out all three courses at once! ...Or is that something else...",
   "blocks_during": [
@@ -16,7 +16,7 @@
   ],
   "rank": [
     "duration 190",
-    "rank_criteria m=1450 s-=235"
+    "rank_criteria top=1450 s-=235"
   ],
   "tiles": {
     "start": [

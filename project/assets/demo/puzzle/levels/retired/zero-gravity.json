@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Zero Gravity",
   "description": "In space, nobody can hear you scream.",
   "difficulty": "6",
@@ -14,7 +14,7 @@
   },
   "rank": [
     "duration 90",
-    "rank_criteria m=785"
+    "rank_criteria top=785"
   ],
   "tiles": {
     "start": [

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Above and Below EX",
   "description": "Build some delicious snack boxes above while befriending some moles below.",
   "start_speed": "A1",
@@ -17,7 +17,7 @@
   ],
   "rank": [
     "duration 210",
-    "rank_criteria m=2500"
+    "rank_criteria top=2500"
   ],
   "tiles": {
     "start": [

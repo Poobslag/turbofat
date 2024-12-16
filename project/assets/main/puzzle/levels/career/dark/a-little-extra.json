@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "A Little Extra EX",
   "description": "Some fun little bonuses at the bottom. But you have to work for it!",
   "start_speed": "A1",
@@ -12,7 +12,7 @@
   ],
   "rank": [
     "duration 150",
-    "rank_criteria m=2240"
+    "rank_criteria top=2200"
   ],
   "tiles": {
     "start": [

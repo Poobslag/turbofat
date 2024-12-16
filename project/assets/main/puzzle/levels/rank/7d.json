@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "7 Dan",
   "description": "An escalating set of challenges. Finish with ¥5,000 to achieve this rank!",
   "color": "yellow",
@@ -84,7 +84,7 @@
   ],
   "rank": [
     "duration 460",
-    "rank_criteria m=10800",
+    "rank_criteria top=10500",
     "success_bonus 2"
   ],
   "success_condition": {

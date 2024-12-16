@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Angle Grinder",
   "description": "So many bendy pieces! Need a helping hand? ...Or a helping jaw?",
   "start_speed": "5",
@@ -18,8 +18,8 @@
     "piece_z"
   ],
   "rank": [
-    "duration 28",
-    "rank_criteria m=1350"
+    "duration 25",
+    "rank_criteria top=1350"
   ],
   "tiles": {
     "start": [

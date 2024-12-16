@@ -171,7 +171,7 @@ func fill_missing_thresholds() -> void:
 	
 	# sanitize thresholds by rounding and clamping to reasonable values
 	for grade in new_thresholds:
-		new_thresholds[grade] = _sanitize_threshold(new_thresholds[grade])
+		new_thresholds[grade] = sanitize_threshold(new_thresholds[grade])
 	
 	thresholds_by_grade = new_thresholds
 
@@ -189,22 +189,22 @@ func copy_from(rank_criteria: RankCriteria) -> void:
 ## 	'factor': A number in the range (0.0, 1.0) for the factor to apply. A value of '0.1' will make a large
 ## 		adjustment, a value of '0.9' will make a small adjustment.
 func soften(grade: String, factor: float) -> void:
-	if not thresholds_by_grade.has(Ranks.BEST_GRADE):
-		push_error("Level %s does not define '%s' rank criteria" % [CurrentLevel.level_id, Ranks.BEST_GRADE])
+	if not thresholds_by_grade.has("TOP"):
+		push_error("Level %s does not define '%s' rank criteria" % [CurrentLevel.level_id, "TOP"])
 		return
 	
-	var new_threshold: int = thresholds_by_grade[Ranks.BEST_GRADE]
+	var new_threshold: int = thresholds_by_grade["TOP"]
 	if duration_criteria:
 		new_threshold = new_threshold * TIME_PERCENT_BY_GRADE[grade] / factor
 	else:
 		new_threshold = new_threshold * SCORE_PERCENT_BY_GRADE[grade] * factor
-	new_threshold = _sanitize_threshold(new_threshold)
+	new_threshold = sanitize_threshold(new_threshold)
 	
 	thresholds_by_grade[grade] = new_threshold
 
 
 ## Sanitize a time or score threshold by rounding and clamping to reasonable values.
-func _sanitize_threshold(value: int) -> int:
+func sanitize_threshold(value: int) -> int:
 	var result := value
 	
 	# round thresholds to aesthetically pleasing numbers

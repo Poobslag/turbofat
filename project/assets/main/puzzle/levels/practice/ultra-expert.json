@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Ultra: Expert (¥3,000)",
   "description": "Earn ¥3,000 as fast as possible, with faster piece movement!",
   "start_speed": "F0",
@@ -12,6 +12,6 @@
   ],
   "rank": [
     "duration 220",
-    "rank_criteria m=141"
+    "rank_criteria top=145"
   ]
 }

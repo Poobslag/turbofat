@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "On Top of Cheese Mountain",
   "description": "...Did anybody lose a meatball?",
   "start_speed": "7",
@@ -26,8 +26,8 @@
     "start_piece_k"
   ],
   "rank": [
-    "duration 365",
-    "rank_criteria m=56"
+    "duration 370",
+    "rank_criteria top=56"
   ],
   "tiles": {
     "0": [

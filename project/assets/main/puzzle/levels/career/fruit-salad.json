@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Fruit Salad",
   "description": "Ick! Salad. ...You said there would be fruit!",
   "start_speed": "4",
@@ -20,7 +20,7 @@
   ],
   "rank": [
     "duration 300",
-    "rank_criteria m=1600"
+    "rank_criteria top=1600"
   ],
   "tiles": {
     "0": [

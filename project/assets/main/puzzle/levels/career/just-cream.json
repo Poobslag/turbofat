@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Just Cream",
   "description": "What are these pieces!? LOLOLOL",
   "blocks_during": [
@@ -24,7 +24,7 @@
   ],
   "rank": [
     "duration 50",
-    "rank_criteria m=1100 s-=145"
+    "rank_criteria top=1100 s-=145"
   ],
   "tiles": {
     "start": [

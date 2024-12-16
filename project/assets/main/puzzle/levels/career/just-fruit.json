@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Just Fruit",
   "description": "Do we really need a recipe?",
   "finish_condition": {
@@ -21,6 +21,6 @@
   ],
   "rank": [
     "duration 80",
-    "rank_criteria m=9 s-=75"
+    "rank_criteria top=9 s-=75"
   ]
 }

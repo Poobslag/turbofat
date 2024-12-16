@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Ultra: Hard (¥1,000)",
   "description": "Earn ¥1,000 as fast as possible!",
   "start_speed": "A0",
@@ -11,7 +11,7 @@
     "basic"
   ],
   "rank": [
-    "duration 455",
-    "rank_criteria m=61"
+    "duration 460",
+    "rank_criteria top=65"
   ]
 }

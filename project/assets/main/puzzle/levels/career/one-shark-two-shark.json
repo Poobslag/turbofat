@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "One Shark Two Shark Red Shark Blue Shark",
   "description": "Why do sharks smell so good? ...Is it because they are always in the bath?",
   "start_speed": "4",
@@ -17,7 +17,7 @@
   ],
   "rank": [
     "duration 140",
-    "rank_criteria m=2400"
+    "rank_criteria top=2400"
   ],
   "tiles": {
     "start": [

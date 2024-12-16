@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Chocolate Star",
   "description": "Close your eyes and make a chocolate wish!",
   "finish_condition": {
@@ -22,7 +22,7 @@
   ],
   "rank": [
     "duration 75",
-    "rank_criteria m=755 s-=95"
+    "rank_criteria top=755 s-=95"
   ],
   "tiles": {
     "start": [
