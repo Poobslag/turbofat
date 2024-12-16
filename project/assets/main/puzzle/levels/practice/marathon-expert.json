@@ -48,8 +48,8 @@
     "top_out 1"
   ],
   "rank": [
-    "duration 560",
-    "rank_criteria m=10000"
+    "duration 875",
+    "rank_criteria m=6400"
   ],
   "success_condition": {
     "type": "lines",

@@ -17,7 +17,7 @@
   ],
   "rank": [
     "duration 185",
-    "rank_criteria m=100",
+    "rank_criteria m=80",
     "success_bonus 2"
   ],
   "success_condition": {

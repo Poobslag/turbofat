@@ -55,11 +55,11 @@
   ],
   "rank": [
     "duration 410",
-    "rank_criteria m=20000",
+    "rank_criteria m=12800",
     "success_bonus 2"
   ],
   "success_condition": {
     "type": "score",
-    "value": 10000
+    "value": 8000
   }
 }

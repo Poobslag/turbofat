@@ -16,8 +16,8 @@
     "top_out 1"
   ],
   "rank": [
-    "duration 240",
-    "rank_criteria m=8900",
+    "duration 300",
+    "rank_criteria m=5696",
     "success_bonus 2"
   ],
   "success_condition": {

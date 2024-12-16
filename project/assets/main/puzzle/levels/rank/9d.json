@@ -16,12 +16,12 @@
     "top_out 1"
   ],
   "rank": [
-    "duration 195",
-    "rank_criteria m=6900",
+    "duration 243",
+    "rank_criteria m=4400",
     "success_bonus 2"
   ],
   "success_condition": {
     "type": "score",
-    "value": 5000
+    "value": 4000
   }
 }
