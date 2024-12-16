@@ -35,8 +35,8 @@ func test_nerf_m_rank() -> void:
 func test_nerf_m_rank_ultra() -> void:
 	criteria.duration_criteria = true
 	criteria.add_threshold("TOP", 60)
-	assert_eq(999, threshold_for_grade("M"))
-	assert_eq(999, threshold_for_grade("SSS"))
+	assert_eq(65, threshold_for_grade("M"))
+	assert_eq(80, threshold_for_grade("SSS"))
 
 
 func threshold_for_grade(grade: String) -> int:

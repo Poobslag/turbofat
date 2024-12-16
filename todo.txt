@@ -9,7 +9,7 @@
  -converter translates 'm' to 'top'
  -update all levels to use 'top'
  -regression test: gut tests
- -regression test: in game
+ -regression test: in game; top should never appear
 -ensure the 'rounding logic' is working
  -ReleaseToolkit
  -'top' is rounded
