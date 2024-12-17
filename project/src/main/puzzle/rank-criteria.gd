@@ -175,7 +175,7 @@ func fill_missing_thresholds() -> void:
 	
 	# sanitize thresholds by rounding and clamping to reasonable values
 	for grade in new_thresholds:
-		new_thresholds[grade] = _sanitize_threshold(new_thresholds[grade])
+		new_thresholds[grade] = sanitize_threshold(new_thresholds[grade])
 	
 	thresholds_by_grade = new_thresholds
 
@@ -202,13 +202,13 @@ func soften(grade: String, factor: float) -> void:
 		new_threshold = new_threshold * TIME_PERCENT_BY_GRADE[grade] / factor
 	else:
 		new_threshold = new_threshold * SCORE_PERCENT_BY_GRADE[grade] * factor
-	new_threshold = _sanitize_threshold(new_threshold)
+	new_threshold = sanitize_threshold(new_threshold)
 	
 	thresholds_by_grade[grade] = new_threshold
 
 
 ## Sanitize a time or score threshold by rounding and clamping to reasonable values.
-func _sanitize_threshold(value: int) -> int:
+func sanitize_threshold(value: int) -> int:
 	var result := value
 	
 	# round thresholds to aesthetically pleasing numbers
