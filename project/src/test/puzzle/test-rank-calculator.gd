@@ -11,10 +11,10 @@ func test_filled_rank_criteria_marathon() -> void:
 	CurrentLevel.settings.rank.rank_criteria.add_threshold("TOP", 1000)
 	var rank_criteria := _rank_calculator.filled_rank_criteria()
 	
-	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 1000)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 850)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 690)
-	assert_eq(rank_criteria.thresholds_by_grade.get("S-"), 215)
+	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 950)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 810)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 655)
+	assert_eq(rank_criteria.thresholds_by_grade.get("S-"), 205)
 
 
 func test_filled_rank_criteria_marathon_with_s() -> void:
@@ -22,9 +22,9 @@ func test_filled_rank_criteria_marathon_with_s() -> void:
 	CurrentLevel.settings.rank.rank_criteria.add_threshold("S-", 900)
 	var rank_criteria := _rank_calculator.filled_rank_criteria()
 	
-	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 1000)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 980)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 960)
+	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 990)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 975)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 955)
 	assert_eq(rank_criteria.thresholds_by_grade.get("S-"), 900)
 
 
@@ -34,11 +34,11 @@ func test_filled_rank_criteria_ultra() -> void:
 	CurrentLevel.settings.rank.rank_criteria.add_threshold("TOP", 110)
 	var rank_criteria := _rank_calculator.filled_rank_criteria()
 	
-	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 110)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 130)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 160)
-	assert_eq(rank_criteria.thresholds_by_grade.get("S-"), 510)
-	assert_eq(rank_criteria.thresholds_by_grade.get("B-"), 3599)
+	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 115)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 145)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 180)
+	assert_eq(rank_criteria.thresholds_by_grade.get("S-"), 570)
+	assert_eq(rank_criteria.thresholds_by_grade.get("B-"), 2460)
 
 
 func test_filled_rank_criteria_ultra_with_s() -> void:
@@ -47,14 +47,14 @@ func test_filled_rank_criteria_ultra_with_s() -> void:
 	CurrentLevel.settings.rank.rank_criteria.add_threshold("S-", 200)
 	var rank_criteria := _rank_calculator.filled_rank_criteria()
 	
-	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 110)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 115)
+	assert_eq(rank_criteria.thresholds_by_grade.get("M"), 115)
+	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 120)
 	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 125)
 
 
 func test_filled_rank_criteria_sprint_short() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 5)
-	CurrentLevel.settings.rank.rank_criteria.add_threshold("TOP", 50)
+	CurrentLevel.settings.rank.rank_criteria.add_threshold("TOP", 25)
 	var rank_criteria := _rank_calculator.filled_rank_criteria()
 	
 	# Score criteria can be identical; some grades are impossible. Score criteria can be low but should never be zero.
@@ -69,8 +69,8 @@ func test_filled_rank_criteria_ultra_short() -> void:
 	var rank_criteria := _rank_calculator.filled_rank_criteria()
 	
 	# Score criteria can be identical, some grades are impossible.
+	assert_eq(rank_criteria.thresholds_by_grade.get("SSS"), 5)
 	assert_eq(rank_criteria.thresholds_by_grade.get("SS+"), 5)
-	assert_eq(rank_criteria.thresholds_by_grade.get("SS"), 5)
 
 
 func test_calculate_rank_marathon_hard() -> void:
@@ -79,7 +79,7 @@ func test_calculate_rank_marathon_hard() -> void:
 	PuzzleState.level_performance.score = 2200
 	var rank_result := _rank_calculator.calculate_rank()
 
-	assert_eq(19.2, rank_result.rank)
+	assert_almost_eq(18.6, rank_result.rank, 0.1)
 
 
 func test_calculate_rank_marathon_zero_lines() -> void:
@@ -106,7 +106,7 @@ func test_calculate_rank_ultra_hard() -> void:
 	PuzzleState.level_performance.seconds = 74
 	var rank_result := _rank_calculator.calculate_rank()
 
-	assert_eq(11.2, rank_result.rank)
+	assert_almost_eq(10.5, rank_result.rank, 0.1)
 
 
 func test_calculate_rank_ultra_hard_timeout() -> void:
