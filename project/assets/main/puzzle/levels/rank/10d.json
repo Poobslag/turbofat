@@ -16,12 +16,12 @@
     "top_out 1"
   ],
   "rank": [
-    "duration 210",
-    "rank_criteria top=255",
+    "duration 265",
+    "rank_criteria top=400",
     "success_bonus 2"
   ],
   "success_condition": {
     "type": "time_under",
-    "value": 360
+    "value": 450
   }
 }
