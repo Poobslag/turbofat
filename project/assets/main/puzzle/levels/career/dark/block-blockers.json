@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Block Blockers EX",
   "description": "They're still here to get in the way... and they have some new tricks!",
   "start_speed": "A9",
@@ -26,7 +26,7 @@
   ],
   "rank": [
     "duration 230",
-    "rank_criteria m=175"
+    "rank_criteria top=175"
   ],
   "tiles": {
     "start": [

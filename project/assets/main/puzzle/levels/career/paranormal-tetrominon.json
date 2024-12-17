@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Paranormal Tetrominon",
   "description": "A visit from some familiar friends.",
   "finish_condition": {
@@ -21,6 +21,6 @@
   ],
   "rank": [
     "duration 180",
-    "rank_criteria m=1800 s-=310"
+    "rank_criteria top=1800 s-=310"
   ]
 }

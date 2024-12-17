@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Asparagus Gang",
   "description": "People called them 'bad seeds', but they're all grown up now!",
   "start_speed": "A8",
@@ -16,7 +16,7 @@
   ],
   "rank": [
     "duration 460",
-    "rank_criteria m=135"
+    "rank_criteria top=135"
   ],
   "tiles": {
     "start": [

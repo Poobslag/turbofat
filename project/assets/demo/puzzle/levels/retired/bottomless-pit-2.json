@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Bottomless Pit II",
   "description": "How deep does this thing go!?",
   "start_speed": "5",
@@ -9,7 +9,7 @@
   },
   "rank": [
     "duration 115",
-    "rank_criteria m=2250"
+    "rank_criteria top=2250"
   ],
   "tiles": {
     "start": [

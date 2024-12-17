@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Three Nights",
   "description": "I'm not afraid of the dark! It's just very annoying...",
   "start_speed": "2",
@@ -12,7 +12,7 @@
   ],
   "rank": [
     "duration 110",
-    "rank_criteria m=2000"
+    "rank_criteria top=2000"
   ],
   "tiles": {
     "start": [

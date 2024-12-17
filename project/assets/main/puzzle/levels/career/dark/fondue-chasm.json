@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Fondue Chasm",
   "description": "Yum, fruit fondue! Wait, where is the chocolate...?",
   "start_speed": "A8",
@@ -44,7 +44,7 @@
   ],
   "rank": [
     "duration 145",
-    "rank_criteria m=2800"
+    "rank_criteria top=2800"
   ],
   "tiles": {
     "0": [

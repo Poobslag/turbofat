@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Ultra: Normal (¥200)",
   "description": "Earn ¥200 as fast as possible!",
   "finish_condition": {
@@ -11,6 +11,6 @@
   ],
   "rank": [
     "duration 180",
-    "rank_criteria m=17"
+    "rank_criteria top=17"
   ]
 }

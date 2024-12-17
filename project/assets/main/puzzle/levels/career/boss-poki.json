@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Grand Opening: Kflab",
   "description": "Opening a new restaurant can be tough!",
   "start_speed": "3",
@@ -29,7 +29,7 @@
   ],
   "rank": [
     "duration 385",
-    "rank_criteria m=42",
+    "rank_criteria top=42",
     "success_bonus 2"
   ],
   "success_condition": {

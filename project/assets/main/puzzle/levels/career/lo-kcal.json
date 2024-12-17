@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Lo kCal",
   "description": "Can you scrape together ¥100 on veggies alone?",
   "finish_condition": {
@@ -25,7 +25,7 @@
   ],
   "rank": [
     "duration 120",
-    "rank_criteria m=18 s-=130"
+    "rank_criteria top=18 s-=130"
   ],
   "tiles": {
     "start": [

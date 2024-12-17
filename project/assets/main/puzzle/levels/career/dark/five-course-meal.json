@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Five Course Meal",
   "description": "Five courses? ...I'll have five desserts, please!",
   "start_speed": "7",
@@ -19,7 +19,7 @@
   ],
   "rank": [
     "duration 375",
-    "rank_criteria m=2050"
+    "rank_criteria top=2050"
   ],
   "score": [
     "cake_all 20",

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Basic Techniques",
   "description": "Learn to clear lines, to make snack boxes and to squish pieces.",
   "start_speed": "T",
@@ -17,7 +17,7 @@
   ],
   "rank": [
     "duration 150",
-    "rank_criteria m=1",
+    "rank_criteria top=1",
     "skip_results",
     "unranked"
   ],

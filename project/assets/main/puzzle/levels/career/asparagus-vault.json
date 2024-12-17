@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Asparagus Vault",
   "description": "Are you planning a robbery? I'm onto you!",
   "start_speed": "2",
@@ -25,7 +25,7 @@
   ],
   "rank": [
     "duration 120",
-    "rank_criteria m=2200"
+    "rank_criteria top=2200"
   ],
   "tiles": {
     "start": [

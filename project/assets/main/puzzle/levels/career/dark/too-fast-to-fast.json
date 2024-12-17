@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Too Fast to Fast EX",
   "description": "It was already too fast before! This is nonsense...",
   "start_speed": "A1",
@@ -37,6 +37,6 @@
   ],
   "rank": [
     "duration 80",
-    "rank_criteria m=1850"
+    "rank_criteria top=1850"
   ]
 }
