@@ -27,6 +27,6 @@
   ],
   "rank": [
     "duration 90",
-    "rank_criteria top=750 s-=100"
+    "rank_criteria top=750 s-=95"
   ]
 }
