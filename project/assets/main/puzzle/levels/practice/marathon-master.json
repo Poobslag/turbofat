@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Marathon: Master (500 lines)",
   "description": "An impossible test of endurance for true Turbo Fat masters! Can you clear 500 lines?",
   "start_speed": "FA",
@@ -45,7 +45,7 @@
   ],
   "rank": [
     "duration 355",
-    "rank_criteria m=16500"
+    "rank_criteria top=16500"
   ],
   "success_condition": {
     "type": "lines",

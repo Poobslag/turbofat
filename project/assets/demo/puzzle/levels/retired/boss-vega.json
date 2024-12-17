@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Grand Opening: Chocolava Canyon",
   "description": "Opening a new restaurant can be tough!",
   "start_speed": "6",
@@ -9,7 +9,7 @@
   },
   "rank": [
     "duration 640",
-    "rank_criteria m=85",
+    "rank_criteria top=85",
     "success_bonus 2"
   ],
   "success_condition": {

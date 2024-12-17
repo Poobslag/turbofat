@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Sprint: Expert (3:00)",
   "description": "Earn as much money as you can in 3:00. Use the faster pieces to set a high score!",
   "start_speed": "F0",
@@ -12,6 +12,6 @@
   ],
   "rank": [
     "duration 180",
-    "rank_criteria m=6750"
+    "rank_criteria top=6750"
   ]
 }

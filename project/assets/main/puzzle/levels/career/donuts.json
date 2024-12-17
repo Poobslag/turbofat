@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Donuts",
   "description": "Ooh donuts! Don't mind if I do...",
   "finish_condition": {
@@ -14,7 +14,7 @@
   ],
   "rank": [
     "duration 70",
-    "rank_criteria m=9 s-=65"
+    "rank_criteria top=9 s-=65"
   ],
   "tiles": {
     "start": [

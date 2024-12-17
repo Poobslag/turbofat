@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "start_speed": "A1",
   "finish_condition": {
     "type": "lines",
@@ -21,7 +21,7 @@
   ],
   "rank": [
     "duration 660",
-    "rank_criteria m=3600",
+    "rank_criteria top=3600",
     "skip_results"
   ],
   "tiles": {

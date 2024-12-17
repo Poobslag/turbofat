@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Up In Smoke",
   "description": "I don't love carrots, but I promise to hate them slightly less if they stay over there...",
   "speed_ups": [
@@ -24,7 +24,7 @@
   ],
   "rank": [
     "duration 90",
-    "rank_criteria m=1300 s-=225"
+    "rank_criteria top=1300 s-=225"
   ],
   "tiles": {
     "start": [

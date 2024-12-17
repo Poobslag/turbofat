@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Muffin Impossible III",
   "description": "More awkward mismatched pieces!? When will the pain stop?",
   "start_speed": "A1",
@@ -19,7 +19,7 @@
   ],
   "rank": [
     "duration 455",
-    "rank_criteria m=60"
+    "rank_criteria top=60"
   ],
   "tiles": {
     "start": [

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Boxing Day EX",
   "description": "Don't get boxed in!",
   "start_speed": "A1",
@@ -21,7 +21,7 @@
   ],
   "rank": [
     "duration 565",
-    "rank_criteria m=75"
+    "rank_criteria top=75"
   ],
   "tiles": {
     "start": [

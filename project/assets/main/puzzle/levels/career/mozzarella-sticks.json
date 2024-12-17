@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Mozzarella Sticks",
   "description": "Speak softly and eat a big mozzarella stick.",
   "start_speed": "7",
@@ -27,7 +27,7 @@
   ],
   "rank": [
     "duration 355",
-    "rank_criteria m=65"
+    "rank_criteria top=65"
   ],
   "tiles": {
     "start": [

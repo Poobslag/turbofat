@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Two Box Buffet",
   "description": "Surely, six columns should be enough for anybody!",
   "start_speed": "3",
@@ -22,7 +22,7 @@
   ],
   "rank": [
     "duration 150",
-    "rank_criteria m=2100 s-=360"
+    "rank_criteria top=2100 s-=360"
   ],
   "tiles": {
     "start": [

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "¥3,000 Race EX",
   "description": "Earn ¥3,000 as fast as possible. No tricks!",
   "start_speed": "A1",
@@ -12,6 +12,6 @@
   ],
   "rank": [
     "duration 1140",
-    "rank_criteria m=160"
+    "rank_criteria top=160"
   ]
 }

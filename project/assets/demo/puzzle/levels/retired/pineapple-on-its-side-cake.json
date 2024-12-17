@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Pineapple On Its Side Cake",
   "description": "Why is this cake on its side? Whoever left this here was either very smart, or very stupid...",
   "start_speed": "5",
@@ -13,7 +13,7 @@
   ],
   "rank": [
     "duration 220",
-    "rank_criteria m=25"
+    "rank_criteria top=25"
   ],
   "tiles": {
     "start": [

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "2 Kyu",
   "description": "An escalating set of challenges. Finish in 3:00 to achieve this rank!",
   "color": "blue",
@@ -14,7 +14,7 @@
   ],
   "rank": [
     "duration 255",
-    "rank_criteria m=37",
+    "rank_criteria top=37",
     "success_bonus 2"
   ],
   "success_condition": {
