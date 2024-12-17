@@ -49,6 +49,9 @@ func _on_AlleleButtons_operation_button_pressed(operation_id: String) -> void:
 
 
 func _on_Export_file_selected(path: String) -> void:
+	if not _overworld_environment.player:
+		return
+	
 	var exported_def := _overworld_environment.player.creature_def
 	exported_def.creature_id = NameUtils.short_name_to_id(exported_def.creature_short_name)
 	exported_def.chef_if = "true"

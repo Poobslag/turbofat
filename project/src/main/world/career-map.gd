@@ -367,6 +367,9 @@ func _on_LevelSelectButton_level_chosen(level_index: int) -> void:
 
 
 func _on_CareerData_distance_travelled_changed() -> void:
+	if not is_inside_tree():
+		return
+	
 	_refresh_ui()
 	
 	# Restore focus to the level select buttons for controller players. This is necessary for the 'MOVEME' cheat which

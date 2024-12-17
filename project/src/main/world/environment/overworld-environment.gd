@@ -75,6 +75,9 @@ func get_creature_spawners() -> Array:
 ##
 ## An id of SENSEI_ID or PLAYER_ID will return the sensei or player object.
 func get_creature_by_id(creature_id: String) -> Creature:
+	if not is_inside_tree():
+		return null
+	
 	var creature: Creature
 	
 	for creature_node in get_tree().get_nodes_in_group("creatures"):

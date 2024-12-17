@@ -92,6 +92,9 @@ func initial_environment_path() -> String:
 ## Parameters:
 ## 	'level_posses': LevelPosse instances for creatures which should appear for each level.
 func refresh_from_career_data(level_posses: Array) -> void:
+	if not is_inside_tree():
+		return
+	
 	if EnvironmentScene.resource_path != _career_environment_path():
 		set_environment_scene(load(initial_environment_path()))
 		_fill_environment_scene()
@@ -148,6 +151,9 @@ func _fill_environment_scene() -> void:
 
 ## Rearranges environment objects like the player, sensei, level creatures, mile markers, and camera.
 func _move_objects_to_path() -> void:
+	if not is_inside_tree():
+		return
+	
 	var percent := _distance_percent()
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
@@ -159,6 +165,9 @@ func _move_objects_to_path() -> void:
 
 
 func _remove_mile_markers() -> void:
+	if not is_inside_tree():
+		return
+	
 	for mile_marker in get_tree().get_nodes_in_group("mile_markers"):
 		mile_marker.queue_free()
 
@@ -322,7 +331,8 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 	
 	# turn creature towards player
 	var player := overworld_environment.player
-	creature.orientation = Creatures.SOUTHEAST if player.position.x > creature.position.x else Creatures.SOUTHWEST
+	if player:
+		creature.orientation = Creatures.SOUTHEAST if player.position.x > creature.position.x else Creatures.SOUTHWEST
 
 
 ## Moves the player creature to a point along _player_path2d.
@@ -330,6 +340,9 @@ func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 ## Parameters:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the player should be positioned.
 func _move_player_to_path(percent: float) -> void:
+	if not overworld_environment.player:
+		return
+	
 	var player := overworld_environment.player
 	var player_range := _camera_x_range()
 	if PlayerData.career.current_region().has_flag(CareerRegion.FLAG_NO_SENSEI):
@@ -348,12 +361,14 @@ func _move_player_to_path(percent: float) -> void:
 ## Parameters:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the sensei should be positioned.
 func _move_sensei_to_path(percent: float) -> void:
+	if not overworld_environment.sensei:
+		return
+	
 	var sensei := overworld_environment.sensei
-	if sensei:
-		var sensei_range := _camera_x_range()
-		sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent) \
-				- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-		sensei.position.y = _player_path2d_y(sensei.position.x)
+	var sensei_range := _camera_x_range()
+	sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent) \
+			- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	sensei.position.y = _player_path2d_y(sensei.position.x)
 
 
 ## Moves the camera so all creatures are visible.
@@ -474,7 +489,10 @@ func _turn_towards_level_creature() -> void:
 	var level_creature: Creature = _level_creatures[_focused_level_creature_index]
 	
 	var player := overworld_environment.player
-	player.orientation = Creatures.SOUTHEAST if level_creature.position.x > player.position.x else Creatures.SOUTHWEST
+	if player:
+		player.orientation = Creatures.SOUTHEAST if level_creature.position.x > player.position.x \
+				else Creatures.SOUTHWEST
+	
 	var sensei := overworld_environment.sensei
 	if sensei:
 		sensei.orientation = Creatures.SOUTHEAST if level_creature.position.x > sensei.position.x \

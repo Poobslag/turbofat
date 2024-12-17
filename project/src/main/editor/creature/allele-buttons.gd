@@ -116,6 +116,9 @@ func _add_operation_buttons(category: int) -> void:
 
 
 func _initialize_creature_name_button(button: CreatureNameButton) -> void:
+	if not _player():
+		return
+	
 	button.creature = _player()
 	button.connect("name_changed", self, "_on_CreatureNameButton_name_changed")
 
@@ -136,6 +139,9 @@ func _initialize_operation_button(button: OperationButton, operation: Operation)
 ##
 ## These are buttons which let the player choose things like "Poofy Hair".
 func _add_allele_buttons(category: int) -> void:
+	if not _player():
+		return
+	
 	var category_button := _category_selector.get_category_button(category)
 	
 	var allele_combos := _creature_editor_library.get_allele_combos_by_category_index(category)
@@ -220,6 +226,9 @@ func _is_allele_combo_assigned(allele_combo: String) -> bool:
 ## Returns:
 ## 	'true' if the specified allele is assigned to the creature.
 func _is_allele_assigned(allele_string: String) -> bool:
+	if not _player():
+		return false
+	
 	var allele_id: String = allele_string.split("_")[0]
 	var allele_value: String = allele_string.split("_")[1]
 	return _player().dna[allele_id] == allele_value
@@ -229,6 +238,9 @@ func _is_allele_assigned(allele_string: String) -> bool:
 ##
 ## These are buttons which let the player choose things like hair color.
 func _add_color_buttons(category: int) -> void:
+	if not _player():
+		return
+	
 	var category_button := _category_selector.get_category_button(category)
 	
 	var color_properties := _creature_editor_library.get_color_properties_by_category_index(category)
@@ -318,6 +330,9 @@ func _player() -> Creature:
 
 ## When the player chooses an allele, we update the UI and update the creature's appearance.
 func _on_AlleleButton_pressed(allele_button: AlleleButton) -> void:
+	if not _player():
+		return
+	
 	# update the pressed allele buttons
 	allele_button.pressed = true
 	for other_allele_button in Utils.get_child_members(self, "allele_buttons"):
@@ -338,14 +353,19 @@ func _on_AlleleButton_pressed(allele_button: AlleleButton) -> void:
 
 ## When the player uses a CreatureColorButton, we update the creature's appearance
 func _on_CreatureColorButton_color_changed(color: Color, color_property: String) -> void:
+	if not _player():
+		return
+	
 	_player().dna[color_property] = color.to_html(false).to_lower()
 	_player().refresh_dna()
 	_player().chat_theme = CreatureLoader.chat_theme(_player().dna) # generate a new chat theme
 
 
 func _on_CreatureNameButton_name_changed(new_name: String) -> void:
-	var player := _player()
-	player.rename(new_name)
+	if not _player():
+		return
+	
+	_player().rename(new_name)
 
 
 func _on_CategorySelector_category_selected(category: int) -> void:
@@ -362,4 +382,7 @@ func _on_OperationButton_pressed(operation_button: OperationButton) -> void:
 ##
 ## Some of these presets such as for 'line_rgb' change based on the creature's body color.
 func _on_CreatureColorButton_about_to_show(color_button: CreatureColorButton, color_property: String) -> void:
+	if not _player():
+		return
+	
 	color_button.color_presets = _creature_editor_library.get_color_presets(_player().dna, color_property)

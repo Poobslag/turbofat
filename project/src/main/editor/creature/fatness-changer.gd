@@ -25,6 +25,9 @@ func _player() -> Creature:
 
 
 func _decrease_fatness() -> void:
+	if not _player():
+		return
+	
 	if _player().min_fatness <= MIN_FATNESS:
 		return
 	
@@ -34,6 +37,9 @@ func _decrease_fatness() -> void:
 
 
 func _increase_fatness() -> void:
+	if not _player():
+		return
+	
 	if _player().min_fatness >= MAX_FATNESS:
 		return
 	
