@@ -57,6 +57,16 @@ func _ready() -> void:
 			_after_progress_board()
 
 
+## When the career map is removed from the tree, we disconnect the 'distance_travelled_changed' listener
+##
+## If we don't disconnect this listener, we receive errors during scene changes because updating the scene causes us
+## to look for creatures in a non-existent scene tree. These errors are caused by Breadcrumb's Godot #85692 workaround
+## which delays the freeing of nodes in the previous scene.
+func _exit_tree() -> void:
+	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
+		PlayerData.career.disconnect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
+
+
 func _refresh_ui() -> void:
 	_load_level_settings()
 	_refresh_level_select_buttons()
