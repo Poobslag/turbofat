@@ -88,7 +88,6 @@ func _round_goals_for_level(path: String) -> bool:
 	
 	# sanitize time/score goals by rounding and clamping to reasonable values
 	var old_text := FileUtils.get_file_as_text(path)
-	var old_json: Dictionary = parse_json(old_text)
 	var level_id := LevelSettings.level_key_from_path(path)
 	var settings := LevelSettings.new()
 	settings.load_from_text(level_id, old_text)
