@@ -15,4 +15,4 @@ enum Result {
 
 ## Current version for saved level data. Should be updated if and only if the level format changes.
 ## This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const LEVEL_DATA_VERSION := "5a6b"
+const LEVEL_DATA_VERSION := "5c84"
