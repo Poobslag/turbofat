@@ -21,6 +21,7 @@ var _upgrade_methods := {}
 
 func _init() -> void:
 	current_version = Levels.LEVEL_DATA_VERSION
+	_add_upgrade_method("_upgrade_5a6b", "5a6b", "5c84")
 	_add_upgrade_method("_upgrade_59c3", "59c3", "5a6b")
 	_add_upgrade_method("_upgrade_4c5c", "4c5c", "59c3")
 	_add_upgrade_method("_upgrade_49db", "49db", "4c5c")
@@ -96,6 +97,39 @@ func _add_upgrade_method(method: String, old_version: String, new_version: Strin
 	upgrade_method.old_version = old_version
 	upgrade_method.new_version = new_version
 	_upgrade_methods[old_version] = upgrade_method
+
+
+## Translate 'm=...' rank criteria to 'top=...'
+##
+## Version 5c84 changed from defining master rank criteria like 'm=3350' to perfect criteria like 'top=3350'
+func _upgrade_5a6b(old_json: Dictionary, old_key: String, new_json: Dictionary) -> void:
+	match old_key:
+		"rank":
+			var new_value: Array = old_json[old_key]
+			
+			var rank_criteria_property_index := -1
+			for rank_property_index in range(old_json[old_key].size()):
+				if old_json[old_key][rank_property_index].begins_with("rank_criteria "):
+					rank_criteria_property_index = rank_property_index
+					break
+			
+			if rank_criteria_property_index != -1:
+				# grab the end part of the rank_criteria string, "m=3350 s-=550"
+				var criteria_strings := StringUtils.substring_after(
+						old_json[old_key][rank_criteria_property_index], "rank_criteria ")
+				var criteria_strings_split := criteria_strings.split(" ")
+				
+				# replace the "m=3350" string with "top=3350"
+				for i in criteria_strings_split.size():
+					var criteria_string := criteria_strings_split[i]
+					if criteria_string.begins_with("m="):
+						criteria_strings_split[i] = "top=%s" % StringUtils.substring_after(criteria_string, "m=")
+						break
+				new_value[rank_criteria_property_index] = "rank_criteria %s" \
+						% [PoolStringArray(criteria_strings_split).join(" ")]
+				new_json[old_key] = new_value
+		_:
+			new_json[old_key] = old_json[old_key]
 
 
 func _upgrade_59c3(old_json: Dictionary, old_key: String, new_json: Dictionary) -> void:

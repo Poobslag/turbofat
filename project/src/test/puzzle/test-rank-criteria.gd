@@ -8,7 +8,7 @@ func before_each() -> void:
 
 func test_soften_marathon() -> void:
 	criteria.duration_criteria = false
-	criteria.add_threshold("M", 10000)
+	criteria.add_threshold("TOP", 10000)
 	
 	assert_eq(2150, threshold_for_grade("S-"))
 	
@@ -18,7 +18,7 @@ func test_soften_marathon() -> void:
 
 func test_soften_ultra() -> void:
 	criteria.duration_criteria = true
-	criteria.add_threshold("M", 17)
+	criteria.add_threshold("TOP", 17)
 	
 	assert_eq(80, threshold_for_grade("S-"))
 	
