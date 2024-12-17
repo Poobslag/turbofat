@@ -390,7 +390,7 @@
   },
   "timers": [
     {
-      "interval": 12
+      "interval": 24
     }
   ],
   "triggers": [
