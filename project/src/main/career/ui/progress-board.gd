@@ -49,19 +49,19 @@ onready var _hide_timer := $HideTimer
 onready var _animate_start_timer := $AnimateStartTimer
 
 ## Spots and lines drawn to show a trail across the progress board.
-onready var _trail := $ChalkboardRegion/Trail
+onready var _trail := $ChalkboardRegion/Swoosher/Trail
 
 ## Title at the top of the progress board.
-onready var _title := $ChalkboardRegion/Title
+onready var _title := $ChalkboardRegion/Swoosher/Title
 
 ## Player's chalk graphics on the progress board.
-onready var _player := $ChalkboardRegion/Player
+onready var _player := $ChalkboardRegion/Swoosher/Player
 
 ## Goal text which shows up over the progress board destination
-onready var _goal := $ChalkboardRegion/GoalLabel
+onready var _goal := $ChalkboardRegion/Swoosher/GoalLabel
 
 ## Chalk drawing of the region.
-onready var _map_holder := $ChalkboardRegion/MapHolder
+onready var _map_holder := $ChalkboardRegion/Swoosher/MapHolder
 
 ## Animation player which makes the progress board 'pop in' and 'pop out' animations.
 onready var _show_animation_player := $ShowAnimationPlayer
