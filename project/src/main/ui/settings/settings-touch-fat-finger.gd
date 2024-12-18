@@ -13,7 +13,7 @@ func _ready() -> void:
 	_option_button.add_item(tr("Plump"))
 	_option_button.add_item(tr("Pudge"))
 	_option_button.add_item(tr("Chonk"))
-	_option_button.selected = Utils.find_closest(VALUES, SystemData.touch_settings.scheme)
+	_option_button.selected = Utils.find_closest(VALUES, SystemData.touch_settings.fat_finger)
 
 
 func _on_OptionButton_item_selected(id: int) -> void:
