@@ -2018,7 +2018,7 @@ run/flush_stdout_on_print=true
 boot_splash/show_image=false
 config/icon="res://assets/main/ui/icon.png"
 config/windows_native_icon="res://assets/main/ui/icon.ico"
-config/version="1.0114"
+config/version="1.0205"
 
 [audio]
 
