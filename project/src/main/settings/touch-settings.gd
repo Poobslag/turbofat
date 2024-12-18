@@ -21,7 +21,7 @@ const LOCO_CONSOLE := ControlScheme.LOCO_CONSOLE
 const LOCO_DESKTOP := ControlScheme.LOCO_DESKTOP
 
 ## how easy it is to mash two buttons with one finger; 0.0 = impossible, 1.0 = very easy
-var fat_finger := 0.00 setget set_fat_finger
+var fat_finger := 0.66 setget set_fat_finger
 
 ## control scheme that decides which buttons appear where
 var scheme: int = ControlScheme.EASY_CONSOLE setget set_scheme
@@ -57,7 +57,7 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	fat_finger = float(json.get("fat_finger", 0.00))
+	fat_finger = float(json.get("fat_finger", 0.66))
 	scheme = int(json.get("scheme", 0))
 	size = float(json.get("size", 1.00))
 	emit_signal("settings_changed")
