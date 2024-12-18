@@ -327,7 +327,7 @@ class LineClearedPhaseCondition extends PhaseCondition:
 			result = result and combos_to_run.has(event_params["combo"])
 		if scores_to_run:
 			var score_reached := false
-			for score in range(event_params["prev_score"] + 1, event_params["score"]):
+			for score in range(event_params["prev_score"] + 1, event_params["score"] + 1):
 				if scores_to_run.has(score):
 					score_reached = true
 					break
