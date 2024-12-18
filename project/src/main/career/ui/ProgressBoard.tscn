@@ -238,7 +238,7 @@ corner_radius_bottom_left = 16
 [sub_resource type="Animation" id=34]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Clock:rect_position")
+tracks/0/path = NodePath("Backdrop:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -247,10 +247,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 422, 8 ) ]
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Clock:modulate")
+tracks/1/path = NodePath("Backdrop:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -274,7 +274,7 @@ tracks/2/keys = {
 "values": [ 171.8 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("ChalkboardRegion:modulate")
+tracks/3/path = NodePath("ChalkboardRegion:rect_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -283,10 +283,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("ChalkboardRegion:rect_scale")
+tracks/4/path = NodePath("ChalkboardRegion:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -295,10 +295,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Backdrop:visible")
+tracks/5/path = NodePath("ChalkboardRegion:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -307,10 +307,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Backdrop:modulate")
+tracks/6/path = NodePath("Clock:rect_position:x")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -319,7 +319,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ 422.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Clock:visible")
@@ -334,7 +334,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/path = NodePath("Clock:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -343,10 +343,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("ProgressBoardDisappear:playing")
+tracks/9/path = NodePath("ChalkboardIntro:rect_position:x")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -355,10 +355,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ 32.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/10/path = NodePath("ChalkboardIntro:rect_scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -367,10 +367,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 32.0 ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("ChalkboardIntro:modulate")
+tracks/11/path = NodePath("ChalkboardIntro:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -378,11 +378,11 @@ tracks/11/enabled = true
 tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/12/path = NodePath("ChalkboardIntro:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -391,10 +391,10 @@ tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("ChalkboardIntro:visible")
+tracks/13/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -403,10 +403,10 @@ tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button:visible")
+tracks/14/path = NodePath("ProgressBoardDisappear:playing")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -414,8 +414,8 @@ tracks/14/enabled = true
 tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=36]
@@ -423,19 +423,19 @@ resource_name = "hide"
 length = 0.166667
 step = 1.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Clock:rect_position")
+tracks/0/path = NodePath("Backdrop:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.0333333, 0.166667 ),
+"times": PoolRealArray( 0.033, 0.165 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 422, 8 ), Vector2( 822, 8 ) ]
+"update": 1,
+"values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Clock:modulate")
+tracks/1/path = NodePath("Backdrop:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -459,43 +459,43 @@ tracks/2/keys = {
 "values": [ 171.8, 521.8 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("ChalkboardRegion:modulate")
+tracks/3/path = NodePath("ChalkboardRegion:rect_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.0333333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("ChalkboardRegion:rect_scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0.0333333, 0.0666667, 0.166667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.02, 0.98 ), Vector2( 1.02, 0.98 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChalkboardRegion:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.033, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 tracks/5/type = "value"
-tracks/5/path = NodePath("Backdrop:visible")
+tracks/5/path = NodePath("ChalkboardRegion:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.033, 0.165 ),
+"times": PoolRealArray( 0.0333333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Backdrop:modulate")
+tracks/6/path = NodePath("Clock:rect_position:x")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -504,7 +504,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0.0333333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ 422.0, 822.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Clock:visible")
@@ -519,16 +519,16 @@ tracks/7/keys = {
 "values": [ true, false ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/path = NodePath("Clock:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0.033, 0.166667 ),
+"times": PoolRealArray( 0.0333333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/9/type = "audio"
 tracks/9/path = NodePath("ProgressBoardDisappear")
@@ -550,19 +550,19 @@ resource_name = "hide-intro"
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/0/path = NodePath("Backdrop:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.0333333, 0.166667 ),
+"times": PoolRealArray( 0.033, 0.165 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 171.8, 521.8 ]
+"update": 1,
+"values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ChalkboardIntro:modulate")
+tracks/1/path = NodePath("Backdrop:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -574,64 +574,64 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/2/path = NodePath("Clock:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.0333333, 0.0666667, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.02, 0.98 ), Vector2( 1.02, 0.98 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Backdrop:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.033, 0.165 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Backdrop:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.0333333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Clock:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0.0333333 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 171.8, 521.8 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.02, 0.98 ), Vector2( 1.02, 0.98 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ChalkboardIntro:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.033, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 tracks/6/type = "value"
-tracks/6/path = NodePath("ChalkboardIntro:visible")
+tracks/6/path = NodePath("ChalkboardIntro:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.033, 0.166667 ),
+"times": PoolRealArray( 0.0333333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/7/type = "audio"
 tracks/7/path = NodePath("ProgressBoardDisappear")
@@ -653,28 +653,28 @@ resource_name = "show"
 length = 0.5
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Clock:rect_position")
+tracks/0/path = NodePath("Backdrop:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 322, 8 ), Vector2( 322, 8 ), Vector2( 422, 8 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Clock:modulate")
+tracks/1/path = NodePath("Backdrop:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("ChalkboardRegion:rect_position:x")
@@ -689,52 +689,52 @@ tracks/2/keys = {
 "values": [ 21.8, 21.8, 171.8 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("ChalkboardRegion:modulate")
+tracks/3/path = NodePath("ChalkboardRegion:rect_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("ChalkboardRegion:rect_scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.233333, 0.366667, 0.416667, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChalkboardRegion:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.231 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 tracks/5/type = "value"
-tracks/5/path = NodePath("Backdrop:visible")
+tracks/5/path = NodePath("ChalkboardRegion:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Backdrop:modulate")
+tracks/6/path = NodePath("Clock:rect_position:x")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ 322.0, 322.0, 422.0 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Clock:visible")
@@ -749,24 +749,36 @@ tracks/7/keys = {
 "values": [ false, true ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/path = NodePath("Clock:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 0.231 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/9/type = "audio"
-tracks/9/path = NodePath("ProgressBoardAppear")
+tracks/9/type = "value"
+tracks/9/path = NodePath("ChalkboardIntro:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "audio"
+tracks/10/path = NodePath("ProgressBoardAppear")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -774,61 +786,49 @@ tracks/9/keys = {
 } ],
 "times": PoolRealArray( 0.166667 )
 }
-tracks/10/type = "value"
-tracks/10/path = NodePath("ChalkboardIntro:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=47]
 resource_name = "show-intro"
 length = 1.00003
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("ChalkboardIntro:rect_position:x")
+tracks/0/path = NodePath("Backdrop:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -118.0, -118.0, 32.0 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ChalkboardIntro:modulate")
+tracks/1/path = NodePath("Backdrop:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ChalkboardIntro:rect_scale")
+tracks/2/path = NodePath("ChalkboardRegion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.233333, 0.366667, 0.416667, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1, 1 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Backdrop:visible")
+tracks/3/path = NodePath("Clock:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -837,31 +837,31 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Backdrop:modulate")
+tracks/4/path = NodePath("ChalkboardIntro:rect_position:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ -118.0, -118.0, 32.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Clock:visible")
+tracks/5/path = NodePath("ChalkboardIntro:rect_scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"times": PoolRealArray( 0, 0.233333, 0.366667, 0.416667, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 1.05, 0.95 ), Vector2( 0.99, 1.01 ), Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("ChalkboardIntro:visible")
@@ -875,57 +875,57 @@ tracks/6/keys = {
 "update": 1,
 "values": [ false, true ]
 }
-tracks/7/type = "audio"
-tracks/7/path = NodePath("ProgressBoardAppear")
+tracks/7/type = "value"
+tracks/7/path = NodePath("ChalkboardIntro:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 16 )
-} ],
-"times": PoolRealArray( 0.166667 )
+"times": PoolRealArray( 0, 0.233333, 0.366667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ChalkboardRegion:visible")
+tracks/8/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
-tracks/10/type = "method"
-tracks/10/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
+tracks/9/type = "method"
+tracks/9/path = NodePath("ChalkboardIntro/VBoxContainer/ButtonRow/ZHolder/Button")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "grab_focus"
 } ]
+}
+tracks/10/type = "audio"
+tracks/10/path = NodePath("ProgressBoardAppear")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0.166667 )
 }
 
 [node name="ProgressBoard" type="CanvasLayer"]
