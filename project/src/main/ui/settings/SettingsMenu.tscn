@@ -418,7 +418,6 @@ margin_left = 307.0
 margin_right = 736.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 160, 26 )
-focus_mode = 2
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 4

@@ -72,7 +72,7 @@ func _default_creature_detail() -> int:
 
 ## Returns the default 'use vsync' value.
 ##
-## Many platforms enforce vsync regardless of this value (such as mobile platforms and HTML5), so we default it to
-## 'true' on those platforms. However, it makes stuttering more noticable during puzzles.
+## VSync defaults to true because it ensures the game looks its best for most players out of the box, and matches the
+## expectations of casual and new players who may not know what vsync does.
 func _default_use_vsync() -> bool:
-	return true if OS.has_feature("web") or OS.has_feature("mobile") else false
+	return true

@@ -184,3 +184,8 @@ func _on_Popup_color_changed(color: Color) -> void:
 
 func _on_Popup_about_to_show() -> void:
 	emit_signal("about_to_show")
+
+
+func _on_Popup_popup_hide() -> void:
+	# If any CandyColorPickerButtons grab focus, focus is permanently lost unless we grab it back.
+	grab_focus()

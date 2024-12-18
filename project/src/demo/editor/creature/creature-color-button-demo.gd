@@ -2,21 +2,56 @@ extends Node
 ## Shows off the creature color buttons, and provides utilities for editing creature color palettes.
 ##
 ## Keys:
-## 	[Q]: Extract new palettes from old palettes.
-## 	[W]: Report duplicate colors from our new palettes.
-## 	[E]: Report creature colors not present in our new palettes.
+## 	[Q/W/E/R/T]: Assign a palette with 0/4/8/24/100 colors.
+## 	[Z]: Extract new palettes from old palettes.
+## 	[X]: Report duplicate colors from our new palettes.
+## 	[C]: Report creature colors not present in our new palettes.
 
 onready var _tab_container := $TabContainer
 onready var _text_edit := $TabContainer/ColorAnalysis/TextEdit
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_Q:
+		KEY_Z:
 			_extract_colors_from_creature_palettes()
-		KEY_W:
+		KEY_X:
 			_show_similar_colors()
-		KEY_E:
+		KEY_C:
 			_show_missing_colors()
+		KEY_Q:
+			_assign_color_presets(0)
+		KEY_W:
+			_assign_color_presets(4)
+		KEY_E:
+			_assign_color_presets(8)
+		KEY_R:
+			_assign_color_presets(24)
+		KEY_T:
+			_assign_color_presets(100)
+
+
+func _assign_color_presets(count: int) -> void:
+	var new_color_presets := color_presets(count)
+	for button in [
+		$TabContainer/CreatureColorButton/ButtonTopLeft,
+		$TabContainer/CreatureColorButton/ButtonTopRight,
+		$TabContainer/CreatureColorButton/ButtonCenter,
+		$TabContainer/CreatureColorButton/ButtonBottomLeft,
+		$TabContainer/CreatureColorButton/ButtonBottomRight,
+	]:
+		button.set_color_presets(new_color_presets)
+
+
+func color_presets(count: int) -> Array:
+	var result := []
+	if count >= 8:
+		result.append(Color.white)
+		result.append(Color.gray)
+		result.append(Color.black)
+	while result.size() < count:
+		var random_color := Color(randf(), randf(), randf())
+		result.append(random_color)
+	return result
 
 
 ## Extract palettes from the old creature editor format and prints them in the new format.
