@@ -73,3 +73,4 @@ script = ExtResource( 14 )
 
 [connection signal="about_to_show" from="Popup" to="." method="_on_Popup_about_to_show"]
 [connection signal="color_changed" from="Popup" to="." method="_on_Popup_color_changed"]
+[connection signal="popup_hide" from="Popup" to="." method="_on_Popup_popup_hide"]
