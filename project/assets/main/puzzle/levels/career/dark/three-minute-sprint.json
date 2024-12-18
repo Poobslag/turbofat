@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Three Minute Sprint EX",
   "description": "Nothing fancy, let's just cook!",
   "start_speed": "A1",
@@ -12,6 +12,6 @@
   ],
   "rank": [
     "duration 180",
-    "rank_criteria m=3850"
+    "rank_criteria top=3050"
   ]
 }

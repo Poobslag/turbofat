@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Serving On A Rocket",
   "description": "Time for flying rockets. Let's serve up some delicious treats!",
   "start_speed": "2",
@@ -12,7 +12,7 @@
   ],
   "rank": [
     "duration 95",
-    "rank_criteria m=1900"
+    "rank_criteria top=1500"
   ],
   "timers": [
     {

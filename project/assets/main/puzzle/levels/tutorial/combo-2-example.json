@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "start_speed": "T",
   "input_replay": [
     "41 +move_piece_left",
@@ -106,7 +106,7 @@
   ],
   "rank": [
     "duration 150",
-    "rank_criteria m=1",
+    "rank_criteria top=1",
     "skip_results",
     "unranked"
   ],

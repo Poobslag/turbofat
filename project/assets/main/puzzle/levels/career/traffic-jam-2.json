@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Another Traffic Jam",
   "description": "An even bigger, and even slower H! ...But what does the H stand for?",
   "start_speed": "2",
@@ -30,8 +30,8 @@
     "annoying"
   ],
   "rank": [
-    "duration 445",
-    "rank_criteria m=55"
+    "duration 450",
+    "rank_criteria top=55"
   ],
   "tiles": {
     "start": [

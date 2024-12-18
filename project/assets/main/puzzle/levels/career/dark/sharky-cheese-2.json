@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Sharky Cheese 2",
   "description": "This time with actual cheese! ...Wait, isn't cheese bad for sharks?",
   "start_speed": "A3",
@@ -34,7 +34,7 @@
   ],
   "rank": [
     "duration 385",
-    "rank_criteria m=3100"
+    "rank_criteria top=3100"
   ],
   "tiles": {
     "0": [

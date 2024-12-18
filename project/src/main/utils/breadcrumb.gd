@@ -76,5 +76,19 @@ func change_scene() -> void:
 		scene_path = "res://src/main/ui/menu/LoadingScreen.tscn"
 	var new_scene: Resource = ResourceCache.get_resource(scene_path)
 	Global.print_verbose("Changing scene to %s (%s) valid=%s" % [new_scene, scene_path, is_instance_valid(new_scene)])
+	
+	_unload_current_scene_custom()
 	var result := get_tree().change_scene_to(new_scene)
+	
 	Global.print_verbose("tree.change_scene_to returned %s" % [result])
+
+
+## Unloads the current scene in a special way which prevents a sporadic silent crash.
+##
+## SceneTree.change_scene_to() sometimes causes a silent crash with no errors or logs. Without this workaround, this
+## happens about every 300 times the player exits a puzzle. See Godot #85692
+## (https://github.com/godotengine/godot/issues/85692).
+func _unload_current_scene_custom() -> void:
+	var old_scene := get_tree().current_scene
+	get_tree().root.remove_child(old_scene)
+	old_scene.queue_free()

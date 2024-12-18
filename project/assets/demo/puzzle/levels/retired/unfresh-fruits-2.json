@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Unfresh Fruits 2",
   "description": "This fruit's going bad soon! Maybe someone will eat it...",
   "start_speed": "2",
@@ -11,8 +11,8 @@
     "start_piece_j"
   ],
   "rank": [
-    "duration 575",
-    "rank_criteria m=42"
+    "duration 580",
+    "rank_criteria top=42"
   ],
   "tiles": {
     "start": [

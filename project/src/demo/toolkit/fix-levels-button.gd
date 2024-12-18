@@ -25,6 +25,7 @@ func run() -> void:
 	
 	_soften_intro_levels("lemon", "S-", 0.64)
 	_soften_intro_levels("lemon_2", "S-", 0.8)
+	_round_goals_for_levels()
 	
 	_report_invalid_career_levels()
 	_report_invalid_career_music()
@@ -66,6 +67,49 @@ func _upgrade_settings(path: String) -> void:
 		var new_text := Utils.print_json(settings.to_json_dict())
 		FileUtils.write_file(path, new_text)
 		_converted.append(path)
+
+
+## Sanitizes all levels' goals and durations by rounding and clamping to reasonable values.
+func _round_goals_for_levels() -> void:
+	var rounded_level_id_set := {}
+	
+	var level_paths := _find_level_paths(LEVEL_DIRS)
+	for level_path in level_paths:
+		var did_round := _round_goals_for_level(level_path)
+		if did_round:
+			rounded_level_id_set[level_path] = true
+	
+	if rounded_level_id_set:
+		_report_problem("Rounded %d level goals." % [rounded_level_id_set.size()])
+
+
+## Sanitize a level's goals and durations by rounding and clamping to reasonable values.
+func _round_goals_for_level(path: String) -> bool:
+	var did_round := false
+	
+	# sanitize time/score goals by rounding and clamping to reasonable values
+	var old_text := FileUtils.get_file_as_text(path)
+	var level_id := LevelSettings.level_key_from_path(path)
+	var settings := LevelSettings.new()
+	settings.load_from_text(level_id, old_text)
+	for grade in settings.rank.rank_criteria.thresholds_by_grade:
+		var old_threshold: int = settings.rank.rank_criteria.thresholds_by_grade[grade]
+		var new_threshold: int = settings.rank.rank_criteria.sanitize_threshold(old_threshold)
+		if old_threshold != new_threshold:
+			did_round = true
+			settings.rank.rank_criteria.thresholds_by_grade[grade] = new_threshold
+	
+	# sanitize durations by rounding and clamping to reasonable values
+	var old_duration := settings.rank.duration
+	var new_duration := settings.rank.rank_criteria.sanitize_threshold(old_duration)
+	if old_duration != new_duration:
+		did_round = true
+		settings.rank.duration = new_duration
+	
+	if did_round:
+		var new_text := Utils.print_json(settings.to_json_dict())
+		FileUtils.write_file(path, new_text)
+	return did_round
 
 
 ## Returns a list of all level paths within 'LEVEL_DIRS', performing a tree traversal.

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Strawberry Shortcut EX",
   "description": "Take a shortcut. ...A strawberry shortcut!",
   "start_speed": "A1",
@@ -35,7 +35,7 @@
   ],
   "rank": [
     "duration 150",
-    "rank_criteria m=2700"
+    "rank_criteria top=2150"
   ],
   "tiles": {
     "0": [

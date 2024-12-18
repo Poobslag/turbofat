@@ -53,6 +53,9 @@ func show_import_dialog() -> void:
 
 
 func show_export_dialog() -> void:
+	if not _overworld_environment.player:
+		return
+	
 	var sanitized_creature_name := StringUtils.sanitize_file_root(_overworld_environment.player.creature_short_name)
 	_export.current_file = "%s.json" % sanitized_creature_name
 	_export.popup_centered()

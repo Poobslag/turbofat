@@ -38,14 +38,17 @@ func _refresh_mood() -> void:
 	var player := overworld_environment.player
 	var sensei := overworld_environment.sensei
 	if PlayerData.career.steps >= Careers.DAILY_STEPS_GOOD:
-		player.play_mood(Creatures.Mood.LAUGH0)
+		if player:
+			player.play_mood(Creatures.Mood.LAUGH0)
 		if sensei:
 			sensei.play_mood(Creatures.Mood.LAUGH0)
 	elif PlayerData.career.steps >= Careers.DAILY_STEPS_OK:
-		player.play_mood(Creatures.Mood.SMILE0)
+		if player:
+			player.play_mood(Creatures.Mood.SMILE0)
 		if sensei:
 			sensei.play_mood(Creatures.Mood.SMILE0)
 	else:
-		player.play_mood(Creatures.Mood.RAGE0)
+		if player:
+			player.play_mood(Creatures.Mood.RAGE0)
 		if sensei:
 			sensei.play_mood(Creatures.Mood.RAGE0)

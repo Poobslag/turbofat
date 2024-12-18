@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "finish_condition": {
     "type": "score",
     "value": 100
@@ -17,7 +17,7 @@
   ],
   "rank": [
     "duration 90",
-    "rank_criteria m=50040",
+    "rank_criteria top=3599",
     "skip_results",
     "unranked"
   ],

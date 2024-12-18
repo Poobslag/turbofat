@@ -1,43 +1,43 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "No Smoking Section II",
   "description": "Cough! Cough! ...Carrots! Too many!",
   "start_speed": "A4",
   "speed_ups": [
     {
       "type": "lines",
-      "value": 70,
+      "value": 50,
       "speed": "A5"
     },
     {
       "type": "lines",
-      "value": 80,
+      "value": 60,
       "speed": "A6"
     },
     {
       "type": "lines",
-      "value": 90,
+      "value": 70,
       "speed": "A7"
     },
     {
       "type": "lines",
-      "value": 100,
+      "value": 80,
       "speed": "A8"
     },
     {
       "type": "lines",
-      "value": 110,
+      "value": 90,
       "speed": "A9"
     },
     {
       "type": "lines",
-      "value": 120,
+      "value": 100,
       "speed": "AA"
     }
   ],
   "finish_condition": {
     "type": "score",
-    "value": 1800
+    "value": 1200
   },
   "icons": [
     "carrot",
@@ -46,7 +46,7 @@
   ],
   "rank": [
     "duration 275",
-    "rank_criteria m=100"
+    "rank_criteria top=100"
   ],
   "tiles": {
     "start": [

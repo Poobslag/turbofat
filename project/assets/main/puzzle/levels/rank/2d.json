@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "2 Dan",
   "description": "An escalating set of challenges. Finish in 5:00 to achieve this rank!",
   "color": "green",
@@ -16,7 +16,7 @@
   ],
   "rank": [
     "duration 360",
-    "rank_criteria m=85",
+    "rank_criteria top=110",
     "success_bonus 2"
   ],
   "success_condition": {

@@ -21,6 +21,9 @@ func save_creature() -> void:
 	if not has_unsaved_changes():
 		return
 	
+	if not _overworld_environment.player:
+		return
+	
 	PlayerData.creature_library.player_def = _overworld_environment.player.get_creature_def()
 	PlayerSave.save_player_data()
 	_overworld_environment.player.play_mood(Utils.rand_value([

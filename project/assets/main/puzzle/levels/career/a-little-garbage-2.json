@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "A Little Garbage 2",
   "description": "Is that food? Don't eat out of the garbage!",
   "start_speed": "1",
@@ -15,7 +15,7 @@
   ],
   "rank": [
     "duration 120",
-    "rank_criteria m=2250"
+    "rank_criteria top=2250"
   ],
   "tiles": {
     "start": [

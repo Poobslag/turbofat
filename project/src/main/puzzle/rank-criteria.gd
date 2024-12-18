@@ -4,6 +4,10 @@ class_name RankCriteria
 ## Each level defines the rank criteria for the best rank, and can optionally define rank criteria for other ranks.
 ## The remaining ranks are calculated by interpolation.
 
+## The 'TOP' grade corresponds to TAS-level play. It is never awarded to the player, but it is defined in our level
+## files and other grades are extrapolated from it.
+const PERFECT_GRADE := "TOP"
+
 ## Each level defines the rank criteria for the best rank, but if no rank criteria is specified these values are used
 ## instead. These values are arbitrary and will not produce meaningful output, so we log a warning if they are used.
 const DEFAULT_BEST_SCORE := 2000
@@ -11,21 +15,22 @@ const DEFAULT_BEST_TIME := 60
 
 ## Grades with their corresponding score percent requirement. Lower values represent lower scores.
 const SCORE_PERCENT_BY_GRADE := {
-	"M":   1.0,
-	"SSS": 0.854,
-	"SS+": 0.768,
-	"SS":  0.692,
-	"S+":  0.408,
-	"S":   0.298,
-	"S-":  0.217,
-	"AA+": 0.1280,
-	"AA":  0.0934,
-	"A+":  0.0681,
-	"A":   0.0496,
-	"A-":  0.0362,
-	"B+":  0.0214,
-	"B":   0.0156,
-	"B-":  0.0136,
+	PERFECT_GRADE: 1.000,
+	"M":   0.950,
+	"SSS": 0.811,
+	"SS+": 0.730,
+	"SS":  0.657,
+	"S+":  0.388,
+	"S":   0.283,
+	"S-":  0.206,
+	"AA+": 0.1353,
+	"AA":  0.1217,
+	"A+":  0.1096,
+	"A":   0.0986,
+	"A-":  0.0888,
+	"B+":  0.0582,
+	"B":   0.0524,
+	"B-":  0.0472,
 	Ranks.WORST_GRADE: 0.0,
 }
 
@@ -33,22 +38,23 @@ const SCORE_PERCENT_BY_GRADE := {
 ##
 ## Note: Most entries are reciprocals of the entries in SCORE_PERCENT_BY_GRADE, except for WORST_GRADE.
 const TIME_PERCENT_BY_GRADE := {
-	"M":    1.0,
-	"SSS":  1.171,
-	"SS+":  1.301,
-	"SS":   1.446,
-	"S+":   2.449,
-	"S":    3.359,
-	"S-":   4.608,
-	"AA+":  7.803,
-	"AA":  10.70,
-	"A+":  14.68,
-	"A":   20.14,
-	"A-":  27.62,
-	"B+":  46.79,
-	"B":   64.18,
-	"B-":  88.04,
-	Ranks.WORST_GRADE: 200,
+	PERFECT_GRADE:  1.000,
+	"M":    1.053,
+	"SSS":  1.298,
+	"SS+":  1.442,
+	"SS":   1.602,
+	"S+":   2.713,
+	"S":    3.722,
+	"S-":   5.105,
+	"AA+":  7.782,
+	"AA":   8.65,
+	"A+":   9.61,
+	"A":   10.67,
+	"A-":  11.86,
+	"B+":  18.08,
+	"B":   20.09,
+	"B-":  22.32,
+	Ranks.WORST_GRADE: 50,
 }
 
 ## key: (String) grade
@@ -117,22 +123,22 @@ func fill_missing_thresholds() -> void:
 	# assign boundaries for WORST_GRADE, BEST_GRADE
 	var new_thresholds := thresholds_by_grade.duplicate()
 	if duration_criteria:
-		if not thresholds_by_grade.has(Ranks.BEST_GRADE):
+		if not thresholds_by_grade.has(PERFECT_GRADE):
 			push_warning("Level %s does not define '%s' rank criteria; defaulting to %s" \
 					% [CurrentLevel.level_id if CurrentLevel.level_id else "(unknown)", \
-						Ranks.BEST_GRADE, DEFAULT_BEST_SCORE])
-			new_thresholds[Ranks.BEST_GRADE] = DEFAULT_BEST_TIME
+						PERFECT_GRADE, DEFAULT_BEST_SCORE])
+			new_thresholds[PERFECT_GRADE] = DEFAULT_BEST_TIME
 		if not new_thresholds.has(Ranks.WORST_GRADE):
-			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[Ranks.BEST_GRADE] \
+			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[PERFECT_GRADE] \
 					* TIME_PERCENT_BY_GRADE[Ranks.WORST_GRADE]
 	else:
-		if not thresholds_by_grade.has(Ranks.BEST_GRADE):
+		if not thresholds_by_grade.has(PERFECT_GRADE):
 			push_warning("Level %s does not define '%s' rank criteria; defaulting to %s" \
 					% [CurrentLevel.level_id if CurrentLevel.level_id else "(unknown)", \
-						Ranks.BEST_GRADE, DEFAULT_BEST_TIME])
-			new_thresholds[Ranks.BEST_GRADE] = DEFAULT_BEST_SCORE
+						PERFECT_GRADE, DEFAULT_BEST_TIME])
+			new_thresholds[PERFECT_GRADE] = DEFAULT_BEST_SCORE
 		if not new_thresholds.has(Ranks.WORST_GRADE):
-			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[Ranks.BEST_GRADE] \
+			new_thresholds[Ranks.WORST_GRADE] = new_thresholds[PERFECT_GRADE] \
 					* SCORE_PERCENT_BY_GRADE[Ranks.WORST_GRADE]
 	
 	# fill thresholds for the remaining grades
@@ -169,7 +175,7 @@ func fill_missing_thresholds() -> void:
 	
 	# sanitize thresholds by rounding and clamping to reasonable values
 	for grade in new_thresholds:
-		new_thresholds[grade] = _sanitize_threshold(new_thresholds[grade])
+		new_thresholds[grade] = sanitize_threshold(new_thresholds[grade])
 	
 	thresholds_by_grade = new_thresholds
 
@@ -187,22 +193,22 @@ func copy_from(rank_criteria: RankCriteria) -> void:
 ## 	'factor': A number in the range (0.0, 1.0) for the factor to apply. A value of '0.1' will make a large
 ## 		adjustment, a value of '0.9' will make a small adjustment.
 func soften(grade: String, factor: float) -> void:
-	if not thresholds_by_grade.has(Ranks.BEST_GRADE):
-		push_error("Level %s does not define '%s' rank criteria" % [CurrentLevel.level_id, Ranks.BEST_GRADE])
+	if not thresholds_by_grade.has(PERFECT_GRADE):
+		push_error("Level %s does not define '%s' rank criteria" % [CurrentLevel.level_id, PERFECT_GRADE])
 		return
 	
-	var new_threshold: int = thresholds_by_grade[Ranks.BEST_GRADE]
+	var new_threshold: int = thresholds_by_grade[PERFECT_GRADE]
 	if duration_criteria:
 		new_threshold = new_threshold * TIME_PERCENT_BY_GRADE[grade] / factor
 	else:
 		new_threshold = new_threshold * SCORE_PERCENT_BY_GRADE[grade] * factor
-	new_threshold = _sanitize_threshold(new_threshold)
+	new_threshold = sanitize_threshold(new_threshold)
 	
 	thresholds_by_grade[grade] = new_threshold
 
 
 ## Sanitize a time or score threshold by rounding and clamping to reasonable values.
-func _sanitize_threshold(value: int) -> int:
+func sanitize_threshold(value: int) -> int:
 	var result := value
 	
 	# round thresholds to aesthetically pleasing numbers
@@ -233,7 +239,7 @@ func _sanitize_threshold(value: int) -> int:
 static func _higher_grade_by_grades(new_thresholds: Dictionary) -> Dictionary:
 	var result := {}
 	
-	var higher_grade := Ranks.BEST_GRADE
+	var higher_grade := PERFECT_GRADE
 	var grades := SCORE_PERCENT_BY_GRADE.keys()
 	for grade in grades:
 		if new_thresholds.has(grade):

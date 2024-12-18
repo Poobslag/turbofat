@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Hungry Moles",
   "description": "You had my curiosity... but now you have my attention!",
   "start_speed": "7",
@@ -14,7 +14,7 @@
   ],
   "rank": [
     "duration 165",
-    "rank_criteria m=65"
+    "rank_criteria top=65"
   ],
   "score": [
     "cake_all 0",

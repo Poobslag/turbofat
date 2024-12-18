@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Wedding Cake For One",
   "description": "One VERY hungry customer and one VERY big cake! ...Are they going eat the entire thing?",
   "difficulty": "5",
@@ -90,7 +90,7 @@
   ],
   "rank": [
     "duration 15",
-    "rank_criteria m=280"
+    "rank_criteria top=280"
   ],
   "tiles": {
     "start": [

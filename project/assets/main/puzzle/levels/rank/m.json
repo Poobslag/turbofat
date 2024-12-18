@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Master",
   "description": "An escalating set of challenges. Finish with ¥10,000 to achieve this rank!",
   "color": "red",
@@ -55,11 +55,11 @@
   ],
   "rank": [
     "duration 410",
-    "rank_criteria m=20000",
+    "rank_criteria top=12500",
     "success_bonus 2"
   ],
   "success_condition": {
     "type": "score",
-    "value": 10000
+    "value": 8000
   }
 }

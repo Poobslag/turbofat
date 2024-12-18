@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Accelerator",
   "description": "Hurry up and finish before things get out of control!",
   "start_speed": "2",
@@ -85,6 +85,6 @@
   ],
   "rank": [
     "duration 125",
-    "rank_criteria m=48"
+    "rank_criteria top=48"
   ]
 }

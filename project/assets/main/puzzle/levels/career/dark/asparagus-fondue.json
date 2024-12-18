@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Asparagus Fondue",
   "description": "Why is it when something happens, it is always you four?",
   "start_speed": "AB",
@@ -27,7 +27,7 @@
   ],
   "rank": [
     "duration 275",
-    "rank_criteria m=105"
+    "rank_criteria top=105"
   ],
   "tiles": {
     "start": [

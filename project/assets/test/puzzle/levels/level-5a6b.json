@@ -1,0 +1,27 @@
+{
+  "version": "5a6b",
+  "name": "3 Kyu",
+  "description": "An escalating set of challenges. Finish with ¥999 to achieve this rank!",
+  "color": "blue",
+  "start_speed": "5",
+  "blocks_during": [
+    "top_out_effect clear"
+  ],
+  "finish_condition": {
+    "type": "time_over",
+    "value": 540
+  },
+  "icons": [
+    "basic",
+    "slow"
+  ],
+  "rank": [
+    "duration 540",
+    "rank_criteria m=7560",
+    "success_bonus 2"
+  ],
+  "success_condition": {
+    "type": "score",
+    "value": 999
+  }
+}

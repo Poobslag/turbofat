@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Slow Service",
   "description": "May... I... take... your... order...?",
   "start_speed": "1",
@@ -19,7 +19,7 @@
   ],
   "rank": [
     "duration 85",
-    "rank_criteria m=975 s-=165"
+    "rank_criteria top=975 s-=160"
   ],
   "tiles": {
     "start": [

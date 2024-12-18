@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Block Blockers",
   "description": "They're just here to get in the way!",
   "start_speed": "3",
@@ -26,7 +26,7 @@
   ],
   "rank": [
     "duration 160",
-    "rank_criteria m=28"
+    "rank_criteria top=28"
   ],
   "tiles": {
     "start": [

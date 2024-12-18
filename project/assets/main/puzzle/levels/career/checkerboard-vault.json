@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Checkerboard Vault",
   "description": "Do you have the combination?",
   "blocks_during": [
@@ -24,7 +24,7 @@
   ],
   "rank": [
     "duration 120",
-    "rank_criteria m=2600"
+    "rank_criteria top=2600"
   ],
   "tiles": {
     "start": [

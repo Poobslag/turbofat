@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "It's Square to be Square EX",
   "description": "Can you handle all this sugar, or will you go down swinging?",
   "start_speed": "A1",
@@ -18,8 +18,8 @@
     "piece_v"
   ],
   "rank": [
-    "duration 565",
-    "rank_criteria m=80"
+    "duration 570",
+    "rank_criteria top=80"
   ],
   "tiles": {
     "start": [

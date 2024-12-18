@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Curly Queue",
   "description": "Augh who keeps spinning the next queue? Oh wait, it's me.",
   "start_speed": "1",
@@ -19,7 +19,7 @@
   ],
   "rank": [
     "duration 90",
-    "rank_criteria m=1650"
+    "rank_criteria top=1650"
   ],
   "tiles": {
     "start": [

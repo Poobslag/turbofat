@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "¥500 Race",
   "description": "Earn ¥500 as fast as possible. No tricks!",
   "finish_condition": {
@@ -10,7 +10,7 @@
     "basic"
   ],
   "rank": [
-    "duration 445",
-    "rank_criteria m=35"
+    "duration 450",
+    "rank_criteria top=35"
   ]
 }

@@ -213,7 +213,7 @@ func _refresh_text() -> void:
 	for record in _skill_records:
 		overall_variance += pow(record.deviation, 2)
 	overall_variance = overall_variance / _skill_records.size() if _skill_records else 0.0
-	_text_edit_out.text += "Analyzed %s levels, with an overall variance of %.2f.\n" \
+	_text_edit_out.text += "Analyzed %s levels, with an overall variance of %.3f.\n" \
 			% [_skill_records.size(), overall_variance]
 	
 	# print an outlier message; '72 (69.9%) outliers have data outside 2.5 standard deviations.'

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "9 Dan",
   "description": "An escalating set of challenges. Finish with ¥5,000 to achieve this rank!",
   "color": "orange",
@@ -16,12 +16,12 @@
     "top_out 1"
   ],
   "rank": [
-    "duration 195",
-    "rank_criteria m=6900",
+    "duration 240",
+    "rank_criteria top=4400",
     "success_bonus 2"
   ],
   "success_condition": {
     "type": "score",
-    "value": 5000
+    "value": 4000
   }
 }

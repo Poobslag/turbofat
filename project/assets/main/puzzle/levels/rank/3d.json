@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "3 Dan",
   "description": "An escalating set of challenges. Finish with ¥1,200 to achieve this rank!",
   "color": "green",
@@ -78,7 +78,7 @@
   ],
   "rank": [
     "duration 295",
-    "rank_criteria m=3600",
+    "rank_criteria top=2850",
     "success_bonus 2"
   ],
   "success_condition": {

@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Grand Opening: Lemony Thickets",
   "description": "We're officially open! Let's attract enough customers to make sure we stay that way.",
   "start_speed": "2",
@@ -12,7 +12,7 @@
   ],
   "rank": [
     "duration 180",
-    "rank_criteria m=3350 s-=580",
+    "rank_criteria top=3350 s-=550",
     "success_bonus 2"
   ],
   "success_condition": {

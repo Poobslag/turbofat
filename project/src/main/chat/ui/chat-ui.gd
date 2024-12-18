@@ -56,7 +56,8 @@ func _input(event: InputEvent) -> void:
 		_handle_rewind_action(event)
 		get_tree().set_input_as_handled()
 	if event.is_action_pressed("ui_accept", true):
-		if not _chat_choices.is_showing_choices():
+		if not _chat_choices.is_showing_choices() \
+				or _chat_choices.is_showing_choices() and event.is_echo():
 			_handle_advance_action(event)
 			get_tree().set_input_as_handled()
 

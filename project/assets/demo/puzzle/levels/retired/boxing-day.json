@@ -1,5 +1,5 @@
 {
-  "version": "5a6b",
+  "version": "5c84",
   "name": "Boxing Day",
   "description": "Don't get boxed in!",
   "start_speed": "5",
@@ -15,8 +15,8 @@
     "piece_v"
   ],
   "rank": [
-    "duration 435",
-    "rank_criteria m=44"
+    "duration 440",
+    "rank_criteria top=44"
   ],
   "tiles": {
     "start": [

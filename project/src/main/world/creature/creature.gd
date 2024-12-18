@@ -148,6 +148,16 @@ func _ready() -> void:
 	_refresh_elevation()
 
 
+## When the creature is removed from the tree, we disconnect the 'fade_in_started' listener
+##
+## If we don't disconnect this listener, we receive errors during scene changes because the 'fade_in_started' listener
+## tries to create scene tree tweens when the creature is not in the scene tree. These errors are caused by
+## Breadcrumb's Godot #85692 workaround which delays the freeing of nodes in the previous scene.
+func _exit_tree() -> void:
+	if SceneTransition.is_connected("fade_in_started", self, "_on_SceneTransition_fade_in_started"):
+		SceneTransition.disconnect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
+
+
 func _physics_process(delta: float) -> void:
 	if Engine.editor_hint:
 		return
