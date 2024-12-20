@@ -1,0 +1,39 @@
+{
+  "version": "5923",
+  "id": "violet",
+  "name": "Violet",
+  "short_name": "Violet",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "0",
+    "collar": "0",
+    "ear": "10",
+    "eye": "4",
+    "hair": "2",
+    "head": "1",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "0",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "725e96",
+    "belly_rgb": "bb73dd",
+    "cloth_rgb": "282828",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "596de6",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "ffffff",
+    "horn_rgb": "ac4577"
+  },
+  "chat_theme": {
+    "accent_scale": 1.5,
+    "accent_texture": 4,
+    "color": "5e5e5e",
+    "dark": true
+  },
+  "fatness": 1.5
+}
