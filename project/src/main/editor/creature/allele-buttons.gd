@@ -171,16 +171,6 @@ func _add_allele_buttons(category: int) -> void:
 		if _is_allele_combo_assigned(allele_combo):
 			allele_button.pressed = true
 			_new_focus_target = allele_button
-
-	# disable any conflicting alleles
-	for allele_button in allele_buttons:
-		var allele_combo: String = allele_button.allele_combo
-		for allele_string in allele_combo.split(" "):
-			var allele_id: String = allele_string.split("_")[0]
-			var allele_value: String = allele_string.split("_")[1]
-			if DnaUtils.invalid_allele_value(_player().dna, allele_id, allele_value):
-				allele_button.set_disabled(true)
-				break
 	
 	# connect listeners
 	for allele_button in allele_buttons:
@@ -339,6 +329,21 @@ func _on_AlleleButton_pressed(allele_button: AlleleButton) -> void:
 		if other_allele_button == allele_button:
 			continue
 		other_allele_button.pressed = false
+
+	# disable any conflicting alleles
+	var allele_combo: String = allele_button.allele_combo
+	for allele_string in allele_combo.split(" "):
+		var allele_id: String = allele_string.split("_")[0]
+		var allele_value: String = allele_string.split("_")[1]
+		var invalid_allele_value: String
+		
+		# attempt to reconcile invalid allele values by setting the conflicting allele to '0'. if this doesn't work,
+		# we try a few times and then give up.
+		for _i in range(5):
+			invalid_allele_value = DnaUtils.invalid_allele_value(_player().dna, allele_id, allele_value)
+			if not invalid_allele_value:
+				break
+			_player().dna[invalid_allele_value] = "0"
 	
 	# update the creature's appearance
 	for allele_string in allele_button.allele_combo.split(" "):
