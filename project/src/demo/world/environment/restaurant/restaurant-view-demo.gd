@@ -8,6 +8,8 @@ extends Node
 ## 	[V]: Say something
 ## 	[N]: Change the nametag names
 ## 	[1-9,0]: Change the customer's size from 10% to 100%
+## 	[O]: Increase customer's size by 10%
+## 	[P]: Change the customer's size to 1000%
 ## 	Shift + [1-9,0]: Change the customer's comfort from 0.0 -> 1.0 -> -1.0
 ## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th customer.
 ## 	Shift + [,/.]: Swoop the customer/chef to be onscreen
@@ -69,6 +71,10 @@ func _input(event: InputEvent) -> void:
 			else:
 				# shift not pressed; change customer's fatness
 				_view.get_customer().fatness = FATNESS_KEYS[Utils.key_num(event)]
+		KEY_O:
+			_view.get_customer().fatness += 1.0
+		KEY_P:
+			_view.get_customer().fatness = 100.0
 		KEY_Q: _view.set_current_customer_index(0)
 		KEY_W: _view.set_current_customer_index(1)
 		KEY_E: _view.set_current_customer_index(2)
