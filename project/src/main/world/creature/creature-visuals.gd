@@ -110,22 +110,25 @@ func _physics_process(_delta: float) -> void:
 
 
 func update_fattening_animation() -> void:
+	var capped_fatness := clamp(fatness, 1.0, 10.0)
 	# bouncy animation; acceleration and squash n' stretch
-	if visual_fatness == fatness and _fattening_inertia < 0.05:
+	if visual_fatness == capped_fatness and _fattening_inertia < 0.05:
 		_fattening_inertia = 0.0
 		return
 	# inertia/acceleration/fatness/etc:
 	# as we make this value bigger, the amount of time to accelerate decreases:
 	var lerp_speed: float = 0.05
 	# as we make this value bigger, the acceleration rises (more jiggle):
-	var inertia_this_frame_slope: float = (fatness - visual_fatness) / 1.0
+	var inertia_this_frame_slope: float = (capped_fatness - visual_fatness) / 1.0
 	_fattening_inertia = lerp(_fattening_inertia, inertia_this_frame_slope, lerp_speed)
 	visual_fatness += _fattening_inertia
 	# bounce to prevent visual_fatness from going too small (avoid becoming negative or thin)
 	if visual_fatness < 1.0 and _fattening_inertia < 0:
 		_fattening_inertia = -_fattening_inertia
 	# dampening (reduces jiggle)
-	visual_fatness = lerp(visual_fatness, fatness, 0.04)
+	visual_fatness = lerp(visual_fatness, capped_fatness, 0.04)
+	if abs(visual_fatness - capped_fatness) < 0.001:
+		visual_fatness = capped_fatness
 	# behavior for values outside the range [1.0, 10.0] is undefined and results in visual errors
 	visual_fatness = clamp(visual_fatness, 1.0, 10.0)
 	set_visual_fatness(visual_fatness)
@@ -138,7 +141,7 @@ func update_fattening_animation() -> void:
 		# we won't see _fattening_inertia <= 0 often as it's only a little bit of rubber-banding that get us there
 		stretch_amount = 1 + abs(_fattening_inertia)
 	var normalized_squash_stretch: Vector2 = Vector2(squash_amount, stretch_amount).normalized()
-	var squash_stretch: Vector2 = normalized_squash_stretch / 0.7107 * _base_scale\
+	var squash_stretch: Vector2 = normalized_squash_stretch / 0.7107 * _base_scale \
 			* max(stretch_amount, squash_amount)
 	self.rescale(squash_stretch.x, squash_stretch.y, false)
 
