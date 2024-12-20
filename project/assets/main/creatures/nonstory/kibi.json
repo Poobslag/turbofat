@@ -1,0 +1,39 @@
+{
+  "version": "5923",
+  "id": "kibi",
+  "name": "Kibi",
+  "short_name": "Kibi",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "2",
+    "cheek": "2",
+    "collar": "4",
+    "ear": "10",
+    "eye": "4",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "3",
+    "line_rgb": "713888",
+    "body_rgb": "a854cb",
+    "belly_rgb": "b72226",
+    "cloth_rgb": "f9a74c",
+    "glass_rgb": "333332",
+    "plastic_rgb": "e3fbfc",
+    "hair_rgb": "e8a261",
+    "eye_rgb_0": "b8260b",
+    "eye_rgb_1": "dedede",
+    "horn_rgb": "e8a261"
+  },
+  "chat_theme": {
+    "accent_scale": 0.88,
+    "accent_texture": 6,
+    "color": "d162a3",
+    "dark": true
+  },
+  "fatness": 1.4
+}
