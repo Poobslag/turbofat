@@ -42,6 +42,8 @@ onready var _mask: Node = $MaskHolder/Mask
 ##
 ## 	'flags': Flags which affect the scene transition's duration and appearance
 func push_trail(path: String, flags: Dictionary = {}) -> void:
+	if not is_inside_tree():
+		return
 	if flags.get(FLAG_TYPE) == TransitionType.NONE \
 			or not get_tree().get_nodes_in_group("scene_transition_covers") \
 			or "::" in path:
@@ -59,6 +61,8 @@ func push_trail(path: String, flags: Dictionary = {}) -> void:
 ##
 ## 	'flags': Flags which affect the scene transition's duration and appearance
 func replace_trail(path: String, flags: Dictionary = {}) -> void:
+	if not is_inside_tree():
+		return
 	if flags.get(FLAG_TYPE) == TransitionType.NONE \
 			or not get_tree().get_nodes_in_group("scene_transition_covers") \
 			or "::" in path:
@@ -72,6 +76,8 @@ func replace_trail(path: String, flags: Dictionary = {}) -> void:
 ## Parameters:
 ## 	'flags': Flags which affect the scene transition's duration and appearance
 func change_scene(flags: Dictionary = {}) -> void:
+	if not is_inside_tree():
+		return
 	if flags.get(FLAG_TYPE) == TransitionType.NONE \
 			or not get_tree().get_nodes_in_group("scene_transition_covers"):
 		Breadcrumb.change_scene()
@@ -84,6 +90,8 @@ func change_scene(flags: Dictionary = {}) -> void:
 ## Parameters:
 ## 	'flags': Flags which affect the scene transition's duration and appearance
 func pop_trail(flags: Dictionary = {}) -> void:
+	if not is_inside_tree():
+		return
 	if flags.get(FLAG_TYPE) == TransitionType.NONE \
 			or not get_tree().get_nodes_in_group("scene_transition_covers") \
 			or (Breadcrumb.trail and "::" in Breadcrumb.trail.front()):
@@ -94,6 +102,8 @@ func pop_trail(flags: Dictionary = {}) -> void:
 
 ## Launches the 'fade in' visual transition.
 func fade_in(flags: Dictionary = {}) -> void:
+	if not is_inside_tree():
+		return
 	Global.print_verbose("Launching scene transition fade in effect")
 	# unignore input immediately; don't wait for fade in to finish
 	get_tree().get_root().set_disable_input(false)
@@ -111,6 +121,8 @@ func fade_in(flags: Dictionary = {}) -> void:
 
 ## Launches the 'fade out' visual transition.
 func fade_out(flags: Dictionary = {}, breadcrumb_method: FuncRef = null, breadcrumb_arg_array: Array = []) -> void:
+	if not is_inside_tree():
+		return
 	Global.print_verbose("Launching scene transition fade out effect")
 	# ignore input to prevent edge-cases where player does weird things during scene transitions
 	get_tree().get_root().set_disable_input(true)

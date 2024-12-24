@@ -50,14 +50,16 @@ func _input(event: InputEvent) -> void:
 		if central_button_index < _level_buttons_container.get_child_count() - 1:
 			_slide_central_button(central_button_index + 1)
 			_central_button().grab_focus()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 	if _level_button_has_focus() and event.is_action_pressed("ui_left"):
 		# scroll level buttons left, if possible
 		if central_button_index > 0:
 			_slide_central_button(central_button_index - 1)
 			_central_button().grab_focus()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 
 func _process(_delta: float) -> void:

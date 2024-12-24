@@ -15,5 +15,6 @@ func set_palette(palette: Dictionary) -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_click"):
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 		emit_signal("pressed")

@@ -80,11 +80,15 @@ func benchmark_end(key: String = "") -> void:
 
 
 func get_overworld_ui() -> OverworldUi:
+	if not is_inside_tree():
+		return null
 	var nodes := get_tree().get_nodes_in_group("overworld_ui")
 	return nodes[0] if nodes else null
 
 
 func get_creature_editor_library() -> CreatureEditorLibrary:
+	if not is_inside_tree():
+		return null
 	var nodes := get_tree().get_nodes_in_group("creature_editor_library")
 	return nodes[0] if nodes else null
 

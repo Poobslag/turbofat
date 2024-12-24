@@ -113,6 +113,9 @@ func refresh_from_career_data(level_posses: Array) -> void:
 
 
 func get_visible_customers(level_index: int) -> Array:
+	if not is_inside_tree():
+		return []
+	
 	var result: Array
 	if PlayerData.career.level_choice_count() == 1:
 		# only one level choice; return all visible customers

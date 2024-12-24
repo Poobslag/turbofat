@@ -32,6 +32,8 @@ func add_obstacle(node: Node2D) -> void:
 
 ## Relocate a creature to a spawn point.
 func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
+	if not is_inside_tree():
+		return
 	var target_spawn: Spawn
 	for spawn_obj in get_tree().get_nodes_in_group("spawns"):
 		var spawn: Spawn = spawn_obj

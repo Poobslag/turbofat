@@ -20,6 +20,8 @@ var trail := []
 ## This is useful for demos and development where having an empty breadcrumb trail causes bugs. During regular play the
 ## breadcrumb trail should be initialized conventionally in the splash screen or menus.
 func initialize_trail() -> void:
+	if not is_inside_tree():
+		return
 	if get_tree().current_scene == null:
 		push_warning("tree.current_scene == null; could not initialize trail")
 		trail = []
@@ -65,6 +67,8 @@ func replace_trail(path: String) -> void:
 
 ## Changes the running scene to the one at the front of the breadcrumb trail.
 func change_scene() -> void:
+	if not is_inside_tree():
+		return
 	emit_signal("before_scene_changed")
 	var scene_path: String
 	if trail:
@@ -89,6 +93,8 @@ func change_scene() -> void:
 ## happens about every 300 times the player exits a puzzle. See Godot #85692
 ## (https://github.com/godotengine/godot/issues/85692).
 func _unload_current_scene_custom() -> void:
+	if not is_inside_tree():
+		return
 	var old_scene := get_tree().current_scene
 	get_tree().root.remove_child(old_scene)
 	old_scene.queue_free()

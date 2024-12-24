@@ -76,6 +76,9 @@ func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
 ## Restores focus to the previously selected level select button, if one was selected. Otherwise, assigns focus to the
 ## rightmost button.
 func focus_button() -> void:
+	if not is_inside_tree():
+		return
+	
 	var level_select_buttons := get_tree().get_nodes_in_group("level_select_buttons")
 	var node_to_focus: Node
 	

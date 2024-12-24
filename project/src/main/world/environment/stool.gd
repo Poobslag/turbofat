@@ -60,6 +60,8 @@ func _refresh_occupied() -> void:
 ## Returns:
 ## 	The stool which is directly beneath the creature, or 'null' if no stool is found.
 static func find_stool(nearby_node2d: Node2D) -> Node2D:
+	if not nearby_node2d.is_inside_tree():
+		return null
 	var result: Node2D
 	
 	for next_stool in nearby_node2d.get_tree().get_nodes_in_group("stools"):

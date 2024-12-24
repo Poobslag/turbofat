@@ -6,6 +6,8 @@ extends Panel
 ##
 ## These alleles might change when the creature mutates, it's up to chance.
 func get_flexible_alleles() -> Array:
+	if not is_inside_tree():
+		return []
 	var alleles := []
 	for button_obj in get_tree().get_nodes_in_group("lock_allele_buttons"):
 		var button: LockAlleleButton = button_obj
@@ -18,6 +20,8 @@ func get_flexible_alleles() -> Array:
 ##
 ## These alleles always change when the creature mutates.
 func get_unlocked_alleles() -> Array:
+	if not is_inside_tree():
+		return []
 	var alleles := []
 	for button_obj in get_tree().get_nodes_in_group("lock_allele_buttons"):
 		var button: LockAlleleButton = button_obj
@@ -30,6 +34,8 @@ func get_unlocked_alleles() -> Array:
 ##
 ## These alleles never change when the creature mutates.
 func get_locked_alleles() -> Array:
+	if not is_inside_tree():
+		return []
 	var alleles := []
 	for button_obj in get_tree().get_nodes_in_group("lock_allele_buttons"):
 		var button: LockAlleleButton = button_obj

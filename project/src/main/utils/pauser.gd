@@ -18,11 +18,15 @@ func _ready() -> void:
 
 ## Purges all pause requests and unpauses the game.
 func reset() -> void:
+	if not is_inside_tree():
+		return
 	_pausers.clear()
 	get_tree().paused = false
 
 
 func _process(_delta: float) -> void:
+	if not is_inside_tree():
+		return
 	if get_tree().paused != _paused:
 		_paused = get_tree().paused
 		emit_signal("paused_changed", _paused)
@@ -38,6 +42,8 @@ func _process(_delta: float) -> void:
 ##
 ## 	'paused': 'true' to pause, 'false' to unpause.
 func toggle_pause(request_id: String, paused: bool) -> void:
+	if not is_inside_tree():
+		return
 	if paused:
 		_pausers[request_id] = true
 	else:

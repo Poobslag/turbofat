@@ -52,6 +52,8 @@ func _remove_crowds(count: int) -> void:
 
 ## Toggles the crowd bouncing and cheering.
 func _toggle_bounce() -> void:
+	if not is_inside_tree():
+		return
 	var new_bouncing := true
 	if get_tree().get_nodes_in_group("lava_crowdies") \
 			and get_tree().get_nodes_in_group("lava_crowdies").front().bouncing:

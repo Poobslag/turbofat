@@ -111,10 +111,14 @@ func _add_color_rect(rect_y: float, rect_height: float) -> ColorRect:
 ##
 ## The wallpaper is visible if the current scene is in the 'wallpaper_enabled' group.
 func _refresh_visible() -> void:
+	if not is_inside_tree():
+		return
 	visible = get_tree().current_scene.is_in_group("wallpaper_enabled")
 
 
 func _on_node_added(node: Node) -> void:
+	if not is_inside_tree():
+		return
 	if node == get_tree().current_scene:
 		_refresh_visible()
 

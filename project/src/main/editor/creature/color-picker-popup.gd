@@ -26,10 +26,12 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if not get_global_rect().has_point(event.position):
 			hide()
-			get_tree().set_input_as_handled()
+			if is_inside_tree():
+				get_tree().set_input_as_handled()
 	elif event.is_action_pressed("ui_cancel"):
 		hide()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 
 func set_color_presets(new_color_presets: Array) -> void:
@@ -70,5 +72,6 @@ func _on_ColorPicker_resized() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		yield(get_tree(), "idle_frame")
+		if is_inside_tree():
+			yield(get_tree(), "idle_frame")
 		_color_picker.grab_focus()

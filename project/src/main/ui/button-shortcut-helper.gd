@@ -46,4 +46,5 @@ func _input(event: InputEvent) -> void:
 		button.toggle_mode = false
 		button.emit_signal("button_up")
 		button.emit_signal("pressed")
-	get_tree().set_input_as_handled()
+	if is_inside_tree():
+		get_tree().set_input_as_handled()
