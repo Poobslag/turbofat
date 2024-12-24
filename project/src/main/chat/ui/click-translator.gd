@@ -76,13 +76,15 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 	if event.pressed and _click_index == -1 and not _showing_choices:
 		# emit a press event
 		_click_index = event.button_index
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 		_emit_ui_accept_event(true, false)
 
 	if not event.pressed and _click_index == event.button_index:
 		# emit a release event
 		_click_index = -1
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 		_emit_ui_accept_event(false, false)
 
 

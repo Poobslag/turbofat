@@ -18,7 +18,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Utils.ui_pressed_dir(event) or Utils.ui_released_dir(event):
 		# calculate the direction the player wants to move
 		set_non_iso_walk_direction(Utils.ui_pressed_dir())
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 
 ## Stop moving when a chat choice appears.

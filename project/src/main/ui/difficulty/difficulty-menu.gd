@@ -25,6 +25,8 @@ func _ready() -> void:
 ## Returns:
 ## 	The button representing the difficulty stored in the player's settings.
 func _chosen_difficulty_button() -> DifficultyButton:
+	if not is_inside_tree():
+		return null
 	var chosen_difficulty_button: DifficultyButton
 	
 	# find the chosen difficulty button

@@ -66,7 +66,8 @@ func _schedule_looped_tween() -> void:
 ##
 ## We add a delay to ensure it's visible for a minimum amount of time.
 func _schedule_stop() -> void:
-	get_tree().create_timer(DURATION).connect("timeout", self, "stop")
+	if is_inside_tree():
+		get_tree().create_timer(DURATION).connect("timeout", self, "stop")
 
 
 func _on_PlayerSave_before_save() -> void:

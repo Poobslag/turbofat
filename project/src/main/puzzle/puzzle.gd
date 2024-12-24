@@ -43,7 +43,8 @@ func _ready() -> void:
 	
 	if CurrentLevel.settings.other.skip_intro:
 		$PuzzleMusicManager.start_puzzle_music()
-		yield(get_tree().create_timer(0.8), "timeout")
+		if is_inside_tree():
+			yield(get_tree().create_timer(0.8), "timeout")
 		_start_puzzle()
 	else:
 		CurrentLevel.settings.triggers.run_triggers(LevelTrigger.BEFORE_START)
@@ -56,7 +57,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu") and not $Hud/Center/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		_settings_menu.show()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 	
 	if event.is_action_pressed("retry"):
 		if not PuzzleState.game_active and not PuzzleState.game_ended:
@@ -125,7 +127,8 @@ func start_level_countdown() -> void:
 	$Fg/PieceManager.set_physics_process(false)
 	$Hud/Center/PuzzleMessages.show_message(PuzzleMessage.NEUTRAL, tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
-	yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
+	if is_inside_tree():
+		yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
 	$Hud/Center/PuzzleMessages.hide_message()
 	$Fg/PieceManager.set_physics_process(true)
 	$Fg/PieceManager.skip_prespawn()
@@ -158,6 +161,8 @@ func is_night_mode() -> bool:
 
 ## Restarts the puzzle, saving the level results and applying any penalties.
 func _restart() -> void:
+	if not is_inside_tree():
+		return
 	PuzzleState.retrying = true
 	if not CurrentLevel.settings.lose_condition.finish_on_lose:
 		# set the game inactive before ending combo/topping out, to avoid triggering gameplay and visual
@@ -179,7 +184,8 @@ func _restart() -> void:
 		_save_level_result(rank_result)
 	
 	_start_puzzle()
-	get_tree().set_input_as_handled()
+	if is_inside_tree():
+		get_tree().set_input_as_handled()
 	PuzzleState.retrying = false
 
 
@@ -386,7 +392,8 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	# Calculate whether or not the customer should say something positive about the combo.
 	# They say something after clearing [6, 12, 18, 24...] lines.
 	if remaining_lines == 0 and PuzzleState.combo >= 6 and total_lines > PuzzleState.combo % 6:
-		yield(get_tree().create_timer(0.5), "timeout")
+		if is_inside_tree():
+			yield(get_tree().create_timer(0.5), "timeout")
 		customer.play_combo_voice()
 
 

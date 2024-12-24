@@ -68,6 +68,8 @@ func is_night_mode() -> bool:
 ## 	'duration': (Optional) Transition duration in seconds. A value of 0.0 will transition instantly. If omitted, a
 ## 		default transition duration will be used.
 func _start_night_tween(duration := TWEEN_DURATION) -> void:
+	if not is_inside_tree():
+		return
 	_nodes_modulated_to_transparent.clear()
 	if duration > 0.0:
 		_tween = Utils.recreate_tween(self, _tween).set_parallel()

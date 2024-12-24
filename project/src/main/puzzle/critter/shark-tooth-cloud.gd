@@ -186,6 +186,8 @@ func _borrow_tilemap() -> void:
 
 ## Returns any SharkTileMapPool in the scene tree, or 'null' if none exists.
 func _shark_tile_map_pool() -> SharkTileMapPool:
+	if not is_inside_tree():
+		return null
 	var pool: SharkTileMapPool
 	if get_tree().get_nodes_in_group("shark_tilemap_pools"):
 		pool = get_tree().get_nodes_in_group("shark_tilemap_pools")[0]

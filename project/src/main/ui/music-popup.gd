@@ -47,7 +47,8 @@ func _on_MusicPlayer_current_track_changed(value: CheckpointMusicTrack) -> void:
 
 func _on_Label_item_rect_changed() -> void:
 	# wait for a frame; it takes a frame for Label.rect_size to update
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	
 	# resize the music panel to accommodate the label
 	_music_panel.rect_size.x = _music_label.rect_size.x + 64

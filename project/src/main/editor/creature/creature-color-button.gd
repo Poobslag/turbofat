@@ -164,7 +164,8 @@ func _on_focus_exited() -> void:
 ## When the player hovers over us, we reapply a brighter color for our texture, text and icons.
 func _on_mouse_entered() -> void:
 	if not disabled:
-		yield(get_tree(), "idle_frame")
+		if is_inside_tree():
+			yield(get_tree(), "idle_frame")
 		_refresh_color()
 		_hover_sound.pitch_scale = rand_range(0.95, 1.05)
 		SfxKeeper.copy(_hover_sound).play()
@@ -173,7 +174,8 @@ func _on_mouse_entered() -> void:
 ## When the player hovers away from us, we reapply the normal color for our texture, text and icons.
 func _on_mouse_exited() -> void:
 	if not disabled:
-		yield(get_tree(), "idle_frame")
+		if is_inside_tree():
+			yield(get_tree(), "idle_frame")
 		_refresh_color()
 
 

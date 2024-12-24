@@ -8,7 +8,8 @@ func enter(shark: Shark, prev_state_name: String) -> void:
 			shark.sfx.play_poof_sound()
 	shark.play_shark_anim("squished")
 	shark.sfx.play_squish_sound()
-	get_tree().create_timer(0.20).connect("timeout", self, "_play_voice", [shark])
+	if is_inside_tree():
+		get_tree().create_timer(0.20).connect("timeout", self, "_play_voice", [shark])
 
 
 func _play_voice(shark: Shark) -> void:

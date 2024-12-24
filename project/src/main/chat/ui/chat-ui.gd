@@ -54,12 +54,14 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("rewind_text", true):
 		_handle_rewind_action(event)
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 	if event.is_action_pressed("ui_accept", true):
 		if not _chat_choices.is_showing_choices() \
 				or _chat_choices.is_showing_choices() and event.is_echo():
 			_handle_advance_action(event)
-			get_tree().set_input_as_handled()
+			if is_inside_tree():
+				get_tree().set_input_as_handled()
 
 
 func set_overworld_environment_path(new_overworld_environment_path: NodePath) -> void:
@@ -103,7 +105,8 @@ func _handle_rewind_action(event: InputEvent) -> void:
 		rewind_action = true
 	
 	if rewind_action:
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 		_chat_advancer.rewind()
 
 
@@ -124,7 +127,8 @@ func _handle_advance_action(event: InputEvent) -> void:
 		advance_action = true
 	
 	if advance_action:
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 		if _chat_frame.is_chat_window_showing() and not _chat_frame.is_all_text_visible():
 			# text is still being slowly typed out, make it all visible
 			_chat_frame.make_all_text_visible()
@@ -253,7 +257,8 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	if not chat_event.text:
 		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
 		# signal introduces complications, so we wait until the next frame
-		yield(get_tree(), "idle_frame")
+		if is_inside_tree():
+			yield(get_tree(), "idle_frame")
 		_chat_frame.emit_signal("all_text_shown")
 		if not _chat_advancer.should_prompt():
 			_chat_advancer.advance()

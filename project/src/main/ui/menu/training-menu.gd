@@ -99,6 +99,8 @@ func _load_recent_data() -> void:
 ## When submenus appear over top of the main menu, we temporarily disable focus for all sliders/buttons/etc on the
 ## main menu to avoid them from grabbing keyboard focus.
 func _refresh_input_focus_mode() -> void:
+	if not is_inside_tree():
+		return
 	var submenu_visible: bool = _level_submenu.visible or _region_submenu.visible
 	for node in get_tree().get_nodes_in_group("main_practice_inputs"):
 		node.focus_mode = FOCUS_NONE if submenu_visible else FOCUS_ALL
@@ -193,14 +195,16 @@ func _on_LevelSelect_level_chosen(region: Object, settings: LevelSettings) -> vo
 	_level_description_label.text = _level_settings.description
 	_refresh_speed_selector()
 	_refresh_high_scores()
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	_start_button.grab_focus()
 
 
 func _on_LevelSubmenu_visibility_changed() -> void:
 	_refresh_input_focus_mode()
 	if not _level_submenu.visible:
-		yield(get_tree(), "idle_frame")
+		if is_inside_tree():
+			yield(get_tree(), "idle_frame")
 		_start_button.grab_focus()
 
 

@@ -30,6 +30,8 @@ func _refresh_description_label() -> void:
 
 
 func _on_Delete_pressed() -> void:
+	if not is_inside_tree():
+		return
 	SystemData.has_unsaved_changes = true
 	if action_name in KeybindSettings.MENU_ACTION_NAMES:
 		SystemData.keybind_settings.restore_default_keybinds(action_name)

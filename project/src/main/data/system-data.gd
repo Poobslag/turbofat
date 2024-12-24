@@ -42,7 +42,8 @@ func _input(_event: InputEvent) -> void:
 		SystemData.graphics_settings.fullscreen = !SystemData.graphics_settings.fullscreen
 		SystemData.has_unsaved_changes = true
 		SystemSave.save_system_data()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 
 ## Prevents the player's settings from triggering fullscreen mode or vsync.
@@ -94,6 +95,8 @@ func _refresh_graphics_settings() -> void:
 ## This delay prevents the game from rapidly toggling between fullscreen and windowed modes on startup when
 ## initializing and loading the player's settings.
 func _schedule_refresh_graphics_settings() -> void:
+	if not is_inside_tree():
+		return
 	if _refresh_graphics_settings_timer != null:
 		return
 	

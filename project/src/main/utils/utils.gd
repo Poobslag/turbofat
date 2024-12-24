@@ -166,6 +166,8 @@ static func find_focusable_nodes(parent_node: Node) -> Array:
 static func get_child_members(parent: Node, group: String) -> Array:
 	if not parent:
 		return []
+	if not parent.is_inside_tree():
+		return []
 	
 	var child_members := []
 	for member in parent.get_tree().get_nodes_in_group(group):

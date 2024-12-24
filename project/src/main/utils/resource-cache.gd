@@ -178,6 +178,8 @@ func _overworked() -> bool:
 ## Parameters:
 ## 	'_userdata': Unused; needed for threads
 func _preload_all_resources(_userdata: Object) -> void:
+	if not is_inside_tree():
+		return
 	while _remaining_resource_paths and not _exiting:
 		while _remaining_resource_paths and not _exiting \
 				and not _overworked():
@@ -185,7 +187,8 @@ func _preload_all_resources(_userdata: Object) -> void:
 		
 		# If we're ahead of schedule, we wait until the next idle frame to load more resources
 		if _overworked():
-			yield(get_tree(), "idle_frame")
+			if is_inside_tree():
+				yield(get_tree(), "idle_frame")
 
 
 ## Loads a single resource and stores the resulting resource in our cache.

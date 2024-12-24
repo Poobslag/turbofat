@@ -38,6 +38,8 @@ func _ready() -> void:
 
 ## Saves all creature positions to _initial_positions_by_node
 func _save_initial_positions() -> void:
+	if not is_inside_tree():
+		return
 	var repositionable_nodes := []
 	repositionable_nodes.append(_player)
 	repositionable_nodes.append(_sensei)
@@ -119,6 +121,8 @@ func set_bouncing_crowd_percent(new_bouncing_crowd_percent: float) -> void:
 
 ## Makes all crowdies jump up and down with their arms raised.
 func crowd_launch() -> void:
+	if not is_inside_tree():
+		return
 	for crowd in get_tree().get_nodes_in_group("lava_crowdies"):
 		crowd.bouncing = true
 		crowd.raise_arms()
@@ -152,6 +156,8 @@ func _refresh_bouncing_crowd_percent() -> void:
 ##
 ## 	'new_bouncing': True if the crowdies should start jumping up and down, false if they should stop.
 func _toggle_bouncing(count: int, new_bouncing: bool) -> void:
+	if not is_inside_tree():
+		return
 	if count == 0:
 		return
 	

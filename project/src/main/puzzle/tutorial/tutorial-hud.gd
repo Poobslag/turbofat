@@ -53,7 +53,8 @@ func replace_tutorial_module() -> void:
 		add_child(tutorial_module)
 	
 	# pause to ensure the 'ready' signal is emitted before the 'refreshed' signal
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	refresh()
 
 

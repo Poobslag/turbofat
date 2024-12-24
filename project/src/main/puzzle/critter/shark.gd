@@ -221,6 +221,9 @@ func poof_and_free() -> void:
 
 ## Synchronizes this shark's dancing with another onscreen shark. All sharks dance in unison.
 func sync_dance() -> void:
+	if not is_inside_tree():
+		return
+	
 	# Workaround for Godot #56576 (https://github.com/godotengine/godot/issues/56576).
 	#
 	# Originally, this variable was explicitly typed as a 'Shark'. However, typing it as a 'Shark' introduces a memory

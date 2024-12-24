@@ -71,7 +71,8 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 		$EnableInputTimer.start()
 		
 		# wait for old chat choices to be deleted before grabbing focus
-		yield(get_tree(), "idle_frame")
+		if is_inside_tree():
+			yield(get_tree(), "idle_frame")
 		grab_focus()
 
 
@@ -79,6 +80,9 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 ##
 ## This control itself doesn't have focus, so we delegate to a child control.
 func grab_focus() -> void:
+	if not is_inside_tree():
+		return
+	
 	for button in get_tree().get_nodes_in_group("chat_choices"):
 		button.grab_focus()
 		break
@@ -118,6 +122,9 @@ func _button(node: Node) -> ChatChoiceButton:
 
 ## Removes and recreates all chat choice buttons.
 func _refresh_child_buttons() -> void:
+	if not is_inside_tree():
+		return
+	
 	for child in get_tree().get_nodes_in_group("chat_choices"):
 		child.queue_free()
 	
@@ -150,7 +157,8 @@ func _refresh_child_buttons() -> void:
 			var button: ChatChoiceButton = button_object
 			button.pop_in()
 			$PopSound.play()
-			yield(get_tree().create_timer(pop_in_delay), "timeout")
+			if is_inside_tree():
+				yield(get_tree().create_timer(pop_in_delay), "timeout")
 
 
 func _on_ChatChoiceButton_focus_entered() -> void:
@@ -161,6 +169,9 @@ func _on_ChatChoiceButton_focus_entered() -> void:
 ##
 ## The chat choice buttons remain as children of this node so they can be animated away.
 func _on_ChatChoiceButton_pressed() -> void:
+	if not is_inside_tree():
+		return
+	
 	if not $EnableInputTimer.is_stopped():
 		# don't let the player mash through chat choices accidentally
 		return
@@ -189,4 +200,5 @@ func _on_ChatChoiceButton_pressed() -> void:
 	_choices = []
 	
 	emit_signal("chat_choice_chosen", choice_index)
-	get_tree().set_input_as_handled()
+	if is_inside_tree():
+		get_tree().set_input_as_handled()

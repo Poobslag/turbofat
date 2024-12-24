@@ -41,6 +41,8 @@ func stop() -> void:
 
 ## Saves all creature positions to _initial_positions_by_node
 func _save_initial_positions() -> void:
+	if not is_inside_tree():
+		return
 	var repositionable_nodes := []
 	repositionable_nodes.append(_player)
 	repositionable_nodes.append(_sensei)
