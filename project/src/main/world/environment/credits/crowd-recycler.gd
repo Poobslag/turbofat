@@ -63,6 +63,8 @@ func _on_Director_stopped() -> void:
 ## When the crowd walk director moves all crowdies, we temporarily ignore collisions. This method reenables
 ## collisions afterward.
 func _on_ReenableCollisionTimer_timeout() -> void:
+	if not is_inside_tree():
+		return
 	_just_arranged_creatures = false
 	
 	# move all overlapping crowdies

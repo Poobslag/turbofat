@@ -57,6 +57,8 @@ func _physics_process(_delta: float) -> void:
 
 ## Adds a food item in the specified cell.
 func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> void:
+	if not is_inside_tree():
+		return
 	# calculate and store 'food fatness' for customer; how fat the customer will be after eating each item
 	var customer := _puzzle.get_customer()
 	var old_fatness: float = _pending_food_fatness.back() if _pending_food_fatness else customer.fatness
@@ -80,7 +82,8 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	
 	# float for a moment
 	# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
-	get_tree().create_timer(_food_float_duration).connect("timeout", self, "_on_FoodItem_float_done", [food_item])
+	if is_inside_tree():
+		get_tree().create_timer(_food_float_duration).connect("timeout", self, "_on_FoodItem_float_done", [food_item])
 
 
 ## Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
@@ -149,12 +152,15 @@ func _on_FoodItem_float_done(food_item: FoodItem) -> void:
 
 
 func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
+	if not is_inside_tree():
+		return
 	food_item.fly_to_target(funcref(self, "get_target_pos"), \
 			[food_item.customer, food_item.customer_index], _food_flight_duration)
 	
 	# trigger the eating animation just before we arrive at the creature's mouth
 	var adjusted_flight_duration := _food_flight_duration - food_item.customer.get_eating_delay()
-	get_tree().create_timer(adjusted_flight_duration).connect("timeout", self, "_on_FoodItem_flight_done", [food_item])
+	if is_inside_tree():
+		get_tree().create_timer(adjusted_flight_duration).connect("timeout", self, "_on_FoodItem_flight_done", [food_item])
 
 
 func _on_FoodItem_flight_done(food_item: FoodItem) -> void:

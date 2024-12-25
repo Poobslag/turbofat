@@ -31,6 +31,9 @@ var player_distance: int = 0 setget set_player_distance
 ##
 ## 	'landmark_type': Enum from Landmark.LandmarkType for the specified landmark.
 func set_landmark_type(index: int, landmark_type: int) -> void:
+	if not is_inside_tree():
+		return
+	
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
 	if index >= landmarks.size():
@@ -49,6 +52,9 @@ func set_landmark_type(index: int, landmark_type: int) -> void:
 ## Returns:
 ## 	Enum from Landmark.LandmarkType for the specified landmark.
 func get_landmark_type(index: int) -> int:
+	if not is_inside_tree():
+		return Landmark.LandmarkType.NONE
+	
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
 	if index >= landmarks.size():
@@ -62,6 +68,9 @@ func get_landmark_type(index: int) -> int:
 ##
 ## This distance is displayed on a label, and also used when calculating the player's distance along the path.
 func set_landmark_distance(index: int, landmark_distance: int) -> void:
+	if not is_inside_tree():
+		return
+	
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
 	if index >= landmarks.size():
@@ -76,6 +85,9 @@ func set_landmark_distance(index: int, landmark_distance: int) -> void:
 ##
 ## This distance is displayed on a label, and also used when calculating the player's distance along the path.
 func get_landmark_distance(index: int) -> int:
+	if not is_inside_tree():
+		return 0
+	
 	var landmarks: Array = get_tree().get_nodes_in_group("landmarks")
 	
 	if index >= landmarks.size():

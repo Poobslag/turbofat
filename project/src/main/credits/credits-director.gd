@@ -104,6 +104,9 @@ func _ready() -> void:
 
 ## Schedules all of the credits events for the "cool credits" after the player beats the game.
 func play_cool_credits() -> void:
+	if not is_inside_tree():
+		return
+	
 	MusicPlayer.play_credits_track()
 	_music_sync_player.play("play")
 	
@@ -117,7 +120,8 @@ func play_cool_credits() -> void:
 	_schedule_part_4(credits_tween)
 	
 	# wait for CreditsScroll to initialize
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	
 	# assign the letters which poof into the title; these correspond to kick drums in the music
 	_credits_scroll.set_target_header_letter_for_piece(348, 0)
@@ -141,6 +145,9 @@ func play_cool_credits() -> void:
 
 ## Schedules all of the credits events for the "boring credits" before the player beats the game.
 func play_boring_credits() -> void:
+	if not is_inside_tree():
+		return
+	
 	MusicPlayer.play_menu_track()
 	var credits_tween := get_tree().create_tween()
 	

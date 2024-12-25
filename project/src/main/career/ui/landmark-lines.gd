@@ -10,6 +10,9 @@ func _ready() -> void:
 
 ## Removes and regenerates the lines connecting the landmarks.
 func _refresh_lines() -> void:
+	if not is_inside_tree():
+		return
+	
 	var landmarks := get_tree().get_nodes_in_group("landmarks")
 	
 	for child in get_children():

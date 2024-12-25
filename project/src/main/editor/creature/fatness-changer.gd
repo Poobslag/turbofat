@@ -49,6 +49,8 @@ func _increase_fatness() -> void:
 
 
 func _find_operation_button(id: String) -> OperationButton:
+	if not is_inside_tree():
+		return null
 	var result: OperationButton
 	for operation_button in get_tree().get_nodes_in_group("operation_buttons"):
 		if operation_button.id == id:

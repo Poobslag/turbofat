@@ -55,6 +55,8 @@ func get_pickups() -> EditorPickups:
 
 
 func _connect_chunk_control_listeners() -> void:
+	if not is_inside_tree():
+		return
 	for chunk_control in get_tree().get_nodes_in_group("chunk_controls"):
 		if chunk_control.has_method("_on_RotateButton_pressed"):
 			_rotate_button.connect("pressed", chunk_control, "_on_RotateButton_pressed")

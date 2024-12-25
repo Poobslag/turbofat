@@ -34,4 +34,6 @@ func _on_Play_pressed() -> void:
 
 
 func _on_System_quit_pressed() -> void:
+	if not is_inside_tree():
+		return
 	get_tree().quit()

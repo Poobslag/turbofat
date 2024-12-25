@@ -232,7 +232,8 @@ func _on_mouse_entered() -> void:
 	if disabled:
 		return
 	
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	emit_signal("hovered_changed")
 	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
 	SfxKeeper.copy(_hover_sound).play()
@@ -243,7 +244,8 @@ func _on_mouse_exited() -> void:
 	if disabled:
 		return
 	
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	emit_signal("hovered_changed")
 
 

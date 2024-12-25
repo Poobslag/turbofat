@@ -55,6 +55,6 @@ func _refresh_environment_scene() -> void:
 		overworld_environment = empty_environment_scene.instance()
 	add_child(overworld_environment)
 	move_child(overworld_environment, 0)
-	overworld_environment.owner = get_tree().get_edited_scene_root()
+	overworld_environment.owner = get_tree().get_edited_scene_root() if is_inside_tree() else null
 	
 	emit_signal("overworld_environment_changed", overworld_environment)

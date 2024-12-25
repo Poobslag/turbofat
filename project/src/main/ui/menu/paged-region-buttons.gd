@@ -49,12 +49,14 @@ func _input(event: InputEvent) -> void:
 	if _rightmost_region_button_has_focus() and event.is_action_pressed("ui_right"):
 		if _page < _max_selectable_page():
 			_select_next_page()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 	if _leftmost_region_button_has_focus() and event.is_action_pressed("ui_left"):
 		if _page > 0:
 			_select_previous_page()
-		get_tree().set_input_as_handled()
+		if is_inside_tree():
+			get_tree().set_input_as_handled()
 
 
 ## Focuses a specific region button, possibly changing the current page.
@@ -262,5 +264,6 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			button_index_to_focus = get_focus_owner().get_index()
 		_refresh()
 		if button_index_to_focus != -1:
-			yield(get_tree(), "idle_frame")
+			if is_inside_tree():
+				yield(get_tree(), "idle_frame")
 			_hbox_container.get_children()[button_index_to_focus].grab_focus()

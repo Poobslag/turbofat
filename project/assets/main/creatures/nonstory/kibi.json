@@ -8,7 +8,7 @@
     "bellybutton": "0",
     "body": "2",
     "cheek": "2",
-    "collar": "4",
+    "collar": "1",
     "ear": "10",
     "eye": "4",
     "hair": "0",
@@ -18,22 +18,21 @@
     "nose": "0",
     "tail": "3",
     "accessory": "3",
-    "line_rgb": "713888",
-    "body_rgb": "a854cb",
-    "belly_rgb": "b72226",
-    "cloth_rgb": "f9a74c",
+    "line_rgb": "41281e",
+    "body_rgb": "f48fbc",
+    "belly_rgb": "e055a0",
+    "cloth_rgb": "cb1b2e",
     "glass_rgb": "333332",
     "plastic_rgb": "e3fbfc",
     "hair_rgb": "e8a261",
-    "eye_rgb_0": "b8260b",
-    "eye_rgb_1": "dedede",
-    "horn_rgb": "e8a261"
+    "eye_rgb_0": "ce4224",
+    "eye_rgb_1": "ffffff",
+    "horn_rgb": "ac4577"
   },
   "chat_theme": {
-    "accent_scale": 0.88,
-    "accent_texture": 6,
-    "color": "d162a3",
-    "dark": true
+    "accent_scale": 3,
+    "accent_texture": 15,
+    "color": "f48fbc"
   },
   "fatness": 1.4
 }

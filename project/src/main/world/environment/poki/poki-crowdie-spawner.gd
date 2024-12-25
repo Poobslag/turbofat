@@ -21,6 +21,8 @@ func set_shuffle(value: bool) -> void:
 ## Spawns and orients the crowdie and removes the spawner from the scene tree.
 func spawn_target() -> void:
 	.spawn_target()
+	if not is_inside_tree():
+		return
 	
 	var flip_chance := 0.5
 	

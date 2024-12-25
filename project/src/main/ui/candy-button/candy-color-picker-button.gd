@@ -36,12 +36,14 @@ func _refresh() -> void:
 
 
 func _on_mouse_entered() -> void:
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	_refresh()
 
 
 func _on_mouse_exited() -> void:
-	yield(get_tree(), "idle_frame")
+	if is_inside_tree():
+		yield(get_tree(), "idle_frame")
 	_refresh()
 
 

@@ -66,6 +66,9 @@ func _spawn_chef() -> void:
 ##
 ## The chef creature is spawned at the spawn with ids like 'customer_1', 'customer_2'. The numbers are not used.
 func _spawn_customers() -> void:
+	if not is_inside_tree():
+		return
+	
 	for spawn_obj in get_tree().get_nodes_in_group("spawns"):
 		if not overworld_environment.is_a_parent_of(spawn_obj):
 			continue

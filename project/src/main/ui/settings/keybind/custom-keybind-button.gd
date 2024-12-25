@@ -45,6 +45,8 @@ func end_awaiting() -> void:
 
 ## Takes the button into the 'awaiting state', where it waits for the player to press a key.
 func _start_awaiting() -> void:
+	if not is_inside_tree():
+		return
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
 	for keybind_button in custom_keybind_buttons:
 		keybind_button.end_awaiting()
