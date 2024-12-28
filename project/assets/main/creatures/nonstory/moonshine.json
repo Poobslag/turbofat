@@ -1,0 +1,39 @@
+{
+  "version": "5923",
+  "id": "moonshine",
+  "name": "Moonshine",
+  "short_name": "Moonshine",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "3",
+    "body": "1",
+    "cheek": "0",
+    "collar": "1",
+    "ear": "11",
+    "eye": "1",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "5",
+    "nose": "4",
+    "tail": "4",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "f5e0c6",
+    "belly_rgb": "f6e183",
+    "cloth_rgb": "ff73e1",
+    "glass_rgb": "333332",
+    "plastic_rgb": "e3fbfc",
+    "hair_rgb": "696864",
+    "eye_rgb_0": "ce4224",
+    "eye_rgb_1": "dedede",
+    "horn_rgb": "fdfcec"
+  },
+  "chat_theme": {
+    "accent_scale": 1.75,
+    "accent_swapped": true,
+    "accent_texture": 2,
+    "color": "dfe4e4"
+  },
+  "fatness": 2.5
+}
