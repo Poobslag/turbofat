@@ -160,7 +160,8 @@ func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
 	# trigger the eating animation just before we arrive at the creature's mouth
 	var adjusted_flight_duration := _food_flight_duration - food_item.customer.get_eating_delay()
 	if is_inside_tree():
-		get_tree().create_timer(adjusted_flight_duration).connect("timeout", self, "_on_FoodItem_flight_done", [food_item])
+		get_tree().create_timer(adjusted_flight_duration) \
+				.connect("timeout", self, "_on_FoodItem_flight_done", [food_item])
 
 
 func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
