@@ -177,8 +177,7 @@ func prepare_tutorial_level() -> void:
 func _refresh_last_piece_movement() -> void:
 	if piece_manager.piece == _prev_piece:
 		if _prev_piece_orientation != _prev_piece.orientation:
-			## piece was flipped/rotated
-			if _prev_piece_orientation == _prev_piece.get_flip_orientation():
+			if piece_manager.physics.rotator.just_flipped:
 				_last_piece_movement = PieceMovementType.FLIP
 			else:
 				_last_piece_movement = PieceMovementType.ROTATE

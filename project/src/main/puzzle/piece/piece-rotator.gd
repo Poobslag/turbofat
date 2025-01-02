@@ -1,6 +1,13 @@
 extends Node
 ## Handles horizontal movement for the player's active piece.
 
+## Number of frames of leniency allowed for the two-button "flip" input
+##
+## We always flip the piece if the player presses both rotate buttons -- but in some cases, rotating the piece will
+## kick it out of a nook, so the piece must be flipped without first being rotated. This is the number of frames of
+## leniency where we'll bend the rules for the player, moving the piece back to where it was before flipping it.
+const FLIP_FRAME_LENIENCY := 7
+
 # warning-ignore:unused_signal
 signal initial_rotated_ccw(piece)
 # warning-ignore:unused_signal
@@ -16,6 +23,10 @@ signal rotated_cw(piece)
 signal rotated_180(piece)
 
 export (NodePath) var input_path: NodePath
+
+var _prev_rotate_frames := 0
+var _prev_rotate_pos := Vector2(3, 3)
+var just_flipped := false
 
 onready var input: PieceInput = get_node(input_path)
 
@@ -69,6 +80,7 @@ func emit_initial_rotate_signal(rotation_signal: String, piece: ActivePiece) -> 
 
 func apply_rotate_input(piece: ActivePiece) -> void:
 	if not input.is_cw_pressed() and not input.is_ccw_pressed():
+		_prev_rotate_frames = 0
 		return
 	
 	_calc_rotate_target(piece)
@@ -163,21 +175,52 @@ func _is_partially_offscreen(piece: ActivePiece, piece_pos: Vector2, piece_orien
 ## Calculates the orientation the player is trying to rotate the piece to.
 func _calc_rotate_target(piece: ActivePiece) -> void:
 	if not input.is_cw_pressed() and not input.is_ccw_pressed():
+		_prev_rotate_frames = 0
 		return
 	
 	piece.reset_target()
 	if input.is_cw_just_pressed() and input.is_ccw_just_pressed():
 		# flip the piece by rotating it twice
 		piece.target_orientation = piece.get_flip_orientation()
+		just_flipped = true
 	elif input.is_cw_just_pressed():
 		if input.is_ccw_pressed():
-			# flip the piece by rotating it again in the same direction
+			# flip the piece by moving it back where it was, and rerotating it
+			_restore_prerotate_pos(piece)
 			piece.target_orientation = piece.get_ccw_orientation()
+			just_flipped = true
 		else:
+			_prev_rotate_pos = piece.pos
 			piece.target_orientation = piece.get_cw_orientation()
+			just_flipped = false
 	elif input.is_ccw_just_pressed():
 		if input.is_cw_pressed():
-			# flip the piece by rotating it again in the same direction
+			# flip the piece by moving it back where it was, and rerotating it
+			_restore_prerotate_pos(piece)
 			piece.target_orientation = piece.get_cw_orientation()
+			just_flipped = true
 		else:
+			_prev_rotate_pos = piece.pos
 			piece.target_orientation = piece.get_ccw_orientation()
+			just_flipped = false
+	
+	_prev_rotate_frames += 1
+
+
+## Restores a piece to its previous location before flipping the piece.
+##
+## We always flip the piece if the player presses both rotate buttons -- but in some cases, rotating the piece will
+## kick it out of a nook, so the piece must be flipped without first being rotated. This function moves the piece back
+## to where it was before the player held the first rotate button.
+func _restore_prerotate_pos(piece: ActivePiece) -> void:
+	if _prev_rotate_frames > FLIP_FRAME_LENIENCY:
+		## too slow; restoring a piece to its old position requires both buttons be pressed around the same time
+		pass
+	elif _prev_rotate_pos.y < piece.pos.y and not piece.can_floor_kick():
+		## out of floor kicks; restoring a piece to a higher position consumes a floor kick to prevent infinispin
+		pass
+	else:
+		piece.target_pos = _prev_rotate_pos
+		if _prev_rotate_pos.y < piece.pos.y:
+			## restoring a piece to a higher position consumes a floor kick to prevent infinispin
+			piece.floor_kicks += 1

@@ -69,7 +69,7 @@ onready var input: PieceInput = $Input
 onready var tech_move_detector: TechMoveDetector = $TechMoveDetector
 
 onready var states: PieceStates = $States
-onready var _physics: PiecePhysics = $Physics
+onready var physics: PiecePhysics = $Physics
 onready var _playfield: Playfield = get_node(playfield_path)
 onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
 
@@ -165,7 +165,7 @@ func spawn_piece() -> void:
 
 
 func initially_move_piece() -> bool:
-	var success := _physics.initially_move_piece(piece)
+	var success := physics.initially_move_piece(piece)
 	emit_signal("piece_disturbed", piece)
 	return success
 
@@ -193,7 +193,7 @@ func swap_hold_piece() -> void:
 		# cases in levels with limited pieces
 		pass
 	else:
-		_physics.initially_move_piece(piece)
+		physics.initially_move_piece(piece)
 	emit_signal("piece_spawned", piece)
 	emit_signal("piece_disturbed", piece)
 	emit_signal("hold_piece_swapped", piece)
@@ -203,7 +203,7 @@ func swap_hold_piece() -> void:
 
 
 func move_piece() -> void:
-	var piece_disturbed := _physics.move_piece(piece)
+	var piece_disturbed := physics.move_piece(piece)
 	if piece_disturbed:
 		emit_signal("piece_disturbed", piece)
 
@@ -220,7 +220,7 @@ func pop_buffered_inputs() -> void:
 
 ## Returns a number from [0, 1] for how close the piece is to squishing.
 func squish_percent() -> float:
-	return _physics.squish_percent(piece)
+	return physics.squish_percent(piece)
 
 
 ## Increments the piece's 'lock'. A piece will become locked once its accumulated 'lock' exceeds a certain threshold,
@@ -353,7 +353,7 @@ func _spawn_piece_from_next_queue() -> void:
 		# cases in levels with limited pieces
 		pass
 	else:
-		_physics.initially_move_piece(piece)
+		physics.initially_move_piece(piece)
 	emit_signal("piece_spawned", piece)
 	emit_signal("piece_disturbed", piece)
 	
