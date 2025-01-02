@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 14:53-0500\n"
+"POT-Creation-Date: 2025-01-02 18:02-0500\n"
 "PO-Revision-Date: 2023-03-13 12:16-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1342,7 +1342,7 @@ msgid "Yes yes, okay."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Also, you can turn on cheats if you want to, over in the Settings menu."
+msgid "Also, you can sort of cheat if you want to, by lowering the difficulty."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -1358,7 +1358,11 @@ msgid "But I'm so close!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Turn on cheats? Isn't that cheating?"
+msgid "I already lowered it!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid "Cheats? Isn't that cheating?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -1381,6 +1385,16 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid "I don't remember agreeing to this, this kind of 'honorable cheat'!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid "I already lowered the difficulty! I'm cheating as much as I can cheat!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid ""
+"Mmm that's very honorable of you. Sometimes, it's honorable to know when to "
+"cheat, and to know when to not cheat."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
