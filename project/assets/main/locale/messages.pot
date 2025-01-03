@@ -1,14 +1,14 @@
 # Translations template for Turbo Fat.
-# Copyright (C) 2024 Poobslag
+# Copyright (C) 2025 Poobslag
 # This file is distributed under the same license as the Turbo Fat project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Turbo Fat 0.9000\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 14:53-0500\n"
+"POT-Creation-Date: 2025-01-02 19:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1339,7 +1339,7 @@ msgid "Yes yes, okay."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Also, you can turn on cheats if you want to, over in the Settings menu."
+msgid "Also, you can sort of cheat if you want to, by lowering the difficulty."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -1355,7 +1355,11 @@ msgid "But I'm so close!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Turn on cheats? Isn't that cheating?"
+msgid "I already lowered it!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid "Cheats? Isn't that cheating?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -1378,6 +1382,16 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid "I don't remember agreeing to this, this kind of 'honorable cheat'!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid "I already lowered the difficulty! I'm cheating as much as I can cheat!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid ""
+"Mmm that's very honorable of you. Sometimes, it's honorable to know when "
+"to cheat, and to know when to not cheat."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py
@@ -15489,6 +15503,10 @@ msgstr ""
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd
 msgid "Very Expert"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd
+msgid "Tutorial"
 msgstr ""
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd

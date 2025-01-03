@@ -18,7 +18,7 @@
     "piece_v"
   ],
   "rank": [
-    "duration 150",
+    "duration 210",
     "rank_criteria top=1",
     "skip_results",
     "unranked"

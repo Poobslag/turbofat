@@ -105,11 +105,13 @@ func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
 
 func _on_TutorialMessages_all_messages_shown_start_timer(timer: Timer) -> void:
 	hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
-	timer.start()
+	if timer:
+		timer.start()
 
 
 func _on_Timer_timeout_queue_free(timer: Timer) -> void:
-	timer.queue_free()
+	if timer:
+		timer.queue_free()
 
 
 func _on_Timer_timeout_change_level(level_id: String) -> void:

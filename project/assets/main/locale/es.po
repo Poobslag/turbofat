@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2024-11-27 14:53-0500\n"
+"POT-Creation-Date: 2025-01-02 19:40-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1502,9 +1502,9 @@ msgid "Yes yes, okay."
 msgstr "Sí sí, claro."
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Also, you can turn on cheats if you want to, over in the Settings menu."
-msgstr ""
-"Antes que me olvide, puedes activar los trucos, en el menú de configuración."
+#, needs-review
+msgid "Also, you can sort of cheat if you want to, by lowering the difficulty."
+msgstr "Además, puedes hacer algo de trampa si quieres, bajando la dificultad."
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid "Isn't that cheating?"
@@ -1519,8 +1519,13 @@ msgid "But I'm so close!"
 msgstr "¡Pero estoy muy cerca!"
 
 #: project/assets/main/locale/localizables-extracted.py
-msgid "Turn on cheats? Isn't that cheating?"
-msgstr "¿Activar trucos? ¿Eso no es hacer trampa?"
+#, needs-review
+msgid "I already lowered it!"
+msgstr "¡Ya lo bajé!"
+
+#: project/assets/main/locale/localizables-extracted.py
+msgid "Cheats? Isn't that cheating?"
+msgstr "¿Trucos? ¿Eso no es hacer trampa?"
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid "Yes, cheating is cheating. But that's okay, everybody cheats."
@@ -1545,6 +1550,21 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py
 msgid "I don't remember agreeing to this, this kind of 'honorable cheat'!"
 msgstr "¡No recuerdo acertar esto, estos \"trucos honorables\"!"
+
+#: project/assets/main/locale/localizables-extracted.py
+#, needs-review
+msgid "I already lowered the difficulty! I'm cheating as much as I can cheat!"
+msgstr ""
+"¡Ya bajé la dificultad! ¡Estoy haciendo toda la trampa que puedo hacer!"
+
+#: project/assets/main/locale/localizables-extracted.py
+#, needs-review
+msgid ""
+"Mmm that's very honorable of you. Sometimes, it's honorable to know when to "
+"cheat, and to know when to not cheat."
+msgstr ""
+"Mmm, eres muy honorable. A veces, es honorable saber cuándo usar trucos, y "
+"cuándo no usarlos."
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid "Oh, I don't know... Will it really count if I cheat?"
@@ -17571,6 +17591,11 @@ msgstr "Experto"
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd
 msgid "Very Expert"
 msgstr "Muy Experto"
+
+#, needs-review
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd
+msgid "Tutorial"
+msgstr "Tutorial"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd
 #, python-format

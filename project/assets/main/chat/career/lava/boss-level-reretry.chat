@@ -35,13 +35,14 @@ p1: Yes yes, okay.
 
 
 [you_can_cheat]
-s1: ._. Also, you can turn on cheats if you want to, over in the Settings menu.
+s1: ._. Also, you can sort of cheat if you want to, by lowering the difficulty.
 [is_that_cheating] Isn't that cheating?
 [will_it_count] Will it really count?
 [im_so_close] But I'm so close!
+[i_already_did] I already lowered it!
 
 [is_that_cheating]
-p1: /._. Turn on cheats? Isn't that cheating?
+p1: /._. Cheats? Isn't that cheating?
 s1: Yes, cheating is cheating. But that's okay, everybody cheats.
 c: <_< I don't remember agreeing to this, that they could cheat!
 [shh]
@@ -49,6 +50,12 @@ c: <_< I don't remember agreeing to this, that they could cheat!
 [im_so_close]
 p1: ^_^ I want to do it without cheating! I'm so close!
 s1: ^n^ Mmm that's very honorable of you. But sometimes, it's honorable to know when to cheat, and to know when to not cheat.
+c: <_< I don't remember agreeing to this, this kind of 'honorable cheat'!
+[shh]
+
+[i_already_did]
+p1: .__.; I already lowered the difficulty! I'm cheating as much as I can cheat!
+s1: ^y^ Mmm that's very honorable of you. Sometimes, it's honorable to know when to cheat, and to know when to not cheat.
 c: <_< I don't remember agreeing to this, this kind of 'honorable cheat'!
 [shh]
 
