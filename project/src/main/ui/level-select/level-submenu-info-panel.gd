@@ -34,6 +34,8 @@ func _update_unlocked_level_text(settings: LevelSettings) -> void:
 		"AE", "AF", "F0", "F1": difficulty_string = tr("Expert")
 		"FA", "FB", "FC": difficulty_string = tr("Very Expert")
 		"FD", "FE", "FF", "FFF": difficulty_string = tr("Master")
+	if settings.other.tutorial:
+		difficulty_string = tr("Tutorial")
 	new_text += tr("Difficulty: %s") % [difficulty_string]
 	new_text += "\n"
 	

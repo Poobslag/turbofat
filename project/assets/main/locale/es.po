@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/Poobslag/turbofat/\n"
-"POT-Creation-Date: 2025-01-02 18:02-0500\n"
+"POT-Creation-Date: 2025-01-02 19:40-0500\n"
 "PO-Revision-Date: 2024-10-13 19:30-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1554,14 +1554,17 @@ msgstr "¡No recuerdo acertar esto, estos \"trucos honorables\"!"
 #: project/assets/main/locale/localizables-extracted.py
 #, needs-review
 msgid "I already lowered the difficulty! I'm cheating as much as I can cheat!"
-msgstr "¡Ya bajé la dificultad! ¡Estoy haciendo toda la trampa que puedo hacer!"
+msgstr ""
+"¡Ya bajé la dificultad! ¡Estoy haciendo toda la trampa que puedo hacer!"
 
 #: project/assets/main/locale/localizables-extracted.py
 #, needs-review
 msgid ""
 "Mmm that's very honorable of you. Sometimes, it's honorable to know when to "
 "cheat, and to know when to not cheat."
-msgstr "Mmm, eres muy honorable. A veces, es honorable saber cuándo usar trucos, y cuándo no usarlos."
+msgstr ""
+"Mmm, eres muy honorable. A veces, es honorable saber cuándo usar trucos, y "
+"cuándo no usarlos."
 
 #: project/assets/main/locale/localizables-extracted.py
 msgid "Oh, I don't know... Will it really count if I cheat?"
@@ -17588,6 +17591,11 @@ msgstr "Experto"
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd
 msgid "Very Expert"
 msgstr "Muy Experto"
+
+#, needs-review
+#: project/src/main/ui/level-select/level-submenu-info-panel.gd
+msgid "Tutorial"
+msgstr "Tutorial"
 
 #: project/src/main/ui/level-select/level-submenu-info-panel.gd
 #, python-format
