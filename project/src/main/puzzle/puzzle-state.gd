@@ -154,6 +154,11 @@ func add_timer(wait_time: float) -> Timer:
 	return _timers.add_timer(wait_time)
 
 
+## Frees all timers.
+func clear_timers() -> void:
+	_timers.clear()
+
+
 ## Resets all score data, and starts a new game after a brief pause.
 func prepare_and_start_game() -> void:
 	_prepare_game()
