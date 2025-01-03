@@ -24,8 +24,11 @@ signal rotated_180(piece)
 
 export (NodePath) var input_path: NodePath
 
+## piece information used to restore the its previous location when flipping it
 var _prev_rotate_frames := 0
+var _prev_rotate_piece: ActivePiece
 var _prev_rotate_pos := Vector2(3, 3)
+
 var just_flipped := false
 
 onready var input: PieceInput = get_node(input_path)
@@ -190,6 +193,7 @@ func _calc_rotate_target(piece: ActivePiece) -> void:
 			piece.target_orientation = piece.get_ccw_orientation()
 			just_flipped = true
 		else:
+			_prev_rotate_piece = piece
 			_prev_rotate_pos = piece.pos
 			piece.target_orientation = piece.get_cw_orientation()
 			just_flipped = false
@@ -200,6 +204,7 @@ func _calc_rotate_target(piece: ActivePiece) -> void:
 			piece.target_orientation = piece.get_cw_orientation()
 			just_flipped = true
 		else:
+			_prev_rotate_piece = piece
 			_prev_rotate_pos = piece.pos
 			piece.target_orientation = piece.get_ccw_orientation()
 			just_flipped = false
@@ -213,7 +218,10 @@ func _calc_rotate_target(piece: ActivePiece) -> void:
 ## kick it out of a nook, so the piece must be flipped without first being rotated. This function moves the piece back
 ## to where it was before the player held the first rotate button.
 func _restore_prerotate_pos(piece: ActivePiece) -> void:
-	if _prev_rotate_frames > FLIP_FRAME_LENIENCY:
+	if _prev_rotate_piece != piece:
+		## not the same piece; don't let players warp a new piece to an old piece's location
+		pass
+	elif _prev_rotate_frames > FLIP_FRAME_LENIENCY:
 		## too slow; restoring a piece to its old position requires both buttons be pressed around the same time
 		pass
 	elif _prev_rotate_pos.y < piece.pos.y and not piece.can_floor_kick():
