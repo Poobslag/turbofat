@@ -18,7 +18,6 @@ func _ready() -> void:
 	
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
-	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	
 	$Fg/Playfield/TileMapClip/TileMap/ShadowViewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
@@ -411,11 +410,6 @@ func _on_PuzzleState_game_ended() -> void:
 	_save_level_result(rank_result)
 
 	if not PuzzleState.level_performance.lost and rank_result.rank < 24: $ApplauseSound.play()
-
-
-## Briefly pause during level transitions.
-func _on_PuzzleState_after_level_changed() -> void:
-	$Fg/Playfield.add_misc_delay_frames(30)
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
