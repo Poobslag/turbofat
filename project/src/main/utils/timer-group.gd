@@ -56,4 +56,5 @@ func clear() -> void:
 
 ## When a timer times out, we free it.
 func _on_Timer_timeout_queue_free(timer: Timer) -> void:
-	timer.queue_free()
+	if timer:
+		timer.queue_free()
