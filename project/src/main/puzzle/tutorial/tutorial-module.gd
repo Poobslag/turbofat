@@ -13,6 +13,9 @@ var piece_manager: PieceManager
 ## if 'true', the next level change will be accompanied by a 'Ready? Go!' countdown
 var _start_customer_countdown := false
 
+## if 'true', the player cannot currently restart the current tutorial section
+var _suppress_restart := false
+
 func _ready() -> void:
 	puzzle = hud.puzzle
 	playfield = puzzle.get_playfield()
@@ -27,6 +30,23 @@ func _ready() -> void:
 			var new_item: SkillTallyItem = skill_tally_item.duplicate()
 			new_item.puzzle = hud.puzzle
 			hud.add_skill_tally_item(new_item)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		return
+	
+	if event.is_action_pressed("retry"):
+		if not PuzzleState.game_active and not PuzzleState.game_ended:
+			# still at the start of a puzzle; don't retry
+			pass
+		elif PuzzleState.game_ended:
+			# puzzle has ended; 'retrying a section' doesn't make sense
+			pass
+		elif (CurrentLevel.is_tutorial() or CurrentLevel.settings.other.after_tutorial) \
+				and not CurrentLevel.settings.other.non_interactive \
+				and not _suppress_restart:
+			_restart_tutorial_section()
 
 
 ## Cleans up any temporary timers and listeners.
@@ -78,6 +98,7 @@ func prepare_tutorial_level() -> void:
 ##
 ## Copy/pasted from PuzzleState.change_level with an extra yield statement added.
 func change_level(level_id: String, delay_between_levels: float = Tutorials.DELAY_SHORT) -> void:
+	_suppress_restart = true
 	PuzzleState.prepare_level_change(level_id)
 	start_timer_after_all_messages_shown(delay_between_levels) \
 			.connect("timeout", self, "_on_Timer_timeout_change_level", [level_id])
@@ -103,6 +124,19 @@ func start_timer_after_all_messages_shown(wait_time: float) -> Timer:
 	return timer
 
 
+func _restart_tutorial_section() -> void:
+	if _suppress_restart:
+		return
+	
+	_suppress_restart = true
+	PuzzleState.prepare_level_change(CurrentLevel.settings.id)
+	
+	# clear timers to avoid side effects when replaying scheduled events from a previous attempt
+	PuzzleState.clear_timers()
+	PuzzleState.change_level(CurrentLevel.settings.id)
+	PuzzleState.game_active = true
+
+
 func _on_TutorialMessages_all_messages_shown_start_timer(timer: Timer) -> void:
 	hud.messages.disconnect("all_messages_shown", self, "_on_TutorialMessages_all_messages_shown_start_timer")
 	if timer:
@@ -126,6 +160,7 @@ func _on_PuzzleState_after_level_changed() -> void:
 		MusicPlayer.play_puzzle_track(false)
 		PuzzleState.game_active = true
 		puzzle.start_level_countdown()
+	_suppress_restart = false
 
 
 func _on_PuzzleState_game_ended() -> void:

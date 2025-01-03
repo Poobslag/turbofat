@@ -123,13 +123,16 @@ func _on_PuzzleState_game_started() -> void:
 	hide_message()
 
 
-func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
+func _on_PuzzleState_before_level_changed(new_level_id: String) -> void:
 	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.empty():
 		# non interactive levels don't show a success/failure message
 		return
 	
 	if PuzzleState.level_performance.lost:
 		show_message(PuzzleMessage.BAD, tr("Regret..."))
+	elif new_level_id == CurrentLevel.settings.id:
+		# retrying a level; don't show any message
+		pass
 	else:
 		show_message(PuzzleMessage.GOOD, tr("Good!"))
 
