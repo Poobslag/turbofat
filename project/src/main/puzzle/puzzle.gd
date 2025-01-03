@@ -67,6 +67,9 @@ func _input(event: InputEvent) -> void:
 				and SystemData.misc_settings.show_give_up_confirmation:
 			# user hasn't been prompted yet; prompt the user to retry
 			_settings_menu.show_give_up_confirmation()
+		elif (CurrentLevel.is_tutorial() or CurrentLevel.settings.other.after_tutorial):
+			# each tutorial module handles restarting in their own way
+			pass
 		else:
 			_restart()
 
