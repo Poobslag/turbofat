@@ -30,9 +30,27 @@ const TYPE_NONE := TransitionType.NONE
 ## Color to fade to during scene transitions.
 var fade_color: Color = ProjectSettings.get_setting("rendering/environment/default_clear_color")
 
+## Scheduled breadcrumb method to invoke from the main thread.
+##
+## Triggering a scene change from a signal handler sometimes causes a silent crash, with no errors or logs.
+## We defer the scene change to the main thread to avoid conflicts with signal handling. See Godot #85692
+## (https://github.com/godotengine/godot/issues/85692).
+var _deferred_breadcrumb_method: FuncRef
+var _deferred_breadcrumb_arg_array: Array
+
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var _mask: Node = $MaskHolder/Mask
+
+func _physics_process(delta: float) -> void:
+	if _deferred_breadcrumb_method:
+		Global.print_verbose("Calling breadcrumb method: %s, %s" \
+				% [_deferred_breadcrumb_method, _deferred_breadcrumb_arg_array])
+		_deferred_breadcrumb_method.call_funcv(_deferred_breadcrumb_arg_array)
+		
+		_deferred_breadcrumb_method = null
+		_deferred_breadcrumb_arg_array = []
+
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail after a scene transition.
 ##
@@ -152,11 +170,6 @@ func _fade_in_duration(flags: Dictionary) -> float:
 	return flags.get(FLAG_FADE_IN_DURATION, DEFAULT_FADE_IN_DURATION)
 
 
-## Calling `FuncRef.call_deferred()` to invoke `call_funcv` has no effect, so we use this helper method.
-func _call_breadcrumb_method(breadcrumb_method: FuncRef = null, breadcrumb_arg_array: Array = []) -> void:
-	breadcrumb_method.call_funcv(breadcrumb_arg_array)
-
-
 ## Called when the 'fade out' visual transition ends, triggering a scene transition.
 func _on_AnimationPlayer_animation_finished_change_scene(
 		_animation_name: String, flags: Dictionary = {}, breadcrumb_method: FuncRef = null,
@@ -167,12 +180,9 @@ func _on_AnimationPlayer_animation_finished_change_scene(
 		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
 	
 	if breadcrumb_method:
-		Global.print_verbose("Calling breadcrumb method: %s, %s" % [breadcrumb_method.function, breadcrumb_arg_array])
-		
-		# Triggering a scene change from a signal handler sometimes causes a silent crash, with no errors or logs.
-		# We defer the scene change to the next frame to avoid conflicts with signal handling. See Godot #85692
-		# (https://github.com/godotengine/godot/issues/85692).
-		call_deferred("_call_breadcrumb_method", breadcrumb_method, breadcrumb_arg_array)
+		Global.print_verbose("Scheduling breadcrumb method: %s, %s" % [breadcrumb_method.function, breadcrumb_arg_array])
+		_deferred_breadcrumb_method = breadcrumb_method
+		_deferred_breadcrumb_arg_array = breadcrumb_arg_array
 	else:
 		Global.print_verbose("No breadcrumb method: %s, %s" % [breadcrumb_method, breadcrumb_arg_array])
 	
