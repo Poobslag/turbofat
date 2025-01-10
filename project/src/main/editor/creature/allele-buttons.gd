@@ -49,6 +49,15 @@ onready var _overworld_environment: OverworldEnvironment = get_node(overworld_en
 onready var _creature_saver: CreatureSaver = get_node(creature_saver_path)
 onready var _creature_editor_library := Global.get_creature_editor_library()
 
+func _ready() -> void:
+	for creature in [_player(), _player_swap()]:
+		# Disable physics processing for both the player and their doppelganger. Creatures are KinematicBody2D
+		# instances, and their physics interferes with the swapping process.
+		creature.set_physics_process(false)
+		
+		creature.connect("dna_loaded", self, "_on_Creature_dna_loaded", [creature])
+
+
 ## Deletes and recreates all buttons for the specified category.
 func _refresh_allele_buttons(category: int) -> void:
 	# calculate whether to grab focus
@@ -297,6 +306,17 @@ func _assign_focus_neighbours(category: int) -> void:
 			allele_button.focus_neighbour_bottom = allele_button.get_path_to(get_node(top_system_button_path))
 
 
+func _find_operation_button(id: String) -> OperationButton:
+	if not is_inside_tree():
+		return null
+	var result: OperationButton
+	for operation_button in get_tree().get_nodes_in_group("operation_buttons"):
+		if operation_button.id == id:
+			result = operation_button
+			break
+	return result
+
+
 ## Refreshes the enabled/disabled state of all CreatureColorButtons based on the creature's properties.
 ##
 ## Certain color buttons are disabled if they are not relevant to the creature's appearance. For example, if the
@@ -316,6 +336,14 @@ func _refresh_color_buttons() -> void:
 
 func _player() -> Creature:
 	return _overworld_environment.player
+
+
+## Returns the player's offscreen doppelganger.
+##
+## Changing a creature's appearance forces all their textures and shaders to regenerate, making them look strange for
+## a moment. We apply these changes to a doppelganger and then swap them in after the changes are applied.
+func _player_swap() -> Creature:
+	return _overworld_environment.get_creature_by_id(CreatureEditorLibrary.PLAYER_SWAP_ID)
 
 
 ## When the player chooses an allele, we update the UI and update the creature's appearance.
@@ -343,17 +371,57 @@ func _on_AlleleButton_pressed(allele_button: AlleleButton) -> void:
 			invalid_allele_value = DnaUtils.invalid_allele_value(_player().dna, allele_id, allele_value)
 			if not invalid_allele_value:
 				break
+			_player().suppress_refresh_dna = true
 			_player().dna[invalid_allele_value] = "0"
+			_player().suppress_refresh_dna = false
 	
 	# update the creature's appearance
 	for allele_string in allele_button.allele_combo.split(" "):
 		var allele_id: String = allele_string.split("_")[0]
 		var allele_value: String = allele_string.split("_")[1]
+		_player().suppress_refresh_dna = true
 		_player().dna[allele_id] = allele_value
-	_player().refresh_dna()
+		_player().suppress_refresh_dna = false
+	_player_swap().dna = _player().dna
 	
 	# refresh the enabled/disabled state of all CreatureColorButtons
 	_refresh_color_buttons()
+
+
+## When the doppelganger's dna is fully loaded, we swap them in for the main creature.
+##
+## Changing a creature's appearance forces all their textures and shaders to regenerate, making them look strange for
+## a moment. We apply these changes to a doppelganger and then swap them in after the changes are applied.
+func _on_Creature_dna_loaded(creature: Creature) -> void:
+	if creature != _player_swap():
+		## we only run these steps when the doppelganger is loaded; not when the main creature is loaded
+		return
+	
+	var player := _player()
+	var player_position := _player().position
+	var player_swap := _player_swap()
+	var player_swap_position := _player_swap().position
+	
+	# copy properties from player to their doppelganger
+	player_swap.chat_theme = player.chat_theme
+	player_swap.creature_name = player.creature_name
+	player_swap.creature_short_name = player.creature_short_name
+	player_swap.creature_visuals.rescale(0.60 if player_swap.creature_visuals.dna.get("body") == "2" else 1.00)
+	player_swap.fatness = player.fatness
+	player_swap.min_fatness = player.min_fatness
+	player_swap.visual_fatness = player.visual_fatness
+	
+	# replace player with doppelganger
+	player_swap.position = player_position
+	player_swap.suppress_refresh_creature_id = true
+	player_swap.creature_id = CreatureLibrary.PLAYER_ID
+	player_swap.suppress_refresh_creature_id = false
+
+	# replace doppelganger with player
+	player.position = player_swap_position
+	player.suppress_refresh_creature_id = true
+	player.creature_id = CreatureEditorLibrary.PLAYER_SWAP_ID
+	player.suppress_refresh_creature_id = false
 
 
 ## When the player uses a CreatureColorButton, we update the creature's appearance
@@ -361,9 +429,12 @@ func _on_CreatureColorButton_color_changed(color: Color, color_property: String)
 	if not _player():
 		return
 	
+	_player().suppress_refresh_dna = true
 	_player().dna[color_property] = color.to_html(false).to_lower()
-	_player().refresh_dna()
+	_player().suppress_refresh_dna = false
 	_player().chat_theme = CreatureLoader.chat_theme(_player().dna) # generate a new chat theme
+	_player_swap().dna = _player().dna
+	_player_swap().chat_theme = _player().chat_theme
 
 
 func _on_CreatureNameButton_name_changed(new_name: String) -> void:
@@ -371,6 +442,9 @@ func _on_CreatureNameButton_name_changed(new_name: String) -> void:
 		return
 	
 	_player().rename(new_name)
+	var save_button := _find_operation_button("save")
+	if save_button:
+		save_button.set_disabled(not _creature_saver.has_unsaved_changes())
 
 
 func _on_CategorySelector_category_selected(category: int) -> void:
