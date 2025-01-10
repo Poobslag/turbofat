@@ -42,7 +42,7 @@ onready var _animation_player: AnimationPlayer = $AnimationPlayer
 onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var _mask: Node = $MaskHolder/Mask
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if _deferred_breadcrumb_method:
 		Global.print_verbose("Calling breadcrumb method: %s, %s" \
 				% [_deferred_breadcrumb_method, _deferred_breadcrumb_arg_array])
@@ -180,10 +180,12 @@ func _on_AnimationPlayer_animation_finished_change_scene(
 		_animation_player.disconnect("animation_finished", self, "_on_AnimationPlayer_animation_finished_change_scene")
 	
 	if breadcrumb_method:
-		Global.print_verbose("Scheduling breadcrumb method: %s, %s" % [breadcrumb_method.function, breadcrumb_arg_array])
+		Global.print_verbose("Scheduling breadcrumb method: %s, %s" \
+				% [breadcrumb_method.function, breadcrumb_arg_array])
 		_deferred_breadcrumb_method = breadcrumb_method
 		_deferred_breadcrumb_arg_array = breadcrumb_arg_array
 	else:
-		Global.print_verbose("No breadcrumb method: %s, %s" % [breadcrumb_method, breadcrumb_arg_array])
+		Global.print_verbose("No breadcrumb method: %s, %s" \
+				% [breadcrumb_method, breadcrumb_arg_array])
 	
 	call_deferred("fade_in", flags)
