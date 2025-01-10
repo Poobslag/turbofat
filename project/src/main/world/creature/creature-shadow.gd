@@ -46,6 +46,9 @@ func _refresh_creature_path() -> void:
 	_creature.connect("dna_loaded", self, "_on_Creature_dna_loaded")
 	
 	position = _creature.position + shadow_offset
+	if not _creature.creature_visuals:
+		# wait a frame for the creature's fields to be populated
+		yield(get_tree(), "idle_frame")
 	if _creature.creature_visuals:
 		_sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
 		_refresh_creature_shadow_scale()
