@@ -91,6 +91,14 @@ var creature_visuals: CreatureVisuals
 ## Virtual property; value is only exposed through getters/setters
 var fatness: float setget set_fatness, get_fatness
 
+## If 'true', the 'refresh_creature_id' method will have no effect, and changing the creature's id will not update
+## their appearance.
+var suppress_refresh_creature_id: bool = false
+
+## If 'true', the 'refresh_dna' method will have no effect, and changing the creature's dna will not update their
+## appearance.
+var suppress_refresh_dna: bool = false
+
 ## Virtual property; value is only exposed through getters/setters
 var visual_fatness: float setget set_visual_fatness, get_visual_fatness
 
@@ -396,6 +404,8 @@ func get_creature_def() -> CreatureDef:
 func refresh_dna() -> void:
 	if not is_inside_tree():
 		return
+	if suppress_refresh_dna:
+		return
 
 	if dna:
 		dna = DnaUtils.fill_dna(dna)
@@ -513,6 +523,8 @@ func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 
 func _refresh_creature_id() -> void:
 	if not is_inside_tree():
+		return
+	if suppress_refresh_creature_id:
 		return
 	
 	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
