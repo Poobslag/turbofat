@@ -127,9 +127,9 @@ func _initialize_operation_button(button: OperationButton, operation: Operation)
 	button.id = operation.id
 	if operation.id in ["export", "import"] and (OS.has_feature("web") or OS.has_feature("android")):
 		# export/import are not available on web
-		button.disabled = true
+		button.set_disabled(true)
 	if operation.id == "save" and not _creature_saver.has_unsaved_changes():
-		button.disabled = true
+		button.set_disabled(true)
 	if operation.id == "save":
 		_new_focus_target = button
 	button.connect("pressed", self, "_on_OperationButton_pressed", [button])
@@ -380,7 +380,7 @@ func _on_CategorySelector_category_selected(category: int) -> void:
 func _on_OperationButton_pressed(operation_button: OperationButton) -> void:
 	emit_signal("operation_button_pressed", operation_button.id)
 	if operation_button.id == "save":
-		operation_button.disabled = true
+		operation_button.set_disabled(true)
 
 
 ## Before showing the CreatureColorButton popup, populate the list of color presets.
