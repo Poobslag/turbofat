@@ -124,6 +124,21 @@ func _initialize_onready_variables() -> void:
 	_gradient_helper = $GradientHelper
 
 
+func _apply_mouse_entered_effects() -> void:
+	# disconnect our one-shot method
+	if get_tree().is_connected("idle_frame", self, "_apply_mouse_entered_effects"):
+		get_tree().disconnect("idle_frame", self, "_apply_mouse_entered_effects")
+	emit_signal("hovered_changed")
+	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
+	SfxKeeper.copy(_hover_sound).play()
+
+
+func _apply_mouse_exited_effects() -> void:
+	if get_tree().is_connected("idle_frame", self, "_apply_mouse_exited_effects"):
+		get_tree().disconnect("idle_frame", self, "_apply_mouse_exited_effects")
+	emit_signal("hovered_changed")
+
+
 ## Reapplies the colors for our texture, text and icons.
 func _refresh_color() -> void:
 	if not is_inside_tree():
@@ -214,10 +229,12 @@ func _on_mouse_entered() -> void:
 		return
 	
 	if is_inside_tree():
-		yield(get_tree(), "idle_frame")
-	emit_signal("hovered_changed")
-	_hover_sound.pitch_scale = rand_range(0.95, 1.05)
-	SfxKeeper.copy(_hover_sound).play()
+		# Wait a frame before applying mouse entered effects. We use a one-shot listener method instead of a yield
+		# statement to avoid 'class instance is gone' errors.
+		if not get_tree().is_connected("idle_frame", self, "_apply_mouse_entered_effects"):
+			get_tree().connect("idle_frame", self, "_apply_mouse_entered_effects")
+	else:
+		_apply_mouse_entered_effects()
 
 
 ## When the player hovers away from us, we reapply the normal color for our texture, text and icons.
@@ -226,8 +243,12 @@ func _on_mouse_exited() -> void:
 		return
 	
 	if is_inside_tree():
-		yield(get_tree(), "idle_frame")
-	emit_signal("hovered_changed")
+		# Wait a frame before applying mouse exited effects. We use a one-shot listener method instead of a yield
+		# statement to avoid 'class instance is gone' errors.
+		if not get_tree().is_connected("idle_frame", self, "_apply_mouse_exited_effects"):
+			get_tree().connect("idle_frame", self, "_apply_mouse_exited_effects")
+	else:
+		_apply_mouse_exited_effects()
 
 
 func _on_GradientHelper_gradient_changed() -> void:
