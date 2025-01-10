@@ -21,6 +21,19 @@ func set_color(new_color: Color) -> void:
 	_refresh()
 
 
+func _apply_mouse_entered_effects() -> void:
+	# disconnect our one-shot method
+	if get_tree().is_connected("idle_frame", self, "_apply_mouse_entered_effects"):
+		get_tree().disconnect("idle_frame", self, "_apply_mouse_entered_effects")
+	_refresh()
+
+
+func _apply_mouse_exited_effects() -> void:
+	if get_tree().is_connected("idle_frame", self, "_apply_mouse_exited_effects"):
+		get_tree().disconnect("idle_frame", self, "_apply_mouse_exited_effects")
+	_refresh()
+
+
 ## Update the panel's appearance based on the currently selected color and button state.
 func _refresh() -> void:
 	if not is_inside_tree():
@@ -37,14 +50,22 @@ func _refresh() -> void:
 
 func _on_mouse_entered() -> void:
 	if is_inside_tree():
-		yield(get_tree(), "idle_frame")
-	_refresh()
+		# Wait a frame before applying mouse entered effects. We use a one-shot listener method instead of a yield
+		# statement to avoid 'class instance is gone' errors.
+		if not get_tree().is_connected("idle_frame", self, "_apply_mouse_entered_effects"):
+			get_tree().connect("idle_frame", self, "_apply_mouse_entered_effects")
+	else:
+		_apply_mouse_entered_effects()
 
 
 func _on_mouse_exited() -> void:
 	if is_inside_tree():
-		yield(get_tree(), "idle_frame")
-	_refresh()
+		# Wait a frame before applying mouse exited effects. We use a one-shot listener method instead of a yield
+		# statement to avoid 'class instance is gone' errors.
+		if not get_tree().is_connected("idle_frame", self, "_apply_mouse_exited_effects"):
+			get_tree().connect("idle_frame", self, "_apply_mouse_exited_effects")
+	else:
+		_apply_mouse_exited_effects()
 
 
 func _on_focus_entered() -> void:
