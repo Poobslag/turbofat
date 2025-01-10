@@ -33,6 +33,9 @@ func _process(_delta: float) -> void:
 			# nonexistent materials. We check for null to avoid a crash.
 			if _creature_visuals.has_node(node_path) and _creature_visuals.get_node(node_path).material:
 				_creature_visuals.get_node(node_path).material.set_shader_param(shader_param, shader_value)
+		
+		if not _pending_shader_keys:
+			emit_signal("dna_loaded")
 
 
 ## Unassigns the textures and animations for the creature.
@@ -153,7 +156,9 @@ func load_dna() -> void:
 	
 	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame
 	_creature_visuals.reset_frames()
-	emit_signal("dna_loaded")
+	
+	if not _pending_shader_keys:
+		emit_signal("dna_loaded")
 
 
 ## Removes a 'dna node', one which swaps out based on the creature's DNA.
