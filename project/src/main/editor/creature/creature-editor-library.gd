@@ -97,6 +97,12 @@ const COLOR_PRESETS_BY_COLOR_PROPERTY := {
 		],
 }
 
+## Unique creature ID for the player's offscreen doppelganger in the creature editor.
+##
+## Changing a creature's appearance forces all their textures and shaders to regenerate, making them look strange for
+## a moment. We apply these changes to a doppelganger and then swap them in after the changes are applied.
+const PLAYER_SWAP_ID := "#player_swap#"
+
 ## List of Category instances with information about the creature editor categories.
 var categories: Array = []
 

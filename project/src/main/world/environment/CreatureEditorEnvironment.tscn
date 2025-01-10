@@ -55,3 +55,9 @@ cell_shadow_mapping = {
 position = Vector2( -2, 32 )
 creature_id = "#player#"
 orientation = 1
+
+[node name="PlayerSwap" parent="Obstacles" instance=ExtResource( 28 )]
+visible = false
+position = Vector2( 88000, 32 )
+creature_id = "#player_swap#"
+orientation = 1
