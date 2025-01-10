@@ -11,9 +11,9 @@ script = ExtResource( 3 )
 [node name="CheatDisableSound" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 1 )
 volume_db = -4.0
-threshold_msec = 200
+suppress_sfx_msec = 200
 
 [node name="CheatEnableSound" parent="." instance=ExtResource( 4 )]
 stream = ExtResource( 2 )
 volume_db = -4.0
-threshold_msec = 200
+suppress_sfx_msec = 200

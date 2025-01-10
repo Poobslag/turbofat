@@ -5,4 +5,3 @@
 [node name="DeconflictedAudioStreamPlayer" type="AudioStreamPlayer"]
 bus = "Sound Bus"
 script = ExtResource( 1 )
-suppress_sfx_msec = 200
