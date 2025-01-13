@@ -1,0 +1,40 @@
+{
+  "version": "5923",
+  "id": "larvi",
+  "name": "Larvi",
+  "short_name": "Larvi",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "1",
+    "collar": "2",
+    "ear": "1",
+    "eye": "4",
+    "hair": "0",
+    "head": "2",
+    "horn": "0",
+    "mouth": "2",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "2",
+    "line_rgb": "08080a",
+    "body_rgb": "1a1a1e",
+    "belly_rgb": "35e1e0",
+    "cloth_rgb": "282828",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "222222",
+    "eye_rgb_0": "f5d561",
+    "eye_rgb_1": "20383f",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 11,
+    "color": "1a1a1e",
+    "dark": true
+  },
+  "fatness": 2.2
+}
