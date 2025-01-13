@@ -114,6 +114,7 @@ func _kick_table(piece: PieceType) -> String:
 
 func _rotation_label(key: int) -> String:
 	var rotation_names := ["0", "R", "2", "L"]
+	# warning-ignore:integer_division
 	var from_orientation := int(key / 10)
 	var to_orientation := key % 10
 	return "%s → %s" % [rotation_names[from_orientation], rotation_names[to_orientation]]
