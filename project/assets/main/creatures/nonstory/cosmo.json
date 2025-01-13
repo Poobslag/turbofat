@@ -1,0 +1,37 @@
+{
+  "version": "5923",
+  "id": "cosmo",
+  "name": "Cosmo",
+  "short_name": "Cosmo",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "3",
+    "ear": "8",
+    "eye": "2",
+    "hair": "0",
+    "head": "1",
+    "horn": "2",
+    "mouth": "7",
+    "nose": "4",
+    "tail": "7",
+    "accessory": "3",
+    "line_rgb": "1d326a",
+    "body_rgb": "2c4b9e",
+    "belly_rgb": "876edb",
+    "cloth_rgb": "282828",
+    "glass_rgb": "333332",
+    "plastic_rgb": "abb7f5",
+    "hair_rgb": "596de6",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "dedede",
+    "horn_rgb": "404094"
+  },
+  "chat_theme": {
+    "accent_scale": 4,
+    "accent_swapped": true,
+    "color": "2c4b9e"
+  }
+}
