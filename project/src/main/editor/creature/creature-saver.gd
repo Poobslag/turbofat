@@ -25,7 +25,7 @@ func save_creature() -> void:
 		return
 	
 	PlayerData.creature_library.player_def = _overworld_environment.player.get_creature_def()
-	PlayerSave.save_player_data()
+	PlayerSave.save_player_data(true)
 	_overworld_environment.player.play_mood(Utils.rand_value([
 			Creatures.Mood.SMILE0,
 			Creatures.Mood.SMILE1,

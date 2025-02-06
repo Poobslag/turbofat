@@ -78,7 +78,7 @@ func _assign_dialog_cancel_shortcut(dialog: WindowDialog) -> void:
 ## Save the changes, and then perform the requested operation (quitting or importing)
 func _on_UnsavedChangesQuitConfirmation_save_pressed() -> void:
 	PlayerData.creature_library.player_def = _overworld_environment.player.get_creature_def()
-	PlayerSave.save_player_data()
+	PlayerSave.save_player_data(true)
 	
 	if _unsaved_changes_confirmation_target:
 		_unsaved_changes_confirmation_target.call(_unsaved_changes_confirmation_method)
