@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/main/puzzle/level-change.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/top-out-tracker.gd" type="Script" id=30]
+[ext_resource path="res://src/main/utils/ViewportPurger.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/puzzle/bursts.gd" type="Script" id=32]
 [ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/theme/h2.theme" type="Theme" id=34]
@@ -894,6 +895,9 @@ script = ExtResource( 19 )
 
 [node name="NightModeToggler" type="Node" parent="."]
 script = ExtResource( 89 )
+
+[node name="ViewportPurger" parent="." instance=ExtResource( 31 )]
+viewport_paths = [ "Fg/GoopGlobs/TextureRect:texture", "Fg/GoopGlobs/RainbowTextureRect:texture", "Fg/FoodItems/TextureRect:texture", "Fg/HoldPieceDisplays/Holder/Walls:material:shader_param:goop_texture", "Fg/HoldPieceDisplays/Holder/Walls:material:shader_param:rainbow_texture" ]
 
 [connection signal="after_lines_deleted" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_after_lines_deleted"]
 [connection signal="after_lines_filled" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_after_lines_filled"]
