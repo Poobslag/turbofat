@@ -41,11 +41,11 @@ var load_performed_upgrade := false
 ## 'true' if rank data should be populated, and invalid levels purged from the player's save. Can be changed for tests
 var populate_rank_data := true
 
-## Provides backwards compatibility with older save formats
-var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
-
 ## 'true' if player data will be saved during the next scene transition
 var save_scheduled := false
+
+## Provides backwards compatibility with older save formats
+var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
 	rolling_backups.data_filename = data_filename
