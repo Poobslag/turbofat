@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://src/main/utils/ViewportPurger.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/utils/outline.shader" type="Shader" id=23]
 [ext_resource path="res://src/main/world/creature/viewport-creature-outline.gd" type="Script" id=24]
@@ -36,3 +37,6 @@ margin_bottom = 834.0
 rect_scale = Vector2( 0.4, 0.4 )
 mouse_filter = 2
 flip_v = true
+
+[node name="ViewportPurger" parent="." instance=ExtResource( 1 )]
+viewport_paths = [ "TextureRect:texture" ]

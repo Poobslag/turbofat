@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/main/puzzle/night/NightPuzzleTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://src/main/puzzle/night/night-sky-glow.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/night/night-onion.gd" type="Script" id=21]
 [ext_resource path="res://assets/main/puzzle/night/night-sky-particle-sheet.png" type="Texture" id=22]
+[ext_resource path="res://src/main/utils/ViewportPurger.tscn" type="PackedScene" id=23]
 
 [sub_resource type="CanvasItemMaterial" id=24]
 particles_animation = true
@@ -306,6 +307,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 14 )
 flip_v = true
+
+[node name="ViewportPurger" parent="." instance=ExtResource( 23 )]
+viewport_paths = [ "ShadowTexture:texture", "GhostPieceTexture:texture" ]
 
 [connection signal="visibility_changed" from="TileMapClip/NightSky" to="TileMapClip/NightSky" method="_on_visibility_changed"]
 [connection signal="timeout" from="TileMapClip/NightSky/AnimateTimer" to="TileMapClip/NightSky" method="_on_AnimateTimer_timeout"]
