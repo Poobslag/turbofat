@@ -24,12 +24,12 @@ signal rotated_180(piece)
 
 export (NodePath) var input_path: NodePath
 
+var just_flipped := false
+
 ## piece information used to restore the its previous location when flipping it
 var _prev_rotate_frames := 0
 var _prev_rotate_piece: ActivePiece
 var _prev_rotate_pos := Vector2(3, 3)
-
-var just_flipped := false
 
 onready var input: PieceInput = get_node(input_path)
 
