@@ -152,10 +152,9 @@ func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
 		file_age = OS.get_unix_time() - File.new().get_modified_time(this_filename)
 	if file_age >= rotate_millis:
 		# replace the 'prev-xxx' backup with the 'this-xxx' backup
-		var copy_result := dir.copy(this_filename, prev_filename)
-		if copy_result == OK:
-			dir.remove(this_filename)
-	
+		if dir.file_exists(prev_filename):
+			dir.remove(prev_filename)
+		dir.rename(this_filename, prev_filename)
 	if not dir.file_exists(this_filename):
 		# populate the 'this-xxx' backup from the current save
 		dir.copy(data_filename, this_filename)
