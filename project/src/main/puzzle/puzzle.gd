@@ -323,7 +323,7 @@ func _save_level_result(rank_result: RankResult) -> void:
 	if PlayerData.career.is_career_mode() and CurrentLevel.attempt_count == 0:
 		_update_career_data(rank_result)
 	
-	PlayerSave.schedule_save()
+	PlayerSave.save_player_data()
 
 
 ## For nighttime levels, this initializes night mode immediately to avoid an unpleasant blink effect.
