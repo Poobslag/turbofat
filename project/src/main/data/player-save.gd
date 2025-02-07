@@ -41,17 +41,27 @@ var load_performed_upgrade := false
 ## 'true' if rank data should be populated, and invalid levels purged from the player's save. Can be changed for tests
 var populate_rank_data := true
 
+## 'true' if player data will be saved during the next scene transition
+var save_scheduled := false
+
 ## Provides backwards compatibility with older save formats
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
-## 'true' if player data will be saved during the next scene transition
-var save_scheduled := false
+## The currently active thread which is saving the player's data.
+##
+## This thread is assigned when saving begins, and reset to null when saving completes.
+var _save_thread: Thread = null
 
 func _ready() -> void:
 	rolling_backups.data_filename = data_filename
 	rolling_backups.legacy_filename = legacy_filename
 	
 	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
+
+
+func _exit_tree() -> void:
+	if _save_thread:
+		_save_thread.wait_to_finish()
 
 
 func get_corrupt_filenames() -> Array:
@@ -82,32 +92,27 @@ func schedule_save() -> void:
 
 
 ## Writes the player's in-memory data to a save file.
-func save_player_data() -> void:
-	emit_signal("before_save")
-	var save_json := []
-	save_json.append(SaveItem.new("version", PLAYER_DATA_VERSION).to_json_dict())
-	var player_info := {}
-	player_info["money"] = PlayerData.money
-	player_info["seconds_played"] = PlayerData.seconds_played
-	save_json.append(SaveItem.new("player_info", player_info).to_json_dict())
-	for level_name in PlayerData.level_history.level_names():
-		var rank_results_json := []
-		for rank_result in PlayerData.level_history.results(level_name):
-			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(SaveItem.new("level_history", rank_results_json, level_name).to_json_dict())
-	save_json.append(SaveItem.new("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
-	save_json.append(SaveItem.new("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
-	save_json.append(SaveItem.new("career", PlayerData.career.to_json_dict()).to_json_dict())
-	save_json.append(SaveItem.new("difficulty", PlayerData.difficulty.to_json_dict()).to_json_dict())
-	save_json.append(SaveItem.new("menu_region", PlayerData.menu_region.id).to_json_dict())
-	save_json.append(SaveItem.new("practice", PlayerData.practice.to_json_dict()).to_json_dict())
-	save_json.append(SaveItem.new("successful_levels",
-			PlayerData.level_history.successful_levels).to_json_dict())
-	save_json.append(SaveItem.new("finished_levels",
-			PlayerData.level_history.finished_levels).to_json_dict())
-	FileUtils.write_file(data_filename, Utils.print_json(save_json))
-	rolling_backups.rotate_backups()
-	emit_signal("after_save")
+##
+## Parameters:
+## 	'threaded': If 'true', saving occurs on a secondary thread (if supported). This reduces lag but isn't suitable
+## 		for atomic save operations.
+func save_player_data(threaded: bool = false) -> void:
+	if _save_thread:
+		# A save thread is already active; don't start another until it's finished.
+		return
+	
+	# Godot issue #12699; Threads not supported for HTML5
+	var use_threaded := threaded and not OS.has_feature("web")
+	
+	if use_threaded:
+		emit_signal("before_save")
+		_save_thread = Thread.new()
+		_save_thread.start(self, "_threaded_write_file")
+		# The after_save signal is emitted from within the thread.
+	else:
+		emit_signal("before_save")
+		_save_player_data_internal()
+		emit_signal("after_save")
 
 
 ## Populates the player's in-memory data based on their save files.
@@ -278,6 +283,54 @@ func _load_line(type: String, key: String, json_value) -> void:
 			PlayerData.practice.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)
+
+
+## Saves the player data.
+##
+## This code is meant to be invoked from within a secondary thread.
+func _threaded_write_file() -> void:
+	_save_player_data_internal()
+	call_deferred("_after_threaded_write_file")
+
+
+## Performs cleanup steps after a threaded save operation.
+##
+## This code is meant to be invoked on the main thread, after a threaded save operation completes on a secondary
+## thread.
+func _after_threaded_write_file() -> void:
+	call_deferred("emit_signal", "after_save")
+	_save_thread.wait_to_finish()
+	_save_thread = null
+
+
+## Saves the player data.
+##
+## This code is sometimes launched on the main thread or sometimes in a secondary thread, so it should not emit
+## signals or interact with the scene tree.
+func _save_player_data_internal() -> void:
+	var save_json := []
+	save_json.append(SaveItem.new("version", PLAYER_DATA_VERSION).to_json_dict())
+	var player_info := {}
+	player_info["money"] = PlayerData.money
+	player_info["seconds_played"] = PlayerData.seconds_played
+	save_json.append(SaveItem.new("player_info", player_info).to_json_dict())
+	for level_name in PlayerData.level_history.level_names():
+		var rank_results_json := []
+		for rank_result in PlayerData.level_history.results(level_name):
+			rank_results_json.append(rank_result.to_json_dict())
+		save_json.append(SaveItem.new("level_history", rank_results_json, level_name).to_json_dict())
+	save_json.append(SaveItem.new("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("career", PlayerData.career.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("difficulty", PlayerData.difficulty.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("menu_region", PlayerData.menu_region.id).to_json_dict())
+	save_json.append(SaveItem.new("practice", PlayerData.practice.to_json_dict()).to_json_dict())
+	save_json.append(SaveItem.new("successful_levels",
+			PlayerData.level_history.successful_levels).to_json_dict())
+	save_json.append(SaveItem.new("finished_levels",
+			PlayerData.level_history.finished_levels).to_json_dict())
+	FileUtils.write_file(data_filename, Utils.print_json(save_json))
+	rolling_backups.rotate_backups()
 
 
 func _on_Breadcrumb_before_scene_changed() -> void:

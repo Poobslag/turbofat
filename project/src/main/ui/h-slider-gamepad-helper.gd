@@ -77,7 +77,6 @@ func _stop_sliding() -> void:
 	set_process(false)
 
 
-
 ## When the delay timer times out, we update our stored value and start sliding.
 func _on_DelayTimer_timeout() -> void:
 	set_process(true)

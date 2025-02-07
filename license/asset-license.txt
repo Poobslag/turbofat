@@ -176,6 +176,8 @@ project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' b
 project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/ui/touch/swap-pressed.png 'Empty' by Freepik
+project/assets/main/ui/touch/swap.png 'Empty' by Freepik
 project/assets/main/ui/xbox/*.png Xelu's free controller keyboard prompts by Nicolae (XELU) Berbece
 
 Fonts

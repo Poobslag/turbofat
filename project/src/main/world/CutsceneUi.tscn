@@ -92,7 +92,7 @@ mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
 
-[node name="SettingsButton" parent="Buttons/Northeast" instance=ExtResource( 6 )]
+[node name="SettingsButton" parent="Buttons/Northeast" groups=["cutscene_buttons"] instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 402.0

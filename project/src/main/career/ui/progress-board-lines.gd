@@ -16,12 +16,12 @@ export (Color) var path_color := Color.white setget set_path_color
 ## Color for the trail's outline
 export (Color) var outline_color := Color.transparent
 
-var _tween: SceneTreeTween
-
 ## If 'true', the line flashes different colors. Used when the player reaches a goal.
 var cycle_colors: bool setget set_cycle_colors
 
 var path2d: Path2D setget set_path2d
+
+var _tween: SceneTreeTween
 
 func _ready() -> void:
 	_refresh_cycle_colors()

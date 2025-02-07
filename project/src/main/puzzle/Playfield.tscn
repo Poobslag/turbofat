@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://src/main/puzzle/TutorialKeybindsLabel.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/puzzle/tutorial-hint.gd" type="Script" id=22]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/utils/ViewportPurger.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/puzzle/line-inserter.gd" type="Script" id=25]
 [ext_resource path="res://src/main/puzzle/Pickup.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/puzzle/pickups.gd" type="Script" id=27]
@@ -372,6 +373,9 @@ bus = "Sound Bus"
 [node name="LineFillSfxResetTimer" type="Timer" parent="LineFiller"]
 wait_time = 0.3
 one_shot = true
+
+[node name="ViewportPurger" parent="." instance=ExtResource( 24 )]
+viewport_paths = [ "BgSprite:material:shader_param:goop_texture", "BgSprite:material:shader_param:rainbow_texture", "ShadowTexture:texture", "GhostPieceTexture:texture" ]
 
 [connection signal="all_lines_cleared" from="." to="LineClearSfx" method="_on_Playfield_all_lines_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
