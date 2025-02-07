@@ -5,18 +5,18 @@ signal settings_changed
 
 ## control schemes that decide which buttons appear where
 enum ControlScheme {
-	AMBI_CONSOLE,
-	AMBI_DESKTOP,
 	EASY_CONSOLE,
 	EASY_DESKTOP,
+	AMBI_CONSOLE,
+	AMBI_DESKTOP,
 	LOCO_CONSOLE,
 	LOCO_DESKTOP,
 }
 
-const AMBI_CONSOLE := ControlScheme.AMBI_CONSOLE
-const AMBI_DESKTOP := ControlScheme.AMBI_DESKTOP
 const EASY_CONSOLE := ControlScheme.EASY_CONSOLE
 const EASY_DESKTOP := ControlScheme.EASY_DESKTOP
+const AMBI_CONSOLE := ControlScheme.AMBI_CONSOLE
+const AMBI_DESKTOP := ControlScheme.AMBI_DESKTOP
 const LOCO_CONSOLE := ControlScheme.LOCO_CONSOLE
 const LOCO_DESKTOP := ControlScheme.LOCO_DESKTOP
 
