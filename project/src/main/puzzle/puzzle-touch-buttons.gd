@@ -16,36 +16,42 @@ const SCHEMES := {
 		"sw_weights": [1, 1, 1, 1],
 		"se_actions": ["", "rotate_ccw", "", "rotate_cw"],
 		"se_weights": [0, 0, 0, 1],
+		"se_hold": true,
 	},
 	TouchSettings.EASY_DESKTOP: {
 		"sw_actions": ["", "rotate_cw", "rotate_ccw", ""],
 		"sw_weights": [0, 0, 1, 0],
 		"se_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"se_weights": [1, 1, 1, 1],
+		"sw_hold": true,
 	},
 	TouchSettings.AMBI_CONSOLE: {
 		"sw_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"sw_weights": [1, 1, 1, 1],
 		"se_actions": ["hard_drop", "rotate_ccw", "soft_drop", "rotate_cw"],
 		"se_weights": [1, 0, 0, 1],
+		"se_hold": true,
 	},
 	TouchSettings.AMBI_DESKTOP: {
 		"sw_actions": ["hard_drop", "rotate_cw", "rotate_ccw", "soft_drop"],
 		"sw_weights": [0, 1, 1, 0],
 		"se_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"se_weights": [1, 1, 1, 1],
+		"sw_hold": true,
 	},
 	TouchSettings.LOCO_CONSOLE: {
 		"sw_actions": ["soft_drop", "move_piece_right", "move_piece_left", "hard_drop"],
 		"sw_weights": [0, 1, 0, 0],
 		"se_actions": ["hard_drop", "rotate_ccw", "soft_drop", "rotate_cw"],
 		"se_weights": [1, 0, 0, 1],
+		"se_hold": true,
 	},
 	TouchSettings.LOCO_DESKTOP: {
 		"sw_actions": ["soft_drop", "rotate_cw", "rotate_ccw", "hard_drop"],
 		"sw_weights": [0, 1, 1, 0],
 		"se_actions": ["hard_drop", "move_piece_left", "soft_drop", "move_piece_right"],
 		"se_weights": [1, 0, 0, 0],
+		"sw_hold": true,
 	},
 }
 
@@ -119,10 +125,12 @@ func _refresh_settings() -> void:
 	$ButtonsSw.down_action = scheme_dict["sw_actions"][1]
 	$ButtonsSw.left_action = scheme_dict["sw_actions"][2]
 	$ButtonsSw.right_action = scheme_dict["sw_actions"][3]
+	$ButtonsSw/HoldHolder.visible = scheme_dict.get("sw_hold", false) and CurrentLevel.is_hold_piece_cheat_enabled()
 	$ButtonsSe.up_action = scheme_dict["se_actions"][0]
 	$ButtonsSe.down_action = scheme_dict["se_actions"][1]
 	$ButtonsSe.left_action = scheme_dict["se_actions"][2]
 	$ButtonsSe.right_action = scheme_dict["se_actions"][3]
+	$ButtonsSe/HoldHolder.visible = scheme_dict.get("se_hold", false) and CurrentLevel.is_hold_piece_cheat_enabled()
 	
 	# update diagonal sensitivity
 	$ButtonsSw.up_left_weight = scheme_dict["sw_weights"][0] * SystemData.touch_settings.fat_finger

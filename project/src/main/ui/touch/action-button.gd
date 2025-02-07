@@ -37,6 +37,7 @@ const NORMAL_TEXTURES := {
 	"move_piece_right": preload("res://assets/main/ui/touch/move-right.png"),
 	"hard_drop": preload("res://assets/main/ui/touch/move-up.png"),
 	"soft_drop": preload("res://assets/main/ui/touch/move-down.png"),
+	"swap_hold_piece": preload("res://assets/main/ui/touch/duck.png"),
 	"rotate_cw": preload("res://assets/main/ui/touch/rotate-cw.png"),
 	"rotate_ccw": preload("res://assets/main/ui/touch/rotate-ccw.png"),
 
@@ -48,6 +49,7 @@ const PRESSED_TEXTURES := {
 	"move_piece_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
 	"hard_drop": preload("res://assets/main/ui/touch/move-up-pressed.png"),
 	"soft_drop": preload("res://assets/main/ui/touch/move-down-pressed.png"),
+	"swap_hold_piece": preload("res://assets/main/ui/touch/duck-pressed.png"),
 	"rotate_cw": preload("res://assets/main/ui/touch/rotate-cw-pressed.png"),
 	"rotate_ccw": preload("res://assets/main/ui/touch/rotate-ccw-pressed.png"),
 
