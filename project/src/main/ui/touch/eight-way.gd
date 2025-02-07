@@ -9,6 +9,9 @@ signal pressed
 ## radius from the eightway's center where touches should be processed. significantly larger than its visual radius
 const RADIUS := 180
 
+## 'swap hold piece' button which is adjacent to this eight-way
+export (NodePath) var hold_button_path: NodePath
+
 ## actions associated with each cardinal direction. if omitted, the button will not be shown
 export (String) var up_action: String setget set_up_action
 export (String) var down_action: String setget set_down_action
@@ -31,6 +34,8 @@ var _touch_dir: Vector2
 ## index of the most recent touch event
 var _touch_index := -1
 
+onready var _hold_button: TouchScreenButton = get_node(hold_button_path) if hold_button_path else null
+
 onready var _up := $HBoxContainer/VBoxContainer/Up
 onready var _down := $HBoxContainer/VBoxContainer/Down
 onready var _left := $VBoxContainer/HBoxContainer/Left
@@ -49,6 +54,10 @@ func _input(event: InputEvent) -> void:
 	if not is_visible_in_tree():
 		return
 	
+	if _hold_button and _hold_button.is_pressed():
+		# the hold button takes precedence over our inputs
+		return
+
 	# Process the touch event, but don't mark it as handled. Other touch buttons might need to handle the same touch
 	# event, such as when dragging a finger from one EightWay into another.
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.pressed):
