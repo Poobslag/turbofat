@@ -856,9 +856,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 80, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 11.0
 value = 1.0
-tick_count = 12
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_left = 338.0
