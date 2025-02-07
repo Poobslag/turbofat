@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/chat/ui/ChatFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/chat/ui/ChatChoices.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/chat/chat-advancer.gd" type="Script" id=3]
 [ext_resource path="res://src/main/chat/ui/click-translator.gd" type="Script" id=4]
 [ext_resource path="res://src/main/chat/ui/NarrationFrame.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/chat/ui/gamepad-accept-echo-generator.gd" type="Script" id=6]
 [ext_resource path="res://src/main/chat/ui/chat-ui.gd" type="Script" id=16]
 
 [node name="ChatUi" type="Control"]
@@ -35,6 +36,10 @@ margin_bottom = 40.0
 script = ExtResource( 4 )
 chat_frame_path = NodePath("../ChatFrame")
 narration_frame_path = NodePath("../NarrationFrame")
+
+[node name="GamepadEchoGenerator" type="Node" parent="."]
+script = ExtResource( 6 )
+action_name = "ui_accept"
 
 [connection signal="chat_event_played" from="." to="ChatAdvancer" method="_on_ChatUi_chat_event_played"]
 [connection signal="chat_finished" from="." to="ClickTranslator" method="_on_ChatUi_chat_finished"]
