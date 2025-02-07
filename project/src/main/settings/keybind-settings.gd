@@ -316,4 +316,4 @@ func valid_custom_ui_keybinds() -> bool:
 ## Returns:
 ## 	An xbox input image texture showing a button or dpad input.
 static func xbox_image_for_input_event(input_event_json: Dictionary) -> Texture:
-	return XBOX_IMAGES_BY_BUTTON.get(input_event_json.get("button_index"))
+	return XBOX_IMAGES_BY_BUTTON.get(int(input_event_json.get("button_index", -1)))
