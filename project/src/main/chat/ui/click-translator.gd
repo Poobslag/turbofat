@@ -73,7 +73,10 @@ func _enable_translation() -> void:
 
 ## Emits press/release events based on a mouse click.
 func _handle_mouse_button(event: InputEventMouseButton) -> void:
-	if event.pressed and _click_index == -1 and not _showing_choices:
+	if event.pressed \
+			and _click_index == -1 \
+			and not _showing_choices \
+			and not _is_event_within_cutscene_button(event):
 		# emit a press event
 		_click_index = event.button_index
 		if is_inside_tree():
@@ -86,6 +89,19 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 		if is_inside_tree():
 			get_tree().set_input_as_handled()
 		_emit_ui_accept_event(false, false)
+
+
+## Returns 'true' if the press/release event is within a button, such as the settings button.
+##
+## When watching a cutscene, most mouse clicks advance the cutscene, but the player also needs to be able to press
+## certain buttons.
+func _is_event_within_cutscene_button(event: InputEventMouseButton) -> bool:
+	var result := false
+	for button in get_tree().get_nodes_in_group("cutscene_buttons"):
+		if button.visible and button.get_global_rect().has_point(event.global_position):
+			result = true
+			break
+	return result
 
 
 func _on_ChatUi_popped_in() -> void:
