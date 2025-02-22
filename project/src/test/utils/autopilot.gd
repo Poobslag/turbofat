@@ -158,20 +158,26 @@ func _left_click(position: Vector2) -> void:
 
 
 ## Simulates a mouse press event.
-func _press_mouse(button_index: int, position: Vector2) -> void:
+func _press_mouse(button_index: int, global_position: Vector2) -> void:
 	var press := InputEventMouseButton.new()
 	press.set_button_index(button_index)
-	press.set_position(position)
+	var viewport_position: Vector2 = _global_to_viewport_position(global_position)
+	press.set_position(viewport_position)
 	press.set_pressed(true)
 	Input.parse_input_event(press)
 	_simulated_input = true
 
 
+func _global_to_viewport_position(global_position: Vector2) -> Vector2:
+	return get_viewport().get_final_transform() * global_position
+
+
 ## Simulates a mouse release event.
-func _release_mouse(button_index: int, position: Vector2) -> void:
+func _release_mouse(button_index: int, global_position: Vector2) -> void:
 	var release := InputEventMouseButton.new()
 	release.set_button_index(button_index)
-	release.set_position(position)
+	var viewport_position: Vector2 = _global_to_viewport_position(global_position)
+	release.set_position(viewport_position)
 	release.set_pressed(false)
 	Input.parse_input_event(release)
 	_simulated_input = true
