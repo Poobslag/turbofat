@@ -114,8 +114,8 @@ autostart = true
 
 [node name="PresquishSfx" type="AudioStreamPlayer" parent="SquishFx"]
 stream = ExtResource( 25 )
-script = ExtResource( 24 )
 bus = "Sound Bus"
+script = ExtResource( 24 )
 
 [node name="States" parent="." instance=ExtResource( 35 )]
 script = ExtResource( 19 )
