@@ -198,6 +198,12 @@ stream = ExtResource( 4 )
 volume_db = -4.0
 bus = "Sound Bus"
 
+[node name="LandSound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 4 )
+volume_db = -4.0
+pitch_scale = 0.85
+bus = "Sound Bus"
+
 [node name="LockSound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 8 )
 bus = "Sound Bus"
@@ -229,6 +235,7 @@ bus = "Sound Bus"
 [connection signal="initial_rotated_ccw" from="." to="Sfx" method="_on_PieceManager_initial_rotated_ccw"]
 [connection signal="initial_rotated_cw" from="." to="TechMoveDetector" method="_on_PieceManager_initial_rotated_cw"]
 [connection signal="initial_rotated_cw" from="." to="Sfx" method="_on_PieceManager_initial_rotated_cw"]
+[connection signal="landed" from="." to="Sfx" method="_on_PieceManager_landed"]
 [connection signal="lock_cancelled" from="." to="Sfx" method="_on_PieceManager_lock_cancelled"]
 [connection signal="lock_started" from="." to="Sfx" method="_on_PieceManager_lock_started"]
 [connection signal="moved_left" from="." to="TechMoveDetector" method="_on_PieceManager_moved_left"]
@@ -267,6 +274,7 @@ bus = "Sound Bus"
 [connection signal="dropped" from="Physics/Dropper" to="." method="_on_Dropper_dropped"]
 [connection signal="hard_drop_target_pos_changed" from="Physics/Dropper" to="GhostMover" method="_on_Dropper_hard_drop_target_pos_changed"]
 [connection signal="hard_dropped" from="Physics/Dropper" to="." method="_on_Dropper_hard_dropped"]
+[connection signal="landed" from="Physics/Dropper" to="." method="_on_Dropper_landed"]
 [connection signal="soft_dropped" from="Physics/Dropper" to="." method="_on_Dropper_soft_dropped"]
 [connection signal="hard_dropped" from="Physics/Squisher" to="." method="_on_Squisher_hard_dropped"]
 [connection signal="lock_cancelled" from="Physics/Squisher" to="." method="_on_Squisher_lock_cancelled"]

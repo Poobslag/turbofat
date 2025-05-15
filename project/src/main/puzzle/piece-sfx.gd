@@ -48,6 +48,10 @@ func _on_PieceManager_initial_das_moved_right(_piece: ActivePiece) -> void:
 	_play_move_sfx()
 
 
+func _on_PieceManager_landed(_piece: ActivePiece):
+	$LandSound.play()
+
+
 func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 	$SquishSound.play()
 

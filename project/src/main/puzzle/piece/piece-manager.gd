@@ -32,6 +32,7 @@ signal rotated_180(piece)
 signal soft_dropped(piece) # emitted when the player presses the soft drop key
 signal hard_dropped(piece) # emitted when the player presses the hard drop key
 signal dropped(piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
+signal landed(piece) # emitted when the piece lands as a result of a soft drop, hard drop, or gravity
 signal squish_moved(piece, old_pos)
 
 ## emitted when the player places a sealed-in piece with a spin move
@@ -459,6 +460,7 @@ func _on_PuzzleState_topping_out_changed(value: bool) -> void:
 func _on_Dropper_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
 func _on_Dropper_soft_dropped(dropped_piece: ActivePiece) -> void: emit_signal("soft_dropped", dropped_piece)
 func _on_Dropper_dropped(dropped_piece: ActivePiece) -> void: emit_signal("dropped", dropped_piece)
+func _on_Dropper_landed(landed_piece: ActivePiece) -> void: emit_signal("landed", landed_piece)
 
 func _on_Squisher_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
 func _on_Squisher_lock_cancelled(cancelled_piece: ActivePiece) -> void: emit_signal("lock_cancelled", cancelled_piece)
