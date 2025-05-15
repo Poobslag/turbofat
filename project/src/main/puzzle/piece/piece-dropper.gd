@@ -7,6 +7,7 @@ signal hard_drop_target_pos_changed(piece, hard_drop_target_pos)
 signal soft_dropped(dropped_piece) # emitted when the player presses the soft drop key
 signal hard_dropped(dropped_piece) # emitted when the player presses the hard drop key
 signal dropped(dropped_piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
+signal landed(landed_piece) # emitted when the piece lands as a result of a soft drop, hard drop, or gravity
 
 ## Returns a number in the range [0.0, ∞) for how piece gravity should be modified for each gameplay speed setting.
 ##
@@ -98,6 +99,8 @@ func apply_gravity(piece: ActivePiece) -> void:
 			emit_signal("soft_dropped", piece)
 		if pos_changed:
 			emit_signal("dropped", piece)
+		if pos_changed and not piece.can_move_to(piece.pos + Vector2.DOWN, piece.orientation):
+			emit_signal("landed", piece)
 
 
 ## Returns a number in the range [0.0, ∞) for how piece gravity should be modified.
