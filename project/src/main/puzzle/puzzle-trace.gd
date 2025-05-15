@@ -33,6 +33,11 @@ func _process(_delta: float) -> void:
 		max_input_frames = max(max_input_frames, _piece_manager.input.soft_drop.pressed_frames)
 		max_input_frames = max(max_input_frames, _piece_manager.input.hard_drop.pressed_frames)
 		new_text += " %02d" % [min(99, max_input_frames)]
+		new_text += "\n"
+		
+		new_text += "%d" % [_piece_manager.piece.lock]
+		new_text += " %d" % [_piece_manager.piece.lock_resets]
+		new_text += " %d" % [_piece_manager.piece.floor_kicks]
 		text = new_text
 
 
