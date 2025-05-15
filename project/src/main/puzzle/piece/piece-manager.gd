@@ -230,7 +230,8 @@ func apply_lock() -> void:
 		piece.lock += 1
 		piece.gravity = 0
 	else:
-		piece.lock = 0
+		if piece.lock > 0:
+			piece.perform_lock_reset()
 
 
 func is_playfield_clearing_lines() -> bool:
