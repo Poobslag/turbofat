@@ -134,7 +134,7 @@ func _initialize_creature_name_button(button: CreatureNameButton) -> void:
 
 func _initialize_operation_button(button: OperationButton, operation: Operation) -> void:
 	button.id = operation.id
-	if operation.id in ["export", "import"] and (OS.has_feature("web") or OS.has_feature("android")):
+	if operation.id in ["export", "import"] and (OS.has_feature("web") or OS.has_feature("mobile")):
 		# export/import are not available on web
 		button.set_disabled(true)
 	if operation.id == "save" and not _creature_saver.has_unsaved_changes():
