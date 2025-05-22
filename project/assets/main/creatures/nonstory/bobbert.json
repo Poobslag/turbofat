@@ -1,0 +1,39 @@
+{
+  "version": "5923",
+  "id": "bobbert",
+  "name": "Bobbert",
+  "short_name": "Bobbert",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "1",
+    "collar": "1",
+    "ear": "6",
+    "eye": "4",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "4",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "5ac8e6",
+    "belly_rgb": "eec086",
+    "cloth_rgb": "cb1b2e",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "f1e398",
+    "eye_rgb_0": "282828",
+    "eye_rgb_1": "dedede",
+    "horn_rgb": "d3af43"
+  },
+  "chat_theme": {
+    "accent_scale": 2.3,
+    "accent_swapped": true,
+    "accent_texture": 4,
+    "color": "5ac8e6",
+    "dark": true
+  }
+}
