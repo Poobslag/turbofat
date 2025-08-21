@@ -1,0 +1,39 @@
+{
+  "version": "5923",
+  "id": "azazel",
+  "name": "Azazel",
+  "short_name": "Azazel",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "1",
+    "collar": "4",
+    "ear": "11",
+    "eye": "3",
+    "hair": "2",
+    "head": "1",
+    "horn": "1",
+    "mouth": "7",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "08080a",
+    "body_rgb": "1a1a1e",
+    "belly_rgb": "2a2a2a",
+    "cloth_rgb": "121011",
+    "glass_rgb": "b8d229",
+    "plastic_rgb": "d4aa4d",
+    "hair_rgb": "222222",
+    "eye_rgb_0": "121011",
+    "eye_rgb_1": "a8ad89",
+    "horn_rgb": "282828"
+  },
+  "chat_theme": {
+    "accent_scale": 1,
+    "accent_texture": 2,
+    "color": "1a1a1e",
+    "dark": true
+  },
+  "fatness": 1.6
+}
