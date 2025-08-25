@@ -92,6 +92,7 @@ func _load_recent_data() -> void:
 	# load the player's previously played level
 	_level_settings = LevelSettings.new()
 	_level_settings.load_from_resource(PlayerData.practice.level_id)
+	GameplayDifficultyAdjustments.adjust_milestones(_level_settings)
 
 
 ## Enables/disables focus for inputs as submenus are shown and hidden.

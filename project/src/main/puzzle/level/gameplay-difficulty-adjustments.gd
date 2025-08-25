@@ -34,6 +34,15 @@ const TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
 }
 
 ## key: (int) enum from DifficultyData.Speed
+## value: (float) multiplier for duration milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
+const TIME_UNDER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
+	DifficultyData.Speed.SLOW: 1.00,
+	DifficultyData.Speed.SLOWER: 1.11,
+	DifficultyData.Speed.SLOWEST: 1.43,
+	DifficultyData.Speed.SLOWESTEST: 2.50,
+}
+
+## key: (int) enum from DifficultyData.Speed
 ## value: (Dictionary) mapping from piece speed strings to adjusted piece speed strings
 const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	# pieces are literally always at the fastest 20G speed
@@ -432,6 +441,27 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 	},
 }
 
+
+## Adjusts the finish milestone based on the current gameplay settings.
+##
+## When the player plays at slow speeds, we make milestones easier to reach.
+static func adjust_milestones(settings: LevelSettings) -> void:
+	if not _is_piece_speed_cheat_enabled(settings):
+		# Don't adjust milestones for tutorials. Some tutorials require the player to place 3 pieces, shortening it to
+		# 2 pieces would ruin the tutorial
+		return
+	
+	match settings.finish_condition.type:
+		Milestone.LINES:
+			adjust_line_finish(settings)
+		Milestone.PIECES:
+			adjust_piece_finish(settings)
+		Milestone.SCORE:
+			adjust_score_finish(settings)
+		Milestone.TIME_OVER:
+			adjust_time_over_finish(settings)
+
+
 ## Adjusts a piece speed based on the player's gameplay speed settings.
 ##
 ## Parameters:
@@ -439,7 +469,9 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 ##
 ## Returns:
 ## 	A modified piece speed string such as '0' or 'A9'
-static func adjust_piece_speed(piece_speed_string: String) -> String:
+static func adjust_piece_speed(settings: LevelSettings, piece_speed_string: String) -> String:
+	if not _is_piece_speed_cheat_enabled(settings):
+		return piece_speed_string
 	var adjusted_speed_by_piece_speed: Dictionary = \
 			PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, {})
 	return adjusted_speed_by_piece_speed.get(piece_speed_string, piece_speed_string)
@@ -448,34 +480,46 @@ static func adjust_piece_speed(piece_speed_string: String) -> String:
 ## Adjusts a score milestone value based on the player's gameplay speed settings.
 ##
 ## When the player plays at slow speeds, we make milestones easier to reach.
-static func adjust_score_milestone(score: int) -> int:
+static func adjust_score_finish(settings: LevelSettings) -> void:
+	if not _is_piece_speed_cheat_enabled(settings):
+		return
 	var score_milestone_factor: float = \
 			SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
-	return int(ceil(score * score_milestone_factor))
+	settings.finish_condition.value = int(ceil(settings.finish_condition.value * score_milestone_factor))
 
 
 ## Adjusts a line milestone value based on the player's gameplay speed settings.
 ##
 ## When the player plays at slow speeds, we make milestones easier to reach.
-static func adjust_line_milestone(lines: int) -> int:
+static func adjust_line_finish(settings: LevelSettings) -> void:
+	if not _is_piece_speed_cheat_enabled(settings):
+		return
 	var line_milestone_factor: float = \
 			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
-	return int(ceil(lines * line_milestone_factor))
+	settings.finish_condition.value = int(ceil(settings.finish_condition.value * line_milestone_factor))
 
 
 ## Adjusts a piece milestone value based on the player's gameplay speed settings.
 ##
 ## When the player plays at slow speeds, we make milestones easier to reach.
-static func adjust_piece_milestone(pieces: int) -> int:
+static func adjust_piece_finish(settings: LevelSettings) -> void:
+	if not _is_piece_speed_cheat_enabled(settings):
+		return
 	var piece_milestone_factor: float = \
 			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
-	return int(ceil(pieces * piece_milestone_factor))
+	settings.finish_condition.value = int(ceil(settings.finish_condition.value * piece_milestone_factor))
 
 
 ## Adjusts a duration milestone value based on the player's gameplay speed settings.
 ##
 ## When the player plays at very slow speeds, we make milestones easier to reach.
-static func adjust_time_over_milestone(time_over: int) -> int:
+static func adjust_time_over_finish(settings: LevelSettings) -> void:
+	if not _is_piece_speed_cheat_enabled(settings):
+		return
 	var time_over_milestone_factor: float = \
 			TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
-	return int(ceil(time_over * time_over_milestone_factor))
+	settings.finish_condition.value = int(ceil(settings.finish_condition.value * time_over_milestone_factor))
+
+
+static func _is_piece_speed_cheat_enabled(settings: LevelSettings) -> bool:
+	return PlayerData.difficulty.speed != DifficultyData.Speed.DEFAULT and not settings.other.tutorial

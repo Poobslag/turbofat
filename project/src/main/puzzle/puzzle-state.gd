@@ -284,6 +284,7 @@ func prepare_level_change(level_id: String) -> void:
 func change_level(level_id: String) -> void:
 	var settings := LevelSettings.new()
 	settings.load_from_resource(level_id)
+	GameplayDifficultyAdjustments.adjust_milestones(settings)
 	CurrentLevel.switch_level(settings)
 	# initialize input_frame to allow for recording/replaying inputs
 	input_frame = 0
@@ -481,6 +482,7 @@ func _prepare_game() -> void:
 		# Load a different level to start (used for tutorials)
 		var new_settings := LevelSettings.new()
 		new_settings.load_from_resource(CurrentLevel.settings.other.start_level)
+		new_settings.adjust_milestones()
 		CurrentLevel.start_level(new_settings)
 	
 	reset()
