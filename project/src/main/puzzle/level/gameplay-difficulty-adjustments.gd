@@ -546,7 +546,7 @@ static func adjust_time_over_finish(settings: LevelSettings) -> void:
 		var score_milestone_factor: float = \
 				SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 		settings.success_condition.value = int(ceil(settings.success_condition.value \
-				 * time_over_milestone_factor * score_milestone_factor))
+				* time_over_milestone_factor * score_milestone_factor))
 
 
 static func _is_piece_speed_cheat_enabled(settings: LevelSettings) -> bool:
