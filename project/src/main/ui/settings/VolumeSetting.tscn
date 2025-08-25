@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/ui/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/settings/volume-setting-control.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/main/ui/HSliderGamepadHelper.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/ClickCatcher.tscn" type="PackedScene" id=6]
 
 [node name="Setting" type="HBoxContainer"]
 anchor_left = 0.5
@@ -58,6 +59,12 @@ tick_count = 11
 
 [node name="HSliderGamepadHelper" parent="HBoxContainer/HSlider" instance=ExtResource( 5 )]
 sliding_speed = 0.5
+
+[node name="ClickCatcher" parent="HBoxContainer/HSlider" instance=ExtResource( 6 )]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
 
 [node name="Percent" type="Label" parent="HBoxContainer"]
 margin_left = 123.0

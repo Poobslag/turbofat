@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
 [ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
 [ext_resource path="res://src/main/ui/settings/settings-eating-sounds.gd" type="Script" id=30]
+[ext_resource path="res://src/main/ui/ClickCatcher.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/ui/squeak/br/SqueakButtonHelper.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=35]
 [ext_resource path="res://src/main/ui/theme/h6-font.tres" type="DynamicFont" id=36]
@@ -242,6 +243,12 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
+
+[node name="ClickCatcher" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/EatingSounds/CheckBox" instance=ExtResource( 31 )]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
 
 [node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 168.0
@@ -857,6 +864,12 @@ rect_min_size = Vector2( 80, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 1.0
+
+[node name="ClickCatcher" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" instance=ExtResource( 31 )]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_left = 338.0
