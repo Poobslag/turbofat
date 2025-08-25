@@ -48,7 +48,7 @@ func _on_PieceManager_initial_das_moved_right(_piece: ActivePiece) -> void:
 	_play_move_sfx()
 
 
-func _on_PieceManager_landed(_piece: ActivePiece):
+func _on_PieceManager_landed(_piece: ActivePiece) -> void:
 	$LandSound.play()
 
 
