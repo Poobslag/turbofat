@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Basic Techniques",
   "start_speed": "A1",
   "finish_condition": {
     "type": "lines",

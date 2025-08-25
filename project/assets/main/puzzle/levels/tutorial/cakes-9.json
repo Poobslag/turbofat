@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Make Cakes",
   "finish_condition": {
     "type": "time_over",
     "value": 45
