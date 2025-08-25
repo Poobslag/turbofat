@@ -36,10 +36,10 @@ const TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
 ## key: (int) enum from DifficultyData.Speed
 ## value: (float) multiplier for duration milestones. 0.5 = level is twice as short, 2.0 = level is twice as long
 const TIME_UNDER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED := {
-	DifficultyData.Speed.SLOW: 1.00,
-	DifficultyData.Speed.SLOWER: 1.11,
-	DifficultyData.Speed.SLOWEST: 1.43,
-	DifficultyData.Speed.SLOWESTEST: 2.50,
+	DifficultyData.Speed.SLOW: 1.40,
+	DifficultyData.Speed.SLOWER: 2.50,
+	DifficultyData.Speed.SLOWEST: 5.00,
+	DifficultyData.Speed.SLOWESTEST: 10.00,
 }
 
 ## key: (int) enum from DifficultyData.Speed
