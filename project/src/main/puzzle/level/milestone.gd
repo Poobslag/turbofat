@@ -66,25 +66,3 @@ func is_default() -> bool:
 	result = result && (value == 0)
 	result = result && (get_meta_list().empty())
 	return result
-
-
-## Returns the milestone value adjusted by the current gameplay settings.
-##
-## When the player plays at slow speeds, we make milestones easier to reach.
-func adjusted_value() -> int:
-	if not CurrentLevel.is_piece_speed_cheat_enabled():
-		# Don't adjust milestones for tutorials. Some tutorials require the player to place 3 pieces, shortening it to
-		# 2 pieces would ruin the tutorial
-		return value
-	
-	var adjusted_value := value
-	match type:
-		LINES:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_line_milestone(adjusted_value)
-		PIECES:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_piece_milestone(adjusted_value)
-		SCORE:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_score_milestone(adjusted_value)
-		TIME_OVER:
-			adjusted_value = GameplayDifficultyAdjustments.adjust_time_over_milestone(adjusted_value)
-	return adjusted_value

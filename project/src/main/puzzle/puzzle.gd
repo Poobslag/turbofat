@@ -335,16 +335,22 @@ func _initialize_night_mode() -> void:
 
 ## Add the necessary lines/pieces/score to complete the necessary milestone
 func _complete_milestone(milestone: Milestone) -> void:
+	var adjusted_milestone_value: int = milestone.value
+	if milestone == CurrentLevel.settings.finish_condition:
+		adjusted_milestone_value = CurrentLevel.settings.finish_condition.value
+	elif milestone == CurrentLevel.settings.success_condition:
+		adjusted_milestone_value = CurrentLevel.settings.success_condition.value
+	
 	match milestone.type:
 		Milestone.CUSTOMERS:
-			while PuzzleState.customer_scores.size() <= milestone.adjusted_value():
+			while PuzzleState.customer_scores.size() <= adjusted_milestone_value:
 				PuzzleState.customer_scores.insert(0, 100)
 		Milestone.LINES:
-			PuzzleState.level_performance.lines = milestone.adjusted_value()
+			PuzzleState.level_performance.lines = adjusted_milestone_value
 		Milestone.PIECES:
-			PuzzleState.level_performance.pieces = milestone.adjusted_value()
+			PuzzleState.level_performance.pieces = adjusted_milestone_value
 		Milestone.SCORE:
-			var score := milestone.adjusted_value()
+			var score := adjusted_milestone_value
 			
 			# update all score fields; otherwise the results hud might be have strangely
 			PuzzleState.level_performance.score = score
@@ -359,10 +365,10 @@ func _complete_milestone(milestone: Milestone) -> void:
 			
 			PuzzleState.level_performance.seconds += 9999
 		Milestone.TIME_OVER:
-			PuzzleState.level_performance.seconds = milestone.adjusted_value()
+			PuzzleState.level_performance.seconds = adjusted_milestone_value
 		Milestone.TIME_UNDER:
 			# set the time slightly under the required time, so the player has a moment to place the piece
-			PuzzleState.level_performance.seconds = max(milestone.adjusted_value() - 10.0, 1.0)
+			PuzzleState.level_performance.seconds = max(adjusted_milestone_value - 10.0, 1.0)
 
 
 func _on_Hud_start_button_pressed() -> void:
