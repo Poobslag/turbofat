@@ -442,7 +442,7 @@ const PIECE_SPEED_MAPPING_BY_GAMEPLAY_SPEED := {
 }
 
 
-## Adjusts the finish milestone based on the current gameplay settings.
+## Adjusts the finish and success milestones based on the current gameplay settings.
 ##
 ## When the player plays at slow speeds, we make milestones easier to reach.
 static func adjust_milestones(settings: LevelSettings) -> void:
@@ -486,6 +486,13 @@ static func adjust_score_finish(settings: LevelSettings) -> void:
 	var score_milestone_factor: float = \
 			SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	settings.finish_condition.value = int(ceil(settings.finish_condition.value * score_milestone_factor))
+	
+	if settings.success_condition.type == Milestone.TIME_UNDER:
+		# Scale the success condition to the new finish condition, and to make it easier
+		var time_under_milestone_factor: float = \
+				TIME_UNDER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
+		settings.success_condition.value = int(ceil(settings.success_condition.value \
+				* score_milestone_factor * time_under_milestone_factor))
 
 
 ## Adjusts a line milestone value based on the player's gameplay speed settings.
@@ -497,6 +504,13 @@ static func adjust_line_finish(settings: LevelSettings) -> void:
 	var line_milestone_factor: float = \
 			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	settings.finish_condition.value = int(ceil(settings.finish_condition.value * line_milestone_factor))
+	
+	if settings.success_condition.type == Milestone.SCORE:
+		# Scale the success condition to the new finish condition, and to make it easier
+		var score_milestone_factor: float = \
+				SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
+		settings.success_condition.value = int(ceil(settings.success_condition.value \
+				* line_milestone_factor * score_milestone_factor))
 
 
 ## Adjusts a piece milestone value based on the player's gameplay speed settings.
@@ -508,6 +522,13 @@ static func adjust_piece_finish(settings: LevelSettings) -> void:
 	var piece_milestone_factor: float = \
 			LINE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	settings.finish_condition.value = int(ceil(settings.finish_condition.value * piece_milestone_factor))
+	
+	if settings.success_condition.type == Milestone.SCORE:
+		# Scale the success condition to the new finish condition, and to make it easier
+		var score_milestone_factor: float = \
+				SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
+		settings.success_condition.value = int(ceil(settings.success_condition.value \
+				* piece_milestone_factor * score_milestone_factor))
 
 
 ## Adjusts a duration milestone value based on the player's gameplay speed settings.
@@ -519,6 +540,13 @@ static func adjust_time_over_finish(settings: LevelSettings) -> void:
 	var time_over_milestone_factor: float = \
 			TIME_OVER_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
 	settings.finish_condition.value = int(ceil(settings.finish_condition.value * time_over_milestone_factor))
+	
+	if settings.success_condition.type == Milestone.SCORE:
+		# Scale the success condition to the new finish condition, and to make it easier
+		var score_milestone_factor: float = \
+				SCORE_MILESTONE_FACTOR_BY_GAMEPLAY_SPEED.get(PlayerData.difficulty.speed, 1.0)
+		settings.success_condition.value = int(ceil(settings.success_condition.value \
+				 * time_over_milestone_factor * score_milestone_factor))
 
 
 static func _is_piece_speed_cheat_enabled(settings: LevelSettings) -> bool:
