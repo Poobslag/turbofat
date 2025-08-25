@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Build Combos",
   "start_speed": "T",
   "input_replay": [
     "25 +rotate_cw",

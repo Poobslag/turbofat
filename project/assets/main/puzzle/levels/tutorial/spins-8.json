@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Meet Spins",
   "start_speed": "5",
   "finish_condition": {
     "type": "pieces",
