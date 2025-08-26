@@ -59,7 +59,7 @@ func reset() -> void:
 
 ## Returns 'true' if the player can adjust the master volume.
 func is_master_volume_enabled() -> bool:
-	return OS.has_feature("mobile")
+	return not OS.has_feature("mobile")
 
 
 func to_json_dict() -> Dictionary:
