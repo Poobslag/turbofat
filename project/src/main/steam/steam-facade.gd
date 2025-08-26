@@ -105,9 +105,9 @@ func setStatFloat(stat_name: String, value: float) -> bool:
 
 
 ## Initializes the Steamworks SDK.
-func steamInitEx(retrieve_stats: bool = true, app_id: int = 0, embed_callbacks: bool = false) -> Dictionary:
-	_log("Initializing Steam: %s %s %s" % [retrieve_stats, app_id, embed_callbacks])
-	var response: Dictionary = Steam.steamInitEx(retrieve_stats, app_id, embed_callbacks)
+func steamInitEx(app_id: int = 0, embed_callbacks: bool = false) -> Dictionary:
+	_log("Initializing Steam: %s %s" % [app_id, embed_callbacks])
+	var response: Dictionary = Steam.steamInitEx(app_id, embed_callbacks)
 	_log("steamInitEx response: %s" % [response])
 	return response
 

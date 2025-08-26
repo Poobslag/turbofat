@@ -104,7 +104,7 @@ func _initialize_steam() -> void:
 	OS.set_environment("SteamAppId", str(STEAM_APP_ID))
 	OS.set_environment("SteamGameId", str(STEAM_APP_ID))
 	
-	SteamFacade.steamInitEx(true, STEAM_APP_ID)
+	SteamFacade.steamInitEx(STEAM_APP_ID)
 	SteamFacade.connect("overlay_toggled", self, "_on_Steam_overlay_toggled")
 
 
