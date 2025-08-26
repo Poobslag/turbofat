@@ -5,5 +5,6 @@ extends Button
 
 func _pressed() -> void:
 	SystemData.gameplay_settings.ghost_piece = true
+	SystemData.gameplay_settings.lock_fade = false
 	SystemData.gameplay_settings.soft_drop_lock_cancel = false
 	SystemData.has_unsaved_changes = true
