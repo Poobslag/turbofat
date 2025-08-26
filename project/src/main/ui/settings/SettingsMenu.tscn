@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h5.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/squeak/br/squeak-theme-h4.tres" type="Theme" id=2]
@@ -30,6 +30,8 @@
 [ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
 [ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
 [ext_resource path="res://src/main/ui/settings/settings-eating-sounds.gd" type="Script" id=30]
+[ext_resource path="res://src/main/ui/ClickCatcher.tscn" type="PackedScene" id=31]
+[ext_resource path="res://src/main/ui/settings/settings-lock-fade.gd" type="Script" id=32]
 [ext_resource path="res://src/main/ui/squeak/br/SqueakButtonHelper.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/ui/theme/h5-font.tres" type="DynamicFont" id=35]
 [ext_resource path="res://src/main/ui/theme/h6-font.tres" type="DynamicFont" id=36]
@@ -243,6 +245,12 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.1
 
+[node name="ClickCatcher" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/EatingSounds/CheckBox" instance=ExtResource( 31 )]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+
 [node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer"]
 margin_top = 168.0
 margin_right = 712.0
@@ -359,7 +367,7 @@ follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
 margin_right = 736.0
-margin_bottom = 116.0
+margin_bottom = 154.0
 size_flags_horizontal = 3
 
 [node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
@@ -392,10 +400,58 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.94
 pressed = true
 
-[node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
+[node name="LockFade" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
 margin_top = 38.0
 margin_right = 736.0
-margin_bottom = 81.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+custom_constants/separation = 20
+script = ExtResource( 32 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockFade"]
+margin_right = 287.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 120, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.63
+text = "Lock Fade"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockFade"]
+margin_left = 307.0
+margin_right = 736.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 160, 26 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.94
+
+[node name="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockFade/HBoxContainer" instance=ExtResource( 44 )]
+margin_right = 38.0
+margin_bottom = 32.0
+
+[node name="Description" type="Label" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockFade/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 44.0
+margin_right = 429.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.63
+text = "Pieces darken while locking."
+valign = 1
+autowrap = true
+
+[node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer"]
+margin_top = 76.0
+margin_right = 736.0
+margin_bottom = 119.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -442,9 +498,9 @@ autowrap = true
 
 [node name="ResetToDefault" parent="Window/UiArea/TabContainer/Gameplay/VBoxContainer" instance=ExtResource( 43 )]
 margin_left = 298.0
-margin_top = 87.0
+margin_top = 125.0
 margin_right = 437.0
-margin_bottom = 116.0
+margin_bottom = 154.0
 size_flags_horizontal = 4
 text = "Reset to Default"
 script = ExtResource( 42 )
@@ -857,6 +913,12 @@ rect_min_size = Vector2( 80, 16 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 1.0
+
+[node name="ClickCatcher" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" instance=ExtResource( 31 )]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control"]
 margin_left = 338.0
@@ -1377,6 +1439,7 @@ icon_color = Color( 1, 0.866667, 0.6, 1 )
 [connection signal="pressed" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync/CheckBox" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/UseVsync" method="_on_CheckBox_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail/OptionButton" to="Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/CreatureDetail" method="_on_OptionButton_item_selected"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/GhostPiece" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockFade/HBoxContainer/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockFade" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel/HBoxContainer/CheckBox" to="Window/UiArea/TabContainer/Gameplay/VBoxContainer/LockCancel" method="_on_CheckBox_toggled"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Size" method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/VBoxContainer/Scheme" method="_on_OptionButton_item_selected"]

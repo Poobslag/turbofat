@@ -1,0 +1,38 @@
+{
+  "version": "5923",
+  "id": "sophie",
+  "name": "Sophie",
+  "short_name": "Sophie",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "1",
+    "collar": "2",
+    "ear": "14",
+    "eye": "3",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "4",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "e17827",
+    "belly_rgb": "c9442a",
+    "cloth_rgb": "ffffff",
+    "glass_rgb": "333332",
+    "plastic_rgb": "292828",
+    "hair_rgb": "f1e398",
+    "eye_rgb_0": "8458b9",
+    "eye_rgb_1": "b392df",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme": {
+    "accent_scale": 3.5,
+    "accent_texture": 11,
+    "color": "e17827"
+  },
+  "fatness": 1.6
+}

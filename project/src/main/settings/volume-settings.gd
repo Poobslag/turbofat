@@ -57,6 +57,11 @@ func reset() -> void:
 	from_json_dict({})
 
 
+## Returns 'true' if the player can adjust the master volume.
+func is_master_volume_enabled() -> bool:
+	return OS.has_feature("mobile")
+
+
 func to_json_dict() -> Dictionary:
 	return {
 		"master": get_bus_volume_linear(MASTER),
@@ -68,7 +73,8 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	set_bus_volume_linear(MASTER, float(json.get("master", 0.7)))
+	# keep android at a fixed master volume; users can use ther volume up/volume down buttons
+	set_bus_volume_linear(MASTER, 0.7 if is_master_volume_enabled() else float(json.get("master", 0.7)))
 	set_bus_volume_linear(MUSIC, float(json.get("music", 0.7)))
 	set_bus_volume_linear(SOUND, float(json.get("sound", 0.7)))
 	set_bus_volume_linear(VOICE, float(json.get("voice", 0.7)))

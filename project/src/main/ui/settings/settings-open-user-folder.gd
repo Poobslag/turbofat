@@ -7,7 +7,7 @@ extends HBoxContainer
 onready var _button := $Button
 
 func _ready() -> void:
-	if OS.has_feature("web") or OS.has_feature("android"):
+	if OS.has_feature("web") or OS.has_feature("mobile"):
 		_button.disabled = true
 
 

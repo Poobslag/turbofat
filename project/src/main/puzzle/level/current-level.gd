@@ -81,6 +81,7 @@ func set_launched_level(new_level_id: String) -> void:
 	if new_level_id:
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level_id)
+		GameplayDifficultyAdjustments.adjust_milestones(level_settings)
 		if level_settings.other.tutorial:
 			customers = [CreatureLibrary.SENSEI_ID]
 
@@ -117,6 +118,7 @@ func switch_level(new_settings: LevelSettings, suppress_change_signal: bool = fa
 func push_level_trail() -> void:
 	var level_settings := LevelSettings.new()
 	level_settings.load_from_resource(level_id)
+	GameplayDifficultyAdjustments.adjust_milestones(level_settings)
 	if piece_speed:
 		LevelSpeedAdjuster.new(level_settings).adjust(piece_speed)
 	if hardcore:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/ui/menu/PagedRegionPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/main/ui/candy-button/gradient-blue-normal.tres" type="Gradient" id=8]
 [ext_resource path="res://src/main/ui/level-select/LevelButtonScroller.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=10]
+[ext_resource path="res://src/main/ui/ClickCatcher.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/ui/squeak/gy/squeak-theme-h4.tres" type="Theme" id=12]
 [ext_resource path="res://src/main/ui/HighScoreTable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/theme/h3-font-outline.tres" type="DynamicFont" id=14]
@@ -201,12 +202,19 @@ tick_count = 4
 [node name="HSliderGamepadHelper" parent="MainMenu/DropPanel/VBoxContainer/Speed/SliderPanel/Slider" instance=ExtResource( 38 )]
 sliding_speed = 6.0
 
+[node name="ClickCatcher" parent="MainMenu/DropPanel/VBoxContainer/Speed/SliderPanel/Slider" instance=ExtResource( 11 )]
+margin_left = -25.0
+margin_top = -25.0
+margin_right = 25.0
+margin_bottom = 25.0
+
 [node name="Labels" type="HBoxContainer" parent="MainMenu/DropPanel/VBoxContainer/Speed"]
 margin_left = 144.0
 margin_top = 62.0
 margin_right = 752.0
 margin_bottom = 82.0
 rect_min_size = Vector2( 608, 0 )
+mouse_filter = 2
 size_flags_horizontal = 4
 theme = ExtResource( 6 )
 

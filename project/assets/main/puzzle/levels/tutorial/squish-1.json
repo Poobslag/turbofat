@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Squish and Recover",
   "start_speed": "T",
   "lose_condition": [
     "top_out 999999"

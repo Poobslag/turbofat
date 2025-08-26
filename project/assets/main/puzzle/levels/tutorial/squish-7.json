@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Squish and Recover",
   "finish_condition": {
     "type": "score",
     "value": 150

@@ -8,7 +8,7 @@ func _ready() -> void:
 	if PlayerSave.corrupt_filenames:
 		$BadSaveDataControl.popup()
 	
-	if OS.has_feature("web"):
+	if OS.has_feature("web") or OS.has_feature("mobile"):
 		# don't quit from the web. it just blacks out the window, which isn't useful or user friendly
 		$DropPanel/System/Quit.hide()
 

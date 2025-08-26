@@ -25,6 +25,7 @@ var input_mode: int = InputMode.KEYBOARD_MOUSE setget set_input_mode
 var last_mouse_input_time: int = 0
 
 func _ready() -> void:
+	get_tree().quit_on_go_back = false
 	# allow the mouse to show/hide when gameplay is paused
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
@@ -48,9 +49,26 @@ func _input(event: InputEvent) -> void:
 			set_input_mode(JOYPAD)
 
 
+func _notification(what: int) -> void:
+	# When the user presses the Android 'Back' button, we trigger a ui_cancel event to go back.
+	if OS.has_feature("mobile") and what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		_parse_press_and_release_event("ui_cancel")
+
+
 func set_input_mode(new_input_mode: int) -> void:
 	if input_mode == new_input_mode:
 		return
 	
 	input_mode = new_input_mode
 	emit_signal("input_mode_changed")
+
+
+## Feeds a press and release InputEvent to the game.
+func _parse_press_and_release_event(action: String) -> void:
+	var press_event := InputEventAction.new()
+	press_event.action = action
+	press_event.pressed = true
+	Input.parse_input_event(press_event)
+	var release_event: InputEventAction = press_event.duplicate()
+	release_event.pressed = false
+	Input.parse_input_event(release_event)

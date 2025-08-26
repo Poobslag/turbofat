@@ -6,7 +6,7 @@ export (NodePath) var puzzle_path: NodePath
 onready var _puzzle: Puzzle = get_node(puzzle_path)
 onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _combo_tracker: ComboTracker = _puzzle.get_node("Fg/Playfield/ComboTracker")
-onready var _piece_manager: PieceManager= _puzzle.get_piece_manager()
+onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func _process(_delta: float) -> void:
 	if visible:
@@ -33,6 +33,11 @@ func _process(_delta: float) -> void:
 		max_input_frames = max(max_input_frames, _piece_manager.input.soft_drop.pressed_frames)
 		max_input_frames = max(max_input_frames, _piece_manager.input.hard_drop.pressed_frames)
 		new_text += " %02d" % [min(99, max_input_frames)]
+		new_text += "\n"
+		
+		new_text += "%d" % [_piece_manager.piece.lock]
+		new_text += " %d" % [_piece_manager.piece.lock_resets]
+		new_text += " %d" % [_piece_manager.piece.floor_kicks]
 		text = new_text
 
 

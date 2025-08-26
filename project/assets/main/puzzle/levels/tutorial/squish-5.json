@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Squish and Recover",
   "start_speed": "T",
   "blocks_during": [
     "top_out_effect none"

@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Build Combos",
   "finish_condition": {
     "type": "score",
     "value": 120

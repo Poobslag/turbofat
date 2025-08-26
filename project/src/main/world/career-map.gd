@@ -106,6 +106,7 @@ func _load_level_settings() -> void:
 	for level in _pickable_career_levels:
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level.level_id)
+		GameplayDifficultyAdjustments.adjust_milestones(level_settings)
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
 		_pickable_level_settings.append(level_settings)
 	

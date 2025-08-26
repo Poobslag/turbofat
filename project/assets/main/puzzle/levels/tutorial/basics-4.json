@@ -1,5 +1,6 @@
 {
   "version": "5c84",
+  "name": "Basic Techniques",
   "finish_condition": {
     "type": "score",
     "value": 100

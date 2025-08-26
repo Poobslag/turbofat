@@ -2,10 +2,14 @@ class_name GameplaySettings
 ## Manages settings which control the gameplay.
 
 signal ghost_piece_changed(value)
+signal lock_fade_changed(value)
 signal soft_drop_lock_cancel_changed(value)
 
 ## 'true' if a ghost piece should be shown during the puzzle sections.
 var ghost_piece := true setget set_ghost_piece
+
+## 'true' if pieces should darken while locking..
+var lock_fade := false setget set_lock_fade
 
 ## 'true' if pressing soft drop should perform a lock cancel
 var soft_drop_lock_cancel := false setget set_soft_drop_lock_cancel
@@ -25,6 +29,13 @@ func set_ghost_piece(new_ghost_piece: bool) -> void:
 	emit_signal("ghost_piece_changed", new_ghost_piece)
 
 
+func set_lock_fade(new_lock_fade: bool) -> void:
+	if lock_fade == new_lock_fade:
+		return
+	lock_fade = new_lock_fade
+	emit_signal("lock_fade_changed", new_lock_fade)
+
+
 func set_soft_drop_lock_cancel(new_soft_drop_lock_cancel: bool) -> void:
 	if soft_drop_lock_cancel == new_soft_drop_lock_cancel:
 		return
@@ -40,11 +51,13 @@ func reset() -> void:
 func to_json_dict() -> Dictionary:
 	return {
 		"ghost_piece": ghost_piece,
+		"lock_fade": lock_fade,
 		"soft_drop_lock_cancel": soft_drop_lock_cancel,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
 	set_ghost_piece(json.get("ghost_piece", true))
+	set_lock_fade(json.get("lock_fade", false))
 	set_soft_drop_lock_cancel(json.get("soft_drop_lock_cancel", false))
 	legacy_properties = json.get("legacy_properties", {})

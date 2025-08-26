@@ -21,6 +21,7 @@ var has_unsaved_changes := false
 ## We store the non-fullscreened window size so we can restore it when the player disables fullscreen mode.
 var _prev_window_size: Vector2 = Global.window_size
 var _prev_window_position: Vector2 = OS.window_position
+var _prev_window_maximized: bool = OS.window_maximized
 
 ## When the graphics settings change, we update them after a few milliseconds delay.
 ##
@@ -76,16 +77,19 @@ func _refresh_graphics_settings() -> void:
 	var old_maximized := OS.window_maximized and OS.window_borderless
 	var new_maximized := graphics_settings.fullscreen
 	
-	if not old_maximized and new_maximized:
-		# becoming maximized; store the old window size and position
+	if not old_maximized:
+		# store the old window size and position
 		_prev_window_size = OS.window_size
 		_prev_window_position = OS.window_position
+		_prev_window_maximized = OS.window_maximized
 	
-	OS.window_borderless = graphics_settings.fullscreen
-	OS.window_maximized = graphics_settings.fullscreen
+	if old_maximized != new_maximized:
+		OS.window_borderless = graphics_settings.fullscreen
+		OS.window_maximized = graphics_settings.fullscreen
 	
 	if old_maximized and not new_maximized:
 		# becoming windowed; restore the old window size and position
+		OS.window_maximized = _prev_window_maximized
 		OS.window_size = _prev_window_size
 		OS.window_position = _prev_window_position
 

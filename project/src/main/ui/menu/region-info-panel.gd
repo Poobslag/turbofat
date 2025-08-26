@@ -129,6 +129,7 @@ func _update_rank_region_text(region: OtherRegion) -> void:
 		if best_result:
 			var level_settings := LevelSettings.new()
 			level_settings.load_from_resource(next_level_id)
+			GameplayDifficultyAdjustments.adjust_milestones(level_settings)
 			if best_result.compare == "-seconds":
 				# If the player has finished in 4 minutes but needs 2 minutes, they are 25% complete
 				promotion_percent = level_settings.success_condition.value / float(best_result.seconds)

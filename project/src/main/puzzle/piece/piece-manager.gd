@@ -32,6 +32,7 @@ signal rotated_180(piece)
 signal soft_dropped(piece) # emitted when the player presses the soft drop key
 signal hard_dropped(piece) # emitted when the player presses the hard drop key
 signal dropped(piece) # emitted when the piece falls as a result of a soft drop, hard drop, or gravity
+signal landed(piece) # emitted when the piece lands as a result of a soft drop, hard drop, or gravity
 signal squish_moved(piece, old_pos)
 
 ## emitted when the player places a sealed-in piece with a spin move
@@ -51,6 +52,9 @@ const TILE_MAP_DEFAULT_Z_INDEX := 3
 
 ## z index the piece manager's tilemap switches to temporarily when topping out
 const TILE_MAP_TOP_OUT_Z_INDEX := 4
+
+## Darkened color for locked pieces, if the 'lock fade' setting is enabled.
+const LOCKED_PIECE_MODULATE := Color("909090")
 
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var piece_queue_path: NodePath
@@ -103,6 +107,12 @@ func _physics_process(_delta: float) -> void:
 		drawn_piece_orientation = piece.orientation
 		_update_tile_map()
 		emit_signal("tiles_changed", tile_map)
+	
+	if SystemData.gameplay_settings.lock_fade:
+		var darkness: float = inverse_lerp(0.0, PieceSpeeds.current_speed.lock_delay, piece.lock)
+		tile_map.modulate = lerp(Color.white, LOCKED_PIECE_MODULATE, clamp(darkness, 0.0, 1.0))
+	else:
+		tile_map.modulate = Color.white
 
 
 func get_state() -> State:
@@ -230,7 +240,8 @@ func apply_lock() -> void:
 		piece.lock += 1
 		piece.gravity = 0
 	else:
-		piece.lock = 0
+		if piece.lock > 0:
+			piece.perform_lock_reset()
 
 
 func is_playfield_clearing_lines() -> bool:
@@ -458,6 +469,7 @@ func _on_PuzzleState_topping_out_changed(value: bool) -> void:
 func _on_Dropper_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
 func _on_Dropper_soft_dropped(dropped_piece: ActivePiece) -> void: emit_signal("soft_dropped", dropped_piece)
 func _on_Dropper_dropped(dropped_piece: ActivePiece) -> void: emit_signal("dropped", dropped_piece)
+func _on_Dropper_landed(landed_piece: ActivePiece) -> void: emit_signal("landed", landed_piece)
 
 func _on_Squisher_hard_dropped(dropped_piece: ActivePiece) -> void: emit_signal("hard_dropped", dropped_piece)
 func _on_Squisher_lock_cancelled(cancelled_piece: ActivePiece) -> void: emit_signal("lock_cancelled", cancelled_piece)

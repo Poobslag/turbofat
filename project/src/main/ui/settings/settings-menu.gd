@@ -31,6 +31,7 @@ var _post_save_args_array: Array
 onready var controller_unplugged_message := $ControllerUnpluggedMessage
 
 onready var _controls_control := $Window/UiArea/TabContainer/Controls
+onready var _master_volume_control := $Window/UiArea/TabContainer/SoundAndGraphics/VBoxContainer/Master
 onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/VBoxContainer/SaveSlot
 onready var _touch_control := $Window/UiArea/TabContainer/Touch
 
@@ -50,6 +51,10 @@ func _ready() -> void:
 	else:
 		# hide touch settings if touch is not enabled
 		_touch_control.queue_free()
+	
+	if not SystemData.volume_settings.is_master_volume_enabled():
+		# hide master volume control for mobile devices
+		_master_volume_control.queue_free()
 	
 	_refresh_quit_type()
 

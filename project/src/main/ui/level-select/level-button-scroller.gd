@@ -151,6 +151,7 @@ func _refresh_level_settings() -> void:
 	for level_id in _level_ids:
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level_id)
+		GameplayDifficultyAdjustments.adjust_milestones(level_settings)
 		_level_settings_by_id[level_id] = level_settings
 
 	# Sort the levels

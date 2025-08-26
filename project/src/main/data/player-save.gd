@@ -196,6 +196,7 @@ func _calculate_rank_for_level_history() -> void:
 	for level_id in PlayerData.level_history.level_names():
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level_id)
+		GameplayDifficultyAdjustments.adjust_milestones(level_settings)
 		CurrentLevel.start_level(level_settings, true)
 		for level_history_item in PlayerData.level_history.rank_results[level_id]:
 			rank_calculator.calculate_rank(level_history_item)

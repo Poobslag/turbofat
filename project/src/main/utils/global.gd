@@ -60,7 +60,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	if "--tf-verbose" in OS.get_cmdline_args() or OS.is_debug_build():
+	if "--tf-verbose" in OS.get_cmdline_args():
 		verbose_stdout_mode = true
 
 
