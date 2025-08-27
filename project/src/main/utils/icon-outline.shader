@@ -29,7 +29,7 @@ void fragment() {
 	// we go around in a circle, sampling the texture in each direction.
 	// if we find an opaque section we set our alpha to 1.0 and break out of the loop
 	for (float a = 0.0; a <= TAU && final_alpha < 1.0; a += TAU / float(sample_count)) {
-		final_alpha = max(final_alpha, texture(TEXTURE, UV + vec2(sin(a) * size.x, cos(a) * size.y)).a);
+		final_alpha = max(final_alpha, textureLod(TEXTURE, UV + vec2(sin(a) * size.x, cos(a) * size.y), 0.0).a);
 	}
 	
 	vec3 final_color = mix(black.rgb, white.rgb, sprite_alpha);
