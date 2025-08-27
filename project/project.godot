@@ -2286,3 +2286,7 @@ quality/filters/msaa=2
 quality/depth/hdr=false
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 batching/options/use_batching.Android=false
+
+[steam]
+
+initialization/app_id=2213410
