@@ -22,6 +22,7 @@ uniform vec4 white : hint_color;
 
 // A monochrome texture containing the accents to draw in the chat window's middle
 uniform sampler2D accent_texture;
+uniform vec2 accent_texture_size = vec2(100, 100);
 
 uniform float accent_scale = 0.25;
 
@@ -38,7 +39,7 @@ void fragment() {
 	// Apply the node size, texture size and rotation
 	vec2 tex_uv = UV * node_size - node_size;
 	tex_uv = tex_uv * mat2(vec2(cos(radians(-accent_rotation)), -sin(radians(-accent_rotation))), vec2(sin(radians(-accent_rotation)), cos(radians(-accent_rotation))));
-	tex_uv /= accent_scale * vec2(textureSize(accent_texture, 0));
+	tex_uv /= accent_scale * vec2(accent_texture_size);
 
 	// Apply the texture image
 	vec4 tex_rgba = accent_swapped ? vec4(1.0) - textureLod(accent_texture, tex_uv, 1.5) : textureLod(accent_texture, tex_uv, 1.5);

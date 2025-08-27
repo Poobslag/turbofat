@@ -50,5 +50,6 @@ func update_appearance(chat_theme: ChatTheme, chat_line_size: int) -> void:
 	material.set_shader_param("accent_scale", chat_theme.accent_scale)
 	material.set_shader_param("accent_swapped", chat_theme.accent_swapped)
 	material.set_shader_param("accent_texture", _accent_textures[chat_theme.accent_texture_index])
+	material.set_shader_param("accent_texture_size", _accent_textures[chat_theme.accent_texture_index].get_size())
 	material.set_shader_param("border_color", chat_theme.border_color)
 	material.set_shader_param("center_color", Color.black if chat_theme.dark else Color.white)

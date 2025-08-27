@@ -23,6 +23,7 @@ uniform vec4 accent_color : hint_color;
 
 // A monochrome texture containing the accents to draw in the chat window's middle
 uniform sampler2D accent_texture;
+uniform vec2 accent_texture_size = vec2(100, 100);
 
 uniform float accent_scale = 2.0;
 
@@ -49,7 +50,7 @@ void fragment() {
 	tex_uv.y += scroll_distance.y * 0.5 * cos(2.0 * PI * TIME / scroll_period.y);
 	// gradually scroll the texture vertically
 	tex_uv.y += TIME * scroll_distance.y * 0.33;
-	tex_uv /= accent_scale * vec2(textureSize(accent_texture, 0));
+	tex_uv /= accent_scale * vec2(accent_texture_size);
 	
 	// mix in the middle texture based on the red component of the source image
 	vec4 rgba_out = mix(border_color, center_color, rgba_in.r);
